@@ -200,10 +200,14 @@ class RcTypeControl():
 	def __init__(self):
 		if pathExists('/proc/stb/ir/rc/type') and pathExists('/proc/stb/info/boxtype'):
 			self.isSupported = True
-
-			fd = open('/proc/stb/info/boxtype', 'r')
-			self.boxType = fd.read()
-			fd.close()
+			if os.path.exists('/proc/stb/info/boxtype'):
+				fd = open('/proc/stb/info/boxtype', 'r')
+				self.boxType = fd.read()
+				fd.close()
+			if os.path.exists('/proc/stb/info/hwmodel'):
+				fd = open('/proc/stb/info/boxtype', 'r')
+				self.boxType = fd.read()
+				fd.close()
 
 			if config.plugins.remotecontroltype.rctype.getValue() != 0:
 				self.writeRcType(config.plugins.remotecontroltype.rctype.getValue())
