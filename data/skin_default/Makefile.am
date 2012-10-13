@@ -70,4 +70,5 @@ dist_install_DATA = \
 	vkey_space.png \
 	vkey_text.png \
 	volume.png \
-	wizard.png
+	wizard.png \
+	rc_wb_desc.png
