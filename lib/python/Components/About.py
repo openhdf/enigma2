@@ -31,6 +31,7 @@ def getKernelVersionString():
 
 def getBuildVersionString():
 	try:
+		version = "n/a"
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		for x in lines:
