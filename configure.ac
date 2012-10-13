@@ -218,7 +218,6 @@ data/keymaps/Makefile
 data/lcd_large/Makefile
 data/lcd_small/Makefile
 data/Nobile/Makefile
-data/Nobile/extra/Makefile
 data/rc_models/Makefile
 data/rc_models/et6x00/Makefile
 data/rc_models/et9500/Makefile
