@@ -15,7 +15,7 @@ dist_pkgdata_DATA = \
 	freesat.t1 \
 	freesat.t2 \
 	unicable.xml \
-	picon_default
+	picon_default.png
 
 if HAVE_TEXTLCD
 dist_pkgdata_DATA += skin_text.xml
