@@ -225,7 +225,7 @@ class VideoHardware:
 			else:
 				open("/proc/stb/video/videomode_50hz", "w").write(mode_50)
 				open("/proc/stb/video/videomode_60hz", "w").write(mode_60)
-		except IOError:
+		except:
 			try:
 				# fallback if no possibility to setup 50/60 hz mode
 				open("/proc/stb/video/videomode", "w").write(mode_50)
