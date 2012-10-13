@@ -217,6 +217,8 @@ data/extensions/Makefile
 data/keymaps/Makefile
 data/lcd_large/Makefile
 data/lcd_small/Makefile
+data/Nobile/Makefile
+data/Nobile/extra/Makefile
 data/rc_models/Makefile
 data/rc_models/et6x00/Makefile
 data/rc_models/et9500/Makefile
@@ -293,6 +295,7 @@ lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
+lib/python/Plugins/SystemPlugins/ConfigurationBackup/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/meta/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
@@ -312,7 +315,6 @@ lib/python/Plugins/SystemPlugins/NFIFlash/Makefile
 lib/python/Plugins/SystemPlugins/NFIFlash/meta/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/meta/Makefile
-lib/python/Plugins/SystemPlugins/SABnzbdSetup/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/meta/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
