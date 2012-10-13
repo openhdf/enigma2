@@ -1,4 +1,4 @@
-SUBDIRS = countries fonts extensions keymaps skin_default rc_models
+SUBDIRS = countries fonts extensions keymaps skin_default rc_models Nobile
 
 dist_pkgdata_DATA = \
 	encoding.conf \
@@ -14,7 +14,8 @@ dist_pkgdata_DATA = \
 	startwizard.xml \
 	freesat.t1 \
 	freesat.t2 \
-	unicable.xml
+	unicable.xml \
+	picon_default
 
 if HAVE_TEXTLCD
 dist_pkgdata_DATA += skin_text.xml
