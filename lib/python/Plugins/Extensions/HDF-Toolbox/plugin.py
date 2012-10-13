@@ -16,8 +16,9 @@ for line in menulog:
       box = "IPBox"
    elif "STx7111" in line:
       box = "Spark"
-   elif open("/proc/stb/info/boxtype",'r').read().strip() == "gigablue":
-      box = "GigaBlue"
+   elif os.path.exists("/proc/stb/info/boxtype"):
+      if open("/proc/stb/info/boxtype",'r').read().strip() == "gigablue":
+         box = "GigaBlue"
    elif "BCM7325B0 STB platform" and "220.16" in line:
       box = "Vu+Solo"
    elif "BCM97xxx Settop Platform" in line:
