@@ -259,6 +259,7 @@ lib/python/Plugins/Extensions/DVDBurn/Makefile
 lib/python/Plugins/Extensions/DVDBurn/meta/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/meta/Makefile
+lib/python/Plugins/Extensions/EtPortal/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/Makefile
 lib/python/Plugins/Extensions/HDF-Toolbox/Makefile
 lib/python/Plugins/Extensions/HDF-Toolbox/boxtypes/ET9x00/Makefile
