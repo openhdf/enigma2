@@ -3,7 +3,6 @@ installdir = $(pkglibdir)/python/Plugins/Extensions/EtPortal
 install_PYTHON =	\
 	__init__.py \
 	plugin.py \
-	downloader.py
 
 dist_install_DATA = \
 	burnseries.png \
