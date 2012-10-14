@@ -2,7 +2,7 @@ installdir = $(pkglibdir)/python/Plugins/Extensions/EtPortal
 
 install_PYTHON =	\
 	__init__.py \
-	plugin.py \
+	plugin.py 
 
 dist_install_DATA = \
 	burnseries.png \
