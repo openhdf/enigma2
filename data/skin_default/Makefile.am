@@ -45,8 +45,6 @@ dist_install_DATA = \
 	progress_big.png \
 	progress_medium.png \
 	progress_small.png \
-	rcold.png \
-	rc.png \
 	screws_mp.png \
 	screws.png \
 	sleeptimer.png \
