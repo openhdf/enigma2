@@ -2408,9 +2408,9 @@ class InfoBarTimeshift:
 			self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
 			self.pts_eventcount = 0
 
-	def createTimeshiftFolder():
+	def createTimeshiftFolder(self):
 		timeshiftdir = Directories.resolveFilename(Directories.SCOPE_TIMESHIFT)
-		if not pathExists(timeshiftdir):
+		if not Directories.pathExists(timeshiftdir):
 			os.makedirs(timeshiftdir)
 
 	def startTimeshift(self):
@@ -3446,7 +3446,7 @@ class InfoBarExtensions:
 
 	def RedPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.usage.defaultEPGType.getValue() != "Graphical EPG" and config.usage.defaultEPGType.getValue() != "None":
+			if config.usage.defaultEPGType.getValue() != _("Graphical EPG") and config.usage.defaultEPGType.getValue() != _("None"):
 				self.openGraphEPG()
 			else:
 				self.openSingleServiceEPG()
