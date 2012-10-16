@@ -1,0 +1,11 @@
+#NAME User - bouquets (Radio)
+#SERVICE: 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet
+#SERVICE: 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.bef001.radio" ORDER BY bouquet
+#SERVICE: 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.bef002.radio" ORDER BY bouquet
+#SERVICE: 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.bef003.radio" ORDER BY bouquet
+#SERVICE: 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.bef004.radio" ORDER BY bouquet
+#SERVICE: 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.bef005.radio" ORDER BY bouquet
+#SERVICE: 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.bef006.radio" ORDER BY bouquet
+#SERVICE: 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.bef007.radio" ORDER BY bouquet
+
+Saved with Bouquet Editor Suite v1.22
