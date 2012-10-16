@@ -5,6 +5,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/nconfig.h>
 #include <lib/gdi/gmaindc.h>
+#include <lib/gdi/epng.h>
 
 #if defined(__MIPSEL__)
 #include <asm/ptrace.h>
@@ -251,6 +252,16 @@ void bsodFatal(const char *component)
 	p.setForegroundColor(gRGB(0xFFFFFF));
 
 	ePtr<gFont> font = new gFont("Regular", 20);
+	ePtr<gPixmap> errorpng	
+
+	char filename;
+	std::string rfilename;
+	snprintf(filename, sizeof(filename), "${datadir}/error.png", i + 1);
+	rfilename = eEnv::resolve(filename);
+	loadPNG(errorpng, rfilename.c_str());
+	my_dc->setSpinner(eRect(0, 0, 0, 0), errorpng, 1);
+	gRC::getInstance()->setSpinnerDC(my_dc);
+
 	p.setFont(font);
 	p.clear();
 
@@ -258,9 +269,8 @@ void bsodFatal(const char *component)
 	
 	std::string text("We are really sorry. Your receiver encountered "
 		"a software problem, and needs to be restarted. "
-		"Please send the logfile created in /hdd/ to " + crash_emailaddr + ".\n"
 		"Your receiver restarts in 10 seconds!\n"
-		"Component: " + crash_component);
+		"Component: ";
 
 	p.renderText(usable_area, text.c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 
@@ -284,6 +294,7 @@ void bsodFatal(const char *component)
 
 	p.renderText(usable_area, 
 		lines.substr(start), gPainter::RT_HALIGN_LEFT);
+	gRC::getInstance()->setSpinnerDC(my_dc);
 	sleep(10);
 
 	/*
