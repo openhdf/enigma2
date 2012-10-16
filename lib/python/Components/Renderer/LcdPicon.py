@@ -87,8 +87,7 @@ def resizePicon(pngname):
 	try:
 		from PIL import Image
 		im = Image.open(pngname)
-		im.resize((200,120)).save("/tmp/picon.png")
-		pngname = "/tmp/picon.png"
+		im.resize((200,120)).save(pngname)
 	except:
 		pass
 	return pngname

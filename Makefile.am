@@ -20,7 +20,7 @@ EXTRA_DIST = lamedb
 index-enigma2.xml: $(top_srcdir)/tools/genmetaindex.py $(top_srcdir)/lib/python/Plugins/*/*/meta/plugin_*.xml
 	$(AM_V_GEN)$(PYTHON) $^ > $@
 
-dist_installdir = etc/enigma2
+dist_installdir = $(DESTDIR)/etc/enigma2
 dist_install_DATA = \
 	bouquets.tv \
 	bouquets.radio \
