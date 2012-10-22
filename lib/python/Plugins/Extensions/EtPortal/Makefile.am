@@ -36,4 +36,9 @@ dist_install_DATA = \
 	timer.png \
 	weblinks.png \
 	webmedia.png \
-	wetter.png
+	wetter.png \
+	1channel.png \
+	m2k.png \
+	m2ks.png \
+	putpat.png \
+	songs.png
