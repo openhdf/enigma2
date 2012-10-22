@@ -230,6 +230,7 @@ data/rc_models/gb/Makefile
 data/rc_models/ini3000/Makefile
 data/rc_models/ini5000/Makefile
 data/rc_models/ini7000/Makefile
+data/rc_models/ixuss-one/Makefile
 data/rc_models/odin/Makefile
 data/rc_models/tm/Makefile
 data/rc_models/vu/Makefile
