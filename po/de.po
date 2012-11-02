@@ -7971,7 +7971,8 @@ msgid "View list of available CommonInterface extensions"
 msgstr "Eine Liste der verfügbaren Common Interface-Erweiterungen anzeigen."
 
 msgid "View list of available Display and Userinterface extensions."
-msgstr "Eine Liste der verfügbaren Display und Userinterface Erweiterungen anzeigen."
+msgstr ""
+"Eine Liste der verfügbaren Display und Userinterface Erweiterungen anzeigen."
 
 msgid "View list of available EPG extensions."
 msgstr "Eine Liste der verfügbaren EPG-Erweiterungen anzeigen."
