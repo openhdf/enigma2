@@ -19,13 +19,16 @@ from twisted.web.client import downloadPage
 import os
 import sys
 
-#check the box
+#check the boxtype#
 menulog = open("/proc/cpuinfo", "r")
 for line in menulog:
     if "BCM7413B1 STB platform" in line:
         box = "et9000"
         boxname = "ET9x00/ET6x00"
     elif "STx7111" in line:
+        box = "spark"
+        boxname = "Spark"
+    elif "STx7105" in line:
         box = "spark"
         boxname = "Spark"
     elif "BCM7335B0 STB platform" in line:
@@ -37,11 +40,11 @@ for line in menulog:
     elif "STx7109" in line:
         box = "ipbox"
         boxname = "IPBox"
+    elif open("/proc/stb/info/gbmodel",'r').read().strip() == "quad":
+        box = "gbquad"
+        boxname = "GigaBlue"
     elif open("/proc/stb/info/model",'r').read().strip() == "Gigablue":
         box = "gigablue"
-        boxname = "GigaBlue"
-    elif "BCM7346B2" in line:
-        box = "gbquad"
         boxname = "GigaBlue"
     elif "BCM7325B0 STB platform" and "220.16" in line:
         box = "vusolo"
@@ -222,11 +225,9 @@ class Hdf_Downloader(Screen):
                 if self.switch in self.filesArray[i] or self.switch + "s" in self.filesArray[i] or self.switch + "shd" in self.filesArray[i]:
                     if self.switch == "extensions":
                         if "2.7" in sys.version:
-                            print "2.7 detected"
                             if "mips32el" in self.filesArrayClean[i] or "_all" in self.filesArrayClean[i]:
                                 self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                         else:
-                            print "not"
                             self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
                     if self.switch == "skin":
                         self.list.append((_(self.filesArray[i][3].split('.')[0]), self.filesArrayClean[i] , "" + self.filesArraySplit[i][2] + "", "" + self.filesArraySplit[i][3] + "", "download"))
