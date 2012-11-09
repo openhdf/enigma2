@@ -40,12 +40,14 @@ for line in menulog:
     elif "STx7109" in line:
         box = "ipbox"
         boxname = "IPBox"
-    elif open("/proc/stb/info/gbmodel",'r').read().strip() == "quad":
-        box = "gbquad"
-        boxname = "GigaBlue"
-    elif open("/proc/stb/info/model",'r').read().strip() == "Gigablue":
-        box = "gigablue"
-        boxname = "GigaBlue"
+    elif os.path.exists("/proc/stb/info/gbmodel"): 
+        if open("/proc/stb/info/gbmodel",'r').read().strip() == "quad":
+            box = "gbquad"
+            boxname = "GigaBlue"
+    elif os.path.exists("/proc/stb/info/gbmodel"):
+        if open("/proc/stb/info/model",'r').read().strip() == "Gigablue":
+            box = "gigablue"
+            boxname = "GigaBlue"
     elif "BCM7325B0 STB platform" and "220.16" in line:
         box = "vusolo"
         boxname = "Vu+Solo"
