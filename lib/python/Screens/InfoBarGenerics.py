@@ -1124,7 +1124,7 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if config.misc.boxtype.getValue().startswith('et') or config.misc.boxtype.getValue().startswith('odin') or config.misc.boxtype.getValue().startswith('venton') or config.misc.boxtype.getValue().startswith('tm') or config.misc.boxtype.getValue().startswith('gb'):
+		if config.misc.boxtype.getValue().startswith('et') or config.misc.boxtype.getValue().startswith('mara') or config.misc.boxtype.getValue().startswith('venton') or config.misc.boxtype.getValue().startswith('tm') or config.misc.boxtype.getValue().startswith('gb'):
 			self.openEventView()
 		else:
 			self.showDefaultEPG()
@@ -3461,7 +3461,7 @@ class InfoBarExtensions:
 
 	def getOsd3DSetup(self):
 		if config.osd.show3dextensions .getValue():
-			return [((boundFunction(self.get3DSetupname), boundFunction(self.openOSD3DSetup), lambda: True), None)]
+			return [((boundFunction(self.get3DSetupname), boundFunction(self.open3DSetup), lambda: True), None)]
 		else:
 			return []
 
@@ -3578,8 +3578,8 @@ class InfoBarExtensions:
 		from Screens.LogManager import LogManager
 		self.session.open(LogManager)
 
-	def openOSD3DSetup(self):
-		from Screens.OSD import OSD3DSetupScreen
+	def open3DSetup(self):
+		from Screens.UserInterfacePositioner import OSD3DSetupScreen
 		self.session.open(OSD3DSetupScreen)
 
 	def showAutoTimerList(self):
