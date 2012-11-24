@@ -1,5 +1,6 @@
 from Components.ActionMap import ActionMap
 from Components.Button import Button
+from Components.Label import Label
 from Components.config import config
 from Components.MenuList import MenuList
 from Components.TimerList import TimerList
@@ -44,7 +45,7 @@ class TimerEditList(Screen):
 		self["key_yellow"] = Button(" ")
 		self["key_blue"] = Button(" ")
 
-		print "key_red_choice:",self.key_red_choice
+		self["description"] = Label()
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
 			{
@@ -57,7 +58,7 @@ class TimerEditList(Screen):
 				"up": self.up,
 				"down": self.down
 			}, -1)
-		self.setTitle(_("Timer Overview"))
+		self.setTitle(_("Timer overview"))
 		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 		self.onShown.append(self.updateState)
 
@@ -133,6 +134,7 @@ class TimerEditList(Screen):
 	def updateState(self):
 		cur = self["timerlist"].getCurrent()
 		if cur:
+			self["description"].setText(cur.description)
 			if self.key_red_choice != self.DELETE:
 				self["actions"].actions.update({"red":self.removeTimerQuestion})
 				self["key_red"].setText(_("Delete"))

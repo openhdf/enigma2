@@ -17,6 +17,7 @@ dist_pkgdata_DATA = \
 	freesat.t2 \
 	unicable.xml \
 	picon_default.png
+	hd-testcard.mvi
 
 if HAVE_TEXTLCD
 dist_pkgdata_DATA += skin_text.xml

@@ -1,6 +1,6 @@
 from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, \
 	ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
-from enigma import eAVSwitch, getDesktop
+from enigma import eAVSwitch, getDesktop, getBoxType
 from SystemInfo import SystemInfo
 import os
 
@@ -94,9 +94,9 @@ def InitAVSwitch():
 	# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 	"letterbox": _("Letterbox"),
 	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-	"panscan": _("Pan&Scan"),
+	"panscan": _("Pan&scan"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-	"scale": _("Just Scale")}
+	"scale": _("Just scale")}
 	if os.path.exists("/proc/stb/video/policy2_choices") and "auto" in open("/proc/stb/video/policy2_choices").readline():
 		# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 		policy2_choices.update({"auto": _("Auto")})
@@ -105,11 +105,11 @@ def InitAVSwitch():
 	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 	"pillarbox": _("Pillarbox"),
 	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-	"panscan": _("Pan&Scan"),
+	"panscan": _("Pan&scan"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 	"nonlinear": _("Nonlinear"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-	"scale": _("Just Scale")}
+	"scale": _("Just scale")}
 	if os.path.exists("/proc/stb/video/policy_choices") and "auto" in open("/proc/stb/video/policy_choices").readline():
 		# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 		policy_choices.update({"auto": _("Auto")})
@@ -168,7 +168,10 @@ def InitAVSwitch():
 			except IOError:
 				print "couldn't write pep_scaler_sharpness"
 
-		config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
+		if getBoxType() == 'gbquad':
+			config.av.scaler_sharpness = ConfigSlider(default=0, limits=(0,26))
+		else:
+			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
 		config.av.scaler_sharpness.addNotifier(setScaler_sharpness)
 	else:
 		config.av.scaler_sharpness = NoSave(ConfigNothing())

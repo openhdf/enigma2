@@ -12,7 +12,7 @@ if XTREND
 SUBDIRS += SatelliteEquipmentControl DiseqcTester
 endif
 
-if MARA
+if ODIN
 SUBDIRS += SatelliteEquipmentControl DiseqcTester
 endif
 

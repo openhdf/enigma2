@@ -16,7 +16,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.onChangedEntry = [ ]
-		self.skinName = ["Setup" ]
 		self.setup_title = _("Video enhancement setup")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -112,7 +111,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyLeft(self):
 		current = self["config"].getCurrent()
-		if current == self.splitEntry or self.color_spaceEntry:
+		if current == self.splitEntry or current == self.color_spaceEntry:
 			ConfigListScreen.keyLeft(self)
 		elif current != self.splitEntry and current in self.xtdlist:
 			self.previewlist = [
@@ -130,7 +129,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyRight(self):
 		current = self["config"].getCurrent()
-		if current == self.splitEntry or self.color_spaceEntry:
+		if current == self.splitEntry or current == self.color_spaceEntry:
 			ConfigListScreen.keyRight(self)
 		elif current != self.splitEntry and current in self.xtdlist:
 			self.previewlist = [
@@ -394,5 +393,5 @@ def startSetup(menuid):
 def Plugins(**kwargs):
 	list = []
 	if config.usage.setup_level.index >= 2 and os_path.exists("/proc/stb/vmpeg/0/pep_apply"):
-		list.append(PluginDescriptor(name=_("Videoenhancement Setup"), description=_("Advanced Video Enhancement Setup"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup))
+		list.append(PluginDescriptor(name=_("Video enhancement setup"), description=_("Advanced video enhancement setup"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup))
 	return list

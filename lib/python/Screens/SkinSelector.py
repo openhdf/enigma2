@@ -80,7 +80,7 @@ class SkinSelector(Screen):
 		self.loadPreview()
 
 	def info(self):
-		aboutbox = self.session.open(MessageBox,_("Enigma2 Skinselector\n\nIf you experience any problems please contact\nstephan@reichholf.net\n\n\xA9 2006 - Stephan Reichholf"), MessageBox.TYPE_INFO)
+		aboutbox = self.session.open(MessageBox,_("Enigma2 skin selector"), MessageBox.TYPE_INFO)
 		aboutbox.setTitle(_("About..."))
 
 	def find(self, arg, dirname, names):
@@ -102,7 +102,7 @@ class SkinSelector(Screen):
 		print "Skinselector: Selected Skin: "+self.root+skinfile
 		config.skin.primary_skin.value = skinfile
 		config.skin.primary_skin.save()
-		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
+		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 
 	def loadPreview(self):
