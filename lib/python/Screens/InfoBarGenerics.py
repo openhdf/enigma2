@@ -428,12 +428,12 @@ class InfoBarShowHide:
 
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
-			if config.vixsettings.QuickEPG_mode.getValue() == "1":
+			if config.vixsettings.InfoBarEpg_mode.getValue() == "1":
 				self.openInfoBarEPG()
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
-			if config.vixsettings.QuickEPG_mode.getValue() == "2":
+			if config.vixsettings.InfoBarEpg_mode.getValue() == "2":
 				self.openInfoBarEPG()
 			else:
 				self.hide()
@@ -474,7 +474,7 @@ class InfoBarShowHide:
 				self.hideTimer.start(idx*1000, True)
 		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or ((not config.usage.show_second_infobar.getValue() or isMoviePlayerInfoBar(self)) and self.EventViewIsShown):
 			self.hideTimer.stop()
-			idx = config.usage.second_infobar_timeout.index
+			idx = config.usage.show_second_infobar.index - 1
 			if idx:
 				self.hideTimer.start(idx*1000, True)
 		elif self.pvrStateDialog:
@@ -518,14 +518,18 @@ class InfoBarShowHide:
 				self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 			self.EventViewIsShown = False
+		elif isStandardInfoBar(self) and config.usage.show_second_infobar.getValue() == "EPG":
+			self.showDefaultEPG()
+		elif isStandardInfoBar(self) and config.usage.show_second_infobar.getValue() == "INFOBAREPG":
+			self.openInfoBarEPG()
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.getValue() and not self.secondInfoBarScreen.shown:
 			self.hide()
 			self.secondInfoBarScreen.show()
 			self.secondInfoBarWasShown = True
 			self.startHideTimer()
-		elif (not config.usage.show_second_infobar.getValue() or isMoviePlayerInfoBar(self)) and not self.EventViewIsShown:
+		elif isMoviePlayerInfoBar(self) and not self.EventViewIsShown and config.usage.show_second_infobar.getValue():
 			self.hide()
-			self.openEventView()
+			self.openEventView(True)
 			self.EventViewIsShown = True
 			self.startHideTimer()
 		else:
@@ -778,7 +782,7 @@ class InfoBarChannelSelection:
 			})
 
 	def LeftPressed(self):
-		if config.vixsettings.QuickEPG_mode.getValue() == "3":
+		if config.vixsettings.InfoBarEpg_mode.getValue() == "3" and config.usage.show_second_infobar.getValue() != "INFOBAREPG":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
@@ -787,7 +791,7 @@ class InfoBarChannelSelection:
 			self.zapUp()
 
 	def RightPressed(self):
-		if config.vixsettings.QuickEPG_mode.getValue() == "3":
+		if config.vixsettings.InfoBarEpg_mode.getValue() == "3" and config.usage.show_second_infobar.getValue() != "INFOBAREPG":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
 				self.secondInfoBarWasShown = False
@@ -796,7 +800,7 @@ class InfoBarChannelSelection:
 			self.zapDown()
 
 	def ChannelPlusPressed(self):
-		if config.usage.channelbutton_mode.getValue() == "0":
+		if config.usage.channelbutton_mode.getValue() == "0" or config.usage.show_second_infobar.getValue() == "INFOBAREPG":
 			self.zapDown()
 		elif config.usage.channelbutton_mode.getValue() == "1":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -812,7 +816,7 @@ class InfoBarChannelSelection:
 			self.session.execDialog(self.servicelist)
 
 	def ChannelMinusPressed(self):
-		if config.usage.channelbutton_mode.getValue() == "0":
+		if config.usage.channelbutton_mode.getValue() == "0" or config.usage.show_second_infobar.getValue() == "INFOBAREPG":
 			self.zapUp()
 		elif config.usage.channelbutton_mode.getValue() == "1":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -1124,7 +1128,7 @@ class InfoBarEPG:
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if config.misc.boxtype.getValue().startswith('et') or config.misc.boxtype.getValue().startswith('mara') or config.misc.boxtype.getValue().startswith('venton') or config.misc.boxtype.getValue().startswith('tm') or config.misc.boxtype.getValue().startswith('gb'):
+		if config.misc.boxtype.getValue().startswith('et') or config.misc.boxtype.getValue().startswith('odin') or config.misc.boxtype.getValue().startswith('venton') or config.misc.boxtype.getValue().startswith('tm') or config.misc.boxtype.getValue().startswith('gb') or getBoxType().startswith('xp1000'):
 			self.openEventView()
 		else:
 			self.showDefaultEPG()
@@ -1322,7 +1326,7 @@ class InfoBarEPG:
 			else:
 				self.openSingleServiceEPG()
 		else:
-			self.showEventInformation()
+			self.openEventView(True)
 
 	def runPlugin(self, plugin):
 		plugin(session = self.session, servicelist = self.servicelist)
@@ -1367,7 +1371,7 @@ class InfoBarEPG:
 			return
 		self.EPGPressed()
 
-	def openEventView(self):
+	def openEventView(self, simple=False):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
@@ -1386,29 +1390,10 @@ class InfoBarEPG:
 		else:
 			self.is_now_next = True
 		if epglist:
-			self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
-			self.dlg_stack.append(self.eventView)
-
-	def showEventInformation(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.getNowNext()
-		epglist = self.epglist
-		if not epglist:
-			self.is_now_next = False
-			epg = eEPGCache.getInstance()
-			ptr = ref and ref.valid() and epg.lookupEventTime(ref, -1)
-			if ptr:
-				epglist.append(ptr)
-				ptr = epg.lookupEventTime(ref, ptr.getBeginTime(), +1)
-				if ptr:
-					epglist.append(ptr)
-		else:
-			self.is_now_next = True
-		if epglist:
-			self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
+			if not simple:
+				self.eventView = self.session.openWithCallback(self.closed, EventViewEPGSelect, epglist[0], ServiceReference(ref), self.eventViewCallback, self.openSingleServiceEPG, self.openMultiServiceEPG, self.openSimilarList)
+			else:
+				self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
 			self.dlg_stack.append(self.eventView)
 
 	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
@@ -3401,7 +3386,7 @@ class InfoBarTimeshift:
 					self.ts_rewind_timer.start(100, 1)
 
 	def rewindService(self):
-		if getBoxType().startswith('gb'):
+		if getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
 				self.setSeekState(self.SEEK_STATE_PLAY)
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.getValue())))
 
@@ -3846,7 +3831,7 @@ class InfoBarInstantRecord:
 	def __init__(self):
 		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
-				"instantRecord": (self.instantRecord, _("Instant Record...")),
+				"instantRecord": (self.instantRecord, _("Instant recording...")),
 			})
 		self.recording = []
 
@@ -4077,8 +4062,8 @@ class InfoBarSubserviceSelection:
 
 		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions",
 			{
-				"nextSubservice": (self.nextSubservice, _("Switch to next subservice")),
-				"prevSubservice": (self.prevSubservice, _("Switch to previous subservice"))
+				"nextSubservice": (self.nextSubservice, _("Switch to next sub service")),
+				"prevSubservice": (self.prevSubservice, _("Switch to previous sub service"))
 			}, -1)
 		self["SubserviceQuickzapAction"].setEnabled(False)
 
@@ -4159,16 +4144,16 @@ class InfoBarSubserviceSelection:
 			if self.bouquets and len(self.bouquets):
 				keys = ["red", "blue", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
 				if config.usage.multibouquet.getValue():
-					tlist = [(_("Quickzap"), "quickzap", service.subServices()), (_("Add to bouquet"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
+					tlist = [(_("Quick zap"), "quickzap", service.subServices()), (_("Add to bouquet"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
 				else:
-					tlist = [(_("Quickzap"), "quickzap", service.subServices()), (_("Add to favourites"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
+					tlist = [(_("Quick zap"), "quickzap", service.subServices()), (_("Add to favourites"), "CALLFUNC", self.addSubserviceToBouquetCallback), ("--", "")] + tlist
 				selection += 3
 			else:
-				tlist = [(_("Quickzap"), "quickzap", service.subServices()), ("--", "")] + tlist
+				tlist = [(_("Quick zap"), "quickzap", service.subServices()), ("--", "")] + tlist
 				keys = ["red", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
 				selection += 2
 
-			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = selection, keys = keys, skin_name = "SubserviceSelection")
+			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a sub service..."), list = tlist, selection = selection, keys = keys, skin_name = "SubserviceSelection")
 
 	def subserviceSelected(self, service):
 		del self.bouquets

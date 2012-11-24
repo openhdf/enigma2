@@ -64,10 +64,10 @@ class About(Screen):
 			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
 			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
-		elif getBoxType() == 'maram9':
-			self["lab3"] = StaticText(_("Support at") + " www.mara-support.co.uk")
-			self["BoxType"] = StaticText(_("Hardware:") + " Mara M9")
-			AboutText = _("Hardware:") + " Mara M9\n"
+		elif getBoxType() == 'odinm9':
+			self["lab3"] = StaticText(_("Support at") + " www.odin-support.co.uk")
+			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
+			AboutText = _("Hardware:") + " Odin M9\n"
 		else:
 			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
@@ -84,7 +84,7 @@ class About(Screen):
 		self["BuildVersion"] = StaticText(_("Build:") + " " + about.getBuildVersionString())
 		AboutText += _("Build:") + " " + about.getBuildVersionString() + "\n"
 		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
-		AboutText += _("Last Update:") + " " + about.getLastUpdateString() + "\n\n"
+		AboutText += _("Last update:") + " " + about.getLastUpdateString() + "\n\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
@@ -101,7 +101,7 @@ class About(Screen):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
 		if tempinfo:
 			mark = str('\xc2\xb0')
-			AboutText += _("System Temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
+			AboutText += _("System temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
 
 		self["TranslationHeader"] = StaticText(_("Translation:"))
 		AboutText += _("Translation:") + "\n"
@@ -217,7 +217,7 @@ class Devices(Screen):
 					sizeline = _("Size: ") + _("unavailable")
 
 				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Fee: ") + str(round(((float(free) / 1024) / 1024),2)) + _("TB")
+					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024),2)) + _("TB")
 				elif (free / 1024) >= 1:
 					freeline = _("Free: ") + str(round((float(free) / 1024),2)) + _("GB")
 				elif free >= 1:
@@ -580,8 +580,8 @@ class AboutSummary(Screen):
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
 		elif getBoxType() == 'et9x00':
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
-		elif getBoxType() == 'maram9':
-			self["BoxType"] = StaticText(_("Hardware:") + " Mara M9")
+		elif getBoxType() == 'odinm9':
+			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
 		else:
 			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())

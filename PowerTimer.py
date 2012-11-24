@@ -1,5 +1,6 @@
 import os
-from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop
+from enigma import eActionMap, eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop
+from Tools.StbHardware import getFPWasTimerWakeup
 
 from Components.config import config
 from Components.TimerSanityCheck import TimerSanityCheck
@@ -17,6 +18,7 @@ from ServiceReference import ServiceReference
 
 from time import localtime, strftime, ctime, time
 from bisect import insort
+import os
 
 # ok, for descriptions etc we have:
 # service reference  (to get the service name)
@@ -34,88 +36,24 @@ def parseEvent(ev):
 
 class AFTEREVENT:
 	NONE = 0
-	STANDBY = 1
-	DEEPSTANDBY = 2
-	AUTO = 3
+	WAKEUPTOSTANDBY = 1
+	STANDBY = 2
+	DEEPSTANDBY = 3
 
 class TIMERTYPE:
 	NONE = 0
 	WAKEUP = 1
-	WAKEUPTOSTANDBY = 1
-	STANDBY = 3
-	DEEPSTANDBY = 4
-	REBOOT = 5
-	RESTART = 6
+	WAKEUPTOSTANDBY = 2
+	AUTOSTANDBY = 3
+	AUTODEEPSTANDBY = 4
+	STANDBY = 5
+	DEEPSTANDBY = 6
+	REBOOT = 7
+	RESTART = 8
 
 # please do not translate log messages
-class PowerManagerTimerEntry(timer.TimerEntry, object):
-######### the following static methods and members are only in use when the box is in (soft) standby
-	receiveRecordEvents = False
-
-	@staticmethod
-	def shutdown():
-		quitMainloop(1)
-
-	@staticmethod
-	def staticGotRecordEvent(recservice, event):
-		if event == iRecordableService.evEnd:
-			print "PowerManager.staticGotRecordEvent(iRecordableService.evEnd)"
-			recordings = NavigationInstance.instance.getRecordings()
-			if not recordings: # no more recordings exist
-				rec_time = NavigationInstance.instance.PowerManagerTimer.getNextPowerManagerTime()
-				if rec_time > 0 and (rec_time - time()) < 360:
-					print "another recording starts in", rec_time - time(), "seconds... do not shutdown yet"
-				else:
-					print "no starting records in the next 360 seconds... immediate shutdown"
-					PowerManagerTimerEntry.shutdown() # immediate shutdown
-		elif event == iRecordableService.evStart:
-			print "PowerManager.staticGotRecordEvent(iRecordableService.evStart)"
-
-	@staticmethod
-	def stopTryQuitMainloop():
-		print "PowerManager.stopTryQuitMainloop"
-		NavigationInstance.instance.record_event.remove(PowerManagerTimerEntry.staticGotRecordEvent)
-		PowerManagerTimerEntry.receiveRecordEvents = False
-
-	@staticmethod
-	def TryQuitMainloop(default_yes = True):
-		if not PowerManagerTimerEntry.receiveRecordEvents:
-			print "PowerManager.TryQuitMainloop"
-			NavigationInstance.instance.record_event.append(PowerManagerTimerEntry.staticGotRecordEvent)
-			PowerManagerTimerEntry.receiveRecordEvents = True
-			# send fake event.. to check if another recordings are running or
-			# other timers start in a few seconds
-			PowerManagerTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
-			# send normal notification for the case the user leave the standby now..
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=PowerManagerTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
-
-	@staticmethod
-	def TryToReboot(default_yes = True):
-		if not PowerManagerTimerEntry.receiveRecordEvents:
-			print "PowerManager.TryQuitMainloop"
-			NavigationInstance.instance.record_event.append(PowerManagerTimerEntry.staticGotRecordEvent)
-			PowerManagerTimerEntry.receiveRecordEvents = True
-			# send fake event.. to check if another recordings are running or
-			# other timers start in a few seconds
-			PowerManagerTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
-			# send normal notification for the case the user leave the standby now..
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 2, onSessionOpenCallback=PowerManagerTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
-
-	@staticmethod
-	def TryToRestart(default_yes = True):
-		if not PowerManagerTimerEntry.receiveRecordEvents:
-			print "PowerManager.TryQuitMainloop"
-			NavigationInstance.instance.record_event.append(PowerManagerTimerEntry.staticGotRecordEvent)
-			PowerManagerTimerEntry.receiveRecordEvents = True
-			# send fake event.. to check if another recordings are running or
-			# other timers start in a few seconds
-			PowerManagerTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
-			# send normal notification for the case the user leave the standby now..
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 3, onSessionOpenCallback=PowerManagerTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
-
-#################################################################
-
-	def __init__(self, begin, end, disabled = False, afterEvent = AFTEREVENT.NONE, timerType = TIMERTYPE.STANDBY, checkOldTimers = False):
+class PowerTimerEntry(timer.TimerEntry, object):
+	def __init__(self, begin, end, disabled = False, afterEvent = AFTEREVENT.NONE, timerType = TIMERTYPE.WAKEUP, checkOldTimers = False, autosleepdelay = 60, autosleeprepeat = "once"):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers == True:
 			if self.begin < time() - 1209600:
@@ -132,16 +70,28 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 		self.afterEvent = afterEvent
 		self.autoincrease = False
 		self.autoincreasetime = 3600 * 24 # 1 day
+		self.autosleepdelay = autosleepdelay
+		self.autosleeprepeat = autosleeprepeat
 
 		self.log_entries = []
 		self.resetState()
 
 	def __repr__(self):
-		return "PowerManagerTimerEntry(begin=%s)" % (ctime(self.begin))
+		timertype = {
+			TIMERTYPE.WAKEUP: "wakeup",
+			TIMERTYPE.WAKEUPTOSTANDBY: "wakeuptostandby",
+			TIMERTYPE.AUTOSTANDBY: "autostandby",
+			TIMERTYPE.AUTODEEPSTANDBY: "autodeepstandby",
+			TIMERTYPE.STANDBY: "standby",
+			TIMERTYPE.DEEPSTANDBY: "deepstandby",
+			TIMERTYPE.REBOOT: "reboot",
+			TIMERTYPE.RESTART: "restart"
+			}[self.timerType]
+		return "PowerTimerEntry(type=%s, begin=%s)" % (timertype, ctime(self.begin))
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
-		print "[TIMER]", msg
+		print "[POWERTIMER]", msg
 
 	def do_backoff(self):
 		if self.backoff == 0:
@@ -156,6 +106,12 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
 
+		if next_state == 1 and (self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY):
+			eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.keyPressed)
+			self.begin = time() + int(self.autosleepdelay)*60
+			if self.end <= self.begin:
+				self.end = self.begin
+
 		if next_state == self.StatePrepared:
 			self.log(6, "prepare ok, waiting for begin")
 			# create file to "reserve" the filename
@@ -168,81 +124,178 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 			return True
 
 		elif next_state == self.StateRunning:
+			self.wasTimerWakeup = False
+			if os.path.exists("/tmp/was_timer_wakeup"):
+				self.wasTimerWakeup = int(open("/tmp/was_timer_wakeup", "r").read()) and True or False
+				os.remove("/tmp/was_timer_wakeup")
+			print '!!!!!!!!!!!!!!!!!!!!!!!!self.wasTimerWakeup:',self.wasTimerWakeup
+
+			print 'TEST01:'
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
+				print 'TEST02:'
 				return True
 
 			if self.failed:
+				print 'TEST03:'
 				return True
 
 			if self.timerType == TIMERTYPE.WAKEUP:
+				print 'TEST04:'
 				if Screens.Standby.inStandby:
-					self.log(11, "wakeup")
-					#wakeup standby
+					print 'TEST05:'
 					Screens.Standby.inStandby.Power()
 				return True
+
+			elif self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
+				print 'TEST06:'
+				return True
+
 			elif self.timerType == TIMERTYPE.STANDBY:
+				print 'TEST07:'
 				if not Screens.Standby.inStandby: # not already in standby
-					self.log(11, "go to standby")
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("Your STB_BOX wants to set your STB_BOX to standby.\nDo that now?"), timeout = 20)
+					print 'TEST08:'
+					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("Your STB_BOX wants to set your STB_BOX to standby.\nDo that now?"), timeout = 180)
 				return True
-			elif self.timerType == TIMERTYPE.DEEPSTANDBY:
+
+			elif self.timerType == TIMERTYPE.AUTOSTANDBY:
+				print 'TEST09:'
+				if not Screens.Standby.inStandby: # not already in standby
+					print 'TEST10:'
+					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("Your STB_BOX wants to set your STB_BOX to standby.\nDo that now?"), timeout = 180)
+					if self.autosleeprepeat == "once":
+						print 'TEST11:'
+						eActionMap.getInstance().unbindAction('', self.keyPressed)
+						return True
+					else:
+						print 'TEST12:'
+						self.begin = time() + int(self.autosleepdelay)*60
+						if self.end <= self.begin:
+							print 'TEST13:'
+							self.end = self.begin
+				else:
+					print 'TEST14:'
+					self.begin = time() + int(self.autosleepdelay)*60
+					if self.end <= self.begin:
+						print 'TEST15:'
+						self.end = self.begin
+
+			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
+				print 'TEST16:'
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+					print 'TEST17:'
 					self.do_backoff()
 					# retry
 					self.begin = time() + self.backoff
 					if self.end <= self.begin:
+						print 'TEST18:'
 						self.end = self.begin
 					return False
-				self.log(11, "go to deepstandby")
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					print 'TEST19:'
 					if Screens.Standby.inStandby: # in standby
-						PowerManagerTimerEntry.TryQuitMainloop() # start shutdown handling without screen
+						print 'TEST20:'
+						quitMainloop(1)
+						return True
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("Your STB_BOX wants to shut down your STB_BOX.\nDo that now?"), timeout = 20)
+						print 'TEST21:'
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("Your STB_BOX wants to shut down your STB_BOX.\nDo that now?"), timeout = 180)
+						if self.autosleeprepeat == "once":
+							print 'TEST22:'
+							eActionMap.getInstance().unbindAction('', self.keyPressed)
+							return True
+						else:
+							print 'TEST23:'
+							self.begin = time() + int(self.autosleepdelay)*60
+							if self.end <= self.begin:
+								print 'TEST24:'
+								self.end = self.begin
+
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY and self.wasTimerWakeup:
+				print 'TEST25a:'
 				return True
+
+			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not self.wasTimerWakeup:
+				print 'TEST25b:'
+				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+					print 'TEST26:'
+					self.do_backoff()
+					# retry
+					self.begin = time() + self.backoff
+					if self.end <= self.begin:
+						print 'TEST27:'
+						self.end = self.begin
+					return False
+				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					print 'TEST28:'
+					if Screens.Standby.inStandby: # in standby
+						print 'TEST29:'
+						quitMainloop(1)
+					else:
+						print 'TEST30:'
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("Your STB_BOX wants to shut down your STB_BOX.\nDo that now?"), timeout = 180)
+				return True
+
 			elif self.timerType == TIMERTYPE.REBOOT:
+				print 'TEST31:'
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+					print 'TEST32:'
 					self.do_backoff()
 					# retry
 					self.begin = time() + self.backoff
 					if self.end <= self.begin:
+						print 'TEST33:'
 						self.end = self.begin
 					return False
-				self.log(11, "reboot system")
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					print 'TEST34:'
 					if Screens.Standby.inStandby: # in standby
-						PowerManagerTimerEntry.TryToReboot() # start reboot handling without screen
+						print 'TEST35:'
+						quitMainloop(2)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryToRebootNotification, MessageBox, _("Your STB_BOX wants to reboot your STB_BOX.\nDo that now?"), timeout = 20)
+						print 'TEST36:'
+						Notifications.AddNotificationWithCallback(self.sendTryToRebootNotification, MessageBox, _("Your STB_BOX wants to reboot your STB_BOX.\nDo that now?"), timeout = 180)
 				return True
+
 			elif self.timerType == TIMERTYPE.RESTART:
+				print 'TEST37:'
 				if NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
+					print 'TEST38:'
 					self.do_backoff()
 					# retry
 					self.begin = time() + self.backoff
 					if self.end <= self.begin:
+						print 'TEST39:'
 						self.end = self.begin
 					return False
-				self.log(11, "restart system")
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					print 'TEST40:'
 					if Screens.Standby.inStandby: # in standby
-						PowerManagerTimerEntry.TryToRestart() # start restart handling without screen
+						print 'TEST41:'
+						quitMainloop(3)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryToRestartNotification, MessageBox, _("Your STB_BOX wants to restart the user interface.\nDo that now?"), timeout = 20)
+						print 'TEST42:'
+						Notifications.AddNotificationWithCallback(self.sendTryToRestartNotification, MessageBox, _("Your STB_BOX wants to restart the user interface.\nDo that now?"), timeout = 180)
 				return True
 
 		elif next_state == self.StateEnded:
+			print 'TEST43:'
 			old_end = self.end
 			if self.afterEvent == AFTEREVENT.STANDBY:
+				print 'TEST44:'
 				if not Screens.Standby.inStandby: # not already in standby
-					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 20)
+					print 'TEST45:'
+					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished powertimer wants to set your\nSTB_BOX to standby. Do that now?"), timeout = 180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
+				print 'TEST46:'
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					print 'TEST47:'
 					if Screens.Standby.inStandby: # in standby
-						PowerManagerTimerEntry.TryQuitMainloop() # start shutdown handling without screen
+						print 'TEST48:'
+						quitMainloop(1)
 					else:
-						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour STB_BOX. Shutdown now?"), timeout = 20)
+						print 'TEST49:'
+						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished power timer wants to shut down\nyour STB_BOX. Shutdown now?"), timeout = 180)
 			return True
 
 	def setAutoincreaseEnd(self, entry = None):
@@ -253,7 +306,7 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 		else:
 			new_end = entry.begin -30
 
-		dummyentry = PowerManagerTimerEntry(self.begin, new_end, afterEvent = self.afterEvent, timerType = self.timerType)
+		dummyentry = PowerTimerEntry(self.begin, new_end, afterEvent = self.afterEvent, timerType = self.timerType)
 		dummyentry.disabled = self.disabled
 		timersanitycheck = TimerSanityCheck(NavigationInstance.instance.PowerManager.timer_list, dummyentry)
 		if not timersanitycheck.check():
@@ -272,15 +325,20 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 
 	def sendTryQuitMainloopNotification(self, answer):
 		if answer:
-			PowerManagerTimerEntry.TryQuitMainloop()  # start shutdown handling without screen
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1)
 
 	def sendTryToRebootNotification(self, answer):
 		if answer:
-			PowerManagerTimerEntry.TryToReboot() # start reboot handling without screen
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 2)
 
 	def sendTryToRestartNotification(self, answer):
 		if answer:
-			PowerManagerTimerEntry.TryToRestart() # start reboot handling without screen
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 3)
+
+	def keyPressed(self, key, tag):
+		self.begin = time() + int(self.autosleepdelay)*60
+		if self.end <= self.begin:
+			self.end = self.begin
 
 	def getNextActivation(self):
 		if self.state == self.StateEnded or self.state == self.StateFailed:
@@ -306,13 +364,15 @@ class PowerManagerTimerEntry(timer.TimerEntry, object):
 		self.backoff = 0
 
 		if int(old_prepare) != int(self.start_prepare):
-			self.log(15, "record time changed, start prepare is now: %s" % ctime(self.start_prepare))
+			self.log(15, "time changed, start prepare is now: %s" % ctime(self.start_prepare))
 
 def createTimer(xml):
 	timertype = str(xml.get("timertype") or "wakeup")
 	timertype = {
 		"wakeup": TIMERTYPE.WAKEUP,
 		"wakeuptostandby": TIMERTYPE.WAKEUPTOSTANDBY,
+		"autostandby": TIMERTYPE.AUTOSTANDBY,
+		"autodeepstandby": TIMERTYPE.AUTODEEPSTANDBY,
 		"standby": TIMERTYPE.STANDBY,
 		"deepstandby": TIMERTYPE.DEEPSTANDBY,
 		"reboot": TIMERTYPE.REBOOT,
@@ -325,13 +385,17 @@ def createTimer(xml):
 	afterevent = str(xml.get("afterevent") or "nothing")
 	afterevent = {
 		"nothing": AFTEREVENT.NONE,
+		"wakeuptostandby": AFTEREVENT.WAKEUPTOSTANDBY,
 		"standby": AFTEREVENT.STANDBY,
-		"deepstandby": AFTEREVENT.DEEPSTANDBY,
-		"auto": AFTEREVENT.AUTO
+		"deepstandby": AFTEREVENT.DEEPSTANDBY
 		}[afterevent]
+	autosleepdelay = str(xml.get("autosleepdelay") or "0")
+	autosleeprepeat = str(xml.get("autosleeprepeat") or "once")
 
-	entry = PowerManagerTimerEntry(begin, end, disabled, afterevent, timertype)
+	entry = PowerTimerEntry(begin, end, disabled, afterevent, timertype)
 	entry.repeated = int(repeated)
+	entry.autosleepdelay = int(autosleepdelay)
+	entry.autosleeprepeat = autosleeprepeat
 
 	for l in xml.findall("log"):
 		time = int(l.get("time"))
@@ -341,7 +405,7 @@ def createTimer(xml):
 
 	return entry
 
-class PowerManagerTimer(timer.Timer):
+class PowerTimer(timer.Timer):
 	def __init__(self):
 		timer.Timer.__init__(self)
 
@@ -356,7 +420,7 @@ class PowerManagerTimer(timer.Timer):
 		# when activating a timer which has already passed,
 		# simply abort the timer. don't run trough all the stages.
 		if w.shouldSkip():
-			w.state = PowerManagerTimerEntry.StateEnded
+			w.state = PowerTimerEntry.StateEnded
 		else:
 			# when active returns true, this means "accepted".
 			# otherwise, the current state is kept.
@@ -370,14 +434,14 @@ class PowerManagerTimer(timer.Timer):
 			print '[PowerManager]: Remove list failed'
 
 		# did this timer reached the last state?
-		if w.state < PowerManagerTimerEntry.StateEnded:
+		if w.state < PowerTimerEntry.StateEnded:
 			# no, sort it into active list
 			insort(self.timer_list, w)
 		else:
 			# yes. Process repeated, and re-add.
 			if w.repeated:
 				w.processRepeated()
-				w.state = PowerManagerTimerEntry.StateWaiting
+				w.state = PowerTimerEntry.StateWaiting
 				self.addTimerEntry(w)
 			else:
 				# Remove old timers as set in config
@@ -431,6 +495,8 @@ class PowerManagerTimer(timer.Timer):
 			list.append(' timertype="' + str(stringToXML({
 				TIMERTYPE.WAKEUP: "wakeup",
 				TIMERTYPE.WAKEUPTOSTANDBY: "wakeuptostandby",
+				TIMERTYPE.AUTOSTANDBY: "autostandby",
+				TIMERTYPE.AUTODEEPSTANDBY: "autodeepstandby",
 				TIMERTYPE.STANDBY: "standby",
 				TIMERTYPE.DEEPSTANDBY: "deepstandby",
 				TIMERTYPE.REBOOT: "reboot",
@@ -441,11 +507,13 @@ class PowerManagerTimer(timer.Timer):
 			list.append(' repeated="' + str(int(timer.repeated)) + '"')
 			list.append(' afterevent="' + str(stringToXML({
 				AFTEREVENT.NONE: "nothing",
+				AFTEREVENT.WAKEUPTOSTANDBY: "wakeuptostandby",
 				AFTEREVENT.STANDBY: "standby",
-				AFTEREVENT.DEEPSTANDBY: "deepstandby",
-				AFTEREVENT.AUTO: "auto"
+				AFTEREVENT.DEEPSTANDBY: "deepstandby"
 				}[timer.afterEvent])) + '"')
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')
+			list.append(' autosleepdelay="' + str(timer.autosleepdelay) + '"')
+			list.append(' autosleeprepeat="' + str(timer.autosleeprepeat) + '"')
 			list.append('>\n')
 
 			if config.recording.debug.getValue():
@@ -482,10 +550,11 @@ class PowerManagerTimer(timer.Timer):
 	def getNextPowerManagerTimeOld(self):
 		now = time()
 		for timer in self.timer_list:
-			next_act = timer.getNextActivation()
-			if next_act < now:
-				continue
-			return next_act
+			if timer.timerType != TIMERTYPE.AUTOSTANDBY and timer.timerType != TIMERTYPE.AUTODEEPSTANDBY:
+				next_act = timer.getNextActivation()
+				if next_act < now:
+					continue
+				return next_act
 		return -1
 
 	def getNextPowerManagerTime(self):
@@ -500,18 +569,21 @@ class PowerManagerTimer(timer.Timer):
 			return nextrectime
 
 	def isNextPowerManagerAfterEventActionAuto(self):
+		print 'isNextPowerManagerAfterEventActionAuto:'
 		now = time()
 		t = None
+		print 'self.timer_list',self.timer_list
 		for timer in self.timer_list:
-			if t is None or t.begin == timer.begin:
-				t = timer
-				if t.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
-					return True
+			print 'POWERTIMER:',timer
+			if timer.timerType == TIMERTYPE.WAKEUPTOSTANDBY or timer.afterEvent == AFTEREVENT.WAKEUPTOSTANDBY:
+				print 'TRUE'
+				return True
+		print 'FALSE'
 		return False
 
 	def record(self, entry, ignoreTSC=False, dosave=True):		#wird von loadTimer mit dosave=False aufgerufen
 		entry.timeChanged()
-		print "[Timer] Record " + str(entry)
+		print "[POWERTIMER] " + str(entry)
 		entry.Timer = self
 		self.addTimerEntry(entry)
 		if dosave:
@@ -519,7 +591,7 @@ class PowerManagerTimer(timer.Timer):
 		return None
 
 	def removeEntry(self, entry):
-		print "[Timer] Remove " + str(entry)
+		print "[POWERTIMER] Remove " + str(entry)
 
 		# avoid re-enqueuing
 		entry.repeated = False
@@ -532,16 +604,20 @@ class PowerManagerTimer(timer.Timer):
 		if entry.state != entry.StateEnded:
 			self.timeChanged(entry)
 
-		print "state: ", entry.state
-		print "in processed: ", entry in self.processed_timers
-		print "in running: ", entry in self.timer_list
+# 		print "state: ", entry.state
+# 		print "in processed: ", entry in self.processed_timers
+# 		print "in running: ", entry in self.timer_list
+		# disable timer first
+		if entry.state != 3:
+			entry.disable()
 		# autoincrease instanttimer if possible
 		if not entry.dontSave:
 			for x in self.timer_list:
 				if x.setAutoincreaseEnd():
 					self.timeChanged(x)
 		# now the timer should be in the processed_timers list. remove it from there.
-		self.processed_timers.remove(entry)
+		if entry in self.processed_timers:
+			self.processed_timers.remove(entry)
 		self.saveTimer()
 
 	def shutdown(self):
