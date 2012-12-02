@@ -55,7 +55,7 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_DMM1
 		elif os.path.exists('/proc/stb/info/boxtype'):
 			model = self.readFile('/proc/stb/info/boxtype')
-			if len(model) == 6 and model[:2] == 'et' or model[:2] == 'xp':
+			if model.startswith('et') or model.startswith('xp'):
 				rc = self.readFile('/proc/stb/ir/rc/type')
 				if rc == '3':
 					self.currentRcType = self.RCTYPE_ODIN
@@ -78,9 +78,9 @@ class RcModel:
 				elif rc == '11' and model == 'et9200':
 					self.currentRcType = self.RCTYPE_ET9500
 				elif rc == '11' and model == 'et9000':
-					self.currentRcType = self.RCTYPE_ET9x00
+					self.currentRcType = self.RCTYPE_ET9X00
 				elif rc == '13' and model == 'et4000':
-					self.currentRcType = self.RCTYPE_ET4x00
+					self.currentRcType = self.RCTYPE_ET4X00
 				elif rc == '14':
 					self.currentRcType = self.RCTYPE_XP1000
 			elif model == 'gigablue':
