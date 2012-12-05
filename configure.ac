@@ -273,6 +273,7 @@ data/skin_default/spinner/Makefile
 data/skin_default/GraphEPG/Makefile
 data/skin_default/lcd/Makefile
 data/skin_default/piconbg/Makefile
+data/Nobile/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp
