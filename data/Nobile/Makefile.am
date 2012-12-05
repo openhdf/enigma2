@@ -1,4 +1,4 @@
-installdir = $(datadir)/Nobile
+installdir = $(pkgdatadir)/Nobile
 
 dist_install_DATA = \
-	picon_default.png 
+		picon_default.png
