@@ -19,4 +19,3 @@ EXTRA_DIST = lamedb
 
 index-enigma2.xml: $(top_srcdir)/tools/genmetaindex.py $(top_srcdir)/lib/python/Plugins/*/*/meta/plugin_*.xml
 	$(AM_V_GEN)$(PYTHON) $^ > $@
-

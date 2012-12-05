@@ -27,18 +27,64 @@
 	</screen>
 
 	<screen name="SummaryIconsPanel">
-		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="lcd/update_stable.png" position="0,121" size="30,30" >
+		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="lcd/update_stable.png" position="0,0" size="30,30" >
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
-		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="lcd/update_unstable.png" position="31,121" size="30,30" >
+		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="lcd/update_unstable.png" position="0,0" size="30,30" >
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="62,121"  size="55,30" >
+		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="38,0"  size="55,30" >
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/hd.png" position="118,121" size="58,26">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/hd.png" position="98,0" size="58,26">
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="lcd/dolby.png" position="163,0" size="43,26">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="SummaryTunerStatusPanel">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="lcd/tuner-a.png" position="0,143" size="19,33">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">1</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="lcd/tuner-b.png" position="30,143" size="19,33">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">2</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="lcd/tuner-c.png" position="59,143" size="19,33">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">4</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="lcd/tuner-d.png" position="88,143" size="19,33">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">8</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="lcd/tuner-a-act.png" position="0,143" size="19,33">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">0,0</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="lcd/tuner-b-act.png" position="29,143" size="19,33">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">1,1</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="lcd/tuner-c-act.png" position="59,143" size="19,33">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">2,2</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="lcd/tuner-d-act.png" position="88,143" size="19,33">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
@@ -61,19 +107,22 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="220,176">
-		<panel position="0,0" size="*,220" name="PiconPanel" >
-			<widget source="session.CurrentService" render="Picon" position="10,0" size="200,120" alphatest="on" transparent="1">
-				<convert type="ServiceName">Reference</convert>
-			</widget>
-		</panel>
-		<widget source="global.CurrentTime" render="Label" position="132,145" size="88,46" font="FdLcD;35" noWrap="1">
-			<convert type="ClockToText"></convert>
+		<widget source="session.CurrentService" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" >
+			<convert type="ServiceName">Name</convert>
 		</widget>
-		
-		<widget source="session.Event_Now" render="Progress" position="0,160" size="130,14" borderWidth="3" >
+		<widget source="session.Event_Now" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1">
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="0,93" size="220,10" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
+		<widget source="session.Event_Now" render="Label" position="0,106" size="220,36" font="FdLcD;34" halign="left" valign="bottom" noWrap="1">
+			<convert type="EventTime">VFDRemaining</convert>
+			<convert type="RemainingToText">VFDNoSeconds</convert>
+		</widget>
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
+		<panel name="SummaryClockPanel" />
 	</screen>
 
 <!-- movieplayer-->
@@ -90,13 +139,14 @@
 			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
-
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="MovieContextMenuSummary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" valign="top" noWrap="1" />
 		<widget source="selected" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" valign="top" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="MovieSelectionSummary" position="0,0" size="220,176">
@@ -112,6 +162,7 @@
 		  <convert type="MovieInfo">FileSize</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 
@@ -131,6 +182,7 @@
 			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 
@@ -141,6 +193,7 @@
 			<convert type="StringListSelection" />
 		</widget>
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 
@@ -158,6 +211,7 @@
 	<screen name="SimpleSummary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 
@@ -178,6 +232,7 @@
 		<widget source="session.RecordState" render="Pixmap" pixmap="lcd/rec.png" position="170,150"  size="50,26">
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
+		<panel name="SummaryTunerStatusPanel" />
 	</screen>
 
 <!-- Plugin browser -->
@@ -215,21 +270,25 @@
 	<screen name="EPGSelection_summary" position="0,0" size="220,176">
 		<panel name="SummaryEpgPanel" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="QuickEPG_summary" position="0,0" size="220,176">
 		<panel name="SummaryEpgPanel" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="GraphicalEPG_summary" position="0,0" size="220,176">
 		<panel name="SummaryEpgPanel" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="GraphicalEPGPIG_summary" position="0,0" size="220,176">
 		<panel name="SummaryEpgPanel" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 
@@ -261,6 +320,7 @@
 		<widget source="duration" render="Label" position="0,110" size="220,20" font="FdLcD;19" halign="left" transparent="1" />
 		<widget source="state" render="Label" position="0,110" size="220,20" font="FdLcD;19" halign="right" transparent="1" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 
@@ -336,6 +396,7 @@
 		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="entry" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="NetworkServicesSummary" position="0,0" size="220,176">
@@ -350,36 +411,42 @@
 		<widget source="SetupEntry" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<widget source="SetupValue" render="Label" position="0,93" size="220,16" font="FdLcD;14" halign="left" transparent="1" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="CrossEPG_Rytec_Update_summary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="parent.summary_action" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="CrossEPG_Xepgdb_Update_summary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="parent.summary_action" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="CrossEPG_Converter_summary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="parent.summary_action" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="CrossEPG_Importer_summary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="parent.summary_action" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="CrossEPG_Loader_summary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="parent.summary_action" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="CrossEPG_Downloader_summary" position="0,0" size="220,176">

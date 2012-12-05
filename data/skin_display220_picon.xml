@@ -107,19 +107,22 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="220,176">
-		<panel position="0,0" size="*,220" name="PiconPanel" >
-			<widget source="session.CurrentService" render="LcdPicon" position="10,0" size="200,120" alphatest="on" transparent="1">
-				<convert type="ServiceName">Reference</convert>
-			</widget>
-		</panel>
-		<widget source="global.CurrentTime" render="Label" position="132,145" size="88,46" font="FdLcD;35" noWrap="1">
-			<convert type="ClockToText"></convert>
+		<widget source="session.CurrentService" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" >
+			<convert type="ServiceName">Name</convert>
 		</widget>
-		
-		<widget source="session.Event_Now" render="Progress" position="0,160" size="130,14" borderWidth="3" >
+		<widget source="session.Event_Now" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1">
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="0,93" size="220,10" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
+		<widget source="session.Event_Now" render="Label" position="0,106" size="220,36" font="FdLcD;34" halign="left" valign="bottom" noWrap="1">
+			<convert type="EventTime">VFDRemaining</convert>
+			<convert type="RemainingToText">VFDNoSeconds</convert>
+		</widget>
 		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryTunerStatusPanel" />
+		<panel name="SummaryClockPanel" />
 	</screen>
 
 <!-- movieplayer-->

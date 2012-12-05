@@ -69,9 +69,7 @@ def skin_user_skinname():
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
 DEFAULT_SKIN = "Nobile/extra/skin.xml"
-# on SD hardware, ViX Night HD will not be available
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
-	# in that case, fallback to Magic (which is an SD skin)
 	DEFAULT_SKIN = "Nobile/skin.xml"
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 

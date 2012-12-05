@@ -34,8 +34,8 @@ class About(Screen):
 			})
 
 	def populate(self):
-		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
-		self["lab2"] = StaticText(_("By Team ViX"))
+		self["lab1"] = StaticText(_("OpenHDF Image"))
+		self["lab2"] = StaticText(_("By www.hdfreaks.cc"))
 		if getBoxType() == 'vuuno':
 			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
