@@ -83,7 +83,7 @@ AM_CONDITIONAL(GBQUAD, test "$BOXTYPE" == gbquad)
 AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx)
 AM_CONDITIONAL(VENTONHDE, test "$BOXTYPE" == ventonhde)
 AM_CONDITIONAL(XP1000, test "$BOXTYPE" == xp1000)
-AM_CONDITIONAL(IXUSSONE, test "$BOXTYPE" == ixuss-one)
+AM_CONDITIONAL(IXUSSONE, test "$BOXTYPE" == ixussone)
 
 if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
 	AC_DEFINE(DREAMBOX, 1, [Dreambox hardware])
@@ -244,7 +244,6 @@ data/fonts/Makefile
 data/countries/Makefile
 data/extensions/Makefile
 data/keymaps/Makefile
-data/Nobile/Makefile
 data/lcd220/Makefile
 data/lcd255/Makefile
 data/rc_models/Makefile
@@ -260,12 +259,12 @@ data/rc_models/gb/Makefile
 data/rc_models/ini3000/Makefile
 data/rc_models/ini5000/Makefile
 data/rc_models/ini7000/Makefile
-data/rc_models/ixuss-one/Makefile
 data/rc_models/odin/Makefile
 data/rc_models/tm/Makefile
 data/rc_models/vu/Makefile
 data/rc_models/vu2/Makefile
 data/rc_models/xp1000/Makefile
+data/rc_models/ixussone/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile
@@ -290,15 +289,10 @@ lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
 lib/python/Plugins/Extensions/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/CutListEditor/meta/Makefile
-lib/python/Plugins/Extensions/DLNABrowser/Makefile
-lib/python/Plugins/Extensions/DLNABrowser/meta/Makefile
-lib/python/Plugins/Extensions/DLNAServer/Makefile
-lib/python/Plugins/Extensions/DLNAServer/meta/Makefile
 lib/python/Plugins/Extensions/DVDBurn/Makefile
 lib/python/Plugins/Extensions/DVDBurn/meta/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/meta/Makefile
-lib/python/Plugins/Extensions/EtPortal/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/meta/Makefile
 lib/python/Plugins/Extensions/MediaScanner/Makefile
@@ -310,37 +304,13 @@ lib/python/Plugins/Extensions/PicturePlayer/data/Makefile
 lib/python/Plugins/Extensions/SocketMMI/Makefile
 lib/python/Plugins/Extensions/SocketMMI/meta/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile
-lib/python/Plugins/Extensions/StreamTV/Makefile
-lib/python/Plugins/Extensions/StreamTV/meta/Makefile
-lib/python/Plugins/Extensions/StreamTV/icons/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
-lib/python/Plugins/Extensions/WebBrowser/Makefile
-lib/python/Plugins/Extensions/WebBrowser/meta/Makefile
-lib/python/Plugins/Extensions/WebBrowser/keymap/Makefile
-lib/python/Plugins/PLi/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/ru/LC_MESSAGES/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/ru/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/pl/LC_MESSAGES/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/pl/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/sl/LC_MESSAGES/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/sl/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/cs/LC_MESSAGES/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/cs/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/de/LC_MESSAGES/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/de/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/nl/LC_MESSAGES/Makefile
-lib/python/Plugins/PLi/SoftcamSetup/locale/nl/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
-lib/python/Plugins/SystemPlugins/ConfigurationBackup/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/meta/Makefile
-lib/python/Plugins/SystemPlugins/DeviceManager/Makefile
-lib/python/Plugins/SystemPlugins/DeviceManager/icons/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/meta/Makefile
 lib/python/Plugins/SystemPlugins/FastScan/Makefile
@@ -354,19 +324,15 @@ lib/python/Plugins/SystemPlugins/NetworkWizard/Makefile
 lib/python/Plugins/SystemPlugins/NetworkWizard/meta/Makefile
 lib/python/Plugins/SystemPlugins/NFIFlash/Makefile
 lib/python/Plugins/SystemPlugins/NFIFlash/meta/Makefile
-lib/python/Plugins/SystemPlugins/OSD3DSetup/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/meta/Makefile
+lib/python/Plugins/SystemPlugins/SABnzbdSetup/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/meta/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/meta/Makefile
-lib/python/Plugins/SystemPlugins/SkinSelector/Makefile
-lib/python/Plugins/SystemPlugins/SkinSelector/meta/Makefile
 lib/python/Plugins/SystemPlugins/SoftwareManager/Makefile
 lib/python/Plugins/SystemPlugins/SoftwareManager/meta/Makefile
-lib/python/Plugins/SystemPlugins/SwapManager/Makefile
-lib/python/Plugins/SystemPlugins/VFDGiga/Makefile
 lib/python/Plugins/SystemPlugins/VideoClippingSetup/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancement/meta/Makefile
@@ -374,8 +340,6 @@ lib/python/Plugins/SystemPlugins/VideoTune/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/meta/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/Makefile
 lib/python/Plugins/SystemPlugins/Videomode/meta/Makefile
-lib/python/Plugins/SystemPlugins/WirelessAccessPoint/Makefile
-lib/python/Plugins/SystemPlugins/WirelessAccessPoint/meta/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
 lib/python/Tools/Makefile

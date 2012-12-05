@@ -16,7 +16,6 @@ dist_pkgdata_DATA = \
 	freesat.t1 \
 	freesat.t2 \
 	unicable.xml \
-	picon_default.png
 	hd-testcard.mvi
 
 if HAVE_TEXTLCD

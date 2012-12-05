@@ -19,7 +19,7 @@ def initLcdPiconPaths():
 def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
-		path = os.path.join(mountpoint, 'picon') + '/'
+		path = os.path.join(mountpoint, 'lcd_picon') + '/'
 		if os.path.isdir(path) and path not in searchPaths:
 			for fn in os.listdir(path):
 				if fn.endswith('.png'):
@@ -31,7 +31,7 @@ def onMountpointAdded(mountpoint):
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
-	path = os.path.join(mountpoint, 'picon') + '/'
+	path = os.path.join(mountpoint, 'lcd_picon') + '/'
 	try:
 		searchPaths.remove(path)
 		print "[LcdPicon] removed path:", path
@@ -83,28 +83,19 @@ def getLcdPiconName(serviceName):
 			pngname = findLcdPicon('_'.join(fields))
 	return pngname
 
-def resizePicon(pngname):
-	try:
-		from PIL import Image
-		im = Image.open(pngname)
-		im.resize((200,120)).save(pngname)
-	except:
-		pass
-	return pngname
-
 class LcdPicon(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.pngname = ""
 		self.lastPath = None
-		pngname = findLcdPicon("picon_default")
+		pngname = findLcdPicon("lcd_picon_default")
 		self.defaultpngname = None
 		if not pngname:
-			tmp = resolveFilename(SCOPE_CURRENT_SKIN, "picon_default.png")
+			tmp = resolveFilename(SCOPE_CURRENT_SKIN, "lcd_picon_default.png")
 			if pathExists(tmp):
 				pngname = tmp
 			else:
-				pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
+				pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/lcd_picon_default.png")
 		if os.path.getsize(pngname):
 			self.defaultpngname = pngname
 
@@ -140,7 +131,7 @@ class LcdPicon(Renderer):
 			if self.pngname != pngname:
 				if pngname:
 					self.instance.setScale(1)
-					self.instance.setPixmapFromFile(resizePicon(pngname))
+					self.instance.setPixmapFromFile(pngname)
 					self.instance.show()
 				else:
 					self.instance.hide()
