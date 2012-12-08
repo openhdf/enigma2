@@ -3,7 +3,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Components.About import about
-from Components.ActionMap import ActionMap, NumberActionMap
+from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config
 from Components.Console import Console
@@ -12,7 +12,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
 import Components.Task
-from enigma import eTimer, getBoxType, eDVBDB
+from enigma import eTimer, eDVBDB
 from os import rename, path, remove
 
 class SoftwareUpdateChanges(Screen):
@@ -71,7 +71,7 @@ class SoftwareUpdateChanges(Screen):
 	def getlog(self):
 		if not path.exists('/tmp/' + self.logtype + '-git.log'):
 			import urllib
-			sourcefile='http://enigma2.world-of-satellite.com/feeds/' + about.getImageVersionString() + '/' + self.logtype + '-git.log'
+			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + about.getImageVersionString() + '/' + self.logtype + '-git.log'
 			sourcefile,headers = urllib.urlretrieve(sourcefile)
 			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
 		fd = open('/tmp/' + self.logtype + '-git.log', 'r')
@@ -349,7 +349,7 @@ class UpdatePlugin(Screen):
 		Components.Task.job_manager.AddJob(self.BackupFiles.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
-			if job.name.startswith(_("BackupManager")):
+			if job.name.startswith(_("Backup Manager")):
 				backup = job
 		if backup:
 			self.showJobView(backup)
@@ -361,7 +361,7 @@ class UpdatePlugin(Screen):
 		Components.Task.job_manager.AddJob(self.ImageBackup.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
-			if job.name.startswith(_("ImageManager")):
+			if job.name.startswith(_("Image Manager")):
 				backup = job
 		if backup:
 			self.showJobView(backup)
@@ -377,9 +377,9 @@ class UpdatePlugin(Screen):
 			self.close()
 
 	def showJobView(self, job):
-		if job.name.startswith(_("ImageManager")):
+		if job.name.startswith(_("Image Manager")):
 			self.ImageBackupDone = True
-		elif job.name.startswith(_("BackupManager")):
+		elif job.name.startswith(_("Backup Manager")):
 			self.SettingsBackupDone = True
 		from Screens.TaskView import JobView
 		Components.Task.job_manager.in_background = False
@@ -400,5 +400,5 @@ class UpdatePlugin(Screen):
 
 	def exitAnswer(self, result):
 		if result is not None and result:
-			self.session.open(TryQuitMainloop,retvalue=2)
+			self.session.open(TryQuitMainloop, retvalue=2)
 		self.close()
