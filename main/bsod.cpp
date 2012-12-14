@@ -258,7 +258,8 @@ void bsodFatal(const char *component)
 	
 	std::string text("We are really sorry. Your receiver encountered "
 		"a software problem, and needs to be restarted. "
-		"Please send the logfile created in /hdd/ to " + crash_emailaddr + ".\n"
+		"Please ask for support in www.hdfreaks.cc forum\n" 
+		"The logfile created in /hdd/.\n"
 		"Your receiver restarts in 10 seconds!\n"
 		"Component: " + crash_component);
 

@@ -44,31 +44,31 @@ class About(Screen):
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Ultimo")
 			AboutText = _("Hardware:") + " Vu+ Ultimo\n"
 		elif getBoxType() == 'vusolo':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
 			AboutText = _("Hardware:") + " Vu+ Solo\n"
 		elif getBoxType() == 'vuduo':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
 			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
 			AboutText = _("Hardware:") + " Vu+ Duo\n"
 		elif getBoxType() == 'et5x00':
-			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5x00 Series")
 			AboutText = _("Hardware:") + "  Xtrend ET5x00 Series\n"
 		elif getBoxType() == 'et6x00':
-			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
 			AboutText = _("Hardware:") + "  Xtrend ET6x00 Series\n"
 		elif getBoxType() == 'et9x00':
-			self["lab3"] = StaticText(_("Support at") + " www.xtrend-support.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
 			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
 			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
 		elif getBoxType() == 'odinm9':
-			self["lab3"] = StaticText(_("Support at") + " www.odin-support.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
 			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
 			AboutText = _("Hardware:") + " Odin M9\n"
 		else:
-			self["lab3"] = StaticText(_("Support at") + " www.world-of-satellite.co.uk")
+			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
 			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
 			AboutText = _("Hardware:") + " " + getBoxType() + "\n"
 
