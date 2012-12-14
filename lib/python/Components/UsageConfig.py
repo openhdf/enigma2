@@ -556,7 +556,7 @@ def InitUsageConfig():
 	config.vixsettings = ConfigSubsection()
 	config.vixsettings.Subservice = ConfigYesNo(default = False)
 	config.vixsettings.ColouredButtons = ConfigYesNo(default = True)
-	config.vixsettings.InfoBarEpg_mode = ConfigSelection(default="3", choices = [
+	config.vixsettings.InfoBarEpg_mode = ConfigSelection(default="2", choices = [
 					("0", _("as plugin in extended bar")),
 					("1", _("with long OK press")),
 					("2", _("with exit button")),
