@@ -1121,6 +1121,49 @@ class InfoBarMenu:
 	def mainMenuClosed(self, *val):
 		self.session.infobar = None
 
+class InfoBarSimpleEventView:
+	""" Opens the Eventview for now/next """
+	def __init__(self):
+		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
+			{
+				"showEventInfo": (self.openEventView, _("show event details")),
+				"InfoPressed": (self.openEventView, _("show event details")),
+				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
+			})
+
+	def openEventView(self):
+		epglist = [ ]
+		self.epglist = epglist
+		service = self.session.nav.getCurrentService()
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		info = service.info()
+		ptr=info.getEvent(0)
+		if ptr:
+			epglist.append(ptr)
+		ptr=info.getEvent(1)
+		if ptr:
+			epglist.append(ptr)
+		if epglist:
+			self.session.open(EventViewSimple, epglist[0], ServiceReference(ref), self.eventViewCallback)
+
+	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
+		epglist = self.epglist
+		if len(epglist) > 1:
+			tmp = epglist[0]
+			epglist[0] = epglist[1]
+			epglist[1] = tmp
+			setEvent(epglist[0])
+
+	def showEventInfoWhenNotVisible(self):
+		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+		if self.shown:
+			self.openEventView()
+		else:
+			self.toggleShow()
+			return 1
+
 class SimpleServicelist:
         def __init__(self, services):
                 self.services = services
@@ -4294,6 +4337,89 @@ class InfoBarRedButton:
 		elif False: # TODO: other red button services
 			for x in self.onRedButtonActivation:
 				x()
+
+class InfoBarAspectSelection: 
+	STATE_HIDDEN = 0 
+	STATE_ASPECT = 1 
+	STATE_RESOLUTION = 2 
+	def __init__(self): 
+		self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions", 
+			{ 
+				"aspectSelection": (self.ExGreen_toggleGreen, _("Aspect list...")), 
+			}) 
+
+		self.__ExGreen_state = self.STATE_HIDDEN
+
+	def ExGreen_doAspect(self):
+		print "do self.STATE_ASPECT"
+		self.__ExGreen_state = self.STATE_ASPECT
+		self.aspectSelection()
+
+	def ExGreen_doResolution(self):
+		print "do self.STATE_RESOLUTION"
+		self.__ExGreen_state = self.STATE_RESOLUTION
+		self.resolutionSelection()
+		
+	def ExGreen_doHide(self):
+		print "do self.STATE_HIDDEN"
+		self.__ExGreen_state = self.STATE_HIDDEN 
+
+	def ExGreen_toggleGreen(self, arg=""):
+		print self.__ExGreen_state
+		if self.__ExGreen_state == self.STATE_HIDDEN:
+			print "self.STATE_HIDDEN"
+			self.ExGreen_doAspect()
+		elif self.__ExGreen_state == self.STATE_ASPECT:
+			print "self.STATE_ASPECT"
+			self.ExGreen_doResolution()
+		elif self.__ExGreen_state == self.STATE_RESOLUTION:
+			print "self.STATE_RESOLUTION"
+			self.ExGreen_doHide()
+
+	def aspectSelection(self):
+		selection = 0
+		tlist = []
+		tlist.append((_("Resolution"), "resolution"))
+		tlist.append(("--", ""))
+		try:
+			policy = open("/proc/stb/video/policy_choices").read()[:-1]
+		except IOError:
+			print "couldn't read available policymodes."
+			policy_available = [ ]
+			return
+		policy_available = policy.split(' ')
+		for x in policy_available:
+			tlist.append((x[0].upper() + x[1:], _(x)))
+
+		mode = open("/proc/stb/video/policy").read()[:-1]
+		print mode
+		for x in range(len(tlist)):
+			if tlist[x][1] == mode:
+				selection = x
+
+		keys = ["green", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+
+
+		self.session.openWithCallback(self.aspectSelected, ChoiceBox, title=_("Please select an aspect ratio..."), list = tlist, selection = selection, keys = keys)
+
+	def aspectSelected(self, aspect):
+		if not aspect is None:
+			if isinstance(aspect[1], str):
+				if aspect[1] == "":
+					self.ExGreen_doHide()
+				elif aspect[1] == "resolution":
+					self.ExGreen_toggleGreen()
+				else:
+					if aspect[1] == "letterbox":
+						open("/proc/stb/video/policy", "w").write("panscan")
+					elif aspect[1] == "panscan":
+						open("/proc/stb/video/policy", "w").write("letterbox")
+					else:
+						open("/proc/stb/video/policy", "w").write(aspect[1])
+					self.ExGreen_doHide()
+		else:
+			self.ExGreen_doHide()
+		return
 
 class InfoBarAdditionalInfo:
 	def __init__(self):
