@@ -283,8 +283,8 @@ class SystemMemoryInfo(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Memory Information"))
 		self.skinName = ["SystemMemoryInfo", "About"]
-		self["lab1"] = StaticText(_("Virtuosso Image Xtreme"))
-		self["lab2"] = StaticText(_("By Team ViX"))
+		self["lab1"] = StaticText(_("OpenHDF Team Image"))
+		self["lab2"] = StaticText(_("By HDFreaks Team"))
 		self["AboutScrollLabel"] = ScrollLabel()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -577,7 +577,7 @@ class AboutSummary(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
-		self["selected"] = StaticText("ViX:" + about.getImageVersionString())
+		self["selected"] = StaticText("HDF:" + about.getImageVersionString())
 
 		AboutText = ""
 		model = None
