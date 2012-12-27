@@ -18,12 +18,23 @@ from os import path
 from re import search
 
 class About(Screen):
+	skin = """
+        <screen name="About" position="center,center" size="800,470" title="About">
+            <widget source="lab1" render="Label" position="29,86" size="369,35" font="Regular;30" transparent="1" zPosition="1" />
+			<widget source="lab2" render="Label" position="29,142" size="370,25" font="Regular;19" transparent="1" zPosition="1" />
+			<widget source="lab3" render="Label" position="30,187" size="369,25" font="Regular;19" transparent="1" zPosition="1" />
+			<eLabel text="OPEN SOURCE" position="410,434" size="353,28" font="Regular;22" transparent="1" zPosition="1" />
+			<eLabel text="https://github.com/openhdf" position="410,472" size="352,28" font="Regular;19" transparent="1" zPosition="1" />
+			<eLabel text="https://github.com/oe-alliance" position="409,505" size="354,28" font="Regular;19" transparent="1" zPosition="1" />
+			<widget name="AboutScrollLabel" position="32,176" size="458,376" font="Regular;20" transparent="1" zPosition="1" scrollbarMode="showOnDemand" />
+        </screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.skinName = "About"
 		Screen.setTitle(self, _("Image Information"))
 		self.populate()
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions", "TimerEditActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions", "TimerEditActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
@@ -33,78 +44,79 @@ class About(Screen):
 			})
 
 	def populate(self):
-		self["lab1"] = StaticText(_("OpenHDF Image"))
-		self["lab2"] = StaticText(_("By www.hdfreaks.cc"))
-		model = None
-		AboutText = ""
-		self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
+		self["lab1"] = StaticText(_("OpenHDF"))
+		self["lab2"] = StaticText(_("By HDF Image Team"))
+		self["lab3"] = StaticText(_("Support at") + " www.HDFreaks.cc")
 		if getBoxType() == 'vuuno':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-			model = "Vu+ Uno"
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
+			AboutText = _("Hardware:") + " Vu+ Uno\n"
 		elif getBoxType() == 'vuultimo':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-			model = "Vu+ Ultimo"
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Ultimo")
+			AboutText = _("Hardware:") + " Vu+ Ultimo\n"
 		elif getBoxType() == 'vusolo':
-			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
-			model = "Vu+ Solo\n"
-		elif getBoxType() == 'vusolo2':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-			model = "Vu+ Solo" + chr(178)
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
+			AboutText = _("Hardware:") + " Vu+ Solo\n"
 		elif getBoxType() == 'vuduo':
-			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
-			model = "Vu+ Duo"
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
+			AboutText = _("Hardware:") + " Vu+ Duo\n"
+		elif getBoxType() == 'vusolo2':
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo 2")
+			AboutText = _("Hardware:") + " Vu+ Solo 2\n"
 		elif getBoxType() == 'vuduo2':
-			self["lab3"] = StaticText(_("Support at") + " www.vuplus-support.co.uk")
-			model = "Vu+ Duo" + chr(178)
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo 2")
+			AboutText = _("Hardware:") + " Vu+ Duo 2\n"			
+		elif getBoxType() == 'et4x00':
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET4x00 Series")
+			AboutText = _("Hardware:") + "  Xtrend ET4x00 Series\n"	
 		elif getBoxType() == 'et5x00':
-			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
-			model = "Xtrend ET5x00 Series"
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5x00 Series")
+			AboutText = _("Hardware:") + "  Xtrend ET5x00 Series\n"
 		elif getBoxType() == 'et6x00':
-			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
-			model = "Xtrend ET6x00 Series"
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
+			AboutText = _("Hardware:") + "  Xtrend ET6x00 Series\n"
 		elif getBoxType() == 'et9x00':
-			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
-			model = "Xtrend ET9x00 Series"
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
+			AboutText = _("Hardware:") + " Xtrend ET9x00 Series\n"
 		elif getBoxType() == 'odinm9':
-			self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
-			model = "Odin M9"
+			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
+			AboutText = _("Hardware:") + " Odin M9\n"
+		elif getBoxType() == 'odinm7':
+			self["BoxType"] = StaticText(_("Hardware:") + " Odin M7")
+			AboutText = _("Hardware:") + " Odin M7\n"			
 		elif getBoxType() == 'gb800solo':
-			model = "GigaBlue HD 800 Solo"
+			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800SOLO")
+			AboutText = _("Hardware:") + " GigaBlue HD 800SOLO\n"
 		elif getBoxType() == 'gb800se':
-			model = "GigaBlue HD 800 SE"
+			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800SE")
+			AboutText = _("Hardware:") + " GigaBlue HD 800SE\n"
 		elif getBoxType() == 'gb800ue':
-			model = "GigaBlue HD 800 UE"
+			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800UE")
+			AboutText = _("Hardware:") + " GigaBlue HD 800UE\n"
 		elif getBoxType() == 'gbquad':
-			model = "GigaBlue HD Quad"
+			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD QUAD")
+			AboutText = _("Hardware:") + " GigaBlue HD Quad\n"
 		elif getBoxType() == 'ventonhdx':
-			model = "Venton Unibox HDx"
-		elif getBoxType() == 'ventonhde':
-			model = "Venton Unibox HDe"
+			self["BoxType"] = StaticText(_("Hardware:") + " Venton Unibox HDx")
+			AboutText = _("Hardware:") + " Venton Unibox HDx\n"
 		elif getBoxType() == 'ixussone':
-			model = "Ixuss One"
-		elif getBoxType() == 'tmtwin':
-			model = "Technomate Twin"
-		elif getBoxType() == 'tm2t':
-			model = "Technomate 2T"
-		elif getBoxType() == 'tmsingle':
-			model = "Technomate Single"
+			self["BoxType"] = StaticText(_("Hardware:") + " Ixuss One")
+			AboutText = _("Hardware:") + " Ixuss One\n"			
 		else:
-			model = getBoxType()
+			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
+			AboutText = _("Hardware:") + " " + getBoxType() + "\n"
 
-		if model:
-			AboutText += _("Model: %s") % model + "\n"
-
-		if path.exists('/proc/stb/info/chipset'):
-			chipset = open('/proc/stb/info/chipset', 'r').read()
-			AboutText += _("Chipset: BCM%s") % chipset.replace('\n','') + "\n"
-
-		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
-		AboutText += _("Drivers: %s") % about.getDriversString() + "\n"
-		# self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
-		# AboutText += _("Image: %s") % about.getImageTypeString() + "\n"
-		AboutText += _("Version: %s") % about.getImageVersionString() + "\n"
-		AboutText += _("Build: %s") % about.getBuildVersionString() + "\n"
-		AboutText += _("Last update: %s") % about.getLastUpdateString() + "\n\n"
+		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
+		AboutText += _("Kernel:") + " " + about.getKernelVersionString() + "\n"
+		self["DriversVersion"] = StaticText(_("Drivers:") + " " + about.getDriversString())
+		AboutText += _("Drivers:") + " " + about.getDriversString() + "\n"
+		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
+		AboutText += _("Image:") + " " + about.getImageTypeString() + "\n"
+		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString())
+		AboutText += _("Version:") + " " + about.getImageVersionString() + "\n"
+		self["BuildVersion"] = StaticText(_("Build:") + " " + about.getBuildVersionString())
+		AboutText += _("Build:") + " " + about.getBuildVersionString() + "\n"
+		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getEnigmaVersionString())
+		AboutText += _("Last update:") + " " + about.getEnigmaVersionString() + "\n\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
@@ -112,6 +124,7 @@ class About(Screen):
 		elif fp_version != 0:
 			fp_version = _("Frontprocessor version: %d") % fp_version
 			AboutText += fp_version + "\n"
+		self["FPVersion"] = StaticText(fp_version)
 
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
@@ -120,8 +133,9 @@ class About(Screen):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
 		if tempinfo and int(tempinfo.replace('\n','')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n','') + mark + "C\n\n"
+			AboutText += _("System temperature:") + " " + tempinfo.replace('\n','') + mark + "C\n\n"
 
+		self["TranslationHeader"] = StaticText(_("Translation:"))
 		AboutText += _("Translation:") + "\n"
 
 		# don't remove the string out of the _(), or it can't be "translated" anymore.
@@ -144,7 +158,10 @@ class About(Screen):
 		if translator_name == "none":
 			translator_name = infomap.get("Last-Translator", "")
 
+		self["TranslatorName"] = StaticText(translator_name)
 		AboutText += translator_name + "\n\n"
+
+		self["TranslationInfo"] = StaticText(info)
 		AboutText += info
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
@@ -156,8 +173,18 @@ class About(Screen):
 		return AboutSummary
 
 class Devices(Screen):
+	skin = """
+        <screen name="Devices" position="center,center" size="800,470" title="Devices">
+			<widget source="TunerHeader" render="Label" position="31,0" size="458,36" font="Regular;20" transparent="1" zPosition="1" />
+			<widget source="nims" render="Label" position="31,34" size="458,108" font="Regular;18" transparent="1" zPosition="1" enableWrapAround="0" />
+			<widget source="HDDHeader" render="Label" position="31,146" size="458,36" font="Regular;20" transparent="1" zPosition="1" />
+			<widget source="hdd" render="Label" position="31,179" size="458,112" font="Regular;18" transparent="1" zPosition="1" enableWrapAround="0" />
+			<widget source="MountsHeader" render="Label" position="31,293" size="458,36" font="Regular;20" transparent="1" zPosition="1" />
+			<widget source="mounts" render="Label" position="31,334" size="458,143" font="Regular;18" transparent="1" zPosition="1" enableWrapAround="0" />
+        </screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.skinName = "Devices"
 		Screen.setTitle(self, _("Device Information"))
 		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
 		self["HDDHeader"] = StaticText(_("Detected Devices:"))
@@ -275,16 +302,12 @@ class Devices(Screen):
 class SystemMemoryInfo(Screen):
 	skin = """
 	<screen name="SystemMemoryInfo" position="center,center" size="560,400" >
-		<widget source="lab1" render="Label" position="30,133" size="458,25" font="Boldit;24" transparent="0" zPosition="2" />
-		<widget source="lab2" render="Label" position="30,158" size="458,25" font="Italic;19" transparent="0" zPosition="2" />
-		<widget name="AboutScrollLabel" position="30,225" size="458,325" font="Regular;20" transparent="0" zPosition="1" scrollbarMode="showOnDemand"/>
+		<widget name="AboutScrollLabel" position="32,88" size="458,376" font="Regular;20" transparent="1" zPosition="1" scrollbarMode="showOnDemand" />
 	</screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Memory Information"))
-		self.skinName = ["SystemMemoryInfo", "About"]
-		self["lab1"] = StaticText(_("OpenHDF Team Image"))
-		self["lab2"] = StaticText(_("By HDFreaks Team"))
+		self.skinName = "SystemMemoryInfo"
 		self["AboutScrollLabel"] = ScrollLabel()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -341,32 +364,29 @@ class SystemMemoryInfo(Screen):
 class SystemNetworkInfo(Screen):
 	skin = """
 		<screen name="SystemNetworkInfo" position="center,center" size="560,400" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget name="AboutScrollLabel" position="10,50" size="458,75" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelBSSID" render="Label" position="10,130" size="200,25" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelESSID" render="Label" position="10,160" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelQuality" render="Label" position="10,190" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelSignal" render="Label" position="10,220" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelBitrate" render="Label" position="10,250" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelEnc" render="Label" position="10,280" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="BSSID" render="Label" position="161,130" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="ESSID" render="Label" position="161,160" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="quality" render="Label" position="161,190" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="signal" render="Label" position="161,220" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="bitrate" render="Label" position="161,250" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="enc" render="Label" position="161,280" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<ePixmap pixmap="skin_default/div-h.png" position="0,350" zPosition="1" size="560,2" />
-			<widget source="IFtext" render="Label" position="10,355" size="120,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
-			<widget source="IF" render="Label" position="120,355" size="400,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
-			<widget source="Statustext" render="Label" position="10,375" size="115,21" zPosition="10" font="Regular;20" halign="left" transparent="1"/>
-			<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="120,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
+			<widget name="AboutScrollLabel" position="29,82" size="458,197" font="Regular;20" transparent="1" zPosition="1" scrollbarMode="showOnDemand" />
+			<widget source="LabelBSSID" render="Label" position="28,292" size="200,25" valign="left" font="Regular;20" transparent="1" />
+			<widget source="LabelESSID" render="Label" position="29,329" size="200,25" valign="center" font="Regular;20" transparent="1" />
+			<widget source="LabelQuality" render="Label" position="29,367" size="200,25" valign="center" font="Regular;20" transparent="1" />
+			<widget source="LabelSignal" render="Label" position="29,405" size="200,25" valign="center" font="Regular;20" transparent="1" />
+			<widget source="LabelBitrate" render="Label" position="30,440" size="200,25" valign="center" font="Regular;20" transparent="1" />
+			<widget source="LabelEnc" render="Label" position="29,475" size="200,25" valign="center" font="Regular;20" transparent="1" />
+			<widget source="BSSID" render="Label" position="204,292" size="310,25" valign="center" font="Regular;20" transparent="1" />
+			<widget source="ESSID" render="Label" position="204,330" size="310,25" valign="center" font="Regular;20" transparent="1" />
+			<widget source="quality" render="Label" position="204,367" size="310,25" valign="center" font="Regular;20" transparent="1" />
+			<widget source="signal" render="Label" position="203,405" size="310,25" valign="center" font="Regular;20" transparent="1" />
+			<widget source="bitrate" render="Label" position="203,440" size="310,25" valign="center" font="Regular;20" transparent="1" />
+			<widget source="enc" render="Label" position="203,474" size="310,25" valign="center" font="Regular;20" transparent="1" />
+			<widget source="IFtext" render="Label" position="31,509" size="120,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
+			<widget source="IF" render="Label" position="139,508" size="375,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
+			<widget source="Statustext" render="Label" position="31,537" size="115,21" zPosition="10" font="Regular;20" halign="left" transparent="1" />
+			<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="149,539" zPosition="10" size="15,16" transparent="0" alphatest="on" />
 		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Network Information"))
-		self.skinName = ["SystemNetworkInfo", "WlanStatus"]
+		self.skinName = "SystemNetworkInfo"
 		self["LabelBSSID"] = StaticText()
 		self["LabelESSID"] = StaticText()
 		self["LabelQuality"] = StaticText()
@@ -570,84 +590,55 @@ class SystemNetworkInfo(Screen):
 		return AboutSummary
 
 class AboutSummary(Screen):
-	skin = """
-	<screen name="AboutSummary" position="0,0" size="132,64">
-		<widget source="selected" render="Label" position="0,0" size="124,32" font="Regular;16" />
-	</screen>"""
-
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
-		self["selected"] = StaticText("HDF:" + about.getImageVersionString())
-
-		AboutText = ""
-		model = None
-
+		self.skinName = "AboutSummary"
+		if about.getImageTypeString() == 'Release':
+			self["selected"] = StaticText("HDF:" + about.getImageVersionString() + ' (R)')
+		elif about.getImageTypeString() == 'Experimental':
+			self["selected"] = StaticText("HDF:" + about.getImageVersionString() + ' (B)')
 		if getBoxType() == 'vuuno':
-			model = "Vu+ Uno"
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Uno")
 		elif getBoxType() == 'vuultimo':
-			model = "Vu+ Ultimo"
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Ultimo")
 		elif getBoxType() == 'vusolo':
-			model = "Vu+ Solo"
-		elif getBoxType() == 'vusolo2':
-			model = "Vu+ Solo" + chr(178)
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo")
 		elif getBoxType() == 'vuduo':
-			model = "Vu+ Duo"
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo")
+		elif getBoxType() == 'vusolo2':
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Solo 2")
 		elif getBoxType() == 'vuduo2':
-			model = "Vu+ Duo" + chr(178)
+			self["BoxType"] = StaticText(_("Hardware:") + " Vu+ Duo 2")			
+		elif getBoxType() == 'et4x00':
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET4x00 Series")	
 		elif getBoxType() == 'et5x00':
-			model = "Xtrend ET5x00 Series"
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET5x00 Series")
 		elif getBoxType() == 'et6x00':
-			model = "Xtrend ET6x00 Series"
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET6x00 Series")
 		elif getBoxType() == 'et9x00':
-			model = "Xtrend ET9x00 Series"
+			self["BoxType"] = StaticText(_("Hardware:") + " Xtrend ET9x00 Series")
 		elif getBoxType() == 'odinm9':
-			model = "Odin M9"
+			self["BoxType"] = StaticText(_("Hardware:") + " Odin M9")
+		elif getBoxType() == 'odinm7':
+			self["BoxType"] = StaticText(_("Hardware:") + " Odin M7")			
 		elif getBoxType() == 'gb800solo':
-			model = "GigaBlue HD 800 Solo"
+			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800SOLO")
 		elif getBoxType() == 'gb800se':
-			model = "GigaBlue HD 800 SE"
+			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800SE")
 		elif getBoxType() == 'gb800ue':
-			model = "GigaBlue HD 800 UE"
+			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD 800UE")
 		elif getBoxType() == 'gbquad':
-			model = "GigaBlue HD Quad"
+			self["BoxType"] = StaticText(_("Hardware:") + " GigaBlue HD QUAD")
 		elif getBoxType() == 'ventonhdx':
-			model = "Venton Unibox HDx"
-		elif getBoxType() == 'ventonhde':
-			model = "Venton Unibox HDe"
+			self["BoxType"] = StaticText(_("Hardware:") + " Venton Unibox HDx")
 		elif getBoxType() == 'ixussone':
-			model = "Ixuss One"
-		elif getBoxType() == 'tmtwin':
-			model = "Technomate Twin"
-		elif getBoxType() == 'tm2t':
-			model = "Technomate 2T"
-		elif getBoxType() == 'tmsingle':
-			model = "Technomate Single"
+			self["BoxType"] = StaticText(_("Hardware:") + " Ixuss One")
 		else:
-			model = getBoxType()
-
-		if model:
-			AboutText += _("Model: %s") % model + "\n"
-
-		if path.exists('/proc/stb/info/chipset'):
-			chipset = open('/proc/stb/info/chipset', 'r').read()
-			AboutText += _("Chipset: BCM%s") % chipset.replace('\n','') + "\n"
-
-		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
-		AboutText += _("Drivers: %s") % about.getDriversString() + "\n"
-		AboutText += _("Version: %s") % about.getImageVersionString() + "\n"
-		AboutText += _("Build: %s") % about.getBuildVersionString() + "\n"
-		AboutText += _("Last update: %s") % about.getLastUpdateString() + "\n\n"
-
-		tempinfo = ""
-		if path.exists('/proc/stb/sensors/temp0/value'):
-			tempinfo = open('/proc/stb/sensors/temp0/value', 'r').read()
-		elif path.exists('/proc/stb/fp/temp_sensor'):
-			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
-		if tempinfo and int(tempinfo.replace('\n','')) > 0:
-			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n','') + mark + "C\n\n"
-
-		self["AboutText"] = StaticText(AboutText)
+			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
+		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
+		self["ImageType"] = StaticText(_("Image:") + " " + about.getImageTypeString())
+		self["ImageVersion"] = StaticText(_("Version:") + " " + about.getImageVersionString() + "   " + _("Build:") + " " + about.getBuildVersionString())
+		self["EnigmaVersion"] = StaticText(_("Last Update:") + " " + about.getLastUpdateString())
 
 class ViewGitLog(Screen):
 	def __init__(self, session, args = None):
@@ -685,14 +676,14 @@ class ViewGitLog(Screen):
 		self.onLayoutFinish.append(self.getlog)
 
 	def changelogtype(self):
-		if self.logtype == 'oe':
+		if self.logtype == 'e2':
 			self["key_yellow"].setText(_("Show E2 Log"))
 			self.setTitle(_("OE Changes"))
-			self.logtype = 'e2'
+			self.logtype = 'oe'
 		else:
 			self["key_yellow"].setText(_("Show OE Log"))
-			self.setTitle(_("Enimga2 Changes"))
-			self.logtype = 'oe'
+			self.setTitle(_("Enigma2 Changes"))
+			self.logtype = 'e2'
 		self.getlog()
 
 	def pageUp(self):
