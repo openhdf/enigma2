@@ -93,7 +93,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.mainMenu()
 
 	def doButtonsCheck(self):
-		if config.vixsettings.ColouredButtons.getValue():
+		if config.plisettings.ColouredButtons.getValue():
 			self["key_yellow"].setText(_("Search"))
 
 			if config.usage.defaultEPGType.getValue() == "Graphical EPG..." or config.usage.defaultEPGType.getValue() == "None":
@@ -101,7 +101,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			else:
 				self["key_red"].setText(_("ViX EPG"))
 
-			if not config.vixsettings.Subservice.getValue():
+			if not config.plisettings.Subservice.getValue():
 				self["key_green"].setText(_("Timers"))
 			else:
 				self["key_green"].setText(_("Subservices"))
@@ -239,7 +239,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		MoviePlayer.instance = self
 
 	def doButtonsCheck(self):
-		if config.vixsettings.ColouredButtons.getValue():
+		if config.plisettings.ColouredButtons.getValue():
 			self["key_yellow"].setText(_("Search"))
 			self["key_green"].setText(_("Timers"))
 		self["key_blue"].setText(_("Extensions"))
