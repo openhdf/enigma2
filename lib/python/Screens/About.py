@@ -105,6 +105,10 @@ class About(Screen):
 			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
 			AboutText = _("Hardware:") + " " + getBoxType() + "\n"
 
+                if path.exists('/proc/stb/info/chipset'):
+                        chipset = open('/proc/stb/info/chipset', 'r').read()
+                        AboutText += _("Chipset: BCM%s") % chipset.lower().replace('\n','').replace('bcm','') + "\n"
+
 		self["KernelVersion"] = StaticText(_("Kernel:") + " " + about.getKernelVersionString())
 		AboutText += _("Kernel:") + " " + about.getKernelVersionString() + "\n"
 		self["DriversVersion"] = StaticText(_("Drivers:") + " " + about.getDriversString())
