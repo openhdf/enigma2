@@ -817,7 +817,7 @@ msgid ""
 "Are you sure you want to activate this network configuration?\n"
 "\n"
 msgstr ""
-"Sicher dass diese Netzwerk-Konfiguration aktiviert werden soll?\n"
+"Sicher, dass diese Netzwerk-Konfiguration aktiviert werden soll?\n"
 "\n"
 
 msgid ""
@@ -841,7 +841,7 @@ msgstr ""
 " "
 
 msgid "Are you sure you want to exit this wizard?"
-msgstr "Sicher dass dieser Assistent verlassen werden soll?"
+msgstr "Sicher, dass dieser Assistent verlassen werden soll?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "Bist Du sicher das die EPG Daten von diesem Ort lesen werden sollen:\n"
@@ -850,7 +850,7 @@ msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
-"Sicher dass das Netzwerk neu gestarter werden soll?\n"
+"Sicher, dass das Netzwerk neu gestarter werden soll?\n"
 "\n"
 
 #, python-format
