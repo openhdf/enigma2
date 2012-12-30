@@ -83,6 +83,16 @@ def getPiconName(serviceName):
 			pngname = findPicon('_'.join(fields))
 	return pngname
 
+def resizePicon(pngname):
+	try:
+		from PIL import Image
+		im = Image.open(pngname)
+		im.resize((200,120)).save("/tmp/picon.png")
+		pngname = "/tmp/picon.png"
+	except:
+		pass
+	return pngname
+
 class Picon(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -131,7 +141,7 @@ class Picon(Renderer):
 			if self.pngname != pngname:
 				if pngname:
 					self.instance.setScale(1)
-					self.instance.setPixmapFromFile(pngname)
+					self.instance.setPixmapFromFile(resizePicon(pngname))
 					self.instance.show()
 				else:
 					self.instance.hide()
