@@ -24,32 +24,32 @@
 		<widget source="global.CurrentTime" render="Label" position="right" size="160,*" font="FdLcD;44" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Record" position="5,20" foregroundColor="#CC0000" size="100,22" font="FdLcD;20" zPosition="0" noWrap="1">
+		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="4,12" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
 
 <!-- main-->
-	<screen name="InfoBarSummary" position="0,0" size="220,176">
-		<panel position="0,0" size="*,220" name="PiconPanel" >
-			<widget source="session.CurrentService" render="Picon" position="10,0" size="200,120" alphatest="on" transparent="1">
+	<screen name="InfoBarSummary" position="fill">
+	
+		<widget source="session.CurrentService" render="Picon" position="0,100" zPosition="1" size="100,60" alphatest="on">
 				<convert type="ServiceName">Reference</convert>
 			</widget>
-		</panel>
-		<widget source="global.CurrentTime" render="Label" position="132,145" size="88,46" font="FdLcD;35" noWrap="1">
-			<convert type="ClockToText"></convert>
+		<widget source="session.CurrentService" render="Label" position="top" size="*,43" font="FdLcD;21" halign="center" foregroundColor="#ffff7f" >
+			<convert type="ServiceName">Name</convert>
 		</widget>
-		
-		<widget source="session.Event_Now" render="Progress" position="0,155" size="130,14" borderWidth="3" >
+		<widget source="session.Event_Now" render="Label" position="top" size="*,41" font="FdLcD;20" halign="center" >
+			<convert type="EventName">Name</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="top" size="*,14" borderWidth="3" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Record" position="15,125" foregroundColor="#CC0000" size="100,22" font="FdLcD;20" zPosition="0" noWrap="1">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
-		<!--widget source="session.Event_Now" render="Label" position="0,121" size="220,30" font="FdLcD;24" halign="left" noWrap="1">
-			<convert type="EventName">Name</convert>
-		</widget-->		
-
+		<panel position="bottom" size="*,44" name="SummaryClockPanel">
+			<widget source="session.Event_Now" render="Label" position="4,0" size="60,25" font="FdLcD;25" halign="left" noWrap="1">
+				<convert type="EventTime">Remaining</convert>
+				<convert type="RemainingToText">NoSeconds</convert>
+			</widget>
+		</panel>
 	</screen>
     
   
@@ -138,20 +138,20 @@
 
 <!-- misc-->
 	<screen name="SimpleSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,100" font="FdLcD;40" halign="center" valign="center" />
+		<widget source="parent.Title" render="Label" position="top" size="*,141" font="FdLcD;25" halign="center" valign="center" />
 		<panel position="bottom" size="*,24" name="SummaryClockPanel" />
 	</screen>
 
 	<screen name="WizardSummary" position="fill">
-		<widget source="text" render="Label" position="top" size="*,16" font="FdLcD;16"/>
-		<widget source="parent.list" render="Label" position="fill" font="FdLcD;12">
+		<widget source="text" render="Label" position="top" size="*,71" font="FdLcD;35" halign="center" />
+		<widget source="parent.list" render="Label" position="fill" font="FdLcD;25" halign="center" >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
 
 	<screen name="VideoWizardSummary" position="fill">
 		<widget name="text" position="top" size="*,40" font="FdLcD;12" transparent="1" />
-		<widget source="parent.list" render="Label" position="fill" font="FdLcD;14">
+		<widget source="parent.list" render="Label" position="fill" font="FdLcD;45" halign="center" >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -161,8 +161,8 @@
 		<widget source="global.CurrentTime" render="Label" position="center,0" size="120,64" font="FdLcD;48" halign="center" valign="center" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,150" size="190,22" font="FdLcD;22" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#0000ff" >
-			<convert type="ConditionalShowHide">Blink</convert>
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="4,50" size="120,12" font="FdLcD;12" zPosition="2" valign="bottom" halign="left" noWrap="1">
+			<convert type="ConditionalShowHide"></convert>
 		</widget>
 	</screen>
 <!-- Plugin browser -->
