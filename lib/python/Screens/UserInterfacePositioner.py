@@ -268,17 +268,14 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 			self.close()
 
 def applySettings(mode, znorm):
-	try:
-		print 'Setting 3D mode:',mode
-		f = open("/proc/stb/fb/3dmode", "w")
-		f.write(mode)
-		f.close()
-		print 'Setting 3D depth:',znorm
-		f = open("/proc/stb/fb/znorm", "w")
-		f.write('%d' % znorm)
-		f.close()
-	except:
-		pass
+	print 'Setting 3D mode:',mode
+	f = open("/proc/stb/fb/3dmode", "w")
+	f.write(mode)
+	f.close()
+	print 'Setting 3D depth:',znorm
+	f = open("/proc/stb/fb/znorm", "w")
+	f.write('%d' % znorm)
+	f.close()
 
 def setConfiguredPosition():
 	if SystemInfo["CanChangeOsdPosition"]:
@@ -293,18 +290,9 @@ def setConfiguredSettings():
 		applySettings(config.osd.threeDmode.getValue(), int(config.osd.threeDznorm.getValue()))
 
 def InitOsd():
-	try:
-		SystemInfo["CanChange3DOsd"] = (access('/proc/stb/fb/3dmode', R_OK) or access('/proc/stb/fb/primary/3d', R_OK)) and True or False
-	except:
-		SystemInfo["CanChange3DOsd"] = False
-	try:
-		SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
-	except:
-		SystemInfo["CanChangeOsdAlpha"] = False
-	try:	
-		SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
-	except:
-		SystemInfo["CanChangeOsdPosition"] = False
+	SystemInfo["CanChange3DOsd"] = (access('/proc/stb/fb/3dmode', R_OK) or access('/proc/stb/fb/primary/3d', R_OK)) and True or False
+	SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
+	SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
 	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]
 	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
 		SystemInfo["OsdMenu"] = True
