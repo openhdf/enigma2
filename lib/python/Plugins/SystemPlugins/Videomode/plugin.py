@@ -68,11 +68,11 @@ class VideoSetup(Screen, ConfigListScreen):
 		# if we have modes for this port:
 		if config.av.videoport.getValue() in config.av.videomode:
 			# add mode- and rate-selection:
-			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.value], _("This option configures the video output mode (or resolution).")))
-			if config.av.videomode[config.av.videoport.value].getValue() == 'PC':
-				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option configures the screen resolution in PC output mode.")))
+			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.getValue()], _("This option configures the video output mode (or resolution).")))
+			if config.av.videomode[config.av.videoport.getValue()].getValue() == 'PC':
+				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.getValue()].getValue()], _("This option configures the screen resolution in PC output mode.")))
 			else:
-				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("Configure the refresh rate of the screen.")))
+				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.getValue()].getValue()], _("Configure the refresh rate of the screen.")))
 
 		port = config.av.videoport.getValue()
 		if port not in config.av.videomode:
@@ -94,8 +94,8 @@ class VideoSetup(Screen, ConfigListScreen):
 		elif config.av.aspect.getValue() == "4_3":
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
-#		if config.av.videoport.getValue() == "DVI":
-#			self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override))
+#		if config.av.videoport.value == "DVI":
+#			self.list.append(getConfigListEntry(_("Allow Unsupported Modes"), config.av.edid_override))
 		if config.av.videoport.getValue() == "Scart":
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
 			if level >= 1:
@@ -115,7 +115,7 @@ class VideoSetup(Screen, ConfigListScreen):
 #			self.list.append(getConfigListEntry(_("OSD transparency"), config.av.osd_alpha, _("This option configures the transparency of the OSD.")))
 
 #		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
-#			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
+#			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option sets up the picture sharpness.")))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -132,9 +132,9 @@ class VideoSetup(Screen, ConfigListScreen):
 
 	def confirm(self, confirmed):
 		if not confirmed:
-			config.av.videoport.value = self.last_good[0]
-			config.av.videomode[self.last_good[0]].value = self.last_good[1]
-			config.av.videorate[self.last_good[1]].value = self.last_good[2]
+			config.av.videoport.setValue(self.last_good[0])
+			config.av.videomode[self.last_good[0]].setValue(self.last_good[1])
+			config.av.videorate[self.last_good[1]].setValue(self.last_good[2])
 			self.hw.setMode(*self.last_good)
 		else:
 			self.keySave()
