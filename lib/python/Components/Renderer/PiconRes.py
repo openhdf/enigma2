@@ -93,7 +93,7 @@ def resizePicon(pngname):
 		pass
 	return pngname
 
-class Picon(Renderer):
+class PiconRes(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.pngname = ""

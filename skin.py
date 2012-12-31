@@ -86,7 +86,7 @@ addSkin('skin_box.xml')
 # add optional discrete second infobar
 addSkin('skin_second_infobar.xml')
 # Only one of these is present, compliments of AM_CONDITIONAL
-config.skin.display_skin = ConfigYesNo(default = False)
+config.skin.display_skin = ConfigYesNo(default = True)
 display_skin_id = 1
 if fileExists('/usr/share/enigma2/skin_display255_picon.xml'):
 	if config.skin.display_skin.getValue():
