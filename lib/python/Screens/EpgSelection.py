@@ -38,7 +38,7 @@ class EPGSelection(Screen, HelpableScreen):
 	if data.find('xres="1280"') >= 0:
 		QuickEPG = """
 			<screen name="QuickEPG" position="0,505" size="1280,215" backgroundColor="transparent" flags="wfNoBorder">
-				<ePixmap alphatest="off" pixmap="Magic/infobar/infobar-hd.png" position="0,0" size="1280,220" zPosition="0"/>
+				<ePixmap alphatest="off" pixmap="Nobile/infobar-hd.png" position="0,0" size="1280,220" zPosition="0"/>
 				<widget source="Service" render="Picon" position="60,75" size="100,60" transparent="1" zPosition="2" alphatest="blend">
 					<convert type="ServiceName">Reference</convert>
 				</widget>
@@ -146,7 +146,7 @@ class EPGSelection(Screen, HelpableScreen):
 	else:
 		QuickEPG = """
 			<screen name="QuickEPG" position="0,325" size="720,276" backgroundColor="transparent" flags="wfNoBorder" >
-				<ePixmap alphatest="off" pixmap="Magic/infobar/infobar.png" position="0,0" size="720,156" zPosition="1"/>
+				<ePixmap alphatest="off" pixmap="Nobile/infobar.png" position="0,0" size="720,156" zPosition="1"/>
 				<eLabel backgroundColor="#41080808" position="0,156" size="720,110" zPosition="2"/>
 				<widget borderColor="#0f0f0f" borderWidth="1" backgroundColor="#16000000" font="Enigma;24" foregroundColor="#00f0f0f0" halign="left" noWrap="1" position="88,120" render="Label" size="68,28" source="global.CurrentTime" transparent="1" zPosition="3">
 					<convert type="ClockToText">Default</convert>
@@ -293,7 +293,11 @@ class EPGSelection(Screen, HelpableScreen):
 		self["key_red"] = Button(_("IMDb Search"))
 		self["key_green"] = Button(_("Add Timer"))
 		self["key_yellow"] = Button(_("EPG Search"))
-		self["key_blue"] = Button(_("Add AutoTimer"))
+		try:
+			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
+			self["key_blue"] = Button(_("Add AutoTimer"))
+		except:
+			self["key_blue"] = Button(_("Toggle Sort"))
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
 			self.currentService=service
@@ -364,7 +368,7 @@ class EPGSelection(Screen, HelpableScreen):
 		HelpableScreen.__init__(self)
 		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-				"cancel": (self.closing, _("Exit EPG")),
+				"cancel": (self.closeScreen, _("Exit EPG")),
 				"OK":     (self.OK, _("Zap to channel (setup in menu)")),
 				"OKLong": (self.OKLong, _("Zap to channel and close (setup in menu)")),
 			}, -1)
@@ -831,10 +835,18 @@ class EPGSelection(Screen, HelpableScreen):
 					l.fillGraphEPG(None, self.ask_time)
 					self.moveTimeLines(True)
 
-	def closing(self):
+	def closeScreen(self):
+		try:
+			if not self.StartRef:
+				self.StartRef = None
+		except:
+			print"[EpgSelection] No Start Service"
+			self.close(False)
+			return
+
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
-			if ((self.type == 5 and config.epgselection.preview_mode_vixepg.getValue()) or (self.type == 4 and (config.epgselection.preview_mode_infobar.getValue() == "1" or config.epgselection.preview_mode_infobar.getValue() == "2")) or (self.type == 3 and config.epgselection.preview_mode_enhanced.getValue()) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselection.preview_mode.getValue())) and (self.StartRef and self.StartBouquet):
-				if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			if ((self.type == 5 and config.epgselection.preview_mode_pliepg.getValue()) or (self.type == 4 and (config.epgselection.preview_mode_infobar.getValue() == "1" or config.epgselection.preview_mode_infobar.getValue() == "2")) or (self.type == 3 and config.epgselection.preview_mode_enhanced.getValue()) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselection.preview_mode.getValue())) and (self.StartRef and self.StartBouquet):
+				if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
 					if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0')== -1:
 						self.session.nav.playService(self.StartRef)
 						self.setServicelistSelection(self.StartBouquet, self.StartRef)
@@ -986,7 +998,12 @@ class EPGSelection(Screen, HelpableScreen):
 			serviceref = cur[1]
 			addAutotimerFromEvent(self.session, evt = event, service = serviceref)
 		except ImportError:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
+				if self.sort_type == 0:
+					self.sort_type = 1
+				else: 
+					self.sort_type = 0
+				self["list"].sortSingleEPG(self.sort_type)
 
 	def showTimerList(self):
 		from Screens.TimerEdit import TimerEditList
@@ -997,10 +1014,10 @@ class EPGSelection(Screen, HelpableScreen):
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
-			autopoller = AutoPoller()
-			autotimer = AutoTimer()
 			global autotimer
 			global autopoller
+			autopoller = AutoPoller()
+			autotimer = AutoTimer()
 
 			try:
 				autotimer.readXml()
@@ -1194,25 +1211,52 @@ class EPGSelection(Screen, HelpableScreen):
 		self.moveTimeLines()
 
 	def OK(self):
-		if config.epgselection.OK_vixepg.getValue() == "Zap" or config.epgselection.OK_enhanced.getValue() == "Zap" or config.epgselection.OK_infobar.getValue() == "Zap" or config.epgselection.OK_multi.getValue() == "Zap":
-			self.ZapTo()
+		if self.type == EPG_TYPE_GRAPH:
+			if config.epgselection.OK_pliepg.value == "EventView":
+				self.infoKeyPressed()
+			elif config.epgselection.OK_pliepg.value == "Zap":
+				self.ZapTo()
+			elif config.epgselection.OK_pliepg.value == "Zap + Exit":
+				self.zap()
+		elif self.type == EPG_TYPE_INFOBAR:
+			if config.epgselection.OK_infobar.value == "EventView":
+				self.infoKeyPressed()
+			elif config.epgselection.OK_infobar.value == "Zap":
+				self.ZapTo()
+			elif config.epgselection.OK_infobar.value == "Zap + Exit":
+				self.zap()
+		elif self.type == EPG_TYPE_ENHANCED:
+			if config.epgselection.OK_enhanced.value == "EventView":
+				self.infoKeyPressed()
+			elif config.epgselection.OK_enhanced.value == "Zap":
+				self.ZapTo()
+			elif config.epgselection.OK_enhanced.value == "Zap + Exit":
+				self.zap()
+		elif self.type == EPG_TYPE_MULTI:
+			if config.epgselection.OK_multi.value == "EventView":
+				self.infoKeyPressed()
+			elif config.epgselection.OK_multi.value == "Zap":
+				self.ZapTo()
+			elif config.epgselection.OK_multi.value == "Zap + Exit":
+				self.zap()
+
 		if self.type == EPG_TYPE_GRAPH:
 			serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self["list"].setCurrentlyPlaying(serviceref)
 			self["list"].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines(True)
-		if config.epgselection.OK_vixepg.getValue() == "Zap + Exit" or config.epgselection.OK_enhanced.getValue() == "Zap + Exit" or config.epgselection.OK_infobar.getValue() == "Zap + Exit":
+		if config.epgselection.OK_pliepg.getValue() == "Zap + Exit" or config.epgselection.OK_enhanced.getValue() == "Zap + Exit" or config.epgselection.OK_infobar.getValue() == "Zap + Exit":
 			self.zap()
 
 	def OKLong(self):
-		if config.epgselection.OKLong_vixepg.getValue() == "Zap" or config.epgselection.OKLong_enhanced.getValue() == "Zap" or config.epgselection.OKLong_infobar.getValue() == "Zap":
+		if config.epgselection.OKLong_pliepg.getValue() == "Zap" or config.epgselection.OKLong_enhanced.getValue() == "Zap" or config.epgselection.OKLong_infobar.getValue() == "Zap":
 			self.ZapTo()
 		if self.type == EPG_TYPE_GRAPH:
 			serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self["list"].setCurrentlyPlaying(serviceref)
 			self["list"].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines(True)
-		if config.epgselection.OKLong_vixepg.getValue() == "Zap + Exit" or config.epgselection.OKLong_enhanced.getValue() == "Zap + Exit" or config.epgselection.OKLong_infobar.getValue() == "Zap + Exit" or config.epgselection.OKLong_multi.getValue() == "Zap + Exit":
+		if config.epgselection.OKLong_pliepg.getValue() == "Zap + Exit" or config.epgselection.OKLong_enhanced.getValue() == "Zap + Exit" or config.epgselection.OKLong_infobar.getValue() == "Zap + Exit" or config.epgselection.OKLong_multi.getValue() == "Zap + Exit":
 			self.zap()
 
 	def Info(self):
@@ -1349,7 +1393,10 @@ class EPGSelection(Screen, HelpableScreen):
 			self.servicelist.clearPath()
 			self.servicelist.enterPath(self.servicelist.bouquet_root)
 			self.servicelist.enterPath(bouquet)
-		self.servicelist.setCurrentSelection(service) #select the service in servicelist
+		try:
+			self.servicelist.setCurrentSelection(service) #select the service in servicelist
+		except:
+			self.servicelist.setCurrent(service)
 
 	def zap(self):
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().find('0:0:0:0:0:0:0:0:0')!= -1:
