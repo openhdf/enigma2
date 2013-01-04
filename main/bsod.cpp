@@ -174,7 +174,7 @@ void bsodFatal(const char *component)
 
 		XmlGenerator xml(f);
 
-		xml.open("openvix");
+		xml.open("OpenHDF");
 
 		xml.open("enigma2");
 		xml.string("crashdate", tm_str);

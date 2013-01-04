@@ -100,7 +100,16 @@ class About(Screen):
 			AboutText = _("Hardware:") + " Venton Unibox HDx\n"
 		elif getBoxType() == 'ixussone':
 			self["BoxType"] = StaticText(_("Hardware:") + " Ixuss One")
-			AboutText = _("Hardware:") + " Ixuss One\n"			
+			AboutText = _("Hardware:") + " Ixuss One\n"
+		elif getBoxType() == 'tmtwin':
+			self["BoxType"] = StaticText(_("Hardware:") + " Technomate Twin")
+			AboutText = _("Hardware:") + " Technomate Twin\n"
+		elif getBoxType() == 'tm2t':
+			self["BoxType"] = StaticText(_("Hardware:") + " Technomate 2T")
+			AboutText = _("Hardware:") + " Technomate 2T\n"
+		elif getBoxType() == 'tmsingle':
+			self["BoxType"] = StaticText(_("Hardware:") + " Technomate Single")	
+			AboutText = _("Hardware:") + " Technomate Single\n"
 		else:
 			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
 			AboutText = _("Hardware:") + " " + getBoxType() + "\n"
