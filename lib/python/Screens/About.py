@@ -381,7 +381,7 @@ class SystemMemoryInfo(Screen):
 class SystemNetworkInfo(Screen):
 	skin = """
 		<screen name="SystemNetworkInfo" position="center,center" size="560,400" >
-			<widget name="AboutScrollLabel" position="29,82" size="458,197" font="Regular;20" transparent="1" zPosition="1" scrollbarMode="showOnDemand" />
+			<widget name="AboutScrollLabel" position="29,82" size="458,376" font="Regular;20" transparent="1" zPosition="1" scrollbarMode="showOnDemand" />
 			<widget source="LabelBSSID" render="Label" position="28,292" size="200,25" valign="left" font="Regular;20" transparent="1" />
 			<widget source="LabelESSID" render="Label" position="29,329" size="200,25" valign="center" font="Regular;20" transparent="1" />
 			<widget source="LabelQuality" render="Label" position="29,367" size="200,25" valign="center" font="Regular;20" transparent="1" />
