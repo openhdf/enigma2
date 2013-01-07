@@ -13,15 +13,44 @@
 
 #define TIME_UPDATE_INTERVAL (30*60*1000)
 
+static char mybox[256];
+
+void noRTC()
+{
+	char buf[256];
+	FILE *fb = fopen("/etc/image-version","r");
+	if (fb)
+	{
+		while (fgets(buf, 256, fb))
+		{
+			if (strstr(buf, "box_type="))
+			{
+				char * pch;
+				pch = strtok(buf,"=");
+				pch = strtok(NULL,"=");
+				strncpy(mybox, pch,5);
+			}
+		}
+		fclose(fb);
+	}
+}
+
 static time_t prev_time;
 
 void setRTC(time_t time)
 {
+	eDebug("[eDVBLocalTimerHandler] set RTC Time");
+	noRTC();
 	FILE *f = fopen("/proc/stb/fp/rtc", "w");
 	if (f)
 	{
 		if (fprintf(f, "%u", (unsigned int)time))
-			prev_time = time;
+		{
+			if (!strncmp(mybox,"gb800",sizeof(mybox)))
+				prev_time = 0; //sorry no RTC
+			else
+				prev_time = time;
+		}
 		else
 			eDebug("write /proc/stb/fp/rtc failed (%m)");
 		fclose(f);
@@ -42,6 +71,7 @@ void setRTC(time_t time)
 
 time_t getRTC()
 {
+	noRTC();
 	time_t rtc_time=0;
 	FILE *f = fopen("/proc/stb/fp/rtc", "r");
 	if (f)
@@ -51,7 +81,10 @@ time_t getRTC()
 		if (fscanf(f, "%u", &tmp) != 1)
 			eDebug("read /proc/stb/fp/rtc failed (%m)");
 		else
-			rtc_time=tmp;
+			if (!strncmp(mybox,"gb800",sizeof(mybox)))
+				rtc_time=0; // sorry no RTC
+			else
+				rtc_time=tmp;
 		fclose(f);
 	}
 	else
@@ -170,7 +203,11 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 		else // inform all who's waiting for valid system time..
 		{
 			eDebug("Use valid Linux Time :) (RTC?)");
-			m_time_ready = true;
+			noRTC();
+			if (!strncmp(mybox,"gb800",sizeof(mybox)))
+				m_time_ready = false; //sorry no RTC
+			else
+			    m_time_ready = true;
 			/*emit*/ m_timeUpdated();
 		}
 	}
@@ -183,7 +220,10 @@ eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
 	if (ready())
 	{
 		eDebug("set RTC to previous valid time");
-		setRTC(::time(0));
+		if (!strncmp(mybox,"gb800",sizeof(mybox)))
+				eDebug("Dont set RTC to previous valid time, giga box");
+			else
+				setRTC(::time(0));
 	}
 }
 
@@ -233,7 +273,7 @@ void eDVBLocalTimeHandler::setUseDVBTime(bool b)
 				eDebug("[eDVBLocalTimeHandler] invalid system time, refuse to disable transponder time sync");
 				return;
 			}
-		}
+		}	
 		if (m_use_dvb_time) {
 			eDebug("[eDVBLocalTimeHandler] disable sync local time with transponder time!");
 			std::map<iDVBChannel*, channel_data>::iterator it =
