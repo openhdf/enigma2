@@ -373,23 +373,23 @@ class EPGList(HTMLComponent, GUIComponent):
 	def setItemsPerPage(self):
  		if self.type == EPG_TYPE_GRAPH:
 			if self.listHeight > 0:
-				itemHeight = self.listHeight / config.epgselection.itemsperpage_vixepg.getValue()
+				itemHeight = self.listHeight / config.epgselection.itemsperpage_pliepg.getValue()
 			else:
 				itemHeight = 54 # some default (270/5)
 			if config.epgselection.heightswitch.getValue():
-				if ((self.listHeight / config.epgselection.itemsperpage_vixepg.getValue()) / 3) >= 27:
-					tmp_itemHeight = ((self.listHeight / config.epgselection.itemsperpage_vixepg.getValue()) / 3)
-				elif ((self.listHeight / config.epgselection.itemsperpage_vixepg.getValue()) / 2) >= 27:
-					tmp_itemHeight = ((self.listHeight / config.epgselection.itemsperpage_vixepg.getValue()) / 2)
+				if ((self.listHeight / config.epgselection.itemsperpage_pliepg.getValue()) / 3) >= 27:
+					tmp_itemHeight = ((self.listHeight / config.epgselection.itemsperpage_pliepg.getValue()) / 3)
+				elif ((self.listHeight / config.epgselection.itemsperpage_pliepg.getValue()) / 2) >= 27:
+					tmp_itemHeight = ((self.listHeight / config.epgselection.itemsperpage_pliepg.getValue()) / 2)
 				else:
 					tmp_itemHeight = 27
 				if tmp_itemHeight < itemHeight:
 					itemHeight = tmp_itemHeight
 				else:
-					if ((self.listHeight / config.epgselection.itemsperpage_vixepg.getValue()) * 3) <= 45:
-						itemHeight = ((self.listHeight / config.epgselection.itemsperpage_vixepg.getValue()) * 3)
-					elif ((self.listHeight / config.epgselection.itemsperpage_vixepg.getValue()) * 2) <= 45:
-						itemHeight = ((self.listHeight / config.epgselection.itemsperpage_vixepg.getValue()) * 2)
+					if ((self.listHeight / config.epgselection.itemsperpage_pliepg.getValue()) * 3) <= 45:
+						itemHeight = ((self.listHeight / config.epgselection.itemsperpage_pliepg.getValue()) * 3)
+					elif ((self.listHeight / config.epgselection.itemsperpage_pliepg.getValue()) * 2) <= 45:
+						itemHeight = ((self.listHeight / config.epgselection.itemsperpage_pliepg.getValue()) * 2)
 					else:
 						itemHeight = 45
 			self.l.setItemHeight(itemHeight)
@@ -448,11 +448,11 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.setItemHeight(int(itemHeight))
 
 	def setServiceFontsize(self):
-		self.l.setFont(0, gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.serv_fontsize_vixepg.getValue()))
+		self.l.setFont(0, gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.serv_fontsize_pliepg.getValue()))
 
 	def setEventFontsize(self):
 		if self.type == EPG_TYPE_GRAPH:
-			self.l.setFont(1, gFont(self.eventFontNameGraph, self.eventFontSizeGraph + config.epgselection.ev_fontsize_vixepg.getValue()))
+			self.l.setFont(1, gFont(self.eventFontNameGraph, self.eventFontSizeGraph + config.epgselection.ev_fontsize_pliepg.getValue()))
 		elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_SIMILAR:
 			self.l.setFont(0, gFont(self.eventFontNameSingle, self.eventFontSizeSingle + config.epgselection.ev_fontsize_enhanced.getValue()))
 		elif self.type == EPG_TYPE_MULTI:
@@ -1065,7 +1065,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		return GUIComponent.applySkin(self, desktop, screen)
 
 	def setTimeLineFontsize(self):
-		self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.tl_fontsize_vixepg.getValue()))
+		self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.tl_fontsize_pliepg.getValue()))
 
 	def postWidgetCreate(self, instance):
 		self.setTimeLineFontsize()
