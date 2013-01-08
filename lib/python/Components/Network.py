@@ -410,7 +410,7 @@ class Network:
 
 	def checkNetworkState(self,statecallback):
 		self.NetworkState = 0
-		cmd1 = "ping -c 1 www.openpli.org"
+		cmd1 = "ping -c 1 www.hdfreaks.cc"
 		cmd2 = "ping -c 1 www.google.nl"
 		cmd3 = "ping -c 1 www.google.com"
 		self.PingConsole = Console()
