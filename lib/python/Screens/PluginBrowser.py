@@ -55,8 +55,8 @@ class PluginBrowser(Screen):
 
 		self.firsttime = True
 
-		self["key_red"] = Button(_("Remove plugins"))
-		self["key_green"] = Button(_("Download plugins"))
+		self["red"] = Button(_("Remove plugins"))
+		self["green"] = Button(_("Download plugins"))
 
 		self.list = []
 		self["list"] = PluginList(self.list)
