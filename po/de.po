@@ -6373,7 +6373,49 @@ msgid "Show time remaining/elapsed"
 msgstr "Zeige Zeit verbleibend/verstrichen"
 
 msgid "Show translation packages"
-msgstr "Zeige Pakete mit den Sprachdateien für die Übersetzung."
+msgstr "Zeige Pakete mit den Sprachdateien für die Übersetzung an."
+
+msgid "Show HDFreaks module packages"
+msgstr "Zeige HDFreaks Pakete an."
+
+msgid "Show drivers packages"
+msgstr "Zeige Treiber Pakete an."
+
+msgid "Show extensions packages"
+msgstr "Zeige Erweiterungen (Plugins) an."
+
+msgid "Show systemplugins packages"
+msgstr "Zeige Systemerweiterungen (SystemPlugins) Pakete an."
+
+msgid "Show softcams packages"
+msgstr "Zeige Softcams an."
+
+msgid "Show skins packages"
+msgstr "Zeige Skins an."
+
+msgid "Show picons packages"
+msgstr "Zeige Senderlogo Pakete an."
+
+msgid "Show settings packages"
+msgstr "Zeige Senderlisten an."
+
+msgid "Show m2k packages"
+msgstr "Zeige 'M2K' Pakete an."
+
+msgid "Show pli packages"
+msgstr "Zeige 'PLI' Pakete an."
+
+msgid "Show vix packages"
+msgstr "Zeige 'VIX' Pakete an."
+
+msgid "Show security packages"
+msgstr "Zeige Sicherheits Pakete an."
+
+msgid "Show kernel module packages"
+msgstr "Zeige Kernel Module an."
+
+msgid "Show weblinks packages"
+msgstr "Zeige Weblinks Pakete an."
 
 msgid "Show transponder remaining/elapsed as"
 msgstr "Zeige Transponder verbleibend/verstrichen"
