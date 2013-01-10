@@ -26,24 +26,6 @@ import socket
 
 import os
 
-config.pluginfilter = ConfigSubsection()
-config.pluginfilter.hdf = ConfigYesNo(default = True)
-config.pluginfilter.kernel = ConfigYesNo(default = False)
-config.pluginfilter.drivers = ConfigYesNo(default = True)
-config.pluginfilter.extensions = ConfigYesNo(default = True)
-config.pluginfilter.m2k = ConfigYesNo(default = False)
-config.pluginfilter.picons = ConfigYesNo(default = True)
-config.pluginfilter.pli = ConfigYesNo(default = False)
-config.pluginfilter.security = ConfigYesNo(default = True)
-config.pluginfilter.settings = ConfigYesNo(default = True)
-config.pluginfilter.skins = ConfigYesNo(default = True)
-config.pluginfilter.softcams = ConfigYesNo(default = True)
-config.pluginfilter.systemplugins = ConfigYesNo(default = True)
-config.pluginfilter.vix = ConfigYesNo(default = False)
-config.pluginfilter.weblinks = ConfigYesNo(default = True)
-config.pluginfilter.po = ConfigYesNo(default = False)
-config.pluginfilter.src = ConfigYesNo(default = False)
-
 def languageChanged():
 	plugins.clearPluginList()
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
@@ -87,7 +69,7 @@ class PluginBrowser(Screen):
 		{
 			"ok": self.save,
 			"back": self.close,
-			"menu": self.menu,
+			"menu": self.openSetup,
 		})
 		self["PluginDownloadActions"] = ActionMap(["ColorActions"],
 		{
@@ -101,8 +83,9 @@ class PluginBrowser(Screen):
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.saveListsize)
 
-	def menu(self):
-		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginFilter)
+	def openSetup(self):
+		from Screens.Setup import Setup
+		self.session.open(Setup, "pluginfilter")
 
 	def saveListsize(self):
 		listsize = self["list"].instance.size()
@@ -222,12 +205,12 @@ class PluginDownloadBrowser(Screen):
 	def createPluginFilter(self):
 		#Create Plugin Filter
 		self.PLUGIN_PREFIX2 = []
-                if config.pluginfilter.hdf.getValue():
-                        self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'hdf')
-                if config.pluginfilter.po.getValue():
-                        self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'po')
-                if config.pluginfilter.src.getValue():
-                        self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'src')
+		if config.pluginfilter.hdf.getValue():
+			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'hdf')
+		if config.pluginfilter.po.getValue():
+			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'po')
+		if config.pluginfilter.src.getValue():
+			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'src')
 		if config.pluginfilter.drivers.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'drivers')
 		if config.pluginfilter.extensions.getValue():
@@ -555,7 +538,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
+		self["actions"] = ActionMap(["SetupActions", 'ColorActions', 'WizardActions'],
 		{
 			"ok": self.keySave,
 			"cancel": self.keyCancel,

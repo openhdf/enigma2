@@ -296,8 +296,24 @@
 		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.tl_fontsize_pliepg</item>
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.prev_time_period</item>
 	</setup>
-	<setup key="pluginbrowsersetup" title="Settings...">
-		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
-		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginbrowser.src</item>
+	<setup key="pluginfilter" title="PluginBrowser filter settings...">
+		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginfilter.po</item>
+		<!-- Sind eh keine auf dem Feed
+		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginfilter.src</item>
+		-->
+		<item level="2" text="Show HDFreaks module packages" description="If set to 'yes' it will show the 'HDFreaks' packages in browser.">config.pluginfilter.hdf</item>
+		<item level="2" text="Show drivers packages" description="If set to 'yes' it will show the 'DRIVER' packages in browser.">config.pluginfilter.drivers</item>
+		<item level="2" text="Show extensions packages" description="If set to 'yes' it will show the 'EXTENSIONS' packages in browser.">config.pluginfilter.extensions</item>
+		<item level="2" text="Show systemplugins packages" description="If set to 'yes' it will show the 'SYSTEMPLUGINS' packages in browser.">config.pluginfilter.systemplugins</item>
+		<item level="2" text="Show softcams packages" description="If set to 'yes' it will show the 'SOFTCAM' packages in browser.">config.pluginfilter.softcams</item>
+		<item level="2" text="Show skins packages" description="If set to 'yes' it will show the 'SKINS' packages in browser.">config.pluginfilter.skins</item>
+		<item level="2" text="Show picons packages" description="If set to 'yes' it will show the 'PICONS' packages in browser.">config.pluginfilter.picons</item>
+		<item level="2" text="Show settings packages" description="If set to 'yes' it will show the 'SETTINGS' packages in browser.">config.pluginfilter.settings</item>
+		<item level="2" text="Show m2k packages" description="If set to 'yes' it will show the 'M2K' packages in browser.">config.pluginfilter.m2k</item>
+		<item level="2" text="Show pli packages" description="If set to 'yes' it will show the 'PLI' packages in browser.">config.pluginfilter.pli</item>
+		<item level="2" text="Show vix packages" description="If set to 'yes' it will show the 'VIX' packages in browser.">config.pluginfilter.vix</item>
+		<item level="2" text="Show security packages" description="If set to 'yes' it will show the 'SECURITY' packages in browser.">config.pluginfilter.security</item>
+		<item level="2" text="Show kernel module packages" description="If set to 'yes' it will show the 'KERNEL' packages in browser.">config.pluginfilter.kernel</item>
+		<item level="2" text="Show weblinks module packages" description="If set to 'yes' it will show the 'WEBLINKS' packages in browser.">config.pluginfilter.weblinks</item>
 	</setup>
 </setupxml>
