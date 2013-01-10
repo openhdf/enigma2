@@ -107,7 +107,7 @@ if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
 	("skin_vfd_7.xml", _("VFD SKIN Typ 7"))])
 	config.skin.display_skin = ConfigNothing()
 else:	
-	config.skin.display_skin = ConfigYesNo(default = False)
+	config.skin.display_skin = ConfigYesNo(default = True)
 	config.skin.primary_vfdskin = ConfigNothing()
 	config.skin.vfdskin = ConfigNothing()
 
