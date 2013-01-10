@@ -36,7 +36,7 @@ endif
 
 if HAVE_COLORLCD220
 SUBDIRS += lcd220
-dist_pkgdata_DATA += skin_display220_picon.xml skin_display220_no_picon.xml
+dist_pkgdata_DATA += skin_display*.xml
 endif
 
 if HAVE_BWLCD255

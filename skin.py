@@ -94,6 +94,7 @@ except (SkinError, IOError, AssertionError), err:
 addSkin('skin_box.xml')
 # add optional discrete second infobar
 addSkin('skin_second_infobar.xml')
+
 # Only one of these is present, compliments of AM_CONDITIONAL
 if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
 	config.skin.vfdskin = ConfigSelection(default = "skin_display255_no_picon.xml", choices = [("skin_display255_no_picon.xml", _("default no picon")), 
@@ -107,7 +108,13 @@ if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
 	("skin_vfd_7.xml", _("VFD SKIN Typ 7"))])
 	config.skin.display_skin = ConfigNothing()
 else:	
-	config.skin.display_skin = ConfigYesNo(default = True)
+#	config.skin.display_skin = ConfigYesNo(default = True)
+	config.skin.display_skin = ConfigSelection(default = "skin_display220_picon.xml", choices = [("skin_display220_picon.xml", _("Big Picon/ clock/ bar")),
+	("skin_display220_picon_1.xml", _("Big picon")),
+	("skin_display220_picon_2.xml", _("Big picon/ clock")),
+	("skin_display220_no_picon.xml", _("Much info")),
+	("skin_display220_no_picon_1.xml", _("Less info	")),
+	("skin_display220_no_picon_2.xml", _("Just a big clock"))])
 	config.skin.primary_vfdskin = ConfigNothing()
 	config.skin.vfdskin = ConfigNothing()
 
@@ -118,18 +125,23 @@ if fileExists('/usr/share/enigma2/vfd_skin/skin_display255_picon.xml'):
 	else:
 		addSkin('vfd_skin/' + config.skin.vfdskin.value)
 	
-
-elif fileExists('/usr/share/enigma2/skin_display220_picon.xml'):
-	if config.skin.display_skin.getValue():
-		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_picon.xml')):
-			addSkin('skin_display220_picon.xml', SCOPE_CONFIG)
-		else:
-			addSkin('skin_display220_picon.xml')
+if fileExists('/usr/share/enigma2/skin_display220_picon.xml'):
+	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.display_skin.value)):
+		addSkin(config.skin.display_skin.value, SCOPE_CONFIG)
 	else:
-		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_no_picon.xml')):
-			addSkin('skin_display220_no_picon.xml', SCOPE_CONFIG)
-		else:
-			addSkin('skin_display220_no_picon.xml')
+		addSkin(config.skin.display_skin.value)
+		
+#elif fileExists('/usr/share/enigma2/skin_display220_picon.xml'):
+#	if config.skin.display_skin.getValue():
+#		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_picon.xml')):
+#			addSkin('skin_display220_picon.xml', SCOPE_CONFIG)
+#		else:
+#			addSkin('skin_display220_picon.xml')
+#	else:
+#		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_no_picon.xml')):
+#			addSkin('skin_display220_no_picon.xml', SCOPE_CONFIG)
+#		else:
+#			addSkin('skin_display220_no_picon.xml')
 
 if addSkin('skin_display.xml'):
 	# Color OLED DM800 / DM800SE

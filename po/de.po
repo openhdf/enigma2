@@ -750,8 +750,8 @@ msgstr "Regelmäßiges schreiben der EPG Daten erlauben."
 msgid "Allows you setup the button to do what you choose."
 msgstr "Erlaubt dir zu bestimmen was die gewählte Taste macht."
 
-msgid "Allows you to choose the Picons to be displayed on the frontpanel."
-msgstr "Diese Option bestimmt ob Picons für das Display am Gerät angezeigt werden sollen."
+msgid "Allows you to choose the skin you want to see on Front LCD."
+msgstr "Diese Option bestimmt welchen Skin im Display am Gerät angezeigt werden soll."
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Debug Log erlauben. Das Debug Log enthält detailierte Informationen über alles was das System macht."
@@ -6201,8 +6201,26 @@ msgstr "Zeige OScam in Erweiterungen?"
 msgid "Show PVR status in MoviePlayer infobar"
 msgstr "Zeige PVR Status in der Infobar des Medienplayers"
 
-msgid "Show Picons *"
-msgstr "Zeige LCD Picons *"
+msgid "LCD skin"
+msgstr "LCD Skin"
+
+msgid "Big Picon/ clock/ bar""
+msgstr "Großes Logo/ Uhr/ Laufanzeige"
+
+msgid "Big picon"
+msgstr "Großes Logo"
+
+msgid "Big picon/ clock"
+msgstr "Großes Logo, Uhr"
+
+msgid "Much info"
+msgstr "Viele Informationen"
+
+msgid "Less info"
+msgstr "Wehnige Informationen"
+
+msgid "Just a big clock"
+msgstr "Nur eine große Uhr"
 
 msgid "Show RFmod setup..."
 msgstr "Zeige UHF Modulator Einstellungen..."
