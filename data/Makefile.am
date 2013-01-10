@@ -19,11 +19,19 @@ dist_pkgdata_DATA = \
 	hd-testcard.mvi
 
 if HAVE_TEXTLCD
-dist_pkgdata_DATA += skin_text.xml
+dist_pkgdata_DATA += skin_text.xml skin_text_clock.xml
 endif
 
 if HAVE_COLORLCD
 dist_pkgdata_DATA += skin_display96.xml
+endif
+
+if HAVE_DISPLAY128
+dist_pkgdata_DATA += skin_display128.xml
+endif
+
+if HAVE_DISPLAYDM
+dist_pkgdata_DATA += skin_display.xml
 endif
 
 if HAVE_COLORLCD220
@@ -32,6 +40,5 @@ dist_pkgdata_DATA += skin_display220_picon.xml skin_display220_no_picon.xml
 endif
 
 if HAVE_BWLCD255
-SUBDIRS += lcd255
-dist_pkgdata_DATA += skin_display255_picon.xml skin_display255_no_picon.xml
+SUBDIRS += lcd255 vfd_skin
 endif
