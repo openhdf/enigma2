@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-23 15:49+0000\n"
-"PO-Revision-Date: 2012-12-24 04:52+0100\n"
+"PO-Revision-Date: 2013-01-10 04:52+0100\n"
 "Last-Translator: Henry Schrapel  <dende@hdfreaks.cc>\n"
 "Language-Team: henrylicious, HDF-Betatester\n"
 "Language: de\n"
@@ -3194,6 +3194,72 @@ msgstr "Mit 'JA' werden 'PO' Pakete im Browser angezeigt. 'PO' Dateien werden f�
 msgid "If set to 'yes' it will show the 'SRC' packages in browser."
 msgstr "Mit 'JA' werden 'SRC' Pakete im Browser angezeigt. 'SRC' Dateien enthälten den Quelltext wenn verfügbar falls man Änderungen vornehmen möchte und kann."
 
+msgid "If set to 'yes' it will show the 'HDFreaks' packages in browser."
+msgstr "Mit 'JA' werden Pakete von den HDFreaks im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'DRIVERS' packages in browser."
+msgstr "Mit 'JA' werden Treiber Pakete im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'EXTENSIONS' packages in browser."
+msgstr "Mit 'JA' werden Erweiterungen im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'SYSTEMPLUGINS' packages in browser."
+msgstr "Mit 'JA' werden SystemPlugins im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'SOFTCAMS' packages in browser."
+msgstr "Mit 'JA' werden Softcams im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'SKINS' packages in browser."
+msgstr "Mit 'JA' werden Skins im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'PICONS' packages in browser."
+msgstr "Mit 'JA' werden Senderlogos im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'SETTINGS' packages in browser."
+msgstr "Mit 'JA' werden 'Senderlisten' Pakete im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'M2K' packages in browser."
+msgstr "Mit 'JA' werden 'M2K' Pakete im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'PLI' packages in browser."
+msgstr "Mit 'JA' werden Pakete von 'PLI' im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'VIX' packages in browser."
+msgstr "Mit 'JA' werden Pakete von 'VIX' im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'SECURITY' packages in browser."
+msgstr "Mit 'JA' werden sicherheits relevante Pakete im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'KERNEL' packages in browser."
+msgstr "Mit 'JA' werden Kernel Module im Browser angezeigt."
+
+msgid "If set to 'yes' it will show the 'WEBLINKS' packages in browser."
+msgstr "Mit 'JA' werden Weblinks im Browser angezeigt."
+
+msgid "drivers"
+msgstr "Treiber"
+
+msgid "extensions"
+msgstr "Erweiterungen"
+
+msgid "picons"
+msgstr "Senderlogos"
+
+msgid "security"
+msgstr "Sicherheit"
+
+msgid "settings"
+msgstr "Senderlisten"
+
+msgid "skins"
+msgstr "Skins"
+
+msgid "systemplugins"
+msgstr "System Plugins"
+
+msgid "kernel modules"
+msgstr "Kernel Module"
+
 msgid "If set to 'yes' shows a small TV-screen in the EPG."
 msgstr "Wenn 'Ja' eingestellt ist wird PIG (kleines TV-Bild) im EPG angezeigt."
 
@@ -6038,8 +6104,8 @@ msgstr "Wähle die Basis der Aufnahmeliste um die \"..\" in der Ansicht zu unter
 msgid "Settings"
 msgstr "Einstellungen"
 
-msgid "Settings..."
-msgstr "Einstellungen..."
+msgid "PluginBrowser filter settings..."
+msgstr "PluginBrowser Filtereinstellungen..."
 
 msgid "Setup"
 msgstr "Konfiguration"
@@ -6290,6 +6356,15 @@ msgstr "Radio-Wiedergabemodus..."
 
 msgid "Show the tv player..."
 msgstr "TV-Wiedergabemodus..."
+
+msgid "Show on Display"
+msgstr "Zeige auf dem Display"
+
+msgid "Clock"
+msgstr "Uhr"
+
+msgid "Channel Name"
+msgstr "Sendername"
 
 msgid "Show time elapsed as positive"
 msgstr "Zeige verstrichene Zeit positiv"
@@ -7681,7 +7756,7 @@ msgid "Use USALS for this sat"
 msgstr "Benutze USALS für diesen Satelliten"
 
 msgid "Use ViX coloured Buttons *"
-msgstr "Farbbutton von ViX benutzen *"
+msgstr "Farbbutton von Enigma2 benutzen *"
 
 msgid "Use ViaSat EPG information when it is available."
 msgstr "Benutze ViaSat EPG-Informationen benutzen wenn sie vorhanden sind."
