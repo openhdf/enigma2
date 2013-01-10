@@ -4,20 +4,13 @@ import xml.etree.cElementTree
 import os
 
 profile("LOAD:enigma_skin")
-from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
-	addFont, gRGB, eWindowStyleSkinned, getDesktop, getBoxType
-from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo, ConfigSelection, ConfigNothing
-from Components.Converter.Converter import Converter
-from Components.Sources.Source import Source, ObsoleteSource
+from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop
+from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo
+from Components.Sources.Source import ObsoleteSource
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
-
-config.vfd = ConfigSubsection()
-config.vfd.show = ConfigSelection([("skin_text.xml", _("Channel Name")), ("skin_text_clock.xml", _("Clock"))], "skin_text.xml")
-if not os.path.exists("/usr/share/enigma2/skin_text.xml"):
-	config.vfd.show = ConfigNothing()
 
 colorNames = {}
 # Predefined fonts, typically used in built-in screens and for components like
@@ -57,7 +50,7 @@ def addSkin(name, scope = SCOPE_SKIN):
 
 # get own skin_user_skinname.xml file, if exist
 def skin_user_skinname():
-	name = "skin_user_" + config.skin.primary_skin.getValue()[:config.skin.primary_skin.getValue().rfind('/')] + ".xml"
+	name = "skin_user_" + config.skin.primary_skin.value[:config.skin.primary_skin.value.rfind('/')] + ".xml"
 	filename = resolveFilename(SCOPE_CONFIG, name)
 	if fileExists(filename):
 		return name
@@ -95,30 +88,19 @@ addSkin('skin_box.xml')
 # add optional discrete second infobar
 addSkin('skin_second_infobar.xml')
 # Only one of these is present, compliments of AM_CONDITIONAL
-if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
-	config.skin.vfdskin = ConfigSelection(default = "skin_display255_no_picon.xml", choices = [("skin_display255_no_picon.xml", _("default no picon")), 
-	("skin_display255_picon.xml", _("default with picon")),
-	("skin_vfd_1.xml", _("VFD SKIN Typ 1")),
-	("skin_vfd_2.xml", _("VFD SKIN Typ 2")),
-	("skin_vfd_3.xml", _("VFD SKIN Typ 3")),
-	("skin_vfd_4.xml", _("VFD SKIN Typ 4")), 
-	("skin_vfd_5.xml", _("VFD SKIN Typ 5")),
-	("skin_vfd_6.xml", _("VFD SKIN Typ 6")),	
-	("skin_vfd_7.xml", _("VFD SKIN Typ 7"))])
-	config.skin.display_skin = ConfigNothing()
-else:	
-	config.skin.display_skin = ConfigYesNo(default = False)
-	config.skin.primary_vfdskin = ConfigNothing()
-	config.skin.vfdskin = ConfigNothing()
-
+config.skin.display_skin = ConfigYesNo(default = True)
 display_skin_id = 1
-if fileExists('/usr/share/enigma2/vfd_skin/skin_display255_picon.xml'):
-	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.vfdskin.value)):
-		addSkin(config.skin.vfdskin.value, SCOPE_CONFIG)
+if fileExists('/usr/share/enigma2/skin_display255_picon.xml'):
+	if config.skin.display_skin.getValue():
+		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display255_picon.xml')):
+			addSkin('skin_display255_picon.xml', SCOPE_CONFIG)
+		else:
+			addSkin('skin_display255_picon.xml')
 	else:
-		addSkin('vfd_skin/' + config.skin.vfdskin.value)
-	
-
+		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display255_no_picon.xml')):
+			addSkin('skin_display255_no_picon.xml', SCOPE_CONFIG)
+		else:
+			addSkin('skin_display255_no_picon.xml')
 elif fileExists('/usr/share/enigma2/skin_display220_picon.xml'):
 	if config.skin.display_skin.getValue():
 		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_picon.xml')):
@@ -131,24 +113,10 @@ elif fileExists('/usr/share/enigma2/skin_display220_picon.xml'):
 		else:
 			addSkin('skin_display220_no_picon.xml')
 
-if addSkin('skin_display.xml'):
-	# Color OLED DM800 / DM800SE
-	display_skin_id = 2
-
 if addSkin('skin_display96.xml'):
 	# Color OLED
-	display_skin_id = 2	
-
-if addSkin('skin_display128.xml'):
-	# Color OLED DM7020HD / DM8000
-	display_skin_id = 2	
-
-# Add Skin for Display
-try:
-	addSkin(config.vfd.show.getValue())
-except:
-	addSkin('skin_text.xml')
-
+	display_skin_id = 2
+addSkin('skin_text.xml')
 addSkin('skin_subtitles.xml')
 
 try:
@@ -160,7 +128,7 @@ except Exception, err:
 	if config.skin.primary_skin.getValue() == skin:
 		skin = 'skin.xml'
 	print "defaulting to standard skin...", skin
-	config.skin.primary_skin.setValue(skin)
+	config.skin.primary_skin.value = skin
 	addSkin(skin)
 	del skin
 
@@ -186,9 +154,9 @@ def parseCoordinate(s, e, size=0, font=None):
 			if s[-1] is '%':
 				val += e * int(s[:-1]) / 100
 			elif s[-1] is 'w':
-			        val += fonts[font][3] * int(s[:-1])
+				val += fonts[font][3] * int(s[:-1])
 			elif s[-1] is 'h':
-			        val += fonts[font][2] * int(s[:-1])
+				val += fonts[font][2] * int(s[:-1])
 			else:
 				val += int(s)
 	if val < 0:
@@ -284,8 +252,6 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 def morphRcImagePath(value):
 	if rc_model.rcIsDefault() is False:
 		if value == '/usr/share/enigma2/skin_default/rc.png' or value == '/usr/share/enigma2/skin_default/rcold.png':
-			value = rc_model.getRcLocation() + 'rc.png'
-		elif value == '/usr/share/enigma2/skin_default/rc0.png' or value == '/usr/share/enigma2/skin_default/rc1.png' or value == '/usr/share/enigma2/skin_default/rc2.png':
 			value = rc_model.getRcLocation() + 'rc.png'
 	return value
 

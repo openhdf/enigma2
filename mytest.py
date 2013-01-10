@@ -35,7 +35,7 @@ from skin import readSkin
 
 profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
-from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave, ConfigNumber
+from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave
 InitFallbackFiles()
 
 profile("config.misc")
@@ -494,11 +494,6 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	if enigma.getBoxType() == 'odinm9' or enigma.getBoxType() == 'ventonhdx' or enigma.getBoxType() == 'ebox5000':
-		profile("VFDSYMBOLS")
-		import Components.VfdSymbols
-		Components.VfdSymbols.SymbolsCheck(session)
-
 	# we need session.scart to access it from within menu.xml
 	session.scart = AutoScartControl(session)
 
@@ -508,17 +503,6 @@ def runScreenTest():
 
 	profile("RunReactor")
 	profile_final()
-
-	if enigma.getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo':
-		from enigma import evfd, eConsoleAppContainer
-		try:
-			cmd = 'vfdctl "    OpenHDF E2 starting"; vfdctl -a'
-			container = eConsoleAppContainer()
-			container.execute(cmd)
-		except:
-			evfd.getInstance().vfd_write_string("-E2-")
-		evfd.getInstance().vfd_led(str(1)) 	
-	
 	runReactor()
 
 	config.misc.startCounter.save()
@@ -526,13 +510,9 @@ def runScreenTest():
 	profile("wakeup")
 
 	from time import time, strftime, localtime
-	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime, setRTCoffset
+	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
-
-	if enigma.getBoxType().startswith('gb'):
-		setRTCtime(nowTime)
-	
 	wakeupList = [
 		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
 					(session.nav.RecordTimer.getNextZapTime(), 1),
@@ -544,7 +524,7 @@ def runScreenTest():
 	print 'wakeupList',wakeupList
 	recordTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] != 3:
-		from time import strftime, altzone, timezone
+		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
@@ -573,7 +553,7 @@ def runScreenTest():
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
 			if enigma.getBoxType().startswith("gb"):
-				wptime = startTime[0] # Gigaboxes already starts 2 min. before wakeup time
+				wptime = startTime[0] + 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0]
 		if not config.misc.SyncTimeUsing.getValue() == "0":
@@ -627,9 +607,9 @@ profile("Init:DebugLogCheck")
 import Screens.LogManager
 Screens.LogManager.AutoLogManager()
 
-#profile("Init:OnlineCheckState")
-#import Components.OnlineUpdateCheck
-#Components.OnlineUpdateCheck.OnlineUpdateCheck()
+profile("Init:OnlineCheckState")
+import Components.OnlineUpdateCheck
+Components.OnlineUpdateCheck.OnlineUpdateCheck()
 
 profile("Init:NTPSync")
 import Components.NetworkTime
@@ -647,16 +627,6 @@ profile("LCD")
 import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
-# Disable internal clock vfd for Venton-HD1 until we can adjust it for standby
-if enigma.getBoxType() == 'ventonhdx':
-	try:
-		f = open("/proc/stb/fp/enable_clock", "r").readline()[:-1]
-		if f != '0':
-			f = open("/proc/stb/fp/enable_clock", "w")
-			f.write('0')
-			f.close()
-	except:
-		print "Error disable enable_clock for venton boxes"
 
 profile("UserInterface")
 import Screens.UserInterfacePositioner

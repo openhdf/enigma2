@@ -1,7 +1,5 @@
 from fcntl import ioctl
 from struct import pack, unpack
-from Components.config import config
-from enigma import getBoxType
 
 def getFPVersion():
 	ret = None
@@ -11,6 +9,7 @@ def getFPVersion():
 		try:
 			fp = open("/dev/dbox/fp0")
 			ret = ioctl(fp.fileno(),0)
+			fp.close()
 		except IOError:
 			print "getFPVersion failed!"
 	return ret
@@ -27,27 +26,8 @@ def setFPWakeuptime(wutime):
 			fp.close()
 		except IOError:
 			print "setFPWakeupTime failed!"
-# thx 2 aafblack64
-def setRTCoffset():
-	import time
-	if time.localtime().tm_isdst == 0:
-		forsleep = 7200+time.timezone
-	else:
-		forsleep = 3600-time.timezone
-
-	t_local = time.localtime(int(time.time()))
-
-	print "set RTC to %s (rtc_offset = %s sec.)" % (time.strftime("%Y/%m/%d %H:%M", t_local), forsleep)
-
-	# Set RTC OFFSET (diff. between UTC and Local Time)
-	try:
-		open("/proc/stb/fp/rtc_offset", "w").write(str(forsleep))
-	except IOError:
-		print "set RTC Offset failed!"
 
 def setRTCtime(wutime):
-	if getBoxType().startswith('gb'):
-		setRTCoffset()
 	try:
 		f = open("/proc/stb/fp/rtc", "w")
 		f.write(str(wutime))
@@ -87,9 +67,6 @@ def getFPWasTimerWakeup():
 		file = f.read()
 		f.close()
 		wasTimerWakeup = int(file) and True or False
-		f = open("/tmp/was_timer_wakeup.txt", "w")
-		file = f.write(str(wasTimerWakeup))
-		f.close()
 	except:
 		try:
 			fp = open("/dev/dbox/fp0")
