@@ -6414,7 +6414,7 @@ msgstr "Zeige Sicherheits Pakete an."
 msgid "Show kernel module packages"
 msgstr "Zeige Kernel Module an."
 
-msgid "Show weblinks packages"
+msgid "Show weblinks module packages"
 msgstr "Zeige Weblinks Pakete an."
 
 msgid "Show transponder remaining/elapsed as"
