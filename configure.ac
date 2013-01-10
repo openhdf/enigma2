@@ -59,7 +59,7 @@ AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
 AM_CONDITIONAL(XTREND, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
 AM_CONDITIONAL(TECHNOMATE, test `echo "$BOXTYPE" | cut -b 1-2` == "tm")
-AM_CONDITIONAL(GIGABLUE, test `echo "$BOXTYPE" | cut -b 1-5` == "gb800")
+AM_CONDITIONAL(GIGABLUE, test `echo "$BOXTYPE" | cut -b 1-2` == "gb")
 AM_CONDITIONAL(ODIN, test `echo "$BOXTYPE" | cut -b 1-4` == "odin")
 AM_CONDITIONAL(VENTON, test `echo "$BOXTYPE" | cut -b 1-6` == "venton")
 AM_CONDITIONAL(VUUNO, test "$BOXTYPE" == vuuno)
@@ -186,11 +186,9 @@ fi
 if test x"$BOXTYPE" == "xgb800solo" -o x"$BOXTYPE" == "xgb800se" -o x"$BOXTYPE" == "xgb800ue" -o x"$BOXTYPE" == "xgbquad"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
-	AC_DEFINE(KEY_GUIDE_TO_KEY_EPG, 1,[define when rc sends a KEY_HELP event for its KEY_EPG key])
 fi
 
 if test x"$BOXTYPE" == "xventonhde" -o x"$BOXTYPE" == "xventonhdx"; then
-	AC_DEFINE(KEY_SEARCH_TO_KEY_BOOKMARK, 1,[define when rc sends a KEY_BOOKMARK event for its KEY_SEARCH key])
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
@@ -257,7 +255,6 @@ data/extensions/Makefile
 data/keymaps/Makefile
 data/lcd220/Makefile
 data/lcd255/Makefile
-data/vfd_skin/Makefile 
 data/rc_models/dmm0/Makefile
 data/rc_models/dmm1/Makefile
 data/rc_models/dmm2/Makefile
