@@ -6204,14 +6204,14 @@ msgstr "Zeige PVR Status in der Infobar des Medienplayers"
 msgid "LCD skin"
 msgstr "LCD Skin"
 
-msgid "Big Picon/ clock/ bar""
+msgid "Big Picon/ clock/ bar"
 msgstr "Großes Logo/ Uhr/ Laufanzeige"
 
 msgid "Big picon"
 msgstr "Großes Logo"
 
 msgid "Big picon/ clock"
-msgstr "Großes Logo, Uhr"
+msgstr "Großes Logo/  Uhr"
 
 msgid "Much info"
 msgstr "Viele Informationen"
