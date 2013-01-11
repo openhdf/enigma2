@@ -6104,6 +6104,9 @@ msgstr "Wähle die Basis der Aufnahmeliste um die \"..\" in der Ansicht zu unter
 msgid "Settings"
 msgstr "Einstellungen"
 
+msgid "Settings..."
+msgstr "Einstellungein..."
+
 msgid "PluginBrowser filter settings..."
 msgstr "PluginBrowser Filtereinstellungen..."
 
@@ -6517,7 +6520,7 @@ msgid "Skip empty services"
 msgstr "Überspringe leere Einträge"
 
 msgid "Skip internet connection check (disables automatic package installation)"
-msgstr "Überspringe "
+msgstr "Überspringe den Netzwerk-Test(keine auto. Paket Installation) "
 
 msgid "Sleep Timer"
 msgstr "Ausschalt-Timer"
