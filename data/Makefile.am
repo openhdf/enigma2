@@ -19,7 +19,7 @@ dist_pkgdata_DATA = \
 	hd-testcard.mvi
 
 if HAVE_TEXTLCD
-dist_pkgdata_DATA += skin_text.xml skin_text_clock.xml
+dist_pkgdata_DATA += skin_display.xml skin_text.xml skin_text_clock.xml
 endif
 
 if HAVE_COLORLCD
