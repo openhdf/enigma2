@@ -104,14 +104,27 @@ if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
 	("skin_vfd_3.xml", _("VFD SKIN Typ 3")),
 	("skin_vfd_4.xml", _("VFD SKIN Typ 4")), 
 	("skin_vfd_5.xml", _("VFD SKIN Typ 5")),
-	("skin_vfd_6.xml", _("VFD SKIN Typ 6")),	
+	("skin_vfd_6.xml", _("VFD SKIN Typ 6")),
 	("skin_vfd_7.xml", _("VFD SKIN Typ 7"))])
 	config.skin.display_skin = ConfigNothing()
-else:	
-#	config.skin.display_skin = ConfigYesNo(default = True)
-	config.skin.display_skin = ConfigSelection(default = "skin_display220_picon.xml", choices = [("skin_display220_picon.xml", _("Big Picon & Clock & Progress")),
+
+if fileExists('/usr/share/enigma2/skin_display220_user.xml'):
+	config.skin.display_skin = ConfigSelection(default = "skin_display220_picon.xml", choices = [
+	("skin_display220_user.xml", _("User defined Display")),
+	("skin_display220_picon.xml", _("Big Picon & Clock & Progress")),
 	("skin_display220_picon_1.xml", _("Big Picon")),
-	("skin_display220_picon_2.xml", _("Big Picon & Clock")),
+	("skin_display220_picon_2.xml", _("Big Picon & Progress")),
+	("skin_display220_picon_3.xml", _("Little Picon & Clock & Progress")),
+	("skin_display220_no_picon.xml", _("No Picon Much Info")),
+	("skin_display220_no_picon_1.xml", _("No Picon Less Info")),
+	("skin_display220_no_picon_2.xml", _("No Picon Just a big clock"))])
+	config.skin.primary_vfdskin = ConfigNothing()
+	config.skin.vfdskin = ConfigNothing()
+else:
+	config.skin.display_skin = ConfigSelection(default = "skin_display220_picon.xml", choices = [
+	("skin_display220_picon.xml", _("Big Picon & Clock & Progress")),
+	("skin_display220_picon_1.xml", _("Big Picon")),
+	("skin_display220_picon_2.xml", _("Big Picon & Progress")),
 	("skin_display220_picon_3.xml", _("Little Picon & Clock & Progress")),
 	("skin_display220_no_picon.xml", _("No Picon Much Info")),
 	("skin_display220_no_picon_1.xml", _("No Picon Less Info")),
