@@ -109,12 +109,13 @@ if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
 	config.skin.display_skin = ConfigNothing()
 else:	
 #	config.skin.display_skin = ConfigYesNo(default = True)
-	config.skin.display_skin = ConfigSelection(default = "skin_display220_picon.xml", choices = [("skin_display220_picon.xml", _("Big Picon/ clock/ bar")),
-	("skin_display220_picon_1.xml", _("Big picon")),
-	("skin_display220_picon_2.xml", _("Big picon/ clock")),
-	("skin_display220_no_picon.xml", _("Much info")),
-	("skin_display220_no_picon_1.xml", _("Less info	")),
-	("skin_display220_no_picon_2.xml", _("Just a big clock"))])
+	config.skin.display_skin = ConfigSelection(default = "skin_display220_picon.xml", choices = [("skin_display220_picon.xml", _("Big Picon & Clock & Progress")),
+	("skin_display220_picon_1.xml", _("Big Picon")),
+	("skin_display220_picon_2.xml", _("Big Picon & Clock")),
+	("skin_display220_picon_3.xml", _("Little Picon & Clock & Progress")),
+	("skin_display220_no_picon.xml", _("No Picon Much Info")),
+	("skin_display220_no_picon_1.xml", _("No Picon Less Info")),
+	("skin_display220_no_picon_2.xml", _("No Picon Just a big clock"))])
 	config.skin.primary_vfdskin = ConfigNothing()
 	config.skin.vfdskin = ConfigNothing()
 
