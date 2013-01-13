@@ -222,7 +222,7 @@ def InitLcd():
 		if fileExists("/proc/stb/lcd/scroll_delay"):
 			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed);
-			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "3")
+			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "1")
 			config.lcd.repeat.addNotifier(setLCDrepeat);
 			config.lcd.mode = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "0")
 			config.lcd.mode.addNotifier(setLCDmode);
