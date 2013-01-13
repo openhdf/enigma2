@@ -15,7 +15,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
 
 config.vfd = ConfigSubsection()
-config.vfd.show = ConfigSelection([("skin_text.xml", _("Channel Name")), ("skin_text_clock.xml", _("Clock"))], "skin_text.xml")
+config.vfd.show = ConfigSelection(default = "skin_text.xml", choices = [("skin_text.xml", _("Channel Name")),("skin_text_clock.xml", _("Clock"))])
 if not os.path.exists("/usr/share/enigma2/skin_text.xml"):
 	config.vfd.show = ConfigNothing()
 
