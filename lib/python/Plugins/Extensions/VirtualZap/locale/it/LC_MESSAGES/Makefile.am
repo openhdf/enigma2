@@ -1,3 +1,3 @@
-installdir = $(datadir)/locale/de/LC_MESSAGES
+installdir = $(datadir)/locale/it/LC_MESSAGES
 
 dist_install_DATA = VirtualZap.mo
