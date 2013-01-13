@@ -288,6 +288,7 @@ data/skin_default/GraphEPG/Makefile
 data/skin_default/lcd/Makefile
 data/skin_default/piconbg/Makefile
 data/Nobile/Makefile
+data/skin_default/extensions/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp
