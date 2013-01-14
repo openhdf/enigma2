@@ -19,7 +19,7 @@ class Timezones:
 			pass
 
 		if len(self.timezones) == 0:
-			self.timezones = [("CET", "CET")]
+			self.timezones = [("UTC", "UTC")]
 
 	def activateTimezone(self, index):
 		if len(self.timezones) <= index:
@@ -45,7 +45,7 @@ class Timezones:
 
 	def getDefaultTimezone(self):
 		# TODO return something more useful - depending on country-settings?
-		t = "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Vienna"
+		t = "(GMT) Greenwich Mean Time : Dublin, Lisbon, London"
 		for (a,b) in self.timezones:
 			if a == t:
 				return a
