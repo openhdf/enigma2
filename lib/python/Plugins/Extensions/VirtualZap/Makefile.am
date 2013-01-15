@@ -11,5 +11,5 @@ dist_install_DATA = \
 	maintainer.info \
 	keymap.xml \
 	plugin.png \
-	sg.png
+	sd.png
 
