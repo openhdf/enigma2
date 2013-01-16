@@ -75,9 +75,9 @@ def skin_user_skinname():
 
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
-DEFAULT_SKIN = "Nobile/extra/skin.xml"
+DEFAULT_SKIN = "Nobile.HDF.Mod/skin.xml"
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
-	DEFAULT_SKIN = "Nobile/skin.xml"
+	DEFAULT_SKIN = "army.HDF.Mod/skin.xml"
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 profile("LoadSkin")
