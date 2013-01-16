@@ -5,5 +5,5 @@ install_PYTHON =	\
 	plugin.py 
 
 dist_install_DATA = \
-	LICENSE \
+	LICENSE.txt \
 	maintainer.info
