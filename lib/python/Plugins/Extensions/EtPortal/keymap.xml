@@ -1,6 +1,0 @@
-<keymap>
-	<map context="EtPortalActions">
-		<key id="KEY_BOOKMARKS" mapto="mark_button" flags="m" />
-		<key id="KEY_PROGRAM" mapto="timer_button" flags="m" />
-	</map>
-</keymap>
