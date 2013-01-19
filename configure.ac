@@ -178,7 +178,7 @@ if test x"$BOXTYPE" == "xodinm7" -o x"$BOXTYPE" == "xixussone"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 fi
 
-if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuduo2" -o x"$BOXTYPE" == "xvusolo2" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo" -o x"$BOXTYPE" == "xtmtwin" -o x"$BOXTYPE" == "xtm2t" -o x"$BOXTYPE" == "xtmsingle"; then
+if test x"$BOXTYPE" == "xvuduo" -o x"$BOXTYPE" == "xvusolo" -o x"$BOXTYPE" == "xvuduo2" -o x"$BOXTYPE" == "xvusolo2" -o x"$BOXTYPE" == "xvuuno" -o x"$BOXTYPE" == "xvuultimo"; then
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
@@ -193,6 +193,14 @@ if test x"$BOXTYPE" == "xventonhde" -o x"$BOXTYPE" == "xventonhdx"; then
 	AC_DEFINE(KEY_SEARCH_TO_KEY_BOOKMARK, 1,[define when rc sends a KEY_BOOKMARK event for its KEY_SEARCH key])
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
+fi
+
+if test x"$BOXTYPE" == "xtmtwin" -o x"$BOXTYPE" == "xtm2t" -o x"$BOXTYPE" == "xtmsingle"; then
+	AC_DEFINE(KEY_F1_TO_KEY_PC, 1,[define when rc sends a KEY_F1 event for its KEY_PC" key])
+	AC_DEFINE(KEY_F5_TO_KEY_SCREEN, 1,[define when rc sends a KEY_F5 event for its KEY_SCREEN key])
+	AC_DEFINE(KEY_DOT_TO_KEY_HOMEPAGE, 1,[define when rc sends a KEY_DOT event for its KEY_KEY_HOMEPAGE key])
+	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
+	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
 fi
 
 AC_ARG_WITH(libsdl,
@@ -347,9 +355,6 @@ lib/python/Plugins/Extensions/ZapHistoryBrowser/locale/nl/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/ZapHistoryBrowser/locale/sr/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/ZapHistoryBrowser/locale/sv/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/ZapHistoryBrowser/locale/tr/LC_MESSAGES/Makefile
-lib/python/Plugins/DemoPlugins/Makefile
-lib/python/Plugins/DemoPlugins/TPMDemo/Makefile
-lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
 lib/python/Plugins/Extensions/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/CutListEditor/meta/Makefile
