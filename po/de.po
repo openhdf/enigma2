@@ -6331,7 +6331,7 @@ msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Zeige oder verstecke erweiterte Beschreibung (skinabhängig)."
 
 msgid "Show picon background colour"
-msgstr "Zeige Hintergrundfarbe von PIcon"
+msgstr "Zeige Hintergrundfarbe von Picon"
 
 msgid "Show positioner movement"
 msgstr "Zeige Rotorbewegung"
