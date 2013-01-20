@@ -66,7 +66,7 @@ class PluginDescriptor:
 	# or return a function which is called with session and the interface name for extended setup of this interface
 	WHERE_NETWORKMOUNTS = 15
 
-	WHERE_VIXMENU = 16
+	WHERE_HDFMENU = 16
 
 	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None, wakeupfnc = None, needsRestart = None, internal = False, weight = 0):
 		self.name = name
