@@ -107,8 +107,9 @@ if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
 	("skin_vfd_6.xml", _("VFD SKIN Typ 6")),
 	("skin_vfd_7.xml", _("VFD SKIN Typ 7"))])
 	config.skin.display_skin = ConfigNothing()
+	config.skin.vfdskin.save()
 
-if fileExists('/usr/share/enigma2/vfd_skin/skin_display220_picon.xml'):
+if getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
 	config.skin.display_skin = ConfigSelection(default = "skin_display220_picon.xml", choices = [
 	("skin_display220_picon.xml", _("Big Picon & Clock & Progress")),
 	("skin_display220_picon_1.xml", _("Big Picon")),
@@ -132,19 +133,6 @@ if fileExists('/usr/share/enigma2/vfd_skin/skin_display220_picon.xml'):
 		addSkin(config.skin.display_skin.value, SCOPE_CONFIG)
 	else:
 		addSkin('vfd_skin/' + config.skin.display_skin.value)
-
-		
-#elif fileExists('/usr/share/enigma2/skin_display220_picon.xml'):
-#	if config.skin.display_skin.getValue():
-#		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_picon.xml')):
-#			addSkin('skin_display220_picon.xml', SCOPE_CONFIG)
-#		else:
-#			addSkin('skin_display220_picon.xml')
-#	else:
-#		if fileExists(resolveFilename(SCOPE_CONFIG, 'skin_display220_no_picon.xml')):
-#			addSkin('skin_display220_no_picon.xml', SCOPE_CONFIG)
-#		else:
-#			addSkin('skin_display220_no_picon.xml')
 
 if addSkin('skin_display.xml'):
 	# Color OLED DM800 / DM800SE
