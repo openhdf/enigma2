@@ -681,12 +681,10 @@ def InitUsageConfig():
 	config.streaming.stream_eit = ConfigYesNo(default = True)
 	config.streaming.stream_ait = ConfigYesNo(default = True)
 
-	config.pluginbrowser = ConfigSubsection()
-	config.pluginbrowser.po = ConfigYesNo(default = False)
-	config.pluginbrowser.src = ConfigYesNo(default = False)
-
 	config.pluginfilter = ConfigSubsection()
 	config.pluginfilter.hdf = ConfigYesNo(default = True)
+	config.pluginfilter.po = ConfigYesNo(default = False)
+	config.pluginfilter.src = ConfigYesNo(default = False)
 	config.pluginfilter.kernel = ConfigYesNo(default = False)
 	config.pluginfilter.drivers = ConfigYesNo(default = True)
 	config.pluginfilter.extensions = ConfigYesNo(default = True)
@@ -700,8 +698,6 @@ def InitUsageConfig():
 	config.pluginfilter.systemplugins = ConfigYesNo(default = True)
 	config.pluginfilter.vix = ConfigYesNo(default = False)
 	config.pluginfilter.weblinks = ConfigYesNo(default = True)
-	config.pluginfilter.po = ConfigYesNo(default = False)
-	config.pluginfilter.src = ConfigYesNo(default = False)
 
 def updateChoices(sel, choices):
 	if choices:
