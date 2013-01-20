@@ -108,19 +108,7 @@ if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
 	("skin_vfd_7.xml", _("VFD SKIN Typ 7"))])
 	config.skin.display_skin = ConfigNothing()
 
-if fileExists('/usr/share/enigma2/skin_display220_user.xml'):
-	config.skin.display_skin = ConfigSelection(default = "skin_display220_picon.xml", choices = [
-	("skin_display220_user.xml", _("User defined Display")),
-	("skin_display220_picon.xml", _("Big Picon & Clock & Progress")),
-	("skin_display220_picon_1.xml", _("Big Picon")),
-	("skin_display220_picon_2.xml", _("Big Picon & Progress")),
-	("skin_display220_picon_3.xml", _("Little Picon & Clock & Progress")),
-	("skin_display220_no_picon.xml", _("No Picon Much Info")),
-	("skin_display220_no_picon_1.xml", _("No Picon Less Info")),
-	("skin_display220_no_picon_2.xml", _("No Picon Just a big clock"))])
-	config.skin.primary_vfdskin = ConfigNothing()
-	config.skin.vfdskin = ConfigNothing()
-else:
+if fileExists('/usr/share/enigma2/skin_display220_picon.xml'):
 	config.skin.display_skin = ConfigSelection(default = "skin_display220_picon.xml", choices = [
 	("skin_display220_picon.xml", _("Big Picon & Clock & Progress")),
 	("skin_display220_picon_1.xml", _("Big Picon")),
@@ -139,7 +127,7 @@ if fileExists('/usr/share/enigma2/vfd_skin/skin_display255_picon.xml'):
 	else:
 		addSkin('vfd_skin/' + config.skin.vfdskin.value)
 	
-if fileExists('/usr/share/enigma2/skin_display220_picon.xml'):
+if fileExists('/usr/share/enigma2/vfd_skin/skin_display220_picon.xml'):
 	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.display_skin.value)):
 		addSkin(config.skin.display_skin.value, SCOPE_CONFIG)
 	else:
