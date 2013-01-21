@@ -97,27 +97,14 @@ addSkin('skin_second_infobar.xml')
 
 # Only one of these is present, compliments of AM_CONDITIONAL
 if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
-	config.skin.vfdskin = ConfigSelection(default = "skin_display255_no_picon.xml", choices = [("skin_display255_no_picon.xml", _("default no picon")), 
-	("skin_display255_picon.xml", _("default with picon")),
-	("skin_vfd_1.xml", _("VFD SKIN Typ 1")),
-	("skin_vfd_2.xml", _("VFD SKIN Typ 2")),
-	("skin_vfd_3.xml", _("VFD SKIN Typ 3")),
-	("skin_vfd_4.xml", _("VFD SKIN Typ 4")), 
-	("skin_vfd_5.xml", _("VFD SKIN Typ 5")),
-	("skin_vfd_6.xml", _("VFD SKIN Typ 6")),
-	("skin_vfd_7.xml", _("VFD SKIN Typ 7"))])
+	filesArray = sorted(filter(lambda x: x.endswith('.xml'), os.listdir("/usr/share/enigma2/vfd_skin/")))
+	config.skin.vfdskin = ConfigSelection(choices = filesArray)
 	config.skin.display_skin = ConfigNothing()
 	config.skin.vfdskin.save()
 
 if getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
-	config.skin.display_skin = ConfigSelection(default = "skin_display220_picon.xml", choices = [
-	("skin_display220_picon.xml", _("Big Picon & Clock & Progress")),
-	("skin_display220_picon_1.xml", _("Big Picon")),
-	("skin_display220_picon_2.xml", _("Big Picon & Progress")),
-	("skin_display220_picon_3.xml", _("Little Picon & Clock & Progress")),
-	("skin_display220_no_picon.xml", _("No Picon Much Info")),
-	("skin_display220_no_picon_1.xml", _("No Picon Less Info")),
-	("skin_display220_no_picon_2.xml", _("No Picon Just a big clock"))])
+	filesArray = sorted(filter(lambda x: x.endswith('.xml'), os.listdir("/usr/share/enigma2/vfd_skin/")))
+	config.skin.display_skin = ConfigSelection(choices = filesArray)
 	config.skin.primary_vfdskin = ConfigNothing()
 	config.skin.vfdskin = ConfigNothing()
 
