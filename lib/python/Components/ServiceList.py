@@ -33,21 +33,6 @@ class ServiceList(HTMLComponent, GUIComponent):
 		if pic:
 			self.l.setPixmap(self.l.picMarker, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/dvb-s.png"))
-		if pic:
-			self.l.setPixmap(self.l.picDVB_S, pic)
-
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/dvb-c.png"))
-		if pic:
-			self.l.setPixmap(self.l.picDVB_C, pic)
-
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/dvb-t.png"))
-		if pic:
-			self.l.setPixmap(self.l.picDVB_T, pic)
-
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "ico_service_group.png"))
-		if pic:
-			self.l.setPixmap(self.l.picServiceGroup, pic)
 
 		self.root = None
 		self.mode = self.MODE_NORMAL
