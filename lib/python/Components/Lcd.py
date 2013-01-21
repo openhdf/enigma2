@@ -112,36 +112,84 @@ class LCD:
 		f = open("/proc/stb/lcd/show_symbols", "w")
 		f.write(value)
 		f.close()
+		if config.lcd.mode.getValue() == "0":
+			if fileExists("/proc/stb/lcd/symbol_hdd"):
+				f = open("/proc/stb/lcd/symbol_hdd", "w")
+				f.write("0")
+				f.close()
+			if fileExists("/proc/stb/lcd/symbol_hddprogress"):	
+				f = open("/proc/stb/lcd/symbol_hddprogress", "w")
+				f.write("0")
+				f.close()
+			if fileExists("/proc/stb/lcd/symbol_network"):	
+				f = open("/proc/stb/lcd/symbol_network", "w")
+				f.write("0")
+				f.close()
+			if fileExists("/proc/stb/lcd/symbol_signal"):	
+				f = open("/proc/stb/lcd/symbol_signal", "w")
+				f.write("0")
+				f.close()
+			if fileExists("/proc/stb/lcd/symbol_timeshift"):		
+				f = open("/proc/stb/lcd/symbol_timeshift", "w")
+				f.write("0")
+				f.close()
+			if fileExists("/proc/stb/lcd/symbol_tv"):	
+				f = open("/proc/stb/lcd/symbol_tv", "w")
+				f.write("0")
+				f.close()
+			if fileExists("/proc/stb/lcd/symbol_usb"):	
+				f = open("/proc/stb/lcd/symbol_usb", "w")
+				f.write("0")
+				f.close()
+				
+	def setPower(self, value):
+		if fileExists("/proc/stb/lcd/vfd"):
+			print 'setLCDPower',value
+			f = open("/proc/stb/lcd/vfd", "w")
+			f.write(value)
+			f.close()		
+
+	def setShowoutputresolution(self, value):
+		if fileExists("/proc/stb/lcd/show_outputresolution"):
+			print 'setLCDShowoutputresolution',value
+			f = open("/proc/stb/lcd/show_outputresolution", "w")
+			f.write(value)
+			f.close()
 
 	def setRepeat(self, value):
-		print 'setLCDRepeat',value
-		f = open("/proc/stb/lcd/scroll_repeats", "w")
-		f.write(value)
-		f.close()
+		if fileExists("/proc/stb/lcd/scroll_repeats"):
+			print 'setLCDRepeat',value
+			f = open("/proc/stb/lcd/scroll_repeats", "w")
+			f.write(value)
+			f.close()
 
 	def setScrollspeed(self, value):
-		print 'setLCDScrollspeed',value
-		f = open("/proc/stb/lcd/scroll_delay", "w")
-		f.write(str(value))
-		f.close()
+		if fileExists("/proc/stb/lcd/scroll_delay"):
+			print 'setLCDScrollspeed',value
+			f = open("/proc/stb/lcd/scroll_delay", "w")
+			f.write(str(value))
+			f.close()
 
 	def setNormalstate(self, value):
-		print 'setLEDNormal',value
-		led_fd = open("/dev/dbox/oled0",'rw')
-		fcntl.ioctl(led_fd, self.LED_IOCTL_BRIGHTNESS_NORMAL, value)
-		led_fd.close()
+		if fileExists("/dev/dbox/oled0"):
+			print 'setLEDNormal',value
+			led_fd = open("/dev/dbox/oled0",'rw')
+			fcntl.ioctl(led_fd, self.LED_IOCTL_BRIGHTNESS_NORMAL, value)
+			led_fd.close()
 
 	def setDeepStandby(self, value):
-		print 'setLEDSeepStandby',value
-		led_fd = open("/dev/dbox/oled0",'rw')
-		fcntl.ioctl(led_fd, self.LED_IOCTL_BRIGHTNESS_DEEPSTANDBY, value)
-		led_fd.close()
+		if fileExists("/dev/dbox/oled0"):
+			print 'setLEDSeepStandby',value
+			led_fd = open("/dev/dbox/oled0",'rw')
+			fcntl.ioctl(led_fd, self.LED_IOCTL_BRIGHTNESS_DEEPSTANDBY, value)
+			led_fd.close()
 
 	def setBlinkingtime(self, value):
-		print 'setBlinking',value
-		led_fd = open("/dev/dbox/oled0",'rw')
-		fcntl.ioctl(led_fd, self.LED_IOCTL_BLINKING_TIME, value)
-		led_fd.close()
+		if fileExists("/dev/dbox/oled"):
+			print 'setBlinking',value
+			led_fd = open("/dev/dbox/oled0",'rw')
+			fcntl.ioctl(led_fd, self.LED_IOCTL_BLINKING_TIME, value)
+			led_fd.close()
 
 def leaveStandby():
 	config.lcd.bright.apply()
@@ -156,7 +204,7 @@ def standbyCounterChanged(configElement):
 	config.lcd.ledbrightnessdeepstandby.apply()
 
 def InitLcd():
-	if getBoxType() == 'ixussone' or getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800ue' or getBoxType() == 'tmsingle' or getBoxType() == 'vusolo' or getBoxType() == 'et4x00' or getBoxType() == 'et5x00' or getBoxType() == 'et6x00':
+	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'tmsingle' or getBoxType() == 'vusolo' or getBoxType() == 'et4x00' or getBoxType() == 'et5x00' or getBoxType() == 'et6x00':
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
@@ -164,34 +212,82 @@ def InitLcd():
 	config.lcd = ConfigSubsection();
 	if detected:
 		def setLCDbright(configElement):
-			ilcd.setBright(configElement.value);
+			try:
+				ilcd.setBright(configElement.getValue());
+			except:
+				pass
 
 		def setLCDcontrast(configElement):
-			ilcd.setContrast(configElement.value);
+			try:
+				ilcd.setContrast(configElement.getValue());
+			except:
+				pass
 
 		def setLCDinverted(configElement):
-			ilcd.setInverted(configElement.value);
+			try:
+				ilcd.setInverted(configElement.getValue());
+			except:
+				pass
 
 		def setLCDflipped(configElement):
-			ilcd.setFlipped(configElement.value);
+			try:
+				ilcd.setFlipped(configElement.getValue());
+			except:
+				pass
 
 		def setLCDmode(configElement):
-			ilcd.setMode(configElement.value);
+			try:
+				ilcd.setMode(configElement.getValue());
+			except:
+				pass
+			
+		def setLCDpower(configElement):
+			try:
+				ilcd.setPower(configElement.getValue());	
+			except:
+				pass
+			
+		def setLCDshowoutputresolution(configElement):
+			try:
+				ilcd.setShowoutputresolution(configElement.getValue());	
+			except:
+				pass
 
 		def setLCDrepeat(configElement):
-			ilcd.setRepeat(configElement.value);
+			try:
+				ilcd.setRepeat(configElement.getValue());
+			except:
+				pass
 
 		def setLCDscrollspeed(configElement):
-			ilcd.setScrollspeed(configElement.value);
+			try:
+				ilcd.setScrollspeed(configElement.getValue());
+			except:
+				pass
+			
+		if fileExists("/proc/stb/lcd/symbol_hdd"):
+			try:
+				f = open("/proc/stb/lcd/symbol_hdd", "w")
+				f.write("0")
+				f.close()		
+			except:
+				pass
+		if fileExists("/proc/stb/lcd/symbol_hddprogress"):
+			try:
+				f = open("/proc/stb/lcd/symbol_hddprogress", "w")
+				f.write("0")
+				f.close()		
+			except:
+				pass
 
 		def setLEDnormalstate(configElement):
-			ilcd.setNormalstate(configElement.value);
+			ilcd.setNormalstate(configElement.getValue());
 
 		def setLEDdeepstandby(configElement):
-			ilcd.setDeepStandby(configElement.value);
+			ilcd.setDeepStandby(configElement.getValue());
 
 		def setLEDblinkingtime(configElement):
-			ilcd.setBlinkingtime(configElement.value);
+			ilcd.setBlinkingtime(configElement.getValue());
 
 		standby_default = 0
 
@@ -204,11 +300,14 @@ def InitLcd():
 			config.lcd.contrast = ConfigNothing()
 			standby_default = 1
 
-		config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
+		if getBoxType() == 'ebox5000':			
+			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 4))
+			config.lcd.bright = ConfigSlider(default=4, limits=(0, 4))
+		else:
+			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
+			config.lcd.bright = ConfigSlider(default=5, limits=(0, 10))		
 		config.lcd.standby.addNotifier(setLCDbright);
 		config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
-
-		config.lcd.bright = ConfigSlider(default=5, limits=(0, 10))
 		config.lcd.bright.addNotifier(setLCDbright);
 		config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
 		config.lcd.bright.callNotifiersOnSaveAndCancel = True
@@ -218,8 +317,16 @@ def InitLcd():
 
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped);
-
-		if fileExists("/proc/stb/lcd/scroll_delay"):
+		
+		if getBoxType() == 'ebox5000':
+			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
+			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed);
+			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "3")
+			config.lcd.repeat.addNotifier(setLCDrepeat);
+			config.lcd.hdd = ConfigNothing()
+			config.lcd.mode = ConfigNothing()			
+		elif fileExists("/proc/stb/lcd/scroll_delay"):
+			config.lcd.hdd = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed);
 			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "1")
@@ -230,8 +337,21 @@ def InitLcd():
 			config.lcd.mode = ConfigNothing()
 			config.lcd.repeat = ConfigNothing()
 			config.lcd.scrollspeed = ConfigNothing()
+			config.lcd.hdd = ConfigNothing()
+			
+		if fileExists("/proc/stb/power/vfd"):
+			config.lcd.power = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
+			config.lcd.power.addNotifier(setLCDpower);
+		else:
+			config.lcd.power = ConfigNothing()
 
-		if getBoxType() == 'vusolo2'or getBoxType() == 'vuultimo':
+		if fileExists("/proc/stb/lcd/show_outputresolution"):
+			config.lcd.showoutputresolution = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
+			config.lcd.showoutputresolution.addNotifier(setLCDshowoutputresolution);
+		else:
+			config.lcd.showoutputresolution = ConfigNothing()			
+
+		if getBoxType() == 'vusolo2' or getBoxType() == 'vuduo2' or getBoxType() == 'vuultimo':
 			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
 			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 1, increment = 1, limits = (0,15))
@@ -263,9 +383,11 @@ def InitLcd():
 		config.lcd.standby = ConfigNothing()
 		config.lcd.bright.apply = lambda : doNothing()
 		config.lcd.standby.apply = lambda : doNothing()
+		config.lcd.power = ConfigNothing()
 		config.lcd.mode = ConfigNothing()
 		config.lcd.repeat = ConfigNothing()
 		config.lcd.scrollspeed = ConfigNothing()
+		config.lcd.showoutputresolution = ConfigNothing()
 		config.lcd.ledbrightness = ConfigNothing()
 		config.lcd.ledbrightness.apply = lambda : doNothing()
 		config.lcd.ledbrightnessstandby = ConfigNothing()
