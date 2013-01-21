@@ -46,6 +46,8 @@
 				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
 				<item requires="Display"><setup level="1" id="lcd" /></item>
+				<item requires="OledDisplay" level="2" text="VFD Skin Selector" entryID="vfd_skin"><screen module="VfdSkinSelector" screen="VFDSkinSelector"/></item>
+
 				<menu level="2" text="EPG" entryID="epg_menu">
 					<id val="epg" />
 					<item level="0" entryID="epg_setup"><setup id="epgsettings" /></item>
@@ -100,7 +102,7 @@ self.session.open(HdmiCECSetupScreen)
 					<item level="2" entryID="logs_setup"><setup id="logs" /></item>
 					<item level="2" text="Logs manager" entryID="logs_man"><screen module="LogManager" screen="LogManager"/></item>
 				</menu>
-				<menu level="0" text="Network" entryID="network_menu">
+				<menu level="1" text="Network" entryID="network_menu">
 					<id val="network" />
 					<item level="0" text="Device setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 					<item level="1" text="Mounts setup" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
