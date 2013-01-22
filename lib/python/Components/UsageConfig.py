@@ -636,9 +636,7 @@ def InitUsageConfig():
 	config.epgselection.servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
 	config.epgselection.piconwidth = ConfigSelectionNumber(default = 100, stepwidth = 1, min = 70, max = 500, wraparound = True)
 
-	if not os.path.exists('/usr/softcams/'):
-		os.mkdir('/usr/softcams/',0755)
-	softcams = os.listdir('/usr/softcams/')
+	softcams = sorted(filter(lambda x: x.startswith('softcam.'), os.listdir("/etc/init.d/")))
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
 	config.oscaminfo.userdatafromconf = ConfigYesNo(default = False)
@@ -667,13 +665,14 @@ def InitUsageConfig():
 	config.cccaminfo.blacklist = ConfigText(default="/media/cf/CCcamInfo.blacklisted", fixed_size=False)
 	config.cccaminfo.profiles = ConfigText(default="/media/cf/CCcamInfo.profiles", fixed_size=False)
 	SystemInfo["CCcamInstalled"] = False
-	for softcam in softcams:
-		if softcam.lower().startswith('cccam'):
-			config.cccaminfo.showInExtensions = ConfigYesNo(default=True)
-			SystemInfo["CCcamInstalled"] = True
-		elif softcam.lower().startswith('oscam'):
-			config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
-			SystemInfo["OScamInstalled"] = True
+	if os.path.islink('/etc/init.d/softcam'):
+		for softcam in softcams:
+			if "cccam" in os.readlink('/etc/init.d/softcam').lower():
+				config.cccaminfo.showInExtensions = ConfigYesNo(default=True)
+				SystemInfo["CCcamInstalled"] = True
+			elif "oscam" in os.readlink('/etc/init.d/softcam').lower():
+				config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
+				SystemInfo["OScamInstalled"] = True
 
 	config.streaming = ConfigSubsection()
 	config.streaming.stream_ecm = ConfigYesNo(default = False)
