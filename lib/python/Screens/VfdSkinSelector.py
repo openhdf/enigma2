@@ -16,13 +16,16 @@ import os
 
 class VFDSkinSelector(Screen):
 	skin = """
-		<screen name="VFD-Skin Selector" position="center,center" size="800,400" title="VFD-Skin Selector" transparent="0">
-			<widget name="SkinList" position="10,10" size="400,300" scrollbarMode="showOnDemand" />
-			<widget name="Preview" position="500,10" size="280,210" zPosition="2" backgroundColor="background" transparent="0" alphatest="on" />
-			<ePixmap name="red" position="30,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap name="green" position="200,320" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<widget name="key_red" position="30,320" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="key_green" position="200,320" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<screen name="VFD Skin Selector" position="center,center" size="700,400" title="VFD Skin Selector" transparent="0">
+			<eLabel text="Overview of various settings:" position="50,30" size="500,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" halign="left" />
+			<widget name="SkinList" position="50,80" size="270,300" scrollbarMode="showOnDemand" />
+			<widget name="Preview" position="400,80" size="280,210" zPosition="2" backgroundColor="background" transparent="0" alphatest="on" />
+			<ePixmap name="red" position="50,350" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+			<ePixmap name="green" position="220,350" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+			<ePixmap name="blue" position="520,350" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+			<widget name="key_red" position="50,350" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="key_green" position="220,350" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="key_blue" position="520,350" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
 	skinlist = []
@@ -53,10 +56,11 @@ class VFDSkinSelector(Screen):
 			"down": self.down,
 			"left": self.left,
 			"right": self.right,
-			"info": self.info,
+			"blue": self.info,
 		}, -1)
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("OK"))
+		self["key_blue"] = Label(_("Info"))
 		self.fill()
 		self.onLayoutFinish.append(self.layoutFinished)
 
@@ -118,7 +122,7 @@ class VFDSkinSelector(Screen):
 		self.loadPreview()
 
 	def info(self):
-		aboutbox = self.session.open(MessageBox,_("E2 VFD-Skin Selector for GigaBlue"), MessageBox.TYPE_INFO)
+		aboutbox = self.session.open(MessageBox,_("VFD Skin Selector for GigaBlue UE and GigaBlue Quad\n\n\nPlugin to configure Display with various settings\n\n\nby satinfo & henrylicious (thank you for your support)"), MessageBox.TYPE_INFO)
 		aboutbox.setTitle(_("About..."))
 
 	def find(self, arg, dirname, names):
