@@ -3716,10 +3716,10 @@ class InfoBarExtensions:
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
-			autopoller = AutoPoller()
-			autotimer = AutoTimer()
 			global autotimer
 			global autopoller
+			autopoller = AutoPoller()
+			autotimer = AutoTimer()
 			try:
 				autotimer.readXml()
 			except SyntaxError as se:
