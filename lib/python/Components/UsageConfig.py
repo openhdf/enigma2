@@ -342,7 +342,7 @@ def InitUsageConfig():
 	config.softwareupdate.updatelastcheck = ConfigInteger(default=0)
 	config.softwareupdate.updatefound = NoSave(ConfigBoolean(default = False))
 	config.softwareupdate.updatebeta = ConfigYesNo(default = False)
-	config.softwareupdate.updateisunstable = ConfigInteger(default=0)
+	config.softwareupdate.updateisunstable = ConfigYesNo(default = False)
 
 	config.timeshift = ConfigSubsection()
 	config.timeshift.enabled = ConfigYesNo(default = False)
