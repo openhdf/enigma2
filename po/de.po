@@ -9986,69 +9986,6 @@ msgstr "Trotzdem Updaten?"
 msgid "The status of the current update could not be checked because http://www.hdfreaks.cc could not be reached for some reason"
 msgstr "Der Status des aktuellen Updates kann nicht abgefragt werden, da www.hdfreaks.cc nicht erreichbar ist"
 
-#, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"Eine Konfigurationsdatei (%s) wurde nach der Installation verändert.\n"
-"Soll die geänderte Version erhalten bleiben?"
-
-#
-msgid ""
-"\n"
-"Manage extensions or plugins for your STB_BOX"
-msgstr ""
-"\n"
-"Verwalten der STB_BOX-Erweiterungen und -Plugins"
-
-#
-msgid ""
-"\n"
-"Online update of your STB_BOX software."
-msgstr ""
-"\n"
-"Online-Update der STB_BOX-Software."
-
-#
-msgid ""
-"\n"
-"Press OK on your remote control to continue."
-msgstr ""
-"\n"
-"Zum Fortfahren OK drücken."
-
-msgid ""
-"\n"
-"Restore your STB_BOX settings."
-msgstr ""
-"\n"
-"Wiederherstellen der STB_BOX-Einstellungen."
-
-#
-msgid ""
-"\n"
-"Restore your STB_BOX with a new firmware."
-msgstr ""
-"\n"
-"Wiederherstellen der STB_BOX mit einer neuen Firmware."
-
-#
-msgid ""
-"\n"
-"Restore your backups by date."
-msgstr ""
-"\n"
-"Wiederherstellen der nach Datum sortierten Sicherungen."
-
-#
-msgid ""
-"\n"
-"Scan for local extensions and install them."
-msgstr ""
-"\n"
-"Nach lokalen Erweiterungen suchen und diese installieren."
-
 #
 msgid "Select files/folders to backup..."
 msgstr "Dateien und Ordner auswählen..."
