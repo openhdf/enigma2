@@ -1515,7 +1515,7 @@ class UpdatePlugin(Screen):
 				default = False
 			elif 'rot.png' in tmpStatus:
 				if config.softwareupdate.updateisunstable.getValue():
-					message = _("Update is reported as faulty !!") + "\n" + _("But you have activated \"Install unstable updates\"") + "\n" + _("Updating anyway?\"")# + "\n\n" + _("Last Status Date") + ": " + statusDate
+					message = _("Update is reported as faulty !!") + "\n" + _("But you have activated \"Install unstable updates\"") + "\n" + _("Update anyway?")# + "\n\n" + _("Last Status Date") + ": " + statusDate
 					picon = MessageBox.TYPE_ERROR
 					default = False
 				else:
@@ -1524,7 +1524,7 @@ class UpdatePlugin(Screen):
 					default = False
 					doUpdate = False
 		except:
-			message = _("The status of the current update could not be checked because http://www.hdfreaks.c could not be reached for some reason") + "\n"
+			message = _("The status of the current update could not be checked because http://www.hdfreaks.cc could not be reached for some reason") + "\n"
 			picon = MessageBox.TYPE_ERROR
 			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
@@ -1535,7 +1535,7 @@ class UpdatePlugin(Screen):
 		else:
 			if doUpdate:
 				# Ask for Update, 
-				message += _("Do you want to update your box?")+"\n"+_("After pressing OK, please wait!")
+				message += _("Do you want to update your STB_BOX?")+"\n"+_("After pressing OK, please wait!")
 				self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = default, picon = picon)
 			else:
 				# Don't Update RED LIGHT !!
