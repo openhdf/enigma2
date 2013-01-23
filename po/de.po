@@ -4525,14 +4525,15 @@ msgid "Other"
 msgstr "Andere"
 
 msgid "Output"
+msgstr "Ausgang"
+
+msgid "Overwrite configuration files?"
 msgstr "Ausgabe"
 
 msgid "Overwrite configuration files during software upgrade?"
 msgstr "Konfigurationsdateien beim Software-Update überschreiben ?"
 
-msgid "Overwrite configuration files?"
-msgstr "Konfigurationsdatei überschreiben?"
-
+#
 msgid "PAL"
 msgstr "PAL"
 
@@ -4542,18 +4543,26 @@ msgstr "PCR PID"
 msgid "PIDs"
 msgstr "PIDs"
 
-msgid "PIN code needed"
-msgstr "Pincode benötigt"
-
 msgid "PMT PID"
 msgstr "PMT PID"
 
 #, python-format
 msgid "PTS Plugin Error: %s"
-msgstr "PTS Plugi Fehler:%s"
+msgstr "PTS-Plugin-Fehler: %s"
+
+msgid "PWM value"
+msgstr "PWM-Wert"
 
 msgid "Package list update"
 msgstr "Paketlistenaktualisierung"
+
+#
+msgid "Package removal failed.\n"
+msgstr "Deinstallation des Pakets fehlgeschlagen.\n"
+
+#
+msgid "Package removed successfully.\n"
+msgstr "Paket wurde erfolgreich deinstalliert.\n"
 
 msgid "Packages"
 msgstr "Pakete"
@@ -9897,31 +9906,359 @@ msgid "with left/right buttons"
 msgstr "Mit Links/Rechts Tasten"
 
 msgid "with long OK press"
-msgstr "Mit langer OK Taste"
+msgstr "Mit OK drücken - lang"
 
 msgid "working"
-msgstr "arbeite"
+msgstr "Arbeite"
 
 msgid "yellow"
-msgstr "gelb"
+msgstr "Gelb"
 
 msgid "yes"
-msgstr "ja"
+msgstr "Ja"
 
 msgid "yes (keep feeds)"
-msgstr "ja (Feeds behalten)"
+msgstr "Ja (Feeds behalten)"
+
+#
+msgid ""
+"your STB_BOX might be unusable now. Please consult the manual for further "
+"assistance before rebooting your STB_BOX."
+msgstr ""
+"Ihre STB_BOX könnte jetzt unbenutzbar sein. Bitte konsultieren Sie das "
+"Handbuch bevor Sie ihre STB_BOX rebooten."
 
 msgid "zap"
 msgstr "umschalten"
 
 msgid "zapped"
-msgstr "umgeschaltet"
+msgstr "Umgeschaltet"
 
-#~ msgid "Hardware:"
-#~ msgstr "Hardware:"
+msgid "PTS-Plugin: Merging records failed!"
+msgstr "PTS-Plugin: Zusammenführen der Aufnahmen fehlgeschlagen!"
 
-#~ msgid "Image:"
-#~ msgstr "Image:"
+msgid "PTS-Plugin: Restarting Timeshift!"
+msgstr "PTS-Plugin: Timeshift-Neustart!"
+
+# SoftwareManager Translations
+msgid "Select Software Update"
+msgstr "Auswahl Software Update"
+
+msgid "Overwrite Configuration Files ?"
+msgstr "Überschreiben der Konfigurations Files ?"
+
+msgid "Overwrite Setting Files ?"
+msgstr "Settings-Dateien überschreiben ?"
+
+msgid "Overwrite Driver Files ?"
+msgstr "Treiber-Module überschreiben ?"
+
+msgid "Overwrite Softcam Files ?"
+msgstr "Softcam-Dateien überschreiben ?"
+
+msgid "Overwrite Emu Files ?"
+msgstr "Emu-Dateien überschreiben ?"
+
+msgid "Overwrite Picon Files ?"
+msgstr "Picons überschreiben ?"
+
+msgid "Overwrite Bootlogo Files ?"
+msgstr "Bootlogos überschreiben ?"
+
+#
+msgid "Select files/folders to backup..."
+msgstr "Dateien und Ordner auswählen..."
+
+#
+msgid "Keymap Selection"
+msgstr "Keymap Auswahl"
+
+#
+msgid "Remote_setup"
+msgstr "Fernbedienungs Auswahl"
+
+#
+msgid "Keymap changed, you need to restart the GUI"
+msgstr "Tastaturbelegung geändert, Sie  müssen die GUI neustarten"
+
+#
+msgid "Do you want to restart now?"
+msgstr "Wollen Sie jetzt neu starten?"
+
+#
+msgid "Show INFO-Panel Red-key"
+msgstr "Zeige INFO-Panel mit der roten Taste"
+
+#
+msgid "Show Softcam-Panel Red-key long"
+msgstr "Zeige Softcam-Panel mit langem Drücken der roten Taste"
+
+#
+msgid "Show Softcam-Panel in Extensions Menu"
+msgstr "Zeige Softcam-Panel in Extensions-Menü"
+
+#
+msgid "an internal error has occur"
+msgstr "ein interner Fehler ist aufgetreten"
+
+#
+msgid ""
+"Copy your keymap to\n"
+"/usr/share/enigma2/keymap.usr"
+msgstr ""
+"Kopieren Sie ihre Tastaturbelegung nach \n"
+" / usr/share/enigma2/keymap.usr"
+
+#
+msgid "Default  (keymap.xml)"
+msgstr "Standard  (keymap.xml)"
+
+#
+msgid "User  (keymap.usr)"
+msgstr "Benutzer  (keymap.usr)"
+
+#
+msgid "Neutrino  (keymap.ntr)"
+msgstr "Neutrino  (keymap.ntr)"
+
+#
+msgid "Use Keymap"
+msgstr "Keymap Auswahl"
+
+#
+msgid "Extended System"
+msgstr "Erweiterte Einstellungen"
+
+#
+msgid "Upgrade with GUI"
+msgstr "Update mit Anzeige"
+
+#
+msgid "Unattended upgrade without GUI"
+msgstr "Automatisches Update ohne Anzeige"
+
+#
+msgid "Select how your box will upgrade."
+msgstr "Auswahl des Update Mode."
+
+#
+msgid "Overwrite setting files (channellist) during software upgrade?"
+msgstr "Überschreiben der Sender/Kanallisten beim Update?"
+
+#
+msgid "Overwrite driver files during software upgrade?"
+msgstr "Überschreiben der Kernel/Treiber beim Update?"
+
+#
+msgid "Overwrite softcam files during software upgrade?"
+msgstr "Überschreiben der Softcam Dateien beim Update?"
+
+#
+msgid "Overwrite picon files during software upgrade?"
+msgstr "Überschreiben der picon Datein beim Update?"
+
+#
+msgid "Choose backup files"
+msgstr "Backup wiederherstellen"
+
+#
+msgid "LanguageWizard"
+msgstr "Sprachauswahl"
+
+#
+msgid "ImageWizard"
+msgstr "Einstellungen Wiederherstellen"
+
+#
+msgid "StartWizard"
+msgstr "Grundkonfiguration"
+
+# ******************************************************************************
+msgid "Please select an aspect ratio..."
+msgstr "Bitte Bild-Seitenverhältnis auswählen..."
+
+#
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+#
+msgid "Softcam-Panel Setup"
+msgstr "Softcam Einstellungen"
+
+#
+msgid "Mount again"
+msgstr "Wieder mounten"
+
+#
+msgid "Mount using"
+msgstr "Verwendetes Mount System"
+
+#
+msgid "use as HDD replacement"
+msgstr "Verwenden als Festplatten Ersatz"
+
+#
+msgid "AutoMountManager"
+msgstr "Automatische Mount Management"
+
+#
+msgid "MountEdit"
+msgstr "Mount Änderungen"
+
+#
+msgid "MountView"
+msgstr "Mount Übersicht"
+
+#
+msgid "UserManager"
+msgstr "Benutzerverwaltung"
+
+#
+msgid "Network Neighbourhood"
+msgstr "Heimnetzgruppe"
+
+#
+msgid "Rescan"
+msgstr "Neuscannen"
+
+#
+msgid "DVB Transmission Way"
+msgstr "DVB Übertragsungsart"
+
+#
+msgid "OK/green = activate settings"
+msgstr "OK/Grün = Einstellungen aktivieren"
+
+#
+msgid "Info = show tuner informations"
+msgstr "Info = Zeige Tuner Informationen"
+
+#
+msgid "Bouquet += install or update driver"
+msgstr "Bouquet += Instalieren oder Treiberupdate"
+
+#
+msgid "Bouquet -= scan for IPTV server addresses"
+msgstr "Bouquet -= IPTV Server Adressen scannen"
+
+#
+msgid "Remote setup"
+msgstr "Fernbedienung Einstellungen"
+
+#
+msgid "Remote"
+msgstr "Fernbedienung"
+
+#
+msgid "Run"
+msgstr "Starten"
+
+#
+msgid "Select a scirpt to run"
+msgstr "Script zum starten auswählen"
+
+#
+msgid "Scan All"
+msgstr "Alles scannen"
+
+#
+msgid "Please select a resolution..."
+msgstr "Bitte die Auflösung wählen"
+
+#
+msgid "Auto(not available)"
+msgstr "Auto(nicht Verfügbar)"
+
+#
+msgid "Aspect list..."
+msgstr "Seitenverhältnis"
+
+#
+msgid ""
+"USB = Do you want to make a back-up on USB?\n"
+"This will take between 2 and 7 minutes depending on the used filesystem and "
+"is fully automatic.\n"
+"Make sure you first insert an USB flash drive before you select USB."
+msgstr ""
+"USB = Willst du ein USB-Backup auf USB erstellen? \n"
+"Das dauert nur ein paar Minuten und geht vollautomatisch.\n"
+"Bitte erst ein USB Stick Anschließen bevor man USB Auswählt."
+
+#
+msgid ""
+"HDD = Do you want to make an USB-back-up image on HDD? \n"
+"This only takes 2 or 3 minutes and is fully automatic."
+msgstr ""
+"HDD = Willst du ein USB-Backup auf HDD erstellen? \n"
+"Das dauert nur ein paar Minuten und geht vollautomatisch."
+
+#
+msgid "via USB"
+msgstr "über USB"
+
+#
+msgid "via Network"
+msgstr "über netzwerk"
+
+#
+msgid "OK/ green = activate settings"
+msgstr "OK/grün = aktivire Einstellungen"
+
+#
+msgid "Bouquet + = install or update driver"
+msgstr "Bouquet + = installiere oder update Treiber"
+
+#
+msgid "Bouquet - = scan for IPTV server addresses"
+msgstr "Bouquet - = suche nach IPTV Server Anschluß"
+
+#
+msgid ""
+"Sundtek legal notice:\n"
+"This software comes without any warranty, use it at your own risk?"
+msgstr ""
+"Sundtek allgemeine Info:\n"
+"Verwendung auf eigenes Risiko!"
+
+#
+msgid ""
+"It seems the sundtek driver is not installed or not installed properly. "
+"Install the driver now?"
+msgstr "Es wurde kein Sundtek Treiber Installiert. Treiber Installieren ?"
+
+#
+msgid "No IPTV media server found"
+msgstr "Kein IPTV Media Server gefunden"
+
+#
+msgid ""
+"\n"
+"\n"
+"Use following address as IPTV media server?\n"
+msgstr ""
+"\n"
+"\n"
+"Bitte folgenden Anschluß Verwenden für IPTV Media Server?\n"
+
+#
+msgid "installs the sundtek driver and runs related shellscripts"
+msgstr "Installiert den Sundtek Treiber über ein Shell Script"
+
+#
+msgid "VideoWizard"
+msgstr "Bildschirm Auflösung"
+
+#
+msgid "Swap Place:"
+msgstr "Swap Ort:"
+
+#
+msgid "Swap Size:"
+msgstr "Swap Größe:"
+
+#
+msgid "Enable Swap at startup"
+msgstr "Aktiviere Swap Start"
 
 #~ msgid "Last Update:"
 #~ msgstr "Letztes Update:"
