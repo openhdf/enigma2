@@ -3600,10 +3600,9 @@ class InfoBarExtensions:
 		return _("CCcam Info")
 
 	def getCCcamInfo(self):
-		if Directories.pathExists('/usr/softcams/'):
-			softcams = os.listdir('/usr/softcams/')
+		softcams = sorted(filter(lambda x: x.startswith('softcam.'), os.listdir("/etc/init.d/")))
 		for softcam in softcams:
-			if softcam.lower().startswith('cccam') and config.cccaminfo.showInExtensions.getValue():
+			if "cccam" in os.readlink('/etc/init.d/softcam').lower() and config.cccaminfo.showInExtensions.getValue():
 				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
 		else:
 			return []
@@ -3612,10 +3611,9 @@ class InfoBarExtensions:
 		return _("OScam Info")
 
 	def getOScamInfo(self):
-		if Directories.pathExists('/usr/softcams/'):
-			softcams = os.listdir('/usr/softcams/')
+		softcams = sorted(filter(lambda x: x.startswith('softcam.'), os.listdir("/etc/init.d/")))
 		for softcam in softcams:
-			if softcam.lower().startswith('oscam') and config.oscaminfo.showInExtensions.getValue():
+			if "oscam" in os.readlink('/etc/init.d/softcam') and config.oscaminfo.showInExtensions.getValue():
 				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
 		else:
 			return []
