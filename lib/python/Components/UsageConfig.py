@@ -5,7 +5,6 @@ from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
-from Components.ServiceList import refreshServiceList
 import os
 import enigma
 from time import time
@@ -26,7 +25,9 @@ def InitUsageConfig():
 
 	config.usage.panicbutton = ConfigYesNo(default = False)
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
-
+	config.usage.showpicon = ConfigYesNo(default = True)
+	config.usage.show_dvdplayer = ConfigYesNo(default = False)
+	
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 
@@ -309,6 +310,7 @@ def InitUsageConfig():
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback = False)
 
 	config.misc.showradiopic = ConfigYesNo(default = True)
+	config.misc.bootvideo = ConfigYesNo(default = False)
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
@@ -327,12 +329,12 @@ def InitUsageConfig():
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 
 	config.network = ConfigSubsection()
-	config.network.AFP_autostart = ConfigYesNo(default = True)
-	config.network.NFS_autostart = ConfigYesNo(default = True)
-	config.network.OpenVPN_autostart = ConfigYesNo(default = True)
-	config.network.Samba_autostart = ConfigYesNo(default = True)
-	config.network.Inadyn_autostart = ConfigYesNo(default = True)
-	config.network.uShare_autostart = ConfigYesNo(default = True)
+	config.network.AFP_autostart = ConfigYesNo(default = False)
+	config.network.NFS_autostart = ConfigYesNo(default = False)
+	config.network.OpenVPN_autostart = ConfigYesNo(default = False)
+	config.network.Samba_autostart = ConfigYesNo(default = False)
+	config.network.Inadyn_autostart = ConfigYesNo(default = False)
+	config.network.uShare_autostart = ConfigYesNo(default = False)
 
 	config.softwareupdate = ConfigSubsection()
 	config.softwareupdate.autosettingsbackup = ConfigYesNo(default = True)
@@ -428,13 +430,18 @@ def InitUsageConfig():
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)
 
 	SystemInfo["ZapMode"] = os.path.exists("/proc/stb/video/zapmode") or os.path.exists("/proc/stb/video/zapping_mode")
-	if os.path.exists("/proc/stb/video/zapping_mode"):
-		zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen"))]
-		zapfile = "/proc/stb/video/zapping_mode"
-	else:
-		zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
-		zapfile = "/proc/stb/video/zapmode"
 	if SystemInfo["ZapMode"]:
+		try:
+			if os.path.exists("/proc/stb/video/zapping_mode"):
+				zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen"))]
+				zapfile = "/proc/stb/video/zapping_mode"
+			else:
+				zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
+				zapfile = "/proc/stb/video/zapmode"
+		except:
+			zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
+			zapfile = "/proc/stb/video/zapmode"
+
 		def setZapmode(el):
 			try:
 				file = open(zapfile, "w")

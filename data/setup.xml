@@ -203,7 +203,8 @@
 	<setup key="softwareupdate" title="Software update">
 		<item level="1" text="Background check" description="Perform an online update check in the background">config.softwareupdate.check</item>
 		<item level="1" text="Check every (hours)" description="Setup the interval to check for online updates. (in hours)" requires="config.softwareupdate.check">config.softwareupdate.checktimer</item>
-		<item level="1" text="Allow unstable (untested) updates" description="When enabled the online checker will also check for experimental versions">config.softwareupdate.updatebeta</item>
+		<item level="1" text="Allow beta (untested) updates" description="When enabled the online checker will also check for experimental versions">config.softwareupdate.updatebeta</item>
+		<item level="1" text="Allow updates which are marked as faulty" description="When enabled the online checker will also check for experimental versions" requires="config.softwareupdate.updatebeta">config.softwareupdate.updateisunstable</item>
 		<item level="1" text="Automatic setting backup" description="Perform a setting backup before updating.">config.softwareupdate.autosettingsbackup</item>
 		<item level="1" text="Automatic image backup" description="Perform a image backup before updating.">config.softwareupdate.autoimagebackup</item>
 	</setup>
@@ -296,6 +297,9 @@
 		<item level="2" text="Picon width" description="Configure the width allocated to the picon.">config.epgselection.piconwidth</item>
 		<item level="2" text="Timeline font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.tl_fontsize_pliepg</item>
 		<item level="2" text="Time scale" description="Configure the amount of time that will be presented.">config.epgselection.prev_time_period</item>
+	</setup>
+	<setup key="dvdplayer" title="DVD-Player Setup">
+		<item level="0" text="Show DVD-Player in Mainmenu ?" description="Show DVD-Player in Mainmenu">config.usage.show_dvdplayer</item>
 	</setup>
 	<setup key="pluginfilter" title="PluginBrowser filter settings...">
 		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginfilter.po</item>

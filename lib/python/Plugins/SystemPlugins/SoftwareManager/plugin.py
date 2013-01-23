@@ -1510,7 +1510,7 @@ class UpdatePlugin(Screen):
 			d = urlopen(urlopenSTATUS)
 			tmpStatus = d.read()
 			if config.softwareupdate.updatebeta.getValue() and 'gelb.png' in tmpStatus:
-				message = _("Caution update not yet tested !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see http://www.hdfreaks.cc") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
+				message = _("Caution update not tested yet !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see http://www.hdfreaks.cc") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
 				picon = MessageBox.TYPE_ERROR
 				default = False
 			elif 'rot.png' in tmpStatus:
