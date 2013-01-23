@@ -735,8 +735,11 @@ msgstr "Erlaube gleiche Sprache bei Untertitel und Ton"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Erlaube Untertitel für Hörgeschädigte"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Instabile (ungetestete) Updates erlauben"
+msgid "Allow beta (untested) updates"
+msgstr "Beta (ungetestete) Updates erlauben"
+
+msgid "Allow updates which are marked as faulty"
+msgstr "Als 'nicht korrekt funktionierend' markierte Updates erlauben'"
 
 msgid "Allows more detailed to be in the crash log"
 msgstr "Erweiterte Informationen im Crash-Log eintragen"
@@ -9614,6 +9617,9 @@ msgstr "Freigabe:"
 msgid "show DVD main menu"
 msgstr "Zeige das DVD Hauptmenü"
 
+msgid "Show DVD-Player in Mainmenu ?"
+msgstr "Zeige DVD-Player im Hauptmenü ?"
+
 msgid "show EPG..."
 msgstr "Zeige EPG..."
 
@@ -9964,6 +9970,9 @@ msgstr "Picons überschreiben ?"
 
 msgid "Overwrite Bootlogo Files ?"
 msgstr "Bootlogos überschreiben ?"
+
+msgid "Overwrite Spiiner Files ?"
+msgstr "Spinner überschreiben ?"
 
 msgid "Update is reported as faulty !!"
 msgstr "Das Update wurde als fehlerhaft gemeldet !!"
