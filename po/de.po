@@ -6351,6 +6351,9 @@ msgstr "Zeige Rotorbewegung"
 msgid "Show second infobar"
 msgstr "Zeige SecondInfobar"
 
+msgid "Show infobar picons"
+msgstr "Zeige InfoBar Senderlogos"
+
 msgid "Show services beginning with"
 msgstr "Zeige Sender beginnend mit"
 
