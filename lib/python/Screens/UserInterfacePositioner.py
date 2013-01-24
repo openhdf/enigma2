@@ -120,6 +120,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 			</screen>"""
 
+class UserInterfacePositioner(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setup_title = _("Position Setup")
