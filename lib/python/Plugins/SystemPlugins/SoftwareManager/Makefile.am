@@ -18,6 +18,9 @@ dist_install_DATA = \
 	noprev.png \
 	remove.png \
 	update.png \
+	rot.png \
+	gruen.png \
+	gelb.png \
 	upgradeable.png \
 	upgrade.png \
 	backup-hdd.sh \
