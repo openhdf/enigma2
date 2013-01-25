@@ -868,7 +868,10 @@ class EPGSelection(Screen, HelpableScreen):
 					self.setServicelistSelection(self.StartBouquet, self.StartRef)
 				else:
 					self.session.nav.playService(self.StartRef)
-		self.close(True)
+		if self.type == EPG_TYPE_SINGLE:
+			self.close(False)
+		else:
+			self.close(True)
 
 	def infoKeyPressed(self):
 		cur = self['list'].getCurrent()
@@ -1351,7 +1354,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.zapFunc:
 			self.zapSelectedService(True)
 			self.refreshTimer.start(10000)
-		if self.currch == self.prevch:
+		if not self.currch or self.currch == self.prevch:
 			self.close('close')
 
 	def keyNumberGlobal(self, number):
