@@ -44,6 +44,36 @@ from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScr
 from SoftwareTools import iSoftwareTools
 import os
 
+
+##check hdfreaks feed status
+try:
+    import urllib
+    urllib.urlretrieve ("http://status.hdfreaks.cc/index.php", "/tmp/.hdf.feedstatus")
+    hdfonlinestatus = open("/tmp/.hdf.feedstatus", "r")
+    hdfstatus = hdfonlinestatus.read()
+    hdfonlinestatus.close()
+    hdfrot = "rot.png"
+    hdfgelb = "gelb.png"
+    hdfgruen = "gruen.png"
+    hdfonlinestatus.close()
+except: 
+    pass
+
+try:
+    print "[check] hdfreaks feed status"
+    if hdfrot in hdfstatus:
+        hdfbutton = "rot.png"
+        print "[status] red"
+    elif hdfgelb in hdfstatus:
+        hdfbutton = "gelb.png"
+        print "[status] yellow"
+    elif hdfgruen in hdfstatus:
+        hdfbutton = "gruen.png"
+        print "[status] green"
+except: 
+    pass
+##check end
+
 config.plugins.configurationbackup = ConfigSubsection()
 if getBoxType() == "odinm9" :
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
@@ -104,7 +134,6 @@ def load_cache(cache_file):
 	cache_data = load(fd)
 	fd.close()
 	return cache_data
-
 
 class UpdatePluginMenu(Screen):
 	skin = """
@@ -2287,7 +2316,8 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		self.onLayoutFinish.append(self.rebuildList)
 
 		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)		
+		rcinput.setKeyboardMode(rcinput.kmAscii)
+
 
 	def keyNumberGlobal(self, val):
 		key = self.getKey(val)
