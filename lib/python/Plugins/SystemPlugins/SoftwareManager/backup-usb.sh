@@ -30,10 +30,12 @@ if [ $TARGET = "XX" ] ; then
 	echo "Bye. "
 else
     echo "Full back-up directly to USB"
+	##remove opkg lists
+	rm -rf /var/lib/opkg/lists/
+	sync
     /usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager/backup.sh $TARGET | tee /tmp/USB-Backup.log
 	sync
 	#sleep 8
 	#umount $TARGET
 	#sleep 3
 fi
-	
