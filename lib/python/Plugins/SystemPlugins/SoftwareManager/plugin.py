@@ -140,9 +140,9 @@ class UpdatePluginMenu(Screen):
 		skin = """
 			<screen name="UpdatePluginMenu" position="center,center" size="710,540" >
 				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="skin_default/hdf_status_red.png" position="150,410" size="100,118" alphatest="on" />
-				<ePixmap pixmap="skin_default/icons/ico_mp_rewind.png" position="270,434" size="16,16" transparent="1" alphatest="on" />
-				<eLabel text="--- Feed Status" position="300,429" size="990,45" font="Regular;22" valign="right" transparent="1" />
+				<ePixmap pixmap="skin_default/hdf_status_red.png" position="150,410" size="100,118" backgroundColor="#9f1313" transparent="1" alphatest="on" />
+				<ePixmap pixmap="skin_default/icons/ico_mp_rewind.png" position="270,432" size="16,16" transparent="1" alphatest="on" />
+				<eLabel text="--- Feed Status" position="300,427" size="990,45" font="Regular;22" valign="right" transparent="1" />
 				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 				<ePixmap pixmap="skin_default/div-v.png" position="400,50" zPosition="1" size="390,250" transparent="1" alphatest="on" />
 				<widget source="menu" render="Listbox" position="15,60" size="370,290" scrollbarMode="showOnDemand">
@@ -173,7 +173,7 @@ class UpdatePluginMenu(Screen):
 		skin = """
 			<screen name="UpdatePluginMenu" position="center,center" size="710,540" >
 				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="skin_default/hdf_status_yellow.png" position="150,410" size="100,118" alphatest="on" />
+				<ePixmap pixmap="skin_default/hdf_status_yellow.png" position="150,410" size="100,118" backgroundColor="#9f1313" transparent="1" alphatest="on" />
 				<ePixmap pixmap="skin_default/icons/ico_mp_rewind.png" position="270,465" size="16,16" transparent="1" alphatest="on" />
 				<eLabel text="--- Feed Status" position="300,460" size="990,45" font="Regular;22" valign="right" transparent="1" />
 				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -206,7 +206,7 @@ class UpdatePluginMenu(Screen):
 		skin = """
 			<screen name="UpdatePluginMenu" position="center,center" size="710,540" >
 				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-				<ePixmap pixmap="skin_default/hdf_status_green.png" position="150,410" size="100,118" alphatest="on" />
+				<ePixmap pixmap="skin_default/hdf_status_green.png" position="150,410" size="100,118" backgroundColor="#9f1313" transparent="1" alphatest="on" />
 				<ePixmap pixmap="skin_default/icons/ico_mp_rewind.png" position="270,505" size="16,16" transparent="1" alphatest="on" />
 				<eLabel text="--- Feed Status" position="300,500" size="990,45" font="Regular;22" valign="right" transparent="1" />
 				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
