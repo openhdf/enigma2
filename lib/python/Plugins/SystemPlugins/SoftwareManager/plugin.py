@@ -44,36 +44,6 @@ from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScr
 from SoftwareTools import iSoftwareTools
 import os
 
-
-##check hdfreaks feed status
-try:
-    import urllib
-    urllib.urlretrieve ("http://status.hdfreaks.cc/index.php", "/tmp/.hdf.feedstatus")
-    hdfonlinestatus = open("/tmp/.hdf.feedstatus", "r")
-    hdfstatus = hdfonlinestatus.read()
-    hdfonlinestatus.close()
-    hdfrot = "rot.png"
-    hdfgelb = "gelb.png"
-    hdfgruen = "gruen.png"
-    hdfonlinestatus.close()
-except: 
-    pass
-
-try:
-    print "[check] hdfreaks feed status"
-    if hdfrot in hdfstatus:
-        hdfbutton = "rot.png"
-        print "[status] red"
-    elif hdfgelb in hdfstatus:
-        hdfbutton = "gelb.png"
-        print "[status] yellow"
-    elif hdfgruen in hdfstatus:
-        hdfbutton = "gruen.png"
-        print "[status] green"
-except: 
-    pass
-##check end
-
 config.plugins.configurationbackup = ConfigSubsection()
 if getBoxType() == "odinm9" :
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
@@ -136,33 +106,134 @@ def load_cache(cache_file):
 	return cache_data
 
 class UpdatePluginMenu(Screen):
-	skin = """
-		<screen name="UpdatePluginMenu" position="center,center" size="610,410" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<ePixmap pixmap="skin_default/border_menu_350.png" position="5,50" zPosition="1" size="350,300" transparent="1" alphatest="on" />
-			<widget source="menu" render="Listbox" position="15,60" size="330,290" scrollbarMode="showOnDemand">
-				<convert type="TemplatedMultiContent">
-					{"template": [
-							MultiContentEntryText(pos = (2, 2), size = (330, 24), flags = RT_HALIGN_LEFT, text = 1), # index 0 is the MenuText,
-						],
-					"fonts": [gFont("Regular", 22)],
-					"itemHeight": 25
-					}
-				</convert>
-			</widget>
-			<widget source="menu" render="Listbox" position="360,50" size="240,300" scrollbarMode="showNever" selectionDisabled="1">
-				<convert type="TemplatedMultiContent">
-					{"template": [
-							MultiContentEntryText(pos = (2, 2), size = (240, 300), flags = RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, text = 2), # index 2 is the Description,
-						],
-					"fonts": [gFont("Regular", 22)],
-					"itemHeight": 300
-					}
-				</convert>
-			</widget>
-			<widget source="status" render="Label" position="5,360" zPosition="10" size="600,50" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		</screen>"""
+##check hdfreaks feed status
+	try:
+		import urllib
+		urllib.urlretrieve ("http://status.hdfreaks.cc/index.php", "/tmp/.hdf.feedstatus")
+		hdfonlinestatus = open("/tmp/.hdf.feedstatus", "r")
+		hdfstatus = hdfonlinestatus.read()
+		hdfonlinestatus.close()
+		hdfrot = "rot.png"
+		hdfgelb = "gelb.png"
+		hdfgruen = "gruen.png"
+		hdfonlinestatus.close()
+	except: 
+		pass
+
+	try:
+		print "[check] hdfreaks feed status"
+		if hdfrot in hdfstatus:
+			hdfbutton = "skin_default/hdf_status_red.png"
+			print "[status] red"
+		elif hdfgelb in hdfstatus:
+			hdfbutton = "skin_default/hdf_status_yellow.png"
+			print "[status] yellow"
+		elif hdfgruen in hdfstatus:
+			hdfbutton = "skin_default/hdf_status_green.png"
+			print "[status] green"
+	except: 
+		pass
+##check end
+
+	if hdfbutton == "skin_default/hdf_status_red.png":
+		print "[status] show red hanging lamp ^^"
+		skin = """
+			<screen name="UpdatePluginMenu" position="center,center" size="710,540" >
+				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+				<ePixmap pixmap="skin_default/hdf_status_red.png" position="150,410" size="100,118" alphatest="on" />
+				<ePixmap pixmap="skin_default/icons/ico_mp_rewind.png" position="270,434" size="16,16" transparent="1" alphatest="on" />
+				<eLabel text="--- Feed Status" position="300,429" size="990,45" font="Regular;22" valign="right" transparent="1" />
+				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+				<ePixmap pixmap="skin_default/div-v.png" position="400,50" zPosition="1" size="390,250" transparent="1" alphatest="on" />
+				<widget source="menu" render="Listbox" position="15,60" size="370,290" scrollbarMode="showOnDemand">
+					<convert type="TemplatedMultiContent">
+						{"template": [
+								MultiContentEntryText(pos = (2, 2), size = (370, 24), flags = RT_HALIGN_LEFT, text = 1), # index 0 is the MenuText,
+							],
+						"fonts": [gFont("Regular", 22)],
+						"itemHeight": 25
+						}
+					</convert>
+				</widget>
+				<widget source="menu" render="Listbox" position="410,50" size="240,300" scrollbarMode="showNever" selectionDisabled="1">
+					<convert type="TemplatedMultiContent">
+						{"template": [
+								MultiContentEntryText(pos = (2, 2), size = (240, 300), flags = RT_HALIGN_CENTER|RT_WRAP, text = 2), # index 2 is the Description,
+							],
+						"fonts": [gFont("Regular", 22)],
+						"itemHeight": 300
+						}
+					</convert>
+				</widget>
+				<widget source="status" render="Label" position="5,360" zPosition="10" size="600,50" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			</screen>"""
+
+	if hdfbutton == "skin_default/hdf_status_yellow.png":
+		print "[status] show yellow hanging lamp ^^"
+		skin = """
+			<screen name="UpdatePluginMenu" position="center,center" size="710,540" >
+				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+				<ePixmap pixmap="skin_default/hdf_status_yellow.png" position="150,410" size="100,118" alphatest="on" />
+				<ePixmap pixmap="skin_default/icons/ico_mp_rewind.png" position="270,465" size="16,16" transparent="1" alphatest="on" />
+				<eLabel text="--- Feed Status" position="300,460" size="990,45" font="Regular;22" valign="right" transparent="1" />
+				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+				<ePixmap pixmap="skin_default/div-v.png" position="400,50" zPosition="1" size="390,250" transparent="1" alphatest="on" />
+				<widget source="menu" render="Listbox" position="15,60" size="370,290" scrollbarMode="showOnDemand">
+					<convert type="TemplatedMultiContent">
+						{"template": [
+								MultiContentEntryText(pos = (2, 2), size = (370, 24), flags = RT_HALIGN_LEFT, text = 1), # index 0 is the MenuText,
+							],
+						"fonts": [gFont("Regular", 22)],
+						"itemHeight": 25
+						}
+					</convert>
+				</widget>
+				<widget source="menu" render="Listbox" position="410,50" size="240,300" scrollbarMode="showNever" selectionDisabled="1">
+					<convert type="TemplatedMultiContent">
+						{"template": [
+								MultiContentEntryText(pos = (2, 2), size = (240, 300), flags = RT_HALIGN_CENTER|RT_WRAP, text = 2), # index 2 is the Description,
+							],
+						"fonts": [gFont("Regular", 22)],
+						"itemHeight": 300
+						}
+					</convert>
+				</widget>
+				<widget source="status" render="Label" position="5,360" zPosition="10" size="600,50" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			</screen>"""
+
+	if hdfbutton == "skin_default/hdf_status_green.png":
+		print "[status] show green hanging lamp ^^"
+		skin = """
+			<screen name="UpdatePluginMenu" position="center,center" size="710,540" >
+				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+				<ePixmap pixmap="skin_default/hdf_status_green.png" position="150,410" size="100,118" alphatest="on" />
+				<ePixmap pixmap="skin_default/icons/ico_mp_rewind.png" position="270,505" size="16,16" transparent="1" alphatest="on" />
+				<eLabel text="--- Feed Status" position="300,500" size="990,45" font="Regular;22" valign="right" transparent="1" />
+				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+				<ePixmap pixmap="skin_default/div-v.png" position="400,50" zPosition="1" size="390,250" transparent="1" alphatest="on" />
+				<widget source="menu" render="Listbox" position="15,60" size="370,290" scrollbarMode="showOnDemand">
+					<convert type="TemplatedMultiContent">
+						{"template": [
+								MultiContentEntryText(pos = (2, 2), size = (370, 24), flags = RT_HALIGN_LEFT, text = 1), # index 0 is the MenuText,
+							],
+						"fonts": [gFont("Regular", 22)],
+						"itemHeight": 25
+						}
+					</convert>
+				</widget>
+				<widget source="menu" render="Listbox" position="410,50" size="240,300" scrollbarMode="showNever" selectionDisabled="1">
+					<convert type="TemplatedMultiContent">
+						{"template": [
+								MultiContentEntryText(pos = (2, 2), size = (240, 300), flags = RT_HALIGN_CENTER|RT_WRAP, text = 2), # index 2 is the Description,
+							],
+						"fonts": [gFont("Regular", 22)],
+						"itemHeight": 300
+						}
+					</convert>
+				</widget>
+				<widget source="status" render="Label" position="5,360" zPosition="10" size="600,50" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			</screen>"""
+
 
 	def __init__(self, session, args = 0):
 		Screen.__init__(self, session)
