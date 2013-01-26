@@ -100,7 +100,8 @@ def movielist_open(list, session, **kwargs):
 			path += '/'
 		config.movielist.last_videodir.value = path
 		try:
-			InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
+			InfoBar.showMovies(InfoBar.instance)
+			#InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
 		except:
 			pass
 
