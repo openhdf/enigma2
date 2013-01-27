@@ -107,7 +107,7 @@ if getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
 	config.skin.display_skin = ConfigSelection(choices = filesArray)
 	config.skin.primary_vfdskin = ConfigNothing()
 	config.skin.vfdskin = ConfigNothing()
-
+	
 display_skin_id = 1
 if fileExists('/usr/share/enigma2/vfd_skin/skin_display255_picon.xml'):
 	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.vfdskin.value)):
