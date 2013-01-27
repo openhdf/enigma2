@@ -355,7 +355,6 @@ lib/python/Plugins/Extensions/ZapHistoryBrowser/locale/nl/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/ZapHistoryBrowser/locale/sr/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/ZapHistoryBrowser/locale/sv/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/ZapHistoryBrowser/locale/tr/LC_MESSAGES/Makefile
-lib/python/Plugins/Extensions/VFDSkinSelector/Makefile
 lib/python/Plugins/Extensions/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/CutListEditor/meta/Makefile
