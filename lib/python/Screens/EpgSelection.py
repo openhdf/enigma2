@@ -30,231 +30,6 @@ except:
 	plugin_PiPServiceRelation_installed = False
 
 class EPGSelection(Screen, HelpableScreen):
-	data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
-	data = data.replace('/ skin.xml','/skin.xml')
-	data = file(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")).read()
-	if data.find('xres="1280"') >= 0:
-		QuickEPG = """
-			<screen name="QuickEPG" position="0,505" size="1280,215" backgroundColor="transparent" flags="wfNoBorder">
-				<ePixmap alphatest="off" pixmap="Nobile/infobar-hd.png" position="0,0" size="1280,220" zPosition="0"/>
-				<widget source="Service" render="Picon" position="60,75" size="100,60" transparent="1" zPosition="2" alphatest="blend">
-					<convert type="ServiceName">Reference</convert>
-				</widget>
-				<widget source="Service" render="Label" position="0,42" size="1280,36" font="Regular;26" valign="top" halign="center" noWrap="1" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="2" >
-					<convert type="ServiceName">Name</convert>
-				</widget>
-				<widget name="list" position="340,80" size="640,54" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" itemHeight="27" zPosition="2"/>
-				<ePixmap pixmap="Nobile/buttons/red.png" position="260,160" size="25,25" alphatest="blend" />
-				<widget name="key_red" position="300,164" zPosition="1" size="130,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
-				<ePixmap pixmap="Nobile/buttons/green.png" position="450,160" size="25,25" alphatest="blend" />
-				<widget name="key_green" position="490,164" zPosition="1" size="130,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
-				<ePixmap pixmap="Nobile/buttons/yellow.png" position="640,160" size="25,25" alphatest="blend" />
-				<widget name="key_yellow" position="680,164" zPosition="1" size="130,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
-				<ePixmap pixmap="Nobile/buttons/blue.png" position="830,160" size="25,25" alphatest="blend" />
-				<widget name="key_blue" position="870,164" zPosition="1" size="150,20" font="Regular; 20" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" />
-			</screen>"""
-		GraphEPG = """
-			<screen name="GraphicalEPG" position="center,center" size="1280,720" backgroundColor="#000000" >
-				<eLabel text="Programme Guide" position="460,20" size="480,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
-				<widget source="global.CurrentTime" render="Label" position="283, 20" size="90,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
-					<convert type="ClockToText">Default</convert>
-				</widget>
-				<widget source="global.CurrentTime" render="Label" position="1070, 20" size="160,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
-					<convert type="ClockToText">Format:%d.%m.%Y</convert>
-				</widget>
-				<widget name="lab1" position="0,90" size="1280,480" font="Regular;24" halign="center" valign="center" backgroundColor="#000000" transparent="0" zPosition="2" />
-				<widget name="timeline_text" position="9, 60" size="1230,30" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1"/>
-				<widget name="list" position="40,90" size="1200, 480" scrollbarMode="showNever" transparent="1" />
-				<widget name="timeline0" position="0,90" zPosition="2" size="2,480" pixmap="skin_default/timeline.png" />
-				<widget name="timeline1" position="0,90" zPosition="2" size="2,480" pixmap="skin_default/timeline.png" />
-				<widget name="timeline2" position="0,90" zPosition="2" size="2,480" pixmap="skin_default/timeline.png" />
-				<widget name="timeline3" position="0,90" zPosition="2" size="2,480" pixmap="skin_default/timeline.png" />
-				<widget name="timeline4" position="0,90" zPosition="2" size="2,480" pixmap="skin_default/timeline.png" />
-				<widget name="timeline5" position="0,90" zPosition="2" size="2,480" pixmap="skin_default/timeline.png" />
-
-				<widget name="timeline_now" position="0, 90" zPosition="2" size="19, 480" pixmap="/usr/share/enigma2/skin_default/epg/timeline-now.png" alphatest="on" />
-				<widget source="Event" render="Label" position="5, 575" size="100, 30" font="Regular;26" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
-					<convert type="EventTime">StartTime</convert>
-					<convert type="ClockToText" />
-				</widget>
-				<widget source="Event" render="Label" position="113, 575" size="100, 30" font="Regular;26" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="left" transparent="1">
-					<convert type="EventTime">EndTime</convert>
-					<convert type="ClockToText">Format:- %H:%M</convert>
-				</widget>
-				<widget source="Event" render="Label" position="230,575" size="1010,30" font="Regular;26" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" halign="left">
-					<convert type="EventName">Name</convert>
-				</widget>
-				<widget source="Event" render="Label" position="40, 605" zPosition="1" size="1200, 73" font="Regular;20" foregroundColor="#00dddddd" backgroundColor="#000000" shadowColor="#000000" transparent="1">
-					<convert type="EventName">ExtendedDescription</convert>
-				</widget>
-					<ePixmap pixmap="skin_default/buttons/red.png" position="270, 675" size="25,25" alphatest="blend" />
-				<widget name="key_red" position="305, 679" size="150, 24" font="Regular;20" foregroundColor="#9F1313" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-					<ePixmap pixmap="skin_default/buttons/green.png" position="460, 675" size="25,25" alphatest="blend" />
-				<widget name="key_green" position="495, 679" size="150, 24" font="Regular;20" foregroundColor="#00389416" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-					<ePixmap pixmap="skin_default/buttons/yellow.png" position="670, 675" size="25,25" alphatest="blend" />
-				<widget name="key_yellow" position="705, 679" size="150, 24" font="Regular;20" foregroundColor="#B59E01" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-					<ePixmap pixmap="skin_default/buttons/blue.png" position="860, 675" size="25,25" alphatest="blend" />
-				<widget name="key_blue" position="895, 679" size="150, 24" font="Regular;20" foregroundColor="#1E28B6" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-			</screen>"""
-		GraphEPGPIG = """
-			<screen name="GraphicalEPGPIG" position="center,center" size="1280,720" backgroundColor="#000000" flags="wfNoBorder">
-				<eLabel text="Programme Guide" position="460,20" size="480,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
-				<widget source="global.CurrentTime" render="Label" position="283, 20" size="90,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
-					<convert type="ClockToText">Default</convert>
-				</widget>
-				<widget source="global.CurrentTime" render="Label" position="1070, 20" size="160,30" font="Regular;26" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
-					<convert type="ClockToText">Format:%d.%m.%Y</convert>
-				</widget>
-				<eLabel position="858,60" size="382,215" zPosition="2" backgroundColor="#000000" foregroundColor="#000000" />
-				<widget source="session.VideoPicture" render="Pig" position="860,62" size="378,211" zPosition="3" backgroundColor="#ff000000" />
-				<widget source="Event" render="Label" position="5,60" size="100, 30" font="Regular;26" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
-					<convert type="EventTime">StartTime</convert>
-					<convert type="ClockToText" />
-				</widget>
-				<widget source="Event" render="Label" position="113,60" size="100, 30" font="Regular;26" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="left" transparent="1">
-					<convert type="EventTime">EndTime</convert>
-					<convert type="ClockToText">Format:- %H:%M</convert>
-				</widget>
-				<widget source="Event" render="Label" position="230,60" size="600,30" font="Regular;26" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" halign="left">
-					<convert type="EventName">Name</convert>
-				</widget>
-				<widget source="Event" render="Label" position="40,90" zPosition="1" size="790,185" font="Regular;20" foregroundColor="#00dddddd" backgroundColor="#000000" shadowColor="#000000" transparent="1" valign="top">
-					<convert type="EventName">ExtendedDescription</convert>
-				</widget>
-				<widget name="lab1" position="40,320" size="1200,350" font="Regular;24" halign="center" valign="center" backgroundColor="#000000" transparent="0" zPosition="2" />
-				<widget name="timeline_text" position="9,290" size="1230,30" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
-				<widget name="list" position="40,320" size="1200,350" scrollbarMode="showNever" transparent="1" />
-				<widget name="timeline0" position="0,320" zPosition="1" size="2,350" pixmap="skin_default/timeline.png" />
-				<widget name="timeline1" position="0,320" zPosition="1" size="2,350" pixmap="skin_default/timeline.png" />
-				<widget name="timeline2" position="0,320" zPosition="1" size="2,350" pixmap="skin_default/timeline.png" />
-				<widget name="timeline3" position="0,320" zPosition="1" size="2,350" pixmap="skin_default/timeline.png" />
-				<widget name="timeline4" position="0,320" zPosition="1" size="2,350" pixmap="skin_default/timeline.png" />
-				<widget name="timeline5" position="0,320" zPosition="1" size="2,350" pixmap="skin_default/timeline.png" />
-				<widget name="timeline_now" position="0,320" zPosition="2" size="19,350" pixmap="/usr/share/enigma2/skin_default/epg/timeline-now.png" alphatest="on" />
-				<ePixmap pixmap="skin_default/buttons/red.png" position="270, 675" size="25,25" alphatest="blend" />
-				<widget name="key_red" position="305, 679" size="150, 24" font="Regular;20" foregroundColor="#9F1313" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-				<ePixmap pixmap="skin_default/buttons/green.png" position="460, 675" size="25,25" alphatest="blend" />
-				<widget name="key_green" position="495, 679" size="150, 24" font="Regular;20" foregroundColor="#00389416" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-				<ePixmap pixmap="skin_default/buttons/yellow.png" position="670, 675" size="25,25" alphatest="blend" />
-				<widget name="key_yellow" position="705, 679" size="150, 24" font="Regular;20" foregroundColor="#B59E01" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-				<ePixmap pixmap="skin_default/buttons/blue.png" position="860, 675" size="25,25" alphatest="blend" />
-				<widget name="key_blue" position="895, 679" size="150, 24" font="Regular;20" foregroundColor="#1E28B6" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-			</screen>"""
-
-	else:
-		QuickEPG = """
-			<screen name="QuickEPG" position="0,325" size="720,276" backgroundColor="transparent" flags="wfNoBorder" >
-				<ePixmap alphatest="off" pixmap="Nobile/infobar.png" position="0,0" size="720,156" zPosition="1"/>
-				<eLabel backgroundColor="#41080808" position="0,156" size="720,110" zPosition="2"/>
-				<widget borderColor="#0f0f0f" borderWidth="1" backgroundColor="#16000000" font="Enigma;24" foregroundColor="#00f0f0f0" halign="left" noWrap="1" position="88,120" render="Label" size="68,28" source="global.CurrentTime" transparent="1" zPosition="3">
-					<convert type="ClockToText">Default</convert>
-				</widget>
-				<widget borderColor="#0f0f0f" borderWidth="1" backgroundColor="#16000000" font="Enigma;16" noWrap="1" position="54,100" render="Label" size="220,22" source="global.CurrentTime" transparent="1" valign="bottom" zPosition="3">
-					<convert type="ClockToText">Date</convert>
-				</widget>
-				<widget source="Service" render="Picon" position="50,150" size="100,60" transparent="1" zPosition="4" alphatest="blend">
-					<convert type="ServiceName">Reference</convert>
-				</widget>
-				<widget source="Service" render="Label" borderColor="#0f0f0f" borderWidth="1" backgroundColor="#16000000" font="Enigma;24" foregroundColor="#00f0f0f0" halign="center" position="160,120" size="400,28" transparent="1" valign="bottom" zPosition="3" >
-					<convert type="ServiceName">Name</convert>
-				</widget>
-				<widget name="list" position="160,160" size="500,45" backgroundColor="#41080808" foregroundColor="#cccccc" transparent="1" itemHeight="22" zPosition="4"/>
-				<ePixmap pixmap="Nobile/buttons/red.png" position="80,210" size="25,25" alphatest="blend" zPosition="4" />
-				<widget name="key_red" position="110,213" size="100,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
-				<ePixmap pixmap="Nobile/buttons/green.png" position="210,210" size="25,25" alphatest="blend" zPosition="4" />
-				<widget name="key_green" position="240,213" size="100,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
-				<ePixmap pixmap="Nobile/buttons/yellow.png" position="340,210" size="25,25" alphatest="blend" zPosition="4" />
-				<widget name="key_yellow" position="370,213" size="100,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
-				<ePixmap pixmap="Nobile/buttons/blue.png" position="470,210" size="25,25" alphatest="blend" zPosition="4" />
-				<widget name="key_blue" position="500,213" size="150,20" font="Regular; 17" halign="left" backgroundColor="#101214" foregroundColor="#cccccc" transparent="1" zPosition="4" />
-			</screen>"""
-		GraphEPG = """
-			<screen name="GraphicalEPG" position="center,center" size="720,576" backgroundColor="#000000" >
-				<widget source="Title" render="Label" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
-				<widget source="global.CurrentTime" render="Label" position="140, 18" size="90,24" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
-						<convert type="ClockToText">Default</convert>
-				</widget>
-				<widget source="global.CurrentTime" render="Label" position="525, 18" size="160,24" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
-					<convert type="ClockToText">Format:%d.%m.%Y</convert>
-				</widget>
-				<widget name="timeline_text" position="10, 40" size="690,25" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1"/>
-				<widget name="lab1" position="25,65" size="665,378" font="Regular;24" halign="center" valign="center" backgroundColor="#000000" transparent="0" zPosition="2" />
-				<widget name="list" position="25,65" size="665,378" scrollbarMode="showNever" transparent="1" />
-				<widget name="timeline0" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline1" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline2" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline3" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline4" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline5" position="0,140" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline_now" position="10, 65" zPosition="2" size="19, 378" pixmap="/usr/share/enigma2/skin_default/epg/timeline-now.png" alphatest="on" />
-				<widget source="Event" render="Label" position="10,445" size="70,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
-					<convert type="EventTime">StartTime</convert>
-					<convert type="ClockToText" />
-				</widget>
-				<widget source="Event" render="Label" position="88,445" size="80,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="left" transparent="1">
-					<convert type="EventTime">EndTime</convert>
-					<convert type="ClockToText">Format:- %H:%M</convert>
-				</widget>
-				<widget source="Event" render="Label" position="165,445" size="535,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" halign="left">
-					<convert type="EventName">Name</convert>
-				</widget>
-				<widget source="Event" render="Label" position="30, 465" zPosition="1" size="667, 75" font="Regular;18" foregroundColor="#00dddddd" backgroundColor="#000000" shadowColor="#000000" transparent="1">
-					<convert type="EventName">ExtendedDescription</convert>
-				</widget>
-				<ePixmap pixmap="skin_default/buttons/red.png" position="70, 537" size="18,18" alphatest="blend" />
-				<widget name="key_red" position="95, 539" size="125, 26" font="Regular;18" foregroundColor="#9F1313" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-				<ePixmap pixmap="skin_default/buttons/green.png" position="220, 537" size="18,18" alphatest="blend" />
-				<widget name="key_green" position="245, 539" size="125, 26" font="Regular;18" foregroundColor="#00389416" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-				<ePixmap pixmap="skin_default/buttons/yellow.png" position="370, 537" size="18,18" alphatest="blend" />
-				<widget name="key_yellow" position="395, 539" size="125, 26" font="Regular;18" foregroundColor="#B59E01" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-				<ePixmap pixmap="skin_default/buttons/blue.png" position="520, 537" size="18,18" alphatest="blend" />
-				<widget name="key_blue" position="545, 539" size="125, 26" font="Regular;18" foregroundColor="#1E28B6" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-			</screen>
-			"""
-		GraphEPGPIG = """
-			<screen name="GraphicalEPG" position="center,center" size="720,576" backgroundColor="#000000" flags="wfNoBorder">
-				<widget source="Title" render="Label" position="200,18" size="380,28" font="Regular;22" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="center" transparent="1" />
-				<widget source="global.CurrentTime" render="Label" position="140, 18" size="90,24" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
-					<convert type="ClockToText">Default</convert>
-				</widget>
-				<widget source="global.CurrentTime" render="Label" position="525, 18" size="160,24" font="Regular;20" foregroundColor="#FFFFFF" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
-					<convert type="ClockToText">Format:%d.%m.%Y</convert>
-				</widget>
-				<widget source="Event" render="Label" position="10,47" size="70,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="right" transparent="1">
-					<convert type="EventTime">StartTime</convert>
-					<convert type="ClockToText" />
-				</widget>
-				<widget source="Event" render="Label" position="88,47" size="80,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" shadowColor="#000000" halign="left" transparent="1">
-					<convert type="EventTime">EndTime</convert>
-					<convert type="ClockToText">Format:- %H:%M</convert>
-				</widget>
-				<widget source="Event" render="Label" position="165,47" size="535,26" font="Regular;22" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" halign="left">
-					<convert type="EventName">Name</convert>
-				</widget>
-				<widget source="Event" render="Label" position="30,73" zPosition="1" size="375,125" font="Regular;18" foregroundColor="#00dddddd" backgroundColor="#000000" shadowColor="#000000" transparent="1" valign="top">
-					<convert type="EventName">ExtendedDescription</convert>
-				</widget>
-				<eLabel position="413,45" size="273,154" zPosition="2" backgroundColor="#000000" foregroundColor="#000000" />
-				<widget name="lab1" position="25,235" size="665,278" font="Regular;24" halign="center" valign="center" backgroundColor="#000000" transparent="0" zPosition="2" />
-				<widget source="session.VideoPicture" render="Pig" position="415,47" size="269,150" zPosition="3" backgroundColor="#ff000000" />
-				<widget name="timeline_text" position="10,210" size="690,25" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
-				<widget name="list" position="25,235" size="665,278" scrollbarMode="showNever" transparent="1" />
-				<widget name="timeline0" position="0,235" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline1" position="0,235" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline2" position="0,235" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline3" position="0,235" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline4" position="0,235" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline5" position="0,235" zPosition="1" size="0,0" pixmap="skin_default/timeline.png" />
-				<widget name="timeline_now" position="10,235" zPosition="2" size="19,278" pixmap="/usr/share/enigma2/skin_default/epg/timeline-now.png" alphatest="on" />
-				<ePixmap pixmap="skin_default/buttons/red.png" position="70, 537" size="18,18" alphatest="blend" />
-				<widget name="key_red" position="95, 539" size="125, 26" font="Regular;18" foregroundColor="#9F1313" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-				<ePixmap pixmap="skin_default/buttons/green.png" position="220, 537" size="18,18" alphatest="blend" />
-				<widget name="key_green" position="245, 539" size="125, 26" font="Regular;18" foregroundColor="#00389416" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-				<ePixmap pixmap="skin_default/buttons/yellow.png" position="370, 537" size="18,18" alphatest="blend" />
-				<widget name="key_yellow" position="395, 539" size="125, 26" font="Regular;18" foregroundColor="#B59E01" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-				<ePixmap pixmap="skin_default/buttons/blue.png" position="520, 537" size="18,18" alphatest="blend" />
-				<widget name="key_blue" position="545, 539" size="125, 26" font="Regular;18" foregroundColor="#1E28B6" backgroundColor="#000000" shadowColor="#000000" halign="left" valign="top" transparent="1" />
-			</screen>"""
 	EMPTY = 0
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
@@ -267,68 +42,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.zapFunc = zapFunc
 		self.bouquetChangeCB = bouquetChangeCB
 		self.serviceChangeCB = serviceChangeCB
-		self.ask_time = -1 #now
-		self.closeRecursive = False
-		self["Service"] = ServiceEvent()
-		self["Event"] = Event()
-		self['lab1'] = Label(_('Wait please while gathering data...'))
-		self.key_green_choice = self.EMPTY
-		self["key_red"] = Button(_("IMDb Search"))
-		self["key_green"] = Button(_("Add Timer"))
-		self["key_yellow"] = Button(_("EPG Search"))
-		try:
-			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
-			self["key_blue"] = Button(_("Add AutoTimer"))
-		except:
-			self["key_blue"] = Button(_("Toggle Sort"))
-		if isinstance(service, str) and eventid != None:
-			self.type = EPG_TYPE_SIMILAR
-			self.currentService=service
-			self.eventid = eventid
-			self.zapFunc = None
-		elif isinstance(service, list):
-			if self.GraphicalEPG:
-				self.type = EPG_TYPE_GRAPH
-				if not config.epgselection.pictureingraphics.getValue():
-					self.skin = self.GraphEPG
-					self.skinName = "GraphicalEPG"
-				else:
-					self.skin = self.GraphEPGPIG
-					self.skinName = "GraphicalEPGPIG"
-				now = time() - int(config.epg.histminutes.getValue()) * 60
-				self.ask_time = self.ask_time = now - now % (int(config.epgselection.roundTo.getValue()) * 60)
-				self.closeRecursive = False
-				self["timeline_text"] = TimelineText()
-				self["Event"] = Event()
-				self["primetime"] = Label(_('PRIMETIME'))
-				self["change_bouquet"] = Label(_('CHANGE BOUQUET'))
-				self["jump"] = Label(_('JUMP 24 HOURS'))
-				self["page"] = Label(_('PAGE UP/DOWN'))
-				self.time_lines = [ ]
-				for x in range(0, MAX_TIMELINES):
-					pm = Pixmap()
-					self.time_lines.append(pm)
-					self["timeline%d"%(x)] = pm
-				self["timeline_now"] = Pixmap()
-				self.services = service
-				self.zapFunc = zapFunc
-			else:
-				self.type = EPG_TYPE_MULTI
-				self.skinName = "EPGSelectionMulti"
-				self["now_button"] = Pixmap()
-				self["next_button"] = Pixmap()
-				self["more_button"] = Pixmap()
-				self["now_button_sel"] = Pixmap()
-				self["next_button_sel"] = Pixmap()
-				self["more_button_sel"] = Pixmap()
-				self["now_text"] = Label()
-				self["next_text"] = Label()
-				self["more_text"] = Label()
-				self["date"] = Label()
-				self.services = service
-				self.zapFunc = zapFunc
-
-		elif isinstance(service, eServiceReference) or isinstance(service, str):
+		if EPGtype == 'single':
 			self.type = EPG_TYPE_SINGLE
 		elif EPGtype == 'infobar':
 			self.type = EPG_TYPE_INFOBAR
@@ -355,9 +69,9 @@ class EPGSelection(Screen, HelpableScreen):
 		self['key_blue'] = Button(_('Add AutoTimer'))
 		self['okactions'] = HelpableActionMap(self, 'OkCancelActions',
 			{
-				"cancel": (self.closeScreen, _("Exit EPG")),
-				"OK":     (self.OK, _("Zap to channel (setup in menu)")),
-				"OKLong": (self.OKLong, _("Zap to channel and close (setup in menu)")),
+				'cancel': (self.closeScreen, _('Exit EPG')),
+				'OK': (self.OK, _('Zap to channel (setup in menu)')),
+				'OKLong': (self.OKLong, _('Zap to channel and close (setup in menu)'))
 			}, -1)
 		self['okactions'].csel = self
 		self['colouractions'] = HelpableActionMap(self, 'ColorActions', 
@@ -691,7 +405,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def nextBouquet(self):
 		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
-			if self.type == EPG_TYPE_MULTI and not config.epgselection.showbouquet_multi.getValue() or self.type == EPG_TYPE_GRAPH and not config.epgselection.showbouquet_vixepg.getValue():
+			if self.type == EPG_TYPE_MULTI and not config.epgselection.showbouquet_multi.getValue() or self.type == EPG_TYPE_GRAPH and not config.epgselection.showbouquet_pliepg.getValue():
 				self['list'].instance.moveSelectionTo(0)
 				self.bouquetChangeCB(1, self)
 				if self.type == EPG_TYPE_GRAPH:
@@ -710,7 +424,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def prevBouquet(self):
 		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH) and self.bouquetChangeCB:
-			if self.type == EPG_TYPE_MULTI and not config.epgselection.showbouquet_multi.getValue() or self.type == EPG_TYPE_GRAPH and not config.epgselection.showbouquet_vixepg.getValue():
+			if self.type == EPG_TYPE_MULTI and not config.epgselection.showbouquet_multi.getValue() or self.type == EPG_TYPE_GRAPH and not config.epgselection.showbouquet_pliepg.getValue():
 				self['list'].instance.moveSelectionTo(0)
 				self.bouquetChangeCB(-1, self)
 				if self.type == EPG_TYPE_GRAPH:
@@ -838,30 +552,10 @@ class EPGSelection(Screen, HelpableScreen):
 					self.moveTimeLines(True)
 
 	def closeScreen(self):
-		try:
-			if not self.StartRef:
-				self.StartRef = None
-		except:
-			print"[EpgSelection] No Start Service"
-			self.close(False)
-			return
-
-		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
-			if ((self.type == 5 and config.epgselection.preview_mode_pliepg.getValue()) or (self.type == 4 and (config.epgselection.preview_mode_infobar.getValue() == "1" or config.epgselection.preview_mode_infobar.getValue() == "2")) or (self.type == 3 and config.epgselection.preview_mode_enhanced.getValue()) or (self.type != 5 and self.type != 4 and self.type != 3 and config.epgselection.preview_mode.getValue())) and (self.StartRef and self.StartBouquet):
-				if self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_SINGLE:
-					if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0')== -1:
-						self.session.nav.playService(self.StartRef)
-						self.setServicelistSelection(self.StartBouquet, self.StartRef)
-					else:
-						self.session.nav.playService(self.StartRef)
-				elif self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH:
-					if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0')== -1:
-						self.zapFunc(self.StartRef, self.StartBouquet)
-					else:
-						self.session.nav.playService(self.StartRef)
-			self.close(self.closeRecursive)
-		else:
-			if self.type == EPG_TYPE_INFOBAR:
+		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
+			if self.zapFunc and (self.type == EPG_TYPE_GRAPH and config.epgselection.preview_mode_pliepg.getValue() or self.type == EPG_TYPE_INFOBAR and (config.epgselection.preview_mode_infobar.getValue() == '1' or config.epgselection.preview_mode_infobar.getValue() == '2') or self.type == EPG_TYPE_ENHANCED and config.epgselection.preview_mode_enhanced.getValue() or self.type != EPG_TYPE_GRAPH and self.type != EPG_TYPE_INFOBAR and self.type != EPG_TYPE_ENHANCED and config.epgselection.preview_mode.getValue()) and self.StartRef and self.StartBouquet:
+				if self.StartRef.toString().find('0:0:0:0:0:0:0:0:0') == -1:
+					self.zapFunc(None, zapback = True)
 				if self.session.pipshown:
 					self.session.pipshown = False
 					del self.session.pip
@@ -1003,12 +697,7 @@ class EPGSelection(Screen, HelpableScreen):
 			serviceref = cur[1]
 			addAutotimerFromEvent(self.session, evt=event, service=serviceref)
 		except ImportError:
-			if self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED:
-				if self.sort_type == 0:
-					self.sort_type = 1
-				else: 
-					self.sort_type = 0
-				self["list"].sortSingleEPG(self.sort_type)
+			self.session.open(MessageBox, _('The AutoTimer plugin is not installed!\nPlease install it.'), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showTimerList(self):
 		from Screens.TimerEdit import TimerEditList
@@ -1021,11 +710,8 @@ class EPGSelection(Screen, HelpableScreen):
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
-			global autotimer
-			global autopoller
 			autopoller = AutoPoller()
 			autotimer = AutoTimer()
-
 			try:
 				autotimer.readXml()
 			except SyntaxError as se:
@@ -1134,52 +820,20 @@ class EPGSelection(Screen, HelpableScreen):
 			self.session.openWithCallback(self.finishedAdd, InstantRecordTimerEntry, newEntry, zap)
 
 	def OK(self):
-		if self.type == EPG_TYPE_GRAPH:
-			if config.epgselection.OK_pliepg.value == "EventView":
-				self.infoKeyPressed()
-			elif config.epgselection.OK_pliepg.value == "Zap":
-				self.ZapTo()
-			elif config.epgselection.OK_pliepg.value == "Zap + Exit":
-				self.zap()
-		elif self.type == EPG_TYPE_INFOBAR:
-			if config.epgselection.OK_infobar.value == "EventView":
-				self.infoKeyPressed()
-			elif config.epgselection.OK_infobar.value == "Zap":
-				self.ZapTo()
-			elif config.epgselection.OK_infobar.value == "Zap + Exit":
-				self.zap()
-		elif self.type == EPG_TYPE_ENHANCED:
-			if config.epgselection.OK_enhanced.value == "EventView":
-				self.infoKeyPressed()
-			elif config.epgselection.OK_enhanced.value == "Zap":
-				self.ZapTo()
-			elif config.epgselection.OK_enhanced.value == "Zap + Exit":
-				self.zap()
-		elif self.type == EPG_TYPE_MULTI:
-			if config.epgselection.OK_multi.value == "EventView":
-				self.infoKeyPressed()
-			elif config.epgselection.OK_multi.value == "Zap":
-				self.ZapTo()
-			elif config.epgselection.OK_multi.value == "Zap + Exit":
-				self.zap()
-
-		if self.type == EPG_TYPE_GRAPH:
-			serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			self["list"].setCurrentlyPlaying(serviceref)
-			self["list"].fillGraphEPG(None, self.ask_time)
-			self.moveTimeLines(True)
-		if config.epgselection.OK_pliepg.getValue() == "Zap + Exit" or config.epgselection.OK_enhanced.getValue() == "Zap + Exit" or config.epgselection.OK_infobar.getValue() == "Zap + Exit":
+		if config.epgselection.OK_pliepg.getValue() == 'Zap' or config.epgselection.OK_enhanced.getValue() == 'Zap' or config.epgselection.OK_infobar.getValue() == 'Zap' or config.epgselection.OK_multi.getValue() == 'Zap':
+			self.zapTo()
+		if config.epgselection.OK_pliepg.getValue() == 'Zap + Exit' or config.epgselection.OK_enhanced.getValue() == 'Zap + Exit' or config.epgselection.OK_infobar.getValue() == 'Zap + Exit':
 			self.zap()
 
 	def OKLong(self):
-		if config.epgselection.OKLong_pliepg.getValue() == "Zap" or config.epgselection.OKLong_enhanced.getValue() == "Zap" or config.epgselection.OKLong_infobar.getValue() == "Zap":
-			self.ZapTo()
+		if config.epgselection.OKLong_pliepg.getValue() == 'Zap' or config.epgselection.OKLong_enhanced.getValue() == 'Zap' or config.epgselection.OKLong_infobar.getValue() == 'Zap':
+			self.zapTo()
 		if self.type == EPG_TYPE_GRAPH:
 			serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self['list'].setCurrentlyPlaying(serviceref)
 			self['list'].fillGraphEPG(None, self.ask_time)
 			self.moveTimeLines(True)
-		if config.epgselection.OKLong_pliepg.getValue() == "Zap + Exit" or config.epgselection.OKLong_enhanced.getValue() == "Zap + Exit" or config.epgselection.OKLong_infobar.getValue() == "Zap + Exit" or config.epgselection.OKLong_multi.getValue() == "Zap + Exit":
+		if config.epgselection.OKLong_pliepg.getValue() == 'Zap + Exit' or config.epgselection.OKLong_enhanced.getValue() == 'Zap + Exit' or config.epgselection.OKLong_infobar.getValue() == 'Zap + Exit' or config.epgselection.OKLong_multi.getValue() == 'Zap + Exit':
 			self.zap()
 
 	def Info(self):
@@ -1307,10 +961,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.servicelist.clearPath()
 			self.servicelist.enterPath(self.servicelist.bouquet_root)
 			self.servicelist.enterPath(bouquet)
-		try:
-			self.servicelist.setCurrentSelection(service) #select the service in servicelist
-		except:
-			self.servicelist.setCurrent(service)
+		self.servicelist.setCurrentSelection(service)
 
 	def zap(self):
 		self.zapSelectedService()
