@@ -16,10 +16,12 @@ import os
 
 class VFDSkinSelector(Screen):
 	skin = """
-		<screen name="VFD Skin Selector" position="center,center" size="700,400" title="VFD Skin Selector" transparent="0">
-			<eLabel text="Overview of various settings:" position="50,30" size="500,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" halign="left" />
+		<screen name="VFD Skin-Selector" position="center,center" size="700,400" title="VFD Skin-Selector" transparent="0">
+			<eLabel text="Select skin:" position="50,30" size="200,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" halign="left" />
+			<eLabel text="Preview:" position="380,30" size="200,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" halign="left" />
 			<widget name="SkinList" position="50,80" size="270,300" scrollbarMode="showOnDemand" />
-			<widget name="Preview" position="400,80" size="280,210" zPosition="2" backgroundColor="background" transparent="0" alphatest="on" />
+			<widget name="Preview" position="380,80" size="280,210" zPosition="2" backgroundColor="background" transparent="0" alphatest="on" />
+			<eLabel text="Select your skin and press OK to activate the selected skin" position="0,305" halign="center" size="700,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" />
 			<ePixmap name="red" position="50,350" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 			<ePixmap name="green" position="220,350" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 			<ePixmap name="blue" position="520,350" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
@@ -122,7 +124,7 @@ class VFDSkinSelector(Screen):
 		self.loadPreview()
 
 	def info(self):
-		aboutbox = self.session.open(MessageBox,_("VFD Skin Selector for GigaBlue UE and GigaBlue Quad\n\n\nPlugin to configure Display with various settings\n\n\nby satinfo & henrylicious (thank you for your support)"), MessageBox.TYPE_INFO)
+		aboutbox = self.session.open(MessageBox,_("\nVFD Skin-Selector\nby satinfo & henrylicious (thank you for support)\n\nPlugin to select skin for VFD-Display\n\n - for GigaBlue UE and GigaBlue Quad\n - for VU+ Ultimo and VU+ Duo2"), MessageBox.TYPE_INFO)
 		aboutbox.setTitle(_("About..."))
 
 	def find(self, arg, dirname, names):
@@ -150,7 +152,7 @@ class VFDSkinSelector(Screen):
 		else:
 			pass
 		print "Selected Value", config.skin.display_skin.getValue()
-		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
+		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply new skin\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 
 	def loadPreview(self):
@@ -160,7 +162,7 @@ class VFDSkinSelector(Screen):
 		except AttributeError:
 			pass
 		if not os.path.exists(pngpath):
-			pngpath = "/usr/share/enigma2/skin_default/noprev.png"
+			pngpath = "/usr/share/enigma2/vfd_skin/noprev.png"
 		if self.previewPath != pngpath:
 			self.previewPath = pngpath
 		self["Preview"].instance.setPixmapFromFile(self.previewPath)
