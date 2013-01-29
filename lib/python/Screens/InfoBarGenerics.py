@@ -1461,7 +1461,7 @@ class InfoBarEPG:
 		self.EPGtype = "graph"
 		Servicelist = self.servicelist
 		self.StartBouquet = Servicelist
-		if config.epgselection.showbouquet_pliepg.getValue():
+		if config.epgselection.graph_showbouquet.getValue():
 			self.bouquets = self.servicelist.getBouquetList()
 			if self.bouquets is None:
 				cnt = 0

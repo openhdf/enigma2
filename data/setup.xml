@@ -186,7 +186,7 @@
 		<item level="1" text="Repeat Display Message" description="If the text is too long to be displayed on the front panel, it will be repeated (number of times):">config.lcd.repeat</item>
 		<item level="1" text="Scrolling Speed" description="Set the scrolling speed of text on the front display.">config.lcd.scrollspeed</item>
 		<item level="1" text="Show Display Icons" description="Allows you to enable/disable displaying icons on the frontpanel.">config.lcd.mode</item>
-		<item level="1" text="LCD skin" requires="OledDisplay" description="Allows you to choose the skin you want to see on Front LCD.">config.skin.display_skin</item>
+		<!--item level="1" text="LCD skin" requires="OledDisplay" description="Allows you to choose the skin you want to see on Front LCD.">config.skin.display_skin</item-->
 		<item level="1" text="Show Time Remaining/Elapsed" description="This option allows you choose how to display remaining time, or elapsed time, or both.">config.usage.swap_time_remaining_on_vfd</item>
 		<item level="1" text="Show Transponder Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for live tv.">config.usage.swap_time_display_on_vfd</item>
 		<item level="1" text="Show Media playback Remaining/Elapsed as" description="This option allows you choose how to display the remaining/elapsed time for Media playback.">config.usage.swap_media_time_display_on_vfd</item>
@@ -228,9 +228,9 @@
 		<item level="2" text="Enable debug log" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
 		<item level="2" text="Show Log Manager in extensions list ?" description="Allows you to show/hide Log Manager in extensions (blue button).">config.logmanager.showinextensions</item>
-		<item level="2" text="User name" description="Enter your forum user name, to make it easier trace logs.">config.logmanager.user</item>
+		<!--item level="2" text="User name" description="Enter your forum user name, to make it easier trace logs.">config.logmanager.user</item>
 		<item level="2" text="e-Mail address" description="Enter your email address to send a copy of the log to.">config.logmanager.useremail</item>
-		<item level="2" text="Send yourself a copy ?" description="Allows you to send a copy of the log to yourself.">config.logmanager.usersendcopy</item>
+		<item level="2" text="Send yourself a copy ?" description="Allows you to send a copy of the log to yourself.">config.logmanager.usersendcopy</item-->
 		<item level="2" text="Maximum no of days:" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum space used (MB):" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
 	</setup>
