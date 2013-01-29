@@ -92,7 +92,7 @@ class Picon(Renderer):
 		pngname = findPicon("picon_default")
 		self.defaultpngname = None
 		if not pngname:
-			tmp = resolveFilename(SCOPE_CURRENT_SKIN, "picon_default.png")
+			tmp = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
 			if pathExists(tmp):
 				pngname = tmp
 			else:

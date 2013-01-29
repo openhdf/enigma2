@@ -25,7 +25,7 @@ from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 
 from Tools import NumericalTextInput
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_ACTIVE_SKIN
 from Tools.BoundFunction import boundFunction
 
 import Tools.CopyFiles
@@ -417,14 +417,19 @@ class MovieSelectionSummary(Screen):
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def __init__(self, session, selectedmovie = None):
 		Screen.__init__(self, session)
-		data = resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")
-		data = data.replace('/ skin.xml','/skin.xml')
-		data = file(resolveFilename(SCOPE_CURRENT_SKIN,"skin.xml")).read()
-		if config.movielist.useslim.getValue():
-			if data.find('MovieSelectionSlim') >= 0:
-				self.skinName = "MovieSelectionSlim"
-			else:
-				self.skinName = "MovieSelection"
+		if os.path.exists(resolveFilename(SCOPE_ACTIVE_SKIN,"skin.xml")):
+			file = open(resolveFilename(SCOPE_ACTIVE_SKIN,"skin.xml"))
+			data = file.read()
+			file.close()
+		elif os.path.exists(resolveFilename(SCOPE_ACTIVE_SKIN,"../skin.xml")):
+			file = open(resolveFilename(SCOPE_ACTIVE_SKIN,"../skin.xml"))
+			data = file.read()
+			file.close()
+		else:
+			data = None
+
+		if data and config.movielist.useslim.getValue() and data.find('MovieSelectionSlim') >= 0:
+			self.skinName = "MovieSelectionSlim"
 		else:
 			self.skinName = "MovieSelection"
 
