@@ -5,7 +5,7 @@ from skin import parseColor, parseFont
 from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect, eSize
 from Tools.LoadPixmap import LoadPixmap
 
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
 from Components.config import config
 
@@ -25,14 +25,13 @@ class ServiceList(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
 
-		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/folder.png"))
+		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/folder.png"))
 		if pic:
 			self.l.setPixmap(self.l.picFolder, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/marker.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/marker.png"))
 		if pic:
 			self.l.setPixmap(self.l.picMarker, pic)
-
 
 		self.root = None
 		self.mode = self.MODE_NORMAL
@@ -78,7 +77,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 				elif attrib == "colorEventProgressbarBorderSelected":
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
 				elif attrib == "picServiceEventProgressbar":
-					pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
+					pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, value))
 					if pic:
 						self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
 				elif attrib == "serviceItemHeight":
