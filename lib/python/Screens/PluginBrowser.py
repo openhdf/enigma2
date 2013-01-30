@@ -2,10 +2,9 @@ from Screen import Screen
 from Components.Language import language
 from enigma import eConsoleAppContainer, eDVBDB
 
-from Components.About import about
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
-from Components.PluginList import PluginList, PluginEntryComponent, PluginCategoryComponent, PluginDownloadComponent
+from Components.PluginList import *
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Harddisk import harddiskmanager
@@ -17,13 +16,10 @@ from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
 from time import time
-from urllib import urlopen
-import socket
-
 import os
 
 def languageChanged():
@@ -65,11 +61,11 @@ class PluginBrowser(Screen):
 		if config.usage.sort_pluginlist.getValue():
 			self["list"].list.sort()
 
-		self["actions"] = ActionMap(["WizardActions", "MenuActions"],
+		self["actions"] = ActionMap(["SetupActions","WizardActions"],
 		{
 			"ok": self.save,
 			"back": self.close,
-			"menu": self.openSetup,
+			"menu": self.menu,
 		})
 		self["PluginDownloadActions"] = ActionMap(["ColorActions"],
 		{
@@ -83,9 +79,8 @@ class PluginBrowser(Screen):
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.saveListsize)
 
-	def openSetup(self):
-		from Screens.Setup import Setup
-		self.session.open(Setup, "pluginfilter")
+	def menu(self):
+		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginFilter)
 
 	def saveListsize(self):
 		listsize = self["list"].instance.size()
@@ -117,7 +112,7 @@ class PluginBrowser(Screen):
 
 	def save(self):
 		self.run()
-
+	
 	def run(self):
 		plugin = self["list"].l.getCurrentSelection()[0]
 		plugin(session=self.session)
@@ -129,6 +124,7 @@ class PluginBrowser(Screen):
 
 	def delete(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
+	
 
 	def download(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
@@ -188,7 +184,7 @@ class PluginDownloadBrowser(Screen):
 
 		self.run = 0
 		self.remainingdata = ""
-		self["actions"] = ActionMap(["WizardActions"],
+		self["actions"] = ActionMap(["WizardActions"], 
 		{
 			"ok": self.go,
 			"back": self.requestClose,
@@ -437,7 +433,6 @@ class PluginDownloadBrowser(Screen):
 			self["text"].setText(_("Sorry feeds are down for maintenance"))
 			self.run = 3
 			return
-
 		#prepend any remaining data from the previous call
 		str = self.remainingdata + str
 		#split in lines
@@ -484,9 +479,9 @@ class PluginDownloadBrowser(Screen):
 
 	def updateList(self):
 		list = []
-		expandableIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "expandable-plugins.png"))
-		expandedIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "expanded-plugins.png"))
-		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "verticalline-plugins.png"))
+		expandableIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "expandable-plugins.png"))
+		expandedIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "expanded-plugins.png"))
+		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "verticalline-plugins.png"))
 
 		self.plugins = {}
 
@@ -538,7 +533,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions', 'WizardActions'],
+		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
 		{
 			"ok": self.keySave,
 			"cancel": self.keyCancel,
