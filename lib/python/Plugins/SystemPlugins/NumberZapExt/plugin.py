@@ -17,7 +17,7 @@ from enigma import eServiceReference, eServiceCenter, eTimer, getDesktop
 from Screens.InfoBarGenerics import InfoBarNumberZap, InfoBarEPG
 from Screens.ChannelSelection import ChannelSelectionBase, BouquetSelector
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
+from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, resolveFilename
 
 
 
@@ -78,7 +78,7 @@ class NumberZapExt(Screen):
 		self.action = ''
 		self.action_prio = 'low'
 		self.defpicon = None
-		for scope, path in {SCOPE_SKIN_IMAGE: "skin_default/picon_default.png", SCOPE_CURRENT_SKIN: "picon_default.png"}.items():
+		for scope, path in {SCOPE_SKIN_IMAGE: "skin_default/picon_default.png", SCOPE_ACTIVE_SKIN: "picon_default.png"}.items():
 			tmp = resolveFilename(scope, path)
 			if pathExists(tmp):
 				self.defpicon = tmp

@@ -4,15 +4,14 @@ import xml.etree.cElementTree
 import os
 
 profile("LOAD:enigma_skin")
-from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
-	addFont, gRGB, eWindowStyleSkinned, getDesktop, getBoxType
+from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop, getBoxType
 from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo, ConfigSelection, ConfigNothing
-from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
+from Components.Converter.Converter import Converter
 
 config.vfd = ConfigSubsection()
 config.vfd.show = ConfigSelection(default = "skin_text.xml", choices = [("skin_text.xml", _("Channel Name")),("skin_text_clock.xml", _("Clock"))])
@@ -127,7 +126,7 @@ if addSkin('skin_display.xml'):
 
 if addSkin('skin_display96.xml'):
 	# Color OLED
-	display_skin_id = 2	
+	display_skin_id = 2
 
 if addSkin('skin_display128.xml'):
 	# Color OLED DM7020HD / DM8000
@@ -176,9 +175,9 @@ def parseCoordinate(s, e, size=0, font=None):
 			if s[-1] is '%':
 				val += e * int(s[:-1]) / 100
 			elif s[-1] is 'w':
-			        val += fonts[font][3] * int(s[:-1])
+				val += fonts[font][3] * int(s[:-1])
 			elif s[-1] is 'h':
-			        val += fonts[font][2] * int(s[:-1])
+				val += fonts[font][2] * int(s[:-1])
 			else:
 				val += int(s)
 	if val < 0:

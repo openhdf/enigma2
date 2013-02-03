@@ -2364,7 +2364,7 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 	def setStatus(self,status = None):
 		if status:
 			self.statuslist = []
-			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 			if status == 'update':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new updatelist. Please wait..." ),'',statuspng, divpng ))
@@ -2387,7 +2387,7 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		pass
 	
 	def buildEntryComponent(self, name, version, description, state):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 		if not description:
 			description = "No description available."
 		if state == 'installed':

@@ -1,6 +1,6 @@
 from Renderer import Renderer
 from enigma import ePixmap, eEnv
-from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
+from Tools.Directories import fileExists, SCOPE_CURRENT_SKIN, SCOPE_ACTIVE_SKIN, resolveFilename
 
 class PiconX(Renderer):
     searchPaths = (eEnv.resolve('${datadir}/enigma2/%s/'),
@@ -50,7 +50,7 @@ class PiconX(Renderer):
                         if fileExists(tmp):
                             pngname = tmp
                         else:
-                            pngname = resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/picon_default.png')
+                            pngname = resolveFilename(SCOPE_ACTIVE_SKIN, 'picon_default.png')
                     self.nameCache['default'] = pngname
             if self.pngname != pngname:
                 self.instance.setPixmapFromFile(pngname)
