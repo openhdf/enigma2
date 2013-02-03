@@ -30,8 +30,8 @@
 		<key id="KEY_INSERT" mapto="toggleOverwrite" flags="m" />
 		<key id="KEY_PAGEUP" mapto="pageUp" flags="mr" />
 		<key id="KEY_PAGEDOWN" mapto="pageDown" flags="mr" />
-		<!--key id="KEY_CHANNELUP" mapto="pageUp" flags="mr" />
-		<key id="KEY_CHANNELDOWN" mapto="pageDown" flags="mr" /-->
+		<key id="KEY_CHANNELUP" mapto="pageUp" flags="mr" />
+		<key id="KEY_CHANNELDOWN" mapto="pageDown" flags="mr" />
 	</map>
 
 	<map context="SetupActions">
@@ -534,8 +534,6 @@
 		<key id="KEY_NEXT" mapto="nextBouquet" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="prevBouquet" flags="m" />
 		<key id="KEY_MENU" mapto="menu" flags="m"/>
-		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="m" />
-		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
 		<key id="KEY_TEXT" mapto="input_date_time" flags="m"/>
 		<key id="KEY_RED" mapto="red" flags="m" />
 		<key id="KEY_GREEN" mapto="timerAdd" flags="b"/>
