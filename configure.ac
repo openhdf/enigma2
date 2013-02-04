@@ -402,7 +402,6 @@ lib/python/Plugins/SystemPlugins/Hotplug/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/meta/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
 lib/python/Plugins/SystemPlugins/NetworkBrowser/icons/Makefile
-lib/python/Plugins/SystemPlugins/NetworkBrowser/lib/Makefile
 lib/python/Plugins/SystemPlugins/NetworkBrowser/Makefile
 lib/python/Plugins/SystemPlugins/NetworkBrowser/meta/Makefile
 lib/python/Plugins/SystemPlugins/NetworkWizard/Makefile
