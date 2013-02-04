@@ -5,7 +5,7 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	DefaultServicesScanner CommonInterfaceAssignment \
 	HdmiCEC VideoClippingSetup \
 	VideoEnhancement WirelessLan NetworkWizard \
-	SABnzbdSetup OSD3DSetup DeviceManager
+	SABnzbdSetup OSD3DSetup DeviceManager NetworkBrowser
 
 if XTREND
 SUBDIRS += SatelliteEquipmentControl DiseqcTester
