@@ -14,8 +14,8 @@ from Components.RcModel import rc_model
 from Components.Converter.Converter import Converter
 
 config.vfd = ConfigSubsection()
-config.vfd.show = ConfigSelection(default = "skin_text.xml", choices = [("skin_text.xml", _("Channel Name")),("skin_text_clock.xml", _("Clock"))])
-if not os.path.exists("/usr/share/enigma2/skin_text.xml"):
+config.vfd.show = ConfigSelection(default = "skin_display.xml", choices = [("skin_display.xml", _("Channel Name")),("skin_text_clock.xml", _("Clock"))])
+if not os.path.exists("/usr/share/enigma2/display/skin_text_clock.xml"):
 	config.vfd.show = ConfigNothing()
 
 colorNames = {}
@@ -86,7 +86,6 @@ config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 DEFAULT_DISPLAY_SKIN = "skin_display.xml"
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
-config.skin.display_skin_picon = ConfigYesNo(default = False)
 
 profile("LoadSkin")
 try:

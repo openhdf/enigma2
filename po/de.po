@@ -5512,6 +5512,15 @@ msgstr "OK drücken zum Fortfahren."
 msgid "Press OK to activate the selected skin."
 msgstr "Drücke OK um den gewählten Skin zu aktivieren."
 
+msgid "Select your skin and press OK to activate the selected skin"
+msgstr "Drücke OK um den gewählten Skin zu aktivieren."
+
+msgid "Select Skin:"
+msgstr "Skin auswählen:"
+
+msgid "Preview:"
+msgstr "Vorschau:"
+
 msgid "Press OK to activate the settings."
 msgstr "OK drücken zum Aktivieren."
 
