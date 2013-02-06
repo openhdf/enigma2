@@ -45,9 +45,11 @@
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
 				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
-				<item requires="Display"><setup level="1" id="lcd" /></item>
-				<item requires="OledDisplay" level="2" text="VFD Skin Selector" entryID="vfd_skin"><screen module="VfdSkinSelector" screen="VFDSkinSelector"/></item>
-
+				<menu level="0" text="Display" entryID="display_selection" requires="Display">
+					<id val="display" />
+					<item level="0" entryID="displaysetup"><setup id="display" /></item>
+					<item requires="OledDisplay" level="0" text="VFD Skin Selector" entryID="vfd_skin"><screen module="VfdSkinSelector" screen="VFDSkinSelector"/></item>
+				</menu>
 				<menu level="2" text="EPG" entryID="epg_menu">
 					<id val="epg" />
 					<item level="0" entryID="epg_setup"><setup id="epgsettings" /></item>
