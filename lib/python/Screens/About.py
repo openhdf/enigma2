@@ -110,6 +110,9 @@ class About(Screen):
 		elif getBoxType() == 'tmsingle':
 			self["BoxType"] = StaticText(_("Hardware:") + " Technomate Single")	
 			AboutText = _("Hardware:") + " Technomate Single\n"
+		elif getBoxType() == 'xp1000':
+			self["BoxType"] = StaticText(_("Hardware:") + " MK Digital XP1000")	
+			AboutText = _("Hardware:") + " MK Digital XP1000\n"
 		else:
 			self["BoxType"] = StaticText(_("Hardware:") + " " + getBoxType())
 			AboutText = _("Hardware:") + " " + getBoxType() + "\n"
