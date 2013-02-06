@@ -37,9 +37,14 @@ def dump(x, i=0):
 class SkinError(Exception):
 	def __init__(self, message):
 		self.msg = message
-
 	def __str__(self):
 		return "{%s}: %s. Please contact the skin's author!" % (config.skin.primary_skin.getValue(), self.msg)
+
+class DisplaySkinError(Exception):
+	def __init__(self, message):
+		self.msg = message
+	def __str__(self):
+		return "{%s}: %s. Please contact the skin's author!" % (config.skin.display_skin.getValue(), self.msg)
 
 dom_skins = [ ]
 
@@ -79,6 +84,10 @@ if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 	DEFAULT_SKIN = "army.HDF.Mod/skin.xml"
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
+DEFAULT_DISPLAY_SKIN = "skin_display.xml"
+config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
+config.skin.display_skin_picon = ConfigYesNo(default = False)
+
 profile("LoadSkin")
 try:
 	name = skin_user_skinname()
@@ -95,30 +104,17 @@ addSkin('skin_box.xml')
 addSkin('skin_second_infobar.xml')
 
 # Only one of these is present, compliments of AM_CONDITIONAL
-if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
-	filesArray = sorted(filter(lambda x: x.endswith('.xml'), os.listdir("/usr/share/enigma2/vfd_skin/")))
-	config.skin.vfdskin = ConfigSelection(choices = filesArray)
-	config.skin.display_skin = ConfigNothing()
-	config.skin.vfdskin.save()
+if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2' or getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
+	config.skin.display_skin = ConfigText(default = "skin_display.xml")
+else:	
+	config.skin.display_skin = ConfigNothing()	
 
-if getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
-	filesArray = sorted(filter(lambda x: x.endswith('.xml'), os.listdir("/usr/share/enigma2/vfd_skin/")))
-	config.skin.display_skin = ConfigSelection(choices = filesArray)
-	config.skin.primary_vfdskin = ConfigNothing()
-	config.skin.vfdskin = ConfigNothing()
-	
 display_skin_id = 1
-if fileExists('/usr/share/enigma2/vfd_skin/skin_display255_picon.xml'):
-	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.vfdskin.value)):
-		addSkin(config.skin.vfdskin.value, SCOPE_CONFIG)
-	else:
-		addSkin('vfd_skin/' + config.skin.vfdskin.value)
-		
-if fileExists('/usr/share/enigma2/vfd_skin/skin_display220_picon.xml'):
-	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.display_skin.value)):
+if fileExists('/usr/share/enigma2/display/skin_display.xml'):
+	if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.lcdskin.value)):
 		addSkin(config.skin.display_skin.value, SCOPE_CONFIG)
 	else:
-		addSkin('vfd_skin/' + config.skin.display_skin.value)
+		addSkin('display/' + config.skin.display_skin.value)
 
 if addSkin('skin_display.xml'):
 	# Color OLED DM800 / DM800SE
@@ -126,7 +122,7 @@ if addSkin('skin_display.xml'):
 
 if addSkin('skin_display96.xml'):
 	# Color OLED
-	display_skin_id = 2
+	display_skin_id = 2	
 
 if addSkin('skin_display128.xml'):
 	# Color OLED DM7020HD / DM8000
@@ -134,9 +130,9 @@ if addSkin('skin_display128.xml'):
 
 # Add Skin for Display
 try:
-	addSkin(config.vfd.show.getValue())
+	addSkin('display/' + config.vfd.show.getValue())
 except:
-	addSkin('skin_text.xml')
+	addSkin('display/skin_text.xml')
 
 addSkin('skin_subtitles.xml')
 

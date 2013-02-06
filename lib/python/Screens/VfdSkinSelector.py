@@ -31,7 +31,7 @@ class VFDSkinSelector(Screen):
 		</screen>"""
 
 	skinlist = []
-	root = eEnv.resolve("/usr/share/enigma2/vfd_skin/")
+	root = eEnv.resolve("/usr/share/enigma2/display/")
 
 	def __init__(self, session, args = None):
 
@@ -70,26 +70,16 @@ class VFDSkinSelector(Screen):
 	def fill(self):
 		i = 0
 		self.filesArray = sorted(filter(lambda x: x.endswith('.xml'), os.listdir(self.root)))
-		if getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
-			self.type = "display_skin"
-			config.skin.display_skin = ConfigSelection(choices = self.filesArray)
+		config.skin.display_skin = ConfigSelection(choices = self.filesArray)
 			while i < len(self.filesArray):
-				if "220" in self.filesArray[i].split('.')[0]:
-					self.list.append((_(self.filesArray[i].split('.')[0]), "chose"))
-				i = i + 1
-		elif getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2':
-			self.type = "primary_vfdskin"
-			config.skin.primary_vfdskin = ConfigSelection(choices = self.filesArray)
-			while i < len(self.filesArray):
-				if "255" in self.filesArray[i].split('.')[0]:
-					self.list.append((_(self.filesArray[i].split('.')[0]), "chose"))
+				self.list.append((_(self.filesArray[i].split('.')[0]), "chose"))
 				i = i + 1
 		else:
 			pass
 		idx = 0
 
 	def layoutFinished(self):
-		tmp = "config.skin." + self.type + ".getValue()"
+		tmp = "config.skin.display_skin.getValue()"
 		tmp = eval(tmp)
 		idx = 0
 		i = 0
@@ -142,15 +132,8 @@ class VFDSkinSelector(Screen):
 	def ok(self):
 		skinfile = self["SkinList"].getCurrent()[0] + ".xml"
 		addSkin(skinfile, SCOPE_CONFIG)
-		if getBoxType() == "gbquad" or getBoxType() == "gb800ue":
-			config.skin.display_skin.value = skinfile
-			config.skin.display_skin.save()
-		if getBoxType() == "vuultimo" or getBoxType() == "vuduo2":
-			config.skin.vfdskin.value = skinfile
-			config.skin.vfdskin_skin.save()
-
-		else:
-			pass
+		config.skin.display_skin.value = skinfile
+		config.skin.display_skin.save()
 		print "Selected Value", config.skin.display_skin.getValue()
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply new skin\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
@@ -162,7 +145,7 @@ class VFDSkinSelector(Screen):
 		except AttributeError:
 			pass
 		if not os.path.exists(pngpath):
-			pngpath = "/usr/share/enigma2/vfd_skin/noprev.png"
+			pngpath = "/usr/share/enigma2/display/noprev.png"
 		if self.previewPath != pngpath:
 			self.previewPath = pngpath
 		self["Preview"].instance.setPixmapFromFile(self.previewPath)
