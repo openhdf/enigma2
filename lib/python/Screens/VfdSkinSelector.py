@@ -10,7 +10,7 @@ import Components.config
 from Components.Label import Label
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from os import path, walk
-from enigma import eEnv, getBoxType
+from enigma import eEnv
 from skin import *
 import os
 
@@ -71,9 +71,9 @@ class VFDSkinSelector(Screen):
 		i = 0
 		self.filesArray = sorted(filter(lambda x: x.endswith('.xml'), os.listdir(self.root)))
 		config.skin.display_skin = ConfigSelection(choices = self.filesArray)
-			while i < len(self.filesArray):
-				self.list.append((_(self.filesArray[i].split('.')[0]), "chose"))
-				i = i + 1
+		while i < len(self.filesArray):
+			self.list.append((_(self.filesArray[i].split('.')[0]), "chose"))
+			i = i + 1
 		else:
 			pass
 		idx = 0
