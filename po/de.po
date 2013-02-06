@@ -6655,7 +6655,7 @@ msgid "Settings"
 msgstr "Einstellungen"
 
 msgid "Settings..."
-msgstr "Einstellungein..."
+msgstr "Einstellungen..."
 
 msgid "PluginBrowser filter settings..."
 msgstr "PluginBrowser Filtereinstellungen..."
