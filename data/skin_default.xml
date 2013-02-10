@@ -113,7 +113,7 @@
 	<screen name="BasicTemplate">
 		<eLabel backgroundColor="background" position="0,0" size="560,460" zPosition="-1" />
 		<widget source="title" render="Label" position="10,5" size="280,35" valign="center" font="Enigma;30" halign="center" />
-		<eLabel backgroundColor="black" position="0,430" size="560,2" zPosition="1"/>
+		<!--eLabel backgroundColor="black" position="0,430" size="560,2" zPosition="1"/-->
 		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Enigma;18" halign="right" transparent="1" valign="center" zPosition="3">
 			<convert type="ClockToText">Default</convert>
 		</widget>
@@ -710,7 +710,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<ePixmap pixmap="skin_default/div-h.png" position="10,112" zPosition="10" size="560,2" />
-		<widget source="streams" render="Listbox" scrollbarMode="showOnDemand" position="10,120" size="465,200" zPosition="3" transparent="1" >
+		<widget source="streams" render="Listbox" scrollbarMode="showOnDemand" position="10,120" size="545,200" zPosition="3" transparent="1" >
 			<convert type="TemplatedMultiContent">
 				{"templates":
 					{"default": (25, [ 
@@ -718,14 +718,14 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 						MultiContentEntryText(pos = (40, 0),  size = (60, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 2), # number,
 						MultiContentEntryText(pos = (110, 0), size = (120, 25), font = 0, flags = RT_HALIGN_LEFT,  text = 3), # description,
 						MultiContentEntryText(pos = (240, 0), size = (200, 25), font = 0, flags = RT_HALIGN_LEFT,  text = 4), # language,
-						MultiContentEntryText(pos = (450, 4), size = (15, 25),  font = 1, flags = RT_HALIGN_RIGHT, text = 5), # selection,
+						MultiContentEntryText(pos = (520, 4), size = (15, 25),  font = 1, flags = RT_HALIGN_RIGHT, text = 5), # selection,
 					], True, "showNever"),
 					"notselected": (25, [ 
 						MultiContentEntryText(pos = (0, 0),   size = (35, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 1), # key,
 						MultiContentEntryText(pos = (40, 0),  size = (60, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 2), # number,
 						MultiContentEntryText(pos = (110, 0), size = (120, 25), font = 0, flags = RT_HALIGN_LEFT,  text = 3), # description,
 						MultiContentEntryText(pos = (240, 0), size = (200, 25), font = 0, flags = RT_HALIGN_LEFT,  text = 4), # language,
-						MultiContentEntryText(pos = (450, 4), size = (15, 25),  font = 1, flags = RT_HALIGN_RIGHT, text = 5), # selection,
+						MultiContentEntryText(pos = (520, 4), size = (15, 25),  font = 1, flags = RT_HALIGN_RIGHT, text = 5), # selection,
 					], False, "showNever")
 					},
 				"fonts": [gFont("Regular", 20), gFont("Regular", 16)],
@@ -1840,7 +1840,7 @@ self.autoResize()
 		<ePixmap pixmap="skin_default/logos/hdf.png" position="2,435" size="210,25" alphatest="on" />
 	</screen>
 	<screen name="NetworkMountsMenu" position="center,center" size="560,460">
-		<panel name="BasicTemplate" />
+		<!--panel name="BasicTemplate" /-->
 		<panel name="Red2Panel" />
 		<widget name="menulist" position="10,55" size="540,300" zPosition="10" scrollbarMode="showOnDemand" />
 		<widget source="introduction" render="Label" position="10,360" size="540,300" font="Regular;19" halign="center" valign="center" foregroundColor="secondFG" transparent="1" />
