@@ -6,7 +6,7 @@ from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
 from Plugins.Plugin import PluginDescriptor
-import Components.config 
+import Components.config
 from Components.Label import Label
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from os import path, walk
@@ -17,11 +17,11 @@ import os
 class VFDSkinSelector(Screen):
 	skin = """
 		<screen name="VFD Skin-Selector" position="center,center" size="700,400" title="VFD Skin-Selector" transparent="0">
-			<eLabel text="Select skin:" position="50,30" size="200,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" halign="left" />
-			<eLabel text="Preview:" position="380,30" size="200,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" halign="left" />
-			<widget name="SkinList" position="50,80" size="270,300" scrollbarMode="showOnDemand" />
-			<widget name="Preview" position="380,80" size="280,210" zPosition="2" backgroundColor="background" transparent="0" alphatest="on" />
-			<eLabel text="Select your skin and press OK to activate the selected skin" position="0,305" halign="center" size="700,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" />
+			<eLabel text="Select skin:" position="50,30" size="250,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" halign="left" />
+			<eLabel text="Preview:" position="380,30" size="250,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" halign="left" />
+			<widget name="SkinList" render="Listbox" position="50,60" size="270,200" zPosition="1" enableWrapAround="1" scrollbarMode="showOnDemand" />
+			<widget name="Preview" position="380,65" size="280,210" zPosition="1" backgroundColor="background" transparent="0" alphatest="on" />
+			<eLabel text="Select your skin and press OK to activate the selected skin" position="0,307" halign="center" size="700,26" zPosition="1" foregroundColor="#FFE500" font="Regular;22" />
 			<ePixmap name="red" position="50,350" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
 			<ePixmap name="green" position="220,350" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 			<ePixmap name="blue" position="520,350" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
@@ -89,7 +89,7 @@ class VFDSkinSelector(Screen):
 				break
 			else:
 				pass
-			i += 1	
+			i += 1
 		self["SkinList"].moveToIndex(idx)
 		self.loadPreview()
 
