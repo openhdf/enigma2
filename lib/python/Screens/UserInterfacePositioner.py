@@ -126,7 +126,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self.setup_title = _("Position Setup")
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("save"))
+		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("Defaults"))
 		
 		self["title"] = StaticText(_("OSD Adjustment"))
