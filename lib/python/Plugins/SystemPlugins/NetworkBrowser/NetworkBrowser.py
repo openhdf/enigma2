@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # for localized messages
-#from __init__ import _
+from __init__ import _
 from enigma import eTimer, getDesktop
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
+from Components.About import about
 from Components.Label import Label
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Sources.List import List
@@ -90,13 +91,19 @@ class NetworkBrowser(Screen):
 			<widget source="infotext" render="Label" position="0,420" size="560,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 
-	def __init__(self, session, iface,plugin_path):
+	def __init__(self, session, iface, plugin_path):
 		Screen.__init__(self, session)
 		self.skin_path = plugin_path
 		self.session = session
 		self.iface = iface
 		if self.iface is None:
-			self.iface = 'eth0'
+			eth0 = about.getIfConfig('eth0')
+			if eth0.has_key('addr'):
+				self.iface = 'eth0'
+			wlan0 = about.getIfConfig('wlan0')
+			if wlan0.has_key('addr'):
+				self.iface = 'wlan0'
+
 		self.networklist = None
 		self.device = None
 		self.mounts = None
@@ -215,6 +222,9 @@ class NetworkBrowser(Screen):
 		nwlist = []
 		sharelist = []
 		self.IP = iNetwork.getAdapterAttribute(self.iface, "ip")
+		print 'Current IP', self.IP
+		print 'EthIP', iNetwork.getAdapterAttribute('eth0', "ip")
+		print 'WlanIP', iNetwork.getAdapterAttribute('wlan0', "ip")
 		if len(self.IP):
 			strIP = str(self.IP[0]) + "." + str(self.IP[1]) + "." + str(self.IP[2]) + ".0/24"
 			nwlist.append(netscan.netzInfo(strIP))
@@ -452,7 +462,7 @@ class NetworkBrowser(Screen):
 				data['mounttype'] = 'cifs'
 				data['active'] = True
 				data['ip'] = selection[2]
-				data['sharename'] = selection[1]
+				data['sharename'] = selection[3] + "@" + selection[1]
 				data['sharedir'] = selection[3]
 				data['options'] = "rw"
 				self.sharecache_file = None
