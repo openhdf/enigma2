@@ -1,3 +1,5 @@
+include $(top_srcdir)/Rules-cpp.mak
+
 plugindir = $(libdir)/enigma2/python/Plugins/SystemPlugins/NetworkBrowser
 
 plugin_LTLIBRARIES = netscan.la
@@ -21,4 +23,4 @@ netscan_la_SOURCES = \
 	time_compat.h
 
 netscan_la_LDFLAGS = \
-	-avoid-version -module
+	$(PLUGIN_LIBTOOL_FLAGS)
