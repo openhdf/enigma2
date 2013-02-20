@@ -227,6 +227,7 @@ if test "$with_debug" = "yes"; then
 	DEBUG_CFLAGS="-ggdb3"
 	AC_DEFINE([DEBUG],[1],[Define to 1 to enable debugging code])
 fi
+AC_SUBST(DEBUG_CFLAGS)
 
 AC_ARG_WITH(memcheck,
 	AS_HELP_STRING([--with-memcheck],[enable memory leak checks]),
