@@ -212,7 +212,7 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'drivers')
 		if config.pluginfilter.extensions.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'extensions')
-		if config.pluginfilter.giga.getValue():
+		if config.pluginfilter.gigabluesupportnet.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'gigabluesupportnet')
 		if config.pluginfilter.m2k.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'm2k')
@@ -581,7 +581,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("vix"), config.pluginfilter.vix, _("This allows you to show vix modules in downloads")))
 		self.list.append(getConfigListEntry(_("security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
 		self.list.append(getConfigListEntry(_("kernel modules"), config.pluginfilter.kernel, _("This allows you to show kernel modules in downloads")))
-		self.list.append(getConfigListEntry(_("GB Support"), config.pluginfilter.giga, _("This allows you to show gigabluesupportnet modules in downloads")))
+		self.list.append(getConfigListEntry(_("gigabluesupportnet"), config.pluginfilter.gigabluesupportnet, _("This allows you to show gigabluesupportnet modules in downloads")))
 
 		self["config"].list = self.list
 		self["config"].setList(self.list)
