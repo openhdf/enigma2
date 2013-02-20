@@ -333,6 +333,7 @@
 		<item level="2" text="Show settings packages" description="If set to 'yes' it will show the 'SETTINGS' packages in browser.">config.pluginfilter.settings</item>
 		<item level="2" text="Show m2k packages" description="If set to 'yes' it will show the 'M2K' packages in browser.">config.pluginfilter.m2k</item>
 		<item level="2" text="Show pli packages" description="If set to 'yes' it will show the 'PLI' packages in browser.">config.pluginfilter.pli</item>
+		<item level="2" text="Show gigabluesuppoertnet packages" description="If set to 'yes' it will show the 'Gigabluesupportnet' packages in browser.">config.pluginfilter.gigabluesupportnet</item>
 		<item level="2" text="Show vix packages" description="If set to 'yes' it will show the 'VIX' packages in browser.">config.pluginfilter.vix</item>
 		<item level="2" text="Show security packages" description="If set to 'yes' it will show the 'SECURITY' packages in browser.">config.pluginfilter.security</item>
 		<item level="2" text="Show kernel module packages" description="If set to 'yes' it will show the 'KERNEL' packages in browser.">config.pluginfilter.kernel</item>

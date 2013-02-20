@@ -1,4 +1,4 @@
-SUBDIRS = meta icons 
+SUBDIRS = meta icons lib
 
 installdir = $(libdir)/enigma2/python/Plugins/SystemPlugins/NetworkBrowser
 
