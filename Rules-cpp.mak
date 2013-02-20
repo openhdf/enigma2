@@ -5,7 +5,7 @@ AM_CFLAGS = \
 AM_CPPFLAGS = \
 	@PYTHON_CPPFLAGS@ \
 	-include Python.h \
-	-include enigma2-plugins-config.h
+	-include enigma2_config.h
 
 AM_CXXFLAGS = \
 	-Wall \
