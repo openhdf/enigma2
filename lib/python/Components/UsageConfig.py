@@ -706,6 +706,7 @@ def InitUsageConfig():
 	config.pluginfilter.kernel = ConfigYesNo(default = False)
 	config.pluginfilter.drivers = ConfigYesNo(default = True)
 	config.pluginfilter.extensions = ConfigYesNo(default = True)
+	config.pluginfilter.gigabluesupportnet = ConfigYesNo(default = False)
 	config.pluginfilter.m2k = ConfigYesNo(default = False)
 	config.pluginfilter.picons = ConfigYesNo(default = True)
 	config.pluginfilter.pli = ConfigYesNo(default = False)

@@ -227,6 +227,7 @@ if test "$with_debug" = "yes"; then
 	DEBUG_CFLAGS="-ggdb3"
 	AC_DEFINE([DEBUG],[1],[Define to 1 to enable debugging code])
 fi
+AC_SUBST(DEBUG_CFLAGS)
 
 AC_ARG_WITH(memcheck,
 	AS_HELP_STRING([--with-memcheck],[enable memory leak checks]),
@@ -297,9 +298,7 @@ data/skin_default/epg/Makefile
 data/skin_default/extensions/Makefile
 data/skin_default/icons/Makefile
 data/skin_default/infobar/Makefile
-data/skin_default/lcd/Makefile
 data/skin_default/logos/Makefile
-data/skin_default/menu/Makefile
 data/skin_default/piconbg/Makefile
 data/skin_default/spinner/Makefile
 data/skin_default/window/Makefile
@@ -402,6 +401,10 @@ lib/python/Plugins/SystemPlugins/HdmiCEC/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/meta/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
+lib/python/Plugins/SystemPlugins/NetworkBrowser/icons/Makefile
+lib/python/Plugins/SystemPlugins/NetworkBrowser/Makefile
+lib/python/Plugins/SystemPlugins/NetworkBrowser/meta/Makefile
+lib/python/Plugins/SystemPlugins/NetworkBrowser/lib/Makefile
 lib/python/Plugins/SystemPlugins/NetworkWizard/Makefile
 lib/python/Plugins/SystemPlugins/NetworkWizard/meta/Makefile
 lib/python/Plugins/SystemPlugins/NFIFlash/Makefile
