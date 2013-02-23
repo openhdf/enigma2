@@ -258,7 +258,7 @@ class EventViewBase:
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, Event, Ref, callback=None, similarEPGCB=None):
 		Screen.__init__(self, session)
-		self.skinName = [skin,"EventView"]
+		self.skinName = "EventView"
 		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
 
 class EventViewEPGSelect(Screen, EventViewBase):
