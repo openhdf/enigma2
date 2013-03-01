@@ -815,25 +815,6 @@
 			</convert>
 		</widget>
 	</screen>
-	<screen name="InputDeviceSelection" position="0,0" size="1280,720" flags="wfNoBorder" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red2Panel" />
-		<panel name="Green2Panel" />
-		<panel name="Yellow2Panel" />
-		<panel name="Blue2Panel" />
-		<widget source="list" render="Listbox" position="520,82" size="755,583" zPosition="10" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" >
-			<convert type="TemplatedMultiContent">
-							{"template": [
-									MultiContentEntryPixmapAlphaTest(pos = (2, 8), size = (54, 54), png = 2), # index 3 is the interface pixmap
-									MultiContentEntryText(pos = (65, 6), size = (450, 54), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text = 1), # index 1 is the interfacename
-								],
-							"fonts": [gFont("Regular", 20),gFont("Regular", 20)],
-							"itemHeight": 70
-							}
-			</convert>
-		</widget>
-		<widget source="introduction" render="Label" position="15,380" size="477,150" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="secondFG" transparent="1"/>
-	</screen>
 	<screen name="InputDeviceSetup" position="0,0" size="1280,720" flags="wfNoBorder" >
 		<panel name="BasicTemplate"/>
 		<panel name="Red2Panel" />
@@ -1997,14 +1978,6 @@
 		<widget name="labrun" position="780,260" size="250,30" zPosition="1" font="Regular;20" valign="center" halign="center" backgroundColor="green" />
 	</screen>
 	<!-- ##Common interface## -->
-	<screen flags="wfNoBorder" name="ScSelection" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="RedBPanel" />
-		<panel name="GreenBPanel" />
-		<panel name="RedT1Panel" />
-		<panel name="GreenT1Panel" />
-		<widget name="entries" font="Regular;22" position="520,82" size="755,583" transparent="1" itemHeight="28" enableWrapAround="1" />
-	</screen>
 	<screen flags="wfNoBorder" name="CamControl" position="0,0" size="1280,720" >
 		<panel name="BasicTemplate"/>
 		<widget name="entries" font="Regular;22" position="520,82" size="755,583" transparent="1" itemHeight="28" enableWrapAround="1" />
@@ -2096,192 +2069,6 @@
 		<widget name="list" position="590,120" size="600,450" backgroundColor="background" transparent="1" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" />
 		<widget source="introduction" render="Label" position="590,600" size="600,27" backgroundColor="grey" shadowColor="black" shadowOffset="-2,-2" zPosition="1" transparent="1" foregroundColor="white" font="Regular;24" halign="center" />
 	</screen>
-	<screen flags="wfNoBorder" name="VIXSoftcamMenu" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red1Panel" />
-		<panel name="Green1Panel" />
-		<widget name="config" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" position="520,82" size="755,583" transparent="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="VIXSoftcamManager" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red1Panel" />
-		<panel name="Green1Panel" />
-		<panel name="Yellow1Panel" />
-		<panel name="Blue1Panel" />
-		<panel name="MenuBPanel" />
-		<panel name="InfoBPanel" />
-		<widget name="lab2" position="590,90" size="170,20" font="Regular;22" halign="lef" zPosition="2" transparent="0" valign="center" foregroundColor="grey" />
-		<widget name="list" position="775,271" size="240,150" transparent="0" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" foregroundColor="grey" enableWrapAround="1" />
-		<widget name="lab1" position="590,271" size="170,20" font="Regular;22" halign="left" zPosition="2" transparent="0" foregroundColor="grey" />
-		<widget name="activecam" position="775,90" size="240,150" font="Regular;20" halign="left" zPosition="2" transparent="0" noWrap="1" foregroundColor="grey" />
-		<applet type="onLayoutFinish">
-		self["list"].instance.setItemHeight(25)
-			</applet>
-	</screen>
-	<screen flags="wfNoBorder" name="VIXSoftcamLog" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="MenuBPanel" />
-		<widget name="list" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;20" position="520,82" size="755,583" transparent="1" foregroundColor="grey" enableWrapAround="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="VIXAutoStartCam" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="MenuBPanel" />
-		<widget name="connect" position="770,220" size="64,64" zPosition="2"
-		pixmaps="/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy1.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy2.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy3.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy4.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy5.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy6.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy7.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy8.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy9.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy9.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy10.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy11.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy12.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy13.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy14.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy15.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy17.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy18.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy19.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy20.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy21.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy22.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy23.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy24.png"
-		transparent="1" alphatest="blend" />
-		<widget name="lab1" position="560,133" halign="center" size="503,60" zPosition="1" font="Regular;20" valign="top" transparent="0" />
-	</screen>
-	<screen flags="wfNoBorder" name="VIXStartCam" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="connect" position="770,220" size="64,64" zPosition="2"
-		pixmaps="/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy1.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy2.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy3.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy4.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy5.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy6.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy7.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy8.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy9.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy9.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy10.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy11.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy12.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy13.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy14.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy15.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy17.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy18.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy19.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy20.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy21.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy22.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy23.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy24.png"
-		transparent="1" alphatest="blend" />
-		<widget name="lab1" position="560,133" halign="center" size="503,60" zPosition="1" font="Regular;20" valign="top" transparent="0" />
-	</screen>
-	<screen flags="wfNoBorder" name="VIXStopCam" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="connect" position="770,220" size="64,64" zPosition="2"
-		pixmaps="/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy1.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy2.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy3.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy4.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy5.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy6.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy7.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy8.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy9.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy9.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy10.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy11.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy12.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy13.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy14.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy15.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy17.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy18.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy19.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy20.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy21.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy22.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy23.png,/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/images/busy24.png"
-		transparent="1" alphatest="blend" />
-		<widget name="lab1" position="560,133" halign="center" size="503,60" zPosition="1" font="Regular;20" valign="top" transparent="0" />
-	</screen>
-
-	<!-- ## CCCam Info ##-->
-	<screen flags="wfNoBorder" name="EcmInfoScreen" position="0,0" size="755,25" backgroundColor="transpBlack" zPosition="-1">
-		<widget name="irdeto" position="0,0" size="15,25" font="Regular;16" text="I" valign="center" halign="center" borderColor="black" borderWidth="2" transparent="1" />
-		<widget name="seca" position="15,0" size="15,25" font="Regular;16" text="S" valign="center" halign="center" borderColor="black" borderWidth="2" transparent="1" />
-		<widget name="nagra" position="30,0" size="15,25" font="Regular;16" text="N" valign="center" halign="center" borderColor="black" borderWidth="2" transparent="1" />
-		<widget name="via" position="45,0" size="15,25" font="Regular;16" text="V" valign="center" halign="center" borderColor="black" borderWidth="2" transparent="1" />
-		<widget name="conax" position="60,0" size="30,25" font="Regular;16" text="CO" valign="center" halign="center" borderColor="black" borderWidth="2" transparent="1" />
-		<widget name="betacrypt" position="90,0" size="25,25" font="Regular;16" text="BC" valign="center" halign="center" borderColor="black" borderWidth="2" transparent="1" />
-		<widget name="crypto" position="115,0" size="35,25" font="Regular;16" text="CW" valign="center" halign="center" borderColor="black" borderWidth="2" transparent="1" />
-		<widget name="dreamcrypt" position="150,0" size="25,25" font="Regular;16" text="DC" valign="center" halign="center" borderColor="black" borderWidth="2" transparent="1" />
-		<widget name="nds" position="175,0" size="40,25" font="Regular;16" text="NDS" valign="center" halign="center" borderColor="black" borderWidth="2" transparent="1" />
-		<widget name="ecmInfo" position="225,0" size="530,25" font="Regular;16" valign="center" transparent="1" borderColor="black" borderWidth="2" noWrap="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="CCcamInfoMain" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="menu" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,82" font="Regular;24" size="755,583" transparent="1" itemHeight="30" foregroundColor="grey" enableWrapAround="1" />
-		<ePixmap pixmap="buttons/key-exit.png" alphatest="on" position="305,682" size="70,30" />
-		<eLabel text="Return" backgroundColor="secondBG" font="Regular;22" halign="left" position="380,682" size="200,26" transparent="1" foregroundColor="grey" zPosition="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="CCcamInfoEcmInfoSelection" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="list" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,82" size="755,583" font="Regular;22" transparent="1" itemHeight="30" foregroundColor="grey" enableWrapAround="1" />
-		<ePixmap pixmap="buttons/key-exit.png" alphatest="on" position="305,682" size="70,30" />
-		<eLabel text="Return" backgroundColor="secondBG" font="Regular;22" halign="left" position="380,682" size="200,26" transparent="1" zPosition="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="CCcamInfoInfoScreen" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="text" position="520,82" size="755,583" font="Regular;22" transparent="1" itemHeight="30" foregroundColor="grey" enableWrapAround="1" />
-		<ePixmap pixmap="buttons/key-exit.png" alphatest="on" position="305,682" size="70,30" />
-		<eLabel text="Return" backgroundColor="secondBG" font="Regular;22" halign="left" position="380,682" size="200,26" transparent="1" zPosition="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="CCcamInfoConfigMenu" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="config" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,82" size="755,583" font="Regular;22" transparent="1" itemHeight="30" foregroundColor="grey" enableWrapAround="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="CCcamInfoSubMenu" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="list" position="520,82" size="755,583" font="Regular;22" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" transparent="1" itemHeight="30" foregroundColor="grey" enableWrapAround="1" />
-		<widget name="info" position="15,400" size="477,240" font="Regular;22" transparent="1" foregroundColor="secondFG" />
-		<ePixmap pixmap="buttons/key-exit.png" alphatest="on" position="305,682" size="70,30" />
-		<eLabel text="Return" backgroundColor="secondBG" font="Regular;22" halign="left" position="380,682" size="200,26" transparent="1" zPosition="1" />
-		<ePixmap pixmap="buttons/key_ok.png" alphatest="on" position="15,682" size="35,26" />
-		<eLabel text="Info" backgroundColor="secondBG" font="Regular;22" halign="left" position="50,682" size="220,26" transparent="1" zPosition="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="CCcamInfoServerMenu" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="list" position="520,82" size="755,290" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" transparent="1" itemHeight="30" foregroundColor="grey" enableWrapAround="1" />
-		<widget name="info" position="520,373" size="755,290" font="Regular;22" foregroundColor="grey" transparent="1" />
-		<ePixmap pixmap="buttons/key-exit.png" alphatest="on" position="305,682" size="70,30" />
-		<eLabel text="Return" backgroundColor="secondBG" font="Regular;22" halign="left" position="380,682" size="200,26" transparent="1" zPosition="1" />
-		<ePixmap pixmap="buttons/key_ok.png" alphatest="on" position="15,682" size="35,26" />
-		<eLabel text="Info" backgroundColor="secondBG" font="Regular;22" halign="left" position="50,682" size="220,26" transparent="1" zPosition="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="CCcamShareViewMenu" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="list" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,82" size="755,583" foregroundColor="grey" transparent="1" itemHeight="30" enableWrapAround="1" />
-		<widget name="uphops" position="20,400" size="450,25" halign="left" font="Regular;20" />
-		<widget name="providers" position="20,440" size="450,25" halign="left" font="Regular;20" />
-		<widget name="title" position="20,480" size="450,25" halign="left" font="Fixed;16" />
-		<widget name="reshare" position="20,520" size="450,25" halign="left" font="Regular;20" />
-		<widget name="cards" position="20,560" size="450,25" halign="left" font="Regular;20" />
-		<ePixmap pixmap="buttons/key-exit.png" alphatest="on" position="305,682" size="70,30" />
-		<eLabel text="Return" backgroundColor="secondBG" font="Regular;22" halign="left" position="380,682" size="200,26" transparent="1" zPosition="1" />
-		<ePixmap pixmap="buttons/key_ok.png" alphatest="on" position="15,682" size="35,26" />
-		<eLabel text="Info" backgroundColor="secondBG" font="Regular;22" halign="left" position="50,682" size="220,26" transparent="1" zPosition="1" />
-	</screen>
-	<screen name="CCcamInfoRemoteBoxMenu" flags="wfNoBorder" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="RedBPanel" />
-		<panel name="GreenBPanel" />
-		<panel name="YellowBPanel" />
-		<panel name="BlueBPanel" />
-		<panel name="RedT1Panel" />
-		<panel name="GreenT1Panel" />
-		<panel name="YellowT1Panel" />
-		<panel name="BlueT1Panel" />
-		<widget name="list" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,90" size="755,575" font="Regular;22" transparent="1" itemHeight="30" foregroundColor="grey" enableWrapAround="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="CCcamInfoShareInfo" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="RedBPanel" />
-		<panel name="GreenBPanel" />
-		<panel name="YellowBPanel" />
-		<panel name="BlueBPanel" />
-		<panel name="RedT1Panel" />
-		<panel name="GreenT1Panel" />
-		<panel name="YellowT1Panel" />
-		<panel name="BlueT1Panel" />
-		<widget name="list" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,82" size="755,583" transparent="1" foregroundColor="grey" enableWrapAround="1"/>
-	</screen>
-	<screen flags="wfNoBorder" name="CCcamInfoConfigSwitcher" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="RedBPanel" />
-		<panel name="GreenBPanel" />
-		<panel name="YellowBPanel" />
-		<panel name="BlueBPanel" />
-		<panel name="RedT1Panel" />
-		<panel name="GreenT1Panel" />
-		<panel name="YellowT1Panel" />
-		<panel name="BlueT1Panel" />
-		<widget name="list" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,82" size="755,583" font="Regular;22" transparent="1" itemHeight="30" foregroundColor="grey" enableWrapAround="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="EcmInfoConfigMenu" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="config" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,90" size="755,575" transparent="1" foregroundColor="grey" enableWrapAround="1" />
-		<ePixmap pixmap="buttons/key-exit.png" alphatest="on" position="305,682" size="70,30" />
-		<eLabel text="Cancel" backgroundColor="secondBG" font="Regular;22" halign="left" position="380,682" size="200,26" transparent="1" zPosition="1" />
-		<ePixmap pixmap="buttons/key_ok.png" alphatest="on" position="15,682" size="35,26" />
-		<eLabel text="Accept" backgroundColor="secondBG" font="Regular;22" halign="left" position="50,682" size="220,26" transparent="1" zPosition="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="CCcamInfoMenuConfig" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="RedBPanel" />
-		<panel name="GreenBPanel" />
-		<panel name="YellowBPanel" />
-		<panel name="RedT1Panel" />
-		<panel name="GreenT1Panel" />
-		<panel name="YellowT1Panel" />
-		<widget name="list" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,90" size="755,575" transparent="1" itemHeight="30" foregroundColor="grey" enableWrapAround="1" />
-	</screen>
-	 <!-- ## Oscam Info ##-->
-	<screen flags="wfNoBorder" name="OscamInfoMenu" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="mainmenu" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" position="520,82" size="755,583" transparent="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="oscECMInfo" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="output" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" position="520,82" size="755,583" transparent="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="OscamInfoConfigScreen" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red2Panel" />
-		<panel name="Green2Panel" />
-		<widget name="config" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" position="520,82" size="755,583" transparent="1" />
-		<widget name="status" render="Label" position="15,400" zPosition="1" size="477,200" font="Regular;16" halign="center" valign="center" transparent="1" foregroundColor="secondFG" />
-	</screen>
 	<!-- ##TunerSetUp## -->
  <screen name="AutoDiseqc" position="fill" title=" ">
   <widget source="statusbar" render="Label" position="10,100" zPosition="10" size="e-10,60" halign="center" valign="center" font="Regular;24" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
@@ -2335,10 +2122,6 @@
 		<widget name="pass" position="590,175" size="660,28" backgroundColor="darkgrey" foregroundColor="grey" transparent="1" font="Regular;24" />
 		<widget name="scan_progress" position="590,230" size="660,20" borderWidth="2" borderColor="black" />
 		<widget name="servicelist" position="590,260" size="660,410" backgroundColor="darkgrey" selectionDisabled="1" transparent="1" foregroundColor="grey" itemHeight="28" enableWrapAround="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="SatNimSelection" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="nimlist" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" itemHeight="32" font="Regular;24" position="520,82" size="755,583" foregroundColor="grey"	transparent="1" />
 	</screen>
 	<screen name="Satfinder" position="0,0" size="1280,720" flags="wfNoBorder">
 		<ePixmap pixmap="border/top2_bg.png" position="0,0" size="1280,75" />
@@ -2460,10 +2243,6 @@
 		<panel name="BasicTemplate2"/>
 		<widget name="scan_state" position="520,120" zPosition="2" size="400,30" font="Regular;18" />
 		<widget name="scan_progress" position="520,155" size="400,15" pixmap="progress_big.png" borderWidth="2" borderColor="#cccccc" />
-	</screen>
-	<screen flags="wfNoBorder" name="SecParameterSetup" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="config" font="Regular;22" position="520,82" size="755,583" transparent="1" />
 	</screen>
 	<!-- Start Wizards -->
 		<screen name="ImageWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
@@ -2753,114 +2532,6 @@
 	<screen name="PiPSetup" position="center,center" size="800,200" flags="wfNoBorder" backgroundColor="transparent" zPosition="-1" title="PiPSetup" >
 		<widget name="text" position="0,0" size="800,200" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
 	</screen>
-	<!-- ## AutoBouquetsMaker ## -->
-	<screen name="AutoBouquetsMaker_Menu" position="0,0" size="1280,720" flags="wfNoBorder" >
-		<panel name="BasicTemplate"/>
-		<widget source="list" render="Listbox" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,82" size="755,583" transparent="1" foregroundColor="grey" enableWrapAround="1" >
-			<convert type="TemplatedMultiContent">
-			{"template": [	MultiContentEntryText(pos = (0,0), size = (755,583), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1) ],
-					"fonts": [gFont("Regular", 22)],
-					"itemHeight": 28
-				}
-			</convert>
-		</widget>
-	</screen>
-	<screen name="AutoBouquetsMaker_ProvidersSetup" position="0,0" size="1280,720" flags="wfNoBorder" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red1Panel" />
-		<panel name="Green1Panel" />
-		<widget name="config" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" itemHeight="28" position="520,82" size="755,583" transparent="1" foregroundColor="grey" enableWrapAround="1" />
-		<widget name="description" position="5,379" size="477,264" zPosition="2" font="Regular;22" foregroundColor="secondFG" valign="center" halign="center" />
-		<widget name="pleasewait" position="520,82" size="755,583" font="Regular;26" transparent="1" halign="center" valign="center" foregroundColor="grey" />
-	</screen>
-	<screen name="AutoBouquetsMaker_Setup" position="0,0" size="1280,720" flags="wfNoBorder" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red1Panel" />
-		<panel name="Green1Panel" />
-		<widget name="config" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" itemHeight="28" position="520,82" size="755,583" transparent="1" foregroundColor="grey" enableWrapAround="1" />
-		<widget name="description" position="5,379" size="477,264" zPosition="2" font="Regular;22" foregroundColor="secondFG" valign="center" halign="center" />
-		<widget name="pleasewait" position="520,82" size="755,583" font="Regular;26" transparent="1" halign="center" valign="center" foregroundColor="grey" />
-		<widget name="text" position="5,379" size="477,264" zPosition="2" font="Regular;22" foregroundColor="secondFG" valign="center" halign="center" />
-	</screen>
-	<screen name="AutoBouquetsMaker_Ordering" position="0,0" size="1280,720" flags="wfNoBorder" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red1Panel" />
-		<panel name="Green1Panel" />
-		<panel name="Yellow1Panel" />
-		<panel name="Blue1Panel" />
-		<widget source="list" render="Listbox" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,82" size="755,583" transparent="1" foregroundColor="grey" enableWrapAround="1" >
-			<convert type="TemplatedMultiContent">
-				{"template": [
-					MultiContentEntryText(pos = (10, 1), size = (440, 32), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 0),
-					],
-					"fonts": [gFont("Regular", 22)],
-					"itemHeight": 28
-				}
-			</convert>
-		</widget>
-		<widget name="pleasewait" position="520,82" size="755,583" font="Regular;26" transparent="1" halign="center" valign="center" foregroundColor="grey" />
-	</screen>
-	<screen name="AutoBouquetsMaker_Providers" position="0,0" size="1280,720" flags="wfNoBorder" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red1Panel" />
-		<panel name="Green1Panel" />
-		<widget source="list" render="Listbox" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,82" size="755,583" transparent="1" foregroundColor="grey" enableWrapAround="1" >
-			<convert type="TemplatedMultiContent">
-				{"template": [
-					MultiContentEntryPixmapAlphaTest(pos = (10, 0), size = (32, 32), png = 0),
-					MultiContentEntryText(pos = (450, 0), size = (120, 30), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
-					],
-					"fonts": [gFont("Regular", 22)],
-					"itemHeight": 28
-				}
-			</convert>
-		</widget>
-		<widget name="pleasewait" position="520,82" size="755,583" font="Regular;26" transparent="1" halign="center" valign="center" foregroundColor="grey" />
-	</screen>
-	<screen name="AutoBouquetsMaker_HideSections" position="0,0" size="1280,720" flags="wfNoBorder" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red1Panel" />
-		<panel name="Green1Panel" />
-		<widget source="list" render="Listbox" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,82" size="755,583" transparent="1" foregroundColor="grey" enableWrapAround="1" >
-			<convert type="TemplatedMultiContent">
-				{"template": [
-					MultiContentEntryPixmapAlphaTest(pos = (10, 0), size = (32, 32), png = 0),
-					MultiContentEntryText(pos = (47, 0), size = (400, 30), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
-					MultiContentEntryText(pos = (450, 0), size = (120, 30), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 2),
-					],
-					"fonts": [gFont("Regular", 22)],
-					"itemHeight": 28
-				}
-			</convert>
-		</widget>
-	</screen>
-	<screen name="AutoBouquetsMaker_KeepBouquets" position="0,0" size="1280,720" flags="wfNoBorder" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red1Panel" />
-		<panel name="Green1Panel" />
-		<widget source="list" render="Listbox" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,82" size="755,588" transparent="1" foregroundColor="grey" enableWrapAround="1" >
-			<convert type="TemplatedMultiContent">
-				{"template": [
-					MultiContentEntryPixmapAlphaTest(pos = (10, 0), size = (32, 32), png = 0),
-					MultiContentEntryText(pos = (47, 0), size = (400, 30), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
-					MultiContentEntryText(pos = (450, 0), size = (120, 30), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 2),
-					],
-					"fonts": [gFont("Regular", 22)],
-					"itemHeight": 28
-				}
-			</convert>
-		</widget>
-	</screen>
-	<screen name="AutoBouquetsMaker_Log" position="0,0" size="1280,720" flags="wfNoBorder" >
-		<panel name="BasicTemplate"/>
-		<widget name="list" scrollbarMode="showOnDemand" font="Regular;20" itemHeight="28" position="520,82" size="755,583" transparent="1" foregroundColor="grey" enableWrapAround="1" />
-	</screen>
-	<screen name="AutoBouquetsMaker_About" position="0,0" size="1280,720" flags="wfNoBorder" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red1Panel" />
-		<widget name="about" scrollbarMode="showOnDemand" font="Regular;20" itemHeight="28" position="520,82" size="755,430" transparent="1" foregroundColor="grey" enableWrapAround="1" />
-		<widget name="oealogo" position="520,515" size="177,130" alphatest="on" zPosition="4" />
-	</screen>
 	<!-- ##VideoEnhancement## -->
 	<screen name="VideoEnhancementPreview" position="fill" title="VideoEnhancementPreview" flags="wfNoBorder" backgroundColor="transparent">
 		<ePixmap alphatest="off" pixmap="infobar/hd.png" position="0,500" size="1280,220" zPosition="-1" />
@@ -2933,29 +2604,6 @@
 		<widget name="play_icon" position="30,20" size="16,16" zPosition="3" pixmap="skin_default/icons/ico_mp_play.png" alphatest="on" />
 		<widget source="file" render="Label" position="70,15" size="600,25" zPosition="3" font="Regular;22" halign="left" noWrap="1" transparent="1" foregroundColor="foreground" backgroundColor="secondBG"/>
 	</screen>
-	<!-- ## RemoteControlSetup ## -->
-	<screen flags="wfNoBorder" name="RemoteControlSetup" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="RedBPanel" />
-		<panel name="GreenBPanel" />
-		<widget name="cancel" foregroundColor="grey" backgroundColor="secondBG" font="Regular;22" halign="left" position="50,682" size="220,26" transparent="1" zPosition="1" />
-		<widget name="ok" foregroundColor="grey" backgroundColor="secondBG" font="Regular;22" halign="left" position="340,682" size="220,26" transparent="1" zPosition="1" />
-		<widget name="config" font="Regular;22" position="520,90" size="755,575" selectionPixmap="buttons/sel.png" transparent="1" itemHeight="28" enableWrapAround="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="RemoteControlCode" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red2Panel" />
-		<panel name="Green2Panel" />
-		<widget name="config" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" position="520,82" size="755,583" transparent="1" />
-	</screen>
-	<screen flags="wfNoBorder" name="RCSetupScreen" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="RedBPanel" />
-		<panel name="GreenBPanel" />
-		<widget name="cancel" foregroundColor="grey" backgroundColor="secondBG" font="Regular;22" halign="left" position="50,682" size="220,26" transparent="1" zPosition="1" />
-		<widget name="ok" foregroundColor="grey" backgroundColor="secondBG" font="Regular;22" halign="left" position="340,682" size="220,26" transparent="1" zPosition="1" />
-		<widget name="config" font="Regular;22" position="520,90" size="755,575" selectionPixmap="buttons/sel.png" transparent="1" itemHeight="28" enableWrapAround="1" />
-	</screen>
 <!-- ## TempFanControl ##-->
 	<screen name="TempFanControl" position="0,0" size="1280,720" flags="wfNoBorder" >
 		<panel name="BasicTemplate"/>
@@ -3007,7 +2655,7 @@
 		<widget name="config" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" position="520,82" foregroundColor="grey" size="755,583" transparent="1" />
 	</screen>
  <!-- ## Cross EPG ## -->
-	<screen flags="wfNoBorder" name="CrossEPG_Menu" position="0,0" size="1280,720" >
+	<!--screen flags="wfNoBorder" name="CrossEPG_Menu" position="0,0" size="1280,720" >
 		<panel name="BasicTemplate"/>
 		<widget source="list" render="Listbox" transparent="0" position="520,82" size="755,583" scrollbarMode="showOnDemand" foregroundColor="grey" selectionPixmap="buttons/sel.png" >
 			<convert type="TemplatedMultiContent">
@@ -3096,7 +2744,7 @@
 			}
 		</convert>
 	</widget>
-	</screen>
+	</screen-->
 <!-- ## ViX-specific screens ## -->
 	<screen flags="wfNoBorder" name="VIXMenu" position="0,0" size="1280,720" >
 		<panel name="BasicTemplate"/>
@@ -3405,35 +3053,5 @@
 		<widget name="timeline_text" position="5,286" size="1275,30" foregroundColor="#00e5b243" backgroundColor="#000000" transparent="1" />
 		<widget name="list" position="5,313" size="1275,365" scrollbarMode="showNever" transparent="1" ServiceBackgroundColor="bluetransparent" ServiceBackgroundColorSelected="black" ServiceBackgroundColorNow="greentransparent" ServiceBackgroundColorNowSelected="greentransparent" EntryBackgroundColor="bluetransparent" EntryBackgroundColorSelected="black" EntryBackgroundColorNow="redtransparent" EntryBackgroundColorNowSelected="redtransparent" EntryFontAlignment="center" EntryForegroundColorSelected="selectedFG" EntryForegroundColorNowSelected="selectedFG" ServiceForegroundColorSelected="selectedFG" ServiceForegroundColorNowSelected="selectedFG" RecordBackgroundColor="yellowtransparent" RecordBackgroundColorSelected="yellowtransparent" RecordForegroundColorSelected="selectedFG" ZapBackgroundColor="transpWhite" ZapBackgroundColorSelected="transpWhite" ZapForegroundColorSelected="selectedFG" />
 		<widget name="timeline_now" position="5,313" zPosition="2" size="19,365" pixmap="windowepg/timeline-now.png" alphatest="on" />
-	</screen>
-	<screen flags="wfNoBorder" name="LogManager" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<panel name="Red1Panel" />
-		<panel name="Green1Panel" />
-		<panel name="Yellow1Panel" />
-		<panel name="Blue1Panel" />
-		<widget name="list" position="520,82" size="755,583" transparent="0" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" itemHeight="30" enableWrapAround="1" />
-		<applet type="onLayoutFinish">
-						self["list"].instance.setItemHeight(25)
-		</applet>
-	<widget name="LogsSize" position="10,450" size="503,50" font="Regular;22" foregroundColor="secondFG" halign="center" valign="center" transparent="0" />
-		<ePixmap pixmap="logos/vix.png" position="25,650" size="300,25" alphatest="on" />
-	</screen>
-	<screen flags="wfNoBorder" name="LogManagerViewLog" position="0,0" size="1280,720" >
-		<ePixmap pixmap="border/top2_bg.png" position="0,0" size="1280,75" />
-		<ePixmap pixmap="border/bottom_bg.png" position="0,675" size="1280,2" />
-		<widget source="Title" foregroundColor="grey" render="Label" position="15,15" size="700, 55" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;25" valign="center" />
-		<widget source="global.CurrentTime" render="Label" backgroundColor="secondBG" font="Regular;26" halign="right" position="1015,15" size="250,28" transparent="1" foregroundColor="grey" zPosition="1">
-			<convert type="ClockToText">Format:%-H:%M</convert>
-		</widget>
-		<widget source="global.CurrentTime" render="Label" backgroundColor="secondBG" font="Regular;20" halign="right" position="1015,45" size="250,25" transparent="1" foregroundColor="grey" zPosition="1">
-			<convert type="ClockToText">Date</convert>
-		</widget>
-		<widget name="list" font="Regular;16" position="10,82" size="1260,555" transparent="1" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" itemHeight="30" enableWrapAround="1" />
-		<ePixmap pixmap="logos/vix.png" position="25,650" size="300,25" alphatest="on" />
-	</screen>
-	<screen flags="wfNoBorder" name="LogManagerFb" position="0,0" size="1280,720" >
-		<panel name="BasicTemplate"/>
-		<widget name="list" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" font="Regular;22" position="520,82" size="755,583" transparent="1" itemHeight="30" enableWrapAround="1" />
 	</screen>
 </skin>
