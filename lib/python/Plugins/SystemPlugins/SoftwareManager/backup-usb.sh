@@ -32,6 +32,7 @@ else
     echo "Full back-up directly to USB"
 	##remove opkg lists
 	rm -rf /var/lib/opkg/lists/
+	rm -f /etc/enigma2/epg.dat
 	sync
     /usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager/backup.sh $TARGET | tee /tmp/USB-Backup.log
 	sync
