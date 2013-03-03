@@ -592,7 +592,7 @@
 		<widget name="list" font="Regular;22" position="520,82" size="755,583" transparent="1" foregroundColor="grey" />
 		<eLabel text="Skin Magic-HD	ViX-team skin by Rob van der Does" foregroundColor="grey" font="Regular;19" halign="center" position="5,590" size="500,55" transparent="1" zPosition="1" />
 	</screen>
-	<screen name="ServiceInfo" position="0,0" size="1280,720" flags="wfNoBorder">
+	<screen name="ServiceInfo" position="0,0" size="1280,720" flags="wfNoBorder" title="Serviceinfo">
 		<!--panel name="BasicTemplate"/-->
 		<widget name="infolist" position="520,82" size="755,583" selectionDisabled="1" foregroundColor="grey" />
 		<panel name="RedBPanel" />
@@ -603,7 +603,7 @@
 		<widget name="yellow" position="595,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
 		<panel name="BlueBPanel" />
 		<widget name="blue" position="890,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-		<ePixmap pixmap="logos/vix.png" position="25,650" size="300,25" alphatest="on" />
+		<ePixmap pixmap="logos/hdf.png" position="25,650" size="300,25" alphatest="on" />
 	</screen>
 	<screen name="SystemMemoryInfo" position="0,0" size="1280,720" flags="wfNoBorder">
 		<!--panel name="BasicTemplate"/-->
@@ -2237,7 +2237,7 @@
 		<!--panel name="BasicTemplate"/-->
 		<widget name="config" scrollbarMode="showOnDemand" selectionPixmap="buttons/sel.png" position="520,82" size="755,583" font="Regular;22" itemHeight="28" transparent="1" foregroundColor="grey" enableWrapAround="1" />
 		<widget name="introduction" position="10,450" size="477,75" font="Regular;20" halign="center" foregroundColor="secondFG" />
-		<ePixmap pixmap="logos/vix.png" position="25,650" size="300,25" alphatest="on" />
+		<ePixmap pixmap="logos/hdf.png" position="25,650" size="300,25" alphatest="on" />
 	</screen>
 	<screen flags="wfNoBorder" name="CableScanStatus" position="0,0" size="1280,720" >
 		<panel name="BasicTemplate2"/>
@@ -2378,7 +2378,7 @@
 		<widget name="text" position="740,120" size="480,240" backgroundColor="background" transparent="1" font="Regular;23" />
 		<widget name="list" position="550,380" size="660,150" zPosition="1" />
 		<widget source="session.VideoPicture" backgroundColor="transparent" position="-5,-5" render="Pig" size="5,5" zPosition="1" />
-		<ePixmap pixmap="logos/vix.png" position="25,650" size="300,25" alphatest="on" />
+		<ePixmap pixmap="logos/hdf.png" position="25,650" size="300,25" alphatest="on" />
 	</screen>
 	<!-- ## EPG importer ## -->
 	<screen flags="wfNoBorder" name="EPGMainSetup" position="0,0" size="1280,720" >
@@ -2527,7 +2527,7 @@
 		<widget name="video" position="0,0" size="240,135" backgroundColor="transparent" />
 	</screen>
 	<screen name="PictureInPictureZapping" position="580,60" size="120,26" flags="wfNoBorder" backgroundColor="transparent" zPosition="-1" title="PiPZap" >
-		<eLabel text="PiP-Zap" position="0,0" size="120,26" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
+		<!--eLabel text="PiP-Zap" position="0,0" size="120,26" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" /-->
 	</screen>
 	<screen name="PiPSetup" position="center,center" size="800,200" flags="wfNoBorder" backgroundColor="transparent" zPosition="-1" title="PiPSetup" >
 		<widget name="text" position="0,0" size="800,200" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
