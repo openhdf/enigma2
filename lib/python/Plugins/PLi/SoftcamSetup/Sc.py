@@ -34,29 +34,30 @@ class ConfigAction(ConfigElement):
 
 class ScSelection(Screen):
 	skin = """
-		<screen name="ScSelection" position="center,center" size="525,330" title="Softcam Cardserver Manager">
-			<widget name="entries" position="5,10" size="515,310" enableWrapAround="1" />
-			<ePixmap name="red" position="0,285" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap name="green" position="140,285" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap name="blue" position="280,285" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
-			<widget name="key_red" position="0,285" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="key_green" position="140,285" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="key_blue" position="280,285" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<screen name="ScSelection" position="center,center" size="525,400" title="Softcam Cardserver Manager">
+			<widget name="entries" position="10,10" size="505,310" enableWrapAround="1" />
+			<ePixmap name="red" position="0,350" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+			<ePixmap name="green" position="140,350" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+			<ePixmap name="blue" position="280,350" zPosition="1" size="140,40" pixmap="skin_default/buttons/blue.png" transparent="1" alphatest="on" />
+			<widget name="key_red" position="0,350" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="key_green" position="140,350" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="key_blue" position="280,350" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 			<eLabel font="Regular;18" halign="left" valign="top" position="10,135" size="500,26" text="----------------------------------------------------------------------------------------" zPosition="2" transparent="1" />
-			<eLabel font="Regular;18" halign="left" valign="top" position="5,160" size="90,26" text="ECM:" zPosition="2" transparent="1" />
-			<widget source="session.CurrentService" render="Label" position="80,160" size="490,26" transparent="1" zPosition="2" font="Regular;18" valign="top" halign="left" noWrap="1">
+			<eLabel font="Regular;18" halign="left" valign="top" position="15,160" size="90,26" text="ECM:" zPosition="2" transparent="1" />
+			<widget source="session.CurrentService" render="Label" position="100,160" size="490,56" transparent="1" zPosition="2" font="Regular;18" valign="top" halign="left" noWrap="1">
 			<convert type="CryptoInfo">VerboseInfo</convert></widget>
-			<eLabel font="Regular;18" halign="left" valign="top" position="5,185" size="90,26" text="Channel:" zPosition="2" transparent="1" />
-			<widget source="session.CurrentService" render="Label" position="80,185" size="480,26" transparent="1" zPosition="2" font="Regular;18" valign="top" halign="left">
+			<eLabel font="Regular;18" halign="left" valign="top" position="15,220" size="90,26" text="Channel:" zPosition="2" transparent="1" />
+			<widget source="session.CurrentService" render="Label" position="100,220" size="480,26" transparent="1" zPosition="2" font="Regular;18" valign="top" halign="left">
 			<convert type="ServiceName">All</convert></widget>
-			<widget source="session.CurrentService" render="Label" position="5,245" size="479,26" transparent="1" zPosition="2" font="Regular;18" valign="top" halign="left" noWrap="1" >
+			<widget source="session.CurrentService" render="Label" position="15,300" size="479,26" transparent="1" zPosition="2" font="Regular;18" valign="top" halign="left" noWrap="1" >
 			<convert type="PliExtraInfo">CryptoInfo</convert></widget>
-			<eLabel font="Regular;18" halign="left" valign="top" position="5,215" size="90,26" text="RES:" zPosition="2" transparent="1" />
-			<widget source="session.CurrentService" render="Label" zPosition="2" position="80,215" size="55,24" halign="left" valign="top" font="Regular;18" transparent="1">
+			<eLabel font="Regular;18" halign="left" valign="top" position="15,260" size="90,26" text="RES:" zPosition="2" transparent="1" />
+			<widget source="session.CurrentService" render="Label" zPosition="2" position="100,260" size="55,24" halign="left" valign="top" font="Regular;18" transparent="1">
 			<convert type="ServiceInfo">VideoWidth</convert></widget>
-			<eLabel text="x" zPosition="2" position="128,215" size="35,24" halign="left" valign="top" font="Regular;18" transparent="1" />
-			<widget source="session.CurrentService" render="Label" zPosition="2" position="150,215" size="55,24" halign="left" valign="top" font="Regular;18" transparent="1">
+			<eLabel text="x" zPosition="2" position="128,260" size="35,24" halign="left" valign="top" font="Regular;18" transparent="1" />
+			<widget source="session.CurrentService" render="Label" zPosition="2" position="150,260" size="55,24" halign="left" valign="top" font="Regular;18" transparent="1">
 			<convert type="ServiceInfo">VideoHeight</convert></widget>
+			<eLabel font="Regular;18" halign="left" valign="top" position="10,320" size="500,26" text="----------------------------------------------------------------------------------------" zPosition="2" transparent="1" />
 		</screen>"""
 		
 	def __init__(self, session):
