@@ -54,8 +54,8 @@ class ScSelection(Screen):
 			<eLabel font="Regular;18" halign="left" valign="top" position="15,260" size="90,26" text="RES:" zPosition="2" transparent="1" />
 			<widget source="session.CurrentService" render="Label" zPosition="2" position="100,260" size="55,24" halign="left" valign="top" font="Regular;18" transparent="1">
 			<convert type="ServiceInfo">VideoWidth</convert></widget>
-			<eLabel text="x" zPosition="2" position="128,260" size="35,24" halign="left" valign="top" font="Regular;18" transparent="1" />
-			<widget source="session.CurrentService" render="Label" zPosition="2" position="150,260" size="55,24" halign="left" valign="top" font="Regular;18" transparent="1">
+			<eLabel text="x" zPosition="2" position="150,260" size="35,24" halign="left" valign="top" font="Regular;18" transparent="1" />
+			<widget source="session.CurrentService" render="Label" zPosition="2" position="170,260" size="55,24" halign="left" valign="top" font="Regular;18" transparent="1">
 			<convert type="ServiceInfo">VideoHeight</convert></widget>
 			<eLabel font="Regular;18" halign="left" valign="top" position="10,320" size="500,26" text="----------------------------------------------------------------------------------------" zPosition="2" transparent="1" />
 		</screen>"""
