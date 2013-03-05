@@ -4,9 +4,10 @@ if [ -f /hdd/hdd-check ] ; then
 	echo "Full back-up to the harddisk"
 		##remove opkg lists
 		rm -rf /var/lib/opkg/lists/
+		rm -f /etc/enigma2/epg.dat
 		sync
 		/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager/backup.sh /hdd | tee /tmp/HDD-Full-Backup.log 
-	rm -f /hdd/hdd-check
+		rm -f /hdd/hdd-check
 		wait 3
 else
 	echo "---> I M A G E  C R E A T I O N  F A I L E D! <---"
