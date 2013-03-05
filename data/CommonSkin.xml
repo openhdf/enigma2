@@ -29,7 +29,7 @@
 		<panel position="bottom" size="10%,*" />
 	</screen>
 
-	<screen name="BasicTemplate">
+	<!--screen name="BasicTemplate">
 		<ePixmap pixmap="border/top2_bg.png" position="0,0" size="1280,75" />
 		<ePixmap pixmap="border/bottom_bg.png" position="0,675" size="1280,2" />
 		<widget source="Title" render="Label" foregroundColor="grey"	position="15,15" size="700, 55" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;25" valign="center" />
@@ -43,7 +43,17 @@
 		<widget source="session.CurrentService" render="Label" position="5,80" size="477,20" backgroundColor="background" transparent="1" zPosition="1" foregroundColor="secondFG" borderWidth="2" noWrap="1" font="Regular;19" borderColor="black" valign="center" halign="center">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<ePixmap pixmap="logos/vix.png" position="25,650" size="300,25" alphatest="on" />
+		<ePixmap pixmap="logos/hdf.png" position="25,650" size="300,25" alphatest="on" />
+	</screen-->
+
+	<screen name="BasicTemplate">
+		<eLabel backgroundColor="background" position="0,0" size="560,460" zPosition="-1" />
+		<widget source="title" render="Label" position="10,5" size="280,35" valign="center" font="Regular;30" halign="center" />
+		<eLabel backgroundColor="background" position="0,430" size="560,2" zPosition="1"/>
+		<widget source="global.CurrentTime" render="Label" position="500,435" size="55,22" font="Regular;18" halign="right" transparent="1" valign="center" zPosition="3">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<!--ePixmap pixmap="skin_default/logos/hdf.png" position="2,435" size="210,25" alphatest="on" /-->
 	</screen>
 
 	<screen name="BasicTemplate2">
@@ -72,9 +82,49 @@
 		<widget source="global.CurrentTime" render="Label" backgroundColor="secondBG" font="Regular;20" halign="right" position="1015,45" size="250,25" transparent="1" foregroundColor="grey" zPosition="1">
 			<convert type="ClockToText">Date</convert>
 		</widget>
-		<ePixmap pixmap="logos/vix.png" position="25,650" size="300,25" alphatest="on" />
+		<ePixmap pixmap="logos/hdf.png" position="25,650" size="300,25" alphatest="on" />
 	</screen>
 
+	<screen name="Red1Panel">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<widget name="key_red" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Green1Panel">
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<widget name="key_green" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Yellow1Panel">
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+		<widget name="key_yellow" font="Regular;20" halign="center" position="280,1" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Blue1Panel">
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+		<widget name="key_blue" font="Regular;20" halign="center" position="420,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Red2Panel">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" font="Regular;20" halign="center" position="-2,1" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Green2Panel">
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<widget source="key_green" render="Label" font="Regular;20" halign="center" position="140,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Yellow2Panel">
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+		<widget source="key_yellow" render="Label" font="Regular;20" halign="center" position="280,1" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+
+	<screen name="Blue2Panel">
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+		<widget source="key_blue" render="Label" font="Regular;20" halign="center" position="420,0" size="140,40" transparent="1" valign="center" zPosition="10" />
+	</screen>
+	
 	<screen name="RedBPanel">
 		<ePixmap pixmap="buttons/big-red.png" position="15,682" size="284,40 " zPosition="0" alphatest="blend" />
 	</screen>
@@ -133,26 +183,6 @@
 
 	<screen name="TextBPanel">
 		<ePixmap pixmap="buttons/key_text.png" alphatest="on" position="1250,687" size="35,25" />
-	</screen>
-
-	<screen name="Red1Panel">
-		<ePixmap pixmap="buttons/big-red.png" position="15,682" size="284,40" zPosition="0" alphatest="blend" />
-		<widget name="key_red" position="15,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="Green1Panel">
-		<ePixmap pixmap="buttons/big-green.png" position="305,682" size="284,40 " zPosition="0" alphatest="blend" />
-		<widget name="key_green" position="305,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="Yellow1Panel">
-		<ePixmap pixmap="buttons/big-yellow.png" position="595,682" size="284,40 " zPosition="0" alphatest="blend" />
-		<widget name="key_yellow" position="595,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
-	</screen>
-
-	<screen name="Blue1Panel">
-		<ePixmap pixmap="buttons/big-blue.png" position="890,682" size="284,40 " zPosition="0" alphatest="blend" />
-		<widget name="key_blue" position="890,688" size="284,26" foregroundColor="grey" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;22" halign="center" />
 	</screen>
 
 	<screen name="Red2Panel">
