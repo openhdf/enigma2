@@ -75,6 +75,7 @@ class GetEcmInfo:
 		return str(info.get(member, ifempty))
 
 	def getText(self):
+		global ecm
 		# info is dictionary
 		using = info.get('using', '')
 		protocol = info.get('protocol', '')

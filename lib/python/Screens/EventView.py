@@ -12,6 +12,7 @@ from Components.UsageConfig import preferredTimerPath
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
 from enigma import eEPGCache, eTimer, eServiceReference
+from Components.Pixmap import Pixmap
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
@@ -51,19 +52,20 @@ class EventViewContextMenu(Screen):
 		plugin(session=self.session, service=self.service, event=self.event, eventName=self.eventname)
 
 class EventViewBase:
-	ADD_TIMER = 0
-	REMOVE_TIMER = 1
-	
-	def __init__(self, event, Ref, callback=None, similarEPGCB=None):
+	ADD_TIMER = 1
+	REMOVE_TIMER = 2
+
+	def __init__(self, event, ref, callback=None, similarEPGCB=None):
 		self.similarEPGCB = similarEPGCB
 		self.cbFunc = callback
-		self.currentService=Ref
-		self.isRecording = (not Ref.ref.flags & eServiceReference.isGroup) and Ref.ref.getPath()
+		self.currentService = ref
+		self.isRecording = (not ref.ref.flags & eServiceReference.isGroup) and ref.ref.getPath()
 		self.event = event
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
 		self["epg_description"] = ScrollLabel()
 		self["FullDescription"] = ScrollLabel()
+		self["summary_description"] = StaticText()
 		self["datetime"] = Label()
 		self["channel"] = Label()
 		self["duration"] = Label()
@@ -173,28 +175,41 @@ class EventViewBase:
 			return 1
 
 	def setEvent(self, event):
-		self.event = event
-		self["Event"].newEvent(event)
-		if event is None:
+		if event is None or not hasattr(event, 'getEventName'):
 			return
+
+		self["Event"].newEvent(event)
+		self.event = event
 		text = event.getEventName()
+		self.setTitle(text)
+
 		short = event.getShortDescription()
-		ext = event.getExtendedDescription()
+		extended = event.getExtendedDescription()
+
 		if short == text:
 			short = ""
-		if short and ext:
-			ext = short + "\n\n" + ext
+
+		if short and extended:
+			extended = short + '\n' + extended
 		elif short:
-			ext = short
+			extended = short
 
-		if text and ext:
+		if text and extended:
 			text += "\n\n"
-		text += ext
-
-		self.setTitle(event.getEventName())
+		text += extended
 		self["epg_description"].setText(text)
-		self["FullDescription"].setText(ext)
-		self["datetime"].setText(event.getBeginTimeString())
+		self["FullDescription"].setText(extended)
+
+		self["summary_description"].setText(extended)
+
+		begintime = event.getBeginTimeString().split(', ')[1].split(':')
+		begindate = event.getBeginTimeString().split(', ')[0].split('.')
+		nowt = time()
+		now = localtime(nowt)
+		test = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst)))
+		endtime = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))) + event.getDuration()
+		endtime = localtime(endtime)
+		self["datetime"].setText(event.getBeginTimeString() + ' - ' + strftime(_("%-H:%M"), endtime))
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
 		self["key_red"].setText("")
 		if self.SimilarBroadcastTimer is not None:
@@ -256,19 +271,26 @@ class EventViewBase:
 			self.session.open(EventViewContextMenu, self.currentService, self.event)
 
 class EventViewSimple(Screen, EventViewBase):
-	def __init__(self, session, Event, Ref, callback=None, similarEPGCB=None):
+	def __init__(self, session, event, ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skin='EventViewSimple'):
 		Screen.__init__(self, session)
-		self.skinName = "EventView"
-		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
+		self.skinName = [skin,"EventView"]
+		EventViewBase.__init__(self, event, ref, callback, similarEPGCB)
+		self.key_green_choice = None
 
 class EventViewEPGSelect(Screen, EventViewBase):
-	def __init__(self, session, Event, Ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None):
+	def __init__(self, session, event, ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None):
 		Screen.__init__(self, session)
 		self.skinName = "EventView"
-		EventViewBase.__init__(self, Event, Ref, callback, similarEPGCB)
-		self["key_yellow"].setText(_("Single EPG"))
-		self["key_blue"].setText(_("Multi EPG"))
-		self["epgactions"] = ActionMap(["EventViewEPGActions"],
+		EventViewBase.__init__(self, event, ref, callback, similarEPGCB)
+		self.key_green_choice = self.ADD_TIMER
+
+		# Background for Buttons
+		self["red"] = Pixmap()
+		self["green"] = Pixmap()
+		self["yellow"] = Pixmap()
+		self["blue"] = Pixmap()
+
+		self["epgactions1"] = ActionMap(["OkCancelActions", "EventViewActions"],
 			{
 				"openSingleServiceEPG": singleEPGCB,
 				"openMultiServiceEPG": multiEPGCB,
