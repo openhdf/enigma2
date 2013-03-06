@@ -2,14 +2,14 @@ from enigma import getBoxType
 import os
 
 class RcModel:
-	RCTYPE_DMM1 = 0
-	RCTYPE_DMM2 = 1
-	RCTYPE_DMM = 2
-	RCTYPE_ET4000 = 3	
-	RCTYPE_ET6X00 = 4	
-	RCTYPE_ET9X00 = 5
-	RCTYPE_ET6X00 = 6
-	RCTYPE_ET6500 = 7	
+	RCTYPE_DMM = 0
+	RCTYPE_DMM1 = 1
+	RCTYPE_DMM2 = 2
+	RCTYPE_EBOX5000 = 3	
+	RCTYPE_ET4000 = 4
+	RCTYPE_ET6X00 = 5
+	RCTYPE_ET6500 = 6
+	RCTYPE_ET9X00 = 7	
 	RCTYPE_ET9500 = 8
 	RCTYPE_GB = 9
 	RCTYPE_INI1000 = 10
@@ -18,12 +18,13 @@ class RcModel:
 	RCTYPE_INI5000R = 13
 	RCTYPE_INI7000 = 14
 	RCTYPE_IXUSSONE = 15
-	RCTYPE_ODINM7 = 16
-	RCTYPE_ODINM9 = 17	
-	RCTYPE_TM = 18
-	RCTYPE_VU = 19	
-	RCTYPE_VU2 = 20
-	RCTYPE_XP1000 = 21
+	RCTYPE_IXUSSZERO = 16
+	RCTYPE_ODINM7 = 17
+	RCTYPE_ODINM9 = 18	
+	RCTYPE_TM = 19
+	RCTYPE_VU = 20	
+	RCTYPE_VU2 = 21
+	RCTYPE_XP1000 = 22
 
 
 	def __init__(self):
@@ -80,6 +81,8 @@ class RcModel:
 					self.currentRcType = self.RCTYPE_ET4000
 				elif rc == '14':
 					self.currentRcType = self.RCTYPE_XP1000
+			elif model == 'ebox5000':
+				self.currentRcType = self.RCTYPE_EBOX5000					
 			elif model == 'gigablue':
 				self.currentRcType = self.RCTYPE_GB
 			elif model == 'ini-1000':
@@ -97,7 +100,10 @@ class RcModel:
 			elif model == 'odinm7':
 				self.currentRcType = self.RCTYPE_ODINM7
 			elif model.startswith('Ixuss'):
-				self.currentRcType = self.RCTYPE_IXUSSONE
+				if getBoxType() == 'ixussone':
+					self.currentRcType = self.RCTYPE_IXUSSONE
+				elif getBoxType() == 'ixusszero':
+					self.currentRcType = self.RCTYPE_IXUSSZERO
 		elif os.path.exists('/proc/stb/info/vumodel'):
 			model = self.readFile('/proc/stb/info/vumodel')
 			if model == 'ultimo':
@@ -113,6 +119,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/dmm1/'
 		elif self.currentRcType == self.RCTYPE_DMM2:
 			return '/usr/share/enigma2/rc_models/dmm2/'
+		elif self.currentRcType == self.RCTYPE_EBOX5000:
+			return '/usr/share/enigma2/rc_models/ebox5000/'			
 		elif self.currentRcType == self.RCTYPE_ET4000:
 			return '/usr/share/enigma2/rc_models/et4000/'
 		elif self.currentRcType == self.RCTYPE_ET6X00:
@@ -140,7 +148,9 @@ class RcModel:
 		elif self.currentRcType == self.RCTYPE_ODINM7:
 			return '/usr/share/enigma2/rc_models/odinm7/'
 		elif self.currentRcType == self.RCTYPE_IXUSSONE:
-			return '/usr/share/enigma2/rc_models/ixussone/'			
+			return '/usr/share/enigma2/rc_models/ixussone/'
+		elif self.currentRcType == self.RCTYPE_IXUSSZERO:
+			return '/usr/share/enigma2/rc_models/ixusszero/'
 		elif self.currentRcType == self.RCTYPE_TM:
 			return '/usr/share/enigma2/rc_models/tm/'
 		elif self.currentRcType == self.RCTYPE_VU:
