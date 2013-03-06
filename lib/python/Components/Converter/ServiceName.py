@@ -8,6 +8,7 @@ class ServiceName(Converter, object):
 	PROVIDER = 1
 	REFERENCE = 2
 	SID = 3
+	EDITREFERENCE = 4
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -17,6 +18,8 @@ class ServiceName(Converter, object):
 			self.type = self.REFERENCE
 		elif type == "Sid":
 			self.type = self.SID
+		elif type == "EditReference":
+			self.type = self.EDITREFERENCE
 		else:
 			self.type = self.NAME
 
@@ -40,6 +43,8 @@ class ServiceName(Converter, object):
 			return info.getInfoString(iServiceInformation.sProvider)
 		elif self.type == self.REFERENCE:
 			if ref is None:
+		elif self.type == self.REFERENCE or self.type == self.EDITREFERENCE and hasattr(self.source, "editmode") and self.source.editmode:
+			if not ref:
 				return info.getInfoString(iServiceInformation.sServiceref)
 			else:
 				return ref.toString()

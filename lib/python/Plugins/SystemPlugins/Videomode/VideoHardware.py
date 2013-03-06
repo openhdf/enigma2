@@ -98,6 +98,12 @@ class VideoHardware:
 		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i"])
 
+	if getBoxType().startswith('vu'):
+		if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1:
+			modes["Scart-YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
+		else:
+			modes["Scart-YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
+
 	def getOutputAspect(self):
 		ret = (16,9)
 		port = config.av.videoport.getValue()
@@ -137,9 +143,9 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7':
+		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or getBoxType() == 'ini-3000' or getBoxType() == 'vusolo' or getBoxType() == 'vusolo2':
 			del self.modes["YPbPr"]
-		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixuss-one':
+		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'et6000':
 			del self.modes["Scart"]
 
 		self.createConfig()
@@ -375,23 +381,9 @@ class VideoHardware:
 				aspect = "16:9"
 			else:
 				aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.getValue()]
-			policy_choices = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit"}
-			if path.exists("/proc/stb/video/policy_choices"):
-				f = open("/proc/stb/video/policy_choices")
-				if "auto" in f.readline():
-					policy_choices.update({"auto": "auto"})
-				else:
-					policy_choices.update({"auto": "bestfit"})
-				f.close()
+			policy_choices = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit", "auto": "bestfit"}
 			policy = policy_choices[config.av.policy_43.getValue()]
-			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}
-			if path.exists("/proc/stb/video/policy2_choices"):
-				f = open("/proc/stb/video/policy2_choices")
-				if "auto" in f.readline():
-					policy2_choices.update({"auto": "auto"})
-				else:
-					policy2_choices.update({"auto": "bestfit"})
-				f.close()
+			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}
 			policy2 = policy2_choices[config.av.policy_169.getValue()]
 		elif is_auto:
 			aspect = "any"
