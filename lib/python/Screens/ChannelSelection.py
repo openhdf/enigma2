@@ -233,7 +233,8 @@ class ChannelContextMenu(Screen):
 		self.close(False)
 
 	def showServiceInformations(self):
-		self.session.open( ServiceInfo, self.csel.getCurrentSelection() )
+		#self.session.open( ServiceInfo, self.csel.getCurrentSelection() )
+		self.session.openWithCallback(self.close, ServiceInfo)
 
 	def setStartupService(self):
 		config.servicelist.startupservice.value = self.csel.getCurrentSelection().toString()
