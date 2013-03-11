@@ -6,6 +6,7 @@ from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWak
 from time import time
 import RecordTimer
 import PowerTimer
+import SleepTimer
 import Screens.Standby
 import NavigationInstance
 import ServiceReference
@@ -15,6 +16,8 @@ from os import path
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
 	def __init__(self, nextRecordTimerAfterEventActionAuto=False, nextPowerManagerAfterEventActionAuto=False):
+		print 'nextRecordTimerAfterEventActionAuto',nextRecordTimerAfterEventActionAuto
+		print 'nextPowerManagerAfterEventActionAuto',nextPowerManagerAfterEventActionAuto
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance
 
@@ -54,6 +57,7 @@ class Navigation:
 				self.standbytimer = eTimer()
 				self.standbytimer.callback.append(self.gotostandby)
 				self.standbytimer.start(15000, True)
+		self.SleepTimer = SleepTimer.SleepTimer()
 
 	def gotostandby(self):
 		print 'TIMER: now entering standby'
