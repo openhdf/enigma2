@@ -1,6 +1,6 @@
 import os
 from Renderer import Renderer
-from enigma import ePixmap
+from enigma import ePixmap, getBoxType
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
@@ -15,7 +15,9 @@ def initPiconPaths():
 	for mp in ('/usr/share/enigma2/', '/'):
 		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
+		mp = path = os.path.join(part.mountpoint, 'usr/share/enigma2')
 		onMountpointAdded(part.mountpoint)
+		onMountpointAdded(mp)
 
 def onMountpointAdded(mountpoint):
 	global searchPaths
@@ -127,7 +129,7 @@ class Picon(Renderer):
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
-			if what[0] != self.CHANGED_CLEAR:
+			if what[0] != self.CHANGED_CLEAR and len(what) > 1:
 				pngname = getPiconName(self.source.text)
 			if not pngname: # no picon for service found
 				pngname = self.defaultpngname
@@ -135,7 +137,8 @@ class Picon(Renderer):
 				pngname = self.nopicon
 			if self.pngname != pngname:
 				if pngname:
-					self.instance.setScale(1)
+					if not getBoxType().startswith("venton"):
+						self.instance.setScale(1)
 					self.instance.setPixmapFromFile(pngname)
 					self.instance.show()
 				else:
