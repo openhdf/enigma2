@@ -129,7 +129,7 @@ class About(Screen):
 			AboutText += _("Model:\t%s") % model + "\n"
 
 		if path.exists('/proc/stb/info/chipset'):
-			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString().lower().replace('\n','').replace('bcm','') + "\n"
+			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString().lower().replace('\n','').replace('bcm','').replace('brcm','') + "\n"
 
 		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"

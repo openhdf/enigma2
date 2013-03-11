@@ -1294,9 +1294,8 @@ class InfoBarEPG:
 					self.servicelist.enterPath(self.servicelist.bouquet_root)
 				self.servicelist.enterPath(self.epg_bouquet)
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
-			self.servicelist.zap(enable_pipzap = True)
 		if not zapback or preview:
-			self.servicelist.zap(enable_pipzap = True)
+			self.servicelist.zap(preview_zap = preview)
 		if (self.servicelist.dopipzap or zapback) and not preview:
 			self.servicelist.zapBack()
 		if not preview:
@@ -1391,20 +1390,22 @@ class InfoBarEPG:
 				self.openBouquetEPG(root, withCallback)
 
 	def openMultiServiceEPG(self):
-		self.EPGtype = "multi"
-		self.StartBouquet = self.servicelist.getRoot()
-		if isMoviePlayerInfoBar(self):
-			self.StartRef = self.lastservice
-		else:
-			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		self.MultiServiceEPG()
+		if self.servicelist:
+			self.EPGtype = "multi"
+			self.StartBouquet = self.servicelist.getRoot()
+			if isMoviePlayerInfoBar(self):
+				self.StartRef = self.lastservice
+			else:
+				self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.MultiServiceEPG()
 
 	def openGraphEPG(self, reopen=False):
 		self.EPGtype = "graph"
-		if not reopen:
-			self.StartBouquet = self.servicelist.getRoot()
-			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		self.MultiServiceEPG()
+		if self.servicelist:
+			if not reopen:
+				self.StartBouquet = self.servicelist.getRoot()
+				self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.MultiServiceEPG()
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
@@ -1439,22 +1440,24 @@ class InfoBarEPG:
 		self.reopen(ret)
 
 	def openSingleServiceEPG(self, reopen=False):
-		self.EPGtype = "enhanced"
-		self.SingleServiceEPG()
+		if self.servicelist:
+			self.EPGtype = "enhanced"
+			self.SingleServiceEPG()
 
 	def openInfoBarEPG(self, reopen=False):
 		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
-		if not reopen:
-			self.StartBouquet = self.servicelist.getRoot()
-			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if config.epgselection.infobar_type_mode.getValue() == 'single':
-			self.EPGtype = "infobar"
-			self.SingleServiceEPG()
-		else:
-			self.EPGtype = "infobargraph"
-			self.MultiServiceEPG()
+		if self.servicelist:
+			if not reopen:
+				self.StartBouquet = self.servicelist.getRoot()
+				self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if config.epgselection.infobar_type_mode.getValue() == 'single':
+				self.EPGtype = "infobar"
+				self.SingleServiceEPG()
+			else:
+				self.EPGtype = "infobargraph"
+				self.MultiServiceEPG()
 
 	def openGraphEPG(self, withCallback=True):
 		self.EPGtype = "graph"
@@ -2611,7 +2614,10 @@ class InfoBarTimeshift:
 	def createTimeshiftFolder(self):
 		timeshiftdir = Directories.resolveFilename(Directories.SCOPE_TIMESHIFT)
 		if not Directories.pathExists(timeshiftdir):
-			os.makedirs(timeshiftdir)
+			try:
+				os.makedirs(timeshiftdir)
+			except:
+				print "[TimeShift] Failed to create %s !!" %timeshiftdir
 
 	def startTimeshift(self):
 		self.createTimeshiftFolder()
