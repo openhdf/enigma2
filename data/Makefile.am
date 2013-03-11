@@ -31,6 +31,10 @@ if HAVE_DISPLAYDM
 dist_pkgdata_DATA += skin_display.xml
 endif
 
+if HAVE_COLORLCD128
+SUBDIRS += display128
+endif
+
 if HAVE_COLORLCD220
 SUBDIRS += display220
 endif
