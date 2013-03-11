@@ -279,7 +279,7 @@ data/display255/Makefile
 data/rc_models/dmm0/Makefile
 data/rc_models/dmm1/Makefile
 data/rc_models/dmm2/Makefile
-data/rc_models/et4000/Makefile
+data/rc_models/et4x00/Makefile
 data/rc_models/et6500/Makefile
 data/rc_models/et6x00/Makefile
 data/rc_models/et9500/Makefile
