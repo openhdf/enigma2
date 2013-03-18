@@ -18,4 +18,4 @@ install_PYTHON = \
 	Ipkg.py RdsDisplay.py Globals.py \
 	SessionGlobals.py LocationBox.py WizardLanguage.py TaskView.py Rc.py VirtualKeyBoard.py \
 	TextBox.py FactoryReset.py UnhandledKey.py ServiceStopScreen.py \
-	InputDeviceSetup.py DVD.py SoftwareUpdate.py AutoDiseqc.py InstallWizard.py VfdSkinSelector.py
+	InputDeviceSetup.py DVD.py SoftwareUpdate.py AutoDiseqc.py InstallWizard.py VfdSkinSelector.py SleepTimerEdit.py
