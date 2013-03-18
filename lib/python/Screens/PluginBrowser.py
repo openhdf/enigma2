@@ -1,6 +1,7 @@
 from Screen import Screen
 from Components.Language import language
-from enigma import eConsoleAppContainer, eDVBDB
+from enigma import eConsoleAppContainer, eDVBDB, getImageVersionString
+
 
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins

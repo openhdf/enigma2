@@ -4,7 +4,13 @@ from os import path
 import sys, enigma
 
 def getVersionString():
-	return engima.getImageVersionString()
+	return enigma.getImageVersionString()
+
+def getImageVersionString():
+	return enigma.getImageVersionString()
+
+def getEnigmaVersionString():
+	return enigma.getEnigmaVersionString()
 
 def getKernelVersionString():
 	try:
@@ -15,8 +21,47 @@ def getKernelVersionString():
 	except:
 		return _("unknown")
 
+def getBuildVersionString():
+	try:
+		version = 'n/a'
+		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split('=')
+			if splitted[0] == "build":
+				version = splitted[1].replace('\n','')
+		file.close()
+		return version
+	except IOError:
+		return "unavailable"
+
+def getLastUpdateString():
+	try:
+		lastupdated = 'n/a'
+		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split('=')
+			if splitted[0] == "date":
+				#YYYY MM DD hh mm
+				#2005 11 29 01 16
+				string = splitted[1].replace('\n','')
+				year = string[0:4]
+				month = string[4:6]
+				day = string[6:8]
+				date = '-'.join((year, month, day))
+				hour = string[8:10]
+				minute = string[10:12]
+				time = ':'.join((hour, minute))
+				lastupdated = ' '.join((date, time))
+		file.close()
+		return lastupdated
+	except IOError:
+		return "unavailable"
+
 def getDriversString():
 	try:
+		date = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		for x in lines:
@@ -36,6 +81,7 @@ def getDriversString():
 
 def getImageTypeString():
 	try:
+		image_type = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		for x in lines:
@@ -53,6 +99,7 @@ def getImageTypeString():
 
 def getImageDistroString():
 	try:
+		distro = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		file.close()

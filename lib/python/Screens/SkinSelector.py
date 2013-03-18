@@ -124,7 +124,9 @@ class SkinSelectorBase:
 
 class SkinSelector(Screen, SkinSelectorBase):
 	SKINXML = "skin.xml"
-	DEFAULTSKIN = "Default Skin"
+	DEFAULTSKIN = "Default Skin" 
+	PICONSKINXML = None
+	PICONDEFAULTSKIN = None
 
 	skinlist = []
 	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2")
