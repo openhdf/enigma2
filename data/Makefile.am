@@ -1,17 +1,13 @@
-SUBDIRS = fonts extensions keymaps skin_default rc_models
+SUBDIRS = fonts extensions keymaps rc_models
 
 dist_pkgdata_DATA = \
 	encoding.conf \
 	keymap.xml \
 	menu.xml \
-	prev.png \
 	black.mvi \
 	rcpositions.xml \
 	setup.xml \
-	CommonSkin.xml \
-	skin_default.xml \
 	skin_subtitles.xml \
-	skin.xml \
 	startwizard.xml \
 	userinterfacepositionerwizard.xml \
 	freesat.t1 \
@@ -33,6 +29,10 @@ endif
 
 if HAVE_DISPLAYDM
 dist_pkgdata_DATA += skin_display.xml
+endif
+
+if HAVE_COLORLCD128
+SUBDIRS += display128
 endif
 
 if HAVE_COLORLCD220

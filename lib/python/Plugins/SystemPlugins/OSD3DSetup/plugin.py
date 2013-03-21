@@ -80,14 +80,12 @@ confirmed3D = False
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	#class for configure 3D default settings
 	skin = """
-	<screen position="c-250,c-160" size="500,320" title="OSD 3D setup">
-		<widget name="config" position="c-225,c-145" size="450,165" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="c+35,e-45" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="c-175,e-45" zPosition="0" size="140,40" alphatest="on" />
-		<widget name="ok" position="c+35,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
-		<widget name="cancel" position="c-175,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
-		<ePixmap pixmap="skin_default/div-h.png" position="c-225,e-115" zPosition="1" size="450,2" />
-		<widget source="help" render="Label" position="c-225,e-110" size="450,100" font="Crs;19" />
+	<screen position="c-200,c-100" size="400,200" title="OSD 3D setup">
+		<widget name="config" position="c-175,c-75" size="350,150" />
+		<ePixmap pixmap="buttons/green.png" position="c-145,e-45" zPosition="0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="buttons/red.png" position="c+5,e-45" zPosition="0" size="140,40" alphatest="on" />
+		<widget name="ok" position="c-145,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="green" />
+		<widget name="cancel" position="c+5,e-45" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;20" transparent="1" backgroundColor="red" />
 	</screen>"""
 
 	def __init__(self, session):

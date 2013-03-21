@@ -1,6 +1,7 @@
 from Screen import Screen
 from Components.Language import language
-from enigma import eConsoleAppContainer, eDVBDB
+from enigma import eConsoleAppContainer, eDVBDB, getImageVersionString
+
 
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
@@ -306,8 +307,8 @@ class PluginDownloadBrowser(Screen):
 						self.postInstallCall = Picon.initPiconPaths
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list=candidates)
 					return
-				elif self["list"].l.getCurrentSelection()[0].name.startswith("lcdpicons-"):
-					supported_filesystems = frozenset(('vfat','ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
+				elif self["list"].l.getCurrentSelection()[0].name.startswith("display-picon"):
+					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
 					candidates = []
 					import Components.Harddisk
 					mounts = Components.Harddisk.getProcMounts()
