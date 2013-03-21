@@ -10,7 +10,7 @@ from Components.config import config, ConfigBoolean, configfile
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.HardwareInfo import HardwareInfo
 
-config.misc.showtestcard = ConfigBoolean(default = False)
+config.misc.showtestcard = ConfigBoolean(default = True)
 
 try:
 	file = open("/proc/stb/info/chipset", "r")
