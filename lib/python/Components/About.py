@@ -1,28 +1,16 @@
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
 from Tools.HardwareInfo import HardwareInfo
 from os import path
-import sys
+import sys, enigma
 
 def getVersionString():
-	return getImageVersionString()
+	return enigma.getImageVersionString()
 
 def getImageVersionString():
-	try:
-		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split('=')
-			if splitted[0] == "version":
-				version = splitted[1].replace('\n','')
-		file.close()
-		return version
-	except IOError:
-		return "unavailable"
+	return enigma.getImageVersionString()
 
 def getEnigmaVersionString():
-	import enigma
-	enigma_version = enigma.getEnigmaVersionString()
-	return enigma_version
+	return enigma.getEnigmaVersionString()
 
 def getKernelVersionString():
 	try:
@@ -35,6 +23,7 @@ def getKernelVersionString():
 
 def getBuildVersionString():
 	try:
+		version = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		for x in lines:
@@ -48,6 +37,7 @@ def getBuildVersionString():
 
 def getLastUpdateString():
 	try:
+		lastupdated = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		for x in lines:
@@ -71,6 +61,7 @@ def getLastUpdateString():
 
 def getDriversString():
 	try:
+		date = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		for x in lines:
@@ -90,6 +81,7 @@ def getDriversString():
 
 def getImageTypeString():
 	try:
+		image_type = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		for x in lines:
@@ -107,6 +99,7 @@ def getImageTypeString():
 
 def getImageDistroString():
 	try:
+		distro = 'n/a'
 		file = open(resolveFilename(SCOPE_SYSETC, 'image-version'), 'r')
 		lines = file.readlines()
 		file.close()
@@ -160,6 +153,39 @@ def getChipSetString():
 		chipset = f.read()
 		f.close()
 		return chipset
+	except IOError:
+		return "unavailable"
+
+def getCPUString():
+	try:
+		file = open('/proc/cpuinfo', 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split(': ')
+			if len(splitted) > 1:
+				splitted[1] = splitted[1].replace('\n','')
+				if splitted[0].startswith("system type"):
+					system = splitted[1].split(' ')[0]
+		file.close()
+		return system 
+	except IOError:
+		return "unavailable"
+
+def getCpuCoresString():
+	try:
+		file = open('/proc/cpuinfo', 'r')
+		lines = file.readlines()
+		for x in lines:
+			splitted = x.split(': ')
+			if len(splitted) > 1:
+				splitted[1] = splitted[1].replace('\n','')
+				if splitted[0].startswith("processor"):
+					if int(splitted[1]) > 0:
+						cores = 2
+					else:
+						cores = 1
+		file.close()
+		return cores
 	except IOError:
 		return "unavailable"
 
