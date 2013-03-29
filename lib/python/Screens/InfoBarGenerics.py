@@ -1313,11 +1313,36 @@ class InfoBarEPG:
 				services.append(ServiceReference(service))
 		return services
 
-	def openBouquetEPG(self, bouquet = None, bouquets = None):
-		if bouquet:
-			self.StartBouquet = bouquet
-		self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, zapFunc=self.zapToService, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef, bouquets = bouquets))
+	def openBouquetEPG(self, bouquet, withCallback=True):
+		services = self.getBouquetServices(bouquet)
+		if services:
+			self.epg_bouquet = bouquet
+			if withCallback:
+				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, zapFunc=self.zapToService, bouquetChangeCB=self.changeBouquetCB, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef, bouquetname=ServiceReference(self.epg_bouquet).getServiceName()))
+			else:
+				self.session.open(EPGSelection, services, zapFunc=self.zapToService, bouquetChangeCB=self.changeBouquetCB, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef, bouquetname=ServiceReference(self.epg_bouquet).getServiceName())
 
+	def changeBouquetCB(self, direction, epgcall):
+		if self.bouquetSel:
+			if direction > 0:
+				self.bouquetSel.down()
+			else:
+				self.bouquetSel.up()
+			bouquet = self.bouquetSel.getCurrent()
+			services = self.getBouquetServices(bouquet)
+			if len(services):
+				self.epg_bouquet = bouquet
+				epgcall.setServices(services)
+				epgcall.setTitle(ServiceReference(bouquet).getServiceName())
+
+	def onBouquetSelectorClose(self, bouquet):
+		if bouquet:
+			services = self.getBouquetServices(bouquet)
+			if len(services):
+				self.epg_bouquet = bouquet
+				self.epg.setServices(services)
+				self.epg.setTitle(ServiceReference(self.epg_bouquet).getServiceName())
+				
 	def closed(self, ret=False):
 		if not self.dlg_stack:
 			return
@@ -1332,20 +1357,35 @@ class InfoBarEPG:
 				self.dlg_stack[dlgs-1].close(dlgs > 1)
 		self.reopen(ret)
 
-	def MultiServiceEPG(self):
-		bouquets = self.servicelist.getBouquetList()
-		if bouquets is None:
+	def MultiServiceEPG(self, withCallback=True):
+		self.bouquets = self.servicelist.getBouquetList()
+		if self.bouquets is None:
 			cnt = 0
 		else:
-			cnt = len(bouquets)
+			cnt = len(self.bouquets)
 		if (self.EPGtype == "multi" and config.epgselection.multi_showbouquet.getValue()) or (self.EPGtype == "graph" and config.epgselection.graph_showbouquet.getValue()):
 			if cnt > 1: # show bouquet list
-				self.bouquetSel = self.session.openWithCallback(self.closed, EpgBouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
+				if withCallback:
+					self.bouquetSel = self.session.openWithCallback(self.closed, BouquetSelector, self.bouquets, self.openBouquetEPG, enableWrapAround=True)
+				else:
+					self.bouquetSel = self.session.open(BouquetSelector, self.bouquets, self.openBouquetEPG, enableWrapAround=True)
 				self.dlg_stack.append(self.bouquetSel)
 			elif cnt == 1:
-				self.openBouquetEPG(bouquets=bouquets)
+				self.openBouquetEPG(self.bouquets[0][1], withCallback)
 		else:
-			self.openBouquetEPG(bouquets=bouquets)
+			root = self.servicelist.getRoot()
+			if cnt > 1:
+				current = 0
+				rootstr = root.toCompareString()
+				for bouquet in self.bouquets:
+					if bouquet[1].toCompareString() == rootstr:
+						break
+					current += 1
+				if current >= cnt:
+					current = 0
+				self.bouquetSel = SilentBouquetSelector(self.bouquets, True, current)
+			if cnt >= 1:
+				self.openBouquetEPG(root, withCallback)
 
 	def openMultiServiceEPG(self):
 		if self.servicelist is None:
