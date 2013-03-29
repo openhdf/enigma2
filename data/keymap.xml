@@ -551,6 +551,8 @@
 		<key id="KEY_INFO" mapto="infolong" flags="l"/>
 		<key id="KEY_EPG" mapto="epg" flags="b"/>
 		<key id="KEY_TV" mapto="tv" flags="b"/>
+		<key id="KEY_EPG" mapto="prevBouquet" flags="l" />
+		<key id="KEY_0" mapto="prevBouquet" flags="b" />
 	</map>
 
 	<map context="EventViewActions">
