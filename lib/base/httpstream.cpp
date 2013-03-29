@@ -3,7 +3,6 @@
 
 #include <lib/base/httpstream.h>
 #include <lib/base/eerror.h>
-#include <lib/base/wrappers.h>
 
 DEFINE_REF(eHttpStream);
 
@@ -82,7 +81,7 @@ int eHttpStream::openUrl(const std::string &url, std::string &newurl)
 	{
 		port = 80;
 	}
-	streamSocket = Connect(hostname.c_str(), port, 10);
+	streamSocket = connect(hostname.c_str(), port, 10);
 	if (streamSocket < 0) goto error;
 
 	request = "GET ";

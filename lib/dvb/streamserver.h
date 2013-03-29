@@ -4,11 +4,12 @@
 #include <vector>
 
 #include <lib/network/serversocket.h>
+#include <lib/base/socketbase.h>
 #include <lib/service/servicedvbstream.h>
 
 class eStreamServer;
 
-class eStreamClient: public eDVBServiceStream
+class eStreamClient: public eSocketBase, public eDVBServiceStream
 {
 protected:
 	eStreamServer *parent;

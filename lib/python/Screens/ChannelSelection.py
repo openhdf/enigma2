@@ -14,7 +14,7 @@ from Components.UsageConfig import preferredTimerPath
 from Screens.TimerEdit import TimerSanityConflict
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
-from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv
+from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv
 from Components.config import config, configfile, ConfigSubsection, ConfigText
 from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
@@ -31,7 +31,6 @@ from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from RecordTimer import RecordTimerEntry
 from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from Screens.InputBox import InputBox, PinInput
-from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.ServiceInfo import ServiceInfo
 profile("ChannelSelection.py 4")
@@ -427,17 +426,8 @@ class SelectionEventInfo:
 		service.newService(cur)
 		self["Event"].newEvent(service.event)
 
-def parseCurentEvent(list):
+def parseEvent(list):
 	list = list[0]
-	begin = list[2] - (config.recording.margin_before.getValue() * 60)
-	end = list[2] + list[3] + (config.recording.margin_after.getValue() * 60)
-	name = list[1]
-	description = list[5]
-	eit = list[0]
-	return (begin, end, name, description, eit)
-
-def parseNextEvent(list):
-	list = list[1]
 	begin = list[2] - (config.recording.margin_before.getValue() * 60)
 	end = list[2] + list[3] + (config.recording.margin_after.getValue() * 60)
 	name = list[1]
@@ -447,25 +437,17 @@ def parseNextEvent(list):
 
 class ChannelSelectionEPG:
 	def __init__(self):
-		self.ChoiceBoxDialog = None
-
 		self["ChannelSelectEPGActions"] = ActionMap(["ChannelSelectEPGActions"],
 			{
 				"showEPGList": self.showEPGList,
 			})
 		self["recordingactions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
-				"ShortRecord": (self.RecordTimerQuestion, _("Add a record timer")),
-				'LongRecord': (self.doZapTimer, _('Add a zap timer for next event'))
+				"ShortRecord":		(self.doRecordTimer, _("Add a record timer for current event")),
 			},-1)
-		self['dialogactions'] = ActionMap(['WizardActions'],
-			{
-				'back': self.closeChoiceBoxDialog,
-			})
-		self['dialogactions'].execEnd()
-		
 
-	def RecordTimerQuestion(self):
+	def doRecordTimer(self):
+		zap = False
 		serviceref = ServiceReference(self.getCurrentSelection())
 		refstr = serviceref.ref.toString()
 		self.epgcache = eEPGCache.getInstance()
@@ -474,90 +456,19 @@ class ChannelSelectionEPG:
 		if self.list is None:
 			return
 		eventid = self.list[0]
-		eventname = str(self.list[0][1])
 		if eventid is None:
 			return
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret: self.removeTimer(timer)
-				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB, self.ChoiceBoxNull)]
-				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_('Do you really want to remove the timer for %s?') % eventname, list=menu)
-				self.showChoiceBoxDialog()
+				cb_func = lambda ret : not ret or self.removeTimer(timer)
+				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % self.list[1])
 				break
 		else:
-			indx = int(self.servicelist.getCurrentIndex())
-			selx = self.servicelist.instance.size().width()
-			while indx+1 > config.usage.serviceitems_per_page.getValue():
-				indx = indx - config.usage.serviceitems_per_page.getValue()
-			pos = self.servicelist.instance.position().y()
-			sely = int(pos)+(int(self.servicelist.ItemHeight)*int(indx))
-			temp = int(self.servicelist.instance.position().y())+int(self.servicelist.instance.size().height())
-			if int(sely) >= temp:
-				sely = int(sely) - int(self.listHeight)
-			menu = [(_("Record now"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordCurrentTimer), (_("Record next"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordNextTimer)]
-			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title="%s?" % eventname, list=menu, skin_name="RecordTimerQuestion")
-			self.ChoiceBoxDialog.instance.move(ePoint(selx-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+sely))
-			self.showChoiceBoxDialog()
-
-	def ChoiceBoxNull(self):
-		return
-
-	def ChoiceBoxCB(self, choice):
-		if choice[3]:
-			try:
-				choice[3]()
-			except:
-				choice[3]
-		self.closeChoiceBoxDialog()
-
-	def showChoiceBoxDialog(self):
-		self['actions'].setEnabled(False)
-		self['recordingactions'].setEnabled(False)
-		self['ChannelSelectEPGActions'].setEnabled(False)
-		self['dialogactions'].execBegin()
-		self.ChoiceBoxDialog['actions'].execBegin()
-		self.ChoiceBoxDialog['cancelaction'].execEnd()
-		
-		self.ChoiceBoxDialog.show()
-
-	def closeChoiceBoxDialog(self):
-		self['dialogactions'].execEnd()
-		if self.ChoiceBoxDialog:
-			self.ChoiceBoxDialog['actions'].execEnd()
-			self.session.deleteDialog(self.ChoiceBoxDialog)
-		self['actions'].setEnabled(True)
-		self['recordingactions'].setEnabled(True)
-		self['ChannelSelectEPGActions'].setEnabled(True)
-
-
-	def doRecordCurrentTimer(self):
-		self.doInstantTimer(0, parseCurentEvent)
-
-	def doRecordNextTimer(self):
-		self.doInstantTimer(0, parseNextEvent)
-
-	def doZapTimer(self):
-		self.doInstantTimer(1, parseNextEvent)
-
-	def doInstantTimer(self, zap, parseEvent):
-		serviceref = ServiceReference(self.getCurrentSelection())
-		refstr = serviceref.ref.toString()
-		self.epgcache = eEPGCache.getInstance()
-		test = [ 'ITBDSECX', (refstr, 1, -1, 60) ] # search next 24 hours
-		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
-		if self.list is None:
-			return
-		eventid = self.list[0]
-		eventname = self.list[0][1]
-		if eventid is None:
-			return
-		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.list))
-		self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap)
-		retval = [True, self.InstantRecordDialog.retval()]
-		self.session.deleteDialogWithCallback(self.finishedAdd, self.InstantRecordDialog, retval)
+			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.list))
+			self.session.openWithCallback(self.finishedAdd, InstantRecordTimerEntry, newEntry, zap)
 
 	def finishedAdd(self, answer):
-		# print "finished add"
+		print "finished add"
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -693,6 +604,7 @@ class ChannelSelectionEdit:
 		mutableBouquet = cur_root.list().startEdit()
 		if mutableBouquet:
 			name = cur_service.getServiceName()
+			print "NAME", name
 			if self.mode == MODE_TV:
 				str = '1:134:1:0:0:0:0:0:0:0:FROM BOUQUET \"alternatives.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(name))
 			else:
@@ -1637,10 +1549,16 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.setTitle(title)
 		self.buildTitleString()
 
+	def timeshiftCheckReply(self, enable_pipzap, preview_zap, answer):
+		if answer:
+			self.zap(enable_pipzap, preview_zap)
+		else:
+			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+		if not preview_zap:
+			self.hide()
+
 	#called from infoBar and channelSelected
 	def zap(self, enable_pipzap = False, preview_zap = False, checkParentalControl = True, ref = None):
-		self.curRoot = self.startRoot
-		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		nref = self.getCurrentSelection()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
@@ -1650,15 +1568,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 						# XXX: Make sure we set an invalid ref
 						self.session.pip.playService(None)
 			else:
-				self.setStartRoot(self.curRoot)
 				self.setCurrentSelection(ref)
+		else:
+			if Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.timeshiftCheckReply, enable_pipzap, preview_zap)):
 				return
-		Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
-
-	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, answer):
-		if answer:
-			self.new_service_played = True
-			self.session.nav.playService(nref)
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if ref is None or ref != nref:
+				self.new_service_played = True
+				self.session.nav.playService(nref)
 			if not preview_zap:
 				self.saveRoot()
 				self.saveChannel(nref)
@@ -1671,11 +1588,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			else:
 				Notifications.RemovePopup("Parental control")
 				self.setCurrentSelection(nref)
-		else:
-			self.setStartRoot(self.curRoot)
-			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
-		if not preview_zap:
-			self.hide()
 
 	def newServicePlayed(self):
 		ret = self.new_service_played
@@ -1821,6 +1733,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				lastservice = eServiceReference(self.lastservice.getValue())
 				if lastservice.valid() and self.getCurrentSelection() != lastservice:
 					self.setCurrentSelection(lastservice)
+		elif self.revertMode == MODE_TV:
+			self.setModeTv()
+		elif self.revertMode == MODE_RADIO:
+			self.setModeRadio()
+		self.revertMode = None
 		self.asciiOff()
 		if config.usage.servicelistpreview_mode.getValue():
 			self.zapBack()
@@ -1828,7 +1745,13 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def zapBack(self):
 		if self.startServiceRef and self.session.nav.getCurrentlyPlayingServiceOrGroup() != self.startServiceRef:
-			self.setStartRoot(self.startRoot)
+			if self.startRoot:
+				self.clearPath()
+				self.recallBouquetMode()
+				if self.bouquet_root:
+					self.enterPath(self.bouquet_root)
+				self.enterPath(self.startRoot)
+				self.saveRoot()
 			self.new_service_played = True
 			self.session.nav.playService(self.startServiceRef)
 			self.saveChannel(self.startServiceRef)
@@ -1838,20 +1761,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			# This unfortunately won't work with subservices
 			self.setCurrentSelection(self.session.pip.getCurrentService())
 
-	def setStartRoot(self, root):
-		if root:
-			if self.revertMode == MODE_TV:
-				self.setModeTv()
-			elif self.revertMode == MODE_RADIO:
-				self.setModeRadio()
-			self.revertMode = None
-			self.clearPath()
-			self.recallBouquetMode()
-			if self.bouquet_root:
-				self.enterPath(self.bouquet_root)
-			self.enterPath(root)
-			self.startRoot = None
-			self.saveRoot()
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):

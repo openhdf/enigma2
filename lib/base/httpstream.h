@@ -4,8 +4,9 @@
 #include <string>
 #include <lib/base/ebase.h>
 #include <lib/base/itssource.h>
+#include <lib/base/socketbase.h>
 
-class eHttpStream: public iTsSource, public Object
+class eHttpStream: public iTsSource, public eSocketBase, public Object
 {
 	DECLARE_REF(eHttpStream);
 

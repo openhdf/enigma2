@@ -40,9 +40,10 @@ class ChoiceBox(Screen):
 		self["summary_selection"] = StaticText()
 		self.updateSummary(selection)
 
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions"],
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "DirectionActions"],
 		{
 			"ok": self.go,
+			"back": self.cancel,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -58,14 +59,7 @@ class ChoiceBox(Screen):
 			"yellow": self.keyYellow,
 			"blue": self.keyBlue,
 			"up": self.up,
-			"down": self.down,
-			"left": self.left,
-			"right": self.right
-		}, -1)
-
-		self["cancelaction"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions"],
-		{
-			"back": self.cancel,
+			"down": self.down
 		}, -1)
 
 	def autoResize(self):
@@ -102,21 +96,11 @@ class ChoiceBox(Screen):
 		# center window
 		self.instance.move(enigma.ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))
 
-	def left(self):
-		if len(self["list"].list) > 0:
-			while 1:
-				self["list"].instance.moveSelection(self["list"].instance.pageUp)
-				self.updateSummary(self["list"].l.getCurrentSelectionIndex())
-				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
-					break
+	def keyLeft(self):
+		pass
 
-	def right(self):
-		if len(self["list"].list) > 0:
-			while 1:
-				self["list"].instance.moveSelection(self["list"].instance.pageDown)
-				self.updateSummary(self["list"].l.getCurrentSelectionIndex())
-				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
-					break
+	def keyRight(self):
+		pass
 
 	def up(self):
 		if len(self["list"].list) > 0:

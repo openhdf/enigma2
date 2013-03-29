@@ -125,12 +125,6 @@ int exit_code;
 
 int main(int argc, char **argv)
 {
-	printf("Distro:  %s\n", DISTRO);
-	printf("Version: %s\n", IMAGEVERSION);
-	printf("Build:   %s\n", IMAGEBUILD);
-	printf("Machine: %s\n", BOXTYPE);
-	printf("Drivers: %s\n", DRIVERDATE);
-
 #ifdef MEMLEAK_CHECK
 	atexit(DumpUnfreed);
 #endif
@@ -140,6 +134,12 @@ int main(int argc, char **argv)
 #endif
 
 	gst_init(&argc, &argv);
+
+	printf("Distro:  %s\n", DISTRO);
+	printf("Version: %s\n", IMAGEVERSION);
+	printf("Build:   %s\n", IMAGEBUILD);
+	printf("Machine: %s\n", BOXTYPE);
+	printf("Drivers: %s\n", DRIVERDATE);
 
 	// set pythonpath if unset
 	setenv("PYTHONPATH", eEnv::resolve("${libdir}/enigma2/python").c_str(), 0);

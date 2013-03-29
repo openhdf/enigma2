@@ -8,12 +8,12 @@
 #include <vector>
 #include <string>
 
-#include "wrappers.h"
+#include "socketbase.h"
 
 #include <lib/base/ebase.h>
 #include <lib/base/eerror.h>
 
-int Select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)
+int eSocketBase::select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout)
 {
 	int retval;
 	fd_set rset, wset, xset;
@@ -45,7 +45,7 @@ int Select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, stru
 			if (exceptfds) *exceptfds = xset;
 			if (timeout) *timeout = interval;
 			if (errno == EINTR) continue;
-			eDebug("select error (%m)");
+			eDebug("eSocketBase::select error (%m)");
 			break;
 		}
 
@@ -54,7 +54,7 @@ int Select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, stru
 	return retval;
 }
 
-ssize_t singleRead(int fd, void *buf, size_t count)
+ssize_t eSocketBase::singleRead(int fd, void *buf, size_t count)
 {
 	int retval;
 	while (1)
@@ -63,13 +63,13 @@ ssize_t singleRead(int fd, void *buf, size_t count)
 		if (retval < 0)
 		{
 			if (errno == EINTR) continue;
-			eDebug("singleRead error (%m)");
+			eDebug("eSocketBase::singleRead error (%m)");
 		}
 		return retval;
 	}
 }
 
-ssize_t timedRead(int fd, void *buf, size_t count, int initialtimeout, int interbytetimeout)
+ssize_t eSocketBase::timedRead(int fd, void *buf, size_t count, int initialtimeout, int interbytetimeout)
 {
 	fd_set rset;
 	struct timeval timeout;
@@ -102,7 +102,7 @@ ssize_t timedRead(int fd, void *buf, size_t count, int initialtimeout, int inter
 	return totalread;
 }
 
-ssize_t readLine(int fd, char** buffer, size_t* bufsize)
+ssize_t eSocketBase::readLine(int fd, char** buffer, size_t* bufsize)
 {
 	size_t i = 0;
 	int result;
@@ -127,7 +127,7 @@ ssize_t readLine(int fd, char** buffer, size_t* bufsize)
 	return -1;
 }
 
-int Connect(const char *hostname, int port, int timeoutsec)
+int eSocketBase::connect(const char *hostname, int port, int timeoutsec)
 {
 	int sd = -1;
 	std::vector<struct addrinfo *> addresses;
@@ -239,7 +239,7 @@ int Connect(const char *hostname, int port, int timeoutsec)
 	return sd;
 }
 
-ssize_t writeAll(int fd, const void *buf, size_t count)
+ssize_t eSocketBase::writeAll(int fd, const void *buf, size_t count)
 {
 	int retval;
 	char *ptr = (char*)buf;
@@ -252,7 +252,7 @@ ssize_t writeAll(int fd, const void *buf, size_t count)
 		if (retval < 0)
 		{
 			if (errno == EINTR) continue;
-			eDebug("writeAll error (%m)");
+			eDebug("eSocketBase::writeAll error (%m)");
 			return retval;
 		}
 		handledcount += retval;
