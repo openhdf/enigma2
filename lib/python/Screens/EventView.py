@@ -1,6 +1,7 @@
 from Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.MessageBox import MessageBox
+from Components.Sources.StaticText import StaticText 
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
@@ -17,7 +18,7 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
-from time import localtime
+from time import *
 from Components.config import config
 
 class EventViewContextMenu(Screen):
