@@ -416,6 +416,10 @@
 		<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
 	</map>
 
+	<map context="InfobarVmodeButtonActions">
+		<key id="KEY_VMODE" mapto="vmodeSelection" flags="m" />
+	</map>
+
 	<map context="InfobarTimeshiftActivateActions">
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_PREVIOUSSONG" mapto="timeshiftActivateEnd" flags="m" />
