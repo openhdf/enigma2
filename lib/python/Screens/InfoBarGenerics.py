@@ -1333,16 +1333,18 @@ class InfoBarEPG:
 			self.toggleShow()
 			return 1
 
-	def zapToService(self, service, bouquet = None, preview = False, zapback = False):
+	def zapToService(self, service, preview = False, zapback = False):
 		if self.servicelist.startServiceRef is None:
 			self.servicelist.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.servicelist.currentServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if service is not None:
-			if self.servicelist.getRoot() != bouquet: #already in correct bouquet?
+			# if bouquet:
+			# 	self.epg_bouquet = bouquet
+			if self.servicelist.getRoot() != self.epg_bouquet: #already in correct bouquet?
 				self.servicelist.clearPath()
-				if self.servicelist.bouquet_root != bouquet:
+				if self.servicelist.bouquet_root != self.epg_bouquet:
 					self.servicelist.enterPath(self.servicelist.bouquet_root)
-				self.servicelist.enterPath(bouquet)
+				self.servicelist.enterPath(self.epg_bouquet)
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
 		if not zapback or preview:
 			self.servicelist.zap(preview_zap = preview)
