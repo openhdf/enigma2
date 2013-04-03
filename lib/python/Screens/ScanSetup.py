@@ -363,7 +363,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_typeterrestrial)
 			self.list.append(self.typeOfScanEntry)
 
-		self.scan_networkScan.value = False
+		self.scan_networkScan.setValue(False)
 		if nim.isCompatible("DVB-S"):
 			if self.scan_type.getValue() == "single_transponder":
 				self.updateSatList()
@@ -372,7 +372,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					self.list.append(self.systemEntry)
 				else:
 					# downgrade to dvb-s, in case a -s2 config was active
-					self.scan_sat.system.value = eDVBFrontendParametersSatellite.System_DVB_S
+					self.scan_sat.system.setValue(eDVBFrontendParametersSatellite.System_DVB_S)
 				self.list.append(getConfigListEntry(_('Satellite'), self.scan_satselection[index_to_scan]))
 				self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
 				self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
@@ -390,18 +390,18 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.updateSatList()
 				print self.scan_satselection[index_to_scan]
 				self.list.append(getConfigListEntry(_("Satellite"), self.scan_satselection[index_to_scan]))
-				self.scan_networkScan.value = True
-			elif self.scan_type.value.find("multisat") != -1:
+				self.scan_networkScan.setValue(True)
+			elif self.scan_type.getValue().find("multisat") != -1:
 				tlist = []
 				SatList = nimmanager.getSatListForNim(index_to_scan)
 				for x in SatList:
 					if self.Satexists(tlist, x[0]) == 0:
 						tlist.append(x[0])
-						sat = ConfigEnableDisable(default = self.scan_type.value.find("_yes") != -1 and True or False)
+						sat = ConfigEnableDisable(default = self.scan_type.getValue().find("_yes") != -1 and True or False)
 						configEntry = getConfigListEntry(nimmanager.getSatDescription(x[0]), sat)
 						self.list.append(configEntry)
 						self.multiscanlist.append((x[0], sat))
-				self.scan_networkScan.value = True
+				self.scan_networkScan.setValue(True)
 		elif nim.isCompatible("DVB-C"):
 			if self.scan_typecable.getValue() == "single_transponder":
 				self.list.append(getConfigListEntry(_("Frequency"), self.scan_cab.frequency))
@@ -411,7 +411,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_cab.fec))
 			if config.Nims[index_to_scan].cable.scan_networkid.getValue():
 				self.networkid = config.Nims[index_to_scan].cable.scan_networkid.getValue()
-				self.scan_networkScan.value = True
+				self.scan_networkScan.setValue(True)
 		elif nim.isCompatible("DVB-T"):
 			if self.scan_typeterrestrial.getValue() == "single_transponder":
 				self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
@@ -731,15 +731,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def addTerTransponder(self, tlist, *args, **kwargs):
 		tlist.append(buildTerTransponder(*args, **kwargs))
 
-	def keyGo(self):
-		infoBarInstance = InfoBar.instance
-		if infoBarInstance:
-			infoBarInstance.checkTimeshiftRunning(self.keyGoCheckTimeshiftCallback)
-		else:
-			self.keyGoCheckTimeshiftCallback(True)
-
-	def keyGoCheckTimeshiftCallback(self, answer):
-		if not answer or self.scan_nims.value == "":
+	def keyGo(self, answer = True):
+		InfoBarInstance = InfoBar.instance
+		if not answer or (InfoBarInstance and InfoBarInstance.checkTimeshiftRunning(self.keyGo)):
+			return
+		if self.scan_nims.value == "":
 			return
 		tlist = []
 		flags = None
@@ -785,7 +781,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			elif self.scan_type.getValue() == "single_satellite":
 				sat = self.satList[index_to_scan][self.scan_satselection[index_to_scan].index]
 				getInitialTransponderList(tlist, sat[0])
-			elif self.scan_type.value.find("multisat") != -1:
+			elif self.scan_type.getValue().find("multisat") != -1:
 				SatList = nimmanager.getSatListForNim(index_to_scan)
 				for x in self.multiscanlist:
 					if x[1].getValue():
@@ -962,19 +958,14 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.finished_cb = finished_cb
 		self.keyGo()
 
-	def keyGo(self):
+	def keyGo(self, answer = True):
 		InfoBarInstance = InfoBar.instance
-		if InfoBarInstance:
-			InfoBarInstance.checkTimeshiftRunning(self.keyGoCheckTimeshiftCallback)
-		else:
-			InfoBarInstance.checkTimeshiftRunning(True)
-
-	def keyGoCheckTimeshiftCallback(self, answer):
-		if answer:
-			self.scanList = []
-			self.known_networks = set()
-			self.nim_iter=0
-			self.buildTransponderList()
+		if not answer or (InfoBarInstance and InfoBarInstance.checkTimeshiftRunning(self.keyGo)):
+			return
+		self.scanList = []
+		self.known_networks = set()
+		self.nim_iter=0
+		self.buildTransponderList()
 
 	def buildTransponderList(self): # this method is called multiple times because of asynchronous stuff
 		APPEND_NOW = 0
