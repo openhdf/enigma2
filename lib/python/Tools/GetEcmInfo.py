@@ -40,7 +40,12 @@ class GetEcmInfo:
 			info['eCaid'] = ""
 			info['eSrc'] = ""
 			info['eTime'] = "0"
+			info['pid'] = "0"
+			info['prov'] = ""
+			info['provid'] = "0"
+			print 'ECM DATA:',ecm
 			for line in ecm:
+				print 'ECM LINE:',line
 				d = line.split(':', 1)
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()
@@ -62,6 +67,13 @@ class GetEcmInfo:
 					linetmp = line.split(' ')
 					info['eTime'] = linetmp[0]
 					continue
+				if len(ecm) > 0 and ecm[1].startswith('SysID'):
+					info['prov'] = ecm[1].strip()[6:]
+					continue
+				if 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
+					info['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
+					info['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
+					info['provid'] = info.get('prov', '0')[:4]
 			data = self.getText()
 		else:
 			info['ecminterval0'] = int(time.time()-ecm_time+0.5)

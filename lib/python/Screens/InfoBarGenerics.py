@@ -2420,6 +2420,7 @@ class InfoBarTimeshift:
 		self["TimeshiftActivateActions"].setEnabled(False)
 		self["TimeshiftSeekPointerActions"].setEnabled(False)
 
+		self.switchToLive = True
 		self.timeshift_enabled = False
 		self.check_timeshift = True
 		self.ts_rewind_timer = eTimer()
@@ -2508,7 +2509,178 @@ class InfoBarTimeshift:
 		service = self.session.nav.getCurrentService()
 		return service and service.timeshift()
 
-	def __evStart(self):
+	def startTimeshift(self):
+		self.createTimeshiftFolder()
+		if config.timeshift.enabled.getValue():
+			self.pts_delay_timer.stop()
+			self.activatePermanentTimeshift()
+			self.activateTimeshiftEndAndPause()
+		else:
+#			print "enable timeshift"
+			ts = self.getTimeshift()
+			if ts is None:
+				self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=5)
+#				print "no ts interface"
+				return 0
+
+			if self.timeshift_enabled:
+				print "hu, timeshift already enabled?"
+			else:
+				if not ts.startTimeshift():
+					self.timeshift_enabled = True
+
+					# we remove the "relative time" for now.
+					#self.pvrStateDialog["timeshift"].setRelative(time.time())
+
+					self.activateTimeshiftEnd(False)
+
+					# enable the "TimeshiftEnableActions", which will override
+					# the startTimeshift actions
+					self.__seekableStatusChanged()
+
+					# get current timeshift filename and calculate new
+					self.current_timeshift_filename = ts.getTimeshiftFilename()
+					self.new_timeshift_filename = self.generateNewTimeshiftFileName()
+				else:
+					print "timeshift failed"
+
+	def stopTimeshift(self):
+		if config.timeshift.enabled.getValue() and self.switchToLive and self.isSeekable():
+			self.pts_switchtolive = True
+			self.ptsSetNextPlaybackFile("")
+			self.setSeekState(self.SEEK_STATE_PAUSE)
+			if self.seekstate != self.SEEK_STATE_PLAY:
+				self.setSeekState(self.SEEK_STATE_PLAY)
+			self.doSeek(-1) # seek 1 gop before end
+			self.seekFwd() # seekFwd to switch to live TV
+			return 1
+
+		if not self.timeshift_enabled:
+			return 0
+
+		self.was_enabled = self.timeshift_enabled
+		ts = self.getTimeshift()
+		if ts is None:
+			return
+
+		self.checkTimeshiftRunning(boundFunction(self.stopTimeshiftcheckTimeshiftRunningCallback, ts))
+
+	def stopTimeshiftcheckTimeshiftRunningCallback(self, ts, answer):
+		if answer:
+			if config.timeshift.enabled.getValue():
+				try:
+					ts.stopTimeshift(self.switchToLive)
+				except:
+					ts.stopTimeshift()
+				if self.was_enabled and not self.timeshift_enabled:
+					self.timeshift_enabled = False
+					self.pts_LengthCheck_timer.stop()
+			else:
+				self.saveTimeshiftFiles()
+				ts.stopTimeshift()
+				self.save_timeshift_file = False
+				self.pvrStateDialog.hide()
+
+			self.timeshift_enabled = False
+
+			# disable actions
+			self.__seekableStatusChanged()
+
+	# activates timeshift, and seeks to (almost) the end
+	def activateTimeshiftEnd(self, back = True):
+		ts = self.getTimeshift()
+#		print "activateTimeshiftEnd"
+
+		if ts is None:
+			return
+
+		if ts.isTimeshiftActive():
+#			print "!! activate timeshift called - but shouldn't this be a normal pause?"
+			self.pauseService()
+		else:
+#			print "play, ..."
+			ts.activateTimeshift() # activate timeshift will automatically pause
+			self.setSeekState(self.SEEK_STATE_PAUSE)
+			seekable = self.getSeek()
+			if seekable is not None:
+				seekable.seekTo(-90000) # seek approx. 1 sec before end
+		if back:
+			if getBoxType().startswith('et'):
+				self.ts_rewind_timer.start(1000, 1)
+			else:
+				self.ts_rewind_timer.start(100, 1)
+
+	def rewindService(self):
+		if getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
+			self.setSeekState(self.SEEK_STATE_PLAY)
+		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.getValue())))
+
+	# generates only filename without path
+	def generateNewTimeshiftFileName(self):
+		name = "timeshift record"
+		info = { }
+		self.getProgramInfoAndEvent(info, name)
+
+		serviceref = info["serviceref"]
+
+		service_name = ""
+		if isinstance(serviceref, eServiceReference):
+			service_name = ServiceReference(serviceref).getServiceName()
+		begin_date = strftime("%Y%m%d %H%M", localtime(time()))
+		filename = begin_date + " - " + service_name
+
+		if config.recording.filename_composition.value == "short":
+			filename = strftime("%Y%m%d", localtime(time())) + " - " + info["name"]
+		elif config.recording.filename_composition.value == "long":
+			filename += " - " + info["name"] + " - " + info["description"]
+		else:
+			filename += " - " + info["name"] # standard
+
+		if config.recording.ascii_filenames.value:
+			filename = ASCIItranslit.legacyEncode(filename)
+
+		# print "New timeshift filename: ", filename
+		return filename
+
+	# same as activateTimeshiftEnd, but pauses afterwards.
+	def activateTimeshiftEndAndPause(self):
+#		print "activateTimeshiftEndAndPause"
+		#state = self.seekstate
+		self.activateTimeshiftEnd(False)
+
+	def __seekableStatusChanged(self):
+		self["SeekActionsPTS"].setEnabled(False)
+		self["TimeshiftSeekPointerActions"].setEnabled(False)
+		if config.timeshift.enabled.getValue():
+			self["TimeshiftActivateActions"].setEnabled(True)
+			self["TimeshiftActions"].setEnabled(False)
+			if self.timeshift_enabled and self.isSeekable():
+				self["TimeshiftActivateActions"].setEnabled(False)
+				self["TimeshiftActions"].setEnabled(True)
+				self["SeekActions"].setEnabled(True)
+			elif self.timeshift_enabled and not self.isSeekable():
+				self["SeekActions"].setEnabled(False)
+		else:
+			self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshift_enabled)
+			state = self.getSeek() is not None and self.timeshift_enabled
+			self["SeekActions"].setEnabled(state)
+			if not state:
+				self.setSeekState(self.SEEK_STATE_PLAY)
+
+		# Reset Seek Pointer And Eventname in InfoBar
+		if config.timeshift.enabled.getValue() and self.timeshift_enabled and not self.isSeekable():
+			if self.pts_pvrStateDialog == "Screens.PVRState.PTSTimeshiftState":
+				self.pvrStateDialog["eventname"].setText("")
+			self.ptsSeekPointerReset()
+
+		# setNextPlaybackFile() when switching back to live tv
+		if config.timeshift.enabled.getValue() and self.timeshift_enabled and not self.isSeekable():
+			if self.pts_starttime <= (time()-5):
+				self.pts_blockZap_timer.start(3000, True)
+			self.pts_currplaying = self.pts_eventcount
+			self.ptsSetNextPlaybackFile("pts_livebuffer.%s" % (self.pts_eventcount))
+
+	def __serviceStarted(self):
 		self.service_changed = 1
 		self.pts_delay_timer.stop()
 		self.pts_service_changed = True
@@ -2521,6 +2693,37 @@ class InfoBarTimeshift:
 		if not config.timeshift.isRecording.getValue():
 			self.timeshift_enabled = False
 			self.__seekableStatusChanged()
+	def checkTimeshiftRunning(self, returnFunction):
+		if self.isSeekable() and self.timeshift_enabled and config.usage.check_timeshift.getValue():
+			self.session.openWithCallback(returnFunction, MessageBox, _("You seem to be in timeshift, Do you want to leave timeshift ?"), simple = True)
+		else:
+			returnFunction(True)
+
+	def __serviceEnd(self):
+		if config.timeshift.enabled.getValue():
+			self.service_changed = 0
+			if not config.timeshift.isRecording.getValue():
+				self.timeshift_enabled = False
+				self.__seekableStatusChanged()
+		else:
+			self.saveTimeshiftFiles()
+
+	def saveTimeshiftFiles(self):
+		if self.timeshift_enabled and self.save_timeshift_file and self.current_timeshift_filename != "" and self.new_timeshift_filename != "":
+			if config.usage.timeshift_path.value is not None and not self.save_timeshift_in_movie_dir:
+				dirname = config.usage.timeshift_path.value
+			else:
+				dirname = defaultMoviePath()
+			filename = getRecordingFilename(self.new_timeshift_filename, dirname) + ".ts"
+
+			fileList = []
+			fileList.append((self.current_timeshift_filename, filename))
+			if fileExists(self.current_timeshift_filename + ".sc"):
+				fileList.append((self.current_timeshift_filename + ".sc", filename + ".sc"))
+			if fileExists(self.current_timeshift_filename + ".cuts"):
+				fileList.append((self.current_timeshift_filename + ".cuts", filename + ".cuts"))
+
+			moveFiles(fileList)
 
 	def __evSOF(self):
 		if not config.timeshift.enabled.getValue() or not self.timeshift_enabled:

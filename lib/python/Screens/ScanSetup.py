@@ -960,12 +960,17 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 	def keyGo(self, answer = True):
 		InfoBarInstance = InfoBar.instance
-		if not answer or (InfoBarInstance and InfoBarInstance.checkTimeshiftRunning(self.keyGo)):
-			return
-		self.scanList = []
-		self.known_networks = set()
-		self.nim_iter=0
-		self.buildTransponderList()
+		if InfoBarInstance:
+			InfoBarInstance.checkTimeshiftRunning(self.keyGoCheckTimeshiftCallback)
+		else:
+			self.keyGoCheckTimeshiftCallback(True)
+
+	def keyGoCheckTimeshiftCallback(self, answer):
+		if answer:
+			self.scanList = []
+			self.known_networks = set()
+			self.nim_iter=0
+			self.buildTransponderList()
 
 	def buildTransponderList(self): # this method is called multiple times because of asynchronous stuff
 		APPEND_NOW = 0
