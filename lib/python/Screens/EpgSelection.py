@@ -83,6 +83,13 @@ class EPGSelection(Screen, HelpableScreen):
 		self['key_green'] = Button(_('Add Timer'))
 		self['key_yellow'] = Button(_('EPG Search'))
 		self['key_blue'] = Button(_('Add AutoTimer'))
+		self['dialogactions'] = HelpableActionMap(self, 'WizardActions',
+			{
+				'back': (self.closeChoiceBoxDialog, _('Close dialog')),
+			}, -1)
+		self['dialogactions'].csel = self
+		self["dialogactions"].setEnabled(False)
+
 		self['okactions'] = HelpableActionMap(self, 'OkCancelActions',
 			{
 				'cancel': (self.closeScreen, _('Exit EPG')),
@@ -103,8 +110,8 @@ class EPGSelection(Screen, HelpableScreen):
 		self['colouractions'].csel = self
 		self['recordingactions'] = HelpableActionMap(self, 'InfobarInstantRecord', 
 			{
-				'ShortRecord': (self.doRecordTimer, _('Add a record timer for current event')),
-				'LongRecord': (self.doZapTimer, _('Add a zap timer for current event'))
+				'ShortRecord': (self.recButtonPressed, _('Add a record timer for current event')),
+				'LongRecord': (self.reclongButtonPressed, _('Add a zap timer for current event'))
 			}, -1)
 		self['recordingactions'].csel = self
 		if self.type == EPG_TYPE_SIMILAR:
@@ -227,6 +234,33 @@ class EPGSelection(Screen, HelpableScreen):
 			self.updateTimelineTimer = eTimer()
 			self.updateTimelineTimer.callback.append(self.moveTimeLines)
 			self.updateTimelineTimer.start(60000)
+			self['bouquetokactions'] = HelpableActionMap(self, 'OkCancelActions',
+				{
+					'cancel': (self.BouquetlistHide, _('Close bouquet list.')),
+					'OK': (self.BouquetOK, _('Chnage to bouquet')),
+				}, -1)
+			self['bouquetokactions'].csel = self
+			self["bouquetokactions"].setEnabled(False)
+
+			self['bouquetcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
+				{
+					'left': (self.leftPressed, _('Goto previous event')),
+					'right': (self.rightPressed, _('Goto next event')),
+					'up': (self.moveBouquetUp, _('Goto previous channel')),
+					'down': (self.moveBouquetDown, _('Goto next channel'))
+				}, -1)
+			self['bouquetcursoractions'].csel = self
+			self["bouquetcursoractions"].setEnabled(False)
+
+			self['epgcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
+				{
+					'left': (self.leftPressed, _('Goto previous event')),
+					'right': (self.rightPressed, _('Goto next event')),
+					'up': (self.moveUp, _('Goto previous channel')),
+					'down': (self.moveDown, _('Goto next channel'))
+				}, -1)
+			self['epgcursoractions'].csel = self
+
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
 				{
 					'nextService': (self.nextService, _('Jump forward 24 hours')),
@@ -328,32 +362,13 @@ class EPGSelection(Screen, HelpableScreen):
 			self.session.openWithCallback(self.onSetupClose, Setup, key)
 
 	def onSetupClose(self, test = None):
-		l = self['list']
-		l.setItemsPerPage()
-		l.setEventFontsize()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
-			l.setServiceFontsize()
-			self['timeline_text'].setTimeLineFontsize()
-			now = time() - int(config.epg.histminutes.getValue()) * 60
-			l.setOverjump_Empty(config.epgselection.overjump.getValue())
-			if self.type == EPG_TYPE_GRAPH:
-				l.setEpoch(config.epgselection.graph_prevtimeperiod.getValue())
-				l.setShowServiceMode(config.epgselection.graph_servicetitle_mode.getValue())
-				self.ask_time = now - now % (int(config.epgselection.graph_roundto.getValue()) * 60)
-			elif self.type == EPG_TYPE_INFOBARGRAPH:
-				l.setEpoch(config.epgselection.infobar_prevtimeperiod.getValue())
-				l.setShowServiceMode(config.epgselection.infobar_servicetitle_mode.getValue())
-				self.ask_time = now - now % (int(config.epgselection.infobar_roundto.getValue()) * 60)
-			l.fillGraphEPG(None, self.ask_time)
-			self.moveTimeLines()
 			if self.type == EPG_TYPE_GRAPH:
 				self.close('reopengraph')
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				self.close('reopeninfobargraph')
 		else:
-			l.recalcEntrySize()
 			if self.type == EPG_TYPE_INFOBAR:
-				l.sortSingleEPG(int(config.epgselection.sort.getValue()))
 				self.close('reopeninfobar')
 
 	def togglePIG(self):
@@ -409,6 +424,20 @@ class EPGSelection(Screen, HelpableScreen):
 			l.sortSingleEPG(int(config.epgselection.sort.getValue()))
 		else:
 			l.fillSimilarList(self.currentService, self.eventid)
+
+	def refreshlist(self):
+		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
+			self['list'].fillGraphEPG(None, self.ask_time)
+			self.moveTimeLines()
+		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+			if self.type == EPG_TYPE_SINGLE:
+				service = self.currentService
+			elif self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
+				service = ServiceReference(self.servicelist.getCurrentSelection())
+			index = self['list'].getCurrentIndex()
+			self['list'].fillSingleEPG(service)
+			self['list'].sortSingleEPG(int(config.epgselection.sort.getValue()))
+			self['list'].setCurrentIndex(index)
 
 	def moveUp(self):
 		self['list'].moveTo(self['list'].instance.moveUp)
@@ -864,12 +893,26 @@ class EPGSelection(Screen, HelpableScreen):
 		else:
 			self['key_green'].setText(_('Add Timer'))
 			self.key_green_choice = self.ADD_TIMER
+		try:
+			self.refreshlist()
+		except:
+			pass
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
 
-	def doRecordTimer(self):
-		zap = 0
+	def removeTimer(self, timer):
+		timer.afterEvent = AFTEREVENT.NONE
+		self.session.nav.RecordTimer.removeEntry(timer)
+		self['key_green'].setText(_('Add Timer'))
+		self.key_green_choice = self.ADD_TIMER
+		self.closeChoiceBoxDialog()
+		try:
+			self.refreshlist()
+		except:
+			pass
+
+	def RecordTimerQuestion(self):
 		cur = self['list'].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
@@ -883,8 +926,61 @@ class EPGSelection(Screen, HelpableScreen):
 				self.session.openWithCallback(cb_func, MessageBox, _('Do you really want to delete %s?') % event.getEventName())
 				break
 		else:
-			newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, *parseEvent(event))
-			self.session.openWithCallback(self.finishedAdd, InstantRecordTimerEntry, newEntry, zap)
+			menu = [(_("Record once"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), (_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimerSilent)]
+			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title="%s?" % event.getEventName(), list=menu, skin_name="RecordTimerQuestion")
+			serviceref = eServiceReference(str(self['list'].getCurrent()[1]))
+			posy = self['list'].getSelectionPosition(serviceref)
+			self.ChoiceBoxDialog.instance.move(ePoint(posy[0]-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+posy[1]))
+			self.showChoiceBoxDialog()
+
+	def recButtonPressed(self):
+		if not self.longbuttonpressed:
+			self.RecordTimerQuestion()
+		else:
+			self.longbuttonpressed = False
+
+	def reclongButtonPressed(self):
+		self.longbuttonpressed = True
+		self.doZapTimer()
+
+	def ChoiceBoxNull(self):
+		return
+
+	def ChoiceBoxCB(self, choice):
+		if choice[3]:
+			try:
+				choice[3]()
+			except:
+				choice[3]
+		self.closeChoiceBoxDialog()
+
+	def showChoiceBoxDialog(self):
+		self['okactions'].setEnabled(False)
+		self['epgcursoractions'].setEnabled(False)
+		self['colouractions'].setEnabled(False)
+		self['recordingactions'].setEnabled(False)
+		self['epgactions'].setEnabled(False)
+		self["dialogactions"].setEnabled(True)
+		self.ChoiceBoxDialog['actions'].execBegin()
+		self.ChoiceBoxDialog.show()
+		if self.has_key('input_actions'):
+			self['input_actions'].setEnabled(False)
+
+	def closeChoiceBoxDialog(self):
+		self["dialogactions"].setEnabled(False)
+		if self.ChoiceBoxDialog:
+			self.ChoiceBoxDialog['actions'].execEnd()
+			self.session.deleteDialog(self.ChoiceBoxDialog)
+		self['okactions'].setEnabled(True)
+		self['epgcursoractions'].setEnabled(True)
+		self['colouractions'].setEnabled(True)
+		self['recordingactions'].setEnabled(True)
+		self['epgactions'].setEnabled(True)
+		if self.has_key('input_actions'):
+			self['input_actions'].setEnabled(True)
+
+	def doRecordTimer(self):
+		self.doInstantTimer(0)
 
 	def doZapTimer(self):
 		zap = 1
@@ -1094,7 +1190,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['list'].setCurrentlyPlaying(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 	def zapTo(self):
-		if self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().find('0:0:0:0:0:0:0:0:0') != -1:
+		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString().find('0:0:0:0:0:0:0:0:0') != -1:
 			from Screens.InfoBarGenerics import setResumePoint
 			setResumePoint(self.session)
 		if self.zapFunc:
