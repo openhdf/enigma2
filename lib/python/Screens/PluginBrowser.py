@@ -114,7 +114,7 @@ class PluginBrowser(Screen):
 
 	def save(self):
 		self.run()
-	
+
 	def run(self):
 		plugin = self["list"].l.getCurrentSelection()[0]
 		plugin(session=self.session)
@@ -126,7 +126,7 @@ class PluginBrowser(Screen):
 
 	def delete(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
-	
+
 
 	def download(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
@@ -186,7 +186,7 @@ class PluginDownloadBrowser(Screen):
 
 		self.run = 0
 		self.remainingdata = ""
-		self["actions"] = ActionMap(["WizardActions"], 
+		self["actions"] = ActionMap(["WizardActions"],
 		{
 			"ok": self.go,
 			"back": self.requestClose,
@@ -472,17 +472,15 @@ class PluginDownloadBrowser(Screen):
 			self.session.openWithCallback(self.runBootlogoRemove, MessageBox, _('You already have a bootlogo installed,\nwould you like to remove\n"%s"?') % self.remove_bootlogo_name)
 			return
 
-		for x in lines:
-			plugin = x.split(" - ", 2)
-			# 'opkg list_installed' only returns name + version, no description field
-			if len(plugin) >= 1:
-				if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc'):
-					# Plugin filter
-					for s in self.PLUGIN_PREFIX2:
-						if plugin[0].startswith(s):
-							if self.run == 1 and self.type == self.DOWNLOAD:
-								if plugin[0] not in self.installedplugins:
-									self.installedplugins.append(plugin[0])
+		if self.run == 1:
+			for x in lines:
+				plugin = x.split(" - ", 2)
+				# 'opkg list_installed' only returns name + version, no description field
+				if len(plugin) >= 2:
+					if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc') and not plugin[0].endswith('-src'):
+						if plugin[0] not in self.installedplugins:
+							if self.type == self.DOWNLOAD and ((not config.pluginbrowser.po.getValue() and not plugin[0].endswith('-po')) or config.pluginbrowser.po.getValue()) and ((not config.pluginbrowser.src.getValue() and not plugin[0].endswith('-src')) or config.pluginbrowser.src.getValue()):
+								self.installedplugins.append(plugin[0])
 							else:
 								if plugin[0] not in self.installedplugins:
 									if len(plugin) == 2:
