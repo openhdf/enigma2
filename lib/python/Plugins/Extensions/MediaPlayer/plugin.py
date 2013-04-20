@@ -7,12 +7,14 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarShowHide, InfoBarServiceErrorPopupSupport, InfoBarPVRState, InfoBarServiceNotifications, InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, InfoBarTeletextPlugin
+from Screens.InfoBar import InfoBar
+from Screens.InfoBarGenerics import InfoBarSeek, InfoBarScreenSaver, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport
 from Components.ActionMap import NumberActionMap, HelpableActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.FileList import FileList
 from Components.MediaPlayer import PlayList
+from Components.MovieList import AUDIO_EXTENSIONS
 from Components.ServicePosition import ServicePositionGauge
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
@@ -87,7 +89,13 @@ class MediaPixmap(Pixmap):
 		self.coverArtFileName = "/tmp/.id3coverart"
 		self.picload.startDecode(self.coverArtFileName)
 
-class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, HelpableScreen):
+class MediaPlayerInfoBar(Screen):
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = "MoviePlayer"
+
+class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, HelpableScreen):
 	ALLOW_SUSPEND = True
 	ENABLE_RESUME_SUPPORT = True
 
@@ -97,6 +105,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		InfoBarCueSheetSupport.__init__(self, actionmap = "MediaPlayerCueSheetActions")
 		InfoBarNotifications.__init__(self)
 		InfoBarBase.__init__(self)
+		InfoBarScreenSaver.__init__(self)
 		InfoBarSubtitleSupport.__init__(self)
 		HelpableScreen.__init__(self)
 		self.summary = None
@@ -400,7 +409,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.updateCurrentInfo()
 
 	def showAfterSeek(self):
-		pass
+		if not self.shown:
+			self.hideAndInfoBar()
 
 	def showAfterCuesheetOperation(self):
 		self.show()
@@ -836,7 +846,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			if len(self.playlist) > 0:
 				self.changeEntry(0)
 
-	def playEntry(self, audio_extensions = frozenset((".mp2", ".mp3", ".wav", ".ogg", ".flac", ".m4a"))):
+	def playEntry(self):
 		if len(self.playlist.getServiceRefList()):
 			audio_extensions = (".mp2", ".mp3", ".wav", ".ogg", "flac", ".m4a")
 			needsInfoUpdate = False
@@ -857,10 +867,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				currref = self.playlist.getServiceRefList()[idx]
 				#text = self.getIdentifier(currref)
 				text = ">"+text
-				#ext = text[-4:].lower()
-
 				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead
-				if ext in audio_extensions or self.isAudioCD:
+				if ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
+					self.hideAndInfoBar()
+				else:
 					needsInfoUpdate = True
 				self.summaries.setText(text,1)
 
@@ -884,8 +894,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				idx = self.playlist.getCurrentIndex()
 				currref = self.playlist.getServiceRefList()[idx]
 				text = currref.getPath()
-				ext = text[-4:].lower()
-				if ext in audio_extensions or self.isAudioCD:
+				ext = os.path.splitext(text)[1].lower()
+				if ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
+					self.hideAndInfoBar()
+				else:
 					needsInfoUpdate = True
 
 			self.unPauseService()
