@@ -187,6 +187,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['cursoractions'].csel = self
 			self['inputactions'] = HelpableNumberActionMap(self, 'NumberActions',
 				{
+					'0': (self.keyNumberGlobal, _('enter number to jump to channel.')),
 					'1': (self.keyNumberGlobal, _('enter number to jump to channel.')),
 					'2': (self.keyNumberGlobal, _('enter number to jump to channel.')),
 					'3': (self.keyNumberGlobal, _('enter number to jump to channel.')),
@@ -883,8 +884,10 @@ class EPGSelection(Screen, HelpableScreen):
 		refstr = serviceref.ref.toString()
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret: not ret or self.removeTimer(timer)
-				self.session.openWithCallback(cb_func, MessageBox, _('Do you really want to delete %s?') % event.getEventName())
+				cb_func = lambda ret: self.removeTimer(timer)
+				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB, self.ChoiceBoxNull)]
+				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, text=_('Do you really want to remove the timer for %s?') % event.getEventName(), list=menu, skin_name="RemoveTimerQuestion")
+				self.showChoiceBoxDialog()
 				break
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(event))
@@ -935,8 +938,10 @@ class EPGSelection(Screen, HelpableScreen):
 		refstr = serviceref.ref.toString()
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret: not ret or self.removeTimer(timer)
-				self.session.openWithCallback(cb_func, MessageBox, _('Do you really want to delete %s?') % event.getEventName())
+				cb_func = lambda ret: self.removeTimer(timer)
+				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB, self.ChoiceBoxNull)]
+				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, text=_('Do you really want to remove the timer for %s?') % event.getEventName(), list=menu, skin_name="RemoveTimerQuestion")
+				self.showChoiceBoxDialog()
 				break
 		else:
 			menu = [(_("Record once"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), (_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimerSilent)]
