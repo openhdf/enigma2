@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 if DM8000
 SUBDIRS = dmm0
 endif
@@ -16,6 +17,10 @@ endif
 
 if DM800HD
 SUBDIRS = dmm2
+endif
+
+if E3HD
+SUBDIRS = e3hd
 endif
 
 if EBOX5000
@@ -93,4 +98,3 @@ endif
 if XP1000
 SUBDIRS = xp1000
 endif
-
