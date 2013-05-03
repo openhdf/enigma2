@@ -80,9 +80,9 @@ class RcModel:
 			self.currentRcType = self.RCTYPE_IXUSSONE
 		elif getBoxType() == 'ixusszero':
 			self.currentRcType = self.RCTYPE_IXUSSZERO
-        elif getBoxType() == 'e3hd':
-            self.currentRcType = self.RCTYPE_E3HD
-        elif getBoxType().startswith('odin'):
+		elif getBoxType() == 'e3hd':
+			self.currentRcType = self.RCTYPE_E3HD
+		elif getBoxType().startswith('odin'):
 			model = self.readFile('/proc/stb/info/boxtype')
 			if model == 'odinm7':
 				self.currentRcType = self.RCTYPE_ODINM7
