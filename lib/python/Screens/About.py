@@ -54,7 +54,7 @@ class About(Screen):
 		elif getBoxType() == 'vuduo2':
 			model = "Vu+ Duo" + chr(178)
 		elif getBoxType() == 'et4x00':
-			model = "Xtrend ET4x00 Series"			
+			model = "Xtrend ET4x00 Series"
 		elif getBoxType() == 'et5x00':
 			model = "Xtrend ET5x00 Series"
 		elif getBoxType() == 'et6x00':
@@ -62,7 +62,7 @@ class About(Screen):
 		elif getBoxType() == 'et9x00':
 			model = "Xtrend ET9x00 Series"
 		elif getBoxType() == 'odinm7':
-			model = "Odin M7"			
+			model = "Odin M7"
 		elif getBoxType() == 'odinm9':
 			model = "Odin M9"
 		elif getBoxType() == 'gb800solo':
@@ -82,7 +82,7 @@ class About(Screen):
 		elif getBoxType() == 'ixusszero':
 			model = "Ixuss Zero"
 		elif getBoxType() == 'ixussduo':
-			model = "Ixuss Duo"			
+			model = "Ixuss Duo"
 		elif getBoxType() == 'tmtwin':
 			model = "Technomate Twin"
 		elif getBoxType() == 'tm2t':
@@ -109,6 +109,8 @@ class About(Screen):
 			model = "DREAMBOX DM7020HD"
 		elif getBoxType() == 'dm8000':
 			model = "DREAMBOX DM8000HD"
+        elif getBoxType() == 'e3hd':¬
+            model = "E3HD"¬
 		else:
 			model = getBoxType()
 
@@ -124,7 +126,7 @@ class About(Screen):
 		AboutText += _("Version:\t%s") % getImageVersionString() + "\n"
 		AboutText += _("Build:\t%s") % getBuildVersionString() + "\n"
 		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
-		
+
 		string = getDriverDateString()
 		year = string[0:4]
 		month = string[4:6]
@@ -604,6 +606,8 @@ class AboutSummary(Screen):
 			model = "DREAMBOX DM7020HD"
 		elif getBoxType() == 'dm8000':
 			model = "DREAMBOX DM8000HD"
+        elif getBoxType() = "e3hd":
+            model = "E3HD"
 		else:
 			model = getBoxType()
 
