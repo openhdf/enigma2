@@ -5,27 +5,28 @@ class RcModel:
 	RCTYPE_DMM = 0
 	RCTYPE_DMM1 = 1
 	RCTYPE_DMM2 = 2
-	RCTYPE_EBOX5000 = 3	
-	RCTYPE_ET4X00 = 4
-	RCTYPE_ET6X00 = 5
-	RCTYPE_ET6500 = 6
-	RCTYPE_ET9X00 = 7	
-	RCTYPE_ET9500 = 8
-	RCTYPE_GB = 9
-	RCTYPE_INI1000 = 10
-	RCTYPE_INI3000 = 11
-	RCTYPE_INI5000 = 12
-	RCTYPE_INI5000R = 13
-	RCTYPE_INI7000 = 14
-	RCTYPE_IQON = 15	
-	RCTYPE_IXUSSONE = 16
-	RCTYPE_IXUSSZERO = 17
-	RCTYPE_ODINM7 = 18
-	RCTYPE_ODINM9 = 19	
-	RCTYPE_TM = 20
-	RCTYPE_VU = 21	
-	RCTYPE_VU2 = 22
-	RCTYPE_XP1000 = 23
+	RCTYPE_E3HD = 3
+	RCTYPE_EBOX5000 = 4
+	RCTYPE_ET4X00 = 5
+	RCTYPE_ET6X00 = 6
+	RCTYPE_ET6500 = 7
+	RCTYPE_ET9X00 = 8
+	RCTYPE_ET9500 = 9
+	RCTYPE_GB = 10
+	RCTYPE_INI1000 = 11
+	RCTYPE_INI3000 = 12
+	RCTYPE_INI5000 = 13
+	RCTYPE_INI5000R = 14
+	RCTYPE_INI7000 = 15
+	RCTYPE_IQON = 16
+	RCTYPE_IXUSSONE = 17
+	RCTYPE_IXUSSZERO = 18
+	RCTYPE_ODINM7 = 19
+	RCTYPE_ODINM9 = 20
+	RCTYPE_TM = 21
+	RCTYPE_VU = 22
+	RCTYPE_VU2 = 23
+	RCTYPE_XP1000 = 24
 
 
 	def __init__(self):
@@ -79,7 +80,9 @@ class RcModel:
 			self.currentRcType = self.RCTYPE_IXUSSONE
 		elif getBoxType() == 'ixusszero':
 			self.currentRcType = self.RCTYPE_IXUSSZERO
-		elif getBoxType().startswith('odin'):
+        elif getBoxType() == 'e3hd':
+            self.currentRcType = self.RCTYPE_E3HD
+        elif getBoxType().startswith('odin'):
 			model = self.readFile('/proc/stb/info/boxtype')
 			if model == 'odinm7':
 				self.currentRcType = self.RCTYPE_ODINM7
@@ -103,6 +106,8 @@ class RcModel:
 				self.currentRcType = self.RCTYPE_ODINM9
 			elif model == 'odinm7':
 				self.currentRcType = self.RCTYPE_ODINM7
+			elif model == 'e3hd':
+				self.currentRcType = self.RCTYPE_E3HD
 			elif model.startswith('Ixuss'):
 				if getBoxType() == 'ixussone':
 					self.currentRcType = self.RCTYPE_IXUSSONE
@@ -113,7 +118,7 @@ class RcModel:
 			if model == 'ultimo':
 				self.currentRcType = self.RCTYPE_VU2
 			else:
-				self.currentRcType = self.RCTYPE_VU		
+				self.currentRcType = self.RCTYPE_VU
 
 
 	def getRcLocation(self):
@@ -123,6 +128,8 @@ class RcModel:
 			return '/usr/share/enigma2/rc_models/dmm1/'
 		elif self.currentRcType == self.RCTYPE_DMM2:
 			return '/usr/share/enigma2/rc_models/dmm2/'
+		elif self.currentRcType == self.RCTYPE_E3HD:
+			return '/usr/share/enigma2/rc_models/e3hd/'
 		elif self.currentRcType == self.RCTYPE_EBOX5000:
 			return '/usr/share/enigma2/rc_models/ebox5000/'
 		elif self.currentRcType == self.RCTYPE_ET4X00:
