@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 if DM8000
 SUBDIRS = dmm0
 endif
