@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import config, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigText, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber, ConfigNumber
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
 from Components.NimManager import nimmanager
@@ -24,10 +24,13 @@ def InitUsageConfig():
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
 
 	config.usage.panicbutton = ConfigYesNo(default = False)
+	config.usage.servicetype_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
+	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
+
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
 	config.usage.showpicon = ConfigYesNo(default = True)
 	config.usage.show_dvdplayer = ConfigYesNo(default = False)
-	
+
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 
@@ -360,8 +363,6 @@ def InitUsageConfig():
 
 	config.timeshift = ConfigSubsection()
 	config.timeshift.enabled = ConfigYesNo(default = False)
-	config.timeshift.maxevents = ConfigSelectionNumber(min = 1, max = 99, stepwidth = 1, default = 5, wraparound = True)
-	config.timeshift.maxlength = ConfigSelectionNumber(min = 30, max = 999, stepwidth = 10, default = 360, wraparound = True)
 	config.timeshift.startdelay = ConfigSelectionNumber(min = 5, max = 60, stepwidth = 1, default = 5, wraparound = True)
 	config.timeshift.showinfobar = ConfigYesNo(default = True)
 	config.timeshift.stopwhilerecording = ConfigYesNo(default = False)
