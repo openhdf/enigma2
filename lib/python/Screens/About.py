@@ -606,8 +606,8 @@ class AboutSummary(Screen):
 			model = "DREAMBOX DM7020HD"
 		elif getBoxType() == 'dm8000':
 			model = "DREAMBOX DM8000HD"
-        elif getBoxType() = "e3hd":
-            model = "E3HD"
+		elif getBoxType() = "e3hd":
+			model = "E3HD"
 		else:
 			model = getBoxType()
 
