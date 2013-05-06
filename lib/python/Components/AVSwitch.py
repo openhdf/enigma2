@@ -4,6 +4,13 @@ from enigma import eAVSwitch, getDesktop, getBoxType
 from SystemInfo import SystemInfo
 import os
 
+try:
+	file = open("/proc/stb/info/boxtype", "r")
+	model = file.readline().strip()
+	file.close()
+except:
+	model = "unknown"
+
 class AVSwitch:
 	def setInput(self, input):
 		INPUT = { "ENCODER": 0, "SCART": 1, "AUX": 2 }
@@ -102,7 +109,7 @@ def InitAVSwitch():
 		if "auto" in f.readline():
 			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 			policy2_choices.update({"auto": _("Auto")})
-		f.close()	
+		f.close()
 	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "scale")
 	policy_choices = {
 	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
@@ -129,7 +136,12 @@ def InitAVSwitch():
 	iAVSwitch = AVSwitch()
 
 	def setColorFormat(configElement):
-		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
+		if getBoxType() == 'et6x00':
+			map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}
+		elif getBoxType() == 'gbquad' or getBoxType().startswith('et'):
+			map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
+		else:
+			map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 		iAVSwitch.setColorFormat(map[configElement.getValue()])
 
 	def setAspectRatio(configElement):
@@ -150,7 +162,12 @@ def InitAVSwitch():
 	config.av.wss.addNotifier(setWSS)
 
 	iAVSwitch.setInput("ENCODER") # init on startup
-	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
+	if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd':
+		detected = False
+	else:
+		detected = eAVSwitch.getInstance().haveScartSwitch()
+
+	SystemInfo["ScartSwitch"] = detected
 
 	try:
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
@@ -229,8 +246,6 @@ def InitAVSwitch():
 				print "couldn't write pep_scaler_sharpness"
 
 		if getBoxType() == 'gbquad':
-			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
-		elif getBoxType() == 'et9x00' or getBoxType() == 'et6x00' or getBoxType() == 'et5x00' or getBoxType() == 'et4x00':
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
 		else:
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
