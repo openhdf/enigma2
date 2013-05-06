@@ -1,7 +1,6 @@
 from Screen import Screen
 from Components.Language import language
-from enigma import eConsoleAppContainer, eDVBDB, getImageVersionString
-
+from enigma import eConsoleAppContainer, eDVBDB
 
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
@@ -22,6 +21,25 @@ from Tools.LoadPixmap import LoadPixmap
 
 from time import time
 import os
+
+config.pluginfilter = ConfigSubsection()
+config.pluginfilter.hdf = ConfigYesNo(default = True)
+config.pluginfilter.po = ConfigYesNo(default = False)
+config.pluginfilter.src = ConfigYesNo(default = False)
+config.pluginfilter.kernel = ConfigYesNo(default = False)
+config.pluginfilter.drivers = ConfigYesNo(default = True)
+config.pluginfilter.extensions = ConfigYesNo(default = True)
+config.pluginfilter.gigabluesupportnet = ConfigYesNo(default = False)
+config.pluginfilter.m2k = ConfigYesNo(default = False)
+config.pluginfilter.picons = ConfigYesNo(default = True)
+config.pluginfilter.pli = ConfigYesNo(default = False)
+config.pluginfilter.security = ConfigYesNo(default = True)
+config.pluginfilter.settings = ConfigYesNo(default = True)
+config.pluginfilter.skins = ConfigYesNo(default = True)
+config.pluginfilter.softcams = ConfigYesNo(default = True)
+config.pluginfilter.systemplugins = ConfigYesNo(default = True)
+config.pluginfilter.vix = ConfigYesNo(default = False)
+config.pluginfilter.weblinks = ConfigYesNo(default = True)
 
 def languageChanged():
 	plugins.clearPluginList()
@@ -81,8 +99,7 @@ class PluginBrowser(Screen):
 		self.onLayoutFinish.append(self.saveListsize)
 
 	def menu(self):
-		from Screens.Setup import Setup
-		self.session.open(Setup, "pluginfilter")
+		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginFilter)
 
 	def saveListsize(self):
 		listsize = self["list"].instance.size()
@@ -114,7 +131,7 @@ class PluginBrowser(Screen):
 
 	def save(self):
 		self.run()
-
+	
 	def run(self):
 		plugin = self["list"].l.getCurrentSelection()[0]
 		plugin(session=self.session)
@@ -126,7 +143,7 @@ class PluginBrowser(Screen):
 
 	def delete(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
-
+	
 
 	def download(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
@@ -186,7 +203,7 @@ class PluginDownloadBrowser(Screen):
 
 		self.run = 0
 		self.remainingdata = ""
-		self["actions"] = ActionMap(["WizardActions"],
+		self["actions"] = ActionMap(["WizardActions"], 
 		{
 			"ok": self.go,
 			"back": self.requestClose,
@@ -194,7 +211,7 @@ class PluginDownloadBrowser(Screen):
 		if os.path.isfile('/usr/bin/opkg'):
 			self.ipkg = '/usr/bin/opkg'
 			self.ipkg_install = self.ipkg + ' install --force-overwrite'
-			self.ipkg_remove = self.ipkg + ' remove --autoremove'
+			self.ipkg_remove =  self.ipkg + ' remove --autoremove --force-depends'
 		else:
 			self.ipkg = 'ipkg'
 			self.ipkg_install = 'ipkg install --force-overwrite -force-defaults'
@@ -290,7 +307,7 @@ class PluginDownloadBrowser(Screen):
 			self.doInstall(self.installFinished, self["list"].l.getCurrentSelection()[0].name + ' ' + extra)
 		else:
 			self.resetPostInstall()
-
+				
 	def runInstall(self, val):
 		if val:
 			if self.type == self.DOWNLOAD:
@@ -308,7 +325,7 @@ class PluginDownloadBrowser(Screen):
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list=candidates)
 					return
 				elif self["list"].l.getCurrentSelection()[0].name.startswith("display-picon"):
-					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
+					supported_filesystems = frozenset(('vfat','ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
 					candidates = []
 					import Components.Harddisk
 					mounts = Components.Harddisk.getProcMounts()
@@ -376,7 +393,6 @@ class PluginDownloadBrowser(Screen):
 		self["list"].instance.hide()
 		self.listWidth = listsize.width()
 		self.listHeight = listsize.height()
-
 		if self.type == self.DOWNLOAD:
 			self.type = self.UPDATE
 			self.container.execute(self.ipkg + " update")
@@ -423,18 +439,7 @@ class PluginDownloadBrowser(Screen):
 				self.startIpkgListInstalled()
 		elif self.run == 1 and self.type == self.DOWNLOAD:
 			self.run = 2
-			from Components import opkg
-			pluginlist = []
-			self.pluginlist = pluginlist
-			for plugin in opkg.enumPlugins(self.PLUGIN_PREFIX):
-				if plugin[0] not in self.installedplugins and ((not config.pluginfilter.po.getValue() and not plugin[0].endswith('-po')) or config.pluginfilter.po.getValue()) and ((not config.pluginfilter.src.getValue() and not plugin[0].endswith('-src')) or config.pluginfilter.src.getValue()):
-					pluginlist.append(plugin + (plugin[0][15:],))
-			if pluginlist:
-				pluginlist.sort()
-				self.updateList()
-				self["list"].instance.show()
-			else:
-				self["text"].setText(_("No new plugins found"))
+			self.startIpkgListAvailable()
 		else:
 			if len(self.pluginlist) > 0:
 				self.updateList()
@@ -472,15 +477,17 @@ class PluginDownloadBrowser(Screen):
 			self.session.openWithCallback(self.runBootlogoRemove, MessageBox, _('You already have a bootlogo installed,\nwould you like to remove\n"%s"?') % self.remove_bootlogo_name)
 			return
 
-		if self.run == 1:
-			for x in lines:
-				plugin = x.split(" - ", 2)
-				# 'opkg list_installed' only returns name + version, no description field
-				if len(plugin) >= 2:
-					if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc') and not plugin[0].endswith('-src'):
-						if plugin[0] not in self.installedplugins:
-							if self.type == self.DOWNLOAD and ((not config.pluginbrowser.po.getValue() and not plugin[0].endswith('-po')) or config.pluginbrowser.po.getValue()) and ((not config.pluginbrowser.src.getValue() and not plugin[0].endswith('-src')) or config.pluginbrowser.src.getValue()):
-								self.installedplugins.append(plugin[0])
+		for x in lines:
+			plugin = x.split(" - ", 2)
+			# 'opkg list_installed' only returns name + version, no description field
+			if len(plugin) >= 1:
+				if not plugin[0].endswith('-dev') and not plugin[0].endswith('-staticdev') and not plugin[0].endswith('-dbg') and not plugin[0].endswith('-doc') and not plugin[0].endswith('-src'):
+					# Plugin filter
+					for s in self.PLUGIN_PREFIX2:
+						if plugin[0].startswith(s):
+							if self.run == 1 and self.type == self.DOWNLOAD:
+								if plugin[0] not in self.installedplugins:
+									self.installedplugins.append(plugin[0])
 							else:
 								if plugin[0] not in self.installedplugins:
 									if len(plugin) == 2:
@@ -581,7 +588,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
 		self.list.append(getConfigListEntry(_("kernel modules"), config.pluginfilter.kernel, _("This allows you to show kernel modules in downloads")))
 		self.list.append(getConfigListEntry(_("gigabluesupportnet"), config.pluginfilter.gigabluesupportnet, _("This allows you to show gigabluesupportnet modules in downloads")))
-
+		
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 		if config.usage.sort_settings.getValue():

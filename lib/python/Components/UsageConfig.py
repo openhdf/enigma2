@@ -704,25 +704,6 @@ def InitUsageConfig():
 	config.streaming.stream_eit = ConfigYesNo(default = True)
 	config.streaming.stream_ait = ConfigYesNo(default = True)
 
-	config.pluginfilter = ConfigSubsection()
-	config.pluginfilter.hdf = ConfigYesNo(default = True)
-	config.pluginfilter.po = ConfigYesNo(default = False)
-	config.pluginfilter.src = ConfigYesNo(default = False)
-	config.pluginfilter.kernel = ConfigYesNo(default = False)
-	config.pluginfilter.drivers = ConfigYesNo(default = True)
-	config.pluginfilter.extensions = ConfigYesNo(default = True)
-	config.pluginfilter.gigabluesupportnet = ConfigYesNo(default = False)
-	config.pluginfilter.m2k = ConfigYesNo(default = False)
-	config.pluginfilter.picons = ConfigYesNo(default = True)
-	config.pluginfilter.pli = ConfigYesNo(default = False)
-	config.pluginfilter.security = ConfigYesNo(default = True)
-	config.pluginfilter.settings = ConfigYesNo(default = True)
-	config.pluginfilter.skins = ConfigYesNo(default = True)
-	config.pluginfilter.softcams = ConfigYesNo(default = True)
-	config.pluginfilter.systemplugins = ConfigYesNo(default = True)
-	config.pluginfilter.vix = ConfigYesNo(default = False)
-	config.pluginfilter.weblinks = ConfigYesNo(default = True)
-
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
