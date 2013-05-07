@@ -257,6 +257,9 @@ if [ $ROOTFSTYPE = "ubifs" ] ; then
 	echo "will take about 5-12 minutes for this system"
 	echo " "
 	echo " "
+	echo "If you want to watch TV while backup is running "
+	echo "press the yellow key to hide/show the screen"
+	echo " "
 else
 	echo "this will take between 2 and 9 minutes "
 fi

@@ -11,14 +11,16 @@ class Console(Screen):
 		self.closeOnSuccess = closeOnSuccess
 		self.errorOcurred = False
 
+		self.Shown = True
 		self["text"] = ScrollLabel("")
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
+		self["actions"] = ActionMap(["ColorActions", "WizardActions", "DirectionActions"],
 		{
 			"ok": self.cancel,
 			"back": self.cancel,
 			"up": self["text"].pageUp,
-			"down": self["text"].pageDown
-		}, -1)
+			"down": self["text"].pageDown,
+			"yellow": self.yellow,
+		}, -2)
 
 		self.cmdlist = cmdlist
 		self.newtitle = title
@@ -30,6 +32,15 @@ class Console(Screen):
 		self.container.appClosed.append(self.runFinished)
 		self.container.dataAvail.append(self.dataAvail)
 		self.onLayoutFinish.append(self.startRun) # dont start before gui is finished
+
+	def yellow(self):
+		print 'Yellow Pressed'	
+		if self.Shown == True:
+			self.hide()
+			self.Shown = False
+		else:
+			self.show()
+			self.Shown = True
 
 	def updateTitle(self):
 		self.setTitle(self.newtitle)
