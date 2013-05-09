@@ -88,9 +88,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 		self.onShow.append(self.doButtonsCheck)
 
-	def ptsGetSaveTimeshiftStatus(self):
-		return self.save_current_timeshift
-
 	def showMenu(self):
 		self.onShown.remove(self.showMenu)
 		config.misc.initialchannelselection.value = False
