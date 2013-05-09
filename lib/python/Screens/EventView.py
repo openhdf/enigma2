@@ -1,7 +1,7 @@
 from Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.MessageBox import MessageBox
-from Components.Sources.StaticText import StaticText 
+from Components.Sources.StaticText import StaticText
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
@@ -114,7 +114,7 @@ class EventViewBase:
 		self.session.nav.RecordTimer.removeEntry(timer)
 		self["key_green"].setText(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
-	
+
 	def timerAdd(self):
 		if self.isRecording:
 			return
@@ -150,7 +150,7 @@ class EventViewBase:
 		else:
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
-			print "Timeredit aborted"		
+			print "Timeredit aborted"
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -203,8 +203,19 @@ class EventViewBase:
 
 		self["summary_description"].setText(extended)
 
-		begintime = event.getBeginTimeString().split(', ')[1].split(':')
-		begindate = event.getBeginTimeString().split(', ')[0].split('.')
+		beginTimeString = event.getBeginTimeString()
+
+		if not beginTimeString:
+			return
+		if beginTimeString.find(', ') > -1:
+			begintime = beginTimeString.split(', ')[1].split(':')
+			begindate = beginTimeString.split(', ')[0].split('.')
+		else:
+			if len(beginTimeString.split(' ')) > 1:
+				begintime = beginTimeString.split(' ')[1].split(':')
+			else:
+				return
+			begindate = beginTimeString.split(' ')[0].split('.')
 		nowt = time()
 		now = localtime(nowt)
 		test = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst)))
