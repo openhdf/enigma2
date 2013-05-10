@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-29 02:01+0000\n"
-"PO-Revision-Date: 2013-03-29 16:17+0100\n"
+"POT-Creation-Date: 2013-05-06 14:39+0100\n"
+"PO-Revision-Date: 2013-05-09 14:35+0100\n"
 "Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1569,6 +1569,12 @@ msgstr "Klienten"
 msgid "Close"
 msgstr "Schließen"
 
+msgid "Close bouquet list."
+msgstr "Schließe Favoritenliste"
+
+msgid "Close dialog"
+msgstr "Dialog schließen"
+
 msgid "Close title selection"
 msgstr "Titelauswahl schließen"
 
@@ -1665,6 +1671,9 @@ msgstr ""
 
 msgid "Configure how recording filenames are constructed."
 msgstr "Konfigurieren der Zusammensetzung des Dateinamens von Aufnahmen"
+
+msgid "Configure if and how service type icons will be shown."
+msgstr "Konfigurieren ob und wie Sendertyp Icons gezeigt werden."
 
 msgid "Configure interface"
 msgstr "Netzwerkkarte konfigurieren"
@@ -2038,7 +2047,7 @@ msgid "Cool TV Guide"
 msgstr "Cool TV Guide"
 
 msgid "Copy"
-msgstr "kopieren"
+msgstr "Kopieren"
 
 msgid "Copying files"
 msgstr "Dateien kopieren"
@@ -2896,7 +2905,7 @@ msgid "Event Info"
 msgstr "Programminformation..."
 
 msgid "Event font size"
-msgstr "Schriftgröße Programm"
+msgstr "Programm Schriftgröße"
 
 msgid "Event font size (relative to skin size)"
 msgstr "Sendung Schriftgröße (relativ zur Skingröße)"
@@ -3989,6 +3998,9 @@ msgstr "DVD Player beenden?"
 msgid "Left"
 msgstr "Links"
 
+msgid "Left from servicename"
+msgstr "Links vom Sendernamen"
+
 msgid "Leisure hobbies"
 msgstr "Freizeit/Hobby"
 
@@ -4199,13 +4211,6 @@ msgstr "Maxdown -"
 
 msgid "Maxdown: "
 msgstr "Maxdown: "
-
-msgid ""
-"Maximum Timeshift length per Event reached!\n"
-"Restarting Timeshift now ..."
-msgstr ""
-"Maximallänge für Timeshift erreicht!\n"
-"Timeshift wird jetzt neu gestartet ..."
 
 msgid "Maximum no of days:"
 msgstr "Maximalzahl von Tagen:"
@@ -5056,12 +5061,6 @@ msgstr "Hintergrundsuche nach Updates"
 msgid "Permanent Timeshift enable"
 msgstr "Aktiviere permanenten TimeShift"
 
-msgid "Permanent Timeshift max events"
-msgstr "Permanenter TimeShift max. Sendungen"
-
-msgid "Permanent Timeshift max length"
-msgstr "Permanenter TimeShift max. Länge"
-
 msgid "Permanent Timeshift start delay"
 msgstr "Permanenter TimeShift Startverzögerung"
 
@@ -5754,6 +5753,9 @@ msgstr "verbleibend und verstrichen"
 msgid "Remember service PIN"
 msgstr "Service PIN merken"
 
+msgid "Reminder, you have chosen to save timeshift file."
+msgstr "Erinnerung! Du hast gewählt die Timeshift-Datei zu speichern."
+
 msgid "Remote box"
 msgstr "Entfernte Box"
 
@@ -5970,6 +5972,9 @@ msgstr "Videotextuntertitel anders formatieren"
 
 msgid "Right"
 msgstr "Rechts"
+
+msgid "Right from servicename"
+msgstr "Rechts vom Sendernamen"
 
 msgid "Roll-off"
 msgstr "Roll-off"
@@ -6410,7 +6415,7 @@ msgid "Service has been added to the selected bouquet."
 msgstr "Sender wurde zur gewählten Favoritenliste hinzugefügt."
 
 msgid "Service info font size"
-msgstr "Sender Info Schriftgröße"
+msgstr "Senderinfo Schriftgröße"
 
 msgid ""
 "Service invalid!\n"
@@ -6423,7 +6428,7 @@ msgid "Service name"
 msgstr "Sendername"
 
 msgid "Service name font size"
-msgstr "Sender Name Schriftgröße"
+msgstr "Sendername Schriftgröße"
 
 msgid ""
 "Service not found!\n"
@@ -6534,14 +6539,6 @@ msgstr "Setze die Beschreibung für die Aufnahme."
 
 msgid "Set the jump-size of the seekbar."
 msgstr "Wähle die Sprungweite für die Seekbar."
-
-msgid "Set the maximum length a timeshift file may be."
-msgstr "Wähle die Maximallänge von Timeshift Dateien."
-
-msgid "Set the maximum number of events (programs) that timeshift may handle."
-msgstr ""
-"Wähle die maximale Anzahl von Sendungen die Timeshift verarbeiten können "
-"soll."
 
 msgid "Set the name the recording will get."
 msgstr "Setze den Namen den die Aufnahme bekommen soll."
@@ -6850,8 +6847,8 @@ msgstr "Zeige Bildschirmschoner"
 msgid "Show second infobar"
 msgstr "Zeige SecondInfobar"
 
-msgid "Show infobar picons"
-msgstr "Zeige InfoBar Senderlogos"
+msgid "Show service type icons"
+msgstr "Zeige Sendertype Icon"
 
 msgid "Show services beginning with"
 msgstr "Zeige Sender beginnend mit"
@@ -7284,6 +7281,9 @@ msgstr "Stoppe Test nach # fehlgeschlagenen Transpondern"
 msgid "Stop testing plane after # successful transponders"
 msgstr "Stoppe Test nach # erfolgreichen Transpondern"
 
+msgid "Stop timer recording"
+msgstr "Timeraufnahme beenden"
+
 msgid "Stop timeshift"
 msgstr "TimeShift stoppt"
 
@@ -7388,6 +7388,9 @@ msgstr "Schwedisch"
 
 msgid "Switch TV to correct input"
 msgstr "Fernseher auf passenden Eingang schalten"
+
+msgid "Switch between filelist/playlist"
+msgstr "Wechsel zwischen Datei-/Playliste"
 
 msgid "Switch between normal mode and list mode"
 msgstr "Tausche normalen und Listenmodus"
@@ -8104,7 +8107,7 @@ msgid "Time to execute command or script"
 msgstr "Zeit um Kommand oder Script auszuführen"
 
 msgid "Timeline font size"
-msgstr "Schriftgröße Zeitachse"
+msgstr "Zeitachse Schriftgröße"
 
 msgid "Timer List"
 msgstr "Timerliste"
@@ -9299,6 +9302,12 @@ msgstr "Gelbe, externe Untertitel"
 msgid "Yes"
 msgstr "Ja"
 
+msgid "Yes and save"
+msgstr "Ja und speichern"
+
+msgid "Yes and save in movie dir"
+msgstr "Ja und im Filmverzeichnis speichern"
+
 msgid "Yes to all"
 msgstr "Ja zu allen"
 
@@ -10352,9 +10361,6 @@ msgstr "Seite links"
 msgid "pass"
 msgstr "Durchgang"
 
-msgid "pause"
-msgstr "Pause"
-
 msgid "performing arts"
 msgstr "darstellende Künste"
 
@@ -10968,9 +10974,15 @@ msgstr "Neutrino  (keymap.ntr)"
 msgid "Use Keymap"
 msgstr "Keymap Auswahl"
 
-#
-msgid "Extended System"
-msgstr "Erweiterte Einstellungen"
+#~ msgid ""
+#~ "Maximum Timeshift length per Event reached!\n"
+#~ "Restarting Timeshift now ..."
+#~ msgstr ""
+#~ "Maximallänge für Timeshift erreicht!\n"
+#~ "Timeshift wird jetzt neu gestartet ..."
+
+#~ msgid "Message"
+#~ msgstr "Nachricht"
 
 #
 msgid "Upgrade with GUI"
@@ -11024,9 +11036,14 @@ msgstr "Bitte Bild-Seitenverhältnis auswählen..."
 msgid "Refresh"
 msgstr "Aktualisieren"
 
-#
-msgid "Softcam-Panel Setup"
-msgstr "Softcam Einstellungen"
+#~ msgid "Permanent Timeshift max events"
+#~ msgstr "Permanenter TimeShift max. Sendungen"
+
+#~ msgid "Permanent Timeshift max length"
+#~ msgstr "Permanenter TimeShift max. Länge"
+
+#~ msgid "PiP setup"
+#~ msgstr "PiP Einstellung"
 
 #
 msgid "Mount again"
@@ -11092,9 +11109,14 @@ msgstr "Fernbedienung Einstellungen"
 msgid "Remote"
 msgstr "Fernbedienung"
 
-#
-msgid "Run"
-msgstr "Starten"
+#~ msgid "Set the maximum length a timeshift file may be."
+#~ msgstr "Wähle die Maximallänge von Timeshift Dateien."
+
+#~ msgid "Set the maximum number of events (programs) that timeshift may handle."
+#~ msgstr "Wähle die maximale Anzahl von Sendungen die Timeshift verarbeiten können soll."
+
+#~ msgid "Setup what a long press on the power button does."
+#~ msgstr "Stelle ein was bei langem Druck auf die Aus-Taste passieren soll."
 
 #
 msgid "Select a scirpt to run"
@@ -11199,7 +11221,9 @@ msgstr "Swap Ort:"
 msgid "Swap Size:"
 msgstr "Swap Größe:"
 
-#
-msgid "Enable Swap at startup"
-msgstr "Aktiviere Swap Start"
+#~ msgid "pause"
+#~ msgstr "Pause"
+
+#~ msgid "play from next mark or playlist entry"
+#~ msgstr "Wiedergabe ab der nächsten Markierung/Listeneintrag"
 
