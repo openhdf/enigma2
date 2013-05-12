@@ -731,11 +731,15 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def addTerTransponder(self, tlist, *args, **kwargs):
 		tlist.append(buildTerTransponder(*args, **kwargs))
 
-	def keyGo(self, answer = True):
-		InfoBarInstance = InfoBar.instance
-		if not answer or (InfoBarInstance and InfoBarInstance.checkTimeshiftRunning(self.keyGo)):
-			return
-		if self.scan_nims.value == "":
+	def keyGo(self):
+		infoBarInstance = InfoBar.instance
+		if infoBarInstance:
+			infoBarInstance.checkTimeshiftRunning(self.keyGoCheckTimeshiftCallback)
+		else:
+			self.keyGoCheckTimeshiftCallback(True)
+
+	def keyGoCheckTimeshiftCallback(self, answer):
+		if not answer or self.scan_nims.value == "":
 			return
 		tlist = []
 		flags = None
@@ -958,7 +962,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.finished_cb = finished_cb
 		self.keyGo()
 
-	def keyGo(self, answer = True):
+	def keyGo(self):
 		InfoBarInstance = InfoBar.instance
 		if InfoBarInstance:
 			InfoBarInstance.checkTimeshiftRunning(self.keyGoCheckTimeshiftCallback)
