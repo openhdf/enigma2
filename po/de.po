@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-06 14:39+0100\n"
-"PO-Revision-Date: 2013-05-13 17:21+0100\n"
+"PO-Revision-Date: 2013-05-18 08:17+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1354,6 +1354,30 @@ msgstr "Zentriere Zeit und entferne Datum"
 msgid "Change bouquets in quickzap"
 msgstr "Favoriten wechseln beim Quickzap"
 
+msgid "enable extended number zap"
+msgstr "Extended NumberZap aktivieren"
+
+msgid "time to wait next keypress (milliseconds)"
+msgstr "Wartezeit bis zum nächsten Tastendruck (ms)"
+
+msgid "alternative service counter in bouquets"
+msgstr "Alternative Senderzählung in Bouquets"
+
+msgid "enable picons"
+msgstr "Benutze Picons"
+
+msgid "picons directory:"
+msgstr "Picon Verzeichnis:"
+
+msgid "enable number hotkeys"
+msgstr "Benutze Zahlen Schnelltasten"
+
+msgid "hotkey action have priority"
+msgstr "Schnelltaste hat Vorrang"
+
+msgid "confirmation on hotkey action"
+msgstr "Bestätigung bei Schnelltaste Benutzung"
+
 msgid "Change pin code"
 msgstr "Pincode ändern"
 
@@ -2269,6 +2293,15 @@ msgstr "Debug Logs"
 
 msgid "Deep Standby"
 msgstr "Ausschalten"
+
+msgid "Sleep Timer"
+msgstr "Ausschalt Timer"
+
+msgid "deep standby"
+msgstr "Ausschalten"
+
+msgid "auto and deep standby"
+msgstr "Automatisch und Ausschalten"
 
 msgid "Deep standby"
 msgstr "Ausschalten"
@@ -3317,6 +3350,54 @@ msgstr "GraphMultiEpg Einstellungen"
 
 msgid "Graphical EPG"
 msgstr "Grafischer EPG"
+
+msgid "Record Infobar Setup"
+msgstr "Record Infobar Einstellungen"
+
+msgid "Enable record infobar"
+msgstr "Aktiviere Record Infobar"
+
+msgid "Increase direction"
+msgstr "Startpunkt Richtung"
+
+msgid "X position (upper-left corner of srceen)"
+msgstr "X Position (Ab obere linke Ecke)"
+
+msgid "Y position (upper-left corner of screen)"
+msgstr "Y Position (Ab obere linke Ecke)"
+
+msgid "Zap on start service recording"
+msgstr "Umschaltverhalten beim Aufnahmestart"
+
+msgid "Show message when switching to recording service"
+msgstr "Zeige Hinweis beim Umschalten zur Aufnahme"
+
+msgid "Automatic is the default action"
+msgstr "Automatisches Standard Verhalten"
+
+msgid "Goto Standby when wakeup on a timer recording"
+msgstr "Gehe in Standby wenn die Box wenn die Box aufgewacht ist"
+
+msgid "Standby for timer 'After event'"
+msgstr "Verhalten nach einer Aufnahme"
+
+msgid "Standby message screen timeout(sec.)"
+msgstr "Standby Hinweis in Sekunden"
+
+msgid "all,than to do 'nothing'"
+msgstr "Alles als nichts zu tun"
+
+msgid "all"
+msgstr "Alle"
+
+msgid "standby"
+msgstr "Standby"
+
+msgid "default"
+msgstr "Standard"
+
+msgid "aks the user"
+msgstr "Nachfragen"
 
 msgid "Graphical InfobarEPG settings"
 msgstr "Grafischer InfoBar-EPG Einstellungen"
@@ -5371,6 +5452,12 @@ msgstr "Bitte warten... Liste wird geladen..."
 msgid "Plugin Browser"
 msgstr "Erweiterungen"
 
+msgid "Downloadable plugins"
+msgstr "Plugins herunterladen"
+
+msgid "Plugin browser"
+msgstr "Erweiterungen"
+
 msgid "Plugin details"
 msgstr "Plugin Angaben"
 
@@ -6787,6 +6874,9 @@ msgstr "Zeige Favoritenlisten-Auswahlmenü"
 msgid "Show channel numbers in channel selection"
 msgstr "Zeige Sendernummer in Senderauswahl"
 
+msgid "Show channel number in infobar"
+msgstr "Zeige Sendernummer in Infobar"
+
 msgid "Show crypto info in infobar"
 msgstr "Zeige Verschlüsselung in Infobar an"
 
@@ -6826,6 +6916,9 @@ msgstr "Zeige Infozeile"
 
 msgid "Show infobar on channel change"
 msgstr "Zeige Infobar beim Senderwechsel"
+
+msgid "Show infobar picons"
+msgstr "Zeige Picons in der Infobar"
 
 msgid "Show infobar on event change"
 msgstr "Zeige Infobar beim Sendungswechsel"
@@ -8198,6 +8291,9 @@ msgstr "Timeshift auf Festplatte gesichert!"
 
 msgid "Timeshift settings"
 msgstr "TimeShift Einstellungen"
+
+msgid "Use timeshift seekbar while timeshifting?"
+msgstr "Benutze Timeshift Suchleiste"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Timeshift wird am Ende der Sendung gesichert."
