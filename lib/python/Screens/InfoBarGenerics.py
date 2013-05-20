@@ -491,6 +491,11 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.standardInfoBar = True
 		self.secondInfoBarWasShown = False
 		self.EventViewIsShown = False
+		try:
+			if self.pvrStateDialog:
+				pass
+		except:
+			self.pvrStateDialog = None
 
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
