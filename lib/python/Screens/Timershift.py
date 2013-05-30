@@ -110,7 +110,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 	def checkReadWriteDir(self, configele):
 		import os.path
 		import Components.Harddisk
-		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
+		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs', 'cifs'))
 		candidates = []
 		mounts = Components.Harddisk.getProcMounts()
 		for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
@@ -189,7 +189,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		if res is not None:
 			import os.path
 			import Components.Harddisk
-			supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
+			supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs', 'cifs'))
 			candidates = []
 			mounts = Components.Harddisk.getProcMounts()
 			for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
@@ -232,7 +232,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 	def keySave(self):
 		import os.path
 		import Components.Harddisk
-		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs'))
+		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs', 'cifs'))
 		candidates = []
 		mounts = Components.Harddisk.getProcMounts()
 		for partition in Components.Harddisk.harddiskmanager.getMountedPartitions(False, mounts):
