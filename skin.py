@@ -44,7 +44,7 @@ class DisplaySkinError(Exception):
 	def __init__(self, message):
 		self.msg = message
 	def __str__(self):
-		return "{%s}: %s. Please contact the skin's author!" % (config.skin.display_skin.getValue(), self.msg)
+		return "{%s}: %s. Please contact the skin's author!" % (config.vfd.show.getValue(), self.msg)
 
 dom_skins = [ ]
 
@@ -112,10 +112,10 @@ display_skin_id = 1
 from Components.SystemInfo import SystemInfo
 if SystemInfo["OledDisplay"]:
 	if fileExists('/usr/share/enigma2/display/skin_display.xml'):
-		if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.display_skin.value)):
-			addSkin(config.skin.display_skin.value, SCOPE_CONFIG)
+		if fileExists(resolveFilename(SCOPE_CONFIG, config.vfd.show.value)):
+			addSkin(config.vfd.show.value, SCOPE_CONFIG)
 		else:
-			addSkin('display/' + config.skin.display_skin.value)
+			addSkin('display/' + config.vfd.show.value)
 
 if addSkin('skin_display.xml'):
 	# Color OLED DM800 / DM800SE
@@ -131,15 +131,15 @@ if addSkin('skin_display128.xml'):
 
 # Add Skin for Display
 try:
-	if not addSkin(os.path.join('display', config.skin.display_skin.getValue())):
+	if not addSkin(os.path.join('display', config.vfd.show.getValue())):
 		raise DisplaySkinError, "display skin not found"
 except Exception, err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_DISPLAY_SKIN
-	if config.skin.display_skin.getValue() == skin:
+	if config.vfd.show.getValue() == skin:
 		skin = 'skin_display.xml'
 	print "defaulting to standard display skin...", skin
-	config.skin.display_skin.value = skin
+	config.vfd.show.value = skin
 	skin = os.path.join('display', skin)
 	addSkin(skin)
 	del skin
