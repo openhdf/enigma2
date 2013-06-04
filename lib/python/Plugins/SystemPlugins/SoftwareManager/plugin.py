@@ -30,7 +30,7 @@ from Components.Task import job_manager
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_ACTIVE_SKIN, SCOPE_METADIR
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService, getBoxType, getEnigmaVersionString
+from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService, getMachineBrand, getMachineName
 from cPickle import dump, load
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
 from time import time, gmtime, strftime, localtime
@@ -157,13 +157,12 @@ class UpdatePluginMenu(Screen):
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.getValue() )
 		if self.menu == 0:
 			print "building menu entries"
-			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your STB_BOX" ) + self.oktext, None))
-			self.list.append(("software-update", _("Software update"), _("\nOnline update of your STB_BOX software." ) + self.oktext, None))
-			self.list.append(("software-restore", _("Software restore"), _("\nRestore your STB_BOX with a new firmware." ) + self.oktext, None))
-			self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running STB_BOX image to HDD or USB." ) + self.oktext, None))
-			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your STB_BOX settings." ) + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your STB_BOX settings." ) + self.oktext, None))
-			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local extensions and install them." ) + self.oktext, None))
+			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + self.oktext, None))
+			self.list.append(("software-update", _("Software update"), _("\nOnline update of your %s %s software.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
+			self.list.append(("software-restore", _("Software restore"), _("\nRestore your %s %s with a new firmware.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
+			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext + "\n\n" + self.infotext, None))
+			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
+			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local extensions and install them.") + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if p.__call__.has_key("SoftwareSupported"):
 					callFnc = p.__call__["SoftwareSupported"](None)
@@ -230,7 +229,7 @@ class UpdatePluginMenu(Screen):
 		self.onShown.append(self.setWindowTitle)
 		self.onChangedEntry = []
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
-		
+
 	def checkFeedStatus(self):
 	##check hdfreaks feed status
 		try:
@@ -253,10 +252,10 @@ class UpdatePluginMenu(Screen):
 				self["Arrow2"].setPosition("270","505")
 				print "[status] green"
 			hdfonlinestatus.close()
-		except: 
+		except:
 			pass
 		##check end
-		self["hdfStatusPic"].instance.setPixmapFromFile(hdfbutton)	
+		self["hdfStatusPic"].instance.setPixmapFromFile(hdfbutton)
 
 	def createSummary(self):
 		from Screens.PluginBrowser import PluginBrowserSummary
@@ -276,7 +275,7 @@ class UpdatePluginMenu(Screen):
 	def layoutFinished(self):
 		idx = 0
 		self["menu"].index = idx
-		self.checkFeedStatus()	
+		self.checkFeedStatus()
 
 	def setWindowTitle(self):
 		self.setTitle(_("Software management"))
@@ -467,7 +466,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteBootlogofilesEntry = getConfigListEntry(_("Overwrite Bootlogo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
 		self.overwriteSpinnerfilesEntry = getConfigListEntry(_("Overwrite Spinner Files ?"), config.plugins.softwaremanager.overwriteSpinnerFiles)
 		self.updatetypeEntry  = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
-		if getBoxType().startswith('et'): 
+		if getBoxType().startswith('et'):
 			self.list.append(self.updatetypeEntry)
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(self.overwriteSettingsfilesEntry)
@@ -1139,7 +1138,7 @@ class PluginManagerInfo(Screen):
 				elif cmd == 2:
 					info = args['package']
 				else:
-					info = _("STB_BOX software because updates are available.")
+					info = _("%s %s software because updates are available.") % (getMachineBrand(), getMachineName())
 
 				self.list.append(self.buildEntryComponent(action,info))
 			self['list'].setList(self.list)
@@ -1461,7 +1460,7 @@ class UpdatePlugin(Screen):
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Software update"))
-		
+
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
 
 		self.slider = Slider(0, 4)
@@ -1571,7 +1570,7 @@ class UpdatePlugin(Screen):
 		        self.runUpgrade(True)
 		else:
 			if doUpdate:
-				# Ask for Update, 
+				# Ask for Update,
 				message += _("Do you want to update your STB_BOX?")+"\n"+_("After pressing OK, please wait!")
 				self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = default, picon = picon)
 			else:
@@ -2257,8 +2256,8 @@ def filescan(**kwargs):
 			paths_to_scan =
 				[
 					ScanPath(path = "ipk", with_subdirs = True),
-					ScanPath(path = "", with_subdirs = False), 
-				], 
+					ScanPath(path = "", with_subdirs = False),
+				],
 			name = "Ipkg",
 			description = _("Install extensions."),
 			openfnc = filescan_open, )
@@ -2284,7 +2283,7 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 				</convert>
 			</widget>
 		</screen>"""
-		
+
 	def __init__(self, session, plugin_path, args = None):
 		Screen.__init__(self, session)
 		NumericalTextInput.__init__(self)
@@ -2311,7 +2310,7 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
-		
+
 		self.list = []
 		self.statuslist = []
 		self["list"] = List(self.list)
@@ -2333,12 +2332,12 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 			keyvalue = key.encode("utf-8")
 			if len(keyvalue) == 1:
 				self.setNextIdx(keyvalue[0])
-		
+
 	def keyGotAscii(self):
 		keyvalue = unichr(getPrevAsciiCode()).encode("utf-8")
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
-		
+
 	def setNextIdx(self,char):
 		if char in ("0", "1", "a"):
 			self["list"].setIndex(0)
@@ -2357,7 +2356,7 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close()
-			
+
 	def setWindowTitle(self):
 		self.setTitle(_("New Packages"))
 
@@ -2368,11 +2367,11 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 			if status == 'update':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new updatelist. Please wait..." ),'',statuspng, divpng ))
-				self['list'].setList(self.statuslist)	
+				self['list'].setList(self.statuslist)
 			elif status == 'error':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 				self.statuslist.append(( _("Error"), '', _("There was an error downloading the updatelist. Please try again." ),'',statuspng, divpng ))
-				self['list'].setList(self.statuslist)				
+				self['list'].setList(self.statuslist)
 
 	def rebuildList(self):
 		self.setStatus('update')
@@ -2385,17 +2384,17 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 			self.buildPacketList()
 
 		pass
-	
+
 	def buildEntryComponent(self, name, version, description, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 		if not description:
 			description = "No description available."
 		if state == 'installed':
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-			return((name, version, _(description), state, installedpng, divpng))	
+			return((name, version, _(description), state, installedpng, divpng))
 		elif state == 'upgradeable':
 			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
-			return((name, version, _(description), state, upgradeablepng, divpng))	
+			return((name, version, _(description), state, upgradeablepng, divpng))
 		else:
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
 			return((name, version, _(description), state, installablepng, divpng))
@@ -2419,7 +2418,7 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 						self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
 
 			self['list'].setList(self.list)
-	
+
 		else:
 			self.setStatus('error')
 
@@ -2436,9 +2435,11 @@ def Plugins(path, **kwargs):
 	global plugin_path
 	plugin_path = path
 	list = [
-		PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup),
+		PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup),
 		PluginDescriptor(name=_("Ipkg"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)
 	]
-	if config.usage.setup_level.index >= 2: # expert+
-		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your STB_BOX's software"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=UpgradeMain))
+	if not config.plugins.softwaremanager.onSetupMenu.getValue() and not config.plugins.softwaremanager.onBlueButton.getValue():
+		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=UpgradeMain))
+	if config.plugins.softwaremanager.onBlueButton.getValue():
+		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=UpgradeMain))
 	return list
