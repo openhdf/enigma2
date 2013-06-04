@@ -140,19 +140,17 @@ class Picon(Renderer):
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
-			if what[0] != self.CHANGED_CLEAR and len(what) > 1:
+			if what[0] == 1 or what[0] == 3:
 				pngname = getPiconName(self.source.text)
-			if not pngname: # no picon for service found
-				pngname = self.defaultpngname
-			if not config.usage.showpicon.getValue():
-				pngname = self.nopicon
-			if self.pngname != pngname:
-				if pngname:
-					self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#00000000"))
-					self.PicLoad.startDecode(pngname)
-				else:
-					self.instance.hide()
-				self.pngname = pngname
+				if not pathExists(pngname): # no picon for service found
+					pngname = self.defaultpngname
+				if self.pngname != pngname:
+					if pngname:
+						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
+						self.PicLoad.startDecode(pngname)
+					else:
+						self.instance.hide()
+					self.pngname = pngname
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 initPiconPaths()

@@ -7,7 +7,7 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
-from enigma import eTimer, getBoxType, getImageVersionString, getBuildVersionString, getDriverDateString, getEnigmaVersionString
+from enigma import eTimer, getBoxType, getMachineBrand, getMachineName, getImageVersionString, getBuildVersionString, getDriverDateString, getEnigmaVersionString
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -114,8 +114,7 @@ class About(Screen):
 		else:
 			model = getBoxType()
 
-		if model:
-			AboutText += _("Model:\t%s") % model + "\n"
+		AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 
 		if path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString().lower().replace('\n','').replace('bcm','').replace('brcm','') + "\n"
