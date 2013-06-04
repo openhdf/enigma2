@@ -13,10 +13,10 @@ from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
 from Components.Converter.Converter import Converter
 
-config.vfd = ConfigSubsection()
-config.vfd.show = ConfigSelection(default = "skin_display.xml", choices = [("skin_display.xml", _("Channel Name")),("skin_text_clock.xml", _("Clock"))])
+config.skin = ConfigSubsection()
+config.skin.display_skin = ConfigSelection(default = "skin_display.xml", choices = [("skin_display.xml", _("Channel Name")),("skin_text_clock.xml", _("Clock"))])
 if not os.path.exists("/usr/share/enigma2/display/skin_text_clock.xml"):
-	config.vfd.show = ConfigNothing()
+	config.skin.display_skin = ConfigNothing()
 
 colorNames = {}
 # Predefined fonts, typically used in built-in screens and for components like
