@@ -85,7 +85,8 @@ if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 DEFAULT_DISPLAY_SKIN = "skin_display.xml"
-config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
+#config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
+config.skin.display_skin = ConfigSelection(default = "skin_display.xml", choices = [("skin_display.xml", _("Channel Name")),("skin_text_clock.xml", _("Clock"))])
 
 profile("LoadSkin")
 try:
@@ -105,8 +106,8 @@ addSkin('skin_second_infobar.xml')
 # Only one of these is present, compliments of AM_CONDITIONAL
 if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2' or getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
 	config.skin.display_skin = ConfigText(default = "skin_display.xml")
-else:	
-	config.skin.display_skin = ConfigNothing()	
+#else:	
+#	config.skin.display_skin = ConfigNothing()	
 
 display_skin_id = 1
 from Components.SystemInfo import SystemInfo
