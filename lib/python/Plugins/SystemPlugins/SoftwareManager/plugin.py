@@ -30,7 +30,7 @@ from Components.Task import job_manager
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_ACTIVE_SKIN, SCOPE_METADIR
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService, getMachineBrand, getMachineName
+from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService, getBoxType, getEnigmaVersionString, getMachineBrand, getMachineName
 from cPickle import dump, load
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
 from time import time, gmtime, strftime, localtime
@@ -69,12 +69,13 @@ config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				 ("N", _("No, never")),
 				 ("ask", _("Always ask"))
 				], "Y")
-
+config.plugins.softwaremanager.onSetupMenu = ConfigYesNo(default=False)
+config.plugins.softwaremanager.onBlueButton = ConfigYesNo(default=False)
 config.plugins.softwaremanager.updatetype = ConfigSelection(
-				[
-					("hot", _("Upgrade with GUI")),
-					("cold", _("Unattended upgrade without GUI")),
-				], "hot")
+	[
+	("hot", _("Upgrade with GUI")),
+	("cold", _("Unattended upgrade without GUI")),
+	], "hot")
 
 def write_cache(cache_file, cache_data):
 	#Does a cPickle dump
@@ -1506,11 +1507,11 @@ class UpdatePlugin(Screen):
 		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
 		datedelay = imageDate +  timedelta(days=30)
 		message = _("Your image is out of date!\n\n"
-				"After such a long time, there is a risk that your STB_BOX will not\n"
+				"After such a long time, there is a risk that your %s %s  will not\n"
 				"boot after online-update, or will show disfunction in running Image.\n\n"
 				"A new flash will increase the stability\n\n"
 				"An online update is done at your own risk !!\n\n\n"
-				"Do you still want to update?")
+				"Do you still want to update?")  % (getMachineBrand(), getMachineName())
 
 		if datedelay > date.today():
 			self.updating = True
@@ -1571,7 +1572,7 @@ class UpdatePlugin(Screen):
 		else:
 			if doUpdate:
 				# Ask for Update,
-				message += _("Do you want to update your STB_BOX?")+"\n"+_("After pressing OK, please wait!")
+				message += _("Do you want to update your %s %s?") % (getMachineBrand(), getMachineName()) + "\n" + _("After pressing OK, please wait!")
 				self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = default, picon = picon)
 			else:
 				# Don't Update RED LIGHT !!
@@ -1647,7 +1648,7 @@ class UpdatePlugin(Screen):
 					self.checkTraficLight()
 					return
 				if self.total_packages and self.TraficCheck and self.TraficResult:
-					message = _("Do you want to update your STB_BOX?") + "                 \n(%s " % self.total_packages + _("Packages") + ")"
+					message = _("Do you want to update your %s %s") % (getMachineBrand(), getMachineName()) + "                 \n(%s " % self.total_packages + _("Packages") + ")"
 					if config.plugins.softwaremanager.updatetype.getValue() == "cold":
 						choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
 					else:
@@ -1664,11 +1665,11 @@ class UpdatePlugin(Screen):
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
-				error = _("your STB_BOX might be unusable now. Please consult the manual for further assistance before rebooting your STB_BOX.")
+				error = _("your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s.") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName())
 				if self.packages == 0:
 					error = _("No packages were upgraded yet. So you can check your network and try again.")
 				if self.updating:
-					error = _("Your STB_BOX isn't connected to the internet properly. Please check it and try again.")
+					error = _("Your %s %s isn't connected to the internet properly. Please check it and try again.") % (getMachineBrand(), getMachineName())
 				self.status.setText(_("Error") +  " - " + error)
 		#print event, "-", param
 		pass
@@ -1692,7 +1693,7 @@ class UpdatePlugin(Screen):
 	def exit(self):
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0:
-				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your STB_BOX?"))
+				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your %s %s?") % (getMachineBrand(), getMachineName()))
 			else:
 				self.close()
 		else:
@@ -2426,10 +2427,9 @@ def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
 
 def startSetup(menuid):
-	if menuid != "setup":
-		return [ ]
-	return [(_("Software management"), UpgradeMain, "software_manager", 50)]
-
+	if menuid == "setup" and config.plugins.softwaremanager.onSetupMenu.getValue():
+		return [(_("Software management"), UpgradeMain, "software_manager", 50)]
+	return [ ]
 
 def Plugins(path, **kwargs):
 	global plugin_path
