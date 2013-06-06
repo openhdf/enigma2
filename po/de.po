@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-06-06 21:13+0100\n"
-"Last-Translator: Ralf Biedermann <ralf.biedermann@rbsoft.de>\n"
+"PO-Revision-Date: 2013-06-06 21:38+0100\n"
+"Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -533,8 +533,8 @@ msgid ""
 "A sleep timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Ein Ausschalttimer möchte die %s %s\n"
-"in Bereitschaft schalten. Jetzt in Bereitschaft gehen?"
+"Ein Ausschalttimer möchte die\n"
+"%s %s in Bereitschaft schalten. Jetzt in Bereitschaft gehen?"
 
 #, python-format
 msgid ""
@@ -791,11 +791,11 @@ msgstr "Erweiterte Informationen im Crash-Log eintragen"
 
 #, python-format
 msgid "Allows the %s %s to read the stored EPG data regularly."
-msgstr "Regelmäßiges lesen der EPG Daten erlauben."
+msgstr "Regelmäßiges lesen der EPG Daten durch die %s %s erlauben."
 
 #, python-format
 msgid "Allows the %s %s to store the EPG data regularly."
-msgstr "Regelmäßiges schreiben der EPG Daten erlauben."
+msgstr "Regelmäßiges schreiben der EPG Daten durch die %s %s erlauben."
 
 msgid "Allows you hide the extensions of known file types."
 msgstr "Erlaubt es Erweiterungen bekannter Dateitypen zu verstecken."
@@ -925,7 +925,7 @@ msgstr ""
 "Sicher das Folgendes wiederhergestellt werden soll?\n"
 "Backup:%s\n"
 "\n"
-"Deine %s %s wird neu gestartet wenn das Backup wiederhergestellt wurde."
+"Deine Box wird neu gestartet wenn das Backup wiederhergestellt wurde."
 
 #, python-format
 msgid ""
@@ -933,7 +933,7 @@ msgid ""
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
 "Sicher das dieses Backup wiederhergestellt werden soll?\n"
-"Deine %s %s wird neu gestartet wenn das Backup wiederhergestellt wurde."
+"Deine Box wird neu gestartet wenn das Backup wiederhergestellt wurde."
 
 msgid "Are you sure you want to save the EPG Cache to:\n"
 msgstr ""
@@ -2632,7 +2632,7 @@ msgstr "Die %s %s neu starten?"
 
 #, python-format
 msgid "Do you want to reboot your receiver?"
-msgstr "Soll die %s %s neu gestartet werden?"
+msgstr "Soll die Box neu gestartet werden?"
 
 msgid "Do you want to remove the package:\n"
 msgstr "Das Paket deinstallieren:\n"
@@ -4195,7 +4195,7 @@ msgstr "Laden/Speichern"
 
 #, python-format
 msgid "Local box"
-msgstr "Lokale %s %s"
+msgstr "Lokale Box"
 
 msgid "Local network"
 msgstr "Lokales Netzwerk"
@@ -4531,7 +4531,7 @@ msgstr "NFI Image Flashing"
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
 "NFI Image Flashen beendet.\n"
-"Drücke Gelb um die %s %s neu zu starten!"
+"Drücke Gelb um die Box neu zu starten!"
 
 msgid "NFS Setup"
 msgstr "NFS Einstellungen"
@@ -4977,7 +4977,7 @@ msgid ""
 "On reaching the end of a file during playback, you can choose the box's "
 "behavior."
 msgstr ""
-"Am Ende einer Filmwiedergabe kann das Verhalten der %s %s bestimmt werden"
+"Am Ende einer Filmwiedergabe kann das Verhalten der Box bestimmt werden"
 
 msgid "Once per day"
 msgstr "Einmal am Tag"
@@ -5293,7 +5293,7 @@ msgstr ""
 
 #, python-format
 msgid "Please connect your receiver to the internet"
-msgstr "Bitte die %s %s mit dem Internet verbinden"
+msgstr "Bitte die Box mit dem Internet verbinden"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Bitte keine Werte ändern, falls Du nicht weißt, was Du machst!"
@@ -5707,7 +5707,7 @@ msgstr "Fernseher in Bereitschaft versetzen"
 
 #, python-format
 msgid "Put your %s %s in standby"
-msgstr "A/V-Receiver in Bereitschaft versetzen"
+msgstr "%s %s in Bereitschaft versetzen"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python Frontend für /tmp/mmi.socket"
@@ -6051,9 +6051,8 @@ msgstr "Netzwerk neu starten"
 msgid "Restart test"
 msgstr "Test wiederholen"
 
-#, python-format
 msgid "Restart your network connection and interfaces.\n"
-msgstr "Neustart der Netzwerk-Konfiguration der %s %s.\n"
+msgstr "Neustart der Netzwerk-Konfiguration.\n"
 
 msgid "Restore"
 msgstr "Wiederherstellung"
@@ -8346,10 +8345,11 @@ msgid ""
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Um die Firmware zu aktualisieren bitte folgende Schritte durchführen:\n"
-"1) %s %s hinten mit dem Schalter ausschalten und den USB-Stick vorne rein "
+"Um die Firmware der %s %s zu aktualisieren bitte folgende Schritte "
+"durchführen:\n"
+"1) Die Box hinten mit dem Schalter ausschalten und den USB-Stick vorne rein "
 "stecken.\n"
-"2) %s %s einschalten und die '-' Taste am Gerät drücken.\n"
+"2) Die Box einschalten und die '-' Taste am Gerät drücken.\n"
 "3) Auf Neustart warten und den Anweisungen des Assistenten folgen."
 
 msgid "Today"
@@ -8578,7 +8578,7 @@ msgstr "Softwarekatalog wird aktualisiert."
 
 #, python-format
 msgid "Upgrade and reboot system"
-msgstr "Upgrade und %s %s neu starten"
+msgstr "Upgrade und neu starten"
 
 msgid "Upgrade finished."
 msgstr "Upgrade beendet."
@@ -9070,9 +9070,9 @@ msgid ""
 "settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 "Willkommen im Image-Upgrade-Assistenten. Der Assistent wird bei der "
-"Aktualisierung der Firmware helfen. Mit diesem Assistenten können die "
-"aktuellen Einstellungen gesichert werden und es gibt eine kleine Einweisung "
-"wie die Firmware aktualisiert werden kann."
+"Aktualisierung der Firmware für %s %s helfen. Mit diesem Assistenten können "
+"die aktuellen Einstellungen gesichert werden und es gibt eine kleine "
+"Einweisung wie die Firmware aktualisiert werden kann."
 
 #, python-format
 msgid ""
@@ -9086,7 +9086,7 @@ msgstr ""
 "Willkommen.\n"
 "\n"
 "Wenn die %s %s mit dem Internet verbunden werden soll so hilft dieser "
-"Assistent bei den Grundeinstellungen für das Netzwerk.\n"
+"Assistent bei den Grundeinstellungen für das Netzwerk der %s %s.\n"
 "\n"
 "Drücke OK um die Netzwerk Einstellungen vorzunehmen."
 
@@ -9120,9 +9120,9 @@ msgid ""
 "return to the state it had when the timer started. 'Do nothing', 'Go to "
 "standby' and 'Go to deep standby' do ecaxtly that."
 msgstr ""
-"Was soll am Ende des Timer geschehen? 'Auto' schickt die %s %s in den "
-"Zustand den sie hatte als der Timer startete. 'Nichts machen', 'In "
-"Bereitschaft gehen', 'Ausschalten' machen genau das was sie sagen."
+"Was soll am Ende des Timer geschehen? 'Auto' schickt die Box in den Zustand "
+"den sie hatte als der Timer startete. 'Nichts machen', 'In Bereitschaft "
+"gehen', 'Ausschalten' machen genau das was sie sagen."
 
 msgid "What do you want to scan?"
 msgstr "Was durchsuchen?"
@@ -9229,7 +9229,7 @@ msgid ""
 "turning (when supported by the tuner)."
 msgstr ""
 "Benutze Strommessung um zu erkennen wenn der Rotor gestoppt ist (wenn es die "
-"%s %s unterstützt)"
+"Box unterstützt)"
 
 msgid ""
 "When enabled, pressing '0' will zap you to the first channel in your first "
@@ -9291,8 +9291,7 @@ msgstr ""
 
 #, python-format
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr ""
-"Wenn auf 'Ja' gestellt so wird die %s %s AC3 Ton benutzen wenn verfügbar."
+msgstr "Wenn auf 'Ja' gestellt so wird der AC3 Ton benutzen wenn verfügbar."
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Wenn aktiviert benutzt der Receiver DHCP zur Netzwerkkonfiguration."
@@ -9301,8 +9300,7 @@ msgstr "Wenn aktiviert benutzt der Receiver DHCP zur Netzwerkkonfiguration."
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
-"Wenn auf 'Ja' gestellt so wird die %s %s Aktivitäten am SCART-Eingang "
-"erkennen."
+"Wenn auf 'Ja' gestellt so werden Aktivitäten am SCART-Eingang erkennen."
 
 msgid ""
 "When nonzero, a recording will start earlier than the starting time "
@@ -9348,7 +9346,7 @@ msgid ""
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
 msgstr ""
-"Wenn ein Sender eingestellt ist durchsucht die %s %s den Transponder nach "
+"Wenn ein Sender eingestellt ist durchsucht die Box den Transponder nach "
 "Änderungen und speichert sie. Nur 'Nein' einstellen wenn Du weißt was Du "
 "tust."
 
@@ -9519,7 +9517,7 @@ msgstr "Das Löschen kann abgebrochen werden."
 #, python-format
 msgid "You can continue watching TV etc. while this is running."
 msgstr ""
-"Der Vorgang findet im Hintergrund statt, die %s %s kann  ganz normal weiter "
+"Der Vorgang findet im Hintergrund statt, die Box kann  ganz normal weiter "
 "genutzt werden."
 
 msgid "You can disable Telnet Server and use ssh to login."
@@ -9624,7 +9622,7 @@ msgstr "Ihr System unterstützt nicht das ext4 Dateisystem"
 
 #, python-format
 msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Deine %s %s wird neu Starten wenn Du OK auf der Fernbedienung drückst."
+msgstr "Deine Box wird neu Starten wenn Du OK auf der Fernbedienung drückst."
 
 #, python-format
 msgid ""
@@ -9743,7 +9741,7 @@ msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
-"Die Sicherung ist geglückt. Die %s %s wird nun den weiteren Aktualisierungs-"
+"Die Sicherung ist geglückt. Die Box wird nun den weiteren Aktualisierungs-"
 "Prozess erklären."
 
 msgid ""
@@ -9797,11 +9795,11 @@ msgstr "Ihre Netzwerk-Konfiguration wurde aktiviert."
 
 #, python-format
 msgid "Your receiver does not have an internet connection"
-msgstr "Deine %s %s hat keine Internetverbindung"
+msgstr "Deine Box hat keine Internetverbindung"
 
 #, python-format
 msgid "Your receiver is not connected to the internet"
-msgstr "Deine %s %s ist nicht mit dem Internet verbunden"
+msgstr "Deine Box ist nicht mit dem Internet verbunden"
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -10577,7 +10575,7 @@ msgstr "Anbieter:"
 
 #, python-format
 msgid "reboot system"
-msgstr "%s %s neu starten"
+msgstr "neu starten"
 
 msgid "record"
 msgstr "aufnehmen"
