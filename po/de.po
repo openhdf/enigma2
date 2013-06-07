@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-06-06 21:38+0100\n"
+"PO-Revision-Date: 2013-06-07 05:58+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -5458,14 +5458,11 @@ msgstr "Bitte warten..."
 msgid "Please wait... Loading list..."
 msgstr "Bitte warten... Liste wird geladen..."
 
-msgid "Plugin Browser"
+msgid "Plugin browser"
 msgstr "Erweiterungen"
 
 msgid "Downloadable plugins"
 msgstr "Plugins herunterladen"
-
-msgid "Plugin browser"
-msgstr "Erweiterungen"
 
 msgid "Plugin details"
 msgstr "Plugin Angaben"
@@ -6053,6 +6050,9 @@ msgstr "Test wiederholen"
 
 msgid "Restart your network connection and interfaces.\n"
 msgstr "Neustart der Netzwerk-Konfiguration.\n"
+
+msgid "Schedule a auto remount of your network shares."
+msgstr "Automatischen Neuverbinden aller Netzwerkverbindungen."
 
 msgid "Restore"
 msgstr "Wiederherstellung"
@@ -7347,6 +7347,9 @@ msgstr "Startzeit"
 
 msgid "Start timeshift"
 msgstr "TimeShift startet"
+
+msgid "Automatically start timeshift after"
+msgstr "Starte Permanent Timeshift nach wieviel Sekunden"
 
 msgid "Start with list screen"
 msgstr "Starte mit Liste"
@@ -11201,7 +11204,7 @@ msgstr "Verwenden als Festplatten Ersatz"
 
 #
 msgid "AutoMountManager"
-msgstr "Auto Mount Management"
+msgstr "Auto Mount Verwaltung"
 
 #
 msgid "Add a new NFS or CIFS mount point to your"
