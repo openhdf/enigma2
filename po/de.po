@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-06-08 13:42+0100\n"
+"PO-Revision-Date: 2013-06-08 14:12+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -926,6 +926,14 @@ msgstr ""
 "Backup:%s\n"
 "\n"
 "Deine Box wird neu gestartet wenn das Backup wiederhergestellt wurde."
+
+#, python-format
+msgid ""
+"\n"
+"Backup your running %s %s image to HDD or USB."
+msgstr ""
+"\n"
+"FullBackup deiner laufenden %s %s auf HDD oder USB."
 
 #, python-format
 msgid ""
