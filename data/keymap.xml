@@ -606,7 +606,7 @@
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
 	</map>
 
-	<map context="ColorActions">
+	<!--map context="ColorActions">
 		<key id="KEY_RED" mapto="red" flags="b"/>
 		<key id="KEY_RED" mapto="redlong" flags="l"/>
 		<key id="KEY_GREEN" mapto="green" flags="b"/>
@@ -615,6 +615,13 @@
 		<key id="KEY_YELLOW" mapto="yellowlong" flags="l"/>
 		<key id="KEY_BLUE" mapto="blue" flags="b"/>
 		<key id="KEY_BLUE" mapto="bluelong" flags="l"/>
+	</map-->
+
+	<map context="ColorActions">
+		<key id="KEY_RED" mapto="red" flags="m" />
+		<key id="KEY_GREEN" mapto="green" flags="m" />
+		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
+		<key id="KEY_BLUE" mapto="blue" flags="m" />
 	</map>
 
 	<map context="MsgBoxActions">
