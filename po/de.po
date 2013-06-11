@@ -7058,9 +7058,6 @@ msgstr "Startzeit"
 msgid "Start timeshift"
 msgstr "TimeShift startet"
 
-msgid "Automatically start timeshift after"
-msgstr "Starte Permanent Timeshift nach wieviel Sekunden"
-
 msgid "Start with list screen"
 msgstr "Starte mit Liste"
 
@@ -8523,34 +8520,6 @@ msgstr "Virtuosso Image Xtreme"
 msgid "Voltage mode"
 msgstr "Spannungs-Modus"
 
-#, python-format
-msgid "%s %s advanced remote control (native)"
-msgstr "%s %s erweiterte Fernbedienung (native)"
-
-#, python-format
-msgid "%s %s format data DVD (HDTV compatible)"
-msgstr "Daten-DVD im %s %s Format (HDTV-kompatibel)"
-
-#, python-format
-msgid "%s %s front panel"
-msgstr "%s %s Frontpaneel"
-
-#, python-format
-msgid "%s %s ir keyboard"
-msgstr "%s %s IR Tastatur"
-
-#, python-format
-msgid "%s %s ir mouse"
-msgstr "%s %s IR Maus"
-
-#, python-format
-msgid "%s %s remote control (native)"
-msgstr "%s %s Fernbedienung (native)"
-
-#, python-format
-msgid "%s %s software because updates are available."
-msgstr "%s %s Software, da Aktualisierungen verfügbar sind."
-
 msgid "W"
 msgstr "W"
 
@@ -9209,9 +9178,6 @@ msgstr ""
 
 msgid "Your STB_BOX is shutting down. Please stand by..."
 msgstr "Ihre STB_BOX schaltet sich nun aus. Bitte warte einen Moment..."
-
-msgid "Your STB will restart after pressing OK on your remote control."
-msgstr "Deine STB_BOX wird neu Starten wenn Du OK auf der Fernbedienung drückst."
 
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr "Die Sicherung ist geglückt. Die STB_BOX wird nun den weiteren Aktualisierungs-Prozess erklären."
