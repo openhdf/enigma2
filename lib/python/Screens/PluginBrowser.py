@@ -41,6 +41,11 @@ config.pluginfilter.systemplugins = ConfigYesNo(default = True)
 config.pluginfilter.vix = ConfigYesNo(default = False)
 config.pluginfilter.weblinks = ConfigYesNo(default = True)
 
+
+## command to find ipk with status hold
+## grep -B 4 hold /var/lib/opkg/status | sed '/Provides/d' | sed '/Version/d' | sed '/Status/d' | sed '/Depends/d' | sed '/--/d' | sed -e '/^ *$/d'
+
+
 def languageChanged():
 	plugins.clearPluginList()
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
