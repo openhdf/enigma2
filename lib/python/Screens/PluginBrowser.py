@@ -288,7 +288,7 @@ class PluginDownloadBrowser(Screen):
 				if 'hold' in os.popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + sel.name).read():
 					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to unhold the plugin \"%s\"?") % sel.name, default = False)
 				else:
-					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to hold the plugin \"%s\"?") % sel.name, default = False)				
+					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to hold the plugin \"%s\"?") % sel.name, default = False)
 				mbox.setTitle(_("Hold plugins"))
 
 	def requestClose(self):
@@ -378,7 +378,6 @@ class PluginDownloadBrowser(Screen):
 
 	def doToogle(self, callback, pkgname):
 		if 'hold' in os.popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname).read():
-			print 'is holded!!!!!!!!!!'
 			self.ipkg_toogle = self.ipkg + ' flag user'
 			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_toogle + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
 		else:

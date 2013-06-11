@@ -2457,6 +2457,10 @@ msgid "Do you really want to permanently remove from trash can ?"
 msgstr "Wirklich endgültig aus dem Mülleimer löschen?"
 
 #, python-format
+msgid "Do you really want to hold the plugin \"%s\"?"
+msgstr "Das Plugin \"%s\" wirklich sperren?"
+
+#, python-format
 msgid "Do you really want to remove directory %s from the disk?"
 msgstr "Das Verzeichnis %s wirklich von der Festplatte löschen?"
 
@@ -2471,6 +2475,10 @@ msgstr "Den Timer für %s wirklich löschen?"
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Das Lesezeichen %s wirklich löschen?"
+
+#, python-format
+msgid "Do you really want to unhold the plugin \"%s\"?"
+msgstr "Das Plugin \"%s\" wirklich entsperren?"
 
 msgid "Do you want to add any additional information ?"
 msgstr "Willst Du weitere Informationen hinzufügen?"
@@ -3362,6 +3370,9 @@ msgstr "History Tasten bewirken"
 
 msgid "History zap..."
 msgstr ""
+
+msgid "Hold plugins"
+msgstr "Plugins sperren"
 
 msgid "Hold screen"
 msgstr "Bild halten"
