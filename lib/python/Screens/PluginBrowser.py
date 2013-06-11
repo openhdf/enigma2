@@ -74,6 +74,7 @@ class PluginBrowser(Screen):
 
 		self["red"] = Label(_("Remove plugins"))
 		self["green"] = Label(_("Download plugins"))
+		self["blue"] = Label(_("Hold plugins"))
 
 		self.list = []
 		self["list"] = PluginList(self.list)
@@ -89,7 +90,8 @@ class PluginBrowser(Screen):
 		self["PluginDownloadActions"] = ActionMap(["ColorActions"],
 		{
 			"red": self.delete,
-			"green": self.download
+			"green": self.download,
+			"blue": self.toogle
 		})
 
 		self.onFirstExecBegin.append(self.checkWarnings)
@@ -131,7 +133,7 @@ class PluginBrowser(Screen):
 
 	def save(self):
 		self.run()
-	
+
 	def run(self):
 		plugin = self["list"].l.getCurrentSelection()[0]
 		plugin(session=self.session)
@@ -143,7 +145,9 @@ class PluginBrowser(Screen):
 
 	def delete(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
-	
+
+	def toogle(self):
+		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.TOOGLE)
 
 	def download(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
@@ -166,6 +170,7 @@ class PluginDownloadBrowser(Screen):
 	DOWNLOAD = 0
 	REMOVE = 1
 	UPDATE = 2
+	TOOGLE = 3
 	PLUGIN_PREFIX = 'enigma2-plugin-'
 	PLUGIN_PREFIX2 = []
 	lastDownloadDate = None
@@ -198,12 +203,14 @@ class PluginDownloadBrowser(Screen):
 
 		if self.type == self.DOWNLOAD:
 			self["text"] = Label(_("Downloading plugin information. Please wait..."))
-		elif self.type == self.REMOVE:
+		if self.type == self.REMOVE:
+			self["text"] = Label(_("Getting plugin information. Please wait..."))
+		elif self.type == self.TOOGLE:
 			self["text"] = Label(_("Getting plugin information. Please wait..."))
 
 		self.run = 0
 		self.remainingdata = ""
-		self["actions"] = ActionMap(["WizardActions"], 
+		self["actions"] = ActionMap(["WizardActions"],
 		{
 			"ok": self.go,
 			"back": self.requestClose,
@@ -212,10 +219,12 @@ class PluginDownloadBrowser(Screen):
 			self.ipkg = '/usr/bin/opkg'
 			self.ipkg_install = self.ipkg + ' install --force-overwrite'
 			self.ipkg_remove =  self.ipkg + ' remove --autoremove --force-depends'
+			self.ipkg_toogle =  self.ipkg + ' flag hold'
 		else:
 			self.ipkg = 'ipkg'
 			self.ipkg_install = 'ipkg install --force-overwrite -force-defaults'
 			self.ipkg_remove =  self.ipkg + ' remove'
+			self.ipkg_toogle =  self.ipkg + ' flag hold'
 
 	def createPluginFilter(self):
 		#Create Plugin Filter
@@ -272,9 +281,15 @@ class PluginDownloadBrowser(Screen):
 			if self.type == self.DOWNLOAD:
 				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
 				mbox.setTitle(_("Download plugins"))
-			elif self.type == self.REMOVE:
+			if self.type == self.REMOVE:
 				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name, default = False)
 				mbox.setTitle(_("Remove plugins"))
+			elif self.type == self.TOOGLE:
+				if 'hold' in os.popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + sel.name).read():
+					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to unhold the plugin \"%s\"?") % sel.name, default = False)
+				else:
+					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to hold the plugin \"%s\"?") % sel.name, default = False)				
+				mbox.setTitle(_("Hold plugins"))
 
 	def requestClose(self):
 		if self.plugins_changed:
@@ -307,7 +322,7 @@ class PluginDownloadBrowser(Screen):
 			self.doInstall(self.installFinished, self["list"].l.getCurrentSelection()[0].name + ' ' + extra)
 		else:
 			self.resetPostInstall()
-				
+
 	def runInstall(self, val):
 		if val:
 			if self.type == self.DOWNLOAD:
@@ -352,12 +367,23 @@ class PluginDownloadBrowser(Screen):
 					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name + " --force-remove --force-depends")
 				else:
 					self.doRemove(self.installFinished, self["list"].l.getCurrentSelection()[0].name)
+			elif self.type == self.TOOGLE:
+				self.doToogle(self.installFinished, self["list"].l.getCurrentSelection()[0].name)
 
 	def doRemove(self, callback, pkgname):
 		if pkgname.startswith('kernel-module-'):
 			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + pkgname, "sync"], closeOnSuccess = True)
 		else:
 			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = True)
+
+	def doToogle(self, callback, pkgname):
+		if 'hold' in os.popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname).read():
+			print 'is holded!!!!!!!!!!'
+			self.ipkg_toogle = self.ipkg + ' flag user'
+			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_toogle + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
+		else:
+			print 'not holded'
+			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_toogle + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
 
 	def doInstall(self, callback, pkgname):
 		if pkgname.startswith('kernel-module-'):
@@ -381,6 +407,9 @@ class PluginDownloadBrowser(Screen):
 			self.setTitle(_("Install plugins"))
 		elif self.type == self.REMOVE:
 			self.setTitle(_("Remove plugins"))
+		elif self.type == self.TOOGLE:
+			self.setTitle(_("Hold plugins"))
+
 
 	def startIpkgListInstalled(self, pkgname = PLUGIN_PREFIX + '*'):
 		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list_installed")
@@ -399,6 +428,9 @@ class PluginDownloadBrowser(Screen):
 		elif self.type == self.REMOVE:
 			self.run = 1
 			self.startIpkgListInstalled()
+		elif self.type == self.TOOGLE:
+			self.run =1
+			self.startIpkgListInstalled()
 
 	def installFinished(self):
 		if hasattr(self, 'postInstallCall'):
@@ -411,10 +443,11 @@ class PluginDownloadBrowser(Screen):
 			os.unlink('/tmp/opkg.conf')
 		except:
 			pass
-		for plugin in self.pluginlist:
-			if plugin[3] == self["list"].l.getCurrentSelection()[0].name:
-				self.pluginlist.remove(plugin)
-				break
+		if self.type != self.TOOGLE:
+			for plugin in self.pluginlist:
+				if plugin[3] == self["list"].l.getCurrentSelection()[0].name:
+					self.pluginlist.remove(plugin)
+					break
 		self.plugins_changed = True
 		if self["list"].l.getCurrentSelection()[0].name.startswith("settings-"):
 			self.reload_settings = True
@@ -588,7 +621,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
 		self.list.append(getConfigListEntry(_("kernel modules"), config.pluginfilter.kernel, _("This allows you to show kernel modules in downloads")))
 		self.list.append(getConfigListEntry(_("gigabluesupportnet"), config.pluginfilter.gigabluesupportnet, _("This allows you to show gigabluesupportnet modules in downloads")))
-		
+
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 		if config.usage.sort_settings.getValue():
