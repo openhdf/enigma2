@@ -7422,12 +7422,6 @@ msgstr ""
 "Das Dateisystem vom TimeShift-Verzeichnis unterstützt keine Hardlinks.\n"
 "Stelle sicher das es mit EXT2/3/4 formatiert ist!"
 
-msgid "The STB_BOX reads the stored EPG data every (hours)."
-msgstr "Die STB_BOX liest die EPG Daten alle x Stunden."
-
-msgid "The STB_BOX stores the EPG data every (hours)."
-msgstr "Die STB_BOX speichert die EPG alle x Stunden."
-
 msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
@@ -9176,22 +9170,8 @@ msgstr ""
 "Deine %s %s wird nach entfernen des Services neu gestartet\n"
 "Service jetzt entfernen?"
 
-#, python-format
-msgid ""
-"Your STB_BOX is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Die Sicherung ist geglückt. Die Box wird nun den weiteren Aktualisierungs-"
-"Prozess erklären."
-
-msgid "Your STB_BOX is shutting down. Please stand by..."
-msgstr "Ihre STB_BOX schaltet sich nun aus. Bitte warte einen Moment..."
-
 msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr "Die Sicherung ist geglückt. Die STB_BOX wird nun den weiteren Aktualisierungs-Prozess erklären."
+msgstr "Die Sicherung ist geglückt. Die %s %s wird nun den weiteren Aktualisierungs-Prozess erklären."
 
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Die Zusammenstellung überschreitet die Größe eines einfachen Mediums, es wird ein Dual-Layer-Rohling benötigt!"
