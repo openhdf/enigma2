@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-03 15:01+0000\n"
-"PO-Revision-Date: 2013-06-07 17:28+0100\n"
+"PO-Revision-Date: 2013-06-13 05:51+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: none\n"
 "Language: de_DE\n"
@@ -68,6 +68,9 @@ msgstr "Getrennte Mounts wieder verbinden (im Hintergrund)"
 
 msgid "Browse network neighbourhood"
 msgstr "Netzwerkumgebung durchsuchen"
+
+msgid "Network Neighbourhood"
+msgstr "Netzwerkumgebung"
 
 msgid "CIFS share"
 msgstr "CIFS Freigabe"
