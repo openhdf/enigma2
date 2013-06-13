@@ -569,10 +569,14 @@ class PluginDownloadBrowser(Screen):
 			if x in self.expanded:
 				list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
 				for plugin in self.plugins[x]:
-					if "hold" in os.popen("opkg status " + self.PLUGIN_PREFIX + "*" + plugin[1]).read():
-						list.extend([PluginDownloadComponent(plugin[0], plugin[1] + ' holded', plugin[2], self.listWidth)])
+					if self.type == self.TOOGLE or self.type == self.REMOVE:
+						if "hold" in os.popen("opkg status " + self.PLUGIN_PREFIX + "*" + plugin[1]).read():
+							list.extend([PluginDownloadComponent(plugin[0], plugin[1] + ' holded', plugin[2], self.listWidth)])
+						else:
+							list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
 					else:
 						list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
+						
 			else:
 				list.append(PluginCategoryComponent(x, expandableIcon, self.listWidth))
 		self.list = list
