@@ -384,10 +384,10 @@ class PluginDownloadBrowser(Screen):
 	def doToogle(self, callback, pkgname):
 		if 'hold' in os.popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname).read():
 			self.ipkg_toogle = self.ipkg + ' flag user'
-			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_toogle + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
+			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_toogle + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
 		else:
-			print 'not holded'
-			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_toogle + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
+			self.ipkg_toogle = self.ipkg + ' flag hold'
+			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_toogle + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
 
 	def doInstall(self, callback, pkgname):
 		if pkgname.startswith('kernel-module-'):
@@ -568,7 +568,11 @@ class PluginDownloadBrowser(Screen):
 		for x in temp:
 			if x in self.expanded:
 				list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
-				list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth) for plugin in self.plugins[x]])
+				for plugin in self.plugins[x]:
+					if "hold" in os.popen("opkg status " + self.PLUGIN_PREFIX + "*" + plugin[1]).read():
+						list.extend([PluginDownloadComponent(plugin[0], plugin[1] + ' holded', plugin[2], self.listWidth)])
+					else:
+						list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
 			else:
 				list.append(PluginCategoryComponent(x, expandableIcon, self.listWidth))
 		self.list = list
