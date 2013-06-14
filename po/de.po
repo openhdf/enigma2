@@ -818,13 +818,11 @@ msgstr "Als 'nicht korrekt funktionierend' markierte Updates erlauben'"
 msgid "Allows more detailed to be in the crash log"
 msgstr "Erweiterte Informationen im Crash-Log eintragen"
 
-#, python-format
 msgid "Allows the %s %s to read the stored EPG data regularly."
-msgstr "Regelmäßiges lesen der EPG Daten durch die %s %s erlauben."
+msgstr "Regelmäßiges lesen der EPG Daten von der %s %s erlauben."
 
-#, python-format
 msgid "Allows the %s %s to store the EPG data regularly."
-msgstr "Regelmäßiges schreiben der EPG Daten durch die %s %s erlauben."
+msgstr "Regelmäßiges schreiben der EPG Daten von der %s %s erlauben."
 
 msgid "Allows you hide the extensions of known file types."
 msgstr "Erlaubt es Erweiterungen bekannter Dateitypen zu verstecken."
@@ -954,7 +952,7 @@ msgstr ""
 "Sicher das Folgendes wiederhergestellt werden soll?\n"
 "Backup:%s\n"
 "\n"
-"Deine Box wird neu gestartet wenn das Backup wiederhergestellt wurde."
+"Der Receiver wird neu gestartet wenn das Backup wiederhergestellt wurde."
 
 #, python-format
 msgid ""
@@ -2143,7 +2141,7 @@ msgstr "Kerne:\t%s"
 #, python-format
 msgid "Could not connect to %s %s .NFI image feed server:"
 msgstr ""
-"Verbindung zur %s %s .NFI Image Feed Server konnte nicht hergestellt werden:"
+"Verbindung zum %s %s NFI Image Feed Server konnte nicht hergestellt werden:"
 
 msgid "Could not find installed channel list."
 msgstr "Kann keine installierte Senderliste finden."
@@ -5016,7 +5014,6 @@ msgstr "An"
 msgid "On end of movie"
 msgstr "Am Ende eines Films"
 
-#, python-format
 msgid ""
 "On reaching the end of a file during playback, you can choose the box's "
 "behavior."
@@ -7698,7 +7695,7 @@ msgid ""
 "Please press OK to start using your %s %s."
 msgstr ""
 "Danke für die Benutzung des Assistenten. Die %s %s ist jetzt einsatzbereit.\n"
-"Drücke OK um die %s %s jetzt zu benutzen."
+"Drücke OK auf der Fernbedienung um die %s %s jetzt zu benutzen."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -7769,6 +7766,7 @@ msgstr ""
 msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr "Die %s %s liest die EPG Daten alle x Stunden."
 
+#, python-format
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Die %s %s speichert die EPG alle x Stunden."
 
@@ -9088,7 +9086,7 @@ msgstr ""
 "Wenn die %s %s mit dem Internet verbunden werden soll so hilft dieser "
 "Assistent bei den Grundeinstellungen für das Netzwerk der %s %s.\n"
 "\n"
-"Drücke OK um die Netzwerk Einstellungen vorzunehmen."
+"Drücke OK auf der Fernbedienung um die Netzwerk Einstellungen vorzunehmen."
 
 #, python-format
 msgid ""
@@ -9100,7 +9098,7 @@ msgstr ""
 "Willkommen.\n"
 "\n"
 "Dieser Start-Assistent führt durch die Grundeinstellungen der %s %s.\n"
-"Drücke OK um zum nächsten Schritt zu gelangen."
+"Drücke OK auf der Fernbedienung um zum nächsten Schritt zu gelangen."
 
 msgid "West"
 msgstr "West"
@@ -9114,7 +9112,6 @@ msgstr "Welchen Tag des Monats?"
 msgid "What Day of week ?"
 msgstr "Welchen Tag der Woche?"
 
-#, python-format
 msgid ""
 "What action is required on complettion of the timer? 'Auto' lets the box "
 "return to the state it had when the timer started. 'Do nothing', 'Go to "
@@ -9223,7 +9220,6 @@ msgstr ""
 "Wenn aktiviert werden grafische DVB Untertitel in Gelb statt der "
 "Originalfarbe dargestellt."
 
-#, python-format
 msgid ""
 "When enabled, measure power consumption to detect when the rotor stops "
 "turning (when supported by the tuner)."
@@ -9289,9 +9285,14 @@ msgstr ""
 "Wenn aktiviert benutzt der Receiver die Untertitel die schon früher benutzen "
 "worden sind."
 
-#, python-format
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Wenn auf 'Ja' gestellt so wird der AC3 Ton benutzen wenn verfügbar."
+
+msgid ""
+"When enabled, timeshift starts automatically in background after specified "
+"time."
+msgstr ""
+"Wenn aktiviert startet TimeShift automatisch nach der angegebenen Zeit."
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Wenn aktiviert benutzt der Receiver DHCP zur Netzwerkkonfiguration."
@@ -9340,7 +9341,6 @@ msgstr ""
 "Wenn der Bildinhalt ein Aspect/Ratio von 4:3 hat wähle ob das Bild skaliert/"
 "gestreckt werden soll."
 
-#, python-format
 msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
