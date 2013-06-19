@@ -19,6 +19,8 @@ from os import rename, path, remove
 from gettext import dgettext
 import urllib
 
+ocram = ''
+
 class SoftwareUpdateChanges(Screen):
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
@@ -65,6 +67,7 @@ class SoftwareUpdateChanges(Screen):
 		self["text"].pageDown()
 
 	def getlog(self):
+		global ocram
 		try:
 			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersionString() + '/' + self.logtype + '-git.log'
 			sourcefile,headers = urllib.urlretrieve(sourcefile)
@@ -90,11 +93,18 @@ class SoftwareUpdateChanges(Screen):
 					releasever = releasever[0].replace(':',"")
 
 			while int(releasever) > int(getBuildVersionString()):
-				viewrelease += releasenotes[int(ver)]+'\n\n'
+				if ocram:
+					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
+					ocram = ""
+				else:
+					viewrelease += releasenotes[int(ver)]+'\n\n'
 				ver += 1
 				releasever = releasenotes[int(ver)].split('\n')
 				releasever = releasever[0].split(' ')
 				releasever = releasever[2].replace(':',"")
+			if not viewrelease and ocram:
+				viewrelease = ocram
+				ocram = ""
 			self["text"].setText(viewrelease)
 			summarytext = viewrelease.split(':\n')
 			try:
@@ -102,7 +112,7 @@ class SoftwareUpdateChanges(Screen):
 				self['text_summary'].setText(summarytext[1])
 			except:
 				self['title_summary'].setText("")
-				self['text_summary'].setText("")
+				self['text_summary'].setText(viewrelease)
 		else:
 			self['title_summary'].setText("")
 			self['text_summary'].setText(_("Error downloading change log."))
@@ -248,6 +258,12 @@ class UpdatePlugin(Screen):
 					self.total_packages = len(self.ipkg.getFetchedList())
 					message = _("Do you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 				if self.total_packages:
+					global ocram
+					for package_tmp in self.ipkg.getFetchedList():
+						if package_tmp[0].startswith('enigma2-plugin-picons-tv-ocram'):
+							ocram = ocram + '[ocram-picons] ' + package_tmp[0].split('enigma2-plugin-picons-tv-ocram.')[1] + 'updated ' + package_tmp[2] + '\n'
+						elif package_tmp[0].startswith('enigma2-plugin-settings-ocram'):
+							ocram = ocram + '[ocram-settings] ' + package_tmp[0].split('enigma2-plugin-picons-tv-ocram.')[1] + 'updated ' + package_tmp[2] + '\n'
 					config.softwareupdate.updatefound.setValue(True)
 					choices = [(_("View the changes"), "changes"),
 						(_("Upgrade and reboot system"), "cold")]
@@ -312,7 +328,7 @@ class UpdatePlugin(Screen):
 			if config.softwareupdate.updateisunstable.getValue() == '1':
 				message = _("The current update maybe unstable") + "\n" + _("Are you sure you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
 			elif config.softwareupdate.updateisunstable.getValue() == '0':
-				message = _("Do you want to update your %s ?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
+				message = _("Do you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(%s " % self.total_packages + _("Packages") + ")"
 			choices = [(_("View the changes"), "changes"),
 				(_("Upgrade and reboot system"), "cold")]
 			if not self.SettingsBackupDone and not config.softwareupdate.autosettingsbackup.getValue() and config.backupmanager.backuplocation.getValue():
@@ -350,7 +366,7 @@ class UpdatePlugin(Screen):
 		Components.Task.job_manager.AddJob(self.BackupFiles.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
-			if job.name == dgettext('ViX', 'Backup Manager'):
+			if job.name == dgettext('vix', 'Backup Manager'):
 				break
 		self.showJobView(job)
 
@@ -361,7 +377,7 @@ class UpdatePlugin(Screen):
 		Components.Task.job_manager.AddJob(self.ImageBackup.createBackupJob())
 		Components.Task.job_manager.in_background = False
 		for job in Components.Task.job_manager.getPendingJobs():
-			if job.name == dgettext('ViX', 'Image Manager'):
+			if job.name == dgettext('vix', 'Image Manager'):
 				break
 		self.showJobView(job)
 
@@ -376,9 +392,9 @@ class UpdatePlugin(Screen):
 			self.close()
 
 	def showJobView(self, job):
-		if job.name == dgettext('ViX', 'Image Manager'):
+		if job.name == dgettext('vix', 'Image Manager'):
 			self.ImageBackupDone = True
-		elif job.name == dgettext('ViX', 'Backup Manager'):
+		elif job.name == dgettext('vix', 'Backup Manager'):
 			self.SettingsBackupDone = True
 		from Screens.TaskView import JobView
 		Components.Task.job_manager.in_background = False
