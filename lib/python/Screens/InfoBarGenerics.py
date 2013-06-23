@@ -527,7 +527,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
-			if config.vixsettings.InfoBarEpg_mode.getValue() == "2":
+			if config.plisettings.InfoBarEpg_mode.getValue() == "2":
 				self.openInfoBarEPG()
 			else:
 				self.hide()
