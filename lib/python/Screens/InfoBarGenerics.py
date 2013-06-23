@@ -527,7 +527,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
-			if config.plisettings.InfoBarEpg_mode.getValue() == "2":
+			if config.vixsettings.InfoBarEpg_mode.getValue() == "2":
 				self.openInfoBarEPG()
 			else:
 				self.hide()
@@ -580,7 +580,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
-				self.pvrStateDialog.hide()
+				try:
+					self.pvrStateDialog.hide()
+				except:
+					pass
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
@@ -591,8 +594,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				pass
 			self.EventViewIsShown = False
 		elif hasattr(self, "pvrStateDialog"):
-			self.pvrStateDialog.hide()
-
+			try:
+				self.pvrStateDialog.hide()
+			except:
+				pass
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
 			if not self.secondInfoBarWasShown:
