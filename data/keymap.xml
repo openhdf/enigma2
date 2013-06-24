@@ -75,26 +75,15 @@
 		<key id="KEY_0" mapto="0" flags="m" />
 	</map>
 
-	<!--map context="InfobarEPGActions">
-		<key id="KEY_RED" mapto="RedPressed" flags="b" />
-		<key id="KEY_I" mapto="IPressed" flags="b" />
-		<key id="KEY_INFO" mapto="InfoPressed" flags="b" />
-		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
-		<key id="KEY_EPG" mapto="EPGPressed" flags="b" />
-		<key id="KEY_EPG" mapto="showEventGuidePlugin" flags="l" />
-	</map-->
-	
 	<map context="InfobarEPGActions">
 		<key id="KEY_RED" mapto="RedPressed" flags="b" />
 		<key id="KEY_I" mapto="IPressed" flags="b" />
-		<key id="KEY_INFO" mapto="showEventInfo" flags="b" />
 		<key id="KEY_INFO" mapto="InfoPressed" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
 		<key id="KEY_EPG" mapto="EPGPressed" flags="b" />
 		<key id="KEY_EPG" mapto="showEventGuidePlugin" flags="l" />
-		<key id="KEY_EPG" mapto="showEventInfoPlugin" flags="l" />
 	</map>
-	
+
 	<map context="InfobarInstantRecord">
 		<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
 		<key id="KEY_RECORD" mapto="ShortRecord" flags="b" />
@@ -105,26 +94,17 @@
 	</map>
 
 	<map context="InfobarExtensions">
-		<!--key id="KEY_GREEN" mapto="openTimerList" flags="b" />
+		<key id="KEY_GREEN" mapto="openTimerList" flags="b" />
 		<key id="KEY_GREEN" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_YELLOW" mapto="openEPGSearch" flags="b" />
 		<key id="KEY_YELLOW" mapto="openIMDB" flags="l" />
 		<key id="KEY_BLUE" mapto="showPluginBrowser" flags="l" />
-		<key id="KEY_BLUE" mapto="extensions" flags="b" /-->
-		<!--key id="KEY_BOOKMARKS" mapto="showPluginBrowser" flags="mr" /-->
+		<key id="KEY_BLUE" mapto="extensions" flags="b" />
+		<!-- key id="KEY_BOOKMARKS" mapto="showPluginBrowser" flags="mr" / -->
 		<key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
 		<key id="KEY_SEARCH" mapto="openIMDB" flags="l" />
-		<key id="KEY_F1" mapto="RedPressed" flags="b" />
-		<key id="KEY_F1" mapto="showEventInfo" flags="l" />
-		<key id="KEY_F2" mapto="openTimerList" flags="b" />
-		<key id="KEY_F2" mapto="openAutoTimerList" flags="l" />
-		<key id="KEY_F3" mapto="openEPGSearch" flags="b" />
-		<key id="KEY_F3" mapto="openIMDB" flags="l" />
-		<key id="KEY_F4" mapto="showPluginBrowser" flags="l" />
-		<key id="KEY_F4" mapto="extensions" flags="b" />
-		<key id="KEY_BLUE" mapto="extensions" flags="l" />
 	</map>
 
 	<map context="SatlistShortcutAction">
@@ -202,9 +182,9 @@
 	<map context="InfobarMenuActions">
 		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
 		<key id="KEY_SPACE" mapto="mainMenu" flags="mr" />
-		<!--key id="KEY_F1" mapto="showNetworkSetup" flags="mr" /-->
 		<key id="KEY_SETUP" mapto="showSystemSetup" flags="mr" />
 		<key id="KEY_OPTION" mapto="showNetworkSetup" flags="mr" />
+		<key id="KEY_F1" mapto="showNetworkSetup" flags="mr" />
 		<key id="KEY_F5" mapto="showRFmod" flags="b" />
 		<key id="KEY_F5" mapto="toggleAspectRatio" flags="l" />
 	</map>
@@ -250,20 +230,9 @@
 	</map>
 
 	<map context="InfobarAudioSelectionActions">
-		<device name="dreambox advanced remote control (native)">
-			<key id="KEY_YELLOW" mapto="audioSelection" flags="m" />
-		</device>
-		<key id="KEY_AUDIO" mapto="audio_key" flags="m" />
-		<key id="KEY_OPTION" mapto="audioSelection" flags="m" />
 		<key id="KEY_AUDIO" mapto="audioSelection" flags="m" />
 	</map>
 
-	<map context="InfobarAspectSelectionActions">
-		<key id="KEY_GREEN" mapto="aspectSelection" flags="l" />
-		<key id="KEY_MODE" mapto="aspectSelection" flags="l" />
-		<key id="KEY_MODE" mapto="aspectSelection" flags="b" />
-	</map>
-	
 	<map context="InfobarSubtitleSelectionActions">
 		<key id="KEY_SUBTITLE" mapto="subtitleSelection" flags="m" />
 	</map>
@@ -280,6 +249,10 @@
 
 	<map context="InfobarTimerButtonActions">
 			<key id="KEY_PROGRAM" mapto="timerSelection" flags="m" />
+	</map>
+
+	<map context="InfobarVmodeButtonActions">
+			<key id="KEY_VMODE" mapto="vmodeSelection" flags="m" />
 	</map>
 
 	<map context="InfobarPiPActions">
@@ -443,7 +416,7 @@
 			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
 		</device>
 		<device name="dreambox ir keyboard">
-			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="b" />
+			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="m" />
 		</device>
 
 		<key id="KEY_PLAYPAUSE" mapto="timeshiftStart" flags="m" />
@@ -453,10 +426,6 @@
 		<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="jumpPreviousFile" flags="m" />
 		<key id="KEY_NEXT" mapto="jumpNextFile" flags="m" />
-	</map>
-
-	<map context="InfobarVmodeButtonActions">
-		<key id="KEY_VMODE" mapto="vmodeSelection" flags="m" />
 	</map>
 
 	<map context="InfobarTimeshiftActivateActions">
@@ -527,7 +496,7 @@
 	</map>
 
 	<map context="InfobarTeletextActions">
-		<key id="KEY_TEXT" mapto="startTeletext" flags="b" />
+		<key id="KEY_TEXT" mapto="startTeletext" flags="m" />
 	</map>
 
 	<map context="InfobarRdsActions">
@@ -577,25 +546,19 @@
 	</map>
 
 	<map context="EPGSelectActions">
+		<key id="KEY_GREEN" mapto="timerAdd" flags="b"/>
 		<key id="KEY_CHANNELUP" mapto="nextService" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="prevService" flags="m" />
 		<key id="KEY_NEXT" mapto="nextBouquet" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="prevBouquet" flags="m" />
 		<key id="KEY_MENU" mapto="menu" flags="m"/>
-		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="m" />
-		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
 		<key id="KEY_TEXT" mapto="input_date_time" flags="m"/>
-		<key id="KEY_RED" mapto="red" flags="m" />
-		<key id="KEY_GREEN" mapto="timerAdd" flags="b"/>
-		<key id="KEY_YELLOW" mapto="yellow" flags="mr" />
-		<key id="KEY_BLUE" mapto="blue" flags="mr" />
 		<key id="KEY_I" mapto="info" flags="b"/>
 		<key id="KEY_INFO" mapto="info" flags="b"/>
 		<key id="KEY_INFO" mapto="infolong" flags="l"/>
 		<key id="KEY_EPG" mapto="epg" flags="b"/>
 		<key id="KEY_TV" mapto="tv" flags="b"/>
-		<key id="KEY_EPG" mapto="prevBouquet" flags="l" />
-		<key id="KEY_0" mapto="prevBouquet" flags="b" />
+		<key id="KEY_TV" mapto="tvlong" flags="l"/>
 	</map>
 
 	<map context="EventViewActions">
@@ -638,14 +601,10 @@
 	</map>
 
 	<map context="ColorActions">
-		<key id="KEY_RED" mapto="red" flags="b"/>
-		<key id="KEY_RED" mapto="redlong" flags="l"/>
-		<key id="KEY_GREEN" mapto="green" flags="b"/>
-		<key id="KEY_GREEN" mapto="greenlong" flags="l"/>
-		<key id="KEY_YELLOW" mapto="yellow" flags="b"/>
-		<key id="KEY_YELLOW" mapto="yellowlong" flags="l"/>
-		<key id="KEY_BLUE" mapto="blue" flags="b"/>
-		<key id="KEY_BLUE" mapto="bluelong" flags="l"/>
+		<key id="KEY_RED" mapto="red" flags="m"/>
+		<key id="KEY_GREEN" mapto="green" flags="m"/>
+		<key id="KEY_YELLOW" mapto="yellow" flags="m"/>
+		<key id="KEY_BLUE" mapto="blue" flags="m"/>
 	</map>
 
 	<map context="MsgBoxActions">
@@ -662,7 +621,7 @@
 	</map>
 
 	<map context="HelpActions">
-		<key id="KEY_HELP" mapto="displayHelp" flags="b" />
+		<key id="KEY_HELP" mapto="displayHelp" flags="m" />
 	</map>
 
 	<map context="ShortcutActions">
@@ -729,18 +688,19 @@
 			<key id="KEY_PREVIOUS" mapto="previous" flags="m" />
 			<key id="KEY_NEXT" mapto="next" flags="m" />
 		</device>
-
-		<key id="KEY_YELLOW" mapto="pause" flags="m" />
-		<key id="KEY_GREEN" mapto="play" flags="m" />
-		<key id="KEY_RADIO" mapto="shift_record" flags="l" />
-		<key id="KEY_PREVIOUS" mapto="previous" flags="m" />
-		<key id="KEY_NEXT" mapto="next" flags="m" />
-
+		<device name="dreambox remote control (native)">
+			<key id="KEY_YELLOW" mapto="pause" flags="m" />
+			<key id="KEY_GREEN" mapto="play" flags="m" />
+			<key id="KEY_RADIO" mapto="shift_record" flags="l" />
+			<key id="KEY_PREVIOUS" mapto="previous" flags="m" />
+			<key id="KEY_NEXT" mapto="next" flags="m" />
+		</device>
 		<device name="dreambox ir keyboard">
 			<key id="KEY_RECORD" mapto="shift_record" flags="l" />
 			<key id="KEY_PREVIOUSSONG" mapto="previous" flags="m" />
 			<key id="KEY_NEXTSONG" mapto="next" flags="m" />
 		</device>
+
 		<key id="KEY_PLAYPAUSE" mapto="pause" flags="m" />
 		<key id="KEY_PAUSE" mapto="pause" flags="m" />
 		<key id="KEY_PLAY" mapto="play" flags="m" />
