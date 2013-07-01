@@ -37,13 +37,13 @@ class VideoHardware:
 
 	rates["576p"] =			{ "50Hz": 	{ 50: "576p" } }
 
-	if chipset.find('7335') != -1 or chipset.find('7358') != -1 or chipset.find('7356') != -1 or chipset.find('7405') != -1:
-		rates["720p"] =			{ "24Hz": 	{ 24: "720p24" },
-									"25Hz": 	{ 25: "720p25" },
-									"30Hz": 	{ 30: "720p30" },
-									"50Hz": 	{ 50: "720p50" },
-									"60Hz": 	{ 60: "720p" },
-									"multi": 	{ 50: "720p50", 60: "720p" } }
+	if about.getChipSetString().find('7335') != -1 or about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7405') != -1 or about.getChipSetString().find('7424') != -1:
+		rates["720p"] =		{ "24Hz": 		{ 24: "720p24" },
+								"25Hz": 	{ 25: "720p25" },
+								"30Hz": 	{ 30: "720p30" },
+								"50Hz": 	{ 50: "720p50" },
+								"60Hz": 	{ 60: "720p" },
+								"multi": 	{ 50: "720p50", 60: "720p" } }
 	else:
 		rates["720p"] =			{ "50Hz": 	{ 50: "720p50" },
 									"60Hz": 	{ 60: "720p" },
@@ -53,19 +53,18 @@ class VideoHardware:
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
 
-#	if chipset.find('7405') != -1 or chipset.find('7335') != -1:
-#		rates["1080p"] =		{ "24Hz":		{ 24: "1080p24" },
-#									"25Hz":		{ 25: "1080p25" },
-#									"30Hz":		{ 30: "1080p30" }}
-#
-#	elif chipset.find('7358') != -1 or chipset.find('7356') != -1:
-#		rates["1080p"] =		{ 	"24Hz":		{ 24: "1080p24" },
-#									"25Hz":		{ 25: "1080p25" },
-#									"30Hz":		{ 30: "1080p30" },
-#									"50Hz":		{ 50: "1080p50" },
-#									"60Hz":		{ 60: "1080p" },
-#									"multi":	{ 50: "1080p50", 60: "1080p" }}
-	if chipset.find('7358') != -1 or chipset.find('7356') != -1:
+# 	if about.getChipSetString().find('7405') != -1 or about.getChipSetString().find('7335') != -1:
+# 		rates["1080p"] =	{ "24Hz":		{ 24: "1080p24" },
+# 								"25Hz":		{ 25: "1080p25" },
+# 								"30Hz":		{ 30: "1080p30" }}
+# 	elif about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1:
+# 		rates["1080p"] =	{ 	"24Hz":		{ 24: "1080p24" },
+# 								"25Hz":		{ 25: "1080p25" },
+# 								"30Hz":		{ 30: "1080p30" },
+# 								"50Hz":		{ 50: "1080p50" },
+# 								"60Hz":		{ 60: "1080p" },
+# 								"multi":	{ 50: "1080p50", 60: "1080p" }}
+	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
 		rates["1080p"] =	{ 	"50Hz":		{ 50: "1080p50" },
 								"60Hz":		{ 60: "1080p" },
 								"multi":	{ 50: "1080p50", 60: "1080p" }}
@@ -89,7 +88,7 @@ class VideoHardware:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	modes["DVI-PC"] = ["PC"]
 
-	if  chipset.find('7358') != -1 or chipset.find('7356') != -1:
+	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
 		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i", "1080p"])
@@ -99,7 +98,7 @@ class VideoHardware:
 		widescreen_modes = set(["720p", "1080i"])
 
 	if getBoxType().startswith('vu'):
-		if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1:
+		if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
 			modes["Scart-YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		else:
 			modes["Scart-YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
