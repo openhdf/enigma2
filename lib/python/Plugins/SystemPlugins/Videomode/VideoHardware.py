@@ -1,22 +1,24 @@
 from enigma import eTimer, getBoxType
 from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
+from Components.About import about
 
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from os import path
 
 try:
-	file = open("/proc/stb/info/chipset", "r")
-	chipset = file.readline().strip()
+	file = open("/proc/stb/info/boxtype", "r")
+	model = file.readline().strip()
 	file.close()
 except:
-	chipset = "unknown"
+	model = "unknown"
 
 # The "VideoHardware" is the interface to /proc/stb/video.
 # It generates hotplug events, and gives you the list of
 # available and preferred modes, as well as handling the currently
 # selected mode. No other strict checking is done.
 class VideoHardware:
+	hw_type = HardwareInfo().get_device_name()
 	rates = { } # high-level, use selectable modes.
 
 	modes = { }  # a list of (high-level) modes for a certain port.
@@ -38,12 +40,12 @@ class VideoHardware:
 	rates["576p"] =			{ "50Hz": 	{ 50: "576p" } }
 
 	if about.getChipSetString().find('7335') != -1 or about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7405') != -1 or about.getChipSetString().find('7424') != -1:
-		rates["720p"] =		{ "24Hz": 		{ 24: "720p24" },
-								"25Hz": 	{ 25: "720p25" },
-								"30Hz": 	{ 30: "720p30" },
-								"50Hz": 	{ 50: "720p50" },
-								"60Hz": 	{ 60: "720p" },
-								"multi": 	{ 50: "720p50", 60: "720p" } }
+		rates["720p"] =			{ "24Hz": 	{ 24: "720p24" },
+									"25Hz": 	{ 25: "720p25" },
+									"30Hz": 	{ 30: "720p30" },
+									"50Hz": 	{ 50: "720p50" },
+									"60Hz": 	{ 60: "720p" },
+									"multi": 	{ 50: "720p50", 60: "720p" } }
 	else:
 		rates["720p"] =			{ "50Hz": 	{ 50: "720p50" },
 									"60Hz": 	{ 60: "720p" },
@@ -53,21 +55,26 @@ class VideoHardware:
 								"60Hz":		{ 60: "1080i" },
 								"multi":	{ 50: "1080i50", 60: "1080i" } }
 
-# 	if about.getChipSetString().find('7405') != -1 or about.getChipSetString().find('7335') != -1:
-# 		rates["1080p"] =	{ "24Hz":		{ 24: "1080p24" },
-# 								"25Hz":		{ 25: "1080p25" },
-# 								"30Hz":		{ 30: "1080p30" }}
-# 	elif about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1:
-# 		rates["1080p"] =	{ 	"24Hz":		{ 24: "1080p24" },
-# 								"25Hz":		{ 25: "1080p25" },
-# 								"30Hz":		{ 30: "1080p30" },
-# 								"50Hz":		{ 50: "1080p50" },
-# 								"60Hz":		{ 60: "1080p" },
-# 								"multi":	{ 50: "1080p50", 60: "1080p" }}
-	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
-		rates["1080p"] =	{ 	"50Hz":		{ 50: "1080p50" },
-								"60Hz":		{ 60: "1080p" },
-								"multi":	{ 50: "1080p50", 60: "1080p" }}
+	if about.getChipSetString().find('7405') != -1 or about.getChipSetString().find('7335') != -1:
+		rates["1080p"] =		{ "24Hz":		{ 24: "1080p24" },
+									"25Hz":		{ 25: "1080p25" },
+									"30Hz":		{ 30: "1080p30" }}
+
+	elif about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
+		rates["1080p"] =		{ 	"24Hz":		{ 24: "1080p24" },
+									"25Hz":		{ 25: "1080p25" },
+									"30Hz":		{ 30: "1080p30" },
+									"50Hz":		{ 50: "1080p50" },
+									"60Hz":		{ 60: "1080p" },
+									"multi":	{ 50: "1080p50", 60: "1080p" }}
+	elif hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime" :
+		rates["1080p"] =		{ "50Hz":	{ 50: "1080p50" },
+									"60Hz":		{ 60: "1080p" },
+									"23Hz":		{ 23: "1080p" },
+									"24Hz":		{ 24: "1080p" },
+									"25Hz":		{ 25: "1080p" },
+									"30Hz":		{ 30: "1080p" },
+									"multi":	{ 50: "1080p50", 60: "1080p" } }									
 
 	rates["PC"] = {
 		"1024x768": { 60: "1024x768" }, # not possible on DM7025
@@ -87,8 +94,9 @@ class VideoHardware:
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	modes["DVI-PC"] = ["PC"]
+	if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime" : config.av.edid_override = True
 
-	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
+	if  about.getChipSetString().find('7335') != -1 or about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7405') != -1 or about.getChipSetString().find('7424') != -1 or hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime":
 		modes["YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		modes["DVI"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i", "1080p"])
@@ -97,7 +105,7 @@ class VideoHardware:
 		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i"])
 
-	if getBoxType().startswith('vu'):
+	if getBoxType().startswith('vu') or getBoxType() == 'dm500hd' or getBoxType() == 'dm800':
 		if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
 			modes["Scart-YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		else:
@@ -142,10 +150,11 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'odimm7' or getBoxType() == 'vusolo2' or getBoxType() == 'e3hd' or getBoxType().startswith('ixuss'):
+		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'iqonios300hd' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'tmnano' or getBoxType() == 'odimm7' or model == 'ini-3000' or getBoxType() == 'vusolo2' or getBoxType() == 'e3hd' or getBoxType() == 'dm500hd' or getBoxType() == 'dm800' or getBoxType() == 'ebox7358' or getBoxType() == 'ebox5100':
 			del self.modes["YPbPr"]
-		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or getBoxType() == 'et6x00' or getBoxType() == 'e3hd':
+		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'ebox7358' or getBoxType() == 'ebox5100' or getBoxType() == 'tmnano' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime":
 			del self.modes["Scart"]
+		if self.hw_type == 'elite' or self.hw_type == 'premium' or self.hw_type == 'premium+' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime" : self.readPreferredModes()	
 
 		self.createConfig()
 		self.readPreferredModes()
@@ -192,6 +201,13 @@ class VideoHardware:
 	def isModeAvailable(self, port, mode, rate):
 		rate = self.rates[mode][rate]
 		for mode in rate.values():
+			##### Only for test #####
+			if port == "DVI":
+				if self.hw_type == 'elite' or self.hw_type == 'premium' or self.hw_type == 'premium+' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime" :
+					if mode not in self.modes_preferred and not config.av.edid_override.value:
+						print "no, not preferred"
+						return False
+			##### Only for test #####		
 			if mode not in self.modes_available:
 				return False
 		return True
@@ -236,7 +252,7 @@ class VideoHardware:
 				# fallback if no possibility to setup 50/60 hz mode
 				f = open("/proc/stb/video/videomode", "w")
 				f.write(mode_50)
-				f.close()
+				f.close()				
 			except IOError:
 				print "setting videomode failed."
 
@@ -245,7 +261,7 @@ class VideoHardware:
 				mode_etc = modes.get(int(rate[:2]))
 				f = open("/proc/stb/video/videomode", "w")
 				f.write(mode_etc)
-				f.close()
+				f.close()				
 			else:
 				# fallback if no possibility to setup 50/60 hz mode
 				f = open("/proc/stb/video/videomode", "w")
@@ -378,9 +394,23 @@ class VideoHardware:
 				aspect = "16:9"
 			else:
 				aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.getValue()]
-			policy_choices = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit", "auto": "bestfit"}
+			policy_choices = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit"}
+			if path.exists("/proc/stb/video/policy_choices"):
+				f = open("/proc/stb/video/policy_choices")
+				if "auto" in f.readline():
+					policy_choices.update({"auto": "auto"})
+				else:
+					policy_choices.update({"auto": "bestfit"})
+				f.close()
 			policy = policy_choices[config.av.policy_43.getValue()]
-			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit", "auto": "bestfit"}
+			policy2_choices = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}
+			if path.exists("/proc/stb/video/policy2_choices"):
+				f = open("/proc/stb/video/policy2_choices")
+				if "auto" in f.readline():
+					policy2_choices.update({"auto": "auto"})
+				else:
+					policy2_choices.update({"auto": "bestfit"})
+				f.close()
 			policy2 = policy2_choices[config.av.policy_169.getValue()]
 		elif is_auto:
 			aspect = "any"
