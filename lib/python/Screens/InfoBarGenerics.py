@@ -139,7 +139,7 @@ def loadResumePoints():
 def updateresumePointCache():
 	global resumePointCache
 	resumePointCache = loadResumePoints()
-
+	
 resumePointCache = loadResumePoints()
 resumePointCacheLast = int(time())
 
@@ -162,6 +162,10 @@ class InfoBarUnhandledKey:
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
+		try:
+			print 'KEY: %s %s' % (key,getKeyDescription(key)[0])
+		except:
+			print 'KEY: %s' % key
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -507,6 +511,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		except:
 			self.pvrStateDialog = None
 
+
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
 			if config.plisettings.InfoBarEpg_mode.getValue() == "1":
@@ -598,6 +603,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.pvrStateDialog.hide()
 			except:
 				pass
+
 	def toggleShow(self):
 		if self.__state == self.STATE_HIDDEN:
 			if not self.secondInfoBarWasShown:
@@ -1629,7 +1635,7 @@ class InfoBarSeek:
 				"playpauseService": self.playpauseService,
 				"pauseService": (self.pauseService, _("Pause playback")),
 				"unPauseService": (self.unPauseService, _("Continue playback")),
-
+		
 				"seekFwd": (self.seekFwd, _("skip forward")),
 				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
 				"seekBack": (self.seekBack, _("skip backward")),
@@ -2295,7 +2301,7 @@ class InfoBarTimeshift:
 		state = self.getSeek() is not None and self.timeshiftEnabled()
 		self["SeekActionsPTS"].setEnabled(state)
 		self["TimeshiftFileActions"].setEnabled(state)
-
+		
 		if not state:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			self.restartSubtitle()
@@ -2530,33 +2536,6 @@ class InfoBarTimeshift:
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
 		self.activateTimeshiftEnd(False)
-
-	def __seekableStatusChanged(self):
-		print '__seekableStatusChanged'
-		self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshiftEnabled() and int(config.timeshift.startdelay.getValue()))
-		state = self.getSeek() is not None and self.timeshiftEnabled()
-		self["SeekActionsPTS"].setEnabled(state)
-		self["TimeshiftFileActions"].setEnabled(state)
-
-		if not state:
-			self.setSeekState(self.SEEK_STATE_PLAY)
-			self.restartSubtitle()
-
-		if self.timeshiftEnabled() and not self.isSeekable():
-			self.ptsSeekPointerReset()
-			if int(config.timeshift.startdelay.getValue()):
-				if self.pts_starttime <= (time()-5):
-					self.pts_blockZap_timer.start(3000, True)
-			self.pts_currplaying = self.pts_eventcount
-			self.pts_nextplaying = 0
-			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % (self.pts_eventcount))
-
-	def __serviceStarted(self):
-		print '__serviceStarted'
-		self.service_changed = 1
-		self.pts_delay_timer.stop()
-		self.pts_service_changed = True
-		# self.__seekableStatusChanged()
 
 	def checkTimeshiftRunning(self, returnFunction):
 		print 'checkTimeshiftRunning'
@@ -3302,11 +3281,11 @@ class InfoBarTimeshift:
 			print '!!!!! TEST1'
 			self.pts_switchtolive = False
 			return
-
+		
 		if self.pts_nextplaying:
 			self.pts_currplaying = self.pts_nextplaying
 		self.pts_nextplaying = self.pts_currplaying+1
-
+		
 		# Get next pts file ...
 		print '!!!!! TEST3'
 		print ("!!! %spts_livebuffer_%s" % (config.usage.timeshift_path.getValue(),self.pts_nextplaying))
@@ -3457,6 +3436,7 @@ class InfoBarExtensions:
 
 	def getCCcamInfo(self):
 		softcams = sorted(filter(lambda x: x.startswith('softcam.'), os.listdir("/etc/init.d/")))
+
 		for softcam in softcams:
 			if "cccam" in os.readlink('/etc/init.d/softcam').lower() and config.cccaminfo.showInExtensions.getValue():
 				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
@@ -3468,6 +3448,7 @@ class InfoBarExtensions:
 
 	def getOScamInfo(self):
 		softcams = sorted(filter(lambda x: x.startswith('softcam.'), os.listdir("/etc/init.d/")))
+
 		for softcam in softcams:
 			if "oscam" in os.readlink('/etc/init.d/softcam') and config.oscaminfo.showInExtensions.getValue():
 				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
@@ -3653,7 +3634,6 @@ from Tools.BoundFunction import boundFunction
 import inspect
 
 # depends on InfoBarExtensions
-
 class InfoBarPlugins:
 	def __init__(self):
 		self.addExtension(extension = self.getPluginList, type = InfoBarExtensions.EXTENSION_LIST)
@@ -3796,7 +3776,6 @@ class InfoBarPiP:
 			self.showPiP()
 
 from RecordTimer import parseEvent, RecordTimerEntry
-
 class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to
 	start/stop instant records"""
