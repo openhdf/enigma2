@@ -415,6 +415,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def hidewaitingtext(self):
 		self.listTimer.stop()
+		if self.type == EPG_TYPE_MULTI:
+			self['list'].moveToService(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		self['lab1'].hide()
 
 	def getBouquetServices(self, bouquet):
@@ -465,7 +467,6 @@ class EPGSelection(Screen, HelpableScreen):
 			self['bouquetlist'].fillBouquetList(self.bouquets)
 			self.services = self.getBouquetServices(self.StartBouquet)
 			self['list'].fillMultiEPG(self.services, self.ask_time)
-			self['list'].moveToService(serviceref)
 			self['list'].setCurrentlyPlaying(serviceref)
 			self.setTitle(self['bouquetlist'].getCurrentBouquet())
 		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
@@ -943,10 +944,8 @@ class EPGSelection(Screen, HelpableScreen):
 		refstr = serviceref.ref.toString()
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret: self.removeTimer(timer)
-				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB, self.ChoiceBoxNull)]
-				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, text=_('Do you really want to remove the timer for %s?') % event.getEventName(), list=menu, skin_name="RemoveTimerQuestion")
-				self.showChoiceBoxDialog()
+				cb_func = lambda ret : not ret or self.removeTimer(timer)
+				self.session.openWithCallback(cb_func, MessageBox, _('Do you really want to remove the timer for %s?') % event.getEventName())
 				break
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(event))
