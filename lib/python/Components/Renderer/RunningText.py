@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 #
-# Running Text Renderer for Enigma2 Dreamboxes (RunningText.py)
+# Running Text Renderer for Enigma2 (RunningText.py)
 # Coded by vlamo (c) 2010
 #
 # Version: 1.4 (02.04.2011 17:15)
