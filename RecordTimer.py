@@ -158,7 +158,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.MountPath = dirname
 		mountwriteable = os.access(dirname, os.W_OK)
 		if not mountwriteable:
-			self.log(0, ("Mount '%s' is not writeable.", dirname))
+			self.log(0, ("Mount '%s' is not writeable." % dirname))
 			return False
 
 		s = os.statvfs(dirname)
@@ -408,8 +408,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.record_service = None
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
-			wasTimerWakeup = NavigationInstance.instance.wasTimerWakeup()
-			if self.afterEvent == AFTEREVENT.STANDBY or (not wasTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO):
+			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO):
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO):
