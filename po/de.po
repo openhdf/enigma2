@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-08-11 07:42+0100\n"
+"PO-Revision-Date: 2013-08-15 05:54+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3194,6 +3194,21 @@ msgstr "Schriftgröße"
 
 msgid "Format"
 msgstr "Formatieren"
+
+msgid "Volume Adjust"
+msgstr "Lautstärkenanpassung"
+
+msgid "change"
+msgstr "ändern"
+
+msgid "add Current"
+msgstr "akt. Sender"
+
+msgid "add Service"
+msgstr "neuer Sender"
+
+msgid "press the menu button to set a general AC3/Dolby offset"
+msgstr "Menü-Taste für eine generelle AC3/Dolby Anpassung"
 
 msgid "Forward volume keys"
 msgstr "Lautstärketasten weiterleiten"
