@@ -6,6 +6,7 @@ from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
 from Components.PluginList import *
 from Components.Label import Label
+from Components.Language import language
 from Components.Pixmap import Pixmap
 from Components.Harddisk import harddiskmanager
 from Components.Sources.StaticText import StaticText
@@ -46,9 +47,7 @@ config.pluginfilter.weblinks = ConfigYesNo(default = True)
 ## grep -B 4 hold /var/lib/opkg/status | sed '/Provides/d' | sed '/Version/d' | sed '/Status/d' | sed '/Depends/d' | sed '/--/d' | sed -e '/^ *$/d'
 
 
-def languageChanged():
-	plugins.clearPluginList()
-	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+language.addCallback(plugins.reloadPlugins)
 
 class PluginBrowserSummary(Screen):
 	def __init__(self, session, parent):
@@ -674,5 +673,3 @@ class PluginFilter(ConfigListScreen, Screen):
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
 		else:
 			self.close()
-
-language.addCallback(languageChanged)
