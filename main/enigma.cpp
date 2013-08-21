@@ -131,6 +131,7 @@ int main(int argc, char **argv)
 	printf("Version: %s\n", IMAGEVERSION);
 	printf("Build:   %s\n", IMAGEBUILD);
 	printf("Brand:   %s\n", MACHINE_BRAND);
+	printf("Boxtype: %s\n", BOXTYPE);
 	printf("Machine: %s\n", MACHINE_NAME);
 	printf("Drivers: %s\n", DRIVERDATE);
 
@@ -163,8 +164,8 @@ int main(int argc, char **argv)
 	gLCDDC::getInstance(my_lcd_dc);
 
 
-		/* ok, this is currently hardcoded for arabic. */
-			/* some characters are wrong in the regular font, force them to use the replacement font */
+	/* ok, this is currently hardcoded for arabic. */
+	/* some characters are wrong in the regular font, force them to use the replacement font */
 	for (int i = 0x60c; i <= 0x66d; ++i)
 		eTextPara::forceReplacementGlyph(i);
 	eTextPara::forceReplacementGlyph(0xfdf2);
@@ -239,7 +240,7 @@ int main(int argc, char **argv)
 	/* start at full size */
 	eVideoWidget::setFullsize(true);
 
-//	python.execute("mytest", "__main__");
+	// python.execute("mytest", "__main__");
 	python.execFile(eEnv::resolve("${libdir}/enigma2/python/mytest.py").c_str());
 
 	/* restore both decoders to full size */
@@ -331,12 +332,104 @@ const char *getDistro()
 
 const char *getMachineBrand()
 {
-	return MACHINE_BRAND;
+	FILE *boxtype_file;
+	char boxtype_name[20];
+
+	// for OEM resellers
+	if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
+	{
+		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
+		fclose(boxtype_file);
+
+		if((strcmp(boxtype_name, "ini-1000\n") == 0)  || (strcmp(boxtype_name, "ini-3000\n") == 0) || (strcmp(boxtype_name, "ini-5000\n") == 0) || (strcmp(boxtype_name, "ini-7000\n") == 0) || (strcmp(boxtype_name, "ini-7012\n") == 0))
+		{
+			return "UNiBOX";
+		}
+		else if((strcmp(boxtype_name, "ini-1000sv\n") == 0) || (strcmp(boxtype_name, "ini-5000sv\n") == 0))
+		{
+			return "Miraclebox";
+		}
+		else if((strcmp(boxtype_name, "ini-1000ru\n") == 0) || (strcmp(boxtype_name, "ini-5000ru\n") == 0))
+		{
+			return "Sezam";
+		}
+		else if((strcmp(boxtype_name, "ini-1000de\n") == 0))
+		{
+			return "GM";
+		}		
+		else if((strcmp(boxtype_name, "xp1000s\n") == 0))
+		{
+			return "Octagon";
+		}
+		else
+		{
+			return MACHINE_BRAND;
+		}
+	}
+	return MACHINE_BRAND; // to avoid if no /proc/stb/info/boxtype
 }
 
 const char *getMachineName()
 {
-	return MACHINE_NAME;
+	FILE *boxtype_file;
+	char boxtype_name[20];
+
+	// for OEM resellers
+	if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
+	{
+		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
+		fclose(boxtype_file);
+
+		if(strcmp(boxtype_name, "ini-1000\n") == 0) 
+		{
+			return "HD-e";
+		}
+		else if(strcmp(boxtype_name, "ini-3000\n") == 0) 
+		{
+			return "HD-1";
+		}
+		else if(strcmp(boxtype_name, "ini-5000\n") == 0) 
+		{
+			return "HD-2";
+		}
+		else if(strcmp(boxtype_name, "ini-7000\n") == 0) 
+		{
+			return "HD-3";
+		}
+		else if(strcmp(boxtype_name, "ini-7012\n") == 0) 
+		{
+			return "HD-3";
+		}
+		else if(strcmp(boxtype_name, "ini-1000sv\n") == 0) 
+		{
+			return "Premium Mini";
+		}
+		else if(strcmp(boxtype_name, "ini-5000sv\n") == 0) 
+		{
+			return "Premium Twin";
+		}
+		else if(strcmp(boxtype_name, "ini-1000ru\n") == 0) 
+		{
+			return "HD-1000";
+		} 
+		else if(strcmp(boxtype_name, "ini-5000ru\n") == 0) 
+		{
+			return "HD-5000";
+		}
+		else if(strcmp(boxtype_name, "ini-1000de\n") == 0) 
+		{
+			return "XpeedLX";
+		}		
+		else if(strcmp(boxtype_name, "xp1000s\n") == 0) 
+		{
+			return "SF8 HD";
+		}	
+		else
+		{
+			return MACHINE_NAME;
+		}
+	}
+	return MACHINE_NAME; // to avoid if no /proc/stb/info/boxtype
 }
 
 const char *getImageVersionString()
@@ -356,7 +449,19 @@ const char *getDriverDateString()
 
 const char *getBoxType()
 {
-	return BOXTYPE;
+  	// hack way to not change all in code
+	if(strcmp(BOXTYPE, "sezamhdx") == 0) 
+	{
+		return "ventonhdx";
+	}
+	else if(strcmp(BOXTYPE, "sezamhde") == 0) 
+	{
+		return "inihde";
+	}
+	else
+	{
+		return BOXTYPE;
+	}
 }
 
 #include <malloc.h>

@@ -337,6 +337,9 @@ msgstr "* = Neustart erforderlich"
 msgid "* Only available if more than one interface is active."
 msgstr "* Nur verfügbar wenn mehr als ein Netzwerkadapter aktiv ist."
 
+msgid "/s"
+msgstr ""
+
 msgid "1.0"
 msgstr "1.0"
 
@@ -475,6 +478,22 @@ msgid ""
 msgstr ""
 "Ein Powertimer will die %s %s ausschalten.\n"
 "Jetzt ausschalten?"
+
+#, python-format
+msgid ""
+"A finished powertimer wants to reboot your %s %s.\n"
+"Do that now?"
+msgstr ""
+"Ein Powertimer will die %s %s neu starten.\n"
+"Jetzt neu starten?"
+
+msgid ""
+"A finished powertimer wants to restart the user interface.\n"
+"Do that now?"
+msgstr ""
+"Ein Powertimer will die Benutzeroberfläche neu starten.\n"
+"\n"
+"Jetzt neu starten?"
 
 #, python-format
 msgid ""
@@ -1089,6 +1108,9 @@ msgstr "Automatische Einstellungs-Sicherung"
 msgid "Automatically start timeshift after"
 msgstr "TimeShift automatisch starten nach"
 
+msgid "Automatically turn on external subtitles"
+msgstr "Externe Untertitel automatisch einschalten"
+
 msgid "Automatically update Client/Server View?"
 msgstr "Anzeige von Klienten/Server automatisch aktualisieren?"
 
@@ -1496,8 +1518,8 @@ msgstr "Sendervorschau"
 msgid "Channel selection"
 msgstr "Senderliste"
 
-msgid "Channel selection configuration"
-msgstr "Senderliste Einstellungen"
+msgid "Channel selection settings"
+msgstr "Senderlisten Einstellungen"
 
 msgid "Channel:"
 msgstr "Sender:"
@@ -1629,6 +1651,9 @@ msgstr "Linkszirkular"
 
 msgid "Circular right"
 msgstr "Rechtszirkular"
+
+msgid "Clean network trash can's"
+msgstr "Mülleimer im Netzwerk aufräumen"
 
 msgid "Cleaning Trashes"
 msgstr "Müll löschen"
@@ -1763,6 +1788,9 @@ msgstr "Konfigurieren der Zusammensetzung des Dateinamens von Aufnahmen"
 msgid "Configure if and how service type icons will be shown."
 msgstr "Konfigurieren ob und wie Sendertyp Icons gezeigt werden."
 
+msgid "Configure if service picons will be shown in the servicelist."
+msgstr "Konfigurieren ob und wie PIcons in der Senderliste gezeigt werden."
+
 msgid "Configure interface"
 msgstr "Netzwerkkarte konfigurieren"
 
@@ -1819,6 +1847,13 @@ msgstr "Konfiguriere die Helligkeit des Frontpanels bei normalem Betrieb."
 
 msgid "Configure the brightness level of the front panel displa for standby."
 msgstr "Konfiguriere die Helligkeit des Frontpanels bei Bereitschaft."
+
+msgid ""
+"Configure the color of the external subtitles, alternative (normal in white, "
+"italic in yellow, bold in cyan, underscore in green), white or yellow."
+msgstr ""
+"Konfiguriere die Farben der externen Untertitel. Alternativ (Normal in Weiß, "
+"italic in Gelb, Fett in Cyan, Unterstrich in Grün),  Weiß oder Gelb."
 
 msgid "Configure the color of the teletext subtitles."
 msgstr "Konfiguriere die Farbe von Videotext-Untertiteln."
@@ -3088,6 +3123,9 @@ msgstr "Extern"
 msgid "External (CF)"
 msgstr "Extern (CF)"
 
+msgid "External subtitle color"
+msgstr "Farbe externe Untertitel"
+
 msgid "FAILED"
 msgstr "FEHLGESCHLAGEN"
 
@@ -3273,6 +3311,9 @@ msgstr "volle Transparenz"
 
 msgid "Fulscreen"
 msgstr "Vollbild"
+
+msgid "Fulview resulution"
+msgstr "Vollbild Auflösung"
 
 msgid "Function of OK button"
 msgstr "Funktion von der OK Taste"
@@ -4405,6 +4446,9 @@ msgstr "Speicherinformationen"
 msgid "Memory index"
 msgstr "Index Speicher"
 
+msgid "Memory positions"
+msgstr "Positionen speichern"
+
 msgid "Menu"
 msgstr "Menu"
 
@@ -4453,10 +4497,6 @@ msgstr "Modell:\t%s %s\n"
 
 msgid "Model: "
 msgstr "Modell:"
-
-#, python-format
-msgid "Model: %s"
-msgstr "Modell: %s"
 
 msgid "Modulation"
 msgstr "Modulation"
@@ -5118,6 +5158,9 @@ msgstr "PCR PID"
 
 msgid "PIDs"
 msgstr "PIDs"
+
+msgid "PLP ID"
+msgstr ""
 
 msgid "PMT PID"
 msgstr "PMT PID"
@@ -6041,6 +6084,9 @@ msgstr "Umbenennen in:"
 msgid "Renamed %s!"
 msgstr "%s umbenannt!"
 
+msgid "Repeat"
+msgstr "Wiederholungen"
+
 msgid "Repeat Display Message"
 msgstr "Display Nachricht wiederholen"
 
@@ -6216,6 +6262,9 @@ msgstr "Samba Einstellungen"
 
 msgid "Samba setup"
 msgstr "Samba/CIFS Einstellungen"
+
+msgid "Same resolution as skin"
+msgstr "Gleiche Auflösung wie Skin"
 
 msgid "Sat"
 msgstr "Sa"
@@ -7014,6 +7063,9 @@ msgstr "Zeige oder verstecke erweiterte Beschreibung (skinabhängig)."
 
 msgid "Show picon background colour"
 msgstr "Zeige Hintergrundfarbe von Picon"
+
+msgid "Show picons in servicelist"
+msgstr "Zeige PIcon in der Senderliste"
 
 msgid "Show positioner movement"
 msgstr "Zeige Rotorbewegung"
@@ -8625,7 +8677,7 @@ msgstr "Softwarekatalog wird aktualisiert."
 
 #, python-format
 msgid "Upgrade and reboot system"
-msgstr "Upgrade und neu starten"
+msgstr "Upgrade und System neu starten"
 
 msgid "Upgrade finished."
 msgstr "Upgrade beendet."
@@ -8684,6 +8736,9 @@ msgstr "Farbbutton von Enigma2 benutzen *"
 
 msgid "Use ViaSat EPG information when it is available."
 msgstr "Benutze ViaSat EPG-Informationen benutzen wenn sie vorhanden sind."
+
+msgid "Use WOL"
+msgstr "WOL benutzen"
 
 msgid "Use a gateway"
 msgstr "Einen Gateway verwenden?"
@@ -9211,11 +9266,10 @@ msgstr ""
 "wirklich gelöscht zu werden."
 
 msgid ""
-"When enabled, external subtitles (in media files) will be displayed in "
-"yellow, instead of the original color."
+"When enabled, external subtitles will be always turned on for playback movie."
 msgstr ""
-"Wenn aktiviert werden externe Untertitel von Filmen in Gelb statt der "
-"Originalfarbe dargestellt."
+"Wenn aktiviert werden externe Untertitel bei Filmwiedergabe immer "
+"eingeschaltet."
 
 msgid ""
 "When enabled, graphical DVB subtitles are preferred over teletext subtitles, "
@@ -9245,8 +9299,13 @@ msgid ""
 "When enabled, measure power consumption to detect when the rotor stops "
 "turning (when supported by the tuner)."
 msgstr ""
-"Benutze Strommessung um zu erkennen wenn der Rotor gestoppt ist (wenn es die "
-"Box unterstützt)"
+"Benutze Strommessung um zu erkennen wenn der Rotor gestoppt ist (wenn es der "
+"Tuner  unterstützt)"
+
+msgid "When enabled, network trash can's are probed for cleaning."
+msgstr ""
+"Wenn aktiviert werden Mülleimer im Netzwerk überprüft ob sie aufgeräumt "
+"werden müssen."
 
 msgid ""
 "When enabled, pressing '0' will zap you to the first channel in your first "
@@ -9307,7 +9366,7 @@ msgstr ""
 "worden sind."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr "Wenn auf 'Ja' gestellt so wird der AC3 Ton benutzen wenn verfügbar."
+msgstr "Wenn auf 'Ja' gestellt so, wird AC3 Ton benutzt wenn verfügbar."
 
 msgid ""
 "When enabled, timeshift starts automatically in background after specified "
@@ -9322,7 +9381,7 @@ msgstr "Wenn aktiviert benutzt der Receiver DHCP zur Netzwerkkonfiguration."
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
-"Wenn auf 'Ja' gestellt so werden Aktivitäten am SCART-Eingang erkennen."
+"Wenn auf 'Ja' gestellt so wird die Box Aktivitäten am SCART-Eingang erkennen."
 
 msgid ""
 "When nonzero, a recording will start earlier than the starting time "
@@ -9461,9 +9520,6 @@ msgstr "Jahr"
 
 msgid "Yellow DVB subtitles"
 msgstr "DVB Untertitel Gelb"
-
-msgid "Yellow external subtitles"
-msgstr "Gelbe, externe Untertitel"
 
 msgid "Yes"
 msgstr "Ja"
@@ -9762,7 +9818,7 @@ msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
-"Die Sicherung ist geglückt. Die %s %s wird nun den weiteren Aktualisierungs-"
+"Die Sicherung ist geglückt. Die Box wird nun den weiteren Aktualisierungs-"
 "Prozess erklären."
 
 msgid ""
@@ -9966,6 +10022,9 @@ msgstr "alphabetisch"
 
 msgid "alphabetic reverse"
 msgstr "umgekehrtes Alphabet"
+
+msgid "alternative"
+msgstr "Alternative"
 
 msgid "arts/culture (without music, general)"
 msgstr "Kunst/Kultur (ohne Musik, allgemein)"
@@ -10596,7 +10655,7 @@ msgstr "Anbieter:"
 
 #, python-format
 msgid "reboot system"
-msgstr "neu starten"
+msgstr "Box neu starten"
 
 msgid "record"
 msgstr "aufnehmen"

@@ -1,4 +1,16 @@
 import sys, os
+if os.path.exists('/dev/lcd2'): # VuDuo2 lcd
+	from fcntl import ioctl
+	led_fd = open("/dev/lcd2",'rw')
+	ioctl(led_fd, 0x10, 25)
+	led_fd.close()
+
+	from pngutil import png_util
+	pngutil = png_util.PNGUtil()
+	pngutilconnect = pngutil.connect()
+	if pngutilconnect:
+		pngutil.send("/usr/share/enigma2/distro-lcd-logo.png")
+
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 	sys.path.append("/usr/lib/enigma2/python/enigma.zip")
 
@@ -542,7 +554,6 @@ def runScreenTest():
 		if x[0] != -1
 	]
 	wakeupList.sort()
-	print 'wakeupList',wakeupList
 	recordTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] != 3:
 		from time import strftime
@@ -567,7 +578,6 @@ def runScreenTest():
 
 	PowerTimerWakeupAuto = False
 	if wakeupList and wakeupList[0][1] == 3:
-		print 'PT TEST:', wakeupList
 		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 60: # no time to switch box back on
@@ -641,7 +651,8 @@ import keymapparser
 keymapparser.readKeymap(config.usage.keymap.getValue())
 
 profile("Network")
-import Components.Network
+import Components.Network, Components.Wol
+Components.Wol.Init()
 Components.Network.InitNetwork()
 
 profile("LCD")

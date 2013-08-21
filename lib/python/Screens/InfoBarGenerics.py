@@ -18,6 +18,8 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Timeshift import InfoBarTimeshift
 from Plugins.Plugin import PluginDescriptor
 
+from Components.Timeshift import InfoBarTimeshift
+
 from Screens.Screen import Screen
 from Screens import ScreenSaver
 from Screens.ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, EpgBouquetSelector
@@ -138,7 +140,7 @@ def loadResumePoints():
 def updateresumePointCache():
 	global resumePointCache
 	resumePointCache = loadResumePoints()
-	
+
 resumePointCache = loadResumePoints()
 resumePointCacheLast = int(time())
 
@@ -1636,7 +1638,7 @@ class InfoBarSeek:
 				"playpauseService": self.playpauseService,
 				"pauseService": (self.pauseService, _("Pause playback")),
 				"unPauseService": (self.unPauseService, _("Continue playback")),
-		
+
 				"seekFwd": (self.seekFwd, _("skip forward")),
 				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
 				"seekBack": (self.seekBack, _("skip backward")),
@@ -2152,7 +2154,6 @@ class InfoBarShowMovies:
 				"up": (self.up, _("Open the movie list")),
 				"down": (self.down, _("Open the movie list"))
 			})
-
 
 from Screens.PiPSetup import PiPSetup
 class InfoBarExtensions:
@@ -3416,7 +3417,13 @@ class InfoBarSubtitleSupport(object):
 			})
 
 		self.selected_subtitle = None
-		self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
+
+		if isStandardInfoBar(self):
+			self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
+		else:
+			from Screens.InfoBar import InfoBar
+			self.subtitle_window = InfoBar.instance.subtitle_window
+
 		self.subtitle_window.hide()
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
@@ -3439,7 +3446,7 @@ class InfoBarSubtitleSupport(object):
 			self.session.open(SubtitleSelection, self)
 		else:
 			return 0
-			
+
 	def __serviceChanged(self):
 		if self.selected_subtitle:
 			self.selected_subtitle = None
