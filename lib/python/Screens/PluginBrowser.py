@@ -1,6 +1,6 @@
 from Screen import Screen
 from Components.Language import language
-from enigma import eConsoleAppContainer, eDVBDB
+from enigma import eConsoleAppContainer, eDVBDB, getImageVersionString
 
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
@@ -8,6 +8,7 @@ from Components.PluginList import *
 from Components.Label import Label
 from Components.Language import language
 from Components.Pixmap import Pixmap
+from Components.Button import Button
 from Components.Harddisk import harddiskmanager
 from Components.Sources.StaticText import StaticText
 from Components import Ipkg
@@ -575,7 +576,7 @@ class PluginDownloadBrowser(Screen):
 							list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
 					else:
 						list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
-						
+
 			else:
 				list.append(PluginCategoryComponent(x, expandableIcon, self.listWidth))
 		self.list = list

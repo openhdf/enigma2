@@ -48,10 +48,4 @@ class HardwareInfo:
 		return HardwareInfo.device_version
 
 	def has_hdmi(self):
-		return not (HardwareInfo.device_name == 'dm800' or (HardwareInfo.device_name == 'dm8000' and HardwareInfo.device_version == None))
-
-	def linux_kernel(self):
-		try:
-			return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
-		except:
-			return "unknown"
+		return (getBoxType() == 'ebox5000' or getBoxType().startswith('et') or getBoxType().startswith('gb') or getBoxType().startswith('iqon') or getBoxType() == 'ixussone' or getBoxType().startswith('odin') or getBoxType().startswith('tm') or getBoxType().startswith('vu') or getBoxType().startswith('venton') or getBoxType().startswith('ini') or getBoxType().startswith('xp') or getBoxType() == 'dm7020hd' or getBoxType() == 'dm800se' or getBoxType() == 'dm500hd' or (getBoxType() == 'dm8000' and HardwareInfo.device_version != None))

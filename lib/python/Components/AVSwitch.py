@@ -139,7 +139,7 @@ def InitAVSwitch():
 		if "auto" in f.readline():
 			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 			policy2_choices.update({"auto": _("Auto")})
-		f.close()	
+		f.close()
 	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "letterbox")
 	policy_choices = {
 	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
@@ -167,7 +167,7 @@ def InitAVSwitch():
 
 	def setColorFormat(configElement):
 		if getBoxType() == 'et6x00':
-			map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}	
+			map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}
 		elif getBoxType() == 'gbquad' or getBoxType().startswith('et'):
 			map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
 		else:
@@ -184,21 +184,17 @@ def InitAVSwitch():
 
 	def setWSS(configElement):
 		iAVSwitch.setAspectWSS()
-	
+
 	config.av.colorformat.addNotifier(setColorFormat)
 	if not os.path.exists('/usr/lib/enigma2/python/Plugins/SystemPlugins/Videomode/VideoHardware.pyo'):
 		# this will call the "setup-val" initial
 		config.av.aspectratio.addNotifier(setAspectRatio)
 		config.av.tvsystem.addNotifier(setSystem)
 		config.av.wss.addNotifier(setWSS)
-	
+
 	iAVSwitch.setInput("ENCODER") # init on startup
-	if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6':
-		detected = False
-	else:
-		detected = eAVSwitch.getInstance().haveScartSwitch()
-	
-	SystemInfo["ScartSwitch"] = detected
+	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
+	config.av.show_vcr_scart = ConfigEnableDisable(default = False)
 
 	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")

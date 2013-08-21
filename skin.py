@@ -106,8 +106,8 @@ addSkin('skin_second_infobar.xml')
 # Only one of these is present, compliments of AM_CONDITIONAL
 if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2' or getBoxType() == 'gbquad' or getBoxType() == 'gb800ue':
 	config.skin.display_skin = ConfigText(default = "skin_display.xml")
-#else:	
-#	config.skin.display_skin = ConfigNothing()	
+#else:
+#	config.skin.display_skin = ConfigNothing()
 
 display_skin_id = 1
 from Components.SystemInfo import SystemInfo
@@ -124,11 +124,11 @@ if addSkin('skin_display.xml'):
 
 if addSkin('skin_display96.xml'):
 	# Color OLED
-	display_skin_id = 2	
+	display_skin_id = 2
 
 if addSkin('skin_display128.xml'):
 	# Color OLED DM7020HD / DM8000
-	display_skin_id = 2	
+	display_skin_id = 2
 
 # Add Skin for Display
 try:
@@ -289,13 +289,10 @@ def morphRcImagePath(value):
 	return value
 
 def loadPixmap(path, desktop):
-	cached = False
 	option = path.find("#")
 	if option != -1:
-		options = path[option+1:].split(',')
 		path = path[:option]
-		cached = "cached" in options
-	ptr = LoadPixmap(morphRcImagePath(path), desktop, cached)
+	ptr = LoadPixmap(morphRcImagePath(path), desktop)
 	if ptr is None:
 		raise SkinError("pixmap file %s not found!" % (path))
 	return ptr
@@ -514,7 +511,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			if fileExists(skinfile):
 				print "[SKIN] loading include:", skinfile
 				loadSkin(skinfile)
-				
+
 	for c in skin.findall("colors"):
 		for color in c.findall("color"):
 			get_attr = color.attrib.get

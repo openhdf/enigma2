@@ -314,7 +314,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		answer = answer and answer[1]
 		if answer is None:
 			return
-
 		if answer in ("quitanddelete", "quitanddeleteconfirmed"):
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			serviceHandler = enigma.eServiceCenter.getInstance()
@@ -486,10 +485,12 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 				self.session.nav.playService(ref)
 
-	def nextPlaylistService(self, service):
+	def getPlaylistServiceInfo(self, service):
 		from MovieSelection import playlist
 		for i, item in enumerate(playlist):
 			if item == service:
+				if config.usage.on_movie_eof.value == "repeatcurrent":
+					return (i+1, len(playlist))
 				i += 1
 				if i < len(playlist):
 					return (playlist[i], i+1, len(playlist))
