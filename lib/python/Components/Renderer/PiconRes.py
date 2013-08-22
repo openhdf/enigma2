@@ -1,9 +1,10 @@
 import os
 from Renderer import Renderer
-from enigma import ePixmap
+from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
+from Components.config import config, ConfigBoolean
 
 searchPaths = []
 lastPiconPath = None
@@ -14,7 +15,9 @@ def initPiconPaths():
 	for mp in ('/usr/share/enigma2/', '/'):
 		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
+		mp = path = os.path.join(part.mountpoint, 'usr/share/enigma2')
 		onMountpointAdded(part.mountpoint)
+		onMountpointAdded(mp)
 
 def onMountpointAdded(mountpoint):
 	global searchPaths
@@ -96,6 +99,9 @@ def resizePicon(pngname):
 class PiconRes(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
+		self.PicLoad = ePicLoad()
+		self.PicLoad.PictureData.get().append(self.updatePicon)
+		self.piconsize = (0,0)
 		self.pngname = ""
 		self.lastPath = None
 		pngname = findPicon("picon_default")
@@ -106,8 +112,10 @@ class PiconRes(Renderer):
 				pngname = tmp
 			else:
 				pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
+		self.nopicon = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
 		if os.path.getsize(pngname):
 			self.defaultpngname = pngname
+			self.nopicon = pngname
 
 	def addPath(self, value):
 		if pathExists(value):
@@ -123,6 +131,8 @@ class PiconRes(Renderer):
 			if attrib == "path":
 				self.addPath(value)
 				attribs.remove((attrib,value))
+			elif attrib == "size":
+				self.piconsize = value
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
@@ -131,21 +141,26 @@ class PiconRes(Renderer):
 	def postWidgetCreate(self, instance):
 		self.changed((self.CHANGED_DEFAULT,))
 
+	def updatePicon(self, picInfo=None):
+		ptr = self.PicLoad.getData()
+		if ptr != None:
+			self.instance.setPixmap(ptr.__deref__())
+			self.instance.show()
+
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
-			if what[0] != self.CHANGED_CLEAR:
+			if what[0] == 1 or what[0] == 3:
 				pngname = getPiconName(self.source.text)
-			if not pngname: # no picon for service found
-				pngname = self.defaultpngname
-			if self.pngname != pngname:
-				if pngname:
-					self.instance.setScale(1)
-					self.instance.setPixmapFromFile(resizePicon(pngname))
-					self.instance.show()
-				else:
-					self.instance.hide()
-				self.pngname = pngname
+				if not pathExists(pngname): # no picon for service found
+					pngname = self.defaultpngname
+				if self.pngname != pngname:
+					if pngname:
+						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
+						self.PicLoad.startDecode(pngname)
+					else:
+						self.instance.hide()
+					self.pngname = pngname
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 initPiconPaths()
