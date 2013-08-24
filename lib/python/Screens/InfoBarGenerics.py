@@ -1590,7 +1590,6 @@ class InfoBarSeek:
 			{
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
 				iPlayableService.evStart: self.__serviceStarted,
-
 				iPlayableService.evEOF: self.__evEOF,
 				iPlayableService.evSOF: self.__evSOF,
 			})
@@ -1649,7 +1648,7 @@ class InfoBarSeek:
 		self.activity = 0
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.doActivityTimer)
-		self.seekstate = self.SEEK_STATE_PLAY
+		self.setSeekState(self.SEEK_STATE_PLAY)
 		self.lastseekstate = self.SEEK_STATE_PLAY
 
 		self.onPlayStateChanged = [ ]
