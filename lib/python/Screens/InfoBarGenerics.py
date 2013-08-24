@@ -1648,7 +1648,7 @@ class InfoBarSeek:
 		self.activity = 0
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.doActivityTimer)
-		self.setSeekState(self.SEEK_STATE_PLAY)
+		self.seekstate = self.SEEK_STATE_PLAY
 		self.lastseekstate = self.SEEK_STATE_PLAY
 
 		self.onPlayStateChanged = [ ]
