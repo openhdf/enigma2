@@ -24,19 +24,11 @@ if HAVE_TEXTLCD
 SUBDIRS += displaytext
 endif
 
-if HAVE_COLORLCD
+if HAVE_COLORLCD2
 SUBDIRS += display96
 endif
 
-if HAVE_DISPLAY128
-dist_pkgdata_DATA += skin_display128.xml
-endif
-
-if HAVE_DISPLAYDM
-dist_pkgdata_DATA += skin_display.xml
-endif
-
-if HAVE_COLORLCD128
+if HAVE_COLORLCD1
 SUBDIRS += display128
 endif
 
