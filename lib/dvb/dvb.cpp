@@ -122,6 +122,10 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = GIGABLUE;
 	else if (!strncmp(tmp, "ebox5000\n", rd))
 		m_boxtype = DM800;
+	else if (!strncmp(tmp, "ebox5100\n", rd))
+		m_boxtype = DM800;
+	else if (!strncmp(tmp, "ebox7358\n", rd))
+		m_boxtype = DM800SE;
 	else {
 		eDebug("boxtype detection via /proc/stb/info not possible... use fallback via demux count!\n");
 		if (m_demux.size() == 3)
@@ -284,7 +288,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	pumpThread = 0;
 
 	int num_fe = 0;
-	
+
 	demuxFd = vtunerFd = pipeFd[0] = pipeFd[1] = -1;
 
 	/* we need to know exactly what frontend is internal or initialized! */
@@ -294,7 +298,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 		eDebug("Cannot open /proc/bus/nim_sockets");
 		goto error;
 	}
-	
+
 	line = (char*) malloc(line_size);
 	while (getline(&line, &line_size, f) != -1)
 	{
