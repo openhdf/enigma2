@@ -1,5 +1,3 @@
-include $(top_srcdir)/Rules-cpp.mak
-
 plugindir = $(libdir)/enigma2/python/Plugins/SystemPlugins/NetworkBrowser
 
 plugin_LTLIBRARIES = netscan.la
