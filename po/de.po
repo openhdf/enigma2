@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-08-24 09:22+0100\n"
+"PO-Revision-Date: 2013-08-31 09:03+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1083,6 +1083,9 @@ msgstr "Automatische Sprachwahl"
 
 msgid "Auto scart switching"
 msgstr "Automatische Scart-Umschaltung"
+
+msgid "Show VCR scart on main menu"
+msgstr "Zeige VCR Scart im Hauptmenü"
 
 msgid "Automatic"
 msgstr "Automatisch"
