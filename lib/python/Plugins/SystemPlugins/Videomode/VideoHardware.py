@@ -1,4 +1,4 @@
-from enigma import eTimer, getBoxType
+from enigma import eTimer, getBoxType, getMachineBrand, getMachineName
 from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
 from Components.About import about
 
@@ -74,7 +74,7 @@ class VideoHardware:
 									"24Hz":		{ 24: "1080p" },
 									"25Hz":		{ 25: "1080p" },
 									"30Hz":		{ 30: "1080p" },
-									"multi":	{ 50: "1080p50", 60: "1080p" } }									
+									"multi":	{ 50: "1080p50", 60: "1080p" } }
 
 	rates["PC"] = {
 		"1024x768": { 60: "1024x768" }, # not possible on DM7025
@@ -152,9 +152,9 @@ class VideoHardware:
 			del self.modes["DVI-PC"]
 		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'iqonios300hd' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'tmnano' or getBoxType() == 'odimm7' or model == 'ini-3000' or getBoxType() == 'vusolo2' or getBoxType() == 'e3hd' or getBoxType() == 'dm500hd' or getBoxType() == 'dm800' or getBoxType() == 'ebox7358' or getBoxType() == 'ebox5100':
 			del self.modes["YPbPr"]
-		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'ebox7358' or getBoxType() == 'ebox5100' or getBoxType() == 'tmnano' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime":
+		if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'ebox7358' or getBoxType() == 'ebox5100' or getBoxType() == 'tmnano' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime" or getMachineName == 'STARSAT-LX':
 			del self.modes["Scart"]
-		if self.hw_type == 'elite' or self.hw_type == 'premium' or self.hw_type == 'premium+' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime" : self.readPreferredModes()	
+		if self.hw_type == 'elite' or self.hw_type == 'premium' or self.hw_type == 'premium+' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime" : self.readPreferredModes()
 
 		self.createConfig()
 		self.readPreferredModes()
@@ -207,7 +207,7 @@ class VideoHardware:
 					if mode not in self.modes_preferred and not config.av.edid_override.value:
 						print "no, not preferred"
 						return False
-			##### Only for test #####		
+			##### Only for test #####
 			if mode not in self.modes_available:
 				return False
 		return True
@@ -252,7 +252,7 @@ class VideoHardware:
 				# fallback if no possibility to setup 50/60 hz mode
 				f = open("/proc/stb/video/videomode", "w")
 				f.write(mode_50)
-				f.close()				
+				f.close()
 			except IOError:
 				print "setting videomode failed."
 
@@ -261,7 +261,7 @@ class VideoHardware:
 				mode_etc = modes.get(int(rate[:2]))
 				f = open("/proc/stb/video/videomode", "w")
 				f.write(mode_etc)
-				f.close()				
+				f.close()
 			else:
 				# fallback if no possibility to setup 50/60 hz mode
 				f = open("/proc/stb/video/videomode", "w")
