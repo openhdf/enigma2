@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-08-31 09:03+0100\n"
+"PO-Revision-Date: 2013-09-01 08:48+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11434,6 +11434,40 @@ msgstr "Swap Ort:"
 #
 msgid "Swap Size:"
 msgstr "Swap Größe:"
+
+# PowerLost
+msgid ""
+"Your STB_BOX was not shutdown properly.\n"
+"\n"
+"Do you want to put it in %s?"
+msgstr ""
+"Ihre STB_BOX ist nicht sauber heruntergefahren.\n"
+"\n"
+"Wollen Sie sie in %s versetzen?"
+
+# Powerlost usage.config
+msgid "just boot"
+msgstr "Normal Starten"
+
+# Powerlost usage.config
+msgid "goto standby"
+msgstr "In Standby gehen"
+
+# Powerlost usage.config
+msgid "goto deep-standby"
+msgstr "Ausschalten"
+
+# Powerlost setup.xml
+msgid "After PowerLost"
+msgstr "Nach Stromausfall"
+
+# Powerlost setup.xml
+msgid ""
+"Select what should be done when the STB_Box was shutdown incorrectly, or "
+"after the Power was lost."
+msgstr ""
+"WÃ¤hlen Sie aus, was passieren soll, nachdem ihre STB_BOX nicht sauber "
+"heruntergefahren wurde, bzw. was nach einem Stromausfall geschehen soll."
 
 #~ msgid ""
 #~ "Maximum Timeshift length per Event reached!\n"
