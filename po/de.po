@@ -11436,12 +11436,13 @@ msgid "Swap Size:"
 msgstr "Swap Größe:"
 
 # PowerLost
+#, python-format
 msgid ""
-"Your STB_BOX was not shutdown properly.\n"
+"Your %s %s was not shutdown properly.\n"
 "\n"
 "Do you want to put it in %s?"
 msgstr ""
-"Ihre STB_BOX ist nicht sauber heruntergefahren.\n"
+"Ihre %s %s ist nicht sauber heruntergefahren.\n"
 "\n"
 "Wollen Sie sie in %s versetzen?"
 
@@ -11463,10 +11464,10 @@ msgstr "Nach Stromausfall"
 
 # Powerlost setup.xml
 msgid ""
-"Select what should be done when the STB_Box was shutdown incorrectly, or "
+"Select what should be done when the %s %s was shutdown incorrectly, or "
 "after the Power was lost."
 msgstr ""
-"WÃ¤hlen Sie aus, was passieren soll, nachdem ihre STB_BOX nicht sauber "
+"Wählen Sie aus, was passieren soll, nachdem ihre %s %s nicht sauber "
 "heruntergefahren wurde, bzw. was nach einem Stromausfall geschehen soll."
 
 #~ msgid ""
