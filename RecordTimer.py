@@ -726,15 +726,14 @@ class RecordTimer(timer.Timer):
 		return -1
 
 	def getStillRecording(self):
-		now = time()
 		isStillRecording = False
+		now = time()
 		for timer in self.timer_list:
 			if timer.isStillRecording:
 				isStillRecording = True
 				break
-			if (abs(timer.begin - now) <= 10):
+			elif (abs(timer.begin - now) <= 10):
 				isStillRecording = True
-				print "[Timer] new recording just started"
 				break
 		return isStillRecording
 

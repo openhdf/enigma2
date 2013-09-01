@@ -536,9 +536,41 @@ def runScreenTest():
 
 	profile("RunReactor")
 	profile_final()
+	
+	if enigma.getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo':
+		from enigma import evfd, eConsoleAppContainer
+		try:
+			cmd = 'vfdctl "    openhdf starting e2"'
+			container = eConsoleAppContainer()
+			container.execute(cmd)
+		except:
+			evfd.getInstance().vfd_write_string("-E2-")
+		evfd.getInstance().vfd_led(str(1))
+		
+	if enigma.getBoxType() == 'odinm7' or enigma.getBoxType() == 'odinm6' or enigma.getBoxType() == 'xp1000s':
+		f = open("/dev/dbox/oled0", "w")
+		f.write('-E2-')
+		f.close()
+		
+	print "##################################### BOOTUP ACTIONS ###########################################"
+	print "lastshutdown=%s" % config.usage.shutdownOK.getValue()
+	print "NOK shutdown action=%s" % config.usage.shutdownNOK_action.getValue()
+	print "bootup action=%s" % config.usage.boot_action.getValue()
+	if not config.usage.shutdownOK.getValue() and not config.usage.shutdownNOK_action.getValue() == 'normal' or not config.usage.boot_action.getValue() == 'normal':
+		print "last shutdown = %s" % config.usage.shutdownOK.getValue()
+		import Screens.PowerLost
+		Screens.PowerLost.PowerLost(session)
+
+	config.usage.shutdownOK.setValue(False)
+	config.usage.shutdownOK.save()
+	configfile.save()
+	
 	runReactor()
 
+	print "normal shutdown"
 	config.misc.startCounter.save()
+	config.usage.shutdownOK.setValue(True)
+	config.usage.shutdownOK.save()
 
 	profile("wakeup")
 
