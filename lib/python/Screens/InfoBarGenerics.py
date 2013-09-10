@@ -3549,3 +3549,106 @@ class InfoBarZoom:
 		f = open("/proc/stb/vmpeg/0/zoomrate", "w")
 		f.write(str(0))
 		f.close()
+
+class InfoBarPowersaver:
+	def __init__(self):
+		self.inactivityTimer = eTimer()
+		self.inactivityTimer.callback.append(self.inactivityTimeout)
+		self.restartInactiveTimer()
+		self.sleepTimer = eTimer()
+		self.sleepTimer.callback.append(self.sleepTimerTimeout)
+		eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
+
+	def keypress(self, key, flag):
+		if flag:
+			self.restartInactiveTimer()
+
+	def restartInactiveTimer(self):
+		time = abs(int(config.usage.inactivity_timer.value))
+		if time:
+			self.inactivityTimer.startLongTimer(time)
+		else:
+			self.inactivityTimer.stop()
+
+	def inactivityTimeout(self):
+		if config.usage.inactivity_timer_blocktime.value:
+			curtime = localtime(time())
+			if curtime.tm_year != 1970: #check if the current time is valid
+				curtime = (curtime.tm_hour, curtime.tm_min, curtime.tm_sec)
+				begintime = tuple(config.usage.inactivity_timer_blocktime_begin.value)
+				endtime = tuple(config.usage.inactivity_timer_blocktime_end.value)
+				if begintime <= endtime and (curtime >= begintime and curtime < endtime) or begintime > endtime and (curtime >= begintime or curtime < endtime):
+					duration = (endtime[0]*3600 + endtime[1]*60) - (curtime[0]*3600 + curtime[1]*60 + curtime[2])
+					if duration:
+						if duration < 0:
+							duration += 24*3600
+						self.inactivityTimer.startLongTimer(duration)
+						return
+		if Screens.Standby.inStandby:
+			self.inactivityTimeoutCallback(True)
+		else:
+			if int(config.usage.inactivity_timer.value) < 0:
+				message = _("Your receiver will shutdown due to inactivity.")
+			else:
+				message = _("Your receiver will got to standby due to inactivity.")
+			message += "\n" + _("Do you want this?")
+			self.session.openWithCallback(self.inactivityTimeoutCallback, MessageBox, message, timeout=60, simple = True)	
+
+	def inactivityTimeoutCallback(self, answer):
+		if answer:
+			self.goShutdownOrStandby(int(config.usage.inactivity_timer.value))
+		else:
+			print "[InfoBarPowersaver] abort"
+
+	def setSleepTimer(self, time):
+		print "[InfoBarPowersaver] set sleeptimer", time
+		if time:
+			if time < 0:
+				message = _("And will shutdown your receiver over ")
+			else:
+				message = _("And will put your receiver in standby over ")
+			m = abs(time / 60)
+			message = _("The sleep timer has been activated.") + "\n" + message + ngettext("%d minute", "%d minutes", m) % m
+			self.sleepTimer.startLongTimer(abs(time))
+		else:
+			message = _("The sleep timer has been disabled.")
+			self.sleepTimer.stop()
+		Notifications.AddPopup(message, type = MessageBox.TYPE_INFO, timeout = 5)
+		self.sleepTimerSetting = time
+
+	def sleepTimerTimeout(self):
+		if Screens.Standby.inStandby:
+			self.sleepTimerTimeoutCallback(True)
+		else:
+			list = [ (_("Yes"), True), (_("Extend sleeptimer 15 minutes"), "extend"), (_("No"), False) ]
+			if self.sleepTimerSetting < 0:
+				message = _("Your receiver will shutdown due to the sleeptimer.")
+			elif self.sleepTimerSetting > 0:
+				message = _("Your receiver will got to stand by due to the sleeptimer.")
+			message += "\n" + _("Do you want this?")
+			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple = True, list = list)	
+
+	def sleepTimerTimeoutCallback(self, answer):
+		if answer == "extend":
+			print "[InfoBarPowersaver] extend sleeptimer"
+			if self.sleepTimerSetting < 0:
+				self.setSleepTimer(-900)
+			else:
+				self.setSleepTimer(900)
+		elif answer:
+			self.goShutdownOrStandby(self.sleepTimerSetting)
+		else:
+			print "[InfoBarPowersaver] abort"
+			self.setSleepTimer(0)
+
+	def goShutdownOrStandby(self, value):
+		if value < 0:
+			if Screens.Standby.inStandby:
+				print "[InfoBarPowersaver] already in standby now shut down"
+				RecordTimerEntry.TryQuitMainloop()
+			elif not Screens.Standby.inTryQuitMainloop:
+				print "[InfoBarPowersaver] goto shutdown"
+				self.session.open(Screens.Standby.TryQuitMainloop, 1)
+		elif not Screens.Standby.inStandby:
+			print "[InfoBarPowersaver] goto standby"
+			self.session.open(Screens.Standby.Standby)
