@@ -18,7 +18,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 				<widget name="config" position="150,250" zPosition="1" size="980,150" font="Regular;20" halign="center" valign="center" transparent="1" />
 				<widget source="info1" render="Label" position="200,450" zPosition="1" size="880,40" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
 				<widget source="info2" render="Label" position="200,480" zPosition="1" size="880,40" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
-				
+
 				<eLabel backgroundColor="red" position="0,0" size="1280,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,719" size="1280,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,0" size="1,720" zPosition="0" />
@@ -55,7 +55,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 				<widget source="config" render="Label" position="100,180" zPosition="1" size="824,50" font="Regular;24" halign="center" valign="center" transparent="1" />
 				<widget source="info1" render="Label" position="200,450" zPosition="1" size="624,40" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
 				<widget source="info2" render="Label" position="200,480" zPosition="1" size="624,40" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
-				
+
 				<eLabel backgroundColor="red" position="0,0" size="1024,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,575" size="1024,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,0" size="1,576" zPosition="0" />
@@ -91,7 +91,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 				<widget source="config" render="Label" position="75,180" zPosition="1" size="570,50" font="Regular;21" halign="center" valign="center" transparent="1" />
 				<widget source="info1" render="Label" position="75,450" zPosition="1" size="570,40" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
 				<widget source="info2" render="Label" position="75,480" zPosition="1" size="570,40" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
-				
+
 				<eLabel backgroundColor="red" position="0,0" size="720,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,575" size="720,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,0" size="1,576" zPosition="0" />
@@ -120,6 +120,69 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 			</screen>"""
 
+def InitOsd():
+	SystemInfo["CanChange3DOsd"] = (access('/proc/stb/fb/3dmode', R_OK) or access('/proc/stb/fb/primary/3d', R_OK)) and True or False
+	SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
+	SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
+	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]
+	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
+		SystemInfo["OsdMenu"] = True
+	else:
+		SystemInfo["OsdMenu"] = False
+
+	def setOSDLeft(configElement):
+		if SystemInfo["CanChangeOsdPosition"]:
+			f = open("/proc/stb/fb/dst_left", "w")
+			f.write('%X' % configElement.getValue())
+			f.close()
+	config.osd.dst_left.addNotifier(setOSDLeft)
+
+	def setOSDWidth(configElement):
+		if SystemInfo["CanChangeOsdPosition"]:
+			f = open("/proc/stb/fb/dst_width", "w")
+			f.write('%X' % configElement.getValue())
+			f.close()
+	config.osd.dst_width.addNotifier(setOSDWidth)
+
+	def setOSDTop(configElement):
+		if SystemInfo["CanChangeOsdPosition"]:
+			f = open("/proc/stb/fb/dst_top", "w")
+			f.write('%X' % configElement.getValue())
+			f.close()
+	config.osd.dst_top.addNotifier(setOSDTop)
+
+	def setOSDHeight(configElement):
+		if SystemInfo["CanChangeOsdPosition"]:
+			f = open("/proc/stb/fb/dst_height", "w")
+			f.write('%X' % configElement.getValue())
+			f.close()
+	config.osd.dst_height.addNotifier(setOSDHeight)
+	print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.getValue(), config.osd.dst_width.getValue(), config.osd.dst_top.getValue(), config.osd.dst_height.getValue())
+
+	def setOSDAlpha(configElement):
+		print 'Setting OSD alpha:', str(configElement.getValue())
+		config.av.osd_alpha.setValue(configElement.getValue())
+		f = open("/proc/stb/video/alpha", "w")
+		f.write(str(configElement.getValue()))
+		f.close()
+	config.osd.alpha.addNotifier(setOSDAlpha)
+
+	def set3DMode(configElement):
+		if SystemInfo["CanChange3DOsd"]:
+			print 'Setting 3D mode:',configElement.getValue()
+			f = open("/proc/stb/fb/3dmode", "w")
+			f.write(configElement.getValue())
+			f.close()
+	config.osd.threeDmode.addNotifier(set3DMode)
+
+	def set3DZnorm(configElement):
+		if SystemInfo["CanChange3DOsd"]:
+			print 'Setting 3D depth:',configElement.getValue()
+			f = open("/proc/stb/fb/znorm", "w")
+			f.write('%d' % int(configElement.getValue()))
+			f.close()
+	config.osd.threeDznorm.addNotifier(set3DZnorm)
+
 class UserInterfacePositioner(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -128,7 +191,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("Defaults"))
-		
+
 		self["title"] = StaticText(_("OSD Adjustment"))
 		self["info1"] = StaticText(_("Use arrows Up/Down to select"))
 		self["info2"] = StaticText(_("Use arrows Left/Right to adjust"))
@@ -159,7 +222,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
-		
+
 	def selectionChanged(self):
 		self["status"].setText(self["config"].getCurrent()[2])
 
@@ -197,8 +260,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_top.setValue(0)
 		config.osd.dst_height.setValue(576)
 
-		self.keyLeft()
-
 	def setPreviewPosition(self):
 		size_w = getDesktop(0).size().width()
 		size_h = getDesktop(0).size().height()
@@ -217,9 +278,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_width.setValue(dst_width)
 		config.osd.dst_top.setValue(dst_top)
 		config.osd.dst_height.setValue(dst_height)
-
-		setPosition(config.osd.dst_left.getValue(), config.osd.dst_width.getValue(), config.osd.dst_top.getValue(), config.osd.dst_height.getValue())
-		setAlpha(config.osd.alpha.getValue())
+		print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.getValue(), config.osd.dst_width.getValue(), config.osd.dst_top.getValue(), config.osd.dst_height.getValue())
 
 	def saveAll(self):
 		for x in self["config"].list:
@@ -238,7 +297,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 
 		for x in self["config"].list:
 			x[1].cancel()
-		setConfiguredPosition()
 		self.close()
 
 	def keyCancel(self):
@@ -349,17 +407,6 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
 
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-		self.setPreviewSettings()
-
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-		self.setPreviewSettings()
-
-	def setPreviewSettings(self):
-		applySettings(config.osd.threeDmode.getValue(), int(config.osd.threeDznorm.getValue()) - 50)
-
 	def saveAll(self):
 		for x in self["config"].list:
 			x[1].save()
@@ -377,7 +424,6 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 
 		for x in self["config"].list:
 			x[1].cancel()
-		setConfiguredPosition()
 		self.close()
 
 	def keyCancel(self):
@@ -398,7 +444,7 @@ def applySettings(mode, znorm):
 		f.write('%d' % znorm)
 		f.close()
 	except:
-		return		
+		return
 
 def applySettings2(mode, znorm, setmode):
 	try:
@@ -416,16 +462,16 @@ def applySettings2(mode, znorm, setmode):
 				mode = "sbs"
 			elif mode == "topandbottom":
 				mode = "tab"
-			print 'Setting primary 3D mode:',mode	
+			print 'Setting primary 3D mode:',mode
 			f = open("/proc/stb/fb/primary/3d", "w")
 			f.write(mode)
 			f.close()
 			print 'Setting zoffset 3D mode:',znorm
 			f = open("/proc/stb/fb/primary/zoffset", "w")
 			f.write('%d' % znorm)
-			f.close()			
+			f.close()
 	except:
-		return			
+		return
 
 def setConfiguredPosition():
 	if SystemInfo["CanChangeOsdPosition"]:
@@ -451,7 +497,7 @@ def InitOsd():
 		SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
 	except:
 		SystemInfo["CanChangeOsdAlpha"] = False
-	try:	
+	try:
 		SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
 	except:
 		SystemInfo["CanChangeOsdPosition"] = False
