@@ -265,6 +265,7 @@ def InitUsageConfig():
 	config.usage.hide_ci_messages = ConfigYesNo(default = True)
 	config.usage.show_cryptoinfo = ConfigSelection([("0", _("Off")),("1", _("One line")),("2", _("Two lines"))], "2")
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
+	config.usage.show_vcr_scart = ConfigYesNo(default = False)
 
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
@@ -317,6 +318,7 @@ def InitUsageConfig():
 	config.osd.dst_top = ConfigSelectionNumber(default = 0, stepwidth = 1, min = 0, max = 576, wraparound = False)
 	config.osd.dst_height = ConfigSelectionNumber(default = 576, stepwidth = 1, min = 0, max = 576, wraparound = False)
 	config.osd.alpha = ConfigSelectionNumber(default = 255, stepwidth = 1, min = 0, max = 255, wraparound = False)
+	config.av.osd_alpha = NoSave(ConfigNumber(default = 255))
 	config.osd.threeDmode = ConfigSelection([("off", _("Off")), ("auto", _("Auto")), ("sidebyside", _("Side by Side")),("topandbottom", _("Top and Bottom"))], "auto")
 	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
 	config.osd.show3dextensions = ConfigYesNo(default = False)
