@@ -427,6 +427,10 @@ const char *getMachineName()
 		{
 			return "HD-9000";
 		}
+		else if(strcmp(boxtype_name, "ini-9000de\n") == 0)
+		{
+			return "XpeedLX-3";
+		}
 		else if(strcmp(boxtype_name, "ini-1000de\n") == 0)
 		{
 			return "XpeedLX";
