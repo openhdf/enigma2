@@ -157,10 +157,10 @@ class InfoBarUnhandledKey:
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
-		try:
-			print 'KEY: %s %s' % (key,getKeyDescription(key)[0])
-		except:
-			print 'KEY: %s' % key
+#		try:
+#			print 'KEY: %s %s' % (key,getKeyDescription(key)[0])
+#		except:
+#			print 'KEY: %s' % key
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -3586,7 +3586,7 @@ class InfoBarPowersaver:
 			else:
 				message = _("Your receiver will got to standby due to inactivity.")
 			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.inactivityTimeoutCallback, MessageBox, message, timeout=60, simple = True)	
+			self.session.openWithCallback(self.inactivityTimeoutCallback, MessageBox, message, timeout=60, simple = True)
 
 	def inactivityTimeoutCallback(self, answer):
 		if answer:
@@ -3620,7 +3620,7 @@ class InfoBarPowersaver:
 			elif self.sleepTimerSetting > 0:
 				message = _("Your receiver will got to stand by due to the sleeptimer.")
 			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple = True, list = list)	
+			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple = True, list = list)
 
 	def sleepTimerTimeoutCallback(self, answer):
 		if answer == "extend":
