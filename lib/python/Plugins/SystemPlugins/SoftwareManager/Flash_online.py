@@ -21,18 +21,8 @@ import shutil
 distro = getDistro()
 
 #############################################################################################################
-image = 0 # 0=openATV / 1=openMips 2=openhdf
-if distro.lower() == "openmips":
-	image = 1
-elif distro.lower() == "openatv":
-	from enigma import getMachineBrand, getMachineName
-	image = 0
-elif distro.lower() == "openhdf":
-	from enigma import getMachineBrand, getMachineName
-	image = 2
-feedurl_atv = 'http://images.mynonpublic.com/openatv/nightly'
+from enigma import getMachineBrand, getMachineName
 feedurl_hdf = 'http://images.hdfreaks.cc/nightly'
-feedurl_om = 'http://image.openmips.com/2.0'
 imagePath = '/hdd/images'
 flashPath = '/hdd/images/flash'
 flashTmp = '/hdd/images/tmp'
@@ -146,12 +136,7 @@ class doFlashImage(Screen):
 		self.Online = online
 		self.imagePath = imagePath
 		self.feedurl = feedurl_hdf
-		if image == 0:
-			self.feed = "atv"
-		elif image == 1:
-			self.feed = "om"
-		else:
-			self.feed = "hdf"
+		self.feed = "hdf"
 		self["imageList"] = MenuList(self.imagelist)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
@@ -169,16 +154,7 @@ class doFlashImage(Screen):
 
 	def blue(self):
 		if self.Online:
-			if image == 1:
-				if self.feed == "atv":
-					self.feed = "om"
-				elif self.feed == "hdf":
-					self.feed = "om"
-				else:
-					self.feed = "atv"
-				self.layoutFinished()
-			elif image == 2:
-				self.feed = "hdf"
+			self.feed = "hdf"
 			return
 		sel = self["imageList"].l.getCurrentSelection()
 		if sel == None:
@@ -337,21 +313,8 @@ class doFlashImage(Screen):
 		self.imagelist = []
 		if self.Online:
 			self["key_yellow"].setText("")
-			if image == 1:
-				if self.feed == "atv":
-					self.feedurl = feedurl_atv
-					self["key_blue"].setText("openMIPS")
-				elif self.feed == "om":
-					self.feedurl = feedurl_om
-					self["key_blue"].setText("openHDF")
-				elif self.feed == "hdf":
-					self.feedurl = feedurl_hdf
-					self["key_blue"].setText("openATV")
-			else:
-				self.feedurl = feedurl_atv
-				self["key_blue"].setText("")
-			if image == 2:
-				url = 'http://www.images.hdfreaks.cc/index.php?dir=nightly/%s' % (box)
+			self.feedurl = feedurl_hdf
+			url = 'http://www.images.hdfreaks.cc/index.php?dir=nightly/%s' % (box)
 			req = urllib2.Request(url)
 			try:
 				response = urllib2.urlopen(req)
@@ -369,12 +332,6 @@ class doFlashImage(Screen):
 			lines = the_page.split('\n')
 			tt = len(box)
 			for line in lines:
-				if line.find("<a href='%s/" % box) > -1:
-					t = line.find("<a href='%s/" % box)
-					if self.feed == "atv":
-						self.imagelist.append(line[t+tt+10:t+tt+tt+39])
-					else:
-						self.imagelist.append(line[t+tt+10:t+tt+tt+40])
 				if line.find('openhdf-%s-' % box) > -1:
 					self.tmp = []
 					self.tmp.append(line)
