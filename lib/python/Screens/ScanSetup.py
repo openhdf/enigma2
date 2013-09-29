@@ -286,7 +286,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.updateSatList()
 		self.service = session.nav.getCurrentService()
 		self.feinfo = None
-		self.satfindNim = None
+		self.satfinder = False
 		self.networkid = 0
 		frontendData = None
 		if self.service is not None:
@@ -364,7 +364,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_typeterrestrial)
 			self.list.append(self.typeOfScanEntry)
 
-		self.scan_networkScan.setValue(False)
+		self.scan_networkScan.value = False
 		if nim.isCompatible("DVB-S"):
 			if self.scan_type.getValue() == "single_transponder":
 				self.updateSatList()
@@ -373,7 +373,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					self.list.append(self.systemEntry)
 				else:
 					# downgrade to dvb-s, in case a -s2 config was active
-					self.scan_sat.system.setValue(eDVBFrontendParametersSatellite.System_DVB_S)
+					self.scan_sat.system.value = eDVBFrontendParametersSatellite.System_DVB_S
 				self.list.append(getConfigListEntry(_('Satellite'), self.scan_satselection[index_to_scan]))
 				self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
 				self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
@@ -391,18 +391,18 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.updateSatList()
 				print self.scan_satselection[index_to_scan]
 				self.list.append(getConfigListEntry(_("Satellite"), self.scan_satselection[index_to_scan]))
-				self.scan_networkScan.setValue(True)
-			elif self.scan_type.getValue().find("multisat") != -1:
+				self.scan_networkScan.value = True
+			elif self.scan_type.value.find("multisat") != -1:
 				tlist = []
 				SatList = nimmanager.getSatListForNim(index_to_scan)
 				for x in SatList:
 					if self.Satexists(tlist, x[0]) == 0:
 						tlist.append(x[0])
-						sat = ConfigEnableDisable(default = self.scan_type.getValue().find("_yes") != -1 and True or False)
+						sat = ConfigEnableDisable(default = self.scan_type.value.find("_yes") != -1 and True or False)
 						configEntry = getConfigListEntry(nimmanager.getSatDescription(x[0]), sat)
 						self.list.append(configEntry)
 						self.multiscanlist.append((x[0], sat))
-				self.scan_networkScan.setValue(True)
+				self.scan_networkScan.value = True
 		elif nim.isCompatible("DVB-C"):
 			if self.scan_typecable.getValue() == "single_transponder":
 				self.list.append(getConfigListEntry(_("Frequency"), self.scan_cab.frequency))
@@ -412,7 +412,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_cab.fec))
 			if config.Nims[index_to_scan].cable.scan_networkid.getValue():
 				self.networkid = config.Nims[index_to_scan].cable.scan_networkid.getValue()
-				self.scan_networkScan.setValue(True)
+				self.scan_networkScan.value = True
 		elif nim.isCompatible("DVB-T"):
 			if self.scan_typeterrestrial.getValue() == "single_transponder":
 				if nim.isCompatible("DVB-T2"):
@@ -761,13 +761,13 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		flags = None
 		startScan = True
 		removeAll = True
-		index_to_scan = self.satfindNim and 0 or int(self.scan_nims.getValue())
+		index_to_scan = int(self.scan_nims.getValue())
 
 		if self.scan_nims == [ ]:
 			self.session.open(MessageBox, _("No tuner is enabled!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 			return
 
-		nim = self.satfindNim and nimmanager.nim_slots[self.satfindNim] or nimmanager.nim_slots[index_to_scan]
+		nim = self.satfinder and nimmanager.nim_slots[self.feid] or nimmanager.nim_slots[index_to_scan]
 		print "nim", nim.slot
 		if nim.isCompatible("DVB-S"):
 			print "is compatible with DVB-S"
@@ -776,8 +776,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				assert len(self.satList) > index_to_scan
 				assert len(self.scan_satselection) > index_to_scan
 
-				nimsats = self.satList[self.satfindNim or index_to_scan]
-				selsatidx = self.scan_satselection[index_to_scan].index
+				nimsats = self.satfinder and self.satList[self.feid] or self.satList[index_to_scan]
+				selsatidx = (not self.satfinder and self.scan_satselection[index_to_scan].index) or self.scan_satselection[0].index
 
 				# however, the satList itself could be empty. in that case, "index" is 0 (for "None").
 				if len(nimsats):
@@ -801,7 +801,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			elif self.scan_type.getValue() == "single_satellite":
 				sat = self.satList[index_to_scan][self.scan_satselection[index_to_scan].index]
 				getInitialTransponderList(tlist, sat[0])
-			elif self.scan_type.getValue().find("multisat") != -1:
+			elif self.scan_type.value.find("multisat") != -1:
 				SatList = nimmanager.getSatListForNim(index_to_scan)
 				for x in self.multiscanlist:
 					if x[1].getValue():
@@ -858,7 +858,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		for x in self["config"].list:
 			x[1].save()
 
-		if startScan:
+		if startScan and self.satfinder:
+			self.startScan(tlist, flags, self.feid, self.networkid)
+		elif startScan:
 			self.startScan(tlist, flags, index_to_scan, self.networkid)
 		else:
 			self.flags = flags
