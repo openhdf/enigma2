@@ -240,6 +240,18 @@ class doFlashImage(Screen):
 
 	def Start_Flashing(self):
 		print "Start Flashing"
+		print "Stop nfs services"
+		os.system("/etc/init.d/nfsserver stop")
+		os.system("killall rpc.statd")
+		print "Stop cardserver and softcams"
+		os.system("chmod 777 /etc/init.d/cardserver /etc/init.d/softcam")
+		os.system("/etc/init.d/softcam stop")
+		os.system("/etc/init.d/cardserver stop")
+		print "Stop other tasks"
+		os.system("killall crond")
+		os.system("killall hddtemp")
+		print "just wait for a second"
+		os.system("sleep 2")
 		if os.path.exists(ofgwritePath):
 			text = _("Flashing: ")
 			if self.simulate:
