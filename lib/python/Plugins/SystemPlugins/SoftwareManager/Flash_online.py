@@ -129,7 +129,7 @@ class doFlashImage(Screen):
 		<widget name="key_green" position="140,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="key_yellow" position="280,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="key_blue" position="420,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="imageList" position="10,10" zPosition="1" size="450,450" font="Regular;20" scrollbarMode="showOnDemand" transparent="1" />
+		<widget name="imageList" position="10,10" zPosition="1" size="540,450" font="Regular;20" scrollbarMode="showOnDemand" transparent="1" />
 	</screen>"""
 		
 	def __init__(self, session, online ):
@@ -378,7 +378,7 @@ class doFlashImage(Screen):
 					if line.find('<a href="o') > -1:
 						t = line.find('<a href="o')
 						e = line.find('zip"')
-						self.imagelist.append(line[t+tt-2:e+3])
+						self.imagelist.append(line[t+9:e+3])
 						
 		else:
 			self["key_blue"].setText(_("Delete"))
