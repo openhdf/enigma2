@@ -21,8 +21,19 @@ import shutil
 distro = getDistro()
 
 #############################################################################################################
-from enigma import getMachineBrand, getMachineName
+image = 0 # 0=openATV / 1=openMips 2=openhdf
+if distro.lower() == "openmips":
+	image = 1
+elif distro.lower() == "openatv":
+	from enigma import getMachineBrand, getMachineName
+	image = 0
+elif distro.lower() == "openhdf":
+	from enigma import getMachineBrand, getMachineName
+	image = 2
+feedurl_atv = 'http://images.mynonpublic.com/openatv/nightly'
+feedurl_om = 'http://image.openmips.com/2.0'
 feedurl_hdf = 'http://images.hdfreaks.cc/nightly'
+feedurl_team = 'http://images.hdfreaks.cc/team'
 imagePath = '/hdd/images'
 flashPath = '/hdd/images/flash'
 flashTmp = '/hdd/images/tmp'
@@ -49,7 +60,7 @@ class FlashOnline(Screen):
 		<widget name="info-online" position="10,30" zPosition="1" size="450,100" font="Regular;20" halign="left" valign="top" transparent="1" />
 		<widget name="info-local" position="10,150" zPosition="1" size="450,200" font="Regular;20" halign="left" valign="top" transparent="1" />
 	</screen>"""
-
+		
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
@@ -61,8 +72,8 @@ class FlashOnline(Screen):
 		self["key_blue"] = Button("")
 		self["info-local"] = Label(_("Local = Flash a image from local path /hdd/images"))
 		self["info-online"] = Label(_("Online = Download a image and flash it"))
-
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+		
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
 		{
 			"blue": self.blue,
 			"yellow": self.yellow,
@@ -90,8 +101,8 @@ class FlashOnline(Screen):
 		return True
 
 	def quit(self):
-		self.close()
-
+		self.close()	
+		
 	def blue(self):
 		pass
 
@@ -120,7 +131,7 @@ class doFlashImage(Screen):
 		<widget name="key_blue" position="420,460" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="imageList" position="10,10" zPosition="1" size="450,450" font="Regular;20" scrollbarMode="showOnDemand" transparent="1" />
 	</screen>"""
-
+		
 	def __init__(self, session, online ):
 		Screen.__init__(self, session)
 		self.session = session
@@ -136,9 +147,12 @@ class doFlashImage(Screen):
 		self.Online = online
 		self.imagePath = imagePath
 		self.feedurl = feedurl_hdf
-		self.feed = "hdf"
+		if image == 0:
+			self.feed = "atv"
+		else:
+			self.feed = "hdf"
 		self["imageList"] = MenuList(self.imagelist)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
 		{
 			"green": self.green,
 			"yellow": self.yellow,
@@ -148,13 +162,18 @@ class doFlashImage(Screen):
 		}, -2)
 		self.onLayoutFinish.append(self.layoutFinished)
 
-
+		
 	def quit(self):
-		self.close()
-
+		self.close()	
+		
 	def blue(self):
 		if self.Online:
-			self.feed = "hdf"
+			if image == 2:
+				if self.feed == "team":
+					self.feed = "hdf"
+				else:
+					self.feed = "team"
+				self.layoutFinished()
 			return
 		sel = self["imageList"].l.getCurrentSelection()
 		if sel == None:
@@ -169,7 +188,7 @@ class doFlashImage(Screen):
 				os.remove(self.imagePath + "/" + self.filename)
 			self.imagelist.remove(self.filename)
 			self["imageList"].l.setList(self.imagelist)
-
+		
 	def box(self):
 		box = getBoxType()
 		machinename = getMachineName()
@@ -240,18 +259,6 @@ class doFlashImage(Screen):
 
 	def Start_Flashing(self):
 		print "Start Flashing"
-		print "Stop nfs services"
-		os.system("/etc/init.d/nfsserver stop")
-		os.system("killall rpc.statd")
-		print "Stop cardserver and softcams"
-		os.system("chmod 777 /etc/init.d/cardserver /etc/init.d/softcam")
-		os.system("/etc/init.d/softcam stop")
-		os.system("/etc/init.d/cardserver stop")
-		print "Stop other tasks"
-		os.system("killall crond")
-		os.system("killall hddtemp")
-		print "just wait for a second"
-		os.system("sleep 2")
 		if os.path.exists(ofgwritePath):
 			text = _("Flashing: ")
 			if self.simulate:
@@ -278,7 +285,7 @@ class doFlashImage(Screen):
 		os.mkdir(flashTmp)
 		kernel = True
 		rootfs = True
-
+		
 		for path, subdirs, files in os.walk(tmpPath):
 			for name in files:
 				if name.find('kernel') > -1 and name.endswith('.bin') and kernel:
@@ -291,7 +298,7 @@ class doFlashImage(Screen):
 					dest = flashTmp + '/rootfs.bin'
 					shutil.copyfile(binfile, dest)
 					rootfs = False
-
+					
 	def yellow(self):
 		if not self.Online:
 			self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, matchingPattern="^.*\.(zip|bin|jffs2)", showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
@@ -316,7 +323,7 @@ class doFlashImage(Screen):
 				self.unzip_image(strPath + '/' + filename, flashPath)
 			else:
 				self.layoutFinished()
-
+	
 		else:
 			self.imagePath = imagePath
 
@@ -325,8 +332,20 @@ class doFlashImage(Screen):
 		self.imagelist = []
 		if self.Online:
 			self["key_yellow"].setText("")
-			self.feedurl = feedurl_hdf
-			url = 'http://www.images.hdfreaks.cc/index.php?dir=nightly/%s' % (box)
+			if image == 2:
+				if self.feed == "hdf":
+					self.feedurl = feedurl_hdf
+					self["key_blue"].setText("Teamimages")
+				else:
+					self.feedurl = feedurl_team
+					self["key_blue"].setText("Nightly")
+			else:
+				self.feedurl = feedurl_atv
+				self["key_blue"].setText("")
+			if self.feedurl == feedurl_team:
+				url = '%s' % (self.feedurl)
+			else:
+				url = '%s/%s' % (self.feedurl,box)
 			req = urllib2.Request(url)
 			try:
 				response = urllib2.urlopen(req)
@@ -344,15 +363,23 @@ class doFlashImage(Screen):
 			lines = the_page.split('\n')
 			tt = len(box)
 			for line in lines:
-				if line.find('openhdf-%s-' % box) > -1:
-					self.tmp = []
-					self.tmp.append(line)
-					if line.find('<a class="autoindex_a" href=') > -1:
-						self.tmp.remove(line)
-					try:
-						self.imagelist.append(self.tmp[0].replace(' ',''))
-					except:
-						pass
+				if line.find("<a href='%s/" % box) > -1:
+					t = line.find("<a href='%s/" % box)
+					if self.feed == "atv":
+						self.imagelist.append(line[t+tt+10:t+tt+tt+39])
+					else:
+						self.imagelist.append(line[t+tt+10:t+tt+tt+40])
+				if self.feedurl == feedurl_team:
+					if line.find('%s' % box) > -1:
+						t = line.find('<a href="')
+						e = line.find('zip"')
+						self.imagelist.append(line[t+9:e+3])
+				else:
+					if line.find('<a href="o') > -1:
+						t = line.find('<a href="o')
+						e = line.find('zip"')
+						self.imagelist.append(line[t+tt-2:e+3])
+						
 		else:
 			self["key_blue"].setText(_("Delete"))
 			self["key_yellow"].setText(_("Devices"))
