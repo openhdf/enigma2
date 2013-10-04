@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-09-27 19:23+0100\n"
+"PO-Revision-Date: 2013-10-04 18:42+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -183,6 +183,18 @@ msgstr ""
 
 msgid " (PiP)"
 msgstr " (PiP)"
+
+msgid "Close PiP on exit"
+msgstr "Beende PiP mit Exit Taste"
+
+msgid "Allow quit movieplayer with exit"
+msgstr "Beende Movieplayer mit Exit Taste"
+
+msgid "With popup"
+msgstr "Nachfragen"
+
+msgid "Without popup"
+msgstr "Ohne Nachfragen"
 
 msgid " (Radio)"
 msgstr " (Radio)"
