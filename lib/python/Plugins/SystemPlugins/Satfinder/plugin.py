@@ -95,7 +95,7 @@ class Satfinder(ScanSetup):
 				self.list.append(self.systemEntry)
 			else:
 				# downgrade to dvb-s, in case a -s2 config was active
-				self.scan_sat.system.value = eDVBFrontendParametersSatellite.System_DVB_S
+				self.scan_sat.system.setValue(eDVBFrontendParametersSatellite.System_DVB_S)
 			self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
 			self.list.append(getConfigListEntry(_('Polarization'), self.scan_sat.polarization))
 			self.list.append(getConfigListEntry(_('Symbol rate'), self.scan_sat.symbolrate))
@@ -235,7 +235,10 @@ class Satfinder(ScanSetup):
 		self.scan_sat.frequency.setValue(self.transponder[0])
 		self.scan_sat.symbolrate.setValue(self.transponder[1])
 		self.scan_sat.polarization.setValue(self.transponder[2])
-		self.scan_sat.fec.setValue(self.transponder[3])
+		if self.scan_sat.system.getValue() == eDVBFrontendParametersSatellite.System_DVB_S:
+			self.scan_sat.fec.setValue(self.transponder[3])
+		else:
+			self.scan_sat.fec_s2.setValue(self.transponder[3])
 		self.scan_sat.inversion.setValue(self.transponder[4])
 		self.scan_sat.system.setValue(self.transponder[6])
 		self.scan_sat.modulation.setValue(self.transponder[7])
