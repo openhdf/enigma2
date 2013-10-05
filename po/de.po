@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-10-05 10:31+0100\n"
+"PO-Revision-Date: 2013-10-05 20:26+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1600,6 +1600,12 @@ msgstr "Sender:"
 
 msgid "ChannelEPG settings"
 msgstr "Sender-EPG Einstellungen"
+
+msgid "rename entry"
+msgstr "Sender umbenennen"
+
+msgid "Please enter new name:"
+msgstr "Bitte einen neuen Namen eingeben:"
 
 msgid "Chap."
 msgstr "Kap."
