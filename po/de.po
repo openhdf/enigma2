@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-10-06 12:55+0100\n"
+"PO-Revision-Date: 2013-10-06 19:24+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -186,9 +186,6 @@ msgstr " (PiP)"
 
 msgid "Close PiP on exit"
 msgstr "Beende PiP mit Exit Taste"
-
-msgid "Allow quit movieplayer with exit"
-msgstr ""
 
 msgid "With popup"
 msgstr "Nachfragen"
@@ -894,7 +891,7 @@ msgid "Allocate unused memory index"
 msgstr "Unbenutzten Speicher Index reservieren"
 
 msgid "Allow quit movieplayer with exit"
-msgstr "Erlaube Mediaplayer mit Exit verlassen "
+msgstr "Beende Mediaplayer mit Exit "
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Erlaube gleiche Sprache bei Untertitel und Ton"
@@ -1463,9 +1460,6 @@ msgstr ""
 msgid "Cancel"
 msgstr "Abbrechen"
 
-msgid "Cancel next timer"
-msgstr "Nächsten Timer abbrechen"
-
 msgid "Cancel save timeshift as movie"
 msgstr "Film speichern abbrechen"
 
@@ -1770,9 +1764,6 @@ msgstr "Klienten"
 
 msgid "Close"
 msgstr "Schließen"
-
-msgid "Close PiP on exit"
-msgstr "PiP mit Exit beenden"
 
 msgid "Close bouquet list."
 msgstr "Schließe Favoritenliste"
@@ -5506,9 +5497,6 @@ msgstr "Bitte einen Dateinamen eingeben (leer = Dateiname ist aktuelles Datum)"
 
 msgid "Please enter name of the new directory"
 msgstr "Bitte den Namen des neuen Verzeichnisses eingeben"
-
-msgid "Please enter new name:"
-msgstr "Bitte neuen Dateinamen eingeben:"
 
 msgid "Please enter the correct pin code"
 msgstr "Bitte den korrekten PIN Code eingeben"
@@ -9590,9 +9578,6 @@ msgstr "Funk-Netzwerk Konfiguration."
 msgid "Wireless network state"
 msgstr "Funk-Netzwerk Status"
 
-msgid "With popup"
-msgstr "Mit Popup"
-
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
 "bouquet screen first. If set to 'no' the current bouquet will be opened."
@@ -9606,9 +9591,6 @@ msgid ""
 msgstr ""
 "Mit dieser Option kannst Du Jobs in Erweiterungen verstecken (kurzer Druck "
 "auf Blau)."
-
-msgid "Without popup"
-msgstr "Ohne Popup"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
@@ -10822,9 +10804,6 @@ msgstr "Diese Markierung entfernen"
 
 msgid "rename"
 msgstr "umbenennen"
-
-msgid "rename entry"
-msgstr "Eintrag umbenennen"
 
 msgid "repeat playlist"
 msgstr "Wiederholung der Wiedergabeliste"
