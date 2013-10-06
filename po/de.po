@@ -893,6 +893,9 @@ msgstr "Reservieren"
 msgid "Allocate unused memory index"
 msgstr "Unbenutzten Speicher Index reservieren"
 
+msgid "Allow quit movieplayer with exit"
+msgstr "Erlaube Mediaplayer mit Exit verlassen "
+
 msgid "Allow subtitle language to equal audio language"
 msgstr "Erlaube gleiche Sprache bei Untertitel und Ton"
 
@@ -1177,7 +1180,7 @@ msgid "Automatic scan"
 msgstr "Automatische Suche"
 
 msgid "Automatic setting backup"
-msgstr "Automatische Einstellungs-Sicherung"
+msgstr "Automatische Einstellungs Sicherung"
 
 msgid "Automatically start timeshift after"
 msgstr "TimeShift automatisch starten nach"
@@ -1459,6 +1462,9 @@ msgstr ""
 
 msgid "Cancel"
 msgstr "Abbrechen"
+
+msgid "Cancel next timer"
+msgstr "Nächsten Timer abbrechen"
 
 msgid "Cancel save timeshift as movie"
 msgstr "Film speichern abbrechen"
@@ -1764,6 +1770,9 @@ msgstr "Klienten"
 
 msgid "Close"
 msgstr "Schließen"
+
+msgid "Close PiP on exit"
+msgstr "PiP mit Exit beenden"
 
 msgid "Close bouquet list."
 msgstr "Schließe Favoritenliste"
@@ -2647,7 +2656,7 @@ msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Reservierter Speicherplatz für Aufnahmen (GB)"
 
 msgid "Display"
-msgstr "Display Einstellungen"
+msgstr "Display (VFD/LCD)"
 
 msgid "Display 16:9 content as"
 msgstr "16:9-Inhalt anzeigen als"
@@ -3662,7 +3671,7 @@ msgid "Hide player"
 msgstr "Player ausblenden"
 
 msgid "Hide zap errors"
-msgstr "Verberge Zap-Fehler"
+msgstr "Verberge Zap Fehler"
 
 msgid "Hierarchy info"
 msgstr "Hierarchie Information"
@@ -5498,6 +5507,9 @@ msgstr "Bitte einen Dateinamen eingeben (leer = Dateiname ist aktuelles Datum)"
 msgid "Please enter name of the new directory"
 msgstr "Bitte den Namen des neuen Verzeichnisses eingeben"
 
+msgid "Please enter new name:"
+msgstr "Bitte neuen Dateinamen eingeben:"
+
 msgid "Please enter the correct pin code"
 msgstr "Bitte den korrekten PIN Code eingeben"
 
@@ -5977,9 +5989,6 @@ msgstr "Aufnahme demnächst"
 msgid "Record now"
 msgstr "Aufnahme jetzt"
 
-msgid "Record once"
-msgstr "Einmalige Aufnahme"
-
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Aufnahme wurde gestartet! TimeShift wird jetzt angehalten ..."
 
@@ -6264,13 +6273,6 @@ msgstr "An letzter Position fortsetzen"
 msgid "Resume position at %s"
 msgstr "Wiedergabestart ab %s"
 
-#. TRANSLATORS: The string "Resuming playback" flashes for a moment
-#. TRANSLATORS: at the start of a movie, when the user has selected
-#. TRANSLATORS: "Resume from last position" as start behavior.
-#. TRANSLATORS: The purpose is to notify the user that the movie starts
-#. TRANSLATORS: in the middle somewhere and not from the beginning.
-#. TRANSLATORS: (Some translators seem to have interpreted it as a
-#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Setze Wiedergabe fort"
 
@@ -6565,7 +6567,7 @@ msgid "Select backup files"
 msgstr "Wähle die zu sichernden Dateien"
 
 msgid "Select backup location"
-msgstr "Wähle das Sicherungs-Verzeichnis"
+msgstr "Wähle das Sicherungs Verzeichnis"
 
 msgid "Select channel to record from"
 msgstr "Wähle Sender von dem aufgenommen werden soll"
@@ -7081,7 +7083,7 @@ msgid "Show crypto info in infobar"
 msgstr "Zeige Verschlüsselung in Infobar an"
 
 msgid "Show detailed event info"
-msgstr "Zeige detaillierte Sendungs-Information"
+msgstr "Zeige detaillierte Sendungsinformation"
 
 msgid "Show encryption info in the infobar (when supported by the skin)."
 msgstr ""
@@ -7587,6 +7589,9 @@ msgstr "Aufnahme beenden"
 msgid "Stop recording and delete"
 msgstr "Aufnahme beenden und löschen"
 
+msgid "Stop recording now"
+msgstr "Aufnahme jetzt beenden"
+
 msgid "Stop test"
 msgstr "Test stoppen"
 
@@ -7894,7 +7899,7 @@ msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2 or EXT3!"
 msgstr ""
-"Das Dateisystem vom TimeShift-Verzeichnis unterstützt keine Hardlinks.\n"
+"Das Dateisystem vom TimeShift Verzeichnis unterstützt keine Hardlinks.\n"
 "Stelle sicher das es mit EXT2/3/4 formatiert ist!"
 
 msgid ""
@@ -7934,7 +7939,7 @@ msgstr "Die %s %s speichert die EPG alle x Stunden."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr ""
-"Die Sicherung ist fehlgeschlagen. Bitte einen anderes Sicherungs-Verzeichnis "
+"Die Sicherung ist fehlgeschlagen. Bitte einen anderes Sicherungs Verzeichnis "
 "auswählen."
 
 msgid "The current update maybe unstable"
@@ -8480,7 +8485,7 @@ msgid "Timeshift"
 msgstr "TimeShift"
 
 msgid "Timeshift location"
-msgstr "TimeShift-Verzeichnis"
+msgstr "TimeShift Verzeichnis"
 
 msgid "Timeshift not possible!"
 msgstr "TimeShift nicht möglich!"
@@ -9585,6 +9590,9 @@ msgstr "Funk-Netzwerk Konfiguration."
 msgid "Wireless network state"
 msgstr "Funk-Netzwerk Status"
 
+msgid "With popup"
+msgstr "Mit Popup"
+
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
 "bouquet screen first. If set to 'no' the current bouquet will be opened."
@@ -9598,6 +9606,9 @@ msgid ""
 msgstr ""
 "Mit dieser Option kannst Du Jobs in Erweiterungen verstecken (kurzer Druck "
 "auf Blau)."
+
+msgid "Without popup"
+msgstr "Ohne Popup"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
@@ -10340,7 +10351,7 @@ msgid "enable"
 msgstr "aktivieren"
 
 msgid "enable bouquet edit"
-msgstr "Favoritenliste bearbeiten"
+msgstr "Alternativen bearbeiten"
 
 msgid "enable favourite edit"
 msgstr "Favoriteneditor aktivieren"
@@ -10355,7 +10366,7 @@ msgid "end alternatives edit"
 msgstr "Alternativen-Bearbeitung beenden"
 
 msgid "end bouquet edit"
-msgstr "Favoritenliste bearbeiten beenden"
+msgstr "Alternativen bearbeiten beenden"
 
 msgid "end cut here"
 msgstr "Schnitt endet hier"
@@ -10811,6 +10822,9 @@ msgstr "Diese Markierung entfernen"
 
 msgid "rename"
 msgstr "umbenennen"
+
+msgid "rename entry"
+msgstr "Eintrag umbenennen"
 
 msgid "repeat playlist"
 msgstr "Wiederholung der Wiedergabeliste"
@@ -11567,6 +11581,9 @@ msgid ""
 msgstr ""
 "Wählen Sie aus, was passieren soll, nachdem ihre %s %s nicht sauber "
 "heruntergefahren wurde, bzw. was nach einem Stromausfall geschehen soll."
+
+#~ msgid "Record once"
+#~ msgstr "Einmalige Aufnahme"
 
 #~ msgid ""
 #~ "Maximum Timeshift length per Event reached!\n"
