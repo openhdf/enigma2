@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-10-05 20:26+0100\n"
+"PO-Revision-Date: 2013-10-06 12:55+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -188,7 +188,7 @@ msgid "Close PiP on exit"
 msgstr "Beende PiP mit Exit Taste"
 
 msgid "Allow quit movieplayer with exit"
-msgstr "Beende Movieplayer mit Exit Taste"
+msgstr ""
 
 msgid "With popup"
 msgstr "Nachfragen"
@@ -1462,6 +1462,9 @@ msgstr "Abbrechen"
 
 msgid "Cancel save timeshift as movie"
 msgstr "Film speichern abbrechen"
+
+msgid "Cancel next timer"
+msgstr "NÃ¤chsten Timer abbrechen"
 
 msgid "Cannot delete file"
 msgstr "Kann Datei nicht löschen"
@@ -8927,6 +8930,9 @@ msgstr "Benutzer - Favoritenlisten"
 msgid "User defined"
 msgstr "Benutzerdefiniert"
 
+msgid "User defined transponder"
+msgstr "Benutzerdefinierter Transponder"
+
 msgid "User interface"
 msgstr "Benutzeroberfläche"
 
@@ -9289,6 +9295,9 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "Was durchsuchen?"
 
+msgid "When enabled the PiP can be closed by the exit button."
+msgstr "Wenn aktiviert kann PiP mit der Exit Taste geschlossen werden."
+
 msgid ""
 "When enabled the online checker will also check for experimental versions"
 msgstr "Wenn aktiviert werden auch experimentelle Updates gesucht."
@@ -9383,6 +9392,9 @@ msgid ""
 msgstr ""
 "Wenn aktiviert werden grafische DVB Untertitel in Gelb statt der "
 "Originalfarbe dargestellt."
+
+msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgstr "Wenn aktiviert kann der Mediaplayer mit Exit verlassen werden."
 
 msgid ""
 "When enabled, measure power consumption to detect when the rotor stops "
