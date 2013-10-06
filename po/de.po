@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-10-06 19:24+0100\n"
+"PO-Revision-Date: 2013-10-06 20:03+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -807,7 +807,7 @@ msgid "Add title"
 msgstr "Titel hinzufügen"
 
 msgid "Add to bouquet"
-msgstr "Zu Favoritenliste hinzufügen"
+msgstr "Sender zur Favoritenliste hinzufügen"
 
 msgid "Add to favourites"
 msgstr "Zu Favoriten hinzufügen"
@@ -1504,6 +1504,9 @@ msgstr "Zentriere Zeit und entferne Datum"
 
 msgid "Change bouquets in quickzap"
 msgstr "Favoriten wechseln beim Quickzap"
+
+msgid "Extended NumberZap"
+msgstr "Erweitertes Nummern Zap"
 
 msgid "enable extended number zap"
 msgstr "Extended NumberZap aktivieren"
@@ -4043,7 +4046,7 @@ msgid "Input device setup"
 msgstr "Eingabegeräte Einstellungen"
 
 msgid "Input devices"
-msgstr "Eingabegeräte"
+msgstr "Eingabegeräte/Fernbedienung"
 
 msgid "Install"
 msgstr "Installiere"
@@ -5725,7 +5728,7 @@ msgid "PowerTimer Overview"
 msgstr "PowerTimer Überblick"
 
 msgid "PowerTimers"
-msgstr "PowerTimer"
+msgstr "Einschalt / Ausschalt Timer"
 
 msgid "Predefined"
 msgstr "Vordefiniert"
@@ -6214,6 +6217,9 @@ msgstr ""
 
 msgid "Resolution"
 msgstr "Auflösung"
+
+msgid "Autoresolution"
+msgstr "Automatische Auflösung"
 
 msgid "Restart"
 msgstr "Neustart"
@@ -10091,7 +10097,7 @@ msgid "add marker"
 msgstr "Marker einfügen"
 
 msgid "add service to bouquet"
-msgstr "Zu Favoritenliste hinzufügen"
+msgstr "Sender zu Favoritenliste hinzufügen"
 
 msgid "add service to favourites"
 msgstr "Sender zu Favoriten hinzufügen"
@@ -10788,7 +10794,7 @@ msgid "remove directory"
 msgstr "Verzeichnis löschen"
 
 msgid "remove entry"
-msgstr "Eintrag löschen"
+msgstr "Sender löschen"
 
 msgid "remove from parental protection"
 msgstr "Jugendschutz ausschalten"
@@ -10872,7 +10878,7 @@ msgid "service PIN"
 msgstr "Service PIN"
 
 msgid "set as startup service"
-msgstr "Als Startsender benutzen"
+msgstr "Als Startsender festlegen"
 
 msgid "setup PIN"
 msgstr "Einstellungen PIN"
@@ -10947,7 +10953,7 @@ msgid "show softwaremanager on blue button"
 msgstr "Zeige Softwareverwaltung unter blauen Button"
 
 msgid "show transponder info"
-msgstr "Transponder-Info anzeigen"
+msgstr "Transponder-/Sender-Info anzeigen"
 
 msgid "show/game show (general)"
 msgstr "Show/Spielshow (allgemein)"
