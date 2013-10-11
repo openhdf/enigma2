@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-10-06 20:03+0100\n"
+"PO-Revision-Date: 2013-10-06 12:55+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11567,36 +11567,13 @@ msgstr ""
 "Wählen Sie aus, was passieren soll, nachdem ihre %s %s nicht sauber "
 "heruntergefahren wurde, bzw. was nach einem Stromausfall geschehen soll."
 
-#~ msgid "Record once"
-#~ msgstr "Einmalige Aufnahme"
+#
+msgid "Show MiniTV in the Front Display"
+msgstr "Zeige MiniTV im Display"
 
-#~ msgid ""
-#~ "Maximum Timeshift length per Event reached!\n"
-#~ "Restarting Timeshift now ..."
-#~ msgstr ""
-#~ "Maximallänge für Timeshift erreicht!\n"
-#~ "Timeshift wird jetzt neu gestartet ..."
+msgid "You can Display MiniTV with or without OSD Menu"
+msgstr "Zeige im Display MiniTV mit oder ohne OSD Menu"
 
-#~ msgid "Message"
-#~ msgstr "Nachricht"
+msgid "MiniTV with OSD"
+msgstr "MiniTV mit OSD"
 
-#~ msgid "Permanent Timeshift max events"
-#~ msgstr "Permanenter TimeShift max. Sendungen"
-
-#~ msgid "Permanent Timeshift max length"
-#~ msgstr "Permanenter TimeShift max. Länge"
-
-#~ msgid "PiP setup"
-#~ msgstr "PiP Einstellung"
-
-#~ msgid "Set the maximum length a timeshift file may be."
-#~ msgstr "Wähle die Maximallänge von Timeshift Dateien."
-
-#~ msgid "Setup what a long press on the power button does."
-#~ msgstr "Stelle ein was bei langem Druck auf die Aus-Taste passieren soll."
-
-#~ msgid "pause"
-#~ msgstr "Pause"
-
-#~ msgid "play from next mark or playlist entry"
-#~ msgstr "Wiedergabe ab der nächsten Markierung/Listeneintrag"

@@ -40,7 +40,7 @@ class ImageBackup(Screen):
 		<widget name="info-usb" position="10,120" zPosition="1" size="550,200" font="Regular;20" halign="left" valign="top" transparent="1" />
 		<widget name="info-yellow" position="10,290" zPosition="1" size="550,200" font="Regular;20" halign="left" valign="top" transparent="1" />
 	</screen>"""
-		
+
 	def __init__(self, session, args = 0):
 		Screen.__init__(self, session)
 		self.session = session
@@ -50,7 +50,7 @@ class ImageBackup(Screen):
 		print "[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME
 		print "[FULL BACKUP] BOX MACHINEBRAND = >%s<" %self.MACHINEBRAND
 		print "[FULL BACKUP] BOX MODEL = >%s<" %self.MODEL
-		
+
 		self["key_green"] = Button("USB")
 		self["key_red"] = Button("HDD")
 		self["key_blue"] = Button(_("Exit"))
@@ -58,7 +58,7 @@ class ImageBackup(Screen):
 		self["info-usb"] = Label(_("USB = Do you want to make a back-up on USB?\nThis will take between 4 and 15 minutes depending on the used filesystem and is fully automatic.\nMake sure you first insert an USB flash drive before you select USB."))
 		self["info-hdd"] = Label(_("HDD = Do you want to make an USB-back-up image on HDD? \nThis only takes 2 or 10 minutes and is fully automatic."))
 		self["info-yellow"] = Label(_("Press Yellow Button to switch between TV/Backup \nduring the backup is running."))
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"blue": self.quit,
 			"yellow": self.yellow,
@@ -81,10 +81,10 @@ class ImageBackup(Screen):
 			self.session.open(MessageBox, _("Not enough free space on %s !!\nYou need at least 300Mb free space.\n" % dev), type = MessageBox.TYPE_ERROR)
 			return False
 		return True
-		
+
 	def quit(self):
-		self.close()	
-		
+		self.close()
+
 	def red(self):
 		if self.check_hdd():
 			self.doFullBackup("/hdd")
@@ -103,7 +103,7 @@ class ImageBackup(Screen):
 
 	def yellow(self):
 		#// Not used
-		pass	
+		pass
 
 	def testUBIFS(self):
 		f = open("/proc/mounts", "r")
@@ -121,7 +121,7 @@ class ImageBackup(Screen):
 					for file in listdir("/media/" + dir):
 						if file.find("backupstick") > -1:
 							print "USB-DEVICE found on: /media/%s" % dir
-							return "/media/" + dir						
+							return "/media/" + dir
 			break
 		return "XX"
 
@@ -171,7 +171,7 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "ODIN %s" %self.MODEL
-			self.MTDKERNEL = "mtd2"	
+			self.MTDKERNEL = "mtd2"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/odinm9" % self.DIRECTORY
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
@@ -182,7 +182,7 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "ODIN %s" %self.MODEL
-			self.MTDKERNEL = "mtd3"	
+			self.MTDKERNEL = "mtd3"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/en2" % self.DIRECTORY
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
@@ -193,7 +193,7 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "ODIN %s" %self.MODEL
-			self.MTDKERNEL = "mtd3"	
+			self.MTDKERNEL = "mtd3"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/en2" % self.DIRECTORY
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
@@ -215,7 +215,7 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "MaxDigital %s" %self.MODEL
-			self.MTDKERNEL = "mtd1"	
+			self.MTDKERNEL = "mtd1"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
@@ -225,17 +225,17 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "Octagon SF8 HD"
-			self.MTDKERNEL = "mtd1"	
+			self.MTDKERNEL = "mtd1"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
-			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)			
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
 		## TESTING THE Medialink Model
 		elif self.MODEL == "ixussone" or self.MODEL == "ixusszero" or self.MODEL == "ixussduo":
 			self.TYPE = "IXUSS"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "Medialink %s" %self.MODEL
-			self.MTDKERNEL = "mtd1"	
+			self.MTDKERNEL = "mtd1"
 			self.MAINDESTOLD = "%s/medialink/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/medialink/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
@@ -245,7 +245,7 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "Mixos %s" %self.MODEL
-			self.MTDKERNEL = "mtd1"	
+			self.MTDKERNEL = "mtd1"
 			self.MAINDESTOLD = "%s/ebox/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/ebox/7403/" % self.DIRECTORY
 			self.EXTRA = "%s/fullbackup_%s/%s/ebox" % (self.DIRECTORY, self.TYPE, self.DATE)
@@ -255,7 +255,7 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "Mixos %s" %self.MODEL
-			self.MTDKERNEL = "mtd2"	
+			self.MTDKERNEL = "mtd2"
 			self.MAINDESTOLD = "%s/ebox/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/ebox/7358/" % self.DIRECTORY
 			self.EXTRA = "%s/fullbackup_%s/%s/ebox" % (self.DIRECTORY, self.TYPE, self.DATE)
@@ -270,7 +270,7 @@ class ImageBackup(Screen):
 			self.EXTRA = "%s/fullbackup_%s/%s/venton" % (self.DIRECTORY, self.MODEL, self.DATE)
 		elif self.MODEL == "ventonhdx" and self.MACHINENAME.lower() == "hd-5000":
 			self.TYPE = "SEZAM"
-			self.MODEL = "hdx"			
+			self.MODEL = "hdx"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "SEZAM 5000HD"
@@ -279,13 +279,13 @@ class ImageBackup(Screen):
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
 		elif self.MODEL == "ventonhdx" and self.MACHINENAME.lower() == "premium twin":
 			self.TYPE = "MICRACLE"
-			self.MODEL = "twin"			
+			self.MODEL = "twin"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "MICRACLE Primium Twin"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/miraclebox/%s" % (self.DIRECTORY, self.MODEL)
-			self.EXTRA = "%s/fullbackup_%s/%s/miraclebox" % (self.DIRECTORY, self.MODEL, self.DATE)			
+			self.EXTRA = "%s/fullbackup_%s/%s/miraclebox" % (self.DIRECTORY, self.MODEL, self.DATE)
 		## TESTING INI HDe Model
 		elif self.MODEL == "inihde" and self.MACHINENAME.lower() == "xpeedlx":
 			self.TYPE = "GI"
@@ -306,7 +306,7 @@ class ImageBackup(Screen):
 			self.MTDKERNEL = "mtd2"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
-			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)			
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
 		## TESTING Technomate Model
 		elif self.MODEL == "tmtwin":
 			self.TYPE = "TECHNO"
@@ -400,7 +400,7 @@ class ImageBackup(Screen):
 			self.MODEL = "solo"
 			self.JFFS2OPTIONS="--eraseblock=0x20000 -n -l --pad=125829120"
 			self.SHOWNAME = "GigaBlue %s" %self.MODEL
-			self.MTDKERNEL = "mtd2"	
+			self.MTDKERNEL = "mtd2"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
@@ -411,7 +411,7 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "GigaBlue %s" %self.MODEL
-			self.MTDKERNEL = "mtd2"	
+			self.MTDKERNEL = "mtd2"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
@@ -422,18 +422,18 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "GigaBlue %s" %self.MODEL
-			self.MTDKERNEL = "mtd2"	
+			self.MTDKERNEL = "mtd2"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
 		## TESTING THE Gigablue 800 SE Plus Model
 		elif self.MODEL == "gb800seplus":
 			self.TYPE = "GIGABLUE"
-			self.MODEL = "seplus"
+			self.MODEL = "ueplus"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "GigaBlue %s" %self.MODEL
-			self.MTDKERNEL = "mtd1"	
+			self.MTDKERNEL = "mtd2"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
@@ -444,7 +444,7 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "GigaBlue %s" %self.MODEL
-			self.MTDKERNEL = "mtd1"	
+			self.MTDKERNEL = "mtd2"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
@@ -455,7 +455,7 @@ class ImageBackup(Screen):
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "GigaBlue %s" %self.MODEL
-			self.MTDKERNEL = "mtd2"	
+			self.MTDKERNEL = "mtd2"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
@@ -535,7 +535,7 @@ class ImageBackup(Screen):
 		cmdlist.append('echo " "')
 		cmdlist.append('echo "Check: kerneldump"')
 		cmdlist.append("sync")
-				
+
 		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, finishedCallback = self.doFullBackupCB, closeOnSuccess = True)
 
 	def doFullBackupCB(self):
@@ -607,7 +607,7 @@ class ImageBackup(Screen):
 				if path.exists(lcdwaitkey):
 					system('cp %s %s/lcdwaitkey.bin' %(lcdwaitkey, self.MAINDEST))
 				if path.exists(lcdwarning):
-					system('cp %s %s/lcdwarning.bin' %(lcdwarning, self.MAINDEST))				
+					system('cp %s %s/lcdwarning.bin' %(lcdwarning, self.MAINDEST))
 			cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
 
 		cmdlist.append("sync")
@@ -675,7 +675,7 @@ class ImageBackup(Screen):
 					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
 				elif self.TYPE == 'MICRACLE':
 					cmdlist.append('mkdir -p %s/miraclebox/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/miraclebox/' % (self.MAINDEST, self.TARGET))					
+					cmdlist.append('cp -r %s %s/miraclebox/' % (self.MAINDEST, self.TARGET))
 				elif self.TYPE == 'GI':
 					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
 					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
@@ -720,7 +720,7 @@ class ImageBackup(Screen):
 
 				cmdlist.append("sync")
 				cmdlist.append('echo "Backup finished and copied to your USB-flash drive"')
-			
+
 		cmdlist.append("umount /tmp/bi/root")
 		cmdlist.append("rmdir /tmp/bi/root")
 		cmdlist.append("rmdir /tmp/bi")
@@ -777,7 +777,7 @@ class ImageBackup(Screen):
 						f.close()
 		except:
 			AboutText += "Error reading bouquets.tv"
-			
+
 		AboutText += _("\n[User - bouquets (RADIO)]\n")
 		try:
 			f = open("/etc/enigma2/bouquets.radio","r")

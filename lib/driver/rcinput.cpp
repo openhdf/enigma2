@@ -81,17 +81,185 @@ void eRCDeviceInputDev::handleCode(long rccode)
 					ke.kb_index = ev->code;
 					::ioctl(consoleFd, KDGKBENT, &ke);
 					if (ke.kb_value)
-						input->keyPressed(eRCKey(this, ke.kb_value & 0xff, eRCKey::flagAscii)); /* emit */ 
+						input->keyPressed(eRCKey(this, ke.kb_value & 0xff, eRCKey::flagAscii)); /* emit */
 				}
 			}
 			return;
 		}
 	}
 
+#if KEY_TEXT_TO_KEY_AUDIO
+	if (ev->code == KEY_AUDIO)
+	{
+		/* AZBOX rc has a KEY aux key, which sends KEY_TEXT events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_TEXT;
+	}
+	else if (ev->code == KEY_AUDIO)
+	{
+		/* AZBOX rc has a KEY Check key, which sends KEY_AUDIO events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_TEXT;
+
+	}
+#endif
+
+#if KEY_F2_TO_KEY_F6
+	if (ev->code == KEY_F2)
+	{
+		/* Gigablue New Remote rc has a KEY_PIP key, which sends KEY_F2 events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_F6;
+
+	}
+#endif
+
+#if KEY_TV_TO_KEY_MODE
+	if (ev->code == KEY_TV)
+	{
+		/* AZBOX rc has a KEY_MODE key, which sends KEY_TV events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_MODE;
+
+	}
+#endif
+
+#if KEY_VIDEO_TO_KEY_EPG
+	if (ev->code == KEY_VIDEO)
+	{
+		/* AZBOX rc has a KEY_EPG key, which sends KEY_VIDEO events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_EPG;
+
+	}
+#endif
+
+#if KEY_VIDEO_TO_KEY_SUBTITLE
+	if (ev->code == KEY_VIDEO)
+	{
+		/* AZBOX rc has a KEY_SUBTITLE key, which sends KEY_VIDEO events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_SUBTITLE;
+
+	}
+#endif
+
+#if KEY_TV_TO_KEY_STOP
+	if (ev->code == KEY_TV)
+	{
+		/* AZBOX rc has a KEY_STOP key, which sends KEY_TV events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_STOP;
+
+	}
+#endif
+
+#if KEY_RADIO_TO_KEY_RECORD
+	if (ev->code == KEY_RADIO)
+	{
+		/* AZBOX rc has a KEY_RECORD key, which sends KEY_RADIO events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_RECORD;
+
+	}
+#endif
+
+#if KEY_HOME_TO_KEY_OPEN
+	if (ev->code == KEY_HOME)
+	{
+		/* AZBOX rc has no radio/tv/pvr key, we use KEY_HOME which sends KEY_OPEN events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_OPEN;
+
+	}
+#endif
+
+#if KEY_TV_TO_KEY_VIDEO
+	if (ev->code == KEY_TV)
+	{
+		/* Venton HD1 rc has a no KEY_VIDEO key, which sends KEY_TV events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_VIDEO;
+
+	}
+#endif
+
+#if KEY_BOOKMARKS_TO_KEY_DIRECTORY
+	if (ev->code == KEY_BOOKMARKS)
+	{
+		/* Venton ini2 remote has a KEY_BOOKMARKS key we need KEY_DIRECTORY. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_DIRECTORY;
+
+	}
+#endif
+
+#if KEY_MEDIA_TO_KEY_BOOKMARKS
+	if (ev->code == KEY_MEDIA)
+	{
+		/* Venton ini2 remote has a KEY_MEDIA key we need KEY_Bookmark. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_BOOKMARKS;
+
+	}
+#endif
+
+#if KEY_MEDIA_TO_KEY_OPEN
+	if (ev->code == KEY_MEDIA)
+	{
+		/* Venton ini2 remote has a KEY_MEDIA key we need KEY_OPEN. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_OPEN;
+
+	}
+#endif
+
+#if KEY_SEARCH_TO_KEY_WWW
+	if (ev->code == KEY_SEARCH)
+	{
+		/* Venton rc has a a Key WWW and send KEY_SEARCH. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_WWW;
+
+	}
+#endif
+
+#if KEY_POWER2_TO_KEY_WWW
+	if (ev->code == KEY_POWER2)
+	{
+		/* Venton rc has a a Key WWW and send KEY_POWER2. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_WWW;
+
+	}
+#endif
+
+#if KEY_DIRECTORY_TO_KEY_FILE
+	if (ev->code == KEY_DIRECTORY)
+	{
+		/* Venton rc has a a KEY_DIRECTORY and send KEY_FILE. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_FILE;
+
+	}
+#endif
+
+#if KEY_OPTION_TO_KEY_PC
+	if (ev->code == KEY_OPTION)
+	{
+		/* Venton rc has a a Key LAN and send KEY_OPTION. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_PC;
+
+	}
+#endif
+
+#if KEY_VIDEO_TO_KEY_MODE
+	if (ev->code == KEY_VIDEO)
+	{
+		/* Venton rc has a a Key Format and send KEY_Video. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_MODE;
+
+	}
+#endif
+
+
+#if KEY_GUIDE_TO_KEY_EPG
+	if (ev->code == KEY_HELP)
+	{
+		/* GB800 rc has a KEY_GUIDE key, which sends KEY_HELP events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_EPG;
+
+	}
+#endif
+
 #if KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE
 	if (ev->code == KEY_PLAY)
 	{
-		if (id == "dreambox advanced remote control (native)")
+		if ((id == "dreambox advanced remote control (native)")  || (id == "bcm7325 remote control"))
 		{
 			/* 8k rc has a KEY_PLAYPAUSE key, which sends KEY_PLAY events. Correct this, so we do not have to place hacks in the keymaps. */
 			ev->code = KEY_PLAYPAUSE;
@@ -99,16 +267,111 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_F1_TO_KEY_PC
+	if (ev->code == KEY_F1)
+	{
+		/* Technomate , which sends KEY_F1 events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_PC;
+
+	}
+#endif
+
+#if KEY_F5_TO_KEY_ANGLE
+	if (ev->code == KEY_F5)
+	{
+		/* Technomate , which sends KEY_F5 events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_ANGLE;
+
+	}
+#endif
+
+#if KEY_DOT_TO_KEY_HOMEPAGE
+	if (ev->code == KEY_DOT)
+	{
+		/* Technomate , which sends KEY_DOT events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_HOMEPAGE;
+
+	}
+#endif
+
+#if KEY_SCREEN_TO_KEY_ANGLE
+	if (ev->code == KEY_SCREEN)
+	{
+		/* MixOs , which sends KEY_SCREEN events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_ANGLE;
+
+	}
+#endif
+
+#if KEY_ZOOM_TO_KEY_SCREEN
+	if (ev->code == KEY_ZOOM)
+	{
+		/* Venton rc has a a Key LAN and send KEY_OPTION. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_SCREEN;
+
+	}
+#endif
+
+#if KEY_TIME_TO_KEY_SLEEP
+	if (ev->code == KEY_SLEEP)
+	{
+		/* MixOs , which sends KEY_SLEEP events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_PROGRAM;
+
+	}
+#endif
+
+#if KEY_LIST_TO_KEY_PVR
+	if (ev->code == KEY_LIST)
+	{
+		/* HDx , which sends KEY_LIST events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_PVR;
+
+	}
+#endif
+
+#if KEY_INFO_TO_KEY_EPG
+ /* INFO to EPG Toggle , which sends KEY_INFO events. Correct this, so we do not have to place hacks in the keymaps. */
+ if (ev->code == KEY_INFO)
+ {
+  if (ev->value == 0)
+  {
+  ev->code = KEY_EPG;
+  }
+  else
+  {
+  ev->code = KEY_INFO;
+  ev->value == 0;
+  }
+ }
+#endif
+
+#if KEY_EPG_TO_KEY_INFO
+ /* EPG to INFO Toggle , which sends KEY_EPG events. Correct this, so we do not have to place hacks in the keymaps. */
+ if (ev->code == KEY_EPG)
+ {
+  if (ev->value == 0)
+  {
+  ev->code = KEY_EPG;
+  }
+  else
+  {
+  ev->code = KEY_INFO;
+  ev->value == 0;
+  }
+ }
+#endif
+
 	switch (ev->value)
 	{
 		case 0:
-			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagBreak)); /*emit*/ 
+			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagBreak)); /*emit*/
 			break;
 		case 1:
-			input->keyPressed(eRCKey(this, ev->code, 0)); /*emit*/ 
+			input->keyPressed(eRCKey(this, ev->code, 0)); /*emit*/
 			break;
 		case 2:
-			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagRepeat)); /*emit*/ 
+			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagRepeat)); /*emit*/
 			break;
 	}
 }
@@ -119,7 +382,7 @@ eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver, int consolefd)
 		consoleFd(consolefd), shiftState(false), capsState(false)
 {
 	setExclusive(true);
-	eDebug("Input device \"%s\" is a %s", id.c_str(), iskeyboard ? "keyboard" : (ismouse ? "mouse" : "remotecontrol"));
+	//eDebug("Input device \"%s\" is a %s", id.c_str(), iskeyboard ? "keyboard" : (ismouse ? "mouse" : "remotecontrol"));
 }
 
 void eRCDeviceInputDev::setExclusive(bool b)
@@ -173,9 +436,9 @@ public:
 			add(filename);
 			++i;
 		}
-		eDebug("Found %d input devices.", i);
+		//eDebug("Found %d input devices.", i);
 	}
-	
+
 	~eInputDeviceInit()
 	{
 		for (itemlist::iterator it = items.begin(); it != items.end(); ++it)
@@ -202,7 +465,7 @@ public:
 				return;
 			}
 		}
-		eDebug("Remove '%s', not found", filename);
+		//eDebug("Remove '%s', not found", filename);
 	}
 };
 

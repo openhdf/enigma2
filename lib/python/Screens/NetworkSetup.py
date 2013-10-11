@@ -637,7 +637,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def keyCancelConfirm(self, result):
 		if not result:
 			return
-		config.network.wol.setValue(self.wolstartvalue)	
+		config.network.wol.setValue(self.wolstartvalue)
 		if self.oldInterfaceState is False:
 			iNetwork.deactivateInterface(self.iface,self.keyCancelCB)
 		else:
@@ -701,7 +701,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self["statuspic"].hide()
 
 		self.oktext = _("Press OK on your remote control to continue.")
-		self.reboottext = _("Your STB will restart after pressing OK on your remote control.")
+		self.reboottext = _("Your %s %s will restart after pressing OK on your remote control.") % (getMachineBrand(), getMachineName())
 		self.errortext = _("No working wireless network interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface.")
 		self.missingwlanplugintxt = _("The wireless LAN plugin is not installed!\nPlease install it.")
 

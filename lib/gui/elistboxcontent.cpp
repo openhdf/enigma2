@@ -2,26 +2,29 @@
 #include <lib/gui/elistboxcontent.h>
 #include <lib/gdi/font.h>
 #include <lib/python/python.h>
+#include <sstream>
+
+using namespace std;
 
 /*
     The basic idea is to have an interface which gives all relevant list
     processing functions, and can be used by the listbox to browse trough
     the list.
-    
+
     The listbox directly uses the implemented cursor. It tries hard to avoid
     iterating trough the (possibly very large) list, so it should be O(1),
     i.e. the performance should not be influenced by the size of the list.
-    
-    The list interface knows how to draw the current entry to a specified 
+
+    The list interface knows how to draw the current entry to a specified
     offset. Different interfaces can be used to adapt different lists,
     pre-filter lists on the fly etc.
-    
+
 		cursorSave/Restore is used to avoid re-iterating the list on redraw.
 		The current selection is always selected as cursor position, the
     cursor is then positioned to the start, and then iterated. This gives
     at most 2x m_items_per_page cursor movements per redraw, indepenent
     of the size of the list.
-    
+
     Although cursorSet is provided, it should be only used when there is no
     other way, as it involves iterating trough the list.
  */
@@ -72,7 +75,7 @@ void eListboxPythonStringContent::cursorEnd()
 int eListboxPythonStringContent::cursorMove(int count)
 {
 	m_cursor += count;
-	
+
 	if (m_cursor < 0)
 		cursorHome();
 	else if (m_cursor > size())
@@ -88,7 +91,7 @@ int eListboxPythonStringContent::cursorValid()
 int eListboxPythonStringContent::cursorSet(int n)
 {
 	m_cursor = n;
-	
+
 	if (m_cursor < 0)
 		cursorHome();
 	else if (m_cursor > size())
@@ -130,7 +133,7 @@ int eListboxPythonStringContent::size()
 		return 0;
 	return PyList_Size(m_list);
 }
-	
+
 void eListboxPythonStringContent::setSize(const eSize &size)
 {
 	m_itemsize = size;
@@ -458,13 +461,20 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
 
 							/* calc. slider length */
-						valueWidth = (itemsize.width() - m_seperation) * value / size;
+						valueWidth = (itemsize.width() - m_seperation -40) * value / size;
 						int height = itemsize.height();
 
 							/* draw slider */
 						//painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
 						//hack - make it customizable
 						painter.fill(eRect(textoffset.x() + m_seperation, offset.y() + 5, valueWidth, height-10));
+
+							/* draw text value at the end of the slider*/
+						std::ostringstream sin;
+						sin << value;
+						std::string cvalue = sin.str();
+						painter.setFont(fnt2);
+						painter.renderText(eRect(offset, m_itemsize), cvalue, value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT);
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "mtext"))
@@ -782,7 +792,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 		ePyObject data;
 
-			/* if we have a template, use the template for the actual formatting. 
+			/* if we have a template, use the template for the actual formatting.
 				we will later detect that "data" is present, and refer to that, instead
 				of the immediate value. */
 		int start = 1;
@@ -1001,7 +1011,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if ((filled < 0) && data) /* if the string is in a negative number, it refers to the 'data' list. */
 					filled = PyInt_AsLong(PyTuple_GetItem(data, -filled));
-					
+
 							/* don't do anything if percent out of range */
 				if ((filled < 0) || (filled > 100))
 					continue;

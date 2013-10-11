@@ -23,9 +23,9 @@ from time import gmtime, strftime, localtime, sleep
 from datetime import date
 
 config.plugins.configurationbackup = ConfigSubsection()
-if getBoxType() == "odinm9" or getBoxType() == "odinm7":
+if getBoxType() == "odinm9" or getBoxType() == "odinm7" or getBoxType() == "odinm6":
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
-else:	
+else:
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
 config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/CCcam.cfg', '/usr/keys/CCcam.cfg',
 																		 '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf',
@@ -55,7 +55,7 @@ def SettingsEntry(name, checked):
 		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"));
 	else:
 		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"));
-		
+
 	return (name, picture, checked)
 
 class BackupScreen(Screen, ConfigListScreen):
@@ -373,7 +373,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.doRestore()
 
 class RestartNetwork(Screen):
-	
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		skin = """
@@ -391,7 +391,7 @@ class RestartNetwork(Screen):
 	def restartLan(self):
 		print"[SOFTWARE MANAGER] Restart Network"
 		iNetwork.restartNetwork(self.restartLanDataAvail)
-		
+
 	def restartLanDataAvail(self, data):
 		if data is True:
 			iNetwork.getInterfaces(self.getInterfacesDataAvail)
@@ -487,7 +487,7 @@ class RestorePlugins(Screen):
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
 		self["key_green"] = Button(_("Install"))
 		self["key_red"] = Button(_("Cancel"))
-				
+
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 				{
 					"red": self.exit,
@@ -527,7 +527,7 @@ class RestorePlugins(Screen):
 
 	def installLocalIPK(self):
 		self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg --force-overwrite install ' + ' '.join(self.myipklist)], finishedCallback = self.exit, closeOnSuccess = True)
-	
+
 	def ok(self):
 		index = self["menu"].getIndex()
 		item = self["menu"].getCurrent()[0]
@@ -545,7 +545,7 @@ class RestorePlugins(Screen):
 		if index == None:
 			index = 0
 		self.index = index
-			
+
 	def drawList(self):
 		self["menu"].setList(self.Menulist)
 		self["menu"].setIndex(self.index)
