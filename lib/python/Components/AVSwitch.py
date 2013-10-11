@@ -104,7 +104,10 @@ class AVSwitch:
 def InitAVSwitch():
 	config.av = ConfigSubsection()
 	config.av.osd_alpha = ConfigSlider(default=255, limits=(0,255)) # Make openATV compatible with some plugins who still use config.av.osd_alpha
-	config.av.yuvenabled = ConfigBoolean(default=True)
+	if getBoxType() == 'vuduo' or getBoxType().startswith('ixuss'):
+		config.av.yuvenabled = ConfigBoolean(default=False)
+	else:
+		config.av.yuvenabled = ConfigBoolean(default=True)
 	colorformat_choices = {"cvbs": _("CVBS"), "rgb": _("RGB"), "svideo": _("S-Video")}
 
 	# when YUV is not enabled, don't let the user select it
@@ -193,7 +196,12 @@ def InitAVSwitch():
 		config.av.wss.addNotifier(setWSS)
 
 	iAVSwitch.setInput("ENCODER") # init on startup
-	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
+	if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getBoxType() == 'omtimussos1' or getBoxType() == 'omtimussos2' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus':
+		detected = False
+	else:
+		detected = eAVSwitch.getInstance().haveScartSwitch()
+
+	SystemInfo["ScartSwitch"] = detected
 
 	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")

@@ -536,8 +536,8 @@ def runScreenTest():
 
 	profile("RunReactor")
 	profile_final()
-	
-	if enigma.getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo':
+
+	if enigma.getBoxType() == 'gb800se' or enigma.getBoxType() == 'gb800solo' or enigma.getBoxType() == 'gb800seplus':
 		from enigma import evfd, eConsoleAppContainer
 		try:
 			cmd = 'vfdctl "    openhdf starting e2"'
@@ -546,12 +546,12 @@ def runScreenTest():
 		except:
 			evfd.getInstance().vfd_write_string("-E2-")
 		evfd.getInstance().vfd_led(str(1))
-		
+
 	if enigma.getBoxType() == 'odinm7' or enigma.getBoxType() == 'odinm6' or enigma.getBoxType() == 'xp1000s':
 		f = open("/dev/dbox/oled0", "w")
 		f.write('-E2-')
 		f.close()
-		
+
 	print "##################################### BOOTUP ACTIONS ###########################################"
 	print "lastshutdown=%s" % config.usage.shutdownOK.getValue()
 	print "NOK shutdown action=%s" % config.usage.shutdownNOK_action.getValue()
@@ -564,7 +564,7 @@ def runScreenTest():
 	config.usage.shutdownOK.setValue(False)
 	config.usage.shutdownOK.save()
 	configfile.save()
-	
+
 	runReactor()
 
 	print "normal shutdown"
