@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-10-06 12:55+0100\n"
+"PO-Revision-Date: 2013-10-12 13:44+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1301,6 +1301,9 @@ msgstr "Verstärke Grün"
 
 msgid "Bouquet List"
 msgstr "Favoritenliste"
+
+msgid "Keep focus on current service while entering servicelist"
+msgstr "Bleibe auf gleichem Sender beim wechseln in die Senderliste"
 
 msgid "Brightness"
 msgstr "Helligkeit"
@@ -11576,4 +11579,3 @@ msgstr "Zeige im Display MiniTV mit oder ohne OSD Menu"
 
 msgid "MiniTV with OSD"
 msgstr "MiniTV mit OSD"
-

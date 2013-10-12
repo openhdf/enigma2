@@ -4,20 +4,12 @@ from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol, getMachineBrand, getMachineName, getBoxType
+from enigma import eDVBVolumecontrol, getMachineBrand, getMachineName
 from Tools import Notifications
 import Screens.InfoBar
 from gettext import dgettext
 
 inStandby = None
-
-def setLCDModeMinitTV(value):
-	try:
-		f = open("/proc/stb/lcd/mode", "w")
-		f.write(value)
-		f.close()
-	except:
-		pass
 
 class Standby2(Screen):
 	def Power(self):
@@ -27,9 +19,6 @@ class Standby2(Screen):
 		#restart last played service
 		#unmute adc
 		self.leaveMute()
-		# set LCDminiTV
-		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
-			setLCDModeMinitTV(config.lcd.modeminitv.getValue())
 		#kill me
 		self.close(True)
 
@@ -62,10 +51,6 @@ class Standby2(Screen):
 
 		#mute adc
 		self.setMute()
-
-		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
-			# set LCDminiTV off
-			setLCDModeMinitTV("0")
 
 		self.paused_service = None
 		self.prev_running_service = None
@@ -115,7 +100,6 @@ class Standby(Standby2):
 			self.onHide.append(self.close)
 		else:
 			Standby2.__init__(self, session)
-			self.skinName = "Standby"
 
 	def showMessageBox(self):
 		Screens.InfoBar.InfoBar.checkTimeshiftRunning(Screens.InfoBar.InfoBar.instance, self.showMessageBoxcallback)
@@ -158,8 +142,7 @@ class QuitMainloopScreen(Screen):
 			4: _("Your frontprocessor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
 			5: _("The user interface of your %s %s is restarting\ndue to an error in mytest.py") % (getMachineBrand(), getMachineName()),
 			42: _("Upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
-			43: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
-			44: _("Your front panel will be upgraded\nThis may take a few minutes")}.get(retvalue)
+			43: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()) }.get(retvalue)
 		self["text"] = Label(text)
 
 inTryQuitMainloop = False
@@ -169,23 +152,24 @@ class TryQuitMainloop(MessageBox):
 		self.retval = retvalue
 		self.ptsmainloopvalue = retvalue
 		recordings = session.nav.getRecordings()
-		jobs = len(job_manager.getPendingJobs())
+		jobs = []
+		for job in job_manager.getPendingJobs():
+			if job.name != dgettext('vix', 'SoftcamCheck'):
+				jobs.append(job)
+		
 		inTimeshift = Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance)
 		self.connected = False
 		reason = ""
 		next_rec_time = -1
 		if not recordings:
 			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()
-#		if jobs:
-#			reason = (ngettext("%d job is running in the background!", "%d jobs are running in the background!", jobs) % jobs) + '\n'
-#			if jobs == 1:
-#				job = job_manager.getPendingJobs()[0]
-#				if job.name == "VFD Checker":
-#					reason = ""
-#				else:
-#					reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
-#			else:
-#				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
+		if len(jobs):
+			reason = (ngettext("%d job is running in the background!", "%d jobs are running in the background!", len(jobs)) % len(jobs)) + '\n'
+			if len(jobs) == 1:
+				job = jobs[0]
+				reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
+			else:
+				reason += (_("%d jobs are running in the background!") % len(jobs)) + '\n'
 		if inTimeshift:
 			reason = _("You seem to be in timeshift!") + '\n'
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
@@ -201,8 +185,7 @@ class TryQuitMainloop(MessageBox):
 				3: _("Really restart now?"),
 				4: _("Really upgrade the frontprocessor and reboot now?"),
 				42: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
-				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
-				44: _("Really upgrade the front panel and reboot now?")}.get(retvalue)
+				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()) }.get(retvalue)
 			if text:
 				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
 				self.skinName = "MessageBoxSimple"
