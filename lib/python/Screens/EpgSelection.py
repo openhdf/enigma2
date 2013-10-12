@@ -716,9 +716,12 @@ class EPGSelection(Screen, HelpableScreen):
 			self.infoKeyPressed(True)
 
 	def closeScreen(self):
+		if self.type == None:
+			self.close()
+			return
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
-			return # stop and do not continue.
+			return
 		if self.CurrBouquet and self.CurrService and (self.CurrBouquet != self.StartBouquet or self.CurrService != self.StartRef):
 			self.zapToNumber(self.StartRef, self.StartBouquet)
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
@@ -730,6 +733,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.session.pipshown:
 			self.session.pipshown = False
 			del self.session.pip
+			self.setServicelistSelection(self.StartBouquet, self.StartRef)
 		self.closeEventViewDialog()
 		self.close(True)
 
