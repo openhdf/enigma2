@@ -2164,6 +2164,7 @@ class SimpleChannelSelection(ChannelSelectionBase, ChannelSelectionEdit):
 				"keyTV": self.setModeTv,
 			})
 		self.title = title
+		self.bouquet_mark_edit = OFF
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
