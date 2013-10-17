@@ -4,13 +4,6 @@ from enigma import eAVSwitch, getDesktop, getBoxType
 from SystemInfo import SystemInfo
 import os
 
-try:
-	file = open("/proc/stb/info/boxtype", "r")
-	model = file.readline().strip()
-	file.close()
-except:
-	model = "unknown"
-
 class AVSwitch:
 	def setInput(self, input):
 		INPUT = { "ENCODER": 0, "SCART": 1, "AUX": 2 }
@@ -35,13 +28,13 @@ class AVSwitch:
 			else:
 				mode = config.av.videomode[port].getValue()
 				force_widescreen = video_hw.isWidescreenMode(port, mode)
-				is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16_9", "16_10")
+				is_widescreen = force_widescreen or config.av.aspect.getValue() in ("16:9", "16:10")
 				is_auto = config.av.aspect.getValue() == "auto"
 				if is_widescreen:
 					if force_widescreen:
 						pass
 					else:
-						aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.getValue()]
+						aspect = {"16:9": "16:9", "16:10": "16:10"}[config.av.aspect.getValue()]
 						if aspect == "16:10":
 							ret = (16,10)
 				elif is_auto:
@@ -58,7 +51,7 @@ class AVSwitch:
 			valstr = config.av.aspectratio.getValue()
 			if valstr in ("4_3_letterbox", "4_3_panscan"): # 4:3
 				return (4,3)
-			elif valstr == "16_9": # auto ... 4:3 or 16:9
+			elif valstr == "16:9": # auto ... 4:3 or 16:9
 				try:
 					aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
 					if aspect_str == "1": # 4:3
@@ -103,17 +96,14 @@ class AVSwitch:
 
 def InitAVSwitch():
 	config.av = ConfigSubsection()
-	config.av.osd_alpha = ConfigSlider(default=255, limits=(0,255)) # Make openATV compatible with some plugins who still use config.av.osd_alpha
-	if getBoxType() == 'vuduo' or getBoxType().startswith('ixuss'):
-		config.av.yuvenabled = ConfigBoolean(default=False)
-	else:
-		config.av.yuvenabled = ConfigBoolean(default=True)
+	config.av.yuvenabled = ConfigBoolean(default=True)
 	colorformat_choices = {"cvbs": _("CVBS"), "rgb": _("RGB"), "svideo": _("S-Video")}
 
 	# when YUV is not enabled, don't let the user select it
 	if config.av.yuvenabled.getValue():
 		colorformat_choices["yuv"] = _("YPbPr")
 
+	config.av.autores = ConfigYesNo(default = False)
 	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
 	config.av.aspectratio = ConfigSelection(choices={
 			"4_3_letterbox": _("4:3 Letterbox"),
@@ -125,11 +115,11 @@ def InitAVSwitch():
 			"16_9_letterbox": _("16:9 Letterbox")},
 			default = "16_9")
 	config.av.aspect = ConfigSelection(choices={
-			"4_3": _("4:3"),
-			"16_9": _("16:9"),
-			"16_10": _("16:10"),
+			"4:3": _("4:3"),
+			"16:9": _("16:9"),
+			"16:10": _("16:10"),
 			"auto": _("Automatic")},
-			default = "auto")
+			default = "16:9")
 	policy2_choices = {
 	# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 	"letterbox": _("Letterbox"),
@@ -142,17 +132,17 @@ def InitAVSwitch():
 		if "auto" in f.readline():
 			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 			policy2_choices.update({"auto": _("Auto")})
-		f.close()
+		f.close()	
 	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "letterbox")
 	policy_choices = {
 	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
-	"pillarbox": _("Pillarbox"),
+	"panscan": _("Pillarbox"),
 	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-	"panscan": _("Pan&scan"),
+	"letterbox": _("Pan&scan"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 	"nonlinear": _("Nonlinear"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-	"scale": _("Just scale")}
+	"bestfit": _("Just scale")}
 	if os.path.exists("/proc/stb/video/policy_choices"):
 		f = open("/proc/stb/video/policy_choices")
 		if "auto" in f.readline():
@@ -169,12 +159,7 @@ def InitAVSwitch():
 	iAVSwitch = AVSwitch()
 
 	def setColorFormat(configElement):
-		if getBoxType() == 'et6x00':
-			map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}
-		elif getBoxType() == 'gbquad' or getBoxType().startswith('et'):
-			map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
-		else:
-			map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
+		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 		iAVSwitch.setColorFormat(map[configElement.getValue()])
 
 	def setAspectRatio(configElement):
@@ -187,21 +172,16 @@ def InitAVSwitch():
 
 	def setWSS(configElement):
 		iAVSwitch.setAspectWSS()
-
+	
 	config.av.colorformat.addNotifier(setColorFormat)
 	if not os.path.exists('/usr/lib/enigma2/python/Plugins/SystemPlugins/Videomode/VideoHardware.pyo'):
 		# this will call the "setup-val" initial
 		config.av.aspectratio.addNotifier(setAspectRatio)
 		config.av.tvsystem.addNotifier(setSystem)
 		config.av.wss.addNotifier(setWSS)
-
+	
 	iAVSwitch.setInput("ENCODER") # init on startup
-	if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getBoxType() == 'omtimussos1' or getBoxType() == 'omtimussos2' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus':
-		detected = False
-	else:
-		detected = eAVSwitch.getInstance().haveScartSwitch()
-
-	SystemInfo["ScartSwitch"] = detected
+	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
 
 	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
@@ -248,26 +228,6 @@ def InitAVSwitch():
 	else:
 		config.av.surround_3d = ConfigNothing()
 
-	if os.path.exists("/proc/stb/audio/avl_choices"):
-		f = open("/proc/stb/audio/avl_choices", "r")
-		can_autovolume = f.read().strip().split(" ")
-		f.close()
-	else:
-		can_autovolume = False
-
-	SystemInfo["CanAutoVolume"] = can_autovolume
-
-	if can_autovolume:
-		def setAutoVulume(configElement):
-			f = open("/proc/stb/audio/avl", "w")
-			f.write(configElement.value)
-			f.close()
-		choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
-		config.av.autovolume = ConfigSelection(choices = choice_list, default = "none")
-		config.av.autovolume.addNotifier(setAutoVulume)
-	else:
-		config.av.autovolume = ConfigNothing()
-
 	try:
 		f = open("/proc/stb/audio/ac3_choices", "r")
 		file = f.read()[:-1]
@@ -300,7 +260,7 @@ def InitAVSwitch():
 				print "couldn't write pep_scaler_sharpness"
 
 		if getBoxType() == 'gbquad':
-			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
+			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0,26))
 		else:
 			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
 		config.av.scaler_sharpness.addNotifier(setScaler_sharpness)
