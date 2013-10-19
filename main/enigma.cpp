@@ -321,8 +321,7 @@ void runMainloop()
 
 const char *getEnigmaVersionString()
 {
-	std::string date = enigma2_date;
-	return std::string(date).c_str();
+	return enigma2_version;
 }
 
 const char *getDistro()
@@ -355,18 +354,11 @@ const char *getMachineBrand()
 		}
 		else if((strcmp(boxtype_name, "ini-1000de\n") == 0))
 		{
-			return "GI";
-		}
+			return "GM";
+		}		
 		else if((strcmp(boxtype_name, "xp1000s\n") == 0))
 		{
 			return "Octagon";
-		}
-		else if(strcmp(boxtype_name, "odinm7\n") == 0)
-		{
-			if(strcmp(BOXTYPE, "odinm6") == 0)
-			{
-				return "TELESTAR";
-			}
 		}
 		else
 		{
@@ -387,65 +379,50 @@ const char *getMachineName()
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
 
-		if(strcmp(boxtype_name, "ini-1000\n") == 0)
+		if(strcmp(boxtype_name, "ini-1000\n") == 0) 
 		{
 			return "HD-e";
 		}
-		else if(strcmp(boxtype_name, "ini-3000\n") == 0)
+		else if(strcmp(boxtype_name, "ini-3000\n") == 0) 
 		{
 			return "HD-1";
 		}
-		else if(strcmp(boxtype_name, "ini-5000\n") == 0)
+		else if(strcmp(boxtype_name, "ini-5000\n") == 0) 
 		{
 			return "HD-2";
 		}
-		else if(strcmp(boxtype_name, "ini-7000\n") == 0)
+		else if(strcmp(boxtype_name, "ini-7000\n") == 0) 
 		{
 			return "HD-3";
 		}
-		else if(strcmp(boxtype_name, "ini-7012\n") == 0)
+		else if(strcmp(boxtype_name, "ini-7012\n") == 0) 
 		{
 			return "HD-3";
 		}
-		else if(strcmp(boxtype_name, "ini-1000sv\n") == 0)
+		else if(strcmp(boxtype_name, "ini-1000sv\n") == 0) 
 		{
 			return "Premium Mini";
 		}
-		else if(strcmp(boxtype_name, "ini-5000sv\n") == 0)
+		else if(strcmp(boxtype_name, "ini-5000sv\n") == 0) 
 		{
 			return "Premium Twin";
 		}
-		else if(strcmp(boxtype_name, "ini-1000ru\n") == 0)
+		else if(strcmp(boxtype_name, "ini-1000ru\n") == 0) 
 		{
 			return "HD-1000";
-		}
-		else if(strcmp(boxtype_name, "ini-5000ru\n") == 0)
+		} 
+		else if(strcmp(boxtype_name, "ini-5000ru\n") == 0) 
 		{
 			return "HD-5000";
 		}
-		else if(strcmp(boxtype_name, "ini-9000ru\n") == 0)
-		{
-			return "HD-9000";
-		}
-		else if(strcmp(boxtype_name, "ini-9000de\n") == 0)
-		{
-			return "XpeedLX-3";
-		}
-		else if(strcmp(boxtype_name, "ini-1000de\n") == 0)
+		else if(strcmp(boxtype_name, "ini-1000de\n") == 0) 
 		{
 			return "XpeedLX";
-		}
-		else if(strcmp(boxtype_name, "xp1000s\n") == 0)
+		}		
+		else if(strcmp(boxtype_name, "xp1000s\n") == 0) 
 		{
 			return "SF8 HD";
-		}
-		else if(strcmp(boxtype_name, "odinm7\n") == 0)
-		{
-			if(strcmp(BOXTYPE, "odinm6") == 0)
-			{
-				return "STARSAT-LX";
-			}
-		}
+		}	
 		else
 		{
 			return MACHINE_NAME;
@@ -471,7 +448,19 @@ const char *getDriverDateString()
 
 const char *getBoxType()
 {
-	return BOXTYPE;
+  	// hack way to not change all in code
+	if(strcmp(BOXTYPE, "sezamhdx") == 0) 
+	{
+		return "ventonhdx";
+	}
+	else if(strcmp(BOXTYPE, "sezamhde") == 0) 
+	{
+		return "inihde";
+	}
+	else
+	{
+		return BOXTYPE;
+	}
 }
 
 #include <malloc.h>
