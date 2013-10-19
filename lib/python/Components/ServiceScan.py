@@ -30,6 +30,7 @@ class ServiceScan:
 				self.network.setText("")
 				self.transponder.setText("")
 			else:
+				result = self.foundServices + self.scan.getNumServices()
 				percentage = self.scan.getProgress()
 				if percentage > 99:
 					percentage = 99
