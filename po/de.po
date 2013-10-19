@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-10-13 12:11+0100\n"
+"PO-Revision-Date: 2013-10-19 12:58+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -4812,6 +4812,21 @@ msgstr "Netzwerkassistent"
 
 msgid "Network:"
 msgstr "Netzwerk:"
+
+msgid "Network MAC settings"
+msgstr "Netzwerk MAC-Einstellungen"
+
+msgid "Set the MAC-adress of your %s %s.\n"
+msgstr "Einstellen der MAC-Adresse Ihrer %s %s.\n"
+
+msgid "MAC-adress Setup"
+msgstr "MAC-Adresse Einstellungen"
+
+msgid "MAC-adress"
+msgstr "MAC-Adresse"
+
+msgid "Press OK to set the MAC-adress."
+msgstr "Drücken Sie OK, um die MAC-Adresse zu setzen."
 
 msgid "New"
 msgstr "Neu"
