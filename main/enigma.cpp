@@ -61,6 +61,7 @@ void keyEvent(const eRCKey &key)
 
 	ePtr<eActionMap> ptr;
 	eActionMap::getInstance(ptr);
+	/*eDebug("key.code : %02x \n", key.code);*/
 
 	if ((key.code == last.code) && (key.producer == last.producer) && key.flags & eRCKey::flagRepeat)
 		num_repeat++;
@@ -127,14 +128,6 @@ int exit_code;
 
 int main(int argc, char **argv)
 {
-	printf("Distro:  %s\n", DISTRO);
-	printf("Version: %s\n", IMAGEVERSION);
-	printf("Build:   %s\n", IMAGEBUILD);
-	printf("Brand:   %s\n", MACHINE_BRAND);
-	printf("Boxtype: %s\n", BOXTYPE);
-	printf("Machine: %s\n", MACHINE_NAME);
-	printf("Drivers: %s\n", DRIVERDATE);
-
 #ifdef MEMLEAK_CHECK
 	atexit(DumpUnfreed);
 #endif
@@ -143,6 +136,14 @@ int main(int argc, char **argv)
 	atexit(object_dump);
 #endif
 
+	printf("Distro:  %s\n", DISTRO);
+	printf("Version: %s\n", IMAGEVERSION);
+	printf("Build:   %s\n", IMAGEBUILD);
+	printf("Brand:   %s\n", MACHINE_BRAND);
+	printf("Boxtype: %s\n", BOXTYPE);
+	printf("Machine: %s\n", MACHINE_NAME);
+	printf("Drivers: %s\n", DRIVERDATE);
+	
 	gst_init(&argc, &argv);
 
 	// set pythonpath if unset
@@ -340,19 +341,19 @@ const char *getMachineBrand()
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
 
-		if((strcmp(boxtype_name, "ini-1000\n") == 0)  || (strcmp(boxtype_name, "ini-3000\n") == 0) || (strcmp(boxtype_name, "ini-5000\n") == 0) || (strcmp(boxtype_name, "ini-7000\n") == 0) || (strcmp(boxtype_name, "ini-7012\n") == 0))
+		if((strcmp(boxtype_name, "ini-1000\n") == 0)  || (strcmp(boxtype_name, "ini-3000\n") == 0) || (strcmp(boxtype_name, "ini-5000\n") == 0) || (strcmp(boxtype_name, "ini-7000\n") == 0) || (strcmp(boxtype_name, "ini-7012\n") == 0) || (strcmp(boxtype_name, "ini-9000\n") == 0))
 		{
 			return "UNiBOX";
 		}
-		else if((strcmp(boxtype_name, "ini-1000sv\n") == 0) || (strcmp(boxtype_name, "ini-5000sv\n") == 0))
+		else if((strcmp(boxtype_name, "ini-1000sv\n") == 0) || (strcmp(boxtype_name, "ini-5000sv\n") == 0) || (strcmp(boxtype_name, "ini-9000sv\n") == 0))
 		{
 			return "Miraclebox";
 		}
-		else if((strcmp(boxtype_name, "ini-1000ru\n") == 0) || (strcmp(boxtype_name, "ini-5000ru\n") == 0))
+		else if((strcmp(boxtype_name, "ini-1000ru\n") == 0) || (strcmp(boxtype_name, "ini-5000ru\n") == 0) || (strcmp(boxtype_name, "ini-9000ru\n") == 0))
 		{
 			return "Sezam";
 		}
-		else if((strcmp(boxtype_name, "ini-1000de\n") == 0))
+		else if((strcmp(boxtype_name, "ini-1000de\n") == 0) || (strcmp(boxtype_name, "ini-9000de\n") == 0))
 		{
 			return "GM";
 		}
