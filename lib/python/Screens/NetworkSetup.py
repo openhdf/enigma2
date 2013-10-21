@@ -26,6 +26,7 @@ from os import path as os_path, remove, unlink, rename, chmod, access, X_OK, sys
 from shutil import move
 import time
 import commands
+import os
 
 class NetworkAdapterSelection(Screen,HelpableScreen):
 	def __init__(self, session):
@@ -944,6 +945,12 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 	def doNothing(self):
 		pass
 
+	def readFile(self, target):
+		fp = open(target, 'r')
+		out = fp.read()
+		fp.close()
+		return out.split()[0]
+		
 	def genMainMenu(self):
 		menu = []
 		menu.append((_("Adapter settings"), "edit"))
@@ -978,7 +985,10 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		kernel_ver = about.getKernelVersionString()
 		#if kernel_ver <= "3.5.0":
 		#	menu.append((_("Network MAC settings"), "mac"))
-		menu.append((_("Network MAC settings"), "mac"))
+		if os.path.exists('/proc/stb/info/boxtype'):
+			model = self.readFile('/proc/stb/info/boxtype')
+			if model == 'gigablue':
+				menu.append((_("Network MAC settings"), "mac"))
 			
 		return menu
 
