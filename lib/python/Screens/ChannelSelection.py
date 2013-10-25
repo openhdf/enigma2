@@ -204,7 +204,8 @@ class ChannelContextMenu(Screen):
 				if not csel.movemode:
 					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level = 1)
 					if not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
-						menu.append(ChoiceEntryComponent(text = (_("add marker"), self.showMarkerInputBox)))
+						if not current.toString().startswith("-1"):
+							menu.append(ChoiceEntryComponent(text = (_("add marker"), self.showMarkerInputBox)))
 						if haveBouquets:
 							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level = 0)
 						else:
@@ -999,17 +1000,16 @@ class ChannelSelectionEdit:
 			self.mutableList = None
 			self.setTitle(self.saved_title)
 			self.saved_title = None
-			cur_root = self.getRoot()
 			self.servicelist.resetRoot()
 		else:
+			if not self.entry_marked:
+				self.toggleMoveMarked() # mark current entry
 			self.mutableList = self.getMutableList()
 			self.movemode = True
 			self.pathChangeDisabled = True # no path change allowed in movemode
 			self.saved_title = self.getTitle()
-			new_title = self.saved_title
 			pos = self.saved_title.find(')')
-			new_title = self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]
-			self.setTitle(new_title)
+			self.setTitle(self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]);
 		self["Service"].editmode = True
 
 	def handleEditCancel(self):
@@ -1998,6 +1998,13 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.enterPath(root)
 			self.startRoot = None
 			self.saveRoot()
+
+	def correctChannelNumber(self):
+		selected_ref = self.getCurrentSelection()
+		current_ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if selected_ref and selected_ref.getChannelNum() !=  (current_ref and current_ref.getChannelNum()):
+			# TODO: find a better way e.g. trigger an evStart from python
+			self.session.nav.playService(selected_ref, forceRestart=True)
 
 class RadioInfoBar(Screen):
 	def __init__(self, session):
