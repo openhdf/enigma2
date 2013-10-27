@@ -46,7 +46,6 @@ class VideoWizardSummary(WizardSummary):
 
 	def __init__(self, session, parent):
 		WizardSummary.__init__(self, session, parent)
-		#self["pic"] = Pixmap()
 
 	def setLCDPicCallback(self):
 		self.parent.setLCDTextCallback(self.setText)

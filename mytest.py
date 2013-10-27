@@ -125,6 +125,8 @@ from Components.PluginComponent import plugins
 profile("LOAD:Wizard")
 from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
+from Screens.VideoWizard import *
+
 import Screens.Rc
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
@@ -661,6 +663,7 @@ Components.SetupDevices.InitSetupDevices()
 profile("AVSwitch")
 import Components.AVSwitch
 Components.AVSwitch.InitAVSwitch()
+Components.AVSwitch.InitiVideomodeHotplug()
 
 profile("RecordingConfig")
 import Components.RecordingConfig
