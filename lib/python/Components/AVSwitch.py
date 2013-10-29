@@ -6,17 +6,9 @@ from enigma import eAVSwitch, getDesktop, getBoxType
 from SystemInfo import SystemInfo
 import os
 
-try:
-	file = open("/proc/stb/info/boxtype", "r")
-	model = file.readline().strip()
-	file.close()
-except:
-	model = "unknown"
-
 config.av = ConfigSubsection()
 
 class AVSwitch:
-	hw_type = HardwareInfo().get_device_name()
 	rates = { } # high-level, use selectable modes.
 	modes = { }  # a list of (high-level) modes for a certain port.
 
@@ -66,7 +58,7 @@ class AVSwitch:
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	# modes["DVI-PC"] = ["PC"]
-	
+
 	if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = set(["720p", "1080p", "1080i"])
@@ -126,11 +118,6 @@ class AVSwitch:
 	def isModeAvailable(self, port, mode, rate):
 		rate = self.rates[mode][rate]
 		for mode in rate.values():
-			if port == "DVI":
-				if self.hw_type == 'elite' or self.hw_type == 'premium' or self.hw_type == 'premium+' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime" :
-					if mode not in self.modes_preferred and not config.av.edid_override.value:
-						print "no, not preferred"
-						return False
 			if mode not in self.modes_available:
 				return False
 		return True
@@ -346,11 +333,7 @@ class AVSwitch:
 iAVSwitch = AVSwitch()
 
 def InitAVSwitch():
-	if getBoxType() == 'vuduo' or getBoxType().startswith('ixuss'):	
-		config.av.yuvenabled = ConfigBoolean(default=False)
-	else:	
-		config.av.yuvenabled = ConfigBoolean(default=True)
-	config.av.osd_alpha = ConfigSlider(default=255, limits=(0,255)) # Make openHDF compatible with some plugins who still use config.av.osd_alpha
+	config.av.yuvenabled = ConfigBoolean(default=True)
 	colorformat_choices = {"cvbs": _("CVBS"), "rgb": _("RGB"), "svideo": _("S-Video")}
 	# when YUV is not enabled, don't let the user select it
 	if config.av.yuvenabled.getValue():
@@ -361,7 +344,12 @@ def InitAVSwitch():
 	for i in range(5, 16):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	config.av.autores_label_timeout = ConfigSelection(default = "5", choices = [("0", _("Not Shown"))] + choicelist)
-	config.av.autores_all_res = ConfigYesNo(default = False)
+	config.av.autores_deinterlace = ConfigYesNo(default=False)
+	config.av.autores_sd = ConfigSelection(choices={"720p": _("720p"), "1080i": _("1080i")}, default="720p")
+	config.av.autores_720p24 = ConfigSelection(choices={"720p24": _("720p 24Hz"), "1080p24": _("1080p 24Hz")}, default="720p24")
+	config.av.autores_1080p24 = ConfigSelection(choices={"1080p24": _("1080p 24Hz"), "1080p25": _("1080p 25Hz")}, default="1080p24")
+	config.av.autores_1080p25 = ConfigSelection(choices={"1080p25": _("1080p 25Hz"), "1080p50": _("1080p 50Hz")}, default="1080p25")
+	config.av.autores_1080p30 = ConfigSelection(choices={"1080p30": _("1080p 30Hz"), "1080p60": _("1080p 60Hz")}, default="1080p30")
 	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
 	config.av.aspectratio = ConfigSelection(choices={
 			"4_3_letterbox": _("4:3 Letterbox"),
@@ -424,12 +412,7 @@ def InitAVSwitch():
 		if config.av.videoport and config.av.videoport.getValue() == "Scart-YPbPr":
 			iAVSwitch.setColorFormat(3)
 		else:
-			if getBoxType() == 'et6x00':
-				map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}	
-			elif getBoxType() == 'gbquad' or getBoxType().startswith('et'):
-				map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
-			else:
-				map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
+			map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 			iAVSwitch.setColorFormat(map[configElement.getValue()])
 
 	def setAspectRatio(configElement):
@@ -439,12 +422,7 @@ def InitAVSwitch():
 	config.av.colorformat.addNotifier(setColorFormat)
 	
 	iAVSwitch.setInput("ENCODER") # init on startup
-	if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getBoxType() == 'omtimussos1' or getBoxType() == 'omtimussos2' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus':
-		detected = False
-	else:
-		detected = eAVSwitch.getInstance().haveScartSwitch()
-	
-	SystemInfo["ScartSwitch"] = detected
+	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
 
 	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
@@ -490,26 +468,6 @@ def InitAVSwitch():
 		config.av.surround_3d.addNotifier(set3DSurround)
 	else:
 		config.av.surround_3d = ConfigNothing()
-		
-	if os.path.exists("/proc/stb/audio/avl_choices"):
-		f = open("/proc/stb/audio/avl_choices", "r")
-		can_autovolume = f.read().strip().split(" ")
-		f.close()
-	else:
-		can_autovolume = False
-
-	SystemInfo["CanAutoVolume"] = can_autovolume
-
-	if can_autovolume:
-		def setAutoVulume(configElement):
-			f = open("/proc/stb/audio/avl", "w")
-			f.write(configElement.value)
-			f.close()
-		choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
-		config.av.autovolume = ConfigSelection(choices = choice_list, default = "none")
-		config.av.autovolume.addNotifier(setAutoVulume)
-	else:
-		config.av.autovolume = ConfigNothing()		
 
 	try:
 		f = open("/proc/stb/audio/ac3_choices", "r")
