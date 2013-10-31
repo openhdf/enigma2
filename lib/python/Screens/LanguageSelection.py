@@ -6,11 +6,16 @@ from Components.Sources.List import List
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
-from Screens.InfoBar import InfoBar
+from Components.Language_cache import LANG_TEXT
+from enigma import eTimer
+
 from Screens.Rc import Rc
+
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN, SCOPE_LANGUAGE
 from Tools.LoadPixmap import LoadPixmap
-import gettext, enigma
+import gettext
+
+inWizzard = False
 
 def LanguageEntryComponent(file, name, index):
 	png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + index + ".png"))
@@ -21,15 +26,21 @@ def LanguageEntryComponent(file, name, index):
 	res = (index, name, png)
 	return res
 
+def _cached(x):
+	return LANG_TEXT.get(config.osd.language.value, {}).get(x, "")
+
 class LanguageSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
 		self.oldActiveLanguage = language.getActiveLanguage()
+		self.catalog = language.getActiveCatalog()
 
 		self.list = []
+# 		self["flag"] = Pixmap()
 		self["summarylangname"] = StaticText()
 		self["languages"] = List(self.list)
+		self["languages"].onSelectionChanged.append(self.changed)
 
 		self.updateList()
 		self.onLayoutFinish.append(self.selectActiveLanguage)
@@ -37,61 +48,101 @@ class LanguageSelection(Screen):
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
 
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"ok": self.save,
 			"cancel": self.cancel,
 			"red": self.cancel,
 			"green": self.save,
+			"yellow": self.updateCache,
 		}, -1)
 
+	def updateCache(self):
+		print"updateCache"
+		self["languages"].setList([('update cache','Updating cache, please wait...',None)])
+		self.updateTimer = eTimer()
+		self.updateTimer.callback.append(self.startupdateCache)
+		self.updateTimer.start(100)
+
+	def startupdateCache(self):
+		self.updateTimer.stop()
+		language.updateLanguageCache()
+		self["languages"].setList(self.list)
+		self.selectActiveLanguage()
+		
 	def selectActiveLanguage(self):
-		self.setTitle(_("Language selection"))
+		activeLanguage = language.getActiveLanguage()
 		pos = 0
-		for pos, x in enumerate(self.list):
-			if x[0] == self.oldActiveLanguage:
+		for x in self.list:
+			if x[0] == activeLanguage:
 				self["languages"].index = pos
 				break
+			pos += 1
 
 	def save(self):
-		self.commit(self.run())
-		if InfoBar.instance and self.oldActiveLanguage != config.osd.language.getValue():
-			self.close(True)
-		else:
+		self.run()
+		global inWizzard
+		if inWizzard:
+			inWizzard = False
 			self.close()
+		else:
+			self.close(self.oldActiveLanguage != config.osd.language.value)
 
 	def cancel(self):
 		language.activateLanguage(self.oldActiveLanguage)
+		config.osd.language.setValue(self.oldActiveLanguage)
+		config.osd.language.save()
 		self.close()
 
-	def run(self):
+	def run(self, justlocal = False):
 		print "updating language..."
 		lang = self["languages"].getCurrent()[0]
+
+		if lang == 'update cache':
+			self.setTitle("Updating cache")
+			self["summarylangname"].setText("Updating cache")
+			return
+
 		if lang != config.osd.language.getValue():
 			config.osd.language.setValue(lang)
 			config.osd.language.save()
-		return lang
 
-	def commit(self, lang):
-		print "commit language"
+		self.setTitle(_cached("T2"))
+		self["summarylangname"].setText(_cached("T2"))
+		self["key_red"].setText(_cached("T3"))
+		self["key_green"].setText(_cached("T4"))
+# 		index = self["languages"].getCurrent()[2]
+# 		print 'INDEX:',index
+# 		self["flag"].instance.setPixmap(self["languages"].getCurrent()[2])
+
+		if justlocal:
+			return
+
 		language.activateLanguage(lang)
-		config.misc.languageselected.value = 0
+		config.misc.languageselected.setValue(0)
 		config.misc.languageselected.save()
+		print "ok"
 
 	def updateList(self):
 		languageList = language.getLanguageList()
 		if not languageList: # no language available => display only english
-			list = [ LanguageEntryComponent("en", "English (UK)", "en_GB") ]
+			list = [ LanguageEntryComponent("en", "English (US)", "en_US") ]
 		else:
 			list = [ LanguageEntryComponent(file = x[1][2].lower(), name = x[1][0], index = x[0]) for x in languageList]
 		self.list = list
 		self["languages"].list = list
 
+	def changed(self):
+		self.run(justlocal = True)
+
 class LanguageWizard(LanguageSelection, Rc):
 	def __init__(self, session):
 		LanguageSelection.__init__(self, session)
 		Rc.__init__(self)
+		global inWizzard
+		inWizzard = True
 		self.onLayoutFinish.append(self.selectKeys)
+
 		self["wizard"] = Pixmap()
 		self["summarytext"] = StaticText()
 		self["text"] = Label()
@@ -102,9 +153,13 @@ class LanguageWizard(LanguageSelection, Rc):
 		self.selectKey("UP")
 		self.selectKey("DOWN")
 
+	def changed(self):
+		self.run(justlocal = True)
+		self.setText()
+
 	def setText(self):
-		self["text"].setText(_("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
-		self["summarytext"].setText(_("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
+		self["text"].setText(_cached("T1"))
+		self["summarytext"].setText(_cached("T1"))
 
 	def createSummary(self):
 		return LanguageWizardSummary
