@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-10-19 12:58+0100\n"
+"PO-Revision-Date: 2013-10-31 06:49+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3406,6 +3406,72 @@ msgstr "Vollbild"
 
 msgid "Fulview resulution"
 msgstr "Vollbild Auflösung"
+
+msgid "Automatic resolution"
+msgstr "Automatische Auflösung"
+
+msgid "All resolutions"
+msgstr "Alle Auflösungen"
+
+msgid "only HD"
+msgstr "nur für HD"
+
+msgid "Delay time"
+msgstr "Zeitverzögerung"
+
+msgid "Force de-interlace"
+msgstr "DeInterlacing erzwingen"
+
+msgid "Automatic resolution label"
+msgstr "Info Einblendung zur Auflösung"
+
+msgid "Show 1080p 24fps as"
+msgstr "Zeige 1080p mit 24FPS als"
+
+msgid "Show 1080p 25fps as"
+msgstr "Zeige 1080p mit 25FPS als"
+
+msgid "Show 1080p 30fps as"
+msgstr "Zeige 1080p mit 30FPS als"
+
+msgid "Show 720p 24fps as"
+msgstr "Zeige 720p mit 24FPS als"
+
+msgid "Show SD as"
+msgstr "Zeige SD Auflösung als"
+
+msgid ""
+"This option allows you to choose how to display 1080p 24Hz on your TV. (as "
+"not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 1080p 24Hz Video angezeigt "
+"wird. (Niicht alle Fernseher unterstÃ¼tzen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display 1080p 25Hz on your TV. (as "
+"not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 1080p 25Hz Video angezeigt "
+"wird. (Niicht alle Fernseher unterstÃ¼tzen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display 1080p 30Hz on your TV. (as "
+"not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 1080p 30Hz Video angezeigt "
+"wird. (Niicht alle Fernseher unterstÃ¼tzen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display 720p 24Hz on your TV. (as "
+"not all TV's support these resolutions)"
+msgstr ""
+"Diese Option erlaubt es einzustellen wie ein 720p 24Hz Video angezeigt wird. "
+"(Niicht alle Fernseher unterstÃ¼tzen alle Formate)"
+
+msgid ""
+"This option allows you to choose how to display standard defintion video on "
+"your TV."
+msgstr "Diese Option erlaubt es einzustellen wie ein SD Video angezeigt wird."
 
 msgid "Function of OK button"
 msgstr "Funktion von der OK Taste"
