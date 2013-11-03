@@ -625,9 +625,13 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.startHideTimer()
 		elif isMoviePlayerInfoBar(self) and not self.EventViewIsShown and config.usage.show_second_infobar.getValue():
 			self.hide()
-			self.openEventView(True)
+			try:
+				self.openEventView()
+			except:
+				pass
 			self.EventViewIsShown = True
-			self.startHideTimer()
+			self.hideTimer.stop()
+
 		else:
 			self.hide()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
