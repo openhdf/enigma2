@@ -492,7 +492,7 @@ class ChannelSelectionEPG:
 		if self.list is None:
 			return
 		eventid = self.list[0][0]
-		eventidnext = self.list[1][0]
+		eventidnext = self.list[0][1]
 		eventname = str(self.list[0][1])
 		if eventid is None:
 			return
