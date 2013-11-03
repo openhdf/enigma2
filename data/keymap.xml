@@ -1,5 +1,5 @@
 <keymap>
-	<!-- "HDF Keymap 11.08.2013" -->
+	<!-- "HDF Keymap 03.10.2013" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -213,7 +213,7 @@
 		<key id="KEY_PROG1" mapto="openBouquetList" flags="m" />
 		<key id="KEY_PROG2" mapto="openBouquetList" flags="m" />
 		<key id="KEY_FILE" mapto="showMovies" flags="m" />
-		<!--key id="KEY_MEDIA" mapto="showMovies" flags="m" /-->
+		<key id="KEY_MEDIA" mapto="showMovies" flags="m" />
 		<key id="KEY_LIST" mapto="showMovies" flags="m" />
 		<key id="KEY_PVR" mapto="showMovies" flags="m" />
 		<key id="KEY_TEXT" mapto="showText" flags="m" />
