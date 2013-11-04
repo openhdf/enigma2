@@ -20,7 +20,7 @@ class AudioSelection(Screen, ConfigListScreen):
 	def __init__(self, session, infobar=None, page=PAGE_AUDIO):
 		Screen.__init__(self, session)
 
-		self["streams"] = List([])
+		self["streams"] = List([], enableWrapAround=True)
 		self["key_red"] = Boolean(False)
 		self["key_green"] = Boolean(False)
 		self["key_yellow"] = Boolean(True)
@@ -169,7 +169,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.surround_3d = ConfigSelection(choices = surround_choicelist, default = config.av.surround_3d.getValue())
 				self.settings.surround_3d.addNotifier(self.change3DSurround, initial_call = False)
 				conflist.append(getConfigListEntry(_("3D Surround"), self.settings.surround_3d))
-
+			
 			edid_bypass_choicelist = [("00000000", _("off")), ("00000001", _("on"))]
 			self.settings.edid_bypass = ConfigSelection(choices = edid_bypass_choicelist, default = config.av.bypass_edid_checking.getValue())
 			self.settings.edid_bypass.addNotifier(self.changeEDIDBypass, initial_call = False)

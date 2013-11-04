@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-10-31 06:49+0100\n"
+"PO-Revision-Date: 2013-11-04 17:17+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -903,7 +903,7 @@ msgid "Allow beta (untested) updates"
 msgstr "Beta (ungetestete) Updates erlauben"
 
 msgid "Allow updates which are marked as faulty"
-msgstr "Als 'nicht korrekt funktionierend' markierte Updates erlauben'"
+msgstr "Als 'nicht korrekt funktionierend' markierte Updates erlauben"
 
 msgid "Allows more detailed to be in the crash log"
 msgstr "Erweiterte Informationen im Crash-Log eintragen"
@@ -9478,6 +9478,9 @@ msgstr ""
 
 msgid "When enabled, it is possible to leave the movieplayer with exit."
 msgstr "Wenn aktiviert kann der Mediaplayer mit Exit verlassen werden."
+
+msgid "Always hide infobar"
+msgstr "Infoleiste immer ausblenden"
 
 msgid ""
 "When enabled, measure power consumption to detect when the rotor stops "
