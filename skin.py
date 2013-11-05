@@ -6,17 +6,17 @@ import os
 profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop, getBoxType
 from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo, ConfigSelection, ConfigNothing
+from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_ACTIVE_SKIN, SCOPE_ACTIVE_LCDSKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
-from Components.Converter.Converter import Converter
 
-config.skin = ConfigSubsection()
-config.skin.display_skin = ConfigSelection(default = "skin_display.xml", choices = [("skin_display.xml", _("Channel Name")),("skin_text_clock.xml", _("Clock"))])
-if not os.path.exists("/usr/share/enigma2/display/skin_text_clock.xml"):
-	config.skin.display_skin = ConfigNothing()
+config.vfd = ConfigSubsection()
+config.vfd.show = ConfigSelection([("skin_text.xml", _("Channel Name")), ("skin_text_clock.xml", _("Clock"))], "skin_text.xml")
+if not os.path.exists("/usr/share/enigma2/skin_text.xml"):
+	config.vfd.show = ConfigNothing()
 
 colorNames = {}
 # Predefined fonts, typically used in built-in screens and for components like
@@ -145,6 +145,12 @@ except Exception, err:
 	addSkin(skin)
 	del skin
 
+# Add Skin for Display
+try:
+	addSkin(config.vfd.show.getValue())
+except:
+	addSkin('skin_text.xml')
+
 addSkin('skin_subtitles.xml')
 
 try:
@@ -156,7 +162,7 @@ except Exception, err:
 	if config.skin.primary_skin.getValue() == skin:
 		skin = 'skin.xml'
 	print "defaulting to standard skin...", skin
-	config.skin.primary_skin.setValue(skin)
+	config.skin.primary_skin.value = skin
 	addSkin(skin)
 	del skin
 
