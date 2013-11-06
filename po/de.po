@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-11-05 19:57+0100\n"
+"PO-Revision-Date: 2013-11-06 17:14+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3629,6 +3629,9 @@ msgstr "Y Position (Ab obere linke Ecke)"
 msgid "Zap on start service recording"
 msgstr "Umschaltverhalten beim Aufnahmestart"
 
+msgid "Message"
+msgstr "Nachricht"
+
 msgid "Show message when switching to recording service"
 msgstr "Zeige Hinweis beim Umschalten zur Aufnahme"
 
@@ -7239,6 +7242,9 @@ msgstr "Zeige Hintergrundfarbe von Picon"
 
 msgid "Show picons in servicelist"
 msgstr "Zeige Picon in der Senderliste"
+
+msgid "The servicelist is reloaded."
+msgstr "Die Senderliste wurde neu geladen."
 
 msgid "Show positioner movement"
 msgstr "Zeige Rotorbewegung"
