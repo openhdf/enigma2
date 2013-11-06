@@ -258,8 +258,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 			self['bouquetcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
 				{
-					'left': (self.leftPressed, _('Goto previous event')),
-					'right': (self.rightPressed, _('Goto next event')),
+					'left': (self.moveBouquetPageUp, _('Goto previous event')),
+					'right': (self.moveBouquetPageDown, _('Goto next event')),
 					'up': (self.moveBouquetUp, _('Goto previous channel')),
 					'down': (self.moveBouquetDown, _('Goto next channel'))
 				}, -1)
@@ -329,8 +329,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 			self['bouquetcursoractions'] = HelpableActionMap(self, 'DirectionActions', 
 				{
-					'left': (self.leftPressed, _('Goto previous event')),
-					'right': (self.rightPressed, _('Goto next event')),
+					'left': (self.moveBouquetPageUp, _('Goto previous event')),
+					'right': (self.moveBouquetPageDown, _('Goto next event')),
 					'up': (self.moveBouquetUp, _('Goto previous channel')),
 					'down': (self.moveBouquetDown, _('Goto next channel'))
 				}, -1)
@@ -604,6 +604,14 @@ class EPGSelection(Screen, HelpableScreen):
 		self['bouquetlist'].moveTo(self['bouquetlist'].instance.moveDown)
 		self['bouquetlist'].fillBouquetList(self.bouquets)
 
+	def moveBouquetPageUp(self):
+		self['bouquetlist'].moveTo(self['bouquetlist'].instance.pageUp)
+		self['bouquetlist'].fillBouquetList(self.bouquets)
+
+	def moveBouquetPageDown(self):
+		self['bouquetlist'].moveTo(self['bouquetlist'].instance.pageDown)
+		self['bouquetlist'].fillBouquetList(self.bouquets)
+
 	def nextBouquet(self):
 		if self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.moveBouquetDown()
@@ -716,12 +724,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self.infoKeyPressed(True)
 
 	def closeScreen(self):
-		if self.type == None:
-			self.close()
-			return
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
-			return
+			return # stop and do not continue.
 		if self.CurrBouquet and self.CurrService and (self.CurrBouquet != self.StartBouquet or self.CurrService != self.StartRef):
 			self.zapToNumber(self.StartRef, self.StartBouquet)
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
@@ -733,7 +738,6 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.session.pipshown:
 			self.session.pipshown = False
 			del self.session.pip
-			self.setServicelistSelection(self.StartBouquet, self.StartRef)
 		self.closeEventViewDialog()
 		self.close(True)
 
