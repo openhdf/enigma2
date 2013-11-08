@@ -142,11 +142,11 @@ class AVSwitch:
 			mode_60 = mode_50
 
 		mode_etc = None
-		if os.path.exists('/proc/stb/video/videomode_50hz'):
+		if os.path.exists('/proc/stb/video/videomode_50hz') and not getBoxType().startswith('gb'):
 			f = open("/proc/stb/video/videomode_50hz", "w")
 			f.write(mode_50)
 			f.close()
-		if os.path.exists('/proc/stb/video/videomode_60hz'):
+		if os.path.exists('/proc/stb/video/videomode_60hz') and not getBoxType().startswith('gb'):
 			f = open("/proc/stb/video/videomode_60hz", "w")
 			f.write(mode_60)
 			f.close()
@@ -336,7 +336,11 @@ class AVSwitch:
 iAVSwitch = AVSwitch()
 
 def InitAVSwitch():
-	config.av.yuvenabled = ConfigBoolean(default=True)
+	if getBoxType() == 'vuduo' or getBoxType().startswith('ixuss'):	
+		config.av.yuvenabled = ConfigBoolean(default=False)
+	else:	
+		config.av.yuvenabled = ConfigBoolean(default=True)
+	config.av.osd_alpha = ConfigSlider(default=255, limits=(0,255)) # for some plugins who still use config.av.osd_alpha
 	colorformat_choices = {"cvbs": _("CVBS"), "rgb": _("RGB"), "svideo": _("S-Video")}
 	# when YUV is not enabled, don't let the user select it
 	if config.av.yuvenabled.getValue():
@@ -416,7 +420,12 @@ def InitAVSwitch():
 		if config.av.videoport and config.av.videoport.getValue() == "Scart-YPbPr":
 			iAVSwitch.setColorFormat(3)
 		else:
-			map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
+			if getBoxType() == 'et6x00':
+				map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}	
+			elif getBoxType() == 'gbquad' or getBoxType().startswith('et'):
+				map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
+			else:
+				map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 			iAVSwitch.setColorFormat(map[configElement.getValue()])
 
 	def setAspectRatio(configElement):
@@ -426,7 +435,12 @@ def InitAVSwitch():
 	config.av.colorformat.addNotifier(setColorFormat)
 	
 	iAVSwitch.setInput("ENCODER") # init on startup
-	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
+	if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getBoxType() == 'omtimussos1' or getBoxType() == 'omtimussos2' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus':
+		detected = False
+	else:
+		detected = eAVSwitch.getInstance().haveScartSwitch()
+	
+	SystemInfo["ScartSwitch"] = detected
 
 	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
@@ -473,6 +487,26 @@ def InitAVSwitch():
 	else:
 		config.av.surround_3d = ConfigNothing()
 
+	if os.path.exists("/proc/stb/audio/avl_choices"):
+		f = open("/proc/stb/audio/avl_choices", "r")
+		can_autovolume = f.read().strip().split(" ")
+		f.close()
+	else:
+		can_autovolume = False
+
+	SystemInfo["CanAutoVolume"] = can_autovolume
+
+	if can_autovolume:
+		def setAutoVulume(configElement):
+			f = open("/proc/stb/audio/avl", "w")
+			f.write(configElement.value)
+			f.close()
+		choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+		config.av.autovolume = ConfigSelection(choices = choice_list, default = "none")
+		config.av.autovolume.addNotifier(setAutoVulume)
+	else:
+		config.av.autovolume = ConfigNothing()		
+		
 	try:
 		f = open("/proc/stb/audio/ac3_choices", "r")
 		file = f.read()[:-1]
