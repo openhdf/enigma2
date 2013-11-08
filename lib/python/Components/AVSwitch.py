@@ -6,6 +6,13 @@ from enigma import eAVSwitch, getDesktop, getBoxType
 from SystemInfo import SystemInfo
 import os
 
+try:
+	file = open("/proc/stb/info/boxtype", "r")
+	model = file.readline().strip()
+	file.close()
+except:
+	model = "unknown"
+
 config.av = ConfigSubsection()
 
 class AVSwitch:
