@@ -491,10 +491,11 @@ class ChannelSelectionEPG:
 		self.epgcache = eEPGCache.getInstance()
 		test = [ 'ITBDSECX', (refstr, 1, -1, 60) ] # search next 24 hours
 		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
-		if self.list is None:
+		if len(self.list) < 2:
 			return
+		# print 'LIST:',self.list # debug to show list
 		eventid = self.list[0][0]
-		eventidnext = self.list[0][1]
+		eventidnext = self.list[1][0]
 		eventname = str(self.list[0][1])
 		if eventid is None:
 			return
