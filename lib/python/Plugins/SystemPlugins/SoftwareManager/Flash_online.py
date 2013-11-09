@@ -216,7 +216,11 @@ class doFlashImage(Screen):
 		box = self.box()
 		self.hide()
 		if self.Online:
-			url = self.feedurl + "/" + box + "/" + sel
+			if self.feed == "team":
+				url = self.feedurl + "/" + sel
+			else:
+				url = self.feedurl + "/" + box + "/" + sel
+			print url
 			u = urllib2.urlopen(url)
 			f = open(file_name, 'wb')
 			meta = u.info()
