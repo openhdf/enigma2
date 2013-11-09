@@ -50,11 +50,11 @@ class inputDevices:
 
 
 	def getInputDeviceType(self,name):
-		if name.find("remote control") != -1:
+		if "remote control" in name:
 			return "remote"
-		elif name.find("keyboard") != -1:
+		elif "keyboard" in name:
 			return "keyboard"
-		elif name.find("mouse") != -1:
+		elif "mouse" in name:
 			return "mouse"
 		else:
 			print "Unknown device type:",name
@@ -208,7 +208,7 @@ config.plugins.remotecontroltype.rctype = ConfigInteger(default = 0)
 
 class RcTypeControl():
 	def __init__(self):
-		if pathExists('/proc/stb/ir/rc/type') and pathExists('/proc/stb/info/boxtype'):
+		if pathExists('/proc/stb/ir/rc/type') and pathExists('/proc/stb/info/boxtype') and not getBoxType().startswith('gb'):
 			self.isSupported = True
 
 			fd = open('/proc/stb/info/boxtype', 'r')
@@ -218,8 +218,6 @@ class RcTypeControl():
 			if config.plugins.remotecontroltype.rctype.getValue() != 0:
 				self.writeRcType(config.plugins.remotecontroltype.rctype.getValue())
 		else:
-			self.isSupported = False
-		if getBoxType().startswith('gb'):
 			self.isSupported = False			
 
 	def multipleRcSupported(self):
