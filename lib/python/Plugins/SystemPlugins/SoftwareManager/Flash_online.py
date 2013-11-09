@@ -220,7 +220,7 @@ class doFlashImage(Screen):
 				url = self.feedurl + "/" + sel
 			else:
 				url = self.feedurl + "/" + box + "/" + sel
-			print url
+			# print url
 			u = urllib2.urlopen(url)
 			f = open(file_name, 'wb')
 			meta = u.info()
