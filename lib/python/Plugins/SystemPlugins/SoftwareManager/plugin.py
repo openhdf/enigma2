@@ -261,7 +261,11 @@ class UpdatePluginMenu(Screen):
 				print "[status] green"
 			hdfonlinestatus.close()
 		except:
-			pass
+			hdfbutton = "/usr/share/enigma2/skin_default/hdf_status_red.png"
+			self["Arrow1"].setPosition("300","427")
+			self["Arrow2"].setPosition("270","432")
+			print "[status] red"
+			#pass
 		##check end
 		self["hdfStatusPic"].instance.setPixmapFromFile(hdfbutton)
 
