@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-11-06 20:18+0100\n"
+"PO-Revision-Date: 2013-11-12 17:42+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2658,6 +2658,12 @@ msgstr "Reservierter Speicherplatz für Aufnahmen (GB)"
 
 msgid "Display"
 msgstr "Display (VFD/LCD)"
+
+msgid "LED Manager..."
+msgstr "Giga LED Manager"
+
+msgid "Giga LED Setup"
+msgstr "Giga LED Setup"
 
 msgid "Display 16:9 content as"
 msgstr "16:9-Inhalt anzeigen als"
@@ -5792,7 +5798,7 @@ msgid "Position of finished Timers in Timerlist"
 msgstr "Position beendeter Timer in der Timerliste"
 
 msgid "Position setup"
-msgstr "Position Einstellungen"
+msgstr "Positions Einstellungen"
 
 msgid "Position stored at index"
 msgstr "Position bei Index gespeichert"
@@ -6156,6 +6162,9 @@ msgstr "verbleibend und verstrichen"
 
 msgid "Remember service PIN"
 msgstr "Service PIN merken"
+
+msgid "Blind scan"
+msgstr "Blind-Scan"
 
 msgid "Remote box"
 msgstr "Entfernte Box"
@@ -7436,10 +7445,10 @@ msgid "Size: "
 msgstr "Größe:"
 
 msgid "Skin Setting"
-msgstr "Skinauswahl"
+msgstr "Skin Einstellungen"
 
 msgid "Skin setup"
-msgstr "Skinauswahl"
+msgstr "Skin Einstellungen"
 
 msgid "Skins"
 msgstr "Skins"
