@@ -1,4 +1,4 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.Language import language
 from enigma import eConsoleAppContainer, eDVBDB, getImageVersionString
 
