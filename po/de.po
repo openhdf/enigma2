@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-11-12 17:42+0100\n"
+"PO-Revision-Date: 2013-11-14 19:44+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3071,6 +3071,9 @@ msgstr "Enigma2 Skinauswahl"
 msgid "Enimga2 Changes"
 msgstr "Enigma2 Änderungen"
 
+msgid "OpenHDF E2 Changes"
+msgstr "OpenHDF E2 Änderungen"
+
 msgid "Enter main menu..."
 msgstr "Öffne Hauptmenü..."
 
@@ -5219,6 +5222,9 @@ msgstr "Anzahl von Zeilen"
 msgid "OE Changes"
 msgstr "OE Änderungen"
 
+msgid "OE-A Changes"
+msgstr "OE-A Änderungen"
+
 msgid "OK"
 msgstr "OK"
 
@@ -7082,6 +7088,12 @@ msgstr "Zeige Display Icons"
 
 msgid "Show E2 Log"
 msgstr "Zeige E2 Log"
+
+msgid "Show OpenHDF Log"
+msgstr "Zeige OpenHDF Log"
+
+msgid "Show OE-A Log"
+msgstr "Zeige OE-A Log"
 
 msgid "Show EIT now/next in infobar"
 msgstr "Zeige EIT jetzt/demnächst in Infobar"
