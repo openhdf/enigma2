@@ -510,14 +510,14 @@ class ViewGitLog(Screen):
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
 		self.skinName = "SoftwareUpdateChanges"
-		self.setTitle(_("OE Changes"))
+		self.setTitle(_("OE-A Changes"))
 		self.logtype = 'oe'
 		self["text"] = ScrollLabel()
 		self['title_summary'] = StaticText()
 		self['text_summary'] = StaticText()
 		self["key_red"] = Button(_("Close"))
 		self["key_green"] = Button(_("OK"))
-		self["key_yellow"] = Button(_("Show E2 Log"))
+		self["key_yellow"] = Button(_("Show OpenHDF Log"))
 		self["myactions"] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
 		{
 			'cancel': self.closeRecursive,
@@ -533,12 +533,12 @@ class ViewGitLog(Screen):
 
 	def changelogtype(self):
 		if self.logtype == 'oe':
-			self["key_yellow"].setText(_("Show OE Log"))
-			self.setTitle(_("Enimga2 Changes"))
+			self["key_yellow"].setText(_("Show OE-A Log"))
+			self.setTitle(_("OpenHDF E2 Changes"))
 			self.logtype = 'e2'
 		else:
-			self["key_yellow"].setText(_("Show E2 Log"))
-			self.setTitle(_("OE Changes"))
+			self["key_yellow"].setText(_("Show OpenHDF Log"))
+			self.setTitle(_("OE-A Changes"))
 			self.logtype = 'oe'
 		self.getlog()
 
