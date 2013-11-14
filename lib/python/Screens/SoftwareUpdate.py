@@ -24,7 +24,7 @@ ocram = ''
 class SoftwareUpdateChanges(Screen):
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
-		self.setTitle(_("OE Changes"))
+		self.setTitle(_("OE-A Changes"))
 		if path.exists('/tmp/oe-git.log'):
 			remove('/tmp/oe-git.log')
 		if path.exists('/tmp/e2-git.log'):
@@ -35,7 +35,7 @@ class SoftwareUpdateChanges(Screen):
 		self['text_summary'] = StaticText()
 		self["key_red"] = Button(_("Close"))
 		self["key_green"] = Button(_("Update"))
-		self["key_yellow"] = Button(_("Show E2 Log"))
+		self["key_yellow"] = Button(_("Show OpenHDF Log"))
 		self["myactions"] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
 		{
 			'cancel': self.closeRecursive,
@@ -51,11 +51,11 @@ class SoftwareUpdateChanges(Screen):
 
 	def changelogtype(self):
 		if self.logtype == 'oe':
-			self["key_yellow"].setText(_("Show OE Log"))
+			self["key_yellow"].setText(_("Show OE-A Log"))
 			self.setTitle(_("Enimga2 Changes"))
 			self.logtype = 'e2'
 		else:
-			self["key_yellow"].setText(_("Show E2 Log"))
+			self["key_yellow"].setText(_("Show OpenHDF Log"))
 			self.setTitle(_("OE Changes"))
 			self.logtype = 'oe'
 		self.getlog()
