@@ -129,6 +129,9 @@ class VideoSetup(Screen, ConfigListScreen):
 			if SystemInfo["Can3DSurround"]:
 				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option configures you can enable 3D Surround Sound.")))
 
+			if SystemInfo["CanAutoVolume"]:
+				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume,_("This option configures you can set Auto Volume Level.")))
+
 			if SystemInfo["Canedidchecking"]:
 				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option configures you can Bypass HDMI EDID check")))
 
@@ -311,7 +314,10 @@ class AutoVideoMode(Screen):
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/framerate"):
 			f = open("/proc/stb/vmpeg/0/framerate", "r")
-			video_rate = int(f.read())
+			try:
+				video_rate = int(f.read())
+			except:
+				video_rate = 50
 			f.close()
 
 		if not video_height or not video_width or not video_pol or not video_rate:
@@ -353,7 +359,7 @@ class AutoVideoMode(Screen):
 				if video_rate == 25000 and video_pol == 'i':
 					print 'VID TEST2'
 					new_rate = 50000
-				elif video_rate == 59940 or (video_rate == 29970 and video_pol == 'i'): 
+				elif video_rate == 59940 or (video_rate == 29970 and video_pol == 'i') or (video_rate == 29970 and video_pol == 'p' and config.av.autores.getValue() == 'disabled'): 
 					print 'VID TEST3'
 					new_rate = 60000
 				elif video_rate == 23976:
