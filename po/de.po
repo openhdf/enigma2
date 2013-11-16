@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-11-14 19:44+0100\n"
+"PO-Revision-Date: 2013-11-16 17:54+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -7529,6 +7529,9 @@ msgstr "Software wiederherstellen"
 
 msgid "Software update"
 msgstr "Software aktualisieren"
+
+msgid "Software Update Settings"
+msgstr "Einstellungen Software Update"
 
 msgid "Softwaremanager information"
 msgstr "Information Softwareverwaltung"
