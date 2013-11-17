@@ -85,10 +85,10 @@ def InitUsageConfig():
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
 		("do not change", _("Do not change")), ("off", _("Off")), ("on", _("On")) ])
 
-	config.usage.pip_zero_button = ConfigSelection(default = "standard", choices = [
+	config.usage.pip_zero_button = ConfigSelection(default = "swapstop", choices = [
 		("standard", _("Standard")), ("swap", _("Swap PiP and main picture")),
 		("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP")) ])
-	config.usage.pip_hideOnExit = ConfigSelection(default = "no", choices = [
+	config.usage.pip_hideOnExit = ConfigSelection(default = "without popup", choices = [
 		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
 
 	if not os.path.exists(resolveFilename(SCOPE_HDD)):
@@ -497,7 +497,7 @@ def InitUsageConfig():
 				pass
 		config.misc.zapmode = ConfigSelection(default = "mute", choices = zapoptions )
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
-	config.usage.historymode = ConfigSelection(default = "1", choices = [("0", _("Just zap")), ("1", _("Show menu"))])
+	config.usage.historymode = ConfigSelection(default = "1", choices = [("1", _("Just zap")), ("0", _("Show menu"))])
 
 	config.subtitles = ConfigSubsection()
 	config.subtitles.ttx_subtitle_colors = ConfigSelection(default = "1", choices = [
@@ -629,9 +629,9 @@ def InitUsageConfig():
 	config.logmanager.sentfiles = ConfigLocations(default='')
 
 	config.plisettings = ConfigSubsection()
-	config.plisettings.Subservice = ConfigYesNo(default = False)
+	config.plisettings.Subservice = ConfigYesNo(default = True)
 	config.plisettings.ColouredButtons = ConfigYesNo(default = True)
-	config.plisettings.InfoBarEpg_mode = ConfigSelection(default="2", choices = [
+	config.plisettings.InfoBarEpg_mode = ConfigSelection(default="0", choices = [
 					("0", _("as plugin in extended bar")),
 					("1", _("with long OK press")),
 					("2", _("with exit button")),
