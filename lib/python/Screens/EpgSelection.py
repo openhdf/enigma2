@@ -724,9 +724,12 @@ class EPGSelection(Screen, HelpableScreen):
 			self.infoKeyPressed(True)
 
 	def closeScreen(self):
+		if self.type == None:
+			self.close()
+			return # stop and do not continue fix blackscreen with cooltv
 		if self.type == EPG_TYPE_SINGLE:
 			self.close()
-			return # stop and do not continue.
+			return
 		if self.CurrBouquet and self.CurrService and (self.CurrBouquet != self.StartBouquet or self.CurrService != self.StartRef):
 			self.zapToNumber(self.StartRef, self.StartBouquet)
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
