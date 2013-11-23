@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-11-16 17:54+0100\n"
+"PO-Revision-Date: 2013-11-23 17:54+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -517,7 +517,7 @@ msgid "A"
 msgstr "A"
 
 msgid ""
-"A background update check is is progress, please wait a few minutes and try "
+"A background update check is in progress, please wait a few minutes and try "
 "again."
 msgstr ""
 "Eine Updateprüfung läuft im Hintergrund. Bitte ein paar Minuten warten und "
@@ -3261,6 +3261,9 @@ msgstr "Lüfter %d"
 
 msgid "Fast"
 msgstr "Schnell"
+
+msgid "Show HDD progress"
+msgstr "Zeige Festplatten Aktivität"
 
 msgid "Fast DiSEqC"
 msgstr "Schnelles DiSEqC"
@@ -6588,6 +6591,18 @@ msgstr ""
 
 msgid "Scrolling Speed"
 msgstr "Scrollgeschwindigkeit"
+
+msgid "Scrolling Speed (software render)"
+msgstr "Scrollgeschwindigkeit (Software Renderer)"
+
+msgid "Scrolling delay (software render)"
+msgstr "Scrollwiederholung (Software Renderer)"
+
+msgid "fast"
+msgstr "Schnell"
+
+msgid "slow"
+msgstr "Langsam"
 
 msgid "Search"
 msgstr "Suche"
