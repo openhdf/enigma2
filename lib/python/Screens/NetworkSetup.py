@@ -982,16 +982,19 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
-		kernel_ver = about.getKernelVersionString()
+			menu.append((_("Network MAC settings"), "mac"))
+		return menu
+		
+		#kernel_ver = about.getKernelVersionString()
 		#if kernel_ver <= "3.5.0":
 		#	menu.append((_("Network MAC settings"), "mac"))
-		if os.path.exists('/proc/stb/info/boxtype'):
-			model = self.readFile('/proc/stb/info/boxtype')
-			if model == 'gigablue':
-				menu.append((_("Network MAC settings"), "mac"))
-			
-		return menu
 
+		#if os.path.exists('/proc/stb/info/boxtype'):
+		#	model = self.readFile('')
+		#	if model == 'gigablue':
+		#		menu.append((_("Network MAC settings"), "mac"))
+		#return menu
+		
 	def AdapterSetupClosed(self, *ret):
 		if ret is not None and len(ret):
 			if ret[0] == 'ok' and (iNetwork.isWirelessInterface(self.iface) and iNetwork.getAdapterAttribute(self.iface, "up") is True):
