@@ -4,7 +4,7 @@ import xml.etree.cElementTree
 import os
 
 profile("LOAD:enigma_skin")
-from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop, getBoxType
+from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop, getBoxType, getMachineBrand, getMachineName
 from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo, ConfigSelection, ConfigNothing
 from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
@@ -106,6 +106,10 @@ addSkin('skin_second_infobar.xml')
 # Only one of these is present, compliments of AM_CONDITIONAL
 if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2' or getBoxType() == 'gbquad' or getBoxType() == 'gb800ue' or getBoxType() == 'gb800ueplus':
 	config.skin.display_skin = ConfigText(default = "skin_display.xml")
+
+if getBoxType() == "inihde":
+	config.skin.display_skin = ConfigText(default = "skin_text_clock.xml")	
+
 #else:
 #	config.skin.display_skin = ConfigNothing()
 
