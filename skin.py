@@ -108,7 +108,7 @@ if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2' or getBoxType() == 'gb
 	config.skin.display_skin = ConfigText(default = "skin_display.xml")
 
 if getBoxType() == "inihde":
-	config.skin.display_skin = ConfigText(default = "skin_text_clock.xml")	
+	config.skin.display_skin = ConfigText(default = "skin_display_text.xml")	
 
 #else:
 #	config.skin.display_skin = ConfigNothing()
