@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-11-30 19:04+0100\n"
+"PO-Revision-Date: 2013-12-01 00:32+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -186,6 +186,15 @@ msgstr " (PiP)"
 
 msgid "Close PiP on exit"
 msgstr "Beende PiP mit Exit Taste"
+
+msgid "Show PIP in the Front Display"
+msgstr "Zeige PiP im Front Display"
+
+msgid "PIP"
+msgstr "Bild im Bild"
+
+msgid "PIP with OSD"
+msgstr "Bild im Bild mit OSD"
 
 msgid "With popup"
 msgstr "Nachfragen"

@@ -225,13 +225,24 @@ def InitLcd():
 				except:
 					pass
 			def setMiniTVFPS(configElement):
-				print "***", configElement.value
 				try:
 					f = open("/proc/stb/lcd/fps", "w")
 					f.write("%d \n" % configElement.value)
 					f.close()
 				except:
-					pass					
+					pass
+			def setLCDModePiP(configElement):
+				pass
+
+			config.lcd.modepip = ConfigSelection(choices={
+					"0": _("off"),
+					"5": _("PIP"),
+					"7": _("PIP with OSD")},
+					default = "0")
+			if config.misc.boxtype.value == 'gbquad' or config.misc.boxtype.value == 'gbquadplus':
+				config.lcd.modepip.addNotifier(setLCDModePiP)
+			else:				
+				config.lcd.modepip = ConfigNothing()					
 			config.lcd.modeminitv = ConfigSelection(choices={
 					"0": _("normal"),
 					"1": _("MiniTV"),
