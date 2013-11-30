@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-11-24 18:11+0100\n"
+"PO-Revision-Date: 2013-11-30 19:04+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2359,6 +2359,9 @@ msgstr "Aktuelle Zeit"
 
 msgid "Current transponder"
 msgstr "Akt. Transponder"
+
+msgid "Current Transponder"
+msgstr "Aktueller Transponder"
 
 msgid "Current value: "
 msgstr "Akt. Wert:"
