@@ -1084,6 +1084,7 @@ def filescan(**kwargs):
 			paths_to_scan =
 				[
 					ScanPath(path = "", with_subdirs = False),
+					ScanPath(path = "PRIVATE/AVCHD/BDMV/STREAM", with_subdirs = False),
 				],
 			name = "Movie",
 			description = _("Watch movies..."),
@@ -1123,6 +1124,6 @@ from Plugins.Plugin import PluginDescriptor
 def Plugins(**kwargs):
 	return [
 		PluginDescriptor(name = _("Media player"), description = _("Play back media files"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc = main),
-		PluginDescriptor(name = _("Media player"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
+		#PluginDescriptor(name = _("Media player"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
 		PluginDescriptor(name = _("Media player"), description = _("Play back media files"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)
 	]

@@ -3,6 +3,7 @@ from enigma import eDVBResourceManager,\
 
 from Screens.Screen import Screen
 from Screens.ScanSetup import ScanSetup
+from Screens.ServiceScan import ServiceScan
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 
@@ -14,7 +15,7 @@ from Components.MenuList import MenuList
 from Components.config import ConfigSelection, getConfigListEntry
 from Components.TuneTest import Tuner
 
-class Satfinder(ScanSetup):
+class Satfinder(ScanSetup, ServiceScan):
 	def __init__(self, session):
 		self.initcomplete = False
 		self.frontendData = None
@@ -118,6 +119,8 @@ class Satfinder(ScanSetup):
 
 	def retune(self, configElement):
 		returnvalue = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+		if not self.tuning_sat.value:
+			return
 		satpos = int(self.tuning_sat.getValue())
 		if self.tuning_type.getValue() == "manual_transponder":
 			if self.scan_sat.system.getValue() == eDVBFrontendParametersSatellite.System_DVB_S2:
@@ -194,37 +197,47 @@ class Satfinder(ScanSetup):
 
 	def updatePreDefTransponders(self):
 		ScanSetup.predefinedTranspondersList(self, self.tuning_sat.orbital_position)
-		self.preDefTransponders.addNotifier(self.retune, initial_call = False)
+		if self.preDefTransponders:
+			self.preDefTransponders.addNotifier(self.retune, initial_call=False)
 
 	def keyGoScan(self):
 		self.frontend = None
 		del self.raw_channel
+		tlist = []
+		self.addSatTransponder(tlist,
+			self.transponder[0], # frequency
+			self.transponder[1], # sr
+			self.transponder[2], # pol
+			self.transponder[3], # fec
+			self.transponder[4], # inversion
+			self.tuning_sat.orbital_position,
+			self.transponder[6], # system
+			self.transponder[7], # modulation
+			self.transponder[8], # rolloff
+			self.transponder[9]  # pilot
+		)
+		self.startScan(tlist, self.feid)
 
-		self.updateSatList()
+	def startScan(self, tlist, feid):
+		flags = 0
+		networkid = 0
+		self.session.openWithCallback(self.startScanCallback, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
 
-		self.scan_satselection = [ self.tuning_sat ]
-		self.satfinder = True
-
-		self.scan_sat.frequency.setValue(self.transponder[0])
-		self.scan_sat.symbolrate.setValue(self.transponder[1])
-		self.scan_sat.polarization.setValue(self.transponder[2])
-		if self.scan_sat.system.getValue() == eDVBFrontendParametersSatellite.System_DVB_S:
-			self.scan_sat.fec.setValue(self.transponder[3])
-		else:
-			self.scan_sat.fec_s2.setValue(self.transponder[3])
-		self.scan_sat.inversion.setValue(self.transponder[4])
-		self.scan_sat.system.setValue(self.transponder[6])
-		self.scan_sat.modulation.setValue(self.transponder[7])
-		self.scan_sat.rolloff.setValue(self.transponder[8])
-		self.scan_sat.pilot.setValue(self.transponder[9])
-
-		self.keyGo()
+	def startScanCallback(self, answer):
+		if answer:
+			self.doCloseRecursive()
 
 	def keyCancel(self):
 		if self.session.postScanService and self.frontend:
 			self.frontend = None
 			del self.raw_channel
 		self.close(False)
+
+	def doCloseRecursive(self):
+		if self.session.postScanService and self.frontend:
+			self.frontend = None
+			del self.raw_channel
+		self.close(True)
 
 	def tune(self, transponder):
 		if self.initcomplete:
@@ -253,7 +266,7 @@ def SatfinderMain(session, close=None, **kwargs):
 
 def SatfinderStart(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Satfinder"), SatfinderMain, "satfinder", 35)]
+		return [(_("Satfinder"), SatfinderMain, "satfinder", 35, True)]
 	else:
 		return []
 
