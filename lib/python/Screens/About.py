@@ -50,8 +50,8 @@ class About(Screen):
 		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 
-		AboutText += _("Version:\t%s") % getImageVersionString() + "\n"
-		AboutText += _("Build:\t%s") % getBuildVersionString() + "\n"
+		AboutText += _("HDF Version:\t%s") % getImageVersionString() + "\n"
+		AboutText += _("HDF Build:\t%s") % getBuildVersionString() + "\n"
 		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
 
 		string = getDriverDateString()
