@@ -995,7 +995,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			else:
 				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
-	def startScanCallback(self, answer=True):
+	def startScanCallback(self, answer):
 		if answer:
 			self.doCloseRecursive()
 
