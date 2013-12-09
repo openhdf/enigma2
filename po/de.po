@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-12-01 19:48+0100\n"
+"PO-Revision-Date: 2013-12-09 17:55+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2862,10 +2862,19 @@ msgid "Don't stop current event but disable coming events"
 msgstr "Aktuelle Aufnahme nicht beenden aber zukünftige deaktivieren"
 
 #, python-format
+msgid "Done - Installed or upgraded %d packages"
+msgstr "Beendet - %d installierte oder aktualisierte Pakete"
+
+#, python-format
+msgid "Done - Installed, upgraded or removed %d packages with %d errors"
+msgstr ""
+"Beendet - %d Pakete mit %d Fehlern installiert, aktualisiert oder entfernt"
+
+#, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Beendet - %d Paket installiert, aktualisiert oder entfernt (%s)"
-msgstr[1] "Beendet - %d Pakete installiert, aktualisiert oder entfernt (%s)"
+msgstr[0] "Beendet - %d Paket (%s) installiert, aktualisiert oder entfernt."
+msgstr[1] "Beendet - %d Pakete (%s) installiert, aktualisiert oder entfernt."
 
 msgid "Download"
 msgstr "Herunterladen"
@@ -11437,8 +11446,11 @@ msgstr "Picons überschreiben ?"
 msgid "Overwrite Bootlogo Files ?"
 msgstr "Bootlogos überschreiben ?"
 
-msgid "Overwrite Spiiner Files ?"
+msgid "Overwrite Spinner Files ?"
 msgstr "Spinner überschreiben ?"
+
+msgid "Overwrite spinner files during software upgrade?"
+msgstr "Überschreiben der Spinner-Dateien beim Update erlauben?"
 
 msgid "Update is reported as faulty !!"
 msgstr "Das Update wurde als fehlerhaft gemeldet !!"
