@@ -34,18 +34,17 @@ from Screens.PictureInPicture import PictureInPicture
 from Screens.PVRState import PVRState, TimeshiftState
 from Screens.SubtitleDisplay import SubtitleDisplay
 from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
+from Screens.Standby import Standby, TryQuitMainloop
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEdit import TimerEditList
 from Screens.UnhandledKey import UnhandledKey
 from ServiceReference import ServiceReference, isPlayableForCur
-
-from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecordPath
+from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecordPath
 from Screens.TimerEntry import TimerEntry as TimerEntry
 
-from Tools import Notifications
-from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT
+from Tools import Directories, Notifications
+from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN
 from Tools.KeyBindings import getKeyDescription
-
 from enigma import getBoxType, eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
 
 from time import time, localtime, strftime
@@ -58,6 +57,8 @@ import os, cPickle
 from Screens.Menu import MainMenu, Menu, mdom
 from Screens.Setup import Setup
 import Screens.Standby
+
+AUDIO = False
 
 def isStandardInfoBar(self):
 	return self.__class__.__name__ == "InfoBar"
@@ -227,7 +228,10 @@ class InfoBarScreenSaver:
 		if self.execing and not Screens.Standby.inStandby and not Screens.Standby.inTryQuitMainloop:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
-				self.pvrStateDialog.hide()
+				try:
+					self.pvrStateDialog.hide()
+				except:
+					pass
 			self.screensaver.show()
 			eActionMap.getInstance().bindAction('', -maxint - 1, self.keypressScreenSaver)
 
@@ -1431,6 +1435,7 @@ class InfoBarEPG:
 		self.epglist = epglist
 
 	def __evEventInfoChanged(self):
+		self.isInfo = True
 		if self.is_now_next and len(self.dlg_stack) == 1:
 			self.getNowNext()
 			if self.eventView and self.epglist:
