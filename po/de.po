@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-12-09 18:52+0100\n"
+"PO-Revision-Date: 2013-12-09 19:56+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2858,8 +2858,16 @@ msgstr ""
 "(Wähle 'Nein' um nur die gerade gewählte Datei zu senden.)"
 
 #, python-format
-msgid "Do you want to update your %s %s?"
-msgstr "Die %s %s aktualisieren?"
+msgid "Do you want to update your %s %s"
+msgstr "Softwareupdate für %s %s ..."
+
+#, python-format
+msgid "Show new Packages"
+msgstr "Zeige zu aktualisierende Pakete an"
+
+#, python-format
+msgid "Upgrade and ask to reboot"
+msgstr "Installieren und nach Neustart fragen"
 
 msgid "Do you want to upgrade the package:\n"
 msgstr "Das Paket aktualisieren:\n"
