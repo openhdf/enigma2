@@ -689,7 +689,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			(6000000, "6MHz"),
 			(7000000, "7MHz"),
 			(8000000, "8MHz"),
-			(10000000,"10MHz")
+			(10000000, "10MHz")
 			])
 		#, (eDVBFrontendParametersTerrestrial.Bandwidth_Auto, _("Auto"))))
 		self.scan_ter.fechigh = ConfigSelection(default = defaultTer["fechigh"], choices = [
