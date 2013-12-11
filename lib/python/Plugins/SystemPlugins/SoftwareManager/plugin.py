@@ -1599,6 +1599,8 @@ class UpdatePlugin(Screen):
 		self.TraficResult = result
 		if result:
 			self.TraficCheck = True
+			print "create /etc/e2-last-upgrades.log with opkg list-upgradable"
+			os.system("opkg list-upgradable > /etc/e2-last-upgrades.log")
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 		else:
 			self.TraficCheck = False
