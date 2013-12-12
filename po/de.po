@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-12-11 19:19+0100\n"
+"PO-Revision-Date: 2013-12-12 18:00+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11813,3 +11813,7 @@ msgstr "Wollen Sie %s wirklich löschen?"
 # python\Screens\LanguageSelection.py
 msgid "Delete Language"
 msgstr "Sprache löschen"
+
+# Components/Language.py
+msgid "Default Language can not be deleted !!"
+msgstr "Die Standardsprache kann nicht gelöscht werden!"
