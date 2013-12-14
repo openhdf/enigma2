@@ -165,10 +165,14 @@ class Network:
 		self.writeNameserverConfig()
 
 	def writeNameserverConfig(self):
-		fp = file('/etc/resolv.conf', 'w')
-		for nameserver in self.nameservers:
-			fp.write("nameserver %d.%d.%d.%d\n" % tuple(nameserver))
-		fp.close()
+		try:
+			os.system('rm -rf /etc/resolv.conf')
+			fp = file('/etc/resolv.conf', 'w')
+			for nameserver in self.nameservers:
+				fp.write("nameserver %d.%d.%d.%d\n" % tuple(nameserver))
+			fp.close()
+		except:
+			print "[Network.py] interfaces - resolv.conf write failed"
 
 	def loadNetworkConfig(self,iface,callback = None):
 		interfaces = []
