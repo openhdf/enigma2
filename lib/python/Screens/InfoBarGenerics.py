@@ -510,7 +510,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		except:
 			self.pvrStateDialog = None
 
-
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
 			if config.plisettings.InfoBarEpg_mode.getValue() == "1":
@@ -622,6 +621,11 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.showDefaultEPG()
 		elif isStandardInfoBar(self) and config.usage.show_second_infobar.getValue() == "INFOBAREPG":
 			self.openInfoBarEPG()
+		elif config.usage.okbutton_mode.getValue() == "1":
+			try:
+				self.openServiceList()
+			except:
+				pass
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.getValue() and not self.secondInfoBarScreen.shown:
 			self.hide()
 			self.secondInfoBarScreen.show()
@@ -762,10 +766,6 @@ class InfoBarNumberZap:
 		if self.pts_blockZap_timer.isActive():
 			return
 
-		# if self.save_current_timeshift and self.timeshiftEnabled():
-		# 	InfoBarTimeshift.saveTimeshiftActions(self)
-		# 	return
-
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
@@ -890,6 +890,12 @@ class InfoBarChannelSelection:
 				"ChannelMinusPressed": self.ChannelMinusPressed,
 			})
 
+	def firstRun(self):
+		self.onShown.remove(self.firstRun)
+		config.misc.initialchannelselection.value = False
+		config.misc.initialchannelselection.save()
+		self.openServiceList()
+
 	def LeftPressed(self):
 		if config.plisettings.InfoBarEpg_mode.getValue() == "3" and config.usage.show_second_infobar.getValue() != "INFOBAREPG":
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -955,21 +961,15 @@ class InfoBarChannelSelection:
 			self.servicelist.historyZap(+1)
 
 	def switchChannelUp(self):
-		if not config.usage.show_bouquetalways.getValue():
-			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-				self.servicelist.moveUp()
+		if config.usage.updownbutton_mode.getValue() == "0":
+			self.zapUp()
+		elif config.usage.updownbutton_mode.getValue() == "1":
 			self.session.execDialog(self.servicelist)
-		else:
-			self.servicelist.showFavourites()
-			self.session.execDialog(self.servicelist)
-
+			
 	def switchChannelDown(self):
-		if not config.usage.show_bouquetalways.getValue():
-			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-				self.servicelist.moveDown()
-			self.session.execDialog(self.servicelist)
-		else:
-			self.servicelist.showFavourites()
+		if config.usage.updownbutton_mode.getValue() == "0":
+			self.zapDown()
+		elif config.usage.updownbutton_mode.getValue() == "1":
 			self.session.execDialog(self.servicelist)
 
 	def openServiceList(self):

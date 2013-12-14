@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-12-12 18:00+0100\n"
+"PO-Revision-Date: 2013-12-14 17:17+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -7998,6 +7998,18 @@ msgstr ""
 
 msgid "TV button mode"
 msgstr "TV Taste bewirkt"
+
+msgid "OK button mode"
+msgstr "OK Taste bewirkt"
+
+msgid "Up/Down button mode"
+msgstr "Hoch/Runter Tasten-Modus"
+
+msgid "Select what you want the OK button to activate:"
+msgstr "Wählen Sie was die OK-Taste bewirken soll:"
+
+msgid "Select what you want the Up/Down button to activate:"
+msgstr "Wählen Sie was die Hoch/Runter Tasten bewirken sollen:"
 
 msgid "TV physical address report"
 msgstr "TV physikalische Adresse melden"
