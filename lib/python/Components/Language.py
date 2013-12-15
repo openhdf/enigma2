@@ -130,7 +130,7 @@ class Language:
 		self.callbacks.append(callback)
 
 	def delLanguage(self, delLang = None):
-		from Components.config import config
+		from Components.config import config, configfile
 		from shutil import rmtree
 		lang = config.osd.language.getValue()
 		if delLang:
@@ -157,8 +157,7 @@ class Language:
 					elif x == "pt":
 						if x != lang:
 							rmtree(LPATH + x)
-			config.osd.language_removelang.setValue(True)
-			config.osd.language.save()
+			os.system("touch /etc/enigma2/.removelang")
 
 		self.InitLang()
 
