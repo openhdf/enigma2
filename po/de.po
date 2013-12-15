@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-12-14 17:17+0100\n"
+"PO-Revision-Date: 2013-12-15 13:00+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11829,3 +11829,107 @@ msgstr "Sprache löschen"
 # Components/Language.py
 msgid "Default Language can not be deleted !!"
 msgstr "Die Standardsprache kann nicht gelöscht werden!"
+
+#, python-format
+msgid "Show \"add to EPGRefresh\" in"
+msgstr "Zeige \"zu EPGRefresh hinzufügen\" in"
+
+msgid "nowhere"
+msgstr "Nirgends"
+
+msgid "event info"
+msgstr "Event Anzeige"
+
+msgid "channel selection"
+msgstr "Kanalliste"
+
+msgid "event info / channel selection"
+msgstr "Event Anzeige / Kanalliste"
+
+msgid "Setup save / load EPG"
+msgstr "Einstellungen zum speichern / laden vom EPG"
+
+msgid "Press button OK in order to open the settings menu."
+msgstr "OK Taste drücken um die Einstellungen zu öffen."
+
+msgid "Select menu to add services to the EPGRefresh."
+msgstr "Wo soll der Punkt EPGRefresh angezeigt werden."
+
+msgid ""
+"Select the day or days of the week for automatic refresh EPG. At least one "
+"day must be included."
+msgstr ""
+"An welchen Tagen soll der EPGRefresh ausgeführt werden. Mindestens ein Tag "
+"muss dann ausgwählt sein."
+
+msgid "Save EPG in current cachefile after refresh is completed."
+msgstr "Speichere das EPG ab, wenn der EPGRefresh gelaufen ist."
+
+msgid "Press OK"
+msgstr "Drücke OK"
+
+msgid "Choice days for refresh"
+msgstr "Wähle Tage für den Refresh aus"
+
+msgid "Save EPG after refresh"
+msgstr "Speicher EPG nach dem Refresh"
+
+msgid "Manual save EPG"
+msgstr "EPG jetzt speichern"
+
+msgid "Manual load EPG"
+msgstr "EPG jetzt laden"
+
+msgid "Manual reload EPG"
+msgstr "EPG jetzt neuladen"
+
+msgid "Download internet EPG from exUSSR"
+msgstr "Lade Internet EPG von exUSSR"
+
+msgid "Manual restore EPG backup"
+msgstr "EPG Backup wiederherstellen"
+
+msgid "Automatic save EPG"
+msgstr "Automatisch das EPG speichern"
+
+msgid "Automatic load EPG"
+msgstr "Automatisch das EPG laden"
+
+msgid "Load every (in hours)"
+msgstr "Lade in dieser Stunde"
+
+msgid "EPG cache path"
+msgstr "EPG Speicher Pfad"
+
+msgid "Internal Flash"
+msgstr "Flashspeicher"
+
+msgid "EPG cache filename"
+msgstr "EPG Dateiname"
+
+msgid "Create backup when saving EPG"
+msgstr "Erstelle Backup wenn das EPG gespeichert wird"
+
+msgid "Auto restore EPG backup on boot"
+msgstr "EPG Backup beim Booten wiederherstellen"
+
+msgid "Show manual change EPG in main menu"
+msgstr "Zeige EPG ändern im Hauptmenü"
+
+msgid "Show download exUSSR EPG in list setup"
+msgstr "Zeige Download exUSSR EPG in den Einstellungen"
+
+msgid "Show \"AutoZap\" in extension menu"
+msgstr "Zeige \"AutoZap\" unter Erweiterungen"
+
+msgid "Configuration save / load EPG"
+msgstr "Einstellungen speichern / laden EPG"
+
+msgid "Current EPG cachefile:"
+msgstr "Aktueller EPG Dateiname:"
+
+msgid "AAC downmix"
+msgstr "ACC Downmix"
+
+msgid "Dolby Digital / DTS downmix"
+msgstr "DD/DTS Downmix"
