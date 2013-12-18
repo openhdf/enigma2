@@ -12,11 +12,12 @@ from Components.Button import Button
 from Components.Harddisk import harddiskmanager
 from Components.Sources.StaticText import StaticText
 from Components import Ipkg
-from Components.config import config, ConfigSubsection, ConfigYesNo, getConfigListEntry, configfile
+from Components.config import config, ConfigSubsection, ConfigYesNo, getConfigListEntry, configfile, ConfigText
 from Components.ConfigList import ConfigListScreen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
@@ -32,7 +33,6 @@ config.pluginfilter.kernel = ConfigYesNo(default = False)
 config.pluginfilter.drivers = ConfigYesNo(default = True)
 config.pluginfilter.extensions = ConfigYesNo(default = True)
 config.pluginfilter.gigabluesupportnet = ConfigYesNo(default = False)
-config.pluginfilter.m2k = ConfigYesNo(default = False)
 config.pluginfilter.picons = ConfigYesNo(default = True)
 config.pluginfilter.pli = ConfigYesNo(default = False)
 config.pluginfilter.security = ConfigYesNo(default = True)
@@ -42,13 +42,24 @@ config.pluginfilter.softcams = ConfigYesNo(default = True)
 config.pluginfilter.systemplugins = ConfigYesNo(default = True)
 config.pluginfilter.vix = ConfigYesNo(default = False)
 config.pluginfilter.weblinks = ConfigYesNo(default = True)
-
+config.pluginfilter.userfeed = ConfigText(default = 'http://', fixed_size=False)
 
 ## command to find ipk with status hold
 ## grep -B 4 hold /var/lib/opkg/status | sed '/Provides/d' | sed '/Version/d' | sed '/Status/d' | sed '/Depends/d' | sed '/--/d' | sed -e '/^ *$/d'
 
+#language.addCallback(plugins.reloadPlugins)
 
-language.addCallback(plugins.reloadPlugins)
+def languageChanged():
+	plugins.clearPluginList()
+	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+
+def CreateFeedConfig():
+	fileconf = "/etc/opkg/user-feed.conf"
+	feedurl = "src/gz user-feeds %s\n" % config.pluginfilter.userfeed.getValue()
+	f = open(fileconf, "w")
+	f.write(feedurl)
+	f.close()
+	os.system("ipkg update")
 
 class PluginBrowserSummary(Screen):
 	def __init__(self, session, parent):
@@ -104,6 +115,9 @@ class PluginBrowser(Screen):
 		self.onChangedEntry = []
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.saveListsize)
+		if config.pluginfilter.userfeed.getValue() != "http://":
+				if not os.path.exists("/etc/opkg/user-feed.conf"):
+					CreateFeedConfig()
 
 	def menu(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginFilter)
@@ -246,8 +260,6 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'extensions')
 		if config.pluginfilter.gigabluesupportnet.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'gigabluesupportnet')
-		if config.pluginfilter.m2k.getValue():
-			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'm2k')
 		if config.pluginfilter.picons.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'picons')
 		if config.pluginfilter.pli.getValue():
@@ -598,13 +610,14 @@ class PluginFilter(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
+		self["actions"] = ActionMap(["SetupActions", 'ColorActions', 'VirtualKeyboardActions'],
 		{
 			"ok": self.keySave,
 			"cancel": self.keyCancel,
 			"red": self.keyCancel,
 			"green": self.keySave,
 			"menu": self.keyCancel,
+			"showVirtualKeyboard": self.KeyText
 		}, -2)
 
 		self["key_red"] = StaticText(_("Cancel"))
@@ -616,23 +629,23 @@ class PluginFilter(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("hdf"), config.pluginfilter.hdf, _("This allows you to show HDFreaks modules in downloads")))
-		self.list.append(getConfigListEntry(_("po"), config.pluginfilter.po, _("If set to 'yes' it will show the 'PO' packages in browser.")))
-		self.list.append(getConfigListEntry(_("src"), config.pluginfilter.src, _("If set to 'yes' it will show the 'SRC' packages in browser.")))
-		self.list.append(getConfigListEntry(_("drivers"), config.pluginfilter.drivers, _("This allows you to show drivers modules in downloads")))
-		self.list.append(getConfigListEntry(_("extensions"), config.pluginfilter.extensions, _("This allows you to show extensions modules in downloads")))
-		self.list.append(getConfigListEntry(_("systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
-		self.list.append(getConfigListEntry(_("softcams"), config.pluginfilter.softcams, _("This allows you to show softcams modules in downloads")))
-		self.list.append(getConfigListEntry(_("skins"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
-		self.list.append(getConfigListEntry(_("picons"), config.pluginfilter.picons, _("This allows you to show picons modules in downloads")))
-		self.list.append(getConfigListEntry(_("settings"), config.pluginfilter.settings, _("This allows you to show settings modules in downloads")))
-		self.list.append(getConfigListEntry(_("m2k"), config.pluginfilter.m2k, _("This allows you to show m2k modules in downloads")))
-		self.list.append(getConfigListEntry(_("weblinks"), config.pluginfilter.weblinks, _("This allows you to show weblinks modules in downloads")))
-		self.list.append(getConfigListEntry(_("pli"), config.pluginfilter.pli, _("This allows you to show pli modules in downloads")))
-		self.list.append(getConfigListEntry(_("vix"), config.pluginfilter.vix, _("This allows you to show vix modules in downloads")))
+		self.list.append(getConfigListEntry(_("HDFreaks"), config.pluginfilter.hdf, _("This allows you to show HDFreaks modules in downloads")))
+		self.list.append(getConfigListEntry(_("PO"), config.pluginfilter.po, _("If set to 'yes' it will show the 'PO' packages in browser.")))
+		self.list.append(getConfigListEntry(_("Src"), config.pluginfilter.src, _("If set to 'yes' it will show the 'SRC' packages in browser.")))
+		self.list.append(getConfigListEntry(_("Drivers"), config.pluginfilter.drivers, _("This allows you to show drivers modules in downloads")))
+		self.list.append(getConfigListEntry(_("Extensions"), config.pluginfilter.extensions, _("This allows you to show extensions modules in downloads")))
+		self.list.append(getConfigListEntry(_("Systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
+		self.list.append(getConfigListEntry(_("Softcams"), config.pluginfilter.softcams, _("This allows you to show softcams modules in downloads")))
+		self.list.append(getConfigListEntry(_("Skins"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
+		self.list.append(getConfigListEntry(_("Picons"), config.pluginfilter.picons, _("This allows you to show picons modules in downloads")))
+		self.list.append(getConfigListEntry(_("Settings"), config.pluginfilter.settings, _("This allows you to show settings modules in downloads")))
+		self.list.append(getConfigListEntry(_("Weblinks"), config.pluginfilter.weblinks, _("This allows you to show weblinks modules in downloads")))
+		self.list.append(getConfigListEntry(_("PLi"), config.pluginfilter.pli, _("This allows you to show pli modules in downloads")))
+		self.list.append(getConfigListEntry(_("ViX"), config.pluginfilter.vix, _("This allows you to show vix modules in downloads")))
 		self.list.append(getConfigListEntry(_("security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
 		self.list.append(getConfigListEntry(_("kernel modules"), config.pluginfilter.kernel, _("This allows you to show kernel modules in downloads")))
-		self.list.append(getConfigListEntry(_("gigabluesupportnet"), config.pluginfilter.gigabluesupportnet, _("This allows you to show gigabluesupportnet modules in downloads")))
+		self.list.append(getConfigListEntry(_("Gigabluesupportnet"), config.pluginfilter.gigabluesupportnet, _("This allows you to show gigabluesupportnet modules in downloads")))
+		self.list.append(getConfigListEntry(_("User Feed URL"), config.pluginfilter.userfeed, _("Please enter your personal feed URL")))
 
 		self["config"].list = self.list
 		self["config"].setList(self.list)
@@ -657,6 +670,8 @@ class PluginFilter(ConfigListScreen, Screen):
 		for x in self["config"].list:
 			x[1].save()
 		configfile.save()
+		if config.pluginfilter.userfeed.getValue() != "http://":
+			CreateFeedConfig()
 
 	def keySave(self):
 		self.saveAll()
@@ -674,3 +689,15 @@ class PluginFilter(ConfigListScreen, Screen):
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
 		else:
 			self.close()
+
+	def KeyText(self):
+		sel = self['config'].getCurrent()
+		if sel:
+			self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+
+	def VirtualKeyBoardCallback(self, callback = None):
+		if callback is not None and len(callback):
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
+			
+language.addCallback(languageChanged)
