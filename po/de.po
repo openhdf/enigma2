@@ -11942,3 +11942,9 @@ msgstr "ACC Downmix"
 
 msgid "Dolby Digital / DTS downmix"
 msgstr "DD/DTS Downmix"
+
+msgid "Last Image Updates"
+msgstr "Letzte Updates im Image"
+
+msgid "Show Last Updates"
+msgstr "Zeige letztes Updatelog"

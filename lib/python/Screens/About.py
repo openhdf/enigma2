@@ -533,10 +533,14 @@ class ViewGitLog(Screen):
 
 	def changelogtype(self):
 		if self.logtype == 'oe':
-			self["key_yellow"].setText(_("Show OE-A Log"))
+			self["key_yellow"].setText(_("Show Last Updates"))
 			self.setTitle(_("OpenHDF E2 Changes"))
 			self.logtype = 'e2'
-		else:
+		elif self.logtype == 'e2':
+			self["key_yellow"].setText(_("Show OE-A Log"))
+			self.setTitle(_("Last Image Updates"))
+			self.logtype = 'last-upgrades'
+		elif self.logtype == 'last-upgrades':
 			self["key_yellow"].setText(_("Show OpenHDF Log"))
 			self.setTitle(_("OE-A Changes"))
 			self.logtype = 'oe'
