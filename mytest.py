@@ -47,7 +47,7 @@ from skin import readSkin
 
 profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN
-from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave
+from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave, ConfigNumber
 InitFallbackFiles()
 
 profile("config.misc")
@@ -607,6 +607,10 @@ def runScreenTest():
 	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
+	if not config.misc.SyncTimeUsing.getValue() == "0" or enigma.getBoxType().startswith('gb') or enigma.getBoxType().startswith('ini'):
+		print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
+		setRTCtime(nowTime)
+
 	wakeupList = [
 		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
 					(session.nav.RecordTimer.getNextZapTime(), 1),
@@ -721,6 +725,16 @@ profile("LCD")
 import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
+# Disable internal clock vfd for Venton-HD1 until we can adjust it for standby
+if enigma.getBoxType() == 'ventonhdx':
+	try:
+		f = open("/proc/stb/fp/enable_clock", "r").readline()[:-1]
+		if f != '0':
+			f = open("/proc/stb/fp/enable_clock", "w")
+			f.write('0')
+			f.close()
+	except:
+		print "Error disable enable_clock for venton boxes"
 
 profile("UserInterface")
 import Screens.UserInterfacePositioner
