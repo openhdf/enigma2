@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-12-26 12:47+0100\n"
+"PO-Revision-Date: 2013-12-26 17:49+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3467,6 +3467,9 @@ msgid "Full transparency"
 msgstr "volle Transparenz"
 
 msgid "Fulscreen"
+msgstr "Vollbild"
+
+msgid "Full screen"
 msgstr "Vollbild"
 
 msgid "Fulview resulution"
