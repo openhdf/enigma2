@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-12-26 17:49+0100\n"
+"PO-Revision-Date: 2013-12-27 18:17+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11522,7 +11522,22 @@ msgstr "Dateien und Ordner auswählen..."
 
 #
 msgid "Keymap Selection"
-msgstr "Keymap Auswahl"
+msgstr "Auswahl Tastenbelegung"
+
+msgid "Keymap config"
+msgstr "Auswahl Tastenbelegung"
+
+msgid "Default keymap - keymap.xml"
+msgstr "Standard Tastenbelegung - keymap.xml"
+
+msgid "User keymap - keymap.usr"
+msgstr "Benutzer Tastenbelegung - keymap.usr"
+
+msgid "Neutrino keymap - keymap.ntr"
+msgstr "Neutrino Tastenbelegung - keymap.ntr"
+
+msgid "U80 keymap - keymap.u80"
+msgstr "U80 Tastenbelegung - keymap.u80"
 
 #
 msgid "Remote_setup"
