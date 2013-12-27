@@ -235,6 +235,7 @@
 		<item level="1" text="History buttons mode" description="Configure the function of the &lt;  &gt; buttons.">config.usage.historymode</item>
 		<item level="0" text="Channel +/- button mode" description="Select what you want the Channel +/- button to activate:">config.usage.channelbutton_mode</item>
 		<item level="0" text="Up/Down button mode" description="Select what you want the Up/Down button to activate:">config.usage.updownbutton_mode</item>
+		<item level="0" text="Keymap Selection" description="Select the keymap that you want to use:">config.usage.keymap</item>
 		<item level="0" text="Use ViX coloured Buttons *" description="Select if you want to use the ViX coloured Buttons (set to 'no' if you want to use (Multi) Quick Button).">config.plisettings.ColouredButtons</item>
 	</setup>
 	<setup key="softcamsetup" title="Softcam settings">

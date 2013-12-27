@@ -165,7 +165,6 @@ def InitUsageConfig():
 		choicelist.append(("%d" % i, m))
 	config.usage.screen_saver = ConfigSelection(default = "0", choices = choicelist)
 
-
 	config.usage.on_short_powerpress = ConfigSelection(default = "standby", choices = [
 		("show_menu", _("Show shutdown menu")),
 		("shutdown", _("Immediate shutdown")),
@@ -382,6 +381,11 @@ def InitUsageConfig():
 	SystemInfo["12V_Output"] = enigma.Misc_Options.getInstance().detected_12V_output()
 
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
+	config.usage.keymap = ConfigSelection(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"), choices = [
+		(eEnv.resolve("${datadir}/enigma2/keymap.xml"), _("Default keymap - keymap.xml")),
+		(eEnv.resolve("${datadir}/enigma2/keymap.usr"), _("User keymap - keymap.usr")),
+		(eEnv.resolve("${datadir}/enigma2/keymap.ntr"), _("Neutrino keymap - keymap.ntr")),
+		(eEnv.resolve("${datadir}/enigma2/keymap.u80"), _("U80 keymap - keymap.u80")) ] )
 
 	config.network = ConfigSubsection()
 	config.network.AFP_autostart = ConfigYesNo(default = False)
