@@ -850,6 +850,7 @@ class RecordTimer(timer.Timer):
 
 		isAutoTimer = False
 		bt = None
+		check_offset_time = not config.recording.margin_before.getValue() and not config.recording.margin_after.getValue()
 		end = begin + duration
 		refstr = str(service)
 		for x in self.timer_list:
