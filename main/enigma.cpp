@@ -333,11 +333,25 @@ const char *getDistro()
 
 const char *getMachineBrand()
 {
-	FILE *boxtype_file;
-	char boxtype_name[20];
+	FILE *boxtype_file, *brand_file;
+	char boxtype_name[20], brand_name[30];
+	char *returnstring = NULL;
+	int len;
 
 	// for OEM resellers
-	if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
+	if((brand_file = fopen("/etc/.brand", "r")) != NULL)
+	{
+		fgets(brand_name, sizeof(brand_name), brand_file);
+		fclose(brand_file);
+		returnstring = malloc(strlen(brand_name) + 1);
+		if (returnstring)
+			strcpy(returnstring, brand_name);
+		len = strlen(returnstring); /* strip newline */
+		if (len > 0 && returnstring[len - 1 ] == '\n')
+			returnstring[len - 1] = '\0';				
+		return returnstring;
+	}	
+	else if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
 	{
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
@@ -387,11 +401,25 @@ const char *getMachineBrand()
 
 const char *getMachineName()
 {
-	FILE *boxtype_file;
-	char boxtype_name[20];
+	FILE *boxtype_file, *machine_file;
+	char boxtype_name[20], machine_name[20];
+	char *returnstring = NULL;
+	int len;
 
 	// for OEM resellers
-	if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
+	if((machine_file = fopen("/etc/.machine", "r")) != NULL)
+	{
+		fgets(machine_name, sizeof(machine_name), machine_file);
+		fclose(machine_file);
+		returnstring = malloc(strlen(machine_name) + 1);
+		if (returnstring)
+			strcpy(returnstring, machine_name);
+		len = strlen(returnstring); /* strip newline */
+		if (len > 0 && returnstring[len - 1 ] == '\n')
+			returnstring[len - 1] = '\0';	
+		return returnstring;
+	}	
+	else if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
 	{
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
@@ -488,19 +516,7 @@ const char *getDriverDateString()
 
 const char *getBoxType()
 {
-  	// hack way to not change all in code
-	if(strcmp(BOXTYPE, "sezamhdx") == 0)
-	{
-		return "ventonhdx";
-	}
-	else if(strcmp(BOXTYPE, "sezamhde") == 0)
-	{
-		return "inihde";
-	}
-	else
-	{
-		return BOXTYPE;
-	}
+	return BOXTYPE;
 }
 
 #include <malloc.h>
