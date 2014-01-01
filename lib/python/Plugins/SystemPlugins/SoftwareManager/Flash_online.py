@@ -192,6 +192,8 @@ class doFlashImage(Screen):
 
 	def box(self):
 		box = getBoxType()
+		brandfile = "/etc/.brand"
+		machinefile = "/etc/.machine"
 		machinename = getMachineName()
 		if box == 'odinm6':
 			box = getMachineName().lower()
@@ -205,6 +207,10 @@ class doFlashImage(Screen):
 			box = "miraclebox-twin"
 		elif box == "xp1000" and machinename.lower() == "sf8 hd":
 			box = "sf8"
+		elif os.path.exists(machinefile) is True:
+			machine = open(machinefile,"r")
+			box = machine.readline().lower()
+			machine.close()
 		return box
 
 	def green(self):
