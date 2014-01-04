@@ -60,6 +60,21 @@ import Screens.Standby
 
 AUDIO = False
 
+if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+	COOLTVGUIDE = True
+else:
+	COOLTVGUIDE = False
+
+if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/CoolSingleGuide.pyo"):
+	COOLSINGLEGUIDE = True
+else:
+	COOLSINGLEGUIDE = False
+
+if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/CoolInfoGuide.pyo"):
+	COOLINFOGUIDE = True
+else:
+	COOLINFOGUIDE = False
+	
 def isStandardInfoBar(self):
 	return self.__class__.__name__ == "InfoBar"
 
@@ -1261,8 +1276,21 @@ class InfoBarEPG:
 
 	def InfoPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			if getBoxType().startswith('et') or getBoxType().startswith('odin') or getBoxType().startswith('venton') or getBoxType().startswith('ini') or getBoxType().startswith('tm') or getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
+			if getBoxType().startswith('vu'):
+				self.showDefaultEPG()
+			elif config.plisettings.PLIINFO_mode.getValue() == "eventview":
 				self.openEventView()
+			elif config.plisettings.PLIINFO_mode.getValue() == "epgpress":
+				self.showDefaultEPG()
+			elif config.plisettings.PLIINFO_mode.getValue() == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.PLIINFO_mode.getValue() == "coolinfoguide" and COOLTVGUIDE:
+				self.showCoolInfoGuide()
+			elif config.plisettings.PLIINFO_mode.getValue() == "coolsingleguide" and COOLTVGUIDE:
+				self.showCoolSingleGuide()
+			elif config.plisettings.PLIINFO_mode.getValue() == "cooltvguide" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
 			else:
 				self.showDefaultEPG()
 
@@ -1432,6 +1460,28 @@ class InfoBarEPG:
 		elif answer == 'close' and isMoviePlayerInfoBar(self):
 			self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.close()
+
+	def showCoolInfoGuide(self):
+		if self.servicelist is None:
+			return
+		if COOLTVGUIDE:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Cool Info Guide"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+	
+	def showCoolSingleGuide(self):
+		if self.servicelist is None:
+			return	
+		if COOLTVGUIDE:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Cool Single Guide"):
+					self.runPlugin(plugin)
+					break
+		else:
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )	
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, eventid=eventid)
