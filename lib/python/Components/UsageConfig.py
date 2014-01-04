@@ -1,8 +1,8 @@
 from Components.About import about
 from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC, defaultRecordingLocation
-from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC, defaultRecordingLocation, fileExists
+from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv, getBoxType
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
@@ -651,7 +651,31 @@ def InitUsageConfig():
 					("1", _("with long OK press")),
 					("2", _("with exit button")),
 					("3", _("with left/right buttons"))])
-
+	if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+		config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices = [
+					("pliepg", _("Show Graphical EPG")),
+					("single", _("Show Single EPG")),
+					("multi", _("Show Multi EPG")),
+					("eventview", _("Show Eventview")),
+					("cooltvguide", _("Show CoolTVGuide"))])
+		config.plisettings.PLIINFO_mode = ConfigSelection(default="coolinfoguide", choices = [
+					("eventview", _("Show Eventview")),
+					("epgpress", _("Show EPG")),
+					("single", _("Show Single EPG")),
+					("coolsingleguide", _("Show CoolSingleGuide")),
+					("coolinfoguide", _("Show CoolInfoGuide")),
+					("cooltvguide", _("Show CoolTVGuide"))])
+	else:
+		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
+					("pliepg", _("Show Graphical EPG")),
+					("single", _("Show Single EPG")),
+					("multi", _("Show Multi EPG")),
+					("eventview", _("Show Eventview"))])
+		config.plisettings.PLIINFO_mode = ConfigSelection(default="eventview", choices = [
+					("eventview", _("Show Eventview")),
+					("epgpress", _("Show EPG")),
+					("single", _("Show Single EPG"))])
+					
 	config.epgselection = ConfigSubsection()
 	config.epgselection.sort = ConfigSelection(default="0", choices = [("0", _("Time")),("1", _("Alphanumeric"))])
 	config.epgselection.overjump = ConfigYesNo(default = False)
