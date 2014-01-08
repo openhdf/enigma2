@@ -1,7 +1,7 @@
 #################################################################################
 # FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS ET-XX00 & VU+			#
-#							& Gigablue & Venton HD Models						#
-#					MAKES A FULLBACK-UP READY FOR FLASHING.						#
+#				      & Gigablue & Venton HD Models								#
+#			     MAKES A FULLBACK-UP READY FOR FLASHING.						#
 #																				#
 #################################################################################
 from enigma import getBoxType, getMachineBrand, getMachineName, getImageVersionString, getBuildVersionString, getDriverDateString, getEnigmaVersionString
@@ -240,10 +240,11 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/medialink/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
 		## TESTING THE Mixos Model
-		elif self.MODEL == "ebox5000" or self.MODEL == "ebox5100":
+		elif self.MODEL == "ebox5000" or self.MODEL == "ebox5100" or self.MODEL == "eboxlumi":
 			self.TYPE = "MIXOS"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.JFFS2OPTIONS = "--eraseblock=0x20000 -n -l"
 			self.SHOWNAME = "Mixos %s" %self.MODEL
 			self.MTDKERNEL = "mtd1"
 			self.MAINDESTOLD = "%s/ebox/%s" %(self.DIRECTORY, self.MODEL)
@@ -452,10 +453,21 @@ class ImageBackup(Screen):
 		elif self.MODEL == "gbquad":
 			self.TYPE = "GIGABLUE"
 			self.MODEL = "quad"
-			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4000"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "GigaBlue %s" %self.MODEL
 			self.MTDKERNEL = "mtd2"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
+		## TESTING THE Gigablue HD Quad Plus Model
+		elif self.MODEL == "gbquadplus":
+			self.TYPE = "GIGABLUE"
+			self.MODEL = "quadplus"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4000"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "GigaBlue %s" %self.MODEL
+			self.MTDKERNEL = "mtd2"	
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/gigablue/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA =  "%s/fullbackup_%s/%s/gigablue" % (self.DIRECTORY, self.TYPE, self.DATE)
@@ -602,7 +614,7 @@ class ImageBackup(Screen):
 				system('mv %s/root.ubifs %s/rootfs.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/vmlinux.gz %s/kernel.bin' %(self.WORKDIR, self.MAINDEST))
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
-			if self.MODEL == "quad" or self.MODEL == "ue" or self.MODEL == "ueplus":
+			if self.MODEL == "quad" or self.MODEL == "quadplus" or self.MODEL == "ue" or self.MODEL == "ueplus":
 				lcdwaitkey = '/usr/share/lcdwaitkey.bin'
 				lcdwarning = '/usr/share/lcdwarning.bin'
 				if path.exists(lcdwaitkey):
