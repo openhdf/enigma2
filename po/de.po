@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2013-12-28 06:49+0100\n"
+"PO-Revision-Date: 2014-01-10 19:19+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.3\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -772,6 +772,14 @@ msgstr "Autotimer hinzufügen"
 
 msgid "Add Timer"
 msgstr "Timer hinzufügen"
+
+#, python-format
+msgid "Add filter"
+msgstr "Filter hinzufügen"
+
+#, python-format
+msgid "Edit services"
+msgstr "Bearbeite Sender"
 
 msgid "Add a auto timer for current event"
 msgstr "Autotimer für aktuelles Programm hinzufügen"
@@ -6786,8 +6794,8 @@ msgid ""
 "Select if you want to use the ViX coloured Buttons (set to 'no' if you want "
 "to use (Multi) Quick Button)."
 msgstr ""
-"Wähle ob Du die ViX Farbtasten benutzen möchtest ('Nein' wenn Du (Multi-)"
-"QuickButton benutzen möchtest):"
+"Wähle ob Du die ViX Farbtasten benutzen möchtest ('Nein' wenn Du "
+"(Multi-)QuickButton benutzen möchtest):"
 
 msgid "Select input device"
 msgstr "Wähle Eingabegerät"
