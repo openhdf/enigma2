@@ -551,14 +551,16 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
-#		if self.secondInfoBarScreen:
-#			self.secondInfoBarScreen.hide()
 		for x in self.onShowHideNotifiers:
 			x(False)
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup().toString()
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if ref:
+				ref = ref.toString()
+			else:
+				ref = " "
 			if config.plisettings.InfoBarEpg_mode.getValue() == "2" and not ref[1:].startswith(":0:0:0:0:0:0:0:0:0:"):
 				self.openInfoBarEPG()
 			else:
