@@ -262,7 +262,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 		return dest
 
 	def setPlayableIgnoreService(self, ref):
-		self.l.setIgnoreService(ref)
+		try:
+			self.l.setIgnoreService(ref)
+		except:
+			pass
 
 	def setRoot(self, root, justSet=False):
 		self.root = root

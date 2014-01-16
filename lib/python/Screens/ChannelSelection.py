@@ -494,7 +494,7 @@ class ChannelSelectionEPG:
 
 	def RecordTimerQuestion(self):
 		serviceref = ServiceReference(self.getCurrentSelection())
-		refstr = serviceref.ref.toString()
+		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		self.epgcache = eEPGCache.getInstance()
 		test = [ 'ITBDSECX', (refstr, 1, -1, 60) ] # search next 24 hours
 		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
@@ -517,22 +517,27 @@ class ChannelSelectionEPG:
 		menu1 = _("Record now")
 		menu2 = _("Record next")
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				menu1 = _("Stop recording now")
-			elif timer.eit == eventidnext and timer.service_ref.ref.toString() == refstr:
-				menu2 = _("Cancel next timer")
+			elif timer.eit == eventidnext and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+				menu2 = _("Change next timer")
 		menu = [(menu1, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordCurrentTimer), (menu2, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordNextTimer)]
 		self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, list=menu, keys=['red', 'green'], skin_name="RecordTimerQuestion")
 		self.ChoiceBoxDialog.instance.move(ePoint(selx-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+sely))
 		self.showChoiceBoxDialog()
 
 	def ChoiceBoxCB(self, choice):
+		self.closeChoiceBoxDialog()
 		if choice:
 			try:
 				choice()
 			except:
 				choice
+
+	def RemoveTimerDialogCB(self, choice):
 		self.closeChoiceBoxDialog()
+		if choice:
+			choice(self)
 
 	def showChoiceBoxDialog(self):
 		print 'showChoiceBoxDialog'
@@ -553,38 +558,21 @@ class ChannelSelectionEPG:
 		self['recordingactions'].setEnabled(True)
 		self['ChannelSelectEPGActions'].setEnabled(True)
 
-	def RemoveTimerDialogCB(self, choice):
-		if choice:
-			try:
-				choice()
-			except:
-				choice
-		self.closeRemoveTimerDialog()
-
-	def closeRemoveTimerDialog(self):
-		print 'closeRemoveTimerDialog'
-		self['dialogactions'].execEnd()
-		if self.RemoveTimerDialog:
-			self.RemoveTimerDialog['actions'].execEnd()
-			self.session.deleteDialog(self.RemoveTimerDialog)
-		self['actions'].setEnabled(True)
-		self['recordingactions'].setEnabled(True)
-		self['ChannelSelectEPGActions'].setEnabled(True)
-
 	def doRecordCurrentTimer(self):
-		self.closeChoiceBoxDialog()
 		self.doInstantTimer(0, parseCurentEvent)
 
 	def doRecordNextTimer(self):
-		self.closeChoiceBoxDialog()
 		self.doInstantTimer(0, parseNextEvent, True)
 
 	def doZapTimer(self):
 		self.doInstantTimer(1, parseNextEvent)
 
+	def editTimer(self, timer):
+		self.session.open(TimerEntry, timer)
+
 	def doInstantTimer(self, zap, parseEvent, next=False):
 		serviceref = ServiceReference(self.getCurrentSelection())
-		refstr = serviceref.ref.toString()
+		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		self.epgcache = eEPGCache.getInstance()
 		test = [ 'ITBDSECX', (refstr, 1, -1, 60) ] # search next 24 hours
 		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
@@ -594,21 +582,34 @@ class ChannelSelectionEPG:
 			eventid = self.list[0][0]
 			eventname = str(self.list[0][1])
 		else:
+			if len(self.list) < 2:
+				return
 			eventid = self.list[1][0]
 			eventname = str(self.list[1][1])
 		if eventid is None:
 			return
+		indx = int(self.servicelist.getCurrentIndex())
+		selx = self.servicelist.instance.size().width()
+		while indx+1 > config.usage.serviceitems_per_page.getValue():
+			indx = indx - config.usage.serviceitems_per_page.getValue()
+		pos = self.servicelist.instance.position().y()
+		sely = int(pos)+(int(self.servicelist.ItemHeight)*int(indx))
+		temp = int(self.servicelist.instance.position().y())+int(self.servicelist.instance.size().height())
+		if int(sely) >= temp:
+			sely = int(sely) - int(self.listHeight)
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret: self.removeTimer(timer)
-				menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.RemoveTimerDialogCB)]
-				self.RemoveTimerDialog = self.session.instantiateDialog(MessageBox, text=_('Do you really want to remove the timer for %s?') % eventname, list=menu, skin_name="RemoveTimerQuestion", picon=False)
-				self['actions'].setEnabled(False)
-				self['recordingactions'].setEnabled(False)
-				self['ChannelSelectEPGActions'].setEnabled(False)
-				self['dialogactions'].execBegin()
-				self.RemoveTimerDialog['actions'].execBegin()
-				self.RemoveTimerDialog.show()
+			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+				if not next:
+					cb_func = lambda ret: self.removeTimer(timer)
+					menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB)]
+					self.ChoiceBoxDialog = self.session.instantiateDialog(MessageBox, text=_('Do you really want to remove the timer for %s?') % eventname, list=menu, skin_name="RemoveTimerQuestion", picon=False)
+				else:
+					cb_func1 = lambda ret: self.removeTimer(timer)
+					cb_func2 = lambda ret: self.editTimer(timer)
+					menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func2)]
+					self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_("Select action for timer %s:") % eventname, list=menu, keys=['green', 'blue'], skin_name="RecordTimerQuestion")
+					self.ChoiceBoxDialog.instance.move(ePoint(selx-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+sely))
+				self.showChoiceBoxDialog()
 				break
 		else:
 			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.list))
@@ -650,7 +651,7 @@ class ChannelSelectionEPG:
 	def removeTimer(self, timer):
 		timer.afterEvent = AFTEREVENT.NONE
 		self.session.nav.RecordTimer.removeEntry(timer)
-		self.closeRemoveTimerDialog()
+		self.closeChoiceBoxDialog()
 
 	def showEPGList(self):
 		ref=self.getCurrentSelection()
@@ -1299,103 +1300,79 @@ class ChannelSelectionBase(Screen):
 					self.enterPath(ref)
 					self.setCurrentSelectionAlternative(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
-	def getServicesCount(self, root_ref):
-		count = 0
-		serviceHandler = eServiceCenter.getInstance()
-		list = serviceHandler.list(root_ref)
-		if list is not None:
-			while True:
-				s = list.getNext()
-				if not s.valid(): break
-				count += 1
-		return count
-
 	def showSatellites(self):
 		if not self.pathChangeDisabled:
-			if self.mode == 0: # TV mode
-				typeslist = [self.service_types, '1:7:11:0:0:0:0:0:0:0:(type == 17) || (type == 25) || (type == 134) || (type == 195)']
-			else:
-				typeslist = [self.service_types]
-			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'%(typeslist[0])
+			refstr = '%s FROM SATELLITES ORDER BY satellitePosition' % self.service_types
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
-				justSet=False
+				justSet = False
 				prev = None
-
 				if self.isBasePathEqual(ref):
 					if self.isPrevPathEqual(ref):
-						justSet=True
+						justSet = True
 					prev = self.pathUp(justSet)
 				else:
 					currentRoot = self.getRoot()
 					if currentRoot is None or currentRoot != ref:
-						justSet=True
+						justSet = True
 						self.clearPath()
 						self.enterPath(ref, True)
 				if justSet:
 					serviceHandler = eServiceCenter.getInstance()
-					for srvtypes in typeslist:
-						ref = eServiceReference('%s FROM SATELLITES ORDER BY satellitePosition'%(srvtypes))
-						servicelist = serviceHandler.list(ref)
-						if not servicelist is None:
-							while True:
-								service = servicelist.getNext()
-								if not service.valid(): #check if end of list
-									break
-								unsigned_orbpos = service.getUnsignedData(4) >> 16
-								orbpos = service.getData(4) >> 16
-								if orbpos < 0:
-									orbpos += 3600
-								if service.getPath().find("FROM PROVIDER") != -1:
-									service_type = _("Providers")
-								elif service.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
-									service_type = _("New") + " (%d)"%(self.getServicesCount(service))
+					servicelist = serviceHandler.list(ref)
+					if servicelist is not None:
+						while True:
+							service = servicelist.getNext()
+							if not service.valid(): #check if end of list
+								break
+							unsigned_orbpos = service.getUnsignedData(4) >> 16
+							orbpos = service.getData(4) >> 16
+							if orbpos < 0:
+								orbpos += 3600
+							if "FROM PROVIDER" in service.getPath():
+								service_type = _("Providers")
+							elif ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in service.getPath():
+								service_type = _("New")
+							else:
+								service_type = _("Services")
+							try:
+								# why we need this cast?
+								service_name = str(nimmanager.getSatDescription(orbpos))
+							except:
+								if unsigned_orbpos == 0xFFFF: #Cable
+									service_name = _("Cable")
+								elif unsigned_orbpos == 0xEEEE: #Terrestrial
+									service_name = _("Terrestrial")
 								else:
-									service_type = _("Services") + " (%d)"%(self.getServicesCount(service))
-								try:
-									# why we need this cast?
-									service_name = str(nimmanager.getSatDescription(orbpos))
-								except:
-									if unsigned_orbpos == 0xFFFF: #Cable
-										service_name = _("Cable")
-									elif unsigned_orbpos == 0xEEEE: #Terrestrial
-										service_name = _("Terrestrial")
+									if orbpos > 1800: # west
+										orbpos = 3600 - orbpos
+										h = _("W")
 									else:
-										if orbpos > 1800: # west
-											orbpos = 3600 - orbpos
-											h = _("W")
-										else:
-											h = _("E")
-										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
-								if not '(type == 1)' in srvtypes and '(type == 17)' in srvtypes:
-									service_type = "HD-%s"%(service_type)
-								service.setName("%s - %s" % (service_name, service_type))
-								self.servicelist.addService(service)
-					cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
-					if cur_ref:
-						pos = self.service_types.rfind(':')
-						refstr = '%s (channelID == %08x%04x%04x) && %s ORDER BY name' %(self.service_types[:pos+1],
-							cur_ref.getUnsignedData(4), # NAMESPACE
-							cur_ref.getUnsignedData(2), # TSID
-							cur_ref.getUnsignedData(3), # ONID
-							self.service_types[pos+1:])
-						ref = eServiceReference(refstr)
-						ref.setName(_("Current Transponder"))
-						self.servicelist.addService(ref)
-					hdref = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 211) && (name != .) ORDER BY name')
-					if hdref:
-						hdref.setName("%s - %s" % ("Sky Deutschland 19.2E", _("Subservices")))
-						self.servicelist.addService(hdref)
-					self.servicelist.finishFill()
-					if prev is not None:
-						self.setCurrentSelection(prev)
-					elif cur_ref:
-						refstr = cur_ref.toString()
-						op = "".join(refstr.split(':', 10)[6:7])
-						if len(op) >= 4:
-							hop = int(op[:-4],16)
-							refstr = '1:7:0:0:0:0:%s:0:0:0:(satellitePosition == %s) && %s ORDER BY name'%(op,hop,self.service_types[self.service_types.rfind(':')+1:])
-							self.setCurrentSelection(eServiceReference(refstr))
+										h = _("E")
+									service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
+							service.setName("%s - %s" % (service_name, service_type))
+							self.servicelist.addService(service)
+						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
+						if cur_ref:
+							pos = self.service_types.rfind(':')
+							refstr = '%s (channelID == %08x%04x%04x) && %s ORDER BY name' %(self.service_types[:pos+1],
+								cur_ref.getUnsignedData(4), # NAMESPACE
+								cur_ref.getUnsignedData(2), # TSID
+								cur_ref.getUnsignedData(3), # ONID
+								self.service_types[pos+1:])
+							ref = eServiceReference(refstr)
+							ref.setName(_("Current transponder"))
+							self.servicelist.addService(ref)
+						self.servicelist.finishFill()
+						if prev is not None:
+							self.setCurrentSelection(prev)
+						elif cur_ref:
+							refstr = cur_ref.toString()
+							op = "".join(refstr.split(':', 10)[6:7])
+							if len(op) >= 4:
+								hop = int(op[:-4],16)
+								refstr = '1:7:0:0:0:0:%s:0:0:0:(satellitePosition == %s) && %s ORDER BY name' % (op, hop, self.service_types[self.service_types.rfind(':')+1:])
+								self.setCurrentSelectionAlternative(eServiceReference(refstr))
 
 	def showProviders(self):
 		if not self.pathChangeDisabled:
@@ -1487,18 +1464,18 @@ class ChannelSelectionBase(Screen):
 
 	def keyNumberGlobal(self, number):
 		if self.isBasePathEqual(self.bouquet_root):
-			self.BouqetNumberActions(number)
+			self.BouquetNumberActions(number)
 		else:
 			current_root = self.getRoot()
 			if  current_root and 'FROM BOUQUET "bouquets.' in current_root.getPath():
-				self.BouqetNumberActions(number)
+				self.BouquetNumberActions(number)
 			else:
 				unichar = self.numericalTextInput.getKey(number)
 				charstr = unichar.encode("utf-8")
 				if len(charstr) == 1:
 					self.servicelist.moveToChar(charstr[0])
 
-	def BouqetNumberActions(self, number):
+	def BouquetNumberActions(self, number):
 		if number == 1: #Set focus on current playing service when available in current userbouquet
 			currentSelectedService = self.servicelist.getCurrent()
 			currentPlayingService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -1706,12 +1683,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.recallBouquetMode()
 
 	def __evServiceStart(self):
-		service = self.session.nav.getCurrentService()
-		if service:
-			info = service.info()
-			if info:
-				refstr = info.getInfoString(iServiceInformation.sServiceref)
-				self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
+		if self.dopipzap and self.session.pip.pipservice:
+			self.servicelist.setPlayableIgnoreService(self.session.pip.getCurrentServiceReference())
+		else:
+			service = self.session.nav.getCurrentService()
+			if service:
+				info = service.info()
+				if info:
+					refstr = info.getInfoString(iServiceInformation.sServiceref)
+					self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
 
 	def __evServiceEnd(self):
 		self.servicelist.setPlayableIgnoreService(eServiceReference())
@@ -1809,7 +1789,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if self.session.pip.pipservice is None:
 				self.session.pipshown = False
 				del self.session.pip
-
+			self.__evServiceStart()
 			# Move to playing service
 			lastservice = eServiceReference(self.lastservice.getValue())
 			if lastservice.valid() and self.getCurrentSelection() != lastservice:
@@ -1820,7 +1800,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			# Mark PiP as active and effectively active pipzap
 			self.session.pip.active()
 			self.dopipzap = True
-
+			self.__evServiceStart()
 			# Move to service playing in pip (will not work with subservices)
 			self.setCurrentSelection(self.session.pip.getCurrentService())
 
@@ -1836,10 +1816,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
 			if ref is None or ref != nref:
-				if not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False)):
-					if not self.session.pip.playService(nref):
-						# XXX: Make sure we set an invalid ref
-						self.session.pip.playService(None)
+				nref = self.session.pip.resolveAlternatePipService(nref)
+				if nref and (not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
+					if self.session.pip.playService(nref):
+						self.__evServiceStart()
 				else:
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)
@@ -1928,7 +1908,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.history_pos += 1
 			self.setHistoryPath()
 
-	def setHistoryPath(self):
+	def setHistoryPath(self, doZap=True):
 		path = self.history[self.history_pos][:]
 		ref = path.pop()
 		del self.servicePath[:]
@@ -1939,7 +1919,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if cur_root and cur_root != root:
 			self.setRoot(root)
 		self.servicelist.setCurrent(ref)
-		self.session.nav.playService(ref)
+		if doZap:
+			self.session.nav.playService(ref)
 		if self.dopipzap:
 			self.setCurrentSelection(self.session.pip.getCurrentService())
 		else:
@@ -2031,12 +2012,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.lastservice.value = refstr
 			self.lastservice.save()
 
-	def setCurrentServicePath(self, path):
+	def setCurrentServicePath(self, path, doZap=True):
 		if self.history:
 			self.history[self.history_pos] = path
 		else:
 			self.history.append(path)
-		self.setHistoryPath()
+		self.setHistoryPath(doZap)
 
 	def getCurrentServicePath(self):
 		if self.history:
@@ -2303,6 +2284,9 @@ class SimpleChannelSelection(ChannelSelectionBase):
 
 	def layoutFinished(self):
 		self.setModeTv()
+
+	def BouquetNumberActions(self, number):
+		pass
 
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()

@@ -11,6 +11,7 @@ import NavigationInstance
 import ServiceReference
 from Screens.InfoBar import InfoBar, MoviePlayer
 from os import path
+from enigma import getBoxType
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
@@ -78,7 +79,7 @@ class Navigation:
 		for x in self.record_event:
 			x(rec_service, event)
 
-	def playService(self, ref, checkParentalControl=True, forceRestart=False):
+	def playService(self, ref, checkParentalControl=True, forceRestart=False, adjust=True):
 		oldref = self.currentlyPlayingServiceOrGroup
 		if ref and oldref and ref == oldref and not forceRestart:
 			print "ignore request to play already running service(1)"
@@ -107,7 +108,7 @@ class Navigation:
 			return 0
 		from Components.ServiceEventTracker import InfoBarCount
 		InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
-		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl=False, forceRestart=forceRestart)):
+		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl=False, forceRestart=forceRestart, adjust=adjust)):
 			if ref.flags & eServiceReference.isGroup:
 				oldref = self.currentlyPlayingServiceReference or eServiceReference()
 				playref = getBestPlayableServiceReference(ref, oldref)
@@ -124,14 +125,14 @@ class Navigation:
 				self.pnav.stopService()
 				self.currentlyPlayingServiceReference = playref
 				self.currentlyPlayingServiceOrGroup = ref
-				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref):
+				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
 				return 0
-		elif oldref and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(oldref):
+		elif oldref and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(oldref, adjust):
 			self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 		return 1
 

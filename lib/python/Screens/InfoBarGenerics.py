@@ -64,16 +64,6 @@ if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo
 	COOLTVGUIDE = True
 else:
 	COOLTVGUIDE = False
-
-if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/CoolSingleGuide.pyo"):
-	COOLSINGLEGUIDE = True
-else:
-	COOLSINGLEGUIDE = False
-
-if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/CoolInfoGuide.pyo"):
-	COOLINFOGUIDE = True
-else:
-	COOLINFOGUIDE = False
 	
 def isStandardInfoBar(self):
 	return self.__class__.__name__ == "InfoBar"
@@ -683,13 +673,19 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.EventViewIsShown = False
 
 	def lockShow(self):
-		self.__locked = self.__locked + 1
+		try:
+			self.__locked = self.__locked + 1
+		except:
+			self.__locked = 0
 		if self.execing:
 			self.show()
 			self.hideTimer.stop()
 
 	def unlockShow(self):
-		self.__locked = self.__locked - 1
+		try:
+			self.__locked = self.__locked - 1
+		except:
+			self.__locked = 0
 		if self.__locked  <0:
 			self.__locked = 0
 		if self.execing:
@@ -1024,32 +1020,38 @@ class InfoBarChannelSelection:
 							self.servicelist.prevBouquet()
 					self.servicelist.moveUp()
 					cur = self.servicelist.getCurrentSelection()
-					if cur and (cur.toString() == prev or isPlayableForCur(cur)):
+					if cur:
+						if self.servicelist.dopipzap:
+							isPlayable = self.session.pip.isPlayableForPipService(cur)
+						else:
+							isPlayable = isPlayableForCur(cur)
+					if cur and (cur.toString() == prev or isPlayable):
 						break
 		else:
 			self.servicelist.moveUp()
 		self.servicelist.zap(enable_pipzap = True)
 
 	def zapDown(self):
-		if self.pts_blockZap_timer.isActive():
-			return
-
 		if self.servicelist.inBouquet():
 			prev = self.servicelist.getCurrentSelection()
 			if prev:
 				prev = prev.toString()
 				while True:
-					if config.usage.quickzap_bouquet_change.getValue() and self.servicelist.atEnd():
+					if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
 						self.servicelist.nextBouquet()
 					else:
 						self.servicelist.moveDown()
 					cur = self.servicelist.getCurrentSelection()
-					if cur and (cur.toString() == prev or isPlayableForCur(cur)):
+					if cur:
+						if self.servicelist.dopipzap:
+							isPlayable = self.session.pip.isPlayableForPipService(cur)
+						else:
+							isPlayable = isPlayableForCur(cur)
+					if cur and (cur.toString() == prev or isPlayable):
 						break
 		else:
 			self.servicelist.moveDown()
 		self.servicelist.zap(enable_pipzap = True)
-
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
@@ -1799,11 +1801,18 @@ class InfoBarSeek:
 		if (isStandardInfoBar(self) and self.timeshiftEnabled()):
 			pass
 		elif not self.isSeekable():
-#			print "not seekable, return to play"
+			SystemInfo["SeekStatePlay"] = False
+			if os.path.exists("/proc/stb/lcd/symbol_hdd"):
+				f = open("/proc/stb/lcd/symbol_hdd", "w")
+				f.write("0")
+				f.close()        
+			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):  
+				f = open("/proc/stb/lcd/symbol_hddprogress", "w")
+				f.write("0")
+				f.close()
 			self["SeekActions"].setEnabled(False)
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		else:
-#			print "seekable"
 			self["SeekActions"].setEnabled(True)
 			self.activityTimer.start(200, False)
 			for c in self.onPlayStateChanged:
@@ -1815,6 +1824,20 @@ class InfoBarSeek:
 			hdd = 1
 			if self.activity >= 100:
 				self.activity = 0
+			if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
+
+
+
+				if os.path.exists("/proc/stb/lcd/symbol_hdd"):
+					if config.lcd.hdd.getValue() == "1":
+						file = open("/proc/stb/lcd/symbol_hdd", "w")
+						file.write('%d' % int(hdd))
+						file.close()
+				if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
+					if config.lcd.hdd.getValue() == "1":
+						file = open("/proc/stb/lcd/symbol_hddprogress", "w")
+						file.write('%d' % int(self.activity))
+						file.close() 
 		else:
 			self.activityTimer.stop()
 			self.activity = 0
@@ -2579,48 +2602,47 @@ class InfoBarPiP:
 		if not self.session.pipshown:
 			self.showPiP()
 		slist = self.servicelist
-		if slist:
+		if slist and self.session.pipshown:
 			slist.togglePipzap()
+			if slist.dopipzap:
+				currentServicePath = self.servicelist.getCurrentServicePath()
+				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
+				self.session.pip.servicePath = currentServicePath
 
 	def showPiP(self):
 		if self.session.pipshown:
 			slist = self.servicelist
 			if slist and slist.dopipzap:
-				slist.togglePipzap()
-			del self.session.pip
-			if SystemInfo["LcdDisplay"]:
-				try:
+				self.togglePipzap()
+			if self.session.pipshown:
+				del self.session.pip
+				if SystemInfo["LCDMiniTV"]:
 					if config.lcd.modepip.value >= "1":
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.modeminitv.value)
 						f.close()
-				except:
-					pass
-			self.session.pipshown = False
+				self.session.pipshown = False
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
-			newservice = self.servicelist.servicelist.getCurrent()
+			newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-				if SystemInfo["LcdDisplay"]:
-					try:
-						if config.lcd.modepip.value >= "1":
-							f = open("/proc/stb/lcd/mode", "w")
-							f.write(config.lcd.modepip.value)
-							f.close()
-							f = open("/proc/stb/vmpeg/1/dst_width", "w")
-							f.write("0")
-							f.close()
-							f = open("/proc/stb/vmpeg/1/dst_height", "w")
-							f.write("0")
-							f.close()
-							f = open("/proc/stb/vmpeg/1/dst_apply", "w")
-							f.write("1")
-							f.close()
-					except:
-						pass
+				if SystemInfo["LCDMiniTV"]:
+					if config.lcd.modepip.value >= "1":
+						f = open("/proc/stb/lcd/mode", "w")
+						f.write(config.lcd.modepip.value)
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_width", "w")
+						f.write("0")
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_height", "w")
+						f.write("0")
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
+						f.write("1")
+						f.close()
 			else:
 				self.session.pipshown = False
 				del self.session.pip
@@ -2630,10 +2652,10 @@ class InfoBarPiP:
 		pipref = self.session.pip.getCurrentService()
 		if swapservice and pipref and pipref.toString() != swapservice.toString():
 			currentServicePath = self.servicelist.getCurrentServicePath()
-			self.servicelist.setCurrentServicePath(self.session.pip.servicePath)
+			self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
 			self.session.pip.playService(swapservice)
 			self.session.nav.stopService() # stop portal
-			self.session.nav.playService(pipref) # start subservice
+			self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
 			self.session.pip.servicePath = currentServicePath
 			if self.servicelist.dopipzap:
 				# This unfortunately won't work with subservices
@@ -2909,7 +2931,12 @@ class InfoBarAudioSelection:
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions",
 			{
 				"audioSelection": (self.audioSelection, _("Audio options...")),
+				"audio_key": (self.audio_key, _("Audio options...")),
 			})
+
+	def audio_key(self):
+		from Screens.AudioSelection import AudioSelection
+		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def audioSelection(self):
 		from Screens.AudioSelection import AudioSelection
@@ -2923,6 +2950,7 @@ class InfoBarSubserviceSelection:
 		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
 			{
 				"GreenPressed": (self.GreenPressed),
+				"subserviceSelection": (self.subserviceSelection),
 			})
 
 		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions",
@@ -2941,13 +2969,23 @@ class InfoBarSubserviceSelection:
 		self.bsel = None
 
 	def GreenPressed(self):
-		if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
 		if not config.plisettings.Subservice.getValue():
 			self.openTimerList()
 		else:
-			self.subserviceSelection()
+			service = self.session.nav.getCurrentService()
+			subservices = service and service.subServices()
+			if not subservices or subservices.getNumberOfSubservices() == 0:
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CustomSubservices/plugin.pyo"):
+					serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+					subservices = self.getAvailableSubservices(serviceRef)
+					if not subservices or len(subservices) == 0:
+						self.openPluginBrowser()
+					else:
+						self.subserviceSelection()
+				else:
+					self.openPluginBrowser()
+			else:
+				self.subserviceSelection()
 
 	def __removeNotifications(self):
 		self.session.nav.event.remove(self.checkSubservicesAvail)
