@@ -3,11 +3,13 @@ from Tools.BoundFunction import boundFunction
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
-
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
+from Tools.Directories import fileExists
 
 profile("LOAD:enigma")
 import enigma
@@ -83,6 +85,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.current_begin_time=0
 		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		InfoBar.instance = self
+		self.zoomrate = 0
+		self.zoomin = 1
 
 		if config.misc.initialchannelselection.getValue():
 			self.onShown.append(self.showMenu)
@@ -191,7 +195,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showMovies(self, defaultRef=None):
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if self.lastservice and self.lastservice.toString().find(':0:/') != -1:
+		if self.lastservice and ':0:/' in self.lastservice.toString():
 			self.lastservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.getValue())
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled = self.timeshiftEnabled())
 
@@ -462,21 +466,30 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		if self.session.pipshown:
 			if slist and slist.dopipzap:
 				slist.togglePipzap()
-			del self.session.pip
-			self.session.pipshown = False
+			if self.session.pipshown:
+				del self.session.pip
+				self.session.pipshown = False
 		else:
 			from Screens.PictureInPicture import PictureInPicture
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
-			self.session.pipshown = True
-			self.session.pip.playService(slist.getCurrentSelection())
+			if self.session.pip.playService(slist.getCurrentSelection()):
+				self.session.pipshown = True
+				self.session.pip.servicePath = slist.getCurrentServicePath()
+			else:
+				self.session.pipshown = False
+				del self.session.pip
+
+	def movePiP(self):
+		if self.session.pipshown:
+			InfoBarPiP.movePiP(self)
 
 	def swapPiP(self):
 		pass
 
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if ref and ref.toString().find(':0:/') == -1:
+		if ref and ':0:/' not in ref.toString():
 			self.playingservice = ref # movie list may change the currently playing
 		else:
 			self.playingservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.getValue())
@@ -492,11 +505,14 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			self.close()
 		else:
 			self.is_closing = False
-			ref = self.playingservice
-			del self.playingservice
-			# no selection? Continue where we left off
-			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
-				self.session.nav.playService(ref)
+			try:
+				ref = self.playingservice
+				del self.playingservice
+				# no selection? Continue where we left off
+				if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
+					self.session.nav.playService(ref)
+			except:
+				pass
 
 	def getPlaylistServiceInfo(self, service):
 		from MovieSelection import playlist

@@ -70,13 +70,14 @@ class VirtualKeyBoard(Screen):
 
 		self["country"] = StaticText("")
 		self["header"] = Label()
-		self["text"] = Input(currPos=len(kwargs.get("text", "").decode("utf-8")), allMarked=False, **kwargs)
+		self["text"] = Input(currPos=len(kwargs.get("text", "").decode("utf-8",'ignore')), allMarked=False, **kwargs)
 		self["list"] = VirtualKeyBoardList([])
 
 		self["actions"] = NumberActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
 			{
 				"gotAsciiCode": self.keyGotAscii,
 				"ok": self.okClicked,
+				"OKLong": self.okLongClicked,
 				"cancel": self.exit,
 				"left": self.left,
 				"right": self.right,
@@ -87,7 +88,7 @@ class VirtualKeyBoard(Screen):
 				"yellow": self.switchLang,
 				"blue": self.shiftClicked,
 				"deleteBackward": self.backClicked,
-				"deleteForward": self.backClicked,
+				"deleteForward": self.forwardClicked,
 				"back": self.exit,
 				"pageUp": self.cursorRight,
 				"pageDown": self.cursorLeft,
@@ -295,6 +296,9 @@ class VirtualKeyBoard(Screen):
 	def backClicked(self):
 		self["text"].deleteBackward()
 
+	def forwardClicked(self):
+		self["text"].deleteForward()
+
 	def shiftClicked(self):
 		self.smsChar = None
 		self.shiftMode = not self.shiftMode
@@ -334,6 +338,14 @@ class VirtualKeyBoard(Screen):
 
 		else:
 			self["text"].char(text)
+
+	def okLongClicked(self):
+		self.smsChar = None
+		text = (self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey / 12][self.selectedKey % 12].encode("UTF-8")
+
+		if text == "BACKSPACE":
+			self["text"].deleteAllChars()
+			self["text"].update()
 
 	def ok(self):
 		self.close(self["text"].getText().encode("UTF-8"))
