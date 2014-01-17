@@ -98,8 +98,8 @@ class VideoSetup(Screen, ConfigListScreen):
 		# some modes (720p, 1080i) are always widescreen. Don't let the user select something here, "auto" is not what he wants.
 		force_wide = self.hw.isWidescreenMode(port, mode)
 
-		# if not force_wide:
-		# 	self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
+		if not force_wide:
+		 	self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
 
 		if force_wide or config.av.aspect.getValue() in ("16:9", "16:10"):
 			self.list.extend((
@@ -109,8 +109,8 @@ class VideoSetup(Screen, ConfigListScreen):
 		elif config.av.aspect.getValue() == "4:3":
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
-		if config.av.videoport.getValue() == "HDMI":
-			self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override))
+#		if config.av.videoport.getValue() == "HDMI":
+#			self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override))
 		if config.av.videoport.getValue() == "Scart":
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
 			if level >= 1:
@@ -131,8 +131,11 @@ class VideoSetup(Screen, ConfigListScreen):
 			if SystemInfo["Can3DSurround"]:
 				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option configures you can enable 3D Surround Sound.")))
 
-#			if SystemInfo["Canedidchecking"]:
-#				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option configures you can Bypass HDMI EDID check")))
+			if SystemInfo["CanAutoVolume"]:
+				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume,_("This option configures you can set Auto Volume Level.")))
+
+			if SystemInfo["Canedidchecking"]:
+				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option configures you can Bypass HDMI EDID check")))
 
 #		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
 #			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
@@ -295,7 +298,10 @@ class AutoVideoMode(Screen):
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/framerate"):
 			f = open("/proc/stb/vmpeg/0/framerate", "r")
-			video_rate = int(f.read())
+			try:
+				video_rate = int(f.read())
+			except:
+				video_rate = 50
 			f.close()
 
 		if not video_height or not video_width or not video_pol or not video_rate:
