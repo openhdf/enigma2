@@ -794,7 +794,7 @@ class ImageBackup(Screen):
 		AboutText += _("Build: %s") % getImageBuild() + "\n"
 		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
 
-		string = getDriverDateString()
+		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
 		day = string[6:8]
