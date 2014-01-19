@@ -52,7 +52,7 @@ class About(Screen):
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 
 		AboutText += _("HDF Version:\t%s") % getImageVersion() + "\n"
-		AboutText += _("HDF Build:\t%s") % getBuildVersionString() + "\n"
+		AboutText += _("HDF Build:\t%s") % getImageBuild() + "\n"
 		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
 
 		string = getDriverDateString()
@@ -485,7 +485,7 @@ class AboutSummary(Screen):
 			AboutText += _("Chipset: BCM%s") % chipset.replace('\n','') + "\n"
 
 		AboutText += _("Version: %s") % getImageVersion() + "\n"
-		AboutText += _("Build: %s") % getBuildVersionString() + "\n"
+		AboutText += _("Build: %s") % getImageBuild() + "\n"
 		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
 
 		string = getDriverDateString()
