@@ -1300,16 +1300,32 @@ class ChannelSelectionBase(Screen):
 					self.enterPath(ref)
 					self.setCurrentSelectionAlternative(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
+	def getServicesCount(self, root_ref):
+		count = 0
+		serviceHandler = eServiceCenter.getInstance()
+		list = serviceHandler.list(root_ref)
+		if list is not None:
+			while True:
+				s = list.getNext()
+				if not s.valid(): break
+				count += 1
+		return count
+
 	def showSatellites(self):
 		if not self.pathChangeDisabled:
-			refstr = '%s FROM SATELLITES ORDER BY satellitePosition' % self.service_types
+			if self.mode == 0: # TV mode
+				typeslist = [self.service_types, '1:7:11:0:0:0:0:0:0:0:(type == 17) || (type == 25) || (type == 134) || (type == 195)']
+			else:
+				typeslist = [self.service_types]
+			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'%(typeslist[0])
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
-				justSet = False
+				justSet=False
 				prev = None
+
 				if self.isBasePathEqual(ref):
 					if self.isPrevPathEqual(ref):
-						justSet = True
+						justSet=True
 					prev = self.pathUp(justSet)
 				else:
 					currentRoot = self.getRoot()
@@ -1319,60 +1335,68 @@ class ChannelSelectionBase(Screen):
 						self.enterPath(ref, True)
 				if justSet:
 					serviceHandler = eServiceCenter.getInstance()
-					servicelist = serviceHandler.list(ref)
-					if servicelist is not None:
-						while True:
-							service = servicelist.getNext()
-							if not service.valid(): #check if end of list
-								break
-							unsigned_orbpos = service.getUnsignedData(4) >> 16
-							orbpos = service.getData(4) >> 16
-							if orbpos < 0:
-								orbpos += 3600
-							if "FROM PROVIDER" in service.getPath():
-								service_type = _("Providers")
-							elif ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in service.getPath():
-								service_type = _("New")
-							else:
-								service_type = _("Services")
-							try:
-								# why we need this cast?
-								service_name = str(nimmanager.getSatDescription(orbpos))
-							except:
-								if unsigned_orbpos == 0xFFFF: #Cable
-									service_name = _("Cable")
-								elif unsigned_orbpos == 0xEEEE: #Terrestrial
-									service_name = _("Terrestrial")
+					for srvtypes in typeslist:
+						ref = eServiceReference('%s FROM SATELLITES ORDER BY satellitePosition'%(srvtypes))
+						servicelist = serviceHandler.list(ref)
+						if not servicelist is None:
+							while True:
+								service = servicelist.getNext()
+								if not service.valid(): #check if end of list
+									break
+								unsigned_orbpos = service.getUnsignedData(4) >> 16
+								orbpos = service.getData(4) >> 16
+								if orbpos < 0:
+									orbpos += 3600
+								if service.getPath().find("FROM PROVIDER") != -1:
+									service_type = _("Providers")
+								elif service.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
+									service_type = _("New") + " (%d)"%(self.getServicesCount(service))
 								else:
-									if orbpos > 1800: # west
-										orbpos = 3600 - orbpos
-										h = _("W")
+									service_type = _("Services") + " (%d)"%(self.getServicesCount(service))
+								try:
+									# why we need this cast?
+									service_name = str(nimmanager.getSatDescription(orbpos))
+								except:
+									if unsigned_orbpos == 0xFFFF: #Cable
+										service_name = _("Cable")
+									elif unsigned_orbpos == 0xEEEE: #Terrestrial
+										service_name = _("Terrestrial")
 									else:
-										h = _("E")
-									service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
-							service.setName("%s - %s" % (service_name, service_type))
-							self.servicelist.addService(service)
-						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
-						if cur_ref:
-							pos = self.service_types.rfind(':')
-							refstr = '%s (channelID == %08x%04x%04x) && %s ORDER BY name' %(self.service_types[:pos+1],
-								cur_ref.getUnsignedData(4), # NAMESPACE
-								cur_ref.getUnsignedData(2), # TSID
-								cur_ref.getUnsignedData(3), # ONID
-								self.service_types[pos+1:])
-							ref = eServiceReference(refstr)
-							ref.setName(_("Current transponder"))
-							self.servicelist.addService(ref)
-						self.servicelist.finishFill()
-						if prev is not None:
-							self.setCurrentSelection(prev)
-						elif cur_ref:
-							refstr = cur_ref.toString()
-							op = "".join(refstr.split(':', 10)[6:7])
-							if len(op) >= 4:
-								hop = int(op[:-4],16)
-								refstr = '1:7:0:0:0:0:%s:0:0:0:(satellitePosition == %s) && %s ORDER BY name' % (op, hop, self.service_types[self.service_types.rfind(':')+1:])
-								self.setCurrentSelectionAlternative(eServiceReference(refstr))
+										if orbpos > 1800: # west
+											orbpos = 3600 - orbpos
+											h = _("W")
+										else:
+											h = _("E")
+										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
+								if not '(type == 1)' in srvtypes and '(type == 17)' in srvtypes:
+									service_type = "HD-%s"%(service_type)
+								service.setName("%s - %s" % (service_name, service_type))
+								self.servicelist.addService(service)
+					cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
+					if cur_ref:
+						pos = self.service_types.rfind(':')
+						refstr = '%s (channelID == %08x%04x%04x) && %s ORDER BY name' %(self.service_types[:pos+1],
+							cur_ref.getUnsignedData(4), # NAMESPACE
+							cur_ref.getUnsignedData(2), # TSID
+							cur_ref.getUnsignedData(3), # ONID
+							self.service_types[pos+1:])
+						ref = eServiceReference(refstr)
+						ref.setName(_("Current Transponder"))
+						self.servicelist.addService(ref)
+					hdref = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 211) && (name != .) ORDER BY name')
+					if hdref:
+						hdref.setName("%s - %s" % ("Sky Deutschland 19.2E", _("Subservices")))
+						self.servicelist.addService(hdref)
+					self.servicelist.finishFill()
+					if prev is not None:
+						self.setCurrentSelection(prev)
+					elif cur_ref:
+						refstr = cur_ref.toString()
+						op = "".join(refstr.split(':', 10)[6:7])
+						if len(op) >= 4:
+							hop = int(op[:-4],16)
+							refstr = '1:7:0:0:0:0:%s:0:0:0:(satellitePosition == %s) && %s ORDER BY name' % (op,hop,self.service_types[self.service_types.rfind(':')+1:])
+							self.setCurrentSelectionAlternative(eServiceReference(refstr))
 
 	def showProviders(self):
 		if not self.pathChangeDisabled:
