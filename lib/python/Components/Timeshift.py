@@ -47,7 +47,8 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, resolveFilename, SCOPE_TIMESHIFT
 from Tools.TimeShift import CopyTimeshiftJob, MergeTimeshiftJob, CreateAPSCFilesJob
 
-from enigma import getBoxType, eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService
+from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService
+from boxbranding import getBoxType
 
 from time import time, localtime, strftime
 from random import randint
@@ -173,7 +174,7 @@ class InfoBarTimeshift:
 		state = self.getSeek() is not None and self.timeshiftEnabled()
 		self["SeekActionsPTS"].setEnabled(state)
 		self["TimeshiftFileActions"].setEnabled(state)
-
+		
 		if not state:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 
@@ -1159,11 +1160,11 @@ class InfoBarTimeshift:
 			# print '!!!!! TEST1'
 			self.pts_switchtolive = False
 			return
-
+		
 		if self.pts_nextplaying:
 			self.pts_currplaying = self.pts_nextplaying
 		self.pts_nextplaying = self.pts_currplaying+1
-
+		
 		# Get next pts file ...
 		# print '!!!!! TEST3'
 		# print ("!!! %spts_livebuffer_%s" % (config.usage.timeshift_path.getValue(),self.pts_nextplaying))

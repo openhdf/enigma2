@@ -1,6 +1,6 @@
 import os
-from enigma import eActionMap, eEPGCache, quitMainloop, getMachineBrand, getMachineName
-
+from enigma import eActionMap, eEPGCache, quitMainloop
+from boxbranding import getMachineBrand, getMachineName
 from Components.config import config
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.Task import Task, Job, job_manager as JobManager
@@ -315,7 +315,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		self.start_prepare = self.begin - self.prepare_time
 		self.backoff = 0
 
-		if int(old_prepare) != int(self.start_prepare):
+		if int(old_prepare) > 60 and int(old_prepare) != int(self.start_prepare):
 			self.log(15, "time changed, start prepare is now: %s" % ctime(self.start_prepare))
 
 def createTimer(xml):

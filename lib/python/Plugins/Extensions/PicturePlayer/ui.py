@@ -14,7 +14,7 @@ from Components.ConfigList import ConfigList, ConfigListScreen
 
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
 
-from enigma import getMachineBrand
+from boxbranding import getMachineBrand
 
 def getScale():
 	return AVSwitch().getFramebufferScale()
@@ -139,9 +139,9 @@ class picshow(Screen):
 		del self.picload
 
 		if self.filelist.getCurrentDirectory() is None:
-			config.pic.lastDir.value = "/"
+			config.pic.lastDir.setValue("/")
 		else:
-			config.pic.lastDir.value = self.filelist.getCurrentDirectory()
+			config.pic.lastDir.setValue(self.filelist.getCurrentDirectory())
 
 		config.pic.save()
 		self.close()
@@ -193,6 +193,9 @@ class Pic_Setup(Screen, ConfigListScreen):
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
+
+	def keyCancel(self):
+		self.close()		
 
 	# for summary:
 	def changedEntry(self):
@@ -590,7 +593,7 @@ class Pic_Full_View(Screen):
 
 	def slidePic(self):
 		print "slide to next Picture index=" + str(self.lastindex)
-		if config.pic.loop.value==False and self.lastindex == self.maxentry:
+		if config.pic.loop.getValue() == False and self.lastindex == self.maxentry:
 			self.PlayPause()
 		self.shownow = True
 		self.ShowPicture()

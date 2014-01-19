@@ -21,11 +21,11 @@ from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
 from Components.AVSwitch import AVSwitch
 from Components.Harddisk import harddiskmanager
 from Components.config import config
-from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_ACTIVE_SKIN
+from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_CURRENT_SKIN
 from Tools.BoundFunction import boundFunction
 from settings import MediaPlayerSettings
 import random
-from enigma import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName
 
 class MyPlayList(PlayList):
 	def __init__(self):
@@ -901,7 +901,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				text = self.getIdentifier(currref)
 				self.ext = os.path.splitext(text)[1].lower()
 				text = ">"+text
-				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead
+				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
 				if self.ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
 					self.hideAndInfoBar()
 				else:

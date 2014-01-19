@@ -45,6 +45,7 @@ from ImageWizard import ImageWizard
 from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
 from SoftwareTools import iSoftwareTools
 import os
+from boxbranding import getBoxType, getMachineBrand, getMachineName
 
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
 	from Plugins.Extensions.dFlash.plugin import dFlash

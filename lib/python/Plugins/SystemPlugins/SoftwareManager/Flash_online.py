@@ -13,10 +13,11 @@ from Screens.Console import Console
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskView import JobView
 from Tools.Downloader import downloadWithProgress
-from enigma import getBoxType, getDistro, getMachineName, getMachineBrand
 import urllib2
 import os
 import shutil
+import math
+from boxbranding import getBoxType, getDistro, getMachineName
 
 distro = getDistro()
 
@@ -25,10 +26,10 @@ image = 0 # 0=openATV / 1=openMips 2=openhdf
 if distro.lower() == "openmips":
 	image = 1
 elif distro.lower() == "openatv":
-	from enigma import getMachineBrand, getMachineName
+	from boxbranding import getMachineBrand, getMachineName
 	image = 0
 elif distro.lower() == "openhdf":
-	from enigma import getMachineBrand, getMachineName
+	from boxbranding import getMachineBrand, getMachineName
 	image = 2
 feedurl_atv = 'http://images.mynonpublic.com/openatv/nightly'
 feedurl_om = 'http://image.openmips.com/2.0'
@@ -192,8 +193,6 @@ class doFlashImage(Screen):
 
 	def box(self):
 		box = getBoxType()
-		brandfile = "/etc/.brand"
-		machinefile = "/etc/.machine"
 		machinename = getMachineName()
 		if box == 'odinm6':
 			box = getMachineName().lower()
@@ -207,10 +206,6 @@ class doFlashImage(Screen):
 			box = "miraclebox-twin"
 		elif box == "xp1000" and machinename.lower() == "sf8 hd":
 			box = "sf8"
-		elif os.path.exists(machinefile) is True:
-			machine = open(machinefile,"r")
-			box = machine.readline().lower()
-			machine.close()
 		return box
 
 	def green(self):
