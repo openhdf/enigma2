@@ -4,7 +4,7 @@ from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
-from enigma import getBoxType
+from boxbranding import getBoxType
 
 searchPaths = []
 lastLcdPiconPath = None
@@ -21,7 +21,7 @@ def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
 		if getBoxType() == 'vuultimo':
-			path = os.path.join(mountpoint, 'lcd_picon') + '/'
+			path = os.path.join(mountpoint, 'piconlcd') + '/'
 		else:
 			path = os.path.join(mountpoint, 'picon') + '/'
 		if os.path.isdir(path) and path not in searchPaths:
@@ -36,7 +36,7 @@ def onMountpointAdded(mountpoint):
 def onMountpointRemoved(mountpoint):
 	global searchPaths
 	if getBoxType() == 'vuultimo':
-		path = os.path.join(mountpoint, 'lcd_picon') + '/'
+		path = os.path.join(mountpoint, 'piconlcd') + '/'
 	else:
 		path = os.path.join(mountpoint, 'picon') + '/'
 	try:

@@ -4,7 +4,7 @@
 #			     MAKES A FULLBACK-UP READY FOR FLASHING.						#
 #																				#
 #################################################################################
-from enigma import getBoxType, getMachineBrand, getMachineName, getImageVersionString, getBuildVersionString, getDriverDateString, getEnigmaVersionString
+from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
 from Components.Button import Button
 from Components.Label import Label
@@ -16,6 +16,7 @@ from time import time, strftime, localtime
 from os import path, system, makedirs, listdir, walk, statvfs
 import commands
 import datetime
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getBuildVersion
 
 VERSION = "Version 2.0 borrowed from openATV"
 
@@ -209,6 +210,17 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/e3hd" % self.DIRECTORY
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 			self.EXTRA = "%s/fullbackup_e3hd/%s" % (self.DIRECTORY, self.DATE)
+		## TESTING THE ENFINITY Model
+		elif self.MODEL == "enfinity":
+			self.TYPE = "EVO"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MTDKERNEL = "mtd1"	
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/enfinity" % self.DIRECTORY
+			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
+			self.EXTRA = "%s/fullbackup_enfinity/%s" % (self.DIRECTORY, self.DATE)
 		## TESTING THE MK Digital Model
 		elif self.MODEL == "xp1000" and not self.MACHINENAME.lower() == "sf8 hd":
 			self.TYPE = "MAXDIGITAL"
@@ -345,6 +357,16 @@ class ImageBackup(Screen):
 		elif self.MODEL == "tm2t":
 			self.TYPE = "TECHNO"
 			self.MODEL = "tm2toe"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s" %self.MODEL
+			self.MTDKERNEL = "mtd6"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/update/%s/cfe" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_TECHNO/%s/update/%s" % (self.DIRECTORY, self.DATE, self.MODEL)
+		elif self.MODEL == "tmnano2t":
+			self.TYPE = "TECHNO"
+			self.MODEL = "tmnano2t"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096 -F"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "%s" %self.MODEL
@@ -768,7 +790,7 @@ class ImageBackup(Screen):
 		AboutText += _("CPU: %s") % about.getCPUString() + "\n"
 		AboutText += _("Cores: %s") % about.getCpuCoresString() + "\n"
 
-		AboutText += _("Version: %s") % getImageVersionString() + "\n"
+		AboutText += _("Version: %s") % getImageVersion() + "\n"
 		AboutText += _("Build: %s") % getBuildVersionString() + "\n"
 		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
 

@@ -13,6 +13,7 @@ from Tools.Directories import fileExists
 
 profile("LOAD:enigma")
 import enigma
+from boxbranding import getBoxType, getMachineBrand
 
 profile("LOAD:InfoBarGenerics")
 from Screens.InfoBarGenerics import InfoBarShowHide, \
@@ -155,7 +156,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.servicelist.showFavourites()
 
 	def TvRadioToggle(self):
-		if enigma.getBoxType().startswith('gb'):
+		if getBoxType().startswith('gb'):
 			self.toogleTvRadio()
 		else:
 			self.showTv()

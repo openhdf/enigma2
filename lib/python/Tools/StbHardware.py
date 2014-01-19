@@ -1,7 +1,7 @@
 from fcntl import ioctl
 from struct import pack, unpack
 from Components.config import config
-from enigma import getBoxType
+from boxbranding import getBoxType
 
 def getFPVersion():
 	ret = None
@@ -11,7 +11,6 @@ def getFPVersion():
 		try:
 			fp = open("/dev/dbox/fp0")
 			ret = ioctl(fp.fileno(),0)
-			fp.close()
 		except IOError:
 			print "getFPVersion failed!"
 	return ret
@@ -98,6 +97,7 @@ def getFPWasTimerWakeup():
 			fp.close()
 		except IOError:
 			print "wasTimerWakeup failed!"
+
 	if wasTimerWakeup:
 		# clear hardware status
 		clearFPWasTimerWakeup()
