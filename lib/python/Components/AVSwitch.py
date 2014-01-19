@@ -365,7 +365,8 @@ def InitAVSwitch():
 	if getBoxType() == 'inihde':
 		config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="yuv")
 	else:
-		config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")	config.av.aspectratio = ConfigSelection(choices={
+		config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
+	config.av.aspectratio = ConfigSelection(choices={
 			"4_3_letterbox": _("4:3 Letterbox"),
 			"4_3_panscan": _("4:3 PanScan"),
 			"16_9": _("16:9"),
