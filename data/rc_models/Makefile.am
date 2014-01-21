@@ -2,10 +2,13 @@ if AZBOX
 SUBDIRS = azboxme azboxhd azboxelite
 endif
 
+<<<<<<< HEAD
 if CUBE
 SUBDIRS = cube
 endif
 
+=======
+>>>>>>> parent of b443517... [RcModels] remove as now part of branding
 if DREAMBOX
 SUBDIRS = dmm0 dmm1 dmm2
 endif
@@ -18,10 +21,13 @@ if EBOX
 SUBDIRS = ebox5000
 endif
 
+<<<<<<< HEAD
 if EVO
 SUBDIRS = evo
 endif
 
+=======
+>>>>>>> parent of b443517... [RcModels] remove as now part of branding
 if XTREND
 SUBDIRS = et4x00 et6x00 et6500 et9x00 et9500
 endif
@@ -34,18 +40,24 @@ if GBQUAD
 SUBDIRS = gb
 endif
 
+<<<<<<< HEAD
 if GBQUADPLUS
 SUBDIRS = gb
 endif
 
+=======
+>>>>>>> parent of b443517... [RcModels] remove as now part of branding
 if IQON
 SUBDIRS = iqon
 endif
 
+<<<<<<< HEAD
 if FORCE1
 SUBDIRS = iqon
 endif
 
+=======
+>>>>>>> parent of b443517... [RcModels] remove as now part of branding
 if JEPSSEN
 SUBDIRS = mediabox
 endif
@@ -103,13 +115,20 @@ SUBDIRS = vu2
 endif
 
 if VUDUO2
+<<<<<<< HEAD
 SUBDIRS = vu3
+=======
+SUBDIRS = vu
+>>>>>>> parent of b443517... [RcModels] remove as now part of branding
 endif
 
 if XP1000
 SUBDIRS = xp1000
 endif
 
+<<<<<<< HEAD
 if SOGNO
 SUBDIRS = sogno
 endif
+=======
+>>>>>>> parent of b443517... [RcModels] remove as now part of branding
