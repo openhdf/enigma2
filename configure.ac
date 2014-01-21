@@ -435,7 +435,6 @@ data/rc_models/ini4/Makefile
 data/rc_models/iqon/Makefile
 data/rc_models/ixussone/Makefile
 data/rc_models/ixusszero/Makefile
-data/rc_models/Makefile
 data/rc_models/mediabox/Makefile
 data/rc_models/odinm6/Makefile
 data/rc_models/odinm7/Makefile
