@@ -155,10 +155,10 @@ class ImageBackup(Screen):
 		## TESTING WHICH KIND OF SATELLITE RECEIVER IS USED
 
 		## TESTING THE XTREND AND CLARK TECH MODELS
-		if self.MODEL == "et9x00" or self.MODEL == "et5x00" or self.MODEL == "et6x00" or self.MODEL == "et6500" or self.MODEL == "et4x00":
+		if self.MODEL == "et9000" or self.MODEL == "et5000" or self.MODEL == "et6000" or self.MODEL == "et6500" or self.MODEL == "et4000":
 			self.TYPE = "ET"
 			if self.MODEL == "et6500":
-				self.MODEL = "et6x00"
+				self.MODEL = "et6000"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "Xtrend %s" %self.MODEL
