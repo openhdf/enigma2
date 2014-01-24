@@ -21,6 +21,7 @@ from Screens.Standby import TryQuitMainloop
 from MountPoints import MountPoints
 from Disks import Disks
 from ExtraMessageBox import ExtraMessageBox
+from boxbranding import getMachineBrand, getMachineName
 
 import os
 import sys
