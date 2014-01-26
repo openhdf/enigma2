@@ -224,7 +224,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
 		## TESTING THE Medialink Model
-		elif self.MODEL == "ixussone" or self.MODEL == "ixusszero":
+		elif self.OEM == "ixussone" or self.OEM == "ixusszero":
 			self.TYPE = "IXUSS"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
