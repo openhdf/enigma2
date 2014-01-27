@@ -2980,11 +2980,11 @@ class InfoBarSubserviceSelection:
 					serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
 					subservices = self.getAvailableSubservices(serviceRef)
 					if not subservices or len(subservices) == 0:
-						self.openPluginBrowser()
+						self.openTimerList()
 					else:
 						self.subserviceSelection()
 				else:
-					self.openPluginBrowser()
+					self.openTimerList()
 			else:
 				self.subserviceSelection()
 
