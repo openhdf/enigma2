@@ -80,11 +80,17 @@ def getPiconName(serviceName):
 	sname = '_'.join(GetWithAlternative(serviceName).split(':', 10)[:10])
 	pngname = findPicon(sname)
 	if not pngname:
+		print "NOT PNG NAME FOUND !!"
 		fields = sname.split('_', 3)
+		print fields
 		if len(fields) > 2 and fields[2] != '2':
 			#fallback to 1 for tv services with nonstandard servicetypes
 			fields[2] = '1'
-			pngname = findPicon('_'.join(fields))
+		if fields[0] == '4097':
+			#fallback to 1 for IPTV streams
+			fields[0] = '1'
+		pngname = findPicon('_'.join(fields))
+		print pngname
 	return pngname
 
 class Picon(Renderer):
@@ -141,17 +147,24 @@ class Picon(Renderer):
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
-			if what[0] == 1 or what[0] == 3:
+			if what[0] != self.CHANGED_CLEAR and len(what) > 1:
 				pngname = getPiconName(self.source.text)
-				if not pathExists(pngname): # no picon for service found
-					pngname = self.defaultpngname
-				if self.pngname != pngname:
-					if pngname:
-						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
-						self.PicLoad.startDecode(pngname)
-					else:
-						self.instance.hide()
-					self.pngname = pngname
+			if not pngname: # no picon for service found
+				pngname = self.defaultpngname
+			if not config.usage.showpicon.getValue():
+				pngname = self.nopicon
+			if self.pngname != pngname:
+				if pngname:
+					if not getBoxType().startswith("venton"):
+						self.instance.setScale(1)
+					self.instance.setPixmapFromFile(pngname)
+					self.instance.show()
+					#else:	
+					#	self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
+					#	self.PicLoad.startDecode(pngname)
+				else:
+					self.instance.hide()
+				self.pngname = pngname
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 initPiconPaths()

@@ -1,7 +1,7 @@
 from Components.About import about
 from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC, defaultRecordingLocation, fileExists
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, fileExists
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
 from boxbranding import getBoxType
 from Components.NimManager import nimmanager
@@ -115,6 +115,7 @@ def InitUsageConfig():
 	config.usage.default_path.addNotifier(defaultpathChanged, immediate_feedback = False)
 
 	config.usage.timer_path = ConfigText(default = "<default>")
+	config.usage.autorecord_path = ConfigText(default = "<default>")
 	config.usage.instantrec_path = ConfigText(default = "<default>")
 
 	if not os.path.exists(resolveFilename(SCOPE_TIMESHIFT)):
@@ -134,6 +135,24 @@ def InitUsageConfig():
 			config.usage.timeshift_path.save()
 	config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback = False)
 	config.usage.allowed_timeshift_paths = ConfigLocations(default = [resolveFilename(SCOPE_TIMESHIFT)])
+
+	if not os.path.exists(resolveFilename(SCOPE_AUTORECORD)):
+		try:
+			os.mkdir(resolveFilename(SCOPE_AUTORECORD),0755)
+		except:
+			pass
+	config.usage.autorecord_path = ConfigText(default = resolveFilename(SCOPE_AUTORECORD))
+	if not config.usage.default_path.getValue().endswith('/'):
+		tmpvalue = config.usage.autorecord_path.getValue()
+		config.usage.autorecord_path.setValue(tmpvalue + '/')
+		config.usage.autorecord_path.save()
+	def autorecordpathChanged(configElement):
+		if not config.usage.autorecord_path.getValue().endswith('/'):
+			tmpvalue = config.usage.autorecord_path.getValue()
+			config.usage.autorecord_path.setValue(tmpvalue + '/')
+			config.usage.autorecord_path.save()
+	config.usage.autorecord_path.addNotifier(autorecordpathChanged, immediate_feedback = False)
+	config.usage.allowed_autorecord_paths = ConfigLocations(default = [resolveFilename(SCOPE_AUTORECORD)])
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min = 1, max = 31, stepwidth = 1, default = 7, wraparound = True)
@@ -422,7 +441,7 @@ def InitUsageConfig():
 	config.timeshift.showinfobar = ConfigYesNo(default = True)
 	config.timeshift.stopwhilerecording = ConfigYesNo(default = False)
 	config.timeshift.favoriteSaveAction = ConfigSelection([("askuser", _("Ask user")),("savetimeshift", _("Save and stop")),("savetimeshiftandrecord", _("Save and record")),("noSave", _("Don't save"))], "askuser")
-	config.timeshift.permanentrecording = ConfigYesNo(default = False)
+	config.timeshift.autorecord = ConfigYesNo(default = False)
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default = False))
 
 	config.seek = ConfigSubsection()
