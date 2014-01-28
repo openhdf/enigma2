@@ -22,25 +22,15 @@ from os import path
 from enigma import eEPGCache, eTimer, eServiceReference, ePoint
 
 class EventViewContextMenu(Screen):
-	def __init__(self, session, service, event):
+	def __init__(self, session, menu):
 		Screen.__init__(self, session)
 		self.setTitle(_('Event view'))
-		self.event = event
-		self.service = service
-		self.eventname = event.getEventName()
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick
 			})
-
-		menu = []
-
-		for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
-			#only list service or event specific eventinfo plugins here, no servelist plugins
-			if 'servicelist' not in p.__call__.func_code.co_varnames:
-				menu.append((p.name, boundFunction(self.runPlugin, p)))
 
 		self["menu"] = MenuList(menu)
 
@@ -49,9 +39,6 @@ class EventViewContextMenu(Screen):
 
 	def cancelClick(self):
 		self.close(False)
-
-	def runPlugin(self, plugin):
-		plugin(session=self.session, service=self.service, event=self.event, eventName=self.eventname)
 
 class EventViewBase:
 	ADD_TIMER = 1
@@ -81,7 +68,6 @@ class EventViewBase:
 			{
 				"cancel": self.close,
 				"ok": self.close,
-				"info": self.close,
 				"pageUp": self.pageUp,
 				"pageDown": self.pageDown,
 				"prevEvent": self.prevEvent,
@@ -240,19 +226,8 @@ class EventViewBase:
 
 		self["summary_description"].setText(extended)
 
-		beginTimeString = event.getBeginTimeString()
-
-		if not beginTimeString:
-			return
-		if beginTimeString.find(', ') > -1:
-			begintime = beginTimeString.split(', ')[1].split(':')
-			begindate = beginTimeString.split(', ')[0].split('.')
-		else:
-			if len(beginTimeString.split(' ')) > 1:
-				begintime = beginTimeString.split(' ')[1].split(':')
-			else:
-				return
-			begindate = beginTimeString.split(' ')[0].split('.')
+		begintime = event.getBeginTimeString().split(', ')[1].split(':')
+		begindate = event.getBeginTimeString().split(', ')[0].split('.')
 		nowt = time()
 		now = localtime(nowt)
 		test = int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst)))
@@ -262,7 +237,7 @@ class EventViewBase:
 		self["duration"].setText(_("%d min")%(event.getDuration()/60))
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)
-			
+
 		serviceref = self.currentService
 		eventid = self.event.getEventId()
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
@@ -316,7 +291,16 @@ class EventViewBase:
 
 	def doContext(self):
 		if self.event is not None:
-			self.session.open(EventViewContextMenu, self.currentService, self.event)
+			menu = []
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
+				#only list service or event specific eventinfo plugins here, no servelist plugins
+				if 'servicelist' not in p.__call__.func_code.co_varnames:
+					menu.append((p.name, boundFunction(self.runPlugin, p)))
+			if menu:
+				self.session.open(EventViewContextMenu, menu)
+
+	def runPlugin(self, plugin):
+		plugin(session=self.session, service=self.currentService, event=self.event, eventName=self.event.getEventName())
 
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, event, ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skin='EventViewSimple'):
