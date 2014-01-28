@@ -18,6 +18,7 @@ from Disks import Disks
 from ExtraMessageBox import ExtraMessageBox
 from ExtraActionBox import ExtraActionBox
 from MountPoints import MountPoints
+from boxbranding import getMachineBrand, getMachineName
 
 import os
 import sys

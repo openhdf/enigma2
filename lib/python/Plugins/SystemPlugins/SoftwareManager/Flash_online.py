@@ -17,7 +17,7 @@ import urllib2
 import os
 import shutil
 import math
-from boxbranding import getBoxType,  getImageDistro, getMachineName, getMachineBrand
+from boxbranding import getBoxType,  getImageDistro, getMachineName, getMachineBrand, getOEM
 
 distro =  getImageDistro()
 
@@ -190,11 +190,12 @@ class doFlashImage(Screen):
 			self["imageList"].l.setList(self.imagelist)
 
 	def box(self):
-		box = getBoxType()
+		#box = getBoxType()
+		box = getOEM()
 		machinename = getMachineName()
 		if box == 'odinm6':
 			box = getMachineName().lower()
-		elif box == "inihde" and machinename.lower() == "xpeedlx":
+		elif box == "inihde" and machinename.lower().startswith('xpeed'):
 			box = "xpeedlx"
 		elif box == "inihde" and machinename.lower() == "hd-1000":
 			box = "sezam-1000hd"

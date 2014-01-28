@@ -190,7 +190,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			elif config.recording.filename_composition.getValue() == "long":
 				filename += " - " + self.name + " - " + self.description
 			elif config.recording.filename_composition.getValue() == "twisted":
-				filename =  service_name + " - " + begin_date + " - " + self.name + " - " + self.description
+				filename = self.name + " - " + begin_date + " - " + service_name + " - " + self.description
 			else:
 				filename += " - " + self.name # standard
 

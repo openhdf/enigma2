@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-01-18 10:13+0100\n"
+"PO-Revision-Date: 2014-01-27 20:06+0100\n"
 "Last-Translator: koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -21,12 +21,9 @@ msgstr ""
 "\n"
 "Erweiterte Optionen und Einstellungen."
 
-msgid ""
-"\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Nachdem OK gedrückt wurde, bitte warten!"
+#, python-format
+msgid "After pressing OK, please wait!"
+msgstr "Nachdem OK gedrückt wurde, bitte warten!"
 
 #, python-format
 msgid ""
@@ -2880,8 +2877,16 @@ msgstr ""
 "(Wähle 'Nein' um nur die gerade gewählte Datei zu senden.)"
 
 #, python-format
+msgid "Do you want to update your %s %s ?"
+msgstr "Softwareupdate für %s %s ?"
+
+#, python-format
 msgid "Do you want to update your %s %s"
-msgstr "Softwareupdate für %s %s ..."
+msgstr "Softwareupdate für %s %s"
+
+#, python-format
+msgid "Do you want to update your %s %s?"
+msgstr "Softwareupdate für %s %s?"
 
 #, python-format
 msgid "Show new Packages"
@@ -11982,3 +11987,18 @@ msgstr "Zeige letzte Updates"
 
 msgid "Show Last Updates"
 msgstr "Zeige letzte Updates"
+
+msgid ""
+"If set to 'yes', enable autorecord for automatically background timeshift"
+msgstr "Aktiviert die Automatischeaufnahme für Timeshift im Hintergrund."
+
+msgid "Autorecord location"
+msgstr "Aktiviert Automatischeaufnahme"
+
+msgid ""
+"Set the default location for your autorecord-files. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Wähle das Standardverzeichnis für die Automatischeaufnahme. Drücke 'OK' um "
+"ein neues Verzeichnis zu wählen. Benutze Kreuz links/rechts um bestehende "
+"Verzeichnisse zu wählen."
