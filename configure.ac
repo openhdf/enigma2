@@ -137,6 +137,7 @@ AM_CONDITIONAL(ENFINITY, test "$BOXTYPE" == enfinity)
 AM_CONDITIONAL(ET4X00, test "$BOXTYPE" == et4x00)
 AM_CONDITIONAL(ET5X00, test "$BOXTYPE" == et5x00)
 AM_CONDITIONAL(ET6X00, test "$BOXTYPE" == et6x00)
+AM_CONDITIONAL(ET8X00, test "$BOXTYPE" == et8x00)
 AM_CONDITIONAL(ET9X00, test "$BOXTYPE" == et9x00)
 AM_CONDITIONAL(FORCE1, test "$BOXTYPE" == force1)
 AM_CONDITIONAL(GB800SOLO, test "$BOXTYPE" == gb800solo)
@@ -323,7 +324,7 @@ if test "$BOXTYPE" == "ebox5000" -o "$BOXTYPE" == "ebox7358" -o "$BOXTYPE" == "e
 fi
 
 
-if test "$BOXTYPE" == "et4x00" -o "$BOXTYPE" == "et5x00" -o "$BOXTYPE" == "et6x00" -o "$BOXTYPE" == "et9x00" ; then
+if test "$BOXTYPE" == "et4x00" -o "$BOXTYPE" == "et5x00" -o "$BOXTYPE" == "et6x00" -o "$BOXTYPE" == "et9x00" -o "$BOXTYPE" == "et8x00" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
@@ -459,6 +460,7 @@ data/rc_models/et4x00/Makefile
 data/rc_models/et6500/Makefile
 data/rc_models/et6x00/Makefile
 data/rc_models/et9500/Makefile
+data/rc_models/et8000/Makefile
 data/rc_models/et9x00/Makefile
 data/rc_models/evo/Makefile
 data/rc_models/gb/Makefile
