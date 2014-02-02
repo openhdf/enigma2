@@ -75,8 +75,8 @@ eDBoxLCD::eDBoxLCD()
 	{
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
-
-		if((strcmp(boxtype_name, "xp1000s\n") == 0) || (strcmp(boxtype_name, "odinm7\n") == 0))
+		
+		if((strcmp(boxtype_name, "xp1000s\n") == 0) || (strcmp(boxtype_name, "odinm7\n") == 0) || (strcmp(boxtype_name, "enfinity\n") == 0))
 		{
 			lcdfd = open("/dev/null", O_RDWR);
 		}
@@ -87,7 +87,7 @@ eDBoxLCD::eDBoxLCD()
 					fgets(fp_version, sizeof(fp_version), fp_file);
 					fclose(fp_file);
 				}
-				if(strcmp(fp_version, "0\n") == 0)
+				if(strcmp(fp_version, "0\n") == 0) 
 				{
 					lcdfd = open("/dev/null", O_RDWR);
 				}
@@ -99,17 +99,16 @@ eDBoxLCD::eDBoxLCD()
 		else
 		{
 			lcdfd = open("/dev/dbox/oled0", O_RDWR);
-		}
-	}
+		}		
+	}	
 	else
 	{
 		lcdfd = open("/dev/dbox/oled0", O_RDWR);
 	}
-
+	
 	if (lcdfd < 0)
 	{
-		if (!access("/proc/stb/lcd/oled_brightness", W_OK) ||
-		    !access("/proc/stb/fp/oled_brightness", W_OK) )
+		if (!access("/proc/stb/lcd/oled_brightness", W_OK) || !access("/proc/stb/fp/oled_brightness", W_OK) )
 			is_oled = 2;
 		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
 	} else
@@ -157,12 +156,12 @@ eDBoxLCD::eDBoxLCD()
 		}
 	}
 #endif
-#ifdef HAVE_FULLGRAPHICLCD
-	fprintf(stdout,"SET RIGHT HALF VFD SKIN\n");
-	FILE *f = fopen("/proc/stb/lcd/right_half", "w");
-	fprintf(f,"skin");
-	fclose(f);
-#endif
+	if (FILE * file = fopen("/proc/stb/lcd/right_half", "w"))
+	{
+		fprintf(stdout,"SET RIGHT HALF VFD SKIN\n");
+		fprintf(file,"skin");
+		fclose(file);
+	}
 	instance=this;
 
 	setSize(xres, yres, bpp);
@@ -332,17 +331,21 @@ void eDBoxLCD::update()
 			}
 			else
 			{
-#ifdef HAVE_GIGABLUELCD
-				unsigned char gb_buffer[_stride * res.height()];
-				for (int offset = 0; offset < _stride * res.height(); offset += 2)
+				if (FILE * file = fopen("/proc/stb/info/gbmodel", "r"))
 				{
-					gb_buffer[offset] = (_buffer[offset] & 0x1F) | ((_buffer[offset + 1] << 3) & 0xE0);
-					gb_buffer[offset + 1] = ((_buffer[offset + 1] >> 5) & 0x03) | ((_buffer[offset] >> 3) & 0x1C) | ((_buffer[offset + 1] << 5) & 0x60);
+					unsigned char gb_buffer[_stride * res.height()];
+					for (int offset = 0; offset < _stride * res.height(); offset += 2)
+					{
+						gb_buffer[offset] = (_buffer[offset] & 0x1F) | ((_buffer[offset + 1] << 3) & 0xE0);
+						gb_buffer[offset + 1] = ((_buffer[offset + 1] >> 5) & 0x03) | ((_buffer[offset] >> 3) & 0x1C) | ((_buffer[offset + 1] << 5) & 0x60);
+					}
+					write(lcdfd, gb_buffer, _stride * res.height());
+					fclose(file);
 				}
-				write(lcdfd, gb_buffer, _stride * res.height());
-#else
-				write(lcdfd, _buffer, _stride * res.height());
-#endif
+				else
+				{
+					write(lcdfd, _buffer, _stride * res.height());
+				}
 			}
 		}
 		else /* is_oled == 1 */

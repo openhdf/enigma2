@@ -3,6 +3,7 @@ import time
 from Tools.CList import CList
 from SystemInfo import SystemInfo
 from Components.Console import Console
+from Tools.HardwareInfo import HardwareInfo
 import Task
 
 def readFile(filename):
@@ -121,7 +122,11 @@ class Harddisk:
 		elif self.type == DEVTYPE_DEVFS:
 			ide_cf = self.device[:2] == "hd" and "host0" not in self.dev_path
 
-		internal = ("pci" or "ata") in self.phys_path
+		hw_type = HardwareInfo().get_device_name()
+		if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' :
+			internal = "ide" in self.phys_path
+		else:
+			internal = "pci" in self.phys_path
 
 		if ide_cf:
 			ret = _("External (CF)")
@@ -223,12 +228,12 @@ class Harddisk:
 		cmd = 'umount ' + dev
 		print "[Harddisk]", cmd
 		res = os.system(cmd)
-		return (res >> 8)
+		return res >> 8
 
 	def createPartition(self):
 		cmd = 'printf "8,\n;0,0\n;0,0\n;0,0\ny\n" | sfdisk -f -uS ' + self.disk_path
 		res = os.system(cmd)
-		return (res >> 8)
+		return res >> 8
 
 	def mkfs(self):
 		# No longer supported, use createInitializeJob instead
@@ -254,7 +259,7 @@ class Harddisk:
 				print "[Harddisk] mounting:", fspath
 				cmd = "mount -t auto " + fspath
 				res = os.system(cmd)
-				return (res >> 8)
+				return res >> 8
 		# device is not in fstab
 		res = -1
 		if self.type == DEVTYPE_UDEV:
@@ -263,7 +268,7 @@ class Harddisk:
 			# give udev some time to make the mount, which it will do asynchronously
 			from time import sleep
 			sleep(3)
-		return (res >> 8)
+		return res >> 8
 
 	def fsck(self):
 		# No longer supported, use createCheckJob instead
@@ -352,7 +357,7 @@ class Harddisk:
 					file = open("/proc/version","r")
 					version = map(int, file.read().split(' ', 4)[2].split('.',2)[:2])
 					file.close()
-					if (version[0] > 3) or ((version[0] > 2) and (version[1] >= 2)):
+					if (version[0] > 3) or (version[0] > 2 and version[1] >= 2):
 						# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
 						task.args += ["-C", "262144"]
 						big_o_options.append("bigalloc")
@@ -462,7 +467,7 @@ class Harddisk:
 			l = f.read()
 			f.close()
 			data = l.split(None,5)
-			return (int(data[0]), int(data[4]))
+			return int(data[0]), int(data[4])
 		else:
 			return -1,-1
 
@@ -477,6 +482,10 @@ class Harddisk:
 		self.timer = eTimer()
 		self.timer.callback.append(self.runIdle)
 		self.idle_running = True
+		self.hdd_timer = False
+		configsettings = readFile('/etc/enigma2/settings')
+		if "config.usage.hdd_timer" in configsettings:
+			self.hdd_timer = True
 		self.setIdleTime(self.max_idle_time) # kick the idle polling loop
 
 	def runIdle(self):
@@ -504,7 +513,7 @@ class Harddisk:
 			Console().ePopen(("sdparm", "sdparm", "--flexible", "--readonly", "--command=stop", self.disk_path))
 		else:
 			Console().ePopen(("hdparm", "hdparm", "-y", self.disk_path))
-
+			
 	def setIdleTime(self, idle):
 		self.max_idle_time = idle
 		if self.idle_running:
@@ -698,7 +707,7 @@ class HarddiskManager:
 			self.partitions.append(Partition(mountpoint = '/media/hdd/', description = '/media/hdd'))
 
 	def getAutofsMountpoint(self, device):
-		return "/autofs/%s" % (device)
+		return "/autofs/%s" % device
 
 	def getMountpoint(self, device):
 		dev = "/dev/%s" % device
@@ -718,6 +727,9 @@ class HarddiskManager:
 				physdev = dev
 				print "couldn't determine blockdev physdev for device", device
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(self.splitDeviceName(device)[0])
+		hw_type = HardwareInfo().get_device_name()
+		if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' :
+			if device[0:3] == "hda": blacklisted = True
 		if not blacklisted and medium_found:
 			description = self.getUserfriendlyDeviceName(device, physdev)
 			p = Partition(mountpoint = self.getMountpoint(device), description = description, force_mounted = True, device = device)
@@ -906,7 +918,7 @@ class MkfsTask(Task.LoggingTask):
 			if '/' in data:
 				try:
 					d = data.strip(' \x08\r\n').split('/',1)
-					if ('\x08' in d[1]):
+					if '\x08' in d[1]:
 						d[1] = d[1].split('\x08',1)[0]
 					self.setProgress(80*int(d[0])/int(d[1]))
 				except Exception, e:

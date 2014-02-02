@@ -65,10 +65,10 @@ class AVSwitch:
 	
 	if (about.getChipSetString() in ('7358', '7356', '7424', '8493'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
-		widescreen_modes = set(["720p", "1080p", "1080i"])
+		widescreen_modes = {"720p", "1080p", "1080i"}
 	else:
 		modes["HDMI"] = ["720p", "1080i", "576p", "576i", "480p", "480i"]
-		widescreen_modes = set(["720p", "1080i"])
+		widescreen_modes = {"720p", "1080i"}
 
 	modes["YPbPr"] = modes["HDMI"]
 	if getBoxType().startswith('vu') or (getBoxType() in ('dm500hd', 'dm800')):
@@ -585,7 +585,7 @@ class VideomodeHotplug:
 		iAVSwitch.on_hotplug.remove(self.hotplug)
 
 	def hotplug(self, what):
-		print "hotplug detected on port '%s'" % (what)
+		print "hotplug detected on port '%s'" % what
 		port = config.av.videoport.getValue()
 		mode = config.av.videomode[port].getValue()
 		rate = config.av.videorate[mode].getValue()
