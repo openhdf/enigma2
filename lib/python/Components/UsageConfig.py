@@ -532,7 +532,7 @@ def InitUsageConfig():
 				pass
 		config.misc.zapmode = ConfigSelection(default = "mute", choices = zapoptions )
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
-	config.usage.historymode = ConfigSelection(default = "1", choices = [("1", _("Just zap")), ("0", _("Show menu"))])
+	config.usage.historymode = ConfigSelection(default = "1", choices = [("1", _("Show menu")), ("0", _("Just zap"))])
 
 	config.subtitles = ConfigSubsection()
 	config.subtitles.ttx_subtitle_colors = ConfigSelection(default = "1", choices = [
