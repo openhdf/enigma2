@@ -205,6 +205,10 @@ class doFlashImage(Screen):
 			box = "miraclebox-twin"
 		elif box == "xp1000" and machinename.lower() == "sf8 hd":
 			box = "sf8"
+		elif box.startswith('et'):
+			box = box[0:3] + 'x00'
+		elif box == 'odinm9' and self.feed == "atv2":
+			box = 'maram9'
 		return box
 
 	def green(self):

@@ -80,9 +80,7 @@ def getPiconName(serviceName):
 	sname = '_'.join(GetWithAlternative(serviceName).split(':', 10)[:10])
 	pngname = findPicon(sname)
 	if not pngname:
-		print "NOT PNG NAME FOUND !!"
 		fields = sname.split('_', 3)
-		print fields
 		if len(fields) > 2 and fields[2] != '2':
 			#fallback to 1 for tv services with nonstandard servicetypes
 			fields[2] = '1'
@@ -90,7 +88,6 @@ def getPiconName(serviceName):
 			#fallback to 1 for IPTV streams
 			fields[0] = '1'
 		pngname = findPicon('_'.join(fields))
-		print pngname
 	return pngname
 
 class Picon(Renderer):
@@ -140,10 +137,9 @@ class Picon(Renderer):
 
 	def updatePicon(self, picInfo=None):
 		ptr = self.PicLoad.getData()
-		if ptr != None:
+		if ptr is not None:
 			self.instance.setPixmap(ptr.__deref__())
 			self.instance.show()
-
 	def changed(self, what):
 		if self.instance:
 			pngname = ""

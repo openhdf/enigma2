@@ -28,6 +28,9 @@ else:
 	HDSKIN = False
 
 class OscamInfo:
+	def __init__(self):
+		pass
+
 	TYPE = 0
 	NAME = 1
 	PROT = 2
@@ -35,10 +38,9 @@ class OscamInfo:
 	SRVNAME = 4
 	ECMTIME = 5
 	IP_PORT = 6
-	ECMTIME = 7
 	HEAD = { NAME: _("Label"), PROT: _("Protocol"),
 		CAID_SRVID: "CAID:SrvID", SRVNAME: _("Serv.Name"),
-		ECMTIME: _("ECM-Time"), IP_PORT: _("IP-Address") }
+		ECMTIME: _("ECM-Time"), IP_PORT: _("IP address") }
 	version = ""
 
 	def confPath(self):
@@ -87,7 +89,7 @@ class OscamInfo:
 			if err != "":
 				return err
 			else:
-				return (user, pwd, port)
+				return user, pwd, port
 		else:
 			return _("file oscam.conf could not be found")
 
@@ -101,7 +103,7 @@ class OscamInfo:
 				elif "httppwd" in udata:
 					self.password = ""
 				else:
-					return (False, udata)
+					return False, udata
 			else:
 				self.port = udata[2]
 				self.username = udata[0]
@@ -136,9 +138,9 @@ class OscamInfo:
 				err = str(e.code)
 		if err is not False:
 			print "[openWebIF] Fehler: %s" % err
-			return (False, err)
+			return False, err
 		else:
-			return (True, data)
+			return True, data
 
 	def readXML(self, typ):
 		if typ == "l":
@@ -403,7 +405,7 @@ class OscamInfoMenu(Screen):
 		elif entry == 1:
 			if config.oscaminfo.userdatafromconf.getValue():
 				if self.osc.confPath() is None:
-					config.oscaminfo.userdatafromconf.value = False
+					config.oscaminfo.userdatafromconf.setValue(False)
 					config.oscaminfo.userdatafromconf.save()
 					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
 				else:
@@ -413,7 +415,7 @@ class OscamInfoMenu(Screen):
 		elif entry == 2:
 			if config.oscaminfo.userdatafromconf.getValue():
 				if self.osc.confPath() is None:
-					config.oscaminfo.userdatafromconf.value = False
+					config.oscaminfo.userdatafromconf.setValue(False)
 					config.oscaminfo.userdatafromconf.save()
 					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
 				else:
@@ -423,7 +425,7 @@ class OscamInfoMenu(Screen):
 		elif entry == 3:
 			if config.oscaminfo.userdatafromconf.getValue():
 				if self.osc.confPath() is None:
-					config.oscaminfo.userdatafromconf.value = False
+					config.oscaminfo.userdatafromconf.setValue(False)
 					config.oscaminfo.userdatafromconf.save()
 					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
 				else:
@@ -717,8 +719,7 @@ class oscInfo(Screen, OscamInfo):
 			if self.what != "l":
 				heading = ( self.HEAD[self.NAME], self.HEAD[self.PROT], self.HEAD[self.CAID_SRVID],
 						self.HEAD[self.SRVNAME], self.HEAD[self.ECMTIME], self.HEAD[self.IP_PORT], "")
-				outlist = [ ]
-				outlist.append( heading )
+				outlist = [heading]
 				for i in data:
 					outlist.append( i )
 				self.fieldsize = self.calcSizes(outlist)
@@ -1100,7 +1101,7 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 		if not config.oscaminfo.userdatafromconf.getValue():
 			self.oscamconfig.append(getConfigListEntry(_("Username (httpuser)"), config.oscaminfo.username))
 			self.oscamconfig.append(getConfigListEntry(_("Password (httpwd)"), config.oscaminfo.password))
-			self.oscamconfig.append(getConfigListEntry(_("IP-Address"), config.oscaminfo.ip))
+			self.oscamconfig.append(getConfigListEntry(_("IP address"), config.oscaminfo.ip))
 			self.oscamconfig.append(getConfigListEntry("Port", config.oscaminfo.port))
 		self.oscamconfig.append(getConfigListEntry(_("Automatically update Client/Server View?"), config.oscaminfo.autoupdate))
 		if config.oscaminfo.autoupdate.getValue():
