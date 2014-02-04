@@ -73,6 +73,10 @@ case $ret in
 	43)
 		init 1
 		;;
+	45)
+		echo "    " > /dev/lcd0
+		/usr/bin/gigablue_wol
+		;;
 	*)
 		rm -f /tmp/.listen.camd.socket.ignore
 		;;
