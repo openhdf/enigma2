@@ -23,7 +23,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self["streams"] = List([], enableWrapAround=True)
 		self["key_red"] = Boolean(False)
 		self["key_green"] = Boolean(False)
-		self["key_yellow"] = Boolean(False)
+		self["key_yellow"] = Boolean(True)
 		self["key_blue"] = Boolean(False)
 
 		ConfigListScreen.__init__(self, [])
