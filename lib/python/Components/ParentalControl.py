@@ -1,4 +1,4 @@
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigText, ConfigYesNo, ConfigSubList, ConfigInteger
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigYesNo, ConfigSubList, ConfigInteger
 #from Screens.ChannelSelection import service_types_tv
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
@@ -118,7 +118,7 @@ class ParentalControl:
 
 	def unProtectService(self, service):
 		#print "unprotect"
-		#print "config.ParentalControl.type.value:", config.ParentalControl.type.value
+		#print "config.ParentalControl.type.getValue():", config.ParentalControl.type.getValue()
 		if config.ParentalControl.type.getValue() == LIST_WHITELIST:
 			if not self.whitelist.has_key(service):
 				self.serviceMethodWrapper(service, self.addServiceToList, self.whitelist)
@@ -207,7 +207,7 @@ class ParentalControl:
 				self.sessionPinCached = True
 			if self.checkPinInterval:
 				self.sessionPinCached = True
-				self.sessionPinTimer.start(int(self.pinIntervalSeconds*1000))
+				self.sessionPinTimer.start(self.pinIntervalSeconds*1000,1)
 			self.callback(ref = service)
 		else:
 			#This is the new function of caching cancelling of service pin
@@ -263,7 +263,7 @@ class ParentalControl:
 	def readServicesFromBouquet(self,sBouquetSelection,formatstring):
 		#This method gives back a list of services for a given bouquet
 		from enigma import eServiceCenter, eServiceReference
-		from Screens.ChannelSelection import service_types_tv
+
 		serviceHandler = eServiceCenter.getInstance()
 		refstr = sBouquetSelection
 		root = eServiceReference(refstr)

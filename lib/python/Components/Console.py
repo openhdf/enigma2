@@ -8,7 +8,7 @@ class Console(object):
 		self.callbacks = {}
 		self.extra_args = {}
 
-	def ePopen(self, cmd, callback=None, extra_args=None):
+	def ePopen(self, cmd, callback=None, extra_args=[]):
 		if not extra_args: extra_args = []
 		name = cmd
 		i = 0
@@ -28,7 +28,7 @@ class Console(object):
 		if retval:
 			self.finishedCB(name, retval)
 
-	def eBatch(self, cmds, callback, extra_args=None, debug=False):
+	def eBatch(self, cmds, callback, extra_args=[], debug=False):
 		if not extra_args: extra_args = []
 		self.debug = debug
 		cmd = cmds.pop(0)

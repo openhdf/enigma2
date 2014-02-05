@@ -1,4 +1,4 @@
-from config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigText, ConfigBoolean
+from config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigText
 from Components.Timezones import timezones
 from Components.Language import language
 from Components.Keyboard import keyboard
@@ -20,17 +20,17 @@ def InitSetupDevices():
 	config.keyboard.keymap.addNotifier(keyboardNotifier)
 
 	def languageNotifier(configElement):
-		language.activateLanguage(configElement.getValue())
+		language.activateLanguage(configElement.value)
 
-	config.osd = ConfigSubsection();
+	config.osd = ConfigSubsection()
 	config.osd.language = ConfigText(default = "de_DE");
 	config.osd.language.addNotifier(languageNotifier)
 
-	config.parental = ConfigSubsection();
+	config.parental = ConfigSubsection()
 	config.parental.lock = ConfigOnOff(default = False)
 	config.parental.setuplock = ConfigOnOff(default = False)
 
-	config.expert = ConfigSubsection();
+	config.expert = ConfigSubsection()
 	config.expert.satpos = ConfigOnOff(default = True)
 	config.expert.fastzap = ConfigOnOff(default = True)
 	config.expert.skipconfirm = ConfigOnOff(default = False)
