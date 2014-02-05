@@ -61,7 +61,7 @@ class SoftwareTools(PackageInfoHandler):
 
 	def getUpdates(self, callback = None):
 		if self.lastDownloadDate is None:
-				if self.NetworkConnectionAvailable:
+				if self.NetworkConnectionAvailable == True:
 					self.lastDownloadDate = time()
 					if self.list_updating is False and callback is None:
 						self.list_updating = True
@@ -79,7 +79,7 @@ class SoftwareTools(PackageInfoHandler):
 					elif self.NotifierCallback is not None:
 						self.NotifierCallback(False)
 		else:
-			if self.NetworkConnectionAvailable:
+			if self.NetworkConnectionAvailable == True:
 				self.lastDownloadDate = time()
 				if self.list_updating is False and callback is None:
 					self.list_updating = True
@@ -121,7 +121,10 @@ class SoftwareTools(PackageInfoHandler):
 			self.UpdateConsole.ePopen(cmd, self.IpkgListAvailableCB, callback)
 
 	def IpkgListAvailableCB(self, result, retval, extra_args = None):
-		(callback) = extra_args
+		if extra_args == []:
+			(callback) = None
+		else:
+			(callback) = extra_args
 		if result:
 			if self.list_updating:
 				self.available_packetlist = []
@@ -150,7 +153,7 @@ class SoftwareTools(PackageInfoHandler):
 		if callback is not None:
 			self.list_updating = True
 		if self.list_updating:
-			if self.NetworkConnectionAvailable:
+			if self.NetworkConnectionAvailable == True:
 				if not self.UpdateConsole:
 					self.UpdateConsole = Console()
 				cmd = self.ipkg.ipkg + " install enigma2-meta enigma2-plugins-meta enigma2-skins-meta"
@@ -159,7 +162,10 @@ class SoftwareTools(PackageInfoHandler):
 				self.InstallMetaPackageCB(True)
 
 	def InstallMetaPackageCB(self, result, retval = None, extra_args = None):
-		(callback) = extra_args
+		if extra_args == []:
+			(callback) = None
+		else:
+			(callback) = extra_args
 		if result:
 			self.fillPackagesIndexList()
 			if callback is None:
@@ -185,7 +191,10 @@ class SoftwareTools(PackageInfoHandler):
 			self.UpdateConsole.ePopen(cmd, self.IpkgListInstalledCB, callback)
 
 	def IpkgListInstalledCB(self, result, retval, extra_args = None):
-		(callback) = extra_args
+		if extra_args == []:
+			(callback) = None
+		else:
+			(callback) = extra_args
 		if result:
 			self.installed_packetlist = {}
 			for x in result.splitlines():
