@@ -8,14 +8,14 @@ def InitSetupDevices():
 	def timezoneNotifier(configElement):
 		timezones.activateTimezone(configElement.index)
 
-	config.timezone = ConfigSubsection();
+	config.timezone = ConfigSubsection()
 	config.timezone.val = ConfigSelection(default = timezones.getDefaultTimezone(), choices = timezones.getTimezoneList())
 	config.timezone.val.addNotifier(timezoneNotifier)
 
 	def keyboardNotifier(configElement):
 		keyboard.activateKeyboardMap(configElement.index)
 
-	config.keyboard = ConfigSubsection();
+	config.keyboard = ConfigSubsection()
 	config.keyboard.keymap = ConfigSelection(default = keyboard.getDefaultKeyboardMap(), choices = keyboard.getKeyboardMaplist())
 	config.keyboard.keymap.addNotifier(keyboardNotifier)
 
@@ -23,7 +23,7 @@ def InitSetupDevices():
 		language.activateLanguage(configElement.value)
 
 	config.osd = ConfigSubsection()
-	config.osd.language = ConfigText(default = "de_DE");
+	config.osd.language = ConfigText(default = "de_DE")
 	config.osd.language.addNotifier(languageNotifier)
 
 	config.parental = ConfigSubsection()
