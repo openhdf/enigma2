@@ -190,8 +190,7 @@ class doFlashImage(Screen):
 			self["imageList"].l.setList(self.imagelist)
 
 	def box(self):
-		#box = getBoxType()
-		box = getOEM()
+		box = getBoxType()
 		machinename = getMachineName()
 		if box == 'odinm6':
 			box = getMachineName().lower()
@@ -205,7 +204,7 @@ class doFlashImage(Screen):
 			box = "miraclebox-twin"
 		elif box == "xp1000" and machinename.lower() == "sf8 hd":
 			box = "sf8"
-		elif box.startswith('et'):
+		elif box.startswith('et') and not box == "et10000":
 			box = box[0:3] + 'x00'
 		elif box == 'odinm9' and self.feed == "atv2":
 			box = 'maram9'
