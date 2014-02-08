@@ -188,7 +188,7 @@ class TimerEditList(Screen):
 		if timer:
 			try:
 				name = str(timer.name)
-				time = ("%s %s ... %s") % (FuzzyTime(timer.begin)[0], FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1])
+				time = "%s %s ... %s" % (FuzzyTime(timer.begin)[0], FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1])
 				duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)
 				service = str(timer.service_ref.getServiceName())
 
@@ -226,7 +226,6 @@ class TimerEditList(Screen):
 			return cmp(x[0].begin, y[0].begin)
 
 		list = self.list
-		print list
 		del list[:]
 		list.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
 		list.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])

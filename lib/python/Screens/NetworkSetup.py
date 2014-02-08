@@ -141,7 +141,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 
 		description = iNetwork.getFriendlyAdapterDescription(iface)
 
-		return((iface, name, description, interfacepng, defaultpng, activepng, divpng))
+		return iface, name, description, interfacepng, defaultpng, activepng, divpng
 
 	def updateList(self):
 		self.list = []
@@ -291,7 +291,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		i = 1
 		for x in self.nameserverEntries:
-			self.list.append(getConfigListEntry(_("Nameserver %d") % (i), x))
+			self.list.append(getConfigListEntry(_("Nameserver %d") % i, x))
 			i += 1
 
 		self["config"].list = self.list
@@ -567,8 +567,9 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				if self.hasGatewayConfigEntry.getValue():
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
 			if SystemInfo["WOL"] and self.iface == 'eth0':
-				self.wakeonlan = getConfigListEntry(_('Use WOL'), config.network.wol)
-				self.list.append(self.wakeonlan)
+				if not getBoxType() == 'gbquad' :
+					self.wakeonlan = getConfigListEntry(_('Use WOL'), config.network.wol)
+					self.list.append(self.wakeonlan)
 
 			self.extended = None
 			self.configStrings = None
@@ -631,7 +632,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		config.network.save()
 
 	def keySaveConfirm(self, ret = False):
-		if (ret == True):
+		if ret == True:
 			num_configured_if = len(iNetwork.getConfiguredAdapters())
 			if num_configured_if >= 1:
 				if self.iface in iNetwork.getConfiguredAdapters():
@@ -659,7 +660,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.applyConfig(True)
 
 	def applyConfig(self, ret = False):
-		if (ret == True):
+		if ret == True:
 			self.applyConfigRef = None
 			iNetwork.setAdapterAttribute(self.iface, "up", self.activateInterfaceEntry.getValue())
 			iNetwork.setAdapterAttribute(self.iface, "dhcp", self.dhcpConfigEntry.getValue())
@@ -670,7 +671,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			else:
 				iNetwork.removeAdapterAttribute(self.iface, "gateway")
 
-			if (self.extended is not None and self.configStrings is not None):
+			if self.extended is not None and self.configStrings is not None:
 				iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
 				self.ws.writeConfig(self.iface)
 
@@ -923,7 +924,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if self["menulist"].getCurrent()[1] == 'lanrestart':
 			self["description"].setText(_("Restart your network connection and interfaces.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'openwizard':
-			self["description"].setText(_("Use the networkwizard to configure your Network\n" ) + self.oktext )
+			self["description"].setText(_("Use the network wizard to configure your Network\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
 			self["description"].setText(_(self["menulist"].getCurrent()[1][1]) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'mac':
@@ -960,11 +961,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		pass
 
 	def genMainMenu(self):
-		menu = []
-		menu.append((_("Adapter settings"), "edit"))
-		menu.append((_("Nameserver settings"), "dns"))
-		menu.append((_("Network test"), "test"))
-		menu.append((_("Restart network"), "lanrestart"))
+		menu = [(_("Adapter settings"), "edit"), (_("Nameserver settings"), "dns"), (_("Network test"), "test"), (_("Restart network"), "lanrestart")]
 
 		self.extended = None
 		self.extendedSetup = None
@@ -1028,7 +1025,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self.updateStatusbar()
 
 	def restartLan(self, ret = False):
-		if (ret == True):
+		if ret == True:
 			iNetwork.restartNetwork(self.restartLanDataAvail)
 			self.restartLanRef = self.session.openWithCallback(self.restartfinishedCB, MessageBox, _("Please wait while your network is restarting..."), type = MessageBox.TYPE_INFO, enable_input = False)
 
@@ -1054,7 +1051,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					self.LinkState = True
 				else:
 					self.LinkState = False
-		if self.LinkState == True:
+		if self.LinkState:
 			iNetwork.checkNetworkState(self.checkNetworkCB)
 		else:
 			self["statuspic"].setPixmapNum(1)
@@ -1314,11 +1311,11 @@ class NetworkAdapterTest(Screen):
 	def KeyGreenRestart(self):
 		self.nextstep = 0
 		self.layoutFinished()
-		self["Adapter"].setText((""))
-		self["Network"].setText((""))
-		self["Dhcp"].setText((""))
-		self["IP"].setText((""))
-		self["DNS"].setText((""))
+		self["Adapter"].setText("")
+		self["Network"].setText("")
+		self["Dhcp"].setText("")
+		self["IP"].setText("")
+		self["DNS"].setText("")
 		self["AdapterInfo_Text"].setForegroundColorNum(0)
 		self["NetworkInfo_Text"].setForegroundColorNum(0)
 		self["DhcpInfo_Text"].setForegroundColorNum(0)
@@ -1629,7 +1626,7 @@ class NetworkAfp(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("AFP Setup"))
-		self.skinName = "NetworkAfp"
+		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
@@ -1717,9 +1714,9 @@ class NetworkAfp(Screen):
 		return NetworkServicesSummary
 
 	def AfpStartStop(self):
-		if self.my_afp_run == False:
+		if not self.my_afp_run:
 			self.Console.ePopen('/etc/init.d/atalk start', self.StartStopCallback)
-		elif self.my_afp_run == True:
+		elif self.my_afp_run:
 			self.Console.ePopen('/etc/init.d/atalk stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -1747,7 +1744,7 @@ class NetworkAfp(Screen):
 			self.my_afp_active = True
 		if afp_process:
 			self.my_afp_run = True
-		if self.my_afp_run == True:
+		if self.my_afp_run:
 			self['labstop'].hide()
 			self['labactive'].show()
 			self['labrun'].show()
@@ -1806,7 +1803,7 @@ class NetworkSABnzbd(Screen):
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
-		if (float(getImageVersion()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(getImageVersion()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
+		if (float(getImageVersionString()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(getImageVersionString()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -1860,11 +1857,11 @@ class NetworkSABnzbd(Screen):
 		return NetworkServicesSummary
 
 	def SABnzbStartStop(self):
-		if self.my_sabnzbd_run == False:
+		if not self.my_sabnzbd_run:
 			self.Console.ePopen('/etc/init.d/sabnzbd start')
 			time.sleep(3)
 			self.updateService()
-		elif self.my_sabnzbd_run == True:
+		elif self.my_sabnzbd_run:
 			self.Console.ePopen('/etc/init.d/sabnzbd stop')
 			time.sleep(3)
 			self.updateService()
@@ -1892,7 +1889,7 @@ class NetworkSABnzbd(Screen):
 			self.my_sabnzbd_active = True
 		if sabnzbd_process:
 			self.my_sabnzbd_run = True
-		if self.my_sabnzbd_run == True:
+		if self.my_sabnzbd_run:
 			self['labstop'].hide()
 			self['labactive'].show()
 			self['labrun'].show()
@@ -1931,7 +1928,7 @@ class NetworkFtp(Screen):
 		return NetworkServicesSummary
 
 	def FtpStartStop(self):
-		if self.my_ftp_active == False:
+		if not self.my_ftp_active:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
@@ -1945,7 +1942,7 @@ class NetworkFtp(Screen):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
 				self.updateService()
-		elif self.my_ftp_active == True:
+		elif self.my_ftp_active:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
@@ -1972,7 +1969,7 @@ class NetworkFtp(Screen):
 					self.my_ftp_active = True
 					continue
 			f.close()
-		if self.my_ftp_active == True:
+		if self.my_ftp_active:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Disable"))
@@ -1992,7 +1989,7 @@ class NetworkNfs(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("NFS Setup"))
-		self.skinName = "NetworkNfs"
+		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
@@ -2078,9 +2075,9 @@ class NetworkNfs(Screen):
 		return NetworkServicesSummary
 
 	def NfsStartStop(self):
-		if self.my_nfs_run == False:
+		if not self.my_nfs_run:
 			self.Console.ePopen('/etc/init.d/nfsserver start', self.StartStopCallback)
-		elif self.my_nfs_run == True:
+		elif self.my_nfs_run:
 			self.Console.ePopen('/etc/init.d/nfsserver stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -2108,7 +2105,7 @@ class NetworkNfs(Screen):
 			self.my_nfs_active = True
 		if nfs_process:
 			self.my_nfs_run = True
-		if self.my_nfs_run == True:
+		if self.my_nfs_run:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
@@ -2129,7 +2126,7 @@ class NetworkOpenvpn(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("OpenVpn Setup"))
-		self.skinName = "NetworkOpenvpn"
+		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
@@ -2220,9 +2217,9 @@ class NetworkOpenvpn(Screen):
 		self.session.open(NetworkVpnLog)
 
 	def VpnStartStop(self):
-		if self.my_vpn_run == False:
+		if not self.my_vpn_run:
 			self.Console.ePopen('/etc/init.d/openvpn start', self.StartStopCallback)
-		elif self.my_vpn_run == True:
+		elif self.my_vpn_run:
 			self.Console.ePopen('/etc/init.d/openvpn stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -2250,7 +2247,7 @@ class NetworkOpenvpn(Screen):
 			self.my_Vpn_active = True
 		if openvpn_process:
 			self.my_vpn_run = True
-		if self.my_vpn_run == True:
+		if self.my_vpn_run:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
@@ -2289,7 +2286,7 @@ class NetworkSamba(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Samba Setup"))
-		self.skinName = "NetworkSamba"
+		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
@@ -2387,11 +2384,11 @@ class NetworkSamba(Screen):
 
 	def SambaStartStop(self):
 		commands = []
-		if self.my_Samba_run == False:
+		if not self.my_Samba_run:
 			commands.append('/etc/init.d/samba start')
 			commands.append('nmbd -D')
 			commands.append('smbd -D')
-		elif self.my_Samba_run == True:
+		elif self.my_Samba_run:
 			commands.append('/etc/init.d/samba stop')
 			commands.append('killall nmbd')
 			commands.append('killall smbd')
@@ -2433,7 +2430,7 @@ class NetworkSamba(Screen):
 
 		if samba_process:
 			self.my_Samba_run = True
-		if self.my_Samba_run == True:
+		if self.my_Samba_run:
 			self['labstop'].hide()
 			self['labactive'].show()
 			self['labrun'].show()
@@ -2490,7 +2487,7 @@ class NetworkTelnet(Screen):
 		return NetworkServicesSummary
 
 	def TelnetStartStop(self):
-		if self.my_telnet_active == False:
+		if not self.my_telnet_active:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
@@ -2503,7 +2500,7 @@ class NetworkTelnet(Screen):
 			if fileExists('/etc/inetd.tmp'):
 				move('/etc/inetd.tmp', '/etc/inetd.conf')
 				self.Console.ePopen('killall -HUP inetd')
-		elif self.my_telnet_active == True:
+		elif self.my_telnet_active:
 			if fileExists('/etc/inetd.conf'):
 				inme = open('/etc/inetd.conf', 'r')
 				out = open('/etc/inetd.tmp', 'w')
@@ -2530,7 +2527,7 @@ class NetworkTelnet(Screen):
 					self.my_telnet_active = True
 					continue
 			f.close()
-		if self.my_telnet_active == True:
+		if self.my_telnet_active:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Disable"))
@@ -2648,9 +2645,9 @@ class NetworkInadyn(Screen):
 		return NetworkServicesSummary
 
 	def InadynStartStop(self):
-		if self.my_inadyn_run == False:
+		if not self.my_inadyn_run:
 			self.Console.ePopen('/etc/init.d/inadyn-mt start', self.StartStopCallback)
-		elif self.my_inadyn_run == True:
+		elif self.my_inadyn_run:
 			self.Console.ePopen('/etc/init.d/inadyn-mt stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -2685,7 +2682,7 @@ class NetworkInadyn(Screen):
 			autostartstatus_summary = self['autostart'].text + ' ' + self['labdisabled'].text
 		if inadyn_process:
 			self.my_inadyn_run = True
-		if self.my_inadyn_run == True:
+		if self.my_inadyn_run:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
@@ -2795,7 +2792,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 				elif line.startswith('update_period_sec '):
 					line = line[18:]
 					line = (int(line) / 60)
-					self.ina_sysactive.value = True
+					self.ina_period.value = line
 					ina_period1 = getConfigListEntry(_("Time Update in Minutes") + ":", self.ina_period)
 					self.list.append(ina_period1)
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
@@ -2807,7 +2804,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 						line = line[15:]
 					ina_sysactive1 = getConfigListEntry(_("Set System") + ":", self.ina_sysactive)
 					self.list.append(ina_sysactive1)
-					self.ina_system.value = line
+					self.ina_value = line
 					ina_system1 = getConfigListEntry(_("System") + ":", self.ina_system)
 					self.list.append(ina_system1)
 
@@ -2848,7 +2845,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 					strview = str(strview)
 					line = ('update_period_sec ' + strview)
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
-					if self.ina_sysactive.getValue() == True:
+					if self.ina_sysactive.getValue():
 						line = ('dyndns_system ' + self.ina_system.value.strip())
 					else:
 						line = ('#dyndns_system ' + self.ina_system.value.strip())
@@ -2997,9 +2994,9 @@ class NetworkuShare(Screen):
 		return NetworkServicesSummary
 
 	def uShareStartStop(self):
-		if self.my_ushare_run == False:
+		if not self.my_ushare_run:
 			self.Console.ePopen('/etc/init.d/ushare start >> /tmp/uShare.log', self.StartStopCallback)
-		elif self.my_ushare_run == True:
+		elif self.my_ushare_run:
 			self.Console.ePopen('/etc/init.d/ushare stop >> /tmp/uShare.log', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -3037,7 +3034,7 @@ class NetworkuShare(Screen):
 			autostartstatus_summary = self['autostart'].text + ' ' + self['labdisabled'].text
 		if ushare_process:
 			self.my_ushare_run = True
-		if self.my_ushare_run == True:
+		if self.my_ushare_run:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
@@ -3485,9 +3482,9 @@ class NetworkMiniDLNA(Screen):
 		return NetworkServicesSummary
 
 	def MiniDLNAStartStop(self):
-		if self.my_minidlna_run == False:
+		if not self.my_minidlna_run:
 			self.Console.ePopen('/etc/init.d/minidlna start', self.StartStopCallback)
-		elif self.my_minidlna_run == True:
+		elif self.my_minidlna_run:
 			self.Console.ePopen('/etc/init.d/minidlna stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
@@ -3521,7 +3518,7 @@ class NetworkMiniDLNA(Screen):
 			autostartstatus_summary = self['autostart'].text + ' ' + self['labdisabled'].text
 		if minidlna_process:
 			self.my_minidlna_run = True
-		if self.my_minidlna_run == True:
+		if self.my_minidlna_run:
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))

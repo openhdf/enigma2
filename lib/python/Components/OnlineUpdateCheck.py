@@ -1,10 +1,12 @@
+from time import time
+from boxbranding import getImageVersion
+
+from enigma import eTimer
+
 import Components.Task
 from Components.Ipkg import IpkgComponent
-from Components.About import about
 from Components.config import config
-from time import time
-from enigma import eTimer
-from boxbranding import getImageVersion
+
 
 def OnlineUpdateCheck(session=None, **kwargs):
 	global onlineupdatecheckpoller
@@ -63,7 +65,7 @@ class OnlineUpdateCheckPoller:
 					socket.setdefaulttimeout(3)
 					config.softwareupdate.updatefound.setValue(True)
 					try:
-						config.softwareupdate.updateisunstable.setValue(urlopen("http://enigma2.world-of-satellite.com/feeds/" + getImageVersion() + "/status").read())
+						config.softwareupdate.updateisunstable.setValue(urlopen("http://www.status.hdfreaks.cc/status").read())
 					except:
 						config.softwareupdate.updateisunstable.setValue(1)
 					socket.setdefaulttimeout(currentTimeoutDefault)
@@ -79,7 +81,7 @@ class VersionCheck:
 
 	def getStableUpdateAvailable(self):
 		if config.softwareupdate.updatefound.getValue() and config.softwareupdate.check.getValue():
-			if config.softwareupdate.updateisunstable.getValue() == 1:
+			if config.softwareupdate.updateisunstable.getValue() == '0':
 # 				print '[OnlineVersionCheck] New Release updates found'
 				return True
 			else:
@@ -90,7 +92,7 @@ class VersionCheck:
 
 	def getUnstableUpdateAvailable(self):
 		if config.softwareupdate.updatefound.getValue() and config.softwareupdate.check.getValue():
-			if config.softwareupdate.updateisunstable.getValue() == 1 and config.softwareupdate.updatebeta.getValue():
+			if config.softwareupdate.updateisunstable.getValue() == '1' and config.softwareupdate.updatebeta.getValue():
 # 				print '[OnlineVersionCheck] New Experimental updates found'
 				return True
 			else:

@@ -3,7 +3,7 @@ from Components.About import about
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from enigma import eAVSwitch, getDesktop
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBuild
 from SystemInfo import SystemInfo
 import os
 
@@ -65,10 +65,10 @@ class AVSwitch:
 	
 	if (about.getChipSetString() in ('7358', '7356', '7424', '8493'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
-		widescreen_modes = set(["720p", "1080p", "1080i"])
+		widescreen_modes = {"720p", "1080p", "1080i"}
 	else:
 		modes["HDMI"] = ["720p", "1080i", "576p", "576i", "480p", "480i"]
-		widescreen_modes = set(["720p", "1080i"])
+		widescreen_modes = {"720p", "1080i"}
 
 	modes["YPbPr"] = modes["HDMI"]
 	if getBoxType().startswith('vu') or (getBoxType() in ('dm500hd', 'dm800')):
@@ -426,6 +426,8 @@ def InitAVSwitch():
 	def setColorFormat(configElement):
 		if config.av.videoport and config.av.videoport.getValue() == "Scart-YPbPr":
 			iAVSwitch.setColorFormat(3)
+		elif config.av.videoport and config.av.videoport.getValue() == "YPbPr" and getMachineBuild() == 'inihdx' or getMachineBuild() == 'ventonhdx':
+			iAVSwitch.setColorFormat(3)
 		else:
 			if getBoxType() == 'et6x00':
 				map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}	
@@ -585,7 +587,7 @@ class VideomodeHotplug:
 		iAVSwitch.on_hotplug.remove(self.hotplug)
 
 	def hotplug(self, what):
-		print "hotplug detected on port '%s'" % (what)
+		print "hotplug detected on port '%s'" % what
 		port = config.av.videoport.getValue()
 		mode = config.av.videomode[port].getValue()
 		rate = config.av.videorate[mode].getValue()

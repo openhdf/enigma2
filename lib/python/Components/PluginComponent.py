@@ -25,7 +25,7 @@ class PluginComponent:
 		if self.firstRun or not plugin.needsRestart:
 			self.pluginList.append(plugin)
 			for x in plugin.where:
-				insort(self.plugins.setdefault(x, []), (plugin))
+				insort(self.plugins.setdefault(x, []), plugin)
 				if x == PluginDescriptor.WHERE_AUTOSTART:
 					plugin(reason=0)
 		else:
@@ -62,7 +62,7 @@ class PluginComponent:
 									print_exc()
 									break
 							else:
-								if path.find('WebInterface') == -1:
+								if not pluginname == "WebInterface":
 									print "Plugin probably removed, but not cleanly in", path
 									print "trying to remove:", path
 									rmtree(path)

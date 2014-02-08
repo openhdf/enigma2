@@ -13,7 +13,7 @@ from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 MAX_NUM_CI = 4
 
 def setCIBitrate(configElement):
-	if configElement.value == "no":
+	if configElement.getValue() == "no":
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateNormal)
 	else:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateHigh)
@@ -178,8 +178,7 @@ class MMIDialog(Screen):
 		self["title"].setText("")
 		self["subtitle"].setText("")
 		self["bottom"].setText("")
-		list = [ ]
-		list.append( (self.wait_text, ConfigNothing()) )
+		list = [(self.wait_text, ConfigNothing())]
 		self.updateList(list)
 
 	def showScreen(self):
@@ -302,7 +301,7 @@ class CiSelection(Screen):
 		menuList.l.setList(self.list)
 		self["entries"] = menuList
 		self["entries"].onSelectionChanged.append(self.selectionChanged)
-		self["text"] = Label(_("Slot %d")%(1))
+		self["text"] = Label(_("Slot %d")% 1)
 
 	def selectionChanged(self):
 		cur_idx = self["entries"].getCurrentIndex()
