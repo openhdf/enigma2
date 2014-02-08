@@ -314,12 +314,12 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			self.leavePlayerOnExitCallback(True)
 
 	def leavePlayerOnExitCallback(self, answer):
-		if answer == True:
+		if answer:
 			setResumePoint(self.session)
 			self.handleLeave("quit")
 
 	def hidePipOnExitCallback(self, answer):
-		if answer == True:
+		if answer:
 			self.showPiP()
 
 	def deleteConfirmed(self, answer):
@@ -520,13 +520,13 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		for i, item in enumerate(playlist):
 			if item == service:
 				if config.usage.on_movie_eof.value == "repeatcurrent":
-					return (i+1, len(playlist))
+					return i+1, len(playlist)
 				i += 1
 				if i < len(playlist):
-					return (playlist[i], i+1, len(playlist))
+					return playlist[i], i+1, len(playlist)
 				elif config.usage.on_movie_eof.getValue() == "loop":
-					return (playlist[0], 1, len(playlist))
-		return ( None, 0, 0 )
+					return playlist[0], 1, len(playlist)
+		return None, 0, 0
 
 	def displayPlayedName(self, ref, index, n):
 		from Tools import Notifications

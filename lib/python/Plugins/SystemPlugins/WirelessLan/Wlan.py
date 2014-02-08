@@ -10,16 +10,9 @@ from re import compile as re_compile, search as re_search, escape as re_escape
 from pythonwifi.iwlibs import getNICnames, Wireless, Iwfreq, getWNICnames
 from pythonwifi import flags as wififlags
 
-list = []
-list.append("Unencrypted")
-list.append("WEP")
-list.append("WPA")
-list.append("WPA/WPA2")
-list.append("WPA2")
+list = ["Unencrypted", "WEP", "WPA", "WPA/WPA2", "WPA2"]
 
-weplist = []
-weplist.append("ASCII")
-weplist.append("HEX")
+weplist = ["ASCII", "HEX"]
 
 config.plugins.wlan = ConfigSubsection()
 config.plugins.wlan.essid = NoSave(ConfigText(default = "", fixed_size = False))
@@ -39,11 +32,11 @@ class Wlan:
 
 		a = ''; b = ''
 		for i in range(0, 255):
-			a = a + chr(i)
+			a += chr(i)
 			if i < 32 or i > 127:
-				b = b + ' '
+				b += ' '
 			else:
-				b = b + chr(i)
+				b += chr(i)
 
 		self.asciitrans = maketrans(a, b)
 
@@ -101,6 +94,7 @@ class Wlan:
 					if 'LinkQuality' in element:
 						quality = element[element.index('LinkQuality')+12:len(element)]
 
+				# noinspection PyProtectedMember
 				aps[bssid] = {
 					'active' : True,
 					'bssid': result.bssid,
@@ -115,7 +109,7 @@ class Wlan:
 					'custom' : extra,
 				}
 
-				index = index + 1
+				index += 1
 		return aps
 
 	def stopGetNetworkList(self):
@@ -195,13 +189,13 @@ class wpaSupplicant:
 				split = s.strip().split('=',1)
 				if split[0] == 'scan_ssid':
 					if split[1] == '1':
-						config.plugins.wlan.hiddenessid.value = True
+						config.plugins.wlan.hiddenessid.setValue(True)
 					else:
-						config.plugins.wlan.hiddenessid.value = False
+						config.plugins.wlan.hiddenessid.setValue(False)
 
 				elif split[0] == 'ssid':
 					essid = split[1][1:-1]
-					config.plugins.wlan.essid.value = essid
+					config.plugins.wlan.essid.setValue(essid)
 
 				elif split[0] == 'proto':
 					if split[1] == 'WPA' :
@@ -215,18 +209,18 @@ class wpaSupplicant:
 				elif split[0] == 'wep_key0':
 					encryption = 'WEP'
 					if split[1].startswith('"') and split[1].endswith('"'):
-						config.plugins.wlan.wepkeytype.value = 'ASCII'
-						config.plugins.wlan.psk.value = split[1][1:-1]
+						config.plugins.wlan.wepkeytype.setValue('ASCII')
+						config.plugins.wlan.psk.setValue(split[1][1:-1])
 					else:
-						config.plugins.wlan.wepkeytype.value = 'HEX'
-						config.plugins.wlan.psk.value = split[1]
+						config.plugins.wlan.wepkeytype.setValue('HEX')
+						config.plugins.wlan.psk.setValue(split[1])
 
 				elif split[0] == 'psk':
-					config.plugins.wlan.psk.value = split[1][1:-1]
+					config.plugins.wlan.psk.setValue(split[1][1:-1])
 				else:
 					pass
 
-			config.plugins.wlan.encryption.value = encryption
+			config.plugins.wlan.encryption.setValue(encryption)
 
 			wsconfig = {
 					'hiddenessid': config.plugins.wlan.hiddenessid.getValue(),
