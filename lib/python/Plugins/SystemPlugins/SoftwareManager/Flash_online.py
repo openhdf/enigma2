@@ -17,7 +17,7 @@ import urllib2
 import os
 import shutil
 import math
-from boxbranding import getBoxType,  getImageDistro, getMachineName, getMachineBrand, getOEM
+from boxbranding import getBoxType,  getImageDistro, getMachineName, getMachineBrand, getBrandOEM
 
 distro =  getImageDistro()
 
