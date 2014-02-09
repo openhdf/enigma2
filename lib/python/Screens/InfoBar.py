@@ -56,7 +56,11 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
 				"showRadio": (self.showRadio, _("Show the radio player...")),
 				"showTv": (self.TvRadioToggle, _("Show the tv player...")),
+				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
+				"showEMC": (self.showEMC, _("Show the media center...")),
+				"showWWW": (self.showETPORTAL, _("Open EtPortal...")),
+				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
 				"showBoxPortal": (self.showBoxPortal, _("Show Box Portal...")),
 			}, prio=2)
 
@@ -157,6 +161,48 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		elif config.usage.tvradiobutton_mode.getValue() == "BouquetList":
 			self.showTvChannelList(True)
 			self.servicelist.showFavourites()
+
+	def showMediaPlayer(self):
+		try:
+			from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
+			self.session.open(MediaPlayer)
+			no_plugin = False
+		except Exception, e:
+			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			
+	def showEMC(self):
+		try:
+			from Plugins.Extensions.EnhancedMovieCenter.plugin import *
+			from Components.PluginComponent import plugins
+			showMoviesNew()
+		except Exception, e:
+			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showETPORTAL(self):
+		try:
+			from Screens.PluginBrowser import PluginBrowser
+			from Plugins.Plugin import PluginDescriptor
+			from Components.PluginList import *
+			from Components.PluginComponent import plugins
+			pluginlist = []
+			pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
+			for plugin in pluginlist:
+				if 'EtPortal' in str(plugin.name):
+					break
+			plugin(session=self.session)
+		except Exception, e:
+			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showPluginBrowser(self):
+		from Screens.PluginBrowser import PluginBrowser
+		self.session.open(PluginBrowser)
+		
+	def showBoxPortal(self):
+		if getMachineBrand() == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton'):
+			from Screens.BoxPortal import BoxPortal
+			self.session.open(BoxPortal)
+		else:
+			self.showMovies()
 
 	def TvRadioToggle(self):
 		if getBoxType().startswith('gb') or boxtype == 'odinm7':
