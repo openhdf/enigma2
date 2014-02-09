@@ -332,7 +332,6 @@ class UpdatePluginMenu(Screen):
 			if self.menu == 0:
 				if (currentEntry == "software-update"):
 					self.session.open(UpdatePlugin, self.skin_path)
-					#self.checkTraficLight()
 				elif (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
