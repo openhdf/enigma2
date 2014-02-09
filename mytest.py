@@ -16,6 +16,7 @@ if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 
 from Tools.Profile import profile, profile_final
 profile("PYTHON_START")
+boxtype = getBoxType()
 
 import Tools.RedirectOutput
 import enigma
@@ -52,7 +53,7 @@ from Components.config import config, configfile, ConfigText, ConfigYesNo, Confi
 InitFallbackFiles()
 
 profile("config.misc")
-config.misc.boxtype = ConfigText(default = getBoxType())
+config.misc.boxtype = ConfigText(default = boxtype)
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
@@ -76,8 +77,8 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 #config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call = False)
 ####################################################
 
-def useSyncUsingChanged(configElement):
-	if config.misc.SyncTimeUsing.getValue() == "0":
+def useSyncUsingChanged(configelement):
+	if configelement == "0":
 		print "[Time By]: Transponder"
 		value = True
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
@@ -90,15 +91,14 @@ def useSyncUsingChanged(configElement):
 		Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
-def NTPserverChanged(configElement):
-	if config.misc.NTPserver.getValue() == "pool.ntp.org":
+def NTPserverChanged(configelement):
+	if configelement == "pool.ntp.org":
 		return
 	print "[NTPDATE] save /etc/default/ntpdate"
-	file = "/etc/default/ntpdate"
-	f = open(file, "w")
+	f = open("/etc/default/ntpdate", "w")
 	f.write('NTPSERVERS="' + config.misc.NTPserver.getValue() + '"')
 	f.close()
-	os.chmod(file, 0755)
+	os.chmod("/etc/default/ntpdate", 0755)
 	from Components.Console import Console
 	Console = Console()
 	Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
@@ -541,14 +541,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	try:
-		file = open("/proc/stb/info/boxtype", "r")
-		model = file.readline().strip()
-		file.close()
-	except:
-		model = "unknown"
-
-	if getBoxType() == 'odinm9' or getBoxType() == 'ventonhdx' or getBoxType() == 'ebox5000' or getBoxType() == 'ebox7358' or getBoxType() == 'eboxlumi' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'ini-1000ru' or model == 'ini-1000sv':
+	if boxtype == 'odinm9' or boxtype == 'maram9' or boxtype == 'ventonhdx' or boxtype == 'ebox5000' or boxtype == 'ebox7358' or boxtype == 'eboxlumi' or boxtype == 'ixussone' or boxtype == 'ixusszero' or boxtype == 'ini-1000ru' or boxtype == 'ini-1000sv':
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -567,22 +560,21 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 
-	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800seplus':
+	if boxtype == 'gb800se' or boxtype == 'gb800solo' or boxtype == 'gb800seplus':
 		from enigma import evfd, eConsoleAppContainer
 		try:
-			cmd = 'vfdctl "    openhdf starting e2"'
+			cmd = 'vfdctl "    openatv starting e2"'
 			container = eConsoleAppContainer()
 			container.execute(cmd)
 		except:
 			evfd.getInstance().vfd_write_string("-E2-")
 		evfd.getInstance().vfd_led(str(1))
-
-	if getBoxType() == 'odinm7' or getBoxType() == 'odinm6' or getBoxType() == 'xp1000s':
+		
+	if boxtype == 'odinm7' or boxtype == 'odinm6' or boxtype == 'xp1000s':
 		f = open("/dev/dbox/oled0", "w")
 		f.write('-E2-')
 		f.close()
 
-	print "##################################### BOOTUP ACTIONS ###########################################"
 	print "lastshutdown=%s" % config.usage.shutdownOK.getValue()
 	print "NOK shutdown action=%s" % config.usage.shutdownNOK_action.getValue()
 	print "bootup action=%s" % config.usage.boot_action.getValue()
@@ -727,7 +719,7 @@ import Components.Lcd
 Components.Lcd.InitLcd()
 Components.Lcd.IconCheck()
 # Disable internal clock vfd for Venton-HD1 until we can adjust it for standby
-if getBoxType() == 'ventonhdx':
+if boxtype == 'ventonhdx':
 	try:
 		f = open("/proc/stb/fp/enable_clock", "r").readline()[:-1]
 		if f != '0':

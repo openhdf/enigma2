@@ -1,17 +1,13 @@
-from enigma import eTimer, getBoxType
+from enigma import eTimer
 from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
 from Components.About import about
 
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from os import path
+from boxbranding import getBoxType
 
-try:
-	file = open("/proc/stb/info/boxtype", "r")
-	model = file.readline().strip()
-	file.close()
-except:
-	model = "unknown"
+boxtype = getBoxType()
 
 # The "VideoHardware" is the interface to /proc/stb/video.
 # It generates hotplug events, and gives you the list of
@@ -105,7 +101,7 @@ class VideoHardware:
 		modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 		widescreen_modes = set(["720p", "1080i"])
 
-	if getBoxType().startswith('vu') or getBoxType() == 'dm500hd' or getBoxType() == 'dm800':
+	if boxtype.startswith('vu') or boxtype == 'dm500hd' or boxtype == 'dm800':
 		if about.getChipSetString().find('7358') != -1 or about.getChipSetString().find('7356') != -1 or about.getChipSetString().find('7424') != -1:
 			modes["Scart-YPbPr"] = ["720p", "1080i", "1080p", "576p", "480p", "576i", "480i"]
 		else:
@@ -150,9 +146,9 @@ class VideoHardware:
 		if self.modes.has_key("DVI-PC") and not self.getModeList("DVI-PC"):
 			print "remove DVI-PC because of not existing modes"
 			del self.modes["DVI-PC"]
-		if getBoxType() == 'et4x00' or getBoxType() == 'xp1000' or getBoxType() == 'iqonios300hd' or getBoxType() == 'tm2t' or getBoxType() == 'tmsingle' or getBoxType() == 'tmnano' or getBoxType() == 'odinm7' or model == 'ini-3000' or getBoxType() == 'vusolo2' or getBoxType() == 'e3hd' or getBoxType() == 'dm500hd' or getBoxType() == 'dm800' or getBoxType() == 'ebox7358' or getBoxType() == 'ebox5100' or getBoxType() == 'ixusszero' or getBoxType() == 'optimussos1':
+		if boxtype in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1') or (about.getModelString() == 'ini-3000'):
 			del self.modes["YPbPr"]
-		if self.hw_type == 'elite' or self.hw_type == 'premium' or self.hw_type == 'premium+' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime" : self.readPreferredModes()	
+		if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime") : self.readPreferredModes()	
 
 		self.createConfig()
 		self.readPreferredModes()
@@ -201,7 +197,7 @@ class VideoHardware:
 		for mode in rate.values():
 			##### Only for test #####
 			if port == "DVI":
-				if self.hw_type == 'elite' or self.hw_type == 'premium' or self.hw_type == 'premium+' or self.hw_type == 'ultra' or self.hw_type == "me" or self.hw_type == "minime" :
+				if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime"):
 					if mode not in self.modes_preferred and not config.av.edid_override.value:
 						print "no, not preferred"
 						return False

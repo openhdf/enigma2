@@ -15,6 +15,8 @@ profile("LOAD:enigma")
 import enigma
 from boxbranding import getBoxType, getMachineBrand
 
+boxtype = getBoxType()
+
 profile("LOAD:InfoBarGenerics")
 from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarRdsDecoder, \
@@ -55,6 +57,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showRadio": (self.showRadio, _("Show the radio player...")),
 				"showTv": (self.TvRadioToggle, _("Show the tv player...")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
+				"showBoxPortal": (self.showBoxPortal, _("Show Box Portal...")),
 			}, prio=2)
 
 		self["key_red"] = Label()
@@ -156,7 +159,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.servicelist.showFavourites()
 
 	def TvRadioToggle(self):
-		if getBoxType().startswith('gb'):
+		if getBoxType().startswith('gb') or boxtype == 'odinm7':
 			self.toogleTvRadio()
 		else:
 			self.showTv()
@@ -208,6 +211,13 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				self.session.nav.playService(ref)
 		else:
 			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
+
+	def showBoxPortal(self):
+		if getMachineBrand() == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton'):
+			from Screens.BoxPortal import BoxPortal
+			self.session.open(BoxPortal)
+		else:
+			self.showMovies()
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, InfoBarEPG, \
