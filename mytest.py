@@ -90,15 +90,14 @@ def useSyncUsingChanged(configElement):
 		Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
-def NTPserverChanged(configElement):
+def NTPserverChanged(configelement):
 	if config.misc.NTPserver.getValue() == "pool.ntp.org":
 		return
 	print "[NTPDATE] save /etc/default/ntpdate"
-	file = "/etc/default/ntpdate"
-	f = open(file, "w")
+	f = open("/etc/default/ntpdate", "w")
 	f.write('NTPSERVERS="' + config.misc.NTPserver.getValue() + '"')
 	f.close()
-	os.chmod(file, 0755)
+	os.chmod("/etc/default/ntpdate", 0755)
 	from Components.Console import Console
 	Console = Console()
 	Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
