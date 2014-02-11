@@ -1,5 +1,5 @@
 <keymap>
-	<!-- "HDF Keymap 20.01.2014" -->
+	<!-- "HDF Keymap 10.02.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -217,6 +217,10 @@
 		<key id="KEY_LIST" mapto="showMovies" flags="m" />
 		<key id="KEY_PVR" mapto="showMovies" flags="m" />
 		<key id="KEY_TEXT" mapto="showText" flags="m" />
+		<key id="KEY_WWW" mapto="showWWW" flags="m" />
+		<!-- key id="KEY_BOOKMARKS" mapto="showEMC" flags="mr" /-->
+		<!-- comment in to use media as EMC for LX STBs KEY_BOOKMARKS -->
+		<key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="mm" />			
 	</map>
 
 	<map context="2ndInfobarActions">
@@ -449,7 +453,7 @@
 			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
 		</device>
 		<device name="dreambox ir keyboard">
-			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="m" />
+			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="b" />
 		</device>
 
 		<key id="KEY_PLAYPAUSE" mapto="timeshiftStart" flags="m" />
@@ -529,7 +533,7 @@
 	</map>
 
 	<map context="InfobarTeletextActions">
-		<key id="KEY_TEXT" mapto="startTeletext" flags="m" />
+		<key id="KEY_TEXT" mapto="startTeletext" flags="b" />
 	</map>
 
 	<map context="InfobarRdsActions">
@@ -657,7 +661,7 @@
 	</map>
 
 	<map context="HelpActions">
-		<key id="KEY_HELP" mapto="displayHelp" flags="m" />
+		<key id="KEY_HELP" mapto="displayHelp" flags="b" />
 	</map>
 
 	<map context="ShortcutActions">

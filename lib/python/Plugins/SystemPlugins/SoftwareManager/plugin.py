@@ -47,6 +47,8 @@ from SoftwareTools import iSoftwareTools
 import os
 from boxbranding import getBoxType, getMachineBrand, getMachineName
 
+boxtype = getBoxType()
+
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
 	from Plugins.Extensions.dFlash.plugin import dFlash
 	DFLASH = True
@@ -54,7 +56,7 @@ else:
 	DFLASH = False
 
 config.plugins.configurationbackup = ConfigSubsection()
-if getBoxType() == "odinm9" :
+if boxtype == "odinm9" or boxtype == "maram9":
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
@@ -330,7 +332,6 @@ class UpdatePluginMenu(Screen):
 			if self.menu == 0:
 				if (currentEntry == "software-update"):
 					self.session.open(UpdatePlugin, self.skin_path)
-					#self.checkTraficLight()
 				elif (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):

@@ -197,7 +197,7 @@ class ImageBackup(Screen):
 			self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 			self.EXTRA = "%s/fullbackup_maram9/%s" % (self.DIRECTORY, self.DATE)
 		## TESTING THE Odin M7 Model
-		elif self.OEM == "odinm7":
+		elif self.OEM == "odinm7" or self.MODEL == "odinm7":
 			self.TYPE = "ODINM7"
 			self.MODEL = self.OEM
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
@@ -273,7 +273,7 @@ class ImageBackup(Screen):
 			self.MAINDEST = "%s/ebox/7358/" % self.DIRECTORY
 			self.EXTRA = "%s/fullbackup_%s/%s/ebox" % (self.DIRECTORY, self.TYPE, self.DATE)
 		## TESTING Venton HDx Model
-		elif self.MODEL == "ini-3000" or self.MODEL == "ini-5000" or self.MODEL == "ini-7000" or self.MODEL == "ini-7012":
+		elif self.MODEL == "ini-3000" or self.MODEL == "ini-5000" or self.MODEL == "ini-7000" or self.MODEL == "ini-7012" or self.MACHINEBRAND == "UNiBOX":
 			self.TYPE = "VENTON"
 			self.MODEL = "venton-hdx"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
