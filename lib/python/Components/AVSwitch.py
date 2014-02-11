@@ -3,7 +3,8 @@ from Components.About import about
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from enigma import eAVSwitch, getDesktop
-from boxbranding import getBoxType, getMachineBuild
+from boxbranding import getBoxType, getMachineBuild, getBrandOEM
+
 from SystemInfo import SystemInfo
 import os
 
@@ -63,7 +64,7 @@ class AVSwitch:
 	
 	if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime") : config.av.edid_override = True
 	
-	if (about.getChipSetString() in ('7358', '7356', '7424', '8493'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
+	if (about.getChipSetString() in ('7358', '7356', '7424', '8493', '7425'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
 	else:
@@ -79,6 +80,9 @@ class AVSwitch:
 	# 	del modes["DVI-PC"]
 	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1', 'enfinity') or (about.getModelString() == 'ini-3000'):
 		del modes["YPbPr"]
+	if modes.has_key("Scart") and getBoxType() in ('gbquad', 'et5x00', 'ixussone', 'et6x00', 'tmnano'):
+		del modes["Scart"]
+
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
 		self.on_hotplug = CList()
@@ -506,13 +510,13 @@ def InitAVSwitch():
 	SystemInfo["CanAutoVolume"] = can_autovolume
 
 	if can_autovolume:
-		def setAutoVulume(configElement):
+		def setAutoVolume(configElement):
 			f = open("/proc/stb/audio/avl", "w")
 			f.write(configElement.value)
 			f.close()
 		choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
 		config.av.autovolume = ConfigSelection(choices = choice_list, default = "none")
-		config.av.autovolume.addNotifier(setAutoVulume)
+		config.av.autovolume.addNotifier(setAutoVolume)
 	else:
 		config.av.autovolume = ConfigNothing()		
 
