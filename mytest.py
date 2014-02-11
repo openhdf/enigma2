@@ -90,15 +90,14 @@ def useSyncUsingChanged(configElement):
 		Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
-def NTPserverChanged(configElement):
+def NTPserverChanged(configelement):
 	if config.misc.NTPserver.getValue() == "pool.ntp.org":
 		return
 	print "[NTPDATE] save /etc/default/ntpdate"
-	file = "/etc/default/ntpdate"
-	f = open(file, "w")
+	f = open("/etc/default/ntpdate", "w")
 	f.write('NTPSERVERS="' + config.misc.NTPserver.getValue() + '"')
 	f.close()
-	os.chmod(file, 0755)
+	os.chmod("/etc/default/ntpdate", 0755)
 	from Components.Console import Console
 	Console = Console()
 	Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
@@ -541,14 +540,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	try:
-		file = open("/proc/stb/info/boxtype", "r")
-		model = file.readline().strip()
-		file.close()
-	except:
-		model = "unknown"
-
-	if getBoxType() == 'odinm9' or getBoxType() == 'ventonhdx' or getBoxType() == 'ebox5000' or getBoxType() == 'ebox7358' or getBoxType() == 'eboxlumi' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or model == 'ini-1000ru' or model == 'ini-1000sv':
+	if getBoxType() == 'odinm9' or getBoxType() == 'maram9' or getBoxType() == 'ventonhdx' or getBoxType() == 'ebox5000' or getBoxType() == 'ebox7358' or getBoxType() == 'eboxlumi' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or getBoxType() == 'ini-1000ru' or getBoxType() == 'ini-1000sv':
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -570,20 +562,19 @@ def runScreenTest():
 	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800seplus':
 		from enigma import evfd, eConsoleAppContainer
 		try:
-			cmd = 'vfdctl "    openhdf starting e2"'
+			cmd = 'vfdctl "    openatv starting e2"'
 			container = eConsoleAppContainer()
 			container.execute(cmd)
 		except:
 			evfd.getInstance().vfd_write_string("-E2-")
 		evfd.getInstance().vfd_led(str(1))
-
+		
 	if getBoxType() == 'odinm7' or getBoxType() == 'odinm6' or getBoxType() == 'xp1000s':
 		f = open("/dev/dbox/oled0", "w")
 		f.write('-E2-')
 		f.close()
 
-	print "##################################### BOOTUP ACTIONS ###########################################"
-	print "lastshutdown=%s" % config.usage.shutdownOK.getValue()
+	print "lastshutdown=%s		(True = last shutdown was OK)" % config.usage.shutdownOK.getValue()
 	print "NOK shutdown action=%s" % config.usage.shutdownNOK_action.getValue()
 	print "bootup action=%s" % config.usage.boot_action.getValue()
 	if not config.usage.shutdownOK.getValue() and not config.usage.shutdownNOK_action.getValue() == 'normal' or not config.usage.boot_action.getValue() == 'normal':
