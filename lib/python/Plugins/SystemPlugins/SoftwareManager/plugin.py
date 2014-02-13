@@ -1668,12 +1668,17 @@ class UpdatePlugin(Screen):
 					self.checkTraficLight()
 					return
 				if self.total_packages and self.TraficCheck and self.TraficResult:
-					message = _("Do you want to update your %s %s") % (getMachineBrand(), getMachineName()) + "                 \n(%s " % self.total_packages + _("Packages") + ")"
-					if config.plugins.softwaremanager.updatetype.getValue() == "cold":
-						choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
-					else:
-						choices = [(_("Show new Packages"), "show"), (_("Upgrade and ask to reboot"), "hot"), (_("Cancel"), "")]
-					self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
+					#message = _("Do you want to update your %s %s?") % (getMachineBrand(), getMachineName()) + "                 \n(%s " % self.total_packages + _("Packages") + ")"
+					try:
+						if config.plugins.softwaremanager.updatetype.getValue() == "cold":
+							self.startActualUpgrade("cold")
+						#	choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
+						else:
+							self.startActualUpgrade("hot")
+					except:
+						self.startActualUpgrade("hot")
+					#	choices = [(_("Show new Packages"), "show"), (_("Upgrade and ask to reboot"), "hot"), (_("Cancel"), "")]
+					#self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices)
 				else:
 					self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 			elif self.error == 0:
