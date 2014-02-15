@@ -252,9 +252,9 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
-		elif self.OEM == "xp" and self.MODEL == "xp1000max":
+		elif self.OEM == "xp" and self.MODEL == "xp1000mk":
 			self.TYPE = "MAXDIGITAL"
-			self.MODEL = "xp1000mk"
+			self.MODEL == "xp1000"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
@@ -265,6 +265,26 @@ class ImageBackup(Screen):
 		## TESTING THE Medialink Model
 		elif self.MODEL == "ixussone" or self.MODEL == "ixusszero":
 			self.TYPE = "IXUSS"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
+			self.MTDKERNEL = "mtd1"	
+			self.MAINDESTOLD = "%s/medialink/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/medialink/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
+		elif self.MODEL == "Ixuss Zero":
+			self.TYPE = "IXUSS"
+			self.MODEL = "ixusszero"
+			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
+			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
+			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
+			self.MTDKERNEL = "mtd1"	
+			self.MAINDESTOLD = "%s/medialink/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/medialink/%s" %(self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.TYPE, self.DATE)
+		elif self.MODEL == "Ixuss One":
+			self.TYPE = "IXUSS"
+			self.MODEL = "ixussone"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
