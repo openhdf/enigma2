@@ -128,9 +128,7 @@ keyDescriptions = [{
 		KEYIDS["KEY_9"]: ("9",),
 		KEYIDS["KEY_EXIT"]: ("EXIT",),
 		KEYIDS["KEY_STOP"]: ("STOP",),
-		KEYIDS["KEY_RECORD"]: ("RECORD",),
-		KEYIDS["KEY_SLEEP"]: ("SLEEP",),
-		KEYIDS["KEY_FAVORITES"]: ("FAVORITES",)
+		KEYIDS["KEY_RECORD"]: ("RECORD",)
 	},
 ]
 
