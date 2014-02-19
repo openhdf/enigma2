@@ -1,5 +1,5 @@
 <keymap>
-	<!-- "HDF Keymap 13.02.2014" -->
+	<!-- "HDF Xpeed Keymap 20.02.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -212,6 +212,7 @@
 		<key id="KEY_RADIO" mapto="openBouquetList" flags="l" />
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="openBouquetList" flags="l" />
+		<key id="KEY_FAVORITES" mapto="openBouquetList" flags="b" />
 		<key id="KEY_PROG1" mapto="openBouquetList" flags="m" />
 		<key id="KEY_PROG2" mapto="openBouquetList" flags="m" />
 		<key id="KEY_FILE" mapto="showMovies" flags="m" />
@@ -220,7 +221,8 @@
 		<key id="KEY_PVR" mapto="showMovies" flags="m" />
 		<key id="KEY_TEXT" mapto="showText" flags="m" />
 		<key id="KEY_WWW" mapto="showWWW" flags="m" />
-		<!--key id="KEY_BOOKMARKS" mapto="showEMC" flags="mr" / -->
+		<key id="KEY_BOOKMARKS" mapto="showEMC" flags="mr" />
+		<!-- comment in to use media as EMC for LX STBs KEY_BOOKMARKS -->
 		<key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="mm" />			
 	</map>
 
