@@ -48,7 +48,7 @@ from Tools.Directories import pathExists, fileExists, getRecordingFilename, copy
 from Tools.TimeShift import CopyTimeshiftJob, MergeTimeshiftJob, CreateAPSCFilesJob
 
 from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getBrandOEM
 
 from time import time, localtime, strftime
 from random import randint
@@ -403,7 +403,7 @@ class InfoBarTimeshift:
 				self.ts_rewind_timer.start(100, 1)
 
 	def rewindService(self):
-		if getBoxType().startswith('gb') or getBoxType().startswith('xp1000'):
+		if getBrandOEM() in ('gigablue', 'xp'):
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.getValue())))
 
