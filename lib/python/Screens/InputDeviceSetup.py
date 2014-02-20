@@ -259,7 +259,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 class RemoteControlType(Screen, ConfigListScreen):
 	odinRemote = "OdinM9"
-	if boxtype == "maram9":
+	if getBoxType() == "maram9":
 		odinRemote = "MaraM9"
 	
 	rcList = [
