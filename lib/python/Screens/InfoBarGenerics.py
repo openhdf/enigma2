@@ -1305,7 +1305,21 @@ class InfoBarEPG:
 
 	def EPGPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			self.openGraphEPG()
+			if config.plisettings.PLIEPG_mode.getValue() == "pliepg":
+				self.openGraphEPG()
+			elif config.plisettings.PLIEPG_mode.getValue() == "multi":
+				self.openMultiServiceEPG()
+			elif config.plisettings.PLIEPG_mode.getValue() == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.PLIEPG_mode.getValue() == "merlinepgcenter":
+				self.openMerlinEPGCenter()	
+			elif config.plisettings.PLIEPG_mode.getValue() == "cooltvguide" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
+			elif config.plisettings.PLIEPG_mode.getValue() == "eventview":
+				self.openEventView()
+			else:
+				self.openSingleServiceEPG()
 
 	def showEventInfoWhenNotVisible(self):
 		if self.shown:
