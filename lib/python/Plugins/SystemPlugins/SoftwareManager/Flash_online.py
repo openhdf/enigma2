@@ -194,9 +194,7 @@ class doFlashImage(Screen):
 		machinename = getMachineName()
 		if box == 'odinm6':
 			box = getMachineName().lower()
-		elif box == "inihde" and machinename.lower() == "xpeedlx":
-			box = "xpeedlx"
-		elif box == "xpeedlx1" or box == "xpeedlx2":
+		elif getMachineName() == "Xpeed LX-x":
 			box = "xpeedlx"
 		elif box == "inihde" and machinename.lower() == "hd-1000":
 			box = "sezam-1000hd"
@@ -226,7 +224,7 @@ class doFlashImage(Screen):
 				url = self.feedurl + "/" + sel
 			else:
 				url = self.feedurl + "/" + box + "/" + sel
-			# print url
+			#print url
 			u = urllib2.urlopen(url)
 			f = open(file_name, 'wb')
 			meta = u.info()
