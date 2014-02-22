@@ -1188,6 +1188,7 @@ class InfoBarEPG:
 				"RedPressed": (self.RedPressed, _("Show epg")),
 				"IPressed": (self.IPressed, _("show program information...")),
 				"InfoPressed": (self.InfoPressed, _("show program information...")),
+				"FavPressed": (self.FavPressed, _("show fav information...")),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
 				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
 				"showEventGuidePlugin": (self.showEventGuidePlugins, _("List EPG functions...")),
@@ -1296,6 +1297,41 @@ class InfoBarEPG:
 			elif config.plisettings.PLIINFO_mode.getValue() == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
+			elif config.plisettings.PLIINFO_mode.getValue() == "etportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
+					self.showETPORTAL()
+				else:
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				self.showDefaultEPG()
+
+	def FavPressed(self):
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if getBoxType().startswith('vu'):
+				self.showDefaultEPG()
+			elif config.plisettings.PLIFAV_mode.getValue() == "eventview":
+				self.openEventView()
+			elif config.plisettings.PLIFAV_mode.getValue() == "epgpress":
+				self.showDefaultEPG()
+			elif config.plisettings.PLIFAV_mode.getValue() == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.PLIFAV_mode.getValue() == "coolinfoguide" and COOLTVGUIDE:
+				self.showCoolInfoGuide()
+			elif config.plisettings.PLIFAV_mode.getValue() == "coolsingleguide" and COOLTVGUIDE:
+				self.showCoolSingleGuide()
+			elif config.plisettings.PLIFAV_mode.getValue() == "cooltvguide" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
+			elif config.plisettings.PLIFAV_mode.getValue() == "etportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
+					self.showETPORTAL()
+				else:
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.PLIFAV_mode.getValue() == "emc":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+					self.showEMC()
+				else:
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -1443,6 +1479,22 @@ class InfoBarEPG:
 					break
 		else:
 			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showETPORTAL(self):
+		try:
+			from Plugins.Extensions.EtPortal.plugin import *
+			from Components.PluginComponent import plugins
+			self.session.open(EtPortalScreen)
+		except Exception, e:
+			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showEMC(self):
+		try:
+			from Plugins.Extensions.EnhancedMovieCenter.plugin import *
+			from Components.PluginComponent import plugins
+			showMoviesNew()
+		except Exception, e:
+			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
