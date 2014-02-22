@@ -692,7 +692,17 @@ def InitUsageConfig():
 					("single", _("Show Single EPG")),
 					("coolsingleguide", _("Show CoolSingleGuide")),
 					("coolinfoguide", _("Show CoolInfoGuide")),
-					("cooltvguide", _("Show CoolTVGuide"))])
+					("cooltvguide", _("Show CoolTVGuide")),
+					("etportal", _("Show EtPortal"))])
+		config.plisettings.PLIFAV_mode = ConfigSelection(default="coolinfoguide", choices = [
+					("eventview", _("Show Eventview")),
+					("epgpress", _("Show EPG")),
+					("single", _("Show Single EPG")),
+					("coolsingleguide", _("Show CoolSingleGuide")),
+					("coolinfoguide", _("Show CoolInfoGuide")),
+					("cooltvguide", _("Show CoolTVGuide")),
+					("emc", _("Show Enhanced Movie Center")),
+					("etportal", _("Show EtPortal"))])
 	else:
 		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
 					("pliepg", _("Show Graphical EPG")),
@@ -700,6 +710,10 @@ def InitUsageConfig():
 					("multi", _("Show Multi EPG")),
 					("eventview", _("Show Eventview"))])
 		config.plisettings.PLIINFO_mode = ConfigSelection(default="eventview", choices = [
+					("eventview", _("Show Eventview")),
+					("epgpress", _("Show EPG")),
+					("single", _("Show Single EPG"))])
+		config.plisettings.PLIFAV_mode = ConfigSelection(default="eventview", choices = [
 					("eventview", _("Show Eventview")),
 					("epgpress", _("Show EPG")),
 					("single", _("Show Single EPG"))])
