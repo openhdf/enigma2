@@ -1332,6 +1332,11 @@ class InfoBarEPG:
 					self.showEMC()
 				else:
 					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.PLIFAV_mode.getValue() == "mediaportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
+					self.showMEDIAPORTAL()
+				else:
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -1495,6 +1500,14 @@ class InfoBarEPG:
 			showMoviesNew()
 		except Exception, e:
 			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showMEDIAPORTAL(self):
+		try:
+			from Plugins.Extensions.MediaPortal.plugin import *
+			from Components.PluginComponent import plugins
+			self.session.open(haupt_Screen)
+		except Exception, e:
+			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
