@@ -161,8 +161,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		elif config.usage.tvradiobutton_mode.getValue() == "ChannelList":
 			self.showTvChannelList(True)
 		elif config.usage.tvradiobutton_mode.getValue() == "BouquetList":
-			self.showTvChannelList(True)
-			self.servicelist.showFavourites()
+			def showBouquetList(self):
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+			showBouquetList(InfoBar.instance)
 
 	def showMediaPlayer(self):
 		try:
