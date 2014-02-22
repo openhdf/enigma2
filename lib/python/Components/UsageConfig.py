@@ -702,6 +702,7 @@ def InitUsageConfig():
 					("coolinfoguide", _("Show CoolInfoGuide")),
 					("cooltvguide", _("Show CoolTVGuide")),
 					("emc", _("Show Enhanced Movie Center")),
+					("mediaportal", _("Show Media Portal")),
 					("etportal", _("Show EtPortal"))])
 	else:
 		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [

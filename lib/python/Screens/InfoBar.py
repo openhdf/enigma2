@@ -60,6 +60,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
 				"showEMC": (self.showEMC, _("Show the media center...")),
 				"showETPORTAL": (self.showETPORTAL, _("Open EtPortal...")),
+				"showMEDIAPORTAL": (self.showMEDIAPORTAL, _("Open MediaPortal...")),
 				"showWWW": (self.showWWW, _("Open WWW olugin...")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
 				"showBoxPortal": (self.showBoxPortal, _("Show Box Portal...")),
@@ -186,6 +187,14 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(EtPortalScreen)
 		except Exception, e:
 			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showMEDIAPORTAL(self):
+		try:
+			from Plugins.Extensions.MediaPortal.plugin import *
+			from Components.PluginComponent import plugins
+			self.session.open(haupt_Screen)
+		except Exception, e:
+			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showWWW(self):
 		try:
