@@ -1,5 +1,5 @@
 <keymap>
-	<!-- "HDF Xpeed Keymap 20.02.2014" -->
+	<!-- "HDF Xpeed Keymap 23.02.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -241,9 +241,9 @@
 		<key id="KEY_AUDIO" mapto="audioSelection" flags="m" />
 	</map>
 
-	<!--map context="InfobarSubtitleSelectionActions">
+	<map context="InfobarSubtitleSelectionActions">
 		<key id="KEY_SUBTITLE" mapto="subtitleSelection" flags="m" />
-	</map-->
+	</map>
 
 	<map context="InfobarSubserviceSelectionActions">
 		<key id="KEY_GREEN" mapto="GreenPressed" flags="b" />
@@ -282,6 +282,7 @@
 		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
 		<key id="KEY_MUTE" mapto="volumeMute" flags="mr" />
 		<key id="KEY_POWER" mapto="power_long" flags="l" />
+		<key id="KEY_SLEEP" mapto="power_long" flags="m" />
 		<key id="KEY_POWER" mapto="power_down" flags="m" />
 		<key id="KEY_POWER" mapto="power_up" flags="b" />
 		<key id="KEY_KP0" mapto="discrete_off" flags="m" />
