@@ -1,18 +1,20 @@
+from os import path
+
+from enigma import iPlayableService, iServiceInformation, eTimer
+
 from Screens.Screen import Screen
 from Components.About import about
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, configfile, getConfigListEntry, ConfigBoolean, ConfigNothing, ConfigSlider
+from Components.config import config, configfile, getConfigListEntry
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.ServiceEventTracker import ServiceEventTracker
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from enigma import iPlayableService, iServiceInformation, eTimer
-from os import path
-
 from Components.AVSwitch import iAVSwitch
+
 
 resolutionlabel = None
 
@@ -79,6 +81,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Show 1080p 24fps as"), config.av.autores_1080p24,_("This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 25fps as"), config.av.autores_1080p25,_("This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)")))
 				self.list.append(getConfigListEntry(_("Show 1080p 30fps as"), config.av.autores_1080p30,_("This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)")))
+				self.list.append(getConfigListEntry(_('Always use smart1080p mode'), config.av.smart1080p, _("This option allows you to always use 1080p50 for TV/.ts, and 1080p24/p50/p60 for videos")))
 
 		# if we have modes for this port:
 		if (config.av.videoport.getValue() in config.av.videomode and config.av.autores.getValue() == 'disabled') or config.av.videoport.getValue() == 'Scart':
@@ -109,8 +112,8 @@ class VideoSetup(Screen, ConfigListScreen):
 		elif config.av.aspect.getValue() == "4:3":
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
-		#if config.av.videoport.getValue() == "HDMI":
-		#	self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override))
+#		if config.av.videoport.getValue() == "HDMI":
+#			self.list.append(getConfigListEntry(_("Allow unsupported modes"), config.av.edid_override))
 		if config.av.videoport.getValue() == "Scart":
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
 			if level >= 1:
@@ -402,6 +405,40 @@ class AutoVideoMode(Screen):
 						write_mode = multi_videomode
 					else:
 						write_mode = config_mode+new_rate
+
+			# workaround for bug, see http://www.opena.tv/forum/showthread.php?1642-Autoresolution-Plugin&p=38836&viewfull=1#post38836
+			# always use 1080p50 for TV or .ts files
+			# always use 1080p24/p50/p60 for all other videos
+			if config.av.smart1080p.getValue():
+				print "DEBUG VIDEOMODE/ smart1080p enabled"
+				if new_rate == 'multi':
+					write_mode = '1080p'
+				else:
+					new_rate = new_rate.replace('25', '50')
+					new_rate = new_rate.replace('30', '60')
+					write_mode = '1080p' + new_rate
+				print "DEBUG VIDEOMODE/ new_rate:"
+				print new_rate	
+				ref = self.session.nav.getCurrentlyPlayingServiceReference()
+				if ref is not None:
+					try:
+						mypath = ref.getPath()
+					except:
+						mypath = ''
+					if mypath != '':
+						if mypath.endswith('.ts'):
+							print "DEBUG VIDEOMODE/ playing .ts file"
+							write_mode = '1080p50' # for .ts files
+						else:
+							print "DEBUG VIDEOMODE/ playing other (non .ts) file"
+							# write_mode from above for all other videos
+					else:
+						print "DEBUG VIDEOMODE/ no path, presumably live TV"
+						write_mode = '1080p50' # for for TV
+				else:
+					print "DEBUG VIDEOMODE/ no service reference"
+					write_mode = '1080p50' # no service reference, stay at 1080p50
+
 			if write_mode and current_mode != write_mode and self.bufferfull:
 				resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
 				if config.av.autores_label_timeout.getValue() != '0':
