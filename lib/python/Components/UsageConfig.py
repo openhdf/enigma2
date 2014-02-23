@@ -209,6 +209,8 @@ def InitUsageConfig():
 	for x in nimmanager.nim_slots:
 		nims.append((str(x.slot), x.getSlotName()))
 	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
+	nims.append(("-2", _("Disabled")))
+	config.usage.recording_frontend_priority = ConfigSelection(default = "-2", choices = nims)
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 
 	config.usage.jobtaksextensions = ConfigYesNo(default = True)
@@ -424,7 +426,7 @@ def InitUsageConfig():
 	config.network.AFP_autostart = ConfigYesNo(default = False)
 	config.network.NFS_autostart = ConfigYesNo(default = False)
 	config.network.OpenVPN_autostart = ConfigYesNo(default = False)
-	config.network.Samba_autostart = ConfigYesNo(default = False)
+	config.network.Samba_autostart = ConfigYesNo(default = True)
 	config.network.Inadyn_autostart = ConfigYesNo(default = False)
 	config.network.uShare_autostart = ConfigYesNo(default = False)
 
