@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-02-25 14:35+0100\n"
+"PO-Revision-Date: 2014-02-25 15:35+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -8838,6 +8838,12 @@ msgstr "Zeit um Kommando oder Script auszuführen"
 
 msgid "Timeline font size"
 msgstr "Zeitachse Schriftgröße"
+
+msgid "Timeline 24 Hour"
+msgstr "Zeitachse im 24 Stunden Format"
+
+msgid "Show time in 24 hour clock format."
+msgstr "Zeige die Zeit im 24 Stunden Format."
 
 msgid "Timer List"
 msgstr "Timerliste"
