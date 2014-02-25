@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-02-23 17:12+0100\n"
+"PO-Revision-Date: 2014-02-25 14:35+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -177,6 +177,54 @@ msgid ""
 msgstr ""
 "\n"
 "Anzeigen, installieren und entfernen verfügbarer oder installierter Pakete."
+
+#, python-format
+msgid "Show CoolTVGuide"
+msgstr "Zeige CoolTVGuide"
+
+#, python-format
+msgid "Show Graphical EPG"
+msgstr "Zeige Grafisches EPG"
+
+#, python-format
+msgid "Show Single EPG"
+msgstr "Zeige Einzel EPG"
+
+#, python-format
+msgid "Show Multi EPG"
+msgstr "Zeige Multi EPG"
+
+#, python-format
+msgid "Show Eventview"
+msgstr "Zeige Eventanzeige"
+
+#, python-format
+msgid "Show CoolSingleGuide"
+msgstr "Zeige CoolSingleGuide"
+
+#, python-format
+msgid "Show CoolInfoGuide"
+msgstr "Zeige CoolInfoGuide"
+
+#, python-format
+msgid "Show EtPortal"
+msgstr "Zeige EtPortal"
+
+#, python-format
+msgid "Show EPG"
+msgstr "Zeige EPG"
+
+#, python-format
+msgid "Show Media Portal"
+msgstr "Zeige Media Portal"
+
+#, python-format
+msgid "Show Enhanced Movie Center"
+msgstr "Zeige Enhanced Movie Center"
+
+#, python-format
+msgid "Show Zap-History Browser"
+msgstr "Zeige Zap-Historie Browser"
 
 msgid " (PiP)"
 msgstr " (PiP)"
