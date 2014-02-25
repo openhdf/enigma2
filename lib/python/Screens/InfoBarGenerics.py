@@ -979,12 +979,18 @@ class InfoBarChannelSelection:
 	def historyBack(self):
 		if config.usage.historymode.getValue() == "0":
 			self.servicelist.historyBack()
+		elif config.usage.historymode.getValue() == "2":
+			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
+					self.showZapHistoryBrowser()
 		else:
 			self.servicelist.historyZap(-1)
 
 	def historyNext(self):
 		if config.usage.historymode.getValue() == "0":
 			self.servicelist.historyNext()
+		elif config.usage.historymode.getValue() == "2":
+			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
+					self.showZapHistoryBrowser()
 		else:
 			self.servicelist.historyZap(+1)
 
@@ -1508,6 +1514,15 @@ class InfoBarEPG:
 			self.session.open(haupt_Screen)
 		except Exception, e:
 			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showZapHistoryBrowser(self):
+		try:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Zap-Historie Browser"):
+					self.runPlugin(plugin)
+					break
+		except Exception, e:
+			self.session.open(MessageBox, _("The Zap-History Browser plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
