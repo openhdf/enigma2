@@ -1,4 +1,4 @@
-SUBDIRS = fonts extensions keymaps
+SUBDIRS = fonts extensions keymaps defaults
 
 dist_pkgdata_DATA = \
 	encoding.conf \
