@@ -207,11 +207,11 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self["config"].l.setList(self.list)
 
 	def newConfig(self):
-		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry, \
-			self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry, \
-			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed, \
-			self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected, \
-			self.uncommittedDiseqcCommand, self.cableScanType, self.multiType)
+		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry,
+					 self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,
+					 self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
+					 self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected,
+					 self.uncommittedDiseqcCommand, self.cableScanType, self.multiType)
 		if self["config"].getCurrent() == self.multiType:
 			from Components.NimManager import InitNimManager
 			InitNimManager(nimmanager)
@@ -489,6 +489,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self["actions"] = ActionMap(["SetupActions", "SatlistShortcutAction", "ColorActions"],
 		{
 			"ok": self.keySave,
+			"save": self.keySave,
 			"cancel": self.keyCancel,
 			"nothingconnected": self.nothingConnectedShortcut,
 			"red": self.keyCancel,
@@ -507,6 +508,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
+		self.newConfig()
+
+	def handleKeyFileCallback(self, answer):
+		ConfigListScreen.handleKeyFileCallback(self, answer)
 		self.newConfig()
 
 	def keyCancel(self):

@@ -21,7 +21,7 @@ from Components.Timeshift import InfoBarTimeshift
 
 from Screens.Screen import Screen
 from Screens import ScreenSaver
-from Screens.ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector, EpgBouquetSelector
+from Screens.ChannelSelection import ChannelSelection, PiPZapSelection, BouquetSelector, EpgBouquetSelector
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -900,12 +900,15 @@ class InfoBarChannelSelection:
 	def __init__(self):
 		#instantiate forever
 		self.servicelist = self.session.instantiateDialog(ChannelSelection)
+		self.servicelist2 = self.session.instantiateDialog(PiPZapSelection)
 		self.tscallback = None
-
+		self.longbuttonpressed = False
 		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
 			{
 				"switchChannelUp": (self.switchChannelUp, _("Open service list and select previous channel")),
 				"switchChannelDown": (self.switchChannelDown, _("Open service list and select next channel")),
+				"switchChannelUpLong": (self.switchChannelUpLong, _("Open service list and select previous channel")),
+				"switchChannelDownLong": (self.switchChannelDownLong, _("Open service list and select next channel")),
 				"zapUp": (self.zapUp, _("Switch to previous channel")),
 				"zapDown": (self.zapDown, _("Switch next channel")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
@@ -979,12 +982,18 @@ class InfoBarChannelSelection:
 	def historyBack(self):
 		if config.usage.historymode.getValue() == "0":
 			self.servicelist.historyBack()
+		elif config.usage.historymode.getValue() == "2":
+			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
+					self.showZapHistoryBrowser()
 		else:
 			self.servicelist.historyZap(-1)
 
 	def historyNext(self):
 		if config.usage.historymode.getValue() == "0":
 			self.servicelist.historyNext()
+		elif config.usage.historymode.getValue() == "2":
+			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
+					self.showZapHistoryBrowser()
 		else:
 			self.servicelist.historyZap(+1)
 
@@ -993,12 +1002,36 @@ class InfoBarChannelSelection:
 			self.zapUp()
 		elif config.usage.updownbutton_mode.getValue() == "1":
 			self.session.execDialog(self.servicelist)
+		if self.longbuttonpressed:
+			self.longbuttonpressed = False
 			
 	def switchChannelDown(self):
 		if config.usage.updownbutton_mode.getValue() == "0":
 			self.zapDown()
 		elif config.usage.updownbutton_mode.getValue() == "1":
 			self.session.execDialog(self.servicelist)
+		if self.longbuttonpressed:
+			self.longbuttonpressed = False
+
+	def switchChannelUpLong(self):
+		self.longbuttonpressed = True
+		if not config.usage.show_bouquetalways.getValue():
+			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+				self.servicelist2.moveUp()
+			self.session.execDialog(self.servicelist2)
+		else:
+			self.servicelist2.showFavourites()
+			self.session.execDialog(self.servicelist2)
+
+	def switchChannelDownLong(self):
+		self.longbuttonpressed = True
+		if not config.usage.show_bouquetalways.getValue():
+			if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+				self.servicelist2.moveDown()
+			self.session.execDialog(self.servicelist2)
+		else:
+			self.servicelist2.showFavourites()
+			self.session.execDialog(self.servicelist2)
 
 	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
@@ -1188,6 +1221,7 @@ class InfoBarEPG:
 				"RedPressed": (self.RedPressed, _("Show epg")),
 				"IPressed": (self.IPressed, _("show program information...")),
 				"InfoPressed": (self.InfoPressed, _("show program information...")),
+				"FavPressed": (self.FavPressed, _("show fav information...")),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
 				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
 				"showEventGuidePlugin": (self.showEventGuidePlugins, _("List EPG functions...")),
@@ -1296,6 +1330,46 @@ class InfoBarEPG:
 			elif config.plisettings.PLIINFO_mode.getValue() == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
+			elif config.plisettings.PLIINFO_mode.getValue() == "etportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
+					self.showETPORTAL()
+				else:
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				self.showDefaultEPG()
+
+	def FavPressed(self):
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if getBoxType().startswith('vu'):
+				self.showDefaultEPG()
+			elif config.plisettings.PLIFAV_mode.getValue() == "eventview":
+				self.openEventView()
+			elif config.plisettings.PLIFAV_mode.getValue() == "epgpress":
+				self.showDefaultEPG()
+			elif config.plisettings.PLIFAV_mode.getValue() == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.PLIFAV_mode.getValue() == "coolinfoguide" and COOLTVGUIDE:
+				self.showCoolInfoGuide()
+			elif config.plisettings.PLIFAV_mode.getValue() == "coolsingleguide" and COOLTVGUIDE:
+				self.showCoolSingleGuide()
+			elif config.plisettings.PLIFAV_mode.getValue() == "cooltvguide" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
+			elif config.plisettings.PLIFAV_mode.getValue() == "etportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
+					self.showETPORTAL()
+				else:
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.PLIFAV_mode.getValue() == "emc":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+					self.showEMC()
+				else:
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.PLIFAV_mode.getValue() == "mediaportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
+					self.showMEDIAPORTAL()
+				else:
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -1443,6 +1517,39 @@ class InfoBarEPG:
 					break
 		else:
 			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showETPORTAL(self):
+		try:
+			from Plugins.Extensions.EtPortal.plugin import *
+			from Components.PluginComponent import plugins
+			self.session.open(EtPortalScreen)
+		except Exception, e:
+			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showEMC(self):
+		try:
+			from Plugins.Extensions.EnhancedMovieCenter.plugin import *
+			from Components.PluginComponent import plugins
+			showMoviesNew()
+		except Exception, e:
+			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showMEDIAPORTAL(self):
+		try:
+			from Plugins.Extensions.MediaPortal.plugin import *
+			from Components.PluginComponent import plugins
+			self.session.open(haupt_Screen)
+		except Exception, e:
+			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showZapHistoryBrowser(self):
+		try:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Zap-Historie Browser"):
+					self.runPlugin(plugin)
+					break
+		except Exception, e:
+			self.session.open(MessageBox, _("The Zap-History Browser plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
@@ -2250,7 +2357,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.pvrStateDialog.hide()
 
 	def __timeshiftEventName(self,state):
-		if os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying)):
+		if self.timeshiftEnabled() and os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying)):
 			readmetafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.getValue(),self.pts_currplaying), "r")
 			servicerefname = readmetafile.readline()[0:-1]
 			eventname = readmetafile.readline()[0:-1]

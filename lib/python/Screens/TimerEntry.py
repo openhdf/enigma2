@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+from time import localtime, mktime, time, strftime
+from datetime import datetime
+
+from enigma import eEPGCache
+
 from Screens.Screen import Screen
 import ChannelSelection
 from ServiceReference import ServiceReference
@@ -17,9 +22,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
-from enigma import eEPGCache, eServiceReference
-from time import localtime, mktime, time, strftime
-from datetime import datetime
+
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):
@@ -260,6 +263,13 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.keySelect()
 		else:
 			ConfigListScreen.keyRight(self)
+			self.newConfig()
+
+	def handleKeyFileCallback(self, answer):
+		if self["config"].getCurrent() in (self.channelEntry, self.tagsSet):
+			self.keySelect()
+		else:
+			ConfigListScreen.handleKeyFileCallback(self, answer)
 			self.newConfig()
 
 	def keySelect(self):

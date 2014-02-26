@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-02-19 19:36+0100\n"
-"Last-Translator: koivo <koivo@hdfreaks.cc>\n"
+"PO-Revision-Date: 2014-02-25 15:35+0100\n"
+"Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.6.3\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -177,6 +177,54 @@ msgid ""
 msgstr ""
 "\n"
 "Anzeigen, installieren und entfernen verfügbarer oder installierter Pakete."
+
+#, python-format
+msgid "Show CoolTVGuide"
+msgstr "Zeige CoolTVGuide"
+
+#, python-format
+msgid "Show Graphical EPG"
+msgstr "Zeige Grafisches EPG"
+
+#, python-format
+msgid "Show Single EPG"
+msgstr "Zeige Einzel EPG"
+
+#, python-format
+msgid "Show Multi EPG"
+msgstr "Zeige Multi EPG"
+
+#, python-format
+msgid "Show Eventview"
+msgstr "Zeige Eventanzeige"
+
+#, python-format
+msgid "Show CoolSingleGuide"
+msgstr "Zeige CoolSingleGuide"
+
+#, python-format
+msgid "Show CoolInfoGuide"
+msgstr "Zeige CoolInfoGuide"
+
+#, python-format
+msgid "Show EtPortal"
+msgstr "Zeige EtPortal"
+
+#, python-format
+msgid "Show EPG"
+msgstr "Zeige EPG"
+
+#, python-format
+msgid "Show Media Portal"
+msgstr "Zeige Media Portal"
+
+#, python-format
+msgid "Show Enhanced Movie Center"
+msgstr "Zeige Enhanced Movie Center"
+
+#, python-format
+msgid "Show Zap-History Browser"
+msgstr "Zeige Zap-Historie Browser"
 
 msgid " (PiP)"
 msgstr " (PiP)"
@@ -7981,6 +8029,9 @@ msgstr "EPG Button Belegung"
 msgid "INFO button mode"
 msgstr "INFO Button Belegung"
 
+msgid "FAV button mode"
+msgstr "FAV Button Belegung"
+
 msgid "QuickEPG mode"
 msgstr "QuickEPG Modus"
 
@@ -8788,6 +8839,12 @@ msgstr "Zeit um Kommando oder Script auszuführen"
 msgid "Timeline font size"
 msgstr "Zeitachse Schriftgröße"
 
+msgid "Timeline 24 Hour"
+msgstr "Zeitachse im 24 Stunden Format"
+
+msgid "Show time in 24 hour clock format."
+msgstr "Zeige die Zeit im 24 Stunden Format."
+
 msgid "Timer List"
 msgstr "Timerliste"
 
@@ -9325,6 +9382,18 @@ msgstr "Benutze altes Profil:"
 #, python-format
 msgid "Using tuner %s"
 msgstr "Benutze Tuner %s"
+
+#, python-format
+msgid "Preferred tuner for recordings"
+msgstr "Bevorzugter Tuner für Aufnahmen"
+
+#, python-format
+msgid ""
+"Configure which tuner for recordings will be preferred, when more than one "
+"tuner is available."
+msgstr ""
+"Welcher Tuner soll für Aufnahmen bevorzugt werden, wenn mehr als ein Tuner "
+"zur Verfügung steht."
 
 msgid ""
 "Usually when the subtitle language is the same as the audio language, the "

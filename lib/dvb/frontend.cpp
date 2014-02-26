@@ -756,6 +756,11 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = (int)(snr / 40.5);
 		sat_max = 1618;
 	}
+	if (!strcmp(m_description, "AVL6211")) // ET10000
+	{
+		ret = (int)(snr / 37.5);
+		sat_max = 1700;
+	}
 	else if (strstr("Nova-T StickNovaT 500StickDTB03", m_description)) // dib0700
 	{
 		if ( snr > 300 )
@@ -924,7 +929,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	else if (!strcmp(m_description, "GIGA DVB-S2 NIM (Internal)")) // Gigablue
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1800) - 1.0000) * 100);
-	}
+	}	
 	else if (!strcmp(m_description, "Genpix"))
 	{
 		ret = (int)((snr << 1) / 5);
@@ -1175,7 +1180,7 @@ int eDVBFrontend::readInputpower()
 	sprintf(proc_name, "/proc/stb/fp/lnb_sense%d", m_slotid);
 	if (CFile::parseInt(&power, proc_name) == 0)
 		return power;
-
+	
 	// open front processor
 	int fp=::open("/dev/dbox/fp0", O_RDWR);
 	if (fp < 0)
@@ -2393,7 +2398,7 @@ void eDVBFrontend::setDeliverySystemWhitelist(const std::vector<fe_delivery_syst
 
 bool eDVBFrontend::setSlotInfo(int id, const char *descr, bool enabled, bool isDVBS2, int frontendid)
 {
-	if (frontendid < 0 || frontendid != m_dvbid)
+	if (frontendid < 0 || frontendid != m_dvbid) 
 	{
 		return false;
 	}
