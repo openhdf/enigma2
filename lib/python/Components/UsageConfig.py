@@ -209,6 +209,8 @@ def InitUsageConfig():
 	for x in nimmanager.nim_slots:
 		nims.append((str(x.slot), x.getSlotName()))
 	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
+	nims.append(("-2", _("Disabled")))
+	config.usage.recording_frontend_priority = ConfigSelection(default = "-2", choices = nims)
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 
 	config.usage.jobtaksextensions = ConfigYesNo(default = True)
@@ -424,7 +426,7 @@ def InitUsageConfig():
 	config.network.AFP_autostart = ConfigYesNo(default = False)
 	config.network.NFS_autostart = ConfigYesNo(default = False)
 	config.network.OpenVPN_autostart = ConfigYesNo(default = False)
-	config.network.Samba_autostart = ConfigYesNo(default = False)
+	config.network.Samba_autostart = ConfigYesNo(default = True)
 	config.network.Inadyn_autostart = ConfigYesNo(default = False)
 	config.network.uShare_autostart = ConfigYesNo(default = False)
 
@@ -540,7 +542,7 @@ def InitUsageConfig():
 				pass
 		config.misc.zapmode = ConfigSelection(default = "mute", choices = zapoptions )
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
-	config.usage.historymode = ConfigSelection(default = "1", choices = [("1", _("Show menu")), ("0", _("Just zap"))])
+	config.usage.historymode = ConfigSelection(default = "1", choices = [("1", _("Show menu")), ("0", _("Just zap")), ("2", _("Show Zap-History Browser"))])
 
 	config.subtitles = ConfigSubsection()
 	config.subtitles.ttx_subtitle_colors = ConfigSelection(default = "1", choices = [
@@ -692,7 +694,18 @@ def InitUsageConfig():
 					("single", _("Show Single EPG")),
 					("coolsingleguide", _("Show CoolSingleGuide")),
 					("coolinfoguide", _("Show CoolInfoGuide")),
-					("cooltvguide", _("Show CoolTVGuide"))])
+					("cooltvguide", _("Show CoolTVGuide")),
+					("etportal", _("Show EtPortal"))])
+		config.plisettings.PLIFAV_mode = ConfigSelection(default="coolinfoguide", choices = [
+					("eventview", _("Show Eventview")),
+					("epgpress", _("Show EPG")),
+					("single", _("Show Single EPG")),
+					("coolsingleguide", _("Show CoolSingleGuide")),
+					("coolinfoguide", _("Show CoolInfoGuide")),
+					("cooltvguide", _("Show CoolTVGuide")),
+					("emc", _("Show Enhanced Movie Center")),
+					("mediaportal", _("Show Media Portal")),
+					("etportal", _("Show EtPortal"))])
 	else:
 		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
 					("pliepg", _("Show Graphical EPG")),
@@ -700,6 +713,10 @@ def InitUsageConfig():
 					("multi", _("Show Multi EPG")),
 					("eventview", _("Show Eventview"))])
 		config.plisettings.PLIINFO_mode = ConfigSelection(default="eventview", choices = [
+					("eventview", _("Show Eventview")),
+					("epgpress", _("Show EPG")),
+					("single", _("Show Single EPG"))])
+		config.plisettings.PLIFAV_mode = ConfigSelection(default="eventview", choices = [
 					("eventview", _("Show Eventview")),
 					("epgpress", _("Show EPG")),
 					("single", _("Show Single EPG"))])
@@ -736,6 +753,7 @@ def InitUsageConfig():
 	config.epgselection.infobar_servfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselection.infobar_eventfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselection.infobar_timelinefs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.infobar_timeline24h = ConfigYesNo(default = True)
 	config.epgselection.infobar_servicewidth = ConfigSelectionNumber(default = 250, stepwidth = 1, min = 70, max = 500, wraparound = True)
 	config.epgselection.infobar_piconwidth = ConfigSelectionNumber(default = 100, stepwidth = 1, min = 70, max = 500, wraparound = True)
 	config.epgselection.enhanced_preview_mode = ConfigYesNo(default = True)
@@ -766,6 +784,7 @@ def InitUsageConfig():
 	config.epgselection.graph_servfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselection.graph_eventfs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
 	config.epgselection.graph_timelinefs = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
+	config.epgselection.graph_timeline24h = ConfigYesNo(default = True)
 	config.epgselection.graph_itemsperpage = ConfigSelectionNumber(default = 8, stepwidth = 1, min = 3, max = 16, wraparound = True)
 	config.epgselection.graph_pig = ConfigYesNo(default = True)
 	config.epgselection.graph_heightswitch = NoSave(ConfigYesNo(default = False))

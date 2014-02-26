@@ -2,8 +2,9 @@ from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, config, configfile, ConfigElement, ConfigText, ConfigPassword
 from Components.ActionMap import NumberActionMap, ActionMap
-from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer
+from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer, quitMainloop
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 
 class ConfigList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list, session = None):
@@ -77,6 +78,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	def postWidgetCreate(self, instance):
 		instance.selectionChanged.get().append(self.selectionChanged)
 		instance.setContent(self.l)
+		self.instance.setWrapAround(True)
 
 	def preWidgetRemove(self, instance):
 		if isinstance(self.current,tuple) and len(self.current) >= 2:
@@ -108,6 +110,14 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 
 		return is_changed
 
+	def pageUp(self):
+		if self.instance is not None:
+			self.instance.moveSelection(self.instance.pageUp)
+
+	def pageDown(self):
+		if self.instance is not None:
+			self.instance.moveSelection(self.instance.pageDown)
+
 class ConfigListScreen:
 	def __init__(self, list, session = None, on_change = None):
 		self["config_actions"] = NumberActionMap(["SetupActions", "InputAsciiActions", "KeyboardInputActions"],
@@ -132,7 +142,8 @@ class ConfigListScreen:
 			"7": self.keyNumberGlobal,
 			"8": self.keyNumberGlobal,
 			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal
+			"0": self.keyNumberGlobal,
+			"file" : self.keyFile
 		}, -1) # to prevent left/right overriding the listbox
 
 		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
@@ -225,21 +236,42 @@ class ConfigListScreen:
 		self.__changed()
 
 	def keyPageDown(self):
-		if self["config"].getCurrentIndex() + 10 <= (len(self["config"].getList()) - 1):
-			self["config"].setCurrentIndex(self["config"].getCurrentIndex() + 10)
-		else:
-			self["config"].setCurrentIndex((len(self["config"].getList()) - 1))
+		self["config"].pageDown()
 
 	def keyPageUp(self):
-		if self["config"].getCurrentIndex() - 10 > 0:
-			self["config"].setCurrentIndex(self["config"].getCurrentIndex() - 10)
-		else:
-			self["config"].setCurrentIndex(0)
+		self["config"].pageUp()
+
+	def keyFile(self):
+		selection = self["config"].getCurrent()
+		if selection and selection[1].enabled and hasattr(selection[1], "description"):
+			self.session.openWithCallback(self.handleKeyFileCallback, ChoiceBox, selection[0],
+				list=zip(selection[1].description, selection[1].choices),
+				selection=selection[1].choices.index(selection[1].value),
+				keys=[])
+
+	def handleKeyFileCallback(self, answer):
+		if answer:
+			self["config"].getCurrent()[1].value = answer[1]
+			self["config"].invalidateCurrent()
+			self.__changed()
 
 	def saveAll(self):
+		restartgui = False
 		for x in self["config"].list:
+			if x[1].isChanged():
+				if x[0] == _('Show on Display'): 
+					restartgui = True
 			x[1].save()
-		configfile.save()
+		configfile.save()	
+		self.doRestartGui(restartgui)
+			
+	def doRestartGui(self, restart):
+		if restart:
+			self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Restart GUI now?"), MessageBox.TYPE_YESNO)
+
+	def ExecuteRestart(self, result):
+		if result:
+			quitMainloop(3)
 
 	# keySave and keyCancel are just provided in case you need them.
 	# you have to call them by yourself.
@@ -259,10 +291,13 @@ class ConfigListScreen:
 		if self["config"].isChanged():
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
-			self.close(recursive)
+			try:
+				self.close(recursive)
+			except:
+				self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
 
 	def keyCancel(self):
 		self.closeMenuList()
-
+	
 	def closeRecursive(self):
 		self.closeMenuList(True)

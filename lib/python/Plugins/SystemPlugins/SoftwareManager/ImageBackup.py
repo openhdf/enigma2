@@ -351,12 +351,32 @@ class ImageBackup(Screen):
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
 			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
+		elif self.MODEL == "ini-9000de":
+			self.TYPE = "GI"
+			self.MODEL = "xpeedlx3"
+			self.MKUBIFS_ARGS = "-m 4096 -e 1040384 -c 1984"
+			self.UBINIZE_ARGS = "-m 4096 -p 1024KiB"
+			self.SHOWNAME = "GI XpeedLX3"
+			self.MTDKERNEL = "mtd2"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
 		elif self.MODEL == "ini-1000ru":
 			self.TYPE = "SEZAM"
 			self.MODEL = "hde"
 			self.MKUBIFS_ARGS = "-m 2048 -e 126976 -c 4096"
 			self.UBINIZE_ARGS = "-m 2048 -p 128KiB"
 			self.SHOWNAME = "SEZAM 1000HD"
+			self.MTDKERNEL = "mtd2"
+			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
+			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)
+			self.EXTRA = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
+		elif self.MODEL == "ini-9000ru":
+			self.TYPE = "SEZAM"
+			self.MODEL = "hdp"
+			self.MKUBIFS_ARGS = "-m 4096 -e 1040384 -c 1984"
+			self.UBINIZE_ARGS = "-m 4096 -p 1024KiB"
+			self.SHOWNAME = "SEZAM Marvel"
 			self.MTDKERNEL = "mtd2"
 			self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 			self.MAINDEST = "%s/%s" % (self.DIRECTORY, self.MODEL)

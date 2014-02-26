@@ -4,7 +4,6 @@ from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from enigma import eAVSwitch, getDesktop
 from boxbranding import getBoxType, getMachineBuild, getBrandOEM
-
 from SystemInfo import SystemInfo
 import os
 
@@ -64,7 +63,7 @@ class AVSwitch:
 	
 	if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime") : config.av.edid_override = True
 	
-	if (about.getChipSetString() in ('7358', '7356', '7424', '8493', '7425'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
+	if (about.getChipSetString() in ('7241', '7358', '7356', '7424', '7425', '8493'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
 	else:
@@ -78,7 +77,7 @@ class AVSwitch:
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
 	# 	print "remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
-	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1', 'enfinity') or (about.getModelString() == 'ini-3000'):
+	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'xp1000', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano','iqonios300hd', 'odinm7', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1', 'enfinity', 'uniboxhd1') or (about.getModelString() == 'ini-3000'):
 		del modes["YPbPr"]
 	if modes.has_key("Scart") and getBoxType() in ('gbquad', 'et5x00', 'ixussone', 'et6x00', 'tmnano'):
 		del modes["Scart"]
@@ -318,7 +317,7 @@ class AVSwitch:
 	def getFramebufferScale(self):
 		aspect = self.getOutputAspect()
 		fb_size = getDesktop(0).size()
-		return (aspect[0] * fb_size.height(), aspect[1] * fb_size.width())
+		return aspect[0] * fb_size.height(), aspect[1] * fb_size.width()
 
 	def setAspectRatio(self, value):
 		pass
@@ -359,13 +358,15 @@ def InitAVSwitch():
 	for i in range(5, 16):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	config.av.autores_label_timeout = ConfigSelection(default = "5", choices = [("0", _("Not Shown"))] + choicelist)
-	config.av.autores_delay = ConfigSelectionNumber(min = 200, max = 3000, stepwidth = 200, default = 400, wraparound = True)
+	config.av.autores_delay = ConfigSelectionNumber(min = 50, max = 3000, stepwidth = 50, default = 400, wraparound = True)
 	config.av.autores_deinterlace = ConfigYesNo(default=False)
 	config.av.autores_sd = ConfigSelection(choices={"720p": _("720p"), "1080i": _("1080i")}, default="720p")
 	config.av.autores_720p24 = ConfigSelection(choices={"720p24": _("720p 24Hz"), "1080p24": _("1080p 24Hz"), "1080i50": _("1080i 50Hz"), "1080i": _("1080i 60Hz")}, default="720p24")
 	config.av.autores_1080p24 = ConfigSelection(choices={"1080p24": _("1080p 24Hz"), "1080p25": _("1080p 25Hz"), "1080i50": _("1080p 50Hz"), "1080i": _("1080i 60Hz")}, default="1080p24")
 	config.av.autores_1080p25 = ConfigSelection(choices={"1080p25": _("1080p 25Hz"), "1080p50": _("1080p 50Hz"), "1080i50": _("1080i 50Hz")}, default="1080p25")
 	config.av.autores_1080p30 = ConfigSelection(choices={"1080p30": _("1080p 30Hz"), "1080p60": _("1080p 60Hz"), "1080i": _("1080i 60Hz")}, default="1080p30")
+	config.av.smart1080p = ConfigEnableDisable(default=False)
+	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
 	config.av.aspectratio = ConfigSelection(choices={
 			"4_3_letterbox": _("4:3 Letterbox"),
 			"4_3_panscan": _("4:3 PanScan"),
@@ -430,7 +431,7 @@ def InitAVSwitch():
 	def setColorFormat(configElement):
 		if config.av.videoport and config.av.videoport.getValue() == "Scart-YPbPr":
 			iAVSwitch.setColorFormat(3)
-		elif config.av.videoport and config.av.videoport.getValue() == "YPbPr" and getMachineBuild() == 'inihdx' or getMachineBuild() == 'ventonhdx':
+		elif config.av.videoport and config.av.videoport.getValue() == "YPbPr" or getMachineBuild() == 'inihdx':
 			iAVSwitch.setColorFormat(3)
 		else:
 			if getBoxType() == 'et6x00':
@@ -510,13 +511,13 @@ def InitAVSwitch():
 	SystemInfo["CanAutoVolume"] = can_autovolume
 
 	if can_autovolume:
-		def setAutoVolume(configElement):
+		def setAutoVulume(configElement):
 			f = open("/proc/stb/audio/avl", "w")
 			f.write(configElement.value)
 			f.close()
 		choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
 		config.av.autovolume = ConfigSelection(choices = choice_list, default = "none")
-		config.av.autovolume.addNotifier(setAutoVolume)
+		config.av.autovolume.addNotifier(setAutoVulume)
 	else:
 		config.av.autovolume = ConfigNothing()		
 

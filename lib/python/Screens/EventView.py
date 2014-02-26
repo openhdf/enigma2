@@ -1,3 +1,7 @@
+from time import localtime, mktime, time, strftime
+
+from enigma import eEPGCache, eTimer, eServiceReference, ePoint
+
 from Screens.Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.ChoiceBox import ChoiceBox
@@ -15,11 +19,8 @@ from Components.Sources.Event import Event
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screens.TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.BoundFunction import boundFunction
-from time import localtime, mktime, time, strftime
-from os import path
-from enigma import eEPGCache, eTimer, eServiceReference, ePoint
+
 
 class EventViewContextMenu(Screen):
 	def __init__(self, session, menu):
@@ -302,7 +303,7 @@ class EventViewBase:
 				self.similarEPGCB(id, refstr)
 
 	def doContext(self):
-		if self.event is not None:
+		if self.event:
 			menu = []
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
 				#only list service or event specific eventinfo plugins here, no servelist plugins

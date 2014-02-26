@@ -59,7 +59,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
 				"showEMC": (self.showEMC, _("Show the media center...")),
-				"showWWW": (self.showETPORTAL, _("Open EtPortal...")),
+				"showETPORTAL": (self.showETPORTAL, _("Open EtPortal...")),
+				"showMEDIAPORTAL": (self.showMEDIAPORTAL, _("Open MediaPortal...")),
+				"showWWW": (self.showWWW, _("Open WWW olugin...")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
 				"showBoxPortal": (self.showBoxPortal, _("Show Box Portal...")),
 			}, prio=2)
@@ -159,8 +161,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		elif config.usage.tvradiobutton_mode.getValue() == "ChannelList":
 			self.showTvChannelList(True)
 		elif config.usage.tvradiobutton_mode.getValue() == "BouquetList":
-			self.showTvChannelList(True)
-			self.servicelist.showFavourites()
+			def showBouquetList(self):
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+			showBouquetList(InfoBar.instance)
 
 	def showMediaPlayer(self):
 		try:
@@ -180,16 +184,25 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showETPORTAL(self):
 		try:
-			from Screens.PluginBrowser import PluginBrowser
-			from Plugins.Plugin import PluginDescriptor
-			from Components.PluginList import *
+			from Plugins.Extensions.EtPortal.plugin import *
 			from Components.PluginComponent import plugins
-			pluginlist = []
-			pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
-			for plugin in pluginlist:
-				if 'EtPortal' in str(plugin.name):
-					break
-			plugin(session=self.session)
+			self.session.open(EtPortalScreen)
+		except Exception, e:
+			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showMEDIAPORTAL(self):
+		try:
+			from Plugins.Extensions.MediaPortal.plugin import *
+			from Components.PluginComponent import plugins
+			self.session.open(haupt_Screen)
+		except Exception, e:
+			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showWWW(self):
+		try:
+			from Plugins.Extensions.EtPortal.plugin import *
+			from Components.PluginComponent import plugins
+			self.session.open(EtPortalScreen)
 		except Exception, e:
 			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
@@ -199,8 +212,12 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		
 	def showBoxPortal(self):
 		if getMachineBrand() == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton'):
-			from Screens.BoxPortal import BoxPortal
-			self.session.open(BoxPortal)
+			try:
+				from Plugins.Extensions.EtPortal.plugin import *
+				from Components.PluginComponent import plugins
+				self.session.open(EtPortalScreen)
+			except Exception, e:
+				self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 		else:
 			self.showMovies()
 

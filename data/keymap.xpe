@@ -1,5 +1,5 @@
 <keymap>
-	<!-- "HDF Xpeed Keymap 20.02.2014" -->
+	<!-- "HDF Xpeed Keymap 23.02.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -81,6 +81,7 @@
 		<key id="KEY_I" mapto="IPressed" flags="b" />
 		<key id="KEY_INFO" mapto="InfoPressed" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
+		<key id="KEY_FAVORITES" mapto="FavPressed" flags="b" />
 		<key id="KEY_EPG" mapto="EPGPressed" flags="b" />
 		<key id="KEY_EPG" mapto="showEventGuidePlugin" flags="l" />
 	</map>
