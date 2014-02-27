@@ -351,6 +351,7 @@ fi
 
 if test "$BOXTYPE" == "gb800solo" -o "$BOXTYPE" == "gb800se" -o "$BOXTYPE" == "gb800ue" -o "$BOXTYPE" == "gbquad" -o "$BOXTYPE" == "gb800seplus" -o "$BOXTYPE" == "gb800ueplus" -o "$BOXTYPE" == "gbquadplus"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
+	AC_DEFINE(KEY_F2_TO_KEY_F6, 1,[define when rc sends a KEY_F2 event for its KEY_F6 key])
 fi
 
 if test "$BOXTYPE" == "inihde" -o "$BOXTYPE" == "ventonhdx" -o "$BOXTYPE" == "inihdp" -o "$BOXTYPE" == "inihdx"; then
@@ -448,43 +449,6 @@ data/display128/Makefile
 data/display140/Makefile
 data/display220/Makefile
 data/display255/Makefile
-data/rc_models/Makefile
-data/rc_models/azboxelite/Makefile
-data/rc_models/azboxhd/Makefile
-data/rc_models/azboxme/Makefile
-data/rc_models/cube/Makefile
-data/rc_models/dmm0/Makefile
-data/rc_models/dmm1/Makefile
-data/rc_models/dmm2/Makefile
-data/rc_models/e3hd/Makefile
-data/rc_models/ebox5000/Makefile
-data/rc_models/et4x00/Makefile
-data/rc_models/et6500/Makefile
-data/rc_models/et6x00/Makefile
-data/rc_models/et9500/Makefile
-data/rc_models/et8000/Makefile
-data/rc_models/et9x00/Makefile
-data/rc_models/evo/Makefile
-data/rc_models/gb/Makefile
-data/rc_models/ini0/Makefile
-data/rc_models/ini1/Makefile
-data/rc_models/ini2/Makefile
-data/rc_models/ini3/Makefile
-data/rc_models/ini4/Makefile
-data/rc_models/iqon/Makefile
-data/rc_models/ixussone/Makefile
-data/rc_models/ixusszero/Makefile
-data/rc_models/mediabox/Makefile
-data/rc_models/odinm6/Makefile
-data/rc_models/odinm7/Makefile
-data/rc_models/odinm9/Makefile
-data/rc_models/optimuss/Makefile
-data/rc_models/sogno/Makefile
-data/rc_models/tm/Makefile
-data/rc_models/vu/Makefile
-data/rc_models/vu2/Makefile
-data/rc_models/vu3/Makefile
-data/rc_models/xp1000/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp
