@@ -1,4 +1,4 @@
-SUBDIRS = fonts extensions keymaps rc_models defaults
+SUBDIRS = fonts extensions keymaps defaults
 
 dist_pkgdata_DATA = \
 	encoding.conf \
