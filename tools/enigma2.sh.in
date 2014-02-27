@@ -5,10 +5,12 @@ exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
 if [ -x @bindir@/showiframe ]; then
-	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
-		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
-	elif [ -f @datadir@/backdrop.mvi ]; then
-		@bindir@/showiframe @datadir@/backdrop.mvi
+	if [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
+		echo found @sysconfdir@/enigma2/bootlogo.mvi
+		@bindir@/showiframe @sysconfdir@/enigma2/bootlogo.mvi
+	elif [ -f @datadir@/bootlogo.mvi ]; then
+		echo found @datadir@/bootlogo.mvi
+		@bindir@/showiframe @datadir@/bootlogo.mvi
 	fi
 fi
 
@@ -21,7 +23,21 @@ if [ -d /home/root ]; then
 	cd /home/root
 fi
 
-#check for sundtek tuner helper lib
+# check if media/net directory exists
+if [ -d /media/net ]; then
+	echo "/media/net found"
+else
+	mkdir /media/net
+fi
+
+# check for settings files
+if [ -x @sysconfdir@/enigma2/settings ]; then
+	echo "@sysconfdir@/enigma2/settings found"
+else
+	cp @datadir@/enigma2/defaults/* @sysconfdir@/enigma2/
+fi
+
+# check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
 	LIBS="/opt/lib/libmediaclient.so /usr/lib/libopen.so.0.0.0"
 else

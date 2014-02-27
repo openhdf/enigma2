@@ -136,7 +136,7 @@ class ChannelContextMenu(Screen):
 		self.csel = csel
 		self.bsel = None
 
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions"],
+		self["channelselectactions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick,
@@ -546,8 +546,7 @@ class ChannelSelectionEPG:
 			choice(self)
 
 	def showChoiceBoxDialog(self):
-		print 'showChoiceBoxDialog'
-		self['actions'].setEnabled(False)
+		self['channelselectactions'].setEnabled(False)
 		self['recordingactions'].setEnabled(False)
 		self['ChannelSelectEPGActions'].setEnabled(False)
 		self['dialogactions'].execBegin()
@@ -555,12 +554,11 @@ class ChannelSelectionEPG:
 		self.ChoiceBoxDialog.show()
 
 	def closeChoiceBoxDialog(self):
-		print 'closeChoiceBoxDialog'
 		self['dialogactions'].execEnd()
 		if self.ChoiceBoxDialog:
 			self.ChoiceBoxDialog['actions'].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
-		self['actions'].setEnabled(True)
+		self['channelselectactions'].setEnabled(True)
 		self['recordingactions'].setEnabled(True)
 		self['ChannelSelectEPGActions'].setEnabled(True)
 
@@ -908,7 +906,6 @@ class ChannelSelectionEdit:
 
 	def removeBouquet(self):
 		refstr = self.getCurrentSelection().toString()
-		print "removeBouquet", refstr
 		pos = refstr.find('FROM BOUQUET "')
 		filename = None
 		if pos != -1:
@@ -2172,7 +2169,6 @@ class PiPZapSelection(ChannelSelection):
 
 	def ZapPiP(self):
 		ref = self.servicelist.getCurrent()
-		print 'newservice:',ref
 		if (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 			self.enterPath(ref)
 			self.gotoCurrentServiceOrProvider(ref)
