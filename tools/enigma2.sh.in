@@ -31,7 +31,7 @@ else
 fi
 
 # check for settings files
-if [ -x @sysconfdir@/enigma2/settings ]; then
+if [ -f @sysconfdir@/enigma2/settings ]; then
 	echo "@sysconfdir@/enigma2/settings found"
 else
 	cp @datadir@/enigma2/defaults/* @sysconfdir@/enigma2/
