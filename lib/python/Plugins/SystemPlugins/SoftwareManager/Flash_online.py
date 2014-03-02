@@ -31,8 +31,8 @@ elif distro.lower() == "openhdf":
 	image = 2
 feedurl_atv = 'http://images.mynonpublic.com/openatv/nightly'
 feedurl_om = 'http://image.openmips.com/2.0'
-feedurl_hdf = 'http://images.hdfreaks.cc/nightly'
-feedurl_team = 'http://images.hdfreaks.cc/team'
+feedurl_hdf = 'http://v4.hdfreaks.cc'
+feedurl_team = 'http://v4.hdfreaks.cc/team'
 imagePath = '/hdd/images'
 flashPath = '/hdd/images/flash'
 flashTmp = '/hdd/images/tmp'
@@ -350,7 +350,7 @@ class doFlashImage(Screen):
 					self["key_blue"].setText("Teamimages")
 				else:
 					self.feedurl = feedurl_team
-					self["key_blue"].setText("Nightly")
+					self["key_blue"].setText("Nightly V4")
 			else:
 				self.feedurl = feedurl_atv
 				self["key_blue"].setText("")
