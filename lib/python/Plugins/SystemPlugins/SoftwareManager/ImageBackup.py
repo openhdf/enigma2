@@ -4,6 +4,7 @@
 #			     MAKES A FULLBACK-UP READY FOR FLASHING.						#
 #																				#
 #################################################################################
+import os
 from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
 from Components.Button import Button
@@ -143,6 +144,11 @@ class ImageBackup(Screen):
 		self.MTDKERNEL="mtd1"
 		self.ROOTFSBIN="rootfs.bin"
 		self.KERNELBIN="kernel.bin"
+		# remove some unwanted files before start backup
+		os.system("rm -f /var/lib/opkg/lists/*")
+		os.system("rm -f /etc/enigma2/epg.dat")
+		os.system("rm -f /home/root/logs/*")
+		os.system("rm -f /home/root/.ash_history")
 
 		## TESTING IF ALL THE TOOLS FOR THE BUILDING PROCESS ARE PRESENT
 		if not path.exists(self.MKFS):
