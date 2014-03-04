@@ -4002,6 +4002,7 @@ class InfoBarPowersaver:
 class InfoBarHdmi:
 	def __init__(self):
 		self.hdmi_enabled = False
+		self.longbuttonpressed = False
 		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions",
 			{
 				"HDMIin":(self.HDMIIn, _("Switch to HDMI in mode")),
