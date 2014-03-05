@@ -120,13 +120,8 @@ def canMove(item):
 	return True
 
 canDelete = canMove
-
-def canCopy(item):
-	if not item:
-		return False
-	if not item[0] or not item[1]:
-		return False
-	return True
+canCopy = canMove
+canRename = canMove
 
 def createMoveList(serviceref, dest):
 	#normpath is to remove the trailing '/' from directories
@@ -306,7 +301,7 @@ class MovieContextMenu(Screen):
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self['footnote'] = Label("")
-		self["status"] = StaticText()
+		self["description"] = StaticText()
 
 		self["actions"] = ActionMap(["OkCancelActions", 'ColorActions'],
 			{
@@ -330,6 +325,7 @@ class MovieContextMenu(Screen):
 				else:
 					menu.append((_("Delete"), csel.do_delete))
 					menu.append((_("Move"), csel.do_move))
+					menu.append((_("Copy"), csel.do_copy))
 					menu.append((_("Rename"), csel.do_rename))
 			else:
 				menu.append((_("Delete"), csel.do_delete))
@@ -425,6 +421,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		else:
 			self.selected_tags = None
 		self.selected_tags_ele = None
+		self.nextInBackground = None
 
 		self.movemode = False
 		self.bouquet_mark_edit = False
@@ -776,16 +773,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.reloadList()
 
 	def can_delete(self, item):
-		try:
-			if not item:
-				return False
-			return canDelete(item) or isTrashFolder(item[0])
-		except:
-
+		if not item:
 			return False
+		return canDelete(item) or isTrashFolder(item[0])
 
-	def can_move(self, item):
-		return canMove(item)
 	def can_default(self, item):
 		# returns whether item is a regular file
 		return isSimpleFile(item)
@@ -940,17 +931,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.list.playInBackground = None
 		self.list.playInForeground = None
 		if config.movielist.play_audio_internal.getValue():
-			if playInBackground == current:
-				self["list"].moveDown()
-				next = self.getCurrent()
-				if not next or (next == current):
-					print "End of list"
-					return # don't loop the last item
-				path = next.getPath()
-				ext = os.path.splitext(path)[1].lower()
-				print "Next up:", path
-				if ext in AUDIO_EXTENSIONS:
-					self.callLater(self.preview)
+			index = self.list.findService(playInBackground)
+			if index is None:
+				return # Not found?
+			next = self.list.getItem(index + 1)
+			if not next:
+				return
+			path = next.getPath()
+			ext = os.path.splitext(path)[1].lower()
+			print "Next up:", path
+			if ext in AUDIO_EXTENSIONS:
+				self.nextInBackground = next
+				self.callLater(self.preview)
+
 		if config.movielist.show_live_tv_in_movielist.getValue():
 			self.LivePlayTimer.start(100)
 
@@ -963,36 +956,43 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			else:
 				Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(self.previewCheckTimeshiftCallback)
 
+	def startPreview(self):
+		if self.nextInBackground is not None:
+			current = self.nextInBackground
+			self.nextInBackground = None
+		else:
+			current = self.getCurrent()
+		playInBackground = self.list.playInBackground
+		playInForeground = self.list.playInForeground
+		if playInBackground:
+			self.list.playInBackground = None
+			from Screens.InfoBar import MoviePlayer
+			MoviePlayerInstance = MoviePlayer.instance
+			if MoviePlayerInstance is not None:
+				from Screens.InfoBarGenerics import setResumePoint
+				setResumePoint(MoviePlayer.instance.session)
+			self.session.nav.stopService()
+			if playInBackground != current:
+				# come back to play the new one
+				self.callLater(self.preview)
+		elif playInForeground:
+			self.playingInForeground = playInForeground
+			self.list.playInForeground = None
+			from Screens.InfoBar import MoviePlayer
+			MoviePlayerInstance = MoviePlayer.instance
+			if MoviePlayerInstance is not None:
+				from Screens.InfoBarGenerics import setResumePoint
+				setResumePoint(MoviePlayer.instance.session)
+			self.session.nav.stopService()
+			if playInForeground != current:
+				self.callLater(self.preview)
+		else:
+			self.list.playInBackground = current
+			self.session.nav.playService(current)
+
 	def previewCheckTimeshiftCallback(self, answer):
 		if answer:
-			current = self.getCurrent()
-			playInBackground = self.list.playInBackground
-			playInForeground = self.list.playInForeground
-			if playInBackground:
-				self.list.playInBackground = None
-				from Screens.InfoBar import MoviePlayer
-				MoviePlayerInstance = MoviePlayer.instance
-				if MoviePlayerInstance is not None:
-					from Screens.InfoBarGenerics import setResumePoint
-					setResumePoint(MoviePlayer.instance.session)
-				self.session.nav.stopService()
-				if playInBackground != current:
-					# come back to play the new one
-					self.callLater(self.preview)
-			elif playInForeground:
-				self.playingInForeground = playInForeground
-				self.list.playInForeground = None
-				from Screens.InfoBar import MoviePlayer
-				MoviePlayerInstance = MoviePlayer.instance
-				if MoviePlayerInstance is not None:
-					from Screens.InfoBarGenerics import setResumePoint
-					setResumePoint(MoviePlayer.instance.session)
-				self.session.nav.stopService()
-				if playInForeground != current:
-					self.callLater(self.preview)
-			else:
-				self.list.playInBackground = current
-				self.session.nav.playService(current)
+			self.startPreview()
 
 	def seekRelative(self, direction, amount):
 		if self.list.playInBackground or self.list.playInBackground:
@@ -1457,11 +1457,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			mbox=self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
 			mbox.setTitle(self.getTitle())
 
-	def can_rename(self, item):
-		return canMove(item)
 	def do_rename(self):
 		item = self.getCurrentSelection()
-		if not canMove(item):
+		if not canRename(item):
 			return
 		if isFolder(item):
 			p = os.path.split(item[0].getPath())
@@ -1603,12 +1601,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			mbox=self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
 
-	def can_copy(self, item):
-		return canCopy(item)
-
 	def do_copy(self):
 		item = self.getCurrentSelection()
-		if canMove(item):
+		if canCopy(item):
 			current = item[0]
 			info = item[1]
 			if info is None:
@@ -1773,7 +1768,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if '.Trash' in cur_path:
 					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % name
 				else:
-					are_you_sure = _("Do you really want to delete %s?") % name
+					are_you_sure = _("Do you really want to delete %s ?") % name
 				msg = ''
 			mbox=self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + are_you_sure)
 			mbox.setTitle(self.getTitle())

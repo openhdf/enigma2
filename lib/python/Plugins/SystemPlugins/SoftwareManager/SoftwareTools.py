@@ -272,7 +272,7 @@ class SoftwareTools(PackageInfoHandler):
 		if prerequisites.has_key("hardware"):
 			hardware_found = False
 			for hardware in prerequisites["hardware"]:
-				if hardware == self.hardware_info.device_name:
+				if hardware == getBoxType():
 					hardware_found = True
 			if not hardware_found:
 				return False
