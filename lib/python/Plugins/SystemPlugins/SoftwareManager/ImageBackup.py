@@ -170,14 +170,14 @@ class ImageBackup(Screen):
 		self.message += VERSION + '\n'
 		self.message += "_________________________________________________\n\n"
 		self.message += _("Please be patient, a backup will now be made,\n")
+		self.message += _("\n")
+		self.message += _("If you want to watch TV while backup is running,\n")
+		self.message += _("press the yellow key to toggle the screen.\n")
 		if self.ROOTFSTYPE == "ubifs":
 			self.message += _("because of the used filesystem the back-up\n")
 			self.message += _("will take about 3-12 minutes for this system\n")
-			self.message += _("\n")
-			self.message += _("If you want to watch TV while backup is running\n")
-			self.message += _("press the yellow key to hide/show the screen\n")
 		else:
-			self.message += _("this will take between 2 and 9 minutes\n")
+			self.message += _("This will take between 2 and 9 minutes\n")
 		self.message += "\n_________________________________________________\n\n"
 		self.message += "'"
 
