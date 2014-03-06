@@ -45,9 +45,10 @@ from ImageWizard import ImageWizard
 from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
 from SoftwareTools import iSoftwareTools
 import os
-from boxbranding import getBoxType, getMachineBrand, getMachineName
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
 
 boxtype = getBoxType()
+brandoem = getBrandOEM()
 
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
 	from Plugins.Extensions.dFlash.plugin import dFlash
@@ -1014,7 +1015,7 @@ class PluginManager(Screen, PackageInfoHandler):
 			elif tag == 'Multimedia':
 				return(( _("Multimedia"), _("View list of available multimedia extensions." ), tag, divpng ))
 			elif tag == 'Display':
-				return(( _("Display and userinterface"), _("View list of available display and userinterface extensions." ), tag, divpng ))
+				return(( _("Display and user interface"), _("View list of available display and userinterface extensions." ), tag, divpng ))
 			elif tag == 'EPG':
 				return(( _("Electronic Program Guide"), _("View list of available EPG extensions." ), tag, divpng ))
 			elif tag == 'Communication':
@@ -2449,9 +2450,9 @@ def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
 
 def startSetup(menuid):
-	if menuid == "setup":
-		return [(_("Software management"), UpgradeMain, "software_manager", 50)]
-	return [ ]
+	if menuid != "setup":
+		return [ ]
+	return [(_("Software management"), UpgradeMain, "software_manager", 50)]
 
 def Plugins(path, **kwargs):
 	global plugin_path
