@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-03-06 17:38+0100\n"
+"PO-Revision-Date: 2014-03-06 19:11+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -788,6 +788,12 @@ msgstr "Aktiviere"
 msgid "Activate PiP"
 msgstr "Aktiviere PiP"
 
+msgid "Open service list and select next channel for PiP"
+msgstr "Öffne Senderliste und wähle den nächsten Sender für PiP"
+
+msgid "Open service list and select previous channel for PiP"
+msgstr "Öffne Senderliste und wähle den vorherigen Sender für PiP"
+
 msgid "Activate Picture in Picture"
 msgstr "Aktiviere Bild in Bild"
 
@@ -1435,6 +1441,12 @@ msgstr "Vom Team ViX"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "HDMI EDID ignorieren"
+
+msgid "Switch to HDMI in mode"
+msgstr "Wechsel zu HDMI in Modus"
+
+msgid "Top and bottom"
+msgstr "Oben und Unten"
 
 msgid "Bytes received:"
 msgstr "Byte empfangen:"
@@ -5697,6 +5709,9 @@ msgstr "Telefonnummer"
 msgid "PiP"
 msgstr "PiP"
 
+msgid "Please open Picture in Picture first"
+msgstr "Bitte Bild in Bild zuerst aktivieren."
+
 msgid "Picon"
 msgstr "PIcon"
 
@@ -6066,6 +6081,9 @@ msgstr "Bevorzuge AC3 Tonspur"
 
 msgid "Prefer AC3+ track"
 msgstr "Bevorzuge AC3+ Tonspur"
+
+msgid "When enabled, the receiver will select an AC3+ track (when available)."
+msgstr "Wenn auf 'Ja' gestellt so wird AC3+ Ton benutzt wenn verfügbar."
 
 msgid "Prefer audio track stored by service"
 msgstr "Bevorzuge gespeicherte Tonspur des Senders"
@@ -8999,12 +9017,6 @@ msgstr "Toneburst"
 
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
-
-msgid "Top and Bottom"
-msgstr "Oben und Unten"
-
-msgid "Top and bottom"
-msgstr "Oben und Unten"
 
 msgid "Total"
 msgstr "gesamt"
