@@ -4,6 +4,7 @@ from Screens.WizardLanguage import WizardLanguage
 from Screens.WizardUserInterfacePositioner import UserInterfacePositionerWizard
 from Screens.VideoWizard import VideoWizard
 from Screens.Rc import Rc
+from Screens.Screen import Screen
 from boxbranding import getBoxType
 
 from Components.Pixmap import Pixmap
