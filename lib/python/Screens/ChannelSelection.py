@@ -492,9 +492,9 @@ class ChannelSelectionEPG:
 				"ShortRecord": (self.RecordTimerQuestion, _("Add a record timer")),
 				'LongRecord': (self.doZapTimer, _('Add a zap timer for next event'))
 			},-1)
-		self['dialogactions'] = ActionMap(['WizardActions'],
+		self['dialogactions'] = ActionMap(['SetupActions'],
 			{
-				'back': self.closeChoiceBoxDialog,
+				'cancel': self.closeChoiceBoxDialog,
 			})
 		self['dialogactions'].execEnd()
 
@@ -2146,8 +2146,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setCurrentSelection(tmp_ref)
 
 class PiPZapSelection(ChannelSelection):
-	instance = None
-
 	def __init__(self, session):
 		ChannelSelection.__init__(self, session)
 		self.skinName = ["SlimChannelSelection","SimpleChannelSelection","ChannelSelection"]
@@ -2157,13 +2155,18 @@ class PiPZapSelection(ChannelSelection):
 		else:
 			self.pipServiceRelation = {}
 
-		self["pipzapselectactions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
-			{
-				"cancel": self.cancel,
-				"ok": self.ZapPiP,
-				"keyRadio": self.setModeRadio,
-				"keyTV": self.setModeTv,
-			})
+		self.keymaptimer = eTimer()
+		self.keymaptimer.callback.append(self.enableKeyMap)
+		self.onShown.append(self.disableKeyMap)
+
+	def disableKeyMap(self):
+		eActionMap.getInstance().unbindNativeKey("ListboxActions", 0)
+		eActionMap.getInstance().unbindNativeKey("ListboxActions", 1)
+		self.keymaptimer.start(1000, True)
+
+	def enableKeyMap(self):
+		eActionMap.getInstance().bindKey("keymap.xml", "generic", 103, 5, "ListboxActions", "moveUp")
+		eActionMap.getInstance().bindKey("keymap.xml", "generic", 108, 5, "ListboxActions", "moveDown")
 
 	def ZapPiP(self):
 		ref = self.servicelist.getCurrent()
