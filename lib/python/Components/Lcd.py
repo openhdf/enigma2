@@ -1,11 +1,13 @@
-from twisted.internet import threads
-from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
-from enigma import eDBoxLCD, eTimer
 from boxbranding import getBoxType
+
+from twisted.internet import threads
+from enigma import eDBoxLCD, eTimer
+
+from config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 import usb
-import fcntl
+
 
 def IconCheck(session=None, **kwargs):
 	if fileExists("/proc/stb/lcd/symbol_network") or fileExists("/proc/stb/lcd/symbol_usb"):
@@ -189,34 +191,22 @@ def standbyCounterChanged(configElement):
 	config.lcd.ledbrightnessdeepstandby.apply()
 
 def InitLcd():
-	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800seplus' or getBoxType() == 'tmsingle' or getBoxType() == 'vusolo' or getBoxType() == 'et4x00' or getBoxType() == 'et5x00' or getBoxType() == 'et6x00':
+	if getBoxType() in ('gb800se', 'gb800solo','gb800seplus', 'tmsingle', 'vusolo', 'et4x00', 'et5x00', 'et6x00', 'mixosf7', 'mixoslumi'):
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
 	SystemInfo["Display"] = detected
 	config.lcd = ConfigSubsection();
+
+	if fileExists("/proc/stb/lcd/mode"):
+		f = open("/proc/stb/lcd/mode", "r")
+		can_lcdmodechecking = f.read().strip().split(" ")
+		f.close()
+	else:
+		can_lcdmodechecking = False
+	SystemInfo["LCDMiniTV"] = can_lcdmodechecking	
+	
 	if detected:
-		config.lcd.scroll_speed = ConfigSelection(default = "300", choices = [
-			("500", _("slow")),
-			("300", _("normal")),
-			("100", _("fast"))])
-		config.lcd.scroll_delay = ConfigSelection(default = "10000", choices = [
-			("10000", "10 " + _("seconds")),
-			("20000", "20 " + _("seconds")),
-			("30000", "30 " + _("seconds")),
-			("60000", "1 " + _("minute")),
-			("300000", "5 " + _("minutes")),
-			("noscrolling", _("off"))])
-
-		if fileExists("/proc/stb/lcd/mode"):
-			f = open("/proc/stb/lcd/mode", "r")
-			can_lcdmodechecking = f.read().strip().split(" ")
-			f.close()
-		else:
-			can_lcdmodechecking = False
-
-		SystemInfo["LCDMiniTV"] = can_lcdmodechecking
-
 		if can_lcdmodechecking:
 			def setLCDModeMinitTV(configElement):
 				try:
@@ -243,7 +233,8 @@ def InitLcd():
 			if config.misc.boxtype.value == 'gbquad' or config.misc.boxtype.value == 'gbquadplus':
 				config.lcd.modepip.addNotifier(setLCDModePiP)
 			else:				
-				config.lcd.modepip = ConfigNothing()					
+				config.lcd.modepip = ConfigNothing()
+
 			config.lcd.modeminitv = ConfigSelection(choices={
 					"0": _("normal"),
 					"1": _("MiniTV"),
@@ -255,8 +246,20 @@ def InitLcd():
 			config.lcd.fpsminitv.addNotifier(setMiniTVFPS)
 		else:
 			config.lcd.modeminitv = ConfigNothing()
-			config.lcd.fpsminitv = ConfigNothing()			
+			config.lcd.fpsminitv = ConfigNothing()
 
+		config.lcd.scroll_speed = ConfigSelection(default = "300", choices = [
+			("500", _("slow")),
+			("300", _("normal")),
+			("100", _("fast"))])
+		config.lcd.scroll_delay = ConfigSelection(default = "10000", choices = [
+			("10000", "10 " + _("seconds")),
+			("20000", "20 " + _("seconds")),
+			("30000", "30 " + _("seconds")),
+			("60000", "1 " + _("minute")),
+			("300000", "5 " + _("minutes")),
+			("noscrolling", _("off"))])
+	
 		def setLCDbright(configElement):
 			ilcd.setBright(configElement.getValue());
 
@@ -313,7 +316,7 @@ def InitLcd():
 			config.lcd.contrast = ConfigNothing()
 			standby_default = 1
 
-		if getBoxType() == 'ebox5000' or getBoxType() == 'ebox5100':
+		if getBoxType() in ('mixosf5', 'mixosf5mini', 'gi9196m', 'gi9196lite'):
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 4))
 			config.lcd.bright = ConfigSlider(default=4, limits=(0, 4))
 		else:
@@ -331,18 +334,18 @@ def InitLcd():
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped);
 		
-		if getBoxType() == 'ebox5000' or getBoxType() == 'ebox5100':
+		if getBoxType() in ('mixosf5', 'mixosf5mini', 'gi9196m', 'gi9196lite'):
 			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed);
-			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "1")
+			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "3")
 			config.lcd.repeat.addNotifier(setLCDrepeat);
 			config.lcd.hdd = ConfigNothing()
 			config.lcd.mode = ConfigNothing()			
-		elif fileExists("/proc/stb/lcd/scroll_delay") and not getBoxType() in ('Ixuss One', 'Ixuss Zero', 'ixussone', 'ixusszero'):
+		elif fileExists("/proc/stb/lcd/scroll_delay") and not getBoxType() in ('ixussone', 'ixusszero'):
 			config.lcd.hdd = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed);
-			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "1")
+			config.lcd.repeat = ConfigSelection([("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))], "3")
 			config.lcd.repeat.addNotifier(setLCDrepeat);
 			config.lcd.mode = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.mode.addNotifier(setLCDmode);
@@ -364,7 +367,7 @@ def InitLcd():
 		else:
 			config.lcd.showoutputresolution = ConfigNothing()			
 
-		if getBoxType() == 'vusolo2' or getBoxType() == 'vuduo2' or getBoxType() == 'vuultimo':
+		if getBoxType() == 'vuultimo':
 			config.lcd.ledblinkingtime = ConfigSlider(default = 5, increment = 1, limits = (0,15))
 			config.lcd.ledblinkingtime.addNotifier(setLEDblinkingtime);
 			config.lcd.ledbrightnessdeepstandby = ConfigSlider(default = 1, increment = 1, limits = (0,15))

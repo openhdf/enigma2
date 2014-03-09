@@ -664,12 +664,10 @@ class MovieList(GUIComponent):
 		return 1, -x[2]
 
 	def moveTo(self, serviceref):
-		count = 0
-		for x in self.list:
-			if x[0] == serviceref:
-				self.instance.moveSelectionTo(count)
-				return True
-			count += 1
+		index = self.findService(serviceref)
+		if index is not None:
+			self.instance.moveSelectionTo(index)
+			return True
 		return False
 
 	def moveDown(self):
