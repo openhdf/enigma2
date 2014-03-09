@@ -397,7 +397,7 @@ class InfoBarTimeshift:
 			if seekable is not None:
 				seekable.seekTo(-90000) # seek approx. 1 sec before end
 		if back:
-			if getBoxType().startswith('et'):
+			if getBrandOEM() == 'xtrend':
 				self.ts_rewind_timer.start(1000, 1)
 			else:
 				self.ts_rewind_timer.start(100, 1)

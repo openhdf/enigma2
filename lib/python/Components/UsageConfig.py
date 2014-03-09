@@ -1,23 +1,24 @@
+import os
+from time import time
+from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
+import enigma
 from Components.About import about
 from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, fileExists
-from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
-from boxbranding import getBoxType, getMachineName
+from boxbranding import getBoxType, getMachineBuild, getMachineName, getBrandOEM
+
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
-import os
-import enigma
-from time import time
 
 def InitUsageConfig():
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
-	config.misc.remotecontrol_text_support = ConfigYesNo(default = False)
+	config.misc.remotecontrol_text_support = ConfigYesNo(default = True)
 
 	config.usage = ConfigSubsection()
 	config.usage.shutdownOK = ConfigBoolean(default = True)
-	config.usage.shutdownNOK_action = ConfigSelection(default = "standby", choices = [("normal", _("just boot")), ("standby", _("goto standby")), ("deepstandby", _("goto deep-standby"))])
+	config.usage.shutdownNOK_action = ConfigSelection(default = "normal", choices = [("normal", _("just boot")), ("standby", _("goto standby")), ("deepstandby", _("goto deep-standby"))])
 	config.usage.boot_action = ConfigSelection(default = "normal", choices = [("normal", _("just boot")), ("standby", _("goto standby"))])
 	config.usage.showdish = ConfigSelection(default = "flashing", choices = [("flashing", _("Flashing")), ("normal", _("Not Flashing")), ("off", _("Off"))])
 	config.usage.multibouquet = ConfigYesNo(default = True)
@@ -56,7 +57,10 @@ def InitUsageConfig():
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
 	config.usage.show_infobar_channel_number = ConfigYesNo(default = False)
+	config.usage.show_infobar_lite = ConfigYesNo(default = False)
+	config.usage.show_infobar_channel_number = ConfigYesNo(default = False)
 	config.usage.show_second_infobar = ConfigSelection(default = 0, choices = [(None, _("None")), ("0", _("No timeout"))] + choicelist + [("EPG",_("EPG")),("INFOBAREPG",_("InfoBar EPG"))])
+	config.usage.second_infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("No timeout"))] + choicelist)
 	def showsecondinfobarChanged(configElement):
 		if config.usage.show_second_infobar.getValue() != "INFOBAREPG":
 			SystemInfo["InfoBarEpg"] = True
@@ -71,7 +75,8 @@ def InitUsageConfig():
 	config.usage.sort_settings = ConfigYesNo(default = False)
 	config.usage.sort_menus = ConfigYesNo(default = False)
 	config.usage.sort_pluginlist = ConfigYesNo(default = True)
-	config.usage.movieplayer_pvrstate = ConfigYesNo(default = True)
+	config.usage.sort_extensionslist = ConfigYesNo(default = False)
+	config.usage.movieplayer_pvrstate = ConfigYesNo(default = False)
 
 	choicelist = []
 	for i in (10, 30):
@@ -153,7 +158,6 @@ def InitUsageConfig():
 			config.usage.autorecord_path.save()
 	config.usage.autorecord_path.addNotifier(autorecordpathChanged, immediate_feedback = False)
 	config.usage.allowed_autorecord_paths = ConfigLocations(default = [resolveFilename(SCOPE_AUTORECORD)])
-
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min = 1, max = 31, stepwidth = 1, default = 7, wraparound = True)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
@@ -180,6 +184,11 @@ def InitUsageConfig():
 		("shutdown", _("Immediate shutdown")),
 		("standby", _("Standby")) ] )
 
+	config.usage.on_short_powerpress = ConfigSelection(default = "standby", choices = [
+		("show_menu", _("Show shutdown menu")),
+		("shutdown", _("Immediate shutdown")),
+		("standby", _("Standby")) ] )
+
 	choicelist = [("0", "Disabled")]
 	for i in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
 		if i < 60:
@@ -189,11 +198,6 @@ def InitUsageConfig():
 			m = ngettext("%d minute", "%d minutes", m) % m
 		choicelist.append(("%d" % i, m))
 	config.usage.screen_saver = ConfigSelection(default = "0", choices = choicelist)
-
-	config.usage.on_short_powerpress = ConfigSelection(default = "standby", choices = [
-		("show_menu", _("Show shutdown menu")),
-		("shutdown", _("Immediate shutdown")),
-		("standby", _("Standby")) ] )
 
 	config.usage.check_timeshift = ConfigYesNo(default = True)
 
@@ -255,6 +259,8 @@ def InitUsageConfig():
 	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
+
+	config.usage.blinking_rec_symbol_during_recording = ConfigYesNo(default = False)
 
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default = True)
 
@@ -458,9 +464,9 @@ def InitUsageConfig():
 	config.seek = ConfigSubsection()
 	config.seek.baractivation = ConfigSelection([("leftright", _("Long Left/Right")),("ffrw", _("Long << / >>"))], "leftright")
 	config.seek.sensibility = ConfigSelectionNumber(min = 1, max = 10, stepwidth = 1, default = 10, wraparound = True)
-	config.seek.selfdefined_13 = ConfigSelectionNumber(min = 1, max = 120, stepwidth = 1, default = 15, wraparound = True)
-	config.seek.selfdefined_46 = ConfigSelectionNumber(min = 1, max = 240, stepwidth = 1, default = 60, wraparound = True)
-	config.seek.selfdefined_79 = ConfigSelectionNumber(min = 1, max = 480, stepwidth = 1, default = 300, wraparound = True)
+	config.seek.selfdefined_13 = ConfigSelectionNumber(min = 1, max = 300, stepwidth = 1, default = 15, wraparound = True)
+	config.seek.selfdefined_46 = ConfigSelectionNumber(min = 1, max = 600, stepwidth = 1, default = 60, wraparound = True)
+	config.seek.selfdefined_79 = ConfigSelectionNumber(min = 1, max = 1200, stepwidth = 1, default = 300, wraparound = True)
 
 	config.seek.speeds_forward = ConfigSet(default=[2, 4, 8, 16, 32, 64, 128], choices=[2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
 	config.seek.speeds_backward = ConfigSet(default=[2, 4, 8, 16, 32, 64, 128], choices=[1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
@@ -484,10 +490,10 @@ def InitUsageConfig():
 
 	debugpath = [('/home/root/logs/', '/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():
-		d = os.path.normpath(p.mountpoint)
 		if os.path.exists(p.mountpoint):
+			d = os.path.normpath(p.mountpoint)
 			if p.mountpoint != '/':
-				debugpath.append((d + '/logs/', p.mountpoint))
+				debugpath.append((p.mountpoint + 'logs/', d))
 	config.crash.debug_path = ConfigSelection(default = "/home/root/logs/", choices = debugpath)
 
 	def updatedebug_path(configElement):
@@ -529,11 +535,17 @@ def InitUsageConfig():
 
 	SystemInfo["ZapMode"] = os.path.exists("/proc/stb/video/zapmode") or os.path.exists("/proc/stb/video/zapping_mode")
 	if SystemInfo["ZapMode"]:
-		if os.path.exists("/proc/stb/video/zapping_mode"):
-			zapfile = "/proc/stb/video/zapping_mode"
-		else:
+		try:
+			if os.path.exists("/proc/stb/video/zapping_mode"):
+				zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen"))]
+				zapfile = "/proc/stb/video/zapping_mode"
+			else:
+				zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
+				zapfile = "/proc/stb/video/zapmode"
+		except:
+			zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
 			zapfile = "/proc/stb/video/zapmode"
-		zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
+
 		def setZapmode(el):
 			try:
 				file = open(zapfile, "w")
@@ -567,7 +579,7 @@ def InitUsageConfig():
 
 	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default = False)
 	config.subtitles.dvb_subtitles_original_position = ConfigSelection(default = "0", choices = [("0", _("Original")), ("1", _("Fixed")), ("2", _("Relative"))])
-	config.subtitles.dvb_subtitles_centered = ConfigYesNo(default = False)
+	config.subtitles.dvb_subtitles_centered = ConfigYesNo(default = True)
 	config.subtitles.subtitle_bad_timing_delay = ConfigSelection(default = "0", choices = subtitle_delay_choicelist)
 	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default = "0", choices = [
 		("0", _("No transparency")),
@@ -661,10 +673,10 @@ def InitUsageConfig():
 	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default = False)
 	config.autolanguage.subtitle_usecache = ConfigYesNo(default = True)
 	config.autolanguage.equal_languages = ConfigSelection(default = "15", choices = [
-		("0", "None"),("1", "1"),("2", "2"),("3", "1,2"),
+		("0", _("None")),("1", "1"),("2", "2"),("3", "1,2"),
 		("4", "3"),("5", "1,3"),("6", "2,3"),("7", "1,2,3"),
 		("8", "4"),("9", "1,4"),("10", "2,4"),("11", "1,2,4"),
-		("12", "3,4"),("13", "1,3,4"),("14", "2,3,4"),("15", "All")])
+		("12", "3,4"),("13", "1,3,4"),("14", "2,3,4"),("15", _("All"))])
 
 	config.logmanager = ConfigSubsection()
 	config.logmanager.showinextensions = ConfigYesNo(default = False)
@@ -677,6 +689,7 @@ def InitUsageConfig():
 
 	config.plisettings = ConfigSubsection()
 	config.plisettings.Subservice = ConfigYesNo(default = True)
+	config.plisettings.ShowPressedButtons = ConfigYesNo(default = False)
 	config.plisettings.ColouredButtons = ConfigYesNo(default = True)
 	config.plisettings.InfoBarEpg_mode = ConfigSelection(default="0", choices = [
 					("0", _("as plugin in extended bar")),
@@ -728,24 +741,20 @@ def InitUsageConfig():
 	config.epgselection.overjump = ConfigYesNo(default = False)
 	config.epgselection.infobar_type_mode = ConfigSelection(choices = [("graphics",_("Multi EPG")), ("single", _("Single EPG"))], default = "graphics")
 	if SystemInfo.get("NumVideoDecoders", 1) > 1:
-		if about.getCPUString() in ('BCM7346B2', 'BCM7425B2'):
-			previewdefault = "2"
-		else:
-			previewdefault = "1"
-		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Full screen")), ("2", _("PiP"))], default = previewdefault)
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fullscreen")), ("2", _("PiP"))], default = "1")
 	else:
-		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Full screen"))], default = "1")
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fullscreen"))], default = "1")
 	config.epgselection.infobar_ok = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap")
 	config.epgselection.infobar_oklong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
-	config.epgselection.infobar_itemsperpage = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 2, max = 4, wraparound = True)
+	config.epgselection.infobar_itemsperpage = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 1, max = 4, wraparound = True)
 	if SystemInfo.get("NumVideoDecoders", 1) > 1:
 		if about.getCPUString() in ('BCM7346B2', 'BCM7425B2'):
 			previewdefault = "2"
 		else:
 			previewdefault = "1"
-		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Full screen")), ("2", _("PiP"))], default = previewdefault)
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fullscreen")), ("2", _("PiP"))], default = previewdefault)
 	else:
-		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Full screen"))], default = "1")
+		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0",_("Disabled")), ("1", _("Fullscreen"))], default = "1")
 	config.epgselection.infobar_roundto = ConfigSelection(default = "15", choices = [("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
 	config.epgselection.infobar_prevtime = ConfigClock(default = time())
 	config.epgselection.infobar_prevtimeperiod = ConfigSelection(default = "300", choices = [("60", _("%d minutes") % 60), ("90", _("%d minutes") % 90), ("120", _("%d minutes") % 120), ("150", _("%d minutes") % 150), ("180", _("%d minutes") % 180), ("210", _("%d minutes") % 210), ("240", _("%d minutes") % 240), ("270", _("%d minutes") % 270), ("300", _("%d minutes") % 300)])
@@ -837,6 +846,10 @@ def InitUsageConfig():
 	config.streaming.stream_eit = ConfigYesNo(default = True)
 	config.streaming.stream_ait = ConfigYesNo(default = True)
 
+	config.pluginbrowser = ConfigSubsection()
+	config.pluginbrowser.po = ConfigYesNo(default = False)
+	config.pluginbrowser.src = ConfigYesNo(default = False)
+
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
@@ -868,3 +881,11 @@ def preferredInstantRecordPath():
 
 def defaultMoviePath():
 	return defaultRecordingLocation(config.usage.default_path.getValue())
+
+def refreshServiceList(configElement = None):
+	from Screens.InfoBar import InfoBar
+	InfoBarInstance = InfoBar.instance
+	if InfoBarInstance is not None:
+		servicelist = InfoBarInstance.servicelist
+		if servicelist:
+			servicelist.setMode()

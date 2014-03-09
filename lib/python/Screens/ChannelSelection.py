@@ -5,8 +5,7 @@ from Screen import Screen
 import Screens.InfoBar
 import Components.ParentalControl
 from Components.Button import Button
-from Components.config import configfile, config
-from Components.ServiceList import ServiceList, refreshServiceList
+from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
@@ -17,7 +16,7 @@ from Components.Renderer.Picon import getPiconName
 from Screens.TimerEdit import TimerSanityConflict
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
-from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
+from enigma import eActionMap, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
 from Components.config import config, configfile, ConfigSubsection, ConfigText
 from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
@@ -31,7 +30,7 @@ profile("ChannelSelection.py 2.3")
 from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
+from RecordTimer import RecordTimerEntry, AFTEREVENT
 from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from Screens.InputBox import InputBox, PinInput
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -42,10 +41,8 @@ profile("ChannelSelection.py 4")
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.BoundFunction import boundFunction
 from Tools import Notifications
-from Tools.Alternatives import CompareWithAlternatives
 from time import localtime, time
 from os import remove
 try:
@@ -999,7 +996,7 @@ class ChannelSelectionEdit:
 				self.servicelist.removeCurrent()
 				self.servicelist.resetRoot()
 				if not bouquet and ref == self.session.nav.getCurrentlyPlayingServiceOrGroup():
-					self.channelSelected()
+					self.zap( enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None)
 
 	def addServiceToBouquet(self, dest, service=None):
 		mutableList = self.getMutableList(dest)
@@ -1233,8 +1230,9 @@ class ChannelSelectionBase(Screen):
 		nameStr = ''
 		pos = titleStr.find(']')
 		if pos == -1:
-			pos = titleStr.find(' (')
+			pos = titleStr.find(')')
 		if pos != -1:
+			titleStr = titleStr[:pos+1]
 			if titleStr.find(' (TV)') != -1:
 				titleStr = titleStr[-5:]
 			elif titleStr.find(' (Radio)') != -1:
@@ -1246,15 +1244,15 @@ class ChannelSelectionBase(Screen):
 					end_ref = self.servicePath[Len - 1]
 				else:
 					end_ref = None
-# 				nameStr = self.getServiceName(base_ref)
+				nameStr = self.getServiceName(base_ref)
 # 				titleStr += ' - ' + nameStr
 				if end_ref is not None:
 # 					if Len > 2:
 # 						titleStr += '/../'
 # 					else:
 # 						titleStr += '/'
-					self.nameStr = self.getServiceName(end_ref)
-					titleStr = self.nameStr + titleStr
+					nameStr = self.getServiceName(end_ref)
+					titleStr += nameStr
 				self.setTitle(titleStr)
 
 	def moveUp(self):
@@ -1295,7 +1293,7 @@ class ChannelSelectionBase(Screen):
 
 	def showAllServices(self):
 		if not self.pathChangeDisabled:
-			refstr = '%s ORDER BY name'%(self.service_types)
+			refstr = '%s ORDER BY name'% self.service_types
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
 				currentRoot = self.getRoot()
@@ -1712,7 +1710,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def __evServiceStart(self):
 		if self.dopipzap and hasattr(self.session, 'pip'):
-			self.servicelist.setPlayableIgnoreService(self.session.pip.getCurrentServiceReference())
+			self.servicelist.setPlayableIgnoreService(self.session.pip.getCurrentServiceReference() or eServiceReference())
 		else:
 			service = self.session.nav.getCurrentService()
 			if service:
@@ -1946,6 +1944,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		cur_root = self.getRoot()
 		if cur_root and cur_root != root:
 			self.setRoot(root)
+		self.servicelist.setCurrent(ref)
 		if doZap:
 			self.session.nav.playService(ref)
 		if self.dopipzap:
@@ -2145,6 +2144,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.session.pip.currentService = tmp_ref
 			self.setCurrentSelection(tmp_ref)
 
+
 class PiPZapSelection(ChannelSelection):
 	def __init__(self, session):
 		ChannelSelection.__init__(self, session)
@@ -2168,7 +2168,7 @@ class PiPZapSelection(ChannelSelection):
 		eActionMap.getInstance().bindKey("keymap.xml", "generic", 103, 5, "ListboxActions", "moveUp")
 		eActionMap.getInstance().bindKey("keymap.xml", "generic", 108, 5, "ListboxActions", "moveDown")
 
-	def ZapPiP(self):
+	def channelSelected(self):
 		ref = self.servicelist.getCurrent()
 		if (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
 			self.enterPath(ref)
@@ -2176,16 +2176,14 @@ class PiPZapSelection(ChannelSelection):
 		elif not (ref.flags & eServiceReference.isMarker or ref.toString().startswith("-1")):
 			root = self.getRoot()
 			if not root or not (root.flags & eServiceReference.isGroup):
-
 				n_service = self.pipServiceRelation.get(str(ref), None)
 				if n_service is not None:
 					newservice = eServiceReference(n_service)
 				else:
 					newservice = ref
-				if self.session.pipshown:
-					del self.session.pip
-				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.show()
+				if not self.session.pipshown:
+					self.session.pip = self.session.instantiateDialog(PictureInPicture)
+					self.session.pip.show()
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.getCurrentServicePath()
@@ -2356,6 +2354,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 			})
 		self.bouquet_mark_edit = OFF
 		self.title = title
+		self.bouquet_mark_edit = OFF
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):

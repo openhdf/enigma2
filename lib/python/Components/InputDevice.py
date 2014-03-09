@@ -1,6 +1,6 @@
 from os import listdir, open as os_open, close as os_close, write as os_write, O_RDWR, O_NONBLOCK
 from fcntl import ioctl
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getBrandOEM
 import struct
 
 from config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigSlider
@@ -187,7 +187,7 @@ class InitInputDevices:
 		exec cmd
 		cmd = "config.inputDevices." + device + ".name.addNotifier(self.inputDevicesNameChanged,config.inputDevices." + device + ".name)"
 		exec cmd
-		if boxtype == 'odinm9' or boxtype == 'maram9' or boxtype == 'odinm7' or boxtype == 'odinm6':
+		if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo'):
 			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=400, increment = 10, limits=(0, 500))"
 		elif boxtype == 'azboxhd':
 			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=150, increment = 10, limits=(0, 500))"
@@ -196,7 +196,7 @@ class InitInputDevices:
 		exec cmd
 		cmd = "config.inputDevices." + device + ".repeat.addNotifier(self.inputDevicesRepeatChanged,config.inputDevices." + device + ".repeat)"
 		exec cmd
-		if boxtype == 'odinm9' or boxtype == 'maram9' or boxtype == 'odinm7' or boxtype == 'odinm6':
+		if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo'):
 			cmd = "config.inputDevices." + device + ".delay = ConfigSlider(default=200, increment = 100, limits=(0, 5000))"
 		else:
 			cmd = "config.inputDevices." + device + ".delay = ConfigSlider(default=700, increment = 100, limits=(0, 5000))"
@@ -224,8 +224,6 @@ class RcTypeControl():
 				self.writeRcType(config.plugins.remotecontroltype.rctype.getValue())
 		else:
 			self.isSupported = False
-		if boxtype.startswith('gb'):
-			self.isSupported = False			
 
 	def multipleRcSupported(self):
 		return self.isSupported

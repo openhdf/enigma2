@@ -1,3 +1,4 @@
+<!--suppress XmlUnboundNsPrefix -->
 <keymap>
 	<!-- "HDF Keymap 25.02.2014" -->
 	<map context="ListboxActions">
@@ -59,6 +60,8 @@
 		<key id="KEY_8" mapto="8" flags="m" />
 		<key id="KEY_9" mapto="9" flags="m" />
 		<key id="KEY_0" mapto="0" flags="m" />
+		<key id="KEY_FILE" mapto="file" flags="m" />
+		<key id="KEY_VIDEO" mapto="file" flags="m" />
 	</map>
 
 	<map context="InputActions">
@@ -118,8 +121,8 @@
 	<map context="InfobarChannelSelection">
 		<key id="KEY_LEFT" mapto="LeftPressed" flags="mr" />
 		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />
-		<key id="KEY_UP" mapto="switchChannelUp" flags="b" />
-		<key id="KEY_DOWN" mapto="switchChannelDown" flags="b" />
+		<key id="KEY_UP" mapto="switchChannelUp" flags="m" />
+		<key id="KEY_DOWN" mapto="switchChannelDown" flags="m" />
 		<key id="KEY_UP" mapto="switchChannelUpLong" flags="l" />
 		<key id="KEY_DOWN" mapto="switchChannelDownLong" flags="l" />
 		<key id="KEY_PREVIOUS" mapto="historyBack" flags="mr" />
@@ -522,6 +525,8 @@
 		<key id="KEY_PREVIOUS" mapto="movePrev" flags="b" />
 		<key id="KEY_NEXT" mapto="moveNext" flags="b" />
 		<key id="KEY_AUDIO" mapto="AudioSelection" flags="m" />
+		<key id="KEY_EXIT" mapto="leavePlayerOnExit" flags="m" />
+		<key id="KEY_ESC" mapto="leavePlayerOnExit" flags="m" />
 	</map>
 
 	<map context="InfobarCueSheetActions">
@@ -547,7 +552,7 @@
 	</map>
 
 	<map context="InfobarTeletextActions">
-		<key id="KEY_TEXT" mapto="startTeletext" flags="b" />
+		<key id="KEY_TEXT" mapto="startTeletext" flags="m" />
 	</map>
 
 	<map context="TeletextActions">
@@ -675,10 +680,14 @@
 	</map>
 
 	<map context="ColorActions">
-		<key id="KEY_RED" mapto="red" flags="m"/>
-		<key id="KEY_GREEN" mapto="green" flags="m"/>
-		<key id="KEY_YELLOW" mapto="yellow" flags="m"/>
-		<key id="KEY_BLUE" mapto="blue" flags="m"/>
+		<key id="KEY_RED" mapto="red" flags="b"/>
+		<key id="KEY_RED" mapto="redlong" flags="l"/>
+		<key id="KEY_GREEN" mapto="green" flags="b"/>
+		<key id="KEY_GREEN" mapto="greenlong" flags="l"/>
+		<key id="KEY_YELLOW" mapto="yellow" flags="b"/>
+		<key id="KEY_YELLOW" mapto="yellowlong" flags="l"/>
+		<key id="KEY_BLUE" mapto="blue" flags="b"/>
+		<key id="KEY_BLUE" mapto="bluelong" flags="l"/>
 	</map>
 
 	<map context="MsgBoxActions">
@@ -695,7 +704,8 @@
 	</map>
 
 	<map context="HelpActions">
-		<key id="KEY_HELP" mapto="displayHelp" flags="b" />
+		<key id="KEY_HELP" mapto="displayHelp" flags="m" />
+		<key id="KEY_OPTION" mapto="displayHelp" flags="m" />
 	</map>
 
 	<map context="ShortcutActions">
@@ -762,19 +772,18 @@
 			<key id="KEY_PREVIOUS" mapto="previous" flags="m" />
 			<key id="KEY_NEXT" mapto="next" flags="m" />
 		</device>
-		<device name="dreambox remote control (native)">
-			<key id="KEY_YELLOW" mapto="pause" flags="m" />
-			<key id="KEY_GREEN" mapto="play" flags="m" />
-			<key id="KEY_RADIO" mapto="shift_record" flags="l" />
-			<key id="KEY_PREVIOUS" mapto="previous" flags="m" />
-			<key id="KEY_NEXT" mapto="next" flags="m" />
-		</device>
+
+		<key id="KEY_YELLOW" mapto="pause" flags="m" />
+		<key id="KEY_GREEN" mapto="play" flags="m" />
+		<key id="KEY_RADIO" mapto="shift_record" flags="l" />
+		<key id="KEY_PREVIOUS" mapto="previous" flags="m" />
+		<key id="KEY_NEXT" mapto="next" flags="m" />
+
 		<device name="dreambox ir keyboard">
 			<key id="KEY_RECORD" mapto="shift_record" flags="l" />
 			<key id="KEY_PREVIOUSSONG" mapto="previous" flags="m" />
 			<key id="KEY_NEXTSONG" mapto="next" flags="m" />
 		</device>
-
 		<key id="KEY_PLAYPAUSE" mapto="pause" flags="m" />
 		<key id="KEY_PAUSE" mapto="pause" flags="m" />
 		<key id="KEY_PLAY" mapto="play" flags="m" />
