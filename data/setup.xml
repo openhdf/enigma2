@@ -19,11 +19,11 @@
 		<item level="2" text="Descramble http streams" description="Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available).">config.streaming.descramble</item>
 		<!--item level="2" text="Enable Startup Bootvideo" description="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item-->
 		<item level="1" text="After PowerLost" description="Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
-		<item level="1" text="Boot-up action" description="Select what should be done when the %s %s was boot-up, normal playing or goto standby.">config.usage.boot_action</item>
+		<!--item level="1" text="Boot-up action" description="Select what should be done when the %s %s was boot-up, normal playing or goto standby.">config.usage.boot_action</item-->
 	</setup>
 	<setup key="userinterface" title="Settings...">
 		<item level="0" text="1st Infobar timeout" description="Set the time to hide the infobar.">config.usage.infobar_timeout</item>
-		<item level="0" text="2nd infobar" description="Enable and set the duration of the second infobar (press OK twice) that may include more information on the current service.">config.usage.show_second_infobar</item>
+		<item level="0" text="2nd Infobar" description="Enable and set the duration of the second infobar (press OK twice) that may include more information on the current service.">config.usage.show_second_infobar</item>
 		<item level="0" text="2nd Infobar timeout" description="Set the time to hide the second infobar. The bar also disappears on pressing 'OK'.">config.usage.second_infobar_timeout</item>
 		<item level="0" text="Show infobar picons" description="Option to disable picons on the Infobar">config.usage.showpicon</item>
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode:" requires="InfoBarEpg">config.plisettings.InfoBarEpg_mode</item>
@@ -53,7 +53,7 @@
 		<item level="1" text="Sort setting screen's alphabetically" description="This option allows you to disable sorting of the option in setting screen's">config.usage.sort_settings</item>
 		<item level="1" text="Sort menu screen's alphabetically" description="This option allows you to disable sorting of the menus">config.usage.sort_menus</item>
 		<item level="1" text="Sort plug-in browser alphabetically" description="This option allows you to disable sorting of the plugin browser.">config.usage.sort_pluginlist</item>
-		<item level="1" text="Sort Extensions list alphabetically" description="This option allows you to disable sorting of the Extensions list.">config.usage.sort_extensionslist</item>
+		<!--item level="1" text="Sort Extensions list alphabetically" description="This option allows you to disable sorting of the Extensions list.">config.usage.sort_extensionslist</item-->
 		<item level="1" text="Show PVR status in MoviePlayer infobar" description="This option moves the PVR status from the seprate window into the MoviePlayer infobar.">config.usage.movieplayer_pvrstate</item>
 		<item level="2" text="Close PiP on exit" description="When enabled the PiP can be closed by the exit button.">config.usage.pip_hideOnExit</item>
 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown on the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item>

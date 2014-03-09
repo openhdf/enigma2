@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-03-06 19:11+0100\n"
+"PO-Revision-Date: 2014-03-09 18:52+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -506,6 +506,12 @@ msgstr "1X"
 
 msgid "1st Infobar timeout"
 msgstr "1. Infobar Timeout"
+
+msgid "2nd Infobar"
+msgstr "2. Infobar"
+
+msgid "2nd Infobar timeout"
+msgstr "2. Infobar Timeout"
 
 msgid "23.976"
 msgstr ""
@@ -3847,16 +3853,19 @@ msgid "HDMI"
 msgstr "HDMI"
 
 msgid "HDMI CEC"
-msgstr "HDMI CEC"
+msgstr "Einstellungen HDMI CEC"
 
 msgid "HDMI CEC Setup"
 msgstr "HDMI CEC Einstellungen"
 
+msgid "Handle deepstandby events"
+msgstr "Deep-Standby-Ereignisse verwalten "
+
 msgid "Handle standby from TV"
-msgstr "Fernseher in Bereitschaft versetzen"
+msgstr "Fernseher Standby verwalten"
 
 msgid "Handle wakeup from TV"
-msgstr "Fernseher aufwachen"
+msgstr "Fernseher Wakeup verwalten"
 
 msgid "Hard disk setup"
 msgstr "Festplatten Einstellungen"
@@ -6234,7 +6243,10 @@ msgid "Providers: "
 msgstr "Anbieter:"
 
 msgid "Put TV in standby"
-msgstr "Fernseher in Bereitschaft versetzen"
+msgstr "Fernseher in Standby versetzen"
+
+msgid "Put receiver in standby"
+msgstr "Receiver in Standby versetzen"
 
 #, python-format
 msgid "Put your %s %s in standby"
@@ -6974,12 +6986,15 @@ msgstr "Wähle ob TimeShift auch bei einer Aufnahme weiter gehen soll."
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Wähle ob Unterkanäle aktiviert werden sollen."
 
+msgid "Use image coloured Buttons *"
+msgstr "Benutze Enigma2 Farbtasten (Nein mit MultiQuickButton) *"
+
 msgid ""
-"Select if you want to use the ViX coloured Buttons (set to 'no' if you want "
-"to use (Multi) Quick Button)."
+"Select if you want to use the image coloured Buttons (set to 'no' if you "
+"want to use (Multi) Quick Button)."
 msgstr ""
-"Wähle ob Du die ViX Farbtasten benutzen möchtest ('Nein' wenn Du "
-"(Multi-)QuickButton benutzen möchtest):"
+"Wählen Sie ob die Image Farbtasten benutzt werden sollen\n"
+"('Nein' wenn Sie (Multi-)QuickButton benutzen möchten)."
 
 msgid "Select input device"
 msgstr "Wähle Eingabegerät"
@@ -9263,7 +9278,7 @@ msgid "Use Netmed EPG information when it is available."
 msgstr "Benutze NetMed EPG-Informationen benutzen wenn sie vorhanden sind."
 
 msgid "Use TV remote control"
-msgstr "Fernbedienungsbefehle des Fernsehers weiterleiten"
+msgstr "Nutze TV-Fernbedienung"
 
 msgid "Use USALS for this sat"
 msgstr "Benutze USALS für diesen Satelliten"
@@ -11779,6 +11794,14 @@ msgstr "Wollen Sie jetzt neu starten?"
 msgid "Show Softcam-Panel in Extensions Menu"
 msgstr "Zeige Softcam-Panel in Extensions-Menü"
 
+msgid "Show pressed buttons in telnet debug mode"
+msgstr "Zeige gedrückte Tasten im Telnet Debug Modus"
+
+msgid "Select if you want to show every pressed button in telnet init 4 mode."
+msgstr ""
+"Auswählen wenn im init 4 Modus im Telnet jeder Tastendruck angezeigt werden "
+"soll."
+
 #
 msgid "an internal error has occur"
 msgstr "ein interner Fehler ist aufgetreten"
@@ -12039,7 +12062,7 @@ msgstr "Ausschalten"
 
 # Powerlost setup.xml
 msgid "After PowerLost"
-msgstr "Nach Stromausfall"
+msgstr "Verhalten der Box nach Stromausfall"
 
 # Powerlost setup.xml
 msgid ""

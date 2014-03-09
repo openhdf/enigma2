@@ -59,7 +59,7 @@ def InitUsageConfig():
 	config.usage.show_infobar_channel_number = ConfigYesNo(default = False)
 	config.usage.show_infobar_lite = ConfigYesNo(default = False)
 	config.usage.show_infobar_channel_number = ConfigYesNo(default = False)
-	config.usage.show_second_infobar = ConfigSelection(default = 0, choices = [(None, _("None")), ("0", _("No timeout"))] + choicelist + [("EPG",_("EPG")),("INFOBAREPG",_("InfoBar EPG"))])
+	config.usage.show_second_infobar = ConfigSelection(default = "1", choices = [("0", _("Off")), ("1", _("Event Info")), ("2", _("2nd Infobar INFO"))])
 	config.usage.second_infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("No timeout"))] + choicelist)
 	def showsecondinfobarChanged(configElement):
 		if config.usage.show_second_infobar.getValue() != "INFOBAREPG":

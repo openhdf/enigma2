@@ -285,6 +285,8 @@ class SecondInfoBar(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.skinName = "SecondInfoBar"
+
 		self["epg_description"] = ScrollLabel()
 		self["channel"] = Label()
 		self["key_red"] = Label()
@@ -686,7 +688,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.secondInfoBarScreen.hide()
 			self.secondInfoBarWasShown = False
 			self.EventViewIsShown = False
-		elif self.secondInfoBarScreen and (config.usage.show_second_infobar.getValue() == "2" or config.usage.show_second_infobar.getValue() == "3") and not self.secondInfoBarScreen.shown:
+		elif self.secondInfoBarScreen and config.usage.show_second_infobar.getValue() == "2" and not self.secondInfoBarScreen.shown:
 			self.SwitchSecondInfoBarScreen()
 			self.hide()
 			self.secondInfoBarScreen.show()
@@ -3412,18 +3414,8 @@ class InfoBarAudioSelection:
 			})
 
 	def audioSelection(self):
-		if config.plugins.infopanel_yellowkey.list.getValue() == '0':
-			from Screens.AudioSelection import AudioSelection
-			self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
-		elif config.plugins.infopanel_yellowkey.list.getValue() == '2':
-			global AUDIO
-			AUDIO = True
-			ToggleVideo()
-		else:
-			try:
-				self.startTimeshift()
-			except:
-				pass
+		from Screens.AudioSelection import AudioSelection
+		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 				
 	def audio_key(self):
 		from Screens.AudioSelection import AudioSelection
