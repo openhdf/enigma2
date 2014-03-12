@@ -1,4 +1,6 @@
 import sys, os
+from time import time
+
 if os.path.exists('/dev/lcd2'): # VuDuo2 lcd
 	from fcntl import ioctl
 	led_fd = open("/dev/lcd2",'rw')
@@ -76,26 +78,22 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 #config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call = False)
 ####################################################
 
-def useSyncUsingChanged(configElement):
-	if config.misc.SyncTimeUsing.getValue() == "0":
+def useSyncUsingChanged(configelement):
+	if configelement.getValue() == "0":
 		print "[Time By]: Transponder"
-		value = True
-		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
+		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
+		enigma.eEPGCache.getInstance().timeUpdated()
 	else:
 		print "[Time By]: NTP"
-		value = False
-		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(value)
-		from Components.Console import Console
-		Console = Console()
-		Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.getValue())
+		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
+		enigma.eEPGCache.getInstance().timeUpdated()
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
 def NTPserverChanged(configelement):
-	if config.misc.NTPserver.getValue() == "pool.ntp.org":
+	if configelement.getValue() == "pool.ntp.org":
 		return
-	print "[NTPDATE] save /etc/default/ntpdate"
 	f = open("/etc/default/ntpdate", "w")
-	f.write('NTPSERVERS="' + config.misc.NTPserver.getValue() + '"')
+	f.write('NTPSERVERS="' + configelement.getValue() + '"\n')
 	f.close()
 	os.chmod("/etc/default/ntpdate", 0755)
 	from Components.Console import Console
