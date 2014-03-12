@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Keymap 25.02.2014" -->
+	<!-- "HDF Keymap 12.03.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -43,7 +43,7 @@
 		<key id="KEY_OK" mapto="ok" flags="m" />
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
-		<!--key id="KEY_RED" mapto="cancel" flags="m" /-->
+		<key id="KEY_RED" mapto="cancel" flags="m" />
 		<key id="KEY_GREEN" mapto="save" flags="m" />
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
@@ -677,6 +677,16 @@
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+
+		<key id="KEY_UP" mapto="upRepeated" flags="r" />
+		<key id="KEY_DOWN" mapto="downRepeated" flags="r" />
+		<key id="KEY_LEFT" mapto="leftRepeated" flags="r" />
+		<key id="KEY_RIGHT" mapto="rightRepeated" flags="r" />
+		
+		<key id="KEY_LEFT" mapto="leftUp" flags="b" />
+		<key id="KEY_RIGHT" mapto="rightUp" flags="b" />
+		<key id="KEY_UP" mapto="upUp" flags="b" />
+		<key id="KEY_DOWN" mapto="downUp" flags="b" />
 	</map>
 
 	<map context="ColorActions">
