@@ -221,10 +221,6 @@
 		<item level="1" text="Scrolling Speed (software render)" description="Set the scrolling speed of text on the front display, this uses a software render use in some skins.">config.lcd.scroll_speed</item>
 		<item level="1" text="Scrolling delay (software render)" description="Set the delay time between repeated loops, this uses a software render use in some skins.">config.lcd.scroll_delay</item>
 	</setup>
-	<setup key="specialfeatures" title="Special Features">
-		<item level="0" text="BlueSwitch: Blue-Short/Blue-Long" description="Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)">config.workaround.blueswitch</item>
-		<item level="0" text="Use work-around for recordings from deep-standby" description="Check if there is a recording started in the next 5 mins (at bootup), then put your box in standby.">config.workaround.deeprecord</item>
-	</setup>
 	<setup key="satconfig" title="Satellite dish setup">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
 		<item text="Configuration mode" description="Configure the tuner mode.">config.sat.configmode</item>
