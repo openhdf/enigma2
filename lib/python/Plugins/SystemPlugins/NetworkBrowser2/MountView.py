@@ -79,9 +79,9 @@ class AutoMountView(Screen):
 
     def buildMountViewItem(self, entry):
         if entry['isMounted'] is True:
-            isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/ok.png'))
+            isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/ok.png'))
         if entry['isMounted'] is False:
-            isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/cancel.png'))
+            isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/cancel.png'))
         sharename = entry['sharename']
         IPdescription = _('IP:') + ' ' + str(entry['ip'])
         DIRdescription = _('Dir:') + ' ' + str(entry['sharedir'])
@@ -90,9 +90,9 @@ class AutoMountView(Screen):
         if entry['active'] == 'False' or entry['active'] == False:
             activepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/lock_error.png'))
         if entry['mounttype'] == 'nfs':
-            mounttypepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/i-nfs.png'))
+            mounttypepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/i-nfs.png'))
         if entry['mounttype'] == 'cifs':
-            mounttypepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/i-smb.png'))
+            mounttypepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/i-smb.png'))
         return (isMountedpng,
          sharename,
          IPdescription,

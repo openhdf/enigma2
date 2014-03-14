@@ -185,7 +185,7 @@ class NetworkBrowser(Screen):
         if status:
             self.statuslist = []
             if status == 'update':
-                statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/update.png'))
+                statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/update.png'))
                 self.statuslist.append((['info'],
                  statuspng,
                  _('Searching your network. Please wait...'),
@@ -195,7 +195,7 @@ class NetworkBrowser(Screen):
                  None))
                 self['list'].setList(self.statuslist)
             elif status == 'error':
-                statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/error.png'))
+                statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/error.png'))
                 self.statuslist.append((['info'],
                  statuspng,
                  _('No network devices found!'),
@@ -297,7 +297,7 @@ class NetworkBrowser(Screen):
         for x in self.network.keys():
             hostentry = self.network[x][0][1]
             name = hostentry[2] + ' ( ' + hostentry[1].strip() + ' )'
-            expandableIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/host.png'))
+            expandableIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/host.png'))
             self.list.append((hostentry,
              expandableIcon,
              name,
@@ -338,7 +338,7 @@ class NetworkBrowser(Screen):
                 networkshares = self.getNetworkShares(x, self.network[x][0][1][1].strip(), self.device)
                 hostentry = self.network[x][0][1]
                 name = hostentry[2] + ' ( ' + hostentry[1].strip() + ' )'
-                expandedIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/host.png'))
+                expandedIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/host.png'))
                 self.list.append((hostentry,
                  expandedIcon,
                  name,
@@ -352,7 +352,7 @@ class NetworkBrowser(Screen):
             else:
                 hostentry = self.network[x][0][1]
                 name = hostentry[2] + ' ( ' + hostentry[1].strip() + ' )'
-                expandableIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/host.png'))
+                expandableIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/host.png'))
                 self.list.append((hostentry,
                  expandableIcon,
                  name,
@@ -375,7 +375,7 @@ class NetworkBrowser(Screen):
 
 
     def BuildNetworkShareEntry(self, share):
-        verticallineIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/verticalLine.png'))
+        verticallineIcon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/verticalLine.png'))
         sharetype = share[0]
         localsharename = share[1]
         sharehost = share[2]
@@ -386,9 +386,9 @@ class NetworkBrowser(Screen):
             sharedir = share[4]
             sharedescription = share[3]
         if sharetype == 'nfsShare':
-            newpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/i-nfs.png'))
+            newpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/i-nfs.png'))
         else:
-            newpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/i-smb.png'))
+            newpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/i-smb.png'))
         self.isMounted = False
         for (sharename, sharedata,) in self.mounts.items():
             if sharedata['ip'] == sharehost:
@@ -402,9 +402,9 @@ class NetworkBrowser(Screen):
                             self.isMounted = True
 
         if self.isMounted is True:
-            isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/ok.png'))
+            isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/ok.png'))
         else:
-            isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/cancel.png'))
+            isMountedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/cancel.png'))
         return (share,
          verticallineIcon,
          None,
