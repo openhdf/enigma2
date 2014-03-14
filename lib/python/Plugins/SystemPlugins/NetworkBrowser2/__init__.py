@@ -3,7 +3,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_LANGUAGE
 import os
 import gettext
 PluginLanguageDomain = 'NetworkBrowser'
-PluginLanguagePath = 'SystemPlugins/NetworkBrowser/locale'
+PluginLanguagePath = 'SystemPlugins/NetworkBrowser2/locale'
 
 def localeInit():
     gettext.bindtextdomain(PluginLanguageDomain, resolveFilename(SCOPE_PLUGINS, PluginLanguagePath))

@@ -78,7 +78,7 @@ class AutoMountManager(Screen):
 
     def updateList(self):
         self.list = []
-        okpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser/icons/ok.png'))
+        okpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetworkBrowser2/icons/ok.png'))
         self.list.append((_('Add new network mount point'),
          'add',
          _('Add a new NFS or CIFS mount point to your Receiver.'),
