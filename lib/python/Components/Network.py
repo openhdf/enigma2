@@ -280,8 +280,11 @@ class Network:
 				self.wlan_interfaces.append(iface)
 		else:
 			if iface not in self.lan_interfaces:
-				name = _("LAN connection")
-				if len(self.lan_interfaces):
+				if getBoxType() == "et10000" and iface == "eth1":
+					name = _("VLAN connection")
+				else:	
+					name = _("LAN connection")	
+				if len(self.lan_interfaces) and not getBoxType() == "et10000" and not iface == "eth1":
 					name += " " + str(len(self.lan_interfaces)+1)
 				self.lan_interfaces.append(iface)
 		return name

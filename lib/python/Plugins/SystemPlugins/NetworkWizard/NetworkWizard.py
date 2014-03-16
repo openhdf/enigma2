@@ -8,7 +8,7 @@ from Components.Sources.Boolean import Boolean
 from Components.Network import iNetwork
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from enigma import eTimer
-from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName, getBoxType
 from os import system
 
 class NetworkWizard(WizardLanguage, Rc):
@@ -38,7 +38,6 @@ class NetworkWizard(WizardLanguage, Rc):
 		Rc.__init__(self)
 		Screen.setTitle(self, _("NetworkWizard"))
 		self.session = session
-
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -149,6 +148,8 @@ class NetworkWizard(WizardLanguage, Rc):
 		if index == 'end':
 			self.NextStep = 'end'
 		elif index == 'eth0':
+			self.NextStep = 'nwconfig'
+		elif index == 'eth1' and getBoxType() == "et10000":
 			self.NextStep = 'nwconfig'
 		else:
 			self.NextStep = 'asknetworktype'
