@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-03-11 17:41+0100\n"
+"PO-Revision-Date: 2014-03-18 20:00+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -4601,6 +4601,27 @@ msgstr "Listenmodus"
 msgid "List of storage devices"
 msgstr "Speichergeräteliste"
 
+msgid "Channel list cursor behavior"
+msgstr "Kanallisten Cursor verhalten"
+
+msgid ""
+"Configure the cursor behaviour in the channel selection list. When opening "
+"the channel selection list you can keep on the current service or already "
+"select up/down and you are able to revert the B+/B- buttons."
+msgstr ""
+"Position des Curors beim Öffnen der Kannliste festlegen. Auf dem laufenden "
+"Kanal oder einen Eintrag hoch/runter positionieren. Ausserdem kann die "
+"Belegung der B+/B- Tasten getauscht werden"
+
+msgid "Keep service"
+msgstr "Laufender Kanal"
+
+msgid "Reverse bouquet buttons"
+msgstr "Bouquet Tasten tauschen"
+
+msgid "Keep service + Reverse bouquet buttons"
+msgstr "Laufender Kanal + Bouquet Tasten tauschen"
+
 #, python-format
 msgid "List version %d, found %d channel"
 msgid_plural "List version %d, found %d channels"
@@ -7551,7 +7572,7 @@ msgstr "Zeige oder verstecke erweiterte Beschreibung (skinabhängig)."
 msgid "Show picon background colour"
 msgstr "Zeige Hintergrundfarbe von Picon"
 
-msgid "Show picons in servicelist"
+msgid "Show picons in service list"
 msgstr "Zeige Picon in der Senderliste"
 
 msgid "The servicelist is reloaded."
