@@ -736,8 +736,11 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.CurrBouquet and self.CurrService and (self.CurrBouquet != self.StartBouquet or self.CurrService != self.StartRef):
 			self.zapToNumber(self.StartRef, self.StartBouquet)
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.StartRef and self.session.nav.getCurrentlyPlayingServiceOrGroup().toString() != self.StartRef.toString():
-			if self.zapFunc and ((self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.getValue()) or (self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.getValue()) or (
-						self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_preview_mode.getValue() == '1' or config.epgselection.infobar_preview_mode.getValue() == '2') or (self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.getValue())) and self.StartRef and self.StartBouquet:
+			if self.zapFunc and self.StartRef and self.StartBouquet and (
+								(self.type == EPG_TYPE_GRAPH and config.epgselection.graph_preview_mode.getValue()) or 
+								(self.type == EPG_TYPE_MULTI and config.epgselection.multi_preview_mode.getValue()) or 
+								(self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_preview_mode.getValue() in ('1', '2')) or 
+								(self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.getValue())):
 				if '0:0:0:0:0:0:0:0:0' not in self.StartRef.toString():
 					self.zapFunc(None, zapback = True)
 			elif '0:0:0:0:0:0:0:0:0' in self.StartRef.toString():
@@ -1296,6 +1299,12 @@ class EPGSelection(Screen, HelpableScreen):
 			ref = lst.getCurrent()[1]
 			if ref is not None:
 				if (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_preview_mode.getValue() == '2':
+					if not prev:
+						if self.session.pipshown:
+							self.session.pipshown = False
+							del self.session.pip
+						self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = False)
+						return
 					if not self.session.pipshown:
 						self.session.pip = self.session.instantiateDialog(PictureInPicture)
 						self.session.pip.show()
@@ -1305,17 +1314,15 @@ class EPGSelection(Screen, HelpableScreen):
 						service = eServiceReference(n_service)
 					else:
 						service = ref.ref
-					if self.session.pipshown and self.currch == service.toString():
-						self.session.pipshown = False
-						del self.session.pip
+					if self.currch == service.toString():
+						if self.session.pipshown:
+							self.session.pipshown = False
+							del self.session.pip
 						self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = False)
 						return
 					if self.prevch != service.toString() and currservice != service.toString():
 						self.session.pip.playService(service)
 						self.currch = self.session.pip.getCurrentService() and str(self.session.pip.getCurrentService().toString())
-					elif currservice == service.toString():
-						self.session.pipshown = False
-						del self.session.pip
 				else:
 					self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = prev)
 					self.currch = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString())
