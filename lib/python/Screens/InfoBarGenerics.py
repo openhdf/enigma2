@@ -46,7 +46,7 @@ from Tools import Directories, Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN
 from Tools.KeyBindings import getKeyDescription
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
-from boxbranding import getBoxType, getMachineBrand, getBrandOEM
+from boxbranding import getBoxType, getMachineBrand, getBrandOEM, getMachineProcModel
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -519,8 +519,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def __init__(self):
 		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"] ,
 			{
-				"toggleShow": self.OkPressed,
 				"LongOKPressed": self.toggleShowLong,
+				"toggleShow": self.OkPressed,
 				"hide": self.keyHide,
 			}, 1) # lower prio to make it possible to override ok and cancel..
 
@@ -798,7 +798,7 @@ class NumberZap(Screen):
 	def handleServiceName(self):
 		if self.searchNumber:
 			self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
-			self ["servicename"].text = ServiceReference(self.service).getServiceName()
+			self["servicename"].setText(ServiceReference(self.service).getServiceName())
 			if not self.startBouquet:
 				self.startBouquet = self.bouquet
 
@@ -809,31 +809,31 @@ class NumberZap(Screen):
 				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()), firstBouquetOnly = True)
 			else:
 				self.service, self.bouquet = self.searchNumber(int(self["number"].getText()))
-			self ["servicename"].text = ServiceReference(self.service).getServiceName()
+			self["servicename"].setText(ServiceReference(self.service).getServiceName())
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(1000, True)
-		self.field += str(number)
-		self["number"].setText(self.field)
-		self["number_summary"].setText(self.field)
+		self.numberString += str(number)
+		self["number"].setText(self.numberString)
+		self["number_summary"].setText(self.numberString)
 
 		self.handleServiceName()
 
-		if len(self.field) >= 4:
+		if len(self.numberString) >= 4:
 			self.keyOK()
 
 	def __init__(self, session, number, searchNumberFunction = None):
 		Screen.__init__(self, session)
 		self.onChangedEntry = [ ]
-		self.field = str(number)
+		self.numberString = str(number)
 		self.searchNumber = searchNumberFunction
 		self.startBouquet = None
 
 		self["channel"] = Label(_("Channel:"))
 		self["channel_summary"] = StaticText(_("Channel:"))
 
-		self["number"] = Label(self.field)
-		self["number_summary"] = StaticText(self.field)
+		self["number"] = Label(self.numberString)
+		self["number_summary"] = StaticText(self.numberString)
 		self["servicename"] = Label()
 
 		self.handleServiceName()
@@ -3420,11 +3420,23 @@ class InfoBarAudioSelection:
 			{
 				"audioSelection": (self.audioSelection, _("Audio options...")),
 				"audio_key": (self.audio_key, _("Audio options...")),
+				"audioSelectionLong": (self.audioSelectionLong, _("Toggle Digital downmix...")),
 			})
 
 	def audioSelection(self):
-		from Screens.AudioSelection import AudioSelection
-		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+		if not self.LongButtonPressed:
+			if config.plugins.infopanel_yellowkey.list.getValue() == '0':
+				from Screens.AudioSelection import AudioSelection
+				self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
+			elif config.plugins.infopanel_yellowkey.list.getValue() == '2':
+				global AUDIO
+				AUDIO = True
+				ToggleVideo()
+			else:
+				try:
+					self.startTimeshift()
+				except:
+					pass
 				
 	def audio_key(self):
 		from Screens.AudioSelection import AudioSelection
@@ -3432,6 +3444,18 @@ class InfoBarAudioSelection:
 
 	def audioSelected(self, ret=None):
 		print "[infobar::audioSelected]", ret
+
+	def audioSelectionLong(self):
+		if SystemInfo["CanDownmixAC3"] and self.LongButtonPressed:
+			if config.av.downmix_ac3.getValue():
+				message = _("Dobly Digital downmix is now") + " " + _("disabled")
+				print '[Audio] Dobly Digital downmix is now disabled'
+				config.av.downmix_ac3.setValue(False)
+			else:
+				config.av.downmix_ac3.setValue(True)
+				message = _("Dobly Digital downmix is now") + " " + _("enabled")
+				print '[Audio] Dobly Digital downmix is now enabled'
+			Notifications.AddPopup(text = message, type = MessageBox.TYPE_INFO, timeout = 5, id = "DDdownmixToggle")
 
 class InfoBarSubserviceSelection:
 	def __init__(self):
@@ -4353,6 +4377,14 @@ class InfoBarZoom:
 class InfoBarHdmi:
 	def __init__(self):
 		self.hdmi_enabled = False
+		self.hdmi_enabled_full = False
+		self.hdmi_enabled_pip = False
+
+		if getMachineProcModel().startswith('ini-90'):
+			if not self.hdmi_enabled_full:
+				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
+			if not self.hdmi_enabled_pip:
+				self.addExtension((self.getHDMIInPiPScreen, self.HDMIInPiP, lambda: True), "green")
 		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions",
 			{
 				"HDMIin":(self.HDMIIn, _("Switch to HDMI in mode")),
@@ -4382,6 +4414,45 @@ class InfoBarHdmi:
 				self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
 			else:
 				self.session.nav.playService(slist.servicelist.getCurrent())
+
+	def getHDMIInFullScreen(self):
+		if not self.hdmi_enabled_full:
+			return _("Turn on HDMI-IN Full screen mode")
+		else:
+			return _("Turn off HDMI-IN Full screen mode")
+	      
+	def getHDMIInPiPScreen(self):
+		if not self.hdmi_enabled_pip:
+			return _("Turn on HDMI-IN PiP mode")
+		else:
+			return _("Turn off HDMI-IN PiP mode")
+
+	def HDMIInPiP(self):
+		if not hasattr(self.session, 'pip') and not self.session.pipshown:
+			self.hdmi_enabled_pip = True
+			self.session.pip = self.session.instantiateDialog(PictureInPicture)
+			self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+			self.session.pip.show()
+			self.session.pipshown = True
+		else:
+			curref = self.session.pip.getCurrentService()
+			if curref and curref.type != 8192:
+				self.hdmi_enabled_pip = True
+				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+			else:
+				self.hdmi_enabled_pip = False
+				self.session.pipshown = False
+				del self.session.pip
+
+	def HDMIInFull(self):
+		slist = self.servicelist
+		curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if curref and curref.type != 8192:
+			self.hdmi_enabled_full = True
+			self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+		else:
+			self.hdmi_enabled_full = False
+			self.session.nav.playService(slist.servicelist.getCurrent())
 
 class InfoBarPowersaver:
 	def __init__(self):
