@@ -3425,18 +3425,8 @@ class InfoBarAudioSelection:
 
 	def audioSelection(self):
 		if not self.LongButtonPressed:
-			if config.plugins.infopanel_yellowkey.list.getValue() == '0':
-				from Screens.AudioSelection import AudioSelection
-				self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
-			elif config.plugins.infopanel_yellowkey.list.getValue() == '2':
-				global AUDIO
-				AUDIO = True
-				ToggleVideo()
-			else:
-				try:
-					self.startTimeshift()
-				except:
-					pass
+			from Screens.AudioSelection import AudioSelection
+			self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 				
 	def audio_key(self):
 		from Screens.AudioSelection import AudioSelection
