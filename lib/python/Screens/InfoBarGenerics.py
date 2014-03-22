@@ -2283,14 +2283,9 @@ class InfoBarSeek:
 		self.setSeekState(self.SEEK_STATE_PAUSE)
 
 	def pauseServiceYellow(self):
-		if config.plugins.infopanel_yellowkey.list.getValue() == '0':
-			self.audioSelection()
-		elif config.plugins.infopanel_yellowkey.list.getValue() == '2':
-			ToggleVideo()
-		else:
-			if self.seekstate != self.SEEK_STATE_EOF:
-				self.lastseekstate = self.seekstate
-				self.setSeekState(self.SEEK_STATE_PAUSE) 
+		if self.seekstate != self.SEEK_STATE_EOF:
+			self.lastseekstate = self.seekstate
+			self.setSeekState(self.SEEK_STATE_PAUSE) 
 
 	def unPauseService(self):
 		if self.seekstate == self.SEEK_STATE_PLAY:
@@ -2656,11 +2651,7 @@ class InfoBarExtensions:
 
 	def quickmenuStart(self):
 		try:
-			if not self.session.pipshown:
-				from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
-				self.session.open(QuickMenu)
-			else:
-				self.showExtensionSelection()
+			self.showExtensionSelection()
 		except:
 			print "[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu"
 			from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
@@ -2806,10 +2797,6 @@ class InfoBarExtensions:
 	def open3DSetup(self):
 		from Screens.UserInterfacePositioner import OSD3DSetupScreen
 		self.session.open(OSD3DSetupScreen)
-
-	def openSoftcamPanel(self):
-		from Plugins.Extensions.Infopanel.SoftcamPanel import SoftcamPanel
-		self.session.open(SoftcamPanel)
 
 	def openRestartNetwork(self):
 		try:
@@ -3152,11 +3139,7 @@ class InfoBarQuickMenu:
 
 	def quickmenuStart(self):
 		try:
-			if not self.session.pipshown:
-				from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
-				self.session.open(QuickMenu)
-			else:
-				self.showExtensionSelection()
+			self.showExtensionSelection()
 		except:
 			print "[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu"
 			from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
@@ -3424,6 +3407,8 @@ class InfoBarAudioSelection:
 			})
 
 	def audioSelection(self):
+		if not hasattr(self, "LongButtonPressed"):
+			self.LongButtonPressed = False
 		if not self.LongButtonPressed:
 			from Screens.AudioSelection import AudioSelection
 			self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
