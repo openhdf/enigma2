@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-03-23 06:51+0100\n"
+"PO-Revision-Date: 2014-03-23 10:39+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -903,6 +903,9 @@ msgstr "Sender zur Favoritenliste hinzufügen"
 
 msgid "Add to favourites"
 msgstr "Zu Favoriten hinzufügen"
+
+msgid "Show Favourites"
+msgstr "Zeige Favoriten"
 
 msgid "Add/Remove timer for current event"
 msgstr "Timer für aktuelle Sendung hinzufügen/entfernen"
