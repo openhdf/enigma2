@@ -46,7 +46,7 @@ from Tools import Directories, Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN
 from Tools.KeyBindings import getKeyDescription
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap
-from boxbranding import getBoxType, getMachineBrand, getBrandOEM, getMachineProcModel
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getDriverDate, getImageVersion, getImageBuild, getMachineProcModel
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -58,6 +58,46 @@ import os, cPickle
 from Screens.Menu import MainMenu, Menu, mdom
 from Screens.Setup import Setup
 import Screens.Standby
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+    def disable(self):
+        self.HEADER = ''
+        self.OKBLUE = ''
+        self.OKGREEN = ''
+        self.WARNING = ''
+        self.FAIL = ''
+        self.ENDC = ''
+
+print bcolors.OKGREEN + "~~~~ read box informations ~~~~~~~~~" + bcolors.ENDC
+print bcolors.OKBLUE + "MachineName =", getMachineName() + bcolors.ENDC
+print bcolors.OKBLUE + "MachineBrand =", getMachineBrand() + bcolors.ENDC
+print bcolors.OKBLUE + "BoxType =", getBoxType() + bcolors.ENDC
+print bcolors.OKBLUE + "OEM =", getBrandOEM() + bcolors.ENDC
+print bcolors.OKBLUE + "Driverdate =", getDriverDate() + bcolors.ENDC
+print bcolors.OKBLUE + "Imageversion =", getImageVersion() + bcolors.ENDC
+print bcolors.OKBLUE + "Imagebuild =", getImageBuild() + bcolors.ENDC
+print bcolors.OKGREEN + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + bcolors.ENDC
+
+try:
+	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /etc/enigma2/boxinformations")
+	os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getBrandOEM = " + getBrandOEM() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getDriverDate = " + getDriverDate() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getImageVersion = " + getImageVersion() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getImageBuild = " + getImageBuild() + " >> /etc/enigma2/boxinformations")
+	os.system("echo ~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
+	os.system("cat /proc/cpuinfo >> /etc/enigma2/boxinformations")
+except:
+    pass
 
 AUDIO = False
 
@@ -1873,6 +1913,10 @@ class InfoBarEPG:
 				self.showDefaultEPG()
 			elif config.plisettings.PLIFAV_mode.getValue() == "eventview":
 				self.openEventView()
+			elif config.plisettings.PLIFAV_mode.getValue() == "showfavourites":
+				self.serviceListType = "Norm"
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
 			elif config.plisettings.PLIFAV_mode.getValue() == "epgpress":
 				self.showDefaultEPG()
 			elif config.plisettings.PLIFAV_mode.getValue() == "single":

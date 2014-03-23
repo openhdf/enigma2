@@ -715,6 +715,7 @@ def InitUsageConfig():
 					("etportal", _("Show EtPortal"))])
 		config.plisettings.PLIFAV_mode = ConfigSelection(default="coolinfoguide", choices = [
 					("eventview", _("Show Eventview")),
+					("showfavourites", _("Show Favourites")),
 					("epgpress", _("Show EPG")),
 					("single", _("Show Single EPG")),
 					("coolsingleguide", _("Show CoolSingleGuide")),
