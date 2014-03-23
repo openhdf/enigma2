@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-03-23 11:14+0100\n"
+"PO-Revision-Date: 2014-03-23 11:29+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3907,6 +3907,31 @@ msgid ""
 msgstr ""
 "Wähle die Quelle für die Daten in der Infobar. \"Lamdb\" ist in einer Datei "
 "gespeichert. \"Tuner\" wird direkt vom Tuner geliefert."
+
+msgid "Setup what a long press on the power button does."
+msgstr "Wähle was bei langen Druck auf Ein/Aus aktiviert werden soll."
+
+msgid "Setup what a short press on the power button does."
+msgstr "Wähle was bei kurzem Druck auf Ein/Aus aktiviert werden soll."
+
+msgid "Select what you want the EPG button to activate:"
+msgstr "Wähle was bei Druck auf die EPG Taste aktiviert werden soll:"
+
+msgid "Select what you want the INFO button to activate:"
+msgstr "Wähle was bei Druck auf die Info Taste aktiviert werden soll:"
+
+msgid "Select what you want the FAV button to activate:"
+msgstr "Wähle was bei Druck auf die FAV Taste aktiviert werden soll:"
+
+msgid "Select the keymap that you want to use:"
+msgstr "Bitte wählen welche Keympa benutzt werden soll:"
+
+msgid ""
+"Configure to keep focus on the current played service while entering the "
+"servicelist via the bouquet buttons."
+msgstr ""
+"Soll beim wechseln in die Senderliste der Cursor auf dem aktuellen Sender "
+"stehen bleiben?"
 
 msgid "Hide any zap error messages."
 msgstr "Fehlermeldungen beim Umschalten unterdrücken."
