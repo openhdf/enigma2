@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-03-22 05:45+0100\n"
+"PO-Revision-Date: 2014-03-23 06:51+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3893,6 +3893,17 @@ msgstr "Verstecktes Netzwerk"
 
 msgid "Hide CI messages"
 msgstr "Verberge CI Nachrichten"
+
+msgid "Infobar front end data source"
+msgstr "Infobar Datenquelle auswählen"
+
+#, python-format
+msgid ""
+"Choose the source of the front end data displayed by the infobar. 'Lamedb' "
+"is as stored on file. 'Tuner' is as reported by the tuner."
+msgstr ""
+"Wähle die Quelle für die Daten in der Infobar. 'Lamedb' ist in einer Datei "
+"gespeichert. 'Tuner' wird direkt vom Tuner geliefert."
 
 msgid "Hide any zap error messages."
 msgstr "Fehlermeldungen beim Umschalten unterdrücken."
