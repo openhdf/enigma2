@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-03-23 11:29+0100\n"
+"PO-Revision-Date: 2014-03-25 05:17+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3897,7 +3897,7 @@ msgstr "Verstecktes Netzwerk"
 msgid "Hide CI messages"
 msgstr "Verberge CI Nachrichten"
 
-msgid "Infobar front end data source"
+msgid "Infobar frontend data source"
 msgstr "Infobar Datenquelle auswählen"
 
 #, python-format
