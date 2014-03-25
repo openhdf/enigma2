@@ -209,9 +209,13 @@ class CableTransponderSearchSupport:
 		if not self.tryGetRawFrontend(nim_idx):
 			self.session.nav.stopService()
 			if not self.tryGetRawFrontend(nim_idx):
-				if self.session.pipshown: # try to disable pip
+				if self.session.pipshown:
+					if hasattr(self.session, 'infobar'):
+						if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
+							self.session.infobar.servicelist.togglePipzap()
+					if hasattr(self.session, 'pip'):
+						del self.session.pip
 					self.session.pipshown = False
-					del self.session.pip
 				if not self.tryGetRawFrontend(nim_idx):
 					self.cableTransponderSearchFinished()
 					return
@@ -241,10 +245,8 @@ class CableTransponderSearchSupport:
 					bus = 4 # DM8000 second num is /dev/i2c/4
 
 		if tunername == "CXD1981":
-			bin_name = "CXD1981"
 			cmd = "cxd1978 --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
 		elif tunername.startswith("Sundtek"):
-			bin_name = "mediaclient"
 			cmd = "mediaclient --blindscan %d" % nim_idx
 		else:
 			bin_name = GetCommand(nim_idx)
@@ -694,7 +696,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			(6000000, "6MHz"),
 			(7000000, "7MHz"),
 			(8000000, "8MHz"),
-			(10000000, "10MHz")
+			(10000000,"10MHz")
 			])
 		#, (eDVBFrontendParametersTerrestrial.Bandwidth_Auto, _("Auto"))))
 		self.scan_ter.fechigh = ConfigSelection(default = defaultTer["fechigh"], choices = [
@@ -1005,7 +1007,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			else:
 				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
-	def startScanCallback(self, answer=True):
+	def startScanCallback(self, answer):
 		if answer:
 			self.doCloseRecursive()
 
