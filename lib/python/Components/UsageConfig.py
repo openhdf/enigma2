@@ -1,16 +1,15 @@
 import os
 from time import time
-from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, Misc_Options, eEnv
-import enigma
+from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent
 from Components.About import about
 from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, fileExists
 from boxbranding import getBoxType, getMachineBuild, getMachineName, getBrandOEM
-
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
+from Tools.HardwareInfo import HardwareInfo
 
 def InitUsageConfig():
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
@@ -25,7 +24,7 @@ def InitUsageConfig():
 
 	config.usage.alternative_number_mode = ConfigYesNo(default = False)
 	def alternativeNumberModeChange(configElement):
-		enigma.eDVBDB.getInstance().setNumberingMode(configElement.value)
+		eDVBDB.getInstance().setNumberingMode(configElement.value)
 		refreshServiceList()
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
 
@@ -327,7 +326,6 @@ def InitUsageConfig():
 	config.epg.netmed = ConfigYesNo(default = True)
 
 	def EpgSettingsChanged(configElement):
-		from enigma import eEPGCache
 		mask = 0xffffffff
 		if not config.epg.eit.getValue():
 			mask &= ~(eEPGCache.NOWNEXT | eEPGCache.SCHEDULE | eEPGCache.SCHEDULE_OTHER)
@@ -348,7 +346,6 @@ def InitUsageConfig():
 
 	config.epg.histminutes = ConfigSelectionNumber(min = 0, max = 120, stepwidth = 15, default = 0, wraparound = True)
 	def EpgHistorySecondsChanged(configElement):
-		from enigma import eEPGCache
 		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue()*60)
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 
@@ -389,14 +386,13 @@ def InitUsageConfig():
 	def EpgCacheChanged(configElement):
 		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.getValue(), config.misc.epgcachefilename.getValue().replace('.dat','') + '.dat'))
 		config.misc.epgcache_filename.save()
-		enigma.eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.getValue())
-		from enigma import eEPGCache
+		eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.getValue())
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
 		if not config.misc.epgcache_filename.getValue().startswith("/etc/enigma2/"):
 			if os.path.exists('/etc/enigma2/' + config.misc.epgcachefilename.getValue().replace('.dat','') + '.dat'):
 				os.remove('/etc/enigma2/' + config.misc.epgcachefilename.getValue().replace('.dat','') + '.dat')
- 	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
+	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback = False)
 
 	config.misc.showradiopic = ConfigYesNo(default = True)
@@ -409,12 +405,12 @@ def InitUsageConfig():
 
 	def set12VOutput(configElement):
 		if configElement.value == "on":
-			enigma.Misc_Options.getInstance().set_12V_output(1)
+			Misc_Options.getInstance().set_12V_output(1)
 		elif configElement.value == "off":
-			enigma.Misc_Options.getInstance().set_12V_output(0)
+			Misc_Options.getInstance().set_12V_output(0)
 	config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
-	SystemInfo["12V_Output"] = enigma.Misc_Options.getInstance().detected_12V_output()
+	SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
 
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 	if getMachineName().lower().startswith('xpeed'):
@@ -520,9 +516,9 @@ def InitUsageConfig():
 	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback = False)
 
 	def updateEraseSpeed(el):
-		enigma.eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.getValue()))
+		eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.getValue()))
 	def updateEraseFlags(el):
-		enigma.eBackgroundFileEraser.getInstance().setEraseFlags(int(el.getValue()))
+		eBackgroundFileEraser.getInstance().setEraseFlags(int(el.getValue()))
 	config.misc.erase_speed = ConfigSelection(default="20", choices = [
 		("10", "10 MB/s"),
 		("20", "20 MB/s"),
@@ -648,12 +644,12 @@ def InitUsageConfig():
 		("tur Audio_TUR", _("Turkish"))]
 
 	def setEpgLanguage(configElement):
-		enigma.eServiceEvent.setEPGLanguage(configElement.value)
+		eServiceEvent.setEPGLanguage(configElement.value)
 	config.autolanguage.audio_epglanguage = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
 	config.autolanguage.audio_epglanguage.addNotifier(setEpgLanguage)
 
 	def setEpgLanguageAlternative(configElement):
-		enigma.eServiceEvent.setEPGLanguageAlternative(configElement.value)
+		eServiceEvent.setEPGLanguageAlternative(configElement.value)
 	config.autolanguage.audio_epglanguage_alternative = ConfigSelection(audio_language_choices[:1] + audio_language_choices [2:], default="---")
 	config.autolanguage.audio_epglanguage_alternative.addNotifier(setEpgLanguageAlternative)
 
@@ -751,7 +747,7 @@ def InitUsageConfig():
 	config.epgselection.infobar_oklong = ConfigSelection(choices = [("Zap",_("Zap")), ("Zap + Exit", _("Zap + Exit"))], default = "Zap + Exit")
 	config.epgselection.infobar_itemsperpage = ConfigSelectionNumber(default = 2, stepwidth = 1, min = 1, max = 4, wraparound = True)
 	if SystemInfo.get("NumVideoDecoders", 1) > 1:
-		if about.getCPUString() in ('BCM7346B2', 'BCM7425B2'):
+		if HardwareInfo().is_nextgen():
 			previewdefault = "2"
 		else:
 			previewdefault = "1"
