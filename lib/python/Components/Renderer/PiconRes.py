@@ -83,17 +83,9 @@ def getPiconName(serviceName):
 		if len(fields) > 2 and fields[2] != '2':
 			#fallback to 1 for tv services with nonstandard servicetypes
 			fields[2] = '1'
-			pngname = findPicon('_'.join(fields))
-	return pngname
-
-def resizePicon(pngname):
-	try:
-		from PIL import Image
-		im = Image.open(pngname)
-		im.resize((220,132)).save("/tmp/picon.png")
-		pngname = "/tmp/picon.png"
-	except:
-		pass
+		if len(fields) > 0 and fields[0] == '4097':	#fallback to 1 for IPTV streams
+			fields[0] = '1'
+		pngname = findPicon('_'.join(fields))
 	return pngname
 
 class PiconRes(Renderer):
