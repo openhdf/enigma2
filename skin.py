@@ -105,11 +105,11 @@ addSkin('skin_box.xml')
 addSkin('skin_second_infobar.xml')
 
 # Only one of these is present, compliments of AM_CONDITIONAL
-if getBoxType() == 'vuultimo' or getBoxType() == 'vuduo2' or getBoxType() == 'gbquad' or getBoxType() == 'gb800ue' or getBoxType() == 'gb800ueplus':
+if getBoxType() in ('vuultimo' 'vuduo2' 'gbquad' 'gbquadplus' 'gb800ue' 'gb800ueplus'):
 	config.skin.display_skin = ConfigText(default = "skin_display.xml")
 
 if getBoxType() == "inihde":
-	config.skin.display_skin = ConfigText(default = "skin_display_text.xml")	
+	config.skin.display_skin = ConfigText(default = "skin_display_text.xml")
 
 #else:
 #	config.skin.display_skin = ConfigNothing()
