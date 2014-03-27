@@ -305,10 +305,13 @@ class doFlashImage(Screen):
 				message += "'"
 			self.session.open(Console, text,[message, cmd])
 
-	def prepair_flashtmp(self, tmpPath):
-		if os.path.exists(flashTmp):
-			os.system('rm -rf ' + flashTmp)
-		os.mkdir(flashTmp)
+ 	def prepair_flashtmp(self, tmpPath):
+ 		if os.path.exists(flashTmp):
+			flashTmpold = flashTmp + 'old'
+			os.system('mv %s %s' %(flashTmp, flashTmpold))
+			os.system('rm -rf %s' %flashTmpold)
+		if not os.path.exists(flashTmp):
+			os.mkdir(flashTmp)
 		kernel = True
 		rootfs = True
 

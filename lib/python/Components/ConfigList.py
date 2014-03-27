@@ -2,7 +2,7 @@ from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, config, configfile, ConfigElement, ConfigText, ConfigPassword
 from Components.ActionMap import NumberActionMap, ActionMap
-from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer, quitMainloop
+from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 
@@ -19,7 +19,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 
 	def execBegin(self):
 		rcinput = eRCInput.getInstance()
-		if not config.misc.remotecontrol_text_support.getValue():
+		if not config.misc.remotecontrol_text_support.value:
 			rcinput.setKeyboardMode(rcinput.kmAscii)
 		else:
 			rcinput.setKeyboardMode(rcinput.kmNone)
@@ -209,7 +209,7 @@ class ConfigListScreen:
 
 	def KeyText(self):
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
-		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
 
 	def VirtualKeyBoardCallback(self, callback = None):
 		if callback is not None and len(callback):
@@ -276,22 +276,9 @@ class ConfigListScreen:
 			self.__changed()
 
 	def saveAll(self):
-		restartgui = False
 		for x in self["config"].list:
-			if x[1].isChanged():
-				if x[0] == _('Show on Display'): 
-					restartgui = True
 			x[1].save()
-		configfile.save()	
-		self.doRestartGui(restartgui)
-			
-	def doRestartGui(self, restart):
-		if restart:
-			self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Restart GUI now?"), MessageBox.TYPE_YESNO)
-
-	def ExecuteRestart(self, result):
-		if result:
-			quitMainloop(3)
+		configfile.save()
 
 	# keySave and keyCancel are just provided in case you need them.
 	# you have to call them by yourself.
@@ -311,13 +298,10 @@ class ConfigListScreen:
 		if self["config"].isChanged():
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
-			try:
-				self.close(recursive)
-			except:
-				self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+			self.close(recursive)
 
 	def keyCancel(self):
 		self.closeMenuList()
-	
+
 	def closeRecursive(self):
 		self.closeMenuList(True)
