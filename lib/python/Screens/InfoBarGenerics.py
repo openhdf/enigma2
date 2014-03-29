@@ -252,7 +252,7 @@ class InfoBarUnhandledKey:
 		return 0
 
 	def closeSIB(self, key):
-		if key >= 12 and key not in (352, 103, 108, 402, 403, 407, 412):
+		if key >= 12 and key != 352 and key != 272 and key != 103 and key != 108 and key != 402 and key != 403 and key != 407 and key != 412 :
 			return True
 		else:
 			return False
@@ -586,7 +586,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.lastSecondInfoBar = 0
 		self.secondInfoBarScreen = ""
 		if isStandardInfoBar(self):
-			self.SwitchSecondInfoBarScreen()
+			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
+			self.secondInfoBarScreen.show()
 		self.onLayoutFinish.append(self.__layoutFinished)
 
 	def __layoutFinished(self):
@@ -721,37 +722,45 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				pass
 
 	def toggleShow(self):
-		if self.__state == self.STATE_HIDDEN:
-			if not self.secondInfoBarWasShown or (config.usage.show_second_infobar.getValue() == "1" and not self.EventViewIsShown):
-				self.show()
-			if self.secondInfoBarScreen:
-				self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-			self.EventViewIsShown = False
-		elif self.secondInfoBarScreen and config.usage.show_second_infobar.getValue() == "2" and not self.secondInfoBarScreen.shown:
-			self.SwitchSecondInfoBarScreen()
-			self.hide()
-			self.secondInfoBarScreen.show()
-			self.secondInfoBarWasShown = True
-			self.startHideTimer()
-		elif (config.usage.show_second_infobar.getValue() == "1" or isMoviePlayerInfoBar(self)) and not self.EventViewIsShown:
-			self.hide()
-			try:
-				self.openEventView()
-			except:
-				pass
-			self.EventViewIsShown = True
-			self.hideTimer.stop()
-		else:
-			self.hide()
-			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-				self.secondInfoBarScreen.hide()
-			elif self.EventViewIsShown:
+		if not hasattr(self, "LongButtonPressed"):
+			self.LongButtonPressed = False
+		if not self.LongButtonPressed:
+			if self.__state == self.STATE_HIDDEN:
+				if not self.secondInfoBarWasShown or (config.usage.show_second_infobar.getValue() == "1" and not self.EventViewIsShown):
+					self.show()
+				if self.secondInfoBarScreen:
+					self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
+				self.EventViewIsShown = False
+			elif self.secondInfoBarScreen and config.usage.show_second_infobar.getValue() == "2" and not self.secondInfoBarScreen.shown:
+				self.SwitchSecondInfoBarScreen()
+				self.hide()
+				self.secondInfoBarScreen.show()
+				self.secondInfoBarWasShown = True
+				self.startHideTimer()
+			elif (config.usage.show_second_infobar.getValue() == "1" or isMoviePlayerInfoBar(self)) and not self.EventViewIsShown:
+				self.hide()
 				try:
-					self.eventView.close()
+					self.openEventView()
 				except:
 					pass
-				self.EventViewIsShown = False
+				self.EventViewIsShown = True
+				self.hideTimer.stop()
+			elif isMoviePlayerInfoBar(self) and not self.EventViewIsShown and config.usage.show_second_infobar.getValue():
+				self.hide()
+				self.openEventView(True)
+				self.EventViewIsShown = True
+				self.startHideTimer()				
+			else:
+				self.hide()
+				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+					self.secondInfoBarScreen.hide()
+				elif self.EventViewIsShown:
+					try:
+						self.eventView.close()
+					except:
+						pass
+					self.EventViewIsShown = False
 
 	def toggleShowLong(self):
 		if self.LongButtonPressed:
@@ -1153,44 +1162,40 @@ class InfoBarChannelSelection:
 			self.servicelist.historyZap(+1)
 
 	def switchChannelUp(self):
-		if not self.secondInfoBarScreen.shown:
-			self.keyHide()
-			if not self.LongButtonPressed:
-				if not config.usage.show_bouquetalways.getValue():
-					if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-						self.servicelist.moveUp()
-					self.session.execDialog(self.servicelist)
-				else:
-					self.servicelist.showFavourites()
-					self.session.execDialog(self.servicelist)
-			elif self.LongButtonPressed:
-				if not config.usage.show_bouquetalways.getValue():
-					if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-						self.servicelist2.moveUp()
-					self.session.execDialog(self.servicelist2)
-				else:
-					self.servicelist2.showFavourites()
-					self.session.execDialog(self.servicelist2)
+		if not self.LongButtonPressed:
+			if not config.usage.show_bouquetalways.getValue():
+				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+					self.servicelist.moveUp()
+				self.session.execDialog(self.servicelist)
+			else:
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+		elif self.LongButtonPressed:
+			if not config.usage.show_bouquetalways.getValue():
+				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+					self.servicelist2.moveUp()
+				self.session.execDialog(self.servicelist2)
+			else:
+				self.servicelist2.showFavourites()
+				self.session.execDialog(self.servicelist2)
 
 	def switchChannelDown(self):
-		if not self.secondInfoBarScreen.shown:
-			self.keyHide()
-			if not self.LongButtonPressed:
-				if not config.usage.show_bouquetalways.getValue():
-					if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-						self.servicelist.moveDown()
-					self.session.execDialog(self.servicelist)
-				else:
-					self.servicelist.showFavourites()
-					self.session.execDialog(self.servicelist)
-			elif self.LongButtonPressed:
-				if not config.usage.show_bouquetalways.getValue():
-					if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
-						self.servicelist2.moveDown()
-					self.session.execDialog(self.servicelist2)
-				else:
-					self.servicelist2.showFavourites()
-					self.session.execDialog(self.servicelist2)
+		if not self.LongButtonPressed:
+			if not config.usage.show_bouquetalways.getValue():
+				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+					self.servicelist.moveDown()
+				self.session.execDialog(self.servicelist)
+			else:
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+		elif self.LongButtonPressed:
+			if not config.usage.show_bouquetalways.getValue():
+				if "keep" not in config.usage.servicelist_cursor_behavior.getValue():
+					self.servicelist2.moveDown()
+				self.session.execDialog(self.servicelist2)
+			else:
+				self.servicelist2.showFavourites()
+				self.session.execDialog(self.servicelist2)
 
 	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
