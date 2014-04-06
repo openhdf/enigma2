@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-03-25 05:17+0100\n"
+"PO-Revision-Date: 2014-04-06 08:40+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -6494,14 +6494,20 @@ msgstr "verbleibend und verstrichen"
 msgid "Remember service PIN"
 msgstr "Service PIN merken"
 
+#, python-format
 msgid "Blind scan"
 msgstr "Blind-Scan"
 
 msgid "Remote box"
 msgstr "Entfernte Box"
 
+#, python-format
 msgid "Remote Box Channel Import"
 msgstr "Entfernte Box Bouquet Import"
+
+#, python-format
+msgid "Select bouquets to convert"
+msgstr "Bouquet auswählen"
 
 msgid "Set server IP"
 msgstr "Server IP"
