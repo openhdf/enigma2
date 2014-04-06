@@ -1,3 +1,5 @@
+from enigma import eServiceReference
+
 from Screens.Screen import Screen
 from Components.ServiceScan import ServiceScan as CScan
 from Components.ProgressBar import ProgressBar
@@ -6,7 +8,7 @@ from Components.ActionMap import ActionMap
 from Components.FIFOList import FIFOList
 from Components.Sources.FrontendInfo import FrontendInfo
 from Components.config import config
-from enigma import eServiceCenter, eServiceReference
+
 
 class ServiceScanSummary(Screen):
 	skin = """
@@ -75,7 +77,8 @@ class ServiceScan(Screen):
 				if self.session.pipshown and self.currentServiceList:
 					if self.currentServiceList.dopipzap:
 						self.currentServiceList.togglePipzap()
-					del self.session.pip
+					if hasattr(self.session, 'pip'):
+						del self.session.pip
 					self.session.pipshown = False
 		else:
 			self.currentInfobar = None
