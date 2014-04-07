@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-04-06 08:40+0100\n"
+"PO-Revision-Date: 2014-04-07 20:41+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1385,6 +1385,15 @@ msgstr "Block Noise Reduzierung"
 msgid "Blue"
 msgstr "Blau"
 
+msgid "Blue long"
+msgstr "Blau lang"
+
+msgid "Change sort by..."
+msgstr "Sortierung ändern nach..."
+
+msgid "Copy to other directory"
+msgstr "In anderes Verzeichnis kopieren"
+
 msgid "Bookmarks"
 msgstr "Lesezeichen"
 
@@ -1538,6 +1547,9 @@ msgstr "Kabel"
 
 msgid "Cable Scan"
 msgstr "Kabel Suche"
+
+msgid "Enable auto fast scan"
+msgstr "Automatische Schnellsuche aktivieren"
 
 msgid "Cache thumbnails"
 msgstr "Vorschaubilder zwischenspeichern"
@@ -6336,6 +6348,15 @@ msgstr "RF-Ausgang"
 msgid "RGB"
 msgstr "RGB"
 
+msgid "Radio"
+msgstr "Radio"
+
+msgid "Red long"
+msgstr "Rot lang"
+
+msgid "Rename..."
+msgstr "Umbenennen..."
+
 msgid "Random"
 msgstr "zufällig"
 
@@ -7655,6 +7676,12 @@ msgstr "Zeige Status-Icons in der Filmliste"
 
 msgid "Show tag menu"
 msgstr "Zeige Tag-Menü"
+
+msgid "Sort by default"
+msgstr "Standardsortierung"
+
+msgid "TV"
+msgstr ""
 
 msgid "Show the list of AutoTimers."
 msgstr "Zeige Liste von AutoTimern..."
@@ -11027,6 +11054,12 @@ msgstr "Diesen Frame als Bitmap speichern"
 msgid "green"
 msgstr "grün"
 
+msgid "Green"
+msgstr "Grün"
+
+msgid "Green long"
+msgstr "Grün lang"
+
 msgid "handicraft"
 msgstr "Handwerk"
 
@@ -11748,6 +11781,9 @@ msgstr "Arbeite"
 
 msgid "yellow"
 msgstr "Gelb"
+
+msgid "Yellow long"
+msgstr "Gelb lang"
 
 msgid "yes"
 msgstr "Ja"
