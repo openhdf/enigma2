@@ -36,7 +36,7 @@ class StartWizard(WizardLanguage, Rc):
 		config.misc.firstrun.save()
 		configfile.save()
 
-wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.getValue(), priority = 2)
-wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.getValue(), priority = 0)
-wizardManager.registerWizard(UserInterfacePositionerWizard, config.misc.firstrun.getValue(), priority = 4)
-wizardManager.registerWizard(StartWizard, config.misc.firstrun.getValue(), priority = 20)
+wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.value, priority = 2)
+wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.value, priority = 0)
+wizardManager.registerWizard(UserInterfacePositionerWizard, config.misc.firstrun.value, priority = 4)
+wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority = 20)
