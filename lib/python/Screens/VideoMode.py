@@ -249,9 +249,9 @@ class AutoVideoMode(Screen):
 
 	def VideoChanged(self):
 		if self.session.nav.getCurrentlyPlayingServiceReference() and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('4097:'):
-			delay = config.av.autores_delay.getValue()
+			delay = config.av.autores_delay.value
 		else:
-			delay = config.av.autores_delay.getValue() * 2
+			delay = config.av.autores_delay.value * 2
 		if not self.detecttimer.isActive() and not self.delay:
 			self.delay = True
 			self.detecttimer.start(delay)
