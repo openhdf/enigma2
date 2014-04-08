@@ -639,8 +639,8 @@ def runScreenTest():
 		if (startTime[0] - nowTime) < 60: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			if getBoxType().startswith("gb"):
-				wptime = startTime[0] + 120 # Gigaboxes already starts 2 min. before wakeup time
+			if config.workaround.deeprecord.value:
+				wptime = startTime[0] + 240 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0]
 		if not config.misc.SyncTimeUsing.value == "0" or getBoxType().startswith('gb'):
