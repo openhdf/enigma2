@@ -19,6 +19,16 @@ if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.S
 	/usr/bin/ntpdate -s -u pool.ntp.org &
 fi
 
+# check multiquickbutton keymap
+FILE=/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/keymap.xml
+if test -s $FILE; then 
+	echo "$FILE looks good"
+	else 
+	rm -f /usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/keymap.xml
+	cp /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/mqb_keymap.xml $FILE
+	echo "$FILE restored from backup"
+fi
+
 # hook to execute scripts always before enigma2 start
 if [ -x @bindir@/enigma2_pre_start.sh ]; then
 	@bindir@/enigma2_pre_start.sh
