@@ -643,7 +643,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			else:
 				ref = " "
 			if config.plisettings.InfoBarEpg_mode.getValue() == "2" and not ref[1:].startswith(":0:0:0:0:0:0:0:0:0:"):
-				self.openInfoBarEPG()
+				try:
+					self.openInfoBarEPG()
+				except:
+					pass
 			else:
 				self.hide()
 				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
