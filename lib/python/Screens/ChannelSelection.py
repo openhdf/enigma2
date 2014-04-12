@@ -86,7 +86,6 @@ class BouquetSelector(Screen):
 	def cancelClick(self):
 		self.close(False)
 
-
 class EpgBouquetSelector(BouquetSelector):
 	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=False):
 		BouquetSelector.__init__(self, session, bouquets, selectedFunc, enableWrapAround=False)
@@ -95,7 +94,6 @@ class EpgBouquetSelector(BouquetSelector):
 
 	def okbuttonClick(self):
 		self.selectedFunc(self.getCurrent(),self.bouquets)
-
 
 class SilentBouquetSelector:
 	def __init__(self, bouquets, enableWrapAround=False, current=0):
@@ -1342,7 +1340,7 @@ class ChannelSelectionBase(Screen):
 					for srvtypes in typeslist:
 						ref = eServiceReference('%s FROM SATELLITES ORDER BY satellitePosition'%(srvtypes))
 						servicelist = serviceHandler.list(ref)
-						if not servicelist is None:
+						if servicelist is not None:
 							while True:
 								service = servicelist.getNext()
 								if not service.valid(): #check if end of list
@@ -1352,13 +1350,12 @@ class ChannelSelectionBase(Screen):
 								if orbpos < 0:
 									orbpos += 3600
 								if service.getPath().find("FROM PROVIDER") != -1:
-									service_type = _("Providers")
-								elif service.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
+									service_type = _("Providers") + " (%d)"%(self.getServicesCount(service))
+								elif ("flags == %d" % FLAG_SERVICE_NEW_FOUND) in service.getPath():
 									service_type = _("New") + " (%d)"%(self.getServicesCount(service))
 								else:
 									service_type = _("Services") + " (%d)"%(self.getServicesCount(service))
 								try:
-									# why we need this cast?
 									service_name = str(nimmanager.getSatDescription(orbpos))
 								except:
 									if unsigned_orbpos == 0xFFFF: #Cable
@@ -1374,7 +1371,10 @@ class ChannelSelectionBase(Screen):
 										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
 								if not '(type == 1)' in srvtypes and '(type == 17)' in srvtypes:
 									service_type = "HD-%s"%(service_type)
-								service.setName("%s - %s" % (service_name, service_type))
+								if len(service_name) > 34:
+									service.setName("%s - %s" % (service_name[:-2], service_type))
+								else:
+									service.setName("%s - %s" % (service_name, service_type))
 								self.servicelist.addService(service)
 					cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
 					if cur_ref:
@@ -1385,11 +1385,11 @@ class ChannelSelectionBase(Screen):
 							cur_ref.getUnsignedData(3), # ONID
 							self.service_types[pos+1:])
 						ref = eServiceReference(refstr)
-						ref.setName(_("Current Transponder"))
+						ref.setName(_("Current Transponder") + " (%d)"%(self.getServicesCount(ref)))
 						self.servicelist.addService(ref)
 					hdref = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 211) && (name != .) ORDER BY name')
 					if hdref:
-						hdref.setName("%s - %s" % ("Sky Deutschland 19.2E", _("Subservices")))
+						hdref.setName("%s - %s" % ("Sky Deutschland 19.2E", _("Subservices")) + " (%d)"%(self.getServicesCount(hdref)))
 						self.servicelist.addService(hdref)
 					self.servicelist.finishFill()
 					if prev is not None:
@@ -1399,7 +1399,7 @@ class ChannelSelectionBase(Screen):
 						op = "".join(refstr.split(':', 10)[6:7])
 						if len(op) >= 4:
 							hop = int(op[:-4],16)
-							refstr = '1:7:0:0:0:0:%s:0:0:0:(satellitePosition == %s) && %s ORDER BY name' % (op,hop,self.service_types[self.service_types.rfind(':')+1:])
+							refstr = '1:7:0:0:0:0:%s:0:0:0:(satellitePosition == %s) && %s ORDER BY name' % (op, hop, self.service_types[self.service_types.rfind(':')+1:])
 							self.setCurrentSelectionAlternative(eServiceReference(refstr))
 
 	def showProviders(self):
@@ -2229,7 +2229,6 @@ class RadioInfoBar(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self['RdsDecoder'] = RdsDecoder(self.session.nav)
-
 
 class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarBase):
 	ALLOW_SUSPEND = True
