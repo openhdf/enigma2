@@ -193,6 +193,7 @@ class InfoBarTimeshift:
 		# print '__serviceStarted'
 		self.service_changed = 1
 		self.pts_service_changed = True
+		self.ptsCleanTimeshiftFolder()
 		# print 'self.timeshiftEnabled1',self.timeshiftEnabled()
 		if self.pts_delay_timer.isActive():
 			# print 'TS AUTO START TEST1'
