@@ -234,20 +234,22 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showRadio()
 
 	def showTv(self):
-		if config.usage.tvradiobutton_mode.getValue() == "MovieList":
+		if config.usage.tvradiobutton_mode.value == "MovieList":
 			self.showTvChannelList(True)
 			self.showMovies()
-		elif config.usage.tvradiobutton_mode.getValue() == "BouquetList":
+		elif config.usage.tvradiobutton_mode.value == "BouquetList":
 			self.showTvChannelList(True)
-			self.servicelist.showFavourites()
+			if config.usage.show_servicelist.value:
+				self.servicelist.showFavourites()
 		else:
 			self.showTvChannelList(True)
 
 	def showRadio(self):
-		if config.usage.e1like_radio_mode.getValue():
-			if config.usage.tvradiobutton_mode.getValue() == "BouquetList":
+		if config.usage.e1like_radio_mode.value:
+			if config.usage.tvradiobutton_mode.value == "BouquetList":
 				self.showRadioChannelList(True)
-				self.servicelist.showFavourites()
+				if config.usage.show_servicelist.value:
+					self.servicelist.showFavourites()
 			else:
 				self.showRadioChannelList(True)
 		else:
