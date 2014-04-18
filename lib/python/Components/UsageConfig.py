@@ -423,7 +423,7 @@ def InitUsageConfig():
 	if getMachineName().lower().startswith('xpeed'):
 		config.usage.keymap = ConfigSelection(default = eEnv.resolve("${datadir}/enigma2/keymap.xpe"), choices = [
 			(eEnv.resolve("${datadir}/enigma2/keymap.xml"), _("Default keymap - keymap.xml")),
-			(eEnv.resolve("${datadir}/enigma2/keymap.usr"), _("Xpeed keymap - keymap.xpe")),
+			(eEnv.resolve("${datadir}/enigma2/keymap.xpe"), _("Xpeed keymap - keymap.xpe")),
 			(eEnv.resolve("${datadir}/enigma2/keymap.usr"), _("User keymap - keymap.usr")),
 			(eEnv.resolve("${datadir}/enigma2/keymap.ntr"), _("Neutrino keymap - keymap.ntr")),
 			(eEnv.resolve("${datadir}/enigma2/keymap.u80"), _("U80 keymap - keymap.u80")) ] )
