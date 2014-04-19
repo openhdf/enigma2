@@ -4,6 +4,7 @@ from Components.Harddisk import harddiskmanager, findMountPoint
 from Components.Input import Input
 from Components.Label import Label
 from Components.MovieList import AUDIO_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
+import Screens.MovieSelection
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
@@ -1072,6 +1073,7 @@ class InfoBarChannelSelection:
 				"zapDown": (self.zapDown, _("Switch next channel")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
+				"useBookmark": (self.useBookmark, _("Use function assigned to Bookmark Button")),
 				"openServiceList": (self.openServiceList, _("Open service list")),
 				"openSatellites": (self.openSatellites, _("Open satellites list")),
 				"LeftPressed": self.LeftPressed,
@@ -1163,6 +1165,15 @@ class InfoBarChannelSelection:
 					self.showZapHistoryBrowser()
 		else:
 			self.servicelist.historyZap(+1)
+
+	def useBookmark(self):
+		if config.usage.bookmarkmode.getValue() == "0":
+			self.showMovies()
+		elif config.usage.bookmarkmode.getValue() == "2":
+			self.servicelist2.showFavourites()
+			self.session.execDialog(self.servicelist2)
+		else:
+			self.showEMC()
 
 	def switchChannelUp(self):
 		if not self.LongButtonPressed:
