@@ -175,35 +175,35 @@ if InfoBar and InfoBar.instance:
 <name>Favourite channel 1</name>
 <code>from Screens.InfoBar import InfoBar
 if InfoBar and InfoBar.instance:
-	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel1.getValue())</code>
+	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel1.value)</code>
 </mqbfunction>
 
 <mqbfunction>
 <name>Favourite channel 2</name>
 <code>from Screens.InfoBar import InfoBar
 if InfoBar and InfoBar.instance:
-	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel2.getValue())</code>
+	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel2.value)</code>
 </mqbfunction>
 
 <mqbfunction>
 <name>Favourite channel 3</name>
 <code>from Screens.InfoBar import InfoBar
 if InfoBar and InfoBar.instance:
-	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel3.getValue())</code>
+	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel3.value)</code>
 </mqbfunction>
 
 <mqbfunction>
 <name>Favourite channel 4</name>
 <code>from Screens.InfoBar import InfoBar
 if InfoBar and InfoBar.instance:
-	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel4.getValue())</code>
+	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel4.value)</code>
 </mqbfunction>
 
 <mqbfunction>
 <name>Favourite channel 5</name>
 <code>from Screens.InfoBar import InfoBar
 if InfoBar and InfoBar.instance:
-	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel5.getValue())</code>
+	InfoBar.zapToNumber(InfoBar.instance, config.plugins.QuickButton.channel5.value)</code>
 </mqbfunction>
 
 <mqbfunction>

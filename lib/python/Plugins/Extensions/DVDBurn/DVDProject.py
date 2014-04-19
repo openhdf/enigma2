@@ -57,7 +57,7 @@ class DVDProject:
 				'<DreamDVDBurnerProject>\n',
 				'\t<settings ']
 		for key, val in self.settings.dict().iteritems():
-			list.append( key + '="' + str(val.getValue()) + '" ' )
+			list.append( key + '="' + str(val.value) + '" ' )
 		list.append('/>\n')
 		list.append('\t<titles>\n')
 		for title in self.titles:
@@ -73,11 +73,11 @@ class DVDProject:
 					for audiotrack in val:
 						audiotracks.append('\t\t\t\t<audiotrack ')
 						for subkey, subval in audiotrack.dict().iteritems():
-							audiotracks.append( subkey + '="' + str(subval.getValue()) + '" ' )
+							audiotracks.append( subkey + '="' + str(subval.value) + '" ' )
 						audiotracks.append(' />\n')
 					audiotracks.append('\t\t\t</audiotracks>\n')
 				else:
-					list.append( key + '="' + str(val.getValue()) + '" ' )
+					list.append( key + '="' + str(val.value) + '" ' )
 			list.append('/>\n')
 			for line in audiotracks:
 				list.append(line)
@@ -85,7 +85,7 @@ class DVDProject:
 		list.append('\t</titles>\n')
 		list.append('</DreamDVDBurnerProject>\n')
 
-		name = self.settings.name.getValue()
+		name = self.settings.name.value
 		i = 0
 		filename = path + name + ".ddvdp.xml"
 		while fileExists(filename):
@@ -103,7 +103,7 @@ class DVDProject:
 	def load(self, filename):
 		ret = self.loadProject(filename)
 		if ret:
-			ret = self.menutemplate.loadTemplate(self.settings.menutemplate.getValue())
+			ret = self.menutemplate.loadTemplate(self.settings.menutemplate.value)
 			self.error += self.menutemplate.error
 		return ret
 
@@ -125,7 +125,7 @@ class DVDProject:
 						self.xmlGetTitleNodeRecursive(node)
 
 			for key in self.filekeys:
-				val = self.settings.dict()[key].getValue()
+				val = self.settings.dict()[key].value
 				if not fileExists(val):
 					if val[0] != "/":
 						if key.find("font") == 0:

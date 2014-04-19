@@ -42,7 +42,7 @@ def autostart(reason, **kwargs):
 	if reason == 0:
 		if config.plugins.QuickButton.enable.value:
 			print line
-			print "[MultiQuickButton] enabled: ",config.plugins.QuickButton.enable.getValue()
+			print "[MultiQuickButton] enabled: ",config.plugins.QuickButton.enable.value
 			checkMQBKeys()
 			print line
 			global baseInfoBarPlugins__init__, baserunPlugin
