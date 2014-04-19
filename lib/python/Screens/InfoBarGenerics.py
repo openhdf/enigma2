@@ -1169,6 +1169,9 @@ class InfoBarChannelSelection:
 	def useBookmark(self):
 		if config.usage.bookmarkmode.value == "0":
 			self.showMovies()
+		elif config.usage.bookmarkmode.value == "2":
+			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
+				self.showsimplelist()
 		else:
 			self.showEMC()
 
@@ -1804,6 +1807,15 @@ class InfoBarEPG:
 					break
 		except Exception, e:
 			self.session.open(MessageBox, _("The Zap-History Browser plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showsimplelist(self):
+		try:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Simple Movie List"):
+					self.runPlugin(plugin)
+					break
+		except Exception, e:
+			self.session.open(MessageBox, _("The simplelist plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
