@@ -31,7 +31,7 @@ class Standby2(Screen):
 		self.leaveMute()
 		# set LCDminiTV 
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
-			setLCDModeMinitTV(config.lcd.modeminitv.getValue())
+			setLCDModeMinitTV(config.lcd.modeminitv.value)
 		#kill me
 		self.close(True)
 

@@ -79,7 +79,7 @@ class VFDSkinSelector(Screen):
 		idx = 0
 
 	def layoutFinished(self):
-		tmp = "config.skin.display_skin.getValue()"
+		tmp = "config.skin.display_skin.value"
 		tmp = eval(tmp)
 		idx = 0
 		i = 0
@@ -134,7 +134,7 @@ class VFDSkinSelector(Screen):
 		addSkin(skinfile, SCOPE_CONFIG)
 		config.skin.display_skin.value = skinfile
 		config.skin.display_skin.save()
-		print "Selected Value", config.skin.display_skin.getValue()
+		print "Selected Value", config.skin.display_skin.value
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply new skin.\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 
