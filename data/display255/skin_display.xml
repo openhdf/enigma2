@@ -117,22 +117,22 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="255,64">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="170,22" font="FdLcD;18" halign="left" noWrap="1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="255,50" font="FdLcD;30" halign="left" noWrap="1">
 			<convert type="ServiceName">NameOnly</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,21" size="255,20" font="FdLcD;17" halign="left" noWrap="1">
+		<!--widget source="session.Event_Now" render="Label" position="0,21" size="255,20" font="FdLcD;17" halign="left" noWrap="1">
 			<convert type="EventName">Name</convert>
-		</widget>
-		<widget source="session.Event_Now" render="Progress" position="0,43" size="140,5" borderWidth="1">
+		</widget-->
+		<widget source="session.Event_Now" render="Progress" position="0,48" size="255,15" borderWidth="2">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,51" size="140,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
+		<!--widget source="session.Event_Now" render="Label" position="0,51" size="140,18" font="FdLcD;17" halign="left" valign="bottom" noWrap="1">
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
-		</widget>
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerStatusPanel" />
-		<panel name="SummaryClockPanel" />
+		</widget-->
+		<!--panel name="SummaryIconsPanel" /-->
+		<!--panel name="SummaryTunerStatusPanel" /-->
+		<!--panel name="SummaryClockPanel" /-->
 	</screen>
 
 <!-- movieplayer-->
