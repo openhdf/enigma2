@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-04-13 08:30+0100\n"
+"PO-Revision-Date: 2014-04-19 17:05+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -225,6 +225,22 @@ msgstr "Zeige Enhanced Movie Center"
 #, python-format
 msgid "Show Zap-History Browser"
 msgstr "Zeige Zap-Historie Browser"
+
+#, python-format
+msgid "Show EMC"
+msgstr "Zeige EMC"
+
+#, python-format
+msgid "Show Movielist"
+msgstr "Zeige Filmliste"
+
+#, python-format
+msgid "Bookmark button mode"
+msgstr "Bookmark / Media Button Belegung"
+
+#, python-format
+msgid "Use function assigned to bookmark button"
+msgstr "Welche Funktion soll auf der Bookmark Taste liegen"
 
 msgid " (PiP)"
 msgstr " (PiP)"

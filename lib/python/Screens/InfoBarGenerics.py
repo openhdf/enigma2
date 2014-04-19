@@ -1073,7 +1073,7 @@ class InfoBarChannelSelection:
 				"zapDown": (self.zapDown, _("Switch next channel")),
 				"historyBack": (self.historyBack, _("Switch to previous channel in history")),
 				"historyNext": (self.historyNext, _("Switch to next channel in history")),
-				"useBookmark": (self.useBookmark, _("Use function assigned to Bookmark Button")),
+				"useBookmark": (self.useBookmark, _("Use function assigned to bookmark button")),
 				"openServiceList": (self.openServiceList, _("Open service list")),
 				"openSatellites": (self.openSatellites, _("Open satellites list")),
 				"LeftPressed": self.LeftPressed,
@@ -1169,9 +1169,6 @@ class InfoBarChannelSelection:
 	def useBookmark(self):
 		if config.usage.bookmarkmode.value == "0":
 			self.showMovies()
-		elif config.usage.bookmarkmode.value == "2":
-			self.servicelist2.showFavourites()
-			self.session.execDialog(self.servicelist2)
 		else:
 			self.showEMC()
 
