@@ -62,7 +62,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		self.filename = filename
 		self.minFree = minFree
 		self.realBookmarks = bookmarks
-		self.bookmarks = bookmarks and bookmarks.getValue()[:] or []
+		self.bookmarks = bookmarks and bookmarks.value[:] or []
 		self.userMode = userMode
 		self.autoAdd = autoAdd
 		self.editDir = editDir
@@ -275,7 +275,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			else:
 				self["filelist"].refresh()
 				self.removeBookmark(name, True)
-				val = self.realBookmarks and self.realBookmarks.getValue()
+				val = self.realBookmarks and self.realBookmarks.value
 				if val and name in val:
 					val.remove(name)
 					self.realBookmarks.setValue(val)
@@ -323,7 +323,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					self.bookmarks.append(self.getPreferredFolder())
 					self.bookmarks.sort()
 
-				if self.bookmarks != self.realBookmarks.getValue():
+				if self.bookmarks != self.realBookmarks.value:
 					self.realBookmarks.setValue(self.bookmarks)
 					self.realBookmarks.save()
 			self.close(ret)
@@ -502,7 +502,7 @@ class TimeshiftLocationBox(LocationBox):
 				self,
 				session,
 				text = _("Where to save temporary timeshift recordings?"),
-				currDir = config.usage.timeshift_path.getValue(),
+				currDir = config.usage.timeshift_path.value,
 				bookmarks = config.usage.allowed_timeshift_paths,
 				autoAdd = True,
 				editDir = True,
@@ -527,7 +527,7 @@ class AutorecordLocationBox(LocationBox):
 				self,
 				session,
 				text = _("Where to save temporary timeshift recordings?"),
-				currDir = config.usage.autorecord_path.getValue(),
+				currDir = config.usage.autorecord_path.value,
 				bookmarks = config.usage.allowed_autorecord_paths,
 				autoAdd = True,
 				editDir = True,
