@@ -61,7 +61,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showEMC": (self.showEMC, _("Show the media center...")),
 				"showETPORTAL": (self.showETPORTAL, _("Open EtPortal...")),
 				"showMEDIAPORTAL": (self.showMEDIAPORTAL, _("Open MediaPortal...")),
-				"showWWW": (self.showWWW, _("Open WWW olugin...")),
+				"showWWW": (self.showWWW, _("Open WWW Plugin...")),
 				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
 				"showBoxPortal": (self.showBoxPortal, _("Show Box Portal...")),
 			}, prio=2)
@@ -196,7 +196,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		except Exception, e:
 			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
-	def showWWW(self):
+	def (self):
 		try:
 			from Plugins.Extensions.EtPortal.plugin import *
 			from Components.PluginComponent import plugins
