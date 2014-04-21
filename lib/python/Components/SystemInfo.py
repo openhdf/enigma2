@@ -43,3 +43,4 @@ SystemInfo["Satfinder"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlug
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
 SystemInfo["Fan"] = fileExists("/proc/stb/fp/fan")
 SystemInfo["FanPWM"] = SystemInfo["Fan"] and fileExists("/proc/stb/fp/fan_pwm")
+SystemInfo["StandbyLED"] = fileExists("/proc/stb/power/standbyled")
