@@ -196,7 +196,7 @@ def InitLcd():
 	else:
 		detected = eDBoxLCD.getInstance().detected()
 	SystemInfo["Display"] = detected
-	config.lcd = ConfigSubsection();
+	config.lcd = ConfigSubsection()
 
 	if fileExists("/proc/stb/lcd/mode"):
 		f = open("/proc/stb/lcd/mode", "r")
@@ -205,6 +205,14 @@ def InitLcd():
 	else:
 		can_lcdmodechecking = False
 	SystemInfo["LCDMiniTV"] = can_lcdmodechecking	
+
+	if SystemInfo["StandbyLED"]:
+		def standbyLEDChanged(configElement):
+			file = open("/proc/stb/power/standbyled", "w")
+			file.write(configElement.value and "yes" or "no")
+			file.close()
+		config.usage.standbyLED = ConfigYesNo(default = True)
+		config.usage.standbyLED.addNotifier(standbyLEDChanged)
 	
 	if detected:
 		if can_lcdmodechecking:
