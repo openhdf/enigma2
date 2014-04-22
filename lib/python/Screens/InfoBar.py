@@ -196,7 +196,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		except Exception, e:
 			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
-	def (self):
+	def showWWW(self):
 		try:
 			from Plugins.Extensions.EtPortal.plugin import *
 			from Components.PluginComponent import plugins
