@@ -418,8 +418,8 @@ data/display96/Makefile
 data/display128/Makefile
 data/display140/Makefile
 data/display220/Makefile
-data/display220/vfd_icons/Makefile
 data/display255/Makefile
+data/display255/vfd_icons/Makefile
 data/display400/Makefile
 include/Makefile
 lib/Makefile
