@@ -2,10 +2,8 @@ import os
 from Renderer import Renderer
 from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, resolveFilename
+from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
-from Components.config import config, ConfigBoolean
-from boxbranding import getBoxType
 
 searchPaths = []
 lastPiconPath = None
@@ -16,9 +14,7 @@ def initPiconPaths():
 	for mp in ('/usr/share/enigma2/', '/'):
 		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
-		mp = path = os.path.join(part.mountpoint, 'usr/share/enigma2')
 		onMountpointAdded(part.mountpoint)
-		onMountpointAdded(mp)
 
 def onMountpointAdded(mountpoint):
 	global searchPaths
@@ -83,7 +79,7 @@ def getPiconName(serviceName):
 		fields = sname.split('_', 3)
 		if len(fields) > 2 and fields[2] != '2': #fallback to 1 for tv services with nonstandard servicetypes
 			fields[2] = '1'
-		if len(fields) > 0 and fields[0] == '4097':	#fallback to 1 for IPTV streams
+		if len(fields) > 0 and fields[0] == '4097': #fallback to 1 for IPTV streams
 			fields[0] = '1'
 		pngname = findPicon('_'.join(fields))
 	return pngname
@@ -97,17 +93,7 @@ class Picon(Renderer):
 		self.pngname = ""
 		self.lastPath = None
 		pngname = findPicon("picon_default")
-		self.defaultpngname = None
-		if not pngname:
-			tmp = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
-			if pathExists(tmp):
-				pngname = tmp
-			else:
-				pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
-		self.nopicon = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
-		if os.path.getsize(pngname):
-			self.defaultpngname = pngname
-			self.nopicon = pngname
+		self.defaultpngname = resolveFilename(SCOPE_ACTIVE_SKIN, "picon_default.png")
 
 	def addPath(self, value):
 		if pathExists(value):
@@ -138,27 +124,21 @@ class Picon(Renderer):
 		if ptr is not None:
 			self.instance.setPixmap(ptr.__deref__())
 			self.instance.show()
+
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
-			if what[0] != self.CHANGED_CLEAR and len(what) > 1:
+			if what[0] == 1 or what[0] == 3:
 				pngname = getPiconName(self.source.text)
-			if not pngname: # no picon for service found
-				pngname = self.defaultpngname
-			if not config.usage.showpicon.value:
-				pngname = self.nopicon
-			if self.pngname != pngname:
-				if pngname:
-					if not getBoxType().startswith("venton"):
-						self.instance.setScale(1)
-					self.instance.setPixmapFromFile(pngname)
-					self.instance.show()
-					#else:	
-					#	self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
-					#	self.PicLoad.startDecode(pngname)
-				else:
-					self.instance.hide()
-				self.pngname = pngname
+				if not pathExists(pngname): # no picon for service found
+					pngname = self.defaultpngname
+				if self.pngname != pngname:
+					if pngname:
+						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
+						self.PicLoad.startDecode(pngname)
+					else:
+						self.instance.hide()
+					self.pngname = pngname
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 initPiconPaths()
