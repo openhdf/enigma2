@@ -21,7 +21,6 @@ def to_unsigned(x):
 	return x & 0xFFFFFFFF
 
 def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
-	print "b:", b
 	if not isinstance(b, str):
 		if valueType == TYPE_VALUE_HEX:
 			b = ("0x%0" + str(param) + "x") % to_unsigned(b)
@@ -232,7 +231,7 @@ class ServiceInfo(Screen):
 
 		for item in Labels:
 			if item[1] is None:
-				continue;
+				continue
 			value = item[1]
 			if len(item) < 4:
 				tlist.append(ServiceInfoListEntry(item[0]+":", value, item[2]))
