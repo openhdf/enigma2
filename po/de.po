@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-04-20 22:08+0100\n"
+"PO-Revision-Date: 2014-04-24 15:18+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -181,6 +181,10 @@ msgstr ""
 #, python-format
 msgid "Show CoolTVGuide"
 msgstr "Zeige CoolTVGuide"
+
+#, python-format
+msgid "Show HDF-Toolbox"
+msgstr "Zeige HDF-Toolbox"
 
 #, python-format
 msgid "Show Graphical EPG"
@@ -8209,6 +8213,18 @@ msgstr "INFO Button Belegung"
 
 msgid "FAV button mode"
 msgstr "FAV Button Belegung"
+
+msgid "F1 button mode"
+msgstr "F1 Button Belegung"
+
+msgid "F2 button mode"
+msgstr "F2 Button Belegung"
+
+msgid "F3 button mode"
+msgstr "F3 Button Belegung"
+
+msgid "F4 button mode"
+msgstr "F4 Button Belegung"
 
 msgid "QuickEPG mode"
 msgstr "QuickEPG Modus"
