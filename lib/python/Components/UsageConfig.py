@@ -742,7 +742,59 @@ def InitUsageConfig():
 					("eventview", _("Show Eventview")),
 					("epgpress", _("Show EPG")),
 					("single", _("Show Single EPG"))])
-					
+
+	config.plisettings.PLIF1_mode = ConfigSelection(default="hdftoolbox", choices = [
+				("hdftoolbox", _("Show HDF-Toolbox")),
+				("eventview", _("Show Eventview")),
+				("showfavourites", _("Show Favourites")),
+				("epgpress", _("Show EPG")),
+				("single", _("Show Single EPG")),
+				("coolsingleguide", _("Show CoolSingleGuide")),
+				("coolinfoguide", _("Show CoolInfoGuide")),
+				("cooltvguide", _("Show CoolTVGuide")),
+				("emc", _("Show Enhanced Movie Center")),
+				("mediaportal", _("Show Media Portal")),
+				("etportal", _("Show EtPortal"))])
+
+	config.plisettings.PLIF2_mode = ConfigSelection(default="hdftoolbox", choices = [
+				("hdftoolbox", _("Show HDF-Toolbox")),
+				("eventview", _("Show Eventview")),
+				("showfavourites", _("Show Favourites")),
+				("epgpress", _("Show EPG")),
+				("single", _("Show Single EPG")),
+				("coolsingleguide", _("Show CoolSingleGuide")),
+				("coolinfoguide", _("Show CoolInfoGuide")),
+				("cooltvguide", _("Show CoolTVGuide")),
+				("emc", _("Show Enhanced Movie Center")),
+				("mediaportal", _("Show Media Portal")),
+				("etportal", _("Show EtPortal"))])
+
+	config.plisettings.PLIF3_mode = ConfigSelection(default="hdftoolbox", choices = [
+				("hdftoolbox", _("Show HDF-Toolbox")),
+				("eventview", _("Show Eventview")),
+				("showfavourites", _("Show Favourites")),
+				("epgpress", _("Show EPG")),
+				("single", _("Show Single EPG")),
+				("coolsingleguide", _("Show CoolSingleGuide")),
+				("coolinfoguide", _("Show CoolInfoGuide")),
+				("cooltvguide", _("Show CoolTVGuide")),
+				("emc", _("Show Enhanced Movie Center")),
+				("mediaportal", _("Show Media Portal")),
+				("etportal", _("Show EtPortal"))])
+
+	config.plisettings.PLIF4_mode = ConfigSelection(default="hdftoolbox", choices = [
+				("hdftoolbox", _("Show HDF-Toolbox")),
+				("eventview", _("Show Eventview")),
+				("showfavourites", _("Show Favourites")),
+				("epgpress", _("Show EPG")),
+				("single", _("Show Single EPG")),
+				("coolsingleguide", _("Show CoolSingleGuide")),
+				("coolinfoguide", _("Show CoolInfoGuide")),
+				("cooltvguide", _("Show CoolTVGuide")),
+				("emc", _("Show Enhanced Movie Center")),
+				("mediaportal", _("Show Media Portal")),
+				("etportal", _("Show EtPortal"))])
+
 	config.epgselection = ConfigSubsection()
 	config.epgselection.sort = ConfigSelection(default="0", choices = [("0", _("Time")),("1", _("Alphanumeric"))])
 	config.epgselection.overjump = ConfigYesNo(default = False)
