@@ -743,8 +743,9 @@ def InitUsageConfig():
 					("epgpress", _("Show EPG")),
 					("single", _("Show Single EPG"))])
 
-	config.plisettings.PLIF1_mode = ConfigSelection(default="hdftoolbox", choices = [
+	config.plisettings.F1_mode = ConfigSelection(default="hdftoolbox", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
+				("showsimplelist", _("Show Simple Movie List")),
 				("eventview", _("Show Eventview")),
 				("showfavourites", _("Show Favourites")),
 				("epgpress", _("Show EPG")),
@@ -756,8 +757,9 @@ def InitUsageConfig():
 				("mediaportal", _("Show Media Portal")),
 				("etportal", _("Show EtPortal"))])
 
-	config.plisettings.PLIF2_mode = ConfigSelection(default="hdftoolbox", choices = [
+	config.plisettings.F2_mode = ConfigSelection(default="hdftoolbox", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
+				("showsimplelist", _("Show Simple Movie List")),
 				("eventview", _("Show Eventview")),
 				("showfavourites", _("Show Favourites")),
 				("epgpress", _("Show EPG")),
@@ -769,8 +771,9 @@ def InitUsageConfig():
 				("mediaportal", _("Show Media Portal")),
 				("etportal", _("Show EtPortal"))])
 
-	config.plisettings.PLIF3_mode = ConfigSelection(default="hdftoolbox", choices = [
+	config.plisettings.F3_mode = ConfigSelection(default="hdftoolbox", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
+				("showsimplelist", _("Show Simple Movie List")),
 				("eventview", _("Show Eventview")),
 				("showfavourites", _("Show Favourites")),
 				("epgpress", _("Show EPG")),
@@ -782,8 +785,9 @@ def InitUsageConfig():
 				("mediaportal", _("Show Media Portal")),
 				("etportal", _("Show EtPortal"))])
 
-	config.plisettings.PLIF4_mode = ConfigSelection(default="hdftoolbox", choices = [
+	config.plisettings.F4_mode = ConfigSelection(default="hdftoolbox", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
+				("showsimplelist", _("Show Simple Movie List")),
 				("eventview", _("Show Eventview")),
 				("showfavourites", _("Show Favourites")),
 				("epgpress", _("Show EPG")),

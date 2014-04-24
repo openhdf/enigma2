@@ -1166,7 +1166,7 @@ class InfoBarChannelSelection:
 		if config.usage.bookmarkmode.value == "0":
 			self.showMovies()
 		elif config.usage.bookmarkmode.value == "2":
-			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
+			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 				self.showsimplelist()
 		else:
 			self.showEMC()
@@ -1824,7 +1824,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		except Exception, e:
-			self.session.open(MessageBox, _("The simplelist plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			self.session.open(MessageBox, _("Please wait."), type = MessageBox.TYPE_INFO,timeout = 1 )
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
@@ -1987,87 +1987,97 @@ class InfoBarEPG:
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
 			if getBoxType().startswith('vu'):
 				self.showDefaultEPG()
-			elif config.plisettings.PLIF1_mode.value == "eventview":
+			elif config.plisettings.F1_mode.value == "eventview":
 				self.openEventView()
-			elif config.plisettings.PLIF1_mode.value == "showfavourites":
+			elif config.plisettings.F1_mode.value == "showfavourites":
 				self.serviceListType = "Norm"
 				self.servicelist.showFavourites()
 				self.session.execDialog(self.servicelist)
-			elif config.plisettings.PLIF1_mode.value == "epgpress":
+			elif config.plisettings.F1_mode.value == "epgpress":
 				self.showDefaultEPG()
-			elif config.plisettings.PLIF1_mode.value == "single":
+			elif config.plisettings.F1_mode.value == "single":
 				self.openSingleServiceEPG()
-			elif config.plisettings.PLIF1_mode.value == "coolinfoguide" and COOLTVGUIDE:
+			elif config.plisettings.F1_mode.value == "coolinfoguide" and COOLTVGUIDE:
 				self.showCoolInfoGuide()
-			elif config.plisettings.PLIF1_mode.value == "coolsingleguide" and COOLTVGUIDE:
+			elif config.plisettings.F1_mode.value == "coolsingleguide" and COOLTVGUIDE:
 				self.showCoolSingleGuide()
-			elif config.plisettings.PLIF1_mode.value == "cooltvguide" and COOLTVGUIDE:
+			elif config.plisettings.F1_mode.value == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
-			elif config.plisettings.PLIF1_mode.value == "hdftoolbox":
+			elif config.plisettings.F1_mode.value == "hdftoolbox":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
 					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			elif config.plisettings.PLIF1_mode.value == "etportal":
+			elif config.plisettings.F1_mode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
 					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			elif config.plisettings.PLIF1_mode.value == "emc":
+			elif config.plisettings.F1_mode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
 					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )					
-			elif config.plisettings.PLIF1_mode.value == "mediaportal":
+			elif config.plisettings.F1_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.F1_mode.value == "showsimplelist":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
+					self.showsimplelist()
+				else:
+					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
-
+				
 	def F2Pressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
 			if getBoxType().startswith('vu'):
 				self.showDefaultEPG()
-			elif config.plisettings.PLIF2_mode.value == "eventview":
+			elif config.plisettings.F2_mode.value == "eventview":
 				self.openEventView()
-			elif config.plisettings.PLIF2_mode.value == "showfavourites":
+			elif config.plisettings.F2_mode.value == "showfavourites":
 				self.serviceListType = "Norm"
 				self.servicelist.showFavourites()
 				self.session.execDialog(self.servicelist)
-			elif config.plisettings.PLIF2_mode.value == "epgpress":
+			elif config.plisettings.F2_mode.value == "epgpress":
 				self.showDefaultEPG()
-			elif config.plisettings.PLIF2_mode.value == "single":
+			elif config.plisettings.F2_mode.value == "single":
 				self.openSingleServiceEPG()
-			elif config.plisettings.PLIF2_mode.value == "coolinfoguide" and COOLTVGUIDE:
+			elif config.plisettings.F2_mode.value == "coolinfoguide" and COOLTVGUIDE:
 				self.showCoolInfoGuide()
-			elif config.plisettings.PLIF2_mode.value == "coolsingleguide" and COOLTVGUIDE:
+			elif config.plisettings.F2_mode.value == "coolsingleguide" and COOLTVGUIDE:
 				self.showCoolSingleGuide()
-			elif config.plisettings.PLIF2_mode.value == "cooltvguide" and COOLTVGUIDE:
+			elif config.plisettings.F2_mode.value == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
-			elif config.plisettings.PLIF2_mode.value == "hdftoolbox":
+			elif config.plisettings.F2_mode.value == "hdftoolbox":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
 					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			elif config.plisettings.PLIF2_mode.value == "etportal":
+			elif config.plisettings.F2_mode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
 					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			elif config.plisettings.PLIF2_mode.value == "emc":
+			elif config.plisettings.F2_mode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
 					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			elif config.plisettings.PLIF1_mode.value == "mediaportal":
+			elif config.plisettings.F2_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.F2_mode.value == "showsimplelist":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
+					self.showsimplelist()
+				else:
+					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -2075,43 +2085,48 @@ class InfoBarEPG:
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
 			if getBoxType().startswith('vu'):
 				self.showDefaultEPG()
-			elif config.plisettings.PLIF3_mode.value == "eventview":
+			elif config.plisettings.F3_mode.value == "eventview":
 				self.openEventView()
-			elif config.plisettings.PLIF3_mode.value == "showfavourites":
+			elif config.plisettings.F3_mode.value == "showfavourites":
 				self.serviceListType = "Norm"
 				self.servicelist.showFavourites()
 				self.session.execDialog(self.servicelist)
-			elif config.plisettings.PLIF3_mode.value == "epgpress":
+			elif config.plisettings.F3_mode.value == "epgpress":
 				self.showDefaultEPG()
-			elif config.plisettings.PLIF3_mode.value == "single":
+			elif config.plisettings.F3_mode.value == "single":
 				self.openSingleServiceEPG()
-			elif config.plisettings.PLIF3_mode.value == "coolinfoguide" and COOLTVGUIDE:
+			elif config.plisettings.F3_mode.value == "coolinfoguide" and COOLTVGUIDE:
 				self.showCoolInfoGuide()
-			elif config.plisettings.PLIF3_mode.value == "coolsingleguide" and COOLTVGUIDE:
+			elif config.plisettings.F3_mode.value == "coolsingleguide" and COOLTVGUIDE:
 				self.showCoolSingleGuide()
-			elif config.plisettings.PLIF3_mode.value == "cooltvguide" and COOLTVGUIDE:
+			elif config.plisettings.F3_mode.value == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
-			elif config.plisettings.PLIF3_mode.value == "hdftoolbox":
+			elif config.plisettings.F3_mode.value == "hdftoolbox":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
 					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			elif config.plisettings.PLIF3_mode.value == "etportal":
+			elif config.plisettings.F3_mode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
 					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			elif config.plisettings.PLIF3_mode.value == "emc":
+			elif config.plisettings.F3_mode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
 					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			elif config.plisettings.PLIF3_mode.value == "mediaportal":
+			elif config.plisettings.F3_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.F3_mode.value == "showsimplelist":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
+					self.showsimplelist()
+				else:
+					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -2119,43 +2134,48 @@ class InfoBarEPG:
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
 			if getBoxType().startswith('vu'):
 				self.showDefaultEPG()
-			elif config.plisettings.PLIF4_mode.value == "eventview":
+			elif config.plisettings.F4_mode.value == "eventview":
 				self.openEventView()
-			elif config.plisettings.PLIF4_mode.value == "showfavourites":
+			elif config.plisettings.F4_mode.value == "showfavourites":
 				self.serviceListType = "Norm"
 				self.servicelist.showFavourites()
 				self.session.execDialog(self.servicelist)
-			elif config.plisettings.PLIF4_mode.value == "epgpress":
+			elif config.plisettings.F4_mode.value == "epgpress":
 				self.showDefaultEPG()
-			elif config.plisettings.PLIF4_mode.value == "single":
+			elif config.plisettings.F4_mode.value == "single":
 				self.openSingleServiceEPG()
-			elif config.plisettings.PLIF4_mode.value == "coolinfoguide" and COOLTVGUIDE:
+			elif config.plisettings.F4_mode.value == "coolinfoguide" and COOLTVGUIDE:
 				self.showCoolInfoGuide()
-			elif config.plisettings.PLIF4_mode.value == "coolsingleguide" and COOLTVGUIDE:
+			elif config.plisettings.F4_mode.value == "coolsingleguide" and COOLTVGUIDE:
 				self.showCoolSingleGuide()
-			elif config.plisettings.PLIF4_mode.value == "cooltvguide" and COOLTVGUIDE:
+			elif config.plisettings.F4_mode.value == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
-			elif config.plisettings.PLIF4_mode.value == "hdftoolbox":
+			elif config.plisettings.F4_mode.value == "hdftoolbox":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
 					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			elif config.plisettings.PLIF4_mode.value == "etportal":
+			elif config.plisettings.F4_mode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
 					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			elif config.plisettings.PLIF4_mode.value == "emc":
+			elif config.plisettings.F4_mode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
 					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			elif config.plisettings.PLIF4_mode.value == "mediaportal":
+			elif config.plisettings.F4_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.F4_mode.value == "showsimplelist":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
+					self.showsimplelist()
+				else:
+					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
