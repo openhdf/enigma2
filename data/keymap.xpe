@@ -82,6 +82,10 @@
 		<key id="KEY_INFO" mapto="InfoPressed" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
 		<key id="KEY_FAVORITES" mapto="FavPressed" flags="b" />
+		<key id="KEY_F1" mapto="F1Pressed" flags="b" />
+		<key id="KEY_F2" mapto="F2Pressed" flags="b" />
+		<key id="KEY_F3" mapto="F3Pressed" flags="b" />
+		<key id="KEY_F4" mapto="F4Pressed" flags="b" />
 		<key id="KEY_EPG" mapto="EPGPressed" flags="b" />
 		<key id="KEY_EPG" mapto="showEventGuidePlugin" flags="l" />
 	</map>
