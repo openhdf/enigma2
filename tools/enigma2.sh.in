@@ -34,18 +34,6 @@ if [ -x @bindir@/enigma2_pre_start.sh ]; then
 	@bindir@/enigma2_pre_start.sh
 fi
 
-if [ -f /usr/lib/libssl.so.0.9.8 ]; then
-	echo "libssl symlink found"
-else
-	ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
-fi
-	
-if [ -f /lib/libcrypto.so.0.9.8 ]; then
-	echo "libcrypto symlink found"
-else
-	ln -s /lib/libcrypto.so.1.0.0 /lib/libcrypto.so.0.9.8
-fi
-
 if [ -d /home/root ]; then
 	cd /home/root
 fi
