@@ -170,13 +170,4 @@
 	<screen name="ChoiceBox_summary" position="0,0" size="256,64" id="1">
 		<widget source="parent.summary_list" render="Label" position="0,0" size="244,64" font="VFD;12" />
 	</screen>
-</skin> 
-
-
-
-
-
-
-
-
-
+</skin>
