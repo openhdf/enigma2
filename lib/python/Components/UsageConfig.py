@@ -420,7 +420,7 @@ def InitUsageConfig():
 	SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
 
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
-	if getMachineName().lower().startswith('xp'):
+	if getMachineName().lower().startswith('xp') or getMachineName().lower().startswith('lx'):
 		config.usage.keymap = ConfigSelection(default = eEnv.resolve("${datadir}/enigma2/keymap.xpe"), choices = [
 			(eEnv.resolve("${datadir}/enigma2/keymap.xml"), _("Default keymap - keymap.xml")),
 			(eEnv.resolve("${datadir}/enigma2/keymap.xpe"), _("Xpeed keymap - keymap.xpe")),
