@@ -1,4 +1,4 @@
-<!-- mod by googgi for openhdf lx3  -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <skin>
 	<windowstyle id="1" type="skinned">
 		<color color="#000000" name="Background"/>
@@ -14,6 +14,7 @@
 		<color color="#ffffff" name="WindowTitleForeground"/>
 		<color color="#000000" name="WindowTitleBackground"/>
 	</windowstyle>
+	<!-- mod by googgi for openhdf lx3  -->
 	<fonts>
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
