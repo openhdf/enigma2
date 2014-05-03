@@ -336,4 +336,13 @@
 		<widget source="entry" render="Label" position="0,0" size="143,20" font="VFD;18" noWrap="1" />
 		<widget source="desc" render="RollerCharLCD" position="0,21" size="143,20" font="VFD;18" noWrap="1" />
 	</screen>
+<!-- VFD screen EMCMoviePlayerSummary -->
+  <screen name="EMCMoviePlayerSummary" position="0,0" size="256,64">
+	<widget source="session.CurrentService" render="RollerCharLCDLong" position="0,0" size="256,40" font="VFD;30" noWrap="1" valign="top">
+      <convert type="ServiceName">Name</convert>
+    </widget>
+    <widget source="Service" render="Progress" position="0,42" size="256,22" borderWidth="1">
+      <convert type="EMCServicePosition">Position</convert>
+    </widget>
+  </screen>
 </skin>

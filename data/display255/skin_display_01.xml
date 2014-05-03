@@ -135,7 +135,7 @@
 	<screen name="ChoiceBox_summary" position="0,0" size="256,64" id="1">
 		<widget source="parent.summary_list" render="Label" position="0,0" size="244,64" font="VFD;12" />
 	</screen>
-<!-- LCD screen EMCMoviePlayerSummary -->
+<!-- VFD screen EMCMoviePlayerSummary -->
   <screen name="EMCMoviePlayerSummary" position="0,0" size="256,64">
 	<widget source="session.CurrentService" render="RollerCharLCDLong" position="0,0" size="256,40" font="VFD;30" noWrap="1" valign="top">
       <convert type="ServiceName">Name</convert>
@@ -143,5 +143,5 @@
     <widget source="Service" render="Progress" position="0,42" size="256,22" borderWidth="1">
       <convert type="EMCServicePosition">Position</convert>
     </widget>
-  </screen>  
+  </screen>
 </skin>
