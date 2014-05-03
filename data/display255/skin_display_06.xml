@@ -1,5 +1,20 @@
-<!-- mod by googgi for openhdf lx3  -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <skin>
+	<windowstyle id="1" type="skinned">
+		<color color="#000000" name="Background"/>
+		<color color="#ffffff" name="LabelForeground"/>
+		<color color="#000000" name="ListboxBackground"/>
+		<color color="#ffffff" name="ListboxForeground"/>
+		<color color="#000000" name="ListboxSelectedBackground"/>
+		<color color="#ffffff" name="ListboxSelectedForeground"/>
+		<color color="#000000" name="ListboxMarkedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedForeground"/>
+		<color color="#000000" name="ListboxMarkedAndSelectedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedAndSelectedForeground"/>
+		<color color="#ffffff" name="WindowTitleForeground"/>
+		<color color="#000000" name="WindowTitleBackground"/>
+	</windowstyle>
+	<!-- mod by googgi for openhdf lx3  -->
 <fonts>
 <font filename="lcd.ttf" name="LCD" scale="100" />
 <font filename="MyriadPro-Regular.otf" name="Myrida" scale="100" />
@@ -166,4 +181,4 @@
 <screen name="ChoiceBox_summary" position="0,0" size="256,64" id="1">
 <widget source="parent.summary_list" render="Label" position="0,0" size="244,64" font="Myrida;12" />
 </screen>
-</skin>
+</skin> 
