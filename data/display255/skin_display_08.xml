@@ -238,13 +238,49 @@
 	<screen name="ChoiceBox_summary" position="0,0" size="256,64" id="1">
 		<widget source="parent.summary_list" render="Label" position="0,0" size="244,64" font="VFD;12" />
 	</screen>
-<!-- VFD screen EMCMoviePlayerSummary -->
+<!-- LCD screen EMCMoviePlayerSummary -->
   <screen name="EMCMoviePlayerSummary" position="0,0" size="256,64">
-	<widget source="session.CurrentService" render="RollerCharLCDLong" position="0,0" size="256,40" font="VFD;30" noWrap="1" valign="top">
-      <convert type="ServiceName">Name</convert>
+	<widget source="global.CurrentTime" render="Label" position="0,0" size="125,28" font="VFD;28" halign="left">
+		<convert type="ClockToText">Format:%H:%M</convert>
+	</widget>
+	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/format.png" position="0,29" size="21,12" alphatest="blend">
+		<convert type="ServiceInfo">IsWidescreen</convert>
+		<convert type="ConditionalShowHide" />
+	</widget>
+	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/dolby.png" position="25,29" size="16,12" alphatest="blend">
+		<convert type="ServiceInfo">IsMultichannel</convert>
+		<convert type="ConditionalShowHide" />
+	</widget>	
+	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/hd.png" position="45,29" size="21,12" alphatest="blend">
+		<convert type="ServiceInfo">VideoWidth</convert>
+		<convert type="ValueRange">721,1980</convert>
+		<convert type="ConditionalShowHide" />
+	</widget>
+	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/txt.png" position="70,29" size="14,12" alphatest="blend">
+		<convert type="ServiceInfo">HasTelext</convert>
+		<convert type="ConditionalShowHide" />
+	</widget>
+	<widget source="session.RecordState" render="FixedLabel" position="84,29" size="32,12" zPosition="3" text=" ">
+		<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+		<convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+    <widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="84,29" size="32,12" alphatest="blend">
+		<convert type="ConditionalShowHide" />
     </widget>
-    <widget source="Service" render="Progress" position="0,42" size="256,22" borderWidth="1">
-      <convert type="EMCServicePosition">Position</convert>
-    </widget>
+	<widget source="session.CurrentService" render="RollerCharLCDLong" position="0,40" size="256,23" font="VFD;22" noWrap="1" valign="top">
+		<convert type="ServiceName">Name</convert>
+	</widget>
+	<widget source="session.CurrentService" render="Label" position="130,0" size="85,20" font="VFD;20" halign="left" valign="top" transparent="1">
+		<convert type="ServicePosition">Position</convert>
+	</widget>
+	<widget source="session.CurrentService" render="Label" position="171,0" size="85,20" font="VFD;20" halign="right" valign="top" transparent="1">
+		<convert type="ServicePosition">Remaining</convert>
+	</widget>
+	<widget source="Service" render="Progress" position="130,22" size="126,10" borderWidth="1">
+		<convert type="EMCServicePosition">Position</convert>
+	</widget>
+	<!-- widget source="Service" render="Progress" position="130,35" size="126,5" borderWidth="1">
+		<convert type="EMCRecordPosition">Position</convert>
+	</widget -->
   </screen>
 </skin>
