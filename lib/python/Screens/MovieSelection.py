@@ -322,7 +322,8 @@ class MovieContextMenu(Screen):
 		menu = [(_("Settings") + "...", csel.configure),
 				(_("Network mounts") + "...", csel.showNetworkMounts),
 				(_("Add bookmark"), csel.do_addbookmark),
-				(_("Create directory"), csel.do_createdir)]
+				(_("Create directory"), csel.do_createdir),
+				(_("Sort by") + "...", csel.selectSortby)]
 		if service:
 			if service.flags & eServiceReference.mustDescent:
 				if isTrashFolder(service):
@@ -604,6 +605,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'rename': _("Rename"),
 				'gohome': _("Home"),
 				'sort': _("Sort"),
+				'sortby': _("Sort by"),
 				'sortdefault': _("Sort by default"),
 				'preview': _("Preview"),
 				'movieoff': _("On end of movie")
@@ -1252,6 +1254,24 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.reloadList()
 			self.updateDescription()
 
+	def do_sortby(self):
+		self.selectSortby()
+
+	def selectSortby(self):
+		menu = []
+		index = 0
+		for x in l_moviesort:
+			menu.append((_(x[1]), x[0], "%d" % index))
+			index += 1
+		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Sort list:"), list=menu)
+
+	def sortbyMenuCallback(self, choice):
+		if choice is None:
+			return
+		config.movielist.moviesort.value = int(choice[2])
+		self._updateButtonTexts()
+		self.sortBy(int(choice[1]))
+
 	def getTagDescription(self, tag):
 		# TODO: access the tag database
 		return tag
@@ -1290,7 +1310,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["TrashcanSize"].update(config.movielist.last_videodir.value)
 		if self.reload_sel is None:
 			self.reload_sel = self.getCurrent()
-		if config.usage.movielist_trashcan.value:
+		if config.usage.movielist_trashcan.value and os.access(config.movielist.last_videodir.value, os.W_OK):
 			trash = Tools.Trashcan.createTrashFolder(config.movielist.last_videodir.value)
 		self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
@@ -1902,8 +1922,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.session.open(NetworkSetup.NetworkMountsMenu)
 
 	def showDeviceMounts(self):
-		from Plugins.SystemPlugins.DeviceManager.HddMount import *
-		self.session.open(HddMount)
+		import Plugins.SystemPlugins.ViX.MountManager
+		self.session.open(Plugins.SystemPlugins.ViX.MountManager.VIXDevicesPanel)
 
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:
