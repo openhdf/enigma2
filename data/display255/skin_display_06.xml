@@ -154,18 +154,6 @@
 <widget source="entry" render="RollerCharLCDLong" position="6,0" size="256,20" font="Myrida;20" noWrap="1" />
 <widget source="desc" render="RollerCharLCDLong" position="6,20" size="256,20" font="Myrida;20" noWrap="1" />
 </screen>
-<!-- LCD screen VTIPanel -->
-<screen name="VTIPanelSummary" position="0,0" size="256,64">
-<widget source="entry" render="RollerCharLCDLong" position="6,0" size="256,20" font="Myrida;20" noWrap="1" />
-<widget source="desc" render="RollerCharLCDLong" position="6,20" size="256,20" font="Myrida;20" noWrap="1" />
-<eLabel text="www.vuplus-support.org" position="0, 43" size="256,20" font="LCD;18" halign="center"/>
-</screen>
-<!-- LCD screen DeviceManager2 -->
-<screen name="DeviceManager2Summary" position="0,0" size="256,64">
-<widget source="entry" render="RollerCharLCDLong" position="6,0" size="256,20" font="Myrida;20" noWrap="1" />
-<widget source="desc" render="RollerCharLCDLong" position="6,20" size="256,20" font="Myrida;20" noWrap="1" />
-<eLabel text="www.vuplus-support.org" position="0, 43" size="256,20" font="LCD;18" halign="center"/>
-</screen>
 <!-- LCD screen Setup -->
 <screen name="SetupSummary" position="0,0" size="256,64">
 <widget source="SetupTitle" render="RollerCharLCDLong" position="6,0" size="256,16" font="Myrida;18" noWrap="1" />
@@ -183,11 +171,18 @@
 </screen>
 <!-- VFD screen EMCMoviePlayerSummary -->
   <screen name="EMCMoviePlayerSummary" position="0,0" size="256,64">
-	<widget source="session.CurrentService" render="RollerCharLCDLong" position="0,0" size="256,40" font="VFD;30" noWrap="1" valign="top">
-      <convert type="ServiceName">Name</convert>
-    </widget>
-    <widget source="Service" render="Progress" position="0,42" size="256,22" borderWidth="1">
-      <convert type="EMCServicePosition">Position</convert>
-    </widget>
-  </screen>
-</skin>
+		<widget source="session.CurrentService" render="Label" position="0,0" size="256,30" font="LCD;25" halign="left" noWrap="1">
+		<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="Service" render="Progress" position="0,32" size="256,10" borderWidth="2">
+		<convert type="EMCServicePosition">Position</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="0,44" size="128,20" font="VFD;20" halign="left" valign="top">
+			<convert type="ServicePosition">Length</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="130,44" size="126,20" font="VFD;20" halign="right" valign="top">
+			<convert type="ServicePosition">Remaining</convert>
+		</widget>
+	</screen>  
+<!-- VFD screen EMCMoviePlayerSummary end -->
+</skin> 
