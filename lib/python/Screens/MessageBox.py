@@ -1,10 +1,12 @@
+import enigma
+
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
-import enigma
+
 
 class MessageBox(Screen):
 	TYPE_YESNO = 0
@@ -12,14 +14,14 @@ class MessageBox(Screen):
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
 
-	def __init__(self, session, text, type=TYPE_YESNO, timeout=-1, close_on_any_key=False, default=True, enable_input=True, msgBoxID=None, picon=True, simple=False, wizard=False, list=None, skin_name=None):
+	def __init__(self, session, text, type=TYPE_YESNO, timeout=-1, close_on_any_key=False, default=True, enable_input=True, msgBoxID=None, picon=True, simple=False, wizard=False, list=None, skin_name=None, timeout_default=None):
 		if not list: list = []
 		if not skin_name: skin_name = []
 		self.type = type
 		Screen.__init__(self, session)
 		self.skinName = ["MessageBox"]
 		if wizard:
-			from Components.config import config, ConfigInteger
+			from Components.config import config
 			from Components.Pixmap import MultiPixmap
 			self["rc"] = MultiPixmap()
 			self["rc"].setPixmapNum(config.misc.rcused.value)		
@@ -39,6 +41,7 @@ class MessageBox(Screen):
 
 		self.text = _(text)
 		self.close_on_any_key = close_on_any_key
+		self.timeout_default = timeout_default
 
 		self["ErrorPixmap"] = Pixmap()
 		self["ErrorPixmap"].hide()
@@ -183,7 +186,10 @@ class MessageBox(Screen):
 
 	def timeoutCallback(self):
 		print "Timeout!"
-		self.ok()
+		if self.timeout_default is not None:
+			self.close(self.timeout_default)
+		else:
+			self.ok()
 
 	def cancel(self):
 		if self["list"].list:

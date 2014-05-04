@@ -1,4 +1,4 @@
-from Screen import Screen
+from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Components.InputDevice import iInputDevices, iRcTypeControl
@@ -10,8 +10,6 @@ from Components.ActionMap import ActionMap, HelpableActionMap
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from boxbranding import getBoxType, getMachineBrand, getMachineName
-
-boxtype = getBoxType()
 
 class InputDeviceSelection(Screen, HelpableScreen):
 	def __init__(self, session):
@@ -226,7 +224,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 			self.keySave()
 
 	def apply(self):
-		self.session.openWithCallback(self.confirm, MessageBox, _("Use these input device settings?"), MessageBox.TYPE_YESNO, timeout = 20, default = True)
+		self.session.openWithCallback(self.confirm, MessageBox, _("Use these input device settings?"), MessageBox.TYPE_YESNO, timeout=20, default=True)
 
 	def cancelConfirm(self, result):
 		if not result:
@@ -237,7 +235,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 	def keyCancel(self):
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), MessageBox.TYPE_YESNO, timeout = 20, default = False)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), MessageBox.TYPE_YESNO, timeout=20, default=True)
 		else:
 			self.close()
 	# for summary:
@@ -258,10 +256,13 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 
 class RemoteControlType(Screen, ConfigListScreen):
+	odinRemote = "OdinM9"
+	if getBoxType() == "maram9":
+		odinRemote = "MaraM9"
 	
 	rcList = [
 			("0", _("Default")),
-			("3", _("MaraM9")),
+			("3", _(odinRemote)),
 			("4", _("DMM normal")),
 			("6", _("DMM advanced")),
 			("7", _("et5000/6000")),
@@ -324,7 +325,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 			self.close()
 		else:
 			self.setNewSetting()
-			self.session.openWithCallback(self.keySaveCallback, MessageBox, _("Is this setting ok?"), MessageBox.TYPE_YESNO, timeout = 20, default = False)
+			self.session.openWithCallback(self.keySaveCallback, MessageBox, _("Is this setting ok?"), MessageBox.TYPE_YESNO, timeout=20, default=True, timeout_default=False)
 
 	def keySaveCallback(self, answer):
 		if answer is False:
