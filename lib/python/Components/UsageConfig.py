@@ -33,6 +33,8 @@ def InitUsageConfig():
 		eDVBDB.getInstance().setNumberingMode(configElement.value)
 		refreshServiceList()
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
+	config.usage.crypto_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
+	config.usage.crypto_icon_mode.addNotifier(refreshServiceList)
 
 	config.usage.panicbutton = ConfigYesNo(default = False)
 	config.usage.servicetype_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
