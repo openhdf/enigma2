@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-04-24 15:18+0100\n"
+"PO-Revision-Date: 2014-05-04 09:12+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -94,6 +94,18 @@ msgstr "Flashen   Online / Local"
 
 msgid "Unzipping files, Please wait ..."
 msgstr "Datei wird entpackt, Bitte warten..."
+
+msgid " (disabled)"
+msgstr "(deaktiviert)"
+
+msgid " (higher than any auto)"
+msgstr ""
+
+msgid " (higher than rotor any auto)"
+msgstr ""
+
+msgid " (lower than any auto)"
+msgstr ""
 
 msgid "The image is downloaded. Do you want to flash now?"
 msgstr ""
@@ -1013,6 +1025,27 @@ msgstr "Alle Alter"
 
 msgid "All satellites"
 msgstr "Alle Satelliten"
+
+msgid "All satellites 1 (DiSEqC mode 1.2)"
+msgstr "Alle Satelliten 1 (DiSEqC Modus 1.2)"
+
+msgid "All satellites 2 (DiSEqC mode 1.2)"
+msgstr "Alle Satelliten 2 (DiSEqC Modus 1.2)"
+
+msgid "All satellites 3 (DiSEqC mode 1.2)"
+msgstr "Alle Satelliten 3 (DiSEqC Modus 1.2)"
+
+msgid "All satellites 4 (DiSEqC mode 1.2)"
+msgstr "Alle Satelliten 4 (DiSEqC Modus 1.2)"
+
+msgid "DiSEqC 1.0 command"
+msgstr "DiSEqC 1.0 Befehl übertragen"
+
+msgid "DiSEqC 1.1 command"
+msgstr "DiSEqC 1.1 Befehl übertragen"
+
+msgid "DiSEqC 1.1 repeats"
+msgstr "DiSEqC 1.1 Wiederholungen"
 
 msgid "Allocate"
 msgstr "Reservieren"
@@ -4787,6 +4820,9 @@ msgstr "langer Tastendruck"
 msgid "Longitude"
 msgstr "Längengrad"
 
+msgid "Loop through to"
+msgstr "Verbunden mit"
+
 msgid "Luxembourgish"
 msgstr ""
 
@@ -7192,6 +7228,12 @@ msgstr "Sendebestätigung"
 
 msgid "Send DiSEqC"
 msgstr "DiSEqC senden"
+
+msgid "Sort by"
+msgstr "Sortiere Liste nach"
+
+msgid "Sort list:"
+msgstr "Sortiere Liste:"
 
 msgid "Send DiSEqC only on satellite change"
 msgstr "DiSEqC nur bei Sat-Wechsel senden"
@@ -10739,6 +10781,12 @@ msgstr "Film/Drama für Erwachsene"
 msgid "advanced"
 msgstr "erweitert"
 
+msgid "Advanced"
+msgstr "Erweitert"
+
+msgid "not available"
+msgstr "nichts ausgewählt"
+
 msgid "adventure/western/war"
 msgstr "Abenteuer/Western/Krieg"
 
@@ -10999,6 +11047,9 @@ msgstr "Unterhaltung (6-14 Jahre)"
 msgid "equal to"
 msgstr "Gleich wie"
 
+msgid "Equal to"
+msgstr "Gleich wie"
+
 msgid "equestrian"
 msgstr "Reiter"
 
@@ -11201,6 +11252,9 @@ msgstr "Backup anlegen vor einem Update"
 msgid "manual"
 msgstr "manuell"
 
+msgid "Manual"
+msgstr "Manuell"
+
 msgid "martial sports"
 msgstr "Kampfsport"
 
@@ -11298,7 +11352,10 @@ msgid "normal"
 msgstr "Normal"
 
 msgid "not configured"
-msgstr "nicht Konfiguriert"
+msgstr "Nicht konfiguriert"
+
+msgid "Not configured"
+msgstr "Nicht konfiguriert"
 
 msgid "not locked"
 msgstr "Kein Signal"
@@ -11310,6 +11367,9 @@ msgid "not used"
 msgstr "nicht verwendet"
 
 msgid "nothing connected"
+msgstr "Nichts angeschlossen"
+
+msgid "Nothing connected"
 msgstr "Nichts angeschlossen"
 
 msgid "of a DUAL layer medium used."
@@ -11485,6 +11545,9 @@ msgid "science fiction/fantasy/horror"
 msgstr "Science Fiction/Fantasy/Horror"
 
 msgid "second cable of motorized LNB"
+msgstr "Zweites Kabel vom Rotor"
+
+msgid "Second cable of motorized LNB"
 msgstr "Zweites Kabel vom Rotor"
 
 msgid "seconds"
@@ -11704,6 +11767,9 @@ msgid "true"
 msgstr "ja"
 
 msgid "tuner is not supported"
+msgstr "nicht unterstützter Tuner"
+
+msgid "Tuner is not supported"
 msgstr "nicht unterstützter Tuner"
 
 msgid "uShare Log"
