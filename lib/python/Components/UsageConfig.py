@@ -757,6 +757,7 @@ def InitUsageConfig():
 				("cooltvguide", _("Show CoolTVGuide")),
 				("emc", _("Show Enhanced Movie Center")),
 				("mediaportal", _("Show Media Portal")),
+				("vmodeSelection", _("Change Videomode")),
 				("etportal", _("Show EtPortal"))])
 
 	config.plisettings.F2_mode = ConfigSelection(default="hdftoolbox", choices = [
@@ -771,6 +772,7 @@ def InitUsageConfig():
 				("cooltvguide", _("Show CoolTVGuide")),
 				("emc", _("Show Enhanced Movie Center")),
 				("mediaportal", _("Show Media Portal")),
+				("vmodeSelection", _("Change Videomode")),
 				("etportal", _("Show EtPortal"))])
 
 	config.plisettings.F3_mode = ConfigSelection(default="hdftoolbox", choices = [
@@ -785,6 +787,7 @@ def InitUsageConfig():
 				("cooltvguide", _("Show CoolTVGuide")),
 				("emc", _("Show Enhanced Movie Center")),
 				("mediaportal", _("Show Media Portal")),
+				("vmodeSelection", _("Change Videomode")),
 				("etportal", _("Show EtPortal"))])
 
 	config.plisettings.F4_mode = ConfigSelection(default="hdftoolbox", choices = [
@@ -799,6 +802,7 @@ def InitUsageConfig():
 				("cooltvguide", _("Show CoolTVGuide")),
 				("emc", _("Show Enhanced Movie Center")),
 				("mediaportal", _("Show Media Portal")),
+				("vmodeSelection", _("Change Videomode")),
 				("etportal", _("Show EtPortal"))])
 
 	config.epgselection = ConfigSubsection()
