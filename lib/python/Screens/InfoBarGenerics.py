@@ -2001,6 +2001,8 @@ class InfoBarEPG:
 				self.showCoolInfoGuide()
 			elif config.plisettings.F1_mode.value == "coolsingleguide" and COOLTVGUIDE:
 				self.showCoolSingleGuide()
+			elif config.plisettings.F1_mode.value == "vmodeSelection":
+				self.vmodeSelection()
 			elif config.plisettings.F1_mode.value == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
@@ -2050,6 +2052,8 @@ class InfoBarEPG:
 				self.showCoolInfoGuide()
 			elif config.plisettings.F2_mode.value == "coolsingleguide" and COOLTVGUIDE:
 				self.showCoolSingleGuide()
+			elif config.plisettings.F1_mode.value == "vmodeSelection":
+				self.vmodeSelection()
 			elif config.plisettings.F2_mode.value == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
@@ -2097,6 +2101,8 @@ class InfoBarEPG:
 				self.openSingleServiceEPG()
 			elif config.plisettings.F3_mode.value == "coolinfoguide" and COOLTVGUIDE:
 				self.showCoolInfoGuide()
+			elif config.plisettings.F1_mode.value == "vmodeSelection":
+				self.vmodeSelection()
 			elif config.plisettings.F3_mode.value == "coolsingleguide" and COOLTVGUIDE:
 				self.showCoolSingleGuide()
 			elif config.plisettings.F3_mode.value == "cooltvguide" and COOLTVGUIDE:
@@ -2146,6 +2152,8 @@ class InfoBarEPG:
 				self.openSingleServiceEPG()
 			elif config.plisettings.F4_mode.value == "coolinfoguide" and COOLTVGUIDE:
 				self.showCoolInfoGuide()
+			elif config.plisettings.F1_mode.value == "vmodeSelection":
+				self.vmodeSelection()
 			elif config.plisettings.F4_mode.value == "coolsingleguide" and COOLTVGUIDE:
 				self.showCoolSingleGuide()
 			elif config.plisettings.F4_mode.value == "cooltvguide" and COOLTVGUIDE:
