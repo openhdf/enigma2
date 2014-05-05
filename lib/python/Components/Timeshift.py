@@ -191,6 +191,7 @@ class InfoBarTimeshift:
 
 	def __serviceStarted(self):
 		# print '__serviceStarted'
+		self.createTimeshiftFolder()
 		self.service_changed = 1
 		self.pts_service_changed = True
 		self.ptsCleanTimeshiftFolder()
