@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-05-06 20:45+0100\n"
+"PO-Revision-Date: 2014-05-07 05:43+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -7644,6 +7644,9 @@ msgstr "Zeige Sendernummer in Senderauswahl"
 
 msgid "Show channel number in infobar"
 msgstr "Zeige Sendernummer in Infobar"
+
+msgid "Show crypto icons"
+msgstr "Zeige Verschlüsselungsicon"
 
 msgid "Show crypto info in infobar"
 msgstr "Zeige Verschlüsselung in Infobar an"
