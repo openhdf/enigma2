@@ -41,7 +41,7 @@ config.movielist = ConfigSubsection()
 config.movielist.curentlyplayingservice = ConfigText()
 config.movielist.show_live_tv_in_movielist = ConfigYesNo(default=True)
 config.movielist.fontsize = ConfigSelectionNumber(default = 0, stepwidth = 1, min = -8, max = 10, wraparound = True)
-config.movielist.itemsperpage = ConfigSelectionNumber(default = 20, stepwidth = 1, min = 3, max = 30, wraparound = True)
+config.movielist.itemsperpage = ConfigSelectionNumber(default = 16, stepwidth = 1, min = 3, max = 30, wraparound = True)
 config.movielist.useslim = ConfigYesNo(default=False)
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
 config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
@@ -120,8 +120,13 @@ def canMove(item):
 	return True
 
 canDelete = canMove
-canCopy = canMove
-canRename = canMove
+
+def canCopy(item):
+	if not item:
+		return False
+	if not item[0] or not item[1]:
+		return False
+	return True
 
 def createMoveList(serviceref, dest):
 	#normpath is to remove the trailing '/' from directories
@@ -307,7 +312,7 @@ class MovieContextMenu(Screen):
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self['footnote'] = Label("")
-		self["description"] = StaticText()
+		self["status"] = StaticText()
 
 		self["actions"] = ActionMap(["OkCancelActions", 'ColorActions'],
 			{
@@ -322,8 +327,7 @@ class MovieContextMenu(Screen):
 		menu = [(_("Settings") + "...", csel.configure),
 				(_("Network mounts") + "...", csel.showNetworkMounts),
 				(_("Add bookmark"), csel.do_addbookmark),
-				(_("Create directory"), csel.do_createdir),
-				(_("Sort by") + "...", csel.selectSortby)]
+				(_("Create directory"), csel.do_createdir)]
 		if service:
 			if service.flags & eServiceReference.mustDescent:
 				if isTrashFolder(service):
@@ -331,7 +335,6 @@ class MovieContextMenu(Screen):
 				else:
 					menu.append((_("Delete"), csel.do_delete))
 					menu.append((_("Move"), csel.do_move))
-					menu.append((_("Copy"), csel.do_copy))
 					menu.append((_("Rename"), csel.do_rename))
 			else:
 				menu.append((_("Delete"), csel.do_delete))
@@ -605,7 +608,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'rename': _("Rename"),
 				'gohome': _("Home"),
 				'sort': _("Sort"),
-				'sortby': _("Sort by"),
 				'sortdefault': _("Sort by default"),
 				'preview': _("Preview"),
 				'movieoff': _("On end of movie")
@@ -831,10 +833,16 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		return canMove(item)
 
 	def can_delete(self, item):
-		if not item:
-			return False
-		return canDelete(item) or isTrashFolder(item[0])
+		try:
+			if not item:
+				return False
+			return canDelete(item) or isTrashFolder(item[0])
+		except:
 
+			return False
+
+	def can_move(self, item):
+		return canMove(item)
 	def can_default(self, item):
 		# returns whether item is a regular file
 		return isSimpleFile(item)
@@ -981,6 +989,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if not playInBackground:
 			print "Not playing anything in background"
 			return
+		if not playInBackground:
+			print "Not playing anything in foreground"
+			return
+		current = self.getCurrent()
 		self.session.nav.stopService()
 		self.list.playInBackground = None
 		self.list.playInForeground = None
@@ -997,7 +1009,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			if ext in AUDIO_EXTENSIONS:
 				self.nextInBackground = next
 				self.callLater(self.preview)
-				self["list"].moveToIndex(index+1)
 
 		if config.movielist.show_live_tv_in_movielist.value:
 			self.LivePlayTimer.start(100)
@@ -1254,24 +1265,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.reloadList()
 			self.updateDescription()
 
-	def do_sortby(self):
-		self.selectSortby()
-
-	def selectSortby(self):
-		menu = []
-		index = 0
-		for x in l_moviesort:
-			menu.append((_(x[1]), x[0], "%d" % index))
-			index += 1
-		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Sort list:"), list=menu)
-
-	def sortbyMenuCallback(self, choice):
-		if choice is None:
-			return
-		config.movielist.moviesort.value = int(choice[2])
-		self._updateButtonTexts()
-		self.sortBy(int(choice[1]))
-
 	def getTagDescription(self, tag):
 		# TODO: access the tag database
 		return tag
@@ -1310,7 +1303,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["TrashcanSize"].update(config.movielist.last_videodir.value)
 		if self.reload_sel is None:
 			self.reload_sel = self.getCurrent()
-		if config.usage.movielist_trashcan.value and os.access(config.movielist.last_videodir.value, os.W_OK):
+		if config.usage.movielist_trashcan.value:
 			trash = Tools.Trashcan.createTrashFolder(config.movielist.last_videodir.value)
 		self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
@@ -1539,9 +1532,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			mbox=self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
 			mbox.setTitle(self.getTitle())
 
+	def can_rename(self, item):
+		return canMove(item)
 	def do_rename(self):
 		item = self.getCurrentSelection()
-		if not canRename(item):
+		if not canMove(item):
 			return
 		if isFolder(item):
 			p = os.path.split(item[0].getPath())
@@ -1683,9 +1678,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			mbox=self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 			mbox.setTitle(self.getTitle())
 
+	def can_copy(self, item):
+		return canCopy(item)
+
 	def do_copy(self):
 		item = self.getCurrentSelection()
-		if canCopy(item):
+		if canMove(item):
 			current = item[0]
 			info = item[1]
 			if info is None:
@@ -1867,7 +1865,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				if '.Trash' in cur_path:
 					are_you_sure = _("Do you really want to permamently remove '%s' from trash can ?") % name
 				else:
-					are_you_sure = _("Do you really want to delete %s ?") % name
+					are_you_sure = _("Do you really want to delete %s?") % name
 				msg = ''
 			mbox=self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + are_you_sure)
 			mbox.setTitle(self.getTitle())
@@ -1922,8 +1920,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.session.open(NetworkSetup.NetworkMountsMenu)
 
 	def showDeviceMounts(self):
-		import Plugins.SystemPlugins.ViX.MountManager
-		self.session.open(Plugins.SystemPlugins.ViX.MountManager.VIXDevicesPanel)
+		from Plugins.Extensions.Infopanel.MountManager import HddMount
+		self.session.open(HddMount)
 
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:

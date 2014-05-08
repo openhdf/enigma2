@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-05-07 05:43+0100\n"
+"PO-Revision-Date: 2014-05-08 17:26+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1922,7 +1922,7 @@ msgstr "Linkszirkular"
 msgid "Circular right"
 msgstr "Rechtszirkular"
 
-msgid "Clean network trash can's"
+msgid "Clean network trash cans"
 msgstr "Mülleimer im Netzwerk aufräumen"
 
 msgid "Cleaning Trashes"
@@ -8141,7 +8141,10 @@ msgid "Start from the beginning"
 msgstr "Am Anfang starten"
 
 msgid "Start offline decode"
-msgstr "Starte offline entschlüsseln"
+msgstr "Starte offline Entschlüsselung für gewählte Aufnahme"
+
+msgid "Find Covers ..."
+msgstr "Suche Cover ..."
 
 msgid "Start recording?"
 msgstr "Aufnahme starten?"
@@ -11899,6 +11902,9 @@ msgid "working"
 msgstr "Arbeite"
 
 msgid "yellow"
+msgstr "Gelb"
+
+msgid "Yellow"
 msgstr "Gelb"
 
 msgid "Yellow long"
