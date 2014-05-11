@@ -51,7 +51,7 @@
 					<id val="display" />
 					<item level="0" entryID="displaysetup"><setup id="display" /></item>
 					<!--item requires="OledDisplay" level="0" text="VFD Skin Selector" entryID="vfd_skin"><screen module="VfdSkinSelector" screen="VFDSkinSelector"/></item-->
-					<item requires="FrontpanelDisplay" level="0" text="VFD Skin Selector" entryID="vfd_skin"><screen module="VfdSkinSelector" screen="VFDSkinSelector"/></item>
+					<item requires="LCDSKINSetup" level="0" text="VFD Skin Selector" entryID="vfd_skin"><screen module="VfdSkinSelector" screen="VFDSkinSelector"/></item>
 				</menu>
 				<menu level="2" text="EPG" entryID="epg_menu">
 					<id val="epg" />
