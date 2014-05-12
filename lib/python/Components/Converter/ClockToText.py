@@ -1,5 +1,5 @@
 from Converter import Converter
-from time import localtime, strftime
+from time import localtime, strftime, gmtime
 from Components.Element import cached
 
 class ClockToText(Converter, object):
@@ -56,29 +56,21 @@ class ClockToText(Converter, object):
 	@cached
 	def getText(self):
 		time = self.source.time
-		if time is None:
+		if not time or time > 169735005176:
 			return ""
 
-		# handle durations
 		if self.type == self.IN_MINUTES:
-			return ngettext("%d Min", "%d Mins", (time / 60)) % (time / 60)
+			return "%d min" % (time / 60)
 		elif self.type == self.AS_LENGTH:
-			if time < 0:
-				return ""
 			return "%d:%02d" % (time / 60, time % 60)
-		elif self.type == self.AS_LENGTHHOURS:
-			if time < 0:
-				return ""
-			return "%d:%02d" % (time / 3600, time / 60 % 60)
-		elif self.type == self.AS_LENGTHSECONDS:
-			if time < 0:
-				return ""
-			return "%d:%02d:%02d" \
-			 % (time / 3600, time / 60 % 60, time % 60)
 		elif self.type == self.TIMESTAMP:
 			return str(time)
-
-		t = localtime(time)
+		
+		if time > (31 * 24 * 60 * 60): 
+		# No Recording should be longer than 1 month :-)
+			t = localtime(time)
+		else:
+			t = gmtime(time)
 
 		if self.type == self.WITH_SECONDS:
 			# TRANSLATORS: full time representation hour:minute:seconds 
