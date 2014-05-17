@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-05-08 17:26+0100\n"
+"PO-Revision-Date: 2014-05-17 07:02+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -8437,6 +8437,9 @@ msgstr "OK Taste bewirkt"
 
 msgid "Up/Down button mode"
 msgstr "Hoch/Runter Tasten-Modus"
+
+msgid "Left/Right button mode"
+msgstr "Links/Rechts Tasten-Modus"
 
 msgid "Select what you want the OK button to activate:"
 msgstr "Wählen Sie was die OK-Taste bewirken soll:"
