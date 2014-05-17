@@ -1088,16 +1088,16 @@ class InfoBarChannelSelection:
 		self.openServiceList()
 
 	def LeftPressed(self):
-		if config.plisettings.InfoBarEpg_mode.value == "3":
-			self.openInfoBarEPG()
-		else:
+		if config.usage.leftrightbutton_mode.value == "0":
 			self.zapUp()
+		elif config.usage.leftrightbutton_mode.value == "1":
+			self.switchChannelUp()
 
 	def RightPressed(self):
-		if config.plisettings.InfoBarEpg_mode.value == "3":
-			self.openInfoBarEPG()
-		else:
+		if config.usage.leftrightbutton_mode.value == "0":
 			self.zapDown()
+		elif config.usage.leftrightbutton_mode.value == "1":
+			self.switchChannelDown()
 
 	def UpPressed(self):
 		if config.usage.updownbutton_mode.value == "0":
