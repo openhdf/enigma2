@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-05-17 07:02+0100\n"
+"PO-Revision-Date: 2014-05-17 10:59+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -4547,6 +4547,9 @@ msgstr "Zur PrimeTime springen"
 
 msgid "Just change channels"
 msgstr "Nur Umschalten"
+
+msgid "Just change channels revert"
+msgstr "Nur Umschalten - rückwärts"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just scale"
