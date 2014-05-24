@@ -3,12 +3,15 @@ import os
 import time
 
 ECM_INFO = '/tmp/ecm.info'
-EMPTY_ECM_INFO = _("Free To Air"),'0','0','0'
+EMPTY_ECM_INFO = ' ','0','0','0'
 
 old_ecm_time = time.time()
 info = {}
 ecm = ''
 data = EMPTY_ECM_INFO
+
+def getECM():
+	return ecm
 
 class GetEcmInfo:
 	def __init__(self):
@@ -55,10 +58,7 @@ class GetEcmInfo:
 				if 'ECM' in line:
 					linetmp = mgcam.split(' ')
 					info['eEnc'] = linetmp[1]
-					try:			
-						info['eCaid'] = linetmp[5][2:-1]
-					except:
-						info['eCaid'] = ""
+					info['eCaid'] = linetmp[5][2:-1]
 					continue
 				if 'source' in line:
 					linetmp = mgcam.split(' ')
