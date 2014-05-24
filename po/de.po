@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-05-17 10:59+0100\n"
+"PO-Revision-Date: 2014-05-24 20:08+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2752,6 +2752,13 @@ msgstr ""
 
 msgid "Descramble http streams"
 msgstr "HTTP Streams entschlüsseln"
+
+msgid "Require authentication for http streams"
+msgstr "Authentifizierung für HTTP Streams"
+
+msgid "When enabled, authentication is required to watch http streams."
+msgstr ""
+"Wenn aktiviert, ist eine Authentifizierung nötig um HTTP Streams zu sehen."
 
 msgid "Description"
 msgstr "Beschreibung"
