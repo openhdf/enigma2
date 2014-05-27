@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-05-25 08:21+0100\n"
+"PO-Revision-Date: 2014-05-27 21:22+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -9503,6 +9503,9 @@ msgstr "Benutze ViaSat EPG-Informationen benutzen wenn sie vorhanden sind."
 
 msgid "Use WOL"
 msgstr "WOL benutzen"
+
+msgid "Use WakeOnLAN"
+msgstr "Benutze WakeOnLAN"
 
 msgid "Use a gateway"
 msgstr "Einen Gateway verwenden?"

@@ -441,7 +441,8 @@ class InfoBarTimeshift:
 				# print 'TEST5'
 				if self.save_current_timeshift:
 					# print 'TEST6'
-					InfoBarTimeshift.saveTimeshiftActions(self, config.timeshift.favoriteSaveAction.value, returnFunction)
+					# so we silently do "savetimeshiftandrecord" when switching channel independent of config.timeshift.favoriteSaveAction
+					InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
 				else:
 					# print 'TEST7'
 					message =  _("You seem to be in timeshift, Do you want to leave timeshift ?")
