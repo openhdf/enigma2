@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-06-01 15:44+0100\n"
+"PO-Revision-Date: 2014-06-06 20:09+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3249,6 +3249,9 @@ msgstr "Netmed EPG aktivieren"
 
 msgid "Enable ViaSat EPG"
 msgstr "ViaSat EPG aktivieren"
+
+msgid "Enable Virgin EPG"
+msgstr "Virgin EPG aktivieren"
 
 msgid "Enable debug log"
 msgstr "Aktiviere Debug Log"
