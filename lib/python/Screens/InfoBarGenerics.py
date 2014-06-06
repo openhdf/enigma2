@@ -52,6 +52,8 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
 from time import time, localtime, strftime
 from bisect import insort
 from sys import maxint
+from keyids import KEYIDS
+from datetime import datetime
 
 import os, cPickle
 
@@ -236,9 +238,12 @@ class InfoBarUnhandledKey:
 		if config.plisettings.ShowPressedButtons.value:
 			print "Enable debug mode for every pressed key."
 			try:
-				print 'Pressed KEY: %s %s' % (key,getKeyDescription(key)[0])
+				print 'KEY: %s %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0],datetime.now())
 			except:
-				print 'Pressed KEY: %s' % key
+				try:
+					print 'KEY: %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),datetime.now()) # inverse dictionary lookup in KEYIDS
+				except:
+					print 'KEY: %s %s' % (key,datetime.now())
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
