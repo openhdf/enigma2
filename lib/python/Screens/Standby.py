@@ -10,6 +10,8 @@ from Tools import Notifications
 from time import localtime, time
 import Screens.InfoBar
 from gettext import dgettext
+import PowerTimer
+import RecordTimer
 
 inStandby = None
 
@@ -32,6 +34,9 @@ class Standby2(Screen):
 		# set LCDminiTV 
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			setLCDModeMinitTV(config.lcd.modeminitv.value)
+		#remove wakup files and reset wakup state
+		PowerTimer.resetTimerWakeup()
+		RecordTimer.resetTimerWakeup()
 		#kill me
 		self.close(True)
 
@@ -66,7 +71,7 @@ class Standby2(Screen):
 
 		#mute adc
 		self.setMute()
-		
+	
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			# set LCDminiTV off
 			setLCDModeMinitTV("0")
@@ -85,6 +90,7 @@ class Standby2(Screen):
 			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
+
 		if self.session.pipshown:
 			del self.session.pip
 			self.session.pipshown = False
@@ -130,6 +136,7 @@ class Standby(Standby2):
 			self.onHide.append(self.close)
 		else:
 			Standby2.__init__(self, session)
+			self.skinName = "Standby"
 
 	def showMessageBox(self):
 		Screens.InfoBar.InfoBar.checkTimeshiftRunning(Screens.InfoBar.InfoBar.instance, self.showMessageBoxcallback)
@@ -203,6 +210,8 @@ class TryQuitMainloop(MessageBox):
 #				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
 		if inTimeshift:
 			reason = _("You seem to be in timeshift!") + '\n'
+			default_yes = True
+			timeout=30
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			default_yes = False
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
@@ -258,6 +267,7 @@ class TryQuitMainloop(MessageBox):
 			self.session.nav.stopService()
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
+			print "[Standby] quitMainloop #1"
 			quitMainloop(self.retval)
 		else:
 			MessageBox.close(self, True)

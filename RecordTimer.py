@@ -26,6 +26,13 @@ from ServiceReference import ServiceReference
 # description		 (description)
 # event data		 (ONLY for time adjustments etc.)
 
+wasRecTimerWakeup = False
+
+def resetTimerWakeup():
+	global wasRecTimerWakeup
+	if os.path.exists("/tmp/was_rectimer_wakeup"):
+		os.remove("/tmp/was_rectimer_wakeup")
+	wasRecTimerWakeup = False
 
 # parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
 # begin and end will be corrected
@@ -81,8 +88,6 @@ def findSafeRecordPath(dirname):
 # type 10 = advanced codec digital radio sound service
 
 service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
-wasRecTimerWakeup = False
-
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', isAutoTimer = False, always_zap = False, MountPath = None):
@@ -268,6 +273,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.log(10, "backoff: retry in %d seconds" % self.backoff)
 
 	def activate(self):
+		global wasRecTimerWakeup
+
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
 
@@ -340,12 +347,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return False
 
 		elif next_state == self.StateRunning:
-			global wasRecTimerWakeup
+
 			if os.path.exists("/tmp/was_rectimer_wakeup") and not wasRecTimerWakeup:
 				wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
-				os.remove("/tmp/was_rectimer_wakeup")
-
-			self.autostate = Screens.Standby.inStandby
+				#os.remove("/tmp/was_rectimer_wakeup")
 
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
@@ -417,7 +422,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		elif next_state == self.StateEnded or next_state == self.StateFailed:
 			old_end = self.end
 			if self.setAutoincreaseEnd():
-				self.log(12, "autoincrase recording %d minute(s)" % int((self.end - old_end)/60))
+				self.log(12, "autoincrease recording %d minute(s)" % int((self.end - old_end)/60))
 				self.state -= 1
 				return True
 			self.log(12, "stop recording")
@@ -427,6 +432,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.record_service = None
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
+			self.autostate = Screens.Standby.inStandby
 			if self.afterEvent == AFTEREVENT.STANDBY or (not wasRecTimerWakeup and self.autostate and self.afterEvent == AFTEREVENT.AUTO) or self.wasInStandby:
 				self.keypress() #this unbinds the keypress detection
 				if not Screens.Standby.inStandby: # not already in standby
@@ -437,6 +443,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					return True
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
+						print "[RecordTimer] quitMainloop #1"
 						quitMainloop(1)
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), default = True, timeout = 180)
@@ -445,6 +452,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					return True
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					if Screens.Standby.inStandby: # in standby
+						print "[RecordTimer] quitMainloop #2"
 						quitMainloop(1)
 
 			return True
