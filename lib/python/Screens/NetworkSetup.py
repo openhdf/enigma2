@@ -551,7 +551,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
 
 	def createSetup(self):
-		self.wolstartvalue = config.network.wol.value
+		if SystemInfo["WakeOnLAN"]:
+			self.wolstartvalue = config.network.wol.value
 		self.list = []
 		self.InterfaceEntry = getConfigListEntry(_("Use interface"), self.activateInterfaceEntry)
 
@@ -621,7 +622,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def keySave(self):
 		self.hideInputHelp()
-		if self["config"].isChanged() or (self.wolstartvalue != config.network.wol.value):
+		if self["config"].isChanged() or (SystemInfo["WakeOnLAN"] and self.wolstartvalue != config.network.wol.value):
 			self.session.openWithCallback(self.keySaveConfirm, MessageBox, (_("Are you sure you want to activate this network configuration?\n\n") + self.oktext ) )
 		else:
 			if self.finished_cb:
@@ -719,7 +720,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def keyCancelConfirm(self, result):
 		if not result:
 			return
-		config.network.wol.setValue(self.wolstartvalue)	
+		if SystemInfo["WakeOnLAN"]:
+			config.network.wol.setValue(self.wolstartvalue)	
 		if self.oldInterfaceState is False:
 			iNetwork.deactivateInterface(self.iface,self.keyCancelCB)
 		else:
@@ -727,7 +729,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def keyCancel(self):
 		self.hideInputHelp()
-		if self["config"].isChanged() or (self.wolstartvalue != config.network.wol.value):
+		if self["config"].isChanged() or (SystemInfo["WakeOnLAN"] and self.wolstartvalue != config.network.wol.value):
 			self.session.openWithCallback(self.keyCancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
 		else:
 			self.close('cancel')
