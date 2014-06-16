@@ -455,6 +455,11 @@ def InitUsageConfig():
 				(eEnv.resolve("${datadir}/enigma2/keymap.u80"), _("U80 keymap - keymap.u80"))])
 
 	config.network = ConfigSubsection()
+	if SystemInfo["WakeOnLAN"]:
+		def wakeOnLANChanged(configElement):
+			open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
+		config.network.wol = ConfigYesNo(default = False)
+		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.AFP_autostart = ConfigYesNo(default = False)
 	config.network.NFS_autostart = ConfigYesNo(default = False)
 	config.network.OpenVPN_autostart = ConfigYesNo(default = False)
