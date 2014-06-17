@@ -1,5 +1,5 @@
 from enigma import eDVBResourceManager, Misc_Options
-from Tools.Directories import fileExists, resolveFilename, SCOPE_SKIN
+from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
 from os import path
 from boxbranding import getBoxType
@@ -35,7 +35,7 @@ SystemInfo["FrontpanelDisplayGrayscale"] = fileExists("/dev/dbox/oled0")
 SystemInfo["OledDisplay"] = fileExists(resolveFilename(SCOPE_SKIN, 'display/skin_display_picon.xml')) or fileExists(resolveFilename(SCOPE_SKIN, 'vfd_skin/skin_display_no_picon.xml'))
 SystemInfo["TextDisplay"] = fileExists(resolveFilename(SCOPE_SKIN, 'display/skin_text_clock.xml'))
 SystemInfo["DeepstandbySupport"] = HardwareInfo().has_deepstandby()
-SystemInfo["WakeOnLAN"] = fileExists("/proc/stb/fp/wol") or fileExists("/proc/stb/power/wol")
+SystemInfo["WakeOnLAN"] = fileCheck("/proc/stb/fp/wol") or fileCheck("/proc/stb/power/wol")
 SystemInfo["HDMICEC"] = (fileExists("/dev/hdmi_cec") or fileExists("/dev/misc/hdmi_cec0")) and fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo")
 SystemInfo["SABSetup"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SABnzbd/plugin.pyo")
 SystemInfo["SeekStatePlay"] = False
