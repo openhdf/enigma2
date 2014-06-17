@@ -20,7 +20,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	if (ev->type != EV_KEY)
 		return;
 		
-	/*eDebug("%x %x %x", ev->value, ev->code, ev->type);*/
+	eDebug("%x %x %x", ev->value, ev->code, ev->type);
 
 	int km = iskeyboard ? input->getKeyboardMode() : eRCInput::kmNone;
 
@@ -83,7 +83,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 					ke.kb_index = ev->code;
 					::ioctl(consoleFd, KDGKBENT, &ke);
 					if (ke.kb_value)
-						input->keyPressed(eRCKey(this, ke.kb_value & 0xff, eRCKey::flagAscii)); /* emit */ 
+						input->keyPressed(eRCKey(this, ke.kb_value & 0xff, eRCKey::flagAscii)); /* emit */
 				}
 			}
 			return;
@@ -111,7 +111,16 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		ev->code = KEY_F6;
 		
 	}
-#endif		
+#endif
+
+#if KEY_F3_TO_KEY_LIST
+	if (ev->code == KEY_F3)
+	{
+		/* Xtrend New Remote rc has a KEY_F3 key, which sends KEY_LIST events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_LIST;
+		
+	}
+#endif
 
 #if KEY_TV_TO_KEY_MODE
 	if (ev->code == KEY_TV)
@@ -122,14 +131,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif	
 
-#if KEY_F3_TO_KEY_LIST
-	if (ev->code == KEY_F3)
-	{
-		/* Xtrend New Remote rc has a KEY_F3 key, which sends KEY_LIST events. Correct this, so we do not have to place hacks in the keymaps. */
-		ev->code = KEY_LIST;
-		
-	}
-#endif
 	
 #if KEY_VIDEO_TO_KEY_EPG
 	if (ev->code == KEY_VIDEO)
@@ -172,6 +173,24 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* AZBOX rc has no radio/tv/pvr key, we use KEY_HOME which sends KEY_OPEN events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_OPEN;
+		
+	}
+#endif
+
+#if KEY_HOME_TO_KEY_HOMEPAGE
+	if (ev->code == KEY_HOME)
+	{
+		/* DAGS map HOME Key to show Mediaportal */
+		ev->code = KEY_HOMEPAGE;
+		
+	}
+#endif
+
+#if KEY_MEDIA_TO_KEY_KEY_F2
+	if (ev->code == KEY_MEDIA)
+	{
+		/* DAGS map Media to F2 to show MediaCenter */
+		ev->code = KEY_F2;
 		
 	}
 #endif
@@ -263,6 +282,24 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* GB800 rc has a KEY_GUIDE key, which sends KEY_HELP events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_EPG;
+		
+	}
+#endif
+
+#if KEY_SCREEN_TO_KEY_MODE
+	if (ev->code == KEY_SCREEN)
+	{
+		/* GB800 rc has a KEY_ASPECT key, which sends KEY_SCREEN events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_MODE;
+		
+	}
+#endif
+
+#if KEY_PLAY_IS_KEY_PLAYPAUSE
+	if (ev->code == KEY_PLAY)
+	{
+		/* sogno rc has a KEY_PLAYPAUSE  key, which sends KEY_PLAY events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_PLAYPAUSE;
 		
 	}
 #endif
@@ -376,13 +413,13 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	switch (ev->value)
 	{
 		case 0:
-			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagBreak)); /*emit*/ 
+			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagBreak)); /*emit*/
 			break;
 		case 1:
-			input->keyPressed(eRCKey(this, ev->code, 0)); /*emit*/ 
+			input->keyPressed(eRCKey(this, ev->code, 0)); /*emit*/
 			break;
 		case 2:
-			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagRepeat)); /*emit*/ 
+			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagRepeat)); /*emit*/
 			break;
 	}
 }
@@ -449,7 +486,7 @@ public:
 		}
 		eDebug("Found %d input devices.", i);
 	}
-	
+
 	~eInputDeviceInit()
 	{
 		for (itemlist::iterator it = items.begin(); it != items.end(); ++it)
