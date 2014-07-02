@@ -21,9 +21,9 @@ fi
 
 # check multiquickbutton keymap
 FILE=/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/keymap.xml
-if test -s $FILE; then 
+if test -s $FILE; then
 	echo "$FILE looks good"
-	else 
+	else
 	rm -f /usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/keymap.xml
 	cp /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/mqb_keymap.xml $FILE
 	echo "$FILE restored from backup"
@@ -37,6 +37,15 @@ fi
 if [ -d /home/root ]; then
 	cd /home/root
 fi
+
+stbcheck=`cat /proc/stb/info/hwmodel| cut -c1-8`
+if [ $stbcheck = "optimuss" ]; then
+    string=`mount | grep 'sda1' | cut -c21-23`
+    if [ -e /media/$string/sat-soft/settings.sh ]; then
+        chmod 755 /media/$string/sat-soft/settings.sh
+        /media/$string/sat-soft/settings.sh
+    fi
+fi 
 
 # check if media/net directory exists
 if [ -d /media/net ]; then
