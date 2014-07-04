@@ -38,14 +38,16 @@ if [ -d /home/root ]; then
 	cd /home/root
 fi
 
-stbcheck=`cat /proc/stb/info/hwmodel| cut -c1-8`
-if [ $stbcheck = "optimuss" ]; then
-    string=`mount | grep 'sda1' | cut -c21-23`
-    if [ -e /media/$string/sat-soft/settings.sh ]; then
-        chmod 755 /media/$string/sat-soft/settings.sh
-        /media/$string/sat-soft/settings.sh
+if [ -e /proc/stb/info/hwmodel ]; then
+    stbcheck=`cat /proc/stb/info/hwmodel | cut -c1-8`
+    if [ $stbcheck == "optimuss" ]; then
+        string=`mount | grep 'sda1' | cut -d " " -f3`
+        if [ -e $string/sat-soft/settings.sh ]; then
+            chmod 755 $string/sat-soft/settings.sh
+            $string/sat-soft/settings.sh
+        fi
     fi
-fi 
+fi
 
 # check if media/net directory exists
 if [ -d /media/net ]; then
