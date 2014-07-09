@@ -36,7 +36,10 @@ SystemInfo["FrontpanelDisplayGrayscale"] = fileExists("/dev/dbox/oled0")
 SystemInfo["OledDisplay"] = fileExists(resolveFilename(SCOPE_SKIN, 'display/skin_display_picon.xml')) or fileExists(resolveFilename(SCOPE_SKIN, 'vfd_skin/skin_display_no_picon.xml'))
 SystemInfo["TextDisplay"] = fileExists(resolveFilename(SCOPE_SKIN, 'display/skin_text_clock.xml'))
 SystemInfo["DeepstandbySupport"] = HardwareInfo().has_deepstandby()
-SystemInfo["WakeOnLAN"] = fileCheck("/proc/stb/fp/wol") or fileCheck("/proc/stb/power/wol")
+if getBoxType() not in ('gbquadplus'):
+	SystemInfo["WakeOnLAN"] = fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol")
+else:
+	SystemInfo["WakeOnLAN"] = False
 SystemInfo["HDMICEC"] = (fileExists("/dev/hdmi_cec") or fileExists("/dev/misc/hdmi_cec0")) and fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/HdmiCEC/plugin.pyo")
 SystemInfo["SABSetup"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SABnzbd/plugin.pyo")
 SystemInfo["SeekStatePlay"] = False
