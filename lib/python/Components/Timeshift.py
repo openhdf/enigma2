@@ -144,6 +144,10 @@ class InfoBarTimeshift:
 		self.pts_cleanUp_timer.callback.append(self.ptsCleanTimeshiftFolder)
 		# self.pts_cleanUp_timer.start(1000, True)
 
+		# Init PTS OldFileCleanUp-Timer
+		self.pts_OldFileCleanUp_timer = eTimer()
+		self.pts_OldFileCleanUp_timer.callback.append(self.ptsOldFileCleanUp)
+
 		# Init PTS SeekBack-Timer
 		self.pts_SeekBack_timer = eTimer()
 		self.pts_SeekBack_timer.callback.append(self.ptsSeekBackTimer)
@@ -264,6 +268,8 @@ class InfoBarTimeshift:
 				self.SaveTimeshift("pts_livebuffer_%s" % self.pts_eventcount)
 
 			# Delete Timeshift Records on zap
+			self.pts_Oldeventcount = self.pts_eventcount
+			self.pts_OldFileCleanUp_timer.start(int(config.timeshift.startdelay.value)*2*1000, True)
 			self.pts_eventcount = 0
 			# print 'AAAAAAAAAAAAAAAAAAAAAA'
 			# self.pts_cleanUp_timer.start(1000, True)
@@ -424,30 +430,44 @@ class InfoBarTimeshift:
 				if self.save_current_timeshift:
 					# print 'TEST3'
 					message = _("You have chosen to save the current timeshift event, but the event has not yet finished\nWhat do you want to do ?")
-					choice = [(_("Save timeshift as movie and stop recording"), "savetimeshift"),
-							  (_("Save timeshift as movie and continue recording"), "savetimeshiftandrecord"),
-							  (_("Cancel save timeshift as movie"), "noSave"),
-							  (_("Nothing, just leave this menu"), "no")]
-					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice)
+                    #choice = [(_("Save timeshift as movie and stop recording"), "savetimeshift"),
+                    #          (_("Save timeshift as movie and continue recording"), "savetimeshiftandrecord"),
+                    #          (_("Cancel save timeshift as movie"), "noSave"),
+                    #          (_("Nothing, just leave this menu"), "no")]
+					choice = [(_("Save timeshift as movie and continue recording"), "savetimeshiftandrecord"),
+							(_("Save timeshift as movie and stop recording"), "savetimeshift"),
+							(_("Cancel save timeshift as movie"), "noSave"),
+							(_("Nothing, just leave this menu"), "no")]
+ 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice, timeout=30)
 				else:
 					# print 'TEST4'
 					message =  _("You seem to be in timeshift, Do you want to leave timeshift ?")
-					choice = [(_("Yes, but save timeshift as movie and stop recording"), "savetimeshift"),
-							  (_("Yes, but save timeshift as movie and continue recording"), "savetimeshiftandrecord"),
-							  (_("Yes, but don't save timeshift as movie"), "noSave"),
-							  (_("No"), "no")]
-					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice)
+                    #choice = [(_("Yes, but save timeshift as movie and stop recording"), "savetimeshift"),
+                    #          (_("Yes, but save timeshift as movie and continue recording"), "savetimeshiftandrecord"),
+                    #          (_("Yes, but don't save timeshift as movie"), "noSave"),
+                    #          (_("No"), "no")]
+					choice = [(_("Yes, but don't save timeshift as movie"), "noSave"),
+							(_("Yes, but save timeshift as movie and continue recording"), "savetimeshiftandrecord"),
+							(_("Yes, but save timeshift as movie and stop recording"), "savetimeshift"),
+							(_("No"), "no")]
+ 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice, timeout=30)
 			else:
 				# print 'TEST5'
 				if self.save_current_timeshift:
 					# print 'TEST6'
-					# so we silently do "savetimeshiftandrecord" when switching channel independent of config.timeshift.favoriteSaveAction
+					# the user has previously activated "Timeshift save recording" of current event - so must be necessarily saved of the timeshift!
 					InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
+					#InfoBarTimeshift.saveTimeshiftActions(self, config.timeshift.favoriteSaveAction.value, returnFunction)
 				else:
 					# print 'TEST7'
 					message =  _("You seem to be in timeshift, Do you want to leave timeshift ?")
 					choice = [(_("Yes"), config.timeshift.favoriteSaveAction.value), (_("No"), "no")]
-					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice)
+					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice, timeout=30)
+		elif self.save_current_timeshift:
+			# the user has chosen "no warning" when timeshift is stopped (config.usage.check_timeshift=False)
+			# but the user has previously activated "Timeshift save recording" of current event
+			# so we silently do "savetimeshiftandrecord" when switching channel independent of config.timeshift.favoriteSaveAction
+			InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
 		else:
 			returnFunction(True)
 
@@ -458,8 +478,10 @@ class InfoBarTimeshift:
 		if answer:
 			if answer == "savetimeshift" or answer == "savetimeshiftandrecord":
 				self.save_current_timeshift = True
-			elif answer == "noSave" or answer == "no":
+			elif answer == "noSave":
 				self.save_current_timeshift = False
+			elif answer == "no":
+				pass
 			InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
 
 	def eraseTimeshiftFile(self):
@@ -479,8 +501,6 @@ class InfoBarTimeshift:
 			self.activateAutorecordTimeshift()
 
 	def activateAutorecordTimeshift(self):
-		self.createTimeshiftFolder()
-		self.ptsCleanTimeshiftFolder()
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopwhilerecording.value and self.pts_record_running):
 			return
 
@@ -534,6 +554,8 @@ class InfoBarTimeshift:
 		Notifications.AddNotification(MessageBox, _("[TimeShift] Restarting Timeshift!"), MessageBox.TYPE_INFO, timeout=5)
 
 	def saveTimeshiftEventPopup(self):
+		if self.pts_OldFileCleanUp_timer.isActive():
+			self.ptsOldFileCleanUp()
 		filecount = 0
 		entrylist = [(_("Current Event:") + " %s" % self.pts_curevent_name, "savetimeshift")]
 
@@ -572,10 +594,11 @@ class InfoBarTimeshift:
 				self.ptsRecordCurrentEvent()
 			else:
 				self.SaveTimeshift()
-		elif action == "noSave" or action == "no":
+		elif action == "noSave":
 			config.timeshift.isRecording.value = False
 			self.save_current_timeshift = False
-
+		elif action == "no":
+			pass
 		# Get rid of old timeshift file before E2 truncates its filesize
 		if returnFunction is not None and action != "no":
 			self.eraseTimeshiftFile()
@@ -594,14 +617,14 @@ class InfoBarTimeshift:
 			# print 'TEST1'
 			for filename in os.listdir(config.usage.timeshift_path.value):
 				# print 'filename',filename
-				if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy"):
+				if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy") and not filename.endswith(".sc"):
 					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value,filename))
 					if statinfo.st_mtime > (time()-5.0):
 						savefilename=filename
 
 		# print 'savefilename',savefilename
 		if savefilename is None:
-			Notifications.AddNotification(MessageBox, _("No Timeshift found to save as recording!"), MessageBox.TYPE_ERROR)
+			Notifications.AddNotification(MessageBox, _("No Timeshift found to save as recording!"), MessageBox.TYPE_ERROR, timeout=30)
 		else:
 			timeshift_saved = True
 			timeshift_saveerror1 = ""
@@ -751,7 +774,7 @@ class InfoBarTimeshift:
 				config.timeshift.isRecording.value = False
 				self.save_timeshift_postaction = None
 				errormessage = str(timeshift_saveerror1) + "\n" + str(timeshift_saveerror2)
-				Notifications.AddNotification(MessageBox, _("Timeshift save failed!")+"\n\n%s" % errormessage, MessageBox.TYPE_ERROR)
+				Notifications.AddNotification(MessageBox, _("Timeshift save failed!")+"\n\n%s" % errormessage, MessageBox.TYPE_ERROR, timeout=30)
 		# print 'SAVE COMPLETED'
 
 	def ptsCleanTimeshiftFolder(self):
@@ -853,7 +876,7 @@ class InfoBarTimeshift:
 					metafile.write("%s\n%s\n%s\n%i\n" % (self.pts_curevent_servicerefname,self.pts_curevent_name.replace("\n", ""),self.pts_curevent_description.replace("\n", ""),int(self.pts_starttime)))
 					metafile.close()
 				except Exception, errormsg:
-					Notifications.AddNotification(MessageBox, _("Creating Hardlink to Timeshift file failed!")+"\n"+_("The Filesystem on your Timeshift-Device does not support hardlinks.\nMake sure it is formatted in EXT2 or EXT3!")+"\n\n%s" % errormsg, MessageBox.TYPE_ERROR)
+					Notifications.AddNotification(MessageBox, _("Creating Hardlink to Timeshift file failed!")+"\n"+_("The Filesystem on your Timeshift-Device does not support hardlinks.\nMake sure it is formatted in EXT2 or EXT3!")+"\n\n%s" % errormsg, MessageBox.TYPE_ERROR, timeout=30)
 
 				# Create EIT File
 				self.ptsCreateEITFile("%spts_livebuffer_%s" % (config.usage.timeshift_path.value,self.pts_eventcount))
@@ -945,7 +968,7 @@ class InfoBarTimeshift:
 
 		# Merging failed :(
 		if not ptsfilemerged and ptsgetnextfile:
-			Notifications.AddNotification(MessageBox,_("[Timeshift] Merging records failed!"), MessageBox.TYPE_ERROR)
+			Notifications.AddNotification(MessageBox,_("[Timeshift] Merging records failed!"), MessageBox.TYPE_ERROR, timeout=30)
 
 	def ptsCreateAPSCFiles(self, filename):
 		if fileExists(filename, 'r'):
@@ -1257,3 +1280,22 @@ class InfoBarTimeshift:
 			return False
 		else:
 			return True
+
+	def ptsOldFileCleanUp(self):
+		#workaround for non-deleted "pts_timeshift_#" and "pts_timeshift_#.sc" files after zap when timeshiftbuffer more than one events
+		count = self.pts_eventcount + 1
+		oldcount = self.pts_Oldeventcount + 1
+		for filename in os.listdir(config.usage.timeshift_path.value):
+			if not filename.startswith("timeshift") and not filename.endswith(".del") and not filename.endswith(".copy"):
+				for f in range(count,oldcount):
+					if os.path.exists("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value,f)):
+						self.BgFileEraser.erase("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value,f))
+					if os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value,f)):
+						self.BgFileEraser.erase("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value,f))
+					if os.path.exists("%spts_livebuffer_%s" % (config.usage.timeshift_path.value,f)):
+						self.BgFileEraser.erase("%spts_livebuffer_%s" % (config.usage.timeshift_path.value,f))
+					if os.path.exists("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value,f)):
+						self.BgFileEraser.erase("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value,f))
+		if self.pts_OldFileCleanUp_timer.isActive():
+			self.pts_OldFileCleanUp_timer.stop()
+
