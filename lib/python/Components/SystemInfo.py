@@ -1,8 +1,8 @@
+from os import path
 from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
-from os import path
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBuild
 
 SystemInfo = { }
 
@@ -14,6 +14,7 @@ def getNumVideoDecoders():
 	return idx
 
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
+SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
 SystemInfo["CanMeasureFrontendInputPower"] = eDVBResourceManager.getInstance().canMeasureFrontendInputPower()
 
 
@@ -42,6 +43,9 @@ SystemInfo["SeekStatePlay"] = False
 SystemInfo["GraphicLCD"] = getBoxType() == "vuultimo"
 SystemInfo["Blindscan"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.pyo")
 SystemInfo["Satfinder"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.pyo")
+SystemInfo["HasExternalPIP"] = getMachineBuild() not in ('et9x00', 'et6x00', 'et5x00') and fileCheck("/proc/stb/vmpeg/1/external")
+SystemInfo["hasPIPVisibleProc"] = fileCheck("/proc/stb/vmpeg/1/visible")
+SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_left")
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
 SystemInfo["Fan"] = fileExists("/proc/stb/fp/fan")
 SystemInfo["FanPWM"] = SystemInfo["Fan"] and fileExists("/proc/stb/fp/fan_pwm")
