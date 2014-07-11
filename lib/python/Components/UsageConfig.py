@@ -748,15 +748,21 @@ def InitUsageConfig():
 					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),
 					("multi", _("Show Multi EPG")),
+					("showfavourites", _("Show Favourites")),
 					("eventview", _("Show Eventview"))])
 		config.plisettings.PLIINFO_mode = ConfigSelection(default="eventview", choices = [
 					("eventview", _("Show Eventview")),
 					("epgpress", _("Show EPG")),
+					("showfavourites", _("Show Favourites")),
 					("single", _("Show Single EPG"))])
 		config.plisettings.PLIFAV_mode = ConfigSelection(default="eventview", choices = [
 					("eventview", _("Show Eventview")),
 					("epgpress", _("Show EPG")),
-					("single", _("Show Single EPG"))])
+					("showfavourites", _("Show Favourites")),
+					("single", _("Show Single EPG")),
+					("emc", _("Show Enhanced Movie Center")),
+					("mediaportal", _("Show Media Portal")),
+					("etportal", _("Show EtPortal"))])
 
 	config.plisettings.F1_mode = ConfigSelection(default="hdftoolbox", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
