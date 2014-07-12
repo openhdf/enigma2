@@ -505,11 +505,6 @@ void eListboxServiceContent::setSize(const eSize &size)
 		setVisualMode(m_visual_mode);
 }
 
-void eListboxServiceContent::setHideNumberMarker(bool doHide)
-{
-	m_hide_number_marker = doHide;
-}
-
 void eListboxServiceContent::setServiceTypeIconMode(int mode)
 {
 	m_servicetype_icon_mode = mode;
