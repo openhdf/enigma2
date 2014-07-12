@@ -33,9 +33,9 @@ feedurl_atv = 'http://images.mynonpublic.com/openatv/nightly'
 feedurl_om = 'http://image.openmips.com/2.0'
 feedurl_hdf = 'http://v4.hdfreaks.cc'
 feedurl_team = 'http://v4.hdfreaks.cc/team'
-imagePath = '/hdd/images'
-flashPath = '/hdd/images/flash'
-flashTmp = '/hdd/images/tmp'
+imagePath = '/media/hdd/images'
+flashPath = '/media/hdd/images/flash'
+flashTmp = '/media/hdd/images/tmp'
 ofgwritePath = '/usr/bin/ofgwrite'
 #############################################################################################################
 
