@@ -1,5 +1,6 @@
+<!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Xpeed Keymap 23.02.2014" -->
+	<!-- "HDF Xpeed Keymap 13.07.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -77,7 +78,14 @@
 	</map>
 
 	<map context="InfobarEPGActions">
-		<key id="KEY_RED" mapto="RedPressed" flags="b" />
+		<key id="KEY_RED" mapto="RedButtonLongPressed" flags="l" />
+		<key id="KEY_RED" mapto="RedButtonPressed" flags="b" />
+		<key id="KEY_GREEN" mapto="GreenButtonLongPressed" flags="l" />
+		<key id="KEY_GREEN" mapto="GreenButtonPressed" flags="b" />
+		<key id="KEY_YELLOW" mapto="YellowButtonLongPressed" flags="l" />
+		<key id="KEY_YELLOW" mapto="YellowButtonPressed" flags="b" />
+		<key id="KEY_BLUE" mapto="BlueButtonLongPressed" flags="l" />
+		<key id="KEY_BLUE" mapto="BlueButtonPressed" flags="b" />
 		<key id="KEY_I" mapto="IPressed" flags="b" />
 		<key id="KEY_INFO" mapto="InfoPressed" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
@@ -100,15 +108,11 @@
 	</map>
 
 	<map context="InfobarExtensions">
-		<key id="KEY_GREEN" mapto="openTimerList" flags="b" />
-		<key id="KEY_GREEN" mapto="openAutoTimerList" flags="l" />
-		<key id="KEY_YELLOW" mapto="openEPGSearch" flags="b" />
-		<key id="KEY_YELLOW" mapto="openIMDB" flags="l" />
-		<key id="KEY_BLUE" mapto="showPluginBrowser" flags="l" />
-		<key id="KEY_BLUE" mapto="extensions" flags="b" />
-		<key id="KEY_F1" mapto="RedPressed" flags="b" />
-		<key id="KEY_F1" mapto="showEventInfo" flags="l" />
-		<!-- key id="KEY_BOOKMARKS" mapto="showPluginBrowser" flags="mr" / -->
+		<key id="KEY_SUBTITLE" mapto="subtitleSelection" flags="l" />
+		<key id="KEY_SUBTITLE" mapto="subtitleSelection" flags="b" />
+		<!--key id="KEY_BOOKMARKS" mapto="showPluginBrowser" flags="mr" /-->
+		<key id="KEY_SLEEP" mapto="openTimerList" flags="b" />
+		<key id="KEY_SLEEP" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="b" />
@@ -246,17 +250,17 @@
 		<key id="KEY_AUDIO" mapto="audioSelection" flags="m" />
 	</map>
 
-	<!--map context="InfobarSubtitleSelectionActions">
+	<map context="InfobarSubtitleSelectionActions">
 		<key id="KEY_SUBTITLE" mapto="subtitleSelection" flags="m" />
-	</map-->
+	</map>
 
 	<map context="InfobarSubserviceSelectionActions">
-		<key id="KEY_GREEN" mapto="GreenPressed" flags="b" />
+		<!--key id="KEY_GREEN" mapto="GreenPressed" flags="b" /-->
 	</map>
 
 	<map context="InfobarRedButtonActions">
 		<device name="dreambox advanced remote control (native)">
-			<key id="KEY_RED" mapto="activateRedButton" flags="l" />
+			<!--key id="KEY_RED" mapto="activateRedButton" flags="l" /-->
 		</device>
 	</map>
 
