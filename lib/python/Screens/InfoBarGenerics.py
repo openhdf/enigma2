@@ -1516,7 +1516,14 @@ class InfoBarEPG:
 
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"RedPressed": (self.RedPressed, _("Show epg")),
+				"RedButtonPressed": (self.RedButtonPressed, _("show red button information...")),
+				"RedButtonLongPressed": (self.RedButtonLongPressed, _("show red button information...")),
+				"GreenButtonPressed": (self.GreenButtonPressed, _("show green button information...")),
+				"GreenButtonLongPressed": (self.GreenButtonLongPressed, _("show green button information...")),
+				"YellowButtonPressed": (self.YellowButtonPressed, _("show yellow button information...")),
+				"YellowButtonLongPressed": (self.YellowButtonLongPressed, _("show yellow button information...")),
+				"BlueButtonPressed": (self.BlueButtonPressed, _("show blue button information...")),
+				"BlueButtonLongPressed": (self.BlueButtonLongPressed, _("show blue button information...")),
 				"IPressed": (self.IPressed, _("show program information...")),
 				"InfoPressed": (self.InfoPressed, _("show program information...")),
 				"FavPressed": (self.FavPressed, _("show fav information...")),
@@ -1608,12 +1615,485 @@ class InfoBarEPG:
 		if answer is not None:
 			answer[1]()
 
-	def RedPressed(self):
+	def RedButtonPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			if config.usage.defaultEPGType.value != _("Graphical EPG") and config.usage.defaultEPGType.value != _("None"):
-					self.openGraphEPG()
-			else:
+			if config.plisettings.redbutton_mode.value == "hdftoolbox":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
+					self.showHDFTOOLBOX()
+				else:
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.redbutton_mode.value == "timerSelection":
+				self.showTimerList()
+			elif config.plisettings.redbutton_mode.value == "subserviceSelection":
+				self.subserviceSelection()
+			elif config.plisettings.redbutton_mode.value == "subtitleSelection":
+				self.subtitleSelection()
+			elif config.plisettings.redbutton_mode.value == "showfavourites":
+				self.serviceListType = "Norm"
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+			elif config.plisettings.redbutton_mode.value == "eventview":
+				self.openEventView()
+			elif config.plisettings.redbutton_mode.value == "epgpress":
+				self.showDefaultEPG()
+			elif config.plisettings.redbutton_mode.value == "single":
 				self.openSingleServiceEPG()
+			elif config.plisettings.redbutton_mode.value == "openInfoBarEPG":
+				self.openInfoBarEPG()
+			elif config.plisettings.redbutton_mode.value == "coolinfoguide" and COOLTVGUIDE:
+				self.showCoolInfoGuide()
+			elif config.plisettings.redbutton_mode.value == "coolsingleguide" and COOLTVGUIDE:
+				self.showCoolSingleGuide()
+			elif config.plisettings.redbutton_mode.value == "cooltvguide" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
+			elif config.plisettings.redbutton_mode.value == "extensions":
+				self.showExtensionSelection()
+			elif config.plisettings.redbutton_mode.value == "showPluginBrowser":
+				self.showPluginBrowser()
+			elif config.plisettings.redbutton_mode.value == "instantRecord":
+				self.instantRecord()
+			elif config.plisettings.redbutton_mode.value == "showEventInfoPlugins":
+				self.showEventInfoPlugins()
+			elif config.plisettings.redbutton_mode.value == "hbbtv":
+				self.activateRedButton()
+			elif config.plisettings.redbutton_mode.value == "vmodeSelection":
+				self.vmodeSelection()
+			elif config.plisettings.redbutton_mode.value == "etportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
+					self.showETPORTAL()
+			elif config.plisettings.redbutton_mode.value == "emc":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+					self.showEMC()
+				else:
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.redbutton_mode.value == "mediaportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
+					self.showMEDIAPORTAL()
+				else:
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				self.showDefaultEPG()
+
+	def GreenButtonPressed(self):
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.plisettings.greenbutton_mode.value == "hdftoolbox":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
+					self.showHDFTOOLBOX()
+				else:
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.greenbutton_mode.value == "timerSelection":
+				self.showTimerList()
+			elif config.plisettings.greenbutton_mode.value == "subserviceSelection":
+				self.subserviceSelection()
+			elif config.plisettings.greenbutton_mode.value == "subtitleSelection":
+				self.subtitleSelection()
+			elif config.plisettings.greenbutton_mode.value == "showfavourites":
+				self.serviceListType = "Norm"
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+			elif config.plisettings.greenbutton_mode.value == "eventview":
+				self.openEventView()
+			elif config.plisettings.greenbutton_mode.value == "epgpress":
+				self.showDefaultEPG()
+			elif config.plisettings.greenbutton_mode.value == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.greenbutton_mode.value == "openInfoBarEPG":
+				self.openInfoBarEPG()
+			elif config.plisettings.greenbutton_mode.value == "coolinfoguide" and COOLTVGUIDE:
+				self.showCoolInfoGuide()
+			elif config.plisettings.greenbutton_mode.value == "coolsingleguide" and COOLTVGUIDE:
+				self.showCoolSingleGuide()
+			elif config.plisettings.greenbutton_mode.value == "cooltvguide" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
+			elif config.plisettings.greenbutton_mode.value == "extensions":
+				self.showExtensionSelection()
+			elif config.plisettings.greenbutton_mode.value == "showPluginBrowser":
+				self.showPluginBrowser()
+			elif config.plisettings.greenbutton_mode.value == "instantRecord":
+				self.instantRecord()
+			elif config.plisettings.greenbutton_mode.value == "showEventInfoPlugins":
+				self.showEventInfoPlugins()
+			elif config.plisettings.greenbutton_mode.value == "hbbtv":
+				self.activateRedButton()
+			elif config.plisettings.greenbutton_mode.value == "vmodeSelection":
+				self.vmodeSelection()
+			elif config.plisettings.greenbutton_mode.value == "etportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
+					self.showETPORTAL()
+			elif config.plisettings.greenbutton_mode.value == "emc":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+					self.showEMC()
+				else:
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.greenbutton_mode.value == "mediaportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
+					self.showMEDIAPORTAL()
+				else:
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				self.showDefaultEPG()
+
+	def YellowButtonPressed(self):
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.plisettings.yellowbutton_mode.value == "hdftoolbox":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
+					self.showHDFTOOLBOX()
+				else:
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.yellowbutton_mode.value == "timerSelection":
+				self.showTimerList()
+			elif config.plisettings.yellowbutton_mode.value == "subserviceSelection":
+				self.subserviceSelection()
+			elif config.plisettings.yellowbutton_mode.value == "subtitleSelection":
+				self.subtitleSelection()
+			elif config.plisettings.yellowbutton_mode.value == "showfavourites":
+				self.serviceListType = "Norm"
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+			elif config.plisettings.yellowbutton_mode.value == "eventview":
+				self.openEventView()
+			elif config.plisettings.yellowbutton_mode.value == "epgpress":
+				self.showDefaultEPG()
+			elif config.plisettings.yellowbutton_mode.value == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.yellowbutton_mode.value == "openInfoBarEPG":
+				self.openInfoBarEPG()
+			elif config.plisettings.yellowbutton_mode.value == "coolinfoguide" and COOLTVGUIDE:
+				self.showCoolInfoGuide()
+			elif config.plisettings.yellowbutton_mode.value == "coolsingleguide" and COOLTVGUIDE:
+				self.showCoolSingleGuide()
+			elif config.plisettings.yellowbutton_mode.value == "cooltvguide" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
+			elif config.plisettings.yellowbutton_mode.value == "extensions":
+				self.showExtensionSelection()
+			elif config.plisettings.yellowbutton_mode.value == "showPluginBrowser":
+				self.showPluginBrowser()
+			elif config.plisettings.yellowbutton_mode.value == "instantRecord":
+				self.instantRecord()
+			elif config.plisettings.yellowbutton_mode.value == "showEventInfoPlugins":
+				self.showEventInfoPlugins()
+			elif config.plisettings.yellowbutton_mode.value == "hbbtv":
+				self.activateRedButton()
+			elif config.plisettings.yellowbutton_mode.value == "vmodeSelection":
+				self.vmodeSelection()
+			elif config.plisettings.yellowbutton_mode.value == "etportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
+					self.showETPORTAL()
+			elif config.plisettings.yellowbutton_mode.value == "emc":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+					self.showEMC()
+				else:
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.yellowbutton_mode.value == "mediaportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
+					self.showMEDIAPORTAL()
+				else:
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				self.showDefaultEPG()
+
+	def BlueButtonPressed(self):
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.plisettings.bluebutton_mode.value == "hdftoolbox":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
+					self.showHDFTOOLBOX()
+				else:
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.bluebutton_mode.value == "timerSelection":
+				self.showTimerList()
+			elif config.plisettings.bluebutton_mode.value == "subserviceSelection":
+				self.subserviceSelection()
+			elif config.plisettings.bluebutton_mode.value == "subtitleSelection":
+				self.subtitleSelection()
+			elif config.plisettings.bluebutton_mode.value == "showfavourites":
+				self.serviceListType = "Norm"
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+			elif config.plisettings.bluebutton_mode.value == "eventview":
+				self.openEventView()
+			elif config.plisettings.bluebutton_mode.value == "epgpress":
+				self.showDefaultEPG()
+			elif config.plisettings.bluebutton_mode.value == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.bluebutton_mode.value == "openInfoBarEPG":
+				self.openInfoBarEPG()
+			elif config.plisettings.bluebutton_mode.value == "coolinfoguide" and COOLTVGUIDE:
+				self.showCoolInfoGuide()
+			elif config.plisettings.bluebutton_mode.value == "coolsingleguide" and COOLTVGUIDE:
+				self.showCoolSingleGuide()
+			elif config.plisettings.bluebutton_mode.value == "cooltvguide" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
+			elif config.plisettings.bluebutton_mode.value == "extensions":
+				self.showExtensionSelection()
+			elif config.plisettings.bluebutton_mode.value == "showPluginBrowser":
+				self.showPluginBrowser()
+			elif config.plisettings.bluebutton_mode.value == "instantRecord":
+				self.instantRecord()
+			elif config.plisettings.bluebutton_mode.value == "showEventInfoPlugins":
+				self.showEventInfoPlugins()
+			elif config.plisettings.bluebutton_mode.value == "hbbtv":
+				self.activateRedButton()
+			elif config.plisettings.bluebutton_mode.value == "vmodeSelection":
+				self.vmodeSelection()
+			elif config.plisettings.bluebutton_mode.value == "etportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
+					self.showETPORTAL()
+			elif config.plisettings.bluebutton_mode.value == "emc":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+					self.showEMC()
+				else:
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.bluebutton_mode.value == "mediaportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
+					self.showMEDIAPORTAL()
+				else:
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				self.showDefaultEPG()
+
+	def RedButtonLongPressed(self):
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.plisettings.redbuttonlong_mode.value == "hdftoolbox":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
+					self.showHDFTOOLBOX()
+				else:
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.redbuttonlong_mode.value == "timerSelection":
+				self.showTimerList()
+			elif config.plisettings.redbuttonlong_mode.value == "subserviceSelection":
+				self.subserviceSelection()
+			elif config.plisettings.redbuttonlong_mode.value == "subtitleSelection":
+				self.subtitleSelection()
+			elif config.plisettings.redbuttonlong_mode.value == "showfavourites":
+				self.serviceListType = "Norm"
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+			elif config.plisettings.redbuttonlong_mode.value == "eventview":
+				self.openEventView()
+			elif config.plisettings.redbuttonlong_mode.value == "epgpress":
+				self.showDefaultEPG()
+			elif config.plisettings.redbuttonlong_mode.value == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.redbuttonlong_mode.value == "openInfoBarEPG":
+				self.openInfoBarEPG()
+			elif config.plisettings.redbuttonlong_mode.value == "coolinfoguide" and COOLTVGUIDE:
+				self.showCoolInfoGuide()
+			elif config.plisettings.redbuttonlong_mode.value == "coolsingleguide" and COOLTVGUIDE:
+				self.showCoolSingleGuide()
+			elif config.plisettings.redbuttonlong_mode.value == "cooltvguide" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
+			elif config.plisettings.redbuttonlong_mode.value == "extensions":
+				self.showExtensionSelection()
+			elif config.plisettings.redbuttonlong_mode.value == "showPluginBrowser":
+				self.showPluginBrowser()
+			elif config.plisettings.redbuttonlong_mode.value == "instantRecord":
+				self.instantRecord()
+			elif config.plisettings.redbuttonlong_mode.value == "showEventInfoPlugins":
+				self.showEventInfoPlugins()
+			elif config.plisettings.redbuttonlong_mode.value == "hbbtv":
+				self.activateRedButton()
+			elif config.plisettings.redbuttonlong_mode.value == "vmodeSelection":
+				self.vmodeSelection()
+			elif config.plisettings.redbuttonlong_mode.value == "etportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
+					self.showETPORTAL()
+			elif config.plisettings.redbuttonlong_mode.value == "emc":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+					self.showEMC()
+				else:
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.redbuttonlong_mode.value == "mediaportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
+					self.showMEDIAPORTAL()
+				else:
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				self.showDefaultEPG()
+
+	def GreenButtonLongPressed(self):
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.plisettings.greenbuttonlong_mode.value == "hdftoolbox":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
+					self.showHDFTOOLBOX()
+				else:
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.greenbuttonlong_mode.value == "timerSelection":
+				self.showTimerList()
+			elif config.plisettings.greenbuttonlong_mode.value == "subserviceSelection":
+				self.subserviceSelection()
+			elif config.plisettings.greenbuttonlong_mode.value == "subtitleSelection":
+				self.subtitleSelection()
+			elif config.plisettings.greenbuttonlong_mode.value == "showfavourites":
+				self.serviceListType = "Norm"
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+			elif config.plisettings.greenbuttonlong_mode.value == "eventview":
+				self.openEventView()
+			elif config.plisettings.greenbuttonlong_mode.value == "epgpress":
+				self.showDefaultEPG()
+			elif config.plisettings.greenbuttonlong_mode.value == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.greenbuttonlong_mode.value == "openInfoBarEPG":
+				self.openInfoBarEPG()
+			elif config.plisettings.greenbuttonlong_mode.value == "coolinfoguide" and COOLTVGUIDE:
+				self.showCoolInfoGuide()
+			elif config.plisettings.greenbuttonlong_mode.value == "coolsingleguide" and COOLTVGUIDE:
+				self.showCoolSingleGuide()
+			elif config.plisettings.greenbuttonlong_mode.value == "cooltvguide" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
+			elif config.plisettings.greenbuttonlong_mode.value == "extensions":
+				self.showExtensionSelection()
+			elif config.plisettings.greenbuttonlong_mode.value == "showPluginBrowser":
+				self.showPluginBrowser()
+			elif config.plisettings.greenbuttonlong_mode.value == "instantRecord":
+				self.instantRecord()
+			elif config.plisettings.greenbuttonlong_mode.value == "showEventInfoPlugins":
+				self.showEventInfoPlugins()
+			elif config.plisettings.greenbuttonlong_mode.value == "hbbtv":
+				self.activateRedButton()
+			elif config.plisettings.greenbuttonlong_mode.value == "vmodeSelection":
+				self.vmodeSelection()
+			elif config.plisettings.greenbuttonlong_mode.value == "etportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
+					self.showETPORTAL()
+			elif config.plisettings.greenbuttonlong_mode.value == "emc":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+					self.showEMC()
+				else:
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.greenbuttonlong_mode.value == "mediaportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
+					self.showMEDIAPORTAL()
+				else:
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				self.showDefaultEPG()
+
+	def YellowButtonLongPressed(self):
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.plisettings.yellowbuttonlong_mode.value == "hdftoolbox":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
+					self.showHDFTOOLBOX()
+				else:
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.yellowbuttonlong_mode.value == "timerSelection":
+				self.showTimerList()
+			elif config.plisettings.yellowbuttonlong_mode.value == "subserviceSelection":
+				self.subserviceSelection()
+			elif config.plisettings.yellowbuttonlong_mode.value == "subtitleSelection":
+				self.subtitleSelection()
+			elif config.plisettings.yellowbuttonlong_mode.value == "showfavourites":
+				self.serviceListType = "Norm"
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+			elif config.plisettings.yellowbuttonlong_mode.value == "eventview":
+				self.openEventView()
+			elif config.plisettings.yellowbuttonlong_mode.value == "epgpress":
+				self.showDefaultEPG()
+			elif config.plisettings.yellowbuttonlong_mode.value == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.yellowbuttonlong_mode.value == "openInfoBarEPG":
+				self.openInfoBarEPG()
+			elif config.plisettings.yellowbuttonlong_mode.value == "coolinfoguide" and COOLTVGUIDE:
+				self.showCoolInfoGuide()
+			elif config.plisettings.yellowbuttonlong_mode.value == "coolsingleguide" and COOLTVGUIDE:
+				self.showCoolSingleGuide()
+			elif config.plisettings.yellowbuttonlong_mode.value == "cooltvguide" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
+			elif config.plisettings.yellowbuttonlong_mode.value == "extensions":
+				self.showExtensionSelection()
+			elif config.plisettings.yellowbuttonlong_mode.value == "showPluginBrowser":
+				self.showPluginBrowser()
+			elif config.plisettings.yellowbuttonlong_mode.value == "instantRecord":
+				self.instantRecord()
+			elif config.plisettings.yellowbuttonlong_mode.value == "showEventInfoPlugins":
+				self.showEventInfoPlugins()
+			elif config.plisettings.yellowbuttonlong_mode.value == "hbbtv":
+				self.activateRedButton()
+			elif config.plisettings.yellowbuttonlong_mode.value == "vmodeSelection":
+				self.vmodeSelection()
+			elif config.plisettings.yellowbuttonlong_mode.value == "etportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
+					self.showETPORTAL()
+			elif config.plisettings.yellowbuttonlong_mode.value == "emc":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+					self.showEMC()
+				else:
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.yellowbuttonlong_mode.value == "mediaportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
+					self.showMEDIAPORTAL()
+				else:
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				self.showDefaultEPG()
+
+	def BlueButtonLongPressed(self):
+		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
+			if config.plisettings.bluebuttonlong_mode.value == "hdftoolbox":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
+					self.showHDFTOOLBOX()
+				else:
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.bluebuttonlong_mode.value == "timerSelection":
+				self.showTimerList()
+			elif config.plisettings.bluebuttonlong_mode.value == "subserviceSelection":
+				self.subserviceSelection()
+			elif config.plisettings.bluebuttonlong_mode.value == "subtitleSelection":
+				self.subtitleSelection()
+			elif config.plisettings.bluebuttonlong_mode.value == "showfavourites":
+				self.serviceListType = "Norm"
+				self.servicelist.showFavourites()
+				self.session.execDialog(self.servicelist)
+			elif config.plisettings.bluebuttonlong_mode.value == "eventview":
+				self.openEventView()
+			elif config.plisettings.bluebuttonlong_mode.value == "epgpress":
+				self.showDefaultEPG()
+			elif config.plisettings.bluebuttonlong_mode.value == "single":
+				self.openSingleServiceEPG()
+			elif config.plisettings.bluebuttonlong_mode.value == "openInfoBarEPG":
+				self.openInfoBarEPG()
+			elif config.plisettings.bluebuttonlong_mode.value == "coolinfoguide" and COOLTVGUIDE:
+				self.showCoolInfoGuide()
+			elif config.plisettings.bluebuttonlong_mode.value == "coolsingleguide" and COOLTVGUIDE:
+				self.showCoolSingleGuide()
+			elif config.plisettings.bluebuttonlong_mode.value == "cooltvguide" and COOLTVGUIDE:
+				if self.isInfo:
+					self.showCoolTVGuide()
+			elif config.plisettings.bluebuttonlong_mode.value == "extensions":
+				self.showExtensionSelection()
+			elif config.plisettings.bluebuttonlong_mode.value == "showPluginBrowser":
+				self.showPluginBrowser()
+			elif config.plisettings.bluebuttonlong_mode.value == "instantRecord":
+				self.instantRecord()
+			elif config.plisettings.bluebuttonlong_mode.value == "showEventInfoPlugins":
+				self.showEventInfoPlugins()
+			elif config.plisettings.bluebuttonlong_mode.value == "hbbtv":
+				self.activateRedButton()
+			elif config.plisettings.bluebuttonlong_mode.value == "vmodeSelection":
+				self.vmodeSelection()
+			elif config.plisettings.bluebuttonlong_mode.value == "etportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
+					self.showETPORTAL()
+			elif config.plisettings.bluebuttonlong_mode.value == "emc":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+					self.showEMC()
+				else:
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.bluebuttonlong_mode.value == "mediaportal":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
+					self.showMEDIAPORTAL()
+				else:
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				self.showDefaultEPG()
 
 	def InfoPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
