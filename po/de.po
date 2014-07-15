@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-07-13 09:08+0100\n"
+"PO-Revision-Date: 2014-07-15 17:23+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1140,6 +1140,16 @@ msgstr "Tuner-Priorität bei alternativen Sendern"
 
 msgid "Always ask"
 msgstr "Immer nachfragen"
+
+msgid "Show columns"
+msgstr "Zeige Spalten"
+
+msgid "Divide"
+msgstr "Aufgeteilt"
+
+#, python-format
+msgid "%d pixels wide"
+msgstr "%d Pixel breit"
 
 msgid "Always show bouquets"
 msgstr "Zeige Favoritenliste immer an"
