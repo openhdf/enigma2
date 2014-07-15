@@ -6,7 +6,7 @@
 
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include <lib/driver/rclirc.h>
+#include <lib/driver/rcinput_lirc.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/condVar.h>
