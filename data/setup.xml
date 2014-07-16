@@ -258,10 +258,10 @@
 		<item level="0" text="Channel +/- button mode" description="Select what you want the Channel +/- button to activate:">config.usage.channelbutton_mode</item>
 		<item level="0" text="Up/Down button mode" description="Select what you want the Up/Down button to activate:">config.usage.updownbutton_mode</item>
 		<item level="0" text="Left/Right button mode" description="Select what you want the Left/Right button to activate:">config.usage.leftrightbutton_mode</item>
-		<item level="0" text="F1 button mode" requires="FunctionButtons" description="Select what you want the F1 button to activate:">config.plisettings.F1_mode</item>
-		<item level="0" text="F2 button mode" requires="FunctionButtons" description="Select what you want the F2 button to activate:">config.plisettings.F2_mode</item>
-		<item level="0" text="F3 button mode" requires="FunctionButtons" description="Select what you want the F3 button to activate:">config.plisettings.F3_mode</item>
-		<item level="0" text="F4 button mode" requires="FunctionButtons" description="Select what you want the F4 button to activate:">config.plisettings.F4_mode</item>
+		<item level="0" text="F1 button mode" requires="3FunctionButtons" description="Select what you want the F1 button to activate:">config.plisettings.F1_mode</item>
+		<item level="0" text="F2 button mode" requires="3FunctionButtons" description="Select what you want the F2 button to activate:">config.plisettings.F2_mode</item>
+		<item level="0" text="F3 button mode" requires="3FunctionButtons" description="Select what you want the F3 button to activate:">config.plisettings.F3_mode</item>
+		<item level="0" text="F4 button mode" requires="4FunctionButtons" description="Select what you want the F4 button to activate:">config.plisettings.F4_mode</item>
 		<item level="0" text="Red button mode" description="Select what you want the red button to activate:">config.plisettings.redbutton_mode</item>
 		<item level="0" text="Red button long mode" description="Select what you want the long red button to activate:">config.plisettings.redbuttonlong_mode</item>
 		<item level="0" text="Green button mode" description="Select what you want the green button to activate:">config.plisettings.greenbutton_mode</item>
