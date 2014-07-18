@@ -14,6 +14,12 @@ if [ -x @bindir@/showiframe ]; then
 	fi
 fi
 
+# workaround for corrupt ssl files
+if [ ! "$(grep config.misc.firstrun /etc/enigma2/settings)" == "config.misc.firstrun=false" ]; then
+	rm -rf /etc/enigma2/cert.pem &
+	rm -rf /etc/enigma2/key.pem &
+fi
+
 # update NTP time if NTP Time Enabled
 if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.SyncTimeUsing=1" ]; then
 	/usr/bin/ntpdate -s -u pool.ntp.org &
@@ -32,6 +38,18 @@ fi
 # hook to execute scripts always before enigma2 start
 if [ -x @bindir@/enigma2_pre_start.sh ]; then
 	@bindir@/enigma2_pre_start.sh
+fi
+
+if [ -f /usr/lib/libssl.so.0.9.8 ]; then
+	echo "libssl symlink found"
+else
+	ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
+fi
+	
+if [ -f /lib/libcrypto.so.0.9.8 ]; then
+	echo "libcrypto symlink found"
+else
+	ln -s /lib/libcrypto.so.1.0.0 /lib/libcrypto.so.0.9.8
 fi
 
 if [ -d /home/root ]; then
@@ -68,6 +86,20 @@ if [ -e /opt/lib/libmediaclient.so ]; then
 	LIBS="/opt/lib/libmediaclient.so /usr/lib/libopen.so.0.0.0"
 else
 	LIBS="/usr/lib/libopen.so.0.0.0"
+fi
+
+#check for specific pagecache helper lib
+if [ -e /usr/lib/libpagecache.so ]; then
+	LIBS="$LIBS /usr/lib/libpagecache.so"
+fi
+
+#check for receiver specific passthrough helper lib
+if [ -e @libdir@/libpassthrough.so ]; then
+	LIBS="$LIBS @libdir@/libpassthrough.so"
+fi
+
+if [ ! -e /etc/enigma2/settings ]; then
+	touch /etc/enigma2/settings
 fi
 
 sync
@@ -120,11 +152,21 @@ case $ret in
 		;;
 	43)
 		init 1
+		;;		
+	44)
+		# little hack but it will be fixed soon in drivers
+		if [ "$(cat /proc/stb/info/boxtype)" == 'ini-9000de' ]; then
+			/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /proc/vfd && sleep 7 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
+		elif [ "$(cat /proc/stb/info/boxtype)" == 'ini-9000ru' ]; then
+			/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /proc/vfd && sleep 7 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
+		else
+			/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /dev/dbox/oled0 && sleep 7 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
+		fi
 		;;
 	45)
 		echo "    " > /dev/lcd0
 		/usr/bin/gigablue_wol
-		;;
+		;;		
 	*)
 		rm -f /tmp/.listen.camd.socket.ignore
 		;;
