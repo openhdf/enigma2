@@ -785,7 +785,7 @@ def InitUsageConfig():
 				("vmodeSelection", _("Toggle aspect ratio")),
 				("etportal", _("Show EtPortal"))])
 
-	config.plisettings.F2_mode = ConfigSelection(default="hdftoolbox", choices = [
+	config.plisettings.F2_mode = ConfigSelection(default="mediaportal", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
 				("showsimplelist", _("Show Simple Movie List")),
 				("eventview", _("Show Eventview")),
@@ -800,7 +800,7 @@ def InitUsageConfig():
 				("vmodeSelection", _("Toggle aspect ratio")),
 				("etportal", _("Show EtPortal"))])
 
-	config.plisettings.F3_mode = ConfigSelection(default="hdftoolbox", choices = [
+	config.plisettings.F3_mode = ConfigSelection(default="etportal", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
 				("showsimplelist", _("Show Simple Movie List")),
 				("eventview", _("Show Eventview")),
@@ -815,7 +815,7 @@ def InitUsageConfig():
 				("vmodeSelection", _("Toggle aspect ratio")),
 				("etportal", _("Show EtPortal"))])
 
-	config.plisettings.F4_mode = ConfigSelection(default="hdftoolbox", choices = [
+	config.plisettings.F4_mode = ConfigSelection(default="vmodeSelection", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
 				("showsimplelist", _("Show Simple Movie List")),
 				("eventview", _("Show Eventview")),
