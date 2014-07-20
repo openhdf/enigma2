@@ -412,6 +412,7 @@ static ssize_t safe_read(int filedes, void *buffer, size_t size)
 	for (;;) {
 printf("AAread1\n");
 		ssize_t p = read(filedes, buffer, size);
+		printf(p);
 printf("AAread2\n");
 		if (p < 0 && errno == EINTR) {
 			continue;
