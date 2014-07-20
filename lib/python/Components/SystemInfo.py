@@ -52,4 +52,5 @@ SystemInfo["HasExternalPIP"] = getMachineBuild() not in ('et9x00', 'et6x00', 'et
 SystemInfo["hasPIPVisibleProc"] = fileCheck("/proc/stb/vmpeg/1/visible")
 SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_left")
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
+SystemInfo["ETWOL"] = fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol")
 SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display")
