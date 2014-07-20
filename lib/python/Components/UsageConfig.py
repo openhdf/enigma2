@@ -433,7 +433,7 @@ def InitUsageConfig():
 		config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
-	if getMachineName().lower().startswith('xp') or getMachineName().lower().startswith('lx'):
+	if getMachineName().lower().startswith('xp') or getMachineName().lower().startswith('lx') or getBoxType().startswith('atemio'):
 		if fileExists(eEnv.resolve("${datadir}/enigma2/keymap.usr")):
 			config.usage.keymap = ConfigSelection(default = eEnv.resolve("${datadir}/enigma2/keymap.xpe"), choices = [
 				(eEnv.resolve("${datadir}/enigma2/keymap.xml"), _("Default keymap - keymap.xml")),
