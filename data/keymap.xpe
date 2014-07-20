@@ -91,12 +91,12 @@
 		<key id="KEY_I" mapto="IPressed" flags="b" />
 		<key id="KEY_INFO" mapto="InfoPressed" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
-		<key id="KEY_HOME" mapto="InfoPressed" flags="b" />
-		<key id="KEY_HOME" mapto="showEventInfoPlugin" flags="l" />
+		<key id="KEY_END" mapto="InfoPressed" flags="b" />
+		<key id="KEY_END" mapto="showEventInfoPlugin" flags="l" />
 		<key id="KEY_FAVORITES" mapto="FavPressed" flags="b" />
 		<key id="KEY_FAVORITES" mapto="FavPressed" flags="l" />
-		<key id="KEY_END" mapto="FavPressed" flags="b" />
-		<key id="KEY_END" mapto="FavPressed" flags="l" />
+		<key id="KEY_HOME" mapto="FavPressed" flags="b" />
+		<key id="KEY_HOME" mapto="FavPressed" flags="l" />
 		<key id="KEY_F1" mapto="F1Pressed" flags="b" />
 		<key id="KEY_F2" mapto="F2Pressed" flags="b" />
 		<key id="KEY_F3" mapto="F3Pressed" flags="b" />
