@@ -450,7 +450,7 @@ eLircInputDriver::eLircInputDriver() : eRCDriver(eRCInput::getInstance()), m_pum
 	CONNECT(m_pump.recv_msg, eLircInputDriver::pumpEvent);
 
 	addr.sun_family = AF_UNIX;
-	strcpy(addr.sun_path, "/dev/lircd");
+	strcpy(addr.sun_path, "/var/run/lirc/lircd");
 	if (Connect()) {
 		run();
 		return;
