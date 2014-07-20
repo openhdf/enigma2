@@ -305,8 +305,8 @@ class doFlashImage(Screen):
 				message += "'"
 			self.session.open(Console, text,[message, cmd])
 
- 	def prepair_flashtmp(self, tmpPath):
- 		if os.path.exists(flashTmp):
+	def prepair_flashtmp(self, tmpPath):
+		if os.path.exists(flashTmp):
 			flashTmpold = flashTmp + 'old'
 			os.system('mv %s %s' %(flashTmp, flashTmpold))
 			os.system('rm -rf %s' %flashTmpold)
@@ -314,7 +314,7 @@ class doFlashImage(Screen):
 			os.mkdir(flashTmp)
 		kernel = True
 		rootfs = True
-
+		
 		for path, subdirs, files in os.walk(tmpPath):
 			for name in files:
 				if name.find('kernel') > -1 and name.endswith('.bin') and kernel:
@@ -325,6 +325,16 @@ class doFlashImage(Screen):
 				elif name.find('root') > -1 and (name.endswith('.bin') or name.endswith('.jffs2')) and rootfs:
 					binfile = os.path.join(path, name)
 					dest = flashTmp + '/rootfs.bin'
+					shutil.copyfile(binfile, dest)
+					rootfs = False
+				elif name.find('uImage') > -1 and kernel:
+					binfile = os.path.join(path, name)
+					dest = flashTmp + '/uImage'
+					shutil.copyfile(binfile, dest)
+					kernel = False
+				elif name.find('e2jffs2') > -1 and name.endswith('.img') and rootfs:
+					binfile = os.path.join(path, name)
+					dest = flashTmp + '/e2jffs2.img'
 					shutil.copyfile(binfile, dest)
 					rootfs = False
 
@@ -344,7 +354,7 @@ class doFlashImage(Screen):
 			os.mkdir(flashTmp)
 			if binorzip == 0:
 				for files in os.listdir(self.imagePath):
-					if files.endswith(".bin") or files.endswith('.jffs2'):
+					if files.endswith(".bin") or files.endswith('.jffs2') or files.endswith('.img'):
 						self.prepair_flashtmp(strPath)
 						break
 				self.Start_Flashing()
@@ -352,7 +362,7 @@ class doFlashImage(Screen):
 				self.unzip_image(strPath + '/' + filename, flashPath)
 			else:
 				self.layoutFinished()
-
+	
 		else:
 			self.imagePath = imagePath
 
