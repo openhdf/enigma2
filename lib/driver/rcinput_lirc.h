@@ -35,7 +35,7 @@ public:
 class eLircInputDriver : public eRCDriver, public eThread
 {
 private:
-	enum { LIRC_KEY_BUF = 30, LIRC_BUFFER_SIZE = 128 };
+	enum { LIRC_KEY_BUF = 128, LIRC_BUFFER_SIZE = 128 };
 	static eLircInputDriver *instance;
 	eFixedMessagePump<lircEvent> m_pump;
 	void pumpEvent(const lircEvent &keyEvent);
