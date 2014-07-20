@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-07-15 20:45+0100\n"
+"PO-Revision-Date: 2014-07-20 07:30+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -9243,6 +9243,9 @@ msgstr "TimeShift auf Festplatte gesichert!"
 
 msgid "Timeshift settings"
 msgstr "TimeShift Einstellungen"
+
+msgid "Timeshift buffer limit [in hours]"
+msgstr "Timeshift-speichern (in Stunden)"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "TimeShift wird am Ende der Sendung gesichert."
