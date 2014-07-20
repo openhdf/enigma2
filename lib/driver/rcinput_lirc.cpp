@@ -412,7 +412,6 @@ static ssize_t safe_read(int filedes, void *buffer, size_t size)
 	for (;;) {
 printf("AAread1\n");
 		ssize_t p = read(filedes, buffer, size);
-		printf(p);
 printf("AAread2\n");
 		if (p < 0 && errno == EINTR) {
 			continue;
@@ -507,6 +506,7 @@ void eLircInputDriver::thread()
 		if (ready && ret > 21) {
 			int count;
 			char KeyName[LIRC_KEY_BUF];
+			printf(buf);
 			if (sscanf(buf, "%*x %x %29s", &count, KeyName) != 2) { // '29' in '%29s' is LIRC_KEY_BUF-1!
 				eDebug("ERROR: unparseable lirc command: %s", buf);
 				continue;
