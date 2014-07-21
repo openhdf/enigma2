@@ -13,7 +13,8 @@
 #include <lib/driver/input_fake.h>
 
 int hexToInt(char s[]) {
-    int hexdigit, i, inhex, n;   
+    int hexdigit, i, n;
+    bool inhex = 0;
     i=0;
     if(s[i] == '0') {
         ++i;
@@ -23,8 +24,7 @@ int hexToInt(char s[]) {
     }
      
     n = 0;
-    inhex = YES;
-    for(; inhex == YES; ++i) {
+    for(; inhex == 0; ++i) {
         if(s[i] >= '0' && s[i] <= '9') {           
             hexdigit = s[i] - '0';
         } else if(s[i] >= 'a' && s[i] <= 'f') {           
@@ -32,10 +32,10 @@ int hexToInt(char s[]) {
         } else if(s[i] >= 'A' && s[i] <= 'F') {
             hexdigit = s[i] - 'A' + 10;
         } else {
-            inhex = NO;
+            inhex = 1;
         }
          
-        if(inhex == YES) {
+        if(inhex == 0) {
             n = 16 * n + hexdigit;
         }
     }
