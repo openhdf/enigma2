@@ -392,6 +392,11 @@ int eLircInputDevice::translateKey(const char* name)
 #define REPEATTIMEOUT 500 // ms
 #define RECONNECTDELAY 3000 // ms
 
+unsigned int hexToInt(String hex) {
+  int intValue = (int)strtol(&(hex[0]), NULL, 16);
+  return intValue;
+}
+
 static bool fileReady(int FileDes, int TimeoutMs)
 {
 	fd_set set;
@@ -518,7 +523,7 @@ void eLircInputDriver::thread()
 				eDebug("Keyname : %s \n", KeyName);
 				eDebug("CountString : %s \n", countstring);
 				eDebug("Remotename : %s \n", RemoteName);
-				count = int.Parse(countstring, System.Globalization.NumberStyles.HexNumber);
+				count = hexToInt(countstring);
 				eDebug("Count : %d \n", &count);
 			}
 			
