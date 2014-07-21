@@ -548,7 +548,7 @@ void eLircInputDriver::thread()
 				eDebug("Rawcode : %s", rawcode);
 				eDebug("Keyname : %s", KeyName);
 				eDebug("Remotename : %s", RemoteName);
-				eDebug("CountString : %s", countstring)
+				eDebug("CountString : %s", countstring);
 				count = hexToInt(countstring);
 				eDebug("Count : %d \n", &count);
 			}
