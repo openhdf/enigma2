@@ -12,35 +12,55 @@
 #include <lib/base/condVar.h>
 #include <lib/driver/input_fake.h>
 
-int hexToInt(char s[]) {
-    int hexdigit, i, n;
-    bool inhex = 0;
-    i=0;
-    if(s[i] == '0') {
-        ++i;
-        if(s[i] == 'x' || s[i] == 'X'){           
-            ++i;
-        }
+// Converts a hexadecimal string to integer
+
+int xtoi(const char* xs, unsigned int* result)
+{
+ size_t szlen = strlen(xs);
+ int i, xv, fact;
+
+ if (szlen > 0)
+ {
+  // Converting more than 32bit hexadecimal value?
+  if (szlen>8) return 2; // exit
+
+  // Begin conversion here
+  *result = 0;
+  fact = 1;
+
+  // Run until no more character to convert
+  for(i=szlen-1; i>=0 ;i--)
+  {
+   if (isxdigit(*(xs+i)))
+   {
+    if (*(xs+i)>=97)
+    {
+     xv = ( *(xs+i) - 97) + 10;
     }
-     
-    n = 0;
-    for(; inhex == 0; ++i) {
-        if(s[i] >= '0' && s[i] <= '9') {           
-            hexdigit = s[i] - '0';
-        } else if(s[i] >= 'a' && s[i] <= 'f') {           
-            hexdigit = s[i] - 'a' + 10;
-        } else if(s[i] >= 'A' && s[i] <= 'F') {
-            hexdigit = s[i] - 'A' + 10;
-        } else {
-            inhex = 1;
-        }
-         
-        if(inhex == 0) {
-            n = 16 * n + hexdigit;
-        }
+    else if ( *(xs+i) >= 65)
+    {
+     xv = (*(xs+i) - 65) + 10;
     }
-     
-    return n;
+    else
+    {
+     xv = *(xs+i) - 48;
+    }
+    *result += (xv * fact);
+    fact *= 16;
+   }
+   else
+   {
+    // Conversion was abnormally terminated
+    // by non hexadecimal digit, hence
+    // returning only the converted with
+    // an error value 4 (illegal hex character)
+    return 4;
+   }
+  }
+ }
+
+ // Nothing to convert
+ return 1;
 }
 
 static tKey keyTable[] = { // "Up" and "Down" must be the first two keys!
@@ -549,7 +569,7 @@ void eLircInputDriver::thread()
 				eDebug("Keyname : %s", KeyName);
 				eDebug("Remotename : %s", RemoteName);
 				eDebug("CountString : %s", countstring);
-				count = hexToInt(countstring);
+				xtoi(countstring, &count);
 				eDebug("Count : %d \n", &count);
 			}
 			
