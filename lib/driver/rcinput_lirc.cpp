@@ -589,8 +589,8 @@ void eLircInputDriver::thread()
 				if (FirstTime.Elapsed() < REPEATDELAY)
 					continue; // skip keys coming in too fast (for count != 0 as well)
 				repeat = true;
-				eDebug("Repeatdelay : %ll", REPEATDELAY);
-				timeout = REPEATDELAY;
+				eDebug("Repeatdelay : %ul", REPEATDELAY);
+				//timeout = REPEATDELAY;
 			}
 			LastTime.Set();
 			event.name = KeyName;
