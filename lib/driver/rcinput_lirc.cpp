@@ -512,7 +512,10 @@ void eLircInputDriver::thread()
 				eDebug("ERROR: unparseable lirc command: %s", buf);
 				continue;
 			}
-			printf(KeyName, RemoteName);
+			eDebug("Keyname :", KeyName);
+			eDebug("Count :", &count);
+			eDebug("Remotename :", RemoteName);
+			
 			if (count == 0) {
 				if (strcmp(KeyName, LastKeyName) == 0 && FirstTime.Elapsed() < REPEATDELAY)
 					continue; // skip keys coming in too fast
