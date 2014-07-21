@@ -556,7 +556,7 @@ void eLircInputDriver::thread()
 		}
 
 		if (ready && ret > 21) {
-			int count;
+			unsigned int count;
 			char countstring[2] = "";
 			char rawcode[17] = "";
 			char KeyName[54] = "";
