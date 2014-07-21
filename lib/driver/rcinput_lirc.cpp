@@ -555,7 +555,7 @@ void eLircInputDriver::thread()
 		}
 
 		if (ready && ret > 21) {
-			int count = 0;
+			unsigned int count;
 			char countstring[2] = "";
 			char rawcode[17] = "";
 			char KeyName[54] = "";
@@ -570,7 +570,7 @@ void eLircInputDriver::thread()
 				eDebug("Remotename : %s", RemoteName);
 				eDebug("CountString : %s", countstring);
 				xtoi(countstring, &count);
-				eDebug("Count : %d \n", &count);
+				eDebug("Count : %d \n", count);
 			}
 			
 			if (count == 0) {
