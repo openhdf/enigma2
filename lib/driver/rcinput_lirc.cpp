@@ -513,9 +513,10 @@ void eLircInputDriver::thread()
 				continue;
 			}
 			else {
-			eDebug("Keyname : %s", KeyName[54]);
-			eDebug("Count : %d", &count);
-			eDebug("Remotename : %s", RemoteName[54]);
+				eDebug("Rawcode : %d", &rawcode);
+				eDebug("Keyname : %s", KeyName[54]);
+				eDebug("Count : %d", &count);
+				eDebug("Remotename : %s", RemoteName[54]);
 			}
 			
 			if (count == 0) {
