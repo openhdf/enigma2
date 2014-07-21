@@ -507,7 +507,7 @@ void eLircInputDriver::thread()
 			int count;
 			char KeyName[LIRC_KEY_BUF];
 			char RemoteName;
-			if (sscanf(buf, "%*x %x %s %s", &count, KeyName, RemoteName) != 3) { // '29' in '%29s' is LIRC_KEY_BUF-1!
+			if (sscanf(buf, "%17*c %x %s %s", &count, KeyName, RemoteName) != 3) { // '29' in '%29s' is LIRC_KEY_BUF-1!
 				eDebug("ERROR: unparseable lirc command: %s", buf);
 				continue;
 			}
