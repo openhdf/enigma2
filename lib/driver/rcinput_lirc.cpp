@@ -571,7 +571,7 @@ void eLircInputDriver::thread()
 				eDebug("Remotename : %s", RemoteName);
 				eDebug("CountString : %s", countstring);
 				xtoi(countstring, &count);
-				eDebug("Count : %d", count);
+				eDebug("Count : %2d", count);
 			}
 			
 			if (count == 0) {
@@ -588,7 +588,17 @@ void eLircInputDriver::thread()
 				FirstTime.Set();
 				timeout = -1;
 			}
+			else if (count > 0) {
+				eDebug("Case1!");
+				if (LastTime.Elapsed() < REPEATFREQ)
+					continue; // repeat function kicks in after a short delay (after last key instead of first key)
+				if (FirstTime.Elapsed() < REPEATDELAY)
+					continue; // skip keys coming in too fast (for count != 0 as well)
+				repeat = true;
+				timeout = REPEATDELAY;
+			}
 			else {
+				eDebug("Case2!");
 				if (LastTime.Elapsed() < REPEATFREQ)
 					continue; // repeat function kicks in after a short delay (after last key instead of first key)
 				if (FirstTime.Elapsed() < REPEATDELAY)
