@@ -530,7 +530,7 @@ void eLircInputDriver::thread()
 	cTimeMs FirstTime;
 	cTimeMs LastTime;
 	char buf[LIRC_BUFFER_SIZE];
-	char LastKeyName[54] = "0";
+	char LastKeyName[54] = "";
 	bool repeat = false;
 	int timeout = -1;
 	lircEvent event;
@@ -566,17 +566,11 @@ void eLircInputDriver::thread()
 				continue;
 			}
 			else {
-				eDebug("Rawcode : %s", rawcode);
-				eDebug("Keyname : %s", KeyName);
-				eDebug("Remotename : %s", RemoteName);
-				eDebug("CountString : %s", countstring);
 				xtoi(countstring, &count);
-				eDebug("Count : %2d", count);
 			}
 			
 			if (count == 0) {
 				if (strcmp(KeyName, LastKeyName) == 0 && FirstTime.Elapsed() < REPEATDELAY)
-					eDebug("Case 1");
 					continue; // skip keys coming in too fast
 				if (repeat) {
 					event.name = LastKeyName;
@@ -588,7 +582,6 @@ void eLircInputDriver::thread()
 				repeat = false;
 				FirstTime.Set();
 				timeout = -1;
-				eDebug("Case 2");
 			}
 			else {
 				if (LastTime.Elapsed() < REPEATFREQ)
@@ -596,20 +589,17 @@ void eLircInputDriver::thread()
 				if (FirstTime.Elapsed() < REPEATDELAY)
 					continue; // skip keys coming in too fast (for count != 0 as well)
 				repeat = true;
+				eDebug("Repeatdelay : %ll", REPEATDELAY);
 				timeout = REPEATDELAY;
 			}
 			LastTime.Set();
 			event.name = KeyName;
-			eDebug("KeyName : %s", KeyName);
-			eDebug("LastKeyName : %s", LastKeyName);
-			eDebug(repeat ? "true" : "false");
 			event.repeat = repeat;
 			event.release = false;
 			m_pump.send(event);
 		}
 		else if (repeat) { // the last one was a repeat, so let's generate a release
 			if (LastTime.Elapsed() >= REPEATTIMEOUT) {
-				eDebug("Case 3");
 				event.name = LastKeyName;
 				event.repeat = false;
 				event.release = true;
