@@ -555,12 +555,12 @@ void eLircInputDriver::thread()
 		}
 
 		if (ready && ret > 21) {
-			unsigned int count;
-			char countstring[2] = "";
+			int count;
+			/*char countstring[2] = "";*/
 			char rawcode[17] = "";
 			char KeyName[54] = "";
 			char RemoteName[54] = "";
-			if (sscanf(buf, "%17s %2s %53s %53s", rawcode, countstring, KeyName, RemoteName) != 4) { // '29' in '%29s' is LIRC_KEY_BUF-1!
+			if (sscanf(buf, "%17s %x %53s %53s", rawcode, &count, KeyName, RemoteName) != 4) { // '29' in '%29s' is LIRC_KEY_BUF-1!
 				eDebug("ERROR: unparseable lirc command: %s", buf);
 				continue;
 			}
@@ -568,9 +568,9 @@ void eLircInputDriver::thread()
 				eDebug("Rawcode : %s", rawcode);
 				eDebug("Keyname : %s", KeyName);
 				eDebug("Remotename : %s", RemoteName);
-				eDebug("CountString : %s", countstring);
-				xtoi(countstring, &count);
-				eDebug("Count : %d \n", count);
+				/*eDebug("CountString : %s", countstring);*/
+				/*xtoi(countstring, &count);*/
+				eDebug("Count : %d", &count);
 			}
 			
 			if (count == 0) {
@@ -588,10 +588,10 @@ void eLircInputDriver::thread()
 				timeout = -1;
 			}
 			else {
-				/*if (LastTime.Elapsed() < REPEATFREQ)
+				if (LastTime.Elapsed() < REPEATFREQ)
 					continue; // repeat function kicks in after a short delay (after last key instead of first key)
 				if (FirstTime.Elapsed() < REPEATDELAY)
-					continue;*/ // skip keys coming in too fast (for count != 0 as well)
+					continue; // skip keys coming in too fast (for count != 0 as well)
 				repeat = true;
 				timeout = REPEATDELAY;
 			}
