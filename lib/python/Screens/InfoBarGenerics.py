@@ -3362,6 +3362,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 			if config.timeshift.showinfobar.value:
 				self["TimeshiftSeekPointerActions"].setEnabled(True)
 			self.pvrStateDialog.show()
+		if not self.isSeekable():
 			self.startHideTimer()
 
 	def __hideTimeshiftState(self):
