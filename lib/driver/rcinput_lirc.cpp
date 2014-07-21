@@ -478,7 +478,7 @@ void eLircInputDriver::thread()
 	cTimeMs FirstTime;
 	cTimeMs LastTime;
 	char buf[LIRC_BUFFER_SIZE];
-	char LastKeyName[LIRC_KEY_BUF] = "";
+	char LastKeyName[54] = "";
 	bool repeat = false;
 	int timeout = -1;
 	lircEvent event;
@@ -512,9 +512,11 @@ void eLircInputDriver::thread()
 				eDebug("ERROR: unparseable lirc command: %s", buf);
 				continue;
 			}
+			else {
 			eDebug("Keyname :", KeyName);
 			eDebug("Count :", &count);
 			eDebug("Remotename :", RemoteName);
+			}
 			
 			if (count == 0) {
 				if (strcmp(KeyName, LastKeyName) == 0 && FirstTime.Elapsed() < REPEATDELAY)
