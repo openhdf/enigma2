@@ -588,32 +588,27 @@ void eLircInputDriver::thread()
 				FirstTime.Set();
 				timeout = -1;
 			}
-			else if (count > 0) {
-				eDebug("Case1!");
-				if (LastTime.Elapsed() < REPEATFREQ)
-					continue; // repeat function kicks in after a short delay (after last key instead of first key)
-				if (FirstTime.Elapsed() < REPEATDELAY)
-					continue; // skip keys coming in too fast (for count != 0 as well)
-				repeat = true;
-				timeout = REPEATDELAY;
-			}
 			else {
-				eDebug("Case2!");
 				if (LastTime.Elapsed() < REPEATFREQ)
+					eDebug("Case 1");
 					continue; // repeat function kicks in after a short delay (after last key instead of first key)
 				if (FirstTime.Elapsed() < REPEATDELAY)
+					eDebug("Case 2");
 					continue; // skip keys coming in too fast (for count != 0 as well)
 				repeat = true;
 				timeout = REPEATDELAY;
 			}
 			LastTime.Set();
 			event.name = KeyName;
+			eDebug("KeyName : %s", KeyName);
+			eDebug("LastKeyName : %s", LastKeyName);
 			event.repeat = repeat;
 			event.release = false;
 			m_pump.send(event);
 		}
 		else if (repeat) { // the last one was a repeat, so let's generate a release
 			if (LastTime.Elapsed() >= REPEATTIMEOUT) {
+				eDebug("Case 3");
 				event.name = LastKeyName;
 				event.repeat = false;
 				event.release = true;
