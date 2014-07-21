@@ -12,6 +12,58 @@
 #include <lib/base/condVar.h>
 #include <lib/driver/input_fake.h>
 
+// Converts a hexadecimal string to integer
+
+int xtoi(const char* xs, unsigned int* result)
+{
+ size_t szlen = strlen(xs);
+ int i, xv, fact;
+
+ if (szlen > 0)
+ {
+  // Converting more than 32bit hexadecimal value?
+  if (szlen>8) return 2; // exit
+
+  // Begin conversion here
+  *result = 0;
+  fact = 1;
+
+  // Run until no more character to convert
+  for(i=szlen-1; i>=0 ;i--)
+  {
+   if (isxdigit(*(xs+i)))
+   {
+    if (*(xs+i)>=97)
+    {
+     xv = ( *(xs+i) - 97) + 10;
+    }
+    else if ( *(xs+i) >= 65)
+    {
+     xv = (*(xs+i) - 65) + 10;
+    }
+    else
+    {
+     xv = *(xs+i) - 48;
+    }
+    *result += (xv * fact);
+    fact *= 16;
+   }
+   else
+   {
+    // Conversion was abnormally terminated
+    // by non hexadecimal digit, hence
+    // returning only the converted with
+    // an error value 4 (illegal hex character)
+    return 4;
+   }
+  }
+ }
+
+ // Nothing to convert
+ return 1;
+}
+
+
 static tKey keyTable[] = { // "Up" and "Down" must be the first two keys!
 	{ KEY_RESERVED,         "KEY_RESERVED"         },
 	{ KEY_ESC,              "KEY_ESC"              },
@@ -505,11 +557,11 @@ void eLircInputDriver::thread()
 
 		if (ready && ret > 21) {
 			int count;
-			/*char countstring[2] = "";*/
+			char countstring[2] = "";
 			char rawcode[17] = "";
 			char KeyName[54] = "";
 			char RemoteName[54] = "";
-			if (sscanf(buf, "%17s %x %53s %53s", rawcode, &count, KeyName, RemoteName) != 4) { // '29' in '%29s' is LIRC_KEY_BUF-1!
+			if (sscanf(buf, "%17s %2s %53s %53s", rawcode, countstring, KeyName, RemoteName) != 4) { // 128buffer size = 17 + 2 + 2x53 + 3 spaces!!
 				eDebug("ERROR: unparseable lirc command: %s", buf);
 				continue;
 			}
@@ -517,13 +569,14 @@ void eLircInputDriver::thread()
 				eDebug("Rawcode : %s", rawcode);
 				eDebug("Keyname : %s", KeyName);
 				eDebug("Remotename : %s", RemoteName);
-				/*eDebug("CountString : %s", countstring);*/
-				/*xtoi(countstring, &count);*/
+				eDebug("CountString : %s", countstring);
+				xtoi(countstring, &count);
 				eDebug("Count : %d", &count);
 			}
 			
 			if (count == 0) {
 				if (strcmp(KeyName, LastKeyName) == 0 && FirstTime.Elapsed() < REPEATDELAY)
+					eDebug("FirstTime.Elapsed = %s Repeatdelay = %d", FirstTime.Elapsed(), REPEATDELAY);
 					continue; // skip keys coming in too fast
 				if (repeat) {
 					event.name = LastKeyName;
@@ -538,13 +591,15 @@ void eLircInputDriver::thread()
 			}
 			else {
 				if (LastTime.Elapsed() < REPEATFREQ)
+					eDebug("LastTime.Elapsed = %s Repeatfreq = %d", LastTime.Elapsed(), REPEATFREQ);
 					continue; // repeat function kicks in after a short delay (after last key instead of first key)
 				if (FirstTime.Elapsed() < REPEATDELAY)
+					eDebug("FirstTime.Elapsed = %s Repeatdelay = %d", FirstTime.Elapsed(), REPEATDELAY);
 					continue; // skip keys coming in too fast (for count != 0 as well)
 				repeat = true;
 				timeout = REPEATDELAY;
 			}
-			LastTime.Set();
+			eDebug("LastTime = %s", LastTime.Set());
 			event.name = KeyName;
 			event.repeat = repeat;
 			event.release = false;
@@ -552,6 +607,7 @@ void eLircInputDriver::thread()
 		}
 		else if (repeat) { // the last one was a repeat, so let's generate a release
 			if (LastTime.Elapsed() >= REPEATTIMEOUT) {
+				eDebug("LastTime.Elapsed = %s Repeatdelay = %d", LastTime.Elapsed(), REPEATTIMEOUT);
 				event.name = LastKeyName;
 				event.repeat = false;
 				event.release = true;
