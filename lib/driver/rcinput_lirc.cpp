@@ -530,8 +530,8 @@ void eLircInputDriver::thread()
 	cTimeMs FirstTime;
 	cTimeMs LastTime;
 	char buf[LIRC_BUFFER_SIZE];
-	char LastKeyName[54] = "";
-	bool repeat = false;
+	char LastKeyName[54];
+	bool repeat;
 	int timeout = -1;
 	lircEvent event;
 
@@ -576,6 +576,7 @@ void eLircInputDriver::thread()
 			
 			if (count == 0) {
 				if (strcmp(KeyName, LastKeyName) == 0 && FirstTime.Elapsed() < REPEATDELAY)
+					eDebug("Case 1");
 					continue; // skip keys coming in too fast
 				if (repeat) {
 					event.name = LastKeyName;
@@ -587,13 +588,12 @@ void eLircInputDriver::thread()
 				repeat = false;
 				FirstTime.Set();
 				timeout = -1;
+				eDebug("Case 2");
 			}
 			else {
 				if (LastTime.Elapsed() < REPEATFREQ)
-					eDebug("Case 1");
 					continue; // repeat function kicks in after a short delay (after last key instead of first key)
 				if (FirstTime.Elapsed() < REPEATDELAY)
-					eDebug("Case 2");
 					continue; // skip keys coming in too fast (for count != 0 as well)
 				repeat = true;
 				timeout = REPEATDELAY;
@@ -602,6 +602,7 @@ void eLircInputDriver::thread()
 			event.name = KeyName;
 			eDebug("KeyName : %s", KeyName);
 			eDebug("LastKeyName : %s", LastKeyName);
+			eDebug(repeat ? "true" : "false");
 			event.repeat = repeat;
 			event.release = false;
 			m_pump.send(event);
