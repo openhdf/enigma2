@@ -504,19 +504,19 @@ void eLircInputDriver::thread()
 		}
 
 		if (ready && ret > 21) {
-			char rawcode[16];
+			char rawcode[17];
 			int count;
 			char KeyName[54];
 			char RemoteName[54];
-			if (sscanf(buf, "%16c %x %53s %53s", rawcode, &count, KeyName, RemoteName) != 4) { // '29' in '%29s' is LIRC_KEY_BUF-1!
+			if (sscanf(buf, "%17s %x %53s %53s", rawcode, &count, KeyName, RemoteName) != 4) { // '29' in '%29s' is LIRC_KEY_BUF-1!
 				eDebug("ERROR: unparseable lirc command: %s", buf);
 				continue;
 			}
 			else {
-				eDebug("Rawcode : %s", &rawcode[16]);
-				eDebug("Keyname : %s", KeyName[54]);
-				eDebug("Count : %d", &count);
-				eDebug("Remotename : %s", RemoteName[54]);
+				eDebug("Rawcode : %s \n", &rawcode[17]);
+				eDebug("Keyname : %s \n", KeyName[54]);
+				eDebug("Count : %d \n", &count);
+				eDebug("Remotename : %s \n", RemoteName[54]);
 			}
 			
 			if (count == 0) {
