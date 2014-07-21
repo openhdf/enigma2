@@ -571,12 +571,11 @@ void eLircInputDriver::thread()
 				eDebug("Remotename : %s", RemoteName);
 				eDebug("CountString : %s", countstring);
 				xtoi(countstring, &count);
-				eDebug("Count : %d", &count);
+				eDebug("Count : %d", count);
 			}
 			
 			if (count == 0) {
 				if (strcmp(KeyName, LastKeyName) == 0 && FirstTime.Elapsed() < REPEATDELAY)
-					eDebug("FirstTime.Elapsed = %ll Repeatdelay = %ll", FirstTime.Elapsed(), REPEATDELAY);
 					continue; // skip keys coming in too fast
 				if (repeat) {
 					event.name = LastKeyName;
@@ -591,15 +590,13 @@ void eLircInputDriver::thread()
 			}
 			else {
 				if (LastTime.Elapsed() < REPEATFREQ)
-					eDebug("LastTime.Elapsed = %ll Repeatfreq = %ll", LastTime.Elapsed(), REPEATFREQ);
 					continue; // repeat function kicks in after a short delay (after last key instead of first key)
 				if (FirstTime.Elapsed() < REPEATDELAY)
-					eDebug("FirstTime.Elapsed = %ll Repeatdelay = %ll", FirstTime.Elapsed(), REPEATDELAY);
 					continue; // skip keys coming in too fast (for count != 0 as well)
 				repeat = true;
 				timeout = REPEATDELAY;
 			}
-			eDebug("LastTime = %s", LastTime.Set());
+			LastTime.Set();
 			event.name = KeyName;
 			event.repeat = repeat;
 			event.release = false;
@@ -607,7 +604,6 @@ void eLircInputDriver::thread()
 		}
 		else if (repeat) { // the last one was a repeat, so let's generate a release
 			if (LastTime.Elapsed() >= REPEATTIMEOUT) {
-				eDebug("LastTime.Elapsed = %ll Repeatdelay = %ll", LastTime.Elapsed(), REPEATTIMEOUT);
 				event.name = LastKeyName;
 				event.repeat = false;
 				event.release = true;
