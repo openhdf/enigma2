@@ -530,8 +530,8 @@ void eLircInputDriver::thread()
 	cTimeMs FirstTime;
 	cTimeMs LastTime;
 	char buf[LIRC_BUFFER_SIZE];
-	char LastKeyName[54];
-	bool repeat;
+	char LastKeyName[54] = "0";
+	bool repeat = false;
 	int timeout = -1;
 	lircEvent event;
 
