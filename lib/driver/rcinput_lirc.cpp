@@ -478,7 +478,7 @@ void eLircInputDriver::thread()
 	cTimeMs FirstTime;
 	cTimeMs LastTime;
 	char buf[LIRC_BUFFER_SIZE];
-	char LastKeyName[108] = "";
+	char LastKeyName[54] = "";
 	bool repeat = false;
 	int timeout = -1;
 	lircEvent event;
@@ -504,15 +504,18 @@ void eLircInputDriver::thread()
 		}
 
 		if (ready && ret > 21) {
+			int rawcode;
 			int count;
-			char KeyName[108];
-			if (sscanf(buf, "%*x %x %107s", &count, KeyName) != 2) { // '29' in '%29s' is LIRC_KEY_BUF-1!
+			char KeyName[54];
+			char RemoteName[54];
+			if (sscanf(buf, "%x %x %53s %53s", &rawcode, &count, KeyName[54], RemoteName[54]) != 4) { // '29' in '%29s' is LIRC_KEY_BUF-1!
 				eDebug("ERROR: unparseable lirc command: %s", buf);
 				continue;
 			}
 			else {
-			eDebug("Keyname : %s", KeyName[108]);
+			eDebug("Keyname : %s", KeyName[54]);
 			eDebug("Count : %d", &count);
+			eDebug("Remotename : %s", RemoteName[54]);
 			}
 			
 			if (count == 0) {
