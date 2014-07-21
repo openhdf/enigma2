@@ -588,10 +588,10 @@ void eLircInputDriver::thread()
 				timeout = -1;
 			}
 			else {
-				if (LastTime.Elapsed() < REPEATFREQ)
+				/*if (LastTime.Elapsed() < REPEATFREQ)
 					continue; // repeat function kicks in after a short delay (after last key instead of first key)
 				if (FirstTime.Elapsed() < REPEATDELAY)
-					continue; // skip keys coming in too fast (for count != 0 as well)
+					continue; // skip keys coming in too fast (for count != 0 as well) */
 				repeat = true;
 				timeout = REPEATDELAY;
 			}
