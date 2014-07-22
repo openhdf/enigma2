@@ -569,8 +569,9 @@ void eLircInputDriver::thread()
 			}
 			else {
 				xtoi(countstring, &count);
+				char substr[4];
 			}
-			if (!(strncmp(RemoteName, "E2_", 3))) {
+			if (!((sscanf(RemoteName, "%3s %*s", substr) != 1) && (substr == "E2_"))) {
 				eDebug("Ignored Remote : %s", RemoteName);
 			}
 			if (count == 0) {
