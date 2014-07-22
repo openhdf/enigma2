@@ -462,9 +462,9 @@ static bool fileReady(int FileDes, int TimeoutMs)
 static ssize_t safe_read(int filedes, void *buffer, size_t size)
 {
 	for (;;) {
-printf("AAread1\n");
+//("AAread1\n");
 		ssize_t p = read(filedes, buffer, size);
-printf("AAread2\n");
+//printf("AAread2\n");
 		if (p < 0 && errno == EINTR) {
 			continue;
 		}
@@ -590,7 +590,7 @@ void eLircInputDriver::thread()
 					continue; // skip keys coming in too fast (for count != 0 as well)
 				repeat = true;
 			}
-			eDebug("Count : %d", count);
+			eDebug("Count : %2d", count);
 			if ((count != 1) && (((count + REPEATCOUNT) % REPEATCOUNT) == 0) {
 				LastTime.Set();
 				event.name = KeyName;
