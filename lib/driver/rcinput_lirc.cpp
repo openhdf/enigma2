@@ -560,6 +560,7 @@ void eLircInputDriver::thread()
 		if (ready && ret > 21) {
 			unsigned int count;
 			char countstring[2] = "";
+			char substr[4] = "";
 			char rawcode[17] = "";
 			char KeyName[54] = "";
 			char RemoteName[54] = "";
@@ -569,7 +570,6 @@ void eLircInputDriver::thread()
 			}
 			else {
 				xtoi(countstring, &count);
-				char substr[4];
 			}
 			if (!((sscanf(RemoteName, "%3s %*s", substr) != 1) && (substr == "E2_"))) {
 				eDebug("Ignored Remote : %s", RemoteName);
