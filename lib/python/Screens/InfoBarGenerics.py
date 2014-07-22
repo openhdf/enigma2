@@ -1677,6 +1677,11 @@ class InfoBarEPG:
 					self.showWERBEZAPPER()
 				else:
 					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.redbutton_mode.value == "werbezappermon":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPERMON()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -1740,6 +1745,11 @@ class InfoBarEPG:
 			elif config.plisettings.greenbutton_mode.value == "werbezapper":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPER()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.greebutton_mode.value == "werbezappermon":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPERMON()
 				else:
 					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
@@ -1807,6 +1817,11 @@ class InfoBarEPG:
 					self.showWERBEZAPPER()
 				else:
 					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.yellowbutton_mode.value == "werbezappermon":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPERMON()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -1870,6 +1885,11 @@ class InfoBarEPG:
 			elif config.plisettings.bluebutton_mode.value == "werbezapper":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPER()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.bluebutton_mode.value == "werbezappermon":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPERMON()
 				else:
 					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
@@ -1937,6 +1957,11 @@ class InfoBarEPG:
 					self.showWERBEZAPPER()
 				else:
 					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.redbuttonlong_mode.value == "werbezappermon":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPERMON()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -2000,6 +2025,11 @@ class InfoBarEPG:
 			elif config.plisettings.greenbuttonlong_mode.value == "werbezapper":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPER()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.greenbuttonlong_mode.value == "werbezappermon":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPERMON()
 				else:
 					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
@@ -2067,6 +2097,11 @@ class InfoBarEPG:
 					self.showWERBEZAPPER()
 				else:
 					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.yellowbuttonlong_mode.value == "werbezappermon":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPERMON()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -2130,6 +2165,11 @@ class InfoBarEPG:
 			elif config.plisettings.bluebuttonlong_mode.value == "werbezapper":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPER()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.bluebuttonlong_mode.value == "werbezappermon":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPERMON()
 				else:
 					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
@@ -2347,6 +2387,15 @@ class InfoBarEPG:
 		try:
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Werbezapper"):
+					self.runPlugin(plugin)
+					break
+		except Exception, e:
+			self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showWERBEZAPPERMON(self):
+		try:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Werbezapper Start / Stop monitoring"):
 					self.runPlugin(plugin)
 					break
 		except Exception, e:
