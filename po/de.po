@@ -6945,6 +6945,9 @@ msgstr "Samstag"
 msgid "Save"
 msgstr "Speichern"
 
+msgid "save"
+msgstr "Speichern"
+
 msgid "Save EPG"
 msgstr "EPG Speichern"
 
