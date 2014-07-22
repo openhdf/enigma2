@@ -10,7 +10,6 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/condVar.h>
-#include <lib/base/nconfig.h>
 #include <lib/driver/input_fake.h>
 
 
@@ -571,7 +570,7 @@ void eLircInputDriver::thread()
 			else {
 				xtoi(countstring, &count);
 			}
-			if (!(strstr("E2_"), RemoteName)) {
+			if (!(strcmp(RemoteName, "E2_", 3))) {
 				eDebug("Ignored Remote : %s", RemoteName);
 			}
 			if (count == 0) {
