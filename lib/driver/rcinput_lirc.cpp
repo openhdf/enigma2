@@ -545,6 +545,7 @@ void eLircInputDriver::thread()
 	cfgval = eConfigManager::getConfigValue("config.lirc.ignore_remotes");
 	char ignore_remotes[cfgval.size()+1];
 	strncpy(ignore_remotes, cfgval.c_str(), cfgval.size()+1);
+	eDebug("parsed ignore_remotes to %s", ignore_remotes);
 				
 
 	while (!thread_stop && f>=0) {
