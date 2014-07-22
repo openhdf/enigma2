@@ -583,14 +583,21 @@ void eLircInputDriver::thread()
 				FirstTime.Set();
 				timeout = -1;
 			}
-			else {
+			else if (((count + 2) / 2) == 0 ) {
+				eDebug("gerade");
 				if (LastTime.Elapsed() < REPEATFREQ)
 					continue; // repeat function kicks in after a short delay (after last key instead of first key)
 				if (FirstTime.Elapsed() < REPEATDELAY)
 					continue; // skip keys coming in too fast (for count != 0 as well)
 				repeat = true;
-				eDebug("Repeatdelay : %ul", REPEATDELAY);
-				//timeout = REPEATDELAY;
+			}
+			else {
+				eDebug("ungerade");
+				if (LastTime.Elapsed() < REPEATFREQ)
+					continue; // repeat function kicks in after a short delay (after last key instead of first key)
+				if (FirstTime.Elapsed() < REPEATDELAY)
+					continue; // skip keys coming in too fast (for count != 0 as well)
+				repeat = true;
 			}
 			LastTime.Set();
 			event.name = KeyName;
@@ -604,6 +611,7 @@ void eLircInputDriver::thread()
 				event.repeat = false;
 				event.release = true;
 				m_pump.send(event);
+				eDebug("released");
 				repeat = false;
 				*LastKeyName = 0;
 				timeout = -1;
