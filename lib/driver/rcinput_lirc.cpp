@@ -541,13 +541,6 @@ void eLircInputDriver::thread()
 	hasStarted();
 	thread_stop = false;
 
-	std::string cfgval = "";
-	cfgval = eConfigManager::getConfigValue("config.lirc.ignore_remotes");
-	char ignore_remotes[255];
-	strcpy(ignore_remotes, cfgval.c_str());
-	eDebug("parsed ignore_remotes to %s", ignore_remotes);
-				
-
 	while (!thread_stop && f>=0) {
 		bool ready = fileReady(f, timeout);
 		int ret = ready ? safe_read(f, buf, sizeof(buf)) : -1;
@@ -578,7 +571,9 @@ void eLircInputDriver::thread()
 			else {
 				xtoi(countstring, &count);
 			}
-			
+			if (!(strstr("E2_"), RemoteName)) {
+				eDebug("Ignored Remote : %s", RemoteName);
+			}
 			if (count == 0) {
 				if (strcmp(KeyName, LastKeyName) == 0 && FirstTime.Elapsed() < REPEATDELAY)
 					continue; // skip keys coming in too fast
@@ -607,7 +602,6 @@ void eLircInputDriver::thread()
 				event.repeat = repeat;
 				event.release = false;
 				m_pump.send(event);
-				eDebug("IgnoreRemotes : %s", ignore_remotes);
 			}
 		}
 		else if (repeat) { // the last one was a repeat, so let's generate a release
