@@ -404,7 +404,7 @@ void eLircInputDevice::handleCode(long arg)
 
 	code = translateKey(event->name);
 
-	eDebug("LIRC name=%s code=%d flags=%d", event->name, code, flags);
+	//eDebug("LIRC name=%s code=%d flags=%d", event->name, code, flags);
 	input->keyPressed(eRCKey(this, code, flags));
 }
 
@@ -425,7 +425,7 @@ int eLircInputDevice::translateKey(const char* name)
 	{
 		if (!strcmp(name, keyTable[i].name))
 		{
-			printf("FOUND KEY CODE FOR %s: %04X\n", name, keyTable[i].code);
+			//printf("FOUND KEY CODE FOR %s: %04X\n", name, keyTable[i].code);
 			return keyTable[i].code;
 		}
 	}
@@ -590,7 +590,7 @@ void eLircInputDriver::thread()
 					continue; // skip keys coming in too fast (for count != 0 as well)
 				repeat = true;
 			}
-			eDebug("Count : %2d", count);
+			//eDebug("Count : %2d", count);
 			if ((count != 1) && ((count + REPEATCOUNT) % REPEATCOUNT) == 0) {
 				LastTime.Set();
 				event.name = KeyName;
