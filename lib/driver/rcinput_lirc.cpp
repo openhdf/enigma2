@@ -10,7 +10,9 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/condVar.h>
+#include <lib/base/nconfig.h>
 #include <lib/driver/input_fake.h>
+
 
 // Converts a hexadecimal string to integer
 
@@ -597,7 +599,9 @@ void eLircInputDriver::thread()
 				event.name = KeyName;
 				event.repeat = repeat;
 				event.release = false;
-				m_pump.send(event);	
+				m_pump.send(event);
+				char ignore_remotes[] = eConfigManager::getConfigValue("config.lirc.ignore_remotes");
+				eDebug("IgnoreRemotes : %s", ignore_remotes);
 			}
 		}
 		else if (repeat) { // the last one was a repeat, so let's generate a release
