@@ -541,6 +541,12 @@ void eLircInputDriver::thread()
 	hasStarted();
 	thread_stop = false;
 
+	std::string cfgval = "";
+	cfgval = eConfigManager::getConfigValue("config.lirc.ignore_remotes");
+	char ignore_remotes[cfgval.size()+1];
+	strncpy(ignore_remotes, cfgval.c_str(), cfgval.size()+1);
+				
+
 	while (!thread_stop && f>=0) {
 		bool ready = fileReady(f, timeout);
 		int ret = ready ? safe_read(f, buf, sizeof(buf)) : -1;
@@ -600,10 +606,6 @@ void eLircInputDriver::thread()
 				event.repeat = repeat;
 				event.release = false;
 				m_pump.send(event);
-				std::string cfgval = "";
-				cfgval = eConfigManager::getConfigValue("config.lirc.ignore_remotes");
-				char ignore_remotes[cfgval.size()+1];
-				strncpy(ignore_remotes, cfgval.c_str(), cfgval.size()+1);
 				eDebug("IgnoreRemotes : %s", ignore_remotes);
 			}
 		}
