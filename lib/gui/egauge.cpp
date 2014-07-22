@@ -94,4 +94,3 @@ void eGauge::setValue(int value)
 	m_value = value;
 	event(evtChangedGauge);
 }
-
