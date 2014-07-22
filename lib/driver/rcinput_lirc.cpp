@@ -570,9 +570,11 @@ void eLircInputDriver::thread()
 			}
 			else {
 				xtoi(countstring, &count);
+				sscanf(RemoteName, "%3s %*s", substr);
 			}
-			if (!((sscanf(RemoteName, "%3s %*s", substr) != 1) && (substr == "E2_"))) {
-				eDebug("Ignored Remote : %s", RemoteName);
+			if (substr != "E2_") {
+				eDebug('Substring %s does not match "E2_" !');
+				eDebug("Ignored event from remote : %s", RemoteName);
 				continue;
 			}
 			if (count == 0) {
