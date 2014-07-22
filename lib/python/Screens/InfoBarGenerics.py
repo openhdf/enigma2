@@ -1672,6 +1672,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.redbutton_mode.value == "werbezapper":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPER()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -1732,6 +1737,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.greenbutton_mode.value == "werbezapper":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPER()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -1792,6 +1802,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.yellowbutton_mode.value == "werbezapper":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPER()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -1852,6 +1867,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.bluebutton_mode.value == "werbezapper":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPER()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -1912,6 +1932,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.redbuttonlong_mode.value == "werbezapper":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPER()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -1972,6 +1997,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.greenbuttonlong_mode.value == "werbezapper":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPER()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -2032,6 +2062,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.yellowbuttonlong_mode.value == "werbezapper":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPER()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -2092,6 +2127,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.bluebuttonlong_mode.value == "werbezapper":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
+					self.showWERBEZAPPER()
+				else:
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -2302,6 +2342,15 @@ class InfoBarEPG:
 			self.session.open(haupt_Screen)
 		except Exception, e:
 			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def showWERBEZAPPER(self):
+		try:
+			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				if plugin.name == _("Werbezapper"):
+					self.runPlugin(plugin)
+					break
+		except Exception, e:
+			self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showZapHistoryBrowser(self):
 		try:
