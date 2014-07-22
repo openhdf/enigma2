@@ -437,7 +437,7 @@ int eLircInputDevice::translateKey(const char* name)
 /*
  * eLircInputDriver
  */
-
+#define REPEATCOUNT 1 //increase to ignore all repeats-signals with count not dividable by repeatcount
 #define REPEATDELAY 100 // ms
 #define REPEATFREQ 100 // ms
 #define REPEATTIMEOUT 500 // ms
@@ -591,7 +591,7 @@ void eLircInputDriver::thread()
 				repeat = true;
 			}
 			eDebug("Count : %d", count);
-			if (count != 1) {
+			if ((count != 1) && (((count + REPEATCOUNT) % REPEATCOUNT) == 0) {
 				LastTime.Set();
 				event.name = KeyName;
 				event.repeat = repeat;
