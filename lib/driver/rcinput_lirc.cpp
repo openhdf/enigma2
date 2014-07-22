@@ -570,7 +570,7 @@ void eLircInputDriver::thread()
 			else {
 				xtoi(countstring, &count);
 			}
-			if (!(strcmp(RemoteName, "E2_", 3))) {
+			if (!(strncmp(RemoteName, "E2_", 3))) {
 				eDebug("Ignored Remote : %s", RemoteName);
 			}
 			if (count == 0) {
