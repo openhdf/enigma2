@@ -574,7 +574,6 @@ void eLircInputDriver::thread()
 				sscanf(RemoteName, "%3s %*s", substr);
 			}
 			if (strcmp(substr, "E2_") != 0) {
-				eDebug("Substring %s does not match E2_ !", substr);
 				eDebug("Ignored event from remote : %s", RemoteName);
 				continue;
 			}
