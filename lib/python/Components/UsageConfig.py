@@ -855,7 +855,8 @@ def InitUsageConfig():
 				("showPluginBrowser", _("Show Plugins")),
 				("hbbtv", _("HbbTV Red-Button")),
 				("vmodeSelection", _("Toggle aspect ratio")),
-				("etportal", _("Show EtPortal"))])
+				("etportal", _("Show EtPortal")),
+				("werbezapper", _("Show WerbeZapper"))])
 
 	config.plisettings.greenbutton_mode = ConfigSelection(default="subserviceSelection", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
@@ -878,7 +879,8 @@ def InitUsageConfig():
 				("showPluginBrowser", _("Show Plugins")),
 				("hbbtv", _("HbbTV Red-Button")),
 				("vmodeSelection", _("Toggle aspect ratio")),
-				("etportal", _("Show EtPortal"))])
+				("etportal", _("Show EtPortal")),
+				("werbezapper", _("Show WerbeZapper"))])
 
 	config.plisettings.yellowbutton_mode = ConfigSelection(default="single", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
@@ -901,7 +903,8 @@ def InitUsageConfig():
 				("showPluginBrowser", _("Show Plugins")),
 				("hbbtv", _("HbbTV Red-Button")),
 				("vmodeSelection", _("Toggle aspect ratio")),
-				("etportal", _("Show EtPortal"))])
+				("etportal", _("Show EtPortal")),
+				("werbezapper", _("Show WerbeZapper"))])
 
 	config.plisettings.bluebutton_mode = ConfigSelection(default="extensions", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
@@ -924,7 +927,8 @@ def InitUsageConfig():
 				("showPluginBrowser", _("Show Plugins")),
 				("hbbtv", _("HbbTV Red-Button")),
 				("vmodeSelection", _("Toggle aspect ratio")),
-				("etportal", _("Show EtPortal"))])
+				("etportal", _("Show EtPortal")),
+				("werbezapper", _("Show WerbeZapper"))])
 
 	config.plisettings.redbuttonlong_mode = ConfigSelection(default="instantRecord", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
@@ -947,7 +951,8 @@ def InitUsageConfig():
 				("showPluginBrowser", _("Show Plugins")),
 				("hbbtv", _("HbbTV Red-Button")),
 				("vmodeSelection", _("Toggle aspect ratio")),
-				("etportal", _("Show EtPortal"))])
+				("etportal", _("Show EtPortal")),
+				("werbezapper", _("Show WerbeZapper"))])
 
 	config.plisettings.greenbuttonlong_mode = ConfigSelection(default="subtitleSelection", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
@@ -970,7 +975,8 @@ def InitUsageConfig():
 				("showPluginBrowser", _("Show Plugins")),
 				("hbbtv", _("HbbTV Red-Button")),
 				("vmodeSelection", _("Toggle aspect ratio")),
-				("etportal", _("Show EtPortal"))])
+				("etportal", _("Show EtPortal")),
+				("werbezapper", _("Show WerbeZapper"))])
 
 	config.plisettings.yellowbuttonlong_mode = ConfigSelection(default="showfavourites", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
@@ -993,7 +999,8 @@ def InitUsageConfig():
 				("showPluginBrowser", _("Show Plugins")),
 				("hbbtv", _("HbbTV Red-Button")),
 				("vmodeSelection", _("Toggle aspect ratio")),
-				("etportal", _("Show EtPortal"))])
+				("etportal", _("Show EtPortal")),
+				("werbezapper", _("Show WerbeZapper"))])
 
 	config.plisettings.bluebuttonlong_mode = ConfigSelection(default="showPluginBrowser", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
@@ -1016,7 +1023,8 @@ def InitUsageConfig():
 				("showPluginBrowser", _("Show Plugins")),
 				("hbbtv", _("HbbTV Red-Button")),
 				("vmodeSelection", _("Toggle aspect ratio")),
-				("etportal", _("Show EtPortal"))])
+				("etportal", _("Show EtPortal")),
+				("werbezapper", _("Show WerbeZapper"))])
 
 	config.epgselection = ConfigSubsection()
 	config.epgselection.sort = ConfigSelection(default="0", choices = [("0", _("Time")),("1", _("Alphanumeric"))])

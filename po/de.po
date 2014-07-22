@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-07-20 07:30+0100\n"
+"PO-Revision-Date: 2014-07-22 19:55+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -189,6 +189,14 @@ msgid ""
 msgstr ""
 "\n"
 "Anzeigen, installieren und entfernen verfügbarer oder installierter Pakete."
+
+#, python-format
+msgid "Show"
+msgstr "Zeige"
+
+#, python-format
+msgid "Show WerbeZapper"
+msgstr "Zeige WerbeZapper"
 
 #, python-format
 msgid "Show CoolTVGuide"
