@@ -591,7 +591,7 @@ void eLircInputDriver::thread()
 				repeat = true;
 			}
 			eDebug("Count : %2d", count);
-			if ((count != 1) && (((count + REPEATCOUNT) % REPEATCOUNT) == 0) {
+			if ((count != 1) && ((count + REPEATCOUNT) % REPEATCOUNT) == 0) {
 				LastTime.Set();
 				event.name = KeyName;
 				event.repeat = repeat;
