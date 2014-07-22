@@ -590,19 +590,14 @@ void eLircInputDriver::thread()
 					continue; // skip keys coming in too fast (for count != 0 as well)
 				repeat = true;
 			}
-			eDebug("Count : %d", &count);
-			unsigned int repeatval = count + 2;
-			if (repeatval % 2 == 0) {
+			eDebug("Count : %d", count);
+			if (count != 1) {
 				LastTime.Set();
 				event.name = KeyName;
 				event.repeat = repeat;
 				event.release = false;
 				m_pump.send(event);	
 			}
-			else {
-				eDebug("ignore event due to repeatdelay");
-			}
-			
 		}
 		else if (repeat) { // the last one was a repeat, so let's generate a release
 			if (LastTime.Elapsed() >= REPEATTIMEOUT) {
