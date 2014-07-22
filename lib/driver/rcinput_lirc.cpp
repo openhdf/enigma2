@@ -560,7 +560,7 @@ void eLircInputDriver::thread()
 		if (ready && ret > 21) {
 			unsigned int count;
 			char countstring[2] = "";
-			char substr[4] = "";
+			char substr[3] = "";
 			char rawcode[17] = "";
 			char KeyName[54] = "";
 			char RemoteName[54] = "";
@@ -573,6 +573,7 @@ void eLircInputDriver::thread()
 			}
 			if (!((sscanf(RemoteName, "%3s %*s", substr) != 1) && (substr == "E2_"))) {
 				eDebug("Ignored Remote : %s", RemoteName);
+				continue;
 			}
 			if (count == 0) {
 				if (strcmp(KeyName, LastKeyName) == 0 && FirstTime.Elapsed() < REPEATDELAY)
