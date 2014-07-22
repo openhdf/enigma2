@@ -438,6 +438,7 @@ int eLircInputDevice::translateKey(const char* name)
 /*
  * eLircInputDriver
  */
+
 #define IGNOREFIRSTREPEAT true
 #define REPEATCOUNT 1 //increase to ignore all repeats-signals with count not dividable by repeatcount
 #define REPEATDELAY 100 // ms
