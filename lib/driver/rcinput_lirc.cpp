@@ -600,7 +600,8 @@ void eLircInputDriver::thread()
 				event.repeat = repeat;
 				event.release = false;
 				m_pump.send(event);
-				char ignore_remotes[255] = eConfigManager::getConfigValue("config.lirc.ignore_remotes");
+				char ignore_remotes[255] = "";
+				ignore_remotes = eConfigManager::getConfigValue("config.lirc.ignore_remotes");
 				eDebug("IgnoreRemotes : %s", ignore_remotes);
 			}
 		}
