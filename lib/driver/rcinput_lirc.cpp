@@ -543,8 +543,8 @@ void eLircInputDriver::thread()
 
 	std::string cfgval = "";
 	cfgval = eConfigManager::getConfigValue("config.lirc.ignore_remotes");
-	char ignore_remotes[cfgval.size()+1];
-	strncpy(ignore_remotes, cfgval.c_str(), cfgval.size()+1);
+	const char * ignore_remotes[255];
+	ignore_remotes = cfgval.c_str();
 	eDebug("parsed ignore_remotes to %s", ignore_remotes);
 				
 
