@@ -63,7 +63,7 @@ class AVSwitch:
 	
 	if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime") : config.av.edid_override = True
 	
-	if (about.getChipSetString() in ('7241', '7358', '7356', '7424', '7425', 'pnx8493'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
+	if (about.getChipSetString() in ('7241', '7358', '7362', '7346', '7356', '7424', '7425', 'pnx8493'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
 	else:
@@ -170,12 +170,11 @@ class AVSwitch:
 				f = open("/proc/stb/video/videomode", "w")
 				f.write(mode_50)
 				f.close()
-				map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
-				self.setColorFormat(map[config.av.colorformat.value])
 			except IOError:
 				print "setting videomode failed."
 
-		# self.updateAspect(None)
+				map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
+				self.setColorFormat(map[config.av.colorformat.value])
 
 	def saveMode(self, port, mode, rate):
 		config.av.videoport.setValue(port)
@@ -455,7 +454,7 @@ def InitAVSwitch():
 		iAVSwitch.setAspectRatio(map[configElement.value])
 	
 	iAVSwitch.setInput("ENCODER") # init on startup
-	if (getBoxType() in ('gbquad', 'gbquadplus', 'et5x00', 'ixussone', 'ixusszero', 'axodin', 'axodinc', 'starsatlx', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus' )) or about.getModelString() == 'et6000':
+	if (getBoxType() in ('gbquad', 'gbquadplus', 'et5x00', 'ixussone', 'ixusszero', 'axodin', 'axodinc', 'starsatlx', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus' )) or about.getModelString() == 'et6000':
 		detected = False
 	else:
 		detected = eAVSwitch.getInstance().haveScartSwitch()
