@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-07-23 18:18+0100\n"
+"PO-Revision-Date: 2014-08-03 11:14+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2031,7 +2031,16 @@ msgid "Common Interface assignment"
 msgstr "Common Interface Zuweisung"
 
 msgid "Common interface"
-msgstr ""
+msgstr "Common Interface"
+
+msgid "Default PIN for CI"
+msgstr "Standard PIN für CI"
+
+msgid "Enable auto PIN"
+msgstr "Aktiviere Automatische PIN"
+
+msgid "Common interface PIN Setup"
+msgstr "Common Interface PIN Einstellungen"
 
 msgid "Communication"
 msgstr "Kommunikation"
@@ -12580,3 +12589,6 @@ msgstr ""
 "Wähle das Standardverzeichnis für die Automatischeaufnahme. Drücke 'OK' um "
 "ein neues Verzeichnis zu wählen. Benutze Kreuz links/rechts um bestehende "
 "Verzeichnisse zu wählen."
+
+msgid "Setup Usage"
+msgstr "Einstellungen"
