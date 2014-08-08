@@ -1,3 +1,10 @@
+from boxbranding import getBoxType, getMachineBrand, getMachineName
+from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
+from shutil import move
+import time
+
+from enigma import eTimer
+
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
@@ -13,7 +20,7 @@ from Components.Label import Label, MultiColorLabel
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.MenuList import MenuList
-from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNumber, ConfigLocations, NoSave, ConfigMacText
+from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNumber, ConfigLocations, NoSave, ConfigMacText
 from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.FileList import MultiFileSelectList
@@ -21,13 +28,7 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
-from enigma import eTimer
-from boxbranding import getBoxType, getMachineBrand, getMachineName
-from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
-from shutil import move
-import time
 import commands
-
 
 
 if float(getVersionString()) >= 4.0:
@@ -572,10 +573,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				havewol = True
 			if getBoxType() == 'et10000' and self.iface == 'eth0':
 					havewol = False
-			elif getBoxType() in ('gbquad', 'gbquadplus'):
-					havewol = False
 			if havewol:	
-				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))
+				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))		
 
 			self.extended = None
 			self.configStrings = None
@@ -1633,7 +1632,7 @@ class NetworkAfp(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("AFP Setup"))
-		self.skinName = "NetworkServiceSetup"
+		self.skinName = "NetworkAfp"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
@@ -1810,7 +1809,7 @@ class NetworkSABnzbd(Screen):
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
-		if (float(getImageVersionString()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(getImageVersionString()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
+		if (float(getVersionString()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(getVersionString()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find('bad address') != -1:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -1996,7 +1995,7 @@ class NetworkNfs(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("NFS Setup"))
-		self.skinName = "NetworkServiceSetup"
+		self.skinName = "NetworkNfs"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
@@ -2092,10 +2091,10 @@ class NetworkNfs(Screen):
 		self.updateService()
 
 	def Nfsset(self):
-		if fileExists('/etc/rc2.d/S20nfsserver'):
+		if fileExists('/etc/rc2.d/S11nfsserver'):
 			self.Console.ePopen('update-rc.d -f nfsserver remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f nfsserver defaults', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f nfsserver defaults 11', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -2106,7 +2105,7 @@ class NetworkNfs(Screen):
 		self['labactive'].setText(_("Disabled"))
 		self.my_nfs_active = False
 		self.my_nfs_run = False
-		if fileExists('/etc/rc2.d/S20nfsserver'):
+		if fileExists('/etc/rc2.d/S11nfsserver'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_nfs_active = True
@@ -2275,7 +2274,7 @@ class NetworkOpenvpn(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("OpenVpn Setup"))
-		self.skinName = "NetworkServiceSetup"
+		self.skinName = "NetworkOpenvpn"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
@@ -2435,7 +2434,7 @@ class NetworkSamba(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Samba Setup"))
-		self.skinName = "NetworkServiceSetup"
+		self.skinName = "NetworkSamba"
 		self.onChangedEntry = [ ]
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
@@ -2508,7 +2507,8 @@ class NetworkSamba(Screen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove %s ?') % self.service_name, MessageBox.TYPE_YESNO)
+			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your %s %s will be restarted after the removal of service\nDo you want to remove now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
+			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
 		else:
 			self.updateService()
 
