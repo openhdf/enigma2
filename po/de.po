@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-08-03 11:14+0100\n"
+"PO-Revision-Date: 2014-08-09 11:16+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -8427,6 +8427,18 @@ msgstr "Blaue Taste Belegung"
 
 msgid "Blue button long mode"
 msgstr "Blaue Taste (lang) Belegung"
+
+msgid "show red button information..."
+msgstr "Zeige Belegung für rote Taste..."
+
+msgid "show green button information..."
+msgstr "Zeige Belegung für grüne Taste..."
+
+msgid "show yellow button information..."
+msgstr "Zeige Belegung für gelbe Taste..."
+
+msgid "show blue button information..."
+msgstr "Zeige Belegung für blaue Taste..."
 
 msgid "Sun"
 msgstr "So"
