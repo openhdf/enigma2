@@ -191,7 +191,7 @@ def standbyCounterChanged(configElement):
 	config.lcd.ledbrightnessdeepstandby.apply()
 
 def InitLcd():
-	if getBoxType() in ('gb800se', 'gb800solo','gb800seplus', 'tmsingle', 'vusolo', 'et4x00', 'et5x00', 'et6x00', 'mixosf7', 'mixoslumi'):
+	if getBoxType() in ('amiko8900', 'sognorevolution', 'arguspingulux', 'arguspinguluxmini', 'arguspinguluxplus', 'sparkreloaded', 'sabsolo', 'sparklx', 'gis8120', 'gb800se', 'gb800solo','gb800seplus', 'tmsingle', 'vusolo', 'et4x00', 'et5x00', 'et6x00', 'mixosf7', 'mixoslumi'):
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
@@ -294,15 +294,15 @@ def InitLcd():
 
 		def setLCDscrollspeed(configElement):
 			ilcd.setScrollspeed(configElement.value);
-			
+
 		if fileExists("/proc/stb/lcd/symbol_hdd"):
 			f = open("/proc/stb/lcd/symbol_hdd", "w")
 			f.write("0")
-			f.close()		
+			f.close()
 		if fileExists("/proc/stb/lcd/symbol_hddprogress"):
 			f = open("/proc/stb/lcd/symbol_hddprogress", "w")
 			f.write("0")
-			f.close()		
+			f.close()
 
 		def setLEDnormalstate(configElement):
 			ilcd.setLEDNormalState(configElement.value);
