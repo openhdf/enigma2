@@ -1173,13 +1173,13 @@ class InfoBarChannelSelection:
 			self.servicelist.historyZap(+1)
 
 	def useBookmark(self):
-		if config.usage.bookmarkmode.value == "0":
-			self.showMovies()
+		if config.usage.bookmarkmode.value == "1":
+			self.showEMC()
 		elif config.usage.bookmarkmode.value == "2":
 			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 				self.showsimplelist()
 		else:
-			self.showEMC()
+			self.showMovies()
 
 	def switchChannelUp(self):
 		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
