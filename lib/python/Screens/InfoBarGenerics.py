@@ -1628,6 +1628,8 @@ class InfoBarEPG:
 				self.subserviceSelection()
 			elif config.plisettings.redbutton_mode.value == "subtitleSelection":
 				self.subtitleSelection()
+			elif config.plisettings.redbutton_mode.value == "audioSelection":
+				self.audioSelection()
 			elif config.plisettings.redbutton_mode.value == "showfavourites":
 				self.serviceListType = "Norm"
 				self.servicelist.showFavourites()
@@ -1698,6 +1700,8 @@ class InfoBarEPG:
 				self.subserviceSelection()
 			elif config.plisettings.greenbutton_mode.value == "subtitleSelection":
 				self.subtitleSelection()
+			elif config.plisettings.redbutton_mode.value == "audioSelection":
+				self.audioSelection()
 			elif config.plisettings.greenbutton_mode.value == "showfavourites":
 				self.serviceListType = "Norm"
 				self.servicelist.showFavourites()
@@ -1768,6 +1772,8 @@ class InfoBarEPG:
 				self.subserviceSelection()
 			elif config.plisettings.yellowbutton_mode.value == "subtitleSelection":
 				self.subtitleSelection()
+			elif config.plisettings.redbutton_mode.value == "audioSelection":
+				self.audioSelection()
 			elif config.plisettings.yellowbutton_mode.value == "showfavourites":
 				self.serviceListType = "Norm"
 				self.servicelist.showFavourites()
@@ -1838,6 +1844,8 @@ class InfoBarEPG:
 				self.subserviceSelection()
 			elif config.plisettings.bluebutton_mode.value == "subtitleSelection":
 				self.subtitleSelection()
+			elif config.plisettings.redbutton_mode.value == "audioSelection":
+				self.audioSelection()
 			elif config.plisettings.bluebutton_mode.value == "showfavourites":
 				self.serviceListType = "Norm"
 				self.servicelist.showFavourites()
