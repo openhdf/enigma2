@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-08-14 21:36+0100\n"
+"PO-Revision-Date: 2014-08-17 17:48+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -10356,6 +10356,34 @@ msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Wohin die Einstellungen sichern?"
+
+#: Backup/restore
+msgid "Restore Plugins"
+msgstr "Wiederherstellen Plugins"
+
+#: Backup/restore
+msgid ""
+"Backup plugins found\n"
+"do you want to install now?"
+msgstr ""
+"Gesicherte Plugins gefunden!\n"
+"Sollen die Plugins nun installiert werden?"
+
+#: Backup/restore
+msgid "Install Plugins"
+msgstr "Installiere Plugins"
+
+#: Backup/restore
+msgid "Installing plugins..."
+msgstr "Installiere Plugins..."
+
+#: Backup/restore
+msgid "Please wait while we check your installed plugins..."
+msgstr "Bitte warten, es werden die installierten Plugins geprüft..."
+
+#: Backup/restore
+msgid "Restart Network Adapter"
+msgstr "Neustart des Netzwerkadapters"
 
 msgid "Where should the recording be saved?"
 msgstr "Wo soll die Aufnahme gespeichert werden?"

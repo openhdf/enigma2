@@ -21,12 +21,12 @@ from Tools.Directories import *
 from os import system, popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBrand, getMachineName
 
 boxtype = getBoxType()
 
 config.plugins.configurationbackup = ConfigSubsection()
-if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo'):
+if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not path.exists("/media/hdd/backup_%s" %boxtype):
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:	
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
@@ -103,7 +103,7 @@ class BackupScreen(Screen, ConfigListScreen):
 			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
 				self.backupdirs = self.backupdirs + " /tmp/changed-configfiles.txt"
 
-			cmd1 = "ipkg list-installed | egrep 'enigma2-plugin-|task-base' > /tmp/installed-list.txt"
+			cmd1 = "ipkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base' > /tmp/installed-list.txt"
 			cmd2 = "ipkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "tar -czvf " + self.fullbackupfilename + " " + self.backupdirs
 			cmd = [cmd1, cmd2, cmd3]
@@ -368,8 +368,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.restartGUI()
 
 	def restartGUI(self, ret = None):
-		self.console = eConsoleAppContainer()
-		self.console.execute("init 4;reboot")
+		self.session.open(Console, title = _("Your %s %s will Reboot...")% (getMachineBrand(), getMachineName()), cmdlist = ["init 4;reboot"])
 
 	def runAsync(self, finished_cb):
 		self.doRestore()
@@ -407,7 +406,8 @@ class installedPlugins(Screen):
 
 	skin = """
 		<screen position="center,center" size="600,100" title="Install Plugins" >
-		<widget name="label" position="10,30" size="500,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
+		<widget name="label" position="10,30" size="570,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
+		<widget name="filelist" position="5,50" size="550,230" scrollbarMode="showOnDemand" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -428,7 +428,7 @@ class installedPlugins(Screen):
 
 	def doList(self):
 		print"[SOFTWARE MANAGER] read installed package list"
-		self.container.execute("ipkg list-installed | egrep 'enigma2-plugin-|task-base'")
+		self.container.execute("ipkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base'")
 
 	def dataAvail(self, strData):
 		if self.type == self.LIST:
@@ -466,7 +466,10 @@ class installedPlugins(Screen):
 		if len(self.Menulist) == 0:
 			self.close()
 		else:
-			self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
+			if os.path.exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
+				self.startInstall(True)
+			else:
+				self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
 
 	def startInstall(self, ret = None):
 		if ret:
