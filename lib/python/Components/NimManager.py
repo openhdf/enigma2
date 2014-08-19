@@ -48,8 +48,8 @@ class SecConfigure:
 		sec.setLNBLOFL(9750000)
 		sec.setLNBLOFH(10600000)
 		sec.setLNBThreshold(11700000)
-		sec.setLNBIncreasedVoltage(lnbParam.OFF)
-		sec.setRepeats(0)
+		sec.setLNBIncreasedVoltage(False)
+		sec.setSeqRepeat(False)
 		sec.setFastDiSEqC(fastDiSEqC)
 		sec.setSeqRepeat(0)
 		sec.setCommandOrder(0)
@@ -381,9 +381,9 @@ class SecConfigure:
 #					pass # nyi in drivers
 
 				if currLnb.increased_voltage.value:
-					sec.setLNBIncreasedVoltage(lnbParam.ON)
+					sec.setLNBIncreasedVoltage(True)
 				else:
-					sec.setLNBIncreasedVoltage(lnbParam.OFF)
+					sec.setLNBIncreasedVoltage(False)
 
 				dm = currLnb.diseqcMode.value
 				if dm == "none":
@@ -1489,7 +1489,7 @@ def InitNimManager(nimmgr):
 			nim.diseqc13V = ConfigYesNo(False)
 			nim.diseqcMode = ConfigSelection(diseqc_mode_choices, "single")
 			nim.connectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
-			nim.simpleSingleSendDiSEqC = ConfigYesNo(True)
+			nim.simpleSingleSendDiSEqC = ConfigYesNo(False)
 			nim.simpleDiSEqCSetVoltageTone = ConfigYesNo(True)
 			nim.simpleDiSEqCOnlyOnSatChange = ConfigYesNo(False)
 			nim.diseqcA = ConfigSatlist(list = diseqc_satlist_choices)
