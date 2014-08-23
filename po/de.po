@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-08-17 17:48+0100\n"
+"PO-Revision-Date: 2014-08-23 07:23+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -4048,6 +4048,12 @@ msgstr "Wähle was bei Druck auf die Info Taste aktiviert werden soll:"
 
 msgid "Select what you want the FAV button to activate:"
 msgstr "Wähle was bei Druck auf die FAV Taste aktiviert werden soll:"
+
+msgid "Select what you want the Web button to activate:"
+msgstr "Wähle was bei Druck auf die Web Taste aktiviert werden soll:"
+
+msgid "Select what you want the Plugin button to activate:"
+msgstr "Wähle was bei Druck auf die Plugin Taste aktiviert werden soll:"
 
 msgid "Select the keymap that you want to use:"
 msgstr "Bitte wählen welche Keympa benutzt werden soll:"
@@ -8328,6 +8334,12 @@ msgstr "F3 Button Belegung"
 
 msgid "F4 button mode"
 msgstr "F4 Button Belegung"
+
+msgid "Plugin button mode"
+msgstr "Plugin Button Belegung"
+
+msgid "Web button mode"
+msgstr "Web Button Belegung"
 
 msgid "QuickEPG mode"
 msgstr "QuickEPG Modus"
