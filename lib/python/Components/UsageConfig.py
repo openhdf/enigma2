@@ -1038,6 +1038,56 @@ def InitUsageConfig():
 				("werbezapper", _("Show WerbeZapper")),
 				("werbezappermon", _("Start/Stop WerbeZapper Monitoring"))])
 
+	config.plisettings.webbutton_mode = ConfigSelection(default="hdftoolbox", choices = [
+				("hdftoolbox", _("Show HDF-Toolbox")),
+				("timerSelection", _("Show Timer List")),
+				("subserviceSelection", _("Show Subservices")),
+				("subtitleSelection", _("Show Subtitles")),
+				("showfavourites", _("Show Favourites")),
+				("eventview", _("Show Eventview")),
+				("epgpress", _("Show EPG")),
+				("single", _("Show Single EPG")),
+				("openInfoBarEPG", _("Show InfoBar EPG")),
+				("coolsingleguide", _("Show CoolSingleGuide")),
+				("coolinfoguide", _("Show CoolInfoGuide")),
+				("cooltvguide", _("Show CoolTVGuide")),
+				("emc", _("Show Enhanced Movie Center")),
+				("mediaportal", _("Show Media Portal")),
+				("instantRecord", _("start instantRecord")),
+				("showEventInfoPlugins", _("show EventInfoPlugins")),
+				("extensions", _("Show Extensions")),
+				("showPluginBrowser", _("Show Plugins")),
+				("hbbtv", _("HbbTV Red-Button")),
+				("vmodeSelection", _("Toggle aspect ratio")),
+				("etportal", _("Show EtPortal")),
+				("werbezapper", _("Show WerbeZapper")),
+				("werbezappermon", _("Start/Stop WerbeZapper Monitoring"))])
+
+	config.plisettings.pluginbutton_mode = ConfigSelection(default="hdftoolbox", choices = [
+				("hdftoolbox", _("Show HDF-Toolbox")),
+				("timerSelection", _("Show Timer List")),
+				("subserviceSelection", _("Show Subservices")),
+				("subtitleSelection", _("Show Subtitles")),
+				("showfavourites", _("Show Favourites")),
+				("eventview", _("Show Eventview")),
+				("epgpress", _("Show EPG")),
+				("single", _("Show Single EPG")),
+				("openInfoBarEPG", _("Show InfoBar EPG")),
+				("coolsingleguide", _("Show CoolSingleGuide")),
+				("coolinfoguide", _("Show CoolInfoGuide")),
+				("cooltvguide", _("Show CoolTVGuide")),
+				("emc", _("Show Enhanced Movie Center")),
+				("mediaportal", _("Show Media Portal")),
+				("instantRecord", _("start instantRecord")),
+				("showEventInfoPlugins", _("show EventInfoPlugins")),
+				("extensions", _("Show Extensions")),
+				("showPluginBrowser", _("Show Plugins")),
+				("hbbtv", _("HbbTV Red-Button")),
+				("vmodeSelection", _("Toggle aspect ratio")),
+				("etportal", _("Show EtPortal")),
+				("werbezapper", _("Show WerbeZapper")),
+				("werbezappermon", _("Start/Stop WerbeZapper Monitoring"))])
+
 	config.epgselection = ConfigSubsection()
 	config.epgselection.sort = ConfigSelection(default="0", choices = [("0", _("Time")),("1", _("Alphanumeric"))])
 	config.epgselection.overjump = ConfigYesNo(default = False)
