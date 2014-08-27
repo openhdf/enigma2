@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-08-23 07:23+0100\n"
+"PO-Revision-Date: 2014-08-27 20:00+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1371,6 +1371,9 @@ msgstr "Automatische Einstellungs Sicherung"
 
 msgid "Automatically start timeshift after"
 msgstr "Aktiviert automatisches Timeshift nach"
+
+msgid "Timeshift buffer delete after zap?"
+msgstr "Timeshift nach dem Umschalten löschen?"
 
 msgid "Automatically turn on external subtitles"
 msgstr "Externe Untertitel automatisch einschalten"
