@@ -12,7 +12,7 @@ from enigma import eTimer
 
 from Screens.Rc import Rc
 
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN, SCOPE_LANGUAGE
+from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 import gettext
 
@@ -34,6 +34,7 @@ class LanguageSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
+		language.InitLang()
 		self.oldActiveLanguage = language.getActiveLanguage()
 		self.catalog = language.getActiveCatalog()
 
@@ -140,7 +141,7 @@ class LanguageSelection(Screen):
 			return
 
 		language.activateLanguage(lang)
-		config.misc.languageselected.setValue(0)
+		config.misc.languageselected.value = 0
 		config.misc.languageselected.save()
 		print "ok"
 
