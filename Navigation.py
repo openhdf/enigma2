@@ -49,12 +49,13 @@ class Navigation:
 
 		wasTimerWakeup = getFPWasTimerWakeup()
 		thisBox = getBoxType()
-		if thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'dags'):
-			config.workaround.deeprecord.setValue(True)
-			config.workaround.deeprecord.save()
-			config.save()
-			print"[NAVIGATION] USE DEEPSTAND-WORKAROUND FOR THIS BOXTYPE (%s) !!" %thisBox
-		
+		if config.workaround.deeprecord.value:
+			if thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'dags'):
+				config.workaround.deeprecord.setValue(True)
+				config.workaround.deeprecord.save()
+				config.save()
+				print"[NAVIGATION] USE DEEPSTAND-WORKAROUND FOR THIS BOXTYPE (%s) !!" %thisBox
+			
 		if not wasTimerWakeup and config.workaround.deeprecord.value: #work-around for boxes where driver not sent was_timer_wakeup signal to e2
 			print"=================================================================================="
 			print"[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
