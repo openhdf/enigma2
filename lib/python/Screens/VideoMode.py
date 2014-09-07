@@ -101,8 +101,8 @@ class VideoSetup(Screen, ConfigListScreen):
 		# some modes (720p, 1080i) are always widescreen. Don't let the user select something here, "auto" is not what he wants.
 		force_wide = self.hw.isWidescreenMode(port, mode)
 
-		# if not force_wide:
-		# 	self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
+		if not force_wide:
+		 	self.list.append(getConfigListEntry(_("Aspect ratio"), config.av.aspect, _("Configure the aspect ratio of the screen.")))
 
 		if force_wide or config.av.aspect.value in ("16:9", "16:10"):
 			self.list.extend((
@@ -285,7 +285,6 @@ class AutoVideoMode(Screen):
 			self.detecttimer.start(delay)
 
 	def VideoChangeDetect(self):
-		global resolutionlabel
 		config_port = config.av.videoport.value
 		config_mode = str(config.av.videomode[config_port].value).replace('\n','')
 		config_res = str(config.av.videomode[config_port].value[:-1]).replace('\n','')
@@ -311,13 +310,19 @@ class AutoVideoMode(Screen):
 		video_pol = None
 		video_rate = None
 		if path.exists("/proc/stb/vmpeg/0/yres"):
-			f = open("/proc/stb/vmpeg/0/yres", "r")
-			video_height = int(f.read(),16)
-			f.close()
+			try:
+				f = open("/proc/stb/vmpeg/0/yres", "r")
+				video_height = int(f.read(),16)
+				f.close()
+			except:
+				video_height = 0
 		if path.exists("/proc/stb/vmpeg/0/xres"):
-			f = open("/proc/stb/vmpeg/0/xres", "r")
-			video_width = int(f.read(),16)
-			f.close()
+			try:
+				f = open("/proc/stb/vmpeg/0/xres", "r")
+				video_width = int(f.read(),16)
+				f.close()
+			except:
+				video_width = 0
 		if path.exists("/proc/stb/vmpeg/0/progressive"):
 			f = open("/proc/stb/vmpeg/0/progressive", "r")
 			video_pol = "p" if int(f.read(),16) else "i"

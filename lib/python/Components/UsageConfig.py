@@ -497,6 +497,7 @@ def InitUsageConfig():
 	config.timeshift.autorecord = ConfigYesNo(default = False)
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default = False))
 	config.timeshift.timeshiftMaxHours = ConfigSelectionNumber(min = 1, max = 999, stepwidth = 1, default = 12, wraparound = True)
+	config.timeshift.deleteAfterZap = ConfigYesNo(default = True)
 
 	config.seek = ConfigSubsection()
 	config.seek.baractivation = ConfigSelection([("leftright", _("Long Left/Right")),("ffrw", _("Long << / >>"))], "leftright")
@@ -583,7 +584,7 @@ def InitUsageConfig():
 		config.misc.zapmode = ConfigSelection(default = "mute", choices = zapoptions )
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
 	config.usage.historymode = ConfigSelection(default = "1", choices = [("1", _("Show menu")), ("0", _("Just zap")), ("2", _("Show Zap-History Browser"))])
-	config.usage.bookmarkmode = ConfigSelection(default = "1", choices = [("1", _("Show EMC")), ("0", _("Show Movielist")), ("2", _("Show Simple Movie List"))])
+	config.usage.bookmarkmode = ConfigSelection(default = "0", choices = [("1", _("Show EMC")), ("0", _("Show Movielist")), ("2", _("Show Simple Movie List"))])
 
 	config.subtitles = ConfigSubsection()
 	config.subtitles.ttx_subtitle_colors = ConfigSelection(default = "1", choices = [
@@ -839,6 +840,7 @@ def InitUsageConfig():
 				("timerSelection", _("Show Timer List")),
 				("subserviceSelection", _("Show Subservices")),
 				("subtitleSelection", _("Show Subtitles")),
+				("audioSelection", _("Show Audio channels")),
 				("showfavourites", _("Show Favourites")),
 				("eventview", _("Show Eventview")),
 				("epgpress", _("Show EPG")),
@@ -864,6 +866,7 @@ def InitUsageConfig():
 				("timerSelection", _("Show Timer List")),
 				("subserviceSelection", _("Show Subservices")),
 				("subtitleSelection", _("Show Subtitles")),
+				("audioSelection", _("Show Audio channels")),
 				("showfavourites", _("Show Favourites")),
 				("eventview", _("Show Eventview")),
 				("epgpress", _("Show EPG")),
@@ -889,6 +892,7 @@ def InitUsageConfig():
 				("timerSelection", _("Show Timer List")),
 				("subserviceSelection", _("Show Subservices")),
 				("subtitleSelection", _("Show Subtitles")),
+				("audioSelection", _("Show Audio channels")),
 				("showfavourites", _("Show Favourites")),
 				("eventview", _("Show Eventview")),
 				("epgpress", _("Show EPG")),
@@ -914,6 +918,7 @@ def InitUsageConfig():
 				("timerSelection", _("Show Timer List")),
 				("subserviceSelection", _("Show Subservices")),
 				("subtitleSelection", _("Show Subtitles")),
+				("audioSelection", _("Show Audio channels")),
 				("showfavourites", _("Show Favourites")),
 				("eventview", _("Show Eventview")),
 				("epgpress", _("Show EPG")),
@@ -1010,6 +1015,56 @@ def InitUsageConfig():
 				("werbezappermon", _("Start/Stop WerbeZapper Monitoring"))])
 
 	config.plisettings.bluebuttonlong_mode = ConfigSelection(default="showPluginBrowser", choices = [
+				("hdftoolbox", _("Show HDF-Toolbox")),
+				("timerSelection", _("Show Timer List")),
+				("subserviceSelection", _("Show Subservices")),
+				("subtitleSelection", _("Show Subtitles")),
+				("showfavourites", _("Show Favourites")),
+				("eventview", _("Show Eventview")),
+				("epgpress", _("Show EPG")),
+				("single", _("Show Single EPG")),
+				("openInfoBarEPG", _("Show InfoBar EPG")),
+				("coolsingleguide", _("Show CoolSingleGuide")),
+				("coolinfoguide", _("Show CoolInfoGuide")),
+				("cooltvguide", _("Show CoolTVGuide")),
+				("emc", _("Show Enhanced Movie Center")),
+				("mediaportal", _("Show Media Portal")),
+				("instantRecord", _("start instantRecord")),
+				("showEventInfoPlugins", _("show EventInfoPlugins")),
+				("extensions", _("Show Extensions")),
+				("showPluginBrowser", _("Show Plugins")),
+				("hbbtv", _("HbbTV Red-Button")),
+				("vmodeSelection", _("Toggle aspect ratio")),
+				("etportal", _("Show EtPortal")),
+				("werbezapper", _("Show WerbeZapper")),
+				("werbezappermon", _("Start/Stop WerbeZapper Monitoring"))])
+
+	config.plisettings.webbutton_mode = ConfigSelection(default="hdftoolbox", choices = [
+				("hdftoolbox", _("Show HDF-Toolbox")),
+				("timerSelection", _("Show Timer List")),
+				("subserviceSelection", _("Show Subservices")),
+				("subtitleSelection", _("Show Subtitles")),
+				("showfavourites", _("Show Favourites")),
+				("eventview", _("Show Eventview")),
+				("epgpress", _("Show EPG")),
+				("single", _("Show Single EPG")),
+				("openInfoBarEPG", _("Show InfoBar EPG")),
+				("coolsingleguide", _("Show CoolSingleGuide")),
+				("coolinfoguide", _("Show CoolInfoGuide")),
+				("cooltvguide", _("Show CoolTVGuide")),
+				("emc", _("Show Enhanced Movie Center")),
+				("mediaportal", _("Show Media Portal")),
+				("instantRecord", _("start instantRecord")),
+				("showEventInfoPlugins", _("show EventInfoPlugins")),
+				("extensions", _("Show Extensions")),
+				("showPluginBrowser", _("Show Plugins")),
+				("hbbtv", _("HbbTV Red-Button")),
+				("vmodeSelection", _("Toggle aspect ratio")),
+				("etportal", _("Show EtPortal")),
+				("werbezapper", _("Show WerbeZapper")),
+				("werbezappermon", _("Start/Stop WerbeZapper Monitoring"))])
+
+	config.plisettings.pluginbutton_mode = ConfigSelection(default="hdftoolbox", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
 				("timerSelection", _("Show Timer List")),
 				("subserviceSelection", _("Show Subservices")),

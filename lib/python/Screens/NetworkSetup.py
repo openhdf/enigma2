@@ -568,13 +568,13 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.list.append(self.gatewayEntry)
 				if self.hasGatewayConfigEntry.value:
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
-			havewol = False		
-			if SystemInfo["WakeOnLAN"]:
+			havewol = False
+			if SystemInfo["WakeOnLAN"] and not getBoxType() in ('et10000', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbquad'):
 				havewol = True
 			if getBoxType() == 'et10000' and self.iface == 'eth0':
 					havewol = False
 			if havewol:	
-				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))		
+				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))
 
 			self.extended = None
 			self.configStrings = None
@@ -2497,9 +2497,11 @@ class NetworkSamba(Screen):
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
 	def installComplete(self,result = None, retval = None, extra_args = None):
-		self.message.close()
-		self.feedscheck.close()
-		self.SambaStartStop()
+		#self.message.close()
+		#self.feedscheck.close()
+		#self.SambaStartStop()
+		# SAMBA INSTALLATION NEEDS A RESTART OF THE BOX BEFORE IT COULD BE USED !!
+		self.session.open(TryQuitMainloop, 2)
 
 	def UninstallCheck(self):
 		self.service_name = self.service_name + ' ' + basegroup + '-smbfs-client'

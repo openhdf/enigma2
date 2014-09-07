@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Xpeed Keymap 20.07.2014" -->
+	<!-- "HDF Xpeed Keymap 24.08.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -101,6 +101,8 @@
 		<key id="KEY_F2" mapto="F2Pressed" flags="b" />
 		<key id="KEY_F3" mapto="F3Pressed" flags="b" />
 		<key id="KEY_F4" mapto="F4Pressed" flags="b" />
+		<key id="KEY_SEARCH" mapto="WebButtonPressed" flags="b" />
+		<key id="KEY_BOOKMARKS" mapto="PluginButtonPressed" flags="b" />
 		<key id="KEY_EPG" mapto="EPGPressed" flags="b" />
 		<key id="KEY_EPG" mapto="showEventGuidePlugin" flags="l" />
 	</map>
@@ -118,12 +120,10 @@
 		<key id="KEY_SUBTITLE" mapto="subtitleSelection" flags="l" />
 		<key id="KEY_SUBTITLE" mapto="subtitleSelection" flags="b" />
 		<!--key id="KEY_BOOKMARKS" mapto="showPluginBrowser" flags="mr" /-->
-		<key id="KEY_SLEEP" mapto="openTimerList" flags="b" />
+		<!--key id="KEY_SLEEP" mapto="timerAdd" flags="b" /-->
 		<key id="KEY_SLEEP" mapto="openAutoTimerList" flags="l" />
 		<key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
 		<key id="KEY_PROGRAM" mapto="openAutoTimerList" flags="l" />
-		<key id="KEY_SEARCH" mapto="showPluginBrowser" flags="b" />
-		<key id="KEY_SEARCH" mapto="openEPGSearch" flags="l" />
 	</map>
 
 	<map context="SatlistShortcutAction">
@@ -144,7 +144,7 @@
 		<key id="BTN_0" mapto="zapUp" flags="mr" />
 		<key id="BTN_1" mapto="zapDown" flags="mr" />
 		<key id="KEY_SAT" mapto="openSatellites" flags="m" />
-		<key id="KEY_BOOKMARKS" mapto="useBookmark" flags="mr" />
+		<!--key id="KEY_BOOKMARKS" mapto="useBookmark" flags="mr" /-->
 	</map>
 
 	<map context="InfobarZoomActions">
@@ -243,6 +243,7 @@
 		<key id="KEY_PVR" mapto="showMovies" flags="m" />
 		<key id="KEY_TEXT" mapto="showText" flags="m" />
 		<key id="KEY_WWW" mapto="showWWW" flags="m" />
+		<key id="KEY_SLEEP" mapto="openSleepTimer" flags="b" />
 		<!-- comment in to use media as EMC for LX STBs KEY_BOOKMARKS -->
 		<key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="mm" />			
 	</map>

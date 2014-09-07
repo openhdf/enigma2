@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-08-03 11:14+0100\n"
+"PO-Revision-Date: 2014-08-27 20:00+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.6.6\n"
+"X-Generator: Poedit 1.6.7\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -1285,6 +1285,9 @@ msgstr "Eine Datei anhängen"
 msgid "Audio PID"
 msgstr "Audio PID"
 
+msgid "Show Audio channels"
+msgstr "Zeige Audio Auswahl"
+
 msgid "Audio language selection 1"
 msgstr "Audio Sprachwahl 1"
 
@@ -1368,6 +1371,9 @@ msgstr "Automatische Einstellungs Sicherung"
 
 msgid "Automatically start timeshift after"
 msgstr "Aktiviert automatisches Timeshift nach"
+
+msgid "Timeshift buffer delete after zap?"
+msgstr "Timeshift nach dem Umschalten löschen?"
 
 msgid "Automatically turn on external subtitles"
 msgstr "Externe Untertitel automatisch einschalten"
@@ -4045,6 +4051,12 @@ msgstr "Wähle was bei Druck auf die Info Taste aktiviert werden soll:"
 
 msgid "Select what you want the FAV button to activate:"
 msgstr "Wähle was bei Druck auf die FAV Taste aktiviert werden soll:"
+
+msgid "Select what you want the Web button to activate:"
+msgstr "Wähle was bei Druck auf die Web Taste aktiviert werden soll:"
+
+msgid "Select what you want the Plugin button to activate:"
+msgstr "Wähle was bei Druck auf die Plugin Taste aktiviert werden soll:"
 
 msgid "Select the keymap that you want to use:"
 msgstr "Bitte wählen welche Keympa benutzt werden soll:"
@@ -8326,6 +8338,12 @@ msgstr "F3 Button Belegung"
 msgid "F4 button mode"
 msgstr "F4 Button Belegung"
 
+msgid "Plugin button mode"
+msgstr "Plugin Button Belegung"
+
+msgid "Web button mode"
+msgstr "Web Button Belegung"
+
 msgid "QuickEPG mode"
 msgstr "QuickEPG Modus"
 
@@ -8427,6 +8445,18 @@ msgstr "Blaue Taste Belegung"
 
 msgid "Blue button long mode"
 msgstr "Blaue Taste (lang) Belegung"
+
+msgid "show red button information..."
+msgstr "Zeige Belegung für rote Taste..."
+
+msgid "show green button information..."
+msgstr "Zeige Belegung für grüne Taste..."
+
+msgid "show yellow button information..."
+msgstr "Zeige Belegung für gelbe Taste..."
+
+msgid "show blue button information..."
+msgstr "Zeige Belegung für blaue Taste..."
 
 msgid "Sun"
 msgstr "So"
@@ -10341,6 +10371,34 @@ msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Wohin die Einstellungen sichern?"
+
+#: Backup/restore
+msgid "Restore Plugins"
+msgstr "Wiederherstellen Plugins"
+
+#: Backup/restore
+msgid ""
+"Backup plugins found\n"
+"do you want to install now?"
+msgstr ""
+"Gesicherte Plugins gefunden!\n"
+"Sollen die Plugins nun installiert werden?"
+
+#: Backup/restore
+msgid "Install Plugins"
+msgstr "Installiere Plugins"
+
+#: Backup/restore
+msgid "Installing plugins..."
+msgstr "Installiere Plugins..."
+
+#: Backup/restore
+msgid "Please wait while we check your installed plugins..."
+msgstr "Bitte warten, es werden die installierten Plugins geprüft..."
+
+#: Backup/restore
+msgid "Restart Network Adapter"
+msgstr "Neustart des Netzwerkadapters"
 
 msgid "Where should the recording be saved?"
 msgstr "Wo soll die Aufnahme gespeichert werden?"

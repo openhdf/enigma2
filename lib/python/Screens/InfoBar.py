@@ -58,6 +58,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				"showTv": (self.TvRadioToggle, _("Show the tv player...")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				"openBouquetList": (self.openBouquetList, _("open bouquetlist")),
+				"openSleepTimer": (self.openPowerTimerList, _("Show the Sleep Timer...")),
 				"showEMC": (self.showEMC, _("Show the media center...")),
 				"showETPORTAL": (self.showETPORTAL, _("Open EtPortal...")),
 				"showMEDIAPORTAL": (self.showMEDIAPORTAL, _("Open MediaPortal...")),
@@ -203,6 +204,14 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(EtPortalScreen)
 		except Exception, e:
 			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def openSleepTimer(self):
+		from Screens.SleepTimerEdit import SleepTimerEdit
+		self.session.open(SleepTimerEdit)
+
+	def openPowerTimerList(self):
+		from Screens.PowerTimerEdit import PowerTimerEditList
+		self.session.open(PowerTimerEditList)
 
 	def showPluginBrowser(self):
 		from Screens.PluginBrowser import PluginBrowser
