@@ -2401,6 +2401,14 @@ class InfoBarEPG:
 		except Exception, e:
 			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
+	def showDREAMPLEX(self):
+		try:
+			from Plugins.Extensions.DreamPlex.plugin import *
+			from Components.PluginComponent import plugins
+			self.session.open(DPS_MainMenu)
+		except Exception, e:
+			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
 	def showWERBEZAPPER(self):
 		try:
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
@@ -2591,6 +2599,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.PLIFAV_mode.value == "dreamplex":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
+					self.showDREAMPLEX()
+				else:
+					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				self.showDefaultEPG()
 
@@ -2637,6 +2650,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.F1_mode.value == "dreamplex":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
+					self.showDREAMPLEX()
+				else:
+					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			elif config.plisettings.F1_mode.value == "showsimplelist":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 					self.showsimplelist()
@@ -2688,6 +2706,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.F2_mode.value == "dreamplex":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
+					self.showDREAMPLEX()
+				else:
+					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			elif config.plisettings.F2_mode.value == "showsimplelist":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 					self.showsimplelist()
@@ -2739,6 +2762,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.F3_mode.value == "dreamplex":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
+					self.showDREAMPLEX()
+				else:
+					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			elif config.plisettings.F3_mode.value == "showsimplelist":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 					self.showsimplelist()
@@ -2790,6 +2818,11 @@ class InfoBarEPG:
 					self.showMEDIAPORTAL()
 				else:
 					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			elif config.plisettings.F4_mode.value == "dreamplex":
+				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
+					self.showDREAMPLEX()
+				else:
+					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			elif config.plisettings.F4_mode.value == "showsimplelist":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 					self.showsimplelist()
