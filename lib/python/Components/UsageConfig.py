@@ -751,6 +751,7 @@ def InitUsageConfig():
 					("cooltvguide", _("Show CoolTVGuide")),
 					("emc", _("Show Enhanced Movie Center")),
 					("mediaportal", _("Show Media Portal")),
+					("dreamplex", _("Show DreamPlex")),
 					("etportal", _("Show EtPortal"))])
 	else:
 		config.plisettings.PLIEPG_mode = ConfigSelection(default="pliepg", choices = [
@@ -773,6 +774,7 @@ def InitUsageConfig():
 					("single", _("Show Single EPG")),
 					("emc", _("Show Enhanced Movie Center")),
 					("mediaportal", _("Show Media Portal")),
+					("dreamplex", _("Show DreamPlex")),
 					("etportal", _("Show EtPortal"))])
 
 	config.plisettings.F1_mode = ConfigSelection(default="hdftoolbox", choices = [
@@ -788,6 +790,7 @@ def InitUsageConfig():
 				("emc", _("Show Enhanced Movie Center")),
 				("mediaportal", _("Show Media Portal")),
 				("vmodeSelection", _("Toggle aspect ratio")),
+				("dreamplex", _("Show DreamPlex")),
 				("etportal", _("Show EtPortal"))])
 
 	config.plisettings.F2_mode = ConfigSelection(default="mediaportal", choices = [
@@ -803,6 +806,7 @@ def InitUsageConfig():
 				("emc", _("Show Enhanced Movie Center")),
 				("mediaportal", _("Show Media Portal")),
 				("vmodeSelection", _("Toggle aspect ratio")),
+				("dreamplex", _("Show DreamPlex")),
 				("etportal", _("Show EtPortal"))])
 
 	config.plisettings.F3_mode = ConfigSelection(default="etportal", choices = [
@@ -818,6 +822,7 @@ def InitUsageConfig():
 				("emc", _("Show Enhanced Movie Center")),
 				("mediaportal", _("Show Media Portal")),
 				("vmodeSelection", _("Toggle aspect ratio")),
+				("dreamplex", _("Show DreamPlex")),
 				("etportal", _("Show EtPortal"))])
 
 	config.plisettings.F4_mode = ConfigSelection(default="vmodeSelection", choices = [
@@ -833,6 +838,7 @@ def InitUsageConfig():
 				("emc", _("Show Enhanced Movie Center")),
 				("mediaportal", _("Show Media Portal")),
 				("vmodeSelection", _("Toggle aspect ratio")),
+				("dreamplex", _("Show DreamPlex")),
 				("etportal", _("Show EtPortal"))])
 
 	config.plisettings.redbutton_mode = ConfigSelection(default="hdftoolbox", choices = [
