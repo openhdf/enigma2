@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-08-27 20:00+0100\n"
+"PO-Revision-Date: 2014-09-19 17:45+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.6.9\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -2898,6 +2898,30 @@ msgid "Display"
 msgstr "Display (VFD/LCD)"
 
 #, python-format
+msgid "Power LED State in Deep-Standby and Standby"
+msgstr "Power LED Anzeige im Deep-Standby und Standby"
+
+#, python-format
+msgid "Power LED state during deep-standby and standby."
+msgstr "Power LED Anzeige im Deep-Standby und Standby"
+
+#, python-format
+msgid "LCD scroll speed"
+msgstr "LCD Scroll Geschwindigkeit"
+
+#, python-format
+msgid "Time for next LCD scrolling"
+msgstr "Zeitraum bis zum nächsten LCD Scrolling"
+
+#, python-format
+msgid "Show blinking rec symbol in LCD during recording"
+msgstr "Zeige blinkendes REC Symbol bei aktiven Aufnahmen"
+
+#, python-format
+msgid "Enable blinking rec symbol on the LCD Display"
+msgstr "Aktiviert das blinkendes REC Symbol bei aktiven Aufnahmen"
+
+#, python-format
 msgid ""
 "GUI needs a restart to apply new skin.\n"
 "Do you want to Restart the GUI now?"
@@ -4320,6 +4344,7 @@ msgstr ""
 "Wenn 'Ja' eingestellt ist wird Infobar bei schnellem Vor- und Rücklauf in "
 "Medienwiedergabe angezeigt."
 
+#, python-format
 msgid ""
 "If the text is too long to be displayed on the front panel, it will be "
 "repeated (number of times):"
@@ -7479,6 +7504,7 @@ msgstr "Wähle die Sprungweite für die Seekbar."
 msgid "Set the name the recording will get."
 msgstr "Setze den Namen den die Aufnahme bekommen soll."
 
+#, python-format
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Wähle die Durchlaufgeschwindigkeit für Text im Display"
 
