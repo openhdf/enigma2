@@ -10,6 +10,7 @@ class Console(Screen):
 		self.finishedCallback = finishedCallback
 		self.closeOnSuccess = closeOnSuccess
 		self.errorOcurred = False
+		self.hideflag = True
 
 		self.Shown = True
 		self["text"] = ScrollLabel("")
@@ -33,10 +34,29 @@ class Console(Screen):
 		self.container.dataAvail.append(self.dataAvail)
 		self.onLayoutFinish.append(self.startRun) # dont start before gui is finished
 
+	def hideScreen(self):
+		if self.hideflag == True:
+			self.hideflag = False
+			count = 40
+			while count > 0:
+				count -= 1
+				f = open('/proc/stb/video/alpha', 'w')
+				f.write('%i' % (255 * count / 40))
+				f.close()
+
+		else:
+			self.hideflag = True
+			count = 0
+			while count < 40:
+				count += 1
+				f = open('/proc/stb/video/alpha', 'w')
+				f.write('%i' % (255 * count / 40))
+				f.close()
+	
 	def yellow(self):
 		print 'Yellow Pressed'	
 		if self.Shown == True:
-			self.hide()
+			self.hideScreen()
 			self.Shown = False
 		else:
 			self.show()
