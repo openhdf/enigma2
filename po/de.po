@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-09-19 17:45+0100\n"
+"PO-Revision-Date: 2014-09-23 21:25+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -6545,6 +6545,10 @@ msgstr "Fertig zur Installation von %s ?"
 msgid "Ready to remove \"%s\" ?"
 msgstr "Fertig zum Löschen von \"%s\"?"
 
+#, python-format
+msgid "Ready to remove %s ?"
+msgstr "Wollen Sie - %s - deinstallieren?"
+
 msgid "Really close without saving settings?"
 msgstr "Wirklich ohne Sichern beenden?"
 
@@ -12531,7 +12535,10 @@ msgstr "Geringe Framerate reduziert die CPU Belastung"
 
 # python\Screens\LanguageSelection.py
 msgid "Do you want to delete all other languages?"
-msgstr "Wollen Sie alle anderen Sprachen löschen?"
+msgstr "Alle Sprachen löschen?"
+
+msgid " Except %s"
+msgstr " %s bleibt installiert."
 
 # python\Screens\LanguageSelection.py
 msgid "Do you want to delete %s language?"
