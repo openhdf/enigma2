@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-09-23 21:25+0100\n"
+"PO-Revision-Date: 2014-09-26 18:27+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2496,6 +2496,10 @@ msgstr "Dateien kopieren"
 #, python-format
 msgid "Cores:\t%s"
 msgstr "Kerne:\t%s"
+
+#, python-format
+msgid "Clock Speed:\t%s"
+msgstr "Taktfrequenz:\t%s"
 
 #, python-format
 msgid "Could not connect to %s %s .NFI image feed server:"
