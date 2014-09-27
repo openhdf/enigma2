@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-09-27 11:15+0100\n"
+"PO-Revision-Date: 2014-09-27 15:59+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -197,6 +197,14 @@ msgstr "Zeige"
 #, python-format
 msgid "Show WerbeZapper"
 msgstr "Zeige WerbeZapper"
+
+#, python-format
+msgid "Show OscamInfo"
+msgstr "Zeige OscamInfo"
+
+#, python-format
+msgid "Show OscamStatusView"
+msgstr "Zeige OscamStatusView"
 
 #, python-format
 msgid "Show CoolTVGuide"
@@ -8381,6 +8389,12 @@ msgstr "Plugin Button Belegung"
 
 msgid "Web button mode"
 msgstr "Web Button Belegung"
+
+msgid "Home button mode"
+msgstr "Home Button Belegung"
+
+msgid "End button mode"
+msgstr "End Button Belegung"
 
 msgid "QuickEPG mode"
 msgstr "QuickEPG Modus"

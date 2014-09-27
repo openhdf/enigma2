@@ -791,6 +791,8 @@ def InitUsageConfig():
 				("mediaportal", _("Show Media Portal")),
 				("vmodeSelection", _("Toggle aspect ratio")),
 				("dreamplex", _("Show DreamPlex")),
+				("oscaminfo", _("Show OscamInfo")),
+				("oscamstatus", _("Show OscamStatusView")),
 				("etportal", _("Show EtPortal"))])
 
 	config.plisettings.F2_mode = ConfigSelection(default="mediaportal", choices = [
@@ -1044,6 +1046,42 @@ def InitUsageConfig():
 				("etportal", _("Show EtPortal")),
 				("werbezapper", _("Show WerbeZapper")),
 				("werbezappermon", _("Start/Stop WerbeZapper Monitoring"))])
+
+	config.plisettings.homemode = ConfigSelection(default="hdftoolbox", choices = [
+				("hdftoolbox", _("Show HDF-Toolbox")),
+				("showsimplelist", _("Show Simple Movie List")),
+				("eventview", _("Show Eventview")),
+				("showfavourites", _("Show Favourites")),
+				("epgpress", _("Show EPG")),
+				("single", _("Show Single EPG")),
+				("coolsingleguide", _("Show CoolSingleGuide")),
+				("coolinfoguide", _("Show CoolInfoGuide")),
+				("cooltvguide", _("Show CoolTVGuide")),
+				("emc", _("Show Enhanced Movie Center")),
+				("mediaportal", _("Show Media Portal")),
+				("vmodeSelection", _("Toggle aspect ratio")),
+				("dreamplex", _("Show DreamPlex")),
+				("oscaminfo", _("Show OscamInfo")),
+				("oscamstatus", _("Show OscamStatusView")),
+				("etportal", _("Show EtPortal"))])
+
+	config.plisettings.endmode = ConfigSelection(default="hdftoolbox", choices = [
+				("hdftoolbox", _("Show HDF-Toolbox")),
+				("showsimplelist", _("Show Simple Movie List")),
+				("eventview", _("Show Eventview")),
+				("showfavourites", _("Show Favourites")),
+				("epgpress", _("Show EPG")),
+				("single", _("Show Single EPG")),
+				("coolsingleguide", _("Show CoolSingleGuide")),
+				("coolinfoguide", _("Show CoolInfoGuide")),
+				("cooltvguide", _("Show CoolTVGuide")),
+				("emc", _("Show Enhanced Movie Center")),
+				("mediaportal", _("Show Media Portal")),
+				("vmodeSelection", _("Toggle aspect ratio")),
+				("dreamplex", _("Show DreamPlex")),
+				("oscaminfo", _("Show OscamInfo")),
+				("oscamstatus", _("Show OscamStatusView")),
+				("etportal", _("Show EtPortal"))])
 
 	config.plisettings.webbutton_mode = ConfigSelection(default="hdftoolbox", choices = [
 				("hdftoolbox", _("Show HDF-Toolbox")),
