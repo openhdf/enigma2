@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-09-26 18:27+0100\n"
+"PO-Revision-Date: 2014-09-27 11:15+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -205,6 +205,10 @@ msgstr "Zeige CoolTVGuide"
 #, python-format
 msgid "Show HDF-Toolbox"
 msgstr "Zeige HDF-Toolbox"
+
+#, python-format
+msgid "Show DreamPlex"
+msgstr "Zeige DreamPlex"
 
 #, python-format
 msgid "Show Graphical EPG"
@@ -11435,6 +11439,21 @@ msgstr "Zum nächsten Titel springen"
 
 msgid "languages"
 msgstr "Sprachen"
+
+msgid "Languages"
+msgstr "Sprachen"
+
+msgid "Sources"
+msgstr "Quelldateien"
+
+msgid "Drivers"
+msgstr "Treiber"
+
+msgid "Security"
+msgstr "Sicherheit"
+
+msgid "Kernel Modules"
+msgstr "Kernel Module"
 
 msgid "leave movie player..."
 msgstr "Abspielmodus verlassen..."
