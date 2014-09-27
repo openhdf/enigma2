@@ -40,6 +40,8 @@ SystemInfo["Fan"] = fileExists("/proc/stb/fp/fan")
 SystemInfo["FanPWM"] = SystemInfo["Fan"] and fileExists("/proc/stb/fp/fan_pwm")
 SystemInfo["StandbyLED"] = fileExists("/proc/stb/power/standbyled")
 SystemInfo["lxbuttons"] = getBrandOEM() == "ini"
+SystemInfo["homebutton"] = getBoxType().startswith('ixuss')
+SystemInfo["endbutton"] = getBoxType().startswith('ixuss')
 SystemInfo["3FunctionButtons"] = getBoxType() == "et8000" or getBoxType() == "et6x00" or getBoxType() == "et10000" or getBoxType().startswith('gb')
 SystemInfo["4FunctionButtons"] = getBoxType().startswith('gb')
 if getBoxType() in ('gbquad', 'gbquadplus','gb800ueplus', 'gb800seplus', 'gbipbox'):
