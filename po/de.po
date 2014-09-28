@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-09-27 15:59+0100\n"
+"PO-Revision-Date: 2014-09-28 16:45+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -10267,6 +10267,12 @@ msgstr "Wenn aktiviert kann der Mediaplayer mit Exit verlassen werden."
 
 msgid "Always hide infobar"
 msgstr "Infoleiste immer ausblenden"
+
+msgid "Enable infobar fade-out"
+msgstr "Aktiviere Infobar Ausblendung"
+
+msgid "Infobar fade-out speed"
+msgstr "Geschwindigkeit der Infobar Ausblendung"
 
 msgid ""
 "When enabled, measure power consumption to detect when the rotor stops "

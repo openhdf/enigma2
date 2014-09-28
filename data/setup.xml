@@ -27,6 +27,8 @@
 		<item level="0" text="2nd Infobar" description="Enable and set the duration of the second infobar (press OK twice) that may include more information on the current service.">config.usage.show_second_infobar</item>
 		<item level="0" text="2nd Infobar timeout" description="Set the time to hide the second infobar. The bar also disappears on pressing 'OK'.">config.usage.second_infobar_timeout</item>
 		<item level="0" text="Show infobar picons" description="Option to disable picons on the Infobar">config.usage.showpicon</item>
+		<item level="0" text="Enable infobar fade-out" description="Fade the Infobar on hide">config.usage.show_infobar_do_dimming</item>
+		<item level="0" text="Infobar fade-out speed" description="Control the Infobar fading speed">config.usage.show_infobar_dimming_speed</item>
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode:" requires="InfoBarEpg">config.plisettings.InfoBarEpg_mode</item>
 		<item level="1" text="Action on long powerbutton press" description="Configure the function of a long press on the power button.">config.usage.on_long_powerpress</item>
 		<item level="1" text="Action on short powerbutton press" description="Configure the function of a short press on the power button.">config.usage.on_short_powerpress</item>
