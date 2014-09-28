@@ -49,16 +49,23 @@ class About(Screen):
 			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString() + "\n"
 
 		cmd = 'cat /proc/cpuinfo | grep "cpu MHz" -m 1 | awk -F ": " ' + "'{print $2}'"
+		cmd2 = 'cat /proc/cpuinfo | grep "BogoMIPS" -m 1 | awk -F ": " ' + "'{print $2}'"
 		try:
 			res = popen(cmd).read()
+			res2 = popen(cmd2).read()
 		except:
 			res = ""
+			res2 = ""
 		cpuMHz = ""
+		bogoMIPS = ""
 		if res:
 			cpuMHz = "" + res.replace("\n", "") + " MHz"
-
+		if res2:
+			bogoMIPS = "" + res2.replace("\n", "") 
+			
 		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
 		AboutText += _("Clock Speed:\t%s") % cpuMHz + "\n"
+		AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 
 		AboutText += _("HDF Version:\t%s") % getImageVersion() + "\n"
