@@ -739,6 +739,8 @@ def InitUsageConfig():
 					("eventview", _("Show Eventview")),
 					("epgpress", _("Show EPG")),
 					("single", _("Show Single EPG")),
+					("0", _("Show InfoBar")),
+					("1", _("Show Channel List")),
 					("coolsingleguide", _("Show CoolSingleGuide")),
 					("coolinfoguide", _("Show CoolInfoGuide")),
 					("cooltvguide", _("Show CoolTVGuide")),
@@ -768,6 +770,8 @@ def InitUsageConfig():
 					("epgpress", _("Show EPG")),
 					("showfavourites", _("Show Favourites")),
 					("single", _("Show Single EPG")),
+					("0", _("Show InfoBar")),
+					("1", _("Show Channel List")),
 					("etportal", _("Show EtPortal"))])
 		config.plisettings.PLIFAV_mode = ConfigSelection(default="eventview", choices = [
 					("eventview", _("Show Eventview")),
