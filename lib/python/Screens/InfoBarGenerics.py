@@ -734,33 +734,35 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def doHide(self):
 		if self.__state != self.STATE_HIDDEN:
-			self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+			if config.usage.show_infobar_do_dimming.value:
+				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
 
-			if self.dimmed > 0:
-				self.DimmingTimer.start(70, True)
+				if self.dimmed > 0:
+					self.DimmingTimer.start(70, True)
 			else:
 				self.DimmingTimer.stop()
 				if self.__state == self.STATE_SHOWN:
 					self.hide()
-				if hasattr(self, "pvrStateDialog"):
-					try:
-						self.pvrStateDialog.hide()
-					except:
-						pass
-				elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-					self.secondInfoBarScreen.hide()
-					self.secondInfoBarWasShown = False
-				elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
-					try:
-						self.eventView.close()
-					except:
-						pass
-					self.EventViewIsShown = False
-				elif hasattr(self, "pvrStateDialog"):
-					try:
-						self.pvrStateDialog.hide()
-					except:
-						pass
+					if hasattr(self, "pvrStateDialog"):
+						try:
+							self.pvrStateDialog.hide()
+						except:
+							pass
+		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+			self.secondInfoBarShown = False
+		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
+			try:
+				self.eventView.close()
+			except:
+				pass
+			self.EventViewIsShown = False
+		elif hasattr(self, "pvrStateDialog"):
+			try:
+				self.pvrStateDialog.hide()
+			except:
+				pass
 
 	def toggleShow(self):
 		if not hasattr(self, "LongButtonPressed"):
@@ -906,6 +908,7 @@ class NumberZap(Screen):
 		self.numberString += str(number)
 		self["number"].setText(self.numberString)
 		self["number_summary"].setText(self.numberString)
+		self.field = self.numberString
 
 		self.handleServiceName()
 
@@ -916,6 +919,7 @@ class NumberZap(Screen):
 		Screen.__init__(self, session)
 		self.onChangedEntry = [ ]
 		self.numberString = str(number)
+		self.field = str(number)
 		self.searchNumber = searchNumberFunction
 		self.startBouquet = None
 
