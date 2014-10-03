@@ -256,10 +256,12 @@ def InitUsageConfig():
 	config.usage.updownbutton_mode = ConfigSelection(default="1", choices = [
 					("0", _("Just change channels")),
 					("1", _("Channel List")),
-					("2", _("Just change channels revert"))])
+					("2", _("Just change channels revert")),
+					("3", _("Volume Adjust"))])
 	config.usage.leftrightbutton_mode = ConfigSelection(default="0", choices = [
 					("0", _("Just change channels")),
-					("1", _("Channel List"))])
+					("1", _("Channel List")),
+					("3", _("Volume Adjust"))])
 	config.usage.okbutton_mode = ConfigSelection(default="0", choices = [
 					("0", _("InfoBar")),
 					("1", _("Channel List"))])
@@ -585,7 +587,7 @@ def InitUsageConfig():
 		zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
 		config.misc.zapmode = ConfigSelection(default = "mute", choices = zapoptions )
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
-	config.usage.historymode = ConfigSelection(default = "1", choices = [("1", _("Show menu")), ("0", _("Just zap")), ("2", _("Show Zap-History Browser"))])
+	config.usage.historymode = ConfigSelection(default = "1", choices = [("1", _("Show menu")), ("0", _("Just zap")), ("2", _("Show Zap-History Browser")), ("3", _("Volume Adjust"))])
 	config.usage.bookmarkmode = ConfigSelection(default = "0", choices = [("1", _("Show EMC")), ("0", _("Show Movielist")), ("2", _("Show Simple Movie List"))])
 
 	config.subtitles = ConfigSubsection()

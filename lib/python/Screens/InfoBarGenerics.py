@@ -16,9 +16,10 @@ from Components.Pixmap import MovingPixmap, MultiPixmap
 from Components.Sources.StaticText import StaticText
 from Components.ScrollLabel import ScrollLabel
 from Components.Timeshift import InfoBarTimeshift
-from Plugins.Plugin import PluginDescriptor
-
+from Components.VolumeControl import VolumeControl
 from Components.Timeshift import InfoBarTimeshift
+
+from Plugins.Plugin import PluginDescriptor
 
 from Screens.Screen import Screen
 from Screens import ScreenSaver
@@ -1129,12 +1130,16 @@ class InfoBarChannelSelection:
 	def LeftPressed(self):
 		if config.usage.leftrightbutton_mode.value == "0":
 			self.zapUp()
+		if config.usage.leftrightbutton_mode.value == "3":
+			self.volumeDown()
 		elif config.usage.leftrightbutton_mode.value == "1":
 			self.switchChannelUp()
 
 	def RightPressed(self):
 		if config.usage.leftrightbutton_mode.value == "0":
 			self.zapDown()
+		if config.usage.leftrightbutton_mode.value == "3":
+			self.volumeUp()
 		elif config.usage.leftrightbutton_mode.value == "1":
 			self.switchChannelDown()
 
@@ -1143,6 +1148,8 @@ class InfoBarChannelSelection:
 			self.zapDown()
 		if config.usage.updownbutton_mode.value == "2":
 			self.zapUp()
+		if config.usage.updownbutton_mode.value == "3":
+			self.volumeUp()
 		elif config.usage.updownbutton_mode.value == "1":
 			self.switchChannelUp()
 
@@ -1151,6 +1158,8 @@ class InfoBarChannelSelection:
 			self.zapUp()
 		if config.usage.updownbutton_mode.value == "2":
 			self.zapDown()
+		if config.usage.updownbutton_mode.value == "3":
+			self.volumeDown()
 		elif config.usage.updownbutton_mode.value == "1":
 			self.switchChannelDown()
 
@@ -1163,6 +1172,12 @@ class InfoBarChannelSelection:
 			self.serviceListType = "Norm"
 			self.servicelist.showFavourites()
 			self.session.execDialog(self.servicelist)
+
+	def volumeUp(self):
+		VolumeControl.instance and VolumeControl.instance.volUp()
+
+	def volumeDown(self):
+		VolumeControl.instance and VolumeControl.instance.volDown()
 
 	def ChannelMinusPressed(self):
 		if config.usage.channelbutton_mode.value == "0":
@@ -1191,6 +1206,8 @@ class InfoBarChannelSelection:
 	def historyBack(self):
 		if config.usage.historymode.value == "0":
 			self.servicelist.historyBack()
+		if config.usage.historymode.value == "3":
+			self.volumeDown()
 		elif config.usage.historymode.value == "2":
 			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
 					self.showZapHistoryBrowser()
@@ -1200,6 +1217,8 @@ class InfoBarChannelSelection:
 	def historyNext(self):
 		if config.usage.historymode.value == "0":
 			self.servicelist.historyNext()
+		if config.usage.historymode.value == "3":
+			self.volumeUp()
 		elif config.usage.historymode.value == "2":
 			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
 					self.showZapHistoryBrowser()
