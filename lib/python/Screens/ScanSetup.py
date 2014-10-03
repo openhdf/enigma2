@@ -584,7 +584,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				defaultCab["inversion"] = frontendData.get("inversion", eDVBFrontendParametersCable.Inversion_Unknown)
 				defaultCab["fec"] = frontendData.get("fec_inner", eDVBFrontendParametersCable.FEC_Auto)
 				defaultCab["modulation"] = frontendData.get("modulation", eDVBFrontendParametersCable.Modulation_QAM16)
-				defaultTer["system"] = frontendData.get("system", eDVBFrontendParametersCable.System_DVB_C_ANNEX_A)
+				defaultCab["system"] = frontendData.get("system", eDVBFrontendParametersCable.System_DVB_C_ANNEX_A)
 			elif ttype == "DVB-T":
 				defaultTer["frequency"] = frontendData.get("frequency", 47400000) / 1000
 				defaultTer["inversion"] = frontendData.get("inversion", eDVBFrontendParametersTerrestrial.Inversion_Unknown)
@@ -782,7 +782,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		self.scan_type = ConfigSelection(default = defaultSatSearchType, choices = [("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder")), ("single_satellite", _("Single satellite")), ("multisat", _("Multisat")), ("multisat_yes", _("Multisat"))])
 		self.scan_typecable = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
-		self.scan_typeterrestrial = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
+		self.scan_typeterrestrial = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("predefined_transponder", _("Predefined transponder")), ("complete", _("Complete"))])
 		self.scan_input_as = ConfigSelection(default = "channel", choices = [("frequency", _("Frequency")), ("channel", _("Channel"))])
 		self.scan_clearallservices = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
 		self.scan_onlyfree = ConfigYesNo(default = False)
