@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-10-02 18:27+0100\n"
+"PO-Revision-Date: 2014-10-03 09:03+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2225,6 +2225,48 @@ msgstr "Stelle ein was bei kurzem Druck auf die Aus-Taste passieren soll."
 msgid "Configure the function of the <  > buttons."
 msgstr "Stelle ein was beim Druck auf die < > Tasten passieren soll."
 
+msgid "Select what you want the Bookmark button to activate:"
+msgstr "Stelle ein was beim Druck auf die Bookmark Taste passieren soll."
+
+msgid "Select what you want the Left/Right button to activate:"
+msgstr "Stelle ein was beim Druck auf die Links/Rechts Tasten passieren soll."
+
+msgid "Select what you want the F1 button to activate:"
+msgstr "Stelle ein was beim Druck auf die F1 Taste passieren soll."
+
+msgid "Select what you want the F2 button to activate:"
+msgstr "Stelle ein was beim Druck auf die F2 Taste passieren soll."
+
+msgid "Select what you want the F3 button to activate:"
+msgstr "Stelle ein was beim Druck auf die F3 Taste passieren soll."
+
+msgid "Select what you want the F4 button to activate:"
+msgstr "Stelle ein was beim Druck auf die F4 Taste passieren soll."
+
+msgid "Select what you want the red button to activate:"
+msgstr "Stelle ein was beim Druck auf die rote Taste passieren soll."
+
+msgid "Select what you want the long red button to activate:"
+msgstr "Stelle ein was beim langen Druck auf die rote Taste passieren soll."
+
+msgid "Select what you want the green button to activate:"
+msgstr "Stelle ein was beim Druck auf die grüne Taste passieren soll."
+
+msgid "Select what you want the long green button to activate:"
+msgstr "Stelle ein was beim langen Druck auf die grüne Taste passieren soll."
+
+msgid "Select what you want the yellow button to activate:"
+msgstr "Stelle ein was beim Druck auf die gelbe Taste passieren soll."
+
+msgid "Select what you want the long yellow button to activate:"
+msgstr "Stelle ein was beim langen Druck auf die gelbe Taste passieren soll."
+
+msgid "Select what you want the blue button to activate:"
+msgstr "Stelle ein was beim Druck auf die blaue Taste passieren soll."
+
+msgid "Select what you want the long blue button to activate:"
+msgstr "Stelle ein was beim langen Druck auf die blaue Taste passieren soll."
+
 msgid "Configure the gateway."
 msgstr "Konfiguriere das Gateway."
 
@@ -3752,6 +3794,13 @@ msgstr "Vollbild Auflösung"
 msgid "Automatic resolution"
 msgstr "Automatische Auflösung"
 
+msgid ""
+"If enabled the output resolution of the box will try to match the resolution "
+"of the video contents resolution"
+msgstr ""
+"Hiermit können Sie einstellen, ob die auszugebende Video Auflösung an die "
+"Auflösung des Videomaterials angepasst werden soll."
+
 msgid "All resolutions"
 msgstr "Alle Auflösungen"
 
@@ -4090,22 +4139,22 @@ msgid "Setup what a short press on the power button does."
 msgstr "Wähle was bei kurzem Druck auf Ein/Aus aktiviert werden soll."
 
 msgid "Select what you want the EPG button to activate:"
-msgstr "Wähle was bei Druck auf die EPG Taste aktiviert werden soll:"
+msgstr "Wähle was bei Druck auf die EPG Taste aktiviert werden soll."
 
 msgid "Select what you want the INFO button to activate:"
-msgstr "Wähle was bei Druck auf die Info Taste aktiviert werden soll:"
+msgstr "Wähle was bei Druck auf die Info Taste aktiviert werden soll."
 
 msgid "Select what you want the FAV button to activate:"
-msgstr "Wähle was bei Druck auf die FAV Taste aktiviert werden soll:"
+msgstr "Wähle was bei Druck auf die FAV Taste aktiviert werden soll."
 
 msgid "Select what you want the Web button to activate:"
-msgstr "Wähle was bei Druck auf die Web Taste aktiviert werden soll:"
+msgstr "Wähle was bei Druck auf die Web Taste aktiviert werden soll."
 
 msgid "Select what you want the Plugin button to activate:"
-msgstr "Wähle was bei Druck auf die Plugin Taste aktiviert werden soll:"
+msgstr "Wähle was bei Druck auf die Plugin Taste aktiviert werden soll."
 
 msgid "Select the keymap that you want to use:"
-msgstr "Bitte wählen welche Keympa benutzt werden soll:"
+msgstr "Bitte wählen welche Keymap benutzt werden soll."
 
 msgid ""
 "Configure to keep focus on the current played service while entering the "
@@ -5990,6 +6039,13 @@ msgstr "Picon Breite"
 msgid "Info icon width"
 msgstr "Info Icon Breite"
 
+msgid ""
+"Configure the minimum width before showing the 'i' icon, '0' is equal to not "
+"showing the icon at all."
+msgstr ""
+"Konfiguriere die minimale Breite des 'i' Symbols, '0' bedeuted es wird nicht "
+"angezeigt."
+
 msgid "Picture in graphics"
 msgstr "Bild in Grafik"
 
@@ -7257,7 +7313,16 @@ msgid "Select folders"
 msgstr "Wähle Verzeichnisse"
 
 msgid "Select how to activate the Quick EPG mode:"
-msgstr "Wähle die Taste die QuickEPG aktivieren soll:"
+msgstr "Wähle die Taste die QuickEPG aktivieren soll."
+
+msgid "Option to disable picons on the Infobar"
+msgstr "Sollen Picons in der Infobar gezeigt werden?"
+
+msgid "Fade the Infobar on hide"
+msgstr "Sanftes Ausblenden der Infobar?"
+
+msgid "Control the Infobar fading speed"
+msgstr "Geschwindigkeit der Infobar Ausblendung."
 
 msgid "Select if timeshift must continue when set to record."
 msgstr "Wähle ob TimeShift auch bei einer Aufnahme weiter gehen soll."
@@ -7272,8 +7337,8 @@ msgid ""
 "Select if you want to use the image coloured Buttons (set to 'no' if you "
 "want to use (Multi) Quick Button)."
 msgstr ""
-"Wählen Sie ob die Image Farbtasten benutzt werden sollen\n"
-"('Nein' wenn Sie (Multi-)QuickButton benutzen möchten)."
+"Sollen die Image Farbtasten benutzt werden sollen\n"
+"('Nein' wenn (Multi-)QuickButton benutzen wird)."
 
 msgid "Select input device"
 msgstr "Wähle Eingabegerät"
@@ -7851,6 +7916,20 @@ msgstr "Zeige Bildschirmschoner"
 
 msgid "Show second infobar"
 msgstr "Zeige SecondInfobar"
+
+msgid ""
+"Enable and set the duration of the second infobar (press OK twice) that may "
+"include more information on the current service."
+msgstr ""
+"Zweite Infoleiste mit Zusatzinformationen aktivieren und ihre Anzeigedauer "
+"bestimmen (OK zweimal drücken). Die Oberfläche muss dies unterstützen."
+
+msgid ""
+"Set the time to hide the second infobar. The bar also disappears on pressing "
+"'OK'."
+msgstr ""
+"Wähle die Anzeigedauer der 2. Infobar. Sie verschwindet auch beim druck auf "
+"die OK Taste."
 
 msgid "Show service type icons"
 msgstr "Zeige Sendertype Icon"
@@ -9667,6 +9746,9 @@ msgstr "Benutze MHW EPG-Informationen benutzen wenn sie vorhanden sind."
 
 msgid "Use Netmed EPG information when it is available."
 msgstr "Benutze NetMed EPG-Informationen benutzen wenn sie vorhanden sind."
+
+msgid "Use Virgin EPG information when it is available."
+msgstr "Benutze Virgin EPG-Informationen benutzen wenn sie vorhanden sind."
 
 msgid "Use TV remote control"
 msgstr "Nutze TV-Fernbedienung"
@@ -12614,8 +12696,34 @@ msgstr "Event Anzeige"
 msgid "channel selection"
 msgstr "Kanalliste"
 
+msgid ""
+"Configure if and how wide columns will be shown in the channel selection "
+"list."
+msgstr ""
+"Hier können Sie einstellen, ob Spalten innerhalb der Kanalliste benutzt "
+"werden und wie breit die Spalten sein sollen."
+
+msgid ""
+"Configure if and how crypto icons will be shown in the channel selection "
+"list."
+msgstr "Konfigurieren ob und wie das Verschlüsselungsicon angezeigt wird."
+
 msgid "event info / channel selection"
 msgstr "Event Anzeige / Kanalliste"
+
+msgid ""
+"Set the scrolling speed of text on the front display, this is used by "
+"software renderer in some skins."
+msgstr ""
+"Setzen Sie die Scroll Geschwindigkeit für Text im Display, wird vom Software "
+"Renderer in einigen Skins genutzt."
+
+msgid ""
+"Set the delay time between repeated loops, this is used by software renderer "
+"in some skins."
+msgstr ""
+"Setzen Sie die Verzögerungszeit zwischen Scroll Durchläufen, wird vom "
+"Software Renderer in einigen Skins genutzt."
 
 msgid "Setup save / load EPG"
 msgstr "Einstellungen zum speichern / laden vom EPG"
