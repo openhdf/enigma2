@@ -124,9 +124,9 @@ class AudioSelection(Screen, ConfigListScreen):
 						if cnt:
 							language += ' / '
 						if LanguageCodes.has_key(lang):
-							language += LanguageCodes[lang][0]
-# 						elif lang == "und":
-# 							""
+							language += _(LanguageCodes[lang][0])
+						elif lang == "und":
+							""
 						else:
 							language += lang
 						cnt += 1
@@ -196,7 +196,6 @@ class AudioSelection(Screen, ConfigListScreen):
 		elif self.settings.menupage.value == PAGE_SUBTITLES:
 			self.setTitle(_("Subtitle selection"))
 			conflist.append(('',))
-			conflist.append(('',))
 			self["key_red"].setBoolean(False)
 			self["key_green"].setBoolean(False)
 
@@ -215,7 +214,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				try:
 					if x[4] != "und":
 						if LanguageCodes.has_key(x[4]):
-							language = LanguageCodes[x[4]][0]
+							language = _(LanguageCodes[x[4]][0])
 						else:
 							language = x[4]
 				except:
