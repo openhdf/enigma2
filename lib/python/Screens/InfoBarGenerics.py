@@ -616,10 +616,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.toggleShow()
 
 	def SwitchSecondInfoBarScreen(self):
-		if self.lastSecondInfoBar == config.usage.show_second_infobar.value:
+		if self.lastSecondInfoBar == int(config.usage.show_second_infobar.value):
 			return
 		self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar)
-		self.lastSecondInfoBar = config.usage.show_second_infobar.value
+		self.lastSecondInfoBar = int(config.usage.show_second_infobar.value)
 
 	def LongOKPressed(self):
 		if isinstance(self, InfoBarEPG):
@@ -652,13 +652,15 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def __onHide(self):
 		self.__state = self.STATE_HIDDEN
-		self.unDimmingTimer = eTimer()
-		self.unDimmingTimer.callback.append(self.unDimming)
-		self.unDimmingTimer.start(100, True)
-#		if self.secondInfoBarScreen:
-#			self.secondInfoBarScreen.hide()
+		self.resetAlpha()
 		for x in self.onShowHideNotifiers:
 			x(False)
+
+	def resetAlpha(self):
+		if config.usage.show_infobar_do_dimming.value:
+			self.unDimmingTimer = eTimer()
+			self.unDimmingTimer.callback.append(self.unDimming)
+			self.unDimmingTimer.start(100, True)
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -734,35 +736,37 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def doHide(self):
 		if self.__state != self.STATE_HIDDEN:
-			if config.usage.show_infobar_do_dimming.value:
+			if self.dimmed > 0:
 				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
-
-				if self.dimmed > 0:
-					self.DimmingTimer.start(70, True)
+				self.DimmingTimer.start(70, True)
 			else:
 				self.DimmingTimer.stop()
-				if self.__state == self.STATE_SHOWN:
-					self.hide()
-					if hasattr(self, "pvrStateDialog"):
-						try:
-							self.pvrStateDialog.hide()
-						except:
-							pass
+				self.hide()
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-			self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-			self.secondInfoBarShown = False
+			if self.dimmed > 0:
+				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+				self.DimmingTimer.start(70, True)
+			else:
+				self.DimmingTimer.stop()
+				self.secondInfoBarScreen.hide()
+				self.secondInfoBarWasShown = False
+				self.resetAlpha()
 		elif self.__state == self.STATE_HIDDEN and self.EventViewIsShown:
 			try:
 				self.eventView.close()
 			except:
 				pass
 			self.EventViewIsShown = False
-		elif hasattr(self, "pvrStateDialog"):
-			try:
-				self.pvrStateDialog.hide()
-			except:
-				pass
+#		elif hasattr(self, "pvrStateDialog"):
+#			if self.dimmed > 0:
+#				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+#				self.DimmingTimer.start(70, True)
+#			else:
+#				self.DimmingTimer.stop()
+#				try:
+#					self.pvrStateDialog.hide()
+#				except:
+#					pass
 
 	def toggleShow(self):
 		if not hasattr(self, "LongButtonPressed"):
@@ -982,59 +986,67 @@ class InfoBarNumberZap:
 		if self.pts_blockZap_timer.isActive():
 			return
 
+		# if self.save_current_timeshift and self.timeshiftEnabled():
+		# 	InfoBarTimeshift.saveTimeshiftActions(self)
+		# 	return
+
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
-			else:
-				if config.usage.panicbutton.value:
-					if self.session.pipshown:
-						del self.session.pip
-						self.session.pipshown = False
-					self.servicelist.history_tv = []
-					self.servicelist.history_radio = []
-					self.servicelist.history = self.servicelist.history_tv
-					self.servicelist.history_pos = 0
-					self.servicelist2.history_tv = []
-					self.servicelist2.history_radio = []
-					self.servicelist2.history = self.servicelist.history_tv
-					self.servicelist2.history_pos = 0
-					if config.usage.multibouquet.value:
-						bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
-					else:
-						bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
-					serviceHandler = eServiceCenter.getInstance()
-					rootbouquet = eServiceReference(bqrootstr)
-					bouquet = eServiceReference(bqrootstr)
-					bouquetlist = serviceHandler.list(bouquet)
-					if not bouquetlist is None:
-						while True:
-							bouquet = bouquetlist.getNext()
-							if bouquet.flags & eServiceReference.isDirectory:
-								self.servicelist.clearPath()
-								self.servicelist.setRoot(bouquet)
-								servicelist = serviceHandler.list(bouquet)
-								if not servicelist is None:
-									serviceIterator = servicelist.getNext()
-									while serviceIterator.valid():
-										service, bouquet2 = self.searchNumber(1)
-										if service == serviceIterator: break
-										serviceIterator = servicelist.getNext()
-									if serviceIterator.valid() and service == serviceIterator: break
-						self.servicelist.enterPath(rootbouquet)
-						self.servicelist.enterPath(bouquet)
-						self.servicelist.saveRoot()
-						self.servicelist2.enterPath(rootbouquet)
-						self.servicelist2.enterPath(bouquet)
-						self.servicelist2.saveRoot()
-					self.selectAndStartService(service, bouquet)
-				else:
-					self.servicelist.recallPrevService()
+			elif len(self.servicelist.history) > 1:
+				self.checkTimeshiftRunning(self.recallPrevService)
 		else:
 			if self.has_key("TimeshiftActions") and self.timeshiftEnabled():
 				ts = self.getTimeshift()
 				if ts and ts.isTimeshiftActive():
 					return
 			self.session.openWithCallback(self.numberEntered, NumberZap, number, self.searchNumber)
+
+	def recallPrevService(self, reply):
+		if reply:
+			if config.usage.panicbutton.value:
+				if self.session.pipshown:
+					del self.session.pip
+					self.session.pipshown = False
+				self.servicelist.history_tv = []
+				self.servicelist.history_radio = []
+				self.servicelist.history = self.servicelist.history_tv
+				self.servicelist.history_pos = 0
+				self.servicelist2.history_tv = []
+				self.servicelist2.history_radio = []
+				self.servicelist2.history = self.servicelist.history_tv
+				self.servicelist2.history_pos = 0
+				if config.usage.multibouquet.value:
+					bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
+				else:
+					bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
+				serviceHandler = eServiceCenter.getInstance()
+				rootbouquet = eServiceReference(bqrootstr)
+				bouquet = eServiceReference(bqrootstr)
+				bouquetlist = serviceHandler.list(bouquet)
+				if not bouquetlist is None:
+					while True:
+						bouquet = bouquetlist.getNext()
+						if bouquet.flags & eServiceReference.isDirectory:
+							self.servicelist.clearPath()
+							self.servicelist.setRoot(bouquet)
+							servicelist = serviceHandler.list(bouquet)
+							if not servicelist is None:
+								serviceIterator = servicelist.getNext()
+								while serviceIterator.valid():
+									service, bouquet2 = self.searchNumber(1)
+									if service == serviceIterator: break
+									serviceIterator = servicelist.getNext()
+								if serviceIterator.valid() and service == serviceIterator: break
+					self.servicelist.enterPath(rootbouquet)
+					self.servicelist.enterPath(bouquet)
+					self.servicelist.saveRoot()
+					self.servicelist2.enterPath(rootbouquet)
+					self.servicelist2.enterPath(bouquet)
+					self.servicelist2.saveRoot()
+				self.selectAndStartService(service, bouquet)
+			else:
+				self.servicelist.recallPrevService()
 
 	def numberEntered(self, service = None, bouquet = None):
 		if service:
@@ -2356,9 +2368,7 @@ class InfoBarEPG:
 		if not self.dlg_stack:
 			return
 		closedScreen = self.dlg_stack.pop()
-		if self.bouquetSel and closedScreen == self.bouquetSel:
-			self.bouquetSel = None
-		elif self.eventView and closedScreen == self.eventView:
+		if self.eventView and closedScreen == self.eventView:
 			self.eventView = None
 		if ret == True or ret == 'close':
 			dlgs=len(self.dlg_stack)
@@ -3262,11 +3272,16 @@ class Seekbar(Screen):
 			self.percent = 100.0
 
 	def keyNumberGlobal(self, number):
-		sel = self["config"].getCurrent()[1]
-		if sel == self.positionEntry:
-			self.percent = float(number) * 10.0
-		else:
-			ConfigListScreen.keyNumberGlobal(self, number)
+		self.Timer.start(1000, True)
+		self.numberString += str(number)
+		self["number"].setText(self.numberString)
+		self["number_summary"].setText(self.numberString)
+		self.field = self.numberString
+
+		self.handleServiceName()
+
+		if len(self.numberString) >= 4:
+			self.keyOK()
 
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
