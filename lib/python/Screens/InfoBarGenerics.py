@@ -660,7 +660,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if config.usage.show_infobar_do_dimming.value:
 			self.unDimmingTimer = eTimer()
 			self.unDimmingTimer.callback.append(self.unDimming)
-			self.unDimmingTimer.start(100, True)
+			self.unDimmingTimer.start(300, True)
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN:
@@ -731,21 +731,21 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.hideTimer.stop()
 		self.DimmingTimer = eTimer()
 		self.DimmingTimer.callback.append(self.doDimming)
-		self.DimmingTimer.start(70, True)
+		self.DimmingTimer.start(300, True)
 		self.dimmed = config.usage.show_infobar_dimming_speed.value
 
 	def doHide(self):
 		if self.__state != self.STATE_HIDDEN:
 			if self.dimmed > 0:
 				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
-				self.DimmingTimer.start(70, True)
+				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
 				self.hide()
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			if self.dimmed > 0:
 				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
-				self.DimmingTimer.start(70, True)
+				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
 				self.secondInfoBarScreen.hide()
@@ -760,7 +760,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 #		elif hasattr(self, "pvrStateDialog"):
 #			if self.dimmed > 0:
 #				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
-#				self.DimmingTimer.start(70, True)
+#				self.DimmingTimer.start(5, True)
 #			else:
 #				self.DimmingTimer.stop()
 #				try:
@@ -1251,40 +1251,44 @@ class InfoBarChannelSelection:
 			self.showMovies()
 
 	def switchChannelUp(self):
-		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
-			if not config.usage.show_bouquetalways.value:
-				if "keep" not in config.usage.servicelist_cursor_behavior.value:
-					self.servicelist.moveUp()
-				self.session.execDialog(self.servicelist)
-			else:
-				self.servicelist.showFavourites()
-				self.session.execDialog(self.servicelist)
-		elif self.LongButtonPressed:
-			if not config.usage.show_bouquetalways.value:
-				if "keep" not in config.usage.servicelist_cursor_behavior.value:
-					self.servicelist2.moveUp()
-				self.session.execDialog(self.servicelist2)
-			else:
-				self.servicelist2.showFavourites()
-				self.session.execDialog(self.servicelist2)
+		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
+			self.keyHide()
+			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+				if not config.usage.show_bouquetalways.value:
+					if "keep" not in config.usage.servicelist_cursor_behavior.value:
+						self.servicelist.moveUp()
+					self.session.execDialog(self.servicelist)
+				else:
+					self.servicelist.showFavourites()
+					self.session.execDialog(self.servicelist)
+			elif self.LongButtonPressed:
+				if not config.usage.show_bouquetalways.value:
+					if "keep" not in config.usage.servicelist_cursor_behavior.value:
+						self.servicelist2.moveUp()
+					self.session.execDialog(self.servicelist2)
+				else:
+					self.servicelist2.showFavourites()
+					self.session.execDialog(self.servicelist2)
 
 	def switchChannelDown(self):
-		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
-			if not config.usage.show_bouquetalways.value:
-				if "keep" not in config.usage.servicelist_cursor_behavior.value:
-					self.servicelist.moveDown()
-				self.session.execDialog(self.servicelist)
-			else:
-				self.servicelist.showFavourites()
-				self.session.execDialog(self.servicelist)
-		elif self.LongButtonPressed:
-			if not config.usage.show_bouquetalways.value:
-				if "keep" not in config.usage.servicelist_cursor_behavior.value:
-					self.servicelist2.moveDown()
-				self.session.execDialog(self.servicelist2)
-			else:
-				self.servicelist2.showFavourites()
-				self.session.execDialog(self.servicelist2)
+		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
+			self.keyHide()
+			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+				if not config.usage.show_bouquetalways.value:
+					if "keep" not in config.usage.servicelist_cursor_behavior.value:
+						self.servicelist.moveDown()
+					self.session.execDialog(self.servicelist)
+				else:
+					self.servicelist.showFavourites()
+					self.session.execDialog(self.servicelist)
+			elif self.LongButtonPressed:
+				if not config.usage.show_bouquetalways.value:
+					if "keep" not in config.usage.servicelist_cursor_behavior.value:
+						self.servicelist2.moveDown()
+					self.session.execDialog(self.servicelist2)
+				else:
+					self.servicelist2.showFavourites()
+					self.session.execDialog(self.servicelist2)
 
 	def openServiceList(self):
 		self.session.execDialog(self.servicelist)
@@ -1436,8 +1440,8 @@ class InfoBarMenu:
 		self.session.infobar = None
 
 	def toggleAspectRatio(self):
-		ASPECT = [ "auto", "16_9", "4_3" ]
-		ASPECT_MSG = { "auto":"Auto", "16_9":"16:9", "4_3":"4:3" }
+		ASPECT = [ "auto", "16:9", "4:3" ]
+		ASPECT_MSG = { "auto":"Auto", "16:9":"16:9", "4:3":"4:3" }
 		if config.av.aspect.value in ASPECT:
 			index = ASPECT.index(config.av.aspect.value)
 			config.av.aspect.value = ASPECT[(index+1)%3]
