@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-10-03 09:03+0100\n"
+"PO-Revision-Date: 2014-10-06 18:39+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2227,6 +2227,12 @@ msgstr "Stelle ein was beim Druck auf die < > Tasten passieren soll."
 
 msgid "Select what you want the Bookmark button to activate:"
 msgstr "Stelle ein was beim Druck auf die Bookmark Taste passieren soll."
+
+msgid "Select what you want the Home button to activate:"
+msgstr "Stelle ein was beim Druck auf die Home Taste passieren soll."
+
+msgid "Select what you want the End button to activate:"
+msgstr "Stelle ein was beim Druck auf die End Taste passieren soll."
 
 msgid "Select what you want the Left/Right button to activate:"
 msgstr "Stelle ein was beim Druck auf die Links/Rechts Tasten passieren soll."
