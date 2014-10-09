@@ -64,7 +64,8 @@ class Language:
 		self.addLanguage("ภาษาไทย", "th", "TH")
 		self.addLanguage("Türkçe", "tr", "TR")
 		self.addLanguage("Ukrainian", "uk", "UA")
-	
+
+		self.callbacks = []
 
 	def addLanguage(self, name, lang, country):
 		try:
@@ -85,7 +86,7 @@ class Language:
 		try:
 			lang = self.lang[index]
 			print "Activating language " + lang[0]
-			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[index], fallback=True)
+			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[index])
 			self.catalog.install(names=("ngettext", "pgettext"))
 			self.activeLanguage = index
 			for x in self.callbacks:
