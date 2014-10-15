@@ -145,10 +145,10 @@ class Language:
 
 		if delLang:
 			print"DELETE LANG", delLang
-			if delLang == "en_US":
+			if delLang == "en_GB":
 				print"Default Language can not be deleted !!"
 				return
-			elif delLang == "en_GB" or delLang == "pt_BR":
+			elif delLang == "en_US" or delLang == "pt_BR":
 				delLang = delLang.lower()
 				delLang = delLang.replace('_','-')				
 				os.system("opkg remove " + Lpackagename + delLang)
