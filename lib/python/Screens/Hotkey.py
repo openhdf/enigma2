@@ -72,7 +72,7 @@ hotkeys = [	(_("Red"), "red", ""),
 
 if boxtype in ("et10000"):
 	hotkeys.append((_("HDMI Rx"), "HDMIin", ""))
-	hotkeys.append((_("HDMI Rx long"), "HDMIinLong", ""))
+	hotkeys.append((_("HDMI Rx long"), "HDMIin_long", ""))
 	hotkeys.append((_("V-Key"), "vmodeSelection", ""))
 	hotkeys.append((_("V-Key long"), "vmodeSelection_long", ""))
 	hotkeys.append((_("F1"), "f1", ""))
