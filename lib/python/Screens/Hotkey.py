@@ -11,7 +11,10 @@ from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
+from boxbranding import getBoxType, getMachineName
 from enigma import eServiceReference
+
+boxtype = getBoxType()
 
 hotkeys = [	(_("Red"), "red", ""),
 	(_("Red long"), "red_long", ""),
@@ -69,6 +72,18 @@ hotkeys = [	(_("Red"), "red", ""),
 	(_("F3"), "f3", ""),
 	(_("F3 long"), "f3_long", ""),]
 
+## add or remove some functions for individual boxtype from hotkeys list
+## hotkeys.append((_("HDMI Rx"), "red", ""))
+## hotkeys.remove((_("F1/LAN long"), "f1_long", ""))
+
+if boxtype in ("et10000"):
+	hotkeys.append((_("HDMI Rx"), "red", ""))
+	hotkeys.append((_("V-Key"), "red_long", ""))
+	hotkeys.append((_("List"), "f3_long", ""))
+	hotkeys.remove((_("F1/LAN"), "f1", ""))
+	hotkeys.remove((_("F1/LAN long"), "f1_long", ""))
+
+		
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
 for x in hotkeys:
