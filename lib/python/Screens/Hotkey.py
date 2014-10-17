@@ -64,25 +64,32 @@ hotkeys = [	(_("Red"), "red", ""),
 	(_("Mark/Portal/Playlist"), "mark", ""),
 	(_("Sleep"), "sleep", ""),
 	(_("Power"), "power", ""),
-	(_("Power long"), "power_long", ""),
-	(_("F1/LAN"), "f1", ""),
-	(_("F1/LAN long"), "f1_long", ""),
-	(_("F2"), "f2", ""),
-	(_("F2 long"), "f2_long", ""),
-	(_("F3"), "f3", ""),
-	(_("F3 long"), "f3_long", ""),]
+	(_("Power long"), "power_long", ""),]
 
 ## add or remove some functions for individual boxtype from hotkeys list
 ## hotkeys.append((_("HDMI Rx"), "red", ""))
 ## hotkeys.remove((_("F1/LAN long"), "f1_long", ""))
 
 if boxtype in ("et10000"):
-	hotkeys.append((_("HDMI Rx"), "red", ""))
-	hotkeys.append((_("V-Key"), "red_long", ""))
-	hotkeys.append((_("List"), "f3_long", ""))
-	hotkeys.remove((_("F1/LAN"), "f1", ""))
-	hotkeys.remove((_("F1/LAN long"), "f1_long", ""))
+	hotkeys.append((_("HDMI Rx"), "HDMIin", ""))
+	hotkeys.append((_("HDMI Rx long"), "HDMIinLong", ""))
+	hotkeys.append((_("V-Key"), "vmodeSelection", ""))
+	hotkeys.append((_("V-Key long"), "vmodeSelection_long", ""))
+	hotkeys.append((_("F1"), "f1", ""))
+	hotkeys.append((_("F1 long"), "f1_long", ""))
+	hotkeys.append((_("F2"), "f2", ""))
+	hotkeys.append((_("F2 long"), "f2_long", ""))
+	hotkeys.append((_("F3"), "f3", ""))
+	hotkeys.append((_("F3 long"), "f3_long", ""))
+	hotkeys.remove((_("Search/WEB"), "search", ""))
 
+if boxtype in ("optimussos3plus"):
+	hotkeys.append((_("UHF"), "slow", ""))
+	hotkeys.append((_("UHF long"), "slow_long", ""))
+	hotkeys.append((_("Prov/Fav"), "ab", ""))
+	hotkeys.append((_("Prov/Fav long"), "ab_long", ""))
+	hotkeys.append((_("Y-Tube"), "www", ""))
+	hotkeys.append((_("Y-Tube long"), "www_long", ""))
 		
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
