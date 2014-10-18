@@ -14,8 +14,6 @@ from ServiceReference import ServiceReference
 from boxbranding import getBoxType, getMachineName
 from enigma import eServiceReference
 
-boxtype = getBoxType()
-
 hotkeys = [	(_("Red"), "red", ""),
 	(_("Red long"), "red_long", ""),
 	(_("Green"), "green", ""),
@@ -42,6 +40,7 @@ hotkeys = [	(_("Red"), "red", ""),
 	(_("Subtitle"), "subtitle", ""),
 	(_("Menu"), "mainMenu", ""),
 	(_("List/Fav/PVR"), "list", ""),
+	(_("Media"), "showMovies", ""),
 	(_("Back"), "back", ""),
 	(_("Home"), "home", ""),
 	(_("End"), "end", ""),
@@ -70,7 +69,7 @@ hotkeys = [	(_("Red"), "red", ""),
 ## hotkeys.append((_("HDMI Rx"), "HDMIin", ""))
 ## hotkeys.remove((_("F1/LAN long"), "f1_long", ""))
 
-if boxtype in ("et10000"):
+if getBoxType() == "et10000" or getBoxType() == "et8500" or getBoxType() == "et8000":
 	hotkeys.append((_("HDMI Rx"), "HDMIin", ""))
 	hotkeys.append((_("HDMI Rx long"), "HDMIin_long", ""))
 	hotkeys.append((_("V-Key"), "vmodeSelection", ""))
@@ -83,14 +82,21 @@ if boxtype in ("et10000"):
 	hotkeys.append((_("F3 long"), "f3_long", ""))
 	hotkeys.remove((_("Search/WEB"), "search", ""))
 
-if boxtype in ("optimussos3plus"):
-	hotkeys.append((_("UHF"), "slow", ""))
-	hotkeys.append((_("UHF long"), "slow_long", ""))
+if getBoxType() == "optimussos3plus":
+	hotkeys.append((_("UHF/Slow"), "slow", ""))
+	hotkeys.append((_("UHF/Slow long"), "slow_long", ""))
 	hotkeys.append((_("Prov/Fav"), "ab", ""))
 	hotkeys.append((_("Prov/Fav long"), "ab_long", ""))
 	hotkeys.append((_("Y-Tube"), "www", ""))
 	hotkeys.append((_("Y-Tube long"), "www_long", ""))
-		
+	hotkeys.remove((_("Search/WEB"), "search", ""))
+	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", ""))
+	hotkeys.remove((_("Slow"), "slow", ""))
+
+if getBoxType().startswith('xpeed'):
+	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", ""))
+	hotkeys.append((_("PLUGIN"), "mark", ""))
+
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
 for x in hotkeys:
@@ -170,7 +176,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
 	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
 	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
-	hotkeyFunctions.append((_("PowerTimer"), "Infobar/openSleepTimer", "Setup"))
+	hotkeyFunctions.append((_("PowerTimer"), "Module/Screens.PowerTimerEdit/PowerTimerEditList", "Setup"))
 	hotkeyFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", "Setup"))
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
