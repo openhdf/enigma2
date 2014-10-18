@@ -93,6 +93,10 @@ if getBoxType() == "optimussos3plus":
 	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", ""))
 	hotkeys.remove((_("Slow"), "slow", ""))
 
+if getBoxType().startswith('optimussos'):
+	hotkeys.append((_("Zoom"), "ZoomInOut", ""))
+	hotkeys.append((_("Zoom"), "ZoomOff", ""))
+
 if getBoxType().startswith('xpeed'):
 	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", ""))
 	hotkeys.append((_("PLUGIN"), "mark", ""))
