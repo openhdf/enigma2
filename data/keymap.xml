@@ -241,7 +241,7 @@
 		<key id="KEY_PROG1" mapto="openBouquetList" flags="m" />
 		<key id="KEY_PROG2" mapto="openBouquetList" flags="m" />
 		<key id="KEY_FILE" mapto="showMovies" flags="m" />
-		<key id="KEY_MEDIA" mapto="showMovies" flags="m" />
+		<!--key id="KEY_MEDIA" mapto="showMovies" flags="m" /-->
 		<key id="KEY_LIST" mapto="showMovies" flags="m" />
 		<key id="KEY_PVR" mapto="showMovies" flags="m" />
 		<key id="KEY_TEXT" mapto="showText" flags="m" />
@@ -919,6 +919,8 @@
 	        <key id="KEY_END" mapto="end" flags="b" />
 		<key id="KEY_EPG" mapto="epg" flags="b" />
 		<key id="KEY_EPG" mapto="epg_long" flags="l" />
+		<key id="KEY_MEDIA" mapto="showMovies" flags="b" />
+		<key id="KEY_MEDIA" mapto="showMovies_long" flags="l" />
 		<key id="KEY_LEFT" mapto="cross_left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="cross_right" flags="mr" />
 		<key id="KEY_UP" mapto="cross_up" flags="mr" />
@@ -962,7 +964,5 @@
 		<key id="KEY_WWW" mapto="www_long" flags="l" />
 		<key id="KEY_SLEEP" mapto="openTimerList" flags="b" />
 		<key id="KEY_SLEEP" mapto="openTimerList_long" flags="l" />
-		<!--key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
-		<key id="KEY_PROGRAM" mapto="openTimerList_long" flags="l" /-->
 	</map>
 </keymap>
