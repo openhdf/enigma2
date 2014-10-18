@@ -560,16 +560,6 @@ def runScreenTest():
 
 	profile("RunReactor")
 	profile_final()
-
-	if getBoxType() == 'gb800se' or getBoxType() == 'gb800solo' or getBoxType() == 'gb800seplus':
-		from enigma import evfd, eConsoleAppContainer
-		try:
-			cmd = 'vfdctl "    openhdf starting e2"'
-			container = eConsoleAppContainer()
-			container.execute(cmd)
-		except:
-			evfd.getInstance().vfd_write_string("-E2-")
-		evfd.getInstance().vfd_led(str(1))
 		
 	if getBoxType() == 'odinm7' or getBoxType() == 'odinm6' or getBoxType() == 'xp1000s':
 		f = open("/dev/dbox/oled0", "w")
