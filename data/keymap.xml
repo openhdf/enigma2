@@ -960,5 +960,9 @@
 		<key id="KEY_AB" mapto="ab_long" flags="l" />
 		<key id="KEY_WWW" mapto="www" flags="b" />
 		<key id="KEY_WWW" mapto="www_long" flags="l" />
+		<key id="KEY_SLEEP" mapto="openTimerList" flags="b" />
+		<key id="KEY_SLEEP" mapto="openTimerList_long" flags="l" />
+		<!--key id="KEY_PROGRAM" mapto="openTimerList" flags="b" />
+		<key id="KEY_PROGRAM" mapto="openTimerList_long" flags="l" /-->
 	</map>
 </keymap>

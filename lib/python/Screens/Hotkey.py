@@ -67,7 +67,7 @@ hotkeys = [	(_("Red"), "red", ""),
 	(_("Power long"), "power_long", ""),]
 
 ## add or remove some functions for individual boxtype from hotkeys list
-## hotkeys.append((_("HDMI Rx"), "red", ""))
+## hotkeys.append((_("HDMI Rx"), "HDMIin", ""))
 ## hotkeys.remove((_("F1/LAN long"), "f1_long", ""))
 
 if boxtype in ("et10000"):
@@ -170,6 +170,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
 	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
 	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
+	hotkeyFunctions.append((_("PowerTimer"), "Infobar/openSleepTimer", "Setup"))
 	hotkeyFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", "Setup"))
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
