@@ -95,7 +95,6 @@ if getBoxType() == "optimussos3plus":
 
 if getBoxType().startswith('optimussos'):
 	hotkeys.append((_("Zoom"), "ZoomInOut", ""))
-	hotkeys.append((_("Zoom"), "ZoomOff", ""))
 
 if getBoxType().startswith('xpeed'):
 	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", ""))
@@ -160,6 +159,8 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Open subservice selection"), "Infobar/subserviceSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Open subtitle selection"), "Infobar/subtitleSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
+	hotkeyFunctions.append((_("ZoomInOut"), "InfobarGenerics/ZoomInOut", "InfoBar"))
+	hotkeyFunctions.append((_("ZoomOff"), "InfobarGenerics/ZoomInOut", "InfoBar"))
 	if SystemInfo["PIPAvailable"]:
 		hotkeyFunctions.append((_("Show PIP"), "Infobar/showPiP", "InfoBar"))
 		hotkeyFunctions.append((_("Swap PIP"), "Infobar/swapPiP", "InfoBar"))
