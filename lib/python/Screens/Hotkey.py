@@ -13,6 +13,7 @@ from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 from boxbranding import getBoxType, getMachineName
 from enigma import eServiceReference
+from Components.Label import Label
 
 hotkeys = [	(_("Red"), "red", ""),
 	(_("Red long"), "red_long", ""),
@@ -200,6 +201,7 @@ def getHotkeyFunctions():
 class HotkeySetup(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
+		self['description'] = Label(_('Click on your remote on the button you want to change, then click on OK'))
 		self.session = session
 		self.setTitle(_("Button setup"))
 		self["key_red"] = Button(_("Exit"))
@@ -274,6 +276,7 @@ class HotkeySetup(Screen):
 class HotkeySetupSelect(Screen):
 	def __init__(self, session, key, args=None):
 		Screen.__init__(self, session)
+		self['description'] = Label(_('Select the desired function and click on OK to assign it. Use CH+/- to toggle between the lists. Select an assigned function and click on OK to de-assign it.'))
 		self.skinName="HotkeySetupSelect"
 		self.session = session
 		self.key = key
