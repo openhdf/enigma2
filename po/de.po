@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-10-18 08:04+0100\n"
+"PO-Revision-Date: 2014-10-20 18:55+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -4737,6 +4737,24 @@ msgstr "Tastatur Einstellungen"
 
 msgid "HotKey Settings"
 msgstr "HotKey (Beta) Einstellungen"
+
+msgid "Button setup for"
+msgstr "Button Einstellungen für"
+
+#, python-format
+msgid "Click on your remote on the button you want to change, then click on OK"
+msgstr ""
+"Klicke auf deiner Fernbedienung auf die gewünschte Taste und drücke dann auf "
+"OK"
+
+#, python-format
+msgid ""
+"Select the desired function and click on OK to assign it. Use CH+/- to "
+"toggle between the lists. Select an assigned function and click on OK to de-"
+"assign it."
+msgstr ""
+"Wähle die gewünschte Funktion und drücke auf OK zum anwenden. Benutze CH+/- "
+"zum wechseln der Listen. Wähle eine Funktion erneut zum abwählen."
 
 msgid "LAN adapter"
 msgstr "Netzwerkadapter"
