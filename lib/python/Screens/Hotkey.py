@@ -31,11 +31,14 @@ hotkeys = [	(_("Red"), "red", ""),
 	(_("Right"), "cross_right", ""),
 	(_("Up"), "cross_up", ""),
 	(_("Down"), "cross_down", ""),
+	(_("OK"), "ok", ""),
+	(_("OK long"), "ok_long", ""),
 	(_("Channel up"), "channelup", ""),
 	(_("Channel down"), "channeldown", ""),
 	(_("TV"), "showTv", ""),
 	(_("Radio"), "radio", ""),
-	(_("Rec"), "rec", ""),
+	(_("Record"), "rec", ""),
+	(_("Record long"), "rec_long", ""),
 	(_("Teletext"), "text", ""),
 	(_("Help"), "displayHelp", ""),
 	(_("Subtitle"), "subtitle", ""),
@@ -55,7 +58,7 @@ hotkeys = [	(_("Red"), "red", ""),
 	(_("Fastforward"), "fastforward", ""),
 	(_("Skip back"), "skip_back", ""),
 	(_("Skip forward"), "skip_forward", ""),
-	(_("activatePiP"), "activatePiP", ""),
+	(_("Picture in Picture"), "activatePiP", ""),
 	(_("Timer"), "timer", ""),
 	(_("Playlist"), "playlist", ""),
 	(_("Timeshift"), "timeshift", ""),
@@ -134,6 +137,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Open event view"), "Infobar/openEventView", "EPG"))
 	hotkeyFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
 	hotkeyFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
+	hotkeyFunctions.append((_("Infobar"), "InfobarGenerics/toggleShow", "InfoBar"))
 	hotkeyFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Zap down"), "Infobar/zapDown", "InfoBar"))
 	hotkeyFunctions.append((_("Zap up"), "Infobar/zapUp", "InfoBar"))
@@ -190,7 +194,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Standby"), "Module/Screens.Standby/Standby", "Power"))
 	hotkeyFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", "Power"))
 	hotkeyFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
-	hotkeyFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
+	hotkeyFunctions.append((_("Deep-Standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
 	hotkeyFunctions.append((_("Usage Setup"), "Setup/usage", "Setup"))
 	hotkeyFunctions.append((_("User interface settings"), "Setup/userinterface", "Setup"))
 	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
