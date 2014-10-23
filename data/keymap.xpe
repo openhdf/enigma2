@@ -220,8 +220,8 @@
 	</map>
 
 	<map context="InfobarShowHideActions">
-		<key id="KEY_OK" mapto="toggleShow" flags="m" />
-		<key id="KEY_OK" mapto="LongOKPressed" flags="l" />
+		<!--key id="KEY_OK" mapto="toggleShow" flags="m" />
+		<key id="KEY_OK" mapto="LongOKPressed" flags="l" /-->
 		<key id="KEY_ENTER" mapto="toggleShow" flags="m" />
 		<key id="KEY_EXIT" mapto="hide" flags="m" />
 		<key id="KEY_ESC" mapto="hide" flags="m" />
@@ -906,6 +906,8 @@
 		<key id="KEY_RIGHT" mapto="cross_right" flags="mr" />
 		<key id="KEY_UP" mapto="cross_up" flags="mr" />
 		<key id="KEY_DOWN" mapto="cross_down" flags="mr" />
+		<key id="KEY_OK" mapto="ok" flags="b" />
+		<key id="KEY_OK" mapto="ok_long" flags="l" />
 		<key id="KEY_CHANNELUP" mapto="channelup" flags="mr" />
 		<key id="KEY_CHANNELDOWN" mapto="channeldown" flags="mr" />
 		<key id="KEY_NEXT" mapto="next" flags="mr" />
