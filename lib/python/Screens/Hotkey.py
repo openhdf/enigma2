@@ -36,36 +36,61 @@ hotkeys = [	(_("Red"), "red", ""),
 	(_("Channel up"), "channelup", ""),
 	(_("Channel down"), "channeldown", ""),
 	(_("TV"), "showTv", ""),
+	(_("TV long"), "showTv", ""),
 	(_("Radio"), "radio", ""),
+	(_("Radio long"), "radio", ""),
 	(_("Record"), "rec", ""),
 	(_("Record long"), "rec_long", ""),
 	(_("Teletext"), "text", ""),
+	(_("Teletext long"), "text", ""),
 	(_("Help"), "displayHelp", ""),
+	(_("Help long"), "displayHelp", ""),
 	(_("Subtitle"), "subtitle", ""),
+	(_("Subtitle long"), "subtitle", ""),
 	(_("Menu"), "mainMenu", ""),
+	(_("Menu long"), "mainMenu", ""),
 	(_("List/Fav/PVR"), "list", ""),
+	(_("List/Fav/PVR long"), "list", ""),
 	(_("Media"), "showMovies", ""),
+	(_("Media long"), "showMovies", ""),
 	(_("Back"), "back", ""),
+	(_("Back long"), "back", ""),
 	(_("Home"), "home", ""),
+	(_("Home long"), "home", ""),
 	(_("End"), "end", ""),
+	(_("End long"), "end", ""),
 	(_("Next"), "next", ""),
+	(_("Next long"), "next", ""),
 	(_("Previous"), "previous", ""),
+	(_("Previous long"), "previous", ""),
 	(_("Audio"), "audio", ""),
+	(_("Audio"), "audio_long", ""),
+	(_("Mute long"), "mute_long", ""),
 	(_("Play"), "play", ""),
+	(_("Play long"), "play", ""),
 	(_("Stop"), "stop", ""),
+	(_("Stop long"), "stop", ""),
 	(_("Pause"), "pause", ""),
 	(_("Rewind"), "rewind", ""),
 	(_("Fastforward"), "fastforward", ""),
 	(_("Skip back"), "skip_back", ""),
 	(_("Skip forward"), "skip_forward", ""),
 	(_("Picture in Picture"), "activatePiP", ""),
+	(_("Picture in Picture long"), "activatePiP", ""),
 	(_("Timer"), "timer", ""),
+	(_("Timer long"), "timer", ""),
 	(_("Playlist"), "playlist", ""),
+	(_("Playlist long"), "playlist", ""),
 	(_("Timeshift"), "timeshift", ""),
+	(_("Timeshift long"), "timeshift", ""),
 	(_("Search/WEB"), "search", ""),
+	(_("Search/WEB long"), "search", ""),
 	(_("Slow"), "slow", ""),
+	(_("Slow long"), "slow", ""),
 	(_("Mark/Portal/Playlist"), "mark", ""),
+	(_("Mark/Portal/Playlist long"), "mark", ""),
 	(_("Sleep"), "sleep", ""),
+	(_("Sleep long"), "sleep", ""),
 	(_("Power"), "power", ""),
 	(_("Power long"), "power_long", ""),]
 
@@ -134,7 +159,11 @@ def getHotkeyFunctions():
 			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "Plugins"))
 			twinPlugins.append(plugin.name)
 	hotkeyFunctions.append((_("Show graphical multi EPG"), "Infobar/openGraphEPG", "EPG"))
-	hotkeyFunctions.append((_("Open event view"), "Infobar/openEventView", "EPG"))
+	hotkeyFunctions.append((_("Show event view"), "Infobar/openEventView", "EPG"))
+	hotkeyFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
+	hotkeyFunctions.append((_("Show single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
+	hotkeyFunctions.append((_("Show multi Service EPG"), "Infobar/openMultiServiceEPG", "EPG"))
+	hotkeyFunctions.append((_("Show Infobar EPG"), "Infobar/openInfoBarEPG", "EPG"))
 	hotkeyFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
 	hotkeyFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
 	hotkeyFunctions.append((_("Toggle Infobar"), "Infobar/toggleShow", "InfoBar"))
@@ -146,10 +175,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Show service list"), "Infobar/openServiceList", "InfoBar"))
 	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
-	hotkeyFunctions.append((_("Show eventinfo plugins"), "Infobar/showEventInfoPlugins", "EPG"))
-	hotkeyFunctions.append((_("Show single service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
-	hotkeyFunctions.append((_("Show multi Service EPG"), "Infobar/openMultiServiceEPG", "EPG"))
-	hotkeyFunctions.append((_("Open Audioselection"), "Infobar/audioSelection", "InfoBar"))
+	hotkeyFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to TV mode"), "Infobar/showTv", "InfoBar"))
 	hotkeyFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
