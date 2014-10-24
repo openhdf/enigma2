@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-10-22 20:14+0100\n"
+"PO-Revision-Date: 2014-10-24 21:46+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11950,7 +11950,13 @@ msgid "service PIN"
 msgstr "Service PIN"
 
 msgid "set as startup service"
-msgstr "Als Startsender festlegen"
+msgstr "Als Startsender aus dem Deep-Standby festlegen"
+
+msgid "set as startup service from standby"
+msgstr "Als Startsender aus dem Standby festlegen"
+
+msgid "stop using as startup service from standby"
+msgstr "Nicht mehr als Startsender aus dem Standby benutzen"
 
 msgid "setup PIN"
 msgstr "Einstellungen PIN"
@@ -12091,7 +12097,7 @@ msgid "stereo"
 msgstr "Stereo"
 
 msgid "stop using as startup service"
-msgstr "Nicht mehr als Startsender benutzen"
+msgstr "Nicht mehr als Startsender aus dem Deep-Standby benutzen"
 
 msgid "switch to bookmarks"
 msgstr "gehe zu Lesezeichen"
