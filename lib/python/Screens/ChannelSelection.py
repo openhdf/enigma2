@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from boxbranding import getMachineBuild, getMachineBrand, getMachineName
 from Tools.Profile import profile
 
 from Screen import Screen
@@ -160,6 +161,10 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("stop using as startup service"), self.unsetStartupService), level = 0)
 					else:
 						append_when_current_valid(current, menu, (_("set as startup service"), self.setStartupService), level = 0)
+					if config.servicelist.startupservice_standby.value == self.csel.getCurrentSelection().toString():
+						append_when_current_valid(current, menu, (_("stop using as startup service from standby"), self.unsetStartupServiceStandby), level = 0)
+					else:
+						append_when_current_valid(current, menu, (_("set as startup service from standby"), self.setStartupServiceStandby), level = 0)
 					if config.ParentalControl.configured.value:
 						from Components.ParentalControl import parentalControl
 						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
@@ -178,7 +183,7 @@ class ChannelContextMenu(Screen):
 						if not inBouquet:
 							append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level = 0)
 
-					if SystemInfo.get("NumVideoDecoders", 1) > 1:
+					if SystemInfo["PIPAvailable"]:
 						# only allow the service to be played directly in pip / mainwindow when the service is not under parental control
 						if not config.ParentalControl.configured.value or parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							if not csel.dopipzap:
@@ -283,6 +288,18 @@ class ChannelContextMenu(Screen):
 		configfile.save()
 		self.close()
 
+	def setStartupServiceStandby(self):
+		config.servicelist.startupservice_standby.value = self.csel.getCurrentSelection().toString()
+		config.servicelist.save()
+		configfile.save()
+		self.close()
+
+	def unsetStartupServiceStandby(self):
+		config.servicelist.startupservice_standby.value = ''
+		config.servicelist.save()
+		configfile.save()
+		self.close()
+
 	def showBouquetInputBox(self):
 		self.session.openWithCallback(self.bouquetInputCallback, InputBox, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visible_width = 56, type=Input.TEXT)
 
@@ -308,21 +325,27 @@ class ChannelContextMenu(Screen):
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 	def showServiceInPiP(self):
-		if not self.pipAvailable:
-			return
-		if self.session.pipshown:
-			del self.session.pip
-		self.session.pip = self.session.instantiateDialog(PictureInPicture)
-		self.session.pip.show()
-		newservice = self.csel.servicelist.getCurrent()
-		if self.session.pip.playService(newservice):
-			self.session.pipshown = True
-			self.session.pip.servicePath = self.csel.getCurrentServicePath()
-			self.close(True)
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		xres = str(info.getInfo(iServiceInformation.sVideoWidth))
+		if int(xres) <= 720 or not getMachineBuild() == 'blackbox7405':
+			if not self.pipAvailable:
+				return
+			if self.session.pipshown:
+				del self.session.pip
+			self.session.pip = self.session.instantiateDialog(PictureInPicture)
+			self.session.pip.show()
+			newservice = self.csel.servicelist.getCurrent()
+			if self.session.pip.playService(newservice):
+				self.session.pipshown = True
+				self.session.pip.servicePath = self.csel.getCurrentServicePath()
+				self.close(True)
+			else:
+				self.session.pipshown = False
+				del self.session.pip
+				self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
-			self.session.pipshown = False
-			del self.session.pip
-			self.session.openWithCallback(self.close, MessageBox, _("No free tuner, could not open Picture in Picture"), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
@@ -1097,6 +1120,7 @@ class ChannelSelectionBase(Screen):
 
 		self.mode = MODE_TV
 		self.dopipzap = False
+		self.bouquet_mark_edit = OFF
 
 		self.pathChangeDisabled = False
 
@@ -1642,6 +1666,7 @@ config.radio.lastroot = ConfigText()
 config.servicelist = ConfigSubsection()
 config.servicelist.lastmode = ConfigText(default='tv')
 config.servicelist.startupservice = ConfigText()
+config.servicelist.startupservice_standby = ConfigText()
 config.servicelist.startuproot = ConfigText()
 config.servicelist.startupmode = ConfigText(default='tv')
 
@@ -1706,6 +1731,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.lastChannelRootTimer = eTimer()
 		self.lastChannelRootTimer.callback.append(self.__onCreate)
 		self.lastChannelRootTimer.start(100, True)
+		self.pipzaptimer = eTimer()
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
@@ -1818,7 +1844,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			title = title[:pos]
 		if self.dopipzap:
 			# Mark PiP as inactive and effectively deactivate pipzap
-			self.session.pip.inactive()
+			self.hidePipzapMessage()
 			self.dopipzap = False
 
 			# Disable PiP if not playing a service
@@ -1834,7 +1860,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			title += _(' (TV)')
 		else:
 			# Mark PiP as active and effectively active pipzap
-			self.session.pip.active()
+			self.showPipzapMessage()
 			self.dopipzap = True
 			self.__evServiceStart()
 			# Move to service playing in pip (will not work with subservices)
@@ -1843,6 +1869,19 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			title += _(' (PiP)')
 		self.setTitle(title)
 		self.buildTitleString()
+
+	def showPipzapMessage(self):
+		time = config.usage.infobar_timeout.index
+		if time:
+			self.pipzaptimer.callback.append(self.hidePipzapMessage)
+			self.pipzaptimer.startLongTimer(time)
+		self.session.pip.active()
+
+	def hidePipzapMessage(self):
+		if self.pipzaptimer.isActive():
+			self.pipzaptimer.callback.remove(self.hidePipzapMessage)
+			self.pipzaptimer.stop()
+		self.session.pip.inactive()
 
 	#called from infoBar and channelSelected
 	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None):
@@ -1856,6 +1895,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				if nref and (not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
 					self.session.pip.playService(nref)
 					self.__evServiceStart()
+					self.showPipzapMessage()
 				else:
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)
