@@ -15,7 +15,7 @@ from boxbranding import getBoxType, getMachineName
 from enigma import eServiceReference
 from Components.Label import Label
 
-hotkeys = [	(_("Red"), "red", "Infobar/activateRedButton"),
+hotkeys = [(_("Red"), "red", "Infobar/activateRedButton"),
 	(_("Red long"), "red_long", "Module/Screens.Hotkey/HotkeySetup"),
 	(_("Green"), "green", "Infobar/subserviceSelection"),
 	(_("Green long"), "green_long", "Infobar/subtitleSelection"),
@@ -95,7 +95,7 @@ hotkeys = [	(_("Red"), "red", "Infobar/activateRedButton"),
 	(_("Sleep long"), "sleep_long", ""),
 	(_("Power"), "power", "Module/Screens.Standby/Standby"),
 	(_("Power long"), "power_long", "Module/Screens.Standby/TryQuitMainloop/1"),
-	(_("Power down"), "power_down", ""),]
+	(_("Power down"), "power_down", "")]
 
 ## add or remove some functions for individual boxtype from hotkeys list
 ## hotkeys.append((_("HDMI Rx"), "HDMIin", ""))
@@ -169,7 +169,8 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Show Infobar EPG"), "Infobar/openInfoBarEPG", "EPG"))
 	hotkeyFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
 	hotkeyFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
-	hotkeyFunctions.append((_("Toggle Infobar"), "Infobar/toggleShow", "InfoBar"))
+	hotkeyFunctions.append((_("Toggle Infobar/SecondInfobar"), "Infobar/toggleShow", "InfoBar"))
+	hotkeyFunctions.append((_("Toggle InfoBar only"), "Infobar/showOnlyFirstInfoBar", "InfoBar"))
 	hotkeyFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Show plugin selection"), "Infobar/showPluginBrowser", "InfoBar"))
 	hotkeyFunctions.append((_("Zap down"), "Infobar/zapDown", "InfoBar"))
@@ -240,11 +241,12 @@ class HotkeySetup(Screen):
 		self.session = session
 		self.setTitle(_("Button setup"))
 		self["key_red"] = Button(_("Exit"))
+		self["key_green"] = Button(_("Toggle Extra Keys"))		
 		self.list = []
 		self.hotkeyFunctions = getHotkeyFunctions()
 		for x in hotkeys:
 			self.list.append(ChoiceEntryComponent('',((x[0]), x[1])))
-		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 10], selection = 0)
+		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 20], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
@@ -252,6 +254,7 @@ class HotkeySetup(Screen):
 			"ok": self.keyOk,
 			"cancel": self.close,
 			"red": self.close,
+			"green": self.toggleAdditionalKeys,
 			"up": self.keyUp,
 			"down": self.keyDown,
 			"left": self.keyLeft,
@@ -270,7 +273,7 @@ class HotkeySetup(Screen):
 			self.longkeyPressed = False
 		else:
 			index = 0
-			for x in self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 10]:
+			for x in self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 20]:
 				if key == x[0][1]:
 					self["list"].moveToIndex(index)
 					if key.endswith("_long"):
@@ -298,14 +301,22 @@ class HotkeySetup(Screen):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		self.getFunctions()
 
+	def toggleAdditionalKeys(self):
+		config.misc.hotkey.additional_keys.value = not config.misc.hotkey.additional_keys.value
+		config.misc.hotkey.additional_keys.save()
+		self["list"].setList(self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 20])
+
 	def getFunctions(self):
 		key = self["list"].l.getCurrentSelection()[0][1]
 		if key:
 			selected = []
 			for x in eval("config.misc.hotkey." + key + ".value.split(',')"):
-				function = list(function for function in self.hotkeyFunctions if function[1] == x )
-				if function:
-					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
+				if x.startswith("Zap"):
+					selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
+				else:
+					function = list(function for function in self.hotkeyFunctions if function[1] == x )
+					if function:
+						selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
 
 class HotkeySetupSelect(Screen):
@@ -324,9 +335,12 @@ class HotkeySetupSelect(Screen):
 		self.expanded = []
 		self.selected = []
 		for x in self.config.value.split(','):
-			function = list(function for function in self.hotkeyFunctions if function[1] == x )
-			if function:
-				self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
+			if x.startswith("Zap"):
+				self.selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
+			else:
+				function = list(function for function in self.hotkeyFunctions if function[1] == x )
+				if function:
+					self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
@@ -360,6 +374,8 @@ class HotkeySetupSelect(Screen):
 				functionslist.append(ChoiceEntryComponent('expanded',((catagorie), "Expander")))
 				for function in catagories[catagorie]:
 					functionslist.append(ChoiceEntryComponent('verticalline',((function[0]), function[1])))
+				if catagorie == "InfoBar":
+					functionslist.append(ChoiceEntryComponent('verticalline',((_("Zap to")), "Zap")))
 			else:
 				functionslist.append(ChoiceEntryComponent('expandable',((catagorie), "Expander")))
 		return functionslist
@@ -387,12 +403,21 @@ class HotkeySetupSelect(Screen):
 				if currentSelected[:2] in self.selected:
 					self.selected.remove(currentSelected[:2])
 				else:
-					self.selected.append(currentSelected[:2])
+					if currentSelected[0][1].startswith("Zap"):
+						self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey zap") + " " + self.key[0][0], currentBouquet=True)
+					else:
+						self.selected.append(currentSelected[:2])
 		elif self.selected:
 			self.selected.remove(self["choosen"].l.getCurrentSelection())
 			if not self.selected:
 				self.toggleMode()
 		self["choosen"].setList(self.selected)
+
+	def zaptoCallback(self, *args):
+		if args:
+			currentSelected = self["list"].l.getCurrentSelection()[:]
+			currentSelected[1]=currentSelected[1][:-1] + (_("Zap to") + " " + ServiceReference(args[0]).getServiceName(),)
+			self.selected.append([(currentSelected[0][0], currentSelected[0][1] + "/" + args[0].toString()), currentSelected[1]])
 
 	def keyLeft(self):
 		self[self.mode].instance.moveSelection(self[self.mode].instance.pageUp)
