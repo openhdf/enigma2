@@ -247,14 +247,14 @@
 
 	</setup>
 	<setup key="remotesetup" title="Button setup">
-		<item level="1" text="Action on long powerbutton press" description="Setup what a long press on the power button does.">config.usage.on_long_powerpress</item>
+		<!--item level="1" text="Action on long powerbutton press" description="Setup what a long press on the power button does.">config.usage.on_long_powerpress</item>
 		<item level="1" text="Action on short powerbutton press" description="Setup what a short press on the power button does.">config.usage.on_short_powerpress</item>
 		<item level="0" text="EPG button mode" description="Select what you want the EPG button to activate:">config.plisettings.PLIEPG_mode</item>
 		<item level="0" text="INFO button mode" description="Select what you want the INFO button to activate:">config.plisettings.PLIINFO_mode</item>
 		<item level="0" text="FAV button mode" description="Select what you want the FAV button to activate:">config.plisettings.PLIFAV_mode</item>
-		<item level="0" text="QuickEPG mode" description="Select how to activate the Quick EPG mode:">config.plisettings.InfoBarEpg_mode</item>
+		<item level="0" text="QuickEPG mode" description="Select how to activate the Quick EPG mode:">config.plisettings.InfoBarEpg_mode</item-->
 		<item level="0" text="Subservice mode" description="Select if you want the Subservice mode to be activated.">config.plisettings.Subservice</item>
-		<item level="0" text="TV button mode" description="Select what you want the TV button to activate:">config.usage.tvradiobutton_mode</item>
+		<!--item level="0" text="TV button mode" description="Select what you want the TV button to activate:">config.usage.tvradiobutton_mode</item>
 		<item level="0" text="OK button mode" description="Select what you want the OK button to activate:">config.usage.okbutton_mode</item>
 		<item level="1" text="History buttons mode" description="Configure the function of the &lt;  &gt; buttons.">config.usage.historymode</item>
 		<item level="1" text="Bookmark button mode" description="Select what you want the Bookmark button to activate:">config.usage.bookmarkmode</item>
@@ -276,9 +276,9 @@
 		<item level="0" text="Yellow button mode" description="Select what you want the yellow button to activate:">config.plisettings.yellowbutton_mode</item>
 		<item level="0" text="Yellow button long mode" description="Select what you want the long yellow button to activate:">config.plisettings.yellowbuttonlong_mode</item>
 		<item level="0" text="Blue button mode" description="Select what you want the blue button to activate:">config.plisettings.bluebutton_mode</item>
-		<item level="0" text="Blue button long mode" description="Select what you want the long blue button to activate:">config.plisettings.bluebuttonlong_mode</item>
+		<item level="0" text="Blue button long mode" description="Select what you want the long blue button to activate:">config.plisettings.bluebuttonlong_mode</item-->
 		<item level="0" text="Keymap Selection" description="Select the keymap that you want to use:">config.usage.keymap</item>
-		<item level="0" text="Use image coloured Buttons *" description="Select if you want to use the image coloured Buttons (set to 'no' if you want to use (Multi) Quick Button).">config.plisettings.ColouredButtons</item>
+		<!--item level="0" text="Use image coloured Buttons *" description="Select if you want to use the image coloured Buttons (set to 'no' if you want to use (Multi) Quick Button).">config.plisettings.ColouredButtons</item-->
 		<item level="0" text="Show pressed buttons in telnet debug mode" description="Select if you want to show every pressed button in telnet init 4 mode.">config.plisettings.ShowPressedButtons</item>
 	</setup>
 	<setup key="softcamsetup" title="Softcam settings">
