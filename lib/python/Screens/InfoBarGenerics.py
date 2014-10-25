@@ -815,6 +815,12 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				if config.plisettings.InfoBarEpg_mode.value == "1":
 					self.openInfoBarEPG()
 
+	def showOnlyFirstInfoBar(self):
+		if self.__state == self.STATE_HIDDEN:
+			self.doShow()
+		elif self.__state == self.STATE_SHOWN:
+			self.doTimerHide()
+
 	def lockShow(self):
 		try:
 			self.__locked += 1
