@@ -15,6 +15,8 @@ from boxbranding import getBoxType, getMachineName
 from enigma import eServiceReference
 from Components.Label import Label
 
+boxtype = getBoxType()
+
 hotkeys = [(_("Red"), "red", "Infobar/activateRedButton"),
 	(_("Red long"), "red_long", "Module/Screens.Hotkey/HotkeySetup"),
 	(_("Green"), "green", "Infobar/subserviceSelection"),
@@ -27,6 +29,12 @@ hotkeys = [(_("Red"), "red", "Infobar/activateRedButton"),
 	(_("Info (EPG) Long"), "info_long", "Infobar/showEventInfoPlugins"),
 	(_("Epg/Guide"), "epg", "Plugins/Extensions/CoolTVGuide/5"),
 	(_("Epg/Guide long"), "epg_long", "Plugins/Extensions/CoolTVGuide/4"),
+	(_("List/Fav/PVR"), "list", "Infobar/showMovies"),
+	(_("List/Fav/PVR long"), "list_long", ""),
+	(_("File"), "file", "Infobar/showMovies"),
+	(_("File long"), "file_long", "Plugins/Extensions/simplelist/1"),
+	(_("Media"), "showMovies", ""),
+	(_("Media long"), "showMovies_long", ""),
 	(_("Left"), "cross_left", ""),
 	(_("Right"), "cross_right", ""),
 	(_("Up"), "cross_up", ""),
@@ -49,12 +57,6 @@ hotkeys = [(_("Red"), "red", "Infobar/activateRedButton"),
 	(_("Subtitle long"), "subtitle_long", "Infobar/subserviceSelection"),
 	(_("Menu"), "menu", "Infobar/mainMenu"),
 	(_("Menu long"), "menu_long", "Module/Screens.ServiceInfo/ServiceInfo"),
-	(_("List/Fav/PVR"), "list", "Infobar/showMovies"),
-	(_("List/Fav/PVR long"), "list_long", ""),
-	(_("File"), "file", "Infobar/showMovies"),
-	(_("File long"), "file_long", "Plugins/Extensions/simplelist/1"),
-	(_("Media"), "showMovies", ""),
-	(_("Media long"), "showMovies_long", ""),
 	(_("Back"), "back", "Plugins/Extensions/ZapHistoryBrowser/1"),
 	(_("Back long"), "back_long", "Plugins/Extensions/VirtualZap/1"),
 	(_("Home"), "home", ""),
@@ -101,7 +103,9 @@ hotkeys = [(_("Red"), "red", "Infobar/activateRedButton"),
 ## hotkeys.append((_("HDMI Rx"), "HDMIin", ""))
 ## hotkeys.remove((_("F1/LAN long"), "f1_long", ""))
 
-if getBoxType() == "et10000" or getBoxType() == "et8500" or getBoxType() == "et8000":
+if boxtype == "et10000" or boxtype == "et8500" or boxtype == "et8000":
+	hotkeys.append((_("additional keys for ET10000, ET8500, ET8000"), "empty", ""))
+	hotkeys.append((_("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"),"empty", ""))
 	hotkeys.append((_("HDMI Rx"), "HDMIin", ""))
 	hotkeys.append((_("HDMI Rx long"), "HDMIin_long", ""))
 	hotkeys.append((_("V-Key"), "vmodeSelection", ""))
@@ -114,7 +118,9 @@ if getBoxType() == "et10000" or getBoxType() == "et8500" or getBoxType() == "et8
 	hotkeys.append((_("F3 long"), "f3_long", ""))
 	hotkeys.remove((_("Search/WEB"), "search", ""))
 
-if getBoxType() == "optimussos3plus":
+if boxtype == "optimussos3plus":
+	hotkeys.append((_("additional keys for Optimuss OS3+"), "empty", ""))
+	hotkeys.append((_("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"),"empty", ""))
 	hotkeys.append((_("UHF/Slow"), "slow", ""))
 	hotkeys.append((_("UHF/Slow long"), "slow_long", ""))
 	hotkeys.append((_("Prov/Fav"), "ab", ""))
@@ -125,10 +131,14 @@ if getBoxType() == "optimussos3plus":
 	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", ""))
 	hotkeys.remove((_("Slow"), "slow", ""))
 
-if getBoxType().startswith('optimussos'):
+if boxtype.startswith('optimussos'):
+	hotkeys.append((_("additional keys for Optimuss OS"), "empty", ""))
+	hotkeys.append((_("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"),"empty", ""))
 	hotkeys.append((_("Zoom"), "ZoomInOut", ""))
 
-if getBoxType().startswith('xpeed'):
+if boxtype.startswith('xpeed'):
+	hotkeys.append((_("additional keys for Xpeed"), "empty", ""))
+	hotkeys.append((_("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"),"empty", ""))
 	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", ""))
 	hotkeys.append((_("PLUGIN"), "mark", ""))
 
@@ -246,7 +256,7 @@ class HotkeySetup(Screen):
 		self.hotkeyFunctions = getHotkeyFunctions()
 		for x in hotkeys:
 			self.list.append(ChoiceEntryComponent('',((x[0]), x[1])))
-		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 20], selection = 0)
+		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 16], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
@@ -273,7 +283,7 @@ class HotkeySetup(Screen):
 			self.longkeyPressed = False
 		else:
 			index = 0
-			for x in self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 20]:
+			for x in self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 16]:
 				if key == x[0][1]:
 					self["list"].moveToIndex(index)
 					if key.endswith("_long"):
@@ -304,7 +314,7 @@ class HotkeySetup(Screen):
 	def toggleAdditionalKeys(self):
 		config.misc.hotkey.additional_keys.value = not config.misc.hotkey.additional_keys.value
 		config.misc.hotkey.additional_keys.save()
-		self["list"].setList(self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 20])
+		self["list"].setList(self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 16])
 
 	def getFunctions(self):
 		key = self["list"].l.getCurrentSelection()[0][1]

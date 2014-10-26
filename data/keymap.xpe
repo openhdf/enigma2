@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Xpeed Keymap 25.10.2014" -->
+	<!-- "HDF Xpeed Keymap 26.10.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -994,6 +994,6 @@
 		<key id="KEY_BACK" mapto="back" flags="b" />
 		<key id="KEY_BACK" mapto="back_long" flags="l" />
 		<key id="KEY_FORWARD" mapto="historynext" flags="b" />
-		<key id="KEY_FORWARD" mapto="historynext_long" flags="b" />
+		<key id="KEY_FORWARD" mapto="historynext_long" flags="l" />
 	</map>
 </keymap>

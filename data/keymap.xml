@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Keymap 24.10.2014" -->
+	<!-- "HDF Keymap 26.10.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -698,10 +698,10 @@
 		<key id="KEY_LEFT" mapto="leftRepeated" flags="r" />
 		<key id="KEY_RIGHT" mapto="rightRepeated" flags="r" />
 		
-		<key id="KEY_LEFT" mapto="leftUp" flags="b" />
+		<!--key id="KEY_LEFT" mapto="leftUp" flags="b" />
 		<key id="KEY_RIGHT" mapto="rightUp" flags="b" />
 		<key id="KEY_UP" mapto="upUp" flags="b" />
-		<key id="KEY_DOWN" mapto="downUp" flags="b" />
+		<key id="KEY_DOWN" mapto="downUp" flags="b" /-->
 	</map>
 
 	<map context="ColorActions">
@@ -1009,6 +1009,6 @@
 		<key id="KEY_BACK" mapto="back" flags="b" />
 		<key id="KEY_BACK" mapto="back_long" flags="l" />
 		<key id="KEY_FORWARD" mapto="historynext" flags="b" />
-		<key id="KEY_FORWARD" mapto="historynext_long" flags="b" />
+		<key id="KEY_FORWARD" mapto="historynext_long" flags="l" />
 	</map>
 </keymap>
