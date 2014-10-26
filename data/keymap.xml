@@ -1,6 +1,7 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Keymap 26.10.2014" -->
+	<!-- "HDF Keymap 24.10.2014" -->
+
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -679,8 +680,8 @@
 		<!-- use this on rcu, ok? -->
 		<key id="KEY_OK" mapto="ok" flags="m" />
 		<key id="KEY_OK" mapto="OK" flags="m" />
-		<key id="KEY_OK" mapto="OK" flags="b"/>
-		<key id="KEY_OK" mapto="OKLong" flags="l"/>
+		<!--key id="KEY_OK" mapto="OK" flags="b"/>
+		<key id="KEY_OK" mapto="OKLong" flags="l"/-->
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
@@ -894,7 +895,7 @@
 			<key id="KEY_NEXTSONG" mapto="next" flags="m" />
 		</device-->
 	</map>
-
+	
 	<map context="HotkeyActions">
 		<key id="KEY_RED" mapto="red" flags="b" />
 		<key id="KEY_RED" mapto="red_long" flags="l" />
@@ -926,6 +927,8 @@
 		<key id="KEY_BACK" mapto="back_long" flags="l" />
 		<key id="KEY_END" mapto="end" flags="b" />
 		<key id="KEY_END" mapto="end_long" flags="l" />
+		<key id="KEY_EXIT" mapto="exit" flags="b" />
+		<key id="KEY_EXIT" mapto="exit_long" flags="l" />
 		<key id="KEY_EPG" mapto="epg" flags="b" />
 		<key id="KEY_EPG" mapto="epg_long" flags="l" />
 		<key id="KEY_MEDIA" mapto="showMovies" flags="b" />
