@@ -911,6 +911,8 @@
 		<key id="KEY_BACK" mapto="back_long" flags="l" />
 		<key id="KEY_END" mapto="end" flags="b" />
 		<key id="KEY_END" mapto="end_long" flags="l" />
+		<key id="KEY_EXIT" mapto="exit" flags="b" />
+		<key id="KEY_EXIT" mapto="exit_long" flags="l" />
 		<key id="KEY_EPG" mapto="epg" flags="b" />
 		<key id="KEY_EPG" mapto="epg_long" flags="l" />
 		<key id="KEY_MEDIA" mapto="showMovies" flags="b" />

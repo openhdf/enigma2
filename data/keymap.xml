@@ -895,7 +895,7 @@
 			<key id="KEY_NEXTSONG" mapto="next" flags="m" />
 		</device-->
 	</map>
-	
+
 	<map context="HotkeyActions">
 		<key id="KEY_RED" mapto="red" flags="b" />
 		<key id="KEY_RED" mapto="red_long" flags="l" />
