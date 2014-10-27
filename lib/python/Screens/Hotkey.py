@@ -141,7 +141,8 @@ if boxtype.startswith('optimussos'):
 if boxtype.startswith('xpeed'):
 	hotkeys.append((_("additional keys for Xpeed"), "empty", ""))
 	hotkeys.append((_("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"),"empty", ""))
-	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", ""))
+	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", "Plugins/Extensions/EtPortal/1"))
+	hotkeys.remove((_("Mark/Portal/Playlist long"), "mark_long", ""))
 	hotkeys.append((_("PLUGIN"), "mark", ""))
 
 config.misc.hotkey = ConfigSubsection()
