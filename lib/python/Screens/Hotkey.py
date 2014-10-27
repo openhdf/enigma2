@@ -130,7 +130,7 @@ if boxtype == "optimussos3plus":
 	hotkeys.append((_("Y-Tube"), "www", ""))
 	hotkeys.append((_("Y-Tube long"), "www_long", ""))
 	hotkeys.remove((_("Search/WEB"), "search", ""))
-	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", ""))
+	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", "Plugins/Extensions/EtPortal/1"))
 	hotkeys.remove((_("Slow"), "slow", ""))
 
 if boxtype.startswith('optimussos'):
@@ -143,7 +143,7 @@ if boxtype.startswith('xpeed'):
 	hotkeys.append((_("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"),"empty", ""))
 	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", "Plugins/Extensions/EtPortal/1"))
 	hotkeys.remove((_("Mark/Portal/Playlist long"), "mark_long", ""))
-	hotkeys.append((_("PLUGIN"), "mark", ""))
+	hotkeys.append((_("Plugin"), "mark", ""))
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
