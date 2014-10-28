@@ -11,21 +11,10 @@ from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
-from boxbranding import getBoxType, getMachineName
-from enigma import eServiceReference
+from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 
-boxtype = getBoxType()
-
-hotkeys = [(_("Red"), "red", "Infobar/activateRedButton"),
-	(_("Red long"), "red_long", "Module/Screens.Hotkey/HotkeySetup"),
-	(_("Green"), "green", "Infobar/subserviceSelection"),
-	(_("Green long"), "green_long", "Infobar/subtitleSelection"),
-	(_("Yellow"), "yellow", ""),
-	(_("Yellow long"), "yellow_long", ""),
-	(_("Blue"), "blue", "Infobar/showExtensionSelection"),
-	(_("Blue long"), "blue_long", "Infobar/showPluginBrowser"),
-	(_("OK"), "ok", "Infobar/toggleShow"),
+hotkeys = [(_("OK"), "ok", "Infobar/toggleShow"),
 	(_("OK long"), "ok_long", "Infobar/openInfoBarEPG"),
 	(_("Exit"), "exit", ""),
 	(_("Exit long"), "exit_long", ""),
@@ -33,56 +22,18 @@ hotkeys = [(_("Red"), "red", "Infobar/activateRedButton"),
 	(_("Right"), "cross_right", ""),
 	(_("Up"), "cross_up", ""),
 	(_("Down"), "cross_down", ""),
+	(_("Red"), "red", "Infobar/activateRedButton"),
+	(_("Red long"), "red_long", "Module/Screens.Hotkey/HotkeySetup"),
+	(_("Green"), "green", "Infobar/subserviceSelection"),
+	(_("Green long"), "green_long", "Infobar/subtitleSelection"),
+	(_("Yellow"), "yellow", ""),
+	(_("Yellow long"), "yellow_long", ""),
+	(_("Blue"), "blue", "Infobar/showExtensionSelection"),
+	(_("Blue long"), "blue_long", "Infobar/showPluginBrowser"),
 	(_("Info (EPG)"), "info", "Infobar/openSingleServiceEPG"),
 	(_("Info (EPG) Long"), "info_long", "Infobar/showEventInfoPlugins"),
 	(_("Epg/Guide"), "epg", "Plugins/Extensions/CoolTVGuide/5"),
 	(_("Epg/Guide long"), "epg_long", "Plugins/Extensions/CoolTVGuide/4"),
-	(_("List/Fav/PVR"), "list", "Infobar/showMovies"),
-	(_("List/Fav/PVR long"), "list_long", ""),
-	(_("File"), "file", "Infobar/showMovies"),
-	(_("File long"), "file_long", "Plugins/Extensions/simplelist/1"),
-	(_("Media"), "showMovies", ""),
-	(_("Media long"), "showMovies_long", ""),
-	(_("Channel up"), "channelup", ""),
-	(_("Channel down"), "channeldown", ""),
-	(_("TV"), "showTv", ""),
-	(_("TV long"), "showTv_long", ""),
-	(_("Radio"), "radio", ""),
-	(_("Radio long"), "radio_long", "Plugins/Extensions/webradioFS/1"),
-	(_("Record"), "rec", "Infobar/instantRecord"),
-	(_("Record long"), "rec_long", "Infobar/startInstantRecording"),
-	(_("Teletext"), "text", "Infobar/startTeletext"),
-	(_("Teletext long"), "text_long", ""),
-	(_("Help"), "displayHelp", "Infobar/showHelp"),
-	(_("Help long"), "displayHelp_long", "Module/Screens.Hotkey/HotkeySetup"),
-	(_("Subtitle"), "subtitle", "Infobar/subtitleSelection"),
-	(_("Subtitle long"), "subtitle_long", "Infobar/subserviceSelection"),
-	(_("Menu"), "menu", "Infobar/mainMenu"),
-	(_("Menu long"), "menu_long", "Module/Screens.ServiceInfo/ServiceInfo"),
-	(_("Back"), "back", "Plugins/Extensions/ZapHistoryBrowser/1"),
-	(_("Back long"), "back_long", "Plugins/Extensions/VirtualZap/1"),
-	(_("Home"), "home", ""),
-	(_("Home long"), "home_long", ""),
-	(_("Favorites"), "favor", ""),
-	(_("Favorites long"), "favor_long", ""),
-	(_("End"), "end", ""),
-	(_("End long"), "end_long", ""),
-	(_("Next"), "next", "Infobar/historyNext"),
-	(_("Next long"), "next_long", ""),
-	(_("Previous"), "previous", "Infobar/historyBack"),
-	(_("Previous long"), "previous_long", ""),
-	(_("Audio"), "audio", "Infobar/audioSelection"),
-	(_("Audio long"), "audio_long", ""),
-	(_("Mute long"), "mute_long", ""),
-	(_("Play"), "play", ""),
-	(_("Play long"), "play_long", ""),
-	(_("Stop"), "stop", ""),
-	(_("Stop long"), "stop_long", ""),
-	(_("Pause"), "pause", ""),
-	(_("Rewind"), "rewind", ""),
-	(_("Fastforward"), "fastforward", ""),
-	(_("Skip back"), "skip_back", ""),
-	(_("Skip forward"), "skip_forward", ""),
 	(_("F1"), "f1", ""),
 	(_("F1 long"), "f1_long", ""),
 	(_("F2"), "f2", ""),
@@ -91,46 +42,83 @@ hotkeys = [(_("Red"), "red", "Infobar/activateRedButton"),
 	(_("F3 long"), "f3_long", ""),
 	(_("F4"), "f4", ""),
 	(_("F4 long"), "f4_long", ""),
+	(_("Audio"), "audio", "Infobar/audioSelection"),
+	(_("Audio long"), "audio_long", ""),
+	(_("Back"), "back", "Plugins/Extensions/ZapHistoryBrowser/1"),
+	(_("Back long"), "back_long", "Plugins/Extensions/VirtualZap/1"),
+	(_("Channel up"), "channelup", ""),
+	(_("Channel down"), "channeldown", ""),
+	(_("End"), "end", ""),
+	(_("End long"), "end_long", ""),
+	(_("Favorites"), "favor", ""),
+	(_("Favorites long"), "favor_long", ""),
+	(_("Fastforward"), "fastforward", ""),
+	(_("File"), "file", "Infobar/showMovies"),
+	(_("File long"), "file_long", "Plugins/Extensions/simplelist/1"),
+	(_("Help"), "displayHelp", "Infobar/showHelp"),
+	(_("Help long"), "displayHelp_long", "Module/Screens.Hotkey/HotkeySetup"),
 	(_("HDMI Rx"), "HDMIin", ""),
 	(_("HDMI Rx long"), "HDMIin_long", ""),
-	(_("V-Key"), "vmodeSelection", ""),
-	(_("V-Key long"), "vmodeSelection_long", ""),
-	(_("Picture in Picture"), "activatePiP", "Infobar/showPiP"),
-	(_("Picture in Picture long"), "activatePiP_long", "Infobar/swapPiP"),
-	(_("Search/WEB"), "search", ""),
-	(_("Timer"), "timer", "Module/Screens.TimerEdit/TimerEditList"),
-	(_("Timer long"), "timer_long", "Module/Screens.PowerTimerEdit/PowerTimerEditList"),
+	(_("Home"), "home", ""),
+	(_("Home long"), "home_long", ""),
+	(_("List/Fav/PVR"), "list", "Infobar/showMovies"),
+	(_("List/Fav/PVR long"), "list_long", ""),
+	(_("Mark/Portal/Playlist"), "mark", "Plugins/Extensions/EtPortal/1"),
+	(_("Mark/Portal/Playlist long"), "mark_long", ""),
+	(_("Media"), "showMovies", ""),
+	(_("Media long"), "showMovies_long", ""),
+	(_("Menu"), "menu", "Infobar/mainMenu"),
+	(_("Menu long"), "menu_long", "Module/Screens.ServiceInfo/ServiceInfo"),
+	(_("Mute long"), "mute_long", ""),
+	(_("Next"), "next", "Infobar/historyNext"),
+	(_("Next long"), "next_long", ""),
+	(_("Pause"), "pause", ""),
+	(_("Play"), "play", ""),
+	(_("Play long"), "play_long", ""),
 	(_("Playlist"), "playlist", ""),
 	(_("Playlist long"), "playlist_long", ""),
-	(_("Timeshift"), "timeshift", "Infobar/startTimeshift"),
-	(_("Timeshift long"), "timeshift_long", "Infobar/stopTimeshift"),
+	(_("Picture in Picture"), "activatePiP", "Infobar/showPiP"),
+	(_("Picture in Picture long"), "activatePiP_long", "Infobar/swapPiP"),
+	(_("Plugin"), "mark", ""),
+	(_("Prov/Fav"), "ab", ""),
+	(_("Prov/Fav long"), "ab_long", ""),
+	(_("Power"), "power", "Module/Screens.Standby/Standby"),
+	(_("Power long"), "power_long", "Module/Screens.Standby/TryQuitMainloop/1"),
+	(_("Power down"), "power_down", ""),
+	(_("Previous"), "previous", "Infobar/historyBack"),
+	(_("Previous long"), "previous_long", ""),
+	(_("Radio"), "radio", ""),
+	(_("Radio long"), "radio_long", "Plugins/Extensions/webradioFS/1"),
+	(_("Record"), "rec", "Infobar/instantRecord"),
+	(_("Record long"), "rec_long", "Infobar/startInstantRecording"),
+	(_("Rewind"), "rewind", ""),
 	(_("Search/WEB"), "search", ""),
 	(_("Search/WEB long"), "search_long", ""),
 	(_("Slow"), "slow", ""),
 	(_("Slow long"), "slow_long", ""),
-	(_("UHF/Slow"), "slow", ""),
-	(_("UHF/Slow long"), "slow_long", ""),
-	(_("Prov/Fav"), "ab", ""),
-	(_("Prov/Fav long"), "ab_long", ""),
-	(_("Y-Tube"), "www", ""),
-	(_("Y-Tube long"), "www_long", ""),
-	(_("Mark/Portal/Playlist"), "mark", "Plugins/Extensions/EtPortal/1"),
-	(_("Mark/Portal/Playlist long"), "mark_long", ""),
 	(_("Sleep"), "sleep", ""),
 	(_("Sleep long"), "sleep_long", ""),
-	(_("Zoom"), "ZoomInOut", ""),
-	(_("Plugin"), "mark", ""),
-	(_("Power"), "power", "Module/Screens.Standby/Standby"),
-	(_("Power long"), "power_long", "Module/Screens.Standby/TryQuitMainloop/1"),
-	(_("Power down"), "power_down", "")]
-
-## add or remove some functions for individual boxtype from hotkeys list
-## hotkeys.append((_("HDMI Rx"), "HDMIin", ""))
-## hotkeys.remove((_("F1/LAN long"), "f1_long", ""))
-
-#if boxtype == "et10000" or boxtype == "et8500" or boxtype == "et8000":
-#	hotkeys.append((_("additional keys for ET10000, ET8500, ET8000"), "empty", ""))
-#	hotkeys.append((_("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"),"empty", ""))
+	(_("Skip back"), "skip_back", ""),
+	(_("Skip forward"), "skip_forward", ""),
+	(_("Stop"), "stop", ""),
+	(_("Stop long"), "stop_long", ""),
+	(_("Subtitle"), "subtitle", "Infobar/subtitleSelection"),
+	(_("Subtitle long"), "subtitle_long", "Infobar/subserviceSelection"),
+	(_("Teletext"), "text", "Infobar/startTeletext"),
+	(_("Teletext long"), "text_long", ""),
+	(_("Timer"), "timer", "Module/Screens.TimerEdit/TimerEditList"),
+	(_("Timer long"), "timer_long", "Module/Screens.PowerTimerEdit/PowerTimerEditList"),
+	(_("Timeshift"), "timeshift", "Infobar/startTimeshift"),
+	(_("Timeshift long"), "timeshift_long", "Infobar/stopTimeshift"),
+	(_("TV"), "showTv", ""),
+	(_("TV long"), "showTv_long", ""),
+	(_("UHF/Slow"), "slow", ""),
+	(_("UHF/Slow long"), "slow_long", ""),
+	(_("V-Key"), "vmodeSelection", ""),
+	(_("V-Key long"), "vmodeSelection_long", ""),
+	(_("Y-Tube"), "www", ""),
+	(_("Y-Tube long"), "www_long", ""),
+	(_("Zoom"), "ZoomInOut", ""),]
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
@@ -311,12 +299,9 @@ class HotkeySetup(Screen):
 		if key:
 			selected = []
 			for x in eval("config.misc.hotkey." + key + ".value.split(',')"):
-				if x.startswith("Zap"):
-					selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
-				else:
-					function = list(function for function in self.hotkeyFunctions if function[1] == x )
-					if function:
-						selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
+				function = list(function for function in self.hotkeyFunctions if function[1] == x )
+				if function:
+					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
 
 class HotkeySetupSelect(Screen):
@@ -335,12 +320,9 @@ class HotkeySetupSelect(Screen):
 		self.expanded = []
 		self.selected = []
 		for x in self.config.value.split(','):
-			if x.startswith("Zap"):
-				self.selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
-			else:
-				function = list(function for function in self.hotkeyFunctions if function[1] == x )
-				if function:
-					self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
+			function = list(function for function in self.hotkeyFunctions if function[1] == x )
+			if function:
+				self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
@@ -374,8 +356,6 @@ class HotkeySetupSelect(Screen):
 				functionslist.append(ChoiceEntryComponent('expanded',((catagorie), "Expander")))
 				for function in catagories[catagorie]:
 					functionslist.append(ChoiceEntryComponent('verticalline',((function[0]), function[1])))
-				if catagorie == "InfoBar":
-					functionslist.append(ChoiceEntryComponent('verticalline',((_("Zap to")), "Zap")))
 			else:
 				functionslist.append(ChoiceEntryComponent('expandable',((catagorie), "Expander")))
 		return functionslist
@@ -403,21 +383,12 @@ class HotkeySetupSelect(Screen):
 				if currentSelected[:2] in self.selected:
 					self.selected.remove(currentSelected[:2])
 				else:
-					if currentSelected[0][1].startswith("Zap"):
-						self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey zap") + " " + self.key[0][0], currentBouquet=True)
-					else:
-						self.selected.append(currentSelected[:2])
+					self.selected.append(currentSelected[:2])
 		elif self.selected:
 			self.selected.remove(self["choosen"].l.getCurrentSelection())
 			if not self.selected:
 				self.toggleMode()
 		self["choosen"].setList(self.selected)
-
-	def zaptoCallback(self, *args):
-		if args:
-			currentSelected = self["list"].l.getCurrentSelection()[:]
-			currentSelected[1]=currentSelected[1][:-1] + (_("Zap to") + " " + ServiceReference(args[0]).getServiceName(),)
-			self.selected.append([(currentSelected[0][0], currentSelected[0][1] + "/" + args[0].toString()), currentSelected[1]])
 
 	def keyLeft(self):
 		self[self.mode].instance.moveSelection(self[self.mode].instance.pageUp)
