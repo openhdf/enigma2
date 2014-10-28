@@ -25,24 +25,24 @@ hotkeys = [(_("Red"), "red", "Infobar/activateRedButton"),
 	(_("Yellow long"), "yellow_long", ""),
 	(_("Blue"), "blue", "Infobar/showExtensionSelection"),
 	(_("Blue long"), "blue_long", "Infobar/showPluginBrowser"),
+	(_("OK"), "ok", "Infobar/toggleShow"),
+	(_("OK long"), "ok_long", "Infobar/openInfoBarEPG"),
+	(_("Exit"), "exit", ""),
+	(_("Exit long"), "exit_long", ""),
+	(_("Left"), "cross_left", ""),
+	(_("Right"), "cross_right", ""),
+	(_("Up"), "cross_up", ""),
+	(_("Down"), "cross_down", ""),
 	(_("Info (EPG)"), "info", "Infobar/openSingleServiceEPG"),
 	(_("Info (EPG) Long"), "info_long", "Infobar/showEventInfoPlugins"),
 	(_("Epg/Guide"), "epg", "Plugins/Extensions/CoolTVGuide/5"),
 	(_("Epg/Guide long"), "epg_long", "Plugins/Extensions/CoolTVGuide/4"),
 	(_("List/Fav/PVR"), "list", "Infobar/showMovies"),
 	(_("List/Fav/PVR long"), "list_long", ""),
-	(_("OK"), "ok", "Infobar/toggleShow"),
-	(_("OK long"), "ok_long", "Infobar/openInfoBarEPG"),
-	(_("Exit"), "exit", ""),
-	(_("Exit long"), "exit_long", ""),
 	(_("File"), "file", "Infobar/showMovies"),
 	(_("File long"), "file_long", "Plugins/Extensions/simplelist/1"),
 	(_("Media"), "showMovies", ""),
 	(_("Media long"), "showMovies_long", ""),
-	(_("Left"), "cross_left", ""),
-	(_("Right"), "cross_right", ""),
-	(_("Up"), "cross_up", ""),
-	(_("Down"), "cross_down", ""),
 	(_("Channel up"), "channelup", ""),
 	(_("Channel down"), "channeldown", ""),
 	(_("TV"), "showTv", ""),
@@ -83,8 +83,21 @@ hotkeys = [(_("Red"), "red", "Infobar/activateRedButton"),
 	(_("Fastforward"), "fastforward", ""),
 	(_("Skip back"), "skip_back", ""),
 	(_("Skip forward"), "skip_forward", ""),
+	(_("F1"), "f1", ""),
+	(_("F1 long"), "f1_long", ""),
+	(_("F2"), "f2", ""),
+	(_("F2 long"), "f2_long", ""),
+	(_("F3"), "f3", ""),
+	(_("F3 long"), "f3_long", ""),
+	(_("F4"), "f4", ""),
+	(_("F4 long"), "f4_long", ""),
+	(_("HDMI Rx"), "HDMIin", ""),
+	(_("HDMI Rx long"), "HDMIin_long", ""),
+	(_("V-Key"), "vmodeSelection", ""),
+	(_("V-Key long"), "vmodeSelection_long", ""),
 	(_("Picture in Picture"), "activatePiP", "Infobar/showPiP"),
 	(_("Picture in Picture long"), "activatePiP_long", "Infobar/swapPiP"),
+	(_("Search/WEB"), "search", ""),
 	(_("Timer"), "timer", "Module/Screens.TimerEdit/TimerEditList"),
 	(_("Timer long"), "timer_long", "Module/Screens.PowerTimerEdit/PowerTimerEditList"),
 	(_("Playlist"), "playlist", ""),
@@ -95,10 +108,18 @@ hotkeys = [(_("Red"), "red", "Infobar/activateRedButton"),
 	(_("Search/WEB long"), "search_long", ""),
 	(_("Slow"), "slow", ""),
 	(_("Slow long"), "slow_long", ""),
+	(_("UHF/Slow"), "slow", ""),
+	(_("UHF/Slow long"), "slow_long", ""),
+	(_("Prov/Fav"), "ab", ""),
+	(_("Prov/Fav long"), "ab_long", ""),
+	(_("Y-Tube"), "www", ""),
+	(_("Y-Tube long"), "www_long", ""),
 	(_("Mark/Portal/Playlist"), "mark", "Plugins/Extensions/EtPortal/1"),
 	(_("Mark/Portal/Playlist long"), "mark_long", ""),
 	(_("Sleep"), "sleep", ""),
 	(_("Sleep long"), "sleep_long", ""),
+	(_("Zoom"), "ZoomInOut", ""),
+	(_("Plugin"), "mark", ""),
 	(_("Power"), "power", "Module/Screens.Standby/Standby"),
 	(_("Power long"), "power_long", "Module/Screens.Standby/TryQuitMainloop/1"),
 	(_("Power down"), "power_down", "")]
@@ -107,45 +128,9 @@ hotkeys = [(_("Red"), "red", "Infobar/activateRedButton"),
 ## hotkeys.append((_("HDMI Rx"), "HDMIin", ""))
 ## hotkeys.remove((_("F1/LAN long"), "f1_long", ""))
 
-if boxtype == "et10000" or boxtype == "et8500" or boxtype == "et8000":
-	hotkeys.append((_("additional keys for ET10000, ET8500, ET8000"), "empty", ""))
-	hotkeys.append((_("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"),"empty", ""))
-	hotkeys.append((_("HDMI Rx"), "HDMIin", ""))
-	hotkeys.append((_("HDMI Rx long"), "HDMIin_long", ""))
-	hotkeys.append((_("V-Key"), "vmodeSelection", ""))
-	hotkeys.append((_("V-Key long"), "vmodeSelection_long", ""))
-	hotkeys.append((_("F1"), "f1", ""))
-	hotkeys.append((_("F1 long"), "f1_long", ""))
-	hotkeys.append((_("F2"), "f2", ""))
-	hotkeys.append((_("F2 long"), "f2_long", ""))
-	hotkeys.append((_("F3"), "f3", ""))
-	hotkeys.append((_("F3 long"), "f3_long", ""))
-	hotkeys.remove((_("Search/WEB"), "search", ""))
-
-if boxtype == "optimussos3plus":
-	hotkeys.append((_("additional keys for Optimuss OS3+"), "empty", ""))
-	hotkeys.append((_("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"),"empty", ""))
-	hotkeys.append((_("UHF/Slow"), "slow", ""))
-	hotkeys.append((_("UHF/Slow long"), "slow_long", ""))
-	hotkeys.append((_("Prov/Fav"), "ab", ""))
-	hotkeys.append((_("Prov/Fav long"), "ab_long", ""))
-	hotkeys.append((_("Y-Tube"), "www", ""))
-	hotkeys.append((_("Y-Tube long"), "www_long", ""))
-	hotkeys.remove((_("Search/WEB"), "search", ""))
-	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", "Plugins/Extensions/EtPortal/1"))
-	hotkeys.remove((_("Slow"), "slow", ""))
-
-if boxtype.startswith('optimussos'):
-	hotkeys.append((_("additional keys for Optimuss OS"), "empty", ""))
-	hotkeys.append((_("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"),"empty", ""))
-	hotkeys.append((_("Zoom"), "ZoomInOut", ""))
-
-if boxtype.startswith('xpeed'):
-	hotkeys.append((_("additional keys for Xpeed"), "empty", ""))
-	hotkeys.append((_("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"),"empty", ""))
-	hotkeys.remove((_("Mark/Portal/Playlist"), "mark", "Plugins/Extensions/EtPortal/1"))
-	hotkeys.remove((_("Mark/Portal/Playlist long"), "mark_long", ""))
-	hotkeys.append((_("Plugin"), "mark", ""))
+#if boxtype == "et10000" or boxtype == "et8500" or boxtype == "et8000":
+#	hotkeys.append((_("additional keys for ET10000, ET8500, ET8000"), "empty", ""))
+#	hotkeys.append((_("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"),"empty", ""))
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
