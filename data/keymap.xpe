@@ -907,8 +907,6 @@
 		<key id="KEY_INFO" mapto="info_long" flags="l" />
 		<key id="KEY_VIDEO" mapto="list" flags="b" />
 		<key id="KEY_VIDEO" mapto="list_long" flags="l" />
-		<key id="KEY_BACK" mapto="back" flags="b" />
-		<key id="KEY_BACK" mapto="back_long" flags="l" />
 		<key id="KEY_END" mapto="end" flags="b" />
 		<key id="KEY_END" mapto="end_long" flags="l" />
 		<key id="KEY_EXIT" mapto="exit" flags="b" />
@@ -977,8 +975,8 @@
 		<key id="KEY_AB" mapto="ab_long" flags="l" />
 		<key id="KEY_WWW" mapto="www" flags="b" />
 		<key id="KEY_WWW" mapto="www_long" flags="l" />
-		<key id="KEY_SLEEP" mapto="openTimerList" flags="b" />
-		<key id="KEY_SLEEP" mapto="openTimerList_long" flags="l" />
+		<key id="KEY_SLEEP" mapto="sleep" flags="b" />
+		<key id="KEY_SLEEP" mapto="sleep_long" flags="l" />
 		<key id="KEY_ZOOM" mapto="ZoomInOut" flags="b" />
 		<key id="KEY_ZOOM" mapto="ZoomOff" flags="l" />
 		<key id="KEY_MUTE" mapto="mute_long" flags="l" />
@@ -997,5 +995,7 @@
 		<key id="KEY_BACK" mapto="back_long" flags="l" />
 		<key id="KEY_FORWARD" mapto="historynext" flags="b" />
 		<key id="KEY_FORWARD" mapto="historynext_long" flags="l" />
+		<key id="KEY_FAVORITES" mapto="favor" flags="b" />
+		<key id="KEY_FAVORITES" mapto="favor_long" flags="l" />
 	</map>
 </keymap>
