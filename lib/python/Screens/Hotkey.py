@@ -201,7 +201,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple", "Scanning"))
 	for plugin in plugins.getPluginsForMenu("scan"):
 		hotkeyFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], "Scanning"))
-	hotkeyFunctions.append((_("Network setup"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", "Setup"))
+	hotkeyFunctions.append((_("Network"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", "Setup"))
 	hotkeyFunctions.append((_("Network menu"), "Infobar/showNetworkMounts", "Setup"))
 	hotkeyFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
 	hotkeyFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
@@ -216,7 +216,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
 	hotkeyFunctions.append((_("Deep-Standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
 	hotkeyFunctions.append((_("Usage Setup"), "Setup/usage", "Setup"))
-	hotkeyFunctions.append((_("User interface settings"), "Setup/userinterface", "Setup"))
+	hotkeyFunctions.append((_("User interface"), "Setup/userinterface", "Setup"))
 	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
 	hotkeyFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
 	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
@@ -227,7 +227,7 @@ class HotkeySetup(Screen):
 		Screen.__init__(self, session)
 		self['description'] = Label(_('Click on your remote on the button you want to change, then click on OK'))
 		self.session = session
-		self.setTitle(_("Button setup"))
+		self.setTitle(_("Hotkey Setup"))
 		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button(_("Toggle Extra Keys"))		
 		self.list = []
@@ -299,9 +299,12 @@ class HotkeySetup(Screen):
 		if key:
 			selected = []
 			for x in eval("config.misc.hotkey." + key + ".value.split(',')"):
-				function = list(function for function in self.hotkeyFunctions if function[1] == x )
-				if function:
-					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
+				if x.startswith("Zap"):
+					selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
+				else:
+					function = list(function for function in self.hotkeyFunctions if function[1] == x )
+					if function:
+						selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
 
 class HotkeySetupSelect(Screen):
@@ -311,7 +314,7 @@ class HotkeySetupSelect(Screen):
 		self.skinName="HotkeySetupSelect"
 		self.session = session
 		self.key = key
-		self.setTitle(_("Button setup for") + ": " + key[0][0])
+		self.setTitle(_("Hotkey Setup") + " " + key[0][0])
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
 		self.mode = "list"
@@ -320,9 +323,12 @@ class HotkeySetupSelect(Screen):
 		self.expanded = []
 		self.selected = []
 		for x in self.config.value.split(','):
-			function = list(function for function in self.hotkeyFunctions if function[1] == x )
-			if function:
-				self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
+			if x.startswith("Zap"):
+				self.selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
+			else:
+				function = list(function for function in self.hotkeyFunctions if function[1] == x )
+				if function:
+					self.selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
@@ -336,8 +342,14 @@ class HotkeySetupSelect(Screen):
 			"down": self.keyDown,
 			"left": self.keyLeft,
 			"right": self.keyRight,
+			"upRepeated": self.keyUp,
+			"downRepeated": self.keyDown,
+			"leftRepeated": self.keyLeft,
+			"rightRepeated": self.keyRight,
 			"pageUp": self.toggleMode,
-			"pageDown": self.toggleMode
+			"pageDown": self.toggleMode,
+			"moveUp": self.moveUp,
+			"moveDown": self.moveDown
 		}, -1)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
@@ -356,6 +368,8 @@ class HotkeySetupSelect(Screen):
 				functionslist.append(ChoiceEntryComponent('expanded',((catagorie), "Expander")))
 				for function in catagories[catagorie]:
 					functionslist.append(ChoiceEntryComponent('verticalline',((function[0]), function[1])))
+				if catagorie == "InfoBar":
+					functionslist.append(ChoiceEntryComponent('verticalline',((_("Zap to")), "Zap")))
 			else:
 				functionslist.append(ChoiceEntryComponent('expandable',((catagorie), "Expander")))
 		return functionslist
@@ -383,12 +397,21 @@ class HotkeySetupSelect(Screen):
 				if currentSelected[:2] in self.selected:
 					self.selected.remove(currentSelected[:2])
 				else:
-					self.selected.append(currentSelected[:2])
+					if currentSelected[0][1].startswith("Zap"):
+						self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey zap") + " " + self.key[0][0], currentBouquet=True)
+					else:
+						self.selected.append(currentSelected[:2])
 		elif self.selected:
 			self.selected.remove(self["choosen"].l.getCurrentSelection())
 			if not self.selected:
 				self.toggleMode()
 		self["choosen"].setList(self.selected)
+
+	def zaptoCallback(self, *args):
+		if args:
+			currentSelected = self["list"].l.getCurrentSelection()[:]
+			currentSelected[1]=currentSelected[1][:-1] + (_("Zap to") + " " + ServiceReference(args[0]).getServiceName(),)
+			self.selected.append([(currentSelected[0][0], currentSelected[0][1] + "/" + args[0].toString()), currentSelected[1]])
 
 	def keyLeft(self):
 		self[self.mode].instance.moveSelection(self[self.mode].instance.pageUp)
@@ -401,6 +424,22 @@ class HotkeySetupSelect(Screen):
 
 	def keyDown(self):
 		self[self.mode].instance.moveSelection(self[self.mode].instance.moveDown)
+
+	def moveUp(self):
+		self.moveChoosen(self.keyUp)
+
+	def moveDown(self):
+		self.moveChoosen(self.keyDown)
+
+	def moveChoosen(self, direction):
+		if self.mode == "choosen":
+			currentIndex = self["choosen"].getSelectionIndex()
+			swapIndex = (currentIndex + (direction == self.keyDown and 1 or -1)) % len(self["choosen"].list)
+			self["choosen"].list[currentIndex], self["choosen"].list[swapIndex] = self["choosen"].list[swapIndex], self["choosen"].list[currentIndex]
+			self["choosen"].setList(self["choosen"].list)
+			direction()
+		else:
+			return 0
 
 	def save(self):
 		configValue = []

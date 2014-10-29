@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Keymap 24.10.2014" -->
+	<!-- "HDF Keymap 29.10.2014" -->
 
 	<map context="ListboxActions">
 		<device name="keyboard">
@@ -107,9 +107,9 @@
 	</map>
 
 	<map context="InfobarInstantRecord">
-		<!--key id="KEY_RECORD" mapto="instantRecord" flags="m" />
+		<key id="KEY_RECORD" mapto="instantRecord" flags="b" />
 		<key id="KEY_RECORD" mapto="ShortRecord" flags="b" />
-		<key id="KEY_RECORD" mapto="LongRecord" flags="l" /-->
+		<key id="KEY_RECORD" mapto="LongRecord" flags="l" />
 		<device name="dreambox remote control (native)">
 			<key id="KEY_RED" mapto="instantRecord" flags="b" />
 		</device>
@@ -689,20 +689,23 @@
 	</map>
 
 	<map context="DirectionActions">
-		<key id="KEY_UP" mapto="up" flags="mr" />
-		<key id="KEY_DOWN" mapto="down" flags="mr" />
-		<key id="KEY_LEFT" mapto="left" flags="mr" />
-		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_UP" mapto="up" flags="m" />
+		<key id="KEY_DOWN" mapto="down" flags="m" />
+		<key id="KEY_LEFT" mapto="left" flags="m" />
+		<key id="KEY_RIGHT" mapto="right" flags="m" />
 
 		<key id="KEY_UP" mapto="upRepeated" flags="r" />
 		<key id="KEY_DOWN" mapto="downRepeated" flags="r" />
 		<key id="KEY_LEFT" mapto="leftRepeated" flags="r" />
 		<key id="KEY_RIGHT" mapto="rightRepeated" flags="r" />
 		
-		<!--key id="KEY_LEFT" mapto="leftUp" flags="b" />
+		<key id="KEY_LEFT" mapto="leftUp" flags="b" />
 		<key id="KEY_RIGHT" mapto="rightUp" flags="b" />
 		<key id="KEY_UP" mapto="upUp" flags="b" />
-		<key id="KEY_DOWN" mapto="downUp" flags="b" /-->
+		<key id="KEY_DOWN" mapto="downUp" flags="b" />
+
+		<key id="KEY_PREVIOUS" mapto="moveUp" flags="m"/>
+		<key id="KEY_NEXT" mapto="moveDown" flags="m"/>
 	</map>
 
 	<map context="ColorActions">
