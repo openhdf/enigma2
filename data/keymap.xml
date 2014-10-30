@@ -149,7 +149,7 @@
 		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressedLong" flags="l" />
 		<key id="BTN_0" mapto="zapUp" flags="mr" />
 		<key id="BTN_1" mapto="zapDown" flags="mr" />
-		<key id="KEY_SAT" mapto="openSatellites" flags="m" />
+		<!--key id="KEY_SAT" mapto="openSatellites" flags="m" /-->
 	</map>
 
 	<map context="InfobarZoomActions">
@@ -566,9 +566,9 @@
 		<key id="KEY_TEXT" mapto="showVirtualKeyboard" flags="m" />
 	</map>
 
-	<map context="InfobarTeletextActions">
+	<!--map context="InfobarTeletextActions">
 		<key id="KEY_TEXT" mapto="startTeletext" flags="m" />
-	</map>
+	</map-->
 
 	<map context="TeletextActions">
 		<key id="KEY_RIGHT" mapto="nextSubPage" flags="m" />
@@ -664,7 +664,7 @@
 		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
 		<key id="KEY_INFO" mapto="contextMenu" flags="m" />
 		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
-		<key id="KEY_PROGRAM" mapto="timerAdd" flags="m" />
+		<!--key id="KEY_PROGRAM" mapto="timerAdd" flags="m" /-->
 	</map>
 
 	<map context="EventViewEPGActions">
@@ -1016,5 +1016,9 @@
 		<key id="KEY_FORWARD" mapto="historynext_long" flags="l" />
 		<key id="KEY_FAVORITES" mapto="favor" flags="b" />
 		<key id="KEY_FAVORITES" mapto="favor_long" flags="l" />
+		<key id="KEY_HOMEPAGE" mapto="homepage" flags="b" />
+		<key id="KEY_HOMEPAGE" mapto="homepage_long" flags="l" />
+		<key id="KEY_SAT" mapto="sat" flags="b" />
+		<key id="KEY_SAT" mapto="sat_long" flags="l" />		
 	</map>
 </keymap>
