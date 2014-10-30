@@ -286,9 +286,9 @@
 			<key id="KEY_PROGRAM" mapto="timerSelection" flags="m" />
 	</map-->
 
-	<map context="InfobarVmodeButtonActions">
+	<!--map context="InfobarVmodeButtonActions">
 			<key id="KEY_VMODE" mapto="vmodeSelection" flags="m" />
-	</map>
+	</map-->
 
 	<map context="InfobarPiPActions">
 		<key id="KEY_SCREEN" mapto="activatePiP" flags="b" />
@@ -988,8 +988,8 @@
 		<key id="KEY_HOME" mapto="home_long" flags="l" />
 		<key id="KEY_AUX" mapto="HDMIin" flags="b" />
 		<key id="KEY_AUX" mapto="HDMIin_long" flags="l" />
-		<key id="KEY_VMODE" mapto="vmodeSelection" flags="b" />
-		<key id="KEY_VMODE" mapto="vmodeSelection_long" flags="l" />
+		<key id="KEY_VMODE" mapto="vkey" flags="b" />
+		<key id="KEY_VMODE" mapto="vkey_long" flags="l" />
 		<key id="KEY_SLOW" mapto="slow" flags="b" />
 		<key id="KEY_SLOW" mapto="slow_long" flags="l" />
 		<key id="KEY_AB" mapto="ab" flags="b" />
