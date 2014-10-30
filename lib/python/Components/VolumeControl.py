@@ -42,32 +42,10 @@ class VolumeControl:
 		config.audio.volume.save()
 
 	def volUp(self):
-		vol = self.volctrl.getVolume()
-		if vol < 3:
-			vol += 1
-		elif vol < 9:
-			vol += 2
-		elif vol < 18:
-			vol += 3
-		elif vol < 30:
-			vol += 4
-		else:
-			vol += 5
-		self.setVolume(vol)
+		self.setVolume(+1)
 
 	def volDown(self):
-		vol = self.volctrl.getVolume()
-		if vol <= 3:
-			vol -= 1
-		elif vol <= 9:
-			vol -= 2
-		elif vol <= 18:
-			vol -= 3
-		elif vol <= 30:
-			vol -= 4
-		else:
-			vol -= 5
-		self.setVolume(vol)
+		self.setVolume(-1)
 
 	def setVolume(self, direction):
 		oldvol = self.volctrl.getVolume()
