@@ -282,9 +282,9 @@
 		</device>
 	</map>
 
-	<map context="InfobarTimerButtonActions">
+	<!--map context="InfobarTimerButtonActions">
 			<key id="KEY_PROGRAM" mapto="timerSelection" flags="m" />
-	</map>
+	</map-->
 
 	<map context="InfobarVmodeButtonActions">
 			<key id="KEY_VMODE" mapto="vmodeSelection" flags="m" />
