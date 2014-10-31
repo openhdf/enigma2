@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Keymap 29.10.2014" -->
+	<!-- "HDF Keymap 31.10.2014" -->
 
 	<map context="ListboxActions">
 		<device name="keyboard">

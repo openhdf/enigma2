@@ -176,6 +176,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Switch to radio mode"), "Infobar/showRadio", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to TV mode"), "Infobar/showTv", "InfoBar"))
 	hotkeyFunctions.append((_("Show favourites list"), "Infobar/openFavouritesList", "InfoBar"))
+	hotkeyFunctions.append((_("Show satellites list"), "Infobar/openSatellites", "InfoBar"))
 	hotkeyFunctions.append((_("Show movies"), "Infobar/showMovies", "InfoBar"))
 	hotkeyFunctions.append((_("Instant record"), "Infobar/instantRecord", "InfoBar"))
 	hotkeyFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", "InfoBar"))
