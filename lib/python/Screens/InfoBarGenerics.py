@@ -2369,6 +2369,10 @@ class InfoBarEPG:
 				services.append(ServiceReference(service))
 		return services
 
+	def openFavouritesList(self):
+		self.servicelist.showFavourites()
+		self.openServiceList()
+
 	def openBouquetEPG(self, bouquet = None, bouquets = None):
 		if bouquet:
 			self.StartBouquet = bouquet
