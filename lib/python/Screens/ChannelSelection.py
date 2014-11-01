@@ -2416,7 +2416,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.channelSelected()
 
 class SimpleChannelSelection(ChannelSelectionBase):
-	def __init__(self, session, title):
+	def __init__(self, session, title, currentBouquet=False):
 		ChannelSelectionBase.__init__(self, session)
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
@@ -2427,7 +2427,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 			})
 		self.bouquet_mark_edit = OFF
 		self.title = title
-		self.bouquet_mark_edit = OFF
+		self.currentBouquet = currentBouquet
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
