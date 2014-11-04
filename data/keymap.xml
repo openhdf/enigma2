@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Keymap 31.10.2014" -->
+	<!-- "HDF Keymap 04.11.2014" -->
 
 	<map context="ListboxActions">
 		<device name="keyboard">
@@ -305,8 +305,8 @@
 	</map>
 
 	<map context="GlobalActions">
-		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
-		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
+		<!--key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
+		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" /-->
 		<key id="KEY_MUTE" mapto="volumeMute" flags="b" />
 		<!--key id="KEY_POWER" mapto="power_long" flags="l" />
 		<key id="KEY_POWER" mapto="power_down" flags="m" />
@@ -583,9 +583,9 @@
 		<key id="KEY_BLUE" mapto="blue" flags="m" />
 		<key id="KEY_CHANNELUP" mapto="zoomMode" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="screenMode" flags="m" />
-		<key id="KEY_HELP" mapto="hint" flags="m" />
+		<!--key id="KEY_HELP" mapto="hint" flags="m" /-->
 		<key id="KEY_MENU" mapto="menu" flags="m" />
-		<key id="KEY_TEXT" mapto="exit" flags="m" />
+		<!--key id="KEY_TEXT" mapto="exit" flags="m" /-->
 		<key id="KEY_EXIT" mapto="exit" flags="m" />
 		<key id="KEY_POWER" mapto="exit" flags="m" />
 	</map>
@@ -733,7 +733,7 @@
 	</map>
 
 	<map context="HelpActions">
-		<key id="KEY_HELP" mapto="displayHelp" flags="b" />
+		<!--key id="KEY_HELP" mapto="displayHelp" flags="b" /-->
 		<!--key id="KEY_OPTION" mapto="displayHelp" flags="m" /-->
 	</map>
 
@@ -914,10 +914,10 @@
 		<key id="KEY_RADIO" mapto="radio_long" flags="l" />
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="showTv_long" flags="l" />
-		<key id="KEY_TEXT" mapto="text" flags="b" />
-		<key id="KEY_TEXT" mapto="text_long" flags="l" />
-		<key id="KEY_HELP" mapto="displayHelp" flags="b" />
-		<key id="KEY_HELP" mapto="displayHelp_long" flags="l" />
+		<key id="KEY_TEXT" mapto="texter" flags="b" />
+		<key id="KEY_TEXT" mapto="texter_long" flags="l" />
+		<key id="KEY_HELP" mapto="displayhelp" flags="b" />
+		<key id="KEY_HELP" mapto="displayhelp_long" flags="l" />
 		<key id="KEY_SUBTITLE" mapto="subtitle" flags="b" />
 		<key id="KEY_SUBTITLE" mapto="subtitle_long" flags="l" />
 		<key id="KEY_MENU" mapto="menu" flags="b" />
