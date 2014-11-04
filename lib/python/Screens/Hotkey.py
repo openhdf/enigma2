@@ -55,8 +55,8 @@ hotkeys = [(_("OK"), "ok", "Infobar/toggleShow"),
 	(_("Fastforward"), "fastforward", ""),
 	(_("File"), "file", "Infobar/showMovies"),
 	(_("File long"), "file_long", "Plugins/Extensions/simplelist/1"),
-	(_("Help"), "displayHelp", "Infobar/showHelp"),
-	(_("Help long"), "displayHelp_long", "Module/Screens.Hotkey/HotkeySetup"),
+	(_("Help"), "displayhelp", "Infobar/showHelp"),
+	(_("Help long"), "displayhelp_long", "Module/Screens.Hotkey/HotkeySetup"),
 	(_("HDMI Rx"), "HDMIin", ""),
 	(_("HDMI Rx long"), "HDMIin_long", ""),
 	(_("Home"), "home", ""),
@@ -108,8 +108,8 @@ hotkeys = [(_("OK"), "ok", "Infobar/toggleShow"),
 	(_("Stop long"), "stop_long", ""),
 	(_("Subtitle"), "subtitle", "Infobar/subtitleSelection"),
 	(_("Subtitle long"), "subtitle_long", "Infobar/subserviceSelection"),
-	(_("Teletext"), "text", "Infobar/startTeletext"),
-	(_("Teletext long"), "text_long", ""),
+	(_("Teletext"), "texter", "Infobar/startTeletext"),
+	(_("Teletext long"), "texter_long", ""),
 	(_("Timer"), "timer", "Module/Screens.TimerEdit/TimerEditList"),
 	(_("Timer long"), "timer_long", "Module/Screens.PowerTimerEdit/PowerTimerEditList"),
 	(_("Timeshift"), "timeshift", "Infobar/startTimeshift"),
@@ -120,6 +120,10 @@ hotkeys = [(_("OK"), "ok", "Infobar/toggleShow"),
 	(_("UHF/Slow long"), "slow_long", ""),
 	(_("V-Key"), "vkey", ""),
 	(_("V-Key long"), "vkey_long", ""),
+	(_("Volume Up"), "volumeUp", "Infobar/volumeUp"),
+	(_("Volume Up long"), "volumeUp_long", ""),
+	(_("Volume Down"), "volumeDown", "Infobar/volumeDown"),
+	(_("Volume Down long"), "volumeDown_long", ""),
 	(_("Y-Tube"), "www", ""),
 	(_("Y-Tube long"), "www_long", ""),
 	(_("Zoom"), "ZoomInOut", ""),]
@@ -187,6 +191,8 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Start teletext"), "Infobar/startTeletext", "InfoBar"))
 	hotkeyFunctions.append((_("Show subservice selection"), "Infobar/subserviceSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Show subtitle selection"), "Infobar/subtitleSelection", "InfoBar"))
+	hotkeyFunctions.append((_("Volume up"), "Infobar/volumeUp", "InfoBar"))
+	hotkeyFunctions.append((_("Volume down"), "Infobar/volumeDown", "InfoBar"))
 	hotkeyFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
 	hotkeyFunctions.append((_("ZoomInOut"), "InfobarGenerics/ZoomInOut", "InfoBar"))
 	hotkeyFunctions.append((_("ZoomOff"), "InfobarGenerics/ZoomInOut", "InfoBar"))
@@ -317,7 +323,7 @@ class HotkeySetupSelect(Screen):
 	def __init__(self, session, key, args=None):
 		Screen.__init__(self, session)
 		self['description'] = Label(_('Select the desired function and click on OK to assign it. Use CH+/- to toggle between the lists. Select an assigned function and click on OK to de-assign it.'))
-		self.skinName="HotkeySetupSelect"
+		self.skinName="ButtonSetupSelect"
 		self.session = session
 		self.key = key
 		self.setTitle(_("Hotkey Setup") + " " + key[0][0])
