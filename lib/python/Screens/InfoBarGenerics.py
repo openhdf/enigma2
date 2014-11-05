@@ -607,13 +607,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.pvrStateDialog = None
 
 	def OkPressed(self):
-		if config.usage.okbutton_mode.value == "0":
-			self.toggleShow()
-		elif config.usage.okbutton_mode.value == "1":
-			try:
-				self.openServiceList()
-			except:
-				self.toggleShow()
+		#self.toggleShow()
+		pass
 
 	def SwitchSecondInfoBarScreen(self):
 		if self.lastSecondInfoBar == int(config.usage.show_second_infobar.value):
