@@ -14,8 +14,8 @@ from ServiceReference import ServiceReference
 from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 
-hotkeys = [(_("OK"), "ok", "Infobar/toggleShow"),
-	(_("OK long"), "ok_long", "Infobar/openInfoBarEPG"),
+hotkeys = [(_("OK"), "okbutton", "Infobar/toggleShow"),
+	(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
 	(_("Exit"), "exit", ""),
 	(_("Exit long"), "exit_long", ""),
 	(_("Left"), "cross_left", ""),
