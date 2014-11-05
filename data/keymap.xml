@@ -1,7 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Keymap 05.11.2014" -->
-
+	<!-- "HDF Keymap 06.11.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -225,8 +224,10 @@
 	</map>
 
 	<map context="InfobarShowHideActions">
-		<!--key id="KEY_OK" mapto="toggleShow" flags="m" />
-		<key id="KEY_OK" mapto="LongOKPressed" flags="l" /-->
+		<!--key id="KEY_OK" mapto="toggleShow" flags="b" /-->
+		<!--key id="KEY_OK" mapto="ok" flags="b" /-->
+		<!--key id="KEY_OK" mapto="OK" flags="b" /-->
+		<!--key id="KEY_OK" mapto="LongOKPressed" flags="l" /-->
 		<key id="KEY_ENTER" mapto="toggleShow" flags="m" />
 		<key id="KEY_EXIT" mapto="hide" flags="m" />
 		<key id="KEY_ESC" mapto="hide" flags="m" />
@@ -305,8 +306,8 @@
 	</map>
 
 	<map context="GlobalActions">
-		<!--key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
-		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" /-->
+		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
+		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
 		<key id="KEY_MUTE" mapto="volumeMute" flags="b" />
 		<!--key id="KEY_POWER" mapto="power_long" flags="l" />
 		<key id="KEY_POWER" mapto="power_down" flags="m" />
@@ -408,7 +409,7 @@
 		<key id="KEY_LEFT" mapto="seekBackManual" flags="l" />
 		<key id="KEY_RIGHT" mapto="seekFwdManual" flags="l" />
 
-		<key id="KEY_OK" mapto="unPauseService" flags="m" />
+		<!--key id="KEY_OK" mapto="unPauseService" flags="m" /-->
 
 		<key id="KEY_1" mapto="seekdef:1" flags="m" />
 		<key id="KEY_3" mapto="seekdef:3" flags="m" />
@@ -680,8 +681,8 @@
 		<!-- use this on rcu, ok? -->
 		<key id="KEY_OK" mapto="ok" flags="m" />
 		<key id="KEY_OK" mapto="OK" flags="m" />
-		<!--key id="KEY_OK" mapto="OK" flags="b"/>
-		<key id="KEY_OK" mapto="OKLong" flags="l"/-->
+		<key id="KEY_OK" mapto="OK" flags="b"/>
+		<key id="KEY_OK" mapto="OKLong" flags="l"/>
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 
 		<key id="KEY_ENTER" mapto="ok" flags="m" />
@@ -1001,10 +1002,6 @@
 		<key id="KEY_ZOOM" mapto="ZoomInOut" flags="b" />
 		<key id="KEY_ZOOM" mapto="ZoomOff" flags="l" />
 		<key id="KEY_MUTE" mapto="mute_long" flags="l" />
-		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="b" />
-		<key id="KEY_VOLUMEUP" mapto="volumeUp_long" flags="l" />
-		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="b" />
-		<key id="KEY_VOLUMEDOWN" mapto="volumeDown_long" flags="l" />
 		<key id="KEY_POWER" mapto="power" flags="b" />
 		<key id="KEY_POWER" mapto="power_long" flags="l" />
 		<key id="KEY_POWER" mapto="power_down" flags="m" />
