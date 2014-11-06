@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Xpeed Keymap 26.10.2014" -->
+	<!-- "HDF Xpeed Keymap 06.11.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -895,10 +895,10 @@
 		<key id="KEY_RADIO" mapto="radio_long" flags="l" />
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="showTv_long" flags="l" />
-		<key id="KEY_TEXT" mapto="text" flags="b" />
-		<key id="KEY_TEXT" mapto="text_long" flags="l" />
-		<key id="KEY_HELP" mapto="displayHelp" flags="b" />
-		<key id="KEY_HELP" mapto="displayHelp_long" flags="l" />
+		<key id="KEY_TEXT" mapto="texter" flags="b" />
+		<key id="KEY_TEXT" mapto="texter_long" flags="l" />
+		<key id="KEY_HELP" mapto="displayhelp" flags="b" />
+		<key id="KEY_HELP" mapto="displayhelp_long" flags="l" />
 		<key id="KEY_SUBTITLE" mapto="subtitle" flags="b" />
 		<key id="KEY_SUBTITLE" mapto="subtitle_long" flags="l" />
 		<key id="KEY_MENU" mapto="menu" flags="b" />
@@ -907,6 +907,8 @@
 		<key id="KEY_INFO" mapto="info_long" flags="l" />
 		<key id="KEY_VIDEO" mapto="list" flags="b" />
 		<key id="KEY_VIDEO" mapto="list_long" flags="l" />
+		<key id="KEY_BACK" mapto="back" flags="b" />
+		<key id="KEY_BACK" mapto="back_long" flags="l" />
 		<key id="KEY_END" mapto="end" flags="b" />
 		<key id="KEY_END" mapto="end_long" flags="l" />
 		<key id="KEY_EXIT" mapto="exit" flags="b" />
@@ -921,8 +923,8 @@
 		<key id="KEY_RIGHT" mapto="cross_right" flags="mr" />
 		<key id="KEY_UP" mapto="cross_up" flags="mr" />
 		<key id="KEY_DOWN" mapto="cross_down" flags="mr" />
-		<key id="KEY_OK" mapto="ok" flags="b" />
-		<key id="KEY_OK" mapto="ok_long" flags="l" />
+		<key id="KEY_OK" mapto="okbutton" flags="b" />
+		<key id="KEY_OK" mapto="okbutton_long" flags="l" />
 		<key id="KEY_CHANNELUP" mapto="channelup" flags="mr" />
 		<key id="KEY_CHANNELDOWN" mapto="channeldown" flags="mr" />
 		<key id="KEY_AUDIO" mapto="audio" flags="b" />
@@ -967,8 +969,8 @@
 		<key id="KEY_HOME" mapto="home_long" flags="l" />
 		<key id="KEY_AUX" mapto="HDMIin" flags="b" />
 		<key id="KEY_AUX" mapto="HDMIin_long" flags="l" />
-		<key id="KEY_VMODE" mapto="vmodeSelection" flags="b" />
-		<key id="KEY_VMODE" mapto="vmodeSelection_long" flags="l" />
+		<key id="KEY_VMODE" mapto="vkey" flags="b" />
+		<key id="KEY_VMODE" mapto="vkey_long" flags="l" />
 		<key id="KEY_SLOW" mapto="slow" flags="b" />
 		<key id="KEY_SLOW" mapto="slow_long" flags="l" />
 		<key id="KEY_AB" mapto="ab" flags="b" />
@@ -980,10 +982,6 @@
 		<key id="KEY_ZOOM" mapto="ZoomInOut" flags="b" />
 		<key id="KEY_ZOOM" mapto="ZoomOff" flags="l" />
 		<key id="KEY_MUTE" mapto="mute_long" flags="l" />
-		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="b" />
-		<key id="KEY_VOLUMEUP" mapto="volumeUp_long" flags="l" />
-		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="b" />
-		<key id="KEY_VOLUMEDOWN" mapto="volumeDown_long" flags="l" />
 		<key id="KEY_POWER" mapto="power" flags="b" />
 		<key id="KEY_POWER" mapto="power_long" flags="l" />
 		<key id="KEY_POWER" mapto="power_down" flags="m" />
@@ -991,11 +989,13 @@
 		<key id="KEY_NEXT" mapto="next_long" flags="l" />
 		<key id="KEY_PREVIOUS" mapto="previous" flags="b" />
 		<key id="KEY_PREVIOUS" mapto="previous_long" flags="l" />
-		<key id="KEY_BACK" mapto="back" flags="b" />
-		<key id="KEY_BACK" mapto="back_long" flags="l" />
 		<key id="KEY_FORWARD" mapto="historynext" flags="b" />
 		<key id="KEY_FORWARD" mapto="historynext_long" flags="l" />
 		<key id="KEY_FAVORITES" mapto="favor" flags="b" />
 		<key id="KEY_FAVORITES" mapto="favor_long" flags="l" />
+		<key id="KEY_HOMEPAGE" mapto="homepage" flags="b" />
+		<key id="KEY_HOMEPAGE" mapto="homepage_long" flags="l" />
+		<key id="KEY_SAT" mapto="sat" flags="b" />
+		<key id="KEY_SAT" mapto="sat_long" flags="l" />		
 	</map>
 </keymap>
