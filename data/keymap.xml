@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Keymap 06.11.2014" -->
+	<!-- "HDF Keymap 07.11.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -586,8 +586,8 @@
 		<key id="KEY_CHANNELDOWN" mapto="screenMode" flags="m" />
 		<!--key id="KEY_HELP" mapto="hint" flags="m" /-->
 		<key id="KEY_MENU" mapto="menu" flags="m" />
-		<!--key id="KEY_TEXT" mapto="exit" flags="m" /-->
 		<key id="KEY_EXIT" mapto="exit" flags="m" />
+		<key id="KEY_TEXT" mapto="exit" flags="m" />
 		<key id="KEY_POWER" mapto="exit" flags="m" />
 	</map>
 
