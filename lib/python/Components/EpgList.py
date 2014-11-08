@@ -330,6 +330,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		return self.instance.getCurrentIndex()
 
 	def moveToService(self, serviceref):
+		if not serviceref:
+			return
 		newIdx = self.getIndexFromService(serviceref)
 		if newIdx is None:
 			newIdx = 0
@@ -350,13 +352,16 @@ class EPGList(HTMLComponent, GUIComponent):
 			old_service = self.cur_service  #(service, service_name, events, picon)
 			events = self.cur_service[2]
 			refstr = self.cur_service[0]
-			if self.cur_event is None or not events or (self.cur_event and events and self.cur_event > len(events)-1):
+			try:
+				if self.cur_event is None or not events or (self.cur_event and events and self.cur_event > len(events)-1):
+					return None, ServiceReference(refstr)
+				event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
+				eventid = event[0]
+				service = ServiceReference(refstr)
+				event = self.getEventFromId(service, eventid) # get full event info
+				return event, service
+			except:
 				return None, ServiceReference(refstr)
-			event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
-			eventid = event[0]
-			service = ServiceReference(refstr)
-			event = self.getEventFromId(service, eventid) # get full event info
-			return event, service
 		else:
 			idx = 0
 			if self.type == EPG_TYPE_MULTI:
@@ -387,9 +392,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		time_base = self.getTimeBase()
 		last_time = time()
 		if old_service and self.cur_event is not None:
-			events = old_service[2]
-			cur_event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
-			last_time = cur_event[2]
+			try:
+				events = old_service[2]
+				cur_event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
+				last_time = cur_event[2]
+			except:
+				pass
 		if cur_service:
 			self.cur_event = 0
 			events = cur_service[2]
@@ -462,8 +470,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				itemHeight = self.listHeight / config.epgselection.enhanced_itemsperpage.value
 			else:
 				itemHeight = 32
-			if itemHeight < 25:
-				itemHeight = 25
+			if itemHeight < 15:
+				itemHeight = 15
 			self.l.setItemHeight(itemHeight)
 			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
 			self.listHeight = self.instance.size().height()
@@ -880,10 +888,16 @@ class EPGList(HTMLComponent, GUIComponent):
 						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
 				if stime <= now < (stime + duration):
-					foreColor = self.foreColorNow
-					backColor = self.backColorNow
-					foreColorSel = self.foreColorNowSelected
-					backColorSel = self.backColorNowSelected
+					if clock_types is not None and clock_types == 2:
+						foreColor = self.foreColorRecord
+						backColor = self.backColorRecord
+						foreColorSel = self.foreColorRecordSelected
+						backColorSel = self.backColorRecordSelected
+					else:
+						foreColor = self.foreColorNow
+						backColor = self.backColorNow
+						foreColorSel = self.foreColorNowSelected
+						backColorSel = self.backColorNowSelected
 				else:
 					foreColor = self.foreColor
 					backColor = self.backColor
@@ -908,7 +922,9 @@ class EPGList(HTMLComponent, GUIComponent):
 					borderBottomPix = self.borderSelectedBottomPix
 					borderRightPix = self.borderSelectedRightPix
 					infoPix = self.selInfoPix
-					if stime <= now < (stime + duration):
+					if clock_types is not None and clock_types == 2:
+						bgpng = self.recSelEvPix
+					elif stime <= now < (stime + duration):
 						bgpng = self.nowSelEvPix
 					else:
 						bgpng = self.selEvPix
@@ -921,7 +937,10 @@ class EPGList(HTMLComponent, GUIComponent):
 					borderRightPix = self.borderRightPix
 					infoPix = self.InfoPix
 					if stime <= now < (stime + duration):
-						bgpng = self.nowEvPix
+						if clock_types is not None and clock_types == 2:
+							bgpng = self.recEvPix
+						else:
+							bgpng = self.nowEvPix
 					else:
 						bgpng = self.othEvPix
 						if clock_types is not None and clock_types == 2:
