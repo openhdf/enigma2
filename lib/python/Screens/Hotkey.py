@@ -48,7 +48,7 @@ hotkeys = [(_("OK"), "okbutton", "Infobar/toggleShow"),
 	(_("Back long"), "back_long", "Plugins/Extensions/ZapHistoryBrowser/1"),
 	(_("Channel up"), "channelup", "Infobar/zapDown"),
 	(_("Channel down"), "channeldown", "Infobar/zapUp"),
-	(_("End"), "end", ""),
+	(_("End"), "end", "Infobar/historyBack"),
 	(_("End long"), "end_long", ""),
 	(_("Favorites"), "favor", "Infobar/openFavouritesList"),
 	(_("Favorites long"), "favor_long", "Infobar/openSatellites"),
@@ -122,7 +122,7 @@ hotkeys = [(_("OK"), "okbutton", "Infobar/toggleShow"),
 	(_("V-Key long"), "vkey_long", ""),
 	(_("Y-Tube"), "www", ""),
 	(_("Y-Tube long"), "www_long", ""),
-	(_("Zoom"), "ZoomInOut", ""),]
+	(_("Zoom"), "ZoomInOut", "InfobarGenerics/ZoomInOut"),]
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
