@@ -14,7 +14,7 @@ from ServiceReference import ServiceReference
 from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 
-hotkeys = [(_("OK"), "okbutton", "Infobar/toggleShow"),
+hotkeys = [(_("OK"), "okbutton", "Infobar/toggleHotkeyShow"),
 	(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
 	(_("Exit"), "exit", ""),
 	(_("Exit long"), "exit_long", ""),
@@ -161,7 +161,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Show Infobar EPG"), "Infobar/openInfoBarEPG", "EPG"))
 	hotkeyFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
 	hotkeyFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
-	hotkeyFunctions.append((_("Toggle Infobar/SecondInfobar"), "Infobar/toggleShow", "InfoBar"))
+	hotkeyFunctions.append((_("Toggle Infobar/SecondInfobar"), "Infobar/toggleHotkeyShow", "InfoBar"))
 	hotkeyFunctions.append((_("Toggle InfoBar only"), "Infobar/showOnlyFirstInfoBar", "InfoBar"))
 	hotkeyFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Show plugin selection"), "Infobar/showPluginBrowser", "InfoBar"))

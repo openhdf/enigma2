@@ -607,8 +607,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.pvrStateDialog = None
 
 	def OkPressed(self):
-		#self.toggleShow()
-		pass
+		self.toggleShow()
 
 	def SwitchSecondInfoBarScreen(self):
 		if self.lastSecondInfoBar == int(config.usage.show_second_infobar.value):
@@ -763,7 +762,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 #				except:
 #					pass
 
-	def toggleShow(self):
+	def toggleHotkeyShow(self):
 		if not hasattr(self, "LongButtonPressed"):
 			self.LongButtonPressed = False
 		if not self.LongButtonPressed:
@@ -803,6 +802,36 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					except:
 						pass
 					self.EventViewIsShown = False
+
+	def toggleShow(self):
+		if not hasattr(self, "hotkeyGlobal"):
+			if isStandardInfoBar(self):
+				self.showFirstInfoBar()
+			else:
+				self.showSecondInfoBar()
+		else:
+			pass
+
+	def showFirstInfoBar(self):
+		if self.__state == self.STATE_HIDDEN:
+			if not self.secondInfoBarWasShown and not self.EventViewIsShown:
+				self.show()
+			if self.secondInfoBarScreen:
+				self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
+			self.EventViewIsShown = False
+		else:
+			pass
+
+	def showSecondInfoBar(self):
+		if isStandardInfoBar(self):
+			if self.secondInfoBarScreen and not self.secondInfoBarScreen.shown:
+				self.show()
+				self.secondInfoBarScreen.show()
+				self.startHideTimer()
+			else:
+				self.hide()
+				self.hideTimer.stop()
 
 	def toggleShowLong(self):
 		if self.LongButtonPressed:
