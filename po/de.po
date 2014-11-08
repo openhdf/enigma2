@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-10-28 18:31+0100\n"
+"PO-Revision-Date: 2014-11-08 19:40+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -12524,9 +12524,9 @@ msgstr "Mount Übersicht"
 msgid "UserManager"
 msgstr "Benutzerverwaltung"
 
-#
+#, python-format
 msgid "Network Neighbourhood"
-msgstr "Heimnetzgruppe"
+msgstr "Netzwerkumgebung"
 
 #
 msgid "Rescan"
