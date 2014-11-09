@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-11-08 19:40+0100\n"
+"PO-Revision-Date: 2014-11-09 07:59+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2159,6 +2159,9 @@ msgstr "Konfiguriere das Verhalten der Pausentaste bei Standbild."
 msgid "Configure the behavior when movie playback is manually stopped."
 msgstr "Konfiguriere das Verhalten beim Stoppen eines Films."
 
+msgid "Stop service on return to movie list"
+msgstr "Bei Stopp zurück zur Filmliste"
+
 msgid "Configure the behavior when movie playback is started."
 msgstr "Konfiguriere das Verhalten beim Start eines Films."
 
@@ -3878,6 +3881,28 @@ msgstr "Diese Option erlaubt es einzustellen wie ein SD Video angezeigt wird."
 
 msgid "Function of OK button"
 msgstr "Funktion von der OK Taste"
+
+msgid "Allows you to setup the button to do what you choose."
+msgstr "Was soll beim Druck auf dieses Taste ausgelöst werden?"
+
+msgid "Stop previous broadcasted service on return to movielist."
+msgstr "Stoppe vorherige Sendung bei Rückkehr zur Fimliste."
+
+msgid "Allows you to hide the extensions of known file types."
+msgstr "Hiermit werden die Endungen bei bekannten Filetypen ausgeblendet."
+
+msgid ""
+"Configure the number of days after which items are automatically removed "
+"from the trash can."
+msgstr ""
+"Nach wievielen Tagen sollen Dateien im Papierkorb automatisch gelöscht "
+"werden?"
+
+msgid "Clean network trash cans"
+msgstr "Soll auch der Netzwerkpapierkorb aufgeräumt werden?"
+
+msgid "When enabled, network trash cans are probed for cleaning."
+msgstr "Wenn aktiviert wird auch versucht den Netzwerkpapierkorb zu leeren."
 
 msgid "GB"
 msgstr "GB"
