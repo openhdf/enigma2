@@ -803,41 +803,46 @@ class InfoBarShowHide(InfoBarScreenSaver):
 						pass
 					self.EventViewIsShown = False
 
+#	def toggleShow(self):
+#		if not hasattr(self, "hotkeyGlobal"):
+#			if isStandardInfoBar(self):
+#				self.showFirstInfoBar()
+#			else:
+#				self.showSecondInfoBar()
+#		else:
+#			pass
+
 	def toggleShow(self):
-		if not hasattr(self, "hotkeyGlobal"):
-			if isStandardInfoBar(self):
-				self.showFirstInfoBar()
-			else:
-				self.showSecondInfoBar()
-		else:
-			pass
-
-	def showFirstInfoBar(self):
 		if self.__state == self.STATE_HIDDEN:
-			if not self.secondInfoBarWasShown and not self.EventViewIsShown:
-				self.show()
-			if self.secondInfoBarScreen:
-				self.secondInfoBarScreen.hide()
-			self.secondInfoBarWasShown = False
-			self.EventViewIsShown = False
+			self.showFirstInfoBar()
 		else:
-			pass
-
-	def showSecondInfoBar(self):
-		if isStandardInfoBar(self):
-			if self.secondInfoBarScreen and not self.secondInfoBarScreen.shown:
-				self.show()
-				self.secondInfoBarScreen.show()
-				self.startHideTimer()
-			else:
-				self.hide()
-				self.hideTimer.stop()
+			self.showSecondInfoBar()
 
 	def toggleShowLong(self):
 		if self.LongButtonPressed:
 			if isinstance(self, InfoBarEPG):
 				if config.plisettings.InfoBarEpg_mode.value == "1":
 					self.openInfoBarEPG()
+
+	def showSecondInfoBar(self):
+		if isStandardInfoBar(self) and config.usage.show_second_infobar.value == "EPG":
+			if not(hasattr(self, "hotkeyGlobal") and self.hotkeyGlobal("info") != 0):
+				self.showDefaultEPG()
+		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
+			self.show()
+			self.secondInfoBarScreen.show()
+			self.startHideTimer()
+		else:
+			self.hide()
+			self.hideTimer.stop()
+
+	def showFirstInfoBar(self):
+		if self.__state == self.STATE_HIDDEN or self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen and self.secondInfoBarScreen.hide()
+			self.show()
+		else:
+			self.hide()
+			self.hideTimer.stop()
 
 	def showOnlyFirstInfoBar(self):
 		if self.__state == self.STATE_HIDDEN:
