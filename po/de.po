@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-11-10 17:58+0100\n"
+"PO-Revision-Date: 2014-11-10 20:48+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -12910,3 +12910,160 @@ msgstr "Einstellungen"
 #, python-format
 msgid "Deep-Standby"
 msgstr "Ausschalten - Deep Standby"
+
+#, python-format
+msgid "OK long"
+msgstr "OK lang"
+
+msgid "Exit long"
+msgstr "Exit lang"
+
+msgid "Up"
+msgstr "Hoch"
+
+msgid "Down"
+msgstr "Runter"
+
+msgid "Info (EPG) long"
+msgstr "Info (EPG) lang"
+
+msgid "Epg/Guide long"
+msgstr "Epg/Guide lang"
+
+msgid "F1 long"
+msgstr "F1 lang"
+
+msgid "F2 long"
+msgstr "F2 lang"
+
+msgid "F3 long"
+msgstr "F3 lang"
+
+msgid "F4 long"
+msgstr "F4 lang"
+
+msgid "Audio long"
+msgstr "Audio lang"
+
+msgid "Back long"
+msgstr "Back lang"
+
+msgid "Channel up"
+msgstr "Kanal hoch"
+
+msgid "Channel down"
+msgstr "Kanal runter"
+
+msgid "End long"
+msgstr "End lang"
+
+msgid "Favorites"
+msgstr "Favoriten"
+
+msgid "Favorites long"
+msgstr "Favoriten lang"
+
+msgid "Fastforward"
+msgstr "Schneller Vorlauf"
+
+msgid "File long"
+msgstr "File lang"
+
+msgid "Help long"
+msgstr "Help lang"
+
+msgid "HDMI Rx long"
+msgstr "HDMI Rx lang"
+
+msgid "Home long"
+msgstr "Home lang"
+
+msgid "Homepage/Portal long"
+msgstr "Homepage/Portal lang"
+
+msgid "List/Fav/PVR long"
+msgstr "List/Fav/PVR lang"
+
+msgid "Mark/Portal/Playlist long"
+msgstr "Mark/Portal/Playlist lang"
+
+msgid "Media long"
+msgstr "Media lang"
+
+msgid "Menu long"
+msgstr "Menu lang"
+
+msgid "Mute long"
+msgstr "Mute lang"
+
+msgid "Next long"
+msgstr "Next lang"
+
+msgid "Play long"
+msgstr "Play lang"
+
+msgid "Playlist long"
+msgstr "Playlist lang"
+
+msgid "Picture in Picture"
+msgstr "Bild im Bild"
+
+msgid "Picture in Picture long"
+msgstr "Bild im Bild lang"
+
+msgid "Prov/Fav long"
+msgstr "Prov/Fav lang"
+
+msgid "Power long"
+msgstr "Power lang"
+
+msgid "Power down"
+msgstr "Power losgelassen"
+
+msgid "Previous long"
+msgstr "Previous lang"
+
+msgid "Radio long"
+msgstr "Radio lang"
+
+msgid "Record long"
+msgstr "Aufnahme lang"
+
+msgid "Sat long"
+msgstr "Sat lang"
+
+msgid "Search/WEB long"
+msgstr "Search/WEB lang"
+
+msgid "Slow long"
+msgstr "Slow lang"
+
+msgid "Sleep long"
+msgstr "Sleep lang"
+
+msgid "Stop long"
+msgstr "Stop lang"
+
+msgid "Subtitle long"
+msgstr "Subtitle lang"
+
+msgid "Teletext long"
+msgstr "Teletext lang"
+
+msgid "Timer long"
+msgstr "Timer lang"
+
+msgid "Timeshift long"
+msgstr "Timeshift lang"
+
+msgid "TV long"
+msgstr "TV lang"
+
+msgid "UHF/Slow long"
+msgstr "UHF/Slow lang"
+
+msgid "V-Key long"
+msgstr "V-Key lang"
+
+msgid "Y-Tube long"
+msgstr "Y-Tube lang"
