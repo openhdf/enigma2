@@ -47,6 +47,7 @@ hotkeys = [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
 	(_("Back long"), "back_long", "Plugins/Extensions/ZapHistoryBrowser/1"),
 	(_("Channel up"), "channelup", "Infobar/zapDown"),
 	(_("Channel down"), "channeldown", "Infobar/zapUp"),
+	(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
 	(_("End"), "end", "Infobar/historyBack"),
 	(_("End long"), "end_long", ""),
 	(_("Favorites"), "favor", "Infobar/openFavouritesList"),
@@ -239,7 +240,7 @@ class HotkeySetup(Screen):
 		self.list = []
 		self.hotkeyFunctions = getHotkeyFunctions()
 		for x in hotkeys:
-			self.list.append(ChoiceEntryComponent('',((x[0]), x[1])))
+			self.list.append(ChoiceEntryComponent('',(_(x[0]), x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 16], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
