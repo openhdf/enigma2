@@ -86,7 +86,7 @@ hotkeys = [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
 	(_("Prov/Fav long"), "ab_long", ""),
 	(_("Power"), "power", "Module/Screens.Standby/Standby"),
 	(_("Power long"), "power_long", "Module/Screens.Standby/TryQuitMainloop/1"),
-	(_("Power down"), "power_down", ""),
+	#(_("Power down"), "power_down", ""),
 	(_("Previous"), "previous", "Infobar/historyBack"),
 	(_("Previous long"), "previous_long", ""),
 	(_("Radio"), "radio", "Infobar/showRadio"),
@@ -240,7 +240,7 @@ class HotkeySetup(Screen):
 		self.list = []
 		self.hotkeyFunctions = getHotkeyFunctions()
 		for x in hotkeys:
-			self.list.append(ChoiceEntryComponent('',(_(x[0]), x[1])))
+			self.list.append(ChoiceEntryComponent('',((x[0]), x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 16], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
