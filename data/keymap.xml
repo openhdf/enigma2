@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 12.11.2014" -->
+	<!-- "HDF Default Keymap 13.11.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -80,7 +80,7 @@
 	</map>
 
 	<map context="InfobarEPGActions">
-		<key id="KEY_RED" mapto="RedButtonLongPressed" flags="l" />
+		<!--key id="KEY_RED" mapto="RedButtonLongPressed" flags="l" />
 		<key id="KEY_RED" mapto="RedButtonPressed" flags="b" />
 		<key id="KEY_GREEN" mapto="GreenButtonLongPressed" flags="l" />
 		<key id="KEY_GREEN" mapto="GreenButtonPressed" flags="b" />
@@ -102,7 +102,7 @@
 		<key id="KEY_F3" mapto="F3Pressed" flags="b" />
 		<key id="KEY_F4" mapto="F4Pressed" flags="b" />
 		<key id="KEY_EPG" mapto="EPGPressed" flags="b" />
-		<key id="KEY_EPG" mapto="showEventGuidePlugin" flags="l" />
+		<key id="KEY_EPG" mapto="showEventGuidePlugin" flags="l" /-->
 	</map>
 
 	<map context="InfobarInstantRecord">
@@ -914,8 +914,8 @@
 		<key id="KEY_TV" mapto="showTv_long" flags="l" />
 		<key id="KEY_TEXT" mapto="texter" flags="b" />
 		<key id="KEY_TEXT" mapto="texter_long" flags="l" />
-		<key id="KEY_HELP" mapto="displayhelp" flags="b" />
-		<key id="KEY_HELP" mapto="displayhelp_long" flags="l" />
+		<key id="KEY_HELP" mapto="helpshow" flags="b" />
+		<key id="KEY_HELP" mapto="helpshow_long" flags="l" />
 		<key id="KEY_SUBTITLE" mapto="subtitle" flags="b" />
 		<key id="KEY_SUBTITLE" mapto="subtitle_long" flags="l" />
 		<key id="KEY_MENU" mapto="menu" flags="b" />
