@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF XPE Keymap 12.11.2014" -->
+	<!-- "HDF XPE Keymap 13.11.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -896,8 +896,8 @@
 		<key id="KEY_TV" mapto="showTv_long" flags="l" />
 		<key id="KEY_TEXT" mapto="texter" flags="b" />
 		<key id="KEY_TEXT" mapto="texter_long" flags="l" />
-		<key id="KEY_HELP" mapto="displayhelp" flags="b" />
-		<key id="KEY_HELP" mapto="displayhelp_long" flags="l" />
+		<key id="KEY_HELP" mapto="helpshow" flags="b" />
+		<key id="KEY_HELP" mapto="helpshow_long" flags="l" />
 		<key id="KEY_SUBTITLE" mapto="subtitle" flags="b" />
 		<key id="KEY_SUBTITLE" mapto="subtitle_long" flags="l" />
 		<key id="KEY_MENU" mapto="menu" flags="b" />
