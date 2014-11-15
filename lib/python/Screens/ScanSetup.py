@@ -1082,7 +1082,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		return default
 		
 	def compareTerrTransponders(self, tp, compare):
-		frequencyTolerance = 200000 # 0.2  MHz
+		frequencyTolerance = 2000 # 2 MHz
 		return abs(tp[1] - compare[1]) <= frequencyTolerance
 		
 	def getTerrestrialRegionsList(self, index_to_scan = None):

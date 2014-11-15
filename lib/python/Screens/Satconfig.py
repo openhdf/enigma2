@@ -26,7 +26,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 		if mode == "single":
 			list.append(getConfigListEntry(_("Satellite"), nim.diseqcA))
-			list.append(getConfigListEntry(_("Send DiSEqC"), nim.simpleSingleSendDiSEqC))
 		else:
 			list.append(getConfigListEntry(_("Port A"), nim.diseqcA))
 
@@ -76,7 +75,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createConfigMode(self):
 		if self.nim.isCompatible("DVB-S"):
-			choices = {"nothing": _("not configured"),
+			choices = {"nothing": _("Not configured"),
 						"simple": _("Simple"),
 						"advanced": _("Advanced")}
 			if len(nimmanager.canEqualTo(self.slotid)) > 0:
@@ -119,12 +118,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.advancedSelectSatsEntry = None
 
 		if self.nim.isMultiType():
-			try:
-				multiType = self.nimConfig.multiType
-				self.multiType = getConfigListEntry(_("Tuner type"), multiType)
-				self.list.append(self.multiType)
-			except:
-				self.multiType = None
+			multiType = self.nimConfig.multiType
+			self.multiType = getConfigListEntry(_("Tuner type"), multiType)
+			self.list.append(self.multiType)
 
 		if self.nim.isCompatible("DVB-S"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
@@ -307,7 +303,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 
-			if currLnb.lof.value == "unicable" or currLnb.lof.value == "jess":
+			if currLnb.lof.value == "unicable":
 				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration mode"), currLnb.unicable)
 				self.list.append(self.advancedUnicable)
 				if currLnb.unicable.value == "unicable_user":
@@ -698,7 +694,7 @@ class NimSelection(Screen):
 						text = _("Advanced")
 				elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
 					if nimConfig.configMode.value == "nothing":
-						text = _("nothing connected")
+						text = _("Nothing connected")
 					elif nimConfig.configMode.value == "enabled":
 						text = _("Enabled")
 				if x.isMultiType():
