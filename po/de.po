@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-11-10 20:48+0100\n"
+"PO-Revision-Date: 2014-11-17 20:03+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -7878,6 +7878,12 @@ msgstr "Zeige Favoritenlisten-Auswahlmenü"
 
 msgid "Show channel numbers in channel selection"
 msgstr "Zeige Sendernummer in Senderauswahl"
+
+msgid "Hide number markers"
+msgstr "Verberge Zahlen Markierung"
+
+msgid "When enabled, number markers will be hidden."
+msgstr "Wenn aktiviert, werden Markierungen der Nummern nicht angezeigt."
 
 msgid "Show channel number in infobar"
 msgstr "Zeige Sendernummer in Infobar"
