@@ -14,6 +14,8 @@ from ServiceReference import ServiceReference
 from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 
+updateversion = "20.11.2014"
+
 hotkeys = [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
 	(_("Exit "), "exit", ""),
 	(_("Exit long"), "exit_long", ""),
@@ -105,7 +107,7 @@ hotkeys = [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
 	(_("Skip back"), "skip_back", ""),
 	(_("Skip forward"), "skip_forward", ""),
 	(_("Stop "), "stop", "Infobar/startTimeshift"),
-	(_("Stop long"), "stop_long", ""),
+	(_("Stop long"), "stop_long", "Infobar/startTimeshift"),
 	(_("Subtitle"), "subtitle", "Infobar/subtitleSelection"),
 	(_("Subtitle long"), "subtitle_long", "Infobar/subserviceSelection"),
 	(_("Teletext"), "texter", "Infobar/startTeletext"),
@@ -234,7 +236,8 @@ class HotkeySetup(Screen):
 		Screen.__init__(self, session)
 		self['description'] = Label(_('Click on your remote on the button you want to change, then click on OK'))
 		self.session = session
-		self.setTitle(_("Hotkey Setup"))
+		#self.setTitle(_("Hotkey Setup"))
+		self.setTitle(_("Hotkey Setup") + " - Version " + updateversion)
 		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button(_("Toggle Extra Keys"))		
 		self.list = []

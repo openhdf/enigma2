@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Neutrino Keymap 13.11.2014" -->
+	<!-- "HDF Neutrino Keymap 20.11.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -109,7 +109,9 @@
 	</map>
 	
 	<map context="InfobarInstantRecord">
-		<key id="KEY_RECORD" mapto="instantRecord" flags="b" />
+		<!--key id="KEY_RECORD" mapto="instantRecord" flags="b" /-->
+		<!--key id="KEY_RECORD" mapto="ShortRecord" flags="b" /-->
+		<!--key id="KEY_RECORD" mapto="LongRecord" flags="l" /-->
 		<device name="dreambox remote control (native)">
 			<key id="KEY_RED" mapto="instantRecord" flags="b" />
 		</device>
@@ -376,11 +378,11 @@
 			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="b" />
 		</device>
 
-		<key id="KEY_PLAYPAUSE" mapto="timeshiftStart" flags="m" />
-		<key id="KEY_PAUSE" mapto="timeshiftStart" flags="m" />
-		<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
+		<!--key id="KEY_PLAYPAUSE" mapto="timeshiftStart" flags="m" /-->
+		<!--key id="KEY_PAUSE" mapto="timeshiftStart" flags="m" /-->
+		<!--key id="KEY_STOP" mapto="timeshiftStop" flags="m" /-->
 		<key id="KEY_TIME" mapto="timeshiftStart" flags="m" />
-		<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
+		<!--key id="KEY_RECORD" mapto="instantRecord" flags="m" /-->
 		<key id="KEY_PREVIOUS" mapto="jumpPreviousFile" flags="m" />
 		<key id="KEY_NEXT" mapto="jumpNextFile" flags="m" />
 	</map>
