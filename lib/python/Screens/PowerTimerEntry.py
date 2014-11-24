@@ -1,10 +1,11 @@
 from Screens.Screen import Screen
-from Components.config import ConfigSelection, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, ConfigInteger, getConfigListEntry
+from Components.config import ConfigSelection, ConfigSelectionNumber, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, ConfigInteger, getConfigListEntry
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.Button import Button
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
 from PowerTimer import AFTEREVENT, TIMERTYPE
@@ -26,6 +27,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self["canceltext"] = Label(_("Cancel"))
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
+		self["summary_description"] = StaticText("")
 
 		self.createConfig()
 
@@ -37,7 +39,9 @@ class TimerEntry(Screen, ConfigListScreen):
 			"volumeUp": self.incrementStart,
 			"volumeDown": self.decrementStart,
 			"size+": self.incrementEnd,
-			"size-": self.decrementEnd
+			"size-": self.decrementEnd,
+			"up": self.keyUp,
+			"down": self.keyDown
 		}, -2)
 
 		self.list = []
@@ -112,7 +116,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
 
 		self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
-		self.timerrntry_autosleepdelay = ConfigInteger(default=autosleepdelay, limits = (10, 300))
+		self.timerrntry_autosleepdelay = ConfigSelectionNumber(default = autosleepdelay, stepwidth = 15, min = 15, max = 300, wraparound = True)
 		self.timerentry_autosleeprepeat = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = autosleeprepeat)
 		self.timerrntry_autosleepinstandbyonly = ConfigSelection(choices = [("yes",_("Yes")), ("yesNWno",_("Yes, and no network traffic")), ("no", _("No"))],default=autosleepinstandbyonly)
 
@@ -187,6 +191,13 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self[widget].list = self.list
 		self[widget].l.setList(self.list)
+		self.checkSummary()
+
+	def createSummary(self):
+		pass
+
+	def checkSummary(self):
+		self["summary_description"].text = self["config"].getCurrent()[0]
 
 	def newConfig(self):
 		if self["config"].getCurrent() in (self.timerType, self.timerTypeEntry, self.frequencyEntry, self.entryShowEndTime):
@@ -203,6 +214,14 @@ class TimerEntry(Screen, ConfigListScreen):
 	def keySelect(self):
 		cur = self["config"].getCurrent()
 		self.keyGo()
+
+	def keyUp(self):
+		self["config"].moveUp()
+		self.checkSummary()
+
+	def keyDown(self):
+		self["config"].moveDown()
+		self.checkSummary()
 
 	def getTimestamp(self, date, mytime):
 		d = localtime(date)
@@ -327,6 +346,7 @@ class TimerLog(Screen):
 
 		self["loglist"] = MenuList(self.list)
 		self["logentry"] = Label()
+		self["summary_description"] = StaticText("")
 
 		self["key_red"] = Button(_("Delete entry"))
 		self["key_green"] = Button()
@@ -392,5 +412,6 @@ class TimerLog(Screen):
 	def updateText(self):
 		if self.list:
 			self["logentry"].setText(str(self["loglist"].getCurrent()[1][2]))
+			self["summary_description"].setText(str(self["loglist"].getCurrent()[1][2]))
 		else:
 			self["logentry"].setText("")
