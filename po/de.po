@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-11-17 20:03+0100\n"
+"PO-Revision-Date: 2014-11-25 05:36+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3029,6 +3029,9 @@ msgstr ">16:9-Inhalt anzeigen als"
 
 msgid "Display and userinterface"
 msgstr "Anzeige und Benutzeroberfläche"
+
+msgid "Userinterface Settings"
+msgstr "Benutzeroberfläche Einstellungen"
 
 msgid "Display message before playing next movie"
 msgstr "Nachricht vor Wiedergabe des nächsten Films"
