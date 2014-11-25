@@ -14,7 +14,7 @@ from ServiceReference import ServiceReference
 from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 
-updateversion = "20.11.2014"
+updateversion = "25.11.2014"
 
 hotkeys = [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
 	(_("Exit "), "exit", ""),
@@ -498,7 +498,8 @@ class InfoBarHotkey():
 	def __init__(self):
 		self["HotkeyButtonActions"] = helpableHotkeyActionMap(self, "HotkeyActions",
 			dict((x[1],(self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in hotkeys), -10)
-		self.onExecBegin.append(self.clearLongkeyPressed)
+		self.longkeyPressed = False
+		self.onExecEnd.append(self.clearLongkeyPressed)
 
 	def clearLongkeyPressed(self):
 		self.longkeyPressed = False
