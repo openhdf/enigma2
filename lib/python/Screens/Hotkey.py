@@ -13,10 +13,12 @@ from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 from enigma import eServiceReference, eActionMap
 from Components.Label import Label
+import os
 
 updateversion = "25.11.2014"
 
-hotkeys = [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
+def getHotkeys():
+	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
 	(_("Exit "), "exit", ""),
 	(_("Exit long"), "exit_long", ""),
 	(_("Left"), "cross_left", "Infobar/zapUp"),
@@ -128,7 +130,7 @@ hotkeys = [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
-for x in hotkeys:
+for x in getHotkeys():
 	exec "config.misc.hotkey." + x[1] + " = ConfigText(default='" + x[2] + "')"
 
 def getHotkeyFunctions():
@@ -148,7 +150,7 @@ def getHotkeyFunctions():
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
-		if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:	
+		if plugin.name not in twinPlugins and plugin.path:
 			if twinPaths.has_key(plugin.path[24:]):
 				twinPaths[plugin.path[24:]] += 1
 			else:
@@ -229,6 +231,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
 	hotkeyFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
 	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
+	hotkeyFunctions.append((_("Language"), "Module/Screens.LanguageSelection/LanguageSelection", "Setup"))
 	return hotkeyFunctions
 
 class HotkeySetup(Screen):
@@ -236,15 +239,15 @@ class HotkeySetup(Screen):
 		Screen.__init__(self, session)
 		self['description'] = Label(_('Click on your remote on the button you want to change, then click on OK'))
 		self.session = session
-		#self.setTitle(_("Hotkey Setup"))
 		self.setTitle(_("Hotkey Setup") + " - Version " + updateversion)
 		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button(_("Toggle Extra Keys"))		
 		self.list = []
+		self.hotkeys = getHotkeys()
 		self.hotkeyFunctions = getHotkeyFunctions()
-		for x in hotkeys:
-			self.list.append(ChoiceEntryComponent('',((x[0]), x[1])))
-		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 16], selection = 0)
+		for x in self.hotkeys:
+			self.list.append(ChoiceEntryComponent('',(x[0], x[1])))
+		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(self.hotkeys) or 16], selection = 0)
 		self["choosen"] = ChoiceList(list=[])
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
 		{
@@ -257,7 +260,7 @@ class HotkeySetup(Screen):
 			"left": self.keyLeft,
 			"right": self.keyRight,
 		}, -1)
-		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in hotkeys))
+		self["HotkeyButtonActions"] = hotkeyActionMap(["HotkeyActions"], dict((x[1], self.hotkeyGlobal) for x in self.hotkeys))
 		self.longkeyPressed = False
 		self.onLayoutFinish.append(self.__layoutFinished)
 		self.onExecBegin.append(self.getFunctions)
@@ -270,7 +273,7 @@ class HotkeySetup(Screen):
 			self.longkeyPressed = False
 		else:
 			index = 0
-			for x in self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 16]:
+			for x in self.list[:config.misc.hotkey.additional_keys.value and len(self.hotkeys) or 16]:
 				if key == x[0][1]:
 					self["list"].moveToIndex(index)
 					if key.endswith("_long"):
@@ -301,7 +304,7 @@ class HotkeySetup(Screen):
 	def toggleAdditionalKeys(self):
 		config.misc.hotkey.additional_keys.value = not config.misc.hotkey.additional_keys.value
 		config.misc.hotkey.additional_keys.save()
-		self["list"].setList(self.list[:config.misc.hotkey.additional_keys.value and len(hotkeys) or 16])
+		self["list"].setList(self.list[:config.misc.hotkey.additional_keys.value and len(self.hotkeys) or 16])
 
 	def getFunctions(self):
 		key = self["list"].l.getCurrentSelection()[0][1]
@@ -476,7 +479,7 @@ class HotkeySetupSelect(Screen):
 
 class hotkeyActionMap(ActionMap):
 	def action(self, contexts, action):
-		if (action in tuple(x[1] for x in hotkeys) and self.actions.has_key(action)):
+		if (action in tuple(x[1] for x in getHotkeys()) and self.actions.has_key(action)):
 			res = self.actions[action](action)
 			if res is not None:
 				return res
@@ -486,7 +489,7 @@ class hotkeyActionMap(ActionMap):
 
 class helpableHotkeyActionMap(HelpableActionMap):
 	def action(self, contexts, action):
-		if (action in tuple(x[1] for x in hotkeys) and self.actions.has_key(action)):
+		if (action in tuple(x[1] for x in getHotkeys()) and self.actions.has_key(action)):
 			res = self.actions[action](action)
 			if res is not None:
 				return res
@@ -496,16 +499,16 @@ class helpableHotkeyActionMap(HelpableActionMap):
 
 class InfoBarHotkey():
 	def __init__(self):
+		self.hotkeys = getHotkeys()
 		self["HotkeyButtonActions"] = helpableHotkeyActionMap(self, "HotkeyActions",
-			dict((x[1],(self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in hotkeys), -10)
-		self.longkeyPressed = False
-		self.onExecEnd.append(self.clearLongkeyPressed)
+			dict((x[1],(self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in self.hotkeys), -10)
+		self.onExecBegin.append(self.clearLongkeyPressed)
 
 	def clearLongkeyPressed(self):
 		self.longkeyPressed = False
 
 	def getKeyFunctions(self, key):
-		if key in ("play", "playpause", "Stop", "stop", "pause", "rewind", "fastforward", "skip_back", "skip_forward") and (self.__class__.__name__ == "MoviePlayer" or hasattr(self, "timeshiftActivated") and self.timeshiftActivated()):
+		if key in ("play", "playpause", "Stop", "stop", "pause", "rewind", "next", "previous", "fastforward", "skip_back", "skip_forward") and (self.__class__.__name__ == "MoviePlayer" or hasattr(self, "timeshiftActivated") and self.timeshiftActivated()):
 			return False
 		selection = eval("config.misc.hotkey." + key + ".value.split(',')")
 		selected = []
@@ -527,7 +530,7 @@ class InfoBarHotkey():
 		if len(selected) == 1:
 			return selected[0][0]
 		else:
-			return _("Hotkey") + " " + tuple(x[0] for x in hotkeys if x[1] == key)[0]
+			return _("Hotkey") + " " + tuple(x[0] for x in self.hotkeys if x[1] == key)[0]
 
 	def hotkeyGlobal(self, key):
 		if self.longkeyPressed:
@@ -540,7 +543,7 @@ class InfoBarHotkey():
 				self.longkeyPressed = key.endswith("_long") and (selected[0][1].startswith("Infobar") or selected[0][1].startswith("Zap"))
 				return self.execHotkey(selected[0])
 			else:
-				key = tuple(x[0] for x in hotkeys if x[1] == key)[0]
+				key = tuple(x[0] for x in self.hotkeys if x[1] == key)[0]
 				self.session.openWithCallback(self.execHotkey, ChoiceBox, _("Hotkey") + " " + key, selected)
 
 	def execHotkey(self, selected):
@@ -552,7 +555,7 @@ class InfoBarHotkey():
 				pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO)
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
-					if plugin.name not in twinPlugins and plugin.path:
+					if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:
 						if twinPaths.has_key(plugin.path[24:]):
 							twinPaths[plugin.path[24:]] += 1
 						else:
