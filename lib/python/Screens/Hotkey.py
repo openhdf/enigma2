@@ -148,7 +148,7 @@ def getHotkeyFunctions():
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
-		if plugin.name not in twinPlugins and plugin.path:
+		if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:	
 			if twinPaths.has_key(plugin.path[24:]):
 				twinPaths[plugin.path[24:]] += 1
 			else:
@@ -549,7 +549,7 @@ class InfoBarHotkey():
 			if selected[0] == "Plugins":
 				twinPlugins = []
 				twinPaths = {}
-				pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
+				pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO)
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
 					if plugin.name not in twinPlugins and plugin.path:
@@ -559,16 +559,28 @@ class InfoBarHotkey():
 							twinPaths[plugin.path[24:]] = 1
 						if plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]])== "/".join(selected):
 							self.runPlugin(plugin)
-							break
+							return
+						twinPlugins.append(plugin.name)
+				pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU])
+				pluginlist.sort(key=lambda p: p.name)
+				for plugin in pluginlist:
+					if plugin.name not in twinPlugins and plugin.path:
+						if twinPaths.has_key(plugin.path[24:]):
+							twinPaths[plugin.path[24:]] += 1
+						else:
+							twinPaths[plugin.path[24:]] = 1
+						if plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]])== "/".join(selected):
+							self.runPlugin(plugin)
+							return
 						twinPlugins.append(plugin.name)
 			elif selected[0] == "MenuPlugin":
 				for plugin in plugins.getPluginsForMenu(selected[1]):
 					if plugin[2] == selected[2]:
 						self.runPlugin(plugin[1])
-						break
+						return
 			elif selected[0] == "Infobar":
 				if hasattr(self, selected[1]):
-					exec "self." + selected[1] + "()"
+					exec "self." + ".".join(selected[1:]) + "()"
 				else:
 					return 0
 			elif selected[0] == "Module":
@@ -590,3 +602,13 @@ class InfoBarHotkey():
 					self.close()
 				else:
 					self.show()
+			elif selected[0] == "PPanel":
+				ppanelFileName = '/etc/ppanels/' + selected[1] + ".xml"
+				if os.path.isfile(ppanelFileName) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
+					from Plugins.Extensions.PPanel.ppanel import PPanel
+					self.session.open(PPanel, name=selected[1] + ' PPanel', node=None, filename=ppanelFileName, deletenode=None)
+			elif selected[0] == "Shellscript":
+				command = '/usr/script/' + selected[1] + ".sh"
+				if os.path.isfile(command) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
+					from Plugins.Extensions.PPanel.ppanel import Execute
+					self.session.open(Execute, selected[1] + " shellscript", None, command)
