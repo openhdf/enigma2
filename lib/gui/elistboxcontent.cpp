@@ -2,6 +2,9 @@
 #include <lib/gui/elistboxcontent.h>
 #include <lib/gdi/font.h>
 #include <lib/python/python.h>
+#include <sstream>
+
+using namespace std;
 
 /*
     The basic idea is to have an interface which gives all relevant list
@@ -191,7 +194,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	{
 		if (local_style->m_background && cursorValid)
 		{
-			if (validitem) painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHABLEND);
+			if (validitem) painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
 		}
 		else if (selected && !local_style->m_selection)
 			painter.clear();
@@ -212,7 +215,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		}
 
 		if (selected && local_style && local_style->m_selection)
-			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHABLEND);
+			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
 
 		if (item == Py_None)
 		{
@@ -368,7 +371,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	} else
 	{
 		if (local_style->m_background && cursorValid)
-			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHABLEND);
+			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
 		else if (selected && !local_style->m_selection)
 			painter.clear();
 	}
@@ -382,7 +385,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		int valueWidth(0);
 
 		if (selected && local_style && local_style->m_selection)
-			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHABLEND);
+			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
 
 			/* the first tuple element is a string for the left side.
 			   the second one will be called, and the result shall be an tuple.
@@ -458,13 +461,20 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
 
 							/* calc. slider length */
-						valueWidth = (itemsize.width() - m_seperation) * value / size;
+						valueWidth = (itemsize.width() - m_seperation -40) * value / size;
 						int height = itemsize.height();
 
 							/* draw slider */
 						//painter.fill(eRect(offset.x() + m_seperation, offset.y(), width, height));
 						//hack - make it customizable
 						painter.fill(eRect(textoffset.x() + m_seperation, offset.y() + 5, valueWidth, height-10));
+						
+							/* draw text value at the end of the slider*/
+						std::ostringstream sin;
+						sin << value;
+						std::string cvalue = sin.str();
+						painter.setFont(fnt2);
+						painter.renderText(eRect(offset, m_itemsize), cvalue, value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT);
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "mtext"))
@@ -590,7 +600,7 @@ static void clearRegionHelper(gPainter &painter, eListboxStyle *local_style, con
 		if (local_style->m_background && cursorValid)
 		{
 			if (local_style->m_transparent_background)
-				painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHABLEND);
+				painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
 			else
 				painter.blit(local_style->m_background, offset, eRect(), 0);
 			return;
@@ -616,7 +626,7 @@ static void clearRegionSelectedHelper(gPainter &painter, eListboxStyle *local_st
 		if (local_style->m_background && cursorValid)
 		{
 			if (local_style->m_transparent_background)
-				painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHABLEND);
+				painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
 			else
 				painter.blit(local_style->m_background, offset, eRect(), 0);
 			return;
@@ -654,7 +664,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 		style.setStyle(painter, eWindowStyle::styleListboxSelected);
 		clearRegionSelectedHelper(painter, local_style, offset, pbackColorSelected, cursorValid, clear);
 		if (local_style && local_style->m_selection)
-			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHABLEND);
+			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
 	}
 	else
 	{
@@ -1112,7 +1122,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
 					clearRegion(painter, style, local_style, ePyObject(), ePyObject(), pbackColor, pbackColorSelected, selected, rc, sel_clip, offset, cursorValid, mustClear);
 				}
-				flags |= (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND : (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND : 0;
+				flags |= (type == TYPE_PIXMAP_ALPHATEST) ? gPainter::BT_ALPHATEST : (type == TYPE_PIXMAP_ALPHABLEND) ? gPainter::BT_ALPHABLEND : 0;
 				if (flags & gPainter::BT_SCALE)
 					painter.blitScale(pixmap, rect, rect, flags);
 				else
