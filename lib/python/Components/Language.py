@@ -65,8 +65,6 @@ class Language:
 		self.addLanguage("Türkçe", "tr", "TR", "ISO-8859-15")
 		self.addLanguage("Ukrainian", "uk", "UA", "ISO-8859-15")
 
-		self.callbacks = []
-
 	def addLanguage(self, name, lang, country, encoding):
 		try:
 			if lang in self.ll:
@@ -86,7 +84,7 @@ class Language:
 		try:
 			lang = self.lang[index]
 			print "Activating language " + lang[0]
-			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[index])
+			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[index], fallback=True)
 			self.catalog.install(names=("ngettext", "pgettext"))
 			self.activeLanguage = index
 			for x in self.callbacks:
@@ -103,6 +101,7 @@ class Language:
 				pass
 		# HACK: sometimes python 2.7 reverts to the LC_TIME environment value, so make sure it has the correct value
 		os.environ["LC_TIME"] = self.getLanguage() + '.UTF-8'
+		os.environ["LANGUAGE"] = self.getLanguage() + '.UTF-8'
 		os.environ["GST_SUBTITLE_ENCODING"] = self.getGStreamerSubtitleEncoding()
 
 	def activateLanguageIndex(self, index):
