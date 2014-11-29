@@ -54,11 +54,15 @@ typedef enum
 // eServiceFactoryMP3
 
 /*
- * gstreamer suffers from a bug causing sparse streams to loose sync, after pause/resume / skip
- * see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
- * As a workaround, we run the subsink in sync=false mode
- */
+* gstreamer suffers from a bug causing sparse streams to loose sync, after pause/resume / skip
+* see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
+* As a workaround, we run the subsink in sync=false mode
+*/
+#if GST_VERSION_MAJOR >= 1
+#undef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
+#else
 #define GSTREAMER_SUBTITLE_SYNC_MODE_BUG
+#endif
 /**/
 
 eServiceFactoryMP3::eServiceFactoryMP3()
