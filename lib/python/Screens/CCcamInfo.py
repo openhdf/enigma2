@@ -3,8 +3,6 @@
 from base64 import encodestring
 from os import listdir, remove, rename, system, path
 
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
-
 from enigma import eListboxPythonMultiContent, eTimer, gFont, loadPNG, RT_HALIGN_RIGHT, getDesktop
 
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -255,27 +253,35 @@ def CCcamListEntry(name, idx):
 		idx = "menu"
 	elif idx == 15:
 		idx = "info"
-	png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
-	if fileExists(png):
-		if screenwidth and screenwidth == 1920:
+	if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % str(idx))):
+		png = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % str(idx))
+	else:
+		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
+	if screenwidth and screenwidth == 1920:
+		if fileExists(png):
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(53, 38), png=loadPNG(png)))
-			res.append(MultiContentEntryText(pos=(85, 7), size=(900, 35), font=1, text=name))
-		else:
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
-			res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))			
+		res.append(MultiContentEntryText(pos=(85, 7), size=(900, 35), font=1, text=name))
+	else:
+		if fileExists(png):
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
+		res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))			
 	return res
 
 def CCcamServerListEntry(name, color):
 	screenwidth = getDesktop(0).size().width()
 	res = [name]
-	png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
-	if fileExists(png):
-		if screenwidth and screenwidth == 1920:
+	if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" %  color)):
+		png = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" %  color)
+	else:
+		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
+	if screenwidth and screenwidth == 1920:
+		if fileExists(png):
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(10, 5), size=(53, 38), png=loadPNG(png)))
-			res.append(MultiContentEntryText(pos=(85, 7), size=(900, 35), font=1, text=name))
-		else:
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
-			res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))
+		res.append(MultiContentEntryText(pos=(85, 7), size=(900, 35), font=1, text=name))
+	else:
+		if fileExists(png):
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 0), size=(35, 25), png=loadPNG(png)))
+		res.append(MultiContentEntryText(pos=(40, 3), size=(500, 25), font=0, text=name))
 	return res
 
 def CCcamShareListEntry(hostname, type, caid, system, uphops, maxdown):
@@ -335,7 +341,7 @@ def CCcamConfigListEntry(file):
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(5, 5), size=(35, 35), png=png))
 		res.append(MultiContentEntryText(pos=(85, 5), size=(800, 35), font=1, text=name))
 	else:
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(2, 2), size=(25, 25), png=png))
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(2, 2), size=(25, 25), png=png))
 		res.append(MultiContentEntryText(pos=(35, 2), size=(550, 25), font=0, text=name))
 
 	return res
@@ -352,7 +358,7 @@ def CCcamMenuConfigListEntry(name, blacklisted):
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(5, 5), size=(35, 35), png=png))
 		res.append(MultiContentEntryText(pos=(85, 5), size=(800, 35), font=1, text=name))
 	else:
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(2, 2), size=(25, 25), png=png))
+		res.append(MultiContentEntryPixmapAlphaBlend(pos=(2, 2), size=(25, 25), png=png))
 		res.append(MultiContentEntryText(pos=(35, 2), size=(550, 25), font=0, text=name))
 
 	return res
@@ -1713,4 +1719,3 @@ class CCcamInfoMenuConfig(Screen):
 		if callback:
 			config.cccaminfo.blacklist.value = ("%s/CCcamInfo.blacklisted"%callback).replace("//", "/")
 			config.cccaminfo.blacklist.save()
-
