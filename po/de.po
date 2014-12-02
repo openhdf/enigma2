@@ -12740,7 +12740,7 @@ msgstr "Geringe Framerate reduziert die CPU Belastung"
 
 # python\Screens\LanguageSelection.py
 msgid "Do you want to delete all other languages?"
-msgstr "Alle Sprachen löschen?"
+msgstr "Alle anderen Sprachen löschen?"
 
 msgid " Except %s"
 msgstr " %s bleibt installiert."
