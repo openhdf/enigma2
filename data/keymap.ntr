@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Neutrino Keymap 20.11.2014" -->
+	<!-- "HDF Neutrino Keymap 03.12.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -444,7 +444,8 @@
 		<key id="KEY_UP" mapto="up" flags="m" />
 		<key id="KEY_DOWN" mapto="down" flags="m" />
 		<key id="KEY_VIDEO" mapto="movieList" flags="m" />
-		        <key id="KEY_FILE" mapto="movieList" flags="b" />
+		<key id="KEY_FILE" mapto="movieList" flags="b" />
+		<key id="KEY_MEDIA" mapto="movieList" flags="m" />
 	</map>
 
 	<map context="MoviePlayerActions">
