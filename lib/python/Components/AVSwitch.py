@@ -258,10 +258,11 @@ class AVSwitch:
 			wss = "auto(4:3_off)"
 		else:
 			wss = "auto"
-		print "[VideoMode] setting wss: %s" % wss
-		f = open("/proc/stb/denc/0/wss", "w")
-		f.write(wss)
-		f.close()
+		if os.path.exists("/proc/stb/denc/0/wss"):
+			print "[VideoMode] setting wss: %s" % wss
+			f = open("/proc/stb/denc/0/wss", "w")
+			f.write(wss)
+			f.close()
 
 	def setPolicy43(self, cfgelement):
 		print "[VideoMode] setting policy: %s" % cfgelement.value
@@ -308,6 +309,9 @@ class AVSwitch:
 		aspect = self.getOutputAspect()
 		fb_size = getDesktop(0).size()
 		return aspect[0] * fb_size.height(), aspect[1] * fb_size.width()
+
+	def setAspectRatio(self, value):
+		pass
 
 	def getAspectRatioSetting(self):
 		valstr = config.av.aspectratio.value
@@ -389,27 +393,27 @@ def InitAVSwitch():
 	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "letterbox")
 	policy_choices = {
 	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
-	"panscan": _("Pillarbox"),
+	"pillarbox": _("Pillarbox"),
 	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-	"letterbox": _("Pan&scan"),
+	"panscan": _("Pan&scan"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-	# "nonlinear": _("Nonlinear"),
+	#"nonlinear": _("Nonlinear"),
 	# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-	"bestfit": _("Just scale")}
+	"scale": _("Just scale")}
 	if os.path.exists("/proc/stb/video/policy_choices"):
 		f = open("/proc/stb/video/policy_choices")
 		if "auto" in f.readline():
 			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 			policy_choices.update({"auto": _("Auto")})
 		f.close()
-	config.av.policy_43 = ConfigSelection(choices=policy_choices, default = "panscan")
+	config.av.policy_43 = ConfigSelection(choices=policy_choices, default = "pillarbox")
 	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default = True)
 	config.av.generalAC3delay = ConfigSelectionNumber(-1000, 1000, 5, default = 0)
 	config.av.generalPCMdelay = ConfigSelectionNumber(-1000, 1000, 5, default = 0)
 	config.av.vcrswitch = ConfigEnableDisable(default = False)
 
-	config.av.aspect.setValue('16:9')
+	#config.av.aspect.setValue('16:9')
 	config.av.aspect.addNotifier(iAVSwitch.setAspect)
 	config.av.wss.addNotifier(iAVSwitch.setWss)
 	config.av.policy_43.addNotifier(iAVSwitch.setPolicy43)
@@ -419,7 +423,12 @@ def InitAVSwitch():
 		if config.av.videoport and config.av.videoport.value in ("YPbPr", "Scart-YPbPr") or getMachineBuild() == 'inihdx':
 			iAVSwitch.setColorFormat(3)
 		else:
-			map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
+			if getBoxType() == 'et6x00':
+				map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}	
+			elif getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus' or getBoxType().startswith('et'):
+				map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
+			else:
+				map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 			iAVSwitch.setColorFormat(map[configElement.value])
 	config.av.colorformat.addNotifier(setColorFormat)
 
