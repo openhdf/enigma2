@@ -210,6 +210,7 @@ class ChannelContextMenu(Screen):
 				append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0)
 				append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level = 0)
 
+
 		if inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
 				if not csel.movemode:
