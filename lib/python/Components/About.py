@@ -1,4 +1,4 @@
-from boxbranding import getImageVersion
+from boxbranding import getBoxType, getImageVersion
 from sys import modules
 import socket, fcntl, struct
 
@@ -7,7 +7,11 @@ def getVersionString():
 
 def getEnigmaVersionString():
 	return getImageVersion()
-	
+
+def getGStreamerVersionString():
+	import enigma
+	return enigma.getGStreamerVersionString()
+
 def getKernelVersionString():
 	try:
 		f = open("/proc/version","r")
@@ -27,16 +31,20 @@ def getModelString():
 		return "unknown"		
 
 def getChipSetString():
-	try:
-		f = open('/proc/stb/info/chipset', 'r')
-		chipset = f.read()
-		f.close()
-		return str(chipset.lower().replace('\n','').replace('bcm','').replace('brcm',''))
-	except IOError:
-		return "unavailable"
+	if getBoxType() == "dm7080":
+		return "7435"
+	else:
+		try:
+			f = open('/proc/stb/info/chipset', 'r')
+			chipset = f.read()
+			f.close()
+			return str(chipset.lower().replace('\n','').replace('bcm','').replace('brcm','').replace('sti',''))
+		except IOError:
+			return "unavailable"
 
 def getCPUString():
 	try:
+		system="unknown"
 		file = open('/proc/cpuinfo', 'r')
 		lines = file.readlines()
 		for x in lines:

@@ -37,12 +37,11 @@ class About(Screen):
 			})
 
 	def populate(self):
-		self["lab1"] = StaticText(_("OpenHDF"))
-		self["lab2"] = StaticText(_("By HDF Image Team"))
-		self["lab3"] = StaticText(_("Support at") + " www.HDFreaks.cc")
+		self["lab1"] = StaticText(_("openHDF by HDF Image Team"))
+		self["lab2"] = StaticText(_("Support at") + " www.HDFreaks.cc")
 		model = None
 		AboutText = ""
-		self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
+		self["lab2"] = StaticText(_("Support @") + " www.hdfreaks.cc")
 		AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 
 		if path.exists('/proc/stb/info/chipset'):
@@ -79,7 +78,9 @@ class About(Screen):
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
 
-		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
+		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
+		
+		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
@@ -99,7 +100,17 @@ class About(Screen):
 			f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
+			AboutText += _("System Temp:\t%s") % tempinfo.replace('\n', '') + mark + "C\n"
+	
+		tempinfo = ""
+		if path.exists('/proc/stb/fp/temp_sensor_avs'):
+			f = open('/proc/stb/fp/temp_sensor_avs', 'r')
+			tempinfo = f.read()
+			f.close()
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
+			mark = str('\xc2\xb0')
+			AboutText += _("Processor Temp:\t%s") % tempinfo.replace('\n', '') + mark + "C\n"
+		AboutLcdText = AboutText.replace('\t', ' ')
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
@@ -528,7 +539,7 @@ class AboutSummary(Screen):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C"
+			AboutText += _("Temperature: %s") % tempinfo.replace('\n', '') + mark + "C"
 
 		self["AboutText"] = StaticText(AboutText)
 
