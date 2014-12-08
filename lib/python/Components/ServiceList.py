@@ -373,7 +373,6 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 0, 0))
 			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace), self.ItemHeight))
 		self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
-		self.l.setHideNumberMarker(config.usage.hide_number_markers.value)
 		self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 		if "perc" in config.usage.show_event_progress_in_servicelist.value:
