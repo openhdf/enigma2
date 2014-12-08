@@ -19,9 +19,9 @@ int fileExist(const char* filename){
 	struct stat buffer;
 	int exist = stat(filename,&buffer);
 	if(exist == 0)
-	    return 1;
+		return 1;
 	else // -1
-	    return 0;
+		return 0;
 }
 
 void noRTC()
@@ -37,7 +37,6 @@ void noRTC()
 			strncpy(mybox, buf, 20);
 			fclose(fb);
 			strtok(mybox, "\n");
-			eDebug("[eDVBLocalTimerHandler] Boxtype = [%s]", mybox);
 		}
 	}
 }
@@ -107,7 +106,7 @@ time_t getRTC()
 	return rtc_time != prev_time ? rtc_time : 0;
 }
 
-time_t parseDVBtime(__u8 t1, __u8 t2, __u8 t3, __u8 t4, __u8 t5, __u16 *hash)
+time_t parseDVBtime(uint8_t t1, uint8_t t2, uint8_t t3, uint8_t t4, uint8_t t5, uint16_t *hash)
 {
 	tm t;
 	t.tm_sec=fromBCD(t5);
@@ -149,7 +148,7 @@ void TDT::ready(int error)
 	eDVBLocalTimeHandler::getInstance()->updateTime(error, chan, ++update_count);
 }
 
-int TDT::createTable(unsigned int nr, const __u8 *data, unsigned int max)
+int TDT::createTable(unsigned int nr, const uint8_t *data, unsigned int max)
 {
 	if ( data && (data[0] == 0x70 || data[0] == 0x73 ))
 	{
@@ -214,7 +213,7 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 			if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
 				m_time_ready = false; //sorry no RTC
 			else
-			    m_time_ready = true;
+				m_time_ready = true;
 			/*emit*/ m_timeUpdated();
 		}
 	}
@@ -280,7 +279,7 @@ void eDVBLocalTimeHandler::setUseDVBTime(bool b)
 				eDebug("[eDVBLocalTimeHandler] invalid system time, refuse to disable transponder time sync");
 				return;
 			}
-		}	
+		}
 		if (m_use_dvb_time) {
 			eDebug("[eDVBLocalTimeHandler] disable sync local time with transponder time!");
 			std::map<iDVBChannel*, channel_data>::iterator it =

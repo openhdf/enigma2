@@ -104,10 +104,18 @@ class ServiceList(HTMLComponent, GUIComponent):
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarColorSelected, parseColor(value))
 				elif attrib == "colorEventProgressbarBorder":
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColor, parseColor(value))
-				elif attrib == "colorServiceRecorded":
-					self.l.setColor(eListboxServiceContent.serviceRecorded, parseColor(value))
 				elif attrib == "colorEventProgressbarBorderSelected":
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
+				elif attrib == "colorServiceRecorded":
+					self.l.setColor(eListboxServiceContent.serviceRecorded, parseColor(value))
+				elif attrib == "colorFallbackItem":
+					self.l.setColor(eListboxServiceContent.serviceItemFallback, parseColor(value))
+				elif attrib == "colorServiceSelectedFallback":
+					self.l.setColor(eListboxServiceContent.serviceSelectedFallback, parseColor(value))
+				elif attrib == "colorServiceDescriptionFallback":
+					self.l.setColor(eListboxServiceContent.eventForegroundFallback, parseColor(value))
+				elif attrib == "colorServiceDescriptionSelectedFallback":
+					self.l.setColor(eListboxServiceContent.eventForegroundSelectedFallback, parseColor(value))
 				elif attrib == "picServiceEventProgressbar":
 					pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, value))
 					if pic:
@@ -161,7 +169,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 			if self.serviceList:
 				revert_mode = config.servicelist.lastmode.value
 				revert_root = self.getRoot()
-				self.serviceList.setTvMode()
+				self.serviceList.setModeTv()
 				revert_tv_root = self.getRoot()
 				bouquets = self.serviceList.getBouquetList()
 				for bouquet in bouquets:
@@ -170,7 +178,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 						config.servicelist.lastmode.save()
 						self.serviceList.saveChannel(ref)
 						return True
-				self.serviceList.enterUserbouquet(revert_tv_root)	
+				self.serviceList.enterUserbouquet(revert_tv_root)
 				self.serviceList.setModeRadio()
 				revert_radio_root = self.getRoot()
 				bouquets = self.serviceList.getBouquetList()
@@ -180,7 +188,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 						config.servicelist.lastmode.save()
 						self.serviceList.saveChannel(ref)
 						return True
-				self.serviceList.enterUserbouquet(revert_radio_root)		
+				self.serviceList.enterUserbouquet(revert_radio_root)
 				print "[servicelist] service not found in any userbouquets"
 				if revert_mode == "tv":
 					self.serviceList.setModeTv()
@@ -280,10 +288,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		return dest
 
 	def setPlayableIgnoreService(self, ref):
-		try:
-			self.l.setIgnoreService(ref)
-		except:
-			pass
+		self.l.setIgnoreService(ref)
 
 	def setRoot(self, root, justSet=False):
 		self.root = root
@@ -297,7 +302,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.l.setRoot(self.root, False)
 		self.l.sort()
 		self.instance.moveSelectionTo(index)
-	
+
 	def removeCurrent(self):
 		self.l.removeCurrent()
 
@@ -368,11 +373,11 @@ class ServiceList(HTMLComponent, GUIComponent):
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 0, 0))
 			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace), self.ItemHeight))
 		self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
+		self.l.setHideNumberMarker(config.usage.hide_number_markers.value)
 		self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
 		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 		if "perc" in config.usage.show_event_progress_in_servicelist.value:
 			self.l.setElementFont(self.l.celServiceEventProgressbar, self.ServiceInfoFont)
-		self.l.setHideNumberMarker(config.usage.hide_number_markers.value)
 		self.l.setServiceTypeIconMode(int(config.usage.servicetype_icon_mode.value))
 		self.l.setCryptoIconMode(int(config.usage.crypto_icon_mode.value))
 		self.l.setRecordIndicatorMode(int(config.usage.record_indicator_mode.value))
