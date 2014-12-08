@@ -473,8 +473,10 @@ int eListboxServiceContent::currentCursorSelectable()
 	if (cursorValid())
 	{
 		/* don't allow markers to be selected, unless we're in edit mode (because we want to provide some method to the user to remove a marker) */
-		if (m_cursor->flags & eServiceReference::isMarker && m_marked.empty()) return 0;
-		return 1;
+		if (m_cursor->flags & eServiceReference::isMarker && m_marked.empty())
+			return 0;
+		else
+			return 1;
 	}
 	return 0;
 }
@@ -632,7 +634,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 	} else
 	{
 		if (local_style->m_background)
-			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
+			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHABLEND);
 		else if (selected && !local_style->m_selection)
 			painter.clear();
 	}
@@ -648,14 +650,30 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		bool isRecorded = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref);
 		ePtr<eServiceEvent> evt;
 		bool serviceAvail = true;
+		bool serviceFallback = false;
+		int isplayable_value;
 
-		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid() && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
+		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid())
 		{
-			if (m_color_set[serviceNotAvail])
-				painter.setForegroundColor(m_color[serviceNotAvail]);
+			isplayable_value = service_info->isPlayable(*m_cursor, m_is_playable_ignore);
+
+			if (isplayable_value == 0) // service unavailable
+			{
+				if (m_color_set[serviceNotAvail])
+					painter.setForegroundColor(m_color[serviceNotAvail]);
+				else
+					painter.setForegroundColor(gRGB(0xbbbbbb));
+				serviceAvail = false;
+			}
 			else
-				painter.setForegroundColor(gRGB(0xbbbbbb));
-			serviceAvail = false;
+			{
+				if (isplayable_value == 2) // fallback receiver service
+				{
+					if (m_color_set[serviceItemFallback])
+						painter.setForegroundColor(m_color[serviceItemFallback]);
+					serviceFallback = true;
+				}
+			}
 		}
 		if (m_record_indicator_mode == 3 && isRecorded)
 		{
@@ -666,7 +684,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		}
 
 		if (selected && local_style && local_style->m_selection)
-			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHATEST);
+			painter.blit(local_style->m_selection, offset, eRect(), gPainter::BT_ALPHABLEND);
 
 		int xoffset=0;  // used as offset when painting the folder/marker symbol or the serviceevent progress
 		time_t now = time(0);
@@ -693,6 +711,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					snprintf(buffer, sizeof(buffer), "%d", m_cursor->getChannelNum() );
 					text = buffer;
 					flags|=gPainter::RT_HALIGN_RIGHT;
+					if (isPlayable && serviceFallback && selected && m_color_set[serviceSelectedFallback])
+						painter.setForegroundColor(m_color[serviceSelectedFallback]);
 					break;
 				}
 				case celServiceName:
@@ -707,6 +727,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						if (m_element_position[celServiceNumber].width() && m_element_position[celServiceEventProgressbar].left() == m_element_position[celServiceNumber].width() + 10)
 							area.setLeft(m_element_position[celServiceNumber].width() + 10);
 					}
+					if (isPlayable && serviceFallback && selected && m_color_set[serviceSelectedFallback])
+						painter.setForegroundColor(m_color[serviceSelectedFallback]);
 					break;
 				}
 				case celServiceInfo:
@@ -725,6 +747,12 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								painter.setForegroundColor(m_color[eventForegroundSelected]);
 							else
 								painter.setForegroundColor(gRGB(0xe7b53f));
+
+							if (serviceFallback && !selected && m_color_set[eventForegroundFallback]) // fallback receiver
+								painter.setForegroundColor(m_color[eventForegroundFallback]);
+							else if (serviceFallback && selected && m_color_set[eventForegroundSelectedFallback])
+								painter.setForegroundColor(m_color[eventForegroundSelectedFallback]);
+
 						}
 						break;
 					}
@@ -841,7 +869,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								int correction = (area.height() - pixmap_size.height()) / 2;
 								area.moveBy(offset);
 								painter.clip(area);
-								painter.blit(pixmap, ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
+								painter.blit(pixmap, ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
 								painter.clippop();
 							}
 						}
@@ -870,7 +898,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 									m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
 								}
 								painter.clip(area);
-								painter.blit(m_pixmaps[picCrypto], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
+								painter.blit(m_pixmaps[picCrypto], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
 								painter.clippop();
 							}
 						}
@@ -897,7 +925,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - 8);
 							}
 							painter.clip(area);
-							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHATEST);
+							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
 							painter.clippop();
 						}
 					}
@@ -935,7 +963,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						xoffset = pixmap_size.width() + 8;
 					area.moveBy(offset);
 					painter.clip(area);
-					painter.blit(pixmap, ePoint(area.left(), offset.y() + correction), area, gPainter::BT_ALPHATEST);
+					painter.blit(pixmap, ePoint(area.left(), offset.y() + correction), area, gPainter::BT_ALPHABLEND);
 					painter.clippop();
 				}
 			}
@@ -957,7 +985,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			ePtr<gPixmap> &pixmap = m_pixmaps[picServiceEventProgressbar];
 			if (pixmap) {
 				painter.clip(tmp);
-				painter.blit(pixmap, ePoint(pb_xpos + m_progressbar_border_width, pb_ypos + m_progressbar_border_width), tmp, gPainter::BT_ALPHATEST);
+				painter.blit(pixmap, ePoint(pb_xpos + m_progressbar_border_width, pb_ypos + m_progressbar_border_width), tmp, gPainter::BT_ALPHABLEND);
 				painter.clippop();
 			}
 			else {

@@ -82,7 +82,6 @@ public:
 
 	int getItemHeight() { return m_itemheight; }
 	void setItemHeight(int height);
-	void setHideNumberMarker(bool doHide) { m_hide_number_marker = doHide; }
 	void setServiceTypeIconMode(int mode) { m_servicetype_icon_mode = mode; }
 	void setCryptoIconMode(int mode) { m_crypto_icon_mode = mode; }
 	void setRecordIndicatorMode(int mode) { m_record_indicator_mode = mode; }
@@ -102,6 +101,10 @@ public:
 		eventForegroundSelected,
 		eventborderForeground,
 		eventborderForegroundSelected,
+		eventForegroundFallback,
+		eventForegroundSelectedFallback,
+		serviceItemFallback,
+		serviceSelectedFallback,
 		serviceEventProgressbarColor,
 		serviceEventProgressbarColorSelected,
 		serviceEventProgressbarBorderColor,

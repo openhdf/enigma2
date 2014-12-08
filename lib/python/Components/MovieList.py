@@ -138,6 +138,7 @@ class MovieList(GUIComponent):
 	SORT_RECORDED_REVERSE = 5
 	SORT_ALPHANUMERIC_FLAT = 6
 	SORT_ALPHANUMERIC_FLAT_REVERSE = 7
+	SORT_GROUPWISE = 8
 
 	HIDE_DESCRIPTION = 1
 	SHOW_DESCRIPTION = 2
@@ -146,7 +147,7 @@ class MovieList(GUIComponent):
 		GUIComponent.__init__(self)
 		self.list = []
 		self.descr_state = descr_state or self.HIDE_DESCRIPTION
-		self.sort_type = sort_type or self.SORT_RECORDED
+		self.sort_type = sort_type or self.SORT_GROUPWISE
 		self.firstFileEntry = 0
 		self.parentDirectory = 0
 		self.fontName = "Regular"
@@ -181,7 +182,7 @@ class MovieList(GUIComponent):
 		self.updateRecordings()
 		self.updatePlayPosCache()
 
-	def applySkin(self, desktop, screen):
+	def applySkin(self, desktop, parent):
 		if self.skinAttributes is not None:
 			attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
@@ -192,7 +193,8 @@ class MovieList(GUIComponent):
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
-		rc = GUIComponent.applySkin(self, desktop, screen)
+			self.setFontsize()
+		rc = GUIComponent.applySkin(self, desktop, parent)
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
 		self.setItemsPerPage()
@@ -318,7 +320,7 @@ class MovieList(GUIComponent):
 						res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trashcan")))
 						return res
 					else:
-						res.append(MultiContentEntryPixmapAlphaTest(pos=(0,2), size=(iconSize,24), png=self.iconTrash))
+						res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,2), size=(iconSize,24), png=self.iconTrash))
 						res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
 						res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trashcan")))
 						return res
@@ -328,7 +330,7 @@ class MovieList(GUIComponent):
 				res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
 				return res
 			else:
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,2), size=(iconSize,iconSize), png=self.iconFolder))
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,2), size=(iconSize,iconSize), png=self.iconFolder))
 				res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
 				res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
 				return res
@@ -387,7 +389,7 @@ class MovieList(GUIComponent):
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(iconSize,iconSize), png=data.icon))
 			else:
 				iconSize = 22
-				res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(iconSize,20), png=data.icon))
 		elif switch == 'p':
 			if screenwidth and screenwidth == 1920:
 				iconSize = 42
@@ -402,7 +404,7 @@ class MovieList(GUIComponent):
 				if screenwidth and screenwidth == 1920:
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(iconSize,iconSize), png=data.icon))
 				else:
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(iconSize,20), png=data.icon))
 		elif switch == 's':
 			if screenwidth and screenwidth == 1920:
 				iconSize = 42
@@ -417,7 +419,7 @@ class MovieList(GUIComponent):
 				if screenwidth and screenwidth == 1920:
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(iconSize,iconSize), png=data.icon))
 				else:
-					res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,20), png=data.icon))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(iconSize,20), png=data.icon))
 
 		begin_string = ""
 		if begin > 0:
@@ -594,8 +596,8 @@ class MovieList(GUIComponent):
 
 		self.firstFileEntry = numberOfDirs
 		self.parentDirectory = 0
-		
-		self.list.sort(key=self.buildBeginTimeSortKey)
+
+		self.list.sort(key=self.buildGroupwiseSortkey)
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaNumericSortKey) + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_REVERSE:
@@ -707,6 +709,14 @@ class MovieList(GUIComponent):
 		if ref.flags & eServiceReference.mustDescent:
 			return 0, x[1] and -os.stat(ref.getPath()).st_mtime
 		return 1, -x[2]
+
+	def buildGroupwiseSortkey(self, x):
+		# Sort recordings by date, sort MP3 and stuff by name
+		ref = x[0]
+		if ref.type >= eServiceReference.idUser:
+			return self.buildAlphaNumericSortKey(x)
+		else:
+			return self.buildBeginTimeSortKey(x)
 
 	def moveTo(self, serviceref):
 		index = self.findService(serviceref)
