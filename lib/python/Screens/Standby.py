@@ -1,3 +1,4 @@
+import os
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config
@@ -38,6 +39,11 @@ class Standby2(Screen):
 		PowerTimer.resetTimerWakeup()
 		RecordTimer.resetTimerWakeup()
 		#kill me
+		if os.path.exists("/usr/scripts/standby.sh") is True:
+			os.system("chmod 755 /usr/scripts/standby.sh")
+			os.system("/usr/scripts/standby.sh")
+		else:
+			print "/usr/scripts/standby.sh not found"
 		self.close(True)
 
 	def setMute(self):
