@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "14.12.2014"
+updateversion = "15.12.2014"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -39,9 +39,9 @@ def getHotkeys():
 	(_("Epg/Guide long"), "epg_long", "Plugins/Extensions/CoolTVGuide/4"),
 	(_("F1"), "f1", "Plugins/Extensions/HDF-Toolbox/1"),
 	(_("F1 long"), "f1_long", ""),
-	(_("F2"), "f2", "Plugins/Extensions/HDF-Toolbox/1"),
+	(_("F2"), "f2", "Plugins/Extensions/MediaPortal/1"),
 	(_("F2 long"), "f2_long", ""),
-	(_("F3"), "f3", "Plugins/Extensions/HDF-Toolbox/1"),
+	(_("F3"), "f3", "Plugins/Extensions/EtPortal/1"),
 	(_("F3 long"), "f3_long", ""),
 	(_("F4"), "f4", "Plugins/Extensions/HDF-Toolbox/1"),
 	(_("F4 long"), "f4_long", ""),
@@ -79,8 +79,9 @@ def getHotkeys():
 	(_("Next"), "next", "Infobar/historyNext"),
 	(_("Next long"), "next_long", ""),
 	(_("Pause"), "pause", "Infobar/startTimeshift"),
+	(_("Pause long"), "pause_long", "Infobar/startTimeshift"),
 	(_("Play "), "play", "Infobar/startTimeshift"),
-	(_("Play long"), "play_long", ""),
+	(_("Play long"), "play_long", "Infobar/startTimeshift"),
 	(_("Playlist"), "playlist", "Infobar/showMovies"),
 	(_("Playlist long"), "playlist_long", ""),
 	(_("Picture in Picture"), "activatePiP", "Infobar/showPiP"),
@@ -108,8 +109,8 @@ def getHotkeys():
 	(_("Sleep long"), "sleep_long", ""),
 	(_("Skip back"), "skip_back", ""),
 	(_("Skip forward"), "skip_forward", ""),
-	(_("Stop "), "stop", "Infobar/startTimeshift"),
-	(_("Stop long"), "stop_long", "Infobar/startTimeshift"),
+	(_("Stop "), "stop", "Infobar/stopTimeshift"),
+	(_("Stop long"), "stop_long", "Infobar/stopTimeshift"),
 	(_("Subtitle"), "subtitle", "Infobar/subtitleSelection"),
 	(_("Subtitle long"), "subtitle_long", "Infobar/subserviceSelection"),
 	(_("Teletext"), "texter", "Infobar/startTeletext"),
