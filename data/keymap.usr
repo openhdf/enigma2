@@ -1,5 +1,5 @@
 <keymap>
-	<!-- "HDF User Keymap 17.12.2014" -->
+	<!-- "HDF User Keymap 20.12.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -86,7 +86,7 @@
 	</map>
 
 	<map context="InfobarInstantRecord">
-		<!--key id="KEY_RECORD" mapto="instantRecord" flags="b" /-->
+		<key id="KEY_RECORD" mapto="instantRecord" flags="b" />
 		<!--key id="KEY_RECORD" mapto="ShortRecord" flags="b" /-->
 		<!--key id="KEY_RECORD" mapto="LongRecord" flags="l" /-->
 		<!--device name="dreambox remote control (native)">
