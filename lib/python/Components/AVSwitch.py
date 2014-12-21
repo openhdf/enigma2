@@ -10,6 +10,7 @@ import os
 config.av = ConfigSubsection()
 
 class AVSwitch:
+	hw_type = HardwareInfo().get_device_name()
 	rates = { } # high-level, use selectable modes.
 	modes = { }  # a list of (high-level) modes for a certain port.
 
@@ -147,9 +148,12 @@ class AVSwitch:
 			f.write(mode_50)
 			f.close()
 		if os.path.exists('/proc/stb/video/videomode_60hz') and getBoxType() not in ('gb800solo', 'gb800se', 'gb800ue'):
-			f = open("/proc/stb/video/videomode_60hz", "w")
-			f.write(mode_60)
-			f.close()
+			try:
+				f = open("/proc/stb/video/videomode_60hz", "w")
+				f.write(mode_60)
+				f.close()
+			except IOError:
+				print "setting videomode failed."
 		try:
 			set_mode = modes.get(int(rate[:2]))
 		except: # not support 50Hz, 60Hz for 1080p
