@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "20.12.2014"
+updateversion = "24.12.2014"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -219,6 +219,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
 	hotkeyFunctions.append((_("PowerTimer"), "Module/Screens.PowerTimerEdit/PowerTimerEditList", "Setup"))
 	hotkeyFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", "Setup"))
+	hotkeyFunctions.append((_("Memory Info"), "Module/Screens.About/MemoryInfo", "Setup"))
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
 			hotkeyFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], "Setup"))
