@@ -1,5 +1,5 @@
 <keymap>
-	<!-- "HDF User Keymap 24.12.2014" -->
+	<!-- "HDF User Keymap 28.12.2014" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -928,6 +928,8 @@
 		<key id="KEY_HOMEPAGE" mapto="homepage_long" flags="l" />
 		<key id="KEY_CONTEXT_MENU" mapto="contextMenu" flags="m"/>
 		<key id="KEY_SAT" mapto="sat" flags="b" />
-		<key id="KEY_SAT" mapto="sat_long" flags="l" />		
+		<key id="KEY_SAT" mapto="sat_long" flags="l" />
+		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
+		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
 	</map>
 </keymap>
