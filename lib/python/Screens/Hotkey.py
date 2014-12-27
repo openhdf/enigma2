@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "24.12.2014"
+updateversion = "28.12.2014"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -51,6 +51,8 @@ def getHotkeys():
 	(_("Back long"), "back_long", "Plugins/Extensions/ZapHistoryBrowser/1"),
 	(_("Channel up"), "channelup", "Infobar/zapDown"),
 	(_("Channel down"), "channeldown", "Infobar/zapUp"),
+	(_("Volume up"), "volumeUp", ""),
+	(_("Volume down"), "volumeDown", ""),
 	(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
 	(_("End"), "end", "Infobar/historyBack"),
 	(_("End long"), "end_long", ""),
@@ -172,6 +174,8 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Show Plugin Selection"), "Infobar/showPluginBrowser", "InfoBar"))
 	hotkeyFunctions.append((_("Zap down"), "Infobar/zapDown", "InfoBar"))
 	hotkeyFunctions.append((_("Zap up"), "Infobar/zapUp", "InfoBar"))
+	hotkeyFunctions.append((_("Volume down"), "Infobar/volumeDown", "InfoBar"))
+	hotkeyFunctions.append((_("Volume up"), "Infobar/volumeUp", "InfoBar"))
 	hotkeyFunctions.append((_("Switch Channel up in Infobar"), "Infobar/switchChannelUp", "InfoBar"))
 	hotkeyFunctions.append((_("Switch Channel down in Infobar"), "Infobar/switchChannelDown", "InfoBar"))
 	hotkeyFunctions.append((_("Show Service List"), "Infobar/openServiceList", "InfoBar"))
