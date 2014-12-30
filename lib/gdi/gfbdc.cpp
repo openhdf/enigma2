@@ -7,10 +7,6 @@
 
 #include <time.h>
 
-#ifdef USE_LIBVUGLES2
-#include <vuplus_gles.h>
-#endif
-
 gFBDC::gFBDC()
 {
 	fb=new fbClass;
@@ -147,38 +143,8 @@ void gFBDC::exec(const gOpcode *o)
 		break;
 	}
 	case gOpcode::flush:
-#ifdef USE_LIBVUGLES2
-		if (gles_is_animation())
-			gles_do_animation();
-		else
-			fb->blit();
-#else
 		fb->blit();
-#endif
 		break;
-	case gOpcode::sendShow:
-	{
-#ifdef USE_LIBVUGLES2
-		gles_set_buffer((unsigned int *)surface.data);
-		gles_set_animation(1, o->parm.setShowHideInfo->point.x(), o->parm.setShowHideInfo->point.y(), o->parm.setShowHideInfo->size.width(), o->parm.setShowHideInfo->size.height());
-#endif
-		break;
-	}
-	case gOpcode::sendHide:
-	{
-#ifdef USE_LIBVUGLES2
-		gles_set_buffer((unsigned int *)surface.data);
-		gles_set_animation(0, o->parm.setShowHideInfo->point.x(), o->parm.setShowHideInfo->point.y(), o->parm.setShowHideInfo->size.width(), o->parm.setShowHideInfo->size.height());
-#endif
-		break;
-	}
-#ifdef USE_LIBVUGLES2
-	case gOpcode::setView:
-	{
-		gles_viewport(o->parm.setViewInfo->size.width(), o->parm.setViewInfo->size.height(), fb->Stride());
-		break;
-	}
-#endif
 	default:
 		gDC::exec(o);
 		break;
@@ -211,35 +177,14 @@ void gFBDC::setGamma(int g)
 
 void gFBDC::setResolution(int xres, int yres, int bpp)
 {
-#if defined(__sh__)
-	/* if xres and yres are negative call SetMode with the lates xres and yres
-	 * we need that to read the new screen dimesnions after a resolution change
-	 * without changing the frambuffer dimensions
-	 */
-	int m_xres;
-	int m_yres;
-	int m_bpp;
-	fb->getMode(m_xres, m_yres, m_bpp);
-
-	if (xres<0 && yres<0 ) {
-		fb->SetMode(m_xres, m_yres, bpp);
-		return;
-	}
-#else
 	if (m_pixmap && (surface.x == xres) && (surface.y == yres) && (surface.bpp == bpp))
 		return;
-#endif
 
 	if (gAccel::getInstance())
 		gAccel::getInstance()->releaseAccelMemorySpace();
 
 	fb->SetMode(xres, yres, bpp);
 
-#if defined(__sh__)
-	for (int y = 0; y<yres; y++) { // make whole screen transparent
-		memset(fb->lfb+y*fb->Stride(), 0x00, fb->Stride());
-	}
-#endif
 	surface.x = xres;
 	surface.y = yres;
 	surface.bpp = bpp;

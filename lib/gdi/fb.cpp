@@ -10,7 +10,7 @@
 #include <lib/gdi/fb.h>
 
 #ifndef FBIO_WAITFORVSYNC
-#define FBIO_WAITFORVSYNC _IOW('F', 0x20, uint32_t)
+#define FBIO_WAITFORVSYNC _IOW('F', 0x20, __u32)
 #endif
 
 #ifndef FBIO_BLIT
@@ -301,7 +301,7 @@ void fbClass::blit()
 		{
 			perror("STMFBIO_BLT");
 		}
-	
+
 	}
 
 	if (ioctl(fbFd, STMFBIO_SYNC_BLITTER) < 0)

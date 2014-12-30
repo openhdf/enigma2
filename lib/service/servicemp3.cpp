@@ -54,12 +54,12 @@ typedef enum
 // eServiceFactoryMP3
 
 /*
- * gstreamer suffers from a bug causing sparse streams to loose sync, after pause/resume / skip
- * see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
- * As a workaround, we run the subsink in sync=false mode
- */
+* gstreamer suffers from a bug causing sparse streams to loose sync, after pause/resume / skip
+* see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
+* As a workaround, we run the subsink in sync=false mode
+*/
 #if GST_VERSION_MAJOR >= 1
-#undef GSTREAMER_SUBTITLE_SYNC_MODE_BUG 
+#undef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 #else
 #define GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 #endif
@@ -1097,7 +1097,6 @@ int eServiceMP3::getInfo(int w)
 	case sTagCRC:
 		tag = "has-crc";
 		break;
-	case sBuffer: return m_bufferInfo.bufferPercent;
 	default:
 		return resNA;
 	}
@@ -1622,6 +1621,8 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						m_seek_paused = false;
 						gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
 					}
+					else
+						m_event((iPlayableService*)this, evGstreamerPlayStarted);
 				}	break;
 				case GST_STATE_CHANGE_PLAYING_TO_PAUSED:
 				{

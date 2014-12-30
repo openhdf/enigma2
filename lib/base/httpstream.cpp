@@ -20,9 +20,8 @@ eHttpStream::eHttpStream()
 
 eHttpStream::~eHttpStream()
 {
-	abort_badly();
-	kill();
 	free(tmpBuf);
+	kill(true);
 	close();
 }
 
