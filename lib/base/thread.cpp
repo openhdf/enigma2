@@ -88,12 +88,7 @@ int eThread::run(int prio, int policy)
 
 eThread::~eThread()
 {
-	if (the_thread)
-	{
-		/* Warn about this class' design being borked */
-		eWarning("Destroyed thread without joining it, this usually means your thread is now running with a halfway destroyed object");
-		kill();
-	}
+	kill();
 }
 
 int eThread::sync(void)
@@ -118,17 +113,18 @@ int eThread::sendSignal(int sig)
 	return -1;
 }
 
-void eThread::kill()
+void eThread::kill(bool sendcancel)
 {
-	/* FIXME: Allthough in Linux we seem to get away with it, there is no
-	 * guarantee that "0" is an invalid value for pthread_t */
 	if (!the_thread) /* already joined */
 		return;
 
-	int ret = pthread_join(the_thread, NULL);
+	if (sync() && sendcancel)
+	{
+		eDebug("send cancel to thread");
+		pthread_cancel(the_thread);
+	}
+	eDebug("thread joined %d", pthread_join(the_thread, 0));
 	the_thread = 0;
-	if (ret)
-		eWarning("pthread_join failed, code: %d", ret);
 }
 
 void eThread::hasStarted()
