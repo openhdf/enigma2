@@ -39,7 +39,7 @@ public:
 #ifndef SWIG
 	eLCD();
 	virtual ~eLCD();
-	uint8_t *buffer() { return (uint8_t*)_buffer; }
+	__u8 *buffer() { return (__u8*)_buffer; }
 	int stride() { return _stride; }
 	eSize size() { return res; }
 	virtual void update()=0;

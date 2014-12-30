@@ -12,7 +12,7 @@ class eIOBuffer
 	int allocationsize;
 	struct eIOBufferData
 	{
-		uint8_t *data;
+		__u8 *data;
 		int len;
 	};
 	std::list<eIOBufferData> buffer;

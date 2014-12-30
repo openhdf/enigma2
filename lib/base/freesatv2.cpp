@@ -38,10 +38,9 @@ GNU General Public License for more details.
 static void loadFile(huffTableEntry **table, const char *filename);
 
 
-struct huffTableEntry
-{
-	uint32_t value;
-	uint16_t bits;
+struct huffTableEntry {
+	__u32 value;
+	__u16 bits;
 	char next;
 	huffTableEntry * nextEntry;
 

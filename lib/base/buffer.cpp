@@ -17,7 +17,7 @@ void eIOBuffer::removeblock()
 eIOBuffer::eIOBufferData &eIOBuffer::addblock()
 {
 	eIOBufferData s;
-	s.data=new uint8_t[allocationsize];
+	s.data=new __u8[allocationsize];
 	s.len=0;
 	buffer.push_back(s);
 	return buffer.back();
@@ -50,7 +50,7 @@ int eIOBuffer::empty() const
 
 int eIOBuffer::peek(void *dest, int len) const
 {
-	uint8_t *dst=(uint8_t*)dest;
+	__u8 *dst=(__u8*)dest;
 	std::list<eIOBufferData>::const_iterator i(buffer.begin());
 	int p=ptr;
 	int written=0;
@@ -92,7 +92,7 @@ void eIOBuffer::skip(int len)
 
 int eIOBuffer::read(void *dest, int len)
 {
-	uint8_t *dst=(uint8_t*)dest;
+	__u8 *dst=(__u8*)dest;
 	len=peek(dst, len);
 	skip(len);
 	return len;
@@ -100,7 +100,7 @@ int eIOBuffer::read(void *dest, int len)
 
 void eIOBuffer::write(const void *source, int len)
 {
-	const uint8_t *src=(const uint8_t*)source;
+	const __u8 *src=(const __u8*)source;
 	while (len)
 	{
 		int tc=len;
@@ -147,6 +147,7 @@ int eIOBuffer::fromfile(int fd, int len)
 int eIOBuffer::tofile(int fd, int len)
 {
 	int written=0;
+	int w;
 	while (len && !buffer.empty())
 	{
 		if (buffer.begin() == buffer.end())
@@ -155,7 +156,7 @@ int eIOBuffer::tofile(int fd, int len)
 		if (tc > len)
 			tc = len;
 
-		int w=::write(fd, buffer.front().data+ptr, tc);
+		w=::write(fd, buffer.front().data+ptr, tc);
 		if (w < 0)
 		{
 			if (errno != EWOULDBLOCK && errno != EBUSY && errno != EINTR)

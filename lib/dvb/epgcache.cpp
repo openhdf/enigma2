@@ -221,22 +221,10 @@ const eit_event_struct* eventData::get() const
 	int tmp = ByteSize - 10;
 	memcpy(data, EITdata, 10);
 	unsigned int descriptors_length = 0;
-#ifndef __sh__
 	uint32_t *p = (uint32_t*)(EITdata + 10);
-#else
-	// Dagobert: fix not aligned access
-	uint8_t *p = (uint8_t*)(EITdata+10);
-#endif
 	while (tmp > 3)
 	{
-#ifndef __sh__
 		descriptorMap::iterator it = descriptors.find(*p++);
-#else
-		uint32_t index = p[3] << 24 | p[2] << 16 | p[1] << 8 | p[0];
-		// eDebug("index %d %x, %x %x %x %x\n", index, index, p[0], p[1], p[2], p[3]);
-		descriptorMap::iterator it = descriptors.find(index);
-		p += 4;
-#endif
 		if (it != descriptors.end())
 		{
 			unsigned int b = it->second.second[1] + 2;
@@ -261,23 +249,12 @@ eventData::~eventData()
 	if ( ByteSize )
 	{
 		CacheSize -= ByteSize;
-#ifndef __sh__
 		uint32_t *d = (uint32_t*)(EITdata+10);
-#else	// Dagobert: fix not aligned access
-		uint8_t *d = (uint8_t*)(EITdata+10);
-#endif
 		ByteSize -= 10;
 		while(ByteSize>3)
 		{
-#ifndef __sh__
 			descriptorMap::iterator it =
 				descriptors.find(*d++);
-#else
-			uint32_t index = d[3] << 24 | d[2] << 16 | d[1] << 8 | d[0];
-			// eDebug("index %d %x, %x %x %x %x\n", index, index, d[0], d[1], d[2], d[3]);
-			descriptorMap::iterator it = descriptors.find(index);
-			d += 4;
-#endif
 			if ( it != descriptors.end() )
 			{
 				descriptorPair &p = it->second;
@@ -405,11 +382,10 @@ void eEPGCache::timeUpdated()
 {
 	if (!m_filename.empty())
 	{
-		if (!m_running)
+		if (!sync())
 		{
 			eDebug("[EPGC] time updated.. start EPG Mainloop");
 			run();
-			m_running = true;
 			singleLock s(channel_map_lock);
 			channelMapIterator it = m_knownChannels.begin();
 			for (; it != m_knownChannels.end(); ++it)
@@ -438,11 +414,9 @@ void eEPGCache::DVBChannelAdded(eDVBChannel *chan)
 		data->m_PrivatePid = -1;
 #endif
 #ifdef ENABLE_MHW_EPG
-		data->m_mhw2_channel_pid = 0x231; // defaults for astra 19.2 Canal+ Spain
-		//data->m_mhw2_title_pid = 0x234; // defaults for astra 19.2 Canal+ Spain
-		//data->m_mhw2_summary_pid = 0x236; // defaults for astra 19.2 Canal+ Spain
-		data->m_mhw2_title_pid = 0x284; // change for fix 7 days epg Canal+ Spain
-		data->m_mhw2_summary_pid = 0x282; // change for fix 7 days epg Canal+ Spain
+		data->m_mhw2_channel_pid = 0x231; // defaults for astra 19.2 D+
+		data->m_mhw2_title_pid = 0x234; // defaults for astra 19.2 D+
+		data->m_mhw2_summary_pid = 0x236; // defaults for astra 19.2 D+
 #endif
 		singleLock s(channel_map_lock);
 		m_knownChannels.insert( std::pair<iDVBChannel*, channel_data* >(chan, data) );
@@ -1072,7 +1046,6 @@ void eEPGCache::cleanLoop()
 
 eEPGCache::~eEPGCache()
 {
-	m_running = false;
 	messages.send(Message::quit);
 	kill(); // waiting for thread shutdown
 	singleLock s(cache_lock);
@@ -1211,11 +1184,13 @@ void eEPGCache::gotMessage( const Message &msg )
 void eEPGCache::thread()
 {
 	hasStarted();
+	m_running = true;
 	nice(4);
 	load();
 	cleanLoop();
 	runLoop();
 	save();
+	m_running = false;
 }
 
 static const char* EPGDAT_IN_FLASH = "/epg.dat";
@@ -1881,45 +1856,6 @@ void eEPGCache::channel_data::readData( const uint8_t *data, int source)
 {
 	int map;
 	iDVBSectionReader *reader = NULL;
-#ifdef __sh__
-/* Dagobert: this is still very hacky, but currently I cant find
- * the origin of the readData call. I think the caller is
- * responsible for the unaligned data pointer in this call.
- * So we malloc our own memory here which _should_ be aligned.
- *
- * TODO: We should search for the origin of this call. As I
- * said before I need an UML Diagram or must try to import
- * e2 and all libs into an IDE for better overview ;)
- *
- */
-	const uint8_t *aligned_data;
-	bool isNotAligned = false;
-
-	if ((unsigned int) data % 4 != 0)
-		isNotAligned = true;
-
-	if (isNotAligned)
-	{
-		/* see HILO macro and eit.h */
-		int len = ((data[1] & 0x0F) << 8 | data[2]) -1;
-
-		/*eDebug("len %d %x, %x %x\n", len, len, data[1], data[2]);*/
-
-		if ( EIT_SIZE >= len )
-			return;
-
-		aligned_data = (const uint8_t *) malloc(len);
-
-		if ((unsigned int)aligned_data % 4 != 0)
-		{
-			eDebug("eEPGCache::channel_data::readData: ERRORERRORERROR: unaligned data pointer %p\n", aligned_data);
-		}
-
-		/*eDebug("%p %p\n", aligned_data, data); */
-		memcpy((void *) aligned_data, (const uint8_t *) data, len);
-		data = aligned_data;
-	}
-#endif
 	switch (source)
 	{
 		case NOWNEXT:
@@ -2044,10 +1980,6 @@ void eEPGCache::channel_data::readData( const uint8_t *data, int source)
 			cache->sectionRead(data, source, this);
 		}
 	}
-#ifdef __sh__
-	if (isNotAligned)
-		free((void *)aligned_data);
-#endif
 }
 
 #if ENABLE_FREESAT
@@ -3133,20 +3065,11 @@ PyObject *eEPGCache::search(ePyObject arg)
 						{
 							uint8_t *data = evData->EITdata;
 							int tmp = evData->ByteSize-10;
-#ifndef __sh__
 							uint32_t *p = (uint32_t*)(data+10);
-#else	// Dagobert: Alignment fix
-							uint8_t *p = (uint8_t*)(data+10);
-#endif
 							// search short and extended event descriptors
 							while(tmp>3)
 							{
-#ifndef __sh__
 								uint32_t crc = *p++;
-#else	// Dagobert: Alignment fix
-								uint32_t crc = p[3] << 24 | p[2] << 16 | p[1] << 8 | p[0];
-								p += 4;
-#endif
 								descriptorMap::iterator it =
 									eventData::descriptors.find(crc);
 								if (it != eventData::descriptors.end())
@@ -3325,21 +3248,12 @@ PyObject *eEPGCache::search(ePyObject arg)
 				}
 				uint8_t *data = evit->second->EITdata;
 				int tmp = evit->second->ByteSize-10;
-#ifndef __sh__
 				uint32_t *p = (uint32_t*)(data+10);
-#else	// Dagobert: Alignment fix
-				uint8_t *p = (uint8_t*)(data+10);
-#endif
 				// check if any of our descriptor used by this event
 				int cnt=-1;
 				while(tmp>3)
 				{
-#ifndef __sh__
 					uint32_t crc32 = *p++;
-#else	// Dagobert: Alignment fix
-					uint32_t crc32 = p[3] << 24 | p[2] << 16 | p[1] << 8 | p[0];
-					p += 4;
-#endif
 					for ( int i=0; i <= descridx; ++i)
 					{
 						if (descr[i] == crc32)  // found...
