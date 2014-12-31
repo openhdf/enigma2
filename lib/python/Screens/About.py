@@ -13,9 +13,12 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVer
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 
+from Components.Label import Label
+from Components.ProgressBar import ProgressBar
+
 from Tools.StbHardware import getFPVersion
 
-from os import path
+from os import path, popen
 from re import search
 
 class About(Screen):
@@ -31,24 +34,41 @@ class About(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 				"log": self.showAboutReleaseNotes,
+				"blue": self.showMemoryInfo,
 				"up": self["AboutScrollLabel"].pageUp,
 				"down": self["AboutScrollLabel"].pageDown,
 				"green": self.showTranslationInfo,
 			})
 
 	def populate(self):
-		self["lab1"] = StaticText(_("OpenHDF"))
-		self["lab2"] = StaticText(_("By HDF Image Team"))
-		self["lab3"] = StaticText(_("Support at") + " www.HDFreaks.cc")
+		self["lab1"] = StaticText(_("openHDF by HDF Image Team"))
+		self["lab2"] = StaticText(_("Support at") + " www.HDFreaks.cc")
 		model = None
 		AboutText = ""
-		self["lab3"] = StaticText(_("Support at") + " www.hdfreaks.cc")
+		self["lab2"] = StaticText(_("Support @") + " www.hdfreaks.cc")
 		AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
 
 		if path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString() + "\n"
 
+		cmd = 'cat /proc/cpuinfo | grep "cpu MHz" -m 1 | awk -F ": " ' + "'{print $2}'"
+		cmd2 = 'cat /proc/cpuinfo | grep "BogoMIPS" -m 1 | awk -F ": " ' + "'{print $2}'"
+		try:
+			res = popen(cmd).read()
+			res2 = popen(cmd2).read()
+		except:
+			res = ""
+			res2 = ""
+		cpuMHz = ""
+		bogoMIPS = ""
+		if res:
+			cpuMHz = "" + res.replace("\n", "") + " MHz"
+		if res2:
+			bogoMIPS = "" + res2.replace("\n", "") 
+			
 		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
+		AboutText += _("Clock Speed:\t%s") % cpuMHz + "\n"
+		AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 
 		AboutText += _("HDF Version:\t%s") % getImageVersion() + "\n"
@@ -62,7 +82,9 @@ class About(Screen):
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
 
-		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
+		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
+		
+		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
@@ -82,12 +104,25 @@ class About(Screen):
 			f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
+			AboutText += _("System Temp:\t%s") % tempinfo.replace('\n', '') + mark + "C\n"
+	
+		tempinfo = ""
+		if path.exists('/proc/stb/fp/temp_sensor_avs'):
+			f = open('/proc/stb/fp/temp_sensor_avs', 'r')
+			tempinfo = f.read()
+			f.close()
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
+			mark = str('\xc2\xb0')
+			AboutText += _("Processor Temp:\t%s") % tempinfo.replace('\n', '') + mark + "C\n"
+		AboutLcdText = AboutText.replace('\t', ' ')
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 
 	def showTranslationInfo(self):
 		self.session.open(TranslationInfo)
+
+	def showMemoryInfo(self):
+		self.session.open(MemoryInfo)
 
 	def showAboutReleaseNotes(self):
 		self.session.open(ViewGitLog)
@@ -502,7 +537,7 @@ class AboutSummary(Screen):
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers: %s") % driversdate + "\n"
-		AboutText += _("Last update: %s") % getEnigmaVersionString() + "\n\n"
+		AboutText += _("Last update: %s") % getEnigmaVersionString()
 
 		tempinfo = ""
 		if path.exists('/proc/stb/sensors/temp0/value'):
@@ -511,7 +546,7 @@ class AboutSummary(Screen):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temperature: %s") % tempinfo.replace('\n', '') + mark + "C\n\n"
+			AboutText += _("Temperature: %s") % tempinfo.replace('\n', '') + mark + "C"
 
 		self["AboutText"] = StaticText(AboutText)
 
@@ -532,6 +567,7 @@ class ViewGitLog(Screen):
 			'cancel': self.closeRecursive,
 			'green': self.closeRecursive,
 			"red": self.closeRecursive,
+			"blue": self.showMemoryInfo,
 			"yellow": self.changelogtype,
 			"left": self.pageUp,
 			"right": self.pageDown,
@@ -575,6 +611,9 @@ class ViewGitLog(Screen):
 			self['title_summary'].setText("")
 			self['text_summary'].setText("")
 
+	def showMemoryInfo(self):
+		self.session.open(MemoryInfo)
+
 	def unattendedupdate(self):
 		self.close((_("Unattended upgrade without GUI and reboot system"), "cold"))
 
@@ -616,3 +655,90 @@ class TranslationInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
+
+class MemoryInfo(Screen):
+
+	skin = """<screen name="MemoryInfo" position="center,60" zPosition="2" size="540,490" title="Memory Info">
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="135,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="270,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="405,0" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,0" zPosition="1" size="135,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="135,0" zPosition="1" size="135,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_blue" position="405,0" zPosition="1" size="135,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+
+			<widget name="lmemtext" position="10,40" size="120,450" font="Regular;16" zPosition="1" halign="left" transparent="1" />
+			<widget name="lmemvalue" position="120,40" size="90,450" font="Regular;16" zPosition="1" halign="right" transparent="1" />
+			<widget name="rmemtext" position="330,40" size="120,450" font="Regular;16" zPosition="1" halign="left" transparent="1" />
+			<widget name="rmemvalue" position="440,40" size="90,450" font="Regular;16" zPosition="1" halign="right" transparent="1" />
+
+			<widget name="info" position="330,405" size="200,100" font="Regular;14" zPosition="1" halign="center" foregroundColor="#909090" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+			{
+				"cancel": self.close,
+				"ok": self.getMemoryInfo,
+				"green": self.getMemoryInfo,
+				"blue": self.clearMemory,
+			})
+
+		self["key_red"] = Label(_("Cancel"))
+		self["key_green"] = Label(_("Refresh"))
+		self["key_blue"] = Label(_("Clear"))
+
+		self['lmemtext'] = Label()
+		self['lmemvalue'] = Label()
+		self['rmemtext'] = Label()
+		self['rmemvalue'] = Label()
+
+		self['pfree'] = Label()
+		self['pused'] = Label()
+		self["slide"] = ProgressBar()
+		self["slide"].setValue(100)
+
+		self['info'] = Label(_("This info is for developers only.\nFor a normal users it is not important."))
+
+		self.setTitle(_("Memory Info"))
+		self.onLayoutFinish.append(self.getMemoryInfo)
+
+	def getMemoryInfo(self):
+		try:
+			ltext = rtext = ""
+			lvalue = rvalue = ""
+			mem = 0
+			free = 0
+			i = 0
+			for line in open('/proc/meminfo','r'):
+				( name, size, units ) = line.strip().split()
+				if name.find("MemTotal") != -1:
+					mem = int(size)
+				if name.find("MemFree") != -1:
+					free = int(size)
+				if i < 28:
+					ltext += "".join((name,"\n"))
+					lvalue += "".join((size," ",units,"\n"))
+				else:
+					rtext += "".join((name,"\n"))
+					rvalue += "".join((size," ",units,"\n"))
+				i += 1
+			self['lmemtext'].setText(ltext)
+			self['lmemvalue'].setText(lvalue)
+			self['rmemtext'].setText(rtext)
+			self['rmemvalue'].setText(rvalue)
+
+			self["slide"].setValue(int(100.0*(mem-free)/mem+0.25))
+			self['pfree'].setText("%.1f %s" % (100.*free/mem,'%'))
+			self['pused'].setText("%.1f %s" % (100.*(mem-free)/mem,'%'))
+
+		except Exception, e:
+			print "[About] getMemoryInfo FAIL:", e
+
+	def clearMemory(self):
+		from os import system
+		system("sync")
+		system("echo 3 > /proc/sys/vm/drop_caches")
+		self.getMemoryInfo()

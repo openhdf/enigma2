@@ -44,7 +44,7 @@ public:
 		isMarker=64,			// Marker
 		isGroup=128,			// is a group of services
 		isNumberedMarker=256, //use together with isMarker, to force the marker to be numbered
-		isInvisible=512 // use together with isMarker and isNumberedMarker, to force an empty number
+		isInvisible=512 // use to make services or markers in a list invisable
 	};
 	int flags; // flags will NOT be compared.
 
@@ -270,7 +270,7 @@ public:
 	virtual ePtr<iServiceInfoContainer> getInfoObject(int w);
 	virtual ePtr<iDVBTransponderData> getTransponderData(const eServiceReference &ref);
 	virtual long long getFileSize(const eServiceReference &ref);
-	virtual bool isCrypted(const eServiceReference &ref);
+	virtual bool isCrypted();
 
 	virtual int setInfo(const eServiceReference &ref, int w, int v);
 	virtual int setInfoString(const eServiceReference &ref, int w, const char *v);
@@ -387,6 +387,7 @@ public:
 
 		sHBBTVUrl,
 		sLiveStreamDemuxId,
+		sBuffer,
 
 		sUser = 0x100
 	};
@@ -920,6 +921,7 @@ public:
 		evVideoProgressiveChanged,
 
 		evBuffering,
+		evGstreamerPlayStarted,
 
 		evStopped,
 

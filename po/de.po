@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2014-08-27 20:00+0100\n"
+"PO-Revision-Date: 2014-12-16 17:25+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.6.10\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -199,12 +199,24 @@ msgid "Show WerbeZapper"
 msgstr "Zeige WerbeZapper"
 
 #, python-format
+msgid "Show OscamInfo"
+msgstr "Zeige OscamInfo"
+
+#, python-format
+msgid "Show OscamStatusView"
+msgstr "Zeige OscamStatusView"
+
+#, python-format
 msgid "Show CoolTVGuide"
 msgstr "Zeige CoolTVGuide"
 
 #, python-format
 msgid "Show HDF-Toolbox"
 msgstr "Zeige HDF-Toolbox"
+
+#, python-format
+msgid "Show DreamPlex"
+msgstr "Zeige DreamPlex"
 
 #, python-format
 msgid "Show Graphical EPG"
@@ -556,6 +568,12 @@ msgstr "2. Infobar"
 
 msgid "2nd Infobar timeout"
 msgstr "2. Infobar Timeout"
+
+msgid "Show InfoBar"
+msgstr "Zeige InfoBar"
+
+msgid "Show Channel List"
+msgstr "Zeige Senderliste"
 
 msgid "23.976"
 msgstr ""
@@ -1151,6 +1169,12 @@ msgstr "Immer nachfragen"
 
 msgid "Show columns"
 msgstr "Zeige Spalten"
+
+msgid "Show record indicator"
+msgstr "Zeige Record Anzeige"
+
+msgid "Red colored"
+msgstr "Rot eingefärbt"
 
 msgid "Divide"
 msgstr "Aufgeteilt"
@@ -2135,6 +2159,9 @@ msgstr "Konfiguriere das Verhalten der Pausentaste bei Standbild."
 msgid "Configure the behavior when movie playback is manually stopped."
 msgstr "Konfiguriere das Verhalten beim Stoppen eines Films."
 
+msgid "Stop service on return to movie list"
+msgstr "Bei Stopp zurück zur Filmliste"
+
 msgid "Configure the behavior when movie playback is started."
 msgstr "Konfiguriere das Verhalten beim Start eines Films."
 
@@ -2206,6 +2233,54 @@ msgstr "Stelle ein was bei kurzem Druck auf die Aus-Taste passieren soll."
 
 msgid "Configure the function of the <  > buttons."
 msgstr "Stelle ein was beim Druck auf die < > Tasten passieren soll."
+
+msgid "Select what you want the Bookmark button to activate:"
+msgstr "Stelle ein was beim Druck auf die Bookmark Taste passieren soll."
+
+msgid "Select what you want the Home button to activate:"
+msgstr "Stelle ein was beim Druck auf die Home Taste passieren soll."
+
+msgid "Select what you want the End button to activate:"
+msgstr "Stelle ein was beim Druck auf die End Taste passieren soll."
+
+msgid "Select what you want the Left/Right button to activate:"
+msgstr "Stelle ein was beim Druck auf die Links/Rechts Tasten passieren soll."
+
+msgid "Select what you want the F1 button to activate:"
+msgstr "Stelle ein was beim Druck auf die F1 Taste passieren soll."
+
+msgid "Select what you want the F2 button to activate:"
+msgstr "Stelle ein was beim Druck auf die F2 Taste passieren soll."
+
+msgid "Select what you want the F3 button to activate:"
+msgstr "Stelle ein was beim Druck auf die F3 Taste passieren soll."
+
+msgid "Select what you want the F4 button to activate:"
+msgstr "Stelle ein was beim Druck auf die F4 Taste passieren soll."
+
+msgid "Select what you want the red button to activate:"
+msgstr "Stelle ein was beim Druck auf die rote Taste passieren soll."
+
+msgid "Select what you want the long red button to activate:"
+msgstr "Stelle ein was beim langen Druck auf die rote Taste passieren soll."
+
+msgid "Select what you want the green button to activate:"
+msgstr "Stelle ein was beim Druck auf die grüne Taste passieren soll."
+
+msgid "Select what you want the long green button to activate:"
+msgstr "Stelle ein was beim langen Druck auf die grüne Taste passieren soll."
+
+msgid "Select what you want the yellow button to activate:"
+msgstr "Stelle ein was beim Druck auf die gelbe Taste passieren soll."
+
+msgid "Select what you want the long yellow button to activate:"
+msgstr "Stelle ein was beim langen Druck auf die gelbe Taste passieren soll."
+
+msgid "Select what you want the blue button to activate:"
+msgstr "Stelle ein was beim Druck auf die blaue Taste passieren soll."
+
+msgid "Select what you want the long blue button to activate:"
+msgstr "Stelle ein was beim langen Druck auf die blaue Taste passieren soll."
 
 msgid "Configure the gateway."
 msgstr "Konfiguriere das Gateway."
@@ -2496,6 +2571,10 @@ msgstr "Dateien kopieren"
 #, python-format
 msgid "Cores:\t%s"
 msgstr "Kerne:\t%s"
+
+#, python-format
+msgid "Clock Speed:\t%s"
+msgstr "Taktfrequenz:\t%s"
 
 #, python-format
 msgid "Could not connect to %s %s .NFI image feed server:"
@@ -2898,6 +2977,30 @@ msgid "Display"
 msgstr "Display (VFD/LCD)"
 
 #, python-format
+msgid "Power LED State in Deep-Standby and Standby"
+msgstr "Power LED Anzeige im Deep-Standby und Standby"
+
+#, python-format
+msgid "Power LED state during deep-standby and standby."
+msgstr "Power LED Anzeige im Deep-Standby und Standby"
+
+#, python-format
+msgid "LCD scroll speed"
+msgstr "LCD Scroll Geschwindigkeit"
+
+#, python-format
+msgid "Time for next LCD scrolling"
+msgstr "Zeitraum bis zum nächsten LCD Scrolling"
+
+#, python-format
+msgid "Show blinking rec symbol in LCD during recording"
+msgstr "Zeige blinkendes REC Symbol bei aktiven Aufnahmen"
+
+#, python-format
+msgid "Enable blinking rec symbol on the LCD Display"
+msgstr "Aktiviert das blinkendes REC Symbol bei aktiven Aufnahmen"
+
+#, python-format
 msgid ""
 "GUI needs a restart to apply new skin.\n"
 "Do you want to Restart the GUI now?"
@@ -2926,6 +3029,9 @@ msgstr ">16:9-Inhalt anzeigen als"
 
 msgid "Display and userinterface"
 msgstr "Anzeige und Benutzeroberfläche"
+
+msgid "Userinterface Settings"
+msgstr "Benutzeroberfläche Einstellungen"
 
 msgid "Display message before playing next movie"
 msgstr "Nachricht vor Wiedergabe des nächsten Films"
@@ -3706,6 +3812,13 @@ msgstr "Vollbild Auflösung"
 msgid "Automatic resolution"
 msgstr "Automatische Auflösung"
 
+msgid ""
+"If enabled the output resolution of the box will try to match the resolution "
+"of the video contents resolution"
+msgstr ""
+"Hiermit können Sie einstellen, ob die auszugebende Video Auflösung an die "
+"Auflösung des Videomaterials angepasst werden soll."
+
 msgid "All resolutions"
 msgstr "Alle Auflösungen"
 
@@ -3771,6 +3884,28 @@ msgstr "Diese Option erlaubt es einzustellen wie ein SD Video angezeigt wird."
 
 msgid "Function of OK button"
 msgstr "Funktion von der OK Taste"
+
+msgid "Allows you to setup the button to do what you choose."
+msgstr "Was soll beim Druck auf dieses Taste ausgelöst werden?"
+
+msgid "Stop previous broadcasted service on return to movielist."
+msgstr "Stoppe vorherige Sendung bei Rückkehr zur Fimliste."
+
+msgid "Allows you to hide the extensions of known file types."
+msgstr "Hiermit werden die Endungen bei bekannten Filetypen ausgeblendet."
+
+msgid ""
+"Configure the number of days after which items are automatically removed "
+"from the trash can."
+msgstr ""
+"Nach wievielen Tagen sollen Dateien im Papierkorb automatisch gelöscht "
+"werden?"
+
+msgid "Clean network trash cans"
+msgstr "Soll auch der Netzwerkpapierkorb aufgeräumt werden?"
+
+msgid "When enabled, network trash cans are probed for cleaning."
+msgstr "Wenn aktiviert wird auch versucht den Netzwerkpapierkorb zu leeren."
 
 msgid "GB"
 msgstr "GB"
@@ -4044,22 +4179,22 @@ msgid "Setup what a short press on the power button does."
 msgstr "Wähle was bei kurzem Druck auf Ein/Aus aktiviert werden soll."
 
 msgid "Select what you want the EPG button to activate:"
-msgstr "Wähle was bei Druck auf die EPG Taste aktiviert werden soll:"
+msgstr "Wähle was bei Druck auf die EPG Taste aktiviert werden soll."
 
 msgid "Select what you want the INFO button to activate:"
-msgstr "Wähle was bei Druck auf die Info Taste aktiviert werden soll:"
+msgstr "Wähle was bei Druck auf die Info Taste aktiviert werden soll."
 
 msgid "Select what you want the FAV button to activate:"
-msgstr "Wähle was bei Druck auf die FAV Taste aktiviert werden soll:"
+msgstr "Wähle was bei Druck auf die FAV Taste aktiviert werden soll."
 
 msgid "Select what you want the Web button to activate:"
-msgstr "Wähle was bei Druck auf die Web Taste aktiviert werden soll:"
+msgstr "Wähle was bei Druck auf die Web Taste aktiviert werden soll."
 
 msgid "Select what you want the Plugin button to activate:"
-msgstr "Wähle was bei Druck auf die Plugin Taste aktiviert werden soll:"
+msgstr "Wähle was bei Druck auf die Plugin Taste aktiviert werden soll."
 
 msgid "Select the keymap that you want to use:"
-msgstr "Bitte wählen welche Keympa benutzt werden soll:"
+msgstr "Bitte wählen welche Keymap benutzt werden soll."
 
 msgid ""
 "Configure to keep focus on the current played service while entering the "
@@ -4320,6 +4455,7 @@ msgstr ""
 "Wenn 'Ja' eingestellt ist wird Infobar bei schnellem Vor- und Rücklauf in "
 "Medienwiedergabe angezeigt."
 
+#, python-format
 msgid ""
 "If the text is too long to be displayed on the front panel, it will be "
 "repeated (number of times):"
@@ -4632,6 +4768,27 @@ msgstr "Tastaturlayout"
 
 msgid "Keyboard setup"
 msgstr "Tastatur Einstellungen"
+
+msgid "HotKey Settings"
+msgstr "HotKey Tasten-Belegungen"
+
+msgid "Button setup for"
+msgstr "Button Einstellungen für"
+
+#, python-format
+msgid "Click on your remote on the button you want to change, then click on OK"
+msgstr ""
+"Klicke auf deiner Fernbedienung auf die gewünschte Taste und drücke dann auf "
+"OK"
+
+#, python-format
+msgid ""
+"Select the desired function and click on OK to assign it. Use CH+/- to "
+"toggle between the lists. Select an assigned function and click on OK to de-"
+"assign it."
+msgstr ""
+"Wähle die gewünschte Funktion und drücke auf OK zum anwenden. Benutze CH+/- "
+"zum wechseln der Listen. Wähle eine Funktion erneut zum abwählen."
 
 msgid "LAN adapter"
 msgstr "Netzwerkadapter"
@@ -5943,6 +6100,13 @@ msgstr "Picon Breite"
 msgid "Info icon width"
 msgstr "Info Icon Breite"
 
+msgid ""
+"Configure the minimum width before showing the 'i' icon, '0' is equal to not "
+"showing the icon at all."
+msgstr ""
+"Konfiguriere die minimale Breite des 'i' Symbols, '0' bedeuted es wird nicht "
+"angezeigt."
+
 msgid "Picture in graphics"
 msgstr "Bild in Grafik"
 
@@ -5951,7 +6115,7 @@ msgstr "Bildbetrachter"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
-msgstr "Letterbox"
+msgstr "Pillarbox"
 
 msgid "Pilot"
 msgstr "Pilot"
@@ -6483,6 +6647,7 @@ msgstr "RGB"
 msgid "Radio"
 msgstr "Radio"
 
+#, python-format
 msgid "Red long"
 msgstr "Rot lang"
 
@@ -6519,6 +6684,10 @@ msgstr "Fertig zur Installation von %s ?"
 #, python-format
 msgid "Ready to remove \"%s\" ?"
 msgstr "Fertig zum Löschen von \"%s\"?"
+
+#, python-format
+msgid "Ready to remove %s ?"
+msgstr "Wollen Sie - %s - deinstallieren?"
 
 msgid "Really close without saving settings?"
 msgstr "Wirklich ohne Sichern beenden?"
@@ -7206,7 +7375,16 @@ msgid "Select folders"
 msgstr "Wähle Verzeichnisse"
 
 msgid "Select how to activate the Quick EPG mode:"
-msgstr "Wähle die Taste die QuickEPG aktivieren soll:"
+msgstr "Wähle die Taste die QuickEPG aktivieren soll."
+
+msgid "Option to disable picons on the Infobar"
+msgstr "Sollen Picons in der Infobar gezeigt werden?"
+
+msgid "Fade the Infobar on hide"
+msgstr "Sanftes Ausblenden der Infobar?"
+
+msgid "Control the Infobar fading speed"
+msgstr "Geschwindigkeit der Infobar Ausblendung."
 
 msgid "Select if timeshift must continue when set to record."
 msgstr "Wähle ob TimeShift auch bei einer Aufnahme weiter gehen soll."
@@ -7221,8 +7399,8 @@ msgid ""
 "Select if you want to use the image coloured Buttons (set to 'no' if you "
 "want to use (Multi) Quick Button)."
 msgstr ""
-"Wählen Sie ob die Image Farbtasten benutzt werden sollen\n"
-"('Nein' wenn Sie (Multi-)QuickButton benutzen möchten)."
+"Sollen die Image Farbtasten benutzt werden sollen\n"
+"('Nein' wenn (Multi-)QuickButton benutzen wird)."
 
 msgid "Select input device"
 msgstr "Wähle Eingabegerät"
@@ -7479,6 +7657,7 @@ msgstr "Wähle die Sprungweite für die Seekbar."
 msgid "Set the name the recording will get."
 msgstr "Setze den Namen den die Aufnahme bekommen soll."
 
+#, python-format
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Wähle die Durchlaufgeschwindigkeit für Text im Display"
 
@@ -7703,6 +7882,12 @@ msgstr "Zeige Favoritenlisten-Auswahlmenü"
 msgid "Show channel numbers in channel selection"
 msgstr "Zeige Sendernummer in Senderauswahl"
 
+msgid "Hide number markers"
+msgstr "Verberge Zahlen Markierung"
+
+msgid "When enabled, number markers will be hidden."
+msgstr "Wenn aktiviert, werden Markierungen der Nummern nicht angezeigt."
+
 msgid "Show channel number in infobar"
 msgstr "Zeige Sendernummer in Infobar"
 
@@ -7799,6 +7984,20 @@ msgstr "Zeige Bildschirmschoner"
 
 msgid "Show second infobar"
 msgstr "Zeige SecondInfobar"
+
+msgid ""
+"Enable and set the duration of the second infobar (press OK twice) that may "
+"include more information on the current service."
+msgstr ""
+"Zweite Infoleiste mit Zusatzinformationen aktivieren und ihre Anzeigedauer "
+"bestimmen (OK zweimal drücken). Die Oberfläche muss dies unterstützen."
+
+msgid ""
+"Set the time to hide the second infobar. The bar also disappears on pressing "
+"'OK'."
+msgstr ""
+"Wähle die Anzeigedauer der 2. Infobar. Sie verschwindet auch beim druck auf "
+"die OK Taste."
 
 msgid "Show service type icons"
 msgstr "Zeige Sendertype Icon"
@@ -8343,6 +8542,12 @@ msgstr "Plugin Button Belegung"
 
 msgid "Web button mode"
 msgstr "Web Button Belegung"
+
+msgid "Home button mode"
+msgstr "Home Button Belegung"
+
+msgid "End button mode"
+msgstr "End Button Belegung"
 
 msgid "QuickEPG mode"
 msgstr "QuickEPG Modus"
@@ -9610,6 +9815,9 @@ msgstr "Benutze MHW EPG-Informationen benutzen wenn sie vorhanden sind."
 msgid "Use Netmed EPG information when it is available."
 msgstr "Benutze NetMed EPG-Informationen benutzen wenn sie vorhanden sind."
 
+msgid "Use Virgin EPG information when it is available."
+msgstr "Benutze Virgin EPG-Informationen benutzen wenn sie vorhanden sind."
+
 msgid "Use TV remote control"
 msgstr "Nutze TV-Fernbedienung"
 
@@ -10216,6 +10424,12 @@ msgstr "Wenn aktiviert kann der Mediaplayer mit Exit verlassen werden."
 msgid "Always hide infobar"
 msgstr "Infoleiste immer ausblenden"
 
+msgid "Enable infobar fade-out"
+msgstr "Aktiviere Infobar Ausblendung"
+
+msgid "Infobar fade-out speed"
+msgstr "Geschwindigkeit der Infobar Ausblendung"
+
 msgid ""
 "When enabled, measure power consumption to detect when the rotor stops "
 "turning (when supported by the tuner)."
@@ -10329,7 +10543,7 @@ msgstr ""
 "wird eine Standardansicht genommen."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
-msgstr "Wenn aktiviert PIG wird Live-TV zeigen wenn der Film beendet wurde."
+msgstr "Wenn aktiviert, wird Live-TV angezeigt nachdem der Film beendet wurde."
 
 msgid ""
 "When the content has an aspect ratio of 16:9, choose whether to scale/"
@@ -11402,6 +11616,21 @@ msgstr "Zum nächsten Titel springen"
 msgid "languages"
 msgstr "Sprachen"
 
+msgid "Languages"
+msgstr "Sprachen"
+
+msgid "Sources"
+msgstr "Quelldateien"
+
+msgid "Drivers"
+msgstr "Treiber"
+
+msgid "Security"
+msgstr "Sicherheit"
+
+msgid "Kernel Modules"
+msgstr "Kernel Module"
+
 msgid "leave movie player..."
 msgstr "Abspielmodus verlassen..."
 
@@ -11761,7 +11990,13 @@ msgid "service PIN"
 msgstr "Service PIN"
 
 msgid "set as startup service"
-msgstr "Als Startsender festlegen"
+msgstr "Als Startsender aus dem Deep-Standby festlegen"
+
+msgid "set as startup service from standby"
+msgstr "Als Startsender aus dem Standby festlegen"
+
+msgid "stop using as startup service from standby"
+msgstr "Nicht mehr als Startsender aus dem Standby benutzen"
 
 msgid "setup PIN"
 msgstr "Einstellungen PIN"
@@ -11902,7 +12137,7 @@ msgid "stereo"
 msgstr "Stereo"
 
 msgid "stop using as startup service"
-msgstr "Nicht mehr als Startsender benutzen"
+msgstr "Nicht mehr als Startsender aus dem Deep-Standby benutzen"
 
 msgid "switch to bookmarks"
 msgstr "gehe zu Lesezeichen"
@@ -12323,9 +12558,9 @@ msgstr "Mount Übersicht"
 msgid "UserManager"
 msgstr "Benutzerverwaltung"
 
-#
+#, python-format
 msgid "Network Neighbourhood"
-msgstr "Heimnetzgruppe"
+msgstr "Netzwerkumgebung"
 
 #
 msgid "Rescan"
@@ -12505,7 +12740,10 @@ msgstr "Geringe Framerate reduziert die CPU Belastung"
 
 # python\Screens\LanguageSelection.py
 msgid "Do you want to delete all other languages?"
-msgstr "Wollen Sie alle anderen Sprachen löschen?"
+msgstr "Alle anderen Sprachen löschen?"
+
+msgid " Except %s"
+msgstr " %s bleibt installiert."
 
 # python\Screens\LanguageSelection.py
 msgid "Do you want to delete %s language?"
@@ -12532,8 +12770,34 @@ msgstr "Event Anzeige"
 msgid "channel selection"
 msgstr "Kanalliste"
 
+msgid ""
+"Configure if and how wide columns will be shown in the channel selection "
+"list."
+msgstr ""
+"Hier können Sie einstellen, ob Spalten innerhalb der Kanalliste benutzt "
+"werden und wie breit die Spalten sein sollen."
+
+msgid ""
+"Configure if and how crypto icons will be shown in the channel selection "
+"list."
+msgstr "Konfigurieren ob und wie das Verschlüsselungsicon angezeigt wird."
+
 msgid "event info / channel selection"
 msgstr "Event Anzeige / Kanalliste"
+
+msgid ""
+"Set the scrolling speed of text on the front display, this is used by "
+"software renderer in some skins."
+msgstr ""
+"Setzen Sie die Scroll Geschwindigkeit für Text im Display, wird vom Software "
+"Renderer in einigen Skins genutzt."
+
+msgid ""
+"Set the delay time between repeated loops, this is used by software renderer "
+"in some skins."
+msgstr ""
+"Setzen Sie die Verzögerungszeit zwischen Scroll Durchläufen, wird vom "
+"Software Renderer in einigen Skins genutzt."
 
 msgid "Setup save / load EPG"
 msgstr "Einstellungen zum speichern / laden vom EPG"
@@ -12650,3 +12914,165 @@ msgstr ""
 
 msgid "Setup Usage"
 msgstr "Einstellungen"
+
+# hotkey translation
+#, python-format
+msgid "Deep-Standby"
+msgstr "Ausschalten - Deep Standby"
+
+#, python-format
+msgid "OK long"
+msgstr "OK lang"
+
+msgid "Exit long"
+msgstr "Exit lang"
+
+msgid "Up"
+msgstr "Hoch"
+
+msgid "Down"
+msgstr "Runter"
+
+msgid "Info (EPG) long"
+msgstr "Info (EPG) lang"
+
+msgid "Epg/Guide long"
+msgstr "Epg/Guide lang"
+
+msgid "F1 long"
+msgstr "F1 lang"
+
+msgid "F2 long"
+msgstr "F2 lang"
+
+msgid "F3 long"
+msgstr "F3 lang"
+
+msgid "F4 long"
+msgstr "F4 lang"
+
+msgid "Audio long"
+msgstr "Audio lang"
+
+msgid "Back long"
+msgstr "Back lang"
+
+msgid "Channel up"
+msgstr "Kanal hoch"
+
+msgid "Channel down"
+msgstr "Kanal runter"
+
+msgid "End long"
+msgstr "End lang"
+
+msgid "Favorites"
+msgstr "Favoriten"
+
+msgid "Favorites long"
+msgstr "Favoriten lang"
+
+msgid "Fastforward"
+msgstr "Schneller Vorlauf"
+
+msgid "File long"
+msgstr "File lang"
+
+msgid "Help long"
+msgstr "Help lang"
+
+msgid "HDMI Rx long"
+msgstr "HDMI Rx lang"
+
+msgid "Home long"
+msgstr "Home lang"
+
+msgid "Homepage/Portal long"
+msgstr "Homepage/Portal lang"
+
+msgid "List/Fav/PVR long"
+msgstr "List/Fav/PVR lang"
+
+msgid "Mark/Portal/Playlist long"
+msgstr "Mark/Portal/Playlist lang"
+
+msgid "Media long"
+msgstr "Media lang"
+
+msgid "Menu long"
+msgstr "Menu lang"
+
+msgid "Mute long"
+msgstr "Mute lang"
+
+msgid "Next long"
+msgstr "Next lang"
+
+msgid "Play long"
+msgstr "Play lang"
+
+msgid "Playlist long"
+msgstr "Playlist lang"
+
+msgid "Picture in Picture"
+msgstr "Bild im Bild"
+
+msgid "Picture in Picture long"
+msgstr "Bild im Bild lang"
+
+msgid "Prov/Fav long"
+msgstr "Prov/Fav lang"
+
+msgid "Power long"
+msgstr "Power lang"
+
+msgid "Power down"
+msgstr "Power losgelassen"
+
+msgid "Previous long"
+msgstr "Previous lang"
+
+msgid "Radio long"
+msgstr "Radio lang"
+
+msgid "Record long"
+msgstr "Aufnahme lang"
+
+msgid "Sat long"
+msgstr "Sat lang"
+
+msgid "Search/WEB long"
+msgstr "Search/WEB lang"
+
+msgid "Slow long"
+msgstr "Slow lang"
+
+msgid "Sleep long"
+msgstr "Sleep lang"
+
+msgid "Stop long"
+msgstr "Stop lang"
+
+msgid "Subtitle long"
+msgstr "Subtitle lang"
+
+msgid "Teletext long"
+msgstr "Teletext lang"
+
+msgid "Timer long"
+msgstr "Timer lang"
+
+msgid "Timeshift long"
+msgstr "Timeshift lang"
+
+msgid "TV long"
+msgstr "TV lang"
+
+msgid "UHF/Slow long"
+msgstr "UHF/Slow lang"
+
+msgid "V-Key long"
+msgstr "V-Key lang"
+
+msgid "Y-Tube long"
+msgstr "Y-Tube lang"

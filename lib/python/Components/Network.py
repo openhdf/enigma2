@@ -41,7 +41,7 @@ class Network:
 		return self.remoteRootFS
 
 	def isBlacklisted(self, iface):
-		return iface in ('lo', 'wifi0', 'wmaster0', 'sit0', 'tun0')
+		return iface in ('lo', 'wifi0', 'wmaster0', 'sit0', 'tun0', 'tap0')
 
 	def getInterfaces(self, callback = None):
 		self.configuredInterfaces = []
@@ -453,7 +453,10 @@ class Network:
 	def restartNetworkFinished(self,extra_args):
 		( callback ) = extra_args
 		if callback is not None:
-			callback(True)
+			try:
+				callback(True)
+			except:
+				pass
 
 	def getLinkState(self,iface,callback):
 		cmd = self.ethtool_bin + " " + iface

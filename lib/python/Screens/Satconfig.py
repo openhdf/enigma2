@@ -25,7 +25,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		nim = self.nimConfig
 
 		if mode == "single":
-			list.append(getConfigListEntry(_("Satellite"), nim.diseqcA))
+			self.singleSatEntry = getConfigListEntry(_("Satellite"), nim.diseqcA)
+			list.append(self.singleSatEntry)
+			if nim.diseqcA.value in ("360", "560"):
+				list.append(getConfigListEntry(_("Use circular LNB"), nim.simpleDiSEqCSetCircularLNB))
 			list.append(getConfigListEntry(_("Send DiSEqC"), nim.simpleSingleSendDiSEqC))
 		else:
 			list.append(getConfigListEntry(_("Port A"), nim.diseqcA))
@@ -76,7 +79,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createConfigMode(self):
 		if self.nim.isCompatible("DVB-S"):
-			choices = {"nothing": _("not configured"),
+			choices = {"nothing": _("Not configured"),
 						"simple": _("Simple"),
 						"advanced": _("Advanced")}
 			if len(nimmanager.canEqualTo(self.slotid)) > 0:
@@ -117,14 +120,12 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.showAdditionalMotorOptions = None
 		self.selectSatsEntry = None
 		self.advancedSelectSatsEntry = None
+		self.singleSatEntry = None
 
 		if self.nim.isMultiType():
-			try:
-				multiType = self.nimConfig.multiType
-				self.multiType = getConfigListEntry(_("Tuner type"), multiType)
-				self.list.append(self.multiType)
-			except:
-				self.multiType = None
+			multiType = self.nimConfig.multiType
+			self.multiType = getConfigListEntry(_("Tuner type"), multiType)
+			self.list.append(self.multiType)
 
 		if self.nim.isCompatible("DVB-S"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.configMode)
@@ -235,8 +236,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					 self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry,
 					 self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed,
 					 self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected,
-					 self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.commandOrder, self.showAdditionalMotorOptions,
-					 self.cableScanType, self.multiType)
+					 self.toneburst, self.committedDiseqcCommand, self.uncommittedDiseqcCommand, self.singleSatEntry,
+					 self.commandOrder, self.showAdditionalMotorOptions, self.cableScanType, self.multiType)
 		if self["config"].getCurrent() == self.multiType:
 			from Components.NimManager import InitNimManager
 			InitNimManager(nimmanager)
@@ -307,7 +308,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry("LOF/H", currLnb.lofh))
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 
-			if currLnb.lof.value == "unicable" or currLnb.lof.value == "jess":
+			if currLnb.lof.value == "unicable":
 				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration mode"), currLnb.unicable)
 				self.list.append(self.advancedUnicable)
 				if currLnb.unicable.value == "unicable_user":
@@ -556,10 +557,17 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.nimConfig = self.nim.config
 		self.createConfigMode()
 		self.createSetup()
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("Reception Settings"))
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
-		self.newConfig()
+		if self["config"].getCurrent() in (self.advancedSelectSatsEntry, self.selectSatsEntry):
+			self.keyOk()
+		else:
+			self.newConfig()
 
 	def setTextKeyBlue(self):
 		self["key_blue"].setText("")
@@ -568,7 +576,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
-		self.newConfig()
+		if self["config"].getCurrent() in (self.advancedSelectSatsEntry, self.selectSatsEntry):
+			self.keyOk()
+		else:
+			self.newConfig()
 
 	def handleKeyFileCallback(self, answer):
 		ConfigListScreen.handleKeyFileCallback(self, answer)
@@ -588,6 +599,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			for id in nimlist:
 				choices.append((str(id), nimmanager.getNimDescription(id)))
 			self.nimConfig.connectedTo.setChoices(choices)
+			# sanity check for empty sat list
+			if self.nimConfig.configMode.value != "satposdepends" and len(nimmanager.getSatListForNim(self.slotid)) < 1:
+				self.nimConfig.configMode.value = "nothing"
 		for x in self["config"].list:
 			x[1].save()
 
@@ -636,6 +650,7 @@ class NimSelection(Screen):
 			"red": self.close,
 			"green": self.okbuttonClick,
 		}, -2)
+		self.setTitle(_("Choose Tuner"))
 
 	def setResultClass(self):
 		self.resultclass = NimSetup
@@ -698,7 +713,7 @@ class NimSelection(Screen):
 						text = _("Advanced")
 				elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
 					if nimConfig.configMode.value == "nothing":
-						text = _("nothing connected")
+						text = _("Nothing connected")
 					elif nimConfig.configMode.value == "enabled":
 						text = _("Enabled")
 				if x.isMultiType():

@@ -45,6 +45,8 @@
 				<item weight="10" text="A/V settings" entryID="av_setup"><screen module="VideoMode" screen="VideoSetup" /></item>
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>
 				<item level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
+				<item level="0" entryID="hotkey_setup" text="HotKey Settings"><screen module="Hotkey" screen="HotkeySetup" /></item>
+				<!--item level="0" weight="15" text="HotKey Settings" entryID="hotkey_setup"><screen module="Hotkey" screen="HotkeySetup" /></item-->
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
 				<item level="0" entryID="channelselection_setup"><setup id="channelselection" /></item>
 				<menu level="0" text="Display" entryID="display_selection" requires="Display">

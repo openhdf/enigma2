@@ -304,7 +304,7 @@ void fbClass::blit()
 		{
 			perror("STMFBIO_BLT");
 		}
-	
+
 	}
 
 	if (ioctl(fbFd, STMFBIO_SYNC_BLITTER) < 0)

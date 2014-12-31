@@ -3,6 +3,7 @@ from datetime import datetime
 import xml.etree.cElementTree
 from os import path
 
+
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteLNBParameters as lnbParam, \
 	eDVBSatelliteDiseqcParameters as diseqcParam, \
@@ -520,7 +521,7 @@ class SecConfigure:
 		self.update()
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type=None, frontend_id=None, i2c=None, is_empty=False):
+	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type=None, frontend_id=None, i2c=None, is_empty=False, input_name = None):
 		if not multi_type: multi_type = {}
 		self.slot = slot
 
@@ -536,6 +537,7 @@ class NIM(object):
 		self.i2c = i2c
 		self.frontend_id = frontend_id
 		self.__is_empty = is_empty
+		self.input_name = input_name
 
 		self.compatible = {
 				None: (None,),
@@ -587,7 +589,10 @@ class NIM(object):
 		# get a friendly description for a slot name.
 		# we name them "Tuner A/B/C/...", because that's what's usually written on the back
 		# of the device.
-		return _("Tuner") + " " + chr(ord('A') + self.slot)
+		# for DM7080HD "Tuner A1/A2/B/C/..."
+
+		descr = _("Tuner ")
+		return descr + self.input_name
 
 	slot_name = property(getSlotName)
 
@@ -779,6 +784,8 @@ class NimManager:
 			elif line.startswith("Type:"):
 				entries[current_slot]["type"] = str(line[6:])
 				entries[current_slot]["isempty"] = False
+			elif line.strip().startswith("Input_Name:"):
+				entries[current_slot]["input_name"] = str(line.strip()[12:])
 			elif line.startswith("Name:"):
 				entries[current_slot]["name"] = str(line[6:])
 				entries[current_slot]["isempty"] = False
@@ -792,6 +799,8 @@ class NimManager:
 				input = int(line[len("Frontend_Device:") + 1:])
 				entries[current_slot]["frontend_device"] = input
 			elif line.startswith("Mode"):
+				# Mode 0: DVB-C
+				# Mode 1: DVB-T
 				# "Mode 1: DVB-T" -> ["Mode 1", "DVB-T"]
 				split = line.split(":")
 				split[1] = split[1].replace(' ','')
@@ -799,6 +808,9 @@ class NimManager:
 				modes = entries[current_slot].get("multi_type", {})
 				modes[split2[1]] = split[1]
 				entries[current_slot]["multi_type"] = modes
+			elif entries[current_slot]["name"] == "DVB-T2/C USB-Stick": # workaround dvbsky hybrit usb stick
+				entries[current_slot]["multi_type"] = {'0': 'DVB-T'}
+				entries[current_slot]["multi_type"] = {'1': 'DVB-C'}
 			elif line.startswith("I2C_Device:"):
 				input = int(line[len("I2C_Device:") + 1:])
 				entries[current_slot]["i2c"] = input
@@ -825,7 +837,9 @@ class NimManager:
 				entry["frontend_device"] = entry["internally_connectable"] = None
 			if not (entry.has_key("multi_type")):
 				entry["multi_type"] = {}
-			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"], i2c = entry["i2c"], is_empty = entry["isempty"]))
+			if not (entry.has_key("input_name")):
+				entry["input_name"] = chr(ord('A') + id)
+			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"], i2c = entry["i2c"], is_empty = entry["isempty"], input_name = entry.get("input_name", None)))
 
 	def hasNimType(self, chktype):
 		for slot in self.nim_slots:
@@ -844,6 +858,10 @@ class NimManager:
 
 	def getNimName(self, slotid):
 		return self.nim_slots[slotid].description
+
+	def getNimSlotInputName(self, slotid):
+		# returns just "A", "B", ...
+		return self.nim_slots[slotid].slot_input_name
 
 	def getNim(self, slotid):
 		return self.nim_slots[slotid]
@@ -1478,6 +1496,16 @@ def InitNimManager(nimmgr):
 			f.write(configElement.value)
 			f.close()
 
+	def connectedToChanged(slot_id, nimmgr, configElement):
+		configMode = nimmgr.getNimConfig(slot_id).configMode
+		if configMode.value == 'loopthrough':
+			internally_connectable = nimmgr.nimInternallyConnectableTo(slot_id)
+			dest_slot = configElement.value
+			if internally_connectable is not None and int(internally_connectable) == int(dest_slot):
+				configMode.choices.updateItemDescription(configMode.index, _("internally loopthrough to"))
+			else:
+				configMode.choices.updateItemDescription(configMode.index, _("externally loopthrough to"))
+
 	def createSatConfig(nim, x, empty_slots):
 		try:
 			nim.toneAmplitude
@@ -1585,6 +1613,8 @@ def InitNimManager(nimmgr):
 			tmp.slot_id = x
 			tmp.addNotifier(configModeChanged, initial_call = False)
 			nim.configMode = tmp
+			nim.configMode.connectedToChanged = boundFunction(connectedToChanged, x, nimmgr)
+			nim.connectedTo.addNotifier(boundFunction(connectedToChanged, x, nimmgr), initial_call = False)
 		elif slot.isCompatible("DVB-C"):
 			nim.configMode = ConfigSelection(
 				choices = {
@@ -1609,6 +1639,20 @@ def InitNimManager(nimmgr):
 #			assert False
 
 	nimmgr.sec = SecConfigure(nimmgr)
+
+	def SetTuner():
+		for x in range(0,4):
+			tunername = chr(ord('A') + x)
+			print "[NimManager] Set Tuner to %s" % tunername
+			if path.exists("/proc/stb/tsmux/input%d" % x):
+				f = open("/proc/stb/tsmux/input%d" % x, "w")
+				f.write(tunername)
+				f.close()
+
+			if path.exists("/proc/stb/tsmux/ci%d_input" % x):
+				f = open("/proc/stb/tsmux/ci%d_input" % x, "w")
+				f.write(tunername)
+				f.close()
 
 	def tunerTypeChanged(nimmgr, configElement):
 		fe_id = configElement.fe_id
@@ -1647,7 +1691,7 @@ def InitNimManager(nimmgr):
 		x = slot.slot
 		nim = config.Nims[x]
 		addMultiType = False
-		print"[NimManager] slot name=%s" % slot.description
+
 		try:
 			nim.multiType
 		except:
@@ -1655,7 +1699,6 @@ def InitNimManager(nimmgr):
 				print"[NimManager] Sundtek SkyTV Ultimate III detected, multiType = False"
 				addMultiType = False
 			else:
-				print"[NimManager] multiType = True"
 				addMultiType = True
 		if slot.isMultiType() and addMultiType:
 			typeList = []
@@ -1666,6 +1709,10 @@ def InitNimManager(nimmgr):
 
 			nim.multiType.fe_id = x - empty_slots
 			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))
+
+		if x == 0 and slot.description == 'BCM4505': # workaround when using a single tuner instead of multi tuner on DM7080 or DM820
+			SetTuner()
+		print"[NimManager] slotname = %s, slotdescription = %s, multitype = %s" % (slot.input_name, slot.description,(slot.isMultiType() and addMultiType))
 
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
