@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "30.12.2014"
+updateversion = "02.12.2014"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -237,14 +237,14 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
 	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
 	hotkeyFunctions.append((_("Language"), "Module/Screens.LanguageSelection/LanguageSelection", "Setup"))
-	if os.path.isdir("/etc/ppanels"):
-		for x in [x for x in os.listdir("/etc/ppanels") if x.endswith(".xml")]:
+	if os.path.isdir("/etc/ppanel"):
+		for x in [x for x in os.listdir("/etc/ppanel") if x.endswith(".xml")]:
 			x = x[:-4]
-			ButtonSetupFunctions.append((_("PPanel") + " " + x, "PPanel/" + x, "PPanels"))
-	if os.path.isdir("/usr/script"):
-		for x in [x for x in os.listdir("/usr/script") if x.endswith(".sh")]:
+			hotkeyFunctions.append((_("PPanel") + " " + x, "PPanel/" + x, "PPanels"))
+	if os.path.isdir("/usr/scripts"):
+		for x in [x for x in os.listdir("/usr/scripts") if x.endswith(".sh")]:
 			x = x[:-3]
-			ButtonSetupFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
+			hotkeyFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
 	return hotkeyFunctions
 
 class HotkeySetup(Screen):
