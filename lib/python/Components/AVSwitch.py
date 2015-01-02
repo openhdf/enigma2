@@ -61,7 +61,9 @@ class AVSwitch:
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	# modes["DVI-PC"] = ["PC"]
 
-	if about.getChipSetString() in ('7358', '7356', '7424', '7425', '7241'):
+	if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime") : config.av.edid_override = True
+
+	if (about.getChipSetString() in ('7241', '7358', '7362', '7346', '7356', '7424', '7425', '7435', 'pnx8493', '7162', '7111'))  or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
 		modes["HDMI"] = ["720p", "1080p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i"}
 	else:
@@ -69,15 +71,15 @@ class AVSwitch:
 		widescreen_modes = {"720p", "1080i"}
 
 	modes["YPbPr"] = modes["HDMI"]
-	if getBrandOEM() == 'vuplus':
+	if getBoxType().startswith('vu') or (getBoxType() in ('dm500hd', 'dm800')):
 		modes["Scart-YPbPr"] = modes["HDMI"]
 
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
 	# 	print "remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
-	if modes.has_key("YPbPr") and getBoxType() in ('et4x00', 'et7000', 'et7500', 'et8500', 'xp1000', 'tm2t', 'tmsingle', 'odimm7', 'vusolo2', 'tmnano', 'tmnano2super','iqonios300hd', 'e3hd', 'dm500hdv2', 'dm500hd', 'dm800', 'ebox7358', 'eboxlumi', 'ebox5100','ixusszero', 'optimussos1', 'enfinity', 'uniboxhd1', 'optimussos'):
+	if modes.has_key("YPbPr") and getBoxType() in ('force2solid', 'zgemmash1', 'zgemmas2s', 'mago', 'enibox','mutant1100', 'et4x00', 'et7500', 'et7000', 'et8500', 'xp1000mk', 'xp1000max', 'xp1000plus', 'sf8', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano', 'iqonios300hd', 'iqonios300hdv2', 'classm', 'axodin', 'axodinc', 'genius', 'evo', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'dm500hdv2', 'dm500hd', 'dm800', 'mixosf7', 'mixoslumi', 'mixosf5mini', 'gi9196lite', 'ixusszero', 'optimussos1', 'enfinity', 'marvel1', 'bre2ze', 'sezam1000hd', 'mbmini', 'atemio5x00', 'xpeedlx1', 'xpeedlx2', 'vusolose', 'gbipbox', 'formuler3', 'optimussos3plus', 'force1plus', 'vuzero') or (about.getModelString() == 'ini-3000'):
 		del modes["YPbPr"]
-	if modes.has_key("Scart") and getBoxType() in ('gbquad', 'et5x00', 'ixussone', 'et6x00', 'tmnano', 'tmnano2t', 'tmnano2super', 'optimussos'):
+	if modes.has_key("Scart") and getBoxType() in ('force2solid'):
 		del modes["Scart"]
 
 	def __init__(self):
@@ -120,6 +122,11 @@ class AVSwitch:
 	def isModeAvailable(self, port, mode, rate):
 		rate = self.rates[mode][rate]
 		for mode in rate.values():
+			if port == "DVI":
+				if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime"):
+					if mode not in self.modes_preferred and not config.av.edid_override.value:
+						print "no, not preferred"
+						return False
 			if mode not in self.modes_available:
 				return False
 		return True
@@ -143,6 +150,7 @@ class AVSwitch:
 		if mode_60 is None or force == 50:
 			mode_60 = mode_50
 
+		mode_etc = None
 		if os.path.exists('/proc/stb/video/videomode_50hz') and getBoxType() not in ('gb800solo', 'gb800se', 'gb800ue'):
 			f = open("/proc/stb/video/videomode_50hz", "w")
 			f.write(mode_50)
@@ -155,12 +163,19 @@ class AVSwitch:
 			except IOError:
 				print "setting videomode failed."
 		try:
-			set_mode = modes.get(int(rate[:2]))
+			mode_etc = modes.get(int(rate[:2]))
+			f = open("/proc/stb/video/videomode", "w")
+			f.write(mode_etc)
+			f.close()
 		except: # not support 50Hz, 60Hz for 1080p
-			set_mode = mode_50
-		f = open("/proc/stb/video/videomode", "w")
-		f.write(set_mode)
-		f.close()
+			try:
+				# fallback if no possibility to setup 50/60 hz mode
+				f = open("/proc/stb/video/videomode", "w")
+				f.write(mode_50)
+				f.close()
+			except IOError:
+				print "setting videomode failed."
+
 		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 		self.setColorFormat(map[config.av.colorformat.value])
 
@@ -262,10 +277,11 @@ class AVSwitch:
 			wss = "auto(4:3_off)"
 		else:
 			wss = "auto"
-		print "[VideoMode] setting wss: %s" % wss
-		f = open("/proc/stb/denc/0/wss", "w")
-		f.write(wss)
-		f.close()
+		if os.path.exists("/proc/stb/denc/0/wss"):
+			print "[VideoMode] setting wss: %s" % wss
+			f = open("/proc/stb/denc/0/wss", "w")
+			f.write(wss)
+			f.close()
 
 	def setPolicy43(self, cfgelement):
 		print "[VideoMode] setting policy: %s" % cfgelement.value
@@ -426,7 +442,12 @@ def InitAVSwitch():
 		if config.av.videoport and config.av.videoport.value in ("YPbPr", "Scart-YPbPr") or getMachineBuild() == 'inihdx':
 			iAVSwitch.setColorFormat(3)
 		else:
-			map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
+			if getBoxType() == 'et6x00':
+				map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}	
+			elif getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus' or getBoxType().startswith('et'):
+				map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
+			else:
+				map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 			iAVSwitch.setColorFormat(map[configElement.value])
 	config.av.colorformat.addNotifier(setColorFormat)
 
@@ -435,7 +456,12 @@ def InitAVSwitch():
 		iAVSwitch.setAspectRatio(map[configElement.value])
 	
 	iAVSwitch.setInput("ENCODER") # init on startup
-	SystemInfo["ScartSwitch"] = eAVSwitch.getInstance().haveScartSwitch()
+	if (getBoxType() in ('gbquad', 'gbquadplus', 'et5x00', 'ixussone', 'ixusszero', 'axodin', 'axodinc', 'starsatlx', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue'  )) or about.getModelString() == 'et6000':
+		detected = False
+	else:
+		detected = eAVSwitch.getInstance().haveScartSwitch()
+	
+	SystemInfo["ScartSwitch"] = detected
 
 	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
