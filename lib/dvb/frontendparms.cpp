@@ -555,9 +555,9 @@ int eDVBTerrestrialTransponderData::getPlpId() const
 {
 	if (originalValues) return transponderParameters.plpid;
 
-#if defined DTV_STREAM_ID
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 9
 	return getProperty(DTV_STREAM_ID);
-#elif defined DTV_DVBT2_PLP_ID
+#elif DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 3
 	return getProperty(DTV_DVBT2_PLP_ID);
 #else
 	return -1;
