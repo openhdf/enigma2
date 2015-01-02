@@ -68,7 +68,6 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gui/ewidgetanimation.h>
 #include <lib/gui/eslider.h>
 #include <lib/gui/epositiongauge.h>
-#include <lib/gui/egauge.h>
 #include <lib/gui/evideo.h>
 #include <lib/gui/ecanvas.h>
 #include <lib/python/connections.h>
@@ -94,6 +93,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/fastscan.h>
 #include <lib/dvb/cablescan.h>
+#include <lib/dvb/encoder.h>
 #include <lib/components/scan.h>
 #include <lib/components/file_eraser.h>
 #include <lib/components/tuxtxtapp.h>
@@ -210,7 +210,6 @@ typedef long time_t;
 %include <lib/gui/ewindow.h>
 %include <lib/gui/eslider.h>
 %include <lib/gui/epositiongauge.h>
-%include <lib/gui/egauge.h>
 %include <lib/gui/ewidgetdesktop.h>
 %include <lib/gui/elistbox.h>
 %include <lib/gui/elistboxcontent.h>
@@ -397,6 +396,16 @@ void setEnableTtCachingOnOff(int onoff)
 }
 %}
 
+int getUsedEncoderCount();
+%{
+int getUsedEncoderCount()
+{
+	eEncoder *encoders = eEncoder::getInstance();
+	if (encoders) return encoders->getUsedEncoderCount();
+	return 0;
+}
+%}
+
 /************** temp *****************/
 
 	/* need a better place for this, i agree. */
@@ -409,6 +418,8 @@ extern void addFont(const char *filename, const char *alias, int scale_factor, i
 extern const char *getEnigmaVersionString();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
+extern void setAnimation_current(int a);
+extern void setAnimation_speed(int speed);
 %}
 
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
@@ -419,6 +430,8 @@ extern eApplication *getApplication();
 extern const char *getEnigmaVersionString();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
+extern void setAnimation_current(int a);
+extern void setAnimation_speed(int speed);
 
 %include <lib/python/python_console.i>
 %include <lib/python/python_base.i>
