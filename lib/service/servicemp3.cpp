@@ -54,12 +54,12 @@ typedef enum
 // eServiceFactoryMP3
 
 /*
-* gstreamer suffers from a bug causing sparse streams to loose sync, after pause/resume / skip
-* see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
-* As a workaround, we run the subsink in sync=false mode
-*/
+ * gstreamer suffers from a bug causing sparse streams to loose sync, after pause/resume / skip
+ * see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
+ * As a workaround, we run the subsink in sync=false mode
+ */
 #if GST_VERSION_MAJOR >= 1
-#undef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
+#undef GSTREAMER_SUBTITLE_SYNC_MODE_BUG 
 #else
 #define GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 #endif
@@ -1097,6 +1097,7 @@ int eServiceMP3::getInfo(int w)
 	case sTagCRC:
 		tag = "has-crc";
 		break;
+	case sBuffer: return m_bufferInfo.bufferPercent;
 	default:
 		return resNA;
 	}
@@ -1699,7 +1700,13 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			if ( gv_image )
 			{
 				GstBuffer *buf_image;
-				buf_image = gst_value_get_buffer (gv_image);
+#if GST_VERSION_MAJOR < 1
+				buf_image = gst_value_get_buffer(gv_image);
+#else
+				GstSample *sample;
+				sample = (GstSample *)g_value_get_boxed(gv_image);
+				buf_image = gst_sample_get_buffer(sample);
+#endif
 				int fd = open("/tmp/.id3coverart", O_CREAT|O_WRONLY|O_TRUNC, 0644);
 				if (fd >= 0)
 				{

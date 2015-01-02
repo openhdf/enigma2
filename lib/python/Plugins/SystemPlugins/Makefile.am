@@ -9,10 +9,10 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 
 if HAVE_LIBVUGLES2
 SUBDIRS += AnimationSetup
+endif
 
 if DREAMBOX
 SUBDIRS += FrontprocessorUpgrade NFIFlash
 endif
 
-install_PYTHON =	\
-	__init__.py
+install_PYTHON = __init__.py
