@@ -19,9 +19,9 @@ int fileExist(const char* filename){
 	struct stat buffer;
 	int exist = stat(filename,&buffer);
 	if(exist == 0)
-		return 1;
+	    return 1;
 	else // -1
-		return 0;
+	    return 0;
 }
 
 void noRTC()
@@ -37,6 +37,7 @@ void noRTC()
 			strncpy(mybox, buf, 20);
 			fclose(fb);
 			strtok(mybox, "\n");
+			eDebug("[eDVBLocalTimerHandler] Boxtype = [%s]", mybox);
 		}
 	}
 }
@@ -213,7 +214,7 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 			if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
 				m_time_ready = false; //sorry no RTC
 			else
-				m_time_ready = true;
+			    m_time_ready = true;
 			/*emit*/ m_timeUpdated();
 		}
 	}
@@ -279,7 +280,7 @@ void eDVBLocalTimeHandler::setUseDVBTime(bool b)
 				eDebug("[eDVBLocalTimeHandler] invalid system time, refuse to disable transponder time sync");
 				return;
 			}
-		}
+		}	
 		if (m_use_dvb_time) {
 			eDebug("[eDVBLocalTimeHandler] disable sync local time with transponder time!");
 			std::map<iDVBChannel*, channel_data>::iterator it =

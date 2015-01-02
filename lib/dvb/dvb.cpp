@@ -116,6 +116,20 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = DM800SE;
 	else if (!strncmp(tmp, "dm7020hd\n", rd))
 		m_boxtype = DM7020HD;
+	else if (!strncmp(tmp, "dm7080\n", rd))
+		m_boxtype = DM7080;
+	else if (!strncmp(tmp, "dm820\n", rd))
+		m_boxtype = DM820;
+	else if (!strncmp(tmp, "Gigablue\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "ebox5000\n", rd))
+		m_boxtype = DM800;
+	else if (!strncmp(tmp, "ebox5100\n", rd))
+		m_boxtype = DM800;
+	else if (!strncmp(tmp, "eboxlumi\n", rd))
+		m_boxtype = DM800;		
+	else if (!strncmp(tmp, "ebox7358\n", rd))
+		m_boxtype = DM800SE;		
 	else {
 		eDebug("boxtype detection via /proc/stb/info not possible... use fallback via demux count!\n");
 		if (m_demux.size() == 3)
@@ -500,32 +514,6 @@ void *eDVBUsbAdapter::vtunerPump()
 #define DEMUX_BUFFER_SIZE (8 * ((188 / 4) * 4096)) /* 1.5MB */
 	ioctl(demuxFd, DMX_SET_BUFFER_SIZE, DEMUX_BUFFER_SIZE);
 
-#if DVB_API_VERSION < 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR < 5
-	/*
-	 * HACK: several stb's with older DVB API versions do not handle the
-	 * constant starting / stopping of PES filters on their vtuner interface
-	 * very well, eventually they will stop feeding any data.
-	 * In order to work around this problem, we always start a filter, making sure
-	 * 'pidcount' never drops to zero, so the filter is never stopped.
-	 *
-	 * Note that this isn't allowed for recent DVB API versions, because they
-	 * refuse to start filters while the frontend is sleeping (e.g. not tuned).
-	 */
-	{
-		struct dmx_pes_filter_params filter;
-		filter.input = DMX_IN_FRONTEND;
-		filter.flags = 0;
-		filter.pid = 0;
-		filter.output = DMX_OUT_TSDEMUX_TAP;
-		filter.pes_type = DMX_PES_OTHER;
-		if (ioctl(demuxFd, DMX_SET_PES_FILTER, &filter) >= 0
-				&& ioctl(demuxFd, DMX_START) >= 0)
-		{
-			pidcount = 1;
-		}
-	}
-#endif
-
 	while (running)
 	{
 		fd_set rset, xset;
@@ -606,6 +594,10 @@ void *eDVBUsbAdapter::vtunerPump()
 			if (FD_ISSET(demuxFd, &rset))
 			{
 				ssize_t size = singleRead(demuxFd, buffer, sizeof(buffer));
+
+				if(size < 188)
+					continue;
+
 				if (size > 0 && writeAll(vtunerFd, buffer, size) <= 0)
 				{
 					break;
@@ -772,7 +764,7 @@ bool eDVBResourceManager::frontendIsCompatible(int index, const char *type)
 			}
 			else if (!strcmp(type, "DVB-C"))
 			{
-#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
+#if defined SYS_DVBC_ANNEX_A
 				return i->m_frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_A, false) || i->m_frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_C, false);
 #else
 				return i->m_frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_AC, false);
@@ -807,7 +799,7 @@ void eDVBResourceManager::setFrontendType(int index, const char *type)
 			}
 			else if (!strcmp(type, "DVB-C"))
 			{
-#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
+#if defined SYS_DVBC_ANNEX_A
 				whitelist.push_back(SYS_DVBC_ANNEX_A);
 				whitelist.push_back(SYS_DVBC_ANNEX_C);
 #else
@@ -935,6 +927,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 	ePtr<eDVBRegisteredDemux> unused;
 
+#if not defined(__sh__)
 	if (m_boxtype == DM7025) // ATI
 	{
 		/* FIXME: hardware demux policy */
@@ -1008,6 +1001,52 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			}
 		}
 	}
+#else // we use our own algo for demux detection
+	int n=0;
+	for (; i != m_demux.end(); ++i, ++n)
+	{
+		if(fe)
+		{
+			if (!i->m_inuse)
+			{
+				if (!unused)
+				{
+					// take the first unused
+					//eDebug("\nallocate demux b = %d\n",n);
+					unused = i;
+				}
+			}
+			else if (i->m_adapter == fe->m_adapter && i->m_demux->getSource() == fe->m_frontend->getDVBID())
+			{
+				// take the demux allocated to the same
+				// frontend,  just create a new reference
+				demux = new eDVBAllocatedDemux(i);
+				//eDebug("\nallocate demux b = %d\n",n);
+				return 0;
+			}
+		}
+		else if(n == (m_demux.size() - 1))
+		{
+			// Always use the last demux for PVR
+			// it is assumed that the last demux is not
+			// attached to a frontend. That is, there
+			// should be one instance of dvr & demux
+			// devices more than of frontend devices.
+			// Otherwise, playback and timeshift might
+			// interfere recording.
+			if (i->m_inuse)
+			{
+				// just create a new reference
+				demux = new eDVBAllocatedDemux(i);
+				//eDebug("\nallocate demux c = %d\n",n);
+				return 0;
+			}
+			unused = i;
+			//eDebug("\nallocate demux d = %d\n", n);
+			break;
+		}
+	}
+#endif
 
 	if (unused)
 	{
@@ -2118,6 +2157,12 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 			return -ENODEV;
 		}
 #else
+#if defined(__sh__) // our pvr device is called dvr
+		char dvrDev[128];
+		int dvrIndex = m_mgr->m_adapter.begin()->getNumDemux() - 1;
+		sprintf(dvrDev, "/dev/dvb/adapter0/dvr%d", dvrIndex);
+		m_pvr_fd_dst = open(dvrDev, O_WRONLY);
+#else
 		ePtr<eDVBAllocatedDemux> &demux = m_demux ? m_demux : m_decoder_demux;
 		if (demux)
 		{
@@ -2133,6 +2178,7 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 			eDebug("no demux allocated yet.. so its not possible to open the dvr device!!");
 			return -ENODEV;
 		}
+#endif
 #endif
 	}
 
