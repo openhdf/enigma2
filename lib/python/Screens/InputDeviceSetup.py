@@ -1,4 +1,4 @@
-from Screens.Screen import Screen
+from Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Components.InputDevice import iInputDevices, iRcTypeControl
@@ -10,6 +10,8 @@ from Components.ActionMap import ActionMap, HelpableActionMap
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from boxbranding import getBoxType, getMachineBrand, getMachineName
+
+boxtype = getBoxType()
 
 class InputDeviceSelection(Screen, HelpableScreen):
 	def __init__(self, session):
@@ -256,23 +258,23 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 
 class RemoteControlType(Screen, ConfigListScreen):
-	odinRemote = "OdinM9"
-	if getBoxType() == "maram9":
-		odinRemote = "MaraM9"
 	
 	rcList = [
 			("0", _("Default")),
-			("3", _(odinRemote)),
+			("3", _("MaraM9")),
 			("4", _("DMM normal")),
+			("5", _("et9000/et9100")),
 			("6", _("DMM advanced")),
 			("7", _("et5000/6000")),
 			("8", _("VU+")),
 			("9", _("et8000/et10000")),
-			("11", _("et9x00/6500")),
+			("11", _("et9200/9500/6500")),
 			("13", _("et4000")),
 			("14", _("XP1000")),
+			("16", _("HD1100/et7x00")),
+			("17", _("XP3000")),
 			("18", _("F1/F3")),
-			("16", _("et7x00"))
+			("19", _("HD2400"))
 			]
 
 	defaultRcList = [
@@ -280,15 +282,20 @@ class RemoteControlType(Screen, ConfigListScreen):
 			("et5000", 7),
 			("et6000", 7),
 			("et6500", 11),
+			("et7x00",16),
 			("et8000", 9),
-			("et9000", 11),
+			("et9000", 5),
+			("et9100", 5),
 			("et9200", 11),
 			("et9500", 11),
 			("et10000", 9),
-			("formuler1", 18),
-			("formuler3", 18),
+			("hd1100",16),
+
+			("hd2400",19),
+			("formuler1",18),
+			("formuler3",18),
 			("xp1000", 14),
-			("et7x00", 16)
+			("xp3000", 17)
 			]
 
 	def __init__(self, session):

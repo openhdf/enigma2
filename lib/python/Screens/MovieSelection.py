@@ -53,7 +53,7 @@ config.movielist.play_audio_internal = ConfigYesNo(default=True)
 config.movielist.settings_per_directory = ConfigYesNo(default=True)
 config.movielist.root = ConfigSelection(default="/media", choices=["/","/media","/media/hdd","/media/hdd/movie"])
 config.movielist.hide_extensions = ConfigYesNo(default=False)
-config.movielist.stop_service = ConfigYesNo(default=False)
+config.movielist.stop_service = ConfigYesNo(default=True)
 
 userDefinedButtons = None
 last_selected_dest = []
@@ -320,7 +320,7 @@ class MovieContextMenu(Screen):
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self['footnote'] = Label("")
-		self["description"] = StaticText()
+		self["status"] = StaticText()
 
 		self["actions"] = ActionMap(["OkCancelActions", 'ColorActions'],
 			{
@@ -846,9 +846,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		return canMove(item)
 
 	def can_delete(self, item):
-		if not item:
+		try:
+			if not item:
+				return False
+			return canDelete(item) or isTrashFolder(item[0])
+		except:
+
 			return False
-		return canDelete(item) or isTrashFolder(item[0])
 
 	def can_default(self, item):
 		# returns whether item is a regular file
@@ -996,6 +1000,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if not playInBackground:
 			print "Not playing anything in background"
 			return
+		if not playInBackground:
+			print "Not playing anything in foreground"
+			return
+		current = self.getCurrent()
 		self.session.nav.stopService()
 		self.list.playInBackground = None
 		self.list.playInForeground = None
@@ -1948,8 +1956,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.session.open(NetworkSetup.NetworkMountsMenu)
 
 	def showDeviceMounts(self):
-		import Plugins.SystemPlugins.ViX.MountManager
-		self.session.open(Plugins.SystemPlugins.ViX.MountManager.VIXDevicesPanel)
+		from Plugins.SystemPlugins.DeviceManager.plugin import *
+		self.session.open(HddSetup)
 
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:
