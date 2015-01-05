@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-01-04 15:38+0100\n"
+"PO-Revision-Date: 2015-01-05 16:52+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1232,7 +1232,8 @@ msgid "Are you sure you want to exit this wizard?"
 msgstr "Sicher, dass dieser Assistent verlassen werden soll?"
 
 msgid "Are you sure you want to reload the EPG data from:\n"
-msgstr "Bist Du sicher das die EPG Daten von diesem Ort lesen werden sollen:\n"
+msgstr ""
+"Bist Du sicher, dass die EPG Daten von diesem Ort neu gelesen werden sollen:\n"
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
@@ -4078,7 +4079,7 @@ msgid "aks the user"
 msgstr "Nachfragen"
 
 msgid "Graphical InfobarEPG settings"
-msgstr "Grafischer InfoBar-EPG Einstellungen"
+msgstr "Grafischer-InfoBarEPG-Einstellungen"
 
 msgid "Graphical Multi EPG"
 msgstr "Grafischer Multi-EPG"
@@ -4537,13 +4538,13 @@ msgid "InfoBar EPG"
 msgstr "Infobar EPG"
 
 msgid "InfoBar EPG mode"
-msgstr "Infobar EPG Einstellungen"
+msgstr "Infobar-EPG-Einstellungen"
 
 msgid "Infobar EPG"
 msgstr "Infobar EPG"
 
 msgid "InfobarEPG settings"
-msgstr "Infobar EPG Einstellungen"
+msgstr "Infobar-EPG-Einstellungen"
 
 msgid "Information"
 msgstr "Informationen"
@@ -5284,6 +5285,15 @@ msgstr "Drehen nach Westen..."
 
 msgid "Multi EPG"
 msgstr "Multi-EPG"
+
+msgid "Load/Save/Delete"
+msgstr "Laden/Speichern/Löschen"
+
+msgid "Delete EPG"
+msgstr "EPG Löschen"
+
+msgid "Are you sure you want to delete the EPG data from:\n"
+msgstr "Soll wirklich diese EPG Datei gelöscht werden:\n"
 
 msgid "MultiEPG settings"
 msgstr "MultiEPG Einstellungen"
