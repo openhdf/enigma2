@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-01-04 13:21+0100\n"
+"PO-Revision-Date: 2015-01-04 15:38+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -600,7 +600,7 @@ msgid "3D Surround"
 msgstr "3D Surround Ton"
 
 msgid "3D setup"
-msgstr "3D Einstellungen"
+msgstr "3D-Einstellungen"
 
 msgid "3X"
 msgstr "3X"
@@ -821,7 +821,7 @@ msgstr ""
 "Programm beenden und erneut versuchen?\n"
 
 msgid "A/V settings"
-msgstr "A/V Einstellungen"
+msgstr "Audio/Video-Einstellungen"
 
 msgid "AA"
 msgstr "AA"
@@ -1835,7 +1835,7 @@ msgid "Channel selection"
 msgstr "Senderliste"
 
 msgid "Channel selection settings"
-msgstr "Senderlisten Einstellungen"
+msgstr "Senderlisten-Einstellungen"
 
 msgid "Channel:"
 msgstr "Sender:"
@@ -3023,7 +3023,7 @@ msgid "Display and userinterface"
 msgstr "Anzeige und Benutzeroberfläche"
 
 msgid "Userinterface Settings"
-msgstr "Benutzeroberfläche Einstellungen"
+msgstr "Benutzeroberfläche-Einstellungen"
 
 msgid "Display message before playing next movie"
 msgstr "Nachricht vor Wiedergabe des nächsten Films"
@@ -4111,10 +4111,10 @@ msgid "HDMI"
 msgstr "HDMI"
 
 msgid "HDMI CEC"
-msgstr "Einstellungen HDMI CEC"
+msgstr "HDMI-CEC-Einstellungen"
 
 msgid "HDMI CEC Setup"
-msgstr "HDMI CEC Einstellungen"
+msgstr "HDMI-CEC-Einstellungen"
 
 msgid "Handle deepstandby events"
 msgstr "Deep-Standby-Ereignisse verwalten "
@@ -4585,7 +4585,7 @@ msgid "Input device setup"
 msgstr "Eingabegeräte Einstellungen"
 
 msgid "Input devices"
-msgstr "Eingabegeräte/Fernbedienung"
+msgstr "Eingabegeräte / Fernbedienung"
 
 msgid "Install"
 msgstr "Installiere"
@@ -4757,7 +4757,7 @@ msgid "Keyboard setup"
 msgstr "Tastatur Einstellungen"
 
 msgid "HotKey Settings"
-msgstr "HotKey Tasten-Belegungen"
+msgstr "HotKey-Tasten-Belegungen"
 
 msgid "Button setup for"
 msgstr "Button Einstellungen für"
@@ -4811,7 +4811,7 @@ msgid "Label"
 msgstr ""
 
 msgid "Language"
-msgstr "Sprache"
+msgstr "Sprachauswahl"
 
 msgid "Language selection"
 msgstr "Sprachauswahl"
@@ -4993,7 +4993,7 @@ msgid "LogManager"
 msgstr "Log Verwaltung"
 
 msgid "Logs"
-msgstr "Logs"
+msgstr "Logs-Einstellungen"
 
 msgid "Logs location"
 msgstr "Speicherort für Logs"
@@ -5359,7 +5359,7 @@ msgid "Netmask:"
 msgstr "Netzmaske:"
 
 msgid "Network"
-msgstr "Netzwerk"
+msgstr "Netzwerk-Einstellungen"
 
 msgid "Network ID"
 msgstr "Netzwerk ID"
@@ -6407,7 +6407,7 @@ msgid "Position of finished Timers in Timerlist"
 msgstr "Position beendeter Timer in der Timerliste"
 
 msgid "Position setup"
-msgstr "Positions Einstellungen"
+msgstr "Positions-Einstellungen"
 
 msgid "Position stored at index"
 msgstr "Position bei Index gespeichert"
@@ -6727,7 +6727,7 @@ msgid "Recording in progress"
 msgstr "Aktive Aufnahmen"
 
 msgid "Recording settings"
-msgstr "Aufnahme Einstellungen"
+msgstr "Aufnahme-Einstellungen"
 
 msgid "Recording type"
 msgstr "Aufnahmetyp"
@@ -8167,10 +8167,10 @@ msgid "Size: "
 msgstr "Größe:"
 
 msgid "Skin Setting"
-msgstr "Skin Einstellungen"
+msgstr "Skin-Einstellungen"
 
 msgid "Skin setup"
-msgstr "Skin Einstellungen"
+msgstr "Skin-Einstellungen"
 
 msgid "Skins"
 msgstr "Skins"
@@ -8213,7 +8213,7 @@ msgid "Social/Political/Economics"
 msgstr "Sozial/Politik/Wirtschaft"
 
 msgid "SoftCam / CI"
-msgstr "CI / Softcam Einstellungen"
+msgstr "CI / Softcam-Einstellungen"
 
 msgid "Softcam setings"
 msgstr "Softcam Einstellungen"
@@ -8240,7 +8240,7 @@ msgid "Software update"
 msgstr "Software aktualisieren"
 
 msgid "Software Update Settings"
-msgstr "Einstellungen Software Update"
+msgstr "Software-Update-Einstellungen"
 
 msgid "Softwaremanager information"
 msgstr "Information Softwareverwaltung"
@@ -8575,7 +8575,7 @@ msgid "Subtitle selection..."
 msgstr "Untertitel Auswahl..."
 
 msgid "Subtitle settings"
-msgstr "Untertitel Einstellungen"
+msgstr "Untertitel-Einstellungen"
 
 msgid "Subtitles"
 msgstr "Untertitel"
@@ -9394,7 +9394,7 @@ msgid "Time scale"
 msgstr "Zeitraum"
 
 msgid "Time settings"
-msgstr "Zeit Einstellungen"
+msgstr "Zeit-Einstellungen"
 
 msgid "Time to execute command or script"
 msgstr "Zeit um Kommando oder Script auszuführen"
@@ -9477,7 +9477,7 @@ msgid "Timeshift saved to your harddisk!"
 msgstr "TimeShift auf Festplatte gesichert!"
 
 msgid "Timeshift settings"
-msgstr "TimeShift Einstellungen"
+msgstr "TimeShift-Einstellungen"
 
 msgid "Timeshift buffer limit [in hours]"
 msgstr "Timeshift-speichern (in Stunden)"
@@ -10003,7 +10003,10 @@ msgid "ViX EPG"
 msgstr "ViX EPG"
 
 msgid "Video Enhancement Settings"
-msgstr "Bildoptimierung Einstellungen"
+msgstr "Bildoptimierungs-Einstellungen"
+
+msgid "Record Infobar"
+msgstr "Aufnahme Infobar-Einstellungen"
 
 msgid "Video PID"
 msgstr "Video PID"
@@ -10044,8 +10047,11 @@ msgstr "Erlaube nicht unterstützte Modi"
 msgid "Video output"
 msgstr "Video Ausgang"
 
+msgid "Audio Sync Einstellungen"
+msgstr "Audio-Sync-Einstellungen"
+
 msgid "Video setup"
-msgstr "Bild Einstellungen"
+msgstr "Bild-Einstellungen"
 
 msgid "Video wizard"
 msgstr "Bild Assistent"
@@ -11985,6 +11991,9 @@ msgstr "Zeige DVD Player im Hauptmenü"
 
 msgid "Show DVD-Player in Mainmenu ?"
 msgstr "Zeige DVD-Player im Hauptmenü ?"
+
+msgid "DVD-Player Setup"
+msgstr "DVD-Player-Einstellungen"
 
 msgid "show EPG..."
 msgstr "Zeige EPG..."
