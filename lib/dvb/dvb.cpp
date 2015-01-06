@@ -116,20 +116,15 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = DM800SE;
 	else if (!strncmp(tmp, "dm7020hd\n", rd))
 		m_boxtype = DM7020HD;
-	else if (!strncmp(tmp, "dm7080\n", rd))
-		m_boxtype = DM7080;
-	else if (!strncmp(tmp, "dm820\n", rd))
-		m_boxtype = DM820;
-	else if (!strncmp(tmp, "Gigablue\n", rd))
-		m_boxtype = GIGABLUE;
-	else if (!strncmp(tmp, "ebox5000\n", rd))
-		m_boxtype = DM800;
-	else if (!strncmp(tmp, "ebox5100\n", rd))
-		m_boxtype = DM800;
-	else if (!strncmp(tmp, "eboxlumi\n", rd))
-		m_boxtype = DM800;		
-	else if (!strncmp(tmp, "ebox7358\n", rd))
-		m_boxtype = DM800SE;		
+	else {
+		eDebug("boxtype detection via /proc/stb/info not possible... use fallback via demux count!\n");
+		if (m_demux.size() == 3)
+			m_boxtype = DM800;
+		else if (m_demux.size() < 5)
+			m_boxtype = DM7025;
+		else
+			m_boxtype = DM8000;
+	}		
 	else {
 		eDebug("boxtype detection via /proc/stb/info not possible... use fallback via demux count!\n");
 		if (m_demux.size() == 3)
