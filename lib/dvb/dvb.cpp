@@ -124,15 +124,6 @@ eDVBResourceManager::eDVBResourceManager()
 			m_boxtype = DM7025;
 		else
 			m_boxtype = DM8000;
-	}		
-	else {
-		eDebug("boxtype detection via /proc/stb/info not possible... use fallback via demux count!\n");
-		if (m_demux.size() == 3)
-			m_boxtype = DM800;
-		else if (m_demux.size() < 5)
-			m_boxtype = DM7025;
-		else
-			m_boxtype = DM8000;
 	}
 
 	eDebug("found %zd adapter, %zd frontends(%zd sim) and %zd demux, boxtype %d",
@@ -374,7 +365,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	}
 
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/demux0", nr);
-	demuxFd = open(filename, O_RDONLY | O_NONBLOCK | O_CLOEXEC);
+	demuxFd = open(filename, O_RDONLY | O_NONBLOCK);
 	if (demuxFd < 0)
 	{
 		goto error;
@@ -384,7 +375,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	{
 		snprintf(filename, sizeof(filename), "/dev/misc/vtuner%d", vtunerid);
 		if (::access(filename, F_OK) < 0) break;
-		vtunerFd = open(filename, O_RDWR | O_CLOEXEC);
+		vtunerFd = open(filename, O_RDWR);
 		if (vtunerFd < 0)
 		{
 			vtunerid++;
