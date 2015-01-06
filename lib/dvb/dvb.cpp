@@ -115,7 +115,21 @@ eDVBResourceManager::eDVBResourceManager()
 	else if (!strncmp(tmp, "dm800se\n", rd))
 		m_boxtype = DM800SE;
 	else if (!strncmp(tmp, "dm7020hd\n", rd))
-		m_boxtype = DM7020HD;		
+		m_boxtype = DM7020HD;
+	else if (!strncmp(tmp, "dm7080\n", rd))
+		m_boxtype = DM7080;
+	else if (!strncmp(tmp, "dm820\n", rd))
+		m_boxtype = DM820;
+	else if (!strncmp(tmp, "Gigablue\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "ebox5000\n", rd))
+		m_boxtype = DM800;
+	else if (!strncmp(tmp, "ebox5100\n", rd))
+		m_boxtype = DM800;
+	else if (!strncmp(tmp, "eboxlumi\n", rd))
+		m_boxtype = DM800;		
+	else if (!strncmp(tmp, "ebox7358\n", rd))
+		m_boxtype = DM800SE;		
 	else {
 		eDebug("boxtype detection via /proc/stb/info not possible... use fallback via demux count!\n");
 		if (m_demux.size() == 3)
@@ -365,7 +379,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	}
 
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/demux0", nr);
-	demuxFd = open(filename, O_RDONLY | O_NONBLOCK);
+	demuxFd = open(filename, O_RDONLY | O_NONBLOCK | O_CLOEXEC);
 	if (demuxFd < 0)
 	{
 		goto error;
@@ -375,7 +389,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	{
 		snprintf(filename, sizeof(filename), "/dev/misc/vtuner%d", vtunerid);
 		if (::access(filename, F_OK) < 0) break;
-		vtunerFd = open(filename, O_RDWR);
+		vtunerFd = open(filename, O_RDWR | O_CLOEXEC);
 		if (vtunerFd < 0)
 		{
 			vtunerid++;
