@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "04.12.2014"
+updateversion = "09.12.2014"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -126,8 +126,10 @@ def getHotkeys():
 	(_("UHF/Slow long"), "slow_long", ""),
 	(_("V-Key"), "vkey", "Plugins/Extensions/EnhancedMovieCenter/2"),
 	(_("V-Key long"), "vkey_long", ""),
-	(_("Y-Tube"), "www", ""),
-	(_("Y-Tube long"), "www_long", ""),
+	(_("Y-Tube/WWW"), "www", ""),
+	(_("Y-Tube/WWW long"), "www_long", ""),
+	(_("Directory "), "directory", ""),
+	(_("Directory long"), "directory_long", ""),
 	(_("Zoom"), "ZoomInOut", "InfobarGenerics/ZoomInOut"),]
 
 config.misc.hotkey = ConfigSubsection()
@@ -245,6 +247,8 @@ def getHotkeyFunctions():
 		for x in [x for x in os.listdir("/usr/scripts") if x.endswith(".sh")]:
 			x = x[:-3]
 			hotkeyFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
+	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+		hotkeyFunctions.append((_("EnhancedMovieCenter"), "EMC/", "Plugins"))
 	return hotkeyFunctions
 
 class HotkeySetup(Screen):
@@ -628,3 +632,10 @@ class InfoBarHotkey():
 				if os.path.isfile(command) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
 					from Plugins.Extensions.PPanel.ppanel import Execute
 					self.session.open(Execute, selected[1] + " shellscript", None, command)
+			elif selected[0] == "EMC":
+				try:
+					from Plugins.Extensions.EnhancedMovieCenter.plugin import showMoviesNew
+					from Screens.InfoBar import InfoBar
+					open(showMoviesNew(InfoBar.instance))
+				except Exception as e:
+					print('[EMCPlayer] showMovies exception:\n' + str(e))

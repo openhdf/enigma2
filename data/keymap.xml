@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 28.12.2014" -->
+	<!-- "HDF Default Keymap 09.01.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -248,7 +248,7 @@
 		<!--key id="KEY_HOMEPAGE" mapto="showMEDIAPORTAL" flags="b" /-->
 		<!--key id="KEY_HOMEPAGE" mapto="showMEDIAPORTAL" flags="l" /-->
 		<!--key id="KEY_BOOKMARKS" mapto="showEMC" flags="mr" / -->
-		<key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="mm" />			
+		<!--key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="mm" /-->
 	</map>
 
 	<map context="2ndInfobarActions">
@@ -1018,5 +1018,7 @@
 		<key id="KEY_SAT" mapto="sat_long" flags="l" />
 		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
 		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
+        <key id="KEY_DIRECTORY" mapto="directory" flags="b"/>
+        <key id="KEY_DIRECTORY" mapto="directory_long" flags="l"/>
 	</map>
 </keymap>

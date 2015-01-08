@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Neutrino Keymap 28.12.2014" -->
+	<!-- "HDF Neutrino Keymap 09.01.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -877,5 +877,7 @@
 		<key id="KEY_SAT" mapto="sat_long" flags="l" />
 		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
 		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
+        <key id="KEY_DIRECTORY" mapto="directory" flags="b"/>
+        <key id="KEY_DIRECTORY" mapto="directory_long" flags="l"/>
 	</map>
 </keymap>
