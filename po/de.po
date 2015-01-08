@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-01-08 21:18+0100\n"
+"PO-Revision-Date: 2015-01-08 21:28+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -6417,7 +6417,7 @@ msgid "Position of finished Timers in Timerlist"
 msgstr "Position beendeter Timer in der Timerliste"
 
 msgid "Position setup"
-msgstr "Positions-Einstellungen"
+msgstr "Position/Transparenz-Einstellungen"
 
 msgid "Position stored at index"
 msgstr "Position bei Index gespeichert"
@@ -8601,6 +8601,9 @@ msgstr "Zeige Plugins"
 
 msgid "HbbTV Red-Button"
 msgstr "HbbTV Red-Button"
+
+msgid "Web browser base visibility"
+msgstr "Sichtbarkeit Webbrowser"
 
 msgid "show EventInfoPlugins"
 msgstr "Zeige Event-Infos"
