@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-01-11 10:30+0100\n"
+"PO-Revision-Date: 2015-01-11 14:26+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -8607,6 +8607,9 @@ msgstr "HbbTV Red-Button"
 
 msgid "Web browser base visibility"
 msgstr "Sichtbarkeit Webbrowser"
+
+msgid "Base transparency for OpenOpera web browser"
+msgstr "Setzt die Transparenz für den OpenOpera Webbrowser"
 
 msgid "show EventInfoPlugins"
 msgstr "Zeige Event-Infos"
