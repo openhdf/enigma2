@@ -50,6 +50,14 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
 boxtype = getBoxType()
 brandoem = getBrandOEM()
 
+if config.softwareupdate.disableupdates.value:
+	if os.path.exists("/var/lib/opkg/status"):
+		os.system("mv /var/lib/opkg/status /var/lib/opkg/.status")
+
+if not config.softwareupdate.disableupdates.value:
+	if os.path.exists("/var/lib/opkg/.status"):
+		os.system("mv /var/lib/opkg/.status /var/lib/opkg/status")
+
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
 	from Plugins.Extensions.dFlash.plugin import dFlash
 	DFLASH = True
@@ -1483,15 +1491,25 @@ class UpdatePlugin(Screen):
 
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
 
-		self.slider = Slider(0, 4)
-		self["slider"] = self.slider
-		self.activityslider = Slider(0, 100)
-		self["activityslider"] = self.activityslider
-		self.status = StaticText(_("Please wait..."))
-		self["status"] = self.status
-		self.package = StaticText(_("Package list update"))
-		self["package"] = self.package
-		self.oktext = _("Press OK on your remote control to continue.")
+		if config.softwareupdate.disableupdates.value:
+			self.slider = Slider(0, 4)
+			self["slider"] = self.slider
+			self.activityslider = Slider(100, 100)
+			self["activityslider"] = self.activityslider
+			self.status = StaticText(_("Press Exit to close this screen"))
+			self["status"] = self.status
+			self.package = StaticText(_("Updates are currently disabled..."))
+			self["package"] = self.package
+		else:
+			self.slider = Slider(0, 4)
+			self["slider"] = self.slider
+			self.activityslider = Slider(0, 100)
+			self["activityslider"] = self.activityslider
+			self.status = StaticText(_("Please wait..."))
+			self["status"] = self.status
+			self.package = StaticText(_("Package list update"))
+			self["package"] = self.package
+			self.oktext = _("Press OK on your remote control to continue.")
 
 		self.packages = 0
 		self.error = 0
@@ -1622,7 +1640,9 @@ class UpdatePlugin(Screen):
 		self.activityslider.setValue(self.activity)
 
 	def ipkgCallback(self, event, param):
-		if event == IpkgComponent.EVENT_DOWNLOAD:
+		if config.softwareupdate.disableupdates.value:
+			pass
+		elif event == IpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))
 		elif event == IpkgComponent.EVENT_UPGRADE:
 			if self.sliderPackages.has_key(param):
