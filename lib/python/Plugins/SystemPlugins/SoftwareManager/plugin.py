@@ -52,11 +52,17 @@ brandoem = getBrandOEM()
 
 if config.softwareupdate.disableupdates.value:
 	if os.path.exists("/var/lib/opkg/status"):
-		os.system("mv /var/lib/opkg/status /var/lib/opkg/.status")
+		os.system("mkdir /var/lib/.opkg")
+		os.system("mkdir /etc/.opkg")
+		os.system("mv /var/lib/opkg/* /var/lib/.opkg/")
+		os.system("mv /etc/opkg/* /etc/.opkg/")
 
 if not config.softwareupdate.disableupdates.value:
-	if os.path.exists("/var/lib/opkg/.status"):
-		os.system("mv /var/lib/opkg/.status /var/lib/opkg/status")
+	if os.path.exists("/var/lib/.opkg/status"):
+		os.system("mv /var/lib/.opkg/* /var/lib/opkg/")
+		os.system("mv /etc/.opkg/* /etc/opkg/")
+		os.system("rmdir /var/lib/.opkg")
+		os.system("rmdir /etc/.opkg")
 
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
 	from Plugins.Extensions.dFlash.plugin import dFlash
