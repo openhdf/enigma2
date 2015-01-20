@@ -2,7 +2,7 @@ import os
 import struct
 import random
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceCenter, eTimer, getDesktop
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceCenter, eTimer, getDesktop, loadPNG, BT_SCALE, BT_KEEP_ASPECT_RATIO
 
 from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
@@ -11,6 +11,8 @@ from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
 from Screens.LocationBox import defaultInhibitDirs
+from ServiceReference import ServiceReference
+from Components.Renderer.Picon import getPiconName
 import NavigationInstance
 import skin
 
@@ -20,6 +22,7 @@ DVD_EXTENSIONS = ('.iso', '.img')
 IMAGE_EXTENSIONS = frozenset((".jpg", ".png", ".gif", ".bmp"))
 MOVIE_EXTENSIONS = frozenset((".mpg", ".vob", ".wav", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flv", ".mp4", ".mov", ".wmv", ".m2ts"))
 KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(IMAGE_EXTENSIONS, DVD_EXTENSIONS, AUDIO_EXTENSIONS)
+RECORD_EXTENSIONS = (".ts")
 
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
@@ -41,12 +44,15 @@ class StubInfo:
 	def isPlayable(self):
 		return True
 	def getInfo(self, serviceref, w):
-		if w == iServiceInformation.sTimeCreate:
-			return os.stat(serviceref.getPath()).st_ctime
-		if w == iServiceInformation.sFileSize:
-			return os.stat(serviceref.getPath()).st_size
-		if w == iServiceInformation.sDescription:
-			return serviceref.getPath()
+		try:
+			if w == iServiceInformation.sTimeCreate:
+				return os.stat(serviceref.getPath()).st_ctime
+			if w == iServiceInformation.sFileSize:
+				return os.stat(serviceref.getPath()).st_size
+			if w == iServiceInformation.sDescription:
+				return serviceref.getPath()
+		except:
+			pass
 		return 0
 	def getInfoString(self, serviceref, w):
 		return ''
@@ -272,9 +278,13 @@ class MovieList(GUIComponent):
 
 	def setItemsPerPage(self):
 		if self.listHeight > 0:
-			itemHeight = self.listHeight / config.movielist.itemsperpage.value
+			ext = config.movielist.useextlist.value
+			if ext != '0':
+				itemHeight = (self.listHeight / config.movielist.itemsperpage.value) *2
+			else:
+				itemHeight = self.listHeight / config.movielist.itemsperpage.value
 		else:
-			itemHeight = 25 # some default (270/5)
+			itemHeight = 30 # some default (270/5)
 		self.itemHeight = itemHeight
 		self.l.setItemHeight(itemHeight)
 		self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
@@ -292,6 +302,7 @@ class MovieList(GUIComponent):
 
 	def buildMovieListEntry(self, serviceref, info, begin, data):
 		switch = config.usage.show_icons_in_movielist.value
+		ext = config.movielist.useextlist.value
 		width = self.l.getItemSize().width()
 		pathName = serviceref.getPath()
 		res = [ None ]
@@ -320,8 +331,8 @@ class MovieList(GUIComponent):
 						return res
 					else:
 						res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,2), size=(iconSize,24), png=self.iconTrash))
-						res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
-						res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trashcan")))
+						res.append(MultiContentEntryText(pos=(iconSize+10, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
+						res.append(MultiContentEntryText(pos=(width-150, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trashcan")))
 						return res
 			if self.screenwidth and self.screenwidth == 1920:
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(3,5), size=(iconSize,iconSize), png=self.iconFolder))
@@ -330,8 +341,8 @@ class MovieList(GUIComponent):
 				return res
 			else:
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,2), size=(iconSize,iconSize), png=self.iconFolder))
-				res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
-				res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
+				res.append(MultiContentEntryText(pos=(iconSize+10, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+				res.append(MultiContentEntryText(pos=(width-150, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
 				return res
 		if (data == -1) or (data is None):
 			data = MovieListData()
@@ -424,17 +435,75 @@ class MovieList(GUIComponent):
 		if begin > 0:
 			begin_string = ', '.join(FuzzyTime(begin, inPast = True))
 
-		ih = self.itemHeight
+		if ext != '0':
+			ih = self.itemHeight / 2
+		else:
+			ih = self.itemHeight
 		lenSize = ih * 3 # 25 -> 75
 		dateSize = ih * 145 / 25   # 25 -> 145
-		if self.screenwidth and self.screenwidth == 1920:
-			res.append(MultiContentEntryText(pos=(iconSize+20, 5), size=(width-iconSize-dateSize, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
-			res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
-			return res
+		if ext != '0':
+			getrec = info.getName(serviceref)
+			fileName, fileExtension = os.path.splitext(getrec)
+			desc = None
+			picon = None
+			service = None
+			try:
+				serviceHandler = eServiceCenter.getInstance()
+				info = serviceHandler.info(serviceref)
+				desc = info.getInfoString(serviceref, iServiceInformation.sDescription)		# get description
+				ref = info.getInfoString(serviceref, iServiceInformation.sServiceref)		# get reference
+				service = ServiceReference(ref).getServiceName()				# get service name
+			except Exception, e:
+				print('[MovieList] load extended infos get failed: ', e)
+			if ext == '2':
+				try:
+					picon = getPiconName(ref)
+					picon = loadPNG(picon)
+				except Exception, e:
+					print('[MovieList] load picon get failed: ', e)
+
+			# TODO: make it shorter in future, this is the first way to get the extendedList
+			if fileExtension in RECORD_EXTENSIONS:
+				if self.screenwidth and self.screenwidth == 1920:
+					if ext == '1':
+						res.append(MultiContentEntryText(pos=(iconSize+20, 5), size=(width - iconSize - dateSize - dateSize / 2 - 15, ih), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
+						res.append(MultiContentEntryText(pos=(width - dateSize - dateSize / 2 - 5, 1), size=(dateSize + dateSize / 2, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=service))
+					if ext == '2':
+						piconSize = ih * 2
+						res.append(MultiContentEntryText(pos=(iconSize+20, 5), size=(width - iconSize - dateSize - 15, ih+2), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
+						res.append(MultiContentEntryPixmapAlphaTest(pos=(width - 48 - 5, 1), size=(piconSize, ih-2), png=picon, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO))
+					res.append(MultiContentEntryText(pos=(iconSize+20, ih), size=(width - iconSize - dateSize - 15, ih), font=1, flags=RT_HALIGN_LEFT, text=desc))
+					res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
+					return res
+				else:
+					if ext == '1':
+						res.append(MultiContentEntryText(pos=(iconSize + 8, 0), size=(width - iconSize - dateSize - dateSize / 2 - 15, ih), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
+						res.append(MultiContentEntryText(pos=(width - dateSize - dateSize / 2 - 5, 1), size=(dateSize + dateSize / 2, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=service))
+					if ext == '2':
+						piconSize = ih * 2
+						res.append(MultiContentEntryText(pos=(iconSize + 8, 0), size=(width - iconSize - dateSize - 15, ih+2), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
+						res.append(MultiContentEntryPixmapAlphaTest(pos=(width - 48 - 5, 1), size=(piconSize, ih-2), png=picon, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO))
+					res.append(MultiContentEntryText(pos=(iconSize + 8, ih), size=(width - iconSize - dateSize - 15, ih), font=1, flags=RT_HALIGN_LEFT, text=desc))
+					res.append(MultiContentEntryText(pos=(width - dateSize - 5, ih), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=begin_string))
+					return res
+			else:
+				if self.screenwidth and self.screenwidth == 1920:
+					res.append(MultiContentEntryText(pos=(iconSize+20, 5), size=(width-iconSize-dateSize-15, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+					res.append(MultiContentEntryText(pos=(width-dateSize, ih), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
+					return res
+				else:
+					res.append(MultiContentEntryText(pos=(iconSize+8, 0), size=(width-iconSize-dateSize-15, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+					res.append(MultiContentEntryText(pos=(width-dateSize-5, ih), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
+					return res
 		else:
-			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-iconSize-dateSize, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
-			res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
-			return res
+			if self.screenwidth and self.screenwidth == 1920:
+				res.append(MultiContentEntryText(pos=(iconSize+20, 5), size=(width-iconSize-dateSize-15, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+				res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
+				return res
+			else:
+				res.append(MultiContentEntryText(pos=(iconSize+8, 0), size=(width-iconSize-dateSize-15, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
+				res.append(MultiContentEntryText(pos=(width-dateSize-5, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
+				return res
 
 	def moveToFirstMovie(self):
 		if self.firstFileEntry < len(self.list):
