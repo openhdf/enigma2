@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-01-18 20:04+0100\n"
+"PO-Revision-Date: 2015-01-20 04:48+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -9432,6 +9432,18 @@ msgstr "Stromaufnahme messen"
 
 msgid "Use slim screen"
 msgstr "Benutze minimale Darstellung"
+
+msgid "Use extended List"
+msgstr "Benutze erweiterte Darstellung"
+
+msgid "Use the extended List"
+msgstr "Benutze die erweiterte Darstellung"
+
+msgid "Update delay for Events in List"
+msgstr "Verzögerung für die Aktualisierung der Liste"
+
+msgid "Update delay for Events in List. Scrolling in List is faster with higher delay, specialy on big Lists !"
+msgstr "Verzögerung für die Aktualisierung der Einträge in der Liste. Das Scrollen ist schneller mit einem höheren Wert"
 
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr "Benutze die Tasten Links/Rechts der Fernbedienungen um die Größe der GUI einzustellen. Links und OSD wird kleiner, Rechts und OSD wird größer."
