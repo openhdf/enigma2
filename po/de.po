@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-01-25 14:00+0100\n"
+"PO-Revision-Date: 2015-01-25 16:28+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2909,6 +2909,12 @@ msgstr "Display-Einstellungen"
 
 msgid "Display Settings"
 msgstr "Display-Einstellungen"
+
+msgid "Clone TV screen to LCD"
+msgstr "Spiegel TV Bild zum LCD"
+
+msgid "Shows live tv or informations on LCD."
+msgstr "Zeige aktuelles TV oder Information auf den LCD."
 
 msgid "Display the EIT now/next eventdata in infobar."
 msgstr "EIT jetzt/demnächst in Infobar anzeigen"

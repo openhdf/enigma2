@@ -12,12 +12,18 @@
 #endif
 #include <lib/gdi/glcddc.h>
 
-eDBoxLCD *eDBoxLCD::instance;
+eLCD *eLCD::instance;
 
 eLCD::eLCD()
 {
 	lcdfd = -1;
 	locked=0;
+	instance = this;
+}
+
+eLCD *eLCD::getInstance()
+{
+	return instance;
 }
 
 void eLCD::setSize(int xres, int yres, int bpp)
@@ -31,7 +37,8 @@ void eLCD::setSize(int xres, int yres, int bpp)
 
 eLCD::~eLCD()
 {
-	delete [] _buffer;
+	if (_buffer)
+		delete [] _buffer;
 }
 
 int eLCD::lock()
@@ -65,7 +72,7 @@ eDBoxLCD::eDBoxLCD()
 	int xres=132, yres=64, bpp=8;
 	flipped = false;
 	inverted = 0;
-	is_oled = 0;
+	lcd_type = 0;
 	FILE *boxtype_file;
 	char boxtype_name[20];
 	FILE *fp_file;
@@ -76,11 +83,11 @@ eDBoxLCD::eDBoxLCD()
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
 		
-		if((strcmp(boxtype_name, "xp1000s\n") == 0) || (strcmp(boxtype_name, "odinm7\n") == 0) || (strcmp(boxtype_name, "ew7358\n") == 0) || (strcmp(boxtype_name, "formuler3\n") == 0))
+		if((strcmp(boxtype_name, "xp1000s\n") == 0) || (strcmp(boxtype_name, "odinm7\n") == 0) || (strcmp(boxtype_name, "ew7358\n") == 0) || (strcmp(boxtype_name, "ew7362\n") == 0) || (strcmp(boxtype_name, "formuler3\n") == 0) || (strcmp(boxtype_name, "hd1100\n") == 0) || (strcmp(boxtype_name, "vp7358ci\n") == 0) || (strcmp(boxtype_name, "vg2000\n") == 0) || (strcmp(boxtype_name, "vg5000\n") == 0) || (strcmp(boxtype_name, "sh1\n") == 0))
 		{
 			lcdfd = open("/dev/null", O_RDWR);
 		}
-		else if((strcmp(boxtype_name, "ini-1000de\n") == 0))
+		else if((strcmp(boxtype_name, "ini-1000de\n") == 0) || (strcmp(boxtype_name, "ini-2000am\n") == 0))
 		{
 				if((fp_file = fopen("/proc/stb/fp/version", "r")) != NULL)
 				{
@@ -96,6 +103,22 @@ eDBoxLCD::eDBoxLCD()
 					lcdfd = open("/dev/dbox/oled0", O_RDWR);
 				}
 		}
+		else if((strcmp(boxtype_name, "spark\n") == 0))
+		{
+				if((fp_file = fopen("/proc/stb/fp/version", "r")) != NULL)
+				{
+					fgets(fp_version, sizeof(fp_version), fp_file);
+					fclose(fp_file);
+				}
+				if(strcmp(fp_version, "4\n") == 0)
+				{
+					lcdfd = open("/dev/null", O_RDWR);
+				}
+				else
+				{
+					lcdfd = open("/dev/dbox/oled0", O_RDWR);
+				}
+		}		
 		else
 		{
 			lcdfd = open("/dev/dbox/oled0", O_RDWR);
@@ -109,12 +132,12 @@ eDBoxLCD::eDBoxLCD()
 	if (lcdfd < 0)
 	{
 		if (!access("/proc/stb/lcd/oled_brightness", W_OK) || !access("/proc/stb/fp/oled_brightness", W_OK) )
-			is_oled = 2;
+			lcd_type = 2;
 		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
 	} else
 	{
 		eDebug("found OLED display!");
-		is_oled = 1;
+		lcd_type = 1;
 	}
 
 	if (lcdfd < 0)
@@ -152,7 +175,7 @@ eDBoxLCD::eDBoxLCD()
 					fclose(f);
 				}
 			}
-			is_oled = 3;
+			lcd_type = 3;
 		}
 	}
 #endif
@@ -266,17 +289,12 @@ eDBoxLCD::~eDBoxLCD()
 	}
 }
 
-eDBoxLCD *eDBoxLCD::getInstance()
-{
-	return instance;
-}
-
 void eDBoxLCD::update()
 {
 #ifndef HAVE_TEXTLCD
 	if (lcdfd >= 0)
 	{
-		if (is_oled == 0 || is_oled == 2)
+		if (lcd_type == 0 || lcd_type == 2)
 		{
 			unsigned char raw[132*8];
 			int x, y, yy;
@@ -303,7 +321,7 @@ void eDBoxLCD::update()
 			}
 			write(lcdfd, raw, 132*8);
 		}
-		else if (is_oled == 3)
+		else if (lcd_type == 3)
 		{
 			/* for now, only support flipping / inverting for 8bpp displays */
 			if ((flipped || inverted) && _stride == res.width())
@@ -347,7 +365,7 @@ void eDBoxLCD::update()
 				}
 			}
 		}
-		else /* is_oled == 1 */
+		else /* lcd_type == 1 */
 		{
 			unsigned char raw[64*64];
 			int x, y;
