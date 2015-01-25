@@ -40,6 +40,7 @@ SystemInfo["Fan"] = fileExists("/proc/stb/fp/fan")
 SystemInfo["FanPWM"] = SystemInfo["Fan"] and fileExists("/proc/stb/fp/fan_pwm")
 SystemInfo["StandbyLED"] = fileExists("/proc/stb/power/standbyled")
 SystemInfo["StandbyPowerLed"] = fileExists("/proc/stb/power/standbyled")
+SystemInfo["FBLCDDisplay"] = fileCheck("/proc/stb/fb/sd_detach")
 SystemInfo["lxbuttons"] = getBrandOEM() == "ini"
 SystemInfo["homebutton"] = getBoxType().startswith('ixuss')
 SystemInfo["endbutton"] = getBoxType().startswith('ixuss')

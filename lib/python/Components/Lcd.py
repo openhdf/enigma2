@@ -59,11 +59,6 @@ class IconCheckPoller:
 			devices = bus.devices
 			for dev in devices:
 				if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor > 0:
-					# print ' '
-					# print "Device:", dev.filename
-					# print "  Number:", dev.deviceClass
-					# print "  idVendor: %d (0x%04x)" % (dev.idVendor, dev.idVendor)
-					# print "  idProduct: %d (0x%04x)" % (dev.idProduct, dev.idProduct)
 					USBState = 1
 		if fileExists("/proc/stb/lcd/symbol_usb") and config.lcd.mode.value == '1':
 			f = open("/proc/stb/lcd/symbol_usb", "w")
@@ -159,6 +154,12 @@ class LCD:
 			f = open("/proc/stb/lcd/show_outputresolution", "w")
 			f.write(value)
 			f.close()
+
+	def setfblcddisplay(self, value):
+		print 'setfblcddisplay',value
+		f = open("/proc/stb/fb/sd_detach", "w")
+		f.write(value)
+		f.close()
 
 	def setRepeat(self, value):
 		if fileExists("/proc/stb/lcd/scroll_repeats"):
@@ -374,6 +375,12 @@ def InitLcd():
 		else:
 			config.lcd.power = ConfigNothing()
 
+		if fileExists("/proc/stb/fb/sd_detach"):
+			config.lcd.fblcddisplay = ConfigSelection([("1", _("No")), ("0", _("Yes"))], "1")
+			config.lcd.fblcddisplay.addNotifier(setfblcddisplay);
+		else:
+			config.lcd.fblcddisplay = ConfigNothing()
+
 		if fileExists("/proc/stb/lcd/show_outputresolution"):
 			config.lcd.showoutputresolution = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.showoutputresolution.addNotifier(setLCDshowoutputresolution);
@@ -413,6 +420,7 @@ def InitLcd():
 		config.lcd.bright.apply = lambda : doNothing()
 		config.lcd.standby.apply = lambda : doNothing()
 		config.lcd.power = ConfigNothing()
+		config.lcd.fblcddisplay = ConfigNothing()
 		config.lcd.mode = ConfigNothing()
 		config.lcd.repeat = ConfigNothing()
 		config.lcd.scrollspeed = ConfigNothing()
