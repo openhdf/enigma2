@@ -291,7 +291,10 @@ def InitLcd():
 			
 		def setLCDpower(configElement):
 			ilcd.setPower(configElement.value);
-			
+
+		def setfblcddisplay(configElement):
+			ilcd.setfblcddisplay(configElement.value);
+
 		def setLCDshowoutputresolution(configElement):
 			ilcd.setShowoutputresolution(configElement.value);
 
