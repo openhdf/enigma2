@@ -396,6 +396,7 @@ if test "$BOXTYPE" == "dags1" -o "$BOXTYPE" == "dags2" -o "$BOXTYPE" == "dags3";
 	AC_DEFINE(HAVE_LINUXSOCKADDR, 1,[define it use sockaddr_un instead of sockaddr_in on linux domain socket.])
 	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
 	AC_DEFINE(FORCE_ADVANCED_REMOTE, 1,[define to fixup the input device identification when the remote control is actually an 'advanced' remote (with play/forward/rewind keys)])
+	AC_DEFINE(HAVE_CPULOADFIX, 1,[define to fixup the high load of cpu then playback ts and mediafiles])
 fi
 
 if test "$BOXTYPE" == "tmtwin" -o "$BOXTYPE" == "tm2t" -o "$BOXTYPE" == "tmsingle" -o "$BOXTYPE" == "tmnano" -o "$BOXTYPE" == "tmnano2t" -o "$BOXTYPE" == "iqonios100hd" -o "$BOXTYPE" == "iqonios200hd" -o "$BOXTYPE" == "iqonios300hd" -o "$BOXTYPE" == "optimussos1" -o "$BOXTYPE" == "optimussos2" -o "$BOXTYPE" == "mediabox" -o "$BOXTYPE" == "force1" -o "$BOXTYPE" == "dags1" -o "$BOXTYPE" == "dags2" -o "$BOXTYPE" == "dags3"; then
