@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-01-26 18:10+0100\n"
+"PO-Revision-Date: 2015-02-06 09:25+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.7.3\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -12443,3 +12443,54 @@ msgstr "Directory lang"
 
 msgid "Y-Tube/WWW long"
 msgstr "Y-Tube/www lang"
+
+msgid "standart"
+msgstr "standard"
+
+msgid "always number zap"
+msgstr "immer Number Zap"
+
+msgid "only seek jump if available"
+msgstr "Nur Suchen wenn verfügbar"
+
+msgid "Enable extended number zap"
+msgstr "Aktiviere Erweitertes Nummern Zap"
+
+msgid "Time to wait next keypress (milliseconds)"
+msgstr "Auslösen nach Tastendruck (in Millisekunden)"
+
+msgid "Alternative service counter in bouquets"
+msgstr "Alternative Zählweise in den Bouquets"
+
+msgid "<< Press colors keys (the first four bouquets) >>"
+msgstr "<< Drücke Menü (die ersten 4 Bouquets) >>"
+
+msgid "Behavior when timeshift is enabled"
+msgstr "Verhalten bei aktiviertem Timeshift"
+
+msgid "Check timeshift of 0 key in recall service"
+msgstr "Prüfe Timeshift bei Betätigen der 0 Taste"
+
+msgid "Enable picons"
+msgstr "Aktiviere Picons"
+
+msgid "Picons directory (press OK)"
+msgstr "Picons Verzeichnis (Auswahl mit OK)"
+
+msgid "Enable number hotkeys"
+msgstr "Aktiviere Zahlen Schnelltasten"
+
+msgid "Enable bouquets hotkeys"
+msgstr "Aktiviere Bouquet Schnelltasten"
+
+msgid "Hotkey bouquets have priority"
+msgstr "Schnelltasten Bouquets haben Vorrang"
+
+msgid "<< Press menu key (for priority bouquets) >>"
+msgstr "<< Drücke Menü (für gewünschten Bouquet) >>"
+
+msgid "Hotkey action have priority"
+msgstr "Schnelltasten haben Vorrang"
+
+msgid "Confirmation on hotkey action"
+msgstr "Bestätigung bei Schnelltasten Druck"
