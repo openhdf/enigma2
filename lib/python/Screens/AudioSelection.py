@@ -7,6 +7,7 @@ from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, getConfigListEntry, ConfigNothing, ConfigSelection, ConfigOnOff
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
 from Components.SystemInfo import SystemInfo
@@ -26,6 +27,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self["key_green"] = Boolean(False)
 		self["key_yellow"] = Boolean(True)
 		self["key_blue"] = Boolean(False)
+		self["summary_description"] = StaticText("")
 
 		ConfigListScreen.__init__(self, [])
 		self.infobar = infobar or self.session.infobar
@@ -169,11 +171,11 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.autovolume.addNotifier(self.changeAutoVolume, initial_call = False)
 				conflist.append(getConfigListEntry(_("Auto Volume Level"), self.settings.autovolume, None))
 
-#			if SystemInfo["Canedidchecking"]:
-#				choice_list = [("00000000", _("off")), ("00000001", _("on"))]
-#				self.settings.bypass_edid_checking = ConfigSelection(choices = choice_list, default = config.av.bypass_edid_checking.value)
-#				self.settings.bypass_edid_checking.addNotifier(self.changeEDIDChecking, initial_call = False)
-#				conflist.append(getConfigListEntry(_("Bypass HDMI EDID Check"), self.settings.bypass_edid_checking, None))
+			if SystemInfo["Canedidchecking"]:
+				choice_list = [("00000001", _("on")), ("00000000", _("off"))]
+				self.settings.bypass_edid_checking = ConfigSelection(choices = choice_list, default = config.av.bypass_edid_checking.value)
+				self.settings.bypass_edid_checking.addNotifier(self.changeEDIDChecking, initial_call = False)
+				conflist.append(getConfigListEntry(_("Bypass HDMI EDID Check"), self.settings.bypass_edid_checking, None))
 
 			from Components.PluginComponent import plugins
 			from Plugins.Plugin import PluginDescriptor
@@ -490,7 +492,6 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigMenuItem("config.subtitles.subtitle_fontsize"),
 				getConfigMenuItem("config.subtitles.subtitle_position"),
 				getConfigMenuItem("config.subtitles.subtitle_rewrap"),
-				getConfigMenuItem("config.subtitles.pango_subtitle_removehi"),
 				getConfigMenuItem("config.subtitles.subtitle_borderwidth"),
 				getConfigMenuItem("config.subtitles.subtitle_alignment"),
 				getConfigMenuItem("config.subtitles.subtitle_bad_timing_delay"),
@@ -504,6 +505,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 				getConfigMenuItem("config.subtitles.subtitle_position"),
 				getConfigMenuItem("config.subtitles.subtitle_alignment"),
 				getConfigMenuItem("config.subtitles.subtitle_rewrap"),
+				getConfigMenuItem("config.subtitles.pango_subtitle_removehi"),
 				getConfigMenuItem("config.subtitles.subtitle_borderwidth"),
 				getConfigMenuItem("config.subtitles.pango_subtitles_fps"),
 			]

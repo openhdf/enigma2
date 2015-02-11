@@ -86,6 +86,10 @@ class About(Screen):
 		
 		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 
+		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
+
+		AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
+
 		fp_version = getFPVersion()
 		if fp_version is None:
 			fp_version = ""
