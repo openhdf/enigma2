@@ -357,7 +357,11 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 		MoviePlayer.instance = None
 		from Screens.MovieSelection import playlist
 		del playlist[:]
+		if not config.movielist.stop_service.value:
+			Screens.InfoBar.InfoBar.instance.callServiceStarted()
 		self.session.nav.playService(self.lastservice)
+		config.usage.last_movie_played.value = self.cur_service.toString()
+		config.usage.last_movie_played.save()
 
 	def handleLeave(self, how):
 		self.is_closing = True
@@ -372,6 +376,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 					(_("Yes"), "quit"),
 					(_("Yes, returning to movie list"), "movielist"),
 					(_("Yes, and delete this movie"), "quitanddelete"),
+					(_("Yes, delete this movie and return to movie list"), "deleteandmovielist"),
 					(_("No"), "continue"),
 					(_("No, but restart from begin"), "restart")
 				)
@@ -411,14 +416,24 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 		if answer:
 			self.leavePlayerConfirmed((True, "quitanddeleteconfirmed"))
 
+	def deleteAndMovielistConfirmed(self, answer):
+		if answer:
+			self.leavePlayerConfirmed((True, "deleteandmovielistconfirmed"))
+
+	def movielistAgain(self):
+		from Screens.MovieSelection import playlist
+		del playlist[:]
+		self.session.nav.playService(self.lastservice)
+		self.leavePlayerConfirmed((True, "movielist"))
+
 	def leavePlayerConfirmed(self, answer):
 		answer = answer and answer[1]
 		if answer is None:
 			return
-		if answer in ("quitanddelete", "quitanddeleteconfirmed"):
+		if answer in ("quitanddelete", "quitanddeleteconfirmed", "deleteandmovielist", "deleteandmovielistconfirmed"):
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			serviceHandler = enigma.eServiceCenter.getInstance()
-			if answer == "quitanddelete":
+			if answer in ("quitanddelete", "deleteandmovielist"):
 				msg = ''
 				if config.usage.movielist_trashcan.value:
 					import Tools.Trashcan
@@ -426,7 +441,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 						trash = Tools.Trashcan.createTrashFolder(ref.getPath())
 						Screens.MovieSelection.moveServiceFiles(ref, trash)
 						# Moved to trash, okay
-						self.close()
+						if answer == "quitanddelete":
+							self.close()
+						else:
+							self.movielistAgain()
 						return
 					except Exception, e:
 						print "[InfoBar] Failed to move to .Trash folder:", e
@@ -434,22 +452,32 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 				info = serviceHandler.info(ref)
 				name = info and info.getName(ref) or _("this recording")
 				msg += _("Do you really want to delete %s?") % name
-				self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg)
+				if answer == "quitanddelete":
+					self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg)
+				elif answer == "deleteandmovielist":
+					self.session.openWithCallback(self.deleteAndMovielistConfirmed, MessageBox, msg)
 				return
 
-			elif answer == "quitanddeleteconfirmed":
+			elif answer in ("quitanddeleteconfirmed", "deleteandmovielistconfirmed"):
 				offline = serviceHandler.offlineOperations(ref)
 				if offline.deleteFromDisk(0):
 					self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
+					if answer == "deleteandmovielistconfirmed":
+						self.movielistAgain()
 					return
 
 		if answer in ("quit", "quitanddeleteconfirmed"):
 			self.close()
-		elif answer == "movielist":
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		elif answer in ("movielist", "deleteandmovielistconfirmed"):
+			if config.movielist.stop_service.value:
+				ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			else:
+				ref = self.lastservice
 			self.returning = True
 			self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 			self.session.nav.stopService()
+			if not config.movielist.stop_service.value:
+				self.session.nav.playService(self.lastservice)
 		elif answer == "restart":
 			self.doSeek(0)
 			self.setSeekState(self.SEEK_STATE_PLAY)
@@ -556,15 +584,21 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 				del self.session.pip
 				self.session.pipshown = False
 		else:
-			from Screens.PictureInPicture import PictureInPicture
-			self.session.pip = self.session.instantiateDialog(PictureInPicture)
-			self.session.pip.show()
-			if self.session.pip.playService(slist.getCurrentSelection()):
-				self.session.pipshown = True
-				self.session.pip.servicePath = slist.getCurrentServicePath()
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
+			if int(xres) <= 720 or not getMachineBuild() == 'blackbox7405':  
+				from Screens.PictureInPicture import PictureInPicture
+				self.session.pip = self.session.instantiateDialog(PictureInPicture)
+				self.session.pip.show()
+				if self.session.pip.playService(slist.getCurrentSelection()):
+					self.session.pipshown = True
+					self.session.pip.servicePath = slist.getCurrentServicePath()
+				else:
+					self.session.pipshown = False
+					del self.session.pip
 			else:
-				self.session.pipshown = False
-				del self.session.pip
+				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
 
 	def movePiP(self):
 		if self.session.pipshown:
