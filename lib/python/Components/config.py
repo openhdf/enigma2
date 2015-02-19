@@ -33,28 +33,24 @@ class ConfigElement(object):
 		self.save_forced = False
 		self.last_value = None
 		self.save_disabled = False
-		self.__notifiers = None
-		self.__notifiers_final = None
+		self.__notifiers = { }
+		self.__notifiers_final = { }
 		self.enabled = True
 		self.callNotifiersOnSaveAndCancel = False
 
 	def getNotifiers(self):
-		if self.__notifiers is None:
-			self.__notifiers = [ ]
-		return self.__notifiers
+		return [func for (func, val, call_on_save_and_cancel) in self.__notifiers.itervalues()]
 
 	def setNotifiers(self, val):
-		self.__notifiers = val
+		print "just readonly access to notifiers is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers"
 
 	notifiers = property(getNotifiers, setNotifiers)
 
 	def getNotifiersFinal(self):
-		if self.__notifiers_final is None:
-			self.__notifiers_final = [ ]
-		return self.__notifiers_final
+		return [func for (func, val, call_on_save_and_cancel) in self.__notifiers_final.itervalues()]
 
 	def setNotifiersFinal(self, val):
-		self.__notifiers_final = val
+		print "just readonly access to notifiers_final is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers"
 
 	notifiers_final = property(getNotifiersFinal, setNotifiersFinal)
 
@@ -107,7 +103,7 @@ class ConfigElement(object):
 		if self.__notifiers:
 			for x in self.notifiers:
 				try:
-					if self.extra_args[x]:
+					if self.extra_args and self.extra_args[x]:
 						x(self, self.extra_args[x])
 					else:
 						x(self)
@@ -118,23 +114,26 @@ class ConfigElement(object):
 		if self.__notifiers_final:
 			for x in self.notifiers_final:
 				try:
-					if self.extra_args[x]:
+					if self.extra_args and self.extra_args[x]:
 						x(self, self.extra_args[x])
 					else:
 						x(self)
 				except:
 					x(self)
 
-	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True, extra_args=None):
+	# immediate_feedback = True means call notifier on every value CHANGE
+	# immediate_feedback = False means call notifier on leave the config element (up/down) when value have CHANGED
+	# call_on_save_or_cancel = True means call notifier always on save/cancel.. even when value have not changed
+	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True, call_on_save_or_cancel = False, extra_args=None):
 		if not extra_args: extra_args = []
 		assert callable(notifier), "notifiers must be callable"
 		try:
 			self.extra_args[notifier] = extra_args
-		except: pass
+		except: pass	
 		if immediate_feedback:
-			self.notifiers.append(notifier)
+			self.__notifiers[str(notifier)] = (notifier, self.value, call_on_save_or_cancel)
 		else:
-			self.notifiers_final.append(notifier)
+			self.__notifiers_final[str(notifier)] = (notifier, self.value, call_on_save_or_cancel)
 		# CHECKME:
 		# do we want to call the notifier
 		#  - at all when adding it? (yes, though optional)
@@ -149,12 +148,18 @@ class ConfigElement(object):
 			else:
 				notifier(self)
 
-	def removeNotifier(self, notifier, initial_call = True, immediate_feedback = True):
-		assert callable(notifier), "notifiers must be callable"
-		if immediate_feedback:
-			self.notifiers.remove(notifier)
-		else:
-			self.notifiers_final.remove(notifier)
+	def removeNotifier(self, notifier):
+		try:
+			del self.__notifiers[str(notifier)]
+		except:
+			try:
+				del self.__notifiers_final[str(notifier)]
+			except:
+				pass
+
+	def clearNotifiers(self):
+		self.__notifiers = { }
+		self.__notifiers_final = { }
 
 	def disableSave(self):
 		self.save_disabled = True
@@ -220,6 +225,15 @@ class choicesList(object): # XXX: we might want a better name for this
 
 	def __len__(self):
 		return len(self.choices) or 1
+
+	def updateItemDescription(self, index, descr):
+		if self.type == choicesList.LIST_TYPE_LIST:
+			orig = self.choices[index]
+			assert isinstance(orig, tuple)
+			self.choices[index] = (orig[0], descr)
+		else:
+			key = self.choices.keys()[index]
+			self.choices[key] = descr
 
 	def __getitem__(self, index):
 		if self.type == choicesList.LIST_TYPE_LIST:
