@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-02-06 09:25+0100\n"
+"PO-Revision-Date: 2015-02-24 17:02+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -12494,3 +12494,21 @@ msgstr "Schnelltasten haben Vorrang"
 
 msgid "Confirmation on hotkey action"
 msgstr "Bestätigung bei Schnelltasten Druck"
+
+msgid "Protect configuration"
+msgstr "Konfiguration schützen"
+
+msgid "Protect main menu"
+msgstr "Hauptmenü schützen"
+
+msgid "Protect movie list"
+msgstr "Filmliste schützen"
+
+msgid "Protect plugin browser"
+msgstr "Erweiterungen schützen"
+
+msgid "Protect standby menu"
+msgstr "Ausschaltmenü schützen"
+
+msgid "Protect timer menu"
+msgstr "Timermenü schützen"
