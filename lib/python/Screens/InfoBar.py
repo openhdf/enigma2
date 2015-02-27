@@ -192,11 +192,21 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showMEDIAPORTAL(self):
 		try:
-			from Plugins.Extensions.MediaPortal.plugin import *
-			from Components.PluginComponent import plugins
-			self.session.open(haupt_Screen)
+			if config.mediaportal.ansicht.value == 'liste':
+				from Plugins.Extensions.MediaPortal.plugin import MPList
+				self.session.open(MPList)
+			elif config.mediaportal.ansicht.value == 'wall':
+				from Plugins.Extensions.MediaPortal.plugin import MPWall
+				self.session.open(MPWall, config.mediaportal.filter.value)
+			elif config.mediaportal.ansicht.value == 'wall2':
+				from Plugins.Extensions.MediaPortal.plugin import MPWall2
+				self.session.open(MPWall2, config.mediaportal.filter.value)
+			else:
+				from Plugins.Extensions.MediaPortal.plugin import MPList
+				self.session.open(MPList)
+			no_plugin = False
 		except Exception, e:
-			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showWWW(self):
 		try:
