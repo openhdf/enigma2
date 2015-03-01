@@ -218,10 +218,13 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def BackZap(self):
-		try:
-			os.system("wget -q -O /tmp/.message.txt 'http://127.0.0.1/web/remotecontrol?command=11' &  > /dev/null 2>&1")
-		except Exception, e:
-			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+		if config.OpenWebif.enabled.value:
+			try:
+				os.system("wget -q -O /tmp/.message.txt 'http://127.0.0.1/web/remotecontrol?command=11' &  > /dev/null 2>&1")
+			except Exception, e:
+				self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+		else:
+			self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def openSleepTimer(self):
 		from Screens.SleepTimerEdit import SleepTimerEdit
