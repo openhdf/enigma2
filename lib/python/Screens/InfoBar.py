@@ -13,6 +13,7 @@ from Tools.Directories import fileExists
 
 profile("LOAD:enigma")
 import enigma
+import os
 from boxbranding import getBoxType, getMachineBrand,getBrandOEM
 
 boxtype = getBoxType()
@@ -213,6 +214,12 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Plugins.Extensions.EtPortal.plugin import *
 			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
+		except Exception, e:
+			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+
+	def BackZap(self):
+		try:
+			os.system("wget -q -O /tmp/.message.txt 'http://127.0.0.1/web/remotecontrol?command=11' &  > /dev/null 2>&1")
 		except Exception, e:
 			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
