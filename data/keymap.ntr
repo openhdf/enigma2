@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Neutrino Keymap 09.01.2015" -->
+	<!-- "HDF Neutrino Keymap 08.03.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -725,13 +725,13 @@
 			<key id="KEY_PREVIOUS" mapto="previous" flags="m" />
 			<key id="KEY_NEXT" mapto="next" flags="m" />
 		</device>
-		<device name="dreambox remote control (native)">
-			<key id="KEY_YELLOW" mapto="pause" flags="m" />
-			<key id="KEY_GREEN" mapto="play" flags="m" />
-			<key id="KEY_RADIO" mapto="shift_record" flags="l" />
-			<key id="KEY_PREVIOUS" mapto="previous" flags="m" />
-			<key id="KEY_NEXT" mapto="next" flags="m" />
-		</device>
+
+		<key id="KEY_YELLOW" mapto="pause" flags="b" />
+		<key id="KEY_GREEN" mapto="play" flags="b" />
+		<key id="KEY_RADIO" mapto="shift_record" flags="l" />
+		<key id="KEY_PREVIOUS" mapto="previous" flags="m" />
+		<key id="KEY_NEXT" mapto="next" flags="m" />
+
 		<device name="dreambox ir keyboard">
 			<key id="KEY_RECORD" mapto="shift_record" flags="l" />
 			<key id="KEY_PREVIOUSSONG" mapto="previous" flags="m" />
@@ -742,6 +742,7 @@
 		<key id="KEY_PLAY" mapto="play" flags="m" />
 		<key id="KEY_STOP" mapto="stop" flags="b" />
 		<key id="KEY_STOP" mapto="shift_stop" flags="l" />
+		<key id="KEY_BACK" mapto="stop" flags="m" />
 		<key id="KEY_TV" mapto="stop" flags="b" />
 		<key id="KEY_TV" mapto="shift_stop" flags="l" />
 
@@ -757,6 +758,7 @@
 		<key id="KEY_FILE" mapto="nextBouquet" flags="m" />
 		<key id="KEY_LIST" mapto="prevBouquet" flags="m" />
 	</map>
+
 	<map context="HotkeyActions">
 		<key id="KEY_RED" mapto="red" flags="b" />
 		<key id="KEY_RED" mapto="red_long" flags="l" />
