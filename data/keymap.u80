@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF u80 Keymap 09.01.2015" -->
+	<!-- "HDF u80 Keymap 08.03.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -690,8 +690,8 @@
 			<key id="KEY_NEXT" mapto="next" flags="m" />
 		</device>
 
-		<key id="KEY_YELLOW" mapto="pause" flags="m" />
-		<key id="KEY_GREEN" mapto="play" flags="m" />
+		<key id="KEY_YELLOW" mapto="pause" flags="b" />
+		<key id="KEY_GREEN" mapto="play" flags="b" />
 		<key id="KEY_RADIO" mapto="shift_record" flags="l" />
 		<key id="KEY_PREVIOUS" mapto="previous" flags="m" />
 		<key id="KEY_NEXT" mapto="next" flags="m" />
@@ -721,36 +721,6 @@
 		<key id="KEY_TEXT" mapto="subtitles" flags="m" />
 		<key id="KEY_FILE" mapto="nextBouquet" flags="m" />
 		<key id="KEY_LIST" mapto="prevBouquet" flags="m" />
-	</map>
-	<map context="CCcamInfoActions">
-		<key id="KEY_1" mapto="1" flags="m"/>
-		<key id="KEY_2" mapto="2" flags="m"/>
-		<key id="KEY_3" mapto="3" flags="m"/>
-		<key id="KEY_4" mapto="4" flags="m"/>
-		<key id="KEY_5" mapto="5" flags="m"/>
-		<key id="KEY_6" mapto="6" flags="m"/>
-		<key id="KEY_7" mapto="7" flags="m"/>
-		<key id="KEY_8" mapto="8" flags="m"/>
-		<key id="KEY_9" mapto="9" flags="m"/>
-		<key id="KEY_0" mapto="0" flags="m"/>
-		<key id="KEY_RED" mapto="red" flags="m"/>
-		<key id="KEY_GREEN" mapto="green" flags="m"/>
-		<key id="KEY_YELLOW" mapto="yellow" flags="m"/>
-		<key id="KEY_BLUE" mapto="blue" flags="m"/>
-		<key id="KEY_INFO" mapto="info" flags="m"/>
-		<key id="KEY_MENU" mapto="menu" flags="m"/>
-		<key id="KEY_EXIT" mapto="cancel" flags="m"/>
-		<key id="KEY_OK" mapto="ok" flags="m"/>
-		<key id="KEY_UP" mapto="up" flags="m"/>
-		<key id="KEY_DOWN" mapto="down" flags="m"/>
-		<key id="KEY_LEFT" mapto="left" flags="m"/>
-		<key id="KEY_RIGHT" mapto="right" flags="m"/>
-		<key id="KEY_CHANNELUP" mapto="incUphop" flags="m"/>
-		<key id="KEY_CHANNELDOWN" mapto="decUphop" flags="m"/>
-	</map>
-	<map context="InfoBarINFOpanel">
-		<key id="KEY_RED" mapto="infoPanel" flags="b" />
-		<key id="KEY_RED" mapto="softcamPanel" flags="l" />
 	</map>
 
 		<map context="DVDPlayerActions">
