@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 08.03.2015" -->
+	<!-- "HDF Default Keymap 13.03.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -652,6 +652,9 @@
 		<key id="KEY_EPG" mapto="epg" flags="b"/>
 		<key id="KEY_TV" mapto="tv" flags="b"/>
 		<key id="KEY_TV" mapto="tvlong" flags="l"/>
+		<key id="KEY_RED" mapto="red" flags="m"/>
+		<key id="KEY_YELLOW" mapto="yellow" flags="m"/>
+		<key id="KEY_BLUE" mapto="blue" flags="m"/>
 	</map>
 
 	<map context="EventViewActions">

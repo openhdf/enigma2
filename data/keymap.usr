@@ -1,5 +1,5 @@
 <keymap>
-	<!-- "HDF User Keymap 08.03.2015" -->
+	<!-- "HDF User Keymap 13.03.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -579,6 +579,9 @@
 		<key id="KEY_TV" mapto="tv" flags="b"/>
 		<key id="KEY_EPG" mapto="prevBouquet" flags="l" />
 		<key id="KEY_0" mapto="prevBouquet" flags="b" />
+		<key id="KEY_RED" mapto="red" flags="m"/>
+		<key id="KEY_YELLOW" mapto="yellow" flags="m"/>
+		<key id="KEY_BLUE" mapto="blue" flags="m"/>
 	</map>
 
 	<map context="EventViewActions">

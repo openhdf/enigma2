@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Neutrino Keymap 08.03.2015" -->
+	<!-- "HDF Neutrino Keymap 13.03.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -568,6 +568,9 @@
 		<key id="KEY_NEXT" mapto="nextService" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="prevService" flags="m" />
 		<key id="KEY_PROGRAM" mapto="timerAdd" flags="m" />
+		<key id="KEY_RED" mapto="red" flags="m"/>
+		<key id="KEY_YELLOW" mapto="yellow" flags="m"/>
+		<key id="KEY_BLUE" mapto="blue" flags="m"/>
 	</map>
 
 	<map context="EventViewActions">
