@@ -536,7 +536,10 @@ def InitUsageConfig():
 
 	def updatedebug_path(configElement):
 		if not os.path.exists(config.crash.debug_path.value):
-			os.mkdir(config.crash.debug_path.value,0755)
+			try:
+				os.mkdir(config.crash.debug_path.value,0755)
+			except:
+				print "Failed to create log path: %s" %config.crash.debug_path.value
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
