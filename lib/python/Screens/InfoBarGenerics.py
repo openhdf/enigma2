@@ -5725,13 +5725,23 @@ class InfoBarHdmi:
 					del self.session.pip
 
 	def HDMIIn(self):
-		if not self.LongButtonPressed:
-			slist = self.servicelist
+		slist = self.servicelist
+		if slist.dopipzap:
+			curref = self.session.pip.getCurrentService()
+			if curref and curref.type != 8192:
+				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+			else:
+				self.session.pip.playService(slist.servicelist.getCurrent())
+		else:
 			curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if curref and curref.type != 8192:
+				if curref and curref.type != -1 and os.path.splitext(curref.toString().split(":")[10])[1].lower() in AUDIO_EXTENSIONS.union(MOVIE_EXTENSIONS, DVD_EXTENSIONS):
+					setResumePoint(self.session)
 				self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
-			else:
+			elif isStandardInfoBar(self):
 				self.session.nav.playService(slist.servicelist.getCurrent())
+			else:
+				self.session.nav.playService(self.cur_service)
 
 	def getHDMIInFullScreen(self):
 		if not self.hdmi_enabled_full:
