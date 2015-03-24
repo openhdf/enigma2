@@ -37,7 +37,7 @@ def getModelString():
 		return "unknown"		
 
 def getChipSetString():
-	if getBoxType() == "dm7080":
+	if getBoxType() in ('dm7080','dm820'):
 		return "7435"
 	else:
 		try:
