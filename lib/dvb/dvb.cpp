@@ -116,6 +116,42 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = DM800SE;
 	else if (!strncmp(tmp, "dm7020hd\n", rd))
 		m_boxtype = DM7020HD;
+	else if (!strncmp(tmp, "dm7080\n", rd))
+		m_boxtype = DM7080;
+	else if (!strncmp(tmp, "dm820\n", rd))
+		m_boxtype = DM820;
+	else if (!strncmp(tmp, "Gigablue\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gb800solo\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gb800se\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gb800ue\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gb800seplus\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gb800ueplus\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gbipbox\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gbquad\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gbquadplus\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gbultra\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gbultrase\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gbultraue\n", rd))
+		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "ebox5000\n", rd))
+		m_boxtype = DM800;
+	else if (!strncmp(tmp, "ebox5100\n", rd))
+		m_boxtype = DM800;
+	else if (!strncmp(tmp, "eboxlumi\n", rd))
+		m_boxtype = DM800;		
+	else if (!strncmp(tmp, "ebox7358\n", rd))
+		m_boxtype = DM800SE;		
 	else {
 		eDebug("boxtype detection via /proc/stb/info not possible... use fallback via demux count!\n");
 		if (m_demux.size() == 3)
@@ -580,6 +616,10 @@ void *eDVBUsbAdapter::vtunerPump()
 			if (FD_ISSET(demuxFd, &rset))
 			{
 				ssize_t size = singleRead(demuxFd, buffer, sizeof(buffer));
+
+				if(size < 188)
+					continue;
+
 				if (size > 0 && writeAll(vtunerFd, buffer, size) <= 0)
 				{
 					break;
@@ -909,6 +949,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 	ePtr<eDVBRegisteredDemux> unused;
 
+#if not defined(__sh__)
 	if (m_boxtype == DM7025) // ATI
 	{
 		/* FIXME: hardware demux policy */
@@ -982,6 +1023,52 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			}
 		}
 	}
+#else // we use our own algo for demux detection
+	int n=0;
+	for (; i != m_demux.end(); ++i, ++n)
+	{
+		if(fe)
+		{
+			if (!i->m_inuse)
+			{
+				if (!unused)
+				{
+					// take the first unused
+					//eDebug("\nallocate demux b = %d\n",n);
+					unused = i;
+				}
+			}
+			else if (i->m_adapter == fe->m_adapter && i->m_demux->getSource() == fe->m_frontend->getDVBID())
+			{
+				// take the demux allocated to the same
+				// frontend,  just create a new reference
+				demux = new eDVBAllocatedDemux(i);
+				//eDebug("\nallocate demux b = %d\n",n);
+				return 0;
+			}
+		}
+		else if(n == (m_demux.size() - 1))
+		{
+			// Always use the last demux for PVR
+			// it is assumed that the last demux is not
+			// attached to a frontend. That is, there
+			// should be one instance of dvr & demux
+			// devices more than of frontend devices.
+			// Otherwise, playback and timeshift might
+			// interfere recording.
+			if (i->m_inuse)
+			{
+				// just create a new reference
+				demux = new eDVBAllocatedDemux(i);
+				//eDebug("\nallocate demux c = %d\n",n);
+				return 0;
+			}
+			unused = i;
+			//eDebug("\nallocate demux d = %d\n", n);
+			break;
+		}
+	}
+#endif
 
 	if (unused)
 	{
@@ -2092,6 +2179,12 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 			return -ENODEV;
 		}
 #else
+#if defined(__sh__) // our pvr device is called dvr
+		char dvrDev[128];
+		int dvrIndex = m_mgr->m_adapter.begin()->getNumDemux() - 1;
+		sprintf(dvrDev, "/dev/dvb/adapter0/dvr%d", dvrIndex);
+		m_pvr_fd_dst = open(dvrDev, O_WRONLY);
+#else
 		ePtr<eDVBAllocatedDemux> &demux = m_demux ? m_demux : m_decoder_demux;
 		if (demux)
 		{
@@ -2107,6 +2200,7 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 			eDebug("no demux allocated yet.. so its not possible to open the dvr device!!");
 			return -ENODEV;
 		}
+#endif
 #endif
 	}
 
