@@ -13,7 +13,6 @@ from Components.UsageConfig import defaultMoviePath
 from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
 import Screens.Standby
-import Screens.InfoBar
 from Tools import Directories, Notifications, ASCIItranslit, Trashcan
 from Tools.XMLTools import stringToXML
 import timer
@@ -89,11 +88,28 @@ def findSafeRecordPath(dirname):
 # type 10 = advanced codec digital radio sound service
 
 service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
-wasRecTimerWakeup = False
+service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2) || (type == 10)'
+
+def getBqRootStr(ref):
+	ref = ref.toString()
+	if ref.startswith('1:0:2:'):           # we need that also?:----> or ref.startswith('1:0:10:'):
+		service_types = service_types_radio
+		if config.usage.multibouquet.value:
+			bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.radio" ORDER BY bouquet'
+		else:
+			bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet'% service_types
+	else:
+		service_types = service_types_tv
+		if config.usage.multibouquet.value:
+			bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
+		else:
+			bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% service_types
+
+	return bqrootstr
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', isAutoTimer = False, always_zap = False, rename_repeat = True, MountPath = None):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None, descramble = 'notset', record_ecm = 'notset', rename_repeat = True, isAutoTimer = False, always_zap = False, MountPath = None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers:
 			if self.begin < time() - 1209600:
@@ -140,9 +156,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.descramble = descramble
 			self.record_ecm = record_ecm
 
-		self.rename_repeat = rename_repeat
 		self.needChangePriorityFrontend = config.usage.recording_frontend_priority.value != "-2" and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
 		self.change_frontend = False
+		self.rename_repeat = rename_repeat
 		self.isAutoTimer = isAutoTimer
 		self.wasInStandby = False
 
@@ -185,19 +201,27 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.log(0, "Found enough free space to record")
 			return True
 
-	def calculateFilename(self, name=None):
+	def calculateFilename(self):
 		service_name = self.service_ref.getServiceName()
 		begin_date = strftime("%Y%m%d %H%M", localtime(self.begin))
 
-		name = name or self.name
+#		print "begin_date: ", begin_date
+#		print "service_name: ", service_name
+#		print "name:", self.name
+#		print "description: ", self.description
+#
 		filename = begin_date + " - " + service_name
-		if name:
-			if config.recording.filename_composition.value == "short":
-				filename = strftime("%Y%m%d", localtime(self.begin)) + " - " + name
+		if self.name:
+			if config.recording.filename_composition.value == "veryveryshort":
+				filename = self.name
+			elif config.recording.filename_composition.value == "veryshort":
+				filename = self.name + " - " + begin_date
+			elif config.recording.filename_composition.value == "short":
+				filename = strftime("%Y%m%d", localtime(self.begin)) + " - " + self.name
 			elif config.recording.filename_composition.value == "long":
-				filename += " - " + name + " - " + self.description
+				filename += " - " + self.name + " - " + self.description
 			else:
-				filename += " - " + name # standard
+				filename += " - " + self.name # standard
 
 		if config.recording.ascii_filenames.value:
 			filename = ASCIItranslit.legacyEncode(filename)
@@ -229,26 +253,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.setRecordingPreferredTuner(setdefault=True)
 				return False
 
-			name = self.name
-			description = self.description
 			if self.repeated:
 				epgcache = eEPGCache.getInstance()
 				queryTime=self.begin+(self.end-self.begin)/2
 				evt = epgcache.lookupEventTime(rec_ref, queryTime)
 				if evt:
-					if self.rename_repeat:
-						event_description = evt.getShortDescription()
-						if not event_description:
-							event_description = evt.getExtendedDescription()
-						if event_description and event_description != description:
-							description = event_description
-						event_name = evt.getEventName()
-						if event_name and event_name != name:
-							name = event_name
-							if not self.calculateFilename(event_name):
-								self.do_backoff()
-								self.start_prepare = time() + self.backoff
-								return False
+					self.description = evt.getShortDescription()
+					if self.description == "":
+						self.description = evt.getExtendedDescription()
 					event_id = evt.getEventId()
 				else:
 					event_id = -1
@@ -257,7 +269,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if event_id is None:
 					event_id = -1
 
-			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id, name.replace("\n", ""), description.replace("\n", ""), ' '.join(self.tags), bool(self.descramble), bool(self.record_ecm))
+			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id, self.name.replace("\n", ""), self.description.replace("\n", ""), ' '.join(self.tags), self.descramble, self.record_ecm)
 			if prep_res:
 				if prep_res == -255:
 					self.log(4, "failed to write meta information")
@@ -359,12 +371,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return False
 
 		elif next_state == self.StateRunning:
-			global wasRecTimerWakeup
+
 			if os.path.exists("/tmp/was_rectimer_wakeup") and not wasRecTimerWakeup:
 				wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
-				os.remove("/tmp/was_rectimer_wakeup")
-
-			self.autostate = Screens.Standby.inStandby
+				#os.remove("/tmp/was_rectimer_wakeup")
 
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
@@ -388,12 +398,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					NavigationInstance.instance.isMovieplayerActive()
 					from Screens.ChannelSelection import ChannelSelection
 					ChannelSelectionInstance = ChannelSelection.instance
-					self.service_types = service_types_tv
 					if ChannelSelectionInstance:
-						if config.usage.multibouquet.value:
-							bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
-						else:
-							bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
+						bqrootstr = getBqRootStr(self.service_ref.ref)
 						rootstr = ''
 						serviceHandler = eServiceCenter.getInstance()
 						rootbouquet = eServiceReference(bqrootstr)
@@ -550,12 +556,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			#NavigationInstance.instance.stopUserServices()
 			from Screens.ChannelSelection import ChannelSelection
 			ChannelSelectionInstance = ChannelSelection.instance
-			self.service_types = service_types_tv
 			if ChannelSelectionInstance:
-				if config.usage.multibouquet.value:
-					bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
-				else:
-					bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
+				bqrootstr = getBqRootStr(self.service_ref.ref)
 				rootstr = ''
 				serviceHandler = eServiceCenter.getInstance()
 				rootbouquet = eServiceReference(bqrootstr)
@@ -609,14 +611,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
 			text = _("A recording has been started:\n%s") % self.name
-			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby and \
-				Screens.InfoBar.InfoBar.instance and \
-				Screens.InfoBar.InfoBar.instance.execing
+			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby
 			if self.dirnameHadToFallback:
 				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
 				notify = True
 			if notify:
-				Notifications.AddPopup(text = text, type = MessageBox.TYPE_INFO, timeout = 10)
+				Notifications.AddPopup(text = text, type = MessageBox.TYPE_INFO, timeout = 3)
 		elif event == iRecordableService.evRecordAborted:
 			NavigationInstance.instance.RecordTimer.removeEntry(self)
 
@@ -640,7 +640,6 @@ def createTimer(xml):
 	serviceref = ServiceReference(xml.get("serviceref").encode("utf-8"))
 	description = xml.get("description").encode("utf-8")
 	repeated = xml.get("repeated").encode("utf-8")
-	rename_repeat = long(xml.get("rename_repeat") or "1")
 	disabled = long(xml.get("disabled") or "0")
 	justplay = long(xml.get("justplay") or "0")
 	always_zap = long(xml.get("always_zap") or "0")
@@ -672,7 +671,7 @@ def createTimer(xml):
 
 	name = xml.get("name").encode("utf-8")
 	#filename = xml.get("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, isAutoTimer = isAutoTimer, always_zap = always_zap, rename_repeat = rename_repeat)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm, isAutoTimer = isAutoTimer, always_zap = always_zap)
 	entry.repeated = int(repeated)
 
 	for l in xml.findall("log"):
@@ -787,7 +786,6 @@ class RecordTimer(timer.Timer):
 			list.append(' end="' + str(int(timer.end)) + '"')
 			list.append(' serviceref="' + stringToXML(str(timer.service_ref)) + '"')
 			list.append(' repeated="' + str(int(timer.repeated)) + '"')
-			list.append(' rename_repeat="' + str(int(timer.rename_repeat)) + '"')
 			list.append(' name="' + str(stringToXML(timer.name)) + '"')
 			list.append(' description="' + str(stringToXML(timer.description)) + '"')
 			list.append(' afterevent="' + str(stringToXML({
