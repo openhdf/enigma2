@@ -4359,19 +4359,25 @@ class InfoBarPiP:
 			self.session.pipshown
 		except:
 			self.session.pipshown = False
-		if SystemInfo.get("NumVideoDecoders", 1) > 1 and isinstance(self, InfoBarEPG):
+
+		self.lastPiPService = None
+
+		if SystemInfo["PIPAvailable"] and isinstance(self, InfoBarEPG):
 			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions",
 				{
-					"activatePiP": (self.showPiP, _("Activate PiP")),
+					"activatePiP": (self.activePiP, self.activePiPName),
 				})
 			if self.allowPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 				self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
-				# self.addExtension((self.getTogglePipzapName, self.togglePipzap, self.pipShown), "red")
+				self.addExtension((self.getTogglePipzapName, self.togglePipzap, self.pipShown), "red")
 			else:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
+
+		self.lastPiPServiceTimeout = eTimer()
+		self.lastPiPServiceTimeout.callback.append(self.clearLastPiPService)
 
 	def pipShown(self):
 		return self.session.pipshown
@@ -4389,7 +4395,7 @@ class InfoBarPiP:
 		return _("Swap services")
 
 	def getMoveName(self):
-		return _("Setup Picture in Picture")
+		return _("Picture in Picture Setup")
 
 	def getTogglePipzapName(self):
 		slist = self.servicelist
@@ -4414,6 +4420,8 @@ class InfoBarPiP:
 			if slist and slist.dopipzap:
 				self.togglePipzap()
 			if self.session.pipshown:
+				self.lastPiPService = self.session.pip.getCurrentServiceReference()
+				self.lastPiPServiceTimeout.startLongTimer(60)
 				del self.session.pip
 				if SystemInfo["LCDMiniTV"]:
 					if config.lcd.modepip.value >= "1":
@@ -4421,48 +4429,85 @@ class InfoBarPiP:
 						f.write(config.lcd.modeminitv.value)
 						f.close()
 				self.session.pipshown = False
+			if hasattr(self, "ScreenSaverTimerStart"):
+				self.ScreenSaverTimerStart()
 		else:
-			self.session.pip = self.session.instantiateDialog(PictureInPicture)
-			self.session.pip.setAnimationMode(0)
-			self.session.pip.show()
-			newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
-			if self.session.pip.playService(newservice):
-				self.session.pipshown = True
-				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-				if SystemInfo["LCDMiniTV"]:
-					if config.lcd.modepip.value >= "1":
-						f = open("/proc/stb/lcd/mode", "w")
-						f.write(config.lcd.modepip.value)
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_width", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_height", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
-						f.write("1")
-						f.close()
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			xres = str(info.getInfo(iServiceInformation.sVideoWidth))
+			if int(xres) <= 720 or not getMachineBuild() == 'blackbox7405':
+				self.session.pip = self.session.instantiateDialog(PictureInPicture)
+				self.session.pip.setAnimationMode(0)
+				self.session.pip.show()
+				newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+				if self.session.pip.playService(newservice):
+					self.session.pipshown = True
+					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+					if SystemInfo["LCDMiniTV"]:
+						if config.lcd.modepip.value >= "1":
+							f = open("/proc/stb/lcd/mode", "w")
+							f.write(config.lcd.modepip.value)
+							f.close()
+							f = open("/proc/stb/vmpeg/1/dst_width", "w")
+							f.write("0")
+							f.close()
+							f = open("/proc/stb/vmpeg/1/dst_height", "w")
+							f.write("0")
+							f.close()
+							f = open("/proc/stb/vmpeg/1/dst_apply", "w")
+							f.write("1")
+							f.close()
+				else:
+					newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+					if self.session.pip.playService(newservice):
+						self.session.pipshown = True
+						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+					else:
+						self.lastPiPService = None
+						self.session.pipshown = False
+						del self.session.pip
 			else:
-				self.session.pipshown = False
-				del self.session.pip
+				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
+		if self.session.pipshown and hasattr(self, "screenSaverTimer"):
+			self.screenSaverTimer.stop()
+
+	def clearLastPiPService(self):
+		self.lastPiPService = None
+
+	def activePiP(self):
+		if self.servicelist and self.servicelist.dopipzap or not self.session.pipshown:
+			self.showPiP()
+		else:
+			self.togglePipzap()
+
+	def activePiPName(self):
+		if self.servicelist and self.servicelist.dopipzap:
+			return _("Disable Picture in Picture")
+		if self.session.pipshown:
+			return _("Zap focus to Picture in Picture")
+		else:
+			return _("Activate Picture in Picture")
 
 	def swapPiP(self):
-		swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		pipref = self.session.pip.getCurrentService()
-		if swapservice and pipref and pipref.toString() != swapservice.toString():
-			currentServicePath = self.servicelist.getCurrentServicePath()
-			self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
-			self.session.pip.playService(swapservice)
-			self.session.nav.stopService() # stop portal
-			self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
-			self.session.pip.servicePath = currentServicePath
-			if self.servicelist.dopipzap:
-				# This unfortunately won't work with subservices
-				self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
+		if self.pipShown():
+			swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			pipref = self.session.pip.getCurrentService()
+			if swapservice and pipref and pipref.toString() != swapservice.toString():
+				currentServicePath = self.servicelist.getCurrentServicePath()
+				currentBouquet = self.servicelist and self.servicelist.getRoot()
+				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
+				self.session.pip.playService(swapservice)
+				self.session.nav.stopService() # stop portal
+				self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
+				self.session.pip.servicePath = currentServicePath
+				self.session.pip.servicePath[1] = currentBouquet
+				if self.servicelist.dopipzap:
+					# This unfortunately won't work with subservices
+					self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
 
 	def movePiP(self):
-		self.session.open(PiPSetup, pip = self.session.pip)
+		if self.pipShown():
+			self.session.open(PiPSetup, pip = self.session.pip)
 
 	def pipDoHandle0Action(self):
 		use = config.usage.pip_zero_button.value
