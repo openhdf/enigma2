@@ -457,6 +457,7 @@ data/keymaps/Makefile
 data/displaytext/Makefile
 data/display96/Makefile
 data/display128/Makefile
+data/display128dm/Makefile
 data/display140/Makefile
 data/display220/Makefile
 data/display255/Makefile
