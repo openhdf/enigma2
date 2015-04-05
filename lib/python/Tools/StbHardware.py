@@ -10,7 +10,9 @@ def getFPVersion():
 			file = open("/proc/stb/info/micomver", "r")
 			ret = file.readline().strip()
 			file.close()
-		else:	
+		elif getBoxType() in ('dm7080','dm820'):
+			ret = open("/proc/stb/fp/version", "r").read()
+		else:
 			ret = long(open("/proc/stb/fp/version", "r").read())
 	except IOError:
 		try:
@@ -52,7 +54,7 @@ def setRTCoffset():
 
 def setRTCtime(wutime):
 	if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue') or getBrandOEM().startswith('ini'):
-		setRTCoffset() 
+		setRTCoffset()
 	try:
 		f = open("/proc/stb/fp/rtc", "w")
 		f.write(str(wutime))
