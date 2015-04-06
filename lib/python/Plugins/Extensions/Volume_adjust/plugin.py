@@ -1,4 +1,4 @@
-# Volume Adjust 
+# Volume Adjust
 # 2009 Black_64
 #
 # FIXED SERVICELIST GREENSCREEN BY SCOPE34 (AN)
@@ -267,8 +267,8 @@ class Change_volume(ConfigListScreen, Screen):
 		self["key_yellow"] = StaticText(_("+/-"))
 		self["actions"] = ActionMap(["ColorActions","SetupActions"],
 		{
-			"ok": self.ok, 
-			"cancel": self.cancel, 
+			"ok": self.ok,
+			"cancel": self.cancel,
 			"green": self.greenPressed,
 			"red": self.cancel,
 			"yellow": self.yellowPressed,
@@ -391,8 +391,8 @@ class Volume_Config(ConfigListScreen, Screen):
 		self["infotext"] = StaticText(_("this offset will only be used if the channel has not its own volume offset"))
 		self["actions"] = ActionMap(["ColorActions","SetupActions"],
 		{
-			"ok": self.ok, 
-			"cancel": self.cancel, 
+			"ok": self.ok,
+			"cancel": self.cancel,
 			"green": self.greenPressed,
 			"red": self.cancel,
 			"yellow": self.yellowPressed,
@@ -564,7 +564,7 @@ def main(session, **kwargs):
 	session.open(Volume_adjust)
 
 def menu(menuid, **kwargs):
-	if menuid == "setup":
+	if menuid == "audio_menu":
 		return [(_("Volume Adjust"), main, "Volume_Adjust", 11)]
 	return [ ]
 
