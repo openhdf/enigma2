@@ -9,7 +9,7 @@ def deviceManagerMain(session, **kwargs):
 	session.open(HddSetup)
 
 def deviceManagerSetup(menuid, **kwargs):
-	if menuid != "system":
+	if menuid != "devices_menu":
 		return []
 	return [(_("Device Manager"), deviceManagerMain, "deviceManager", 5)]
 

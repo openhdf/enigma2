@@ -22,7 +22,7 @@ class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = ["Setup" ]
-		self.setup_title = _("A/V settings")
+		self.setup_title = _("Video settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -118,6 +118,118 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss, _("When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen.")))
 				if SystemInfo["ScartSwitch"]:
 					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
+
+		self["config"].list = self.list
+		self["config"].l.setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+
+	def keyLeft(self):
+		ConfigListScreen.keyLeft(self)
+		self.createSetup()
+
+	def keyRight(self):
+		ConfigListScreen.keyRight(self)
+		self.createSetup()
+
+	def confirm(self, confirmed):
+		if not confirmed:
+			config.av.videoport.setValue(self.last_good[0])
+			config.av.videomode[self.last_good[0]].setValue(self.last_good[1])
+			config.av.videorate[self.last_good[1]].setValue(self.last_good[2])
+			self.hw.setMode(*self.last_good)
+		else:
+			self.keySave()
+
+	def grabLastGoodMode(self):
+		port = config.av.videoport.value
+		mode = config.av.videomode[port].value
+		rate = config.av.videorate[mode].value
+		self.last_good = (port, mode, rate)
+
+	def saveAll(self):
+		if config.av.videoport.value == 'Scart':
+			config.av.autores.setValue('disabled')
+		for x in self["config"].list:
+			x[1].save()
+		configfile.save()
+
+	def apply(self):
+		port = config.av.videoport.value
+		mode = config.av.videomode[port].value
+		rate = config.av.videorate[mode].value
+		if (port, mode, rate) != self.last_good:
+			self.hw.setMode(port, mode, rate)
+			from Screens.MessageBox import MessageBox
+			self.session.openWithCallback(self.confirm, MessageBox, _("Is this video mode ok?"), MessageBox.TYPE_YESNO, timeout = 20, default = False)
+		else:
+			self.keySave()
+
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+
+class AudioSetup(Screen, ConfigListScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = ["Setup" ]
+		self.setup_title = _("Audio settings")
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+		self['footnote'] = Label()
+
+		self.hw = iAVSwitch
+		self.onChangedEntry = [ ]
+
+		# handle hotplug by re-creating setup
+		self.onShow.append(self.startHotplug)
+		self.onHide.append(self.stopHotplug)
+
+		self.list = [ ]
+		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+
+		from Components.ActionMap import ActionMap
+		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
+			{
+				"cancel": self.keyCancel,
+				"save": self.apply,
+				"menu": self.closeRecursive,
+			}, -2)
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		self["description"] = Label("")
+
+		self.createSetup()
+		self.grabLastGoodMode()
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(self.setup_title)
+
+	def startHotplug(self):
+		self.hw.on_hotplug.append(self.createSetup)
+
+	def stopHotplug(self):
+		self.hw.on_hotplug.remove(self.createSetup)
+
+	def createSetup(self):
+		level = config.usage.setup_level.index
 
 		if level >= 1:
 			if SystemInfo["CanDownmixAC3"]:
@@ -349,7 +461,7 @@ class AutoVideoMode(Screen):
 			if video_rate != -1:
 				if video_rate == 25000 and video_pol == 'i':
 					new_rate = 50000
-				elif video_rate == 59940 or (video_rate == 29970 and video_pol == 'i') or (video_rate == 29970 and video_pol == 'p' and config.av.autores.value == 'disabled'): 
+				elif video_rate == 59940 or (video_rate == 29970 and video_pol == 'i') or (video_rate == 29970 and video_pol == 'p' and config.av.autores.value == 'disabled'):
 					new_rate = 60000
 				elif video_rate == 23976:
 					new_rate = 24000

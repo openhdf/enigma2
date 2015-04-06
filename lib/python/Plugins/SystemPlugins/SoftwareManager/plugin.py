@@ -2477,7 +2477,7 @@ def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
 
 def startSetup(menuid):
-	if menuid != "setup":
+	if menuid != "software_menu":
 		return [ ]
 	return [(_("Software management"), UpgradeMain, "software_manager", 50)]
 
