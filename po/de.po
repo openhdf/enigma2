@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-04-01 16:49+0100\n"
+"PO-Revision-Date: 2015-04-06 18:42+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -801,6 +801,12 @@ msgstr ""
 
 msgid "A/V settings"
 msgstr "Audio/Video-Einstellungen"
+
+msgid "Audio settings"
+msgstr "Audio-Einstellungen"
+
+msgid "Video settings"
+msgstr "Video-Einstellungen"
 
 msgid "AA"
 msgstr "AA"
@@ -2888,6 +2894,9 @@ msgstr "4:3-Inhalt anzeigen als"
 
 msgid "Display >16:9 content as"
 msgstr "16:9-Inhalt anzeigen als"
+
+msgid "Graphical UI"
+msgstr "Oberfläche"
 
 msgid "Display and userinterface"
 msgstr "Anzeige und Benutzeroberfläche"
@@ -7270,7 +7279,7 @@ msgid "Service scan"
 msgstr "Sendersuche"
 
 msgid "Service searching"
-msgstr "Sendersuche / Tunereinstellung"
+msgstr "Sender / Tuner"
 
 msgid "Service title mode"
 msgstr "Sendertitel Modus"
@@ -9607,10 +9616,10 @@ msgid "Video enhancement setup"
 msgstr "Erweiterte A/V Einstellungen"
 
 msgid "Video fine tuning"
-msgstr "Bild Feineinstellung"
+msgstr "Bild-Feineinstellung"
 
 msgid "Video fine-tuning"
-msgstr "Bild Feineinstellung"
+msgstr "Bild-Feineinstellung"
 
 msgid ""
 "Video input selection\n"
