@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-04-07 12:08+0100\n"
+"PO-Revision-Date: 2015-04-07 17:57+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -5765,6 +5765,9 @@ msgstr "Jugendschutz"
 msgid "Parental control editor"
 msgstr "Jugendschutz Editor"
 
+msgid "Parental control services Editor"
+msgstr "Jugendschutz Sender Editor"
+
 msgid "Parental control setup"
 msgstr "Jugendschutz Einstellungen"
 
@@ -6594,6 +6597,9 @@ msgstr "Download fehlgeschlagen"
 
 msgid "Make your selection"
 msgstr "Bitte auswählen"
+
+msgid "Remote Control"
+msgstr "Fernbedienung-Einstellungen"
 
 msgid "Remote control type"
 msgstr "Fernbedienungstyp"
@@ -10719,7 +10725,7 @@ msgid "copy"
 msgstr "kopieren"
 
 msgid "copy to bouquets"
-msgstr "in Favoritenliste kopieren"
+msgstr "In die Favoritenliste kopieren"
 
 msgid "create directory"
 msgstr "Verzeichnis erstellen"
