@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-04-07 17:57+0100\n"
+"PO-Revision-Date: 2015-04-09 18:25+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3701,6 +3701,12 @@ msgstr "DeInterlacing erzwingen"
 
 msgid "Automatic resolution label"
 msgstr "Info Einblendung zur Auflösung"
+
+msgid "Always use smart1080p mode"
+msgstr "Smart1080p-Modus benutzen"
+
+msgid "This option allows you to always use e.g. 1080p50 for TV/.ts, and 1080p24/p50/p60 for videos"
+msgstr "Mit dieser Option wird, je nach Auswahl, z.B. 1080p50 für TV und Aufnahmen und 1080p24/p50/p60 für Videodateien benutzt."
 
 msgid "Show 1080p 24fps as"
 msgstr "Zeige 1080p mit 24FPS als"
