@@ -11,16 +11,19 @@ class Console(Screen):
 		self.finishedCallback = finishedCallback
 		self.closeOnSuccess = closeOnSuccess
 		self.errorOcurred = False
+		self.hideflag = True
 
+		self.Shown = True
 		self["text"] = ScrollLabel("")
 		self["summary_description"] = StaticText("")
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
+		self["actions"] = ActionMap(["ColorActions", "WizardActions", "DirectionActions"],
 		{
 			"ok": self.cancel,
 			"back": self.cancel,
 			"up": self["text"].pageUp,
-			"down": self["text"].pageDown
-		}, -1)
+			"down": self["text"].pageDown,
+			"yellow": self.yellow
+		}, -2)
 
 		self.cmdlist = cmdlist
 		self.newtitle = title
@@ -32,6 +35,34 @@ class Console(Screen):
 		self.container.appClosed.append(self.runFinished)
 		self.container.dataAvail.append(self.dataAvail)
 		self.onLayoutFinish.append(self.startRun) # dont start before gui is finished
+
+	def hideScreen(self):
+		if self.hideflag == True:
+			self.hideflag = False
+			count = 40
+			while count > 0:
+				count -= 1
+				f = open('/proc/stb/video/alpha', 'w')
+				f.write('%i' % (255 * count / 40))
+				f.close()
+
+		else:
+			self.hideflag = True
+			count = 0
+			while count < 40:
+				count += 1
+				f = open('/proc/stb/video/alpha', 'w')
+				f.write('%i' % (255 * count / 40))
+				f.close()
+	
+	def yellow(self):
+		print 'Yellow Pressed'	
+		if self.Shown == True:
+			self.hideScreen()
+			self.Shown = False
+		else:
+			self.show()
+			self.Shown = True
 
 	def updateTitle(self):
 		self.setTitle(self.newtitle)
