@@ -112,8 +112,13 @@ def InitUsageConfig():
 	config.usage.pip_zero_button = ConfigSelection(default = "swapstop", choices = [
 		("standard", _("Standard")), ("swap", _("Swap PiP and main picture")),
 		("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP")) ])
-	config.usage.pip_hideOnExit = ConfigSelection(default = "without popup", choices = [
+	config.usage.pip_hideOnExit = ConfigSelection(default = "no", choices = [
 		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
+	choicelist = [("-1", _("Disabled")), ("0", _("No timeout"))]
+	for i in [60, 300, 600, 900, 1800, 2700, 3600]:
+		m = i/60
+		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
+	config.usage.pip_last_service_timeout = ConfigSelection(default = "0", choices = choicelist)
 
 	if not os.path.exists(resolveFilename(SCOPE_HDD)):
 		try:
