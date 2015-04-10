@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Neutrino Keymap 13.03.2015" -->
+	<!-- "HDF Neutrino Keymap 07.04.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -43,6 +43,10 @@
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_UP" mapto="up" flags="mr" />
+		<key id="KEY_DOWN" mapto="down" flags="mr" />
+		<key id="KEY_PAGEUP" mapto="pageUp" flags="mr" />
+		<key id="KEY_PAGEDOWN" mapto="pageDown" flags="mr" />
 		<!--key id="KEY_RED" mapto="cancel" flags="m" /-->
 		<key id="KEY_GREEN" mapto="save" flags="m" />
 		<device name="dreambox advanced remote control (native)">
@@ -109,12 +113,9 @@
 	</map>
 	
 	<map context="InfobarInstantRecord">
-		<key id="KEY_RECORD" mapto="instantRecord" flags="b" />
-		<!--key id="KEY_RECORD" mapto="ShortRecord" flags="b" /-->
+		<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
+		<key id="KEY_RECORD" mapto="ShortRecord" flags="b" />
 		<!--key id="KEY_RECORD" mapto="LongRecord" flags="l" /-->
-		<!--device name="dreambox remote control (native)">
-			<key id="KEY_RED" mapto="instantRecord" flags="b" />
-		</device-->
 	</map>
 
 	<map context="InfobarExtensions">
