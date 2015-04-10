@@ -1,5 +1,5 @@
 from Converter import Converter
-from time import localtime, strftime, gmtime
+from time import localtime, strftime
 from Components.Element import cached
 
 class ClockToText(Converter, object):
@@ -23,6 +23,11 @@ class ClockToText(Converter, object):
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
+
+		self.fix = ""
+		if ';' in type:
+			type, self.fix = type.split(';')
+
 		if type == "WithSeconds":
 			self.type = self.WITH_SECONDS
 		elif type == "InMinutes":
@@ -56,28 +61,43 @@ class ClockToText(Converter, object):
 	@cached
 	def getText(self):
 		time = self.source.time
-		if not time or time > 169735005176:
+		if time is None:
 			return ""
 
+		# add/remove 1st space
+		def fix_space(string):
+			if "Proportional" in self.fix and t.tm_hour < 10:
+				return " " + string
+			if "NoSpace" in self.fix:
+				return string.lstrip(' ')
+			return string
+
+		# handle durations
 		if self.type == self.IN_MINUTES:
-			return "%d min" % (time / 60)
+			return ngettext("%d Min", "%d Mins", (time / 60)) % (time / 60)
 		elif self.type == self.AS_LENGTH:
+			if time < 0:
+				return ""
 			return "%d:%02d" % (time / 60, time % 60)
+		elif self.type == self.AS_LENGTHHOURS:
+			if time < 0:
+				return ""
+			return "%d:%02d" % (time / 3600, time / 60 % 60)
+		elif self.type == self.AS_LENGTHSECONDS:
+			if time < 0:
+				return ""
+			return "%d:%02d:%02d" % (time / 3600, time / 60 % 60, time % 60)
 		elif self.type == self.TIMESTAMP:
 			return str(time)
-		
-		if time > (31 * 24 * 60 * 60): 
-		# No Recording should be longer than 1 month :-)
-			t = localtime(time)
-		else:
-			t = gmtime(time)
+
+		t = localtime(time)
 
 		if self.type == self.WITH_SECONDS:
-			# TRANSLATORS: full time representation hour:minute:seconds 
-			return _("%2d:%02d:%02d") % (t.tm_hour, t.tm_min, t.tm_sec)
+			# TRANSLATORS: full time representation hour:minute:seconds
+			return fix_space(_("%2d:%02d:%02d") % (t.tm_hour, t.tm_min, t.tm_sec))
 		elif self.type == self.DEFAULT:
 			# TRANSLATORS: short time representation hour:minute
-			return _("%2d:%02d") % (t.tm_hour, t.tm_min)
+			return fix_space(_("%2d:%02d") % (t.tm_hour, t.tm_min))
 		elif self.type == self.DATE:
 			# TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 			d = _("%A %e %B %Y")

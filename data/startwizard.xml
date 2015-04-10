@@ -1,3 +1,4 @@
+<!--suppress XmlUnboundNsPrefix -->
 <wizard>
 		<step id="start" nextstep="introduction">
 			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your %s %s.\nPress the OK button on your remote control to move to the next step." />
@@ -11,7 +12,7 @@ self.selectKey("OK")
 			<text value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<displaytext value="Use the up/down keys on your remote control to select an option. After that, press OK." />
 			<list>
-				<listentry caption="Use the wizard to set up basic features" step="network" />
+				<listentry caption="Use the wizard to set up basic features" step="nima" />
 				<listentry caption="Exit the wizard" step="end" />
 			</list>
 			<code>
@@ -21,8 +22,8 @@ self.selectKey("DOWN")
 			</code>
 		</step>
 		<step id="network" >
-			<text value="Please connect your receiver to the internet" />
-			<displaytext value="Please connect your receiver to the internet" />
+			<text value="Please connect your %s %s to the internet" />
+			<displaytext value="Please connect your %s %s to the internet" />
 			<list>
 				<listentry caption="Check the internet connection" step="update" />
 				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />
@@ -46,8 +47,8 @@ self.selectKey("OK")
 			<condition>
 self.condition = not config.misc.installwizard.ipkgloaded.value
 			</condition>
-			<text value="Your receiver does not have an internet connection" />
-			<displaytext value="Your receiver is not connected to the internet" />
+			<text value="Your %s %s does not have an internet connection" />
+			<displaytext value="Your %s %s is not connected to the internet" />
 			<list>
 				<listentry caption="Check the internet connection again" step="update" />
 				<listentry caption="Skip internet connection check (disables automatic package installation)" step="nima" />
@@ -137,9 +138,6 @@ self.selectKey("RIGHT")
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
 			</condition>
-			<code>
-self.hideRc()
-			</code>
 			<list>
 				<listentry caption="No, scan later manually" step="end" />
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
@@ -150,7 +148,7 @@ self.hideRc()
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
-			</condition>
+			</condition>			
 			<text value="What do you want to scan?" />
 			<displaytext value="What do you want to scan?" />
 			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
@@ -186,9 +184,9 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			</list>
 			<code pos="after">
 if self["list"].index == 0:
-	config.ParentalControl.configured.value = True
+	config.ParentalControl.configured.setValue(True)
 else:
-	config.ParentalControl.configured.value = False
+	config.ParentalControl.configured.setValue(False)
 config.ParentalControl.configured.save()
 			</code>
 		</step>
@@ -212,13 +210,13 @@ if self["list"].index == 0:
 		<step id="finishparentalsetup">
 			<code>
 if config.ParentalControl.setuppin.value == "aaaa":
-	config.ParentalControl.setuppinactive.value = False
+	config.ParentalControl.setuppinactive.setValue(False)
 else:
-	config.ParentalControl.setuppinactive.value = True
+	config.ParentalControl.setuppinactive.setValue(True)
 config.ParentalControl.setuppinactive.save()
-config.ParentalControl.servicepinactive.value = True
+config.ParentalControl.servicepinactive.setValue(True)
 config.ParentalControl.servicepinactive.save()
-config.ParentalControl.setuppin.value = config.ParentalControl.servicepin[0].value
+config.ParentalControl.setuppin.setValue(config.ParentalControl.servicepin[0].value)
 config.ParentalControl.setuppin.save()
 			</code>
 			<text value="After the start wizard is completed, you need to protect single services. Refer to your %s %s's manual on how to do that." />
