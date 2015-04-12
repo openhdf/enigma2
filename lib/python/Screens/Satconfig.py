@@ -7,7 +7,7 @@ from Components.NimManager import nimmanager
 from Components.Button import Button
 from Components.Label import Label
 from Components.SelectionList import SelectionList, SelectionEntryComponent
-from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSatlist, ConfigYesNo
+from Components.config import getConfigListEntry, config, configfile, ConfigNothing, ConfigSatlist, ConfigYesNo
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
@@ -79,7 +79,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createConfigMode(self):
 		if self.nim.isCompatible("DVB-S"):
-			choices = {"nothing": _("Not configured"),
+			choices = {"nothing": _("not configured"),
 						"simple": _("Simple"),
 						"advanced": _("Advanced")}
 			if len(nimmanager.canEqualTo(self.slotid)) > 0:
@@ -560,7 +560,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.nimConfig = self.nim.config
 		self.createConfigMode()
 		self.createSetup()
-		self["header"] = Label(_("Reception Settings"))
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -608,6 +607,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.nimConfig.configMode.value = "nothing"
 		for x in self["config"].list:
 			x[1].save()
+		configfile.save()
 
 	def cancelConfirm(self, result):
 		if not result:
@@ -720,7 +720,7 @@ class NimSelection(Screen):
 						text = _("Advanced")
 				elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
 					if nimConfig.configMode.value == "nothing":
-						text = _("Nothing connected")
+						text = _("nothing connected")
 					elif nimConfig.configMode.value == "enabled":
 						text = _("Enabled")
 				if x.isMultiType():

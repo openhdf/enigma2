@@ -4,6 +4,8 @@ from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBe
 from Components.ParentalControl import parentalControl
 from Components.SystemInfo import SystemInfo
 from Components.config import config
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import getFPWasTimerWakeup
 from time import time
@@ -38,7 +40,15 @@ class Navigation:
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingServiceOrGroup = None
 		self.currentlyPlayingService = None
-		self.RecordTimer = RecordTimer.RecordTimer()
+
+		self.RecordTimer = None
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_RECORDTIMER):
+			self.RecordTimer = p()
+			if self.RecordTimer:
+				break
+		if not self.RecordTimer:
+			self.RecordTimer = RecordTimer.RecordTimer()
+
 		self.PowerTimer = PowerTimer.PowerTimer()
 		self.nextRecordTimerAfterEventActionAuto = nextRecordTimerAfterEventActionAuto
 		self.nextPowerManagerAfterEventActionAuto = nextPowerManagerAfterEventActionAuto
@@ -49,13 +59,12 @@ class Navigation:
 
 		wasTimerWakeup = getFPWasTimerWakeup()
 		thisBox = getBoxType()
-		if config.workaround.deeprecord.value:
-			if thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'dags'):
-				config.workaround.deeprecord.setValue(True)
-				config.workaround.deeprecord.save()
-				config.save()
-				print"[NAVIGATION] USE DEEPSTAND-WORKAROUND FOR THIS BOXTYPE (%s) !!" %thisBox
-			
+		if thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'dags', 'fulan'):
+			config.workaround.deeprecord.setValue(True)
+			config.workaround.deeprecord.save()
+			config.save()
+			print"[NAVIGATION] USE DEEPSTAND-WORKAROUND FOR THIS BOXTYPE (%s) !!" %thisBox
+		
 		if not wasTimerWakeup and config.workaround.deeprecord.value: #work-around for boxes where driver not sent was_timer_wakeup signal to e2
 			print"=================================================================================="
 			print"[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
@@ -182,7 +191,7 @@ class Navigation:
 		oldref = self.currentlyPlayingServiceOrGroup
 		if ref and oldref and ref == oldref and not forceRestart:
 			print "ignore request to play already running service(1)"
-			return 0
+			return 1
 		print "playing", ref and ref.toString()
 		if path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '1':
 			try:
@@ -214,7 +223,7 @@ class Navigation:
 				print "playref", playref
 				if playref and oldref and playref == oldref and not forceRestart:
 					print "ignore request to play already running service(2)"
-					return 0
+					return 1
 				if not playref or (checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl = False))):
 					self.stopService()
 					return 0
@@ -226,10 +235,8 @@ class Navigation:
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
-
 				if ref.toString().find('//') == -1 and SystemInfo["isGBIPBOX"]:
 					playref = ZAP.gref(ref, self.pnav)
-
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
@@ -252,7 +259,7 @@ class Navigation:
 			setResumePoint(MoviePlayer.instance.session)
 			MoviePlayerInstance.close()
 
-	def recordService(self, ref, simulate=False):
+	def recordService(self, ref, simulate=False, type=pNavigation.isUnknownRecording):
 		service = None
 		if not simulate: print "recording service: %s" % (str(ref))
 		if isinstance(ref, ServiceReference.ServiceReference):
@@ -260,7 +267,7 @@ class Navigation:
 		if ref:
 			if ref.flags & eServiceReference.isGroup:
 				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
-			service = ref and self.pnav and self.pnav.recordService(ref, simulate)
+			service = ref and self.pnav and self.pnav.recordService(ref, simulate, type)
 			if service is None:
 				print "record returned non-zero"
 		return service
@@ -269,8 +276,20 @@ class Navigation:
 		ret = self.pnav and self.pnav.stopRecordService(service)
 		return ret
 
-	def getRecordings(self, simulate=False):
-		return self.pnav and self.pnav.getRecordings(simulate)
+	def getRecordings(self, simulate=False, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordings(simulate, type)
+
+	def getRecordingsServices(self, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordingsServices(type)
+
+	def getRecordingsServicesOnly(self, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordingsServicesOnly(type)
+
+	def getRecordingsTypesOnly(self, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordingsTypesOnly(type)
+
+	def getRecordingsServicesAndTypes(self, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordingsServicesAndTypes(type)
 
 	def getCurrentService(self):
 		if not self.currentlyPlayingService:

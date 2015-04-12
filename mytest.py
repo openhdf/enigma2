@@ -52,6 +52,7 @@ from skin import readSkin
 profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
 from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave, ConfigNumber
+import Components.RecordingConfig
 InitFallbackFiles()
 
 profile("config.misc")
@@ -397,6 +398,8 @@ class PowerKey:
 		globalActionMap.actions["power_long"]=self.powerlong
 		globalActionMap.actions["deepstandby"]=self.shutdown # frontpanel long power button press
 		globalActionMap.actions["discrete_off"]=self.standby
+		globalActionMap.actions["sleeptimer_standby"]=self.sleepStandby
+		globalActionMap.actions["sleeptimer_deepstandby"]=self.sleepDeepStandby
 		self.standbyblocked = 1
 
 	def MenuClosed(self, *val):
@@ -404,8 +407,7 @@ class PowerKey:
 
 	def shutdown(self):
 		wasRecTimerWakeup = False
-		from time import time
-		recordings = self.session.nav.getRecordings()
+		recordings = self.session.nav.getRecordings(False,Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
 		if not recordings:
 			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
@@ -455,6 +457,12 @@ class PowerKey:
 						return
 		elif action == "standby":
 			self.standby()
+		elif action == "sleeptimerStandby":
+			val = 3
+			self.setSleepTimer(val)
+		elif action == "sleeptimerDeepStandby":
+			val = 4
+			self.setSleepTimer(val)
 
 	def powerdown(self):
 		self.standbyblocked = 0
@@ -469,6 +477,27 @@ class PowerKey:
 	def standby(self):
 		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
 			self.session.open(Screens.Standby.Standby)
+
+	def setSleepTimer(self, val):
+		from PowerTimer import PowerTimerEntry
+		sleeptime = 15
+		data = (int(time() + 60), int(time() + 120))
+		self.addSleepTimer(PowerTimerEntry(checkOldTimers = True, *data, timerType = val, autosleepdelay = sleeptime))
+
+	def addSleepTimer(self, timer):
+		from Screens.PowerTimerEntry import TimerEntry
+		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
+
+	def finishedAdd(self, answer):
+		if answer[0]:
+			entry = answer[1]
+			simulTimerList = self.session.nav.PowerTimer.record(entry)
+
+	def sleepStandby(self):
+		self.doAction(action = "sleeptimerStandby")
+
+	def sleepDeepStandby(self):
+		self.doAction(action = "sleeptimerDeepStandby")
 
 profile("Scart")
 from Screens.Scart import Scart
@@ -614,9 +643,9 @@ def runScreenTest():
 				wptime = startTime[0] - 120 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0] - 240
-		if not config.misc.SyncTimeUsing.value == "0" or getBoxType().startswith('gb'):
-			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
-			setRTCtime(nowTime)
+#		if not config.misc.SyncTimeUsing.value == "0" or getBoxType().startswith('gb'):
+#			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
+#			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
@@ -633,12 +662,12 @@ def runScreenTest():
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
 			if config.workaround.deeprecord.value:
-				wptime = startTime[0] + 240 # Gigaboxes already starts 2 min. before wakeup time
+				wptime = startTime[0] - 240 # Gigaboxes already starts 2 min. before wakeup time
 			else:
 				wptime = startTime[0]
-		if not config.misc.SyncTimeUsing.value == "0" or getBoxType().startswith('gb'):
-			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
-			setRTCtime(nowTime)
+#		if not config.misc.SyncTimeUsing.value == "0" or getBoxType().startswith('gb'):
+#			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
+#			setRTCtime(nowTime)
 		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime+60))
 		setFPWakeuptime(wptime)
 		PowerTimerWakeupAuto = startTime[1] == 3 and startTime[2]
