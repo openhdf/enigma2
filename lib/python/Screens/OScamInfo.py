@@ -40,19 +40,52 @@ class OscamInfo:
 	IP_PORT = 6
 	HEAD = { NAME: _("Label"), PROT: _("Protocol"),
 		CAID_SRVID: "CAID:SrvID", SRVNAME: _("Serv.Name"),
-		ECMTIME: _("ECM-Time"), IP_PORT: _("IP-Address") }
+		ECMTIME: _("ECM-Time"), IP_PORT: _("IP address") }
 	version = ""
 
 	def confPath(self):
-		search_dirs = [ "/usr", "/var", "/etc" ]
-		sdirs = " ".join(search_dirs)
-		cmd = 'find %s -name "oscam.conf"' % sdirs
+		#search_dirs = [ "/usr", "/var", "/etc" ]
+		#sdirs = " ".join(search_dirs)
+		#cmd = 'find %s -name "oscam.conf"' % sdirs
+		#res = os.popen(cmd).read()
+		#if res == "":
+		#	return None
+		#else:
+		#	return res.replace("\n", "")
+		cmd = 'ps -eo command | sort -u | grep -v "grep" | grep -c "oscam"'
 		res = os.popen(cmd).read()
-		if res == "":
-			return None
-		else:
-			return res.replace("\n", "")
-
+		if res:
+			data = res.replace("\n", "")
+			if int(data) == 1:
+				cmd = 'ps -eo command | sort -u | grep -v "grep" | grep "oscam"'
+				res = os.popen(cmd).read()
+				if res:
+					data = res.replace("\n", "")
+					data = res.replace("--config-dir ", "-c ")
+					binary = res.split(" ")[0]
+					try:
+						data = data.split("-c ")[1]
+						data = data.split("-")[0]
+					except:
+						try:
+							print 'OScaminfo - oscam start-command is not as "/oscam-binary -parameter /config-folder" executed, using hard-coded config dir'
+							cmd = binary + ' -V | grep ConfigDir'
+							res = os.popen(cmd).read()
+							data = res.split(":")[1]
+						except:
+							print 'OScaminfo - oscam binary appears to be broken'
+							return None
+					data = data.strip() + '/oscam.conf'
+					if os.path.exists(data):
+						print 'OScaminfo - config file "%s" ' % data
+						return data
+					print 'OScaminfo - config file "%s" not found' % data
+					return None
+			elif int(data) > 1:
+				print 'OScaminfo - more than one(%s) oscam binarys is active'  % data
+				return None
+		print 'OScaminfo - no active oscam binarys found'
+		return None
 
 	def getUserData(self):
 		err = ""
@@ -94,6 +127,7 @@ class OscamInfo:
 			return _("file oscam.conf could not be found")
 
 	def openWebIF(self, part = None, reader = None):
+		self.proto = "http"
 		if config.oscaminfo.userdatafromconf.value:
 			self.ip = "127.0.0.1"
 			udata = self.getUserData()
@@ -110,17 +144,21 @@ class OscamInfo:
 				self.password = udata[1]
 		else:
 			self.ip = ".".join("%d" % d for d in config.oscaminfo.ip.value)
-			self.port = config.oscaminfo.port.value
-			self.username = config.oscaminfo.username.value
-			self.password = config.oscaminfo.password.value
-		if part is None:
-			self.url = "http://%s:%s/oscamapi.html?part=status" % ( self.ip, self.port )
-		else:
-			self.url = "http://%s:%s/oscamapi.html?part=%s" % (self.ip, self.port, part )
-		if part is not None and reader is not None:
-			self.url = "http://%s:%s/oscamapi.html?part=%s&label=%s" % ( self.ip, self.port, part, reader )
+			self.port = str(config.oscaminfo.port.value)
+			self.username = str(config.oscaminfo.username.value)
+			self.password = str(config.oscaminfo.password.value)
 
-		print "URL=%s" % self.url
+		if self.port.startswith( '+' ):
+			self.proto = "https"
+			self.port.replace("+","")
+
+		if part is None:
+			self.url = "%s://%s:%s/oscamapi.html?part=status" % ( self.proto, self.ip, self.port )
+		else:
+			self.url = "%s://%s:%s/oscamapi.html?part=%s" % ( self.proto, self.ip, self.port, part )
+		if part is not None and reader is not None:
+			self.url = "%s://%s:%s/oscamapi.html?part=%s&label=%s" % ( self.proto, self.ip, self.port, part, reader )
+
 		pwman = urllib2.HTTPPasswordMgrWithDefaultRealm()
 		pwman.add_password( None, self.url, self.username, self.password )
 		handlers = urllib2.HTTPDigestAuthHandler( pwman )
@@ -410,7 +448,7 @@ class OscamInfoMenu(Screen):
 		elif entry == 1:
 			if config.oscaminfo.userdatafromconf.value:
 				if self.osc.confPath() is None:
-					config.oscaminfo.userdatafromconf.value = False
+					config.oscaminfo.userdatafromconf.setValue(False)
 					config.oscaminfo.userdatafromconf.save()
 					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
 				else:
@@ -420,7 +458,7 @@ class OscamInfoMenu(Screen):
 		elif entry == 2:
 			if config.oscaminfo.userdatafromconf.value:
 				if self.osc.confPath() is None:
-					config.oscaminfo.userdatafromconf.value = False
+					config.oscaminfo.userdatafromconf.setValue(False)
 					config.oscaminfo.userdatafromconf.save()
 					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
 				else:
@@ -430,7 +468,7 @@ class OscamInfoMenu(Screen):
 		elif entry == 3:
 			if config.oscaminfo.userdatafromconf.value:
 				if self.osc.confPath() is None:
-					config.oscaminfo.userdatafromconf.value = False
+					config.oscaminfo.userdatafromconf.setValue(False)
 					config.oscaminfo.userdatafromconf.save()
 					self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
 				else:
@@ -1128,7 +1166,7 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 		if not config.oscaminfo.userdatafromconf.value:
 			self.oscamconfig.append(getConfigListEntry(_("Username (httpuser)"), config.oscaminfo.username))
 			self.oscamconfig.append(getConfigListEntry(_("Password (httpwd)"), config.oscaminfo.password))
-			self.oscamconfig.append(getConfigListEntry(_("IP-Address"), config.oscaminfo.ip))
+			self.oscamconfig.append(getConfigListEntry(_("IP address"), config.oscaminfo.ip))
 			self.oscamconfig.append(getConfigListEntry("Port", config.oscaminfo.port))
 		self.oscamconfig.append(getConfigListEntry(_("Automatically update Client/Server View?"), config.oscaminfo.autoupdate))
 		if config.oscaminfo.autoupdate.value:

@@ -20,6 +20,16 @@ class MessageBox(Screen):
 		self.type = type
 		Screen.__init__(self, session)
 		self.skinName = ["MessageBox"]
+		if self.type == self.TYPE_YESNO:
+			self.setTitle(_("Question"))
+		elif self.type == self.TYPE_INFO:
+			self.setTitle(_("Information"))
+		elif self.type == self.TYPE_WARNING:
+			self.setTitle(_("Warning"))
+		elif self.type == self.TYPE_ERROR:
+			self.setTitle(_("Error"))
+		else:
+			self.setTitle(_("Message"))
 		if wizard:
 			from Components.config import config
 			from Components.Pixmap import MultiPixmap
@@ -72,7 +82,7 @@ class MessageBox(Screen):
 				self.list = [ (_("no"), False), (_("yes"), True) ]
 		else:
 			self.list = []
-		
+
 		self["list"] = MenuList(self.list)
 		if self.list:
 			self["selectedChoice"].setText(self.list[0][0])
