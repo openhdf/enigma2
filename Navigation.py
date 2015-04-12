@@ -42,12 +42,7 @@ class Navigation:
 		self.currentlyPlayingService = None
 
 		self.RecordTimer = None
-		for p in plugins.getPlugins(PluginDescriptor.WHERE_RECORDTIMER):
-			self.RecordTimer = p()
-			if self.RecordTimer:
-				break
-		if not self.RecordTimer:
-			self.RecordTimer = RecordTimer.RecordTimer()
+		self.RecordTimer = RecordTimer.RecordTimer()
 
 		self.PowerTimer = PowerTimer.PowerTimer()
 		self.nextRecordTimerAfterEventActionAuto = nextRecordTimerAfterEventActionAuto
