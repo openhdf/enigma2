@@ -57,7 +57,9 @@ class VolumeControl:
 
 	def volDown(self):
 		vol = self.volctrl.getVolume()
-		if vol <= 10:
+		if vol <= 1:
+			self.volMute(False, True)
+		elif vol <= 10:
 			vol -= 1
 		elif vol <= 15:
 			vol -= 2
