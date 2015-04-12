@@ -31,8 +31,8 @@ elif distro.lower() == "openhdf":
 	image = 2
 feedurl_atv = 'http://images.mynonpublic.com/openatv/nightly'
 feedurl_om = 'http://image.openmips.com/2.0'
-feedurl_hdf = 'http://v4.hdfreaks.cc'
-feedurl_team = 'http://v4.hdfreaks.cc/team'
+feedurl_hdf = 'http://v5.hdfreaks.cc'
+feedurl_team = 'http://v5.hdfreaks.cc/team'
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
 flashTmp = '/media/hdd/images/tmp'
@@ -56,7 +56,7 @@ class FlashOnline(Screen):
 		<widget name="key_green" position="140,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="key_yellow" position="280,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		<widget name="key_blue" position="420,360" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<widget name="info-online" position="10,30" zPosition="1" size="450,100" font="Regular;20" halign="left" valign="top" transparent="1" />
+		<widget name="info-online" position="10,80" zPosition="1" size="450,100" font="Regular;20" halign="left" valign="top" transparent="1" />
 		<widget name="info-local" position="10,150" zPosition="1" size="450,200" font="Regular;20" halign="left" valign="top" transparent="1" />
 	</screen>"""
 
@@ -377,7 +377,7 @@ class doFlashImage(Screen):
 					self["key_blue"].setText("Teamimages")
 				else:
 					self.feedurl = feedurl_team
-					self["key_blue"].setText("Nightly V4.2")
+					self["key_blue"].setText("Nightly V5.0")
 			else:
 				self.feedurl = feedurl_atv
 				self["key_blue"].setText("")
