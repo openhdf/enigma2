@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-04-12 06:45+0100\n"
+"PO-Revision-Date: 2015-04-12 19:06+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -774,6 +774,36 @@ msgstr "Wollen Sie die Aufnahme wirklich löschen?"
 
 msgid "A repeating timer or just once?"
 msgstr "Ein wiederholender oder einmaliger Timer?"
+
+msgid "Recordings abort PIP"
+msgstr "Aufnahmen beenden PIP"
+
+msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
+msgstr "Wenn aktiviert, beendet eine Aufnahme das PIP, wenn keine weiteren freien Tuner verfügbar sind."
+
+msgid "Recordings abort pseudo recordings"
+msgstr "Aufnahmen beenden Pseudo Aufnahmen"
+
+msgid "When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners."
+msgstr "Wenn aktiviert, beendet eine Aufnahme Pseudo Aufnahmen, wenn keine weiteren freien Tuner verfügbar sind."
+
+msgid "Recordings abort streaming"
+msgstr "Aufnahmen beenden Streaming"
+
+msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
+msgstr "Wenn aktiviert, beendet eine Aufnahme das Streaming, wenn keine weiteren freien Tuner verfügbar sind."
+
+msgid "ask user"
+msgstr "Nachfragen"
+
+msgid "just abort, no message"
+msgstr "Abbrechen ohne Meldung"
+
+msgid "just abort, show message"
+msgstr "Abbrechen mit Meldung"
+
+msgid "never abort"
+msgstr "Niemals abbrechen"
 
 #, python-format
 msgid "A required tool (%s) was not found."
