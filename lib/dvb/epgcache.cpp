@@ -963,8 +963,8 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 		eventCache::iterator it = eventDB.find(s);
 		if ( it != eventDB.end() )
 		{
-			eventMap &evMap = it->second.byEvent;
-			timeMap &tmMap = it->second.byTime;
+			eventMap &evMap = it->second.first;
+			timeMap &tmMap = it->second.second;
 			tmMap.clear();
 			for (eventMap::iterator i = evMap.begin(); i != evMap.end(); ++i)
 				delete i->second;
@@ -988,8 +988,8 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 		for (eventCache::iterator it(eventDB.begin());
 			it != eventDB.end(); ++it)
 		{
-			eventMap &evMap = it->second.byEvent;
-			timeMap &tmMap = it->second.byTime;
+			eventMap &evMap = it->second.first;
+			timeMap &tmMap = it->second.second;
 			for (eventMap::iterator i = evMap.begin(); i != evMap.end(); ++i)
 				delete i->second;
 			evMap.clear();
@@ -1001,7 +1001,7 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 #endif
 		channelLastUpdated.clear();
 		singleLock m(channel_map_lock);
-		for (ChannelMap::const_iterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
+		for (channelMapIterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
 			it->second->startEPG();
 	}
 }

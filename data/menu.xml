@@ -45,10 +45,10 @@
 				<id val="video_menu" />
 				<item weight="0" text="Video settings" entryID="av_setup"><screen module="VideoMode" screen="VideoSetup" /></item>
 				<item level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
-<code>
+					<code>
 from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 self.session.open(HdmiCECSetupScreen)
-</code>
+					</code>
 				</item>
 			</menu>
 
@@ -78,41 +78,41 @@ self.session.open(HdmiCECSetupScreen)
 					<menu level="2" text="Load/Save/Delete" entryID="epgloadsave_menu">
 						<id val="epgloadsave_menu" />
 						<item level="0" entryID="saveepgcache" text="Save EPG">
-<code>
+							<code>
 from Components.EpgLoadSave import EpgSaveMsg
 def msgClosed(ret):
-	if ret:
-		from enigma import eEPGCache
-		epgcache = eEPGCache.getInstance()
-		epgcache.save()
+if ret:
+	from enigma import eEPGCache
+	epgcache = eEPGCache.getInstance()
+	epgcache.save()
 self.session.openWithCallback(msgClosed, EpgSaveMsg)
-</code>
+							</code>
 						</item>
 						<item level="0" entryID="loadepgcache" text="Load EPG">
-<code>
+							<code>
 from Components.EpgLoadSave import EpgLoadMsg
 def msgClosed(ret):
-	if ret:
-		from enigma import eEPGCache
-		epgcache = eEPGCache.getInstance()
-		epgcache.load()
+if ret:
+	from enigma import eEPGCache
+	epgcache = eEPGCache.getInstance()
+	epgcache.load()
 self.session.openWithCallback(msgClosed, EpgLoadMsg)
-</code>
+							</code>
 						</item>
 						<item level="0" entryID="deleteepgcache" text="Delete EPG">
-<code>
+							<code>
 from Components.EpgLoadSave import EpgDeleteMsg
 def msgClosed(ret):
-	if ret:
-		import os
-		from Components.config import config
-		if os.path.exists(config.misc.epgcache_filename.value):
-			os.remove(config.misc.epgcache_filename.value)
-		from enigma import eEPGCache
-		epgcache = eEPGCache.getInstance()
-		epgcache.flushEPG()
+if ret:
+	import os
+	from Components.config import config
+	if os.path.exists(config.misc.epgcache_filename.value):
+		os.remove(config.misc.epgcache_filename.value)
+	from enigma import eEPGCache
+	epgcache = eEPGCache.getInstance()
+	epgcache.flushEPG()
 self.session.openWithCallback(msgClosed, EpgDeleteMsg)
-</code>
+							</code>
 						</item>
 
 					</menu>
@@ -148,10 +148,10 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item level="2" text="OpenVPN setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
 					<item level="2" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item>
 					<item level="2" text="SABnzbd setup" entryID="netsabnzbd_setup" requires="SABSetup">
-<code>
+						<code>
 from Plugins.SystemPlugins.SABnzbd.plugin import SABnzbdSetupScreen
 self.session.open(SABnzbdSetupScreen)
-</code>
+						</code>
 					</item>
 					<item level="2" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
 					<item level="2" text="Telnet setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
@@ -271,7 +271,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 		<menu text="Standby / Restart" entryID="standby_restart_list">
 			<id val="shutdown" />
 			<item text="Deep Standby" requires="DeepstandbySupport" entryID="deep_standby">
-<code>
+				<code>
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 recordings = self.session.nav.getRecordings()
@@ -286,10 +286,10 @@ if recordings:
 	self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, timeout = 10)
 else:
 	self.session.open(TryQuitMainloop, 1)
-</code>
+				</code>
 			</item>
 			<item text="WOL Standby" requires="GBWOL" entryID="deep_standby">
-<code>
+				<code>
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 recordings = self.session.nav.getRecordings()
@@ -304,7 +304,7 @@ if recordings:
 	self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, timeout = 10)
 else:
 	self.session.open(TryQuitMainloop, 45)
-</code>
+				</code>
 			</item>
 			<item text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
 			<item text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
