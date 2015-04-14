@@ -349,6 +349,7 @@ public:
 	void crossepgImportEPGv21(std::string dbroot);
 	void save();
 	void load();
+	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey());
 	void timeUpdated();
 #ifndef SWIG
 	eEPGCache();
