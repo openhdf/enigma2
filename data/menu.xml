@@ -56,6 +56,12 @@ self.session.open(HdmiCECSetupScreen)
 			<menu weight="5" level="0" text="Audio" entryID="audio_menu">
 				<id val="audio_menu" />
 				<item weight="0" text="Audio settings" entryID="av_setup"><screen module="VideoMode" screen="AudioSetup" /></item>
+				<item level="0" text="HDMI CEC" entryID="hdmicec" requires="HDMICEC">
+<code>
+from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
+self.session.open(HdmiCECSetupScreen)
+</code>
+				</item>
 				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
 			</menu>
 
