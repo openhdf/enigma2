@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-04-12 19:06+0100\n"
+"PO-Revision-Date: 2015-04-16 17:13+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3224,7 +3224,7 @@ msgid "EPG location"
 msgstr "EPG Speicherort"
 
 msgid "EPG settings"
-msgstr "EPG Einstellungen"
+msgstr "EPG-Einstellungen"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -4019,7 +4019,7 @@ msgid "Handle wakeup from TV"
 msgstr "Fernseher Wakeup verwalten"
 
 msgid "Hard disk setup"
-msgstr "Festplatten Einstellungen"
+msgstr "Festplatten-Einstellungen"
 
 msgid "Hard disk standby after"
 msgstr "Festplatte Ruhezustand nach"
@@ -4586,7 +4586,10 @@ msgid "Keyboard map"
 msgstr "Tastaturlayout"
 
 msgid "Keyboard setup"
-msgstr "Tastatur Einstellungen"
+msgstr "Tastatur-Einstellungen"
+
+msgid "Transcoding Setup"
+msgstr "Transcoding-Einstellungen"
 
 msgid "HotKey Settings"
 msgstr "HotKey-Tasten-Belegungen"
@@ -4818,7 +4821,10 @@ msgid "Logs older then the set no of days will be deleted."
 msgstr "Log Datei die älter sind als diese Anzahl von Tagen werden gelöscht."
 
 msgid "Logs settings"
-msgstr "Log Einstellungen"
+msgstr "Log-Einstellungen"
+
+msgid "PluginBrowser filter setting"
+msgstr "Pluginbrowser-Filter-Einstellungen"
 
 msgid "Long << / >>"
 msgstr "Lang Rücklauf/Vorlauf"
@@ -7942,10 +7948,10 @@ msgid "SoftCam / CI"
 msgstr "CI / Softcam-Einstellungen"
 
 msgid "Softcam setings"
-msgstr "Softcam Einstellungen"
+msgstr "Softcam-Einstellungen"
 
 msgid "Softcam settings"
-msgstr "Softcam Einstellungen"
+msgstr "Softcam-Einstellungen"
 
 msgid "Software"
 msgstr "Software"
