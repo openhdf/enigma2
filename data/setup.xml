@@ -5,9 +5,6 @@
 		<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
 		<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>
 	</setup>
-	<setup key="avsetup">
-		<!-- this is just a placeholder, the Videomode plugin implements this submenu -->
-	</setup>
 	<setup key="usage" title="Customize">
 		<!--item level="0" text="Setup mode" description="Choose which level of menu/setting's to display. 'Expert'-level shows all items.">config.usage.setup_level</item-->
 		<item level="1" text="Enable teletext caching" description="When enabled, teletext pages will be cached, allowing faster access.">config.usage.enable_tt_caching</item>
@@ -29,9 +26,6 @@
 		<item level="0" text="Show infobar picons" description="Option to disable picons on the Infobar">config.usage.showpicon</item>
 		<item level="0" text="Enable infobar fade-out" description="Fade the Infobar on hide">config.usage.show_infobar_do_dimming</item>
 		<item level="0" text="Infobar fade-out speed" description="Control the Infobar fading speed">config.usage.show_infobar_dimming_speed</item>
-		<!--item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode:" requires="InfoBarEpg">config.plisettings.InfoBarEpg_mode</item-->
-		<!--item level="1" text="Action on long powerbutton press" description="Configure the function of a long press on the power button.">config.usage.on_long_powerpress</item-->
-		<!--item level="1" text="Action on short powerbutton press" description="Configure the function of a short press on the power button.">config.usage.on_short_powerpress</item-->
 		<item level="0" text="Show animation while busy" description="Show spinning logo when system is busy.">config.usage.show_spinner</item>
 		<item level="1" text="Show job tasks in extensions" description="With this option you can hide Job Tasks from the extension screen (short blue button press).">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" description="Choose whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
@@ -57,7 +51,6 @@
 		<item level="1" text="Sort setting screen's alphabetically" description="This option allows you to disable sorting of the option in setting screen's">config.usage.sort_settings</item>
 		<item level="1" text="Sort menu screen's alphabetically" description="This option allows you to disable sorting of the menus">config.usage.sort_menus</item>
 		<item level="1" text="Sort plug-in browser alphabetically" description="This option allows you to disable sorting of the plugin browser.">config.usage.sort_pluginlist</item>
-		<!--item level="1" text="Sort Extensions list alphabetically" description="This option allows you to disable sorting of the Extensions list.">config.usage.sort_extensionslist</item-->
 		<item level="1" text="Show PVR status in MoviePlayer infobar" description="This option moves the PVR status from the seprate window into the MoviePlayer infobar.">config.usage.movieplayer_pvrstate</item>
 		<item level="2" text="Close PiP on exit" description="When enabled the PiP can be closed by the exit button.">config.usage.pip_hideOnExit</item>
 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown on the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item>
@@ -250,43 +243,12 @@
 		<item level="1" text="Check every (hours)" description="Setup the interval to check for online updates. (in hours)" requires="config.softwareupdate.check">config.softwareupdate.checktimer</item>
 		<item level="1" text="Allow unstable (untested) updates" description="When enabled the online checker will also check for experimental versions">config.softwareupdate.updatebeta</item>
 		<item level="1" text="Disable all updates*" description="When enabled the opkg status file will be renamed and all future updates can not be installed. Please restart Enigma2 after the change this option.">config.softwareupdate.disableupdates</item>
-		<!--item level="1" text="Automatic setting backup" description="Perform a setting backup before updating.">config.softwareupdate.autosettingsbackup</item-->
-		<!--item level="1" text="Automatic image backup" description="Perform a image backup before updating.">config.softwareupdate.autoimagebackup</item-->
-
 	</setup>
 	<setup key="remotesetup" title="Button setup">
 		<item level="1" text="Action on long powerbutton press" description="Setup what a long press on the power button does.">config.usage.on_long_powerpress</item>
 		<item level="1" text="Action on short powerbutton press" description="Setup what a short press on the power button does.">config.usage.on_short_powerpress</item>
-		<!--item level="0" text="EPG button mode" description="Select what you want the EPG button to activate:">config.plisettings.PLIEPG_mode</item>
-		<item level="0" text="INFO button mode" description="Select what you want the INFO button to activate:">config.plisettings.PLIINFO_mode</item>
-		<item level="0" text="FAV button mode" description="Select what you want the FAV button to activate:">config.plisettings.PLIFAV_mode</item>
-		<item level="0" text="QuickEPG mode" description="Select how to activate the Quick EPG mode:">config.plisettings.InfoBarEpg_mode</item-->
 		<item level="0" text="Subservice mode" description="Select if you want the Subservice mode to be activated.">config.plisettings.Subservice</item>
-		<!--item level="0" text="TV button mode" description="Select what you want the TV button to activate:">config.usage.tvradiobutton_mode</item>
-		<item level="0" text="OK button mode" description="Select what you want the OK button to activate:">config.usage.okbutton_mode</item>
-		<item level="1" text="History buttons mode" description="Configure the function of the &lt;  &gt; buttons.">config.usage.historymode</item>
-		<item level="1" text="Bookmark button mode" description="Select what you want the Bookmark button to activate:">config.usage.bookmarkmode</item>
-		<item level="1" text="Home button mode" requires="homebutton" description="Select what you want the Home button to activate:">config.plisettings.homemode</item>
-		<item level="1" text="End button mode" requires="endbutton" description="Select what you want the End button to activate:">config.plisettings.endmode</item>
-		<item level="1" text="Web button mode" requires="lxbuttons" description="Select what you want the Web button to activate:">config.plisettings.webbutton_mode</item>
-		<item level="1" text="Plugin button mode" requires="lxbuttons" description="Select what you want the Plugin button to activate:">config.plisettings.pluginbutton_mode</item>
-		<item level="0" text="Channel +/- button mode" description="Select what you want the Channel +/- button to activate:">config.usage.channelbutton_mode</item>
-		<item level="0" text="Up/Down button mode" description="Select what you want the Up/Down button to activate:">config.usage.updownbutton_mode</item>
-		<item level="0" text="Left/Right button mode" description="Select what you want the Left/Right button to activate:">config.usage.leftrightbutton_mode</item>
-		<item level="0" text="F1 button mode" requires="3FunctionButtons" description="Select what you want the F1 button to activate:">config.plisettings.F1_mode</item>
-		<item level="0" text="F2 button mode" requires="3FunctionButtons" description="Select what you want the F2 button to activate:">config.plisettings.F2_mode</item>
-		<item level="0" text="F3 button mode" requires="3FunctionButtons" description="Select what you want the F3 button to activate:">config.plisettings.F3_mode</item>
-		<item level="0" text="F4 button mode" requires="4FunctionButtons" description="Select what you want the F4 button to activate:">config.plisettings.F4_mode</item>
-		<item level="0" text="Red button mode" description="Select what you want the red button to activate:">config.plisettings.redbutton_mode</item>
-		<item level="0" text="Red button long mode" description="Select what you want the long red button to activate:">config.plisettings.redbuttonlong_mode</item>
-		<item level="0" text="Green button mode" description="Select what you want the green button to activate:">config.plisettings.greenbutton_mode</item>
-		<item level="0" text="Green button long mode" description="Select what you want the long green button to activate:">config.plisettings.greenbuttonlong_mode</item>
-		<item level="0" text="Yellow button mode" description="Select what you want the yellow button to activate:">config.plisettings.yellowbutton_mode</item>
-		<item level="0" text="Yellow button long mode" description="Select what you want the long yellow button to activate:">config.plisettings.yellowbuttonlong_mode</item>
-		<item level="0" text="Blue button mode" description="Select what you want the blue button to activate:">config.plisettings.bluebutton_mode</item>
-		<item level="0" text="Blue button long mode" description="Select what you want the long blue button to activate:">config.plisettings.bluebuttonlong_mode</item-->
 		<item level="0" text="Keymap Selection" description="Select the keymap that you want to use:">config.usage.keymap</item>
-		<!--item level="0" text="Use image coloured Buttons *" description="Select if you want to use the image coloured Buttons (set to 'no' if you want to use (Multi) Quick Button).">config.plisettings.ColouredButtons</item-->
 		<item level="0" text="Show pressed buttons in telnet debug mode" description="Select if you want to show every pressed button in telnet init 4 mode.">config.plisettings.ShowPressedButtons</item>
 	</setup>
 	<setup key="softcamsetup" title="Softcam settings">
@@ -299,9 +261,6 @@
 		<item level="2" text="Enable debug log" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
 		<item level="2" text="Show Log Manager in extensions list ?" description="Allows you to show/hide Log Manager in extensions (blue button).">config.logmanager.showinextensions</item>
-		<!--item level="2" text="User name" description="Enter your forum user name, to make it easier trace logs.">config.logmanager.user</item>
-		<item level="2" text="e-Mail address" description="Enter your email address to send a copy of the log to.">config.logmanager.useremail</item>
-		<item level="2" text="Send yourself a copy ?" description="Allows you to send a copy of the log to yourself.">config.logmanager.usersendcopy</item-->
 		<item level="2" text="Maximum no of days:" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum space used (MB):" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
 	</setup>
@@ -399,7 +358,6 @@
 	<setup key="dvdplayer" title="DVD-Player Setup">
 		<item level="0" text="Show DVD-Player in Mainmenu ?" description="Show DVD-Player in Mainmenu">config.usage.show_dvdplayer</item>
 	</setup>
-	<!-- setup key="pluginfilter" title="PluginBrowser filter settings..." -->
 	<setup key="pluginbrowsersetup" title="PluginBrowser filter settings">
 		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginfilter.po</item>
 		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginfilter.src</item>
