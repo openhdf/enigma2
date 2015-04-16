@@ -3486,6 +3486,8 @@ class InfoBarSeek:
 		self.activityTimer.callback.append(self.doActivityTimer)
 		self.seekstate = self.SEEK_STATE_PLAY
 		self.lastseekstate = self.SEEK_STATE_PLAY
+		self.seekAction = 0
+		self.LastseekAction = False
 
 		self.onPlayStateChanged = [ ]
 
@@ -3594,6 +3596,8 @@ class InfoBarSeek:
 			self.activityTimer.stop()
 			self.activity = 0
 			hdd = 0
+			self.seekAction = 0
+
 		if os.path.exists("/proc/stb/lcd/symbol_hdd"):
 			file = open("/proc/stb/lcd/symbol_hdd", "w")
 			file.write('%d' % int(hdd))
@@ -3602,6 +3606,25 @@ class InfoBarSeek:
 			file = open("/proc/stb/lcd/symbol_hddprogress", "w")
 			file.write('%d' % int(self.activity))
 			file.close()
+		if self.LastseekAction:
+			self.DoSeekAction()
+
+	def DoSeekAction(self):
+		if self.seekAction > 2:
+			self.doSeekRelative(self.seekAction * 4 * 90000 )
+		elif self.seekAction < 0:
+			self.doSeekRelative(self.seekAction * 2 * 90000 )
+
+		for c in self.onPlayStateChanged:
+			if self.seekAction > 2: # Forward
+				c((0, self.seekAction, 0, ">> %dx" % self.seekAction))
+			elif self.seekAction < 0: # Backward
+				c((0, self.seekAction, 0, "<< %dx" % abs(self.seekAction)))
+
+		if self.seekAction == 0:
+			self.LastseekAction = False
+			self.doPause(False)
+			self.setSeekState(self.SEEK_STATE_PLAY)
 
 	def __serviceStarted(self):
 		self.fast_winding_hint_message_showed = False
@@ -3621,36 +3644,28 @@ class InfoBarSeek:
 		pauseable = service.pause()
 
 		if pauseable is None:
-#			print "not pauseable."
 			state = self.SEEK_STATE_PLAY
 
 		self.seekstate = state
 
 		if pauseable is not None:
 			if self.seekstate[0] and self.seekstate[3] == '||':
-#				print "resolved to PAUSE"
 				self.activityTimer.stop()
 				pauseable.pause()
 			elif self.seekstate[0] and self.seekstate[3] == 'END':
-#				print "resolved to STOP"
 				self.activityTimer.stop()
 			elif self.seekstate[1]:
 				if not pauseable.setFastForward(self.seekstate[1]):
 					pass
-					# print "resolved to FAST FORWARD"
 				else:
 					self.seekstate = self.SEEK_STATE_PLAY
-					# print "FAST FORWARD not possible: resolved to PLAY"
 			elif self.seekstate[2]:
 				if not pauseable.setSlowMotion(self.seekstate[2]):
 					pass
-					# print "resolved to SLOW MOTION"
 				else:
 					self.seekstate = self.SEEK_STATE_PAUSE
-					# print "SLOW MOTION not possible: resolved to PAUSE"
 			else:
-#				print "resolved to PLAY"
-				self.activityTimer.start(200, False)
+				self.activityTimer.start(500, False)
 				pauseable.unpause()
 
 		for c in self.onPlayStateChanged:
