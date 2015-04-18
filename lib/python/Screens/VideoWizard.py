@@ -150,6 +150,7 @@ class VideoWizard(WizardLanguage, Rc):
 			#if mode[0] != "PC":
 				list.append((mode[0], mode[0]))
 		print "modeslist:", list
+		list.sort()
 		return list
 
 	def modeSelectionMade(self, index):
