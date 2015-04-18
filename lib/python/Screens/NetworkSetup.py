@@ -569,10 +569,10 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				if self.hasGatewayConfigEntry.value:
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
 			havewol = False
-			if SystemInfo["WakeOnLAN"] and not getBoxType() in ('et10000', 'gb800seplus', 'gb800ueplus', 'gbipbox', 'gbquad'):
+			if SystemInfo["WakeOnLAN"] and not getBoxType() in ('et10000', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbipbox', 'gbquad'):
 				havewol = True
-			if getBoxType() == 'et10000' and self.iface == 'eth1':
-				havewol = True
+			if getBoxType() == 'et10000' and self.iface == 'eth0':
+				havewol = False
 			if havewol:	
 				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))
 
@@ -2550,11 +2550,6 @@ class NetworkSamba(Screen):
 		self.updateService()
 
 	def activateSamba(self):
-		if access('/etc/network/if-up.d/01samba-start', X_OK):
-			chmod('/etc/network/if-up.d/01samba-start', 0644)
-		elif not access('/etc/network/if-up.d/01samba-start', X_OK):
-			chmod('/etc/network/if-up.d/01samba-start', 0755)
-
 		if fileExists('/etc/rc2.d/S20samba'):
 			self.Console.ePopen('update-rc.d -f samba remove', self.StartStopCallback)
 		else:
