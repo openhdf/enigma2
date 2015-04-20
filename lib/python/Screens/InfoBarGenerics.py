@@ -79,30 +79,6 @@ class bcolors:
         self.FAIL = ''
         self.ENDC = ''
 
-print bcolors.OKGREEN + "~~~~ read box informations ~~~~~~~~~" + bcolors.ENDC
-print bcolors.OKBLUE + "MachineName =", getMachineName() + bcolors.ENDC
-print bcolors.OKBLUE + "MachineBrand =", getMachineBrand() + bcolors.ENDC
-print bcolors.OKBLUE + "BoxType =", getBoxType() + bcolors.ENDC
-print bcolors.OKBLUE + "OEM =", getBrandOEM() + bcolors.ENDC
-print bcolors.OKBLUE + "Driverdate =", getDriverDate() + bcolors.ENDC
-print bcolors.OKBLUE + "Imageversion =", getImageVersion() + bcolors.ENDC
-print bcolors.OKBLUE + "Imagebuild =", getImageBuild() + bcolors.ENDC
-print bcolors.OKGREEN + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + bcolors.ENDC
-
-try:
-	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" > /etc/enigma2/boxinformations")
-	os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getBrandOEM = " + getBrandOEM() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getDriverDate = " + getDriverDate() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getImageVersion = " + getImageVersion() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getImageBuild = " + getImageBuild() + " >> /etc/enigma2/boxinformations")
-	os.system("echo ~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
-	os.system("cat /proc/cpuinfo >> /etc/enigma2/boxinformations")
-except:
-    pass
-
 AUDIO = False
 
 if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
@@ -5998,3 +5974,29 @@ class InfoBarPowersaver:
 		elif not Screens.Standby.inStandby:
 			print "[InfoBarPowersaver] goto standby"
 			self.session.open(Screens.Standby.Standby)
+
+print bcolors.OKGREEN + "~~~~ read box informations ~~~~~~~~~" + bcolors.ENDC
+print bcolors.OKBLUE + "MachineName =", getMachineName() + bcolors.ENDC
+print bcolors.OKBLUE + "MachineBrand =", getMachineBrand() + bcolors.ENDC
+print bcolors.OKBLUE + "BoxType =", getBoxType() + bcolors.ENDC
+print bcolors.OKBLUE + "OEM =", getBrandOEM() + bcolors.ENDC
+print bcolors.OKBLUE + "Driverdate =", getDriverDate() + bcolors.ENDC
+print bcolors.OKBLUE + "Imageversion =", getImageVersion() + bcolors.ENDC
+print bcolors.OKBLUE + "Imagebuild =", getImageBuild() + bcolors.ENDC
+print bcolors.OKGREEN + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + bcolors.ENDC
+
+try:
+	os.system("rm -f /etc/enigma2/boxinformations")
+	os.system("touch /etc/enigma2/boxinformations")
+	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
+	os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getBrandOEM = " + getBrandOEM() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getDriverDate = " + getDriverDate() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getImageVersion = " + getImageVersion() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getImageBuild = " + getImageBuild() + " >> /etc/enigma2/boxinformations")
+	os.system("echo ~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
+	os.system("cat /proc/cpuinfo >> /etc/enigma2/boxinformations")
+except:
+    pass
