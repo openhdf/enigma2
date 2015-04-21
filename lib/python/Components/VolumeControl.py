@@ -43,13 +43,13 @@ class VolumeControl:
 
 	def volUp(self):
 		vol = self.volctrl.getVolume()
-		if vol < 10:
+		if vol < 15:
 			vol += 1
-		elif vol < 15:
+		elif vol < 25:
 			vol += 2
-		elif vol < 20:
+		elif vol < 30:
 			vol += 3
-		elif vol < 35:
+		elif vol < 40:
 			vol += 4
 		else:
 			vol += 5
@@ -57,15 +57,13 @@ class VolumeControl:
 
 	def volDown(self):
 		vol = self.volctrl.getVolume()
-		if vol <= 1:
-			self.volMute(False, True)
-		elif vol <= 10:
+		if vol <= 15:
 			vol -= 1
-		elif vol <= 15:
+		elif vol <= 25:
 			vol -= 2
-		elif vol <= 20:
+		elif vol <= 30:
 			vol -= 3
-		elif vol <= 35:
+		elif vol <= 40:
 			vol -= 4
 		else:
 			vol -= 5
