@@ -152,7 +152,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item level="2" text="MiniDLNA setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
 					<item level="2" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
 					<item level="2" text="OpenVPN setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
-					<item level="2" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item>
+					<!--item level="2" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item-->
 					<item level="2" text="SABnzbd setup" entryID="netsabnzbd_setup" requires="SABSetup">
 <code>
 from Plugins.SystemPlugins.SABnzbd.plugin import SABnzbdSetupScreen
@@ -231,7 +231,7 @@ self.session.open(SABnzbdSetupScreen)
 					<item level="2" text="MiniDLNA setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
 					<item level="2" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
 					<item level="2" text="OpenVPN setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
-					<item level="2" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item>
+					<!--item level="2" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item-->
 					<item level="2" text="SABnzbd setup" entryID="netsabnzbd_setup" requires="SABSetup">
 						<code>
 from Plugins.SystemPlugins.SABnzbd.plugin import SABnzbdSetupScreen
@@ -270,6 +270,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 				<item weight="20" text="Automatic scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<item weight="30" text="Manual scan" entryID="manual_scan"><screen module="ScanSetup" /></item>
 				<item weight="35" text="Satfinder" entryID="satfinder" requires="Satfinder"><plugin system="Satfinder" screen="Satfinder" /></item>
+				<item weight="40" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item>
 			</menu>
 		</menu>
 
