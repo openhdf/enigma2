@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-04-16 17:13+0100\n"
+"PO-Revision-Date: 2015-04-22 18:41+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -866,10 +866,10 @@ msgid "ACQUIRING TSID/ONID"
 msgstr "Sammeln von TSID/ONID"
 
 msgid "AFP Setup"
-msgstr "AFP Einstellungen"
+msgstr "AFP-Einstellungen"
 
 msgid "AFP setup"
-msgstr "AFP Einstellungen"
+msgstr "AFP-Einstellungen"
 
 #, python-format
 msgid "AV aspect is %s."
@@ -2607,7 +2607,7 @@ msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Gewünschte Sprungzeit für '7'/'9'-Tasten"
 
 msgid "Customize"
-msgstr "Anpassen"
+msgstr "Anpassungen"
 
 msgid "Cut"
 msgstr "Schneiden"
@@ -2808,7 +2808,7 @@ msgid "Device mounts"
 msgstr "Geräte-Mountpunkte"
 
 msgid "Device setup"
-msgstr "Geräte Einstellungen"
+msgstr "Geräte-Einstellungen"
 
 msgid "Devicename:"
 msgstr "Gerätename:"
@@ -3525,10 +3525,10 @@ msgid "FLASH"
 msgstr "FLASH"
 
 msgid "FTP Setup"
-msgstr "FTP Einstellungen"
+msgstr "FTP-Einstellungen"
 
 msgid "FTP setup"
-msgstr "FTP Einstellungen"
+msgstr "FTP-Einstellungen"
 
 msgid "Factory reset"
 msgstr "Werkseinstellungen"
@@ -3920,10 +3920,10 @@ msgid "Graphical EPG"
 msgstr "Grafischer EPG"
 
 msgid "Record Infobar Setup"
-msgstr "Record Infobar Einstellungen"
+msgstr "Aufnahme Infobar Einstellungen"
 
 msgid "Enable record infobar"
-msgstr "Aktiviere Record Infobar"
+msgstr "Aktiviere Aufnahme Infobar"
 
 msgid "Increase direction"
 msgstr "Startpunkt Richtung"
@@ -4333,10 +4333,10 @@ msgid "Inadyn Log"
 msgstr "Inadyn Log"
 
 msgid "Inadyn Setup"
-msgstr "Inadyn Einstellungen"
+msgstr "Inadyn-Einstellungen"
 
 msgid "Inadyn setup"
-msgstr "Inadyn Einstellungen"
+msgstr "Inadyn-Einstellungen"
 
 msgid "Include AIT in http streams"
 msgstr "AIT in HTTP-Streams integrieren"
@@ -4800,13 +4800,13 @@ msgid "Lock ratio"
 msgstr ""
 
 msgid "Log Manager"
-msgstr "Log Verwaltung"
+msgstr "Log-Verwaltung"
 
 msgid "Log results to harddisk"
 msgstr "Ergebnisse auf die Festplatte schreiben"
 
 msgid "LogManager"
-msgstr "Log Verwaltung"
+msgstr "Log-Verwaltung"
 
 msgid "Logs"
 msgstr "Logs-Einstellungen"
@@ -4815,7 +4815,7 @@ msgid "Logs location"
 msgstr "Speicherort für Logs"
 
 msgid "Logs manager"
-msgstr "Log Verwaltung"
+msgstr "Log-Verwaltung"
 
 msgid "Logs older then the set no of days will be deleted."
 msgstr "Log Datei die älter sind als diese Anzahl von Tagen werden gelöscht."
@@ -4957,10 +4957,10 @@ msgid "MiniDLNA Log"
 msgstr "MiniDLNA Log"
 
 msgid "MiniDLNA Setup"
-msgstr "MiniDLNA Einstellungen"
+msgstr "MiniDLNA-Einstellungen"
 
 msgid "MiniDLNA setup"
-msgstr "MiniDLNA Einstellungen"
+msgstr "MiniDLNA-Einstellungen"
 
 #, python-format
 msgid "Minimum age %d years"
@@ -5021,10 +5021,10 @@ msgid "Mount"
 msgstr "Einhängen"
 
 msgid "Mounts Setup"
-msgstr "Mounts Einstellungen"
+msgstr "Mount-Einstellungen"
 
 msgid "Mounts setup"
-msgstr "Mounts Einstellungen"
+msgstr "Mount-Einstellungen"
 
 msgid "Move"
 msgstr "Verschieben"
@@ -5144,10 +5144,10 @@ msgstr ""
 "Drücke Gelb um die Box neu zu starten!"
 
 msgid "NFS Setup"
-msgstr "NFS Einstellungen"
+msgstr "NFS-Einstellungen"
 
 msgid "NFS setup"
-msgstr "NFS Einstellungen"
+msgstr "NFS-Einstellungen"
 
 msgid "NIM"
 msgstr "NIM"
@@ -5698,13 +5698,13 @@ msgid "Open the movie list"
 msgstr "Öffne die Filmliste"
 
 msgid "OpenVPN setup"
-msgstr "OpenVPN Einstellungen"
+msgstr "OpenVPN-Einstellungen"
 
 msgid "OpenVpn Log"
 msgstr "OpenVpn Log"
 
 msgid "OpenVpn Setup"
-msgstr "OpenVPN Einstellungen"
+msgstr "OpenVPN-Einstellungen"
 
 msgid "Orbital position"
 msgstr "Orbitale Position"
@@ -6593,6 +6593,10 @@ msgid "Remote Box Channel Import"
 msgstr "Entfernte Box Bouquet Import"
 
 #, python-format
+msgid "Remote Tuner Server Setup"
+msgstr "Entfernter Tuner-Einstellungen"
+
+#, python-format
 msgid "Select bouquets to convert"
 msgstr "Bouquet auswählen"
 
@@ -6865,11 +6869,11 @@ msgstr "SSID:"
 msgid "Samba Log"
 msgstr "Samba/CIFS Log"
 
-msgid "Samba Setup"
-msgstr "Samba Einstellungen"
-
 msgid "Samba setup"
-msgstr "Samba/CIFS Einstellungen"
+msgstr "Samba-Einstellungen"
+
+msgid "Samba Setup"
+msgstr "Samba-Einstellungen"
 
 msgid "Same resolution as skin"
 msgstr "Gleiche Auflösung wie Skin"
@@ -8512,10 +8516,10 @@ msgid "Telnet Port"
 msgstr "Telnet Port"
 
 msgid "Telnet Setup"
-msgstr "Telnet Einstellungen"
+msgstr "Telnet-Einstellungen"
 
 msgid "Telnet setup"
-msgstr "Telnet Einstellungen"
+msgstr "Telnet-Einstellungen"
 
 msgid "Terrestrial"
 msgstr "Terrestrisch"
@@ -11624,10 +11628,10 @@ msgid "uShare Port"
 msgstr "uShare Port"
 
 msgid "uShare Setup"
-msgstr "uShare Einstellungen"
+msgstr "uShare-Einstellungen"
 
 msgid "uShare setup"
-msgstr "uShare Einstellungen"
+msgstr "uShare-Einstellungen"
 
 msgid "unavailable"
 msgstr "nicht verfügbar"
