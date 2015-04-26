@@ -1544,11 +1544,11 @@ class UpdatePlugin(Screen):
 		self.activityTimer.start(100, False)
 
 	def CheckDate(self):
-		# Check if image is not to old for update (max 30days)
+		# Check if image is not to old for update (max 60days)
 		self.CheckDateDone = True
 		tmpdate = getEnigmaVersionString()
 		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
-		datedelay = imageDate +  timedelta(days=30)
+		datedelay = imageDate +  timedelta(days=60)
 		message = _("Your image is out of date!\n\n"
 				"After such a long time, there is a risk that your %s %s  will not\n"
 				"boot after online-update, or will show disfunction in running Image.\n\n"
@@ -1616,7 +1616,7 @@ class UpdatePlugin(Screen):
 			if doUpdate:
 				# Ask for Update,
 				message += _("Do you want to update your %s %s?") % (getMachineBrand(), getMachineName()) + "\n" + _("After pressing OK, please wait!")
-				self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = default, picon = picon)
+				self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = False, picon = picon)
 			else:
 				# Don't Update RED LIGHT !!
 				self.session.open(MessageBox, message, picon, timeout = 20)
