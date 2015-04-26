@@ -28,6 +28,7 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
+from subprocess import call
 import commands
 
 
@@ -2646,7 +2647,7 @@ class NetworkTelnet(Screen):
 			if self.my_telnet_run:
 				commands.append('/etc/init.d/telnetd.busybox stop')
 			else:
-				commands.append('/etc/init.d/telnetd.busybox start')
+				commands.append('/bin/su -l -c "/etc/init.d/telnetd.busybox start"')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def StartStopCallback(self, result = None, retval = None, extra_args = None):
