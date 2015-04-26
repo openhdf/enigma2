@@ -56,7 +56,7 @@ import Components.RecordingConfig
 InitFallbackFiles()
 
 profile("config.misc")
-config.misc.boxtype = ConfigText(default = getBoxType())
+config.misc.boxtype = ConfigText(default = boxtype)
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_ACTIVE_SKIN, "black.mvi"))
 radiopic = resolveFilename(SCOPE_ACTIVE_SKIN, "radio.mvi")
 if os.path.exists(resolveFilename(SCOPE_CONFIG, "radio.mvi")):
@@ -571,7 +571,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	if getBoxType() == 'odinm9' or getBoxType() == 'maram9' or getBoxType() == 'ventonhdx' or getBoxType() == 'ebox5000' or getBoxType() == 'ebox7358' or getBoxType() == 'eboxlumi' or getBoxType() == 'ixussone' or getBoxType() == 'ixusszero' or getBoxType() == 'ini-1000ru' or getBoxType() == 'ini-1000sv':
+	if boxtype in ('odinm9', 'et7500', 'ventonhdx', 'maram9', 'ixussone', 'ixussone'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -589,8 +589,8 @@ def runScreenTest():
 
 	profile("RunReactor")
 	profile_final()
-		
-	if getBoxType() == 'odinm7' or getBoxType() == 'odinm6' or getBoxType() == 'xp1000s':
+
+	if boxtype in ('sf8', 'classm', 'axodin', 'axodinc', 'starsatlx', 'odinm7', 'odinm6', 'xp1000s'):
 		f = open("/dev/dbox/oled0", "w")
 		f.write('-E2-')
 		f.close()
