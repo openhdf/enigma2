@@ -1396,7 +1396,7 @@ class InfoBarChannelSelection:
 		self.servicelist.showSatellites()
 		self.session.execDialog(self.servicelist)
 
-	def zapUp(self):
+	def zapDown(self):
 		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
 			if self.pts_blockZap_timer.isActive():
 				return
@@ -1452,7 +1452,7 @@ class InfoBarChannelSelection:
 			self.servicelist2.zap(enable_pipzap = True)
 			ChannelSelectionInstance.dopipzap = False
 
-	def zapDown(self):
+	def zapUp(self):
 		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
 			if self.pts_blockZap_timer.isActive():
 				return
