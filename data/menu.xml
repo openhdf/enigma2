@@ -77,6 +77,14 @@ self.session.open(HdmiCECSetupScreen)
 				<item level="2" text="3D setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
 			</menu>
 
+			<!-- Aufnahme / Timeshift Menu -->
+			<menu weight="11" level="2" text="Recording" entryID="record_menu">
+				<id val="record_menu" />
+				<item level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
+				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
+				<item level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
+			</menu>
+
 			<!-- Menu / Settings / EPG Menu -->
 			<menu weight="15" level="2" text="EPG" entryID="epg_menu">
 					<id val="epg" />
