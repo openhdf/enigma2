@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-04-26 18:52+0100\n"
+"PO-Revision-Date: 2015-05-03 15:14+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2278,6 +2278,30 @@ msgstr "Konfiguriere die horizontale Ausrichtung der Untertitel."
 
 msgid "Configure the initial fast forward speed. When you press the fast forward button, winding will start at this speed."
 msgstr "Stelle die Anfangsgeschwindigkeit für den schnellen Vorlauf ein. Wenn die Vorlauftaste gedrückt wird startet der schnelle Vorlauf mit dieser Geschwindigkeit."
+
+msgid "Use time jumps for fast forward/backward"
+msgstr "Zeitsprünge für schnellen Vorlauf ( >> ) und Rücklauf ( << ) benutzen"
+
+msgid "This will go fast forward/backward with time frames of x secs"
+msgstr "Hiermit werden beim schnellen Vorlauf/Rücklauf Zeitsprünge von x Sekunden benutzt."
+
+msgid "Time jump multiplier for fast forward"
+msgstr "Zeitsprung Multiplikator für schnellen Vorlauf"
+
+msgid "Defines the jump distance for forward jumps. The value is multiplied by the wind speed, e.g. 4x. Values significantly lower than 4s may not work with all media files."
+msgstr "Definiert die Sprungweite für Vorwärtssprünge. Der Wert wird mit der Spulgeschwindigkeit multipliziert. Werte unter 4s funktionieren nicht mit allen Media Dateien."
+
+msgid "Time jump multiplier for fast backward"
+msgstr "Zeitsprung Multiplikator für schnellen Rücklauf"
+
+msgid "Defines the jump distance for backward jumps. The value is multiplied by the rewind speed, e.g. -4x. Values significantly lower than 2s may not work with all media files."
+msgstr "Definiert die Sprungweite für Rückwärtssprünge. Der Wert wird mit der Rückspulgeschwindigkeit multipliziert. Werte unter 2s funktionieren nicht mit allen Media Dateien."
+
+msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
+msgstr "Legt fest wie schnell die Zeitsprünge wiederholt werden. Werte unter 0,5s machen eventuell Probleme mit NAS Laufwerken."
+
+msgid "Time jump repeat interval for fast forward/backward"
+msgstr "Zeitsprung Wiederholungsintervall für schnellen Vor-/Rücklauf"
 
 msgid "Configure the initial rewind speed. When you press the rewind button, winding will start at this speed."
 msgstr "Stelle die Anfangsgeschwindigkeit für den schnellen Rücklauf ein. Wenn die Rücklauftaste gedrückt wird startet der schnelle Rücklauf mit dieser Geschwindigkeit."
