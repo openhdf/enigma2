@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 07.04.2015" -->
+	<!-- "HDF Default Keymap 04.05.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -145,8 +145,8 @@
 		<key id="KEY_ARCHIVE" mapto="historyBack" flags="mr" />
 		<key id="KEY_CHANNELUP" mapto="ChannelPlusPressed" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressed" flags="m" />
-		<key id="KEY_CHANNELUP" mapto="ChannelPlusPressedLong" flags="l" />
-		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressedLong" flags="l" />
+		<!--key id="KEY_CHANNELUP" mapto="ChannelPlusPressedLong" flags="l" /-->
+		<!--key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressedLong" flags="l" /-->
 		<key id="BTN_0" mapto="zapUp" flags="mr" />
 		<key id="BTN_1" mapto="zapDown" flags="mr" />
 		<!--key id="KEY_SAT" mapto="openSatellites" flags="m" /-->
