@@ -1423,9 +1423,8 @@ class InfoBarChannelSelection:
 			self.servicelist.zap(enable_pipzap = True)
 
 		elif self.LongButtonPressed:
-			if not hasattr(self.session, 'pip') and not self.session.pipshown:
-				self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
-				return
+			#if not hasattr(self.session, 'pip') and not self.session.pipshown:
+			return
 
 			from Screens.ChannelSelection import ChannelSelection
 			ChannelSelectionInstance = ChannelSelection.instance
@@ -1478,9 +1477,8 @@ class InfoBarChannelSelection:
 				self.servicelist.moveDown()
 			self.servicelist.zap(enable_pipzap = True)
 		elif self.LongButtonPressed:
-			if not hasattr(self.session, 'pip') and not self.session.pipshown:
-				self.session.open(MessageBox, _("Please open Picture in Picture first"), MessageBox.TYPE_ERROR)
-				return
+			#if not hasattr(self.session, 'pip') and not self.session.pipshown:
+			return
 
 			from Screens.ChannelSelection import ChannelSelection
 			ChannelSelectionInstance = ChannelSelection.instance
