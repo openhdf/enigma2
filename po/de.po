@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-05-04 18:44+0100\n"
+"PO-Revision-Date: 2015-05-04 21:10+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -9663,6 +9663,7 @@ msgstr "ViX EPG"
 msgid "Video Enhancement Settings"
 msgstr "Bildoptimierungs-Einstellungen"
 
+#, python-format
 msgid "Record Infobar"
 msgstr "Aufnahme Infobar-Einstellungen"
 
