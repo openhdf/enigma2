@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-05-03 15:14+0100\n"
+"PO-Revision-Date: 2015-05-04 18:44+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1729,7 +1729,7 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 msgid "Cancel save timeshift as movie"
-msgstr "Film speichern abbrechen"
+msgstr "Timeshift nicht als Film speichern"
 
 msgid "Cancel next timer"
 msgstr "NÃ¤chsten Timer abbrechen"
@@ -9121,9 +9121,6 @@ msgstr "TimeShift-Einstellungen"
 msgid "Older files in the timeshift directory are removed on every event change."
 msgstr "Ältere Timeshift Dateien werden bei jedem Event gelöscht."
 
-msgid "If set to 'no', can you save older events even after zapping or interruption of the timeshift."
-msgstr "Wenn auf Nein gestellt bleiben Timeshift Dateien beim Umschalten oder Unterbrechung erhalten."
-
 msgid "Timeshift buffer limit [in hours]"
 msgstr "Timeshift-speichern [in Stunden}"
 
@@ -9142,8 +9139,23 @@ msgstr "Zusätzlich zur Kontrolle bei Timeshift Start kann ein anderes Ereignis 
 msgid "Timeshift checking for free space?"
 msgstr "Timeshift Prüfung auf freien Speicherplatz?"
 
-msgid "If the free space is less than 1024 MB, then an attempt is made to delete the old timeshift files"
-msgstr "Wenn der freie Speicher unter 1GB fällt, wird versucht ältere Timeshift Events zu löschen"
+msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
+msgstr "Wenn der freie Speicherplatz kleiner als der eingestellt Wert ist, wird versucht, die alten Timeshift-Dateien löschen."
+
+msgid "Timeshift event based file splitting"
+msgstr "Timeshift-Sendungsbasierende Dateitrennung"
+
+msgid "If set to 'no', can you save older events even after zapping or interruption of the timeshift."
+msgstr "Wenn 'Nein' eingestellt ist, bleiben Timeshift-Aufnahmen nach Umschalten oder Beenden im Timeshift-Verzeichnis erhalten."
+
+msgid "If set to 'no', timeshift used only one buffer file. It's recommend 'Timeshift checking for older files [in minutes]' and 'Timeshift checking for free space?' to adjust."
+msgstr "Wenn 'Nein' eingestellt ist, wird nur eine Datei als Puffer verwendet. Es wird empfohlen 'Timeshift-Überprüfung auf ältere Dateien [in Minuten]' und 'Timeshift-Überprüfung auf freien Speicherplatz?' anzupassen."
+
+msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+msgstr "Zusätzlich zu der Überprüfung bei einem Event-Start kann diese Einstellung genutzt werden. Damit wird die Bedingung 'Puffer Limit in Stunden' oder 'Überprüfung auf freien Speicherplatzt' eher erkannt."
+
+msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
+msgstr "'Puffer in Stunden' oder 'Anzahl der letzten Ereignisse'. Priorität hat die Bedingung zum Löschen älterer Timeshift Dateien, die zuerst aufgetreten ist."
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "TimeShift wird am Ende der Sendung gesichert."
