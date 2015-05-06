@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "30.04.2015"
+updateversion = "06.05.2015"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -59,7 +59,7 @@ def getHotkeys():
 	(_("Favorites"), "favor", "Infobar/openFavouritesList"),
 	(_("Favorites long"), "favor_long", "Infobar/openSatellites"),
 	(_("Fastforward"), "fastforward", ""),
-	(_("File"), "file", "Infobar/showMovies"),
+	(_("File"), "file", "Plugins/Extensions/EnhancedMovieCenter/2"),
 	(_("File long"), "file_long", "Plugins/Extensions/simplelist/1"),
 	(_("Help"), "helpshow", "Infobar/showHelp"),
 	(_("Help long"), "helpshow_long", "Module/Screens.Hotkey/HotkeySetup"),
@@ -69,7 +69,7 @@ def getHotkeys():
 	(_("Home long"), "home_long", ""),
 	(_("Homepage/Portal"), "homepage", ""),
 	(_("Homepage/Portal long"), "homepage_long", ""),
-	(_("List/Fav/PVR"), "list", "Infobar/showMovies"),
+	(_("List/Fav/PVR"), "list", "Plugins/Extensions/EnhancedMovieCenter/2"),
 	(_("List/Fav/PVR long"), "list_long", ""),
 	(_("Mark/Portal/Playlist"), "mark", "Plugins/Extensions/EtPortal/1"),
 	(_("Mark/Portal/Playlist long"), "mark_long", ""),
@@ -84,7 +84,7 @@ def getHotkeys():
 	(_("Pause long"), "pause_long", "Infobar/startTimeshift"),
 	(_("Play "), "play", "Infobar/startTimeshift"),
 	(_("Play long"), "play_long", "Infobar/startTimeshift"),
-	(_("Playlist"), "playlist", "Infobar/showMovies"),
+	(_("Playlist"), "playlist", "Plugins/Extensions/EnhancedMovieCenter/2"),
 	(_("Playlist long"), "playlist_long", ""),
 	(_("Picture in Picture"), "activatePiP", "Infobar/showPiP"),
 	(_("Picture in Picture long"), "activatePiP_long", "Infobar/swapPiP"),
