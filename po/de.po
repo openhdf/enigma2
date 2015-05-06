@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-05-04 21:10+0100\n"
+"PO-Revision-Date: 2015-05-06 17:33+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2302,6 +2302,12 @@ msgstr "Legt fest wie schnell die Zeitsprünge wiederholt werden. Werte unter 0,
 
 msgid "Time jump repeat interval for fast forward/backward"
 msgstr "Zeitsprung Wiederholungsintervall für schnellen Vor-/Rücklauf"
+
+msgid "Time jump avoid zero step size"
+msgstr "Nullschritte beim Zeitsprung vermeiden"
+
+msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
+msgstr "Vermeidet Videohänger (eventuell mit kleinem Stocken), wenn die Sprungzeit kleiner ist als die Zeit zwischen I-Frames."
 
 msgid "Configure the initial rewind speed. When you press the rewind button, winding will start at this speed."
 msgstr "Stelle die Anfangsgeschwindigkeit für den schnellen Rücklauf ein. Wenn die Rücklauftaste gedrückt wird startet der schnelle Rücklauf mit dieser Geschwindigkeit."
