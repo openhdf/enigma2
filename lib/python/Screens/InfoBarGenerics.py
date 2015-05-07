@@ -3801,7 +3801,7 @@ class InfoBarSeek:
 		if self.seekAction == 2: # use fastforward for x2
 			self.setSeekState(self.makeStateForward(self.seekAction))
 
-	def seekFwd_old():
+	def seekFwd_old(self):
 		seek = self.getSeek()
 		if seek and not (seek.isCurrentlySeekable() & 2):
 			if not self.fast_winding_hint_message_showed and (seek.isCurrentlySeekable() & 1):
@@ -3837,7 +3837,7 @@ class InfoBarSeek:
 			speed = self.getLower(self.seekstate[2], config.seek.speeds_slowmotion.value) or config.seek.speeds_slowmotion.value[0]
 			self.setSeekState(self.makeStateSlowMotion(speed))
 
-	def seekBack_old():
+	def seekBack_old(self):
 		seek = self.getSeek()
 		if seek and not (seek.isCurrentlySeekable() & 2):
 			if not self.fast_winding_hint_message_showed and (seek.isCurrentlySeekable() & 1):
