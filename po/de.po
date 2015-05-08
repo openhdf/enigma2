@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-05-06 17:33+0100\n"
+"PO-Revision-Date: 2015-05-08 15:50+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2287,6 +2287,12 @@ msgstr "Hiermit werden beim schnellen Vorlauf/Rücklauf Zeitsprünge von x Sekun
 
 msgid "Time jump multiplier for fast forward"
 msgstr "Zeitsprung Multiplikator für schnellen Vorlauf"
+
+msgid "Time jump: Use normal fast forward for speeds"
+msgstr "Zeitsprung: Benutzt die normalen Spulgeschwindigkeiten"
+
+msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
+msgstr "Legt fest, welche Vorspulgeschwindigkeit beim Cueing benutzt wird. Alle anderen Vor- und Rückspulgeschwindigkeiten verwenden Zeitsprünge."
 
 msgid "Defines the jump distance for forward jumps. The value is multiplied by the wind speed, e.g. 4x. Values significantly lower than 4s may not work with all media files."
 msgstr "Definiert die Sprungweite für Vorwärtssprünge. Der Wert wird mit der Spulgeschwindigkeit multipliziert. Werte unter 4s funktionieren nicht mit allen Media Dateien."

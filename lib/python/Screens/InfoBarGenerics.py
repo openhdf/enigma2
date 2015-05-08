@@ -3595,15 +3595,13 @@ class InfoBarSeek:
 			self.DoSeekAction()
 
 	def DoSeekAction(self):
-		if self.seekAction > 2:
+		if self.seekAction > int(config.seek.withjumps_after_ff_speed.getValue()):
 			self.doSeekRelativeAvoidStall(self.seekAction * long(config.seek.withjumps_forwards_ms.getValue()) * 90)
-			#self.doSeekRelative(self.seekAction * 4 * 90000 )
 		elif self.seekAction < 0:
 			self.doSeekRelativeAvoidStall(self.seekAction * long(config.seek.withjumps_backwards_ms.getValue()) * 90)
-			#self.doSeekRelative(self.seekAction * 2 * 90000 )
 
 		for c in self.onPlayStateChanged:
-			if self.seekAction > 2: # Forward
+			if self.seekAction > int(config.seek.withjumps_after_ff_speed.getValue()): # Forward
 				c((0, self.seekAction, 0, ">> %dx" % self.seekAction))
 			elif self.seekAction < 0: # Backward
 				c((0, self.seekAction, 0, "<< %dx" % abs(self.seekAction)))
