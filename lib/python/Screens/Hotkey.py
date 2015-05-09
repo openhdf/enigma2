@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "07.05.2015"
+updateversion = "09.05.2015"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -249,8 +249,8 @@ def getHotkeyFunctions():
 		for x in [x for x in os.listdir("/usr/scripts") if x.endswith(".sh")]:
 			x = x[:-3]
 			hotkeyFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
-	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
-		hotkeyFunctions.append((_("EnhancedMovieCenter"), "EMC/", "Plugins"))
+	#if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+	#	hotkeyFunctions.append((_("Enhanced Movie Center"), "EMC/", "Plugins"))
 	return hotkeyFunctions
 
 class HotkeySetup(Screen):
