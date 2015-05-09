@@ -171,7 +171,7 @@ class ImageBackup(Screen):
 		self.message += _("Please be patient, a backup will now be made.\n")
 		self.message += "_________________________________________________________\n\n"
 		self.message += _("If you want to watch TV while backup is running,\n")
-		self.message += _("press yellow button to toggle between backup and TV.\n")
+		self.message += _("press yellow button twice to toggle between backup and TV.\n")
 		self.message += "_________________________________________________________\n\n"
 		if self.ROOTFSTYPE == "ubifs":
 			self.message += _("because of the used filesystem the back-up\n")
