@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-05-08 15:50+0100\n"
+"PO-Revision-Date: 2015-05-13 19:00+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -5018,6 +5018,18 @@ msgctxt "Satellite configuration mode"
 msgid "Mode"
 msgstr "Modus [Satelliten Konfiguration]"
 
+msgid "Positioner (selecting satellites)"
+msgstr "Rotor (Satellit auswählen)"
+
+msgid "Press OK to select satellites"
+msgstr "Drücke OK um einen Satellit zu wählen"
+
+msgid "Extra motor options"
+msgstr "Zusätzliche Motor Optionen"
+
+msgid "Max memory positions"
+msgstr "Maximale Speicherpositionen"
+
 msgctxt "Video output mode"
 msgid "Mode"
 msgstr "Auflösung [Video Ausgang]"
@@ -9330,8 +9342,8 @@ msgstr "Tuner-Status:"
 msgid "Tuner type"
 msgstr "Tuner Typ"
 
-msgid "Tuning step size"
-msgstr "Suche Schrittweite"
+msgid "Turning step size"
+msgstr "Dreh-Schrittweite"
 
 msgid "Turkish"
 msgstr "Türkisch"
