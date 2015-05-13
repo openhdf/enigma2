@@ -17,8 +17,8 @@ import ServiceReference
 from Screens.InfoBar import InfoBar, MoviePlayer
 from boxbranding import getBoxType, getBrandOEM
 
-if SystemInfo["isGBIPBOX"]:
-	from gbipbox import ZAP
+#if SystemInfo["isGBIPBOX"]:
+#	from gbipbox import ZAP
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
@@ -230,8 +230,6 @@ class Navigation:
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
-				if ref.toString().find('//') == -1 and SystemInfo["isGBIPBOX"]:
-					playref = ZAP.gref(ref, self.pnav)
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
