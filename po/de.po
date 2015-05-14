@@ -5176,6 +5176,9 @@ msgstr "Multiplex"
 msgid "Multisat"
 msgstr "Multisat"
 
+msgid "Multisat all select"
+msgstr "Multisat alle auswählen"
+
 msgid "Music/Ballet/Dance"
 msgstr "Musik/Ballett/Tanz"
 
