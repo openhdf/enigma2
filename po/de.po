@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-05-13 19:00+0100\n"
+"PO-Revision-Date: 2015-05-15 18:53+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -10143,6 +10143,9 @@ msgstr "Installiere Plugins"
 #: Backup/restore
 msgid "Installing plugins..."
 msgstr "Installiere Plugins..."
+
+msgid "Installing Software..."
+msgstr "Installiere Software..."
 
 #: Backup/restore
 msgid "Please wait while we check your installed plugins..."
