@@ -22,17 +22,7 @@ fi
 
 # update NTP time if NTP Time Enabled
 if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.SyncTimeUsing=1" ]; then
-	/usr/bin/ntpdate -s -u pool.ntp.org &
-fi
-
-# check multiquickbutton keymap
-FILE=/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/keymap.xml
-if test -s $FILE; then
-	echo "$FILE looks good"
-	else
-	rm -f /usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/keymap.xml
-	cp /usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/scripts/mqb_keymap.xml $FILE
-	echo "$FILE restored from backup"
+	/usr/sbin/ntpdate -s -u pool.ntp.org &
 fi
 
 # hook to execute scripts always before enigma2 start
@@ -81,6 +71,8 @@ else
 	cp @datadir@/enigma2/defaults/* @sysconfdir@/enigma2/
 fi
 
+sync
+
 # check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
 	LIBS="/opt/lib/libmediaclient.so /usr/lib/libopen.so.0.0.0"
@@ -103,6 +95,9 @@ if [ ! -e /etc/enigma2/settings ]; then
 fi
 
 sync
+
+(sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
+        [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
 
 if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
 	RANDOMIZE1970=''
@@ -155,15 +150,12 @@ case $ret in
 		;;		
 	44)
 		# little hack but it will be fixed soon in drivers
-		if [ "$(cat /proc/stb/info/boxtype)" == 'ini-9000de' ]; then
-			/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /proc/vfd && sleep 7 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
-		elif [ "$(cat /proc/stb/info/boxtype)" == 'ini-9000ru' ]; then
-			/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /proc/vfd && sleep 7 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
-		elif [ "$(cat /proc/stb/info/boxtype)" == 'ini-8000am' ]; then
-			/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /proc/vfd && sleep 7 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
-		else
-			/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi && echo fpupload > /dev/dbox/oled0 && sleep 7 && cat /tmp/micom.bin > /dev/mcu && /usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi && sleep 200000
-		fi
+		${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear
+		/usr/bin/showiframe ${libexecdir}/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi
+		echo fpupload >/proc/vfd && sleep 3 && dd bs=256k if=/tmp/micom.bin of=/dev/mcu
+		/usr/bin/showiframe ${libexecdir}/python/Plugins/SystemPlugins/MIOMUpgrade/reboot.mvi
+		# Wait forever for the user to power off
+		while(true) ; do sleep 60 ; done
 		;;
 	45)
 		echo "    " > /dev/lcd0
