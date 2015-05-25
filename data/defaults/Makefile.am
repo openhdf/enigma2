@@ -7,6 +7,10 @@ dist_install_DATA = \
 	bouquets.radio \
 	blacklist \
 	settings \
+	epgrefresh.xml \
+	menusort.xml \
+	radiode_playlist \
+	subservices.xml \
 	userbouquet.favourites.tv \
 	userbouquet.favourites.radio \
 	lamedb \
@@ -15,4 +19,5 @@ dist_install_DATA = \
 	userbouquet.bef003.tv \
 	userbouquet.bef004.tv \
 	userbouquet.bef005.tv \
-	userbouquet.bef006.tv
+	userbouquet.bef006.tv \
+	userbouquet.bef007.tv
