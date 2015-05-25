@@ -103,8 +103,8 @@ class BackupScreen(Screen, ConfigListScreen):
 			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
 				self.backupdirs = self.backupdirs + " /tmp/changed-configfiles.txt"
 
-			cmd1 = "ipkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base' > /tmp/installed-list.txt"
-			cmd2 = "ipkg list-changed-conffiles > /tmp/changed-configfiles.txt"
+			cmd1 = "opkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base' > /tmp/installed-list.txt"
+			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "tar -czvf " + self.fullbackupfilename + " " + self.backupdirs
 			cmd = [cmd1, cmd2, cmd3]
 			if path.exists(self.fullbackupfilename):
@@ -151,6 +151,7 @@ class BackupSelection(Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText()
+		self["summary_description"] = StaticText("")
 
 		self.selectedFiles = config.plugins.configurationbackup.backupdirs.value
 		defaultDir = '/'
@@ -252,7 +253,9 @@ class RestoreMenu(Screen):
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.KeyOk,
-			"cancel": self.keyCancel
+			"cancel": self.keyCancel,
+			"up": self.keyUp,
+			"down": self.keyDown
 		}, -1)
 
 		self["shortcuts"] = ActionMap(["ShortcutActions"],
@@ -268,6 +271,7 @@ class RestoreMenu(Screen):
 
 	def layoutFinished(self):
 		self.setWindowTitle()
+		self.checkSummary()
 
 	def setWindowTitle(self):
 		self.setTitle(_("Restore backups"))
@@ -295,10 +299,18 @@ class RestoreMenu(Screen):
 	def keyCancel(self):
 		self.close()
 
+	def keyUp(self):
+		self["filelist"].up()
+		self.checkSummary()
+
+	def keyDown(self):
+		self["filelist"].down()
+		self.checkSummary()
+
 	def startRestore(self, ret = False):
 		if ret == True:
 			self.exe = True
-			self.session.open(Console, title = _("Restoring..."), cmdlist = ["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2"])
+			self.session.open(Console, title = _("Restoring..."), cmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.path + "/" + self.sel + " -C /", "touch -c /etc/enigma2/*", "killall -9 enigma2"])
 
 	def deleteFile(self):
 		if (self.exe == False) and (self.entry == True):
@@ -315,6 +327,10 @@ class RestoreMenu(Screen):
 				remove(self.val)
 			self.exe = False
 			self.fill_list()
+
+	def checkSummary(self):
+		cur = self["filelist"].getCurrent()
+		self["summary_description"].text = cur
 
 class RestoreScreen(Screen, ConfigListScreen):
 	skin = """
@@ -351,9 +367,9 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def doRestore(self):
 		if path.exists("/proc/stb/vmpeg/0/dst_width"):
-			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
+			restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " -C /", "touch -c /etc/enigma2/*", "echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
 		else:
-			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /"]
+			restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " -C /", "touch -c /etc/enigma2/*"]
 		print"[SOFTWARE MANAGER] Restore Settings !!!!"
 
 		self.session.open(Console, title = _("Restoring..."), cmdlist = restorecmdlist, finishedCallback = self.restoreFinishedCB)
@@ -424,11 +440,11 @@ class installedPlugins(Screen):
 
 	def doUpdate(self):
 		print"[SOFTWARE MANAGER] update package list"
-		self.container.execute("ipkg update")
+		self.container.execute("opkg update")
 
 	def doList(self):
 		print"[SOFTWARE MANAGER] read installed package list"
-		self.container.execute("ipkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base'")
+		self.container.execute("opkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base'")
 
 	def dataAvail(self, strData):
 		if self.type == self.LIST:
@@ -487,6 +503,8 @@ class RestorePlugins(Screen):
 		Screen.setTitle(self, _("Restore Plugins"))
 		self.index = 0
 		self.list = menulist
+		for r in menulist:
+			print "[SOFTWARE MANAGER] Plugin to restore: %s" % r[0]
 		self.container = eConsoleAppContainer()
 		self["menu"] = List(list())
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
@@ -524,14 +542,14 @@ class RestorePlugins(Screen):
 					pluginlist.append(x[0])
 		if len(pluginlist) > 0:
 			if len(self.myipklist) > 0:
-				self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
+				self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
 			else:
-				self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
+				self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg --force-overwrite install ' + ' '.join(pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
 		elif len(self.myipklist) > 0:
 			self.installLocalIPK()
 
 	def installLocalIPK(self):
-		self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['ipkg --force-overwrite install ' + ' '.join(self.myipklist)], finishedCallback = self.exit, closeOnSuccess = True)
+		self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg --force-overwrite install ' + ' '.join(self.myipklist)], finishedCallback = self.exit, closeOnSuccess = True)
 	
 	def ok(self):
 		index = self["menu"].getIndex()
