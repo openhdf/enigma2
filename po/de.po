@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-05-26 06:59+0100\n"
+"PO-Revision-Date: 2015-05-26 19:51+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2218,8 +2218,14 @@ msgstr "Stelle ein was bei langem Druck auf die Aus-Taste passieren soll."
 msgid "Configure the function of a short press on the power button."
 msgstr "Stelle ein was bei kurzem Druck auf die Aus-Taste passieren soll."
 
+msgid "History buttons mode"
+msgstr "Historie Tastenbelegung"
+
 msgid "Configure the function of the <  > buttons."
 msgstr "Stelle ein was beim Druck auf die < > Tasten passieren soll."
+
+msgid "Configure the function of the &lt;  &gt; buttons."
+msgstr "Stelle ein was beim Druck auf die &lt;  &gt; Tasten passieren soll."
 
 msgid "Select what you want the Bookmark button to activate:"
 msgstr "Stelle ein was beim Druck auf die Bookmark Taste passieren soll."
@@ -4137,9 +4143,6 @@ msgstr "Hierarchie..."
 
 msgid "High bitrate support"
 msgstr "Kann hohe Datenraten verarbeiten"
-
-msgid "History buttons mode"
-msgstr "History Tasten bewirken"
 
 msgid "History zap..."
 msgstr ""
