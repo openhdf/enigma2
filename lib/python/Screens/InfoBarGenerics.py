@@ -5206,13 +5206,13 @@ class InfoBarResolutionSelection:
 	def resolutionSelection(self):
 		f = open("/proc/stb/vmpeg/0/xres", "r")
 		xresString = f.read()
-		f.close()		
+		f.close()
 		f = open("/proc/stb/vmpeg/0/yres", "r")
 		yresString = f.read()
 		f.close()
 		if getBoxType().startswith('azbox'):
 			fpsString = '50000'
-		else:	
+		else:
 			try:
 				f = open("/proc/stb/vmpeg/0/framerate", "r")
 				fpsString = f.read()
@@ -5220,7 +5220,7 @@ class InfoBarResolutionSelection:
 			except:
 				print"[InfoBarResolutionSelection] Error open /proc/stb/vmpeg/0/framerate !!"
 				fpsString = '50000'
-		
+
 		xres = int(xresString, 16)
 		yres = int(yresString, 16)
 		fps = int(fpsString)
@@ -5266,7 +5266,7 @@ class InfoBarResolutionSelection:
 				if Resolution[1] != "auto":
 					f = open("/proc/stb/video/videomode", "w")
 					f.write(Resolution[1])
-					f.close()					
+					f.close()
 					#from enigma import gMainDC
 					#gMainDC.getInstance().setResolution(-1, -1)
 					self.ExGreen_doHide()
