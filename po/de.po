@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-05-26 19:51+0100\n"
+"PO-Revision-Date: 2015-05-27 18:08+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -8447,7 +8447,13 @@ msgid "Swap PiP and main picture"
 msgstr "Tausche PiP mit Hauptbild"
 
 msgid "Swap SNR in '%' with SNR in 'db'"
-msgstr "Wechsel SNR in '%' gegen SNR in 'dB'"
+msgstr "Zeige SNR (Signal-Rausch-Verhältnis) in:"
+
+msgid "Percent"
+msgstr "Prozent"
+
+msgid "Decibel"
+msgstr "Dezibel"
 
 msgid "Swap services"
 msgstr "Bild-in-Bild Sender tauschen"
