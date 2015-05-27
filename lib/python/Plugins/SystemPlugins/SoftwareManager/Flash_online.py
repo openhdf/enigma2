@@ -377,7 +377,7 @@ class doFlashImage(Screen):
 					self["key_blue"].setText("Teamimages")
 				else:
 					self.feedurl = feedurl_team
-					self["key_blue"].setText("Nightly V5.0")
+					self["key_blue"].setText("Nightly V5.1")
 			else:
 				self.feedurl = feedurl_atv
 				self["key_blue"].setText("")
