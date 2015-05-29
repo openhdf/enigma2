@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-05-27 18:16+0100\n"
+"PO-Revision-Date: 2015-05-29 18:08+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -276,7 +276,7 @@ msgstr "Zeige Enhanced Movie Center"
 
 #, python-format
 msgid "Show Zap-History Browser"
-msgstr "Zeige Zap-Historie Browser"
+msgstr "Zeige ZapHistorieBrowser (wenn installiert)"
 
 #, python-format
 msgid "Show EMC"
@@ -4597,7 +4597,7 @@ msgid "Jump to prime time"
 msgstr "Zur PrimeTime springen"
 
 msgid "Just change channels"
-msgstr "Nur Umschalten"
+msgstr "Nur Umschalten oder Belegung im Hotkey benutzen"
 
 msgid "Just change channels revert"
 msgstr "Nur Umschalten - rückwärts"

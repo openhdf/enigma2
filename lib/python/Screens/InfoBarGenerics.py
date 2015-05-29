@@ -1322,6 +1322,8 @@ class InfoBarChannelSelection:
 	def historyBack(self):
 		if config.usage.historymode.value == "0":
 			self.servicelist.historyBack()
+		if config.usage.historymode.value == "1":
+			self.servicelist.historyZap(-1)
 		if config.usage.historymode.value == "3":
 			self.volumeDown()
 		elif config.usage.historymode.value == "2":
@@ -1334,6 +1336,8 @@ class InfoBarChannelSelection:
 	def historyNext(self):
 		if config.usage.historymode.value == "0":
 			self.servicelist.historyNext()
+		if config.usage.historymode.value == "1":
+			self.servicelist.historyZap(+1)
 		if config.usage.historymode.value == "3":
 			self.volumeUp()
 		elif config.usage.historymode.value == "2":
