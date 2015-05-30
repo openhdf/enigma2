@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-05-30 09:45+0100\n"
+"PO-Revision-Date: 2015-05-30 13:42+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -16,9 +16,6 @@ msgstr ""
 
 msgid "Switch to Radio Mode"
 msgstr "Wechselt zum Radio Modus"
-
-msgid "History back"
-msgstr "Einen Sender zurück"
 
 msgid "Start Timeshift"
 msgstr "Startet zeitversetzes Fernsehen"
@@ -63,7 +60,16 @@ msgid "Hotkey Setup"
 msgstr "Offnet die Hotkey Einstellungen"
 
 msgid "History next"
-msgstr "Einen Sender vor"
+msgstr "Zap Verlauf vor"
+
+msgid "History Zap Menu +"
+msgstr "Zap Verlauf Menü vor"
+
+msgid "History Zap Menu -"
+msgstr "Zap Verlauf Menü zurück"
+
+msgid "History back"
+msgstr "Zap Verlauf zurück"
 
 msgid "Show Subtitle Selection"
 msgstr "Zeigt verfügbare Untertitel"
