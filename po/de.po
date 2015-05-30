@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-05-29 18:08+0100\n"
+"PO-Revision-Date: 2015-05-30 09:45+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13,6 +13,195 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Poedit 1.8\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid "Switch to Radio Mode"
+msgstr "Wechselt zum Radio Modus"
+
+msgid "History back"
+msgstr "Einen Sender zurück"
+
+msgid "Start Timeshift"
+msgstr "Startet zeitversetzes Fernsehen"
+
+msgid "Show Movies"
+msgstr "Zeigt die Aufnahmen"
+
+msgid "Main Menu"
+msgstr "Öffnet das Hauptmenü"
+
+msgid "Stop Timeshift"
+msgstr "Stoppt zeitversetzes Fernsehen"
+
+msgid "Show Infobar EPG"
+msgstr "Zeigt das EPG in der Infobar"
+
+msgid "Zap up"
+msgstr "Hochschalten"
+
+msgid "Show Extension Selection"
+msgstr "Zeigt die installierten Erweiterungen"
+
+msgid "Activate HbbTV (Redbutton)"
+msgstr "Startet HbbTV (RedButton)"
+
+msgid "Show Event Info Plugins"
+msgstr "Zeigt die Event Plugins"
+
+msgid "Switch Channel up in Infobar"
+msgstr "Kanalwechsel Senderliste nach oben"
+
+msgid "Switch Channel down in Infobar"
+msgstr "Kanalwechsel Senderliste nach unten"
+
+msgid "Show Plugin Selection"
+msgstr "Zeigt die installierten Plugins"
+
+msgid "Start instant recording"
+msgstr "Startet eine Sofortaufnahme"
+
+msgid "Hotkey Setup"
+msgstr "Offnet die Hotkey Einstellungen"
+
+msgid "History next"
+msgstr "Einen Sender vor"
+
+msgid "Show Subtitle Selection"
+msgstr "Zeigt verfügbare Untertitel"
+
+msgid "Show Single Service EPG"
+msgstr "Zeigt das EPG für den aktuellen Sender"
+
+msgid "Show Graphical Multi EPG"
+msgstr "Zeigt das grafische EPG"
+
+msgid "Switch to TV Mode"
+msgstr "Wechselt zum TV Modus"
+
+msgid "Zap down"
+msgstr "Runterschalten"
+
+msgid "Start Teletext"
+msgstr "Zeigt den Videotext"
+
+msgid "Show Subservice Selection"
+msgstr "Zeigt verfügbare Unterkanäle"
+
+msgid "Show Audioselection"
+msgstr "Zeige Audiospuren und Optionen"
+
+msgid "Show Multi Service EPG"
+msgstr "Zeige Mehrfach EPG"
+
+msgid "Show Event View"
+msgstr "Zeigt Event Anzeige"
+
+msgid "Show Event Info"
+msgstr "Zeigt Event Informationen"
+
+msgid "Show Help"
+msgstr "Zeigt die Hilfe"
+
+msgid "Toggle Infobar/SecondInfobar"
+msgstr "Wechsel Infobar und Secondinfobar"
+
+msgid "Show First Infobar"
+msgstr "Zeigt die erste Infobar"
+
+msgid "Show Second Infobar"
+msgstr "Zeigt die zweite Infobar"
+
+msgid "BackZap [0]"
+msgstr "BackZap [Taste 0]"
+
+msgid "Volume down"
+msgstr "Lautstärke verringern"
+
+msgid "Volume up"
+msgstr "Lautstärke erhöhen"
+
+msgid "Show Service List"
+msgstr "Zeigt die Senderliste"
+
+msgid "History Zap Menü"
+msgstr "Zeigt die Zap Historie"
+
+msgid "Show Favourites List"
+msgstr "Zeigt die Sender Favoriten"
+
+msgid "Show Satellites List"
+msgstr "Zeigt die Satellitenliste"
+
+msgid "Instant Record"
+msgstr "Sofortaufnahme"
+
+msgid "ZoomInOut"
+msgstr "Zoomen rein/raus"
+
+msgid "ZoomOff"
+msgstr "Zoom deaktivieren"
+
+msgid "Show Picture In Picture"
+msgstr "Bild in Bild anzeigen"
+
+msgid "Swap Picture In Picture"
+msgstr "Bild in Bild wechseln"
+
+msgid "Move Picture In Picture"
+msgstr "Bild in Bild verschieben"
+
+msgid "Toggle Picture In Picture Zap"
+msgstr "Bild in Bild Umschaltung wechseln"
+
+msgid "Toggle HDMI-In Full Screen"
+msgstr "Wechselt den HDMI-Eingang Fullscreen"
+
+msgid "Toggle HDMI-In Picture In Picture"
+msgstr "Wechselt den HDMI-In Bild in Bild"
+
+msgid "Zap to"
+msgstr "Schalte zu ..."
+
+msgid "Panic to"
+msgstr "Panikfunktion zu ..."
+
+msgid "Restart Enigma"
+msgstr "Enigma Neustart"
+
+msgid "Scanning"
+msgstr "Sendersuche"
+
+msgid "Tuner Configuration"
+msgstr "Tuner-Einstellungen"
+
+msgid "Setp"
+msgstr "Einstellungen"
+
+msgid "Network Menu"
+msgstr "Netzwerk-Einstellungen"
+
+msgid "Plugin Browser"
+msgstr "Alle Plugins anzeigen"
+
+msgid "Open AutoTimer"
+msgstr "Öffnet den AutoTimer"
+
+msgid "Memory Info"
+msgstr "Speicher Informationen"
+
+msgid "Usage Setup"
+msgstr "Benutzereinstellungen"
+
+msgid "User Interface"
+msgstr "Benutzeroberfläche"
+
+msgid "Recording Setup"
+msgstr "Aufnahme-Einstellungen"
+
+msgid "Harddisk Setup"
+msgstr "Festplatten-Einstellungen"
+
+msgid "Subtitles Settings"
+msgstr "Untertitel-Einstellungen"
 
 msgid "Question"
 msgstr "Frage"
