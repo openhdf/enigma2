@@ -1319,6 +1319,12 @@ class InfoBarChannelSelection:
 		if config.usage.show_servicelist.value:
 			self.session.execDialog(self.servicelist)
 
+	def historyZapForward(self):
+		self.servicelist.historyZap(+1)
+
+	def historyZapBackward(self):
+		self.servicelist.historyZap(-1)
+		
 	def historyBack(self):
 		if config.usage.historymode.value == "0":
 			self.servicelist.historyBack()
