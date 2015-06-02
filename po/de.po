@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-05-30 13:42+0100\n"
+"PO-Revision-Date: 2015-06-02 18:55+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -21,7 +21,7 @@ msgid "Start Timeshift"
 msgstr "Startet zeitversetzes Fernsehen"
 
 msgid "Show Movies"
-msgstr "Zeigt die Aufnahmen"
+msgstr "Zeige die Aufnahmen"
 
 msgid "Main Menu"
 msgstr "Öffnet das Hauptmenü"
@@ -30,19 +30,19 @@ msgid "Stop Timeshift"
 msgstr "Stoppt zeitversetzes Fernsehen"
 
 msgid "Show Infobar EPG"
-msgstr "Zeigt das EPG in der Infobar"
+msgstr "Zeige das EPG in der Infobar"
 
 msgid "Zap up"
 msgstr "Hochschalten"
 
 msgid "Show Extension Selection"
-msgstr "Zeigt die installierten Erweiterungen"
+msgstr "Zeige die installierten Erweiterungen"
 
 msgid "Activate HbbTV (Redbutton)"
 msgstr "Startet HbbTV (RedButton)"
 
 msgid "Show Event Info Plugins"
-msgstr "Zeigt die Event Plugins"
+msgstr "Zeige die Event Plugins"
 
 msgid "Switch Channel up in Infobar"
 msgstr "Kanalwechsel Senderliste nach oben"
@@ -51,7 +51,7 @@ msgid "Switch Channel down in Infobar"
 msgstr "Kanalwechsel Senderliste nach unten"
 
 msgid "Show Plugin Selection"
-msgstr "Zeigt die installierten Plugins"
+msgstr "Zeige die installierten Plugins"
 
 msgid "Start instant recording"
 msgstr "Startet eine Sofortaufnahme"
@@ -72,13 +72,13 @@ msgid "History back"
 msgstr "Zap Verlauf zurück"
 
 msgid "Show Subtitle Selection"
-msgstr "Zeigt verfügbare Untertitel"
+msgstr "Zeige verfügbare Untertitel"
 
 msgid "Show Single Service EPG"
-msgstr "Zeigt das EPG für den aktuellen Sender"
+msgstr "Zeige das EPG für den aktuellen Sender"
 
 msgid "Show Graphical Multi EPG"
-msgstr "Zeigt das grafische EPG"
+msgstr "Zeige das grafische EPG"
 
 msgid "Switch to TV Mode"
 msgstr "Wechselt zum TV Modus"
@@ -87,10 +87,10 @@ msgid "Zap down"
 msgstr "Runterschalten"
 
 msgid "Start Teletext"
-msgstr "Zeigt den Videotext"
+msgstr "Zeige den Videotext"
 
 msgid "Show Subservice Selection"
-msgstr "Zeigt verfügbare Unterkanäle"
+msgstr "Zeige verfügbare Unterkanäle"
 
 msgid "Show Audioselection"
 msgstr "Zeige Audiospuren und Optionen"
@@ -99,22 +99,22 @@ msgid "Show Multi Service EPG"
 msgstr "Zeige Mehrfach EPG"
 
 msgid "Show Event View"
-msgstr "Zeigt Event Anzeige"
+msgstr "Zeige Event Anzeige"
 
 msgid "Show Event Info"
-msgstr "Zeigt Event Informationen"
+msgstr "Zeige Event Informationen"
 
 msgid "Show Help"
-msgstr "Zeigt die Hilfe"
+msgstr "Zeige die Hilfe"
 
 msgid "Toggle Infobar/SecondInfobar"
 msgstr "Wechsel Infobar und Secondinfobar"
 
 msgid "Show First Infobar"
-msgstr "Zeigt die erste Infobar"
+msgstr "Zeige die erste Infobar"
 
 msgid "Show Second Infobar"
-msgstr "Zeigt die zweite Infobar"
+msgstr "Zeige die zweite Infobar"
 
 msgid "BackZap [0]"
 msgstr "BackZap [Taste 0]"
@@ -126,16 +126,16 @@ msgid "Volume up"
 msgstr "Lautstärke erhöhen"
 
 msgid "Show Service List"
-msgstr "Zeigt die Senderliste"
+msgstr "Zeige die Senderliste"
 
 msgid "History Zap Menü"
-msgstr "Zeigt die Zap Historie"
+msgstr "Zeige die Zap Historie"
 
 msgid "Show Favourites List"
-msgstr "Zeigt die Sender Favoriten"
+msgstr "Zeige die Sender Favoriten"
 
 msgid "Show Satellites List"
-msgstr "Zeigt die Satellitenliste"
+msgstr "Zeige die Satellitenliste"
 
 msgid "Instant Record"
 msgstr "Sofortaufnahme"
