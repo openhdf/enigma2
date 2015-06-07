@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-06-02 18:55+0100\n"
+"PO-Revision-Date: 2015-06-07 08:46+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8\n"
+"X-Generator: Poedit 1.8.1\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid "Switch to Radio Mode"
@@ -5491,7 +5491,7 @@ msgstr "MAC-Adresse Einstellungen"
 msgid "MAC-adress"
 msgstr "MAC-Adresse"
 
-msgid "Press OK to set the MAC-adress."
+msgid "Press OK to set the MAC-address."
 msgstr "Drücken Sie OK, um die MAC-Adresse zu setzen."
 
 msgid "New"
@@ -7025,6 +7025,18 @@ msgstr "Test wiederholen"
 
 msgid "Restart your network connection and interfaces.\n"
 msgstr "Neustart der Netzwerk-Konfiguration.\n"
+
+msgid "Use the network wizard to configure your Network\n"
+msgstr "Starte den Assistenten zur Netzwerk Konfiguration.\n"
+
+msgid "Set the MAC-address of your %s %s.\n"
+msgstr "Setze die Mac-Adresse deiner %s %s.\n"
+
+msgid "MAC-address settings"
+msgstr "Mac-Adresse Einstellung"
+
+msgid "Nameserver Setup"
+msgstr "DNS Einstellungen"
 
 msgid "Schedule a auto remount of your network shares."
 msgstr "Automatischen Neuverbinden aller Netzwerkverbindungen."
@@ -10848,6 +10860,15 @@ msgstr "startet gleich"
 
 msgid "activate network adapter configuration"
 msgstr "Netzwerkverbindung aktivieren"
+
+msgid "Select Network Adapter"
+msgstr "Wähle Adapter"
+
+msgid "Network Configuration..."
+msgstr "Netzwerkeinstellungen"
+
+msgid "Network test..."
+msgstr "Netzwerktest"
 
 msgid "add alternatives"
 msgstr "Alternativen hinzufügen"
