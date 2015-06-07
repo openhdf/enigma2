@@ -527,7 +527,7 @@ class AutoVideoMode(Screen):
 					if multi_videomode and (current_mode != multi_videomode):
 						write_mode = multi_videomode
 					else:
-						write_mode = config_mode+new_rate
+						write_mode = current_mode
 
 			# workaround for bug, see http://www.opena.tv/forum/showthread.php?1642-Autoresolution-Plugin&p=38836&viewfull=1#post38836
 			# always use a fixed resolution and frame rate   (e.g. 1080p50 if supported) for TV or .ts files
