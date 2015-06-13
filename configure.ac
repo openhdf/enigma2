@@ -479,15 +479,6 @@ lib/python/Components/Sources/Makefile
 lib/python/Screens/Makefile
 lib/python/Plugins/Makefile
 lib/python/Plugins/Extensions/2IB/Makefile
-lib/python/Plugins/Extensions/MenuSort/Makefile
-lib/python/Plugins/Extensions/PluginHider/Makefile
-lib/python/Plugins/Extensions/PluginHider/locale/Makefile
-lib/python/Plugins/Extensions/PluginHider/locale/de/Makefile
-lib/python/Plugins/Extensions/PluginHider/locale/fa/Makefile
-lib/python/Plugins/Extensions/PluginHider/locale/it/Makefile
-lib/python/Plugins/Extensions/PluginHider/locale/de/LC_MESSAGES/Makefile
-lib/python/Plugins/Extensions/PluginHider/locale/fa/LC_MESSAGES/Makefile
-lib/python/Plugins/Extensions/PluginHider/locale/it/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/VirtualZap/Makefile
 lib/python/Plugins/Extensions/VirtualZap/locale/Makefile
 lib/python/Plugins/Extensions/VirtualZap/locale/de/Makefile
