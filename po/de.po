@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-06-07 08:46+0100\n"
+"PO-Revision-Date: 2015-06-14 07:45+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -883,6 +883,13 @@ msgid ""
 msgstr ""
 "Ein Powertimer will die %s %s neu starten.\n"
 "Jetzt neu starten?"
+
+msgid ""
+"A finished powertimer wants to shutdown your %s %s.\n"
+"Do that now?"
+msgstr ""
+"Ein Powertimer will Ihren Receiver ausschalten.\n"
+"Ihre %s %s jetzt ausschalten?"
 
 msgid ""
 "A finished powertimer wants to restart the user interface.\n"
@@ -6452,7 +6459,10 @@ msgid "Positioner"
 msgstr "Rotor"
 
 msgid "Positioner setup"
-msgstr "Rotor Einstellungen"
+msgstr "Rotoreinstellungen"
+
+msgid "Positioner fine movement"
+msgstr "Rotorfeinabstimmung"
 
 msgid "Power threshold in mA"
 msgstr "Strom Schwellwert in mA"
@@ -6837,7 +6847,11 @@ msgstr "Service PIN merken"
 
 #, python-format
 msgid "Blind scan"
-msgstr "Blind-Scan"
+msgstr "Hintergrundsuchlauf"
+
+#, python-format
+msgid "Blindscan was canceled by the user."
+msgstr "Hintergrundsuchlauf durch Nutzer abgebrochen."
 
 msgid "Remote box"
 msgstr "Entfernte Box"
