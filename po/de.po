@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-06-14 07:45+0100\n"
+"PO-Revision-Date: 2015-06-20 09:10+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1068,10 +1068,10 @@ msgid "ACQUIRING TSID/ONID"
 msgstr "Sammeln von TSID/ONID"
 
 msgid "AFP Setup"
-msgstr "AFP-Einstellungen"
+msgstr "AFP-Server-Einstellungen"
 
 msgid "AFP setup"
-msgstr "AFP-Einstellungen"
+msgstr "AFP-Server-Einstellungen"
 
 #, python-format
 msgid "AV aspect is %s."
@@ -3054,7 +3054,7 @@ msgid "Device mounts"
 msgstr "Geräte-Mountpunkte"
 
 msgid "Device setup"
-msgstr "Geräte-Einstellungen"
+msgstr "Adapter-Einstellungen"
 
 msgid "Devicename:"
 msgstr "Gerätename:"
@@ -3771,10 +3771,10 @@ msgid "FLASH"
 msgstr "FLASH"
 
 msgid "FTP Setup"
-msgstr "FTP-Einstellungen"
+msgstr "FTP-Server-Einstellungen"
 
 msgid "FTP setup"
-msgstr "FTP-Einstellungen"
+msgstr "FTP-Server-Einstellungen"
 
 msgid "Factory reset"
 msgstr "Werkseinstellungen"
@@ -7129,10 +7129,10 @@ msgid "S-Video"
 msgstr "S-Video"
 
 msgid "SABnzbd Setup"
-msgstr "SABnzbd Einstellungen"
+msgstr "SABnzbd-Einstellungen"
 
 msgid "SABnzbd setup"
-msgstr "SABnzbd Einstellungen"
+msgstr "SABnzbd-Einstellungen"
 
 msgid "SID"
 msgstr "SID"
