@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-06-20 09:10+0100\n"
+"PO-Revision-Date: 2015-06-20 14:34+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -205,6 +205,24 @@ msgstr "Aufnahme-Einstellungen"
 
 msgid "Harddisk Setup"
 msgstr "Festplatten-Einstellungen"
+
+msgid "Select HDD"
+msgstr "Festplatte auswählen"
+
+msgid "Same as in active"
+msgstr "Einstellung wie bei aktiver Box"
+
+msgid "Hard disk standby in box standby after"
+msgstr "Festplatten Ruhezustand, wenn Box in Standby nach:"
+
+msgid "Use Harddisk Hardware Standby Timer"
+msgstr "Verwendung des Festplatten Hardware Standby Timers"
+
+msgid "Option to enable the Hardware Standby Timer"
+msgstr "Option zum Auswählen des internen Standby-Timers der Festplatte"
+
+msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
+msgstr "Option zum Einstellen der Zeit ab wann die Festplatte nach dem Standby der Box in den Ruhezustand gehen soll."
 
 msgid "Subtitles Settings"
 msgstr "Untertitel-Einstellungen"
@@ -4268,7 +4286,7 @@ msgid "Hard disk setup"
 msgstr "Festplatten-Einstellungen"
 
 msgid "Hard disk standby after"
-msgstr "Festplatte Ruhezustand nach"
+msgstr "Festplatten Ruhezustand nach:"
 
 msgid "Harddisk"
 msgstr "Festplatte"
