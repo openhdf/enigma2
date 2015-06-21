@@ -243,6 +243,7 @@ class Timer:
 
 		# calculate next activation point
 		if self.timer_list:
+			self.timer_list.sort() #  resort/refresh list, try to fix hanging timers
 			w = self.timer_list[0].getNextActivation()
 			if w < min:
 				min = w
