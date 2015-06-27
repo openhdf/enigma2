@@ -19,5 +19,4 @@ dist_install_DATA = \
 	userbouquet.bef003.tv \
 	userbouquet.bef004.tv \
 	userbouquet.bef005.tv \
-	userbouquet.bef006.tv \
 	userbouquet.bef007.tv
