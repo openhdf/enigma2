@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-06-20 14:34+0100\n"
+"PO-Revision-Date: 2015-06-28 20:16+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -885,6 +885,14 @@ msgid ""
 msgstr ""
 "Eine Konfigurationsdatei (%s) wurde seit der Installation verändert.\n"
 "Diese Version behalten?"
+
+#, python-format
+msgid "Powertimer Message Popup counter (in seconds)"
+msgstr "Powertimer Nachrichtenfenster Countdown (in Sekunden)"
+
+#, python-format
+msgid "Configure how long the powertimer message is displayed."
+msgstr "Legt fest wie lange die Nachricht zum Ausführen eines Powertimers angezeigt wird."
 
 #, python-format
 msgid ""

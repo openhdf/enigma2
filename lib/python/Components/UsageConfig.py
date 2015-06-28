@@ -203,6 +203,8 @@ def InitUsageConfig():
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert")) ])
 
+	config.usage.window_timeout = ConfigSelectionNumber(default = 180, stepwidth = 1, min = 1, max = 600, wraparound = True)
+
 	config.usage.on_long_powerpress = ConfigSelection(default = "show_menu", choices = [
 		("show_menu", _("Show shutdown menu")),
 		("shutdown", _("Immediate shutdown")),
