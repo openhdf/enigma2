@@ -60,6 +60,8 @@ AC_ARG_WITH(boxtype,
 AC_SUBST(BOXTYPE)
 AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 
+AM_CONDITIONAL(WETEK, test `echo "$BOXTYPE" | cut -b 1-2` == "we")
+AM_CONDITIONAL(WETEKPLAY, test "$BOXTYPE" == wetekplay)
 AM_CONDITIONAL(AZBOX, test `echo "$BOXTYPE" | cut -b 1-5` == "azbox")
 AM_CONDITIONAL(CUBE, test `echo "$BOXTYPE" | cut -b 1-4` == "cube")
 AM_CONDITIONAL(DAGS, test `echo "$BOXTYPE" | cut -b 1-4` == "dags")
@@ -84,6 +86,8 @@ AM_CONDITIONAL(AZBOXHD, test "$BOXTYPE" == azboxhd)
 AM_CONDITIONAL(DAGS1, test "$BOXTYPE" == dags1)
 AM_CONDITIONAL(DAGS2, test "$BOXTYPE" == dags2)
 AM_CONDITIONAL(DAGS3, test "$BOXTYPE" == dags3)
+AM_CONDITIONAL(DAGS4, test "$BOXTYPE" == dags4)
+AM_CONDITIONAL(DAGS5, test "$BOXTYPE" == dags5)
 AM_CONDITIONAL(DM8000, test "$BOXTYPE" == dm8000)
 AM_CONDITIONAL(DM7080, test "$BOXTYPE" == dm7080)
 AM_CONDITIONAL(DM820, test "$BOXTYPE" == dm820)
@@ -118,6 +122,10 @@ AM_CONDITIONAL(GB800SEPLUS, test "$BOXTYPE" == gb800seplus)
 AM_CONDITIONAL(GB800UEPLUS, test "$BOXTYPE" == gb800ueplus)
 AM_CONDITIONAL(GBQUADPLUS, test "$BOXTYPE" == gbquadplus)
 AM_CONDITIONAL(GBQUAD, test "$BOXTYPE" == gbquad)
+AM_CONDITIONAL(GBULTRASE, test "$BOXTYPE" == gbultrase)
+AM_CONDITIONAL(GBULTRAUE, test "$BOXTYPE" == gbultraue)
+AM_CONDITIONAL(GBX1, test "$BOXTYPE" == gbx1)
+AM_CONDITIONAL(GBX3, test "$BOXTYPE" == gbx3)
 AM_CONDITIONAL(INIHDE, test "$BOXTYPE" == inihde)
 AM_CONDITIONAL(INIHDP, test "$BOXTYPE" == inihdp)
 AM_CONDITIONAL(INIHDX, test "$BOXTYPE" == inihdx)
@@ -127,6 +135,7 @@ AM_CONDITIONAL(IQONIOS300HD, test "$BOXTYPE" == iqonios300hd)
 AM_CONDITIONAL(IXUSSONE, test "$BOXTYPE" == ixussone)
 AM_CONDITIONAL(IXUSSZERO, test "$BOXTYPE" == ixusszero)
 AM_CONDITIONAL(IXUSSDUO, test "$BOXTYPE" == ixussduo)
+AM_CONDITIONAL(IXUSS, test `echo "$BOXTYPE" | cut -b 1-4` == "ixus")
 AM_CONDITIONAL(MEDIABOX, test "$BOXTYPE" == mediabox)
 AM_CONDITIONAL(MBTWIN, test "$BOXTYPE" == mbtwin)
 AM_CONDITIONAL(ODINM6, test "$BOXTYPE" == odinm6)
@@ -147,6 +156,11 @@ AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
 AM_CONDITIONAL(VUDUO, test "$BOXTYPE" == vuduo)
 AM_CONDITIONAL(VUSOLO2, test "$BOXTYPE" == vusolo2)
 AM_CONDITIONAL(VUDUO2, test "$BOXTYPE" == vuduo2)
+AM_CONDITIONAL(VUSOLOSE, test "$BOXTYPE" == vusolose)
+AM_CONDITIONAL(VUZERO, test "$BOXTYPE" == vuzero)
+AM_CONDITIONAL(WORLDVISIONF1, test "$BOXTYPE" == worldvisionf1)
+AM_CONDITIONAL(FORMULER1, test "$BOXTYPE" == formuler1)
+AM_CONDITIONAL(FORMULER3, test "$BOXTYPE" == formuler3)
 AM_CONDITIONAL(VENTONHDX, test "$BOXTYPE" == ventonhdx)
 AM_CONDITIONAL(XP1000, test "$BOXTYPE" == xp1000)
 AM_CONDITIONAL(HAVE_COLORLCD1, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800 -o "$BOXTYPE" == dm7020hd -o "$BOXTYPE" == dm7020hdv2)
@@ -318,6 +332,22 @@ if test "$BOXTYPE" == "dm7080" -o "$BOXTYPE" == "dm820"; then
 	AC_DEFINE(TUNER_DM7080, 1,[define BOXTYPE DM7080])
 fi
 
+if test "$BOXTYPE" == "wetekplay"; then
+#	AC_DEFINE(FORCE_NO_BLENDING_ACCELERATION, 1,[define when the framebuffer acceleration does not have alphablending support, though the autodetection might indicate that it does])
+#	AC_DEFINE(FORCE_NO_ACCELNEVER, 1,[define when the framebuffer acceleration auto not working correct])
+	AC_DEFINE(KEY_F7_TO_KEY_MENU, 1,[define when rc sends a KEY_F7 event for its KEY_MENU])
+	AC_DEFINE(KEY_F1_TO_KEY_MEDIA, 1,[define when rc sends a KEY_F1 event for its KEY_MEDIA])
+	AC_DEFINE(KEY_HOME_TO_KEY_INFO, 1,[define when rc sends a KEY_HOME event for its KEY_INFO])
+	AC_DEFINE(KEY_BACK_TO_KEY_EXIT, 1,[define when rc sends a KEY_BACK event for its KEY_EXIT])
+	AC_DEFINE(KEY_F2_TO_KEY_EPG, 1,[define when rc sends a KEY_F2 event for its KEY_EPG])
+	AC_DEFINE(KEY_ENTER_TO_KEY_OK, 1,[define when rc sends a KEY_ENTER event for its KEY_OK])
+	AC_DEFINE(WETEKRC, 1, [WetekPlay Remote-use BACKSPACE to toggle extended functions on numeric buttons])
+	AC_DEFINE(HAVE_ALSA, 1, [try with alsa])
+	PKG_CHECK_MODULES(ALSA, alsa)
+	PKG_CHECK_MODULES(AMLPLAYER, libamcodec)
+	PKG_CHECK_MODULES(DVBCSA, libdvbcsa)
+	ALSA_CFLAGS="-lasound"
+fi
 
 if test "$BOXTYPE" == "et4x00" -o "$BOXTYPE" == "et5x00" -o "$BOXTYPE" == "et6x00" -o "$BOXTYPE" == "et7x00" -o "$BOXTYPE" == "et9x00" -o "$BOXTYPE" == "et8000" -o "$BOXTYPE" == "et10000"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
@@ -448,7 +478,7 @@ AC_SUBST(ENIGMA2_CFLAGS)
 
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
 CFLAGS="$CFLAGS $DEBUG_CFLAGS -Wall"
-CXXFLAGS="$CXXFLAGS $DEBUG_CFLAGS -Wall $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $GLES_CFLAGS"
+CXXFLAGS="$CXXFLAGS $DEBUG_CFLAGS -Wall $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $GLES_CFLAGS $ALSA_CFLAGS"
 AX_SWIG_PYTHON_OPT="$AX_SWIG_PYTHON_OPT -DSWIG_PYTHON_LEGACY_BOOL"
 
 AC_CONFIG_FILES([
