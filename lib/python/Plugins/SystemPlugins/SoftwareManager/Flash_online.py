@@ -269,8 +269,14 @@ class doFlashImage(Screen):
 			self.show()
 
 	def unzip_image(self, filename, path):
-		print "Unzip %s to %s" %(filename,path)
-		self.session.openWithCallback(self.cmdFinished, Console, title = _("Unzipping files, Please wait ..."), cmdlist = ['unzip ' + filename + ' -o -d ' + path, "sleep 3"], closeOnSuccess = True)
+		if images[imagesCounter][1].find('zip'):
+			print "Unzip %s to %s" %(filename,path)
+			self.session.openWithCallback(self.cmdFinished, Console, title = _("Unzipping files, Please wait ..."), cmdlist = ['unzip ' + filename + ' -o -d ' + path, "sleep 3"], closeOnSuccess = True)
+		if images[imagesCounter][1].find('xz'):
+			print "Untaring %s to %s" %(filename,path)
+			os.system('mkdir /dbackup.new')
+			self.session.openWithCallback(self.cmdFinished, Console, title = _("Untaring files, Please wait ..."), cmdlist = ['tar -xJf' + filename + ' -C ' + '/dbackup.new', "sleep 3"], closeOnSuccess = True)
+
 
 	def cmdFinished(self):
 		self.prepair_flashtmp(flashPath)
@@ -278,6 +284,8 @@ class doFlashImage(Screen):
 
 	def Start_Flashing(self):
 		print "Start Flashing"
+		if images[imagesCounter][1].find('xz'):
+			os.system('/usr/lib/enigma2/python/Plugins/Extensions/dBackup/bin/swaproot 0')
 		if os.path.exists(ofgwritePath):
 			text = _("Flashing: ")
 			if self.simulate:
@@ -395,15 +403,17 @@ class doFlashImage(Screen):
 					if line.find('zip"') > -1:
 						e = line.find('zip"')
 						self.imagelist.append(line[t+9:e+3])
-					if line.find('.gz"') > -1:
-						e = line.find('gz"')
+					if line.find('.xz"') > -1:
+						e = line.find('xz"')
 						self.imagelist.append(line[t+9:e+2])
 		else:
 			self["key_blue"].setText(_("Delete"))
 			self["key_yellow"].setText(_("Devices"))
 			for name in os.listdir(self.imagePath):
-				if name.endswith(".zip"): # and name.find(box) > 1:
+				if name.endswith(".zip") or name.endswith(".xz"): # and name.find(box) > 1:
 					self.imagelist.append(name)
+#				if name.find(box):
+#					self.imagelist.append(name)
 			self.imagelist.sort()
 			if os.path.exists(flashTmp):
 				for file in os.listdir(flashTmp):
