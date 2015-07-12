@@ -17,22 +17,19 @@ import urllib2
 import os
 import shutil
 import math
-from boxbranding import getBoxType,  getImageDistro, getMachineName, getMachineBrand, getBrandOEM
-
-distro =  getImageDistro()
+from boxbranding import getBoxType, getMachineName, getMachineBrand
 
 #############################################################################################################
-image = 0 # 0=openATV / 1=openMips 2=openhdf
-if distro.lower() == "openmips":
-	image = 1
-elif distro.lower() == "openatv":
-	image = 0
-elif distro.lower() == "openhdf":
-	image = 2
-feedurl_atv = 'http://images.mynonpublic.com/openatv/nightly'
-feedurl_om = 'http://image.openmips.com/2.0'
-feedurl_hdf = 'http://v5.hdfreaks.cc'
-feedurl_team = 'http://v5.hdfreaks.cc/team'
+# Create a List of imagetypes
+# 0 = Name Of Image, 1 = link to file
+images = []
+global imagesCounter
+imagesCounter = 0
+images.append(["Team", "http://teamimages.hdfreaks.cc"])
+images.append(["V5.1", "http://v51.hdfreaks.cc"])
+images.append(["V5.2", "http://v52.hdfreaks.cc"])
+images.append(["V4.2", "http://v42.hdfreaks.cc"])
+
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
 flashTmp = '/media/hdd/images/tmp'
@@ -150,16 +147,13 @@ class doFlashImage(Screen):
 		self["key_red"] = Button(_("Exit"))
 		self["key_blue"] = Button("")
 		self["key_yellow"] = Button("")
+		self.imagesCounter = imagesCounter
 		self.filename = None
 		self.imagelist = []
 		self.simulate = False
 		self.Online = online
 		self.imagePath = imagePath
-		self.feedurl = feedurl_hdf
-		if image == 0:
-			self.feed = "atv"
-		else:
-			self.feed = "hdf"
+		self.feedurl = images[self.imagesCounter][1]
 		self["imageList"] = MenuList(self.imagelist)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
@@ -178,12 +172,13 @@ class doFlashImage(Screen):
 
 	def blue(self):
 		if self.Online:
-			if image == 2:
-				if self.feed == "team":
-					self.feed = "hdf"
-				else:
-					self.feed = "team"
-				self.layoutFinished()
+
+			if self.imagesCounter <= len(images) - 2:
+				self.imagesCounter = self.imagesCounter + 1
+			else:
+				self.imagesCounter = 0
+			self.feed = images[self.imagesCounter][0]
+			self.layoutFinished()
 			return
 		sel = self["imageList"].l.getCurrentSelection()
 		if sel == None:
@@ -220,7 +215,7 @@ class doFlashImage(Screen):
 			box = "sf8"
 		elif box.startswith('et') and not box in ('et8000', 'et8500', 'et10000'):
 			box = box[0:3] + 'x00'
-		elif box == "odinm9" and self.feed == "hdf":
+		elif box == "odinm9":
 			box = 'maram9'
 		return box
 
@@ -234,11 +229,11 @@ class doFlashImage(Screen):
 		box = self.box()
 		self.hide()
 		if self.Online:
-			if self.feed == "team":
+			if self.imagesCounter == 0:
 				url = self.feedurl + "/" + sel
 			else:
 				url = self.feedurl + "/" + box + "/" + sel
-			#print url
+			#print "URL:", url
 			u = urllib2.urlopen(url)
 			f = open(file_name, 'wb')
 			meta = u.info()
@@ -314,7 +309,7 @@ class doFlashImage(Screen):
 			os.mkdir(flashTmp)
 		kernel = True
 		rootfs = True
-		
+
 		for path, subdirs, files in os.walk(tmpPath):
 			for name in files:
 				if name.find('kernel') > -1 and name.endswith('.bin') and kernel:
@@ -362,7 +357,7 @@ class doFlashImage(Screen):
 				self.unzip_image(strPath + '/' + filename, flashPath)
 			else:
 				self.layoutFinished()
-	
+
 		else:
 			self.imagePath = imagePath
 
@@ -371,17 +366,10 @@ class doFlashImage(Screen):
 		self.imagelist = []
 		if self.Online:
 			self["key_yellow"].setText("")
-			if image == 2:
-				if self.feed == "hdf":
-					self.feedurl = feedurl_hdf
-					self["key_blue"].setText("Teamimages")
-				else:
-					self.feedurl = feedurl_team
-					self["key_blue"].setText("Nightly V5.1")
-			else:
-				self.feedurl = feedurl_atv
-				self["key_blue"].setText("")
-			if self.feedurl == feedurl_team:
+			self.feedurl = images[self.imagesCounter][1]
+			print "self.feedurl" , self.feedurl
+			self["key_blue"].setText(images[self.imagesCounter][0])
+			if self.imagesCounter == 0:
 				url = '%s' % (self.feedurl)
 			else:
 				url = '%s/%s' % (self.feedurl,box)
@@ -402,23 +390,14 @@ class doFlashImage(Screen):
 			lines = the_page.split('\n')
 			tt = len(box)
 			for line in lines:
-				if line.find("<a href='%s/" % box) > -1:
-					t = line.find("<a href='%s/" % box)
-					if self.feed == "atv":
-						self.imagelist.append(line[t+tt+10:t+tt+tt+39])
-					else:
-						self.imagelist.append(line[t+tt+10:t+tt+tt+40])
-				if self.feedurl == feedurl_team:
-					if line.find('%s' % box) > -1:
-						t = line.find('<a href="')
+				if line.find(box + "-") > -1:
+					t = line.find('<a href="')
+					if line.find('zip"') > -1:
 						e = line.find('zip"')
 						self.imagelist.append(line[t+9:e+3])
-				else:
-					if line.find('<a href="o') > -1:
-						t = line.find('<a href="o')
-						e = line.find('zip"')
-						self.imagelist.append(line[t+9:e+3])
-
+					if line.find('.gz"') > -1:
+						e = line.find('gz"')
+						self.imagelist.append(line[t+9:e+2])
 		else:
 			self["key_blue"].setText(_("Delete"))
 			self["key_yellow"].setText(_("Devices"))
