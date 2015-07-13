@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF u80 Keymap 04.05.2015" -->
+	<!-- "HDF u80 Keymap 13.07.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -529,6 +529,7 @@
 		<key id="KEY_NEXT" mapto="nextMarker" flags="m" />
 		<key id="KEY_BACK" mapto="prevMarker" flags="m" />
 		<key id="KEY_FORWARD" mapto="nextMarker" flags="m" />
+		<key id="KEY_FAVORITES" mapto="showFavourites" flags="m"/>
 	</map>
 
 	<map context="ChannelSelectEPGActions">
