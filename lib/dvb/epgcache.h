@@ -384,8 +384,8 @@ public:
 	RESULT lookupEventId(const eServiceReference &service, int event_id, const eit_event_struct *&);
 	RESULT lookupEventTime(const eServiceReference &service, time_t , const eit_event_struct *&, int direction=0);
 	RESULT getNextTimeEntry(const eit_event_struct *&);
-
-public:
+	/* Only used by servicedvbrecord.cpp to write the EIT file */
+	RESULT saveEventToFile(const char* filename, const eServiceReference &service, int eit_event_id, time_t begTime, time_t endTime);
 	// Event's are parsed epg events.. it's safe to use them after cache unlock
 	// after use this Events must be deleted (memleaks)
 	RESULT lookupEventId(const eServiceReference &service, int event_id, Event* &);
