@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<skin>
+	<windowstyle id="1" type="skinned">
+		<color color="#000000" name="Background"/>
+		<color color="#ffffff" name="LabelForeground"/>
+		<color color="#000000" name="ListboxBackground"/>
+		<color color="#ffffff" name="ListboxForeground"/>
+		<color color="#000000" name="ListboxSelectedBackground"/>
+		<color color="#ffffff" name="ListboxSelectedForeground"/>
+		<color color="#000000" name="ListboxMarkedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedForeground"/>
+		<color color="#000000" name="ListboxMarkedAndSelectedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedAndSelectedForeground"/>
+		<color color="#ffffff" name="WindowTitleForeground"/>
+		<color color="#000000" name="WindowTitleBackground"/>
+	</windowstyle>
+	<fonts>
+		<!-- pick a funky name for the font, so we don't conflict  -->
+		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
+	</fonts>
+
+<!-- template -->
+	<screen name="SummaryClockPanel">
+		<widget source="global.CurrentTime" render="Label" position="center,center" size="100,45" font="FdLcD;40" halign="right" valign="bottom" noWrap="1">
+			<convert type="ClockToText"></convert>
+		</widget>
+	</screen>
+
+<!-- main-->
+	<screen name="InfoBarSummary" position="0,0" size="400,240">
+		<widget source="session.CurrentService" render="PiconRes" position="center,center" zPosition="1" halign="center" valign="center" size="300,180" alphatest="on">
+			<convert type="ServiceName">Reference</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text="Record" position="center,205" foregroundColor="#ff0000" size="100,25" font="FdLcD;25" zPosition="0" noWrap="1">
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
+
+<!-- standby -->
+	<screen name="StandbySummary" position="0,0" size="400,240">
+		<widget source="session.MSNWeather" render="Label" position="0,0" size="400,120" font="FdLcD;120" zPosition="1" halign="center" valign="center" noWrap="1" alphatest="on" >
+			<convert type="MSNWeather">temperature_current</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="0,140" size="400,100" halign="center" valign="center" font="FdLcD;80" >
+				<convert type="ClockToText"></convert>
+		</widget>
+		<!--widget source="session.MSNWeather" render="Label" position="0,180" size="400,30" font="FdLcD;40" zPosition="2" halign="center" valign="center" noWrap="1" alphatest="on">
+			<convert type="MSNWeather">temperature_heigh_low,current</convert>
+		</widget-->
+		<!--widget source="session.MSNWeather" render="Label" position="80,32" size="132,32" font="FdLcD;20" zPosition="1" halign="left" valign="left" alphatest="on">
+			<convert type="MSNWeather">city</convert>
+		</widget-->
+	</screen>
+
+	<include filename="/usr/share/enigma2/display/skin_display.xml" />
+</skin>
