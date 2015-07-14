@@ -269,14 +269,13 @@ class doFlashImage(Screen):
 			self.show()
 
 	def unzip_image(self, filename, path):
-		if images[imagesCounter][1].find('zip'):
-			print "Unzip %s to %s" %(filename,path)
-			self.session.openWithCallback(self.cmdFinished, Console, title = _("Unzipping files, Please wait ..."), cmdlist = ['unzip ' + filename + ' -o -d ' + path, "sleep 3"], closeOnSuccess = True)
-		if images[imagesCounter][1].find('xz'):
+		if getBoxType() in "dm7080" "dm820":
 			print "Untaring %s to %s" %(filename,path)
 			os.system('mkdir /dbackup.new')
-			self.session.openWithCallback(self.cmdFinished, Console, title = _("Untaring files, Please wait ..."), cmdlist = ['tar -xJf' + filename + ' -C ' + '/dbackup.new', "sleep 3"], closeOnSuccess = True)
-
+			self.session.openWithCallback(self.cmdFinished, Console, title = _("Untaring files, Please wait ..."), cmdlist = ['tar -xJf ' + filename + ' -C ' + '/dbackup.new', "sleep 3"], closeOnSuccess = True)
+		else:
+			print "Unzip %s to %s" %(filename,path)
+			self.session.openWithCallback(self.cmdFinished, Console, title = _("Unzipping files, Please wait ..."), cmdlist = ['unzip ' + filename + ' -o -d ' + path, "sleep 3"], closeOnSuccess = True)
 
 	def cmdFinished(self):
 		self.prepair_flashtmp(flashPath)
@@ -284,29 +283,30 @@ class doFlashImage(Screen):
 
 	def Start_Flashing(self):
 		print "Start Flashing"
-		if images[imagesCounter][1].find('xz'):
+		if getBoxType() in "dm7080" "dm820":
 			os.system('/usr/lib/enigma2/python/Plugins/Extensions/dBackup/bin/swaproot 0')
-		if os.path.exists(ofgwritePath):
-			text = _("Flashing: ")
-			if self.simulate:
-				text += _("Simulate (no write)")
-				cmd = "%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp)
-				self.close()
-				message = "echo -e '\n"
-				message += _('Show only found image and mtd partitions.\n')
-				message += "'"
-			else:
-				text += _("root and kernel")
-				cmd = "%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp)
-				message = "echo -e '\n"
-				message += _('ofgwrite will stop enigma2 now to run the flash.\n')
-				message += _('Your %s %s will freeze during the flashing process.\n') % (getMachineBrand(), getMachineName())
-				message += _('Please: DO NOT reboot your %s %s and turn off the power.\n') % (getMachineBrand(), getMachineName())
-				message += _('The image or kernel will be flashing and auto booted in few minutes.\n')
-				if self.box() == 'gb800solo':
-					message += _('GB800SOLO takes about 20 mins !!\n')
-				message += "'"
-			self.session.open(Console, text,[message, cmd])
+		else:
+			if os.path.exists(ofgwritePath):
+				text = _("Flashing: ")
+				if self.simulate:
+					text += _("Simulate (no write)")
+					cmd = "%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp)
+					self.close()
+					message = "echo -e '\n"
+					message += _('Show only found image and mtd partitions.\n')
+					message += "'"
+				else:
+					text += _("root and kernel")
+					cmd = "%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp)
+					message = "echo -e '\n"
+					message += _('ofgwrite will stop enigma2 now to run the flash.\n')
+					message += _('Your %s %s will freeze during the flashing process.\n') % (getMachineBrand(), getMachineName())
+					message += _('Please: DO NOT reboot your %s %s and turn off the power.\n') % (getMachineBrand(), getMachineName())
+					message += _('The image or kernel will be flashing and auto booted in few minutes.\n')
+					if self.box() == 'gb800solo':
+						message += _('GB800SOLO takes about 20 mins !!\n')
+					message += "'"
+				self.session.open(Console, text,[message, cmd])
 
 	def prepair_flashtmp(self, tmpPath):
 		if os.path.exists(flashTmp):
@@ -375,7 +375,6 @@ class doFlashImage(Screen):
 		if self.Online:
 			self["key_yellow"].setText("")
 			self.feedurl = images[self.imagesCounter][1]
-			print "self.feedurl" , self.feedurl
 			self["key_blue"].setText(images[self.imagesCounter][0])
 			if self.imagesCounter == 0:
 				url = '%s' % (self.feedurl)
