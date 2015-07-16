@@ -746,7 +746,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
 		self.list.append(getConfigListEntry(_("Softcams"), config.pluginfilter.softcams, _("This allows you to show softcams modules in downloads")))
 		self.list.append(getConfigListEntry(_("Skins"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
-		self.list.append(getConfigListEntry(_("LCD Skins"), config.pluginfilter.skins, _("This allows you to show lcd skins in downloads")))
+		self.list.append(getConfigListEntry(_("LCD Skins"), config.pluginfilter.display, _("This allows you to show lcd skins in downloads")))
 		self.list.append(getConfigListEntry(_("Picons"), config.pluginfilter.picons, _("This allows you to show picons modules in downloads")))
 		self.list.append(getConfigListEntry(_("Settings"), config.pluginfilter.settings, _("This allows you to show settings modules in downloads")))
 		self.list.append(getConfigListEntry(_("Weblinks"), config.pluginfilter.weblinks, _("This allows you to show weblinks modules in downloads")))
