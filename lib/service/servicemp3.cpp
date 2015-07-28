@@ -2460,6 +2460,13 @@ void eServiceMP3::pullSubtitle(GstBuffer *buffer)
 		{
 			if ( subType < stVOB )
 			{
+				int delay = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_delay");
+				int subtitle_fps = eConfigManager::getConfigIntValue("config.subtitles.pango_subtitles_fps");
+
+				double convert_fps = 1.0;
+				if (subtitle_fps > 1 && m_framerate > 0)
+					convert_fps = subtitle_fps / (double)m_framerate;
+
 #if GST_VERSION_MAJOR < 1
 				std::string line((const char*)GST_BUFFER_DATA(buffer), len);
 #else
