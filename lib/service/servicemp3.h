@@ -282,6 +282,7 @@ protected:
 	int m_cuesheet_changed, m_cutlist_enabled;
 	void loadCuesheet();
 	void saveCuesheet();
+
 private:
 	static int pcm_delay;
 	static int ac3_delay;
@@ -309,6 +310,8 @@ private:
 	bool m_use_chapter_entries;
 	/* CVR needed for user requested media pause */
 	bool m_user_paused;
+	/* last used seek position gst-1 only */
+	gint64 m_last_seek_pos;
 #endif
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;

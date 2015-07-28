@@ -36,34 +36,6 @@ class Console(Screen):
 		self.container.dataAvail.append(self.dataAvail)
 		self.onLayoutFinish.append(self.startRun) # dont start before gui is finished
 
-	def hideScreen(self):
-		if self.hideflag == True:
-			self.hideflag = False
-			count = 40
-			while count > 0:
-				count -= 1
-				f = open('/proc/stb/video/alpha', 'w')
-				f.write('%i' % (255 * count / 40))
-				f.close()
-
-		else:
-			self.hideflag = True
-			count = 0
-			while count < 40:
-				count += 1
-				f = open('/proc/stb/video/alpha', 'w')
-				f.write('%i' % (255 * count / 40))
-				f.close()
-	
-	def yellow(self):
-		print 'Yellow Pressed'	
-		if self.Shown == True:
-			self.hideScreen()
-			self.Shown = False
-		else:
-			self.show()
-			self.Shown = True
-
 	def updateTitle(self):
 		self.setTitle(self.newtitle)
 
@@ -93,6 +65,34 @@ class Console(Screen):
 				self.finishedCallback()
 			if not self.errorOcurred and self.closeOnSuccess:
 				self.cancel()
+
+	def hideScreen(self):
+		if self.hideflag == True:
+			self.hideflag = False
+			count = 40
+			while count > 0:
+				count -= 1
+				f = open('/proc/stb/video/alpha', 'w')
+				f.write('%i' % (255 * count / 40))
+				f.close()
+
+		else:
+			self.hideflag = True
+			count = 0
+			while count < 40:
+				count += 1
+				f = open('/proc/stb/video/alpha', 'w')
+				f.write('%i' % (255 * count / 40))
+				f.close()
+	
+	def yellow(self):
+		print 'Yellow Pressed'	
+		if self.Shown == True:
+			self.hideScreen()
+			self.Shown = False
+		else:
+			self.show()
+			self.Shown = True
 
 	def cancel(self):
 		if self.run == len(self.cmdlist):

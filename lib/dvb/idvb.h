@@ -66,7 +66,7 @@ struct eBouquet
 // the following five methods are implemented in db.cpp
 	RESULT flushChanges();
 	RESULT addService(const eServiceReference &, eServiceReference before=eServiceReference());
-	RESULT removeService(const eServiceReference &, bool renameBouquet=true);
+	RESULT removeService(const eServiceReference &);
 	RESULT moveService(const eServiceReference &, unsigned int);
 	RESULT setListName(const std::string &name);
 };
@@ -275,7 +275,7 @@ public:
 	{
 		cVPID, cMPEGAPID, cTPID, cPCRPID, cAC3PID,
 		cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY,
-		cSUBTITLE, cAACHEAPID=12, cDDPPID, cacheMax
+		cSUBTITLE, cAACHEAPID=12, cDDPPID, cAACAPID, cacheMax
 	};
 
 	int getCacheEntry(cacheID);

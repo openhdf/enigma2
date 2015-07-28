@@ -309,16 +309,14 @@ class AudioSelection(Screen, ConfigListScreen):
 		config.av.bypass_edid_checking.save()
 
 	def changeAC3Downmix(self, downmix):
-		if downmix.value:
-			config.av.downmix_ac3.setValue(True)
-			if SystemInfo["supportPcmMultichannel"]:
-				config.av.pcm_multichannel.setValue(False)
-		else:
-			config.av.downmix_ac3.setValue(False)
+		config.av.downmix_ac3.value = downmix.getValue() == True
 		config.av.downmix_ac3.save()
-		if SystemInfo["supportPcmMultichannel"]:
-			config.av.pcm_multichannel.save()
-		self.fillList()
+		if SystemInfo["CanDownmixDTS"]:
+			config.av.downmix_dts.value = config.av.downmix_ac3.value
+			config.av.downmix_dts.save()
+		if SystemInfo["CanDownmixAAC"]:
+			config.av.downmix_aac.value = config.av.downmix_ac3.value
+			config.av.downmix_aac.save()
 
 	def changePCMMultichannel(self, multichan):
 		if multichan.value:

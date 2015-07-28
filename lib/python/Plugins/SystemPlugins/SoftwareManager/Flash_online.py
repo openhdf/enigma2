@@ -29,6 +29,7 @@ images.append(["Team", "http://teamimages.hdfreaks.cc"])
 images.append(["V5.1", "http://v51.hdfreaks.cc"])
 images.append(["V5.2", "http://v52.hdfreaks.cc"])
 images.append(["V4.2", "http://v42.hdfreaks.cc"])
+images.append(["V4.1", "http://v41.hdfreaks.cc"])
 
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
