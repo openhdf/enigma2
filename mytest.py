@@ -625,15 +625,15 @@ def runScreenTest():
 		setRTCtime(nowTime)
 
 	wakeupList = [
-		x for x in ((nextRecordingTime, 0, nextRecordingAuto),
-					(nextZapTime, 1, nextZapAuto),
-					(nextPowerManagerTime, 2, nextPowerManagerAuto),
-					(plugins.getNextWakeupTime(), 3, False))
+		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
+					(session.nav.RecordTimer.getNextZapTime(), 1),
+					(plugins.getNextWakeupTime(), 2),
+					(session.nav.PowerTimer.getNextPowerManagerTime(), 3, session.nav.PowerTimer.isNextPowerManagerAfterEventActionAuto()))
 		if x[0] != -1
 	]
 	wakeupList.sort()
 	recordTimerWakeupAuto = False
-	if wakeupList and wakeupList[0][1] != 2:
+	if wakeupList and wakeupList[0][1] != 3:
 		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
@@ -646,7 +646,7 @@ def runScreenTest():
 #		if not config.misc.SyncTimeUsing.value == "0" or getBoxType().startswith('gb'):
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
-		print "set wakeup time to", strftime("%Y/%m/%d %H:%M:%S", localtime(wptime))
+		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
 		print 'recordTimerWakeupAuto',recordTimerWakeupAuto
@@ -668,7 +668,7 @@ def runScreenTest():
 #		if not config.misc.SyncTimeUsing.value == "0" or getBoxType().startswith('gb'):
 #			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
 #			setRTCtime(nowTime)
-		print "set wakeup time to", strftime("%Y/%m/%d %H:%M:%S", localtime(wptime+60))
+		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime+60))
 		setFPWakeuptime(wptime)
 		PowerTimerWakeupAuto = startTime[1] == 3 and startTime[2]
 		print 'PowerTimerWakeupAuto',PowerTimerWakeupAuto
