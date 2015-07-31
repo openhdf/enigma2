@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-07-09 05:17+0100\n"
+"PO-Revision-Date: 2015-07-31 21:32+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.3\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid "Switch to Radio Mode"
@@ -4610,6 +4610,12 @@ msgstr "Inadyn-Einstellungen"
 msgid "Include AIT in http streams"
 msgstr "AIT in HTTP-Streams integrieren"
 
+msgid "Include AIT in recordings"
+msgstr "AIT in Streams integrieren"
+
+msgid "If enabled, AIT data is included in recordings."
+msgstr "Wenn aktiviert, werden AIT Daten in die Aufnahmen eingebettet."
+
 msgid "Include ECM in http streams"
 msgstr "ECM in HTTP-Streams integrieren"
 
@@ -5799,6 +5805,9 @@ msgstr "Nein, aber von Anfang an neu beginnen"
 
 msgid "No, do nothing."
 msgstr "Nein, nichts tun"
+
+msgid "Do nothing"
+msgstr "Ohne Belegung ... nichts"
 
 #, python-format
 msgid "No, just start my %s %s"
@@ -10945,6 +10954,10 @@ msgstr "Erweitert"
 
 msgid "not available"
 msgstr "nichts ausgewählt"
+
+#, python-format
+msgid "%s: Not Available"
+msgstr "%s: Nicht Verfügbar"
 
 msgid "adventure/western/war"
 msgstr "Abenteuer/Western/Krieg"
