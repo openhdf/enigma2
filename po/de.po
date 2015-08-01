@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-07-31 21:32+0200\n"
+"PO-Revision-Date: 2015-08-01 08:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -6848,7 +6848,7 @@ msgid "Refresh every (in hours)"
 msgstr "Alle x Stunden erneuern"
 
 msgid "Refresh rate"
-msgstr "Wiederholrate"
+msgstr "Bild Wiederholrate"
 
 msgid "Refresh rate selection."
 msgstr "Auswahl der Bildwiederholungsrate."
@@ -10001,6 +10001,7 @@ msgstr "Erlaube nicht unterstützte Modi"
 msgid "Video output"
 msgstr "Video Ausgang"
 
+#, python-format
 msgid "Audio Sync Einstellungen"
 msgstr "Audio-Sync-Einstellungen"
 
