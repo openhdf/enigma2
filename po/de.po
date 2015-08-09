@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-08-01 08:23+0200\n"
+"PO-Revision-Date: 2015-08-09 08:55+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -12892,3 +12892,9 @@ msgstr "Timermenü schützen"
 
 msgid "SCPC optimized search range"
 msgstr "SCPC optimierter Suchbereich"
+
+msgid "Use individual offset from waking up to starting a timer [min]"
+msgstr "Eigenen Offset vom Aufwachen bis zum Timerstart benutzen [min]"
+
+msgid "The standard wakeup time is 5 minutes (or box specific) before a timer starts. Is the real wake up time outside 10 mins (some boxes starts not punctually) to the next timer will not switched to standby. (minus value = wake up to timer is shorter)"
+msgstr "Standard ist 5 min (oder Box spezifisch) vor einem Timer aufzuwachen. Ist die echte Aufwachzeit ausserhalb 10 min (einige Boxen starten nicht pünktlich) bis zum nächsten Timerstart wird nicht in den Standby geschaltet (Minus = Aufwachzeit bis zum Timer wird kürzer)"

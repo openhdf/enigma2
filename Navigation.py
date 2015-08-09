@@ -1,14 +1,12 @@
-from time import time
 from os import path
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
-from Components.SystemInfo import SystemInfo
 from Components.config import config
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import getFPWasTimerWakeup
-from time import time
+from time import time, ctime
 import RecordTimer
 import PowerTimer
 import Screens.Standby
@@ -17,12 +15,9 @@ import ServiceReference
 from Screens.InfoBar import InfoBar, MoviePlayer
 from boxbranding import getBoxType, getBrandOEM
 
-#if SystemInfo["isGBIPBOX"]:
-#	from gbipbox import ZAP
-
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
-	def __init__(self, nextRecordTimerAfterEventActionAuto=False, nextPowerManagerAfterEventActionAuto=False):
+	def __init__(self, wakeupData=None):
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance
 
@@ -42,85 +37,143 @@ class Navigation:
 		self.currentlyPlayingService = None
 
 		self.RecordTimer = None
-		self.RecordTimer = RecordTimer.RecordTimer()
+		self.isRecordTimerImageStandard = False
+		if not self.RecordTimer:
+			self.RecordTimer = RecordTimer.RecordTimer()
+			self.isRecordTimerImageStandard = True
 
+		self.PowerTimer = None
 		self.PowerTimer = PowerTimer.PowerTimer()
-		self.nextRecordTimerAfterEventActionAuto = nextRecordTimerAfterEventActionAuto
-		self.nextPowerManagerAfterEventActionAuto = nextPowerManagerAfterEventActionAuto
 		self.__wasTimerWakeup = False
 		self.__wasRecTimerWakeup = False
 		self.__wasPowerTimerWakeup = False
+
+		#wakeup data
+		try:
+			self.wakeuptime, self.timertime, self.wakeuptyp, self.getstandby, self.recordtime, self.forcerecord = [int(n) for n in wakeupData.split(',')]
+		except:
+			print "="*100
+			print "[NAVIGATION] ERROR: can't read wakeup data"
+			self.wakeuptime, self.timertime, self.wakeuptyp, self.getstandby, self.recordtime, self.forcerecord = -1,-1,0,0,-1,0
+		#print ctime(self.wakeuptime), ctime(self.timertime), self.wakeuptyp, self.getstandby, ctime(self.recordtime), self.forcerecord
+		now = time()
+		timediff_wakeup = self.wakeuptime - now
+		timediff_timer = self.timertime - now
 		self.syncCount = 0
 
 		wasTimerWakeup = getFPWasTimerWakeup()
+		#TODO: verify wakeup-state for boxes where only after shutdown removed the wakeup-state (for boxes where "/proc/stb/fp/was_timer_wakeup" is not writable (clearFPWasTimerWakeup() in StbHardware.py has no effect -> after x hours and restart/reboot is wasTimerWakeup = True)
+
+		print "="*100
 		thisBox = getBoxType()
-		if thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'dags', 'fulan'):
+		if not config.workaround.deeprecord.value and thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'dags', 'fulan', 'entwopia'):
+			print"[NAVIGATION] FORCED DEEPSTANDBY-WORKAROUND FOR THIS BOXTYPE (%s)" %thisBox
 			config.workaround.deeprecord.setValue(True)
 			config.workaround.deeprecord.save()
 			config.save()
-			print"[NAVIGATION] USE DEEPSTAND-WORKAROUND FOR THIS BOXTYPE (%s) !!" %thisBox
-		
-		if not wasTimerWakeup and config.workaround.deeprecord.value: #work-around for boxes where driver not sent was_timer_wakeup signal to e2
-			print"=================================================================================="
-			print"[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
-			print"[NAVIGATION] nextRecordTimerAfterEventActionAuto= %s" % nextRecordTimerAfterEventActionAuto
-			print"[NAVIGATION] current Time=%s" % time()
-			print"[NAVIGATION] timediff=%s" % abs(self.RecordTimer.getNextRecordingTime() - time())
-			print"=================================================================================="
-			print"[NAVIGATION] getNextPowerManagerTime= %s" % self.PowerTimer.getNextPowerManagerTime()
-			print"[NAVIGATION] nextPowerManagerAfterEventActionAuto= %s" % nextPowerManagerAfterEventActionAuto
-			print"[NAVIGATION] current Time=%s" % time()
-			print"[NAVIGATION] timediff=%s" % abs(self.PowerTimer.getNextPowerManagerTime() - time())
-			print"=================================================================================="
 
-			if time() <= 31536000: # check for NTP-time sync, if no sync, wait for transponder time
-				self.timesynctimer = eTimer()
-				self.timesynctimer.callback.append(self.TimeSynctimer)
-				self.timesynctimer.start(5000, True)
-				print"[NAVIGATION] [work-around] wait for time sync"
-				
-			elif abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360: # if there is a recording sheduled in the next 5 mins, set the wasTimerWakeup flag
-				wasTimerWakeup = True
-				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
-				file = f.write(str(wasTimerWakeup))
-				f.close()
-			elif abs(self.PowerTimer.getNextPowerManagerTime() - time()) <= 360: # if there is a power timer in the next 5 mins, set the wasTimerWakeup flag
-				wasTimerWakeup = True
-				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
-				file = f.write(str(wasTimerWakeup))
-				f.close()
-
-		print"[NAVIGATION] wasTimerWakeup = %s" % wasTimerWakeup
-
-		if wasTimerWakeup:
-			self.__wasTimerWakeup = True
-			if time() <= 31536000:
+		if config.workaround.deeprecord.value: #work-around for boxes where driver not sent was_timer_wakeup signal to e2
+			wasTimerWakeup = False
+			print "[NAVIGATION] starting deepstandby-workaround"
+			if now <= 31536000: # check for NTP-time sync, if no sync, wait for transponder time
 				self.timesynctimer = eTimer()
 				self.timesynctimer.callback.append(self.TimeSynctimer)
 				self.timesynctimer.start(5000, True)
 				print"[NAVIGATION] wait for time sync"
+				print "~"*100
+			elif abs(timediff_wakeup) <= 600 or abs(timediff_timer) <= 600: # if there is a recording sheduled in the next 10 mins or starting before 10 mins, set the wasTimerWakeup flag (wakeup time is 5 min before timer starts, some boxes starts but earlier than is set)
+				wasTimerWakeup = True
+				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
+				file = f.write(str(wasTimerWakeup))
+				f.close()
 
-			elif nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
+		print "[NAVIGATION] was timer wakeup = %s" % wasTimerWakeup
+		print "[NAVIGATION] current time is %s" % ctime(now)
+
+		if wasTimerWakeup:
+			self.__wasTimerWakeup = True
+			print "-"*100
+			print "[NAVIGATION] wakeup time was %s" % ctime(self.wakeuptime)
+			if now <= 31536000:
+				self.timesynctimer = eTimer()
+				self.timesynctimer.callback.append(self.TimeSynctimer)
+				self.timesynctimer.start(5000, True)
+				print"[NAVIGATION] wait for time sync"
+				print "~"*100
+			else:
+				self.wakeupCheck()
+		else:
+			if now > 31536000:
+				if self.timertime > 0:
+					print "[NAVIGATION] next '%s' starts at %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[self.wakeuptyp], ctime(self.timertime))
+				else:
+					print "[NAVIGATION] no next timers"
+				print "="*100
+
+	def wakeupCheck(self):
+		now = time()
+		timediff_wakeup = self.wakeuptime - now
+		timediff_timer = self.timertime - now
+		stbytimer = 5 # original was 15
+
+		if abs(timediff_wakeup) <= 600 or abs(timediff_timer) <= 600:
+			if self.syncCount > 0:
+				stbytimer = 0
+				if not self.__wasTimerWakeup:
+					self.__wasTimerWakeup = True
+					print "-"*100
+					print "[NAVIGATION] was timer wakeup after time sync is = True"
+					print "[NAVIGATION] wakeup time was %s" % ctime(self.wakeuptime)
+			print "[NAVIGATION] wakeup type is '%s' %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[self.wakeuptyp],{0:"and starts normal",1:"and starts in standby",2:"and starts not in standby"}[self.getstandby])
+			#record timer, zap timer, some plugin timer or next record timer begins in 15 mins
+			if self.wakeuptyp < 2 or self.forcerecord:
+				print "[NAVIGATION] timer starts at %s" % ctime(self.timertime)
+				if self.forcerecord:
+					print "[NAVIGATION] timer is set from 'vps-plugin' or just before a 'record-timer' starts at %s" % ctime(self.recordtime)
+				print "[NAVIGATION] was rectimer wakeup = True"
 				self.__wasRecTimerWakeup = True
-				print 'RECTIMER: wakeup to standby detected.'
 				f = open("/tmp/was_rectimer_wakeup", "w")
 				f.write('1')
 				f.close()
-				# as we woke the box to record, place the box in standby.
-				self.standbytimer = eTimer()
-				self.standbytimer.callback.append(self.gotostandby)
-				self.standbytimer.start(15000, True)
-
-			elif nextPowerManagerAfterEventActionAuto:
+			#power timer
+			if self.wakeuptyp == 2:
+				if not self.forcerecord:
+					print "[NAVIGATION] timer starts at %s" % ctime(self.timertime)
+				print "[NAVIGATION] was powertimer wakeup = True"
 				self.__wasPowerTimerWakeup = True
-				print 'POWERTIMER: wakeup to standby detected.'
 				f = open("/tmp/was_powertimer_wakeup", "w")
 				f.write('1')
 				f.close()
-				# as a PowerTimer WakeToStandby was actiond to it.
-				self.standbytimer = eTimer()
-				self.standbytimer.callback.append(self.gotostandby)
-				self.standbytimer.start(15000, True)
+			#plugin timer
+			elif self.wakeuptyp == 3:
+				if not self.forcerecord:
+					print "[NAVIGATION] timer starts at %s" % ctime(self.timertime)
+			#check for standby
+			if not self.getstandby and self.wakeuptyp < 3 and timediff_timer > 60 + stbytimer:
+				self.getstandby = 1
+				print "[NAVIGATION] more than 60 seconds to wakeup - go in standby"
+			print "="*100
+			#go in standby
+			if self.getstandby == 1:
+				if stbytimer:
+					self.standbytimer = eTimer()
+					self.standbytimer.callback.append(self.gotostandby)
+					self.standbytimer.start(stbytimer * 1000, True)
+				else:
+					self.gotostandby()
+		else:
+			if self.timertime > 0:
+				print "[NAVIGATION] no timers in the time window, next '%s' starts at %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[self.wakeuptyp], ctime(self.timertime))
+				if self.recordtime > 0 and self.timertime != self.recordtime:
+					print "[NAVIGATION] next 'record-timer' starts at %s" % ctime(self.recordtime)
+				else:
+					print "[NAVIGATION] no next 'record-timer'"
+			print "="*100
+			self.getstandby = 0
+
+		#workaround for normal operation if no time sync after e2 start - box is in standby
+		if self.getstandby != 1:
+			self.gotopower()
 
 	def wasTimerWakeup(self):
 		return self.__wasTimerWakeup
@@ -132,42 +185,39 @@ class Navigation:
 		return self.__wasPowerTimerWakeup
 
 	def TimeSynctimer(self):
+		now = time()
 		self.syncCount += 1
-		if self.nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
-			self.__wasRecTimerWakeup = True
-			print 'RECTIMER: wakeup to standby detected.'
-			print"[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
-			print"[NAVIGATION] current Time=%s" % time()
-			print"[NAVIGATION] timediff=%s" % abs(self.RecordTimer.getNextRecordingTime() - time())
-			f = open("/tmp/was_rectimer_wakeup", "w")
-			f.write('1')
-			f.close()
-			self.gotostandby()
-		elif self.nextPowerManagerAfterEventActionAuto and abs(self.PowerTimer.getNextPowerManagerTime() - time()) <= 360:
-			self.__wasPowerTimerWakeup = True
-			print 'POWERTIMER: wakeup to standby detected.'
-			print"[NAVIGATION] getNextPowerManagerTime= %s" % self.PowerTimer.getNextPowerManagerTime()
-			print"[NAVIGATION] current Time=%s" % time()
-			print"[NAVIGATION] timediff=%s" % abs(self.PowerTimer.getNextPowerManagerTime() - time())
-			f = open("/tmp/was_powertimer_wakeup", "w")
-			f.write('1')
-			f.close()
-			self.gotostandby()
-		else:
-			if self.syncCount <= 24 and time() <= 31536000: # max 2 mins or when time is in sync
+
+		if now <= 31536000:
+			if self.syncCount <= 24 and now <= 31536000: # max 2 mins or when time is in sync
 				self.timesynctimer.start(5000, True)
 			else:
-				print"[NAVIGATION] No Recordings/PowerTimers found, end work-around"
+				print "~"*100
+				print "[NAVIGATION] time sync failure, current time is %s, sync time is %s sec." % (ctime(now),(self.syncCount * 5))
+				if self.timertime > 0:
+					print "[NAVIGATION] next '%s' starts at %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[self.wakeuptyp], ctime(self.timertime))
+				else:
+					print "[NAVIGATION] no next timers"
+				print "="*100
+				#workaround for normal operation if no time sync after e2 start - box is in standby
+				self.gotopower()
+		else:
+			print "~"*100
+			print "[NAVIGATION] time sync successful, current time is %s, sync time is %s sec." % (ctime(now),(self.syncCount * 5))
+			self.wakeupCheck()
 
-		if self.nextRecordTimerAfterEventActionAuto:
-			print"[NAVIGATION] wasTimerWakeup after time sync = %s, sync time = %s sec." % (self.__wasRecTimerWakeup, self.syncCount * 5)
-		elif self.nextPowerManagerAfterEventActionAuto:
-			print"[NAVIGATION] wasPowerTimerWakeup after time sync = %s, sync time = %s sec." % (self.__wasPowerTimerWakeup, self.syncCount * 5)
+	def gotopower(self):
+		import Screens.Standby
+		if Screens.Standby.inStandby:
+			print '[NAVIGATION] now entering normal operation'
+			Screens.Standby.inStandby.Power()
 
 	def gotostandby(self):
-		print '[NAVIGATION] TIMER: now entering standby'
-		from Tools import Notifications
-		Notifications.AddNotification(Screens.Standby.Standby)
+		import Screens.Standby
+		if not Screens.Standby.inStandby:
+			from Tools import Notifications
+			print '[NAVIGATION] now entering standby'
+			Notifications.AddNotification(Screens.Standby.Standby)
 
 	def dispatchEvent(self, i):
 		for x in self.event:
@@ -219,9 +269,16 @@ class Navigation:
 				if playref and oldref and playref == oldref and not forceRestart:
 					print "ignore request to play already running service(2)"
 					return 1
-				if not playref or (checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl = False))):
+				if not playref:
+					alternativeref = getBestPlayableServiceReference(ref, eServiceReference(), True)
 					self.stopService()
+					if alternativeref and self.pnav and self.pnav.playService(alternativeref):
+						print "Failed to start", alternativeref
 					return 0
+				elif checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl = False)):
+					if self.currentlyPlayingServiceOrGroup and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(self.currentlyPlayingServiceOrGroup, adjust):
+						self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
+					return 1
 			else:
 				playref = ref
 			if self.pnav:
