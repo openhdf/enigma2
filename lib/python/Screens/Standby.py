@@ -205,6 +205,7 @@ class QuitMainloopScreen(Screen):
 		self["text"] = Label(text)
 
 inTryQuitMainloop = False
+quitMainloopCode = 1
 
 class TryQuitMainloop(MessageBox):
 	def __init__(self, session, retvalue=1, timeout=-1, default_yes = True):
@@ -277,6 +278,7 @@ class TryQuitMainloop(MessageBox):
 				self.stopTimer()
 
 	def close(self, value):
+		global quitMainloopCode
 		if self.connected:
 			self.conntected=False
 			self.session.nav.record_event.remove(self.getRecordEvent)
@@ -288,6 +290,7 @@ class TryQuitMainloop(MessageBox):
 			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
 			self.quitScreen.show()
 			print "[Standby] quitMainloop #1"
+			quitMainloopCode = self.retval
 			quitMainloop(self.retval)
 		else:
 			MessageBox.close(self, True)
