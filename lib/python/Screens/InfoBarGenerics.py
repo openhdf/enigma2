@@ -5442,8 +5442,7 @@ class InfoBarCueSheetSupport:
 		self.downloadCuesheet()
 
 		self.resume_point = None
-		service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if self.ENABLE_RESUME_SUPPORT and not(service and service.toString().startswith("4369:")): #when resume support and not a DVD
+		if self.ENABLE_RESUME_SUPPORT:
 			for (pts, what) in self.cut_list:
 				if what == self.CUT_TYPE_LAST:
 					last = pts
