@@ -1067,15 +1067,24 @@ void eServiceDVD::saveCuesheet()
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				// DVD has no name and cannot be written. Use the mtime to generate something unique...
-				snprintf(filename, 128, "/home/root/dvd-%x.cuts", st.st_mtime);
+				snprintf(filename, 128, "/home/root/dvd-%lx.cuts", st.st_mtime);
 			}
 			else
 			{
 				strcpy(filename, "/home/root/dvd-untitled.cuts");
 			}
 		}
-		eDebug("eServiceDVD::saveCuesheet() filename=%s",filename);
-		f = fopen(filename, "wb");
+		/* CVR it does not make sense to keep a resume file with position 0 */
+		if (m_cue_pts == 0)
+		{
+			if (::access(filename, F_OK) == 0)
+				remove(filename);
+		}
+		else
+		{
+			eDebug("[eServiceDVD] saveCuesheet filename=%s",filename);
+			f = fopen(filename, "wb");
+		}
 	}
 
 	if (f)
