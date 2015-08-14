@@ -55,7 +55,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 26, width-150, 23, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
 		icon = None
-		if not processed and not timer.disabled:
+		if not processed and (not timer.disabled or (timer.repeated and timer.isRunning() and not timer.justplay)):
 			if timer.state == TimerEntry.StateWaiting:
 				state = _("waiting")
 				icon = self.iconWait
