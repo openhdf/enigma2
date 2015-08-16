@@ -1245,7 +1245,8 @@ class InfoBarChannelSelection:
 
 	def LeftPressed(self):
 		if config.usage.leftrightbutton_mode.value == "0":
-			self.zapUp()
+			#self.zapUp()
+			self.zapDown()
 		if config.usage.leftrightbutton_mode.value == "3":
 			self.volumeDown()
 		elif config.usage.leftrightbutton_mode.value == "1":
@@ -1253,7 +1254,8 @@ class InfoBarChannelSelection:
 
 	def RightPressed(self):
 		if config.usage.leftrightbutton_mode.value == "0":
-			self.zapDown()
+			self.zapUp()
+			#self.zapDown()
 		if config.usage.leftrightbutton_mode.value == "3":
 			self.volumeUp()
 		elif config.usage.leftrightbutton_mode.value == "1":
