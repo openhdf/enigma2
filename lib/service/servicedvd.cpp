@@ -1005,36 +1005,40 @@ void eServiceDVD::loadCuesheet()
 {
 	struct stat st;
 	FILE* f;
+	std::string filename = m_ref.path;
+
+	if (stat(m_ref.path.c_str(), &st) == 0)
 	{
-		std::string filename = m_ref.path;
-		if (stat(m_ref.path.c_str(), &st) == 0)
-		{
-			if( st.st_mode & S_IFDIR )
-				filename += "/dvd.cuts";
-			else
-				filename += ".cuts";
-		}
-		f = fopen(filename.c_str(), "rb");
+		if( st.st_mode & S_IFDIR )
+			filename += "/dvd.cuts";
+		else
+			filename += ".cuts";
+		eDebug("[eServiceDVD] loadCuesheet trying %s", filename.c_str());
 	}
+	f = fopen(filename.c_str(), "rb");
+
 	if (f == NULL)
 	{
-		char filename[128];
-		if ( m_ddvd_titlestring[0] != '\0' )
-			snprintf(filename, sizeof(filename), "/home/root/.dvdcuts/%s.cuts", m_ddvd_titlestring);
+		// Determine cue filename
+		filename = "/home/root/.dvdcuts/";
+		if (m_ddvd_titlestring[0] != '\0')
+			filename += m_ddvd_titlestring;
 		else
 		{
+			// use mtime as 'unique' name
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
-				// DVD has no name and cannot be written. Use the mtime to generate something unique...
-				snprintf(filename, 128, "/home/root/.dvdcuts/%lx.cuts", st.st_mtime);
+				char buf[128];
+				snprintf(buf, 128, "%lx", st.st_mtime);
+				filename += buf;
 			}
 			else
-			{
-				strcpy(filename, "/home/root/.dvdcuts/untitled.cuts");
-			}
+				filename += "untitled";
 		}
-		eDebug("[eServiceDVD] loadCuesheet filename=%s",filename);
-		f = fopen(filename, "rb");
+		filename += ".cuts";
+
+		eDebug("[eServiceDVD] loadCuesheet trying %s", filename.c_str());
+		f = fopen(filename.c_str(), "rb");
 	}
 
 
