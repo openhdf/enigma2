@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Neutrino Keymap 13.07.2015" -->
+	<!-- "HDF Neutrino Keymap 23.08.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -47,7 +47,7 @@
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
 		<key id="KEY_PAGEUP" mapto="pageUp" flags="mr" />
 		<key id="KEY_PAGEDOWN" mapto="pageDown" flags="mr" />
-		<!--key id="KEY_RED" mapto="cancel" flags="m" /-->
+		<key id="KEY_RED" mapto="cancel" flags="m" />
 		<key id="KEY_GREEN" mapto="save" flags="m" />
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_MUTE" mapto="deleteForward" flags="mr" />
