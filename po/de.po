@@ -3,12 +3,13 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-08-23 09:18+0200\n"
+"PO-Revision-Date: 2015-08-29 09:05+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Poedit 1.8.4\n"
@@ -1064,6 +1065,33 @@ msgid ""
 msgstr ""
 "Ein Ausschalttimer möchte die %s %s ausschalten.\n"
 "Jetzt ausschalten?"
+
+msgid "Show advanced settings"
+msgstr "Erweiterte Einstellungen anzeigen"
+
+msgid "Enable Network Traffic check"
+msgstr "Überprüfung der Netzwerkdatenübertragung aktivieren"
+
+msgid "Enable Network IP address check"
+msgstr "Überprüfung von IP-Adressen aktivieren"
+
+msgid "Restrict the active time range"
+msgstr "Den aktiven Zeitbereich einschränken"
+
+msgid "without Query"
+msgstr "ohne Rückfrage"
+
+msgid "only in Standby"
+msgstr "nur im Standby"
+
+msgid "Standard (always)"
+msgstr "Standard (immer)"
+
+msgid "Execution condition"
+msgstr "Ausführungsbedingung"
+
+msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. So can the receiver shutdown also if you not watch tv (e.g. video, hbbtv) -  only recommended for sleep timer. All other dependencies (e.g. recordings, time range) stay persist."
+msgstr "Die Einstellung 'ohne Rückfrage' ist das gleiche wie 'Standard' ohne zusätzliche Bestätigungsabfrage. So kann der Receiver herunterfahren wenn Sie nicht fernsehen (z.B. Video, HbbTV) - nur für Sleep-Timer empfohlen. Alle anderen Abhängigkeiten (z.B. Aufnahmen, Zeitbereich) bleiben bestehen."
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Eine kurze Übersicht der verfügbaren Iconzustände und Aktionen."
