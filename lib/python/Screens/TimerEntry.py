@@ -13,6 +13,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.Button import Button
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import defaultMoviePath
@@ -24,7 +25,7 @@ from Screens.MessageBox import MessageBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
-
+from os import statvfs
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):
@@ -39,6 +40,8 @@ class TimerEntry(Screen, ConfigListScreen):
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 
+		self["locationdescription"] = Label("")
+		self["locationfreespace"] = Label("")
 		self["description"] = Label("")
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
@@ -156,7 +159,8 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d %B %Y"), increment = 86400)
 		self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default = self.timer.end)
-		self.timerentry_showendtime = ConfigSelection(default = ((self.timer.end - self.timer.begin) > 4), choices = [(True, _("yes")), (False, _("no"))])
+		#self.timerentry_showendtime = ConfigSelection(default = False, choices = [(True, _("yes")), (False, _("no"))])
+		self.timerentry_showendtime = ConfigSelection(default = (self.timer.end > self.timer.begin + 3 and self.timer.justplay), choices = [(True, _("yes")), (False, _("no"))])
 
 		default = self.timer.dirname or defaultMoviePath()
 		tmp = config.movielist.videodirs.value
@@ -227,12 +231,30 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.entryShowEndTime = getConfigListEntry(_("Set end time"), self.timerentry_showendtime, _("Set the time the timer must stop."))
 		if self.timerentry_justplay.value == "zap":
 			self.list.append(self.entryShowEndTime)
+
 		self.entryEndTime = getConfigListEntry(_("End time"), self.timerentry_endtime, _("Set the time the timer must stop."))
 		if self.timerentry_justplay.value != "zap" or self.timerentry_showendtime.value:
 			self.list.append(self.entryEndTime)
 
 		self.channelEntry = getConfigListEntry(_("Channel"), self.timerentry_service, _("Set the channel for this timer."))
 		self.list.append(self.channelEntry)
+
+		if self.timerentry_showendtime.value and self.timerentry_justplay.value == "zap":
+			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent, _("What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that.")))
+
+		description = free = ""
+		try:
+			if self.timerentry_justplay.value != "zap":
+				stat = statvfs(self.timerentry_dirname.value)
+				a = float(stat.f_blocks) * stat.f_bsize / 1024 / 1024 /1024
+				b = float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024
+				c = 100.0 * b / a
+				free = ("%0.1f GB (%0.1f %s) " + _("free diskspace")) % (b,c,"%")
+				description = _("Current location")
+		except:
+			pass
+		self["locationdescription"].setText(description)
+		self["locationfreespace"].setText(free)
 
 		self.dirname = getConfigListEntry(_("Location"), self.timerentry_dirname, _("Where should the recording be saved?"))
 		self.tagsSet = getConfigListEntry(_("Tags"), self.timerentry_tagsset, _("Choose a tag for easy finding a recording."))
@@ -287,7 +309,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
 
 	def newConfig(self):
-		if self["config"].getCurrent() in (self.timerTypeEntry, self.timerJustplayEntry, self.frequencyEntry, self.entryShowEndTime):
+		if self["config"].getCurrent() in (self.timerTypeEntry, self.timerJustplayEntry, self.frequencyEntry, self.entryShowEndTime, self.dirname):
 			self.createSetup("config")
 
 	def KeyText(self):
@@ -392,7 +414,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		# if the timer type is a Zap and no end is set, set duration to 1 second so time is shown in EPG's.
 		if self.timerentry_justplay.value == "zap":
 			if not self.timerentry_showendtime.value:
-				end = begin + (config.recording.margin_before.value*60) + 1
+				end = begin + 1
 
 		return begin, end
 
@@ -420,6 +442,13 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self.timerentry_justplay.value == "zap":
 			if not self.timerentry_showendtime.value:
 				self.timerentry_endtime.value = self.timerentry_starttime.value
+				self.timerentry_afterevent.value = "nothing"
+
+		if self.timerentry_endtime.value == self.timerentry_starttime.value and self.timerentry_afterevent.value != "nothing":
+			self.timerentry_afterevent.value = "nothing"
+			self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") %1, MessageBox.TYPE_INFO, timeout=30)
+
+			
 		self.timer.resetRepeated()
 		self.timer.afterEvent = {
 			"nothing": AFTEREVENT.NONE,
@@ -544,6 +573,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			if config.movielist.videodirs.value != self.timerentry_dirname.choices:
 				self.timerentry_dirname.setChoices(config.movielist.videodirs.value, default=res)
 			self.timerentry_dirname.value = res
+			self.newConfig()
 
 	def tagEditFinished(self, ret):
 		if ret is not None:
@@ -561,6 +591,7 @@ class TimerLog(Screen):
 
 		self["loglist"] = MenuList(self.list)
 		self["logentry"] = Label()
+		self["summary_description"] = StaticText("")
 
 		self["key_red"] = Button(_("Delete entry"))
 		self["key_green"] = Button()
@@ -625,6 +656,7 @@ class TimerLog(Screen):
 	def updateText(self):
 		if self.list:
 			self["logentry"].setText(str(self["loglist"].getCurrent()[1][2]))
+			self["summary_description"].setText(str(self["loglist"].getCurrent()[1][2]))
 		else:
 			self["logentry"].setText("")
 
