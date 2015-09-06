@@ -88,6 +88,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 		# Initialize Target
 		self["target"] = Label()
+		self["targetfreespace"] = Label()
 
 		if self.userMode:
 			self.usermodeOn()
@@ -278,7 +279,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				val = self.realBookmarks and self.realBookmarks.value
 				if val and name in val:
 					val.remove(name)
-					self.realBookmarks.setValue(val)
+					self.realBookmarks.value = val
 					self.realBookmarks.save()
 
 	def up(self):
@@ -324,7 +325,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					self.bookmarks.sort()
 
 				if self.bookmarks != self.realBookmarks.value:
-					self.realBookmarks.setValue(self.bookmarks)
+					self.realBookmarks.value = self.bookmarks
 					self.realBookmarks.save()
 			self.close(ret)
 
@@ -381,6 +382,13 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		# Write Combination of Folder & Filename when Folder is valid
 		currFolder = self.getPreferredFolder()
 		if currFolder is not None:
+			free = ""
+			try:
+				stat = os.statvfs(currFolder)
+				free = ("(%0.1f GB " + _("free") + ")") % (float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024)
+			except:
+				pass
+			self["targetfreespace"].setText(free)
 			self["target"].setText(''.join((currFolder, self.filename)))
 		# Display a Warning otherwise
 		else:
@@ -517,7 +525,7 @@ class TimeshiftLocationBox(LocationBox):
 
 	def selectConfirmed(self, ret):
 		if ret:
-			config.usage.timeshift_path.setValue(self.getPreferredFolder())
+			config.usage.timeshift_path.value = self.getPreferredFolder()
 			config.usage.timeshift_path.save()
 			LocationBox.selectConfirmed(self, ret)
 
