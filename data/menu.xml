@@ -78,7 +78,7 @@ self.session.open(HdmiCECSetupScreen)
 			</menu>
 
 			<!-- Aufnahme / Timeshift Menu -->
-			<menu weight="11" level="2" text="Recording" entryID="record_menu">
+			<menu weight="11" level="2" text="Recording / Playback" entryID="record_menu">
 				<id val="record_menu" />
 				<item level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
 				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
