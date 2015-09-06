@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-08-29 09:05+0200\n"
+"PO-Revision-Date: 2015-09-06 07:45+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -6832,11 +6832,14 @@ msgstr "Aufnahmezeit aufgrund des in Konflikt stehenden Timers %s begrenzt"
 msgid "Recording"
 msgstr "Aufnahme"
 
+msgid "Recording / Playback"
+msgstr "Aufnahme / Wiedergabe"
+
 msgid "Recording in progress"
 msgstr "Aktive Aufnahmen"
 
 msgid "Recording settings"
-msgstr "Aufnahme-Einstellungen"
+msgstr "Aufnahme/Wiedergabe-Einstellung"
 
 msgid "Recording type"
 msgstr "Aufnahmetyp"
@@ -9441,7 +9444,7 @@ msgid "Timeshift saved to your harddisk!"
 msgstr "TimeShift auf Festplatte gesichert!"
 
 msgid "Timeshift settings"
-msgstr "TimeShift-Einstellungen"
+msgstr "TimeShift-Einstellung"
 
 msgid "Older files in the timeshift directory are removed on every event change."
 msgstr "Ältere Timeshift Dateien werden bei jedem Event gelöscht."
@@ -10560,6 +10563,9 @@ msgstr "Ja, die Einstellungen jetzt wiederherstellen"
 
 msgid "Yes, returning to movie list"
 msgstr "Ja, zurück zur Filmauswahl"
+
+msgid "Yes, delete this movie and return to movie list"
+msgstr "Ja, diesen Film löschen und zurück zur Filmauswahl"
 
 msgid "Yesterday"
 msgstr "Gestern"
