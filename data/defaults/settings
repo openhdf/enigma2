@@ -315,7 +315,6 @@ config.av.external_pip=true
 config.av.videomode.YPbPr=1080i
 config.av.videomode.HDMI=1080i
 config.av.generalPCMdelay=0
-config.usage.on_movie_stop=quit
 config.usage.serviceinfo_fontsize=0
 config.usage.allowed_timeshift_paths=['/media/hdd/']
 config.usage.default_path=/hdd/movie/
