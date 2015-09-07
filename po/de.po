@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-09-06 07:45+0200\n"
+"PO-Revision-Date: 2015-09-07 19:26+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3419,7 +3419,7 @@ msgstr "Softwareupdate für %s %s?"
 
 #, python-format
 msgid "Show new Packages"
-msgstr "Zeige zu aktualisierende Pakete an"
+msgstr "Zeige die zu aktualisierenden Pakete an"
 
 #, python-format
 msgid "Upgrade and ask to reboot"
