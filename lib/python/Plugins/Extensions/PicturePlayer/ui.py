@@ -447,11 +447,16 @@ class Pic_Full_View(Screen):
 		self.bgcolor = config.pic.bgcolor.value
 		space = config.pic.framesize.value
 
-		self.size_w = size_w = getDesktop(0).size().width()
-		self.size_h = size_h = getDesktop(0).size().height()
+		self.size_w = getDesktop(0).size().width()
+		self.size_h = getDesktop(0).size().height()
+		(size_w, size_h) = (self.size_w, self.size_h)
+		print 'A:',self.size_w
+		print 'B:',self.size_h
 
-		if config.usage.pic_resolution.value and (size_w, size_h) != eval(config.usage.pic_resolution.value):
-			(size_w, size_h) = eval(config.usage.pic_resolution.value)
+		if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
+			(size_w, size_h) = eval(config.pic.fullview_resolution.value)
+			print 'C:',size_w
+			print 'D:',size_h
 			gMainDC.getInstance().setResolution(size_w, size_h)
 			getDesktop(0).resize(eSize(size_w, size_h))
 
@@ -513,9 +518,23 @@ class Pic_Full_View(Screen):
 		self.slideTimer.callback.append(self.slidePic)
 
 		if self.maxentry >= 0:
-			self.onLayoutFinish.append(self.setPicloadConf)
+			# self.onLayoutFinish.append(self.setPicloadConf)
+			if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
+				self.createTimer = eTimer()
+				self.createTimer.callback.append(self.setPicloadConf)
+				self.onLayoutFinish.append(self.LayoutFinish)
+			else:
+				self.onLayoutFinish.append(self.setPicloadConf)
+
+	def LayoutFinish(self):
+		if not HardwareInfo().is_nextgen():
+			self.createTimer.start(800)
+		else:
+			self.createTimer.start(1600)
 
 	def setPicloadConf(self):
+		if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
+			self.createTimer.stop()
 		sc = getScale()
 		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.value), self.bgcolor])
 
@@ -570,7 +589,7 @@ class Pic_Full_View(Screen):
 
 	def slidePic(self):
 		print "slide to next Picture index=" + str(self.lastindex)
-		if config.pic.loop.value == False and self.lastindex == self.maxentry:
+		if config.pic.loop.value==False and self.lastindex == self.maxentry:
 			self.PlayPause()
 		self.shownow = True
 		self.ShowPicture()
@@ -580,7 +599,7 @@ class Pic_Full_View(Screen):
 			self.slideTimer.stop()
 			self["play_icon"].hide()
 		else:
-			self.slideTimer.start(config.pic.slidetime.value*1000)
+			self.slideTimer.start(config.pic.slidetime.value * 1000)
 			self["play_icon"].show()
 			self.nextPic()
 
@@ -603,7 +622,7 @@ class Pic_Full_View(Screen):
 	def Exit(self):
 		del self.picload
 
-		if config.usage.pic_resolution.value and (self.size_w, self.size_h) != eval(config.usage.pic_resolution.value):
+		if config.pic.fullview_resolution.value and (self.size_w, self.size_h) != eval(config.pic.fullview_resolution.value):
 			gMainDC.getInstance().setResolution(self.size_w, self.size_h)
 			getDesktop(0).resize(eSize(self.size_w, self.size_h))
 
