@@ -94,7 +94,7 @@ class Navigation:
 			self.__wasTimerWakeup = True
 			print "-"*100
 			if self.wakeuptime > 0:
-			print "[NAVIGATION] wakeup time was %s" % ctime(self.wakeuptime)
+				print "[NAVIGATION] wakeup time was %s" % ctime(self.wakeuptime)
 			else:
 				print "[NAVIGATION] wakeup time was not set"
 			if now <= 31536000:
