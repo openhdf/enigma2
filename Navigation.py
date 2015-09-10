@@ -93,7 +93,10 @@ class Navigation:
 		if wasTimerWakeup:
 			self.__wasTimerWakeup = True
 			print "-"*100
+			if self.wakeuptime > 0:
 			print "[NAVIGATION] wakeup time was %s" % ctime(self.wakeuptime)
+			else:
+				print "[NAVIGATION] wakeup time was not set"
 			if now <= 31536000:
 				self.timesynctimer = eTimer()
 				self.timesynctimer.callback.append(self.TimeSynctimer)
