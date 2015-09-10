@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "16.08.2015"
+updateversion = "10.09.2015"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -163,7 +163,7 @@ def getHotkeyFunctions():
 			twinPlugins.append(plugin.name)
 	hotkeyFunctions.append((_("Show Graphical Multi EPG"), "Infobar/openGraphEPG", "EPG"))
 	hotkeyFunctions.append((_("Show Event View"), "Infobar/openEventView", "EPG"))
-	hotkeyFunctions.append((_("Show Event Info"), "Infobar/showEventInfo", "EPG"))
+	#hotkeyFunctions.append((_("Show Event Info"), "Infobar/showEventInfo", "EPG"))
 	hotkeyFunctions.append((_("Show Event Info Plugins"), "Infobar/showEventInfoPlugins", "EPG"))
 	hotkeyFunctions.append((_("Show Single Service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
 	hotkeyFunctions.append((_("Show Multi Service EPG"), "Infobar/openMultiServiceEPG", "EPG"))
