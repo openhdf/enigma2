@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-09-13 07:48+0200\n"
+"PO-Revision-Date: 2015-09-14 04:45+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1828,6 +1828,18 @@ msgstr "Helligkeit (Normal)"
 
 msgid "Brightness (Standby)"
 msgstr "Helligkeit (Bereitschaft)"
+
+msgid "Brightness (Dimmed)"
+msgstr "Helligkeit (gedimmt)"
+
+msgid "Configure the brightness level of the front panel display for dimmed operation."
+msgstr "Konfigurieren Sie die Helligkeit des Displays für den gedimmten Zustand."
+
+msgid "Dim delay"
+msgstr "Ausblendungs-Verzögerung"
+
+msgid "Dim the LCD after specified time."
+msgstr "Das Display wird nach der angegebenen Zeit gedimmt."
 
 msgid "Buffers:"
 msgstr "Puffer:"
