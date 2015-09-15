@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-09-14 04:45+0200\n"
+"PO-Revision-Date: 2015-09-15 04:06+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -7377,6 +7377,12 @@ msgstr "Scrollgeschwindigkeit"
 msgid "Scrolling Speed (software render)"
 msgstr "Scrollgeschwindigkeit (Software Renderer)"
 
+msgid "Set the scrolling speed of text on the front display, this is used by software renderer in some skins."
+msgstr "Setzen Sie die Scrollgeschwindigkeit für Text im Display. Wird vom Software-Renderer in einigen Skins genutzt."
+
+msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
+msgstr "Setzt die Verzögerungszeit zwischen Scrolldurchläufen. Wird vom Software-Renderer in einigen Skins genutzt."
+
 msgid "Scrolling delay (software render)"
 msgstr "Scrollverzögerung (Software Renderer)"
 
@@ -12586,12 +12592,6 @@ msgstr "Konfigurieren ob und wie das Verschlüsselungsicon angezeigt wird."
 
 msgid "event info / channel selection"
 msgstr "Event Anzeige / Kanalliste"
-
-msgid "Set the scrolling speed of text on the front display, this is used by software renderer in some skins."
-msgstr "Setzen Sie die Scroll Geschwindigkeit für Text im Display, wird vom Software Renderer in einigen Skins genutzt."
-
-msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
-msgstr "Setzen Sie die Verzögerungszeit zwischen Scroll Durchläufen, wird vom Software Renderer in einigen Skins genutzt."
 
 msgid "Setup save / load EPG"
 msgstr "Einstellungen zum speichern / laden vom EPG"
