@@ -11,7 +11,7 @@ from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager, getConfigSatlist
 from Components.config import config, ConfigSelection, getConfigListEntry
 from Components.TuneTest import Tuner
-from Components.Converter.ChannelNumbers import channelnumbers
+from Tools.Transponder import getChannelNumber, channel2frequency
 
 class Satfinder(ScanSetup, ServiceScan):
 	def __init__(self, session):
@@ -37,7 +37,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		self.fecEntry = None
 
 		ScanSetup.__init__(self, session)
-		self.setTitle(_("Satfinder"))
+		self.setTitle(_("Signal Finder"))
 		self["introduction"].setText(_("Press OK to scan"))
 		self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
 
@@ -50,7 +50,6 @@ class Satfinder(ScanSetup, ServiceScan):
 
 		self.initcomplete = True
 		self.session.postScanService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		self.session.nav.stopService()
 		self.onClose.append(self.__onClose)
 		self.onShow.append(self.prepareFrontend)
 
@@ -194,13 +193,13 @@ class Satfinder(ScanSetup, ServiceScan):
 				else:
 					self.scan_input_as.value = self.scan_input_as.choices[0]
 				if self.ter_channel_input and self.scan_input_as.value == "channel":
-					channel = channelnumbers.getChannelNumber(self.scan_ter.frequency.value*1000, self.ter_tnumber)
+					channel = getChannelNumber(self.scan_ter.frequency.value*1000, self.ter_tnumber)
 					if channel:
 						self.scan_ter.channel.value = int(channel.replace("+","").replace("-",""))
 					self.list.append(getConfigListEntry(_("Channel"), self.scan_ter.channel))
 				else:
 					prev_val = self.scan_ter.frequency.value
-					self.scan_ter.frequency.value = channelnumbers.channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)/1000
+					self.scan_ter.frequency.value = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)/1000
 					if self.scan_ter.frequency.value == 474000:
 						self.scan_ter.frequency.value = prev_val
 					self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
@@ -318,7 +317,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			return self.retuneCab(configElement)
 		if self.initcomplete:
 			if self.scan_input_as.value == "channel":
-				frequency = channelnumbers.channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)
+				frequency = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)
 			else:
 				frequency = self.scan_ter.frequency.value * 1000
 			if self.tuning_type.value == "single_transponder":
@@ -460,7 +459,7 @@ def SatfinderMain(session, close=None, **kwargs):
 		if n.config_mode  in ("loopthrough", "satposdepends", "nothing"):
 			continue
 		if n.isCompatible("DVB-S") and n.config_mode == "advanced" and len(nimmanager.getSatListForNim(n.slot)) < 1:
-				continue
+			continue
 		nimList.append(n)
 
 	if len(nimList) == 0:
@@ -470,12 +469,12 @@ def SatfinderMain(session, close=None, **kwargs):
 
 def SatfinderStart(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Satfinder"), SatfinderMain, "satfinder", 35, True)]
+		return [(_("Signal Finder"), SatfinderMain, "satfinder", None)]
 	else:
 		return []
 
 def Plugins(**kwargs):
 	if nimmanager.hasNimType("DVB-S") or nimmanager.hasNimType("DVB-T") or nimmanager.hasNimType("DVB-C"):
-		return PluginDescriptor(name=_("Satfinder"), description=_("Helps setting up your antenna"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SatfinderStart)
+		return PluginDescriptor(name=_("Signal Finder"), description=_("Helps setting up your signal"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SatfinderStart)
 	else:
 		return []
