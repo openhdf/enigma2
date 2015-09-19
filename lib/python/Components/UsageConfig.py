@@ -1311,24 +1311,6 @@ def InitUsageConfig():
 	config.pluginbrowser.po = ConfigYesNo(default = False)
 	config.pluginbrowser.src = ConfigYesNo(default = False)
 
-	settingsoverlanchoices = [('/etc/enigma2/', 'Default')]
-	for p in harddiskmanager.getMountedPartitions():
-		if os.path.exists(p.mountpoint):
-			d = os.path.normpath(p.mountpoint)
-			if p.mountpoint != '/':
-				settingsoverlanchoices.append((p.mountpoint, d))
-	config.usage.settingsoverlan_enable = ConfigYesNo(default = False)
-	config.usage.settingsoverlan_path = ConfigSelection(default = '/etc/enigma2/', choices = settingsoverlanchoices)
-	config.usage.settingsoverlan_bouquet = ConfigYesNo(default = True)
-	config.usage.settingsoverlan_epg = ConfigYesNo(default = True)
-	config.usage.settingsoverlan_timers = ConfigYesNo(default = True)
-	config.usage.settingsoverlan_automounts = ConfigYesNo(default = True)
-	config.usage.settingsoverlan_epgrefresh = ConfigYesNo(default = True)
-	config.usage.settingsoverlan_emc = ConfigYesNo(default = True)
-	config.usage.settingsoverlan_webradiofs = ConfigYesNo(default = True)
-	config.usage.settingsoverlan_mp = ConfigYesNo(default = True)
-	config.usage.settingsoverlan_m3u = ConfigYesNo(default = True)
-
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
