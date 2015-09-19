@@ -1,4 +1,5 @@
 from boxbranding import getMachineBrand, getMachineName
+from boxbranding import getMachineBrand, getMachineName
 import xml.etree.cElementTree
 from datetime import datetime
 from time import localtime, strftime, ctime, time
@@ -11,6 +12,7 @@ from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference
 from Components.config import config
 from Components import Harddisk
 from Components.UsageConfig import defaultMoviePath
+from Components.SystemInfo import SystemInfo
 from Components.TimerSanityCheck import TimerSanityCheck
 import Components.RecordingConfig
 from Screens.MessageBox import MessageBox
@@ -170,6 +172,24 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		self.needChangePriorityFrontend = config.usage.recording_frontend_priority.value != "-2" and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
 		self.change_frontend = False
+		self.setAdvancedPriorityFrontend = None
+		rec_ref = self.service_ref and self.service_ref.ref
+		str_service = rec_ref and rec_ref.toString()
+		if str_service and '%3a//' not in str_service and not str_service.rsplit(":", 1)[1].startswith("/"):
+			type_service = rec_ref.getUnsignedData(4) >> 16
+			if type_service == 0xEEEE:
+				if SystemInfo["DVB-T_priority_tuner_available"] and config.usage.recording_frontend_priority_dvbt.value != "-2":
+					if config.usage.recording_frontend_priority_dvbt.value != config.usage.frontend_priority.value:
+						self.setAdvancedPriorityFrontend = config.usage.recording_frontend_priority_dvbt.value
+			elif type_service == 0xFFFF:
+				if SystemInfo["DVB-C_priority_tuner_available"] and config.usage.recording_frontend_priority_dvbc.value != "-2":
+					if config.usage.recording_frontend_priority_dvbc.value != config.usage.frontend_priority.value:
+						self.setAdvancedPriorityFrontend = config.usage.recording_frontend_priority_dvbc.value
+			else:
+				if SystemInfo["DVB-S_priority_tuner_available"] and config.usage.recording_frontend_priority_dvbs.value != "-2":
+					if config.usage.recording_frontend_priority_dvbs.value != config.usage.frontend_priority.value:
+						self.setAdvancedPriorityFrontend = config.usage.recording_frontend_priority_dvbs.value
+		self.needChangePriorityFrontend = self.setAdvancedPriorityFrontend is not None or config.usage.recording_frontend_priority.value != "-2" and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
 		self.rename_repeat = rename_repeat
 		self.isAutoTimer = isAutoTimer
 		self.wasInStandby = False
@@ -649,11 +669,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if self.needChangePriorityFrontend:
 			elem = None
 			if not self.change_frontend and not setdefault:
-				elem = config.usage.recording_frontend_priority.value
+				elem = (self.setAdvancedPriorityFrontend is not None and self.setAdvancedPriorityFrontend) or config.usage.recording_frontend_priority.value
 				self.change_frontend = True
 			elif self.change_frontend and setdefault:
 				elem = config.usage.frontend_priority.value
 				self.change_frontend = False
+				self.setAdvancedPriorityFrontend = None
 			if elem is not None:
 				setPreferredTuner(int(elem))
 

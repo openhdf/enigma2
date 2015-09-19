@@ -1,6 +1,7 @@
 from os import path
-from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
+from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService, eActionMap, setPreferredTuner
 from Components.ParentalControl import parentalControl
+from Components.SystemInfo import SystemInfo
 from Components.config import config
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
@@ -241,24 +242,6 @@ class Navigation:
 			print "ignore request to play already running service(1)"
 			return 1
 		print "playing", ref and ref.toString()
-		if path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '1':
-			try:
-				if '0:0:0:0:0:0:0:0:0' not in ref.toString():
-					signal = 1
-				else:
-					signal = 0
-				f = open("/proc/stb/lcd/symbol_signal", "w")
-				f.write(str(signal))
-				f.close()
-			except:
-				f = open("/proc/stb/lcd/symbol_signal", "w")
-				f.write("0")
-				f.close()
-		elif path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '0':
-			f = open("/proc/stb/lcd/symbol_signal", "w")
-			f.write("0")
-			f.close()
-
 		if ref is None:
 			self.stopService()
 			return 0
@@ -290,10 +273,31 @@ class Navigation:
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
+				setPriorityFrontend = False
+				str_service = playref.toString()
+				if '%3a//' not in str_service and not str_service.rsplit(":", 1)[1].startswith("/"):
+					type_service = playref.getUnsignedData(4) >> 16
+					if type_service == 0xEEEE:
+						if SystemInfo["DVB-T_priority_tuner_available"] and config.usage.frontend_priority_dvbt.value != "-2":
+							if config.usage.frontend_priority_dvbt.value != config.usage.frontend_priority.value:
+								setPreferredTuner(int(config.usage.frontend_priority_dvbt.value))
+								setPriorityFrontend = True
+					elif type_service == 0xFFFF:
+						if SystemInfo["DVB-C_priority_tuner_available"] and config.usage.frontend_priority_dvbc.value != "-2":
+							if config.usage.frontend_priority_dvbc.value != config.usage.frontend_priority.value:
+								setPreferredTuner(int(config.usage.frontend_priority_dvbc))
+								setPriorityFrontend = True
+					else:
+						if SystemInfo["DVB-S_priority_tuner_available"] and config.usage.frontend_priority_dvbs.value != "-2":
+							if config.usage.frontend_priority_dvbs.value != config.usage.frontend_priority.value:
+								setPreferredTuner(int(config.usage.frontend_priority_dvbs.value))
+								setPriorityFrontend = True
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
+				if setPriorityFrontend:
+					setPreferredTuner(int(config.usage.frontend_priority.value))
 				return 0
 		elif oldref and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(oldref, adjust):
 			self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()

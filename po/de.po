@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-09-19 11:14+0200\n"
+"PO-Revision-Date: 2015-09-19 12:52+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -6589,6 +6589,24 @@ msgstr "Bevorzugte Untertitel für jeden Sender speichern"
 
 msgid "Preferred tuner"
 msgstr "Bevorzugter Tuner"
+
+msgid "Preferred tuner DVB-S"
+msgstr "Bevorzugter Tuner bei DVB-S"
+
+msgid "Preferred tuner DVB-T"
+msgstr "Bevorzugter Tuner bei DVB-T"
+
+msgid "Preferred tuner DVB-C"
+msgstr "Bevorzugter Tuner bei DVB-C"
+
+msgid "Preferred tuner DVB-S for recordings"
+msgstr "Bevorzugter Tuner DVB-S für Aufnahmen"
+
+msgid "Preferred tuner DVB-T for recordings"
+msgstr "Bevorzugter Tuner DVB-T für Aufnahmen"
+
+msgid "Preferred tuner DVB-C for recordings"
+msgstr "Bevorzugter Tuner DVB-C für Aufnahmen"
 
 msgid "Prepare another USB stick for image flashing"
 msgstr "Weiteren USB-Stick zum Image-Flashen vorbereiten"
