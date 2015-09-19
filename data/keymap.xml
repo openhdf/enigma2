@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 23.08.2015" -->
+	<!-- "HDF Default Keymap 19.09.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -656,7 +656,6 @@
 
 		<!-- use this on rcu, ok? -->
 		<key id="KEY_OK" mapto="ok" flags="m" />
-		<key id="KEY_OK" mapto="OK" flags="m" />
 		<key id="KEY_OK" mapto="OK" flags="b"/>
 		<key id="KEY_OK" mapto="OKLong" flags="l"/>
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
