@@ -143,6 +143,8 @@ class EPGSelection(Screen, HelpableScreen):
 			self.currentService = ServiceReference(service)
 			self['epgactions'] = HelpableActionMap(self, 'EPGSelectActions', 
 				{
+					'nextService': (self.nextService, _('Goto next channel')),
+					'prevService': (self.prevService, _('Goto previous channel')),
 					'info': (self.Info, _('Show detailed event info')),
 					'epg': (self.Info, _('Show detailed event info')),
 					'menu': (self.createSetup, _('Setup menu'))
@@ -190,6 +192,7 @@ class EPGSelection(Screen, HelpableScreen):
 						'input_date_time': (self.enterDateTime, _('Goto specific data/time')),
 						'info': (self.Info, _('Show detailed event info')),
 						'infolong': (self.InfoLong, _('Show single epg for current channel')),
+						'epg': (self.Info, _('Show detailed event info')),
 						'menu': (self.createSetup, _('Setup menu'))
 					}, -1)
 				self['epgactions'].csel = self

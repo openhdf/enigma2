@@ -1,5 +1,5 @@
 <keymap>
-	<!-- "HDF User Keymap 23.08.2015" -->
+	<!-- "HDF User Keymap 19.09.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
