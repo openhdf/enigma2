@@ -262,18 +262,10 @@ def InitUsageConfig():
 	config.usage.frontend_priority_dvbc = ConfigSelection(default = "-2", choices = list(dvbc_nims))
 	dvbc_nims.insert(1,("-1", _("auto")))
 	config.usage.recording_frontend_priority_dvbc = ConfigSelection(default = "-2", choices = dvbc_nims)
-	if len(dvbs_nims) > 3 and (len(dvbt_nims) > 2 or len(dvbc_nims) > 2):
-		SystemInfo["DVB-S_priority_tuner_available"] = True
-	else:
-		SystemInfo["DVB-S_priority_tuner_available"] = False
-	if len(dvbt_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbc_nims) > 2):
-		SystemInfo["DVB-T_priority_tuner_available"] = True
-	else:
-		SystemInfo["DVB-T_priority_tuner_available"] = False
-	if len(dvbc_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbt_nims) > 2):
-		SystemInfo["DVB-C_priority_tuner_available"] = True
-	else:
-		SystemInfo["DVB-C_priority_tuner_available"] = False
+	SystemInfo["DVB-S_priority_tuner_available"] = len(dvbs_nims) > 3 and (len(dvbt_nims) > 2 or len(dvbc_nims) > 2)
+	SystemInfo["DVB-T_priority_tuner_available"] = len(dvbt_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbc_nims) > 2)
+	SystemInfo["DVB-C_priority_tuner_available"] = len(dvbc_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbt_nims) > 2)
+
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 
 	config.usage.jobtaksextensions = ConfigYesNo(default = True)
@@ -1310,6 +1302,24 @@ def InitUsageConfig():
 	config.pluginbrowser = ConfigSubsection()
 	config.pluginbrowser.po = ConfigYesNo(default = False)
 	config.pluginbrowser.src = ConfigYesNo(default = False)
+
+	settingsoverlanchoices = [('/etc/enigma2/', 'Default')]
+	for p in harddiskmanager.getMountedPartitions():
+		if os.path.exists(p.mountpoint):
+			d = os.path.normpath(p.mountpoint)
+			if p.mountpoint != '/':
+				settingsoverlanchoices.append((p.mountpoint, d))
+	config.usage.settingsoverlan_enable = ConfigYesNo(default = False)
+	config.usage.settingsoverlan_path = ConfigSelection(default = '/etc/enigma2/', choices = settingsoverlanchoices)
+	config.usage.settingsoverlan_bouquet = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_epg = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_timers = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_automounts = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_epgrefresh = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_emc = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_webradiofs = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_mp = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_m3u = ConfigYesNo(default = True)
 
 def updateChoices(sel, choices):
 	if choices:
