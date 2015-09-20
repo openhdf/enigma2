@@ -225,3 +225,13 @@ void removeInputDevice(const char* filename)
 {
 	init_rcinputdev->remove(filename);
 }
+
+void addAllInputDevices(void)
+{
+	init_rcinputdev->addAll();
+}
+
+void removeAllInputDevices(void)
+{
+	init_rcinputdev->removeAll();
+}
