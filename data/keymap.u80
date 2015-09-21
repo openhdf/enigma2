@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF u80 Keymap 19.09.2015" -->
+	<!-- "HDF u80 Keymap 21.09.2015" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -878,5 +878,10 @@
 		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
         <key id="KEY_DIRECTORY" mapto="directory" flags="b"/>
         <key id="KEY_DIRECTORY" mapto="directory_long" flags="l"/>
+	</map>
+	<map context="SubtitlesActions">
+		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />
+		<key id="KEY_TEXT" mapto="subtitles" flags="m" />
+		<key id="KEY_RED" mapto="subtitles" flags="m" />
 	</map>
 </keymap>

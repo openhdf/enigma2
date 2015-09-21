@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "19.09.2015"
+updateversion = "21.09.2015"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -244,6 +244,8 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
 	hotkeyFunctions.append((_("Language"), "Module/Screens.LanguageSelection/LanguageSelection", "Setup"))
 	hotkeyFunctions.append((_("Skin setup"), "Module/Screens.SkinSelector/SkinSelector", "Setup"))
+	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Kodi/plugin.pyo"):
+		hotkeyFunctions.append((_("Kodi Media Center"), "Kodi/", "Plugins"))
 	if os.path.isdir("/etc/ppanel"):
 		for x in [x for x in os.listdir("/etc/ppanel") if x.endswith(".xml")]:
 			x = x[:-4]
@@ -252,8 +254,6 @@ def getHotkeyFunctions():
 		for x in [x for x in os.listdir("/usr/scripts") if x.endswith(".sh")]:
 			x = x[:-3]
 			hotkeyFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
-	#if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
-	#	hotkeyFunctions.append((_("Enhanced Movie Center"), "EMC/", "Plugins"))
 	return hotkeyFunctions
 
 class HotkeySetup(Screen):
@@ -644,3 +644,7 @@ class InfoBarHotkey():
 					open(showMoviesNew(InfoBar.instance))
 				except Exception as e:
 					print('[EMCPlayer] showMovies exception:\n' + str(e))
+			elif selected[0] == "Kodi":
+				if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Kodi/plugin.pyo"):
+					from Plugins.Extensions.Kodi.plugin import KodiMainScreen
+					self.session.open(KodiMainScreen)
