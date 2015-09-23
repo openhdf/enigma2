@@ -89,7 +89,7 @@ class LanguageSelection(Screen):
 		global inWizzard
 		if inWizzard:
 			inWizzard = False
-			self.session.openWithCallback(self.deletelanguagesCB, MessageBox, _("Do you want to delete all other languages?"), default = False)
+			self.session.openWithCallback(self.deletelanguagesCB, MessageBox, _("Do you want to delete all other languages?"), default = True)
 		else:
 			self.close(self.oldActiveLanguage != config.osd.language.value)
 
@@ -112,7 +112,7 @@ class LanguageSelection(Screen):
 			if curlang == t[0]:
 				lang = t[1]
 				break
-		self.session.openWithCallback(self.delLangCB, MessageBox, _("Do you want to delete all other languages?") + _(" Except %s") %(lang), default = False)
+		self.session.openWithCallback(self.delLangCB, MessageBox, _("Do you want to delete all other languages?") + _(" Except %s") %(lang), default = True)
 
 	def delLangCB(self, anwser):
 		if anwser:
