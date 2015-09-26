@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Harddisk import harddiskmanager, findMountPoint
 from Components.Input import Input
 from Components.Label import Label
+from Components.About import about
 from Components.MovieList import AUDIO_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
 import Screens.MovieSelection
 from Components.PluginComponent import plugins
@@ -6099,6 +6099,7 @@ print bcolors.OKGREEN + "~~~~ read box informations ~~~~~~~~~" + bcolors.ENDC
 print bcolors.OKBLUE + "MachineName =", getMachineName() + bcolors.ENDC
 print bcolors.OKBLUE + "MachineBrand =", getMachineBrand() + bcolors.ENDC
 print bcolors.OKBLUE + "BoxType =", getBoxType() + bcolors.ENDC
+print bcolors.OKBLUE + "ChipString =", about.getChipSetString() + bcolors.ENDC
 print bcolors.OKBLUE + "OEM =", getBrandOEM() + bcolors.ENDC
 print bcolors.OKBLUE + "Driverdate =", getDriverDate() + bcolors.ENDC
 print bcolors.OKBLUE + "Imageversion =", getImageVersion() + bcolors.ENDC
@@ -6112,6 +6113,7 @@ try:
 	os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getChipSetString = " + about.getChipSetString() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getBrandOEM = " + getBrandOEM() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getDriverDate = " + getDriverDate() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getImageVersion = " + getImageVersion() + " >> /etc/enigma2/boxinformations")
