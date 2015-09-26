@@ -400,7 +400,7 @@ class SecConfigure:
 						sec.setLNBLOFL(currLnb.lofl.value * 1000)
 						sec.setLNBLOFH(currLnb.lofh.value * 1000)
 						sec.setLNBThreshold(currLnb.threshold.value * 1000)
-						sec.setLNBSatCRpositions(64)
+						sec.setLNBSatCRpositions(1)
 					elif currLnb.unicable.value == "unicable_matrix":
 						self.reconstructUnicableDate(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix, currLnb)
 						setupUnicable(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix)
@@ -1096,7 +1096,7 @@ class NimManager:
 			if not (entry.has_key("has_outputs")):
 				entry["has_outputs"] = True
 			if entry.has_key("frontend_device"): # check if internally connectable
-				if path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]) and id > 0:
+				if path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]) and ((id > 0) or (getBoxType() == 'vusolo2')):
 					entry["internally_connectable"] = entry["frontend_device"] - 1
 				else:
 					entry["internally_connectable"] = None
