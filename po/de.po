@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-09-21 05:24+0200\n"
+"PO-Revision-Date: 2015-10-04 10:55+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.5\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid "Switch to Radio Mode"
@@ -896,7 +896,7 @@ msgstr "Powertimer Nachrichtenfenster Countdown (in Sekunden)"
 
 #, python-format
 msgid "Configure how long the powertimer message is displayed."
-msgstr "Legt fest wie lange die Nachricht zum Ausführen eines Powertimers angezeigt wird."
+msgstr "Legt fest wie lange die Nachricht zum Ausführen eines \t angezeigt wird."
 
 #, python-format
 msgid ""
@@ -6557,7 +6557,7 @@ msgstr "Powertimer Liste"
 msgid "PowerTimer Overview"
 msgstr "PowerTimer Überblick"
 
-msgid "PowerTimers"
+msgid "PowerTimer"
 msgstr "Einschalt / Ausschalt Timer"
 
 msgid "Predefined"
@@ -12968,3 +12968,60 @@ msgstr "Eigenen Offset vom Aufwachen bis zum Timerstart benutzen [min]"
 
 msgid "The standard wakeup time is 5 minutes (or box specific) before a timer starts. Is the real wake up time outside 10 mins (some boxes starts not punctually) to the next timer will not switched to standby. (minus value = wake up to timer is shorter)"
 msgstr "Standard ist 5 min (oder Box spezifisch) vor einem Timer aufzuwachen. Ist die echte Aufwachzeit ausserhalb 10 min (einige Boxen starten nicht pünktlich) bis zum nächsten Timerstart wird nicht in den Standby geschaltet (Minus = Aufwachzeit bis zum Timer wird kürzer)"
+
+msgid "SleepTimer"
+msgstr "Schlaf Timer"
+
+msgid "Execute after current event"
+msgstr "Ausführen nach der Sendung"
+
+msgid "Execute in "
+msgstr "Ausführen in "
+
+msgid "Timer is activated: +%d min"
+msgstr "Timer ist aktiviert:  +%d min"
+
+msgid "Timer is not activated"
+msgstr "Timer ist nicht aktiviert"
+
+msgid "Timer action"
+msgstr "Timer Aktion"
+
+msgid "Configure the duration in minutes for the sleep timer."
+msgstr "Konfigurieren Sie die Dauer in Minuten für den Ausschalt-Timer."
+
+msgid "Select the sleep timer action."
+msgstr "Wählen Sie die Ausschalt-Timer-Aktion."
+
+msgid ""
+"A sleep timer wants to set your %s %s to standby.\n"
+"Do that now or set extend additional minutes?"
+msgstr ""
+"Ein Ausschalt-Timer möchte ihre %s %s in den Standby versetzen.\n"
+"Jetzt ausführen oder zusätzliche Minuten einstellen?"
+
+msgid ""
+"A sleep timer wants to shut down your %s %s.\n"
+"Do that now or set extend additional minutes?"
+msgstr ""
+"Ein Ausschalt-Timer möchte ihre %s %s ausschalten.\n"
+"Jetzt ausführen oder zusätzliche Minuten einstellen?"
+
+msgid ""
+"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+"Extend sleep timer 30 minutes. Your %s %s\n"
+"will shut down after Recording or Powertimer event. Get in Standby now?"
+msgstr ""
+"Eine Aufnahme, Aufnahmetimer oder Powertimer ist aktiv oder beginnt in 15 Minuten.\n"
+"Der Ausschalt-Timer wird um 30 Minuten verlängert und schaltet ihre\n"
+"%s %s nach dem Aufnahme oder Powertimer Ereignis ab.\n"
+"Jetzt in den Standby gehen?"
+
+msgid "Extend"
+msgstr "Verlängern"
+
+msgid "The sleep timer has been activated."
+msgstr "Der Ausschalt-Timer wurde aktiviert."
+
+msgid "The sleep timer has been disabled."
+msgstr "Der Ausschalt-Timer wurde deaktiviert."

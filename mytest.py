@@ -386,6 +386,9 @@ class PowerKey:
 		globalActionMap.actions["discrete_off"]=self.standby
 		globalActionMap.actions["sleeptimer_standby"]=self.sleepStandby
 		globalActionMap.actions["sleeptimer_deepstandby"]=self.sleepDeepStandby
+		globalActionMap.actions["sleeptimer"]=self.openSleepTimer
+		globalActionMap.actions["powertimer_standby"]=self.sleepStandby
+		globalActionMap.actions["powertimer_deepstandby"]=self.sleepDeepStandby
 		self.standbyblocked = 1
 
 	def MenuClosed(self, *val):
@@ -443,12 +446,14 @@ class PowerKey:
 						return
 		elif action == "standby":
 			self.standby()
-		elif action == "sleeptimerStandby":
+		elif action == "powertimerStandby":
 			val = 3
 			self.setSleepTimer(val)
-		elif action == "sleeptimerDeepStandby":
+		elif action == "powertimerDeepStandby":
 			val = 4
 			self.setSleepTimer(val)
+		elif action == "sleeptimer":
+			self.openSleepTimer()
 
 	def powerdown(self):
 		self.standbyblocked = 0
@@ -463,6 +468,10 @@ class PowerKey:
 	def standby(self):
 		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
 			self.session.open(Screens.Standby.Standby)
+
+	def openSleepTimer(self):
+		from Screens.SleepTimerEdit import SleepTimerEdit
+		self.session.open(SleepTimerEdit)
 
 	def setSleepTimer(self, val):
 		from PowerTimer import PowerTimerEntry
@@ -480,10 +489,10 @@ class PowerKey:
 			simulTimerList = self.session.nav.PowerTimer.record(entry)
 
 	def sleepStandby(self):
-		self.doAction(action = "sleeptimerStandby")
+		self.doAction(action = "powertimerStandby")
 
 	def sleepDeepStandby(self):
-		self.doAction(action = "sleeptimerDeepStandby")
+		self.doAction(action = "powertimerDeepStandby")
 
 profile("Scart")
 from Screens.Scart import Scart
@@ -639,13 +648,16 @@ def runScreenTest():
 		nextPluginTimeInStandby = 1
 	elif "SerienRecorder" in nextPluginIdent or "serienrecorder" in nextPluginIdent:
 		nextPluginName = "SerienRecorder"
-		nextPluginTimeInStandby = 0
+		nextPluginTimeInStandby = 1
 	elif "Elektro" in nextPluginIdent:
 		nextPluginName = "Elektro"
-		nextPluginTimeInStandby = 0
+		nextPluginTimeInStandby = 1
+	elif "MiniPowersave" in nextPluginIdent:
+		nextPluginName = "MiniPowersave"
+		nextPluginTimeInStandby = 1
 	elif "EnhancedPowersave" in nextPluginIdent or "Enhanced Powersave" in nextPluginIdent:
 		nextPluginName = "EnhancedPowersave"
-		nextPluginTimeInStandby = 0
+		nextPluginTimeInStandby = 1
 	else:
 		#default for plugins
 		nextPluginName = nextPluginIdent
