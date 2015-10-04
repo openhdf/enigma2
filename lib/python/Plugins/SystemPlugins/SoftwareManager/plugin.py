@@ -353,7 +353,7 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
 				elif (currentEntry == "flash-online"):
-					self.session.open(FlashOnline)
+					self.session.openWithCallback(self.doBackup, MessageBox, _("Do you want to backup your image and settings before?"), default = True)
 				elif (currentEntry == "backup-image"):
 					if DFLASH == True:
 						self.session.open(dFlash)
@@ -434,6 +434,27 @@ class UpdatePluginMenu(Screen):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore = True)
 
+	def doBackup(self, default = False):
+		if (default == True):
+			self.session.openWithCallback(self.doBackupSettings, MessageBox, _("Backup your settings now?"), default = True)
+		else:
+			self.session.open(FlashOnline)
+
+	def doBackupSettings(self, default = False):
+		if (default == True):
+			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
+		else:
+			self.session.openWithCallback(self.doBackupImage, MessageBox, _("Backup your image now?"), default = True)
+
+	def doBackupImage(self, default = False):
+		if (default == True):
+			if DFLASH == True:
+				self.session.open(dFlash)
+			else:
+				self.session.open(ImageBackup)
+		else:
+			self.session.open(FlashOnline)
+			
 class SoftwareManagerSetup(Screen, ConfigListScreen):
 
 	skin = """
