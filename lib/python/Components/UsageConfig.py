@@ -203,6 +203,15 @@ def InitUsageConfig():
 
 	config.usage.window_timeout = ConfigSelectionNumber(default = 180, stepwidth = 1, min = 1, max = 600, wraparound = True)
 
+	choicelist = [("standby", _("Standby")),("deepstandby", _("Deep Standby"))]
+	config.usage.sleep_timer_action = ConfigSelection(default = "deepstandby", choices = choicelist)
+	choicelist = [("0", _("Disabled")),("event_standby", _("Execute after current event"))]
+	for i in range(900, 7201, 900):
+		m = abs(i / 60)
+		m = ngettext("%d minute", "%d minutes", m) % m
+		choicelist.append((str(i), _("Execute in ") + m))
+	config.usage.sleep_timer = ConfigSelection(default = "0", choices = choicelist)
+
 	config.usage.on_long_powerpress = ConfigSelection(default = "show_menu", choices = [
 		("show_menu", _("Show shutdown menu")),
 		("shutdown", _("Immediate shutdown")),
@@ -1302,6 +1311,24 @@ def InitUsageConfig():
 	config.pluginbrowser = ConfigSubsection()
 	config.pluginbrowser.po = ConfigYesNo(default = False)
 	config.pluginbrowser.src = ConfigYesNo(default = False)
+
+	settingsoverlanchoices = [('/etc/enigma2/', 'Default')]
+	for p in harddiskmanager.getMountedPartitions():
+		if os.path.exists(p.mountpoint):
+			d = os.path.normpath(p.mountpoint)
+			if p.mountpoint != '/':
+				settingsoverlanchoices.append((p.mountpoint, d))
+	config.usage.settingsoverlan_enable = ConfigYesNo(default = False)
+	config.usage.settingsoverlan_path = ConfigSelection(default = '/etc/enigma2/', choices = settingsoverlanchoices)
+	config.usage.settingsoverlan_bouquet = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_epg = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_timers = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_automounts = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_epgrefresh = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_emc = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_webradiofs = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_mp = ConfigYesNo(default = True)
+	config.usage.settingsoverlan_m3u = ConfigYesNo(default = True)
 
 def updateChoices(sel, choices):
 	if choices:

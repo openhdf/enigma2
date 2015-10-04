@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "21.09.2015"
+updateversion = "04.10.2015"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -237,6 +237,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Restart"), "Module/Screens.Standby/TryQuitMainloop/2", "Power"))
 	hotkeyFunctions.append((_("Restart Enigma"), "Module/Screens.Standby/TryQuitMainloop/3", "Power"))
 	hotkeyFunctions.append((_("Deep-Standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
+	hotkeyFunctions.append((_("SleepTimer"), "Module/Screens.SleepTimerEdit/SleepTimerEdit", "Power"))
 	hotkeyFunctions.append((_("Usage Setup"), "Setup/usage", "Setup"))
 	hotkeyFunctions.append((_("User Interface"), "Setup/userinterface", "Setup"))
 	hotkeyFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))

@@ -1,4 +1,17 @@
 <setupxml>
+	<setup key="settingsoverlansetup" title="Settings over Ethernet">
+		<item level="1" text="Enable settings over Ethernet" description="Configure to enable to use settings placed somewhere in your Lan.">config.usage.settingsoverlan_enable</item>
+		<item level="1" text="Path for settings over Ethernet" description="Configure to enable to use settings placed somewhere in your Lan.">config.usage.settingsoverlan_path</item>
+		<item level="1" text="Use Bouquet over Ethernet" description="Configure to enable to use settings placed somewhere in your Lan.">config.usage.settingsoverlan_bouquet</item>
+		<item level="1" text="Use EPG over Ethernet" description="Configure to enable to use settings placed somewhere in your Lan.">config.usage.settingsoverlan_epg</item>
+		<item level="1" text="Use Timer files over Ethernet" description="Configure to enable to use settings placed somewhere in your Lan.">config.usage.settingsoverlan_timers</item>
+		<item level="1" text="Use Automount files over Ethernet" description="Configure to enable to use settings placed somewhere in your Lan.">config.usage.settingsoverlan_automounts</item>
+		<item level="1" text="Use EPGRefresh files over Ethernet" description="Configure to enable to use settings placed somewhere in your Lan.">config.usage.settingsoverlan_epgrefresh</item>
+		<item level="1" text="Use EMC (Enhanced Movie Center) files over Ethernet" description="Configure to enable to use settings placed somewhere in your Lan.">config.usage.settingsoverlan_emc</item>
+		<item level="1" text="Use webradioFS files over Ethernet" description="Configure to enable to use settings placed somewhere in your Lan.">config.usage.settingsoverlan_webradiofs</item>
+		<item level="1" text="Use MP (mediaportal) files over Ethernet" description="Configure to enable to use settings placed somewhere in your Lan.">config.usage.settingsoverlan_mp</item>
+		<item level="1" text="Use m3u (playlists) files over Ethernet" description="Configure to enable to use settings placed somewhere in your Lan.">config.usage.settingsoverlan_m3u</item>
+	</setup>
 	<setup key="time" title="Time settings">
 		<item level="0" text="Timezone" description="Setup your timezone.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronize systemtime using transponder or internet.">config.misc.SyncTimeUsing</item>
