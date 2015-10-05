@@ -132,11 +132,15 @@ class ChannelContextMenu(Screen):
 		self.csel = csel
 		self.bsel = None
 
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick,
-				"blue": self.showServiceInPiP
+				"red": self.removeCurrentService,
+				"green": self.renameEntry,
+				"yellow": self.toggleMoveMode,
+				"blue": self.showServiceInPiP,
+				"0": self.reloadServices
 			})
 		menu = [ ]
 
@@ -200,21 +204,21 @@ class ChannelContextMenu(Screen):
 					if ("flags == %d" % FLAG_SERVICE_NEW_FOUND) in current_sel_path:
 						append_when_current_valid(current, menu, (_("remove all new found flags"), self.removeAllNewFoundFlags), level = 0)
 				if inBouquet:
-					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0)
+					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0, key="green")
 					if not inAlternativeList:
-						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0)
+						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0, key="red")
 				if current_root and ("flags == %d" % FLAG_SERVICE_NEW_FOUND) in current_root.getPath():
 					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level = 0)
 			else:
 				menu.append(ChoiceEntryComponent(text = (_("add bouquet"), self.showBouquetInputBox)))
-				append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0)
+				append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0, key="green")
 				append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level = 0)
 
 
 		if inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
 				if not csel.movemode:
-					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level = 1)
+					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level = 1, key = "yellow")
 					if not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 						if current.type != -1:
 							menu.append(ChoiceEntryComponent(text = (_("add marker"), self.showMarkerInputBox)))
@@ -229,7 +233,7 @@ class ChannelContextMenu(Screen):
 						elif not current_sel_flags & eServiceReference.isMarker:
 							append_when_current_valid(current, menu, (_("add alternatives"), self.addAlternativeServices), level = 2)
 				else:
-					append_when_current_valid(current, menu, (_("disable move mode"), self.toggleMoveMode), level = 0)
+					append_when_current_valid(current, menu, (_("disable move mode"), self.toggleMoveMode), level = 0, key = "yellow")
 			else:
 				if csel.bouquet_mark_edit == EDIT_BOUQUET:
 					if haveBouquets:
@@ -239,13 +243,13 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("end favourites edit"), self.bouquetMarkEnd), level = 0)
 						append_when_current_valid(current, menu, (_("abort favourites edit"), self.bouquetMarkAbort), level = 0)
 					if current_sel_flags & eServiceReference.isMarker:	
-						append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0)
-						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0)
+						append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0, key="green")
+						append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0, key="red")
 				else:
 					append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
 					append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
 
-		menu.append(ChoiceEntryComponent(text = (_("Reload Services"), self.reloadServices)))
+		menu.append(ChoiceEntryComponent(text = (_("Reload Services"), self.reloadServices), key="0"))
 
 		self["menu"] = ChoiceList(menu)
 
@@ -265,6 +269,16 @@ class ChannelContextMenu(Screen):
 
 	def cancelClick(self):
 		self.close(False)
+
+	def removeEntry(self):
+		if self.removeFunction and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
+			if self.csel.confirmRemove:
+				list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session again"), "never")]
+				self.session.openWithCallback(self.removeFunction, MessageBox, _("Are you sure to remove this entry?") + "\n%s" % self.getCurrentSelectionName(), list=list)
+			else:
+				self.removeFunction(True)
+		else:
+			return 0
 
 	def reloadServices(self):
 		eDVBDB.getInstance().reloadBouquets()
