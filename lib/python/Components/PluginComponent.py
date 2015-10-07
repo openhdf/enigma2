@@ -34,7 +34,7 @@ class PluginComponent:
 	def removePlugin(self, plugin):
 		self.pluginList.remove(plugin)
 		for x in plugin.where:
-			insort(self.plugins.setdefault(x, []), plugin)
+			self.plugins[x].remove(plugin)
 			if x == PluginDescriptor.WHERE_AUTOSTART:
 				plugin(reason=1)
 
@@ -155,7 +155,7 @@ class PluginComponent:
 			current = p.getWakeupTime()
 			if current > -1 and (wakeup > current or wakeup == -1):
 				wakeup = current
-				pident = p.name + " | " + p.path.split('/')[-1]
+				pident = str(p.name) + " | " + str(p.path and p.path.split('/')[-1])
 		if getPluginIdent:
 			return int(wakeup), pident
 		return int(wakeup)
