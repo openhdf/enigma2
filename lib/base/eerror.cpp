@@ -147,7 +147,7 @@ char *printtime(char buffer[], int size)
 
 extern void bsodFatal(const char *component);
 
-void eFatal(const char* fmt, ...)
+void eFatal(const char *file, int line, const char *function, const char* fmt, ...)
 {
 	char timebuffer[32];
 	char header[256];
@@ -179,7 +179,7 @@ void eFatal(const char* fmt, ...)
 }
 
 #ifdef DEBUG
-void eDebug(const char* fmt, ...)
+void eDebug(const char *file, int line, const char *function, const char* fmt, ...)
 {
 	char flagstring[10];
 	char timebuffer[32];
@@ -241,7 +241,7 @@ void eDebugNoNewLine(const char* fmt, ...)
 		fprintf(stderr, "%s", logOutputColors? buf : ncbuf);
 }
 
-void eWarning(const char* fmt, ...)
+void eWarning(const char *file, int line, const char *function, const char* fmt, ...)
 {
 	char timebuffer[32];
 	char header[256];
@@ -274,7 +274,7 @@ void eWarning(const char* fmt, ...)
 }
 #endif // DEBUG
 
-void ePythonOutput(const char *string)
+void ePythonOutput(const char *file, int line, const char *function, const char *string)
 {
 #ifdef DEBUG
 	char flagstring[10];
