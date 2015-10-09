@@ -84,6 +84,67 @@ int logOutputColors = 1;
 static pthread_mutex_t DebugLock =
 	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
+bool findToken(char *src, const char **list)
+{
+	bool res = false;
+	if(!src || !list)
+		return res;
+
+	char *tmp = new char[strlen(src)+1];
+	if(!tmp)
+		return res;
+	int idx=0;
+	do{
+		tmp[idx] = tolower(src[idx]);
+	}while(src[idx++]);
+
+	for(idx=0; list[idx]; idx++)
+	{
+		if(strstr(tmp, list[idx]))
+		{
+			res = true;
+			break;
+		}
+	}
+	delete [] tmp;
+	return res;
+}
+
+void removeAnsiEsc(char *src)
+{
+	char *dest = src;
+	bool cut = false;
+	for(; *src; src++)
+	{
+		if (*src == (char)0x1b) cut = true;
+		if (!cut) *dest++ = *src;
+		if (*src == 'm' || *src == 'K') cut = false;
+	}
+	*dest = '\0';
+}
+
+void removeAnsiEsc(char *src, char *dest)
+{
+	bool cut = false;
+	for(; *src; src++)
+	{
+		if (*src == (char)0x1b) cut = true;
+		if (!cut) *dest++ = *src;
+		if (*src == 'm' || *src == 'K') cut = false;
+	}
+	*dest = '\0';
+}
+
+char *printtime(char buffer[], int size)
+{
+	struct tm loctime ;
+	struct timeval tim;
+	gettimeofday(&tim, NULL);
+	localtime_r(&tim.tv_sec, &loctime);
+	snprintf(buffer, size, "%02d:%02d:%02d.%03ld", loctime.tm_hour, loctime.tm_min, loctime.tm_sec, tim.tv_usec / 1000L);
+	return buffer;
+}
+
 extern void bsodFatal(const char *component);
 
 void eFatal(const char* fmt, ...)
