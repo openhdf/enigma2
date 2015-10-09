@@ -84,6 +84,7 @@ int logOutputColors = 1;
 static pthread_mutex_t DebugLock =
 	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
+
 static const char *alertToken[] = {
 // !!! all strings must be written in lower case !!!
 	"error",
@@ -170,176 +171,67 @@ extern void bsodFatal(const char *component);
 
 void eFatal(const char *file, int line, const char *function, const char* fmt, ...)
 {
-	char timebuffer[32];
-	char header[256];
 	char buf[1024];
-	char ncbuf[1024];
-	printtime(timebuffer, sizeof(timebuffer));
-	snprintf(header, sizeof(header), "%s %s:%d %s ", timebuffer, file, line, function);
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, sizeof(buf), fmt, ap);
+	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
-	removeAnsiEsc(buf, ncbuf);
-	singleLock s(DebugLock);
-	logOutput(lvlFatal, std::string(header) + std::string(ncbuf) + "\n");
-
-	if (!logOutputColors)
-		fprintf(stderr, "FATAL: %s%s\n", header , ncbuf);
-	else
 	{
-		snprintf(header, sizeof(header),	\
-			ANSI_RED	"%s "		/*color of timestamp*/\
-			ANSI_GREEN	"%s:%d "	/*color of filename and linenumber*/\
-			ANSI_BGREEN	"%s "		/*color of functionname*/\
-			ANSI_BWHITE			/*color of debugmessage*/\
-			, timebuffer, file, line, function);
-		fprintf(stderr, "FATAL: %s%s\n"ANSI_RESET, header , buf);
+		singleLock s(DebugLock);
+		logOutput(lvlFatal, "FATAL: " + std::string(buf) + "\n");
+		fprintf(stderr, "FATAL: %s\n",buf );
 	}
 	bsodFatal("enigma2");
 }
 
 #ifdef DEBUG
-void eDebug(const char *file, int line, const char *function, const char* fmt, ...)
+void eDebug(const char* fmt, ...)
 {
-	char flagstring[10];
-	char timebuffer[32];
-	char header[256];
 	char buf[1024];
-	char ncbuf[1024];
-	bool is_alert = false;
-	bool is_warning = false;
-
-	printtime(timebuffer, sizeof(timebuffer));
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, sizeof(buf), fmt, ap);
+	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
-	removeAnsiEsc(buf, ncbuf);
-	is_alert = findToken(ncbuf, alertToken);
-	if(!is_alert)
-		is_warning = findToken(ncbuf, warningToken);
-
-	if(is_alert)
-		snprintf(flagstring, sizeof(flagstring), "%s", "[ E ]");
-	else if(is_warning)
-		snprintf(flagstring, sizeof(flagstring), "%s", "[ W ]");
-	else
-		snprintf(flagstring, sizeof(flagstring), "%s", "[   ]");
-
-	snprintf(header, sizeof(header), "%s %s %s:%d %s ", timebuffer, flagstring, file, line, function);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, std::string(header) + std::string(ncbuf) + "\n");
+	logOutput(lvlDebug, std::string(buf) + "\n");
 	if (logOutputConsole)
-	{
-		if (!logOutputColors)
-			fprintf(stderr, "%s%s\n", header, ncbuf);
-		else
-		{
-			snprintf(header, sizeof(header),	\
-						"%s%s "		/*color of timestamp*/\
-				ANSI_GREEN	"%s:%d "	/*color of filename and linenumber*/\
-				ANSI_BGREEN	"%s "		/*color of functionname*/\
-				ANSI_BWHITE			/*color of debugmessage*/\
-				, is_alert?ANSI_BRED:is_warning?ANSI_BYELLOW:ANSI_WHITE, timebuffer, file, line, function);
-			fprintf(stderr, "%s%s\n"ANSI_RESET, header, buf);
-		}
-	}
+		fprintf(stderr, "%s\n", buf);
 }
 
 void eDebugNoNewLine(const char* fmt, ...)
 {
 	char buf[1024];
-	char ncbuf[1024];
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, sizeof(buf), fmt, ap);
+	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
-	removeAnsiEsc(buf, ncbuf);
 	singleLock s(DebugLock);
-	logOutput(lvlDebug, std::string(ncbuf));
+	logOutput(lvlDebug, buf);
 	if (logOutputConsole)
-		fprintf(stderr, "%s", logOutputColors? buf : ncbuf);
+		fprintf(stderr, "%s", buf);
 }
 
-void eWarning(const char *file, int line, const char *function, const char* fmt, ...)
+void eWarning(const char* fmt, ...)
 {
-	char timebuffer[32];
-	char header[256];
 	char buf[1024];
-	char ncbuf[1024];
-	printtime(timebuffer, sizeof(timebuffer));
-	snprintf(header, sizeof(header), "%s [!W!] %s:%d %s ", timebuffer, file, line, function);
 	va_list ap;
 	va_start(ap, fmt);
-	vsnprintf(buf, sizeof(buf), fmt, ap);
-	removeAnsiEsc(buf, ncbuf);
+	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
 	singleLock s(DebugLock);
-	logOutput(lvlWarning, std::string(header) + std::string(ncbuf) + "\n");
+	logOutput(lvlWarning, std::string(buf) + "\n");
 	if (logOutputConsole)
-	{
-		if (!logOutputColors)
-			fprintf(stderr, "%s%s\n", header, ncbuf);
-		else
-		{
-			snprintf(header, sizeof(header),	\
-				ANSI_BYELLOW	"%s "	/*color of timestamp*/\
-				ANSI_GREEN	"%s:%d "	/*color of filename and linenumber*/\
-				ANSI_BGREEN	"%s "		/*color of functionname*/\
-				ANSI_BWHITE			/*color of debugmessage*/\
-				, timebuffer, file, line, function);
-			fprintf(stderr, "%s%s\n"ANSI_RESET, header, buf);
-		}
-	}
+		fprintf(stderr, "%s\n", buf);
 }
 #endif // DEBUG
 
-void ePythonOutput(const char *file, int line, const char *function, const char *string)
+void ePythonOutput(const char *string)
 {
 #ifdef DEBUG
-	char flagstring[10];
-	char timebuffer[32];
-	char header[256];
-	char buf[1024];
-	char ncbuf[1024];
-	bool is_alert = false;
-	bool is_warning = false;
-
-	printtime(timebuffer, sizeof(timebuffer));
-	if(strstr(file, "e2reactor.py") || strstr(file, "traceback.py"))
-		is_alert = true;
-	snprintf(buf, sizeof(buf), "%s", string);
-	removeAnsiEsc(buf, ncbuf);
-	is_alert |= findToken(ncbuf, alertToken);
-	if(!is_alert)
-		is_warning = findToken(ncbuf, warningToken);
-
-	if(is_alert)
-		snprintf(flagstring, sizeof(flagstring), "%s", "{ E }");
-	else if(is_warning)
-		snprintf(flagstring, sizeof(flagstring), "%s", "{ W }");
-	else
-		snprintf(flagstring, sizeof(flagstring), "%s", "{   }");
-
-	snprintf(header, sizeof(header), "%s %s %s:%d %s ", timebuffer, flagstring, file, line, function);
 	singleLock s(DebugLock);
-	logOutput(lvlWarning, std::string(header) + std::string(ncbuf));
+	logOutput(lvlWarning, string);
 	if (logOutputConsole)
-	{
-		if (!logOutputColors)
-			fprintf(stderr, "%s%s", header, ncbuf);
-		else
-		{
-			snprintf(header, sizeof(header),	\
-						"%s%s "		/*color of timestamp*/\
-				ANSI_CYAN	"%s:%d "	/*color of filename and linenumber*/\
-				ANSI_BCYAN	"%s "		/*color of functionname*/\
-				ANSI_BWHITE			/*color of debugmessage*/\
-				, is_alert?ANSI_BRED:is_warning?ANSI_BYELLOW:ANSI_WHITE, timebuffer, file, line, function);
-			fprintf(stderr, "%s%s"ANSI_RESET, header, buf);
-		}
-	}
+		fwrite(string, 1, strlen(string), stderr);
 #endif
 }
 
