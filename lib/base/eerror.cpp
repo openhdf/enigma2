@@ -84,6 +84,27 @@ int logOutputColors = 1;
 static pthread_mutex_t DebugLock =
 	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
+static const char *alertToken[] = {
+// !!! all strings must be written in lower case !!!
+	"error",
+	"fail",
+	"not available",
+	"no module",
+	"no such file",
+	"cannot",
+	"invalid",
+	"bad parameter",
+	"not found",
+	NULL		//end of list
+};
+
+static const char *warningToken[] = {
+// !!! all strings must be written in lower case !!!
+	"warning",
+	"unknown",
+	NULL		//end of list
+};
+
 bool findToken(char *src, const char **list)
 {
 	bool res = false;
