@@ -111,6 +111,7 @@ void DumpUnfreed();
 
 extern Signal2<void, int, const std::string&> logOutput;
 extern int logOutputConsole;
+extern int logOutputColors;
 
 void CHECKFORMAT eFatal(const char*, ...);
 enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
