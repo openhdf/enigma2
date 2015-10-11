@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-10-11 07:09+0200\n"
+"PO-Revision-Date: 2015-10-11 16:31+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -12836,6 +12836,12 @@ msgstr "Prov/Fav lang"
 
 msgid "Power long"
 msgstr "Power lang"
+
+msgid "Power (use button menu)"
+msgstr "Power (Tasten-Einstellungen)"
+
+msgid "Power long (use button menu)"
+msgstr "Power lang (Tasten-Einstellungen)"
 
 msgid "Power down"
 msgstr "Power losgelassen"
