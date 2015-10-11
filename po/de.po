@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-10-04 10:55+0200\n"
+"PO-Revision-Date: 2015-10-11 07:09+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13025,3 +13025,12 @@ msgstr "Der Ausschalt-Timer wurde aktiviert."
 
 msgid "The sleep timer has been disabled."
 msgstr "Der Ausschalt-Timer wurde deaktiviert."
+
+msgid "Do you want to backup your image and settings before?"
+msgstr "Soll vorher ein Backup vom Image oder den Settings gemacht werden?"
+
+msgid "Backup your settings now?"
+msgstr "Sollen jetzt die Einstellungen gesichert werden?"
+
+msgid "Backup your image now?"
+msgstr "Soll jetzt ein komplettes Backup vom Image erstellt werden?"
