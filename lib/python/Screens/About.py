@@ -84,9 +84,9 @@ class About(Screen):
 
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
 		
-		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
+		AboutText += _("GStreamer Ver:\t%s") % about.getGStreamerVersionString() + "\n"
 
-		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
+		AboutText += _("Python Ver:\t%s\n") % about.getPythonVersionString()
 
 		AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
 
@@ -108,7 +108,7 @@ class About(Screen):
 			f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+			AboutText += _("System Temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
 	
 		tempinfo = ""
 		if path.exists('/proc/stb/fp/temp_sensor_avs'):
@@ -117,7 +117,7 @@ class About(Screen):
 			f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("Processor temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+			AboutText += _("Processor Temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
 		AboutLcdText = AboutText.replace('\t', ' ')
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
