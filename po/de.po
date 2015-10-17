@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-10-11 16:31+0200\n"
+"PO-Revision-Date: 2015-10-17 12:46+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -6060,8 +6060,8 @@ msgstr "Andere"
 msgid "Output"
 msgstr "Ausgang"
 
-msgid "Overwrite configuration files?"
-msgstr "Ausgabe"
+msgid "Overwrite configuration files ?"
+msgstr "Überschreibe Konfigurationsdateien ?"
 
 msgid "Overwrite configuration files during software upgrade?"
 msgstr "Konfigurationsdateien beim Software-Update überschreiben ?"
@@ -12208,6 +12208,12 @@ msgstr "Überschreiben der Konfigurations Files ?"
 
 msgid "Overwrite Setting Files ?"
 msgstr "Settings-Dateien überschreiben ?"
+
+msgid "Save EPG Cache ?"
+msgstr "Speichere EPG Cache ?"
+
+msgid "Save epg cache before start the backup?"
+msgstr "Speichere EPG Cache vor dem Backup?"
 
 msgid "Overwrite Driver Files ?"
 msgstr "Treiber-Module überschreiben ?"

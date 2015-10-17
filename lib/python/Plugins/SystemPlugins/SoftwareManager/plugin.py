@@ -89,13 +89,13 @@ config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
+config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
 config.plugins.softwaremanager.overwriteConfigFiles = ConfigSelection(
 				[
 				 ("Y", _("Yes, always")),
 				 ("N", _("No, never")),
 				 ("ask", _("Always ask"))
 				], "Y")
-
 config.plugins.softwaremanager.updatetype = ConfigSelection(
 	[
 	("hot", _("Upgrade with GUI")),
@@ -489,6 +489,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteBootlogofilesEntry = None
 		self.overwriteSpinnerfilesEntry = None
 		self.updatetypeEntry = None
+		self.epgcacheEntry = None
 
 		self.list = [ ]
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
@@ -514,16 +515,17 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.list = [ ]
-		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files?"), config.plugins.softwaremanager.overwriteConfigFiles)
+		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files ?"), config.plugins.softwaremanager.overwriteConfigFiles)
 		self.overwriteSettingsfilesEntry = getConfigListEntry(_("Overwrite Setting Files ?"), config.plugins.softwaremanager.overwriteSettingsFiles)
 		self.overwriteDriversfilesEntry = getConfigListEntry(_("Overwrite Driver Files ?"), config.plugins.softwaremanager.overwriteDriversFiles)
 		self.overwriteEmusfilesEntry = getConfigListEntry(_("Overwrite Emu Files ?"), config.plugins.softwaremanager.overwriteEmusFiles)
 		self.overwritePiconsfilesEntry = getConfigListEntry(_("Overwrite Picon Files ?"), config.plugins.softwaremanager.overwritePiconsFiles)
 		self.overwriteBootlogofilesEntry = getConfigListEntry(_("Overwrite Bootlogo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
 		self.overwriteSpinnerfilesEntry = getConfigListEntry(_("Overwrite Spinner Files ?"), config.plugins.softwaremanager.overwriteSpinnerFiles)
+		self.epgcacheEntry = getConfigListEntry(_("Save EPG Cache ?"), config.plugins.softwaremanager.epgcache)
 		self.updatetypeEntry  = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
-		if getBoxType().startswith('et'):
-			self.list.append(self.updatetypeEntry)
+		#if getBoxType().startswith('et'):
+		self.list.append(self.updatetypeEntry)
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(self.overwriteSettingsfilesEntry)
 		self.list.append(self.overwriteDriversfilesEntry)
@@ -531,6 +533,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.list.append(self.overwritePiconsfilesEntry)
 		self.list.append(self.overwriteBootlogofilesEntry)
 		self.list.append(self.overwriteSpinnerfilesEntry)
+		self.list.append(self.epgcacheEntry)
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
 		self["config"].l.setList(self.list)
@@ -551,8 +554,10 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			self["introduction"].setText(_("Overwrite picon files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwriteBootlogofilesEntry:
 			self["introduction"].setText(_("Overwrite bootlogo files during software upgrade?"))
-		elif self["config"].getCurrent() == self.overwriteSpinnerfilesEntry:
-			self["introduction"].setText(_("Overwrite spinner files during software upgrade?"))
+		elif self["config"].getCurrent() == self.overwriteBootlogofilesEntry:
+			self["introduction"].setText(_("Overwrite bootlogo files during software upgrade?"))
+		elif self["config"].getCurrent() == self.epgcacheEntry:
+			self["introduction"].setText(_("Save epg cache before start the backup?"))
 		elif self["config"].getCurrent() == self.updatetypeEntry:
 			self["introduction"].setText(_("Select how your box will upgrade."))
 		else:
