@@ -174,21 +174,6 @@ public:
 		addAll();
 	}
 
-	eInputDeviceInit()
-	{
-		int i = 0;
-		consoleFd = ::open("/dev/tty0", O_RDWR);
-		while (1)
-		{
-			char filename[32];
-			sprintf(filename, "/dev/input/event%d", i);
-			if (::access(filename, R_OK) < 0) break;
-			add(filename);
-			++i;
-		}
-		eDebug("Found %d input devices.", i);
-	}
-
 	~eInputDeviceInit()
 	{
 		for (itemlist::iterator it = items.begin(); it != items.end(); ++it)
