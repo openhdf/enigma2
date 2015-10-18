@@ -1,9 +1,5 @@
-# for localized messages
-from . import _
-
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSlider, getConfigListEntry
 
 config.plugins.VideoClippingSetup = ConfigSubsection()
@@ -25,13 +21,13 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 	def __init__(self, session):
 		self.skin = VideoClippingCoordinates.skin
 		Screen.__init__(self, session)
-		self.setTitle(_("Video clipping setup"))
 
 		from Components.ActionMap import ActionMap
 		from Components.Button import Button
 
 		self["ok"] = Button(_("OK"))
 		self["cancel"] = Button(_("Cancel"))
+		self.setTitle(_("Video clipping setup"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
 		{
