@@ -44,7 +44,8 @@ eDVBDemux::eDVBDemux(int adapter, int demux):
 	adapter(adapter),
 	demux(demux),
 	source(-1),
-	m_dvr_busy(0)
+	m_dvr_busy(0),
+	m_pvr_fd(0)
 {
 }
 
@@ -66,7 +67,8 @@ int eDVBDemux::openDVR(int flags)
 #else
 	char filename[32];
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/dvr%d", adapter, demux);
-	return ::open(filename, flags);
+	m_pvr_fd = ::open(filename, flags);
+	return m_pvr_fd;
 #endif
 }
 
@@ -79,7 +81,14 @@ RESULT eDVBDemux::setSourceFrontend(int fenum)
 	int n = DMX_SOURCE_FRONT0 + fenum;
 	int res = ::ioctl(fd, DMX_SET_SOURCE, &n);
 	if (res)
+	{ // gg
 		eDebug("DMX_SET_SOURCE failed! - %m");
+		/** FIXME: gg begin dirty hack  */
+		eDebug("Ignoring due to limitation to one frontend for each adapter and missing ioctl....");
+		source = fenum;
+		res = 0;
+		/** FIXME: gg end dirty hack  */
+	} // gg
 	else
 		source = fenum;
 	::close(fd);
@@ -125,7 +134,16 @@ RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder, int packetsiz
 
 RESULT eDVBDemux::getMPEGDecoder(ePtr<iTSMPEGDecoder> &decoder, int index)
 {
-	decoder = new eTSMPEGDecoder(this, index);
+	eDebug("%s() BOXTYPE: %s",__func__,BOXTYPE);
+	if(0 == strcmp(BOXTYPE,"wetekplay"))
+	{
+		eDebug("%s() wetekplay detected",__func__);
+		decoder = new eAMLTSMPEGDecoder(this, index);
+	}
+	else
+	{
+		decoder = new eTSMPEGDecoder(this, index);
+	}
 	return 0;
 }
 

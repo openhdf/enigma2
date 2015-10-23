@@ -15,31 +15,29 @@
 #define I2C_SLAVE_FORCE	0x0706
 #endif
 
+#define eDebugNoSimulateNoNewLineEnd(x...) \
+	do { \
+		if (!m_simulate) \
+			eDebugNoNewLineEnd(x); \
+	} while(0)
+
 #define eDebugNoSimulate(x...) \
 	do { \
 		if (!m_simulate) \
 			eDebug(x); \
 	} while(0)
-#if 0
-		else \
-		{ \
-			eDebugNoNewLine("SIMULATE:"); \
-			eDebug(x); \
-		}
-#endif
+
+#define eDebugNoSimulateNoNewLineStart(x...) \
+	do { \
+		if (!m_simulate) \
+			eDebugNoNewLineStart(x); \
+	} while(0)
 
 #define eDebugNoSimulateNoNewLine(x...) \
 	do { \
 		if (!m_simulate) \
 			eDebugNoNewLine(x); \
 	} while(0)
-#if 0
-		else \
-		{ \
-			eDebugNoNewLine("SIMULATE:"); \
-			eDebugNoNewLine(x); \
-		}
-#endif
 
 void eDVBDiseqcCommand::setCommandString(const char *str)
 {
@@ -707,6 +705,8 @@ void eDVBFrontend::feEvent(int w)
 {
 	eDVBFrontend *sec_fe = this;
 	long tmp = m_data[LINKED_PREV_PTR];
+	if (w < 0)
+		return;
 	while (tmp != -1)
 	{
 		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)tmp;
@@ -718,18 +718,25 @@ void eDVBFrontend::feEvent(int w)
 		dvb_frontend_event event;
 		int res;
 		int state;
-		res = ::ioctl(m_fd, FE_GET_EVENT, &event);
-
-		if (res && (errno == EAGAIN))
+		if((res = ::ioctl(m_fd, FE_READ_STATUS, &event.status)) != 0)
+		{
 			break;
+		}
 
-		if (w < 0)
-			continue;
-
-		eDebug("(%d)fe event: status %x, inversion %s, m_tuning %d", m_dvbid, event.status, (event.parameters.inversion == INVERSION_ON) ? "on" : "off", m_tuning);
+		else
+		{
+			if(event.status == 0)
+			{
+				break;
+			}
+		}
+		usleep(10000);
 		if (event.status & FE_HAS_LOCK)
 		{
 			state = stateLock;
+			/* FIXME: gg this because FE_READ_STATUS always returns */
+			if(m_state == state)
+				break; /* I do not see any other way out */
 		}
 		else
 		{
@@ -1268,7 +1275,7 @@ int eDVBFrontend::readInputpower()
 
 bool eDVBFrontend::setSecSequencePos(int steps)
 {
-	eDebugNoSimulate("set sequence pos %d", steps);
+//	eDebugNoSimulate("set sequence pos %d", steps);
 	if (!steps)
 		return false;
 	while( steps > 0 )
@@ -1379,15 +1386,15 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				break;
 			case eSecCommand::SEND_DISEQC:
 				sec_fe->sendDiseqc(m_sec_sequence.current()->diseqc);
-				eDebugNoSimulateNoNewLine("[SEC] sendDiseqc: ");
+				eDebugNoSimulateNoNewLineStart("[SEC] sendDiseqc: ");
 				for (int i=0; i < m_sec_sequence.current()->diseqc.len; ++i)
 				    eDebugNoSimulateNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
 			 	if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x00", 3))
-					eDebugNoSimulate("(DiSEqC reset)");
+					eDebugNoSimulateNoNewLineEnd("(DiSEqC reset)");
 				else if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x03", 3))
-					eDebugNoSimulate("(DiSEqC peripherial power on)");
+					eDebugNoSimulateNoNewLineEnd("(DiSEqC peripherial power on)");
 				else
-					eDebugNoSimulate("(?)");
+					eDebugNoSimulateNoNewLineEnd("(?)");
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SEND_TONEBURST:
