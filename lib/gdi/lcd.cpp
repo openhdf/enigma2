@@ -83,7 +83,7 @@ eDBoxLCD::eDBoxLCD()
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
 		
-		if((strcmp(boxtype_name, "xp1000s\n") == 0) || (strcmp(boxtype_name, "odinm7\n") == 0) || (strcmp(boxtype_name, "ew7358\n") == 0) || (strcmp(boxtype_name, "ew7362\n") == 0) || (strcmp(boxtype_name, "formuler3\n") == 0) || (strcmp(boxtype_name, "hd1100\n") == 0) || (strcmp(boxtype_name, "vp7358ci\n") == 0) || (strcmp(boxtype_name, "vg2000\n") == 0) || (strcmp(boxtype_name, "vg5000\n") == 0) || (strcmp(boxtype_name, "sh1\n") == 0))
+		if((strcmp(boxtype_name, "7300S\n") == 0) || (strcmp(boxtype_name, "xp1000s\n") == 0) || (strcmp(boxtype_name, "odinm7\n") == 0) || (strcmp(boxtype_name, "ew7358\n") == 0) || (strcmp(boxtype_name, "ew7362\n") == 0) || (strcmp(boxtype_name, "formuler3\n") == 0) || (strcmp(boxtype_name, "hd1100\n") == 0) || (strcmp(boxtype_name, "hd1200\n") == 0) || (strcmp(boxtype_name, "hd500c\n") == 0) || (strcmp(boxtype_name, "vp7358ci\n") == 0) || (strcmp(boxtype_name, "vg2000\n") == 0) || (strcmp(boxtype_name, "vg5000\n") == 0) || (strcmp(boxtype_name, "sh1\n") == 0) || (strcmp(boxtype_name, "yhgd2580\n") == 0) || (strcmp(boxtype_name, "spycatmini\n") == 0) || (strcmp(boxtype_name, "fegasusx3\n") == 0) || (strcmp(boxtype_name, "fegasusx5s\n") == 0) || (strcmp(boxtype_name, "fegasusx5t\n") == 0) || (strcmp(boxtype_name, "ini-2000oc\n") == 0) || (strcmp(boxtype_name, "osmini\n") == 0) || (strcmp(boxtype_name, "jj7362\n") == 0) || (strcmp(boxtype_name, "h3\n") == 0))
 		{
 			lcdfd = open("/dev/null", O_RDWR);
 		}
@@ -229,7 +229,7 @@ int eDBoxLCD::setLCDContrast(int contrast)
 int eDBoxLCD::setLCDBrightness(int brightness)
 {
 #ifndef NO_LCD
-	eDebug("setLCDBrightness %d", brightness);
+//	eDebug("setLCDBrightness %d", brightness);
 	FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
 	if (!f)
 		f = fopen("/proc/stb/fp/oled_brightness", "w");
@@ -349,16 +349,40 @@ void eDBoxLCD::update()
 			}
 			else
 			{
-				if (FILE * file = fopen("/proc/stb/info/gbmodel", "r"))
+				FILE *file;
+				FILE *boxtype_file;
+				char boxtype_name[20];
+				if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
 				{
+					fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
+					fclose(boxtype_file);
+				}
+				if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0))
+				{
+					//gggrrrrrbbbbbggg bit order from memory
+					//gggbbbbbrrrrrggg bit order to LCD
 					unsigned char gb_buffer[_stride * res.height()];
-					for (int offset = 0; offset < _stride * res.height(); offset += 2)
-					{
-						gb_buffer[offset] = (_buffer[offset] & 0x1F) | ((_buffer[offset + 1] << 3) & 0xE0);
-						gb_buffer[offset + 1] = ((_buffer[offset + 1] >> 5) & 0x03) | ((_buffer[offset] >> 3) & 0x1C) | ((_buffer[offset + 1] << 5) & 0x60);
+					if(! (0x03 & (_stride * res.height())))
+					{//fast
+						for (int offset = 0; offset < ((_stride * res.height())>>2); offset ++)
+						{
+							unsigned int src = ((unsigned int*)_buffer)[offset];
+							((unsigned int*)gb_buffer)[offset] = src & 0xE007E007 | (src & 0x1F001F00) >>5 | (src & 0x00F800F8) << 5;
+						}
+					}
+					else
+					{//slow
+						for (int offset = 0; offset < _stride * res.height(); offset += 2)
+						{
+							gb_buffer[offset] = (_buffer[offset] & 0x07) | ((_buffer[offset + 1] << 3) & 0xE8);
+							gb_buffer[offset + 1] = (_buffer[offset + 1] & 0xE0)| ((_buffer[offset] >> 3) & 0x1F);
+						}
 					}
 					write(lcdfd, gb_buffer, _stride * res.height());
-					fclose(file);
+					if (file != NULL)
+					{
+						fclose(file);
+					}
 				}
 				else
 				{
