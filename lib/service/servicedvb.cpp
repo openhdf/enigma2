@@ -286,7 +286,7 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 		}
 		if (cur)
 		{
-			return cur;
+			return !!cur;
 		}
 		/* fallback to stream (or pvr) service alternative */
 		if (streamable_service)
@@ -884,11 +884,11 @@ RESULT eDVBServiceList::addService(eServiceReference &ref, eServiceReference bef
 	return m_bouquet->addService(ref, before);
 }
 
-RESULT eDVBServiceList::removeService(eServiceReference &ref)
+RESULT eDVBServiceList::removeService(eServiceReference &ref, bool renameBouquet)
 {
 	if (!m_bouquet)
 		return -1;
-	return m_bouquet->removeService(ref);
+	return m_bouquet->removeService(ref, renameBouquet);
 }
 
 RESULT eDVBServiceList::moveService(eServiceReference &ref, int pos)
@@ -1956,7 +1956,7 @@ int eDVBServicePlay::getInfo(int w)
 			return aspect;
 		break;
 	}
-	case sIsCrypted: if (no_program_info) return -1; return program.isCrypted();
+	case sIsCrypted: if (no_program_info) return false; return program.isCrypted();
 	case sVideoPID:
 		if (m_dvb_service)
 		{
@@ -1979,9 +1979,6 @@ int eDVBServicePlay::getInfo(int w)
 			if (apid != -1)
 				return apid;
 			apid = m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID);
-			if (apid != -1)
-				return apid;
-			apid = m_dvb_service->getCacheEntry(eDVBService::cAACAPID);
 			if (apid != -1)
 				return apid;
 		}
@@ -2211,14 +2208,12 @@ int eDVBServicePlay::selectAudioStream(int i)
 		|| ((m_dvb_service->getCacheEntry(eDVBService::cMPEGAPID) == -1)
 		&& (m_dvb_service->getCacheEntry(eDVBService::cAC3PID)== -1)
 		&& (m_dvb_service->getCacheEntry(eDVBService::cDDPPID)== -1)
-		&& (m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID) == -1)
-		&& (m_dvb_service->getCacheEntry(eDVBService::cAACAPID) == -1))))
+		&& (m_dvb_service->getCacheEntry(eDVBService::cAACHEAPID) == -1))))
 	{
 		m_dvb_service->setCacheEntry(eDVBService::cMPEGAPID, apidtype == eDVBAudio::aMPEG ? apid : -1);
 		m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apidtype == eDVBAudio::aAC3 ? apid : -1);
 		m_dvb_service->setCacheEntry(eDVBService::cDDPPID, apidtype == eDVBAudio::aDDP ? apid : -1);
 		m_dvb_service->setCacheEntry(eDVBService::cAACHEAPID, apidtype == eDVBAudio::aAACHE ? apid : -1);
-		m_dvb_service->setCacheEntry(eDVBService::cAACAPID, apidtype == eDVBAudio::aAAC ? apid : -1);
 	}
 
 	h.resetCachedProgram();
@@ -2776,7 +2771,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		eDebug("getting program info failed.");
 	else
 	{
-		eDebugNoNewLine("have %zd video stream(s)", program.videoStreams.size());
+		eDebugNoNewLineStart("have %zd video stream(s)", program.videoStreams.size());
 		if (!program.videoStreams.empty())
 		{
 			eDebugNoNewLine(" (");
@@ -2811,7 +2806,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		}
 		eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
 		pcrpid = program.pcrPid;
-		eDebug(", and the text pid is %04x", program.textPid);
+		eDebugNoNewLineEnd(", and the text pid is %04x", program.textPid);
 		tpid = program.textPid;
 	}
 
