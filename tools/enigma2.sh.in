@@ -4,6 +4,20 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
+if [ -e /usr/bin/xbmc ]; then
+	if [ -e /etc/.xbmcstart ]; then
+		rm -f /etc/.xbmcstart
+		/usr/bin/xbmc
+	fi
+fi
+
+if [ -e /usr/bin/kodi ]; then
+	if [ -e /etc/.kodistart ]; then
+		rm -f /etc/.kodistart
+		/usr/bin/kodi
+	fi
+fi
+
 if [ -x @bindir@/showiframe ]; then
 	if [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
 		echo found @sysconfdir@/enigma2/bootlogo.mvi
@@ -35,7 +49,7 @@ if [ -f /usr/lib/libssl.so.0.9.8 ]; then
 else
 	ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
 fi
-	
+
 if [ -f /lib/libcrypto.so.0.9.8 ]; then
 	echo "libcrypto symlink found"
 else
@@ -106,9 +120,9 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 		RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
 	fi
 	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
-		LD_PRELOAD=$LIBS @bindir@/enigma2 &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
+		LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
 	else
-		LD_PRELOAD=$LIBS @bindir@/enigma2 &> /home/root/logs/Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
+		LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color &> /home/root/logs/Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
 	fi
 else
 	# in case $TERM is "linux" the serial output is activated - discard debug output
@@ -151,7 +165,7 @@ case $ret in
 		;;
 	43)
 		init 1
-		;;		
+		;;
 	44)
 		# little hack but it will be fixed soon in drivers
 		/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear
@@ -164,7 +178,7 @@ case $ret in
 	45)
 		echo "    " > /dev/lcd0
 		/usr/bin/gigablue_wol
-		;;		
+		;;
 	*)
 		rm -f /tmp/.listen.camd.socket.ignore
 		;;
