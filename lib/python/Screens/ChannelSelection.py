@@ -1485,7 +1485,7 @@ class ChannelSelectionBase(Screen):
 				for path in self.history:
 					if len(path) > 2 and path[1] == root:
 						prev = path[2]
-				if prev is not None:
+				if config.usage.servicelist_keep_service.value and prev is not None:
 					self.setCurrentSelection(prev)
 
 	def inBouquet(self):
