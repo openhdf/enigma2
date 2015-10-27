@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-10-20 20:32+0200\n"
+"PO-Revision-Date: 2015-10-27 16:56+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -10323,6 +10323,12 @@ msgstr "Was durchsuchen?"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Wenn aktiviert kann PiP mit der Exit Taste geschlossen werden."
+
+msgid "Remember last service in PiP"
+msgstr "Letzten Bild im Bild Service merken"
+
+msgid "Configure if and how long the latest service in the PiP will be remembered."
+msgstr "Konfigurieren Sie, ob und wie lange der aktuelle Bild in Bild Service in Erinnerung bleiben soll."
 
 msgid "When enabled the online checker will also check for experimental versions"
 msgstr "Wenn aktiviert werden auch experimentelle Updates gesucht."
