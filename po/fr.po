@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 15:42+0200\n"
-"PO-Revision-Date: 2015-10-07 17:33+0200\n"
+"POT-Creation-Date: 2015-10-31 14:22+0100\n"
+"PO-Revision-Date: 2015-10-31 14:36+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"[User - bouquets (TV)]\n"
+"[Utilisateur - bouquets (TV)]\n"
 
 msgid ""
 "\n"
@@ -183,7 +183,7 @@ msgid ""
 "[User - bouquets (RADIO)]\n"
 msgstr ""
 "\n"
-"[User - bouquets (RADIO)]\n"
+"[Utilisateur - bouquets (RADIO)]\n"
 
 msgid " "
 msgstr " "
@@ -2521,6 +2521,9 @@ msgstr "Configure la façon dont les noms de fichiers d’enregistrement sont co
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Configure si et où les picons d’encryption seront affichés dans la liste des chaînes."
 
+msgid "Configure if and how long the latest service in the PiP will be remembered."
+msgstr "Configure si et combien de temps le dernier service en PiP sera mémorisé."
+
 msgid "Configure if and how service type icons will be shown."
 msgstr "Configure si et où l’icône du type de service sera affiché."
 
@@ -4631,8 +4634,8 @@ msgid "GB800SOLO takes about 20 mins !!\n"
 msgstr "GB800SOLO prends approximativement 20 mins!\n"
 
 #, python-format
-msgid "GStreamer:\t%s"
-msgstr "GStreamer:\t%s"
+msgid "GStreamer Ver:\t%s"
+msgstr "GStreamer ver:\t%s"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
@@ -4833,8 +4836,8 @@ msgstr "H: = chaque heure / D: = journalier / W: = hebdomadaire / M: = mensuel"
 msgid "HD list"
 msgstr "Liste HD"
 
-msgid "HD1100/et7x00/et8500"
-msgstr "HD1100/et7x00/et8500"
+msgid "HD1100/HD1200/HD500C/et7x00/et8500"
+msgstr "HD1100/HD1200/HD500C/et7x00/et8500"
 
 msgid "HD2400"
 msgstr "HD2400"
@@ -7133,11 +7136,11 @@ msgstr "Ecraser les fichiers de l’animation (spinner)?"
 msgid "Overwrite bootlogo files during software upgrade?"
 msgstr "Ecraser le logo de démarrage pendant la mise à jour logicielle?"
 
+msgid "Overwrite configuration files ?"
+msgstr "Ecraser les fichiers de configuration?"
+
 msgid "Overwrite configuration files during software upgrade?"
 msgstr "Ecraser fichiers configuration pendant mise à jour logicielle?"
-
-msgid "Overwrite configuration files?"
-msgstr "Ecraser les fichiers de configuration?"
 
 msgid "Overwrite driver files during software upgrade?"
 msgstr "Ecraser les pilotes(drivers) pendant la mise à jour logicielle?"
@@ -7156,9 +7159,6 @@ msgstr "Ecraser les fichiers de configurations (liste des chaines) pendant la mi
 
 msgid "Overwrite softcam files during software upgrade?"
 msgstr "Ecraser les fichiers de softcam pendant la mise à jour logicielle?"
-
-msgid "Overwrite spinner files during software upgrade?"
-msgstr "Ecraser les fichiers d’animation pendant la mise à jour logicielle?"
 
 msgid "PAGE UP/DOWN"
 msgstr "PAGE HAUT/BAS"
@@ -7810,8 +7810,14 @@ msgstr "Aperçu des PowerTimers"
 msgid "PowerTimers"
 msgstr "Programmations d’alimentation"
 
+msgid "Powertimer DeepStandby"
+msgstr "Programmations d’alimentation de veille profonde"
+
 msgid "Powertimer Message Popup counter (in seconds)"
 msgstr "Message pop-up de programmation d’alimentation (en secondes)"
+
+msgid "Powertimer Standby"
+msgstr "Programmations d’alimentation  de veille"
 
 msgid "Preamble"
 msgstr "Préambule"
@@ -7977,7 +7983,7 @@ msgid "Process"
 msgstr "Processus"
 
 #, python-format
-msgid "Processor temp:\t%s"
+msgid "Processor Temp:\t%s"
 msgstr "Température du processeur:\t%s"
 
 msgid "Profile"
@@ -8062,12 +8068,12 @@ msgstr "Mettre la TV en veille"
 msgid "Put your %s %s in standby"
 msgstr "Mettre votre %s %s en veille"
 
+#, python-format
+msgid "Python Ver:\t%s\n"
+msgstr "Python ver:\t%s\n"
+
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "\"Frontend\" Python pour /tmp/mmi.socket"
-
-#, python-format
-msgid "Python:\t%s\n"
-msgstr "Python:\t%s\n"
 
 msgid "Question"
 msgstr "Question"
@@ -8359,6 +8365,9 @@ msgstr "Restant et écoulé"
 
 msgid "Remember last service"
 msgstr "Se souvenir du dernier service"
+
+msgid "Remember last service in PiP"
+msgstr "Se rappeler le dernier service en PiP"
 
 msgid "Remember service PIN"
 msgstr "Enregistrer PIN service"
@@ -8777,6 +8786,9 @@ msgstr "Sauver"
 msgid "Save EPG"
 msgstr "Sauver EPG"
 
+msgid "Save EPG Cache ?"
+msgstr "Sauvegarder le cache EPG?"
+
 msgid "Save EPG data"
 msgstr "Sauver les données EPG"
 
@@ -8788,6 +8800,9 @@ msgstr "Sauver et enregistrer"
 
 msgid "Save and stop"
 msgstr "Sauver et arrêter"
+
+msgid "Save epg cache before start the backup?"
+msgstr "Sauvegarder le cache EPG avant de démarrer une sauvegarde totale?"
 
 msgid "Save every (in hours)"
 msgstr "Sauvegarder chaque (en heures)"
@@ -10709,8 +10724,8 @@ msgid "System"
 msgstr "Système"
 
 #, python-format
-msgid "System temp:\t%s"
-msgstr "Température du système:\t%s"
+msgid "System Temp:\t%s"
+msgstr "Temp. du système:\t%s"
 
 msgid "System: "
 msgstr "Système: "
@@ -12351,6 +12366,12 @@ msgstr "Vertical"
 msgid "Vertical turning speed"
 msgstr "Vitesse de rotation verticale"
 
+msgid "Very short filenames"
+msgstr "Noms de fichiers très courts"
+
+msgid "Very very short filenames"
+msgstr "Noms de fichiers très très court"
+
 msgid "ViX"
 msgstr "ViX"
 
@@ -12365,6 +12386,12 @@ msgstr "Paramètres pour vidéo améliorée"
 
 msgid "Video PID"
 msgstr "PID Video"
+
+msgid "Video clipping"
+msgstr "Montage vidéo"
+
+msgid "Video clipping setup"
+msgstr "Configuration montage vidéo"
 
 #, python-format
 msgid "Video content: %ix%i%s %iHz"
@@ -13701,6 +13728,9 @@ msgstr "circulaire à gauche"
 
 msgid "circular right"
 msgstr "circulaire à droite"
+
+msgid "clip overscan / letterbox borders"
+msgstr "couper (clip) overscan / bandes noires (letterbox)"
 
 msgid "close share view"
 msgstr "fermer la vue des partages"
