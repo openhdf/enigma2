@@ -60,17 +60,17 @@ class HddPartitions(Screen):
 		
 		self["menu"] = List(self.partitions)
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
-		self["key_red"] = Button("")
+		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button("")
 		self["key_yellow"] = Button("")
-		self["key_blue"] = Button(_("Exit"))
+		self["key_blue"] = Button("")
 		self["label_disk"] = Label("%s - %s" % (self.disk[0], self.disk[3]))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
-			"blue": self.quit,
+			"red": self.quit,
 			"yellow": self.yellow,
 			"green": self.green,
-			"red": self.red,
+			"blue": self.blue,
 			"cancel": self.quit,
 		}, -2)
 
@@ -85,10 +85,10 @@ class HddPartitions(Screen):
 				rmp = self.mountpoints.getRealMount(self.disk[0], 1)
 				if len(mp) > 0 or len(rmp) > 0:
 					self.mounted = True
-					self["key_red"].setText(_("Unmount"))
+					self["key_blue"].setText(_("Unmount"))
 				else:
 					self.mounted = False
-					self["key_red"].setText(_("Mount"))
+					self["key_blue"].setText(_("Mount"))
 
 	def setWindowTitle(self):
 		self.setTitle(_("Partitions"))
@@ -96,22 +96,22 @@ class HddPartitions(Screen):
 	def selectionChanged(self):
 		self["key_green"].setText("")
 		self["key_yellow"].setText("")
-		self["key_red"].setText("")
+		self["key_blue"].setText("")
 		
 		if len(self.disk[5]) > 0:
 			index = self["menu"].getIndex()
 			if self.disk[5][index][3] == "83" or self.disk[5][index][3] == "7" or self.disk[5][index][3] == "b":
-				self["key_green"].setText(_("Check"))
+				self["key_blue"].setText(_("Check"))
 				self["key_yellow"].setText(_("Format"))
 				
 				mp = self.mountpoints.get(self.disk[0], index+1)
 				rmp = self.mountpoints.getRealMount(self.disk[0], index+1)
 				if len(mp) > 0 or len(rmp) > 0:
 					self.mounted = True
-					self["key_red"].setText(_("Unmount"))
+					self["key_blue"].setText(_("Unmount"))
 				else:
 					self.mounted = False
-					self["key_red"].setText(_("Mount"))
+					self["key_blue"].setText(_("Mount"))
 
 	def chkfs(self):
 		disks = Disks()
@@ -215,7 +215,7 @@ class HddPartitions(Screen):
 			self["menu"].setList(self.partitions)
 			self.selectionChanged()
 
-	def red(self):
+	def blue(self):
 		if len(self.disk[5]) > 0:
 			index = self["menu"].getIndex()
 			if self.disk[5][index][3] != "83" and self.disk[5][index][3] != "7" and self.disk[5][index][3] != "b":

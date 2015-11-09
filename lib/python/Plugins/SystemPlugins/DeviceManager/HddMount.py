@@ -32,11 +32,9 @@ class HddMount(Screen):
 	<screen name="HddMount" position="center,center" size="560,430" title="Hard Drive Mount">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
 		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 		<widget name="menu" position="20,45" scrollbarMode="showOnDemand" size="520,380" transparent="1" />
 	</screen>"""
@@ -67,15 +65,14 @@ class HddMount(Screen):
 
 		self["menu"] = MenuList(self.list)
 
-		self["key_red"] = Button(_("Fixed mount"))
+		self["key_red"] = Button(_("Exit"))
 		self["key_green"] = Button(_("Fast mount"))
-		self["key_blue"] = Button(_("Exit"))
-		self["key_yellow"] = Button("")
+		self["key_blue"] = Button(_("Fixed mount"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
-			"blue": self.quit,
+			"red": self.quit,
 			"green": self.green,
-			"red": self.ok,
+			"blue": self.blue,
 			"cancel": self.quit,
 		}, -2)
 
@@ -84,7 +81,7 @@ class HddMount(Screen):
 	def setWindowTitle(self):
 		self.setTitle(_("Mountpoints"))
 
-	def ok(self):
+	def blue(self):
 		self.fast = False
 		selected = self["menu"].getSelectedIndex()
 		if selected == 0:
@@ -222,12 +219,12 @@ class HddFastRemove(Screen):
 		self.refreshMP(False)
 
 		self["menu"] = List(self.disks)
-		self["key_red"] = Button(_("Unmount"))
-		self["key_blue"] = Button(_("Exit"))
+		self["key_red"] = Button(_("Exit"))
+		self["key_blue"] = Button(_("Unmount"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
-			"blue": self.quit,
-			"red": self.red,
+			"red": self.quit,
+			"blue": self.blue,
 			"cancel": self.quit,
 		}, -2)
 
@@ -236,7 +233,7 @@ class HddFastRemove(Screen):
 	def setWindowTitle(self):
 		self.setTitle(_("Fast Mounted Remove"))
 
-	def red(self):
+	def blue(self):
 		if len(self.mounts) > 0:
 			self.sindex = self["menu"].getIndex()
 			self.mountpoints.umount(self.mounts[self.sindex]) # actually umount device here - also check both cases possible - for instance error case also check with stay in /e.g. /media/usb folder on telnet
