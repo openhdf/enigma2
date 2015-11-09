@@ -66,7 +66,7 @@ class Disks():
 
 	# in this case device is full device with slice number... for example sda1
 	def getTypeName(self, device):
-		cmd = "/usr/sbin/sfdisk -c /dev/%s %s" % (device[:3], device[3:])
+		cmd = "/usr/sbin/sfdisk --part-type /dev/%s %s" % (device[:3], device[3:])
 		fdisk = os.popen(cmd, "r")
 		res = fdisk.read().strip()
 		fdisk.close()
@@ -75,7 +75,7 @@ class Disks():
 		return res
 
 	def getType(self, device):
-		cmd = "/usr/sbin/sfdisk -c /dev/%s %s" % (device[:3], device[3:])
+		cmd = "/usr/sbin/sfdisk --part-type /dev/%s %s" % (device[:3], device[3:])
 		fdisk = os.popen(cmd, "r")
 		res = fdisk.read().strip()
 		fdisk.close()
@@ -179,23 +179,23 @@ class Disks():
 			if psize > 128000:
 					# Start at sector 8 to better support 4k aligned disks
 					print "[DeviceManager] Detected >128GB disk, using 4k alignment"
-					flow = "8,+,%s\n;0,0\n;0,0\n;0,0\ny\n" % ptype
+					flow = "8,,%s\n0,0\n0,0\n0,0\nwrite\n" % ptype
 			else:
-				flow = "0,+,%s\n;\n;\n;\ny\n" % ptype
+				flow = ",,%s\nwrite\n" % ptype
 		elif type == 1:
 			psize = (size / (1024*1024)) / 2
-			flow = "0,%d,%s\n+,+,%s\n;\n;\ny\n" % (psize, ptype, ptype)
+			flow = ",%dM,%s\n,,%s\nwrite\n" % (psize, ptype, ptype)
 		elif type == 2:
 			psize = ((size / (1024*1024)) / 4) * 3
-			flow = "0,%d,%s\n+,+,%s\n;\n;\ny\n" % (psize, ptype, ptype)
+			flow = ",%dM,%s\n,,%s\nwrite\n" % (psize, ptype, ptype)
 		elif type == 3:
 			psize = (size / (1024*1024)) / 3
-			flow = "0,%d,%s\n+,%d,%s\n+,+,%s\n;\ny\n" % (psize, ptype, psize, ptype, ptype)
+			flow = ",%dM,%s\n,%dM,%s\n,,%s\nwrite\n" % (psize, ptype, psize, ptype, ptype)
 		elif type == 4:
 			psize = (size / (1024*1024)) / 4
-			flow = "0,%d,%s\n+,%d,%s\n+,%d,%s\n+,+,%s\ny\n" % (psize, ptype, psize, ptype, psize, ptype, ptype)
+			flow = ",%dM,%s\n,%dM,%s\n,%dM,%s\n,,%s\nwrite\n" % (psize, ptype, psize, ptype, psize, ptype, ptype)
 
-		cmd = "%s -f -uM /dev/%s" % ("/usr/sbin/sfdisk", device)
+		cmd = "%s -f -uS /dev/%s" % ("/usr/sbin/sfdisk", device)
 		sfdisk = os.popen(cmd, "w")
 		sfdisk.write(flow)
 		if sfdisk.close():
