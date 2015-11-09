@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-10-27 16:56+0100\n"
+"PO-Revision-Date: 2015-11-08 06:42+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -10941,6 +10941,30 @@ msgstr "Zap-Fokus auf Hauptbild legen"
 
 msgid "Zap mode"
 msgstr "Umschalt Modus"
+
+msgid "Channel zap delay mode"
+msgstr "Umschaltverzögerung"
+
+msgid "Channel zap delay first button"
+msgstr "Verzögerung erster Tastendruck"
+
+msgid "Channel zap delay another button"
+msgstr "Verzögerung weiterer Tastendruck"
+
+msgid "Number of digits in channel number"
+msgstr "Anzahl der Stellen in der Kanalliste"
+
+msgid "Setup delay mode to zap to channels."
+msgstr "Einstellung der Umschaltverzögerung zwischen den Kanälen."
+
+msgid "User defined delay when you press the first button to zap to the channel."
+msgstr "Benutzerdefinierte Einstellung der Umschaltverzögerung beim Druck auf die erste Taste."
+
+msgid "User defined delay when you press another button to zap to the channel."
+msgstr "Benutzerdefinierte Einstellung der Umschaltverzögerung beim Druck auf die zweite Taste."
+
+msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
+msgstr "Hier kann die Anzahl der Kanäle auf 5 stellig geändert werden, wenn mehr als 9999 Kanäle vorhhanden sind."
 
 msgid "Zap to channel (setup in menu)"
 msgstr "Zap zu Sender"
