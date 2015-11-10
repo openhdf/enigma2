@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-11-08 06:42+0100\n"
+"PO-Revision-Date: 2015-11-10 10:49+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2329,7 +2329,16 @@ msgid "Color space"
 msgstr "Farbraum"
 
 msgid "Command To Run"
-msgstr "Kommando zum Ausführen"
+msgstr "Befehl zum Ausführen"
+
+msgid "What Day of week ?"
+msgstr "An welchem Wochentag?"
+
+msgid "What Day of month ?"
+msgstr "An welchem Tag des Monats?"
+
+msgid "Remove Confirmation"
+msgstr "Löschen bestätigen"
 
 msgid "Command order"
 msgstr "Befehlsfolge"
@@ -7006,9 +7015,6 @@ msgstr "Fernbedienungstyp"
 msgid "Remove"
 msgstr "Entfernen"
 
-msgid "Remove Confirmation"
-msgstr "Bestätige Löschvorgang"
-
 msgid "Remove Service"
 msgstr "Service löschen"
 
@@ -7216,7 +7222,7 @@ msgid "Round start time on"
 msgstr "Runde Startzeit auf"
 
 msgid "Run how often ?"
-msgstr "Wie oft laufen lassen?"
+msgstr "Wie oft ausführen?"
 
 msgid "Running"
 msgstr "läuft"
@@ -10308,12 +10314,6 @@ msgstr "West"
 
 msgid "West limit set"
 msgstr "Westen Grenzwert setzen"
-
-msgid "What Day of month ?"
-msgstr "Welchen Tag des Monats?"
-
-msgid "What Day of week ?"
-msgstr "Welchen Tag der Woche?"
 
 msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
 msgstr "Was soll am Ende des Timer geschehen? 'Auto' schickt die Box in den Zustand den sie hatte als der Timer startete. 'Nichts machen', 'In Bereitschaft gehen', 'Ausschalten' machen genau das was sie sagen."

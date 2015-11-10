@@ -190,20 +190,20 @@ class CronTimers(Screen):
 					if parts[1] == '*':
 						line2 = 'H: 00:' + parts[0].zfill(2) + '\t'
 						for i in range(5, len(parts)-1):
-							line2 = line2 + parts[i]
+							line2 = line2 + parts[i] + ' '
 						res = (line2, line)
 						self.list.append(res)
 					elif parts[2] == '*' and parts[4] == '*':
 						line2 = 'D: ' + parts[1].zfill(2) + ':' + parts[0].zfill(2) + '\t'
 						for i in range(5, len(parts)-1):
-							line2 = line2 + parts[i]
+							line2 = line2 + parts[i] + ' '
 						res = (line2, line)
 						self.list.append(res)
 					elif parts[3] == '*':
 						if parts[4] == "*":
 							line2 = 'M:  Day ' + parts[2] + '  ' + parts[1].zfill(2) + ':' + parts[0].zfill(2) + '\t'
 							for i in range(5, len(parts)-1):
-								line2 = line2 + parts[i]
+								line2 = line2 + parts[i] + ' '
 						header = 'W:  '
 						day = ""
 						if str(parts[4]).find('0') >= 0:
@@ -224,7 +224,7 @@ class CronTimers(Screen):
 						if day:
 							line2 = header + day + parts[1].zfill(2) + ':' + parts[0].zfill(2) + '\t'
 							for i in range(5, len(parts)-1):
-								line2 = line2 + parts[i]
+								line2 = line2 + parts[i] + ' '
 						res = (line2, line)
 						self.list.append(res)
 			f.close()
@@ -305,7 +305,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 		if config.crontimers.runwhen.value == 'Weekly':
 			self.list.append(getConfigListEntry(_("What Day of week ?"), config.crontimers.dayofweek))
 		if config.crontimers.runwhen.value == 'Monthly':
-			self.list.append(getConfigListEntry(_("What date of month ?"), config.crontimers.dayofmonth))
+			self.list.append(getConfigListEntry(_("What Day of month ?"), config.crontimers.dayofmonth))
 		self.list.append(getConfigListEntry(_("Command type"), config.crontimers.commandtype))
 		if config.crontimers.commandtype.value == 'custom':
 			self.list.append(getConfigListEntry(_("Command To Run"), config.crontimers.user_command))
