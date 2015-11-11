@@ -104,7 +104,7 @@
 	</screen>
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="220,132">
-		<widget source="session.CurrentService" render="PiconRes" position="0,0" zPosition="2" size="220,200" halign="center" alphatest="on">
+		<widget source="session.CurrentService" render="PiconRes" position="0,0" zPosition="2" size="220,132" halign="center" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<eLabel position="0,202" size="220,2" backgroundColor="#BDBDBD" zPosition="3" />
@@ -272,13 +272,13 @@
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="220,132" flags="wfNoBorder">
 		<ePixmap pixmap="/usr/share/enigma2/display/analoguhr_blue_lcd.png" position="0,0" size="220,132" zPosition="0" />
-	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,132" hColor="white" linewidth="12" zPosition="4" alphatest="on">
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,132" hColor="white" linewidth="7" zPosition="4" alphatest="on">
 		<convert type="OMaclock">Hours</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,132" mColor="white" linewidth="12" zPosition="3" alphatest="on">
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,132" mColor="white" linewidth="7" zPosition="3" alphatest="on">
 		<convert type="OMaclock">Minutes</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,132" sColor="red" linewidth="9" zPosition="2" alphatest="on">
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,132" sColor="red" linewidth="4" zPosition="2" alphatest="on">
 		<convert type="OMaclock">Seconds</convert>
 	</widget>
 	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/analoguhr_lcd_rec.png" position="0,0" size="220,132" zPosition="1" transparent="1" alphatest="on" >
