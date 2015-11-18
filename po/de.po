@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-11-10 10:49+0100\n"
+"PO-Revision-Date: 2015-11-18 17:46+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1448,6 +1448,9 @@ msgstr "Immer nachfragen"
 msgid "Show columns"
 msgstr "Zeige Spalten"
 
+msgid "Channel name wide"
+msgstr "Angepasste Breite des Sendernamens"
+
 msgid "Show record indicator"
 msgstr "Zeige Record Anzeige"
 
@@ -1455,7 +1458,15 @@ msgid "Red colored"
 msgstr "Rot eingefärbt"
 
 msgid "Divide"
-msgstr "Aufgeteilt"
+msgstr "Standard"
+
+#, python-format
+msgid "%d pixels wide"
+msgstr "%d Pixel breit"
+
+#, python-format
+msgid "%s pixels wide"
+msgstr "%s Pixel breit"
 
 msgid "Enable fallback remote receiver"
 msgstr "Aktiviere Reservereceiver"
@@ -1471,10 +1482,6 @@ msgstr "URL des Reservereceiver"
 
 msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
 msgstr "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn mehr als ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der unter Anpassen eingestellt ist. 'Auto' wählt den Tuner nach E2-Regeln und ignoriert die Einstellung in Anpassen."
-
-#, python-format
-msgid "%d pixels wide"
-msgstr "%d Pixel breit"
 
 msgid "Always show bouquets"
 msgstr "Zeige Favoritenliste immer an"
