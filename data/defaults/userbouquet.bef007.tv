@@ -1,63 +1,141 @@
-#NAME SD Sender
-#SERVICE 1:0:1:445C:453:1:C00000:0:0:0:
-#SERVICE 1:0:1:2EE3:441:1:C00000:0:0:0:
-#SERVICE 1:0:1:2EF4:441:1:C00000:0:0:0:
-#SERVICE 1:0:1:2F08:441:1:C00000:0:0:0:
-#SERVICE 1:0:1:445E:453:1:C00000:0:0:0:
-#SERVICE 1:0:1:2F1C:441:1:C00000:0:0:0:
-#SERVICE 1:0:1:445D:453:1:C00000:0:0:0:
-#SERVICE 1:0:1:3F:21:85:C00000:0:0:0:
-#SERVICE 1:0:1:2EFE:441:1:C00000:0:0:0:
-#SERVICE 1:0:1:39:F:85:C00000:0:0:0:
-#SERVICE 1:0:1:6DCA:44D:1:C00000:0:0:0:
-#SERVICE 1:0:1:6D66:437:1:C00000:0:0:0:
-#SERVICE 1:0:1:6D6E:437:1:C00000:0:0:0:
-#SERVICE 1:0:1:6D6B:437:1:C00000:0:0:0:
-#SERVICE 1:0:1:6D70:437:1:C00000:0:0:0:
-#SERVICE 1:0:1:7033:41B:1:C00000:0:0:0:
-#SERVICE 1:0:1:6E44:431:1:C00000:0:0:0:
-#SERVICE 1:0:1:7034:41B:1:C00000:0:0:0:
-#SERVICE 1:0:1:E:4:85:C00000:0:0:0:
-#SERVICE 1:0:1:C:4:85:C00000:0:0:0:
-#SERVICE 1:0:1:29:3:85:C00000:0:0:0:
-#SERVICE 1:0:1:A:2:85:C00000:0:0:0:
-#SERVICE 1:0:1:2B:2:85:C00000:0:0:0:
-#SERVICE 1:0:1:B:2:85:C00000:0:0:0:
-#SERVICE 1:0:1:14:2:85:C00000:0:0:0:
-#SERVICE 1:0:1:9:2:85:C00000:0:0:0:
-#SERVICE 1:0:1:4460:453:1:C00000:0:0:0:
-#SERVICE 1:0:1:8:2:85:C00000:0:0:0:
-#SERVICE 1:0:1:19:3:85:C00000:0:0:0:
-#SERVICE 1:0:1:3336:45B:1:C00000:0:0:0:
-#SERVICE 1:0:1:34:4:85:C00000:0:0:0:
-#SERVICE 1:0:1:32C9:45D:1:C00000:0:0:0:
-#SERVICE 1:0:1:32CA:45D:1:C00000:0:0:0:
-#SERVICE 1:0:1:32D4:45D:1:C00000:0:0:0:
-#SERVICE 1:0:1:33A7:3EB:1:C00000:0:0:0:
-#SERVICE 1:0:1:10:1:85:C00000:0:0:0:
-#SERVICE 1:0:1:24:11:85:C00000:0:0:0:
-#SERVICE 1:0:1:1B:1:85:C00000:0:0:0:
-#SERVICE 1:0:1:17:1:85:C00000:0:0:0:
-#SERVICE 1:0:1:1D:1:85:C00000:0:0:0:
-#SERVICE 1:0:1:25:F:85:C00000:0:0:0:
-#SERVICE 1:0:1:2A:1:85:C00000:0:0:0:
-#SERVICE 1:0:1:3332:45B:1:C00000:0:0:0:
-#SERVICE 1:0:1:23:F:85:C00000:0:0:0:
-#SERVICE 1:0:1:32:1:85:C00000:0:0:0:
-#SERVICE 1:0:1:7031:41B:1:C00000:0:0:0:
-#SERVICE 1:0:1:701:5:85:C00000:0:0:0:
-#SERVICE 1:0:1:7032:41B:1:C00000:0:0:0:
-#SERVICE 1:0:1:6F46:445:1:C00000:0:0:0:
-#SERVICE 1:0:1:6D67:437:1:C00000:0:0:0:
-#SERVICE 1:0:1:33:21:85:C00000:0:0:0:
-#SERVICE 1:0:1:308:5:85:C00000:0:0:0:
-#SERVICE 1:0:1:11:3:85:C00000:0:0:0:
-#SERVICE 1:0:1:DD:4:85:C00000:0:0:0:
-#SERVICE 1:0:1:DE:4:85:C00000:0:0:0:
-#SERVICE 1:0:1:A8:1:85:C00000:0:0:0:
-#SERVICE 1:0:1:DF:4:85:C00000:0:0:0:
-#SERVICE 1:0:1:7035:41B:1:C00000:0:0:0:
-#SERVICE 1:0:1:2F3A:441:1:C00000:0:0:0:
-#SERVICE 1:0:1:21:F:85:C00000:0:0:0:
-#SERVICE 1:0:1:2F1D:441:1:C00000:0:0:0:
-#SERVICE 1:0:1:332F:45B:1:C00000:0:0:0:
+#NAME IPTV/WebTV Sender
+#SERVICE 1:64:0:0:0:0:0:0:0:0::--- Web TV (Germany) ---
+#DESCRIPTION --- Web TV (Germany) ---
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//82.220.10.66/udp/239.3.0.16%3a1234:3sat
+#DESCRIPTION 3sat
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//alex-stream.rosebud-media.de%3a1935/live/alexlivetv.smil/hasbahca.m3u8?bitrate=800:Alex berlin
+#DESCRIPTION Alex berlin
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//82.220.10.66/udp/239.3.0.2%3a1234:Arte
+#DESCRIPTION Arte
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//badentv-stream2.siebnich.info/rtplive/vlc.sdp:Baden TV
+#DESCRIPTION Baden TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/BLKonline_high:BLK online TV Burgenlandkreis
+#DESCRIPTION BLK online TV Burgenlandkreis
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//live.bwfamily.tv%3a1935/rtplive/vlc.sdp:bw family.tv
+#DESCRIPTION bw family.tv
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//x3282azmedc12001.f.l.f.lb.core-cdn.net/12001centertvkoeln/live/3282azmedia/live_de_500:CenterTV/Koln-Bonn
+#DESCRIPTION CenterTV/Koln-Bonn
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//fms.daf.tmt.de%3a1935/live/dafstream100:DAF TV
+#DESCRIPTION DAF TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//fms.daf.tmt.de%3a1935/live/dafstream:DAF TV
+#DESCRIPTION DAF TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ru-element.ru/playlist/playlist.php?ch=57&d=10.01.13:DELUX
+#DESCRIPTION DELUX
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//video07.kanal8.de/dresdenfernsehenlive/myStream.sdp:Dresden Fernsehen
+#DESCRIPTION Dresden Fernsehen
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/elbe_high:Elbekanal Schönebeck
+#DESCRIPTION Elbekanal Schönebeck
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//83.169.58.36/live/Stream3:FamilyTV
+#DESCRIPTION FamilyTV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//cp141087.live.edgefcs.net/live/FAN_Television@36388:FAN - Fernsehen aus Niedersachsen
+#DESCRIPTION FAN - Fernsehen aus Niedersachsen
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.27/filstalwelle-live/livestream:Filstalwelle
+#DESCRIPTION Filstalwelle
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//streaming.colesnicov.at/live/stream.sdp_360p:Grein TV
+#DESCRIPTION Grein TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/tvhalle_high:Halle TV
+#DESCRIPTION Halle TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mms%3a//wmsstream22.v4.mytv.ris.at/live/stream_149:HT1
+#DESCRIPTION HT1
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//85.214.107.68/juwelo_hd/live_DE1:Juwelo TV
+#DESCRIPTION Juwelo TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mms%3a//vod.kab.tv/ger:Kabbalah TV
+#DESCRIPTION Kabbalah TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//85.239.122.165/live/mk3w-3faw-3rqf-enc0-kika:KIKA
+#DESCRIPTION KIKA
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//video61.kanal8.de/leipzigfernsehenlive/myStream.sdp:Leipzig Fernsehen LF
+#DESCRIPTION Leipzig Fernsehen LF
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtsp%3a//streamer1.streamhost.org%3a1935/salive/lctvde:Light Channel TV Deutschland
+#DESCRIPTION Light Channel TV Deutschland
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.105/ltv-live/livestream:LT - TV Baden Wuerttemberg
+#DESCRIPTION LT - TV Baden Wuerttemberg
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mms%3a//stream01.massive-mag.tv/massivefreeze_hq:Massive Freeze,
+#DESCRIPTION Massive Freeze,
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mms%3a//stream01.massive-mag.tv/massiverunning_mq:Massive mag
+#DESCRIPTION Massive mag
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mms%3a//stream01.massive-mag.tv/massivemag_mq:Massive Mag TV
+#DESCRIPTION Massive Mag TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//streamserver.smartcast.de/mediashop/mediashop.stream:MediaShop
+#DESCRIPTION MediaShop
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//www.ndr.de/resources/metadaten/ndr_fs_hh_hi_wmv.asx:NDR_Hamburg
+#DESCRIPTION NDR_Hamburg
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//www.noa4.tv/stream/video/noa4-stream-mid.asx:Noa 4
+#DESCRIPTION Noa 4
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mms%3a//wt-wm1.wtnet.de/noa4hh-stream-mid?.wma:NOA4 Hamburg
+#DESCRIPTION NOA4 Hamburg
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wt-wm1.wtnet.de/noa4hh-stream-hi?MSWMExt=.asf:noa4 Hamburg
+#DESCRIPTION noa4 Hamburg
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mmsh%3a//wt-wm1.wtnet.de/noa4hh-stream-hi?MSWMExt=.asf:NOA4 Hamburg (HQ)
+#DESCRIPTION NOA4 Hamburg (HQ)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mmsh%3a//wt-wm1.wtnet.de/noa4hh-stream-mid?MSWMExt=.asf:NOA4 Hamburg (MQ)
+#DESCRIPTION NOA4 Hamburg (MQ)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wt-wm1.wtnet.de/noa4-stream-hi?MSWMExt=.asf:noa4 Norderstedt
+#DESCRIPTION noa4 Norderstedt
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mmsh%3a//wt-wm1.wtnet.de/noa4-stream-hi?MSWMExt=.asf:NOA4 Norderstedt (HQ)
+#DESCRIPTION NOA4 Norderstedt (HQ)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mmsh%3a//wt-wm1.wtnet.de/noa4-stream-mid?MSWMExt=.asf:NOA4 Norderstedt (MQ)
+#DESCRIPTION NOA4 Norderstedt (MQ)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//77.109.160.182%3a80/ojom/ojom.stream:Ojom TV (Thaherq)
+#DESCRIPTION Ojom TV (Thaherq)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/ok-dessau_high:OK Dessau
+#DESCRIPTION OK Dessau
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/ok-magdeburg_high:OK Magdeburg
+#DESCRIPTION OK Magdeburg
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/ok-merseburg_high:OK Merseburg
+#DESCRIPTION OK Merseburg
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/ok-salzwedel_high:OK Salzwedel
+#DESCRIPTION OK Salzwedel
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/ok-stendal_high:OK Stendal
+#DESCRIPTION OK Stendal
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//www.canlitv.com/asx.php?id=10942:OK tv
+#DESCRIPTION OK tv
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//217.151.151.58/oktv:OK tv
+#DESCRIPTION OK tv
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/ok-wernigerode_high:OK Wernigerode
+#DESCRIPTION OK Wernigerode
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/ok-wettin_high:OK Wettin
+#DESCRIPTION OK Wettin
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mms%3a//streaming.ok54.de/ok54:OK54
+#DESCRIPTION OK54
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//iptv.ok54.de/stream.asx:OK54
+#DESCRIPTION OK54
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//streaming.orgatech.de/o1/oeins:Oldenburg Eins TV
+#DESCRIPTION Oldenburg Eins TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/punktum_high:Punktum Südharz
+#DESCRIPTION Punktum Südharz
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/mp4%3aran1_high:Ran 1
+#DESCRIPTION Ran 1
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/ran1_high:RAN 1 Dessau
+#DESCRIPTION RAN 1 Dessau
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/rbw_high:RBW
+#DESCRIPTION RBW
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live/RFH_high:RFH TV
+#DESCRIPTION RFH TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//83.169.58.36/live/sdf%3a3fb1c9c9-09c8-404a-8c0f-56b27617ab89:RIC TV
+#DESCRIPTION RIC TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//wowza01.newmedia.lu/channel1/live:RTL Tele Letzebourg
+#DESCRIPTION RTL Tele Letzebourg
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//videocdn.sdf.bz.it/hls-live/livepkgr/_definst_/liveevent/livestream.m3u8:SDF = Mein Fernsehen in Südtirol
+#DESCRIPTION SDF = Mein Fernsehen in Südtirol
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//streamserver.smartcast.de/stapa1i/stapa1i.stream:Shop 24 Direct
+#DESCRIPTION Shop 24 Direct
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//stream.streetclip.tv%3a1935/live/high-stream:Streetclip TV
+#DESCRIPTION Streetclip TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtsp%3a//rtmp.infomaniak.ch/livecast/barntele:TeleBärn
+#DESCRIPTION TeleBärn
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//xapp510394c1000199.f.l.f.lb.core-cdn.net%3a1935/1000199copo/live/app510394368/w509050881/live_de_500:Telebasel (Clyde)
+#DESCRIPTION Telebasel (Clyde)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtsp%3a//stream2.telvi.de%3a1935/trp1live/livestream1:TRP 1
+#DESCRIPTION TRP 1
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.102/funkhaus-live/livestream:TV Südbaden
+#DESCRIPTION TV Südbaden
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mms%3a//a1683.l2277457829.c22774.n.lm.akamaistream.net/D/1683/22774/v0001/reflector%3a57829?KLI_D=428&asx=6909&entry=1&item=1&atte:TV-DE, Talk TCT TV
+#DESCRIPTION TV-DE, Talk TCT TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//194.116.150.47/live/visitx.stream1:VISIT-X TV
+#DESCRIPTION VISIT-X TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mms%3a//stream.vrf.de/VRF:VRF Vogtland
+#DESCRIPTION VRF Vogtland
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mms%3a//85.239.121.220%3a1108:WMZ TV Lauchhammer
+#DESCRIPTION WMZ TV Lauchhammer
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:mms%3a//85.233.48.26%3a1108:WMZ TV Oderland
+#DESCRIPTION WMZ TV Oderland
