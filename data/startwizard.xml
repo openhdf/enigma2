@@ -148,7 +148,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 			<condition>
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
-			</condition>			
+			</condition>
 			<text value="What do you want to scan?" />
 			<displaytext value="What do you want to scan?" />
 			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
