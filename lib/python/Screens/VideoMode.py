@@ -177,6 +177,8 @@ class VideoSetup(Screen, ConfigListScreen):
 				self.hw.setMode(port, '1080p', '50Hz')
 			elif (smart1080p == '1080p50') or (smart1080p == 'true'): # for compatibility with old ConfigEnableDisable
 				self.hw.setMode(port, '1080p', '50Hz')
+			elif smart1080p == '2160p50':
+				self.hw.setMode(port, '2160p', '50Hz')
 			elif smart1080p == '1080i50':
 				self.hw.setMode(port, '1080i', '50Hz')
 			elif smart1080p == '720p50':
@@ -540,7 +542,6 @@ class AutoVideoMode(Screen):
 			# always use a fixed resolution and frame rate   (e.g. 1080p50 if supported) for TV or .ts files
 			# always use a fixed resolution and correct rate (e.g. 1080p24/p50/p60 for all other videos
 			if config.av.smart1080p.value != 'false':
-				print "DEBUG VIDEOMODE/ smart1080p enabled"
 				ref = self.session.nav.getCurrentlyPlayingServiceReference()
 				if ref is not None:
 					try:
@@ -580,6 +581,8 @@ class AutoVideoMode(Screen):
 				
 				if  (config.av.smart1080p.value == '1080p50') or (config.av.smart1080p.value == 'true'): # for compatibility with old ConfigEnableDisable
 					write_mode = '1080p' + new_rate
+				elif config.av.smart1080p.value == '2160p50':
+					write_mode = '2160p' + new_rate
 				elif config.av.smart1080p.value == '1080i50':
 					if new_rate == '24':
 						write_mode = '1080p24' # instead of 1080i24
@@ -587,6 +590,7 @@ class AutoVideoMode(Screen):
 						write_mode = '1080i' + new_rate
 				elif config.av.smart1080p.value == '720p50':
 					write_mode = '720p' + new_rate
+				print "[VideoMode] smart1080p mode, selecting ",write_mode
 
 			if write_mode and current_mode != write_mode and self.bufferfull:
 				# first we read now the real available values for every stb,
@@ -609,11 +613,11 @@ class AutoVideoMode(Screen):
 						if not changeResolution:
 							print "[VideoMode] setMode - port: %s, mode: %s is not available" % (config_port, write_mode)
 							resolutionlabel["restxt"].setText(_("Video mode: %s not available") % write_mode)
-							# we try to go for not available 1080p24 to change to 1080p from 60hz_choices if available
+							# we try to go for not available 1080p24/1080p30/1080p60 to change to 1080p from 60hz_choices if available
 							# TODO: can we make it easier, or more important --> smaller ?
 							# should we outsourced that way, like two new "def ..."
 							# or some other stuff, not like this?
-							if write_mode == "1080p24":
+							if (write_mode == "1080p24") or (write_mode == "1080p30") or (write_mode == "1080p60"):
 								for x in values:
 									if x == "1080p":
 										try:
@@ -637,6 +641,10 @@ class AutoVideoMode(Screen):
 						vf.close()
 				except Exception, e:
 					print("[VideoMode] read videomode_choices exception:" + str(e))
+			elif write_mode and current_mode != write_mode:
+				# TODO: sometimes the resolution remains stuck at a wrong setting as self.bufferfull is False
+				# not sure whether that condition is correct in the 'if' above
+				print "[VideoMode] not changing from",current_mode,"to",write_mode,"as self.bufferfull is",self.bufferfull
 
 		iAVSwitch.setAspect(config.av.aspect)
 		iAVSwitch.setWss(config.av.wss)
