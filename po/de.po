@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-11-28 09:17+0100\n"
+"PO-Revision-Date: 2015-11-28 17:24+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -8104,6 +8104,12 @@ msgstr "Zeige Hintergrundfarbe von Picon"
 
 msgid "Show picons in service list"
 msgstr "Zeige Picon in der Senderliste"
+
+msgid "Service picons downsize"
+msgstr "Senderlogos verkleinern"
+
+msgid "Reduce the size of the service picons for more line spacing between them."
+msgstr "Reduzieren Sie die Größe der Senderlogos für mehr Zeilenabstand zwischen ihnen."
 
 msgid "The servicelist is reloaded."
 msgstr "Die Senderliste wurde neu geladen."
