@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-11-18 17:46+0100\n"
+"PO-Revision-Date: 2015-11-28 09:17+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -6118,6 +6118,9 @@ msgid "Packet management"
 msgstr "Paketverwaltung"
 
 msgid "Packet Manager"
+msgstr "Paketverwaltung"
+
+msgid "Packet manager"
 msgstr "Paketverwaltung"
 
 msgid "PacketManager"
