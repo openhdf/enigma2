@@ -348,6 +348,7 @@ class AutoVideoMode(Screen):
 				iPlayableService.evVideoProgressiveChanged: self.VideoChanged,
 				iPlayableService.evVideoFramerateChanged: self.VideoChanged,
 				iPlayableService.evBuffering: self.BufferInfo,
+				iPlayableService.evStopped: self.BufferInfoStop
 			})
 
 		self.delay = False
@@ -362,6 +363,9 @@ class AutoVideoMode(Screen):
 			self.VideoChanged()
 		else:
 			self.bufferfull = False
+
+	def BufferInfoStop(self):
+		self.bufferfull = True
 
 	def VideoChanged(self):
 		if self.session.nav.getCurrentlyPlayingServiceReference() and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith('4097:'):
