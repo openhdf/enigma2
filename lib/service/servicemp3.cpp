@@ -420,6 +420,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_cuesheet_loaded = false; /* cuesheet CVR */
 #if GST_VERSION_MAJOR >= 1
 	m_use_chapter_entries = false; /* TOC chapter support CVR */
+	m_last_seek_pos = 0; /* CVR last seek position */
 #endif
 	m_extra_headers = "";
 	m_download_buffer_path = "";
@@ -665,8 +666,7 @@ eServiceMP3::~eServiceMP3()
 		gst_object_unref(bus);
 	}
 
-	if (m_state == stRunning)
-		stop();
+	stop();
 
 	if (m_stream_tags)
 		gst_tag_list_free(m_stream_tags);
@@ -747,12 +747,28 @@ RESULT eServiceMP3::start()
 {
 	ASSERT(m_state == stIdle);
 
-	m_state = stRunning;
 	m_subtitles_paused = false;
 	if (m_gst_playbin)
 	{
 		// eDebug("eServiceMP3::starting pipeline");
-		gst_element_set_state (m_gst_playbin, GST_STATE_PAUSED);
+		GstStateChangeReturn ret;
+		ret = gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
+
+		switch(ret)
+		{
+		case GST_STATE_CHANGE_FAILURE:
+			eDebug("[eServiceMP3] failed to start pipeline");
+			stop();
+			break;
+		case GST_STATE_CHANGE_SUCCESS:
+			m_is_live = false;
+			break;
+		case GST_STATE_CHANGE_NO_PREROLL:
+			m_is_live = true;
+			break;
+		default:
+			break;
+		}
 	}
 
 	return 0;
@@ -767,26 +783,24 @@ void eServiceMP3::sourceTimeout()
 
 RESULT eServiceMP3::stop()
 {
-	ASSERT(m_state != stIdle);
-
-	if (m_state == stStopped)
+	if (!m_gst_playbin || m_state == stStopped)
 		return -1;
 
 	eDebug("eServiceMP3::stop %s", m_ref.path.c_str());
 	m_state = stStopped;
-	
-       GstStateChangeReturn ret;
-       GstState state, pending;
-       /* make sure that last state change was successfull */
-       ret = gst_element_get_state(m_gst_playbin, &state, &pending, GST_CLOCK_TIME_NONE);
-       eDebug("[eServiceMP3] stop state:%s pending:%s ret:%s",
-               gst_element_state_get_name(state),
-               gst_element_state_get_name(pending),
-               gst_element_state_change_return_get_name(ret));
 
-       ret = gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
-       if (ret != GST_STATE_CHANGE_SUCCESS)
-               eDebug("[eServiceMP3] stop GST_STATE_NULL failure");
+	GstStateChangeReturn ret;
+	GstState state, pending;
+	/* make sure that last state change was successfull */
+	ret = gst_element_get_state(m_gst_playbin, &state, &pending, 5 * GST_SECOND);
+	eDebug("[eServiceMP3] stop state:%s pending:%s ret:%s",
+		gst_element_state_get_name(state),
+		gst_element_state_get_name(pending),
+		gst_element_state_change_return_get_name(ret));
+
+	ret = gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
+	if (ret != GST_STATE_CHANGE_SUCCESS)
+		eDebug("[eServiceMP3] stop GST_STATE_NULL failure");
 
 	saveCuesheet();
 	m_subtitles_paused = false;
@@ -843,7 +857,6 @@ RESULT eServiceMP3::unpause()
 
 	m_subtitles_paused = false;
 	m_subtitle_sync_timer->start(1, true);
-	
 	/* no need to unpase if we are not paused already */
 	if (m_currentTrickRatio == 1.0 && !m_paused)
 	{
@@ -866,10 +879,7 @@ RESULT eServiceMP3::seek(ePtr<iSeekableService> &ptr)
 
 RESULT eServiceMP3::getLength(pts_t &pts)
 {
-	if (!m_gst_playbin)
-		return -1;
-
-	if (m_state != stRunning)
+	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 
 	GstFormat fmt = GST_FORMAT_TIME;
@@ -889,10 +899,17 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 RESULT eServiceMP3::seekToImpl(pts_t to)
 {
 		/* convert pts to nanoseconds */
+#if GST_VERSION_MAJOR < 1
 	gint64 time_nanoseconds = to * 11111LL;
 	if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
 		GST_SEEK_TYPE_SET, time_nanoseconds,
 		GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
+#else
+	m_last_seek_pos = to * 11111LL;
+	if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
+		GST_SEEK_TYPE_SET, m_last_seek_pos,
+		GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
+#endif
 	{
 		eDebug("eServiceMP3::seekTo failed");
 		return -1;
@@ -1005,7 +1022,7 @@ seek_unpause:
 	{
 		if (ratio >= 0.0)
 		{
-			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
+			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
 		}
 		else
 		{
@@ -1051,9 +1068,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	gint64 pos;
 	pts = 0;
 
-	if (!m_gst_playbin)
-		return -1;
-	if (m_state != stRunning)
+	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 
 	if (audioSink || videoSink)
@@ -1090,9 +1105,7 @@ RESULT eServiceMP3::isCurrentlySeekable()
 {
 	int ret = 3; /* just assume that seeking and fast/slow winding are possible */
 
-	if (!m_gst_playbin)
-		return 0;
-	if (m_state != stRunning)
+	if (!m_gst_playbin || m_state != stRunning)
 		return 0;
 
 	return ret;
@@ -1629,6 +1642,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 		return;
 	gchar *sourceName;
 	GstObject *source;
+	GstElement *subsink;
 	source = GST_MESSAGE_SRC(msg);
 	if (!GST_IS_OBJECT(source))
 		return;
@@ -1670,12 +1684,12 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				}	break;
 				case GST_STATE_CHANGE_READY_TO_PAUSED:
 				{
-					gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
+					m_state = stRunning;
 #if GST_VERSION_MAJOR >= 1
 					GValue result = { 0, };
 #endif
 					GstIterator *children;
-					GstElement *subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
+					subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
 					if (subsink)
 					{
 #ifdef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
@@ -1735,7 +1749,11 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 #endif
 					gst_iterator_free(children);
 
-					m_is_live = (gst_element_get_state(m_gst_playbin, NULL, NULL, 0LL) == GST_STATE_CHANGE_NO_PREROLL);
+					/* if we are in preroll already do not check again the state */
+					if (!m_is_live)
+					{
+						m_is_live = (gst_element_get_state(m_gst_playbin, NULL, NULL, 0LL) == GST_STATE_CHANGE_NO_PREROLL);
+					}
 
 					setAC3Delay(ac3_delay);
 					setPCMDelay(pcm_delay);
@@ -1799,6 +1817,35 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			g_error_free(err);
 			break;
 		}
+#if GST_VERSION_MAJOR >= 1
+		case GST_MESSAGE_WARNING:
+		{
+			gchar *debug_warn = NULL;
+			GError *warn = NULL;
+			gst_message_parse_warning (msg, &warn, &debug_warn);
+			/* CVR this Warning occurs from time to time with external srt files
+			When a new seek is done the problem off to long wait times before subtitles appears,
+			after movie was restarted with a resume position is solved. */
+			if(!strncmp(warn->message , "Internal data flow problem", 26) && !strncmp(sourceName, "subtitle_sink", 13))
+			{
+				eWarning("[eServiceMP3] Gstreamer warning : %s (%i) from %s" , warn->message, warn->code, sourceName);
+				subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
+				if(subsink)
+				{
+					if (!gst_element_seek (subsink, m_currentTrickRatio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
+						GST_SEEK_TYPE_SET, m_last_seek_pos,
+						GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
+					{
+						eDebug("[eServiceMP3] seekToImpl subsink failed");
+					}
+					gst_object_unref(subsink);
+				}
+			}
+			g_free(debug_warn);
+			g_error_free(warn);
+			break;
+		}
+#endif
 		case GST_MESSAGE_INFO:
 		{
 			gchar *debug;
@@ -2064,7 +2111,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			break;
 		}
 		case GST_MESSAGE_BUFFERING:
-			if (m_state == stRunning && m_sourceinfo.is_streaming)
+			if (m_sourceinfo.is_streaming)
 			{
 				GstBufferingMode mode;
 				gst_message_parse_buffering(msg, &(m_bufferInfo.bufferPercent));
@@ -2195,6 +2242,7 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 					{
 						if (y == 0)
 						{
+
 							if (!m_cuesheet_loaded)
 								loadCuesheet();
 						}
@@ -2216,13 +2264,13 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 								{
 									/* toc not add if cue available */
 									if (pts == i->where && type == i->what)
-									{			
+									{
 										tocadd = false;
-										break;										
-									}			
-								}			
+										break;
+									}
+								}
 								if (tocadd)
-								{									
+								{
 									m_cue_entries.insert(cueEntry(pts, type));
 								}
 								m_cuesheet_changed = 1;
