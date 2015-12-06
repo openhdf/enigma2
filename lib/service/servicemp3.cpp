@@ -405,7 +405,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_subtitle_sync_timer = eTimer::create(eApp);
 	m_streamingsrc_timeout = 0;
 	m_stream_tags = 0;
-	m_bitrate = 0;
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = -1;
 	m_cachedSubtitleStream = 0; /* report the first subtitle stream to be 'cached'. TODO: use an actual cache. */
