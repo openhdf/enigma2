@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-11-30 17:53+0100\n"
+"PO-Revision-Date: 2015-12-06 09:35+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1199,6 +1199,15 @@ msgstr "Autotimer hinzufügen"
 
 msgid "Add Timer"
 msgstr "Timer hinzufügen"
+
+msgid "Delete timer"
+msgstr "Timer entfernen"
+
+msgid "Edit timer"
+msgstr "Timer ändern"
+
+msgid "Disable timer"
+msgstr "Timer deaktivieren"
 
 #, python-format
 msgid "Add filter"
