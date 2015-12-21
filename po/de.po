@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2015-12-06 09:35+0100\n"
+"PO-Revision-Date: 2015-12-18 19:28+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -6554,6 +6554,9 @@ msgstr "Portugiesisch"
 
 msgid "Position Setup"
 msgstr "Rotor Einstellungen"
+
+msgid "Positions Setup"
+msgstr "Oberflächen Einstellungen"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Position beendeter Timer in der Timerliste"

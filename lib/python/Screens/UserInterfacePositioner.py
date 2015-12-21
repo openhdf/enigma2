@@ -229,7 +229,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 			</screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setup_title = _("Position Setup")
+		self.setup_title = _("Positions Setup")
 #		self.Console = Console()
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
@@ -368,7 +368,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 class UserInterfacePositioner(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setup_title = _("Position Setup")
+		self.setup_title = _("Positions Setup")
 #		self.Console = Console()
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
