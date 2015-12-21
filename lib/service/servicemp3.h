@@ -307,6 +307,8 @@ private:
 	/* servicemMP3 chapter TOC support CVR */
 #if GST_VERSION_MAJOR >= 1
 	bool m_use_chapter_entries;
+	/* CVR needed for user requested media pause */
+	bool m_user_paused;
 #endif
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
@@ -320,7 +322,6 @@ private:
 	int m_state;
 	GstElement *m_gst_playbin, *audioSink, *videoSink;
 	GstTagList *m_stream_tags;
-	guint m_bitrate;
 
 	eFixedMessagePump<ePtr<GstMessageContainer> > m_pump;
 
