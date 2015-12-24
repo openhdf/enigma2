@@ -6,8 +6,8 @@ from Components.MenuList import MenuList
 from Components.Sources.StaticText import StaticText
 from Components.config import config, ConfigNumber, ConfigSelectionNumber, getConfigListEntry
 from Plugins.Plugin import PluginDescriptor
-
 from enigma import setAnimation_current, setAnimation_speed
+from boxbranding import getBrandOEM
 
 # default = disabled
 g_default = {
