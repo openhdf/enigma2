@@ -26,6 +26,7 @@ config.pic.cache = ConfigYesNo(default=True)
 config.pic.lastDir = ConfigText(default=resolveFilename(SCOPE_MEDIA))
 config.pic.infoline = ConfigYesNo(default=True)
 config.pic.loop = ConfigYesNo(default=True)
+config.pic.onMainMenu = ConfigYesNo(default=False)
 config.pic.bgcolor = ConfigSelection(default="#00000000", choices = [("#00000000", _("black")),("#009eb9ff", _("blue")),("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
 config.pic.textcolor = ConfigSelection(default="#0038FF48", choices = [("#00000000", _("black")),("#009eb9ff", _("blue")),("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
 
@@ -178,6 +179,7 @@ class Pic_Setup(Screen, ConfigListScreen):
 			getConfigListEntry(_("Slide picture in loop"), config.pic.loop),
 			getConfigListEntry(_("Background color"), config.pic.bgcolor),
 			getConfigListEntry(_("Text color"), config.pic.textcolor),
+			getConfigListEntry(_("Show in main menu"), config.pic.onMainMenu),
 			getConfigListEntry(_("Fullview resolution"), config.usage.pic_resolution),
 		]
 		self["config"].list = setup_list
