@@ -11,7 +11,7 @@ from boxbranding import getBrandOEM
 
 # default = disabled
 g_default = {
-        "current": 6,
+        "current": 0,
         "speed"  : 20,
 }
 g_max_speed = 30
@@ -231,7 +231,7 @@ def animationSetupMain(session, **kwargs):
 	session.open(AnimationSetupScreen)
 
 def startAnimationSetup(menuid):
-	if menuid != "ui_menu":
+	if menuid != "gui_menu":
 		return []
 
 	return [( _("Animations"), animationSetupMain, "animation_setup", 3)]
