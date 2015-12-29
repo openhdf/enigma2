@@ -13113,3 +13113,9 @@ msgstr "Sollen jetzt die Einstellungen gesichert werden?"
 
 msgid "Backup your image now?"
 msgstr "Soll jetzt ein komplettes Backup vom Image erstellt werden?"
+
+msgid "Animations"
+msgstr "Animationen"
+
+msgid "Animation Speed"
+msgstr "Animations Geschwindigkeit"
