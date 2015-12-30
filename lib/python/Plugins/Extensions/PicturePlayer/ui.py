@@ -470,6 +470,7 @@ class Pic_Full_View(Screen):
 			"cancel": self.Exit,
 			"green": self.PlayPause,
 			"yellow": self.PlayPause,
+			"ok": self.PlayPause,
 			"blue": self.nextPic,
 			"red": self.prevPic,
 			"left": self.prevPic,
