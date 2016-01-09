@@ -65,8 +65,6 @@ public:
 		LINKED_PREV_PTR,      // prev double linked list (for linked FEs)
 		LINKED_NEXT_PTR,      // next double linked list (for linked FEs)
 		SATPOS_DEPENDS_PTR,   // pointer to FE with configured rotor (with twin/quattro lnb)
-		CUR_FREQ,             // current frequency
-		CUR_SYM,              // current frequency
 		FREQ_OFFSET,          // current frequency offset
 		CUR_VOLTAGE,          // current voltage
 		CUR_TONE,             // current continuous tone
@@ -76,11 +74,6 @@ public:
 		DISEQC_WDG,           // Watchdog for buggy DiSEqC-implementation (VuZero)
 		SPECTINV_CNT,         // spectral inversation counter (need for offset calculation)
 		LFSR,                 // PRNG collision handling
-		TAKEOVER_COUNTDOWN,
-		TAKEOVER_MASTER,
-		TAKEOVER_SLAVE,
-		TAKEOVER_RELEASE,
-		GUARD_IDX,
 		NUM_DATA_ENTRIES
 	};
 	Signal1<void,iDVBFrontend*> m_stateChanged;
@@ -88,14 +81,11 @@ private:
 	DECLARE_REF(eDVBFrontend);
 	bool m_simulate;
 	bool m_enabled;
+	bool m_fbc;
 	eDVBFrontend *m_simulate_fe; // only used to set frontend type in dvb.cpp
 	int m_dvbid;
 	int m_slotid;
 	int m_fd;
-	int m_teakover;
-	int m_waitteakover;
-	int m_break_teakover;
-	int m_break_waitteakover;
 #define DVB_VERSION(major, minor) ((major << 8) | minor)
 	int m_dvbversion;
 	bool m_rotor_mode;
@@ -133,7 +123,6 @@ private:
 
 	static int PriorityOrder;
 	static int PreferredFrontendIndex;
-
 public:
 	eDVBFrontend(const char *devidenodename, int fe, int &ok, bool simulate=false, eDVBFrontend *simulate_fe=NULL);
 	virtual ~eDVBFrontend();
@@ -153,7 +142,6 @@ public:
 	RESULT sendToneburst(int burst);
 	RESULT setSEC(iDVBSatelliteEquipmentControl *sec);
 	RESULT setSecSequence(eSecCommandList &list);
-	RESULT setSecSequence(eSecCommandList &list, iDVBFrontend *fe);
 	RESULT getData(int num, long &data);
 	RESULT setData(int num, long val);
 	bool changeType(int type);
@@ -182,21 +170,6 @@ public:
 	bool is_FBCTuner() { return m_fbc; }
 	bool getEnabled() { return m_enabled; }
 	void setEnabled(bool enable) { m_enabled = enable; }
-	bool has_prev() { return (m_data[LINKED_PREV_PTR] != -1); }
-	bool has_next() { return (m_data[LINKED_NEXT_PTR] != -1); }
-
-	eDVBRegisteredFrontend *getPrev(eDVBRegisteredFrontend *fe);
-	eDVBRegisteredFrontend *getNext(eDVBRegisteredFrontend *fe);
-
-	void getTop(eDVBRegisteredFrontend *fe, eDVBRegisteredFrontend* &top_fe);
-	void getTop(eDVBRegisteredFrontend *fe, eDVBFrontend* &top_fe);
-	void getTop(eDVBFrontend *fe, eDVBRegisteredFrontend* &top_fe);
-	void getTop(eDVBFrontend *fe, eDVBFrontend* &top_fe);
-	void getTop(iDVBFrontend &fe, eDVBRegisteredFrontend * &top_fe);
-	void getTop(iDVBFrontend &fe, eDVBFrontend * &top_fe);
-
-	eDVBRegisteredFrontend *getLast(eDVBRegisteredFrontend *fe);
-
 };
 
 #endif // SWIG
