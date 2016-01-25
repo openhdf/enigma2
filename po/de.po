@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-01-24 13:42+0100\n"
+"PO-Revision-Date: 2016-01-25 12:03+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2966,6 +2966,12 @@ msgstr "Schnitteditor..."
 
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "Filmschnitt ausführen (benötigt MovieCut Plugin)"
+
+msgid "Enable intro screen"
+msgstr "Begrüßungsbildschirm aktivieren"
+
+msgid "Disable intro screen"
+msgstr "Begrüßungsbildschirm abschalten"
 
 msgid "Czech"
 msgstr "Tchechisch"
