@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-01-25 12:03+0100\n"
+"PO-Revision-Date: 2016-01-23 15:30+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -840,12 +840,6 @@ msgstr "3X"
 
 msgid "3d mode"
 msgstr "3D Betriebsart"
-
-msgid "Mark service as dedicated 3D service"
-msgstr "Als 3D Kanal markieren"
-
-msgid "Unmark service as dedicated 3D service"
-msgstr "3D Markierung entfernen"
 
 msgid "4:3"
 msgstr "4:3"
