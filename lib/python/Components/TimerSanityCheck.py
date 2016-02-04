@@ -42,13 +42,13 @@ class TimerSanityCheck:
 							return False
 						if fl1: #is group
 							return timer.service_ref.ref.getPath() == self.newtimer.service_ref.ref.getPath()
-						getUnsignedDataRef1 = timer.service_ref.ref.getUnsignedData
-						getUnsignedDataRef2 = self.newtimer.service_ref.ref.getUnsignedData
-						for x in (1, 2, 3, 4):
-							if getUnsignedDataRef1(x) != getUnsignedDataRef2(x):
-								break
-						else:
-							return True
+					getUnsignedDataRef1 = timer.service_ref.ref.getUnsignedData
+					getUnsignedDataRef2 = self.newtimer.service_ref.ref.getUnsignedData
+					for x in (1, 2, 3, 4):
+						if getUnsignedDataRef1(x) != getUnsignedDataRef2(x):
+							break;
+					else:
+						return True
 		return False
 
 	def checkTimerlist(self, ext_timer=1):
@@ -92,7 +92,7 @@ class TimerSanityCheck:
 # now process existing timers
 		idx = 0
 		for timer in self.timerlist:
-			if (timer != self.newtimer) and (not timer.disabled):
+			if (timer != self.newtimer) and (not timer.disabled) and timer.conflict_detection:
 				if timer.repeated:
 					rflags = timer.repeated
 					rflags = ((rflags & 0x7F)>> 3)|((rflags & 0x07)<<4)
@@ -117,7 +117,7 @@ class TimerSanityCheck:
 			interval_end = max(self.nrep_eventlist)[0]
 			offset_0 = interval_begin - (interval_begin % 604800)
 			weeks = (interval_end - offset_0) / 604800
-			if (interval_end - offset_0) % 604800:
+			if ((interval_end - offset_0) % 604800):
 				weeks += 1
 			for cnt in range(int(weeks)):
 				for event in self.rep_eventlist:
