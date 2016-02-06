@@ -6,7 +6,7 @@ from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
 from Components.Harddisk import harddiskmanager
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol, eTimer, eServiceReference, pNavigation
+from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference, pNavigation
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
 from Tools import Notifications
 from time import localtime, time
@@ -85,22 +85,22 @@ class Standby2(Screen):
 			setLCDModeMinitTV("0")
 
 		self.paused_service = None
-		self.prev_running_service = None
-
-		if self.session.current_dialog:
-			if self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_STOPS:
-				if localtime(time()).tm_year > 1970 and self.session.nav.getCurrentlyPlayingServiceOrGroup():
-					if config.servicelist.startupservice_standby.value:
-						self.prev_running_service = eServiceReference(config.servicelist.startupservice_standby.value)
-					else:
-						self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-					self.session.nav.stopService()
+		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		service = self.prev_running_service and self.prev_running_service.toString()
+		if service:
+			if service.rsplit(":", 1)[1].startswith("/"):
+				self.paused_service = True
+				self.infoBarInstance.pauseService()
+		if not self.paused_service:
+			self.timeHandler =  eDVBLocalTimeHandler.getInstance()
+			if self.timeHandler.ready():
+				if self.session.nav.getCurrentlyPlayingServiceOrGroup():
+					self.stopService()
 				else:
-					self.standbyTimeUnknownTimer.callback.append(self.stopService)
-					self.standbyTimeUnknownTimer.startLongTimer(60)
-			elif self.session.current_dialog.ALLOW_SUSPEND == Screen.SUSPEND_PAUSES:
-				self.paused_service = self.session.current_dialog
-				self.paused_service.pauseService()
+					self.standbyStopServiceTimer.startLongTimer(5)
+				self.timeHandler = None
+			else:
+				self.timeHandler.m_timeUpdated.get().append(self.stopService)
 		if self.session.pipshown:
 			from Screens.InfoBar import InfoBar
 			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
