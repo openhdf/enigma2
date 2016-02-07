@@ -7,7 +7,7 @@ from bisect import insort
 from sys import maxint
 import os
 
-from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, setPreferredTuner
+from enigma import eEPGCache, getBestPlayableServiceReference, eStreamServer, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, setPreferredTuner
 
 from Components.config import config
 from Components import Harddisk
@@ -406,7 +406,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return True
 
 			self.log(7, "prepare failed")
-			if self.first_try_prepare == 0:
+			if eStreamServer.getInstance().getConnectedClients():
+				eStreamServer.getInstance().stopStream()
+				return False
+				if self.first_try_prepare == 0:
 				# (0) try to make a tuner available by disabling PIP
 				self.first_try_prepare += 1
 				from Screens.InfoBar import InfoBar
@@ -1038,7 +1041,6 @@ class RecordTimer(timer.Timer):
 		return isRunning
 
 	def loadTimer(self):
-		# TODO: PATH!
 		if not Directories.fileExists(self.Filename):
 			return
 		try:
@@ -1063,16 +1065,19 @@ class RecordTimer(timer.Timer):
 
 		root = doc.getroot()
 
-		# put out a message when at least one timer overlaps
-		checkit = True
+		checkit = False
+		timer_text = ""
 		for timer in root.findall("timer"):
 			newTimer = createTimer(timer)
-			if (self.record(newTimer, ignoreTSC=True, dosave=False) is not None) and checkit:
-				from Tools.Notifications import AddPopup
-				from Screens.MessageBox import MessageBox
-				timer_text = _("\nTimer '%s' disabled!") % newTimer.name
-				AddPopup(_("Timer overlap in timers.xml detected!\nPlease recheck it!") + timer_text, type = MessageBox.TYPE_ERROR, timeout = 0, id = "TimerLoadFailed")
-				checkit = False # at moment it is enough when the message is displayed one time
+			conflict_list = self.record(newTimer, ignoreTSC=True, dosave=False, loadtimer=True)
+			if conflict_list:
+				checkit = True
+				if newTimer in conflict_list:
+					timer_text += _("\nTimer '%s' disabled!") % newTimer.name
+		if checkit:
+			from Tools.Notifications import AddPopup
+			from Screens.MessageBox import MessageBox
+			AddPopup(_("Timer overlap in timers.xml detected!\nPlease recheck it!") + timer_text, type = MessageBox.TYPE_ERROR, timeout = 0, id = "TimerLoadFailed")
 
 	def saveTimer(self):
 		list = ['<?xml version="1.0" ?>\n', '<timers>\n']
@@ -1203,8 +1208,9 @@ class RecordTimer(timer.Timer):
 				return True
 		return False
 
-	def record(self, entry, ignoreTSC=False, dosave=True): # wird von loadTimer mit dosave=False aufgerufen
-		timersanitycheck = TimerSanityCheck(self.timer_list,entry)
+	def record(self, entry, ignoreTSC=False, dosave=True, loadtimer=False):
+		check_timer_list = self.timer_list[:]
+		timersanitycheck = TimerSanityCheck(check_timer_list,entry)
 		answer = None
 		if not timersanitycheck.check():
 			if not ignoreTSC:
@@ -1213,9 +1219,13 @@ class RecordTimer(timer.Timer):
 				return timersanitycheck.getSimulTimerList()
 			else:
 				print "[RecordTimer] ignore timer conflict..."
-				if not dosave:
-					entry.disabled = True
-					answer = timersanitycheck.getSimulTimerList()
+				if not dosave and loadtimer:
+					simulTimerList = timersanitycheck.getSimulTimerList()
+					if entry in simulTimerList:
+						entry.disabled = True
+						if entry in check_timer_list:
+							check_timer_list.remove(entry)
+					answer = simulTimerList
 		elif timersanitycheck.doubleCheck():
 			print "[RecordTimer] ignore double timer..."
 			return None
