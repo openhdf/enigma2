@@ -1335,14 +1335,16 @@ class ChannelSelectionBase(Screen):
 
 	def showAllServices(self):
 		if not self.pathChangeDisabled:
-			refstr = '%s ORDER BY name'% self.service_types
+			refstr = '%s ORDER BY name'%(self.service_types)
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
 				currentRoot = self.getRoot()
 				if currentRoot is None or currentRoot != ref:
 					self.clearPath()
 					self.enterPath(ref)
-					self.setCurrentSelectionAlternative(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+					playingref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					if playingref:
+						self.setCurrentSelectionAlternative(playingref)
 
 	def getServicesCount(self, root_ref):
 		count = 0
