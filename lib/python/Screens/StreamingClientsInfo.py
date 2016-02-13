@@ -9,7 +9,7 @@ class StreamingClientsInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setTitle(_("Streaming clients info"))
-		clients = ClientsStreaming("INFO_RESOLVE")
+		clients = ClientsStreaming("ALL")
 		text = clients.getText()
 
 		self["ScrollLabel"] = ScrollLabel(text)
