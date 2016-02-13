@@ -22,7 +22,6 @@ from Components.Label import Label
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.SelectionList import SelectionList
 from Components.PluginComponent import plugins
-#from Components.About import about
 from Components.PackageInfo import PackageInfoHandler
 from Components.Language import language
 from Components.AVSwitch import AVSwitch
@@ -50,6 +49,10 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
 boxtype = getBoxType()
 brandoem = getBrandOEM()
 
+def eEnv_resolve_multi(path):
+	resolve = eEnv.resolve(path)
+	return resolve.split()
+
 if config.softwareupdate.disableupdates.value:
 	if os.path.exists("/var/lib/opkg/status"):
 		os.system("mkdir /var/lib/.opkg")
@@ -75,13 +78,14 @@ if boxtype == "odinm9" or boxtype == "maram9":
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/backup/', visible_width = 50, fixed_size = False)
 else:
 	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/CCcam.cfg', 
-																		 '/etc/CCcam.prio', '/usr/keys/', '/usr/bin/*cam*', '/etc/init.d/softcam*', '/etc/tuxbox/config/', 
-																		 '/etc/*.emu', '/etc/auto.network', '/etc/default/dropbear', '/home/root/.ssh/', '/etc/samba/',  
-																		 '/etc/fstab', '/etc/inadyn.conf', '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/default_gw', 
-																		 '/etc/wpa_supplicant.ath0.conf', '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/hostname', 
-																		 eEnv.resolve("${datadir}/enigma2/keymap.usr"), eEnv.resolve("${datadir}/enigma2/keymap.ntr")])
-
+config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/CCcam.cfg', '/etc/CCcam.prio', '/usr/keys/', '/etc/tuxbox/config/', 
+																			'/etc/auto.network', '/etc/default/dropbear', '/home/root/.ssh/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf', 
+																			'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/default_gw', '/etc/wpa_supplicant.ath0.conf', 
+																			'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/hostname', '/usr/share/enigma2/XionHDF/skin.xml', 
+																			eEnv.resolve("${datadir}/enigma2/keymap.usr"), eEnv.resolve("${datadir}/enigma2/keymap.ntr")]\
+																			+eEnv_resolve_multi('/usr/bin/*cam*')\
+																			+eEnv_resolve_multi('/etc/*.emu')\
+																			+eEnv_resolve_multi('/etc/init.d/softcam*'))
 config.plugins.softwaremanager = ConfigSubsection()
 config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
 config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
@@ -209,6 +213,7 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date." ) + self.oktext, None))
 			self.list.append(("backuplocation", _("Select backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
 			self.list.append(("backupfiles", _("Select backup files"),  _("Select files for backup.") + self.oktext + "\n\n" + self.infotext, None))
+			self.list.append(("resetbackupfiles",_("Set backupfiles to defaults"), _("\nReset selection of files for backup to default." ) + self.oktext, None))
 			if config.usage.setup_level.index >= 2: # expert+
 				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
 			self.list.append(("ipkg-source",_("Select upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext, None))
@@ -389,6 +394,9 @@ class UpdatePluginMenu(Screen):
 						self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title = _("Please select medium to use as backup location"), list = parts)
 				elif (currentEntry == "backupfiles"):
 					self.session.openWithCallback(self.backupfiles_choosen,BackupSelection)
+				elif (currentEntry == "resetbackupfiles"):
+					restartbox = self.session.openWithCallback(self.coldrestartGUI,MessageBox,_("Set selected files for backup to default \nand restart Enigma now?"), MessageBox.TYPE_YESNO)
+					restartbox.setTitle(_("Restart Enigma"))
 				elif (currentEntry == "advancedrestore"):
 					self.session.open(RestoreMenu, self.skin_path)
 				elif (currentEntry == "ipkg-source"):
@@ -396,6 +404,13 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "advanced-plugin"):
 					self.extended = current[3]
 					self.extended(self.session, None)
+
+	def coldrestartGUI(self, answer):
+		if answer is True:
+			os.system("find /etc/enigma2/settings -type f -exec sed -i '/config.plugins.configurationbackup.backupdirs/d' {} \;")
+			os.system("killall -9 enigma2")
+		else:
+			self.close()
 
 	def backupfiles_choosen(self, ret):
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
