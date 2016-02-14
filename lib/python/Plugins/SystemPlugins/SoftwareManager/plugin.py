@@ -407,8 +407,7 @@ class UpdatePluginMenu(Screen):
 
 	def coldrestartGUI(self, answer):
 		if answer is True:
-			os.system("find /etc/enigma2/settings -type f -exec sed -i '/config.plugins.configurationbackup.backupdirs/d' {} \;")
-			os.system("killall -9 enigma2")
+			self.session.open(TryQuitMainloop, 9)
 		else:
 			self.close()
 

@@ -160,6 +160,9 @@ case $ret in
 		/sbin/modprobe fp
 		/sbin/reboot
 		;;
+	9)
+		sed -i '/config.plugins.configurationbackup.backupdirs/d' /etc/enigma2/settings
+		;;
 	42)
 		python /usr/lib/enigma2/python/upgrade.pyo
 		;;
