@@ -1,5 +1,5 @@
 #################################################################################
-# FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 2.0     			#
+# FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 3.2     			#
 #	                         						                            #
 #					MAKES A FULLBACK-UP READY FOR FLASHING.						#
 #																				#
@@ -19,7 +19,10 @@ import commands
 import datetime
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
-VERSION = "Version 4.1 borrowed from openATV"
+VERSION = "Version 5.1 borrowed from openATV"
+HaveGZkernel = True
+if getBrandOEM() in ("fulan") or getBoxType() in ("vusolo4k"):
+	HaveGZkernel = False
 
 def Freespace(dev):
 	statdev = statvfs(dev)
@@ -143,6 +146,9 @@ class ImageBackup(Screen):
 		self.IMAGEVERSION = self.imageInfo() #strftime("%Y%m%d", localtime(self.START))
 		if "ubi" in self.ROOTFSTYPE.split():
 			self.MKFS = "/usr/sbin/mkfs.ubifs"
+		elif "tar.bz2" in self.ROOTFSTYPE.split():
+			self.MKFS = "/bin/tar"
+			self.BZIP2 = "/usr/bin/bzip2"
 		else:
 			self.MKFS = "/usr/sbin/mkfs.jffs2"
 		self.UBINIZE = "/usr/sbin/ubinize"
@@ -160,26 +166,25 @@ class ImageBackup(Screen):
 			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
 			return
 
-		self.TYPE = "ET"
 		self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 		self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 		self.MAINDEST = "%s/%s" %(self.DIRECTORY,self.IMAGEFOLDER)
 		self.EXTRA = "%s/fullbackup_%s_%s/%s_build_%s" % (self.DIRECTORY, self.IMAGEFOLDER, self.HDFIMAGEVERSION, self.DATE, self.HDFIMAGEBUILD)
 		self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
-
 		self.message = "echo -e '\n"
 		self.message += (_("Back-up Tool for a %s\n" %self.SHOWNAME)).upper()
 		self.message += VERSION + '\n'
-		self.message += _("Please be patient, a backup will now be made.\n")
-		self.message += "____________________________________________________________\n\n"
-		self.message += _("If you want to watch TV while backup is running,\n")
-		self.message += _("press yellow button twice to toggle between backup and TV.\n")
-		self.message += "____________________________________________________________\n\n"
-		if self.ROOTFSTYPE == "ubifs":
+		self.message += "_________________________________________________\n\n"
+		self.message += _("Please be patient, a backup will now be made,\n")
+		if self.ROOTFSTYPE == "ubi":
 			self.message += _("because of the used filesystem the back-up\n")
 			self.message += _("will take about 3-12 minutes for this system\n")
+		elif "tar.bz2" in self.ROOTFSTYPE.split():
+			self.message += _("because of the used filesystem the back-up\n")
+			self.message += _("will take about 1-4 minutes for this system\n")
 		else:
-			self.message += _("This will take between 2 and 9 minutes\n")
+			self.message += _("this will take between 2 and 9 minutes\n")
+		self.message += "\n_________________________________________________\n\n"
 		self.message += "'"
 
 		## PREPARING THE BUILDING ENVIRONMENT
@@ -194,6 +199,11 @@ class ImageBackup(Screen):
 		if "jffs2" in self.ROOTFSTYPE.split():
 			cmd1 = "%s --root=/tmp/bi/root --faketime --output=%s/root.jffs2 %s" % (self.MKFS, self.WORKDIR, self.MKUBIFS_ARGS)
 			cmd2 = None
+			cmd3 = None
+		elif "tar.bz2" in self.ROOTFSTYPE.split():
+			cmd1 = "%s -cf %s/rootfs.tar -C /tmp/bi/root --exclude=/var/nmbd/* ." % (self.MKFS, self.WORKDIR)
+			cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
+			cmd3 = None
 		else:
 			f = open("%s/ubinize.cfg" %self.WORKDIR, "w")
 			f.write("[ubifs]\n")
@@ -216,35 +226,42 @@ class ImageBackup(Screen):
 		cmdlist.append(cmd1)
 		if cmd2:
 			cmdlist.append(cmd2)
+		if cmd3:
 			cmdlist.append(cmd3)
 		cmdlist.append("chmod 644 %s/root.%s" %(self.WORKDIR, self.ROOTFSTYPE))
 		cmdlist.append('echo " "')
 		cmdlist.append('echo "Create: kerneldump"')
 		cmdlist.append('echo " "')
-		cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
+		if self.MTDKERNEL == "mmcblk0p1":
+			cmdlist.append("dd if=/dev/%s of=%s/kernel_auto.bin" % (self.MTDKERNEL ,self.WORKDIR))
+		else:
+			cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
 		cmdlist.append('echo " "')
-		cmdlist.append('echo "Check: kerneldump"')
+		
+		if HaveGZkernel:
+			cmdlist.append('echo "Check: kerneldump"')
 		cmdlist.append("sync")
-				
+
 		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, finishedCallback = self.doFullBackupCB, closeOnSuccess = True)
 
 	def doFullBackupCB(self):
-		ret = commands.getoutput(' gzip -d %s/vmlinux.gz -c > /tmp/vmlinux.bin' % self.WORKDIR)
-		if ret:
-			text = "Kernel dump error\n"
-			text += "Please Flash your Kernel new and Backup again"
-			system('rm -rf /tmp/vmlinux.bin')
-			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
-			return
+		if HaveGZkernel:
+			ret = commands.getoutput(' gzip -d %s/vmlinux.gz -c > /tmp/vmlinux.bin' % self.WORKDIR)
+			if ret:
+				text = "Kernel dump error\n"
+				text += "Please Flash your Kernel new and Backup again"
+				system('rm -rf /tmp/vmlinux.bin')
+				self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
+				return
 
 		cmdlist = []
 		cmdlist.append(self.message)
-		cmdlist.append('echo "Kernel dump OK"')
-		cmdlist.append("rm -rf /tmp/vmlinux.bin")
-		cmdlist.append('echo "_________________________________________________________\n"')
+		if HaveGZkernel:
+			cmdlist.append('echo "Kernel dump OK"')
+			cmdlist.append("rm -rf /tmp/vmlinux.bin")
+		cmdlist.append('echo "_________________________________________________"')
 		cmdlist.append('echo "Almost there... "')
 		cmdlist.append('echo "Now building the USB-Image"')
-		cmdlist.append('echo "\n"')
 
 		system('rm -rf %s' %self.MAINDEST)
 		if not path.exists(self.MAINDEST):
@@ -256,12 +273,22 @@ class ImageBackup(Screen):
 		f.write(self.IMAGEVERSION)
 		f.close()
 
-		system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
-		system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
-		cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
-		cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
+		if self.ROOTFSBIN == "rootfs.tar.bz2":
+			system('mv %s/rootfs.tar.bz2 %s/rootfs.tar.bz2' %(self.WORKDIR, self.MAINDEST))
+		else:
+			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
+		if self.KERNELBIN == "kernel_auto.bin":
+			system('mv %s/kernel_auto.bin %s/kernel_auto.bin' %(self.WORKDIR, self.MAINDEST))
+		else:
+			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
+		if self.MODEL in ("vusolo4k", "vuduo2", "vusolo2", "vusolo", "vuduo", "vuultimo", "vuuno"):
+			cmdlist.append('echo "This file forces a reboot after the update." > %s/reboot.update' %self.MAINDEST)
+		elif self.MODEL in ("vuzero" , "vusolose"):
+			cmdlist.append('echo "This file forces the update." > %s/force.update' %self.MAINDEST)
+		else:
+			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
 
-		if self.MODEL == "gbquad" or self.MODEL == "gbquadplus" or self.MODEL == "gb800ue" or self.MODEL == "gb800ueplus":
+		if self.MODEL in ("gbquad", "gbquadplus", "gb800ue", "gb800ueplus", "gbultraue", "twinboxlcd"):
 			lcdwaitkey = '/usr/share/lcdwaitkey.bin'
 			lcdwarning = '/usr/share/lcdwarning.bin'
 			if path.exists(lcdwaitkey):
@@ -277,7 +304,8 @@ class ImageBackup(Screen):
 			f.write("'rootfstype=jffs2 bmem=106M@150M root=/dev/mtdblock6 rw '")
 			f.write('"\n')
 			f.close()
-		cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.EXTRA))
+
+		cmdlist.append('cp -r %s/* %s/' % (self.MAINDEST, self.EXTRA))
 
 		cmdlist.append("sync")
 		file_found = True
@@ -327,65 +355,9 @@ class ImageBackup(Screen):
 				cmdlist.append('echo "This only takes about 1 or 2 minutes"')
 				cmdlist.append('echo " "')
 
-				if self.TYPE == 'ET':
-					cmdlist.append('mkdir -p %s/%sx00' % (self.TARGET, self.MODEL[:-3]))
-					cmdlist.append('cp -r %s %s' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'VU':
-					cmdlist.append('mkdir -p %s/vuplus_back/%s' % (self.TARGET, self.MODEL[2:]))
-					cmdlist.append('cp -r %s %s/vuplus_back/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'VENTON':
-					cmdlist.append('mkdir -p %s/venton/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/venton/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'SEZAM':
-					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'MICRACLE':
-					cmdlist.append('mkdir -p %s/miraclebox/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/miraclebox/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'GI':
-					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'GIGABLUE':
-					cmdlist.append('mkdir -p %s/gigablue/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/gigablue/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'SOGNO':
-					cmdlist.append('mkdir -p %s/sogno/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/sogno/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'ODINM9' or self.TYPE == 'MARAM9':
-					#cmdlist.append('mkdir -p %s/odinm9/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'ODINM7':
-					#cmdlist.append('mkdir -p %s/' % (self.TARGET))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'E3HD':
-					#cmdlist.append('mkdir -p %s/' % (self.TARGET))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'MAXDIGITAL' or self.TYPE == 'OCTAGON':
-					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'IXUSS':
-					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'IXUSS':
-					cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'MIXOS':
-					cmdlist.append('mkdir -p %s/ebox/7403' % (self.TARGET))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'MIXOS2':
-					cmdlist.append('mkdir -p %s/ebox/7358' % (self.TARGET))
-					cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
-				elif self.TYPE == 'TECHNO':
-					cmdlist.append('mkdir -p %s/update/%s/cfe' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/update/%s/cfe' % (self.MAINDEST, self.TARGET, self.MODEL))
-				elif self.TYPE == 'IQON':
-					cmdlist.append('mkdir -p %s/update/%s/cfe' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/update/%s/cfe' % (self.MAINDEST, self.TARGET, self.MODEL))
-				elif self.TYPE == 'EDISION':
-					cmdlist.append('mkdir -p %s/update/%s/cfe' % (self.TARGET, self.MODEL))
-					cmdlist.append('cp -r %s %s/update/%s/cfe' % (self.MAINDEST, self.TARGET, self.MODEL))
-				else:
-					cmdlist.append('echo " "')
+				cmdlist.append('mkdir -p %s/%s' % (self.TARGET, self.IMAGEFOLDER))
+				cmdlist.append('cp -r %s %s/' % (self.MAINDEST, self.TARGET))
+
 
 				cmdlist.append("sync")
 				cmdlist.append('echo "Backup finished and copied to your USB-flash drive"')
