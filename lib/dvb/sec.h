@@ -28,7 +28,11 @@ public:
 		START_TUNE_TIMEOUT,
 		SET_ROTOR_MOVING,
 		SET_ROTOR_STOPPED,
-		DELAYED_CLOSE_FRONTEND
+		DELAYED_CLOSE_FRONTEND,
+		TAKEOVER,
+		WAIT_TAKEOVER,
+		RELEASE_TAKEOVER,
+		IF_TUNER_UNLOCKED_GOTO
 	};
 	int cmd;
 	struct rotor
@@ -259,14 +263,13 @@ public:
 	int m_prio; // to override automatic tuner management ... -1 is Auto
 #endif
 public:
-#define guard_offset_min (-8000)
-#define guard_offset_max 8000
-#define guard_offset_step 8000
 #define MAX_SATCR 32
 
 #define MAX_EN50607_POSITIONS 		64
 #define MAX_FIXED_LNB_POSITIONS		64
 #define MAX_MOVABLE_LNBS 		6
+
+#define UNICABLE_BANDWIDTH 		36000
 
 #define MAX_LNBNUM (MAX_FIXED_LNB_POSITIONS + MAX_MOVABLE_LNBS)
 
@@ -276,12 +279,9 @@ public:
 	int SatCR_format;
 	unsigned int SatCRvco;
 	unsigned int TuningWord;
+	unsigned int GuardTuningWord;
+	unsigned int GuardTuningWord_a;
 	unsigned int UnicableConfigWord;
-	int old_frequency;
-	int old_polarisation;
-	int old_orbital_position;
-	int guard_offset_old;
-	int guard_offset;
 };
 
 class eDVBRegisteredFrontend;
