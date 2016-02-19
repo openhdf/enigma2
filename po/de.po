@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-02-13 15:42+0100\n"
+"PO-Revision-Date: 2016-02-19 07:24+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2249,6 +2249,9 @@ msgid "Chnage to bouquet"
 msgstr "Zu Favoritenliste wechseln"
 
 msgid "Choose Bouquet"
+msgstr "Wähle Favoritenliste"
+
+msgid "Choose bouquet"
 msgstr "Wähle Favoritenliste"
 
 msgid "Choose a tag for easy finding a recording."
