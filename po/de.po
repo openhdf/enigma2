@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-02-21 08:08+0100\n"
+"PO-Revision-Date: 2016-02-23 16:44+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -5739,6 +5739,9 @@ msgstr "Neustart der %s %s"
 #, python-format
 msgid "Partitioning failed!"
 msgstr "Partitionierung fehlgeschlagen!"
+
+msgid "Partitions"
+msgstr "Partitionen"
 
 #, python-format
 msgid "One partition"
