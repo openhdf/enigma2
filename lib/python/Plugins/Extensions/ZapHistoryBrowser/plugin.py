@@ -7,7 +7,7 @@ from Components.Label import Label
 from Components.Language import language
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText
-from enigma import eListboxPythonMultiContent, eServiceCenter, gFont
+from enigma import eListboxPythonMultiContent, eServiceCenter, gFont, getDesktop, eSize
 from os import environ
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChannelSelection import ChannelSelection
@@ -95,15 +95,37 @@ class ZapHistoryConfigurator(ConfigListScreen, Screen):
 class ZapHistoryBrowserList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setItemHeight(21)
-		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setFont(1, gFont("Regular", 16))
+		desktopSize = getDesktop(0).size()
+		if desktopSize.width() == 1920:
+			self.l.setItemHeight(30)
+			self.l.setFont(0, gFont("Regular", 28))
+			self.l.setFont(1, gFont("Regular", 25))
+		elif desktopSize.width() == 1280:
+			self.l.setItemHeight(21)
+			self.l.setFont(0, gFont("Regular", 21))
+			self.l.setFont(1, gFont("Regular", 16))
+		else:
+			self.l.setItemHeight(21)
+			self.l.setFont(0, gFont("Regular", 21))
+			self.l.setFont(1, gFont("Regular", 16))		
 
 def ZapHistoryBrowserListEntry(serviceName, eventName):
-	res = [serviceName]
-	res.append(MultiContentEntryText(pos=(0, 0), size=(180, 22), font=0, text=serviceName))
-	res.append(MultiContentEntryText(pos=(190, 0), size=(370, 16), font=1, text=eventName))
-	return res
+	desktopSize = getDesktop(0).size()
+	if desktopSize.width() == 1920:
+		res = [serviceName]
+		res.append(MultiContentEntryText(pos=(0, 0), size=(230, 30), font=0, text=serviceName))
+		res.append(MultiContentEntryText(pos=(240, 0), size=(530, 30), font=1, text=eventName))
+		return res
+	elif desktopSize.width() == 1280:
+		res = [serviceName]
+		res.append(MultiContentEntryText(pos=(0, 0), size=(180, 22), font=0, text=serviceName))
+		res.append(MultiContentEntryText(pos=(190, 0), size=(530, 16), font=1, text=eventName))
+		return res
+	else:
+		res = [serviceName]
+		res.append(MultiContentEntryText(pos=(0, 0), size=(180, 22), font=0, text=serviceName))
+		res.append(MultiContentEntryText(pos=(190, 0), size=(530, 16), font=1, text=eventName))
+		return res
 
 ################################################
 
