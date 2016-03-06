@@ -114,7 +114,7 @@ public:
 	eDVBCAService(const eServiceReferenceDVB &service);
 	~eDVBCAService();
 
-	std::string toString();
+	const char *toString();
 	int getCAPMTVersion();
 	int getNumberOfDemuxes();
 	uint8_t getUsedDemux(int index);

@@ -326,7 +326,7 @@ int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapte
 				{
 					if (!freed && caservice->getUsedDemux(iter) == demux_nums[i])
 					{
-						eDebug("[eDVBCAService] free slot %d demux %d for service %s", iter, demux_nums[i], caservice->toString().c_str());
+						eDebug("[eDVBCAService] free slot %d demux %d for service %s", iter, demux_nums[i], caservice->toString());
 						caservice->setUsedDemux(iter, 0xFF);
 						freed = true;
 					}
@@ -474,9 +474,9 @@ eDVBCAService::~eDVBCAService()
 	eDebug("[eDVBCAService] free service %s", m_service.toString().c_str());
 }
 
-std::string eDVBCAService::toString()
+const char *eDVBCAService::toString()
 {
-	return m_service.toString();
+	return m_service.toString().c_str();
 }
 
 int eDVBCAService::getCAPMTVersion()
