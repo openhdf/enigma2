@@ -1454,8 +1454,25 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SEND_TONEBURST:
-				eDebugNoSimulate("[SEC] tuner %d sendToneburst: %d", m_dvbid, m_sec_sequence.current()->toneburst);
-				sec_fe->sendToneburst(m_sec_sequence.current()++->toneburst);
+			{
+				if (!m_simulate)
+				{
+					struct timeval start, end;
+					int duration, duration_est;
+					eDebugNoSimulate("[SEC] tuner %d sendToneburst: %d", m_dvbid, m_sec_sequence.current()->toneburst);
+					gettimeofday(&start, NULL);
+					sec_fe->sendToneburst(m_sec_sequence.current()->toneburst);
+					gettimeofday(&end, NULL);
+					eDebugNoSimulateNoNewLineStart("[SEC] toneburst ioctl duration: %d ms",(end.tv_usec - start.tv_usec)/1000);
+					duration = (((end.tv_usec - start.tv_usec)/1000) + 1000 ) % 1000;
+					duration_est = 24;
+					if (duration < duration_est)
+						delay = duration_est - duration;
+					if (delay > 24) delay = 24;
+					if (delay)
+						eDebugNoSimulateNoNewLineEnd(" -> extra quard delay %d ms",delay);
+				}
+				++m_sec_sequence.current();
 				break;
 			}
 			case eSecCommand::SET_FRONTEND:
