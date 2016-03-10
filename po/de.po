@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-02-27 10:38+0100\n"
+"PO-Revision-Date: 2016-03-10 06:07+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2556,6 +2556,9 @@ msgstr "Stelle ein was bei kurzem Druck auf die Aus-Taste passieren soll."
 
 msgid "History buttons mode"
 msgstr "Historie Tastenbelegung"
+
+msgid "History"
+msgstr "Historie"
 
 msgid "Configure the function of the <  > buttons."
 msgstr "Stelle ein was beim Druck auf die < > Tasten passieren soll."
