@@ -55,7 +55,9 @@ class TimerEditList(Screen):
 				"down": self.down
 			}, -1)
 		self.setTitle(_("Timer overview"))
-		self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
+		# Disable for test because it crashes on some boxes with SSD #############
+		#self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
+		##########################################################################
 		self.onShown.append(self.updateState)
 		if self.isProtected() and config.ParentalControl.servicepin[0].value:
 			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code")))
@@ -339,7 +341,9 @@ class TimerEditList(Screen):
 		self.finishedAdd(answer)
 
 	def leave(self):
-		self.session.nav.RecordTimer.on_state_change.remove(self.onStateChange)
+		# Disable for test because it crashes on some boxes with SSD #############
+		#self.session.nav.RecordTimer.on_state_change.remove(self.onStateChange)
+		##########################################################################
 		self.close()
 
 	def onStateChange(self, entry):
