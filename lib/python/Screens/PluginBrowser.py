@@ -33,19 +33,19 @@ config.pluginfilter.src = ConfigYesNo(default = False)
 config.pluginfilter.kernel = ConfigYesNo(default = False)
 config.pluginfilter.drivers = ConfigYesNo(default = True)
 config.pluginfilter.extensions = ConfigYesNo(default = True)
-config.pluginfilter.packagegroup = ConfigYesNo(default = True)
-config.pluginfilter.python = ConfigYesNo(default = True)
+config.pluginfilter.packagegroup = ConfigYesNo(default = False)
+config.pluginfilter.python = ConfigYesNo(default = False)
 config.pluginfilter.gigabluesupportnet = ConfigYesNo(default = False)
 config.pluginfilter.picons = ConfigYesNo(default = True)
 config.pluginfilter.pli = ConfigYesNo(default = False)
-config.pluginfilter.security = ConfigYesNo(default = True)
+config.pluginfilter.security = ConfigYesNo(default = False)
 config.pluginfilter.settings = ConfigYesNo(default = True)
 config.pluginfilter.skins = ConfigYesNo(default = True)
 config.pluginfilter.display = ConfigYesNo(default = True)
 config.pluginfilter.softcams = ConfigYesNo(default = True)
 config.pluginfilter.systemplugins = ConfigYesNo(default = True)
 config.pluginfilter.vix = ConfigYesNo(default = False)
-config.pluginfilter.weblinks = ConfigYesNo(default = True)
+config.pluginfilter.weblinks = ConfigYesNo(default = False)
 config.pluginfilter.userfeed = ConfigText(default = 'http://', fixed_size=False)
 
 ## command to find ipk with status hold
@@ -323,7 +323,7 @@ class PluginDownloadBrowser(Screen):
 		if config.pluginfilter.hdf.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'hdf')
 		if config.pluginfilter.po.value:
-			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'po')
+			self.PLUGIN_PREFIX2.append('enigma2-locale-')
 		if config.pluginfilter.src.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'src')
 		if config.pluginfilter.drivers.value:
@@ -358,7 +358,7 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append('packagegroup-')
 		if config.pluginfilter.python.value:
 			self.PLUGIN_PREFIX2.append('python-')
-		self.PLUGIN_PREFIX2.append('enigma2-locale-')
+		#self.PLUGIN_PREFIX2.append('enigma2-locale-')
 
 	def go(self):
 		sel = self["list"].l.getCurrentSelection()
