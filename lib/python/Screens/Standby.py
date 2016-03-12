@@ -11,9 +11,9 @@ from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
 from Tools import Notifications
 from time import localtime, time
 import Screens.InfoBar
-from gettext import dgettext
 import PowerTimer
 import RecordTimer
+from gettext import dgettext
 import Components.RecordingConfig
 
 inStandby = None
@@ -75,7 +75,9 @@ class Standby2(Screen):
 
 		globalActionMap.setEnabled(False)
 
-		self.standbyTimeUnknownTimer = eTimer()
+		self.standbyStopServiceTimer = eTimer()
+		self.standbyStopServiceTimer.callback.append(self.stopService)
+		self.timeHandler = None
 
 		#mute adc
 		self.setMute()
@@ -88,9 +90,9 @@ class Standby2(Screen):
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		service = self.prev_running_service and self.prev_running_service.toString()
 		if service:
-			if service.rsplit(":", 1)[1].startswith("/"):
-				self.paused_service = True
-				self.infoBarInstance.pauseService()
+			if service.startswith("1:") and service.rsplit(":", 1)[1].startswith("/"):
+				self.paused_service = self.session.current_dialog
+				self.paused_service.pauseService()
 		if not self.paused_service:
 			self.timeHandler =  eDVBLocalTimeHandler.getInstance()
 			if self.timeHandler.ready():
@@ -121,11 +123,13 @@ class Standby2(Screen):
 	def __onClose(self):
 		global inStandby
 		inStandby = None
-		self.standbyTimeUnknownTimer.stop()
-		if self.prev_running_service:
-			self.session.nav.playService(self.prev_running_service)
-		elif self.paused_service:
+		self.standbyStopServiceTimer.stop()
+		self.timeHandler and self.timeHandler.m_timeUpdated.get().remove(self.stopService)
+		if self.paused_service:
 			self.paused_service.unPauseService()
+		elif self.prev_running_service:
+			service = self.prev_running_service.toString()
+			self.session.nav.playService(self.prev_running_service)
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
 		for hdd in harddiskmanager.HDDList():
