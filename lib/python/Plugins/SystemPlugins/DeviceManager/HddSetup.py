@@ -4,6 +4,11 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from ExtrasList import ExtrasList
+from Components.MenuList import MenuList
+from Components.GUIComponent import GUIComponent
+from Components.HTMLComponent import HTMLComponent
 from Tools.LoadPixmap import LoadPixmap
 from Components.Button import Button
 from Components.Label import Label
@@ -55,7 +60,7 @@ class HddSetup(Screen):
 	def __init__(self, session, args = 0):
 		self.session = session
 		Screen.__init__(self, session)
-		self.disks = list ()
+		self.disks = list()
 		self.mdisks = Disks()
 		for disk in self.mdisks.disks:
 			capacity = "%d MB" % (disk[1] / (1024 * 1024))
@@ -88,7 +93,7 @@ class HddSetup(Screen):
 		return self.mdisks.mkfs(self.mdisks.disks[self.sindex][0], self.formatted, self.fsresult)
 
 	def refresh(self):
-		self.disks = list ()
+		self.disks = list()
 		self.mdisks = Disks()
 		for disk in self.mdisks.disks:
 			capacity = "%d MB" % (disk[1] / (1024 * 1024))
