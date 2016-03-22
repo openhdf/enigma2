@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-03-21 15:58+0100\n"
+"PO-Revision-Date: 2016-03-22 17:09+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -9969,6 +9969,12 @@ msgstr "Benutze NetMed EPG-Informationen benutzen wenn sie vorhanden sind."
 
 msgid "Use Virgin EPG information when it is available."
 msgstr "Benutze Virgin EPG-Informationen benutzen wenn sie vorhanden sind."
+
+msgid "Maximum number of days in EPG"
+msgstr "Maximale Anzahl von Tagen vom EPG"
+
+msgid "Use for load only x days in EPG"
+msgstr "Festlegen der Tage zum laden des EPG"
 
 msgid "Use TV remote control"
 msgstr "Nutze TV-Fernbedienung"
