@@ -27,7 +27,6 @@ eServiceMP3Record::eServiceMP3Record(const eServiceReference &ref):
 
 	CONNECT(m_pump.recv_msg, eServiceMP3Record::gstPoll);
 	CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3Record::sourceTimeout);
-
 }
 
 eServiceMP3Record::~eServiceMP3Record()
@@ -136,6 +135,7 @@ int eServiceMP3Record::doPrepare()
 		{
 			stream_uri = m_ref.path.substr(0, pos);
 			m_extra_headers = m_ref.path.substr(pos + 1);
+
 			pos = m_extra_headers.find("User-Agent=");
 			if (pos != std::string::npos)
 			{
