@@ -114,17 +114,17 @@ def ZapHistoryBrowserListEntry(serviceName, eventName):
 	if desktopSize.width() == 1920:
 		res = [serviceName]
 		res.append(MultiContentEntryText(pos=(0, 0), size=(230, 30), font=0, text=serviceName))
-		res.append(MultiContentEntryText(pos=(240, 0), size=(530, 30), font=1, text=eventName))
+		res.append(MultiContentEntryText(pos=(240, 0), size=(550, 30), font=1, text=eventName))
 		return res
 	elif desktopSize.width() == 1280:
 		res = [serviceName]
 		res.append(MultiContentEntryText(pos=(0, 0), size=(180, 22), font=0, text=serviceName))
-		res.append(MultiContentEntryText(pos=(190, 0), size=(530, 16), font=1, text=eventName))
+		res.append(MultiContentEntryText(pos=(190, 0), size=(550, 16), font=1, text=eventName))
 		return res
 	else:
 		res = [serviceName]
 		res.append(MultiContentEntryText(pos=(0, 0), size=(180, 22), font=0, text=serviceName))
-		res.append(MultiContentEntryText(pos=(190, 0), size=(530, 16), font=1, text=eventName))
+		res.append(MultiContentEntryText(pos=(190, 0), size=(550, 16), font=1, text=eventName))
 		return res
 
 ################################################
