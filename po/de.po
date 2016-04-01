@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-03-22 17:09+0100\n"
+"PO-Revision-Date: 2016-04-01 05:35+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -9975,6 +9975,15 @@ msgstr "Maximale Anzahl von Tagen vom EPG"
 
 msgid "Use for load only x days in EPG"
 msgstr "Festlegen der Tage zum laden des EPG"
+
+msgid "Tuning algorithm"
+msgstr "Tuning-Algorithmus"
+
+msgid "reliable"
+msgstr "zuverlässig"
+
+msgid "traditional (fast)"
+msgstr "klassisch (schnell)"
 
 msgid "Use TV remote control"
 msgstr "Nutze TV-Fernbedienung"
