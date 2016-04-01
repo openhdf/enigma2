@@ -146,6 +146,7 @@ class Harddisk:
 		try:
 			line = readFile(self.sysfsPath('size'))
 			cap = int(line)
+			return cap / 1000 * 512 / 1000
 		except:
 			dev = self.findMount()
 			if dev:
