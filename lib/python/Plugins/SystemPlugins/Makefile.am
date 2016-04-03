@@ -4,7 +4,7 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	VideoTune Hotplug CableScan DiseqcTester \
 	DefaultServicesScanner CommonInterfaceAssignment \
 	HdmiCEC VideoClippingSetup SatelliteEquipmentControl \
-	VideoEnhancement WirelessLan NetworkWizard \
+	VideoEnhancement WirelessLan NetworkWizard FastScan \
 	SABnzbdSetup OSD3DSetup DeviceManager SwapManager LCNScanner
 
 if HAVE_LIBVUGLES2
