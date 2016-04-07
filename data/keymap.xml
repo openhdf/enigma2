@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 13.02.2016" -->
+	<!-- "HDF Default Keymap 07.04.2016" -->
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -142,7 +142,7 @@
 		<key id="KEY_NEXT" mapto="historyNext" flags="mr" />
 		<key id="KEY_BACK" mapto="historyBack" flags="mr" />
 		<key id="KEY_FORWARD" mapto="historyNext" flags="mr" /-->
-		<key id="KEY_ARCHIVE" mapto="historyBack" flags="mr" />
+		<!--key id="KEY_ARCHIVE" mapto="historyBack" flags="mr" /-->
 		<key id="KEY_CHANNELUP" mapto="ChannelPlusPressed" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressed" flags="m" />
 		<!--key id="KEY_CHANNELUP" mapto="ChannelPlusPressedLong" flags="l" /-->
@@ -998,6 +998,8 @@
 		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
         <key id="KEY_DIRECTORY" mapto="directory" flags="b"/>
         <key id="KEY_DIRECTORY" mapto="directory_long" flags="l"/>
+		<key id="KEY_ARCHIVE" mapto="historyBack" flags="b" />
+		<key id="KEY_ARCHIVE" mapto="historyBack" flags="l" />
 	</map>
 
 	<map context="InfobarSeekActionsPTS">
