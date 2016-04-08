@@ -247,8 +247,8 @@ class HddFastRemove(Screen):
 		self.mdisks = Disks()
 		self.mountpoints = MountPoints()
 		self.mountpoints.read()
-		self.disks = list ()
-		self.mounts = list ()
+		self.disks = list()
+		self.mounts = list()
 		for disk in self.mdisks.disks:
 			if disk[2] == True:
 				diskname = disk[3]
