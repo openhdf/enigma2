@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-04-01 05:35+0200\n"
+"PO-Revision-Date: 2016-04-08 07:36+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -125,6 +125,22 @@ msgstr "Lautstärke verringern"
 
 msgid "Volume up"
 msgstr "Lautstärke erhöhen"
+
+msgid "Volume adjust slow"
+msgstr "Lautstärkeinstellung langsam"
+
+msgid "Volume adjust fast"
+msgstr "Lautstärkeinstellung schnell"
+
+msgid "Step value for single press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
+msgstr ""
+"Schrittwert für einmaliges Drücken der Lautstärketaste. Je nach Einstellung (falls größer) und der aktuellen Lautstärke (wenn kleiner) wird der Schritt angepasst.\n"
+"(ab 30 auf 4, ab 18 auf 3, ab 9 auf 2, ab 3 auf 1)"
+
+msgid "Step value for fast switching or long press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
+msgstr ""
+"Schrittwert für schnelles Schalten oder langes Drücken der Lautstärketaste. Je nach Einstellung (falls größer) und der aktuellen Lautstärke (wenn kleiner) wird der Schritt angepasst.\n"
+"(ab 30 auf 4, ab 18 auf 3, ab 9 auf 2, ab 3 auf 1)"
 
 msgid "Show Service List"
 msgstr "Zeige die Senderliste"
