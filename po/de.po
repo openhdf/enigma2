@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-04-08 07:36+0200\n"
+"PO-Revision-Date: 2016-04-09 19:08+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -225,6 +225,9 @@ msgstr "Aufnahme-Einstellungen"
 
 msgid "Harddisk Setup"
 msgstr "Festplatten-Einstellungen"
+
+msgid "Please use Harddisk Setup to initialize your drive."
+msgstr "Bitte die Festplatten-Einstellungen für die Vorbereitung benutzen."
 
 msgid "Select HDD"
 msgstr "Festplatte auswählen"

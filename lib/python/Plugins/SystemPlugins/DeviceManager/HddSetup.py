@@ -184,17 +184,20 @@ class HddSetup(Screen):
 											[ _("Cancel"), "cancel.png" ],
 											], 1, 3)
 
+#	def yellow(self):
+#		if len(self.mdisks.disks) > 0:
+#			self.sindex = self['menu'].getIndex()
+#			self.session.openWithCallback(self.chooseFSType, ExtraMessageBox, _("Please select your preferred configuration."), _("Partitioner"),
+#										[ [ _("One partition"), "partitionmanager.png" ],
+#										[ _("Two partitions (50% - 50%)"), "partitionmanager.png" ],
+#										[ _("Two partitions (75% - 25%)"), "partitionmanager.png" ],
+#										[ _("Three partitions (33% - 33% - 33%)"), "partitionmanager.png" ],
+#										[ _("Four partitions (25% - 25% - 25% - 25%)"), "partitionmanager.png" ],
+#										[ _("Cancel"), "cancel.png" ],
+#										], 1, 5)
+
 	def yellow(self):
-		if len(self.mdisks.disks) > 0:
-			self.sindex = self['menu'].getIndex()
-			self.session.openWithCallback(self.chooseFSType, ExtraMessageBox, _("Please select your preferred configuration."), _("Partitioner"),
-										[ [ _("One partition"), "partitionmanager.png" ],
-										[ _("Two partitions (50% - 50%)"), "partitionmanager.png" ],
-										[ _("Two partitions (75% - 25%)"), "partitionmanager.png" ],
-										[ _("Three partitions (33% - 33% - 33%)"), "partitionmanager.png" ],
-										[ _("Four partitions (25% - 25% - 25% - 25%)"), "partitionmanager.png" ],
-										[ _("Cancel"), "cancel.png" ],
-										], 1, 5)
+		self.session.open(MessageBox, _("Please use Harddisk Setup to initialize your drive."), MessageBox.TYPE_INFO, timeout = 10)
 
 	def green(self):
 		if len(self.mdisks.disks) > 0:
