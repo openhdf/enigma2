@@ -1025,6 +1025,7 @@ class ChannelSelectionEdit:
 			self.servicelist.addMarked(ref)
 
 	def removeCurrentService(self, bouquet=False):
+		self.editMode = True
 		ref = self.servicelist.getCurrent()
 		mutableList = self.getMutableList()
 		if ref.valid() and mutableList is not None:
@@ -1032,8 +1033,29 @@ class ChannelSelectionEdit:
 				mutableList.flushChanges() #FIXME dont flush on each single removed service
 				self.servicelist.removeCurrent()
 				self.servicelist.resetRoot()
-				if not bouquet and ref == self.session.nav.getCurrentlyPlayingServiceOrGroup():
-					self.zap( enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None)
+				playingref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+				if not bouquet and playingref and ref == playingref:
+					try:
+						doClose = not config.usage.servicelistpreview_mode.value or ref == self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					except:
+						doClose = False
+					if self.startServiceRef is None and not doClose:
+						self.startServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+					ref = self.getCurrentSelection()
+					if self.movemode and (self.isBasePathEqual(self.bouquet_root) or "userbouquet." in ref.toString()):
+						self.toggleMoveMarked()
+					elif (ref.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+						if Components.ParentalControl.parentalControl.isServicePlayable(ref, self.bouquetParentalControlCallback, self.session):
+							self.enterPath(ref)
+							self.gotoCurrentServiceOrProvider(ref)
+					elif self.bouquet_mark_edit != OFF:
+						if not (self.bouquet_mark_edit == EDIT_ALTERNATIVES and ref.flags & eServiceReference.isGroup):
+							self.doMark()
+					elif not (ref.flags & eServiceReference.isMarker or ref.type == -1):
+						root = self.getRoot()
+						if not root or not (root.flags & eServiceReference.isGroup):
+							self.zap(enable_pipzap=doClose, preview_zap=not doClose)
+							self.asciiOff()
 
 	def addServiceToBouquet(self, dest, service=None):
 		mutableList = self.getMutableList(dest)
