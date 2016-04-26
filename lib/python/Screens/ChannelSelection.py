@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from boxbranding import getMachineBuild, getMachineBrand, getMachineName
+import os
 from Tools.Profile import profile
 
 from Screen import Screen
@@ -144,6 +145,8 @@ class ChannelContextMenu(Screen):
 			})
 		menu = [ ]
 
+		self.removeFunction = False
+		self.addFunction = False
 		self.pipAvailable = False
 		current = csel.getCurrentSelection()
 		current_root = csel.getRoot()
@@ -219,6 +222,7 @@ class ChannelContextMenu(Screen):
 			if csel.bouquet_mark_edit == OFF:
 				if not csel.movemode:
 					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level = 1, key = "yellow")
+					append_when_current_valid(current, menu, (_("restore deleted userbouquets"), self.restoreDeletedBouquets), level=0)
 					if not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 						if current.type != -1:
 							menu.append(ChoiceEntryComponent(text = (_("add marker"), self.showMarkerInputBox)))
@@ -469,6 +473,20 @@ class ChannelContextMenu(Screen):
 	def addAlternativeServices(self):
 		self.csel.addAlternativeServices()
 		self.csel.startMarkedEdit(EDIT_ALTERNATIVES)
+		self.close()
+
+	def restoreDeletedBouquets(self):
+		for file in os.listdir("/etc/enigma2/"):
+			if file.startswith("userbouquet") and file.endswith(".del"):
+				file = "/etc/enigma2/" + file
+				print "restore file ", file[:-4]
+				os.rename(file, file[:-4])
+		eDVBDBInstance = eDVBDB.getInstance()
+		eDVBDBInstance.setLoadUnlinkedUserbouquets(True)
+		eDVBDBInstance.reloadBouquets()
+		#eDVBDBInstance.setLoadUnlinkedUserbouquets(config.misc.load_unlinked_userbouquets.value)
+		refreshServiceList()
+		self.csel.showFavourites()
 		self.close()
 
 class SelectionEventInfo:
