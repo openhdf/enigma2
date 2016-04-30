@@ -130,12 +130,6 @@ def removed_userbouquets_available():
 			return True
 	return False
 
-def removed_userbouquets_not_available():
-	for file in os.listdir("/etc/enigma2/"):
-		if file.startswith("userbouquet") and file.endswith(".del"):
-			return False
-	return True
-
 class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
 
