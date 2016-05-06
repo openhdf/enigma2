@@ -26,6 +26,7 @@ images = []
 global imagesCounter
 imagesCounter = 0
 images.append(["Team", "http://teamimages.hdfreaks.cc"])
+images.append(["V5.5", "http://v55.hdfreaks.cc"])
 images.append(["V5.4", "http://v54.hdfreaks.cc"])
 images.append(["V5.3", "http://v53.hdfreaks.cc"])
 images.append(["V4.2", "http://v42.hdfreaks.cc"])
