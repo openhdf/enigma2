@@ -602,12 +602,15 @@ class ViewGitLog(Screen):
 		self["text"].pageDown()
 
 	def getlog(self):
-		fd = open('/etc/' + self.logtype + '-git.log', 'r')
-		releasenotes = fd.read()
-		fd.close()
-		releasenotes = releasenotes.replace('\nopenvix: build',"\n\n")
-		self["text"].setText(releasenotes)
-		summarytext = releasenotes
+		try:
+			fd = open('/etc/' + self.logtype + '-git.log', 'r')
+			releasenotes = fd.read()
+			fd.close()
+			releasenotes = releasenotes.replace('\nopenvix: build',"\n\n")
+			self["text"].setText(releasenotes)
+			summarytext = releasenotes
+		except:
+			print "there is a problem with reading log file"
 		try:
 			self['title_summary'].setText(summarytext[0] + ':')
 			self['text_summary'].setText(summarytext[1])
