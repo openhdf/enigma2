@@ -1,5 +1,7 @@
 #!/bin/sh
 
+sysctl -p
+
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
