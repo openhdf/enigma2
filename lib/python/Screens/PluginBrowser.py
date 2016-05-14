@@ -38,6 +38,7 @@ config.pluginfilter.python = ConfigYesNo(default = True)
 config.pluginfilter.gigabluesupportnet = ConfigYesNo(default = False)
 config.pluginfilter.picons = ConfigYesNo(default = True)
 config.pluginfilter.pli = ConfigYesNo(default = False)
+config.pluginfilter.gstreamer = ConfigYesNo(default = False)
 config.pluginfilter.security = ConfigYesNo(default = False)
 config.pluginfilter.settings = ConfigYesNo(default = True)
 config.pluginfilter.skins = ConfigYesNo(default = True)
@@ -358,6 +359,8 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append('packagegroup-')
 		if config.pluginfilter.python.value:
 			self.PLUGIN_PREFIX2.append('python-')
+		if config.pluginfilter.gstreamer.value:
+			self.PLUGIN_PREFIX2.append('gstreamer1.0-')
 		#self.PLUGIN_PREFIX2.append('enigma2-locale-')
 
 	def go(self):
@@ -655,6 +658,8 @@ class PluginDownloadBrowser(Screen):
 				split[0] = "packagegroup"
 			elif x[0][0:7] == 'python-':
 				split[0] = "python"
+			elif x[0][0:21] == 'gstreamer1.0-plugins-':
+				split[0] = "gstreamer"
 
 			if not self.plugins.has_key(split[0]):
 				self.plugins[split[0]] = []
@@ -664,7 +669,9 @@ class PluginDownloadBrowser(Screen):
 			elif split[0] == "packagegroup":
 				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][13:], x[1]))
 			elif split[0] == "python":
-				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][7:], x[1]))
+				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][13:], x[1]))
+			elif split[0] == "gstreamer":
+				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][21:], x[1]))
 			elif split[0] == "languages":
 				for t in self.LanguageList:
 					if len(x[2])>2:
@@ -759,6 +766,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Settings"), config.pluginfilter.settings, _("This allows you to show settings modules in downloads")))
 		self.list.append(getConfigListEntry(_("Weblinks"), config.pluginfilter.weblinks, _("This allows you to show weblinks modules in downloads")))
 		self.list.append(getConfigListEntry(_("PLi"), config.pluginfilter.pli, _("This allows you to show pli modules in downloads")))
+		self.list.append(getConfigListEntry(_("GStreamer"), config.pluginfilter.gstreamer, _("This allows you to show gstreamer plugins in downloads")))
 		self.list.append(getConfigListEntry(_("ViX"), config.pluginfilter.vix, _("This allows you to show vix modules in downloads")))
 		self.list.append(getConfigListEntry(_("Security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
 		self.list.append(getConfigListEntry(_("Kernel Modules"), config.pluginfilter.kernel, _("This allows you to show kernel modules in downloads")))
