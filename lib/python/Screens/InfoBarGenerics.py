@@ -257,46 +257,6 @@ class InfoBarUnhandledKey:
 			self.unhandledKeyDialog.show()
 			self.hideUnhandledKeySymbolTimer.start(2000, True)
 
-class BufferIndicator(Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self["status"] = Label()
-		self.mayShow = False
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
-				iPlayableService.evBuffering: self.bufferChanged,
-				iPlayableService.evStart: self.__evStart,
-				iPlayableService.evGstreamerPlayStarted: self.__evGstreamerPlayStarted,
-			})
-
-	def bufferChanged(self):
-		if self.mayShow:
-			service = self.session.nav.getCurrentService()
-			info = service and service.info()
-			if info:
-				value = info.getInfo(iServiceInformation.sBuffer)
-				if value and value != 100:
-					self["status"].setText(_("Buffering %d%%") % value)
-					if not self.shown:
-						self.show()
-
-	def __evStart(self):
-		self.mayShow = True
-		self.hide()
-
-	def __evGstreamerPlayStarted(self):
-		self.mayShow = False
-		self.hide()
-
-	def __evVideoStarted(self):
-		self.mayShow = False
-		self.hide()
-
-class InfoBarBuffer():
-	def __init__(self):
-		self.bufferScreen = self.session.instantiateDialog(BufferIndicator)
-		self.bufferScreen.hide()
-
 class InfoBarScreenSaver:
 	def __init__(self):
 		self.onExecBegin.append(self.__onExecBegin)
@@ -980,6 +940,42 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			epglist[0] = epglist[1]
 			epglist[1] = tmp
 			setEvent(epglist[0])
+
+class BufferIndicator(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["status"] = Label()
+		self.mayShow = False
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evBuffering: self.bufferChanged,
+				iPlayableService.evStart: self.__evStart,
+				iPlayableService.evGstreamerPlayStarted: self.__evGstreamerPlayStarted,
+			})
+
+	def bufferChanged(self):
+		if self.mayShow:
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			if info:
+				value = info.getInfo(iServiceInformation.sBuffer)
+				if value and value != 100:
+					self["status"].setText(_("Buffering %d%%") % value)
+					if not self.shown:
+						self.show()
+
+	def __evStart(self):
+		self.mayShow = True
+		self.hide()
+
+	def __evGstreamerPlayStarted(self):
+		self.mayShow = False
+		self.hide()
+
+class InfoBarBuffer():
+	def __init__(self):
+		self.bufferScreen = self.session.instantiateDialog(BufferIndicator)
+		self.bufferScreen.hide()
 
 class NumberZap(Screen):
 	def quit(self):
