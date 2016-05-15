@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-04-30 07:01+0200\n"
+"PO-Revision-Date: 2016-05-15 11:13+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1915,6 +1915,12 @@ msgstr "Das Display wird nach der angegebenen Zeit gedimmt."
 
 msgid "Buffers:"
 msgstr "Puffer:"
+
+msgid "Enable stream buffering status"
+msgstr "Aktiviere die Stream Puffer Status Anzeige"
+
+msgid "Show the buffering status in percent if playing streams"
+msgstr "Zeigt den Pufferstatus in Prozent beim Abspielen von Streams"
 
 #, python-format
 msgid "Build:\t%s"

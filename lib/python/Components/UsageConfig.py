@@ -322,6 +322,7 @@ def InitUsageConfig():
 					("0", _("InfoBar")),
 					("1", _("Channel List"))])
 	config.usage.show_bouquetalways = ConfigYesNo(default = False)
+	config.usage.show_buffering = ConfigYesNo(default = True)
 	config.usage.show_event_progress_in_servicelist = ConfigSelection(default = 'barright', choices = [
 		('barleft', _("Progress bar left")),
 		('barright', _("Progress bar right")),
