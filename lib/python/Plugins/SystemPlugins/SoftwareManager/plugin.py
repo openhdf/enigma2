@@ -2520,7 +2520,7 @@ def UpgradeMain(session, **kwargs):
 def startSetup(menuid):
 	if menuid != "software_menu":
 		return [ ]
-	return [(_("Software management"), UpgradeMain, "software_manager", 50)]
+	return [(_("Software management"), UpgradeMain, "software_manager", 10)]
 
 def Plugins(path, **kwargs):
 	global plugin_path
