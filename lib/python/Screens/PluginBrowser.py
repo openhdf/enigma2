@@ -35,18 +35,13 @@ config.pluginfilter.drivers = ConfigYesNo(default = True)
 config.pluginfilter.extensions = ConfigYesNo(default = True)
 config.pluginfilter.packagegroup = ConfigYesNo(default = False)
 config.pluginfilter.python = ConfigYesNo(default = True)
-config.pluginfilter.gigabluesupportnet = ConfigYesNo(default = False)
 config.pluginfilter.picons = ConfigYesNo(default = True)
-config.pluginfilter.pli = ConfigYesNo(default = False)
 config.pluginfilter.gstreamer = ConfigYesNo(default = False)
 config.pluginfilter.security = ConfigYesNo(default = False)
 config.pluginfilter.settings = ConfigYesNo(default = True)
 config.pluginfilter.skins = ConfigYesNo(default = True)
 config.pluginfilter.display = ConfigYesNo(default = True)
-config.pluginfilter.softcams = ConfigYesNo(default = True)
 config.pluginfilter.systemplugins = ConfigYesNo(default = True)
-config.pluginfilter.vix = ConfigYesNo(default = False)
-config.pluginfilter.weblinks = ConfigYesNo(default = False)
 config.pluginfilter.userfeed = ConfigText(default = 'http://', fixed_size=False)
 
 ## command to find ipk with status hold
@@ -331,12 +326,8 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'drivers')
 		if config.pluginfilter.extensions.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'extensions')
-		if config.pluginfilter.gigabluesupportnet.value:
-			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'gigabluesupportnet')
 		if config.pluginfilter.picons.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'picons')
-		if config.pluginfilter.pli.value:
-			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'pli')
 		if config.pluginfilter.security.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'security')
 		if config.pluginfilter.settings.value:
@@ -345,18 +336,12 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skins')
 		if config.pluginfilter.display.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'display')
-		if config.pluginfilter.softcams.value:
-			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'softcams')
 		if config.pluginfilter.systemplugins.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'systemplugins')
-		if config.pluginfilter.vix.value:
-			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'vix')
-		if config.pluginfilter.weblinks.value:
-			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'weblinks')
 		if config.pluginfilter.kernel.value:
 			self.PLUGIN_PREFIX2.append('kernel-module-')
 		if config.pluginfilter.packagegroup.value:
-			self.PLUGIN_PREFIX2.append('packagegroup-')
+			self.PLUGIN_PREFIX2.append('packagegroup')
 		if config.pluginfilter.python.value:
 			self.PLUGIN_PREFIX2.append('python-')
 		if config.pluginfilter.gstreamer.value:
@@ -651,14 +636,14 @@ class PluginDownloadBrowser(Screen):
 		for x in self.pluginlist:
 			split = x[3].split('-', 1)
 			if x[0][0:14] == 'kernel-module-':
-					split[0] = "kernel modules"
+				split[0] = "kernel modules"
 			elif x[0][0:15] == 'enigma2-locale-':
 				split[0] = "languages"
 			elif x[0][0:13] == 'packagegroup-':
 				split[0] = "packagegroup"
 			elif x[0][0:7] == 'python-':
 				split[0] = "python"
-			elif x[0][0:21] == 'gstreamer1.0-plugins-':
+			elif x[0][0:13] == 'gstreamer1.0-':
 				split[0] = "gstreamer"
 
 			if not self.plugins.has_key(split[0]):
@@ -669,9 +654,9 @@ class PluginDownloadBrowser(Screen):
 			elif split[0] == "packagegroup":
 				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][13:], x[1]))
 			elif split[0] == "python":
-				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][13:], x[1]))
+				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][07:], x[1]))
 			elif split[0] == "gstreamer":
-				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][21:], x[1]))
+				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][13:], x[1]))
 			elif split[0] == "languages":
 				for t in self.LanguageList:
 					if len(x[2])>2:
@@ -759,18 +744,13 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Packagegroup"), config.pluginfilter.packagegroup, _("This allows you to show packagegroups in downloads")))
 		self.list.append(getConfigListEntry(_("Python"), config.pluginfilter.python, _("This allows you to show python packages in downloads")))
 		self.list.append(getConfigListEntry(_("Systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
-		self.list.append(getConfigListEntry(_("Softcams"), config.pluginfilter.softcams, _("This allows you to show softcams modules in downloads")))
 		self.list.append(getConfigListEntry(_("Skins"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
 		self.list.append(getConfigListEntry(_("LCD Skins"), config.pluginfilter.display, _("This allows you to show lcd skins in downloads")))
 		self.list.append(getConfigListEntry(_("Picons"), config.pluginfilter.picons, _("This allows you to show picons modules in downloads")))
 		self.list.append(getConfigListEntry(_("Settings"), config.pluginfilter.settings, _("This allows you to show settings modules in downloads")))
-		self.list.append(getConfigListEntry(_("Weblinks"), config.pluginfilter.weblinks, _("This allows you to show weblinks modules in downloads")))
-		self.list.append(getConfigListEntry(_("PLi"), config.pluginfilter.pli, _("This allows you to show pli modules in downloads")))
 		self.list.append(getConfigListEntry(_("GStreamer"), config.pluginfilter.gstreamer, _("This allows you to show gstreamer plugins in downloads")))
-		self.list.append(getConfigListEntry(_("ViX"), config.pluginfilter.vix, _("This allows you to show vix modules in downloads")))
 		self.list.append(getConfigListEntry(_("Security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
 		self.list.append(getConfigListEntry(_("Kernel Modules"), config.pluginfilter.kernel, _("This allows you to show kernel modules in downloads")))
-		self.list.append(getConfigListEntry(_("Gigabluesupportnet"), config.pluginfilter.gigabluesupportnet, _("This allows you to show gigabluesupportnet modules in downloads")))
 		self.list.append(getConfigListEntry(_("User Feed URL"), config.pluginfilter.userfeed, _("Please enter your personal feed URL")))
 
 		self["config"].list = self.list
