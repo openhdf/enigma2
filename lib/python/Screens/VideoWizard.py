@@ -17,7 +17,7 @@ boxtype = getBoxType()
 
 has_rca = False
 has_dvi = False
-if boxtype in ('formuler3', 'enibox', 'mago', 'x2plus', 'sf3038', 'sf108', 'twinboxlcd', 'atemio6000', 'atemio6100', 'atemio6200', 'mbminiplus', 'vp7358ci', 'enibox', 'gbquad', 'gbquadplus', 'et5x00', 'et6000', 'et7000', 'et7500', 'et8500', 'classm', 'axodin', 'axodinc', 'genius', 'evo', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'starsatlx', 'mixosf7', 'mixoslumi', 'tmnano', 'azboxme',  'azboxminime', 'optimussos1',  'optimussos2', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'sezam1000hd', 'ixussone', 'ixusszero', 'enfinity', 'marvel1', 'bre2ze', 'force1', 'force1plus', 'worldvisionf1', 'optimussos1plus',  'optimussos2plus',  'optimussos3plus', 'osmini', 'formuler1', 'tmnano2super', 'vusolose', 'vuzero', 'tyrant') or getMachineBrand() == 'Zgemma':
+if boxtype in ('sf128', 'sf138', 'xpeedlxpro', 'mbtwinplus', 'mutant51', 'ax51', 'formuler4', 'zgemmah5', 'sf98', 'zgemmaslc', '9900lx', 'et7x00mini', 'tmnanosem2', 'evomini', 'evominiplus', 'zgemmahs', 'zgemmah2s', 'zgemmah2h', 't2cable', 'osmini', 'osminiplus', 'xpeedlxcs2', 'xpeedlxcc', 'odin2hybrid', 'odinplus', 'mutant500c', 'e4hd', 'e4hdhybrid' , 'mbmicro', 'beyonwizt2', 'fegasusx3', 'fegasusx5s', 'fegasusx5t', 'twinboxlcd', 'singleboxlcd', 'twinboxlcdci', 'sf3038', 'spycat', 'zgemmash1', 'zgemmash2', 'zgemmas2s', 'zgemmass' , 'formuler3', 'enibox', 'mago', 'sf108', 'x1plus', 'x2plus', 'atemio6000', 'atemio6100', 'atemio6200', 'mbminiplus', 'vp7358ci', 'xcombo', 'gbquad', 'gbquadplus', 'et5x00', 'et6000', 'et7000', 'et7500', 'et8500', 'et8500s', 'classm', 'axodin', 'axodinc', 'genius', 'evo', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'starsatlx', 'mixosf7', 'mixoslumi', 'tmnano', 'azboxme',  'azboxminime', 'optimussos1',  'optimussos2', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'sezam1000hd', 'ixussone', 'ixusszero', 'enfinity', 'marvel1', 'bre2ze', 'force1', 'force1plus', 'worldvisionf1', 'optimussos1plus',  'optimussos2plus',  'optimussos3plus', 'formuler1', 'tmnano2super', 'vusolose', 'vuzero', 'tyrant'):
 	has_rca = True
 if boxtype == 'dm8000' or boxtype == 'dm800':
 	has_dvi = True
@@ -83,7 +83,8 @@ class VideoWizard(WizardLanguage, Rc):
 		Rc.__init__(self)
 		self["wizard"] = Pixmap()
 		self["portpic"] = Pixmap()
-		Screen.setTitle(self, _("Welcome..."))
+		#Screen.setTitle(self, _("Welcome..."))
+		Screen.setTitle(self, _("VideoWizard"))
 
 		self.port = None
 		self.mode = None
