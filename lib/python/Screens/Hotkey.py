@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "07.04.2016"
+updateversion = "09.06.2016"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -205,6 +205,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Start Teletext"), "Infobar/startTeletext", "InfoBar"))
 	hotkeyFunctions.append((_("Show Subservice Selection"), "Infobar/subserviceSelection", "InfoBar"))
 	hotkeyFunctions.append((_("Show Subtitle Selection"), "Infobar/subtitleSelection", "InfoBar"))
+	hotkeyFunctions.append((_("Show subtitle quick menu"), "Infobar/subtitleQuickMenu", "InfoBar"))
 	hotkeyFunctions.append((_("Letterbox Zoom"), "Infobar/vmodeSelection", "InfoBar"))
 	hotkeyFunctions.append((_("ZoomInOut"), "InfobarGenerics/ZoomInOut", "InfoBar"))
 	hotkeyFunctions.append((_("ZoomOff"), "InfobarGenerics/ZoomInOut", "InfoBar"))
