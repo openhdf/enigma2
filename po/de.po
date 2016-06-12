@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-06-09 05:42+0200\n"
+"PO-Revision-Date: 2016-06-12 07:50+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2084,6 +2084,9 @@ msgstr "Timeshift nicht als Film speichern"
 
 msgid "Cancel next timer"
 msgstr "NÃ¤chsten Timer abbrechen"
+
+msgid "Are you sure to cancel all changes?"
+msgstr "Wirklich alle Änderungen verwerfen?"
 
 msgid "Cannot delete file"
 msgstr "Kann Datei nicht löschen"
