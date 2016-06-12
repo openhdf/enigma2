@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-06-12 07:50+0200\n"
+"PO-Revision-Date: 2016-06-12 08:21+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -9595,6 +9595,21 @@ msgstr "Zeitachse Schriftgröße"
 msgid "Timeline 24 Hour"
 msgstr "Zeitachse im 24 Stunden Format"
 
+msgid "Position of recording icons"
+msgstr "Ausrichtung der Aufnahme-Symbole"
+
+msgid "Set the position of the recording icons"
+msgstr "Legen Sie die Positionen der Aufnahme-Symbole fest"
+
+msgid "bottom"
+msgstr "Unten"
+
+msgid "middle"
+msgstr "Mitte"
+
+msgid "hide"
+msgstr "Verstecken"
+
 msgid "Show time in 24 hour clock format."
 msgstr "Zeige die Zeit im 24 Stunden Format."
 
@@ -13276,3 +13291,54 @@ msgstr "Animationen"
 
 msgid "Animation Speed"
 msgstr "Animations Geschwindigkeit"
+
+msgid "The PIN code has been saved successfully."
+msgstr "Die PIN wurde erfolgreich gespeichert."
+
+msgid "Reenter PIN"
+msgstr "PIN-Eingabe wiederholen"
+
+msgid "Enter PIN"
+msgstr "PIN eingeben"
+
+msgid "The saved PIN was cleared."
+msgstr "Die PIN wurde zurückgesetzt."
+
+msgid "Set pin code persistent"
+msgstr "PIN dauerhaft speichern"
+
+msgid "Enter persistent PIN code"
+msgstr "PIN eingeben"
+
+msgid "Reset persistent PIN code"
+msgstr "PIN zurücksetzen"
+
+msgid "Show CI messages"
+msgstr "CI Meldungen anzeigen"
+
+msgid "CIHelper Setup"
+msgstr "CIHelper Einstellungen"
+
+msgid "CIHelper for SLOT CI0"
+msgstr "CIHelper für SLOT CI0"
+
+msgid "CIHelper for SLOT CI1"
+msgstr "CIHelper für SLOT CI1"
+
+msgid "Enable CIHelper for SLOT CI0"
+msgstr "Aktiviere CIHelper für SLOT CI0"
+
+msgid "Enable CIHelper for SLOT CI1"
+msgstr "Aktiviere CIHelper für SLOT CI1"
+
+msgid "Sorry CIHelper Config is Missing"
+msgstr "CIHelper Konfiguration nicht vorhanden."
+
+msgid "Would you save the entered PIN %s persistent?"
+msgstr "Möchten Sie die PIN %s dauerhaft speichern?"
+
+msgid "Set CI assignment for detection of available services."
+msgstr "Ermittlung verf. Kanäle inkl. Berücksichtigung der CI-Zuweisung"
+
+msgid "Include CI assignment"
+msgstr "Berücksichtigung der CI-Zuweisung"
