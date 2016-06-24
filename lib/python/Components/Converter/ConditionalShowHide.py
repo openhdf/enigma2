@@ -15,7 +15,7 @@ class ConditionalShowHide(Converter, object):
 			self.timer = None
 
 	def blinkFunc(self):
-		if self.blinking:
+		if self.blinking == True:
 			for x in self.downstream_elements:
 				x.visible = not x.visible
 
@@ -33,7 +33,7 @@ class ConditionalShowHide(Converter, object):
 	def calcVisibility(self):
 		b = self.source.boolean
 		if b is None:
-			return True
+			b = False
 		b ^= self.invert
 		return b
 
