@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-07-02 09:05+0200\n"
+"PO-Revision-Date: 2016-07-02 18:38+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3149,6 +3149,12 @@ msgstr "Standard Timer Einstellung"
 
 msgid "Configure default type for new timers."
 msgstr "Legt die Standard Einstellung für neu angelegte Timer fest."
+
+msgid "Long press emulation with button"
+msgstr "Emulation 'Langer-Druck' mit Taste"
+
+msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
+msgstr "Diese hier eingestellte Taste emuliert einen langen Tastendruck, gefolgt von der Taste ihrer Wahl (diese Funktion hat Vorrang vor anderen Tastenzuweisungen)."
 
 msgid "Default recording type"
 msgstr "Standard Aufnahmetyp"
