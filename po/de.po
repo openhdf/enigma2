@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-07-05 07:46+0200\n"
+"PO-Revision-Date: 2016-07-05 10:04+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -9119,6 +9119,21 @@ msgstr "Terrestrisch"
 
 msgid "Terrestrial provider"
 msgstr "Terrestrische Anbieter"
+
+msgid "remove terrestrial services"
+msgstr "Terrestrische-Dienste entfernen"
+
+msgid "Are you sure to remove all terrestrial services?"
+msgstr "Sind Sie sicher, dass alle Terrestrischen Dienste entfernt werden sollen?"
+
+msgid "remove cable services"
+msgstr "Kabel-Dienste entfernen"
+
+msgid "Are you sure to remove all cable services?"
+msgstr "Sind Sie sicher, dass alle Kabel-Dienste entfernt werden sollen?"
+
+msgid "Are you sure to remove all %d.%d%s%s services?"
+msgstr "Sind Sie sicher, dass %d.%d%s%s entfernt werden soll?"
 
 msgid "Test DiSEqC settings"
 msgstr "Teste DiSEqC Einstellungen"
