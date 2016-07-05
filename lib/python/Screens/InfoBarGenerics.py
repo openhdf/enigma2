@@ -4929,7 +4929,7 @@ class InfoBarAudioSelection:
 			{
 				"audioSelection": (self.audioSelection, _("Audio options...")),
 				"audio_key": (self.audio_key, _("Audio options...")),
-				"audioSelectionLong": (self.audioSelectionLong, _("Toggle Digital downmix...")),
+				"audioSelectionLong": (self.audioDownmixToggle, _("Toggle Digital downmix...")),
 			})
 
 	def audioSelection(self):
@@ -4943,7 +4943,7 @@ class InfoBarAudioSelection:
 	def audioSelected(self, ret=None):
 		print "[infobar::audioSelected]", ret
 
-	def audioSelectionLong(self):
+	def audioDownmixToggle(self, popup = True):
 		if SystemInfo["CanDownmixAC3"]:
 			if config.av.downmix_ac3.value:
 				message = _("Dolby Digital downmix is now") + " " + _("disabled")
@@ -4953,7 +4953,16 @@ class InfoBarAudioSelection:
 				config.av.downmix_ac3.setValue(True)
 				message = _("Dolby Digital downmix is now") + " " + _("enabled")
 				print '[Audio] Dolby Digital downmix is now enabled'
-			Notifications.AddPopup(text = message, type = MessageBox.TYPE_INFO, timeout = 5, id = "DDdownmixToggle")
+			if popup:
+				Notifications.AddPopup(text = message, type = MessageBox.TYPE_INFO, timeout = 5, id = "DDdownmixToggle")
+
+	def audioDownmixOn(self):
+		if not config.av.downmix_ac3.value:
+			self.audioDownmixToggle(False)
+
+	def audioDownmixOff(self):
+		if config.av.downmix_ac3.value:
+			self.audioDownmixToggle(False)
 
 class InfoBarSubserviceSelection:
 	def __init__(self):
