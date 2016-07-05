@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-07-02 18:38+0200\n"
+"PO-Revision-Date: 2016-07-05 07:46+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3293,6 +3293,12 @@ msgstr "Entfernen digitaler Konturen"
 
 msgid "Digital downmix"
 msgstr "Digital Downmix"
+
+msgid "Enable digital downmix"
+msgstr "Aktiviere Digital Downmix"
+
+msgid "Disable digital downmix"
+msgstr "Deaktiviere Digital Downmix"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Direkte Wiedergabe verknüpfter Titel ohne Menü"
