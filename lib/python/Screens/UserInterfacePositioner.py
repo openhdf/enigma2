@@ -11,6 +11,21 @@ from enigma import getDesktop
 from os import access, R_OK
 from boxbranding import getBoxType, getBrandOEM
 
+def getFilePath(setting):
+	if getBrandOEM() in ('dreambox'):
+		return "/proc/stb/vmpeg/0/dst_%s" % (setting)
+	else:
+		return "/proc/stb/fb/dst_%s" % (setting)
+
+# ensure test on SystemInfo["CanChangeOsdPosition"] before calling this
+def setPositionParameter(parameter, configElement):
+	f = open(getFilePath(parameter), "w")
+	f.write('%X' % configElement.value)
+	f.close()
+	f = open(getFilePath("apply"), "w")
+	f.write('1')
+	f.close()
+
 def InitOsd():
 	SystemInfo["CanChange3DOsd"] = access('/proc/stb/fb/3dmode', R_OK) and True or False
 	SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
@@ -25,32 +40,27 @@ def InitOsd():
 		SystemInfo["CanChangeOsdPosition"] = False
 		SystemInfo["CanChange3DOsd"] = False
 
+	if getBrandOEM() in ('dreambox'):
+		SystemInfo["CanChangeOsdPosition"] = True
+
 	def setOSDLeft(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
-			f = open("/proc/stb/fb/dst_left", "w")
-			f.write('%X' % configElement.value)
-			f.close()
+			setPositionParameter("left", configElement)
 	config.osd.dst_left.addNotifier(setOSDLeft)
 
 	def setOSDWidth(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
-			f = open("/proc/stb/fb/dst_width", "w")
-			f.write('%X' % configElement.value)
-			f.close()
+			setPositionParameter("width", configElement)
 	config.osd.dst_width.addNotifier(setOSDWidth)
 
 	def setOSDTop(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
-			f = open("/proc/stb/fb/dst_top", "w")
-			f.write('%X' % configElement.value)
-			f.close()
+			setPositionParameter("top", configElement)
 	config.osd.dst_top.addNotifier(setOSDTop)
 
 	def setOSDHeight(configElement):
 		if SystemInfo["CanChangeOsdPosition"]:
-			f = open("/proc/stb/fb/dst_height", "w")
-			f.write('%X' % configElement.value)
-			f.close()
+			setPositionParameter("height", configElement)
 	config.osd.dst_height.addNotifier(setOSDHeight)
 	print 'Setting OSD position: %s %s %s %s' %  (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value)
 
@@ -68,16 +78,17 @@ def InitOsd():
 			value = configElement.value
 			print 'Setting 3D mode:',value
 			try:
-				f = open("/proc/stb/fb/3dmode_choices", "r")
-				choices = f.readlines()[0].split()
-				f.close()
-				if value not in choices:
-					if value == "sidebyside":
-						value = "sbs"
-					elif value == "topandbottom":
-						value = "tab"
-					elif value == "auto":
-						value = "off"
+				if SystemInfo["CanUse3DModeChoices"]:
+					f = open("/proc/stb/fb/3dmode_choices", "r")
+					choices = f.readlines()[0].split()
+					f.close()
+					if value not in choices:
+						if value == "sidebyside":
+							value = "sbs"
+						elif value == "topandbottom":
+							value = "tab"
+						elif value == "auto":
+							value = "off"
 				f = open("/proc/stb/fb/3dmode", "w")
 				f.write(value)
 				f.close()
@@ -240,7 +251,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 			</screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setup_title = _("Positions Setup")
+		self.setup_title = _("Position Setup")
 #		self.Console = Console()
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
@@ -380,7 +391,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 class UserInterfacePositioner(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setup_title = _("Positions Setup")
+		self.setup_title = _("Position Setup")
 #		self.Console = Console()
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
@@ -520,7 +531,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.setup_title = _("OSD 3D Setup")
 		self.skinName = "Setup"
-		self["status"] = StaticText()		
+		self["status"] = StaticText()
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
