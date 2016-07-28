@@ -355,7 +355,13 @@ def InitUsageConfig():
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 
-	config.usage.blinking_rec_symbol_during_recording = ConfigYesNo(default = True)
+	if getBoxType() in ('et7000', 'et7500', 'et8000', 'triplex', 'formuler1', 'mutant1200', 'solo2', 'mutant1265', 'mutant1100', 'mutant500c', 'mutant1500', 'osminiplus'):
+		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default = "Channel", choices = [
+						("Rec", _("REC Symbol")), 
+						("RecBlink", _("Blinking REC Symbol")), 
+						("Channel", _("Channelname"))])
+	else:
+		config.usage.blinking_rec_symbol_during_recording = ConfigYesNo(default = True)
 
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default = True)
 
