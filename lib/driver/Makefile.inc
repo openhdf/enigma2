@@ -8,7 +8,6 @@ driver_libenigma_driver_a_SOURCES = \
 	driver/misc_options.cpp \
 	driver/rc.cpp \
 	driver/rcinput.cpp \
-	driver/rcinput_lirc.cpp \
 	driver/rfmod.cpp \
 	driver/hdmi_cec.cpp
 
@@ -23,7 +22,6 @@ driverinclude_HEADERS = \
 	driver/rcdbox.h \
 	driver/rcdreambox2.h \
 	driver/rcinput.h \
-	driver/rcinput_lirc.h \
 	driver/rcinput_swig.h \
 	driver/rfmod.h \
 	driver/hdmi_cec.h
@@ -32,28 +30,4 @@ if HAVE_LIBSDL
 driver_libenigma_driver_a_SOURCES += \
 	driver/rcsdl.cpp \
 	driver/rcsdl.h
-endif
-
-if GIGABLUE
-driver_libenigma_driver_a_SOURCES += \
-	driver/vfd.cpp \
-	driver/vfd.h
-endif
-
-if GBQUAD
-driver_libenigma_driver_a_SOURCES += \
-	driver/vfd.cpp \
-	driver/vfd.h
-endif
-
-if GBQUADPLUS
-driver_libenigma_driver_a_SOURCES += \
-	driver/vfd.cpp \
-	driver/vfd.h
-endif
-
-if GBIPBOX
-driver_libenigma_driver_a_SOURCES += \
-	driver/vfd.cpp \
-	driver/vfd.h
 endif
