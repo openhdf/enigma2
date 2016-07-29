@@ -71,7 +71,7 @@ class About(Screen):
 		AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 
-		AboutText += _("HDF Version:\t%s") % getImageVersion() + "\n"
+		AboutText += _("HDF Distro:\t%s") % getImageVersion() + "\n"
 		AboutText += _("HDF Build:\t%s") % getImageBuild() + "\n"
 		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
 
@@ -84,11 +84,11 @@ class About(Screen):
 
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
 		
-		AboutText += _("GStreamer Ver:\t%s") % about.getGStreamerVersionString() + "\n"
+		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 
-		AboutText += _("Python Ver:\t%s\n") % about.getPythonVersionString()
+		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
 
-		AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
+		AboutText += _("Compiled:\t%s\n") % about.getFlashDateString()
 
 		fp_version = getFPVersion()
 		if fp_version is None:
