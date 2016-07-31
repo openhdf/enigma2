@@ -276,7 +276,7 @@ public:
 	{
 		cVPID, cMPEGAPID, cTPID, cPCRPID, cAC3PID,
 		cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY,
-		cSUBTITLE, cAACHEAPID=12, cDDPPID, cacheMax
+		cSUBTITLE, cAACHEAPID=12, cDDPPID, cAACAPID, cacheMax
 	};
 
 	int getCacheEntry(cacheID);
@@ -300,10 +300,11 @@ public:
 		dxHoldName=8,
 		dxNewFound=64,
 		dxIsDedicated3D=128,
+		dxIsParentalProtected=256,
 	};
 
 	bool usePMT() const { return !(m_flags & dxNoDVB); }
-	bool isHidden() const { return m_flags & dxDontshow; }
+	bool isHidden() const { return (m_flags & dxDontshow || m_flags & dxIsParentalProtected); }
 	bool isDedicated3D() const { return m_flags & dxIsDedicated3D; }
 
 	CAID_LIST m_ca;
@@ -418,6 +419,7 @@ public:
 	virtual SWIG_VOID(RESULT) getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const = 0;
 	virtual SWIG_VOID(RESULT) getATSC(eDVBFrontendParametersATSC &SWIG_OUTPUT) const = 0;
 	virtual SWIG_VOID(RESULT) getFlags(unsigned int &SWIG_OUTPUT) const = 0;
+	virtual RESULT setDVBT(const eDVBFrontendParametersTerrestrial &p) = 0;
 #ifndef SWIG
 	virtual SWIG_VOID(RESULT) calculateDifference(const iDVBFrontendParameters *parm, int &, bool exact) const = 0;
 	virtual SWIG_VOID(RESULT) getHash(unsigned long &) const = 0;
@@ -533,7 +535,7 @@ public:
 	virtual int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)=0;
 #endif
 	virtual bool changeType(int type)=0;
-
+	virtual bool setDeliverySystem(const char *type)=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iDVBFrontend>, iDVBFrontendPtr);
 
@@ -676,7 +678,7 @@ class iDVBDemux: public iObject
 public:
 	virtual RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader)=0;
 	virtual RESULT createPESReader(eMainloop *context, ePtr<iDVBPESReader> &reader)=0;
-	virtual RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder, int packetsize = 188, bool streaming=false)=0;
+	virtual RESULT createTSRecorder(ePtr<iDVBTSRecorder> &recorder, unsigned int packetsize = 188, bool streaming=false)=0;
 	virtual RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader, int index = 0)=0;
 	virtual RESULT getSTC(pts_t &pts, int num=0)=0;
 	virtual RESULT getCADemuxID(uint8_t &id)=0;

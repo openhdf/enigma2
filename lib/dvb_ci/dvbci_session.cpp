@@ -229,7 +229,7 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 
 	for(unsigned int i=0;i<len;i++)
 		eDebugNoNewLine("%02x ",ptr[i]);
-	eDebugNoNewLineEnd("");
+	eDebugEOL();
 
 	llen = parseLengthField(pkt, hlen);
 	pkt += llen;
@@ -257,12 +257,6 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 		if ((!session_nb) || (session_nb >= SLMS))
 		{
 			eDebug("PROTOCOL: illegal session number %x", session_nb);
-#ifdef __sh__
-			//Dagobert during start-up we seems to have some problems
-			//on some modules which "looses" the connection. So reset it
-			deleteSessions(slot);
-			slot->reset();
-#endif
 			return;
 		}
 
