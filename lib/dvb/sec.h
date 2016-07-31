@@ -2,9 +2,9 @@
 #define __dvb_sec_h
 
 #include <lib/dvb/idvb.h>
-#include <list>
-
 #include <lib/dvb/fbc.h>
+
+#include <list>
 
 #ifndef SWIG
 class eSecCommand
@@ -250,9 +250,9 @@ public:
 
 	int m_slot_mask; // useable by slot ( 1 | 2 | 4...)
 
-	unsigned int m_lof_hi,	// for 2 band universal lnb 10600 Mhz (high band offset frequency)
-				m_lof_lo,	// for 2 band universal lnb  9750 Mhz (low band offset frequency)
-				m_lof_threshold;	// for 2 band universal lnb 11750 Mhz (band switch frequency)
+	int m_lof_hi,	// for 2 band universal lnb 10600 Mhz (high band offset frequency)
+		m_lof_lo,	// for 2 band universal lnb  9750 Mhz (low band offset frequency)
+		m_lof_threshold;	// for 2 band universal lnb 11750 Mhz (band switch frequency)
 
 	bool m_increased_voltage; // use increased voltage ( 14/18V )
 
@@ -265,9 +265,9 @@ public:
 public:
 #define MAX_SATCR 32
 
-#define MAX_EN50607_POSITIONS 		64
-#define MAX_FIXED_LNB_POSITIONS		64
-#define MAX_MOVABLE_LNBS 		6
+#define MAX_EN50607_POSITIONS 64
+#define MAX_FIXED_LNB_POSITIONS 64
+#define MAX_MOVABLE_LNBS 6
 
 #define MAX_LNBNUM (MAX_FIXED_LNB_POSITIONS + MAX_MOVABLE_LNBS)
 
@@ -319,6 +319,7 @@ private:
 	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends, &m_avail_simulate_frontends;
 	int m_rotorMoving;
 	int m_not_linked_slot_mask;
+	int m_target_orbital_position;
 	bool m_canMeasureInputPower;
 #endif
 #ifdef SWIG
@@ -391,12 +392,9 @@ public:
 	void setRotorMoving(int, bool); // called from the frontend's
 	bool isRotorMoving();
 	bool canMeasureInputPower() { return m_canMeasureInputPower; }
-
-	PyObject *getBandCutOffFrequency(int slot_no, int orbital_position);
-	PyObject *getFrequencyRangeList(int slot_no, int orbital_position);
+	int getTargetOrbitalPosition() { return m_target_orbital_position; }
 
 	friend class eFBCTunerManager;
-
 };
 
 #endif
