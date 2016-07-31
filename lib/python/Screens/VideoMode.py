@@ -1,6 +1,6 @@
 from os import path
 
-from enigma import iPlayableService, iServiceInformation, eTimer
+from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter, eServiceReference, eDVBDB
 
 from Screens.Screen import Screen
 from Components.About import about
@@ -125,6 +125,9 @@ class VideoSetup(Screen, ConfigListScreen):
 
 #		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
 #			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
+
+		if SystemInfo["havecolorspace"]:
+			self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace,_("This option allows you can config the Colorspace from Auto to RGB")))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -634,6 +637,22 @@ class AutoVideoMode(Screen):
 								else:
 									print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, x)
 									resolutionlabel["restxt"].setText(_("Video mode: %s") % x)
+							if (write_mode == "2160p24") or (write_mode == "2160p30") or (write_mode == "2160p60"):
+								for x in values:
+									if x == "2160p":
+										try:
+											f = open("/proc/stb/video/videomode", "w")
+											f.write(x)
+											f.close()
+											changeResolution = True
+										except Exception, e:
+											print("[VideoMode] write_mode exception:" + str(e))
+								if not changeResolution:
+									print "[VideoMode] setMode - port: %s, mode: 2160p is also not available" % config_port
+									resolutionlabel["restxt"].setText(_("Video mode: 2160p also not available"))
+								else:
+									print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, x)
+									resolutionlabel["restxt"].setText(_("Video mode: %s") % x)
 						else:
 							resolutionlabel["restxt"].setText(_("Video mode: %s") % write_mode)
 							print "[VideoMode] setMode - port: %s, mode: %s" % (config_port, write_mode)
@@ -643,8 +662,6 @@ class AutoVideoMode(Screen):
 				except Exception, e:
 					print("[VideoMode] read videomode_choices exception:" + str(e))
 			elif write_mode and current_mode != write_mode:
-				# TODO: sometimes the resolution remains stuck at a wrong setting as self.bufferfull is False
-				# not sure whether that condition is correct in the 'if' above
 				print "[VideoMode] not changing from",current_mode,"to",write_mode,"as self.bufferfull is",self.bufferfull
 
 		iAVSwitch.setAspect(config.av.aspect)
