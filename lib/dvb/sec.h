@@ -32,7 +32,8 @@ public:
 		TAKEOVER,
 		WAIT_TAKEOVER,
 		RELEASE_TAKEOVER,
-		IF_TUNER_UNLOCKED_GOTO
+		IF_TUNER_UNLOCKED_GOTO,
+		CHANGE_TUNER_TYPE
 	};
 	int cmd;
 	struct rotor
@@ -250,13 +251,13 @@ public:
 
 	int m_slot_mask; // useable by slot ( 1 | 2 | 4...)
 
-	unsigned int m_lof_hi,	// for 2 band universal lnb 10600 Mhz (high band offset frequency)
-				m_lof_lo,	// for 2 band universal lnb  9750 Mhz (low band offset frequency)
-				m_lof_threshold;	// for 2 band universal lnb 11750 Mhz (band switch frequency)
+	int m_lof_hi,	// for 2 band universal lnb 10600 Mhz (high band offset frequency)
+		m_lof_lo,	// for 2 band universal lnb  9750 Mhz (low band offset frequency)
+		m_lof_threshold;	// for 2 band universal lnb 11750 Mhz (band switch frequency)
 
 	bool m_increased_voltage; // use increased voltage ( 14/18V )
 
-	std::map<int, eDVBSatelliteSwitchParameters> m_satellites;
+	std::multimap<int, eDVBSatelliteSwitchParameters> m_satellites;
 	eDVBSatelliteDiseqcParameters m_diseqc_parameters;
 	eDVBSatelliteRotorParameters m_rotor_parameters;
 
@@ -315,7 +316,7 @@ private:
 	static eDVBSatelliteEquipmentControl *instance;
 	eDVBSatelliteLNBParameters m_lnbs[144]; // i think its enough
 	int m_lnbidx; // current index for set parameters
-	std::map<int, eDVBSatelliteSwitchParameters>::iterator m_curSat;
+	std::multimap<int, eDVBSatelliteSwitchParameters>::iterator m_curSat;
 	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends, &m_avail_simulate_frontends;
 	int m_rotorMoving;
 	int m_not_linked_slot_mask;
