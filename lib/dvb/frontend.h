@@ -175,18 +175,14 @@ public:
 	static int getPreferredFrontend() { return PreferredFrontendIndex; }
 	bool supportsDeliverySystem(const fe_delivery_system_t &sys, bool obeywhitelist);
 	void setDeliverySystemWhitelist(const std::vector<fe_delivery_system_t> &whitelist);
+	bool setDeliverySystem(const char *type);
 
 	void reopenFrontend();
 	int openFrontend();
 	int closeFrontend(bool force=false, bool no_delayed=false);
 	const char *getDescription() const { return m_description; }
-	bool is_simulate() const { return m_simulate; }
 	const dvb_frontend_info getFrontendInfo() const { return fe_info; }
-	bool is_FBCTuner() { return m_fbc; }
-	bool getEnabled() { return m_enabled; }
-	void setEnabled(bool enable) { m_enabled = enable; }
-	bool is_multistream();
-	std::string getCapabilities();
+	bool is_simulate() const { return m_simulate; }
 	bool has_prev() { return (m_data[LINKED_PREV_PTR] != -1); }
 	bool has_next() { return (m_data[LINKED_NEXT_PTR] != -1); }
 
@@ -202,6 +198,11 @@ public:
 
 	eDVBRegisteredFrontend *getLast(eDVBRegisteredFrontend *fe);
 
+	bool is_FBCTuner() { return m_fbc; }
+	bool getEnabled() { return m_enabled; }
+	void setEnabled(bool enable) { m_enabled = enable; }
+	bool is_multistream();
+	std::string getCapabilities();
 };
 
 #endif // SWIG

@@ -6,7 +6,6 @@ base_libenigma_base_a_SOURCES = \
 	base/cfile.cpp \
 	base/connection.cpp \
 	base/console.cpp \
-	base/condVar.cpp \
 	base/ebase.cpp \
 	base/eenv.cpp \
 	base/eerror.cpp \
@@ -14,9 +13,7 @@ base_libenigma_base_a_SOURCES = \
 	base/elock.cpp \
 	base/encoding.cpp \
 	base/estring.cpp \
-	base/etpm.cpp \
 	base/freesatv2.cpp \
-	base/filepush.cpp \
 	base/init.cpp \
 	base/ioprio.cpp \
 	base/message.cpp \
@@ -36,7 +33,6 @@ baseinclude_HEADERS = \
 	base/cachedtssource.h \
 	base/cfile.h \
 	base/console.h \
-	base/condVar.h \
 	base/ebase.h \
 	base/eenv.h \
 	base/eerror.h \
@@ -45,9 +41,7 @@ baseinclude_HEADERS = \
 	base/encoding.h \
 	base/eptrlist.h \
 	base/estring.h \
-	base/etpm.h \
-	base/filepush.h \
-	base/freesatv2.h \
+	base/freesatv2.cpp \
 	base/i18n.h \
 	base/itssource.h \
 	base/init.h \
