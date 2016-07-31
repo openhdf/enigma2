@@ -1,7 +1,0 @@
-<?xml version="1.0" ?>
-<epgrefresh version="1">
-
- <!--Hauptsender-->
- <bouquet>1:7:1:0:0:0:0:0:0:0:FROM BOUQUET &quot;userbouquet.favourites.tv&quot; ORDER BY bouquet</bouquet>
-
-</epgrefresh>
