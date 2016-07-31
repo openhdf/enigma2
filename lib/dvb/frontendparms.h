@@ -50,17 +50,10 @@ struct eDVBFrontendParametersSatellite
 	enum {
 		Pilot_Off, Pilot_On, Pilot_Unknown
 	};
-	enum {
-		Band_Unknown, Band_C, Band_Ka, Band_Ku
-	};
-	enum {
-		PLS_Root, PLS_Gold, PLS_Combo, PLS_Unknown
-	};
 
 	bool no_rotor_command_on_tune;
 	int frequency, symbol_rate;
-	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot, is_id, pls_mode, pls_code;
-	int plpid;
+	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersSatellite);
 
@@ -212,10 +205,6 @@ public:
 	int getRolloff() const;
 	int getPilot() const;
 	int getSystem() const;
-	int getSystems() const;
-	int getIsId() const;
-	int getPLSMode() const;
-	int getPLSCode() const;
 	int getBandwidth() const;
 	int getCodeRateLp() const;
 	int getCodeRateHp() const;
@@ -248,10 +237,6 @@ public:
 	int getRolloff() const;
 	int getPilot() const;
 	int getSystem() const;
-	int getSystems() const;
-	int getIsId() const;
-	int getPLSMode() const;
-	int getPLSCode() const;
 };
 
 class eDVBCableTransponderData : public eDVBTransponderData
@@ -270,7 +255,6 @@ public:
 	int getFecInner() const;
 	int getModulation() const;
 	int getSystem() const;
-	int getSystems() const;
 };
 
 class eDVBTerrestrialTransponderData : public eDVBTransponderData
@@ -294,7 +278,6 @@ public:
 	int getHierarchyInformation() const;
 	int getPlpId() const;
 	int getSystem() const;
-	int getSystems() const;
 };
 
 class eDVBATSCTransponderData : public eDVBTransponderData
@@ -311,7 +294,6 @@ public:
 	int getFrequency() const;
 	int getModulation() const;
 	int getSystem() const;
-	int getSystems() const;
 };
 
 class eDVBFrontendData : public iDVBFrontendData
