@@ -14,12 +14,7 @@ struct CFile
 	{
 #ifdef DEBUG
 		if (!handle)
-		{
-			std::string fn = filename;
-			std::string ext = fn.substr(fn.find_last_of('.')+1);
-			if( (ext != "meta") && (ext != "epl"))
-				eDebug("[CFile] information %s [%m]", filename);
-		}
+			eDebug("error %s [%m]",filename);
 #endif
 	}
 	CFile(const std::string &filename, const char *mode)
@@ -27,11 +22,7 @@ struct CFile
 	{
 #ifdef DEBUG
 		if (!handle)
-		{
-			std::string ext=filename.substr(filename.find_last_of('.')+1);
-			if( (ext != "meta") && (ext != "epl"))
-				eDebug("[CFile] information %s [%m]",filename.c_str());
-		}
+			eDebug("error %s [%m]",filename.c_str());
 #endif
 	}
 	~CFile()
@@ -49,7 +40,6 @@ struct CFile
 	static int writeIntHex(const char *filename, int value);
 	static int writeInt(const char *filename, int value);
 	static int writeStr(const char *filename, std::string value);
-	static int write(const char *filename, const char *value);
 };
 
 #endif

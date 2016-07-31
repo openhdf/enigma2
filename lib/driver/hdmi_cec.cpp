@@ -53,12 +53,10 @@ eHdmiCEC::eHdmiCEC()
 	logicalAddress = 1;
 	deviceType = 1; /* default: recorder */
 #ifdef DREAMBOX
-#define HDMIDEV "/dev/misc/hdmi_cec0"
+	hdmiFd = ::open("/dev/misc/hdmi_cec0", O_RDWR | O_NONBLOCK | O_CLOEXEC);
 #else
-#define HDMIDEV "/dev/hdmi_cec"
+	hdmiFd = ::open("/dev/hdmi_cec", O_RDWR | O_NONBLOCK | O_CLOEXEC);
 #endif
-
-	hdmiFd = ::open(HDMIDEV, O_RDWR | O_NONBLOCK | O_CLOEXEC);
 	if (hdmiFd >= 0)
 	{
 
@@ -71,10 +69,6 @@ eHdmiCEC::eHdmiCEC()
 		getAddressInfo();
 		messageNotifier = eSocketNotifier::create(eApp, hdmiFd, eSocketNotifier::Read | eSocketNotifier::Priority);
 		CONNECT(messageNotifier->activated, eHdmiCEC::hdmiEvent);
-	}
-	else
-	{
-		eDebug("[eHdmiCEC] cannot open %s: %m", HDMIDEV);
 	}
 }
 
@@ -159,7 +153,7 @@ void eHdmiCEC::getAddressInfo()
 			{
 				if (memcmp(physicalAddress, addressinfo.physical, sizeof(physicalAddress)))
 				{
-					eDebug("[eHdmiCEC] detected physical address change: %02X%02X --> %02X%02X", physicalAddress[0], physicalAddress[1], addressinfo.physical[0], addressinfo.physical[1]);
+					eDebug("eHdmiCEC: detected physical address change: %02X%02X --> %02X%02X", physicalAddress[0], physicalAddress[1], addressinfo.physical[0], addressinfo.physical[1]);
 					memcpy(physicalAddress, addressinfo.physical, sizeof(physicalAddress));
 					reportPhysicalAddress();
 					/* emit */ addressChanged((physicalAddress[0] << 8) | physicalAddress[1]);
@@ -244,12 +238,12 @@ void eHdmiCEC::hdmiEvent(int what)
 			bool keypressed = false;
 			static unsigned char pressedkey = 0;
 
-			eDebugNoNewLineStart("[eHdmiCEC] received message");
+			eDebugNoNewLineStart("eHdmiCEC: received message");
 			for (int i = 0; i < rxmessage.length; i++)
 			{
 				eDebugNoNewLine(" %02X", rxmessage.data[i]);
 			}
-			eDebugEOL();
+			eDebugNoNewLineEnd(" ");
 			bool hdmicec_report_active_menu = eConfigManager::getConfigBoolValue("config.hdmicec.report_active_menu", false);
 			if (hdmicec_report_active_menu)
 			{
@@ -397,12 +391,12 @@ void eHdmiCEC::sendMessage(struct cec_message &message)
 {
 	if (hdmiFd >= 0)
 	{
-		eDebugNoNewLineStart("[eHdmiCEC] send message");
+		eDebugNoNewLineStart("eHdmiCEC: send message");
 		for (int i = 0; i < message.length; i++)
 		{
 			eDebugNoNewLine(" %02X", message.data[i]);
 		}
-		eDebugEOL();
+		eDebugNoNewLineEnd(" ");
 #ifdef DREAMBOX
 		message.flag = 1;
 		::ioctl(hdmiFd, 3, &message);
