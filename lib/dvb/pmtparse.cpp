@@ -24,7 +24,6 @@ void eDVBPMTParser::clearProgramInfo(program &program)
 	program.videoStreams.clear();
 	program.audioStreams.clear();
 	program.subtitleStreams.clear();
-	program.caids.clear();
 	program.pcrPid = -1;
 	program.pmtPid = -1;
 	program.textPid = -1;
@@ -216,7 +215,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 									case 0x20 ... 0x23: // dvb subtitles hearing impaired
 										break;
 									default:
-										eDebug("[eDVBPMTParser] dvb subtitle %s PID %04x with wrong subtitling type (%02x)... force 0x10!!",
+										eDebug("dvb subtitle %s PID %04x with wrong subtitling type (%02x)... force 0x10!!",
 										s.language_code.c_str(), s.pid, s.subtitling_type);
 										s.subtitling_type = 0x10;
 										break;
@@ -225,7 +224,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 									s.ancillary_page_id = (*it)->getAncillaryPageId();
 									std::string language = (*it)->getIso639LanguageCode();
 									s.language_code = language;
-//								eDebug("[eDVBPMTParser] add dvb subtitle %s PID %04x, type %d, composition page %d, ancillary_page %d", s.language_code.c_str(), s.pid, s.subtitling_type, s.composition_page_id, s.ancillary_page_id);
+//								eDebug("add dvb subtitle %s PID %04x, type %d, composition page %d, ancillary_page %d", s.language_code.c_str(), s.pid, s.subtitling_type, s.composition_page_id, s.ancillary_page_id);
 									issubtitle = 1;
 									program.subtitleStreams.push_back(s);
 								}
@@ -251,7 +250,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 											s.language_code = language;
 											s.teletext_page_number = (*it)->getTeletextPageNumber();
 											s.teletext_magazine_number = (*it)->getTeletextMagazineNumber();
-//										eDebug("[eDVBPMTParser] add teletext subtitle %s PID %04x, page number %d, magazine number %d", s.language_code.c_str(), s.pid, s.teletext_page_number, s.teletext_magazine_number);
+//										eDebug("add teletext subtitle %s PID %04x, page number %d, magazine number %d", s.language_code.c_str(), s.pid, s.teletext_page_number, s.teletext_magazine_number);
 											program.subtitleStreams.push_back(s);
 											issubtitle=1;
 										default:
@@ -309,7 +308,6 @@ int eDVBPMTParser::getProgramInfo(program &program)
 											video.type = videoStream::vtVC1_SM; // simple main
 										isvideo = 1;
 									}
-									break;
 								}
 								case 0x48455643: /*HEVC */
 									isvideo = 1;
@@ -372,7 +370,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 					if (!num_descriptors && streamtype == 0x06 && prev_audio)
 					{
 						prev_audio->rdsPid = (*es)->getPid();
-						eDebug("[eDVBPMTParser] Rds PID %04x detected ? ! ?", prev_audio->rdsPid);
+						eDebug("Rds PID %04x detected ? ! ?", prev_audio->rdsPid);
 					}
 					prev_audio = 0;
 					break;
@@ -412,13 +410,13 @@ int eDVBPMTParser::getProgramInfo(program &program)
 				}
 				if (isteletext && (isaudio || isvideo))
 				{
-					eDebug("[eDVBPMTParser] ambiguous streamtype for PID %04x detected.. forced as teletext!", (*es)->getPid());
+					eDebug("ambiguous streamtype for PID %04x detected.. forced as teletext!", (*es)->getPid());
 					continue; // continue with next PID
 				}
 				else if (issubtitle && (isaudio || isvideo))
-					eDebug("[eDVBPMTParser] ambiguous streamtype for PID %04x detected.. forced as subtitle!", (*es)->getPid());
+					eDebug("ambiguous streamtype for PID %04x detected.. forced as subtitle!", (*es)->getPid());
 				else if (isaudio && isvideo)
-					eDebug("[eDVBPMTParser] ambiguous streamtype for PID %04x detected.. forced as video!", (*es)->getPid());
+					eDebug("ambiguous streamtype for PID %04x detected.. forced as video!", (*es)->getPid());
 				if (issubtitle) // continue with next PID
 					continue;
 				else if (isvideo)
