@@ -9,7 +9,7 @@
 #define ANSI_RED     "\33[31m"
 #define ANSI_GREEN   "\33[32m"
 #define ANSI_YELLOW  "\33[33m"
-#define ANSI_BLUE    "\33[34m"
+#define ANSI_BLUE    "\33[34m"	//do not use, because the contrast is bad
 #define ANSI_MAGENTA "\33[35m"
 #define ANSI_CYAN    "\33[36m"
 #define ANSI_WHITE   "\33[37m"
@@ -30,6 +30,6 @@
 #define ANSI_bBLUE    "\33[44m"
 #define ANSI_bMAGENTA "\33[45m"
 #define ANSI_bCYAN    "\33[46m"
-#define ANSI_bWIHTE   "\33[47m"
+#define ANSI_bWHITE   "\33[47m"
 
 #endif
