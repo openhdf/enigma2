@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<menusort>
+
+ <entry text="YAMP Music Player" weight="10" hidden="no"/>
+ <entry text="xbmc Wetter" weight="18" hidden="no"/>
+ <entry text="webradioFS" weight="46" hidden="no"/>
+ <entry text="DreamPlex" weight="47" hidden="no"/>
+ <entry text="Timer" weight="73" hidden="no"/>
+ <entry text="Informationen" weight="73" hidden="no"/>
+ <entry text="Konfiguration" weight="73" hidden="no"/>
+ <entry text="Erweiterungen" weight="73" hidden="no"/>
+ <entry text="Media Player" weight="67" hidden="no"/>
+ <entry text="Bereitschaft / Neustart" weight="79" hidden="no"/>
+ <entry text="PictureCenterFS" weight="17" hidden="no"/>
+
+</menusort>

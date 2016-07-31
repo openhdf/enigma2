@@ -1,0 +1,500 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-28 19:40+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: plnick\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid " long"
+msgstr " lang"
+
+msgid "A/V Settings"
+msgstr "A/V Einstellungen"
+
+msgid "Add"
+msgstr "Hinzufügen"
+
+msgid "Add Functions to MQB Key"
+msgstr "Funktion zur MQB Taste hinzufügen"
+
+msgid "Add Plugins to MQB Key"
+msgstr "Plugin zur MQB Taste hinzufügen"
+
+msgid "Audio"
+msgstr "Audio"
+
+msgid "Autostart"
+msgstr "Autostart"
+
+msgid "Backup"
+msgstr "Sicherung"
+
+msgid "Backup Settings..."
+msgstr "Sichere Einstellungen ..."
+
+msgid "Backward <"
+msgstr "Zurück <"
+
+msgid "Button : "
+msgstr "Taste : "
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "Channel"
+msgstr "Sender"
+
+msgid "Channel +"
+msgstr "Kanal +"
+
+msgid "Channel -"
+msgstr "Kanal -"
+
+msgid "Channel Selection"
+msgstr "Senderauswahl"
+
+msgid "Channel list"
+msgstr "Senderliste"
+
+msgid "Channel zap (list) +"
+msgstr "Sender vor + (Liste)"
+
+msgid "Channel zap (list) -"
+msgstr "Sender zurück - (Liste)"
+
+msgid "Channel zap +"
+msgstr "Sender vor +"
+
+msgid "Channel zap -"
+msgstr "Sender zurück -"
+
+msgid "Channels"
+msgstr "Sender"
+
+msgid "Configure macro"
+msgstr "Konfiguriere Makro"
+
+msgid "Cool TV Guide"
+msgstr "Cool TV Guide"
+
+msgid "Cross Down"
+msgstr "Steuerkreuz Runter"
+
+msgid "Cross Left"
+msgstr "Steuerkreuz Links"
+
+msgid "Cross Right"
+msgstr "Steuerkreuz Rechts"
+
+msgid "Cross Up"
+msgstr "Steuerkreuz Auf"
+
+msgid "DVDPlayer"
+msgstr "DVD Player"
+
+msgid "DeepStandby"
+msgstr "STB ausschalten"
+
+msgid "Delete"
+msgstr "Löschen"
+
+#, python-format
+msgid "Directory %s nonexistent."
+msgstr "Verzeichnis %s existiert nicht"
+
+msgid "Dolby Digital downmix on/off"
+msgstr "Dolby Digital downmix an/aus"
+
+msgid "END"
+msgstr "End"
+
+msgid "EPG"
+msgstr "EPG / Guide"
+
+msgid "EXIT"
+msgstr "Beenden"
+
+#, python-format
+msgid "Entry %s already exists."
+msgstr "Eintrag %s existiert bereits."
+
+msgid "Error"
+msgstr "Fehler"
+
+msgid "Exit"
+msgstr "Beenden"
+
+msgid "Extension Selection"
+msgstr "Erweiterungsmenü"
+
+msgid "FAV"
+msgstr "Favorites / Fav"
+
+msgid "FastForward >>"
+msgstr "Vorspulen >>"
+
+msgid "Favourite channel 1"
+msgstr "Lieblingssender 1"
+
+msgid "Favourite channel 2"
+msgstr "Lieblingssender 2"
+
+msgid "Favourite channel 3"
+msgstr "Lieblingssender 3"
+
+msgid "Favourite channel 4"
+msgstr "Lieblingssender 4"
+
+msgid "Favourite channel 5"
+msgstr "Lieblingssender 5"
+
+#, python-format
+msgid "File %s nonexistent."
+msgstr "Datei %s existiert nicht."
+
+msgid "Filelist"
+msgstr "File List"
+
+msgid "Forward >"
+msgstr "Vor >"
+
+msgid "Functions"
+msgstr "Funktionen"
+
+msgid "GUI Restart"
+msgstr "GUI neu starten"
+
+msgid "HELP"
+msgstr "Hilfe"
+
+msgid "HISTORY"
+msgstr "History"
+
+msgid "HOME"
+msgstr "Home"
+
+msgid "INFO"
+msgstr "Info"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "InfoBar"
+msgstr "InfoBar"
+
+msgid "InfoBar Audio Selection"
+msgstr "Audio Einstellungen"
+
+msgid "InfoBar EPG"
+msgstr "Einfacher EPG"
+
+msgid "InfoBar EventInfoPlugins"
+msgstr "EPG Erweiterungen"
+
+msgid "InfoBar EventView"
+msgstr "Sendungsdetails"
+
+msgid "InfoBar Instant Record"
+msgstr "Direkte Aufnahme"
+
+msgid "InfoBar Multi EPG"
+msgstr "Mehrfach EPG"
+
+msgid "InfoBar Record"
+msgstr "Aufnahmemenü"
+
+msgid "InfoBar Show Movies"
+msgstr "Aufnahmen"
+
+msgid "InfoBar Show Radio"
+msgstr "Radio"
+
+msgid "InfoBar Show Tv"
+msgstr "Tv"
+
+msgid "List of Bouquets"
+msgstr "Bouquetliste"
+
+msgid "MQB Functions and Plugins"
+msgstr "MQB Funktionen und Plugins"
+
+msgid "Macros"
+msgstr "Makros"
+
+msgid "Main menu"
+msgstr "Hauptmenü"
+
+msgid "Mark"
+msgstr "Marker"
+
+msgid "MediaPlayer"
+msgstr "Media Player"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "Mount info"
+msgstr "Dateisystem mounts "
+
+msgid "Move PIP"
+msgstr "Verschiebe PIP"
+
+msgid "Multi QuickButton settings"
+msgstr "Multi QuickButton Einstellungen"
+
+msgid "Multi Quickbutton"
+msgstr "Multi Quickbutton"
+
+msgid "MultiQuickButton macro configuration"
+msgstr "MultiQuickButton Makro Einstellungen"
+
+msgid "Mute"
+msgstr "Stumm"
+
+msgid "No valid function file found"
+msgstr "Keine Funktionsdatei gefunden"
+
+msgid "No valid selection"
+msgstr "Keine gültige Auswahl"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "OK/EXIT"
+msgstr "OK/EXIT"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Overwrite existing Backup?."
+msgstr "Überschreibe bestehende Sicherung ?"
+
+msgid "Overwrite existing Settings?."
+msgstr "Überschreibe bestehende Einstellungen ?"
+
+msgid "PVR"
+msgstr "PVR-Taste"
+
+msgid "Pause"
+msgstr "Pause"
+
+msgid "Picture Player"
+msgstr "Bildbetrachter"
+
+msgid "Play"
+msgstr "Play"
+
+msgid "Playlist"
+msgstr "Play List"
+
+msgid "Please select the backup path..."
+msgstr "Bitte wählen Sie den Wiederherstellungspfad ..."
+
+msgid "Please select the restore path..."
+msgstr "Bitte wählen Sie den Wiederherstellungspfad ..."
+
+msgid "Plugin Browser"
+msgstr "Erweiterungen"
+
+msgid "Plugins"
+msgstr "Plugins"
+
+msgid "Power"
+msgstr "Power"
+
+msgid "Quickbutton Key : "
+msgstr "Quickbutton Taste :"
+
+msgid "Quickbutton: Key "
+msgstr "Quickbutton: Taste"
+
+msgid "Quite without saving changes ?"
+msgstr "Ohne speichern der Einstellungen beenden ?"
+
+msgid "RADIO"
+msgstr "Radio"
+
+msgid "Reboot"
+msgstr "STB neu starten"
+
+msgid "Record"
+msgstr "Aufnahme"
+
+msgid "Remote control macro I"
+msgstr "Fernbedienungsmakro I"
+
+msgid "Remote control macro II"
+msgstr "Fernbedienungsmakro II"
+
+msgid "Remote control macro III"
+msgstr "Fernbedienungsmakro III"
+
+msgid "Remote control macro IV"
+msgstr "Fernbedienungsmakro IV"
+
+msgid "Remote control macro V"
+msgstr "Fernbedienungsmakro V"
+
+msgid "Remount Network Shares"
+msgstr "Erneuere Netzwerkfreigaben"
+
+msgid "Restart SoftCam"
+msgstr "Neustart SoftCam"
+
+msgid "Restarting Enigma2 to load:\n"
+msgstr "Starte Enigma2 neu für:\n"
+
+msgid ""
+"Restarting Enigma2 to set\n"
+"Multi QuickButton Autostart"
+msgstr ""
+"Starte Enigma2 neu um die:\n"
+"Autostarteinstellung zu übernehmen"
+
+msgid "Restore"
+msgstr "Rücksicherung"
+
+msgid "Restore Settings..."
+msgstr "Stelle Einstellungen wieder her ..."
+
+msgid "Rewind <<"
+msgstr "Zurückspulen <<"
+
+msgid "SCREEN"
+msgstr "Screen / Aspect"
+
+msgid "SLOW I>"
+msgstr "I> Langsam"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Save Settings"
+msgstr "Speichere Einstellungen"
+
+msgid "Show PIP"
+msgstr "Zeige PIP"
+
+msgid "Sleeptimer"
+msgstr "Sleeptimer"
+
+msgid "Start Teletext"
+msgstr "Teletext"
+
+msgid "Start Timeshift"
+msgstr "Starte Timeshift"
+
+msgid "Stop"
+msgstr "Stop"
+
+msgid "Subservice Selection"
+msgstr "Auswahl Optionskanäle"
+
+msgid "Subtitle"
+msgstr "Untertitel"
+
+msgid "Subtitles"
+msgstr "Untertitel"
+
+msgid "Swap PIP"
+msgstr "Tausche PIP"
+
+msgid "Switch 4:3 (Pillarbox) (Pan&Scan)"
+msgstr "Tausche 4:3 (Pillarbox<=> Pan&Scan)"
+
+msgid "TEXT"
+msgstr "Text"
+
+msgid "TV"
+msgstr "TV"
+
+msgid "Timer"
+msgstr "Geplante Aufnahmen"
+
+msgid "TimerDot"
+msgstr "Timer / (o)"
+
+msgid "Timeshift"
+msgstr "Timeshift"
+
+msgid "Toggle AtmoLight"
+msgstr "AtmoLight an/aus"
+
+msgid "VTI Panel"
+msgstr "VTI Panel"
+
+msgid "Volume +"
+msgstr "Lautstärke +"
+
+msgid "Volume -"
+msgstr "Lautstärke -"
+
+msgid "Zap history back"
+msgstr "Zap Verlauf zurück"
+
+msgid "Zap history next"
+msgstr "Zap Verlauf vor"
+
+msgid "blue"
+msgstr "blau"
+
+msgid "delete"
+msgstr "löschen"
+
+#, python-format
+msgid "file %s not found!"
+msgstr "Datei %s nicht gefunden !"
+
+msgid "green"
+msgstr "grün"
+
+msgid "off"
+msgstr "aus"
+
+msgid "on"
+msgstr "an"
+
+msgid "red"
+msgstr "rot"
+
+msgid "search"
+msgstr "Search"
+
+msgid "subtitle"
+msgstr "Untertitel / OPT"
+
+msgid "yellow"
+msgstr "gelb"
+
+#~ msgid "About"
+#~ msgstr "Über"
+
+#~ msgid "Activate OK Exit Button"
+#~ msgstr "Aktiviere OK EXIT Tasten"
+
+#~ msgid "Deactivate OK Exit Button"
+#~ msgstr "Deaktiviere OK EXIT Tasten"
+
+#~ msgid "PIP"
+#~ msgstr "PIP"
+
+#~ msgid "Please Restart MultiQuickButton"
+#~ msgstr "Bitte starten Sie MultiQuickButton neu"
+
+#~ msgid ""
+#~ "Restarting Enigma2 to (de)activate:\n"
+#~ "OK and EXIT Button"
+#~ msgstr ""
+#~ "Starte Enigma2 neu um die Tasten:\n"
+#~ "OK und EXIT zu (de)aktivieren"
+
+#~ msgid "about Multi Quickbutton rel. %s"
+#~ msgstr "über Multi Quickbutton rel. %s"
