@@ -63,7 +63,7 @@ void eBackgroundFileEraser::erase(const std::string& filename)
 			} else
 			// if rename fails, try deleting the file itself without renaming.
 			{
-				eDebug("[eBackgroundFileEraser] Rename %s -> %s failed: %m", filename.c_str(), delname.c_str());
+				eDebug("Rename %s -> %s failed.", filename.c_str(), delname.c_str());
 				delname = filename;
 			}
 		}
@@ -80,9 +80,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 	}
 	else
 	{
-		std::vector<char> v_filename(msg.filename.begin(), msg.filename.end());
-		v_filename.push_back('\0');
-		const char* c_filename = &v_filename[0];
+		const char* c_filename = msg.filename.c_str();
 		bool unlinked = false;
 		eDebug("[eBackgroundFileEraser] deleting '%s'", c_filename);
 		if ((((erase_flags & ERASE_FLAG_HDD) != 0) && (strncmp(c_filename, "/media/hdd/", 11) == 0)) ||
@@ -98,7 +96,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 					int fd = ::open(c_filename, O_WRONLY|O_SYNC);
 					if (fd == -1)
 					{
-						eDebug("[eBackgroundFileEraser] Cannot open %s for writing: %m", c_filename);
+						eDebug("File %s cannot be opened for writing", c_filename);
 					}
 					else
 					{
@@ -113,7 +111,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 							st.st_size -= erase_speed;
 							if (::ftruncate(fd, st.st_size) != 0)
 							{
-								eDebug("[eBackgroundFileEraser] Failed to truncate %s: %m", c_filename);
+								eDebug("Failed to truncate %s (%m)", c_filename);
 								break; // don't try again
 							}
 							usleep(500000); // wait half a second
@@ -126,7 +124,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 		if (!unlinked)
 		{
 			if ( ::unlink(c_filename) < 0 )
-				eDebug("[eBackgroundFileEraser] removing %s failed: %m", c_filename);
+				eDebug("remove file %s failed (%m)", c_filename);
 		}
 		stop_thread_timer->start(1000, true); // stop thread in one seconds
 	}

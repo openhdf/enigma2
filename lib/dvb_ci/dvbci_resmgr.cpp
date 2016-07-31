@@ -5,10 +5,15 @@
 
 int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const void *data, int len)
 {
+#ifdef __sh__
+	eDebug("eDVBCIResourceManagerSession::%s >", __func__);
+	eDebugNoNewLineStart("SESSION(%d) %02x %02x %02x (len = %d): ", session_nb, tag[0], tag[1], tag[2], len);
+#else
 	eDebugNoNewLineStart("SESSION(%d) %02x %02x %02x: ", session_nb, tag[0], tag[1], tag[2]);
+#endif
 	for (int i=0; i<len; i++)
 		eDebugNoNewLine("%02x ", ((const unsigned char*)data)[i]);
-	eDebugEOL();
+	eDebugNoNewLineEnd("");
 	if ((tag[0]==0x9f) && (tag[1]==0x80))
 	{
 		switch (tag[2])
@@ -26,7 +31,7 @@ int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const vo
 			{
 				for (int i=0; i<len; i++)
 					eDebugNoNewLine("%02x ", ((const unsigned char*)data)[i]);
-				eDebugEOL();
+				eDebugNoNewLineEnd("");
 			}
 			if (state == stateFirstProfileEnquiry)
 			{

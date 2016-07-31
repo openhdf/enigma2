@@ -15,6 +15,7 @@
 
 extern int roundMulti(int value, int m);//round value to multiple of m
 
+
 struct eDVBFrontendParametersSatellite
 {
 #ifndef SWIG
@@ -138,7 +139,7 @@ struct eDVBFrontendParametersTerrestrial
 	int hierarchy;
 	int inversion;
 	int system;
-	int plp_id;
+	int plpid;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersTerrestrial);
 
