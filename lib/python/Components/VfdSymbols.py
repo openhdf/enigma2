@@ -6,7 +6,7 @@ from Tools.Directories import fileExists
 from Components.ParentalControl import parentalControl
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import SystemInfo
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getMachineBuild
 import Components.RecordingConfig
 
 POLLTIME = 5 # seconds
