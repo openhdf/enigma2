@@ -8,7 +8,7 @@ from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from enigma import eTimer, getEnigmaVersionString
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
+from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -60,17 +60,35 @@ class About(Screen):
 			res = ""
 			res2 = ""
 		cpuMHz = ""
+		if getMachineBuild() in ('vusolo4k', 'hd51'):
+			cpuMHz = "   (1,5 GHz)"
+		elif getMachineBuild() in ('hd52'):
+			cpuMHz = "   (1,7 GHz)"
+		else:
+			if path.exists('/proc/cpuinfo'):
+				f = open('/proc/cpuinfo', 'r')
+				temp = f.readlines()
+				f.close()
+				try:
+					for lines in temp:
+						lisp = lines.split(': ')
+						if lisp[0].startswith('cpu MHz'):
+							#cpuMHz = "   (" +  lisp[1].replace('\n', '') + " MHz)"
+							cpuMHz = "   (" +  str(int(float(lisp[1].replace('\n', '')))) + " MHz)"
+							break
+				except:
+					pass
+
 		bogoMIPS = ""
 		if res:
 			cpuMHz = "" + res.replace("\n", "") + " MHz"
 		if res2:
 			bogoMIPS = "" + res2.replace("\n", "") 
 			
-		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
-		AboutText += _("Clock Speed:\t%s") % cpuMHz + "\n"
+		AboutText += _("CPU:\t%s") % about.getCPUString() + " (" + cpuMHz + ")" + "\n"
+		#AboutText += _("Clock Speed:\t%s") % cpuMHz + "\n"
 		AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
-
 		AboutText += _("HDF Distro:\t%s") % getImageVersion() + "\n"
 		AboutText += _("HDF Build:\t%s") % getImageBuild() + "\n"
 		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
@@ -81,14 +99,10 @@ class About(Screen):
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
-
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
-		
-		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
-
-		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
-
 		AboutText += _("Compiled:\t%s\n") % about.getFlashDateString()
+		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
+		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
 
 		fp_version = getFPVersion()
 		if fp_version is None:
