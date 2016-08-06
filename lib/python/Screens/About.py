@@ -1,6 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
+from Components.config import config
 from Components.Sources.StaticText import StaticText
 from Components.Harddisk import Harddisk
 from Components.NimManager import nimmanager
@@ -89,8 +90,8 @@ class About(Screen):
 		#AboutText += _("Clock Speed:\t%s") % cpuMHz + "\n"
 		AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
-		AboutText += _("HDF Distro:\t%s") % getImageVersion() + "\n"
-		AboutText += _("HDF Build:\t%s") % getImageBuild() + "\n"
+		AboutText += _("HDF Version:\tV%s") % getImageVersion() + " - Build # " + getImageBuild() + "\n"
+		#AboutText += _("HDF Build:\t%s") % getImageBuild() + "\n"
 		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
 
 		string = getDriverDate()
@@ -99,10 +100,14 @@ class About(Screen):
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
+		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
 		AboutText += _("Compiled:\t%s\n") % about.getFlashDateString()
-		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
-		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
+		#AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
+		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
+		AboutText += _("Network:")
+		for x in about.GetIPsFromNetworkInterfaces():
+			AboutText += "\t" + x[0] + ": " + x[1] + "\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
