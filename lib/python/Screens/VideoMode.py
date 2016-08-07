@@ -129,6 +129,9 @@ class VideoSetup(Screen, ConfigListScreen):
 		if SystemInfo["havecolorspace"]:
 			self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace,_("This option allows you can config the Colorspace from Auto to RGB")))
 
+		if SystemInfo["Canedidchecking"]:
+			self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option allows you to bypass HDMI EDID check")))
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		if config.usage.sort_settings.value:
@@ -287,9 +290,6 @@ class AudioSetup(Screen, ConfigListScreen):
 
 			if SystemInfo["CanAutoVolume"]:
 				self.list.append(getConfigListEntry(_("Auto Volume Level"), config.av.autovolume,_("This option configures output for Auto Volume Level.")))
-
-			if SystemInfo["Canedidchecking"]:
-				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking,_("This option allows you to bypass HDMI EDID check")))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
