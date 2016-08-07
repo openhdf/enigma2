@@ -48,6 +48,7 @@ class About(Screen):
 		AboutText = ""
 		self["lab2"] = StaticText(_("Support @") + " www.hdfreaks.cc")
 		AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
+		#AboutText += _("Boxtype:\t%s\n") % getBoxType()
 
 		if path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString() + "\n"
@@ -92,7 +93,7 @@ class About(Screen):
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 		AboutText += _("HDF Version:\tV%s") % getImageVersion() + " - Build # " + getImageBuild() + "\n"
 		#AboutText += _("HDF Build:\t%s") % getImageBuild() + "\n"
-		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
+		AboutText += _("Kernel (Box):\t%s") % about.getKernelVersionString() + " (" + getBoxType() + ")" + "\n"
 
 		string = getDriverDate()
 		year = string[0:4]
