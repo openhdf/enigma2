@@ -107,7 +107,7 @@ class BackupScreen(Screen, ConfigListScreen):
 
 			cmd1 = "opkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base' > /tmp/installed-list.txt"
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
-			cmd3 = "tar -czvf " + self.fullbackupfilename + " " + self.backupdirs
+			cmd3 = "tar -czf " + self.fullbackupfilename + " " + self.backupdirs
 			cmd = [cmd1, cmd2, cmd3]
 			if path.exists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
