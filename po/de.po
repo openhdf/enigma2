@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-07-05 10:04+0200\n"
+"PO-Revision-Date: 2016-08-15 13:27+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -3709,6 +3709,12 @@ msgstr "Senderliste bearbeiten"
 
 msgid "Reload Services"
 msgstr "Senderliste neuladen"
+
+msgid "Unmark service to unhide VBI line"
+msgstr "Zeige die VBI Linie für diesen Sender"
+
+msgid "Mark service to hide VBI line"
+msgstr "Verstecke die VBI Linie für diesen Sender"
 
 msgid "Edit settings"
 msgstr "Einstellungen bearbeiten"
