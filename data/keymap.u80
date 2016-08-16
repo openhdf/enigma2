@@ -771,8 +771,7 @@
 		<key id="KEY_RADIO" mapto="radio_long" flags="l" />
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="showTv_long" flags="l" />
-		<key id="KEY_TEXT" mapto="texter" flags="b" />
-		<key id="KEY_TEXT" mapto="texter_long" flags="l" />
+		<key id="KEY_TEXT" mapto="text" flags="m" />
 		<key id="KEY_HELP" mapto="helpshow" flags="b" />
 		<key id="KEY_HELP" mapto="helpshow_long" flags="l" />
 		<key id="KEY_SUBTITLE" mapto="subtitle" flags="b" />
