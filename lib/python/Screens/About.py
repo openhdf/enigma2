@@ -94,7 +94,14 @@ class About(Screen):
 		AboutText += _("HDF Version:\tV%s") % getImageVersion() + " - Build # " + getImageBuild() + "\n"
 		#AboutText += _("HDF Build:\t%s") % getImageBuild() + "\n"
 		AboutText += _("Kernel (Box):\t%s") % about.getKernelVersionString() + " (" + getBoxType() + ")" + "\n"
-
+		imagestarted = ""
+		if path.exists('/boot/STARTUP'):
+			f = open('/boot/STARTUP', 'r')
+			f.seek(22)
+			image = f.read(1) 
+			f.close()
+			AboutText += _("Image started:\t%s") % "STARTUP_" + image + "\n"
+		
 		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
