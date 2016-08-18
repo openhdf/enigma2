@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-08-15 13:27+0200\n"
+"PO-Revision-Date: 2016-08-18 14:33+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -8387,6 +8387,9 @@ msgstr "Zeige Softcams an."
 msgid "Show skins packages"
 msgstr "Zeige Skins an."
 
+msgid "Skins and Skinpackages"
+msgstr "Skins und Skinpakete"
+
 msgid "Show picons packages"
 msgstr "Zeige Senderlogo Pakete an."
 
@@ -10393,7 +10396,7 @@ msgid "View list of available recording extensions"
 msgstr "Zeige Liste der verfügbaren Aufnahme-Erweiterungen."
 
 msgid "View list of available skins"
-msgstr "Teige Liste der verfügbaren Skins."
+msgstr "Zeige Liste der verfügbaren Skins."
 
 msgid "View list of available software extensions"
 msgstr "Zeige Liste der verfügbaren Software-Erweiterungen."
