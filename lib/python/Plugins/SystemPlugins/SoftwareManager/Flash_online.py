@@ -144,7 +144,7 @@ class FlashOnline(Screen):
 			self.selection = self.selection + 1
 			if self.selection == len(self.list):
 				self.selection = 0
-			self["key_yellow"].setText(_(self.list[self.selection]))
+			self["key_blue"].setText(_(self.list[self.selection]))
 			self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
 			self.multi = self.multi[-1:]
 			print "[Flash Online] MULTI:",self.multi
