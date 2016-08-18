@@ -63,9 +63,9 @@ class About(Screen):
 			res2 = ""
 		cpuMHz = ""
 		if getMachineBuild() in ('vusolo4k', 'hd51'):
-			cpuMHz = "   (1,5 GHz)"
+			cpuMHz = "1,5 GHz"
 		elif getMachineBuild() in ('hd52'):
-			cpuMHz = "   (1,7 GHz)"
+			cpuMHz = "1,7 GHz"
 		else:
 			if path.exists('/proc/cpuinfo'):
 				f = open('/proc/cpuinfo', 'r')
@@ -86,10 +86,16 @@ class About(Screen):
 			cpuMHz = "" + res.replace("\n", "") + " MHz"
 		if res2:
 			bogoMIPS = "" + res2.replace("\n", "") 
-			
-		AboutText += _("CPU:\t%s") % about.getCPUString() + " (" + cpuMHz + ")" + "\n"
+
+		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52'):
+			AboutText += _("CPU:\t") + "ARM Dual core " + " (" + cpuMHz + ")" + "\n"
+		else:
+			AboutText += _("CPU:\t%s") % about.getCPUString() + " (" + cpuMHz + ")" + "\n"
 		#AboutText += _("Clock Speed:\t%s") % cpuMHz + "\n"
-		AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
+		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52'):
+			AboutText += _("DMIPS:\t") + "10.500" + "\n"
+		else:
+			AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 		AboutText += _("HDF Version:\tV%s") % getImageVersion() + " - Build # " + getImageBuild() + "\n"
 		#AboutText += _("HDF Build:\t%s") % getImageBuild() + "\n"
