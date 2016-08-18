@@ -234,7 +234,7 @@ class ChannelContextMenu(Screen):
 			else:
 				menu.append(ChoiceEntryComponent(text = (_("add bouquet"), self.showBouquetInputBox)))
 				append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0, key="green")
-				append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level = 0)
+				append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level = 0, key="red")
 
 
 		if inBouquet: # current list is editable?
