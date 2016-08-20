@@ -59,7 +59,6 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		print "[MultiBootStartup] select new startup: ", self.list[self.selection]
 		system("cp -f /boot/%s /boot/STARTUP"%self.list[self.selection])
 		restartbox = self.session.openWithCallback(self.restartBOX,MessageBox,_("Do you want to reboot now with selected image?"), MessageBox.TYPE_YESNO)
-		#self.close()
 
 	def cancel(self):
 		self.close()
@@ -96,3 +95,5 @@ class MultiBootStartup(ConfigListScreen, Screen):
 	def restartBOX(self, answer):
 		if answer is True:
 			self.session.open(TryQuitMainloop, 2)
+		else:
+			self.close()
