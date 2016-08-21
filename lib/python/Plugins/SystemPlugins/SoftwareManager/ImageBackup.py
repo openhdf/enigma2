@@ -1,7 +1,7 @@
 #################################################################################
-# FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 3.2     			#
+#       FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 3.2     		#
 #	                         						                            #
-#					MAKES A FULLBACK-UP READY FOR FLASHING.						#
+#					MAKES A FULLBACKUP READY FOR FLASHING.						#
 #																				#
 #################################################################################
 import os
@@ -438,7 +438,7 @@ class ImageBackup(Screen):
 
 		if SystemInfo["HaveMultiBoot"] and not self.list[self.selection] == "Recovery":
 			cmdlist.append('echo "_________________________________________________________\n"')
-			cmdlist.append('echo "USB Image created on:" %s' %self.MAINDEST)
+			cmdlist.append('echo "Multiboot Image created on:" %s' %self.MAINDEST)
 			cmdlist.append('echo "and there is made an extra copy on:"')
 			cmdlist.append('echo %s' %self.EXTRA)
 			cmdlist.append('echo "_________________________________________________________\n"')
@@ -498,18 +498,17 @@ class ImageBackup(Screen):
 		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, closeOnSuccess = False)
 
 	def imageInfo(self):
-		AboutText = _("openHDF Full-Image Backupscript")
+		AboutText = _("OpenHDF Full-Image Backupscript\n")
 		AboutText += _("Support at") + " www.hdfreaks.cc\n\n"
-		AboutText += _("[Image Info]\n")
+		AboutText += _("[Image Info's]\n")
 		AboutText += _("Model: %s %s\n") % (getMachineBrand(), getMachineName())
 		AboutText += _("Backup Date: %s\n") % strftime("%Y-%m-%d", localtime(self.START))
 
 		if path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset: BCM%s") % about.getChipSetString().lower().replace('\n','').replace('bcm','') + "\n"
 
-		AboutText += _("CPU: %s") % about.getCPUString() + "\n"
+		#AboutText += _("CPU: %s") % about.getCPUString() + "\n"
 		AboutText += _("Cores: %s") % about.getCpuCoresString() + "\n"
-
 		AboutText += _("Version: %s") % getImageVersion() + "\n"
 		AboutText += _("Build: %s") % getImageBuild() + "\n"
 		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
@@ -519,46 +518,11 @@ class ImageBackup(Screen):
 		month = string[4:6]
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
+
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
-
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
-
 		AboutText += _("[Enigma2 Settings]\n")
 		AboutText += commands.getoutput("cat /etc/enigma2/settings")
-		AboutText += _("\n\n[User - bouquets (TV)]\n")
-		try:
-			f = open("/etc/enigma2/bouquets.tv","r")
-			lines = f.readlines()
-			f.close()
-			for line in lines:
-				if line.startswith("#SERVICE:"):
-					bouqet = line.split()
-					if len(bouqet) > 3:
-						bouqet[3] = bouqet[3].replace('"','')
-						f = open("/etc/enigma2/" + bouqet[3],"r")
-						userbouqet = f.readline()
-						AboutText += userbouqet.replace('#NAME ','')
-						f.close()
-		except:
-			AboutText += "Error reading bouquets.tv"
-			
-		AboutText += _("\n[User - bouquets (RADIO)]\n")
-		try:
-			f = open("/etc/enigma2/bouquets.radio","r")
-			lines = f.readlines()
-			f.close()
-			for line in lines:
-				if line.startswith("#SERVICE:"):
-					bouqet = line.split()
-					if len(bouqet) > 3:
-						bouqet[3] = bouqet[3].replace('"','')
-						f = open("/etc/enigma2/" + bouqet[3],"r")
-						userbouqet = f.readline()
-						AboutText += userbouqet.replace('#NAME ','')
-						f.close()
-		except:
-			AboutText += "Error reading bouquets.radio"
-
 		AboutText += _("\n[Installed Plugins]\n")
 		AboutText += commands.getoutput("opkg list_installed | grep enigma2-plugin-")
 
