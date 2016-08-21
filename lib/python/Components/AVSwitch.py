@@ -625,20 +625,39 @@ def InitAVSwitch():
 	else:
 		config.av.autovolume = ConfigNothing()
 
-	if SystemInfo["HasMultichannelPCM"]:
+	try:
+		can_pcm_multichannel = os.access("/proc/stb/audio/multichannel_pcm", os.W_OK)
+	except:
+		can_pcm_multichannel = False
+
+	SystemInfo["supportPcmMultichannel"] = can_pcm_multichannel
+	if can_pcm_multichannel:
 		def setPCMMultichannel(configElement):
-			open(SystemInfo["HasMultichannelPCM"], "w").write(configElement.value and "enable" or "disable")
+			open("/proc/stb/audio/multichannel_pcm", "w").write(configElement.value and "enable" or "disable")
 		config.av.pcm_multichannel = ConfigYesNo(default = False)
 		config.av.pcm_multichannel.addNotifier(setPCMMultichannel)
 
 	try:
-		SystemInfo["CanDownmixAC3"] = "downmix" in open("/proc/stb/audio/ac3_choices", "r").read()
+		f = open("/proc/stb/audio/ac3_choices", "r")
+		file = f.read()[:-1]
+		f.close()
+		can_downmix_ac3 = "downmix" in file
 	except:
-		SystemInfo["CanDownmixAC3"] = False
+		can_downmix_ac3 = False
+		SystemInfo["CanPcmMultichannel"] = False
 
-	if SystemInfo["CanDownmixAC3"]:
+	SystemInfo["CanDownmixAC3"] = can_downmix_ac3
+	if can_downmix_ac3:
 		def setAC3Downmix(configElement):
-			open("/proc/stb/audio/ac3", "w").write(configElement.value and "downmix" or "passthrough")
+			f = open("/proc/stb/audio/ac3", "w")
+			f.write(configElement.value and "downmix" or "passthrough")
+			f.close()
+			if SystemInfo.get("supportPcmMultichannel", False) and not configElement.value:
+				SystemInfo["CanPcmMultichannel"] = True
+			else:
+				SystemInfo["CanPcmMultichannel"] = False
+				if can_pcm_multichannel:
+					config.av.pcm_multichannel.setValue(False)
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 

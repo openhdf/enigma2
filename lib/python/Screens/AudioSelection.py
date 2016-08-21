@@ -117,7 +117,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.transcodeaac.addNotifier(self.setAACTranscode, initial_call = False)
 				conflist.append(getConfigListEntry(_("AAC transcoding"), self.settings.transcodeaac, None))
 
-			if SystemInfo["HasMultichannelPCM"]:
+			if SystemInfo["CanPcmMultichannel"]:
 				self.settings.pcm_multichannel = ConfigOnOff(default=config.av.pcm_multichannel.value)
 				self.settings.pcm_multichannel.addNotifier(self.changePCMMultichannel, initial_call = False)
 				conflist.append(getConfigListEntry(_("PCM Multichannel"), self.settings.pcm_multichannel, None))
