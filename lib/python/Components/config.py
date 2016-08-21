@@ -970,8 +970,6 @@ class ConfigInteger(ConfigSequence):
 class ConfigPIN(ConfigInteger):
 	def __init__(self, default, len = 4, censor = ""):
 		assert isinstance(default, int), "ConfigPIN default must be an integer"
-		if default == -1:
-			default = "aaaa"
 		ConfigSequence.__init__(self, seperator = ":", limits = [(0, (10**len)-1)], censor_char = censor, default = default)
 		self.len = len
 
@@ -1233,6 +1231,13 @@ class ConfigSelectionNumber(ConfigSelection):
 		return self.choices.index(self.value)
 
 	index = property(getIndex)
+
+	def isChanged(self):
+		sv = self.saved_value
+		strv = str(self.tostring(self.value))
+		if sv is None and strv == str(self.default):
+			return False
+		return strv != str(sv)
 
 	def handleKey(self, key):
 		if not self.wraparound:
