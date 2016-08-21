@@ -1,4 +1,4 @@
-from boxbranding import getBoxType, getImageVersion
+from boxbranding import getBoxType, getImageVersion, getMachineBuild
 from sys import modules
 import socket, fcntl, struct, time, os
 
@@ -37,9 +37,11 @@ def getModelString():
 		return "unknown"		
 
 def getChipSetString():
-	if getBoxType() in ('dm7080','dm820'):
+	if getMachineBuild() in ('dm7080','dm820'):
 		return "7435"
-	elif getBoxType() in ('hd51'):
+	elif getMachineBuild() in ('dm520'):
+		return "73625"
+	elif getMachineBuild() in ('hd51'):
 		return "7251S"
 	else:
 		try:
