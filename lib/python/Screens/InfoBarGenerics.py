@@ -4728,11 +4728,15 @@ class InfoBarInstantRecord:
 		# try to get event info
 		event = None
 		try:
-			service = self.session.nav.getCurrentService()
 			epg = eEPGCache.getInstance()
 			event = epg.lookupEventTime(info["serviceref"], -1, 0)
 			if event is None:
-				event = service.info().getEvent(0)
+				if hasattr(self, "SelectedInstantServiceRef") and self.SelectedInstantServiceRef:
+					service_info = eServiceCenter.getInstance().info(self.SelectedInstantServiceRef)
+					event = service_info and service_info.getEvent(self.SelectedInstantServiceRef)
+				else:
+					service = self.session.nav.getCurrentService()
+					event = service and service.info().getEvent(0)
 		except:
 			pass
 
@@ -4886,7 +4890,7 @@ class InfoBarInstantRecord:
 	def changeDuration(self, entry):
 		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
-			self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5", maxSize=False, type=Input.NUMBER)
+			self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5  ", maxSize=True, type=Input.NUMBER)
 
 	def inputCallback(self, value):
 #		print "stopping recording after", int(value), "minutes."
