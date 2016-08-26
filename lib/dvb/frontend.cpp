@@ -17,16 +17,16 @@
 #define I2C_SLAVE_FORCE	0x0706
 #endif
 
+#define eDebugNoSimulateNoNewLineEnd(x...) \
+	do { \
+		if (!m_simulate) \
+			eDebugNoNewLineEnd(x); \
+	} while(0)
+
 #define eDebugNoSimulate(x...) \
 	do { \
 		if (!m_simulate) \
 			eDebug(x); \
-	} while(0)
-
-#define eDebugNoSimulateNoNewLine(x...) \
-	do { \
-		if (!m_simulate) \
-			eDebugNoNewLine(x); \
 	} while(0)
 
 #define eDebugNoSimulateNoNewLineStart(x...) \
@@ -35,10 +35,10 @@
 			eDebugNoNewLineStart(x); \
 	} while(0)
 
-#define eDebugNoSimulateNoNewLineEnd(x...) \
+#define eDebugNoSimulateNoNewLine(x...) \
 	do { \
 		if (!m_simulate) \
-			eDebugNoNewLineEnd(x); \
+			eDebugNoNewLine(x); \
 	} while(0)
 
 void eDVBDiseqcCommand::setCommandString(const char *str)
@@ -49,12 +49,12 @@ void eDVBDiseqcCommand::setCommandString(const char *str)
 	int slen = strlen(str);
 	if (slen % 2)
 	{
-		eDebug("[eDVBDiseqcCommand] invalid diseqc command string length (not 2 byte aligned)");
+		eDebug("invalid diseqc command string length (not 2 byte aligned)");
 		return;
 	}
 	if (slen > MAX_DISEQC_LENGTH*2)
 	{
-		eDebug("[eDVBDiseqcCommand] invalid diseqc command string length (string is to long)");
+		eDebug("invalid diseqc command string length (string is to long)");
 		return;
 	}
 	unsigned char val=0;
@@ -67,7 +67,7 @@ void eDVBDiseqcCommand::setCommandString(const char *str)
 			case 'a' ... 'f': c-=87; break;
 			case 'A' ... 'F': c-=55; break;
 			default:
-				eDebug("[eDVBDiseqcCommand] invalid character in hex string..ignore complete diseqc command !");
+				eDebug("invalid character in hex string..ignore complete diseqc command !");
 				return;
 		}
 		if ( i % 2 )
@@ -101,13 +101,13 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 	modulation = descriptor.getModulation();
 	if (system == System_DVB_S && modulation != Modulation_QPSK)
 	{
-		eDebug("[eDVBFrontendParametersSatellite] satellite_delivery_descriptor invalid modulation type.. force QPSK");
+		eDebug("satellite_delivery_descriptor invalid modulation type.. force QPSK");
 		modulation = Modulation_QPSK;
 	}
 	rolloff = descriptor.getRollOff();
 	if (system == System_DVB_S2)
 	{
-		eDebug("[eDVBFrontendParametersSatellite] SAT DVB-S2 freq %d, %s, pos %d, sr %d, fec %d, modulation %d, rolloff %d",
+		eDebug("SAT DVB-S2 freq %d, %s, pos %d, sr %d, fec %d, modulation %d, rolloff %d",
 			frequency,
 			polarisation ? "hor" : "vert",
 			orbital_position,
@@ -117,7 +117,7 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 	}
 	else
 	{
-		eDebug("[eDVBFrontendParametersSatellite] SAT DVB-S freq %d, %s, pos %d, sr %d, fec %d",
+		eDebug("SAT DVB-S freq %d, %s, pos %d, sr %d, fec %d",
 			frequency,
 			polarisation ? "hor" : "vert",
 			orbital_position,
@@ -149,7 +149,7 @@ void eDVBFrontendParametersCable::set(const CableDeliverySystemDescriptor &descr
 		modulation = Modulation_Auto;
 	inversion = Inversion_Unknown;
 	system = System_DVB_C_ANNEX_A;
-	eDebug("[eDVBFrontendParametersCable] Cable freq %d, mod %d, sr %d, fec %d",
+	eDebug("Cable freq %d, mod %d, sr %d, fec %d",
 		frequency,
 		modulation, symbol_rate, fec_inner);
 }
@@ -189,53 +189,10 @@ void eDVBFrontendParametersTerrestrial::set(const TerrestrialDeliverySystemDescr
 		modulation = Modulation_Auto;
 	inversion = Inversion_Unknown;
 	system = System_DVB_T;
-	plp_id = 0;
-	eDebug("[eDVBFrontendParametersTerrestrial] Terr freq %d, bw %d, cr_hp %d, cr_lp %d, tm_mode %d, guard %d, hierarchy %d, const %d",
+	plpid = 0;
+	eDebug("Terr freq %d, bw %d, cr_hp %d, cr_lp %d, tm_mode %d, guard %d, hierarchy %d, const %d",
 		frequency, bandwidth, code_rate_HP, code_rate_LP, transmission_mode,
 		guard_interval, hierarchy, modulation);
-}
-
-void eDVBFrontendParametersTerrestrial::set(const T2DeliverySystemDescriptor &descriptor)
-{
-	switch (descriptor.getBandwidth())
-	{
-		case 0: bandwidth = 8000000; break;
-		case 1: bandwidth = 7000000; break;
-		case 2: bandwidth = 6000000; break;
-		case 3: bandwidth = 5000000; break;
-		case 4: bandwidth = 1712000; break;
-		case 5: bandwidth = 10000000; break;
-		default: bandwidth = 0; break;
-	}
-	switch (descriptor.getTransmissionMode())
-	{
-		case 0: transmission_mode = TransmissionMode_2k; break;
-		case 1: transmission_mode = TransmissionMode_8k; break;
-		case 2: transmission_mode = TransmissionMode_4k; break;
-		case 3: transmission_mode = TransmissionMode_1k; break;
-		case 4: transmission_mode = TransmissionMode_16k; break;
-		case 5: transmission_mode = TransmissionMode_32k; break;
-		default: transmission_mode = TransmissionMode_Auto; break;
-	}
-	switch (descriptor.getGuardInterval())
-	{
-		case 0: guard_interval = GuardInterval_1_32; break;
-		case 1: guard_interval = GuardInterval_1_16; break;
-		case 2: guard_interval = GuardInterval_1_8; break;
-		case 3: guard_interval = GuardInterval_1_4; break;
-		case 4: guard_interval = GuardInterval_1_128; break;
-		case 5: guard_interval = GuardInterval_19_128; break;
-		case 6: guard_interval = GuardInterval_19_256; break;
-		case 7: guard_interval = GuardInterval_Auto; break;
-	}
-	plp_id = descriptor.getPlpId();
-	code_rate_HP = code_rate_LP = FEC_Auto;
-	hierarchy = Hierarchy_Auto;
-	modulation = Modulation_Auto;
-	inversion = Inversion_Unknown;
-	system = System_DVB_T2;
-	eDebug("[eDVBFrontendParametersTerrestrial] T2 bw %d, tm_mode %d, guard %d, plp_id %d",
-		bandwidth, transmission_mode, guard_interval, plp_id);
 }
 
 eDVBFrontendParameters::eDVBFrontendParameters()
@@ -331,7 +288,6 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 			eDVBFrontendParametersSatellite osat;
 			if (parm->getDVBS(osat))
 				return -2;
-
 			if (sat.orbital_position != osat.orbital_position)
 				diff = 1<<29;
 			else if (sat.polarisation != osat.polarisation)
@@ -399,7 +355,7 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 				oterrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC_Auto &&
 				terrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC_Auto)
 				diff = 1 << 30;
-			else if (oterrestrial.plp_id != terrestrial.plp_id)
+			else if (oterrestrial.plpid != terrestrial.plpid)
 				diff = 1 << 27;
 			else if (oterrestrial.system != terrestrial.system)
 				diff = 1 << 30;
@@ -512,12 +468,10 @@ int eDVBFrontend::PriorityOrder=0;
 int eDVBFrontend::PreferredFrontendIndex = -1;
 
 eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool simulate, eDVBFrontend *simulate_fe)
-	:m_simulate(simulate), m_enabled(false), m_fbc(false), m_simulate_fe(simulate_fe), m_type(-1), m_dvbid(fe), m_slotid(fe)
-	,m_fd(-1), m_teakover(0), m_waitteakover(0), m_break_teakover(0), m_break_waitteakover(0), m_dvbversion(0), m_rotor_mode(false)
-	,m_need_rotor_workaround(false), m_multitype(false), m_state(stateClosed), m_timeout(0), m_tuneTimer(0)
+	:m_simulate(simulate), m_enabled(false), m_simulate_fe(simulate_fe), m_dvbid(fe), m_slotid(fe)
+	,m_fd(-1), m_dvbversion(0), m_rotor_mode(false), m_need_rotor_workaround(false)
+	,m_state(stateClosed), m_timeout(0), m_tuneTimer(0), m_fbc(false)
 {
-	char filename[64];
-
 	m_filename = devicenodename;
 
 	m_timeout = eTimer::create(eApp);
@@ -530,13 +484,12 @@ eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool sim
 		m_data[i] = -1;
 
 	m_delsys.clear();
-	m_delsys_whitelist.clear();
-	m_data[FREQ_OFFSET] = 0;
+
 	m_idleInputpower[0]=m_idleInputpower[1]=0;
 
-	snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/fbc_id", m_slotid);
-
-	if (access(filename, F_OK) == 0)
+	char fileName[32] = {0};
+	sprintf(fileName, "/proc/stb/frontend/%d/fbc_id", m_slotid);
+	if (access(fileName, F_OK) == 0)
 		m_fbc = true;
 
 	ok = !openFrontend();
@@ -560,18 +513,18 @@ int eDVBFrontend::openFrontend()
 
 	if (!m_simulate)
 	{
-		eDebug("[eDVBFrontend] opening frontend %d", m_dvbid);
+		eDebug("opening frontend %d", m_dvbid);
 		if (m_fd < 0)
 		{
 			m_fd = ::open(m_filename.c_str(), O_RDWR | O_NONBLOCK | O_CLOEXEC);
 			if (m_fd < 0)
 			{
-				eWarning("[eDVBFrontend] opening %s failed: %m", m_filename.c_str());
+				eWarning("failed! (%s) %m", m_filename.c_str());
 				return -1;
 			}
 		}
 		else
-			eWarning("[eDVBFrontend] frontend %d already opened", m_dvbid);
+			eWarning("frontend %d already opened", m_dvbid);
 		if (m_dvbversion == 0)
 		{
 			m_dvbversion = DVB_VERSION(3, 0);
@@ -585,7 +538,6 @@ int eDVBFrontend::openFrontend()
 			if (ioctl(m_fd, FE_GET_PROPERTY, &cmdseq) >= 0)
 			{
 				m_dvbversion = p.u.data;
-				eDebug("[eDVBFrontend] frontend %d has DVB API %02x ", m_dvbid, m_dvbversion);
 			}
 #endif
 		}
@@ -593,7 +545,7 @@ int eDVBFrontend::openFrontend()
 		{
 			if (::ioctl(m_fd, FE_GET_INFO, &fe_info) < 0)
 			{
-				eWarning("[eDVBFrontend] ioctl FE_GET_INFO failed");
+				eWarning("ioctl FE_GET_INFO failed");
 				::close(m_fd);
 				m_fd = -1;
 				return -1;
@@ -677,13 +629,7 @@ int eDVBFrontend::openFrontend()
 		fe_info.frequency_max = 2200000;
 	}
 
-	m_multitype = m_delsys[SYS_DVBS] && (m_delsys[SYS_DVBT] || m_delsys[SYS_DVBC_ANNEX_A]);
-
-	if (!m_multitype)
-		m_type = feSatellite;
-
-	if(m_type == feSatellite)
-		setTone(iDVBFrontend::toneOff);
+	setTone(iDVBFrontend::toneOff);
 	setVoltage(iDVBFrontend::voltageOff);
 
 	return 0;
@@ -764,8 +710,7 @@ int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 
 	if (m_fd >= 0)
 	{
-		if(m_type == feSatellite)
-			setTone(iDVBFrontend::toneOff);
+		setTone(iDVBFrontend::toneOff);
 		setVoltage(iDVBFrontend::voltageOff);
 		m_tuneTimer->stop();
 
@@ -774,12 +719,11 @@ int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 		if (!::close(m_fd))
 			m_fd=-1;
 		else
-			eWarning("[eDVBFrontend] couldnt close frontend %d", m_dvbid);
+			eWarning("couldnt close frontend %d", m_dvbid);
 	}
 	else if (m_simulate)
 	{
-		if(m_type == feSatellite)
-			setTone(iDVBFrontend::toneOff);
+		setTone(iDVBFrontend::toneOff);
 		setVoltage(iDVBFrontend::voltageOff);
 	}
 
@@ -818,7 +762,7 @@ void eDVBFrontend::feEvent(int w)
 		if (w < 0)
 			continue;
 
-		eDebug("[eDVBFrontend] (%d)fe event: status %x, inversion %s, m_tuning %d", m_dvbid, event.status, (event.parameters.inversion == INVERSION_ON) ? "on" : "off", m_tuning);
+		eDebug("(%d)fe event: status %x, inversion %s, m_tuning %d", m_dvbid, event.status, (event.parameters.inversion == INVERSION_ON) ? "on" : "off", m_tuning);
 		if (event.status & FE_HAS_LOCK)
 		{
 			state = stateLock;
@@ -828,7 +772,7 @@ void eDVBFrontend::feEvent(int w)
 			if (m_tuning) {
 				state = stateTuning;
 				if (event.status & FE_TIMEDOUT) {
-					eDebug("[eDVBFrontend] FE_TIMEDOUT! ..abort");
+					eDebug("FE_TIMEDOUT! ..abort");
 					m_tuneTimer->stop();
 					timeout();
 					return;
@@ -837,7 +781,7 @@ void eDVBFrontend::feEvent(int w)
 			}
 			else
 			{
-				eDebug("[eDVBFrontend] stateLostLock");
+				eDebug("stateLostLock");
 				state = stateLostLock;
 				if (!m_rotor_mode)
 					sec_fe->m_data[CSW] = sec_fe->m_data[UCSW] = sec_fe->m_data[TONEBURST] = -1; // reset diseqc
@@ -1028,23 +972,40 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		snr = 0xFF - (snr & 0xFF);
 		if (snr != 0)
 			ret = 10 * (int)(-100 * (log10(snr) - log10(255)));
+		else
+			ret = 2700;
 	}
-	else if (strstr(m_description, "BCM4506") || strstr(m_description, "BCM4505"))
+	else if (strstr(m_description, "BCM4506")
+		|| strstr(m_description, "BCM4506 (internal)")
+		|| strstr(m_description, "BCM4505")
+		)
 	{
 		ret = (snr * 100) >> 8;
 	}
-	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL2108)"))
+	else if (strstr(m_description, "Si2166B"))
+	{
+		ret = (snr * 240) >> 8;
+	}
+	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL2108)")) // VU+Ultimo/VU+Uno DVB-S2 NIM
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1600) + 0.2100) * 100);
 	}
 	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6222)")
 		|| !strcmp(m_description, "Vuplus DVB-S NIM(AVL6211)")
 		|| !strcmp(m_description, "BCM7335 DVB-S2 NIM (internal)")
-		)
+		) // VU+
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1244) + 2.5079) * 100);
 	}
-	else if (!strcmp(m_description, "BCM7346 (internal)"))
+	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")) // VU+ Solo2
+	{
+		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1800) - 1.0000) * 100);
+	}
+	else if (!strcmp(m_description, "Vuplus DVB-S NIM(7376 FBC)")) // VU+ Solo4k
+	{
+		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1850) - 0.3500) * 100);
+	}
+	else if (!strcmp(m_description, "BCM7346 (internal)")) // MaxDigital XP1000
 	{
 		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1880) + 0.1959) * 100);
 	}
@@ -1054,9 +1015,9 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		|| !strcmp(m_description, "BCM7362 DVB-S2 NIM (internal)")
 		|| !strcmp(m_description, "GIGA DVB-S2 NIM (Internal)")
 		|| !strcmp(m_description, "GIGA DVB-S2 NIM (SP2246T)")
-		)
+		) // Gigablue
 	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1710) - 1.0000) * 100);
+		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1800) - 1.0000) * 100);
 	}
 	else if (strstr(m_description, "GIGA DVB-C/T NIM (SP8221L)")
 		|| strstr(m_description, "GIGA DVB-C/T NIM (SI4765)")
@@ -1078,53 +1039,61 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 				break;
 		}
 	}
-	else if (!strcmp(m_description, "Vuplus DVB-S NIM(7376 FBC)")) // VU+ Solo4k
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.1850) - 0.3500) * 100);
-	}
-	else if (!strcmp(m_description, "BCM7362 (internal) DVB-S2")) // Xsarius
-	{
-		ret = (int)((((double(snr) / (65536.0 / 100.0)) * 0.28) - 10.0) * 100);
-	}
 	else if (!strcmp(m_description, "Genpix"))
 	{
 		ret = (int)((snr << 1) / 5);
 	}
 	else if (!strcmp(m_description, "CXD1981"))
 	{
-		eDVBFrontendParametersCable parm;
 		int mse = (~snr) & 0xFF;
-		oparm.getDVBC(parm);
-		switch (parm.modulation)
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
 		{
-		case eDVBFrontendParametersCable::Modulation_QAM16:
-		case eDVBFrontendParametersCable::Modulation_QAM64:
-		case eDVBFrontendParametersCable::Modulation_QAM256: ret = (int)(-950 * log(((double)mse) / 760)); break;
-		case eDVBFrontendParametersCable::Modulation_QAM32:
-		case eDVBFrontendParametersCable::Modulation_QAM128: ret = (int)(-875 * log(((double)mse) / 650)); break;
-		default: break;
+		case feCable: 
+			eDVBFrontendParametersCable parm;
+			oparm.getDVBC(parm);
+			switch (parm.modulation)
+			{
+			case eDVBFrontendParametersCable::Modulation_Auto:
+			case eDVBFrontendParametersCable::Modulation_QAM16:
+			case eDVBFrontendParametersCable::Modulation_QAM64:
+			case eDVBFrontendParametersCable::Modulation_QAM256: ret = (int)(-950 * log(((double)mse) / 760)); break;
+			case eDVBFrontendParametersCable::Modulation_QAM32:
+			case eDVBFrontendParametersCable::Modulation_QAM128: ret = (int)(-875 * log(((double)mse) / 650)); break;
+			}
+			break;
+		case feTerrestrial: 
+			ret = (mse * 25) / 2;
+			break;
+		default:
+			break;
 		}
 	}
-	else if (!strcmp(m_description, "Broadcom BCM73XX") ||
-			 !strcmp(m_description, "FTS-260 (Montage RS6000)") ||
-			 !strcmp(m_description, "Panasonic MN88472") ||
-			 !strcmp(m_description, "Panasonic MN88473")) // xcore
+	else if (!strcmp(m_description, "BCM73625 (G3)")) // DM520
 	{
 		ret = snr * 100 / 256;
+	}
+	else if (!strcmp(m_description, "Broadcom BCM73XX")
+		|| !strcmp(m_description, "FTS-260 (Montage RS6000)")
+		|| !strcmp(m_description, "Panasonic MN88472")
+		|| !strcmp(m_description, "Panasonic MN88473")
+		) // xcore
+	{
+		ret = snr * 100 / 256;
+
 		if (!strcmp(m_description, "FTS-260 (Montage RS6000)"))
 			sat_max = 1490;
 	}
 	else if (!strcmp(m_description, "Si216x"))
 	{
 		eDVBFrontendParametersTerrestrial parm;
-
 		oparm.getDVBT(parm);
-
 		switch (parm.system)
 		{
 			case eDVBFrontendParametersTerrestrial::System_DVB_T:
 			case eDVBFrontendParametersTerrestrial::System_DVB_T2: 
-			case eDVBFrontendParametersTerrestrial::System_DVB_T_T2: ret = (int)(snr / 58); ter_max = 1700; break;
+			case eDVBFrontendParametersTerrestrial::System_DVB_T_T2: ret = (int)((snr * 10) / 15); break;
 			default: break;
 		}
 	}
@@ -1135,8 +1104,8 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	}
 	else if (strstr(m_description, "Sundtek DVB-S/S2 (IV)"))
 	{
-		ret = (int)(snr / 40.5);
-		sat_max = 1900;
+		ret = (int)(snr / 52);
+		sat_max = 1690;
 	}
 	else if(!strcmp(m_description, "TBS-5925") || !strcmp(m_description, "DVBS2BOX"))
 	{
@@ -1182,7 +1151,7 @@ int eDVBFrontend::readFrontendData(int type)
 				if (!m_simulate)
 				{
 					if (ioctl(m_fd, FE_READ_BER, &ber) < 0 && errno != ERANGE)
-						eDebug("[eDVBFrontend] FE_READ_BER failed: %m");
+						eDebug("FE_READ_BER failed (%m)");
 				}
 				return ber;
 			}
@@ -1194,7 +1163,7 @@ int eDVBFrontend::readFrontendData(int type)
 				if (!m_simulate)
 				{
 					if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
-						eDebug("[eDVBFrontend] FE_READ_SNR failed: %m");
+						eDebug("FE_READ_SNR failed (%m)");
 				}
 				return snr;
 			}
@@ -1232,7 +1201,7 @@ int eDVBFrontend::readFrontendData(int type)
 				}
 #endif
 				// fallback to old DVB API
-				if((!signalquality && !signalqualitydb) || strstr(m_description, "Sundtek"))
+				if(!signalquality && !signalqualitydb || strstr(m_description, "Sundtek"))
 				{
 					int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
 					calculateSignalQuality(snr, signalquality, signalqualitydb);
@@ -1280,7 +1249,7 @@ int eDVBFrontend::readFrontendData(int type)
 #endif
 					// fallback to old DVB API
 					if (!strength && ioctl(m_fd, FE_READ_SIGNAL_STRENGTH, &strength) < 0 && errno != ERANGE)
-						eDebug("[eDVBFrontend] FE_READ_SIGNAL_STRENGTH failed: %m");
+						eDebug("FE_READ_SIGNAL_STRENGTH failed (%m)");
 				}
 				return strength;
 			}
@@ -1297,7 +1266,7 @@ int eDVBFrontend::readFrontendData(int type)
 			if (!m_simulate)
 			{
 				if ( ioctl(m_fd, FE_READ_STATUS, &status) < 0 && errno != ERANGE )
-					eDebug("[eDVBFrontend] FE_READ_STATUS failed: %m");
+					eDebug("FE_READ_STATUS failed (%m)");
 				return (int)status;
 			}
 			return (FE_HAS_SYNC | FE_HAS_LOCK);
@@ -1315,7 +1284,7 @@ int eDVBFrontend::readFrontendData(int type)
 			{
 				return 0;
 			}
-			return type == feSatellite ? p.u.data + m_data[FREQ_OFFSET] : p.u.data;
+			return p.u.data + m_data[FREQ_OFFSET];
 		}
 	}
 	return 0;
@@ -1372,7 +1341,7 @@ void eDVBFrontend::getTransponderData(ePtr<iDVBTransponderData> &dest, bool orig
 		}
 		if (ioctl(m_fd, FE_GET_PROPERTY, &cmdseq) < 0)
 		{
-			eDebug("[eDVBFrontend] FE_GET_PROPERTY failed: %m");
+			eDebug("FE_GET_PROPERTY failed (%m)");
 			original = true;
 		}
 	}
@@ -1437,13 +1406,13 @@ int eDVBFrontend::readInputpower()
 	int fp=::open("/dev/dbox/fp0", O_RDWR);
 	if (fp < 0)
 	{
-		eDebug("[eDVBFrontend] Failed to open /dev/dbox/fp0");
+		eDebug("Failed to open /dev/dbox/fp0");
 		return -1;
 	}
 	static bool old_fp = (::ioctl(fp, FP_IOCTL_GET_ID) < 0);
 	if ( ioctl( fp, old_fp ? 9 : 0x100, &power ) < 0 )
 	{
-		eDebug("[eDVBFrontend] FP_IOCTL_GET_LNB_CURRENT failed: %m");
+		eDebug("FP_IOCTL_GET_LNB_CURRENT failed (%m)");
 		power = -1;
 	}
 	::close(fp);
@@ -1453,7 +1422,7 @@ int eDVBFrontend::readInputpower()
 
 bool eDVBFrontend::setSecSequencePos(int steps)
 {
-//	eDebugNoSimulate("[eDVBFrontend] set sequence pos %d", steps);
+//	eDebugNoSimulate("set sequence pos %d", steps);
 	if (!steps)
 		return false;
 	while( steps > 0 )
@@ -1510,13 +1479,13 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 	if ( m_sec_sequence && m_sec_sequence.current() != m_sec_sequence.end() )
 	{
 		long *sec_fe_data = sec_fe->m_data;
-//		eDebugNoSimulate("[eDVBFrontend] tuneLoop %d\n", m_sec_sequence.current()->cmd);
+//		eDebugNoSimulate("tuneLoop %d\n", m_sec_sequence.current()->cmd);
 		delay = 0;
 		switch (m_sec_sequence.current()->cmd)
 		{
 			case eSecCommand::SLEEP:
 				delay = m_sec_sequence.current()++->msec;
-				eDebugNoSimulate("[eDVBFrontend] tuner %d sleep %dms", m_dvbid, delay);
+				eDebugNoSimulate("[SEC] tuner %d sleep %dms", m_dvbid, delay);
 				break;
 			case eSecCommand::GOTO:
 				if ( !setSecSequencePos(m_sec_sequence.current()->steps) )
@@ -1525,7 +1494,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			case eSecCommand::SET_VOLTAGE:
 			{
 				int voltage = m_sec_sequence.current()++->voltage;
-				eDebugNoSimulate("[eDVBFrontend] tuner %d setVoltage %d", m_dvbid, voltage);
+				eDebugNoSimulate("[SEC] tuner %d setVoltage %d", m_dvbid, voltage);
 				sec_fe->setVoltage(voltage);
 				break;
 			}
@@ -1562,7 +1531,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				break;
 			}
 			case eSecCommand::SET_TONE:
-				eDebugNoSimulate("[eDVBFrontend] tuner %d setTone %d", m_dvbid, m_sec_sequence.current()->tone);
+				eDebugNoSimulate("[SEC] tuner %d setTone %d", m_dvbid, m_sec_sequence.current()->tone);
 				sec_fe->setTone(m_sec_sequence.current()++->tone);
 				break;
 			case eSecCommand::SEND_DISEQC:
@@ -1590,6 +1559,8 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					if (delay > 94) delay = 94;
 					if (delay)
 						eDebugNoSimulateNoNewLineEnd(" -> extra guard delay %d ms",delay);
+					else
+						eDebugNoSimulateNoNewLineEnd("");
 				}
 				++m_sec_sequence.current();
 				break;
@@ -1611,8 +1582,6 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					if (delay > 24) delay = 24;
 					if (delay)
 						eDebugNoSimulateNoNewLineEnd(" -> extra quard delay %d ms",delay);
-					else
-						eDebugNoSimulateNoNewLineEnd("");
 				}
 				++m_sec_sequence.current();
 				break;
@@ -1620,14 +1589,14 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			case eSecCommand::SET_FRONTEND:
 			{
 				int enableEvents = (m_sec_sequence.current()++)->val;
-				eDebugNoSimulate("[eDVBFrontend] tuner %d setFrontend: events %s", m_dvbid, enableEvents ? "enabled":"disabled");
+				eDebugNoSimulate("[SEC] tuner %d setFrontend: events %s", m_dvbid, enableEvents ? "enabled":"disabled");
 				setFrontend(enableEvents);
 				break;
 			}
 			case eSecCommand::START_TUNE_TIMEOUT:
 			{
 				int tuneTimeout = m_sec_sequence.current()->timeout;
-				eDebugNoSimulate("[eDVBFrontend] tuner %d startTuneTimeout %d", m_dvbid, tuneTimeout);
+				eDebugNoSimulate("[SEC] tuner %d startTuneTimeout %d", m_dvbid, tuneTimeout);
 				if (!m_simulate)
 					m_timeout->start(tuneTimeout, 1);
 				++m_sec_sequence.current();
@@ -1635,12 +1604,12 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			}
 			case eSecCommand::SET_TIMEOUT:
 				m_timeoutCount = m_sec_sequence.current()++->val;
-				eDebugNoSimulate("[eDVBFrontend] tuner %d set timeout %d", m_dvbid, m_timeoutCount);
+				eDebugNoSimulate("[SEC] tuner %d set timeout %d", m_dvbid, m_timeoutCount);
 				break;
 			case eSecCommand::IF_TIMEOUT_GOTO:
 				if (!m_timeoutCount)
 				{
-					eDebugNoSimulate("[eDVBFrontend] tuner %d rotor timout", m_dvbid);
+					eDebugNoSimulate("[SEC] tuner %d rotor timout", m_dvbid);
 					setSecSequencePos(m_sec_sequence.current()->steps);
 				}
 				else
@@ -1652,10 +1621,10 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				if ( idx == 0 || idx == 1 )
 				{
 					m_idleInputpower[idx] = sec_fe->readInputpower();
-					eDebugNoSimulate("[eDVBFrontend] idleInputpower[%d] is %d", idx, m_idleInputpower[idx]);
+					eDebugNoSimulate("[SEC] idleInputpower[%d] is %d", idx, m_idleInputpower[idx]);
 				}
 				else
-					eDebugNoSimulate("[eDVBFrontend] idleInputpower measure index(%d) out of bound !!!", idx);
+					eDebugNoSimulate("[SEC] idleInputpower measure index(%d) out of bound !!!", idx);
 				break;
 			}
 			case eSecCommand::IF_MEASURE_IDLE_WAS_NOT_OK_GOTO:
@@ -1668,7 +1637,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					int diff = abs(idle-m_idleInputpower[idx]);
 					if ( diff > 0)
 					{
-						eDebugNoSimulate("[eDVBFrontend] measure idle(%d) was not okay.. (%d - %d = %d) retry", idx, m_idleInputpower[idx], idle, diff);
+						eDebugNoSimulate("measure idle(%d) was not okay.. (%d - %d = %d) retry", idx, m_idleInputpower[idx], idle, diff);
 						setSecSequencePos(compare.steps);
 						break;
 					}
@@ -1693,17 +1662,17 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				if (isLocked && ((abs((signal = readFrontendData(iFrontendInformation_ENUMS::signalQualitydB)) - cmd.lastSignal) < 40) || !cmd.lastSignal))
 				{
 					if (cmd.lastSignal)
-						eDebugNoSimulate("[eDVBFrontend] locked step %d ok (%d %d)", cmd.okcount, signal, cmd.lastSignal);
+						eDebugNoSimulate("[SEC] locked step %d ok (%d %d)", cmd.okcount, signal, cmd.lastSignal);
 					else
 					{
-						eDebugNoSimulate("[eDVBFrontend] locked step %d ok", cmd.okcount);
+						eDebugNoSimulate("[SEC] locked step %d ok", cmd.okcount);
 						if (!cmd.okcount)
 							cmd.lastSignal = signal;
 					}
 					++cmd.okcount;
 					if (cmd.okcount > 4)
 					{
-						eDebugNoSimulate("[eDVBFrontend] ok > 4 .. goto %d\n", cmd.steps);
+						eDebugNoSimulate("ok > 4 .. goto %d\n", cmd.steps);
 						setSecSequencePos(cmd.steps);
 						m_state = stateLock;
 						m_stateChanged(this);
@@ -1715,9 +1684,9 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				else
 				{
 					if (isLocked)
-						eDebugNoSimulate("[eDVBFrontend] rotor locked step %d failed (oldSignal %d, curSignal %d)", cmd.okcount, signal, cmd.lastSignal);
+						eDebugNoSimulate("[SEC] rotor locked step %d failed (oldSignal %d, curSignal %d)", cmd.okcount, signal, cmd.lastSignal);
 					else
-						eDebugNoSimulate("[eDVBFrontend] rotor locked step %d failed (not locked)", cmd.okcount);
+						eDebugNoSimulate("[SEC] rotor locked step %d failed (not locked)", cmd.okcount);
 					cmd.okcount=0;
 					cmd.lastSignal=0;
 				}
@@ -1747,7 +1716,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			}
 			case eSecCommand::MEASURE_RUNNING_INPUTPOWER:
 				m_runningInputpower = sec_fe->readInputpower();
-				eDebugNoSimulate("[eDVBFrontend] runningInputpower is %d", m_runningInputpower);
+				eDebugNoSimulate("[SEC] runningInputpower is %d", m_runningInputpower);
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SET_ROTOR_MOVING:
@@ -1773,7 +1742,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				--m_timeoutCount;
 				if (!m_timeoutCount && m_retryCount > 0)
 					--m_retryCount;
-				eDebugNoSimulate("[eDVBFrontend] waiting for rotor %s %d, idle %d, delta %d",
+				eDebugNoSimulate("[SEC] waiting for rotor %s %d, idle %d, delta %d",
 					txt,
 					m_runningInputpower,
 					idleInputpower,
@@ -1782,17 +1751,17 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					|| (!cmd.direction && abs(m_runningInputpower - idleInputpower) <= cmd.deltaA) )
 				{
 					++cmd.okcount;
-					eDebugNoSimulate("[eDVBFrontend] rotor %s step %d ok", txt, cmd.okcount);
+					eDebugNoSimulate("[SEC] rotor %s step %d ok", txt, cmd.okcount);
 					if ( cmd.okcount > 6 )
 					{
-						eDebugNoSimulate("[eDVBFrontend] rotor is %s", txt);
+						eDebugNoSimulate("[SEC] rotor is %s", txt);
 						if (setSecSequencePos(cmd.steps))
 							break;
 					}
 				}
 				else
 				{
-					eDebugNoSimulate("[eDVBFrontend] rotor not %s... reset counter.. increase timeout", txt);
+					eDebugNoSimulate("[SEC] rotor not %s... reset counter.. increase timeout", txt);
 					cmd.okcount=0;
 				}
 				++m_sec_sequence.current();
@@ -1805,7 +1774,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					++m_sec_sequence.current();
 				break;
 			case eSecCommand::INVALIDATE_CURRENT_SWITCHPARMS:
-				eDebugNoSimulate("[eDVBFrontend] invalidate current switch params");
+				eDebugNoSimulate("[SEC] invalidate current switch params");
 				sec_fe_data[CSW] = -1;
 				sec_fe_data[UCSW] = -1;
 				sec_fe_data[TONEBURST] = -1;
@@ -1815,11 +1784,11 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				sec_fe_data[CSW] = sec_fe_data[NEW_CSW];
 				sec_fe_data[UCSW] = sec_fe_data[NEW_UCSW];
 				sec_fe_data[TONEBURST] = sec_fe_data[NEW_TONEBURST];
-				eDebugNoSimulate("[eDVBFrontend] update current switch params");
+				eDebugNoSimulate("[SEC] update current switch params");
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::INVALIDATE_CURRENT_ROTORPARMS:
-				eDebugNoSimulate("[eDVBFrontend] invalidate current rotorparams");
+				eDebugNoSimulate("[SEC] invalidate current rotorparams");
 				sec_fe_data[ROTOR_CMD] = -1;
 				sec_fe_data[ROTOR_POS] = -1;
 				++m_sec_sequence.current();
@@ -1827,17 +1796,17 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			case eSecCommand::UPDATE_CURRENT_ROTORPARAMS:
 				sec_fe_data[ROTOR_CMD] = sec_fe_data[NEW_ROTOR_CMD];
 				sec_fe_data[ROTOR_POS] = sec_fe_data[NEW_ROTOR_POS];
-				eDebugNoSimulate("[eDVBFrontend] update current rotorparams %d %04lx %ld", m_timeoutCount, sec_fe_data[ROTOR_CMD], sec_fe_data[ROTOR_POS]);
+				eDebugNoSimulate("[SEC] update current rotorparams %d %04lx %ld", m_timeoutCount, sec_fe_data[ROTOR_CMD], sec_fe_data[ROTOR_POS]);
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SET_ROTOR_DISEQC_RETRYS:
 				m_retryCount = m_sec_sequence.current()++->val;
-				eDebugNoSimulate("[eDVBFrontend] set rotor retries %d", m_retryCount);
+				eDebugNoSimulate("[SEC] set rotor retries %d", m_retryCount);
 				break;
 			case eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO:
 				if (!m_retryCount)
 				{
-					eDebugNoSimulate("[eDVBFrontend] no more rotor retrys");
+					eDebugNoSimulate("[SEC] no more rotor retrys");
 					setSecSequencePos(m_sec_sequence.current()->steps);
 				}
 				else
@@ -1854,9 +1823,9 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					{
 						bool slimiting = m_sec_sequence.current()->mode == eSecCommand::modeStatic;
 						if (fprintf(f, "%s", slimiting ? "on" : "off") <= 0)
-							eDebugNoSimulate("[eDVBFrontend] write %s failed: %m", proc_name);
+							eDebugNoSimulate("write %s failed!! (%m)", proc_name);
 						else
-							eDebugNoSimulate("[eDVBFrontend] set %s current limiting", slimiting ? "static" : "dynamic");
+							eDebugNoSimulate("[SEC] set %s current limiting", slimiting ? "static" : "dynamic");
 					}
 					else if (sec_fe->m_need_rotor_workaround)
 					{
@@ -1875,19 +1844,19 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 							unsigned char data[2];
 							::ioctl(fd, I2C_SLAVE_FORCE, 0x10 >> 1);
 							if(::read(fd, data, 1) != 1)
-								eDebugNoSimulate("[eDVBFrontend] error read lnbp: %m");
+								eDebugNoSimulate("[SEC] error read lnbp (%m)");
 							if ( m_sec_sequence.current()->mode == eSecCommand::modeStatic )
 							{
 								data[0] |= 0x80;  // enable static current limiting
-								eDebugNoSimulate("[eDVBFrontend] set static current limiting");
+								eDebugNoSimulate("[SEC] set static current limiting");
 							}
 							else
 							{
 								data[0] &= ~0x80;  // enable dynamic current limiting
-								eDebugNoSimulate("[eDVBFrontend] set dynamic current limiting");
+								eDebugNoSimulate("[SEC] set dynamic current limiting");
 							}
 							if(::write(fd, data, 1) != 1)
-								eDebugNoSimulate("[eDVBFrontend] error write lnbp: %m");
+								eDebugNoSimulate("[SEC] error write lnbp (%m)");
 							::close(fd);
 						}
 					}
@@ -1897,7 +1866,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 			}
 			case eSecCommand::DELAYED_CLOSE_FRONTEND:
 			{
-				eDebugNoSimulate("[eDVBFrontend] tuner %d delayed close frontend", m_dvbid);
+				eDebugNoSimulate("[SEC] tuner %d delayed close frontend", m_dvbid);
 				closeFrontend(false, true);
 				++m_sec_sequence.current();
 				break;
@@ -2006,7 +1975,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				break;
 			}
 			default:
-				eDebugNoSimulate("[eDVBFrontend] tuner %d unhandled sec command %d", m_dvbid, m_sec_sequence.current()->cmd);
+				eDebugNoSimulate("[SEC] tuner %d unhandled sec command %d", m_dvbid, m_sec_sequence.current()->cmd);
 				++m_sec_sequence.current();
 		}
 		if (!m_simulate)
@@ -2027,7 +1996,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 	{
 		int type = -1;
 		oparm.getSystem(type);
-		eDebug("[eDVBFrontend] setting frontend %d events: %s", m_dvbid, recvEvents?"on":"off");
+		eDebug("setting frontend %d events: %s", m_dvbid, recvEvents?"on":"off");
 		if (recvEvents)
 			m_sn->start();
 		feEvent(-1); // flush events
@@ -2046,14 +2015,6 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			fe_delivery_system_t system = SYS_DVBS;
 			oparm.getDVBS(parm);
 
-			switch (parm.system)
-			{
-				default:
-				case eDVBFrontendParametersSatellite::System_DVB_S: system = SYS_DVBS; break;
-				case eDVBFrontendParametersSatellite::System_DVB_S2: system = SYS_DVBS2; break;
-			}
-			p[cmdseq.num].cmd = DTV_DELIVERY_SYSTEM, p[cmdseq.num].u.data = system, cmdseq.num++;
-
 			p[cmdseq.num].cmd = DTV_INVERSION;
 			switch (parm.inversion)
 			{
@@ -2064,6 +2025,12 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			}
 			cmdseq.num++;
 
+			switch (parm.system)
+			{
+				default:
+				case eDVBFrontendParametersSatellite::System_DVB_S: system = SYS_DVBS; break;
+				case eDVBFrontendParametersSatellite::System_DVB_S2: system = SYS_DVBS2; break;
+			}
 			switch (parm.modulation)
 			{
 				case eDVBFrontendParametersSatellite::Modulation_QPSK: modulation = QPSK; break;
@@ -2088,6 +2055,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 				case eDVBFrontendParametersSatellite::RollOff_auto: rolloff = ROLLOFF_AUTO; break;
 			}
 			p[cmdseq.num].cmd = DTV_FREQUENCY, p[cmdseq.num].u.data = satfrequency, cmdseq.num++;
+			p[cmdseq.num].cmd = DTV_DELIVERY_SYSTEM, p[cmdseq.num].u.data = system, cmdseq.num++;
 			p[cmdseq.num].cmd = DTV_MODULATION, p[cmdseq.num].u.data = modulation, cmdseq.num++;
 			p[cmdseq.num].cmd = DTV_SYMBOL_RATE, p[cmdseq.num].u.data = parm.symbol_rate, cmdseq.num++;
 
@@ -2119,6 +2087,17 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 		{
 			eDVBFrontendParametersCable parm;
 			oparm.getDVBC(parm);
+			p[cmdseq.num].cmd = DTV_FREQUENCY, p[cmdseq.num].u.data = parm.frequency * 1000, cmdseq.num++;
+
+			p[cmdseq.num].cmd = DTV_INVERSION;
+			switch (parm.inversion)
+			{
+				case eDVBFrontendParametersCable::Inversion_Off: p[cmdseq.num].u.data = INVERSION_OFF; break;
+				case eDVBFrontendParametersCable::Inversion_On: p[cmdseq.num].u.data = INVERSION_ON; break;
+				default:
+				case eDVBFrontendParametersCable::Inversion_Unknown: p[cmdseq.num].u.data = INVERSION_AUTO; break;
+			}
+			cmdseq.num++;
 
 			p[cmdseq.num].cmd = DTV_DELIVERY_SYSTEM;
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
@@ -2138,18 +2117,6 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 #else
 			p[cmdseq.num].u.data = SYS_DVBC_ANNEX_AC;
 #endif
-			cmdseq.num++;
-
-			p[cmdseq.num].cmd = DTV_FREQUENCY, p[cmdseq.num].u.data = parm.frequency * 1000, cmdseq.num++;
-
-			p[cmdseq.num].cmd = DTV_INVERSION;
-			switch (parm.inversion)
-			{
-				case eDVBFrontendParametersCable::Inversion_Off: p[cmdseq.num].u.data = INVERSION_OFF; break;
-				case eDVBFrontendParametersCable::Inversion_On: p[cmdseq.num].u.data = INVERSION_ON; break;
-				default:
-				case eDVBFrontendParametersCable::Inversion_Unknown: p[cmdseq.num].u.data = INVERSION_AUTO; break;
-			}
 			cmdseq.num++;
 
 			p[cmdseq.num].cmd = DTV_SYMBOL_RATE, p[cmdseq.num].u.data = parm.symbol_rate, cmdseq.num++;
@@ -2303,9 +2270,9 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 				if (m_dvbversion >= DVB_VERSION(5, 3))
 				{
 #if defined DTV_STREAM_ID
-					p[cmdseq.num].cmd = DTV_STREAM_ID, p[cmdseq.num].u.data = parm.plp_id, cmdseq.num++;
+					p[cmdseq.num].cmd = DTV_STREAM_ID, p[cmdseq.num].u.data = parm.plpid, cmdseq.num++;
 #elif defined DTV_DVBT2_PLP_ID
-					p[cmdseq.num].cmd = DTV_DVBT2_PLP_ID, p[cmdseq.num].u.data = parm.plp_id, cmdseq.num++;
+					p[cmdseq.num].cmd = DTV_DVBT2_PLP_ID, p[cmdseq.num].u.data = parm.plpid, cmdseq.num++;
 #endif
 				}
 			}
@@ -2364,14 +2331,14 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 	int res;
 	if (!m_sec)
 	{
-		eWarning("[eDVBFrontend] no SEC module active!");
+		eWarning("no SEC module active!");
 		return -ENOENT;
 	}
 	satfrequency = feparm.frequency;
 	res = m_sec->prepare(*this, feparm, satfrequency, 1 << m_slotid, tunetimeout);
 	if (!res)
 	{
-		eDebugNoSimulate("[eDVBFrontend] frontend %d prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d orbpos %d system %d modulation %d pilot %d, rolloff %d",
+		eDebugNoSimulate("frontend %d prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d orbpos %d system %d modulation %d pilot %d, rolloff %d",
 			m_dvbid,
 			feparm.system,
 			feparm.frequency,
@@ -2386,10 +2353,10 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 			feparm.rolloff);
 		if ((unsigned int)satfrequency < fe_info.frequency_min || (unsigned int)satfrequency > fe_info.frequency_max)
 		{
-			eDebugNoSimulate("[eDVBFrontend] %d mhz out of tuner range.. dont tune", satfrequency / 1000);
+			eDebugNoSimulate("%d mhz out of tuner range.. dont tune", satfrequency / 1000);
 			return -EINVAL;
 		}
-		eDebugNoSimulate("[eDVBFrontend] tuning to %d mhz", satfrequency / 1000);
+		eDebugNoSimulate("tuning to %d mhz", satfrequency / 1000);
 	}
 	oparm.setDVBS(feparm, feparm.no_rotor_command_on_tune);
 	return res;
@@ -2399,11 +2366,11 @@ RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 {
 	if (!m_sec)
 	{
-		eWarning("[eDVBFrontend] no SEC module active!");
+		eWarning("no SEC module active!");
 		return -ENOENT;
 	}
 	m_data[FREQ_OFFSET] = 0;
-	eDebugNoSimulate("[eDVBFrontend] frontend %d tuning dvb-c to %d khz, sr %d, fec %d, modulation %d, inversion %d",
+	eDebugNoSimulate("frontend %d tuning dvb-c to %d khz, sr %d, fec %d, modulation %d, inversion %d",
 		m_dvbid,
 		feparm.frequency,
 		feparm.symbol_rate,
@@ -2418,11 +2385,11 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 {
 	if (!m_sec)
 	{
-		eWarning("[eDVBFrontend] no SEC module active!");
+		eWarning("no SEC module active!");
 		return -ENOENT;
 	}
 	m_data[FREQ_OFFSET] = 0;
-	eDebugNoSimulate("[eDVBFrontend] frontend %d tuning dvb-t to %d khz, bandwidth %d, modulation %d, inversion %d",
+	eDebugNoSimulate("frontend %d tuning dvb-t to %d khz, bandwidth %d, modulation %d, inversion %d",
 	m_dvbid,
 	feparm.frequency,
 	feparm.bandwidth,
@@ -2448,7 +2415,7 @@ RESULT eDVBFrontend::prepare_atsc(const eDVBFrontendParametersATSC &feparm)
 		return -ENOENT;
 	}
 	m_data[FREQ_OFFSET] = 0;
-	eDebugNoSimulate("[eDVBFrontend] frontend %d tuning atsc to %d khz, modulation %d, inversion %d",
+	eDebugNoSimulate("frontend %d tuning atsc to %d khz, modulation %d, inversion %d",
 	m_dvbid,
 	feparm.frequency,
 	feparm.modulation,
@@ -2463,7 +2430,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 {
 	unsigned int timeout = 5000;
 	int type;
-	eDebugNoSimulate("[eDVBFrontend] (%d)tune", m_dvbid);
+	eDebugNoSimulate("(%d)tune", m_dvbid);
 
 	m_timeout->stop();
 
@@ -2477,15 +2444,10 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 	if (!m_sn && !m_simulate)
 	{
-		eDebug("[eDVBFrontend] no frontend device opened... do not try to tune !!!");
+		eDebug("no frontend device opened... do not try to tune !!!");
 		res = -ENODEV;
 		goto tune_error;
 	}
-
-	if (m_type == feSatellite && type != feSatellite)
-		setTone(iDVBFrontend::toneOff);
-	else if (type == feSatellite && m_type != feSatellite)
-		setDeliverySystem("DVB-S");
 
 	if (!m_simulate)
 		m_sn->stop();
@@ -2501,7 +2463,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		eDVBFrontendParametersSatellite feparm;
 		if (where.getDVBS(feparm))
 		{
-			eDebug("[eDVBFrontend] no dvbs data!");
+			eDebug("no dvbs data!");
 			res = -EINVAL;
 			goto tune_error;
 		}
@@ -2515,7 +2477,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 				sec_fe = linked_fe->m_frontend;
 				sec_fe->getData(LINKED_NEXT_PTR, tmp);
 			}
-			eDebug("[eDVBFrontend] (fe%d) reset diseqc after leave rotor mode!", m_dvbid);
+			eDebug("(fe%d) reset diseqc after leave rotor mode!", m_dvbid);
 			sec_fe->m_data[CSW] = sec_fe->m_data[UCSW] = sec_fe->m_data[TONEBURST] = sec_fe->m_data[ROTOR_CMD] = sec_fe->m_data[ROTOR_POS] = -1; // reset diseqc
 		}
 		m_rotor_mode = feparm.no_rotor_command_on_tune;
@@ -2548,7 +2510,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		eDVBFrontendParametersTerrestrial feparm;
 		if (where.getDVBT(feparm))
 		{
-			eDebug("[eDVBFrontend] no -T data");
+			eDebug("no -T data");
 			res = -EINVAL;
 			goto tune_error;
 		}
@@ -2591,11 +2553,6 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 
 	if (!m_simulate)
 	{
-		if(m_type != type)
-		{
-			eDebug("[eDVBFrontend] tune setting type to %d from %d", type, m_type);
-			m_type = type;
-		}
 		m_tuneTimer->start(0,true);
 		m_tuning = 1;
 		if (m_state != stateTuning)
@@ -2661,11 +2618,6 @@ RESULT eDVBFrontend::setTone(int t)
 	fe_sec_tone_mode_t tone;
 	if (m_simulate)
 		return 0;
-	if (m_type != feSatellite)
-	{
-		eDebug("[eDVBFrontend] sendTone allowed only in feSatellite (%d)", m_type);
-		return 0;
-	}
 	m_data[CUR_TONE]=t;
 	switch (t)
 	{
@@ -2686,11 +2638,6 @@ RESULT eDVBFrontend::sendDiseqc(const eDVBDiseqcCommand &diseqc)
 	struct dvb_diseqc_master_cmd cmd;
 	if (m_simulate)
 		return 0;
-	if (m_type != feSatellite)
-	{
-		eDebug("[eDVBFrontend] sendDiseqc allowed only in feSatellite (%d)", m_type);
-		return 0;
-	}
 	memcpy(cmd.msg, diseqc.data, diseqc.len);
 	cmd.msg_len = diseqc.len;
 	if (::ioctl(m_fd, FE_DISEQC_SEND_MASTER_CMD, &cmd))
@@ -2703,11 +2650,6 @@ RESULT eDVBFrontend::sendToneburst(int burst)
 	fe_sec_mini_cmd_t cmd;
 	if (m_simulate)
 		return 0;
-	if (m_type != feSatellite)
-	{
-		eDebug("[eDVBFrontend] sendToneburst allowed only in feSatellite (%d)", m_type);
-		return 0;
-	}
 	if (burst == eDVBSatelliteDiseqcParameters::B)
 		cmd = SEC_MINI_B;
 	else
@@ -2785,8 +2727,8 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		{
 			return 0;
 		}
-		can_handle_dvbs = supportsDeliverySystem(SYS_DVBS, !m_multitype);
-		can_handle_dvbs2 = supportsDeliverySystem(SYS_DVBS2, !m_multitype);
+		can_handle_dvbs = supportsDeliverySystem(SYS_DVBS, true);
+		can_handle_dvbs2 = supportsDeliverySystem(SYS_DVBS2, true);
 		if (parm.system == eDVBFrontendParametersSatellite::System_DVB_S2 && !can_handle_dvbs2)
 		{
 			return 0;
@@ -2813,15 +2755,15 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
 		if (m_dvbversion >= DVB_VERSION(5, 6))
 		{
-			can_handle_dvbc_annex_a = supportsDeliverySystem(SYS_DVBC_ANNEX_A, !m_multitype);
-			can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_C, !m_multitype);
+			can_handle_dvbc_annex_a = supportsDeliverySystem(SYS_DVBC_ANNEX_A, true);
+			can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_C, true);
 		}
 		else
 		{
-			can_handle_dvbc_annex_a = can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_A, !m_multitype); /* new value for SYS_DVB_ANNEX_AC */
+			can_handle_dvbc_annex_a = can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_A, true); /* new value for SYS_DVB_ANNEX_AC */
 		}
 #else
-		can_handle_dvbc_annex_a = can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_AC, !m_multitype);
+		can_handle_dvbc_annex_a = can_handle_dvbc_annex_c = supportsDeliverySystem(SYS_DVBC_ANNEX_AC, true);
 #endif
 		if (parm.system == eDVBFrontendParametersCable::System_DVB_C_ANNEX_A && !can_handle_dvbc_annex_a)
 		{
@@ -2837,8 +2779,8 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 	{
 		eDVBFrontendParametersTerrestrial parm;
 		bool can_handle_dvbt, can_handle_dvbt2;
-		can_handle_dvbt = supportsDeliverySystem(SYS_DVBT, !m_multitype);
-		can_handle_dvbt2 = supportsDeliverySystem(SYS_DVBT2, !m_multitype);
+		can_handle_dvbt = supportsDeliverySystem(SYS_DVBT, true);
+		can_handle_dvbt2 = supportsDeliverySystem(SYS_DVBT2, true);
 		if (feparm->getDVBT(parm) < 0)
 		{
 			return 0;
@@ -2851,8 +2793,7 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		{
 			return 0;
 		}
-		// if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T_T2 && !can_handle_dvbt)
-		if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T_T2 && !(can_handle_dvbt || can_handle_dvbt2))
+		if (parm.system == eDVBFrontendParametersTerrestrial::System_DVB_T_T2 && !can_handle_dvbt)
 		{
 			return 0;
 		}
@@ -2872,8 +2813,8 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 	{
 		eDVBFrontendParametersATSC parm;
 		bool can_handle_atsc, can_handle_dvbc_annex_b;
-		can_handle_dvbc_annex_b = supportsDeliverySystem(SYS_DVBC_ANNEX_B, !m_multitype);
-		can_handle_atsc = supportsDeliverySystem(SYS_ATSC, !m_multitype);
+		can_handle_dvbc_annex_b = supportsDeliverySystem(SYS_DVBC_ANNEX_B, true);
+		can_handle_atsc = supportsDeliverySystem(SYS_ATSC, true);
 		if (feparm->getATSC(parm) < 0)
 		{
 			return 0;
@@ -3000,76 +2941,6 @@ void eDVBFrontend::setDeliverySystemWhitelist(const std::vector<fe_delivery_syst
 	}
 }
 
-bool eDVBFrontend::setDeliverySystem(const char *type)
-{
-	struct dtv_property p[1];
-	struct dtv_properties cmdseq;
-	int fetype;
-
-	if (m_fd < 0)
-	{
-		eDebug("[eDVBFrontend] setDeliverySystem cannot change delivery system with closed frontend");
-		return false;
-	}
-
-	if (m_simulate)
-	{
-		return false;
-	}
-
-	cmdseq.props = p;
-	cmdseq.num = 1;
-	p[0].cmd = DTV_DELIVERY_SYSTEM;
-	p[0].u.data = SYS_UNDEFINED;
-
-	if (!strcmp(type, "DVB-S2"))
-	{
-		p[0].u.data = SYS_DVBS2;
-		fetype = feSatellite;
-	}
-	else if (!strcmp(type, "DVB-S"))
-	{
-		p[0].u.data = SYS_DVBS;
-		fetype = feSatellite;
-	}
-	else if (!strcmp(type, "DVB-T2"))
-	{
-		p[0].u.data = SYS_DVBT2;
-		fetype = feTerrestrial;
-	}
-	else if (!strcmp(type, "DVB-T"))
-	{
-		p[0].u.data = SYS_DVBT;
-		fetype = feTerrestrial;
-	}
-	else if (!strcmp(type, "DVB-C"))
-	{
-		p[0].u.data = SYS_DVBC_ANNEX_A;
-		fetype = feCable;
-	}
-	else if (!strcmp(type, "ATSC"))
-	{
-		p[0].u.data = SYS_ATSC;
-		fetype = feATSC;
-	}
-	else
-	{
-		eDebug("[eDVBFrontend] setDeliverySystem not supported delivery system type: %s", type);
-		return false;
-	}
-
-	if (ioctl(m_fd, FE_SET_PROPERTY, &cmdseq) < 0)
-	{
-		eDebug("[eDVBFrontend] setDeliverySystem FE_SET_PROPERTY failed: %m type: %s data: %d", type, p[0].u.data);
-		return false;
-	}
-
-	eDebug("[eDVBFrontend] setDeliverySystem setting type to %d from %d", fetype, m_type);
-	m_type = fetype;
-	eDebug("[eDVBFrontend] setDeliverySystem succefully changed delivery system to %s", type);
-	return true;
-}
-
 bool eDVBFrontend::setSlotInfo(int id, const char *descr, bool enabled, bool isDVBS2, int frontendid)
 {
 	if (frontendid < 0 || frontendid != m_dvbid)
@@ -3090,7 +2961,7 @@ bool eDVBFrontend::setSlotInfo(int id, const char *descr, bool enabled, bool isD
 		/* HACK for legacy dvb api without DELSYS support */
 		m_delsys[SYS_DVBS2] = true;
 	}
-	eDebugNoSimulate("[eDVBFrontend] setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s, DVB-S2 %s",
+	eDebugNoSimulate("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s, DVB-S2 %s",
 		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No", isDVBS2 ? "Yes" : "No" );
 	return true;
 }
@@ -3179,90 +3050,50 @@ eDVBRegisteredFrontend *eDVBFrontend::getLast(eDVBRegisteredFrontend *fe)
 
 bool eDVBFrontend::is_multistream()
 {
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 8
 	return fe_info.caps & FE_CAN_MULTISTREAM;
+#else //if DVB_API_VERSION < 5
+	return 0;
+#endif
 }
 
 std::string eDVBFrontend::getCapabilities()
 {
 	std::stringstream ss;
 
-	ss << "DVB API version: " << m_dvbversion / 256 << "." << m_dvbversion % 256 << std::endl;
-	ss << "Frontend: " << fe_info.name << std::endl;
-
-	ss << "Frequency:";
-	ss << " min " << fe_info.frequency_min;
-	ss << " max " << fe_info.frequency_max;
-	ss << " stepsize " << fe_info.frequency_stepsize;
-	ss << " tolerance " << fe_info.frequency_tolerance << std::endl;
-
-	ss << "Symbolrate:";
-	ss << " min " << fe_info.symbol_rate_min;
-	ss << " max " << fe_info.symbol_rate_max;
-	ss << " tolerance " << fe_info.symbol_rate_tolerance << std::endl;
-
-	ss << "Capabilities:";
-	if (fe_info.caps == FE_IS_STUPID)			ss << " stupid FE";
-	if (fe_info.caps &  FE_CAN_INVERSION_AUTO)		ss << " auto inversion";
-	if (fe_info.caps &  FE_CAN_FEC_1_2)			ss << " FEC 1/2";
-	if (fe_info.caps &  FE_CAN_FEC_2_3)			ss << " FEC 2/3";
-	if (fe_info.caps &  FE_CAN_FEC_3_4)			ss << " FEC 3/4";
-	if (fe_info.caps &  FE_CAN_FEC_4_5)			ss << " FEC 4/5";
-	if (fe_info.caps &  FE_CAN_FEC_5_6)			ss << " FEC 5/6";
-	if (fe_info.caps &  FE_CAN_FEC_6_7)			ss << " FEC 6/7";
-	if (fe_info.caps &  FE_CAN_FEC_7_8)			ss << " FEC 7/8";
-	if (fe_info.caps &  FE_CAN_FEC_8_9)			ss << " FEC 8/9";
-	if (fe_info.caps &  FE_CAN_FEC_AUTO)			ss << " FEC AUTO";
-	if (fe_info.caps &  FE_CAN_QPSK)			ss << " QPSK";
-	if (fe_info.caps &  FE_CAN_QAM_16)			ss << " QAM 16";
-	if (fe_info.caps &  FE_CAN_QAM_32)			ss << " QAM 32";
-	if (fe_info.caps &  FE_CAN_QAM_64)			ss << " QAM 64";
-	if (fe_info.caps &  FE_CAN_QAM_128)			ss << " QAM 128";
-	if (fe_info.caps &  FE_CAN_QAM_256)			ss << " QAM 256";
-	if (fe_info.caps &  FE_CAN_QAM_AUTO)			ss << " QAM AUTO";
-	if (fe_info.caps &  FE_CAN_TRANSMISSION_MODE_AUTO)	ss << " auto transmission mode";
-	if (fe_info.caps &  FE_CAN_BANDWIDTH_AUTO)             	ss << " auto bandwidth";
-	if (fe_info.caps &  FE_CAN_GUARD_INTERVAL_AUTO)		ss << " auto guard interval";
-	if (fe_info.caps &  FE_CAN_HIERARCHY_AUTO)		ss << " auto hierarchy";
-	if (fe_info.caps &  FE_CAN_8VSB)			ss << " FE_CAN_8VSB";
-	if (fe_info.caps &  FE_CAN_16VSB)			ss << " FE_CAN_16VSB";
-	if (fe_info.caps &  FE_HAS_EXTENDED_CAPS)		ss << " FE_HAS_EXTENDED_CAPS";
-	if (fe_info.caps &  FE_CAN_MULTISTREAM)			ss << " FE_CAN_MULTISTREAM";
-	if (fe_info.caps &  FE_CAN_TURBO_FEC)			ss << " FE_CAN_TURBO_FEC";
-	if (fe_info.caps &  FE_CAN_2G_MODULATION)		ss << " FE_CAN_2G_MODULATION";
-	if (fe_info.caps &  FE_NEEDS_BENDING)			ss << " FE_NEEDS_BENDING";
-	if (fe_info.caps &  FE_CAN_RECOVER)			ss << " FE_CAN_RECOVER";
-	if (fe_info.caps &  FE_CAN_MUTE_TS)			ss << " FE_CAN_MUTE_TS";
-	ss << std::endl;
-
-	ss << "Delivery Systems:";
-	std::map<fe_delivery_system_t, bool>::iterator it;
-	for (it = m_delsys.begin(); it != m_delsys.end(); it++)
-	{
-		if (!it->second) continue;
-
-		switch (it->first)
-		{
-		case SYS_ATSC:		ss << " ATSC"; break;
-		case SYS_ATSCMH:	ss << " ATSCMH"; break;
-		case SYS_CMMB:		ss << " CMBB"; break;
-		case SYS_DAB:		ss << " DAB"; break;
-		case SYS_DSS:		ss << " DSS"; break;
-		case SYS_DVBC_ANNEX_B:	ss << " DVBC_ANNEX_B"; break;
-		case SYS_DVBH:		ss << " DVBH"; break;
-		case SYS_DVBS:		ss << " DVBS"; break;
-		case SYS_DVBS2:		ss << " DVBS2"; break;
-		case SYS_DVBT:		ss << " DVBT"; break;
-		case SYS_ISDBC:		ss << " ISDBC"; break;
-		case SYS_ISDBS:		ss << " ISDBS"; break;
-		case SYS_ISDBT:		ss << " ISDBT"; break;
-		case SYS_UNDEFINED:	ss << " UNDEFINED"; break;
-		case SYS_DVBC_ANNEX_A:	ss << " DVBC_ANNEX_A"; break;
-		case SYS_DVBC_ANNEX_C:	ss << " DVBC_ANNEX_C"; break;
-		case SYS_DVBT2:		ss << " DVBT2"; break;
-		case SYS_TURBO:		ss << " TURBO"; break;
-		case SYS_DTMB:		ss << " DTMB"; break;
-		}
-	}
+	if (fe_info.caps == FE_IS_STUPID)			ss << "stupid FE" << std::endl;
+	if (fe_info.caps &  FE_CAN_INVERSION_AUTO)		ss << "auto inversion" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_1_2)			ss << "FEC 1/2" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_2_3)			ss << "FEC 2/3" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_3_4)			ss << "FEC 3/4" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_4_5)			ss << "FEC 4/5" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_5_6)			ss << "FEC 5/6" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_6_7)			ss << "FEC 6/7" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_7_8)			ss << "FEC 7/8" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_8_9)			ss << "FEC 8/9" << std::endl;
+	if (fe_info.caps &  FE_CAN_FEC_AUTO)			ss << "FEC AUTO" << std::endl;
+	if (fe_info.caps &  FE_CAN_QPSK)			ss << "QPSK" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_16)			ss << "QAM 16" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_32)			ss << "QAM 32" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_64)			ss << "QAM 64" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_128)			ss << "QAM 128" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_256)			ss << "QAM 256" << std::endl;
+	if (fe_info.caps &  FE_CAN_QAM_AUTO)			ss << "QAM AUTO" << std::endl;
+	if (fe_info.caps &  FE_CAN_TRANSMISSION_MODE_AUTO)	ss << "auto transmission mode" << std::endl;
+	if (fe_info.caps &  FE_CAN_BANDWIDTH_AUTO)             	ss << "auto bandwidth" << std::endl;
+	if (fe_info.caps &  FE_CAN_GUARD_INTERVAL_AUTO)		ss << "auto guard interval" << std::endl;
+	if (fe_info.caps &  FE_CAN_HIERARCHY_AUTO)		ss << "auto hierarchy" << std::endl;
+	if (fe_info.caps &  FE_CAN_8VSB)			ss << "FE_CAN_8VSB" << std::endl;
+	if (fe_info.caps &  FE_CAN_16VSB)			ss << "FE_CAN_16VSB" << std::endl;
+	if (fe_info.caps &  FE_HAS_EXTENDED_CAPS)		ss << "FE_HAS_EXTENDED_CAPS" << std::endl;
+#if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 8
+	if (fe_info.caps &  FE_CAN_MULTISTREAM)			ss << "FE_CAN_MULTISTREAM" << std::endl;
+#endif
+	if (fe_info.caps &  FE_CAN_TURBO_FEC)			ss << "FE_CAN_TURBO_FEC" << std::endl;
+	if (fe_info.caps &  FE_CAN_2G_MODULATION)		ss << "FE_CAN_2G_MODULATION" << std::endl;
+	if (fe_info.caps &  FE_NEEDS_BENDING)			ss << "FE_NEEDS_BENDING" << std::endl;
+	if (fe_info.caps &  FE_CAN_RECOVER)			ss << "FE_CAN_RECOVER" << std::endl;
+	if (fe_info.caps &  FE_CAN_MUTE_TS)			ss << "FE_CAN_MUTE_TS" << std::endl;
 
 	return ss.str();
 }
