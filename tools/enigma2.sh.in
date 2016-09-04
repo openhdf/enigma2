@@ -5,70 +5,50 @@ exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
 if [ -e /usr/bin/xbmc ]; then
-	if [ -e /etc/.xbmcstart ]; then
 		rm -f /etc/.xbmcstart
 		/usr/bin/xbmc
-	fi
 fi
 
 if [ -e /usr/bin/kodi ]; then
-	if [ -e /etc/.kodistart ]; then
 		rm -f /etc/.kodistart
 		/usr/bin/kodi
-	fi
 fi
 
-if [ -x @bindir@/showiframe ]; then
-	if [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
+if [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
 		echo found @sysconfdir@/enigma2/bootlogo.mvi
 		@bindir@/showiframe @sysconfdir@/enigma2/bootlogo.mvi
 	elif [ -f @datadir@/bootlogo.mvi ]; then
 		echo found @datadir@/bootlogo.mvi
 		@bindir@/showiframe @datadir@/bootlogo.mvi
-	fi
 fi
 
 # workaround for corrupt ssl files
-if [ ! "$(grep config.misc.firstrun /etc/enigma2/settings)" == "config.misc.firstrun=false" ]; then
+if ! grep ^config.misc.firstrun=false /etc/enigma2/settings >/dev/null; then
 	rm -rf /etc/enigma2/cert.pem &
 	rm -rf /etc/enigma2/key.pem &
 fi
 
 # update NTP time if NTP Time Enabled
-if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.SyncTimeUsing=1" ]; then
+if grep ^config.misc.SyncTimeUsing=1 /etc/enigma2/settings >/dev/null; then
 	/usr/sbin/ntpdate -s -u pool.ntp.org &
 fi
 
 # hook to execute scripts always before enigma2 start
-if [ -x @bindir@/enigma2_pre_start.sh ]; then
-	@bindir@/enigma2_pre_start.sh
-fi
+[ -x @bindir@/enigma2_pre_start.sh ] && @bindir@/enigma2_pre_start.sh
 
-if [ -f /usr/lib/libssl.so.0.9.8 ]; then
-	echo "libssl symlink found"
-else
-	ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
-fi
+[ -L /usr/lib/libssl.so.0.9.8 ] || ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
 
-if [ -e /lib/libcrypto.so.1.0.0 ]; then
-	if [ -f /lib/libcrypto.so.0.9.8 ]; then
-		echo "libcrypto symlink found"
-	else
-		ln -s /lib/libcrypto.so.1.0.0 /lib/libcrypto.so.0.9.8
-	fi
-fi
+#if [ -e /lib/libcrypto.so.1.0.0 ]; then
+#	if [ -f /lib/libcrypto.so.0.9.8 ]; then
+#		echo "libcrypto symlink found"
+#	else
+#		ln -s /lib/libcrypto.so.1.0.0 /lib/libcrypto.so.0.9.8
+#	fi
+#fi
 
-if [ -e /usr/lib/libcrypto.so.1.0.0 ]; then
-	if [ -e /usr/lib/libcrypto.so.0.9.8 ]; then
-		echo "libcrypto symlink found"
-	else
-		ln -s /usr/lib/libcrypto.so.1.0.0 /usr/lib/libcrypto.so.0.9.8
-	fi
-fi
+[ -L /usr/lib/libcrypto.so.0.9.8 ] || ln -s /usr/lib/libcrypto.so.1.0.0 /usr/lib/libcrypto.so.0.9.8
 
-if [ -d /home/root ]; then
-	cd /home/root
-fi
+[ -d /home/root ] && cd /home/root
 
 if [ -e /proc/stb/info/hwmodel ]; then
     stbcheck=`cat /proc/stb/info/hwmodel | cut -c1-8`
@@ -82,20 +62,10 @@ if [ -e /proc/stb/info/hwmodel ]; then
 fi
 
 # check if media/net directory exists
-if [ -d /media/net ]; then
-	echo "/media/net found"
-else
-	mkdir /media/net
-fi
+[ -d /media/net ] && mkdir /media/net
 
 # check for settings files
-if [ -f @sysconfdir@/enigma2/settings ]; then
-	echo "@sysconfdir@/enigma2/settings found"
-else
-	cp @datadir@/enigma2/defaults/* @sysconfdir@/enigma2/
-fi
-
-sync
+[ -f @sysconfdir@/enigma2/settings ] || cp @datadir@/enigma2/defaults/* @sysconfdir@/enigma2/
 
 # check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
@@ -114,9 +84,7 @@ if [ -e @libdir@/libpassthrough.so ]; then
 	LIBS="$LIBS @libdir@/libpassthrough.so"
 fi
 
-if [ ! -e /etc/enigma2/settings ]; then
-	touch /etc/enigma2/settings
-fi
+touch /etc/enigma2/settings
 
 sync
 
@@ -129,10 +97,11 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 	if [ "$time" = 1970 ]; then
 		RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
 	fi
-	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
-		LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color &> $(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
+		CONFIG_CRASH_DEBUG_PATH=$(grep ^config.crash.debug_path= /etc/enigma2/settings | cut -f2 -d=)
+	if [ -z $CONFIG_CRASH_DEBUG_PATH ]; then
+		LD_PRELOAD=$LIBS /usr/bin/enigma2 --debug-no-color &> /home/root/logs/Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
 	else
-		LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color &> /home/root/logs/Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
+		LD_PRELOAD=$LIBS /usr/bin/enigma2 --debug-no-color &> ${CONFIG_CRASH_DEBUG_PATH}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log		
 	fi
 else
 	# in case $TERM is "linux" the serial output is activated - discard debug output
