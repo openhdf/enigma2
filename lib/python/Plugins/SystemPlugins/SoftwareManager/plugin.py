@@ -1635,7 +1635,7 @@ class UpdatePlugin(Screen):
 				picon = MessageBox.TYPE_ERROR
 				default = False
 			elif 'rot.png' in tmpStatus:
-				if config.softwareupdate.updateisunstable.value:
+				if config.softwareupdate.updatebeta.value:
 					message = _("Update is reported as faulty !!") + "\n" + _("But you have activated \"Install unstable updates\"") + "\n" + _("Update anyway?")# + "\n\n" + _("Last Status Date") + ": " + statusDate
 					picon = MessageBox.TYPE_ERROR
 					default = False
