@@ -62,7 +62,7 @@ if [ -e /proc/stb/info/hwmodel ]; then
 fi
 
 # check if media/net directory exists
-[ -d /media/net ] && mkdir /media/net
+[ -d /media/net ] || mkdir /media/net
 
 # check for settings files
 [ -f @sysconfdir@/enigma2/settings ] || cp @datadir@/enigma2/defaults/* @sysconfdir@/enigma2/
