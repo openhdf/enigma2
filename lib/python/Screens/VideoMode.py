@@ -519,6 +519,49 @@ class AutoVideoModeLabel(Screen):
 			idx += 4
 			self.hideTimer.start(idx*1000, True)
 
+previous = None
+isDedicated3D = False
+
+def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDznorm.value)):
+	global previous, isDedicated3D
+	mode = isDedicated3D and mode == "auto" and "sidebyside" or mode
+	if previous != (mode, znorm):
+		try:
+			previous = (mode, znorm)
+			if SystemInfo["CanUse3DModeChoices"]:
+				f = open("/proc/stb/fb/3dmode_choices", "r")
+				choices = f.readlines()[0].split()
+				f.close()
+				if mode not in choices:
+					if mode == "sidebyside":
+						mode = "sbs"
+					elif mode == "topandbottom":
+						mode = "tab"
+					elif mode == "auto":
+						mode = "off"
+			open(SystemInfo["3DMode"], "w").write(mode)
+			open(SystemInfo["3DZNorm"], "w").write('%d' % znorm)
+		except:
+			return
+
+class AutoVideoModeLabel(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+
+		self["content"] = Label()
+		self["restxt"] = Label()
+
+		self.hideTimer = eTimer()
+		self.hideTimer.callback.append(self.hide)
+
+		self.onShow.append(self.hide_me)
+
+	def hide_me(self):
+		idx = config.av.autores_label_timeout.index
+		if idx:
+			idx += 4
+			self.hideTimer.start(idx*1000, True)
+
 class AutoVideoMode(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
