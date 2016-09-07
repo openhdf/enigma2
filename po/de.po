@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-09-07 15:46+0200\n"
+"PO-Revision-Date: 2016-09-07 17:04+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1063,6 +1063,21 @@ msgstr "Wenn aktiviert, beendet eine Aufnahme das Streaming, wenn keine weiteren
 
 msgid "Show recording symbol depending on recording type"
 msgstr "Zeige Aufnahmesymbol, abhängig vom Aufnahmetyp"
+
+msgid "Show warning before box restart based on recording type"
+msgstr "Zeige Warnung bei Neustart, abhängig vom Aufnahmetyp"
+
+msgid "any recordings"
+msgstr "alle Aufnahmen"
+
+msgid "real recordings"
+msgstr "echte Aufnahmen"
+
+msgid "real recordings or streaming"
+msgstr "echte Aufnahmen / Streaming"
+
+msgid "real or pseudo recordings"
+msgstr "echte/Pseudo-Aufnahmen"
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh)."
 msgstr "Legt fest, ob das Aufnahme-Symbol (auf Bildschirm und LCD Display) nur bei echten Aufnahmen sichtbar ist oder auch bei Streaming bzw. Pseudo-Aufnahmen (z.B. EPG Refresh)"
