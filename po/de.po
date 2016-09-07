@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-09-05 18:14+0200\n"
+"PO-Revision-Date: 2016-09-07 15:46+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1060,6 +1060,15 @@ msgstr "Aufnahmen beenden Streaming"
 
 msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
 msgstr "Wenn aktiviert, beendet eine Aufnahme das Streaming, wenn keine weiteren freien Tuner verfügbar sind."
+
+msgid "Show recording symbol depending on recording type"
+msgstr "Zeige Aufnahmesymbol, abhängig vom Aufnahmetyp"
+
+msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh)."
+msgstr "Legt fest, ob das Aufnahme-Symbol (auf Bildschirm und LCD Display) nur bei echten Aufnahmen sichtbar ist oder auch bei Streaming bzw. Pseudo-Aufnahmen (z.B. EPG Refresh)"
+
+msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
+msgstr "Legt fest, ob beim Neustart eine Warnung wegen laufender Aufnahmen nur bei echten Aufnahmen erfolgt oder auch bei Streaming bzw. Pseudo-Aufnahmen (z.B. EPG Refresh)"
 
 msgid "ask user"
 msgstr "Nachfragen"
