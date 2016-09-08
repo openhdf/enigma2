@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-09-07 17:04+0200\n"
+"PO-Revision-Date: 2016-09-08 11:42+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2560,6 +2560,63 @@ msgstr "Konfiguriere die Zeitspanne die angezeigt wird."
 
 msgid "Configure the aspect ratio of the screen."
 msgstr "Konfiguriere das Bildverhältnis für den Bildschirm."
+
+msgid "Lowest Mode"
+msgstr "Niedrigster Modus"
+
+msgid "Refresh rate for 'Lowest Mode'"
+msgstr "Bildwiederholrate für 'Niedrigster Modus'"
+
+msgid "Show 24p up to 720p / higher than 720p as"
+msgstr "Zeige 24p bis 720p / höher als 720p als"
+
+msgid "Show 24p up to resolution 720p or higher than 720p as a different Framerate."
+msgstr "Zeige 24p bis zu einer Auflösung von 720p oder höher als 720p mit einer anderen Bildwiederholrate."
+
+msgid "Show unknown video format as"
+msgstr "Zeige unbekannte Videoauflösung als"
+
+msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
+msgstr "Zeige unbekannte Videoauflösungen mit der nächsthöheren oder höhsten Auflösung."
+
+msgid "Show preview of current mode (*)."
+msgstr "Zeige Vorschau des aktuellen Modus (*)."
+
+msgid "%sMode for SD (up to 576p)"
+msgstr "%sModus für SD (bis 576p)"
+
+msgid "%sRefresh rate for SD"
+msgstr "%sBildwiederholrate für SD"
+
+msgid "%sMode for HD (up to 720p)"
+msgstr "%sModus für HD (bis 720p)"
+
+msgid "%sRefresh rate for HD"
+msgstr "%sBildwiederholrate für HD"
+
+msgid "%sMode for FHD (up to 1080p)"
+msgstr "%sModus für FHD (bis 1080p)"
+
+msgid "%sRefresh rate for FHD"
+msgstr "%sBildwiederholrate für FHD"
+
+msgid "%sMode for UHD (up to 2160p)"
+msgstr "%sModus für UHD (bis 2160p)"
+
+msgid "%sRefresh rate for UHD"
+msgstr "%sBildwiederholrate für UHD"
+
+msgid "%sShow 1080i as 1080p"
+msgstr "%sZeige 1080i als 1080p"
+
+msgid "Use Deinterlacing for 1080i Videosignal?"
+msgstr "Soll für ein Videosignal von 1080i Deinterlacing benutzt werden?"
+
+msgid "next higher Resolution"
+msgstr "nächsthöhere Auflösung"
+
+msgid "highest Resolution"
+msgstr "höchste Auflösung"
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr "Konfiguriere das Verhalten der Pausentaste bei Standbild."
