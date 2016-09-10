@@ -9,7 +9,7 @@ profile("PYTHON_START")
 
 import Tools.RedirectOutput
 import enigma
-from boxbranding import getBoxType, getBrandOEM
+from boxbranding import getBoxType, getBrandOEM, getMachineBuild
 import eConsoleImpl
 import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
@@ -674,20 +674,11 @@ def runScreenTest():
 	]
 	wakeupList.sort()
 
-	# individual wakeup time offset
-	if config.workaround.wakeuptimeoffset.value == "standard":
-		if boxtype.startswith("gb"):
-			wpoffset = -120 # Gigaboxes already starts 2 min. before wakeup time
-		else:
-			wpoffset = 0
-	else:
-		wpoffset = int(config.workaround.wakeuptimeoffset.value)
-
 	print "="*100
 	if wakeupList and wakeupList[0][0] > 0:
 		startTime = wakeupList[0]
-		# wakeup time is 5 min before timer starts + offset
-		wptime = startTime[0] - 300 - wpoffset
+		# wakeup time before timer begins
+		wptime = startTime[0] - (config.workaround.wakeuptime.value * 60)
 		if (wptime - nowTime) < 120: # no time to switch box back on
 			wptime = int(nowTime) + 120  # so switch back on in 120 seconds
 
@@ -713,7 +704,7 @@ def runScreenTest():
 		#set next wakeup
 		setFPWakeuptime(wptime)
 		#set next standby only after shutdown in deep standby
-		if Screens.Standby.quitMainloopCode != 1:
+		if Screens.Standby.quitMainloopCode != 1 and Screens.Standby.quitMainloopCode != 45:
 			setStandby = 2 # 0=no standby, but get in standby if wakeup to timer start > 60 sec (not for plugin-timer, here is no standby), 1=standby, 2=no standby, when before was not in deep-standby
 		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d" % (wptime,startTime[0],startTime[1],setStandby,nextRecordTime,forceNextRecord)
 	else:
