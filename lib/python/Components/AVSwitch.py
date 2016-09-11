@@ -583,7 +583,7 @@ def InitAVSwitch():
 
 	if have_colorimetry:
 		def setHDMIColorimetry(configElement):
-			sleep(0.1) #workaround for "http://www.opena.tv/image-betabereich/28098-menue-leer-nach-bild-grundeinstellungen-speichern-nein.html#post249179"
+			sleep(0.1)
 			try:
 				f = open("/proc/stb/video/hdmi_colorimetry", "w")
 				f.write(configElement.value)
