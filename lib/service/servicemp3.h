@@ -208,6 +208,10 @@ public:
 	void setAC3Delay(int);
 	void setPCMDelay(int);
 
+#if HAVE_AMLOGIC
+	void AmlSwitchAudio(int index);
+	unsigned int get_pts_pcrscr(void);
+#endif
 	struct audioStream
 	{
 		GstPad* pad;
@@ -298,9 +302,9 @@ private:
 	int m_buffer_size;
 	int m_ignore_buffering_messages;
 	bool m_is_live;
-	bool m_subtitles_paused;
 	bool m_use_prefillbuffer;
 	bool m_paused;
+	bool m_seek_paused;
 	/* cuesheet load check */
 	bool m_cuesheet_loaded;
 	/* servicemMP3 chapter TOC support CVR */
