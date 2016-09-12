@@ -227,7 +227,6 @@ class doFlashImage(Screen):
 
 	def blue(self):
 		if self.Online:
-
 			if self.imagesCounter <= len(images) - 2:
 				self.imagesCounter = self.imagesCounter + 1
 			else:
