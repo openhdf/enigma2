@@ -62,8 +62,22 @@ class About(Screen):
 			res = ""
 			res2 = ""
 		cpuMHz = ""
+		BootLoaderVersion = ""
+
 		if getMachineBuild() in ('vusolo4k', 'hd51'):
 			cpuMHz = "1,5 GHz"
+			if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
+				f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
+				temp = f.readlines()
+				f.close()
+				try:
+					for lines in temp:
+						if lines.startswith('v31'):
+							BootLoaderVersion = "V3.1"
+							cpuMHz = "1,7 GHz"
+							break
+				except:
+					pass
 		elif getMachineBuild() in ('hd52'):
 			cpuMHz = "1,7 GHz"
 		else:
@@ -114,6 +128,8 @@ class About(Screen):
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
+		if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
+			AboutText += _("BootLoader:\t%s") % BootLoaderVersion + "\n"
 		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
 		AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
