@@ -62,23 +62,23 @@ class About(Screen):
 			res = ""
 			res2 = ""
 		cpuMHz = ""
-		BootLoaderVersion = ""
 
-		if getMachineBuild() in ('vusolo4k', 'hd51'):
+		bootloader = ""
+		if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
+			f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
+			bootloader = f.readline().replace('\x00', '').replace('\n', '')
+			f.close()
+		BootLoaderVersion = 0
+		try:
+			if bootloader:
+				AboutText += _("Bootloader:\t%s\n") % (bootloader)
+				BootLoaderVersion = int(bootloader[1:])
+		except:
+			BootLoaderVersion = 0
+
+		if getMachineBuild() in ('vusolo4k') or (getMachineBuild() in ('hd51') and BootLoaderVersion < 31):
 			cpuMHz = "1,5 GHz"
-			if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
-				f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
-				temp = f.readlines()
-				f.close()
-				try:
-					for lines in temp:
-						if lines.startswith('v31'):
-							BootLoaderVersion = "V3.1"
-							cpuMHz = "1,7 GHz"
-							break
-				except:
-					pass
-		elif getMachineBuild() in ('hd52'):
+		elif getMachineBuild() in ('hd52') or (getMachineBuild() in ('hd51') and BootLoaderVersion >= 31):
 			cpuMHz = "1,7 GHz"
 		else:
 			if path.exists('/proc/cpuinfo'):
@@ -89,7 +89,6 @@ class About(Screen):
 					for lines in temp:
 						lisp = lines.split(': ')
 						if lisp[0].startswith('cpu MHz'):
-							#cpuMHz = "   (" +  lisp[1].replace('\n', '') + " MHz)"
 							cpuMHz = "   (" +  str(int(float(lisp[1].replace('\n', '')))) + " MHz)"
 							break
 				except:
@@ -105,14 +104,17 @@ class About(Screen):
 			AboutText += _("CPU:\t") + "ARM Dual core " + " (" + cpuMHz + ")" + "\n"
 		else:
 			AboutText += _("CPU:\t%s") % about.getCPUString() + " (" + cpuMHz + ")" + "\n"
-		#AboutText += _("Clock Speed:\t%s") % cpuMHz + "\n"
+		dMIPS = 0
 		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52'):
-			AboutText += _("DMIPS:\t") + "10.500" + "\n"
+			dMIPS = "10.500"
+		if getMachineBuild() in ('hd52') or (getMachineBuild() in ('hd51') and BootLoaderVersion >= 31):
+			dMIPS = "12.000"
+		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52'):
+			AboutText += _("DMIPS:\t") + dMIPS + "\n"
 		else:
 			AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 		AboutText += _("HDF Version:\tV%s") % getImageVersion() + " - Build # " + getImageBuild() + "\n"
-		#AboutText += _("HDF Build:\t%s") % getImageBuild() + "\n"
 		AboutText += _("Kernel (Box):\t%s") % about.getKernelVersionString() + " (" + getBoxType() + ")" + "\n"
 		imagestarted = ""
 		if path.exists('/boot/STARTUP'):
@@ -128,8 +130,6 @@ class About(Screen):
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
-		if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
-			AboutText += _("BootLoader:\t%s") % BootLoaderVersion + "\n"
 		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
 		AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
