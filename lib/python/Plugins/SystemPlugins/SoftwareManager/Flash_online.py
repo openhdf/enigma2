@@ -76,7 +76,7 @@ class FlashOnline(Screen):
 		if SystemInfo["HaveMultiBoot"]:
 			self["key_blue"] = Button(_("Multiboot Select"))
 		else:
-			self["key_blue"] = Button(_(""))
+			self["key_blue"] = Button(_(" "))
 		self["key_green"] = Button(_("Online"))
 		self["key_red"] = Button(_("Exit"))
 		self["key_yellow"] = Button(_("Local"))
