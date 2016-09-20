@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-09-11 13:54+0200\n"
+"PO-Revision-Date: 2016-09-20 11:35+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -19,7 +19,7 @@ msgid "Switch to Radio Mode"
 msgstr "Wechselt zum Radio Modus"
 
 msgid "Start Timeshift"
-msgstr "Startet zeitversetzes Fernsehen"
+msgstr "Startet zeitversetztes Fernsehen"
 
 msgid "Show Movies"
 msgstr "Zeige die Aufnahmen"
@@ -28,7 +28,7 @@ msgid "Main Menu"
 msgstr "Öffnet das Hauptmenü"
 
 msgid "Stop Timeshift"
-msgstr "Stoppt zeitversetzes Fernsehen"
+msgstr "Stoppt zeitversetztes Fernsehen"
 
 msgid "Show Infobar EPG"
 msgstr "Zeige das EPG in der Infobar"
@@ -130,10 +130,10 @@ msgid "Volume up"
 msgstr "Lautstärke erhöhen"
 
 msgid "Volume adjust slow"
-msgstr "Lautstärkeinstellung langsam"
+msgstr "Lautstärkeeinstellung langsam"
 
 msgid "Volume adjust fast"
-msgstr "Lautstärkeinstellung schnell"
+msgstr "Lautstärkeeinstellung schnell"
 
 msgid "Step value for single press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
 msgstr ""
@@ -199,7 +199,7 @@ msgstr "Sendersuche"
 msgid "Tuner Configuration"
 msgstr "Tuner-Einstellungen"
 
-msgid "Setp"
+msgid "Setup"
 msgstr "Einstellungen"
 
 msgid "Network Menu"
@@ -8133,9 +8133,6 @@ msgstr "Einstellungen..."
 
 msgid "PluginBrowser filter settings..."
 msgstr "PluginBrowser Filtereinstellungen..."
-
-msgid "Setup"
-msgstr "Konfiguration"
 
 msgid "Setup how to control the channel changing."
 msgstr "Konfiguriere wie der Senderwechsel geschehen soll."
