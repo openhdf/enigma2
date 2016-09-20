@@ -118,7 +118,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self.inputDevice = device
 		iInputDevices.currentDevice = self.inputDevice
 		self.onChangedEntry = [ ]
-		self.setup_title = _("Input device setup")
+		self.setup_title = (_("Input device setup"))
 		self.isStepSlider = None
 		self.enableEntry = None
 		self.repeatEntry = None
@@ -334,7 +334,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Remote control type"), self.rctype))
 		self["config"].list = self.list
 
-		self.defaultRcType = None
+		self.defaultRcType = 0
 		self.getDefaultRcType()
 
 	def getDefaultRcType(self):
