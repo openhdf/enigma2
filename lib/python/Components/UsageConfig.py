@@ -50,7 +50,7 @@ def InitUsageConfig():
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
 
 	choicelist = [("-1", _("Divide")), ("0", _("Disable"))]
-	for i in range(100,1300,100):
+	for i in range(100,1325,25):
 		choicelist.append(("%d" % i, ngettext("%d pixel wide", "%d pixels wide", i) % i))
 	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
 	config.usage.servicelist_column.addNotifier(refreshServiceList)
