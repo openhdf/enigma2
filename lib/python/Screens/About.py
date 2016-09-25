@@ -76,9 +76,9 @@ class About(Screen):
 		except:
 			BootLoaderVersion = 0
 
-		if getMachineBuild() in ('vusolo4k') or (getMachineBuild() in ('hd51') and BootLoaderVersion < 31):
+		if getMachineBuild() in ('vusolo4k') or bootloader in ('v29'):
 			cpuMHz = "1,5 GHz"
-		elif getMachineBuild() in ('hd52') or (getMachineBuild() in ('hd51') and BootLoaderVersion >= 31):
+		elif getMachineBuild() in ('hd52','hd51'):
 			cpuMHz = "1,7 GHz"
 		else:
 			if path.exists('/proc/cpuinfo'):
@@ -105,9 +105,9 @@ class About(Screen):
 		else:
 			AboutText += _("CPU:\t%s") % about.getCPUString() + " (" + cpuMHz + ")" + "\n"
 		dMIPS = 0
-		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52'):
+		if getMachineBuild() in ('vusolo4k'):
 			dMIPS = "10.500"
-		if getMachineBuild() in ('hd52') or (getMachineBuild() in ('hd51') and BootLoaderVersion >= 31):
+		elif getMachineBuild() in ('hd52','hd51'):
 			dMIPS = "12.000"
 		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52'):
 			AboutText += _("DMIPS:\t") + dMIPS + "\n"
