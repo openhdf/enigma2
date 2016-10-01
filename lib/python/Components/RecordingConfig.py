@@ -25,8 +25,6 @@ def InitRecordingConfig():
 	config.recording.ask_to_abort_pip              = ConfigSelection(choices = [("ask", _("ask user")), ("abort_no_msg", _("just abort, no message")), ("abort_msg", _("just abort, show message")), ("never_abort", _("never abort"))], default = "abort_msg")
 	config.recording.timerentry_justplay = ConfigSelection(choices = [
 		("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))], default = "record")
-	config.recording.timerentry_afterevent = ConfigSelection(choices = [
-		("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", "shut down"), ("auto", _("auto"))], default = "auto")
 
 def recType(configString):
 	if   (configString == "any"):            return pNavigation.isAnyRecording
