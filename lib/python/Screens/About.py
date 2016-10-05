@@ -76,10 +76,17 @@ class About(Screen):
 		except:
 			BootLoaderVersion = 0
 
-		if getMachineBuild() in ('vusolo4k') or bootloader in ('v29'):
+		if getMachineBuild() in ('vusolo4k'):
 			cpuMHz = "1,5 GHz"
 		elif getMachineBuild() in ('hd52','hd51'):
-			cpuMHz = "1,7 GHz"
+			try:
+				import binascii
+				f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
+				clockfrequency = f.read()
+				f.close()
+				cpuMHz = "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
+			except:
+				cpuMHz = "1,7 GHz"
 		else:
 			if path.exists('/proc/cpuinfo'):
 				f = open('/proc/cpuinfo', 'r')
@@ -89,6 +96,7 @@ class About(Screen):
 					for lines in temp:
 						lisp = lines.split(': ')
 						if lisp[0].startswith('cpu MHz'):
+							#cpuMHz = "   (" +  lisp[1].replace('\n', '') + " MHz)"
 							cpuMHz = "   (" +  str(int(float(lisp[1].replace('\n', '')))) + " MHz)"
 							break
 				except:
