@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-10-09 15:24+0200\n"
+"PO-Revision-Date: 2016-10-09 15:40+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13499,6 +13499,9 @@ msgstr "Lokal"
 msgid "Multiboot Select"
 msgstr "Multiboot Auswahl"
 
+msgid "MultiBoot Selector"
+msgstr "MultiBoot Auswahl"
+
 msgid "Do you want to reboot now with selected image?"
 msgstr "Soll die Box jetzt mit dem gewählten Image neu gestartet werden?"
 
@@ -13528,7 +13531,7 @@ msgid "2160p60 without PiP (Standard)"
 msgstr "2160p60 ohne PiP (Standard)"
 
 msgid "2160p50 with PiP (Experimental)"
-msgstr "2160p50 mit PiP (Experimentel)"
+msgstr "2160p50 mit PiP (Experimental)"
 
 msgid " (unknown mode)"
 msgstr " (unbekannter Modus)"
@@ -13541,6 +13544,9 @@ msgstr "Aktuelle Booteinstellungen: %s (%s)%s"
 
 msgid "Select Bootoption: %s"
 msgstr "Bootoption auswählen: %s"
+
+msgid "Select Image: %s"
+msgstr "Image auswählen: %s"
 
 msgid "Select Bootoption: not supported - see info"
 msgstr "Bootoption auswählen: nicht unterstützt - siehe Info"
@@ -13577,3 +13583,9 @@ msgstr "Fehler in Datei %s"
 
 msgid "Command line error!"
 msgstr "Kommandozeilen Fehler!"
+
+msgid "Press left/right to select Image"
+msgstr "Benutze Steuerkreuz rechts/links zur Auswahl des Images"
+
+msgid "Press up/down to select Bootoption (Standard/Experimental)"
+msgstr "Benutze Steuerkreuz hoch/runter für Bootoptionen (Standard/Experimental)"
