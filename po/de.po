@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-10-09 15:40+0200\n"
+"PO-Revision-Date: 2016-10-10 11:51+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13589,3 +13589,9 @@ msgstr "Benutze Steuerkreuz rechts/links zur Auswahl des Images"
 
 msgid "Press up/down to select Bootoption (Standard/Experimental)"
 msgstr "Benutze Steuerkreuz hoch/runter für Bootoptionen (Standard/Experimental)"
+
+msgid "Choose the CI protocol operation mode for standard ci or ciplus."
+msgstr "Wähle das CI Protokoll für CI Normal oder CIPlus Module."
+
+msgid "Your Hardware can detect ci mode self or work only in legacy mode."
+msgstr "Hardware erkennt das CI Protokoll selber oder Hardware arbeitet nur im Legacy Mode."
