@@ -1,24 +1,24 @@
 from Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.ConfigList import ConfigList, ConfigListScreen
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Console import Console
+from Components.ConfigList import ConfigListScreen
+from Components.ActionMap import ActionMap
+from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Components.Console import Console
 from Components.Sources.StaticText import StaticText
+from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigText, ConfigYesNo, NoSave
+from Components.ConfigList import ConfigList
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
+from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 from Tools.BoundFunction import boundFunction
 from boxbranding import getBrandOEM, getBoxType
 import time
-import os
-import Screens.Standby
 
 MAX_NUM_CI = 4
-
-forceNotShowCiMessages = False
 
 def setCIBitrate(configElement):
 	if configElement.value == "no":
@@ -26,8 +26,14 @@ def setCIBitrate(configElement):
 	else:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateHigh)
 
+def setdvbCiDelay(configElement):
+	f = open("/proc/stb/tsmux/rmx_delay", "w")
+	f.write(configElement.value)
+	f.close()
+
 def InitCiConfig():
 	config.ci = ConfigSubList()
+	config.cimisc = ConfigSubsection()
 	for slot in range(MAX_NUM_CI):
 		config.ci.append(ConfigSubsection())
 		config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices = [("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))], default = "auto")
@@ -35,9 +41,101 @@ def InitCiConfig():
 		config.ci[slot].static_pin = ConfigPIN(default = 0)
 		config.ci[slot].show_ci_messages = ConfigYesNo(default = True)
 		if SystemInfo["CommonInterfaceSupportsHighBitrates"]:
-			config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "yes")
+			if getBrandOEM() in ('dags', 'blackbox'):
+				config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "yes")
+			else: 
+				config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "no")
 			config.ci[slot].canHandleHighBitrates.slotid = slot
 			config.ci[slot].canHandleHighBitrates.addNotifier(setCIBitrate)
+		if SystemInfo["CommonInterfaceCIDelay"]:
+			config.cimisc.dvbCiDelay = ConfigSelection(default = "256", choices = [ ("16", _("16")), ("32", _("32")), ("64", _("64")), ("128", _("128")), ("256", _("256"))] )
+			config.cimisc.dvbCiDelay.addNotifier(setdvbCiDelay)
+		if getBrandOEM() in ('entwopia', 'tripledot', 'dreambox'):
+			if SystemInfo["HaveCISSL"]:
+				config.cimisc.civersion = ConfigSelection(default = "ciplus1", choices = [("auto", _("Auto")), ("ciplus1", _("CI Plus 1.2")), ("ciplus2", _("CI Plus 1.3")), ("legacy", _("CI Legacy"))])
+			else:
+				config.cimisc.civersion = ConfigSelection(default = "legacy", choices = [("legacy", _("CI Legacy"))])
+		else:
+			config.cimisc.civersion = ConfigSelection(default = "auto", choices = [("auto", _("Auto")), ("ciplus1", _("CI Plus 1.2")), ("ciplus2", _("CI Plus 1.3")), ("legacy", _("CI Legacy"))])
+
+class CISetup(Screen, ConfigListScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = ["Setup" ]
+		self.setup_title = _("CI settings")
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+		self['footnote'] = Label()
+
+		self.onChangedEntry = [ ]
+
+		self.list = [ ]
+		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+
+		from Components.ActionMap import ActionMap
+		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
+			{
+				"cancel": self.keyCancel,
+				"save": self.apply,
+				"menu": self.closeRecursive,
+			}, -2)
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		self["description"] = Label("")
+
+		self.createSetup()
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(self.setup_title)
+
+	def createSetup(self):
+		level = config.usage.setup_level.index
+
+		self.list = [ ]
+
+		if level >= 1:
+			if SystemInfo["CommonInterfaceCIDelay"]:
+				self.list.append(getConfigListEntry(_("DVB CI Delay"), config.cimisc.dvbCiDelay, _("Choose dvb wait delay for ci response.")))
+			if SystemInfo["HaveCISSL"]:
+				self.list.append(getConfigListEntry(_("CI Operation Mode"), config.cimisc.civersion, _("Choose the CI protocol operation mode for standard ci or ciplus.")))
+			else:
+				self.list.append(getConfigListEntry(_("CI Operation Mode"), config.cimisc.civersion, _("Your Hardware can detect ci mode self or work only in legacy mode.")))
+
+		self["config"].list = self.list
+		self["config"].l.setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+
+	def keyRight(self):
+		ConfigListScreen.keyRight(self)
+		self.createSetup()
+
+	def confirm(self, confirmed):
+		self.keySave()
+
+	def apply(self):
+		self.keySave()
+
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def getCurrentDescription(self):
+		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
 
 class MMIDialog(Screen):
 	def __init__(self, session, slotid, action, handler = eDVBCI_UI.getInstance(), wait_text = "wait for ci...", screen_data = None ):
@@ -58,11 +156,10 @@ class MMIDialog(Screen):
 		self["bottom"] = Label("")
 		self["entries"] = ConfigList([ ])
 
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
+		self["actions"] = NumberActionMap(["SetupActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.keyCancel,
-				"menu": self.forceExit,
 				#for PIN
 				"left": self.keyLeft,
 				"right": self.keyRight,
@@ -148,14 +245,6 @@ class MMIDialog(Screen):
 	def closeMmi(self):
 		self.timer.stop()
 		self.close(self.slotid)
-
-	def forceExit(self):
-		self.timer.stop()
-		if self.tag == "WAIT":
-			self.handler.stopMMI(self.slotid)
-			global forceNotShowCiMessages
-			forceNotShowCiMessages = True
-			self.close(self.slotid)
 
 	def keyCancel(self):
 		self.timer.stop()
@@ -293,7 +382,7 @@ class CiMessageHandler:
 		self.dlgs = { }
 		self.auto_close = False
 		eDVBCI_UI.getInstance().ciStateChanged.get().append(self.ciStateChanged)
-		if getBoxType() in ('dummy'):
+		if getBoxType() in ('vuzero'):
 			SystemInfo["CommonInterface"] = False
 		else:
 			SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots() > 0
@@ -303,6 +392,12 @@ class CiMessageHandler:
 			SystemInfo["CommonInterfaceSupportsHighBitrates"] = True
 		except:
 			SystemInfo["CommonInterfaceSupportsHighBitrates"] = False
+		try:
+			file = open("/proc/stb/tsmux/rmx_delay", "r")
+			file.close()
+			SystemInfo["CommonInterfaceCIDelay"] = True
+		except:
+			SystemInfo["CommonInterfaceCIDelay"] = False
 
 	def setSession(self, session):
 		self.session = session
@@ -338,7 +433,7 @@ class CiMessageHandler:
 							elif ci_tag == 'CLOSE' and self.auto_close:
 								show_ui = False
 								self.auto_close = False
-					if show_ui and not forceNotShowCiMessages and not Screens.Standby.inStandby:
+					if show_ui:
 						self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, 3, screen_data = screen_data)
 
 	def dlgClosed(self, slot):
@@ -383,15 +478,10 @@ class CiSelection(Screen):
 		self["entries"] = menuList
 		self["entries"].onSelectionChanged.append(self.selectionChanged)
 		self["text"] = Label(_("Slot %d")%(1))
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		global forceNotShowCiMessages
-		forceNotShowCiMessages = False
 
 	def selectionChanged(self):
 		cur_idx = self["entries"].getCurrentIndex()
-		self["text"].setText(_("Slot %d")%((cur_idx / 10)+1))
+		self["text"].setText(_("Slot %d")%((cur_idx / 9)+1))
 
 	def keyConfigEntry(self, key):
 		try:
@@ -426,7 +516,6 @@ class CiSelection(Screen):
 		self.list.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
 		if SystemInfo["CommonInterfaceSupportsHighBitrates"]:
 			self.list.append(getConfigListEntry(_("High bitrate support"), config.ci[slot].canHandleHighBitrates))
-		self.list.append(getConfigListEntry(("----------------------------------------"), ))
 
 	def updateState(self, slot):
 		state = eDVBCI_UI.getInstance().getState(slot)
@@ -599,7 +688,7 @@ class CIHelper(Screen):
 		self.updateService()
 
 	def CIHelperset(self):
-		if fileExists('/etc/rcS.d/S50cihelper.sh') or fileExists('/etc/rc5.d/S50cihelper.sh'):
+		if fileExists('/etc/rcS.d/S50cihelper.sh') or fileExists('/etc/rc4.d/S50cihelper.sh'):
 			self.Console.ePopen('update-rc.d -f cihelper.sh remove', self.StartStopCallback)
 		else:
 			self.Console.ePopen('update-rc.d -f -s cihelper.sh start 50 S .', self.StartStopCallback)
@@ -614,7 +703,7 @@ class CIHelper(Screen):
 		self['labdisabled'].hide()
 		self.my_cihelper_active = False
 		self.my_cihelper_run = False
-		if fileExists('/etc/rcS.d/S50cihelper.sh') or fileExists('/etc/rc5.d/S50cihelper.sh'):
+		if fileExists('/etc/rcS.d/S50cihelper.sh') or fileExists('/etc/rc4.d/S50cihelper.sh'):
 			self['labdisabled'].hide()
 			self['labactive'].show()
 			self.my_cihelper_active = True
@@ -748,7 +837,7 @@ class CIHelperSetup(Screen, ConfigListScreen):
 			self.session.open(MessageBox, _("Sorry CIHelper Config is Missing"), MessageBox.TYPE_INFO)
 			self.close()
 		if fileExists('/etc/cihelper.conf.tmp'):
-			os.rename('/etc/cihelper.conf.tmp', '/etc/cihelper.conf')
+			rename('/etc/cihelper.conf.tmp', '/etc/cihelper.conf')
 		self.myStop()
 
 	def myStop(self):

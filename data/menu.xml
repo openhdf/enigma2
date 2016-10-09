@@ -178,7 +178,8 @@ self.session.open(SABnzbdSetupScreen)
 				<menu weight="25" text="SoftCam / CI" entryID="cam_setup">
 					<id val="cam" />
 					<item weight="1" level="2" entryID="softcam_setup"><setup id="softcamsetup" /></item>
-					<item weight="10" level="1" text="Common interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
+					<item weight="0" level="1" text="Basic settings" entryID="ci_setup"><screen module="Ci" screen="CISetup" /></item>
+					<item weight="1" level="1" text="Common Interface" entryID="ci_setup"><screen module="Ci" screen="CiSelection" /></item>
 					<!--item weight="10" level="1" text="Common interface PIN Setup" entryID="ci_setup"><screen module="Ci" screen="CiDefaultPinSetup" /></item-->
 					<item weight="11" level="2" text="CCcam info" entryID="cccaminfo" requires="CCcamInstalled"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
 					<item weight="11" level="2" text="OScam info" entryID="oscaminfo" requires="OScamInstalled"><screen module="OScamInfo" screen="OscamInfoMenu" /></item>
