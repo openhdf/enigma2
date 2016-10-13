@@ -714,9 +714,9 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.hideTimer.start(idx*1000, True)
 		elif hasattr(self, "pvrStateDialog"):
 			self.hideTimer.stop()
-			#idx = config.usage.infobar_timeout.index
-			#if idx:
-			#	self.hideTimer.start(idx*1000, True)
+			idx = config.usage.infobar_timeout.index
+			if idx:
+				self.hideTimer.start(idx*1000, True)
 
 	def doShow(self):
 		self.show()
@@ -3765,10 +3765,7 @@ class InfoBarSeek:
 
 	def unPauseService(self):
 		if self.seekstate == self.SEEK_STATE_PLAY:
-			if self.seekAction <> 0: self.playpauseService()
-			#return 0 # if 'return 0', plays timeshift again from the beginning
-			return
-		self.doPause(False)
+			return 0
 		self.setSeekState(self.SEEK_STATE_PLAY)
 
 	def doSeek(self, pts):

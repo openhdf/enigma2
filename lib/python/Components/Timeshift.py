@@ -82,8 +82,7 @@ class InfoBarTimeshift:
 
 		self["TimeshiftFileActions"] = ActionMap(["InfobarTimeshiftActions"],
 			{
-				#"jumpPreviousFile": self.__evSOF,
-				"jumpPreviousFile": self.__evSOFjump,
+				"jumpPreviousFile": self.__evSOF,
 				"jumpNextFile": self.__evEOF
 			}, prio=-1) # priority over history
 
@@ -113,8 +112,6 @@ class InfoBarTimeshift:
 		self.pts_begintime = 0
 		self.pts_switchtolive = False
 		self.pts_firstplayable = 1
-		self.pts_lastposition = 0
-		self.pts_lastplaying = 1
 		self.pts_currplaying = 1
 		self.pts_nextplaying = 0
 		self.pts_lastseekspeed = 0
@@ -128,7 +125,6 @@ class InfoBarTimeshift:
 		self.checkEvents_value = int(config.timeshift.timeshiftCheckEvents.value)
 		self.pts_starttime = time()
 		self.ptsAskUser_wait = False
-		self.posDiff = 0
 
 		# Init Global Variables
 		self.session.ptsmainloopvalue = 0
@@ -167,24 +163,15 @@ class InfoBarTimeshift:
 		self.pts_StartSeekBackTimer = eTimer()
 		self.pts_StartSeekBackTimer.callback.append(self.ptsStartSeekBackTimer)
 
-		# Init PTS SeekToPos-Timer
-		self.pts_SeekToPos_timer = eTimer()
-		self.pts_SeekToPos_timer.callback.append(self.ptsSeekToPos)
-
 		# Init PTS CheckFileChanged-Timer
-		self.pts_CheckFileChanged_counter = 1
 		self.pts_CheckFileChanged_timer = eTimer()
 		self.pts_CheckFileChanged_timer.callback.append(self.ptsCheckFileChanged)
 
 		# Init Block-Zap Timer
 		self.pts_blockZap_timer = eTimer()
 
-		# Init PTS FileJump-Timer 
-		self.pts_FileJump_timer = eTimer() 
-
 		# Record Event Tracker
 		self.session.nav.RecordTimer.on_state_change.append(self.ptsTimerEntryStateChange)
-
 
 		# Keep Current Event Info for recordings
 		self.pts_eventcount = 0
@@ -206,9 +193,11 @@ class InfoBarTimeshift:
 		self["TimeshiftFileActions"].setEnabled(state)
 		# print ('__seekableStatusChanged - state %s, seekstate %s' % (state, self.seekstate))
 
-		if not state and self.pts_currplaying == self.pts_eventcount and self.timeshiftEnabled() and not self.event_changed:
+		if not state and self.pts_currplaying == self.pts_eventcount:
 			self.setSeekState(self.SEEK_STATE_PLAY)
-			if hasattr(self, "pvrStateDialog"): self.pvrStateDialog.hide()
+		
+		if self.pts_eventcount < self.pts_firstplayable:
+			self.pts_firstplayable = self.pts_eventcount
 
 		self.restartSubtitle()
 
@@ -219,7 +208,7 @@ class InfoBarTimeshift:
 			if int(config.timeshift.startdelay.value):
 				if self.pts_starttime <= (time()-5):
 					self.pts_blockZap_timer.start(3000, True)
-			self.pts_lastplaying = self.pts_currplaying = self.pts_eventcount
+			self.pts_currplaying = self.pts_eventcount
 			self.pts_nextplaying = 0
 			self.pts_file_changed = True
 			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_eventcount)
@@ -236,8 +225,8 @@ class InfoBarTimeshift:
 		if int(config.timeshift.startdelay.value):
 			# print 'TS AUTO START TEST2'
 			self.pts_delay_timer.start(int(config.timeshift.startdelay.value) * 1000, True)
-		self["TimeshiftActions"].setEnabled(True)
-		#self.__seekableStatusChanged()
+
+		self.__seekableStatusChanged()
 
 	def __serviceEnd(self):
 		# print '!!!!! __serviceEnd'
@@ -250,45 +239,22 @@ class InfoBarTimeshift:
 		self.service_changed = 0
 		if not config.timeshift.isRecording.value:
 			self.__seekableStatusChanged()
-		self["TimeshiftActions"].setEnabled(False)
-
-	def __evSOFjump(self):
-		if not self.timeshiftEnabled() or self.pts_CheckFileChanged_timer.isActive() or self.pts_SeekBack_timer.isActive() or self.pts_StartSeekBackTimer.isActive() or self.pts_SeekToPos_timer.isActive():
-			return
-		if self.pts_FileJump_timer.isActive():
-			self.__evSOF()
-		else:
-			self.pts_FileJump_timer.start(5000, True)
-			self.setSeekState(self.SEEK_STATE_PLAY)
-			self.doSeek(0)
-			self.posDiff = 0
-
-	def evSOF(self, posDiff = 0):  #called from InfoBarGenerics.py
-		self.posDiff = posDiff
-		self.__evSOF()
 
 	def __evSOF(self):
 		# print '!!!!! jumpToPrevTimeshiftedEvent'
-		if not self.timeshiftEnabled() or self.pts_CheckFileChanged_timer.isActive() or self.pts_SeekBack_timer.isActive() or self.pts_StartSeekBackTimer.isActive() or self.pts_SeekToPos_timer.isActive():
+		if not self.timeshiftEnabled() or self.pts_CheckFileChanged_timer.isActive():
 			return
 
 		# print ('[TIMESHIFT] - pts_currplaying %s, pts_nextplaying %s, pts_eventcount %s, pts_firstplayable %s' % (self.pts_currplaying, self.pts_nextplaying, self.pts_eventcount, self.pts_firstplayable))
 
 		self.pts_switchtolive = False
 
-		self.pts_lastplaying = self.pts_currplaying
 		self.pts_nextplaying = 0
 		if self.pts_currplaying > self.pts_firstplayable:
 			self.pts_currplaying -= 1
 		else:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			self.doSeek(0)
-			self.posDiff = 0
-			if self.pts_FileJump_timer.isActive():
-				self.pts_FileJump_timer.stop()
-				Notifications.AddNotification(MessageBox, _("First playable timeshift file!"), MessageBox.TYPE_INFO, timeout=3)
-			if not self.pts_FileJump_timer.isActive():
-				self.pts_FileJump_timer.start(5000, True)
 			return
 
 		# Switch to previous TS file by seeking forward to next file
@@ -298,7 +264,6 @@ class InfoBarTimeshift:
 			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_currplaying)
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			self.doSeek(3600 * 24 * 90000)
-			self.pts_CheckFileChanged_counter = 1
 			self.pts_CheckFileChanged_timer.start(1000, False)
 			self.pts_file_changed = False
 		else:
@@ -307,23 +272,17 @@ class InfoBarTimeshift:
 			self.pts_firstplayable += 1
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			self.doSeek(0)
-			self.posDiff = 0
-
+		
 		# print ('[TIMESHIFT] - pts_currplaying %s, pts_nextplaying %s, pts_eventcount %s, pts_firstplayable %s' % (self.pts_currplaying, self.pts_nextplaying, self.pts_eventcount, self.pts_firstplayable))
-
-	def evEOF(self, posDiff = 0):  #called from InfoBarGenerics.py
-		self.posDiff = posDiff
-		self.__evEOF()
 
 	def __evEOF(self):
 		# print '!!!!! jumpToNextTimeshiftedEvent'
-		if not self.timeshiftEnabled() or self.pts_CheckFileChanged_timer.isActive() or self.pts_SeekBack_timer.isActive() or self.pts_StartSeekBackTimer.isActive() or self.pts_SeekToPos_timer.isActive():
+		if not self.timeshiftEnabled() or self.pts_CheckFileChanged_timer.isActive():
 			return
 		# print ('[TIMESHIFT] - pts_currplaying %s, pts_nextplaying %s, pts_eventcount %s, pts_firstplayable %s' % (self.pts_currplaying, self.pts_nextplaying, self.pts_eventcount, self.pts_firstplayable))
 		
 		self.pts_switchtolive = False
-		self.pts_lastposition = self.ptsGetPosition()
-		self.pts_lastplaying = self.pts_currplaying
+
 		self.pts_nextplaying = 0
 		self.pts_currplaying += 1
 
@@ -334,23 +293,14 @@ class InfoBarTimeshift:
 			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_currplaying)
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			self.doSeek(3600 * 24 * 90000)
-			self.pts_CheckFileChanged_counter = 1
+		else:
+			self.pts_switchtolive = True
+			self.pts_currplaying -= 1
+			self.ptsSetNextPlaybackFile("")
+			self.setSeekState(self.SEEK_STATE_PLAY)
+			self.doSeek(3600 * 24 * 90000)
 			self.pts_CheckFileChanged_timer.start(1000, False)
 			self.pts_file_changed = False
-		else:
-			if not int(config.timeshift.startdelay.value) and config.timeshift.showlivetvmsg.value:
-				Notifications.AddNotification(MessageBox, _("Switching to live TV - timeshift is still active!"), MessageBox.TYPE_INFO, timeout=3)
-			self.posDiff = 0
-			self.pts_lastposition = 0
-			self.pts_currplaying -= 1
-			self.pts_switchtolive = True 
-			self.ptsSetNextPlaybackFile("") 
-			self.setSeekState(self.SEEK_STATE_PLAY) 
-			self.doSeek(3600 * 24 * 90000) 
-			self.pts_CheckFileChanged_counter = 1
-			self.pts_CheckFileChanged_timer.start(1000, False) 
-			self.pts_file_changed = False 
-
 		# print ('[TIMESHIFT] - pts_currplaying %s, pts_nextplaying %s, pts_eventcount %s, pts_firstplayable %s' % (self.pts_currplaying, self.pts_nextplaying, self.pts_eventcount, self.pts_firstplayable))
 
 	def __evInfoChanged(self):
@@ -408,6 +358,7 @@ class InfoBarTimeshift:
 					self.pts_delay_timer.start(1000, True)
 
 	def getTimeshift(self):
+
 		if self.ts_disabled:
 			return None
 
@@ -455,24 +406,20 @@ class InfoBarTimeshift:
 		# print ' answer', answer
 		if answer and int(config.timeshift.startdelay.value) and self.switchToLive and self.isSeekable():
 			# print 'TEST4'
-			self.posDiff = 0
-			self.pts_lastposition = 0
-			if self.pts_currplaying != self.pts_eventcount:
-				self.pts_lastposition = self.ptsGetPosition()
-			self.pts_lastplaying = self.pts_currplaying
 			self.ptsStop = False
 			self.pts_nextplaying = 0
 			self.pts_switchtolive = True
 			self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSetNextPlaybackFile("")
 			self.doSeek(3600 * 24 * 90000)
-			self.pts_CheckFileChanged_counter = 1
-			self.pts_CheckFileChanged_timer.start(1000, False)
-			self.pts_file_changed = False
-			#self.__seekableStatusChanged()
+			self.__seekableStatusChanged()
 			return 0
 
+		was_enabled = False
 		ts = self.getTimeshift()
+		if ts and ts.isTimeshiftEnabled():
+			# print 'TEST5'
+			was_enabled = ts.isTimeshiftEnabled()
 		if answer and ts:
 			# print 'TEST6'
 			if int(config.timeshift.startdelay.value):
@@ -501,7 +448,7 @@ class InfoBarTimeshift:
 			if getBrandOEM() == 'xtrend':
 				self.ts_rewind_timer.start(1000, 1)
 			else:
-				self.ts_rewind_timer.start(500, 1)
+				self.ts_rewind_timer.start(100, 1)
 
 	def rewindService(self):
 		if getBrandOEM() in ('gigablue', 'xp'):
@@ -509,10 +456,7 @@ class InfoBarTimeshift:
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
 
 	def callServiceStarted(self):
-		from Screens.InfoBarGenerics import isStandardInfoBar
-		if isStandardInfoBar(self):
-			ServiceEventTracker.setActiveInfoBar(self,None,None)
-			self.__serviceStarted()
+		self.__serviceStarted()
 
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
@@ -523,7 +467,7 @@ class InfoBarTimeshift:
 		# print 'self.switchToLive',self.switchToLive
 		if self.ptsStop:
 			returnFunction(True)
-		elif (self.isSeekable() or (self.timeshiftEnabled() and not int(config.timeshift.startdelay.value)) or self.save_current_timeshift) and config.usage.check_timeshift.value:
+		elif (self.isSeekable() and self.timeshiftEnabled() or self.save_current_timeshift) and config.usage.check_timeshift.value:
 			# print 'TEST1'
 			if config.timeshift.favoriteSaveAction.value == "askuser":
 				# print 'TEST2'
@@ -590,7 +534,7 @@ class InfoBarTimeshift:
 
 	def autostartAutorecordTimeshift(self):
 		# print '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!autostartAutorecordTimeshift'
-		#self["TimeshiftActions"].setEnabled(True)
+		self["TimeshiftActions"].setEnabled(True)
 		ts = self.getTimeshift()
 		if ts is None:
 			# print '[TimeShift] tune lock failed, so could not start.'
@@ -613,24 +557,18 @@ class InfoBarTimeshift:
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopwhilerecording.value and self.pts_record_running):
 			return
 
+		# setNextPlaybackFile() on event change while timeshifting
+		if self.isSeekable():
+			self.pts_nextplaying = self.pts_currplaying + 1
+			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_nextplaying)
+			# Do not switch back to LiveTV while timeshifting
+			self.switchToLive = False
+		else:
+			self.switchToLive = True
+
 		# (Re)start Timeshift now
 		if config.timeshift.filesplitting.value:
-			# setNextPlaybackFile() on event change while timeshifting
-			if self.isSeekable():
-				self.pts_nextplaying = self.pts_currplaying + 1
-				self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_nextplaying)
-				# Do not switch back to LiveTV while timeshifting
-				self.switchToLive = False
-			else:
-				self.switchToLive = True
 			self.stopTimeshiftcheckTimeshiftRunningCallback(True)
-		else:
-			if self.pts_currplaying < self.pts_eventcount:
-				self.pts_nextplaying = self.pts_currplaying + 1
-				self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_nextplaying)
-			else:
-				self.pts_nextplaying = 0
-				self.ptsSetNextPlaybackFile("")
 		self.event_changed = False
 
 		ts = self.getTimeshift()
@@ -665,9 +603,6 @@ class InfoBarTimeshift:
 				self.session.open(MessageBox, _("Timeshift not possible!"), MessageBox.TYPE_ERROR, timeout=2)
 			except:
 				print '[TIMESHIFT] Failed to open MessageBox, Timeshift not possible, probably another MessageBox was active.'
-
-		if self.pts_eventcount < self.pts_firstplayable:
-			self.pts_firstplayable = self.pts_eventcount
 		# print ('[TIMESHIFT] - pts_currplaying %s, pts_nextplaying %s, pts_eventcount %s, pts_firstplayable %s' % (self.pts_currplaying, self.pts_nextplaying, self.pts_eventcount, self.pts_firstplayable))
 
 	def createTimeshiftFolder(self):
@@ -930,19 +865,14 @@ class InfoBarTimeshift:
 	def ptsAskUser(self, what):
 		if self.ptsAskUser_wait:
 			return
-		message_time = _("The buffer time for timeshift exceeds the specified limit in the settings.\nWhat do you want to do ?")
-		message_space = _("The available disk space for timeshift is less than specified in the settings.\nWhat do you want to do ?")
-		message_livetv = _("Can't going to live TV!\nSwitch to live TV and restart Timeshift ?")
-		message_nextfile = _("Can't play the next Timeshift file!\nSwitch to live TV and restart Timeshift ?")
-		choice_restart =[(_("Delete the current timeshift buffer and restart timeshift"), "restarttimeshift"),
+		message_time =  _("The buffer time for timeshift exceeds the specified limit in the settings.\nWhat do you want to do ?")
+		message_space =  _("The available disk space for timeshift is less than specified in the settings.\nWhat do you want to do ?")
+		choice_restart = [(_("Delete the current timeshift buffer and restart timeshift"), "restarttimeshift"),
 						(_("Nothing, just leave this menu"), "no")]
 		choice_save = [(_("Stop timeshift and save timeshift buffer as movie and start recording of current event"), "savetimeshiftandrecord"),
 					(_("Stop timeshift and save timeshift buffer as movie"), "savetimeshift"),
 					(_("Stop timeshift"), "noSave"),
 					(_("Nothing, just leave this menu"), "no")]
-		choice_livetv = [(_("No"), "nolivetv"),
-						(_("Yes"), "golivetv")]
-
 		if what == "time":
 			message = message_time
 			choice = choice_restart
@@ -955,12 +885,6 @@ class InfoBarTimeshift:
 		elif what == "space_and_save":
 			message = message_space
 			choice = choice_save
-		elif what == "livetv":
-			message = message_livetv
-			choice = choice_livetv
-		elif what == "nextfile":
-			message = message_nextfile
-			choice = choice_livetv
 		else:
 			return
 		self.ptsAskUser_wait = True
@@ -982,14 +906,6 @@ class InfoBarTimeshift:
 				self.ptsEventCleanTimerSTOP()
 				self.save_current_timeshift = True
 				InfoBarTimeshift.saveTimeshiftActions(self, answer, self.stopTimeshiftAskUserCallback)
-			elif answer == "golivetv":
-				self.ptsEventCleanTimerSTOP(True)
-				self.stopTimeshiftAskUserCallback(True)
-				self.restartTimeshift()
-			elif answer == "nolivetv":
-				if self.pts_lastposition: 
-					self.setSeekState(self.SEEK_STATE_PLAY)
-					self.doSeek(self.pts_lastposition)
 
 	def stopTimeshiftAskUserCallback(self, answer):
 		ts = self.getTimeshift()
@@ -1504,34 +1420,9 @@ class InfoBarTimeshift:
 		# print ('[TIMESHIFT] - pts_currplaying %s, pts_nextplaying %s, pts_eventcount %s, pts_firstplayable %s' % (self.pts_currplaying, self.pts_nextplaying, self.pts_eventcount, self.pts_firstplayable))
 		# print 'self.pts_file_changed',self.pts_file_changed
 
-		if not self.timeshiftEnabled():
+		if self.pts_file_changed or not self.timeshiftEnabled():
 			self.pts_CheckFileChanged_timer.stop()
-			return
-
-		if self.pts_CheckFileChanged_counter >= 5 and not self.pts_file_changed:
-			if self.pts_switchtolive:
-				if config.timeshift.showlivetvmsg.value:
-					self.ptsAskUser("livetv")
-			elif self.pts_lastplaying <= self.pts_currplaying:
-				self.ptsAskUser("nextfile")
-			else:
-				Notifications.AddNotification(MessageBox, _("Can't play the previous timeshift file! You can try again."), MessageBox.TYPE_INFO, timeout=3)
-				self.doSeek(0)
-				self.setSeekState(self.SEEK_STATE_PLAY)
-				#self.pts_firstplayable = self.pts_lastplaying
-
-			self.pts_currplaying = self.pts_lastplaying
-			self.pts_CheckFileChanged_timer.stop()
-			return
-
-		self.pts_CheckFileChanged_counter += 1
-		if self.pts_file_changed:
-			self.pts_CheckFileChanged_timer.stop()
-			if self.posDiff:
-				self.pts_SeekToPos_timer.start(1000, True)
-			elif self.pts_FileJump_timer.isActive():
-				self.pts_FileJump_timer.stop()
-			elif self.pts_lastplaying > self.pts_currplaying:
+			if not self.pts_currplaying == self.pts_eventcount:
 				self.pts_SeekBack_timer.start(1000, True)
 		else:
 			self.doSeek(3600 * 24 * 90000)
@@ -1539,7 +1430,7 @@ class InfoBarTimeshift:
 	def ptsTimeshiftFileChanged(self):
 		# print '!!!!! ptsTimeshiftFileChanged'
 		# print ('[TIMESHIFT] - pts_currplaying %s, pts_nextplaying %s, pts_eventcount %s, pts_firstplayable %s' % (self.pts_currplaying, self.pts_nextplaying, self.pts_eventcount, self.pts_firstplayable))
-
+		
 		self.pts_file_changed = True
 
 		# Reset Seek Pointer
@@ -1575,27 +1466,7 @@ class InfoBarTimeshift:
 		if ts is None:
 			return
 		# print ("!!! SET NextPlaybackFile%s%s" % (config.usage.timeshift_path.value,nexttsfile))
-		if nexttsfile:
-			ts.setNextPlaybackFile("%s%s" % (config.usage.timeshift_path.value,nexttsfile))
-		else:
-			ts.setNextPlaybackFile("")
-
-	def ptsSeekToPos(self):
-		#print '!!!!! ptsSeekToPos', self.posDiff
-		length = self.ptsGetLength()
-		if length is None:
-			return
-		if self.posDiff < 0:
-			if length <= abs(self.posDiff):
-				self.posDiff = 0
-		else:
-			if length <= abs(self.posDiff):
-				tmp = length - 90000*10
-				if tmp < 0: tmp = 0
-				self.posDiff = tmp
-		self.setSeekState(self.SEEK_STATE_PLAY)
-		self.doSeek(self.posDiff)
-		self.posDiff = 0
+		ts.setNextPlaybackFile("%s%s" % (config.usage.timeshift_path.value,nexttsfile))
 
 	def ptsSeekBackTimer(self):
 		# print '!!!!! ptsSeekBackTimer RUN'
