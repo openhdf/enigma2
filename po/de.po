@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-10-10 19:03+0200\n"
+"PO-Revision-Date: 2016-10-15 09:07+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -197,13 +197,13 @@ msgid "Scanning"
 msgstr "Sendersuche"
 
 msgid "Tuner Configuration"
-msgstr "Tuner-Einstellungen"
+msgstr "Tuner Einstellungen"
 
 msgid "Setup"
 msgstr "Einstellungen"
 
 msgid "Network Menu"
-msgstr "Netzwerk-Einstellungen"
+msgstr "Netzwerk Einstellungen"
 
 msgid "Network Adapter"
 msgstr "Netzwerk-Adapter"
@@ -224,13 +224,13 @@ msgid "User Interface"
 msgstr "Benutzeroberfläche"
 
 msgid "Recording Setup"
-msgstr "Aufnahme-Einstellungen"
+msgstr "Aufnahme Einstellungen"
 
 msgid "Harddisk Setup"
-msgstr "Festplatten-Einstellungen"
+msgstr "Festplatten Einstellungen"
 
 msgid "Please use Harddisk Setup to initialize your drive."
-msgstr "Bitte die Festplatten-Einstellungen für die Vorbereitung benutzen."
+msgstr "Bitte die Festplatten Einstellungen für die Vorbereitung benutzen."
 
 msgid "Select HDD"
 msgstr "Festplatte auswählen"
@@ -251,7 +251,7 @@ msgid "Configure the hard disk drive to go to standby after the specified idle t
 msgstr "Option zum Einstellen der Zeit ab wann die Festplatte nach dem Standby der Box in den Ruhezustand gehen soll."
 
 msgid "Subtitles Settings"
-msgstr "Untertitel-Einstellungen"
+msgstr "Untertitel Einstellungen"
 
 msgid "Question"
 msgstr "Frage"
@@ -855,7 +855,7 @@ msgid "3D Surround"
 msgstr "3D Surround Ton"
 
 msgid "3D setup"
-msgstr "3D-Einstellungen"
+msgstr "3D Einstellungen"
 
 msgid "3X"
 msgstr "3X"
@@ -1182,13 +1182,13 @@ msgstr ""
 "Programm beenden und erneut versuchen?\n"
 
 msgid "A/V settings"
-msgstr "Audio/Video-Einstellungen"
+msgstr "Audio/Video Einstellungen"
 
 msgid "Audio settings"
-msgstr "Audio-Einstellungen"
+msgstr "Audio Einstellungen"
 
 msgid "Video settings"
-msgstr "Video-Einstellungen"
+msgstr "Video Einstellungen"
 
 msgid "AA"
 msgstr "AA"
@@ -1200,10 +1200,10 @@ msgid "ACQUIRING TSID/ONID"
 msgstr "Sammeln von TSID/ONID"
 
 msgid "AFP Setup"
-msgstr "AFP-Server-Einstellungen"
+msgstr "AFP-Server Einstellungen"
 
 msgid "AFP setup"
-msgstr "AFP-Server-Einstellungen"
+msgstr "AFP-Server Einstellungen"
 
 #, python-format
 msgid "AV aspect is %s."
@@ -1995,7 +1995,7 @@ msgid "Button"
 msgstr "Taste"
 
 msgid "Button setup"
-msgstr "Tasten-Einstellungen"
+msgstr "Tasten Einstellungen"
 
 msgid "By Team ViX"
 msgstr "Vom Team ViX"
@@ -3357,7 +3357,7 @@ msgid "Device mounts"
 msgstr "Geräte-Mountpunkte"
 
 msgid "Device setup"
-msgstr "Adapter-Einstellungen"
+msgstr "Adapter Einstellungen"
 
 msgid "Devicename:"
 msgstr "Gerätename:"
@@ -3494,16 +3494,16 @@ msgid "Display and userinterface"
 msgstr "Anzeige und Benutzeroberfläche"
 
 msgid "Userinterface Settings"
-msgstr "Benutzeroberfläche-Einstellungen"
+msgstr "Benutzeroberfläche Einstellungen"
 
 msgid "Display message before playing next movie"
 msgstr "Nachricht vor Wiedergabe des nächsten Films"
 
 msgid "Display settings"
-msgstr "Display-Einstellungen"
+msgstr "Display Einstellungen"
 
 msgid "Display Settings"
-msgstr "Display-Einstellungen"
+msgstr "Display Einstellungen"
 
 msgid "Clone TV screen to LCD"
 msgstr "Spiegel TV Bild zum LCD"
@@ -3779,7 +3779,7 @@ msgid "EPG location"
 msgstr "EPG Speicherort"
 
 msgid "EPG settings"
-msgstr "EPG-Einstellungen"
+msgstr "EPG Einstellungen"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -4086,10 +4086,10 @@ msgid "FLASH"
 msgstr "FLASH"
 
 msgid "FTP Setup"
-msgstr "FTP-Server-Einstellungen"
+msgstr "FTP-Server Einstellungen"
 
 msgid "FTP setup"
-msgstr "FTP-Server-Einstellungen"
+msgstr "FTP-Server Einstellungen"
 
 msgid "Factory reset"
 msgstr "Werkseinstellungen"
@@ -4535,7 +4535,7 @@ msgid "aks the user"
 msgstr "Nachfragen"
 
 msgid "Graphical InfobarEPG settings"
-msgstr "Grafischer-InfoBarEPG-Einstellungen"
+msgstr "Grafischer-InfoBarEPG Einstellungen"
 
 msgid "Graphical Multi EPG"
 msgstr "Grafischer Multi-EPG"
@@ -4568,10 +4568,10 @@ msgid "HDMI"
 msgstr "HDMI"
 
 msgid "HDMI CEC"
-msgstr "HDMI-CEC-Einstellungen"
+msgstr "HDMI-CEC Einstellungen"
 
 msgid "HDMI CEC Setup"
-msgstr "HDMI-CEC-Einstellungen"
+msgstr "HDMI-CEC Einstellungen"
 
 msgid "Handle deepstandby events"
 msgstr "Deep-Standby-Ereignisse verwalten "
@@ -4583,7 +4583,7 @@ msgid "Handle wakeup from TV"
 msgstr "Fernseher Wakeup verwalten"
 
 msgid "Hard disk setup"
-msgstr "Festplatten-Einstellungen"
+msgstr "Festplatten Einstellungen"
 
 msgid "Hard disk standby after"
 msgstr "Festplatten Ruhezustand nach:"
@@ -4910,10 +4910,10 @@ msgid "Inadyn Log"
 msgstr "Inadyn Log"
 
 msgid "Inadyn Setup"
-msgstr "Inadyn-Einstellungen"
+msgstr "Inadyn Einstellungen"
 
 msgid "Inadyn setup"
-msgstr "Inadyn-Einstellungen"
+msgstr "Inadyn Einstellungen"
 
 msgid "Include AIT in http streams"
 msgstr "AIT in HTTP-Streams integrieren"
@@ -4952,13 +4952,13 @@ msgid "InfoBar EPG"
 msgstr "Infobar EPG"
 
 msgid "InfoBar EPG mode"
-msgstr "Infobar-EPG-Einstellungen"
+msgstr "Infobar-EPG Einstellungen"
 
 msgid "Infobar EPG"
 msgstr "Infobar EPG"
 
 msgid "InfobarEPG settings"
-msgstr "Infobar-EPG-Einstellungen"
+msgstr "Infobar-EPG Einstellungen"
 
 msgid "Information"
 msgstr "Informationen"
@@ -5172,10 +5172,10 @@ msgid "Keyboard map"
 msgstr "Tastaturlayout"
 
 msgid "Keyboard setup"
-msgstr "Tastatur-Einstellungen"
+msgstr "Tastatur Einstellungen"
 
 msgid "Transcoding Setup"
-msgstr "Transcoding-Einstellungen"
+msgstr "Transcoding Einstellungen"
 
 msgid "HotKey Settings"
 msgstr "HotKey-Tasten-Belegungen"
@@ -5395,7 +5395,7 @@ msgid "LogManager"
 msgstr "Log-Verwaltung"
 
 msgid "Logs"
-msgstr "Logs-Einstellungen"
+msgstr "Logs Einstellungen"
 
 msgid "Logs location"
 msgstr "Speicherort für Logs"
@@ -5407,10 +5407,10 @@ msgid "Logs older then the set no of days will be deleted."
 msgstr "Log Datei die älter sind als diese Anzahl von Tagen werden gelöscht."
 
 msgid "Logs settings"
-msgstr "Log-Einstellungen"
+msgstr "Log Einstellungen"
 
 msgid "PluginBrowser filter setting"
-msgstr "Pluginbrowser-Filter-Einstellungen"
+msgstr "Pluginbrowser-Filter Einstellungen"
 
 msgid "Long << / >>"
 msgstr "Lang Rücklauf/Vorlauf"
@@ -5543,10 +5543,10 @@ msgid "MiniDLNA Log"
 msgstr "MiniDLNA Log"
 
 msgid "MiniDLNA Setup"
-msgstr "MiniDLNA-Einstellungen"
+msgstr "MiniDLNA Einstellungen"
 
 msgid "MiniDLNA setup"
-msgstr "MiniDLNA-Einstellungen"
+msgstr "MiniDLNA Einstellungen"
 
 #, python-format
 msgid "Minimum age %d years"
@@ -5619,10 +5619,10 @@ msgid "Mount"
 msgstr "Einhängen"
 
 msgid "Mounts Setup"
-msgstr "Mount-Einstellungen"
+msgstr "Mount Einstellungen"
 
 msgid "Mounts setup"
-msgstr "Mount-Einstellungen"
+msgstr "Mount Einstellungen"
 
 msgid "Move"
 msgstr "Verschieben"
@@ -5715,7 +5715,7 @@ msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Soll wirklich diese EPG Datei gelöscht werden:\n"
 
 msgid "MultiEPG settings"
-msgstr "Multi-EPG-Einstellungen"
+msgstr "Multi-EPG Einstellungen"
 
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -5748,10 +5748,10 @@ msgstr ""
 "Drücke Gelb um die Box neu zu starten!"
 
 msgid "NFS Setup"
-msgstr "NFS-Einstellungen"
+msgstr "NFS Einstellungen"
 
 msgid "NFS setup"
-msgstr "NFS-Einstellungen"
+msgstr "NFS Einstellungen"
 
 msgid "NIM"
 msgstr "NIM"
@@ -5791,7 +5791,7 @@ msgid "Netmask:"
 msgstr "Netzmaske:"
 
 msgid "Network"
-msgstr "Netzwerk-Einstellungen"
+msgstr "Netzwerk Einstellungen"
 
 msgid "Network ID"
 msgstr "Netzwerk ID"
@@ -5833,7 +5833,7 @@ msgid "Network:"
 msgstr "Netzwerk:"
 
 msgid "Network MAC settings"
-msgstr "Netzwerk MAC-Einstellungen"
+msgstr "Netzwerk MAC Einstellungen"
 
 msgid "Set the MAC-adress of your %s %s.\n"
 msgstr "Einstellen der MAC-Adresse Ihrer %s %s.\n"
@@ -6317,13 +6317,13 @@ msgid "Open the movie list"
 msgstr "Öffne die Filmliste"
 
 msgid "OpenVPN setup"
-msgstr "OpenVPN-Einstellungen"
+msgstr "OpenVPN Einstellungen"
 
 msgid "OpenVpn Log"
 msgstr "OpenVpn Log"
 
 msgid "OpenVpn Setup"
-msgstr "OpenVPN-Einstellungen"
+msgstr "OpenVPN Einstellungen"
 
 msgid "Orbital position"
 msgstr "Orbitale Position"
@@ -6823,7 +6823,7 @@ msgid "Position of finished Timers in Timerlist"
 msgstr "Position beendeter Timer in der Timerliste"
 
 msgid "Position setup"
-msgstr "Position/Transparenz-Einstellungen"
+msgstr "Position/Transparenz Einstellungen"
 
 msgid "Position stored at index"
 msgstr "Position bei Index gespeichert"
@@ -7170,7 +7170,7 @@ msgid "Recording in progress"
 msgstr "Aktive Aufnahmen"
 
 msgid "Recording settings"
-msgstr "Aufnahme/Wiedergabe-Einstellung"
+msgstr "Aufnahme/Wiedergabe Einstellungen"
 
 msgid "Recording type"
 msgstr "Aufnahmetyp"
@@ -7296,7 +7296,7 @@ msgid "Make your selection"
 msgstr "Bitte auswählen"
 
 msgid "Remote Control"
-msgstr "Fernbedienung-Einstellungen"
+msgstr "Fernbedienung Einstellungen"
 
 msgid "Remote control type"
 msgstr "Fernbedienungstyp"
@@ -7526,10 +7526,10 @@ msgid "S-Video"
 msgstr "S-Video"
 
 msgid "SABnzbd Setup"
-msgstr "SABnzbd-Einstellungen"
+msgstr "SABnzbd Einstellungen"
 
 msgid "SABnzbd setup"
-msgstr "SABnzbd-Einstellungen"
+msgstr "SABnzbd Einstellungen"
 
 msgid "SID"
 msgstr "SID"
@@ -7547,10 +7547,10 @@ msgid "Samba Log"
 msgstr "Samba/CIFS Log"
 
 msgid "Samba setup"
-msgstr "Samba-Einstellungen"
+msgstr "Samba Einstellungen"
 
 msgid "Samba Setup"
-msgstr "Samba-Einstellungen"
+msgstr "Samba Einstellungen"
 
 msgid "Same resolution as skin"
 msgstr "Gleiche Auflösung wie Skin"
@@ -8589,7 +8589,7 @@ msgid "Single transponder"
 msgstr "Einzelnen Transponder"
 
 msgid "SingleEPG settings"
-msgstr "Sender-EPG-Einstellungen"
+msgstr "SenderEPG Einstellungen"
 
 msgid "Site latitude"
 msgstr "Breitengrad"
@@ -8601,10 +8601,10 @@ msgid "Size: "
 msgstr "Größe:"
 
 msgid "Skin Setting"
-msgstr "Skin-Einstellungen"
+msgstr "Skin Einstellungen"
 
 msgid "Skin setup"
-msgstr "Skin-Einstellungen"
+msgstr "Skin Einstellungen"
 
 msgid "Skins"
 msgstr "Skins"
@@ -8647,13 +8647,13 @@ msgid "Social/Political/Economics"
 msgstr "Sozial/Politik/Wirtschaft"
 
 msgid "SoftCam / CI"
-msgstr "CI / Softcam-Einstellungen"
+msgstr "CI / Softcam Einstellungen"
 
 msgid "Softcam setings"
-msgstr "Softcam-Einstellungen"
+msgstr "Softcam Einstellungen"
 
 msgid "Softcam settings"
-msgstr "Softcam-Einstellungen"
+msgstr "Softcam Einstellungen"
 
 msgid "Software"
 msgstr "Software"
@@ -8674,7 +8674,7 @@ msgid "Software update"
 msgstr "Software aktualisieren"
 
 msgid "Software Update Settings"
-msgstr "Software-Update-Einstellungen"
+msgstr "Software-Update Einstellungen"
 
 msgid "Softwaremanager information"
 msgstr "Information Softwareverwaltung"
@@ -8999,7 +8999,7 @@ msgid "Subtitle selection..."
 msgstr "Untertitel Auswahl..."
 
 msgid "Subtitle settings"
-msgstr "Untertitel-Einstellungen"
+msgstr "Untertitel Einstellungen"
 
 msgid "Subtitles"
 msgstr "Untertitel"
@@ -9220,10 +9220,10 @@ msgid "Telnet Port"
 msgstr "Telnet Port"
 
 msgid "Telnet Setup"
-msgstr "Telnet-Einstellungen"
+msgstr "Telnet Einstellungen"
 
 msgid "Telnet setup"
-msgstr "Telnet-Einstellungen"
+msgstr "Telnet Einstellungen"
 
 msgid "Terrestrial"
 msgstr "Terrestrisch"
@@ -9673,7 +9673,7 @@ msgstr ""
 "Dieser Test überprüft, ob eine gültige IP-Adresse gefunden wurde.\n"
 "Wenn eine \"Unbestätigt\"-Meldung erscheint:\n"
 "- Wurde keine gültige IP-Adresse gefunden.\n"
-"- Überprüfe DHCP, die Verkabelung und die Adapter-Einstellungen"
+"- Überprüfe DHCP, die Verkabelung und die Adapter Einstellungen"
 
 msgid ""
 "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
@@ -9731,7 +9731,7 @@ msgid "Time scale"
 msgstr "Zeitraum"
 
 msgid "Time settings"
-msgstr "Zeit-Einstellungen"
+msgstr "Zeit Einstellungen"
 
 msgid "Time to execute command or script"
 msgstr "Zeit um Kommando oder Script auszuführen"
@@ -9829,7 +9829,7 @@ msgid "Timeshift saved to your harddisk!"
 msgstr "TimeShift auf Festplatte gesichert!"
 
 msgid "Timeshift settings"
-msgstr "TimeShift-Einstellung"
+msgstr "TimeShift Einstellungen"
 
 msgid "Older files in the timeshift directory are removed on every event change."
 msgstr "Ältere Timeshift Dateien werden bei jedem Event gelöscht."
@@ -10389,11 +10389,11 @@ msgid "ViX EPG"
 msgstr "ViX EPG"
 
 msgid "Video Enhancement Settings"
-msgstr "Bildoptimierungs-Einstellungen"
+msgstr "Bildoptimierungs Einstellungen"
 
 #, python-format
 msgid "Record Infobar"
-msgstr "Aufnahme Infobar-Einstellungen"
+msgstr "Aufnahme InfobarEinstellungen"
 
 msgid "Video PID"
 msgstr "Video PID"
@@ -10434,10 +10434,10 @@ msgstr "Video Ausgang"
 
 #, python-format
 msgid "Audio Sync Einstellungen"
-msgstr "Audio-Sync-Einstellungen"
+msgstr "Audio-Sync Einstellungen"
 
 msgid "Video setup"
-msgstr "Bild-Einstellungen"
+msgstr "Bild Einstellungen"
 
 msgid "Video wizard"
 msgstr "Bild Assistent"
@@ -12243,7 +12243,7 @@ msgid "Show DVD-Player in Mainmenu ?"
 msgstr "Zeige DVD-Player im Hauptmenü ?"
 
 msgid "DVD-Player Setup"
-msgstr "DVD-Player-Einstellungen"
+msgstr "DVD-Player Einstellungen"
 
 msgid "show EPG..."
 msgstr "Zeige EPG..."
@@ -12441,10 +12441,10 @@ msgid "uShare Port"
 msgstr "uShare Port"
 
 msgid "uShare Setup"
-msgstr "uShare-Einstellungen"
+msgstr "uShare Einstellungen"
 
 msgid "uShare setup"
-msgstr "uShare-Einstellungen"
+msgstr "uShare Einstellungen"
 
 msgid "unavailable"
 msgstr "nicht verfügbar"
@@ -13230,10 +13230,10 @@ msgid "Power long"
 msgstr "Power lang"
 
 msgid "Power (use button menu)"
-msgstr "Power (Tasten-Einstellungen)"
+msgstr "Power (Tasten Einstellungen)"
 
 msgid "Power long (use button menu)"
-msgstr "Power lang (Tasten-Einstellungen)"
+msgstr "Power lang (Tasten Einstellungen)"
 
 msgid "Power down"
 msgstr "Power losgelassen"
