@@ -1,5 +1,15 @@
 <keymap>
-	<!-- "HDF User Keymap 13.02.2016" -->
+	<!-- "HDF User Keymap 15.10.2016" -->
+	<map context="2ndInfobarActions">
+		<key id="KEY_UP" mapto="pageUp" flags="mr" />
+		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
+		<key id="KEY_PREVIOUS" mapto="prevEvent" flags="m" />
+		<key id="KEY_NEXT" mapto="nextEvent" flags="m" />
+		<key id="KEY_BACK" mapto="prevEvent" flags="m" />
+		<key id="KEY_FORWARD" mapto="nextEvent" flags="m" />
+		<key id="KEY_RED" mapto="openSimilarList" flags="m" />
+		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
+	</map>
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -214,17 +224,6 @@
 		<key id="KEY_MEDIA" mapto="showMovies" flags="m" />
 		<key id="KEY_LIST" mapto="showMovies" flags="b" />
 		<key id="KEY_TEXT" mapto="showText" flags="m" />
-	</map>
-
-	<map context="2ndInfobarActions">
-		<key id="KEY_UP" mapto="prevPage" flags="mr" />
-		<key id="KEY_DOWN" mapto="nextPage" flags="mr" />
-		<key id="KEY_PREVIOUS" mapto="prevEvent" flags="m" />
-		<key id="KEY_NEXT" mapto="nextEvent" flags="m" />
-		<key id="KEY_BACK" mapto="prevEvent" flags="m" />
-		<key id="KEY_FORWARD" mapto="nextEvent" flags="m" />
-		<key id="KEY_RED" mapto="openSimilarList" flags="m" />
-		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
 	</map>
 
 	<map context="InfobarAudioSelectionActions">

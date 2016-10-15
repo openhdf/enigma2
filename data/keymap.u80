@@ -1,6 +1,16 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF u80 Keymap 13.02.2016" -->
+	<!-- "HDF u80 Keymap 15.10.2016" -->
+	<map context="2ndInfobarActions">
+		<key id="KEY_UP" mapto="pageUp" flags="mr" />
+		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
+		<key id="KEY_PREVIOUS" mapto="prevEvent" flags="m" />
+		<key id="KEY_NEXT" mapto="nextEvent" flags="m" />
+		<key id="KEY_BACK" mapto="prevEvent" flags="m" />
+		<key id="KEY_FORWARD" mapto="nextEvent" flags="m" />
+		<key id="KEY_RED" mapto="openSimilarList" flags="m" />
+		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
+	</map>
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
