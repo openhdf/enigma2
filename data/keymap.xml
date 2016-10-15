@@ -1,6 +1,16 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 07.04.2016" -->
+	<!-- "HDF Default Keymap 15.10.2016" -->
+	<map context="2ndInfobarActions">
+		<key id="KEY_UP" mapto="pageUp" flags="mr" />
+		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
+		<key id="KEY_PREVIOUS" mapto="prevEvent" flags="m" />
+		<key id="KEY_NEXT" mapto="nextEvent" flags="m" />
+		<key id="KEY_BACK" mapto="prevEvent" flags="m" />
+		<key id="KEY_FORWARD" mapto="nextEvent" flags="m" />
+		<key id="KEY_RED" mapto="openSimilarList" flags="m" />
+		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
+	</map>
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -134,8 +144,8 @@
 	<map context="InfobarChannelSelection">
 		<key id="KEY_LEFT" mapto="LeftPressed" flags="mr" />
 		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />
-		<key id="KEY_UP" mapto="switchChannelUp" flags="m" />
-		<key id="KEY_DOWN" mapto="switchChannelDown" flags="m" />
+		<!--key id="KEY_UP" mapto="switchChannelUp" flags="m" />
+		<key id="KEY_DOWN" mapto="switchChannelDown" flags="m" /-->
 		<key id="KEY_UP" mapto="switchChannelUpLong" flags="l" />
 		<key id="KEY_DOWN" mapto="switchChannelDownLong" flags="l" />
 		<!--key id="KEY_PREVIOUS" mapto="historyBack" flags="mr" />
@@ -225,6 +235,8 @@
 	</map>
 
 	<map context="InfobarShowHideActions">
+		<key id="KEY_UP" mapto="pageUp" flags="mr" />
+		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
 		<key id="KEY_OK" mapto="toggleShow" flags="m"/>
 		<key id="KEY_ENTER" mapto="toggleShow" flags="m"/>
 		<key id="KEY_EXIT" mapto="hide" flags="m"/>
@@ -250,17 +262,6 @@
 		<!--key id="KEY_HOMEPAGE" mapto="showMEDIAPORTAL" flags="l" /-->
 		<!--key id="KEY_BOOKMARKS" mapto="showEMC" flags="mr" / -->
 		<!--key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="mm" /-->
-	</map>
-
-	<map context="2ndInfobarActions">
-		<key id="KEY_UP" mapto="prevPage" flags="mr" />
-		<key id="KEY_DOWN" mapto="nextPage" flags="mr" />
-		<key id="KEY_PREVIOUS" mapto="prevEvent" flags="m" />
-		<key id="KEY_NEXT" mapto="nextEvent" flags="m" />
-		<key id="KEY_BACK" mapto="prevEvent" flags="m" />
-		<key id="KEY_FORWARD" mapto="nextEvent" flags="m" />
-		<key id="KEY_RED" mapto="openSimilarList" flags="m" />
-		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
 	</map>
 
 	<!--map context="InfobarAudioSelectionActions">
