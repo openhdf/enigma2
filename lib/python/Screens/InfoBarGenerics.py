@@ -326,6 +326,8 @@ class SecondInfoBar(Screen):
 		self["key_blue"] = Label()
 		self["SecondInfoBar"] = ActionMap(["2ndInfobarActions"],
 			{
+				"pageUp": self.pageUp,
+				"pageDown": self.pageDown,
 				"prevPage": self.pageUp,
 				"nextPage": self.pageDown,
 				"prevEvent": self.prevEvent,
