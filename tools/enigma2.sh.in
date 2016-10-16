@@ -64,6 +64,9 @@ fi
 # check if media/net directory exists
 [ -d /media/net ] || mkdir /media/net
 
+# check if usr/scripts directory exists
+[ -d /usr/scripts ] || mkdir /usr/scripts
+
 # check for settings files
 [ -f @sysconfdir@/enigma2/settings ] || cp @datadir@/enigma2/defaults/* @sysconfdir@/enigma2/
 
