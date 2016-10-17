@@ -697,7 +697,7 @@ class AutoVideoMode(Screen):
 				video_pol = ("i", "p")[info.getInfo(iServiceInformation.sProgressive)]
 				video_rate = int(info.getInfo(iServiceInformation.sFrameRate))
 
-		if not (video_height and video_width and video_pol and video_rate): 
+		if not (video_height and video_width and video_pol and video_rate):
 			return
 		elif config.av.autores.value != 'disabled':
 			label_rate = (video_rate + 500) / 1000
@@ -908,9 +908,6 @@ class AutoVideoMode(Screen):
 					else:
 						write_mode = config_mode+new_rate
 
-			# workaround for bug, see http://www.opena.tv/forum/showthread.php?1642-Autoresolution-Plugin&p=38836&viewfull=1#post38836
-			# always use a fixed resolution and frame rate   (e.g. 1080p50 if supported) for TV or .ts files
-			# always use a fixed resolution and correct rate (e.g. 1080p24/p50/p60 for all other videos
 			if config.av.smart1080p.value != 'false' and config.av.autores.value in ('all', 'hd'):
 				ref = self.session and self.session.nav.getCurrentlyPlayingServiceReference()
 				if ref is not None:
