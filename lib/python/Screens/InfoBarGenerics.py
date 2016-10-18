@@ -3806,17 +3806,42 @@ class InfoBarSeek:
 				eDVBVolumecontrol.getInstance().volumeUnMute()
 
 	def doSeekRelative(self, pts):
+		try:
+			if "<class 'Screens.InfoBar.InfoBar'>" in `self`:
+				if InfoBarTimeshift.timeshiftEnabled(self):
+					length = InfoBarTimeshift.ptsGetLength(self)
+					position = InfoBarTimeshift.ptsGetPosition(self)
+					if length is None or position is None:
+						return
+					if position + pts >= length:
+						InfoBarTimeshift.evEOF(self, position + pts - length)
+						return
+					elif position + pts < 0:
+						InfoBarTimeshift.evSOF(self, position + pts)
+						self.showAfterSeek()
+						return
+		except:
+			from sys import exc_info
+			print "[InfoBarGenerics] error in 'def doSeekRelative'", exc_info()[:2]
+
 		seekable = self.getSeek()
-		if seekable is None:
+		if seekable is None or int(seekable.getLength()[1]) < 1:
 			return
 		prevstate = self.seekstate
 
+		setpause = getMachineBuild() in ('hd51',) and 1 # 0/1 enable workaround for some boxes these in pause mode not seek to new position
 		if self.seekstate == self.SEEK_STATE_EOF:
 			if prevstate == self.SEEK_STATE_PAUSE:
 				self.setSeekState(self.SEEK_STATE_PAUSE)
 			else:
 				self.setSeekState(self.SEEK_STATE_PLAY)
+		elif setpause and self.seekstate == self.SEEK_STATE_PAUSE:
+			print "[InfoBarGenerics] workaround jump in pause mode"
+			setpause = 2
+			self.setSeekState(self.SEEK_STATE_PLAY)
 		seekable.seekRelative(pts<0 and -1 or 1, abs(pts))
+		if setpause == 2:
+			self.setSeekState(self.SEEK_STATE_PAUSE)
 		if abs(pts) > 100 and config.usage.show_infobar_on_skip.value:
 			self.showAfterSeek()
 
