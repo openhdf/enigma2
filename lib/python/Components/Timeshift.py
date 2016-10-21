@@ -658,23 +658,19 @@ class InfoBarTimeshift:
 	def saveTimeshiftActions(self, action=None, returnFunction=None):
 		# print 'saveTimeshiftActions'
 		# print 'action',action
-		timeshiftfile = None
-		if self.pts_currplaying != self.pts_eventcount:
-			timeshiftfile = "pts_livebuffer_%s" % self.pts_currplaying
 		if action == "savetimeshift":
-			self.SaveTimeshift(timeshiftfile)
+			self.SaveTimeshift()
 		elif action == "savetimeshiftandrecord":
-			if self.pts_curevent_end > time() and timeshiftfile is None:
+			if self.pts_curevent_end > time():
 				self.SaveTimeshift(mergelater=True)
 				self.ptsRecordCurrentEvent()
 			else:
-				self.SaveTimeshift(timeshiftfile)
+				self.SaveTimeshift()
 		elif action == "noSave":
 			config.timeshift.isRecording.value = False
 			self.save_current_timeshift = False
 		elif action == "no":
 			pass
-		if hasattr(self, "pvrStateDialog"): self.pvrStateDialog.hide()
 		# Get rid of old timeshift file before E2 truncates its filesize
 		if returnFunction is not None and action != "no":
 			self.eraseTimeshiftFile()
