@@ -331,6 +331,8 @@ class SystemMemoryInfo(Screen):
 			{
 				"cancel": self.close,
 				"ok": self.close,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown,
 			})
 
 		out_lines = file("/proc/meminfo").readlines()
