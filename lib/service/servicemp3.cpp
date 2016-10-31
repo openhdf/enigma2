@@ -2300,7 +2300,21 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 								pts = start / 11111;
 							if (pts > 0)
 							{
-								m_cue_entries.insert(cueEntry(pts, type));
+								/* check cue and toc for identical entries */
+								bool tocadd = true;
+								for (std::multiset<cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
+								{
+									/* toc not add if cue available */
+									if (pts == i->where && type == i->what)
+									{
+										tocadd = false;
+										break;
+									}
+								}
+								if (tocadd)
+								{
+									m_cue_entries.insert(cueEntry(pts, type));
+								}
 								m_cuesheet_changed = 1;
 								m_event((iPlayableService*)this, evCuesheetChanged);
 								/* extra debug info for testing purposes should_be_removed later on */
