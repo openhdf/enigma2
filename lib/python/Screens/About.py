@@ -78,7 +78,7 @@ class About(Screen):
 
 		if getMachineBuild() in ('vusolo4k'):
 			cpuMHz = "1,5 GHz"
-		elif getMachineBuild() in ('hd52','hd51'):
+		elif getMachineBuild() in ('hd52', 'hd51', 'sf4008'):
 			try:
 				import binascii
 				f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
@@ -108,16 +108,16 @@ class About(Screen):
 		if res2:
 			bogoMIPS = "" + res2.replace("\n", "") 
 
-		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52'):
+		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008'):
 			AboutText += _("CPU:\t") + "ARM Dual core " + " (" + cpuMHz + ")" + "\n"
 		else:
 			AboutText += _("CPU:\t%s") % about.getCPUString() + " (" + cpuMHz + ")" + "\n"
 		dMIPS = 0
 		if getMachineBuild() in ('vusolo4k'):
 			dMIPS = "10.500"
-		elif getMachineBuild() in ('hd52','hd51'):
+		elif getMachineBuild() in ('hd52', 'hd51', 'sf4008'):
 			dMIPS = "12.000"
-		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52'):
+		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52','sf4008'):
 			AboutText += _("DMIPS:\t") + dMIPS + "\n"
 		else:
 			AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
