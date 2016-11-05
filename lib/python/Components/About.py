@@ -45,7 +45,7 @@ def getChipSetString():
 		return "7435"
 	elif getMachineBuild() in ('dm520'):
 		return "73625"
-	elif getMachineBuild() in ('hd51'):
+	elif getMachineBuild() in ('hd51','sf4008'):
 		return "7251S"
 	else:
 		try:
@@ -77,7 +77,7 @@ def getCPUString():
 def getCPUSpeedString():
 	if getMachineBuild() in ('vusolo4k'):
 		return "1,5 GHz"
-	elif getMachineBuild() in ('hd51','hd52'):
+	elif getMachineBuild() in ('hd51','hd52','sf4008'):
 		try:
 			import binascii
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
