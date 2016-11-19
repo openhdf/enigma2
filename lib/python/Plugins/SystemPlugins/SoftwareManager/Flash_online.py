@@ -33,13 +33,10 @@ KERNELBIN = getMachineKernelFile()
 images = []
 global imagesCounter
 imagesCounter = 0
-#images.append(["Team", "http://teamimages.hdfreaks.cc"])
-#images.append(["Latest", "http://images.hdfreaks.cc"])
-#images.append(["V5.5", "http://v55.hdfreaks.cc"])
-#images.append(["V6.0", "http://beta6.hdfreaks.cc"])
-images.append(["V5.5", "http://teamimages.hdfreaks.cc"])
-images.append(["V6.0", "http://v55.hdfreaks.cc"])
-images.append(["Team", "http://v60.hdfreaks.cc"])
+images.append(["Team", "http://teamimages.hdfreaks.cc"])
+images.append(["Latest", "http://images.hdfreaks.cc"])
+images.append(["V5.5", "http://v55.hdfreaks.cc"])
+images.append(["V4.2", "http://v42.hdfreaks.cc"])
 
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
