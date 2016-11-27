@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-11-22 04:52+0100\n"
+"PO-Revision-Date: 2016-11-27 09:11+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -5909,6 +5909,48 @@ msgstr ""
 #, python-format
 msgid "Cannot format partition %d"
 msgstr "Partition %d konnte nicht formatiert werden"
+
+msgid "Check disk terminated with success"
+msgstr "Überprüfung erfolgreich"
+
+msgid "Error checking disk. The disk may be damaged"
+msgstr "Fehler beim Überprüfen der Festplatte"
+
+msgid "Error formatting disk. The disk may be damaged"
+msgstr "Fehler beim Formatieren der Festplatte"
+
+msgid "Format terminated with success"
+msgstr "Formatierung erfolgreich"
+
+msgid "Checking disk %s"
+msgstr "Überprüfe Laufwerk %s"
+
+msgid "Checking disk"
+msgstr "Überprüfe Laufwerk"
+
+msgid "Formatting disk %s"
+msgstr "Formatiere Laufwerk %s"
+
+msgid "Formatting disk"
+msgstr "Formatiere Laufwerk"
+
+msgid ""
+"Cannot umount device.\n"
+"A record in progress, timeshit or some external tools (like samba and nfsd) may cause this problem.\n"
+"Please stop this actions/applications and try again"
+msgstr ""
+"Unmount nicht möglich.\n"
+"Eine Aufnahme, Timeshift oder ein Serverdienst wie Samba oder NFS ist aktiv,\n"
+"Bitte zuerst den Festplattenzugriff stoppen und erneut probieren"
+
+msgid ""
+"Cannot umount current drive.\n"
+"A record in progress, timeshit or some external tools (like samba and nfsd) may cause this problem.\n"
+"Please stop this actions/applications and try again"
+msgstr ""
+"Unmount nicht möglich.\n"
+"Eine Aufnahme, Timeshift oder ein Serverdienst wie Samba oder NFS ist aktiv.\n"
+"Bitte zuerst den Festplattenzugriff stoppen und erneut probieren"
 
 #, python-format
 msgid "Partitioner"
