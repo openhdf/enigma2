@@ -278,6 +278,8 @@ class doFlashImage(Screen):
 			box = box[0:3] + 'x00'
 		elif box == "odinm9":
 			box = 'maram9'
+		elif box == "dm525":
+			box = 'dm520'
 		return box
 
 	def green(self, ret = None):
@@ -331,7 +333,7 @@ class doFlashImage(Screen):
 			self.show()
 
 	def unzip_image(self, filename, path):
-		if getBoxType() in "dm7080" "dm820":
+		if getBoxType() in "dm7080" "dm820" "dm520" "dm525":
 			print "Untaring %s to %s" %(filename,path)
 			os.system('mkdir /dbackup.new')
 			self.session.openWithCallback(self.cmdFinished, Console, title = _("Untaring files, Please wait ..."), cmdlist = ['tar -xJf ' + filename + ' -C ' + '/dbackup.new', "sleep 3"], closeOnSuccess = True)
@@ -344,47 +346,50 @@ class doFlashImage(Screen):
 		self.Start_Flashing()
 
 	def Start_Flashing(self):
-		print "Start Flashing"
-		cmdlist = []
-		if os.path.exists(ofgwritePath):
-			text = _("Flashing: ")
-			if self.simulate:
-				text += _("Simulate (no write)")
-				if SystemInfo["HaveMultiBoot"]:
-					cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
-				else:
-					cmdlist.append("%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
-				self.close()
-				message = "echo -e '\n"
-				message += _('Show only found image and mtd partitions.\n')
-				message += "'"
-			else:
-				text += _("root and kernel")
-				if SystemInfo["HaveMultiBoot"]:
-					if not self.List == "STARTUP":
-						os.system('mkfs.ext4 -F ' + self.devrootfs)
-					cmdlist.append("%s -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
-					if not self.List == "STARTUP":
-						cmdlist.append("umount -fl /oldroot_bind")
-						cmdlist.append("umount -fl /newroot")
-				else:
-					cmdlist.append("%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
-				message = "echo -e '\n"
-				if not self.List == "STARTUP" and SystemInfo["HaveMultiBoot"]:
-					message += _('ofgwrite flashing ready.\n')
-					message += _('please press exit to go back to the menu.\n')
-				else:
-					message += _('ofgwrite will stop enigma2 now to run the flash.\n')
-					message += _('Your STB will freeze during the flashing process.\n')
-					message += _('Please: DO NOT reboot your STB and turn off the power.\n')
-					message += _('The image or kernel will be flashing and auto booted in few minutes.\n')
-					if self.box() == 'gb800solo':
-						message += _('GB800SOLO takes about 20 mins !!\n')
-				message += "'"
-				cmdlist.append(message)
-				self.session.open(Console, title = text, cmdlist = cmdlist, finishedCallback = self.quit, closeOnSuccess = False)
-				if not self.List == "STARTUP":
+		if getBoxType() in "dm7080" "dm820" "dm520" "dm525":
+			os.system('/usr/lib/enigma2/python/Plugins/Extensions/dBackup/bin/swaproot 0')
+		else:
+			print "Start Flashing"
+			cmdlist = []
+			if os.path.exists(ofgwritePath):
+				text = _("Flashing: ")
+				if self.simulate:
+					text += _("Simulate (no write)")
+					if SystemInfo["HaveMultiBoot"]:
+						cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
+					else:
+						cmdlist.append("%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 					self.close()
+					message = "echo -e '\n"
+					message += _('Show only found image and mtd partitions.\n')
+					message += "'"
+				else:
+					text += _("root and kernel")
+					if SystemInfo["HaveMultiBoot"]:
+						if not self.List == "STARTUP":
+							os.system('mkfs.ext4 -F ' + self.devrootfs)
+						cmdlist.append("%s -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
+						if not self.List == "STARTUP":
+							cmdlist.append("umount -fl /oldroot_bind")
+							cmdlist.append("umount -fl /newroot")
+					else:
+						cmdlist.append("%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
+					message = "echo -e '\n"
+					if not self.List == "STARTUP" and SystemInfo["HaveMultiBoot"]:
+						message += _('ofgwrite flashing ready.\n')
+						message += _('please press exit to go back to the menu.\n')
+					else:
+						message += _('ofgwrite will stop enigma2 now to run the flash.\n')
+						message += _('Your STB will freeze during the flashing process.\n')
+						message += _('Please: DO NOT reboot your STB and turn off the power.\n')
+						message += _('The image or kernel will be flashing and auto booted in few minutes.\n')
+						if self.box() == 'gb800solo':
+							message += _('GB800SOLO takes about 20 mins !!\n')
+					message += "'"
+					cmdlist.append(message)
+					self.session.open(Console, title = text, cmdlist = cmdlist, finishedCallback = self.quit, closeOnSuccess = False)
+					if not self.List == "STARTUP":
+						self.close()
 
 	def prepair_flashtmp(self, tmpPath):
 		if os.path.exists(flashTmp):
