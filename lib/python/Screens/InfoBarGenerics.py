@@ -5950,7 +5950,7 @@ class InfoBarHdmi:
 		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 
-		if getMachineBuild() == 'inihdp':
+		if getMachineBuild() in ('inihdp', 'hd2400', 'dm7080', 'dm820', 'dm900'):
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
 			if not self.hdmi_enabled_pip:
@@ -6047,22 +6047,42 @@ class InfoBarHdmi:
 			return _("Turn off HDMI-IN PiP mode")
 
 	def HDMIInPiP(self):
-		if not hasattr(self.session, 'pip') and not self.session.pipshown:
-			self.hdmi_enabled_pip = True
-			self.session.pip = self.session.instantiateDialog(PictureInPicture)
-			self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
-			self.session.pip.show()
-			self.session.pipshown = True
-			self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-		else:
-			curref = self.session.pip.getCurrentService()
-			if curref and curref.type != 8192:
-				self.hdmi_enabled_pip = True
-				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+		if getMachineBuild() in ('dm7080', 'dm820', 'dm900'):
+			f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
+			check=f.read()
+			f.close()
+			if check.startswith("off"):
+				f=open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f.write("on")
+				f.close()
+				f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f.write("on")
+				f.close()
 			else:
-				self.hdmi_enabled_pip = False
-				self.session.pipshown = False
-				del self.session.pip
+				f=open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f.write("off")
+				f.close()
+				f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f.write("off")
+				f.close()
+		else:
+			if not hasattr(self.session, 'pip') and not self.session.pipshown:
+				self.hdmi_enabled_pip = True
+				self.session.pip = self.session.instantiateDialog(PictureInPicture)
+				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+				self.session.pip.show()
+				self.session.pipshown = True
+				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+			else:
+				curref = self.session.pip.getCurrentService()
+				if curref and curref.type != 8192:
+					self.hdmi_enabled_pip = True
+					self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+				else:
+					self.hdmi_enabled_pip = False
+					self.session.pipshown = False
+					del self.session.pip
 
 	def HDMIInFull(self):
 		slist = self.servicelist
