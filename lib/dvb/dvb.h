@@ -145,7 +145,7 @@ private:
 	std::string virtualFrontendName;
 	bool running;
 	unsigned short int pidList[30];
-	unsigned char buffer[4 * 1024 * 188];
+	unsigned char buffer[(188 / 4) * 4096];
 	pthread_t pumpThread;
 	static void *threadproc(void *arg);
 	void *vtunerPump();
@@ -162,7 +162,7 @@ class eDVBResourceManager: public iObject, public Object
 	DECLARE_REF(eDVBResourceManager);
 	int avail, busy;
 
-	enum { DM7025, DM800, DM500HD, DM800SE, DM8000, DM7020HD, DM7080, DM820, GIGABLUE, DM500HDV2, DM800SEV2 };
+	enum { DM7025, DM800, DM500HD, DM800SE, DM8000, DM7020HD, DM7080, DM820, DM520, DM525, DM900, GIGABLUE, DM500HDV2, DM800SEV2, WETEKPLAY, WETEKPLAY2};
 
 	int m_boxtype;
 

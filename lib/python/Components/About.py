@@ -45,6 +45,8 @@ def getChipSetString():
 		return "7435"
 	elif getMachineBuild() in ('dm520'):
 		return "73625"
+	elif getMachineBuild() in ('dm900'):
+		return "7252S"
 	elif getMachineBuild() in ('hd51','sf4008'):
 		return "7251S"
 	else:
@@ -77,6 +79,8 @@ def getCPUString():
 def getCPUSpeedString():
 	if getMachineBuild() in ('vusolo4k'):
 		return "1,5 GHz"
+	elif getMachineBuild() in ('vuuno4k','vuultimo4k','dm900'):
+		return "1,7 GHz"
 	elif getMachineBuild() in ('hd51','hd52','sf4008'):
 		try:
 			import binascii
