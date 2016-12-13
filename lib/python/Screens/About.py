@@ -78,6 +78,8 @@ class About(Screen):
 
 		if getMachineBuild() in ('vusolo4k'):
 			cpuMHz = "1,5 GHz"
+		elif getMachineBuild() in ('dm900'):
+			cpuMHz = "   (1,7 GHz)"
 		elif getMachineBuild() in ('hd52', 'hd51', 'sf4008'):
 			try:
 				import binascii

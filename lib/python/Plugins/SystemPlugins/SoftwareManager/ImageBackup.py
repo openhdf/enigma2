@@ -28,7 +28,7 @@ if getMachineBuild() in ("vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf40
 	HaveGZkernel = False
 
 isDreamboxXZ = False
-if getBoxType() in "dm7080" "dm820" "dm520" "dm525":
+if getBoxType() in "dm7080" "dm820" "dm520" "dm525" "dm900":
 	isDreamboxXZ = True
 	HaveGZkernel = False
 
