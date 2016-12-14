@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-11-27 09:11+0100\n"
+"PO-Revision-Date: 2016-12-14 07:58+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13652,3 +13652,12 @@ msgstr "Wähle das CI Protokoll für CI Normal oder CIPlus Module."
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Hardware erkennt das CI Protokoll selber oder Hardware arbeitet nur im Legacy Mode."
+
+msgid "Recovery Mode"
+msgstr "Wartungsmodus"
+
+msgid "Your %s %s is rebooting into Recovery Mode"
+msgstr "Ihre %s %s startet in den Wartungsmodus"
+
+msgid "Really reboot into Recovery Mode?"
+msgstr "Wirklich einen Neustart in den Wartungsmodus durchführen?"
