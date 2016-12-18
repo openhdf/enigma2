@@ -732,13 +732,19 @@ def InitAVSwitch():
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 
 	try:
-		SystemInfo["CanDownmixDTS"] = "downmix" in open("/proc/stb/audio/dts_choices", "r").read()
+		f = open("/proc/stb/audio/dts_choices", "r")
+		file = f.read()[:-1]
+		f.close()
+		can_downmix_dts = "downmix" in file
 	except:
-		SystemInfo["CanDownmixDTS"] = False
+		can_downmix_dts = False
 
-	if SystemInfo["CanDownmixDTS"]:
+	SystemInfo["CanDownmixDTS"] = can_downmix_dts
+	if can_downmix_dts:
 		def setDTSDownmix(configElement):
-			open("/proc/stb/audio/dts", "w").write(configElement.value and "downmix" or "passthrough")
+			f = open("/proc/stb/audio/dts", "w")
+			f.write(configElement.value and "downmix" or "passthrough")
+			f.close()
 		config.av.downmix_dts = ConfigYesNo(default = True)
 		config.av.downmix_dts.addNotifier(setDTSDownmix)
 
