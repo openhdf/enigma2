@@ -526,6 +526,7 @@ def InitUsageConfig():
 			Misc_Options.getInstance().set_12V_output(configElement.value == "on" and 1 or 0)
 		config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
+	config.usage.keytrans = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keytranslation.xml"))
 	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 	if fileExists(eEnv.resolve("${datadir}/enigma2/keymap.usr")):
 		config.usage.keymap = ConfigSelection(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"), choices = [
