@@ -259,6 +259,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 #
 		filename = begin_date + " - " + service_name
 		if self.name:
+			if config.recording.filename_composition.value == "event":
+				filename = self.name + ' - ' + begin_date + "_" + service_name
 			if config.recording.filename_composition.value == "veryveryshort":
 				filename = self.name
 			elif config.recording.filename_composition.value == "veryshort":

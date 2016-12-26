@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-12-26 08:51+0100\n"
+"PO-Revision-Date: 2016-12-26 09:25+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -8230,6 +8230,9 @@ msgstr "Freigaben"
 
 msgid "Sharpness"
 msgstr "Schärfe"
+
+msgid "Event name first"
+msgstr "Name der Sendung zuerst"
 
 msgid "Short filenames"
 msgstr "Kurze Dateinamen"
