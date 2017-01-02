@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-12-26 14:12+0100\n"
+"PO-Revision-Date: 2017-01-02 18:00+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2384,6 +2384,21 @@ msgstr "Wähle ob Mehrkanalton zu Stereo runter gerechnet werden soll."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr "Soll ein Icon angezeigt werden wenn sich ein Antennenrotor bewegt."
+
+msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgstr "Wählen Sie, ob Mehrkanalton als PCM ausgegeben werden soll"
+
+msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgstr "Wählen Sie, ob AC3-Tonspuren ( Dolby Digital ) zu Stereo heruntergerechnet werden soll."
+
+msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgstr "Wählen Sie, ob DTS-Tonspuren zu Stereo heruntergerechnet werden soll."
+
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Wählen Sie, ob AAC-Tonspuren transkodiert werden sollen."
+
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgstr "Wählen Sie, ob AC3-Plus Tonspuren transkodiert werden sollen nach AC3"
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Wähle Level der Anzeige für Menü/Einstellungen. 'Expert'-Level zeigt alle Punkte."
