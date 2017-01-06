@@ -115,12 +115,12 @@ public:
 	uint16_t getOriginalNetworkId(void) const;
 	uint16_t getTransportStreamId(void) const;
 	uint16_t getOrbitalPosition(void) const;
-	int32_t getFrequency(void) const;
+	uint32_t getFrequency(void) const;
 	uint8_t getPolarization(void) const;
 	uint8_t getRollOff(void) const;
 	uint8_t getModulationSystem(void) const;
 	uint8_t getModulation(void) const;
-	int32_t getSymbolRate(void) const;
+	uint32_t getSymbolRate(void) const;
 	uint8_t getFecInner(void) const;
 
 	const ServiceListItemList *getServiceList(void) const;
@@ -229,6 +229,7 @@ class eFastScan: public Object, public iObject
 	eDVBFrontendParametersSatellite transponderParameters;
 	bool originalNumbering;
 	bool useFixedServiceInfo;
+	bool createRadioBouquet;
 	int versionNumber;
 	std::string providerName, bouquetFilename;
 	int m_pid;
@@ -245,7 +246,7 @@ class eFastScan: public Object, public iObject
 #endif /* no SWIG */
 
 public:
-	eFastScan(int pid, const char *providername, eDVBFrontendParametersSatellite transponderparameters, bool originalnumbering = false, bool fixedserviceinfo = false);
+	eFastScan(int pid, const char *providername, eDVBFrontendParametersSatellite transponderparameters, bool originalnumbering = false, bool fixedserviceinfo = false, bool createRadioBouquet = false);
 	~eFastScan();
 
 	void start(int frontendid = 0);
