@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-01-02 18:00+0100\n"
+"PO-Revision-Date: 2017-01-13 16:54+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -8311,6 +8311,9 @@ msgstr "Zeige PVR Status in der Infobar des Medienplayers"
 
 msgid "LCD skin"
 msgstr "LCD Skin"
+
+msgid "Show HDMI-Output Res"
+msgstr "Zeige HDMI Ausgangsauflösung"
 
 msgid "Big Picon/ clock/ bar"
 msgstr "Großes Logo/ Uhr/ Laufanzeige"
