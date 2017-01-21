@@ -1,88 +1,80 @@
 #ifndef __dvb_fbc_h
 #define __dvb_fbc_h
 
+/* FBC Manager */
 #include <lib/base/ebase.h>
 #include <lib/base/object.h>
 #include <lib/base/eptrlist.h>
 #include <lib/dvb/idvb.h>
 
-#include <map>
-#include <bitset>
-
 class eDVBResourceManager;
-class eDVBFrontend;
 class eDVBRegisteredFrontend;
 
 class eFBCTunerManager: public iObject, public Object
 {
 private:
-	typedef std::bitset<8> connect_choices_t;
-
-	typedef struct
-	{
-		int					set_id;
-		bool				is_root;
-		int					id;
-		int					default_id;
-		connect_choices_t	connect_choices;
-	} tuner_t;
-
-	typedef std::map<int, tuner_t> tuners_t;
-
-	typedef enum
-	{
-		link_prev,
-		link_next
-	} link_ptr_t;
-
 	DECLARE_REF(eFBCTunerManager);
 	ePtr<eDVBResourceManager> m_res_mgr;
-	static eFBCTunerManager* m_instance;
-	tuners_t m_tuners;
+	int m_fbc_tuner_num;
+	static bool isDestroyed;
 
-	static int ReadProcInt(int, const std::string &);
-	static void WriteProcInt(int, const std::string &, int);
-	static void LoadConnectChoices(int, connect_choices_t &);
-	static void SetProcFBCID(int, int, bool);
-	static int FESlotID(eDVBRegisteredFrontend *);
-	static bool IsLinked(eDVBRegisteredFrontend *);
-	static bool IsSCR(eDVBRegisteredFrontend *);
-	static eDVBRegisteredFrontend* FrontendGetLinkPtr(eDVBFrontend *, link_ptr_t);
-	static eDVBRegisteredFrontend* FrontendGetLinkPtr(eDVBRegisteredFrontend *, link_ptr_t);
-	static void FrontendSetLinkPtr(eDVBRegisteredFrontend *, link_ptr_t, eDVBRegisteredFrontend *);
-	static eDVBRegisteredFrontend *GetFEPtr(long);
-	static long GetFELink(eDVBRegisteredFrontend *ptr);
-	static eDVBRegisteredFrontend *GetHead(eDVBRegisteredFrontend *);
-	static eDVBRegisteredFrontend *GetTail(eDVBRegisteredFrontend *);
-	static void UpdateLNBSlotMask(int, int, bool);
+	int getFBCTunerNum();
+	void procInit();
+	bool isSameFbcSet(int a, int b);
+	bool isSupportDVBS(eDVBRegisteredFrontend *fe);
+	int getFBCID(int root_fe_id);
 
-	bool IsFBCLink(int fe_id) const;
-	bool IsSameFBCSet(int, int) const;
-	bool IsRootFE(eDVBRegisteredFrontend *) const;
-	bool IsFEUsed(eDVBRegisteredFrontend *, bool) const;
-	int GetFBCID(int) const;
-	int GetDefaultFBCID(int) const;
+	eDVBRegisteredFrontend *getPrev(eDVBRegisteredFrontend *fe);
+	eDVBRegisteredFrontend *getNext(eDVBRegisteredFrontend *fe);
+	eDVBRegisteredFrontend *getTop(eDVBRegisteredFrontend *fe);
+	eDVBRegisteredFrontend *getLast(eDVBRegisteredFrontend *fe);
+	bool isLinked(eDVBRegisteredFrontend *fe);
+	bool isLinkedByIndex(int fe_idx);
+	bool checkTop(eDVBRegisteredFrontend *fe);
+	int connectLinkByIndex(int link_fe_index, int prev_fe_index, int next_fe_index, bool simulate);
+	int connectLinkByIndex(int link_fe_index, int prev_fe_index, bool simulate);
+	int disconnectLinkByIndex(int link_fe_index, int prev_fe_index, int next_fe_index, bool simulate);
+	int disconnectLinkByIndex(int link_fe_index, int prev_fe_index, bool simulate);
+	int connectLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *prev_fe, eDVBRegisteredFrontend *next_fe, bool simulate);
+	int connectLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *prev_fe, bool simulate);
+	int disconnectLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *prev_fe, eDVBRegisteredFrontend *next_fe, bool simulate);
+	int disconnectLink(eDVBRegisteredFrontend *linkable_fe, eDVBRegisteredFrontend *top_fe, bool simulate);
+	void connectLinkNoSimulate(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *top_fe);
+	void disconnectLinkNoSimulate(eDVBRegisteredFrontend *link_fe);
 
-	eDVBRegisteredFrontend *GetSimulFE(eDVBRegisteredFrontend *) const;
-
-	void ConnectLink(eDVBRegisteredFrontend *, eDVBRegisteredFrontend *, eDVBRegisteredFrontend *, bool) const;
-	void DisconnectLink(eDVBRegisteredFrontend *, eDVBRegisteredFrontend *, eDVBRegisteredFrontend *, bool) const;
-
-	void PrintLinks(eDVBRegisteredFrontend *fe) const;
+	bool checkUsed(eDVBRegisteredFrontend *fe, bool a_simulate);
+	void connectSortedLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *top_fe, bool simulate);
+	int updateLNBSlotMask(int dest_slot, int src_slot, bool remove);
+	void printLinks(eDVBRegisteredFrontend *fe);
 
 public:
-	static eFBCTunerManager* getInstance();
-	eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr);
+	eFBCTunerManager();
 	virtual ~eFBCTunerManager();
+	int setProcFBCID(int fe_id, int fbc_id);
+	int setDefaultFBCID(eDVBRegisteredFrontend *fe);
+	void updateFBCID(eDVBRegisteredFrontend *next_fe, eDVBRegisteredFrontend *prev_fe);
+	bool isRootFeSlot(int fe_slot_id);
+	bool isRootFe(eDVBRegisteredFrontend *fe);
+	bool canLink(eDVBRegisteredFrontend *fe);
+	bool isUnicable(eDVBRegisteredFrontend *fe);
+	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, eDVBRegisteredFrontend *link_fe, bool simulate);
+	int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *&fbc_fe, bool simulate);
+	void addLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFrontend *top_fe, bool simulate);
+	void unset(eDVBRegisteredFrontend *fe);
+	bool canAllocateLink(eDVBRegisteredFrontend *fe, bool simulate);
 
-	int GetFBCSetID(int) const;
-	int getLinkedSlotID(int feid) const;
-	void SetDefaultFBCID(eDVBRegisteredFrontend *) const;
-	void UpdateFBCID(eDVBRegisteredFrontend *, eDVBRegisteredFrontend *) const;
-	int IsCompatibleWith(ePtr<iDVBFrontendParameters> &, eDVBRegisteredFrontend *, eDVBRegisteredFrontend *&, bool) const;
-	bool CanLink(eDVBRegisteredFrontend *) const;
-	void AddLink(eDVBRegisteredFrontend *, eDVBRegisteredFrontend *, bool) const;
-	void Unlink(eDVBRegisteredFrontend *) const;
+	static eFBCTunerManager* getInstance()
+	{
+		if (isDestroyed == true)
+		{
+			eDebug("eFBCTunerManager is already destroyed!");
+			return 0;
+		}
+		static eFBCTunerManager instance;
+		return &instance;
+	}
+
+	int getLinkedSlotID(int feid);
 };
 
-#endif
+#endif /* __dvb_fbc_h */
