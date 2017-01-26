@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-01-15 11:26+0100\n"
+"PO-Revision-Date: 2017-01-26 17:56+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13030,9 +13030,11 @@ msgstr "Ausschalten"
 msgid "After PowerLost"
 msgstr "Verhalten der Box nach Stromausfall"
 
-# Powerlost setup.xml
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
 msgstr "Wählen Sie aus, was passieren soll, nachdem ihre %s %s nicht sauber heruntergefahren wurde, bzw. was nach einem Stromausfall geschehen soll."
+
+msgid "Boot-up action"
+msgstr "Startmodus der Box"
 
 #
 msgid "Show MiniTV in the Front Display"
