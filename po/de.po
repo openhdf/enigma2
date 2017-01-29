@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-01-26 17:56+0100\n"
+"PO-Revision-Date: 2017-01-29 19:04+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1077,10 +1077,10 @@ msgid "When enabled, a recording is allowed to abort streaming, when there are n
 msgstr "Wenn aktiviert, beendet eine Aufnahme das Streaming, wenn keine weiteren freien Tuner verfügbar sind."
 
 msgid "Show recording symbol depending on recording type"
-msgstr "Zeige Aufnahmesymbol, abhängig vom Aufnahmetyp"
+msgstr "Zeige Aufnahmesymbol für Aufnahmetyp"
 
 msgid "Show warning before box restart based on recording type"
-msgstr "Zeige Warnung bei Neustart, abhängig vom Aufnahmetyp"
+msgstr "Zeige Warnung bei Neustart für Aufnahmetyp"
 
 msgid "any recordings"
 msgstr "alle Aufnahmen"
