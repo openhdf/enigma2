@@ -26,6 +26,7 @@ public:
 	RESULT list(const eServiceReference &, ePtr<iListableService> &ptr);
 	RESULT info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr);
 	RESULT offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr);
+	gint m_eServicemp3_counter;
 private:
 	ePtr<eStaticServiceMP3Info> m_service_info;
 };
@@ -132,7 +133,6 @@ public:
 	RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT start();
 	RESULT stop();
-	RESULT setTarget(int target);
 
 	RESULT pause(ePtr<iPauseableService> &ptr);
 	RESULT setSlowMotion(int ratio);
@@ -146,6 +146,7 @@ public:
 	RESULT cueSheet(ePtr<iCueSheet> &ptr);
 
 		// not implemented (yet)
+	RESULT setTarget(int target, bool noaudio = false) { return -1; }
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
 	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
@@ -208,6 +209,11 @@ public:
 	void setAC3Delay(int);
 	void setPCMDelay(int);
 
+#if HAVE_AMLOGIC
+	void AmlSwitchAudio(int index);
+	unsigned int get_pts_pcrscr(void);
+#endif
+
 	struct audioStream
 	{
 		GstPad* pad;
@@ -233,10 +239,11 @@ public:
 	{
 		audiotype_t audiotype;
 		containertype_t containertype;
+		bool is_audio;
 		bool is_video;
 		bool is_streaming;
 		sourceStream()
-			:audiotype(atUnknown), containertype(ctNone), is_video(FALSE), is_streaming(FALSE)
+			:audiotype(atUnknown), containertype(ctNone), is_audio(FALSE), is_video(FALSE), is_streaming(FALSE)
 		{
 		}
 	};
@@ -301,6 +308,7 @@ private:
 	bool m_subtitles_paused;
 	bool m_use_prefillbuffer;
 	bool m_paused;
+	bool m_first_paused;
 	/* cuesheet load check */
 	bool m_cuesheet_loaded;
 	/* servicemMP3 chapter TOC support CVR */
@@ -308,7 +316,7 @@ private:
 	bool m_use_chapter_entries;
 	/* last used seek position gst-1 only */
 	gint64 m_last_seek_pos;
-	gint64 m_last_play_pos;
+	gint64 m_media_lenght;
 #endif
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
@@ -320,7 +328,7 @@ private:
 		stIdle, stRunning, stStopped,
 	};
 	int m_state;
-	GstElement *m_gst_playbin, *audioSink, *videoSink;
+	GstElement *m_gst_playbin;
 	GstTagList *m_stream_tags;
 
 	eFixedMessagePump<ePtr<GstMessageContainer> > m_pump;
@@ -368,7 +376,7 @@ private:
 	void pullSubtitle(GstBuffer *buffer);
 	void sourceTimeout();
 	sourceStream m_sourceinfo;
-	gulong m_subs_to_pull_handler_id;
+	gulong m_subs_to_pull_handler_id, m_notify_source_handler_id, m_notify_element_added_handler_id;
 
 	RESULT seekToImpl(pts_t to);
 
