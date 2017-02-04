@@ -378,8 +378,8 @@ class EPGSelection(Screen, HelpableScreen):
 		self.refreshTimer.timeout.get().append(self.refreshlist)
 		self.listTimer = eTimer()
 		self.listTimer.callback.append(self.hidewaitingtext)
+		self.createTimer = eTimer()
 		if not HardwareInfo().is_nextgen():
-			self.createTimer = eTimer()
 			self.createTimer.callback.append(self.onCreate)
 			self.onLayoutFinish.append(self.LayoutFinish)
 		else:
@@ -1376,6 +1376,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.close()
 
 	def keyNumberGlobal(self, number):
+		if self.createTimer.isActive(): return
 		if self.type == EPG_TYPE_GRAPH:
 			if number == 1:
 				timeperiod = int(config.epgselection.graph_prevtimeperiod.value)

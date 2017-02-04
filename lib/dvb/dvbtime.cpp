@@ -26,7 +26,7 @@ int fileExist(const char* filename){
 
 void noRTC()
 {
-	mybox[0] = 0;
+	mybox[0] = NULL;
 	if(fileExist("/proc/stb/info/gbmodel"))
 	{
 		FILE *fb = fopen("/proc/stb/info/gbmodel","r");

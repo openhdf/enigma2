@@ -333,7 +333,7 @@ class PluginDownloadBrowser(Screen):
 		if config.pluginfilter.settings.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'settings')
 		if config.pluginfilter.skins.value:
-			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skins')
+			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skin')
 		if config.pluginfilter.display.value:
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'display')
 		if config.pluginfilter.systemplugins.value:
@@ -744,7 +744,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Packagegroup"), config.pluginfilter.packagegroup, _("This allows you to show packagegroups in downloads")))
 		self.list.append(getConfigListEntry(_("Python"), config.pluginfilter.python, _("This allows you to show python packages in downloads")))
 		self.list.append(getConfigListEntry(_("Systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
-		self.list.append(getConfigListEntry(_("Skins"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
+		self.list.append(getConfigListEntry(_("Skins and Skinpackages"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
 		self.list.append(getConfigListEntry(_("LCD Skins"), config.pluginfilter.display, _("This allows you to show lcd skins in downloads")))
 		self.list.append(getConfigListEntry(_("Picons"), config.pluginfilter.picons, _("This allows you to show picons modules in downloads")))
 		self.list.append(getConfigListEntry(_("Settings"), config.pluginfilter.settings, _("This allows you to show settings modules in downloads")))

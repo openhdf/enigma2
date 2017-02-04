@@ -6,7 +6,7 @@ from twisted.internet import reactor, defer, ssl
 
 class HTTPProgressDownloader(client.HTTPDownloader):
 	def __init__(self, url, outfile, headers=None):
-		client.HTTPDownloader.__init__(self, url, outfile, headers=headers, agent="Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;OpenATV;;;)")
+		client.HTTPDownloader.__init__(self, url, outfile, headers=headers, agent="Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;OpenHDF;;;)")
 		self.status = None
 		self.progress_callback = None
 		self.deferred = defer.Deferred()
@@ -42,8 +42,12 @@ class downloadWithProgress:
 		if hasattr(client, '_parse'):
 			scheme, host, port, path = client._parse(url)
 		else:
-			from twisted.web.client import _URI
-			uri = _URI.fromBytes(url)
+			# _URI class renamed to URI in 15.0.0
+ 			try:
+ 				from twisted.web.client import _URI as URI
+ 			except ImportError:
+ 				from twisted.web.client import URI
+ 			uri = URI.fromBytes(url)
 			scheme = uri.scheme
 			host = uri.host
 			port = uri.port

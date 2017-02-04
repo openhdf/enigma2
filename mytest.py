@@ -9,7 +9,7 @@ profile("PYTHON_START")
 
 import Tools.RedirectOutput
 import enigma
-from boxbranding import getBoxType, getBrandOEM
+from boxbranding import getBoxType, getBrandOEM, getMachineBuild
 import eConsoleImpl
 import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
@@ -566,7 +566,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 	
-	if boxtype in ('dm7020hd', 'dm7020hdv2', 'osminiplus', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3') or getBrandOEM() in ('fulan') or getMachineBuild() in ('dags7362' , 'dags5'):
+	if boxtype in ('dm7020hd', 'dm7020hdv2', 'osminiplus', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixusszero', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3') or getBrandOEM() in ('fulan') or getMachineBuild() in ('dags7362' , 'dags5'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -674,20 +674,11 @@ def runScreenTest():
 	]
 	wakeupList.sort()
 
-	# individual wakeup time offset
-	if config.workaround.wakeuptimeoffset.value == "standard":
-		if boxtype.startswith("gb"):
-			wpoffset = -120 # Gigaboxes already starts 2 min. before wakeup time
-		else:
-			wpoffset = 0
-	else:
-		wpoffset = int(config.workaround.wakeuptimeoffset.value)
-
 	print "="*100
 	if wakeupList and wakeupList[0][0] > 0:
 		startTime = wakeupList[0]
-		# wakeup time is 5 min before timer starts + offset
-		wptime = startTime[0] - 300 - wpoffset
+		# wakeup time before timer begins
+		wptime = startTime[0] - (config.workaround.wakeuptime.value * 60)
 		if (wptime - nowTime) < 120: # no time to switch box back on
 			wptime = int(nowTime) + 120  # so switch back on in 120 seconds
 
@@ -713,7 +704,7 @@ def runScreenTest():
 		#set next wakeup
 		setFPWakeuptime(wptime)
 		#set next standby only after shutdown in deep standby
-		if Screens.Standby.quitMainloopCode != 1:
+		if Screens.Standby.quitMainloopCode != 1 and Screens.Standby.quitMainloopCode != 45:
 			setStandby = 2 # 0=no standby, but get in standby if wakeup to timer start > 60 sec (not for plugin-timer, here is no standby), 1=standby, 2=no standby, when before was not in deep-standby
 		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d" % (wptime,startTime[0],startTime[1],setStandby,nextRecordTime,forceNextRecord)
 	else:
@@ -776,6 +767,7 @@ Components.NetworkTime.AutoNTPSync()
 profile("keymapparser")
 import keymapparser
 keymapparser.readKeymap(config.usage.keymap.value)
+keymapparser.readKeymap(config.usage.keytrans.value)
 
 profile("Network")
 import Components.Network
@@ -795,6 +787,22 @@ if boxtype in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', '
 			f.close()
 	except:
 		print "Error disable enable_clock for ini5000 boxes"
+
+if boxtype in ('dm7080', 'dm820', 'dm900'):
+	f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
+	check=f.read()
+	f.close()
+	if check.startswith("on"):
+		f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+		f.write("off")
+		f.close()
+	f=open("/proc/stb/audio/hdmi_rx_monitor","r")
+	check=f.read()
+	f.close()
+	if check.startswith("on"):
+		f=open("/proc/stb/audio/hdmi_rx_monitor","w")
+		f.write("off")
+		f.close()
 
 profile("UserInterface")
 import Screens.UserInterfacePositioner

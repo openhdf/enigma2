@@ -51,10 +51,10 @@ def profile(id):
 				elif boxtype in ('gb800solo', 'gb800se', 'gb800seplus', 'gbultrase'):
 					f = open("/dev/mcu", "w")
 					f.write("%d  \n" % perc)
-				elif boxtype in ("mixosf5", "gi9196m", "osmini"):
+				elif boxtype in ("mixosf5", "gi9196m", "osmini", "spycatmini", "osminiplus"):
 					f = open("/proc/progress", "w")
 					f.write("%d" % perc)
-				elif boxtype in ("xpeedlx3", "sezammarvel", "atemionemesis"):
+				elif boxtype in ("xpeedlx3", "sezammarvel", "atemionemesis", "fegasusx3", "fegasusx5s", "fegasusx5t"):
 					f = open("/proc/vfd", "w")
 					f.write("Loading %d %%" % perc)
 				else:

@@ -295,6 +295,8 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 		setInputSource(1, TUNER_B);
 		setInputSource(2, TUNER_C);
 		setInputSource(3, TUNER_D);
+		setInputSource(4, TUNER_E);
+		setInputSource(5, TUNER_F);
 	}
 	else
 	{
@@ -736,6 +738,8 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 							case 1: tuner_source = TUNER_B; break;
 							case 2: tuner_source = TUNER_C; break;
 							case 3: tuner_source = TUNER_D; break;
+							case 4: tuner_source = TUNER_E; break;
+							case 5: tuner_source = TUNER_F; break;
 #endif
 							default:
 								eDebug("try to get source for tuner %d!!\n", tunernum);
@@ -946,9 +950,10 @@ static const char *tuner_source[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I"
 
 int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 {
+	int numCISlots = getNumOfSlots();
 //	eDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 //	eDebug("eDVBCIInterfaces::setInputSource(%d %d)", tuner_no, (int)source);
-	if (getNumOfSlots() > 1) // FIXME .. we force DM8000 when more than one CI Slot is avail
+	if (numCISlots > 1) // FIXME .. we force DM8000 when more than one CI Slot is avail
 	{
 		char buf[64];
 		snprintf(buf, 64, "/proc/stb/tsmux/input%d", tuner_no);
@@ -960,8 +965,8 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 			return 0;
 		}
 
-		if (tuner_no > 3)
-			eDebug("setInputSource(%d, %d) failed... dm8000 just have four inputs", tuner_no, (int)source);
+		if (tuner_no >= numCISlots)
+			eDebug("setInputSource(%d, %d) failed... receiver just have %d inputs", tuner_no, (int)source, numCISlots);
 
 		switch(source)
 		{
@@ -987,6 +992,8 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 			case TUNER_B:
 			case TUNER_C:
 			case TUNER_D:
+			case TUNER_E:
+			case TUNER_F:
 				srcCI = readInputCI("/proc/bus/nim_sockets", source);
 				if (srcCI)
 				{
@@ -1007,6 +1014,12 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 			case TUNER_D:
 				fprintf(input, "D");
 				break;
+			case TUNER_E:
+				fprintf(input, "E");
+				break;
+			case TUNER_F:
+				fprintf(input, "F");
+				break;
 #endif
 #endif
 			default:
@@ -1021,8 +1034,8 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, data_source source)
 		char buf[64];
 		snprintf(buf, 64, "/proc/stb/tsmux/input%d", tuner_no);
 
-		if (tuner_no > 1)
-			eDebug("setInputSource(%d, %d) failed... dm7025 just have two inputs", tuner_no, (int)source);
+		if (tuner_no >= numCISlots)
+			eDebug("setInputSource(%d, %d) failed... receiver just have %d inputs", tuner_no, (int)source, numCISlots);
 
 		FILE *input=0;
 		if((input = fopen(buf, "wb")) == NULL) {
@@ -1820,6 +1833,8 @@ int eDVBCISlot::setSource(data_source source)
 			case TUNER_B:
 			case TUNER_C:
 			case TUNER_D:
+			case TUNER_E:
+			case TUNER_F:
 				srcCI = readInputCI("/proc/bus/nim_sockets", source);
 				if (srcCI)
 				{
@@ -1839,6 +1854,12 @@ int eDVBCISlot::setSource(data_source source)
 				break;
 			case TUNER_D:
 				fprintf(ci, "D");
+				break;
+			case TUNER_E:
+				fprintf(ci, "E");
+				break;
+			case TUNER_F:
+				fprintf(ci, "F");
 				break;
 #endif
 #endif

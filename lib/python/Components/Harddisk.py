@@ -4,6 +4,7 @@ from Tools.CList import CList
 from SystemInfo import SystemInfo
 from Components.Console import Console
 from Tools.HardwareInfo import HardwareInfo
+from boxbranding import getBoxType, getMachineBuild
 import Task
 
 def readFile(filename):
@@ -11,6 +12,15 @@ def readFile(filename):
 	data = file.read().strip()
 	file.close()
 	return data
+
+def getextdevices(ext):
+	cmd ='blkid -t TYPE=%s -o device'%ext
+	extdevices = os.popen(cmd).read().replace('\n', ',').rstrip(",")
+	if extdevices == "":
+		return None
+	else:
+		extdevices = [x.strip() for x in extdevices.split(",")]
+		return extdevices
 
 def getProcMounts():
 	try:
@@ -146,7 +156,6 @@ class Harddisk:
 		try:
 			line = readFile(self.sysfsPath('size'))
 			cap = int(line)
-			return cap / 1000 * 512 / 1000
 		except:
 			dev = self.findMount()
 			if dev:
@@ -351,10 +360,10 @@ class Harddisk:
 			if size > 128000:
 				# Start at sector 8 to better support 4k aligned disks
 				print "[HD] Detected >128GB disk, using 4k alignment"
-				task.initial_input = "8,,L\n;0,0\n;0,0\n;0,0\ny\n"
+				task.initial_input = "8,\n;0,0\n;0,0\n;0,0\ny\n"
 			else:
 				# Smaller disks (CF cards, sticks etc) don't need that
-				task.initial_input = ",,L\n;\n;\n;\ny\n"
+				task.initial_input = "0,\n;\n;\n;\ny\n"
 
 		task = Task.ConditionTask(job, _("Waiting for partition"))
 		task.check = lambda: os.path.exists(self.partitionPath("1"))
@@ -495,9 +504,12 @@ class Harddisk:
 		self.timer.callback.append(self.runIdle)
 		self.idle_running = True
 		self.hdd_timer = False
-		configsettings = readFile('/etc/enigma2/settings')
-		if "config.usage.hdd_timer" in configsettings:
-			self.hdd_timer = True
+		try:
+			configsettings = readFile('/etc/enigma2/settings')
+			if "config.usage.hdd_timer" in configsettings:
+				self.hdd_timer = True
+		except:
+			self.hdd_timer = False
 		self.setIdleTime(self.max_idle_time) # kick the idle polling loop
 
 	def runIdle(self):
@@ -648,6 +660,25 @@ DEVICEDB = \
 		"/devices/platform/brcm-ehci.0/usb1/1-2/1-2:1.0": _("Upper USB"),
 		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1:1.0": _("Lower USB"),
 	},
+	"dm520":
+	{
+		"/devices/platform/ehci-brcm.0/usb1/1-2/": _("Back, outer USB"),
+		"/devices/platform/ohci-brcm.0/usb2/2-2/": _("Back, outer USB"),
+		"/devices/platform/ehci-brcm.0/usb1/1-1/": _("Back, inner USB"),
+		"/devices/platform/ohci-brcm.0/usb2/2-1/": _("Back, inner USB"),
+	},
+	"dm900":
+	{
+		"/devices/platform/brcmstb-ahci.0/ata1/": _("SATA"),
+		"/devices/rdb.4/f03e0000.sdhci/mmc_host/mmc0/": _("eMMC"),
+		"/devices/rdb.4/f03e0200.sdhci/mmc_host/mmc1/": _("SD"),
+		"/devices/rdb.4/f0470600.ohci_v2/usb6/6-0:1.0/port1/": _("Front USB"),
+		"/devices/rdb.4/f0470300.ehci_v2/usb3/3-0:1.0/port1/": _("Front USB"),
+		"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port1/": _("Front USB"),
+		"/devices/rdb.4/f0470400.ohci_v2/usb5/5-0:1.0/port1/": _("Back USB"),
+		"/devices/rdb.4/f0470500.ehci_v2/usb4/4-0:1.0/port1/": _("Back USB"),
+		"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port2/": _("Back USB"),
+	},
 	"dm820":
 	{
 		"/devices/platform/ehci-brcm.0/": _("Back, lower USB"),
@@ -662,6 +693,25 @@ DEVICEDB = \
 		"/devices/platform/sdhci-brcmstb.1/": _("SD"),
 		"/devices/platform/strict-ahci.0/ata1/": _("SATA"),     # front
 		"/devices/platform/strict-ahci.0/ata2/": _("SATA"),     # back
+	},
+	"dm520":
+	{
+		"/devices/platform/ehci-brcm.0/usb1/1-2/": _("Back, outer USB"),
+		"/devices/platform/ohci-brcm.0/usb2/2-2/": _("Back, outer USB"),
+		"/devices/platform/ehci-brcm.0/usb1/1-1/": _("Back, inner USB"),
+		"/devices/platform/ohci-brcm.0/usb2/2-1/": _("Back, inner USB"),
+	},
+	"dm900":
+	{
+		"/devices/platform/brcmstb-ahci.0/ata1/": _("SATA"),
+		"/devices/rdb.4/f03e0000.sdhci/mmc_host/mmc0/": _("eMMC"),
+		"/devices/rdb.4/f03e0200.sdhci/mmc_host/mmc1/": _("SD"),
+		"/devices/rdb.4/f0470600.ohci_v2/usb6/6-0:1.0/port1/": _("Front USB"),
+		"/devices/rdb.4/f0470300.ehci_v2/usb3/3-0:1.0/port1/": _("Front USB"),
+		"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port1/": _("Front USB"),
+		"/devices/rdb.4/f0470400.ohci_v2/usb5/5-0:1.0/port1/": _("Back USB"),
+		"/devices/rdb.4/f0470500.ehci_v2/usb4/4-0:1.0/port1/": _("Back USB"),
+		"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port2/": _("Back USB"),
 	},
 	"dm800se":
 	{
@@ -693,6 +743,8 @@ DEVICEDB = \
 		"/devices/pci0000:00/0000:00:14.1/ide0/0.0": "Internal Harddisk"
 	}
 	}
+
+DEVICEDB["dm525"] = DEVICEDB["dm520"]
 
 def addInstallTask(job, package):
 	task = Task.LoggingTask(job, "update packages")
@@ -730,7 +782,11 @@ class HarddiskManager:
 				dev = int(readFile(devpath + "/dev").split(':')[0])
 			else:
 				dev = None
-			if dev in (1, 7, 31, 253, 254): # ram, loop, mtdblock, romblock, ramzswap
+			if getMachineBuild() in ('vusolo4k','hd51','hd52','sf4008','dm900','dm7080','dm820'):
+				devlist = [1, 7, 31, 253, 254, 179] # ram, loop, mtdblock, romblock, ramzswap, mmc
+			else:
+				devlist = [1, 7, 31, 253, 254] # ram, loop, mtdblock, romblock, ramzswap
+			if dev in devlist:
 				blacklisted = True
 			if blockdev[0:2] == 'sr':
 				is_cdrom = True
@@ -828,6 +884,25 @@ class HarddiskManager:
 				self.hdd.append(Harddisk(device, removable))
 				self.hdd.sort()
 				SystemInfo["Harddisk"] = True
+		return error, blacklisted, removable, is_cdrom, partitions, medium_found
+
+	def addHotplugAudiocd(self, device, physdev = None):
+		# device is the device name, without /dev
+		# physdev is the physical device path, which we (might) use to determine the userfriendly name
+		if not physdev:
+			dev, part = self.splitDeviceName(device)
+			try:
+				physdev = os.path.realpath('/sys/block/' + dev + '/device')[4:]
+			except OSError:
+				physdev = dev
+				print "couldn't determine blockdev physdev for device", device
+		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(device)
+		if not blacklisted and medium_found:
+			description = self.getUserfriendlyDeviceName(device, physdev)
+			p = Partition(mountpoint = "/media/audiocd", description = description, force_mounted = True, device = device)
+			self.partitions.append(p)
+			self.on_partition_list_change("add", p)
+			SystemInfo["Harddisk"] = False
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def removeHotplugPartition(self, device):

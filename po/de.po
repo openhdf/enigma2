@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2016-07-05 10:04+0200\n"
+"PO-Revision-Date: 2017-01-29 19:04+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -12,14 +12,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid "Switch to Radio Mode"
 msgstr "Wechselt zum Radio Modus"
 
 msgid "Start Timeshift"
-msgstr "Startet zeitversetzes Fernsehen"
+msgstr "Startet zeitversetztes Fernsehen"
 
 msgid "Show Movies"
 msgstr "Zeige die Aufnahmen"
@@ -28,7 +28,7 @@ msgid "Main Menu"
 msgstr "Öffnet das Hauptmenü"
 
 msgid "Stop Timeshift"
-msgstr "Stoppt zeitversetzes Fernsehen"
+msgstr "Stoppt zeitversetztes Fernsehen"
 
 msgid "Show Infobar EPG"
 msgstr "Zeige das EPG in der Infobar"
@@ -130,10 +130,10 @@ msgid "Volume up"
 msgstr "Lautstärke erhöhen"
 
 msgid "Volume adjust slow"
-msgstr "Lautstärkeinstellung langsam"
+msgstr "Lautstärkeeinstellung langsam"
 
 msgid "Volume adjust fast"
-msgstr "Lautstärkeinstellung schnell"
+msgstr "Lautstärkeeinstellung schnell"
 
 msgid "Step value for single press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)"
 msgstr ""
@@ -197,13 +197,13 @@ msgid "Scanning"
 msgstr "Sendersuche"
 
 msgid "Tuner Configuration"
-msgstr "Tuner-Einstellungen"
+msgstr "Tuner Einstellungen"
 
-msgid "Setp"
+msgid "Setup"
 msgstr "Einstellungen"
 
 msgid "Network Menu"
-msgstr "Netzwerk-Einstellungen"
+msgstr "Netzwerk Einstellungen"
 
 msgid "Network Adapter"
 msgstr "Netzwerk-Adapter"
@@ -224,13 +224,13 @@ msgid "User Interface"
 msgstr "Benutzeroberfläche"
 
 msgid "Recording Setup"
-msgstr "Aufnahme-Einstellungen"
+msgstr "Aufnahme Einstellungen"
 
 msgid "Harddisk Setup"
-msgstr "Festplatten-Einstellungen"
+msgstr "Festplatten Einstellungen"
 
 msgid "Please use Harddisk Setup to initialize your drive."
-msgstr "Bitte die Festplatten-Einstellungen für die Vorbereitung benutzen."
+msgstr "Bitte die Festplatten Einstellungen für die Vorbereitung benutzen."
 
 msgid "Select HDD"
 msgstr "Festplatte auswählen"
@@ -251,7 +251,7 @@ msgid "Configure the hard disk drive to go to standby after the specified idle t
 msgstr "Option zum Einstellen der Zeit ab wann die Festplatte nach dem Standby der Box in den Ruhezustand gehen soll."
 
 msgid "Subtitles Settings"
-msgstr "Untertitel-Einstellungen"
+msgstr "Untertitel Einstellungen"
 
 msgid "Question"
 msgstr "Frage"
@@ -364,8 +364,8 @@ msgstr ""
 
 msgid "The image is downloaded. Do you want to flash now?"
 msgstr ""
-"Das Image ist herruntergeladen,\n"
-"wollen Sie jetzt Flashen?"
+"Das Image wurde heruntergeladen.\n"
+"Soll wirklich geflasht werden?"
 
 msgid "Please select medium"
 msgstr "Bitte wählen Sie das Image"
@@ -855,7 +855,7 @@ msgid "3D Surround"
 msgstr "3D Surround Ton"
 
 msgid "3D setup"
-msgstr "3D-Einstellungen"
+msgstr "3D Einstellungen"
 
 msgid "3X"
 msgstr "3X"
@@ -1019,6 +1019,21 @@ msgstr ""
 msgid "Use workaround for recordings from deep standby"
 msgstr "Benutze Workaround für Aufnahmen im Deep Standby"
 
+msgid "Wakeup time before a timer begins [mins]"
+msgstr "Aufwachzeit bevor ein Timer beginnt [min]"
+
+msgid "Time window for detection of the wakeup by a timer [mins]"
+msgstr "Zeitfenster für die Erkennung des Aufwachens durch einen Timer [min]"
+
+msgid "The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
+msgstr "Die Standardeinstellungen sind 5 Minuten früher aus dem Deep-Standby aufzuwachen. Es kann erforderlich sein dies zu ändern. (z.B.: die tatsächliche Aufwachzeit ist ungenau oder zu spät, warten auf ein Netzlaufwerk, usw.)"
+
+msgid "The default settings are wakeup time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wakeup time. So can be detected a wakeup by a timer even at very early starting receivers."
+msgstr "Die Standardeinstellungen sind Aufwachzeit - 5 Minuten und Timerbeginn + 5 Minuten. Diese Einstellung verändert das Zeitfenster vor der Aufwachzeit. So kann das aufwachen durch einen Timer auch bei sehr früh startenden Receivern erkannt werden."
+
+msgid "If enabled, will checks for the time after the start of the receiver is within the time window and optionally switched to standby. If disabled, must additional be available a signal for the successful wakeup detection. (some receiver send a false or none signal)"
+msgstr "Wenn aktiviert, wird überprüft ob die Zeit nach dem Start des Receivers innerhalb des Zeitfensters ist und schaltet gegebenenfalls in den Standby-Modus. Wenn deaktiviert, muss zusätzlich noch ein Signal für die erfolgreiche Erkennung zur Verfügung stehen. (manche Receiver senden ein falsches oder kein Signal)"
+
 msgid "Check if there is a recording started in the next 5 mins (at bootup), then put your box in standby."
 msgstr "Prüft, ob innerhalb der nächsten 5 Minuten eine Aufnahme ansteht nach dem Booten und versetzt die Box dann in den Standby um die Aufnahme durchzuführen."
 
@@ -1060,6 +1075,30 @@ msgstr "Aufnahmen beenden Streaming"
 
 msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
 msgstr "Wenn aktiviert, beendet eine Aufnahme das Streaming, wenn keine weiteren freien Tuner verfügbar sind."
+
+msgid "Show recording symbol depending on recording type"
+msgstr "Zeige Aufnahmesymbol für Aufnahmetyp"
+
+msgid "Show warning before box restart based on recording type"
+msgstr "Zeige Warnung bei Neustart für Aufnahmetyp"
+
+msgid "any recordings"
+msgstr "alle Aufnahmen"
+
+msgid "real recordings"
+msgstr "echte Aufnahmen"
+
+msgid "real recordings or streaming"
+msgstr "echte Aufnahmen / Streaming"
+
+msgid "real or pseudo recordings"
+msgstr "echte/Pseudo-Aufnahmen"
+
+msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh)."
+msgstr "Legt fest, ob das Aufnahme-Symbol (auf Bildschirm und LCD Display) nur bei echten Aufnahmen sichtbar ist oder auch bei Streaming bzw. Pseudo-Aufnahmen (z.B. EPG Refresh)"
+
+msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
+msgstr "Legt fest, ob beim Neustart eine Warnung wegen laufender Aufnahmen nur bei echten Aufnahmen erfolgt oder auch bei Streaming bzw. Pseudo-Aufnahmen (z.B. EPG Refresh)"
 
 msgid "ask user"
 msgstr "Nachfragen"
@@ -1143,13 +1182,13 @@ msgstr ""
 "Programm beenden und erneut versuchen?\n"
 
 msgid "A/V settings"
-msgstr "Audio/Video-Einstellungen"
+msgstr "Audio/Video Einstellungen"
 
 msgid "Audio settings"
-msgstr "Audio-Einstellungen"
+msgstr "Audio Einstellungen"
 
 msgid "Video settings"
-msgstr "Video-Einstellungen"
+msgstr "Video Einstellungen"
 
 msgid "AA"
 msgstr "AA"
@@ -1161,10 +1200,10 @@ msgid "ACQUIRING TSID/ONID"
 msgstr "Sammeln von TSID/ONID"
 
 msgid "AFP Setup"
-msgstr "AFP-Server-Einstellungen"
+msgstr "AFP-Server Einstellungen"
 
 msgid "AFP setup"
-msgstr "AFP-Server-Einstellungen"
+msgstr "AFP-Server Einstellungen"
 
 #, python-format
 msgid "AV aspect is %s."
@@ -1293,10 +1332,10 @@ msgid "Add provider"
 msgstr "Anbieter hinzufügen"
 
 msgid "Add recording (enter recording duration)"
-msgstr "Aufnahme hinzufügen (Aufnahmelänge eingeben)"
+msgstr "Aufnahme hinzufügen mit Aufnahmelänge"
 
 msgid "Add recording (enter recording endtime)"
-msgstr "Aufnahme hinzufügen (Aufnahmeendzeit eingeben)"
+msgstr "Aufnahme hinzufügen mit Aufnahmeendzeit"
 
 msgid "Add recording (indefinitely)"
 msgstr "Aufnahme hinzufügen (unbegrenzt)"
@@ -1956,13 +1995,16 @@ msgid "Button"
 msgstr "Taste"
 
 msgid "Button setup"
-msgstr "Tasten-Einstellungen"
+msgstr "Tasten Einstellungen"
 
 msgid "By Team ViX"
 msgstr "Vom Team ViX"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "HDMI EDID ignorieren"
+
+msgid "HDMI Colorimetry"
+msgstr "HDMI Farbprofile"
 
 msgid "Switch to HDMI in mode"
 msgstr "Wechsel zu HDMI in Modus"
@@ -2081,6 +2123,9 @@ msgstr "Abbrechen"
 
 msgid "Cancel save timeshift as movie"
 msgstr "Timeshift nicht als Film speichern"
+
+msgid "Show status messages when switch to live TV"
+msgstr "Zeige Statusmeldungen wenn zum Live-TV geschaltet wird"
 
 msgid "Cancel next timer"
 msgstr "NÃ¤chsten Timer abbrechen"
@@ -2233,7 +2278,7 @@ msgid "Channel selection"
 msgstr "Senderliste"
 
 msgid "Channel selection settings"
-msgstr "Senderlisten-Einstellungen"
+msgstr "Senderlisten Einstellungen"
 
 msgid "Channel:"
 msgstr "Sender:"
@@ -2339,6 +2384,21 @@ msgstr "Wähle ob Mehrkanalton zu Stereo runter gerechnet werden soll."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr "Soll ein Icon angezeigt werden wenn sich ein Antennenrotor bewegt."
+
+msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgstr "Wählen Sie, ob Mehrkanalton als PCM ausgegeben werden soll"
+
+msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgstr "Wählen Sie, ob AC3-Tonspuren ( Dolby Digital ) zu Stereo heruntergerechnet werden soll."
+
+msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgstr "Wählen Sie, ob DTS-Tonspuren zu Stereo heruntergerechnet werden soll."
+
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Wählen Sie, ob AAC-Tonspuren transkodiert werden sollen."
+
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgstr "Wählen Sie, ob AC3-Plus Tonspuren transkodiert werden sollen nach AC3"
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Wähle Level der Anzeige für Menü/Einstellungen. 'Expert'-Level zeigt alle Punkte."
@@ -2476,7 +2536,7 @@ msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Komplex (erlaubt Mischen verschiedener Ton- und Bildformate)"
 
 msgid "Composition of the recording filenames"
-msgstr "Zusammensetzung des Dateinamens von Aufnahmen"
+msgstr "Dateinamen für Aufnahmen"
 
 msgid "Name - Date filenames"
 msgstr "Name - Datum als Dateiname"
@@ -2536,6 +2596,69 @@ msgstr "Konfiguriere die Zeitspanne die angezeigt wird."
 
 msgid "Configure the aspect ratio of the screen."
 msgstr "Konfiguriere das Bildverhältnis für den Bildschirm."
+
+msgid "Lowest Mode"
+msgstr "Niedrigster Modus"
+
+msgid "Refresh rate for 'Lowest Mode'"
+msgstr "Bildwiederholrate für 'Niedrigster Modus'"
+
+msgid "Show 24p up to 720p / higher than 720p as"
+msgstr "Zeige 24p bis 720p / höher als 720p mit"
+
+msgid "Show 25p up to 720p / higher than 720p as"
+msgstr "Zeige 25p bis 720p / höher als 720p mit"
+
+msgid "Show 30p up to 720p / higher than 720p as"
+msgstr "Zeige 30p bis 720p / höher als 720p mit"
+
+msgid "Show 24p up to resolution 720p or higher than 720p as a different Framerate."
+msgstr "Zeige 24p bis zu einer Auflösung von 720p oder höher als 720p mit einer anderen Bildwiederholrate."
+
+msgid "Show unknown video format as"
+msgstr "Zeige unbekannte Videoauflösung als"
+
+msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
+msgstr "Zeige unbekannte Videoauflösungen mit der nächsthöheren oder höchsten Auflösung."
+
+msgid "Show preview of current mode (*)."
+msgstr "Zeige Vorschau des aktuellen Modus (*)."
+
+msgid "%sMode for SD (up to 576p)"
+msgstr "%sModus für SD (bis 576p)"
+
+msgid "%sRefresh rate for SD"
+msgstr "%sBildwiederholrate für SD"
+
+msgid "%sMode for HD (up to 720p)"
+msgstr "%sModus für HD (bis 720p)"
+
+msgid "%sRefresh rate for HD"
+msgstr "%sBildwiederholrate für HD"
+
+msgid "%sMode for FHD (up to 1080p)"
+msgstr "%sModus für FHD (bis 1080p)"
+
+msgid "%sRefresh rate for FHD"
+msgstr "%sBildwiederholrate für FHD"
+
+msgid "%sMode for UHD (up to 2160p)"
+msgstr "%sModus für UHD (bis 2160p)"
+
+msgid "%sRefresh rate for UHD"
+msgstr "%sBildwiederholrate für UHD"
+
+msgid "%sShow 1080i as 1080p"
+msgstr "%sZeige 1080i als 1080p"
+
+msgid "Use Deinterlacing for 1080i Videosignal?"
+msgstr "Soll für ein Videosignal von 1080i Deinterlacing benutzt werden?"
+
+msgid "next higher Resolution"
+msgstr "nächsthöhere Auflösung"
+
+msgid "highest Resolution"
+msgstr "höchste Auflösung"
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr "Konfiguriere das Verhalten der Pausentaste bei Standbild."
@@ -3147,6 +3270,9 @@ msgstr "Filmlisten Verzeichnis"
 msgid "Default timer type"
 msgstr "Standard Timer Einstellung"
 
+msgid "Default timer event"
+msgstr "Standard Timer Ereignis"
+
 msgid "Configure default type for new timers."
 msgstr "Legt die Standard Einstellung für neu angelegte Timer fest."
 
@@ -3255,7 +3381,7 @@ msgid "Device mounts"
 msgstr "Geräte-Mountpunkte"
 
 msgid "Device setup"
-msgstr "Adapter-Einstellungen"
+msgstr "Adapter Einstellungen"
 
 msgid "Devicename:"
 msgstr "Gerätename:"
@@ -3392,16 +3518,16 @@ msgid "Display and userinterface"
 msgstr "Anzeige und Benutzeroberfläche"
 
 msgid "Userinterface Settings"
-msgstr "Benutzeroberfläche-Einstellungen"
+msgstr "Benutzeroberfläche Einstellungen"
 
 msgid "Display message before playing next movie"
 msgstr "Nachricht vor Wiedergabe des nächsten Films"
 
 msgid "Display settings"
-msgstr "Display-Einstellungen"
+msgstr "Display Einstellungen"
 
 msgid "Display Settings"
-msgstr "Display-Einstellungen"
+msgstr "Display Einstellungen"
 
 msgid "Clone TV screen to LCD"
 msgstr "Spiegel TV Bild zum LCD"
@@ -3677,7 +3803,7 @@ msgid "EPG location"
 msgstr "EPG Speicherort"
 
 msgid "EPG settings"
-msgstr "EPG-Einstellungen"
+msgstr "EPG Einstellungen"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -3709,6 +3835,12 @@ msgstr "Senderliste bearbeiten"
 
 msgid "Reload Services"
 msgstr "Senderliste neuladen"
+
+msgid "Unmark service to unhide VBI line"
+msgstr "Zeige die VBI Linie für diesen Sender"
+
+msgid "Mark service to hide VBI line"
+msgstr "Verstecke die VBI Linie für diesen Sender"
 
 msgid "Edit settings"
 msgstr "Einstellungen bearbeiten"
@@ -3978,10 +4110,10 @@ msgid "FLASH"
 msgstr "FLASH"
 
 msgid "FTP Setup"
-msgstr "FTP-Server-Einstellungen"
+msgstr "FTP-Server Einstellungen"
 
 msgid "FTP setup"
-msgstr "FTP-Server-Einstellungen"
+msgstr "FTP-Server Einstellungen"
 
 msgid "Factory reset"
 msgstr "Werkseinstellungen"
@@ -4427,7 +4559,7 @@ msgid "aks the user"
 msgstr "Nachfragen"
 
 msgid "Graphical InfobarEPG settings"
-msgstr "Grafischer-InfoBarEPG-Einstellungen"
+msgstr "Grafischer-InfoBarEPG Einstellungen"
 
 msgid "Graphical Multi EPG"
 msgstr "Grafischer Multi-EPG"
@@ -4460,10 +4592,10 @@ msgid "HDMI"
 msgstr "HDMI"
 
 msgid "HDMI CEC"
-msgstr "HDMI-CEC-Einstellungen"
+msgstr "HDMI-CEC Einstellungen"
 
 msgid "HDMI CEC Setup"
-msgstr "HDMI-CEC-Einstellungen"
+msgstr "HDMI-CEC Einstellungen"
 
 msgid "Handle deepstandby events"
 msgstr "Deep-Standby-Ereignisse verwalten "
@@ -4475,7 +4607,7 @@ msgid "Handle wakeup from TV"
 msgstr "Fernseher Wakeup verwalten"
 
 msgid "Hard disk setup"
-msgstr "Festplatten-Einstellungen"
+msgstr "Festplatten Einstellungen"
 
 msgid "Hard disk standby after"
 msgstr "Festplatten Ruhezustand nach:"
@@ -4802,10 +4934,10 @@ msgid "Inadyn Log"
 msgstr "Inadyn Log"
 
 msgid "Inadyn Setup"
-msgstr "Inadyn-Einstellungen"
+msgstr "Inadyn Einstellungen"
 
 msgid "Inadyn setup"
-msgstr "Inadyn-Einstellungen"
+msgstr "Inadyn Einstellungen"
 
 msgid "Include AIT in http streams"
 msgstr "AIT in HTTP-Streams integrieren"
@@ -4844,13 +4976,13 @@ msgid "InfoBar EPG"
 msgstr "Infobar EPG"
 
 msgid "InfoBar EPG mode"
-msgstr "Infobar-EPG-Einstellungen"
+msgstr "Infobar-EPG Einstellungen"
 
 msgid "Infobar EPG"
 msgstr "Infobar EPG"
 
 msgid "InfobarEPG settings"
-msgstr "Infobar-EPG-Einstellungen"
+msgstr "Infobar-EPG Einstellungen"
 
 msgid "Information"
 msgstr "Informationen"
@@ -5064,10 +5196,10 @@ msgid "Keyboard map"
 msgstr "Tastaturlayout"
 
 msgid "Keyboard setup"
-msgstr "Tastatur-Einstellungen"
+msgstr "Tastatur Einstellungen"
 
 msgid "Transcoding Setup"
-msgstr "Transcoding-Einstellungen"
+msgstr "Transcoding Einstellungen"
 
 msgid "HotKey Settings"
 msgstr "HotKey-Tasten-Belegungen"
@@ -5287,7 +5419,7 @@ msgid "LogManager"
 msgstr "Log-Verwaltung"
 
 msgid "Logs"
-msgstr "Logs-Einstellungen"
+msgstr "Logs Einstellungen"
 
 msgid "Logs location"
 msgstr "Speicherort für Logs"
@@ -5299,10 +5431,10 @@ msgid "Logs older then the set no of days will be deleted."
 msgstr "Log Datei die älter sind als diese Anzahl von Tagen werden gelöscht."
 
 msgid "Logs settings"
-msgstr "Log-Einstellungen"
+msgstr "Log Einstellungen"
 
 msgid "PluginBrowser filter setting"
-msgstr "Pluginbrowser-Filter-Einstellungen"
+msgstr "Pluginbrowser-Filter Einstellungen"
 
 msgid "Long << / >>"
 msgstr "Lang Rücklauf/Vorlauf"
@@ -5435,10 +5567,10 @@ msgid "MiniDLNA Log"
 msgstr "MiniDLNA Log"
 
 msgid "MiniDLNA Setup"
-msgstr "MiniDLNA-Einstellungen"
+msgstr "MiniDLNA Einstellungen"
 
 msgid "MiniDLNA setup"
-msgstr "MiniDLNA-Einstellungen"
+msgstr "MiniDLNA Einstellungen"
 
 #, python-format
 msgid "Minimum age %d years"
@@ -5511,10 +5643,10 @@ msgid "Mount"
 msgstr "Einhängen"
 
 msgid "Mounts Setup"
-msgstr "Mount-Einstellungen"
+msgstr "Mount Einstellungen"
 
 msgid "Mounts setup"
-msgstr "Mount-Einstellungen"
+msgstr "Mount Einstellungen"
 
 msgid "Move"
 msgstr "Verschieben"
@@ -5607,7 +5739,7 @@ msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Soll wirklich diese EPG Datei gelöscht werden:\n"
 
 msgid "MultiEPG settings"
-msgstr "Multi-EPG-Einstellungen"
+msgstr "Multi-EPG Einstellungen"
 
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -5640,10 +5772,10 @@ msgstr ""
 "Drücke Gelb um die Box neu zu starten!"
 
 msgid "NFS Setup"
-msgstr "NFS-Einstellungen"
+msgstr "NFS Einstellungen"
 
 msgid "NFS setup"
-msgstr "NFS-Einstellungen"
+msgstr "NFS Einstellungen"
 
 msgid "NIM"
 msgstr "NIM"
@@ -5683,7 +5815,7 @@ msgid "Netmask:"
 msgstr "Netzmaske:"
 
 msgid "Network"
-msgstr "Netzwerk-Einstellungen"
+msgstr "Netzwerk Einstellungen"
 
 msgid "Network ID"
 msgstr "Netzwerk ID"
@@ -5725,7 +5857,7 @@ msgid "Network:"
 msgstr "Netzwerk:"
 
 msgid "Network MAC settings"
-msgstr "Netzwerk MAC-Einstellungen"
+msgstr "Netzwerk MAC Einstellungen"
 
 msgid "Set the MAC-adress of your %s %s.\n"
 msgstr "Einstellen der MAC-Adresse Ihrer %s %s.\n"
@@ -5795,6 +5927,48 @@ msgstr ""
 #, python-format
 msgid "Cannot format partition %d"
 msgstr "Partition %d konnte nicht formatiert werden"
+
+msgid "Check disk terminated with success"
+msgstr "Überprüfung erfolgreich"
+
+msgid "Error checking disk. The disk may be damaged"
+msgstr "Fehler beim Überprüfen der Festplatte"
+
+msgid "Error formatting disk. The disk may be damaged"
+msgstr "Fehler beim Formatieren der Festplatte"
+
+msgid "Format terminated with success"
+msgstr "Formatierung erfolgreich"
+
+msgid "Checking disk %s"
+msgstr "Überprüfe Laufwerk %s"
+
+msgid "Checking disk"
+msgstr "Überprüfe Laufwerk"
+
+msgid "Formatting disk %s"
+msgstr "Formatiere Laufwerk %s"
+
+msgid "Formatting disk"
+msgstr "Formatiere Laufwerk"
+
+msgid ""
+"Cannot umount device.\n"
+"A record in progress, timeshit or some external tools (like samba and nfsd) may cause this problem.\n"
+"Please stop this actions/applications and try again"
+msgstr ""
+"Unmount nicht möglich.\n"
+"Eine Aufnahme, Timeshift oder ein Serverdienst wie Samba oder NFS ist aktiv,\n"
+"Bitte zuerst den Festplattenzugriff stoppen und erneut probieren"
+
+msgid ""
+"Cannot umount current drive.\n"
+"A record in progress, timeshit or some external tools (like samba and nfsd) may cause this problem.\n"
+"Please stop this actions/applications and try again"
+msgstr ""
+"Unmount nicht möglich.\n"
+"Eine Aufnahme, Timeshift oder ein Serverdienst wie Samba oder NFS ist aktiv.\n"
+"Bitte zuerst den Festplattenzugriff stoppen und erneut probieren"
 
 #, python-format
 msgid "Partitioner"
@@ -6209,13 +6383,13 @@ msgid "Open the movie list"
 msgstr "Öffne die Filmliste"
 
 msgid "OpenVPN setup"
-msgstr "OpenVPN-Einstellungen"
+msgstr "OpenVPN Einstellungen"
 
 msgid "OpenVpn Log"
 msgstr "OpenVpn Log"
 
 msgid "OpenVpn Setup"
-msgstr "OpenVPN-Einstellungen"
+msgstr "OpenVPN Einstellungen"
 
 msgid "Orbital position"
 msgstr "Orbitale Position"
@@ -6386,13 +6560,13 @@ msgid "Please open Picture in Picture first"
 msgstr "Bitte Bild in Bild zuerst aktivieren."
 
 msgid "Picon"
-msgstr "PIcon"
+msgstr "Picon"
 
 msgid "Picon and Service Name"
-msgstr "PIcon und Sendername"
+msgstr "Picon und Sendername"
 
 msgid "Picon and service name"
-msgstr "PIcon und Sendername"
+msgstr "Picon und Sendername"
 
 msgid "Picon width"
 msgstr "Picon Breite"
@@ -6706,7 +6880,7 @@ msgid "Portuguese"
 msgstr "Portugiesisch"
 
 msgid "Position Setup"
-msgstr "Rotor Einstellungen"
+msgstr "Positions Einstellungen"
 
 msgid "Positions Setup"
 msgstr "Oberflächen Einstellungen"
@@ -6715,7 +6889,7 @@ msgid "Position of finished Timers in Timerlist"
 msgstr "Position beendeter Timer in der Timerliste"
 
 msgid "Position setup"
-msgstr "Position/Transparenz-Einstellungen"
+msgstr "Position/Transparenz Einstellungen"
 
 msgid "Position stored at index"
 msgstr "Position bei Index gespeichert"
@@ -7062,7 +7236,7 @@ msgid "Recording in progress"
 msgstr "Aktive Aufnahmen"
 
 msgid "Recording settings"
-msgstr "Aufnahme/Wiedergabe-Einstellung"
+msgstr "Aufnahme/Wiedergabe Einstellungen"
 
 msgid "Recording type"
 msgstr "Aufnahmetyp"
@@ -7188,7 +7362,7 @@ msgid "Make your selection"
 msgstr "Bitte auswählen"
 
 msgid "Remote Control"
-msgstr "Fernbedienung-Einstellungen"
+msgstr "Fernbedienung Einstellungen"
 
 msgid "Remote control type"
 msgstr "Fernbedienungstyp"
@@ -7305,6 +7479,9 @@ msgstr "Auflösung"
 msgid "Autoresolution"
 msgstr "Automatische Auflösung"
 
+msgid "Enable preview"
+msgstr "Aktiviere Vorschau"
+
 msgid "Restart"
 msgstr "Neustart"
 
@@ -7415,10 +7592,10 @@ msgid "S-Video"
 msgstr "S-Video"
 
 msgid "SABnzbd Setup"
-msgstr "SABnzbd-Einstellungen"
+msgstr "SABnzbd Einstellungen"
 
 msgid "SABnzbd setup"
-msgstr "SABnzbd-Einstellungen"
+msgstr "SABnzbd Einstellungen"
 
 msgid "SID"
 msgstr "SID"
@@ -7436,10 +7613,10 @@ msgid "Samba Log"
 msgstr "Samba/CIFS Log"
 
 msgid "Samba setup"
-msgstr "Samba-Einstellungen"
+msgstr "Samba Einstellungen"
 
 msgid "Samba Setup"
-msgstr "Samba-Einstellungen"
+msgstr "Samba Einstellungen"
 
 msgid "Same resolution as skin"
 msgstr "Gleiche Auflösung wie Skin"
@@ -8026,8 +8203,8 @@ msgstr "Einstellungen..."
 msgid "PluginBrowser filter settings..."
 msgstr "PluginBrowser Filtereinstellungen..."
 
-msgid "Setup"
-msgstr "Konfiguration"
+msgid "PluginBrowser filter settings"
+msgstr "PluginBrowser Filtereinstellungen"
 
 msgid "Setup how to control the channel changing."
 msgstr "Konfiguriere wie der Senderwechsel geschehen soll."
@@ -8068,6 +8245,9 @@ msgstr "Freigaben"
 
 msgid "Sharpness"
 msgstr "Schärfe"
+
+msgid "Event name first"
+msgstr "Name der Sendung zuerst"
 
 msgid "Short filenames"
 msgstr "Kurze Dateinamen"
@@ -8131,6 +8311,18 @@ msgstr "Zeige PVR Status in der Infobar des Medienplayers"
 
 msgid "LCD skin"
 msgstr "LCD Skin"
+
+msgid "Show blinking rec symbol on Display during recording"
+msgstr "Blinkendes REC-Symbol im Display bei Aufnahmen"
+
+msgid "Show blinking Clock in Standby on Display during recording"
+msgstr "Zeige im Standby blinkende Uhr im Display bei Aufnahmen"
+
+msgid "In the Standby blinking Clock on the LCD Display"
+msgstr "Im Standby blinkende Uhr im LCD-Display"
+
+msgid "Show HDMI-Output Res"
+msgstr "Zeige HDMI Ausgangsauflösung"
 
 msgid "Big Picon/ clock/ bar"
 msgstr "Großes Logo/ Uhr/ Laufanzeige"
@@ -8381,6 +8573,9 @@ msgstr "Zeige Softcams an."
 msgid "Show skins packages"
 msgstr "Zeige Skins an."
 
+msgid "Skins and Skinpackages"
+msgstr "Skins und Skinpakete"
+
 msgid "Show picons packages"
 msgstr "Zeige Senderlogo Pakete an."
 
@@ -8478,7 +8673,7 @@ msgid "Single transponder"
 msgstr "Einzelnen Transponder"
 
 msgid "SingleEPG settings"
-msgstr "Sender-EPG-Einstellungen"
+msgstr "SenderEPG Einstellungen"
 
 msgid "Site latitude"
 msgstr "Breitengrad"
@@ -8490,10 +8685,10 @@ msgid "Size: "
 msgstr "Größe:"
 
 msgid "Skin Setting"
-msgstr "Skin-Einstellungen"
+msgstr "Skin Einstellungen"
 
 msgid "Skin setup"
-msgstr "Skin-Einstellungen"
+msgstr "Skin Einstellungen"
 
 msgid "Skins"
 msgstr "Skins"
@@ -8536,13 +8731,13 @@ msgid "Social/Political/Economics"
 msgstr "Sozial/Politik/Wirtschaft"
 
 msgid "SoftCam / CI"
-msgstr "CI / Softcam-Einstellungen"
+msgstr "CI / Softcam Einstellungen"
 
 msgid "Softcam setings"
-msgstr "Softcam-Einstellungen"
+msgstr "Softcam Einstellungen"
 
 msgid "Softcam settings"
-msgstr "Softcam-Einstellungen"
+msgstr "Softcam Einstellungen"
 
 msgid "Software"
 msgstr "Software"
@@ -8563,7 +8758,7 @@ msgid "Software update"
 msgstr "Software aktualisieren"
 
 msgid "Software Update Settings"
-msgstr "Software-Update-Einstellungen"
+msgstr "Software Update Einstellungen"
 
 msgid "Softwaremanager information"
 msgstr "Information Softwareverwaltung"
@@ -8888,7 +9083,7 @@ msgid "Subtitle selection..."
 msgstr "Untertitel Auswahl..."
 
 msgid "Subtitle settings"
-msgstr "Untertitel-Einstellungen"
+msgstr "Untertitel Einstellungen"
 
 msgid "Subtitles"
 msgstr "Untertitel"
@@ -9109,10 +9304,10 @@ msgid "Telnet Port"
 msgstr "Telnet Port"
 
 msgid "Telnet Setup"
-msgstr "Telnet-Einstellungen"
+msgstr "Telnet Einstellungen"
 
 msgid "Telnet setup"
-msgstr "Telnet-Einstellungen"
+msgstr "Telnet Einstellungen"
 
 msgid "Terrestrial"
 msgstr "Terrestrisch"
@@ -9460,6 +9655,9 @@ msgstr "Diese Option erlaubt es den Videoausgang oder die Bildauflösung einzust
 msgid "This option configures you can Bypass HDMI EDID check"
 msgstr "Diese Option erlaubt es den HDMI EDID zu deaktivieren"
 
+msgid "This option allows you can config the Colorimetry for HDR"
+msgstr "Diese Option erlaubt die Farbprofile Steuerung im HDR Modus"
+
 msgid "This option configures you can enable 3D Surround Sound."
 msgstr "Diese Option erlaubt es 3D Surround Sound zu aktivieren."
 
@@ -9559,7 +9757,7 @@ msgstr ""
 "Dieser Test überprüft, ob eine gültige IP-Adresse gefunden wurde.\n"
 "Wenn eine \"Unbestätigt\"-Meldung erscheint:\n"
 "- Wurde keine gültige IP-Adresse gefunden.\n"
-"- Überprüfe DHCP, die Verkabelung und die Adapter-Einstellungen"
+"- Überprüfe DHCP, die Verkabelung und die Adapter Einstellungen"
 
 msgid ""
 "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
@@ -9617,7 +9815,7 @@ msgid "Time scale"
 msgstr "Zeitraum"
 
 msgid "Time settings"
-msgstr "Zeit-Einstellungen"
+msgstr "Zeit Einstellungen"
 
 msgid "Time to execute command or script"
 msgstr "Zeit um Kommando oder Script auszuführen"
@@ -9715,7 +9913,7 @@ msgid "Timeshift saved to your harddisk!"
 msgstr "TimeShift auf Festplatte gesichert!"
 
 msgid "Timeshift settings"
-msgstr "TimeShift-Einstellung"
+msgstr "TimeShift Einstellungen"
 
 msgid "Older files in the timeshift directory are removed on every event change."
 msgstr "Ältere Timeshift Dateien werden bei jedem Event gelöscht."
@@ -10275,11 +10473,11 @@ msgid "ViX EPG"
 msgstr "ViX EPG"
 
 msgid "Video Enhancement Settings"
-msgstr "Bildoptimierungs-Einstellungen"
+msgstr "Bildoptimierungs Einstellungen"
 
 #, python-format
 msgid "Record Infobar"
-msgstr "Aufnahme Infobar-Einstellungen"
+msgstr "Aufnahme InfobarEinstellungen"
 
 msgid "Video PID"
 msgstr "Video PID"
@@ -10320,10 +10518,10 @@ msgstr "Video Ausgang"
 
 #, python-format
 msgid "Audio Sync Einstellungen"
-msgstr "Audio-Sync-Einstellungen"
+msgstr "Audio-Sync Einstellungen"
 
 msgid "Video setup"
-msgstr "Bild-Einstellungen"
+msgstr "Bild Einstellungen"
 
 msgid "Video wizard"
 msgstr "Bild Assistent"
@@ -10387,7 +10585,7 @@ msgid "View list of available recording extensions"
 msgstr "Zeige Liste der verfügbaren Aufnahme-Erweiterungen."
 
 msgid "View list of available skins"
-msgstr "Teige Liste der verfügbaren Skins."
+msgstr "Zeige Liste der verfügbaren Skins."
 
 msgid "View list of available software extensions"
 msgstr "Zeige Liste der verfügbaren Software-Erweiterungen."
@@ -11494,7 +11692,7 @@ msgid "discussion/interview/debate"
 msgstr "Diskussion/Interview/Debatte"
 
 msgid "do nothing"
-msgstr "nichts machen"
+msgstr "Nichts machen"
 
 msgid "documentary"
 msgstr "Dokumentation"
@@ -12129,7 +12327,7 @@ msgid "Show DVD-Player in Mainmenu ?"
 msgstr "Zeige DVD-Player im Hauptmenü ?"
 
 msgid "DVD-Player Setup"
-msgstr "DVD-Player-Einstellungen"
+msgstr "DVD-Player Einstellungen"
 
 msgid "show EPG..."
 msgstr "Zeige EPG..."
@@ -12327,10 +12525,10 @@ msgid "uShare Port"
 msgstr "uShare Port"
 
 msgid "uShare Setup"
-msgstr "uShare-Einstellungen"
+msgstr "uShare Einstellungen"
 
 msgid "uShare setup"
-msgstr "uShare-Einstellungen"
+msgstr "uShare Einstellungen"
 
 msgid "unavailable"
 msgstr "nicht verfügbar"
@@ -12521,7 +12719,7 @@ msgid "For more information see http://www.hdfreaks.cc"
 msgstr "Mehr Informationen unter http://www.hdfreaks.cc"
 
 msgid "But you have activated \"Install unstable updates\""
-msgstr "Aber Sie haben \"Installiere unstabile Updates\" aktiviert"
+msgstr "Es ist aber die Option \"Installiere unstabile Updates\" aktiviert"
 
 msgid "Update anyway?"
 msgstr "Trotzdem Updaten?"
@@ -12832,9 +13030,11 @@ msgstr "Ausschalten"
 msgid "After PowerLost"
 msgstr "Verhalten der Box nach Stromausfall"
 
-# Powerlost setup.xml
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
 msgstr "Wählen Sie aus, was passieren soll, nachdem ihre %s %s nicht sauber heruntergefahren wurde, bzw. was nach einem Stromausfall geschehen soll."
+
+msgid "Boot-up action"
+msgstr "Startmodus der Box"
 
 #
 msgid "Show MiniTV in the Front Display"
@@ -13116,10 +13316,10 @@ msgid "Power long"
 msgstr "Power lang"
 
 msgid "Power (use button menu)"
-msgstr "Power (Tasten-Einstellungen)"
+msgstr "Power (Tasten Einstellungen)"
 
 msgid "Power long (use button menu)"
-msgstr "Power lang (Tasten-Einstellungen)"
+msgstr "Power lang (Tasten Einstellungen)"
 
 msgid "Power down"
 msgstr "Power losgelassen"
@@ -13375,3 +13575,124 @@ msgstr "Ermittlung verf. Kanäle inkl. Berücksichtigung der CI-Zuweisung"
 
 msgid "Include CI assignment"
 msgstr "Berücksichtigung der CI-Zuweisung"
+
+msgid "Image started:\t%s"
+msgstr "Image Start:\t%s"
+
+msgid "Local"
+msgstr "Lokal"
+
+msgid "Multiboot Select"
+msgstr "Multiboot Auswahl"
+
+msgid "MultiBoot Selector"
+msgstr "MultiBoot Auswahl"
+
+msgid "Do you want to reboot now with selected image?"
+msgstr "Soll die Box jetzt mit dem gewählten Image neu gestartet werden?"
+
+msgid "no image found"
+msgstr "Kein Image gefunden"
+
+msgid ""
+"Your box needs Bootloaderversion(s)\n"
+"\n"
+"%s\n"
+"\n"
+"to make compatible with Bootoptions!"
+msgstr ""
+"Ihre Box braucht Bootloaderversion\n"
+"\n"
+"%s\n"
+"\n"
+"um Bootoptionen nutzen zu können!"
+
+msgid "File not found - rename failed!"
+msgstr "Datei nicht gefunden - umbenennen fehlgeschlagen!"
+
+msgid "Name already exists - rename failed!"
+msgstr "Name existiert bereits - umbenennen fehlgeschlagen!"
+
+msgid "2160p60 without PiP (Standard)"
+msgstr "2160p60 ohne PiP (Standard)"
+
+msgid "2160p50 with PiP (Experimental)"
+msgstr "2160p50 mit PiP (Experimental)"
+
+msgid " (unknown mode)"
+msgstr " (unbekannter Modus)"
+
+msgid "Unable to read image number"
+msgstr "Image Nummer nicht lesbar"
+
+msgid "Current Bootsettings: %s (%s)%s"
+msgstr "Aktuelle Booteinstellungen: %s (%s)%s"
+
+msgid "Select Bootoption: %s"
+msgstr "Bootoption auswählen: %s"
+
+msgid "Select Image: %s"
+msgstr "Image auswählen: %s"
+
+msgid "Select Bootoption: not supported - see info"
+msgstr "Bootoption auswählen: nicht unterstützt - siehe Info"
+
+msgid "File '/boot/%s' copy to '/boot/STARTUP' failed!"
+msgstr "Datei '/boot/%s' kopieren nach '/boot/STARTUP' fehlgeschlagen!"
+
+msgid "Next boot will start from Image 1."
+msgstr "Beim nächsten Start wird von Image 1. gebootet"
+
+msgid "Can not repair file %s"
+msgstr "Konnte Datei %s nicht reparieren"
+
+msgid "Caution, next boot is starts with these settings!"
+msgstr "Achtung, beim nächsten Start wird mit diesen Einstellungen gebootet!"
+
+msgid "Alternative Image 1 partition for boot repair not found."
+msgstr "Alternative Image 1 Partition für Boot-Reparatur nicht gefunden."
+
+msgid "Wrong Bootsettings detected!"
+msgstr "Falsche Booteinstellungen erkannt!"
+
+msgid "Do you want to reboot now?"
+msgstr "Wollen Sie jetzt neu starten?"
+
+msgid "Can not write file %s"
+msgstr "Konnte Datei %s nicht schreiben"
+
+msgid "Write error!"
+msgstr "Schreibfehler!"
+
+msgid "Error in file %s"
+msgstr "Fehler in Datei %s"
+
+msgid "Command line error!"
+msgstr "Kommandozeilen Fehler!"
+
+msgid "Press left/right to select Image"
+msgstr "Benutze Steuerkreuz rechts/links zur Auswahl des Images"
+
+msgid "Press up/down to select Bootoption (Standard/Experimental)"
+msgstr "Benutze Steuerkreuz hoch/runter für Bootoptionen (Standard/Experimental)"
+
+msgid "Basic settings"
+msgstr "Grundeinstellungen"
+
+msgid "CI Operation Mode"
+msgstr "CI Modus"
+
+msgid "Choose the CI protocol operation mode for standard ci or ciplus."
+msgstr "Wähle das CI Protokoll für CI Normal oder CIPlus Module."
+
+msgid "Your Hardware can detect ci mode self or work only in legacy mode."
+msgstr "Hardware erkennt das CI Protokoll selber oder Hardware arbeitet nur im Legacy Mode."
+
+msgid "Recovery Mode"
+msgstr "Wartungsmodus"
+
+msgid "Your %s %s is rebooting into Recovery Mode"
+msgstr "Ihre %s %s startet in den Wartungsmodus"
+
+msgid "Really reboot into Recovery Mode?"
+msgstr "Wirklich einen Neustart in den Wartungsmodus durchführen?"

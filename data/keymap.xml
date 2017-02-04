@@ -1,6 +1,16 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 07.04.2016" -->
+	<!-- "HDF Default Keymap 23.10.2016" -->
+	<map context="2ndInfobarActions">
+		<key id="KEY_UP" mapto="pageUp" flags="mr" />
+		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
+		<key id="KEY_PREVIOUS" mapto="prevEvent" flags="m" />
+		<key id="KEY_NEXT" mapto="nextEvent" flags="m" />
+		<key id="KEY_BACK" mapto="prevEvent" flags="m" />
+		<key id="KEY_FORWARD" mapto="nextEvent" flags="m" />
+		<key id="KEY_RED" mapto="openSimilarList" flags="m" />
+		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
+	</map>
 	<map context="ListboxActions">
 		<device name="keyboard">
 			<key id="a" mapto="up" flags="mr" />
@@ -134,8 +144,8 @@
 	<map context="InfobarChannelSelection">
 		<key id="KEY_LEFT" mapto="LeftPressed" flags="mr" />
 		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />
-		<key id="KEY_UP" mapto="switchChannelUp" flags="m" />
-		<key id="KEY_DOWN" mapto="switchChannelDown" flags="m" />
+		<!--key id="KEY_UP" mapto="switchChannelUp" flags="m" />
+		<key id="KEY_DOWN" mapto="switchChannelDown" flags="m" /-->
 		<key id="KEY_UP" mapto="switchChannelUpLong" flags="l" />
 		<key id="KEY_DOWN" mapto="switchChannelDownLong" flags="l" />
 		<!--key id="KEY_PREVIOUS" mapto="historyBack" flags="mr" />
@@ -225,6 +235,8 @@
 	</map>
 
 	<map context="InfobarShowHideActions">
+		<key id="KEY_UP" mapto="pageUp" flags="mr" />
+		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
 		<key id="KEY_OK" mapto="toggleShow" flags="m"/>
 		<key id="KEY_ENTER" mapto="toggleShow" flags="m"/>
 		<key id="KEY_EXIT" mapto="hide" flags="m"/>
@@ -250,17 +262,6 @@
 		<!--key id="KEY_HOMEPAGE" mapto="showMEDIAPORTAL" flags="l" /-->
 		<!--key id="KEY_BOOKMARKS" mapto="showEMC" flags="mr" / -->
 		<!--key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="mm" /-->
-	</map>
-
-	<map context="2ndInfobarActions">
-		<key id="KEY_UP" mapto="prevPage" flags="mr" />
-		<key id="KEY_DOWN" mapto="nextPage" flags="mr" />
-		<key id="KEY_PREVIOUS" mapto="prevEvent" flags="m" />
-		<key id="KEY_NEXT" mapto="nextEvent" flags="m" />
-		<key id="KEY_BACK" mapto="prevEvent" flags="m" />
-		<key id="KEY_FORWARD" mapto="nextEvent" flags="m" />
-		<key id="KEY_RED" mapto="openSimilarList" flags="m" />
-		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
 	</map>
 
 	<!--map context="InfobarAudioSelectionActions">
@@ -890,8 +891,7 @@
 		<key id="KEY_RADIO" mapto="radio_long" flags="l" />
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="showTv_long" flags="l" />
-		<key id="KEY_TEXT" mapto="texter" flags="b" />
-		<key id="KEY_TEXT" mapto="texter_long" flags="l" />
+		<key id="KEY_TEXT" mapto="text" flags="m" />
 		<key id="KEY_HELP" mapto="helpshow" flags="b" />
 		<key id="KEY_HELP" mapto="helpshow_long" flags="l" />
 		<key id="KEY_SUBTITLE" mapto="subtitle" flags="b" />
@@ -1003,11 +1003,23 @@
 	</map>
 
 	<map context="InfobarSeekActionsPTS">
+		<device name="dreambox remote control (native)">
+			<key id="KEY_YELLOW" mapto="pauseService" flags="b" />
+			<key id="KEY_GREEN" mapto="playpauseService" flags="b" />
+			<key id="KEY_RED" mapto="seekBack" flags="b" />
+			<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
+			<key id="KEY_RED" mapto="seekBackManual" flags="l" />
+			<key id="KEY_BLUE" mapto="seekFwdManual" flags="l" />
+		</device>
+		<key id="KEY_YELLOW" mapto="playpauseService" flags="m" />
 		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
 		<key id="KEY_PLAY" mapto="playpauseService" flags="m" />
 		<key id="KEY_REWIND" mapto="seekBack" flags="b" />
 		<key id="KEY_FASTFORWARD" mapto="seekFwd" flags="b" />
+		<key id="KEY_LEFT" mapto="seekBack" flags="b" />
+		<key id="KEY_RIGHT" mapto="seekFwd" flags="b" />
+
 		<key id="KEY_1" mapto="seekdef:1" flags="m" />
 		<key id="KEY_3" mapto="seekdef:3" flags="m" />
 		<key id="KEY_4" mapto="seekdef:4" flags="m" />

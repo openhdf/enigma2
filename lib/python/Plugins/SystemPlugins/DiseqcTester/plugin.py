@@ -1,13 +1,14 @@
-import random
-
 from Screens.Satconfig import NimSelection
 from Screens.Screen import Screen
 from Screens.TextBox import TextBox
 from Screens.MessageBox import MessageBox
+
 from Plugins.Plugin import PluginDescriptor
+
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.NimManager import nimmanager
 from Components.ResourceManager import resourcemanager
+from Components.Sources.FrontendStatus import FrontendStatus
 from Components.TuneTest import TuneTest
 from Components.Sources.List import List
 from Components.Sources.Progress import Progress
@@ -16,6 +17,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, ConfigSelection, ConfigYesNo
 from Components.Harddisk import harddiskmanager
 
+import random
 
 # always use:
 # setResultType(type)
@@ -279,7 +281,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		for sat in nimmanager.getSatListForNim(self.feid):
 			for transponder in nimmanager.getTransponders(sat[0]):
 				#print transponder
-				mytransponder = (transponder[1] / 1000, transponder[2] / 1000, transponder[3], transponder[4], transponder[7], sat[0], transponder[5], transponder[6], transponder[8], transponder[9], transponder[10], transponder[11], transponder[12], transponder[13], transponder[14])
+				mytransponder = (transponder[1] / 1000, transponder[2] / 1000, transponder[3], transponder[4], transponder[7], sat[0], transponder[5], transponder[6], transponder[8], transponder[9], transponder[10], transponder[11])
 				self.analyseTransponder(mytransponder)
 
 	def getIndexForTransponder(self, transponder):
@@ -661,7 +663,7 @@ class DiseqcTesterNimSelection(NimSelection):
 		self.resultclass = DiseqcTesterTestTypeSelection
 
 	def showNim(self, nim):
-		nimConfig = nimmanager.getNimConfig(nim.slot).dvbs
+		nimConfig = nimmanager.getNimConfig(nim.slot)
 		if nim.isCompatible("DVB-S"):
 			if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends", "nothing"):
 				return False

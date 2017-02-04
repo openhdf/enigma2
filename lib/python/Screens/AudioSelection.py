@@ -1,7 +1,7 @@
-from enigma import iPlayableService, eTimer
-
 from Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
+from Screens.InputBox import PinInput
+from Screens.MessageBox import MessageBox
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
@@ -13,8 +13,9 @@ from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
 from Components.SystemInfo import SystemInfo
 from Components.VolumeControl import VolumeControl
+from enigma import iPlayableService, eTimer, eSize
 from Tools.ISO639 import LanguageCodes
-
+from Tools.BoundFunction import boundFunction
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
 
@@ -33,6 +34,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self["switchdescription"] = Label(_("Switch between Audio-, Subtitlepage"))
 		self["summary_description"] = StaticText("")
 
+		self.protectContextMenu = True
 		ConfigListScreen.__init__(self, [])
 		self.infobar = infobar or self.session.infobar
 
@@ -104,7 +106,12 @@ class AudioSelection(Screen, ConfigListScreen):
 			if SystemInfo["CanDownmixAC3"]:
 				self.settings.downmix_ac3 = ConfigOnOff(default=config.av.downmix_ac3.value)
 				self.settings.downmix_ac3.addNotifier(self.changeAC3Downmix, initial_call = False)
-				conflist.append(getConfigListEntry(_("Digital downmix"), self.settings.downmix_ac3, None))
+				conflist.append(getConfigListEntry(_("AC3 downmix"), self.settings.downmix_ac3, None))
+
+			if SystemInfo["CanDownmixDTS"]:
+				self.settings.downmix_dts = ConfigOnOff(default=config.av.downmix_dts.value)
+				self.settings.downmix_dts.addNotifier(self.changeDTSDownmix, initial_call = False)
+				conflist.append(getConfigListEntry(_("DTS downmix"), self.settings.downmix_dts, None))
 
 			if SystemInfo["CanDownmixAAC"]:
 				self.settings.downmix_aac = ConfigOnOff(default=config.av.downmix_aac.value)
@@ -117,7 +124,13 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.transcodeaac.addNotifier(self.setAACTranscode, initial_call = False)
 				conflist.append(getConfigListEntry(_("AAC transcoding"), self.settings.transcodeaac, None))
 
-			if SystemInfo["CanPcmMultichannel"]:
+			if SystemInfo["CanAC3plusTranscode"]:
+				choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("always"))]
+				self.settings.transcodeac3plus = ConfigSelection(choices = choice_list, default = "use_hdmi_caps")
+				self.settings.transcodeac3plus.addNotifier(self.setAC3plusTranscode, initial_call = False)
+				conflist.append(getConfigListEntry(_("AC3plus transcoding"), self.settings.transcodeac3plus, None))
+
+			if SystemInfo["HasMultichannelPCM"]:
 				self.settings.pcm_multichannel = ConfigOnOff(default=config.av.pcm_multichannel.value)
 				self.settings.pcm_multichannel.addNotifier(self.changePCMMultichannel, initial_call = False)
 				conflist.append(getConfigListEntry(_("PCM Multichannel"), self.settings.pcm_multichannel, None))
@@ -174,12 +187,6 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.autovolume = ConfigSelection(choices = choice_list, default = config.av.autovolume.value)
 				self.settings.autovolume.addNotifier(self.changeAutoVolume, initial_call = False)
 				conflist.append(getConfigListEntry(_("Auto Volume Level"), self.settings.autovolume, None))
-
-			if SystemInfo["Canedidchecking"]:
-				choice_list = [("00000001", _("on")), ("00000000", _("off"))]
-				self.settings.bypass_edid_checking = ConfigSelection(choices = choice_list, default = config.av.bypass_edid_checking.value)
-				self.settings.bypass_edid_checking.addNotifier(self.changeEDIDChecking, initial_call = False)
-				conflist.append(getConfigListEntry(_("Bypass HDMI EDID Check"), self.settings.bypass_edid_checking, None))
 
 			from Components.PluginComponent import plugins
 			from Plugins.Plugin import PluginDescriptor
@@ -303,11 +310,6 @@ class AudioSelection(Screen, ConfigListScreen):
 			config.av.autovolume.value = autovolume.value
 		config.av.autovolume.save()
 
-	def changeEDIDChecking(self, edidchecking):
-		if edidchecking.value:
-			config.av.bypass_edid_checking.value = edidchecking.value
-		config.av.bypass_edid_checking.save()
-
 	def changeAC3Downmix(self, downmix):
 		config.av.downmix_ac3.value = downmix.getValue() == True
 		config.av.downmix_ac3.save()
@@ -332,6 +334,17 @@ class AudioSelection(Screen, ConfigListScreen):
 		else:
 			config.av.downmix_aac.setValue(False)
 		config.av.downmix_aac.save()
+
+	def setAC3plusTranscode(self, transcode):
+		config.av.transcodeac3plus.setValue(transcode)
+		config.av.transcodeac3plus.save()
+
+	def changeDTSDownmix(self, downmix):
+		if downmix.value:
+			config.av.downmix_dts.setValue(True)
+		else:
+			config.av.downmix_dts.setValue(False)
+		config.av.downmix_dts.save()
 
 	def setAACTranscode(self, transcode):
 		config.av.transcodeaac.setValue(transcode)
@@ -462,7 +475,17 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.keyRight()
 
 	def openAutoLanguageSetup(self):
-		self.session.open(Setup, "autolanguagesetup")
+		if self.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value:
+			self.session.openWithCallback(self.protectResult, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code"))
+		else:
+			self.protectResult(True)
+
+	def protectResult(self, answer):
+		if answer:
+			self.session.open(Setup, "autolanguagesetup")
+			self.protectContextMenu = False
+		elif answer is not None:
+			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 	def cancel(self):
 		self.close(0)
@@ -512,6 +535,8 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 			menu = [
 				getConfigMenuItem("config.subtitles.pango_subtitles_delay"),
 				getConfigMenuItem("config.subtitles.pango_subtitle_colors"),
+				getConfigMenuItem("config.subtitles.pango_subtitle_fontswitch"),
+				getConfigMenuItem("config.subtitles.colourise_dialogs"),
 				getConfigMenuItem("config.subtitles.subtitle_fontsize"),
 				getConfigMenuItem("config.subtitles.subtitle_position"),
 				getConfigMenuItem("config.subtitles.subtitle_alignment"),
@@ -537,6 +562,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 			"0": self.keyNumber,
 		},-2)
 
+		self.onLayoutFinish.append(self.layoutFinished)
 	def layoutFinished(self):
 		if not self["videofps"].text:
 			self.instance.resize(eSize(self.instance.size().width(), self["config"].l.getItemSize().height()*len(self["config"].getList()) + 10))

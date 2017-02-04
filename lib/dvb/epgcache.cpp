@@ -2159,8 +2159,7 @@ bool freesatEITSubtableStatus::isCompleted()
 	while ( i < 32 )
 	{
 		calc = sectionMap[i] >> 8;
-		if (! calc)
-			return true; // Last segment passed
+		if (! calc) return true; // Last segment passed
 		if (calc ^ ( sectionMap[i] & 0xFF ) ) // Segment not fully found
 			return false;
 		i++;
@@ -2512,6 +2511,8 @@ void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject s
 			case 'X':
 				++argcount;
 				continue;
+			case 'M': // GN return 10 items only
+				continue;
 			default:  // ignore unknown
 				tmp = ePyObject();
 				eDebug("fillTuple unknown '%c'... insert 'None' in result", c);
@@ -2577,6 +2578,7 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 //   X = Return a minimum of one tuple per service in the result list... even when no event was found.
 //       The returned tuple is filled with all available infos... non avail is filled as None
 //       The position and existence of 'X' in the format string has no influence on the result tuple... its completely ignored..
+//   M = see X just 10 items are returned
 // then for each service follows a tuple
 //   first tuple entry is the servicereference (as string... use the ref.toString() function)
 //   the second is the type of query
@@ -2627,6 +2629,9 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 	bool forceReturnOne = strchr(argstring, 'X') ? true : false;
 	if (forceReturnOne)
 		--argcount;
+
+	bool forceReturnTen = strchr(argstring, 'M') ? true : false;
+	int returnTenItemsCount=1;
 
 	if (convertFunc)
 	{
@@ -2763,6 +2768,15 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 				{
 					while ( m_timemap_cursor != m_timemap_end )
 					{
+						if (forceReturnTen)  // GN return only 10 items
+						{
+							if (returnTenItemsCount > 10)
+							{
+								//eDebug("tuple entry no 10 is reached");
+								break;
+							}
+							returnTenItemsCount++;
+						}
 						Event ev((uint8_t*)m_timemap_cursor++->second->get());
 						eServiceEvent evt;
 						evt.parseFrom(&ev, currentQueryTsidOnid);
@@ -3930,7 +3944,7 @@ void eEPGCache::channel_data::log_close ()
 		fclose (log_file);
 }
 
-void eEPGCache::channel_data::log_add (const char *message, ...)
+void eEPGCache::channel_data::log_add (char *message, ...)
 {
 	va_list args;
 	char msg[16*1024];
@@ -4387,9 +4401,8 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 			mhw_channel_name_t *channel = (mhw_channel_name_t*) &data[4 + i*record_size];
 			m_channels[i]=*channel;
 		
-			if (f)
-				fprintf(f,"(%s) %x:%x:%x\n",m_channels[i].name,HILO(m_channels[i].channel_id),
-					HILO(m_channels[i].transport_stream_id),HILO(m_channels[i].network_id));
+			if (f) fprintf(f,"(%s) %x:%x:%x\n",m_channels[i].name,HILO(m_channels[i].channel_id),
+			HILO(m_channels[i].transport_stream_id),HILO(m_channels[i].network_id));
 		}
 		haveData |= MHW;
 
@@ -4537,16 +4550,13 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 	// Now store titles that do not have summaries.
 	for (std::map<uint32_t, mhw_title_t>::iterator itTitle(m_titles.begin()); itTitle != m_titles.end(); itTitle++)
 		storeMHWTitle( itTitle, "", data );
-	log_add("mhw2 EPG download finished");
+		log_add("mhw2 EPG download finished");
 	isRunning &= ~MHW;
 	m_MHWConn=0;
 	if ( m_MHWReader )
 		m_MHWReader->stop();
 	if (haveData)
-	{
 		finishEPG();
-		cache->save();
-	}
 }
 
 void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
@@ -4902,7 +4912,7 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 								std::map<uint32_t, mhw_title_t>::iterator it = m_titles.find( title_id );
 								if ( it != m_titles.end() )
 								{
-									const char *const days[] = {"D", "L", "M", "M", "J", "V", "S", "D"};
+									char *days[] = {"D","L", "M","M", "J", "V", "S", "D"};
 
 									int chid = it->second.channel_id - 1;
 									time_t ndate, edate;
@@ -4973,10 +4983,7 @@ abort:
 	if ( m_MHWReader2 )
 		m_MHWReader2->stop();
 	if (haveData)
-	{
 		finishEPG();
-		cache->save();
-	}
 }
 
 void eEPGCache::channel_data::readMHWData2_old(const uint8_t *data)
@@ -5284,14 +5291,14 @@ void eEPGCache::channel_data::readMHWData2_old(const uint8_t *data)
 					epg_replay_t *epg_replay;
 						epg_replay = (epg_replay_t *) (data+pos+1);
 					int i;
-					for (i=0; i< nb_replays; i++)
-					{
+						for (i=0; i< nb_replays; i++)
+						{
 						epg_replay->replay_time_s=0;
-						replay_time[i] = MjdToEpochTime(epg_replay->replay_mjd) +
-								BcdTimeToSeconds(epg_replay->replay_time);
-						replay_chid[i] = epg_replay->channel_id;
-						epg_replay++;
-					}
+							replay_time[i] = MjdToEpochTime(epg_replay->replay_mjd) +
+									BcdTimeToSeconds(epg_replay->replay_time);
+							replay_chid[i] = epg_replay->channel_id;
+							epg_replay++;
+						}
 
 
 //					eDebug ("summary id %04x : %s\n", summary_id, data+pos+1);
@@ -5308,7 +5315,7 @@ void eEPGCache::channel_data::readMHWData2_old(const uint8_t *data)
 							int n=0;
 							while (n<nb_replays)
 							{
-								char const *const days[] = {"D", "L", "M", "M", "J", "V", "S", "D"};
+								char *days[] = {"D","L", "M","M", "J", "V", "S", "D"};
 
 								time_t ndate, edate;
 								struct tm *next_date;
@@ -5317,12 +5324,12 @@ void eEPGCache::channel_data::readMHWData2_old(const uint8_t *data)
 									+ (((itTitle->second.mhw2_hours&0xf0)>>4)*10+(itTitle->second.mhw2_hours&0x0f)) * 3600 
 									+ (((itTitle->second.mhw2_minutes&0xf0)>>4)*10+(itTitle->second.mhw2_minutes&0x0f)) * 60;
 								next_date = localtime(&ndate);
-								if (ndate > edate)
-								{
-									char nd[200];
-									sprintf (nd," %s %s%02d %02d:%02d",m_channels[replay_chid[n]].name,days[next_date->tm_wday],next_date->tm_mday,next_date->tm_hour, next_date->tm_min);
-									the_text2.append(nd);
-								}
+										if (ndate > edate)
+										{
+										char nd[200];
+													sprintf (nd," %s %s%02d %02d:%02d",m_channels[replay_chid[n]].name,days[next_date->tm_wday],next_date->tm_mday,next_date->tm_hour, next_date->tm_min);
+										the_text2.append(nd);
+										}
 								n++;
 							}
 
