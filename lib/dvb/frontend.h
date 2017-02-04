@@ -16,6 +16,7 @@ class eDVBFrontendParameters: public iDVBFrontendParameters
 		eDVBFrontendParametersATSC atsc;
 	};
 	int m_type;
+	int m_types;
 	int m_flags;
 public:
 	eDVBFrontendParameters();
@@ -24,6 +25,7 @@ public:
 	}
 
 	SWIG_VOID(RESULT) getSystem(int &SWIG_OUTPUT) const;
+	SWIG_VOID(RESULT) getSystems(int &SWIG_OUTPUT) const;
 	SWIG_VOID(RESULT) getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const;
 	SWIG_VOID(RESULT) getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const;
 	SWIG_VOID(RESULT) getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const;
@@ -85,12 +87,17 @@ public:
 		NUM_DATA_ENTRIES
 	};
 	Signal1<void,iDVBFrontend*> m_stateChanged;
+	enum class enumDebugOptions:uint64_t {
+		DISSABLE_ALL_DEBUG_OUTPUTS,	//prevents all debug issues with respect to this object
+		DEBUG_DELIVERY_SYSTEM,
+		NUM_DATA_ENTRIES};
 private:
 	DECLARE_REF(eDVBFrontend);
 	bool m_simulate;
 	bool m_enabled;
 	bool m_fbc;
 	eDVBFrontend *m_simulate_fe; // only used to set frontend type in dvb.cpp
+	int m_type;
 	int m_dvbid;
 	int m_slotid;
 	int m_fd;
@@ -102,7 +109,11 @@ private:
 	int m_dvbversion;
 	bool m_rotor_mode;
 	bool m_need_rotor_workaround;
+	bool m_need_delivery_system_workaround;
+	bool m_multitype;
+	std::map<fe_delivery_system_t, int> m_modelist;
 	std::map<fe_delivery_system_t, bool> m_delsys, m_delsys_whitelist;
+	std::map<fe_delivery_system_t, dvb_frontend_info> m_fe_info;
 	std::string m_filename;
 	char m_description[128];
 	dvb_frontend_info fe_info;
@@ -136,12 +147,15 @@ private:
 	static int PriorityOrder;
 	static int PreferredFrontendIndex;
 
+	uint64_t m_DebugOptions;
+
 public:
 	eDVBFrontend(const char *devidenodename, int fe, int &ok, bool simulate=false, eDVBFrontend *simulate_fe=NULL);
 	virtual ~eDVBFrontend();
 
 	int readInputpower();
-	RESULT getFrontendType(int &type);
+	int getCurrentType(){return m_type;}
+	void overrideType(int type){m_type = type;} //workaraound for dvb api < 5
 	RESULT tune(const iDVBFrontendParameters &where);
 	RESULT prepare_sat(const eDVBFrontendParametersSatellite &, unsigned int timeout);
 	RESULT prepare_cable(const eDVBFrontendParametersCable &);
@@ -174,7 +188,8 @@ public:
 	static void setPreferredFrontend(int index) { PreferredFrontendIndex = index; }
 	static int getPreferredFrontend() { return PreferredFrontendIndex; }
 	bool supportsDeliverySystem(const fe_delivery_system_t &sys, bool obeywhitelist);
-	void setDeliverySystemWhitelist(const std::vector<fe_delivery_system_t> &whitelist);
+	void setDeliverySystemWhitelist(const std::vector<fe_delivery_system_t> &whitelist, bool append=false);
+	bool setDeliverySystem(fe_delivery_system_t delsys);
 
 	void reopenFrontend();
 	int openFrontend();
@@ -182,11 +197,13 @@ public:
 	const char *getDescription() const { return m_description; }
 	bool is_simulate() const { return m_simulate; }
 	const dvb_frontend_info getFrontendInfo() const { return fe_info; }
+	const dvb_frontend_info getFrontendInfo(fe_delivery_system_t delsys)  { return m_fe_info[delsys]; }
 	bool is_FBCTuner() { return m_fbc; }
 	bool getEnabled() { return m_enabled; }
 	void setEnabled(bool enable) { m_enabled = enable; }
 	bool is_multistream();
 	std::string getCapabilities();
+	std::string getCapabilities(fe_delivery_system_t delsys);
 	bool has_prev() { return (m_data[LINKED_PREV_PTR] != -1); }
 	bool has_next() { return (m_data[LINKED_NEXT_PTR] != -1); }
 

@@ -563,6 +563,7 @@ void eTextPara::newLine(int flags)
 		maximum.setHeight(cursor.y());
 	previous=0;
 	totalheight += height;
+	lineCount++;
 }
 
 eTextPara::~eTextPara()
@@ -663,6 +664,7 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 			}
 		}
 		totalheight = height >> 6;
+		lineCount = 1;
 		cursor=ePoint(area.x(), area.y()+(ascender>>6));
 		left=cursor.x();
 	}
@@ -721,9 +723,15 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	FriBidiCharType dir=FRIBIDI_TYPE_ON;
 	uc_visual.resize(size);
 		// gaaanz lahm, aber anders geht das leider nicht, sorry.
-	FriBidiChar array[size], target[size];
+	FriBidiChar *array = new FriBidiChar[size];
+	FriBidiChar *target = new FriBidiChar[size];
 	std::copy(uc_shape.begin(), uc_shape.end(), array);
-	fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
+	if(!fribidi_log2vis(array, size, &dir, target, 0, 0, 0))
+	{
+		delete [] target;
+		delete [] array;
+		return -1;
+	}
 	uc_visual.assign(target, target+size);
 
 	glyphs.reserve(size);
@@ -864,6 +872,8 @@ nprint:				isprintable=0;
 		lineChars.push_back(charCount);
 		charCount=0;
 	}
+	delete [] target;
+	delete [] array;
 	return 0;
 }
 
@@ -1270,6 +1280,7 @@ void eTextPara::clear()
 	}
 	glyphs.clear();
 	totalheight = 0;
+	lineCount = 0;
 }
 
 eAutoInitP0<fontRenderClass> init_fontRenderClass(eAutoInitNumbers::graphic-1, "Font Render Class");
