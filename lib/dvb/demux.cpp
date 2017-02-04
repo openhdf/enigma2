@@ -115,7 +115,7 @@ RESULT eDVBDemux::createPESReader(eMainloop *context, ePtr<iDVBPESReader> &reade
 	return res;
 }
 
-RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder, unsigned int packetsize, bool streaming)
+RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder, int packetsize, bool streaming)
 {
 	if (m_dvr_busy)
 		return -EBUSY;
@@ -597,6 +597,13 @@ void eDVBRecordFileThread::flush()
 	}
 }
 
+eDVBRecordStreamThread::eDVBRecordStreamThread(int packetsize) :
+	eDVBRecordFileThread(packetsize, recordingBufferCount)
+{
+	eDebug("[eDVBRecordStreamThread] allocated %d buffers of %d kB", m_aio.size(), m_buffersize>>10);
+}
+
+
 int eDVBRecordStreamThread::writeData(int len)
 {
 	len = asyncWrite(len);
@@ -870,7 +877,6 @@ RESULT eDVBTSRecorder::startPID(int pid)
 {
 	while(true) {
 		uint16_t p = pid;
-		eDebug("[adenin]add PID %d(0x%04x)", p, p);
 		if (::ioctl(m_source_fd, DMX_ADD_PID, &p) < 0) {
 			perror("DMX_ADD_PID");
 			if (errno == EAGAIN || errno == EINTR) {
@@ -890,7 +896,6 @@ void eDVBTSRecorder::stopPID(int pid)
 	{
 		while(true) {
 			uint16_t p = pid;
-			eDebug("[adenin]rmove PID %d(0x%04x)", p, p);
 			if (::ioctl(m_source_fd, DMX_REMOVE_PID, &p) < 0) {
 				perror("DMX_REMOVE_PID");
 				if (errno == EAGAIN || errno == EINTR) {

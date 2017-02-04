@@ -723,8 +723,7 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 		// gaaanz lahm, aber anders geht das leider nicht, sorry.
 	FriBidiChar array[size], target[size];
 	std::copy(uc_shape.begin(), uc_shape.end(), array);
-	if(!fribidi_log2vis(array, size, &dir, target, 0, 0, 0))
-		return -1;
+	fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
 	uc_visual.assign(target, target+size);
 
 	glyphs.reserve(size);

@@ -1862,15 +1862,11 @@ RESULT eDVBServicePlay::getName(std::string &name)
 		else
 			name = "unknown service";
 		if (name.empty())
-		{
 			name = m_reference.name;
 			if (name.empty())
-			{
 				name = m_reference.path;
 				if (name.empty())
 					name = "(...)";
-			}
-		}
 	}
 	else if (m_dvb_service)
 	{
@@ -1970,14 +1966,9 @@ int eDVBServicePlay::getInfo(int w)
 			return aspect;
 		break;
 	}
-	case sIsCrypted:
-		if (no_program_info)
-			return false;
-		return program.isCrypted();
-	case sIsDedicated3D:
-		if (m_dvb_service)
-			return m_dvb_service->isDedicated3D();
-		return false;
+	case sIsCrypted: if (no_program_info) return false; return program.isCrypted();
+	case sIsDedicated3D: if (m_dvb_service) return m_dvb_service->isDedicated3D(); return false;
+	case sHideVBI: if (m_dvb_service) return m_dvb_service->doHideVBI(); return false;
 	case sVideoPID:
 		if (m_dvb_service)
 		{
@@ -1985,17 +1976,8 @@ int eDVBServicePlay::getInfo(int w)
 			if (vpid != -1)
 				return vpid;
 		}
-		if (no_program_info)
-			return -1;
-		if (program.videoStreams.empty())
-			return -1;
-		return program.videoStreams[0].pid;
-	case sVideoType:
-		if (no_program_info)
-			return -1;
-		if (program.videoStreams.empty())
-			return -1;
-		return program.videoStreams[0].type;
+		if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
+	case sVideoType: if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].type;
 	case sAudioPID:
 		if (m_dvb_service)
 		{
@@ -2012,11 +1994,7 @@ int eDVBServicePlay::getInfo(int w)
 			if (apid != -1)
 				return apid;
 		}
-		if (no_program_info)
-			return -1;
-		if (program.audioStreams.empty())
-			return -1;
-		return program.audioStreams[0].pid;
+		if (no_program_info) return -1; if (program.audioStreams.empty()) return -1; return program.audioStreams[0].pid;
 	case sPCRPID:
 		if (m_dvb_service)
 		{
@@ -2024,25 +2002,14 @@ int eDVBServicePlay::getInfo(int w)
 			if (pcrpid != -1)
 				return pcrpid;
 		}
-		if (no_program_info)
-			return -1;
-		return program.pcrPid;
-	case sPMTPID:
-		if (no_program_info)
-			return -1;
-		return program.pmtPid;
-	case sTXTPID:
-		if (no_program_info)
-			return -1;
-		return program.textPid;
+		if (no_program_info) return -1; return program.pcrPid;
+	case sPMTPID: if (no_program_info) return -1; return program.pmtPid;
+	case sTXTPID: if (no_program_info) return -1; return program.textPid;
 	case sSID: return ((const eServiceReferenceDVB&)m_reference).getServiceID().get();
 	case sONID: return ((const eServiceReferenceDVB&)m_reference).getOriginalNetworkID().get();
 	case sTSID: return ((const eServiceReferenceDVB&)m_reference).getTransportStreamID().get();
 	case sNamespace: return ((const eServiceReferenceDVB&)m_reference).getDVBNamespace().get();
-	case sProvider:
-		if (!m_dvb_service)
-			return -1;
-		return -2;
+	case sProvider: if (!m_dvb_service) return -1; return -2;
 	case sServiceref: return resIsString;
 	case sDVBState: return m_tune_state;
 	default:
@@ -3501,7 +3468,6 @@ void eDVBServicePlay::setAC3Delay(int delay)
 	if (m_decoder)
 	{
 		m_decoder->setAC3Delay(delay + eConfigManager::getConfigIntValue("config.av.generalAC3delay"));
-		eDebug("Setting audio delay: setAC3Delay, %d + %d", delay,eConfigManager::getConfigIntValue("config.av.generalAC3delay"));
 	}
 }
 
@@ -3512,7 +3478,6 @@ void eDVBServicePlay::setPCMDelay(int delay)
 	if (m_decoder)
 	{
 		m_decoder->setPCMDelay(delay + eConfigManager::getConfigIntValue("config.av.generalPCMdelay"));
-		eDebug("Setting audio delay: setPCMDelay, %d + %d", delay,eConfigManager::getConfigIntValue("config.av.generalPCMdelay"));
 	}
 }
 

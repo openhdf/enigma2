@@ -1,6 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
+from Components.config import config
 from Components.Sources.StaticText import StaticText
 from Components.Harddisk import Harddisk
 from Components.NimManager import nimmanager
@@ -8,7 +9,7 @@ from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from enigma import eTimer, getEnigmaVersionString
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
+from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -47,6 +48,7 @@ class About(Screen):
 		AboutText = ""
 		self["lab2"] = StaticText(_("Support @") + " www.hdfreaks.cc")
 		AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
+		#AboutText += _("Boxtype:\t%s\n") % getBoxType()
 
 		if path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString() + "\n"
@@ -60,35 +62,99 @@ class About(Screen):
 			res = ""
 			res2 = ""
 		cpuMHz = ""
+
+		bootloader = ""
+		if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
+			f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
+			bootloader = f.readline().replace('\x00', '').replace('\n', '')
+			f.close()
+		BootLoaderVersion = 0
+		try:
+			if bootloader:
+				AboutText += _("Bootloader:\t%s\n") % (bootloader)
+				BootLoaderVersion = int(bootloader[1:])
+		except:
+			BootLoaderVersion = 0
+
+		if getMachineBuild() in ('vusolo4k'):
+			cpuMHz = "1,5 GHz"
+		elif getMachineBuild() in ('dm900'):
+			cpuMHz = "   (1,7 GHz)"
+		elif getMachineBuild() in ('hd52', 'hd51', 'sf4008'):
+			try:
+				import binascii
+				f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
+				clockfrequency = f.read()
+				f.close()
+				cpuMHz = "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
+			except:
+				cpuMHz = "1,7 GHz"
+		else:
+			if path.exists('/proc/cpuinfo'):
+				f = open('/proc/cpuinfo', 'r')
+				temp = f.readlines()
+				f.close()
+				try:
+					for lines in temp:
+						lisp = lines.split(': ')
+						if lisp[0].startswith('cpu MHz'):
+							#cpuMHz = "   (" +  lisp[1].replace('\n', '') + " MHz)"
+							cpuMHz = "   (" +  str(int(float(lisp[1].replace('\n', '')))) + " MHz)"
+							break
+				except:
+					pass
+
 		bogoMIPS = ""
 		if res:
 			cpuMHz = "" + res.replace("\n", "") + " MHz"
 		if res2:
 			bogoMIPS = "" + res2.replace("\n", "") 
-			
-		AboutText += _("CPU:\t%s") % about.getCPUString() + "\n"
-		AboutText += _("Clock Speed:\t%s") % cpuMHz + "\n"
-		AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
+
+		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900'):
+			AboutText += _("CPU:\t") + "ARMv7 " + " (" + cpuMHz + ")" + "\n"
+		else:
+			AboutText += _("CPU:\t%s") % about.getCPUString() + " (" + cpuMHz + ")" + "\n"
+		dMIPS = 0
+		if getMachineBuild() in ('vusolo4k'):
+			dMIPS = "10.500"
+		elif getMachineBuild() in ('hd52', 'hd51', 'sf4008', 'dm900'):
+			dMIPS = "12.000"
+		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008' , 'dm900'):
+			AboutText += _("DMIPS:\t") + dMIPS + "\n"
+		else:
+			AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
-
-		AboutText += _("HDF Distro:\t%s") % getImageVersion() + "\n"
-		AboutText += _("HDF Build:\t%s") % getImageBuild() + "\n"
-		AboutText += _("Kernel:\t%s") % about.getKernelVersionString() + "\n"
-
+		AboutText += _("HDF Version:\tV%s") % getImageVersion() + " - Build # " + getImageBuild() + "\n"
+		AboutText += _("Kernel (Box):\t%s") % about.getKernelVersionString() + " (" + getBoxType() + ")" + "\n"
+		imagestarted = ""
+		bootname = ''
+		if path.exists('/boot/bootname'):
+			f = open('/boot/bootname', 'r')
+			bootname = f.readline().split('=')[1]
+			f.close()
+	
+		if path.exists('/boot/STARTUP'):
+			f = open('/boot/STARTUP', 'r')
+			f.seek(22)
+			image = f.read(1) 
+			f.close()
+			if bootname: bootname = "   (%s)" %bootname 
+			AboutText += _("Image started:\t%s") % "STARTUP_" + image + bootname + "\n"
+		
 		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
-
-		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n"
-		
 		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
-
+		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + " - Build # " + getImageBuild() + "\n"
+		AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
-
-		AboutText += _("Compiled:\t%s\n") % about.getFlashDateString()
+		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
+		AboutText += _("Network:")
+		for x in about.GetIPsFromNetworkInterfaces():
+			AboutText += "\t" + x[0] + ": " + x[1] + "\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
@@ -267,6 +333,8 @@ class SystemMemoryInfo(Screen):
 			{
 				"cancel": self.close,
 				"ok": self.close,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown,
 			})
 
 		out_lines = file("/proc/meminfo").readlines()

@@ -195,6 +195,15 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.isAutoTimer = isAutoTimer
 		self.wasInStandby = False
 
+		#workaround for vmc crash - only a dummy entry!!!
+		self.justremind = False
+		'''
+		File "/usr/lib/enigma2/python/Plugins/Extensions/VMC/VMC_Classes.py", line 3704, in TimerChange
+		"Filename") and not timer.justplay and not timer.justremind and timer.state == TimerEntry.StateEnded:
+		AttributeError: 'RecordTimerEntry' object has no attribute 'justremind'
+		'''
+		###
+
 		self.log_entries = []
 		self.resetState()
 
@@ -226,6 +235,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.log(0, ("Mount '%s' is not writeable." % dirname))
 			return False
 
+		# ToDo: Develop a check that really works
+		self.log(0, "Skipped free space check, assuming enough free space")
+		return True
+
 		s = os.statvfs(dirname)
 		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
 			self.log(0, "Not enough free space to record")
@@ -246,6 +259,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 #
 		filename = begin_date + " - " + service_name
 		if self.name:
+			if config.recording.filename_composition.value == "event":
+				filename = self.name + ' - ' + begin_date + "_" + service_name
 			if config.recording.filename_composition.value == "veryveryshort":
 				filename = self.name
 			elif config.recording.filename_composition.value == "veryshort":
@@ -888,7 +903,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# show notification. the 'id' will make sure that it will be
 			# displayed only once, even if more timers are failing at the
 			# same time. (which is very likely in case of disk fullness)
-			Notifications.AddPopup(text = _("Write error while recording. Disk full?\n"), type = MessageBox.TYPE_ERROR, timeout = 0, id = "DiskFullMessage")
+			Notifications.AddPopup(text = _("Write error while recording. Disk full?\n"), type = MessageBox.TYPE_ERROR, timeout = 60, id = "DiskFullMessage")
 			# ok, the recording has been stopped. we need to properly note
 			# that in our state, with also keeping the possibility to re-try.
 			# TODO: this has to be done.

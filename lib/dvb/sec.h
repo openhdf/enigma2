@@ -32,8 +32,7 @@ public:
 		TAKEOVER,
 		WAIT_TAKEOVER,
 		RELEASE_TAKEOVER,
-		IF_TUNER_UNLOCKED_GOTO,
-		CHANGE_TUNER_TYPE
+		IF_TUNER_UNLOCKED_GOTO
 	};
 	int cmd;
 	struct rotor
@@ -251,13 +250,13 @@ public:
 
 	int m_slot_mask; // useable by slot ( 1 | 2 | 4...)
 
-	int m_lof_hi,	// for 2 band universal lnb 10600 Mhz (high band offset frequency)
-		m_lof_lo,	// for 2 band universal lnb  9750 Mhz (low band offset frequency)
-		m_lof_threshold;	// for 2 band universal lnb 11750 Mhz (band switch frequency)
+	unsigned int m_lof_hi,	// for 2 band universal lnb 10600 Mhz (high band offset frequency)
+				m_lof_lo,	// for 2 band universal lnb  9750 Mhz (low band offset frequency)
+				m_lof_threshold;	// for 2 band universal lnb 11750 Mhz (band switch frequency)
 
 	bool m_increased_voltage; // use increased voltage ( 14/18V )
 
-	std::multimap<int, eDVBSatelliteSwitchParameters> m_satellites;
+	std::map<int, eDVBSatelliteSwitchParameters> m_satellites;
 	eDVBSatelliteDiseqcParameters m_diseqc_parameters;
 	eDVBSatelliteRotorParameters m_rotor_parameters;
 
@@ -316,7 +315,7 @@ private:
 	static eDVBSatelliteEquipmentControl *instance;
 	eDVBSatelliteLNBParameters m_lnbs[144]; // i think its enough
 	int m_lnbidx; // current index for set parameters
-	std::multimap<int, eDVBSatelliteSwitchParameters>::iterator m_curSat;
+	std::map<int, eDVBSatelliteSwitchParameters>::iterator m_curSat;
 	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends, &m_avail_simulate_frontends;
 	int m_rotorMoving;
 	int m_not_linked_slot_mask;
@@ -331,7 +330,7 @@ public:
 #ifndef SWIG
 	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends, eSmartPtrList<eDVBRegisteredFrontend> &avail_simulate_frontends);
 	RESULT prepare(iDVBFrontend &frontend, const eDVBFrontendParametersSatellite &sat, int &frequency, int frontend_id, unsigned int tunetimeout);
-	RESULT prepareSTelectronicSatCR(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword, int guard_offest);
+	RESULT prepareSTelectronicSatCR(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword, int guard_offset);
 	RESULT prepareRFmagicCSS(iDVBFrontend &frontend, eDVBSatelliteLNBParameters &lnb_param, long band, int ifreq, int &tunerfreq, unsigned int &tuningword, int guard_offset);
 	void prepareTurnOffSatCR(iDVBFrontend &frontend); // used for unicable
 	int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *, int frontend_id, int *highest_score_lnb=0);

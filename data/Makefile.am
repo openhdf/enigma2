@@ -3,6 +3,7 @@ SUBDIRS = fonts extensions keymaps defaults
 dist_pkgdata_DATA = \
 	encoding.conf \
 	keymap.xml \
+	keytranslation.xml \
 	keymap.ntr \
 	keymap.u80 \
 	keymap.xpe \

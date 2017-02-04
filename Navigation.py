@@ -1,5 +1,5 @@
 from os import path
-from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService, eActionMap, setPreferredTuner
+from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
 from Components.SystemInfo import SystemInfo
 from Components.config import config
@@ -58,14 +58,18 @@ class Navigation:
 			self.wakeuptime, self.timertime, self.wakeuptyp, self.getstandby, self.recordtime, self.forcerecord = -1,-1,0,0,-1,0
 		#print ctime(self.wakeuptime), ctime(self.timertime), self.wakeuptyp, self.getstandby, ctime(self.recordtime), self.forcerecord
 		now = time()
-		timediff_wakeup = self.wakeuptime - now
-		timediff_timer = self.timertime - now
+		self.wakeupwindow_plus = self.timertime + 300
+		self.wakeupwindow_minus = self.wakeuptime - (config.workaround.wakeupwindow.value * 60)
 		self.syncCount = 0
 
 		wasTimerWakeup, wasTimerWakeup_failure = getFPWasTimerWakeup(True)
 		#TODO: verify wakeup-state for boxes where only after shutdown removed the wakeup-state (for boxes where "/proc/stb/fp/was_timer_wakeup" is not writable (clearFPWasTimerWakeup() in StbHardware.py has no effect -> after x hours and restart/reboot is wasTimerWakeup = True)
 
 		print "="*100
+		if self.wakeuptime > 0: 
+			print "[NAVIGATION] wakeup time from deep-standby expected: *** %s ***" %(ctime(self.wakeuptime))
+			print "[NAVIGATION] timer wakeup detection window: %s - %s" %(ctime(self.wakeupwindow_minus),ctime(self.wakeupwindow_plus))
+			print "-"*100
 		thisBox = getBoxType()
 		if not config.workaround.deeprecord.value and (wasTimerWakeup_failure or thisBox in ('ixussone', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3') or getBrandOEM() in ('ebox', 'azbox', 'xp', 'ini', 'dags', 'fulan', 'entwopia')):
 			print"[NAVIGATION] FORCED DEEPSTANDBY-WORKAROUND FOR THIS BOXTYPE (%s)" %thisBox
@@ -82,7 +86,7 @@ class Navigation:
 				self.timesynctimer.start(5000, True)
 				print"[NAVIGATION] wait for time sync"
 				print "~"*100
-			elif abs(timediff_wakeup) <= 600 or abs(timediff_timer) <= 600: # if there is a recording sheduled in the next 10 mins or starting before 10 mins, set the wasTimerWakeup flag (wakeup time is 5 min before timer starts, some boxes starts but earlier than is set)
+			elif now >= self.wakeupwindow_minus and now <= self.wakeupwindow_plus: # if there is a recording sheduled, set the wasTimerWakeup flag
 				wasTimerWakeup = True
 				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
 				file = f.write(str(wasTimerWakeup))
@@ -116,11 +120,9 @@ class Navigation:
 
 	def wakeupCheck(self):
 		now = time()
-		timediff_wakeup = self.wakeuptime - now
-		timediff_timer = self.timertime - now
 		stbytimer = 5 # original was 15
 
-		if abs(timediff_wakeup) <= 600 or abs(timediff_timer) <= 600:
+		if now >= self.wakeupwindow_minus and now <= self.wakeupwindow_plus:
 			if self.syncCount > 0:
 				stbytimer = 0
 				if not self.__wasTimerWakeup:
@@ -153,7 +155,7 @@ class Navigation:
 				if not self.forcerecord:
 					print "[NAVIGATION] timer starts at %s" % ctime(self.timertime)
 			#check for standby
-			if not self.getstandby and self.wakeuptyp < 3 and timediff_timer > 60 + stbytimer:
+			if not self.getstandby and self.wakeuptyp < 3 and self.timertime - now > 60 + stbytimer:
 				self.getstandby = 1
 				print "[NAVIGATION] more than 60 seconds to wakeup - go in standby"
 			print "="*100
@@ -211,13 +213,11 @@ class Navigation:
 			self.wakeupCheck()
 
 	def gotopower(self):
-		import Screens.Standby
 		if Screens.Standby.inStandby:
 			print '[NAVIGATION] now entering normal operation'
 			Screens.Standby.inStandby.Power()
 
 	def gotostandby(self):
-		import Screens.Standby
 		if not Screens.Standby.inStandby:
 			from Tools import Notifications
 			print '[NAVIGATION] now entering standby'
@@ -242,6 +242,24 @@ class Navigation:
 			print "ignore request to play already running service(1)"
 			return 1
 		print "playing", ref and ref.toString()
+		if path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '1':
+			try:
+				if '0:0:0:0:0:0:0:0:0' not in ref.toString():
+					signal = 1
+				else:
+					signal = 0
+				f = open("/proc/stb/lcd/symbol_signal", "w")
+				f.write(str(signal))
+				f.close()
+			except:
+				f = open("/proc/stb/lcd/symbol_signal", "w")
+				f.write("0")
+				f.close()
+		elif path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '0':
+			f = open("/proc/stb/lcd/symbol_signal", "w")
+			f.write("0")
+			f.close()
+
 		if ref is None:
 			self.stopService()
 			return 0
@@ -273,32 +291,10 @@ class Navigation:
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
-				setPriorityFrontend = False
-				if SystemInfo["DVB-T_priority_tuner_available"] or SystemInfo["DVB-C_priority_tuner_available"] or SystemInfo["DVB-S_priority_tuner_available"]:
-					str_service = playref.toString()
-					if '%3a//' not in str_service and not str_service.rsplit(":", 1)[1].startswith("/"):
-						type_service = playref.getUnsignedData(4) >> 16
-						if type_service == 0xEEEE:
-							if config.usage.frontend_priority_dvbt.value != "-2":
-								if config.usage.frontend_priority_dvbt.value != config.usage.frontend_priority.value:
-									setPreferredTuner(int(config.usage.frontend_priority_dvbt.value))
-									setPriorityFrontend = True
-						elif type_service == 0xFFFF:
-							if config.usage.frontend_priority_dvbc.value != "-2":
-								if config.usage.frontend_priority_dvbc.value != config.usage.frontend_priority.value:
-									setPreferredTuner(int(config.usage.frontend_priority_dvbc.value))
-									setPriorityFrontend = True
-						else:
-							if config.usage.frontend_priority_dvbs.value != "-2":
-								if config.usage.frontend_priority_dvbs.value != config.usage.frontend_priority.value:
-									setPreferredTuner(int(config.usage.frontend_priority_dvbs.value))
-									setPriorityFrontend = True
 				if self.pnav.playService(playref):
 					print "Failed to start", playref
 					self.currentlyPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
-				if setPriorityFrontend:
-					setPreferredTuner(int(config.usage.frontend_priority.value))
 				return 0
 		elif oldref and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(oldref, adjust):
 			self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
@@ -346,8 +342,37 @@ class Navigation:
 	def getRecordingsTypesOnly(self, type=pNavigation.isAnyRecording):
 		return self.pnav and self.pnav.getRecordingsTypesOnly(type)
 
+	def getRecordingsSlotIDsOnly(self, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordingsSlotIDsOnly(type)
+
 	def getRecordingsServicesAndTypes(self, type=pNavigation.isAnyRecording):
 		return self.pnav and self.pnav.getRecordingsServicesAndTypes(type)
+
+	def getRecordingsServicesAndTypesAndSlotIDs(self, type=pNavigation.isAnyRecording):
+		return self.pnav and self.pnav.getRecordingsServicesAndTypesAndSlotIDs(type)
+
+	def getRecordingsCheckBeforeActivateDeepStandby(self, modifyTimer = True):
+		# only for 'real' recordings
+		now = time()
+		rec = self.RecordTimer.isRecording()
+		next_rec_time = self.RecordTimer.getNextRecordingTime()
+		if rec or (next_rec_time > 0 and (next_rec_time - now) < 360):
+			print '[NAVIGATION] - recording = %s, recording in next minutes = %s, save timeshift = %s' %(rec, next_rec_time - now < 360 and not (config.timeshift.isRecording.value and next_rec_time - now >= 298), config.timeshift.isRecording.value)
+			if not self.RecordTimer.isRecTimerWakeup():# if not timer wake up - enable trigger file for automatical shutdown after recording
+				f = open("/tmp/was_rectimer_wakeup", "w")
+				f.write('1')
+				f.close()
+			if modifyTimer:
+				lastrecordEnd = 0
+				for timer in self.RecordTimer.timer_list:
+					if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
+						if timer.afterEvent < 2:
+							timer.afterEvent = 2
+							print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
+						if timer.end > lastrecordEnd:
+							lastrecordEnd = timer.end + 900
+			rec = True
+		return rec
 
 	def getCurrentService(self):
 		if not self.currentlyPlayingService:
@@ -375,6 +400,3 @@ class Navigation:
 
 	def stopUserServices(self):
 		self.stopService()
-
-	def getClientsStreaming(self):
-		return eStreamServer.getInstance() and eStreamServer.getInstance().getConnectedClients()
