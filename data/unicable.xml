@@ -229,7 +229,7 @@ unicable (version)
 		</manufacturer>
 		<manufacturer name="Fuba">
 			<product name="MCR 212" format="EN50494" positions="1" scr1="1400" scr2="1516"/>
-			<product name="MCR 221" format="EN50607" positions="1" scr1="1280" scr2="1382"/>
+			<product name="MCR 221" format="EN50494" positions="1" scr1="1280" scr2="1382"/>
 			<product name="MCR 441" format="EN50607" positions="1" scr1="1280" scr2="1382" scr3="1484" scr4="1586"/>
 			<product name="MCR 518" format="EN50494" positions="1" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
 			<product name="MCR 918" format="EN50494" positions="2" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
