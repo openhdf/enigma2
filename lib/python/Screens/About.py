@@ -77,7 +77,7 @@ class About(Screen):
 			BootLoaderVersion = 0
 
 		if getMachineBuild() in ('vusolo4k'):
-			cpuMHz = "1,5 GHz"
+			cpuMHz = "   (1,5 GHz)"
 		elif getMachineBuild() in ('dm900'):
 			cpuMHz = "   (1,7 GHz)"
 		elif getMachineBuild() in ('formuler1', 'triplex'):
@@ -113,9 +113,9 @@ class About(Screen):
 			bogoMIPS = "" + res2.replace("\n", "") 
 
 		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900'):
-			AboutText += _("CPU:\t") + "ARMv7 " + " (" + cpuMHz + ")" + "\n"
+			AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
 		else:
-			AboutText += _("CPU:\t%s") % about.getCPUString() + " (" + cpuMHz + ")" + "\n"
+			AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
 		dMIPS = 0
 		if getMachineBuild() in ('vusolo4k'):
 			dMIPS = "10.500"
