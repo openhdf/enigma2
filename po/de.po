@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-02-13 19:14+0100\n"
+"PO-Revision-Date: 2017-02-19 06:27+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1189,6 +1189,18 @@ msgstr "Audio Einstellungen"
 
 msgid "Video settings"
 msgstr "Video Einstellungen"
+
+msgid "Boxmode to control Hardware Chip Modes"
+msgstr "Boxmodus zur Hardware Steuerung"
+
+msgid "Switch Mode to enable HDR Modes or PIP Functions"
+msgstr "Wechselt den Boxmodus zur Aktivierung des HDR Modus oder für PiP Funktionen"
+
+msgid "enable PIP no HDR"
+msgstr "aktiviere PiP ohne HDR"
+
+msgid "12bit 4:2:0/4:2:2 no PIP"
+msgstr "12bit 4:2:0/4:2:2 ohne PIP"
 
 msgid "AA"
 msgstr "AA"
