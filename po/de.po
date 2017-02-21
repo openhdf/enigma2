@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-02-19 06:27+0100\n"
+"PO-Revision-Date: 2017-02-21 05:17+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -8419,6 +8419,12 @@ msgstr "LCD Skin"
 
 msgid "Show blinking rec symbol on Display during recording"
 msgstr "Blinkendes REC-Symbol im Display bei Aufnahmen"
+
+msgid "Blinking REC Symbol"
+msgstr "Blinkendes REC-Zeichen"
+
+msgid "REC Symbol"
+msgstr "REC-Zeichen"
 
 msgid "Show blinking Clock in Standby on Display during recording"
 msgstr "Zeige im Standby blinkende Uhr im Display bei Aufnahmen"
