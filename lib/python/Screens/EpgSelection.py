@@ -990,9 +990,13 @@ class EPGSelection(Screen, HelpableScreen):
 			return
 		eventid = event.getEventId()
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
+		eventBegin = event.getBeginTime()
+		eventDuration = event.getDuration()
+		x = self.session.nav.RecordTimer.isInTimer(eventid, eventBegin, eventDuration, refstr)
 		title = None
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+			#if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+			if ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr and (timer.eit == eventid or (x and x[1] in (2,7,12))):
 				if timer.isRunning():
 					cb_func1 = lambda ret: self.removeTimer(timer)
 					cb_func2 = lambda ret: self.editTimer(timer)
@@ -1250,9 +1254,13 @@ class EPGSelection(Screen, HelpableScreen):
 		serviceref = cur[1]
 		eventid = event.getEventId()
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
+		eventBegin = event.getBeginTime()
+		eventDuration = event.getDuration()
+		x = self.session.nav.RecordTimer.isInTimer(eventid, eventBegin, eventDuration, refstr)
 		isRecordEvent = False
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+			#if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+			if ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr and (timer.eit == eventid or (x and x[1] in (2,7,12))):
 				isRecordEvent = True
 				break
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
