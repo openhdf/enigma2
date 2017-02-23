@@ -195,49 +195,6 @@ void eDVBFrontendParametersTerrestrial::set(const TerrestrialDeliverySystemDescr
 		guard_interval, hierarchy, modulation);
 }
 
-void eDVBFrontendParametersTerrestrial::set(const T2DeliverySystemDescriptor &descriptor)
-{
-	switch (descriptor.getBandwidth())
-	{
-		case 0: bandwidth = 8000000; break;
-		case 1: bandwidth = 7000000; break;
-		case 2: bandwidth = 6000000; break;
-		case 3: bandwidth = 5000000; break;
-		case 4: bandwidth = 1712000; break;
-		case 5: bandwidth = 10000000; break;
-		default: bandwidth = 0; break;
-	}
-	switch (descriptor.getTransmissionMode())
-	{
-		case 0: transmission_mode = TransmissionMode_2k; break;
-		case 1: transmission_mode = TransmissionMode_8k; break;
-		case 2: transmission_mode = TransmissionMode_4k; break;
-		case 3: transmission_mode = TransmissionMode_1k; break;
-		case 4: transmission_mode = TransmissionMode_16k; break;
-		case 5: transmission_mode = TransmissionMode_32k; break;
-		default: transmission_mode = TransmissionMode_Auto; break;
-	}
-	switch (descriptor.getGuardInterval())
-	{
-		case 0: guard_interval = GuardInterval_1_32; break;
-		case 1: guard_interval = GuardInterval_1_16; break;
-		case 2: guard_interval = GuardInterval_1_8; break;
-		case 3: guard_interval = GuardInterval_1_4; break;
-		case 4: guard_interval = GuardInterval_1_128; break;
-		case 5: guard_interval = GuardInterval_19_128; break;
-		case 6: guard_interval = GuardInterval_19_256; break;
-		case 7: guard_interval = GuardInterval_Auto; break;
-	}
-	plpid = descriptor.getPlpId();
-	code_rate_HP = code_rate_LP = FEC_Auto;
-	hierarchy = Hierarchy_Auto;
-	modulation = Modulation_Auto;
-	inversion = Inversion_Unknown;
-	system = System_DVB_T2;
-	eDebug("[eDVBFrontendParametersTerrestrial] T2 bw %d, tm_mode %d, guard %d, plp_id %d",
-		bandwidth, transmission_mode, guard_interval, plpid);
-}
-
 eDVBFrontendParameters::eDVBFrontendParameters()
 	:m_type(-1), m_flags(0)
 {
@@ -786,6 +743,10 @@ void eDVBFrontend::feEvent(int w)
 {
 	eDVBFrontend *sec_fe = this;
 	long tmp = m_data[LINKED_PREV_PTR];
+#if HAVE_AMLOGIC
+			if (w < 0)
+				return;
+#endif
 	while (tmp != -1)
 	{
 		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)tmp;
@@ -797,6 +758,28 @@ void eDVBFrontend::feEvent(int w)
 		dvb_frontend_event event;
 		int res;
 		int state;
+#if HAVE_AMLOGIC
+		if((res = ::ioctl(m_fd, FE_READ_STATUS, &event.status)) != 0)
+		{
+			break;
+		}
+
+		else
+		{
+			if(event.status == 0)
+			{
+				break;
+			}
+		}
+		usleep(10000);
+		if (event.status & FE_HAS_LOCK)
+		{
+			state = stateLock;
+			/* FIXME: gg this because FE_READ_STATUS always returns */
+			if(m_state == state)
+				break; /* I do not see any other way out */
+		}
+#else
 		res = ::ioctl(m_fd, FE_GET_EVENT, &event);
 
 		if (res && (errno == EAGAIN))
@@ -810,6 +793,7 @@ void eDVBFrontend::feEvent(int w)
 		{
 			state = stateLock;
 		}
+#endif
 		else
 		{
 			if (m_tuning) {
@@ -1039,6 +1023,8 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		) // VU+
 	{
 		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1244) + 2.5079) * 100);
+		if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6222)"))
+			sat_max = 1490;
 	}
 	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")) // VU+ Solo2
 	{
@@ -1158,7 +1144,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	else if (!strcmp(m_description, "Si21662")) // SF4008 S2
 	{
 		ret = (int)(snr / 46.8);
-		sat_max = 1620;
+		sat_max = 1400;
 	}
 	else if (!strcmp(m_description, "Si21682")) // SF4008 T/T2/C
 	{
@@ -1256,20 +1242,25 @@ int eDVBFrontend::readFrontendData(int type)
 					{
 						for(unsigned int i=0; i<prop[0].u.st.len; i++)
 						{
-							if (prop[0].u.st.stat[i].scale == FE_SCALE_DECIBEL)
+							if (prop[0].u.st.stat[i].scale == FE_SCALE_DECIBEL &&
+								type == iFrontendInformation_ENUMS::signalQualitydB)
+							{
 								signalqualitydb = prop[0].u.st.stat[i].svalue / 10;
-							else if (prop[0].u.st.stat[i].scale == FE_SCALE_RELATIVE)
+								return signalqualitydb;
+							}
+							else if (prop[0].u.st.stat[i].scale == FE_SCALE_RELATIVE &&
+								type == iFrontendInformation_ENUMS::signalQuality)
+							{
 								signalquality = prop[0].u.st.stat[i].svalue;
+								return signalquality;
+							}
 						}
 					}
 				}
 #endif
 				// fallback to old DVB API
-				if(!signalquality && !signalqualitydb || strstr(m_description, "Sundtek"))
-				{
-					int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
-					calculateSignalQuality(snr, signalquality, signalqualitydb);
-				}
+				int snr = readFrontendData(iFrontendInformation_ENUMS::snrValue);
+				calculateSignalQuality(snr, signalquality, signalqualitydb);
 
 				if (type == iFrontendInformation_ENUMS::signalQuality)
 				{
