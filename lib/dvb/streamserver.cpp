@@ -238,6 +238,13 @@ void eStreamClient::notifier(int what)
 	request.clear();
 }
 
+void eStreamClient::tuneFailed()
+{
+	ePtr<eStreamClient> ref = this;
+	rsn->stop();
+	parent->connectionLost(this);
+}
+
 void eStreamClient::stopStream()
 {
 	ePtr<eStreamClient> ref = this;
@@ -258,13 +265,6 @@ std::string eStreamClient::getServiceref()
 bool eStreamClient::isUsingEncoder()
 {
 	return m_useencoder;
-}
-
-void eStreamClient::tuneFailed()
-{
-	ePtr<eStreamClient> ref = this;
-	rsn->stop();
-	parent->connectionLost(this);
 }
 
 DEFINE_REF(eStreamServer);
