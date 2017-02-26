@@ -238,13 +238,6 @@ void eStreamClient::notifier(int what)
 	request.clear();
 }
 
-void eStreamClient::tuneFailed()
-{
-	ePtr<eStreamClient> ref = this;
-	rsn->stop();
-	parent->connectionLost(this);
-}
-
 void eStreamClient::stopStream()
 {
 	ePtr<eStreamClient> ref = this;
