@@ -6304,6 +6304,7 @@ print bcolors.OKGREEN + "~~~~ read box informations ~~~~~~~~~" + bcolors.ENDC
 print bcolors.OKBLUE + "MachineName =", getMachineName() + bcolors.ENDC
 print bcolors.OKBLUE + "MachineBrand =", getMachineBrand() + bcolors.ENDC
 print bcolors.OKBLUE + "BoxType =", getBoxType() + bcolors.ENDC
+print bcolors.OKBLUE + "getMachineBuild =", getMachineBuild() + bcolors.ENDC
 print bcolors.OKBLUE + "ChipString =", about.getChipSetString() + bcolors.ENDC
 print bcolors.OKBLUE + "OEM =", getBrandOEM() + bcolors.ENDC
 print bcolors.OKBLUE + "Driverdate =", getDriverDate() + bcolors.ENDC
@@ -6317,6 +6318,7 @@ try:
 	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
 	os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getMachineBuild = " + getMachineBuild() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getChipSetString = " + about.getChipSetString() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getBrandOEM = " + getBrandOEM() + " >> /etc/enigma2/boxinformations")
