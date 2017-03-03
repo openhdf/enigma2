@@ -102,6 +102,7 @@ private:
 	int m_dvbversion;
 	bool m_rotor_mode;
 	bool m_need_rotor_workaround;
+	bool use_dvbapi5_statistics;
 	std::map<fe_delivery_system_t, bool> m_delsys, m_delsys_whitelist;
 	std::string m_filename;
 	char m_description[128];
