@@ -13,7 +13,7 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN
 
 import xml.etree.cElementTree
 
-from Screens.Setup import Setup, getSetupTitle
+from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
 
 mainmenu = _("Main menu")
 
@@ -178,6 +178,8 @@ class Menu(Screen, ProtectedScreen):
 			elif x.tag == 'setup':
 				id = x.get("id")
 				if item_text == "":
+					if getSetupTitleLevel(id) > config.usage.setup_level.index:
+						return
 					item_text = _(getSetupTitle(id))
 				else:
 					item_text = _(item_text)
@@ -188,7 +190,6 @@ class Menu(Screen, ProtectedScreen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
-
 		list = []
 
 		menuID = None
@@ -201,8 +202,10 @@ class Menu(Screen, ProtectedScreen):
 					self.addItem(list, x)
 					count += 1
 			elif x.tag == 'menu':
-				self.addMenu(list, x)
-				count += 1
+				item_level = int(x.get("level", 0))
+				if item_level <= config.usage.setup_level.index:
+					self.addMenu(list, x)
+					count += 1
 			elif x.tag == "id":
 				menuID = x.get("val")
 				count = 0
@@ -238,6 +241,8 @@ class Menu(Screen, ProtectedScreen):
 		if menuID is not None:
 			self.skinName.append("menu_" + menuID)
 		self.skinName.append("Menu")
+		self.menuID = menuID
+		ProtectedScreen.__init__(self)
 
 		# Sort by Weight
 		if config.usage.sort_menus.value:
@@ -300,6 +305,16 @@ class Menu(Screen, ProtectedScreen):
 	def createSummary(self):
 		return MenuSummary
 
+	def isProtected(self):
+		if config.ParentalControl.setuppinactive.value:
+			if config.ParentalControl.config_sections.main_menu.value:
+				return self.menuID == "mainmenu"
+			elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
+				return True
+			elif config.ParentalControl.config_sections.timer_menu.value and self.menuID == "timermenu":
+				return True
+			elif config.ParentalControl.config_sections.standby_menu.value and self.menuID == "shutdown":
+				return True
 class MainMenu(Menu):
 	#add file load functions for the xml-file
 
