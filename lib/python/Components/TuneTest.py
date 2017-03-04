@@ -5,7 +5,8 @@ class Tuner:
 		self.frontend = frontend
 		self.ignore_rotor = ignore_rotor
 
-	# transponder = (0:frequency 1:symbolrate 2:polarisation 3:fec 4:inversion 5:orbpos 6:system 7:modulation 8:rolloff 9:pilot 10:is_id 11:pls_mode 12:pls_code 13:tsid 14:onid)
+	# transponder = (frequency, symbolrate, polarisation, fec, inversion, orbpos, system, modulation, rolloff, pilot, tsid, onid)
+	#                    0         1             2         3       4         5       6        7          8       9      10    11
 	def tune(self, transponder):
 		if self.frontend:
 			print "[TuneTest] tuning to transponder with data", transponder
@@ -20,12 +21,12 @@ class Tuner:
 			parm.modulation = transponder[7]
 			parm.rolloff = transponder[8]
 			parm.pilot = transponder[9]
-			if len(transponder) > 10:
+			if len(transponder) > 12:
 				parm.is_id = transponder[10]
 				parm.pls_mode = transponder[11]
 				parm.pls_code = transponder[12]
 			else:
-				parm.is_id = 0 #-1
+				parm.is_id = -1
 				parm.pls_mode = 0
 				parm.pls_code = 1
 			self.tuneSatObj(parm)
@@ -40,9 +41,9 @@ class Tuner:
 	def tuneTerr(self, frequency,
 		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
 		modulation = 2, transmission = 2, guard = 4,
-		hierarchy = 4, system = 0, plp_id = 0):
+		hierarchy = 4, system = 0, plpid = 0):
 		if self.frontend:
-			print "[TuneTest] tuning to transponder with data", [frequency, inversion, bandwidth, fechigh, feclow, modulation, transmission, guard, hierarchy, system, plp_id]
+			print "[TuneTest] tuning to transponder with data", [frequency, inversion, bandwidth, fechigh, feclow, modulation, transmission, guard, hierarchy, system, plpid]
 			parm = eDVBFrontendParametersTerrestrial()
 			parm.frequency = frequency
 			parm.inversion = inversion
@@ -54,7 +55,7 @@ class Tuner:
 			parm.guard_interval = guard
 			parm.hierarchy = hierarchy
 			parm.system = system
-			parm.plp_id = plp_id
+			parm.plpid = plpid
 			self.tuneTerrObj(parm)
 
 	def tuneTerrObj(self, transponderObj):
@@ -182,8 +183,8 @@ class TuneTest:
 				pidsFailed = False
 				if self.checkPIDs:
 					if self.currTuned is not None:
-						if self.tsid != self.currTuned[13] or self.onid != self.currTuned[14]:
-							self.failedTune.append([self.currTuned, self.oldTuned, "pids_failed", {"real": (self.tsid, self.onid), "expected": (self.currTuned[13], self.currTuned[14])}, dict])  # last parameter is the frontend status
+						if self.tsid != self.currTuned[10] or self.onid != self.currTuned[11]:
+							self.failedTune.append([self.currTuned, self.oldTuned, "pids_failed", {"real": (self.tsid, self.onid), "expected": (self.currTuned[10], self.currTuned[11])}, dict])  # last parameter is the frontend status
 							pidsFailed = True
 						else:
 							self.successfullyTune.append([self.currTuned, self.oldTuned, dict])  # 3rd parameter is the frontend status
@@ -220,7 +221,7 @@ class TuneTest:
 			# check for tsid != -1 and onid != -1
 			print "index:", index
 			print "len(self.transponderlist):", len(self.transponderlist)
-			while index < len(self.transponderlist) and (self.transponderlist[index][13] == -1 or self.transponderlist[index][14] == -1):
+			while index < len(self.transponderlist) and (self.transponderlist[index][10] == -1 or self.transponderlist[index][11] == -1):
 				index += 1
 		print "FirstTransponder final index:", index
 		return index
@@ -233,7 +234,7 @@ class TuneTest:
 			# check for tsid != -1 and onid != -1
 			print "index:", index
 			print "len(self.transponderlist):", len(self.transponderlist)
-			while index < len(self.transponderlist) and (self.transponderlist[index][13] == -1 or self.transponderlist[index][14] == -1):
+			while index < len(self.transponderlist) and (self.transponderlist[index][10] == -1 or self.transponderlist[index][11] == -1):
 				index += 1
 
 		print "next transponder index:", index
@@ -283,7 +284,8 @@ class TuneTest:
 		self.progressCallback((self.getProgressLength(), self.tuningtransponder, self.STATUS_START, self.currTuned))
 		self.timer.start(100, True)
 
-	# transponder = (0:frequency 1:symbolrate 2:polarisation 3:fec 4:inversion 5:orbpos 6:system 7:modulation 8:rolloff 9:pilot 10:is_id 11:pls_mode 12:pls_code 13:tsid 14:onid)
+	# transponder = (frequency, symbolrate, polarisation, fec, inversion, orbpos, <system>, <modulation>, <rolloff>, <pilot>, <tsid>, <onid>)
+	#                    0         1             2         3       4         5       6        7              8         9        10       11
 	def addTransponder(self, transponder):
 		self.transponderlist.append(transponder)
 
