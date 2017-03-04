@@ -26,5 +26,8 @@ dist_pkgdata_DATA = \
 	otv_06400000_00a9_0003.dict \
 	hd-testcard.mvi \
 	distro-logo.png \
-	distro-lcd-logo.png
+	distro-lcd-logo.png \
+	iso-639-3.pck
 
+iso-639-3.pck: $(srcdir)/iso-639-3.tab
+	python $(srcdir)/convert-iso-639-3.py $< $@
