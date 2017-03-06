@@ -4,8 +4,10 @@
 #include <vector>
 
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
+#include <dvbsi++/s2_satellite_delivery_system_descriptor.h>
 #include <dvbsi++/cable_delivery_system_descriptor.h>
 #include <dvbsi++/terrestrial_delivery_system_descriptor.h>
+#include <dvbsi++/t2_delivery_system_descriptor.h>
 
 #include <lib/python/swig.h>
 #include <lib/dvb/idvb.h>
@@ -19,6 +21,7 @@ struct eDVBFrontendParametersSatellite
 {
 #ifndef SWIG
 	void set(const SatelliteDeliverySystemDescriptor  &);
+	void set(const S2SatelliteDeliverySystemDescriptor  &);
 #endif
 	enum {
 		Polarisation_Horizontal, Polarisation_Vertical, Polarisation_CircularLeft, Polarisation_CircularRight
@@ -49,10 +52,17 @@ struct eDVBFrontendParametersSatellite
 	enum {
 		Pilot_Off, Pilot_On, Pilot_Unknown
 	};
+	enum {
+		Band_Unknown, Band_C, Band_Ka, Band_Ku
+	};
+	enum {
+		PLS_Root, PLS_Gold, PLS_Combo, PLS_Unknown
+	};
 
 	bool no_rotor_command_on_tune;
 	int frequency, symbol_rate;
-	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot;
+	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot, is_id, pls_mode, pls_code;
+	int plp_id;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersSatellite);
 
@@ -90,6 +100,7 @@ struct eDVBFrontendParametersTerrestrial
 {
 #ifndef SWIG
 	void set(const TerrestrialDeliverySystemDescriptor  &);
+	void set(const T2DeliverySystemDescriptor &);
 #endif
 	enum {
 		Bandwidth_8MHz, Bandwidth_7MHz, Bandwidth_6MHz, Bandwidth_Auto, Bandwidth_5MHz, Bandwidth_1_712MHz, Bandwidth_10MHz
@@ -137,7 +148,7 @@ struct eDVBFrontendParametersTerrestrial
 	int hierarchy;
 	int inversion;
 	int system;
-	int plpid;
+	int plp_id;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersTerrestrial);
 
@@ -203,6 +214,10 @@ public:
 	int getRolloff() const;
 	int getPilot() const;
 	int getSystem() const;
+	int getSystems() const;
+	int getIsId() const;
+	int getPLSMode() const;
+	int getPLSCode() const;
 	int getBandwidth() const;
 	int getCodeRateLp() const;
 	int getCodeRateHp() const;
@@ -235,6 +250,10 @@ public:
 	int getRolloff() const;
 	int getPilot() const;
 	int getSystem() const;
+	int getSystems() const;
+	int getIsId() const;
+	int getPLSMode() const;
+	int getPLSCode() const;
 };
 
 class eDVBCableTransponderData : public eDVBTransponderData
@@ -253,6 +272,7 @@ public:
 	int getFecInner() const;
 	int getModulation() const;
 	int getSystem() const;
+	int getSystems() const;
 };
 
 class eDVBTerrestrialTransponderData : public eDVBTransponderData
@@ -276,6 +296,7 @@ public:
 	int getHierarchyInformation() const;
 	int getPlpId() const;
 	int getSystem() const;
+	int getSystems() const;
 };
 
 class eDVBATSCTransponderData : public eDVBTransponderData
@@ -292,6 +313,7 @@ public:
 	int getFrequency() const;
 	int getModulation() const;
 	int getSystem() const;
+	int getSystems() const;
 };
 
 class eDVBFrontendData : public iDVBFrontendData
