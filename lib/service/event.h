@@ -10,6 +10,7 @@ class Event;
 
 #include <lib/base/object.h>
 #include <lib/service/iservice.h>
+#include <lib/dvb/atsc.h>
 
 SWIG_IGNORE(eComponentData);
 struct eComponentData
@@ -81,12 +82,15 @@ class eServiceEvent: public iObject
 	time_t m_begin;
 	int m_duration;
 	int m_event_id;
-	std::string m_event_name, m_short_description, m_extended_description;
+	std::string m_event_name, m_short_description, m_extended_description, m_extra_event_data, m_epg_source;
 	static std::string m_language, m_language_alternative;
 	// .. additional info
 public:
+	eServiceEvent();
 #ifndef SWIG
 	RESULT parseFrom(Event *evt, int tsidonid=0);
+	RESULT parseFrom(ATSCEvent *evt);
+	RESULT parseFrom(const ExtendedTextTableSection *sct);
 	RESULT parseFrom(const std::string& filename, int tsidonid=0);
 	static void setEPGLanguage(const std::string& language) { m_language = language; }
 	static void setEPGLanguageAlternative(const std::string& language) { m_language_alternative = language; }
@@ -97,6 +101,8 @@ public:
 	std::string getEventName() const { return m_event_name; }
 	std::string getShortDescription() const { return m_short_description; }
 	std::string getExtendedDescription() const { return m_extended_description; }
+	std::string getExtraEventData() const { return m_extra_event_data; }
+	std::string getEPGSource() const { return m_epg_source; }
 	std::string getBeginTimeString() const;
 	SWIG_VOID(RESULT) getComponentData(ePtr<eComponentData> &SWIG_OUTPUT, int tagnum) const;
 	PyObject *getComponentData() const;

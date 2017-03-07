@@ -389,7 +389,6 @@ public:
 		sLiveStreamDemuxId,
 		sBuffer,
 		sIsDedicated3D,
-		sHideVBI,
 
 		sUser = 0x100
 	};
@@ -426,6 +425,7 @@ public:
 	virtual ePtr<iServiceInfoContainer> getInfoObject(int w);
 	virtual ePtr<iDVBTransponderData> getTransponderData();
 	virtual void getAITApplications(std::map<int, std::string> &aitlist) {};
+	virtual PyObject *getHbbTVApplications() {};
 	virtual void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids);
 	virtual long long getFileSize();
 
@@ -948,7 +948,7 @@ public:
 	virtual RESULT start()=0;
 	virtual RESULT stop()=0;
 			/* might have to be changed... */
-	virtual RESULT setTarget(int target)=0;
+	virtual RESULT setTarget(int target, bool noaudio = false)=0;
 	virtual SWIG_VOID(RESULT) seek(ePtr<iSeekableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) pause(ePtr<iPauseableService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) info(ePtr<iServiceInformation> &SWIG_OUTPUT)=0;

@@ -61,8 +61,8 @@ struct eListboxStyle
 	ePtr<gPixmap> m_background, m_selection;
 	int m_transparent_background;
 	gRGB m_background_color, m_background_color_selected,
-	 m_foreground_color, m_foreground_color_selected, m_border_color;
-	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set;
+	 m_foreground_color, m_foreground_color_selected, m_border_color, m_sliderborder_color, m_sliderforeground_color;
+	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set, m_sliderforeground_color_set, m_sliderborder_color_set, m_scrollbarsliderborder_size_set;
 		/*
 			{m_transparent_background m_background_color_set m_background}
 			{0 0 0} use global background color
@@ -81,9 +81,10 @@ struct eListboxStyle
 		alignBottom=alignRight,
 		alignBlock
 	};
-	int m_valign, m_halign, m_border_size;
-	ePtr<gFont> m_font;
+	int m_valign, m_halign, m_border_size, m_sliderborder_size, m_scrollbarsliderborder_size;
+	ePtr<gFont> m_font, m_secondfont;
 	ePoint m_text_offset;
+	bool m_use_vti_workaround;
 };
 #endif
 
@@ -144,12 +145,23 @@ public:
 	void setBorderWidth(int size);
 	void setBackgroundPicture(ePtr<gPixmap> &pixmap);
 	void setSelectionPicture(ePtr<gPixmap> &pixmap);
+
 	void setSliderPicture(ePtr<gPixmap> &pm);
 	void setScrollbarBackgroundPicture(ePtr<gPixmap> &pm);
+	void setScrollbarSliderPicture(ePtr<gPixmap> &pm);
+	void setScrollbarSliderBorderWidth(int size);
+	void setScrollbarWidth(int size);
+
 	void setFont(gFont *font);
+	void setSecondFont(gFont *font);
 	void setVAlign(int align);
 	void setHAlign(int align);
 	void setTextOffset(const ePoint &textoffset);
+	void setUseVTIWorkaround(void);
+
+	void setSliderBorderColor(const gRGB &col);
+	void setSliderBorderWidth(int size);
+	void setSliderForegroundColor(gRGB &col);
 
 #ifndef SWIG
 	struct eListboxStyle *getLocalStyle(void);
@@ -174,6 +186,7 @@ private:
 	bool m_content_changed;
 	bool m_enabled_wrap_around;
 
+	int m_scrollbar_width;
 	int m_top, m_selected;
 	int m_itemheight;
 	int m_items_per_page;
@@ -182,6 +195,7 @@ private:
 	eSlider *m_scrollbar;
 	eListboxStyle m_style;
 	ePtr<gPixmap> m_scrollbarpixmap, m_scrollbarbackgroundpixmap;
+	ePtr<gPixmap> m_scrollbarsliderpixmap;
 #endif
 };
 
