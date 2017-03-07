@@ -55,13 +55,9 @@ public:
 		celServiceNumber,
 		celMarkerPixmap,
 		celFolderPixmap,
-		celPiconPixmap,
-		celRecordServicePixmap,
 		celServiceEventProgressbar,
 		celServiceName,
-		celServiceTime,
 		celServiceInfo, // "now" event
-		celNextEventInfo,
 		celServiceTypePixmap,
 		celElements
 	};
@@ -74,8 +70,6 @@ public:
 		picServiceGroup,
 		picFolder,
 		picMarker,
-		picPicon,
-		picRecordService,
 		picServiceEventProgressbar,
 		picCrypto,
 		picRecord,
@@ -126,10 +120,6 @@ public:
 		serviceRecorded,
 		servicePseudoRecorded,
 		serviceStreamed,
-		serviceRecordingColor,
-		serviceAdvertismentColor,
-		serviceDescriptionColor,
-		serviceDescriptionColorSelected,
 		colorElements
 	};
 

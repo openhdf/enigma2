@@ -54,11 +54,7 @@ public:
 	 * the actual type it returns. */
 	unsigned int getPtrString() const
 	{
-#if defined(__aarch64__)
-		return (unsigned long)ptr;
-#else
 		return (unsigned int)ptr;
-#endif
 	}
 #ifndef SWIG
 	T* grabRef() { if (!ptr) return 0; ptr->AddRef(); return ptr; }

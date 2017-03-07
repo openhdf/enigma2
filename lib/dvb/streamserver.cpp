@@ -13,7 +13,6 @@
 #include <lib/base/wrappers.h>
 #include <lib/base/nconfig.h>
 #include <lib/base/cfile.h>
-#include <lib/base/e2avahi.h>
 
 #include <lib/dvb/streamserver.h>
 #include <lib/dvb/encoder.h>
@@ -239,14 +238,7 @@ void eStreamClient::notifier(int what)
 	request.clear();
 }
 
-void eStreamClient::streamStopped()
-{
-	ePtr<eStreamClient> ref = this;
-	rsn->stop();
-	parent->connectionLost(this);
-}
-
-void eStreamClient::tuneFailed()
+void eStreamClient::stopStream()
 {
 	ePtr<eStreamClient> ref = this;
 	rsn->stop();
@@ -276,7 +268,6 @@ eStreamServer::eStreamServer()
  : eServerSocket(8001, eApp)
 {
 	m_instance = this;
-	e2avahi_announce(NULL, "_e2stream._tcp", 8001);
 }
 
 eStreamServer::~eStreamServer()
@@ -306,6 +297,28 @@ void eStreamServer::connectionLost(eStreamClient *client)
 	{
 		clients.erase(it);
 	}
+}
+
+void eStreamServer::stopStream()
+{
+	eSmartPtrList<eStreamClient>::iterator it = clients.begin();
+	if (it != clients.end())
+	{
+		it->stopStream();
+	}
+}
+
+bool eStreamServer::stopStreamClient(const std::string remotehost, const std::string serviceref)
+{
+	for (eSmartPtrList<eStreamClient>::iterator it = clients.begin(); it != clients.end(); ++it)
+	{
+		if(it->getRemoteHost() == remotehost && it->getServiceref() == serviceref)
+		{
+			it->stopStream();
+			return true;
+		}
+	}
+	return false;
 }
 
 PyObject *eStreamServer::getConnectedClients()

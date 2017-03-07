@@ -33,7 +33,7 @@ def AddNotificationWithIDCallback(fnc, id, screen, *args, **kwargs):
 
 def RemovePopup(id):
 	# remove similiar notifications
-	print "RemovePopup, id =", id
+	#print "RemovePopup, id =", id
 	for x in notifications:
 		if x[4] and x[4] == id:
 			print "(found in notifications)"

@@ -569,6 +569,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.__state = self.STATE_SHOWN
 		self.__locked = 0
 
+		self.DimmingTimer = eTimer()
+		self.DimmingTimer.callback.append(self.doDimming)
 		self.hideTimer = eTimer()
 		self.hideTimer.callback.append(self.doTimerHide)
 		self.hideTimer.start(5000, True)
@@ -725,12 +727,12 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def doShow(self):
 		self.show()
+		self.hideTimer.stop()
+		self.DimmingTimer.stop()
 		self.startHideTimer()
 
 	def doTimerHide(self):
 		self.hideTimer.stop()
-		self.DimmingTimer = eTimer()
-		self.DimmingTimer.callback.append(self.doDimming)
 		self.DimmingTimer.start(300, True)
 		self.dimmed = config.usage.show_infobar_dimming_speed.value
 
@@ -6271,10 +6273,40 @@ class InfoBarSleepTimer:
 				print "[InfoBarSleepTimer] goto deep standby"
 				quitMainloop(1)
 
+#########################################################################################
+# for displayed power or record timer messages in foreground and for callback execution #
+#########################################################################################
+class InfoBarOpenOnTopHelper:
+	def __init__(self):
+		pass
+
+	def openInfoBarMessage(self, message, messageboxtyp, timeout=-1):
+		try:
+			self.session.open(MessageBox, message, messageboxtyp, timeout=timeout)
+		except Exception, e:
+			print "[InfoBarOpenMessage] Exception:", e
+
+	def openInfoBarMessageWithCallback(self, callback, message, messageboxtyp, timeout=-1, default=True):
+		try:
+			self.session.openWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+		except Exception, e:
+			print "[openInfoBarMessageWithCallback] Exception:", e
+
+	def openInfoBarSession(self, session, option=None):
+		try:
+			if option is None:
+				self.session.open(session)
+			else:
+				self.session.open(session, option)
+		except Exception, e:
+			print "[openInfoBarSession] Exception:", e
+#########################################################################################
+
 print bcolors.OKGREEN + "~~~~ read box informations ~~~~~~~~~" + bcolors.ENDC
 print bcolors.OKBLUE + "MachineName =", getMachineName() + bcolors.ENDC
 print bcolors.OKBLUE + "MachineBrand =", getMachineBrand() + bcolors.ENDC
 print bcolors.OKBLUE + "BoxType =", getBoxType() + bcolors.ENDC
+print bcolors.OKBLUE + "getMachineBuild =", getMachineBuild() + bcolors.ENDC
 print bcolors.OKBLUE + "ChipString =", about.getChipSetString() + bcolors.ENDC
 print bcolors.OKBLUE + "OEM =", getBrandOEM() + bcolors.ENDC
 print bcolors.OKBLUE + "Driverdate =", getDriverDate() + bcolors.ENDC
@@ -6288,6 +6320,7 @@ try:
 	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
 	os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getMachineBuild = " + getMachineBuild() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getChipSetString = " + about.getChipSetString() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getBrandOEM = " + getBrandOEM() + " >> /etc/enigma2/boxinformations")
