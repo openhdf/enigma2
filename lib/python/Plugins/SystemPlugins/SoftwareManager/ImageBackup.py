@@ -22,7 +22,7 @@ import commands
 import datetime
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
-VERSION = "Version 5.5 borrowed from openATV"
+VERSION = "Version 6.0"
 HaveGZkernel = True
 if getMachineBuild() in ("vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008"):
 	HaveGZkernel = False
