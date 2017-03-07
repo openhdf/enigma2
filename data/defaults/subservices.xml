@@ -3,6 +3,10 @@
 
 	<channelgroup name="Sky Sport HD" notActiveShowName="Momentan kein Programm" displayPattern="title:time:len=75">
 		<channel>
+			<name>Sport News HD</name>
+			<ref>1:0:19:6C:C:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
 			<name>Sky Sport HD 1</name>
 			<ref>1:0:19:81:6:85:C00000:0:0:0:</ref>
 		</channel>
@@ -32,11 +36,11 @@
 		</channel>
 		<channel>
 			<name>Sky Sport HD 8</name>
-			<ref>1:0:19:13E:8:85:C00000:0:0:0:</ref>
+			<ref>1:0:19:13E:E:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Sport HD 9</name>
-			<ref>1:0:19:148:9:85:C00000:0:0:0:</ref>
+			<ref>1:0:19:148:E:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Sport HD 10</name>
@@ -47,23 +51,19 @@
 			<ref>1:0:19:102:E:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
-			<name>Sky HD Fanzone</name>
-			<ref>1:0:19:66:A:85:C00000:0:0:0:</ref>
-		</channel>
-		<channel>
-			<name>Sky Sport News HD</name>
-			<ref>1:0:19:6C:C:85:C00000:0:0:0:</ref>
+			<name>Sky Sport Austria HD</name>
+			<ref>1:0:19:8F:9:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
 	
 	<channelgroup name="Sky Bundesliga SD" notActiveShowName="Momentan kein Programm" displayPattern="title:time:len=75">
 		<channel>
 			<name>Sky Bundesliga 1</name>
-			<ref>1:0:1:DF:4:85:C00000:0:0:0:</ref>
+			<ref>1:0:16:DF:4:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Bundesliga 2</name>
-			<ref>1:0:D3:106:2:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:106:3:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Bundesliga 3</name>
@@ -83,23 +83,19 @@
 		</channel>
 		<channel>
 			<name>Sky Bundesliga 7</name>
-			<ref>1:0:D3:138:11:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:138:2:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Bundesliga 8</name>
-			<ref>1:0:D3:142:11:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:142:2:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Bundesliga 9</name>
-			<ref>1:0:D3:14C:11:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:14C:2:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Bundesliga 10</name>
-			<ref>1:0:D3:FC:2:85:C00000:0:0:0:</ref>
-		</channel>
-		<channel>
-			<name>Sky HD Fanzone</name>
-			<ref>1:0:19:66:A:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:FC:3:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
 	
@@ -130,11 +126,11 @@
 		</channel>
 		<channel>
 			<name>Sky Bundesliga HD 7</name>
-			<ref>1:0:19:13D:8:85:C00000:0:0:0:</ref>
+			<ref>1:0:19:13D:E:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Bundesliga HD 8</name>
-			<ref>1:0:19:147:9:85:C00000:0:0:0:</ref>
+			<ref>1:0:19:147:E:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Bundesliga HD 9</name>
@@ -142,15 +138,7 @@
 		</channel>
 		<channel>
 			<name>Sky Bundesliga HD 10</name>
-			<ref>1:0:19:102:E:85:C00000:0:0:0:</ref>
-		</channel>
-		<channel>
-			<name>Sky HD Fanzone</name>
-			<ref>1:0:19:66:A:85:C00000:0:0:0:</ref>
-		</channel>
-		<channel>
-			<name>Sky Sport News HD</name>
-			<ref>1:0:19:6C:C:85:C00000:0:0:0:</ref>
+			<ref>1:0:19:101:E:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
 
@@ -161,9 +149,13 @@
 		</channel>
 		<channel>
 			<name>Eurosport 2 HD</name>
-			<ref>1:0:19:6D:E:85:C00000:0:0:0:</ref>
+			<ref>1:0:19:6D:9:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
+			<name>Eurosport</name>
+			<ref>1:0:1:79E0:443:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>		
 			<name>Eurosport 360 HD 01</name>
 			<ref>1:0:19:10E:6:85:C00000:0:0:0:</ref>
 		</channel>
@@ -185,11 +177,11 @@
 		</channel>
 		<channel>
 			<name>Eurosport 360 HD 06</name>
-			<ref>1:0:19:140:8:85:C00000:0:0:0:</ref>
+			<ref>1:0:19:140:E:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Eurosport 360 HD 07</name>
-			<ref>1:0:19:14A:9:85:C00000:0:0:0:</ref>
+			<ref>1:0:19:14A:E:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Eurosport 360 HD 08</name>
@@ -204,27 +196,11 @@
 	<channelgroup name="Sport1 US HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
 		<channel>
 			<name>Sport 1 US HD</name>
-			<ref>none</ref>
+			<ref>1:0:19:77:A:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
-			<name>Sport 1 US HD 01</name>
-			<ref>none</ref>
-		</channel>
-		<channel>
-			<name>Sport 1 US HD 02</name>
-			<ref>none</ref>
-		</channel>
-		<channel>
-			<name>Sport 1 US HD 03</name>
-			<ref>none</ref>
-		</channel>
-		<channel>
-			<name>Sport 1 US HD 04</name>
-			<ref>none</ref>
-		</channel>
-		<channel>
-			<name>Sport 1 US HD 05</name>
-			<ref>none</ref>
+			<name>Sport 1 US HD1</name>
+			<ref>1:0:19:135:A:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
 	
@@ -246,15 +222,19 @@
 	<channelgroup name="Sky Select" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
 		<channel>
 			<name>Sky Select</name>
-			<ref>1:0:1:12:4:85:C00000:0:0:0:</ref>
+			<ref>1:0:16:12:4:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Select HD</name>
+			<ref>1:0:19:78:E:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Select 1</name>
-			<ref>1:0:D3:FB:2:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:FB:3:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Select 2</name>
-			<ref>1:0:D3:105:2:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:105:3:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Select 3</name>
@@ -274,46 +254,42 @@
 		</channel>
 		<channel>
 			<name>Sky Select 7</name>
-			<ref>1:0:D3:137:11:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:137:2:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Select 8</name>
-			<ref>1:0:D3:141:11:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:141:2:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Select 9</name>
-			<ref>1:0:D3:14B:11:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:14B:2:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Select Event A</name>
-			<ref>1:0:D3:FE:2:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:FE:3:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Select Event B</name>
-			<ref>1:0:D3:14E:11:85:C00000:0:0:0:</ref>
-		</channel>
-		<channel>
-			<name>Sky Select HD</name>
-			<ref>1:0:19:78:E:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:14E:2:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
 	
-	<channelgroup name="Blue Movie" notActiveShowName="Momentan kein Programm" displayPattern="title:time:len=75">
+	<channelgroup name="Blue Movie" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
 		<channel>
 			<name>Blue Movie</name>
-			<ref>1:0:1:201:4:85:C00000:0:0:0:</ref>
+			<ref>1:0:16:201:4:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Blue Movie 1</name>
-			<ref>1:0:1:159:1:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:159:2:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Blue Movie 2</name>
-			<ref>1:0:1:163:1:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:163:2:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Blue Movie 3</name>
-			<ref>1:0:1:16D:1:85:C00000:0:0:0:</ref>
+			<ref>1:0:1:16D:2:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Blue Movie HD</name>
@@ -321,7 +297,7 @@
 		</channel>
 	</channelgroup>
 	
-	<channelgroup name="HD+ Channel" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=60">
+	<channelgroup name="HD+ Channel" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
 		<channel>
 			<name>Sat1 HD</name>
 			<ref>1:0:19:EF74:3F9:1:C00000:0:0:0:</ref>
@@ -382,20 +358,44 @@
 			<name>DELUXE MUSIC HD</name>
 			<ref>1:0:19:157F:41F:1:C00000:0:0:0:</ref>
 		</channel>
-	</channelgroup>	
+		<channel>
+			<name>MTV HD</name>
+			<ref>1:0:19:2777:409:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>RTL Nitro HD</name>
+			<ref>1:0:19:2EAF:411:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>SAT.1 Gold HD</name>
+			<ref>1:0:19:30D4:413:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>ProSieben MAXX HD</name>
+			<ref>1:0:19:EF78:3F9:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>TLC HD</name>
+			<ref>1:0:19:2774:409:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Disney Channel HD</name>
+			<ref>1:0:19:157C:41F:1:C00000:0:0:0:</ref>
+		</channel>
+		</channelgroup>	
 
-	<channelgroup name="Sky Sport" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=60">
+	<channelgroup name="Sky Sport" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
 		<channel>
 			<name>Sky Sport 1</name>
-			<ref>1:0:1:DD:4:85:C00000:0:0:0:</ref>
+			<ref>1:0:16:DD:4:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Sport 2</name>
-			<ref>1:0:1:DE:4:85:C00000:0:0:0:</ref>
+			<ref>1:0:16:DE:4:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Sport 3</name>
-			<ref>1:0:D3:107:2:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:107:3:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Sport 4</name>
@@ -415,19 +415,19 @@
 		</channel>
 		<channel>
 			<name>Sky Sport 8</name>
-			<ref>1:0:D3:139:11:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:139:2:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Sport 9</name>
-			<ref>1:0:D3:143:11:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:143:2:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Sport 10</name>
-			<ref>1:0:D3:14D:11:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:14D:2:85:C00000:0:0:0:</ref>
 		</channel>
 		<channel>
 			<name>Sky Sport 11</name>
-			<ref>1:0:D3:FD:2:85:C00000:0:0:0:</ref>
+			<ref>1:0:D3:FD:3:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
 

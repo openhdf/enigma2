@@ -258,9 +258,6 @@ class eDBoxLCD:
 	def setLCDContrast(self, value):
 		print "[eDBoxLCD] set contrast to %d" % value
 
-	def setLED(self, value):
-		print "[eDBoxLCD] set led button to %d" % value
-
 	def setInverted(self, value):
 		print "[eDBoxLCD] set inverted to %d" % value
 

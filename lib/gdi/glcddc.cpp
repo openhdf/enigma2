@@ -8,16 +8,12 @@ gLCDDC *gLCDDC::instance;
 
 gLCDDC::gLCDDC()
 {
-#ifndef NO_LCD
 	lcd = new eFbLCD();
 	if (!lcd->detected())
 	{
 		delete lcd;
 		lcd = new eDBoxLCD();
 	}
-#else
-		lcd = new eDBoxLCD();
-#endif
 	instance = this;
 
 	update = 1;

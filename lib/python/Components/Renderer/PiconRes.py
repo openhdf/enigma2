@@ -85,6 +85,10 @@ def getPiconName(serviceName):
 			fields[2] = '1'
 		if len(fields) > 0 and fields[0] == '4097':	#fallback to 1 for IPTV streams
 			fields[0] = '1'
+		if len(fields) > 0 and fields[0] == '5001': #fallback to 1 for IPTV streams
+			fields[0] = '1'
+		if len(fields) > 0 and fields[0] == '5002': #fallback to 1 for IPTV streams
+			fields[0] = '1'
 		pngname = findPicon('_'.join(fields))
 	return pngname
 

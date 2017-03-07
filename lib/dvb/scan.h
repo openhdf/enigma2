@@ -10,7 +10,6 @@
 #include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb/db.h>
-#include <lib/dvb/atsc.h>
 
 struct service
 {
@@ -46,7 +45,7 @@ class eDVBScan: public Object, public iObject
 
 	RESULT startFilter();
 	enum { readyPAT=1, readySDT=2, readyNIT=4, readyBAT=8,
-	       validPAT=16, validSDT=32, validNIT=64, validBAT=128, validVCT=256};
+	       validPAT=16, validSDT=32, validNIT=64, validBAT=128};
 
 		/* scan state variables */
 	int m_channel_state;
@@ -73,14 +72,12 @@ class eDVBScan: public Object, public iObject
 	ePtr<eTable<BouquetAssociationSection> > m_BAT;
 	ePtr<eTable<ProgramAssociationSection> > m_PAT;
 	ePtr<eTable<ProgramMapSection> > m_PMT;
-	ePtr<eTable<VirtualChannelTableSection> > m_VCT;
 
 	void SDTready(int err);
 	void NITready(int err);
 	void BATready(int err);
 	void PATready(int err);
 	void PMTready(int err);
-	void VCTready(int err);
 
 	void addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParameters *feparm);
 	void addChannelToScan(iDVBFrontendParameters *feparm);
@@ -91,7 +88,6 @@ class eDVBScan: public Object, public iObject
 
 	Signal1<void,int> m_event;
 	RESULT processSDT(eDVBNamespace dvbnamespace, const ServiceDescriptionSection &sdt);
-	RESULT processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTableSection &vct, int onid);
 
 	int m_flags;
 	int m_networkid;

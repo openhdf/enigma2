@@ -42,7 +42,6 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/eerror.h>
 #include <lib/base/etpm.h>
 #include <lib/base/message.h>
-#include <lib/base/e2avahi.h>
 #include <lib/driver/rc.h>
 #include <lib/driver/rcinput_swig.h>
 #include <lib/service/event.h>
@@ -161,7 +160,6 @@ typedef long time_t;
 %include <lib/service/event.h>
 %include <lib/service/iservice.h>
 %include <lib/service/service.h>
-%include <lib/base/e2avahi.h>
 
 // TODO: embed these...
 %immutable ePicLoad::PictureData;
@@ -410,16 +408,6 @@ int getUsedEncoderCount()
 	eEncoder *encoders = eEncoder::getInstance();
 	if (encoders) return encoders->getUsedEncoderCount();
 	return 0;
-}
-%}
-
-int getLinkedSlotID(int);
-%{
-int getLinkedSlotID(int fe)
-{
-        eFBCTunerManager *mgr = eFBCTunerManager::getInstance();
-        if (mgr) return mgr->getLinkedSlotID(fe);
-        return -1;
 }
 %}
 

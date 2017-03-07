@@ -64,7 +64,7 @@ class Network:
 	def getAddrInet(self, iface, callback):
 		if not self.Console:
 			self.Console = Console()
-		cmd = "ip -o addr show dev " + iface
+		cmd = "busybox ip -o addr show dev " + iface + " | grep -v inet6"
 		self.Console.ePopen(cmd, self.IPaddrFinished, [iface,callback])
 
 	def IPaddrFinished(self, result, retval, extra_args):
@@ -281,11 +281,11 @@ class Network:
 				self.wlan_interfaces.append(iface)
 		else:
 			if iface not in self.lan_interfaces:
-				if getBoxType() == "et10000" and iface == "eth1":
+				if iface == "eth1":
 					name = _("VLAN connection")
 				else:	
 					name = _("LAN connection")	
-				if len(self.lan_interfaces) and not getBoxType() == "et10000" and not iface == "eth1":
+				if len(self.lan_interfaces) and not iface == "eth1":
 					name += " " + str(len(self.lan_interfaces)+1)
 				self.lan_interfaces.append(iface)
 		return name
@@ -297,14 +297,34 @@ class Network:
 		moduledir = self.getWlanModuleDir(iface)
 		if moduledir:
 			name = os.path.basename(os.path.realpath(moduledir))
-			if name in ('ath_pci','ath5k'):
+			if name.startswith('ath') or name.startswith('carl'):
 				name = 'Atheros'
-			elif name in ('rt73','rt73usb','rt3070sta'):
+			elif name.startswith('rt2') or name.startswith('rt3') or name.startswith('rt5') or name.startswith('rt6') or name.startswith('rt7'):
 				name = 'Ralink'
-			elif name == 'zd1211b':
+			elif name.startswith('zd'):
 				name = 'Zydas'
-			elif name == 'r871x_usb_drv':
+			elif name.startswith('rtl') or name.startswith('r8'):
 				name = 'Realtek'
+			elif name.startswith('smsc'):
+				name = 'SMSC'
+			elif name.startswith('peg'):
+				name = 'Pegasus'
+			elif name.startswith('rn'):
+				name = 'RNDIS'
+			elif name.startswith('mw') or name.startswith('libertas'):
+				name = 'Marvel'
+			elif name.startswith('p5'):
+				name = 'Prism'
+			elif name.startswith('as') or name.startswith('ax'):
+				name = 'ASIX'
+			elif name.startswith('dm'):
+				name = 'Davicom'
+			elif name.startswith('mcs'):
+				name = 'MosChip'
+			elif name.startswith('at'):
+				name = 'Atmel'
+			elif name.startswith('iwm'):
+				name = 'Intel'				
 		else:
 			name = _('Unknown')
 

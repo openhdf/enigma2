@@ -6,7 +6,7 @@
 
 DEFINE_REF(eRawFile);
 
-eRawFile::eRawFile(unsigned int packetsize)
+eRawFile::eRawFile(int packetsize)
 	: iTsSource(packetsize)
 	, m_lock()
 	, m_fd(-1)

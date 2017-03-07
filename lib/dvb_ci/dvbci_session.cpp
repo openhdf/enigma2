@@ -14,7 +14,7 @@ ePtr<eDVBCISession> eDVBCISession::sessions[SLMS];
 
 int eDVBCISession::buildLengthField(unsigned char *pkt, int len)
 {
-	if (len < 127)
+	if (len < 128)
 	{
 		*pkt++=len;
 		return 1;
@@ -229,7 +229,7 @@ void eDVBCISession::receiveData(eDVBCISlot *slot, const unsigned char *ptr, size
 
 	for(unsigned int i=0;i<len;i++)
 		eDebugNoNewLine("%02x ",ptr[i]);
-	eDebugEOL();
+	eDebugNoNewLineEnd("");
 
 	llen = parseLengthField(pkt, hlen);
 	pkt += llen;

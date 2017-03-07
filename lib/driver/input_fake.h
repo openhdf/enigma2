@@ -3,10 +3,6 @@
 
 #include <linux/input.h>
 
-#if !defined(KEY_VMODE)
-#define KEY_VMODE        0x1a2
-#endif
-
 
 #if !defined(KEY_OK)
 

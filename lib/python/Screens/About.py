@@ -77,9 +77,11 @@ class About(Screen):
 			BootLoaderVersion = 0
 
 		if getMachineBuild() in ('vusolo4k'):
-			cpuMHz = "1,5 GHz"
+			cpuMHz = "   (1,5 GHz)"
 		elif getMachineBuild() in ('dm900'):
 			cpuMHz = "   (1,7 GHz)"
+		elif getMachineBuild() in ('formuler1', 'triplex'):
+			cpuMHz = "   (1,3 GHz)"
 		elif getMachineBuild() in ('hd52', 'hd51', 'sf4008'):
 			try:
 				import binascii
@@ -111,9 +113,9 @@ class About(Screen):
 			bogoMIPS = "" + res2.replace("\n", "") 
 
 		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900'):
-			AboutText += _("CPU:\t") + "ARMv7 " + " (" + cpuMHz + ")" + "\n"
+			AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
 		else:
-			AboutText += _("CPU:\t%s") % about.getCPUString() + " (" + cpuMHz + ")" + "\n"
+			AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
 		dMIPS = 0
 		if getMachineBuild() in ('vusolo4k'):
 			dMIPS = "10.500"
@@ -176,6 +178,14 @@ class About(Screen):
 			f = open('/proc/stb/sensors/temp/value', 'r')
 			tempinfo = f.read()
 			f.close()
+		elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
+			if getBoxType() in ('mutant51', 'ax51'):
+				tempinfo = ""
+			else:
+				f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
+				tempinfo = f.read()
+				tempinfo = tempinfo[:-4]
+				f.close()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
 			AboutText += _("System Temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"

@@ -22,24 +22,24 @@
 
 <!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="180,180" size="720,576" font="FdLcD;60" halign="right" valign="bottom" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="180,180" size="400,240" font="FdLcD;60" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
 
 <!-- main-->
-	<screen name="InfoBarSummary" position="0,0" size="720,576" flags="wfNoBorder">
-		<ePixmap pixmap="/usr/share/enigma2/display/analog_lcd.png" position="center,center" size="720,576" zPosition="0" />
-	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="720,576" hColor="white" linewidth="8" zPosition="4" alphatest="on">
+	<screen name="InfoBarSummary" position="0,0" size="400,240">
+		<ePixmap pixmap="/usr/share/enigma2/display/analog_lcd.png" position="center,center" size="400,240" zPosition="0" />
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="90,30" size="400,240" hColor="white" linewidth="8" zPosition="4" alphatest="on">
 		<convert type="OMaclock">Hours</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="720,576" mColor="white" linewidth="8" zPosition="3" alphatest="on">
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="90,30" size="400,240" mColor="white" linewidth="8" zPosition="3" alphatest="on">
 		<convert type="OMaclock">Minutes</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="720,576" sColor="grey" linewidth="2" zPosition="2" alphatest="on">
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="90,30" size="400,240" sColor="grey" linewidth="2" zPosition="2" alphatest="on">
 		<convert type="OMaclock">Seconds</convert>
 	</widget>
-	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/analog_lcd_rec.png" position="0,0" size="720,576" zPosition="1" transparent="1" alphatest="on" >
+	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/analog_lcd_rec.png" position="0,0" size="400,240" zPosition="1" transparent="1" alphatest="on" >
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 	</screen> 
@@ -81,7 +81,7 @@
 	</screen>
 
 <!-- channelselection-->
-	<screen name="ChannelSelection_summary" position="0,0" size="720,576">
+	<screen name="ChannelSelection_summary" position="0,0" size="400,240">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,65" font="FdLcD;50" halign="center" foregroundColor="#FFFF00" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -128,18 +128,18 @@
 	</screen>
 
 <!-- standby -->
-	<screen name="StandbySummary" position="0,0" size="720,576" flags="wfNoBorder">
-		<ePixmap pixmap="/usr/share/enigma2/display/analog_lcd.png" position="center,center" size="720,576" zPosition="0" />
-	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="720,576" hColor="black" linewidth="9" zPosition="4" alphatest="on">
+	<screen name="StandbySummary" position="0,0" size="400,240" flags="wfNoBorder">
+		<ePixmap pixmap="/usr/share/enigma2/display/analog_lcd.png" position="center,center" size="400,240" zPosition="0" />
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="90,30" size="400,240" hColor="white" linewidth="8" zPosition="4" alphatest="on">
 		<convert type="OMaclock">Hours</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="720,576" mColor="black" linewidth="8" zPosition="3" alphatest="on">
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="90,30" size="400,240" mColor="white" linewidth="8" zPosition="3" alphatest="on">
 		<convert type="OMaclock">Minutes</convert>
 	</widget>
-	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="720,576" sColor="black" linewidth="5" zPosition="2" alphatest="on">
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="90,30" size="400,240" sColor="grey" linewidth="2" zPosition="2" alphatest="on">
 		<convert type="OMaclock">Seconds</convert>
 	</widget>
-	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/analog_lcd_rec.png" position="0,0" size="720,576" zPosition="1" transparent="1" alphatest="on" >
+	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/analog_lcd_rec.png" position="0,0" size="400,240" zPosition="1" transparent="1" alphatest="on" >
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 	</screen>         
@@ -152,7 +152,7 @@
 	</screen>
 
 <!-- JobView Summary -->
-	<screen name="JobView_summary" position="0,0" size="720,576">
+	<screen name="JobView_summary" position="0,0" size="400,240">
 		<widget source="parent.summary_job_name" render="Label" position="0,38" size="400,26" font="FdLcD;24" halign="left" noWrap="1" />
 		<widget source="parent.summary_job_task" render="Label" position="0,66" size="400,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="60,12" borderWidth="1" zPosition="1" />
@@ -162,12 +162,12 @@
 		<panel name="SummaryIconsPanel" />
 	</screen>
 
-	<screen name="EventView_summary" position="0,0" size="720,576">
+	<screen name="EventView_summary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;20" halign="left" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,22" size="400,140" font="FdLcD;24" />
 	</screen>
 
-	<screen name="EventViewSimple_summary" position="0,0" size="720,576">
+	<screen name="EventViewSimple_summary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;20" halign="left" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,22" size="400,140" font="FdLcD;24" />
 	</screen>

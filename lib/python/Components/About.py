@@ -59,28 +59,33 @@ def getChipSetString():
 			return "unavailable"
 
 def getCPUString():
-	try:
-		system="unknown"
-		file = open('/proc/cpuinfo', 'r')
-		lines = file.readlines()
-		for x in lines:
-			splitted = x.split(': ')
-			if len(splitted) > 1:
-				splitted[1] = splitted[1].replace('\n','')
-				if splitted[0].startswith("system type"):
-					system = splitted[1].split(' ')[0]
-				elif splitted[0].startswith("Processor"):
-					system = splitted[1].split(' ')[0]
-		file.close()
-		return system
-	except IOError:
-		return "unavailable"
+	if getMachineBuild() in ('vuuno4k', 'vuultimo4k','vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'gb7252', 'dags7252', 'vs1500'):
+		return "Broadcom"
+	else:
+		try:
+			system="unknown"
+			file = open('/proc/cpuinfo', 'r')
+			lines = file.readlines()
+			for x in lines:
+				splitted = x.split(': ')
+				if len(splitted) > 1:
+					splitted[1] = splitted[1].replace('\n','')
+					if splitted[0].startswith("system type"):
+						system = splitted[1].split(' ')[0]
+					elif splitted[0].startswith("Processor"):
+						system = splitted[1].split(' ')[0]
+			file.close()
+			return system
+		except IOError:
+			return "unavailable"
 
 def getCPUSpeedString():
 	if getMachineBuild() in ('vusolo4k'):
 		return "1,5 GHz"
 	elif getMachineBuild() in ('vuuno4k','vuultimo4k','dm900'):
 		return "1,7 GHz"
+	elif getMachineBuild() in ('formuler1', 'triplex'):
+		return "1,3 GHz"
 	elif getMachineBuild() in ('hd51','hd52','sf4008'):
 		try:
 			import binascii

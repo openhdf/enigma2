@@ -6,9 +6,7 @@
 #include <signal.h>
 #include <sys/sysinfo.h>
 #include <sys/mman.h>
-#ifdef HAVE_AMLOGIC
-#include <lib/dvb/amldecoder.h>
-#endif
+
 //#define SHOW_WRITE_TIME
 static int determineBufferCount()
 {
@@ -46,9 +44,6 @@ eDVBDemux::eDVBDemux(int adapter, int demux):
 	adapter(adapter),
 	demux(demux),
 	source(-1),
-#ifdef HAVE_AMLOGIC
-	m_pvr_fd(-1),
-#endif
 	m_dvr_busy(0)
 {
 }
@@ -71,12 +66,7 @@ int eDVBDemux::openDVR(int flags)
 #else
 	char filename[32];
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/dvr%d", adapter, demux);
-#if HAVE_AMLOGIC
-	m_pvr_fd =  ::open(filename, flags);
-	return m_pvr_fd;
-#else
 	return ::open(filename, flags);
-#endif
 #endif
 }
 
@@ -89,16 +79,7 @@ RESULT eDVBDemux::setSourceFrontend(int fenum)
 	int n = DMX_SOURCE_FRONT0 + fenum;
 	int res = ::ioctl(fd, DMX_SET_SOURCE, &n);
 	if (res)
-	{
 		eDebug("DMX_SET_SOURCE failed! - %m");
-#if HAVE_AMLOGIC
-		/** FIXME: gg begin dirty hack  */
-		eDebug("Ignoring due to limitation to one frontend for each adapter and missing ioctl....");
-		source = fenum;
-		res = 0;
-		/** FIXME: gg end dirty hack  */
-#endif
-	}
 	else
 		source = fenum;
 	::close(fd);
@@ -134,7 +115,7 @@ RESULT eDVBDemux::createPESReader(eMainloop *context, ePtr<iDVBPESReader> &reade
 	return res;
 }
 
-RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder, unsigned int packetsize, bool streaming)
+RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder, int packetsize, bool streaming)
 {
 	if (m_dvr_busy)
 		return -EBUSY;
@@ -144,11 +125,7 @@ RESULT eDVBDemux::createTSRecorder(ePtr<iDVBTSRecorder> &recorder, unsigned int 
 
 RESULT eDVBDemux::getMPEGDecoder(ePtr<iTSMPEGDecoder> &decoder, int index)
 {
-#ifdef HAVE_AMLOGIC
-	decoder = new eAMLTSMPEGDecoder(this, index);
-#else
 	decoder = new eTSMPEGDecoder(this, index);
-#endif
 	return 0;
 }
 
@@ -900,7 +877,6 @@ RESULT eDVBTSRecorder::startPID(int pid)
 {
 	while(true) {
 		uint16_t p = pid;
-		eDebug("[adenin]add PID %d(0x%04x)", p, p);
 		if (::ioctl(m_source_fd, DMX_ADD_PID, &p) < 0) {
 			perror("DMX_ADD_PID");
 			if (errno == EAGAIN || errno == EINTR) {
@@ -920,7 +896,6 @@ void eDVBTSRecorder::stopPID(int pid)
 	{
 		while(true) {
 			uint16_t p = pid;
-			eDebug("[adenin]rmove PID %d(0x%04x)", p, p);
 			if (::ioctl(m_source_fd, DMX_REMOVE_PID, &p) < 0) {
 				perror("DMX_REMOVE_PID");
 				if (errno == EAGAIN || errno == EINTR) {
