@@ -14,7 +14,6 @@ from Components.TimerSanityCheck import TimerSanityCheck
 import Components.RecordingConfig
 from Screens.MessageBox import MessageBox
 import Screens.Standby
-import Screens.InfoBar
 from Tools import Directories, Notifications, ASCIItranslit, Trashcan
 from Tools.XMLTools import stringToXML
 import timer
@@ -30,14 +29,13 @@ from enigma import pNavigation
 # event data		 (ONLY for time adjustments etc.)
 
 wasRecTimerWakeup = False
-#try:
-#	from Screens.InfoBar import InfoBar
-#except Exception, e:
-#	print "[RecordTimer] import from 'Screens.InfoBar import InfoBar' failed:", e
-#	InfoBar = False
-#
+try:
+	from Screens.InfoBar import InfoBar
+except Exception, e:
+	print "[RecordTimer] import from 'Screens.InfoBar import InfoBar' failed:", e
+	InfoBar = False
+
 debug = False
-#
 
 #reset wakeup state after ending timer
 def resetTimerWakeup():
