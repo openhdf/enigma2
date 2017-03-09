@@ -582,7 +582,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if isStandardInfoBar(self):
 			self.SwitchSecondInfoBarScreen()
 		self.onLayoutFinish.append(self.__layoutFinished)
-		self.onExecBegin.append(self.__onExecBegin)
 
 	def __layoutFinished(self):
 		if self.secondInfoBarScreen:
