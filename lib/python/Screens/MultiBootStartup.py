@@ -156,7 +156,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		Standard:     hd51_4.boxmode=1 (or no option)
 		Experimental: hd51_4.boxmode=12
 		#example
-		boot emmcflash0.kernel1 'root=/dev/mmcblk0p3 rw rootwait hd51_4.boxmode=12'
+		boot emmcflash0.kernel1 'root=/dev/mmcblk0p3 rw rootwait hd51_4.boxmode=1'
 		
 		'''
 
