@@ -4,16 +4,6 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
-if [ -e /usr/bin/xbmc ]; then
-		rm -f /etc/.xbmcstart
-		/usr/bin/xbmc
-fi
-
-if [ -e /usr/bin/kodi ]; then
-		rm -f /etc/.kodistart
-		/usr/bin/kodi
-fi
-
 if [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
 		echo found @sysconfdir@/enigma2/bootlogo.mvi
 		@bindir@/showiframe @sysconfdir@/enigma2/bootlogo.mvi
