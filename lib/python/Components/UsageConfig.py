@@ -255,6 +255,7 @@ def InitUsageConfig():
 		("show_menu", _("Show shutdown menu")),
 		("shutdown", _("Immediate shutdown")),
 		("standby", _("Standby")),
+		("standby_noTVshutdown", _("Standby without TV shutdown")),
 		("sleeptimer", _("Sleep Timer")),
 		("powertimerStandby", _("Powertimer Standby")),
 		("powertimerDeepStandby", _("Powertimer DeepStandby")) ] )
@@ -263,6 +264,7 @@ def InitUsageConfig():
 		("show_menu", _("Show shutdown menu")),
 		("shutdown", _("Immediate shutdown")),
 		("standby", _("Standby")),
+		("standby_noTVshutdown", _("Standby without TV shutdown")),
 		("sleeptimer", _("Sleep Timer")),
 		("powertimerStandby", _("Powertimer Standby")),
 		("powertimerDeepStandby", _("Powertimer DeepStandby")) ] )
