@@ -23,18 +23,7 @@ if grep ^config.misc.SyncTimeUsing=1 /etc/enigma2/settings >/dev/null; then
 	/usr/sbin/ntpdate -s -u pool.ntp.org &
 fi
 
-# hook to execute scripts always before enigma2 start
-[ -x @bindir@/enigma2_pre_start.sh ] && @bindir@/enigma2_pre_start.sh
-
 [ -L /usr/lib/libssl.so.0.9.8 ] || ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
-
-#if [ -e /lib/libcrypto.so.1.0.0 ]; then
-#	if [ -f /lib/libcrypto.so.0.9.8 ]; then
-#		echo "libcrypto symlink found"
-#	else
-#		ln -s /lib/libcrypto.so.1.0.0 /lib/libcrypto.so.0.9.8
-#	fi
-#fi
 
 [ -L /usr/lib/libcrypto.so.0.9.8 ] || ln -s /usr/lib/libcrypto.so.1.0.0 /usr/lib/libcrypto.so.0.9.8
 
@@ -78,6 +67,9 @@ if [ -e @libdir@/libpassthrough.so ]; then
 fi
 
 touch /etc/enigma2/settings
+
+# hook to execute scripts always before enigma2 start
+[ -x @bindir@/enigma2_pre_start.sh ] && @bindir@/enigma2_pre_start.sh
 
 sync
 
