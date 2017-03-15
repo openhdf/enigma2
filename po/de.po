@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-03-13 14:33+0100\n"
+"PO-Revision-Date: 2017-02-26 09:24+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -4713,9 +4713,6 @@ msgstr "Deep-Standby-Ereignisse verwalten "
 
 msgid "Handle standby from TV"
 msgstr "Fernseher Standby verwalten"
-
-msgid "Standby without TV shutdown"
-msgstr "Standby ohne TV auszuschalten"
 
 msgid "Handle wakeup from TV"
 msgstr "Fernseher Wakeup verwalten"
