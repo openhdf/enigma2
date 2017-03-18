@@ -11,6 +11,7 @@ from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
 from keyids import KEYIDS
+from sys import maxint
 
 def InitUsageConfig():
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
@@ -307,35 +308,30 @@ def InitUsageConfig():
 	config.usage.remote_fallback_enabled = ConfigYesNo(default = False);
 	config.usage.remote_fallback = ConfigText(default = "http://192.168.123.123:8001", fixed_size = False);
 
-	dvbs_nims = [("-2", _("Disabled"))]
-	dvbt_nims = [("-2", _("Disabled"))]
-	dvbc_nims = [("-2", _("Disabled"))]
-	nims = [("-1", _("auto"))]
-	rec_nims = [("-2", _("Disabled")), ("-1", _("auto"))]
+	nims = [("-1", _("auto")), ("expert_mode", _("Expert mode")), ("experimental_mode", _("Experimental mode"))]
+	rec_nims = [("-2", _("Disabled")), ("-1", _("auto")), ("expert_mode", _("Expert mode")), ("experimental_mode", _("Experimental mode"))]
 	for x in nimmanager.nim_slots:
-		if x.isCompatible("DVB-S"):
-			dvbs_nims.append((str(x.slot), x.getSlotName()))
-		elif x.isCompatible("DVB-T"):
-			dvbt_nims.append((str(x.slot), x.getSlotName()))
-		elif x.isCompatible("DVB-C"):
-			dvbc_nims.append((str(x.slot), x.getSlotName()))
 		nims.append((str(x.slot), x.getSlotName()))
-	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = list(nims))
-	nims.insert(0,("-2", _("Disabled")))
-	config.usage.recording_frontend_priority = ConfigSelection(default = "-2", choices = nims)
-	config.usage.frontend_priority_dvbs = ConfigSelection(default = "-2", choices = list(dvbs_nims))
-	dvbs_nims.insert(1,("-1", _("auto")))
-	config.usage.recording_frontend_priority_dvbs = ConfigSelection(default = "-2", choices = dvbs_nims)
-	config.usage.frontend_priority_dvbt = ConfigSelection(default = "-2", choices = list(dvbt_nims))
-	dvbt_nims.insert(1,("-1", _("auto")))
-	config.usage.recording_frontend_priority_dvbt = ConfigSelection(default = "-2", choices = dvbt_nims)
-	config.usage.frontend_priority_dvbc = ConfigSelection(default = "-2", choices = list(dvbc_nims))
-	dvbc_nims.insert(1,("-1", _("auto")))
-	config.usage.recording_frontend_priority_dvbc = ConfigSelection(default = "-2", choices = dvbc_nims)
-	SystemInfo["DVB-S_priority_tuner_available"] = len(dvbs_nims) > 3 and (len(dvbt_nims) > 2 or len(dvbc_nims) > 2)
-	SystemInfo["DVB-T_priority_tuner_available"] = len(dvbt_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbc_nims) > 2)
-	SystemInfo["DVB-C_priority_tuner_available"] = len(dvbc_nims) > 3 and (len(dvbs_nims) > 2 or len(dvbt_nims) > 2)
-
+		rec_nims.append((str(x.slot), x.getSlotName()))
+	nims_multi = [("-1", _("auto"))]
+	rec_nims_multi = [("-2", _("Disabled")), ("-1", _("auto"))]
+	for i in xrange(1,2**min(12,len(nimmanager.nim_slots))):
+		slot_names = ""
+		for x in xrange(min(12,len(nimmanager.nim_slots))):
+			if (i & 2**x):
+				if slot_names != "": slot_names = slot_names + "+"
+				slot_names = slot_names + nimmanager.nim_slots[x].getSlotName()
+		nims_multi.append((str(i), slot_names))
+		rec_nims_multi.append((str(i), slot_names))
+	priority_strictly_choices = [("no", _("No")), ("yes", _("Yes")), ("while_available", _("While available"))]
+	config.usage.frontend_priority                       = ConfigSelection(default = "-1", choices = nims)
+	config.usage.frontend_priority_multiselect           = ConfigSelection(default = "-1", choices = nims_multi)
+	config.usage.frontend_priority_strictly              = ConfigSelection(default = "no", choices = priority_strictly_choices)
+	config.usage.frontend_priority_intval                = NoSave(ConfigInteger(default = 0, limits = (-99, maxint)))
+	config.usage.recording_frontend_priority             = ConfigSelection(default = "-2", choices = rec_nims)
+	config.usage.recording_frontend_priority_multiselect = ConfigSelection(default = "-2", choices = rec_nims_multi)
+	config.usage.recording_frontend_priority_strictly    = ConfigSelection(default = "no", choices = priority_strictly_choices)
+	config.usage.recording_frontend_priority_intval      = NoSave(ConfigInteger(default = 0, limits = (-99, maxint)))
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 
 	config.usage.jobtaksextensions = ConfigYesNo(default = True)
@@ -388,7 +384,7 @@ def InitUsageConfig():
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 
-	if getBoxType() in ('et7000', 'et7500', 'et8000', 'triplex', 'formuler1', 'mutant1200', 'solo2', 'mutant1265', 'mutant1100', 'mutant500c', 'mutant530c', 'mutant1500', 'osminiplus', 'ax51', 'mutant51', '9910lx', '9911lx'):
+	if getBoxType() in ('vimastec1000', 'vimastec1500','et7000', 'et7500', 'et8000', 'triplex', 'formuler1', 'mutant1200', 'solo2', 'mutant1265', 'mutant1100', 'mutant500c', 'mutant530c', 'mutant1500', 'osminiplus', 'ax51', 'mutant51', '9910lx', '9911lx'):
 		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default = "Channel", choices = [
 						("Rec", _("REC Symbol")), 
 						("RecBlink", _("Blinking REC Symbol")), 
@@ -443,8 +439,22 @@ def InitUsageConfig():
 	config.usage.alternatives_priority.addNotifier(TunerTypePriorityOrderChanged, immediate_feedback=False)
 
 	def PreferredTunerChanged(configElement):
-		setPreferredTuner(int(configElement.value))
+		config.usage.frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.frontend_priority, config.usage.frontend_priority_multiselect, config.usage.frontend_priority_strictly))
+		debugstring = ""
+		elem2 = config.usage.frontend_priority_intval.value
+		if (int(elem2) > 0) and (int(elem2) & eDVBFrontend.preferredFrontendBinaryMode):
+			elem2 = int(elem2) - eDVBFrontend.preferredFrontendBinaryMode
+			debugstring = debugstring + "Binary +"
+		if (int(elem2) > 0) and (int(elem2) & eDVBFrontend.preferredFrontendPrioForced):
+			elem2 = int(elem2) - eDVBFrontend.preferredFrontendPrioForced
+			debugstring = debugstring + "Forced +"
+		if (int(elem2) > 0) and (int(elem2) & eDVBFrontend.preferredFrontendPrioHigh):
+			elem2 = int(elem2) - eDVBFrontend.preferredFrontendPrioHigh
+			debugstring = debugstring + "High +"
+		setPreferredTuner(int(config.usage.frontend_priority_intval.value))
 	config.usage.frontend_priority.addNotifier(PreferredTunerChanged)
+	config.usage.frontend_priority_multiselect.addNotifier(PreferredTunerChanged)
+	config.usage.frontend_priority_strictly.addNotifier(PreferredTunerChanged)
 
 	config.usage.hide_zap_errors = ConfigYesNo(default = True)
 	config.misc.use_ci_assignment = ConfigYesNo(default = True)
@@ -576,7 +586,7 @@ def InitUsageConfig():
 	config.network = ConfigSubsection()
 	if SystemInfo["WakeOnLAN"]:
 		def wakeOnLANChanged(configElement):
-			if getBoxType() in ('et10000', 'gbquadplus', 'gbquad', 'gb800ueplus', 'gb800seplus', 'gbultraue', 'gbultrase', 'gbipbox', 'quadbox2400', 'mutant2400', 'et7x00', 'et7000', 'et7500', 'et8500'):
+			if getBoxType() in ('et7000', 'et7100', 'et7500', 'gbx1', 'gbx2', 'gbx3', 'gbx3h', 'et10000', 'gbquadplus', 'gbquad', 'gb800ueplus', 'gb800seplus', 'gbultraue', 'gbultraueh', 'gbultrase', 'gbipbox', 'quadbox2400', 'mutant2400', 'et7x00', 'et8500', 'et8500s'):
 				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
 			else:
 				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
@@ -703,15 +713,24 @@ def InitUsageConfig():
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)
 
 	if SystemInfo["ZapMode"]:
-		def setZapmode(el):
-			file = open(zapfile, "w")
-			file.write(el.value)
-			file.close()
-		if os.path.exists("/proc/stb/video/zapping_mode"):
-			zapfile = "/proc/stb/video/zapping_mode"
-		else:
+		try:
+			if os.path.exists("/proc/stb/video/zapping_mode"):
+				zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen"))]
+				zapfile = "/proc/stb/video/zapping_mode"
+			else:
+				zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
+				zapfile = "/proc/stb/video/zapmode"
+		except:
+			zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
 			zapfile = "/proc/stb/video/zapmode"
-		zapoptions = [("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))]
+
+		def setZapmode(el):
+			try:
+				file = open(zapfile, "w")
+				file.write(el.value)
+				file.close()
+			except:
+				pass
 		config.misc.zapmode = ConfigSelection(default = "mute", choices = zapoptions )
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
 	config.usage.historymode = ConfigSelection(default = "0", choices = [("1", _("Show menu")), ("0", _("Just zap")), ("2", _("Show Zap-History Browser")), ("3", _("Volume Adjust"))])
@@ -777,9 +796,11 @@ def InitUsageConfig():
 		("eus baq", _("Basque")),
 		("bul", _("Bulgarian")),
 		("hrv", _("Croatian")),
+		("chn sgp", _("Simplified Chinese")),
+		("twn hkn",_("Traditional Chinese")),
 		("ces cze", _("Czech")),
 		("dan", _("Danish")),
-		("dut ndl Dutch", _("Dutch")),
+		("dut ndl nld Dutch", _("Dutch")),
 		("eng qaa Englisch", _("English")),
 		("est", _("Estonian")),
 		("fin", _("Finnish")),
@@ -804,7 +825,8 @@ def InitUsageConfig():
 		("spa", _("Spanish")),
 		("swe", _("Swedish")),
 		("tha", _("Thai")),
-		("tur Audio_TUR", _("Turkish"))]
+		("tur Audio_TUR", _("Turkish")),
+		("ukr Ukr", _("Ukrainian"))]
 
 	def setEpgLanguage(configElement):
 		eServiceEvent.setEPGLanguage(configElement.value)
@@ -820,7 +842,7 @@ def InitUsageConfig():
 	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_autoselect3 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_autoselect4 = ConfigSelection(choices=audio_language_choices, default="---")
-	config.autolanguage.audio_defaultac3 = ConfigYesNo(default = True)
+	config.autolanguage.audio_defaultac3 = ConfigYesNo(default = False)
 	config.autolanguage.audio_defaultddp = ConfigYesNo(default = False)
 	config.autolanguage.audio_usecache = ConfigYesNo(default = True)
 
@@ -1405,6 +1427,19 @@ def InitUsageConfig():
 	config.usage.settingsoverlan_mp = ConfigYesNo(default = True)
 	config.usage.settingsoverlan_m3u = ConfigYesNo(default = True)
 
+def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):
+	elem = config_priority.value
+	if elem in ("expert_mode", "experimental_mode"):
+		elem = int(config_priority_multiselect.value)
+		if elem > 0:
+			elem = int(elem) + int(eDVBFrontend.preferredFrontendBinaryMode)
+			if config_priority.value == "experimental_mode":
+				if config_priority_strictly.value == "yes":
+					elem += eDVBFrontend.preferredFrontendPrioForced
+				elif config_priority_strictly.value == "while_available":
+					elem += eDVBFrontend.preferredFrontendPrioHigh
+	return elem
+
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
@@ -1515,6 +1550,9 @@ def patchTuxtxtConfFile(dummyConfigElement):
 		#replace keyword (%s) followed by any value ([-0-9]+) by that keyword \1 and the new value %d
 		command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % (f[0],f[1])
 	command += "' %s" % TUXTXT_CFG_FILE
+	for f in tuxtxt2:
+		#if keyword is not found in file, append keyword and value
+		command += " ; if ! grep -q '%s' %s ; then echo '%s %d' >> %s ; fi"  % (f[0],TUXTXT_CFG_FILE,f[0],f[1],TUXTXT_CFG_FILE)
 	try:
 		os.system(command)
 	except:

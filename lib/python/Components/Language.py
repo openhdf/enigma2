@@ -27,15 +27,17 @@ class Language:
 		self.ll = os.listdir(LPATH)
 		# FIXME make list dynamically
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
+		self.addLanguage("English (US)", "en", "US", "ISO-8859-15")
 		self.addLanguage("Deutsch", "de", "DE", "ISO-8859-15")
 		self.addLanguage("Arabic", "ar", "AE", "ISO-8859-15")
 		self.addLanguage("Български", "bg", "BG", "ISO-8859-15")
 		self.addLanguage("Català", "ca", "AD", "ISO-8859-15")
 		self.addLanguage("Česky", "cs", "CZ", "ISO-8859-15")
+		self.addLanguage("SChinese", "zh", "CN", "UTF-8")
+		self.addLanguage("TChinese", "hk", "HK", "UTF-8")
 		self.addLanguage("Dansk", "da", "DK", "ISO-8859-15")
 		self.addLanguage("Ελληνικά", "el", "GR", "ISO-8859-7")
 		self.addLanguage("English (UK)", "en", "GB", "ISO-8859-15")
-		self.addLanguage("English (US)", "en", "US", "ISO-8859-15")
 		self.addLanguage("Español", "es", "ES", "ISO-8859-15")
 		self.addLanguage("Eesti", "et", "EE", "ISO-8859-15")
 		self.addLanguage("Persian", "fa", "IR", "ISO-8859-15")
@@ -151,34 +153,32 @@ class Language:
 
 		if delLang:
 			print"DELETE LANG", delLang
-			if delLang == "en_GB":
+			if delLang == "en_US" or delLang == "de_DE" or delLang == "fr_FR":
 				print"Default Language can not be deleted !!"
 				return
-			elif delLang == "en_US" or delLang == "pt_BR":
+			elif delLang == "en_GB" or delLang == "pt_BR":
 				delLang = delLang.lower()
 				delLang = delLang.replace('_','-')
 				os.system("opkg remove --autoremove --force-depends " + Lpackagename + delLang)
 			else:
 				os.system("opkg remove --autoremove --force-depends " + Lpackagename + delLang[:2])
 		else:
-			print "Delete all lang except ", lang
+			print"Delete all lang except ", lang
 			ll = os.listdir(LPATH)
 			for x in ll:
 				if len(x) > 2:
-					if x != lang:
+					if x != lang and x != "de" and x != "fr":
 						x = x.lower()
 						x = x.replace('_','-')
 						os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 				else:
-					if x != lang[:2] and x != "en":
+					if x != lang[:2] and x != "en" and x != "de" and x != "fr":
 						os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 					elif x == "pt":
 						if x != lang:
 							os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 			
 			os.system("touch /etc/enigma2/.removelang")
-			print "reinstall default language"
-			os.system("opkg install enigma2-locale-en-gb")
 
 		self.InitLang()
 
