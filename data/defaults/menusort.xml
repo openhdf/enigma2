@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<menusort>
+
+ <entry text="xbmc Wetter" weight="-45" hidden="no"/>
+ <entry text="Bildbetrachter" weight="-307" hidden="no"/>
+ <entry text="HDF Toolbox GigaBlue" weight="-13" hidden="no"/>
+ <entry text="DreamPlex" weight="72" hidden="no"/>
+ <entry text="webradioFS" weight="-44" hidden="no"/>
+ <entry text="VMC" weight="-41" hidden="no"/>
+ <entry text="Timer" weight="73" hidden="no"/>
+ <entry text="Multi Quickbutton" weight="59" hidden="no"/>
+ <entry text="Informationen" weight="247" hidden="no"/>
+ <entry text="Konfiguration" weight="247" hidden="no"/>
+ <entry text="Erweiterungen" weight="247" hidden="no"/>
+ <entry text="Media Player" weight="67" hidden="no"/>
+ <entry text="HDF Toolbox Xtrend ET10000" weight="-371" hidden="no"/>
+ <entry text="Bereitschaft / Neustart" weight="253" hidden="no"/>
+ <entry text="YAMP Music Player" weight="-28" hidden="no"/>
+ <entry text="PictureCenterFS" weight="17" hidden="no"/>
+
+</menusort>
