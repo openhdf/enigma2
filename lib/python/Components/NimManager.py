@@ -738,12 +738,12 @@ class NIM(object):
 			print "%s is not suportetd "%(what)
 			return False
 		if self.isMultiType():
-			print"[adenin] %s is multitype"%(self.slot)
+			print"%s is multitype"%(self.slot)
 			for type in self.multi_type.values():
 				if what in self.compatible[type]:
 					return True
 		elif  what in self.compatible[self.getType()]:
-			print"[adenin] %s is NOT multitype"%(self.slot)
+			print"%s is NOT multitype"%(self.slot)
 			return True
 		return False
 

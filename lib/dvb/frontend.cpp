@@ -651,11 +651,11 @@ int eDVBFrontend::initModeList()
 		{
 			if(buf_pos2 && buf_pos >= buf_pos2)
 				break;
-			eDebug("[adenin]content of line:  mode:%d system:<%s>", mode, system);
+			eDebug("content of line:  mode:%d system:<%s>", mode, system);
 			for (char *p=system ; *p; p++) *p = toupper(*p);
 			if (!strcmp(system, "DVB-C") || !strcmp(system, "DVB-C2"))
 			{
-				eDebug("[adenin] add mode %d to DVB-C",mode);
+				eDebug("add mode %d to DVB-C",mode);
 #ifdef SYS_DVBC_ANNEX_A
 				m_modelist[SYS_DVBC_ANNEX_A] = mode;
 				m_modelist[SYS_DVBC_ANNEX_C] = mode;
@@ -666,19 +666,19 @@ int eDVBFrontend::initModeList()
 			}
 			else if (!strcmp(system, "DVB-S") || !strcmp(system, "DVB-S2"))
 			{
-				eDebug("[adenin] add mode %d to DVB-S",mode);
+				eDebug("add mode %d to DVB-S",mode);
 				m_modelist[SYS_DVBS] = mode;
 				m_modelist[SYS_DVBS2] = mode;
 			}
 			else if (!strcmp(system, "DVB-T") || !strcmp(system, "DVB-T2"))
 			{
-				eDebug("[adenin] add mode %d to DVB-T",mode);
+				eDebug("add mode %d to DVB-T",mode);
 				m_modelist[SYS_DVBT] = mode;
 				m_modelist[SYS_DVBT2] = mode;
 			}
 			else if (!strcmp(system, "ATSC"))
 			{
-				eDebug("[adenin] add mode %d to ATSC",mode);
+				eDebug("add mode %d to ATSC",mode);
 				m_modelist[SYS_ATSC] = mode;
 			}
 			else
@@ -3499,7 +3499,7 @@ bool eDVBFrontend::changeType(int type)
 	{
 		if(m_need_delivery_system_workaround)
 		{
-			eDebug("[adenin] m_need_delivery_system_workaround active");
+			eDebug("m_need_delivery_system_workaround active");
 			FILE *f = fopen("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "rw");
 			int old;
 			if (f)
@@ -3519,7 +3519,7 @@ bool eDVBFrontend::changeType(int type)
 			}
 		}
 		else
-			eDebug("[adenin] m_need_delivery_system_workaround NOT active");
+			eDebug("m_need_delivery_system_workaround NOT active");
 	}
 	m_type = type;
 	return true;

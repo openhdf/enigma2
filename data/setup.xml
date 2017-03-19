@@ -60,7 +60,7 @@
 		<item level="0" text="Enable stream buffering status" description="Show the buffering status in percent if playing streams">config.usage.show_buffering</item>
 		<item level="0" text="Infobar fade-out speed" description="Control the Infobar fading speed">config.usage.show_infobar_dimming_speed</item>
 		<item level="0" text="Show animation while busy" description="Show spinning logo when system is busy.">config.usage.show_spinner</item>
-		<item level="1" text="History buttons mode" description="Configure the function of the &lt;  &gt; buttons.">config.usage.historymode</item>
+		<!--item level="1" text="History buttons mode" description="Configure the function of the &lt;  &gt; buttons.">config.usage.historymode</item-->
 		<item level="1" text="Powertimer Message Popup counter (in seconds)" description="Configure how long the powertimer message is displayed.">config.usage.window_timeout</item>
 		<item level="1" text="Show job tasks in extensions" description="With this option you can hide Job Tasks from the extension screen (short blue button press).">config.usage.jobtaksextensions</item>
 		<item level="1" text="Show positioner movement" description="Choose whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
@@ -315,7 +315,7 @@
 	<setup key="remotesetup" title="Button setup">
 		<item level="1" text="Action on long powerbutton press" description="Setup what a long press on the power button does.">config.usage.on_long_powerpress</item>
 		<item level="1" text="Action on short powerbutton press" description="Setup what a short press on the power button does.">config.usage.on_short_powerpress</item>
-		<item level="1" text="History buttons mode" description="Configure the function of the &lt;  &gt; buttons.">config.usage.historymode</item>
+		<!--item level="1" text="History buttons mode" description="Configure the function of the &lt;  &gt; buttons.">config.usage.historymode</item-->
 		<item level="0" text="Subservice mode" description="Select if you want the Subservice mode to be activated.">config.plisettings.Subservice</item>
 		<item level="0" text="Keymap Selection" description="Select the keymap that you want to use:">config.usage.keymap</item>
 		<item level="0" text="Show pressed buttons in telnet debug mode" description="Select if you want to show every pressed button in telnet init 4 mode.">config.plisettings.ShowPressedButtons</item>
