@@ -791,7 +791,7 @@ void eDVBScan::channelDone()
 					}
 					case S2_SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:
 					{
-						eDebug("[adenin] S2_SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR found");
+						eDebug("S2_SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR found");
 						if (system != iDVBFrontend::feSatellite)
 							break; // when current locked transponder is no satellite transponder ignore this descriptor
 
