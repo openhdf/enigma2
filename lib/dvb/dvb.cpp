@@ -622,7 +622,7 @@ void *eDVBUsbAdapter::vtunerPump()
 
 						if (pidcount > 1)
 						{
-							eDebug("[adenin]rmove PID %d(0x%04x)", pidList[i], pidList[i]);
+							eDebug("rmove PID %d(0x%04x)", pidList[i], pidList[i]);
 							::ioctl(demuxFd, DMX_REMOVE_PID, &pidList[i]);
 							pidcount--;
 						}
@@ -643,7 +643,7 @@ void *eDVBUsbAdapter::vtunerPump()
 
 						if (pidcount)
 						{
-							eDebug("[adenin]add PID %d(0x%04x)", message.pidlist[i], message.pidlist[i]);
+							eDebug("add PID %d(0x%04x)", message.pidlist[i], message.pidlist[i]);
 							::ioctl(demuxFd, DMX_ADD_PID, &message.pidlist[i]);
 							pidcount++;
 						}
