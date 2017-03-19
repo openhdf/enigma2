@@ -8,7 +8,7 @@ import os
 from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, setPreferredTuner
 from Components.config import config
 from Components import Harddisk
-from Components.UsageConfig import defaultMoviePath
+from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
 from Components.SystemInfo import SystemInfo
 from Components.TimerSanityCheck import TimerSanityCheck
 import Components.RecordingConfig
@@ -166,27 +166,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.descramble = descramble
 			self.record_ecm = record_ecm
 
-		self.needChangePriorityFrontend = config.usage.recording_frontend_priority.value != "-2" and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
+		config.usage.frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.frontend_priority, config.usage.frontend_priority_multiselect, config.usage.frontend_priority_strictly))
+		config.usage.recording_frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.recording_frontend_priority, config.usage.recording_frontend_priority_multiselect, config.usage.recording_frontend_priority_strictly))
+		self.needChangePriorityFrontend = config.usage.recording_frontend_priority_intval.value != "-2" and config.usage.recording_frontend_priority_intval.value != config.usage.frontend_priority_intval.value
 		self.change_frontend = False
-		self.setAdvancedPriorityFrontend = None
-		if SystemInfo["DVB-T_priority_tuner_available"] or SystemInfo["DVB-C_priority_tuner_available"] or SystemInfo["DVB-S_priority_tuner_available"]:
-			rec_ref = self.service_ref and self.service_ref.ref
-			str_service = rec_ref and rec_ref.toString()
-			if str_service and '%3a//' not in str_service and not str_service.rsplit(":", 1)[1].startswith("/"):
-				type_service = rec_ref.getUnsignedData(4) >> 16
-				if type_service == 0xEEEE:
-					if SystemInfo["DVB-T_priority_tuner_available"] and config.usage.recording_frontend_priority_dvbt.value != "-2":
-						if config.usage.recording_frontend_priority_dvbt.value != config.usage.frontend_priority.value:
-							self.setAdvancedPriorityFrontend = config.usage.recording_frontend_priority_dvbt.value
-				elif type_service == 0xFFFF:
-					if SystemInfo["DVB-C_priority_tuner_available"] and config.usage.recording_frontend_priority_dvbc.value != "-2":
-						if config.usage.recording_frontend_priority_dvbc.value != config.usage.frontend_priority.value:
-							self.setAdvancedPriorityFrontend = config.usage.recording_frontend_priority_dvbc.value
-				else:
-					if SystemInfo["DVB-S_priority_tuner_available"] and config.usage.recording_frontend_priority_dvbs.value != "-2":
-						if config.usage.recording_frontend_priority_dvbs.value != config.usage.frontend_priority.value:
-							self.setAdvancedPriorityFrontend = config.usage.recording_frontend_priority_dvbs.value
-		self.needChangePriorityFrontend = self.setAdvancedPriorityFrontend is not None or config.usage.recording_frontend_priority.value != "-2" and config.usage.recording_frontend_priority.value != config.usage.frontend_priority.value
 		self.rename_repeat = rename_repeat
 		self.isAutoTimer = isAutoTimer
 		self.wasInStandby = False
