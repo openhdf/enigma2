@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-03-18 07:04+0100\n"
+"PO-Revision-Date: 2017-03-20 18:01+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -10552,9 +10552,26 @@ msgstr "Benutze altes Profil:"
 msgid "Using tuner %s"
 msgstr "Benutze Tuner %s"
 
-#, python-format
+msgid "Experimental mode"
+msgstr "Experimenteller Modus"
+
+msgid "Preferred tuners, multiple selection allowed"
+msgstr "Bevorzugte Tuner, Mehrfachauswahl möglich"
+
+msgid "Experimental: strict limitation to preferred tuners"
+msgstr "Experimentell: strikte Beschränkung auf bevorzugte Tuner"
+
+msgid "While available"
+msgstr "Solange verfügbar"
+
 msgid "Preferred tuner for recordings"
-msgstr "Bevorzugter Tuner für Aufnahmen"
+msgstr "Bevorzugter Tuner bei Aufnahmen"
+
+msgid "Preferred tuners for recordings, multiple selection allowed"
+msgstr "Bevorzugte Tuner bei Aufnahmen, Mehrfachauswahl möglich"
+
+msgid "Experimental: strict limitation to preferred tuners for recordings"
+msgstr "Experimentell: strikte Beschränkung der Tuner bei Aufnahmen"
 
 #, python-format
 msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
