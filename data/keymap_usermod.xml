@@ -1,0 +1,15 @@
+<!--suppress XmlUnboundNsPrefix -->
+<keymap>
+
+	<!-- "HDF Default Keymap Usermod 21.03.2017" -->
+
+
+    <!-- in EMC use 'KEY_1' for adding a file to the playlist -->
+    <!-- avoiding addition when accidentally pressing KEY_VIDEO twice -->
+    <!-- map context="PluginMovieSelectionActions">
+        <key id="KEY_VIDEO" unmap="EMCVIDEOB" />
+        <key id="KEY_1"     mapto="EMCVIDEOB" flags="m" />
+    </map-->
+
+
+</keymap>
