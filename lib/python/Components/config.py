@@ -385,14 +385,21 @@ class ConfigSelection(ConfigElement):
 		self.value = self.choices[(i + 1) % nchoices]
 
 	def getText(self):
-		if self._descr is None:
-			self._descr = self.description[self.value]
-		return self._descr
+		if self._descr is not None:
+			return self._descr
+		descr = self._descr = self.description[self.value]
+		if descr:
+			return _(descr)
+		return descr
 
 	def getMulti(self, selected):
-		if self._descr is None:
-			self._descr = self.description[self.value]
-		return ("text", self._descr)
+		if self._descr is not None:
+			descr = self._descr
+		else:
+			descr = self._descr = self.description[self.value]
+		if descr:
+			return "text", _(descr)
+		return "text", descr
 
 	# HTML
 	def getHTML(self, id):
@@ -417,8 +424,9 @@ class ConfigSelection(ConfigElement):
 # several customized versions exist for different
 # descriptions.
 #
+boolean_descriptions = {False: _("false"), True: _("true")}
 class ConfigBoolean(ConfigElement):
-	def __init__(self, default = False, descriptions = {False: _("false"), True: _("true")}):
+	def __init__(self, default = False, descriptions = boolean_descriptions):
 		ConfigElement.__init__(self)
 		self.descriptions = descriptions
 		self.value = self.last_value = self.default = default
@@ -432,10 +440,16 @@ class ConfigBoolean(ConfigElement):
 			self.value = True
 
 	def getText(self):
-		return self.descriptions[self.value]
+		descr = self.descriptions[self.value]
+		if descr:
+			return _(descr)
+		return descr
 
 	def getMulti(self, selected):
-		return ("text", self.descriptions[self.value])
+		descr = self.descriptions[self.value]
+		if descr:
+			return "text", _(descr)
+		return "text", descr
 
 	def tostring(self, value):
 		if not value:
@@ -468,17 +482,20 @@ class ConfigBoolean(ConfigElement):
 			self.changedFinal()
 			self.last_value = self.value
 
+yes_no_descriptions = {False: _("no"), True: _("yes")}
 class ConfigYesNo(ConfigBoolean):
 	def __init__(self, default = False):
-		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("no"), True: _("yes")})
+		ConfigBoolean.__init__(self, default = default, descriptions = yes_no_descriptions)
 
+on_off_descriptions = {False: _("off"), True: _("on")}
 class ConfigOnOff(ConfigBoolean):
 	def __init__(self, default = False):
-		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("off"), True: _("on")})
+		ConfigBoolean.__init__(self, default = default, descriptions = on_off_descriptions)
 
+enable_disable_descriptions = {False: _("disable"), True: _("enable")}
 class ConfigEnableDisable(ConfigBoolean):
 	def __init__(self, default = False):
-		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("disable"), True: _("enable")})
+		ConfigBoolean.__init__(self, default = default, descriptions = enable_disable_descriptions)
 
 class ConfigDateTime(ConfigElement):
 	def __init__(self, default, formatstring, increment = 86400):
@@ -1247,14 +1264,7 @@ class ConfigNumber(ConfigText):
 		ConfigText.__init__(self, str(default), fixed_size = False)
 
 	def getValue(self):
-		try:
-			return int(self.text)
-		except ValueError:
-			if self.text == "true":
-				self.text = "1"
-			else:
-				self.text = str(default)
-			return int(self.text)
+		return int(self.text)
 
 	def setValue(self, val):
 		self.text = str(val)
@@ -1348,30 +1358,25 @@ class ConfigSlider(ConfigElement):
 		self.max = limits[1]
 		self.increment = increment
 
-	def checkValues(self, value = None):
-		if value is None:
-			value = self.value
-		if value < self.min:
-			value = self.min
-		elif value > self.max:
-			value = self.max
-		if self.value != value:		#avoid call of setter if value not changed
-			self.value = value
+	def checkValues(self):
+		if self.value < self.min:
+			self.value = self.min
+
+		if self.value > self.max:
+			self.value = self.max
 
 	def handleKey(self, key):
 		if key == KEY_LEFT:
-			tmp = self.value - self.increment
+			self.value -= self.increment
 		elif key == KEY_RIGHT:
-			tmp = self.value + self.increment
+			self.value += self.increment
 		elif key == KEY_HOME:
 			self.value = self.min
-			return
 		elif key == KEY_END:
 			self.value = self.max
-			return
 		else:
 			return
-		self.checkValues(tmp)
+		self.checkValues()
 
 	def getText(self):
 		return "%d / %d" % (self.value, self.max)
@@ -1481,7 +1486,6 @@ class ConfigSet(ConfigElement):
 		return eval(val)
 
 	description = property(lambda self: descriptionList(self.choices.choices, choicesList.LIST_TYPE_LIST))
-
 
 class ConfigDictionarySet(ConfigElement):
 	def __init__(self, default = {}):
@@ -1885,7 +1889,7 @@ class Config(ConfigSubsection):
 		ConfigSubsection.__init__(self)
 
 	def pickle_this(self, prefix, topickle, result):
-		for (key, val) in sorted(topickle.items(), key=lambda x: int(x[0]) if x[0].isdigit() else x[0].lower()):
+		for (key, val) in topickle.items():
 			name = '.'.join((prefix, key))
 			if isinstance(val, dict):
 				self.pickle_this(name, val, result)
