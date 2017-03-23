@@ -1366,7 +1366,7 @@ RESULT eDVBServicePlay::start()
 		/* inject EIT if there is a stored one */
 		std::string filename = service.path;
 		filename.erase(filename.length()-2, 2);
-		filename+="eit";
+		filename+=".eit";
 		ePtr<eServiceEvent> event = new eServiceEvent;
 		if (!event->parseFrom(filename, (service.getTransportStreamID().get()<<16)|service.getOriginalNetworkID().get()))
 		{
