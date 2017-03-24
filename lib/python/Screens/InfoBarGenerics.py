@@ -43,11 +43,11 @@ from Screens.UnhandledKey import UnhandledKey
 from ServiceReference import ServiceReference, isPlayableForCur
 from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecordPath
 from Screens.TimerEntry import TimerEntry as TimerEntry
-
+import NavigationInstance
 from Tools import Directories, Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN
 from Tools.KeyBindings import getKeyDescription
-from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, eDVBDB, quitMainloop
+from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, pNavigation, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, eDVBDB, quitMainloop
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getDriverDate, getImageVersion, getImageBuild, getMachineProcModel, getMachineBuild
 
 from time import time, localtime, strftime
@@ -4915,6 +4915,23 @@ class InfoBarInstantRecord:
 			self.session.open(MessageBox, _("Missing ") + "\n" + pirr +
 						 "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
+
+		#check 5001 or 5002 iptv channels
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		iptv_service = str(ServiceReference(ref))
+		print "IPTV Service Name:", iptv_service
+		if iptv_service.startswith('5001:') or iptv_service.startswith('5002:'):
+			self.session.open(MessageBox,_("You are watching 5001 or 5002 IPTV channel." + "\n" + "IPTV recording is working only for 4097 services!" + "\n" + "Please use 4097 IPTV streams for recording!"), MessageBox.TYPE_INFO, timeout=15)
+			return
+
+		#check serviceapp settings for gstplayer or exteplayer3
+		if config.plugins.serviceapp.servicemp3.replace.value:
+			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			iptv_service = str(ServiceReference(ref))
+			print "IPTV Service Name:", iptv_service
+			if iptv_service.startswith('4097:'):
+				self.session.open(MessageBox,_("IPTV recording is not working with activated gstplayer or exteplayer3." + "\n" + "Please use original settings within serviceapp!"), MessageBox.TYPE_INFO, timeout=15)
+				return
 
 		if isStandardInfoBar(self):
 			common = ((_("Add recording (stop after current event)"), "event"),
