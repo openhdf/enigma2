@@ -80,7 +80,7 @@ RESULT eServiceMP3Record::prepare(const char *filename, time_t begTime, time_t e
 			if (!ret)
 			{
 				std::string fname = m_filename;
-				fname += "eit";
+				fname += ".eit";
 				eEPGCache::getInstance()->saveEventToFile(fname.c_str(), m_ref, eit_event_id, begTime, endTime);
 			}
 			m_state = statePrepared;
