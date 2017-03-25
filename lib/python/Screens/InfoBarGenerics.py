@@ -966,7 +966,7 @@ class BufferIndicator(Screen):
 			info = service and service.info()
 			if info:
 				value = info.getInfo(iServiceInformation.sBuffer)
-				if value and value != 100 and config.usage.show_buffering.value:
+				if value and value != 100:
 					self["status"].setText(_("Buffering Stream %d%%") % value)
 					if not self.shown:
 						self.show()
