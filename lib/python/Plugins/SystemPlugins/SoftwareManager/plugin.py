@@ -1593,11 +1593,11 @@ class UpdatePlugin(Screen):
 		tmpdate = getEnigmaVersionString()
 		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
 		datedelay = imageDate +  timedelta(days=60)
-		message = _("Your image is out of date!\n\n"
+		message = _("Your image is out of date!\n"
 				"After such a long time, there is a risk that your %s %s  will not\n"
-				"boot after online-update, or will show disfunction in running Image.\n\n"
-				"A new flash will increase the stability\n\n"
-				"An online update is done at your own risk !!\n\n\n"
+				"boot after online-update, or will show disfunction in running Image.\n"
+				"A new flash will increase the stability\n"
+				"An online update is done at your own risk !!\n"
 				"Do you still want to update?")  % (getMachineBrand(), getMachineName())
 
 		if datedelay > date.today():
