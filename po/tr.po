@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-05 21:45+0300\n"
-"PO-Revision-Date: 2017-03-22 12:21+0200\n"
+"PO-Revision-Date: 2017-03-28 18:58+0200\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgid "Stop Timeshift"
 msgstr "Zaman kaydırmayı durdur"
 
 msgid "Show Infobar EPG"
-msgstr ""
+msgstr "EPG Bilgi Çubuğunu Göster"
 
 msgid "Zap up"
 msgstr "Yukarıya doğru kanal değiştir"
@@ -55,7 +55,7 @@ msgid "Show Plugin Selection"
 msgstr "Eklenti Seçimini Göster"
 
 msgid "Start instant recording"
-msgstr ""
+msgstr "Kayıt başlatılsın mı?"
 
 msgid "Hotkey Setup"
 msgstr "Kısayol Kurulum"
@@ -76,10 +76,10 @@ msgid "Show Subtitle Selection"
 msgstr "Altyazı seçimini göster"
 
 msgid "Show subtitle quick menu"
-msgstr ""
+msgstr "Altyazı hızlı menüsünü göster"
 
 msgid "Show Single Service EPG"
-msgstr ""
+msgstr "Tek Kanal EPG'sini Göster"
 
 msgid "Show Graphical Multi EPG"
 msgstr ""
@@ -88,7 +88,7 @@ msgid "Switch to TV Mode"
 msgstr "TV moduna geç"
 
 msgid "Zap down"
-msgstr "Aşağı doğru kanal değiştir"
+msgstr "Aşağıya doğru kanal değiştir"
 
 msgid "Start Teletext"
 msgstr "Teleteks başlat"
@@ -100,7 +100,7 @@ msgid "Show Audioselection"
 msgstr "Ses seçimini göster"
 
 msgid "Show Multi Service EPG"
-msgstr ""
+msgstr "Çoklu Kanal EPG'sini Göster"
 
 msgid "Show Event View"
 msgstr "Etkinlik Görünümünü Göster"
@@ -115,7 +115,7 @@ msgid "Toggle Infobar/SecondInfobar"
 msgstr ""
 
 msgid "Show First Infobar"
-msgstr ""
+msgstr "İlk Bilgi çubuğunu göster"
 
 msgid "Show Second Infobar"
 msgstr "Ikinci Bilgi Çubuğunu Göster"
@@ -305,6 +305,8 @@ msgid ""
 "\n"
 "Edit the upgrade source address."
 msgstr ""
+"\n"
+"Güncelleme sunucusu adresini düzenle."
 
 #, python-format
 msgid ""
@@ -412,11 +414,15 @@ msgid ""
 "\n"
 "Restore your %s %s with a new firmware."
 msgstr ""
+"\n"
+"%s %s yazılımını yeni bellenim ile geri yükleyin."
 
 msgid ""
 "\n"
 "Restore your backups by date."
 msgstr ""
+"\n"
+"Yedeklerinizi tarihe göre geri yükleyin."
 
 msgid ""
 "\n"
@@ -6448,7 +6454,7 @@ msgstr ""
 "'Hayır' derseniz kurulum koruması devredışı kalacaktır."
 
 msgid "No wireless networks found! Searching..."
-msgstr ""
+msgstr "Kablosuz ağ bulunamadı! Aranıyor..."
 
 msgid ""
 "No working local network adapter found.\n"
@@ -8113,10 +8119,10 @@ msgid "Searching east ..."
 msgstr "Doğu aranıyor ..."
 
 msgid "Searching for available updates. Please wait..."
-msgstr ""
+msgstr "Güncellemeler kontrol ediliyor. Lütfen bekleyin..."
 
 msgid "Searching for new installed or removed packages. Please wait..."
-msgstr ""
+msgstr "Yeni yüklenen veya kaldırılan paketler aranıyor. Lütfen bekleyin..."
 
 msgid "Searching west ..."
 msgstr "Batı aranıyor ..."
@@ -8678,7 +8684,7 @@ msgid "Show RFmod setup..."
 msgstr ""
 
 msgid "Show Readers/Proxies"
-msgstr ""
+msgstr "Okuyucuları/Vekil Sunucuları göster"
 
 msgid "Show Time Remaining/Elapsed"
 msgstr ""
@@ -8747,7 +8753,7 @@ msgid "Show event-progress in channel selection"
 msgstr "Kanal seçim ekranında etkinlik işleyişini göster"
 
 msgid "Show extended description"
-msgstr ""
+msgstr "Geniş açıklama göster"
 
 msgid "Show extensions..."
 msgstr "Eklentileri göster..."
@@ -9068,7 +9074,7 @@ msgid "Social/Political/Economics"
 msgstr "Sosyal/Politik/Ekonomi"
 
 msgid "SoftCam / CI"
-msgstr ""
+msgstr "SoftCam / CI"
 
 msgid "Softcam setings"
 msgstr "Softcam ayarları"
@@ -9153,7 +9159,7 @@ msgid "Sorry, no backups found!"
 msgstr "Üzgünüz, yedekleme bulunamadı!"
 
 msgid "Sorry, no details available!"
-msgstr ""
+msgstr "Üzgünüz, hiçbir ayrıntı yok!"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -9175,7 +9181,7 @@ msgid "Sort menu screen's alphabetically"
 msgstr ""
 
 msgid "Sort plug-in browser alphabetically"
-msgstr ""
+msgstr "Eklenti gösterimini alfabetik sırala"
 
 msgid "Sort setting screen's alphabetically"
 msgstr "Ayar ekranını alfabetik olarak sırala"
@@ -9220,10 +9226,10 @@ msgid "Start"
 msgstr "Başlat"
 
 msgid "Start from the beginning"
-msgstr ""
+msgstr "Baştan başla"
 
 msgid "Start offline decode"
-msgstr ""
+msgstr "Çevrimdışı çözüme başla"
 
 msgid "Find Covers ..."
 msgstr ""
@@ -9256,10 +9262,10 @@ msgid "Step west"
 msgstr "Batı adımı"
 
 msgid "Stepped east"
-msgstr ""
+msgstr "Doğu adımı"
 
 msgid "Stepped west"
-msgstr ""
+msgstr "Batı adımı"
 
 msgid "Stop"
 msgstr "Dur"
@@ -9271,13 +9277,13 @@ msgid "Stop current event and disable coming events"
 msgstr ""
 
 msgid "Stop current event but not coming events"
-msgstr ""
+msgstr "Geçerli etkinliği durdur ama gelecek etkinliklere dokunma"
 
 msgid "Stop entry"
 msgstr "Girişi durdur"
 
 msgid "Stop playing this movie?"
-msgstr ""
+msgstr "Film durdurulsun mu?"
 
 msgid "Stop recording"
 msgstr "Kaydı durdur"
@@ -9345,7 +9351,7 @@ msgid "INFO button mode"
 msgstr ""
 
 msgid "FAV button mode"
-msgstr ""
+msgstr "FAV tuş modu"
 
 msgid "F1 button mode"
 msgstr "F1 tuş modu"
@@ -9724,6 +9730,8 @@ msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"EPGSearch eklentisi yüklü değil!\n"
+"Lütfen yükleyin."
 
 msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
@@ -10361,6 +10369,12 @@ msgid ""
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
+"%s %s bellenim güncellemesi için lütfen bu adımları takip edin:\n"
+"1) Alıcınızı arka güç anahtarından kapatın ve önyüklenebilir USB belleğini"
+" takın.\n"
+"2) Arka güç anahtarını açın ve ön paneldeki AŞAĞI tuşunu 10 saniye basılı"
+" tutun.\n"
+"3) Yükleme için bekleyin ve sihirbazın talimatlarını izleyin."
 
 msgid "Today"
 msgstr "Bugün"
@@ -11322,7 +11336,7 @@ msgid ""
 msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
-msgstr ""
+msgstr "Etkinleştirildiğinde, İP yapılandırması için DHCP kullanılır."
 
 #, python-format
 msgid ""
@@ -11380,7 +11394,7 @@ msgstr ""
 "Fabrika ayarlarına geri dönmek istediğinizden emin misiniz?"
 
 msgid "Where do you want to backup your settings?"
-msgstr ""
+msgstr "Ayarlarınızı nereye yedeklemek istiyorsunuz?"
 
 #: Backup/restore
 msgid "Restore Plugins"
@@ -11412,13 +11426,13 @@ msgid "Restart Network Adapter"
 msgstr ""
 
 msgid "Where should the recording be saved?"
-msgstr ""
+msgstr "Kayıt nereye kaydedilmeli?"
 
 msgid "Where to save temporary timeshift recordings?"
 msgstr "Geçici zaman kaydırma kayıtlarını nerede saklayabilirim?"
 
 msgid "Which event do you want to save permanently?"
-msgstr ""
+msgstr "Hangi etkinliği kalıcı olarak saklamak istersiniz?"
 
 msgid "White"
 msgstr "Beyaz"
@@ -11456,13 +11470,15 @@ msgstr ""
 "Görevlerin eklentiler ekranında gizlenmesini sağlar (mavi tuşa kısa basış)."
 
 msgid "Write error while recording. Disk full?\n"
-msgstr ""
+msgstr "Kaydederken hata oluştu. Disk dolu mu?\n"
 
 #, python-format
 msgid ""
 "Write error while recording. Disk full?\n"
 "%s"
 msgstr ""
+"Kayıt sırasında yazma hatası. Disk dolu mu?\n"
+"%s"
 
 msgid "Write failed!"
 msgstr "Yazma başarısız!"
@@ -11751,7 +11767,7 @@ msgstr ""
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
-msgstr ""
+msgstr "Yedek başarıyla alındı. Şimdi yükseltme işlemine devam edeceğiz."
 
 msgid ""
 "Your collection exceeds the size of a single layer medium, you will need a "
@@ -11980,7 +11996,7 @@ msgstr "mevcut değil"
 
 #, python-format
 msgid "%s: Not Available"
-msgstr ""
+msgstr "%s : Mevcut Değil"
 
 msgid "adventure/western/war"
 msgstr "macera/western/savaş"
@@ -12022,7 +12038,7 @@ msgid "auto"
 msgstr "otomatik"
 
 msgid "auto deepstandby"
-msgstr ""
+msgstr "otomatik derin bekleme"
 
 msgid "auto standby"
 msgstr "otomatik bekleme"
@@ -12154,7 +12170,7 @@ msgid "descramble and record ecm"
 msgstr ""
 
 msgid "detective/thriller"
-msgstr ""
+msgstr "polisiye/heyecan"
 
 msgid "disable"
 msgstr "devre dışı"
@@ -12169,7 +12185,7 @@ msgid "disconnected"
 msgstr "bağlantı kesildi"
 
 msgid "discussion/interview/debate"
-msgstr ""
+msgstr "tartışma/röportaj/münazara"
 
 msgid "do nothing"
 msgstr "birşey yapma"
@@ -12190,7 +12206,7 @@ msgid "east"
 msgstr "doğu"
 
 msgid "ecm time:"
-msgstr ""
+msgstr "ecm zamanı:"
 
 msgid "ecm.info"
 msgstr ""
@@ -12259,10 +12275,10 @@ msgid "exit mounts setup menu"
 msgstr ""
 
 msgid "exit network adapter configuration"
-msgstr ""
+msgstr "ağ donanımı yapılandırmasından çık"
 
 msgid "exit networkadapter setup menu"
-msgstr ""
+msgstr "ağ donanımı kurulum menüsünden çık"
 
 msgid "experimental film/video"
 msgstr "deneysel film/video"
@@ -12280,10 +12296,10 @@ msgid "fashion"
 msgstr "moda"
 
 msgid "file oscam.conf could not be found"
-msgstr ""
+msgstr "oscam.conf dosyası bulunamadı"
 
 msgid "fileformats (BMP, PNG, JPG, GIF)"
-msgstr ""
+msgstr "dosya biçimi (BMP, PNG, JPG, GIF)"
 
 msgid "filename"
 msgstr "dosya adı"
@@ -12372,7 +12388,7 @@ msgid "height"
 msgstr "yükseklik"
 
 msgid "hops:"
-msgstr ""
+msgstr "hops:"
 
 msgid "horizontal"
 msgstr "yatay (h)"
@@ -12396,16 +12412,16 @@ msgid "invalid type"
 msgstr "geçersiz tür"
 
 msgid "is strongly advised."
-msgstr ""
+msgstr "Şiddetle tavsiye edilir."
 
 msgid "jazz"
 msgstr "caz"
 
 msgid "jump back to the previous title"
-msgstr ""
+msgstr "önceki başlığa atla"
 
 msgid "jump forward to the next title"
-msgstr ""
+msgstr "sonraki başlığa atla"
 
 msgid "languages"
 msgstr "diller"
@@ -12426,7 +12442,7 @@ msgid "Kernel Modules"
 msgstr "Çekirdek Modülleri"
 
 msgid "leave movie player..."
-msgstr ""
+msgstr "Film oynatıcıdan ayrıl ..."
 
 msgid "left"
 msgstr "sol"
@@ -12456,10 +12472,10 @@ msgid "loopthrough to"
 msgstr ""
 
 msgid "magazines/reports/documentary"
-msgstr ""
+msgstr "magazin/rapor/belgesel"
 
 msgid "making a backup before updating"
-msgstr ""
+msgstr "Güncellenmeden önce bir yedekleme yapın"
 
 msgid "manual"
 msgstr "elle"
@@ -12471,7 +12487,7 @@ msgid "martial sports"
 msgstr "dövüş sporları"
 
 msgid "medicine/physiology/psychology"
-msgstr ""
+msgstr "tıp/fizyoloji/psikoloji"
 
 msgid "menu"
 msgstr "menü"
@@ -12510,13 +12526,13 @@ msgid "movie/drama (general)"
 msgstr "Film/drama (genel)"
 
 msgid "ms"
-msgstr ""
+msgstr "ms"
 
 msgid "multinorm"
 msgstr ""
 
 msgid "music/ballet/dance (general)"
-msgstr ""
+msgstr "müzik/bale/dans (genel)"
 
 msgid "musical/opera"
 msgstr "müzikal/opera"
@@ -12585,10 +12601,10 @@ msgid "Nothing connected"
 msgstr "Bağlı değil"
 
 msgid "of a DUAL layer medium used."
-msgstr ""
+msgstr "ÇİFT katmanlı ortam kullanıldığında."
 
 msgid "of a SINGLE layer medium used."
-msgstr ""
+msgstr "TEK katmanlı ortam kullanıldığında."
 
 msgid "off"
 msgstr "kapalı"
@@ -12609,7 +12625,7 @@ msgid "open bouquetlist"
 msgstr "buket listesini aç"
 
 msgid "open nameserver configuration"
-msgstr ""
+msgstr "isim sunucu yapılandırmasını aç"
 
 msgid "original"
 msgstr "orjinal"
@@ -12624,7 +12640,7 @@ msgid "page left"
 msgstr "sayfa kaldı"
 
 msgid "pass"
-msgstr ""
+msgstr "geç"
 
 msgid "performing arts"
 msgstr "sahne sanatları"
@@ -12633,7 +12649,7 @@ msgid "pid:"
 msgstr ""
 
 msgid "play as picture in picture"
-msgstr ""
+msgstr "Resim içinde resim olarak göster"
 
 msgid "play in mainwindow"
 msgstr "ana pencerede oynat"
@@ -12676,10 +12692,10 @@ msgid "religion"
 msgstr "dini"
 
 msgid "remarkable people"
-msgstr ""
+msgstr "dikkat çekici kişiler"
 
 msgid "remove after this position"
-msgstr ""
+msgstr "bu konumdan sonrasını kaldır"
 
 msgid "remove all alternatives"
 msgstr "tüm alternatifleri kaldır"
@@ -12724,7 +12740,7 @@ msgid "restart GUI"
 msgstr "Grafiksel arayüzü yeniden başlat"
 
 msgid "reverse by date"
-msgstr ""
+msgstr "ters tarih"
 
 msgid "rewind to the previous chapter"
 msgstr ""
@@ -12799,13 +12815,13 @@ msgid "share:"
 msgstr "paylaşım:"
 
 msgid "show DVD main menu"
-msgstr ""
+msgstr "DVD ana menüsünü göster"
 
 msgid "Show DVD-Player in Mainmenu ?"
-msgstr ""
+msgstr "Ana Menüde DVD Oynatıcı Gösterilsin mi?"
 
 msgid "DVD-Player Setup"
-msgstr ""
+msgstr "DVD Oynatıcı Kurulumu"
 
 msgid "show EPG..."
 msgstr "EPG yi göster"
@@ -12820,34 +12836,34 @@ msgid "show alternatives"
 msgstr "alternatifleri göster"
 
 msgid "show cards with uphop 0"
-msgstr ""
+msgstr "kartları göster uphop 0"
 
 msgid "show cards with uphop 1"
-msgstr ""
+msgstr "kartları göster uphop 1"
 
 msgid "show cards with uphop 2"
-msgstr ""
+msgstr "kartları göster uphop 2"
 
 msgid "show cards with uphop 3"
-msgstr ""
+msgstr "kartları göster uphop 2"
 
 msgid "show cards with uphop 4"
-msgstr ""
+msgstr "kartları göster uphop 4"
 
 msgid "show cards with uphop 5"
-msgstr ""
+msgstr "kartları göster uphop 3"
 
 msgid "show cards with uphop 6"
-msgstr ""
+msgstr "kartları göster uphop 4"
 
 msgid "show cards with uphop 7"
-msgstr ""
+msgstr "kartları göster uphop 7"
 
 msgid "show cards with uphop 8"
-msgstr ""
+msgstr "kartları göster uphop 8"
 
 msgid "show cards with uphop 9"
-msgstr ""
+msgstr "kartları göster uphop 8"
 
 msgid "show event details"
 msgstr "etkinlik detaylarını göster"
@@ -12979,7 +12995,7 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr ""
 
 msgid "top"
-msgstr ""
+msgstr "üst"
 
 msgid "tourism/travel"
 msgstr "turizm/seyahat"
@@ -12994,19 +13010,19 @@ msgid "Tuner is not supported"
 msgstr "Tuner desteklenmiyor"
 
 msgid "uShare Log"
-msgstr ""
+msgstr "uShare Günlüğü"
 
 msgid "uShare Name"
-msgstr ""
+msgstr "uShare Adı"
 
 msgid "uShare Port"
 msgstr ""
 
 msgid "uShare Setup"
-msgstr ""
+msgstr "uShare Kurulumu"
 
 msgid "uShare setup"
-msgstr ""
+msgstr "uShare kurulumu"
 
 msgid "unavailable"
 msgstr "kullanılamaz"
@@ -13045,7 +13061,7 @@ msgid "view extensions..."
 msgstr "eklentileri göster..."
 
 msgid "wait for ci..."
-msgstr ""
+msgstr "ci bekle..."
 
 msgid "wait for mmi..."
 msgstr "mmi bekleniyor..."
@@ -13054,10 +13070,10 @@ msgid "waiting"
 msgstr "bekleniyor"
 
 msgid "wakeup"
-msgstr ""
+msgstr "Uyandır"
 
 msgid "wakeup to standby"
-msgstr ""
+msgstr "Beklemeye uyandır"
 
 msgid "water sport"
 msgstr "su sporları"
@@ -13358,7 +13374,7 @@ msgstr "UserManager"
 
 #, python-format
 msgid "Network Neighbourhood"
-msgstr ""
+msgstr "Ağ Komşusu"
 
 #
 msgid "Rescan"
@@ -13366,19 +13382,19 @@ msgstr "Yeniden Tara"
 
 #
 msgid "DVB Transmission Way"
-msgstr ""
+msgstr "DVB İletim Yolu"
 
 #
 msgid "OK/green = activate settings"
-msgstr ""
+msgstr "OK/yeşil = ayarları etkinleştirir"
 
 #
 msgid "Info = show tuner informations"
-msgstr ""
+msgstr "Info = tuner bilgilerini göster"
 
 #
 msgid "Bouquet -= scan for IPTV server addresses"
-msgstr ""
+msgstr "Buket - = IPTV sunucusu adreslerini tara"
 
 #
 msgid "Remote"
@@ -13398,7 +13414,7 @@ msgstr "Lütfen bir çözünürlük seçin ..."
 
 #
 msgid "Auto(not available)"
-msgstr ""
+msgstr "Otomatik(mevcut değil)"
 
 #
 msgid "Aspect list..."
@@ -13770,7 +13786,7 @@ msgid "Menu long"
 msgstr "Menü uzun"
 
 msgid "Mute long"
-msgstr ""
+msgstr "Sessiz uzun"
 
 msgid "Next long"
 msgstr ""
@@ -14246,3 +14262,9 @@ msgstr "HDF İmaj Ekibi Tarafından"
 
 msgid "Videomode"
 msgstr "Video modu"
+
+msgid "Frontpanel"
+msgstr "Ön panel"
+
+msgid "Updates are currently disabled..."
+msgstr ""
