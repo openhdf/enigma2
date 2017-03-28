@@ -1530,7 +1530,7 @@ class ChannelSelectionBase(Screen):
 										else:
 											h = _("E")
 										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
-								if not '(type == 1)' in srvtypes and '(type == 17)' in srvtypes and '(type == 31)' in srvtypes:
+								if not '(type == 1)' in srvtypes:
 									service_type = "HD-%s"%(service_type)
 								if len(service_name) > 34:
 									service.setName("%s - %s" % (service_name[:-2], service_type))
