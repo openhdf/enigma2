@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-03-25 08:57+0100\n"
+"PO-Revision-Date: 2017-04-03 16:07+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -2275,10 +2275,10 @@ msgid "Channel list context menu"
 msgstr "Senderliste Kontextmenü"
 
 msgid "Channel list on mode change"
-msgstr "Senderliste bei Moduswechsel"
+msgstr "Zeige Senderliste bei Moduswechsel"
 
 msgid "Channel list preview"
-msgstr "Vorschau Senderliste"
+msgstr "Vorschau beim Umschalten in der Senderliste"
 
 msgid "Channel list service mode*"
 msgstr "Senderliste Anzeigenformat*"
@@ -5253,7 +5253,7 @@ msgid "Jump back 24 hours"
 msgstr "24 Stunden zurück springen"
 
 msgid "Jump first press in channel selection*"
-msgstr "Tastenreaktion in Senderliste"
+msgstr "Tastenreaktion in der Senderliste"
 
 msgid "Jump forward 24 hours"
 msgstr "24 Stunden vorwärts springen"
@@ -5469,7 +5469,7 @@ msgid "List of storage devices"
 msgstr "Speichergeräteliste"
 
 msgid "Channel list cursor behavior"
-msgstr "Kanallisten Cursor verhalten"
+msgstr "Verhalten des Auswahlbalken in der Kanalliste"
 
 msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr "Position des Curors beim Öffnen der Kannliste festlegen. Auf dem laufenden Kanal oder einen Eintrag hoch/runter positionieren. Ausserdem kann die Belegung der B+/B- Tasten getauscht werden"
@@ -12430,10 +12430,10 @@ msgid "service PIN"
 msgstr "Service PIN"
 
 msgid "set as startup service"
-msgstr "Als Startsender aus dem Deep-Standby festlegen"
+msgstr "Als Startsender aus Deep-Standby festlegen"
 
 msgid "set as startup service from standby"
-msgstr "Als Startsender aus dem Standby festlegen"
+msgstr "Als Startsender aus Standby festlegen"
 
 msgid "stop using as startup service from standby"
 msgstr "Nicht mehr als Startsender aus Standby benutzen"
@@ -12580,7 +12580,7 @@ msgid "stereo"
 msgstr "Stereo"
 
 msgid "stop using as startup service"
-msgstr "Nicht mehr als Startsender aus dem Deep-Standby benutzen"
+msgstr "Nicht mehr als Startsender aus Deep-Standby benutzen"
 
 msgid "switch to bookmarks"
 msgstr "gehe zu Lesezeichen"
