@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-05 21:45+0300\n"
-"PO-Revision-Date: 2017-03-28 18:58+0200\n"
+"PO-Revision-Date: 2017-04-04 22:15+0200\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgid "Stop Timeshift"
 msgstr "Zaman kaydırmayı durdur"
 
 msgid "Show Infobar EPG"
-msgstr "EPG Bilgi Çubuğunu Göster"
+msgstr ""
 
 msgid "Zap up"
 msgstr "Yukarıya doğru kanal değiştir"
@@ -1985,7 +1985,7 @@ msgid "Bouquet List"
 msgstr "Buket Listesi"
 
 msgid "Keep focus on current service while entering servicelist"
-msgstr ""
+msgstr "Kanal listesine  girerken geçerli kanala odaklan"
 
 msgid "Brightness"
 msgstr "Parlaklık"
@@ -6578,7 +6578,7 @@ msgid "Number"
 msgstr "Sayı"
 
 msgid "Number of rows"
-msgstr "Satır sayısı"
+msgstr "Kanal listesi satır sayısı"
 
 msgid "OE Changes"
 msgstr "OE Değişiklikleri"
@@ -8732,7 +8732,9 @@ msgid "Show channel number in infobar"
 msgstr "Bilgi çubuğunda kanal numaralarını göster"
 
 msgid "Show crypto icons"
-msgstr "Şifre simgelerini göster"
+msgstr ""
+""
+"Şifreli kanallarda simge göster"
 
 msgid "Show crypto info in infobar"
 msgstr "Bilgi çubuğunda şifreleme bilgisi göster"
@@ -9149,7 +9151,7 @@ msgid ""
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
-msgstr ""
+msgstr "Üzgünüm, uShare yapılandırması eksik"
 
 #, python-format
 msgid "Sorry, %s has not been installed!"
@@ -10647,7 +10649,7 @@ msgid "Use Virgin EPG information when it is available."
 msgstr "Uygun olduğunda Virgin EPG bilgilerini kullan."
 
 msgid "Maximum number of days in EPG"
-msgstr ""
+msgstr "EPG verisinin tutulacağı azami gün"
 
 msgid "Use for load only x days in EPG"
 msgstr ""
@@ -13169,7 +13171,7 @@ msgid "Select Software Update"
 msgstr "Yazılım Güncelleme Seç"
 
 msgid "Overwrite Configuration Files ?"
-msgstr ""
+msgstr "Yapılandırma dosyalarının üzerine yazılsın mı?"
 
 msgid "Overwrite Setting Files ?"
 msgstr "Setting dosyaları üzerine yazılsın mı?"
@@ -13184,7 +13186,7 @@ msgid "Overwrite Driver Files ?"
 msgstr "Sürücü dosyaları üzerine yazılsın mı?"
 
 msgid "Overwrite Softcam Files ?"
-msgstr ""
+msgstr "Softcam dosyalarının üzerine yazılsın mı?"
 
 msgid "Overwrite Emu Files ?"
 msgstr "Emu dosyaları üzerine yazılsın mı?"
@@ -13454,7 +13456,7 @@ msgstr "Buket + = sürücü yükle veya güncelle"
 
 #
 msgid "Bouquet - = scan for IPTV server addresses"
-msgstr ""
+msgstr "Buket - = IPTV sunucusu adreslerini tara"
 
 #
 msgid ""
@@ -13521,7 +13523,6 @@ msgstr ""
 msgid "Boot-up action"
 msgstr ""
 
-#
 msgid "Show MiniTV in the Front Display"
 msgstr ""
 
@@ -13531,11 +13532,9 @@ msgstr ""
 msgid "MiniTV with OSD"
 msgstr "OSD ile Mini TV"
 
-#
 msgid "Set Framerate for MiniTV"
 msgstr "MiniTV için kare hızını ayarla"
 
-#
 msgid "Lower Framerate save CPU Time"
 msgstr ""
 
@@ -13611,13 +13610,13 @@ msgid "Save EPG after refresh"
 msgstr ""
 
 msgid "Manual save EPG"
-msgstr ""
+msgstr "EPG'yi elle kaydet"
 
 msgid "Manual load EPG"
-msgstr ""
+msgstr "EPG'yi elle yükle"
 
 msgid "Manual reload EPG"
-msgstr ""
+msgstr "EPG'Yİ elle yeniden yükle"
 
 msgid "Download internet EPG from exUSSR"
 msgstr ""
@@ -13665,7 +13664,7 @@ msgid "Current EPG cachefile:"
 msgstr ""
 
 msgid "AAC downmix"
-msgstr ""
+msgstr "AAC downmix"
 
 msgid "Dolby Digital / DTS downmix"
 msgstr ""
@@ -14064,7 +14063,7 @@ msgid "Set CI assignment for detection of available services."
 msgstr ""
 
 msgid "Include CI assignment"
-msgstr ""
+msgstr "CI atamasını dahil et"
 
 msgid "Image started:\t%s"
 msgstr "İmaj başladı:\t%s"
@@ -14150,7 +14149,7 @@ msgid "Write error!"
 msgstr "Yazma hatası!"
 
 msgid "Error in file %s"
-msgstr ""
+msgstr "%s dosyasında hata"
 
 msgid "Command line error!"
 msgstr "Komut satırı hatası!"
@@ -14268,3 +14267,6 @@ msgstr "Ön panel"
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+msgid "Network"
+msgstr "Ağ"
