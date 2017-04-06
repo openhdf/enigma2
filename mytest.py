@@ -24,9 +24,6 @@ from Screens.SimpleSummary import SimpleSummary
 
 from sys import stdout, exc_info
 
-profile("Bouquets")
-enigma.eDVBDB.getInstance().reloadBouquets()
-
 profile("ParentalControl")
 import Components.ParentalControl
 Components.ParentalControl.InitParentalControl()
@@ -575,7 +572,7 @@ def runScreenTest():
 	vol = VolumeControl(session)
 	profile("Init:PowerKey")
 	power = PowerKey(session)
-	
+
 	if boxtype in ('dm7020hd', 'dm7020hdv2', 'osminiplus', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixusszero', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3') or getBrandOEM() in ('fulan') or getMachineBuild() in ('dags7362' , 'dags5'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
@@ -591,6 +588,9 @@ def runScreenTest():
 	profile("Init:AutoVideoMode")
 	import Screens.VideoMode
 	Screens.VideoMode.autostart(session)
+
+	profile("Bouquets")
+	enigma.eDVBDB.getInstance().reloadBouquets()
 
 	profile("RunReactor")
 	profile_final()
@@ -733,7 +733,6 @@ def runScreenTest():
 	configfile.save()
 	from Screens import InfoBarGenerics
 	InfoBarGenerics.saveResumePoints()
-
 	return 0
 
 profile("Init:skin")
