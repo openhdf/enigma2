@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-04-03 16:07+0200\n"
+"PO-Revision-Date: 2017-04-07 16:45+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid "Switch to Radio Mode"
@@ -1283,6 +1283,10 @@ msgstr "Hinzufügen"
 
 msgid "Add AutoTimer"
 msgstr "Autotimer hinzufügen"
+
+#, python-format
+msgid "AutoTimer"
+msgstr "Automatische Timer"
 
 msgid "Add Timer"
 msgstr "Timer hinzufügen"
@@ -3123,7 +3127,7 @@ msgid "Cron Manager"
 msgstr "Cron Verwaltung"
 
 msgid "CronTimers"
-msgstr "CronTimer"
+msgstr "Zeitgesteuerte Timer"
 
 msgid "Current CEC address"
 msgstr "Aktuelle CEC-Adresse"
@@ -7035,6 +7039,9 @@ msgstr "PowerTimer Überblick"
 msgid "PowerTimer"
 msgstr "Einschalt / Ausschalt Timer"
 
+msgid "PowerTimers"
+msgstr "Einschalt / Ausschalt Timer"
+
 msgid "Predefined"
 msgstr "Vordefiniert"
 
@@ -9997,6 +10004,9 @@ msgstr "Timer-Art"
 
 msgid "Timers"
 msgstr "Timer"
+
+msgid "Timer"
+msgstr "Aufnahme / Umschalt Timer"
 
 msgid "Timeshift"
 msgstr "TimeShift"
