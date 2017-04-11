@@ -86,6 +86,7 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 																			'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config', '/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db', '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db', '/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', 
 																			eEnv.resolve("${datadir}/enigma2/keymap.usr"), eEnv.resolve("${datadir}/enigma2/keymap.ntr"), eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
 																			+eEnv_resolve_multi('/usr/bin/*cam*')\
+																			+eEnv_resolve_multi('/usr/bin/gbox')\
 																			+eEnv_resolve_multi('/etc/*.emu')\
 																			+eEnv_resolve_multi('/etc/init.d/softcam*')\
 																			+eEnv_resolve_multi('/etc/init.d/cardserver*'))
