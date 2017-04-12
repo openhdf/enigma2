@@ -243,7 +243,7 @@ class ImageBackup(Screen):
 			self.message += _("will take about 3-12 minutes for this system\n")
 		elif isDreamboxXZ:
 			self.message += _("because of the used filesystem the back-up\n")
-			self.message += _("will take about 3-12 minutes for this system\n")
+			self.message += _("will take about 1-5 minutes for this system\n")
 		elif SystemInfo["HaveMultiBoot"] and self.list[self.selection] == "Recovery":
 			self.message += _("because of the used filesystem the back-up\n")
 			self.message += _("will take about 30 minutes for this system\n")
@@ -316,9 +316,7 @@ class ImageBackup(Screen):
 			cmdlist.append("dd if=/dev/mmcblk0p5 of=%s/rescue.bin" % self.WORKDIR)
 
 		cmdlist.append('echo " "')
-		if isDreamboxXZ:
-			self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, finishedCallback = self.doFullBackupCB, closeOnSuccess = True)
-		else:
+		if not isDreamboxXZ:
 			cmdlist.append('echo "Create: kerneldump"')
  			cmdlist.append('echo " "')
 			if SystemInfo["HaveMultiBoot"]:
@@ -413,8 +411,6 @@ class ImageBackup(Screen):
 		cmdlist.append('echo "_________________________________________________"')
 		cmdlist.append('echo "Almost there... "')
 		cmdlist.append('echo "Now building the USB-Image"')
-		cmdlist.append('echo "Lets bring up some verbosity"')
-		cmdlist.append('echo "ROOTFSBIN: %s WORKDIR:%s MAINDEST:%s DIRECTORY:%s IMAGEFOLDER:%s"' % (self.ROOTFSBIN, self.WORKDIR, self.MAINDEST, self.DIRECTORY, self.IMAGEFOLDER))
 
 		system('rm -rf %s' %self.MAINDEST)
 		if not path.exists(self.MAINDEST):
