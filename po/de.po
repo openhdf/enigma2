@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-04-07 16:45+0200\n"
+"PO-Revision-Date: 2017-04-14 14:18+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13846,3 +13846,36 @@ msgstr ""
 "Aktuell läuft ein IPTV 5001 oder 5002 Stream.\n"
 "IPTV Aufnahmen funktionieren nur bei 4097 Streams!\n"
 "Für Aufnahmen bitte auf einen 4097 Streams umschalten!"
+
+msgid "OFF"
+msgstr "Aus"
+
+msgid "ON"
+msgstr "An"
+
+msgid "BLINK"
+msgstr "Blinkend"
+
+msgid "LED 0: Box is on"
+msgstr "LED 0: Box ist an"
+
+msgid "LED 0: Box is on and recording"
+msgstr "LED 0: Box ist an und Aufnahme läuft"
+
+msgid "LED 0: Box is standby"
+msgstr "LED 0: Box ist im Standby"
+
+msgid "LED 0: Box is standby and recording"
+msgstr "LED 0: Box ist im Standby und Aufnahme läuft"
+
+msgid "LED 1: Box is on"
+msgstr "LED 1: Box ist an"
+
+msgid "LED 1: Box is on and recording"
+msgstr "LED 1: Box ist an und Aufnahme läuft"
+
+msgid "LED 1: Box is standby"
+msgstr "LED 1: Box ist im Standby"
+
+msgid "LED 1: Box is standby and recording"
+msgstr "LED 1: Box ist im Standby und Aufnahme läuft"
