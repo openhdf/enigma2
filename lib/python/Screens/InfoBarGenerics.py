@@ -3785,6 +3785,7 @@ class InfoBarSeek:
 						return
 					if position + pts >= length:
 						InfoBarTimeshift.evEOF(self, position + pts - length)
+						self.showAfterSeek()
 						return
 					elif position + pts < 0:
 						InfoBarTimeshift.evSOF(self, position + pts)
