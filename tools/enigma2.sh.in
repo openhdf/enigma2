@@ -57,6 +57,7 @@ touch /etc/enigma2/settings
 
 # hook to execute scripts always before enigma2 start
 [ -x @bindir@/enigma2_pre_start.sh ] && @bindir@/enigma2_pre_start.sh
+[ -x @bindir@/enigma2_pre_start_ciplus.sh ] && @bindir@/enigma2_pre_start_ciplus.sh
 
 sync
 sysctl -p
