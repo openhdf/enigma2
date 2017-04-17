@@ -610,7 +610,7 @@ static void gif_load(Cfilepara* filepara)
 	int extcode;
 
 #if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5)
-	gft = DGifOpenFileName(filepara->file, &extcode);
+	gft = DGifOpenFileName(filepara->file);
 #else
 	{
 		int err;
@@ -688,7 +688,7 @@ static void gif_load(Cfilepara* filepara)
 	while (rt != TERMINATE_RECORD_TYPE);
 
 #if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5) || (GIFLIB_MAJOR == 5 && GIFLIB_MINOR == 0)
-	DGifCloseFile(gft, &extcode);
+	DGifCloseFile(gft);
 #else
 	{
 		int err;
@@ -699,7 +699,7 @@ static void gif_load(Cfilepara* filepara)
 ERROR_R:
 	eDebug("[Picload] <Error gif>");
 #if !defined(GIFLIB_MAJOR) || ( GIFLIB_MAJOR < 5) || (GIFLIB_MAJOR == 5 && GIFLIB_MINOR == 0)
-	DGifCloseFile(gft, &extcode);
+	DGifCloseFile(gft);
 #else
 	{
 		int err;
