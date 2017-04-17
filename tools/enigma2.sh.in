@@ -27,19 +27,6 @@ fi
 
 [ -L /usr/lib/libcrypto.so.0.9.8 ] || ln -s /usr/lib/libcrypto.so.1.0.0 /usr/lib/libcrypto.so.0.9.8
 
-[ -d /home/root ] && cd /home/root
-
-if [ -e /proc/stb/info/hwmodel ]; then
-    stbcheck=`cat /proc/stb/info/hwmodel | cut -c1-8`
-    if [ $stbcheck == "optimuss" ]; then
-        string=`mount | grep 'sda1' | cut -d " " -f3`
-        if [ -e $string/sat-soft/settings.sh ]; then
-            chmod 755 $string/sat-soft/settings.sh
-            $string/sat-soft/settings.sh
-        fi
-    fi
-fi
-
 # check if media/net directory exists
 [ -d /media/net ] || mkdir /media/net
 
@@ -72,6 +59,12 @@ touch /etc/enigma2/settings
 [ -x @bindir@/enigma2_pre_start.sh ] && @bindir@/enigma2_pre_start.sh
 
 sync
+sysctl -p
+
+if [ -d /home/root ]; then
+	cd /home/root
+	export HOME=/home/root
+fi
 
 (sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
         [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
