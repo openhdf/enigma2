@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-04-14 14:18+0200\n"
+"PO-Revision-Date: 2017-04-18 19:02+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -1412,6 +1412,20 @@ msgstr "Erweiterte Optionen"
 
 msgid "Advanced restore"
 msgstr "Erweiterte Wiederherstellung"
+
+msgid "Your %s %s will Reboot..."
+msgstr "Deine %s %s wird jetzt neu gestartet..."
+
+msgid "Your %s %s will restart Enigma2..."
+msgstr "Deine %s %s startet Enigma2 neu..."
+
+#, python-format
+msgid ""
+"Do you want to completely reboot your box now? \n"
+"If not, only Enigma is restarting."
+msgstr ""
+"Soll die Box komplett neugestartet werden? \n"
+"Bei nein wird nur Enigma neu gestartet."
 
 msgid "Advanced software"
 msgstr "Erweiterte Software"
@@ -6917,25 +6931,25 @@ msgid "Please wait (updating packages)"
 msgstr "Bitte warten (Pakete werden aktualisiert)"
 
 msgid "Please wait for activation of your network configuration..."
-msgstr "Bitte warte, die Netzwerk-Konfiguration wird aktiviert."
+msgstr "Bitte warten, die Netzwerk-Konfiguration wird aktiviert."
 
 msgid "Please wait while gathering data..."
 msgstr "Bitte warten während ich Daten zusammenstelle..."
 
 msgid "Please wait while scanning is in progress..."
-msgstr "Bitte warte, der Suchvorgang läuft."
+msgstr "Bitte warten, der Suchvorgang läuft."
 
 msgid "Please wait while we configure your network..."
-msgstr "Bitte warte, das Netzwerk wird konfiguriert."
+msgstr "Bitte warten, das Netzwerk wird konfiguriert."
 
 msgid "Please wait while we prepare your network interfaces..."
-msgstr "Bitte warte, Netzwerk wird konfiguriert."
+msgstr "Bitte warten, Netzwerk wird konfiguriert."
 
 msgid "Please wait while we test your network..."
-msgstr "Bitte warte, Netzwerk wird überprüft."
+msgstr "Bitte warten, Netzwerk wird überprüft."
 
 msgid "Please wait while your network is restarting..."
-msgstr "Bitte warte, Netzwerk wird neu gestartet."
+msgstr "Bitte warten, das Netzwerk wird neu gestartet."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Bitte warten bis Feeds geprüft wurden."
