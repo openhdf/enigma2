@@ -19,7 +19,7 @@
 #include <lib/dvb/encoder.h>
 
 eStreamClient::eStreamClient(eStreamServer *handler, int socket, const std::string remotehost)
- : parent(handler), encoderFd(-1), streamFd(socket), streamThread(NULL), m_remotehost(remotehost), m_timeout(eTimer::create(eApp))
+ : parent(handler), encoderFd(-1), streamFd(socket), streamThread(NULL), m_remotehost(remotehost)
 {
 	running = false;
 }
@@ -44,7 +44,6 @@ void eStreamClient::start()
 {
 	rsn = eSocketNotifier::create(eApp, streamFd, eSocketNotifier::Read);
 	CONNECT(rsn->activated, eStreamClient::notifier);
-	CONNECT(m_timeout->timeout, eStreamClient::stopStream);
 }
 
 static void set_tcp_buffer_size(int fd, int optname, int buf_size)
@@ -75,7 +74,6 @@ void eStreamClient::notifier(int what)
 	if (request.substr(0, 5) == "GET /")
 	{
 		size_t pos;
-		size_t posdur;
 		if (eConfigManager::getConfigBoolValue("config.streaming.authentication"))
 		{
 			bool authenticated = false;
@@ -173,7 +171,6 @@ void eStreamClient::notifier(int what)
 				pos = serviceref.find('?');
 				if (pos == std::string::npos)
 				{
-					eDebug("[eDVBServiceStream] stream ref: %s", serviceref.c_str());
 					if (eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0)
 					{
 						running = true;
@@ -186,25 +183,7 @@ void eStreamClient::notifier(int what)
 					request = serviceref.substr(pos);
 					serviceref = serviceref.substr(0, pos);
 					pos = request.find("?bitrate=");
-					posdur = request.find("?duration=");
-					eDebug("[eDVBServiceStream] stream ref: %s", serviceref.c_str());
-					if (posdur != std::string::npos)
-					{
-						if (eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0)
-						{
-							running = true;
-							m_serviceref = serviceref;
-							m_useencoder = false;
-						}
-						int timeout = 0;
-						sscanf(request.substr(posdur).c_str(), "?duration=%d", &timeout);
-						eDebug("[eDVBServiceStream] duration: %d seconds", timeout);
-						if (timeout)
-						{
-							m_timeout->startLongTimer(timeout);
-						}
-					}
-					else if (pos != std::string::npos)
+					if (pos != std::string::npos)
 					{
 						/* we need to stream transcoded data */
 						int bitrate = 1024 * 1024;
