@@ -39,12 +39,9 @@ def getProcMounts():
 
 def isFileSystemSupported(filesystem):
 	try:
-		file = open('/proc/filesystems', 'r')
-		for fs in file:
+		for fs in open('/proc/filesystems', 'r'):
 			if fs.strip().endswith(filesystem):
-				file.close()
 				return True
-		file.close()
 		return False
 	except Exception, ex:
 		print "[Harddisk] Failed to read /proc/filesystems:", ex
@@ -70,6 +67,7 @@ class Harddisk:
 			self.type = DEVTYPE_DEVFS
 		else:
 			print "Unable to determine structure of /dev"
+			self.card = False
 
 		self.max_idle_time = 0
 		self.idle_running = False
@@ -84,9 +82,18 @@ class Harddisk:
 		self.mount_device = None
 		self.phys_path = os.path.realpath(self.sysfsPath('device'))
 
+		self.removable = removable
+		self.internal = "pci" in self.phys_path or "ahci" in self.phys_path or "sata" in self.phys_path
+		try:
+			data = open("/sys/block/%s/queue/rotational" % device, "r").read().strip()
+			self.rotational = int(data)
+		except:
+			self.rotational = True
+
 		if self.type == DEVTYPE_UDEV:
 			self.dev_path = '/dev/' + self.device
 			self.disk_path = self.dev_path
+			self.card = "sdhci" in self.phys_path
 
 		elif self.type == DEVTYPE_DEVFS:
 			tmp = readFile(self.sysfsPath('dev')).split(':')
@@ -103,9 +110,10 @@ class Harddisk:
 					self.dev_path = dev_path
 					self.disk_path = disk_path
 					break
+			self.card = self.device[:2] == "hd" and "host0" not in self.dev_path
 
-		print "new Harddisk", self.device, '->', self.dev_path, '->', self.disk_path
-		if not removable:
+		print "[Harddisk] new device", self.device, '->', self.dev_path, '->', self.disk_path
+		if not removable and not self.card:
 			self.startIdle()
 
 	def __lt__(self, ob):
@@ -156,15 +164,17 @@ class Harddisk:
 		try:
 			line = readFile(self.sysfsPath('size'))
 			cap = int(line)
+			return cap / 1000 * 512 / 1000
 		except:
 			dev = self.findMount()
 			if dev:
-				stat = os.statvfs(dev)
-				cap = int(stat.f_blocks * stat.f_bsize)
-				return cap / 1000 / 1000
-			else:
-				return cap
-		return cap / 1000 * 512 / 1000
+				try:
+					stat = os.statvfs(dev)
+					cap = int(stat.f_blocks * stat.f_bsize)
+					return cap / 1000 / 1000
+				except:
+					pass
+		return cap
 
 	def capacity(self):
 		cap = self.diskSize()
@@ -179,22 +189,22 @@ class Harddisk:
 			if self.device[:2] == "hd":
 				return readFile('/proc/ide/' + self.device + '/model')
 			elif self.device[:2] == "sd":
-				vendor = readFile(self.phys_path + '/vendor')
-				model = readFile(self.phys_path + '/model')
+				vendor = readFile(self.sysfsPath('device/vendor'))
+				model = readFile(self.sysfsPath('device/model'))
 				return vendor + '(' + model + ')'
 			elif self.device.startswith('mmcblk'):
 				return readFile(self.sysfsPath('device/name'))
 			else:
 				raise Exception, "no hdX or sdX or mmcX"
 		except Exception, e:
-			#print "[Harddisk] Failed to get model:", e
+			print "[Harddisk] Failed to get model:", e
 			return "-?-"
 
 	def free(self):
 		dev = self.findMount()
 		if dev:
 			stat = os.statvfs(dev)
-			return int((stat.f_bfree/1000) * (stat.f_bsize/1024))
+			return (stat.f_bfree/1000) * (stat.f_bsize/1024)
 		return -1
 
 	def numPartitions(self):
@@ -226,6 +236,7 @@ class Harddisk:
 				self.mount_device = parts[0]
 				self.mount_path = parts[1]
 				return parts[1]
+		return None
 
 	def enumMountDevices(self):
 		for parts in getProcMounts():
@@ -245,12 +256,12 @@ class Harddisk:
 		cmd = 'umount ' + dev
 		print "[Harddisk]", cmd
 		res = os.system(cmd)
-		return res >> 8
+		return (res >> 8)
 
 	def createPartition(self):
 		cmd = 'printf "8,\n;0,0\n;0,0\n;0,0\ny\n" | sfdisk -f -uS ' + self.disk_path
 		res = os.system(cmd)
-		return res >> 8
+		return (res >> 8)
 
 	def mkfs(self):
 		# No longer supported, use createInitializeJob instead
@@ -276,7 +287,7 @@ class Harddisk:
 				print "[Harddisk] mounting:", fspath
 				cmd = "mount -t auto " + fspath
 				res = os.system(cmd)
-				return res >> 8
+				return (res >> 8)
 		# device is not in fstab
 		res = -1
 		if self.type == DEVTYPE_UDEV:
@@ -285,7 +296,7 @@ class Harddisk:
 			# give udev some time to make the mount, which it will do asynchronously
 			from time import sleep
 			sleep(3)
-		return res >> 8
+		return (res >> 8)
 
 	def fsck(self):
 		# No longer supported, use createCheckJob instead
@@ -360,10 +371,10 @@ class Harddisk:
 			if size > 128000:
 				# Start at sector 8 to better support 4k aligned disks
 				print "[HD] Detected >128GB disk, using 4k alignment"
-				task.initial_input = "8,\n;0,0\n;0,0\n;0,0\ny\n"
+				task.initial_input = "8,,L\n;0,0\n;0,0\n;0,0\ny\n"
 			else:
 				# Smaller disks (CF cards, sticks etc) don't need that
-				task.initial_input = "0,\n;\n;\n;\ny\n"
+				task.initial_input = ",,L\n;\n;\n;\ny\n"
 
 		task = Task.ConditionTask(job, _("Waiting for partition"))
 		task.check = lambda: os.path.exists(self.partitionPath("1"))
@@ -373,6 +384,15 @@ class Harddisk:
 		big_o_options = ["dir_index"]
 		if isFileSystemSupported("ext4"):
 			task.setTool("mkfs.ext4")
+			if size > 20000:
+				try:
+					version = map(int, open("/proc/version","r").read().split(' ', 4)[2].split('.',2)[:2])
+					if (version[0] > 3) or (version[0] > 2 and version[1] >= 2):
+						# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
+						task.args += ["-C", "262144"]
+						big_o_options.append("bigalloc")
+				except Exception, ex:
+					print "Failed to detect Linux version:", ex
 		else:
 			task.setTool("mkfs.ext3")
 		if size > 250000:
@@ -472,14 +492,12 @@ class Harddisk:
 	# any access has been made to the disc. If there has been no access over a specifed time,
 	# we set the hdd into standby.
 	def readStats(self):
-		if os.path.exists("/sys/block/%s/stat" % self.device):
-			f = open("/sys/block/%s/stat" % self.device)
-			l = f.read()
-			f.close()
-			data = l.split(None,5)
-			return int(data[0]), int(data[4])
-		else:
+		try:
+			l = open("/sys/block/%s/stat" % self.device).read()
+		except IOError:
 			return -1,-1
+		data = l.split(None,5)
+		return (int(data[0]), int(data[4]))
 
 	def startIdle(self):
 		from enigma import eTimer
@@ -1059,4 +1077,24 @@ class MkfsTask(Task.LoggingTask):
 
 
 harddiskmanager = HarddiskManager()
+
+def isSleepStateDevice(device):
+	ret = os.popen("hdparm -C %s" % device).read()
+	if 'SG_IO' in ret or 'HDIO_DRIVE_CMD' in ret:
+		return None
+	if 'drive state is:  standby' in ret or 'drive state is:  idle' in ret:
+		return True
+	elif 'drive state is:  active/idle' in ret:
+		return False
+	return None
+
+def internalHDDNotSleeping(external=False):
+	state = False
+	if harddiskmanager.HDDCount():
+		for hdd in harddiskmanager.HDDList():
+			if hdd[1].internal or external:
+				if hdd[1].idle_running and hdd[1].max_idle_time and not hdd[1].isSleeping():
+					state = True
+	return state
+
 SystemInfo["ext4"] = isFileSystemSupported("ext4")
