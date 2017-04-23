@@ -115,7 +115,7 @@ class About(Screen):
 		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900'):
 			AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
 		else:
-			AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
+			AboutText += _("CPU:\t%s") % about.getCPUString() + " " + cpuMHz + "\n"
 		dMIPS = 0
 		if getMachineBuild() in ('vusolo4k'):
 			dMIPS = "10.500"
@@ -162,7 +162,7 @@ class About(Screen):
 		if fp_version is None:
 			fp_version = ""
 		elif fp_version != 0:
-			fp_version = _("Frontprocessor version: %s") % fp_version
+			fp_version = _("Frontprocessor:\tVersion %s") % fp_version
 			AboutText += fp_version + "\n"
 
 		tempinfo = ""
