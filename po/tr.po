@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-05 21:45+0300\n"
-"PO-Revision-Date: 2017-04-23 13:30+0200\n"
+"PO-Revision-Date: 2017-04-25 03:47+0200\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -232,7 +232,7 @@ msgid "Harddisk Setup"
 msgstr "Sabit Disk Ayarları"
 
 msgid "Please use Harddisk Setup to initialize your drive."
-msgstr ""
+msgstr "Sürücünüzü başlatmak için lütfen Harddisk Kurulumu'nu kullanın."
 
 msgid "Select HDD"
 msgstr "HDD Seç"
@@ -253,6 +253,8 @@ msgid ""
 "Configure the hard disk drive to go to standby after the specified idle time "
 "when the box is in standby."
 msgstr ""
+"Sabit disk sürücüsünü, cihaz bekleme modundayken belirlenen boşta kalma"
+" süresinden sonra bekleme moduna geçecek şekilde yapılandırın."
 
 msgid "Subtitles Settings"
 msgstr "Altyazı Ayarları"
@@ -428,6 +430,8 @@ msgid ""
 "\n"
 "Scan for local extensions and install them."
 msgstr ""
+"\n"
+"Yerel eklentiler için tarama yapın ve bunları yükleyin."
 
 msgid ""
 "\n"
@@ -442,6 +446,8 @@ msgid ""
 "\n"
 "View, install and remove available or installed packages."
 msgstr ""
+"\n"
+"Mevcut veya kurulu paketleri görüntüleyin, yükleyin ve kaldırın."
 
 #, python-format
 msgid "Show"
@@ -453,7 +459,7 @@ msgstr ""
 
 #, python-format
 msgid "Show OscamInfo"
-msgstr ""
+msgstr "OscamInfo'yu Göster"
 
 #, python-format
 msgid "Show OscamStatusView"
@@ -533,7 +539,7 @@ msgstr "Yer imi tuş modu"
 
 #, python-format
 msgid "Use function assigned to bookmark button"
-msgstr ""
+msgstr "Yer imi tuşuna atanan işlevi kullanın"
 
 msgid " (PiP)"
 msgstr " (RiR)"
@@ -732,7 +738,7 @@ msgstr "%s uzun zamandır kullanılmıyor. Silinmeli mi?"
 #, python-format
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
-msgstr[0] ""
+msgstr[0] "%s güncellenmiş paket mevcut"
 msgstr[1] ""
 
 #, python-format
@@ -918,6 +924,7 @@ msgstr ""
 #, python-format
 msgid "Configure how long the powertimer message is displayed."
 msgstr ""
+"Güç zamanlayıcı mesajının ne kadar süre görüntüleneceğini yapılandırın."
 
 #, python-format
 msgid ""
@@ -1003,10 +1010,10 @@ msgid "Use workaround for recordings from deep standby"
 msgstr ""
 
 msgid "Wakeup time before a timer begins [mins]"
-msgstr ""
+msgstr "Bir zamanlayıcı başlamadan önce uyanma süresi [dakika]"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
-msgstr ""
+msgstr "Bir zamanlayıcı ile uyanmayı algılamak için zaman penceresi [dakika]"
 
 msgid ""
 "The default settings are 5 minutes earlier to wakeup from deep standby. It "
@@ -1134,7 +1141,7 @@ msgid "A required tool (%s) was not found."
 msgstr ""
 
 msgid "A search for available updates is currently in progress."
-msgstr ""
+msgstr "Mevcut güncellemeler için bir arama şu anda devam ediyor."
 
 msgid ""
 "A second configured interface has been found.\n"
@@ -1189,7 +1196,7 @@ msgid ""
 msgstr ""
 
 msgid "A small overview of the available icon states and actions."
-msgstr ""
+msgstr "Mevcut simge durumları ve eylemlerine küçük bir genel bakış."
 
 msgid ""
 "A timer failed to record!\n"
@@ -1528,7 +1535,7 @@ msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "%s %s EPG bilgisini düzenli olarak saklasın."
 
 msgid "Allows you hide the extensions of known file types."
-msgstr ""
+msgstr "Bilinen dosya türlerinin uzantılarını gizlemenizi sağlar."
 
 msgid "Allows you setup the button to do what you choose."
 msgstr "Seçtiğiniz şeyi yapmak için tuşu ayarlamanıza izin verir."
@@ -1837,7 +1844,7 @@ msgid "Automatic setting backup"
 msgstr "Otomatik ayar yedekle"
 
 msgid "Automatically start timeshift after"
-msgstr ""
+msgstr "Ardından otomatik olarak zaman kaydırma başlatın"
 
 msgid "Timeshift buffer delete after zap?"
 msgstr "Kanal değişiminden sonra zaman kaydırma belleği silinsin mi?"
@@ -1909,6 +1916,8 @@ msgid ""
 "\n"
 "Reset selection of files for backup to default."
 msgstr ""
+"\n"
+"Varsayılan yedekleme için dosyaları seçin."
 
 msgid ""
 "Set selected files for backup to default \n"
@@ -1967,7 +1976,7 @@ msgid "Blue long"
 msgstr "Mavi uzun"
 
 msgid "Change sort by..."
-msgstr ""
+msgstr "Sıralamayı değiştir ..."
 
 msgid "Copy to other directory"
 msgstr "Başka bir dizine kopyala"
@@ -2017,7 +2026,7 @@ msgid "Enable stream buffering status"
 msgstr "Akışı belleğe alma durumunu etkinleştir"
 
 msgid "Show the buffering status in percent if playing streams"
-msgstr ""
+msgstr "Akışlar oynuyorsa arabellek durumunu yüzde olarak göster"
 
 #, python-format
 msgid "Build:\t%s"
@@ -2059,7 +2068,7 @@ msgid "Bypass HDMI EDID Check"
 msgstr "HDMI EDID Kontrolunu atla"
 
 msgid "HDMI Colorimetry"
-msgstr ""
+msgstr "HDMI Renk ölçümü"
 
 msgid "Switch to HDMI in mode"
 msgstr ""
@@ -2182,7 +2191,7 @@ msgid "Cancel save timeshift as movie"
 msgstr ""
 
 msgid "Show status messages when switch to live TV"
-msgstr ""
+msgstr "Canlı TV'ye geçiş yaparken durum mesajlarını göster"
 
 msgid "Cancel next timer"
 msgstr "Sonraki zamanlayıcıyı iptal et"
@@ -2239,7 +2248,7 @@ msgid "time to wait next keypress in milliseconds"
 msgstr ""
 
 msgid "alternative service counter in bouquets"
-msgstr ""
+msgstr "Buketlerdeki alternatif kanal sayacı"
 
 msgid "restore deleted userbouquets"
 msgstr "silinen kullanıcı buketlerini geri yükle"
@@ -3435,7 +3444,7 @@ msgid "Default timer event"
 msgstr "Varsayılan zamanlayıcı olayı"
 
 msgid "Configure default type for new timers."
-msgstr ""
+msgstr "Yeni sayaçlar için varsayılan türünü yapılandırın."
 
 msgid "Long press emulation with button"
 msgstr ""
@@ -3821,7 +3830,7 @@ msgid "Do you want to install the package:\n"
 msgstr ""
 
 msgid "Do you want to play DVD in drive?"
-msgstr ""
+msgstr "Sürücüde DVD oynamak istiyor musunuz?"
 
 msgid "Do you want to preview this DVD before burning?"
 msgstr ""
@@ -3972,7 +3981,7 @@ msgstr "EPG ayarları"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
-msgstr ""
+msgstr "HATA - arama başarısız (%s)!"
 
 msgid "East"
 msgstr "Doğu"
@@ -4225,7 +4234,7 @@ msgid "Enter the service pin"
 msgstr "Kanal parolasını girin"
 
 msgid "Enter your email address to send a copy of the log to."
-msgstr ""
+msgstr "Günlüğün bir kopyasını göndermek için e-posta adresinizi girin."
 
 msgid "Enter your forum user name, to make it easier trace logs."
 msgstr ""
@@ -4955,12 +4964,14 @@ msgid ""
 "Configure to keep focus on the current played service while entering the "
 "servicelist via the bouquet buttons."
 msgstr ""
+"Buket tuşlarıyla kanal listesine girerken geçerli oynatılan kanala"
+" odaklanmaya devam edin."
 
 msgid "Hide any zap error messages."
 msgstr "Kanal değiştirme hata mesajlarını gizle."
 
 msgid "Hide error messages from the Common Interface module."
-msgstr ""
+msgstr "Hata mesajlarını Ortak Arayüz modülünden gizleyin."
 
 msgid "Hide known extensions"
 msgstr "Bilinen uzantıları gizle"
@@ -6257,13 +6268,13 @@ msgid "Check disk terminated with success"
 msgstr ""
 
 msgid "Error checking disk. The disk may be damaged"
-msgstr ""
+msgstr "Disk kontrolü hatası. Disk hasar görmüş olabilir"
 
 msgid "Error formatting disk. The disk may be damaged"
-msgstr ""
+msgstr "Disk biçimlendirme hatası. Disk hasar görmüş olabilir"
 
 msgid "Format terminated with success"
-msgstr ""
+msgstr "Biçimlendirme başarı ile sona erdi"
 
 msgid "Checking disk %s"
 msgstr "Disk denetleniyor  %s"
@@ -6509,7 +6520,7 @@ msgid ""
 msgstr ""
 
 msgid "No, but restart from begin"
-msgstr ""
+msgstr "Hayır, ancak başlangıçtan itibaren yeniden başlat"
 
 msgid "No, do nothing."
 msgstr "Hayır, birşey yapma"
@@ -7682,7 +7693,7 @@ msgid "Select a remote server IP first"
 msgstr ""
 
 msgid "Testing remote connection"
-msgstr ""
+msgstr "Uzak bağlantıyı sınama"
 
 msgid "Connection to remote IP ok"
 msgstr ""
@@ -7752,7 +7763,7 @@ msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr ""
 
 msgid "Removing partition table"
-msgstr ""
+msgstr "Bölümleme tablosu kaldırılıyor"
 
 msgid "Rename"
 msgstr "Ad değiştir "
@@ -9834,7 +9845,7 @@ msgid ""
 msgstr ""
 
 msgid "The following files were found..."
-msgstr ""
+msgstr "Aşağıdaki dosyalar bulundu ..."
 
 msgid "The loopthrough setting is wrong."
 msgstr ""
@@ -9929,7 +9940,7 @@ msgid "There is no [webif] section in oscam.conf"
 msgstr ""
 
 msgid "There is no signal to lock on !"
-msgstr ""
+msgstr "Kilitlenecek hiçbir sinyal yok!"
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -10906,7 +10917,7 @@ msgid "Vertical turning speed"
 msgstr "Dikey dönüş hızı"
 
 msgid "ViX EPG"
-msgstr ""
+msgstr "ViX EPG"
 
 msgid "Video Enhancement Settings"
 msgstr "Görüntü İyileştirme Ayarları"
@@ -10988,7 +10999,7 @@ msgid "View Rass interactive..."
 msgstr ""
 
 msgid "View Video CD..."
-msgstr ""
+msgstr "VCD izle..."
 
 msgid "View details"
 msgstr "Detayları göster"
@@ -11021,7 +11032,7 @@ msgid "View list of available networking extensions"
 msgstr "Ağ eklentilerini listele"
 
 msgid "View list of available recording extensions"
-msgstr ""
+msgstr "Kullanılabilir kayıt eklentilerinin listesini görüntüle"
 
 msgid "View list of available skins"
 msgstr "Mevcut arayüzleri listele"
@@ -11045,7 +11056,7 @@ msgid "View the changes"
 msgstr "Değişiklikleri gör"
 
 msgid "View video CD..."
-msgstr ""
+msgstr "VCD izle..."
 
 msgid "Virtuosso Image Xtreme"
 msgstr "Virtuosso Image Xtreme"
@@ -11057,7 +11068,7 @@ msgid "W"
 msgstr "B"
 
 msgid "WARNING: feeds maybe unstable."
-msgstr ""
+msgstr "UYARI: besleme belki kararsız."
 
 msgid "WEP"
 msgstr "WEP"
@@ -11078,7 +11089,7 @@ msgid "WSS on 4:3"
 msgstr ""
 
 msgid "Wait please while scanning for devices..."
-msgstr ""
+msgstr "Lütfen aygıtlar taranırken bekleyin..."
 
 msgid "Waiting"
 msgstr "Bekleniyor"
@@ -11093,23 +11104,23 @@ msgid "Wake Up"
 msgstr "Uyandır"
 
 msgid "Wake Up To Standby"
-msgstr ""
+msgstr "Uyanık Bekleme"
 
 msgid "Wakeup"
 msgstr "Uyandır"
 
 msgid "Wakeup TV from standby"
-msgstr ""
+msgstr "TV'yi uyandır"
 
 msgid "Wakeup signal from TV"
-msgstr ""
+msgstr "TV'den uyandırma sinyali"
 
 #, python-format
 msgid "Wakeup your %s %s from standby"
-msgstr ""
+msgstr "%s %s cihazınızı beklemeden uyandırın"
 
 msgid "Warning: no LNB; using factory defaults."
-msgstr ""
+msgstr "Uyarı: LNB yok; fabrika varsayılanları kullanılıyor."
 
 msgid "Watch movies..."
 msgstr "Film izle..."
@@ -11240,9 +11251,12 @@ msgid ""
 "When enabled, a popup message will be shown when a movie has finished and "
 "the next one will start."
 msgstr ""
+"Etkinleştirildiğinde, bir film tamamlandığında ve bir sonraki film"
+" başlatıldığında bir açılır mesaj görüntülenir."
 
 msgid "When enabled, a popup message will be shown when a recording starts."
 msgstr ""
+"Etkinleştirildiğinde, bir kayıt başladığında bir açılır mesaj görüntülenir."
 
 msgid ""
 "When enabled, a recording is allowed to interrupt live tv, when there are no "
@@ -11253,19 +11267,27 @@ msgid ""
 "When enabled, a warning will be displayed and the user will get an option to "
 "stop or to continue the timeshift."
 msgstr ""
+"Etkinleştirildiğinde, bir uyarı görüntülenir ve kullanıcıya, zaman"
+" kaydırmasını durdurma veya devam ettirme seçeneği sunar."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
+"Etkinleştirildiğinde, her buket için kanal numaralandırma '1' ile"
+" başlayacaktır."
 
 msgid ""
 "When enabled, content with an aspect ratio of 4:3 will be stretched to fit "
 "the screen."
 msgstr ""
+"Etkinleştirildiğinde, en boy oranı 4:3 olan içerik ekrana sığacak şekilde"
+" gerilir."
 
 msgid ""
 "When enabled, continue to the next bouquet when the last channel of the "
 "current bouquet is reached while changing channels."
 msgstr ""
+"Etkinleştirildiğinde, kanal değiştirirken buketin son kanalına erişildiğinde"
+" bir sonraki bukete devam edin."
 
 msgid ""
 "When enabled, deleted recordings are moved to the trash can, instead of "
@@ -11277,24 +11299,33 @@ msgstr ""
 msgid ""
 "When enabled, external subtitles will be always turned on for playback movie."
 msgstr ""
+"Etkinleştirildiğinde, filmi oynatma için harici altyazılar her zaman açık"
+" olacak."
 
 msgid ""
 "When enabled, graphical DVB subtitles are preferred over teletext subtitles, "
 "when both types are available."
 msgstr ""
+"Etkinleştirildiğinde, her iki tür de mevcut olduğunda, grafik DVB altyazıları"
+" teleteks altyazıları üzerinde tercih edilir."
 
 msgid "When enabled, graphical DVB subtitles will be centered horizontally."
 msgstr ""
+"Etkinleştirildiğinde, grafik DVB altyazıları yatay olarak ortalanacaktır."
 
 msgid ""
 "When enabled, graphical DVB subtitles will be displayed at their original "
 "position."
 msgstr ""
+"Etkinleştirildiğinde, grafik DVB altyazıları orijinal konumlarında"
+" görüntülenir."
 
 msgid ""
 "When enabled, graphical DVB subtitles will be displayed in yellow, instead "
 "of the original color."
 msgstr ""
+"Etkinleştirildiğinde, grafik DVB altyazıları orijinal renk yerine sarı renkte"
+" gösterilir."
 
 msgid "When enabled, it is possible to leave the movieplayer with exit."
 msgstr ""
@@ -11314,7 +11345,7 @@ msgid ""
 msgstr ""
 
 msgid "When enabled, network trash can's are probed for cleaning."
-msgstr ""
+msgstr "Etkinleştirildiğinde, ağ çöp kutuları temizlik için sorgulanır."
 
 msgid ""
 "When enabled, pressing '0' will zap you to the first channel in your first "
@@ -11327,50 +11358,66 @@ msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr ""
+"Etkinleştirildiğinde, işitme engelli kişilere ait altyazılar kullanılabilir."
 
 msgid ""
 "When enabled, subtitles for the hearing impaired will be preferred over "
 "normal subtitles, when both types are available."
 msgstr ""
+"Etkinleştirildiğinde, işitme engelliler için altyazılar her iki tür de mevcut"
+" olduğunda normal altyazılardan daha tercih edilir."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr ""
+"Etkinleştirildiğinde, daha hızlı erişime olanak tanıyan teleteks sayfaları"
+" önbelleğe alınır."
 
 msgid ""
 "When enabled, teletext subtitles will be displayed at their original "
 "position."
 msgstr ""
+"Etkinleştirildiğinde, teleteks altyazıları orijinal konumlarında görüntülenir."
 
 msgid "When enabled, the VCR scart option will be shown on the main menu"
-msgstr ""
+msgstr "Etkinleştirildiğinde, VCR scart seçeneği ana menüde gösterilir"
 
 msgid ""
 "When enabled, the lenght of each recording will be shown in the movielist "
 "(this might cause some additional loading time)."
 msgstr ""
+"Etkinleştirildiğinde, her kaydın uzunluğu film göstergesinde gösterilir (bu"
+" ek yükleme süresine neden olabilir)."
 
 msgid ""
 "When enabled, the original line breaks will be removed from the teletext "
 "subtitles."
 msgstr ""
+"Etkinleştirildiğinde, orijinal satır sonları teleteks altyazılarından"
+" kaldırılacaktır."
 
 msgid ""
 "When enabled, the receiver will automatically use the audio track which you "
 "selected before."
 msgstr ""
+"Etkinleştirildiğinde, alıcı daha önce seçtiğiniz ses izini otomatik olarak"
+" kullanacaktır."
 
 msgid ""
 "When enabled, the receiver will automatically use the subtitles which you "
 "selected before."
 msgstr ""
+"Etkinleştirildiğinde, alıcı otomatik olarak daha önce seçtiğiniz altyazıları"
+" kullanır."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr ""
+msgstr "Etkinleştirildiğinde, alıcı bir AC3 parçasını seçer (varsa)."
 
 msgid ""
 "When enabled, timeshift starts automatically in background after specified "
 "time."
 msgstr ""
+"Etkinleştirildiğinde, zaman kaydırma belirli bir süre sonra otomatik olarak"
+" arka planda başlar."
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Etkinleştirildiğinde, İP yapılandırması için DHCP kullanılır."
@@ -11379,16 +11426,21 @@ msgstr "Etkinleştirildiğinde, İP yapılandırması için DHCP kullanılır."
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
+"Etkinleştirildiğinde alıcınız VCR SCART girişindeki etkinliği algılayacaktır."
 
 msgid ""
 "When nonzero, a recording will start earlier than the starting time "
 "indicated by the EPG."
 msgstr ""
+"Sıfır olmadığında, EPG tarafından belirtilen başlangıç ​​saatinden daha erken"
+" bir kayıt başlayacaktır."
 
 msgid ""
 "When nonzero, a recording will stop later than the ending time indicated by "
 "the EPG."
 msgstr ""
+"Sıfır olmadığında, bir kayıt EPG tarafından belirtilen bitiş süresinden daha"
+" sonra duracaktır."
 
 msgid ""
 "When set each folder will show the previous state used, when off the default "
@@ -11401,18 +11453,21 @@ msgstr ""
 msgid ""
 "When the content has an aspect ratio of 16:9, choose whether to scale/"
 "stretch the picture."
-msgstr ""
+msgstr "16:9 görüntü oranı varsa, resmi büyütme/uzatma için seçebilirsiniz."
 
 msgid ""
 "When the content has an aspect ratio of 4:3, choose whether to scale/stretch "
 "the picture."
-msgstr ""
+msgstr "4:3 görüntü oranı varsa, resmi büyütme/uzatma için seçebilirsiniz."
 
 msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
 msgstr ""
+"Sistem, bir kanala ayarlandığında, normalde herhangi bir değişiklik için"
+" transponderi tarar ve kaydeder. Ne yaptığından kesinlikle eminseniz sadece"
+" 'evet' olarak ayarlayın."
 
 #, python-format
 msgid ""
@@ -11456,11 +11511,11 @@ msgstr "Yazılım yükleniyor.."
 
 #: Backup/restore
 msgid "Please wait while we check your installed plugins..."
-msgstr ""
+msgstr "Yüklü eklentileri kontrol ederken lütfen bekleyin ..."
 
 #: Backup/restore
 msgid "Restart Network Adapter"
-msgstr ""
+msgstr "Ağ Adaptörü'nü yeniden başlatın"
 
 msgid "Where should the recording be saved?"
 msgstr "Kayıt nereye kaydedilmeli?"
@@ -11548,13 +11603,14 @@ msgid "Yes, backup my settings!"
 msgstr "Evet, ayarlarımın yedeğini al!"
 
 msgid "Yes, but don't save timeshift as movie"
-msgstr ""
+msgstr "Evet, ancak zaman kaydırmayı film olarak kaydetme"
 
 msgid "Yes, but save timeshift as movie and continue recording"
 msgstr ""
+"Evet, ancak zaman kaydırmayı film olarak kaydedin ve kayıt işlemine devam edin"
 
 msgid "Yes, but save timeshift as movie and stop recording"
-msgstr ""
+msgstr "Evet, ancak zaman kaydırmayı film olarak kaydedin ve kaydı durdurun"
 
 msgid "Yes, do a manual scan now"
 msgstr "Evet, elle kanal aramayı başlat"
@@ -11566,7 +11622,7 @@ msgid "Yes, do another manual scan now"
 msgstr "Evet, yeni bir elle kanal araması başlat"
 
 msgid "Yes, perform a shutdown now."
-msgstr ""
+msgstr "Evet, cihazı şimdi kapat."
 
 msgid "Yes, restore the settings now"
 msgstr "Evet, ayarları şimdi geri yükle"
@@ -11575,7 +11631,7 @@ msgid "Yes, returning to movie list"
 msgstr "Evet, film listesine dön"
 
 msgid "Yes, delete this movie and return to movie list"
-msgstr ""
+msgstr "Evet, bu filmi sil ve film listesine geri dön"
 
 msgid "Yesterday"
 msgstr "Dün"
@@ -11606,9 +11662,11 @@ msgstr "Bu çalışırken tv vb izlemeye devam edebilirsiniz."
 
 msgid "You can disable Telnet Server and use ssh to login."
 msgstr ""
+"Telnet Sunucusu'nu devre dışı bırakabilir ve oturum açmak için ssh'yi"
+" kullanabilirsiniz."
 
 msgid "You can have the list sorted by time or alphanumerical."
-msgstr ""
+msgstr "Listeyi zaman veya alfanümerik olarak sıralayabilirsiniz."
 
 msgid "You can install this plugin."
 msgstr "Bu eklentiyi yükleyebilirsiniz."
@@ -11624,11 +11682,13 @@ msgid "You cannot delete this!"
 msgstr "Bunu silemezsiniz!"
 
 msgid "You didn't select a channel to record from."
-msgstr ""
+msgstr "Kayıt yapmak için bir kanal seçmediniz."
 
 msgid ""
 "You have already sent this log, are you sure you want to resend this log:\n"
 msgstr ""
+"Bu günlüğü zaten gönderdiniz, bu günlüğü tekrar göndermek istediğinizden emin"
+" misiniz ?:\n"
 
 msgid ""
 "You have chosen to backup your settings. Please press OK to start the backup "
@@ -11668,7 +11728,7 @@ msgstr "Du hast keine Logs zum Verschicken gewählt."
 
 #, python-format
 msgid "You have to wait %s!"
-msgstr ""
+msgstr "%s beklemek zorunda!"
 
 #, python-format
 msgid ""
@@ -11684,6 +11744,8 @@ msgstr "Zaman kaydırmada görünüyorsunuz!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr ""
+"Zaman kaydırma var gibi gözüküyor, Zaman kaydırmayı terk etmek istiyor"
+" musunuz?"
 
 msgid "You system does not support ext4"
 msgstr "Sisteminiz ext4 desteklemiyor"
@@ -11736,7 +11798,7 @@ msgstr "%s %s kapanıyor"
 
 #, python-format
 msgid "Your %s %s is shutting down. Please stand by..."
-msgstr ""
+msgstr " %s %s kapanıyor. Lütfen bekleyin..."
 
 #, python-format
 msgid ""
@@ -11987,10 +12049,10 @@ msgid "about to start"
 msgstr "başlamak üzere"
 
 msgid "activate network adapter configuration"
-msgstr ""
+msgstr "Ağ adaptörü yapılandırmasını etkinleştirin"
 
 msgid "Select Network Adapter"
-msgstr ""
+msgstr "Ağ Adaptörü'nü seçin"
 
 msgid "Network Configuration..."
 msgstr "Ağ Yapılandırması ..."
@@ -12357,7 +12419,7 @@ msgid "fitness & health"
 msgstr ""
 
 msgid "flat alphabetic"
-msgstr ""
+msgstr "Düz alfabetik"
 
 msgid "flat alphabetic reverse"
 msgstr ""
@@ -13125,7 +13187,7 @@ msgid "west"
 msgstr "batı"
 
 msgid "when asking question about this log"
-msgstr ""
+msgstr "Bu günlük hakkında soru sorarken"
 
 msgid ""
 "when asking question about this log\n"
@@ -13242,22 +13304,22 @@ msgid "Overwrite spinner files during software upgrade?"
 msgstr "Yazılım yükseltme sırasında spinner dosyaları üzerine yazılsın mı?"
 
 msgid "Update is reported as faulty !!"
-msgstr ""
+msgstr "Güncelleme hatalı olarak bildirildi !!"
 
 msgid "Caution update not tested yet !!"
-msgstr ""
+msgstr "İkaz güncellemesi henüz test edilmedi!"
 
 msgid "Update at your own risk"
 msgstr "Güncelleme kendi sorumluluğunuzdadır"
 
 msgid "For more information see http://www.hdfreaks.cc"
-msgstr ""
+msgstr "Daha fazla bilgi için http://www.hdfreaks.cc adresini ziyaret edin."
 
 msgid "But you have activated \"Install unstable updates\""
 msgstr ""
 
 msgid "Update anyway?"
-msgstr ""
+msgstr "Yine de güncellensin mi?"
 
 #
 msgid "Select files/folders to backup..."
@@ -13378,7 +13440,7 @@ msgstr "Başlat Sihirbazı"
 
 # ******************************************************************************
 msgid "Please select an aspect ratio..."
-msgstr ""
+msgstr "Lütfen bir en boy oranı seçin ..."
 
 #
 msgid "Refresh"
@@ -13562,7 +13624,7 @@ msgid "Boot-up action"
 msgstr ""
 
 msgid "Show MiniTV in the Front Display"
-msgstr ""
+msgstr "MiniTV'yi Ön Panelde göster"
 
 msgid "You can Display MiniTV with or without OSD Menu"
 msgstr ""
@@ -13593,7 +13655,7 @@ msgstr "Dili Sil"
 
 # Components/Language.py
 msgid "Default Language can not be deleted !!"
-msgstr ""
+msgstr "Varsayılan Dil silinemez!"
 
 #, python-format
 msgid "Show \"add to EPGRefresh\" in"
@@ -13919,7 +13981,7 @@ msgid "Enable extended number zap"
 msgstr ""
 
 msgid "Time to wait next keypress (milliseconds)"
-msgstr ""
+msgstr "Sonraki tuşa basmayı bekleme süresi (milisaniye)"
 
 msgid "Alternative service counter in bouquets"
 msgstr ""
@@ -13928,10 +13990,10 @@ msgid "<< Press colors keys (the first four bouquets) >>"
 msgstr ""
 
 msgid "Behavior when timeshift is enabled"
-msgstr ""
+msgstr "Zaman kaydırma etkin olduğunda davranış"
 
 msgid "Check timeshift of 0 key in recall service"
-msgstr ""
+msgstr "Kanal geri çağırmada 0 tuşunun zaman kaydırmasını kontrol edin"
 
 msgid "Enable picons"
 msgstr "Simgeleri etkinleştir"
@@ -13979,7 +14041,7 @@ msgid "SCPC optimized search range"
 msgstr ""
 
 msgid "Use individual offset from waking up to starting a timer [min]"
-msgstr ""
+msgstr "Uyanmadan zamanlayıcıyı başlatmak için bireysel ofset kullanın [dk]"
 
 msgid ""
 "The standard wakeup time is 5 minutes (or box specific) before a timer "
@@ -14007,7 +14069,7 @@ msgid "Timer action"
 msgstr "Zamanlayıcı eylemi"
 
 msgid "Configure the duration in minutes for the sleep timer."
-msgstr ""
+msgstr "Uyku zamanlayıcısı için süreyi dakika cinsinden yapılandırın."
 
 msgid "Select the sleep timer action."
 msgstr "Uyku zamanlayıcısı eylemini seç."
@@ -14169,7 +14231,7 @@ msgid "Can not repair file %s"
 msgstr ""
 
 msgid "Caution, next boot is starts with these settings!"
-msgstr ""
+msgstr "Dikkat, bir dahaki açılış bu ayarlarla başlar!"
 
 msgid "Alternative Image 1 partition for boot repair not found."
 msgstr ""
@@ -14319,13 +14381,13 @@ msgid "Channelnumber/Clock in Standby Clock"
 msgstr ""
 
 msgid "Clock always"
-msgstr ""
+msgstr "Her zaman saat"
 
 msgid "Always off"
-msgstr ""
+msgstr "Daima kapalı"
 
 msgid "Brightness level"
-msgstr ""
+msgstr "Parlaklık düzeyi"
 
 msgid "Control 7 segment VFD display"
 msgstr ""
@@ -14358,4 +14420,4 @@ msgid "Display/LED"
 msgstr ""
 
 msgid "gigablue remote control"
-msgstr ""
+msgstr "Gigablue uzaktan kumanda"
