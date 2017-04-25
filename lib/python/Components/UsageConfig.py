@@ -767,15 +767,15 @@ def InitUsageConfig():
 	config.subtitles.subtitle_bad_timing_delay = ConfigSelection(default = "0", choices = subtitle_delay_choicelist)
 	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default = "0", choices = [
 		("0", _("No transparency")),
-		("25", "10%"),
-		("50", "20%"),
-		("75", "30%"),
-		("100", "40%"),
-		("125", "50%"),
-		("150", "60%"),
-		("175", "70%"),
-		("200", "80%"),
-		("225", "90%"),
+		("25", _("10%")),
+		("50", _("20%")),
+		("75", _("30%")),
+		("100", _("40%")),
+		("125", _("50%")),
+		("150", _("60%")),
+		("175", _("70%")),
+		("200", _("80%")),
+		("225", _("90%")),
 		("255", _("Full transparency"))])
 	config.subtitles.pango_subtitle_colors = ConfigSelection(default = "0", choices = [
 		("0", _("alternative")),
