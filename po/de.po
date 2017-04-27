@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-04-23 07:00+0200\n"
+"PO-Revision-Date: 2017-04-27 17:20+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13591,6 +13591,9 @@ msgstr "Ausschaltmenü schützen"
 
 msgid "Protect timer menu"
 msgstr "Timermenü schützen"
+
+msgid "Protect context menus"
+msgstr "Kontextmenüs schützen"
 
 msgid "SCPC optimized search range"
 msgstr "SCPC optimierter Suchbereich"

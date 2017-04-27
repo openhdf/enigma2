@@ -139,6 +139,8 @@ class ChannelContextMenu(Screen):
 		#raise Exception("we need a better summary screen here")
 		self.csel = csel
 		self.bsel = None
+		if self.isProtected():
+			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.protectResult, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code")))
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"],
 			{
@@ -342,6 +344,17 @@ class ChannelContextMenu(Screen):
 			self.csel.addBouquet(bouquet, None)
 		self.close()
 
+	def isProtected(self):
+		return self.csel.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value
+
+	def protectResult(self, answer):
+		if answer:
+			self.csel.protectContextMenu = False
+		elif answer is not None:
+			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+		else:
+			self.close()
+
 	def addParentalProtection(self, service):
 		from Components.ParentalControl import parentalControl
 		parentalControl.protectService(service.toCompareString())
@@ -357,6 +370,12 @@ class ChannelContextMenu(Screen):
 			self.close()
 		else:
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+
+	def unhideParentalServices(self):
+		if self.csel.protectContextMenu:
+			self.session.openWithCallback(self.unhideParentalServicesCallback, PinInput, pinList=[config.ParentalControl.servicepin[0].value], triesEntry=config.ParentalControl.retries.servicepin, title=_("Enter the service pin"), windowTitle=_("Enter pin code"))
+		else:
+			self.unhideParentalServicesCallback(True)
 
 	def showServiceInPiP(self):
 		service = self.session.nav.getCurrentService()
@@ -1249,6 +1268,7 @@ class ChannelSelectionBase(Screen):
 		self.history = [ ]
 		self.rootChanged = False
 		self.startRoot = None
+		self.protectContextMenu = True
 
 		self.mode = MODE_TV
 		self.dopipzap = False
@@ -2272,6 +2292,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if config.usage.servicelistpreview_mode.value:
 			self.zapBack()
 		self.correctChannelNumber()
+		self.protectContextMenu = True
 		self.close(None)
 
 	def zapBack(self):
