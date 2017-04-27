@@ -46,6 +46,7 @@ def InitParentalControl():
 	config.ParentalControl.config_sections = ConfigSubsection()
 	config.ParentalControl.config_sections.main_menu = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections.configuration = ConfigYesNo(default = False)
+	config.ParentalControl.config_sections.hdftoolbox = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections.timer_menu = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections.movie_list = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections.plugin_browser = ConfigYesNo(default = False)
