@@ -84,8 +84,9 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 																			'/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/hostname', '/usr/share/enigma2/XionHDF/skin.xml', '/etc/xmltvimport', '/etc/ava_volume.cfg', '/etc/ava_setup.cfg', 
 																			'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', '/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/', '/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd', 
 																			'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config', '/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db', '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db', '/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', 
-																			eEnv.resolve("${datadir}/enigma2/keymap.usr"), eEnv.resolve("${datadir}/enigma2/keymap.ntr")]\
+																			eEnv.resolve("${datadir}/enigma2/keymap.usr"), eEnv.resolve("${datadir}/enigma2/keymap.ntr"), eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
 																			+eEnv_resolve_multi('/usr/bin/*cam*')\
+																			+eEnv_resolve_multi('/usr/bin/gbox')\
 																			+eEnv_resolve_multi('/etc/*.emu')\
 																			+eEnv_resolve_multi('/etc/init.d/softcam*')\
 																			+eEnv_resolve_multi('/etc/init.d/cardserver*'))
@@ -1593,11 +1594,11 @@ class UpdatePlugin(Screen):
 		tmpdate = getEnigmaVersionString()
 		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
 		datedelay = imageDate +  timedelta(days=60)
-		message = _("Your image is out of date!\n\n"
+		message = _("Your image is out of date!\n"
 				"After such a long time, there is a risk that your %s %s  will not\n"
-				"boot after online-update, or will show disfunction in running Image.\n\n"
-				"A new flash will increase the stability\n\n"
-				"An online update is done at your own risk !!\n\n\n"
+				"boot after online-update, or will show disfunction in running Image.\n"
+				"A new flash will increase the stability\n"
+				"An online update is done at your own risk !!\n"
 				"Do you still want to update?")  % (getMachineBrand(), getMachineName())
 
 		if datedelay > date.today():

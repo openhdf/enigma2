@@ -1,20 +1,22 @@
 from Components.Converter.Converter import Converter
+from time import time as getTime, localtime, strftime
 from Poll import Poll
 from Components.Element import cached
 from Components.config import config
 
 class RemainingToText(Poll, Converter, object):
 	DEFAULT = 0
-	WITH_SECONDS = 1
+	WITH_SECONDS = 2
 	NO_SECONDS = 2
 	IN_SECONDS = 3
 	PERCENTAGE = 4
-	ONLY_MINUTE_NUMBER = 5
-	VFD = 6
-	VFD_WITH_SECONDS = 7
-	VFD_NO_SECONDS = 8
-	VFD_IN_SECONDS = 9
-	VFD_PERCENTAGE = 10
+	ONLY_MINUTE = 5
+	ONLY_MINUTE2 = 6
+	VFD = 7
+	VFD_WITH_SECONDS = 8
+	VFD_NO_SECONDS = 9
+	VFD_IN_SECONDS = 10
+	VFD_PERCENTAGE = 11
 
 	def __init__(self, type):
 		Poll.__init__(self)
@@ -53,8 +55,10 @@ class RemainingToText(Poll, Converter, object):
 			self.type = self.VFD_PERCENTAGE
 			self.poll_interval = 60*1000
 			self.poll_enabled = True
-		elif type == "OnlyMinuteNumber":
-			self.type = self.ONLY_MINUTE_NUMBER
+		elif type == "OnlyMinute":
+			self.type = self.ONLY_MINUTE
+		elif type == "OnlyMinute2":
+			self.type = self.ONLY_MINUTE2
 		else:
 			self.type = self.DEFAULT
 
@@ -76,7 +80,7 @@ class RemainingToText(Poll, Converter, object):
 		remaining = 0
 
 		if str(time[1]) != 'None':
-			if self.type < 6:
+			if self.type < 7:
 				if config.usage.swap_time_remaining_on_osd.value == "0":
 					(duration, remaining) = self.source.time
 				elif config.usage.swap_time_remaining_on_osd.value == "1":
@@ -103,7 +107,7 @@ class RemainingToText(Poll, Converter, object):
 
 		sign_l = ""
 
-		if self.type < 6:
+		if self.type < 7:
 			if config.usage.elapsed_time_positive_osd.value:
 				sign_p = "+"
 				sign_r = "-"
@@ -196,9 +200,18 @@ class RemainingToText(Poll, Converter, object):
 							return sign_r + ngettext(_("%d Min"), _("%d Mins"), (r/60)) % (r/60)
 					else:
 						return ngettext(_("%d Min"), _("%d Mins"), (l/60)) % (l/60)
-				elif self.type == self.ONLY_MINUTE_NUMBER:
+				elif self.type == self.ONLY_MINUTE:
 					if remaining is not None:
 						return ngettext(_("%d"), _("%d"), (r/60)) % (r/60)
+				elif self.type == self.ONLY_MINUTE2:
+					time = getTime()
+					t = localtime(time)
+					d = _("%-H:%M")
+					if remaining is None:	
+						return strftime(d, t)
+					if remaining is not None:
+						myRestMinuten = ngettext(_("%+6d"), _("%+6d"), (r/60)) % (r/60)
+						return strftime(d, t) + myRestMinuten
 				elif self.type == self.WITH_SECONDS:
 					if remaining is not None:
 						if config.usage.swap_time_remaining_on_osd.value == "1":  # Elapsed

@@ -139,6 +139,8 @@ class ChannelContextMenu(Screen):
 		#raise Exception("we need a better summary screen here")
 		self.csel = csel
 		self.bsel = None
+		if self.isProtected():
+			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.protectResult, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code")))
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"],
 			{
@@ -342,6 +344,17 @@ class ChannelContextMenu(Screen):
 			self.csel.addBouquet(bouquet, None)
 		self.close()
 
+	def isProtected(self):
+		return self.csel.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value
+
+	def protectResult(self, answer):
+		if answer:
+			self.csel.protectContextMenu = False
+		elif answer is not None:
+			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+		else:
+			self.close()
+
 	def addParentalProtection(self, service):
 		from Components.ParentalControl import parentalControl
 		parentalControl.protectService(service.toCompareString())
@@ -357,6 +370,12 @@ class ChannelContextMenu(Screen):
 			self.close()
 		else:
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+
+	def unhideParentalServices(self):
+		if self.csel.protectContextMenu:
+			self.session.openWithCallback(self.unhideParentalServicesCallback, PinInput, pinList=[config.ParentalControl.servicepin[0].value], triesEntry=config.ParentalControl.retries.servicepin, title=_("Enter the service pin"), windowTitle=_("Enter pin code"))
+		else:
+			self.unhideParentalServicesCallback(True)
 
 	def showServiceInPiP(self):
 		service = self.session.nav.getCurrentService()
@@ -1224,8 +1243,9 @@ MODE_RADIO = 1
 # type 27 = advanced codec HD NVOD reference service (NYI)
 # type 2 = digital radio sound service
 # type 10 = advanced codec digital radio sound service
+# type 31 = High Efficiency Video Coing digital television
 
-service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
+service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 31) || (type == 134) || (type == 195)'
 service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2) || (type == 10)'
 
 class ChannelSelectionBase(Screen):
@@ -1248,6 +1268,7 @@ class ChannelSelectionBase(Screen):
 		self.history = [ ]
 		self.rootChanged = False
 		self.startRoot = None
+		self.protectContextMenu = True
 
 		self.mode = MODE_TV
 		self.dopipzap = False
@@ -1473,7 +1494,7 @@ class ChannelSelectionBase(Screen):
 	def showSatellites(self):
 		if not self.pathChangeDisabled:
 			if self.mode == 0: # TV mode
-				typeslist = [self.service_types, '1:7:11:0:0:0:0:0:0:0:(type == 17) || (type == 25) || (type == 134) || (type == 195)']
+				typeslist = [self.service_types, '1:7:11:0:0:0:0:0:0:0:(type == 17) || (type == 25) || (type == 31) || (type == 134) || (type == 195)']
 			else:
 				typeslist = [self.service_types]
 			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'%(typeslist[0])
@@ -1493,6 +1514,7 @@ class ChannelSelectionBase(Screen):
 						self.clearPath()
 						self.enterPath(ref, True)
 				if justSet:
+					addCableAndTerrestrialLater = []
 					serviceHandler = eServiceCenter.getInstance()
 					for srvtypes in typeslist:
 						ref = eServiceReference('%s FROM SATELLITES ORDER BY satellitePosition'%(srvtypes))
@@ -1517,8 +1539,10 @@ class ChannelSelectionBase(Screen):
 								except:
 									if unsigned_orbpos == 0xFFFF: #Cable
 										service_name = _("Cable")
+										addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))
 									elif unsigned_orbpos == 0xEEEE: #Terrestrial
 										service_name = _("Terrestrial")
+										addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))
 									else:
 										if orbpos > 1800: # west
 											orbpos = 3600 - orbpos
@@ -1526,7 +1550,7 @@ class ChannelSelectionBase(Screen):
 										else:
 											h = _("E")
 										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
-								if not '(type == 1)' in srvtypes and '(type == 17)' in srvtypes:
+								if not '(type == 1)' in srvtypes:
 									service_type = "HD-%s"%(service_type)
 								if len(service_name) > 34:
 									service.setName("%s - %s" % (service_name[:-2], service_type))
@@ -1543,6 +1567,10 @@ class ChannelSelectionBase(Screen):
 							self.service_types[pos+1:])
 						ref = eServiceReference(refstr)
 						ref.setName(_("Current Transponder") + " (%d)"%(self.getServicesCount(ref)))
+						self.servicelist.addService(ref)
+					for (service_name, service_ref) in addCableAndTerrestrialLater:
+						ref = eServiceReference(service_ref)
+						ref.setName(service_name)
 						self.servicelist.addService(ref)
 					hdref = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 211) && (name != .) ORDER BY name')
 					if hdref:
@@ -2264,6 +2292,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if config.usage.servicelistpreview_mode.value:
 			self.zapBack()
 		self.correctChannelNumber()
+		self.protectContextMenu = True
 		self.close(None)
 
 	def zapBack(self):

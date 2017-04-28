@@ -21,9 +21,14 @@ from Tools.Directories import *
 from os import system, popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
-from boxbranding import getBoxType, getMachineBrand, getMachineName
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro
 
 boxtype = getBoxType()
+distro = getImageDistro()
+
+def eEnv_resolve_multi(path):
+	resolve = eEnv.resolve(path)
+	return resolve.split()
 
 config.plugins.configurationbackup = ConfigSubsection()
 if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not path.exists("/media/hdd/backup_%s" %boxtype):
@@ -320,7 +325,7 @@ class RestoreMenu(Screen):
 	def startRestore(self, ret = False):
 		if ret == True:
 			self.exe = True
-			self.session.open(Console, title = _("Restoring..."), cmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2", "/etc/init.d/autofs restart"])
+			self.session.open(Console, title = _("Restoring..."), cmdlist = ["cd /etc/enigma2/ ; rm -R * ", "tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2", "/etc/init.d/autofs restart ; /etc/init.d/softcam restart"])
 
 	def deleteFile(self):
 		if (self.exe == False) and (self.entry == True):
@@ -376,10 +381,11 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.setTitle(_("Restoring..."))
 
 	def doRestore(self):
+		restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " --exclude=etc/passwd --exclude=etc/shadow --exclude=etc/group -C /", "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh"]
 		if path.exists("/proc/stb/vmpeg/0/dst_width"):
-			restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " -C /", "echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width", "/etc/init.d/autofs restart", "/etc/init.d/softcam restart"]
-		else:
-			restorecmdlist = ["rm -R /etc/enigma2", "tar -xzvf " + self.fullbackupfilename + " -C /", "/etc/init.d/autofs restart"]
+			restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
+		restorecmdlist.insert(0, "cd /etc/enigma2/ ; rm -R * ")
+		restorecmdlist.append("/etc/init.d/autofs restart ; /etc/init.d/softcam restart")
 		print"[SOFTWARE MANAGER] Restore Settings !!!!"
 
 		self.session.open(Console, title = _("Restoring..."), cmdlist = restorecmdlist, finishedCallback = self.restoreFinishedCB)
@@ -394,7 +400,13 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.restartGUI()
 
 	def restartGUI(self, ret = None):
-		self.session.open(Console, title = _("Your %s %s will Reboot...")% (getMachineBrand(), getMachineName()), cmdlist = ["killall -9 enigma2"])
+		self.session.openWithCallback(self.restartGUIornot, MessageBox, _("Do you want to completely reboot your box now? \nIf not, only Enigma is restarting."))
+	
+	def restartGUIornot(self, ret = False):
+		if ret == True:
+			self.session.open(Console, title = _("Your %s %s will Reboot...")% (getMachineBrand(), getMachineName()), cmdlist = ["killall -9 enigma2 ; reboot"])
+		else:
+			self.session.open(Console, title = _("Your %s %s will restart Enigma2...")% (getMachineBrand(), getMachineName()), cmdlist = ["killall -9 enigma2"])
 
 	def runAsync(self, finished_cb):
 		self.doRestore()

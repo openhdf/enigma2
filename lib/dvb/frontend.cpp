@@ -110,9 +110,9 @@ void eDVBFrontendParametersSatellite::set(const S2SatelliteDeliverySystemDescrip
 	}
 	else
 	{
-		is_id = NO_STREAM_ID_FILTER;
+		is_id = 0; //NO_STREAM_ID_FILTER;
 		pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
-		pls_code = 0;
+		pls_code = 1;
 	}
 }
 
@@ -140,9 +140,9 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 		modulation = Modulation_QPSK;
 	}
 	rolloff = descriptor.getRollOff();
-	is_id = NO_STREAM_ID_FILTER;
+	is_id = 0; //NO_STREAM_ID_FILTER;
 	pls_mode = eDVBFrontendParametersSatellite::PLS_Root;
-	pls_code = 0;
+	pls_code = 1;
 	if (system == System_DVB_S2)
 	{
 		eDebug("SAT DVB-S2 freq %d, %s, pos %d, sr %d, fec %d, modulation %d, rolloff %d, is_id %d, pls_mode %d, pls_code %d",
@@ -710,7 +710,7 @@ int eDVBFrontend::openFrontend()
 			fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 			fclose(boxtype_file);
 
-			if(!strcmp(boxtype_name, "osminiplus\n") || !strcmp(boxtype_name, "osmega"))
+			if(!strcmp(boxtype_name, "osminiplus\n") || !strcmp(boxtype_name, "osmega") || !strcmp(boxtype_name, "spycat4kmini"))
 			{
 				m_need_delivery_system_workaround = false;
 			}
@@ -1269,9 +1269,14 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	else if (strstr(m_description, "BCM4506")
 		|| strstr(m_description, "BCM4506 (internal)")
 		|| strstr(m_description, "BCM4505")
+		|| strstr(m_description, "BCM73625 (G3)")
 		)
 	{
 		ret = (snr * 100) >> 8;
+	}
+	else if (!strcmp(m_description, "ATBM781x"))
+	{
+		ret = snr*10;
 	}
 	else if (strstr(m_description, "Si2166B"))
 	{
@@ -1301,6 +1306,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	else if (!strcmp(m_description, "BCM7346 (internal)")) // MaxDigital XP1000
 	{
 		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1880) + 0.1959) * 100);
+	}
+	else if (!strcmp(m_description, "BCM7362 (internal) DVB-S2")) // Xsarius
+	{
+		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.28) - 10.0) * 100);
 	}
 	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")
 		|| !strcmp(m_description, "BCM7346 DVB-S2 NIM (internal)")
@@ -1363,10 +1372,6 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 			break;
 		}
 	}
-	else if (!strcmp(m_description, "BCM73625 (G3)")) // DM520
-	{
-		ret = snr * 100 / 256;
-	}
 	else if (!strcmp(m_description, "Broadcom BCM73XX")
 		|| !strcmp(m_description, "FTS-260 (Montage RS6000)")
 		|| !strcmp(m_description, "Panasonic MN88472")
@@ -1397,8 +1402,8 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	}
 	else if (strstr(m_description, "Sundtek DVB-S/S2 (IV)"))
 	{
-		ret = (int)(snr / 52);
-		sat_max = 1690;
+		ret = (int)(snr / 40.5);
+		sat_max = 1900;
 	}
 	else if(!strcmp(m_description, "TBS-5925") || !strcmp(m_description, "DVBS2BOX"))
 	{
@@ -1410,7 +1415,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = (int)(snr / 46.8);
 		sat_max = 1620;
 	}
-	else if (!strcmp(m_description, "Si21682")) // SF4008 T/T2/C
+	else if (!strcmp(m_description, "Si21682") || !strcmp(m_description, "Si2168")) // SF4008 T/T2/C and Zgemma TC Models
 	{
 	    int type = -1;
 		oparm.getSystem(type);
@@ -1425,6 +1430,35 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 				ter_max = 2900;
 				break;
 		}
+	}
+	else if(!strcmp(m_description, "WinTV HVR-850") || !strcmp(m_description, "Hauppauge"))
+	{
+		eDVBFrontendParametersATSC parm;
+		oparm.getATSC(parm);
+		switch (parm.modulation)
+		{
+		case eDVBFrontendParametersATSC::Modulation_QAM256: atsc_max = 4000; break;
+		case eDVBFrontendParametersATSC::Modulation_QAM64: atsc_max = 2900; break;
+		case eDVBFrontendParametersATSC::Modulation_VSB_8: atsc_max = 2700; break;
+		default: break;
+		}
+		ret = snr * 10;
+	}
+	else if (!strcmp(m_description, "FTM-4862 (Availink AVL6862)")) // Osmega /S2/T2/C
+	{
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
+		{
+			case feSatellite:
+				ret = (snr + 2300) / 11.5;
+				sat_max = 1550;
+				break;
+		}
+	}
+	else if (!strncmp(m_description, "Si216", 5)) // all new Models with SI Tuners
+	{
+		ret = snr;
 	}
 
 	signalqualitydb = ret;
@@ -3314,6 +3348,15 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		if (parm.system == eDVBFrontendParametersSatellite::System_DVB_S && !can_handle_dvbs)
 		{
 			return 0;
+		}
+		bool multistream = (parm.is_id != NO_STREAM_ID_FILTER) && !(
+			   (parm.is_id == 0 && (parm.pls_mode & 3) == eDVBFrontendParametersSatellite::PLS_Root  && (parm.pls_code & 0x3FFFF) == 1)
+			|| (parm.is_id == 0 && (parm.pls_mode & 3) == eDVBFrontendParametersSatellite::PLS_Gold  && (parm.pls_code & 0x3FFFF) == 0)
+			|| (parm.is_id == 0 && (parm.pls_mode & 3) == eDVBFrontendParametersSatellite::PLS_Combo && (parm.pls_code & 0x3FFFF) == 1)
+		);
+		if (parm.system == eDVBFrontendParametersSatellite::System_DVB_S2 && multistream && !is_multistream())
+		{
+				return 0;
 		}
 		score = m_sec ? m_sec->canTune(parm, this, 1 << m_slotid) : 0;
 		if (score > 1 && parm.system == eDVBFrontendParametersSatellite::System_DVB_S && can_handle_dvbs2)

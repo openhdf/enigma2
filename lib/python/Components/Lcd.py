@@ -435,13 +435,19 @@ def InitLcd():
 			config.lcd.contrast = ConfigNothing()
 			if getBoxType() in ('dm900'):
 				standby_default = 4
+			elif getBoxType() in ('spycat4kmini', 'osmega'):
+				standby_default = 10
 			else:
 				standby_default = 1
 
-		if getBoxType() in ('mixosf5', 'mixosf5mini', 'gi9196m', 'gi9196lite', 'zgemmas2s', 'zgemmash1', 'zgemmash2', 'zgemmass', 'zgemmahs', 'zgemmah2s', 'zgemmah2h', 'spycat'):
+		if getBoxType() in ('novatwin', 'novacombo', 'mixosf5', 'mixosf5mini', 'gi9196m', 'gi9196lite', 'zgemmas2s', 'zgemmash1', 'zgemmash2', 'zgemmass', 'zgemmahs', 'zgemmah2s', 'zgemmah2h', 'spycat'):
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 4))
 			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 4))
 			config.lcd.bright = ConfigSlider(default=4, limits=(0, 4))
+		elif getBoxType() in ('spycat4kmini', 'osmega'):
+			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
+			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 10))
+			config.lcd.bright = ConfigSlider(default=10, limits=(0, 10))
 		else:
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
 			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 10))
