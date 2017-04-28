@@ -51,7 +51,7 @@ class RollerCharLCD(VariableText, Renderer):
 		if self.x > 0:
 			txttmp = self.backtext[self.idx:]
 			self.text = txttmp[:self.stringlength]
-			self.idx += 1
+			str_length = 1
 			accents = self.text[:2]
 			if accents in ('\xc3\xbc', '\xc3\xa4', '\xc3\xb6', '\xc3\x84', '\xc3\x9c', '\xc3\x96', '\xc3\x9f'):
 				str_length = 2

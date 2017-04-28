@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-03-18 07:04+0100\n"
+"PO-Revision-Date: 2017-04-27 18:51+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.1\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid "Switch to Radio Mode"
@@ -1284,6 +1284,10 @@ msgstr "Hinzufügen"
 msgid "Add AutoTimer"
 msgstr "Autotimer hinzufügen"
 
+#, python-format
+msgid "AutoTimer"
+msgstr "Automatische Timer"
+
 msgid "Add Timer"
 msgstr "Timer hinzufügen"
 
@@ -1408,6 +1412,20 @@ msgstr "Erweiterte Optionen"
 
 msgid "Advanced restore"
 msgstr "Erweiterte Wiederherstellung"
+
+msgid "Your %s %s will Reboot..."
+msgstr "Deine %s %s wird jetzt neu gestartet..."
+
+msgid "Your %s %s will restart Enigma2..."
+msgstr "Deine %s %s startet Enigma2 neu..."
+
+#, python-format
+msgid ""
+"Do you want to completely reboot your box now? \n"
+"If not, only Enigma is restarting."
+msgstr ""
+"Soll die Box komplett neugestartet werden? \n"
+"Bei nein wird nur Enigma neu gestartet."
 
 msgid "Advanced software"
 msgstr "Erweiterte Software"
@@ -2275,10 +2293,10 @@ msgid "Channel list context menu"
 msgstr "Senderliste Kontextmenü"
 
 msgid "Channel list on mode change"
-msgstr "Senderliste bei Moduswechsel"
+msgstr "Zeige Senderliste bei Moduswechsel"
 
 msgid "Channel list preview"
-msgstr "Vorschau Senderliste"
+msgstr "Vorschau beim Umschalten in der Senderliste"
 
 msgid "Channel list service mode*"
 msgstr "Senderliste Anzeigenformat*"
@@ -3123,7 +3141,7 @@ msgid "Cron Manager"
 msgstr "Cron Verwaltung"
 
 msgid "CronTimers"
-msgstr "CronTimer"
+msgstr "Zeitgesteuerte Timer"
 
 msgid "Current CEC address"
 msgstr "Aktuelle CEC-Adresse"
@@ -5253,7 +5271,7 @@ msgid "Jump back 24 hours"
 msgstr "24 Stunden zurück springen"
 
 msgid "Jump first press in channel selection*"
-msgstr "Tastenreaktion in Senderliste"
+msgstr "Tastenreaktion in der Senderliste"
 
 msgid "Jump forward 24 hours"
 msgstr "24 Stunden vorwärts springen"
@@ -5469,7 +5487,7 @@ msgid "List of storage devices"
 msgstr "Speichergeräteliste"
 
 msgid "Channel list cursor behavior"
-msgstr "Kanallisten Cursor verhalten"
+msgstr "Verhalten des Auswahlbalken in der Kanalliste"
 
 msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can keep on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr "Position des Curors beim Öffnen der Kannliste festlegen. Auf dem laufenden Kanal oder einen Eintrag hoch/runter positionieren. Ausserdem kann die Belegung der B+/B- Tasten getauscht werden"
@@ -6913,25 +6931,25 @@ msgid "Please wait (updating packages)"
 msgstr "Bitte warten (Pakete werden aktualisiert)"
 
 msgid "Please wait for activation of your network configuration..."
-msgstr "Bitte warte, die Netzwerk-Konfiguration wird aktiviert."
+msgstr "Bitte warten, die Netzwerk-Konfiguration wird aktiviert."
 
 msgid "Please wait while gathering data..."
 msgstr "Bitte warten während ich Daten zusammenstelle..."
 
 msgid "Please wait while scanning is in progress..."
-msgstr "Bitte warte, der Suchvorgang läuft."
+msgstr "Bitte warten, der Suchvorgang läuft."
 
 msgid "Please wait while we configure your network..."
-msgstr "Bitte warte, das Netzwerk wird konfiguriert."
+msgstr "Bitte warten, das Netzwerk wird konfiguriert."
 
 msgid "Please wait while we prepare your network interfaces..."
-msgstr "Bitte warte, Netzwerk wird konfiguriert."
+msgstr "Bitte warten, Netzwerk wird konfiguriert."
 
 msgid "Please wait while we test your network..."
-msgstr "Bitte warte, Netzwerk wird überprüft."
+msgstr "Bitte warten, Netzwerk wird überprüft."
 
 msgid "Please wait while your network is restarting..."
-msgstr "Bitte warte, Netzwerk wird neu gestartet."
+msgstr "Bitte warten, das Netzwerk wird neu gestartet."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Bitte warten bis Feeds geprüft wurden."
@@ -7033,6 +7051,9 @@ msgid "PowerTimer Overview"
 msgstr "PowerTimer Überblick"
 
 msgid "PowerTimer"
+msgstr "Einschalt / Ausschalt Timer"
+
+msgid "PowerTimers"
 msgstr "Einschalt / Ausschalt Timer"
 
 msgid "Predefined"
@@ -8904,27 +8925,17 @@ msgstr "Erlaube instabile (ungetestete) Updates"
 #, python-format
 msgid ""
 "Your image is out of date!\n"
-"\n"
 "After such a long time, there is a risk that your %s %s  will not\n"
 "boot after online-update, or will show disfunction in running Image.\n"
-"\n"
 "A new flash will increase the stability\n"
-"\n"
 "An online update is done at your own risk !!\n"
-"\n"
-"\n"
 "Do you still want to update?"
 msgstr ""
 "Ihr Image ist veraltet!\n"
-"\n"
 "Bei einem veraltetem Image besteht das Risiko, dass ihre %s %s nach einem\n"
 "Online-Update nicht bootet, oder das Image nicht richtig funktioniert.\n"
-"\n"
 "Ein neues Flashen wird die Stabilität ihres Images erhöhen!\n"
-"\n"
 "Sollten Sie sich dennoch für ein Online-Update entscheiden, erfolgt dies auf eigene Verantwortung!!!\n"
-"\n"
-"\n"
 "Wollen Sie trotzdem noch ein Onlne-Update durchführen?"
 
 msgid "Sorry uShare Config is Missing"
@@ -10008,6 +10019,9 @@ msgstr "Timer-Art"
 msgid "Timers"
 msgstr "Timer"
 
+msgid "Timer"
+msgstr "Aufnahme / Umschalt Timer"
+
 msgid "Timeshift"
 msgstr "TimeShift"
 
@@ -10552,9 +10566,26 @@ msgstr "Benutze altes Profil:"
 msgid "Using tuner %s"
 msgstr "Benutze Tuner %s"
 
-#, python-format
+msgid "Experimental mode"
+msgstr "Experimenteller Modus"
+
+msgid "Preferred tuners, multiple selection allowed"
+msgstr "Bevorzugte Tuner, Mehrfachauswahl möglich"
+
+msgid "Experimental: strict limitation to preferred tuners"
+msgstr "Experimentell: strikte Beschränkung auf bevorzugte Tuner"
+
+msgid "While available"
+msgstr "Solange verfügbar"
+
 msgid "Preferred tuner for recordings"
-msgstr "Bevorzugter Tuner für Aufnahmen"
+msgstr "Bevorzugter Tuner bei Aufnahmen"
+
+msgid "Preferred tuners for recordings, multiple selection allowed"
+msgstr "Bevorzugte Tuner bei Aufnahmen, Mehrfachauswahl möglich"
+
+msgid "Experimental: strict limitation to preferred tuners for recordings"
+msgstr "Experimentell: strikte Beschränkung der Tuner bei Aufnahmen"
 
 #, python-format
 msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
@@ -12423,10 +12454,10 @@ msgid "service PIN"
 msgstr "Service PIN"
 
 msgid "set as startup service"
-msgstr "Als Startsender aus dem Deep-Standby festlegen"
+msgstr "Als Startsender aus Deep-Standby festlegen"
 
 msgid "set as startup service from standby"
-msgstr "Als Startsender aus dem Standby festlegen"
+msgstr "Als Startsender aus Standby festlegen"
 
 msgid "stop using as startup service from standby"
 msgstr "Nicht mehr als Startsender aus Standby benutzen"
@@ -12573,7 +12604,7 @@ msgid "stereo"
 msgstr "Stereo"
 
 msgid "stop using as startup service"
-msgstr "Nicht mehr als Startsender aus dem Deep-Standby benutzen"
+msgstr "Nicht mehr als Startsender aus Deep-Standby benutzen"
 
 msgid "switch to bookmarks"
 msgstr "gehe zu Lesezeichen"
@@ -13561,6 +13592,12 @@ msgstr "Ausschaltmenü schützen"
 msgid "Protect timer menu"
 msgstr "Timermenü schützen"
 
+msgid "Protect context menus"
+msgstr "Kontextmenüs schützen"
+
+msgid "Protect hdf toolbox"
+msgstr "HDF-Toolbox schützen"
+
 msgid "SCPC optimized search range"
 msgstr "SCPC optimierter Suchbereich"
 
@@ -13813,3 +13850,52 @@ msgstr "Ihre %s %s startet in den Wartungsmodus"
 
 msgid "Really reboot into Recovery Mode?"
 msgstr "Wirklich einen Neustart in den Wartungsmodus durchführen?"
+
+msgid ""
+"IPTV recording is not working with activated gstplayer or exteplayer3.\n"
+"Please use original settings within serviceapp!"
+msgstr ""
+"IPTV Aufnahmen funktionieren nicht bei aktivem gstplayer oder exteplayer3.\n"
+"Bitte in der ServiceApp auf Original umstellen und neustarten!"
+
+msgid ""
+"You are watching 5001 or 5002 IPTV channel.\n"
+"IPTV recording is working only for 4097 services!\n"
+"Please use 4097 IPTV streams for recording!"
+msgstr ""
+"Aktuell läuft ein IPTV 5001 oder 5002 Stream.\n"
+"IPTV Aufnahmen funktionieren nur bei 4097 Streams!\n"
+"Für Aufnahmen bitte auf einen 4097 Streams umschalten!"
+
+msgid "OFF"
+msgstr "Aus"
+
+msgid "ON"
+msgstr "An"
+
+msgid "BLINK"
+msgstr "Blinkend"
+
+msgid "LED 0: Box is on"
+msgstr "LED 0: Box ist an"
+
+msgid "LED 0: Box is on and recording"
+msgstr "LED 0: Box ist an und Aufnahme läuft"
+
+msgid "LED 0: Box is standby"
+msgstr "LED 0: Box ist im Standby"
+
+msgid "LED 0: Box is standby and recording"
+msgstr "LED 0: Box ist im Standby und Aufnahme läuft"
+
+msgid "LED 1: Box is on"
+msgstr "LED 1: Box ist an"
+
+msgid "LED 1: Box is on and recording"
+msgstr "LED 1: Box ist an und Aufnahme läuft"
+
+msgid "LED 1: Box is standby"
+msgstr "LED 1: Box ist im Standby"
+
+msgid "LED 1: Box is standby and recording"
+msgstr "LED 1: Box ist im Standby und Aufnahme läuft"

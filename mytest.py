@@ -24,9 +24,6 @@ from Screens.SimpleSummary import SimpleSummary
 
 from sys import stdout, exc_info
 
-profile("Bouquets")
-enigma.eDVBDB.getInstance().reloadBouquets()
-
 profile("ParentalControl")
 import Components.ParentalControl
 Components.ParentalControl.InitParentalControl()
@@ -575,8 +572,8 @@ def runScreenTest():
 	vol = VolumeControl(session)
 	profile("Init:PowerKey")
 	power = PowerKey(session)
-	
-	if boxtype in ('dm7020hd', 'dm7020hdv2', 'osminiplus', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixusszero', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3') or getBrandOEM() in ('fulan') or getMachineBuild() in ('dags7362' , 'dags5'):
+
+	if boxtype in ('alphatriple','spycat4kmini','tmtwin4k','mbmicrov2','revo4k','force3uhd','wetekplay', 'wetekplay2', 'wetekhub', 'dm7020hd', 'dm7020hdv2', 'osminiplus', 'osmega', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixusszero', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3', '9910lx', '9911lx') or getBrandOEM() in ('fulan') or getMachineBuild() in ('dags7362' , 'dags73625', 'dags5'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -591,6 +588,9 @@ def runScreenTest():
 	profile("Init:AutoVideoMode")
 	import Screens.VideoMode
 	Screens.VideoMode.autostart(session)
+
+	profile("Bouquets")
+	enigma.eDVBDB.getInstance().reloadBouquets()
 
 	profile("RunReactor")
 	profile_final()
@@ -733,7 +733,6 @@ def runScreenTest():
 	configfile.save()
 	from Screens import InfoBarGenerics
 	InfoBarGenerics.saveResumePoints()
-
 	return 0
 
 profile("Init:skin")
@@ -778,6 +777,8 @@ profile("keymapparser")
 import keymapparser
 keymapparser.readKeymap(config.usage.keymap.value)
 keymapparser.readKeymap(config.usage.keytrans.value)
+if os.path.exists(config.usage.keymap_usermod.value):
+	keymapparser.readKeymap(config.usage.keymap_usermod.value)
 
 profile("Network")
 import Components.Network
