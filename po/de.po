@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-04-27 18:51+0200\n"
+"PO-Revision-Date: 2017-04-30 07:10+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -5012,6 +5012,9 @@ msgstr "Wenn 'ja' erlaubt es mit der Seekbar zu einem beliebigen Punkt der Sendu
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
 msgstr "Wenn 'Ja' eingestellt ist wird Infobar bei schnellem Vor- und Rücklauf in Medienwiedergabe angezeigt."
 
+msgid "If set to 'yes; the infobar will remain shown permanently in 'paused' state (no timeout)."
+msgstr "Wenn 'Ja' eingestellt ist, wird die Infobar im pausierten Zustand dauerhaft angezeigt und nicht ausgeblendet."
+
 #, python-format
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr "Wenn der Text zu lang für das Display ist läuft es mehrfach durch (Anzahl der Durchgänge):"
@@ -8584,6 +8587,9 @@ msgstr "Zeige Infobar beim Sendungswechsel"
 
 msgid "Show infobar on skip forward/backward"
 msgstr "Zeige Infobar beim Spulen"
+
+msgid "Show infobar permanently while paused"
+msgstr "Zeige Infoleiste permanent während Pause"
 
 msgid "Show job tasks in extensions"
 msgstr "Zeige Jobs in Erweiterungen"
