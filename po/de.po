@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-04-30 07:10+0200\n"
+"PO-Revision-Date: 2017-05-01 08:06+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -609,6 +609,13 @@ msgstr "%a %e/%m"
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
+msgid ""
+"\n"
+"%d.%d.%d, %2d:%02d  -  %s"
+msgstr ""
+"\n"
+"%02d.%02d.%d, %02d:%02d  -  %s"
+
 #, python-format
 msgid "%d GB"
 msgstr "%d GB"
@@ -1044,7 +1051,7 @@ msgid "A recording is currently running. Please stop the recording before trying
 msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor gesucht wird."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
-msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor der Signal-Finder gestartet wird."
+msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor der Signalfinder gestartet wird."
 
 msgid "Yes, delete from Timerlist"
 msgstr "Ja, aus der Timerliste löschen."
@@ -3530,7 +3537,7 @@ msgstr ""
 
 #, python-format
 msgid "Select skin:"
-msgstr "Skin Auswahl:"
+msgstr "Skinauswahl:"
 
 msgid "LED Manager..."
 msgstr "Giga LED Manager"
@@ -4688,16 +4695,19 @@ msgid "aks the user"
 msgstr "Nachfragen"
 
 msgid "Graphical InfobarEPG settings"
-msgstr "Grafischer-InfoBarEPG Einstellungen"
+msgstr "Grafischer InfoBar EPG Einstellungen"
 
 msgid "Graphical Multi EPG"
-msgstr "Grafischer Multi-EPG"
+msgstr "Grafischer Multi EPG"
 
 msgid "GraphicalEPG settings"
-msgstr "Grafischer-EPG Einstellungen"
+msgstr "Grafischer EPG Einstellungen"
 
 msgid "Setup GraphicalEPG"
-msgstr "Grafischer-EPG Einstellungen"
+msgstr "Grafischer EPG Einstellungen"
+
+msgid "EPG-Importer"
+msgstr "EPG Import"
 
 msgid "Graphics"
 msgstr "Grafiken"
@@ -4724,7 +4734,7 @@ msgid "HDMI CEC"
 msgstr "HDMI-CEC Einstellungen"
 
 msgid "HDMI CEC Setup"
-msgstr "HDMI-CEC Einstellungen"
+msgstr "HDMI CEC Einstellungen"
 
 msgid "Handle deepstandby events"
 msgstr "Deep-Standby-Ereignisse verwalten "
@@ -5108,13 +5118,13 @@ msgid "InfoBar EPG"
 msgstr "Infobar EPG"
 
 msgid "InfoBar EPG mode"
-msgstr "Infobar-EPG Einstellungen"
+msgstr "Infobar EPG Einstellungen"
 
 msgid "Infobar EPG"
 msgstr "Infobar EPG"
 
 msgid "InfobarEPG settings"
-msgstr "Infobar-EPG Einstellungen"
+msgstr "Infobar EPG Einstellungen"
 
 msgid "Information"
 msgstr "Informationen"
@@ -5859,7 +5869,7 @@ msgid "Moving west ..."
 msgstr "Drehen nach Westen..."
 
 msgid "Multi EPG"
-msgstr "Multi-EPG"
+msgstr "Multi EPG"
 
 msgid "Load/Save/Delete"
 msgstr "EPG Laden/Speichern/Löschen"
@@ -5871,7 +5881,7 @@ msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Soll wirklich diese EPG Datei gelöscht werden:\n"
 
 msgid "MultiEPG settings"
-msgstr "Multi-EPG Einstellungen"
+msgstr "Multi EPG Einstellungen"
 
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -7778,7 +7788,7 @@ msgid "Satellites"
 msgstr "Satelliten"
 
 msgid "Signal Finder"
-msgstr "Signal-Finder"
+msgstr "Signalfinder"
 
 msgid "Sats"
 msgstr "Satelliten"
@@ -8218,7 +8228,7 @@ msgid ""
 "Check tuner configuration!"
 msgstr ""
 "Kanal nicht verfügbar!\n"
-"Bitte Tuner-Konfiguration überprüfen!"
+"Bitte Tunerkonfiguration überprüfen!"
 
 msgid "Service width"
 msgstr "Sender Breite "
@@ -8817,7 +8827,7 @@ msgid "Single transponder"
 msgstr "Einzelnen Transponder"
 
 msgid "SingleEPG settings"
-msgstr "SenderEPG Einstellungen"
+msgstr "Sender EPG Einstellungen"
 
 msgid "Site latitude"
 msgstr "Breitengrad"
@@ -8832,7 +8842,7 @@ msgid "Skin Setting"
 msgstr "Skin Einstellungen"
 
 msgid "Skin setup"
-msgstr "Skin Einstellungen"
+msgstr "Skinauswahl"
 
 msgid "Skins"
 msgstr "Skins"
@@ -10235,7 +10245,7 @@ msgid "Tuner :"
 msgstr "Tuner:"
 
 msgid "Tuner configuration"
-msgstr "Tuner-Konfiguration"
+msgstr "Tunerkonfiguration"
 
 msgid "Tuner settings"
 msgstr "Tuner Einstellungen"
@@ -10646,7 +10656,7 @@ msgid "Video fine tuning"
 msgstr "Bild-Feineinstellung"
 
 msgid "Video fine-tuning"
-msgstr "Bild-Feineinstellung"
+msgstr "Bild- und Feineinstellung"
 
 msgid ""
 "Video input selection\n"
@@ -11056,7 +11066,7 @@ msgid ""
 "Really do a factory reset?"
 msgstr ""
 "Wenn Du die Werkseinstellungen wiederherstellst, gehen sämtliche Konfigurationsdateien verloren\n"
-"(einschließlich Senderliste, Tuner-Konfiguration...)\n"
+"(einschließlich Senderliste, Tunerkonfiguration...)\n"
 "Nach der Wiederherstellung wird die %s %s automatisch neu starten\n"
 "\n"
 "Werkseinstellungen wirklich wiederherstellen?"
@@ -11512,7 +11522,7 @@ msgstr ""
 msgid "Zap back to service before satfinder?"
 msgstr ""
 "Zurückschalten zum Sender, der vor dem\n"
-"Öffnen des Signal-Finders lief?"
+"Öffnen des Signalfinders lief?"
 
 msgid "Zap back to service before tuner setup?"
 msgstr "Zurückschalten zum vorher laufenden Sender?"
