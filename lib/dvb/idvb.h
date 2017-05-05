@@ -53,8 +53,7 @@ struct eDVBTableSpec
 		tfCheckCRC		= 32,
 		tfHaveTimeout	= 64,
 		tfHaveTIDMask	= 128,
-		tfHaveTIDExtMask= 256,
-		dxIsScrambledPMT= 512,
+		tfHaveTIDExtMask= 256
 	};
 	int flags;
 };
