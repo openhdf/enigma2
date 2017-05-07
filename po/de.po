@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-05-01 09:16+0200\n"
+"PO-Revision-Date: 2017-05-07 08:00+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -13921,3 +13921,30 @@ msgstr "LED 1: Box ist im Standby"
 
 msgid "LED 1: Box is standby and recording"
 msgstr "LED 1: Box ist im Standby und Aufnahme läuft"
+
+msgid "Config Menu..."
+msgstr "Konfiguration..."
+
+msgid "Start Update every "
+msgstr "Starte das Update alle"
+
+msgid "An automated refresh will start after this duration."
+msgstr "Nach dieser Zeit werden die IPTV Listen automatisch geladen."
+
+msgid "Choose the type of AutoUpdate."
+msgstr "Wähle den Typ für das automatische Update der Listen."
+
+msgid "Start Update on enigma2 start"
+msgstr "Automatisches Update der IPTV Listen"
+
+msgid "Periodic Timer"
+msgstr "Intervall"
+
+msgid "Just on Startup"
+msgstr "Nur beim Starten"
+
+msgid "Automatic Timer"
+msgstr "Automatisch"
+
+msgid "Start Update every Day at (hh:mm)"
+msgstr "Starte Upate an jedem Tag um (hh:mm)"
