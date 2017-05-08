@@ -72,6 +72,16 @@ def InitUsageConfig():
 	config.usage.showpicon = ConfigYesNo(default = True)
 	config.usage.show_dvdplayer = ConfigYesNo(default = False)
 
+#########  Workaround for VTI Skins   ##############
+	#config.usage.picon_dir = ConfigDirectory(default = "/usr/share/enigma2/picon")
+	config.usage.movielist_show_picon = ConfigYesNo(default = False)
+	config.usage.use_extended_pig = ConfigYesNo(default = False)
+	config.usage.use_extended_pig_channelselection = ConfigYesNo(default = False)
+	config.usage.servicelist_preview_mode = ConfigYesNo(default = False)
+	config.usage.numberzap_show_picon = ConfigYesNo(default = False)
+	config.usage.numberzap_show_servicename = ConfigYesNo(default = False)
+#####################################################
+
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 
