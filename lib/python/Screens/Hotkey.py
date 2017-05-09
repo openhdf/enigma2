@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "26.03.2017"
+updateversion = "09.05.2017"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -221,6 +221,10 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))		
 	hotkeyFunctions.append((_("Toggle HDMI-In Full Screen"), "Infobar/HDMIInFull", "InfoBar"))
 	hotkeyFunctions.append((_("Toggle HDMI-In Picture In Picture"), "Infobar/HDMIInPiP", "InfoBar"))
+	if SystemInfo["LcdLiveTV"]:
+		hotkeyFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
+	if SystemInfo["HaveMultiBoot"]:
+		hotkeyFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartup/MultiBootStartup", "InfoBar"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
 	hotkeyFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
 	hotkeyFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
