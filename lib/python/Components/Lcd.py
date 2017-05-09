@@ -440,6 +440,10 @@ def InitLcd():
 			f = open("/proc/stb/lcd/symbol_hddprogress", "w")
 			f.write("0")
 			f.close()
+		if fileExists("/sys/module/brcmstb_osmega/parameters/pt6302_cgram"):
+			f = open("/sys/module/brcmstb_osmega/parameters/pt6302_cgram", "w")
+			f.write("0")
+			f.close()
 
 		def setLEDnormalstate(configElement):
 			ilcd.setLEDNormalState(configElement.value);
