@@ -16,6 +16,19 @@ from sys import maxint
 def InitUsageConfig():
 	config.downloader = ConfigSubsection()
 	config.downloader.autoupdate = ConfigYesNo(default = True)
+	config.downloader.autoupdate_type = ConfigSelection(default = "startup", choices = [("startup", _("Just on Startup")), ("auto", _("Automatic Timer")), ("periodic", _("Periodic Timer"))])
+	config.downloader.autoupdate_time = ConfigClock(default = 7200)
+	config.downloader.autoupdate_last = ConfigNumber(default = 0)
+	config.downloader.autoupdate_runinstandby = ConfigYesNo(default = False)
+	choicelist = []
+	for i in (30, 60, 120, 180, 240, 360, 720):
+		if i < 60:
+			m = ngettext("%d minute", "%d minutes", i) % i
+		else:
+			m = abs(i / 60)
+			m = ngettext("%d hour", "%d hours", m) % m
+		choicelist.append(("%d" % i, m))
+	config.downloader.autoupdate_timer = ConfigSelection(default = "240", choices = choicelist)
 
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default = True)
