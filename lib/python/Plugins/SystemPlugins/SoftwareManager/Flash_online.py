@@ -38,7 +38,7 @@ imagesCounter = 0
 #images.append(["V5.5", "http://v55.hdfreaks.cc"])
 #images.append(["V6.0", "http://beta6.hdfreaks.cc"])
 images.append(["V5.5", "http://teamimages.hdfreaks.cc"])
-images.append(["V6.0", "http://v55.hdfreaks.cc"])
+images.append(["V6.1", "http://v55.hdfreaks.cc"])
 images.append(["Team", "http://v60.hdfreaks.cc"])
 
 imagePath = '/media/hdd/images'
