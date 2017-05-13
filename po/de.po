@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-05-11 17:40+0200\n"
+"PO-Revision-Date: 2017-05-13 14:53+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlacburn, j-ot&Trial\n"
 "Language: de\n"
@@ -12839,7 +12839,6 @@ msgstr "PTS-Plugin: Zusammenführen der Aufnahmen fehlgeschlagen!"
 msgid "PTS-Plugin: Restarting Timeshift!"
 msgstr "PTS-Plugin: Timeshift-Neustart!"
 
-# SoftwareManager Translations
 msgid "Select Software Update"
 msgstr "Auswahl Software Update"
 
@@ -12894,11 +12893,9 @@ msgstr "Es ist aber die Option \"Installiere unstabile Updates\" aktiviert"
 msgid "Update anyway?"
 msgstr "Trotzdem Updaten?"
 
-#
 msgid "Select files/folders to backup..."
 msgstr "Dateien und Ordner auswählen..."
 
-#
 msgid "Keymap Selection"
 msgstr "Auswahl Tastenbelegung"
 
@@ -12917,19 +12914,15 @@ msgstr "Neutrino Tastenbelegung - keymap.ntr"
 msgid "U80 keymap - keymap.u80"
 msgstr "U80 Tastenbelegung - keymap.u80"
 
-#
 msgid "Remote_setup"
 msgstr "Fernbedienungs Auswahl"
 
-#
 msgid "Keymap changed, you need to restart the GUI"
 msgstr "Tastaturbelegung geändert, Sie  müssen die GUI neustarten"
 
-#
 msgid "Do you want to restart now?"
 msgstr "Wollen Sie jetzt neu starten?"
 
-#
 msgid "Show Softcam-Panel in Extensions Menu"
 msgstr "Zeige Softcam-Panel in Extensions-Menü"
 
@@ -12939,11 +12932,9 @@ msgstr "Zeige gedrückte Tasten im Telnet Debug Modus"
 msgid "Select if you want to show every pressed button in telnet init 4 mode."
 msgstr "Auswählen wenn im init 4 Modus im Telnet jeder Tastendruck angezeigt werden soll."
 
-#
 msgid "an internal error has occur"
 msgstr "ein interner Fehler ist aufgetreten"
 
-#
 msgid ""
 "Copy your keymap to\n"
 "/usr/share/enigma2/keymap.usr"
@@ -12951,99 +12942,75 @@ msgstr ""
 "Kopieren Sie ihre Tastaturbelegung nach \n"
 " / usr/share/enigma2/keymap.usr"
 
-#
 msgid "Default  (keymap.xml)"
 msgstr "Standard  (keymap.xml)"
 
-#
 msgid "User  (keymap.usr)"
 msgstr "Benutzer  (keymap.usr)"
 
-#
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
 
-#
 msgid "Use Keymap"
 msgstr "Keymap Auswahl"
 
-#
 msgid "Upgrade with GUI"
 msgstr "Update mit Anzeige"
 
-#
 msgid "Unattended upgrade without GUI"
 msgstr "Automatisches Update ohne Anzeige"
 
-#
 msgid "Select how your box will upgrade."
 msgstr "Auswahl des Update Mode."
 
-#
 msgid "Overwrite setting files (channellist) during software upgrade?"
 msgstr "Überschreiben der Sender/Kanallisten beim Update?"
 
-#
 msgid "Overwrite driver files during software upgrade?"
 msgstr "Überschreiben der Kernel/Treiber beim Update?"
 
-#
 msgid "Overwrite softcam files during software upgrade?"
 msgstr "Überschreiben der Softcam Dateien beim Update?"
 
-#
 msgid "Overwrite picon files during software upgrade?"
 msgstr "Überschreiben der picon Datein beim Update?"
 
-#
 msgid "Choose backup files"
 msgstr "Backup wiederherstellen"
 
-#
 msgid "LanguageWizard"
 msgstr "Sprachauswahl"
 
-#
 msgid "ImageWizard"
 msgstr "Einstellungen Wiederherstellen"
 
-#
 msgid "StartWizard"
 msgstr "Grundkonfiguration"
 
-# ******************************************************************************
 msgid "Please select an aspect ratio..."
 msgstr "Bitte Bild-Seitenverhältnis auswählen..."
 
-#
 msgid "Refresh"
 msgstr "Aktualisieren"
 
-#
 msgid "Mount again"
 msgstr "Wieder mounten"
 
-#
 msgid "use as HDD replacement"
 msgstr "Verwenden als Festplatten Ersatz"
 
-#
 msgid "AutoMountManager"
 msgstr "Auto Mount Verwaltung"
 
-#
 msgid "Add a new NFS or CIFS mount point to your"
 msgstr "Erstelle einen neuen NFS oder CIFS Mount"
 
-#
 msgid "MountEdit"
 msgstr "Mount Änderungen"
 
-#
 msgid "MountView"
 msgstr "Mount Übersicht"
 
-#
 msgid "UserManager"
 msgstr "Benutzerverwaltung"
 
@@ -13051,51 +13018,39 @@ msgstr "Benutzerverwaltung"
 msgid "Network Neighbourhood"
 msgstr "Netzwerkumgebung"
 
-#
 msgid "Rescan"
 msgstr "Neuscannen"
 
-#
 msgid "DVB Transmission Way"
 msgstr "DVB Übertragsungsart"
 
-#
 msgid "OK/green = activate settings"
 msgstr "OK/Grün = Einstellungen aktivieren"
 
-#
 msgid "Info = show tuner informations"
 msgstr "Info = Zeige Tuner Informationen"
 
-#
 msgid "Bouquet -= scan for IPTV server addresses"
 msgstr "Bouquet -= IPTV Server Adressen scannen"
 
-#
 msgid "Remote"
 msgstr "Fernbedienung"
 
-#
 msgid "Select a scirpt to run"
 msgstr "Script zum starten auswählen"
 
-#
 msgid "Scan All"
 msgstr "Alles scannen"
 
-#
 msgid "Please select a resolution..."
 msgstr "Bitte die Auflösung wählen"
 
-#
 msgid "Auto(not available)"
 msgstr "Auto(nicht Verfügbar)"
 
-#
 msgid "Aspect list..."
 msgstr "Seitenverhältnis"
 
-#
 msgid ""
 "USB = Do you want to make a back-up on USB?\n"
 "This will take between 4 and 15 minutes depending on the used filesystem and is fully automatic.\n"
@@ -13105,7 +13060,6 @@ msgstr ""
 "Das dauert nur ein paar Minuten und geht vollautomatisch.\n"
 "Bitte erst einen USB Stick anschließen bevor man USB auswählt."
 
-#
 msgid ""
 "HDD = Do you want to make an USB-back-up image on HDD? \n"
 "This only takes 2 or 10 minutes and is fully automatic."
@@ -13113,29 +13067,23 @@ msgstr ""
 "HDD = Willst du ein Backup auf HDD erstellen? \n"
 "Das dauert nur ein paar Minuten und geht vollautomatisch."
 
-#
 msgid ""
 "Press Yellow Button to switch between TV/Backup \n"
 "during the backup is running."
 msgstr "Zum Wechsel zwischen Backup und TV die gelbe Taste drücken."
 
-#
 msgid "via Network"
 msgstr "über netzwerk"
 
-#
 msgid "OK/ green = activate settings"
 msgstr "OK/grün = aktivire Einstellungen"
 
-#
 msgid "Bouquet + = install or update driver"
 msgstr "Bouquet + = installiere oder update Treiber"
 
-#
 msgid "Bouquet - = scan for IPTV server addresses"
 msgstr "Bouquet - = suche nach IPTV Server Anschluß"
 
-#
 msgid ""
 "Sundtek legal notice:\n"
 "This software comes without any warranty, use it at your own risk?"
@@ -13143,11 +13091,9 @@ msgstr ""
 "Sundtek allgemeine Info:\n"
 "Verwendung auf eigenes Risiko!"
 
-#
 msgid "No IPTV media server found"
 msgstr "Kein IPTV Media Server gefunden"
 
-#
 msgid ""
 "\n"
 "\n"
@@ -13157,23 +13103,18 @@ msgstr ""
 "\n"
 "Bitte folgenden Anschluß Verwenden für IPTV Media Server?\n"
 
-#
 msgid "installs the sundtek driver and runs related shellscripts"
 msgstr "Installiert den Sundtek Treiber über ein Shell Script"
 
-#
 msgid "VideoWizard"
 msgstr "Bildschirm Auflösung"
 
-#
 msgid "Swap Place:"
 msgstr "Swap Ort:"
 
-#
 msgid "Swap Size:"
 msgstr "Swap Größe:"
 
-# PowerLost
 #, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
@@ -13184,19 +13125,15 @@ msgstr ""
 "\n"
 "Wollen Sie sie in %s versetzen?"
 
-# Powerlost usage.config
 msgid "just boot"
 msgstr "Normal Starten"
 
-# Powerlost usage.config
 msgid "goto standby"
 msgstr "In Standby gehen"
 
-# Powerlost usage.config
 msgid "goto deep-standby"
 msgstr "Ausschalten"
 
-# Powerlost setup.xml
 msgid "After PowerLost"
 msgstr "Verhalten der Box nach Stromausfall"
 
@@ -13206,7 +13143,6 @@ msgstr "Wählen Sie aus, was passieren soll, nachdem ihre %s %s nicht sauber her
 msgid "Boot-up action"
 msgstr "Startmodus der Box"
 
-#
 msgid "Show MiniTV in the Front Display"
 msgstr "Zeige MiniTV im Display"
 
@@ -13216,30 +13152,24 @@ msgstr "Zeige im Display MiniTV mit oder ohne OSD Menu"
 msgid "MiniTV with OSD"
 msgstr "MiniTV mit OSD"
 
-#
 msgid "Set Framerate for MiniTV"
 msgstr "Setzen der Framerate im MiniTV"
 
-#
 msgid "Lower Framerate save CPU Time"
 msgstr "Geringe Framerate reduziert die CPU Belastung"
 
-# python\Screens\LanguageSelection.py
 msgid "Do you want to delete all other languages?"
 msgstr "Alle anderen Sprachen löschen?"
 
 msgid " Except %s"
 msgstr " %s bleibt installiert."
 
-# python\Screens\LanguageSelection.py
 msgid "Do you want to delete %s language?"
 msgstr "Wollen Sie %s wirklich löschen?"
 
-# python\Screens\LanguageSelection.py
 msgid "Delete Language"
 msgstr "Sprache löschen"
 
-# Components/Language.py
 msgid "Default Language can not be deleted !!"
 msgstr "Die Standardsprache kann nicht gelöscht werden!"
 
@@ -13371,7 +13301,6 @@ msgstr "Wähle das Standardverzeichnis für die Automatischeaufnahme. Drücke 'O
 msgid "Setup Usage"
 msgstr "Einstellungen"
 
-# hotkey translation
 #, python-format
 msgid "Deep-Standby"
 msgstr "Ausschalten - Deep Standby"
