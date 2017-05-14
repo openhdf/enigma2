@@ -1,11 +1,13 @@
+# German translations for Enigma2.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: enigma2\n"
+"Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-05-13 14:53+0200\n"
+"PO-Revision-Date: 2017-05-14 06:42+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
-"Language-Team: AndyBlacburn, j-ot&Trial\n"
+"Language-Team: openHDF\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,10 +65,10 @@ msgstr "Hotkey Einstellungen"
 msgid "History next"
 msgstr "Zap Verlauf vor"
 
-msgid "History Zap Menu +"
+msgid "History Zap Menu Plus"
 msgstr "Zap Verlauf Menü vor"
 
-msgid "History Zap Menu -"
+msgid "History Zap Menu Minus"
 msgstr "Zap Verlauf Menü zurück"
 
 msgid "History back"
@@ -354,13 +356,13 @@ msgid " (disabled)"
 msgstr "(deaktiviert)"
 
 msgid " (higher than any auto)"
-msgstr ""
+msgstr " (higher than any auto)"
 
 msgid " (higher than rotor any auto)"
-msgstr ""
+msgstr " (higher than rotor any auto)"
 
 msgid " (lower than any auto)"
-msgstr ""
+msgstr " (lower than any auto)"
 
 msgid "The image is downloaded. Do you want to flash now?"
 msgstr ""
@@ -778,7 +780,7 @@ msgid "* Only available if more than one interface is active."
 msgstr "* Nur verfügbar wenn mehr als ein Netzwerkadapter aktiv ist."
 
 msgid "/s"
-msgstr ""
+msgstr "%s/%s: %s"
 
 msgid "1.0"
 msgstr "1.0"
@@ -838,7 +840,7 @@ msgid "Show Channel List"
 msgstr "Zeige Senderliste"
 
 msgid "23.976"
-msgstr ""
+msgstr "23.976"
 
 msgid "24"
 msgstr "24"
@@ -847,7 +849,7 @@ msgid "25"
 msgstr "25"
 
 msgid "29.97"
-msgstr ""
+msgstr "29.97"
 
 msgid "2X"
 msgstr "2X"
@@ -1453,7 +1455,7 @@ msgid "Album"
 msgstr "Album"
 
 msgid "Alias"
-msgstr ""
+msgstr "Alias"
 
 msgid "Alignment of events"
 msgstr "Ausrichtung der Sendungen"
@@ -1835,10 +1837,10 @@ msgid "Automatically update Client/Server View?"
 msgstr "Anzeige von Klienten/Server automatisch aktualisieren?"
 
 msgid "Autostart"
-msgstr ""
+msgstr "Autostart"
 
 msgid "Autostart:"
-msgstr ""
+msgstr "Autostart:"
 
 msgid "Available format variables"
 msgstr "Verfügbare Formatierungsvariablen"
@@ -2009,11 +2011,11 @@ msgstr "Zeigt den Pufferstatus in Prozent beim Abspielen von Streams"
 
 #, python-format
 msgid "Build:\t%s"
-msgstr ""
+msgstr "%s"
 
 #, python-format
 msgid "Build: %s"
-msgstr ""
+msgstr "%s"
 
 msgid "Bulgarian"
 msgstr "Bulgarisch"
@@ -2101,7 +2103,7 @@ msgid "CCcam Provider Info"
 msgstr "CCcam Anbieter Info"
 
 msgid "CCcam Remote Info"
-msgstr ""
+msgstr "CCcam Klienten Info"
 
 msgid "CCcam Server Info"
 msgstr "CCcam Server Info"
@@ -2123,7 +2125,7 @@ msgstr "CI-Zuweisung"
 
 #, python-format
 msgid "CPU:\t%s"
-msgstr ""
+msgstr "CPU:\t%s"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -3044,7 +3046,7 @@ msgid "Continue playing"
 msgstr "Abspielen fortsetzen"
 
 msgid "Continues"
-msgstr ""
+msgstr "Endlos"
 
 msgid "Continues play (loop)"
 msgstr "Endlos (Schleife)"
@@ -3223,7 +3225,7 @@ msgid "Czech"
 msgstr "Tchechisch"
 
 msgid "DAC"
-msgstr ""
+msgstr "DAC"
 
 msgid "DHCP"
 msgstr "DHCP"
@@ -3235,7 +3237,7 @@ msgid "DMM advanced"
 msgstr "DMM erweitert"
 
 msgid "DMM normal"
-msgstr ""
+msgstr "Normal"
 
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
@@ -4840,7 +4842,7 @@ msgid "High bitrate support"
 msgstr "Kann hohe Datenraten verarbeiten"
 
 msgid "History zap..."
-msgstr ""
+msgstr "Zeige die Zap Historie"
 
 msgid "Hold plugins"
 msgstr "Plugins sperren"
@@ -5229,7 +5231,7 @@ msgid "Behave like stop-button"
 msgstr "Verhalten wie Stop Taste"
 
 msgid "Interface"
-msgstr ""
+msgstr "Interface:"
 
 msgid "Interface: "
 msgstr "Interface: "
@@ -5394,7 +5396,7 @@ msgid "LNB"
 msgstr "LNB"
 
 msgid "Label"
-msgstr ""
+msgstr "Info Einblendung zur Auflösung"
 
 msgid "Language"
 msgstr "Sprachauswahl"
@@ -5403,7 +5405,7 @@ msgid "Language selection"
 msgstr "Sprachauswahl"
 
 msgid "Last Req."
-msgstr ""
+msgstr "Letzter Film"
 
 msgid "Last config"
 msgstr "Letzte Konfiguration"
@@ -5555,7 +5557,7 @@ msgid "Location"
 msgstr "Zielverzeichnis"
 
 msgid "Lock ratio"
-msgstr ""
+msgstr "Anfangs lock ratio"
 
 msgid "Log Manager"
 msgstr "Log-Verwaltung"
@@ -5603,7 +5605,7 @@ msgid "Loop through to"
 msgstr "Verbunden mit"
 
 msgid "Luxembourgish"
-msgstr ""
+msgstr "Luxembourgish"
 
 msgid "MAC:"
 msgstr "MAC:"
@@ -5941,7 +5943,7 @@ msgid "Name"
 msgstr "Name"
 
 msgid "Name:"
-msgstr ""
+msgstr "Name:"
 
 msgid "Nameserver"
 msgstr "DNS"
@@ -6573,7 +6575,7 @@ msgid "PIDs"
 msgstr "PIDs"
 
 msgid "PLP ID"
-msgstr ""
+msgstr "Netzwerk ID"
 
 msgid "PMT PID"
 msgstr "PMT PID"
@@ -7622,7 +7624,7 @@ msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Erweiterte A/V Einstellungen auf Ihre letzte Konfiguration zurücksetzen?"
 
 msgid "Reshare:"
-msgstr ""
+msgstr "Reshare:"
 
 msgid "Resolution"
 msgstr "Auflösung"
@@ -7755,7 +7757,7 @@ msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
 
 msgid "SPDIF"
-msgstr ""
+msgstr "SPDIF"
 
 msgid "SSID:"
 msgstr "SSID:"
@@ -8156,10 +8158,10 @@ msgid "Serial No"
 msgstr "Seriennummer"
 
 msgid "Serv.Name"
-msgstr ""
+msgstr "Serv.Name"
 
 msgid "Server:"
-msgstr ""
+msgstr "VLC-Server"
 
 msgid "Servers"
 msgstr "Server"
@@ -8246,7 +8248,7 @@ msgid "Services may be grouped in bouquets. When enabled, you can use more then 
 msgstr "Sender können in Favoriten gruppiert werden. Wenn aktiviert kann mehr als eine Favoritenliste benutzt werden."
 
 msgid "Set System"
-msgstr ""
+msgstr "System:"
 
 msgid "Set end Time"
 msgstr "End-Zeit eingeben"
@@ -8677,7 +8679,7 @@ msgid "Sort by default"
 msgstr "Standardsortierung"
 
 msgid "TV"
-msgstr ""
+msgstr "TV"
 
 msgid "Show the list of AutoTimers."
 msgstr "Zeige Liste von AutoTimern..."
@@ -8857,7 +8859,7 @@ msgid "Skip empty services"
 msgstr "Überspringe leere Einträge"
 
 msgid "Skip internet connection check (disables automatic package installation)"
-msgstr "Überspringe den Netzwerk-Test(keine auto. Paket Installation) "
+msgstr "Überspringe den Netzwerk-Test (keine auto Paket Installation)"
 
 msgid "Sleep delay"
 msgstr "Ausschalt-Verzögerung"
@@ -9023,7 +9025,7 @@ msgid "Sports"
 msgstr "Sport"
 
 msgid "Standard"
-msgstr ""
+msgstr "standard"
 
 msgid "Standby"
 msgstr "Bereitschaft"
@@ -9035,7 +9037,7 @@ msgid "Standby / restart"
 msgstr "Bereitschaft / Neustart"
 
 msgid "Start"
-msgstr ""
+msgstr "Startet zeitversetztes Fernsehen"
 
 msgid "Start from the beginning"
 msgstr "Am Anfang starten"
@@ -9065,7 +9067,7 @@ msgid "Starting on"
 msgstr "Beginnend ab"
 
 msgid "Status"
-msgstr ""
+msgstr "Aktiviere die Stream Puffer Status Anzeige"
 
 msgid "Step east"
 msgstr "Schritt nach Osten"
@@ -9146,7 +9148,7 @@ msgid "Stream request"
 msgstr "Stream Anfrage"
 
 msgid "Strict DLNA"
-msgstr ""
+msgstr "DLNA-Unterstützung"
 
 msgid "Strongest position"
 msgstr "Stärkste Position"
@@ -9396,7 +9398,7 @@ msgid "System temperature: %s"
 msgstr "Systemtemperatur: %s"
 
 msgid "System: "
-msgstr ""
+msgstr "System:"
 
 msgid "TB"
 msgstr "TB"
@@ -9412,7 +9414,7 @@ msgid "TSID"
 msgstr "TSID"
 
 msgid "TUNING"
-msgstr ""
+msgstr "Bild- und Feineinstellung"
 
 msgid "TV button mode"
 msgstr "TV Taste bewirkt"
@@ -9448,7 +9450,7 @@ msgid "Teletext subtitle color"
 msgstr "Farbe Videotextuntertitel"
 
 msgid "Telnet Interface"
-msgstr ""
+msgstr "Interface:"
 
 msgid "Telnet Port"
 msgstr "Telnet Port"
@@ -9494,13 +9496,13 @@ msgid "Test type"
 msgstr "Testtyp"
 
 msgid "Text"
-msgstr ""
+msgstr "Typ (Text)"
 
 msgid "Text color"
 msgstr "Textfarbe"
 
 msgid "Thai"
-msgstr ""
+msgstr "Thai"
 
 msgid ""
 "Thank you for using the wizard.\n"
@@ -10206,7 +10208,7 @@ msgid "Transmission mode"
 msgstr "Übertragungstyp"
 
 msgid "Transparent"
-msgstr ""
+msgstr "Diese Option erlaubt es die Hintergrundfarbe von transparenten Picons festzulegen"
 
 msgid "Transponder"
 msgstr "Transponder"

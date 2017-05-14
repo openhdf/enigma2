@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "10.05.2017"
+updateversion = "14.05.2017"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -187,8 +187,8 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Switch Channel up in Infobar"), "Infobar/switchChannelUp", "InfoBar"))
 	hotkeyFunctions.append((_("Switch Channel down in Infobar"), "Infobar/switchChannelDown", "InfoBar"))
 	hotkeyFunctions.append((_("Show Service List"), "Infobar/openServiceList", "InfoBar"))
-	hotkeyFunctions.append((_("History Zap Menu +"), "Infobar/historyZapForward", "InfoBar"))
-	hotkeyFunctions.append((_("History Zap Menu -"), "Infobar/historyZapBackward", "InfoBar"))
+	hotkeyFunctions.append((_("History Zap Menu Plus"), "Infobar/historyZapForward", "InfoBar"))
+	hotkeyFunctions.append((_("History Zap Menu Minus"), "Infobar/historyZapBackward", "InfoBar"))
 	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
 	hotkeyFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", "InfoBar"))
