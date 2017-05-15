@@ -1,18 +1,20 @@
+# German translations for Enigma2.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: enigma2\n"
+"Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-04-27 18:51+0200\n"
+"PO-Revision-Date: 2017-05-15 18:13+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
-"Language-Team: AndyBlacburn, j-ot&Trial\n"
+"Language-Team: openHDF\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid "Switch to Radio Mode"
@@ -63,10 +65,10 @@ msgstr "Hotkey Einstellungen"
 msgid "History next"
 msgstr "Zap Verlauf vor"
 
-msgid "History Zap Menu +"
+msgid "History Zap Menu Plus"
 msgstr "Zap Verlauf Menü vor"
 
-msgid "History Zap Menu -"
+msgid "History Zap Menu Minus"
 msgstr "Zap Verlauf Menü zurück"
 
 msgid "History back"
@@ -354,13 +356,13 @@ msgid " (disabled)"
 msgstr "(deaktiviert)"
 
 msgid " (higher than any auto)"
-msgstr ""
+msgstr " (higher than any auto)"
 
 msgid " (higher than rotor any auto)"
-msgstr ""
+msgstr " (higher than rotor any auto)"
 
 msgid " (lower than any auto)"
-msgstr ""
+msgstr " (lower than any auto)"
 
 msgid "The image is downloaded. Do you want to flash now?"
 msgstr ""
@@ -609,6 +611,13 @@ msgstr "%a %e/%m"
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
+msgid ""
+"\n"
+"%d.%d.%d, %2d:%02d  -  %s"
+msgstr ""
+"\n"
+"%02d.%02d.%d, %02d:%02d  -  %s"
+
 #, python-format
 msgid "%d GB"
 msgstr "%d GB"
@@ -771,7 +780,7 @@ msgid "* Only available if more than one interface is active."
 msgstr "* Nur verfügbar wenn mehr als ein Netzwerkadapter aktiv ist."
 
 msgid "/s"
-msgstr ""
+msgstr "%s/%s: %s"
 
 msgid "1.0"
 msgstr "1.0"
@@ -831,7 +840,7 @@ msgid "Show Channel List"
 msgstr "Zeige Senderliste"
 
 msgid "23.976"
-msgstr ""
+msgstr "23.976"
 
 msgid "24"
 msgstr "24"
@@ -840,7 +849,7 @@ msgid "25"
 msgstr "25"
 
 msgid "29.97"
-msgstr ""
+msgstr "29.97"
 
 msgid "2X"
 msgstr "2X"
@@ -1044,7 +1053,7 @@ msgid "A recording is currently running. Please stop the recording before trying
 msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor gesucht wird."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
-msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor der Signal-Finder gestartet wird."
+msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor der Signalfinder gestartet wird."
 
 msgid "Yes, delete from Timerlist"
 msgstr "Ja, aus der Timerliste löschen."
@@ -1284,7 +1293,6 @@ msgstr "Hinzufügen"
 msgid "Add AutoTimer"
 msgstr "Autotimer hinzufügen"
 
-#, python-format
 msgid "AutoTimer"
 msgstr "Automatische Timer"
 
@@ -1300,11 +1308,9 @@ msgstr "Timer ändern"
 msgid "Disable timer"
 msgstr "Timer deaktivieren"
 
-#, python-format
 msgid "Add filter"
 msgstr "Filter hinzufügen"
 
-#, python-format
 msgid "Edit services"
 msgstr "Bearbeite Sender"
 
@@ -1446,7 +1452,7 @@ msgid "Album"
 msgstr "Album"
 
 msgid "Alias"
-msgstr ""
+msgstr "Alias"
 
 msgid "Alignment of events"
 msgstr "Ausrichtung der Sendungen"
@@ -1828,10 +1834,10 @@ msgid "Automatically update Client/Server View?"
 msgstr "Anzeige von Klienten/Server automatisch aktualisieren?"
 
 msgid "Autostart"
-msgstr ""
+msgstr "Autostart"
 
 msgid "Autostart:"
-msgstr ""
+msgstr "Autostart:"
 
 msgid "Available format variables"
 msgstr "Verfügbare Formatierungsvariablen"
@@ -2002,11 +2008,11 @@ msgstr "Zeigt den Pufferstatus in Prozent beim Abspielen von Streams"
 
 #, python-format
 msgid "Build:\t%s"
-msgstr ""
+msgstr "%s"
 
 #, python-format
 msgid "Build: %s"
-msgstr ""
+msgstr "%s"
 
 msgid "Bulgarian"
 msgstr "Bulgarisch"
@@ -2094,7 +2100,7 @@ msgid "CCcam Provider Info"
 msgstr "CCcam Anbieter Info"
 
 msgid "CCcam Remote Info"
-msgstr ""
+msgstr "CCcam Klienten Info"
 
 msgid "CCcam Server Info"
 msgstr "CCcam Server Info"
@@ -2116,7 +2122,7 @@ msgstr "CI-Zuweisung"
 
 #, python-format
 msgid "CPU:\t%s"
-msgstr ""
+msgstr "CPU:\t%s"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -3037,7 +3043,7 @@ msgid "Continue playing"
 msgstr "Abspielen fortsetzen"
 
 msgid "Continues"
-msgstr ""
+msgstr "Endlos"
 
 msgid "Continues play (loop)"
 msgstr "Endlos (Schleife)"
@@ -3216,7 +3222,7 @@ msgid "Czech"
 msgstr "Tchechisch"
 
 msgid "DAC"
-msgstr ""
+msgstr "DAC"
 
 msgid "DHCP"
 msgstr "DHCP"
@@ -3228,7 +3234,7 @@ msgid "DMM advanced"
 msgstr "DMM erweitert"
 
 msgid "DMM normal"
-msgstr ""
+msgstr "Normal"
 
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
@@ -3389,6 +3395,12 @@ msgstr "HTTP Streams entschlüsseln"
 msgid "Require authentication for http streams"
 msgstr "Authentifizierung für HTTP Streams"
 
+msgid "Delivery system workaround"
+msgstr "Workaround bei alten Tuner Treibern"
+
+msgid "Workaround for old tuner driver"
+msgstr "Workaround bei alten Tuner Treibern"
+
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Wenn aktiviert, ist eine Authentifizierung nötig um HTTP Streams zu sehen."
 
@@ -3530,7 +3542,7 @@ msgstr ""
 
 #, python-format
 msgid "Select skin:"
-msgstr "Skin Auswahl:"
+msgstr "Skinauswahl:"
 
 msgid "LED Manager..."
 msgstr "Giga LED Manager"
@@ -4688,16 +4700,19 @@ msgid "aks the user"
 msgstr "Nachfragen"
 
 msgid "Graphical InfobarEPG settings"
-msgstr "Grafischer-InfoBarEPG Einstellungen"
+msgstr "Grafischer InfoBar EPG Einstellungen"
 
 msgid "Graphical Multi EPG"
-msgstr "Grafischer Multi-EPG"
+msgstr "Grafischer Multi EPG"
 
 msgid "GraphicalEPG settings"
-msgstr "Grafischer-EPG Einstellungen"
+msgstr "Grafischer EPG Einstellungen"
 
 msgid "Setup GraphicalEPG"
-msgstr "Grafischer-EPG Einstellungen"
+msgstr "Grafischer EPG Einstellungen"
+
+msgid "EPG-Importer"
+msgstr "EPG Import"
 
 msgid "Graphics"
 msgstr "Grafiken"
@@ -4724,7 +4739,7 @@ msgid "HDMI CEC"
 msgstr "HDMI-CEC Einstellungen"
 
 msgid "HDMI CEC Setup"
-msgstr "HDMI-CEC Einstellungen"
+msgstr "HDMI CEC Einstellungen"
 
 msgid "Handle deepstandby events"
 msgstr "Deep-Standby-Ereignisse verwalten "
@@ -4824,7 +4839,7 @@ msgid "High bitrate support"
 msgstr "Kann hohe Datenraten verarbeiten"
 
 msgid "History zap..."
-msgstr ""
+msgstr "Zeige die Zap Historie"
 
 msgid "Hold plugins"
 msgstr "Plugins sperren"
@@ -5012,6 +5027,9 @@ msgstr "Wenn 'ja' erlaubt es mit der Seekbar zu einem beliebigen Punkt der Sendu
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
 msgstr "Wenn 'Ja' eingestellt ist wird Infobar bei schnellem Vor- und Rücklauf in Medienwiedergabe angezeigt."
 
+msgid "If set to 'yes; the infobar will remain shown permanently in 'paused' state (no timeout)."
+msgstr "Wenn 'Ja' eingestellt ist, wird die Infobar im pausierten Zustand dauerhaft angezeigt und nicht ausgeblendet."
+
 #, python-format
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr "Wenn der Text zu lang für das Display ist läuft es mehrfach durch (Anzahl der Durchgänge):"
@@ -5105,13 +5123,13 @@ msgid "InfoBar EPG"
 msgstr "Infobar EPG"
 
 msgid "InfoBar EPG mode"
-msgstr "Infobar-EPG Einstellungen"
+msgstr "Infobar EPG Einstellungen"
 
 msgid "Infobar EPG"
 msgstr "Infobar EPG"
 
 msgid "InfobarEPG settings"
-msgstr "Infobar-EPG Einstellungen"
+msgstr "Infobar EPG Einstellungen"
 
 msgid "Information"
 msgstr "Informationen"
@@ -5210,7 +5228,7 @@ msgid "Behave like stop-button"
 msgstr "Verhalten wie Stop Taste"
 
 msgid "Interface"
-msgstr ""
+msgstr "Interface:"
 
 msgid "Interface: "
 msgstr "Interface: "
@@ -5375,7 +5393,7 @@ msgid "LNB"
 msgstr "LNB"
 
 msgid "Label"
-msgstr ""
+msgstr "Info Einblendung zur Auflösung"
 
 msgid "Language"
 msgstr "Sprachauswahl"
@@ -5384,7 +5402,7 @@ msgid "Language selection"
 msgstr "Sprachauswahl"
 
 msgid "Last Req."
-msgstr ""
+msgstr "Letzter Film"
 
 msgid "Last config"
 msgstr "Letzte Konfiguration"
@@ -5536,7 +5554,7 @@ msgid "Location"
 msgstr "Zielverzeichnis"
 
 msgid "Lock ratio"
-msgstr ""
+msgstr "Anfangs lock ratio"
 
 msgid "Log Manager"
 msgstr "Log-Verwaltung"
@@ -5584,7 +5602,7 @@ msgid "Loop through to"
 msgstr "Verbunden mit"
 
 msgid "Luxembourgish"
-msgstr ""
+msgstr "Luxembourgish"
 
 msgid "MAC:"
 msgstr "MAC:"
@@ -5856,7 +5874,7 @@ msgid "Moving west ..."
 msgstr "Drehen nach Westen..."
 
 msgid "Multi EPG"
-msgstr "Multi-EPG"
+msgstr "Multi EPG"
 
 msgid "Load/Save/Delete"
 msgstr "EPG Laden/Speichern/Löschen"
@@ -5868,7 +5886,7 @@ msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Soll wirklich diese EPG Datei gelöscht werden:\n"
 
 msgid "MultiEPG settings"
-msgstr "Multi-EPG Einstellungen"
+msgstr "Multi EPG Einstellungen"
 
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -5922,7 +5940,7 @@ msgid "Name"
 msgstr "Name"
 
 msgid "Name:"
-msgstr ""
+msgstr "Name:"
 
 msgid "Nameserver"
 msgstr "DNS"
@@ -6554,7 +6572,7 @@ msgid "PIDs"
 msgstr "PIDs"
 
 msgid "PLP ID"
-msgstr ""
+msgstr "Netzwerk ID"
 
 msgid "PMT PID"
 msgstr "PMT PID"
@@ -7603,7 +7621,7 @@ msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Erweiterte A/V Einstellungen auf Ihre letzte Konfiguration zurücksetzen?"
 
 msgid "Reshare:"
-msgstr ""
+msgstr "Reshare:"
 
 msgid "Resolution"
 msgstr "Auflösung"
@@ -7736,7 +7754,7 @@ msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
 
 msgid "SPDIF"
-msgstr ""
+msgstr "SPDIF"
 
 msgid "SSID:"
 msgstr "SSID:"
@@ -7775,7 +7793,7 @@ msgid "Satellites"
 msgstr "Satelliten"
 
 msgid "Signal Finder"
-msgstr "Signal-Finder"
+msgstr "Signalfinder"
 
 msgid "Sats"
 msgstr "Satelliten"
@@ -8137,10 +8155,10 @@ msgid "Serial No"
 msgstr "Seriennummer"
 
 msgid "Serv.Name"
-msgstr ""
+msgstr "Serv.Name"
 
 msgid "Server:"
-msgstr ""
+msgstr "VLC-Server"
 
 msgid "Servers"
 msgstr "Server"
@@ -8215,7 +8233,7 @@ msgid ""
 "Check tuner configuration!"
 msgstr ""
 "Kanal nicht verfügbar!\n"
-"Bitte Tuner-Konfiguration überprüfen!"
+"Bitte Tunerkonfiguration überprüfen!"
 
 msgid "Service width"
 msgstr "Sender Breite "
@@ -8227,7 +8245,7 @@ msgid "Services may be grouped in bouquets. When enabled, you can use more then 
 msgstr "Sender können in Favoriten gruppiert werden. Wenn aktiviert kann mehr als eine Favoritenliste benutzt werden."
 
 msgid "Set System"
-msgstr ""
+msgstr "System:"
 
 msgid "Set end Time"
 msgstr "End-Zeit eingeben"
@@ -8585,6 +8603,9 @@ msgstr "Zeige Infobar beim Sendungswechsel"
 msgid "Show infobar on skip forward/backward"
 msgstr "Zeige Infobar beim Spulen"
 
+msgid "Show infobar permanently while paused"
+msgstr "Zeige Infoleiste permanent während Pause"
+
 msgid "Show job tasks in extensions"
 msgstr "Zeige Jobs in Erweiterungen"
 
@@ -8655,7 +8676,7 @@ msgid "Sort by default"
 msgstr "Standardsortierung"
 
 msgid "TV"
-msgstr ""
+msgstr "TV"
 
 msgid "Show the list of AutoTimers."
 msgstr "Zeige Liste von AutoTimern..."
@@ -8811,7 +8832,7 @@ msgid "Single transponder"
 msgstr "Einzelnen Transponder"
 
 msgid "SingleEPG settings"
-msgstr "SenderEPG Einstellungen"
+msgstr "Sender EPG Einstellungen"
 
 msgid "Site latitude"
 msgstr "Breitengrad"
@@ -8826,7 +8847,7 @@ msgid "Skin Setting"
 msgstr "Skin Einstellungen"
 
 msgid "Skin setup"
-msgstr "Skin Einstellungen"
+msgstr "Skinauswahl"
 
 msgid "Skins"
 msgstr "Skins"
@@ -8835,7 +8856,7 @@ msgid "Skip empty services"
 msgstr "Überspringe leere Einträge"
 
 msgid "Skip internet connection check (disables automatic package installation)"
-msgstr "Überspringe den Netzwerk-Test(keine auto. Paket Installation) "
+msgstr "Überspringe den Netzwerk-Test (keine auto Paket Installation)"
 
 msgid "Sleep delay"
 msgstr "Ausschalt-Verzögerung"
@@ -9001,7 +9022,7 @@ msgid "Sports"
 msgstr "Sport"
 
 msgid "Standard"
-msgstr ""
+msgstr "standard"
 
 msgid "Standby"
 msgstr "Bereitschaft"
@@ -9013,7 +9034,7 @@ msgid "Standby / restart"
 msgstr "Bereitschaft / Neustart"
 
 msgid "Start"
-msgstr ""
+msgstr "Startet zeitversetztes Fernsehen"
 
 msgid "Start from the beginning"
 msgstr "Am Anfang starten"
@@ -9043,7 +9064,7 @@ msgid "Starting on"
 msgstr "Beginnend ab"
 
 msgid "Status"
-msgstr ""
+msgstr "Aktiviere die Stream Puffer Status Anzeige"
 
 msgid "Step east"
 msgstr "Schritt nach Osten"
@@ -9124,7 +9145,7 @@ msgid "Stream request"
 msgstr "Stream Anfrage"
 
 msgid "Strict DLNA"
-msgstr ""
+msgstr "DLNA-Unterstützung"
 
 msgid "Strongest position"
 msgstr "Stärkste Position"
@@ -9374,7 +9395,7 @@ msgid "System temperature: %s"
 msgstr "Systemtemperatur: %s"
 
 msgid "System: "
-msgstr ""
+msgstr "System:"
 
 msgid "TB"
 msgstr "TB"
@@ -9390,7 +9411,7 @@ msgid "TSID"
 msgstr "TSID"
 
 msgid "TUNING"
-msgstr ""
+msgstr "Bild- und Feineinstellung"
 
 msgid "TV button mode"
 msgstr "TV Taste bewirkt"
@@ -9426,7 +9447,7 @@ msgid "Teletext subtitle color"
 msgstr "Farbe Videotextuntertitel"
 
 msgid "Telnet Interface"
-msgstr ""
+msgstr "Interface:"
 
 msgid "Telnet Port"
 msgstr "Telnet Port"
@@ -9472,13 +9493,13 @@ msgid "Test type"
 msgstr "Testtyp"
 
 msgid "Text"
-msgstr ""
+msgstr "Typ (Text)"
 
 msgid "Text color"
 msgstr "Textfarbe"
 
 msgid "Thai"
-msgstr ""
+msgstr "Thai"
 
 msgid ""
 "Thank you for using the wizard.\n"
@@ -10184,7 +10205,7 @@ msgid "Transmission mode"
 msgstr "Übertragungstyp"
 
 msgid "Transparent"
-msgstr ""
+msgstr "Diese Option erlaubt es die Hintergrundfarbe von transparenten Picons festzulegen"
 
 msgid "Transponder"
 msgstr "Transponder"
@@ -10229,7 +10250,7 @@ msgid "Tuner :"
 msgstr "Tuner:"
 
 msgid "Tuner configuration"
-msgstr "Tuner-Konfiguration"
+msgstr "Tunerkonfiguration"
 
 msgid "Tuner settings"
 msgstr "Tuner Einstellungen"
@@ -10640,7 +10661,7 @@ msgid "Video fine tuning"
 msgstr "Bild-Feineinstellung"
 
 msgid "Video fine-tuning"
-msgstr "Bild-Feineinstellung"
+msgstr "Bild- und Feineinstellung"
 
 msgid ""
 "Video input selection\n"
@@ -11050,7 +11071,7 @@ msgid ""
 "Really do a factory reset?"
 msgstr ""
 "Wenn Du die Werkseinstellungen wiederherstellst, gehen sämtliche Konfigurationsdateien verloren\n"
-"(einschließlich Senderliste, Tuner-Konfiguration...)\n"
+"(einschließlich Senderliste, Tunerkonfiguration...)\n"
 "Nach der Wiederherstellung wird die %s %s automatisch neu starten\n"
 "\n"
 "Werkseinstellungen wirklich wiederherstellen?"
@@ -11506,7 +11527,7 @@ msgstr ""
 msgid "Zap back to service before satfinder?"
 msgstr ""
 "Zurückschalten zum Sender, der vor dem\n"
-"Öffnen des Signal-Finders lief?"
+"Öffnen des Signalfinders lief?"
 
 msgid "Zap back to service before tuner setup?"
 msgstr "Zurückschalten zum vorher laufenden Sender?"
@@ -12817,7 +12838,6 @@ msgstr "PTS-Plugin: Zusammenführen der Aufnahmen fehlgeschlagen!"
 msgid "PTS-Plugin: Restarting Timeshift!"
 msgstr "PTS-Plugin: Timeshift-Neustart!"
 
-# SoftwareManager Translations
 msgid "Select Software Update"
 msgstr "Auswahl Software Update"
 
@@ -12872,11 +12892,9 @@ msgstr "Es ist aber die Option \"Installiere unstabile Updates\" aktiviert"
 msgid "Update anyway?"
 msgstr "Trotzdem Updaten?"
 
-#
 msgid "Select files/folders to backup..."
 msgstr "Dateien und Ordner auswählen..."
 
-#
 msgid "Keymap Selection"
 msgstr "Auswahl Tastenbelegung"
 
@@ -12895,19 +12913,15 @@ msgstr "Neutrino Tastenbelegung - keymap.ntr"
 msgid "U80 keymap - keymap.u80"
 msgstr "U80 Tastenbelegung - keymap.u80"
 
-#
 msgid "Remote_setup"
 msgstr "Fernbedienungs Auswahl"
 
-#
 msgid "Keymap changed, you need to restart the GUI"
 msgstr "Tastaturbelegung geändert, Sie  müssen die GUI neustarten"
 
-#
 msgid "Do you want to restart now?"
 msgstr "Wollen Sie jetzt neu starten?"
 
-#
 msgid "Show Softcam-Panel in Extensions Menu"
 msgstr "Zeige Softcam-Panel in Extensions-Menü"
 
@@ -12917,11 +12931,9 @@ msgstr "Zeige gedrückte Tasten im Telnet Debug Modus"
 msgid "Select if you want to show every pressed button in telnet init 4 mode."
 msgstr "Auswählen wenn im init 4 Modus im Telnet jeder Tastendruck angezeigt werden soll."
 
-#
 msgid "an internal error has occur"
 msgstr "ein interner Fehler ist aufgetreten"
 
-#
 msgid ""
 "Copy your keymap to\n"
 "/usr/share/enigma2/keymap.usr"
@@ -12929,99 +12941,75 @@ msgstr ""
 "Kopieren Sie ihre Tastaturbelegung nach \n"
 " / usr/share/enigma2/keymap.usr"
 
-#
 msgid "Default  (keymap.xml)"
 msgstr "Standard  (keymap.xml)"
 
-#
 msgid "User  (keymap.usr)"
 msgstr "Benutzer  (keymap.usr)"
 
-#
 msgid "Neutrino  (keymap.ntr)"
 msgstr "Neutrino  (keymap.ntr)"
 
-#
 msgid "Use Keymap"
 msgstr "Keymap Auswahl"
 
-#
 msgid "Upgrade with GUI"
 msgstr "Update mit Anzeige"
 
-#
 msgid "Unattended upgrade without GUI"
 msgstr "Automatisches Update ohne Anzeige"
 
-#
 msgid "Select how your box will upgrade."
 msgstr "Auswahl des Update Mode."
 
-#
 msgid "Overwrite setting files (channellist) during software upgrade?"
 msgstr "Überschreiben der Sender/Kanallisten beim Update?"
 
-#
 msgid "Overwrite driver files during software upgrade?"
 msgstr "Überschreiben der Kernel/Treiber beim Update?"
 
-#
 msgid "Overwrite softcam files during software upgrade?"
 msgstr "Überschreiben der Softcam Dateien beim Update?"
 
-#
 msgid "Overwrite picon files during software upgrade?"
 msgstr "Überschreiben der picon Datein beim Update?"
 
-#
 msgid "Choose backup files"
 msgstr "Backup wiederherstellen"
 
-#
 msgid "LanguageWizard"
 msgstr "Sprachauswahl"
 
-#
 msgid "ImageWizard"
 msgstr "Einstellungen Wiederherstellen"
 
-#
 msgid "StartWizard"
 msgstr "Grundkonfiguration"
 
-# ******************************************************************************
 msgid "Please select an aspect ratio..."
 msgstr "Bitte Bild-Seitenverhältnis auswählen..."
 
-#
 msgid "Refresh"
 msgstr "Aktualisieren"
 
-#
 msgid "Mount again"
 msgstr "Wieder mounten"
 
-#
 msgid "use as HDD replacement"
 msgstr "Verwenden als Festplatten Ersatz"
 
-#
 msgid "AutoMountManager"
 msgstr "Auto Mount Verwaltung"
 
-#
 msgid "Add a new NFS or CIFS mount point to your"
 msgstr "Erstelle einen neuen NFS oder CIFS Mount"
 
-#
 msgid "MountEdit"
 msgstr "Mount Änderungen"
 
-#
 msgid "MountView"
 msgstr "Mount Übersicht"
 
-#
 msgid "UserManager"
 msgstr "Benutzerverwaltung"
 
@@ -13029,51 +13017,39 @@ msgstr "Benutzerverwaltung"
 msgid "Network Neighbourhood"
 msgstr "Netzwerkumgebung"
 
-#
 msgid "Rescan"
 msgstr "Neuscannen"
 
-#
 msgid "DVB Transmission Way"
 msgstr "DVB Übertragsungsart"
 
-#
 msgid "OK/green = activate settings"
 msgstr "OK/Grün = Einstellungen aktivieren"
 
-#
 msgid "Info = show tuner informations"
 msgstr "Info = Zeige Tuner Informationen"
 
-#
 msgid "Bouquet -= scan for IPTV server addresses"
 msgstr "Bouquet -= IPTV Server Adressen scannen"
 
-#
 msgid "Remote"
 msgstr "Fernbedienung"
 
-#
 msgid "Select a scirpt to run"
 msgstr "Script zum starten auswählen"
 
-#
 msgid "Scan All"
 msgstr "Alles scannen"
 
-#
 msgid "Please select a resolution..."
 msgstr "Bitte die Auflösung wählen"
 
-#
 msgid "Auto(not available)"
 msgstr "Auto(nicht Verfügbar)"
 
-#
 msgid "Aspect list..."
 msgstr "Seitenverhältnis"
 
-#
 msgid ""
 "USB = Do you want to make a back-up on USB?\n"
 "This will take between 4 and 15 minutes depending on the used filesystem and is fully automatic.\n"
@@ -13083,7 +13059,6 @@ msgstr ""
 "Das dauert nur ein paar Minuten und geht vollautomatisch.\n"
 "Bitte erst einen USB Stick anschließen bevor man USB auswählt."
 
-#
 msgid ""
 "HDD = Do you want to make an USB-back-up image on HDD? \n"
 "This only takes 2 or 10 minutes and is fully automatic."
@@ -13091,29 +13066,23 @@ msgstr ""
 "HDD = Willst du ein Backup auf HDD erstellen? \n"
 "Das dauert nur ein paar Minuten und geht vollautomatisch."
 
-#
 msgid ""
 "Press Yellow Button to switch between TV/Backup \n"
 "during the backup is running."
 msgstr "Zum Wechsel zwischen Backup und TV die gelbe Taste drücken."
 
-#
 msgid "via Network"
 msgstr "über netzwerk"
 
-#
 msgid "OK/ green = activate settings"
 msgstr "OK/grün = aktivire Einstellungen"
 
-#
 msgid "Bouquet + = install or update driver"
 msgstr "Bouquet + = installiere oder update Treiber"
 
-#
 msgid "Bouquet - = scan for IPTV server addresses"
 msgstr "Bouquet - = suche nach IPTV Server Anschluß"
 
-#
 msgid ""
 "Sundtek legal notice:\n"
 "This software comes without any warranty, use it at your own risk?"
@@ -13121,11 +13090,9 @@ msgstr ""
 "Sundtek allgemeine Info:\n"
 "Verwendung auf eigenes Risiko!"
 
-#
 msgid "No IPTV media server found"
 msgstr "Kein IPTV Media Server gefunden"
 
-#
 msgid ""
 "\n"
 "\n"
@@ -13135,23 +13102,18 @@ msgstr ""
 "\n"
 "Bitte folgenden Anschluß Verwenden für IPTV Media Server?\n"
 
-#
 msgid "installs the sundtek driver and runs related shellscripts"
 msgstr "Installiert den Sundtek Treiber über ein Shell Script"
 
-#
 msgid "VideoWizard"
 msgstr "Bildschirm Auflösung"
 
-#
 msgid "Swap Place:"
 msgstr "Swap Ort:"
 
-#
 msgid "Swap Size:"
 msgstr "Swap Größe:"
 
-# PowerLost
 #, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
@@ -13162,19 +13124,15 @@ msgstr ""
 "\n"
 "Wollen Sie sie in %s versetzen?"
 
-# Powerlost usage.config
 msgid "just boot"
 msgstr "Normal Starten"
 
-# Powerlost usage.config
 msgid "goto standby"
 msgstr "In Standby gehen"
 
-# Powerlost usage.config
 msgid "goto deep-standby"
 msgstr "Ausschalten"
 
-# Powerlost setup.xml
 msgid "After PowerLost"
 msgstr "Verhalten der Box nach Stromausfall"
 
@@ -13184,7 +13142,6 @@ msgstr "Wählen Sie aus, was passieren soll, nachdem ihre %s %s nicht sauber her
 msgid "Boot-up action"
 msgstr "Startmodus der Box"
 
-#
 msgid "Show MiniTV in the Front Display"
 msgstr "Zeige MiniTV im Display"
 
@@ -13194,30 +13151,24 @@ msgstr "Zeige im Display MiniTV mit oder ohne OSD Menu"
 msgid "MiniTV with OSD"
 msgstr "MiniTV mit OSD"
 
-#
 msgid "Set Framerate for MiniTV"
 msgstr "Setzen der Framerate im MiniTV"
 
-#
 msgid "Lower Framerate save CPU Time"
 msgstr "Geringe Framerate reduziert die CPU Belastung"
 
-# python\Screens\LanguageSelection.py
 msgid "Do you want to delete all other languages?"
 msgstr "Alle anderen Sprachen löschen?"
 
 msgid " Except %s"
 msgstr " %s bleibt installiert."
 
-# python\Screens\LanguageSelection.py
 msgid "Do you want to delete %s language?"
 msgstr "Wollen Sie %s wirklich löschen?"
 
-# python\Screens\LanguageSelection.py
 msgid "Delete Language"
 msgstr "Sprache löschen"
 
-# Components/Language.py
 msgid "Default Language can not be deleted !!"
 msgstr "Die Standardsprache kann nicht gelöscht werden!"
 
@@ -13349,7 +13300,6 @@ msgstr "Wähle das Standardverzeichnis für die Automatischeaufnahme. Drücke 'O
 msgid "Setup Usage"
 msgstr "Einstellungen"
 
-# hotkey translation
 #, python-format
 msgid "Deep-Standby"
 msgstr "Ausschalten - Deep Standby"
@@ -13899,3 +13849,43 @@ msgstr "LED 1: Box ist im Standby"
 
 msgid "LED 1: Box is standby and recording"
 msgstr "LED 1: Box ist im Standby und Aufnahme läuft"
+
+msgid "Config Menu..."
+msgstr "Konfiguration..."
+
+msgid "Start Update every "
+msgstr "Starte das Update alle"
+
+msgid "An automated refresh will start after this duration."
+msgstr "Nach dieser Zeit werden die IPTV Listen automatisch geladen."
+
+msgid "Choose the type of AutoUpdate."
+msgstr "Wähle den Typ für das automatische Update der Listen."
+
+msgid "Start Update on enigma2 start"
+msgstr "Automatisches Update der IPTV Listen"
+
+msgid "Periodic Timer"
+msgstr "Intervall"
+
+msgid "Just on Startup"
+msgstr "Nur beim Starten"
+
+msgid "Automatic Timer"
+msgstr "Automatisch"
+
+msgid "Run in Standby?"
+msgstr "Auch im Standby?"
+
+msgid "Start Update when in Standby?"
+msgstr "Soll das Update auch im Standby laufen?"
+
+msgid "Start Update every Day at (hh:mm)"
+msgstr "Starte Update an jedem Tag um (hh:mm)"
+
+msgid ""
+"Last refresh was %s\n"
+"Next timer: %s"
+msgstr ""
+"Letzte Aktualisierung war %s Uhr\n"
+"Nächste Aktualisierung ist am: %s"
