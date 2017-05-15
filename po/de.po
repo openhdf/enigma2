@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-05-14 06:42+0200\n"
+"PO-Revision-Date: 2017-05-15 16:04+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 1.8.13\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid "Switch to Radio Mode"
@@ -1293,7 +1293,6 @@ msgstr "Hinzufügen"
 msgid "Add AutoTimer"
 msgstr "Autotimer hinzufügen"
 
-#, python-format
 msgid "AutoTimer"
 msgstr "Automatische Timer"
 
@@ -1309,11 +1308,9 @@ msgstr "Timer ändern"
 msgid "Disable timer"
 msgstr "Timer deaktivieren"
 
-#, python-format
 msgid "Add filter"
 msgstr "Filter hinzufügen"
 
-#, python-format
 msgid "Edit services"
 msgstr "Bearbeite Sender"
 
