@@ -31,10 +31,10 @@ class E2SharedPoll:
 
 	def register(self, fd, eventmask = select.POLLIN | select.POLLERR | select.POLLOUT):
 		self.dict[fd] = eventmask
-	
+
 	def unregister(self, fd):
 		del self.dict[fd]
-	
+
 	def poll(self, timeout = None):
 		try:
 			r = self.eApp.poll(timeout, self.dict)
@@ -128,7 +128,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		selectables.clear()
 		for fd in fds:
 			poller.unregister(fd)
-			
+
 		if self.waker is not None:
 			self.addReader(self.waker)
 		return result
@@ -142,7 +142,7 @@ class PollReactor(posixbase.PosixReactorBase):
 			   POLLIN=select.POLLIN,
 			   POLLOUT=select.POLLOUT):
 		"""Poll the poller for new events."""
-		
+
 		if timeout is not None:
 			timeout = int(timeout * 1000) # convert seconds to milliseconds
 
@@ -189,11 +189,20 @@ class PollReactor(posixbase.PosixReactorBase):
 				if not selectable.fileno() == fd:
 					why = error.ConnectionFdescWentAway('Filedescriptor went away')
 					inRead = False
+			except AttributeError, ae:
+				if "'NoneType' object has no attribute 'writeHeaders'" not in ae.message:
+					log.deferr()
+					why = sys.exc_info()[1]
+				else:
+					why = None
 			except:
 				log.deferr()
 				why = sys.exc_info()[1]
 		if why:
-			self._disconnectSelectable(selectable, why, inRead)
+			try:
+				self._disconnectSelectable(selectable, why, inRead)
+			except RuntimeError:
+				pass
 
 	def callLater(self, *args, **kwargs):
 		poller.eApp.interruptPoll()
@@ -201,7 +210,7 @@ class PollReactor(posixbase.PosixReactorBase):
 
 def install():
 	"""Install the poll() reactor."""
-	
+
 	p = PollReactor()
 	main.installReactor(p)
 
