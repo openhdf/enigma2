@@ -61,3 +61,7 @@ endif
 if HAVE_BWLCD140
 SUBDIRS += display140
 endif
+
+if HAVE_7SEGMENT
+SUBDIRS += 7segment
+endif
