@@ -5,7 +5,8 @@ from time import localtime, strftime, ctime, time
 from bisect import insort
 from sys import maxint
 import os
-from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReference, eServiceCenter, iRecordableService, quitMainloop, eActionMap, setPreferredTuner
+from enigma import eEPGCache, getBestPlayableServiceReference, eStreamServer, eServiceReference, iRecordableService, quitMainloop, eActionMap, setPreferredTuner, eServiceCenter
+
 from Components.config import config
 from Components import Harddisk
 from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
@@ -381,7 +382,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if debug:
 					self.log(6, "prepare ok, waiting for begin")
 				if self.messageStringShow:
-					Notifications.AddNotification(MessageBox, _("In order to record a timer, a tuner was freed successfully:\n\n") + self.messageString, type=MessageBox.TYPE_INFO, timeout=20)
+					message = _("In order to record a timer, a tuner was freed successfully:\n\n") + self.messageString
 				# create file to "reserve" the filename
 				# because another recording at the same time on another service can try to record the same event
 				# i.e. cable / sat.. then the second recording needs an own extension... when we create the file
@@ -400,6 +401,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return True
 
 			self.log(7, "prepare failed")
+			if eStreamServer.getInstance().getConnectedClients():
+				eStreamServer.getInstance().stopStream()
+				return False
 			if self.first_try_prepare == 0:
 				# (0) try to make a tuner available by disabling PIP
 				self.first_try_prepare += 1
@@ -540,6 +544,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 								if bouquetcount >= 5:
 									notFound = True
 									break
+
 
 								if bouquet.flags & eServiceReference.isDirectory:
 									ChannelSelectionInstance.clearPath()

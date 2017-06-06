@@ -31,10 +31,10 @@ class E2SharedPoll:
 
 	def register(self, fd, eventmask = select.POLLIN | select.POLLERR | select.POLLOUT):
 		self.dict[fd] = eventmask
-	
+
 	def unregister(self, fd):
 		del self.dict[fd]
-	
+
 	def poll(self, timeout = None):
 		try:
 			r = self.eApp.poll(timeout, self.dict)
@@ -55,14 +55,17 @@ class PollReactor(posixbase.PosixReactorBase):
 			pass
 
 		mask = 0
-		if reads.has_key(fd): mask = mask | select.POLLIN
-		if writes.has_key(fd): mask = mask | select.POLLOUT
+		if fd in reads:
+			mask = mask | select.POLLIN
+		if fd in writes:
+			mask = mask | select.POLLOUT
 		if mask != 0:
 			poller.register(fd, mask)
 		else:
-			if selectables.has_key(fd): del selectables[fd]
-		
-		
+			if fd in selectables:
+				del selectables[fd]
+
+
 		poller.eApp.interruptPoll()
 
 	def _dictRemove(self, selectable, mdict):
@@ -82,7 +85,7 @@ class PollReactor(posixbase.PosixReactorBase):
 				# Hmm, maybe not the right course of action?  This method can't
 				# fail, because it happens inside error detection...
 				return
-		if mdict.has_key(fd):
+		if fd in mdict:
 			del mdict[fd]
 			self._updateRegistration(fd)
 
@@ -90,7 +93,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		"""Add a FileDescriptor for notification of data available to read.
 		"""
 		fd = reader.fileno()
-		if not reads.has_key(fd):
+		if fd not in reads:
 			selectables[fd] = reader
 			reads[fd] =  1
 			self._updateRegistration(fd)
@@ -99,7 +102,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		"""Add a FileDescriptor for notification of data available to write.
 		"""
 		fd = writer.fileno()
-		if not writes.has_key(fd):
+		if fd not in writes:
 			selectables[fd] = writer
 			writes[fd] =  1
 			self._updateRegistration(fd)
@@ -125,7 +128,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		selectables.clear()
 		for fd in fds:
 			poller.unregister(fd)
-			
+
 		if self.waker is not None:
 			self.addReader(self.waker)
 		return result
@@ -139,7 +142,7 @@ class PollReactor(posixbase.PosixReactorBase):
 			   POLLIN=select.POLLIN,
 			   POLLOUT=select.POLLOUT):
 		"""Poll the poller for new events."""
-		
+
 		if timeout is not None:
 			timeout = int(timeout * 1000) # convert seconds to milliseconds
 
@@ -186,11 +189,20 @@ class PollReactor(posixbase.PosixReactorBase):
 				if not selectable.fileno() == fd:
 					why = error.ConnectionFdescWentAway('Filedescriptor went away')
 					inRead = False
+			except AttributeError, ae:
+				if "'NoneType' object has no attribute 'writeHeaders'" not in ae.message:
+					log.deferr()
+					why = sys.exc_info()[1]
+				else:
+					why = None
 			except:
 				log.deferr()
 				why = sys.exc_info()[1]
 		if why:
-			self._disconnectSelectable(selectable, why, inRead)
+			try:
+				self._disconnectSelectable(selectable, why, inRead)
+			except RuntimeError:
+				pass
 
 	def callLater(self, *args, **kwargs):
 		poller.eApp.interruptPoll()
@@ -198,7 +210,7 @@ class PollReactor(posixbase.PosixReactorBase):
 
 def install():
 	"""Install the poll() reactor."""
-	
+
 	p = PollReactor()
 	main.installReactor(p)
 

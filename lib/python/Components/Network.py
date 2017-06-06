@@ -143,7 +143,6 @@ class Network:
 				self.configuredInterfaces.append(ifacename)
 			if iface['dhcp']:
 				fp.write("iface "+ ifacename +" inet dhcp\n")
-				fp.write("  hostname $(hostname)\n")
 			if not iface['dhcp']:
 				fp.write("iface "+ ifacename +" inet static\n")
 				fp.write("  hostname $(hostname)\n")

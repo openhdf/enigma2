@@ -131,10 +131,9 @@ class TimerEntry(Screen, ConfigListScreen):
 			weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
 			day[weekday] = 1
 
-		self.timerentry_justplay = config.recording.timerentry_justplay
-		#self.timerentry_justplay = ConfigSelection(choices = [
-		#	("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))],
-		#	default = {0: "record", 1: "zap", 2: "zap+record"}[justplay + 2*always_zap])
+		self.timerentry_justplay = ConfigSelection(choices = [
+			("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))],
+			default = {0: "record", 1: "zap", 2: "zap+record"}[justplay + 2*always_zap])
 		if SystemInfo["DeepstandbySupport"]:
 			shutdownString = _("go to deep standby")
 		else:
@@ -188,12 +187,12 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def createSetup(self, widget):
 		self.list = []
+		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay, _("Chose between record and ZAP."))
+		self.list.append(self.timerJustplayEntry)
 		self.entryName = getConfigListEntry(_("Name"), self.timerentry_name, _("Set the name the recording will get."))
 		self.list.append(self.entryName)
 		self.entryDescription = getConfigListEntry(_("Description"), self.timerentry_description, _("Set the description of the recording."))
 		self.list.append(self.entryDescription)
-		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay, _("Chose between record and ZAP."))
-		self.list.append(self.timerJustplayEntry)
 		self.timerTypeEntry = getConfigListEntry(_("Repeat type"), self.timerentry_type, _("A repeating timer or just once?"))
 		self.list.append(self.timerTypeEntry)
 
@@ -250,7 +249,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				a = float(stat.f_blocks) * stat.f_bsize / 1024 / 1024 /1024
 				b = float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024
 				c = 100.0 * b / a
-				free = ("%0.1f GB (%0.1f %s) " + _("free diskspace")) % (b,c,"%")
+				free = ("%0.f GB (%0.f %s) " + _("free diskspace")) % (b,c,"%")
 				description = _("Current location")
 		except:
 			pass
@@ -264,7 +263,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.list.append(self.dirname)
 			if getPreferredTagEditor():
 				self.list.append(self.tagsSet)
-			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent, _("What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that.")))
+			self.list.append(getConfigListEntry(_("After Recording"), self.timerentry_afterevent, _("What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that.")))
 			self.list.append(getConfigListEntry(_("Recording type"), self.timerentry_recordingtype, _("Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM.")))
 
 		self[widget].list = self.list
@@ -596,6 +595,7 @@ class TimerLog(Screen):
 
 		self["key_red"] = Button(_("Delete entry"))
 		self["key_green"] = Button()
+		self["key_yellow"] = Button()
 		self["key_blue"] = Button(_("Clear log"))
 
 		self.onShown.append(self.updateText)
@@ -623,7 +623,7 @@ class TimerLog(Screen):
 		self.updateText()
 
 	def fillLogList(self):
-		self.list = [(str(strftime("%Y-%m-%d %H-%M", localtime(x[0])) + " - " + x[2]), x) for x in self.log_entries]
+		self.list = [(str(strftime(_("%Y-%m-%d %H-%M"), localtime(x[0])) + " - " + x[2]), x) for x in self.log_entries]
 
 	def clearLog(self):
 		self.log_entries = []

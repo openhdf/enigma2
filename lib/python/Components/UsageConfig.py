@@ -16,6 +16,19 @@ from sys import maxint
 def InitUsageConfig():
 	config.downloader = ConfigSubsection()
 	config.downloader.autoupdate = ConfigYesNo(default = True)
+	config.downloader.autoupdate_type = ConfigSelection(default = "startup", choices = [("startup", _("Just on Startup")), ("auto", _("Automatic Timer")), ("periodic", _("Periodic Timer"))])
+	config.downloader.autoupdate_time = ConfigClock(default = 7200)
+	config.downloader.autoupdate_last = ConfigNumber(default = 0)
+	config.downloader.autoupdate_runinstandby = ConfigYesNo(default = False)
+	choicelist = []
+	for i in (30, 60, 120, 180, 240, 360, 720):
+		if i < 60:
+			m = ngettext("%d minute", "%d minutes", i) % i
+		else:
+			m = abs(i / 60)
+			m = ngettext("%d hour", "%d hours", m) % m
+		choicelist.append(("%d" % i, m))
+	config.downloader.autoupdate_timer = ConfigSelection(default = "240", choices = choicelist)
 
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default = True)
@@ -72,6 +85,16 @@ def InitUsageConfig():
 	config.usage.showpicon = ConfigYesNo(default = True)
 	config.usage.show_dvdplayer = ConfigYesNo(default = False)
 
+#########  Workaround for VTI Skins   ##############
+	#config.usage.picon_dir = ConfigDirectory(default = "/usr/share/enigma2/picon")
+	config.usage.movielist_show_picon = ConfigYesNo(default = False)
+	config.usage.use_extended_pig = ConfigYesNo(default = False)
+	config.usage.use_extended_pig_channelselection = ConfigYesNo(default = False)
+	config.usage.servicelist_preview_mode = ConfigYesNo(default = False)
+	config.usage.numberzap_show_picon = ConfigYesNo(default = False)
+	config.usage.numberzap_show_servicename = ConfigYesNo(default = False)
+#####################################################
+
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 
@@ -81,6 +104,7 @@ def InitUsageConfig():
 	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("No timeout"))] + choicelist)
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
+	config.usage.show_infobar_locked_on_pause = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
 	config.usage.show_infobar_channel_number = ConfigYesNo(default = False)
 	config.usage.show_infobar_lite = ConfigYesNo(default = False)
@@ -466,7 +490,8 @@ def InitUsageConfig():
 	config.usage.show_eit_nownext = ConfigYesNo(default = True)
 	config.usage.show_vcr_scart = ConfigYesNo(default = False)
 	config.usage.pic_resolution = ConfigSelection(default = None, choices = [(None, _("Same resolution as skin")), ("(720, 576)","720x576"), ("(1280, 720)", "1280x720"), ("(1920, 1080)", "1920x1080")])
-	
+	config.usage.enable_delivery_system_workaround = ConfigYesNo(default = False)
+
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
 	config.epg.mhw = ConfigYesNo(default = False)

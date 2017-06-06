@@ -80,7 +80,7 @@ void DumpUnfreed()
 };
 #endif
 
-sigc::signal2<void, int, const std::string&> logOutput;
+Signal2<void, int, const std::string&> logOutput;
 int logOutputConsole = 1;
 int logOutputColors = 1;
 

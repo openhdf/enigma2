@@ -72,14 +72,14 @@ public:
 class eStreamThreadWeb;
 class eServiceWebTS: public iPlayableService, public iPauseableService,
 	public iServiceInformation, public iSeekableService,
-	public iAudioTrackSelection, public iAudioChannelSelection, public sigc::trackable
+	public iAudioTrackSelection, public iAudioChannelSelection, public Object
 {
 DECLARE_REF(eServiceWebTS);
 public:
 	virtual ~eServiceWebTS();
 
 	// iPlayableService
-	RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
+	RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT start();
 	RESULT stop();
 	RESULT pause(ePtr<iPauseableService> &ptr);
@@ -145,13 +145,13 @@ private:
 	eServiceWebTS(const eServiceReference &url);
 	int openHttpConnection(std::string url);
 
-	sigc::signal2<void,iPlayableService*,int> m_event;
+	Signal2<void,iPlayableService*,int> m_event;
 	eFixedMessagePump<int> m_pump;
 	void recv_event(int evt);
 	void setAudioPid(int pid, int type);
 };
 
-class eStreamThreadWeb: public eThread, public sigc::trackable {
+class eStreamThreadWeb: public eThread, public Object {
 DECLARE_REF(eStreamThreadWeb);
 public:
 	eStreamThreadWeb();
@@ -166,7 +166,7 @@ public:
 	RESULT getAudioInfo(ePtr<TSAudioInfoWeb> &ptr);
 
 	enum { evtEOS, evtSOS, evtReadError, evtWriteError, evtUser, evtStreamInfo };
-	sigc::signal1<void,int> m_event;
+	Signal1<void,int> m_event;
 private:
 	bool m_stop;
 	bool m_running;

@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "26.03.2017"
+updateversion = "26.05.2017"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -80,8 +80,7 @@ def getHotkeys():
 	(_("Media long"), "showMovies_long", "Infobar/showMovies"),
 	(_("Open/Media"), "open", "Plugins/Extensions/EnhancedMovieCenter/2"),
 	(_("Open/Media long"), "open_long", "Infobar/showMovies"),
-	(_("Menu"), "menu", "Infobar/mainMenu"),
-	(_("Menu long"), "menu_long", "Module/Screens.ServiceInfo/ServiceInfo"),
+	(_("Menu"), "mainMenu", "Infobar/mainMenu"),
 	(_("Mute long"), "mute_long", "Infobar/audioSelection"),
 	(_("Next"), "next", "Infobar/historyZapForward"),
 	(_("Next long"), "next_long", ""),
@@ -187,8 +186,8 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Switch Channel up in Infobar"), "Infobar/switchChannelUp", "InfoBar"))
 	hotkeyFunctions.append((_("Switch Channel down in Infobar"), "Infobar/switchChannelDown", "InfoBar"))
 	hotkeyFunctions.append((_("Show Service List"), "Infobar/openServiceList", "InfoBar"))
-	hotkeyFunctions.append((_("History Zap Menu +"), "Infobar/historyZapForward", "InfoBar"))
-	hotkeyFunctions.append((_("History Zap Menu -"), "Infobar/historyZapBackward", "InfoBar"))
+	hotkeyFunctions.append((_("History Zap Menu Plus"), "Infobar/historyZapForward", "InfoBar"))
+	hotkeyFunctions.append((_("History Zap Menu Minus"), "Infobar/historyZapBackward", "InfoBar"))
 	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
 	hotkeyFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", "InfoBar"))
@@ -218,9 +217,14 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((_("Swap Picture In Picture"), "Infobar/swapPiP", "InfoBar"))
 		hotkeyFunctions.append((_("Move Picture In Picture"), "Infobar/movePiP", "InfoBar"))
 		hotkeyFunctions.append((_("Toggle Picture In Picture Zap"), "Infobar/togglePipzap", "InfoBar"))
-	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))		
-	hotkeyFunctions.append((_("Toggle HDMI-In Full Screen"), "Infobar/HDMIInFull", "InfoBar"))
-	hotkeyFunctions.append((_("Toggle HDMI-In Picture In Picture"), "Infobar/HDMIInPiP", "InfoBar"))
+	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))
+	if SystemInfo["HDMIin"]:
+		hotkeyFunctions.append((_("Toggle HDMI-In Full Screen"), "Infobar/HDMIInFull", "InfoBar"))
+		hotkeyFunctions.append((_("Toggle HDMI-In Picture In Picture"), "Infobar/HDMIInPiP", "InfoBar"))
+	if SystemInfo["LcdLiveTV"]:
+		hotkeyFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
+	if SystemInfo["HaveMultiBoot"]:
+		hotkeyFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartup/MultiBootStartup", "InfoBar"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
 	hotkeyFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
 	hotkeyFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))

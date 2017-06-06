@@ -9,7 +9,7 @@
 #include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
 
-class eCableScan: public sigc::trackable, public iObject
+class eCableScan: public Object, public iObject
 {
 	DECLARE_REF(eCableScan);
 

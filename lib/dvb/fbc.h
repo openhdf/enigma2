@@ -20,7 +20,7 @@ typedef struct fbc_tuner
 }FBC_TUNER;
 
 
-class eFBCTunerManager: public iObject, public sigc::trackable
+class eFBCTunerManager: public iObject, public Object
 {
 private:
 	DECLARE_REF(eFBCTunerManager);
