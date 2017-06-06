@@ -6,7 +6,7 @@
 
 #include <SDL.h>
 
-class gSDLDC: public gMainDC, public eThread, public sigc::trackable
+class gSDLDC: public gMainDC, public eThread, public Object
 {
 private:
 	SDL_Surface *m_screen;

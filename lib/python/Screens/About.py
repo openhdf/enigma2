@@ -78,9 +78,9 @@ class About(Screen):
 
 		if getMachineBuild() in ('vusolo4k'):
 			cpuMHz = "   (1,5 GHz)"
-		elif getMachineBuild() in ('vuuno4k','dm900', 'gb7252', 'dags7252'):
+		elif getMachineBuild() in ('vuuno4k','dm900','gb7252','dags7252'):
 			cpuMHz = "   (1,7 GHz)"
-		elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex'):
+		elif getMachineBuild() in ('formuler1tc','formuler1','triplex'):
 			cpuMHz = "   (1,3 GHz)"
 		elif getMachineBuild() in ('et1x000','hd52','hd51','sf4008','vs1500','h7'):
 			try:
@@ -112,16 +112,16 @@ class About(Screen):
 		if res2:
 			bogoMIPS = "" + res2.replace("\n", "") 
 
-		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900'):
+		if getMachineBuild() in ('vusolo4k','hd51','hd52','sf4008','dm900','h7'):
 			AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
 		else:
 			AboutText += _("CPU:\t%s") % about.getCPUString() + " " + cpuMHz + "\n"
 		dMIPS = 0
 		if getMachineBuild() in ('vusolo4k'):
 			dMIPS = "10.500"
-		elif getMachineBuild() in ('hd52', 'hd51', 'sf4008', 'dm900'):
+		elif getMachineBuild() in ('hd52','hd51','sf4008','dm900','h7'):
 			dMIPS = "12.000"
-		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008' , 'dm900'):
+		if getMachineBuild() in ('vusolo4k','hd51','hd52','sf4008','dm900','h7'):
 			AboutText += _("DMIPS:\t") + dMIPS + "\n"
 		else:
 			AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
@@ -179,7 +179,7 @@ class About(Screen):
 			tempinfo = f.read()
 			f.close()
 		elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
-			if getBoxType() in ('mutant51', 'ax51'):
+			if getBoxType() in ('mutant51', 'ax51', 'zgemmah7'):
 				tempinfo = ""
 			else:
 				f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')

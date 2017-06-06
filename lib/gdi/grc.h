@@ -167,7 +167,7 @@ struct gOpcode
 #define MAXSIZE 2048
 
 		/* gRC is the singleton which controls the fifo and dispatches commands */
-class gRC: public iObject, public sigc::trackable
+class gRC: public iObject, public Object
 {
 	DECLARE_REF(gRC);
 	friend class gPainter;
@@ -204,7 +204,7 @@ public:
 
 	void submit(const gOpcode &o);
 
-	sigc::signal0<void> notify;
+	Signal0<void> notify;
 
 	void setSpinnerDC(gDC *dc) { m_spinner_dc = dc; }
 	void setSpinnerOnOff(int onoff) { m_spinneronoff = onoff; }

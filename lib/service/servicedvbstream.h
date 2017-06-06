@@ -9,7 +9,7 @@
 
 #include <lib/service/servicedvb.h>
 
-class eDVBServiceStream: public eDVBServiceBase, public sigc::trackable
+class eDVBServiceStream: public eDVBServiceBase, public Object
 {
 	DECLARE_REF(eDVBServiceStream);
 public:

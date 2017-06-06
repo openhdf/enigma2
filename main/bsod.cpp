@@ -365,5 +365,5 @@ void bsodCatchSignals()
 
 void bsodLogInit()
 {
-	logOutput.connect(static_cast<void (*)(int, const std::string &  )>(addToLogbuffer));
+	logOutput.connect(addToLogbuffer);
 }

@@ -18,12 +18,14 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.onChangedEntry = [ ]
+		self.skinName = ["VideoEnhancementSetup"]
 		self.setup_title = _("Video enhancement setup")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self['footnote'] = Label()
 		self["description"] = Label(_(""))
+		self["introduction"] = StaticText()
 
 		self.list = [ ]
 		self.xtdlist = [ ]
@@ -98,8 +100,8 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.hueEntry = addToConfigList(_("Hue"), config.pep.hue, _("This option sets the picture hue."))
 		self.mosquito_noise_reductionEntry = addToConfigList(_("Mosquito noise reduction"), config.pep.mosquito_noise_reduction, _("This option set the level of surpression of musquito noise (Musquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."), add_to_xtdlist)
 		self.scaler_sharpnessEntry = addToConfigList(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option sets the scaler sharpness, used when stretching picture from 4:3 to 16:9."))
-		self.scaler_vertical_dejaggingEntry = addToConfigList(_("Scaler vertical dejagging"), config.pep.scaler_vertical_dejagging, _("hint text place holder, waiting Vu for correct deffinitions."))
-		self.smoothEntry = addToConfigList(_("Smooth"), config.pep.smooth, _("hint text place holder, waiting Vu for correct deffinitions."))
+		self.scaler_vertical_dejaggingEntry = addToConfigList(_("Scaler vertical dejagging"), config.pep.scaler_vertical_dejagging, _("This option allows you enable the vertical scaler dejagging."))
+		self.smoothEntry = addToConfigList(_("Smooth"), config.pep.smooth, _("This option allows you enable smoothing filter to control the dithering process."))
 		self.sharpnessEntry = addToConfigList(_("Sharpness"), config.pep.sharpness, _("This option sets up the picture sharpness, used when the picture is being upscaled."), add_to_xtdlist)
 		self.saturationEntry = addToConfigList(_("Saturation"), config.pep.saturation, _("This option sets the picture saturation."))
 		self.color_spaceEntry = addToConfigList(_("Color space"), config.pep.color_space, _("This option sets the picture color space."))
@@ -327,12 +329,12 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.list = [ ]
-		if self.maxValue == 256:
+		if self.maxValue == 255:
 			self.configStepsEntry = getConfigListEntry(_("Change step size"), config.pep.configsteps)
 
 		if self.configEntry is not None:
 			self.list = self.configEntry
-		if self.maxValue == 256:
+		if self.maxValue == 255:
 			self.list.append(self.configStepsEntry)
 
 		self["config"].list = self.list
@@ -346,7 +348,7 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 		self["introduction"].setText(_("Current value: ") + self.getCurrentValue())
 		try:
 			max_avail=self["config"].getCurrent()[1].max
-			if max_avail == 256:
+			if max_avail == 255:
 				self.isStepSlider = True
 			else:
 				self.isStepSlider = False

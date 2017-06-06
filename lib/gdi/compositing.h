@@ -21,7 +21,7 @@ struct gCompositingElement
 	gContext m_context;
 };
 
-class gCompositingData: public sigc::trackable
+class gCompositingData: public Object
 {
 DECLARE_REF(gCompositingData);
 public:

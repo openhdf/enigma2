@@ -51,7 +51,7 @@ public:
 class eSecCommandList;
 
 #endif
-class eDVBFrontend: public iDVBFrontend, public sigc::trackable
+class eDVBFrontend: public iDVBFrontend, public Object
 {
 #ifndef SWIG
 public:
@@ -88,7 +88,7 @@ public:
 		TAKEOVER_RELEASE,
 		NUM_DATA_ENTRIES
 	};
-	sigc::signal1<void,iDVBFrontend*> m_stateChanged;
+	Signal1<void,iDVBFrontend*> m_stateChanged;
 	enum class enumDebugOptions:uint64_t {
 		DISSABLE_ALL_DEBUG_OUTPUTS,	//prevents all debug issues with respect to this object
 		DEBUG_DELIVERY_SYSTEM,
@@ -165,7 +165,7 @@ public:
 	RESULT prepare_cable(const eDVBFrontendParametersCable &);
 	RESULT prepare_terrestrial(const eDVBFrontendParametersTerrestrial &);
 	RESULT prepare_atsc(const eDVBFrontendParametersATSC &);
-	RESULT connectStateChange(const sigc::slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection);
+	RESULT connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection);
 	RESULT getState(int &state);
 	RESULT setTone(int tone);
 	RESULT setVoltage(int voltage);

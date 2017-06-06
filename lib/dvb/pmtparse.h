@@ -9,7 +9,7 @@
 #include <dvbsi++/program_association_section.h>
 #include <dvbsi++/application_information_section.h>
 
-class eDVBPMTParser: public sigc::trackable
+class eDVBPMTParser: public Object
 {
 protected:
 	eAUTable<eTable<ProgramMapSection> > m_PMT;

@@ -1,5 +1,5 @@
+from boxbranding import getBoxType
 from os import path as os_path
-
 from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigBoolean, ConfigNothing, NoSave
 
 # The "VideoEnhancement" is the interface to /proc/stb/vmpeg/0.
@@ -21,7 +21,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting contrast to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_contrast", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_contrast."
@@ -29,7 +29,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.contrast = ConfigSlider(default=128, limits=(0,256))
+			config.pep.contrast = ConfigSlider(default=128, limits=(0,255))
 			config.pep.contrast.addNotifier(setContrast)
 		else:
 			config.pep.contrast = NoSave(ConfigNothing())
@@ -40,7 +40,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting saturation to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_saturation", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_saturaion."
@@ -48,7 +48,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.saturation = ConfigSlider(default=128, limits=(0,256))
+			config.pep.saturation = ConfigSlider(default=128, limits=(0,255))
 			config.pep.saturation.addNotifier(setSaturation)
 		else:
 			config.pep.saturation = NoSave(ConfigNothing())
@@ -59,7 +59,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting hue to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_hue", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_hue."
@@ -67,7 +67,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.hue = ConfigSlider(default=128, limits=(0,256))
+			config.pep.hue = ConfigSlider(default=128, limits=(0,255))
 			config.pep.hue.addNotifier(setHue)
 		else:
 			config.pep.hue = NoSave(ConfigNothing())
@@ -78,15 +78,14 @@ class VideoEnhancement:
 				try:
 					print "--> setting brightness to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_brightness", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_brightness."
 
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
-
-			config.pep.brightness = ConfigSlider(default=128, limits=(0,256))
+			config.pep.brightness = ConfigSlider(default=128, limits=(0,255))
 			config.pep.brightness.addNotifier(setBrightness)
 		else:
 			config.pep.brightness = NoSave(ConfigNothing())
@@ -97,7 +96,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting block_noise_reduction to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_block_noise_reduction", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_block_noise_reduction."
@@ -116,7 +115,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting mosquito_noise_reduction to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_mosquito_noise_reduction", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_mosquito_noise_reduction."
@@ -135,7 +134,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting digital_contour_removal to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_digital_contour_removal", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_digital_contour_removal."
@@ -176,7 +175,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting sharpness to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_sharpness", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_sharpness."
@@ -184,7 +183,10 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.sharpness = ConfigSlider(default=0, limits=(0,256))
+			if getBoxType() in ('gbquad', 'gbquadplus'):
+				config.pep.sharpness = ConfigSlider(default=256, limits=(0,256))
+			else:
+				config.pep.sharpness = ConfigSlider(default=0, limits=(0,256))
 			config.pep.sharpness.addNotifier(setSharpness)
 		else:
 			config.pep.sharpness = NoSave(ConfigNothing())
@@ -195,7 +197,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting auto_flesh to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_auto_flesh", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_auto_flesh."
@@ -214,7 +216,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting green_boost to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_green_boost", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_green_boost."
@@ -233,7 +235,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting blue_boost to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_blue_boost", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_blue_boost."
@@ -252,7 +254,7 @@ class VideoEnhancement:
 				try:
 					print "--> setting dynamic_contrast to: %0.8X" % myval
 					f = open("/proc/stb/vmpeg/0/pep_dynamic_contrast", "w")
-					f.write("%0.8X" % myval)
+					f.write("%0.8X\n" % myval)
 					f.close()
 				except IOError:
 					print "couldn't write pep_dynamic_contrast."
@@ -260,7 +262,10 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.dynamic_contrast = ConfigSlider(default=0, limits=(0,256))
+			if getBoxType() in ('gbquad', 'gbquadplus'):
+				config.pep.dynamic_contrast = ConfigSlider(default=3, limits=(0,255))
+			else:
+				config.pep.dynamic_contrast = ConfigSlider(default=0, limits=(0,255))
 			config.pep.dynamic_contrast.addNotifier(setDynamic_contrast)
 		else:
 			config.pep.dynamic_contrast = NoSave(ConfigNothing())
@@ -274,7 +279,7 @@ class VideoEnhancement:
 					try:
 						print "--> setting scaler_sharpness to: %0.8X" % myval
 						f = open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w")
-						f.write("%0.8X" % myval)
+						f.write("%0.8X\n" % myval)
 						f.close()
 					except IOError:
 						print "couldn't write pep_scaler_sharpness."

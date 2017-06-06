@@ -6,7 +6,7 @@
 
 class eSocketNotifier;
 
-class eAVSwitch: public sigc::trackable
+class eAVSwitch: public Object
 {
 	static eAVSwitch *instance;
 	int m_video_mode;
