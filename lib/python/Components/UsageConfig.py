@@ -122,6 +122,7 @@ def InitUsageConfig():
 	config.usage.infobar_frontend_source = ConfigSelection(default = "tuner", choices = [("settings", _("LameDB")), ("tuner", _("Tuner"))])
 
 	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("none", _("Disabled")), ("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
+	config.usage.show_menupath = ConfigSelection(default = "large", choices = [("large", _("large")), ("small", _("small"))])
 
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
