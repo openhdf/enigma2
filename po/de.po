@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-05-16 05:27+0200\n"
+"PO-Revision-Date: 2017-06-14 16:53+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3863,6 +3863,9 @@ msgstr ".NFI-Files für USB-Flasher runterladen"
 msgid "Download plugins"
 msgstr "Plugins installieren"
 
+msgid "Download Plugins"
+msgstr "Installieren"
+
 msgid "Downloading"
 msgstr "Herunterladen"
 
@@ -7621,6 +7624,12 @@ msgstr "Lösche Mülleimer nach (Tagen)"
 
 msgid "Remove plugins"
 msgstr "Plugins löschen"
+
+msgid "Remove Plugins"
+msgstr "Löschen"
+
+msgid "Lock Plugins"
+msgstr "Sperren"
 
 msgid "Remove timer"
 msgstr "Timer löschen"
