@@ -754,6 +754,8 @@ lib/python/Plugins/Extensions/VirtualZap/locale/it/Makefile
 lib/python/Plugins/Extensions/VirtualZap/locale/de/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/VirtualZap/locale/it/LC_MESSAGES/Makefile
 lib/python/Plugins/Extensions/Makefile
+lib/python/Plugins/Extensions/AtileHD/Makefile
+lib/python/Plugins/Extensions/AtileHD/pic/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/CutListEditor/meta/Makefile
 lib/python/Plugins/Extensions/DVDBurn/Makefile
