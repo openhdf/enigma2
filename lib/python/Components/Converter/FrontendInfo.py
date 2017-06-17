@@ -52,9 +52,9 @@ class FrontendInfo(Converter, object):
 			percent = self.source.snr
 		elif self.type  == self.SNR or self.type == self.SNRdB:
 			if self.source.snr_db is not None:
-				return "%3.1f dB" % (self.source.snr_db / 100.0)
+				return "%3.01f dB" % (self.source.snr_db / 100.0)
 			elif self.source.snr is not None: #fallback to normal SNR...
-				return "%3.1f dB" % (((self.source.snr / (65535.0 / 100.0)) * 0.4240) - 1.0000)
+				percent = self.source.snr
 		elif self.type == self.TUNER_TYPE:
 			return self.source.frontend_type and self.frontend_type or "Unknown"
 		elif self.type == self.STRING:
@@ -75,7 +75,7 @@ class FrontendInfo(Converter, object):
 			return string
 		if percent is None:
 			return "N/A"
-		return "%d %%" % (percent * 100 / 65535)
+		return "%d %%" % (percent * 100 / 65536)
 
 	@cached
 	def getBool(self):
@@ -122,5 +122,5 @@ class FrontendInfo(Converter, object):
 			num = self.source.slot_number
 			return num is None and -1 or num
 
-	range = 65535
+	range = 65536
 	value = property(getValue)
