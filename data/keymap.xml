@@ -291,6 +291,7 @@
 
 	<map context="InfobarPiPActions">
 		<key id="KEY_SCREEN" mapto="activatePiP" flags="b" />
+		<key id="KEY_F6" mapto="activatePiP" flags="b" /> 
 	</map>
 
 	<map context="InfobarSubserviceQuickzapActions">
@@ -980,7 +981,7 @@
 		<key id="KEY_ZOOM" mapto="ZoomInOut" flags="b" />
 		<key id="KEY_ZOOM" mapto="ZoomOff" flags="l" />
 		<key id="KEY_MODE" mapto="aspect" flags="b" />
-		<key id="KEY_MODE" mapto="aspect_long" flags="l" />		
+		<key id="KEY_MODE" mapto="aspect_long" flags="l" />
 		<key id="KEY_MUTE" mapto="mute_long" flags="l" />
 		<key id="KEY_POWER" mapto="powerstandby" flags="b" />
 		<key id="KEY_POWER" mapto="powerstandby_long" flags="l" />
