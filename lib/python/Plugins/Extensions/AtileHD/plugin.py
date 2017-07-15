@@ -44,7 +44,7 @@ def Plugins(**kwargs):
 	return [PluginDescriptor(name=_("%s Setup") % cur_skin, description=_("Personalize your Skin"), where = PluginDescriptor.WHERE_MENU, icon="plugin.png", fnc=menu)]
 
 def menu(menuid, **kwargs):
-	if menuid == "mainmenu" and not config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and not config.skin.primary_skin.value == "MetrixHD/skin.xml":
+	if menuid == "gui_menu" and not config.skin.primary_skin.value == "XionHDF/skin.xml":
 		print "madieatv"
 		return [(_("Setup - %s") % cur_skin, main, "atilehd_setup", None)]
 	else:
