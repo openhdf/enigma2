@@ -110,18 +110,18 @@ class About(Screen):
 		if res:
 			cpuMHz = "" + res.replace("\n", "") + " MHz"
 		if res2:
-			bogoMIPS = "" + res2.replace("\n", "") 
+			bogoMIPS = "" + res2.replace("\n", "")
 
-		if getMachineBuild() in ('vusolo4k','hd51','hd52','sf4008','dm900','h7'):
+		if getMachineBuild() in ('vusolo4k','hd51','hd52','sf4008','dm900','h7','gb7252'):
 			AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
 		else:
 			AboutText += _("CPU:\t%s") % about.getCPUString() + " " + cpuMHz + "\n"
 		dMIPS = 0
 		if getMachineBuild() in ('vusolo4k'):
 			dMIPS = "10.500"
-		elif getMachineBuild() in ('hd52','hd51','sf4008','dm900','h7'):
+		elif getMachineBuild() in ('hd52','hd51','sf4008','dm900','h7','gb7252'):
 			dMIPS = "12.000"
-		if getMachineBuild() in ('vusolo4k','hd51','hd52','sf4008','dm900','h7'):
+		if getMachineBuild() in ('vusolo4k','hd51','hd52','sf4008','dm900','h7','gb7252'):
 			AboutText += _("DMIPS:\t") + dMIPS + "\n"
 		else:
 			AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
