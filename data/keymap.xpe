@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF XPE Keymap 25.05.2017" -->
+	<!-- "HDF XPE Keymap 15.07.2017" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -290,6 +290,7 @@
 
 	<map context="InfobarPiPActions">
 		<key id="KEY_SCREEN" mapto="activatePiP" flags="b" />
+		<key id="KEY_F6" mapto="activatePiP" flags="b" />
 	</map>
 
 	<map context="InfobarSubserviceQuickzapActions">
@@ -987,6 +988,8 @@
 		<key id="KEY_SLEEP" mapto="sleep_long" flags="l" />
 		<key id="KEY_ZOOM" mapto="ZoomInOut" flags="b" />
 		<key id="KEY_ZOOM" mapto="ZoomOff" flags="l" />
+		<key id="KEY_MODE" mapto="aspect" flags="b" />
+		<key id="KEY_MODE" mapto="aspect_long" flags="l" />
 		<key id="KEY_MUTE" mapto="mute_long" flags="l" />
 		<key id="KEY_POWER" mapto="powerstandby" flags="b" />
 		<key id="KEY_POWER" mapto="powerstandby_long" flags="l" />
