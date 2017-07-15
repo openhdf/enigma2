@@ -68,6 +68,8 @@ def getHotkeys():
 	(_("Help long"), "helpshow_long", "Module/Screens.Hotkey/HotkeySetup"),
 	(_("HDMI Rx"), "HDMIin", ""),
 	(_("HDMI Rx long"), "HDMIin_long", ""),
+	(_("Aspect"), "aspect", ""),
+	(_("Aspect long"), "aspect_long", ""),
 	(_("Home"), "home", "Infobar/showMovies"),
 	(_("Home long"), "home_long", ""),
 	(_("Homepage/Portal"), "homepage", ""),
