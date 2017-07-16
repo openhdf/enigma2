@@ -19,7 +19,8 @@ from Components.ProgressBar import ProgressBar
 
 from Tools.StbHardware import getFPVersion
 
-from os import path, popen
+import os
+from os import path, popen, system
 from re import search
 
 class About(Screen):
@@ -126,7 +127,7 @@ class About(Screen):
 		else:
 			AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
-		AboutText += _("HDF Version:\tV%s") % getImageVersion() + " " + getImageType() + " - Build # " + getImageBuild() + " - " + getOEVersion() + "\n"
+		AboutText += _("HDF Version:\tV%s") % getImageVersion() + " Build #" + getImageBuild() + " based on " + getOEVersion() + "\n"
 		AboutText += _("Kernel (Box):\t%s") % about.getKernelVersionString() + " (" + getBoxType() + ")" + "\n"
 		imagestarted = ""
 		bootname = ''
@@ -148,9 +149,13 @@ class About(Screen):
 		month = string[4:6]
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
+		gstcmd = 'opkg list-installed | grep "gstreamer1.0 -" | cut -c 16-32'
+		gstcmd2 = os.system(gstcmd)
+		#return (gstcmd2)
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
+		#AboutText += _("GStreamer:\t%s") % gstcmd2 + "\n"
 		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
-		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + " - Build # " + getImageBuild() + "\n"
+		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + " to Build #" + getImageBuild() + "\n"
 		AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
 		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
