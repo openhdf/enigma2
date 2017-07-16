@@ -176,8 +176,7 @@ self.selectKey("RIGHT")
 		<step id="nimi">
 			<condition>
 from Components.NimManager import nimmanager
-from enigma import isFBCLink
-self.condition = len(nimmanager.nim_slots) > 8 and not nimmanager.nim_slots[8].empty and not isFBCLink(nimmanager.nim_slots[8].slot)
+self.condition = len(nimmanager.nim_slots) > 8 and not nimmanager.nim_slots[8].empty
 			</condition>
 			<text value="Please set up tuner I\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
 			<config screen="NimSetup" module="Satconfig" args="8" type="ConfigList" />
@@ -190,8 +189,7 @@ self.selectKey("RIGHT")
 		<step id="nimj">
 			<condition>
 from Components.NimManager import nimmanager
-from enigma import isFBCLink
-self.condition = len(nimmanager.nim_slots) > 9 and not nimmanager.nim_slots[9].empty and not isFBCLink(nimmanager.nim_slots[9].slot)
+self.condition = len(nimmanager.nim_slots) > 9 and not nimmanager.nim_slots[9].empty
 			</condition>
 			<text value="Please set up tuner J\nFor Hybrid Tuner Models switch Tuner Type with left and right keys" />
 			<config screen="NimSetup" module="Satconfig" args="9" type="ConfigList" />
