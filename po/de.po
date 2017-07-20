@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-07-15 17:00+0200\n"
+"PO-Revision-Date: 2017-07-20 16:15+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -5804,6 +5804,9 @@ msgstr "Mindestalter %d Jahre"
 msgid "Minimum send interval"
 msgstr "Minimaler Sendeabstand"
 
+msgid "Repeat leave standby messages"
+msgstr "Wiederholung des Standby Impulses"
+
 msgid "Mins"
 msgstr "Minuten"
 
@@ -10953,6 +10956,33 @@ msgstr "Einschalten"
 
 msgid "Wakeup TV from standby"
 msgstr "Fernseher aus Bereitschaft einschalten"
+
+msgid "Wakeup receiver from standby"
+msgstr "Receiver aus Standby anschalten"
+
+msgid "Send 'sourceactive' before zap timers"
+msgstr "Sende 'Quelle aktiv' vor einem Zap Timer"
+
+msgid "Detect next boxes before standby"
+msgstr "Erkenne andere Box vor dem Standby"
+
+msgid "Debug to file"
+msgstr "Schreibe Debug Log"
+
+msgid "Messages"
+msgstr "Meldungen"
+
+msgid "Key Events"
+msgstr "Ereignisse"
+
+msgid "Select path for logfile"
+msgstr "Verzeichnis für die Logdatei"
+
+msgid "Select directory for logfile"
+msgstr "Wähle Verzeichnis für die Logdatei"
+
+msgid "Select Location"
+msgstr "Wähle Verzeichnis"
 
 msgid "Wakeup signal from TV"
 msgstr "Einschaltsignal vom Fernseher"
