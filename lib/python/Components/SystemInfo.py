@@ -29,7 +29,7 @@ def countFrontpanelLEDs():
 	return leds
 
 SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
-SystemInfo["ZapMode"] = fileExists("/proc/stb/video/zapmode") or fileExists("/proc/stb/video/zapping_mode")
+SystemInfo["ZapMode"] = fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode")
 SystemInfo["NumFrontpanelLEDs"] = countFrontpanelLEDs()
 SystemInfo["FrontpanelDisplay"] = fileExists("/dev/dbox/oled0") or fileExists("/dev/dbox/lcd0")
 SystemInfo["FrontpanelDisplayGrayscale"] = fileExists("/dev/dbox/oled0")
