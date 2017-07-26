@@ -98,7 +98,7 @@ class Wlan:
 					'bssid': result.bssid,
 					'channel': frequencies.index(ifobj._formatFrequency(result.frequency.getFrequency())) + 1,
 					'encrypted': encryption,
-					'essid': strip(self.asciify(result.essid)),
+					'essid': result.essid and strip(self.asciify(result.essid)) or "",
 					'iface': self.iface,
 					'maxrate' : ifobj._formatBitrate(result.rate[-1][-1]),
 					'noise' : '',#result.quality.nlevel-0x100,
