@@ -31,16 +31,16 @@
 		<widget source="session.CurrentService" position="3,3" transparent="1" zPosition="8" size="160,160" render="Label" font="Meteo; 125" halign="center" valign="center" foregroundColor="XionMeteoFont" backgroundColor="XionBackground" noWrap="1">
 			<convert  type="XionHDFWeather">Day_0,MeteoFont</convert>
 		</widget>
-		<widget backgroundColor="XionBackground" font="Regular2; 46" foregroundColor="XionFont2" render="Label" position="10,170" size="388,58" source="session.CurrentService" halign="center" transparent="1" zPosition="8" valign="center">
+		<widget backgroundColor="XionBackground" font="Regular2; 46" foregroundColor="XionFont1" render="Label" position="10,170" size="388,58" source="session.CurrentService" halign="center" transparent="1" zPosition="8" valign="center">
 			<convert type="XionHDFWeather">Day_0,Description</convert>
 		</widget>
 		<!-- widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 70" foregroundColor="XionFont2" render="Label" position="180,10" size="150,150" source="session.CurrentService" zPosition="3" halign="center" transparent="1">
 			<convert type="XionHDFWeather">Day_0,FeelTemp</convert>
 		</widget -->
-		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 75" foregroundColor="XionFont2" render="Label" position="268,10" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
+		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 75" foregroundColor="XionFont1" render="Label" position="268,10" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
 			<convert type="XionHDFWeather">Day_0,MaxTemp</convert>
 		</widget>
-		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 75" foregroundColor="XionFont2" render="Label" position="268,85" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
+		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 75" foregroundColor="XionFont1" render="Label" position="268,85" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
 			<convert type="XionHDFWeather">Day_0,MinTemp</convert>
 		</widget>
 		<ePixmap pixmap="/usr/share/enigma2/display/weather_lcd.png" position="0,0" size="400,240" zPosition="-9" />
@@ -51,16 +51,16 @@
 		<widget source="session.CurrentService" position="3,3" transparent="1" zPosition="8" size="160,160" render="Label" font="Meteo; 125" halign="center" valign="center" foregroundColor="XionMeteoFont" backgroundColor="XionBackground" noWrap="1">
 			<convert  type="XionHDFWeather">Day_0,MeteoFont</convert>
 		</widget>
-		<widget backgroundColor="XionBackground" font="Regular2; 46" foregroundColor="XionFont2" render="Label" position="10,170" size="388,58" source="session.CurrentService" halign="center" transparent="1" zPosition="8" valign="center">
+		<widget backgroundColor="XionBackground" font="Regular2; 46" foregroundColor="XionFont1" render="Label" position="10,170" size="388,58" source="session.CurrentService" halign="center" transparent="1" zPosition="8" valign="center">
 			<convert type="XionHDFWeather">Day_0,Description</convert>
 		</widget>
 		<!-- widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 70" foregroundColor="XionFont2" render="Label" position="180,10" size="150,150" source="session.CurrentService" zPosition="3" halign="center" transparent="1">
 			<convert type="XionHDFWeather">Day_0,FeelTemp</convert>
 		</widget -->
-		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 75" foregroundColor="XionFont2" render="Label" position="268,10" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
+		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 75" foregroundColor="XionFont1" render="Label" position="268,10" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
 			<convert type="XionHDFWeather">Day_0,MaxTemp</convert>
 		</widget>
-		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 75" foregroundColor="XionFont2" render="Label" position="268,85" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
+		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 75" foregroundColor="XionFont1" render="Label" position="268,85" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
 			<convert type="XionHDFWeather">Day_0,MinTemp</convert>
 		</widget>
 	</screen>
