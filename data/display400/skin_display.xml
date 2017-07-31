@@ -170,7 +170,7 @@
 		</screen>
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
-		<widget source="session.CurrentService" render="Label" position="0,25" size="400,50" font="FdLcD;48" halign="center" foregroundColor="#FFB200" >
+		<widget source="session.CurrentService" render="Label" position="0,25" size="400,50" font="FdLcD;48" halign="center" foregroundColor="#FFDD00" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,80" size="400,50" font="FdLcD;24" halign="center" >
@@ -261,23 +261,25 @@
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="400,240">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,65" font="FdLcD;50" halign="center" foregroundColor="#FFFF00" >
-			<convert type="ServiceName">Name</convert>
+		<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,60" font="FdLcD;25" halign="center" >
-			<convert type="EventName">Name</convert>
+		<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Progress" position="top" size="*,20" borderWidth="3">
-			<convert type="EventTime">Progress</convert>
+		<convert type="EventTime">Progress</convert>
 		</widget>
 		<panel name="SummaryClockPanel" />
 	</screen>
 
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
-		<widget source="parent.title" render="Label" position="top" size="*,61" font="FdLcD;50" halign="center" valign="top" />
-		<widget source="parent.menu" render="Label" position="top" size="*,53" font="FdLcD;26" halign="left" valign="center">
-			<convert type="StringListSelection" />
+		<widget source="parent.title" render="Label" position="top" size="*,118" font="FdLcD;40" foregroundColor="#FFDD00" halign="center" valign="center" transparent="1" />
+		<ePixmap position="top" pixmap="~/bar.png" transparent="0" size="400,3" zPosition="4" />
+		<widget source="parent.menu" render="Label" position="top" size="*,118" font="FdLcD;40" halign="center" valign="center">
+		<convert type="StringListSelection" />
 		</widget>
+		<panel name="RecordingPanel" />
 	</screen>
 
 <!-- setup-->
@@ -314,9 +316,7 @@
 		<widget source="global.CurrentTime" render="Label" position="0,155" size="400,34" font="FdLcD;34" halign="center" transparent="1" noWrap="1">
 		<convert type="ClockToText">Format:%d.%m.%Y</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,150" size="190,22" font="FdLcD;22" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
-		<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
+		<panel name="RecordingPanel" />
 	</screen>
 
 <!-- Plugin browser -->
