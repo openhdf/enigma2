@@ -9064,7 +9064,7 @@ msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Entschuldigung Konfiguration für MiniDLNA fehlt"
 
 msgid "Sorry feeds are down for maintenance"
-msgstr "Entschuldigung Feeds sind wegen Wartungsarbeiten nicht erreichbar."
+msgstr "Feeds sind wegen Wartungsarbeiten nicht erreichbar."
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Entschuldigung zur Zeit finden Wartungsarbeiten statt. Bitte später erneut versuchen."
