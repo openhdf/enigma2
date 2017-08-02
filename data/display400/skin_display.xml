@@ -50,7 +50,16 @@
 		<widget source="session.CurrentService" render="Pixmap" pixmap="~/crypt.png" position="200,0" zPosition="2" size="20,20" >
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
-</widget>
+        </widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/txt.png" position="240,0" zPosition="2" size="25,20" >
+			<convert type="ServiceInfo">HasTelext</convert>
+			<convert type="ConditionalShowHide" />
+        </widget>
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/hbbtv.png" position="285,0" zPosition="2" size="54,20" >
+			<convert type="ServiceInfo">HasHBBTV</convert>
+			<convert type="ConditionalShowHide">
+      </convert>
+    </widget>
 	</screen>
 <!-- Rec Panel -->	
 	<screen name="RecordingPanel">
