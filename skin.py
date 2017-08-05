@@ -110,7 +110,7 @@ addSkin('skin_box.xml')
 addSkin('skin_second_infobar.xml')
 
 # Only one of these is present, compliments of AM_CONDITIONAL
-if getBoxType() in ('dm900', 'dm820', 'mutant51', 'mutant52', 'hd51', 'hd52', 'ax51', 'zgemmah5', 'zgemmah7', 'vuultimo', 'vuduo2', 'sf208', 'sf228', 'sf4008', 'spycat', 'twinboxlcdci', 'twinboxlcd', 'singleboxlcd', 'twinboxlcdci5', 'gbquad4k', 'gbquad', 'gbquadplus', 'gbultraue', 'gb800ue', 'gb800ueplus', 'gb800ue', 'gb800ueplus', 'xpeedlx3', 'atemionemesis', 'et10000', 'et8500', 'et9000', 'et9x00'):
+if SystemInfo["FrontpanelDisplay"]:
 	config.skin.display_skin = ConfigText(default = "skin_display.xml")
 
 if getBoxType() == "inihde":
