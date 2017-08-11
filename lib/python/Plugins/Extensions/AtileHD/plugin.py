@@ -370,7 +370,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			self.keyGreen()
 
 	def openSkinSelector(self):
-		self.session.openWithCallback(self.skinChanged, SkinSelector, silent_close = True)
+		self.session.openWithCallback(self.skinChanged, SkinSelector)
 
 	def openSkinSelectorDelayed(self):
 		self.delaytimer = eTimer()
