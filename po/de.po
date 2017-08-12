@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-08-01 05:41+0200\n"
+"PO-Revision-Date: 2017-08-12 09:50+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1618,6 +1618,12 @@ msgstr "Erlaubt es dir eine Kopie an dich selbst zu schicken."
 
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Maximale Größe (MB) vom Debug Log festlegen. Wenn die Größe erreicht wurde wird eine neue Datei erstellt."
+
+msgid "Crash at skin error for debug reasons ?"
+msgstr "Auch bei Skin-Fehlern abstürzen?"
+
+msgid "if set to 'no', only an debug message is written to the Debug log "
+msgstr "Wenn die Option auf 'Nein' gesetzt wird, dann gibt es bei Fehlern im Skin nur einen Debug-Log-Eintrag."
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr "CCcam-Info in Erweiterungen (blaue Taste) anzeigen"
