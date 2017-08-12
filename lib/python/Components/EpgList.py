@@ -1288,21 +1288,34 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def fillSingleEPG(self, service):
 		t = time()
-		epg_time = t - config.epg.histminutes.value*60
-		test = [ 'RIBDT', (service.ref.toString(), 0, epg_time, -1) ]
+		epg_time = t - config.epg.histminutes.value * 60
+		ext3=service.ref.toString()
+		if ext3.startswith("5002:"):
+			service2=ext3.replace("5002:","1:",1)
+		else:
+			service2=ext3        
+		test = [ 'RIBDT', (service2, 0, -1, -1) ]
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
 		if t != epg_time:
 			idx = 0
 			for x in self.list:
 				idx += 1
-				if t < x[2]+x[3]:
+				if t < x[2] + x[3]:
 					break
-			self.instance.moveSelectionTo(idx-1)
+		
+			self.instance.moveSelectionTo(idx - 1)
 		self.selectionChanged()
 
-	def fillMultiEPG(self, services, stime=None):
-		test = [ (service.ref.toString(), 0, stime) for service in services ]
+	def fillMultiEPG(self, services, stime = None):
+		test = [ ]
+		for service in services:        
+			ext3=service.ref.toString()
+		if ext3.startswith("5002:"):
+			service2=ext3.replace("5002:","1:",1)
+		else:
+			service2=ext3
+		test.append((service2, 0, stime))            
 		test.insert(0, 'X0RIBDTCn')
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
