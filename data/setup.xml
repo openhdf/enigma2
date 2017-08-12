@@ -337,6 +337,7 @@
 		<item level="2" text="Show Log Manager in extensions list ?" description="Allows you to show/hide Log Manager in extensions (blue button).">config.logmanager.showinextensions</item>
 		<item level="2" text="Maximum no of days:" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum space used (MB):" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
+		<item level="2" text="Crash at skin error for debug reasons ?" description="if set to 'no', only an debug message is written to the Debug log ">config.crash.skin_error_crash</item>
 	</setup>
 	<setup key="timeshift" title="Timeshift settings">
 		<item level="2" text="Automatically start timeshift after" description="When enabled, timeshift starts automatically in background after specified time.">config.timeshift.startdelay</item>
