@@ -736,6 +736,10 @@ data/display255/Makefile
 data/display255/vfd_icons/Makefile
 data/display400/Makefile
 data/display720/Makefile
+data/grautec70x0/Makefile
+data/grautec70x0/fonts/Makefile
+data/grautec8000/Makefile
+data/grautec8000/fonts/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp
