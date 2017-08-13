@@ -112,7 +112,9 @@ def skin_user_skinname():
 config.skin = ConfigSubsection()
 config.skin.primary_skin = ConfigText(default = DEFAULT_SKIN)
 #config.skin.display_skin = ConfigText(default = DEFAULT_DISPLAY_SKIN)
-config.skin.display_skin = ConfigSelection(default = "skin_display.xml", choices = [("skin_display.xml", _("Channel Name")),("skin_text_clock.xml", _("Clock"))])
+#config.skin.display_skin = ConfigSelection(default = "skin_display.xml", choices = [("skin_display.xml", _("Channel Name")),("skin_text_clock.xml", _("Clock"))])
+if SystemInfo["FrontpanelDisplay"] or SystemInfo["LcdDisplay"] or SystemInfo["OledDisplay"] or SystemInfo["FBLCDDisplay"]:
+	config.skin.display_skin = ConfigText(default = "skin_display.xml")
 
 def skinExists(skin = False):
 	if not skin or not isinstance(skin, skin):
@@ -148,21 +150,12 @@ addSkin('skin_box.xml')
 addSkin('skin_second_infobar.xml')
 
 # Only one of these is present, compliments of AM_CONDITIONAL
-if SystemInfo["FrontpanelDisplay"]:
-	config.skin.display_skin = ConfigText(default = "skin_display.xml")
-
 if getBoxType() == "inihde":
 	config.skin.display_skin = ConfigText(default = "skin_display_text.xml")
 
 display_skin_id = 1
-if SystemInfo["OledDisplay"]:
-	if fileExists('/usr/share/enigma2/display/skin_display.xml'):
-		if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.display_skin.value)):
-			addSkin(config.skin.display_skin.value, SCOPE_CONFIG)
-		else:	
-			addSkin('display/' + config.skin.display_skin.value)
 
-if SystemInfo["FBLCDDisplay"]:
+if SystemInfo["FrontpanelDisplay"] or SystemInfo["LcdDisplay"] or SystemInfo["OledDisplay"] or SystemInfo["FBLCDDisplay"]:
 	if fileExists('/usr/share/enigma2/display/skin_display.xml'):
 		if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.display_skin.value)):
 			addSkin(config.skin.display_skin.value, SCOPE_CONFIG)
