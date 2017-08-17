@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-03 07:50+0200\n"
+"PO-Revision-Date: 2017-09-04 16:51+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -7610,11 +7610,11 @@ msgstr "Service PIN merken"
 
 #, python-format
 msgid "Blind scan"
-msgstr "Hintergrundsuchlauf"
+msgstr "Blindsuchlauf"
 
 #, python-format
 msgid "Blindscan was canceled by the user."
-msgstr "Hintergrundsuchlauf durch Nutzer abgebrochen."
+msgstr "Blindsuchlauf durch Nutzer abgebrochen."
 
 msgid "Remote box"
 msgstr "Entfernte Box"
