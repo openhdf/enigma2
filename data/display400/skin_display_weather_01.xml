@@ -270,21 +270,7 @@
 		<eLabel position="0,73" size="400,1" backgroundColor="white" />
 		<widget source="desc" render="Label" position="0,75" size="400,165" font="FdLcD;30" halign="center" valign="center" transparent="1" />
 	</screen>	
-<!-- standby -->
-	<screen name="StandbySummary" position="0,0" size="400,240">
-		<widget source="session.CurrentService" position="3,3" transparent="1" zPosition="8" size="160,160" render="Label" font="Meteo; 125" halign="center" valign="center" foregroundColor="XionMeteoFont" backgroundColor="XionBackground" noWrap="1">
-			<convert  type="XionHDFWeather">Day_0,MeteoFont</convert>
-		</widget>
-		<widget backgroundColor="XionBackground" font="FdLcD; 46" foregroundColor="XionFont1" render="Label" position="10,170" size="388,58" source="session.CurrentService" halign="center" transparent="1" zPosition="8" valign="center">
-			<convert type="XionHDFWeather">Day_0,Description</convert>
-		</widget>
-		<widget noWrap="1" backgroundColor="XionBackground" font="FdLcD; 75" foregroundColor="XionFont1" render="Label" position="268,10" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
-			<convert type="XionHDFWeather">Day_0,MaxTemp</convert>
-		</widget>
-		<widget noWrap="1" backgroundColor="XionBackground" font="FdLcD; 75" foregroundColor="XionFont1" render="Label" position="268,85" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
-			<convert type="XionHDFWeather">Day_0,MinTemp</convert>
-		</widget>
-	</screen>
+
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,28" font="FdLcD;25" noWrap="1" />
@@ -506,6 +492,21 @@
 		<panel name="RecordingPanel" />
 		<panel name="SummaryClockPanel" />
 		<panel name="TunerInfoPanel" />
+	</screen>
+	<!-- standby -->
+	<screen name="StandbySummary" position="0,0" size="400,240">
+		<widget source="session.CurrentService" position="3,3" transparent="1" zPosition="8" size="160,160" render="Label" font="Meteo; 125" halign="center" valign="center" foregroundColor="XionMeteoFont" backgroundColor="XionBackground" noWrap="1">
+			<convert  type="XionHDFWeather">Day_0,MeteoFont</convert>
+		</widget>
+		<widget backgroundColor="XionBackground" font="FdLcD; 40" foregroundColor="XionFont1" render="Label" position="10,170" size="388,58" source="session.CurrentService" halign="center" transparent="1" zPosition="8" valign="center">
+			<convert type="XionHDFWeather">Day_0,Description</convert>
+		</widget>
+		<widget noWrap="1" backgroundColor="XionBackground" font="FdLcD; 75" foregroundColor="XionFont1" render="Label" position="268,10" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
+			<convert type="XionHDFWeather">Day_0,MaxTemp</convert>
+		</widget>
+		<widget noWrap="1" backgroundColor="XionBackground" font="FdLcD; 75" foregroundColor="XionFont1" render="Label" position="268,85" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
+			<convert type="XionHDFWeather">Day_0,MinTemp</convert>
+		</widget>
 	</screen>
 	<include filename="/usr/share/enigma2/display/skin_display.xml" />
 </skin>

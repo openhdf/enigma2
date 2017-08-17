@@ -74,7 +74,7 @@
 			<convert type="ServiceInfo">Is4K</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="~/wd.png" position="197,0" zPosition="2" size="37,20" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/wide.png" position="197,0" zPosition="2" size="37,20" >
 			<convert type="ServiceInfo">IsWidescreen</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
