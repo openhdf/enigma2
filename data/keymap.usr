@@ -1,5 +1,5 @@
 <keymap>
-	<!-- "HDF User Keymap 25.05.2017" -->
+	<!-- "HDF User Keymap 19.08.2017" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -888,6 +888,8 @@
 		<key id="KEY_BOOKMARKS" mapto="portal_long" flags="l" />
 		<key id="KEY_LIST" mapto="playlist" flags="b" />
 		<key id="KEY_LIST" mapto="playlist_long" flags="l" />
+		<key id="KEY_PVR" mapto="pvr" flags="b"/>
+		<key id="KEY_PVR" mapto="pvr_long" flags="l"/>
 		<key id="KEY_TIME" mapto="timeshift" flags="b" />
 		<key id="KEY_TIME" mapto="timeshift_long" flags="l" />
 		<key id="KEY_SEARCH" mapto="search" flags="b" />
