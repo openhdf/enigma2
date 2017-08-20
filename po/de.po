@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-08-12 09:50+0200\n"
+"PO-Revision-Date: 2017-08-20 12:50+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -2851,6 +2851,9 @@ msgstr "Historie Tastenbelegung"
 
 msgid "History"
 msgstr "Historie"
+
+msgid "History long"
+msgstr "Historie lang"
 
 msgid "Configure the function of the <  > buttons."
 msgstr "Stelle ein was beim Druck auf die < > Tasten passieren soll."
@@ -13531,7 +13534,22 @@ msgid "Help"
 msgstr "Hilfe"
 
 msgid "Help long"
-msgstr "Help lang"
+msgstr "Hilfe lang"
+
+msgid "Context long"
+msgstr "Context lang"
+
+msgid "Aspect long"
+msgstr "Aspect lang"
+
+msgid "PVR long"
+msgstr "PVR lang"
+
+msgid "Open/Media long"
+msgstr "Open/Media lang"
+
+msgid "Pause long"
+msgstr "Pause lang"
 
 msgid "HDMI Rx long"
 msgstr "HDMI Rx lang"
