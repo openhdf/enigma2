@@ -239,7 +239,7 @@ void bsodFatal(const char *component)
 	gPainter p(my_dc);
 	p.resetOffset();
 	p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
-	p.setBackgroundColor(gRGB(0x27408B));
+	p.setBackgroundColor(gRGB(0x008000));
 	p.setForegroundColor(gRGB(0xFFFFFF));
 
 	int hd =  my_dc->size().width() == 1920;
