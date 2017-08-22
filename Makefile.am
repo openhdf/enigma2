@@ -1,4 +1,4 @@
-SUBDIRS = include lib main data po tools
+SUBDIRS = include lib main data po tools scripts
 
 ACLOCAL_AMFLAGS = -I m4
 
