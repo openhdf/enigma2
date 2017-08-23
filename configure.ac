@@ -829,7 +829,6 @@ lib/python/Plugins/SystemPlugins/AnimationSetup/Makefile
 lib/python/Tools/Makefile
 po/Makefile
 main/Makefile
-scripts/Makefile
 tools/Makefile
 tools/enigma2.sh
 enigma2.pc

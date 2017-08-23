@@ -10,9 +10,9 @@ WORKDIR = "${S}/build"
 
 PV = "2.7+git"
 PKGV = "2.7+git${GITPKGV}"
-PR = "r30"
+PR = "r31"
 
-FILES_${PN} += "${datadir}/keymaps /usr/scripts"
+FILES_${PN} += "${datadir}/keymaps"
 FILES_${PN}-meta = "${datadir}/meta"
 PACKAGES =+ "${PN}-src"
 PACKAGES += "${PN}-meta"
