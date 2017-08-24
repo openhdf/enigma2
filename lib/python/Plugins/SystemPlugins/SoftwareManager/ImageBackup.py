@@ -22,9 +22,9 @@ import commands
 import datetime
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
-VERSION = "Version 6.0 openHDF"
+VERSION = "Version 6.2 openHDF"
 HaveGZkernel = True
-if getMachineBuild() in ('et1x000',"vuuno4k", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500"):
+if getMachineBuild() in ('et13000','et1x000',"vuuno4k", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s'):
 	HaveGZkernel = False
 
 isDreamboxXZ = False
@@ -58,7 +58,6 @@ class ImageBackup(Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.selection = 0
-		self.list = self.list_files("/boot")
 		self.MODEL = getBoxType()
 		self.OEM = getBrandOEM()
 		self.MACHINEBUILD = getMachineBuild()
@@ -97,6 +96,7 @@ class ImageBackup(Screen):
 		print "[FULL BACKUP] MTDKERNEL = >%s<" %self.MTDKERNEL
 		print "[FULL BACKUP] MTDROOTFS = >%s<" %self.MTDROOTFS
 		print "[FULL BACKUP] ROOTFSTYPE = >%s<" %self.ROOTFSTYPE
+		print "[FULL BACKUP] ROOTFSTYPE = >%s<" %self.ROOTFSTYPE
 		print "[FULL BACKUP] EMMCIMG = >%s<" %self.EMMCIMG
 		if isDreamboxXZ:
 			self.IMAGEFOLDER = self.MODEL
@@ -104,6 +104,7 @@ class ImageBackup(Screen):
 			self.ROOTFSTYPE = "tar.gz"
 			self.ROOTFSBIN = "root.tar.gz"
 
+		self.list = self.list_files("/boot")
 		self["key_green"] = Button("USB")
 		self["key_red"] = Button("HDD")
 		self["key_blue"] = Button(_("Exit"))
@@ -193,7 +194,10 @@ class ImageBackup(Screen):
 			self.path = PATH
 			for name in listdir(self.path):
 				if path.isfile(path.join(self.path, name)):
-					cmdline = self.read_startup("/boot/" + name).split("=",3)[3].split(" ",1)[0]
+					if self.MACHINEBUILD in ("hd51","vs1500","h7"):
+						cmdline = self.read_startup("/boot/" + name).split("=",3)[3].split(" ",1)[0]
+					else:
+						cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
 					if cmdline in Harddisk.getextdevices("ext4"):
 						files.append(name)
 			files.append("Recovery")
