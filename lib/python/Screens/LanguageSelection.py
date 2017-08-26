@@ -33,7 +33,6 @@ def _cached(x):
 class LanguageSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setTitle(_("Setup Language"))
 
 		language.InitLang()
 		self.oldActiveLanguage = language.getActiveLanguage()
@@ -42,7 +41,6 @@ class LanguageSelection(Screen):
 		self.list = []
 # 		self["flag"] = Pixmap()
 		self["summarylangname"] = StaticText()
-		self["summarylangsel"] = StaticText()
 		self["languages"] = List(self.list)
 		self["languages"].onSelectionChanged.append(self.changed)
 
@@ -138,7 +136,6 @@ class LanguageSelection(Screen):
 
 		self.setTitle(_cached("T2"))
 		self["summarylangname"].setText(_cached("T2"))
-		self["summarylangsel"].setText(self["languages"].getCurrent()[1])
 		self["key_red"].setText(_cached("T3"))
 		self["key_green"].setText(_cached("T4"))
 # 		index = self["languages"].getCurrent()[2]
