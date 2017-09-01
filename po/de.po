@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-08-20 12:50+0200\n"
+"PO-Revision-Date: 2017-09-01 21:20+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3855,6 +3855,18 @@ msgstr "Beendet - %d installierte oder aktualisierte Pakete"
 #, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
 msgstr "Beendet - %d Pakete mit %d Fehlern installiert, aktualisiert oder entfernt"
+
+msgid "There is a Kernel- and/or Driver-Update available for your %s %s!"
+msgstr "Es ist ein Kernel- und/oder Treiber-Update für die %s %s verfügbar!"
+
+msgid "Please backup your settings and do a fresh online-flash of latest image."
+msgstr "Erstelle ein Backup der Einstellungen und mache einen frischen Online-Flash."
+
+msgid "It is possible that your Box have a problem with booting up after update."
+msgstr "Es ist möglich, dass die Box nach dem Update nicht mehr startet."
+
+msgid "If you really want to try the update without backup, press Yes."
+msgstr "Soll ein Update trotzdem durchgeführt werden, dann bestätige mit Ja."
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
