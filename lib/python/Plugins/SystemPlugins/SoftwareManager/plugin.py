@@ -1673,11 +1673,24 @@ class UpdatePlugin(Screen):
 			self.TraficCheck = True
 			print "create /etc/last-upgrades-git.log with opkg list-upgradable"
 			os.system("opkg list-upgradable > /etc/last-upgrades-git.log")
-			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+			if os.system("grep 'dvb-module\|kernel-module' /etc/last-upgrades-git.log"):
+				print "Upgrade asap = Yes"
+				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+			else:
+				print "Upgrade asap = No"
+				message = _("There is a Kernel- and/or Driver-Update available for your %s %s!") % (getMachineBrand(), getMachineName()) + "\n" + _("Please backup your settings and do a fresh online-flash of latest image.") + "\n" + _("It is possible that your Box have a problem with booting up after update.") + "\n" + "\n" + _("If you really want to try the update without backup, press Yes.")
+				picon = MessageBox.TYPE_ERROR
+				self.session.openWithCallback(self.runUpgrade2, MessageBox, message, default = False, picon = picon)
 		else:
 			self.TraficCheck = False
 			self.activityTimer.stop()
 			self.activityslider.setValue(0)
+			self.exit()
+
+	def runUpgrade2(self, result):
+		if result:
+			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+		else:
 			self.exit()
 
 	def doActivityTimer(self):
