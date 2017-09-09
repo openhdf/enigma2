@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-07 19:44+0200\n"
+"PO-Revision-Date: 2017-09-09 06:27+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -2248,7 +2248,7 @@ msgid "Cancel save timeshift as movie"
 msgstr "Timeshift nicht als Film speichern"
 
 msgid "Show status messages when switch to live TV"
-msgstr "Zeige Statusmeldungen wenn zum Live-TV geschaltet wird"
+msgstr "Zeige Statusmeldungen, wenn zum Live-TV geschaltet wird"
 
 msgid "Cancel next timer"
 msgstr "NÃ¤chsten Timer abbrechen"
@@ -10227,7 +10227,7 @@ msgid "Older files in the timeshift directory are removed on every event change.
 msgstr "Ältere Timeshift Dateien werden bei jedem Event gelöscht."
 
 msgid "Timeshift buffer limit [in hours]"
-msgstr "Timeshift-speichern [in Stunden}"
+msgstr "Timeshift Dauer Speicherung [in Stunden]"
 
 msgid "Timeshift last events limit [number of events]"
 msgstr "Anzahl der letzten Timeshift Events [Anzahl]"
@@ -10248,7 +10248,7 @@ msgid "If the free space is less than setting value, then an attempt is made to 
 msgstr "Wenn der freie Speicherplatz kleiner als der eingestellt Wert ist, wird versucht, die alten Timeshift-Dateien löschen."
 
 msgid "Timeshift event based file splitting"
-msgstr "Timeshift-Sendungsbasierende Dateitrennung"
+msgstr "Timeshift Sendungsbasierende Dateitrennung"
 
 msgid "If set to 'no', can you save older events even after zapping or interruption of the timeshift."
 msgstr "Wenn 'Nein' eingestellt ist, bleiben Timeshift-Aufnahmen nach Umschalten oder Beenden im Timeshift-Verzeichnis erhalten."
