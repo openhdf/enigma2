@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-09 06:27+0200\n"
+"PO-Revision-Date: 2017-09-09 08:56+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -10818,6 +10818,9 @@ msgstr "Bild-Feineinstellung"
 
 msgid "Video fine-tuning"
 msgstr "Bild- und Feineinstellung"
+
+msgid "Testscreens that are helpfull to fine-tune your display"
+msgstr "Testbilder zur besseren Bild- und Feineinstellung"
 
 msgid ""
 "Video input selection\n"
