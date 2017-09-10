@@ -2485,18 +2485,43 @@ class PiPZapSelection(ChannelSelection):
 					self.saveRoot()
 					self.saveChannel(ref)
 					self.setCurrentSelection(ref)
+					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
+						print '[LCDMiniTV] enable PIP'
+						f = open("/proc/stb/lcd/mode", "w")
+						f.write(config.lcd.modepip.value)
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_width", "w")
+						f.write("0")
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_height", "w")
+						f.write("0")
+						f.close()
+						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
+						f.write("1")
+						f.close()
 					self.close(True)
 				else:
 					self.pipzapfailed = True
 					self.session.pipshown = False
 					del self.session.pip
+					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
+							print '[LCDMiniTV] disable PIP'
+							f = open("/proc/stb/lcd/mode", "w")
+							f.write(config.lcd.modeminitv.value)
+							f.close()
 					self.close(None)
+
 
 	def cancel(self):
 		self.asciiOff()
 		if self.startservice and hasattr(self.session, 'pip') and self.session.pip.getCurrentService() and self.startservice == self.session.pip.getCurrentService():
 			self.session.pipshown = False
 			del self.session.pip
+			if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
+					print '[LCDMiniTV] disable PIP'
+					f = open("/proc/stb/lcd/mode", "w")
+					f.write(config.lcd.modeminitv.value)
+					f.close()
 		self.correctChannelNumber()
 		self.close(None)
 
