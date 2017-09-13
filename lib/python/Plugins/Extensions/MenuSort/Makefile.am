@@ -6,5 +6,6 @@ install_PYTHON =	\
 
 dist_install_DATA = \
 	LICENSE \
+	plugin.png \
 	maintainer.info \
 	keymap.xml
