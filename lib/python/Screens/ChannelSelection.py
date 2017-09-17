@@ -166,6 +166,9 @@ class ChannelContextMenu(Screen):
 		inAlternativeList = current_root and 'FROM BOUQUET "alternatives' in current_root.getPath()
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = config.usage.multibouquet.value
+		from Components.ParentalControl import parentalControl
+		self.parentalControl = parentalControl
+		self.parentalControlEnabled = config.ParentalControl.servicepinactive.value
 
 		menu.append(ChoiceEntryComponent(text = (_("Settings..."), boundFunction(self.openSetup, "channelselection"))))
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory|eServiceReference.isMarker)):
@@ -178,6 +181,13 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("stop using as startup service"), self.unsetStartupService), level = 0)
 					else:
 						append_when_current_valid(current, menu, (_("set as startup service"), self.setStartupService), level = 0)
+					if self.parentalControlEnabled:
+						if self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
+							append_when_current_valid(current, menu, (_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())), level=0)
+						else:
+							append_when_current_valid(current, menu, (_("remove from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())), level=0)
+						if config.ParentalControl.hideBlacklist.value and not parentalControl.sessionPinCached and config.ParentalControl.storeservicepin.value != "never":
+							append_when_current_valid(current, menu, (_("Unhide parental control services"), boundFunction(self.unhideParentalServices)), level=0)
 					if config.servicelist.startupservice_standby.value == self.csel.getCurrentSelection().toString():
 						append_when_current_valid(current, menu, (_("stop using as startup service from standby"), self.unsetStartupServiceStandby), level = 0)
 					else:
@@ -206,13 +216,12 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level = 0)
 
 					if SystemInfo["PIPAvailable"]:
-						# only allow the service to be played directly in pip / mainwindow when the service is not under parental control
-						if not config.ParentalControl.configured.value or parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
-							if not csel.dopipzap:
-								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level = 0, key = "blue")
-								self.pipAvailable = True
-							else:
-								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level = 0)
+						if not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
+							if self.csel.dopipzap:
+								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level=0, key="red")
+							else:	
+								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
+					append_when_current_valid(current, menu, (_("find currently played service"), self.findCurrentlyPlayed), level=0)
 				else:
 					if 'FROM SATELLITES' in current_root.getPath() and current and _("Services") in eServiceCenter.getInstance().info(current).getName(current):
 						unsigned_orbpos = current.getUnsignedData(4) >> 16
@@ -234,6 +243,11 @@ class ChannelContextMenu(Screen):
 				if current_root and ("flags == %d" % FLAG_SERVICE_NEW_FOUND) in current_root.getPath():
 					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level = 0)
 			else:
+				if self.parentalControlEnabled:
+					if self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
+						append_when_current_valid(current, menu, (_("add bouquet to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())), level=0)
+					else:
+						append_when_current_valid(current, menu, (_("remove bouquet from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())), level=0)
 				menu.append(ChoiceEntryComponent(text = (_("add bouquet"), self.showBouquetInputBox)))
 				append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level = 0, key="green")
 				append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level = 0, key="red")
@@ -384,6 +398,8 @@ class ChannelContextMenu(Screen):
 			self.unhideParentalServicesCallback(True)
 
 	def showServiceInPiP(self):
+		if self.csel.dopipzap or (self.parentalControlEnabled and not self.parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1):
+			return 0
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		xres = str(info.getInfo(iServiceInformation.sVideoWidth))
@@ -488,6 +504,13 @@ class ChannelContextMenu(Screen):
 		self.csel.toggleMoveMode()
 		self.close()
 
+	def toggleMoveModeSelect(self):
+		if self.inBouquet and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
+			self.csel.toggleMoveMode(True)
+			self.close()
+		else:
+			return 0
+
 	def bouquetMarkStart(self):
 		self.csel.startMarkedEdit(EDIT_BOUQUET)
 		self.close()
@@ -533,6 +556,17 @@ class ChannelContextMenu(Screen):
 		self.csel.startMarkedEdit(EDIT_ALTERNATIVES)
 		self.close()
 
+	def findCurrentlyPlayed(self):
+		sel = self.csel.getCurrentSelection()
+		if sel and sel.valid() and not self.csel.entry_marked:
+			currentPlayingService = (hasattr(self.csel, "dopipzap") and self.csel.dopipzap) and self.session.pip.getCurrentService() or self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.csel.servicelist.setCurrent(currentPlayingService, adjust=False)
+			if self.csel.getCurrentSelection() != currentPlayingService:
+				self.csel.setCurrentSelection(sel)
+			self.close()
+		else:
+			return 0
+
 	def restoreDeletedBouquets(self):
 		self.session.openWithCallback(self.restoreDeletedBouquetsCallback, MessageBox, _("Are you sure to restore all deleted userbouquets?"))
 
@@ -573,6 +607,12 @@ class ChannelContextMenu(Screen):
 		eDVBDB.getInstance().reloadBouquets()
 		Screens.InfoBar.InfoBar.instance.showHideVBI()
 		self.close()
+
+	def addServiceToBouquetOrAlternative(self):
+		if self.addFunction:
+			self.addFunction()
+		else:
+			return 0
 
 class SelectionEventInfo:
 	def __init__(self):
