@@ -13,12 +13,15 @@
 #endif
 #include <lib/gdi/glcddc.h>
 
+#define DM900_LCD_Y_OFFSET 4
+
 eLCD *eLCD::instance;
 
 eLCD::eLCD()
 {
+	_buffer = NULL;
 	lcdfd = -1;
-	locked=0;
+	locked = 0;
 	instance = this;
 }
 
@@ -29,17 +32,20 @@ eLCD *eLCD::getInstance()
 
 void eLCD::setSize(int xres, int yres, int bpp)
 {
+	_stride = xres * bpp / 8;
+	_buffer = new unsigned char[xres * yres * bpp/8];
+	if ((strcmp(boxtype_name, "dm900\n") == 0))
+		xres -= DM900_LCD_Y_OFFSET;
 	res = eSize(xres, yres);
-	_buffer=new unsigned char[xres * yres * bpp/8];
-	memset(_buffer, 0, res.height()*res.width()*bpp/8);
-	_stride=res.width()*bpp/8;
-	eDebug("lcd buffer %p %d bytes, stride %d", _buffer, xres*yres*bpp/8, _stride);
+	memset(_buffer, 0, xres * yres * bpp / 8);
+	eDebug("[eLCD] (%dx%dx%d) buffer %p %d bytes, stride %d, boxtype: %s", xres, yres, bpp, _buffer, xres * yres * bpp / 8, _stride, boxtype_name);
 }
 
 eLCD::~eLCD()
 {
 	if (_buffer)
 		delete [] _buffer;
+	instance = NULL;
 }
 
 int eLCD::lock()
@@ -47,13 +53,13 @@ int eLCD::lock()
 	if (locked)
 		return -1;
 
-	locked=1;
+	locked = 1;
 	return lcdfd;
 }
 
 void eLCD::unlock()
 {
-	locked=0;
+	locked = 0;
 }
 
 #ifdef HAVE_TEXTLCD
@@ -70,22 +76,29 @@ void eLCD::renderText(ePoint start, const char *text)
 
 eDBoxLCD::eDBoxLCD()
 {
-	int xres=132, yres=64, bpp=8;
+	int xres = 132, yres = 64, bpp = 8;
 	flipped = false;
 	dump = false;
 	inverted = 0;
 	lcd_type = 0;
 	FILE *boxtype_file;
-	char boxtype_name[20];
 	FILE *fp_file;
 	char fp_version[20];
 #ifndef NO_LCD
+	snprintf(boxtype_name, sizeof(boxtype_name), "unknown");
 	if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
 	{
 		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 		fclose(boxtype_file);
-		
-		if((strcmp(boxtype_name, "novatwin\n") == 0) || (strcmp(boxtype_name, "novacombo\n") == 0) || (strcmp(boxtype_name, "7300S\n") == 0) || (strcmp(boxtype_name, "7400S\n") == 0) || (strcmp(boxtype_name, "7220S\n") == 0) || (strcmp(boxtype_name, "xp1000s\n") == 0) || (strcmp(boxtype_name, "odinm7\n") == 0) || (strcmp(boxtype_name, "ew7358\n") == 0) || (strcmp(boxtype_name, "ew7362\n") == 0) || (strcmp(boxtype_name, "formuler3\n") == 0) || (strcmp(boxtype_name, "formuler4\n") == 0) || (strcmp(boxtype_name, "formuler4turbo\n") == 0) || (strcmp(boxtype_name, "hd1100\n") == 0) || (strcmp(boxtype_name, "hd1200\n") == 0) || (strcmp(boxtype_name, "hd1265\n") == 0) || (strcmp(boxtype_name, "hd500c\n") == 0) || (strcmp(boxtype_name, "hd530c\n") == 0) || (strcmp(boxtype_name, "vp7358ci\n") == 0) || (strcmp(boxtype_name, "vg2000\n") == 0) || (strcmp(boxtype_name, "vg5000\n") == 0) || (strcmp(boxtype_name, "sh1\n") == 0) || (strcmp(boxtype_name, "yhgd2580\n") == 0) || (strcmp(boxtype_name, "spycatmini\n") == 0) || (strcmp(boxtype_name, "spycatminiplus\n") == 0) || (strcmp(boxtype_name, "fegasusx3\n") == 0) || (strcmp(boxtype_name, "fegasusx5s\n") == 0) || (strcmp(boxtype_name, "fegasusx5t\n") == 0) || (strcmp(boxtype_name, "ini-2000oc\n") == 0) || (strcmp(boxtype_name, "osmini\n") == 0) || (strcmp(boxtype_name, "jj7362\n") == 0) || (strcmp(boxtype_name, "9900lx\n") == 0) || (strcmp(boxtype_name, "lc\n") == 0) || (strcmp(boxtype_name, "hd1500\n") == 0) || (strcmp(boxtype_name, "g100\n") == 0) || (strcmp(boxtype_name, "g101\n") == 0) || (strcmp(boxtype_name, "bre2ze_t2c\n") == 0) || (strcmp(boxtype_name, "vs1000\n") == 0) || (strcmp(boxtype_name, "tiviarmin\n") == 0) || (strcmp(boxtype_name, "et1x000\n") == 0))
+	}
+	else if((boxtype_file = fopen("/proc/stb/info/model", "r")) != NULL)
+	{
+		fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
+		fclose(boxtype_file);
+	}
+	if((strcmp(boxtype_name, "unknown") != 0))
+	{
+		if((strcmp(boxtype_name, "7300S\n") == 0) || (strcmp(boxtype_name, "7400S\n") == 0) || (strcmp(boxtype_name, "7220S\n") == 0) || (strcmp(boxtype_name, "xp1000s\n") == 0) || (strcmp(boxtype_name, "odinm7\n") == 0) || (strcmp(boxtype_name, "ew7358\n") == 0) || (strcmp(boxtype_name, "ew7362\n") == 0) || (strcmp(boxtype_name, "formuler3\n") == 0) || (strcmp(boxtype_name, "formuler4\n") == 0) || (strcmp(boxtype_name, "formuler4turbo\n") == 0) || (strcmp(boxtype_name, "hd1100\n") == 0) || (strcmp(boxtype_name, "hd1200\n") == 0) || (strcmp(boxtype_name, "hd1265\n") == 0) || (strcmp(boxtype_name, "hd500c\n") == 0) || (strcmp(boxtype_name, "hd530c\n") == 0) || (strcmp(boxtype_name, "vp7358ci\n") == 0) || (strcmp(boxtype_name, "vg2000\n") == 0) || (strcmp(boxtype_name, "vg5000\n") == 0) || (strcmp(boxtype_name, "sh1\n") == 0) || (strcmp(boxtype_name, "yhgd2580\n") == 0) || (strcmp(boxtype_name, "spycatmini\n") == 0) || (strcmp(boxtype_name, "spycatminiplus\n") == 0) || (strcmp(boxtype_name, "fegasusx3\n") == 0) || (strcmp(boxtype_name, "fegasusx5s\n") == 0) || (strcmp(boxtype_name, "fegasusx5t\n") == 0) || (strcmp(boxtype_name, "ini-2000oc\n") == 0) || (strcmp(boxtype_name, "osmini\n") == 0) || (strcmp(boxtype_name, "jj7362\n") == 0) || (strcmp(boxtype_name, "9900lx\n") == 0) || (strcmp(boxtype_name, "lc\n") == 0) || (strcmp(boxtype_name, "hd1500\n") == 0) || (strcmp(boxtype_name, "g100\n") == 0) || (strcmp(boxtype_name, "g101\n") == 0) || (strcmp(boxtype_name, "bre2ze_t2c\n") == 0) || (strcmp(boxtype_name, "vs1000\n") == 0) || (strcmp(boxtype_name, "tiviarmin\n") == 0) || (strcmp(boxtype_name, "et1x000\n") == 0))
 		{
 			lcdfd = open("/dev/null", O_RDWR);
 		}
@@ -133,28 +146,29 @@ eDBoxLCD::eDBoxLCD()
 	
 	if (lcdfd < 0)
 	{
-		if (!access("/proc/stb/lcd/oled_brightness", W_OK) || !access("/proc/stb/fp/oled_brightness", W_OK) )
+		if (!access("/proc/stb/lcd/oled_brightness", W_OK) || 
+		    !access("/proc/stb/fp/oled_brightness", W_OK) )
 			lcd_type = 2;
 		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
 	} else
 	{
-		eDebug("found OLED display!");
+		eDebug("[eLCD] found OLED display!");
 		lcd_type = 1;
 	}
 
 	if (lcdfd < 0)
-		eDebug("couldn't open LCD - load lcd.ko!");
+		eDebug("[eDboxLCD] No oled0 or lcd0 device found!");
 	else
 	{
 
 #ifndef LCD_IOCTL_ASC_MODE
 #define LCDSET                  0x1000
-#define LCD_IOCTL_ASC_MODE		(21|LCDSET)
-#define	LCD_MODE_ASC			0
-#define	LCD_MODE_BIN			1
+#define LCD_IOCTL_ASC_MODE	(21|LCDSET)
+#define	LCD_MODE_ASC		0
+#define	LCD_MODE_BIN		1
 #endif
 
-		int i=LCD_MODE_BIN;
+		int i = LCD_MODE_BIN;
 		ioctl(lcdfd, LCD_IOCTL_ASC_MODE, &i);
 		FILE *f = fopen("/proc/stb/lcd/xres", "r");
 		if (f)
@@ -179,6 +193,8 @@ eDBoxLCD::eDBoxLCD()
 			}
 			lcd_type = 3;
 		}
+		eDebug("[eDboxLCD] xres=%d, yres=%d, bpp=%d lcd_type=%d", xres, yres, bpp, lcd_type);
+
 	}
 #endif
 	if (FILE * file = fopen("/proc/stb/lcd/right_half", "w"))
@@ -193,7 +209,7 @@ eDBoxLCD::eDBoxLCD()
 
 void eDBoxLCD::setInverted(unsigned char inv)
 {
-	inverted=inv;
+	inverted = inv;
 	update();
 }
 
@@ -212,22 +228,24 @@ void eDBoxLCD::setDump(bool onoff)
 int eDBoxLCD::setLCDContrast(int contrast)
 {
 #ifndef NO_LCD
-
+	if (lcdfd < 0)
+		return(0);
 #ifndef LCD_IOCTL_SRV
 #define LCDSET                  0x1000
 #define	LCD_IOCTL_SRV			(10|LCDSET)
 #endif
+	eDebug("[eDboxLCD] setLCDContrast %d", contrast);
 
 	int fp;
 	if((fp=open("/dev/dbox/fp0", O_RDWR))<0)
 	{
-		eDebug("[LCD] can't open /dev/dbox/fp0");
+		eDebug("[DboxLCD] can't open /dev/dbox/fp0");
 		return(-1);
 	}
 
 	if(ioctl(lcdfd, LCD_IOCTL_SRV, &contrast)<0)
 	{
-		eDebug("[LCD] can't set lcd contrast");
+		eDebug("[eDboxLCD] can't set lcd contrast");
 	}
 	close(fp);
 #endif
@@ -237,14 +255,17 @@ int eDBoxLCD::setLCDContrast(int contrast)
 int eDBoxLCD::setLCDBrightness(int brightness)
 {
 #ifndef NO_LCD
-//	eDebug("setLCDBrightness %d", brightness);
+	if (lcdfd < 0)
+		return(0);
+
+	eDebug("[eDboxLCD] setLCDBrightness %d", brightness);
 	FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
 	if (!f)
 		f = fopen("/proc/stb/fp/oled_brightness", "w");
 	if (f)
 	{
 		if (fprintf(f, "%d", brightness) == 0)
-			eDebug("write /proc/stb/lcd/oled_brightness failed!! (%m)");
+			eDebug("[eDboxLCD] write /proc/stb/lcd/oled_brightness failed!! (%m)");
 		fclose(f);
 	}
 	else
@@ -252,14 +273,14 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 		int fp;
 		if((fp=open("/dev/dbox/fp0", O_RDWR)) < 0)
 		{
-			eDebug("[LCD] can't open /dev/dbox/fp0");
+			eDebug("[eDboxLCD] can't open /dev/dbox/fp0");
 			return(-1);
 		}
 #ifndef FP_IOCTL_LCD_DIMM
 #define FP_IOCTL_LCD_DIMM       3
 #endif
 		if(ioctl(fp, FP_IOCTL_LCD_DIMM, &brightness) < 0)
-			eDebug("[LCD] can't set lcd brightness");
+			eDebug("[eDboxLCD] can't set lcd brightness");
 		close(fp);
 	}
 #endif
@@ -271,19 +292,19 @@ int eDBoxLCD::setLED(int value, int option)
 	switch(option)
 	{
 		case LED_BRIGHTNESS:
-			eDebug("setLEDNormalState %d", value);
+			eDebug("[eDboxLCD] setLEDNormalState %d", value);
 			if(ioctl(lcdfd, LED_IOCTL_BRIGHTNESS_NORMAL, (unsigned char)value) < 0)
-				eDebug("[LED] can't set led brightness");
+				eDebug("[eDboxLCD] can't set led brightness");
 			break;
 		case LED_DEEPSTANDBY:
-			eDebug("setLEDBlinkingTime %d", value);
+			eDebug("[eDboxLCD] setLEDBlinkingTime %d", value);
 			if(ioctl(lcdfd, LED_IOCTL_BRIGHTNESS_DEEPSTANDBY, (unsigned char)value) < 0)
-				eDebug("[LED] can't set led deep standby");
+				eDebug("[eDboxLCD] can't set led deep standby");
 			break;
 		case LED_BLINKINGTIME:
-			eDebug("setLEDBlinkingTime %d", value);
+			eDebug("[eDboxLCD] setLEDBlinkingTime %d", value);
 			if(ioctl(lcdfd, LED_IOCTL_BLINKING_TIME, (unsigned char)value) < 0)
-				eDebug("[LED] can't set led blinking time");
+				eDebug("[eDboxLCD] can't set led blinking time");
 			break;
 	}
 	return(0);
@@ -313,7 +334,7 @@ void eDBoxLCD::dumpLCD2PNG(void)
  			switch(bpp)
  			{
  				case 8:
- 					eDebug(" 8 bit not supportet yet");
+ 					eDebug("[eDboxLCD] 8 bit not supportet yet");
  					break;
  				case 16:
  					{
@@ -345,10 +366,10 @@ void eDBoxLCD::dumpLCD2PNG(void)
  					}
  					break;
  				case 32:
- 					eDebug(" 32 bit not supportet yet");
+ 					eDebug("[eDboxLCD]  32 bit not supportet yet");
  					break;
  				default:
- 					eDebug("%d bit not supportet yet",bpp);
+ 					eDebug("[eDboxLCD] %d bit not supportet yet",bpp);
  			}
  		}
  }
@@ -413,6 +434,7 @@ void eDBoxLCD::update()
 			else
 			{
 				FILE *file;
+/*
 				FILE *boxtype_file;
 				char boxtype_name[20];
 				if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
@@ -425,7 +447,8 @@ void eDBoxLCD::update()
 					fgets(boxtype_name, sizeof(boxtype_name), boxtype_file);
 					fclose(boxtype_file);
 				}
-				if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0) || (strcmp(boxtype_name, "7200S\n") == 0) || (strcmp(boxtype_name, "7210S\n") == 0) || (strcmp(boxtype_name, "7215S\n") == 0) || (strcmp(boxtype_name, "7205S\n") == 0))
+*/
+				if (((file = fopen("/proc/stb/info/gbmodel", "r")) != NULL ) || (strcmp(boxtype_name, "7100S\n") == 0) || (strcmp(boxtype_name, "7200S\n") == 0) || (strcmp(boxtype_name, "7210S\n") == 0) || (strcmp(boxtype_name, "7215S\n") == 0) || (strcmp(boxtype_name, "7205S\n") == 0) || (strcmp(boxtype_name, "8100S\n") == 0))
 				{
 					//gggrrrrrbbbbbggg bit order from memory
 					//gggbbbbbrrrrrggg bit order to LCD
@@ -452,12 +475,14 @@ void eDBoxLCD::update()
 						fclose(file);
 					}
 				}
-				else if ((strcmp(boxtype_name, "dm900\n") == 0))
+				else if ((strcmp(boxtype_name, "dm900\n") == 0) || (strcmp(boxtype_name, "dm920\n") == 0))
 				{
 					unsigned char gb_buffer[_stride * res.height()];
 					for (int offset = 0; offset < ((_stride * res.height())>>2); offset ++)
 					{
-						unsigned int src = ((unsigned int*)_buffer)[offset];
+						unsigned int src = 0;
+						if (offset%(_stride>>2) >= DM900_LCD_Y_OFFSET)
+							src = ((unsigned int*)_buffer)[offset - DM900_LCD_Y_OFFSET];
 						//                                             blue                         red                  green low                     green high
 						((unsigned int*)gb_buffer)[offset] = ((src >> 3) & 0x001F001F) | ((src << 3) & 0xF800F800) | ((src >> 8) & 0x00E000E0) | ((src << 8) & 0x07000700);
 					}
