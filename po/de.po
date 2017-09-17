@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-17 11:55+0200\n"
+"PO-Revision-Date: 2017-09-17 18:10+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -12641,6 +12641,18 @@ msgstr "Zweites Kabel vom Rotor"
 
 msgid "Second cable of motorized LNB"
 msgstr "Zweites Kabel vom Rotor"
+
+msgid "Force LNB Power"
+msgstr "LNB Power erzwingen"
+
+msgid "Force LNB Tuner Power settings."
+msgstr "Einstellung für LNB Power."
+
+msgid "Force ToneBurst"
+msgstr "Toneburst erzwingen"
+
+msgid "Force LNB Tuner ToneBurst settings."
+msgstr "Einstellung für Toneburst."
 
 msgid "seconds"
 msgstr "Sekunden"
