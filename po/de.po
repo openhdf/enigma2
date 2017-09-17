@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-17 07:22+0200\n"
+"PO-Revision-Date: 2017-09-17 11:55+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1337,6 +1337,9 @@ msgstr "Öffne Senderliste und wähle den vorherigen Sender für PiP"
 
 msgid "Activate Picture in Picture"
 msgstr "Aktiviere Bild in Bild"
+
+msgid "find currently played service"
+msgstr "Springe zum aktuellen Kanal"
 
 msgid "Activate current configuration"
 msgstr "Aktiviere aktuelle Konfiguration"
