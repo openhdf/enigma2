@@ -26,6 +26,7 @@ fi
 #check for installed vfdcontrol
 if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
 	opkg remove enigma2-plugin-systemplugins-vfdcontrol
+	rm -rf /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl
 fi
 
 [ -L /usr/lib/libssl.so.0.9.8 ] || ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
