@@ -192,12 +192,6 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("stop using as startup service from standby"), self.unsetStartupServiceStandby), level = 0)
 					else:
 						append_when_current_valid(current, menu, (_("set as startup service from standby"), self.setStartupServiceStandby), level = 0)
-					if config.ParentalControl.configured.value:
-						from Components.ParentalControl import parentalControl
-						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
-							append_when_current_valid(current, menu, (_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())), level = 0)
-						else:
-							append_when_current_valid(current, menu, (_("remove from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())), level = 0)
 					if not (current_sel_path):
 						if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
 							append_when_current_valid(current, menu, (_("Unmark service to unhide VBI line"), self.removeHideVBIFlag), level=0)
@@ -290,7 +284,7 @@ class ChannelContextMenu(Screen):
 					append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
 					append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
 
-		menu.append(ChoiceEntryComponent(text = (_("Reload Services"), self.reloadServices), key="0"))
+		menu.append(ChoiceEntryComponent(text = (_("Reload Services"), self.reloadServices)))
 
 		self["menu"] = ChoiceList(menu)
 
@@ -376,8 +370,9 @@ class ChannelContextMenu(Screen):
 			self.close()
 
 	def addParentalProtection(self, service):
-		from Components.ParentalControl import parentalControl
-		parentalControl.protectService(service.toCompareString())
+		self.parentalControl.protectService(service.toCompareString())
+		if config.ParentalControl.hideBlacklist.value and not self.parentalControl.sessionPinCached:
+			self.csel.servicelist.resetRoot()
 		self.close()
 
 	def removeParentalProtection(self, service):

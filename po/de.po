@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-17 18:10+0200\n"
+"PO-Revision-Date: 2017-09-18 18:55+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -6135,6 +6135,9 @@ msgstr "Neu"
 msgid "New PIN"
 msgstr "Neuer PIN"
 
+msgid "Re-enter new PIN"
+msgstr "Neue PIN wiederholen"
+
 msgid "New profile: "
 msgstr "Neues Profil:"
 
@@ -6741,6 +6744,18 @@ msgstr "Jugendschutz"
 
 msgid "Parental control editor"
 msgstr "Jugendschutz Editor"
+
+msgid "Hide parental locked services"
+msgstr "Jugendschutz geschützte Kanäle verbergen"
+
+msgid "Protect on epg age"
+msgstr "Schützen durch EPG-Altersangaben"
+
+msgid "Reload blacklists"
+msgstr "\"Schwarze\" Liste neu laden"
+
+msgid "No age block"
+msgstr "Keine Altersbeschränkung"
 
 msgid "Parental control services Editor"
 msgstr "Jugendschutz Sender Editor"
