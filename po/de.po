@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-18 18:55+0200\n"
+"PO-Revision-Date: 2017-09-19 05:44+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4199,7 +4199,7 @@ msgid "Enter pin code"
 msgstr "Pincode eingeben"
 
 msgid "Enter the service pin"
-msgstr "Den Sender-PIN Code eingeben"
+msgstr "Bitte den Sender-PIN Code eingeben"
 
 msgid "Enter your email address to send a copy of the log to."
 msgstr "Gebe deine E-Mail-Adresse an zu der eine Kopie des Logs geschickt werden soll."
@@ -11855,6 +11855,12 @@ msgstr "Sender zu Favoriten hinzufügen"
 
 msgid "add to parental protection"
 msgstr "Jugendschutz aktivieren"
+
+msgid "add bouquet to parental protection"
+msgstr "Bouquet zum Jugendschutz hinzufügen"
+
+msgid "remove bouquet from parental protection"
+msgstr "Bouquet aus Jugendschutz entfernen"
 
 msgid "address:"
 msgstr "Adresse:"
