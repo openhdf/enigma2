@@ -19,7 +19,7 @@ from Screens.TimerEdit import TimerSanityConflict
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
 from enigma import eActionMap, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
-from Components.config import config, configfile, ConfigSubsection, ConfigText
+from Components.config import config, configfile, ConfigSubsection, ConfigText, ConfigYesNo
 from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
 from Components.NimManager import nimmanager
@@ -60,7 +60,7 @@ FLAG_IS_DEDICATED_3D = 128
 FLAG_HIDE_VBI = 512 #define in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128
 
 class BouquetSelector(Screen):
-	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=False):
+	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=True):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Choose bouquet"))
 
@@ -122,7 +122,7 @@ OFF = 0
 EDIT_BOUQUET = 1
 EDIT_ALTERNATIVES = 2
 
-def append_when_current_valid(current, menu, args, level = 0, key = ""):
+def append_when_current_valid(current, menu, args, level=0, key=""):
 	if current and current.valid() and level <= config.usage.setup_level.index:
 		menu.append(ChoiceEntryComponent(key, args))
 
