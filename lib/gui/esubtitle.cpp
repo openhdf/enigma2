@@ -48,6 +48,18 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 			case 2: /* yellow */
 				color = gRGB(255, 255, 0);
 				break;
+			case 3: /* blue */
+				color = gRGB(0, 0, 255);
+				break;
+			case 4: /* grey */
+				color = gRGB(128, 128, 128);
+				break;
+			case 5: /* red */
+				color = gRGB(255, 0, 0);
+				break;
+			case 6: /* green */
+				color = gRGB(0, 128, 0);
+				break;
 		}
 
 		if (!original_position)
