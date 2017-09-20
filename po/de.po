@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-20 18:08+0200\n"
+"PO-Revision-Date: 2017-09-20 20:02+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4831,8 +4831,20 @@ msgstr "Grafiken"
 msgid "Greek"
 msgstr "Griechisch"
 
+msgid "grey"
+msgstr "grau"
+
 msgid "Grey"
 msgstr "Grau"
+
+msgid "brown"
+msgstr "braun"
+
+msgid "turquoise"
+msgstr "türkis"
+
+msgid "pink"
+msgstr "pink"
 
 msgid "Guard interval"
 msgstr "Guard Intervall"
@@ -13033,7 +13045,7 @@ msgid "working"
 msgstr "Arbeite"
 
 msgid "yellow"
-msgstr "Gelb"
+msgstr "gelb"
 
 msgid "Yellow"
 msgstr "Gelb"
