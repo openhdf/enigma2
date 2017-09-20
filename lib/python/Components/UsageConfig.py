@@ -765,7 +765,11 @@ def InitUsageConfig():
 	config.subtitles.ttx_subtitle_colors = ConfigSelection(default = "1", choices = [
 		("0", _("original")),
 		("1", _("white")),
-		("2", _("yellow")) ])
+		("2", _("yellow")),
+		("3", _("blue")),
+		("4", _("grey")),
+		("5", _("red")),
+		("6", _("green")) ])
 	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default = False)
 	config.subtitles.subtitle_position = ConfigSelection( choices = ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"], default = "50")
 	config.subtitles.subtitle_alignment = ConfigSelection(choices = [("left", _("left")), ("center", _("center")), ("right", _("right"))], default = "center")
