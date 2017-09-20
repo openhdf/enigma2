@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-19 05:44+0200\n"
+"PO-Revision-Date: 2017-09-20 17:05+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -2522,6 +2522,12 @@ msgstr "Wählen Sie, ob AC3-Tonspuren ( Dolby Digital ) zu Stereo heruntergerech
 
 msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
 msgstr "Wählen Sie, ob DTS-Tonspuren zu Stereo heruntergerechnet werden soll."
+
+msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgstr "Wählen Sie, ob DTS-Tonspuren zu Stereo heruntergerechnet werden soll oder transkodiert."
+
+msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
+msgstr "Wählen Sie, ob WMA Pro Tonspuren zu Stereo heruntergerechnet werden soll oder transkodiert."
 
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Wählen Sie, ob AAC-Tonspuren transkodiert werden sollen."

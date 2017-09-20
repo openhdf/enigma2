@@ -828,6 +828,46 @@ def InitAVSwitch():
 		config.av.transcodeac3plus.addNotifier(setAC3plusTranscode)
 
 	try:
+		f = open("/proc/stb/audio/dtshd_choices", "r")
+		file = f.read()[:-1]
+		can_dtshd = f.read().strip().split(" ")
+		f.close()
+	except:
+		can_dtshd = False
+
+	SystemInfo["CanDTSHD"] = can_dtshd
+	if can_dtshd:
+		def setDTSHD(configElement):
+			f = open("/proc/stb/audio/dtshd", "w")
+			f.write(configElement.value)
+			f.close()
+		if getBoxType() in ("dm7080" , "dm820"):
+			choice_list = [("use_hdmi_caps",  _("controlled by HDMI")), ("force_dts", _("convert to DTS"))]
+			config.av.dtshd = ConfigSelection(choices = choice_list, default = "use_hdmi_caps")
+		else:
+			choice_list = [("downmix",  _("Downmix")), ("force_dts", _("convert to DTS")), ("use_hdmi_caps",  _("controlled by HDMI")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
+			config.av.dtshd = ConfigSelection(choices = choice_list, default = "hdmi_best")
+		config.av.dtshd.addNotifier(setDTSHD)
+
+	try:
+		f = open("/proc/stb/audio/wmapro_choices", "r")
+		file = f.read()[:-1]
+		can_wmapro = f.read().strip().split(" ")
+		f.close()
+	except:
+		can_wmapro = False
+
+	SystemInfo["CanWMAPRO"] = can_wmapro
+	if can_wmapro:
+		def setWMAPRO(configElement):
+			f = open("/proc/stb/audio/wmapro", "w")
+			f.write(configElement.value)
+			f.close()
+		choice_list = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
+		config.av.wmapro = ConfigSelection(choices = choice_list, default = "hdmi_best")
+		config.av.wmapro.addNotifier(setWMAPRO)
+
+	try:
 		f = open("/proc/stb/audio/dts_choices", "r")
 		file = f.read()[:-1]
 		f.close()
