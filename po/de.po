@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-20 17:05+0200\n"
+"PO-Revision-Date: 2017-09-20 18:08+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13505,6 +13505,36 @@ msgstr "ACC Downmix"
 
 msgid "Dolby Digital / DTS downmix"
 msgstr "DD/DTS Downmix"
+
+msgid "AC3 downmix"
+msgstr "AC3-Downmix"
+
+msgid "AC3 plus transcoding"
+msgstr "AC3 Plus Transcoding"
+
+msgid "controlled by HDMI"
+msgstr "Steuerung über HDMI"
+
+msgid "use best / controlled by HDMI"
+msgstr "Best Mögliches / Steuerung über HDMI"
+
+msgid "DTS downmix"
+msgstr "DTS-Downmix"
+
+msgid "force AC3plus"
+msgstr "Erzwinge AC3 Plus"
+
+msgid "convert to DTS"
+msgstr "Konvertieren zu DTS"
+
+msgid "force_dts"
+msgstr "Erzwinge DTS"
+
+msgid "convert to multi-channel PCM"
+msgstr "Konvertieren zu Mehrkanalton PCM"
+
+msgid "always"
+msgstr "immer"
 
 #, python-format
 msgid "Last Image Updates"
