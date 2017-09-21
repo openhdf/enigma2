@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-20 20:02+0200\n"
+"PO-Revision-Date: 2017-09-21 05:51+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1913,6 +1913,9 @@ msgstr "Timeshift nach dem Umschalten löschen?"
 
 msgid "Automatically turn on external subtitles"
 msgstr "Externe Untertitel automatisch einschalten"
+
+msgid "HI-cleanup for external subtitles"
+msgstr "Hörgeschädigten-Bereinigung für externe Untertitel"
 
 msgid "Automatically update Client/Server View?"
 msgstr "Anzeige von Klienten/Server automatisch aktualisieren?"
@@ -13012,7 +13015,7 @@ msgstr ""
 "Eine Kopie wurde zu dir selbst geschickt."
 
 msgid "white"
-msgstr "Weiß"
+msgstr "weiß"
 
 msgid "whitelist"
 msgstr "Positivliste"
