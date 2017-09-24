@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-21 05:51+0200\n"
+"PO-Revision-Date: 2017-09-24 09:22+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -12376,6 +12376,12 @@ msgstr "Signal"
 
 msgid "loopthrough to"
 msgstr "Verbunden mit"
+
+msgid "internally loopthrough to"
+msgstr "Intern verbunden mit"
+
+msgid "externally loopthrough to"
+msgstr "Extern verbunden mit"
 
 msgid "magazines/reports/documentary"
 msgstr "Magazin/Report/Dokumentation"
