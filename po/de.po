@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-24 09:22+0200\n"
+"PO-Revision-Date: 2017-09-27 17:58+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -163,6 +163,9 @@ msgstr "Zeige das grafische EPG"
 
 msgid "Switch to TV Mode"
 msgstr "Wechselt zum TV Modus"
+
+msgid "Toggle between TV and Radio mode"
+msgstr "Wechsel zwischen TV und Radio Modus"
 
 msgid "Zap down"
 msgstr "Runterschalten"

@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "24.08.2017"
+updateversion = "27.09.2017"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -199,6 +199,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Disable digital downmix"), "Infobar/audioDownmixOff", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to Radio Mode"), "Infobar/showRadio", "InfoBar"))
 	hotkeyFunctions.append((_("Switch to TV Mode"), "Infobar/showTv", "InfoBar"))
+	hotkeyFunctions.append((_("Toggle between TV and Radio mode"), "Infobar/toogleTvRadio", "InfoBar"))
 	hotkeyFunctions.append((_("Show Favourites List"), "Infobar/openFavouritesList", "InfoBar"))
 	hotkeyFunctions.append((_("Show Satellites List"), "Infobar/openSatellites", "InfoBar"))
 	hotkeyFunctions.append((_("Show Movies"), "Infobar/showMovies", "InfoBar"))
