@@ -28,6 +28,7 @@ if grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
 	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
 		echo "vfdcontrol installed"
 	else
+		opkg update
 		opkg install enigma2-plugin-systemplugins-vfdcontrol
 	fi
 fi
