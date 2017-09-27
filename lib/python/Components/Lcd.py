@@ -616,6 +616,7 @@ def InitLcd():
 		config.lcd.standby.apply = lambda : doNothing()
 		config.lcd.power = ConfigNothing()
 		config.lcd.fblcddisplay = ConfigNothing()
+		config.misc.vfdcontrol = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "0")
 		config.lcd.mode = ConfigNothing()
 		config.lcd.repeat = ConfigNothing()
 		config.lcd.scrollspeed = ConfigNothing()

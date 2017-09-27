@@ -24,9 +24,18 @@ if grep ^config.misc.SyncTimeUsing=1 /etc/enigma2/settings >/dev/null; then
 fi
 
 #check for installed vfdcontrol
-if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
-	opkg remove enigma2-plugin-systemplugins-vfdcontrol
-	rm -rf /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl
+if grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
+	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
+		echo "vfdcontrol installed"
+	else
+		opkg install enigma2-plugin-systemplugins-vfdcontrol
+	fi
+fi
+if ! grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
+	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
+		opkg remove enigma2-plugin-systemplugins-vfdcontrol
+		rm -rf /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl
+	fi
 fi
 
 [ -L /usr/lib/libssl.so.0.9.8 ] || ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8

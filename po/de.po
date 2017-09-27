@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-27 17:58+0200\n"
+"PO-Revision-Date: 2017-09-27 19:39+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3609,6 +3609,12 @@ msgstr "Reservierter Speicherplatz für Aufnahmen (GB)"
 
 msgid "Display"
 msgstr "Display (VFD/LCD)"
+
+msgid "Enable LED Display plugin"
+msgstr "Aktiviere die LED Display Einstellungen"
+
+msgid "If this set to yes, the systemplugin vfdcontrol can be used after restart."
+msgstr "Bei ja wird das Plugin vfdcontrol installiert."
 
 #, python-format
 msgid "Power LED State in Deep-Standby and Standby"
