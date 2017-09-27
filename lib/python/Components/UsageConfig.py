@@ -63,6 +63,7 @@ def InitUsageConfig():
 	config.usage.volume_step_fast = ConfigSelectionNumber(default = 3, stepwidth = 1, min = 1, max = 10, wraparound = False)
 
 	config.usage.panicbutton = ConfigYesNo(default = False)
+	config.misc.vfdcontrol = ConfigYesNo(default = False)
 	config.usage.servicetype_icon_mode = ConfigSelection(default = "0", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
 
