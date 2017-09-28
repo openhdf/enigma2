@@ -29,7 +29,7 @@ if grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
 		echo "vfdcontrol installed"
 	else
 		opkg update
-		opkg install enigma2-plugin-systemplugins-vfdcontrol
+		opkg install --force-reinstall enigma2-plugin-systemplugins-vfdcontrol
 	fi
 fi
 if ! grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
