@@ -104,7 +104,7 @@
 	</screen>
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
-		<widget source="session.CurrentService" render="PiconRes" position="0,0" zPosition="2" size="400,200" halign="center" alphatest="on">
+		<widget source="session.CurrentService" render="PiconRes" position="33,0" zPosition="2" size="333,200" halign="center" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<eLabel position="0,202" size="400,2" backgroundColor="#BDBDBD" zPosition="3" />
