@@ -10,7 +10,6 @@ class Console(Screen):
 
 		self.finishedCallback = finishedCallback
 		self.closeOnSuccess = closeOnSuccess
-		self.showStartStopText = showStartStopText
 		self.errorOcurred = False
 		self.hideflag = True
 
@@ -41,8 +40,8 @@ class Console(Screen):
 		self.setTitle(self.newtitle)
 
 	def startRun(self):
-		if self.showStartStopText:
-			self["text"].setText(_("Execution progress:") + "\n\n")
+		self["text"].setText(_("Execution progress:") + "\n\n")
+		self["summary_description"].setText(_("Execution progress:"))
 		print "Console: executing in run", self.run, " the command:", self.cmdlist[self.run]
 		if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
 			self.runFinished(-1) # so we must call runFinished manual
@@ -56,8 +55,9 @@ class Console(Screen):
 				self.runFinished(-1) # so we must call runFinished manual
 		else:
 			lastpage = self["text"].isAtLastPage()
-			if self.showStartStopText:
-				self["text"].appendText(_("Execution finished!!"))
+			str = self["text"].getText()
+			str += _("Execution finished!!")
+			self["summary_description"].setText(_("Execution finished!!"))
 			self["text"].setText(str)
 			if lastpage:
 				self["text"].lastPage()
