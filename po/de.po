@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-09-27 19:39+0200\n"
+"PO-Revision-Date: 2017-10-14 08:50+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -5575,6 +5575,9 @@ msgstr "DVD Player beenden?"
 msgid "Left"
 msgstr "Links"
 
+msgid "Left long"
+msgstr "Links lang"
+
 msgid "Left from servicename"
 msgstr "Links vom Sendernamen"
 
@@ -8190,6 +8193,9 @@ msgstr "Springe Vorwärts (Zeitangabe)"
 
 msgid "Seekbar activation"
 msgstr "Seekbar mit folgender Taste aktivieren"
+
+msgid "Show Seekbar"
+msgstr "Seekbar anzeigen"
 
 msgid "Seekbar sensibility"
 msgstr "Empfindlichkeit der Seekbar"
@@ -12668,6 +12674,9 @@ msgstr "Zum vorherigen Kapitel zurück"
 
 msgid "right"
 msgstr "rechts"
+
+msgid "Right long"
+msgstr "Rechts lang"
 
 msgid "right, wrapped"
 msgstr "rechts, umgebrochen"
