@@ -808,7 +808,8 @@ def InitUsageConfig():
 	config.subtitles.pango_subtitle_colors = ConfigSelection(default = "0", choices = [
 		("0", _("alternative")),
 		("1", _("white")),
-		("2", _("yellow")) ])
+		("2", _("yellow")),
+		("3", _("green")) ])
 	config.subtitles.pango_subtitles_delay = ConfigSelection(default = "0", choices = subtitle_delay_choicelist)
 	config.subtitles.pango_subtitles_fps = ConfigSelection(default = "1", choices = [
 		("1", _("Original")),
