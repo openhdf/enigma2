@@ -379,6 +379,8 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				{
 					if (subtitleColors == 2)
 						text = (std::string) gRGB(255, 255, 0) + text;
+					if (subtitleColors == 3)
+						text = (std::string) gRGB(0, 128, 0) + text;
 					text = replace_all(text, "</u>", "");
 					text = replace_all(text, "</i>", "");
 					text = replace_all(text, "</b>", "");
