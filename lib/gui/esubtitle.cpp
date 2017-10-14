@@ -378,9 +378,21 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				else
 				{
 					if (subtitleColors == 2)
-						text = (std::string) gRGB(255, 255, 0) + text;
+						text = (std::string) gRGB(255, 255, 0) + text; /* yellow */
 					if (subtitleColors == 3)
-						text = (std::string) gRGB(0, 128, 0) + text;
+						text = (std::string) gRGB(0, 0, 255) + text; /* blue */
+					if (subtitleColors == 4)
+						text = (std::string) gRGB(128, 128, 128) + text; /* grey */
+					if (subtitleColors == 5)
+						text = (std::string) gRGB(255, 0, 0) + text; /* red */
+					if (subtitleColors == 6)
+						text = (std::string) gRGB(0, 128, 0) + text; /* green */
+					if (subtitleColors == 7)
+						text = (std::string) gRGB(165, 42, 42) + text; /* brown */
+					if (subtitleColors == 8)
+						text = (std::string) gRGB(64, 224, 208) + text; /* turquoise */
+					if (subtitleColors == 9)
+						text = (std::string) gRGB(255, 192, 203) + text; /* pink */
 					text = replace_all(text, "</u>", "");
 					text = replace_all(text, "</i>", "");
 					text = replace_all(text, "</b>", "");
