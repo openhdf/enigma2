@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "13.10.2017"
+updateversion = "14.10.2017"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -23,6 +23,8 @@ def getHotkeys():
 	(_("Exit long"), "exit_long", ""),
 	(_("Left"), "cross_left", ""),
 	(_("Right"), "cross_right", ""),
+	(_("Left long"), "cross_left_long", ""),
+	(_("Right long"), "cross_right_long", "Infobar/seekFwdVod"),
 	(_("Up"), "cross_up", "Infobar/switchChannelUp"),
 	(_("Down"), "cross_down", "Infobar/switchChannelDown"),
 	(_("Red"), "red", "Infobar/activateRedButton"),
@@ -128,7 +130,7 @@ def getHotkeys():
 	(_("Timeshift"), "timeshift", "Infobar/startTimeshift"),
 	(_("Timeshift long"), "timeshift_long", "Infobar/stopTimeshift"),
 	(_("TV"), "showTv", "Infobar/showTv"),
-	(_("TV long"), "showTv_long", ""),
+	(_("TV long"), "showTv_long", "Infobar/seekFwdVod"),
 	(_("UHF/Slow"), "slow", ""),
 	(_("UHF/Slow long"), "slow_long", ""),
 	(_("V-Key"), "vkey", "Plugins/Extensions/EnhancedMovieCenter/2"),
@@ -216,6 +218,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Letterbox Zoom"), "Infobar/vmodeSelection", "InfoBar"))
 	hotkeyFunctions.append((_("ZoomInOut"), "InfobarGenerics/ZoomInOut", "InfoBar"))
 	hotkeyFunctions.append((_("ZoomOff"), "InfobarGenerics/ZoomInOut", "InfoBar"))
+	hotkeyFunctions.append((_("Show Seekbar"), "Infobar/seekFwdVod", "InfoBar"))
 	hotkeyFunctions.append((_("Do nothing"), "Void", "InfoBar"))
 	if SystemInfo["PIPAvailable"]:
 		hotkeyFunctions.append((_("Show Picture In Picture"), "Infobar/showPiP", "InfoBar"))
