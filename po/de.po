@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-10-14 08:50+0200\n"
+"PO-Revision-Date: 2017-10-17 08:53+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4291,6 +4291,42 @@ msgstr "Exif"
 
 msgid "Exit"
 msgstr "Beenden"
+
+msgid "Open"
+msgstr "Öffnen"
+
+msgid "Public feeds"
+msgstr "Öffentliche Feeds"
+
+msgid "Search videos"
+msgstr "Suche Videos"
+
+msgid "Search channels"
+msgstr "Suche Kanäle"
+
+msgid "Search playlists"
+msgstr "Suche Playlists"
+
+msgid "Search live broadcasts"
+msgstr "Suche Live Übertragungen"
+
+msgid "Top rated"
+msgstr "Beste Bewertung"
+
+msgid "Most viewed"
+msgstr "Am häufigsten gesehen"
+
+msgid "Recent"
+msgstr "Kürzlich betrachtet"
+
+msgid "HD videos"
+msgstr "HD Videos"
+
+msgid "Embedded in webpages"
+msgstr "Eingebettet in Webseiten"
+
+msgid "Movies"
+msgstr "Filme"
 
 msgid "Exit EPG"
 msgstr "Verlasse EPG"
