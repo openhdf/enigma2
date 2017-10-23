@@ -45,10 +45,9 @@ def Plugins(**kwargs):
 
 def menu(menuid, **kwargs):
 	if menuid == "gui_menu" and not config.skin.primary_skin.value == "XionHDF/skin.xml":
-		print "madieatv"
 		return [(_("Setup - %s") % cur_skin, main, "atilehd_setup", None)]
 	else:
-		print "madieatv2"
+		pass
 	return [ ]
 
 def main(session, **kwargs):
