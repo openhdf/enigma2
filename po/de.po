@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-10-26 06:39+0200\n"
+"PO-Revision-Date: 2017-10-26 14:46+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13578,11 +13578,17 @@ msgstr "Aktueller EPG Dateiname:"
 msgid "AAC downmix"
 msgstr "AAC Downmix"
 
+msgid "AAC transcoding"
+msgstr "AAC Transcoding"
+
+msgid "AC3plus transcoding"
+msgstr "AC3 Plus Transcoding"
+
 msgid "Dolby Digital / DTS downmix"
 msgstr "DD/DTS Downmix"
 
 msgid "AC3 downmix"
-msgstr "AC3-Downmix"
+msgstr "AC3 Downmix"
 
 msgid "AC3 plus transcoding"
 msgstr "AC3 Plus Transcoding"
