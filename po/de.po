@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-10-26 14:46+0200\n"
+"PO-Revision-Date: 2017-10-29 19:22+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4912,6 +4912,12 @@ msgstr "HDMI-CEC Einstellungen"
 msgid "HDMI CEC Setup"
 msgstr "HDMI CEC Einstellungen"
 
+msgid "Request for physical address report"
+msgstr "Anfrage nach der physikalischen Adresse"
+
+msgid "Request for vendor report"
+msgstr "Anfrage der Hersteller Info"
+
 msgid "Handle deepstandby events"
 msgstr "Deep-Standby-Ereignisse verwalten "
 
@@ -6650,7 +6656,7 @@ msgid "OSD 3D Setup"
 msgstr "OSD 3D Einstellungen"
 
 msgid "OSD name request"
-msgstr "Benutzeroberflächen Anfrage"
+msgstr "Anfrage über Benutzeroberfläche"
 
 msgid "OSD settings"
 msgstr "OSD Einstellungen"
@@ -9250,7 +9256,7 @@ msgid "Sound carrier"
 msgstr "Tonträger"
 
 msgid "Source request"
-msgstr "Eingangs Anfrage"
+msgstr "Anfrage auf Eingang"
 
 msgid "South"
 msgstr "Süd"
@@ -9388,7 +9394,7 @@ msgid "Stream"
 msgstr "Stream"
 
 msgid "Stream request"
-msgstr "Stream Anfrage"
+msgstr "Anfrage nach Stream"
 
 msgid "Strict DLNA"
 msgstr "DLNA-Unterstützung"
@@ -9678,7 +9684,7 @@ msgid "Select what you want the Up/Down button to activate:"
 msgstr "Wählen Sie was die Hoch/Runter Tasten bewirken sollen:"
 
 msgid "TV physical address report"
-msgstr "TV physikalische Adresse melden"
+msgstr "An den TV die physikalische Adresse melden"
 
 msgid "TXT PID"
 msgstr "TXT PID"
