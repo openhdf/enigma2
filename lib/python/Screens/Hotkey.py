@@ -15,10 +15,11 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "23.10.2017"
+updateversion = "31.10.2017"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
+	(_("OK "), "okbutton", "Infobar/toggleShow"),
 	(_("Exit "), "exit", ""),
 	(_("Exit long"), "exit_long", ""),
 	(_("Left"), "cross_left", "Infobar/zapDown"),
