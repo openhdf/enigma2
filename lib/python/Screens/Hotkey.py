@@ -18,8 +18,7 @@ import os
 updateversion = "31.10.2017"
 
 def getHotkeys():
-	return [(_("OK "), "okbutton", "Infobar/toggleShow"),
-	(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
+	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
 	(_("Exit "), "exit", ""),
 	(_("Exit long"), "exit_long", ""),
 	(_("Left"), "cross_left", "Infobar/zapDown"),
