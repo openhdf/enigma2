@@ -24,8 +24,8 @@ def getHotkeys():
 	(_("Exit long"), "exit_long", ""),
 	(_("Left"), "cross_left", "Infobar/zapDown"),
 	(_("Right"), "cross_right", "Infobar/zapUp"),
-	(_("Left long"), "cross_left_long", ""),
-	(_("Right long"), "cross_right_long", "Infobar/seekFwdVod"),
+	(_("Left long *"), "cross_left_long", ""),
+	(_("Right long *"), "cross_right_long", ""),
 	(_("Up"), "cross_up", "Infobar/switchChannelUp"),
 	(_("Down"), "cross_down", "Infobar/switchChannelDown"),
 	(_("Red"), "red", "Infobar/activateRedButton"),
@@ -54,8 +54,12 @@ def getHotkeys():
 	(_("Back long"), "back_long", "Plugins/Extensions/ZapHistoryBrowser/1"),
 	(_("Channel up"), "channelup", "Infobar/zapUp"),
 	(_("Channel down"), "channeldown", "Infobar/zapDown"),
+	(_("Channel up long *"), "channelup_long", ""),
+	(_("Channel down long *"), "channeldown_long", ""),
 	(_("Volume up"), "volumeUp", ""),
 	(_("Volume down"), "volumeDown", ""),
+	(_("Volume up long *"), "volumeUplong", ""),
+	(_("Volume down long *"), "volumeDownlong", ""),
 	(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
 	(_("Context long"), "context_long", "Infobar/showExtensionSelection"),
 	(_("End"), "end", "Infobar/historyBack"),
@@ -284,7 +288,7 @@ def getHotkeyFunctions():
 class HotkeySetup(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
-		self['description'] = Label(_('Click on your remote on the button you want to change, then click on OK'))
+		self['description'] = Label(_('Click on your remote on the button you want to change, then click on OK\n\n* to use this long button functions, please activate the keymap.lng'))
 		self.session = session
 		self.setTitle(_("Hotkey Setup") + " - Version " + updateversion)
 		self["key_red"] = Button(_("Exit"))

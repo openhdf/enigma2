@@ -604,6 +604,7 @@ def InitUsageConfig():
 			(eEnv.resolve("${datadir}/enigma2/keymap.xml"), _("Default keymap - keymap.xml")),
 			(eEnv.resolve("${datadir}/enigma2/keymap.usr"), _("User keymap - keymap.usr")),
 			(eEnv.resolve("${datadir}/enigma2/keymap.ntr"), _("Neutrino keymap - keymap.ntr")),
+			(eEnv.resolve("${datadir}/enigma2/keymap.lng"), _("Long button keymap - keymap.lng")),
 			(eEnv.resolve("${datadir}/enigma2/keymap.xpe"), _("Xpeed keymap - keymap.xpe")),
 			(eEnv.resolve("${datadir}/enigma2/keymap.u80"), _("U80 keymap - keymap.u80"))])
 	else:

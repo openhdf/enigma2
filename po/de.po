@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-10-29 19:22+0100\n"
+"PO-Revision-Date: 2017-11-01 16:48+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -208,6 +208,12 @@ msgstr "Lautstärke verringern"
 
 msgid "Volume up"
 msgstr "Lautstärke erhöhen"
+
+msgid "Volume down long *"
+msgstr "Lautstärke verringern lang *"
+
+msgid "Volume up long *"
+msgstr "Lautstärke erhöhen lang *"
 
 msgid "Volume adjust slow"
 msgstr "Lautstärkeeinstellung langsam"
@@ -5535,8 +5541,14 @@ msgid "Button setup for"
 msgstr "Button Einstellungen für"
 
 #, python-format
-msgid "Click on your remote on the button you want to change, then click on OK"
-msgstr "Klicke auf deiner Fernbedienung auf die gewünschte Taste und drücke dann auf OK"
+msgid ""
+"Click on your remote on the button you want to change, then click on OK\n"
+"\n"
+"* to use this long button functions, please activate the keymap.lng"
+msgstr ""
+"Klicke auf deiner Fernbedienung auf die gewünschte Taste und drücke dann auf OK\n"
+"\n"
+"* für diese Funktionen muss die keymap.lng aktiviert werden"
 
 #, python-format
 msgid "Select the desired function and click on OK to assign it. Use CH+/- to toggle between the lists. Select an assigned function and click on OK to de-assign it."
@@ -5619,6 +5631,9 @@ msgstr "Links"
 
 msgid "Left long"
 msgstr "Links lang"
+
+msgid "Left long *"
+msgstr "Links lang *"
 
 msgid "Left from servicename"
 msgstr "Links vom Sendernamen"
@@ -12720,6 +12735,9 @@ msgstr "rechts"
 msgid "Right long"
 msgstr "Rechts lang"
 
+msgid "Right long *"
+msgstr "Rechts lang *"
+
 msgid "right, wrapped"
 msgstr "rechts, umgebrochen"
 
@@ -13213,6 +13231,9 @@ msgstr "Auswahl Tastenbelegung"
 msgid "Default keymap - keymap.xml"
 msgstr "Standard Tastenbelegung - keymap.xml"
 
+msgid "Long button keymap - keymap.lng"
+msgstr "Lang Tastenbelegung - keymap.lng"
+
 msgid "User keymap - keymap.usr"
 msgstr "Benutzer Tastenbelegung - keymap.usr"
 
@@ -13689,8 +13710,14 @@ msgstr "Back lang"
 msgid "Channel up"
 msgstr "Kanal hoch"
 
+msgid "Channel up long *"
+msgstr "Kanal hoch lang *"
+
 msgid "Channel down"
 msgstr "Kanal runter"
+
+msgid "Channel down long *"
+msgstr "Kanal runter lang *"
 
 msgid "End long"
 msgstr "End lang"
