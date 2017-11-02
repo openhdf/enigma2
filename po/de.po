@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-11-01 16:48+0100\n"
+"PO-Revision-Date: 2017-11-02 19:23+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1140,10 +1140,10 @@ msgid "A recording is currently running. Please stop the recording before trying
 msgstr "Zur Zeit sind Aufnahmen aktiv. Bitte Aufnahme beenden, bevor der Signalfinder gestartet wird."
 
 msgid "Yes, delete from Timerlist"
-msgstr "Ja, aus der Timerliste löschen."
+msgstr "Ja, den Timer löschen."
 
-msgid "Yes, delete from Timerlist and delete recording"
-msgstr "Ja, aus der Timerliste und die Aufnahme löschen."
+msgid "Yes, delete Timer and delete recording"
+msgstr "Ja, den Timer und die Aufnahme löschen."
 
 msgid "Do you really want to delete the recording?"
 msgstr "Wollen Sie die Aufnahme wirklich löschen?"
