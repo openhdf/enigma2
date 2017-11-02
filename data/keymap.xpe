@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF XPE Keymap 01.11.2017" -->
+	<!-- "HDF XPE Keymap 02.11.2017" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -902,12 +902,14 @@
 		<key id="KEY_RADIO" mapto="radio_long" flags="l" />
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="showTv_long" flags="l" />
-		<key id="KEY_TEXT" mapto="text" flags="m" />
+		<key id="KEY_TEXT" mapto="text" flags="b" />
+		<key id="KEY_TEXT" mapto="text_long" flags="l" />
 		<key id="KEY_HELP" mapto="helpshow" flags="b" />
 		<key id="KEY_HELP" mapto="helpshow_long" flags="l" />
 		<key id="KEY_SUBTITLE" mapto="subtitle" flags="b" />
 		<key id="KEY_SUBTITLE" mapto="subtitle_long" flags="l" />
 		<key id="KEY_MENU" mapto="mainMenu" flags="b" />
+		<key id="KEY_MENU" mapto="menu_long" flags="l" />
 		<key id="KEY_INFO" mapto="info" flags="b" />
 		<key id="KEY_INFO" mapto="info_long" flags="l" />
 		<key id="KEY_VIDEO" mapto="list" flags="b" />

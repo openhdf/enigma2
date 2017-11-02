@@ -5834,7 +5834,7 @@ class InfoBarTeletextPlugin:
 		if self.teletext_plugin is not None:
 			self["TeletextActions"] = HelpableActionMap(self, "InfobarTeletextActions",
 				{
-					"startTeletext": (self.startTeletext, _("View teletext..."))
+					#"startTeletext": (self.startTeletext, _("View teletext..."))
 				})
 		else:
 			print "no teletext plugin found!"
