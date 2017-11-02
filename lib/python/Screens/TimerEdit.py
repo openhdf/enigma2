@@ -1,11 +1,15 @@
 from Components.ActionMap import ActionMap
 from Components.Button import Button
+from Components.Label import Label
 from Components.config import config
 from Components.MenuList import MenuList
 from Components.Sources.StaticText import StaticText
 from Components.TimerList import TimerList
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import preferredTimerPath
+from Components.Sources.StaticText import StaticText
+from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.Event import Event
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
@@ -26,6 +30,7 @@ class TimerEditList(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		Screen.setTitle(self, _("Timer List"))
 
 		list = [ ]
 		self.list = list
@@ -41,6 +46,10 @@ class TimerEditList(Screen):
 		self["key_green"] = Button(_("Add"))
 		self["key_yellow"] = Button(" ")
 		self["key_blue"] = Button(" ")
+
+		self["description"] = Label()
+		self["ServiceEvent"] = ServiceEvent()
+		self["Event"] = Event()
 
 		print "[TimerEditList] key_red_choice:",self.key_red_choice
 
@@ -157,6 +166,7 @@ class TimerEditList(Screen):
 	def updateState(self):
 		cur = self["timerlist"].getCurrent()
 		if cur:
+			self["description"].setText(cur.description)
 			if self.key_red_choice != self.DELETE:
 				self["actions"].actions.update({"red":self.removeTimerQuestion})
 				self["key_red"].setText(_("Delete"))
@@ -180,6 +190,7 @@ class TimerEditList(Screen):
 				self["key_yellow"].setText(_("Disable"))
 				self.key_yellow_choice = self.DISABLE
 		else:
+			self["description"].setText(" ")
 			if self.key_red_choice != self.EMPTY:
 				self.removeAction("red")
 				self["key_red"].setText(" ")
