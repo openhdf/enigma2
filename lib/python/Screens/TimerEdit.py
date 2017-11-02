@@ -2,6 +2,7 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config
 from Components.MenuList import MenuList
+from Components.Sources.StaticText import StaticText
 from Components.TimerList import TimerList
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import preferredTimerPath
@@ -61,6 +62,9 @@ class TimerEditList(Screen):
 		self.onShown.append(self.updateState)
 		if self.isProtected() and config.ParentalControl.servicepin[0].value:
 			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code")))
+
+	def createSummary(self):
+		return TimerEditListSummary
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and (not config.ParentalControl.config_sections.main_menu.value or hasattr(self.session, 'infobar') and self.session.infobar is None) and config.ParentalControl.config_sections.timer_menu.value
@@ -529,3 +533,13 @@ class TimerSanityConflict(Screen):
 				self.removeAction("blue")
 				self["key_blue"].setText(" ")
 				self.key_blue_choice = self.EMPTY
+
+class TimerEditListSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["name"] = StaticText("")
+		self["service"] = StaticText("")
+		self["time"] = StaticText("")
+		self["duration"] = StaticText("")
+		self["state"] = StaticText("")
+
