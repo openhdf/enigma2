@@ -11,7 +11,7 @@
 class iFilePushScatterGather
 {
 public:
-	virtual void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size)=0;
+	virtual void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size, int blocksize)=0;
 	virtual ~iFilePushScatterGather() {}
 #if defined(__sh__)
 	//Changes in this file are cause e2 doesnt tell the player to play reverse
@@ -19,8 +19,9 @@ public:
 #endif
 };
 
-class eFilePushThread: public eThread, public sigc::trackable
+class eFilePushThread: public eThread, public sigc::trackable, public iObject
 {
+	DECLARE_REF(eFilePushThread);
 public:
 	eFilePushThread(int prio_class=IOPRIO_CLASS_BE, int prio_level=0, int blocksize=188, size_t buffersize=188*1024);
 	~eFilePushThread();
@@ -87,6 +88,8 @@ public:
 	int read_dmx(int fd, void *m_buffer, int size);
 	int pushReply(void *buf, int len);	
 	void sendEvent(int evt);
+	static int64_t getTick();
+	static int read_ts(int fd, unsigned char *buf, int size);
 protected:
 	// This method should write the data out and return the number of bytes written.
 	// If result <0, set 'errno'. The simplest implementation is just "::write(m_buffer, ...)"
