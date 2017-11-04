@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-11-02 19:23+0100\n"
+"PO-Revision-Date: 2017-11-03 18:33+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13171,6 +13171,9 @@ msgstr "Auswahl Software Update"
 msgid "Overwrite Configuration Files ?"
 msgstr "Überschreiben der Konfigurations Files ?"
 
+msgid "Autosave Setting Files ?"
+msgstr "Settings automatisch sichern ?"
+
 msgid "Overwrite Setting Files ?"
 msgstr "Settings-Dateien überschreiben ?"
 
@@ -13294,6 +13297,9 @@ msgstr "Auswahl des Update Mode."
 
 msgid "Overwrite setting files (channellist) during software upgrade?"
 msgstr "Überschreiben der Sender/Kanallisten beim Update?"
+
+msgid "Autosave setting files (channellist/settings) before start online flash?"
+msgstr "Sicherung der Settings (Kanalliste/Einstellungen) vor Online Flash?"
 
 msgid "Overwrite driver files during software upgrade?"
 msgstr "Überschreiben der Kernel/Treiber beim Update?"
