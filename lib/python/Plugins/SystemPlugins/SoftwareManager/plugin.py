@@ -92,6 +92,7 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 																			+eEnv_resolve_multi('/etc/init.d/cardserver*'))
 config.plugins.softwaremanager = ConfigSubsection()
 config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
+config.plugins.softwaremanager.autosaveSettingsfilesEntry = ConfigYesNo(default=False)
 config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
@@ -362,7 +363,11 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
 				elif (currentEntry == "flash-online"):
-					self.session.openWithCallback(self.doBackup, MessageBox, _("Do you want to backup your image and settings before?"), default = True)
+					if config.plugins.softwaremanager.autosaveSettingsfilesEntry.value:
+						self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
+						self.session.open(FlashOnline)
+					else:
+						self.session.openWithCallback(self.doBackup, MessageBox, _("Do you want to backup your image and settings before?"), default = True)
 				elif (currentEntry == "backup-image"):
 					if DFLASH == True:
 						self.session.open(dFlash)
@@ -443,7 +448,10 @@ class UpdatePluginMenu(Screen):
 
 	def backupDone(self,retval = None):
 		if retval is True:
-			self.session.open(MessageBox, _("Backup completed."), MessageBox.TYPE_INFO, timeout = 10)
+			if config.plugins.softwaremanager.autosaveSettingsfilesEntry.value:
+				print "Backup completed."
+			else:
+				self.session.open(MessageBox, _("Backup completed."), MessageBox.TYPE_INFO, timeout = 10)
 		else:
 			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout = 10)
 
@@ -500,6 +508,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.onChangedEntry = [ ]
 		self.setup_title = _("Software manager setup")
 		self.overwriteConfigfilesEntry = None
+		self.autosaveSettingsfilesEntry = None
 		self.overwriteSettingsfilesEntry = None
 		self.overwriteDriversfilesEntry = None
 		self.overwriteEmusfilesEntry = None
@@ -534,6 +543,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 	def createSetup(self):
 		self.list = [ ]
 		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files ?"), config.plugins.softwaremanager.overwriteConfigFiles)
+		self.autosaveSettingsfilesEntry = getConfigListEntry(_("Autosave Setting Files ?"), config.plugins.softwaremanager.autosaveSettingsfilesEntry)
 		self.overwriteSettingsfilesEntry = getConfigListEntry(_("Overwrite Setting Files ?"), config.plugins.softwaremanager.overwriteSettingsFiles)
 		self.overwriteDriversfilesEntry = getConfigListEntry(_("Overwrite Driver Files ?"), config.plugins.softwaremanager.overwriteDriversFiles)
 		self.overwriteEmusfilesEntry = getConfigListEntry(_("Overwrite Emu Files ?"), config.plugins.softwaremanager.overwriteEmusFiles)
@@ -544,6 +554,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.updatetypeEntry  = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
 		#if getBoxType().startswith('et'):
 		self.list.append(self.updatetypeEntry)
+		self.list.append(self.autosaveSettingsfilesEntry)
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(self.overwriteSettingsfilesEntry)
 		self.list.append(self.overwriteDriversfilesEntry)
@@ -564,6 +575,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			self["introduction"].setText(_("Overwrite configuration files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwriteSettingsfilesEntry:
 			self["introduction"].setText(_("Overwrite setting files (channellist) during software upgrade?"))
+		elif self["config"].getCurrent() == self.autosaveSettingsfilesEntry:
+			self["introduction"].setText(_("Autosave setting files (channellist/settings) before start online flash?"))
 		elif self["config"].getCurrent() == self.overwriteDriversfilesEntry:
 			self["introduction"].setText(_("Overwrite driver files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwriteEmusfilesEntry:
