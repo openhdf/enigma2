@@ -75,7 +75,7 @@ class eRTSPStreamClient : public eDVBServiceStream
 	int addCachedPids(ePtr<eDVBService> service, eServiceReferenceDVB s);
 	void update_service_list();
 	int set_demux_buffer(int size);
-	void process_pids(int op, char *pids);
+	void process_pids(int op, const std::string &pid_str);
 	std::string get_current_timestamp();
 	void http_response(int sock, int rc, char *ah, char *desc, int cseq, int lr);
 	void describe_frontend(char *buf, int len);
