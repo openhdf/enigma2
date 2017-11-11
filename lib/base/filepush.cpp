@@ -385,7 +385,7 @@ int eFilePushThreadRecorder::pushReply(void *buf, int len)
 static int errs;
 uint64_t init_tick;
 
-int64_t getTick()
+int64_t eFilePushThreadRecorder::getTick()
 {         //ms
 	struct timespec ts;
 	clock_gettime(CLOCK_MONOTONIC, &ts);
