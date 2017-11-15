@@ -34,7 +34,6 @@
 #include <linux/dvb/ca.h>
 #include <linux/dvb/version.h>
 
-#include <iomanip>
 #include <sstream>
 
 #include <lib/base/eerror.h>
@@ -878,68 +877,67 @@ get_current_timestamp(void)
 
 void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, int cseq, int lr)
 {
-	std::stringstream ss;
-	const char* resp;
+	char *desc1;
+	char server[50];
+	const char *reply =
+		"%s/1.0 %d %s\r\nDate: %s%s%s\r\n%s%s\r\nContent-Length: %d\r\n\r\n%s";
+	const char *reply0 = "%s/1.0 %d %s\r\nDate: %s%s%s\r\n%s%s\r\n\r\n";
+	char *d;
+	char *proto;
+	char sess_id[100], scseq[100];
+
+	proto = (char *)"RTSP";
 
 	if (!ah || !ah[0])
 		ah = public_str;
-
 	if (!desc)
 		desc = (char *)"";
-
-        if (!lr)
-                lr = strlen(desc);
-
-	ss << "RTSP" << "/1.0" << " ";
-
 	if (rc == 200)
-		ss << rc << " " << "OK";
+		d = (char *)"OK";
 	else if (rc == 400)
-		ss << rc << " " << "Bad Request";
+		d = (char *)"Bad Request";
 	else if (rc == 403)
-		ss << rc << " " << "Forbidden";
+		d = (char *)"Forbidden";
 	else if (rc == 404)
-		ss << rc << " " << "Not Found";
+		d = (char *)"Not Found";
 	else if (rc == 500)
-		ss << rc << " " << "Internal Server Error";
+		d = (char *)"Internal Server Error";
 	else if (rc == 501)
-		ss << rc << " " << "Not Implemented";
+		d = (char *)"Not Implemented";
 	else if (rc == 405)
-		ss << rc << " " << "Method Not Allowed";
+		d = (char *)"Method Not Allowed";
 	else if (rc == 454)
-		ss << rc << " " << "Session Not Found";
+		d = (char *)"Session Not Found";
 	else
 	{
+		d = (char *)"Service Unavailable";
 		rc = 503;
-		ss << rc << " " << "Service Unavailable";
 	}
-	ss << "\r\n";
+	char resp[10000];
+	desc1 = desc;
+	resp[sizeof(resp) - 1] = 0;
+	if (!lr)
+		lr = strlen(desc);
 
-	ss << "Date:" << get_current_timestamp() << "\r\n";
+	sess_id[0] = 0;
+	scseq[0] = 0;
+	server[0] = 0;
+
+	sprintf(server, "\r\nServer: %s/%s", app_name, version);
 
 	if (session_id && ah && !strstr(ah, "Session") && rc != 454)
-		ss << "Session: " << std::setfill('0') << std::setw(10) << session_id << "\r\n";
-
+		sprintf(sess_id, "\r\nSession: %010d", session_id);
 	if (cseq > 0)
-		ss << "Cseq: " << cseq << "\r\n";
-
-	ss << ah << "\r\n";
-
-	ss << "Server: " << app_name << "/" << version << "\r\n";
+		sprintf(scseq, "\r\nCseq: %d", cseq);
 
 	if (lr > 0)
-		ss << "Content-Length: " << lr << "\r\n\r\n" << desc;
+		snprintf(resp, sizeof(resp) - 1, reply, proto, rc, d, get_current_timestamp(), sess_id, scseq, ah, server, lr, desc1);
 	else
-		ss << "\r\n";
-
-	resp = ss.str().c_str();
-	int len = strlen(resp);
-
-	eDebug("reply to %d, mr %p, len %d: %s", sock, mr, len, resp);
-
+		snprintf(resp, sizeof(resp) - 1, reply0, proto, rc, d, get_current_timestamp(), sess_id, scseq, ah, server);
+	eDebug("reply to %d, mr %p,len %d: %s", sock, mr, strlen(resp), resp);
 	if (mr)
 	{
-		mr->pushReply((void *)resp, len);
+		mr->pushReply(resp, strlen(resp));
 	}
 	else
 	{
@@ -948,6 +946,7 @@ void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, in
 		tv.tv_nsec = 5000000;
 		int times = 20;
 		int pos = 0;
+		int len = strlen(resp);
 		int rb = 0;
 		while (pos < len)
 		{
