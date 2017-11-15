@@ -70,6 +70,7 @@ class eDVBServicePMTHandler: public eDVBPMTParser
 	eServiceReferenceDVB m_reference;
 	ePtr<eDVBService> m_service;
 
+	std::map <int, int> pid_sid;
 	int m_last_channel_state;
 	eDVBCAService *m_ca_servicePtr;
 	bool doDescramble;
