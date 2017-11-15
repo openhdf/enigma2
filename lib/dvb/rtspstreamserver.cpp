@@ -830,6 +830,7 @@ std::string eRTSPStreamClient::get_current_timestamp()
 void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, int cseq, int lr)
 {
 	std::stringstream ss;
+	const char* resp;
 
 	if (!ah || !ah[0])
 		ah = public_str;
@@ -882,7 +883,7 @@ void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, in
 	else
 		ss << "\r\n";
 
-	char *resp = strdup(ss.str().c_str());
+	resp = ss.str().c_str();
 	int len = strlen(resp);
 
 	eDebug("reply to %d, mr %p, len %d: %s", sock, mr, len, resp);
@@ -919,8 +920,6 @@ void eRTSPStreamClient::http_response(int sock, int rc, char *ah, char *desc, in
 			eDebug("error writing %d out of %d to socket %d, errno: %d", pos, len, sock, errno);
 		eDebug("wrote successfully %d", len);
 	}
-
-	free(resp);
 }
 
 const char *fe_inversion[] =
