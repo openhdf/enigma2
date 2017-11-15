@@ -18,7 +18,6 @@ class eDVBDB: public iDVBChannelList
 	friend class eDVBDBBouquetQuery;
 	friend class eDVBDBSatellitesQuery;
 	friend class eDVBDBProvidersQuery;
-	friend class eRTSPStreamClient;
 
 	struct channel
 	{
