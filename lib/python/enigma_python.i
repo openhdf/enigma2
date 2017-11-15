@@ -36,7 +36,6 @@ is usually caused by not marking PSignals as immutable.
 %{
 
 #define SWIG_COMPILE
-#include <lib/base/branding.h>
 #include <lib/base/ebase.h>
 #include <lib/base/smartptr.h>
 #include <lib/base/eenv.h>
@@ -165,7 +164,6 @@ typedef long time_t;
 %include <lib/service/service.h>
 %include <lib/base/e2avahi.h>
 %include <lib/service/servicepeer.h>
-%include <lib/base/branding.h>
 
 // TODO: embed these...
 %immutable ePicLoad::PictureData;
