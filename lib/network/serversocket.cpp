@@ -14,7 +14,7 @@ void eServerSocket::notifier(int)
 	char straddr[INET6_ADDRSTRLEN];
 
 #ifdef DEBUG_SERVERSOCKET
-	eDebug("[eServerSocket] incoming connection!");
+	eDebug("[SERVERSOCKET] incoming connection!");
 #endif
 
 	clientlen=sizeof(client_addr);
@@ -22,15 +22,14 @@ void eServerSocket::notifier(int)
 			(struct sockaddr *) &client_addr,
 			(socklen_t*)&clientlen);
 	if(clientfd<0)
-		eDebug("[eServerSocket] error on accept()");
-
+		eDebug("[SERVERSOCKET] error on accept()");
 
 	inet_ntop(AF_INET6, &client_addr.sin6_addr, straddr, sizeof(straddr));
 	strRemoteHost=straddr;
 	newConnection(clientfd);
 }
 
-eServerSocket::eServerSocket(int port, eMainloop *ml): m_port(port), eSocket(ml, AF_INET6)
+eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml, AF_INET6)
 {
 	struct sockaddr_in6 serv_addr;
 	strRemoteHost = "";
@@ -51,14 +50,10 @@ eServerSocket::eServerSocket(int port, eMainloop *ml): m_port(port), eSocket(ml,
 		(struct sockaddr *) &serv_addr,
 		sizeof(serv_addr))<0)
 	{
-		eDebug("[eServerSocket] ERROR on bind() (%m)");
+		eDebug("[SERVERSOCKET] ERROR on bind() (%m)");
 		okflag=0;
 	}
-#if HAVE_HISILICON
-	listen(getDescriptor(), 10);
-#else
 	listen(getDescriptor(), 0);
-#endif
 
 	rsn->setRequested(eSocketNotifier::Read);
 }
@@ -67,7 +62,6 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_L
 {
 	struct sockaddr_un serv_addr;
 	strRemoteHost = "";
-	m_port = 0;
 
 	memset(&serv_addr, 0, sizeof(serv_addr));
 	serv_addr.sun_family = AF_LOCAL;
@@ -86,14 +80,10 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_L
 		sizeof(serv_addr))<0)
 #endif
 	{
-		eDebug("[eServerSocket] ERROR on bind() (%m)");
+		eDebug("[SERVERSOCKET] ERROR on bind() (%m)");
 		okflag=0;
 	}
-#if HAVE_HISILICON
-	listen(getDescriptor(), 10);
-#else
 	listen(getDescriptor(), 0);
-#endif
 
 	rsn->setRequested(eSocketNotifier::Read);
 }
@@ -101,7 +91,7 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_L
 eServerSocket::~eServerSocket()
 {
 #if 0
-	eDebug("[eServerSocket] destructed");
+	eDebug("[SERVERSOCKET] destructed");
 #endif
 }
 
