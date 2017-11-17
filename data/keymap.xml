@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 02.11.2017" -->
+	<!-- "HDF Default Keymap 17.11.2017" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -999,6 +999,8 @@
 		<key id="KEY_FAVORITES" mapto="favor_long" flags="l" />
 		<key id="KEY_HOMEPAGE" mapto="homepage" flags="b" />
 		<key id="KEY_HOMEPAGE" mapto="homepage_long" flags="l" />
+		<key id="KEY_ANGLE" mapto="toggleAspectRatio" flags="b" />
+		<key id="KEY_ANGLE" mapto="toggleAspectRatio_long" flags="l" />
 		<key id="KEY_CONTEXT_MENU" mapto="contextMenu" flags="b"/>
 		<key id="KEY_CONTEXT_MENU" mapto="context_long" flags="l"/>
 		<key id="KEY_SAT" mapto="sat" flags="b" />
