@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "02.11.2017"
+updateversion = "17.11.2017"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -35,7 +35,7 @@ def getHotkeys():
 	(_("Yellow long"), "yellow_long", ""),
 	(_("Blue"), "blue", "Infobar/showExtensionSelection"),
 	(_("Blue long"), "blue_long", "Infobar/showPluginBrowser"),
-	(_("Info (EPG)"), "info", "Infobar/openSingleServiceEPG"),
+	(_("Info (EPG)"), "info", "Infobar/openGraphEPG"),
 	(_("Info (EPG) long"), "info_long", "Infobar/showEventInfoPlugins"),
 	(_("Epg/Guide"), "epg", "Infobar/openSingleServiceEPG"),
 	(_("Epg/Guide long"), "epg_long", "Infobar/showEventInfoPlugins"),
@@ -82,8 +82,8 @@ def getHotkeys():
 	(_("Homepage/Portal long"), "homepage_long", ""),
 	(_("List/Fav/PVR"), "list", "Plugins/Extensions/EnhancedMovieCenter/2"),
 	(_("List/Fav/PVR long"), "list_long", "Infobar/showMovies"),
-	(_("PVR"), "pvr", ""),
-	(_("PVR long"), "pvr_long", ""),
+	(_("PVR"), "pvr", "Plugins/Extensions/EnhancedMovieCenter/2"),
+	(_("PVR long"), "pvr_long", "Infobar/showMovies"),
 	(_("Mark/Portal/Playlist"), "mark", "Plugins/Extensions/EtPortal/1"),
 	(_("Mark/Portal/Playlist long"), "mark_long", ""),
 	(_("Media"), "showMovies", "Plugins/Extensions/EnhancedMovieCenter/2"),
@@ -141,7 +141,7 @@ def getHotkeys():
 	(_("UHF/Slow long"), "slow_long", ""),
 	(_("V-Key"), "vkey", "Plugins/Extensions/EnhancedMovieCenter/2"),
 	(_("V-Key long"), "vkey_long", "Infobar/showMovies"),
-	(_("Y-Tube/WWW"), "www", ""),
+	(_("Y-Tube/WWW"), "www", "Plugins/Extensions/HDF-Toolbox/1"),
 	(_("Y-Tube/WWW long"), "www_long", ""),
 	(_("Directory "), "directory", ""),
 	(_("Directory long"), "directory_long", ""),
