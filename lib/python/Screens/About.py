@@ -304,7 +304,7 @@ class Devices(Screen):
 					freeline = _("Free: ") + _("full")
 				self.list.append(mount + '\t' + sizeline + ' \t' + freeline)
 			else:
-				self.list.append(mount + '\t' + _('Not mounted'))	
+				self.list.append(mount + '\t' + _('Not mounted'))
 
 			list2.append(device)
 		self.list = '\n'.join(self.list)
@@ -319,9 +319,18 @@ class Devices(Screen):
 			self.parts = line.split()
 			if line and self.parts[0] and (self.parts[0].startswith('192') or self.parts[0].startswith('//192')):
 				line = line.split()
-				ipaddress = line[0]
-				mounttotal = line[1]
-				mountfree = line[3]
+				try:
+					ipaddress = line[0]
+				except:
+					ipaddress = ""
+				try:
+					mounttotal = line[1]
+				except:
+					mounttotal = ""
+				try:
+					mountfree = line[3]
+				except:
+					mountfree = ""
 				if self.mountinfo:
 					self.mountinfo += "\n"
 				self.mountinfo += "%s (%sB, %sB %s)" % (ipaddress, mounttotal, mountfree, _("free"))
