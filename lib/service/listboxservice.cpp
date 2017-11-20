@@ -78,9 +78,9 @@ void eListboxServiceContent::setRoot(const eServiceReference &root, bool justSet
 	ASSERT(m_service_center);
 
 	if (m_service_center->list(m_root, m_lst))
-		eDebug("no list available!");
+		eDebug("[eListboxServiceContent] no list available!");
 	else if (m_lst->getContent(m_list))
-		eDebug("getContent failed");
+		eDebug("[eListboxServiceContent] getContent failed");
 
 	FillFinished();
 }
@@ -409,26 +409,26 @@ int eListboxServiceContent::setCurrentMarked(bool state)
 			{
 				ePtr<iMutableServiceList> list;
 				if (m_lst->startEdit(list))
-					eDebug("no editable list");
+					eDebug("[eListboxServiceContent] no editable list");
 				else
 				{
 					eServiceReference ref;
 					getCurrent(ref);
 					if(!ref)
-						eDebug("no valid service selected");
+						eDebug("[eListboxServiceContent] no valid service selected");
 					else
 					{
 						int pos = cursorGet();
-						eDebugNoNewLineStart("move %s to %d ", ref.toString().c_str(), pos);
+						eDebugNoNewLineStart("[eListboxServiceContent] move %s to %d ", ref.toString().c_str(), pos);
 						if (list->moveService(ref, cursorGet()))
-							eDebugNoNewLineEnd("failed");
+							eDebugNoNewLine("failed\n");
 						else
-							eDebugNoNewLineEnd("ok");
+							eDebugNoNewLine("ok\n");
 					}
 				}
 			}
 			else
-				eDebug("no list available!");
+				eDebug("[eListboxServiceContent] no list available!");
 		}
 	}
 
@@ -968,7 +968,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							}
 							int correction = (area.height() - pixmap_size.height()) / 2;
 							area.moveBy(offset);
-							if (service_info->isCrypted())
+							if (service_info && service_info->isCrypted())
 							{
 								if (m_crypto_icon_mode == 2)
 								{
