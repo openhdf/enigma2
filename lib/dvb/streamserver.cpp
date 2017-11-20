@@ -173,7 +173,6 @@ void eStreamClient::notifier(int what)
 				pos = serviceref.find('?');
 				if (pos == std::string::npos)
 				{
-					eDebug("[eDVBServiceStream] stream ref: %s", serviceref.c_str());
 					if (eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0)
 					{
 						running = true;

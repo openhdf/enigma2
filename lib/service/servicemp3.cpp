@@ -504,7 +504,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_last_seek_pos = 0;
 	m_media_lenght = 0;
 #endif
-	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
+	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openHDF;;;)";
 	m_extra_headers = "";
 	m_download_buffer_path = "";
 	m_prev_decoder_time = -1;
@@ -1220,9 +1220,7 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		if (!strcmp(name, "filesrc") || !strcmp(name, "souphttpsrc"))
 		{
 			/* previous state was already ok if we come here just give all elements time to unpause */
-#if GST_VERSION_MAJOR >= 1
 			m_to_paused = false;
-#endif
 			gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
 			ret = gst_element_get_state(m_gst_playbin, &state, &pending, 2 * GST_SECOND);
 #if GST_VERSION_MAJOR >= 1
