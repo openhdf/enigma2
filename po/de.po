@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-11-09 15:38+0100\n"
+"PO-Revision-Date: 2017-11-26 08:56+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1694,7 +1694,7 @@ msgid "Enable fallback remote receiver"
 msgstr "Aktiviere Reservereceiver"
 
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
-msgstr "Reserve-Enigma2-Receiver aktivieren der versucht wird wenn ein Sender lokal nicht empfangen werden kann. (z.B. wenn Tuner belegt oder Sender lokal nicht verfügbar ist). Gebe komplette URL inklusive http:// und Portnummer (normal ...:8001), e.g. http://zweite_box:8001."
+msgstr "Reserve-Enigma2-Receiver aktivieren der versucht wird, wenn ein Sender lokal nicht empfangen werden kann. (z.B. wenn Tuner belegt oder Sender lokal nicht verfügbar ist). Gebe komplette URL ein inklusive http:// und Portnummer (normal ...:8001), z.B. http://zweite_box:8001."
 
 msgid "Fallback remote receiver URL"
 msgstr "Reservereceiver URL"
@@ -1703,7 +1703,7 @@ msgid "URL of fallback remote receiver"
 msgstr "URL des Reservereceiver"
 
 msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customise screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customise screen."
-msgstr "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll wenn mehr als ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der unter Anpassen eingestellt ist. 'Auto' wählt den Tuner nach E2-Regeln und ignoriert die Einstellung in Anpassen."
+msgstr "Konfiguriere welcher Tuner für Aufnahmen bevorzugt werden soll, wenn mehr als ein Tuner verfügbar ist. 'Deaktiviert' verwendet den bevorzugten Tuner der unter Anpassen eingestellt ist. 'Auto' wählt den Tuner nach E2-Regeln und ignoriert die Einstellung in Anpassen."
 
 msgid "Always show bouquets"
 msgstr "Zeige Favoritenliste immer an"
@@ -3075,16 +3075,16 @@ msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Konfiguriere ob PIcon, Sendername oder beides im EPG angezeigt werden soll."
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
-msgstr "Stelle ein ob (und wie lange) die SecondInfoBar angezeigt werden soll wenn OK zweimal gedrückt wird. Die SecondInfoBar enthält zusätzliche Informationen zum eingestellten Sender. Der Skin muss es unterstützen und bestimmt was angezeigt wird."
+msgstr "Stelle ein ob (und wie lange) die SecondInfoBar angezeigt werden soll, wenn OK zweimal gedrückt wird. Die SecondInfoBar enthält zusätzliche Informationen zum eingestellten Sender. Der Skin muss es unterstützen und bestimmt was angezeigt wird."
 
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Stell ein welches Farbformat an SCART ausgegeben werden soll (CVBS, RGB, YPbPr, S-Video)."
 
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
-msgstr "Konfiguriere welche Tunerart bevorzugt benutzt werden soll wenn der selbe Sender auf verschiedenen Tuner verfügbar ist."
+msgstr "Konfiguriere welche Tunerart bevorzugt benutzt werden soll, wenn der selbe Sender auf verschiedenen Tuner verfügbar ist."
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
-msgstr "Konfiguriere welcher Tuner bevorzugt benutzt werden soll wenn mehr als einer verfügbar ist. Wenn 'Auto' eingestellt ist so wird zuerst der Tuner mit den wenigsten Sendern/Satelliten genommen."
+msgstr "Konfiguriere welcher Tuner bevorzugt benutzt werden soll, wenn mehr als einer verfügbar ist. Bei Einstellung 'Auto' wird zuerst der Tuner mit den wenigsten Sendern/Satelliten genommen."
 
 msgid "Configure your NTP server."
 msgstr "Deine NTP Server konfigurieren"
@@ -3950,7 +3950,7 @@ msgid "ECM avg"
 msgstr "ECM Durchschnitt"
 
 msgid "ECM data will be included in the stream. This enables a client receiver to decode it."
-msgstr "ECM Daten werden in den Stream eingefügt. Dies ermöglicht es andere Empfänger es zu entschlüsseln."
+msgstr "ECM Daten werden in den Stream eingefügt. Dies ermöglicht es anderen Empfängern zu entschlüsseln."
 
 msgid "ECM last"
 msgstr "Letztes ECM"
@@ -13473,7 +13473,12 @@ msgid "After PowerLost"
 msgstr "Verhalten der Box nach Stromausfall"
 
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
-msgstr "Wählen Sie aus, was passieren soll, nachdem ihre %s %s nicht sauber heruntergefahren wurde, bzw. was nach einem Stromausfall geschehen soll."
+msgstr "Wählen Sie aus, was passieren soll, nachdem ihre %s %s nicht sauber heruntergefahren wurde bzw. was nach einem Stromausfall geschehen soll."
+
+msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
+msgstr ""
+"Wählen Sie was geschehen soll, wenn die %s %s gestartet wird.\n"
+" Normal Starten oder in den Standby gehen?"
 
 msgid "Boot-up action"
 msgstr "Startmodus der Box"
@@ -14240,3 +14245,21 @@ msgstr "Stream automatisch auswählen"
 
 msgid "Connection speed"
 msgstr "Verbindungsgeschwindigkeit"
+
+msgid "Enable cut file support for non *.ts files"
+msgstr "Schnittdateisupport für nicht *.ts-Dateien aktivieren"
+
+msgid "Enable cut file support for audio files"
+msgstr "Schnittdateisupport für Audiodateien aktivieren"
+
+msgid "Enable chapter support for video files"
+msgstr "Kapitelunterstützung für Videodateien aktivieren"
+
+msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
+msgstr "Aktivieren Sie die Unterstützung von Schnittdateien für nicht *.ts-Dateien. (z.B. MP4)"
+
+msgid "Enable cut file support for audio files. (e.g. mp3)"
+msgstr "Aktivieren Sie die Unterstützung von Schnittdateien für Audiodateien. (z.B. MP3)"
+
+msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
+msgstr "Zeige Kapitelpositionen für unterstützte Videodateien an. ( Ab GStreamer Version 1 )"
