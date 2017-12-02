@@ -9,6 +9,7 @@ from boxbranding import getBoxType
 class Network:
 	def __init__(self):
 		self.ifaces = {}
+		self.onlyWoWifaces = {}
 		self.configuredNetworkAdapters = []
 		self.NetworkState = 0
 		self.DnsState = 0
@@ -41,7 +42,7 @@ class Network:
 		return self.remoteRootFS
 
 	def isBlacklisted(self, iface):
-		return iface in ('lo', 'wifi0', 'wmaster0', 'sit0', 'tun0', 'tap0')
+		return iface in ('lo', 'wifi0', 'wmaster0', 'sit0', 'tun0', 'tap0', 'sys0', 'p2p0')
 
 	def getInterfaces(self, callback = None):
 		self.configuredInterfaces = []
@@ -85,7 +86,7 @@ class Network:
 
 		for line in result.splitlines():
 			split = line.strip().split(' ',2)
-			if split[1][:-1] == iface:
+			if (split[1][:-1] == iface) or (split[1][:-1] == (iface + '@sys0')):
 				up = self.regExpMatch(upPattern, split[2])
 				mac = self.regExpMatch(macPattern, self.regExpMatch(macLinePattern, split[2]))
 				if up is not None:
@@ -138,9 +139,16 @@ class Network:
 		fp.write("auto lo\n")
 		fp.write("iface lo inet loopback\n\n")
 		for ifacename, iface in self.ifaces.items():
-			if iface['up']:
-				fp.write("auto " + ifacename + "\n")
-				self.configuredInterfaces.append(ifacename)
+			WoW = False
+			if self.onlyWoWifaces.has_key(ifacename):
+				WoW = self.onlyWoWifaces[ifacename]
+			if WoW == False and iface['up'] == True:
+					fp.write("auto " + ifacename + "\n")
+					self.configuredInterfaces.append(ifacename)
+					self.onlyWoWifaces[ifacename] = False
+			elif WoW == True:
+				self.onlyWoWifaces[ifacename] = True
+				fp.write("#only WakeOnWiFi " + ifacename + "\n")
 			if iface['dhcp']:
 				fp.write("iface "+ ifacename +" inet dhcp\n")
 			if not iface['dhcp']:
@@ -280,11 +288,11 @@ class Network:
 				self.wlan_interfaces.append(iface)
 		else:
 			if iface not in self.lan_interfaces:
-				if iface == "eth1":
+				if getBoxType() == "et10000" and iface == "eth1":
 					name = _("VLAN connection")
 				else:	
-					name = _("LAN connection")	
-				if len(self.lan_interfaces) and not iface == "eth1":
+					name = _("LAN connection")
+				if len(self.lan_interfaces) and not getBoxType() == "et10000" and not iface == "eth1":
 					name += " " + str(len(self.lan_interfaces)+1)
 				self.lan_interfaces.append(iface)
 		return name
@@ -296,34 +304,16 @@ class Network:
 		moduledir = self.getWlanModuleDir(iface)
 		if moduledir:
 			name = os.path.basename(os.path.realpath(moduledir))
-			if name.startswith('ath') or name.startswith('carl'):
+			if name in ('ath_pci','ath5k','ar6k_wlan'):
 				name = 'Atheros'
-			elif name.startswith('rt2') or name.startswith('rt3') or name.startswith('rt5') or name.startswith('rt6') or name.startswith('rt7'):
+			elif name in ('rt73','rt73usb','rt3070sta'):
 				name = 'Ralink'
-			elif name.startswith('zd'):
+			elif name == 'zd1211b':
 				name = 'Zydas'
-			elif name.startswith('rtl') or name.startswith('r8'):
+			elif name == 'r871x_usb_drv':
 				name = 'Realtek'
-			elif name.startswith('smsc'):
-				name = 'SMSC'
-			elif name.startswith('peg'):
-				name = 'Pegasus'
-			elif name.startswith('rn'):
-				name = 'RNDIS'
-			elif name.startswith('mw') or name.startswith('libertas'):
-				name = 'Marvel'
-			elif name.startswith('p5'):
-				name = 'Prism'
-			elif name.startswith('as') or name.startswith('ax'):
-				name = 'ASIX'
-			elif name.startswith('dm'):
-				name = 'Davicom'
-			elif name.startswith('mcs'):
-				name = 'MosChip'
-			elif name.startswith('at'):
-				name = 'Atmel'
-			elif name.startswith('iwm'):
-				name = 'Intel'				
+			elif name  == 'brcm-systemport':
+				name = 'Broadcom'
 		else:
 			name = _('Unknown')
 
@@ -336,7 +326,10 @@ class Network:
 		return self.ifaces.keys()
 
 	def getAdapterAttribute(self, iface, attribute):
-		return self.ifaces.get(iface, {}).get(attribute)
+		if self.ifaces.has_key(iface):
+			if self.ifaces[iface].has_key(attribute):
+				return self.ifaces[iface][attribute]
+		return None
 
 	def setAdapterAttribute(self, iface, attribute, value):
 # 		print "setting for adapter", iface, "attribute", attribute, " to value", value
@@ -430,9 +423,9 @@ class Network:
 
 	def checkNetworkState(self,statecallback):
 		self.NetworkState = 0
-		cmd1 = "ping -c 1 www.google.de"
-		cmd2 = "ping -c 1 www.google.com"
-		cmd3 = "ping -c 1 www.google.nl"
+		cmd1 = "ping -c 1 www.openpli.org"
+		cmd2 = "ping -c 1 www.google.nl"
+		cmd3 = "ping -c 1 www.google.com"
 		self.PingConsole = Console()
 		self.PingConsole.ePopen(cmd1, self.checkNetworkStateFinished,statecallback)
 		self.PingConsole.ePopen(cmd2, self.checkNetworkStateFinished,statecallback)
@@ -526,8 +519,16 @@ class Network:
 			self.activateInterfaceConsole.killAll()
 			self.activateInterfaceConsole = None
 
-	def checkforInterface(self, iface):
-		return self.getAdapterAttribute(iface, 'up')
+	def checkforInterface(self,iface):
+		if self.getAdapterAttribute(iface, 'up') is True:
+			return True
+		else:
+			ret=os.system("ifconfig " + iface + " up")
+			os.system("ifconfig " + iface + " down")
+			if ret == 0:
+				return True
+			else:
+				return False
 
 	def checkDNSLookup(self,statecallback):
 		cmd1 = "nslookup www.dream-multimedia-tv.de"
@@ -646,24 +647,33 @@ class Network:
 
 		return False
 
+	def canWakeOnWiFi(self, iface):
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s"%iface):
+			return True
+
 	def getWlanModuleDir(self, iface = None):
-		devicedir = self.sysfsPath(iface) + '/device'
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s"%iface):
+			devicedir = self.sysfsPath("sys0") + '/device'
+		else:
+			devicedir = self.sysfsPath(iface) + '/device'
 		moduledir = devicedir + '/driver/module'
 		if os.path.isdir(moduledir):
 			return moduledir
 
 		# identification is not possible over default moduledir
-		for x in os.listdir(devicedir):
-			# rt3070 on kernel 2.6.18 registers wireless devices as usb_device (e.g. 1-1.3:1.0) and identification is only possible over /sys/class/net/'ifacename'/device/1-xxx
-			if x.startswith("1-"):
-				moduledir = devicedir + '/' + x + '/driver/module'
-				if os.path.isdir(moduledir):
-					return moduledir
-		# rt73, zd1211b, r871x_usb_drv on kernel 2.6.12 can be identified over /sys/class/net/'ifacename'/device/driver, so look also here
-		moduledir = devicedir + '/driver'
-		if os.path.isdir(moduledir):
-			return moduledir
-
+		try:
+			for x in os.listdir(devicedir):
+				# rt3070 on kernel 2.6.18 registers wireless devices as usb_device (e.g. 1-1.3:1.0) and identification is only possible over /sys/class/net/'ifacename'/device/1-xxx
+				if x.startswith("1-"):
+					moduledir = devicedir + '/' + x + '/driver/module'
+					if os.path.isdir(moduledir):
+						return moduledir
+			# rt73, zd1211b, r871x_usb_drv on kernel 2.6.12 can be identified over /sys/class/net/'ifacename'/device/driver, so look also here
+			moduledir = devicedir + '/driver'
+			if os.path.isdir(moduledir):
+				return moduledir
+		except:
+			pass
 		return None
 
 	def detectWlanModule(self, iface = None):
@@ -677,6 +687,8 @@ class Network:
 		moduledir = self.getWlanModuleDir(iface)
 		if moduledir:
 			module = os.path.basename(os.path.realpath(moduledir))
+			if module in ('brcm-systemport',):
+				return 'brcm-wl'
 			if module in ('ath_pci','ath5k'):
 				return 'madwifi'
 			if module in ('rt73','rt73'):
@@ -686,8 +698,9 @@ class Network:
 		return 'wext'
 
 	def calc_netmask(self,nmask):
-		from struct import pack, unpack
-		from socket import inet_ntoa, inet_aton
+		from struct import pack
+		from socket import inet_ntoa
+
 		mask = 1L<<31
 		xnet = (1L<<32)-1
 		cidr_range = range(0, 32)
@@ -719,6 +732,20 @@ class Network:
 				del self.ifaces[interface]
 			except KeyError:
 				pass
+
+	def getInterfacesNameserverList(self, iface):
+		result = []
+		nameservers = self.getAdapterAttribute(iface, "dns-nameservers")
+		if nameservers:
+			ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
+			ipPattern = re.compile(ipRegexp)
+			for x in nameservers.split()[1:]:
+				ip = self.regExpMatch(ipPattern, x)
+				if ip:
+					result.append( [ int(n) for n in ip.split('.') ] )
+		if len(self.nameservers) and not result: # use also global nameserver if we got no one from interface
+			result.extend(self.nameservers)
+		return result
 
 iNetwork = Network()
 
