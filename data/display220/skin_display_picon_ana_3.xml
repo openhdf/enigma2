@@ -20,7 +20,7 @@
   </fonts>
   <!--Main-->
   <screen name="InfoBarSummary" position="fill">
-    <widget source="session.CurrentService" render="PiconRes" position="center,center" size="220,176" halign="center" valign="center">
+    <widget source="session.CurrentService" render="PiconRes" position="center,center" size="220,132" halign="center" valign="center">
       <convert type="ServiceName">Reference</convert>
     </widget>
     <widget source="session.RecordState" render="FixedLabel" text="Recording" position="110,151" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;22" zPosition="2" noWrap="1" valign="center">
@@ -39,10 +39,10 @@
     <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" sColor="red" linewidth="3" zPosition="4" alphatest="on">
       <convert type="OMaclock">Seconds</convert>
     </widget>
-    <widget source="session.RecordState" render="Pixmap" pixmap="~/analog_lcd_rec.png" position="0,0" size="220,176" zPosition="1">
+    <widget source="session.RecordState" render="Pixmap" pixmap="~/analog_lcd_rec.png" position="0,0" size="220,176" zPosition="1" alphatest="on">
       <convert type="ConditionalShowHide">Blink</convert>
     </widget>
-    <ePixmap pixmap="~/analog_lcd_point.png" position="center,center" size="20,20" alphatest="on" transparent="1" zPosition="5" />
+    <ePixmap pixmap="~/analog_lcd_point.png" position="center,center" size="20,20" alphatest="on" zPosition="5" />
   </screen>
   <!--menu-->
   <screen name="MenuSummary" position="fill">
