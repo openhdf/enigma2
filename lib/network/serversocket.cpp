@@ -53,7 +53,11 @@ eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml, AF_INET6)
 		eDebug("[SERVERSOCKET] ERROR on bind() (%m)");
 		okflag=0;
 	}
+#if HAVE_HISILICON
+	listen(getDescriptor(), 10);
+#else
 	listen(getDescriptor(), 0);
+#endif
 
 	rsn->setRequested(eSocketNotifier::Read);
 }
@@ -83,7 +87,11 @@ eServerSocket::eServerSocket(std::string path, eMainloop *ml) : eSocket(ml, AF_L
 		eDebug("[SERVERSOCKET] ERROR on bind() (%m)");
 		okflag=0;
 	}
+#if HAVE_HISILICON
+	listen(getDescriptor(), 10);
+#else
 	listen(getDescriptor(), 0);
+#endif
 
 	rsn->setRequested(eSocketNotifier::Read);
 }
