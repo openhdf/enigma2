@@ -65,10 +65,10 @@
     <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" sColor="red" linewidth="3" zPosition="4" alphatest="on">
       <convert type="OMaclock">Seconds</convert>
     </widget>
-    <widget source="session.RecordState" render="Pixmap" pixmap="~/analog_lcd_rec.png" position="0,0" size="220,176" zPosition="1">
+    <widget source="session.RecordState" render="Pixmap" pixmap="~/analog_lcd_rec.png" position="0,0" size="220,176" zPosition="1" alphatest="on">
       <convert type="ConditionalShowHide">Blink</convert>
     </widget>
-    <ePixmap pixmap="~/analog_lcd_point.png" position="center,center" size="18,18" alphatest="on" transparent="1" zPosition="5" />
+    <ePixmap pixmap="~/analog_lcd_point.png" position="center,center" size="18,18" alphatest="on" zPosition="5" />
   </screen>
   <!--menu-->
   <screen name="MenuSummary" position="fill">
