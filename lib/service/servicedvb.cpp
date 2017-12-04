@@ -2170,7 +2170,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 	m_current_audio_pid = apid;
 
-	if (m_decoder->setAudioPID(apid, apidtype))
+	if (!m_noaudio && m_decoder->setAudioPID(apid, apidtype))
 	{
 		eDebug("set audio pid failed");
 		return -4;
