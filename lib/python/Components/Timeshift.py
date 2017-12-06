@@ -377,7 +377,7 @@ class InfoBarTimeshift:
 					self.pts_delay_timer.start(1000, True)
 
 	def getTimeshift(self):
-		if self.ts_disabled:
+		if self.ts_disabled or self.pts_delay_timer.isActive():
 			return None
 
 		service = self.session.nav.getCurrentService()
@@ -395,6 +395,7 @@ class InfoBarTimeshift:
 
 		if ts.isTimeshiftEnabled():
 			print "[TIMESHIFT] - hu, timeshift already enabled?"
+			#self.activateTimeshiftEndAndPause()
 		else:
 			self.activateAutorecordTimeshift()
 			self.activateTimeshiftEndAndPause()
@@ -1106,7 +1107,7 @@ class InfoBarTimeshift:
 
 	def ptsCreateHardlink(self):
 		for filename in os.listdir(config.usage.timeshift_path.value):
-			if filename.startswith("timeshift") and not filename.endswith(".sc") and not filename.endswith(".del") and not filename.endswith(".copy"):
+			if filename.startswith("timeshift.") and not filename.endswith(".sc") and not filename.endswith(".del") and not filename.endswith(".copy") and not filename.endswith(".ap"):
 				if os.path.exists("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value,self.pts_eventcount)):
 					self.BgFileEraser.erase("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value,self.pts_eventcount))
 				if os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value,self.pts_eventcount)):
@@ -1125,7 +1126,7 @@ class InfoBarTimeshift:
 					metafile.write("%s\n%s\n%s\n%i\n" % (self.pts_curevent_servicerefname,self.pts_curevent_name.replace("\n", ""),self.pts_curevent_description.replace("\n", ""),int(self.pts_starttime)))
 					metafile.close()
 				except Exception, errormsg:
-					Notifications.AddNotification(MessageBox, _("Creating Hardlink to Timeshift file failed!")+"\n"+_("The Filesystem on your Timeshift-Device does not support hardlinks.\nMake sure it is formatted in EXT2 or EXT3!")+"\n\n%s" % errormsg, MessageBox.TYPE_ERROR, timeout=30)
+					Notifications.AddNotification(MessageBox, _("Creating Hardlink to Timeshift file failed!")+"\n"+_("The Filesystem on your Timeshift-Device does not support hardlinks.\nMake sure it is formatted in EXT2, EXT3 or EXT4!")+"\n\n%s" % errormsg, MessageBox.TYPE_ERROR, timeout=30)
 
 				# Create EIT File
 				self.ptsCreateEITFile("%spts_livebuffer_%s" % (config.usage.timeshift_path.value,self.pts_eventcount))
@@ -1282,7 +1283,7 @@ class InfoBarTimeshift:
 		if Screens.Standby.inTryQuitMainloop:
 			self.pts_QuitMainloop_timer.start(30000, True)
 		else:
-			Notifications.AddNotification(MessageBox, _("Timeshift saved to your harddisk!"), MessageBox.TYPE_INFO, timeout=30)
+			Notifications.AddNotification(MessageBox, _("Timeshift saved to your harddisk!"), MessageBox.TYPE_INFO, timeout=10)
 
 	def ptsMergePostCleanUp(self):
 		if self.session.nav.RecordTimer.isRecording() or len(JobManager.getPendingJobs()) >= 1:

@@ -5,9 +5,10 @@
 #include <set>
 
 #define TABLE_eDebug(x...) do { if (m_debug) eDebug(x); } while(0)
+#define TABLE_eDebugNoNewLineStart(x...) do { if (m_debug) eDebugNoNewLineStart(x); } while(0)
 #define TABLE_eDebugNoNewLine(x...) do { if (m_debug) eDebugNoNewLine(x); } while(0)
 
-class eGTable: public iObject, public Object
+class eGTable: public iObject, public sigc::trackable
 {
 	DECLARE_REF(eGTable);
 	ePtr<iDVBSectionReader> m_reader;
@@ -25,7 +26,7 @@ protected:
 	virtual int createTable(unsigned int nr, const uint8_t *data, unsigned int max)=0;
 	virtual unsigned int totalSections(unsigned int max) { return max + 1; }
 public:
-	Signal1<void, int> tableReady;
+	sigc::signal1<void, int> tableReady;
 	eGTable();
 	RESULT start(iDVBSectionReader *reader, const eDVBTableSpec &table);
 	RESULT start(iDVBDemux *reader, const eDVBTableSpec &table);
@@ -48,7 +49,7 @@ protected:
 		unsigned int ssize = sections.size();
 		if (max < ssize || nr >= max)
 		{
-			TABLE_eDebug("kaputt max(%d) < ssize(%d) || nr(%d) >= max(%d)",
+			TABLE_eDebug("[eTable] bounds error: max(%d) < ssize(%d) || nr(%d) >= max(%d)",
 				max, ssize, nr, max);
 			return 0;
 		}
@@ -62,17 +63,18 @@ protected:
 		sections[nr] = new Section(data);
 		avail.insert(nr);
 
+		TABLE_eDebugNoNewLineStart("[eTable] ");
 		for (unsigned int i = 0; i < max; ++i)
 			if (avail.find(i) != avail.end())
 				TABLE_eDebugNoNewLine("+");
 			else
 				TABLE_eDebugNoNewLine("-");
 
-		TABLE_eDebug(" %zd/%d TID %02x", avail.size(), max, data[0]);
+		TABLE_eDebugNoNewLine(" %zd/%d TID %02x\n", avail.size(), max, data[0]);
 
 		if (avail.size() == max)
 		{
-			TABLE_eDebug("done!");
+			TABLE_eDebug("[eTable] done!");
 			return 1;
 		} else
 			return 0;
@@ -87,12 +89,12 @@ public:
 	}
 };
 
-class eAUGTable: public Object
+class eAUGTable: public sigc::trackable
 {
 protected:
 	void slotTableReady(int);
 public:
-	Signal1<void, int> tableReady;
+	sigc::signal1<void, int> tableReady;
 	virtual void getNext(int err)=0;
 };
 
@@ -180,7 +182,7 @@ public:
 #if 0
 	void abort()
 	{
-		eDebug("eAUTable: aborted!");
+		eDebug("[eAUTable] aborted!");
 		if (next)
 			next->abort();
 		delete next;
@@ -230,7 +232,7 @@ public:
 					m_table_cnt = -1;
 				else if (m_table_cnt > 1) // two pmt update within one second
 				{
-					eDebug("Seen two consecutive table version changes within 500ms. "
+					eDebug("[eAUTable] Seen two consecutive table version changes within 500ms. "
 					    "This seems broken, so auto update for pid %04x, table %02x is now disabled!!",
 					    spec.pid, spec.tid);
 					m_table_cnt = 0;

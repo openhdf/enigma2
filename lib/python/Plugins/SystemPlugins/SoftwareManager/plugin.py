@@ -92,6 +92,7 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 																			+eEnv_resolve_multi('/etc/init.d/cardserver*'))
 config.plugins.softwaremanager = ConfigSubsection()
 config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
+config.plugins.softwaremanager.autosaveSettingsfilesEntry = ConfigYesNo(default=False)
 config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
 config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
@@ -193,7 +194,7 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("software-restore", _("Software restore"), _("\nRestore your %s %s with a new firmware.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			self.list.append(("backup-image", _("Image Full-Backup"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			if not boxtype.startswith('az') and not boxtype in ('dm500hd','dm500hdv2','dm800','dm800se','dm800sev2','dm7020hd','dm7020hdv2','dm8000') and not brandoem.startswith('cube') and not brandoem.startswith('wetek'):
+			if not boxtype.startswith('az') and not boxtype in ('dm500hd','dm500hdv2','dm900','dm800','dm800se','dm800sev2','dm7020hd','dm7020hdv2','dm8000') and not brandoem.startswith('cube') and not brandoem.startswith('wetek'):
 				self.list.append(("flash-online", _("Image Online-Flash"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
@@ -362,7 +363,11 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
 				elif (currentEntry == "flash-online"):
-					self.session.openWithCallback(self.doBackup, MessageBox, _("Do you want to backup your image and settings before?"), default = True)
+					if config.plugins.softwaremanager.autosaveSettingsfilesEntry.value:
+						self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
+						self.session.open(FlashOnline)
+					else:
+						self.session.openWithCallback(self.doBackup, MessageBox, _("Do you want to backup your image and settings before?"), default = True)
 				elif (currentEntry == "backup-image"):
 					if DFLASH == True:
 						self.session.open(dFlash)
@@ -372,7 +377,7 @@ class UpdatePluginMenu(Screen):
 					self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
 				elif (currentEntry == "system-restore"):
 					if os_path.exists(self.fullbackupfilename):
-						self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore the backup?\nYour receiver will restart after the backup has been restored!"), default = False)
+						self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore the backup?\nYour receiver will restart after the backup has been restored!"), default = True)
 					else:
 						self.session.open(MessageBox, _("Sorry, no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
 				elif (currentEntry == "ipkg-install"):
@@ -443,7 +448,10 @@ class UpdatePluginMenu(Screen):
 
 	def backupDone(self,retval = None):
 		if retval is True:
-			self.session.open(MessageBox, _("Backup completed."), MessageBox.TYPE_INFO, timeout = 10)
+			if config.plugins.softwaremanager.autosaveSettingsfilesEntry.value:
+				print "Backup completed."
+			else:
+				self.session.open(MessageBox, _("Backup completed."), MessageBox.TYPE_INFO, timeout = 10)
 		else:
 			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout = 10)
 
@@ -500,6 +508,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.onChangedEntry = [ ]
 		self.setup_title = _("Software manager setup")
 		self.overwriteConfigfilesEntry = None
+		self.autosaveSettingsfilesEntry = None
 		self.overwriteSettingsfilesEntry = None
 		self.overwriteDriversfilesEntry = None
 		self.overwriteEmusfilesEntry = None
@@ -534,6 +543,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 	def createSetup(self):
 		self.list = [ ]
 		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files ?"), config.plugins.softwaremanager.overwriteConfigFiles)
+		self.autosaveSettingsfilesEntry = getConfigListEntry(_("Autosave Setting Files ?"), config.plugins.softwaremanager.autosaveSettingsfilesEntry)
 		self.overwriteSettingsfilesEntry = getConfigListEntry(_("Overwrite Setting Files ?"), config.plugins.softwaremanager.overwriteSettingsFiles)
 		self.overwriteDriversfilesEntry = getConfigListEntry(_("Overwrite Driver Files ?"), config.plugins.softwaremanager.overwriteDriversFiles)
 		self.overwriteEmusfilesEntry = getConfigListEntry(_("Overwrite Emu Files ?"), config.plugins.softwaremanager.overwriteEmusFiles)
@@ -544,6 +554,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.updatetypeEntry  = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
 		#if getBoxType().startswith('et'):
 		self.list.append(self.updatetypeEntry)
+		self.list.append(self.autosaveSettingsfilesEntry)
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(self.overwriteSettingsfilesEntry)
 		self.list.append(self.overwriteDriversfilesEntry)
@@ -564,6 +575,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			self["introduction"].setText(_("Overwrite configuration files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwriteSettingsfilesEntry:
 			self["introduction"].setText(_("Overwrite setting files (channellist) during software upgrade?"))
+		elif self["config"].getCurrent() == self.autosaveSettingsfilesEntry:
+			self["introduction"].setText(_("Autosave setting files (channellist/settings) before start online flash?"))
 		elif self["config"].getCurrent() == self.overwriteDriversfilesEntry:
 			self["introduction"].setText(_("Overwrite driver files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwriteEmusfilesEntry:
@@ -1673,11 +1686,24 @@ class UpdatePlugin(Screen):
 			self.TraficCheck = True
 			print "create /etc/last-upgrades-git.log with opkg list-upgradable"
 			os.system("opkg list-upgradable > /etc/last-upgrades-git.log")
-			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+			if os.system("grep 'dvb-module\|kernel-module' /etc/last-upgrades-git.log"):
+				print "Upgrade asap = Yes"
+				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+			else:
+				print "Upgrade asap = No"
+				message = _("There is a Kernel- and/or Driver-Update available for your %s %s!") % (getMachineBrand(), getMachineName()) + "\n" + _("Please backup your settings and do a fresh online-flash of latest image.") + "\n" + _("It is possible that your Box have a problem with booting up after update.") + "\n" + "\n" + _("If you really want to try the update without backup, press Yes.")
+				picon = MessageBox.TYPE_ERROR
+				self.session.openWithCallback(self.runUpgrade2, MessageBox, message, default = False, picon = picon)
 		else:
 			self.TraficCheck = False
 			self.activityTimer.stop()
 			self.activityslider.setValue(0)
+			self.exit()
+
+	def runUpgrade2(self, result):
+		if result:
+			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+		else:
 			self.exit()
 
 	def doActivityTimer(self):

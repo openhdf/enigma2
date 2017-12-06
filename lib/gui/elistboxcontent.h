@@ -12,6 +12,7 @@ public:
 	~eListboxPythonStringContent();
 
 	void setList(SWIG_PYOBJECT(ePyObject) list);
+	void setItemHeight(int height);
 	PyObject *getCurrentSelection();
 	int getCurrentSelectionIndex() { return m_cursor; }
 	void invalidateEntry(int index);
@@ -31,7 +32,7 @@ protected:
 	void cursorRestore();
 	int size();
 
-	RESULT connectItemChanged(const Slot0<void> &itemChanged, ePtr<eConnection> &connection);
+	RESULT connectItemChanged(const sigc::slot0<void> &itemChanged, ePtr<eConnection> &connection);
 
 	// void setOutputDevice ? (for allocating colors, ...) .. requires some work, though
 	void setSize(const eSize &size);

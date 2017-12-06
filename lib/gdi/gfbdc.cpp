@@ -15,12 +15,21 @@
 #include <lib/base/cfile.h>
 #endif
 
+#ifdef CONFIG_ION
+extern void bcm_accel_blit(
+		int src_addr, int src_width, int src_height, int src_stride, int src_format,
+		int dst_addr, int dst_width, int dst_height, int dst_stride,
+		int src_x, int src_y, int width, int height,
+		int dst_x, int dst_y, int dwidth, int dheight,
+		int pal_addr, int flags);
+#endif
+
 gFBDC::gFBDC()
 {
 	fb=new fbClass;
 #ifndef CONFIG_ION
 	if (!fb->Available())
-		eFatal("no framebuffer available");
+		eFatal("[gFBDC] no framebuffer available");
 #endif
 
 	int xres;
@@ -140,7 +149,7 @@ void gFBDC::exec(const gOpcode *o)
 			gettimeofday(&now, 0);
 
 			int diff = (now.tv_sec - l.tv_sec) * 1000 + (now.tv_usec - l.tv_usec) / 1000;
-			eDebug("%d ms latency (%d fps)", diff, t * 1000 / (diff ? diff : 1));
+			eDebug("[gFBDC] %d ms latency (%d fps)", diff, t * 1000 / (diff ? diff : 1));
 			l = now;
 			t = 0;
 		}
@@ -159,6 +168,30 @@ void gFBDC::exec(const gOpcode *o)
 			fb->blit();
 #else
 		fb->blit();
+#endif
+#ifdef CONFIG_ION
+		if (surface_back.data_phys)
+		{
+			gUnmanagedSurface s(surface);
+			surface = surface_back;
+			surface_back = s;
+
+			fb->waitVSync();
+			if (surface.data_phys > surface_back.data_phys)
+			{
+				fb->setOffset(0);
+			}
+			else
+			{
+				fb->setOffset(surface_back.y);
+			}
+			bcm_accel_blit(
+				surface_back.data_phys, surface_back.x, surface_back.y, surface_back.stride, 0,
+				surface.data_phys, surface.x, surface.y, surface.stride,
+				0, 0, surface.x, surface.y,
+				0, 0, surface.x, surface.y,
+				0, 0);
+		}
 #endif
 		break;
 	case gOpcode::sendShow:
@@ -274,11 +307,11 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 		surface_back.data_phys = 0;
 	}
 
-	eDebug("resolution: %d x %d x %d (stride: %d)", surface.x, surface.y, surface.bpp, fb->Stride());
+	eDebug("[gFBDC] resolution: %d x %d x %d (stride: %d) pages: %d", surface.x, surface.y, surface.bpp, fb->Stride(), fb->getNumPages());
 
 #ifndef CONFIG_ION
 	/* accel is already set in fb.cpp */
-	eDebug("%dkB available for acceleration surfaces.", (fb->Available() - fb_size)/1024);
+	eDebug("[gFBDC] %dkB available for acceleration surfaces.", (fb->Available() - fb_size)/1024);
 	if (gAccel::getInstance())
 		gAccel::getInstance()->setAccelMemorySpace(fb->lfb + fb_size, surface.data_phys + fb_size, fb->Available() - fb_size);
 #endif

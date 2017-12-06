@@ -21,7 +21,6 @@
 #include <gst/pbutils/missing-plugins.h>
 #include <sys/stat.h>
 
-#include <time.h>
 #include <sys/time.h>
 
 #define HTTP_TIMEOUT 10
@@ -633,6 +632,20 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		m_sourceinfo.is_streaming = TRUE;
 
 	gchar *uri;
+	gchar *suburi = NULL;
+
+	pos = m_ref.path.find("&suburi=");
+	if (pos != std::string::npos)
+	{
+		filename_str = filename;
+
+		std::string suburi_str = filename_str.substr(pos + 8);
+		filename = suburi_str.c_str();
+		suburi = g_strdup_printf ("%s", filename);
+
+		filename_str = filename_str.substr(0, pos);
+		filename = filename_str.c_str();
+	}
 
 	if ( m_sourceinfo.is_streaming )
 	{
@@ -680,6 +693,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		uri = g_filename_to_uri(filename, NULL, NULL);
 
 	eDebug("[eServiceMP3] playbin uri=%s", uri);
+	if (suburi != NULL)
+		eDebug("[eServiceMP3] playbin suburi=%s", suburi);
 #if GST_VERSION_MAJOR < 1
 	m_gst_playbin = gst_element_factory_make("playbin2", "playbin");
 #else
@@ -756,14 +771,20 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		gst_bus_set_sync_handler(bus, gstBusSyncHandler, this, NULL);
 #endif
 		gst_object_unref(bus);
-		char srt_filename[ext - filename + 5];
-		strncpy(srt_filename,filename, ext - filename);
-		srt_filename[ext - filename] = '\0';
-		strcat(srt_filename, ".srt");
-		if (::access(srt_filename, R_OK) >= 0)
+
+		if (suburi != NULL)
+			g_object_set (m_gst_playbin, "suburi", suburi, NULL);
+		else
 		{
-			eDebug("[eServiceMP3] subtitle uri: %s", g_filename_to_uri(srt_filename, NULL, NULL));
-			g_object_set (m_gst_playbin, "suburi", g_filename_to_uri(srt_filename, NULL, NULL), NULL);
+			char srt_filename[ext - filename + 5];
+			strncpy(srt_filename,filename, ext - filename);
+			srt_filename[ext - filename] = '\0';
+			strcat(srt_filename, ".srt");
+			if (::access(srt_filename, R_OK) >= 0)
+			{
+				eDebug("[eServiceMP3] subtitle uri: %s", g_filename_to_uri(srt_filename, NULL, NULL));
+				g_object_set (m_gst_playbin, "suburi", g_filename_to_uri(srt_filename, NULL, NULL), NULL);
+			}
 		}
 	} else
 	{
@@ -774,6 +795,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 		eDebug("[eServiceMP3] sorry, can't play: %s",m_errorInfo.error_message.c_str());
 	}
 	g_free(uri);
+	if (suburi != NULL)
+		g_free(suburi);
 }
 
 eServiceMP3::~eServiceMP3()
@@ -880,7 +903,7 @@ DEFINE_REF(eServiceMP3);
 
 DEFINE_REF(GstMessageContainer);
 
-RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
+RESULT eServiceMP3::connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
 	return 0;
@@ -1197,7 +1220,9 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		if (!strcmp(name, "filesrc") || !strcmp(name, "souphttpsrc"))
 		{
 			/* previous state was already ok if we come here just give all elements time to unpause */
+#if GST_VERSION_MAJOR >= 1
 			m_to_paused = false;
+#endif
 			gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
 			ret = gst_element_get_state(m_gst_playbin, &state, &pending, 2 * GST_SECOND);
 #if GST_VERSION_MAJOR >= 1
@@ -2645,7 +2670,7 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 		for (GList* i = gst_toc_get_entries(toc); i; i = i->next)
 		{
 			GstTocEntry *entry = static_cast<GstTocEntry*>(i->data);
-			if (gst_toc_entry_get_entry_type (entry) == GST_TOC_ENTRY_TYPE_EDITION)
+			if (gst_toc_entry_get_entry_type (entry) == GST_TOC_ENTRY_TYPE_EDITION && eConfigManager::getConfigBoolValue("config.usage.useChapterInfo"))
 			{
 				/* extra debug info for testing purposes should_be_removed later on */
 				//eDebug("[eServiceMP3] toc_type %s", gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (entry)));
@@ -2660,7 +2685,6 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 							m_use_chapter_entries = true;
 							if (!m_cuesheet_loaded)
 								loadCuesheet();
-							m_cue_entries.clear();
 						}
 						/* first chapter is movie start no cut needed */
 						else if (y >= 1)
@@ -3451,9 +3475,6 @@ void eServiceMP3::loadCuesheet()
 	{
 		while (1)
 		{
-#if GST_VERSION_MAJOR >= 1
-			pts_t where_pts;
-#endif
 			unsigned long long where;
 			unsigned int what;
 
@@ -3461,42 +3482,21 @@ void eServiceMP3::loadCuesheet()
 				break;
 			if (!fread(&what, sizeof(what), 1, f))
 				break;
-#if GST_VERSION_MAJOR >= 1
-			where_pts = be64toh(where);
-			what = ntohl(what);
-
-			//if (what > 3)
-				//break;
-			if(what < 3 && m_cuesheet_changed == 2)
-			{
-				if (where_pts < m_media_lenght - 1800000)
-					m_cue_entries.insert(cueEntry(where_pts, what));
-			}
-			else if(what < 4 && m_cuesheet_changed != 2)
-			{
-				pts_t lenght_media = 0;
-				int res = getLength (lenght_media);
-				if (res >= 0 && where_pts < (lenght_media - 1800000))
-					m_cue_entries.insert(cueEntry(where_pts, what));
-				else
-					break;
-			}
-			else
-				break;
-#else
 
 			where = be64toh(where);
 			what = ntohl(what);
 
-			if (what > 3)
-				break;
+			if (what < 4)
+				m_cue_entries.insert(cueEntry(where, what));
 
-			m_cue_entries.insert(cueEntry(where, what));
-#endif
+			//if (m_cuesheet_changed == 2)
+			//	eDebug("[eServiceMP3] reloading cuts: %" G_GINT64_FORMAT " type %d", (gint64)where, what);
+
 		}
 		fclose(f);
 		eDebug("[eServiceMP3] cuts file has %zd entries", m_cue_entries.size());
-	} else
+	}
+	else
 		eDebug("[eServiceMP3] cutfile not found!");
 
 	m_cuesheet_changed = 0;
@@ -3505,74 +3505,49 @@ void eServiceMP3::loadCuesheet()
 /* cuesheet */
 void eServiceMP3::saveCuesheet()
 {
-
 	std::string filename = m_ref.path;
-	bool removefile = false;
+
+	if (::access(filename.c_str(), R_OK) < 0)
+		return;
+
+	filename.append(".cuts");
+
 	struct stat s;
-#if GST_VERSION_MAJOR >= 1
-	if (m_use_chapter_entries)
+	bool removefile = false;
+	bool use_videocuesheet = eConfigManager::getConfigBoolValue("config.usage.useVideoCuesheet"); 
+	bool use_audiocuesheet = eConfigManager::getConfigBoolValue("config.usage.useAudioCuesheet");
+	bool exist_cuesheetfile = (stat(filename.c_str(), &s) == 0);
+
+	if (!exist_cuesheetfile && m_cue_entries.size() == 0)
+		return;
+	else if ((use_videocuesheet && !m_sourceinfo.is_audio) || (m_sourceinfo.is_audio && use_audiocuesheet))
 	{
-		if (m_cuesheet_loaded)
-			m_cue_entries.clear();
-		if (::access(filename.c_str(), R_OK) < 0)
-			return;
-		filename.append(".cuts");
-		if (stat(filename.c_str(), &s) == 0)
+		if (m_cue_entries.size() == 0)
 		{
-			/* hack for emc 2 */
-			if (m_last_seek_pos < (m_media_lenght - 1800000))
+			m_cuesheet_loaded = false;
+			//m_cuesheet_changed = 2;
+			loadCuesheet();
+			if (m_cue_entries.size() != 0)
 			{
-				m_cue_entries.insert(cueEntry(m_last_seek_pos, 3));
-				eDebug("[ServiceMP3] cvr tempo last pause position inserted %#" G_GINT64_MODIFIER "x", m_last_seek_pos);
+				eDebug("[eServiceMP3] *** NO NEW CUTS TO WRITE CUTS FILE ***");
+				return;
 			}
 			else
 			{
+				eDebug("[eServiceMP3] *** REMOVING EXISTING CUTS FILE NO LAST PLAY NO MANUAL CUTS ***");
 				removefile = true;
-				eDebug("[eServiceMP3] *** REMOVING EXISTING CUTS FILE ***");
 			}
 		}
 		else
-			return;
+			eDebug("[eServiceMP3] *** WRITE CUTS TO CUTS FILE ***");
+	}
+	else if (exist_cuesheetfile)
+	{
+		eDebug("[eServiceMP3] *** REMOVING EXISTING CUTS FILE ***");
+		removefile = true;
 	}
 	else
-	{
-		if (::access(filename.c_str(), R_OK) < 0)
-			return;
-		filename.append(".cuts");
-		/* hack for emc 3*/
-		if (stat(filename.c_str(), &s) == 0 && m_cue_entries.size() == 0 && !m_sourceinfo.is_audio)
-		{
-			m_cuesheet_loaded = false;
-			m_cuesheet_changed = 2;
-			loadCuesheet();
-			if (m_cue_entries.size() == 0 && m_last_seek_pos > (m_media_lenght - 1800000))
-			{			
-				removefile = true;
-				eDebug("[eServiceMP3] *** REMOVING EXISTING CUTS FILE NO LAST PLAY NO MANUAL CUTS***");
-			}
-			else if (m_last_seek_pos < (m_media_lenght - 1800000))
-				m_cue_entries.insert(cueEntry(m_last_seek_pos, 3));
-		}
-		else if (m_sourceinfo.is_audio)
-		{
-			removefile = true;
-			eDebug("[eServiceMP3] *** REMOVING EXISTING CUTS FILE MEDIA IS_AUDIO***");
-		}
-		/* do nothing we are working without emc */
-		else if (m_cue_entries.size() == 0)
-			return;
-	}
-#else
-	if (::access(filename.c_str(), R_OK) < 0)
 		return;
-	filename.append(".cuts");
-	if (stat(filename.c_str(), &s) == 0 && m_cue_entries.size() == 0)
-		removefile = true;
-	else if (m_cue_entries.size() == 0)
-		return;
-#endif
-
-
 
 	FILE *f = fopen(filename.c_str(), "wb");
 
@@ -3595,7 +3570,7 @@ void eServiceMP3::saveCuesheet()
 				/* ignore double entries */
 				continue;
 			else
-			{			
+			{
 				where = htobe64(i->where);
 				what = htonl(i->what);
 				fwrite(&where, sizeof(where), 1, f);
@@ -3606,6 +3581,7 @@ void eServiceMP3::saveCuesheet()
 			}
 		}
 		fclose(f);
+		eDebug("[eServiceMP3] cuts file has been write");
 	}
 	m_cuesheet_changed = 0;
 }

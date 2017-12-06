@@ -17,7 +17,9 @@
 #include <lib/dvb/tstools.h>
 #include <lib/python/python.h>
 #include <lib/base/nconfig.h> // access to python config
+#include <lib/base/httpsstream.h>
 #include <lib/base/httpstream.h>
+#include "servicepeer.h"
 
 		/* for subtitles */
 #include <lib/gui/esubtitle.h>
@@ -94,7 +96,7 @@ int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const
 {
 	ePtr<eDVBResourceManager> res_mgr;
 	if ( eDVBResourceManager::getInstance( res_mgr ) )
-		eDebug("isPlayable... no res manager!!");
+		eDebug("[eStaticServiceDVBInformation] isPlayable... no res manager!!");
 	else
 	{
 		eDVBChannelID chid, chid_ignore;
@@ -157,7 +159,7 @@ ePtr<iDVBTransponderData> eStaticServiceDVBInformation::getTransponderData(const
 								break;
 							}
 							default:
-								eDebug("unknown frontend type %d", system);
+								eDebug("[eStaticServiceDVBInformation] unknown frontend type %d", system);
 								break;
 						}
 					}
@@ -178,19 +180,19 @@ RESULT eStaticServiceDVBBouquetInformation::getName(const eServiceReference &ref
 	int err;
 	if ((err = eDVBResourceManager::getInstance(res)) != 0)
 	{
-		eDebug("eStaticServiceDVBBouquetInformation::getName failed.. no resource manager!");
+		eDebug("[eStaticServiceDVBBouquetInformation] getName failed.. no resource manager!");
 		return err;
 	}
 	if ((err = res->getChannelList(db)) != 0)
 	{
-		eDebug("eStaticServiceDVBBouquetInformation::getName failed.. no channel list!");
+		eDebug("[eStaticServiceDVBBouquetInformation] getName failed.. no channel list!");
 		return err;
 	}
 
-	eBouquet *bouquet=0;
+	eBouquet *bouquet = NULL;
 	if ((err = db->getBouquet(ref, bouquet)) != 0)
 	{
-		eDebug("eStaticServiceDVBBouquetInformation::getName failed.. getBouquet failed!");
+		eDebug("[eStaticServiceDVBBouquetInformation] getName failed.. getBouquet failed!");
 		return -1;
 	}
 
@@ -213,20 +215,20 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 
 		if (eDVBResourceManager::getInstance(res))
 		{
-			eDebug("eStaticServiceDVBBouquetInformation::isPlayable failed.. no resource manager!");
+			eDebug("[eStaticServiceDVBBouquetInformation] isPlayable failed.. no resource manager!");
 			return 0;
 		}
 
 		if (res->getChannelList(db))
 		{
-			eDebug("eStaticServiceDVBBouquetInformation::isPlayable failed.. no channel list!");
+			eDebug("[eStaticServiceDVBBouquetInformation] isPlayable failed.. no channel list!");
 			return 0;
 		}
 
-		eBouquet *bouquet=0;
+		eBouquet *bouquet = NULL;
 		if (db->getBouquet(ref, bouquet))
 		{
-			eDebug("eStaticServiceDVBBouquetInformation::isPlayable failed.. getBouquet failed!");
+			eDebug("[eStaticServiceDVBBouquetInformation] isPlayable failed.. getBouquet failed!");
 			return 0;
 		}
 
@@ -436,6 +438,8 @@ int eStaticServiceDVBPVRInformation::getInfo(const eServiceReference &ref, int w
 			return m_parser.m_time_create;
 		else
 			return iServiceInformation::resNA;
+	case iServiceInformation::sIsCrypted:
+		return m_parser.m_scrambled;
 	default:
 		return iServiceInformation::resNA;
 	}
@@ -526,11 +530,11 @@ RESULT eDVBPVRServiceOfflineOperations::deleteFromDisk(int simulate)
 
 		eBackgroundFileEraser *eraser = eBackgroundFileEraser::getInstance();
 		if (!eraser)
-			eDebug("FATAL !! can't get background file eraser");
+			eDebug("[eDVBPVRServiceOfflineOperations] deleteFromDisk FATAL !! can't get background file eraser");
 
 		for (std::list<std::string>::iterator i(res.begin()); i != res.end(); ++i)
 		{
-			eDebug("Removing %s...", i->c_str());
+			eDebug("[eDVBPVRServiceOfflineOperations] deleteFromDisk Removing %s...", i->c_str());
 			if (eraser)
 				eraser->erase(*i);
 			else
@@ -588,20 +592,20 @@ static int reindex_work(const std::string& filename)
 		err = tstools.findPMT(program);
 		if (err)
 		{
-			eDebug("reindex - Failed to find PMT");
+			eDebug("[eDVBPVRServiceOfflineOperations] reindex - Failed to find PMT");
 			return err;
 		}
 		for (i = 0; i < program.videoStreams.size(); i++)
 		{
 			if (timingpidset) break;
-			eDebug("reindex: video pid=0x%x", program.videoStreams[i].pid);
+			eDebug("[eDVBPVRServiceOfflineOperations] reindex: video pid=0x%x", program.videoStreams[i].pid);
 			parser.setPid(program.videoStreams[i].pid, iDVBTSRecorder::video_pid, program.videoStreams[i].type);
 			timingpidset = true;
 		}
 		for (i = 0; i < program.audioStreams.size(); i++)
 		{
 			if (timingpidset) break;
-			eDebug("reindex: audio pid=0x%x", program.audioStreams[i].pid);
+			eDebug("[eDVBPVRServiceOfflineOperations] reindex: audio pid=0x%x", program.audioStreams[i].pid);
 			parser.setPid(program.audioStreams[i].pid, iDVBTSRecorder::audio_pid, program.audioStreams[i].type);
 			timingpidset = true;
 		}
@@ -689,12 +693,12 @@ RESULT eDVBServiceList::startQuery()
 	int err;
 	if ((err = eDVBResourceManager::getInstance(res)) != 0)
 	{
-		eDebug("no resource manager");
+		eDebug("[eDVBServiceList] no resource manager");
 		return err;
 	}
 	if ((err = res->getChannelList(db)) != 0)
 	{
-		eDebug("no channel list");
+		eDebug("[eDVBServiceList] no channel list");
 		return err;
 	}
 
@@ -705,14 +709,14 @@ RESULT eDVBServiceList::startQuery()
 		eDVBChannelQuery::compile(q, m_parent.path);
 		if (!q)
 		{
-			eDebug("compile query failed");
+			eDebug("[eDVBServiceList] compile query failed");
 			return err;
 		}
 	}
 
 	if ((err = db->startQuery(m_query, q, m_parent)) != 0)
 	{
-		eDebug("startQuery failed");
+		eDebug("[eDVBServiceList] startQuery failed");
 		return err;
 	}
 
@@ -1002,7 +1006,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 		int err;
 		if ((err = eDVBDB::getInstance()->getService((eServiceReferenceDVB&)ref, service)) != 0)
 		{
-//			eDebug("[eServiceFactoryDVB] lookupService getService failed!");
+//			eLog(6, "[eServiceFactoryDVB] lookupService getService failed!");
 			return err;
 		}
 	}
@@ -1079,9 +1083,9 @@ void eDVBServicePlay::gotNewEvent(int error)
 	getEvent(event_next, 1);
 
 	if (event_now)
-		eDebug("now running: %s (%d seconds :)", event_now->m_event_name.c_str(), event_now->m_duration);
+		eDebug("[eDVBServicePlay] now running: %s (%d seconds :)", event_now->m_event_name.c_str(), event_now->m_duration);
 	if (event_next)
-		eDebug("next running: %s (%d seconds :)", event_next->m_event_name.c_str(), event_next->m_duration);
+		eDebug("[eDVBServicePlay] next running: %s (%d seconds :)", event_next->m_event_name.c_str(), event_next->m_duration);
 #endif
 	if (!error)
 	{
@@ -1103,7 +1107,7 @@ void eDVBServicePlay::gotNewEvent(int error)
 		if (m_record)
 		{
 			if (m_record->getCurrentPCR(now_pts))
-				eDebug("getting current PTS failed!");
+				eDebug("[eDVBServicePlay] getting current PTS failed!");
 			else
 			{
 				if (m_record->getFirstPTS(first_pts))
@@ -1114,7 +1118,7 @@ void eDVBServicePlay::gotNewEvent(int error)
 					fixup_pts = now_pts - first_pts;
 				m_cue_entries.insert(cueEntry(fixup_pts, 2));
 				m_cuesheet_changed = 1;
-				eDebug("pts of eit change: %llx, fixup_pts: %llx, first_pts: %llx", now_pts, fixup_pts, first_pts);
+				eDebug("[eDVBServicePlay] pts of eit change: %llx, fixup_pts: %llx, first_pts: %llx", now_pts, fixup_pts, first_pts);
 				m_event((iPlayableService*)this, evCuesheetChanged);
 			}
 		}
@@ -1190,13 +1194,13 @@ void eDVBServicePlay::serviceEvent(int event)
 	case eDVBServicePMTHandler::eventTuneFailed:
 	case eDVBServicePMTHandler::eventMisconfiguration:
 	{
-		eDebug("DVB service failed to tune - error %d", event);
+		eDebug("[eDVBServicePlay] DVB service failed to tune - error %d", event);
 		m_event((iPlayableService*)this, evTuneFailed);
 		break;
 	}
 	case eDVBServicePMTHandler::eventNewProgramInfo:
 	{
-		eDebug("eventNewProgramInfo %d %d", m_timeshift_enabled, m_timeshift_active);
+		eDebug("[eDVBServicePlay] eventNewProgramInfo timeshift_enabled=%d timeshift_active=%d", m_timeshift_enabled, m_timeshift_active);
 		if (m_timeshift_enabled)
 			updateTimeshiftPids();
 		if (!m_timeshift_active)
@@ -1232,7 +1236,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 	switch (event)
 	{
 	case eDVBServicePMTHandler::eventNewProgramInfo:
-		eDebug("eventNewProgramInfo TS");
+		eDebug("[eDVBServicePlay] eventNewProgramInfo TimeshiftS");
 		if (m_timeshift_active)
 		{
 			updateDecoder();
@@ -1240,12 +1244,12 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 			{
 				if (m_slowmotion)
 				{
-					eDebug("re-apply slowmotion after timeshift file change");
+					eDebug("[eDVBServicePlay] re-apply slowmotion after timeshift file change");
 					m_decoder->setSlowMotion(m_slowmotion);
 				}
 				if (m_fastforward)
 				{
-					eDebug("re-apply skip %d, ratio %d after timeshift file change", m_skipmode, m_fastforward);
+					eDebug("[eDVBServicePlay] re-apply skip %d, ratio %d after timeshift file change", m_skipmode, m_fastforward);
 					if (m_skipmode)
 						m_cue->setSkipmode(m_skipmode * 90000); /* convert to 90000 per second */
 					if (m_fastforward != 1)
@@ -1264,7 +1268,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 #if 0
 		if (!m_timeshift_file_next.empty())
 		{
-			eDebug("timeshift SOF, switch to next file");
+			eDebug("[eDVBServicePlay] timeshift SOF, switch to next file");
 			m_decoder->pause();
 
 			m_first_program_info |= 2;
@@ -1279,7 +1283,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 			if (m_skipmode < 0)
 				m_cue->seekTo(0, -1000);
 			ePtr<iTsSource> source = createTsSource(r);
-			m_service_handler_timeshift.tuneExt(r, 1, source, r.path.c_str(), m_cue, 0, m_dvb_service, false); /* use the decoder demux for everything */
+			m_service_handler_timeshift.tuneExt(r, source, r.path.c_str(), m_cue, 0, m_dvb_service, false); /* use the decoder demux for everything */
 
 			m_event((iPlayableService*)this, evUser+1);
 		}
@@ -1292,12 +1296,12 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 		{
 			if (m_timeshift_file_next.empty())
 			{
-				eDebug("timeshift EOF, so let's go live");
+				eDebug("[eDVBServicePlay] timeshift EOF, so let's go live");
 				switchToLive();
 			}
 			else
 			{
-				eDebug("timeshift EOF, switch to next file");
+				eDebug("[eDVBServicePlay] timeshift EOF, switch to next file");
 
 				m_first_program_info |= 2;
 
@@ -1309,7 +1313,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 				resetTimeshift(1);
 
 				ePtr<iTsSource> source = createTsSource(r);
-				m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file_next.c_str(), m_cue, 0, m_dvb_service, eDVBServicePMTHandler::timeshift_playback, false); /* use the decoder demux for everything */
+				m_service_handler_timeshift.tuneExt(r, source, m_timeshift_file_next.c_str(), m_cue, 0, m_dvb_service, eDVBServicePMTHandler::timeshift_playback, false); /* use the decoder demux for everything */
 
 				m_event((iPlayableService*)this, evUser+1);
 			}
@@ -1353,13 +1357,19 @@ RESULT eDVBServicePlay::start()
 		 * streams are considered to be descrambled by default;
 		 * user can indicate a stream is scrambled, by using servicetype id + 0x100
 		 */
+		bool config_descramble_client = eConfigManager::getConfigBoolValue("config.streaming.descramble_client", false);
+
 		scrambled = (m_reference.type == eServiceFactoryDVB::id + 0x100);
+
+		if(config_descramble_client)
+			scrambled = true;
+
 		type = eDVBServicePMTHandler::streamclient;
 	}
 
 	m_first_program_info = 1;
 	ePtr<iTsSource> source = createTsSource(service, packetsize);
-	m_service_handler.tuneExt(service, m_is_pvr, source, service.path.c_str(), m_cue, false, m_dvb_service, type, scrambled);
+	m_service_handler.tuneExt(service, source, service.path.c_str(), m_cue, false, m_dvb_service, type, scrambled);
 
 	if (m_is_pvr)
 	{
@@ -1433,7 +1443,7 @@ RESULT eDVBServicePlay::setTarget(int target, bool noaudio = false)
 	return 0;
 }
 
-RESULT eDVBServicePlay::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
+RESULT eDVBServicePlay::connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
 	return 0;
@@ -1458,7 +1468,7 @@ RESULT eDVBServicePlay::setSlowMotion(int ratio)
 {
 	int ret = 0;
 	ASSERT(ratio); /* The API changed: instead of calling setSlowMotion(0), call play! */
-	eDebug("eDVBServicePlay::setSlowMotion(%d)", ratio);
+	eDebug("[eDVBServicePlay] setSlowMotion %d", ratio);
 	setFastForward_internal(0);
 	if (m_decoder)
 	{
@@ -1473,7 +1483,7 @@ RESULT eDVBServicePlay::setSlowMotion(int ratio)
 
 RESULT eDVBServicePlay::setFastForward(int ratio)
 {
-	eDebug("eDVBServicePlay::setFastForward(%d)", ratio);
+	eDebug("[eDVBServicePlay] setFastForward %d", ratio);
 	ASSERT(ratio);
 	return setFastForward_internal(ratio);
 }
@@ -1503,7 +1513,7 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 
 	if (m_skipmode != skipmode)
 	{
-		eDebug("setting cue skipmode to %d", skipmode);
+		eDebug("[eDVBServicePlay] setFastForward setting cue skipmode to %d", skipmode);
 		if (m_cue)
 		{
 			long long _skipmode = skipmode;
@@ -1521,7 +1531,10 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 	m_skipmode = skipmode;
 
 	if (final_seek)
-		eDebug("trickplay stopped .. ret %d, pos %lld", getPlayPosition(pos), pos);
+	{
+		RESULT r = getPlayPosition(pos);
+		eDebug("[eDVBServicePlay] setFastForward trickplay stopped .. ret %d, pos %lld", r, pos);
+	}
 
 	m_fastforward = ffratio;
 
@@ -1536,7 +1549,10 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 		ret = m_decoder->setTrickmode();
 
 	if (pos)
-		eDebug("final seek after trickplay ret %d", seekTo(pos));
+	{
+		RESULT r = seekTo(pos);
+		eDebug("[eDVBServicePlay] setFastForward final seek after trickplay ret %d", r);
+	}
 
 	return ret;
 }
@@ -1566,7 +1582,7 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 
 RESULT eDVBServicePlay::pause()
 {
-	eDebug("eDVBServicePlay::pause");
+	eDebug("[eDVBServicePlay] pause");
 	setFastForward_internal(0, m_slowmotion || m_fastforward > 1);
 	if (m_decoder)
 	{
@@ -1579,7 +1595,7 @@ RESULT eDVBServicePlay::pause()
 
 RESULT eDVBServicePlay::unpause()
 {
-	eDebug("eDVBServicePlay::unpause");
+	eDebug("[eDVBServicePlay] unpause");
 	setFastForward_internal(0, m_slowmotion || m_fastforward > 1);
 	if (m_decoder)
 	{
@@ -1592,7 +1608,7 @@ RESULT eDVBServicePlay::unpause()
 
 RESULT eDVBServicePlay::seekTo(pts_t to)
 {
-	eDebug("eDVBServicePlay::seekTo: jump %lld", to);
+	eDebug("[eDVBServicePlay] seekTo %lld", to);
 
 	if (!m_decode_demux)
 		return -1;
@@ -1614,7 +1630,7 @@ RESULT eDVBServicePlay::seekTo(pts_t to)
 
 RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 {
-	eDebug("eDVBServicePlay::seekRelative: jump %d, %lld", direction, to);
+	eDebug("[eDVBServicePlay] seekRelative %d, %lld", direction, to);
 
 	if (!m_decode_demux)
 		return -1;
@@ -1709,6 +1725,7 @@ RESULT eDVBServicePlay::subServices(ePtr<iSubserviceList> &ptr)
 RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 {
 	ptr = 0;
+	eDebug("[eDVBServicePlay] timeshift");
 	if (m_timeshift_enabled || !m_is_pvr)
 	{
 		if (!m_timeshift_enabled)
@@ -1717,7 +1734,7 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 			std::string tspath = eConfigManager::getConfigValue("config.usage.timeshift_path");
 			if(tspath == "")
 			{
-				eDebug("could not query ts path from config");
+				eDebug("[eDVBServicePlay] timeshift could not query ts path from config");
 				return -4;
 			}
 			tspath.append("/");
@@ -1725,13 +1742,13 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 			struct statfs fs;
 			if (statfs(tspath.c_str(), &fs) < 0)
 			{
-				eDebug("statfs failed!");
+				eDebug("[eDVBServicePlay] timeshift %s statfs failed: %m", tspath.c_str());
 				return -2;
 			}
 
 			if (((off_t)fs.f_bavail) * ((off_t)fs.f_bsize) < 1024*1024*1024LL)
 			{
-				eDebug("not enough diskspace for timeshift! (less than 1GB)");
+				eDebug("[eDVBServicePlay] not enough diskspace for timeshift! (less than 1GB)");
 				return -3;
 			}
 		}
@@ -1852,20 +1869,16 @@ int eDVBServicePlay::getInfo(int w)
 	switch (w)
 	{
 	case sVideoHeight:
-		if (m_decoder)
-			return m_decoder->getVideoHeight();
+		if (m_decoder) return m_decoder->getVideoHeight();
 		break;
 	case sVideoWidth:
-		if (m_decoder)
-			return m_decoder->getVideoWidth();
+		if (m_decoder) return m_decoder->getVideoWidth();
 		break;
 	case sFrameRate:
-		if (m_decoder)
-			return m_decoder->getVideoFrameRate();
+		if (m_decoder) return m_decoder->getVideoFrameRate();
 		break;
 	case sProgressive:
-		if (m_decoder)
-			return m_decoder->getVideoProgressive();
+		if (m_decoder) return m_decoder->getVideoProgressive();
 		break;
 	case sAspect:
 	{
@@ -1923,9 +1936,11 @@ int eDVBServicePlay::getInfo(int w)
 		if (m_dvb_service)
 			return m_dvb_service->isDedicated3D();
 		return false;
-	case sHideVBI:
-		if (m_dvb_service)
-			return m_dvb_service->doHideVBI();
+	case sHideVBI: 
+		if (m_dvb_service) return m_dvb_service->doHideVBI();
+		return false;
+	case sCenterDVBSubs:
+		if (m_dvb_service) return m_dvb_service->doCenterDVBSubs();
 		return false;
 	case sVideoPID:
 		if (m_dvb_service)
@@ -1987,16 +2002,22 @@ int eDVBServicePlay::getInfo(int w)
 		if (no_program_info)
 			return -1;
 		return program.textPid;
-	case sSID: return ((const eServiceReferenceDVB&)m_reference).getServiceID().get();
-	case sONID: return ((const eServiceReferenceDVB&)m_reference).getOriginalNetworkID().get();
-	case sTSID: return ((const eServiceReferenceDVB&)m_reference).getTransportStreamID().get();
-	case sNamespace: return ((const eServiceReferenceDVB&)m_reference).getDVBNamespace().get();
+	case sSID:
+		return ((const eServiceReferenceDVB&)m_reference).getServiceID().get();
+	case sONID:
+		return ((const eServiceReferenceDVB&)m_reference).getOriginalNetworkID().get();
+	case sTSID:
+		return ((const eServiceReferenceDVB&)m_reference).getTransportStreamID().get();
+	case sNamespace:
+		return ((const eServiceReferenceDVB&)m_reference).getDVBNamespace().get();
 	case sProvider:
 		if (!m_dvb_service)
 			return -1;
 		return -2;
-	case sServiceref: return resIsString;
-	case sDVBState: return m_tune_state;
+	case sServiceref:
+		return resIsString;
+	case sDVBState:
+		return m_tune_state;
 	default:
 		break;
 	}
@@ -2047,9 +2068,9 @@ PyObject * eDVBServicePlay::getHbbTVApplications()
 	return m_service_handler.getHbbTVApplications();
 }
 
-void eDVBServicePlay::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids)
+void eDVBServicePlay::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes)
 {
-	m_service_handler.getCaIds(caids, ecmpids);
+	m_service_handler.getCaIds(caids, ecmpids, ecmdatabytes);
 }
 
 int eDVBServicePlay::getNumberOfTracks()
@@ -2111,11 +2132,11 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 		info.m_description = "AAC";
 	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAACHE)
 		info.m_description = "AAC-HE";
-	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTS)
+	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTS)
 		info.m_description = "DTS";
-	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTSHD)
+	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTSHD)
 		info.m_description = "DTS-HD";
-	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atLPCM)
+	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atLPCM)
 		info.m_description = "LPCM";
 	else
 		info.m_description = "???";
@@ -2142,6 +2163,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 	eDVBServicePMTHandler::program program;
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 	pts_t position = -1;
+	RESULT ret;
 
 	if (h.getProgramInfo(program))
 		return -1;
@@ -2165,18 +2187,24 @@ int eDVBServicePlay::selectAudioStream(int i)
 	}
 
 	if (i != -1 && apid != m_current_audio_pid && (m_is_pvr || m_timeshift_active))
-		eDebug("getPlayPosition ret %d, pos %lld in selectAudioStream", getPlayPosition(position), position);
+	{
+		ret = getPlayPosition(position);
+		eDebug("[eDVBServicePlay] getPlayPosition ret %d, pos %lld in selectAudioStream", ret, position);
+	}
 
 	m_current_audio_pid = apid;
 
-	if (m_decoder->setAudioPID(apid, apidtype))
+	if (!m_noaudio && m_decoder->setAudioPID(apid, apidtype))
 	{
-		eDebug("set audio pid failed");
+		eDebug("[eDVBServicePlay] set audio pid %04x failed", apid);
 		return -4;
 	}
 
 	if (position != -1)
-		eDebug("seekTo ret %d", seekTo(position));
+	{
+		ret = seekTo(position);
+		eDebug("[eDVBServicePlay] seekTo ret %d", ret);
+	}
 
 	int rdsPid = apid;
 
@@ -2186,14 +2214,18 @@ int eDVBServicePlay::selectAudioStream(int i)
 		int different_pid = program.videoStreams.empty() && program.audioStreams.size() == 1 && program.audioStreams[stream].rdsPid != -1;
 		if (different_pid)
 			rdsPid = program.audioStreams[stream].rdsPid;
+#if HAVE_HISILICON
+		if (different_pid && (!m_rds_decoder || m_rds_decoder->getPid() != rdsPid))
+#else 
 		if (!m_rds_decoder || m_rds_decoder->getPid() != rdsPid)
+#endif
 		{
 			m_rds_decoder = 0;
 			ePtr<iDVBDemux> data_demux;
 			if (!h.getDataDemux(data_demux))
 			{
 				m_rds_decoder = new eDVBRdsDecoder(data_demux, different_pid);
-				m_rds_decoder->connectEvent(slot(*this, &eDVBServicePlay::rdsDecoderEvent), m_rds_decoder_event_connection);
+				m_rds_decoder->connectEvent(sigc::mem_fun(*this, &eDVBServicePlay::rdsDecoderEvent), m_rds_decoder_event_connection);
 				m_rds_decoder->start(rdsPid);
 			}
 		}
@@ -2285,13 +2317,13 @@ void eDVBServicePlay::showRassSlidePicture()
 			if (rass_slide_pic.length())
 				m_decoder->showSinglePic(rass_slide_pic.c_str());
 			else
-				eDebug("empty filename for rass slide picture received!!");
+				eDebug("[eDVBServicePlay] empty filename for rass slide picture received!!");
 		}
 		else
-			eDebug("no MPEG Decoder to show iframes avail");
+			eDebug("[eDVBServicePlay] no MPEG Decoder to show iframes avail");
 	}
 	else
-		eDebug("showRassSlidePicture called.. but not decoder");
+		eDebug("[eDVBServicePlay] showRassSlidePicture called.. but not decoder");
 }
 
 void eDVBServicePlay::showRassInteractivePic(int page, int subpage)
@@ -2304,13 +2336,13 @@ void eDVBServicePlay::showRassInteractivePic(int page, int subpage)
 			if (rass_interactive_pic.length())
 				m_decoder->showSinglePic(rass_interactive_pic.c_str());
 			else
-				eDebug("empty filename for rass interactive picture %d/%d received!!", page, subpage);
+				eDebug("[eDVBServicePlay] empty filename for rass interactive picture %d/%d received!!", page, subpage);
 		}
 		else
-			eDebug("no MPEG Decoder to show iframes avail");
+			eDebug("[eDVBServicePlay] no MPEG Decoder to show iframes avail");
 	}
 	else
-		eDebug("showRassInteractivePic called.. but not decoder");
+		eDebug("[eDVBServicePlay] showRassInteractivePic called.. but not decoder");
 }
 
 ePyObject eDVBServicePlay::getRassInteractiveMask()
@@ -2337,7 +2369,7 @@ bool eDVBServiceBase::tryFallbackTuner(eServiceReferenceDVB &service, bool &is_s
 	std::string remote_fallback_url =
 		eConfigManager::getConfigValue("config.usage.remote_fallback");
 
-	if (remote_fallback_url.empty())
+	if (remote_fallback_url.empty() && !getAnyPeerStreamingBox(remote_fallback_url))
 		return false;
 
 	if (eDVBResourceManager::getInstance(res_mgr))
@@ -2448,7 +2480,7 @@ RESULT eDVBServicePlay::startTimeshift()
 {
 	ePtr<iDVBDemux> demux;
 
-	eDebug("Start timeshift!");
+	eDebug("[eDVBServicePlay] Start timeshift!");
 
 	if (m_timeshift_enabled)
 		return -1;
@@ -2464,12 +2496,12 @@ RESULT eDVBServicePlay::startTimeshift()
 	std::string tspath = eConfigManager::getConfigValue("config.usage.timeshift_path");
 	if (tspath == "")
 	{
-		eDebug("could not query ts path");
+		eDebug("[eDVBServicePlay] could not query timeshift path");
 		return -5;
 	}
 	if (tspath.empty())
 	{
-		eDebug("TS path is empty");
+		eDebug("[eDVBServicePlay] timeshift path is empty");
 		return -5;
 	}
 	if (tspath[tspath.length()-1] != '/')
@@ -2479,7 +2511,7 @@ RESULT eDVBServicePlay::startTimeshift()
 	strcpy(templ, tspath.c_str());
 	m_timeshift_fd = mkstemp(templ);
 	m_timeshift_file = std::string(templ);
-	eDebug("recording to %s", templ);
+	eDebug("[eDVBServicePlay] timeshift recording to %s", templ);
 
 	ofstream fileout;
 	fileout.open("/proc/stb/lcd/symbol_timeshift");
@@ -2535,14 +2567,14 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 
 	if (!m_save_timeshift)
 	{
-		eDebug("remove timeshift files");
+		eDebug("[eDVBServicePlay] remove timeshift files");
 		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file);
 		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".sc");
 		eBackgroundFileEraser::getInstance()->erase(m_timeshift_file + ".cuts");
 	}
 	else
 	{
-		eDebug("timeshift files not deleted");
+		eDebug("[eDVBServicePlay] timeshift files not deleted");
 		m_save_timeshift = 0;
 	}
 	return 0;
@@ -2620,24 +2652,24 @@ void eDVBServicePlay::setCutList(ePyObject list)
 		ePyObject tuple = PyList_GET_ITEM(list, i);
 		if (!PyTuple_Check(tuple))
 		{
-			eDebug("non-tuple in cutlist");
+			eDebug("[eDVBServicePlay] non-tuple in cutlist");
 			continue;
 		}
 		if (PyTuple_Size(tuple) != 2)
 		{
-			eDebug("cutlist entries need to be a 2-tuple");
+			eDebug("[eDVBServicePlay] cutlist entries need to be a 2-tuple");
 			continue;
 		}
 		ePyObject ppts = PyTuple_GET_ITEM(tuple, 0), ptype = PyTuple_GET_ITEM(tuple, 1);
 		if (!(PyLong_Check(ppts) && PyInt_Check(ptype)))
 		{
-			eDebug("cutlist entries need to be (pts, type)-tuples (%d %d)", PyLong_Check(ppts), PyInt_Check(ptype));
+			eDebug("[eDVBServicePlay] cutlist entries need to be (pts, type)-tuples (%d %d)", PyLong_Check(ppts), PyInt_Check(ptype));
 			continue;
 		}
 		pts_t pts = PyLong_AsLongLong(ppts);
 		int type = PyInt_AsLong(ptype);
 		m_cue_entries.insert(cueEntry(pts, type));
-		eDebug("adding %08llx, %d", pts, type);
+		eDebug("[eDVBServicePlay] adding %08llx, %d", pts, type);
 	}
 	m_cuesheet_changed = 1;
 
@@ -2739,7 +2771,7 @@ void eDVBServicePlay::switchToLive()
 	if (!m_timeshift_active)
 		return;
 
-	eDebug("SwitchToLive");
+	eDebug("[eDVBServicePlay] SwitchToLive");
 
 	resetTimeshift(0);
 
@@ -2791,6 +2823,12 @@ ePtr<iTsSource> eDVBServicePlay::createTsSource(eServiceReferenceDVB &ref, int p
 		f->open(ref.path.c_str());
 		return ePtr<iTsSource>(f);
 	}
+	else if (ref.path.substr(0, 8) == "https://")
+	{
+		eHttpsStream *f = new eHttpsStream();
+		f->open(ref.path.c_str());
+		return ePtr<iTsSource>(f);
+	}
 	else
 	{
 		eRawFile *f = new eRawFile(packetsize);
@@ -2812,9 +2850,9 @@ void eDVBServicePlay::switchToTimeshift()
 	m_cue->seekTo(0, -1000);
 
 	ePtr<iTsSource> source = createTsSource(r);
-	m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file.c_str(), m_cue, 0, m_dvb_service, eDVBServicePMTHandler::timeshift_playback, false); /* use the decoder demux for everything */
+	m_service_handler_timeshift.tuneExt(r, source, m_timeshift_file.c_str(), m_cue, 0, m_dvb_service, eDVBServicePMTHandler::timeshift_playback, false); /* use the decoder demux for everything */
 
-	eDebug("eDVBServicePlay::switchToTimeshift, in pause mode now.");
+	eDebug("[eDVBServicePlay] switchToTimeshift, in pause mode now.");
 	pause();
 	updateDecoder(true); /* mainly to switch off PCR, and to set pause */
 }
@@ -2828,10 +2866,10 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 
 	eDVBServicePMTHandler::program program;
 	if (h.getProgramInfo(program))
-		eDebug("getting program info failed.");
+		eDebug("[eDVBServicePlay] getting program info failed.");
 	else
 	{
-		eDebugNoNewLineStart("have %zd video stream(s)", program.videoStreams.size());
+		eDebugNoNewLineStart("[eDVBServicePlay] have %zd video stream(s)", program.videoStreams.size());
 		if (!program.videoStreams.empty())
 		{
 			eDebugNoNewLine(" (");
@@ -2866,7 +2904,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		}
 		eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
 		pcrpid = program.pcrPid;
-		eDebugNoNewLineEnd(", and the text pid is %04x", program.textPid);
+		eDebugNoNewLine(", and the text pid is %04x\n", program.textPid);
 		tpid = program.textPid;
 	}
 
@@ -2879,7 +2917,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		{
 			m_decode_demux->getMPEGDecoder(m_decoder, m_decoder_index);
 			if (m_decoder)
-				m_decoder->connectVideoEvent(slot(*this, &eDVBServicePlay::video_event), m_video_event_connection);
+				m_decoder->connectVideoEvent(sigc::mem_fun(*this, &eDVBServicePlay::video_event), m_video_event_connection);
 		}
 		if (m_cue)
 			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
@@ -2967,10 +3005,10 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		if (mustPlay && m_decode_demux && m_decoder_index == 0)
 		{
 			m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
-			m_teletext_parser->connectNewStream(slot(*this, &eDVBServicePlay::newSubtitleStream), m_new_subtitle_stream_connection);
-			m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
+			m_teletext_parser->connectNewStream(sigc::mem_fun(*this, &eDVBServicePlay::newSubtitleStream), m_new_subtitle_stream_connection);
+			m_teletext_parser->connectNewPage(sigc::mem_fun(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
 			m_subtitle_parser = new eDVBSubtitleParser(m_decode_demux);
-			m_subtitle_parser->connectNewPage(slot(*this, &eDVBServicePlay::newDVBSubtitlePage), m_new_dvb_subtitle_page_connection);
+			m_subtitle_parser->connectNewPage(sigc::mem_fun(*this, &eDVBServicePlay::newDVBSubtitlePage), m_new_dvb_subtitle_page_connection);
 			if (m_timeshift_changed)
 			{
 				struct SubtitleTrack track;
@@ -3034,9 +3072,9 @@ void eDVBServicePlay::loadCuesheet()
 			m_cue_entries.insert(cueEntry(where, what));
 		}
 		fclose(f);
-		eDebug("cuts file has %zd entries", m_cue_entries.size());
+		eDebug("[eDVBServicePlay] cuts file has %zd entries", m_cue_entries.size());
 	} else
-		eDebug("cutfile not found!");
+		eDebug("[eDVBServicePlay] cutfile not found!");
 
 	m_cuesheet_changed = 0;
 	cutlistToCuesheet();
@@ -3078,7 +3116,7 @@ void eDVBServicePlay::cutlistToCuesheet()
 {
 	if (!m_cue)
 	{
-		eDebug("no cue sheet");
+		eDebug("[eDVBServicePlay] no cue sheet");
 		return;
 	}
 	m_cue->clear();
@@ -3086,7 +3124,7 @@ void eDVBServicePlay::cutlistToCuesheet()
 	if ((m_cutlist_enabled & 1) == 0)
 	{
 		m_cue->commitSpans();
-		eDebug("cutlists were disabled");
+		eDebug("[eDVBServicePlay] cutlists were disabled");
 		return;
 	}
 
@@ -3155,7 +3193,7 @@ RESULT eDVBServicePlay::enableSubtitles(iSubtitleUser *user, SubtitleTrack &trac
 
 		if (!m_teletext_parser)
 		{
-			eDebug("enable teletext subtitles.. no parser !!!");
+			eDebug("[eDVBServicePlay] enable teletext subtitles.. no parser !!!");
 			return -1;
 		}
 
@@ -3185,7 +3223,7 @@ RESULT eDVBServicePlay::enableSubtitles(iSubtitleUser *user, SubtitleTrack &trac
 		int pid = 0, composition_page_id = 0, ancillary_page_id = 0;
 		if (!m_subtitle_parser)
 		{
-			eDebug("enable dvb subtitles.. no parser !!!");
+			eDebug("[eDVBServicePlay] enable dvb subtitles.. no parser !!!");
 			return -1;
 		}
 
@@ -3202,7 +3240,7 @@ RESULT eDVBServicePlay::enableSubtitles(iSubtitleUser *user, SubtitleTrack &trac
 		goto error_out;
 	return 0;
 error_out:
-	eDebug("enableSubtitles needs a valid type:\n"
+	eDebug("[eDVBServicePlay] enableSubtitles needs a valid type:\n"
 		"for teletext subtitles (0, pid, teletext_page, teletext_magazine)\n"
 		"for dvb subtitles (1, pid, composition_page_id, ancillary_page_id)");
 	return -1;
@@ -3296,7 +3334,7 @@ RESULT eDVBServicePlay::getSubtitleList(std::vector<SubtitleTrack> &subtitlelist
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 	eDVBServicePMTHandler::program program;
 	if (h.getProgramInfo(program))
-		eDebug("getting program info failed.");
+		eDebug("[eDVBServicePlay] getting program info failed.");
 	else
 	{
 		for (std::vector<eDVBServicePMTHandler::subtitleStream>::iterator it(program.subtitleStreams.begin());
@@ -3372,7 +3410,7 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 		m_decoder->getPTS(0, pts);
 		if (m_is_pvr || m_timeshift_enabled)
 		{
-			eDebug("Subtitle in recording/timeshift");
+			eDebug("[eDVBServicePlay] Subtitle in recording/timeshift");
 			subtitledelay = eConfigManager::getConfigIntValue("config.subtitles.subtitle_noPTSrecordingdelay", 315000);
 		}
 		else
@@ -3381,7 +3419,7 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 			subtitledelay = eConfigManager::getConfigIntValue("config.subtitles.subtitle_bad_timing_delay", 0);
 		}
 
-		// eDebug("Subtitle get  TTX have_pts=%d pvr=%d timeshift=%d page.pts=%lld pts=%lld delay=%d", page.m_have_pts, m_is_pvr, m_timeshift_enabled, page.m_pts, pts, subtitledelay);
+		// eDebug("[eDVBServicePlay] Subtitle get  TTX have_pts=%d pvr=%d timeshift=%d page.pts=%lld pts=%lld delay=%d", page.m_have_pts, m_is_pvr, m_timeshift_enabled, page.m_pts, pts, subtitledelay);
 		eDVBTeletextSubtitlePage tmppage = page;
 		tmppage.m_have_pts = true;
 
@@ -3398,7 +3436,7 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 void eDVBServicePlay::checkSubtitleTiming()
 {
 	pts_t pos = 0;
-//	eDebug("checkSubtitleTiming");
+//	eDebug("[eDVBServicePlay] checkSubtitleTiming");
 	if (!m_subtitle_widget)
 		return;
 	if (m_subtitle_pages.empty() && m_dvb_subtitle_pages.empty())
@@ -3432,7 +3470,7 @@ void eDVBServicePlay::checkSubtitleTiming()
 			return;
 
 		int diff = show_time - pos;
-//		eDebug("Subtitle show %d page.pts=%lld pts=%lld diff=%d", type, show_time, pos, diff);
+//		eDebug("[eDVBServicePlay] Subtitle show %d page.pts=%lld pts=%lld diff=%d", type, show_time, pos, diff);
 
 		if (diff < 20*90 || diff > 1800000)
 		{
@@ -3463,7 +3501,7 @@ void eDVBServicePlay::newDVBSubtitlePage(const eDVBSubtitlePage &p)
 			m_decoder->getPTS(0, pos);
 		if ( abs(pos-p.m_show_time)>1800000 && (m_is_pvr || m_timeshift_enabled))
 		{
-			eDebug("Subtitle without PTS and recording");
+			eDebug("[eDVBServicePlay] Subtitle without PTS and recording");
 			int subtitledelay = eConfigManager::getConfigIntValue("config.subtitles.subtitle_noPTSrecordingdelay", 315000);
 
 			eDVBSubtitlePage tmppage;
@@ -3515,7 +3553,7 @@ void eDVBServicePlay::setAC3Delay(int delay)
 	if (m_decoder)
 	{
 		m_decoder->setAC3Delay(delay + eConfigManager::getConfigIntValue("config.av.generalAC3delay"));
-		eDebug("Setting audio delay: setAC3Delay, %d + %d", delay,eConfigManager::getConfigIntValue("config.av.generalAC3delay"));
+		eDebug("[eDVBServicePlay] Setting audio delay: setAC3Delay, %d + %d", delay,eConfigManager::getConfigIntValue("config.av.generalAC3delay"));
 	}
 }
 
@@ -3526,7 +3564,7 @@ void eDVBServicePlay::setPCMDelay(int delay)
 	if (m_decoder)
 	{
 		m_decoder->setPCMDelay(delay + eConfigManager::getConfigIntValue("config.av.generalPCMdelay"));
-		eDebug("Setting audio delay: setPCMDelay, %d + %d", delay,eConfigManager::getConfigIntValue("config.av.generalPCMdelay"));
+		eDebug("[eDVBServicePlay] Setting audio delay: setPCMDelay, %d + %d", delay,eConfigManager::getConfigIntValue("config.av.generalPCMdelay"));
 	}
 }
 
@@ -3564,6 +3602,20 @@ ePtr<iStreamData> eDVBServicePlay::getStreamingData()
 	return retval;
 }
 
+void eDVBServicePlay::setQpipMode(bool value, bool audio)
+{
+	m_noaudio = !audio;
+
+	if(m_decoder)
+	{
+		if (!m_noaudio)
+			selectAudioStream();
+		else
+			m_decoder->setAudioPID(-1, -1);
+
+		m_decoder->set();
+	}
+}
 
 DEFINE_REF(eDVBServicePlay)
 

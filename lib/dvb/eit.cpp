@@ -44,7 +44,7 @@ void eDVBServiceEITHandler::EITready(int error)
 					const ATSCEventInformationSection *eit = *i;
 					for (ATSCEventListConstIterator ev = eit->getEvents()->begin(); ev != eit->getEvents()->end(); ++ev)
 					{
-						if ((*ev)->getStartTime() + (*ev)->getLengthInSeconds() < now)
+						if (static_cast<time_t>((*ev)->getStartTime() + (*ev)->getLengthInSeconds()) < now)
 						{
 							continue;
 						}
@@ -68,13 +68,13 @@ void eDVBServiceEITHandler::EITready(int error)
 							if (!a)
 							{
 								m_demux->createSectionReader(eApp, m_now_ETT);
-								m_now_ETT->connectRead(slot(*this, &eDVBServiceEITHandler::nowETTsection), m_now_conn);
+								m_now_ETT->connectRead(sigc::mem_fun(*this, &eDVBServiceEITHandler::nowETTsection), m_now_conn);
 								m_now_ETT->start(mask);
 							}
 							else
 							{
 								m_demux->createSectionReader(eApp, m_next_ETT);
-								m_next_ETT->connectRead(slot(*this, &eDVBServiceEITHandler::nextETTsection), m_next_conn);
+								m_next_ETT->connectRead(sigc::mem_fun(*this, &eDVBServiceEITHandler::nextETTsection), m_next_conn);
 								m_next_ETT->start(mask);
 							}
 						}
