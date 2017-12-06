@@ -50,73 +50,79 @@ class OscamInfo:
 	ECMTIME = 5
 	IP_PORT = 6
 	HEAD = { NAME: _("Label"), PROT: _("Protocol"),
-		CAID_SRVID: "CAID:SrvID", SRVNAME: _("Serv.Name"),
+		CAID_SRVID: _("CAID:SrvID"), SRVNAME: _("Serv.Name"),
 		ECMTIME: _("ECM-Time"), IP_PORT: _("IP address") }
 	version = ""
 
 	def confPath(self):
-		# Find and parse running oscam
-		opath = None
-		owebif = None
+		owebif = False
 		oport = None
-		ipcompiled = "no"
+		opath = None
+		ipcompiled = False
+
+		# Find and parse running oscam
 		if fileExists("/tmp/.oscam/oscam.version"):
-			data = open("/tmp/.oscam/oscam.version", "r").readlines()
-			for i in data:
-				if "configdir:" in i.lower():
-					opath = i.split(":")[1].strip() + "/oscam.conf"
-				elif "web interface support:" in i.lower():
-					owebif = i.split(":")[1].strip()
-				elif "webifport:" in i.lower():
-					oport = i.split(":")[1].strip()
-				elif "ipv6 support:" in i.lower():
-					ipcompiled = i.split(":")[1].strip()
-				else:
-					continue
-		if owebif == "yes" and oport is not "0":
-			return opath, ipcompiled
-		else:
-			return None, None
+			with open('/tmp/.oscam/oscam.version', 'r') as data:
+				for i in data:
+					if "web interface support:" in i.lower():
+						owebif = i.split(":")[1].strip()
+						if owebif == "no":
+							owebif = False
+						elif owebif == "yes":
+							owebif = True
+					elif "webifport:" in i.lower():
+						oport = i.split(":")[1].strip()
+						if oport == "0":
+							oport = None
+					elif "configdir:" in i.lower():
+						opath = i.split(":")[1].strip()
+					elif "ipv6 support:" in i.lower():
+						ipcompiled = i.split(":")[1].strip()
+						if ipcompiled == "no":
+							ipcompiled = False
+						elif ipcompiled == "yes":
+							ipcompiled = True
+					else:
+						continue
+		return owebif, oport, opath, ipcompiled
 
 	def getUserData(self):
-		blocked = True
-		port = "0"
-		ipconfigured = "no"
-		[oscamconf, ipcompiled] = self.confPath()
-		
-		ret = _("file oscam.conf could not be found")
-		if oscamconf is not None:
-			# Assume both errors at once
-			ret = _("oscam webif disabled")
-			if ipcompiled == "yes":
-				ret = ret + ", " + _("oscam webif blocking localhost (::1 and 127.0.0.1)")
-			else:
-				ret = ret + ", " + _("oscam webif blocking localhost (127.0.0.1)")
-			user = pwd = ""
-			data = open(oscamconf, "r").readlines()
-			for i in data:
-				if "httpuser" in i.lower():
-					user = i.split("=")[1].strip()
-				elif "httppwd" in i.lower():
-					pwd = i.split("=")[1].strip()
-				elif "httpport" in i.lower():
-					port = i.split("=")[1].strip()
-					ret = ret.replace(_("oscam webif disabled"),"").strip()
-					if ret.startswith(", "):
-						ret = ret.replace(", ","")
-				elif "httpallowed" in i.lower():
-					allowed = i.split("=")[1].strip()
-					if "::1" in allowed or "127.0.0.1" in allowed:
-						blocked = False
-						ret = ret.replace(_("oscam webif blocking localhost (::1 and 127.0.0.1)"),"").replace(_("oscam webif blocking localhost (127.0.0.1)"),"")
-						if ret.endswith(", "):
-							ret = ret.replace(", ","")
-					if "::1" in allowed and ipcompiled == "yes":
-						ipconfigured = "yes"
-			
-			if not port == "0" and not blocked:
+		[webif, port, conf, ipcompiled] = self.confPath()
+		conf += "/oscam.conf"
+
+		# Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in,
+		# and no user and password are required
+		blocked = False
+		ipconfigured = ipcompiled
+		user = pwd = None
+
+		ret = _("oscam webif disabled")
+
+		if webif and port is not None:
+		# oscam reports it got webif support and webif is running (Port != 0)
+			if conf is not None and os.path.exists(conf):
+				# If we have a config file, we need to investigate it further
+				with open(conf, 'r') as data:
+					for i in data:
+						if "httpuser" in i.lower():
+							user = i.split("=")[1].strip()
+						elif "httppwd" in i.lower():
+							pwd = i.split("=")[1].strip()
+						elif "httpport" in i.lower():
+							port = i.split("=")[1].strip()
+						elif "httpallowed" in i.lower():
+							# Once we encounter a httpallowed statement, we have to assume oscam webif is blocking us ...
+							blocked = True
+							allowed = i.split("=")[1].strip()
+							if "::1" in allowed or "127.0.0.1" in allowed or "0.0.0.0-255.255.255.255" in allowed:
+								# ... until we find either 127.0.0.1 or ::1 in allowed list
+								blocked = False
+							if "::1" not in allowed:
+								ipconfigured = False
+
+			if not blocked:
 				ret = [user, pwd, port, ipconfigured]
-		
+
 		return ret
 
 	def openWebIF(self, part = None, reader = None):
@@ -208,7 +214,7 @@ class OscamInfo:
 					if cl.find("request").attrib.has_key("ecmtime"):
 						ecmtime = cl.find("request").attrib["ecmtime"]
 						if ecmtime == "0" or ecmtime == "":
-							ecmtime = "n/a"
+							ecmtime = _("n/a")
 						else:
 							ecmtime = str(float(ecmtime) / 1000)[:5]
 					else:
@@ -220,7 +226,7 @@ class OscamInfo:
 						else:
 							srvname_short = srvname
 					else:
-						srvname_short = "n/A"
+						srvname_short = _("n/A")
 					login = cl.find("times").attrib["login"]
 					online = cl.find("times").attrib["online"]
 					if proto.lower() == "dvbapi":
@@ -279,10 +285,10 @@ class OscamInfo:
 			if data.attrib.has_key("version"):
 				self.version = data.attrib["version"]
 			else:
-				self.version = "n/a"
+				self.version = _("n/a")
 			return self.version
 		else:
-			self.version = "n/a"
+			self.version = _("n/a")
 		return self.version
 
 	def getTotalCards(self, reader):
@@ -309,7 +315,7 @@ class OscamInfo:
 							if spec in proto:
 								name = cl.attrib["name"]
 								cards = self.getTotalCards(name)
-								readers.append( ( "%s ( %s Cards )" % (name, cards), name) )
+								readers.append( ( _("%s ( %s Cards )") % (name, cards), name) )
 						else:
 							if cl.attrib["name"] != "" and cl.attrib["name"] != "" and cl.attrib["protocol"] != "":
 								readers.append( (cl.attrib["name"], cl.attrib["name"]) )  # return tuple for later use in Choicebox
@@ -338,19 +344,19 @@ class OscamInfo:
 			data = open(ecminfo, "r").readlines()
 			for i in data:
 				if "caid" in i:
-					result.append( ("CAID", i.split(":")[1].strip()) )
+					result.append( (_("CAID"), i.split(":")[1].strip()) )
 				elif "pid" in i:
-					result.append( ("PID", i.split(":")[1].strip()) )
+					result.append( (_("PID"), i.split(":")[1].strip()) )
 				elif "prov" in i:
 					result.append( (_("Provider"), i.split(":")[1].strip()) )
 				elif "reader" in i:
-					result.append( ("Reader", i.split(":")[1].strip()) )
+					result.append( (_("Reader"), i.split(":")[1].strip()) )
 				elif "from" in i:
 					result.append( (_("Address"), i.split(":")[1].strip()) )
 				elif "protocol" in i:
 					result.append( (_("Protocol"), i.split(":")[1].strip()) )
 				elif "hops" in i:
-					result.append( ("Hops", i.split(":")[1].strip()) )
+					result.append( (_("Hops"), i.split(":")[1].strip()) )
 				elif "ecm time" in i:
 					result.append( (_("ECM Time"), i.split(":")[1].strip()) )
 			return result
@@ -458,7 +464,7 @@ class OscamInfoMenu(Screen):
 			osc = OscamInfo()
 			reader = osc.getReaders()
 			if reader is not None:
-				reader.append( ("All", "all") )
+				reader.append( (_("All"), "all") )
 				if isinstance(reader, list):
 					if len(reader) == 1:
 						self.session.open(oscReaderStats, reader[0][1])
@@ -590,20 +596,20 @@ class oscInfo(Screen, OscamInfo):
 		self["key_red"] = StaticText(_("Close"))
 		if self.what == "c":
 			self["key_green"] = StaticText("")
-			self["key_yellow"] = StaticText("Servers")
-			self["key_blue"] = StaticText("Log")
+			self["key_yellow"] = StaticText(_("Servers"))
+			self["key_blue"] = StaticText(_("Log"))
 		elif self.what == "s":
-			self["key_green"] = StaticText("Clients")
+			self["key_green"] = StaticText(_("Clients"))
 			self["key_yellow"] = StaticText("")
-			self["key_blue"] = StaticText("Log")
+			self["key_blue"] = StaticText(_("Log"))
 		elif self.what == "l":
-			self["key_green"] = StaticText("Clients")
-			self["key_yellow"] = StaticText("Servers")
+			self["key_green"] = StaticText(_("Clients"))
+			self["key_yellow"] = StaticText(_("Servers"))
 			self["key_blue"] = StaticText("")
 		else:
-			self["key_green"] = StaticText("Clients")
-			self["key_yellow"] = StaticText("Servers")
-			self["key_blue"] = StaticText("Log")
+			self["key_green"] = StaticText(_("Clients"))
+			self["key_yellow"] = StaticText(_("Servers"))
+			self["key_blue"] = StaticText(_("Log"))
 		if config.oscaminfo.autoupdate.value:
 			self.loop = eTimer()
 			self.loop.callback.append(self.showData)
@@ -759,19 +765,19 @@ class oscInfo(Screen, OscamInfo):
 					if i != "":
 						self.out.append( self.buildLogListEntry( (i,) ))
 			if self.what == "c":
-				self.setTitle("Client Info ( Oscam-Version: %s )" % self.getVersion())
+				self.setTitle(_("Client Info ( Oscam-Version: %s )") % self.getVersion())
 				self["key_green"].setText("")
-				self["key_yellow"].setText("Servers")
-				self["key_blue"].setText("Log")
+				self["key_yellow"].setText(_("Servers"))
+				self["key_blue"].setText(_("Log"))
 			elif self.what == "s":
-				self.setTitle("Server Info ( Oscam-Version: %s )" % self.getVersion())
-				self["key_green"].setText("Clients")
+				self.setTitle(_("Server Info ( Oscam-Version: %s )") % self.getVersion())
+				self["key_green"].setText(_("Clients"))
 				self["key_yellow"].setText("")
-				self["key_blue"].setText("Log")
+				self["key_blue"].setText(_("Log"))
 			elif self.what == "l":
-				self.setTitle("Oscam Log ( Oscam-Version: %s )" % self.getVersion())
-				self["key_green"].setText("Clients")
-				self["key_yellow"].setText("Servers")
+				self.setTitle(_("Oscam Log ( Oscam-Version: %s )") % self.getVersion())
+				self["key_green"].setText(_("Clients"))
+				self["key_yellow"].setText(_("Servers"))
 				self["key_blue"].setText("")
 				self.itemheight = 20
 		else:
@@ -781,9 +787,9 @@ class oscInfo(Screen, OscamInfo):
 			for i in self.errmsg:
 				self.out.append( self.buildListEntry( (i,) ))
 			self.setTitle(_("Error") + ": " + data)
-			self["key_green"].setText("Clients")
-			self["key_yellow"].setText("Servers")
-			self["key_blue"].setText("Log")
+			self["key_green"].setText(_("Clients"))
+			self["key_yellow"].setText(_("Servers"))
+			self["key_blue"].setText(_("Log"))
 
 		if self.listchange:
 			self.listchange = False
@@ -873,7 +879,7 @@ class oscEntitlements(Screen, OscamInfo):
 		caids = data.keys()
 		caids.sort()
 		outlist = []
-		res = [ ("CAID", "System", "1", "2", "3", "4", "5", "Total", "Reshare", "") ]
+		res = [ ("CAID", _("System"), "1", "2", "3", "4", "5", "Total", _("Reshare"), "") ]
 		for i in caids:
 			csum = 0
 			ca_id = i
@@ -951,7 +957,7 @@ class oscEntitlements(Screen, OscamInfo):
 		else:
 			self["output"].setStyle("default")
 		self["output"].setList(result)
-		title = [ _("Reader"), self.cccamreader, _("Cards:"), cardTotal, "Server:", hostadr ]
+		title = [ _("Reader"), self.cccamreader, _("Cards:"), cardTotal, _("Server:"), hostadr ]
 		self.setTitle( " ".join(title))
 
 class oscReaderStats(Screen, OscamInfo):
@@ -1155,7 +1161,7 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 			self.oscamconfig.append(getConfigListEntry(_("Username (httpuser)"), config.oscaminfo.username))
 			self.oscamconfig.append(getConfigListEntry(_("Password (httpwd)"), config.oscaminfo.password))
 			self.oscamconfig.append(getConfigListEntry(_("IP address"), config.oscaminfo.ip))
-			self.oscamconfig.append(getConfigListEntry("Port", config.oscaminfo.port))
+			self.oscamconfig.append(getConfigListEntry(_("Port"), config.oscaminfo.port))
 		self.oscamconfig.append(getConfigListEntry(_("Automatically update Client/Server View?"), config.oscaminfo.autoupdate))
 		if config.oscaminfo.autoupdate.value:
 			self.oscamconfig.append(getConfigListEntry(_("Update interval (in seconds)"), config.oscaminfo.intervall))

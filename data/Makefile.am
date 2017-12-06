@@ -7,6 +7,7 @@ dist_pkgdata_DATA = \
 	keymap.ntr \
 	keymap.u80 \
 	keymap.xpe \
+	keymap.lng \
 	menu.xml \
 	black.mvi \
 	rcpositions.xml \
@@ -46,6 +47,10 @@ if HAVE_COLORLCD220
 SUBDIRS += display220
 endif
 
+if HAVE_COLORLCD390
+SUBDIRS += display390
+endif
+
 if HAVE_COLORLCD400
 SUBDIRS += display400
 endif
@@ -60,6 +65,14 @@ endif
 
 if HAVE_BWLCD140
 SUBDIRS += display140
+endif
+
+if HAVE_GRAUTEC8000
+SUBDIRS += grautec8000
+endif
+
+if HAVE_GRAUTEC70X0
+SUBDIRS += grautec70x0
 endif
 
 if HAVE_7SEGMENT

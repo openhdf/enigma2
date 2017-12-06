@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 25.05.2017" -->
+	<!-- "HDF Default Keymap 17.11.2017" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -142,8 +142,8 @@
 	</map>
 
 	<map context="InfobarChannelSelection">
-		<key id="KEY_LEFT" mapto="LeftPressed" flags="mr" />
-		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />
+		<!--key id="KEY_LEFT" mapto="LeftPressed" flags="mr" /-->
+		<!--key id="KEY_RIGHT" mapto="RightPressed" flags="mr" /-->
 		<!--key id="KEY_UP" mapto="switchChannelUp" flags="m" />
 		<key id="KEY_DOWN" mapto="switchChannelDown" flags="m" /-->
 		<key id="KEY_UP" mapto="switchChannelUpLong" flags="l" />
@@ -153,8 +153,8 @@
 		<key id="KEY_BACK" mapto="historyBack" flags="mr" />
 		<key id="KEY_FORWARD" mapto="historyNext" flags="mr" /-->
 		<!--key id="KEY_ARCHIVE" mapto="historyBack" flags="mr" /-->
-		<key id="KEY_CHANNELUP" mapto="ChannelPlusPressed" flags="m" />
-		<key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressed" flags="m" />
+		<!--key id="KEY_CHANNELUP" mapto="ChannelMinusPressed" flags="m" /-->
+		<!--key id="KEY_CHANNELDOWN" mapto="ChannelPlusPressed" flags="m" /-->
 		<!--key id="KEY_CHANNELUP" mapto="ChannelPlusPressedLong" flags="l" /-->
 		<!--key id="KEY_CHANNELDOWN" mapto="ChannelMinusPressedLong" flags="l" /-->
 		<key id="BTN_0" mapto="zapUp" flags="mr" />
@@ -291,6 +291,7 @@
 
 	<map context="InfobarPiPActions">
 		<key id="KEY_SCREEN" mapto="activatePiP" flags="b" />
+		<key id="KEY_F6" mapto="activatePiP" flags="b" /> 
 	</map>
 
 	<map context="InfobarSubserviceQuickzapActions">
@@ -478,7 +479,7 @@
 			<key id="KEY_YELLOW" mapto="timeshiftActivateEndAndPause" flags="b" />
 		</device>
 		<key id="KEY_PLAYPAUSE" mapto="timeshiftActivateEndAndPause" flags="m" />
-		<key id="KEY_PAUSE" mapto="timeshiftActivateEndAndPause" flags="m" />
+		<!--key id="KEY_PAUSE" mapto="timeshiftActivateEndAndPause" flags="m" /-->
 		<key id="KEY_REWIND" mapto="timeshiftActivateEnd" flags="m" />
 	</map>
 
@@ -893,12 +894,14 @@
 		<key id="KEY_RADIO" mapto="radio_long" flags="l" />
 		<key id="KEY_TV" mapto="showTv" flags="b" />
 		<key id="KEY_TV" mapto="showTv_long" flags="l" />
-		<key id="KEY_TEXT" mapto="text" flags="m" />
+		<key id="KEY_TEXT" mapto="text" flags="b" />
+		<key id="KEY_TEXT" mapto="text_long" flags="l" />
 		<key id="KEY_HELP" mapto="helpshow" flags="b" />
 		<key id="KEY_HELP" mapto="helpshow_long" flags="l" />
 		<key id="KEY_SUBTITLE" mapto="subtitle" flags="b" />
 		<key id="KEY_SUBTITLE" mapto="subtitle_long" flags="l" />
 		<key id="KEY_MENU" mapto="mainMenu" flags="b" />
+		<key id="KEY_MENU" mapto="menu_long" flags="l" />
 		<key id="KEY_INFO" mapto="info" flags="b" />
 		<key id="KEY_INFO" mapto="info_long" flags="l" />
 		<key id="KEY_VIDEO" mapto="list" flags="b" />
@@ -947,6 +950,8 @@
 		<key id="KEY_BOOKMARKS" mapto="portal_long" flags="l" />
 		<key id="KEY_LIST" mapto="playlist" flags="b" />
 		<key id="KEY_LIST" mapto="playlist_long" flags="l" />
+		<key id="KEY_PVR" mapto="pvr" flags="b"/>
+		<key id="KEY_PVR" mapto="pvr_long" flags="l"/>
 		<key id="KEY_TIME" mapto="timeshift" flags="b" />
 		<key id="KEY_TIME" mapto="timeshift_long" flags="l" />
 		<key id="KEY_SEARCH" mapto="search" flags="b" />
@@ -979,10 +984,11 @@
 		<key id="KEY_SLEEP" mapto="sleep_long" flags="l" />
 		<key id="KEY_ZOOM" mapto="ZoomInOut" flags="b" />
 		<key id="KEY_ZOOM" mapto="ZoomOff" flags="l" />
+		<key id="KEY_MODE" mapto="aspect" flags="b" />
+		<key id="KEY_MODE" mapto="aspect_long" flags="l" />
 		<key id="KEY_MUTE" mapto="mute_long" flags="l" />
 		<key id="KEY_POWER" mapto="powerstandby" flags="b" />
 		<key id="KEY_POWER" mapto="powerstandby_long" flags="l" />
-		<!--key id="KEY_POWER" mapto="power_down" flags="m" /-->
 		<key id="KEY_NEXT" mapto="next" flags="b" />
 		<key id="KEY_NEXT" mapto="next_long" flags="l" />
 		<key id="KEY_PREVIOUS" mapto="previous" flags="b" />
@@ -993,6 +999,8 @@
 		<key id="KEY_FAVORITES" mapto="favor_long" flags="l" />
 		<key id="KEY_HOMEPAGE" mapto="homepage" flags="b" />
 		<key id="KEY_HOMEPAGE" mapto="homepage_long" flags="l" />
+		<key id="KEY_ANGLE" mapto="toggleAspectRatio" flags="b" />
+		<key id="KEY_ANGLE" mapto="toggleAspectRatio_long" flags="l" />
 		<key id="KEY_CONTEXT_MENU" mapto="contextMenu" flags="b"/>
 		<key id="KEY_CONTEXT_MENU" mapto="context_long" flags="l"/>
 		<key id="KEY_SAT" mapto="sat" flags="b" />

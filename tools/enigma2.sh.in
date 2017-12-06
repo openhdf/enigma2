@@ -12,6 +12,22 @@ if [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
 		@bindir@/showiframe @datadir@/bootlogo.mvi
 fi
 
+if [ -x @bindir@/showiframe ]; then
+	if [ -e /proc/stb/info/boxtype ]; then
+		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
+		if [ ! $stbcheck == "u5" ]; then
+			killall -9 showiframe; sleep 1
+		fi
+	else
+		killall -9 showiframe; sleep 1
+	fi
+	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
+		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
+	elif [ -f @datadir@/backdrop.mvi ]; then
+		@bindir@/showiframe @datadir@/backdrop.mvi
+	fi
+fi
+
 # workaround for corrupt ssl files
 if ! grep ^config.misc.firstrun=false /etc/enigma2/settings >/dev/null; then
 	rm -rf /etc/enigma2/cert.pem &
@@ -23,6 +39,22 @@ if grep ^config.misc.SyncTimeUsing=1 /etc/enigma2/settings >/dev/null; then
 	/usr/sbin/ntpdate -s -u pool.ntp.org &
 fi
 
+#check for installed vfdcontrol
+if grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
+	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
+		echo "vfdcontrol installed"
+	else
+		opkg update
+		opkg install --force-reinstall enigma2-plugin-systemplugins-vfdcontrol
+	fi
+fi
+if ! grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
+	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
+		opkg remove enigma2-plugin-systemplugins-vfdcontrol
+		rm -rf /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl
+	fi
+fi
+
 [ -L /usr/lib/libssl.so.0.9.8 ] || ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
 
 [ -L /usr/lib/libcrypto.so.0.9.8 ] || ln -s /usr/lib/libcrypto.so.1.0.0 /usr/lib/libcrypto.so.0.9.8
@@ -32,6 +64,7 @@ fi
 
 # check if usr/scripts directory exists
 [ -d /usr/scripts ] || mkdir /usr/scripts
+chmod -R 755 /usr/scripts
 
 # check for settings files
 [ -f @sysconfdir@/enigma2/settings ] || cp @datadir@/enigma2/defaults/* @sysconfdir@/enigma2/
@@ -100,9 +133,27 @@ fi
 # >128 signal
 
 ret=$?
+if [ "$ret" -ne "1" ]; then
+	if [ -e /proc/stb/info/boxtype ]; then
+		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
+		if [ $stbcheck == "u5" ]; then
+			killall -9 showiframe; sleep 5
+		fi
+	fi
+fi
+
 case $ret in
 	1)
-		/sbin/halt
+		if [ -e /proc/stb/info/boxtype ]; then
+			stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
+			if [ $stbcheck == "u5" ]; then
+				/usr/bin/hihalt
+			else
+				/sbin/halt
+			fi
+		else
+			/sbin/halt
+		fi
 		;;
 	2)
 		if [ -f /proc/stb/fp/force_restart ]; then

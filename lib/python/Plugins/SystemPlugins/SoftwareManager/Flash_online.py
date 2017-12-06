@@ -37,10 +37,10 @@ imagesCounter = 0
 #images.append(["Latest", "http://images.hdfreaks.cc"])
 #images.append(["V5.5", "http://v55.hdfreaks.cc"])
 #images.append(["V6.0", "http://beta6.hdfreaks.cc"])
-images.append(["V5.5", "http://teamimages.hdfreaks.cc"])
-images.append(["V6.2", "http://v55.hdfreaks.cc"])
-images.append(["V6.1", "http://v62.hdfreaks.cc"])
-images.append(["Team", "http://v60.hdfreaks.cc"])
+images.append(["switch to V5.5", "http://teamimages.hdfreaks.cc"])
+images.append(["switch to V6.2", "http://v55.hdfreaks.cc"])
+images.append(["switch to V6.1", "http://v62.hdfreaks.cc"])
+images.append(["switch to Team", "http://v60.hdfreaks.cc"])
 
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
@@ -73,8 +73,10 @@ class FlashOnline(Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.selection = 0
-		if getMachineBuild() in ("hd51","vs1500","h7"):
+		if getMachineBuild() in ("hd51","vs1500","h7","ceryon7252"):
 			self.devrootfs = "/dev/mmcblk0p3"
+		elif getMachineBuild() in ("gb7252"):
+			self.devrootfs = "/dev/mmcblk0p4"
 		else:
 			self.devrootfs = "/dev/mmcblk1p3"
 		self.multi = 1
@@ -100,8 +102,12 @@ class FlashOnline(Screen):
 			"cancel": self.quit,
 		}, -2)
 		if SystemInfo["HaveMultiBoot"]:
-			self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
-			self.multi = self.multi[-1:]
+			if getMachineBuild() in ("gb7252"):
+				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(":",1)[0]
+				self.multi = self.multi[-1:]
+			else:
+				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
+				self.multi = self.multi[-1:]
 			print "[Flash Online] MULTI:",self.multi
 
 	def check_hdd(self):
@@ -153,10 +159,14 @@ class FlashOnline(Screen):
 			if self.selection == len(self.list):
 				self.selection = 0
 			self["key_blue"].setText(_(self.list[self.selection]))
-			self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
-			self.multi = self.multi[-1:]
+			if getMachineBuild() in ("gb7252"):
+				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(":",1)[0]
+				self.multi = self.multi[-1:]
+			else:
+				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
+				self.multi = self.multi[-1:]
 			print "[Flash Online] MULTI:",self.multi
-			if getMachineBuild() in ("hd51","vs1500","h7"):
+			if getMachineBuild() in ("hd51","vs1500","h7","ceryon7252"):
 				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",3)[3].split(" ",1)[0]
 			else:
 				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
@@ -174,7 +184,7 @@ class FlashOnline(Screen):
 		files = []
 		if SystemInfo["HaveMultiBoot"]:
 			path = PATH
-			if getMachineBuild() in ("hd51","vs1500","h7"):
+			if getMachineBuild() in ("hd51","vs1500","h7","ceryon7252"):
 				for name in os.listdir(path):
 					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
 						try:
@@ -182,6 +192,17 @@ class FlashOnline(Screen):
 						except IndexError:
 							continue
 						cmdline_startup = self.read_startup("/boot/STARTUP").split("=",3)[3].split(" ",1)[0]
+						if (cmdline != cmdline_startup) and (name != "STARTUP"):
+							files.append(name)
+				files.insert(0,"STARTUP")
+			elif getMachineBuild() in ("gb7252"):
+				for name in os.listdir(path):
+					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
+						try:
+							cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
+						except IndexError:
+							continue
+						cmdline_startup = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
 						if (cmdline != cmdline_startup) and (name != "STARTUP"):
 							files.append(name)
 				files.insert(0,"STARTUP")
@@ -279,11 +300,11 @@ class doFlashImage(Screen):
 		machinename = getMachineName()
 		if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
 			box = "ventonhdx"
-		elif box == "odinm6":
+		elif box == 'odinm6':
 			box = getMachineName().lower()
-		elif box == "xpeedlx3":
-			box = "xpeedlx3"
-		elif box == "xpeedlx1" or box == "xpeedlx2":
+		elif box == "inihde" and machinename.lower() == "xpeedlx":
+			box = "xpeedlx"
+		elif box in ('xpeedlx1', 'xpeedlx2'):
 			box = "xpeedlx"
 		elif box == "inihde" and machinename.lower() == "hd-1000":
 			box = "sezam-1000hd"
@@ -293,7 +314,7 @@ class doFlashImage(Screen):
 			box = "miraclebox-twin"
 		elif box == "xp1000" and machinename.lower() == "sf8 hd":
 			box = "sf8"
-		elif box.startswith('et') and not box in ('et8000', 'et8500', 'et10000'):
+		elif box.startswith('et') and not box in ('et8000', 'et8500', 'et8500s', 'et10000'):
 			box = box[0:3] + 'x00'
 		elif box == "odinm9":
 			box = 'maram9'
@@ -524,9 +545,14 @@ class doFlashImage(Screen):
 
 		self["imageList"].l.setList(self.imagelist)
 
+	def SaveEPG(self):
+		from enigma import eEPGCache
+		epgcache = eEPGCache.getInstance()
+		epgcache.save()
+
 class ImageDownloadJob(Job):
 	def __init__(self, url, filename, file):
-		Job.__init__(self, _("Downloading %s" %file))
+		Job.__init__(self, _("Downloading %s") %file)
 		ImageDownloadTask(self, url, filename)
 
 class DownloaderPostcondition(Condition):
@@ -563,9 +589,9 @@ class ImageDownloadTask(Task):
 		self.aborted = True
 
 	def download_progress(self, recvbytes, totalbytes):
-		if ( recvbytes - self.last_recvbytes  ) > 10000: # anti-flicker
+		if ( recvbytes - self.last_recvbytes  ) > 100000: # anti-flicker
 			self.progress = int(100*(float(recvbytes)/float(totalbytes)))
-			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (recvbytes/1024, totalbytes/1024)
+			self.name = _("Downloading") + ' ' + _("%d of %d kBytes") % (recvbytes/1024, totalbytes/1024)
 			self.last_recvbytes = recvbytes
 
 	def download_failed(self, failure_instance=None, error_message=""):

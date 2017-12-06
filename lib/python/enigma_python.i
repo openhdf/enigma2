@@ -49,6 +49,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/service/iservice.h>
 #include <lib/service/service.h>
 #include <lib/service/servicedvb.h>
+#include <lib/service/servicepeer.h>
 #include <lib/gdi/fb.h>
 #include <lib/gdi/font.h>
 #include <lib/gdi/gpixmap.h>
@@ -122,7 +123,7 @@ is usually caused by not marking PSignals as immutable.
 %define %typemap_output_simple(Type)
  %typemap(in,numinputs=0) Type *OUTPUT ($*1_ltype temp),
               Type &OUTPUT ($*1_ltype temp)
-   "$1 = new Type;";
+   "$1 = new Type; (void)temp;";
  %fragment("t_out_helper"{Type},"header",
      fragment="t_output_helper") {}
  %typemap(argout,fragment="t_out_helper"{Type}) Type *OUTPUT, Type &OUTPUT
@@ -132,7 +133,7 @@ is usually caused by not marking PSignals as immutable.
 %define %typemap_output_ptr(Type)
  %typemap(in,numinputs=0) Type *OUTPUT ($*1_ltype temp),
               Type &OUTPUT ($*1_ltype temp)
-   "$1 = new Type;";
+   "$1 = new Type; (void)temp;";
  %fragment("t_out_helper"{Type},"header",
      fragment="t_output_helper") {}
  %typemap(argout,fragment="t_out_helper"{Type}) Type *OUTPUT, Type &OUTPUT
@@ -162,6 +163,7 @@ typedef long time_t;
 %include <lib/service/iservice.h>
 %include <lib/service/service.h>
 %include <lib/base/e2avahi.h>
+%include <lib/service/servicepeer.h>
 
 // TODO: embed these...
 %immutable ePicLoad::PictureData;

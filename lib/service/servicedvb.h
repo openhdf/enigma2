@@ -9,7 +9,6 @@
 #include <lib/dvb/subtitle.h>
 #include <lib/dvb/teletext.h>
 #include <lib/dvb/radiotext.h>
-#include <lib/base/filepush.h>
 
 class eStaticServiceDVBInformation;
 class eStaticServiceDVBBouquetInformation;
@@ -71,7 +70,7 @@ inline int eDVBServiceList::compareLessEqual(const eServiceReference &a, const e
 class eDVBServiceBase: public iFrontendInformation
 {
 protected:
-	bool tryFallbackTuner(eServiceReferenceDVB &service,
+	static bool tryFallbackTuner(eServiceReferenceDVB &service,
 			bool &is_stream, bool is_pvr, bool simulate);
 
 	eDVBServicePMTHandler m_service_handler;
@@ -85,7 +84,7 @@ public:
 
 class eDVBServicePlay: public eDVBServiceBase,
 		public iPlayableService, public iPauseableService,
-		public iSeekableService, public Object, public iServiceInformation,
+		public iSeekableService, public sigc::trackable, public iServiceInformation,
 		public iAudioTrackSelection, public iAudioChannelSelection,
 		public iSubserviceList, public iTimeshiftService,
 		public iCueSheet, public iSubtitleOutput, public iAudioDelay,
@@ -97,7 +96,7 @@ public:
 	virtual ~eDVBServicePlay();
 
 		// iPlayableService
-	RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
+	RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT start();
 	RESULT stop();
 	RESULT setTarget(int target, bool noaudio);
@@ -144,7 +143,7 @@ public:
 	ePtr<iDVBTransponderData> getTransponderData();
 	void getAITApplications(std::map<int, std::string> &aitlist);
 	PyObject * getHbbTVApplications();
-	void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids);
+	void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes);
 
 		// iAudioTrackSelection
 	int getNumberOfTracks();
@@ -198,6 +197,8 @@ public:
 	RESULT stream(ePtr<iStreamableService> &ptr);
 	ePtr<iStreamData> getStreamingData();
 
+	void setQpipMode(bool value, bool audio);
+
 protected:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;
@@ -223,7 +224,7 @@ protected:
 
 	void serviceEvent(int event);
 	void serviceEventTimeshift(int event);
-	Signal2<void,iPlayableService*,int> m_event;
+	sigc::signal2<void,iPlayableService*,int> m_event;
 
 	bool m_is_stream;
 
