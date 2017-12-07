@@ -113,7 +113,7 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 	if [ -z $CONFIG_CRASH_DEBUG_PATH ]; then
 		LD_PRELOAD=$LIBS /usr/bin/enigma2 --debug-no-color &> /home/root/logs/Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
 	else
-		LD_PRELOAD=$LIBS /usr/bin/enigma2 --debug-no-color &> ${CONFIG_CRASH_DEBUG_PATH}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log		
+		LD_PRELOAD=$LIBS /usr/bin/enigma2 --debug-no-color &> ${CONFIG_CRASH_DEBUG_PATH}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
 	fi
 else
 	# in case $TERM is "linux" the serial output is activated - discard debug output

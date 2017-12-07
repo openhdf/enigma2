@@ -413,8 +413,8 @@ RESULT eAMLTSMPEGDecoder::showSinglePic(const char *filename)
 			finishShowSinglePic();
 #endif
 
-			m_codec.has_video = 1;	
-			m_codec.has_audio = 0;	
+			m_codec.has_video = 1;
+			m_codec.has_audio = 0;
 			m_codec.stream_type = STREAM_TYPE_ES_VIDEO;
 			ret = codec_init(&m_codec);
 			if(ret == CODEC_ERROR_NONE)
