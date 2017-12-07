@@ -52,11 +52,11 @@ SUBDIRS += display390
 endif
 
 if HAVE_COLORLCD400
-SUBDIRS += display400
-endif
-
 if GB7252
 SUBDIRS += display400gb4k
+else
+SUBDIRS += display400
+endif
 endif
 
 if HAVE_COLORLCD720
