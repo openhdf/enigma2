@@ -66,7 +66,7 @@ private:
 	int m_video_clip_fd;
 	ePtr<eTimer> m_showSinglePicTimer;
 	void finishShowSinglePic(); // called by timer
-	ePtr<eTimer> m_VideoRead;	
+	ePtr<eTimer> m_VideoRead;
 	void parseVideoInfo(); // called by timer
 
 	//Amcodec related

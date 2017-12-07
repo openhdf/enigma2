@@ -113,12 +113,12 @@ eDBoxLCD::eDBoxLCD()
 				{
 					lcdfd = open("/dev/dbox/oled0", O_RDWR);
 				}
-		}		
+		}
 		else
 		{
 			lcdfd = open("/dev/dbox/oled0", O_RDWR);
-		}		
-	}	
+		}
+	}
 	else
 	{
 		lcdfd = open("/dev/dbox/oled0", O_RDWR);
