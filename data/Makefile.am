@@ -56,7 +56,6 @@ SUBDIRS += display400
 endif
 
 if GB7252
-SUBDIRS -= display400
 SUBDIRS += display400gb4k
 endif
 
