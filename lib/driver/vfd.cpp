@@ -7,7 +7,7 @@
 #include <sys/ioctl.h>
 #include <ctype.h>
 #include <sys/stat.h>
-#include  <pthread.h> 
+#include  <pthread.h>
 
 #include <lib/base/eerror.h>
 #include <lib/driver/vfd.h>

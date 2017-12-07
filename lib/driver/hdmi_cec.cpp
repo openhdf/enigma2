@@ -545,7 +545,7 @@ void eHdmiCEC::sendMessage(struct cec_message &message)
 #else
 			::write(hdmiFd, &message, 2 + message.length);
 #endif
-		}           
+		}
 	}
 }
 

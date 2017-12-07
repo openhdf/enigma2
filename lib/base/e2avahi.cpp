@@ -80,7 +80,7 @@ struct AvahiServiceEntry
 inline bool operator==(const AvahiServiceEntry& lhs, const AvahiServiceEntry& rhs)
 {
 	return (lhs.service_type == rhs.service_type) &&
-			(lhs.port_num == rhs.port_num); 
+			(lhs.port_num == rhs.port_num);
 }
 inline bool operator!=(const AvahiServiceEntry& lhs, const AvahiServiceEntry& rhs)
 { return !(lhs == rhs); }

@@ -4,7 +4,7 @@
   * modify it under the terms of the GNU General Public License as
   * published by the Free Software Foundation; either version 2, or
   * (at your option) any later version.
-  * 
+  *
   * This program is distributed in the hope that it will be useful,
   * but WITHOUT ANY WARRANTY; without even the implied warranty of
   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -136,7 +136,7 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
           retpos2 = pos + (p - buf);
           st = (p - buf) - ind + 1;
           sdflag = 1;
-          return 1; 
+          return 1;
         } else if (!sdflag && p[3]==0x09 && (buf[ind+1] & 0x40)) { // H264
           if ((p[4] >> 5)==0) {
             retpts = framepts(buf, ind);
@@ -148,7 +148,7 @@ int framesearch(int fts, int first, off64_t& retpos, off64_t& retpts, off64_t& r
           retdat = p[3] | (p[4]<<8);
           retpos2 = pos + (p - buf);
           st = (p - buf) - ind + 1;
-          return 1; 
+          return 1;
         } else {
           ind = -1;
           continue;

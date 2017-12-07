@@ -66,7 +66,7 @@ eAMLTSMPEGDecoder::eAMLTSMPEGDecoder(eDVBDemux *demux, int decoder)
 : m_demux(demux),
 m_vpid(-1), m_vtype(-1), m_apid(-1), m_atype(-1), m_pcrpid(-1), m_textpid(-1),
 m_width(-1), m_height(-1), m_framerate(-1), m_aspect(-1), m_progressive(-1),
-m_changed(0), m_decoder(decoder), m_radio_pic_on(0), m_video_clip_fd(-1), 
+m_changed(0), m_decoder(decoder), m_radio_pic_on(0), m_video_clip_fd(-1),
 m_showSinglePicTimer(eTimer::create(eApp)), m_VideoRead(eTimer::create(eApp))
 {
 	TRACE__
@@ -508,7 +508,7 @@ void eAMLTSMPEGDecoder::parseVideoInfo()
 		event.framerate = m_framerate;
 		video_event(event);
 	}
-	else if (m_width > 0 && m_progressive == -1) 
+	else if (m_width > 0 && m_progressive == -1)
 	{
 		CFile::parseIntHex(&m_progressive, "/proc/stb/vmpeg/0/progressive");
 		if (m_progressive != 2)

@@ -1404,7 +1404,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		oparm.getSystem(type);
 		switch (type)
 		{
-		case feCable: 
+		case feCable:
 			eDVBFrontendParametersCable parm;
 			oparm.getDVBC(parm);
 			switch (parm.modulation)
@@ -1417,7 +1417,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 			case eDVBFrontendParametersCable::Modulation_QAM128: ret = (int)(-875 * log(((double)mse) / 650)); break;
 			}
 			break;
-		case feTerrestrial: 
+		case feTerrestrial:
 			ret = (mse * 25) / 2;
 			break;
 		default:
@@ -1442,7 +1442,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		switch (parm.system)
 		{
 			case eDVBFrontendParametersTerrestrial::System_DVB_T:
-			case eDVBFrontendParametersTerrestrial::System_DVB_T2: 
+			case eDVBFrontendParametersTerrestrial::System_DVB_T2:
 			case eDVBFrontendParametersTerrestrial::System_DVB_T_T2: ret = (int)((snr * 10) / 15); break;
 			default: break;
 		}

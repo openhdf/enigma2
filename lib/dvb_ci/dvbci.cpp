@@ -1376,7 +1376,7 @@ void eDVBCISlot::data(int what)
 			} /* data ready */
 			else if (status == eDataWrite)
 			{
-				if (!sendqueue.empty() && (tx_time.tv_sec == 0)) 
+				if (!sendqueue.empty() && (tx_time.tv_sec == 0))
 				{
 					const queueData &qe = sendqueue.top();
 					int res = write(fd, qe.data, qe.len);
@@ -1414,7 +1414,7 @@ void eDVBCISlot::data(int what)
 					application_manager = 0;
 					ca_manager = 0;
 					tx_time.tv_sec = 0;
-					eDVBCI_UI::getInstance()->setState(getSlotID(),1); 
+					eDVBCI_UI::getInstance()->setState(getSlotID(),1);
 				}
 				else if (!(info.flags & CA_CI_MODULE_READY))
 				{

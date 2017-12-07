@@ -1,7 +1,7 @@
 /*
  * LIRC support based on LIRC for VDR, which was written by
  * Carsten Koch.
- * 
+ *
 */
 
 #include <netinet/in.h>

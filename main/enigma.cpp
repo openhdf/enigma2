@@ -161,7 +161,7 @@ public:
 	}
 };
 
-bool replace(std::string& str, const std::string& from, const std::string& to) 
+bool replace(std::string& str, const std::string& from, const std::string& to)
 {
 	size_t start_pos = str.find(from);
 	if(start_pos == std::string::npos)
@@ -189,7 +189,7 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 		in.close();
 	}
 	// if value is empty, means no config.skin.primary_skin exist in settings file, so return just default spinner ( /usr/share/enigma2/spinner )
-	if (value.empty()) 
+	if (value.empty())
 		return value;
 
 	 //  if value is NOT empty, means config.skin.primary_skin exist in settings file, so return SCOPE_CURRENT_SKIN + "/spinner" ( /usr/share/enigma2/MYSKIN/spinner ) BUT check if /usr/share/enigma2/MYSKIN/spinner/wait1.png exist
@@ -201,7 +201,7 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 	}
 	else
 		return "spinner";  // if value is NOT empty, means config.skin.primary_skin exist in settings file, so return "spinner" ( /usr/share/enigma2/MYSKIN/spinner/wait1.png DOES NOT exist )
-} 
+}
 
 int exit_code;
 
