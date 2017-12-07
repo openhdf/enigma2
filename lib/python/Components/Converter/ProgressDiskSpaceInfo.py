@@ -21,7 +21,7 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
-        
+
 		type = type.split(',')
 		self.shortFormat = "Short" in type
 		self.fullFormat  = "Full"  in type
@@ -43,7 +43,7 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 			self.type = self.HDDINFO
 		else:
 			self.type = self.FLASHINFO
-		
+
 		if self.type in (self.FLASHINFO,self.HDDINFO,self.USBINFO):
 			self.poll_interval = 5000
 		else:
@@ -159,7 +159,7 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 			except:
 				return None
 			return False
-		
+
 		result = [0,0,0,0]	# (size, used, avail, use%)
 		if isMountPoint():
 			try:
@@ -184,11 +184,11 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 		else:
 			fmt = "%(size)u %(unit)s"
 		return fmt % {"size": value, "frac": fractal, "unit": SIZE_UNITS[u]}
-		
+
 	def doSuspend(self, suspended):
 		if suspended:
 			self.poll_enabled = False
 		else:
 			self.downstream_elements.changed((self.CHANGED_POLL,))
 			self.poll_enabled = True
-	        
+

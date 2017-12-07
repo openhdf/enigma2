@@ -124,7 +124,7 @@
 		<key id="KEY_F4" mapto="extensions" flags="b" />
 		<key id="KEY_BLUE" mapto="extensions" flags="l" />
 	</map>
-	
+
 	<map context="InfoBarQuickMenu">
 		<key id="KEY_BLUE" mapto="quickmenu" flags="b" />
  	</map>

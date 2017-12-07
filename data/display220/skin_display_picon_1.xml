@@ -34,7 +34,7 @@
 		<!--widget source="global.CurrentTime" render="Label" position="132,145" size="88,46" font="FdLcD;35" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget-->
-		
+
 		<!--widget source="session.Event_Now" render="Progress" position="0,155" size="130,14" borderWidth="3" >
 			<convert type="EventTime">Progress</convert>
 		</widget-->
@@ -255,7 +255,7 @@
 			<widget name="Chapter" position="fill" font="FdLcD;12" halign="left" />
 		</panel>
 	</screen>
-	
+
 <!-- ViX -->
 	<screen name="VIXDevicesPanelSummary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />

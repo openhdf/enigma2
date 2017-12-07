@@ -550,7 +550,7 @@ void eDVBScan::addLcnToDB(eDVBNamespace ns, eOriginalNetworkID onid, eTransportS
 		sprintf(row, "%08x:%04x:%04x:%04x:%05d:%08d\n", ns.get(), onid.get(), tsid.get(), sid.get(), lcn, signal);
 		fseek(m_lcn_file, 0, SEEK_END);
 		size = ftell(m_lcn_file);
-		
+
 		for (int i = 0; i < size / 39; i++)
 		{
 			char tmp[40];
@@ -564,7 +564,7 @@ void eDVBScan::addLcnToDB(eDVBNamespace ns, eOriginalNetworkID onid, eTransportS
 				break;
 			}
 		}
-			
+
 		if (!added)
 		{
 			fseek(m_lcn_file, 0, SEEK_END);
@@ -783,11 +783,11 @@ void eDVBScan::channelDone()
 						eDVBFrontendParametersTerrestrial terr;
 						terr.set(d);
 						feparm->setDVBT(terr);
-						
+
 						unsigned long hash=0;
 						feparm->getHash(hash);
 						ns = buildNamespace(onid, tsid, hash);
-						
+
 						addChannelToScan(feparm);
 						break;
 					}
@@ -903,16 +903,16 @@ void eDVBScan::channelDone()
 						{
 							if (system != iDVBFrontend::feTerrestrial)
 								break; // when current locked transponder is no terrestrial transponder ignore this descriptor
-								
+
 							if (ns.get() == 0)
 								break; // invalid namespace
-								
+
 							int signal = 0;
 							ePtr<iDVBFrontend> fe;
-							
+
 							if (!m_channel->getFrontend(fe))
 								signal = fe->readFrontendData(iFrontendInformation_ENUMS::signalQuality);
-							
+
 							LogicalChannelDescriptor &d = (LogicalChannelDescriptor&)**desc;
 							for (LogicalChannelListConstIterator it = d.getChannelList()->begin(); it != d.getChannelList()->end(); it++)
 							{
@@ -1158,7 +1158,7 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 
 	if (m_lcn_file)
 		fclose(m_lcn_file);
-		
+
 	if (m_flags & scanRemoveServices)
 	{
 		m_lcn_file = fopen(eEnv::resolve("${sysconfdir}/enigma2/lcndb").c_str(), "w");

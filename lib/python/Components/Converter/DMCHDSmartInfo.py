@@ -28,7 +28,7 @@ class DMCHDSmartInfo(Poll, Converter, object):
 
 
 	@cached
-	
+
 	def getText(self):
 		service = self.source.service
 		info = service and service.info()
@@ -285,7 +285,7 @@ class DMCHDSmartInfo(Poll, Converter, object):
 			Ret_Text = Ret_Text
 			return Ret_Text
 		return ""
-		
+
 
 	text = property(getText)
 

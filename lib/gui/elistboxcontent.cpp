@@ -502,7 +502,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							}
 
 						painter.fill(eRect(slider_offset.x() + m_seperation, slider_offset.y(), valueWidth, height*2/3));
-						
+
 							/* draw text value at the end of the slider*/
 						std::ostringstream sin;
 						sin << value;
@@ -511,7 +511,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 
 						painter.renderText(eRect(text_offset, m_itemsize), cvalue, flags);
- 
+
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "mtext"))

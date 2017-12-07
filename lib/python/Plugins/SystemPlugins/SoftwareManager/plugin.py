@@ -480,7 +480,7 @@ class UpdatePluginMenu(Screen):
 				self.session.open(ImageBackup)
 		else:
 			self.session.open(FlashOnline)
-			
+
 class SoftwareManagerSetup(Screen, ConfigListScreen):
 
 	skin = """

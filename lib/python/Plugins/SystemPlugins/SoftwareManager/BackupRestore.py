@@ -62,7 +62,7 @@ def SettingsEntry(name, checked):
 		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"));
 	else:
 		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_off.png"));
-		
+
 	return (name, picture, checked)
 
 class BackupScreen(Screen, ConfigListScreen):
@@ -401,7 +401,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def restartGUI(self, ret = None):
 		self.session.openWithCallback(self.restartGUIornot, MessageBox, _("Do you want to completely reboot your box now? \nIf not, only Enigma is restarting."))
-	
+
 	def restartGUIornot(self, ret = False):
 		if ret == True:
 			self.session.open(Console, title = _("Your %s %s will Reboot...")% (getMachineBrand(), getMachineName()), cmdlist = ["killall -9 enigma2 ; reboot"])
@@ -412,7 +412,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.doRestore()
 
 class RestartNetwork(Screen):
-	
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		skin = """
@@ -431,7 +431,7 @@ class RestartNetwork(Screen):
 	def restartLan(self):
 		print"[SOFTWARE MANAGER] Restart Network"
 		iNetwork.restartNetwork(self.restartLanDataAvail)
-		
+
 	def restartLanDataAvail(self, data):
 		if data is True:
 			iNetwork.getInterfaces(self.getInterfacesDataAvail)
@@ -534,7 +534,7 @@ class RestorePlugins(Screen):
 		self["key_green"] = Button(_("Install"))
 		self["key_red"] = Button(_("Cancel"))
 		self["summary_description"] = StaticText("")
-				
+
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 				{
 					"red": self.exit,
@@ -574,7 +574,7 @@ class RestorePlugins(Screen):
 
 	def installLocalIPK(self):
 		self.session.open(Console, title = _("Installing plugins..."), cmdlist = ['opkg --force-overwrite install ' + ' '.join(self.myipklist)], finishedCallback = self.exit, closeOnSuccess = True)
-	
+
 	def ok(self):
 		index = self["menu"].getIndex()
 		item = self["menu"].getCurrent()[0]
@@ -594,7 +594,7 @@ class RestorePlugins(Screen):
 		else:
 			self["summary_description"].text = self["menu"].getCurrent()[0]
 		self.index = index
-			
+
 	def drawList(self):
 		self["menu"].setList(self.Menulist)
 		self["menu"].setIndex(self.index)

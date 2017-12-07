@@ -55,7 +55,7 @@ int is_range1(char* string, struct ip_range* range);
    structure pointed by next_addr. Returns 1 if next ip found and 0 otherwise */ 
 int next_address(const struct ip_range* range, const struct in_addr* prev_addr, 
 		 struct in_addr* next_addr); 
-	
+
 /* is_range2 checks if supplied string is an IP address range in
    form xxx.xxx.xxx.xxx-xxx (as in 192.168.1.2-15) and fills
    range structure with start and end ip addresses of the interval.

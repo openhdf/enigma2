@@ -69,9 +69,9 @@ class AVSwitch:
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	# modes["DVI-PC"] = ["PC"]
-	
+
 	if hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime") : config.av.edid_override = True
-	
+
 	if (about.getChipSetString() in ('7366', '7376', '5272s', '7444', '7445', '7445s')):
 		modes["HDMI"] = ["720p", "1080p", "2160p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i", "2160p"}
@@ -102,7 +102,7 @@ class AVSwitch:
 		del modes["YPbPr"]
 	if modes.has_key("Scart") and getBoxType() in ('osnino','axultra','gbue4k','gi11000','spycat4kmini','tmtwin4k','tmnanom3','gbquad4k','revo4k','force3uhd','force2nano','dm900', 'wetekplay', 'wetekplay2', 'wetekhub', 'bre2ze4k', 'vuuno4k', 'vuultimo4k', 'sf4008', 'novaip', 'dm520', 'dm525', 'purehd', 'vusolo4k', 'fusionhdse', 'fusionhd', 'force2', 'force2plus', 'force2plushv', 'optimussos', 'tmnanose', 'tmnanosecombo', 'gbx1', 'gbx2', 'gbx3', 'gbx3h', 'gbultraue', 'gbultraueh', 'zgemmai55', 'mutant1500'):
 		del modes["Scart"]
-		
+
 	if getBoxType() in ('mutant2400'):
 		f = open("/proc/stb/info/board_revision", "r").read()
 		if f >= "2":

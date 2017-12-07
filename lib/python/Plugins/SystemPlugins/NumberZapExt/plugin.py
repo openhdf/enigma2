@@ -168,7 +168,7 @@ class NumberZapExt(Screen):
 						name = self.action.replace('_',' ').title()
 						channel = _("Action:")
 						bouquet = bqname = ""
-		
+
 		self["chNum"].setText(self.field)
 		self["channel"].setText(channel)
 		self["bouquet"].setText(bouquet)

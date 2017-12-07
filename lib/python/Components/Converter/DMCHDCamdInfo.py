@@ -39,27 +39,27 @@ class DMCHDCamdInfo(Converter, object):
 		if not info:
 		   return ""
 		camd = None
-                	
+
 		# OoZooN
 		if fileExists("/tmp/cam.info"):
 			try:
 				camdlist = open("/tmp/cam.info", "r")
 			except:
 				return None
-			
+
 		# Merlin2	
 		elif fileExists("/etc/clist.list"):
 			try:
 		   		camdlist = open("/etc/clist.list", "r")
 		   	except:
 				return None
-		
+
 		# GP3
 		elif fileExists("/usr/lib/enigma2/python/Plugins/Bp/geminimain/lib/libgeminimain.so"):
 			try:
 				from Plugins.Bp.geminimain.plugin import GETCAMDLIST
 				from Plugins.Bp.geminimain.lib import libgeminimain
-				
+
 				camdl = libgeminimain.getPyList(GETCAMDLIST)
 				camd = None
 				for x in camdl:
@@ -68,10 +68,10 @@ class DMCHDCamdInfo(Converter, object):
 				return camd
 		   	except:
 				return None
-		
+
 		else:
 			camdlist = None
-		
+
 		if camdlist is not None:
 			for current in camdlist:
 				camd = current

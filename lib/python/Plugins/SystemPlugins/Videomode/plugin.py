@@ -378,7 +378,7 @@ class AutoFrameRate(Screen):
 			write_mode = new_mode
 		else:
 			write_mode = config_mode
-			
+
 		print '\n'
 		print 'CURRENT MODE:',current_mode
 		print 'NEW MODE:',write_mode

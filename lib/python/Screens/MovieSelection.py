@@ -464,7 +464,7 @@ class MovieSelectionSummary(Screen):
 			self["name"].text = name
 		else:
 			self["name"].text = ""
-			
+
 from Screens.ParentalControlSetup import ProtectedScreen
 
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, ProtectedScreen):

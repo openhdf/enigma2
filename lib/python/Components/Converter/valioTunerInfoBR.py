@@ -29,7 +29,7 @@ class valioTunerInfoBR(Converter, object):
 
 
 	@cached
-	
+
 	def getText(self):
 		return "kbit/s: "+self.BRvalue
 

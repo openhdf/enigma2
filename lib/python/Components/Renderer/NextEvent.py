@@ -34,7 +34,7 @@ class NextEvent(Renderer, VariableText):
 		VariableText.__init__(self)
 		self.epgcache = eEPGCache.getInstance()
 	GUI_WIDGET = eLabel
-	
+
 	def changed(self, what):
 		if True:
 			ref = self.source.service

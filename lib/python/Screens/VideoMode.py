@@ -967,10 +967,10 @@ class AutoVideoMode(Screen):
 				else:
 					print "DEBUG VIDEOMODE/ no path or no service reference, presumably live TV"
 					new_rate = '50' # for TV / or no service reference, then stay at 1080p50
-				
+
 				new_rate = new_rate.replace('25', '50')
 				new_rate = new_rate.replace('30', '60')
-				
+
 				if  (config.av.smart1080p.value == '1080p50') or (config.av.smart1080p.value == 'true'): # for compatibility with old ConfigEnableDisable
 					write_mode = '1080p' + new_rate
 				elif config.av.smart1080p.value == '2160p50':

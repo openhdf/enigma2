@@ -28,7 +28,7 @@ class g16ServiceNameEventNobile(Converter, object):
 	ENDTIME = 4
 	EXTENDED_DESCRIPTION = 5
 	EXTENDED_DESCRIPTION_EVENT = 6
-          	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.epgQuery = eEPGCache.getInstance().lookupEventTime
@@ -46,7 +46,7 @@ class g16ServiceNameEventNobile(Converter, object):
 			self.type = self.EXTENDED_DESCRIPTION
 		elif type == "ExtendedDescriptionEvent" or type == "ExtendedDescriptionEventSingle":
 			self.type = self.EXTENDED_DESCRIPTION_EVENT
-      			
+
 	@cached
 	def getText(self):
 		no_desc = ""

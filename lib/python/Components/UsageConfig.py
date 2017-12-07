@@ -163,7 +163,7 @@ def InitUsageConfig():
 	config.usage.tuxtxt_TTFWidthFactor16.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False, call_on_save_or_cancel = True)
 	config.usage.tuxtxt_TTFHeightFactor16.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False, call_on_save_or_cancel = True)
 	config.usage.tuxtxt_CleanAlgo.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False, call_on_save_or_cancel = True)
-	
+
 	config.usage.sort_settings = ConfigYesNo(default = False)
 	config.usage.sort_menus = ConfigYesNo(default = False)
 	config.usage.sort_pluginlist = ConfigYesNo(default = True)

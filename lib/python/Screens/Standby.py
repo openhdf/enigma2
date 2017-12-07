@@ -114,7 +114,7 @@ class Standby2(Screen):
 
 		#mute adc
 		self.setMute()
-	
+
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			# set LCDminiTV off
 			setLCDModeMinitTV("0")

@@ -7,7 +7,7 @@ class nanoEventDesc(Converter, object):
 	EXTENDED_DESCRIPTION = 2
 	ID = 3
 	FULL = 4
-	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "Description":
@@ -26,7 +26,7 @@ class nanoEventDesc(Converter, object):
 		event = self.source.event
 		if event is None:
 			return ""
-			
+
 		if self.type == self.NAME:
 			return event.getEventName()
 		elif self.type == self.SHORT_DESCRIPTION:
@@ -46,5 +46,5 @@ class nanoEventDesc(Converter, object):
 					text += '\n'
 				text += ext
 			return text
-		
+
 	text = property(getText)

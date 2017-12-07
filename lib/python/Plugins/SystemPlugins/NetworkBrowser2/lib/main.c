@@ -66,7 +66,7 @@ PyObject *_netzInfo(PyObject *self, PyObject *args)
 			PyList_Append(plist, service);
 			PyList_Append(result, plist);
 			if(!(plist= PyList_New(0)))  return NULL;
-			
+
 		}
 	} 
 	freeNetInfo(nInfo);
@@ -140,7 +140,7 @@ PyObject *_smbShare(PyObject *self, PyObject *args)
 	shareinfo *sInfo;
 	PyObject *plist, *name, *typ, *comment, *result, *smbShare, *rech, *rechip;
 
-	
+
 	if(!PyArg_ParseTuple(args, "ssss", &s,&r,&u,&p)) {
 		PyErr_SetString(error, "getInfo(ip, rechnername, username, passwort)");
 		return NULL;

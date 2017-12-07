@@ -394,7 +394,7 @@ void eLircInputDevice::handleCode(long arg)
 {
 	const lircEvent* event = (const lircEvent*)arg;
 	int code, flags;
-	
+
 	if (event->repeat == true) {
 		flags = eRCKey::flagRepeat;
 	} else if (event->release == true) {

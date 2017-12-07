@@ -224,7 +224,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				if CompareWithAlternatives(self.list[x][0], serviceref.toString()):
 					return x
 		return 0
-		
+
 	def moveToService(self, serviceref):
 		newIdx = self.getIndexFromService(serviceref)
 		self.setCurrentIndex(newIdx)
@@ -232,7 +232,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def setCurrentIndex(self, index):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(index)
-	
+
 	def moveTo(self, dir):
 		if self.instance is not None:
 			self.instance.moveSelection(dir)
@@ -631,7 +631,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def resetOffset(self):
 		self.offs = 0
-	
+
 class TimelineText(HTMLComponent, GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
@@ -741,7 +741,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	EMPTY = 0
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
-	
+
 	ZAP = 1
 
 	def __init__(self, session, services, zapFunc=None, bouquetChangeCB=None, bouquetname=""):
@@ -927,7 +927,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self["timeline_text"].setDateFormat(config.misc.graph_mepg.servicetitle_mode.value)
 		l.fillMultiEPG(None, self.ask_time)
 		self.moveTimeLines(True)
-		
+
 	def closeScreen(self):
 		self.zapFunc(None, zapback = True)
 		config.misc.graph_mepg.save()
@@ -1019,7 +1019,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.session.nav.RecordTimer.removeEntry(timer)
 		self["key_green"].setText(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
-	
+
 	def timerAdd(self):
 		cur = self["list"].getCurrent()
 		event = cur[0]
@@ -1068,7 +1068,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
 			print "Timeredit aborted"
-	
+
 	def finishSanityCorrection(self, answer):
 		self.finishedTimerAdd(answer)
 
@@ -1092,13 +1092,13 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		if self.key_red_choice != self.ZAP:
 			self["key_red"].setText(_("Zap"))
 			self.key_red_choice = self.ZAP
-			
+
 		if not event:
 			if self.key_green_choice != self.EMPTY:
 				self["key_green"].setText("")
 				self.key_green_choice = self.EMPTY
 			return
-		
+
 		eventid = event.getEventId()
 		refstr = servicerefref.toString()
 		isRecordEvent = False
@@ -1112,7 +1112,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
-	
+
 	def moveTimeLines(self, force=False):
 		self.updateTimelineTimer.start((60 - (int(time()) % 60)) * 1000)	#keep syncronised
 		self["timeline_text"].setEntries(self["list"], self["timeline_now"], self.time_lines, force)

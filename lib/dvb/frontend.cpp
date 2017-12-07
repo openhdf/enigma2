@@ -809,7 +809,7 @@ int eDVBFrontend::openFrontend()
 					{
 						if (::ioctl(m_fd, FE_GET_INFO, &m_fe_info[SYS_DVBC_ANNEX_B]) < 0)
 							eWarning("[eDVBFrontend] ioctl FE_GET_INFO failed: %m");
-						
+
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
 						/* no need for a m_dvbversion check, SYS_DVBC_ANNEX_A replaced SYS_DVBC_ANNEX_AC (same value) */
 						m_delsys[SYS_DVBC_ANNEX_A] = true;

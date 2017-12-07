@@ -84,7 +84,7 @@ class Console(Screen):
 				f = open('/proc/stb/video/alpha', 'w')
 				f.write('%i' % (255 * count / 40))
 				f.close()
-	
+
 	def yellow(self):
 		print 'Yellow Pressed'	
 		if self.Shown == True:

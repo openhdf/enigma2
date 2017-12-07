@@ -23,7 +23,7 @@ class valioTunerInfo(Converter, object):
 
 
 	@cached
-	
+
 	def getText(self):
 		service = self.source.service
 		info = service and service.info()
@@ -52,7 +52,7 @@ class valioTunerInfo(Converter, object):
 						Ret_Text = "Freq: " + frequency
 			return Ret_Text
 		return "n/a"
-		
+
 
 	text = property(getText)
 

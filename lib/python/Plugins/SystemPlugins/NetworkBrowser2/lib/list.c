@@ -54,7 +54,7 @@ struct list_item* new_list_item(unsigned long content) {
 
 void delete_list(struct list* list) {
 	struct list_item* pointer;
-	
+
 	pointer = list->head;
 
         if (pointer) {
@@ -69,7 +69,7 @@ void delete_list(struct list* list) {
         }
 	free(list);
 };
-	
+
 int compare(struct list_item* item1, struct list_item* item2) {
 	if(item2==NULL) return ERROR;
 	if(item1==NULL) return 1;
@@ -84,7 +84,7 @@ int insert(struct list* lst, unsigned long content) {
 	int cmp;
 
 	item = new_list_item(content);
-	
+
 	cmp = compare(lst->head, item);
 	if(lst->head==NULL) {
 		lst->head=item;
@@ -130,7 +130,7 @@ int in_list(struct list* lst, unsigned long content) {
 	item = new_list_item(content);
 	if(lst->head==NULL) return 0;
 	temp_item=lst->head;
-	
+
 	while(compare(temp_item, item) < 0) temp_item = temp_item->next;
 	if (compare(temp_item, item)==0) return 1;
 	return 0;

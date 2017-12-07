@@ -119,7 +119,7 @@ class ImageWizard(WizardLanguage, Rc):
 		self["wizard"] = Pixmap()
 		Screen.setTitle(self, _("Welcome..."))
 		self.selectedDevice = None
-		
+
 	def markDone(self):
 		pass
 
@@ -136,17 +136,17 @@ class ImageWizard(WizardLanguage, Rc):
 
 	def deviceSelectionMade(self, index):
 		self.deviceSelect(index)
-		
+
 	def deviceSelectionMoved(self):
 		self.deviceSelect(self.selection)
-		
+
 	def deviceSelect(self, device):
 		self.selectedDevice = device
 		config.plugins.configurationbackup.backuplocation.setValue(self.selectedDevice)
 		config.plugins.configurationbackup.backuplocation.save()
 		config.plugins.configurationbackup.save()
 
-	
+
 if config.misc.firstrun.value:
 	wizardManager.registerWizard(ImageWizard, backupAvailable, priority = 10)
 

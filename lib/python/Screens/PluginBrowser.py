@@ -675,7 +675,7 @@ class PluginDownloadBrowser(Screen):
 								countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
 							self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = countryIcon), t[1], x[1]))
 							break
-							
+
 			else:
 				if len(split) < 2:
 					continue
@@ -805,5 +805,5 @@ class PluginFilter(ConfigListScreen, Screen):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].value = callback
 			self["config"].invalidate(self["config"].getCurrent())
-			
+
 language.addCallback(languageChanged)

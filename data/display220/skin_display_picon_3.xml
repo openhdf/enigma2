@@ -60,8 +60,8 @@
 		</widget>
 		<panel name="SummaryClockPanel" />
 	</screen>
-    
-  
+
+
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="fill">
 		<widget source="parent.ServiceEvent" render="Picon" zPosition="1" position="center,10" size="100,60" alphatest="on" >
@@ -78,7 +78,7 @@
 			<convert type="EventTime">Progress</convert>
 		</widget>
 	</screen>
-  
+
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="220,176">
 		<widget source="parent.title" render="Label" position="0,38" size="220,30" font="FdLcD;28" halign="left" noWrap="1" />
@@ -102,7 +102,7 @@
 			</widget>
 		</panel>
 	</screen>
-	
+
 	<screen name="MovieContextMenuSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
 		<widget source="selected" render="Label" position="top" size="*,32" font="FdLcD;16" />

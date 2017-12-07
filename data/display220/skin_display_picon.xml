@@ -45,8 +45,8 @@
 		</widget>
 		<panel name="SummaryClockPanel" />
 	</screen>
-    
-  
+
+
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="fill">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,65" font="FdLcD;30" halign="center" >
@@ -60,7 +60,7 @@
 		</widget>
 		<panel position="bottom" size="*,44" name="SummaryClockPanel" />
 	</screen>
-  
+
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
 		<widget source="parent.title" render="Label" position="top" size="*,61" font="FdLcD;30" halign="center" valign="top" />
@@ -83,7 +83,7 @@
 			</widget>
 		</panel>
 	</screen>
-	
+
 	<screen name="MovieContextMenuSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
 		<widget source="selected" render="Label" position="top" size="*,32" font="FdLcD;16" />

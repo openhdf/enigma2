@@ -322,7 +322,7 @@ def InitLcd():
 			file.close()
 		config.usage.standbyLED = ConfigYesNo(default = True)
 		config.usage.standbyLED.addNotifier(standbyLEDChanged)
-	
+
 	if detected:
 		ilcd = LCD()
 		if can_lcdmodechecking:
@@ -428,7 +428,7 @@ def InitLcd():
 
 		def setLCDmode(configElement):
 			ilcd.setMode(configElement.value);
-			
+
 		def setLCDpower(configElement):
 			ilcd.setPower(configElement.value);
 
@@ -542,7 +542,7 @@ def InitLcd():
 			config.lcd.minitvpipmode.addNotifier(setLCDminitvpipmode)
 			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
-		
+
 		if getBoxType() in ('mixosf5', 'mixosf5mini', 'gi9196m', 'gi9196lite'):
 			config.lcd.scrollspeed = ConfigSlider(default = 150, increment = 10, limits = (0, 500))
 			config.lcd.scrollspeed.addNotifier(setLCDscrollspeed);
@@ -563,7 +563,7 @@ def InitLcd():
 			config.lcd.repeat = ConfigNothing()
 			config.lcd.scrollspeed = ConfigNothing()
 			config.lcd.hdd = ConfigNothing()
-			
+
 		if fileExists("/proc/stb/power/vfd") or fileExists("/proc/stb/lcd/vfd"):
 			config.lcd.power = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
 			config.lcd.power.addNotifier(setLCDpower);

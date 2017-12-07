@@ -19,7 +19,7 @@ try:
 	file.close()
 except:
 	chipset = "unknown"
-	
+
 try:
 	file = open("/proc/stb/info/boxtype", "r")
 	model = file.readline().strip()

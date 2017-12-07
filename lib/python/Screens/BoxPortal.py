@@ -11,10 +11,10 @@ class BoxPortal(Screen):
 			<convert type="StringList" />
 		</widget>
 		</screen>"""
-	
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
+
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
 		{
 			"ok": self.okbuttonClick,
@@ -25,7 +25,7 @@ class BoxPortal(Screen):
 			"yellow": self.exit,
 			"blue": self.exit,
 		})
-		
+
 		list = []
 		if config.servicelist.lastmode.value == 'tv':
 			list.append((_("Switch to Radio"), "radio", "", "50"))
@@ -34,7 +34,7 @@ class BoxPortal(Screen):
 		list.append((_("Show Record Movies"), "pvr", "", "50"))
 		list.append((_("Media Center"), "bmc", "", "50"))
 		self["menu"] = List(list)
-		
+
 	def okbuttonClick(self):
 		selection = self["menu"].getCurrent()
 		if selection is not None:
@@ -48,6 +48,6 @@ class BoxPortal(Screen):
 				InfoBar.showMovies(InfoBar.instance)
 			elif selection[1] == "bmc":
 				InfoBar.showMediaCenter(InfoBar.instance)				
-	
+
 	def exit(self):
 		self.close()

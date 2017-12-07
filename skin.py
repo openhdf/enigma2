@@ -135,7 +135,7 @@ def getSkinPath():
 	if not primary_skin_path.endswith('/'):
 		primary_skin_path = primary_skin_path + '/'
 	return primary_skin_path
-	
+
 primary_skin_path = getSkinPath()
 
 profile("LoadSkin")
@@ -161,7 +161,7 @@ if SystemInfo["FrontpanelDisplay"] or SystemInfo["LcdDisplay"] or SystemInfo["Ol
 	if fileExists('/usr/share/enigma2/display/skin_display.xml'):
 		if fileExists(resolveFilename(SCOPE_CONFIG, config.skin.display_skin.value)):
 			addSkin(config.skin.display_skin.value, SCOPE_CONFIG)
-		else:	
+		else:
 			addSkin('display/' + config.skin.display_skin.value)
 
 if addSkin('skin_display.xml'):

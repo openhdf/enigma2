@@ -174,7 +174,7 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 {
 	std::string value = "spinner";
 	std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
-	
+
 	if (in.good()) {
 		do {
 			std::string line;
@@ -191,7 +191,7 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 	// if value is empty, means no config.skin.primary_skin exist in settings file, so return just default spinner ( /usr/share/enigma2/spinner )
 	if (value.empty()) 
 		return value;
-	
+
 	 //  if value is NOT empty, means config.skin.primary_skin exist in settings file, so return SCOPE_CURRENT_SKIN + "/spinner" ( /usr/share/enigma2/MYSKIN/spinner ) BUT check if /usr/share/enigma2/MYSKIN/spinner/wait1.png exist
 	std::string png_location = "/usr/share/enigma2/" + value + "/wait1.png";
 	std::ifstream png(png_location.c_str());

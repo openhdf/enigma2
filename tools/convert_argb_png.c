@@ -1,10 +1,10 @@
 /*
      convert_argb_png.c
-     
+
    compile with:
-     
+
      gcc convert_argb_png.c -o convert_argb_png -lpng -ljpeg
-    
+
    this tool takes a 32bit RGB+A PNG file, for example produced by photoshop,
    and splits the data into RGB and A. The RGB data is then lossy compressed with JPEG,
    the alpha channel is lossless compressed as PNG.

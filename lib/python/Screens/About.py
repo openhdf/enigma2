@@ -137,7 +137,7 @@ class About(Screen):
 			f = open('/boot/bootname', 'r')
 			bootname = f.readline().split('=')[1]
 			f.close()
-	
+
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
 			f.seek(22)
@@ -145,7 +145,7 @@ class About(Screen):
 			f.close()
 			if bootname: bootname = "   (%s)" %bootname 
 			AboutText += _("Image started:\t%s") % "STARTUP_" + image + bootname + "\n"
-		
+
 		string = getDriverDate()
 		year = string[0:4]
 		month = string[4:6]
@@ -196,7 +196,7 @@ class About(Screen):
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
 			AboutText += _("System Temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
-	
+
 		tempinfo = ""
 		if path.exists('/proc/stb/fp/temp_sensor_avs'):
 			f = open('/proc/stb/fp/temp_sensor_avs', 'r')

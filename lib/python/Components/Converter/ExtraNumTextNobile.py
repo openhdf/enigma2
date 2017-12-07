@@ -31,7 +31,7 @@ class ExtraNumTextNobile(Converter, object):
 	SECHAND = 8
 	MINHAND = 9
 	HOURHAND = 10	
-	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "SnrNum":
@@ -94,7 +94,7 @@ class ExtraNumTextNobile(Converter, object):
 				return 0
 			t = localtime(time)
 			c = t.tm_sec
-			
+
 			if c < 10:
 				return c
 			elif c < 20:

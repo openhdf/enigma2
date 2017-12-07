@@ -97,7 +97,7 @@ int is_range1(char* string, struct ip_range* range) {
 int next_address(const struct ip_range* range, const struct in_addr* prev_addr, 
 		 struct in_addr* next_addr) {
 	unsigned long pa; // previous address, host byte order
-	
+
 	if(prev_addr) {
 		pa = ntohl(prev_addr->s_addr);
 		if(pa < range->end_ip) {
@@ -109,7 +109,7 @@ int next_address(const struct ip_range* range, const struct in_addr* prev_addr,
 		return 1;
 	};
 };
-	
+
 /* is_range2 checks if supplied string is an IP address range in
    form xxx.xxx.xxx.xxx-xxx (as in 192.168.1.2-15) and fills
    range structure with start and end ip addresses of the interval.
@@ -152,13 +152,13 @@ int is_range2(char* string, struct ip_range* range) {
 
 int print_range(const struct ip_range* range) {
 	struct in_addr *addr;
-	
+
 	if((addr = (struct in_addr*)malloc(sizeof(struct in_addr)))==NULL) 
 		err_die("Malloc failed", quiet);
-	
+
 	next_address(range, 0, addr);
 	printf("%s\n",inet_ntoa(*addr));
-	
+
 	while(next_address(range, addr, addr)) {
 	        printf("%s\n",inet_ntoa(*addr));
 	};

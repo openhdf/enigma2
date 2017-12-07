@@ -48,7 +48,7 @@
 			</widget>
 		</panel>
 	</screen>
-	
+
 	<screen name="MovieContextMenuSummary" position="0,0" size="256,64">
 		<widget source="parent.Title" render="Label" position="top" size="*,14" font="VFD;12" halign="left" valign="top" noWrap="1" />
 		<widget source="selected" render="Label" position="top" size="*,32" font="VFD;16" />
