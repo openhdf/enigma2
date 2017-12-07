@@ -43,7 +43,7 @@ typedef std::set<eServiceReference> serviceSet;
 
 #ifdef __sh__
 /* ********************************** */
-/* constants taken from dvb-apps 
+/* constants taken from dvb-apps
  */
 #define T_SB                0x80	// sb                           primitive   h<--m
 #define T_RCV               0x81	// receive                      primitive   h-->m

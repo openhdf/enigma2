@@ -6,7 +6,7 @@ if [ -f /hdd/hdd-check ] ; then
 		rm -rf /var/lib/opkg/lists/
 		rm -f /etc/enigma2/epg.dat
 		sync
-		/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager/backup.sh /hdd | tee /tmp/HDD-Full-Backup.log 
+		/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager/backup.sh /hdd | tee /tmp/HDD-Full-Backup.log
 		rm -f /hdd/hdd-check
 		wait 3
 else

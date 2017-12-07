@@ -1,11 +1,11 @@
 TARGET="XX"
 
-for candidate in  /media/usb /media/sdb1 /media/sdc1 /media/sdd1 /media/sde1 /media/mmc1 
+for candidate in  /media/usb /media/sdb1 /media/sdc1 /media/sdd1 /media/sde1 /media/mmc1
 do
    if [ -f ${candidate}/*backupstick* ]
    then
      TARGET=${candidate}
-   fi    
+   fi
 done
 
 if [ $TARGET = "XX" ] ; then
@@ -22,7 +22,7 @@ if [ $TARGET = "XX" ] ; then
 	echo "0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0"
 	echo " "
 	echo "If you place an USB-stick containing this file then the "
-    echo "back-up will be automatically made on the USB-stick and" 
+    echo "back-up will be automatically made on the USB-stick and"
     echo "can be used to restore the current image if necessary. "
     echo
     echo "The program will exit now. "

@@ -469,7 +469,7 @@ void eFBCTunerManager::addLink(eDVBRegisteredFrontend *link_fe, eDVBRegisteredFr
 		simulate_prev_fe = getSimulFe(prev_fe);
 		simulate_link_fe = getSimulFe(link_fe);
 
-		if (next_fe) 
+		if (next_fe)
 			simulate_next_fe = getSimulFe(next_fe);
 
 		eFecDebug("	[*][eFBCTunerManager::addLink] simulate fe : %p -> %p -> %p", simulate_prev_fe, simulate_link_fe, simulate_next_fe);
@@ -525,7 +525,7 @@ void eFBCTunerManager::unLink(eDVBRegisteredFrontend *link_fe)
 		simulate_prev_fe = getSimulFe(prev_fe);
 		simulate_link_fe = getSimulFe(link_fe);
 
-		if (next_fe) 
+		if (next_fe)
 			simulate_next_fe = getSimulFe(next_fe);
 
 		disconnectLink(simulate_link_fe, simulate_prev_fe, simulate_next_fe, !simulate);

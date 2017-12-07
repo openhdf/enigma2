@@ -1936,7 +1936,7 @@ int eDVBServicePlay::getInfo(int w)
 		if (m_dvb_service)
 			return m_dvb_service->isDedicated3D();
 		return false;
-	case sHideVBI: 
+	case sHideVBI:
 		if (m_dvb_service) return m_dvb_service->doHideVBI();
 		return false;
 	case sCenterDVBSubs:
@@ -2216,7 +2216,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 			rdsPid = program.audioStreams[stream].rdsPid;
 #if HAVE_HISILICON
 		if (different_pid && (!m_rds_decoder || m_rds_decoder->getPid() != rdsPid))
-#else 
+#else
 		if (!m_rds_decoder || m_rds_decoder->getPid() != rdsPid)
 #endif
 		{

@@ -37,7 +37,7 @@
 #DESCRIPTION Das Erste (540p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf1314-lh.akamaihd.net/i/de14_v1@392878/index_3096_av-b.m3u8:ZDF (720p)
 #DESCRIPTION ZDF HD (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wdr_fs_geo-lh.akamaihd.net/i/wdrfs_geogeblockt@112044/index_3776_av-b.m3u8:WDR HD (720p) 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wdr_fs_geo-lh.akamaihd.net/i/wdrfs_geogeblockt@112044/index_3776_av-b.m3u8:WDR HD (720p)
 #DESCRIPTION WDR HD (720p)
 #SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//cdn.iptv.amis.net/ts/RTL/stream_wifi_840k.m3u8?u=n1info#User-Agent="AppleCoreMedia
 #DESCRIPTION RTL (360p)
@@ -48,7 +48,7 @@
 #SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//cdn.iptv.amis.net/ts/Pro7/stream_wifi_840k.m3u8?u=n1info#User-Agent="AppleCoreMedia
 #DESCRIPTION Pro7 (360p)
 #SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//cdn.iptv.amis.net/ts/RTL2/stream_wifi_840k.m3u8?u=n1info#User-Agent="AppleCoreMedia
-#DESCRIPTION RTL2 (360p) 
+#DESCRIPTION RTL2 (360p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//artelive-lh.akamaihd.net/i/artelive_de@393591/index_1_av-p.m3u8:ARTE (720p)
 #DESCRIPTION ARTE HD (720p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf0910-lh.akamaihd.net/i/dach10_v1@392872/index_1496_av-b.m3u8:3sat (480p)
@@ -65,8 +65,8 @@
 #DESCRIPTION MDR Fernsehen (720p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live2_sr-lh.akamaihd.net/i/sr_universal02@107595/index_1662_av-p.m3u8?sd=10&rebase=on:SR Fernsehen HD (544p)
 #DESCRIPTION SR Fernsehen HD (544p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live1_hr-lh.akamaihd.net/i/hr_fernsehen@75910/index_3128_av-b.m3u8:HR HD (720p) 
-#DESCRIPTION HR HD (720p) 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live1_hr-lh.akamaihd.net/i/hr_fernsehen@75910/index_3128_av-b.m3u8:HR HD (720p)
+#DESCRIPTION HR HD (720p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//livestreams.br.de/i/bfsnord_germany@119898/index_3776_av-p.m3u8?sd=10&rebase=on:Bayerisches Fernsehen HD (720p)
 #DESCRIPTION Bayerisches Fernsehen HD (720p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//swrrp-lh.akamaihd.net/i/swrrp_live@196739/index_3584_av-p.m3u8?sd=10&rebase=on:SWR Fernsehen HD (720p)
@@ -268,7 +268,7 @@
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//kippingmultimediaal.nl%3a1935/live/ZFM1:ZMF1 Music Holland (1080p)
 #DESCRIPTION ZMF1 Music Holland (1080p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//85.17.80.132%3a1935/radionorbatv/norbatv_source.stream/live.m3u8:Radio Norba Music TV (560p)
-#DESCRIPTION Radio Norba Music TV (560p) 
+#DESCRIPTION Radio Norba Music TV (560p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//fms.105.net/live/105Test1:Radio 105 (432p)
 #DESCRIPTION Radio 105 (432p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//fms.105.net/live/rmc1:Montecarlo Music (432p)
@@ -572,7 +572,7 @@
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//livetr.gostream.nl/medine/medine/hasbahca.m3u8:Medine TV (576p)
 #DESCRIPTION Medine TV (576p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//livetr.gostream.nl/mekke/mekke/hasbahca.m3u8:Mekke TV (500p)
-#DESCRIPTION Mekke TV (500p) 
+#DESCRIPTION Mekke TV (500p)
 #SERVICE 1:64:7:0:0:0:0:0:0:0:
 #DESCRIPTION Swiss
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rtmp.infomaniak.ch/livecast/livesd2/chunklist_w798831857.m3u8:Kanal9 (720p)
@@ -812,7 +812,7 @@
 #SERVICE 4097:0:1:169:0:0:0:0:0:0:http%3a//82.200.127.58%3a8080/udp/233.12.144.202%3a5050:TNT-Comedy
 #DESCRIPTION TNT-Comedy
 #SERVICE 4097:0:1:171:0:0:0:0:0:0:http%3a//82.200.127.58%3a8080/udp/233.12.144.203%3a5050:NasheTV
-#DESCRIPTION NasheTV 
+#DESCRIPTION NasheTV
 #SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//51.254.39.37/TV/FLASH-TV/playlist.m3u8?ch=200:TV1000 Comedy HD
 #DESCRIPTION TV1000 Comedy HD
 #SERVICE 4097:0:1:3:0:0:0:0:0:0:http%3a//51.254.39.37/TV/FLASH-TV/playlist.m3u8?ch=201:TV1000 Megahit
@@ -928,7 +928,7 @@
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//livetr.gostream.nl/medine/medine/hasbahca.m3u8:Medine TV (576p)
 #DESCRIPTION Medine TV (576p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//livetr.gostream.nl/mekke/mekke/hasbahca.m3u8:Mekke TV (500p)
-#DESCRIPTION Mekke TV (500p) 
+#DESCRIPTION Mekke TV (500p)
 #SERVICE 1:64:7:0:0:0:0:0:0:0:
 #DESCRIPTION Swiss
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rtmp.infomaniak.ch/livecast/livesd2/chunklist_w798831857.m3u8:Kanal9 (720p)
