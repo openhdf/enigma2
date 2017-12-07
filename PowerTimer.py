@@ -223,7 +223,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			#	return True
 
 			elif self.timerType == TIMERTYPE.WAKEUPTOSTANDBY or self.timerType == TIMERTYPE.STANDBY:
-				if debug: 
+				if debug:
 					if self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
 						print "self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:"
 					else:

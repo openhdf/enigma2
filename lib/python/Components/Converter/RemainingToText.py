@@ -207,7 +207,7 @@ class RemainingToText(Poll, Converter, object):
 					time = getTime()
 					t = localtime(time)
 					d = _("%-H:%M")
-					if remaining is None:	
+					if remaining is None:
 						return strftime(d, t)
 					if remaining is not None:
 						myRestMinuten = ngettext(_("%+6d"), _("%+6d"), (r/60)) % (r/60)

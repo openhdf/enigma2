@@ -516,7 +516,7 @@ class QuickButton(Screen):
 		self["key_green"] = Label(_("Save"))
 		self["key_yellow"] = Label(_("delete"))
 		self["key_blue"] = Label(_("Add"))
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
 		{
 			"ok": self.run,
 			"cancel": self.cancel,
@@ -609,7 +609,7 @@ class QuickButton(Screen):
 		pluginlist.sort(key = lambda p: p.name)
 		for plugin in pluginlist:
 			if plugin.name in twins:
-				pass 
+				pass
 			else:
 				unic.append((_(plugin.name), plugin.name, "plugins", ""))
 				twins.append(plugin.name)

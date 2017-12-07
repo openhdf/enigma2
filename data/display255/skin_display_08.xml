@@ -40,7 +40,7 @@
 	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/dolby.png" position="23,39" size="16,12" alphatest="blend">
 		<convert type="ServiceInfo">IsMultichannel</convert>
 		<convert type="ConditionalShowHide" />
-	</widget>	
+	</widget>
 	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/hd.png" position="41,39" size="21,12" alphatest="blend">
 		<convert type="ServiceInfo">VideoWidth</convert>
 		<convert type="ValueRange">721,1980</convert>
@@ -49,7 +49,7 @@
 	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/txt.png" position="64,39" size="14,12" alphatest="blend">
 		<convert type="ServiceInfo">HasTelext</convert>
 		<convert type="ConditionalShowHide" />
-	</widget>	
+	</widget>
 	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/crypt.png" position="80,39" size="10,12" alphatest="blend">
 		<convert type="ServiceInfo">IsCrypted</convert>
 		<convert type="ConditionalShowHide" />
@@ -93,7 +93,7 @@
 	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/dolby.png" position="25,29" size="16,12" alphatest="blend">
 		<convert type="ServiceInfo">IsMultichannel</convert>
 		<convert type="ConditionalShowHide" />
-	</widget>	
+	</widget>
 	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/hd.png" position="45,29" size="21,12" alphatest="blend">
 		<convert type="ServiceInfo">VideoWidth</convert>
 		<convert type="ValueRange">721,1980</convert>
@@ -250,7 +250,7 @@
 	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/dolby.png" position="25,29" size="16,12" alphatest="blend">
 		<convert type="ServiceInfo">IsMultichannel</convert>
 		<convert type="ConditionalShowHide" />
-	</widget>	
+	</widget>
 	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/hd.png" position="45,29" size="21,12" alphatest="blend">
 		<convert type="ServiceInfo">VideoWidth</convert>
 		<convert type="ValueRange">721,1980</convert>

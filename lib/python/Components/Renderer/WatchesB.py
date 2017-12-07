@@ -12,7 +12,7 @@
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
-#    
+#
 #######################################################################
 
 import math
@@ -61,12 +61,12 @@ class WatchesB(Renderer):
 	def draw_line(self, x0, y0, x1, y1):
 		steep = abs(y1 - y0) > abs(x1 - x0)
 		if steep:
-			x0, y0 = y0, x0  
+			x0, y0 = y0, x0
 			x1, y1 = y1, x1
 		if x0 > x1:
 			x0, x1 = x1, x0
 			y0, y1 = y1, y0
-		if y0 < y1: 
+		if y0 < y1:
 			ystep = 1
 		else:
 			ystep = -1
@@ -77,7 +77,7 @@ class WatchesB(Renderer):
 		for x in range(x0, x1 + 1):
 			if steep:
 				self.instance.fillRect(eRect(y, x, 5, 5), self.fColor)
-			else:          
+			else:
 				self.instance.fillRect(eRect(x, y, 5, 5), self.fColor)
 			error = error + deltay
 			if error > 0:

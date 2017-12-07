@@ -163,7 +163,7 @@
 		<widget source="session.CurrentService" render="Label" position="130,44" size="126,20" font="VFD;20" halign="right" valign="top">
 			<convert type="ServicePosition">Remaining</convert>
 		</widget>
-	</screen>  
+	</screen>
 <!-- VFD screen EMCMoviePlayerSummary end -->
 	<screen name="MovieContextMenuSummary" position="0,0" size="255,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="170,18" font="VFD;15" halign="left" valign="top" noWrap="1" />

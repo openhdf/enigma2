@@ -34,7 +34,7 @@ class MessageBox(Screen):
 			from Components.config import config
 			from Components.Pixmap import MultiPixmap
 			self["rc"] = MultiPixmap()
-			self["rc"].setPixmapNum(config.misc.rcused.value)		
+			self["rc"].setPixmapNum(config.misc.rcused.value)
 			self.skinName = ["MessageBoxWizard"]
 
 		if simple:

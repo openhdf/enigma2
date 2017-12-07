@@ -107,7 +107,7 @@ class ZapHistoryBrowserList(MenuList):
 		else:
 			self.l.setItemHeight(21)
 			self.l.setFont(0, gFont("Regular", 21))
-			self.l.setFont(1, gFont("Regular", 16))		
+			self.l.setFont(1, gFont("Regular", 16))
 
 def ZapHistoryBrowserListEntry(serviceName, eventName):
 	desktopSize = getDesktop(0).size()

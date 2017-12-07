@@ -55,7 +55,7 @@ def main(session, **kwargs):
 	session.open(AtileHD_Config)
 
 def isInteger(s):
-	try: 
+	try:
 		int(s)
 		return True
 	except ValueError:
@@ -190,7 +190,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		if default_color not in color_choices:
 			color_choices.append(default_color)
 		current_color = current_color[0]
-		current_font = self.getCurrentFont() 
+		current_font = self.getCurrentFont()
 		font_choices = self.getPossibleFont()
 		default_font = ("default", _("Default"))
 		if current_font is None:

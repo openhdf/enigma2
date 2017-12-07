@@ -86,7 +86,7 @@ class Console(Screen):
 				f.close()
 
 	def yellow(self):
-		print 'Yellow Pressed'	
+		print 'Yellow Pressed'
 		if self.Shown == True:
 			self.hideScreen()
 			self.Shown = False

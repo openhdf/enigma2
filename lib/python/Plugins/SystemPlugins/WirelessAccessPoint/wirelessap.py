@@ -72,7 +72,7 @@ class wirelessAP(_object):
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, wirelessAP, name)
     __repr__ = _swig_repr
-    def __init__(self): 
+    def __init__(self):
         this = _wirelessap.new_wirelessAP()
         try: self.this.append(this)
         except: self.this = this

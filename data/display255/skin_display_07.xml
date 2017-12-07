@@ -161,5 +161,5 @@
     <widget source="Service" render="Progress" position="35,49" size="221,15" borderWidth="1">
       <convert type="EMCServicePosition">Position</convert>
     </widget>
-  </screen>  
+  </screen>
 </skin>

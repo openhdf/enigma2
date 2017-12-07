@@ -211,7 +211,7 @@
 	<screen name="ChoiceBox_summary" position="0,0" size="96,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="96,14" font="FdLcD;14" halign="left" noWrap="1" foregroundColor="lightyellow" />
 		<widget source="parent.summary_selection" render="Label" position="0,14" size="96,50" font="FdLcD;14" halign="left" />
-	</screen>	
+	</screen>
 
 	<screen name="MessageBox_summary" position="0,0" size="96,64">
 		<widget source="parent.Text" render="Label" position="0,0" size="96,52" font="FdLcD;11" halign="center" valign="center" />

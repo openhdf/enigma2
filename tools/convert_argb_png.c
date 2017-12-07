@@ -11,7 +11,7 @@
 
    enigma2 can then pickup those two files, and combine them on load. This gives
    the possibilty to use truecolor RGB pictures without storing them lossless
-   (which would be inefficient). 
+   (which would be inefficient).
  */
 
 #include <stdio.h>
@@ -72,7 +72,7 @@ int main(int argc, char **argv)
 
 	png_uint_32 width, height;
 	int bit_depth, color_type;
-	png_get_IHDR(png_ptr, info_ptr, &width, &height, 
+	png_get_IHDR(png_ptr, info_ptr, &width, &height,
 		&bit_depth, &color_type, 0, 0, 0);
 
 	if (color_type != PNG_COLOR_TYPE_RGB_ALPHA)

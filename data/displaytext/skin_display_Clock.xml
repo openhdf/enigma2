@@ -21,7 +21,7 @@
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
 
-<!-- EPG Panel -->	
+<!-- EPG Panel -->
 	<screen name="MyEPGPanel" position="0,0" size="132,64">
 		<widget source="parent.Event" render="Label" position="0,0" size="132,64" >
 			<convert type="EventName">Name</convert>
@@ -177,7 +177,7 @@
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="132,64">
 			<convert type="ServicePosition">Remaining,ShowNoSeconds2,OnlyMinute</convert>
-		</widget>		
+		</widget>
 	</screen>
 	<screen name="MovieMenu_summary" position="0,0" size="132,64">
 		<widget source="parent.menu" render="Label" position="0,0" size="132,1" font="Regular;16" halign="left" valign="top">
@@ -192,19 +192,19 @@
 	</screen>
 <!-- Timer-Log -->
 	<screen name="TimerEntry_summary" position="0,0" size="132,64">
-		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />       
+		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 <!-- Timer -->
 	<screen name="TimerEditListSummary" position="0,0" size="132,64">
-		<widget source="name" render="Label" position="fill" size="120,20" font="Regular;18" />       
+		<widget source="name" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 <!-- AutoTimer -->
 	<screen name="AutoTimerOverviewSummary" position="0,0" size="132,64">
-		<widget source="entry" render="Label" position="fill" size="120,20" font="Regular;18" />       
+		<widget source="entry" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 <!-- PowerTimerEditListSummary -->
 	<screen name="PowerTimerEditListSummary" position="0,0" size="132,64">
-		<widget source="name" render="Label" position="fill" size="120,20" font="Regular;18" />       
+		<widget source="name" render="Label" position="fill" size="120,20" font="Regular;18" />
 	</screen>
 <!-- LanguageSelection -->
 	<screen name="LanguageSelection_summary" position="0,0" size="132,64">

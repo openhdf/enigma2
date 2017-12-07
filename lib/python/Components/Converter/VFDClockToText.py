@@ -34,7 +34,7 @@ class VFDClockToText(Converter, object):
 	FROMCONFIG = 10
 	VFD = 11
 
-	# add: date, date as string, weekday, ... 
+	# add: date, date as string, weekday, ...
 	# (whatever you need!)
 
 	def __init__(self, type):
@@ -49,7 +49,7 @@ class VFDClockToText(Converter, object):
 			self.type = self.DATE
 		elif type == "AsLength":
 			self.type = self.AS_LENGTH
-		elif type == "Timestamp":	
+		elif type == "Timestamp":
 			self.type = self.TIMESTAMP
 		elif type == "Full":
 			self.type = self.FULL
@@ -90,7 +90,7 @@ class VFDClockToText(Converter, object):
 				return "%2d:%02d" % (t.tm_hour, t.tm_min)
 			if config.plugins.VFDExtendedServiceInfo.time.value == "2":
 				return "%2d:%02d %d/%d" % (t.tm_hour, t.tm_min, t[2], t[1])
-		else:		
+		else:
 			return "???"
 
 
@@ -101,7 +101,7 @@ class VFDClockToText(Converter, object):
 		elif self.type == self.DATE:
 			return _(strftime("%A",t)) + " " + str(t[2]) + " " + MONTHS[t[1]-1] + " " + str(t[0])
 		elif self.type == self.FULL:
-			return dayOfWeek[t[6]] + " %d/%d  %2d:%02d" % (t[2],t[1], t.tm_hour, t.tm_min)  
+			return dayOfWeek[t[6]] + " %d/%d  %2d:%02d" % (t[2],t[1], t.tm_hour, t.tm_min)
 		elif self.type == self.SHORT_DATE:
 			return dayOfWeek[t[6]] + " %d/%d" % (t[2], t[1])
 		elif self.type == self.LONG_DATE:

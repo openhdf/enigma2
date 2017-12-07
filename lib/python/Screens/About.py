@@ -141,9 +141,9 @@ class About(Screen):
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
 			f.seek(22)
-			image = f.read(1) 
+			image = f.read(1)
 			f.close()
-			if bootname: bootname = "   (%s)" %bootname 
+			if bootname: bootname = "   (%s)" %bootname
 			AboutText += _("Image started:\t%s") % "STARTUP_" + image + bootname + "\n"
 
 		string = getDriverDate()

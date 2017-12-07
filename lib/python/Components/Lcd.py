@@ -365,7 +365,7 @@ def InitLcd():
 				config.lcd.modepip = ConfigNothing()
 
 			config.lcd.screenshot = ConfigYesNo(default=False)
- 			config.lcd.screenshot.addNotifier(setLCDScreenshot)	
+ 			config.lcd.screenshot.addNotifier(setLCDScreenshot)
 
 			if getBoxType() in ('gbquad4k', 'gbue4k'):
 				#  (0:normal, 1:video0, 2:fb, 3:vide0+fb, 4:video1, 5:vide0+video1, 6:video1+fb, 7:video0+video1+fb)
@@ -377,7 +377,7 @@ def InitLcd():
 						("4", _("MiniTV") + _(" - video1")),
 						("6", _("MiniTV with OSD") + _(" - video1")),
 						("5", _("MiniTV") + _(" - video0+video1")),
-						("7", _("MiniTV with OSD") + _(" - video0+video1"))]) 
+						("7", _("MiniTV with OSD") + _(" - video0+video1"))])
 			else:
 				config.lcd.modeminitv = ConfigSelection(choices={
 						"0": _("normal"),

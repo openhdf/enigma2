@@ -26,16 +26,16 @@ def test_timer(repeat = 0, timer_start = 3600, timer_length = 1000, sim_length =
 
 	timer = RecordTimer.createTimer(xml.etree.cElementTree.fromstring(
 	"""
-		<timer 
-			begin="%d" 
+		<timer
+			begin="%d"
 			end="%d"
-			serviceref="1:0:1:6DD2:44D:1:C00000:0:0:0:" 
-			repeated="%d" 
-			name="Test Event Name" 
-			description="Test Event Description" 
-			afterevent="nothing" 
-			eit="56422" 
-			disabled="0" 
+			serviceref="1:0:1:6DD2:44D:1:C00000:0:0:0:"
+			repeated="%d"
+			name="Test Event Name"
+			description="Test Event Description"
+			afterevent="nothing"
+			eit="56422"
+			disabled="0"
 			justplay="0">
 	</timer>""" % (at + timer_start, at + timer_start + timer_length, repeat)
 	))

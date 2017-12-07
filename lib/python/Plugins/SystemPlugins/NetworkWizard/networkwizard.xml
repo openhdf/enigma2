@@ -22,7 +22,7 @@ self.selectKey("DOWN")
                 </code>
                 <code pos="after" async="yes">
 self.checkInterface(self.selectedInterface)
-                </code> 
+                </code>
         </step>
         <step id="nwconfig">
                 <text value="Please configure your internet connection by filling out the required values.\nWhen you are ready press OK to continue." />
@@ -34,7 +34,7 @@ self.selectKey("OK")
                 </code>
                 <code pos="after" async="yes">
 self.AdapterSetupEnd(self.selectedInterface)
-                </code>                 
+                </code>
         </step>
         <step id="confdns" nextstep="checklanstatusend">
                 <text value="Please configure or verify your Nameservers by filling out the required values.\nWhen you are ready press OK to continue." />
@@ -46,7 +46,7 @@ self.selectKey("OK")
                 </code>
                 <code pos="after" async="yes">
 self.checkNetwork()
-                </code> 
+                </code>
         </step>
         <step id="checklanstatusend" nextstep="end">
 		<condition>
@@ -59,11 +59,11 @@ self.clearSelectedKeys()
 self.selectKey("OK")
                 </code>
                 <code pos="after">
-currStep = self.numSteps                                
+currStep = self.numSteps
 self.wizard[currStep]["nextstep"] = None
 self.markDone()
 self.close()
-                </code> 
+                </code>
         </step>
         <step id="checklanstatusend">
 		<condition>
@@ -111,7 +111,7 @@ self.selectKey("OK")
                 </code>
                 <code pos="after">
 self.checkWlanSelection()
-                </code> 
+                </code>
         </step>
         <step id="scanwlan">
                 <condition>
@@ -156,7 +156,7 @@ self.selectKey("RIGHT")
                 </code>
                 <code pos="after" async="yes">
 self.AdapterSetupEnd(self.selectedInterface)
-                </code>                 
+                </code>
         </step>
         <step id="checkWlanstatusend" nextstep="end">
 		<condition>
@@ -170,11 +170,11 @@ self.selectKey("OK")
 self["text"].setText(self.Text)
                 </code>
                 <code pos="after">
-currStep = self.numSteps                                
+currStep = self.numSteps
 self.wizard[currStep]["nextstep"] = None
 self.markDone()
 self.close()
-                </code> 
+                </code>
         </step>
         <step id="checkWlanstatusend">
 		<condition>

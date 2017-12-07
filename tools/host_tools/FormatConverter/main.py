@@ -25,7 +25,7 @@ while(True):
 		list.append(datasources[index].getName() + (" (%d sats)" % len(datasources[index].transponderlist.keys())))
 	index = inputChoices(list, "q", "quit")
 	if index is None:
-		break		
+		break
 
 	while(True):
 		print datasources[index].getStatus()

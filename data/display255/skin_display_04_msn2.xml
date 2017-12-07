@@ -83,7 +83,7 @@
 		<widget source="parent.ServiceEvent" render="Label" position="0,44" size="110,20" font="VFD;18">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
-		</widget>		
+		</widget>
 		<widget source="parent.ServiceEvent" render="Progress" position="112,44" size="144,20" borderWidth="2" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
@@ -325,6 +325,6 @@
 		<widget source="session.CurrentService" render="Label" position="130,44" size="126,20" font="VFD;20" halign="right" valign="top">
 			<convert type="ServicePosition">Remaining</convert>
 		</widget>
-	</screen>  
+	</screen>
 <!-- VFD screen EMCMoviePlayerSummary end -->
 </skin>

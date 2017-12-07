@@ -47,7 +47,7 @@ class BoxPortal(Screen):
 			elif selection[1] == "pvr":
 				InfoBar.showMovies(InfoBar.instance)
 			elif selection[1] == "bmc":
-				InfoBar.showMediaCenter(InfoBar.instance)				
+				InfoBar.showMediaCenter(InfoBar.instance)
 
 	def exit(self):
 		self.close()

@@ -119,7 +119,7 @@
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,150" size="190,25" font="FdLcD;25" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
-			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert> 
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,150" size="190,25" font="FdLcD;25" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
@@ -168,7 +168,7 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="220,55" font="FdLcD;26" halign="center" valign="center" foregroundColor="blue" />
 		<widget name="scan_progress" render="Progress" position="0,60" size="220,12" foregroundColor="#02c6ff" borderWidth="2" />
 		<panel name="SummaryClockPanel" />
-	</screen> 
+	</screen>
 
 <!-- EPG -->
 	<screen name="EPGExtensionsList_summary" position="0,0" size="220,176">

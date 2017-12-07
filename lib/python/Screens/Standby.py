@@ -34,7 +34,7 @@ class Standby2(Screen):
 		#restart last played service
 		#unmute adc
 		self.leaveMute()
-		# set LCDminiTV 
+		# set LCDminiTV
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			setLCDModeMinitTV(config.lcd.modeminitv.value)
 		#remove wakup files and reset wakup state
@@ -54,7 +54,7 @@ class Standby2(Screen):
 			self.Power()
 
 	# with the option "standby_noTVshutdown", use 'break' event / allow turning off the TV by a 'long' key press in standby
-	# avoid waking from standby by ignoring the key's 'break' event after the 'long' and subsequent 'repeat' events.  
+	# avoid waking from standby by ignoring the key's 'break' event after the 'long' and subsequent 'repeat' events.
 	def Power_long(self):
 		if (config.usage.on_short_powerpress.value == "standby_noTVshutdown"):
 			self.TVoff()
@@ -262,7 +262,7 @@ class TryQuitMainloop(MessageBox):
 #			reason = (ngettext("%d job is running in the background!", "%d jobs are running in the background!", jobs) % jobs) + '\n'
 #			if jobs == 1:
 #				job = job_manager.getPendingJobs()[0]
-#				if job.name == "VFD Checker":		
+#				if job.name == "VFD Checker":
 #					reason = ""
 #				else:
 #					reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
@@ -287,7 +287,7 @@ class TryQuitMainloop(MessageBox):
 				9: _("The user interface of your %s %s is restarting") % (getMachineBrand(), getMachineName()),
 				16: _("Really reboot into Recovery Mode?"),
 				42: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
-				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),				
+				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
 				44: _("Really upgrade the front panel and reboot now?"),
 				45: _("Really WOL now?")}.get(retvalue)
 			if text:
@@ -333,7 +333,7 @@ class TryQuitMainloop(MessageBox):
 			print "[Standby] quitMainloop #1"
 			quitMainloopCode = self.retval
 			if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
-				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k 
+				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k
 				print "[Standby] LCDminiTV off"
 				setLCDModeMinitTV("0")
 			quitMainloop(self.retval)

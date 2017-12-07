@@ -33,7 +33,7 @@ class DMCHDSmartInfo(Poll, Converter, object):
 		service = self.source.service
 		info = service and service.info()
 		if not info:
-			return ""	
+			return ""
 		Ret_Text = ""
 		Sec_Text = ""
 		if (self.type == self.SMART_INFO_H): # HORIZONTAL
@@ -264,7 +264,7 @@ class DMCHDSmartInfo(Poll, Converter, object):
 								elif orbital_pos == 100:
 									orb_pos = 'Eutelsat W1 (10.0E)'
 								elif orbital_pos == 90:
-									orb_pos = 'Eurobird 9 (9.0E)' 
+									orb_pos = 'Eurobird 9 (9.0E)'
 								elif orbital_pos == 70:
 									orb_pos = 'Eutelsat W3A (7.0E)'
 								elif orbital_pos == 50:

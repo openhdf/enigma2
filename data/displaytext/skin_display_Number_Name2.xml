@@ -229,7 +229,7 @@
 		<panel name="MessageBox_summary"/>
 	</screen>
 
-<!-- EtPortal -->       
+<!-- EtPortal -->
 	<screen name="EtPortalScreen_summary" position="0,0" size="128,32">
 		<widget source="parent.label" render="Label" position="0,0" size="128,18" font="Big" halign="left" valign="top" zPosition="1" noWrap="0" />
 		<eLabel text="EtPortal" position="0,17" size="89,12" font="Medium" halign="left" valign="top" zPosition="1" noWrap="1" />

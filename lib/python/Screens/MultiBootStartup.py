@@ -95,7 +95,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 				if idx: blv += ', '
 				blv += x
 				idx += 1
-			message = (_("Your box needs Bootloaderversion(s)\n\n%s\n\nto make compatible with Bootoptions!")%blv,) 
+			message = (_("Your box needs Bootloaderversion(s)\n\n%s\n\nto make compatible with Bootoptions!")%blv,)
 		self.session.open(MessageBox, message[self.option], MessageBox.TYPE_INFO)
 
 	def rename(self):
@@ -135,7 +135,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 			f.close()
 			return True
 		except IOError:
-			print "[MultiBootStartup] write error file: %s" %FILE 
+			print "[MultiBootStartup] write error file: %s" %FILE
 			return False
 
 	def readlineFile(self, FILE):

@@ -75,7 +75,7 @@ EXTENSIONS = {
 		"mod": "movie"
 	}
 
-confirmed3D = False	
+confirmed3D = False
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	#class for configure 3D default settings
@@ -109,7 +109,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 			"0": self.keyZero,
 		}, -2)
 
-		# preparing setting items 
+		# preparing setting items
 		mode = config.plugins.OSD3DSetup.mode.value
 		znorm = config.plugins.OSD3DSetup.znorm.value
 		menuext = config.plugins.OSD3DSetup.menuext.value
@@ -150,9 +150,9 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 
 	def reloadList(self):
 		self.refresh()
-		self["config"].setList(self.list)	
+		self["config"].setList(self.list)
 
-	def refresh(self):		
+	def refresh(self):
 		list = []
 		list.extend((
 			getConfigListEntry(_("3d mode"), self.mode),
@@ -167,7 +167,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 
 		# Only allow editing user prompt when the 3d auto toggle is activated
 		if self.auto.value:
-			list.append(getConfigListEntry(_("Display 3D confirmation"), self.prompt))	
+			list.append(getConfigListEntry(_("Display 3D confirmation"), self.prompt))
 
 		self.list = list
 
@@ -198,7 +198,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		config.plugins.OSD3DSetup.prompt.value = self.prompt.value
 		config.plugins.OSD3DSetup.save()
 		#refresh menus to reflect current settings
-		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))		
+		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 		self.close()
 	#roll-back changes - read settings from configuration
 	def keyCancel(self):
@@ -207,14 +207,14 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 
 class AutoToggle3D(Screen):
 	#class for listening for service changing events to set 3D mode automatically
-	Instance = None 
+	Instance = None
 	OldServiceName = ""
 
-	def __init__(self, session):		
+	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
 		#associate event tracker with class methods
-		self.et = ServiceEventTracker(screen = self, eventmap = {iPlayableService.evUpdatedEventInfo: self.UpdInfo, iPlayableService.evUpdatedInfo: self.UpdInfo})		
+		self.et = ServiceEventTracker(screen = self, eventmap = {iPlayableService.evUpdatedEventInfo: self.UpdInfo, iPlayableService.evUpdatedInfo: self.UpdInfo})
 		#read and apply settings stored in configuration file - enigma starts...
 		setConfiguredSettings()
 		#read current mode
@@ -227,14 +227,14 @@ class AutoToggle3D(Screen):
 
 	def UpdInfo(self):
 		#react only when there is a change in service or service event and there are apropriate settings in configuration
-		if config.plugins.OSD3DSetup.auto.value and self.session.nav.getCurrentlyPlayingServiceReference(): 
+		if config.plugins.OSD3DSetup.auto.value and self.session.nav.getCurrentlyPlayingServiceReference():
 			CurrentService = self.session.nav.getCurrentService()
 			Service = self.session.nav.getCurrentlyPlayingServiceReference()
 			#check if there is a file being played
 			if Service.getPath():
 				import os
 				ServiceName = os.path.basename(Service.getPath())
-				extension = ServiceName.split('.')				
+				extension = ServiceName.split('.')
 				extension = extension[-1].lower()
 				if not EXTENSIONS.has_key(extension):
 					ServiceName = ""
@@ -244,24 +244,24 @@ class AutoToggle3D(Screen):
 				ServiceName = ServiceReference(CurrentService.info().getInfoString(iServiceInformation.sServiceref)).getServiceName()
 				hwnd = eServiceCenter.getInstance()
 				ServRef = eServiceReference(CurrentService.info().getInfoString(iServiceInformation.sServiceref))
-				info = hwnd.info(ServRef)				
+				info = hwnd.info(ServRef)
 				if info:
 					evt = info.getEvent(ServRef)
-					if evt: ServiceName = ServiceName + " " + evt.getEventName()			
+					if evt: ServiceName = ServiceName + " " + evt.getEventName()
 
 				#self.session.open(MessageBox,_(ServiceName), type = MessageBox.TYPE_INFO, timeout = 5)
 
 			if AutoToggle3D.OldServiceName != ServiceName:
 				AutoToggle3D.OldServiceName = ServiceName
 				#NewMode = self.CurrentMode
-				# - if it contains "3D" string, switch 3D mode on				
+				# - if it contains "3D" string, switch 3D mode on
 				if ServiceName.upper().count("3D") > 0:
 					if config.plugins.OSD3DSetup.prompt.value > 0:
 						NewMode = nz(config.plugins.OSD3DSetup.toggle.value, val_auto)
 						if self.CurrentMode != NewMode and self.Confirming == False:
 							self.Confirming = True
 							self.session.openWithCallback(self.setNewMode, InfoAuto3D, NewMode, self.Confirming)
-					else:	
+					else:
 						if config.plugins.OSD3DSetup.toggle.value:
 							NewMode = config.plugins.OSD3DSetup.toggle.value
 						else:
@@ -271,7 +271,7 @@ class AutoToggle3D(Screen):
 				self.setNewMode([NewMode, self.Confirming])
 
 	def setNewMode(self, ret):
-		if ret:	
+		if ret:
 			if ret[1] == False:
 				self.Confirming = False
 				if self.CurrentMode != ret[0]:
@@ -282,12 +282,12 @@ class InfoAuto3D(Screen):
 	skin = """
 		<screen name="InfoAuto3D" position="c-345,c-320" size="700,100" backgroundColor="transparent" flags="wfNoBorder" title="Activate 3D mode">
 		<widget name="infotext" position="c-350,e-100" size="690,40" halign="center" valign="center" font="Regular;20" backgroundColor="transparent" foregroundColor="#C8C8FF" shadowColor="#0000FF" />
-	</screen>"""	
-	Instance = None 
+	</screen>"""
+	Instance = None
 
-	def __init__(self, session, NewMode, Confirming):		
+	def __init__(self, session, NewMode, Confirming):
 		self.skin = InfoAuto3D.skin
-		Screen.__init__(self, session)		
+		Screen.__init__(self, session)
 		from Components.Label import Label
 		from Components.ActionMap import ActionMap
 		self["infotext"] = Label("Press blue button to activate 3D mode")
@@ -314,7 +314,7 @@ class InfoAuto3D(Screen):
 
 def nz(value, nullvalue) :
    if value is None: return nullvalue
-   else: return value		
+   else: return value
 
 def applySettings(mode, znorm):
 	setmode(mode)
@@ -357,17 +357,17 @@ def setznorm(val):
 		file.write('%d' % val)
 		file.close()
 	except:
-		return		
+		return
 
-#if there is a command in menu...	
+#if there is a command in menu...
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
-		if config.plugins.OSD3DSetup.toggle.value == val_sidebyside: 
+		if config.plugins.OSD3DSetup.toggle.value == val_sidebyside:
 			return [(_("3D ON/OFF (Side by Side)"), menutoggle3d, "Toggle 3D mode", 44)]
 		else:
 			return [(_("3D ON/OFF (Top And Bootom)"), menutoggle3d, "Toggle 3D mode", 44)]
-	return []	
-#show configuration screen...	
+	return []
+#show configuration screen...
 def main(session, **kwargs):
 	session.open(OSD3DSetupScreen)
 
@@ -383,21 +383,21 @@ def menutoggle3d(session, **kwargs):
 	if mode != toggle: #val_auto val_off or other not expected...
 		setmode(toggle)
 	else:
-		setmode(val_auto) 
+		setmode(val_auto)
 	if znorm < 0 or znorm > 100:
 		setznorm(0)
-	#if there is a toggle command in menu it would be nice to hide the menu - simulation of menu key pressing - to replace by direct menu hide command	
+	#if there is a toggle command in menu it would be nice to hide the menu - simulation of menu key pressing - to replace by direct menu hide command
 	try:
 		eam = eActionMap.getInstance()
 		#press the key with the desired flag
 		eam.keyPressed(TYPE_STANDARD, 139, FLAG_MAKE) #menu
-		#Release the key		
+		#Release the key
 		eam.keyPressed(TYPE_STANDARD, 139, FLAG_BREAK) #menu
 	except Exception, e:
-		print "[OSD3D Setup] toggle3d exception:\n" + str(e)	
-	return []	
+		print "[OSD3D Setup] toggle3d exception:\n" + str(e)
+	return []
 
-#if there is a command in extensions selection...		
+#if there is a command in extensions selection...
 def toggleSBS(session, **kwargs):
 	toggleext(val_sidebyside)
 	return []
@@ -414,16 +414,16 @@ def toggleext(value):
 	if mode != value:
 		setmode(value)
 	else:
-		setmode(val_auto) 
+		setmode(val_auto)
 	if znorm < 0 or znorm > 100:
-		setznorm(0)	
+		setznorm(0)
 
 def Plugins(**kwargs):
 	pluginlist = []
 	from os import path
 	menuext = config.plugins.OSD3DSetup.menuext.value
 	auto = config.plugins.OSD3DSetup.auto.value
-	if path.exists(path_mode):		
+	if path.exists(path_mode):
 		if menuext == "menu" or menuext == "menuext":
 			pluginlist.append(PluginDescriptor(name = "3D toggle ON/OFF", description = _("3D toggle ON/OFF"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu))
 		if menuext == "ext" or menuext == "menuext":
@@ -431,5 +431,5 @@ def Plugins(**kwargs):
 			pluginlist.append(PluginDescriptor(name = "3D ON/OFF (Top and Bottom)", description = _("3D ON/OFF (Top and Bottom)"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc = toggleTAB))
 		pluginlist.append(PluginDescriptor(name = "OSD 3D setup", description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main))
 		pluginlist.append(PluginDescriptor(name = "OSD 3D setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup))
-		return pluginlist		
+		return pluginlist
 	return pluginlist
