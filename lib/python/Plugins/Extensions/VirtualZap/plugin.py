@@ -489,7 +489,7 @@ class VirtualZap(Screen):
 		# select running service in servicelist again
 		self.setServicelistSelection(self.curBouquet, self.curRef.ref)
 		self.close()
-			
+
 	def ok(self):
 		# we have to close PiP first, otherwise the service-display is freezed
 		if self.pipAvailable:
@@ -729,7 +729,7 @@ class VirtualZapConfig(Screen, ConfigListScreen):
 		configfile.save()
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply the new settings.\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
-		
+
 
 	def keyClose(self):
 		for x in self["config"].list:

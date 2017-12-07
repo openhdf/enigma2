@@ -73,7 +73,7 @@ class StreamTVPlayer(Screen, InfoBarNotifications):
 		self.state = self.PLAYER_PLAYING
 		self.lastseekstate = self.PLAYER_PLAYING
 		self.__seekableStatusChanged()
-	
+
 		self.onClose.append(self.__onClose)
 		self.doPlay()
 
@@ -95,7 +95,7 @@ class StreamTVPlayer(Screen, InfoBarNotifications):
 	def doCommand(self, cmd):
 		if cmd == 'bypass_exit':
 			self.bypassExit = True
-			
+
 	def cbDrawChannelIcon(self, picInfo=None):
 		ptr = self.picload.getData()
 		if ptr != None:
@@ -399,7 +399,7 @@ class StreamTVList(Screen):
 
 def main(session, **kwargs):
 	session.open(StreamTVList)
-                                                           
+
 def Plugins(**kwargs):
 	return PluginDescriptor(name=_("StreamTVPlayer"), description="Watching IPTV implemented by RTSP/RTMP protocol.", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
 

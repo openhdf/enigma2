@@ -126,7 +126,7 @@ class MultiQuickButton(Screen):
 		self.session = session
 		self.menu = args
 		self.settigspath = ""
-		
+
 
 		self["background"] = Label('')
 		self["key_red"] = Label(autostart)
@@ -154,7 +154,7 @@ class MultiQuickButton(Screen):
 			"info": self.showAbout,
 		}, -1)
 		self.onShown.append(self.updateSettings)
-		
+
 	def createList(self):
 		self.a = None
 		for button in values:
@@ -178,7 +178,7 @@ class MultiQuickButton(Screen):
 						space1 = " ["
 						space2 = "]"
 					globals()['functionbutton_%s' % button] = space1 + functionbutton + space2
-					
+
 				except Exception, a:
 					self.a = a
 			else:
@@ -258,7 +258,7 @@ class MultiQuickButton(Screen):
 		#self.list.append(QuickButtonListEntry('',(_('SLOW I>') + functionbutton_slow, 'slow')))
 		#self.list.append(QuickButtonListEntry('',((_('SLOW I>') + _(' long')) + functionbutton_slow_long, 'slow_long')))
 
-		
+
 	def updateList(self):
 		self.createList()
 		self["list"].l.setList(self.list)
@@ -432,7 +432,7 @@ class MultiQuickButton(Screen):
 
 	def showAbout(self):
 		self.session.open(MessageBox,("Multi Quickbutton idea is based on\nGP2\'s Quickbutton\nVersion: 2.7\nby Emanuel CLI-Team 2009\nwww.cablelinux.info\n ***special thanks*** to:\ngutemine & AliAbdul & Dr.Best ;-)\n\nChanges for Gigablue by scp\nsome@email.org\nwww.homepage.org\nVersion %s" % (MultiQuickButton_version)),  MessageBox.TYPE_INFO)
-  
+
 	def callRestart(self, restart):
 		if restart == True:
 			self.session.open(TryQuitMainloop, 3)
@@ -502,10 +502,10 @@ class QuickButton(Screen):
 			for e in self.XML_db.getMenu():
 				if e[1] == "1":
 					list.append(QuickButtonListEntry('green',(_(e[0]),e[0], '1')))
-					
+
 				else:
 					list.append(QuickButtonListEntry('red',(_(e[0]),e[0], '')))
-					
+
 		except Exception, e:
 			self.e = e
 			list = []
@@ -537,7 +537,7 @@ class QuickButton(Screen):
 			self.session.open(MessageBox,("XML " + _("Error") + ": %s" % self.e),  MessageBox.TYPE_ERROR)
 			self.close(None)
 
-			
+
 	def updateTitle(self):
 		self.setTitle(self.newtitle)
 
@@ -672,7 +672,7 @@ class QuickButton(Screen):
 					list.append(QuickButtonListEntry('green',(_(newEntry[0]), _(newEntry[0]), '1')))
 				else:
 					list.append(QuickButtonListEntry('red',(_(newEntry[0]), _(newEntry[0]), '')))
-					
+
 			self["list"].setList(list)
 			if len(self["list"].list) > 0:
 				while 1:
@@ -834,7 +834,7 @@ class MultiQuickButtonMacro(Screen):
 		self.selectmacro = True
 		self.configmacro = False
 		self.addkey = False
-		
+
 		self.buttondic = {
 					"011" : "0",
 					"002" : "1",

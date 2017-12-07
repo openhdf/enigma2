@@ -21,7 +21,7 @@ class EtAnalogClockLCD(Renderer):
                 self.positionheight = 1
                 self.positionwidth = 1
                 self.linesize = 1
-                
+
 	GUI_WIDGET = eCanvas
 
 	def applySkin(self, desktop, parent):

@@ -301,7 +301,7 @@ class ConfigListScreen:
 			x[1].save()
 		configfile.save()	
 		self.doRestartGui(restartgui)
-			
+
 	def doRestartGui(self, restart):
 		if restart:
 			self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Restart GUI now?"), MessageBox.TYPE_YESNO)
@@ -342,6 +342,6 @@ class ConfigListScreen:
 
 	def keyCancel(self):
 		self.closeMenuList()
-	
+
 	def closeRecursive(self):
 		self.closeMenuList(True)

@@ -1929,7 +1929,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				"keyRadio": self.toogleTvRadio,
 				"keyTV": self.toogleTvRadio,
 			})
-			
+
 		self.radioTV = 0	
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
@@ -2003,7 +2003,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		lastservice = eServiceReference(self.lastservice.value)
 		if lastservice.valid():
 			self.setCurrentSelection(lastservice)
-			
+
 	def toogleTvRadio(self): 
 		if self.radioTV == 1:
 			self.radioTV = 0

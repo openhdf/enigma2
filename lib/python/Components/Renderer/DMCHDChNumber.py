@@ -34,7 +34,7 @@ class DMCHDChNumber(Renderer, VariableText):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
 	GUI_WIDGET = eLabel
-	
+
 	def changed(self, what):
 		if not self.suspended:
 			service = self.source.service

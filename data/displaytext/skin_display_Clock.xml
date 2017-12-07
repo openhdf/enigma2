@@ -27,7 +27,7 @@
 			<convert type="EventName">Name</convert>
 		</widget>
 	</screen>
-	
+
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="132,64">
 		<widget source="session.Event_Now" render="Label" position="0,0" size="132,64" zPosition="0" transparent="1">
@@ -167,7 +167,7 @@
 	<screen name="PluginBrowserSummary" position="0,0" size="132,64">
 		<widget source="entry" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
 	</screen>
-	
+
 <!-- EMC  -->
 	<screen name="EMCSelection_summary" position="0,0" size="132,64">
 		<widget source="parent.Service" render="Label" position="0,0" size="132,64" font="Regular;18" >

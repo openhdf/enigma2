@@ -18,7 +18,7 @@ class valioChannel(Renderer, VariableText):
 		Renderer.__init__(self)
 		VariableText.__init__(self)
 	GUI_WIDGET = eLabel
-	
+
 	def changed(self, what):
 		#if not self.suspended:
 		if True:

@@ -675,7 +675,7 @@
 		<key id="KEY_DOWN" mapto="downRepeated" flags="r" />
 		<key id="KEY_LEFT" mapto="leftRepeated" flags="r" />
 		<key id="KEY_RIGHT" mapto="rightRepeated" flags="r" />
-		
+
 		<key id="KEY_LEFT" mapto="leftUp" flags="b" />
 		<key id="KEY_RIGHT" mapto="rightUp" flags="b" />
 		<key id="KEY_UP" mapto="upUp" flags="b" />

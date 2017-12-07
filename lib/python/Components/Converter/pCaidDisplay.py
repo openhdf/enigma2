@@ -54,7 +54,7 @@ class pCaidDisplay(Poll, Converter, object):
 				if caids:
 					for cs in self.systemCaids:
 						caidlist[cs] = (self.systemCaids.get(cs),0)
-			                
+
 					for caid in caids:
 						c = "%x" % int(caid)
 						if len(c) == 3:
@@ -62,7 +62,7 @@ class pCaidDisplay(Poll, Converter, object):
 						c = c[:2].upper()
 						if self.systemCaids.has_key(c):
 							caidlist[c] = (self.systemCaids.get(c),1)
-							
+
 					ecm_info = self.ecmfile()
 					if ecm_info:
 						emu_caid = ecm_info.get("caid", "")
@@ -132,7 +132,7 @@ class pCaidDisplay(Poll, Converter, object):
 									textvalue = "(EMU) %s" % (caid)
 								else:
 									textvalue = "%s - %s" % (caid, decode)
-							
+
 		return textvalue 
 
 	text = property(getText)

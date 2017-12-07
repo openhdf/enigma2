@@ -204,7 +204,7 @@ eDVBResourceManager::eDVBResourceManager()
 		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size(), m_boxtype);
 
 	m_fbc_mng = new eFBCTunerManager(this);
-	
+
 	CONNECT(m_releaseCachedChannelTimer->timeout, eDVBResourceManager::releaseCachedChannel);
 }
 
@@ -1018,7 +1018,7 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 	{
 		return bestval;
 	}
-	
+
 	if (best)
 	{
 		if (fbcmng && best_fbc_fe)
@@ -1144,7 +1144,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 		iDVBAdapter *adapter = fe ? fe->m_adapter : m_adapter.begin(); /* look for a demux on the same adapter as the frontend, or the first adapter for dvr playback */
 		int source = fe ? fe->m_frontend->getDVBID() : -1;
 		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
-		
+
 		for (; i != m_demux.end(); ++i, ++n)
 		{
 			if (fe)
@@ -1321,14 +1321,14 @@ bool eDVBResourceManager::frontendPreferenceAllowsChannelUse(const eDVBChannelID
 	ePtr<iDVBFrontend> fe;
 	channel->getFrontend(fe);
 	int slotid = fe->readFrontendData(iFrontendInformation_ENUMS::frontendNumber);
-	
+
 	int preferredFrontend = eDVBFrontend::getPreferredFrontend();
 	if (preferredFrontend < 0)
 	{
 		//eDebug("frontend %d allowed, no frontend preference", slotid);      
 		return true; /* no frontend preference */
 	}
-    
+
 	if (!((preferredFrontend >= 0) && (preferredFrontend & eDVBFrontend::preferredFrontendPrioForced)) && !((preferredFrontend >= 0) && (preferredFrontend & eDVBFrontend::preferredFrontendPrioHigh)))
 	{
 		//eDebug("frontend %d allowed, sharing/caching channels is allowed for any frontend", slotid);      

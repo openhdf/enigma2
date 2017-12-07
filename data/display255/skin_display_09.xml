@@ -130,7 +130,7 @@
 		<widget source="global.CurrentTime" render="Label" font="VFD;12" position="0, 50" size="128, 20" halign="center">
 			<convert type="VtiTempFan">FanInfo</convert>
 		</widget>
-		
+
 		<widget source="global.CurrentTime" render="Label" font="VFD;12" position="128, 50" size="128, 20" halign="center">
 			<convert type="VtiTempFan">TempInfo</convert>
 		</widget>

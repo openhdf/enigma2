@@ -141,7 +141,7 @@ class VideoFinetune(Screen):
 		c = self["Canvas"]
 
 		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
-		
+
 		bbw, bbh = xres / 192, yres / 192
 		c.fill(0, 0, xres, yres, RGB(0,0,0))
 

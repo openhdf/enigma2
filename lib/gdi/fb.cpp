@@ -51,7 +51,7 @@ fbClass::fbClass(const char *fb)
 	cmap.green=green;
 	cmap.blue=blue;
 	cmap.transp=trans;
-	
+
 #ifdef CONFIG_ION
 	int ion;
 #endif
@@ -409,7 +409,7 @@ void fbClass::blit()
 		{
 			eDebug("[fb] STMFBIO_BLT %m");
 		}
-	
+
 	}
 
 	if (ioctl(fbFd, STMFBIO_SYNC_BLITTER) < 0)

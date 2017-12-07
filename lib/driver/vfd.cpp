@@ -54,7 +54,7 @@ void evfd::vfd_led(char * led)
 		eDebug("cannot open /proc/stb/fp/led0_pattern (%m)");
 		return;
 	}
-	
+
 	fprintf(f,"%s", led);
 	fclose(f);
 }
@@ -64,11 +64,11 @@ void evfd::vfd_write_string(char * str)
 	FILE *f;
 	if((f = fopen("/proc/vfd","w")) == NULL) {
 		eDebug("cannotopen /proc/vfd (%m)");
-	
+
 		return;
 	}
-	
+
 	fprintf(f,"%s", str);
-	
+
 	fclose(f);
 }

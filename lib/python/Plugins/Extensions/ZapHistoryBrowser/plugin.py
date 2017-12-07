@@ -73,11 +73,11 @@ class ZapHistoryConfigurator(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		
+
 		ConfigListScreen.__init__(self, [
 			getConfigListEntry(_("Enable zap history:"), config.plugins.ZapHistoryConfigurator.enable_zap_history),
 			getConfigListEntry(_("Maximum zap history entries:"), config.plugins.ZapHistoryConfigurator.maxEntries_zap_history)])
-		
+
 		self["actions"] = ActionMap(["OkCancelActions"], {"ok": self.save, "cancel": self.exit}, -2)
 
 	def save(self):
@@ -147,17 +147,17 @@ class ZapHistoryBrowser(Screen, ProtectedScreen):
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
 		self.session = session
-		
+
 		self.servicelist = servicelist
 		self.serviceHandler = eServiceCenter.getInstance()
 		self.allowChanges = True
-		
+
 		self["list"] = ZapHistoryBrowserList([])
 		self["key_red"] = Label(_("Clear"))
 		self["key_green"] = Label(_("Delete"))
 		self["key_yellow"] = Label(_("Zap+Close"))
 		self["key_blue"] = Label(_("Config"))
-		
+
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 			{
 				"ok": self.zap,
@@ -167,7 +167,7 @@ class ZapHistoryBrowser(Screen, ProtectedScreen):
 				"yellow": self.zapAndClose,
 				"blue": self.config
 			}, prio=-1)
-		
+
 		self.onLayoutFinish.append(self.buildList)
 
 	def buildList(self):
@@ -237,7 +237,7 @@ class ZapHistoryBrowser(Screen, ProtectedScreen):
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and config.ParentalControl.configured.value
-	
+
 	def pinEntered(self, result):
 		if result is None:
 			self.allowChanges = False

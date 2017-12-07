@@ -312,7 +312,7 @@ RESULT eAMLTSMPEGDecoder::play()
 	else if (m_state == statePause) {
 
 		aml_resume();
-		
+
 		if (m_demux && m_demux->m_pvr_fd >= 0)
 			::ioctl(m_demux->m_pvr_fd, PVR_P3);
 

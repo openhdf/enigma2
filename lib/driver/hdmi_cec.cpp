@@ -182,7 +182,7 @@ void eHdmiCEC::getAddressInfo()
 	if (hdmiFd >= 0)
 	{
 		bool hasdata = false;
-                
+
 		struct addressinfo addressinfo;
 
 		if (linuxCEC)

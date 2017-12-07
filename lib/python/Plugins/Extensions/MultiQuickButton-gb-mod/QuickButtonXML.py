@@ -15,9 +15,9 @@ from __init__ import _
 functionfile = "/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/mqbfunctions.xml"
 
 class QuickButtonXML(object):
-	
+
 	def __init__(self, menu=None):
-		
+
 		if menu:
 			self.rootNode = menu.childNodes[0]
 			self.list = []

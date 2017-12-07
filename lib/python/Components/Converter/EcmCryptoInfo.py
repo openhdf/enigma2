@@ -17,7 +17,7 @@ class EcmCryptoInfo(Poll, Converter, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
-		
+
 		self.active = False
 		self.visible = config.usage.show_cryptoinfo.value
 		self.textvalue = ''
@@ -95,7 +95,7 @@ class EcmCryptoInfo(Poll, Converter, object):
 					hops = '%s %s' % (_(' Hops:'), hops)
 				if ecmtime:
 					ecmtime = '%s %ss' % (_(' Time:'), ecmtime)
-		
+
 				if casys != '':
 					ecmInfoString = '%s ' % casys
 				if state != 'Source: ':

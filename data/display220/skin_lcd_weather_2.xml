@@ -245,7 +245,7 @@
 			<widget name="Chapter" position="fill" font="FdLcD;12" halign="left" />
 		</panel>
 	</screen>
-	
+
 <!-- ViX -->
 	<screen name="VIXDevicesPanelSummary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />

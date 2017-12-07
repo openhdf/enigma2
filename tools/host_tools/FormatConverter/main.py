@@ -14,7 +14,7 @@ datasources = [maindata]
 
 for source in sources:
 	datasources.append(source())
-	
+
 for source in datasources:
 	source.setDatasources(datasources)
 
@@ -26,7 +26,7 @@ while(True):
 	index = inputChoices(list, "q", "quit")
 	if index is None:
 		break		
-	
+
 	while(True):
 		print datasources[index].getStatus()
 		list = []
@@ -35,9 +35,9 @@ while(True):
 		action = inputChoices(list)
 		if action is None:
 			break
-		
+
 		datasources[index].getCapabilities()[action][1]()
 		#except:
 		#	print sys.exc_info()
 		#	print "sorry, could not execute that command"
-		
+

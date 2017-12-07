@@ -26,7 +26,7 @@
 			<convert type="ClockToText"/>
 		</widget>
 	</screen>
-	
+
 	<screen name="SummaryIconsPanel">
 		<widget source="session.CurrentService" render="Pixmap" pixmap="hdklein.png" position="92,18" size="13,7">
 			<convert type="ServiceInfo">IsHD</convert>
@@ -45,17 +45,17 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
-	
+
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="128,32">
 		<widget source="session.CurrentService" render="LcdPicon" position="0,0" size="128,30" halign="center" valign="bottom" zPosition="1" noWrap="1" >
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-		
+
 		<!--panel name="SummaryClockPanel" /-->
 		<!--panel name="SummaryIconsPanel" /-->
 	</screen>
-		
+
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="128,32">
 		<!--widget name="statusicon_summary" position="0,13" size="11,10" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="3" /-->
@@ -72,7 +72,7 @@
 	<screen name="MovieContextMenuSummary" position="0,0" size="128,32">
 		<widget source="selected" render="Label" position="1,1" size="128,32" font="FdLcD;20" halign="center" valign="bottom" />
 	</screen>
-	
+
 <!-- mediaplayer -->
 	<screen name="MediaPlayerLCDScreen" position="0,0" size="128,32">
 		<widget source="session.CurrentService" render="Label" position="1,1" size="129,22" font="FdLcD;20" halign="left" valign="top" zPosition="1" noWrap="1" >
@@ -85,7 +85,7 @@
 			<convert type="ServicePosition">Summary</convert>
 		</widget>
 	</screen>
-	
+
 <!-- emc -->
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="128,32">
 		<!--widget name="statusicon_summary" position="0,13" size="11,10" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="3" /-->
@@ -310,7 +310,7 @@
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
-	
+
 	<screen name="UpdatePlugin_summary" position="0,0" size="128,32">
 		<widget source="parent.Title" render="Label" position="0,0" size="128,16" font="FdLcD;16" halign="center" valign="top" noWrap="1" />
 		<widget source="parent.package" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="center" valign="bottom" noWrap="1" />
@@ -366,14 +366,14 @@
 		<widget source="parent.summary_action" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="left" noWrap="1" />
 		<!--<widget source="parent.summary_status" render="Label" position="0,41" size="128,18" font="FdLcD;16" halign="left" noWrap="1" />-->
 	</screen>
-	
+
 <!-- ATV -->
 	<!-- Quickmenü -->
 	<screen name="QuickMenu_summary" position="0,0" size="128,32">
 		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
 	</screen>
-	
+
 	<!-- Infopanel -->
 	<screen name="Infopanel_summary" position="0,0" size="128,32">
 		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
@@ -413,5 +413,5 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="128,14" font="FdLcD;12" halign="center" valign="center" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,15" size="128,17" zPosition="1" font="FdLcD;16" halign="center" valign="center" noWrap="1" />
 	</screen>
-	
+
 </skin>

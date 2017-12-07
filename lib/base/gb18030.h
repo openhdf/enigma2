@@ -193,17 +193,17 @@
 #ifndef _iconv_var_
 #define _iconv_var_ 
 typedef long  ucs4_t; 
- 
+
 typedef struct { 
         int istate; 
       } *conv_t; 
- 
+
 typedef struct { 
         unsigned short  indx;  /* index into big table */ 
         unsigned short  used;  /* bitmask of used entries */ 
       } Summary16; 
- 
- 
+
+
 #define RET_ILUNI      -1 
 #define RET_ILSEQ      -2 
 #define RET_TOOSMALL   -3 
@@ -5265,5 +5265,5 @@ gbkext2_mbtowc (ucs4_t *pwc, const unsigned char *s, int n)
 }
 
 #endif 
- 
+
 #endif 

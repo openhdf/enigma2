@@ -242,7 +242,7 @@ struct hostent *Get_Hostbyname(char *name)
       free(name2);
       return(ret);
     }
-  
+
   /* nothing works :-( */
   free(name2);
   return(NULL);
@@ -285,7 +285,7 @@ void browse_host(shareinfo *sInfo)
   char *outbuf = (char *)malloc(BUFFER_SIZE + SAFETY_MARGIN);
   if ((inbuf == NULL) || (outbuf == NULL)) 
     return;
-  
+
   memset(outbuf,0,smb_size);
 
   if (!send_login(inbuf,outbuf,True))
@@ -314,7 +314,7 @@ void browse_host(shareinfo *sInfo)
   params = skip_string(p,1);
 
   SSVAL(params,0,0); /* RNetShareEnum */
-  
+
   p = params+2;
 
   strcpy(p,"WrLeh");
@@ -414,9 +414,9 @@ void *object_byte_swap(void *obj,int size)
   char c;
   char *p1 = (char *)obj;
   char *p2 = p1 + size - 1;
-  
+
   size /= 2;
-  
+
   for (i=0;i<size;i++)
     {
       c = *p1;
@@ -537,7 +537,7 @@ BOOL send_login(char *inbuf,char *outbuf,BOOL use_setup)
   send_smb(outbuf);
 
   receive_smb(inbuf,0);
- 
+
   if (CVAL(inbuf,0) != 0x82)
     {
       int ecode = CVAL(inbuf,4);
@@ -593,7 +593,7 @@ BOOL send_login(char *inbuf,char *outbuf,BOOL use_setup)
 
     for (numprots=0,plength=0;prots[numprots].name;numprots++)
       plength += strlen(prots[numprots].name)+2;
-    
+
     set_message(outbuf,0,plength,True);
 
     p = smb_buf(outbuf);
@@ -753,7 +753,7 @@ BOOL send_login(char *inbuf,char *outbuf,BOOL use_setup)
 #endif
       return(False);
     }
-  
+
 
   max_xmit = SVAL(inbuf,smb_vwv0);
   max_xmit = MIN(max_xmit,BUFFER_SIZE-4);
@@ -809,7 +809,7 @@ char *smb_errstr(char *inbuf)
 	sprintf(ret,"%s - %d",err_classes[i].class,num);
 	return ret;
       }
-  
+
   sprintf(ret,"ERROR: Unknown error (%d,%d)",class,num);
   return(ret);
 }
@@ -834,7 +834,7 @@ time_t make_unix_date2(void *date_ptr)
   p[1] = p[3];
   p[3] = c;
 
-  
+
   interpret_dos_date(dos_date,&t.tm_year,&t.tm_mon,
 		     &t.tm_mday,&t.tm_hour,&t.tm_min,&t.tm_sec);
   t.tm_wday = 1;
@@ -940,7 +940,7 @@ time_t make_unix_date(void *date_ptr)
   memcpy(&dos_date,date_ptr,4);
 
   if (dos_date == 0) return(0);
-  
+
   interpret_dos_date(dos_date,&t.tm_year,&t.tm_mon,
 		     &t.tm_mday,&t.tm_hour,&t.tm_min,&t.tm_sec);
   t.tm_wday = 1;
@@ -968,7 +968,7 @@ void send_logout(char *inbuf,char *outbuf )
       printf("SMBtdis failed %s\n",smb_errstr(inbuf));
     }
 #endif
- 
+
 #ifdef STATS
   stats_report();
 #endif
@@ -1226,7 +1226,7 @@ int read_with_timeout(int fd,char *buf,int mincnt,int maxcnt,long time_out,BOOL 
   if(time_out < 0) {
     return read(fd, buf, maxcnt);
   }
-  
+
   /* Non blocking read */
   if(time_out == 0) {
     set_blocking(fd, False);
@@ -1258,32 +1258,32 @@ int read_with_timeout(int fd,char *buf,int mincnt,int maxcnt,long time_out,BOOL 
 
   for(;;) 
     {
-      
+
       FD_ZERO(&fds);
       FD_SET(fd,&fds);
-      
+
       do {    
 	selrtn = select(255,SELECT_CAST &fds,NULL,NULL,&timeout);
       } 
       while( selrtn < 0  &&  errno == EINTR );
-      
+
       /* Check if error */
       if(selrtn == -1)
 	return -1;
-      
+
       /* Did we timeout ? */
       if (selrtn == 0 )
 	break; /* Yes */
-      
+
       readret = read( fd, buf+nread, maxcnt-nread);
       if(readret == -1)
 	return -1;
 
       if (readret == 0)
 	break;
-      
+
       nread += readret;
-      
+
       /* If we have read more than mincnt then return */
       if( nread >= mincnt )
 	break;
@@ -1295,14 +1295,14 @@ int read_with_timeout(int fd,char *buf,int mincnt,int maxcnt,long time_out,BOOL 
 	{
 	  gettimeofday( &tval2, &tz);
 	  (void)tval_sub( &tvaldiff, &tval2, &tval1);
-      
+
 	  if( tval_sub( &timeout, &timeout, &tvaldiff) <= 0) 
 	    {
 	      /* We timed out */
 	      break;
 	    }
 	}
-      
+
       /* Save the time of day as we need to do the select 
 	 again (saves a system call)*/
       tval1 = tval2;
@@ -1368,19 +1368,19 @@ BOOL read_data(int fd,char *buffer,int N)
   int maxtime = keepalive;
   int  nready;
   int nread = 0;  
- 
+
   if (maxtime > 0)
     {
       fd_set fds;
       int selrtn;
       struct timeval timeout;
-      
+
       FD_ZERO(&fds);
       FD_SET(fd,&fds);
-            
+
       timeout.tv_sec = maxtime;
       timeout.tv_usec = 0;
-      
+
       while ((selrtn = select(255,SELECT_CAST &fds,NULL,NULL,&timeout)) == 0)
 	{
 #if DEBUG
@@ -1499,10 +1499,10 @@ int open_socket_out(struct in_addr *addr, int port )
 #endif 
 		return -1; 
 	}
-  
+
   memset((char *)&sock_out, 0, sizeof(sock_out));
   memcpy((char *)&sock_out.sin_addr,(char *)addr,4);
-  
+
   sock_out.sin_port = htons( port );
   sock_out.sin_family = PF_INET;
 #if DEBUG
@@ -1552,14 +1552,14 @@ int name_mangles(char *In,char *Out)
       in++;
       out+=2;
     }
-  
+
   while (pad--)
     {
       out[0] = 'C';
       out[1] = 'A';
       out+=2;
     }
-  
+
   label = scope;
   while (*label)
     {

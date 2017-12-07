@@ -30,7 +30,7 @@ def getKernelVersionString():
 		return kernelversion
 	except:
 		return _("unknown")
-	
+
 def getModelString():	
 	try:
 		file = open("/proc/stb/info/boxtype", "r")

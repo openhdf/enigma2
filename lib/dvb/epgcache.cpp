@@ -1441,7 +1441,7 @@ void eEPGCache::save()
 		std::vector<char> vEPGDAT(m_filename.begin(), m_filename.end());
 		vEPGDAT.push_back('\0');
 		const char* EPGDAT = &vEPGDAT[0];
-	
+
 		/* create empty file */
 		FILE *f = fopen(EPGDAT, "wb");
 		if (!f)
@@ -1452,7 +1452,7 @@ void eEPGCache::save()
 			if (!f)
 				return;
 		}
-	
+
 		char* buf = realpath(EPGDAT, NULL);
 		if (!buf)
 		{
@@ -1460,9 +1460,9 @@ void eEPGCache::save()
 			fclose(f);
 			return;
 		}
-	
+
 		eDebug("[eEPGCache] store epg to realpath '%s'", buf);
-	
+
 		struct statfs s;
 		off64_t tmp;
 		if (statfs(buf, &s) < 0) {
@@ -1471,9 +1471,9 @@ void eEPGCache::save()
 			free(buf);
 			return;
 		}
-	
+
 		free(buf);
-	
+
 		// check for enough free space on storage
 		tmp=s.f_bfree;
 		tmp*=s.f_bsize;
@@ -1483,7 +1483,7 @@ void eEPGCache::save()
 			fclose(f);
 			return;
 		}
-	
+
 		int cnt=0;
 		unsigned int magic = 0x98765432;
 		fwrite( &magic, sizeof(int), 1, f);
@@ -4128,7 +4128,7 @@ void eEPGCache::channel_data::GetEquiv(void)
 {
 	nb_equiv=0;
 	m_equiv.resize(100);
- 
+
  	FILE *eq=fopen(FILE_EQUIV,"r");
  	if (eq) 
 	{
@@ -4166,7 +4166,7 @@ void eEPGCache::channel_data::GetEquiv(void)
 bool eEPGCache::channel_data::log_open ()
 {
 	log_file = fopen (FILE_LOG, "w");
-	 
+
 	return (log_file != NULL);
 }
 
@@ -4186,14 +4186,14 @@ void eEPGCache::channel_data::log_add (const char *message, ...)
 	now_time = time (NULL);
 	loctime = localtime (&now_time);
 	strftime (msg, 255, "%d/%m/%Y %H:%M:%S ", loctime);
-	 
+
 	if (log_file != NULL) fwrite (msg, strlen (msg), 1, log_file);
 
 	va_start (args, message);
 	vsnprintf (msg, 16*1024, message, args);
 	va_end (args);
 	msg[(16*1024)-1] = '\0';
-	 
+
 	if (log_file != NULL)
 	{
 		fwrite (msg, strlen (msg), 1, log_file);
@@ -4522,7 +4522,7 @@ void eEPGCache::channel_data::storeMHWTitle(std::map<uint32_t, mhw_title_t>::ite
 
 	// Feed the data to eEPGCache::sectionRead()
 	cache->sectionRead( data, MHW, this );
-	
+
 	int i;
 	for (i=0;i<nb_equiv;i++)
 	{
@@ -4632,7 +4632,7 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 		{
 			mhw_channel_name_t *channel = (mhw_channel_name_t*) &data[4 + i*record_size];
 			m_channels[i]=*channel;
-		
+
 			if (f)
 				fprintf(f,"(%s) %x:%x:%x\n",m_channels[i].name,m_channels[i].getChannelId(),
 					m_channels[i].getTransportStreamId(),m_channels[i].getNetworkId());
@@ -5278,7 +5278,7 @@ void eEPGCache::channel_data::readMHWData2_old(const uint8_t *data)
 			fprintf(f,"#########################################\n");
 			fprintf(f,"#\n");
 		}
-		
+
 		for (int i=0; i < num_channels; ++i)
 		{
 			mhw_channel_name_t channel;

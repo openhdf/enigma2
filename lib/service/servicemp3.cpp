@@ -1174,7 +1174,7 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 			{
 				eDebug("[eServiceMP3] blocked pipeline we need to flush playposition in pts at last pos before paused is %" G_GINT64_FORMAT, (gint64)pts);
 				seekTo(pts);
-				
+
 			}
 			else if (getPlayPosition(pts) >= 0)
 			{
@@ -1384,7 +1384,7 @@ GstElement *getVideoDecElement(GstElement *m_gst_playbin, int i)
 
 	if (!e)
 		eDebug("no VideoDecElement");
-		
+
 	return e;
 }
 GstElement * getAudioDecElement(GstElement *m_gst_playbin, int i)
@@ -1409,7 +1409,7 @@ GstElement * getAudioDecElement(GstElement *m_gst_playbin, int i)
 
 	if (!e)
 		eDebug("no audioDecElement");
-		
+
 	return e;
 } 
 void eServiceMP3::AmlSwitchAudio(int index)
@@ -3464,7 +3464,7 @@ void eServiceMP3::loadCuesheet()
 		//eDebug("[eServiceMP3] skip loading cuesheet multiple times");
 		return;
 	}
- 
+
 	m_cue_entries.clear();
 
 	std::string filename = m_ref.path + ".cuts";

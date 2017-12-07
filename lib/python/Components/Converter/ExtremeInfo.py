@@ -51,7 +51,7 @@ class ExtremeInfo(Poll, Converter, object):
     WICARDD = 37
     BULCRYPT = 38
     BULECM = 39
-    
+
     def __init__(self, type):
         Poll.__init__(self)
         Converter.__init__(self, type)
@@ -782,7 +782,7 @@ class ExtremeInfo(Poll, Converter, object):
                                 return True
 
         return False
-    
+
     def getIrdCrypt(self):
         service = self.source.service
         if service:
@@ -991,7 +991,7 @@ class ExtremeInfo(Poll, Converter, object):
                                 return True
 
         return False 
-    
+
     def int2hex(self, int):
         return '%x' % int
 

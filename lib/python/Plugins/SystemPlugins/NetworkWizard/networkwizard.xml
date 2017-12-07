@@ -134,7 +134,7 @@ self.condition = (self.isInterfaceUp == True and self.WlanPluginInstalled == Fal
                 <text value="The wireless LAN plugin is not installed!\nPlease install it and choose what you want to do next." />
                 <displaytext value="Please follow the instructions on the TV" />
                 <list type="dynamic" source="listChoices" evaluation="ChoicesSelectionMade" onselect="ChoicesSelectionMoved" />
-		
+
                 <code>
 self.clearSelectedKeys()
 self.selectKey("OK")

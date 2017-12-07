@@ -33,10 +33,10 @@ class VFDClockToText(Converter, object):
 	LONG_DATE = 9
 	FROMCONFIG = 10
 	VFD = 11
-	
+
 	# add: date, date as string, weekday, ... 
 	# (whatever you need!)
-	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "WithSeconds":
@@ -80,9 +80,9 @@ class VFDClockToText(Converter, object):
 			return "%d:%02d" % (time / 60, time % 60)
 		elif self.type == self.TIMESTAMP:
 			return str(time)
-		
+
 		t = localtime(time)
-		
+
 		if self.type == self.FROMCONFIG:
 			if config.plugins.VFDExtendedServiceInfo.time.value == "0":
 				return "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
@@ -92,8 +92,8 @@ class VFDClockToText(Converter, object):
 				return "%2d:%02d %d/%d" % (t.tm_hour, t.tm_min, t[2], t[1])
 		else:		
 			return "???"
-			
-			
+
+
 		if self.type == self.WITH_SECONDS:
 			return "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
 		elif self.type == self.DEFAULT:
@@ -116,7 +116,7 @@ class VFDClockToText(Converter, object):
 				return str(s1+s2)
 			else:
 				return strftime(self.fmt_string, t)
-		
+
 		else:
 			return "???"
 

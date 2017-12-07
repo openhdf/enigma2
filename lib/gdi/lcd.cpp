@@ -123,7 +123,7 @@ eDBoxLCD::eDBoxLCD()
 	{
 		lcdfd = open("/dev/dbox/oled0", O_RDWR);
 	}
-	
+
 	if (lcdfd < 0)
 	{
 		if (!access("/proc/stb/lcd/oled_brightness", W_OK) || 
@@ -204,7 +204,7 @@ void eDBoxLCD::setDump(bool onoff)
  	dump = onoff;
  	dumpLCD2PNG();
  }
- 
+
 int eDBoxLCD::setLCDContrast(int contrast)
 {
 #ifndef NO_LCD
@@ -310,7 +310,7 @@ void eDBoxLCD::dumpLCD2PNG(void)
  			pixmap32 = new gPixmap(eSize(lcd_width, lcd_hight), 32, gPixmap::accelAuto);
  			const uint8_t *srcptr = (uint8_t*)_buffer;
  			uint8_t *dstptr=(uint8_t*)pixmap32->surface->data;
- 
+
  			switch(bpp)
  			{
  				case 8:
@@ -318,7 +318,7 @@ void eDBoxLCD::dumpLCD2PNG(void)
  					break;
  				case 16:
  					{
- 
+
  						for (int y = lcd_hight; y != 0; --y)
  						{
  							gRGB pixel32;
@@ -353,7 +353,7 @@ void eDBoxLCD::dumpLCD2PNG(void)
  			}
  		}
  }
- 
+
 void eDBoxLCD::update()
 {
 #ifndef HAVE_TEXTLCD

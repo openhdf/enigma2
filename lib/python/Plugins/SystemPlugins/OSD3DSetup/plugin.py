@@ -36,7 +36,7 @@ else:
 	modelist = {val_off: _("Off"), val_sidebyside: _("Side by Side"), val_topandbottom: _("Top and Bottom")}
 	menulist = {"none": _("None"), "menu": _("Main menu"), "ext": _("Extensions list"), "menuext": _("Menu & Extensions list")}
 	togglelist = {val_sidebyside: _("Side by Side - Off"), val_topandbottom: _("Top and Bottom - Off")}
-	
+
 config.plugins.OSD3DSetup = ConfigSubsection()
 config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = val_auto)
 config.plugins.OSD3DSetup.znorm = ConfigInteger(default = 0)
@@ -74,7 +74,7 @@ EXTENSIONS = {
 		"3gp": "movie",
 		"mod": "movie"
 	}
-	
+
 confirmed3D = False	
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
@@ -98,7 +98,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self["ok"] = Button(_("OK"))
 		self["cancel"] = Button(_("Cancel"))
 		self["help"] = StaticText()
-		
+
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"ok": self.keyGo,
@@ -116,7 +116,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		auto = config.plugins.OSD3DSetup.auto.value
 		toggle = config.plugins.OSD3DSetup.toggle.value
 		prompt = config.plugins.OSD3DSetup.prompt.value
-				
+
 		self.mode = ConfigSelection(choices = modelist, default = nz(mode, val_auto))
 		self.znorm = ConfigSlider(default = znorm + 50, increment = 1, limits = (0, 100))
 		self.menuext = ConfigSelection(choices = menulist, default = nz(menuext, "none"))
@@ -126,20 +126,20 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		# adding notifiers to immediatelly preview changed 3D settings
 		self.mode.addNotifier(self.setPreviewSettings, initial_call = False)
 		self.znorm.addNotifier(self.setPreviewSettings, initial_call = False)
-				
+
 		self.refresh()
 		self.initHelpTexts()
 		ConfigListScreen.__init__(self, self.list, session = self.session)
 		self["config"].onSelectionChanged.append(self.updateHelp)
-	
+
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
 		self.reloadList()
-		
+
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
 		self.reloadList()
-			
+
 	def keyZero(self):
 		cur = self["config"].getCurrent()
 		if cur == getConfigListEntry(_("Depth"), self.znorm):
@@ -147,11 +147,11 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 			self.reloadList()
 		else:
 			ConfigListScreen.keyNumberGlobal(self, 0)
-		
+
 	def reloadList(self):
 		self.refresh()
 		self["config"].setList(self.list)	
-	
+
 	def refresh(self):		
 		list = []
 		list.extend((
@@ -164,13 +164,13 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		# Only allow editing toggle mode when the 3d switch command is supposed to apear in menu or 3d should be turned on automatically
 		if self.menuext.value is not "none" or self.auto.value:
 			list.append(getConfigListEntry(_("Toggle mode"), self.toggle))
-			
+
 		# Only allow editing user prompt when the 3d auto toggle is activated
 		if self.auto.value:
 			list.append(getConfigListEntry(_("Display 3D confirmation"), self.prompt))	
 
 		self.list = list
-	
+
 	def initHelpTexts(self):
 		self.helpDict = {
 			self.mode: _("Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."),
@@ -180,7 +180,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 			self.toggle: _("Define the mode to turn on 3D automatically or by quick toggle menu command [Side By Side] or [Top And Bottom]."),
 			self.prompt: _("How long should 3D mode on confirmation be displayed (seconds). 0 for none."),
 		}
-	
+
 	def updateHelp(self):
 		cur = self["config"].getCurrent()
 		if cur:
@@ -204,12 +204,12 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def keyCancel(self):
 		setConfiguredSettings()
 		self.close()
-	
+
 class AutoToggle3D(Screen):
 	#class for listening for service changing events to set 3D mode automatically
 	Instance = None 
 	OldServiceName = ""
-	
+
 	def __init__(self, session):		
 		self.session = session
 		Screen.__init__(self, session)
@@ -224,7 +224,7 @@ class AutoToggle3D(Screen):
 			self.CurrentMode = val_auto
 		self.Confirming = False
 		AutoToggle3D.Instance = self #set instance - only one should be running
-	
+
 	def UpdInfo(self):
 		#react only when there is a change in service or service event and there are apropriate settings in configuration
 		if config.plugins.OSD3DSetup.auto.value and self.session.nav.getCurrentlyPlayingServiceReference(): 
@@ -248,9 +248,9 @@ class AutoToggle3D(Screen):
 				if info:
 					evt = info.getEvent(ServRef)
 					if evt: ServiceName = ServiceName + " " + evt.getEventName()			
-				
+
 				#self.session.open(MessageBox,_(ServiceName), type = MessageBox.TYPE_INFO, timeout = 5)
-			
+
 			if AutoToggle3D.OldServiceName != ServiceName:
 				AutoToggle3D.OldServiceName = ServiceName
 				#NewMode = self.CurrentMode
@@ -269,7 +269,7 @@ class AutoToggle3D(Screen):
 				else:
 					NewMode = val_auto
 				self.setNewMode([NewMode, self.Confirming])
-				
+
 	def setNewMode(self, ret):
 		if ret:	
 			if ret[1] == False:
@@ -284,7 +284,7 @@ class InfoAuto3D(Screen):
 		<widget name="infotext" position="c-350,e-100" size="690,40" halign="center" valign="center" font="Regular;20" backgroundColor="transparent" foregroundColor="#C8C8FF" shadowColor="#0000FF" />
 	</screen>"""	
 	Instance = None 
-		
+
 	def __init__(self, session, NewMode, Confirming):		
 		self.skin = InfoAuto3D.skin
 		Screen.__init__(self, session)		
@@ -300,22 +300,22 @@ class InfoAuto3D(Screen):
 		}, -2)
 		self.blueTimer.start(nz(config.plugins.OSD3DSetup.prompt.value,10) * 1000)
 		InfoAuto3D.Instance = self #set instance - only one should be running
-		
+
 	def keyBlue(self):
 		self.blueTimer.stop()
 		self.close([config.plugins.OSD3DSetup.toggle.value, False])
-	
+
 	def autoclose(self):
 		self.close([config.plugins.OSD3DSetup.mode.value, False])
-		
+
 	def keyCancel(self):
 		self.blueTimer.stop()
 		self.autoclose()
-		
+
 def nz(value, nullvalue) :
    if value is None: return nullvalue
    else: return value		
-		
+
 def applySettings(mode, znorm):
 	setmode(mode)
 	setznorm(znorm)
@@ -338,7 +338,7 @@ def getznorm():
 		file.close()
 	else:
 		return val_auto
-		
+
 def setmode(val):
 	if not val:
 		val = val_auto
@@ -358,7 +358,7 @@ def setznorm(val):
 		file.close()
 	except:
 		return		
-		
+
 #if there is a command in menu...	
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
@@ -396,7 +396,7 @@ def menutoggle3d(session, **kwargs):
 	except Exception, e:
 		print "[OSD3D Setup] toggle3d exception:\n" + str(e)	
 	return []	
-	
+
 #if there is a command in extensions selection...		
 def toggleSBS(session, **kwargs):
 	toggleext(val_sidebyside)
@@ -405,7 +405,7 @@ def toggleSBS(session, **kwargs):
 def toggleTAB(session, **kwargs):
 	toggleext(val_topandbottom)
 	return []
-	
+
 def toggleext(value):
  	mode = getmode()
 	znorm = getznorm()
@@ -417,7 +417,7 @@ def toggleext(value):
 		setmode(val_auto) 
 	if znorm < 0 or znorm > 100:
 		setznorm(0)	
-	
+
 def Plugins(**kwargs):
 	pluginlist = []
 	from os import path

@@ -228,7 +228,7 @@ def checkQuickSel(self, path):
 	except Exception, e:
 		self.session.open(MessageBox,("XML " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
 		print "[MultiQuickbutton] ERROR: ",e
-		
+
 	if list <> None:
 		if len(list) == 1:
 			self.execQuick(list[0])
@@ -251,7 +251,7 @@ def getQuickList(self, list):
 	for e in list:
 		e2 = [_(e[0]), e[1], e[2], e[3], e[4], e[5]]
 		quickList.append((e2))
-		
+
 	return quickList
 
 def execQuick(self,entry):

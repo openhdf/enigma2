@@ -33,7 +33,7 @@ class ExtendedServiceInfoNobile(Converter, object):
                 self.satNames = {}
                 self.readSatXml()
                 self.getLists()
-               
+
                 if type == "ServiceName":
                         self.type = self.SERVICENAME
                 elif type == "ServiceNumber":
@@ -55,13 +55,13 @@ class ExtendedServiceInfoNobile(Converter, object):
                 info = service and service.info()
                 if not info:
                         return ""
-               
+
                 text = ""
                 name = info.getName().replace('\xc2\x86', '').replace('\xc2\x87', '')
                 number = self.getServiceNumber(name, info.getInfoString(iServiceInformation.sServiceref))
                 orbital = self.getOrbitalPosition(info)
                 satName = self.satNames.get(orbital, orbital)
-               
+
                 if self.type == self.SERVICENAME:
                         text = name
                 elif self.type == self.SERVICENUMBER:
@@ -89,7 +89,7 @@ class ExtendedServiceInfoNobile(Converter, object):
                                 text = "%s. %s" % (number, name)
                         if orbital != "":
                                 text = "%s (%s)" % (text, orbital)
-               
+
                 return text
 
         text = property(getText)
@@ -99,18 +99,18 @@ class ExtendedServiceInfoNobile(Converter, object):
 
         def getListFromRef(self, ref):
                 list = []
-               
+
                 serviceHandler = eServiceCenter.getInstance()
                 services = serviceHandler.list(ref)
                 bouquets = services and services.getContent("SN", True)
-               
+
                 for bouquet in bouquets:
                         services = serviceHandler.list(eServiceReference(bouquet[0]))
                         channels = services and services.getContent("SN", True)
                         for channel in channels:
                                 if not channel[0].startswith("1:64:"): # Ignore marker
                                         list.append(channel[1].replace('\xc2\x86', '').replace('\xc2\x87', ''))
-               
+
                 return list
 
         def getLists(self):

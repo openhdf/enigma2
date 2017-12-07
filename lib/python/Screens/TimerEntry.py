@@ -448,7 +448,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_afterevent.value = "nothing"
 			self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") %1, MessageBox.TYPE_INFO, timeout=30)
 
-			
+
 		self.timer.resetRepeated()
 		self.timer.afterEvent = {
 			"nothing": AFTEREVENT.NONE,

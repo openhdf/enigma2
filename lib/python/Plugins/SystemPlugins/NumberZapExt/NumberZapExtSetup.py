@@ -26,7 +26,7 @@ class DirectoryBrowser(Screen):
 			<widget source="curdir" render="Label" position="5,50" size="510,20"  font="Regular;20" halign="left" valign="center" backgroundColor="background" transparent="1" noWrap="1" />
 			<widget name="filelist" position="5,80" size="510,345" scrollbarMode="showOnDemand" />
 		</screen>"""
-	
+
 	def __init__(self, session, curdir, matchingPattern=None):
 		Screen.__init__(self, session)
 
@@ -121,7 +121,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 				else:
 					res[key] = val.value
 			return res
-		
+
 		self.NZE = config.plugins.NumberZapExt
 		self.prev_values = getPrevValues(self.NZE)
 		self.cfg_enable = getConfigListEntry(_("enable extended number zap"), self.NZE.enable)
@@ -176,7 +176,7 @@ class NumberZapExtSetupScreen(Screen, ConfigListScreen):
 						setPrevValues(val, value)
 					else:
 						val.value = value
-		
+
 		setPrevValues(self.NZE, self.prev_values)
 		self.keyGreen()
 

@@ -111,7 +111,7 @@ int send_query(int sock, struct in_addr dest_addr, my_uint32_t rtt_base) {
         dest_sockaddr.sin_family = AF_INET;
         dest_sockaddr.sin_port = htons(NB_DGRAM);
         dest_sockaddr.sin_addr = dest_addr;
- 
+
         request.flags = htons(FL_BROADCAST);
         request.question_count = htons(1);
         request.answer_count = 0;
@@ -125,7 +125,7 @@ int send_query(int sock, struct in_addr dest_addr, my_uint32_t rtt_base) {
 	/* Use transaction ID as a timestamp */
 	request.transaction_id = htons((tv.tv_sec-rtt_base)*1000+tv.tv_usec/1000);
 	/* printf("%s: timestamp: %d\n", inet_ntoa(dest_addr), request.transaction_id); */
-        
+
 	status = sendto(sock, (char*)&request, sizeof(request), 0,
                 (struct sockaddr *)&dest_sockaddr, sizeof(dest_sockaddr));
 	if(status==-1) {
@@ -166,7 +166,7 @@ struct nb_host_info* parse_response(char* buff, int buffsize) {
 	if((response_footer = malloc(sizeof(nbname_response_footer_t)))==NULL) return NULL;
 	bzero(response_header, sizeof(nbname_response_header_t));
 	bzero(response_footer, sizeof(nbname_response_footer_t));
-	
+
 	if((hostinfo = malloc(sizeof(struct nb_host_info)))==NULL) return NULL;
 	hostinfo->header = NULL;
         hostinfo->names = NULL;
@@ -184,60 +184,60 @@ struct nb_host_info* parse_response(char* buff, int buffsize) {
 	if( offset+sizeof(response_header->flags) >= buffsize) goto broken_packet; 
 	response_header->flags = get16(buff+offset);
         offset+=sizeof(response_header->flags);
-	
+
 	if( offset+sizeof(response_header->question_count) >= buffsize) goto broken_packet;
 	response_header->question_count = get16(buff+offset);
         offset+=sizeof(response_header->question_count);
-        
+
 	if( offset+sizeof(response_header->answer_count) >= buffsize) goto broken_packet;
 	response_header->answer_count = get16(buff+offset);
         offset+=sizeof(response_header->answer_count);
-        
+
 	if( offset+sizeof(response_header->name_service_count) >= buffsize) goto broken_packet;
 	response_header->name_service_count = get16(buff+offset);
         offset+=sizeof(response_header->name_service_count);
-        
+
 	if( offset+sizeof(response_header->additional_record_count) >= buffsize) goto broken_packet;
 	response_header->additional_record_count = get16(buff+offset);
         offset+=sizeof(response_header->additional_record_count);
-        
+
 	if( offset+sizeof(response_header->question_name) >= buffsize) goto broken_packet;
 	strncpy(response_header->question_name, buff+offset, sizeof(response_header->question_name));
         offset+=sizeof(response_header->question_name);
-        
+
 	if( offset+sizeof(response_header->question_type) >= buffsize) goto broken_packet;
 	response_header->question_type = get16(buff+offset);
         offset+=sizeof(response_header->question_type);
-        
+
 	if( offset+sizeof(response_header->question_class) >= buffsize) goto broken_packet;
 	response_header->question_class = get16(buff+offset);
         offset+=sizeof(response_header->question_class);
-        
+
 	if( offset+sizeof(response_header->ttl) >= buffsize) goto broken_packet;
         response_header->ttl = get32(buff+offset);
         offset+=sizeof(response_header->ttl);
-        
+
 	if( offset+sizeof(response_header->rdata_length) >= buffsize) goto broken_packet;
         response_header->rdata_length = get16(buff+offset);
         offset+=sizeof(response_header->rdata_length);
-        
+
 	if( offset+sizeof(response_header->number_of_names) >= buffsize) goto broken_packet;
 	response_header->number_of_names = *(typeof(response_header->number_of_names)*)(buff+offset);
   offset+=sizeof(response_header->number_of_names);
 
 	/* Done with packet header - it is okay */
-	
+
 	name_table_size = (response_header->number_of_names) * (sizeof(struct nbname));
 	if( offset+name_table_size >= buffsize) goto broken_packet;
-	
+
 	if((hostinfo->names = malloc(name_table_size))== NULL) return NULL;
 	memcpy(hostinfo->names, buff + offset, name_table_size);
 	//printf("DEBUG: %s , %d\n", hostinfo->names, name_table_size);
-	
+
 	offset+=name_table_size;
 
 	/* Done with name table - it is okay */ 
- 
+
         /* Now parse response footer */
 
 	if( offset+sizeof(response_footer->adapter_address) >= buffsize) goto broken_packet;	
@@ -251,91 +251,91 @@ struct nb_host_info* parse_response(char* buff, int buffsize) {
 	if( offset+sizeof(response_footer->version_major) >= buffsize) goto broken_packet;
 	response_footer->version_major = *(typeof(response_footer->version_major)*)(buff+offset);
 	offset+=sizeof(response_footer->version_major);
-	
+
 	if( offset+sizeof(response_footer->version_minor) >= buffsize) goto broken_packet;
 	response_footer->version_minor = *(typeof(response_footer->version_minor)*)(buff+offset);
 	offset+=sizeof(response_footer->version_minor);
-	
+
 	if( offset+sizeof(response_footer->duration) >= buffsize) goto broken_packet;
 	response_footer->duration = get16(buff+offset);
 	offset+=sizeof(response_footer->duration);
-	
+
 	if( offset+sizeof(response_footer->frmps_received) >= buffsize) goto broken_packet;
 	response_footer->frmps_received= get16(buff+offset);
 	offset+=sizeof(response_footer->frmps_received);
-	
+
 	if( offset+sizeof(response_footer->frmps_transmitted) >= buffsize) goto broken_packet;
 	response_footer->frmps_transmitted = get16(buff+offset);
 	offset+=sizeof(response_footer->frmps_transmitted);
-	
+
 	if( offset+sizeof(response_footer->iframe_receive_errors) >= buffsize) goto broken_packet;
 	response_footer->iframe_receive_errors = get16(buff+offset);
 	offset+=sizeof(response_footer->iframe_receive_errors);
-	
+
 	if( offset+sizeof(response_footer->transmit_aborts) >= buffsize) goto broken_packet;
 	response_footer->transmit_aborts =  get16(buff+offset);
 	offset+=sizeof(response_footer->transmit_aborts);
-	
+
 	if( offset+sizeof(response_footer->transmitted) >= buffsize) goto broken_packet;
 	response_footer->transmitted = get32(buff+offset);
 	offset+=sizeof(response_footer->transmitted);
-	
+
 	if( offset+sizeof(response_footer->received) >= buffsize) goto broken_packet;
 	response_footer->received = get32(buff+offset);
 	offset+=sizeof(response_footer->received);
-	
+
 	if( offset+sizeof(response_footer->iframe_transmit_errors) >= buffsize) goto broken_packet;
 	response_footer->iframe_transmit_errors = get16(buff+offset);
 	offset+=sizeof(response_footer->iframe_transmit_errors);
-	
+
 	if( offset+sizeof(response_footer->no_receive_buffer) >= buffsize) goto broken_packet;
 	response_footer->no_receive_buffer = get16(buff+offset);
 	offset+=sizeof(response_footer->no_receive_buffer);
-	
+
 	if( offset+sizeof(response_footer->tl_timeouts) >= buffsize) goto broken_packet;
 	response_footer->tl_timeouts = get16(buff+offset);
 	offset+=sizeof(response_footer->tl_timeouts);
-	
+
 	if( offset+sizeof(response_footer->ti_timeouts) >= buffsize) goto broken_packet;
 	response_footer->ti_timeouts = get16(buff+offset);
 	offset+=sizeof(response_footer->ti_timeouts);
-	
+
 	if( offset+sizeof(response_footer->free_ncbs) >= buffsize) goto broken_packet;
 	response_footer->free_ncbs = get16(buff+offset);
 	offset+=sizeof(response_footer->free_ncbs);
-	
+
 	if( offset+sizeof(response_footer->ncbs) >= buffsize) goto broken_packet;
 	response_footer->ncbs = get16(buff+offset);
 	offset+=sizeof(response_footer->ncbs);
-	
+
 	if( offset+sizeof(response_footer->max_ncbs) >= buffsize) goto broken_packet;
 	response_footer->max_ncbs = get16(buff+offset);
 	offset+=sizeof(response_footer->max_ncbs);
-	
+
 	if( offset+sizeof(response_footer->no_transmit_buffers) >= buffsize) goto broken_packet;
 	response_footer->no_transmit_buffers = get16(buff+offset);
 	offset+=sizeof(response_footer->no_transmit_buffers);
-	
+
 	if( offset+sizeof(response_footer->max_datagram) >= buffsize) goto broken_packet;
 	response_footer->max_datagram = get16(buff+offset);
 	offset+=sizeof(response_footer->max_datagram);
-	
+
 	if( offset+sizeof(response_footer->pending_sessions) >= buffsize) goto broken_packet;
 	response_footer->pending_sessions = get16(buff+offset);
 	offset+=sizeof(response_footer->pending_sessions);
-	
+
 	if( offset+sizeof(response_footer->max_sessions) >= buffsize) goto broken_packet;
 	response_footer->max_sessions = get16(buff+offset);
 	offset+=sizeof(response_footer->max_sessions);
-	
+
 	if( offset+sizeof(response_footer->packet_sessions) >= buffsize) goto broken_packet;
 	response_footer->packet_sessions = get16(buff+offset);
 	offset+=sizeof(response_footer->packet_sessions);
-	
+
 	/* Done with packet footer and the whole packet */
 
 	return hostinfo;
-	
+
 	broken_packet: 
 		hostinfo->is_broken = offset;
 		return hostinfo;	
@@ -386,7 +386,7 @@ char* getnbservicename(my_uint8_t service, int unique, char* name) {
 	unknown = (char*)malloc(100);
 
 	if(!unknown) err_die("Malloc failed.\n", 0);
-	
+
 	for(i=0; i < 35; i++) {
 		if(strstr(name, services[i].nb_name) && 
 			service == services[i].service_number &&

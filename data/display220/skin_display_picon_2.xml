@@ -60,7 +60,7 @@
 			</widget>
 		</panel>
 	</screen>
-	
+
 	<screen name="MovieContextMenuSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
 		<widget source="selected" render="Label" position="top" size="*,32" font="FdLcD;16" />
@@ -258,7 +258,7 @@
 		<widget source="parent.number_summary" render="Label" position="0,66" size="220,52" font="FdLcD;50" halign="left" noWrap="1" />
 		<panel name="SummaryClockPanel" />
 	</screen>
-	
+
 <!-- ViX -->
 	<screen name="VIXDevicesPanelSummary" position="0,0" size="220,176">
 		<widget source="parent.Title" render="Label" position="0,38" size="220,26" font="FdLcD;24" halign="left" noWrap="1" />

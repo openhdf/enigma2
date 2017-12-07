@@ -14,7 +14,7 @@ MONTHS = (_("Januar"),
           _("Oktober"),
           _("November"),
           _("Dezember"))
-          
+
 shortMONTHS = (_("Jan"),
                _("Feb"),
                _("Mar"),
@@ -27,7 +27,7 @@ shortMONTHS = (_("Jan"),
                _("Oct"),
                _("Nov"),
                _("Dec"))
-          
+
 DAYWEEK = (_("Montag"),
            _("Dienstag"),
            _("Mittwoch"),
@@ -35,7 +35,7 @@ DAYWEEK = (_("Montag"),
            _("Freitag"),
            _("Samstag"),
            _("Sonntag"))
-           
+
 shortDAYWEEK = (_("Mo"),
                 _("Di"),
                 _("Mi"),
@@ -52,10 +52,10 @@ class ClockToTextNobile(Converter, object):
 	FORMAT = 4
 	AS_LENGTH = 5
 	TIMESTAMP = 6
-	
+
 	# add: date, date as string, weekday, ... 
 	# (whatever you need!)
-	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "WithSeconds":
@@ -87,9 +87,9 @@ class ClockToTextNobile(Converter, object):
 			return "%d:%02d" % (time / 60, time % 60)
 		elif self.type == self.TIMESTAMP:
 			return str(time)
-		
+
 		t = localtime(time)
-		
+
 		if self.type == self.WITH_SECONDS:
 			return "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
 		elif self.type == self.DEFAULT:
@@ -109,7 +109,7 @@ class ClockToTextNobile(Converter, object):
 				return str(s1+s2)
 			else:
 				return strftime(self.fmt_string, t)
-		
+
 		else:
 			return "???"
 

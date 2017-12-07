@@ -152,12 +152,12 @@ int netzInfo(char *pythonIp, netinfo *nInfo) {
   if(use137) src_sockaddr.sin_port = htons(NB_DGRAM);
   if (bind(sock, (struct sockaddr *)&src_sockaddr, sizeof(src_sockaddr)) == -1) 
     err_die("Failed to bind", quiet);
-        
+
   fdsr=malloc(sizeof(fd_set));
   if(!fdsr)  err_die("Malloc failed", quiet);
   FD_ZERO(fdsr);
   FD_SET(sock, fdsr);
-        
+
   fdsw=malloc(sizeof(fd_set));
   if(!fdsw) err_die("Malloc failed", quiet);
   FD_ZERO(fdsw);
@@ -176,7 +176,7 @@ int netzInfo(char *pythonIp, netinfo *nInfo) {
 
   buff=malloc(BUFFSIZE);
   if(!buff) err_die("Malloc failed", quiet);
-	
+
   /* Calculate interval between subsequent sends */
 
   timerclear(&send_interval);
@@ -189,14 +189,14 @@ int netzInfo(char *pythonIp, netinfo *nInfo) {
     send_interval.tv_sec = send_interval.tv_usec / 1000000;
     send_interval.tv_usec = send_interval.tv_usec % 1000000;
   }
-	
+
   gettimeofday(&last_send_time, NULL); /* Get current time */
 
   rtt_base = last_send_time.tv_sec; 
 
   /* Send queries, receive answers and print results */
   /***************************************************/
-	
+
   scanned = new_list();
 
   for(i=0; i <= retransmits; i++) {
@@ -244,8 +244,8 @@ int netzInfo(char *pythonIp, netinfo *nInfo) {
       gettimeofday(&current_time, NULL);
       timersub(&current_time, &last_send_time, &diff_time);
       send_ok = timercmp(&diff_time, &send_interval, >=);
-			
-		
+
+
       if(more_to_send && FD_ISSET(sock, fdsw) && send_ok) {
 	if(targetlist) {
 	  if(fgets(str, 80, targetlist)) {
@@ -298,7 +298,7 @@ int netzInfo(char *pythonIp, netinfo *nInfo) {
     if ( rto < 2.0 ) rto = 2.0;
     if ( rto > 60.0 ) rto = 60.0;
     gettimeofday(&now, NULL);
-		
+
     if(now.tv_sec < (transmit_started.tv_sec+rto)) 
       sleep((transmit_started.tv_sec+rto)-now.tv_sec);
     prev_in_addr = NULL ;

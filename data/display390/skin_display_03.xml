@@ -143,7 +143,7 @@
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 	</screen>         
-	
+
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,26" font="FdLcD;25" noWrap="1" />
@@ -282,7 +282,7 @@
 		<widget source="parent.text_summary" render="Label" position="0,16" size="390,54" font="FdLcD;12" halign="left" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 	</screen>
-	
+
 	<!-- LCD screen EMC -->
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="390,64" >
 		<!-- Movie name -->		
