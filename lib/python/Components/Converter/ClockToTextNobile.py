@@ -53,7 +53,7 @@ class ClockToTextNobile(Converter, object):
 	AS_LENGTH = 5
 	TIMESTAMP = 6
 
-	# add: date, date as string, weekday, ... 
+	# add: date, date as string, weekday, ...
 	# (whatever you need!)
 
 	def __init__(self, type):
@@ -66,7 +66,7 @@ class ClockToTextNobile(Converter, object):
 			self.type = self.DATE
 		elif type == "AsLength":
 			self.type = self.AS_LENGTH
-		elif type == "Timestamp":	
+		elif type == "Timestamp":
 			self.type = self.TIMESTAMP
 		elif str(type).find("Format") != -1:
 			self.type = self.FORMAT
@@ -95,7 +95,7 @@ class ClockToTextNobile(Converter, object):
 		elif self.type == self.DEFAULT:
 			return "%2d:%02d" % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
-			return _(strftime("%A",t)) + " " + str(t[2]) + " " + MONTHS[t[1]-1] + " " + str(t[0])  
+			return _(strftime("%A",t)) + " " + str(t[2]) + " " + MONTHS[t[1]-1] + " " + str(t[0])
 			#return strftime("%A %B %d, %Y", t)
 		elif self.type == self.FORMAT:
 			spos = self.fmt_string.find('%')

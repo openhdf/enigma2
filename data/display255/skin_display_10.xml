@@ -40,7 +40,7 @@
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="155,0"  size="28,12">
 			<convert type="ConditionalShowHide" />
-		</widget>	
+		</widget>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/crypt.png" position="186,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
@@ -77,7 +77,7 @@
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="155,0"  size="28,12">
 			<convert type="ConditionalShowHide" />
-		</widget>	
+		</widget>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/crypt.png" position="186,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
@@ -135,7 +135,7 @@
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="155,0"  size="28,12">
 			<convert type="ConditionalShowHide" />
-		</widget>	
+		</widget>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/crypt.png" position="186,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
@@ -174,7 +174,7 @@
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="155,0"  size="28,12">
 			<convert type="ConditionalShowHide" />
-		</widget>	
+		</widget>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/crypt.png" position="186,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
@@ -205,7 +205,7 @@
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="155,0"  size="28,12">
 			<convert type="ConditionalShowHide" />
-		</widget>	
+		</widget>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/crypt.png" position="186,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
@@ -237,7 +237,7 @@
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="155,0"  size="28,12">
 			<convert type="ConditionalShowHide" />
-		</widget>	
+		</widget>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/crypt.png" position="186,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
@@ -282,7 +282,7 @@
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="155,0"  size="28,12">
 			<convert type="ConditionalShowHide" />
-		</widget>	
+		</widget>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/crypt.png" position="186,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
@@ -316,7 +316,7 @@
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="155,0"  size="28,12">
 			<convert type="ConditionalShowHide" />
-		</widget>	
+		</widget>
 		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/crypt.png" position="186,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
@@ -350,6 +350,6 @@
 		<widget source="session.CurrentService" render="Label" position="130,44" size="126,20" font="VFD;20" halign="right" valign="top">
 			<convert type="ServicePosition">Remaining</convert>
 		</widget>
-	</screen>  
+	</screen>
 <!-- VFD screen EMCMoviePlayerSummary end -->
 </skin>

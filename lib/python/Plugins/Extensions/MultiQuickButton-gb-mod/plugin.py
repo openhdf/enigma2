@@ -51,7 +51,7 @@ def autostart(reason, **kwargs):
 				if baseInfoBarPlugins__init__ is None:
 					baseInfoBarPlugins__init__ = InfoBarPlugins.__init__
 				if baserunPlugin is None:
-					baserunPlugin = InfoBarPlugins.runPlugin	
+					baserunPlugin = InfoBarPlugins.runPlugin
 				InfoBarPlugins.__init__ = InfoBarPlugins__init__
 				InfoBarPlugins.runPlugin = runPlugin
 				InfoBarPlugins.checkQuickSel = checkQuickSel
@@ -177,12 +177,12 @@ def InfoBarPlugins__init__(self):
 				"previous": self.quickSelectGlobal,
 				"audio": self.quickSelectGlobal,
 				"ok": self.quickSelectGlobal,
-				"exit": self.quickSelectGlobal,	
+				"exit": self.quickSelectGlobal,
 				"play": self.quickSelectGlobal,
-				"stop": self.quickSelectGlobal,	
-				"pause": self.quickSelectGlobal,	
-				"fastforward": self.quickSelectGlobal,	
-				"rewind": self.quickSelectGlobal,	
+				"stop": self.quickSelectGlobal,
+				"pause": self.quickSelectGlobal,
+				"fastforward": self.quickSelectGlobal,
+				"rewind": self.quickSelectGlobal,
 				"f1": self.quickSelectGlobal,
 				"f2": self.quickSelectGlobal,
 				"f3": self.quickSelectGlobal,

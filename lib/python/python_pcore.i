@@ -5,7 +5,7 @@ PyObject *getRecordings(bool simulate, pNavigation::RecordType type=pNavigation:
 	self->getRecordings(recordings, simulate, type);
 	ePyObject result = PyList_New(recordings.size());
 	for (unsigned int i = 0; i < recordings.size(); i++)
-		PyList_SET_ITEM(result, i, NEW_iRecordableServicePtr(recordings[i])); 
+		PyList_SET_ITEM(result, i, NEW_iRecordableServicePtr(recordings[i]));
 	return result;
 }
 PyObject *getRecordingsServicesOnly(pNavigation::RecordType type=pNavigation::isAnyRecording)

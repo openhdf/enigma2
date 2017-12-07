@@ -2,7 +2,7 @@ installdir = $(pkglibdir)/python/Plugins/Extensions/MenuSort
 
 install_PYTHON =	\
 	__init__.py \
-	plugin.py 
+	plugin.py
 
 dist_install_DATA = \
 	LICENSE \

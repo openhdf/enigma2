@@ -55,7 +55,7 @@ class GetEcmInfo:
 				if 'ECM' in line:
 					linetmp = mgcam.split(' ')
 					info['eEnc'] = linetmp[1]
-					try:			
+					try:
 						info['eCaid'] = linetmp[5][2:-1]
 					except:
 						info['eCaid'] = ""

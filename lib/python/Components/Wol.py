@@ -32,7 +32,7 @@ def Init():
 
 		iwol = WOL()
 		config.network.wol = ConfigSelection([("off", _("No")), ("on", _("Yes"))], default = "off")
-		config.network.wol.addNotifier(setWOLmode, initial_call=True)		
+		config.network.wol.addNotifier(setWOLmode, initial_call=True)
 	else:
 		def doNothing():
 			pass

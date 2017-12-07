@@ -73,7 +73,7 @@
 		<widget source="parent.ServiceEvent" render="Label" position="0,145" size="110,25" font="Regular; 25" foregroundColor="#F78181" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
-		</widget>		
+		</widget>
 		<widget source="parent.ServiceEvent" render="Progress" position="115,150" size="105,24" borderWidth="2" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
@@ -200,7 +200,7 @@
 
 	<screen name="ChoiceBox_summary" position="fill">
 		<widget source="parent.summary_list" render="Label" position="top" size="*,181" font="FdLcD;25" halign="left" />
-    </screen>	
+    </screen>
 
 	<screen name="MessageBox_summary" position="fill">
 		<widget source="parent.Text" render="Label" position="top" size="*,95" font="FdLcD;31" halign="center" valign="center" />

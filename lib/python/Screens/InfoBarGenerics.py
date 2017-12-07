@@ -803,7 +803,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.hide()
 				self.openEventView(True)
 				self.EventViewIsShown = True
-				self.startHideTimer()				
+				self.startHideTimer()
 			else:
 				self.hide()
 				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -856,7 +856,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.hide()
 				self.openEventView(True)
 				self.EventViewIsShown = True
-				self.startHideTimer()				
+				self.startHideTimer()
 			else:
 				self.hide()
 				if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
@@ -2484,7 +2484,7 @@ class InfoBarEPG:
 			elif config.plisettings.PLIEPG_mode.value == "single":
 				self.openSingleServiceEPG()
 			elif config.plisettings.PLIEPG_mode.value == "merlinepgcenter":
-				self.openMerlinEPGCenter()	
+				self.openMerlinEPGCenter()
 			elif config.plisettings.PLIEPG_mode.value == "cooltvguide" and COOLTVGUIDE:
 				if self.isInfo:
 					self.showCoolTVGuide()
@@ -2671,7 +2671,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		except Exception, e:
-			self.session.open(MessageBox, _("The OscamInfo plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )		
+			self.session.open(MessageBox, _("The OscamInfo plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showOSCAMSTATUS(self):
 		try:
@@ -2680,7 +2680,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		except Exception, e:
-			self.session.open(MessageBox, _("The OSCamStatusView plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )		
+			self.session.open(MessageBox, _("The OSCamStatusView plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showWERBEZAPPER(self):
 		try:
@@ -2767,14 +2767,14 @@ class InfoBarEPG:
 
 	def showCoolSingleGuide(self):
 		if self.servicelist is None:
-			return	
+			return
 		if COOLTVGUIDE:
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Cool Single Guide"):
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )	
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, eventid=eventid)
@@ -2917,7 +2917,7 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )					
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			elif config.plisettings.F1_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
@@ -3621,8 +3621,8 @@ class InfoBarSeek:
 			if os.path.exists("/proc/stb/lcd/symbol_hdd"):
 				f = open("/proc/stb/lcd/symbol_hdd", "w")
 				f.write("0")
-				f.close()        
-			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):  
+				f.close()
+			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
 				f = open("/proc/stb/lcd/symbol_hddprogress", "w")
 				f.write("0")
 				f.close()
@@ -3657,7 +3657,7 @@ class InfoBarSeek:
 					if config.lcd.hdd.value == "1":
 						file = open("/proc/stb/lcd/symbol_hddprogress", "w")
 						file.write('%d' % int(self.activity))
-						file.close() 
+						file.close()
 		else:
 			self.activityTimer.stop()
 			self.activity = 0
@@ -3776,7 +3776,7 @@ class InfoBarSeek:
 	def pauseServiceYellow(self):
 		if self.seekstate != self.SEEK_STATE_EOF:
 			self.lastseekstate = self.seekstate
-			self.setSeekState(self.SEEK_STATE_PAUSE) 
+			self.setSeekState(self.SEEK_STATE_PAUSE)
 
 	def unPauseService(self):
 		if self.seekstate == self.SEEK_STATE_PLAY:
@@ -4762,7 +4762,7 @@ class InfoBarQuickMenu:
 				})
 
 	def bluekey_qm(self):
-		self.showExtensionSelection()			
+		self.showExtensionSelection()
 
 	def quickmenuStart(self):
 		try:
@@ -5286,15 +5286,15 @@ class InfoBarTimerButton:
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
 
-class InfoBarAspectSelection: 
-	STATE_HIDDEN = 0 
-	STATE_ASPECT = 1 
+class InfoBarAspectSelection:
+	STATE_HIDDEN = 0
+	STATE_ASPECT = 1
 	STATE_RESOLUTION = 2
-	def __init__(self): 
-		self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions", 
-			{ 
-				"aspectSelection": (self.ExGreen_toggleGreen, _("Aspect list...")), 
-			}) 
+	def __init__(self):
+		self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions",
+			{
+				"aspectSelection": (self.ExGreen_toggleGreen, _("Aspect list...")),
+			})
 
 		self.__ExGreen_state = self.STATE_HIDDEN
 
@@ -5310,7 +5310,7 @@ class InfoBarAspectSelection:
 
 	def ExGreen_doHide(self):
 		print "do self.STATE_HIDDEN"
-		self.__ExGreen_state = self.STATE_HIDDEN 
+		self.__ExGreen_state = self.STATE_HIDDEN
 
 	def ExGreen_toggleGreen(self, arg=""):
 		print self.__ExGreen_state
@@ -5389,7 +5389,7 @@ class InfoBarResolutionSelection:
 
 		selection = 0
 		tlist = []
-		tlist.append((_("Exit"), "exit")) 
+		tlist.append((_("Exit"), "exit"))
 		tlist.append((_("Auto(not available)"), "auto"))
 		tlist.append(("Video: " + str(xres) + "x" + str(yres) + "@" + str(fpsFloat) + "hz", ""))
 		tlist.append(("--", ""))

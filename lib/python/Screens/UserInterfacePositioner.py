@@ -105,7 +105,7 @@ def InitOsd():
 				f.write('%d' % int(configElement.value))
 				f.close()
 			except:
-				pass	
+				pass
 	config.osd.threeDznorm.addNotifier(set3DZnorm)
 
 class UserInterfacePositioner2(Screen, ConfigListScreen):

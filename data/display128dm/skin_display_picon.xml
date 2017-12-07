@@ -192,7 +192,7 @@
 
 	<screen name="ChoiceBox_summary" position="2,0" size="128,64">
 		<widget source="parent.summary_list" render="Label" position="2,0" size="128,64" font="FdLcD;11" />
-	</screen>	
+	</screen>
 
 	<screen name="MessageBox_summary" position="2,0" size="128,64">
 		<widget source="parent.Text" render="Label" position="top" size="100,52" font="FdLcD;11" halign="center" valign="center" />
@@ -234,5 +234,5 @@
 		<widget source="session.CurrentService" render="Label" position="48,48" size="48,16" font="Regular;16" foregroundColor="#FFFF00" halign="right">
 			  <convert type="ServicePosition">Remaining,Negate,ShowHours,ShowNoSeconds</convert>
 		</widget>
-	</screen>	
+	</screen>
 </skin>

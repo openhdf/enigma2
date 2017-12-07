@@ -117,7 +117,7 @@ class BackupSetup(Screen):
 
 	def Backup(self):
 		print "this will start the backup now!"
-		self.session.openWithCallback(self.runBackup, MessageBox, _("Do you want to backup now?\nAfter pressing OK, please wait!"))	
+		self.session.openWithCallback(self.runBackup, MessageBox, _("Do you want to backup now?\nAfter pressing OK, please wait!"))
 
 	def Restore(self):
 		print "this will start the restore now!"
@@ -146,7 +146,7 @@ class RestoreMenu(Screen):
 	skin = """
 		<screen position="135,144" size="450,300" title="Restore Backups" >
 		<widget name="filelist" position="10,10" size="430,240" scrollbarMode="showOnDemand" />
-		<widget name="cancel" position="120,255" size="100,40" pixmap="~/red.png" transparent="1" alphatest="on" />		
+		<widget name="cancel" position="120,255" size="100,40" pixmap="~/red.png" transparent="1" alphatest="on" />
 		<widget name="canceltext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" foregroundColor="black" />
 		<widget name="restore" position="230,255" size="100,40" pixmap="~/yellow.png" transparent="1" alphatest="on" />
 		<widget name="restoretext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />

@@ -317,7 +317,7 @@
 			<key id="KEY_NEXT" mapto="deleteForward" flags="mr" />
 			<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="mr" />
 		</device>
-	</map>	
+	</map>
 
 	<map context="InfobarSeekActions">
 		<device name="dreambox advanced remote control (native)">
@@ -720,7 +720,7 @@
 		<key id="KEY_YELLOW" mapto="toggleAsk" flags="mr" />
 		<key id="KEY_GREEN" mapto="toggleAction" flags="mr" />
 		<key id="KEY_BLUE" mapto="useServiceTime" flags="mr" />
-	</map>	
+	</map>
 
 	<map context="CiSelectionActions">
 		<key id="KEY_LEFT" mapto="left" flags="mr" />

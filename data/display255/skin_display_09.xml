@@ -199,9 +199,9 @@
 		<widget source="session.CurrentService" render="Label" position="130,44" size="126,20" font="VFD;20" halign="right" valign="top">
 			<convert type="ServicePosition">Remaining</convert>
 		</widget>
-	</screen>  
+	</screen>
 <!-- VFD screen EMCMoviePlayerSummary end -->
-</skin> 
+</skin>
 
 
 

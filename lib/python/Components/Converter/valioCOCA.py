@@ -43,7 +43,7 @@ class valioCOCA(Poll, Converter, object):
 	@cached
 	def get_caidlist(self):
 		caidlist = {}
-		textvalue = " " 
+		textvalue = " "
 		service = self.source.service
 		if service:
 			info = service and service.info()
@@ -77,11 +77,11 @@ class valioCOCA(Poll, Converter, object):
 							hops = "(%s)" % hops
 						else:
 							hops = ""
-						# ecm time	
+						# ecm time
 						ecm_time = ecm_info.get("ecm time", None)
 						if ecm_time:
 							if "msec" in ecm_time:
-								ecm_time = "%s -" % ecm_time						
+								ecm_time = "%s -" % ecm_time
 							elif ecm_time != "nan":
 								ecm_time = "%ss -" % ecm_time
 							else:
@@ -92,16 +92,16 @@ class valioCOCA(Poll, Converter, object):
 							if address == "/dev/sci0":
 								address = "Slot #1"
 							elif address == "/dev/sci1":
-								address = "Slot #2"								
-						# source	
+								address = "Slot #2"
+						# source
 						using = ecm_info.get("using", "")
 						if using:
 							if using == "emu":
 								textvalue = " - %s %s" % (caid, ecm_time)
 							elif using == "CCcam-s2s":
-								textvalue = " - %s - %s %s %s" % (caid, ecm_time, hops, self.kurz(address))							
+								textvalue = " - %s - %s %s %s" % (caid, ecm_time, hops, self.kurz(address))
 							else:
-								textvalue = " - %s - %s %s" % (caid, ecm_time, self.kurz(address))		
+								textvalue = " - %s - %s %s" % (caid, ecm_time, self.kurz(address))
 						else:
 							# mgcamd
 							source = ecm_info.get("source", None)

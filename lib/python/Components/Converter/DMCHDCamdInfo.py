@@ -4,8 +4,8 @@
 #  Coded by weazle (c) 2010
 #  Support: www.dreambox-tools.info
 #
-#  This plugin is licensed under the Creative Commons 
-#  Attribution-NonCommercial-ShareAlike 3.0 Unported 
+#  This plugin is licensed under the Creative Commons
+#  Attribution-NonCommercial-ShareAlike 3.0 Unported
 #  License. To view a copy of this license, visit
 #  http://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to Creative
 #  Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
@@ -14,14 +14,14 @@
 #  is licensed by Dream Multimedia GmbH.
 
 #  This plugin is NOT free software. It is open source, you are allowed to
-#  modify it (if you keep the license), but it may not be commercially 
+#  modify it (if you keep the license), but it may not be commercially
 #  distributed other than under the conditions noted above.
 #
 
 
 # <widget source="session.CurrentService" render="Label" position="189,397" zPosition="4" size="350,20" noWrap="1" valign="center" halign="center" font="Regular;14" foregroundColor="clText" transparent="1"  backgroundColor="#20002450">
 #	<convert type="CamdInfo">Camd</convert>
-# </widget>			
+# </widget>
 
 from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
@@ -47,7 +47,7 @@ class DMCHDCamdInfo(Converter, object):
 			except:
 				return None
 
-		# Merlin2	
+		# Merlin2
 		elif fileExists("/etc/clist.list"):
 			try:
 		   		camdlist = open("/etc/clist.list", "r")
@@ -64,7 +64,7 @@ class DMCHDCamdInfo(Converter, object):
 				camd = None
 				for x in camdl:
 					if x[1] == 1:
-						camd = x[2] 
+						camd = x[2]
 				return camd
 		   	except:
 				return None
@@ -78,7 +78,7 @@ class DMCHDCamdInfo(Converter, object):
 			camdlist.close()
 			return camd
 		elif camd is not None:
-			return camd  
+			return camd
 		else:
 			return ""
 

@@ -28,7 +28,7 @@ class valioTunerInfo(Converter, object):
 		service = self.source.service
 		info = service and service.info()
 		if not info:
-			return ""	
+			return ""
 		Ret_Text = ""
 		if True:
 			feinfo = (service and service.frontendInfo())
@@ -46,7 +46,7 @@ class valioTunerInfo(Converter, object):
 							fec_i = frontendData.get("fec_inner")
 							Ret_Text = frequency + "  " + self.ar_pol[polarisation_i] + "  " + self.ar_fec[fec_i] + "  " + symbolrate
 						except:
-							Ret_Text = "FQ:" + frequency + "  SR:" + symbolrate 
+							Ret_Text = "FQ:" + frequency + "  SR:" + symbolrate
 					elif (frontendData.get("tuner_type") == "DVB-T"):
 						frequency = str((frontendData.get("frequency") / 1000)) + " MHz"
 						Ret_Text = "Freq: " + frequency

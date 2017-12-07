@@ -101,7 +101,7 @@ class Player(Screen, InfoBarNotifications):
 				<convert type="ServicePosition">Position</convert>
 			</widget>
 			<widget name="sidebar" position="362,20" size="10,20" font="Regular;18" halign="center" valign="center" backgroundColor="#4e5a74" transparent="1" />
-			<widget source="session.CurrentService" render="Label" position="374,20" size="50,20" font="Regular;18" halign="center" valign="center" backgroundColor="#4e5a74" transparent="1" > 
+			<widget source="session.CurrentService" render="Label" position="374,20" size="50,20" font="Regular;18" halign="center" valign="center" backgroundColor="#4e5a74" transparent="1" >
 				<convert type="ServicePosition">Length</convert>
 			</widget>
 		</screen>
@@ -212,7 +212,7 @@ class Player(Screen, InfoBarNotifications):
 	def doPlay(self):
 		if self.state == self.PLAYER_PAUSED:
 			if self.shown:
-				self.__setHideTimer()	
+				self.__setHideTimer()
 		self.state = self.PLAYER_PLAYING
 		self.session.nav.playService(self.service)
 		if self.shown:
@@ -416,7 +416,7 @@ class BrowserLauncher(ConfigListScreen, Screen):
 		</screen>
 		"""
 
-	def __init__(self, session): 
+	def __init__(self, session):
 		Screen.__init__(self, session)
                 self.session = session
 		self.list = []
@@ -546,7 +546,7 @@ class BrowserLauncher(ConfigListScreen, Screen):
 		if self.conf_mouse == "" or self.getHandlerName(self.conf_mouse) is None:
 			self.conf_mouse = self.mouse_list[0][0]
 		self.mouse = ConfigSelection(default = self.conf_mouse, choices = self.mouse_list)
-		self.list.append(getConfigListEntry(_('Mouse'), self.mouse))		
+		self.list.append(getConfigListEntry(_('Mouse'), self.mouse))
 
 		if self.conf_keyboard == "" or self.getHandlerName(self.conf_keyboard) is None:
 			self.conf_keyboard = self.keyboard_list[0][0]
@@ -644,7 +644,7 @@ class BrowserLauncher(ConfigListScreen, Screen):
 
 		kbd_cmd = " "
 		mouse_cmd = " "
-		extra_cmd = " " 
+		extra_cmd = " "
 		browser_cmd = "%s/%s -qws" % (self.browser_root, self.browser_name)
 
 		mouse_param = self.mouse.value

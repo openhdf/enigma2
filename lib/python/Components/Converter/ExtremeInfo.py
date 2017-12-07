@@ -990,7 +990,7 @@ class ExtremeInfo(Poll, Converter, object):
                             if caid == '55':
                                 return True
 
-        return False 
+        return False
 
     def int2hex(self, int):
         return '%x' % int

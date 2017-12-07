@@ -64,7 +64,7 @@ def checkConfigBackup():
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
-		return None		
+		return None
 
 def checkBackupFile():
 	backuplocation = config.plugins.configurationbackup.backuplocation.value
@@ -131,7 +131,7 @@ class ImageWizard(WizardLanguage, Rc):
 				list.remove(x)
 		for x in list:
 			if x[1].startswith('/autofs/'):
-				list.remove(x)	
+				list.remove(x)
 		return list
 
 	def deviceSelectionMade(self, index):

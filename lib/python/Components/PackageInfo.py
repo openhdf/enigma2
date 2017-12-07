@@ -60,7 +60,7 @@ class InfoHandler(xml.sax.ContentHandler):
 			else:
 				if not attrs.has_key("name"):
 					self.printError("file tag with no name attribute")
-				else:	
+				else:
 					if not attrs.has_key("directory"):
 						directory = self.directory
 					type = attrs["type"]
@@ -157,7 +157,7 @@ class PackageInfoHandler:
 		try:
 			xml.sax.parse(file, handler)
 			for entry in handler.list:
-				self.packageslist.append((entry,file)) 
+				self.packageslist.append((entry,file))
 		except InfoHandlerParseError:
 			pass
 
@@ -258,7 +258,7 @@ class PackageInfoHandler:
 		if prerequisites.has_key("satellite"):
 			for sat in prerequisites["satellite"]:
 				if int(sat) not in nimmanager.getConfiguredSats():
-					return False			
+					return False
 		if prerequisites.has_key("bcastsystem"):
 			has_system = False
 			for bcastsystem in prerequisites["bcastsystem"]:
@@ -316,7 +316,7 @@ class PackageInfoHandler:
 				self.installPackage(self.installIndexes[self.currentlyInstallingMetaIndex])
 				return
 
-		self.setStatus(self.STATUS_WORKING)		
+		self.setStatus(self.STATUS_WORKING)
 
 		currentAttribute = self.attributeNames[self.currentAttributeIndex]
 

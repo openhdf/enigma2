@@ -25,7 +25,7 @@
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
-<!-- Icon Panel -->	
+<!-- Icon Panel -->
 	<screen name="IconPanel">
 		<widget source="session.CurrentService" render="Pixmap" pixmap="~/dolby.png" position="10,0" zPosition="2" size="33,20" >
 			<convert type="ServiceInfo">IsMultichannel</convert>
@@ -69,7 +69,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
-<!-- Rec Panel -->	
+<!-- Rec Panel -->
 	<screen name="RecordingPanel">
 		<widget source="session.RecordState" render="Pixmap" position="358,0" pixmap="~/record.png" transparent="1" alphatest="on" size="37,20" zPosition="-1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
@@ -80,7 +80,7 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
-<!-- Tuner Panel -->	
+<!-- Tuner Panel -->
 	<screen name="TunerInfoPanel">
 		<widget source="session.FrontendInfo" render="FixedLabel" position="0,216" size="24,24" text="A" foregroundColor="#04B404" font="FdLcD;24" zPosition="1" transparent="1" halign="center" >
 			<convert type="FrontendInfo">NUMBER</convert>
@@ -246,7 +246,7 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="390,110" font="FdLcD;30" halign="center" valign="center" />
 		<ePixmap pixmap="~/bar.png" position="0,111" size="390,3" transparent="0" zPosition="4" />
 		<widget source="selected" render="Label" position="0,115" size="390,135" font="FdLcD;30" halign="center" valign="center" />
-	</screen>	
+	</screen>
 	<screen name="MovieSelectionSummary" position="0,0" size="390,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="390,65" foregroundColor="#FFDD00" font="FdLcD;28" halign="center" valign="center" zPosition="14" />
 		<eLabel position="0,66" size="390,1" backgroundColor="#FFFFFF" />
@@ -284,7 +284,7 @@
 		<eLabel position="0,164" size="390,3" backgroundColor="#87CEFA" zPosition="3" />
 		<widget source="Service" render="Progress" pixmap="~/progress1.png" position="0,157" size="390,17" transparent="1" zPosition="4">
 			<convert type="EMCServicePosition">Position</convert>
-		</widget>		
+		</widget>
 		<widget source="session.CurrentService" render="Label" position="235,178" size="165,62" font="FdLcD;30" zPosition="0" foregroundColor="#FFFFFF" halign="right" transparent="1">
 			<convert type="ServicePosition">Remaining,ShowNoSeconds,OnlyMinute</convert>
 		</widget>
@@ -476,6 +476,6 @@
 	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/analog_lcd_rec.png" position="0,0" size="390,240" zPosition="1" transparent="1" alphatest="on" >
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
-	</screen>    
+	</screen>
 
 </skin>

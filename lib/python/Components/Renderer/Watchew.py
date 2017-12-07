@@ -1,10 +1,10 @@
 ## Now FTA-render ;)
-import math 
-from Renderer import Renderer 
-from skin import parseColor 
-from enigma import eCanvas, eSize, gRGB, eRect 
-from Components.VariableText import VariableText 
-from Components.config import config 
+import math
+from Renderer import Renderer
+from skin import parseColor
+from enigma import eCanvas, eSize, gRGB, eRect
+from Components.VariableText import VariableText
+from Components.config import config
 class Watchew(Renderer):
 
     def __init__(self):

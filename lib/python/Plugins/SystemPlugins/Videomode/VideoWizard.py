@@ -25,11 +25,11 @@ try:
 	model = file.readline().strip()
 	file.close()
 except:
-	model = "unknown"	
+	model = "unknown"
 
-has_rca = False	
-hw_type = HardwareInfo().get_device_name()	
-if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getMachineName() == 'AX-Odin' or getBoxType() == 'ebox7358' or getBoxType() == 'tmnano' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime" or getBoxType() == 'optimussos1' or getBoxType() == 'optimussos2' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus' or model == 'ini-1000ru' or model == 'ini-1000sv':	
+has_rca = False
+hw_type = HardwareInfo().get_device_name()
+if getBoxType() == 'gbquad' or getBoxType() == 'et5x00' or model == 'et6000' or getBoxType() == 'e3hd' or getBoxType() == 'odinm6' or getMachineName() == 'AX-Odin' or getBoxType() == 'ebox7358' or getBoxType() == 'tmnano' or hw_type == 'ultra' or hw_type == "me" or hw_type == "minime" or getBoxType() == 'optimussos1' or getBoxType() == 'optimussos2' or getBoxType() == 'gb800seplus' or getBoxType() == 'gb800ueplus' or model == 'ini-1000ru' or model == 'ini-1000sv':
 	has_rca = True
 
 class VideoWizardSummary(WizardSummary):
@@ -123,7 +123,7 @@ class VideoWizard(WizardLanguage, Rc):
 				if descr == 'DVI' and has_hdmi:
 					descr = 'HDMI'
 				if descr == 'Scart' and has_rca:
-					descr = 'RCA'					
+					descr = 'RCA'
 				if port != "DVI-PC":
 					list.append((descr,port))
 		list.sort(key = lambda x: x[0])
@@ -145,7 +145,7 @@ class VideoWizard(WizardLanguage, Rc):
 			if picname == 'DVI' and has_hdmi:
 				picname = "HDMI"
 			if picname == 'Scart' and has_rca:
-				picname = "RCA"	
+				picname = "RCA"
 			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/" + picname + ".png"))
 
 	def inputSelect(self, port):

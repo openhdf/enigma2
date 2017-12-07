@@ -294,7 +294,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 	def editEntryNameCB(self, newName):
 		if newName:
 			self.newChannel.setName(newName)
-			self.updateEntryName()		
+			self.updateEntryName()
 
 	def updateDescription(self):
 		if self.currList == "channelList":
@@ -319,7 +319,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 			if chName is None:
 				chName = " <empty>"
 				_isEmpty = True
-			self.descChannels.append(("%d)  %s" % (idx, chName), sIdx, _isEmpty))	
+			self.descChannels.append(("%d)  %s" % (idx, chName), sIdx, _isEmpty))
 
 	def updateDescChannelList(self):
 		self["selectedList"].setList(self.descChannels)

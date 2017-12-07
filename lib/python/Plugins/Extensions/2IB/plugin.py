@@ -100,9 +100,9 @@ class SIBsetupScreen(ConfigListScreen, Screen):
 		list.append(getConfigListEntry(_("Customize to GP2 Infobar settings"), config.plugins.SecondInfoBar.GP2pass))
 		list.append(getConfigListEntry(_("Hide Infobar if Second-InfoBar shown"), config.plugins.SecondInfoBar.HideNormalIB))
 		ConfigListScreen.__init__(self, list)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 									{
-									"red": self.exit, 
+									"red": self.exit,
 									"green": self.save,
 									"cancel": self.exit
 									}, -1)
@@ -135,7 +135,7 @@ def SIBautostart(reason, **kwargs):
 def InfoBarPlugins__init__(self):
 	global SIB_StartOnlyOneTime
 	global VZ_MODE
-	if not SIB_StartOnlyOneTime: 
+	if not SIB_StartOnlyOneTime:
 		SIB_StartOnlyOneTime = True
 		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/plugin.pyo") or fileExists("/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/plugin.pyc"):
 			try:

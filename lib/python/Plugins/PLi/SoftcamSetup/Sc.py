@@ -27,10 +27,10 @@ class ConfigAction(ConfigElement):
 		ConfigElement.__init__(self)
 		self.value = "(OK)"
 		self.action = action
-		self.actionargs = args 
+		self.actionargs = args
 	def handleKey(self, key):
 		if (key == KEY_OK):
-			self.action(*self.actionargs) 
+			self.action(*self.actionargs)
 
 class ScSelection(Screen):
 	skin = """
@@ -97,9 +97,9 @@ class ScSelection(Screen):
 			self.list.append(getConfigListEntry(_("Select Card Server"), self.cardservers))
 
 		self.list.append(getConfigListEntry(_("Restart softcam"), ConfigAction(self.restart, "s")))
-		if cardservers: 
-			self.list.append(getConfigListEntry(_("Restart cardserver"), ConfigAction(self.restart, "c"))) 
-			self.list.append(getConfigListEntry(_("Restart both"), ConfigAction(self.restart, "sc"))) 
+		if cardservers:
+			self.list.append(getConfigListEntry(_("Restart cardserver"), ConfigAction(self.restart, "c")))
+			self.list.append(getConfigListEntry(_("Restart both"), ConfigAction(self.restart, "sc")))
 
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("OK"))
@@ -154,7 +154,7 @@ class ScSelection(Screen):
 
 	def doStart(self):
 		self.activityTimer.stop()
-		del self.activityTimer 
+		del self.activityTimer
 		if "c" in self.what:
                         self.cardserver.select(self.cardservers.value)
 			self.cardserver.command('start')

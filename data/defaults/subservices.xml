@@ -155,7 +155,7 @@
 			<name>Eurosport</name>
 			<ref>1:0:1:79E0:443:1:C00000:0:0:0:</ref>
 		</channel>
-		<channel>		
+		<channel>
 			<name>Eurosport 360 HD 01</name>
 			<ref>1:0:19:10E:6:85:C00000:0:0:0:</ref>
 		</channel>
@@ -382,7 +382,7 @@
 			<name>Disney Channel HD</name>
 			<ref>1:0:19:157C:41F:1:C00000:0:0:0:</ref>
 		</channel>
-		</channelgroup>	
+		</channelgroup>
 
 	<channelgroup name="Sky Sport" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
 		<channel>

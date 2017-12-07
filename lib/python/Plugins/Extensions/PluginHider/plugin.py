@@ -24,7 +24,7 @@ def hidePlugin(plugin):
 	hide = config.plugins.pluginhider.hideplugins.value
 	if not plugin.name in hide:
 		hide.append(plugin.name)
-		config.plugins.pluginhider.hideplugins.save()	
+		config.plugins.pluginhider.hideplugins.save()
 
 def PluginComponent_getPlugins(self, where):
 	if not isinstance(where, list):

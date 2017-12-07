@@ -74,7 +74,7 @@
 		<!--panel name="SummaryClockPanel" /-->
 	</screen>
 
-<!-- emc -->	
+<!-- emc -->
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="128,32">
 		<widget name="statusicon_summary" position="0,13" size="11,10" pixmaps="play.png,pause.png,stop.png,forward.png,backward.png,slow.png" zPosition="3" />
 		<widget source="session.CurrentService" render="Label" position="0,1" size="128,20" font="FdLcD;18" halign="left" valign="top" zPosition="1" >

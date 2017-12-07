@@ -743,7 +743,7 @@ def main(session, **kwargs):
 
 def play(session, **kwargs):
 	from Screens import DVD
-	session.open(DVD.DVDPlayer, dvd_device=harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))	
+	session.open(DVD.DVDPlayer, dvd_device=harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))
 
 def onPartitionChange(action, partition):
 	print "[@] onPartitionChange", action, partition
@@ -754,7 +754,7 @@ def onPartitionChange(action, partition):
 			detected_DVD = False
 		elif action == 'add':
 			print "[@] DVD Inserted"
-			detected_DVD = None	
+			detected_DVD = None
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
@@ -810,7 +810,7 @@ def filescan(**kwargs):
 			name = "DVD",
 			description = _("Play DVD"),
 			openfnc = filescan_open,
-		)]		
+		)]
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name = "DVDPlayer", description = "Play DVDs", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu),
