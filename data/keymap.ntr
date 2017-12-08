@@ -808,6 +808,8 @@
 		<key id="KEY_INFO" mapto="info_long" flags="l" />
 		<key id="KEY_VIDEO" mapto="list" flags="b" />
 		<key id="KEY_VIDEO" mapto="list_long" flags="l" />
+		<key id="KEY_ANGLE" mapto="angle" flags="b" />
+		<key id="KEY_ANGLE" mapto="angle_long" flags="l" />
 		<key id="KEY_BACK" mapto="back" flags="b" />
 		<key id="KEY_BACK" mapto="back_long" flags="l" />
 		<key id="KEY_END" mapto="end" flags="b" />
