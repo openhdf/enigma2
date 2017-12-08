@@ -228,12 +228,10 @@
 		<panel name="MeinIconPanel" />
 		<panel name="MeinTunerInfoPanel" />
 	</screen>
-
 	<screen name="MovieContextMenuSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,110" font="MyLcD;30" foregroundColor="Menue-Titel" halign="center" valign="center" />
 		<widget source="selected" render="Label" position="0,115" size="400,135" font="MyLcD;30" foregroundColor="Menue-Auswahl" halign="center" valign="center" />
 	</screen>
-
 	<screen name="MovieSelectionSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,72" font="MyLcD;32" foregroundColor="Menue-Titel" halign="center" valign="center" zPosition="14" />
 		<ePixmap position="0,74" pixmap="~/bar.png" transparent="0" size="400,2" zPosition="4" />
@@ -402,12 +400,10 @@
 <!-- 		<widget source="parent.summary_job_progress" render="Progress" pixmap="~/progress1.png" position="0,100" size="400,17" zPosition="1" /> -->
 <!-- 		<widget source="parent.summary_job_task" render="Label" position="0,145" size="400,95" font="FdLcD;26" halign="left" /> -->
 	</screen>
-
 	<screen name="EventView_summary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="MyLcD;20" foregroundColor="Menue-Titel" halign="left" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,22" size="400,140" font="MyLcD;24" />
 	</screen>
-
 	<screen name="EventViewSimple_summary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="MyLcD;20" foregroundColor="Menue-Titel" halign="left" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,22" size="400,140" font="MyLcD;24" />
@@ -422,7 +418,6 @@
 	<screen name="EPGSelectionMulti_summary" position="0,0" size="400,240">
 		<panel name="MyEPGPanel" />
 	</screen>
-
 	<screen name="EPGSelection_summary" position="0,0" size="400,240">
 		<widget source="parent.Service" render="Label" position="0,0" size="400,38" foregroundColor="Menue-Titel" font="MyLcD;34" transparent="1" halign="center" noWrap="1" >
 			<convert type="ServiceName">Name</convert>
@@ -593,7 +588,6 @@
 		<eLabel position="397,0" size="3,237" backgroundColor="Cover-Color" zPosition="-1" />
 		<widget source="parent.Service" render="Cover" position="237,0" size="163,240" zPosition="1" />
 	</screen>
-
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="400,240" >
 		<widget source="session.CurrentService" render="Label" position="0,28" size="315,128" font="MyLcD;40" halign="center" valign="center" transparent="1" zPosition="2" >
 			  <convert type="ServiceName">Name</convert>
