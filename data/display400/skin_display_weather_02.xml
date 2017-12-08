@@ -18,14 +18,12 @@
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
-
 <!-- template -->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="center,center" size="100,45" font="FdLcD;40" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
-
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
 		<widget source="session.CurrentService" position="3,3" transparent="1" zPosition="8" size="160,160" render="Label" font="Meteo; 125" halign="center" valign="center" foregroundColor="XionMeteoFont" backgroundColor="XionBackground" noWrap="1">
@@ -45,7 +43,6 @@
 		</widget>
 		<ePixmap pixmap="/usr/share/enigma2/display/weather_lcd.png" position="0,0" size="400,240" zPosition="-9" />
 	</screen>
-
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="400,240">
 		<widget source="session.CurrentService" position="3,3" transparent="1" zPosition="8" size="160,160" render="Label" font="Meteo; 125" halign="center" valign="center" foregroundColor="XionMeteoFont" backgroundColor="XionBackground" noWrap="1">
@@ -64,6 +61,5 @@
 			<convert type="XionHDFWeather">Day_0,MinTemp</convert>
 		</widget>
 	</screen>
-
 	<include filename="/usr/share/enigma2/display/skin_display.xml" />
 </skin>

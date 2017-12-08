@@ -129,12 +129,10 @@
 		<panel name="SummaryClockPanel" />
 		<panel name="TunerInfoPanel" />
 	</screen>
-
 	<screen name="MovieContextMenuSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,110" font="FdLcD;30" halign="center" valign="center" />
 		<widget source="selected" render="Label" position="0,115" size="400,135" font="FdLcDLight;30" halign="center" valign="center" />
 	</screen>
-
 	<screen name="MovieSelectionSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,65" foregroundColor="#87CEFA" font="FdLcD;28" halign="center" valign="center" zPosition="14" />
 		<eLabel position="0,66" size="400,1" backgroundColor="white" />
@@ -284,12 +282,10 @@
 		<widget source="parent.summary_job_name" render="Label" position="0,80" size="400,60" font="FdLcD;26" halign="left" />
 		<widget source="parent.summary_job_task" render="Label" position="0,145" size="400,95" font="FdLcD;26" halign="left" />
 	</screen>
-
 	<screen name="EventView_summary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;20" halign="left" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,22" size="400,140" font="FdLcD;24" />
 	</screen>
-
 	<screen name="EventViewSimple_summary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;20" halign="left" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,22" size="400,140" font="FdLcD;24" />
@@ -304,7 +300,6 @@
 	<screen name="EPGSelectionMulti_summary" position="0,0" size="400,240">
 		<panel name="EPGPanel" />
 	</screen>
-
 	<screen name="EPGSelection_summary" position="0,0" size="400,240">
 		<widget source="parent.Service" render="Label" position="0,0" size="400,38" foregroundColor="#87CEFA" font="FdLcD;34" transparent="1" halign="center" noWrap="1" >
 			<convert type="ServiceName">Name</convert>

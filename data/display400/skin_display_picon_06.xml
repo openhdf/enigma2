@@ -19,7 +19,6 @@
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 		<font filename="Roboto-Bold.ttf" name="LCD" scale="100"/>
 	</fonts>
-
 <!-- FullPicon -->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="center,170" size="195,75" font="FdLcD;75" halign="center" noWrap="1" transparent="1">
@@ -130,12 +129,10 @@
 		<panel name="SummaryClockPanel" />
 		<panel name="TunerInfoPanel" />
 	</screen>
-
 	<screen name="MovieContextMenuSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,110" font="FdLcD;30" halign="center" valign="center" />
 		<widget source="selected" render="Label" position="0,115" size="400,135" font="FdLcDLight;30" halign="center" valign="center" />
 	</screen>
-
 	<screen name="MovieSelectionSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,65" foregroundColor="#FF8C00" font="FdLcD;28" halign="center" valign="center" zPosition="14" />
 		<eLabel position="0,66" size="400,1" backgroundColor="white" />
@@ -302,12 +299,10 @@
 		<widget source="parent.summary_job_name" render="Label" position="0,80" size="400,60" font="FdLcD;26" halign="left" />
 		<widget source="parent.summary_job_task" render="Label" position="0,145" size="400,95" font="FdLcD;26" halign="left" />
 	</screen>
-
 	<screen name="EventView_summary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;20" halign="left" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,22" size="400,140" font="FdLcD;24" />
 	</screen>
-
 	<screen name="EventViewSimple_summary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="160,22" font="FdLcD;20" halign="left" noWrap="1" />
 		<widget source="parent.summary_description" render="Label" position="0,22" size="400,140" font="FdLcD;24" />
@@ -322,7 +317,6 @@
 	<screen name="EPGSelectionMulti_summary" position="0,0" size="400,240">
 		<panel name="EPGPanel" />
 	</screen>
-
 	<screen name="EPGSelection_summary" position="0,0" size="400,240">
 		<widget source="parent.Service" render="Label" position="0,0" size="400,38" foregroundColor="#FF8C00" font="FdLcD;34" transparent="1" halign="center" noWrap="1" >
 			<convert type="ServiceName">Name</convert>
@@ -491,7 +485,6 @@
 			<convert type="MovieInfo">FileSize</convert>
 		</widget>
 	</screen>
-
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="400,240" >
 		<widget source="session.CurrentService" render="Label" position="0,0" size="400,133" font="FdLcD;38" halign="center" valign="center" transparent="1" zPosition="2" >
 			  <convert type="ServiceName">Name</convert>

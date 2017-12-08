@@ -23,7 +23,6 @@
 		<alias name="Medium" font="LCD_display" size="14" height="12" />
 		<alias name="Small" font="LCD_display" size="10" height="10" />
 	</fonts>
-
 <!-- template -->
 	<screen name="SummaryClockPanel">
 		<panel position="right" size="36,*" layout="stack">
@@ -35,7 +34,6 @@
 			</widget>
 		</panel>
 	</screen>
-
 <!-- main-->
 	<screen name="InfoBarSummary" position="fill">
 		<widget source="session.CurrentService" render="Label" position="top" size="*,16" font="Bigger" noWrap="1" halign="center">
@@ -52,7 +50,6 @@
 			</widget>
 		</panel>
 	</screen>
-
 <!-- GraphMultiEPG -->
 	<screen name="GraphMultiEPG_summary" position="fill">
 		<widget source="parent.Service" render="Label" position="top" size="*,18" font="Bigger" noWrap="1" halign="center">
@@ -64,7 +61,6 @@
 			<convert type="TextCase">ToUpper</convert>
 		</widget>
 	</screen>
-
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="fill">
 		<widget source="parent.ServiceEvent" render="Label" position="top" size="*,16" font="Bigger" noWrap="1" halign="center">
@@ -81,7 +77,6 @@
 			</widget>
 		</panel>
 	</screen>
-
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
 		<widget source="parent.title" render="Label" position="top" size="*,16" font="Big"  valign="top" noWrap="1"/>
@@ -90,7 +85,6 @@
 			<convert type="TextCase">ToUpper</convert>
 		</widget>
 	</screen>
-
 <!-- numberzap -->
 	<screen name="NumberZap_summary" position="fill">
 		<panel position="top" size="*,18">
@@ -103,7 +97,6 @@
 			</widget>
 		</panel>
 	</screen>
-
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="fill">
 		<panel position="top" size="*,16">
@@ -124,12 +117,10 @@
 			</widget>
 		</panel>
 	</screen>
-
 	<screen name="MovieContextMenuSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,16" font="Big" noWrap="1"/>
 		<widget source="selected" render="Label" position="top" size="*,16" font="Big" noWrap="1"/>
 	</screen>
-
 	<screen name="MovieSelectionSummary" position="fill">
 		<widget source="name" render="Label" position="top" size="*,18" font="Bigger" noWrap="1"/>
 		<panel position="fill" name="SummaryClockPanel" layout="stack">
@@ -138,45 +129,37 @@
 			</widget>
 		</panel>
 	</screen>
-
 <!-- DVD -->
 	<screen name="DVDSummary" position="fill">
 		<panel name="InfoBarMoviePlayerSummary"/>
 	</screen>
-
 <!-- setup-->
 	<screen name="SetupSummary" position="fill">
 		<widget source="SetupEntry" render="Label" position="top" size="*,20" font="Small"/>
 		<widget source="SetupValue" render="Label" position="fill" font="Medium" noWrap="1"/>
 	</screen>
-
 	<screen name="SleepTimerEdit_summary"><panel name="SetupSummary"/></screen>
-
 <!-- misc-->
 	<screen name="SimpleSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,18" font="Big" noWrap="1"/>
 		<panel position="fill" name="SummaryClockPanel" />
 	</screen>
-
 	<screen name="WizardSummary" position="fill">
 		<widget source="text" render="Label" position="top" size="*,16" font="Big" noWrap="1"/>
 		<widget source="parent.list" render="Label" position="fill" font="Big" noWrap="1">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
-
 	<screen name="VideoWizardSummary" position="fill">
 		<widget name="text" position="top" size="*,16" font="Big" noWrap="1"/>
 		<widget source="parent.list" render="Label" position="fill" font="Big" noWrap="1">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
-
 	<screen name="ServiceScanSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,16" font="Big" noWrap="1"/>
 		<widget source="Service" render="Label" position="fill" font="Big" noWrap="1"/>
 	</screen>
-
 <!-- standby -->
 	<screen name="StandbySummary" position="fill">
 		<panel position="fill" layout="stack">
@@ -188,30 +171,25 @@
 			</widget>
 		</panel>
 	</screen>
-
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,16" font="Big" noWrap="1" />
 		<widget source="entry" render="Label" position="fill" font="Big" noWrap="1" />
 	</screen>
-
 <!-- JobView Summary -->
 	<screen name="JobView_summary" position="fill">
 		<widget source="parent.summary_job_name" render="Label" position="top" size="*,16" font="Big" noWrap="1"/>
 		<widget source="parent.summary_job_progress" render="Progress" position="top" size="*,4" borderWidth="1"/>
 		<widget source="parent.summary_job_task" render="Label" position="fill" font="Medium" noWrap="1"/>
 	</screen>
-
 	<screen name="ChoiceBox_summary" position="fill">
 		<widget source="parent.text" render="Label" position="top" size="*,16" font="Big" noWrap="1"/>
 		<widget source="parent.summary_selection" render="Label" position="fill" font="Big" noWrap="1"/>
 	</screen>
-
 	<screen name="MessageBox_summary" position="fill" layout="stack">
 		<widget source="parent.Text" render="Label" position="top" size="*,32" font="Small"/>
 		<widget source="parent.selectedChoice" render="Label" position="bottom" size="*,12" font="Medium" noWrap="1"/>
 	</screen>
-
 	<screen name="MessageBoxSimple_summary" position="fill">
 		<panel name="MessageBox_summary"/>
 	</screen>
