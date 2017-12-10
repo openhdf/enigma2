@@ -1546,7 +1546,7 @@ CNN TURK
 p:DMG
 0001:011c0000:0001:029f:1:0
 CS Film
-p:T-Systems
+p:T-Systems 
 0001:0c620000:0001:04d2:1:0
 Bandamax
 p:Televisa Networks
@@ -1557,10 +1557,10 @@ p:TRT10
 GEORGIAN TV
 p:NDS
 0001:01a4ae62:0001:ffff:1:0
-meltem tv/radyo
+meltem tv/radyo     
 p:DMV
 0001:01a4ae66:0001:ffff:1:0
-mesaj tv
+mesaj tv            
 p:DMV
 0001:01a4b178:0001:ffff:1:0
 TECHNOLOG
@@ -1572,7 +1572,7 @@ p:Cine
 Compel foretags TV
 p:TANDBERG
 0001:01a4319a:0001:ffff:1:0
-EGE TV
+EGE TV              
 p:DMV
 0001:01a431a2:0001:ffff:1:0
 E MEDYA INTERNATIONAL
@@ -1593,7 +1593,7 @@ p:D0GUS
 APTN Adhoc Channel 2
 p:TANDBERG
 0001:01a4aad8:0001:ffff:1:0
-BRTK KKTC
+BRTK KKTC           
 p:DMV
 0001:016830e8:0001:ffff:1:0
 LIDER TV AZERBAIJAN
@@ -1771,21 +1771,21 @@ DREAM TV
 p:DMG
 0002:011c0000:0001:029f:1:0
 Prima TV
-p:T-Systems
+p:T-Systems 
 0002:0c620000:0001:04d2:1:0
 Ritmoson
 p:Televisa Networks
 0002:01a4ae46:0001:ffff:1:0
-TV5
-p:PROFEN
+TV5 
+p:PROFEN 
 0002:01a43188:0001:ffff:1:0
 Halay TV
 p:
 0002:01a43194:0001:ffff:1:0
-AZAD AZERBAYCAN
+AZAD AZERBAYCAN 
 p:SD Unnamed
 0002:01a4aec5:0001:ffff:1:0
-KONTV
+KONTV 
 p:SD Unnamed
 0002:0ce40000:0002:0031:1:0
 CANAL+ 2
@@ -1924,7 +1924,7 @@ EURO D
 p:DMG
 0003:011c0000:0001:029f:1:0
 CT 1
-p:T-Systems
+p:T-Systems 
 0003:0c620000:0001:04d2:1:0
 Telehit
 p:Televisa Networks
@@ -2050,7 +2050,7 @@ DTV2 (Cable)
 p:Telenor
 0004:011c0000:0001:029f:1:0
 CT 2
-p:T-Systems
+p:T-Systems 
 0004:0c620000:0001:04d2:1:0
 De Pelicula
 p:Televisa Networks
@@ -2152,7 +2152,7 @@ FB TV
 p:DMG
 0005:011c0000:0001:029f:1:0
 Galaxie Sport
-p:T-Systems
+p:T-Systems 
 0005:0c620000:0001:04d2:1:0
 Galavision
 p:Televisa Networks
@@ -2248,7 +2248,7 @@ STAR
 p:DMG
 0006:011c0000:0001:029f:1:0
 Test CT24
-p:T-Systems
+p:T-Systems 
 0006:0c620000:0001:04d2:1:0
 Telenovelas
 p:Televisa Networks
@@ -2347,7 +2347,7 @@ TURKSHOW
 p:DMG
 0007:011c0000:0001:029f:1:0
 TOP TV
-p:T-Systems
+p:T-Systems 
 0007:0c620000:0001:04d2:1:0
 Promocion
 p:Televisa Networks
@@ -3858,7 +3858,7 @@ p:
 RTPN
 p:RTPN
 0323:00820000:3bc4:013e:1:0
-TBN ITALIA
+TBN ITALIA 
 p:GCE
 0323:00460000:9dd0:007e:1:0
 TV5 Orient
@@ -7752,7 +7752,7 @@ p:RTL
 CANAL+...30
 p:CP30
 cb8a:011c0000:0907:0002:1:0
-Gay Network
+Gay Network 
 p:BSkyB
 028b:00460000:c47c:007e:1:0
 BTV
@@ -8427,7 +8427,7 @@ p:,C:090f
 Kurdistan TV
 p:BT Broadcast Services
 209e:00820000:2328:013e:1:0
-HBO
+HBO 
 p:OiV-Seemore SATchannel
 209e:011c0000:07fa:0002:1:0
 E4
@@ -8833,7 +8833,7 @@ BBC TES 3
 p:BSkyB
 1fab:00820000:2454:013e:1:0
 Hope Channel
-p:ADVENTIST
+p:ADVENTIST     
 20ab:00c00000:0432:0001:1:0
 
 p:CSAT
@@ -9144,7 +9144,7 @@ p:NileSat Libanon
 TPS Star
 p:,C:0100,C:0500
 0db4:0ce42e9b:0014:0001:1:0
-Clan/50
+Clan/50 
 p:TVE,C:4aa1
 21b4:00c00000:0448:0001:1:0
 EVENEMENT
@@ -10026,7 +10026,7 @@ p:Telenor
 24 VästNytt
 p:Telenor
 12cb:00820000:2e7c:013e:1:0
-
+ 
 p:CYFRA +
 1ccb:00820000:1ce8:0071:1:0
 TVP1
@@ -10525,7 +10525,7 @@ TMC
 p:CSAT
 20d8:00820000:01f4:013e:1:0
 Mediterraneo Sat 2
-p:Telespazio
+p:Telespazio 
 27d8:011c0000:0806:0002:1:0
 ITV Channel Is
 p:BSkyB
@@ -11751,7 +11751,7 @@ p:MTV Networks
 CINEMANÍA 2
 p:CMADOS
 0200:01a4b159:0001:0001:2:0
-.
+. 
 p:Service Provider
 0200:00820000:26ac:013e:2:0
 NEW HITS radio
@@ -11838,7 +11838,7 @@ p:GlobeCast
 Radio Caroline
 p:TechniSat
 0003:01a4adf5:0000:0001:2:0
-MÜJDEFM
+MÜJDEFM 
 p:
 0003:01a4ade8:0001:0001:2:0
 Dunya Radyo
@@ -11895,7 +11895,7 @@ p:TechniSat
 hr2
 p:ARD HR
 0005:01a4b159:0001:0001:2:0
-CEM RADYO
+CEM RADYO 
 p:Service Provider
 0005:01a4ade8:0001:0001:2:0
 R15&MarmaraFM
@@ -11955,7 +11955,7 @@ p:RETEVISION
 TWR Radio
 p:Globecast
 1208:01a4b159:0001:0001:2:0
-RADIO CITY
+RADIO CITY 
 p:Service Provider
 3208:00c00000:045c:0001:2:0
 Star*Sat Hit-Express
@@ -12063,7 +12063,7 @@ p:TSA
 RADIOROPA-Hörbuch
 p:TechniSat
 6f0c:00c00000:0445:0001:2:0
-MDR1 SACHSEN
+MDR1 SACHSEN 
 p:ARD MDR
 750c:00c00000:0420:0001:2:0
 RADIOLÉ
@@ -12187,7 +12187,7 @@ POWER XL
 p:DMG
 0011:011c0000:0001:029f:2:0
 Eurosport CZ
-p:T-Systems
+p:T-Systems 
 0011:01a40000:0001:1fff:2:0
 Audio Test Tone
 p:TRT10
@@ -12214,7 +12214,7 @@ ANT1
 p:OTE
 0012:011c0000:0001:029f:2:0
 CRo 1
-p:T-Systems
+p:T-Systems 
 0012:00820000:25e4:02be:2:0
 ESC R1
 p:ARABSAT
@@ -12232,7 +12232,7 @@ p:DIGITAL+
 p:OTE
 0013:011c0000:0001:029f:2:0
 CRo 2
-p:T-Systems
+p:T-Systems 
 0013:00820000:300c:013e:2:0
 VOT Foreign Languages
 p:RRSat
@@ -12250,7 +12250,7 @@ CAT. INFORM
 p:DIGITAL+
 0014:011c0000:0001:029f:2:0
 CRo 3
-p:T-Systems
+p:T-Systems 
 0014:00820000:300c:013e:2:0
 TSR Turkce
 p:RRSat
@@ -12274,7 +12274,7 @@ IFB-TEK 1 V POL
 p:DMG
 0015:011c0000:0001:029f:2:0
 Proglas
-p:T-Systems
+p:T-Systems 
 0015:00820000:300c:013e:2:0
 TRT FM
 p:RRSat
@@ -12301,7 +12301,7 @@ IFB-TEK 2 V POL
 p:DMG
 0016:011c0000:0001:029f:2:0
 CRo 6 / CRo 7
-p:T-Systems
+p:T-Systems 
 0016:0ce42e9b:0014:0001:2:0
 EMUGA RADIOFUSION
 p:TSA
@@ -12328,7 +12328,7 @@ IFB-TEK 3 V POL
 p:DMG
 0017:011c0000:0001:029f:2:0
 CRo Region
-p:T-Systems
+p:T-Systems 
 0017:0ce42d5f:0014:0001:2:0
 EXITO RADIO
 p:GCE
@@ -12355,7 +12355,7 @@ IFB-TEK 4 V POL
 p:DMG
 0018:011c0000:0001:029f:2:0
 BBC
-p:T-Systems
+p:T-Systems 
 0018:0ce40000:0024:0028:2:0
 SOMOS RADIO
 p:RETEVISION TIAR
@@ -12822,7 +12822,7 @@ p:Viasat
 AWR Radio 128KBit
 p:WRN
 c42c:00eb0000:2713:f001:2:0
-Modern Jazz
+Modern Jazz 
 p:Kabel Digital,C:1722,C:1801
 002d:01860000:0001:001c:2:0
 KANALI 1
@@ -12876,7 +12876,7 @@ p:ARD
 SR3
 p:ARD SR
 c42f:00eb0000:2713:f001:2:0
-Brasil
+Brasil 
 p:Kabel Digital,C:1722,C:1801
 d12f:011c0000:090c:0002:2:0
 Amrit Bani
@@ -13062,7 +13062,7 @@ p:BSkyB
 ALPHA NEWS
 p:OTE
 0139:00820000:157c:013e:2:0
-RR3
+RR3 
 p:NetMed
 1939:011c0000:07ff:0002:2:0
 BBC R Scot.
@@ -13155,7 +13155,7 @@ d13e:011c0000:090c:0002:2:0
 Radio London
 p:BSkyB
 003f:01a4b159:0001:0001:2:0
-LE CHIC
+LE CHIC 
 p:Service Provider
 143f:00820000:05dc:013e:2:0
 XtraMusic2
@@ -13248,7 +13248,7 @@ c445:00eb0000:2713:f001:2:0
 R & B Hip Hop
 p:Kabel Digital,C:1722,C:1801
 0046:00822faf:0001:0001:2:0
-KISS Plus Radio Wien (OD SRCA,SRCU)
+KISS Plus Radio Wien (OD SRCA,SRCU) 
 p:RRSAT
 0546:0dca0000:000d:0800:2:0
 Test
@@ -15558,7 +15558,7 @@ p:Orbit
 Pace Software
 p:BFBS
 0001:00460000:c6d4:007e:12:0
-PBS DATA
+PBS DATA 
 p:PBS ITALY
 0002:0d392d55:0002:ffff:12:0
 Opportunistic Data
@@ -17661,7 +17661,7 @@ p:OpenMux
 EPG
 p:
 16a9:00820000:2ee0:00b0:135:0
-Météo Express
+Météo Express 
 p:OpenMux
 1db5:00820000:2ee0:00b0:135:0
 VISIWARE3
