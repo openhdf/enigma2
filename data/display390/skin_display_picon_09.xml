@@ -18,7 +18,6 @@
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
-
 <!-- main-->
 	<screen name="InfoBarSummary" position="fill" >
 		<widget source="session.CurrentService" render="PiconRes" zPosition="1" position="center,0" size="150,90" alphatest="on" >

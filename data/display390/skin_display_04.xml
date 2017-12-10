@@ -18,14 +18,12 @@
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
-
 <!-- template -->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="250,185" size="150,55" font="FdLcD;55" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
-
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="390,240">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="390,35" font="FdLcD;30" valign="center" halign="center" foregroundColor="#2E64FE">

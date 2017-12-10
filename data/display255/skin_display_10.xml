@@ -266,8 +266,6 @@
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
-
-
 <!-- LCD screen PluginBrowser -->
 	<screen name="PluginBrowserSummary" position="0,0" size="256,64">
 		<widget source="global.CurrentTime" render="Label" position="180,44" size="58,20" font="VFD;20" halign="right" valign="center" transparent="1">

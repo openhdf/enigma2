@@ -18,14 +18,12 @@
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
-
 <!-- template -->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="center,center" size="100,45" font="FdLcD;40" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
-
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="720,576">
 		<widget source="session.CurrentService" render="PiconRes" position="center,center" zPosition="1" halign="center" valign="center" size="600,500" alphatest="on">
@@ -35,7 +33,6 @@
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
-
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="720,576">
 		<widget source="session.MSNWeather" render="Label" position="0,0" size="720,120" font="FdLcD;120" zPosition="1" halign="center" valign="center" noWrap="1" alphatest="on" >
@@ -51,6 +48,5 @@
 			<convert type="MSNWeather">city</convert>
 		</widget-->
 	</screen>
-
 	<include filename="/usr/share/enigma2/display/skin_display.xml" />
 </skin>
