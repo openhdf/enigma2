@@ -55,7 +55,7 @@
 			<ref>1:0:19:8F:9:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-
+	
 	<channelgroup name="Sky Bundesliga SD" notActiveShowName="Momentan kein Programm" displayPattern="title:time:len=75">
 		<channel>
 			<name>Sky Bundesliga 1</name>
@@ -98,7 +98,7 @@
 			<ref>1:0:D3:FC:3:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-
+	
 	<channelgroup name="Sky Bundesliga HD" notActiveShowName="Momentan kein Programm" displayPattern="title:time:len=75">
 		<channel>
 			<name>Sky Bundesliga HD 1</name>
@@ -155,7 +155,7 @@
 			<name>Eurosport</name>
 			<ref>1:0:1:79E0:443:1:C00000:0:0:0:</ref>
 		</channel>
-		<channel>
+		<channel>		
 			<name>Eurosport 360 HD 01</name>
 			<ref>1:0:19:10E:6:85:C00000:0:0:0:</ref>
 		</channel>
@@ -192,7 +192,7 @@
 			<ref>1:0:19:104:E:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-
+	
 	<channelgroup name="Sport1 US HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
 		<channel>
 			<name>Sport 1 US HD</name>
@@ -203,7 +203,7 @@
 			<ref>1:0:19:135:A:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-
+	
 	<channelgroup name="Sport1" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
 		<channel>
 			<name>Sport 1 HD</name>
@@ -273,7 +273,7 @@
 			<ref>1:0:D3:14E:2:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-
+	
 	<channelgroup name="Blue Movie" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
 		<channel>
 			<name>Blue Movie</name>
@@ -296,7 +296,7 @@
 			<ref>1:0:19:79:E:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-
+	
 	<channelgroup name="HD+ Channel" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
 		<channel>
 			<name>Sat1 HD</name>
@@ -382,7 +382,7 @@
 			<name>Disney Channel HD</name>
 			<ref>1:0:19:157C:41F:1:C00000:0:0:0:</ref>
 		</channel>
-		</channelgroup>
+		</channelgroup>	
 
 	<channelgroup name="Sky Sport" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
 		<channel>
