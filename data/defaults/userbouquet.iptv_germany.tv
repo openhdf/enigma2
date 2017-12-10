@@ -1,0 +1,607 @@
+#NAME IPTV Deutsch
+#SERVICE 1:64:1:0:0:0:0:0:0:0:
+#DESCRIPTION Update 09.12.2017
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Germany
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//daserstelive-lh.akamaihd.net/i/daserste_de@38086/index_2692_av-p.m3u8
+#DESCRIPTION Das Erste (540p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf1314-lh.akamaihd.net/i/de14_v1@392878/index_3096_av-p.m3u8
+#DESCRIPTION ZDF (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wdr_fs-lh.akamaihd.net/i/wdrfs_weltweit@112033/master.m3u8
+#DESCRIPTION WDR HD (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//zdf0910-lh.akamaihd.net/i/dach10_v1@392872/index_1496_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION 3sat (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//artelive-lh.akamaihd.net/i/artelive_de@393591/index_1_av-p.m3u8
+#DESCRIPTION ARTE (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//onelivestream-lh.akamaihd.net/i/one_livestream@568814/index_7_av-p.m3u8
+#DESCRIPTION ONE HD (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf1112-lh.akamaihd.net/i/de12_v1@392882/index_3096_av-b.m3u8
+#DESCRIPTION ZDF Info (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf1314-lh.akamaihd.net/i/de13_v1@392877/index_3096_av-p.m3u8
+#DESCRIPTION ZDF Neo (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ndrfs-lh.akamaihd.net/i/ndrfs_hh@430231/index_3776_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION NDR Fernsehen HD (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//livetvsachsen.mdr.de/i/livetvmdrsachsen_de@106902/index_3871_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION MDR Fernsehen (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live2_sr-lh.akamaihd.net/i/sr_universal02@107595/index_1662_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION SR Fernsehen HD (544p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live1_hr-lh.akamaihd.net/i/hr_fernsehen@75910/index_3584_av-b.m3u8?sd=10&rebase=on
+#DESCRIPTION HR HD (720p) 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//livestreams.br.de/i/bfsnord_germany@119898/index_3776_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION Bayerisches Fernsehen HD (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//swrrp-lh.akamaihd.net/i/swrrp_live@196739/index_3584_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION SWR Fernsehen HD (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//livestreams.br.de/i/bralpha_germany@119899/index_3776_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION BR Alpha (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rbblive-lh.akamaihd.net/i/rbb_berlin@144674/index_7_av-b.m3u8
+#DESCRIPTION RBB Berlin (540p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rbblive-lh.akamaihd.net/i/rbb_brandenburg@349369/index_7_av-b.m3u8
+#DESCRIPTION RBB Brandenburg (540p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//kikade-lh.akamaihd.net/i/livetvkika_de@450035/master.m3u8
+#DESCRIPTION Kika HD (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//unilivemtveu-lh.akamaihd.net/i/nickde_1@448749/index_3500_av-b.m3u8
+#DESCRIPTION Nickelodeon (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//58b42f6c8c9bf.streamlock.net/live/rictv/chunklist.m3u8
+#DESCRIPTION RIC (396p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//donautv.iptv-playoutcenter.de%3a1935/donautv/donautv.stream_2
+#DESCRIPTION Donau TV (576p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//586dce1287bfd.streamlock.net/muenchentv/muenchentv.stream_1/playlist.m3u8
+#DESCRIPTION München TV (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//streaming006.broadcast.tneg.de%3a1935/nrwtv-new/_definst_/smil%3anrw.smil/chunklist_w1376117069_b1628000_sldeu.m3u8
+#DESCRIPTION NRW.TV (404p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//unilivemtveu-lh.akamaihd.net/i/mtvde_1@134922/index_3500_av-b.m3u8 
+#DESCRIPTION MTV DE (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.vidoo.de/live/weltderwunder/chunklist_w818079807.m3u8
+#DESCRIPTION Welt der Wunder (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//liveservustv-i.akamaihd.net/hls/live/271000/ServusTV_DE/master.m3u8
+#DESCRIPTION SERVUS TV HD DE (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdn-europe.smartcast.de%3a1935/eotv/eotvhd/playlist.m3u8
+#DESCRIPTION EOTV (404p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tagesschau-lh.akamaihd.net/i/tagesschau_1@119231/index_3776_av-p.m3u8:Tagesschau 24 HD (720p)
+#DESCRIPTION Tagesschau 24 HD (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf0910-lh.akamaihd.net/i/de09_v1@392871/index_1496_av-b.m3u8:Phoenix (480p)
+#DESCRIPTION Phoenix (480p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//p.live.akamai.n-tv.de/playlists/ntvlive-ipadakamai.m3u8
+#DESCRIPTION n-tv (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//live2weltcms-lh.akamaihd.net/i/Live2WeltCMS_1@444563/index_2_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION N24 (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//78.156.32.30/hls/Euronews_low.m3u8
+#DESCRIPTION euronews engl (404p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//dwstream72-lh.akamaihd.net/i/dwstream72_live@123556/index_1_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION Deutsche Welle (400p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//eventhlshttps-i.akamaihd.net/hls/live/263645/ssn-hd-https/indexvideo-3400.m3u8
+#DESCRIPTION Sky Sport News (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//familytvblizz-lh.akamaihd.net/i/blizzlive_1@36699/index_500_av-p.m3u8
+#DESCRIPTION Family TV (1080p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//familytvblizz-lh.akamaihd.net/i/familytv_1@458351/index_500_av-p.m3u8
+#DESCRIPTION Blizz TV (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//46.101.244.86%3a8081/folx-abr/live-abr/fle/fle1/chunks.m3u8:FolksTV
+#DESCRIPTION Folks TV (360p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//fms.daf.tmt.de%3a1935/live/dafstream100
+#DESCRIPTION DAF (360p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//euvia-live.hls.adaptive.level3.net/ses/euvia/index.m3u8
+#DESCRIPTION Sonnenklar-TV HD (1080p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//video1.anixehd.tv%3a8080/Apple/wifistream.m3u8
+#DESCRIPTION Anixe (360p)
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//d1pz8zear993v8.cloudfront.net/hlsme/kathtv.m3u8
+#DESCRIPTION K-TV (576p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//bibeltv02.iptv-playoutcenter.de/bibeltv01/bibeltv01.stream_1/master.m3u8:Bibel TV
+#DESCRIPTION Bibel TV (380p)
+#SERVICE 5001:0:1:0:0:0:0:0:0:0:rtmp%3a//x3777parlac13014.f.l.f.lb.core-cdn.net%3a1935/13014bundestag playpath=live/3777parlamentsfernsehen/live_1000 swfUrl=http%3a//webtv.bundestag.de/iptv/swf/xflv/showIt3_10.swf pageUrl=http%3a//www.bundestag.de/Mediathek/index.jsp?action=tv live=1:Parlamentsfernsehen 1
+#DESCRIPTION Parlamentsfernsehen 1 (480p)
+#SERVICE 5001:0:1:0:0:0:0:0:0:0:rtmp%3a//x4177pfs2c13014.f.l.f.lb.core-cdn.net%3a1935/13014bundestag playpath=live/4177pf_s2/live_de_1000 swfUrl=http%3a//webtv.bundestag.de/iptv/swf/xflv/showIt3_10.swf pageUrl=http%3a//www.bundestag.de/Mediathek/index.jsp?action=tv live=1:Parlamentsfernsehen 2
+#DESCRIPTION Parlamentsfernsehen 2 (480p)
+#SERVICE 1:64:0:0:0:0:0:0:0:0::Regional
+#DESCRIPTION RegionalTV
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//62.113.221.100/friesischerRundfunk-live/_definst_/mp4%3alivestream/playlist.m3u8
+#DESCRIPTION FRF1 - Friesischer Rundfunk
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//hls1.wtnet.de/noa4hh/apple/wifi6500.m3u8
+#DESCRIPTION noa4 Hamburg FHD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//hls1.wtnet.de/noa4/apple/wifi6500.m3u8
+#DESCRIPTION noa4 Norderstedt FHD
+#SERVICE 5002:0:1:1:0:0:0:0:0:0:http%3a//sdn-global-live-http-cache.3qsdn.com/live/_definst_/mp4%3a5655_F7KT9xCQkXwbNmq/playlist.m3u8
+#DESCRIPTION Hamburg 1
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//62.67.13.54%3a1935/sylt1/sylt1_high.stream/chunklist.m3u8
+#DESCRIPTION Sylt 1
+#SERVICE 1:64:0:0:0:0:0:0:0:0::Regional
+#DESCRIPTION RegionalTV Sachsenanhalt
+#SERVICE 4097:0:1:7:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/punktum_high/playlist.m3u8
+#DESCRIPTION PUNKTum
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/mdf1_high/playlist.m3u8
+#DESCRIPTION MDF.1
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/RFH_high/playlist.m3u8
+#DESCRIPTION RFHarz
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/rbw_high/master.m3u8
+#DESCRIPTION RBWittenberg
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/ran1_high/master.m3u8
+#DESCRIPTION RAN 1
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/ok-dessau_high/master.m3u8
+#DESCRIPTION OK Dessau
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/ok-magdeburg_high/master.m3u8
+#DESCRIPTION OK Magedeburg
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/ok-merseburg_high/master.m3u8
+#DESCRIPTION OK Merseburg
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/ok-salzwedel_high/master.m3u8
+#DESCRIPTION OK Salzwedel
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/ok-stendal_high/master.m3u8
+#DESCRIPTION OK Stendal
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/ok-wernigerode_high/master.m3u8
+#DESCRIPTION OK Wernigerode
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/BLKonline_high/master.m3u8
+#DESCRIPTION Burgenlandkreis Regional TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/elbe_high/master.m3u8
+#DESCRIPTION Elbekanal Schönebeck
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/tvhalle_high/master.m3u8
+#DESCRIPTION Halle TV
+#SERVICE 1:64:1:0:0:0:0:0:0:0:
+#DESCRIPTION Austria
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//orf2.orf.cdn.ors.at/orf1/q8c.sdp/chunklist.m3u8
+#DESCRIPTION ORF 1 HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//orf2.orf.cdn.ors.at/orf2/q8c.sdp/chunklist.m3u8
+#DESCRIPTION ORF 2 HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//orf2.orf.cdn.ors.at/orf3/q8c.sdp/chunklist.m3u8
+#DESCRIPTION ORF III HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//orf2.orf.cdn.ors.at/orfs/q8c.sdp/chunklist.m3u8
+#DESCRIPTION ORF Sport+ HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//hdiosstv-f.akamaihd.net/i/servustvhd_1@51229/index_2592_av-p.m3u8?sd=10&rebase=on:SERVUS TV HD AT (720p)
+#DESCRIPTION SERVUS TV HD AT (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//apasfoe24l.sf.apa.at/ipad/oe24-live1/oe24.sdp/chunklist_b1900000.m3u8:OE24TV (1080p)
+#DESCRIPTION OE24TV (1080p)
+#SERVICE 4097:0:1:9:0:0:0:0:0:0:http%3a//lb.hd-livestream.de%3a1935/live/TirolTV/playlist.m3u8:Tirol TV 
+#DESCRIPTION Tirol TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//cdn1.markenfunk.tv/t1/ngrp%3alive_all/chunklist_b5060608.m3u8:T eins
+#DESCRIPTION T eins
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//stream.openplayout.org/hls/dorf_high/index.m3u8:Dorf TV (Linz)
+#DESCRIPTION Dorf TV (Linz)
+#SERVICE 4097:0:1:31:0:0:0:0:0:0:http%3a//www.reeins.tv%3a1935/live/re1/playlist.m3u8:RE eins TV
+#DESCRIPTION RE eins TV
+#SERVICE 4097:0:1:27:0:0:0:0:0:0:http%3a//stream.fs1.tv%3a8080/hls/webstream.m3u8
+#DESCRIPTION FS1
+#SERVICE 4097:0:1:27:0:0:0:0:0:0:rtmp%3a//streaming.austria24.tv/live/stream_720p
+#DESCRIPTION AUSTRIA 24 TV
+#SERVICE 4097:0:1:77:0:0:0:0:0:0:http%3a//ms01.w24.at/hls-live/livepkgr/_definst_/liveevent/livestream2.m3u8:W24 TV (Austria)
+#DESCRIPTION W24 TV (Austria)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//d2jk87psbjrjdz.cloudfront.net/livehttporigin/okto/chunklist.m3u8
+#DESCRIPTION OKTO (720p)
+#SERVICE 1:64:2:0:0:0:0:0:0:0:
+#DESCRIPTION Swiss
+#SERVICE 4097:0:1:15:0:0:0:0:0:0:https%3a//klive-a.akamaihd.net/dc-1/live/hls/p/1719221/e/1_hoislpiz/sd/10000/t/AFb4DZ0W2ts1a8fV5xo1VQ/index-s32.m3u8
+#DESCRIPTION TeleZürig HD
+#SERVICE 4097:0:1:17:0:0:0:0:0:0:http%3a//klive-a.akamaihd.net/dc-1/live/hls/p/1719221/e/1_0mc3z57p/sd/10000/t/XTGwenpKUhx_fbVnsiu9MQ/index-s32.m3u8
+#DESCRIPTION TeleBärn HD
+#SERVICE 4097:0:1:19:0:0:0:0:0:0:http%3a//klive-a.akamaihd.net/dc-1/live/hls/p/1719221/e/1_ljzy3evp/sd/10000/t/nwOKUovT2mwnA8x_KnC4zg/index-s32.m3u8:M1 HD
+#DESCRIPTION M1 HD
+#SERVICE 4097:0:1:21:0:0:0:0:0:0:http%3a//livevideo.infomaniak.com/streaming/livecast/tvo/playlist.m3u8:TV Blau HD
+#DESCRIPTION TV Blau HD
+#SERVICE 4097:0:1:23:0:0:0:0:0:0:http%3a//livevideo.infomaniak.com/streaming/livecast/telebielinguech/playlist.m3u8:Telebielingue
+#DESCRIPTION Telebielingue
+#SERVICE 4097:0:1:25:0:0:0:0:0:0:http%3a//livevideo.infomaniak.com/streaming/livecast/tvm3/playlist.m3u8:TVM3
+#DESCRIPTION TVM3
+#SERVICE 4097:0:1:27:0:0:0:0:0:0:http%3a//xapp510394368c1000199.f.l.z.lb.core-cdn.net/10096xtelebase/ios_500/master.m3u8:Telebasel  
+#DESCRIPTION Telebasel  
+#SERVICE 4097:0:1:29:0:0:0:0:0:0:http%3a//52.86.189.59%3a1935/live/news/playlist.m3u8:CHCH
+#DESCRIPTION CHCH
+#SERVICE 1:64:A:0:0:0:0:0:0:0::--- T Home Entertain ---
+#DESCRIPTION --- T Home Entertain ---
+#SERVICE 5002:0:1:2887:40F:1:C00000:0:0:0:rtp%3a//@239.35.10.63%3a10000
+#DESCRIPTION tagesschau24 HD
+#SERVICE 5002:0:1:283D:3FB:1:C00000:0:0:0:rtp%3a//@239.35.10.1%3a10000
+#DESCRIPTION Das Erste HD
+#SERVICE 5002:0:1:2B66:3F3:1:C00000:0:0:0:rtp%3a//@239.35.10.2%3a10000
+#DESCRIPTION ZDF HD
+#SERVICE 5002:0:1:2870:425:1:C00000:0:0:0:rtp%3a//@239.35.10.61%3a10000
+#DESCRIPTION MDR HD
+#SERVICE 5002:0:1:445C:453:1:C00000:0:0:0:rtp%3a//@239.35.20.20%3a10000
+#DESCRIPTION SAT.1
+#SERVICE 5002:0:1:445C:453:1:C00000:0:0:0:rtp%3a//@239.35.20.24%3a10000
+#DESCRIPTION SAT.1 Gold
+#SERVICE 5002:0:1:2EE3:441:1:C00000:0:0:0:rtp%3a//@239.35.20.10%3a10000
+#DESCRIPTION RTL Television
+#SERVICE 5002:0:1:2EF4:441:1:C00000:0:0:0:rtp%3a//@239.35.20.22%3a10000
+#DESCRIPTION RTL2
+#SERVICE 5002:0:1:2F08:441:1:C00000:0:0:0:rtp%3a//@239.35.20.39%3a10000
+#DESCRIPTION SUPER RTL
+#SERVICE 5002:0:1:2F1C:441:1:C00000:0:0:0:rtp%3a//@239.35.20.11%3a10000
+#DESCRIPTION VOX
+#SERVICE 5002:0:1:445D:453:1:C00000:0:0:0:rtp%3a//@239.35.20.21%3a10000
+#DESCRIPTION ProSieben
+#SERVICE 5002:0:1:4461:453:1:C00000:0:0:0:rtp%3a//@239.35.20.33%3a10000
+#DESCRIPTION ProSieben MAXX
+#SERVICE 5002:0:1:2F1D:441:1:C00000:0:0:0:rtp%3a//@239.35.20.59%3a10000
+#DESCRIPTION RTLNITRO
+#SERVICE 5002:0:1:308:5:85:C00000:0:0:0:rtp%3a//@239.35.20.9%3a10000
+#DESCRIPTION SIXX
+#SERVICE 5002:0:1:445E:453:1:C00000:0:0:0:rtp%3a//@239.35.20.38%3a10000
+#DESCRIPTION kabel eins
+#SERVICE 5002:0:1:2F3A:441:1:C00000:0:0:0:rtp%3a//@239.35.20.47%3a10000
+#DESCRIPTION n-tv
+#SERVICE 1:0:1:2B98:3F2:1:C00000:0:0:0:rtp%3a//@239.35.10.11%3a10000
+#DESCRIPTION KiKA HD
+#SERVICE 5002:0:1:2B8E:3F2:1:C00000:0:0:0:rtp%3a//@239.35.10.47%3a10000
+#DESCRIPTION 3sat HD
+#SERVICE 5002:0:19:283E:3FB:1:C00000:0:0:0:rtp%3a//@239.35.10.3%3a10000
+#DESCRIPTION arte HD
+#SERVICE 5002:0:1:2888:40F:1:C00000:0:0:0:rtp%3a//@239.35.10.58%3a10000
+#DESCRIPTION ONE HD
+#SERVICE 5002:0:1:2BA2:3F2:1:C00000:0:0:0:rtp%3a//@239.35.10.56%3a10000
+#DESCRIPTION zdf info HD
+#SERVICE 5002:0:1:2B7A:3F3:1:C00000:0:0:0:rtp%3a//@239.35.10.55%3a10000
+#DESCRIPTION zdf_neo HD
+#SERVICE 5002:0:1:6F47:445:1:C00000:0:0:0:rtp%3a//@239.35.10.24%3a10000
+#DESCRIPTION ARD-alpha
+#SERVICE 5002:0:1:7035:41B:1:C00000:0:0:0:rtp%3a//@239.35.10.22%3a10000:
+#DESCRIPTION PHOENIX
+#SERVICE 5002:0:1:0:0:1:C00000:0:0:0:rtp%3a//@239.35.20.44%3a10000
+#DESCRIPTION Deutsche Welle
+#SERVICE 1:64:B:0:0:0:0:0:0:0::Dritte
+#DESCRIPTION Dritte
+#SERVICE 5002:0:19:2855:401:1:C00000:0:0:0:rtp%3a//@239.35.10.49%3a10000
+#DESCRIPTION BR Süd HD
+#SERVICE 5002:0:1:283F:3FB:1:C00000:0:0:0:rtp%3a//@239.35.10.51%3a10000
+#DESCRIPTION SWR BW HD
+#SERVICE 5002:0:1:2857:401:1:C00000:0:0:0:rtp%3a//@239.35.10.50%3a10000
+#DESCRIPTION NDR HD NS
+#SERVICE 5002:0:1:6EA5:4B1:1:C00000:0:0:0:rtp%3a//@239.35.10.53%3a10000
+#DESCRIPTION WDR HD Köln
+#SERVICE 5002:0:1:2873:425:1:C00000:0:0:0:rtp%3a//@239.35.10.60%3a10000
+#DESCRIPTION hr-fernsehen HD
+#SERVICE 5002:0:1:286F:425:1:C00000:0:0:0:rtp%3a//@239.35.10.62%3a10000
+#DESCRIPTION rbb Berlin HD
+#SERVICE 5002:0:1:6EE1:4B1:1:C00000:0:0:0:rtp%3a//@239.35.10.12%3a10000
+#DESCRIPTION Radio Bremen TV
+#SERVICE 5002:0:1:6F46:445:1:C00000:0:0:0:rtp%3a//@239.35.10.15%3a10000
+#DESCRIPTION SR Fernsehen
+#SERVICE 1:64:C:0:0:0:0:0:0:0::Regional
+#DESCRIPTION Regional
+#SERVICE 5002:0:1:0:0:1:C00000:0:0:0:rtp%3a//@239.35.50.42%3a10000
+#DESCRIPTION ISAR TV
+#SERVICE 5002:0:1:11FD:3FD:1:C00000:0:0:0:rtp%3a//@239.35.50.51%3a10000
+#DESCRIPTION rfo Regional Oberbayern
+#SERVICE 5002:0:1:0:0:1:C00000:0:0:0:rtp%3a//@239.35.50.53%3a10000
+#DESCRIPTION allgäu.tv
+#SERVICE 5002:0:1:1200:3FD:1:C00000:0:0:0:rtp%3a//@239.35.50.57%3a10000
+#DESCRIPTION TVA-OTV
+#SERVICE 5002:0:1:0:0:1:C00000:0:0:0:rtp%3a//@239.35.50.50%3a10000
+#DESCRIPTION Oberpfalz TV
+#SERVICE 5002:0:1:0:0:1:C00000:0:0:0:rtp%3a//@239.35.50.23%3a10000
+#DESCRIPTION Donau TV
+#SERVICE 5002:0:1:0:0:1:C00000:0:0:0:rtp%3a//@239.35.50.49%3a10000
+#DESCRIPTION main.tv
+#SERVICE 5002:0:1:11FF:3FD:1:C00000:0:0:0:rtp%3a//@239.35.50.54%3a10000
+#DESCRIPTION TV Oberfranken
+#SERVICE 5002:0:1:0:0:1:C00000:0:0:0:rtp%3a//@239.35.50.55%3a10000
+#DESCRIPTION TV Touring Schweinfurt
+#SERVICE 5002:0:1:0:0:1:C00000:0:0:0:rtp%3a//@239.35.50.56%3a10000
+#DESCRIPTION TV Touring Würzburg
+#SERVICE 1:64:A:0:0:0:0:0:0:0:
+#DESCRIPTION A1 TV
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.1%3a8208
+#DESCRIPTION ORF eins 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.2%3a8208
+#DESCRIPTION ORF 2-W 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.3%3a8208
+#DESCRIPTION ATV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.4%3a8208
+#DESCRIPTION PULS 4 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.11%3a8208
+#DESCRIPTION Servus TV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.5%3a8208
+#DESCRIPTION SAT.1 Austria 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.7%3a8208
+#DESCRIPTION ProSieben Austria 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.13%3a8208
+#DESCRIPTION kabel eins Austria 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.6%3a8208
+#DESCRIPTION RTL Austria 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.8%3a8208
+#DESCRIPTION VOX Austria 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.9%3a8208
+#DESCRIPTION sixx Austria 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.12%3a8208
+#DESCRIPTION RTL II Austria 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.91%3a8208
+#DESCRIPTION ATV// 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.27%3a8208
+#DESCRIPTION SAT.1-GOLD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.28%3a8208
+#DESCRIPTION ProSieben-MAXX 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.33%3a8208
+#DESCRIPTION RTL Nitro 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.16%3a8208
+#DESCRIPTION Das Erste 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.17%3a8208
+#DESCRIPTION ZDF 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.19%3a8208
+#DESCRIPTION kabel eins Doku Austria 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.29%3a8208
+#DESCRIPTION ORF III 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.21%3a8208
+#DESCRIPTION 3sat 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.22%3a8208
+#DESCRIPTION arte 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.30%3a8208
+#DESCRIPTION DMAX Austria 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.26%3a8208
+#DESCRIPTION Sport1 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.78%3a8208
+#DESCRIPTION ORF SPORT + 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.23%3a8208
+#DESCRIPTION Super RTL 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.24%3a8208
+#DESCRIPTION KIKA 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.25%3a8208
+#DESCRIPTION nickelodeon 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.14%3a8208
+#DESCRIPTION Disney Channel 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.117%3a8208
+#DESCRIPTION RIC 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.36%3a8208
+#DESCRIPTION gotv 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.35%3a8208
+#DESCRIPTION CC/VIVA AT 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.108%3a8208
+#DESCRIPTION Deluxe Music 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.92%3a8208
+#DESCRIPTION N24 Austria 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.52%3a8208
+#DESCRIPTION n-tv 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.55%3a8208
+#DESCRIPTION CNN international 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.44%3a8208
+#DESCRIPTION ZDF_neo 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.43%3a8208
+#DESCRIPTION ZDFinfo 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.40%3a8208
+#DESCRIPTION Zee.One 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.39%3a8208
+#DESCRIPTION phoenix 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.41%3a8208
+#DESCRIPTION tagesschau24 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.42%3a8208
+#DESCRIPTION one 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.38%3a8208
+#DESCRIPTION ARD-alpha 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.15%3a8208
+#DESCRIPTION Tele 5 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.18%3a8208
+#DESCRIPTION BR 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.46%3a8208
+#DESCRIPTION SWR BW 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.47%3a8208
+#DESCRIPTION mdr 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.48%3a8208
+#DESCRIPTION NDR 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.49%3a8208
+#DESCRIPTION WDR 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.50%3a8208
+#DESCRIPTION hr 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.51%3a8208
+#DESCRIPTION rbb 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.74%3a8208
+#DESCRIPTION SR 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.57%3a8208
+#DESCRIPTION BBC World News 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.58%3a8208
+#DESCRIPTION BBC Entertainment 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.53%3a8208
+#DESCRIPTION Euronews 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.54%3a8208
+#DESCRIPTION Bloomberg TV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.56%3a8208
+#DESCRIPTION Al Jazeera 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.60%3a8208
+#DESCRIPTION TV5 Monde Europe 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.61%3a8208
+#DESCRIPTION France24 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.77%3a8208
+#DESCRIPTION Russia Today 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.102%3a8208
+#DESCRIPTION Channel One Russia 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.65%3a8208
+#DESCRIPTION ORF 2-B 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.66%3a8208
+#DESCRIPTION ORF 2-K 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.67%3a8208
+#DESCRIPTION ORF 2-NÖ 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.68%3a8208
+#DESCRIPTION ORF 2-OÖ 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.69%3a8208
+#DESCRIPTION ORF 2-S 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.70%3a8208
+#DESCRIPTION ORF 2-St 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.71%3a8208
+#DESCRIPTION ORF 2-T 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.72%3a8208
+#DESCRIPTION ORF 2-V 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.116%3a8208
+#DESCRIPTION ORF 2 Europe 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.73%3a8208
+#DESCRIPTION Ö3 Visual Radio 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.79%3a8208
+#DESCRIPTION fashion TV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.110%3a8208
+#DESCRIPTION TLC 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.105%3a8208
+#DESCRIPTION OE24.TV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.31%3a8208
+#DESCRIPTION QVC 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.32%3a8208
+#DESCRIPTION HSE24 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.94%3a8208
+#DESCRIPTION Media Shop 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.37%3a8208
+#DESCRIPTION Melodie TV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.93%3a8208
+#DESCRIPTION Astro TV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.81%3a8208
+#DESCRIPTION Bibel TV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.82%3a8208
+#DESCRIPTION K-TV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.45%3a8208
+#DESCRIPTION Sky Sport News 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.99%3a8208
+#DESCRIPTION LAOLA1.tv 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.80%3a8208
+#DESCRIPTION Eurosport 1 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.88%3a8208
+#DESCRIPTION Arcadia TV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.75%3a8208
+#DESCRIPTION Rai Uno 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.59%3a8208
+#DESCRIPTION Rai Due 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.76%3a8208
+#DESCRIPTION Rai Tre 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.97%3a8208
+#DESCRIPTION Kanal 7 Avrupa 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.63%3a8208
+#DESCRIPTION RTS Sat 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.64%3a8208
+#DESCRIPTION HRT 1 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.95%3a8208
+#DESCRIPTION BN TV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.115%3a8208
+#DESCRIPTION BN Music 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.98%3a8208
+#DESCRIPTION CT24 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.118%3a8208
+#DESCRIPTION RTL Croatia World 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.100%3a8208
+#DESCRIPTION Pro TV Int 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.101%3a8208
+#DESCRIPTION TV Silesia 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.103%3a8208
+#DESCRIPTION RTR Planeta 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.106%3a8208
+#DESCRIPTION TVE Internacional 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.107%3a8208
+#DESCRIPTION Record TV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.104%3a8208
+#DESCRIPTION CGTN 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.119%3a8208
+#DESCRIPTION TVP Polonia 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.34%3a8208
+#DESCRIPTION Okto 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.83%3a8208
+#DESCRIPTION Schau TV 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.87%3a8208
+#DESCRIPTION LT1 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.16.109%3a8208
+#DESCRIPTION Tirol TV  
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.0.23.66%3a8208
+#DESCRIPTION RT Salzburg 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.1%3a8208
+#DESCRIPTION ORF eins HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.2%3a8208
+#DESCRIPTION ORF 2-W HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.25%3a8208
+#DESCRIPTION ATV HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.3%3a8208
+#DESCRIPTION A1 TV Plus-Info HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.41%3a8208
+#DESCRIPTION ATV// HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.4%3a8208
+#DESCRIPTION Das Erste HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.5%3a8208
+#DESCRIPTION ZDF HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.27%3a8208
+#DESCRIPTION SRF 1 HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.28%3a8208
+#DESCRIPTION SRF ZWEI HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.26%3a8208
+#DESCRIPTION ORF III HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.7%3a8208
+#DESCRIPTION 3sat HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.6%3a8208
+#DESCRIPTION arte HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.39%3a8208
+#DESCRIPTION ORF SPORT + HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.16%3a8208
+#DESCRIPTION KIKA HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.24%3a8208
+#DESCRIPTION CC/VIVA HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.54%3a8208
+#DESCRIPTION SRF INFO HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.14%3a8208
+#DESCRIPTION ZDF_neo HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.13%3a8208
+#DESCRIPTION ZDFinfo HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.15%3a8208
+#DESCRIPTION Zee.One HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.11%3a8208
+#DESCRIPTION phoenix HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.31%3a8208
+#DESCRIPTION tagesschau24 HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.29%3a8208
+#DESCRIPTION one HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.12%3a8208
+#DESCRIPTION BR HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.18%3a8208
+#DESCRIPTION SWR HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.32%3a8208
+#DESCRIPTION mdr HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.17%3a8208
+#DESCRIPTION NDR HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.19%3a8208
+#DESCRIPTION WDR HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.33%3a8208
+#DESCRIPTION hr HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.9%3a8208
+#DESCRIPTION BBC World News HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.44%3a8208
+#DESCRIPTION ORF 2-B HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.46%3a8208
+#DESCRIPTION ORF 2-K HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.42%3a8208
+#DESCRIPTION ORF 2-NÖ HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.43%3a8208
+#DESCRIPTION ORF 2-OÖ HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.47%3a8208
+#DESCRIPTION ORF 2-S HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.45%3a8208
+#DESCRIPTION ORF 2-St HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.48%3a8208
+#DESCRIPTION ORF 2-T HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.49%3a8208
+#DESCRIPTION ORF 2-V HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.10%3a8208
+#DESCRIPTION fashion TV HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.8%3a8208
+#DESCRIPTION ANIXE HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.0.23.195%3a8208
+#DESCRIPTION OE24.TV HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.38%3a8208
+#DESCRIPTION Enjoy the Alps.tv HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.20%3a8208
+#DESCRIPTION QVC HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.34%3a8208
+#DESCRIPTION QVC Plus HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.21%3a8208
+#DESCRIPTION HSE24 HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.35%3a8208
+#DESCRIPTION HSE24 Extra HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.22%3a8208
+#DESCRIPTION Sonnenklar.TV HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.23%3a8208
+#DESCRIPTION Juwelo HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.36%3a8208
+#DESCRIPTION pearl.tv HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.52%3a8208
+#DESCRIPTION KIT TV HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.30%3a8208
+#DESCRIPTION Sky Sport News HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.50%3a8208
+#DESCRIPTION LAOLA1.tv HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.55%3a8208
+#DESCRIPTION Arcadia TV HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.51%3a8208
+#DESCRIPTION Duna TV HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.56%3a8208
+#DESCRIPTION W24 HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.57%3a8208
+#DESCRIPTION R9 Österreich HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.0.23.194%3a8208
+#DESCRIPTION RT Salzburg HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.40%3a8208
+#DESCRIPTION Austria24 TV HD 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:rtp%3a//@239.2.24.58%3a8208
+#DESCRIPTION FS1 HD 

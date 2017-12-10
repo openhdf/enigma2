@@ -1,185 +1,361 @@
 #NAME IPTV Various
 #SERVICE 1:64:1:0:0:0:0:0:0:0:
-#DESCRIPTION Update 25.01.2017
+#DESCRIPTION Update 04.12.2017
 #SERVICE 1:64:21:0:0:0:0:0:0:0:
 #DESCRIPTION Cartoon
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.124.183.15/hls/CH_TIJI/variant.m3u8?version=2:TIJI (576p)
-#DESCRIPTION TIJI (576p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.124.183.15/hls/CH_GULLI/variant.m3u8?version=2:GulliGirl (576p)
-#DESCRIPTION GulliGirl (576p)
-#SERVICE 1:0:1:0:0:0:0:0:0:0:http%3a//78.26.128.94%3a7321/index.php?channel=409:DuckTV  (576p)
-#DESCRIPTION DuckTV  (576p)
-#SERVICE 1:0:1:0:0:0:0:0:0:0:http%3a//78.26.128.94%3a7321/index.php?channel=177:Malatko TV (576p)
-#DESCRIPTION Malatko TV (576p)
-#SERVICE 1:0:1:0:0:0:0:0:0:0:http%3a//78.26.128.94%3a7321/index.php?channel=122:PlockPlock (576p)
-#DESCRIPTION PlockPlock (576p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.124.183.11/hls/CH_MULTIMANIYA/variant.m3u8?version=2:Multimania (576p)
-#DESCRIPTION Multimania (576p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//78.26.128.94%3a7321/index.php?channel=358
+#DESCRIPTION Boomerang 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//78.26.128.94%3a7321/index.php?channel=349
+#DESCRIPTION Cartoon Network 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//78.26.128.94%3a7321/index.php?channel=409
+#DESCRIPTION ducktv 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//78.26.128.94%3a7321/index.php?channel=285
+#DESCRIPTION Gulli 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//78.26.128.94%3a7321/index.php?channel=177
+#DESCRIPTION MALYATKO TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//78.26.128.94%3a7321/index.php?channel=110
+#DESCRIPTION TIJI 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//78.26.128.94%3a7321/index.php?channel=111
+#DESCRIPTION nikcelb Tv 
 #SERVICE 1:64:22:0:0:0:0:0:0:0:
 #DESCRIPTION Sports
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/index_1000_av-p.m3u8?sd=10&rebase=on:Real Madrid TV (404p)
-#DESCRIPTION Real Madrid TV (404p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//sporttimelive1.content-cdn.net/livechannel2/smil%3aswitch2.smil/chunklist_b3174400.m3u8:Sportime (720p)
-#DESCRIPTION Sportime2 (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//sporttimelive1.content-cdn.net/livechannel3/smil%3aswitch3.smil/master.m3u8:Sporttime3 (720p)
-#DESCRIPTION Sportime3 (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//sporttimelive1.content-cdn.net/livechannel4/smil%3aswitch4.smil/master.m3u8:Sporttime4 (720p)
-#DESCRIPTION Sportime4 (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//sporttimelive1.content-cdn.net/livechannel5/smil%3aswitch5.smil/master.m3u8:Sporttime5 (720p)
-#DESCRIPTION Sportime5 (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//sporttimelive1.content-cdn.net/livechannel6/smil%3aswitch6.smil/master.m3u8:Sporttime6 (720p)
-#DESCRIPTION Sportime6 (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//sporttimelive1.content-cdn.net/livechannel7/smil%3aswitch7.smil/master.m3u8:Sporttime7 (720p)
-#DESCRIPTION Sportime7 (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9_g.m3u8:NFL Now (720p)
-#DESCRIPTION NFL Now (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//xrxs.net/video/live-p12netw-2328.m3u8:Pac12 National (720p)
-#DESCRIPTION Pac12 National (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//xrxs.net/video/live-p12losa-2328.m3u8:Pac12 Los Angeles (720p)
-#DESCRIPTION Pac12 Los Angeles (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//xrxs.net/video/live-p12ariz-2328.m3u8:Pac12 Arizona (720p)
-#DESCRIPTION Pac12 Arizona (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//xrxs.net/video/live-p12baya-2328.m3u8:Pac12 Bay Area (720p)
-#DESCRIPTION Pac12 Bay Area (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//xrxs.net/video/live-p12losa-2328.m3u8:Pac12 Los Angeles (720p)
-#DESCRIPTION Pac12 Los Angeles (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//xrxs.net/video/live-p12oreg-2328.m3u8:Pac12 Oregon (720p)
-#DESCRIPTION Pac12 Oregon(720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//208.92.36.158/ipad/live/nba_ipad_1240.m3u8:NHL US (360p)
-#DESCRIPTION NHL US (360p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8:Eurosport 1 (720p)
-#DESCRIPTION Eurosport 1 (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//195.206.253.157%3a8001/eurosport2hd:Eurosport 2 HD (1080p)
-#DESCRIPTION Eurosport 2 HD (1080p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//81.7.13.162/hls/ss1/index.m3u8:SuperSport 1 (720p)
-#DESCRIPTION SuperSport 1 (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//81.7.13.162/hls/ss2/index.m3u8:SuperSport 2 (720p)
-#DESCRIPTION SuperSport 2 (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//81.7.13.162/hls/ss3/index.m3u8:SuperSport 3 (720p)
-#DESCRIPTION SuperSport 3 (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.sportstv.com.tr/sportstv/SportsTV3/chunklist_w827652523.m3u8:Sports Canli TV (488p)
-#DESCRIPTION Sports Canli TV (488p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.yayindayiz.biz/Bursaspor/bursaspor/chunklist.m3u8:Bursa Spor (480p)
-#DESCRIPTION Bursa Spor (480p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//elementaldelta.redbull.tv/113_5.m3u8:Red Bull TV (720p)
-#DESCRIPTION Red Bull TV 2 (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//trtcanlitv-lh.akamaihd.net/i/TRTSPOR1_1@182042/index_1000_av-b.m3u8?sd=10&rebase=on
+#DESCRIPTION TRT SPOR (720p)
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//ujdwx6qj.rocketcdn.com/ntvsporhd.stream_720p/chunklist.m3u8?
+#DESCRIPTION NTV SPOR HD (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.48.227%3a6060
+#DESCRIPTION SPORTS HD (468p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//37.247.100.99/Bursaspor/bursaspor/playlist.m3u8
+#DESCRIPTION BURSA SPORT (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.sportstv.com.tr%3a1935/sportstv/SportsTV3/playlist.m3u8
+#DESCRIPTION SportsTV (488p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tjktv.ercdn.net/tjktv_576p.m3u8:TJK TV (576p)
+#DESCRIPTION TJK TV (576p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//edge02.dcarsat.com.ar%3a1935/DXTV/DXTV/master.m3u8:DXTX Argentina (432p)
 #DESCRIPTION DXTX Argentina (432p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//goltv.exabytetv.info%3a80/hls2/amlst%3a30001_ios/master.m3u8: GolTV Argentina (480p)
-#DESCRIPTION GolTV Argentina (480p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//univ-i.akamaihd.net/hls/live/222635/HLS12/chunklist.m3u8:TVJ SPORTS JAMAICA (360p)
-#DESCRIPTION TVJ SPORTS JAMAICA (360p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rm-edge-1.cdn2.streamago.tv%3a1935/streamagoedge/39648/36567/live.m3u8:RETE SPORT 8 (360p)
-#DESCRIPTION RETE SPORT 8 (360p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//173.236.10.10%3a1935/dgrau/dgrau/live.m3u8:TV ALL SPORT (720p)
 #DESCRIPTION TV ALL SPORT (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//motorsport.hopto.org%3a8080: FOX Sport (544p)
-#DESCRIPTION FOX Sport Motor (544p)
-#SERVICE 1:64:23:0:0:0:0:0:0:0:
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//rbtvdiglinear-i.akamaihd.net/hls/live/241719/ATfallback/master_3360.m3u8
+#DESCRIPTION RedBull
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
 #DESCRIPTION World
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//win.cdn.bonus-tv.ru/TVB8/wfhdeu/playlist.m3u8:Worldfashion Europa (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//mexicoserver.miamitvchannel.com/miamitv/smil%3amiamitvmexico/playlist.m3u8?tecnotv.info?iptv.m3u8
+#DESCRIPTION Miami tv
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//mexicoserver.miamitvchannel.com/miamitv/smil%3amiamitv/playlist.m3u8?tecnotv.info?iptv.m3u8
+#DESCRIPTION Miami +18
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//4.31.30.145%3a9040
+#DESCRIPTION Love on Top
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//4.31.30.145%3a9002
+#DESCRIPTION FOTO Gabriel
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live-edge01.telecentro.net.ar/live/smil%3atlx.smil/master.m3u8
+#DESCRIPTION Telemax (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//win.cdn.bonus-tv.ru/TVB8/wfhdeu/playlist.m3u8
 #DESCRIPTION Worldfashion Europa (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//win.cdn.bonus-tv.ru/TVB8/wfhd/playlist.m3u8:Worldfashion Russland (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//win.cdn.bonus-tv.ru/TVB8/wfhd/playlist.m3u8
 #DESCRIPTION Worldfashion Russland (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//95.67.8.22/hls/idfashion/index.m3u8:FashionID (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//95.67.8.22/hls/idfashion/index.m3u8
 #DESCRIPTION FashionID (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wowza02.newmedia.lu/channel1/smil%3achannel1/playlist.m3u8:RTL Tele Letzebourg (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wowza02.newmedia.lu/channel1/smil%3achannel1/playlist.m3u8
 #DESCRIPTION RTL Tele Letzebourg (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//abclive.abcnews.com/i/abc_live4@136330/index_2500_av-b.m3u8?sd=10&rebase=on:abc NEWS (720p)
-#DESCRIPTION abc NEWS (720p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//dwstream4-lh.akamaihd.net/i/dwstream4_live@131329/index_1_av-b.m3u8?sd=10&rebase=on&hdntl=:Deutsche Welle (400p)
 #DESCRIPTION Deutsche Welle (400p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//trtcanlitv-lh.akamaihd.net/i/TRTWORLD_1@321783/index_1500_av-b.m3u8?sd=10&rebase=on:TRT World (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//abclive.abcnews.com/i/abc_live4@136330/index_2500_av-b.m3u8?sd=10&rebase=on:abc NEWS (720p)
+#DESCRIPTION abc NEWS (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cbsnewshd-lh.akamaihd.net/i/CBSNHD_7@199302/index_700_av-p.m3u8
+#DESCRIPTION CBS NEWS HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//trtcanlitv-lh.akamaihd.net/i/TRTWORLD_1@321783/index_720p_av-p.m3u8:TRT World (720p)
 #DESCRIPTION TRT World (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rt-lh.akamaihd.net/i/ch_05@325609/index_720p_av-p.m3u8?sd=10&rebase=on:RT Russia Documentary (720p)
-#DESCRIPTION RT Russia Documentary (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rt-lh.akamaihd.net/i/ch_01@325605/index_720p_av-p.m3u8?sd=10&rebase=on:RT Russia (720p)
-#DESCRIPTION RT Russia (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//nhkwglobal-i.akamaihd.net/hls/live/222714/nhkwglobal/index.m3u8:NHK News engl. (360p)
-#DESCRIPTION NHK News engl. (360p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdn3.videos.bloomberg.com/btv/eu/master.m3u8:Bloomberg (540p)
-#DESCRIPTION Bloomberg (540p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//a3live-lh.akamaihd.net/i/antena3_1@35248/master.m3u8:Antena3 Espania (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//a3live-lh.akamaihd.net/i/antena3_1@35248/master.m3u8
 #DESCRIPTION Antena3 Espania (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//hlslive.rtve.es/24H_LV3_IPH/master.m3u8:RTVE 24 (360p)
-#DESCRIPTION RTVE 24 (360p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ec.playmedia.fr%3a1935/enorme-tv/live/master.m3u8:Enorme-tv (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ec.playmedia.fr%3a1935/enorme-tv/live/master.m3u8
 #DESCRIPTION Enorme-tv (480p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ec.playmedia.fr%3a1935/om5-tv/live/master.m3u8:Om5-tv (480p)
-#DESCRIPTION Om5-tv (480p)
-#SERVICE 1:64:0:0:0:0:0:0:0:0:GREEG
-#DESCRIPTION GREEG
-#SERVICE 4097:0:2:0:0:0:0:0:0:0:http%3a//178.62.176.153%3a1935/TV100/myStream/chunklist_w2009393837.m3u8:tv100 (288p)
-#DESCRIPTION TV100 (288p)
-#SERVICE 4097:0:2:0:0:0:0:0:0:0:http%3a//136.243.200.184%3a1935/live/tvlive/chunklist_w1038259198.m3u8:4 Music (404p)
-#DESCRIPTION Blue Sky (404p)
-#SERVICE 4097:0:2:0:0:0:0:0:0:0:http%3a//s2.greekelitetv.com%3a1935/alpha_sat/alpha_sat.stream/chunklist_w754813073.m3u8:AlphaSat (480p)
-#DESCRIPTION AlphaSat (480p)
-#SERVICE 4097:0:2:0:0:0:0:0:0:0:http%3a//antglantennatv-lh.akamaihd.net/i/live_1@421307/index_1000_av-b.m3u8:ANT(720p)
-#DESCRIPTION ANT (720p)
-#SERVICE 4097:0:2:0:0:0:0:0:0:0:http%3a//anglantennalive5-lh.akamaihd.net/i/live_1@424766/index_700_av-p.m3u8:M.HD (720p)
-#DESCRIPTION M.HD (1080p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//s2.greekelitetv.com%3a1935/mega_cosmos/mega_cosmos.stream/chunklist_w1283227944.m3u8:MEGA Cosmos(480p)
-#DESCRIPTION MEGA Cosmos (480p)
-#SERVICE 4097:0:2:0:0:0:0:0:0:0:http%3a//81.171.14.113/hlive/abr/l1/m1/chunks.m3u8?nimblesessionid=28088&wmsAuthSign=c2VydmVyX3RpbWU9MS8yNS8yMDE3IDg6MzM6MDcgQU0maGFzaF92YWx1ZT1tb2ZJTzRmQ2NWRmJyZ0prcDFsVFJBPT0mdmFsaWRtaW51dGVzPTY2MA==:MEGA ONE (576p)
-#DESCRIPTION MEGA ONE (432p)
-#SERVICE 4097:0:2:0:0:0:0:0:0:0:http%3a//stream.ssh101.com%3a1935/live/nickelteamgreece/chunklist.m3u8:Nickelodeon (360p)
-#DESCRIPTION Nickelodeon (576p)
-#SERVICE 4097:0:2:0:0:0:0:0:0:0:http%3a//138.201.57.212%3a1935/best/myStream/chunklist_w659591430.m3u8:BEST (720p)
-#DESCRIPTION BEST (480p)
-#SERVICE 4097:0:2:0:0:0:0:0:0:0:http%3a//zouglahd-f.akamaihd.net/i/zougla_1@56341/index_700_av-p.m3u8?sd=10&rebase=on:Zougla  (576p)
-#DESCRIPTION Zougla (360p)
-#SERVICE 4097:0:2:0:0:0:0:0:0:0:http%3a//euronews-live-b-cdn.hexaglobe.net/9c533ba81db8f5fac6cc3d33ce5c41c0/588851bb/euronews/ewnslivebkp_gre.smil/ewnslivebkp_gre_540p.m3u8:Euronews (576p)
-#DESCRIPTION Euronews Greeg (576p)
-#SERVICE 1:64:24:0:0:0:0:0:0:0:
-#DESCRIPTION Chech
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//prima-ott-live-sec.service.cdn.cra.cz/channels/prima_zoom/playlist/cze/live_hq.m3u8:Prima ZOOM (540p)
-#DESCRIPTION Prima ZOOM (540p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//prima-ott-live-sec.service.cdn.cra.cz/channels/prima_love/playlist/cze/live_hq.m3u8:Prima LOVE (540p)
-#DESCRIPTION Prima LOVE (540p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//prima-ott-live-sec.service.cdn.cra.cz/channels/prima_family/playlist/cze/live_hq.m3u8:Prima FAMILIA (540p)
-#DESCRIPTION Prima FAMILIA (540p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//prima-ott-live-sec.service.cdn.cra.cz/channels/prima_cool/playlist/cze/live_hq.m3u8:Prima COOL (540p)
-#DESCRIPTION Prima COOL (540p)
-#SERVICE 1:64:24:0:0:0:0:0:0:0:
-#DESCRIPTION Albanien
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//84.22.56.10%3a1935/rtk1stream/rtk1.stream/chunklist_w380526182.m3u8:RTK1(558p)
-#DESCRIPTION RTK1(558p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//84.22.56.10%3a1935/rtk2stream/rtk2.stream/chunklist_w740545507.m3u8:RTK2(558p)
-#DESCRIPTION RTK2(558p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//84.22.56.10%3a1935/rtk3stream/rtk3.stream/chunklist_w1318371618.m3u8:RTK3(558p)
-#DESCRIPTION RTK3(558p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.138.17.8%3a1935/albuk/albuk.stream/playlist.m3u8:AlB BUK HD(720p)
-#DESCRIPTION AlB BUK(720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.138.17.8%3a1935/albuk/albukplus.stream/playlist.m3u8:AlB Movie HD(720p)
-#DESCRIPTION AlB Movie HD(720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.138.17.8%3a1935/albuk/albmus.stream/playlist.m3u8:AlB Music HD(720p)
-#DESCRIPTION AlB Music HD(720p)
-#SERVICE 1:64:24:0:0:0:0:0:0:0:
-#DESCRIPTION Armenien GisherTV
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/h1.m3u8:H1(720p)
-#DESCRIPTION H1(720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/h2.m3u8:H2(720p)
-#DESCRIPTION H2(720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/h3.m3u8:H3(360p)
-#DESCRIPTION H3(360p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/dar21.m3u8:dar21 music(576p)
-#DESCRIPTION dar21 Music(576p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/toot.m3u8:TooT Music(720p)
-#DESCRIPTION TooT Music
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/atv.m3u8:ATV(720p)
-#DESCRIPTION ATV(720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/ararat.m3u8:ararat(576p)
-#DESCRIPTION ararat(576p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/shant.m3u8:Shant(720p)
-#DESCRIPTION Shant(720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/armeniatv.m3u8:Armenia TV(720p)
-#DESCRIPTION Armenia TV(720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/armnews.m3u8:Armenia news(720p)
-#DESCRIPTION Armenia news(720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/artv.m3u8:ArTV (576p)
-#DESCRIPTION ArTV (576p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/usarm.m3u8:usarmenia(480p)
-#DESCRIPTION usarmenia (480p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//srv89.gisher.org/tv/erkir.m3u8:Erkir (576p)
-#DESCRIPTION Erkir (576p)
+#SERVICE 1:64:0:0:0:0:0:0:0:0::USA
+#DESCRIPTION USA
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//adultswim-vodlive.cdn.turner.com/the-venture-bros/stream.m3u8
+#DESCRIPTION Adult Swim 1
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//adultswim-vodlive.cdn.turner.com/live/rick-and-morty/stream.m3u8
+#DESCRIPTION Adult Swim 2 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//amd.cdn.turner.com/adultswim/big/streams/playlists/animated-marathon.m3u8
+#DESCRIPTION Adult Swim 3 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8:Weather Nation
+#DESCRIPTION Weather Nation
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rt-eng-live.hls.adaptive.level3.net/rt/eng/index1600.m3u8:RT America
+#DESCRIPTION RT America
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tribwdaf-lh.akamaihd.net/i/WDAFBreaking_1@394769/index_1900_av-b.m3u8?sd=10&rebase=on:Fox 4 News Kansas City, MI
+#DESCRIPTION Fox 4 News Kansas City, MI
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net/hls/live/224672/WHBQ/564k/prog.m3u8:Fox 13 Memphis, TN
+#DESCRIPTION Fox 13 Memphis, TN
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net%3a80/hls/live/224709/KOKI/904k/prog.m3u8:Fox 23 news Tulsa, OH
+#DESCRIPTION Fox 23 news Tulsa, OH
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net%3a80/hls/live/224671/WFXT/904k/prog.m3u8:Fox 25 News Boston, MA
+#DESCRIPTION Fox 25 News Boston, MA
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net%3a80/hls/live/224710/WFOX/904k/prog.m3u8:Fox 30 News Jacksonville, FL
+#DESCRIPTION Fox 30 News Jacksonville, FL
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//reflect-ch68-bronxnet-tv.cablecast.tv/live/WIFI-1896k-720p/WIFI-1896k-720p.m3u8:Bronxnet Channel 68
+#DESCRIPTION Bronxnet Channel 68
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//reflect-ch69-bronxnet-tv.cablecast.tv/live/WIFI-1896k-720p/WIFI-1896k-720p.m3u8:Bronxnet Channel 69
+#DESCRIPTION Bronxnet Channel 69
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//reflect-ch70-bronxnet-tv.cablecast.tv/live/WIFI-1896k-720p/WIFI-1896k-720p.m3u8:Bronxnet Channel 70
+#DESCRIPTION Bronxnet Channel 70
+#SERVICE 4097:0:0:0:0:0:0:0:0:0:http%3a//cspan1-lh.akamaihd.net/i/cspan1_1@304727/index_1000_av-p.m3u8?sd=10&rebase=on:C-SPAN 1 news US
+#DESCRIPTION C-SPAN 1 news US
+#SERVICE 4097:0:0:0:0:0:0:0:0:0:http%3a//cspan2-lh.akamaihd.net/i/cspan2_1@304728/index_1000_av-p.m3u8?sd=10&rebase=on:C-SPAN 2 news US
+#DESCRIPTION C-SPAN 2 news US
+#SERVICE 4097:0:0:0:0:0:0:0:0:0:http%3a//cspan3-lh.akamaihd.net/i/cspan3_1@304729/index_1000_av-p.m3u8?sd=10&rebase=on:C-SPAN 3 news US
+#DESCRIPTION C-SPAN 3 news US
+#SERVICE 4097:0:0:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net/hls/live/224708/KIRO/564k/prog.m3u8:CBS 7 Seattle, WA
+#DESCRIPTION CBS 7 Seattle, WA
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Albanien 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//edge02al.ekranet.com/rtshhd1/index.m3u8?e=9c21e88a99897b1f557853676fb09b9f&c=rtshhd1&medium=websocket" 
+#DESCRIPTION RTSH 1 (1080p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//edge02eu.ekranet.com/rtsh2hd1/index.m3u8?e=k6reyce8z5i3u9tbvf&c=rtshhd2 
+#DESCRIPTION RTSH 2 (1080p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.shqiptv.com%3a7080/8073/index.m3u8
+#DESCRIPTION VIZYON PLUS HD (1080i)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.shqiptv.com%3a7080/8091/index.m3u8 
+#DESCRIPTION Tribuna (720p) 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//84.22.56.10%3a1935/rtk1stream/rtk1.stream/chunklist_w380526182.m3u8
+#DESCRIPTION RTK1 (558p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//84.22.56.10%3a1935/rtk2stream/rtk2.stream/chunklist_w740545507.m3u8
+#DESCRIPTION RTK2 (558p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//84.22.56.10%3a1935/rtk3stream/rtk3.stream/chunklist_w1318371618.m3u8
+#DESCRIPTION RTK3 (558p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//84.22.56.10%3a1935/rtk4stream/rtk4.stream/chunklist_w1318371618.m3u8
+#DESCRIPTION RTK4 (558p)
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//82.114.65.202%3a1935/live/rrokumtv/playlist.m3u8
+#DESCRIPTION RROKUM HD (720p)
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//66.55.93.204/hls-live/livepkgr/_definst_/report/stream.m3u8
+#DESCRIPTION REPORT TV (450p)
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//tv.balkanweb.com%3a8081/news24/livestream/playlist.m3u8
+#DESCRIPTION NEWS 24 (432p)
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//84.20.77.50%3a554/live/rtmp.stream/playlist.m3u8
+#DESCRIPTION TV Jug (404p)
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//stream.shqiptv.com%3a7080/altvusa/index.m3u8
+#DESCRIPTION ALBANIAN TV USA (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//uk4.streamingpulse.com%3a1935/RTVZiK/RTVZiK/playlist.m3u8
+#DESCRIPTION RTV Zik Denmark (720p) 
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:rtmp%3a//live.tvkoha.tv/live/koha/livestream
+#DESCRIPTION KOHA TV (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.opoja.tv%3a8000/live/HD/TvOpoja/1.m3u8 
+#DESCRIPTION OPOJA TV (720p)
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//xrozafashkoder1x.api.channel.livestream.com/3.0/playlist.m3u8
+#DESCRIPTION ROZAFA(576p)  
+#SERVICE 1:64:0:0:0:0:0:0:0:0::Czech
+#DESCRIPTION Czech - Tschechien
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//199.195.199.196%3a5000/live/365/365.m3u8
+#DESCRIPTION STV 1
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//199.195.199.196%3a5000/live/366/366.m3u8
+#DESCRIPTION STV 2
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//208.43.120.148%3a5000/live/116/116.m3u8
+#DESCRIPTION Prima COOL
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//208.43.120.148%3a5000/live/193/193.m3u8
+#DESCRIPTION Prima LOVE
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//208.43.120.148%3a5000/live/120/120.m3u8
+#DESCRIPTION NOVA Cinema
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//208.43.120.148%3a5000/live/122/122.m3u8
+#DESCRIPTION CSmini
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//208.43.120.148%3a5000/live/121/121.m3u8
+#DESCRIPTION TV Barrandov
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//108.168.175.182%3a5000/live/278/278.m3u8
+#DESCRIPTION MINIMAX (404p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//199.195.199.196%3a5000/live/312/312.m3u8
+#DESCRIPTION Spektrum HOME
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//199.195.199.196%3a5000/live/368/368.m3u8
+#DESCRIPTION Doma
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//nn.geo.joj.sk/hls/family-540.m3u8
+#DESCRIPTION JOJ Family 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//http-stream.joj.sk/joj/joj/index-hq.m3u8
+#DESCRIPTION JOJ
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//199.195.199.196%3a5000/live/367/367.m3u8
+#DESCRIPTION JOJ+
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//199.195.199.196%3a5000/live/410/410.m3u8
+#DESCRIPTION Rebel 1
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tv.slusnejkanal.cz/hls/sktv.m3u8:
+#DESCRIPTION Rebel 2
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//199.195.199.196%3a5000/live/412/412.m3u8
+#DESCRIPTION Retro
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//65.254.55.10%3a4000/live/196/196.m3u8
+#DESCRIPTION Ceskoslovensko HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//65.254.55.10%3a4000/live/195/195.m3u8
+#DESCRIPTION Nick
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//65.254.55.10%3a4000/live/197/197.m3u8
+#DESCRIPTION Eurosport
+#SERVICE 1:64:0:0:0:0:0:0:0:0:Polen
+#DESCRIPTION Polen
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/1A4514F5/12311/0/hls720/720p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION POLSAT SPORT FIGHT HD
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/ECD95B41/1573/0/hls720/720p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION FIGHT BOX HD
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/478676E7/11313/0/hls576/576p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION FILM BOX Action
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/60306450/1569/0/hls576/576p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION FILM BOX Familie
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/E1BE2FA1/3245/0/hls720/720p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION SUNDANCE.TV HD
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/BF9ACBBA/11376/0/hls720/720p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION LIFETIME HD
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/00643E2B/4196/0/hls720/720p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION POLSAT VIASAT EXPLORE HD
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/C1F25A0A/4194/0/hls720/720p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION POLSAT VIASAT HISTORY HD
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/27D4F385/4195/0/hls576/576p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION POLSAT VIASAT NATURE
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/BB4D1F8E/11387/0/hls720/720p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION H2 HD
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/76929AC6/1571/0/hls576/576p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION KINO POLSKA
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/20C4EB56/1575/0/hls576/masterlist.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION POLSAT NEWS 2
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/97100F84/1577/0/hls576/576p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION SUPERSTACJA
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/4C97F3A2/11306/0/hls576/576p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION POLSAT CRIME
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/B34FB49D/1567/0/hls576/576p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION KINO POLSKA MUSIC
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/99520853/1576/0/hls576/576p/list.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION 4FUN TV
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//94.246.169.19/ttv_hls/live_720p/index.m3u8?#User-Agent=Mozilla/5.0
+#DESCRIPTION WIFI-Films PL
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION HELLAS - Griechenland
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8?u=n1info#User-Agent=Android
+#DESCRIPTION Aigaio TV (490p)Verbindung dauert lange
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//antglantennatv-lh.akamaihd.net/i/live_1@421307/index_1000_av-b.m3u8:Antenna
+#DESCRIPTION Antenna (360p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.streams.ovh%3a1935/cannali/cannali/playlist.m3u8:Canali
+#DESCRIPTION Canali (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//live.cretetv.gr/cretetv/myStream:CreteTv
+#DESCRIPTION CreteTv (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wpso.com%3a1936/hls/wzra.m3u8?#User-Agent=Android:Greek Voice
+#DESCRIPTION Greek Voice (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.ioniantv.gr%3a8081/ionian/live/playlist.m3u8:Ionian Channel
+#DESCRIPTION Ionian Channel (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//flashcloud.mediacdn.com/live/kontratv/.m3u8:Kontra
+#DESCRIPTION Kontra (400p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//94.23.218.186%3a1935/magictv/magictv/playlist.m3u8:Magic TV
+#DESCRIPTION Magic TV (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream2.svbllc.com%3a1935/mega/mega.stream/playlist.m3u8:Mega Cosmos
+#DESCRIPTION Mega Cosmos (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//138.197.136.102%3a8081/live/greektv/playlist.m3u8:Montreal Greek TV
+#DESCRIPTION Montreal Greek TV (480p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//xmpaxalotv1x.api.channel.livestream.com/3.0/playlist.m3u8?u=n1info#User-Agent=Android
+#DESCRIPTION MPAXALO TV(540p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//srv.viiideo.gr%3a1935/neatv/live/playlist.m3u8:NEA TV
+#DESCRIPTION NEA TV (576p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.netvtoronto.com%3a1935/NetvToronto/NetvToronto/playlist.m3u8:NETV Toronto
+#DESCRIPTION NETV Toronto (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream2.omegatv.net/hls-live/livepkgr/_definst_/liveevent/omegatv.m3u8:Omega
+#DESCRIPTION Omega (300p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//81.21.47.74/hls/live.m3u8:Sigma CY
+#DESCRIPTION Sigma CY (864p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//hls.onestreaming.com%3a1935/live/thrakinettv:Thrakinet
+#DESCRIPTION Thrakinet (360p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.62.176.153/hls/tv100/index.m3u8:TV 100
+#DESCRIPTION TV 100 (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.streams.ovh%3a1935/tvfilopoli/tvfilopoli/playlist.m3u8:TV Filopoli
+#DESCRIPTION TV Filopoli (360p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//streamer-cache.grnet.gr/parliament/hls/webtv.m3u8:VOULI
+#DESCRIPTION VOULI (540p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//wpso.com%3a1936/hls/music1.m3u8?#User-Agent=Android
+#DESCRIPTION TILEMOUSIKI
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//81.21.47.74/hls/live.m3u8
+#DESCRIPTION Sigma CY
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//wpso.com%3a1936/hls/wzra.m3u8?#User-Agent=Android
+#DESCRIPTION Greek Voice
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//138.197.136.102%3a8081/live/greektv/playlist.m3u8
+#DESCRIPTION Montreal Greek TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.ioniantv.gr%3a8081/ionian/live/playlist.m3u8
+#DESCRIPTION Ionian Channel 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//144.76.2.213%3a1935/live/livestream/playlist.m3u8
+#DESCRIPTION MAD TV CY 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott.ec.streamcloud.be/live/disk1/EBS/hls_el/EBS-audio_AACL_ell_66400_207=66400-video=800000.m3u8
+#DESCRIPTION EBS 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott.ec.streamcloud.be/live/disk1/EBSplus/hls_el/EBSplus-audio_AACL_ell_66400_407=66400-video=800000.m3u8
+#DESCRIPTION EBS Plus 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.cretetv.gr%3a1935/cretetv/myStream/playlist.m3u8
+#DESCRIPTION KPHTH TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//176.9.123.140%3a1935/messinia/messinia/master.m3u8
+#DESCRIPTION Messinia TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.streams.ovh%3a1935/cannali/cannali/playlist.m3u8
+#DESCRIPTION CANNALI 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//176.9.123.140%3a1935/hellastv/_definst_/mp4%3astream/master.m3u8
+#DESCRIPTION Hellas TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.netvtoronto.com%3a1935/NetvToronto/NetvToronto/playlist.m3u8
+#DESCRIPTION NETV Toronto 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream2.svbllc.com%3a1935/mega/mega.stream/playlist.m3u8
+#DESCRIPTION Mega Cosmos 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.streams.ovh%3a1935/tvfilopoli/tvfilopoli/playlist.m3u8
+#DESCRIPTION TV Filopoli 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.62.176.153/hls/tv100/index.m3u8
+#DESCRIPTION TV 100 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//srv.viiideo.gr%3a1935/neatv/live/playlist.m3u8
+#DESCRIPTION NEA TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//flashcloud.mediacdn.com/live/kontratv/.m3u8
+#DESCRIPTION Kontra 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//srv.viiideo.gr%3a1935/axeloos/live/playlist.m3u8
+#DESCRIPTION Axelwos TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//s.bizr.gr%3a8080/hls/best.m3u8
+#DESCRIPTION Best TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//82.192.84.30%3a554/live/myStream.sdp/playlist.m3u8
+#DESCRIPTION 4E 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//erato.multiserver.gr%3a1935/imp/imp/playlist.m3u8
+#DESCRIPTION Lychnos 
+#SERVICE 1:64:0:0:0:0:0:0:0:0::Schweden
+#DESCRIPTION Schweden
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdn-kanal10.crossnet.net%3a1935/kanal10/mp4%3akanal10sverige/playlist.m3u8:TV10 (Zweden)
+#DESCRIPTION TV10 (Zweden)
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//tv4events3-lh.akamaihd.net/i/EXTRAEVENT14_1@324065/master.m3u8:TV4-Event (Zweden)
+#DESCRIPTION TV4-Event (Zweden)
+#SERVICE 1:64:0:0:0:0:0:0:0:0::Daenemark
+#DESCRIPTION Daenemark
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//dr01-lh.akamaihd.net/i/live/dr01_0@147054/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION DR 1 HD (1080p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//dr02-lh.akamaihd.net/i/live/dr02_0@147055/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION DR 2 HD (1080p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//dr03-lh.akamaihd.net/i/live/dr03_0@147056/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION DR 3 HD (1080p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//dr04-lh.akamaihd.net/i/live/dr04_0@147057/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION DR K (1080p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//dr05-lh.akamaihd.net/i/live/dr05_0@147058/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION DR Ramasjang (1080p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//dr06-lh.akamaihd.net/i/live/dr06_0@147059/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION DR Ultra (720p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//tv2danmark-tv2news-live.hls.adaptive.level3.net/tv2danmark/tv2news/master3200kbps.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION TV2 News HD (720p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//tv2danmark-tv2nord-live.hls.adaptive.level3.net/tv2danmark/tv2nord/master3200kbps.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION TV2 Nord (720p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//tv2danmark-tv2zulu-live.hls.adaptive.level3.net/tv2danmark/tv2zulu/master3200kbps.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION TV2 Zulu (720p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//tv2danmark-tv2fri-live.hls.adaptive.level3.net/tv2danmark/tv2fri/master3200kbps.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION TV2 Fri (720p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//tv2danmark-tv2charlie-live.hls.adaptive.level3.net/tv2danmark/tv2charlie/master3200kbps.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION TV2 Charlie (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdn-lt-hls-vod.tv2lorry.dk/fhls/p/2045321/sp/204532100/serveFlavor/entryId/0_0u9letdh/v/1/flavorId/0_p5f7q6yf/name/a.mp4/index.m3u8:
+#DESCRIPTION TV2 Lorry
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tv2danmark-tv2sport-live.hls.adaptive.level3.net/tv2danmark/tv2sport/master.m3u8:
+#DESCRIPTION TV 2 Sport
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//dnordichlslive04-i.akamaihd.net/hls/live/223840/6DKHD/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION 6eren HD (720p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//dnordichlslive09-i.akamaihd.net/hls/live/223862/C9DKHD/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION Canal 9 HD (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//03.sf.bg.unistream.tv/test/canalmotor-hls/pl.m3u8?time=1462400376714:
+#DESCRIPTION Canal Motor
+#SERVICE 4097:0:0:0:0:0:0:0:0:0:http%3a//83.140.64.214/edge/_93pr0kxj_/93pr0kxj/chunklist_w404315212.m3u8:
+#DESCRIPTION Vastmanlands TV
+#SERVICE 1:64:0:0:0:0:0:0:0:0::Finnland
+#DESCRIPTION Finland
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//yletv-lh.akamaihd.net/i/yletv1hls_1@103188/master.m3u8?u=n1info#X-Forwarded-For=87.92.1.250
+#DESCRIPTION YLE TV 1 HD (720p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//yletv-lh.akamaihd.net/i/yletv2hls_1@103189/master.m3u8?u=n1info#X-Forwarded-For=87.92.1.250
+#DESCRIPTION YLE TV 2 HD (720p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//yletv-lh.akamaihd.net/i/ylefemfihls_1@103185/master.m3u8?u=n1info#X-Forwarded-For=87.92.1.250
+#DESCRIPTION YLE TV Fem HD (720p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//yletv-lh.akamaihd.net/i/yleteemahls_1@103187/master.m3u8?u=n1info#X-Forwarded-For=87.92.1.250
+#DESCRIPTION YLE TV Teema HD (720p)
+#SERVICE 1:64:0:0:0:0:0:0:0:0::
+#DESCRIPTION Island
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tv.vodafoneplay.is/n4/03.m3u8:
+#DESCRIPTION N4
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ruvruverl-live.hls.adaptive.level3.net/ruv/ruverl/index/stream4.m3u8:
+#DESCRIPTION RUV
