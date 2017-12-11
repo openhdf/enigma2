@@ -21,11 +21,13 @@ import urllib2
 import os
 import shutil
 import math
-from boxbranding import getBoxType,  getImageDistro, getMachineName, getMachineBrand, getImageVersion, getMachineKernelFile, getMachineRootFile, getMachineBuild
+from boxbranding import getBoxType,  getImageDistro, getMachineName, getMachineBrand, getImageVersion, getMachineKernelFile, getMachineRootFile, getMachineBuild, getMachineMtdKernel, getMachineMtdRoot
 distro =  getImageDistro()
 ImageVersion = getImageVersion()
 ROOTFSBIN = getMachineRootFile()
 KERNELBIN = getMachineKernelFile()
+MTDKERNEL = getMachineMtdKernel()
+MTDROOTFS = getMachineMtdRoot()
 
 #############################################################################################################
 # Create a List of imagetypes
@@ -73,7 +75,7 @@ class FlashOnline(Screen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.selection = 0
-		if getMachineBuild() in ("hd51","vs1500","h7","ceryon7252"):
+		if getMachineBuild() in ("hd51","vs1500","h7","8100s"):
 			self.devrootfs = "/dev/mmcblk0p3"
 		elif getMachineBuild() in ("gb7252"):
 			self.devrootfs = "/dev/mmcblk0p4"
@@ -166,11 +168,7 @@ class FlashOnline(Screen):
 				self.multi = self.read_startup("/boot/" + self.list[self.selection]).split(".",1)[1].split(" ",1)[0]
 				self.multi = self.multi[-1:]
 			print "[Flash Online] MULTI:",self.multi
-			if getMachineBuild() in ("hd51","vs1500","h7","ceryon7252"):
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",3)[3].split(" ",1)[0]
-			else:
-				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-			self.devrootfs = cmdline
+			self.devrootfs = self.find_rootfs_dev(self.list[self.selection])
 			print "[Flash Online] MULTI rootfs ", self.devrootfs
 
 	def read_startup(self, FILE):
@@ -180,29 +178,22 @@ class FlashOnline(Screen):
 		myfile.close()
 		return data
 
+	def find_rootfs_dev(self, file):
+		startup_content = self.read_startup("/boot/" + file)
+		return startup_content[startup_content.find("root=")+5:].split()[0]
+
 	def list_files(self, PATH):
 		files = []
 		if SystemInfo["HaveMultiBoot"]:
 			path = PATH
-			if getMachineBuild() in ("hd51","vs1500","h7","ceryon7252"):
+			if getMachineBuild() in ("hd51","vs1500","h7","8100s","gb7252"):
 				for name in os.listdir(path):
 					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
 						try:
-							cmdline = self.read_startup("/boot/" + name).split("=",3)[3].split(" ",1)[0]
+							cmdline = self.find_rootfs_dev(name)
 						except IndexError:
 							continue
-						cmdline_startup = self.read_startup("/boot/STARTUP").split("=",3)[3].split(" ",1)[0]
-						if (cmdline != cmdline_startup) and (name != "STARTUP"):
-							files.append(name)
-				files.insert(0,"STARTUP")
-			elif getMachineBuild() in ("gb7252"):
-				for name in os.listdir(path):
-					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
-						try:
-							cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
-						except IndexError:
-							continue
-						cmdline_startup = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+						cmdline_startup = self.find_rootfs_dev("STARTUP")
 						if (cmdline != cmdline_startup) and (name != "STARTUP"):
 							files.append(name)
 				files.insert(0,"STARTUP")
@@ -268,7 +259,7 @@ class doFlashImage(Screen):
 
 
 	def quit(self):
-		if self.simulate or not self.List == "STARTUP":
+		if self.simulate or self.List not in ("STARTUP","cmdline.txt"):
 			fbClass.getInstance().unlock()
 		self.close()
 
@@ -397,6 +388,8 @@ class doFlashImage(Screen):
 					text += _("Simulate (no write)")
 					if SystemInfo["HaveMultiBoot"]:
 						cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
+					elif getMachineBuild() in ("u5","u5pvr"):
+						cmdlist.append("%s -n -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
 					else:
 						cmdlist.append("%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 					self.close()
@@ -406,16 +399,18 @@ class doFlashImage(Screen):
 				else:
 					text += _("root and kernel")
 					if SystemInfo["HaveMultiBoot"]:
-						if not self.List == "STARTUP":
+						if self.List not in ("STARTUP","cmdline.txt"):
 							os.system('mkfs.ext4 -F ' + self.devrootfs)
 						cmdlist.append("%s -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
-						if not self.List == "STARTUP":
+						if self.List not in ("STARTUP","cmdline.txt"):
 							cmdlist.append("umount -fl /oldroot_bind")
 							cmdlist.append("umount -fl /newroot")
+					elif getMachineBuild() in ("u5","u5pvr"):
+						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
 					else:
 						cmdlist.append("%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 					message = "echo -e '\n"
-					if not self.List == "STARTUP" and SystemInfo["HaveMultiBoot"]:
+					if self.List not in ("STARTUP","cmdline.txt") and SystemInfo["HaveMultiBoot"]:
 						message += _('ofgwrite flashing ready.\n')
 						message += _('please press exit to go back to the menu.\n')
 					else:
@@ -428,7 +423,7 @@ class doFlashImage(Screen):
 					message += "'"
 					cmdlist.append(message)
 					self.session.open(Console, title = text, cmdlist = cmdlist, finishedCallback = self.quit, closeOnSuccess = False)
-					if not self.List == "STARTUP":
+					if self.List not in ("STARTUP","cmdline.txt"):
 						self.close()
 
 	def prepair_flashtmp(self, tmpPath):
