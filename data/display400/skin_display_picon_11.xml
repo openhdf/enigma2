@@ -610,6 +610,10 @@
 		<panel name="MeinRecordingPanel" />
 		<panel name="MeinTunerInfoPanel" />
 	</screen>
+	<!-- LCD screen webradioFS -->
+	<screen name="webradioFSdisplay13" position="0,0" size="400,240">
+		<widget source="Zeile2" render="Label" position="5,90" size="390,100" font="FdLcD;30" noWrap="0" />
+	</screen>
 <!-- VMC Screen -->
 	<screen name="VMCBaseSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,178" font="MyLcD;41" foregroundColor="Menue-Titel" halign="center" valign="center" />

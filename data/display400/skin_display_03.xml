@@ -293,4 +293,8 @@
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
+	<!-- LCD screen webradioFS -->
+	<screen name="webradioFSdisplay13" position="0,0" size="400,240">
+		<widget source="Zeile2" render="Label" position="5,90" size="390,100" font="FdLcD;30" noWrap="0" />
+	</screen>
 </skin>
