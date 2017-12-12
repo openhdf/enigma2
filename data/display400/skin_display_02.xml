@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- modified by googgi for openhdf - version 17.08.2017-->
+<!-- modified by googgi for openhdf - version 12.12.2017-->
 <skin>
 	<windowstyle id="1" type="skinned">
 		<color color="#000000" name="Background"/>
@@ -441,11 +441,9 @@
 		<widget source="parent.text_summary" render="Label" position="0,16" size="400,54" font="FdLcD;12" halign="left" transparent="1" />
 		<panel name="IconPanel" />
 	</screen>
-	<!-- webradioFS -->
-	<screen name="webradioFSdisplay13" position="0,0" size="400,240" >
-	<widget source="Zeile1" render="Label" position="0,0" size="400,100" font="FdLcD;30" foregroundColor="#FFDD00" halign="center" />
-	<widget source="Zeile2" render="Label" position="0,110" size="400,60" font="FdLcD;28" foregroundColor="#FFFF00" halign="center" />
-	<widget source="Zeile3" render="Label" position="0,180" size="400,60" font="FdLcD;28" foregroundColor="#FFFF00" halign="center" />
+	<!-- LCD screen webradioFS -->
+	<screen name="webradioFSdisplay13" position="0,0" size="400,240">
+		<widget source="Zeile2" render="Label" position="5,90" size="390,100" font="FdLcD;30" noWrap="0" />
 	</screen>
 	<!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="400,240" flags="wfNoBorder">

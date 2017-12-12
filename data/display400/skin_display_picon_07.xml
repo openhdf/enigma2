@@ -474,6 +474,10 @@
 		<widget name="text2" position="0,60" size="400,100" font="FdLcD;30" halign="center" valign="center"/>
 		<panel name="SummaryClockPanel" />
 	</screen>
+	<!-- LCD screen webradioFS -->
+	<screen name="webradioFSdisplay13" position="0,0" size="400,240">
+		<widget source="Zeile2" render="Label" position="5,90" size="390,100" font="FdLcD;30" noWrap="0" />
+	</screen>
 <!-- EMC Screen -->
 	<screen name="EMCSelection_summary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,72" font="FdLcD;32" foregroundColor="#FF8C00" halign="center" valign="center" />
