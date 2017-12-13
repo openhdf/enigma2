@@ -12,22 +12,6 @@ if [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
 		@bindir@/showiframe @datadir@/bootlogo.mvi
 fi
 
-if [ -x @bindir@/showiframe ]; then
-	if [ -e /proc/stb/info/boxtype ]; then
-		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
-		if [ ! $stbcheck == "u5" ]; then
-			killall -9 showiframe; sleep 1
-		fi
-	else
-		killall -9 showiframe; sleep 1
-	fi
-	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
-		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
-	elif [ -f @datadir@/backdrop.mvi ]; then
-		@bindir@/showiframe @datadir@/backdrop.mvi
-	fi
-fi
-
 # workaround for corrupt ssl files
 if ! grep ^config.misc.firstrun=false /etc/enigma2/settings >/dev/null; then
 	rm -rf /etc/enigma2/cert.pem &
@@ -133,27 +117,9 @@ fi
 # >128 signal
 
 ret=$?
-if [ "$ret" -ne "1" ]; then
-	if [ -e /proc/stb/info/boxtype ]; then
-		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
-		if [ $stbcheck == "u5" ]; then
-			killall -9 showiframe; sleep 5
-		fi
-	fi
-fi
-
 case $ret in
 	1)
-		if [ -e /proc/stb/info/boxtype ]; then
-			stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
-			if [ $stbcheck == "u5" ]; then
-				/usr/bin/hihalt
-			else
-				/sbin/halt
-			fi
-		else
-			/sbin/halt
-		fi
+		/sbin/halt
 		;;
 	2)
 		if [ -f /proc/stb/fp/force_restart ]; then
