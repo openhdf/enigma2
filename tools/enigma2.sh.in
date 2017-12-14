@@ -29,6 +29,7 @@ if [ -x /usr/bin/showiframe ]; then
 		if [ ! $stbcheck == "u5" ]; then
 			killall -9 showiframe; sleep 1
 		fi
+	fi
 fi
 
 #check for installed vfdcontrol
