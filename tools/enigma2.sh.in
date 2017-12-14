@@ -23,6 +23,14 @@ if grep ^config.misc.SyncTimeUsing=1 /etc/enigma2/settings >/dev/null; then
 	/usr/sbin/ntpdate -s -u pool.ntp.org &
 fi
 
+if [ -x /usr/bin/showiframe ]; then
+	if [ -e /proc/stb/info/boxtype ]; then
+		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
+		if [ ! $stbcheck == "u5" ]; then
+			killall -9 showiframe; sleep 1
+		fi
+fi
+
 #check for installed vfdcontrol
 if grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
 	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
@@ -117,9 +125,28 @@ fi
 # >128 signal
 
 ret=$?
+
+if [ "$ret" -ne "1" ]; then
+	if [ -e /proc/stb/info/boxtype ]; then
+		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
+		if [ $stbcheck == "u5" ]; then
+			killall -9 showiframe; sleep 5
+		fi
+	fi
+fi
+
 case $ret in
 	1)
-		/sbin/halt
+		if [ -e /proc/stb/info/boxtype ]; then
+			stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
+			if [ $stbcheck == "u5" ]; then
+				/usr/bin/hihalt
+			else
+				/sbin/halt
+			fi
+		else
+			/sbin/halt
+		fi
 		;;
 	2)
 		if [ -f /proc/stb/fp/force_restart ]; then
