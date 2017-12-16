@@ -1,4 +1,4 @@
-AC_INIT([enigma2],[5.5],[http://www.hdfreaks.cc])
+AC_INIT([enigma2],[6.2],[http://www.hdfreaks.cc])
 AM_INIT_AUTOMAKE([dist-bzip2 no-define tar-pax -Wno-portability])
 AC_CONFIG_HEADERS([enigma2_config.h])
 
@@ -723,7 +723,6 @@ AC_ARG_WITH(debug,
 	AS_HELP_STRING([--without-debug],[disable debugging code]),
 	[with_debug="$withval"],[with_debug="yes"])
 if test "$with_debug" = "yes"; then
-	DEBUG_CFLAGS="-ggdb3"
 	AC_DEFINE([DEBUG],[1],[Define to 1 to enable debugging code])
 fi
 
@@ -738,8 +737,8 @@ ENIGMA2_CFLAGS="-fno-rtti -fno-exceptions -rdynamic -funwind-tables"
 AC_SUBST(ENIGMA2_CFLAGS)
 
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
-CFLAGS="$CFLAGS $DEBUG_CFLAGS -Wall"
-CXXFLAGS="$CXXFLAGS $DEBUG_CFLAGS -Wall $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $GLES_CFLAGS $ALSA_CFLAGS $AMCODEC_CFLAGS $AMADEC_CFLAGS $DVBCSA_CFLAGS"
+CFLAGS="$CFLAGS -Wall"
+CXXFLAGS="$CXXFLAGS -Wall $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $GLES_CFLAGS $ALSA_CFLAGS $AMCODEC_CFLAGS $AMADEC_CFLAGS $DVBCSA_CFLAGS"
 AX_SWIG_PYTHON_OPT="$AX_SWIG_PYTHON_OPT -DSWIG_PYTHON_LEGACY_BOOL"
 
 AC_CONFIG_FILES([
