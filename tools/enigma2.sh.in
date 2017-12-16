@@ -4,12 +4,25 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
-if [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
-		echo found @sysconfdir@/enigma2/bootlogo.mvi
-		@bindir@/showiframe @sysconfdir@/enigma2/bootlogo.mvi
-	elif [ -f @datadir@/bootlogo.mvi ]; then
-		echo found @datadir@/bootlogo.mvi
-		@bindir@/showiframe @datadir@/bootlogo.mvi
+if [ -x @bindir@/showiframe ]; then
+	if [ -e /proc/stb/info/boxtype ]; then
+		stbcheck=`cat /proc/stb/info/boxtype`
+		if [ ! $stbcheck == "u5" ]; then
+			killall -9 showiframe; sleep 1
+		fi
+	else
+		killall -9 showiframe; sleep 1
+	fi
+	if [ -x /usr/bin/showiframe ]; then
+		if [ -f /etc/enigma2/bootlogo.mvi ]; then
+			echo found /etc/enigma2/bootlogo.mvi
+			/usr/bin/showiframe /etc/enigma2/bootlogo.mvi
+		elif [ -f /usr/share/bootlogo.mvi ]; then
+			echo found /usr/share/bootlogo.mvi
+			/usr/bin/showiframe /usr/share/bootlogo.mvi
+		fi
+	fi
+	/etc/init.d/bootvideo &
 fi
 
 # workaround for corrupt ssl files
@@ -21,15 +34,6 @@ fi
 # update NTP time if NTP Time Enabled
 if grep ^config.misc.SyncTimeUsing=1 /etc/enigma2/settings >/dev/null; then
 	/usr/sbin/ntpdate -s -u pool.ntp.org &
-fi
-
-if [ -x /usr/bin/showiframe ]; then
-	if [ -e /proc/stb/info/boxtype ]; then
-		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
-		if [ ! $stbcheck == "u5" ]; then
-			killall -9 showiframe; sleep 1
-		fi
-	fi
 fi
 
 #check for installed vfdcontrol
@@ -85,13 +89,13 @@ touch /etc/enigma2/settings
 [ -x @bindir@/enigma2_pre_start.sh ] && @bindir@/enigma2_pre_start.sh
 [ -x @bindir@/enigma2_pre_start_ciplus.sh ] && @bindir@/enigma2_pre_start_ciplus.sh
 
-sync
-sysctl -p
-
 if [ -d /home/root ]; then
 	cd /home/root
 	export HOME=/home/root
 fi
+
+sync
+sysctl -p
 
 (sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
         [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
