@@ -612,7 +612,10 @@ def runScreenTest():
 	config.usage.shutdownOK.save()
 	configfile.save()
 
-	os.system("killall -9 showiframe")
+	# kill showiframe if it is running (sh4 hack...)
+	if getMachineBuild() in ('spark' , 'spark7162'):
+		os.system("killall -9 showiframe")
+
 	runReactor()
 
 	print "[mytest.py] normal shutdown"
