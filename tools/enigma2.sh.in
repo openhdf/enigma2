@@ -4,27 +4,6 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
-if [ -x @bindir@/showiframe ]; then
-	if [ -e /proc/stb/info/boxtype ]; then
-		stbcheck=`cat /proc/stb/info/boxtype`
-		if [ ! $stbcheck == "u5" ]; then
-			killall -9 showiframe; sleep 1
-		fi
-	else
-		killall -9 showiframe; sleep 1
-	fi
-	if [ -x /usr/bin/showiframe ]; then
-		if [ -f /etc/enigma2/bootlogo.mvi ]; then
-			echo found /etc/enigma2/bootlogo.mvi
-			/usr/bin/showiframe /etc/enigma2/bootlogo.mvi
-		elif [ -f /usr/share/bootlogo.mvi ]; then
-			echo found /usr/share/bootlogo.mvi
-			/usr/bin/showiframe /usr/share/bootlogo.mvi
-		fi
-	fi
-	/etc/init.d/bootvideo &
-fi
-
 # workaround for corrupt ssl files
 if ! grep ^config.misc.firstrun=false /etc/enigma2/settings >/dev/null; then
 	rm -rf /etc/enigma2/cert.pem &
@@ -84,6 +63,22 @@ if [ -e @libdir@/libpassthrough.so ]; then
 fi
 
 touch /etc/enigma2/settings
+
+if [ -x @bindir@/showiframe ]; then
+	if [ -e /proc/stb/info/boxtype ]; then
+		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
+		if [ ! $stbcheck == "u5" ]; then
+			killall -9 showiframe; sleep 1
+		fi
+	else
+		killall -9 showiframe; sleep 1
+	fi
+	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
+		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
+	elif [ -f @datadir@/backdrop.mvi ]; then
+		@bindir@/showiframe @datadir@/backdrop.mvi
+	fi
+fi
 
 # hook to execute scripts always before enigma2 start
 [ -x @bindir@/enigma2_pre_start.sh ] && @bindir@/enigma2_pre_start.sh
@@ -160,6 +155,7 @@ case $ret in
 		/sbin/reboot
 		;;
 	3)
+		rm -fR /home/root/.gstreamer-0.10
 		rm -f /tmp/.listen.camd.socket.ignore
 		;;
 	4)
