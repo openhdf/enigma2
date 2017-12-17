@@ -307,7 +307,9 @@ msgid "Usage Setup"
 msgstr "Benutzereinstellungen"
 
 msgid "User Interface"
-msgstr "Benutzeroberfläche"
+msgstr "
+
+oberoberfläche"
 
 msgid "Recording Setup"
 msgstr "Aufnahme Einstellungen"
@@ -13267,8 +13269,14 @@ msgstr "Zeige Softcam-Panel in Extensions-Menü"
 msgid "Show pressed buttons in telnet debug mode"
 msgstr "Zeige gedrückte Tasten im Telnet Debug Modus"
 
+msgid "Show pressed buttons in GUI"
+msgstr "Zeige gedrückte Tasten auf der Benutzeroberfläche"
+
 msgid "Select if you want to show every pressed button in telnet init 4 mode."
 msgstr "Auswählen wenn im init 4 Modus im Telnet jeder Tastendruck angezeigt werden soll."
+
+msgid "Select if you want to show every pressed button in GUI."
+msgstr "Auswählen wenn auf der Benutzeroberfläche jeder Tastendruck angezeigt werden soll."
 
 msgid "an internal error has occur"
 msgstr "ein interner Fehler ist aufgetreten"

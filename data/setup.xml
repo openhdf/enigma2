@@ -328,6 +328,7 @@
 		<item level="0" text="Subservice mode" description="Select if you want the Subservice mode to be activated.">config.plisettings.Subservice</item>
 		<item level="0" text="Keymap Selection" description="Select the keymap that you want to use:">config.usage.keymap</item>
 		<item level="0" text="Show pressed buttons in telnet debug mode" description="Select if you want to show every pressed button in telnet init 4 mode.">config.plisettings.ShowPressedButtons</item>
+		<item level="2" text="Show pressed buttons in GUI" requires="config.plisettings.ShowPressedButtons" description="Select if you want to show every pressed button in GUI.">config.hdf.ShowPressedButtonGUI</item>
 		<item level="0" text="Long press emulation with button" description="Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button).">config.usage.long_press_emulation_key</item>
 	</setup>
 	<setup key="softcamsetup" title="Softcam settings">
