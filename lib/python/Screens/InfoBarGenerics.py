@@ -40,6 +40,7 @@ from Screens.Standby import Standby, TryQuitMainloop
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEdit import TimerEditList
 from Screens.UnhandledKey import UnhandledKey
+from Screens.ShowPressedButtons import ShowPressedButtons
 from ServiceReference import ServiceReference, isPlayableForCur
 from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecordPath
 from Screens.TimerEntry import TimerEntry as TimerEntry
@@ -211,6 +212,12 @@ class InfoBarUnhandledKey:
 		self.checkUnusedTimer = eTimer()
 		self.checkUnusedTimer.callback.append(self.checkUnused)
 		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
+
+		self.pressedButtonsDialog = self.session.instantiateDialog(ShowPressedButtons)
+		self.hideShowPressedButtonsTimer = eTimer()
+		self.hideShowPressedButtonsTimer.callback.append(self.pressedButtonsDialog.hide)
+		self.onLayoutFinish.append(self.pressedButtonsDialog.hide)
+
 		eActionMap.getInstance().bindAction('', -maxint -1, self.actionA) #highest prio
 		eActionMap.getInstance().bindAction('', maxint, self.actionB) #lowest prio
 		self.flags = (1<<1)
@@ -219,6 +226,10 @@ class InfoBarUnhandledKey:
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
 		if config.plisettings.ShowPressedButtons.value:
+			if config.hdf.ShowPressedButtonGUI.value:
+				self.pressedButtonsDialog.setButton((key_name for key_name,value in KEYIDS.items() if value==key).next())
+				self.pressedButtonsDialog.show()
+				self.hideShowPressedButtonsTimer.start(2000, True)
 			print "Enable debug mode for every pressed key."
 			try:
 				print 'KEY: %s %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0],datetime.now())

@@ -919,6 +919,9 @@ def InitUsageConfig():
 	config.logmanager.additionalinfo = NoSave(ConfigText(default = ""))
 	config.logmanager.sentfiles = ConfigLocations(default='')
 
+	config.hdf = ConfigSubsection()
+	config.hdf.ShowPressedButtonGUI = ConfigYesNo(default = False)
+
 	config.plisettings = ConfigSubsection()
 	config.plisettings.Subservice = ConfigYesNo(default = True)
 	config.plisettings.ShowPressedButtons = ConfigYesNo(default = False)
