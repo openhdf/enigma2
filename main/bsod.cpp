@@ -1,3 +1,5 @@
+#include <sys/klog.h>
+#include <vector>
 #include <csignal>
 #include <fstream>
 #include <sstream>
@@ -117,6 +119,7 @@ void bsodFatal(const char *component)
 	/* show no more than one bsod while shutting down/crashing */
 	if (bsodhandled) {
 		if (component) {
+			eSyncLog();
 			sleep(1);
 			raise(SIGKILL);
 		}
@@ -236,6 +239,7 @@ void bsodFatal(const char *component)
 
 		xml.close();
 
+		fsync(fileno(f));
 		fclose(f);
 	}
 
@@ -289,6 +293,7 @@ void bsodFatal(const char *component)
 
 	p.renderText(usable_area,
 		lines.substr(start), gPainter::RT_HALIGN_LEFT);
+	eSyncLog();
 	sleep(10);
 
 	/*
