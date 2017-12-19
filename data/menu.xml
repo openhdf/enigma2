@@ -282,7 +282,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 				<item weight="20" text="Automatic scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<item weight="30" text="Manual scan" entryID="manual_scan"><screen module="ScanSetup" /></item>
 				<item weight="35" text="Satfinder" entryID="satfinder" requires="Satfinder"><plugin system="Satfinder" screen="Satfinder" /></item>
-				<item weight="40" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item>
+				<!-- item weight="40" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item -->
 			</menu>
 		</menu>
 
