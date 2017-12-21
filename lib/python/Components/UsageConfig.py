@@ -56,6 +56,8 @@ def InitUsageConfig():
 	config.usage.numzaptimeout1 = ConfigSelectionNumber(default = 3000, stepwidth = 250, min = 250, max = 10000, wraparound = True)
 	config.usage.numzaptimeout2 = ConfigSelectionNumber(default = 1000, stepwidth = 250, min = 250, max = 10000, wraparound = True)
 	config.usage.subnetwork = ConfigYesNo(default = True)
+	config.usage.subnetwork_cable = ConfigYesNo(default = True)
+	config.usage.subnetwork_terrestrial = ConfigYesNo(default = True)
 
 	config.usage.alternative_number_mode = ConfigYesNo(default = False)
 	def alternativeNumberModeChange(configElement):
