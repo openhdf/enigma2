@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-12-02 07:22+0100\n"
+"PO-Revision-Date: 2017-12-22 05:20+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3362,7 +3362,15 @@ msgstr "DVB-C"
 msgid "DVB-C ANNEX C"
 msgstr "DVB-C ANNEX C"
 
-#
+msgid "Ignore DVB-C namespace sub network"
+msgstr "Ignoriere DVB-C Namensraum Unternetzwerk"
+
+msgid "Ignore DVB-S namespace sub network"
+msgstr "Ignoriere DVB-S Namensraum Unternetzwerk"
+
+msgid "Ignore DVB-T namespace sub network"
+msgstr "Ignoriere DVB-T Namensraum Unternetzwerk"
+
 msgid "DVB-S"
 msgstr "DVB-S"
 
