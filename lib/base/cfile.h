@@ -12,18 +12,18 @@ struct CFile
 	CFile(const char *filename, const char *mode)
 		: handle(fopen(filename, mode))
 	{
-#ifdef DEBUG
+/*#ifdef DEBUG
 		if (!handle)
 			eDebug("error %s [%m]",filename);
-#endif
+#endif*/
 	}
 	CFile(const std::string &filename, const char *mode)
 		: handle(fopen(filename.c_str(), mode))
 	{
-#ifdef DEBUG
+/*#ifdef DEBUG
 		if (!handle)
 			eDebug("error %s [%m]",filename.c_str());
-#endif
+#endif*/
 	}
 	~CFile()
 	{
@@ -41,6 +41,8 @@ struct CFile
 	static int writeInt(const char *filename, int value);
 	static int writeStr(const char *filename, std::string value);
 	static int write(const char *filename, const char *value);
+	static std::string read(const std::string &filename);
+	static bool contains_word(const std::string &filename, const std::string &word);
 };
 
 #endif
