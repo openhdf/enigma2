@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "08.12.2017"
+updateversion = "26.12.2017"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -47,6 +47,10 @@ def getHotkeys():
 	(_("F3 long"), "f3_long", ""),
 	(_("F4"), "f4", "Plugins/Extensions/HDF-Toolbox/1"),
 	(_("F4 long"), "f4_long", ""),
+	(_("F5"), "f5", "Plugins/Extensions/EnhancedMovieCenter/2"),
+	(_("F5 long"), "f5_long", "Infobar/showMovies"),
+	(_("F6"), "f6", "Plugins/Extensions/EnhancedMovieCenter/2"),
+	(_("F6 long"), "f6_long", "Infobar/showMovies"),
 	(_("Audio"), "audio", "Infobar/audioSelection"),
 	(_("Audio long"), "audio_long", ""),
 	(_("Back "), "back", "Infobar/historyZap"),

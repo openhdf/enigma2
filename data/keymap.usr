@@ -1,5 +1,5 @@
 <keymap>
-	<!-- "HDF User Keymap 02.11.2017" -->
+	<!-- "HDF User Keymap 26.12.2017" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -907,6 +907,10 @@
 		<key id="KEY_F3" mapto="f3_long" flags="l" />
 		<key id="KEY_F4" mapto="f4" flags="b" />
 		<key id="KEY_F4" mapto="f4_long" flags="l" />
+		<key id="KEY_F5" mapto="f5" flags="b" />
+		<key id="KEY_F5" mapto="f5_long" flags="l" />
+		<key id="KEY_F6" mapto="f6" flags="b" />
+		<key id="KEY_F6" mapto="f6_long" flags="l" />
 		<key id="KEY_HOME" mapto="home" flags="b" />
 		<key id="KEY_HOME" mapto="home_long" flags="l" />
 		<key id="KEY_AUX" mapto="HDMIin" flags="b" />
