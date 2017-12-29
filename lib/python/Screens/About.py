@@ -9,7 +9,7 @@ from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from enigma import eTimer, getEnigmaVersionString
-from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate, getOEVersion, getImageType
+from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate, getOEVersion, getImageType, getBrandOEM
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -48,8 +48,7 @@ class About(Screen):
 		model = None
 		AboutText = ""
 		self["lab2"] = StaticText(_("Support @") + " www.hdfreaks.cc")
-		AboutText += _("Model:\t%s %s\n") % (getMachineBrand(), getMachineName())
-		#AboutText += _("Boxtype:\t%s\n") % getBoxType()
+		AboutText += _("Model:\t%s %s - OEM Model: %s\n") % (getMachineBrand(), getMachineName(), getBrandOEM())
 
 		if path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset:\tBCM%s") % about.getChipSetString() + "\n"
