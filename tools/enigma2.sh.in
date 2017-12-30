@@ -10,11 +10,6 @@ if ! grep ^config.misc.firstrun=false /etc/enigma2/settings >/dev/null; then
 	rm -rf /etc/enigma2/key.pem &
 fi
 
-# update NTP time if NTP Time Enabled
-if grep ^config.misc.SyncTimeUsing=1 /etc/enigma2/settings >/dev/null; then
-	/usr/sbin/ntpdate -s -u pool.ntp.org &
-fi
-
 #check for installed vfdcontrol
 if grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
 	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
