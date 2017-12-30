@@ -1654,6 +1654,10 @@ class ChannelSelectionBase(Screen):
 					if hdref:
 						hdref.setName("%s - %s" % ("Sky Deutschland 19.2E", _("Subservices")) + " (%d)"%(self.getServicesCount(hdref)))
 						self.servicelist.addService(hdref)
+					uhdref = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 31) && (name != .) ORDER BY name')
+					if uhdref:
+						uhdref.setName(("%s - " %(service_name) + ("%s-%s" % ("UHD", _("Services")))) + " (%d)"%(self.getServicesCount(uhdref)))
+						self.servicelist.addService(uhdref)
 					self.servicelist.finishFill()
 					if prev is not None:
 						self.setCurrentSelection(prev)
