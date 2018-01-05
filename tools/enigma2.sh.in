@@ -63,8 +63,8 @@ if [ -x @bindir@/showiframe ]; then
 	if [[ ! `cat /proc/stb/info/boxtype` =~ "u5" ]]; then
 		killall -9 showiframe; sleep 1
 	fi
-	if [ -f /etc/enigma2/backdrop.mvi ]; then
-		/usr/bin/showiframe /etc/enigma2/backdrop.mvi
+	if [ -f /etc/enigma2/bootlogo.mvi ]; then
+		/usr/bin/showiframe /etc/enigma2/bootlogo.mvi
 	elif [ -f /usr/share/backdrop.mvi ]; then
 		/usr/bin/showiframe /usr/share/backdrop.mvi
 	fi
