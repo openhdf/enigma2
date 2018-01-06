@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "30.12.2017"
+updateversion = "06.01.2017"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -105,6 +105,8 @@ def getHotkeys():
 	(_("Pause long"), "pause_long", "Infobar/startTimeshift"),
 	(_("Play "), "play", "Infobar/startTimeshift"),
 	(_("Play long"), "play_long", "Infobar/startTimeshift"),
+	(_("Playpause"), "playpause", "Infobar/startTimeshift"),
+	(_("Playpause long"), "playpause_long", "Infobar/startTimeshift"),
 	(_("Playlist"), "playlist", "Plugins/Extensions/EnhancedMovieCenter/1"),
 	(_("Playlist long"), "playlist_long", "Infobar/showMovies"),
 	(_("Picture in Picture"), "activatePiP", "Infobar/showPiP"),
@@ -184,7 +186,6 @@ def getHotkeyFunctions():
 			twinPlugins.append(plugin.name)
 	hotkeyFunctions.append((_("Show Graphical Multi EPG"), "Infobar/openGraphEPG", "EPG"))
 	hotkeyFunctions.append((_("Show Event View"), "Infobar/openEventView", "EPG"))
-	#hotkeyFunctions.append((_("Show Event Info"), "Infobar/showEventInfo", "EPG"))
 	hotkeyFunctions.append((_("Show Event Info Plugins"), "Infobar/showEventInfoPlugins", "EPG"))
 	hotkeyFunctions.append((_("Show Single Service EPG"), "Infobar/openSingleServiceEPG", "EPG"))
 	hotkeyFunctions.append((_("Show Multi Service EPG"), "Infobar/openMultiServiceEPG", "EPG"))
@@ -219,8 +220,6 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Show Movies"), "Infobar/showMovies", "InfoBar"))
 	hotkeyFunctions.append((_("Instant Record"), "Infobar/instantRecord", "InfoBar"))
 	hotkeyFunctions.append((_("Start instant recording"), "Infobar/startInstantRecording", "InfoBar"))
-	#hotkeyFunctions.append((_("Activate timeshift End"), "Infobar/activateTimeshiftEnd", "InfoBar"))
-	#hotkeyFunctions.append((_("Activate timeshift end and pause"), "Infobar/activateTimeshiftEndAndPause", "InfoBar"))
 	hotkeyFunctions.append((_("Start Timeshift"), "Infobar/startTimeshift", "InfoBar"))
 	hotkeyFunctions.append((_("Stop Timeshift"), "Infobar/stopTimeshift", "InfoBar"))
 	hotkeyFunctions.append((_("Start Teletext"), "Infobar/startTeletext", "InfoBar"))
