@@ -939,6 +939,8 @@
 		<key id="KEY_AUDIO" mapto="audio_long" flags="l" />
 		<key id="KEY_PLAY" mapto="play" flags="b" />
 		<key id="KEY_PLAY" mapto="play_long" flags="l" />
+		<key id="KEY_PLAYPAUSE" mapto="playpause" flags="b"/>
+		<key id="KEY_PLAYPAUSE" mapto="playpause_long" flags="l"/>
 		<key id="KEY_STOP" mapto="stop" flags="b" />
 		<key id="KEY_STOP" mapto="stop_long" flags="l" />
 		<key id="KEY_PAUSE" mapto="pause" flags="b" />
@@ -951,8 +953,6 @@
 		<key id="KEY_SCREEN" mapto="activatePiP_long" flags="l" />
 		<key id="KEY_PROGRAM" mapto="timer" flags="b" />
 		<key id="KEY_PROGRAM" mapto="timer_long" flags="l" />
-		<key id="KEY_PLAYPAUSE" mapto="play" flags="b" />
-		<key id="KEY_PLAYPAUSE" mapto="play_long" flags="l" />
 		<key id="KEY_BOOKMARKS" mapto="portal" flags="b" />
 		<key id="KEY_BOOKMARKS" mapto="portal_long" flags="l" />
 		<key id="KEY_LIST" mapto="playlist" flags="b" />

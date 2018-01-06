@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Neutrino Keymap 26.12.2017" -->
+	<!-- "HDF Neutrino Keymap 06.01.2017" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -808,8 +808,6 @@
 		<key id="KEY_INFO" mapto="info_long" flags="l" />
 		<key id="KEY_VIDEO" mapto="list" flags="b" />
 		<key id="KEY_VIDEO" mapto="list_long" flags="l" />
-		<key id="KEY_ANGLE" mapto="angle" flags="b" />
-		<key id="KEY_ANGLE" mapto="angle_long" flags="l" />
 		<key id="KEY_BACK" mapto="back" flags="b" />
 		<key id="KEY_BACK" mapto="back_long" flags="l" />
 		<key id="KEY_END" mapto="end" flags="b" />
@@ -828,13 +826,12 @@
 		<key id="KEY_RIGHT" mapto="cross_right" flags="mr" />
 		<key id="KEY_UP" mapto="cross_up" flags="mr" />
 		<key id="KEY_DOWN" mapto="cross_down" flags="mr" />
+		<!--key id="KEY_OK" mapto="okbutton" flags="b" /-->
 		<key id="KEY_OK" mapto="okbutton_long" flags="l" />
 		<key id="KEY_CHANNELUP" mapto="channelup" flags="mr" />
 		<key id="KEY_CHANNELDOWN" mapto="channeldown" flags="mr" />
 		<key id="KEY_AUDIO" mapto="audio" flags="b" />
 		<key id="KEY_AUDIO" mapto="audio_long" flags="l" />
-		<key id="KEY_PLAY" mapto="play" flags="b" />
-		<key id="KEY_PLAY" mapto="play_long" flags="l" />
 		<key id="KEY_STOP" mapto="stop" flags="b" />
 		<key id="KEY_STOP" mapto="stop_long" flags="l" />
 		<key id="KEY_PAUSE" mapto="pause" flags="b" />
@@ -847,8 +844,10 @@
 		<key id="KEY_SCREEN" mapto="activatePiP_long" flags="l" />
 		<key id="KEY_PROGRAM" mapto="timer" flags="b" />
 		<key id="KEY_PROGRAM" mapto="timer_long" flags="l" />
-		<key id="KEY_PLAYPAUSE" mapto="play" flags="b" />
-		<key id="KEY_PLAYPAUSE" mapto="play_long" flags="l" />
+		<key id="KEY_PLAY" mapto="play" flags="b" />
+		<key id="KEY_PLAY" mapto="play_long" flags="l" />
+		<key id="KEY_PLAYPAUSE" mapto="playpause" flags="b"/>
+		<key id="KEY_PLAYPAUSE" mapto="playpause_long" flags="l"/>
 		<key id="KEY_BOOKMARKS" mapto="portal" flags="b" />
 		<key id="KEY_BOOKMARKS" mapto="portal_long" flags="l" />
 		<key id="KEY_LIST" mapto="playlist" flags="b" />
@@ -906,6 +905,8 @@
 		<key id="KEY_FAVORITES" mapto="favor_long" flags="l" />
 		<key id="KEY_HOMEPAGE" mapto="homepage" flags="b" />
 		<key id="KEY_HOMEPAGE" mapto="homepage_long" flags="l" />
+		<key id="KEY_ANGLE" mapto="angle" flags="b" />
+		<key id="KEY_ANGLE" mapto="angle_long" flags="l" />
 		<key id="KEY_CONTEXT_MENU" mapto="contextMenu" flags="b"/>
 		<key id="KEY_CONTEXT_MENU" mapto="context_long" flags="l"/>
 		<key id="KEY_SAT" mapto="sat" flags="b" />
@@ -914,7 +915,10 @@
 		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
         <key id="KEY_DIRECTORY" mapto="directory" flags="b"/>
         <key id="KEY_DIRECTORY" mapto="directory_long" flags="l"/>
+		<key id="KEY_ARCHIVE" mapto="historyBack" flags="b" />
+		<key id="KEY_ARCHIVE" mapto="historyBack" flags="l" />
 	</map>
+
 	<map context="SubtitlesActions">
 		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />
 		<key id="KEY_TEXT" mapto="subtitles" flags="m" />
