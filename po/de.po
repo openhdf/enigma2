@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2017-12-22 05:20+0100\n"
+"PO-Revision-Date: 2018-01-07 11:43+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "OFF"
@@ -1011,7 +1011,7 @@ msgstr "Powertimer Nachrichtenfenster Countdown (in Sekunden)"
 
 #, python-format
 msgid "Configure how long the powertimer message is displayed."
-msgstr "Legt fest wie lange die Nachricht zum Ausführen eines \t angezeigt wird."
+msgstr "Legt fest wie lange die Nachricht zum Ausführen eines Powertimers angezeigt wird."
 
 #, python-format
 msgid ""
@@ -2518,13 +2518,13 @@ msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Wähle das Zeitraster auf das die Grafiken gerundet werden."
 
 msgid "Choose what you want the button '0' to do when PIP is active."
-msgstr "Wähle was bei der 0-Taste passieren soll wenn PiP aktiv ist."
+msgstr "Wähle was bei der 0-Taste passieren soll, wenn PiP aktiv ist."
 
 msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Wähle ob Mehrkanalton zu Stereo runter gerechnet werden soll."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
-msgstr "Soll ein Icon angezeigt werden wenn sich ein Antennenrotor bewegt."
+msgstr "Soll ein Icon angezeigt werden, wenn sich ein Antennenrotor bewegt."
 
 msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr "Wählen Sie, ob Mehrkanalton als PCM ausgegeben werden soll"
@@ -5207,10 +5207,10 @@ msgid "If set to 'yes' the channel number will be displayed in the infobar."
 msgstr "Wenn 'Ja' eingestellt ist wird die Sendernummer im Infobar angezeigt"
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
-msgstr "Wenn 'Ja' eingestellt ist wird die Infobar angezeigt wenn ein neues Programm anfängt."
+msgstr "Wenn 'Ja' eingestellt ist wird die Infobar angezeigt, wenn ein neues Programm anfängt."
 
 msgid "If set to 'yes' the infobar will be displayed when changing channels."
-msgstr "Wenn 'Ja' eingestellt ist wird die Infobar angezeigt wenn der Sender gewechselt wird."
+msgstr "Wenn 'Ja' eingestellt ist wird die Infobar angezeigt, wenn der Sender gewechselt wird."
 
 msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr "Wenn 'Ja' eingestellt ist erhältst Du eine Programmvorschau im EPG."
@@ -8329,7 +8329,7 @@ msgid "Fade the Infobar on hide"
 msgstr "Sanftes Ausblenden der Infobar?"
 
 msgid "Control the Infobar fading speed"
-msgstr "Geschwindigkeit der Infobar Ausblendung."
+msgstr "Geschwindigkeit der sanften Infobar Ausblendung."
 
 msgid "Select if timeshift must continue when set to record."
 msgstr "Wähle ob TimeShift auch bei einer Aufnahme weiter gehen soll."
@@ -8587,7 +8587,7 @@ msgid "Set the time the timer must stop."
 msgstr "Setze die Zeit für das Ende des Timers."
 
 msgid "Set the time to hide the infobar."
-msgstr "Wähle die Anzeigedauer von Infobar."
+msgstr "Wähle die Anzeigedauer der Infobar."
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Wähle die Art der Fortschrittsanzeige in der Senderliste."
@@ -8807,7 +8807,7 @@ msgid "Show background in Radio Mode"
 msgstr "Zeige Hintergrund im Radio Modus"
 
 msgid "Show background when tuned to a radio channel."
-msgstr "Zeige Hintergrund wenn ein Radiosender eingestellt ist."
+msgstr "Zeige Hintergrund, wenn ein Radiosender eingestellt ist."
 
 msgid "Show bouquet on launch"
 msgstr "Zeige Favoritenlisten beim Start"
@@ -8840,7 +8840,7 @@ msgid "Show detailed event info"
 msgstr "Zeige detaillierte Sendungsinformation"
 
 msgid "Show encryption info in the infobar (when supported by the skin)."
-msgstr "Zeige Verschlüsselungsmethode in der InfoBar (wenn es der Skin unterstützt)."
+msgstr "Zeige Verschlüsselungsmethode in der InfoBar, wenn es der Skin unterstützt."
 
 msgid "Show epg"
 msgstr "Zeige EPG"
@@ -8927,10 +8927,10 @@ msgid "Show second infobar"
 msgstr "Zeige SecondInfobar"
 
 msgid "Enable and set the duration of the second infobar (press OK twice) that may include more information on the current service."
-msgstr "Zweite Infoleiste mit Zusatzinformationen aktivieren und ihre Anzeigedauer bestimmen (OK zweimal drücken). Die Oberfläche muss dies unterstützen."
+msgstr "Die zweite Infoleiste mit Zusatzinformationen aktivieren (2x OK drücken)?. Der Skin muss dies unterstützen."
 
 msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
-msgstr "Wähle die Anzeigedauer der 2. Infobar. Sie verschwindet auch beim druck auf die OK Taste."
+msgstr "Wähle die Anzeigedauer der 2. Infobar. Sie verschwindet auch beim Druck auf die OK Taste."
 
 msgid "Show service type icons"
 msgstr "Zeige Sendertype Icon"
@@ -10038,7 +10038,7 @@ msgid "This option allows you choose how to display the remaining/elapsed time f
 msgstr "Diese Option erlaubt dir zu wählen ob verbleibende/verstrichene Zeit oder beides bei Medienwiedergabe angezeigt wird."
 
 msgid "This option allows you choose the background colour of transparent picons."
-msgstr "Diese Option erlaubt es die Hintergrundfarbe von transparenten PIcons festzulegen."
+msgstr "Diese Option erlaubt es die Hintergrundfarbe von transparenten Picons festzulegen."
 
 msgid "This option allows you set the layout view (Text or Graphics)."
 msgstr "Diese Option erlaubt es das Aussehen vom EPG einzustellen (Text oder Grafik)."
@@ -11298,10 +11298,10 @@ msgid "Enable infobar fade-out"
 msgstr "Aktiviere Infobar Ausblendung"
 
 msgid "Infobar fade-out speed"
-msgstr "Geschwindigkeit der Infobar Ausblendung"
+msgstr "Geschwindigkeit der sanften Infobar Ausblendung"
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
-msgstr "Benutze Strommessung um zu erkennen wenn der Rotor gestoppt ist (wenn es der Tuner  unterstützt)"
+msgstr "Benutze Strommessung um zu erkennen wenn der Rotor gestoppt ist, wenn es der Tuner unterstützt"
 
 msgid "When enabled, network trash can's are probed for cleaning."
 msgstr "Wenn aktiviert werden Mülleimer im Netzwerk überprüft ob sie aufgeräumt werden müssen."
