@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-01-07 11:43+0100\n"
+"PO-Revision-Date: 2018-01-13 06:49+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -2237,6 +2237,9 @@ msgstr "Automatische Schnellsuche aktivieren"
 
 msgid "Cache thumbnails"
 msgstr "Vorschaubilder zwischenspeichern"
+
+msgid "Stop TV playback"
+msgstr "Stoppe TV Wiedergabe"
 
 msgid "Cached:"
 msgstr "Cache:"

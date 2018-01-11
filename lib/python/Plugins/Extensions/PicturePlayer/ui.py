@@ -26,6 +26,7 @@ config.pic.cache = ConfigYesNo(default=True)
 config.pic.lastDir = ConfigText(default=resolveFilename(SCOPE_MEDIA))
 config.pic.infoline = ConfigYesNo(default=True)
 config.pic.loop = ConfigYesNo(default=True)
+config.pic.stopPlayTv = ConfigYesNo(default=False)
 config.pic.onMainMenu = ConfigYesNo(default=False)
 config.pic.bgcolor = ConfigSelection(default="#00000000", choices = [("#00000000", _("black")),("#009eb9ff", _("blue")),("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
 config.pic.textcolor = ConfigSelection(default="#0038FF48", choices = [("#00000000", _("black")),("#009eb9ff", _("blue")),("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
@@ -181,6 +182,7 @@ class Pic_Setup(Screen, ConfigListScreen):
 			getConfigListEntry(_("Text color"), config.pic.textcolor),
 			getConfigListEntry(_("Show in main menu"), config.pic.onMainMenu),
 			getConfigListEntry(_("Fullview resolution"), config.usage.pic_resolution),
+			getConfigListEntry(_("Stop TV playback"), config.pic.stopPlayTv),
 		]
 		self["config"].list = setup_list
 		self["config"].l.setList(setup_list)
@@ -436,6 +438,7 @@ class Pic_Thumb(Screen):
 		self.index = val
 		if self.old_index != self.index:
 			self.paintFrame()
+
 	def Exit(self):
 		del self.picload
 		self.close(self.index + self.dirlistcount)
@@ -515,10 +518,14 @@ class Pic_Full_View(Screen):
 		self.slideTimer = eTimer()
 		self.slideTimer.callback.append(self.slidePic)
 
+		self.oldref = None
 		if self.maxentry >= 0:
 			self.onLayoutFinish.append(self.setPicloadConf)
 
 	def setPicloadConf(self):
+		if config.pic.stopPlayTv.value:
+			self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			self.session.nav.stopService()
 		sc = getScale()
 		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.value), self.bgcolor])
 
@@ -609,6 +616,9 @@ class Pic_Full_View(Screen):
 		if config.usage.pic_resolution.value and (self.size_w, self.size_h) != eval(config.usage.pic_resolution.value):
 			gMainDC.getInstance().setResolution(self.size_w, self.size_h)
 			getDesktop(0).resize(eSize(self.size_w, self.size_h))
+
+		if self.oldref:
+			self.session.nav.playService(self.oldref)
 
 		self.close(self.lastindex + self.dirlistcount)
 
