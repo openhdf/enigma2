@@ -22,6 +22,7 @@ from os import system, popen, path, makedirs, listdir, access, stat, rename, rem
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro
+import ShellCompatibleFunctions
 
 boxtype = getBoxType()
 distro = getImageDistro()
@@ -489,11 +490,12 @@ class installedPlugins(Screen):
 			self.readPluginList()
 
 	def readPluginList(self):
+		installedpkgs=ShellCompatibleFunctions.listpkg(type="installed")
 		self.PluginList = []
-		f = open("/tmp/installed-list.txt", "r")
-		lines = f.readlines()
-		for x in lines:
-			self.PluginList.append(x[:x.find(' - ')])
+		with open('/tmp/installed-list.txt') as f:
+			for line in f:
+				if line.strip() not in installedpkgs:
+					self.PluginList.append(line.strip())
 		f.close()
 		self.createMenuList()
 
