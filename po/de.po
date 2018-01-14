@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-01-13 06:49+0100\n"
+"PO-Revision-Date: 2018-01-14 07:14+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1111,6 +1111,9 @@ msgstr ""
 
 msgid "Use workaround for recordings from deep standby"
 msgstr "Benutze Workaround für Aufnahmen im Deep Standby"
+
+msgid "Use workaround for wakeup from deep-standby?"
+msgstr "Workaround für das Aufwachen aus dem Deep-Standby benutzen?"
 
 msgid "Wakeup time before a timer begins [mins]"
 msgstr "Aufwachzeit bevor ein Timer beginnt [min]"
@@ -13531,7 +13534,7 @@ msgid "Do you want to delete %s language?"
 msgstr "Wollen Sie %s wirklich löschen?"
 
 msgid "Delete Language"
-msgstr "Sprache löschen"
+msgstr "Sprachen löschen"
 
 msgid "Default Language can not be deleted !!"
 msgstr "Die Standardsprache kann nicht gelöscht werden!"
