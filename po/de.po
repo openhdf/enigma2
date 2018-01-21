@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-01-14 07:14+0100\n"
+"PO-Revision-Date: 2018-01-21 07:26+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3376,6 +3376,9 @@ msgstr "Ignoriere DVB-S Namensraum Unternetzwerk"
 
 msgid "Ignore DVB-T namespace sub network"
 msgstr "Ignoriere DVB-T Namensraum Unternetzwerk"
+
+msgid "On valid ONIDs, ignore frequency sub network part"
+msgstr "Bei gültigen ONIDS, ignoriere Subnetzwerk Frequenzen"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -10712,6 +10715,9 @@ msgstr "Festlegen der Tage zum laden des EPG"
 
 msgid "Tuning algorithm"
 msgstr "Tuning-Algorithmus"
+
+msgid "Force Legacy Signal Stats"
+msgstr "Erzwinge ursprünglichen Signalstatus"
 
 msgid "reliable"
 msgstr "zuverlässig"
