@@ -13527,6 +13527,9 @@ msgstr "MiniTV mit OSD"
 msgid "Set Framerate for MiniTV"
 msgstr "Setzen der Framerate im MiniTV"
 
+msgid "Framerate MiniTV"
+msgstr "Framerate MiniTV"
+
 msgid "Lower Framerate save CPU Time"
 msgstr "Geringe Framerate reduziert die CPU Belastung"
 
