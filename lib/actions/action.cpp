@@ -80,14 +80,12 @@ void eActionMap::unbindAction(const std::string &context, ePyObject function)
 {
 	//eDebug("[eActionMap] unbind function from %s", context.c_str());
 	for (std::multimap<int, eActionBinding>::iterator i(m_bindings.begin()); i != m_bindings.end(); ++i)
-	{
 		if (i->second.m_fnc && (PyObject_Compare(i->second.m_fnc, function) == 0))
 		{
 			Py_DECREF(i->second.m_fnc);
 			m_bindings.erase(i);
 			return;
 		}
-	}
 	eFatal("[eActionMap] unbindAction with illegal python reference");
 }
 
@@ -124,31 +122,6 @@ void eActionMap::bindKey(const std::string &domain, const std::string &device, i
 	m_python_keys.insert(std::pair<std::string,ePythonKeyBinding>(context, bind));
 }
 
-void eActionMap::unbindNativeKey(const std::string &context, int action)
-{
-	//eDebug("[eActionMap] unbindDomain %s", domain.c_str());
-	for (std::multimap<std::string, eNativeKeyBinding>::iterator i(m_native_keys.begin()); i != m_native_keys.end(); ++i)
-	{
-		if (i->first == context && i->second.m_action == action)
-		{
-			m_native_keys.erase(i);
-			i = m_native_keys.begin();
-		}
-	}
-}
-
-void eActionMap::unbindPythonKey(const std::string &context, int key, const std::string &action)
-{
-	for (std::multimap<std::string, ePythonKeyBinding>::iterator i(m_python_keys.begin()); i != m_python_keys.end(); ++i)
-	{
-		if (i->first == context && !strcmp(i->second.m_action.c_str(), action.c_str()) && i->second.m_key == key)
-		{
-			//eDebug("[eActionMap] unbindPythonKey %d context %s action %s.", key, context.c_str(), action.c_str());
-			m_python_keys.erase(i);
-			i = m_python_keys.begin();
-		}
-	}
-}
 
 void eActionMap::bindTranslation(const std::string &domain, const std::string &device, int keyin, int keyout, int toggle)
 {
@@ -249,14 +222,19 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 
 	std::vector<call_entry> call_list;
 	// iterate active contexts
-	for (std::multimap<int,eActionBinding>::iterator c(m_bindings.begin());
-		c != m_bindings.end(); ++c)
+	for (std::multimap<int,eActionBinding>::iterator c(m_bindings.begin()); c != m_bindings.end(); ++c)
 	{
 		if (flags == eRCKey::flagMake)
+		{
 			c->second.m_prev_seen_make_key = key;
+			c->second.m_long_key_pressed = false;
+		}
 		else if (c->second.m_prev_seen_make_key != key)  // ignore repeat or break when the make code for this key was not visible
 			continue;
-
+		if (flags == eRCKey::flagLong)
+			c->second.m_long_key_pressed = true;
+		else if (flags == eRCKey::flagBreak && c->second.m_long_key_pressed)
+			continue;
 		// is this a native context?
 		if (c->second.m_widget)
 		{
@@ -270,11 +248,9 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 
 				for (; k != e; ++k)
 				{
-					if (
-							(k->second.m_key == key) &&
-							(k->second.m_flags & (1<<flags)) &&
-						  ((k->second.m_device == device) || (k->second.m_device == "generic"))
-						  )
+					if (	k->second.m_key == key &&
+						k->second.m_flags & (1<<flags) &&
+						(k->second.m_device == device || k->second.m_device == "generic") )
 						call_list.push_back(call_entry(c->second.m_widget, (void*)c->second.m_id, (void*)k->second.m_action));
 				}
 			}
@@ -297,11 +273,9 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 
 				for (; k != e; ++k)
 				{
-					if (
-						(k->second.m_key == key) &&
-						(k->second.m_flags & (1<<flags)) &&
-						((k->second.m_device == device) || (k->second.m_device == "generic"))
-						)
+					if (	k->second.m_key == key &&
+						k->second.m_flags & (1<<flags) &&
+						(k->second.m_device == device || k->second.m_device == "generic") )
 					{
 						ePyObject pArgs = PyTuple_New(2);
 						PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(k->first.c_str()));

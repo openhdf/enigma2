@@ -32,8 +32,6 @@ public:
 	void bindKey(const std::string &domain, const std::string &device, int key, int flags, const std::string &context, const std::string &action);
 	void bindTranslation(const std::string &domain, const std::string &device, int keyin, int keyout, int toggle);
 	void bindToggle(const std::string &domain, const std::string &device, int togglekey);
-	void unbindNativeKey(const std::string &context, int action);
-	void unbindPythonKey(const std::string &context, int key, const std::string &action);
 	void unbindKeyDomain(const std::string &domain);
 
 	void keyPressed(const std::string &device, int key, int flags);
@@ -45,7 +43,7 @@ private:
 	struct eActionBinding
 	{
 		eActionBinding()
-			:m_prev_seen_make_key(-1)
+			:m_prev_seen_make_key(-1), m_long_key_pressed(false)
 		{}
 //		eActionContext *m_context;
 		std::string m_context; // FIXME
@@ -56,6 +54,7 @@ private:
 		eWidget *m_widget;
 		int m_id;
 		int m_prev_seen_make_key;
+		bool m_long_key_pressed;
 	};
 
 	std::multimap<int, eActionBinding> m_bindings;
