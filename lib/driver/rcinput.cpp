@@ -21,21 +21,21 @@ void eRCDeviceInputDev::handleCode(long rccode)
 
 #if WETEKRC
 /*
-	eDebug("==> BEFORE check for evtype: %x %x %x", ev->value, ev->code, ev->type);
-	eDebug("==> BEFORE check for evtype:-->BackspaceFLAG %d", bflag);
+	eDebug("[eRCDeviceInputDev] ==> BEFORE check for evtype: %x %x %x", ev->value, ev->code, ev->type);
+	eDebug("[eRCDeviceInputDev] ==> BEFORE check for evtype:-->BackspaceFLAG %d", bflag);
 */
 	if (ev->code == KEY_BACKSPACE && ev->value == 1 ) {
 		bflag = !bflag;
 	}
 /*
-	eDebug("==> BEFORE check for evtype after check for evvalue:-->BackspaceFLAG %d", bflag);
+	eDebug("[eRCDeviceInputDev] ==> BEFORE check for evtype after check for evvalue:-->BackspaceFLAG %d", bflag);
 */
 #endif
 
 	if (ev->type != EV_KEY)
 		return;
-
-	eDebug("%x %x %x", ev->value, ev->code, ev->type);
+		
+	eDebug("[eRCDeviceInputDev] %x %x %x", ev->value, ev->code, ev->type);
 
 	int km = iskeyboard ? input->getKeyboardMode() : eRCInput::kmNone;
 
@@ -76,7 +76,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			case KEY_BACKSPACE:
 /*
 				bflag = !bflag;
-				eDebug("--> AFTER flip BackspaceFLAG %d", bflag);
+				eDebug("[eRCDeviceInputDev] --> AFTER flip BackspaceFLAG %d", bflag);
 */
 			case KEY_ENTER:
 			case KEY_INSERT:
@@ -171,8 +171,8 @@ void eRCDeviceInputDev::handleCode(long rccode)
 
 #if WETEKRC
 /*
-	eDebug("-->BackspaceFLAG %d", bflag);
-	eDebug("-->before change %x %x %x", ev->value, ev->code, ev->type);
+	eDebug("[eRCDeviceInputDev] -->BackspaceFLAG %d", bflag);
+	eDebug("[eRCDeviceInputDev] -->before change %x %x %x", ev->value, ev->code, ev->type);
 */
 /* default is with NO numerc keys !!!*/
 	if (bflag) {
@@ -208,8 +208,8 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		}
 	}
 /*
-	eDebug("-->BackspaceFLAG %d", bflag);
-	eDebug("-->after change %x %x %x", ev->value, ev->code, ev->type);
+	eDebug("[eRCDeviceInputDev] -->BackspaceFLAG %d", bflag);
+	eDebug("[eRCDeviceInputDev] -->after change %x %x %x", ev->value, ev->code, ev->type);
 */
 #endif
 
@@ -260,6 +260,14 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* formuler and triplex remote send wrong keycode */
 		ev->code = KEY_MEDIA;
+	}
+#endif
+
+#if KEY_VIDEO_TO_KEY_FAVORITES
+	if (ev->code == KEY_VIDEO)
+	{
+		/* formuler rcu fav key send key_media change this to  KEY_FAVORITES */
+		ev->code = KEY_FAVORITES;
 	}
 #endif
 
@@ -350,7 +358,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		ev->code = KEY_SLOW;
 	}
 #endif
-
+	
 #if KEY_TEXT_TO_KEY_AUDIO
 	if (ev->code == KEY_AUDIO)
 	{
@@ -361,6 +369,14 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	{
 		/* AZBOX rc has a KEY Check key, which sends KEY_AUDIO events. Correct this, so we do not have to place hacks in the keymaps. */
 		ev->code = KEY_TEXT;
+	}
+#endif
+
+#if KEY_CONTEXT_MENU_TO_KEY_AUX
+	if (ev->code == KEY_CONTEXT_MENU)
+	{
+		/* Gigablue New Remote rc has a KEY_HDMI-IN, which sends KEY_CONTEXT_MENU events. Correct this, so we do not have to place hacks in the keymaps. */
+		ev->code = KEY_AUX;
 	}
 #endif
 
@@ -529,7 +545,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		ev->code = KEY_MODE;
 	}
 #endif
-
+	
 
 #if KEY_GUIDE_TO_KEY_EPG
 	if (ev->code == KEY_HELP)
@@ -642,7 +658,7 @@ eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver, int consolefd)
 		consoleFd(consolefd), shiftState(false), capsState(false)
 {
 	setExclusive(true);
-	eDebug("Input device \"%s\" is a %s", id.c_str(), iskeyboard ? "keyboard" : (ismouse ? "mouse" : "remotecontrol"));
+	eDebug("[eRCDeviceInputDev] device \"%s\" is a %s", id.c_str(), iskeyboard ? "keyboard" : (ismouse ? "mouse" : "remotecontrol"));
 }
 
 void eRCDeviceInputDev::setExclusive(bool b)
@@ -695,11 +711,12 @@ public:
 		{
 			char filename[32];
 			sprintf(filename, "/dev/input/event%d", i);
-			if (::access(filename, R_OK) < 0) break;
+			if (::access(filename, R_OK) < 0)
+				break;
 			add(filename);
 			++i;
 		}
-		eDebug("Found %d input devices.", i);
+		eDebug("[eInputDeviceInit] Found %d input devices.", i);
 #endif
 	}
 
@@ -714,6 +731,7 @@ public:
 
 	void add(const char* filename)
 	{
+		eDebug("[eInputDeviceInit] adding device %s", filename);
 		eRCInputEventDriver *p = new eRCInputEventDriver(filename);
 		items.push_back(new element(filename, p, new eRCDeviceInputDev(p, consoleFd)));
 	}
@@ -729,7 +747,7 @@ public:
 				return;
 			}
 		}
-		eDebug("Remove '%s', not found", filename);
+		eDebug("[eInputDeviceInit] Remove '%s', not found", filename);
 	}
 
 	void addAll(void)
@@ -744,11 +762,12 @@ public:
 		{
 			char filename[32];
 			sprintf(filename, "/dev/input/event%d", i);
-			if (::access(filename, R_OK) < 0) break;
+			if (::access(filename, R_OK) < 0)
+				break;
 			add(filename);
 			++i;
 		}
-		eDebug("Found %d input devices.", i);
+		eDebug("[eInputDeviceInit] Found %d input devices.", i);
 	}
 
 	void removeAll(void)
