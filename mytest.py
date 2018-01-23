@@ -1,4 +1,5 @@
-import sys, os
+import sys
+import os
 from time import time
 
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
@@ -18,12 +19,23 @@ enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 boxtype = getBoxType()
 
 from traceback import print_exc
+profile("SetupDevices")
+import Components.SetupDevices
+Components.SetupDevices.InitSetupDevices()
+
 profile("SimpleSummary")
 from Screens import InfoBar
 from Screens.SimpleSummary import SimpleSummary
 
 from sys import stdout, exc_info
 
+profile("Bouquets")
+from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, NoSave
+config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
+def setLoadUnlinkedUserbouquets(configElement):
+	enigma.eDVBDB.getInstance().setLoadUnlinkedUserbouquets(configElement.value)
+config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
+enigma.eDVBDB.getInstance().reloadBouquets()
 profile("ParentalControl")
 import Components.ParentalControl
 Components.ParentalControl.InitParentalControl()
@@ -50,7 +62,7 @@ config.misc.radiopic = ConfigText(default = radiopic)
 #config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 #config.misc.isNextPowerTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.nextWakeup = ConfigText(default = "-1,-1,0,0,-1,0")	#wakeup time, timer begins, set by (0=rectimer,1=zaptimer, 2=powertimer or 3=plugin), go in standby, next rectimer, force rectimer
-config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", "Transponder Time"), ("1", _("NTP"))])
+config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", _("Transponder Time")), ("1", _("NTP"))])
 config.misc.NTPserver = ConfigText(default = 'pool.ntp.org', fixed_size=False)
 
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
@@ -70,7 +82,7 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 ####################################################
 
 def useSyncUsingChanged(configelement):
-	if configelement.value == "0":
+	if config.misc.SyncTimeUsing.value == "0":
 		print "[Time By]: Transponder"
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
 		enigma.eEPGCache.getInstance().timeUpdated()
@@ -81,15 +93,16 @@ def useSyncUsingChanged(configelement):
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 
 def NTPserverChanged(configelement):
-	if configelement.value == "pool.ntp.org":
+	if config.misc.NTPserver.value == "pool.ntp.org":
 		return
+	print "[NTPDATE] save /etc/default/ntpdate"
 	f = open("/etc/default/ntpdate", "w")
-	f.write('NTPSERVERS="' + configelement.value + '"\n')
+	f.write('NTPSERVERS="' + config.misc.NTPserver.value + '"')
 	f.close()
 	os.chmod("/etc/default/ntpdate", 0755)
 	from Components.Console import Console
 	Console = Console()
-	Console.ePopen('/usr/bin/ntpdate ' + config.misc.NTPserver.value)
+	Console.ePopen('/usr/bin/ntpdate-sync')
 config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback = True)
 
 profile("Twisted")
@@ -245,16 +258,6 @@ class Session:
 			self.current_dialog.removeSummary(self.summary)
 			self.popSummary()
 
-	def create(self, screen, arguments, **kwargs):
-		# creates an instance of 'screen' (which is a class)
-		try:
-			return screen(self, *arguments, **kwargs)
-		except:
-			errstr = "Screen %s(%s, %s): %s" % (str(screen), str(arguments), str(kwargs), exc_info()[0])
-			print errstr
-			print_exc(file=stdout)
-			enigma.quitMainloop(5)
-
 	def instantiateDialog(self, screen, *arguments, **kwargs):
 		return self.doInstantiateDialog(screen, arguments, kwargs, self.desktop)
 
@@ -278,23 +281,12 @@ class Session:
 
 	def doInstantiateDialog(self, screen, arguments, kwargs, desktop):
 		# create dialog
-
-		try:
-			dlg = self.create(screen, arguments, **kwargs)
-		except:
-			print 'EXCEPTION IN DIALOG INIT CODE, ABORTING:'
-			print '-'*60
-			print_exc(file=stdout)
-			enigma.quitMainloop(5)
-			print '-'*60
-
+		dlg = screen(self, *arguments, **kwargs)
 		if dlg is None:
 			return
-
 		# read skin data
 		readSkin(dlg, None, dlg.skinName, desktop)
 		# create GUI view of this dialog
-		assert desktop is not None
 		dlg.setDesktop(desktop)
 		dlg.applySkin()
 		return dlg
@@ -381,8 +373,6 @@ class PowerKey:
 		globalActionMap.actions["power_long"]=self.powerlong
 		globalActionMap.actions["deepstandby"]=self.shutdown # frontpanel long power button press
 		globalActionMap.actions["discrete_off"]=self.standby
-		globalActionMap.actions["sleeptimer_standby"]=self.sleepStandby
-		globalActionMap.actions["sleeptimer_deepstandby"]=self.sleepDeepStandby
 		globalActionMap.actions["sleeptimer"]=self.openSleepTimer
 		globalActionMap.actions["powertimer_standby"]=self.sleepStandby
 		globalActionMap.actions["powertimer_deepstandby"]=self.sleepDeepStandby
@@ -392,32 +382,11 @@ class PowerKey:
 		self.session.infobar = None
 
 	def shutdown(self):
-		wasRecTimerWakeup = False
-		recordings = self.session.nav.getRecordings(False,Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
-		if not recordings:
-			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
-		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
-			if os.path.exists("/tmp/was_rectimer_wakeup") and not self.session.nav.RecordTimer.isRecTimerWakeup():
-				f = open("/tmp/was_rectimer_wakeup", "r")
-				file = f.read()
-				f.close()
-				wasRecTimerWakeup = int(file) and True or False
-			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup or self.session.nav.RecordTimer.isRecording():
-				print "PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!"
-				lastrecordEnd = 0
-				for timer in self.session.nav.RecordTimer.timer_list:
-					if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
-						print "Set after-event for recording %s to DEEP-STANDBY." % timer.name
-						timer.afterEvent = 2
-						if timer.end > lastrecordEnd:
-							lastrecordEnd = timer.end + 900
-				from Screens.MessageBox import MessageBox
-				self.session.openWithCallback(self.gotoStandby,MessageBox,_("PowerOff while Recording in progress!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, timeout = 10)
-			else:
-				print "PowerOff - Now!"
-				self.session.open(Screens.Standby.TryQuitMainloop, 1)
+		recordings = self.session.nav.getRecordingsCheckBeforeActivateDeepStandby()
+		if recordings:
+			from Screens.MessageBox import MessageBox
+			self.session.openWithCallback(self.gotoStandby,MessageBox,_("Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."), type = MessageBox.TYPE_INFO, close_on_any_key = True, timeout = 10)
 		elif not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
-			print "PowerOff - Now!"
 			self.session.open(Screens.Standby.TryQuitMainloop, 1)
 
 	def powerlong(self):
@@ -533,6 +502,8 @@ from Screens.Ci import CiHandler
 profile("Load:VolumeControl")
 from Components.VolumeControl import VolumeControl
 
+from time import time, localtime, strftime
+from Tools.StbHardware import setFPWakeuptime, setRTCtime
 def runScreenTest():
 	config.misc.startCounter.value += 1
 
@@ -556,6 +527,7 @@ def runScreenTest():
 
 	def runNextScreen(session, screensToRun, *result):
 		if result:
+			print "[mytest.py] quitMainloop #3"
 			enigma.quitMainloop(*result)
 			return
 
@@ -573,7 +545,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 
-	if boxtype in ('osnino','alphatriple','spycat4kmini','tmtwin4k','mbmicrov2','revo4k','force3uhd','wetekplay', 'wetekplay2', 'wetekhub', 'dm7020hd', 'dm7020hdv2', 'osminiplus', 'osmega', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixusszero', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3', '9910lx', '9911lx') or getBrandOEM() in ('fulan') or getMachineBuild() in ('dags7362' , 'dags73625', 'dags5'):
+	if boxtype in ('osnino','osninoplus','alphatriple','spycat4kmini','tmtwin4k','mbmicrov2','revo4k','force3uhd','wetekplay', 'wetekplay2', 'wetekhub', 'dm7020hd', 'dm7020hdv2', 'osminiplus', 'osmega', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixusszero', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3', '9910lx', '9911lx') or getBrandOEM() in ('fulan') or getMachineBuild() in ('dags7362' , 'dags73625', 'dags5'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -588,9 +560,6 @@ def runScreenTest():
 	profile("Init:AutoVideoMode")
 	import Screens.VideoMode
 	Screens.VideoMode.autostart(session)
-
-	profile("Bouquets")
-	enigma.eDVBDB.getInstance().reloadBouquets()
 
 	profile("RunReactor")
 	profile_final()
@@ -625,8 +594,6 @@ def runScreenTest():
 
 	profile("wakeup")
 
-	from time import time, strftime, localtime
-	from Tools.StbHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
 #	if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
@@ -736,6 +703,7 @@ def runScreenTest():
 	configfile.save()
 	from Screens import InfoBarGenerics
 	InfoBarGenerics.saveResumePoints()
+
 	return 0
 
 profile("Init:skin")
@@ -746,10 +714,6 @@ profile("InputDevice")
 import Components.InputDevice
 Components.InputDevice.InitInputDevices()
 import Components.InputHotplug
-
-profile("SetupDevices")
-import Components.SetupDevices
-Components.SetupDevices.InitSetupDevices()
 
 profile("AVSwitch")
 import Components.AVSwitch
@@ -802,7 +766,7 @@ if boxtype in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', '
 	except:
 		print "Error disable enable_clock for ini5000 boxes"
 
-if boxtype in ('dm7080', 'dm820', 'dm900'):
+if boxtype in ('dm7080', 'dm820', 'dm900', 'dm920', 'gb7252'):
 	f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
 	check=f.read()
 	f.close()
