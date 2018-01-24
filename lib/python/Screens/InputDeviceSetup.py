@@ -425,8 +425,8 @@ class RemoteControlType(Screen, ConfigListScreen):
 				boxType = fd.read()
 				return boxType
 		except:
-			return "Default"
-		return "Default"
+			return "default"
+		return "default"
 
 	def getDefaultRcType(self):
 		boxtype = getBoxType()
