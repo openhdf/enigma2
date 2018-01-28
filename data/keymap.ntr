@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Neutrino Keymap 23.01.2018" -->
+	<!-- "HDF Neutrino Keymap 28.01.2018" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -636,10 +636,14 @@
 	</map>
 
 	<map context="ColorActions">
-		<key id="KEY_RED" mapto="red" flags="m" />
-		<key id="KEY_GREEN" mapto="green" flags="m" />
-		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
-		<key id="KEY_BLUE" mapto="blue" flags="m" />
+		<key id="KEY_RED" mapto="red" flags="b"/>
+		<key id="KEY_RED" mapto="redlong" flags="l"/>
+		<key id="KEY_GREEN" mapto="green" flags="b"/>
+		<key id="KEY_GREEN" mapto="greenlong" flags="l"/>
+		<key id="KEY_YELLOW" mapto="yellow" flags="b"/>
+		<key id="KEY_YELLOW" mapto="yellowlong" flags="l"/>
+		<key id="KEY_BLUE" mapto="blue" flags="b"/>
+		<key id="KEY_BLUE" mapto="bluelong" flags="l"/>
 	</map>
 
 	<map context="MsgBoxActions">
