@@ -1,5 +1,5 @@
 <keymap>
-	<!-- "HDF User Keymap 06.01.2017" -->
+	<!-- "HDF User Keymap 23.01.2018" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -947,6 +947,8 @@
 		<key id="KEY_ANGLE" mapto="angle_long" flags="l" />
 		<key id="KEY_CONTEXT_MENU" mapto="contextMenu" flags="b"/>
 		<key id="KEY_CONTEXT_MENU" mapto="context_long" flags="l"/>
+		<key id="KEY_OPTION" mapto="option" flags="b"/>
+		<key id="KEY_OPTION" mapto="option_long" flags="l"/>
 		<key id="KEY_SAT" mapto="sat" flags="b" />
 		<key id="KEY_SAT" mapto="sat_long" flags="l" />
 		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
