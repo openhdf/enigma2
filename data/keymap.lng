@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 23.01.2018" -->
+	<!-- "HDF Default Keymap 29.01.2018" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -481,7 +481,7 @@
 			<key id="KEY_YELLOW" mapto="timeshiftActivateEndAndPause" flags="b" />
 		</device>
 		<key id="KEY_PLAYPAUSE" mapto="timeshiftActivateEndAndPause" flags="m" />
-		<!--key id="KEY_PAUSE" mapto="timeshiftActivateEndAndPause" flags="m" /-->
+		<key id="KEY_PAUSE" mapto="timeshiftActivateEndAndPause" flags="m" />
 		<key id="KEY_REWIND" mapto="timeshiftActivateEnd" flags="m" />
 	</map>
 
