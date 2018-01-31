@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "23.01.2017"
+updateversion = "31.01.2017"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -370,14 +370,9 @@ class HotkeySetup(Screen):
 		if key:
 			selected = []
 			for x in eval("config.misc.hotkey." + key + ".value.split(',')"):
-				if x.startswith("ZapPanic"):
-					selected.append(ChoiceEntryComponent('',((_("Panic to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
-				elif x.startswith("Zap"):
-					selected.append(ChoiceEntryComponent('',((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x)))
-				else:
-					function = list(function for function in self.hotkeyFunctions if function[1] == x )
-					if function:
-						selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
+				function = list(function for function in self.hotkeyFunctions if function[1] == x )
+				if function:
+					selected.append(ChoiceEntryComponent('',((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
 
 class HotkeySetupSelect(Screen):
@@ -657,6 +652,7 @@ class InfoBarHotkey():
 			elif selected[0].startswith("Zap"):
 				if selected[0] == "ZapPanic":
 					self.servicelist.history = []
+					self.pipShown() and self.showPiP()
 				self.servicelist.servicelist.setCurrent(eServiceReference("/".join(selected[1:])))
 				self.servicelist.zap(enable_pipzap = True)
 				if hasattr(self, "lastservice"):
