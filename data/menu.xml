@@ -17,9 +17,10 @@
 		<menu level="0" text="Timers" entryID="timer_menu">
 			<id val="timermenu" />
 			<item weight="100" level="0" text="CronTimers" entryID="crontimer_edit"><screen module="CronTimer" screen="CronTimers" /></item>
-			<item weight="100" level="0" text="Timer" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
-			<item weight="100" level="0" text="PowerTimers" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
-		</menu>
+			<item weight="110" level="0" text="Timer" entryID="timer_edit"><screen module="TimerEdit" screen="TimerEditList" /></item>
+			<item weight="120" text="SleepTimer" entryID="sleep" level="0" requires="DeepstandbySupport" ><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
+			<item weight="130" level="0" text="PowerTimers" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
+			</menu>
 
 		<!-- Menu / Scart (if enabled in config) -->
 		<item level="1" text="VCR scart" entryID="scart_switch" configcondition="config.usage.show_vcr_scart" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
