@@ -30,7 +30,7 @@ def InitUsageConfig():
 		choicelist.append(("%d" % i, m))
 	config.downloader.autoupdate_timer = ConfigSelection(default = "240", choices = choicelist)
 
-	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
+	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("15", "15" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default = True)
 
 	config.workaround = ConfigSubsection()
