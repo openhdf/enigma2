@@ -1,0 +1,69 @@
+<?xml  version="1.0" encoding="UTF-8" standalone="no"?>
+<skin>
+  <windowstyle id="1" type="skinned">
+    <color color="#000000" name="Background" />
+    <color color="#ffffff" name="LabelForeground" />
+    <color color="#000000" name="ListboxBackground" />
+    <color color="#ffffff" name="ListboxForeground" />
+    <color color="#000000" name="ListboxSelectedBackground" />
+    <color color="#ffffff" name="ListboxSelectedForeground" />
+    <color color="#000000" name="ListboxMarkedBackground" />
+    <color color="#ffffff" name="ListboxMarkedForeground" />
+    <color color="#000000" name="ListboxMarkedAndSelectedBackground" />
+    <color color="#ffffff" name="ListboxMarkedAndSelectedForeground" />
+    <color color="#ffffff" name="WindowTitleForeground" />
+    <color color="#000000" name="WindowTitleBackground" />
+  </windowstyle>
+  <fonts>
+    <!-- pick a funky name for the font, so we don't conflict  -->
+    <font filename="nmsbd.ttf" name="FdLcD" scale="100" />
+  </fonts>
+  <!--Main-->
+  <screen name="InfoBarSummary" position="fill">
+    <widget source="session.CurrentService" render="LcdPicon" position="1,1" size="100,60" halign="center" valign="center">
+      <convert type="ServiceName">Reference</convert>
+    </widget>
+    <widget source="session.CurrentService" position="112,1" size="60,60" render="Label" font="Meteo; 50" noWrap="1" valign="center">
+      <convert type="XionHDFWeather">Day_0,MeteoFont</convert>
+    </widget>
+    <widget source="session.CurrentService" render="Label" position="155,2" size="65,22" font="FdLcD;22" halign="right" noWrap="1" foregroundColor="#00FF00" transparent="1" zPosition="2">
+      <convert type="XionHDFWeather">Day_0,DayTemp</convert>
+    </widget>
+    <widget source="session.TunerInfo" render="FixedLabel" position="173,32" size="22,22" text="A" foregroundColor="#FFFF00" font="FdLcD;22" halign="center">
+      <convert type="TunerInfo">TunerUseMask</convert>
+      <convert type="ValueBitTest">1</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.TunerInfo" render="FixedLabel" position="198,32" size="22,22" text="B" foregroundColor="#FFFF00" font="FdLcD;22" halign="center">
+      <convert type="TunerInfo">TunerUseMask</convert>
+      <convert type="ValueBitTest">2</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.Event_Now" render="Label" position="0,60" size="220,90" font="FdLcD;26" halign="center" valign="center">
+      <convert type="EventName">Name</convert>
+    </widget>
+    <widget source="session.Event_Now" render="Progress" position="0,151" size="110,25" foregroundColor="#FFFF00" borderWidth="2">
+      <convert type="EventTime">Progress</convert>
+    </widget>
+    <widget source="session.Event_Now" render="Label" position="110,151" size="123,25" font="FdLcD;24" halign="right" valign="center" noWrap="1" foregroundColor="#FFFF00">
+      <convert type="EventTime">Remaining</convert>
+      <convert type="RemainingToText">FOLLOW</convert>
+    </widget>
+    <widget source="session.RecordState" render="FixedLabel" text="Recording" position="110,151" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;22" zPosition="2" noWrap="1" valign="center">
+      <convert type="ConditionalShowHide">Blink</convert>
+    </widget>
+  </screen>
+  <!--standby-->
+  <screen name="StandbySummary" position="fill">
+    <widget source="global.CurrentTime" render="Label" position="0,0" size="220,50" font="FdLcD;50" halign="center" valign="top" noWrap="1" foregroundColor="#D7D7D7">
+      <convert type="ClockToText">Format:%d.%m.%y</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="center,50" size="220,100" font="FdLcD;85" halign="center" valign="center" noWrap="1" foregroundColor="#D7D7D7">
+      <convert type="ClockToText">Format:%H:%M</convert>
+    </widget>
+    <widget source="session.RecordState" render="FixedLabel" text="Recording" position="110,151" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;22" zPosition="3" noWrap="1" valign="center">
+      <convert type="ConditionalShowHide">Blink</convert>
+    </widget>
+  </screen>
+  <include filename="~/skin_common.xml" />
+</skin>

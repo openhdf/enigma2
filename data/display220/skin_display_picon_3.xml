@@ -18,12 +18,14 @@
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="90"/>
 	</fonts>
+
 <!-- template -->
 	<screen name="SummaryClockPanel">
 		<widget source="global.CurrentTime" render="Label" position="110,135" size="100,50" font="FdLcD;45" halign="right" valign="bottom" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
+
 <!-- main-->
 	<screen name="InfoBarSummary" position="fill" >
 		<widget source="session.CurrentService" render="Picon" zPosition="1" position="center,10" size="100,60" alphatest="on" >
@@ -58,6 +60,8 @@
 		</widget>
 		<panel name="SummaryClockPanel" />
 	</screen>
+    
+  
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="fill">
 		<widget source="parent.ServiceEvent" render="Picon" zPosition="1" position="center,10" size="100,60" alphatest="on" >
@@ -69,11 +73,12 @@
 		<widget source="parent.ServiceEvent" render="Label" position="0,145" size="110,25" font="Regular; 25" foregroundColor="#F78181" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
-		</widget>
+		</widget>		
 		<widget source="parent.ServiceEvent" render="Progress" position="115,150" size="105,24" borderWidth="2" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 	</screen>
+  
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="220,176">
 		<widget source="parent.title" render="Label" position="0,38" size="220,30" font="FdLcD;28" halign="left" noWrap="1" />
@@ -82,6 +87,7 @@
 		</widget>
 		<panel name="SummaryClockPanel" />
 	</screen>
+
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="fill">
 		<widget source="session.CurrentService" render="Label" position="top" size="*,36" font="FdLcD;16" halign="left" valign="top" >
@@ -96,6 +102,7 @@
 			</widget>
 		</panel>
 	</screen>
+	
 	<screen name="MovieContextMenuSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
 		<widget source="selected" render="Label" position="top" size="*,32" font="FdLcD;16" />
@@ -105,6 +112,7 @@
 			</widget>
 		</panel>
 	</screen>
+
 	<screen name="MovieSelectionSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
 		<widget source="name" render="Label" position="top" size="*,32" font="FdLcD;16" halign="left" valign="top" />
@@ -117,6 +125,7 @@
 			</widget>
 		</panel>
 	</screen>
+
 <!-- DVD -->
 	<screen name="DVDSummary" position="fill">
 		<widget source="session.CurrentService" render="Label" position="top" size="*,28" font="FdLcD;12"  >
@@ -132,29 +141,34 @@
 			<widget name="Chapter" position="fill" font="FdLcD;12" halign="left" />
 		</panel>
 	</screen>
+
 <!-- setup-->
 	<screen name="SetupSummary" position="fill">
 		<widget source="SetupTitle" render="Label" position="top" size="*,61" font="FdLcD;30" halign="left" />
 		<widget source="SetupEntry" render="Label" position="top" size="*,51" font="FdLcD;25" halign="left" />
 		<widget source="SetupValue" render="Label" position="top" size="*,51" font="FdLcD;25" halign="left" />
 	</screen>
+
 <!-- misc-->
 	<screen name="SimpleSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,100" font="FdLcD;40" halign="center" valign="center" />
 		<panel position="bottom" size="*,24" name="SummaryClockPanel" />
 	</screen>
+
 	<screen name="WizardSummary" position="fill">
 		<widget source="text" render="Label" position="top" size="*,71" font="FdLcD;35" halign="center" />
 		<widget source="parent.list" render="Label" position="fill" font="FdLcD;25" halign="center" >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
+
 	<screen name="VideoWizardSummary" position="fill">
 		<widget name="text" position="top" size="*,40" font="FdLcD;12" transparent="1" />
 		<widget source="parent.list" render="Label" position="fill" font="FdLcD;45" halign="center" >
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
+
 <!-- standby -->
 	<screen name="StandbySummary" position="fill">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="220,24" font="FdLcD;22" halign="left"  noWrap="1">
@@ -173,6 +187,7 @@
 		<widget source="entry" render="Label" position="top" size="*,61" font="FdLcD;30" halign="left" />
 		<widget source="desc" render="Label" position="fill" font="FdLcD;22" valign="top" />
 	</screen>
+
 <!-- JobView Summary -->
 	<screen name="JobView_summary" position="fill">
 		<widget source="parent.summary_job_name" render="Label" position="top" size="*,51" font="FdLcD;25" halign="center" />
@@ -182,13 +197,16 @@
 			<convert type="ProgressToText" />
 		</widget>
 	</screen>
+
 	<screen name="ChoiceBox_summary" position="fill">
 		<widget source="parent.summary_list" render="Label" position="top" size="*,181" font="FdLcD;25" halign="left" />
-    </screen>
+    </screen>	
+
 	<screen name="MessageBox_summary" position="fill">
 		<widget source="parent.Text" render="Label" position="top" size="*,95" font="FdLcD;31" halign="center" valign="center" />
 		<widget source="parent.selectedChoice" render="Label" position="bottom" size="*,44" font="FdLcD;44" halign="center" valign="center" />
 	</screen>
+
 	<screen name="MessageBoxSimple_summary" position="fill">
 		<widget source="parent.Text" render="Label" position="top" size="*,95" font="FdLcD;31" halign="center" valign="center" />
 		<widget source="parent.selectedChoice" render="Label" position="bottom" size="*,44" font="FdLcD;44" halign="center" valign="center" />

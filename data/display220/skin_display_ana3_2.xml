@@ -1,0 +1,79 @@
+<?xml  version="1.0" encoding="UTF-8" standalone="no"?>
+<skin>
+  <windowstyle id="1" type="skinned">
+    <color color="#000000" name="Background" />
+    <color color="#ffffff" name="LabelForeground" />
+    <color color="#000000" name="ListboxBackground" />
+    <color color="#ffffff" name="ListboxForeground" />
+    <color color="#000000" name="ListboxSelectedBackground" />
+    <color color="#ffffff" name="ListboxSelectedForeground" />
+    <color color="#000000" name="ListboxMarkedBackground" />
+    <color color="#ffffff" name="ListboxMarkedForeground" />
+    <color color="#000000" name="ListboxMarkedAndSelectedBackground" />
+    <color color="#ffffff" name="ListboxMarkedAndSelectedForeground" />
+    <color color="#ffffff" name="WindowTitleForeground" />
+    <color color="#000000" name="WindowTitleBackground" />
+  </windowstyle>
+  <fonts>
+    <!-- pick a funky name for the font, so we don't conflict  -->
+    <font filename="nmsbd.ttf" name="FdLcD" scale="100" />
+  </fonts>
+  <!--Main-->
+  <screen name="InfoBarSummary" position="fill">
+    <widget source="session.CurrentService" render="Label" position="0,1" size="220,32" font="FdLcD;30" halign="center" foregroundColor="#2E64FE">
+      <convert type="ServiceName">Name</convert>
+    </widget>
+    <eLabel text="TUNER:" position="15,36" size="80,22" halign="left" font="FdLcD;21" foregroundColor="#7AFF9F" />
+    <widget source="session.TunerInfo" render="FixedLabel" position="100,34" size="24,24" text="A" foregroundColor="#00FF00" font="FdLcD;24" halign="center">
+      <convert type="TunerInfo">TunerUseMask</convert>
+      <convert type="ValueBitTest">1</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.TunerInfo" render="FixedLabel" position="125,34" size="24,24" text="B" foregroundColor="#00FF00" font="FdLcD;24" halign="center">
+      <convert type="TunerInfo">TunerUseMask</convert>
+      <convert type="ValueBitTest">2</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.TunerInfo" render="FixedLabel" position="150,34" size="24,24" text="C" foregroundColor="#00FF00" font="FdLcD;24" halign="center">
+      <convert type="TunerInfo">TunerUseMask</convert>
+      <convert type="ValueBitTest">4</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.TunerInfo" render="FixedLabel" position="175,34" size="24,24" text="D" foregroundColor="#00FF00" font="FdLcD;24" halign="center">
+      <convert type="TunerInfo">TunerUseMask</convert>
+      <convert type="ValueBitTest">8</convert>
+      <convert type="ConditionalShowHide" />
+    </widget>
+    <widget source="session.Event_Now" render="Label" position="0,60" size="220,90" font="FdLcD;26" halign="center" valign="center">
+      <convert type="EventName">Name</convert>
+    </widget>
+    <widget source="session.Event_Now" render="Progress" position="0,151" size="110,25" foregroundColor="#FFFF00" borderWidth="2">
+      <convert type="EventTime">Progress</convert>
+    </widget>
+    <widget source="session.Event_Now" render="Label" position="110,151" size="123,25" font="FdLcD;24" halign="right" valign="center" noWrap="1" foregroundColor="#FFFF00">
+      <convert type="EventTime">Remaining</convert>
+      <convert type="RemainingToText">FOLLOW</convert>
+    </widget>
+    <widget source="session.RecordState" render="FixedLabel" text="Recording" position="110,151" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;22" zPosition="2" noWrap="1" valign="center">
+      <convert type="ConditionalShowHide">Blink</convert>
+    </widget>
+  </screen>
+  <!--standby-->
+  <screen name="StandbySummary" position="fill">
+    <ePixmap pixmap="~/analog_lcd_3.png" position="0,0" size="220,176" zPosition="0" />
+    <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" hColor="white" linewidth="5" zPosition="2" alphatest="on">
+      <convert type="OMaclock">Hours</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" mColor="white" linewidth="4" zPosition="3" alphatest="on">
+      <convert type="OMaclock">Minutes</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" sColor="red" linewidth="3" zPosition="4" alphatest="on">
+      <convert type="OMaclock">Seconds</convert>
+    </widget>
+    <widget source="session.RecordState" render="Pixmap" pixmap="~/analog_lcd_record.png" position="0,0" size="220,176" zPosition="1" alphatest="on">
+      <convert type="ConditionalShowHide">Blink</convert>
+    </widget>
+    <ePixmap pixmap="~/analog_lcd_point.png" position="center,center" size="20,20" alphatest="on" zPosition="5" />
+  </screen>
+  <include filename="~/skin_common.xml" />
+</skin>
