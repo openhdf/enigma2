@@ -1,0 +1,48 @@
+<?xml  version="1.0" encoding="UTF-8" standalone="no"?>
+<skin>
+  <windowstyle id="1" type="skinned">
+    <color color="#000000" name="Background" />
+    <color color="#ffffff" name="LabelForeground" />
+    <color color="#000000" name="ListboxBackground" />
+    <color color="#ffffff" name="ListboxForeground" />
+    <color color="#000000" name="ListboxSelectedBackground" />
+    <color color="#ffffff" name="ListboxSelectedForeground" />
+    <color color="#000000" name="ListboxMarkedBackground" />
+    <color color="#ffffff" name="ListboxMarkedForeground" />
+    <color color="#000000" name="ListboxMarkedAndSelectedBackground" />
+    <color color="#ffffff" name="ListboxMarkedAndSelectedForeground" />
+    <color color="#ffffff" name="WindowTitleForeground" />
+    <color color="#000000" name="WindowTitleBackground" />
+  </windowstyle>
+  <fonts>
+    <!-- pick a funky name for the font, so we don't conflict  -->
+    <font filename="nmsbd.ttf" name="FdLcD" scale="100" />
+  </fonts>
+  <!--Main-->
+  <screen name="InfoBarSummary" position="fill">
+    <widget source="session.CurrentService" render="LcdPicon" position="center,center" size="220,176" halign="center" valign="center">
+      <convert type="ServiceName">Reference</convert>
+    </widget>
+    <widget source="session.RecordState" render="FixedLabel" text="Recording" position="110,151" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;22" zPosition="2" noWrap="1" valign="center">
+      <convert type="ConditionalShowHide">Blink</convert>
+    </widget>
+  </screen>
+  <!--standby-->
+  <screen name="StandbySummary" position="fill">
+    <ePixmap pixmap="~/analog_lcd_3.png" position="0,0" size="220,176" zPosition="0" />
+    <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" hColor="white" linewidth="5" zPosition="2" alphatest="on">
+      <convert type="OMaclock">Hours</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" mColor="white" linewidth="4" zPosition="3" alphatest="on">
+      <convert type="OMaclock">Minutes</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" sColor="red" linewidth="3" zPosition="4" alphatest="on">
+      <convert type="OMaclock">Seconds</convert>
+    </widget>
+    <widget source="session.RecordState" render="Pixmap" pixmap="~/analog_lcd_record.png" position="0,0" size="220,176" zPosition="1" alphatest="on">
+      <convert type="ConditionalShowHide">Blink</convert>
+    </widget>
+    <ePixmap pixmap="~/analog_lcd_point.png" position="center,center" size="20,20" alphatest="on" zPosition="5" />
+  </screen>
+  <include filename="~/skin_common.xml" />
+</skin>
