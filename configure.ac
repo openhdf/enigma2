@@ -758,6 +758,7 @@ data/display128/Makefile
 data/display128dm/Makefile
 data/display140/Makefile
 data/display220/Makefile
+data/display220/Wettericons/Makefile
 data/display255/Makefile
 data/display255/vfd_icons/Makefile
 data/display390/Makefile
