@@ -10355,7 +10355,7 @@ msgid "Timeshift saved to your harddisk!"
 msgstr "TimeShift auf Festplatte gesichert!"
 
 msgid "Timeshift settings"
-msgstr "TimeShift Einstellungen"
+msgstr "Timeshift Einstellungen"
 
 msgid "Older files in the timeshift directory are removed on every event change."
 msgstr "Ältere Timeshift Dateien werden bei jedem Event gelöscht."
