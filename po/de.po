@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-01-21 07:26+0100\n"
+"PO-Revision-Date: 2018-02-11 08:35+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "OFF"
@@ -3248,7 +3248,7 @@ msgid "Creating AP and SC Files"
 msgstr "AP- und SC-Dateien erzeugen"
 
 msgid "Creating Hardlink to Timeshift file failed!"
-msgstr "Anlegen von Hardlink zur TimeShift-Datei fehlgeschlagen!"
+msgstr "Anlegen von Hardlink zur Timeshift-Datei fehlgeschlagen!"
 
 #, python-format
 msgid "Creating directory %s failed."
@@ -5929,7 +5929,7 @@ msgid "Menu config"
 msgstr "Menükonfiguration"
 
 msgid "Merging Timeshift files"
-msgstr "TimeShift-Dateien werden zusammengefügt"
+msgstr "Timeshift-Dateien werden zusammengefügt"
 
 msgid "MiniDLNA Log"
 msgstr "MiniDLNA Log"
@@ -7648,7 +7648,7 @@ msgid "Record now"
 msgstr "Aufnahme jetzt"
 
 msgid "Record started! Stopping timeshift now ..."
-msgstr "Aufnahme wurde gestartet! TimeShift wird jetzt angehalten ..."
+msgstr "Aufnahme wurde gestartet! Timeshift wird jetzt angehalten ..."
 
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
@@ -8119,19 +8119,19 @@ msgid "Save playlist"
 msgstr "Wiedergabeliste speichern"
 
 msgid "Save timeshift as movie and continue recording"
-msgstr "TimeShift als Film speichern und fortsetzen"
+msgstr "Timeshift als Film speichern und fortsetzen?"
 
 msgid "Save timeshift as movie and stop recording"
-msgstr "TimeShift als Film speichern und beenden"
+msgstr "Timeshift als Film speichern und beenden?"
 
 msgid "Saving EPG Cache..."
 msgstr "EPG Cache wird gespeichert ..."
 
 msgid "Saving Timeshift files"
-msgstr "TimeShift-Dateien werden gespeichert"
+msgstr "Timeshift-Dateien werden gespeichert"
 
 msgid "Saving timeshift as movie now. This might take a while!"
-msgstr "TimeShift-Datei wird als Aufnahme gespeichert. Das kann dauern!"
+msgstr "Timeshift-Datei wird als Aufnahme gespeichert. Das kann dauern!"
 
 msgid "Scaler sharpness"
 msgstr "Scaler Schärfe"
@@ -8341,7 +8341,7 @@ msgid "Control the Infobar fading speed"
 msgstr "Geschwindigkeit der sanften Infobar Ausblendung."
 
 msgid "Select if timeshift must continue when set to record."
-msgstr "Wähle ob TimeShift auch bei einer Aufnahme weiter gehen soll."
+msgstr "Wähle ob Timeshift auch bei einer Aufnahme weiter laufen soll."
 
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Wähle ob Unterkanäle aktiviert werden sollen."
@@ -8571,7 +8571,7 @@ msgid "Set the default location for your timers. Press 'OK' to add new locations
 msgstr "Wähle das Standardverzeichnis für Timeraufnahmen. Drücke 'OK' um ein neues Verzeichnis zu wählen. Benutze Kreuz links/rechts um bestehende Verzeichnisse zu wählen."
 
 msgid "Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."
-msgstr "Wähle das Standardverzeichnis für TimeShift Dateien. Drücke 'OK' um ein neues Verzeichnis zu wählen. Benutze Kreuz links/rechts um bestehende Verzeichnisse zu wählen."
+msgstr "Wähle das Standardverzeichnis für Timeshift Dateien. Drücke 'OK' um ein neues Verzeichnis zu wählen. Benutze Kreuz links/rechts um bestehende Verzeichnisse zu wählen."
 
 msgid "Set the default sorting method."
 msgstr "Standardsortiermethode wählen."
@@ -9053,7 +9053,7 @@ msgid "Show transponder remaining/elapsed as"
 msgstr "Zeige Transponder verbleibend/verstrichen"
 
 msgid "Show warning when timeshift is stopped"
-msgstr "Zeige Warnung wenn TimeShift beendet wird"
+msgstr "Zeige Warnung, wenn Timeshift beendet wird"
 
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Zeigt das Icon wenn neu oder ungesehen sonst wird kein Icon gezeigt."
@@ -9345,7 +9345,7 @@ msgid "Start time"
 msgstr "Startzeit"
 
 msgid "Start timeshift"
-msgstr "TimeShift startet"
+msgstr "Timeshift startet"
 
 msgid "Start with list screen"
 msgstr "Starte mit Liste"
@@ -9408,13 +9408,13 @@ msgid "Stop timer recording"
 msgstr "Timeraufnahme beenden"
 
 msgid "Stop timeshift"
-msgstr "TimeShift stoppt"
+msgstr "Timeshift stoppt"
 
 msgid "Stop timeshift while recording?"
-msgstr "Halte TimeShift bei Aufnahme an?"
+msgstr "Halte Timeshift bei Aufnahme an?"
 
 msgid "Stop's timeshift being used if a recording is in progress. (adviseable for usb sticks)"
-msgstr "Stoppt TimeShift wenn eine Aufnahme läuft. Sinnvoll bei USB-Sticks."
+msgstr "Stoppt Timeshift, wenn eine Aufnahme läuft. Sinnvoll bei USB-Sticks."
 
 msgid "Stopped"
 msgstr "Gestoppt"
@@ -9835,8 +9835,8 @@ msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
 "Make sure it is formatted in EXT2, EXT3 or EXT4!"
 msgstr ""
-"Das Dateisystem vom TimeShift Verzeichnis unterstützt keine Hardlinks.\n"
-"Stelle sicher das es mit EXT2/3/4 formatiert ist!"
+"Das Dateisystem vom Timeshift Verzeichnis unterstützt keine Hardlinks.\n"
+"Stelle sicher, dass es mit EXT2/3/4 formatiert ist!"
 
 msgid ""
 "The IMDb plugin is not installed!\n"
@@ -10334,25 +10334,25 @@ msgid "Timer"
 msgstr "Aufnahme / Umschalt Timer"
 
 msgid "Timeshift"
-msgstr "TimeShift"
+msgstr "Timeshift"
 
 msgid "Timeshift location"
-msgstr "TimeShift Verzeichnis"
+msgstr "Timeshift Verzeichnis"
 
 msgid "Timeshift not possible!"
-msgstr "TimeShift nicht möglich!"
+msgstr "Timeshift nicht möglich!"
 
 msgid "Timeshift save failed!"
-msgstr "Sichern TimeShift fehlgeschlagen!"
+msgstr "Speichern von Timeshift fehlgeschlagen!"
 
 msgid "Timeshift save recording (Select event)"
-msgstr "TimeShift Aufnahme speichern (wähle Sendung)"
+msgstr "Timeshift Aufnahme speichern (wähle Sendung)"
 
 msgid "Timeshift save recording (stop after current event)"
-msgstr "TimeShift Aufnahme speichern (am Ende der aktuellen Sendung)"
+msgstr "Timeshift Aufnahme speichern (am Ende der aktuellen Sendung)"
 
 msgid "Timeshift saved to your harddisk!"
-msgstr "TimeShift auf Festplatte gesichert!"
+msgstr "Timeshift auf Festplatte gesichert!"
 
 msgid "Timeshift settings"
 msgstr "Timeshift Einstellungen"
@@ -10397,10 +10397,10 @@ msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshif
 msgstr "'Puffer in Stunden' oder 'Anzahl der letzten Ereignisse'. Priorität hat die Bedingung zum Löschen älterer Timeshift Dateien, die zuerst aufgetreten ist."
 
 msgid "Timeshift will get saved at end of event!"
-msgstr "TimeShift wird am Ende der Sendung gesichert."
+msgstr "Timeshift wird am Ende der Sendung gesichert."
 
 msgid "Timeshift-save action on zap"
-msgstr "TimeShift Speicheraktion beim Umschalten"
+msgstr "Timeshift Speicheraktion beim Umschalten"
 
 msgid "Timezone"
 msgstr "Zeitzone"
@@ -10825,7 +10825,7 @@ msgid "Use this video enhancement settings?"
 msgstr "Diese erweiterten A/V Einstellungen benutzen?"
 
 msgid "Use timeshift seekbar while timeshifting?"
-msgstr "Benutze PTS SeekBar bei TimeShift?"
+msgstr "Benutze PTS SeekBar bei Timeshift?"
 
 msgid "Use trash can in movielist"
 msgstr "Benutze Mülleimer in Filmliste"
@@ -11271,7 +11271,7 @@ msgid "When enabled, a recording is allowed to interrupt live tv, when there are
 msgstr "Wenn aktiviert ist es einer Aufnahme gestattet das Live-Programm zu unterbrechen wenn keine freien Tuner mehr zur Verfügung stehen."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
-msgstr "Wenn aktiviert wird eine Warnung angezeigt und der Benutzer hat die Möglichkeit TimeShift zu stoppen oder fortzuführen."
+msgstr "Wenn aktiviert wird eine Warnung angezeigt und der Benutzer hat die Möglichkeit Timeshift zu stoppen oder fortzuführen."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "Wenn aktiviert fangen die Sendernummern in jeder Favoritenliste mit '1' an."
@@ -11355,7 +11355,7 @@ msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Wenn auf 'Ja' gestellt so, wird AC3 Ton benutzt wenn verfügbar."
 
 msgid "When enabled, timeshift starts automatically in background after specified time."
-msgstr "Wenn aktiviert startet TimeShift automatisch nach der angegebenen Zeit."
+msgstr "Wenn aktiviert startet Timeshift automatisch nach der angegebenen Zeit."
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Wenn aktiviert benutzt der Receiver DHCP zur Netzwerkkonfiguration."
@@ -11437,7 +11437,7 @@ msgid "Where should the recording be saved?"
 msgstr "Wo soll die Aufnahme gespeichert werden?"
 
 msgid "Where to save temporary timeshift recordings?"
-msgstr "Temporäre TimeShift Aufnahmen speichern?"
+msgstr "Temporäre Timeshift Aufnahmen speichern?"
 
 msgid "Which event do you want to save permanently?"
 msgstr "Welche Sendung soll permanent gesichert werden?"
@@ -11514,13 +11514,13 @@ msgid "Yes, backup my settings!"
 msgstr "Ja, meine Einstellungen sichern!"
 
 msgid "Yes, but don't save timeshift as movie"
-msgstr "TimeShift beenden ..."
+msgstr "Timeshift beenden ..."
 
 msgid "Yes, but save timeshift as movie and continue recording"
-msgstr "TimeShift speichern und Aufnahme fortsetzen ..."
+msgstr "Timeshift speichern und Aufnahme fortsetzen ..."
 
 msgid "Yes, but save timeshift as movie and stop recording"
-msgstr "TimeShift speichern und Aufnahme beenden ..."
+msgstr "Timeshift speichern und Aufnahme beenden ..."
 
 msgid "Yes, do a manual scan now"
 msgstr "Ja, eine manuelle Suche durchführen"
@@ -11642,10 +11642,10 @@ msgstr ""
 "Die %s %s wird nun ausgeschaltet. Nachdem das Update wie auf der Webseite beschrieben durchgeführt wurde, wird die neue Firmware fragen, ob die Einstellungen wiederhergestellt werden sollen."
 
 msgid "You seem to be in timeshift!"
-msgstr "TimeShift scheint aktiv zu sein. "
+msgstr "Timeshift scheint aktiv zu sein. "
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
-msgstr "TimeShift scheint aktiv zu sein. Stoppen?"
+msgstr "Timeshift scheint aktiv zu sein. Stoppen?"
 
 msgid "You system does not support ext4"
 msgstr "Ihr System unterstützt nicht das ext4 Dateisystem"
@@ -11906,11 +11906,11 @@ msgstr "Zoom In/Out TV..."
 msgid "Zoom Off..."
 msgstr "Zoom Aus..."
 
-msgid "[TimeShift] Restarting Timeshift!"
-msgstr "[TimeShift] TimeShift erneut starten!"
+msgid "[Timeshift] Restarting Timeshift!"
+msgstr "[Timeshift] Timeshift erneut starten!"
 
 msgid "[Timeshift] Merging records failed!"
-msgstr "[TimeShift] Zusammenfügen der Aufnahmen fehlgeschlagen!"
+msgstr "[Timeshift] Zusammenfügen der Aufnahmen fehlgeschlagen!"
 
 msgid "[alternative edit]"
 msgstr "[Alternativen]"
@@ -13698,7 +13698,7 @@ msgid "Show Last Updates"
 msgstr "Zeige letzte Updates"
 
 msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Aktiviert die Automatischeaufnahme für Timeshift im Hintergrund."
+msgstr "Aktiviert die automatische Aufnahme für Timeshift im Hintergrund."
 
 msgid "Enable Autorecord"
 msgstr "Aktiviert automatische Aufnahme"
