@@ -63,6 +63,7 @@ config.hdmicec.tv_wakeup_detection = ConfigSelection(
 	"streamrequest": _("Stream request"),
 	"requestvendor":  _("Request for vendor report"),
 	"osdnamerequest": _("OSD name request"),
+	"routingchange":_("Routing change"),
 	"activity": _("Any activity"),
 	},
 	default = "streamrequest")
@@ -388,6 +389,11 @@ class HdmiCec:
 						self.wakeup()
 				elif cmd == 0x46 and config.hdmicec.tv_wakeup_detection.value == "osdnamerequest":
 					self.wakeup()
+				elif cmd == 0x80 and config.hdmicec.tv_wakeup_detection.value == "routingchange":
+					physicaladdress = ord(data[2]) * 256 + ord(data[3])
+					ouraddress = eHdmiCEC.getInstance().getPhysicalAddress()
+					if physicaladdress == ouraddress:
+						self.wakeup()
 				elif cmd != 0x36 and config.hdmicec.tv_wakeup_detection.value == "activity":
 					self.wakeup()
 
