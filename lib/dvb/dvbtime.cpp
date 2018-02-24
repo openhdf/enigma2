@@ -255,7 +255,6 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 	else
 	{
 		res_mgr->connectChannelAdded(sigc::mem_fun(*this,&eDVBLocalTimeHandler::DVBChannelAdded), m_chanAddedConn);
-		time_t now = time(0);
 		eDebug("[eDVBLocalTimeHandler] RTC not ready... wait for transponder time");
 	}
 	CONNECT(m_updateNonTunedTimer->timeout, eDVBLocalTimeHandler::updateNonTuned);
