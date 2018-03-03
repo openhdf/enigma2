@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-02-18 17:51+0100\n"
+"PO-Revision-Date: 2018-03-03 07:48+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -2818,6 +2818,12 @@ msgstr "nächsthöhere Auflösung"
 
 msgid "highest Resolution"
 msgstr "höchste Auflösung"
+
+msgid "Stretch linear"
+msgstr "Linear gestreckt"
+
+msgid "Stretch nonlinear"
+msgstr "Nichtlinear gestreckt"
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr "Konfiguriere das Verhalten der Pausentaste bei Standbild."
@@ -6975,7 +6981,6 @@ msgstr "Zeige im Hauptmenü"
 msgid "Menu button for configuration"
 msgstr "Menütaste für Konfiguration"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
 msgstr "Pillarbox"
 

@@ -2,7 +2,7 @@ from config import config, ConfigSlider, ConfigSelection, ConfigSubDict, ConfigY
 from Components.About import about
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
-from enigma import eAVSwitch, getDesktop
+from enigma import eAVSwitch, eDVBVolumecontrol, getDesktop
 from boxbranding import getBoxType, getMachineBuild, getBrandOEM
 from SystemInfo import SystemInfo
 import os
@@ -75,7 +75,7 @@ class AVSwitch:
 	if (about.getChipSetString() in ('7366', '7376', '5272s', '7444', '7445', '7445s')):
 		modes["HDMI"] = ["720p", "1080p", "2160p", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i", "2160p"}
-	elif (about.getChipSetString() in ('7252', '7251', '7251S', '7252S', '7251s', '7252s', '7444s', '3798mv200', '3798cv200')):
+	elif (about.getChipSetString() in ('7252', '7251', '7251S', '7252S', '7251s', '7252s', '72604', '7444s', '3798mv200', '3798cv200', 'hi3798mv200', 'hi3798cv200')):
 		modes["HDMI"] = ["720p", "1080p", "2160p", "2160p30", "1080i", "576p", "576i", "480p", "480i"]
 		widescreen_modes = {"720p", "1080p", "1080i", "2160p", "2160p30"}
 	elif (about.getChipSetString() in ('7241', '7358', '7362', '73625', '7346', '7356', '73565', '7424', '7425', '7435', '7552', '7581', '7584', '7585', 'pnx8493', '7162', '7111')) or (hw_type in ('elite', 'premium', 'premium+', 'ultra', "me", "minime")):
@@ -98,9 +98,9 @@ class AVSwitch:
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
 	# 	print "remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
-	if modes.has_key("YPbPr") and getBoxType() in ('osnino','axultra','gbue4k','dinobot4k','dinobot4kse','spycat4kcombo','spycat4k','valalinux','formuler4ip','formuler3ip','tm4ksuper','galaxy4k','zgemmah52splus','zgemmah2splus','zgemmah7','zgemmah32tc','zgemmah52tc','alphatriple','gi11000','spycat4kmini','tmtwin4k','tmnanom3','tiviarmin','vimastec1000','vimastec1500', 'gbquad4k','revo4k','force3uhdplus','force3uhd','force2nano','evoslim','zgemmah5ac', 'zgemmah3ac', 'bre2zet2c', 'dm900', 'wetekplay', 'wetekplay2', 'wetekhub', 'bre2ze4k', 'vuuno4k', 'vuultimo4k', 'sf4008', 'e4hdcombo', 'ultrabox', 'osmega', 'tmnano3t', 'novaip', 'novacombo', 'novatwin', 'dm520', 'dm525', 'megaforce2', 'purehd', 'sf128', 'sf138', 'mutant11', 'xpeedlxpro', 'mbtwinplus', 'mutant51', 'ax51', 'twinboxlcdci5' , 'twinboxlcdci', 'singleboxlcd', 'formuler4', 'formuler4turbo', 'zgemmah5', 'zgemmah52s', 'zgemmai55', 'sf98', 'odinplus', 'zgemmaslc', '9900lx', '9910lx', '9911lx', 'vusolo4k', 'et7x00mini', 'evomini', 'evominiplus', 'zgemmahs', 'zgemmah2s', 'zgemmah2h', 't2cable', 'xpeedlxcs2', 'xpeedlxcc', 'osmini', 'osminiplus', 'gbx1', 'gbx2', 'gbx3', 'gbx3h', 'sf3038', 'spycat', 'bwidowx', 'bwidowx2', 'fegasusx3', 'fegasusx5s', 'fegasusx5t', 'force2', 'force2plus', 'force2plushv', 'optimussos', 'tmnanose', 'tmnanosem2', 'tmnanosem2plus', 'tmnanocombo', 'zgemmash1', 'zgemmash2', 'zgemmas2s', 'zgemmass', 'mago', 'enibox', 'sf108', 'x1plus', 'xcombo', 'mutant1100', 'mutant1200', 'mutant1265', 'mutant1500', 'mutant500c', 'mutant530c', 'et4x00', 'et7500', 'et7000', 'et7100', 'et8500', 'et8500s', 'xp1000mk', 'xp1000max', 'xp1000plus', 'sf8', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano', 'iqonios300hd', 'iqonios300hdv2', 'classm', 'axodin', 'axodinc', 'genius', 'evo', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'dm500hdv2', 'dm500hd', 'dm800', 'mixosf7', 'mixoslumi', 'mixosf5mini', 'gi9196lite', 'ixusszero', 'optimussos1', 'enfinity', 'marvel1', 'bre2ze', 'sezam1000hd', 'mbmini', 'atemio5x00', 'xpeedlx1', 'xpeedlx2', 'vusolose', 'gbipbox', 'formuler3', 'optimussos3plus', 'force1plus', 'vuzero', 'vizyonvita') or (about.getModelString() == 'ini-3000'):
+	if modes.has_key("YPbPr") and getBoxType() in ('zgemmah9t','zgemmah9s','zgemmah9splus','vuzero4k','vuuno4kse','anadol4k','mediabox4k','dinobot4kl','dinobot4k','dinobot4kse','lunix','purehdse','lunix34k','sf5008','et13000','zgemmah6','vipert2c','vipercombo','vipercombohdd','e4hdultra','evoslimse','evoslimt2c','beyonwizu4','zgemmah4','osnino','osninoplus','axultra','gbue4k','spycat4kcombo','spycat4k','valalinux','formuler4ip','formuler3ip','tm4ksuper','galaxy4k','zgemmah52splus','zgemmah2splus','zgemmah7','zgemmah32tc','zgemmah52tc','alphatriple','gi11000','spycat4kmini','tmtwin4k','tmnanom3','tiviarmin','vimastec1000','vimastec1500', 'gbquad4k','revo4k','force3uhdplus','force3uhd','force2nano','evoslim','zgemmah5ac', 'zgemmah3ac', 'bre2zet2c', 'dm900', 'dm920', 'wetekplay', 'wetekplay2', 'wetekhub', 'bre2ze4k', 'vuuno4k', 'vuultimo4k', 'sf4008', 'e4hdcombo', 'ultrabox', 'osmega', 'tmnano3t', 'novaip', 'novacombo', 'novatwin', 'dm520', 'dm525', 'megaforce2', 'purehd', 'sf128', 'sf138', 'mutant11', 'xpeedlxpro', 'mbtwinplus', 'mutant51', 'ax51', 'twinboxlcdci5' , 'twinboxlcdci', 'singleboxlcd', 'formuler4', 'formuler4turbo', 'zgemmah5', 'zgemmah52s', 'zgemmai55', 'sf98', 'odinplus', 'zgemmaslc', '9900lx', '9910lx', '9911lx', 'vusolo4k', 'et7x00mini', 'evomini', 'evominiplus', 'zgemmahs', 'zgemmah2s', 'zgemmah2h', 't2cable', 'xpeedlxcs2', 'xpeedlxcc', 'osmini', 'osminiplus', 'gbx1', 'gbx2', 'gbx3', 'gbx3h', 'sf3038', 'spycat', 'bwidowx', 'bwidowx2', 'fegasusx3', 'fegasusx5s', 'fegasusx5t', 'force2', 'force2plus', 'force2plushv', 'optimussos', 'tmnanose', 'tmnanosem2', 'tmnanosem2plus', 'tmnanocombo', 'zgemmash1', 'zgemmash2', 'zgemmas2s', 'zgemmass', 'mago', 'enibox', 'sf108', 'x1plus', 'xcombo', 'mutant1100', 'mutant1200', 'mutant1265', 'mutant1500', 'mutant500c', 'mutant530c', 'et4x00', 'et7500', 'et7000', 'et7100', 'et8500', 'et8500s', 'xp1000mk', 'xp1000max', 'xp1000plus', 'sf8', 'tm2t', 'tmsingle', 'vusolo2', 'tmnano', 'iqonios300hd', 'iqonios300hdv2', 'classm', 'axodin', 'axodinc', 'genius', 'evo', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'dm500hdv2', 'dm500hd', 'dm800', 'mixosf7', 'mixoslumi', 'mixosf5mini', 'gi9196lite', 'ixusszero', 'optimussos1', 'enfinity', 'marvel1', 'bre2ze', 'sezam1000hd', 'mbmini', 'atemio5x00', 'xpeedlx1', 'xpeedlx2', 'vusolose', 'gbipbox', 'formuler3', 'optimussos3plus', 'force1plus', 'vuzero', 'vizyonvita') or (about.getModelString() == 'ini-3000'):
 		del modes["YPbPr"]
-	if modes.has_key("Scart") and getBoxType() in ('osnino','axultra','gbue4k','gi11000','spycat4kmini','tmtwin4k','tmnanom3','gbquad4k','revo4k','force3uhd','force2nano','dm900', 'wetekplay', 'wetekplay2', 'wetekhub', 'bre2ze4k', 'vuuno4k', 'vuultimo4k', 'sf4008', 'novaip', 'dm520', 'dm525', 'purehd', 'vusolo4k', 'fusionhdse', 'fusionhd', 'force2', 'force2plus', 'force2plushv', 'optimussos', 'tmnanose', 'tmnanosecombo', 'gbx1', 'gbx2', 'gbx3', 'gbx3h', 'gbultraue', 'gbultraueh', 'zgemmai55', 'mutant1500'):
+	if modes.has_key("Scart") and getBoxType() in ('vuzero4k','vuuno4kse','lunix','purehdse','sf5008','et13000','e4hdultra','beyonwizu4','osnino','osninoplus','axultra','gbue4k','gi11000','spycat4kmini','tmtwin4k','tmnanom3','gbquad4k','revo4k','force3uhd','force2nano','dm900', 'dm920', 'wetekplay', 'wetekplay2', 'wetekhub', 'bre2ze4k', 'vuuno4k', 'vuultimo4k', 'sf4008', 'novaip', 'dm520', 'dm525', 'purehd', 'vusolo4k', 'fusionhdse', 'fusionhd', 'force2', 'force2plus', 'force2plushv', 'optimussos', 'tmnanose', 'tmnanosecombo', 'gbx1', 'gbx2', 'gbx3', 'gbx3h', 'gbultraue', 'gbultraueh', 'zgemmai55', 'mutant1500'):
 		del modes["Scart"]
 
 	if getBoxType() in ('mutant2400'):
@@ -191,6 +191,14 @@ class AVSwitch:
 				f.close()
 			except IOError:
 				print "[AVSwitch] setting videomode failed."
+
+#		try:
+#			# use 50Hz mode (if available) for booting
+#			f = open("/etc/videomode", "w")
+#			f.write(mode_50)
+#			f.close()
+#		except IOError:
+#			print "[AVSwitch] writing initial videomode to /etc/videomode failed."
 
 		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 		self.setColorFormat(map[config.av.colorformat.value])
@@ -306,6 +314,7 @@ class AVSwitch:
 		self.setMode(port, mode, rate)
 
 	def setAspect(self, cfgelement):
+		print "[VideoMode] setting aspect: %s" % cfgelement.value
 		try:
 			f = open("/proc/stb/video/aspect", "w")
 			f.write(cfgelement.value)
@@ -408,7 +417,7 @@ def InitAVSwitch():
 		config.av.yuvenabled = ConfigBoolean(default=False)
 	else:
 		config.av.yuvenabled = ConfigBoolean(default=True)
-	config.av.osd_alpha = ConfigSlider(default=255, increment = 5, limits=(20,255)) # Make openHDF compatible with some plugins who still use config.av.osd_alpha
+	config.av.osd_alpha = ConfigSlider(default=255, increment = 5, limits=(20,255)) # Make openATV compatible with some plugins who still use config.av.osd_alpha
 	colorformat_choices = {"cvbs": _("CVBS"), "rgb": _("RGB"), "svideo": _("S-Video")}
 	# when YUV is not enabled, don't let the user select it
 	if config.av.yuvenabled.value:
@@ -477,39 +486,102 @@ def InitAVSwitch():
 			"16:10": _("16:10"),
 			"auto": _("Automatic")},
 			default = "16:9")
-	if getBoxType() == 'inihde':
-		config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="yuv")
-	else:
-		config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
-	policy2_choices = {
-	# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
-	"letterbox": _("Letterbox"),
-	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-	"panscan": _("Pan&scan"),
-	# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-	"scale": _("Just scale")}
+
+	# Some boxes have a redundant proc entry for policy2 choices, but some don't (The choices are from a 16:9 point of view anyways)
 	if os.path.exists("/proc/stb/video/policy2_choices"):
-		f = open("/proc/stb/video/policy2_choices")
-		if "auto" in f.readline():
-			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
-			policy2_choices.update({"auto": _("Auto")})
-		f.close()
-	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default = "letterbox")
-	policy_choices = {
-	# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
-	"panscan": _("Pillarbox"),
-	# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-	"letterbox": _("Pan&scan"),
-	# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
-	# "nonlinear": _("Nonlinear"),
-	# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
-	"bestfit": _("Just scale")}
-	if os.path.exists("/proc/stb/video/policy_choices"):
-		f = open("/proc/stb/video/policy_choices")
-		if "auto" in f.readline():
-			# TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
-			policy_choices.update({"auto": _("Auto")})
-		f.close()
+		policy2_choices_proc="/proc/stb/video/policy2_choices"
+	else:
+		policy2_choices_proc="/proc/stb/video/policy_choices"
+
+	try:
+		policy2_choices_raw=open(policy2_choices_proc, "r").read()
+	except:
+		policy2_choices_raw="letterbox"
+	
+	policy2_choices = {}
+
+	if "letterbox" in policy2_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+		policy2_choices.update({"letterbox": _("Letterbox")})
+
+	if "panscan" in policy2_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+		policy2_choices.update({"panscan": _("Pan&scan")})
+
+	if "nonliner" in policy2_choices_raw and not "nonlinear" in policy2_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
+		policy2_choices.update({"nonliner": _("Stretch nonlinear")})
+	if "nonlinear" in policy2_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
+		policy2_choices.update({"nonlinear": _("Stretch nonlinear")})
+
+	if "scale" in policy2_choices_raw and not "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		policy2_choices.update({"scale": _("Stretch linear")})
+	if "full" in policy2_choices_raw and not "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		policy2_choices.update({"full": _("Stretch linear")})
+	if "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		policy2_choices.update({"auto": _("Stretch linear")})
+	if "bestfit" in policy2_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		policy2_choices.update({"bestfit": _("Stretch linear")})
+
+	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default =	"letterbox")
+
+	policy_choices_proc="/proc/stb/video/policy_choices"
+	try:
+		policy_choices_raw=open(policy_choices_proc, "r").read()
+	except:
+		policy_choices_raw="panscan"
+	
+	policy_choices = {}
+
+	if "pillarbox" in policy_choices_raw and not "panscan" in policy_choices_raw:
+		# Very few boxes support "pillarbox" as an alias for "panscan" (Which in fact does pillarbox)
+		# So only add "pillarbox" if "panscan" is not listed in choices
+		
+		# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+		policy_choices.update({"pillarbox": _("Pillarbox")})
+
+	if "panscan" in policy_choices_raw:
+		# DRIVER BUG:	"panscan" in /proc actually does "pillarbox" (That's probably why an alias to it named "pillarbox" existed)!
+		#		Interpret "panscan" setting with a "Pillarbox" text in order to show the correct value in GUI
+
+		# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+		policy_choices.update({"panscan": _("Pillarbox")})
+
+	if "letterbox" in policy_choices_raw:
+		# DRIVER BUG:	"letterbox" in /proc actually does pan&scan
+		#		"letterbox" and 4:3 content on 16:9 TVs is mutually exclusive, as "letterbox" is the method to show wide content on narrow TVs
+		#		Probably the bug arose as the driver actually does the same here as it would for wide content on narrow TVs (It stretches the picture to fit width)
+		
+		# TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
+		policy_choices.update({"letterbox": _("Pan&scan")})
+
+	if "nonliner" in policy_choices_raw and not "nonlinear" in policy_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+		policy_choices.update({"nonliner": _("Stretch nonlinear")})
+	if "nonlinear" in policy_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+		policy_choices.update({"nonlinear": _("Stretch nonlinear")})
+
+	# "auto", "bestfit" and "scale" are aliasses for the same: Stretch linear
+	if "scale" in policy_choices_raw and not "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		policy_choices.update({"scale": _("Stretch linear")})
+	# "auto", "bestfit" and "full" are aliasses for the same: Stretch linear
+	if "full" in policy_choices_raw and not "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		policy_choices.update({"full": _("Stretch linear")})
+	if "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		policy_choices.update({"auto": _("Stretch linear")})
+	if "bestfit" in policy_choices_raw:
+		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+		policy_choices.update({"bestfit": _("Stretch linear")})
+
 	config.av.policy_43 = ConfigSelection(choices=policy_choices, default = "panscan")
 	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default = True)
@@ -592,7 +664,7 @@ def InitAVSwitch():
 				f.close()
 			except:
 				pass
-		if getBoxType() in ('vusolo4k','vuuno4k','vuultimo4k'):
+		if getBoxType() in ('vusolo4k','vuuno4k','vuuno4kse','vuultimo4k'):
 			config.av.hdmicolorspace = ConfigSelection(choices={
 					"Edid(Auto)": _("Auto"),
 					"Hdmi_Rgb": _("RGB"),
@@ -600,7 +672,7 @@ def InitAVSwitch():
 					"422": _("YCbCr422"),
 					"420": _("YCbCr420")},
 					default = "Edid(Auto)")
-		elif getBoxType() in ('dm900'):
+		elif getBoxType() in ('dm900','dm920','vuzero4k'):
 			config.av.hdmicolorspace = ConfigSelection(choices={
 					"Edid(Auto)": _("Auto"),
 					"Hdmi_Rgb": _("RGB"),
@@ -707,6 +779,34 @@ def InitAVSwitch():
 	else:
 		config.av.hdmicolordepth = ConfigNothing()
 
+	if os.path.exists("/proc/stb/video/hdmi_hdrtype"):
+		f = open("/proc/stb/video/hdmi_hdrtype", "r")
+		have_HdmiHdrType = f.read().strip().split(" ")
+		f.close()
+	else:
+		have_HdmiHdrType = False
+
+	SystemInfo["havehdmihdrtype"] = have_HdmiHdrType
+
+	if have_HdmiHdrType:
+		def setHdmiHdrType(configElement):
+			try:
+				f = open("/proc/stb/video/hdmi_hdrtype", "w")
+				f.write(configElement.value)
+				f.close()
+			except:
+				pass
+		config.av.hdmihdrtype = ConfigSelection(choices={
+				"auto": _("Auto"),
+				"dolby": _("dolby"),
+				"none": _("sdr"),
+				"hdr10": _("hdr10"),
+				"hlg": _("hlg")},
+				default = "auto")
+		config.av.hdmihdrtype.addNotifier(setHdmiHdrType)
+	else:
+		config.av.hdmihdrtype = ConfigNothing()
+
 	if os.path.exists("/proc/stb/hdmi/audio_source"):
 		f = open("/proc/stb/hdmi/audio_source", "r")
 		can_audiosource = f.read().strip().split(" ")
@@ -792,21 +892,52 @@ def InitAVSwitch():
 	else:
 		config.av.autovolume = ConfigNothing()
 
-	if SystemInfo["HasMultichannelPCM"]:
+	try:
+		can_pcm_multichannel = os.access("/proc/stb/audio/multichannel_pcm", os.W_OK)
+	except:
+		can_pcm_multichannel = False
+
+	SystemInfo["supportPcmMultichannel"] = can_pcm_multichannel
+	if can_pcm_multichannel:
 		def setPCMMultichannel(configElement):
-			open(SystemInfo["HasMultichannelPCM"], "w").write(configElement.value and "enable" or "disable")
+			open("/proc/stb/audio/multichannel_pcm", "w").write(configElement.value and "enable" or "disable")
 		config.av.pcm_multichannel = ConfigYesNo(default = False)
 		config.av.pcm_multichannel.addNotifier(setPCMMultichannel)
 
-	try:
-		SystemInfo["CanDownmixAC3"] = "downmix" in open("/proc/stb/audio/ac3_choices", "r").read()
-	except:
-		SystemInfo["CanDownmixAC3"] = False
+	def setVolumeStepsize(configElement):
+		eDVBVolumecontrol.getInstance().setVolumeSteps(int(configElement.value))
+	config.av.volume_stepsize = ConfigSelectionNumber(1, 10, 1, default = 5)
+	config.av.volume_stepsize_fastmode = ConfigSelectionNumber(1, 10, 1, default = 5)
+	config.av.volume_stepsize.addNotifier(setVolumeStepsize)
 
-	if SystemInfo["CanDownmixAC3"]:
+	try:
+		f = open("/proc/stb/audio/ac3_choices", "r")
+		file = f.read()[:-1]
+		f.close()
+		can_downmix_ac3 = "downmix" in file
+	except:
+		can_downmix_ac3 = False
+		SystemInfo["CanPcmMultichannel"] = False
+
+	SystemInfo["CanDownmixAC3"] = can_downmix_ac3
+	if can_downmix_ac3:
 		def setAC3Downmix(configElement):
-			open("/proc/stb/audio/ac3", "w").write(configElement.value and "downmix" or "passthrough")
-		config.av.downmix_ac3 = ConfigYesNo(default = True)
+			f = open("/proc/stb/audio/ac3", "w")
+			if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+				f.write(configElement.value)
+			else:
+				f.write(configElement.value and "downmix" or "passthrough")
+			f.close()
+			if SystemInfo.get("supportPcmMultichannel", False) and not configElement.value:
+				SystemInfo["CanPcmMultichannel"] = True
+			else:
+				SystemInfo["CanPcmMultichannel"] = False
+				if can_pcm_multichannel:
+					config.av.pcm_multichannel.setValue(False)
+		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+			config.av.downmix_ac3 = ConfigSelection(choices = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))], default = "downmix")
+		else:
+			config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 
 	if os.path.exists("/proc/stb/audio/ac3plus_choices"):
@@ -823,8 +954,12 @@ def InitAVSwitch():
 			f = open("/proc/stb/audio/ac3plus", "w")
 			f.write(configElement.value)
 			f.close()
-		choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("always"))]
-		config.av.transcodeac3plus = ConfigSelection(choices = choice_list, default = "use_hdmi_caps")
+		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+			choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("convert to AC3")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI")), ("force_ddp",  _("force AC3plus"))]
+			config.av.transcodeac3plus = ConfigSelection(choices = choice_list, default = "force_ac3")
+		else:
+			choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("convert to AC3"))]
+			config.av.transcodeac3plus = ConfigSelection(choices = choice_list, default = "force_ac3")
 		config.av.transcodeac3plus.addNotifier(setAC3plusTranscode)
 
 	try:
@@ -846,7 +981,7 @@ def InitAVSwitch():
 			config.av.dtshd = ConfigSelection(choices = choice_list, default = "use_hdmi_caps")
 		else:
 			choice_list = [("downmix",  _("Downmix")), ("force_dts", _("convert to DTS")), ("use_hdmi_caps",  _("controlled by HDMI")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
-			config.av.dtshd = ConfigSelection(choices = choice_list, default = "hdmi_best")
+			config.av.dtshd = ConfigSelection(choices = choice_list, default = "downmix")
 		config.av.dtshd.addNotifier(setDTSHD)
 
 	try:
@@ -864,7 +999,7 @@ def InitAVSwitch():
 			f.write(configElement.value)
 			f.close()
 		choice_list = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
-		config.av.wmapro = ConfigSelection(choices = choice_list, default = "hdmi_best")
+		config.av.wmapro = ConfigSelection(choices = choice_list, default = "downmix")
 		config.av.wmapro.addNotifier(setWMAPRO)
 
 	try:
@@ -896,9 +1031,16 @@ def InitAVSwitch():
 	if can_downmix_aac:
 		def setAACDownmix(configElement):
 			f = open("/proc/stb/audio/aac", "w")
-			f.write(configElement.value and "downmix" or "passthrough")
+			if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+				f.write(configElement.value)
+			else:
+				f.write(configElement.value and "downmix" or "passthrough")
 			f.close()
-		config.av.downmix_aac = ConfigYesNo(default = True)
+		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
+			choice_list = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
+			config.av.downmix_aac = ConfigSelection(choices = choice_list, default = "downmix")
+		else:
+			config.av.downmix_aac = ConfigYesNo(default = True)
 		config.av.downmix_aac.addNotifier(setAACDownmix)
 
 	if os.path.exists("/proc/stb/audio/aac_transcode_choices"):
