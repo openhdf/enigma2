@@ -1686,7 +1686,7 @@ class UpdatePlugin(Screen):
 			self.TraficCheck = True
 			print "create /etc/last-upgrades-git.log with opkg list-upgradable"
 			os.system("opkg list-upgradable > /etc/last-upgrades-git.log")
-			if os.system("grep 'dvb-module\|kernel-module' /etc/last-upgrades-git.log"):
+			if os.system("grep 'dvb-module\|kernel-module\|platform-util' /etc/last-upgrades-git.log"):
 				print "Upgrade asap = Yes"
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			else:
