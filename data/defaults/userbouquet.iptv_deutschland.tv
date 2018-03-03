@@ -1,111 +1,61 @@
-#NAME IPTV Deutsch
+#NAME IPTV Deutschland
 #SERVICE 1:64:1:0:0:0:0:0:0:0:
-#DESCRIPTION Update 09.12.2017
-#SERVICE 1:64:0:0:0:0:0:0:0:0:
-#DESCRIPTION Germany
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//daserstelive-lh.akamaihd.net/i/daserste_de@38086/index_2692_av-p.m3u8
-#DESCRIPTION Das Erste (540p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf1314-lh.akamaihd.net/i/de14_v1@392878/index_3096_av-p.m3u8
-#DESCRIPTION ZDF (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wdr_fs-lh.akamaihd.net/i/wdrfs_weltweit@112033/master.m3u8
-#DESCRIPTION WDR HD (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//zdf0910-lh.akamaihd.net/i/dach10_v1@392872/index_1496_av-p.m3u8?sd=10&rebase=on
-#DESCRIPTION 3sat (480p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//artelive-lh.akamaihd.net/i/artelive_de@393591/index_1_av-p.m3u8
-#DESCRIPTION ARTE (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//onelivestream-lh.akamaihd.net/i/one_livestream@568814/index_7_av-p.m3u8
-#DESCRIPTION ONE HD (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf1112-lh.akamaihd.net/i/de12_v1@392882/index_3096_av-b.m3u8
-#DESCRIPTION ZDF Info (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf1314-lh.akamaihd.net/i/de13_v1@392877/index_3096_av-p.m3u8
-#DESCRIPTION ZDF Neo (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ndrfs-lh.akamaihd.net/i/ndrfs_hh@430231/index_3776_av-p.m3u8?sd=10&rebase=on
-#DESCRIPTION NDR Fernsehen HD (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//livetvsachsen.mdr.de/i/livetvmdrsachsen_de@106902/index_3871_av-p.m3u8?sd=10&rebase=on
-#DESCRIPTION MDR Fernsehen (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live2_sr-lh.akamaihd.net/i/sr_universal02@107595/index_1662_av-p.m3u8?sd=10&rebase=on
-#DESCRIPTION SR Fernsehen HD (544p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live1_hr-lh.akamaihd.net/i/hr_fernsehen@75910/index_3584_av-b.m3u8?sd=10&rebase=on
-#DESCRIPTION HR HD (720p) 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//livestreams.br.de/i/bfsnord_germany@119898/index_3776_av-p.m3u8?sd=10&rebase=on
-#DESCRIPTION Bayerisches Fernsehen HD (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//swrrp-lh.akamaihd.net/i/swrrp_live@196739/index_3584_av-p.m3u8?sd=10&rebase=on
-#DESCRIPTION SWR Fernsehen HD (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//livestreams.br.de/i/bralpha_germany@119899/index_3776_av-p.m3u8?sd=10&rebase=on
-#DESCRIPTION BR Alpha (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rbblive-lh.akamaihd.net/i/rbb_berlin@144674/index_7_av-b.m3u8
-#DESCRIPTION RBB Berlin (540p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rbblive-lh.akamaihd.net/i/rbb_brandenburg@349369/index_7_av-b.m3u8
-#DESCRIPTION RBB Brandenburg (540p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//kikade-lh.akamaihd.net/i/livetvkika_de@450035/master.m3u8
-#DESCRIPTION Kika HD (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//unilivemtveu-lh.akamaihd.net/i/nickde_1@448749/index_3500_av-b.m3u8
-#DESCRIPTION Nickelodeon (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//58b42f6c8c9bf.streamlock.net/live/rictv/chunklist.m3u8
-#DESCRIPTION RIC (396p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//donautv.iptv-playoutcenter.de%3a1935/donautv/donautv.stream_2
-#DESCRIPTION Donau TV (576p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//586dce1287bfd.streamlock.net/muenchentv/muenchentv.stream_1/playlist.m3u8
-#DESCRIPTION München TV (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//streaming006.broadcast.tneg.de%3a1935/nrwtv-new/_definst_/smil%3anrw.smil/chunklist_w1376117069_b1628000_sldeu.m3u8
-#DESCRIPTION NRW.TV (404p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//unilivemtveu-lh.akamaihd.net/i/mtvde_1@134922/index_3500_av-b.m3u8 
-#DESCRIPTION MTV DE (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.vidoo.de/live/weltderwunder/chunklist_w818079807.m3u8
-#DESCRIPTION Welt der Wunder (480p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//liveservustv-i.akamaihd.net/hls/live/271000/ServusTV_DE/master.m3u8
-#DESCRIPTION SERVUS TV HD DE (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdn-europe.smartcast.de%3a1935/eotv/eotvhd/playlist.m3u8
-#DESCRIPTION EOTV (404p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tagesschau-lh.akamaihd.net/i/tagesschau_1@119231/index_3776_av-p.m3u8:Tagesschau 24 HD (720p)
-#DESCRIPTION Tagesschau 24 HD (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf0910-lh.akamaihd.net/i/de09_v1@392871/index_1496_av-b.m3u8:Phoenix (480p)
-#DESCRIPTION Phoenix (480p)
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//p.live.akamai.n-tv.de/playlists/ntvlive-ipadakamai.m3u8
-#DESCRIPTION n-tv (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//live2weltcms-lh.akamaihd.net/i/Live2WeltCMS_1@444563/index_2_av-p.m3u8?sd=10&rebase=on
-#DESCRIPTION N24 (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//78.156.32.30/hls/Euronews_low.m3u8
-#DESCRIPTION euronews engl (404p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//dwstream72-lh.akamaihd.net/i/dwstream72_live@123556/index_1_av-p.m3u8?sd=10&rebase=on
-#DESCRIPTION Deutsche Welle (400p)
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//eventhlshttps-i.akamaihd.net/hls/live/263645/ssn-hd-https/indexvideo-3400.m3u8
-#DESCRIPTION Sky Sport News (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//familytvblizz-lh.akamaihd.net/i/blizzlive_1@36699/index_500_av-p.m3u8
-#DESCRIPTION Family TV (1080p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//familytvblizz-lh.akamaihd.net/i/familytv_1@458351/index_500_av-p.m3u8
-#DESCRIPTION Blizz TV (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//46.101.244.86%3a8081/folx-abr/live-abr/fle/fle1/chunks.m3u8:FolksTV
-#DESCRIPTION Folks TV (360p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//fms.daf.tmt.de%3a1935/live/dafstream100
-#DESCRIPTION DAF (360p)
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//euvia-live.hls.adaptive.level3.net/ses/euvia/index.m3u8
-#DESCRIPTION Sonnenklar-TV HD (1080p)
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//video1.anixehd.tv%3a8080/Apple/wifistream.m3u8
-#DESCRIPTION Anixe (360p)
-#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//d1pz8zear993v8.cloudfront.net/hlsme/kathtv.m3u8
-#DESCRIPTION K-TV (576p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//bibeltv02.iptv-playoutcenter.de/bibeltv01/bibeltv01.stream_1/master.m3u8:Bibel TV
-#DESCRIPTION Bibel TV (380p)
-#SERVICE 5001:0:1:0:0:0:0:0:0:0:rtmp%3a//x3777parlac13014.f.l.f.lb.core-cdn.net%3a1935/13014bundestag playpath=live/3777parlamentsfernsehen/live_1000 swfUrl=http%3a//webtv.bundestag.de/iptv/swf/xflv/showIt3_10.swf pageUrl=http%3a//www.bundestag.de/Mediathek/index.jsp?action=tv live=1:Parlamentsfernsehen 1
-#DESCRIPTION Parlamentsfernsehen 1 (480p)
-#SERVICE 5001:0:1:0:0:0:0:0:0:0:rtmp%3a//x4177pfs2c13014.f.l.f.lb.core-cdn.net%3a1935/13014bundestag playpath=live/4177pf_s2/live_de_1000 swfUrl=http%3a//webtv.bundestag.de/iptv/swf/xflv/showIt3_10.swf pageUrl=http%3a//www.bundestag.de/Mediathek/index.jsp?action=tv live=1:Parlamentsfernsehen 2
-#DESCRIPTION Parlamentsfernsehen 2 (480p)
-#SERVICE 1:64:0:0:0:0:0:0:0:0::Regional
-#DESCRIPTION RegionalTV
+#DESCRIPTION Update 16.02.2018 by Team www.hdfreaks.cc
+#SERVICE 4097:0:1:6DCA:44D:1:C00000:0:0:0:https%3a//daserstelive-lh.akamaihd.net/i/daserste_de@38086/index_2692_av-p.m3u8
+#DESCRIPTION Das Erste 
+#SERVICE 4097:0:1:6D66:437:1:C00000:0:0:0:https%3a//zdf1314-lh.akamaihd.net/i/de14_v1@392878/index_3096_av-p.m3u8
+#DESCRIPTION ZDF 
+#SERVICE 4097:0:1:6D67:437:1:C00000:0:0:0:http%3a//zdf0910-lh.akamaihd.net/i/dach10_v1@392872/index_1496_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION 3sat
+#SERVICE 4097:0:19:1332:3EF:1:C00000:0:0:0:https%3a//liveservustv-i.akamaihd.net/hls/live/271000/ServusTV_DE/master.m3u8
+#DESCRIPTION SERVUS TV HD DE 
+#SERVICE 4097:0:1:7032:41B:1:C00000:0:0:0:http%3a//onelivestream-lh.akamaihd.net/i/one_livestream@568814/index_7_av-p.m3u8:
+#DESCRIPTION ONE HD
+#SERVICE 4097:0:1:6D6E:437:1:C00000:0:0:0:https%3a//zdf1314-lh.akamaihd.net/i/de13_v1@392877/index_3096_av-p.m3u8:
+#DESCRIPTION ZDF Neo 
+#SERVICE 5002:0:1:2FC:5:85:C00000:0:0:0:http%3a//video1.anixehd.tv%3a8080/Apple/wifistream.m3u8:
+#DESCRIPTION Anixe 
+#SERVICE 4097:0:1:7034:41B:1:C00000:0:0:0:http%3a//artelive-lh.akamaihd.net/i/artelive_de@393591/index_1_av-p.m3u8:
+#DESCRIPTION ARTE 
+#SERVICE 4097:0:1:27:F:85:C00000:0:0:0:http%3a//cdn-europe.smartcast.de%3a1935/eotv/eotvhd/playlist.m3u8
+#DESCRIPTION EOTV 
+#SERVICE 4097:0:1:7002:436:1:C00000:0:0:0:http%3a//unilivemtveu-lh.akamaihd.net/i/mtvde_1@134922/index_3500_av-b.m3u8:
+#DESCRIPTION MTV DE
+#SERVICE 1:64:0:0:0:0:0:0:0:0::
+#DESCRIPTION Regional-TV
+#SERVICE 4097:0:1:6DCE:44D:1:C00000:0:0:0:http%3a//livestreams.br.de/i/bfsnord_germany@119898/index_3776_av-b.m3u8?sd=10&rebase=on:
+#DESCRIPTION Bayerisches Fernsehen
+#SERVICE 4097:0:1:6DCC:44D:1:C00000:0:0:0:http%3a//live1_hr-lh.akamaihd.net/i/hr_fernsehen@75910/index_3584_av-b.m3u8?sd=10&rebase=on:
+#DESCRIPTION Hessischer Rundfunk
+#SERVICE 4097:0:1:6E44:431:1:C00000:0:0:0:http%3a//mdrsnhls-lh.akamaihd.net/i/livetvmdrsachsen_de@513998/index_3776_av-b.m3u8?sd=10&rebase=on:
+#DESCRIPTION MDR Fernsehen 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//586c13b083c0d.streamlock.net/muenchentv/muenchentv.stream_1/chunklist.m3u8
+#DESCRIPTION München TV 
+#SERVICE 4097:0:1:6E41:431:1:C00000:0:0:0:http%3a//ndrfs-lh.akamaihd.net/i/ndrfs_hh@430231/index_3776_av-b.m3u8?sd=10&rebase=on:
+#DESCRIPTION NDR Fernsehen 
+#SERVICE 4097:0:1:6E2E:431:1:C00000:0:0:0:http%3a//rbblive-lh.akamaihd.net/i/rbb_berlin@144674/index_7_av-b.m3u8
+#DESCRIPTION RBB Berlin 
+#SERVICE 4097:0:1:6E2E:431:1:C00000:0:0:0:http%3a//rbblive-lh.akamaihd.net/i/rbb_brandenburg@349369/index_7_av-b.m3u8
+#DESCRIPTION RBB Brandenburg 
+#SERVICE 4097:0:1:6F46:445:1:C00000:0:0:0:http%3a//live2_sr-lh.akamaihd.net/i/sr_universal02@107595/index_1662_av-b.m3u8?sd=10&rebase=on:
+#DESCRIPTION SR Fernsehen 
+#SERVICE 4097:0:1:6E47:431:1:C00000:0:0:0:http%3a//swrrp-lh.akamaihd.net/i/swrrp_live@196739/index_3584_av-b.m3u8?sd=10&rebase=on:
+#DESCRIPTION SWR Fernsehen 
+#SERVICE 4097:0:1:6F78:457:1:C00000:0:0:0:http%3a//wdr_fs-lh.akamaihd.net/i/wdrfs_weltweit@112033/master.m3u8
+#DESCRIPTION WDR
 #SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//62.113.221.100/friesischerRundfunk-live/_definst_/mp4%3alivestream/playlist.m3u8
 #DESCRIPTION FRF1 - Friesischer Rundfunk
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//hls1.wtnet.de/noa4hh/apple/wifi6500.m3u8
-#DESCRIPTION noa4 Hamburg FHD 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//hls1.wtnet.de/noa4/apple/wifi6500.m3u8
-#DESCRIPTION noa4 Norderstedt FHD
 #SERVICE 5002:0:1:1:0:0:0:0:0:0:http%3a//sdn-global-live-http-cache.3qsdn.com/live/_definst_/mp4%3a5655_F7KT9xCQkXwbNmq/playlist.m3u8
 #DESCRIPTION Hamburg 1
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//hls1.wtnet.de/noa4hh/apple/wifi6500.m3u8
+#DESCRIPTION Hamburg noa4 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//hls1.wtnet.de/noa4/apple/wifi6500.m3u8
+#DESCRIPTION Hamburg noa4 Norderstedt
 #SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//62.67.13.54%3a1935/sylt1/sylt1_high.stream/chunklist.m3u8
-#DESCRIPTION Sylt 1
-#SERVICE 1:64:0:0:0:0:0:0:0:0::Regional
+#DESCRIPTION Sylt 1 
+#SERVICE 1:64:0:0:0:0:0:0:0:0::
 #DESCRIPTION RegionalTV Sachsenanhalt
-#SERVICE 4097:0:1:7:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/punktum_high/playlist.m3u8
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/punktum_high/playlist.m3u8
 #DESCRIPTION PUNKTum
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/mdf1_high/playlist.m3u8
 #DESCRIPTION MDF.1
@@ -133,54 +83,58 @@
 #DESCRIPTION Elbekanal Schönebeck
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.210.250/medienasa-live/tvhalle_high/master.m3u8
 #DESCRIPTION Halle TV
-#SERVICE 1:64:1:0:0:0:0:0:0:0:
-#DESCRIPTION Austria
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//orf2.orf.cdn.ors.at/orf1/q8c.sdp/chunklist.m3u8
-#DESCRIPTION ORF 1 HD
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//orf2.orf.cdn.ors.at/orf2/q8c.sdp/chunklist.m3u8
-#DESCRIPTION ORF 2 HD
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//orf2.orf.cdn.ors.at/orf3/q8c.sdp/chunklist.m3u8
-#DESCRIPTION ORF III HD
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//orf2.orf.cdn.ors.at/orfs/q8c.sdp/chunklist.m3u8
-#DESCRIPTION ORF Sport+ HD
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//hdiosstv-f.akamaihd.net/i/servustvhd_1@51229/index_2592_av-p.m3u8?sd=10&rebase=on:SERVUS TV HD AT (720p)
-#DESCRIPTION SERVUS TV HD AT (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//apasfoe24l.sf.apa.at/ipad/oe24-live1/oe24.sdp/chunklist_b1900000.m3u8:OE24TV (1080p)
-#DESCRIPTION OE24TV (1080p)
-#SERVICE 4097:0:1:9:0:0:0:0:0:0:http%3a//lb.hd-livestream.de%3a1935/live/TirolTV/playlist.m3u8:Tirol TV 
-#DESCRIPTION Tirol TV 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//cdn1.markenfunk.tv/t1/ngrp%3alive_all/chunklist_b5060608.m3u8:T eins
-#DESCRIPTION T eins
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//stream.openplayout.org/hls/dorf_high/index.m3u8:Dorf TV (Linz)
-#DESCRIPTION Dorf TV (Linz)
-#SERVICE 4097:0:1:31:0:0:0:0:0:0:http%3a//www.reeins.tv%3a1935/live/re1/playlist.m3u8:RE eins TV
-#DESCRIPTION RE eins TV
-#SERVICE 4097:0:1:27:0:0:0:0:0:0:http%3a//stream.fs1.tv%3a8080/hls/webstream.m3u8
-#DESCRIPTION FS1
-#SERVICE 4097:0:1:27:0:0:0:0:0:0:rtmp%3a//streaming.austria24.tv/live/stream_720p
-#DESCRIPTION AUSTRIA 24 TV
-#SERVICE 4097:0:1:77:0:0:0:0:0:0:http%3a//ms01.w24.at/hls-live/livepkgr/_definst_/liveevent/livestream2.m3u8:W24 TV (Austria)
-#DESCRIPTION W24 TV (Austria)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//d2jk87psbjrjdz.cloudfront.net/livehttporigin/okto/chunklist.m3u8
-#DESCRIPTION OKTO (720p)
-#SERVICE 1:64:2:0:0:0:0:0:0:0:
-#DESCRIPTION Swiss
-#SERVICE 4097:0:1:15:0:0:0:0:0:0:https%3a//klive-a.akamaihd.net/dc-1/live/hls/p/1719221/e/1_hoislpiz/sd/10000/t/AFb4DZ0W2ts1a8fV5xo1VQ/index-s32.m3u8
-#DESCRIPTION TeleZürig HD
-#SERVICE 4097:0:1:17:0:0:0:0:0:0:http%3a//klive-a.akamaihd.net/dc-1/live/hls/p/1719221/e/1_0mc3z57p/sd/10000/t/XTGwenpKUhx_fbVnsiu9MQ/index-s32.m3u8
-#DESCRIPTION TeleBärn HD
-#SERVICE 4097:0:1:19:0:0:0:0:0:0:http%3a//klive-a.akamaihd.net/dc-1/live/hls/p/1719221/e/1_ljzy3evp/sd/10000/t/nwOKUovT2mwnA8x_KnC4zg/index-s32.m3u8:M1 HD
-#DESCRIPTION M1 HD
-#SERVICE 4097:0:1:21:0:0:0:0:0:0:http%3a//livevideo.infomaniak.com/streaming/livecast/tvo/playlist.m3u8:TV Blau HD
-#DESCRIPTION TV Blau HD
-#SERVICE 4097:0:1:23:0:0:0:0:0:0:http%3a//livevideo.infomaniak.com/streaming/livecast/telebielinguech/playlist.m3u8:Telebielingue
-#DESCRIPTION Telebielingue
-#SERVICE 4097:0:1:25:0:0:0:0:0:0:http%3a//livevideo.infomaniak.com/streaming/livecast/tvm3/playlist.m3u8:TVM3
-#DESCRIPTION TVM3
-#SERVICE 4097:0:1:27:0:0:0:0:0:0:http%3a//xapp510394368c1000199.f.l.z.lb.core-cdn.net/10096xtelebase/ios_500/master.m3u8:Telebasel  
-#DESCRIPTION Telebasel  
-#SERVICE 4097:0:1:29:0:0:0:0:0:0:http%3a//52.86.189.59%3a1935/live/news/playlist.m3u8:CHCH
-#DESCRIPTION CHCH
+#SERVICE 1:64:0:0:0:0:0:0:0:0::
+#DESCRIPTION News & Dokus
+#SERVICE 4097:0:1:6F47:445:1:C00000:0:0:0:http%3a//livestreams.br.de/i/bralpha_germany@119899/index_3776_av-b.m3u8?sd=10&rebase=on:
+#DESCRIPTION BR Alpha 
+#SERVICE 4097:0:1:114E:404:1:C00000:0:0:0:http%3a//dwstream72-lh.akamaihd.net/i/dwstream72_live@123556/index_1_av-p.m3u8?sd=10&rebase=on:
+#DESCRIPTION Deutsche Welle
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//78.156.32.30/hls/Euronews_low.m3u8
+#DESCRIPTION euronews (english) 
+#SERVICE 4097:0:1:2F3A:441:1:C00000:0:0:0:https%3a//ntvlivehls-lh.akamaihd.net/i/ntvlivehls_1@409250/master.m3u8:
+#DESCRIPTION N-TV 
+#SERVICE 5001:0:1:0:0:0:0:0:0:0:rtmp%3a//x3777parlac13014.f.l.f.lb.core-cdn.net%3a1935/13014bundestag playpath=live/3777parlamentsfernsehen/live_1000 swfUrl=http%3a//webtv.bundestag.de/iptv/swf/xflv/showIt3_10.swf pageUrl=http%3a//www.bundestag.de/Mediathek/index.jsp?action=tv live=1:Parlamentsfernsehen 1
+#DESCRIPTION Parlamentsfernsehen 1 
+#SERVICE 5001:0:1:0:0:0:0:0:0:0:rtmp%3a//x4177pfs2c13014.f.l.f.lb.core-cdn.net%3a1935/13014bundestag playpath=live/4177pf_s2/live_de_1000 swfUrl=http%3a//webtv.bundestag.de/iptv/swf/xflv/showIt3_10.swf pageUrl=http%3a//www.bundestag.de/Mediathek/index.jsp?action=tv live=1:Parlamentsfernsehen 2
+#DESCRIPTION Parlamentsfernsehen 2 
+#SERVICE 4097:0:1:7035:41B:1:C00000:0:0:0:https%3a//zdf0910-lh.akamaihd.net/i/de09_v1@392871/index_1496_av-b.m3u8:
+#DESCRIPTION Phoenix 
+#SERVICE 5002:0:1:25:F:85:C00000:0:0:0:https%3a//eventhlshttps-i.akamaihd.net/hls/live/263645/ssn-hd-https/indexvideo-3400.m3u8
+#DESCRIPTION Sky Sport News 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tagesschau-lh.akamaihd.net/i/tagesschau_1@119231/index_3776_av-p.m3u8:
+#DESCRIPTION Tagesschau 24 HD 
+#SERVICE 4097:0:1:445F:453:1:C00000:0:0:0:https%3a//live2weltcms-lh.akamaihd.net/i/Live2WeltCMS_1@444563/index_1_av-p.m3u8?sd=10&rebase=on:
+#DESCRIPTION Welt
+#SERVICE 4097:0:1:332F:45B:1:C00000:0:0:0:http%3a//live.vidoo.de/live/weltderwunder/chunklist_w818079807.m3u8:
+#DESCRIPTION Welt der Wunder 
+#SERVICE 4097:0:1:6D6B:437:1:C00000:0:0:0:https%3a//zdf1112-lh.akamaihd.net/i/de12_v1@392882/index_3096_av-b.m3u8:
+#DESCRIPTION ZDF Info 
+#SERVICE 1:64:0:0:0:0:0:0:0:0::
+#DESCRIPTION Kinder
+#SERVICE 4097:0:1:6D68:437:1:C00000:0:0:0:https%3a//kikade-lh.akamaihd.net/i/livetvkika_de@450035/master.m3u8:
+#DESCRIPTION Kika 
+#SERVICE 4097:0:1:32DB:45D:1:C00000:0:0:0:https%3a//58b42f6c8c9bf.streamlock.net/live/rictv/chunklist.m3u8
+#DESCRIPTION RIC
+#SERVICE 4097:0:1:7008:436:1:C00000:0:0:0:http%3a//unilivemtveu-lh.akamaihd.net/i/nickde_1@448749/index_3500_av-b.m3u8:
+#DESCRIPTION Nickelodeon 
+#SERVICE 1:64:0:0:0:0:0:0:0:0::
+#DESCRIPTION Sonstige
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//bibeltv02.iptv-playoutcenter.de/bibeltv01/bibeltv01.stream_1/master.m3u8:Bibel TV
+#DESCRIPTION Bibel TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//familytvblizz-lh.akamaihd.net/i/familytv_1@458351/index_500_av-p.m3u8:
+#DESCRIPTION Blizz TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//fms.daf.tmt.de%3a1935/live/dafstream100
+#DESCRIPTION DAF (360p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//donautv.iptv-playoutcenter.de%3a1935/donautv/donautv.stream_2
+#DESCRIPTION Donau TV 
+#SERVICE 4097:0:1:21:F:85:C00000:0:0:0:http%3a//familytvblizz-lh.akamaihd.net/i/blizzlive_1@36699/index_500_av-p.m3u8:
+#DESCRIPTION Family TV 
+#SERVICE 4097:0:1:32DA:45D:1:C00000:0:0:0:http%3a//46.101.244.86%3a8081/folx-abr/live-abr/fle/fle1/chunks.m3u8:
+#DESCRIPTION Folx TV 
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//d1pz8zear993v8.cloudfront.net/hlsme/kathtv.m3u8
+#DESCRIPTION K-TV
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//euvia-live.hls.adaptive.level3.net/ses/euvia/index.m3u8
+#DESCRIPTION Sonnenklar-TV HD 
 #SERVICE 1:64:A:0:0:0:0:0:0:0::--- T Home Entertain ---
 #DESCRIPTION --- T Home Entertain ---
 #SERVICE 5002:0:1:2887:40F:1:C00000:0:0:0:rtp%3a//@239.35.10.63%3a10000

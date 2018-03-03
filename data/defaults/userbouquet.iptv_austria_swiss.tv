@@ -1,0 +1,67 @@
+#NAME IPTV Austria - Schweiz
+#SERVICE 1:64:1:0:0:0:0:0:0:0:
+#DESCRIPTION Update 16..02.2018 by Team www.hdfreaks.cc
+#SERVICE 1:64:1:0:0:0:0:0:0:0::Austria
+#DESCRIPTION Austria
+#SERVICE 4097:0:19:132F:3EF:1:C00000:0:0:0:http%3a//apasfiisl.apa.at/ipad/orf1_q4a/orf.sdp/playlist.m3u8
+#DESCRIPTION ORF 1 HD
+#SERVICE 4097:0:19:33F8:3ED:1:C00000:0:0:0:http%3a//apasfiisl.apa.at/ipad/orf2_q4a/orf.sdp/playlist.m3u8
+#DESCRIPTION ORF 2 HD (Source 1)
+#SERVICE 4097:0:19:33F8:3ED:1:C00000:0:0:0:http%3a//orf2.orf.cdn.ors.at/orf2/q8c.sdp/chunklist.m3u8
+#DESCRIPTION ORF 2 HD (Source 2)
+#SERVICE 4097:0:19:33FC:3ED:1:C00000:0:0:0:http%3a//apasfiisl.apa.at/ipad/orf3_q4a/orf.sdp/playlist.m3u8
+#DESCRIPTION ORF III HD
+#SERVICE 4097:0:19:33FD:3ED:1:C00000:0:0:0:http%3a//apasfiisl.apa.at/ipad/orfs_q6a/orf.sdp/playlist.m3u8
+#DESCRIPTION ORF Sport+ HD
+#SERVICE 4097:0:19:1331:3EF:1:C00000:0:0:0:https%3a//liveservustv-i.akamaihd.net/hls/live/270998/ServusTV_AT/master.m3u8
+#DESCRIPTION SERVUS TV HD AT (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//streaming.austria24.tv/live/stream_720p
+#DESCRIPTION AUSTRIA 24 TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//stream.openplayout.org/hls/dorf_high/index.m3u8
+#DESCRIPTION Dorf TV (Linz)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.fs1.tv%3a8080/hls/webstream.m3u8
+#DESCRIPTION FS1
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//146.185.16.10%3a1935/kit/kitstream/playlist.m3u8
+#DESCRIPTION KIT (Kirche ist toll)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//58b42f6c8c9bf.streamlock.net/live/LaendleTV/chunklist_w1379019891.m3u8
+#DESCRIPTION Ländle TV
+#SERVICE 4097:0:0:0:0:0:0:0:0:0:rtmp%3a//streaming.austria24.tv/live/stream_720p
+#DESCRIPTION M4 Mostviertel
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//apasfoe24l.sf.apa.at/ipad/oe24-live1/oe24.sdp/chunklist_b1900000.m3u8
+#DESCRIPTION OE24TV (1080p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//d2jk87psbjrjdz.cloudfront.net/livehttporigin/okto/chunklist.m3u8
+#DESCRIPTION OKTO (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//p3-6.mov.at%3a1935/live/weekstream/master.m3u8
+#DESCRIPTION P3tv HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.113.221.7/gzSoftware-live/livestream_480p/master.m3u8
+#DESCRIPTION Planai TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//www.reeins.tv%3a1935/live/re1/playlist.m3u8:RE eins TV
+#DESCRIPTION RE eins TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//rbtvdiglinear-i.akamaihd.net/hls/live/241719/ATfallback/master_3360.m3u8
+#DESCRIPTION RedBull
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.swamiji.tv/YogaIPTV/smil%3aYogaStream.smil/chunklist_w1606422831_b400000.m3u8:Swamiji TV Austria  (Oostenrijk)
+#DESCRIPTION Swamiji TV Austria 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//lb.hd-livestream.de%3a1935/live/TirolTV/playlist.m3u8:Tirol TV 
+#DESCRIPTION Tirol TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ms01.w24.at/hls-live/livepkgr/_definst_/liveevent/livestream2.m3u8:W24 TV (Austria)
+#DESCRIPTION W24 TV (Austria)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//s1.live-panorama.com/keblivestreaming/streams/schmittenTVLow.sdp.stream.m3u8
+#DESCRIPTION Zell am See - Schmitten
+#SERVICE 1:64:2:0:0:0:0:0:0:0:
+#DESCRIPTION Schweiz
+#SERVICE 4097:0:1:15:0:0:0:0:0:0:https%3a//klive-a.akamaihd.net/dc-1/live/hls/p/1719221/e/1_hoislpiz/sd/10000/t/AFb4DZ0W2ts1a8fV5xo1VQ/index-s32.m3u8
+#DESCRIPTION TeleZürig HD
+#SERVICE 4097:0:1:17:0:0:0:0:0:0:http%3a//klive-a.akamaihd.net/dc-1/live/hls/p/1719221/e/1_0mc3z57p/sd/10000/t/XTGwenpKUhx_fbVnsiu9MQ/index-s32.m3u8
+#DESCRIPTION TeleBärn HD
+#SERVICE 4097:0:1:19:0:0:0:0:0:0:http%3a//klive-a.akamaihd.net/dc-1/live/hls/p/1719221/e/1_ljzy3evp/sd/10000/t/nwOKUovT2mwnA8x_KnC4zg/index-s32.m3u8:M1 HD
+#DESCRIPTION M1 HD
+#SERVICE 4097:0:1:21:0:0:0:0:0:0:http%3a//livevideo.infomaniak.com/streaming/livecast/tvo/playlist.m3u8:TV Blau HD
+#DESCRIPTION TV Blau HD
+#SERVICE 4097:0:1:23:0:0:0:0:0:0:http%3a//livevideo.infomaniak.com/streaming/livecast/telebielinguech/playlist.m3u8:Telebielingue
+#DESCRIPTION Telebielingue
+#SERVICE 4097:0:1:25:0:0:0:0:0:0:http%3a//livevideo.infomaniak.com/streaming/livecast/tvm3/playlist.m3u8:TVM3
+#DESCRIPTION TVM3
+#SERVICE 4097:0:1:27:0:0:0:0:0:0:http%3a//xapp510394368c1000199.f.l.z.lb.core-cdn.net/10096xtelebase/ios_500/master.m3u8:Telebasel  
+#DESCRIPTION Telebasel  
+#SERVICE 4097:0:1:29:0:0:0:0:0:0:http%3a//52.86.189.59%3a1935/live/news/playlist.m3u8:CHCH
+#DESCRIPTION CHCH
