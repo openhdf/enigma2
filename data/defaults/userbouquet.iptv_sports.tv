@@ -1,0 +1,139 @@
+#NAME IPTV Sports
+#SERVICE 1:64:1:0:0:0:0:0:0:0:
+#DESCRIPTION Update 17.02.2018 by Team www.hdfreaks.cc
+#SERVICE 1:64:7:0:0:0:0:0:0:0::
+#DESCRIPTION Olympia 2018 in Pyeongchang
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//olympia4slmsl-lh.akamaihd.net/i/ows4_msl@39596/master.m3u8
+#DESCRIPTION ARD Olympia I
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//olympia1ardmsl-lh.akamaihd.net/i/ows1_msl@167397/master.m3u8
+#DESCRIPTION ARD Olympia II
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//olympia2slmsl-lh.akamaihd.net/i/ows2_msl@37191/master.m3u8
+#DESCRIPTION ARD Olympia II
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//olympia3slmsl-lh.akamaihd.net/i/ows3_msl@37201/master.m3u8
+#DESCRIPTION ARD Olympia IV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf0304-lh.akamaihd.net/i/de03_v1@392855/master.m3u8
+#DESCRIPTION ZDF Olympia I
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf0304-lh.akamaihd.net/i/de04_v1@392856/master.m3u8
+#DESCRIPTION ZDF Olympia II
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//zdf0506-lh.akamaihd.net/i/de05_v1@392857/master.m3u8
+#DESCRIPTION ZDF Olympia III
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//live.olympicchannel.com/ocs/channel01b/NBC_OCS1_VIDEO_7_6064000.m3u8
+#DESCRIPTION NBC Olympic-Channel I
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//live.olympicchannel.com/ocs/channel05b/NBC_OCS5_VIDEO_7_6064000.m3u8
+#DESCRIPTION NBC Olympic-Channel II
+#SERVICE 1:64:7:0:0:0:0:0:0:0::
+#DESCRIPTION Fußball und mehr
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//eventhlshttps-i.akamaihd.net/hls/live/263645/ssn-hd-https/indexvideo-3400.m3u8
+#DESCRIPTION Sky Sport News (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//sporttimelive1.content-cdn.net/livechannel2/smil%3aswitch2.smil/chunklist_b3174400_tkd293emF0b2tlbmhhc2g9cWd0WTk2RDc3UW9jUW9pSm42TUNzeUhiQk1HbGEydVFvUTAzWHZRWWt1RT0=.m3u8
+#DESCRIPTION Sportime (720P)
+#SERVICE 4097:0:19:33FD:3ED:1:C00000:0:0:0:http%3a//apasfiisl.apa.at/ipad/orfs_q6a/orf.sdp/playlist.m3u8
+#DESCRIPTION ORF Sport+ HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//rbtvdiglinear-i.akamaihd.net/hls/live/241719/ATfallback/master_3360.m3u8
+#DESCRIPTION RedBull
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/70/index.m3u8
+#DESCRIPTION Eurosport1 HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/69/index.m3u8
+#DESCRIPTION Eurosport2 SD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/57/index.m3u8
+#DESCRIPTION Motor Sport TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/11/index.m3u8
+#DESCRIPTION BTV Sport 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/210/index.m3u8
+#DESCRIPTION Sport TV + 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/8/index.m3u8
+#DESCRIPTION Sport TV 1 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/7/index.m3u8
+#DESCRIPTION Sport TV 2 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/6/index.m3u8
+#DESCRIPTION Sport TV 3 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/5/index.m3u8
+#DESCRIPTION Sport TV 4 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/4/index.m3u8
+#DESCRIPTION Sport TV 5 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/275/index.m3u8
+#DESCRIPTION ESPN 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/107/index.m3u8
+#DESCRIPTION FN 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/188/index.m3u8
+#DESCRIPTION COMBAT Sport 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/272/index.m3u8
+#DESCRIPTION EXtreme MCS 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.13.95%3a8080/45/index.m3u8
+#DESCRIPTION Porto Kanal 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//51.254.39.37/TV/RUS/x/537.m3u8
+#DESCRIPTION Nasch Fussball 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//51.254.39.37/TV/RUS/x/343.m3u8
+#DESCRIPTION Eishockey 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//51.254.39.37/TV/RUS/x/540.m3u8
+#DESCRIPTION Arena match 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//51.254.39.37/TV/RUS/x/670.m3u8
+#DESCRIPTION Boxkanal 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//51.254.39.37/TV/RUS/x/102.m3u8
+#DESCRIPTION Nasche Sport 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//51.254.39.37/TV/RUS/x/671.m3u8
+#DESCRIPTION Russian Extrem 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//51.254.39.37/TV/RUS/x/146.m3u8
+#DESCRIPTION Auto Kanal
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//185.231.160.49/608/1/index.m3u8
+#DESCRIPTION M futbol 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//185.231.160.49/29/3/index.m3u8
+#DESCRIPTION Fussball 1 HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//185.231.160.49/23/3/index.m3u8
+#DESCRIPTION Fussball 2 HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//185.231.160.49/24/3/index.m3u8
+#DESCRIPTION Fussball 3 HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//95.128.243.226%3a7780/udp/224.0.91.65%3a1234
+#DESCRIPTION Матч! Футбол 1 (2)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//95.128.243.226%3a7780/udp/224.0.91.66%3a1234
+#DESCRIPTION Матч! Футбол 2 (2)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//95.128.243.226%3a7780/udp/224.0.91.67%3a1234
+#DESCRIPTION Матч! Футбол 3 (2)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//178.22.187.253%3a1935/streaming-tv/mp4%3amyStream3
+#DESCRIPTION Automoto Tv 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//adtv.ercdn.net/adsport1/adsport1.m3u8
+#DESCRIPTION Abu Dhabi Sports 1 (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//adtv.ercdn.net/adsport2/adsport2.m3u8
+#DESCRIPTION Abu Dhabi Sports 2 (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stdephds-lh.akamaihd.net%3a80/i/ad3pst02hds_1@335205/master.m3u8
+#DESCRIPTION TDN UNIVISION (480p)
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//originstream12.rai.it/italy/raisport1_1800/chunklist.m3u8
+#DESCRIPTION Rai Sport1 (576p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//rmtv24hweblive-lh.akamaihd.net/i/rmtv24hweben_1@300662/index_3_av-b.m3u8
+#DESCRIPTION Real Madrid TV (404p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ooyalahd2-f.akamaihd.net/i/chelsea02_delivery@145821/index_2528_av-p.m3u8
+#DESCRIPTION CHELSEA FC TV (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//sevillafc_live-lh.akamaihd.net/i/video_0@354142/master.m3u8
+#DESCRIPTION Sevilla FC TV (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//trtcanlitv-lh.akamaihd.net/i/TRTSPOR1_1@182042/index_1000_av-b.m3u8?sd=10&rebase=on
+#DESCRIPTION TRT SPOR (720p)
+#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//ujdwx6qj.rocketcdn.com/ntvsporhd.stream_720p/chunklist.m3u8?
+#DESCRIPTION NTV SPOR HD (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//188.165.48.227%3a6060
+#DESCRIPTION SPORTS HD (468p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//37.247.100.99/Bursaspor/bursaspor/playlist.m3u8
+#DESCRIPTION BURSA SPORT (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.sportstv.com.tr%3a1935/sportstv/SportsTV3/playlist.m3u8
+#DESCRIPTION SportsTV (488p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tjktv.ercdn.net/tjktv_576p.m3u8:TJK TV (576p)
+#DESCRIPTION TJK TV (576p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//edge02.dcarsat.com.ar%3a1935/DXTV/DXTV/master.m3u8:DXTX Argentina (432p)
+#DESCRIPTION DXTX Argentina (432p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//173.236.10.10%3a1935/dgrau/dgrau/live.m3u8:TV ALL SPORT (720p)
+#DESCRIPTION TV ALL SPORT (720p)
+#SERVICE 1:64:3:0:0:0:0:0:0:0:
+#DESCRIPTION American Sports
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8?u=n1info#X-Forwarded-For=209.239.112.104
+#DESCRIPTION NBC GOLF (1080p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//svglive3-event.level3.nfl.com/nflent3/live/nfl_now/NFLNOW_4500k.m3u8:NFL NOW
+#DESCRIPTION NFL NOW (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//p12a-lh.akamaihd.net/i/arizona_delivery@199730/master.m3u8
+#DESCRIPTION PAC arizona
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//p12b-lh.akamaihd.net/i/bayarea_delivery@429334/master.m3u8
+#DESCRIPTION PAC bayarea
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//p12l-lh.akamaihd.net/i/la_delivery@425541/master.m3u8
+#DESCRIPTION PAC delivery
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//p12o-lh.akamaihd.net/i/oregon_delivery@103261/master.m3u8
+#DESCRIPTION PAC Oregon 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//p12w-lh.akamaihd.net/i/washington_delivery@426584/master.m3u8
+#DESCRIPTION PAC washington
