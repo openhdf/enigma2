@@ -512,6 +512,7 @@ def InitUsageConfig():
 	config.epg.netmed = ConfigYesNo(default = True)
 	config.epg.virgin = ConfigYesNo(default = False)
 	config.epg.saveepg = ConfigYesNo(default = True)
+	config.usage.streamlinkserver = ConfigYesNo(default = False)
 
 	def EpgSettingsChanged(configElement):
 		from enigma import eEPGCache

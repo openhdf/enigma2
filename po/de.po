@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-03-03 07:48+0100\n"
+"PO-Revision-Date: 2018-03-04 14:01+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1692,6 +1692,12 @@ msgstr "%d Pixel breit"
 #, python-format
 msgid "%s pixels wide"
 msgstr "%s Pixel breit"
+
+msgid "Enable streamlinkserver to play Youtube videos"
+msgstr "Aktiviere den Streamlinkserver für YouTube Videos"
+
+msgid "Enable autostart of streamlinkserver to play youtube videos inside your channellist. This install streamlinksrv package and needs a reboot!"
+msgstr "Aktiviert den Autostart für den Streamlinkserver um Youtube Videos innerhalb der Senderliste abzuspielen. Die Aktivierung dieser Option installiert das streamlinksrv Paket und braucht einen Neustart!"
 
 msgid "Enable fallback remote receiver"
 msgstr "Aktiviere Reservereceiver"
