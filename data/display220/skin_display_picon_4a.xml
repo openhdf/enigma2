@@ -19,13 +19,6 @@
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
 
-<!-- template -->
-	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="120,142" size="100,45" font="FdLcD;40" halign="right" valign="bottom" noWrap="1">
-			<convert type="ClockToText"></convert>
-		</widget>
-	</screen>
-
 	<screen name="StatePanel">
 		<widget source="session.Event_Now" render="Progress" position="102,0" size="118,23" halign="left" valign="top" borderWidth="2" noWrap="1" borderColor="#FFFF00" foregroundColor="#FFFF00" fillColor="#FFFF00" alphatest="on" zPosition="1">
 			<convert type="EventTime">Progress</convert>
@@ -46,7 +39,7 @@
 <!-- main-->
 	<screen name="InfoBarSummary" position="fill">
     <!-- first block (top): left=picon, right=progress,remaining time -->
-		<widget source="session.CurrentService" render="Picon" position="0,0" size="100,60" halign="center" valign="center" noWrap="1" alphatest="on">
+		<widget source="session.CurrentService" render="PiconRes" position="0,0" size="100,60" halign="center" valign="center" noWrap="1" alphatest="on">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
     <panel name="StatePanel" />
@@ -366,4 +359,5 @@
 		<widget source="parent.summary_action" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<widget source="parent.summary_status" render="Label" position="0,41" size="220,18" font="FdLcD;16" halign="left" noWrap="1" />
 	</screen>
+	<include filename="~/skin_common.xml" />
 </skin>

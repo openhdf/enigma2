@@ -19,16 +19,9 @@
 		<font filename="nmsbd.ttf" name="FdLcD" scale="90"/>
 	</fonts>
 
-<!-- template -->
-	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="110,135" size="100,50" font="FdLcD;45" halign="right" valign="bottom" noWrap="1">
-			<convert type="ClockToText"></convert>
-		</widget>
-	</screen>
-
 <!-- main-->
 	<screen name="InfoBarSummary" position="fill" >
-		<widget source="session.CurrentService" render="Picon" zPosition="1" position="center,10" size="100,60" alphatest="on" >
+		<widget source="session.CurrentService" render="PiconRes" zPosition="1" position="center,10" size="100,60" alphatest="on" >
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,80" size="220,55" font="FdLcD;22" halign="center" >
@@ -211,4 +204,5 @@
 		<widget source="parent.Text" render="Label" position="top" size="*,95" font="FdLcD;31" halign="center" valign="center" />
 		<widget source="parent.selectedChoice" render="Label" position="bottom" size="*,44" font="FdLcD;44" halign="center" valign="center" />
 	</screen>
+	<include filename="~/skin_common.xml" />
 </skin>
