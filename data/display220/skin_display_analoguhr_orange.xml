@@ -266,32 +266,6 @@
 		</panel>
 	</screen>
 
-<!-- EMC-->
-	<screen name="EMCSelection_summary" position="0,0" size="220,176">
-		<widget source="parent.Service" render="Label" position="0,0" size="220,120" foregroundColor="red" font="FdLcD;24" halign="center" valign="center" >
-			<convert type="ServiceName">NameOnly</convert>
-		</widget>
-		<widget source="parent.Service" render="Label" position="0,122" size="105,46" font="FdLcD;24" halign="center" transparent="1" >
-			<convert type="ServiceTime">Duration</convert>
-			<convert type="ClockToText">AsLength</convert>
-		</widget>
-		<widget source="parent.Service" render="Label" position="110,122" size="105,46" font="FdLcD;24" halign="right" transparent="1" >
-			<convert type="MovieInfo">FileSize</convert>
-		</widget>
-	</screen>
-	<screen name="EMCMoviePlayerSummary" position="0,0" size="220,176">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="220,90" foregroundColor="red" font="FdLcD;26" valign="top" halign="center" >
-			<convert type="ServiceName">Name</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Progress" position="0,95" size="220,10" foregroundColor="#02c6ff" borderWidth="2">
-			<convert type="ServicePosition">Position</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Label" position="0,107" size="220,26" font="FdLcD;25" halign="center" foregroundColor="#02c6ff" >
-			<convert type="ServicePosition">Remaining</convert>
-		</widget>
-		<panel name="SummaryClockPanel" />
-	</screen>
-
 <!-- Mediaplayer -->
 	<screen name="MediaPlayerLCDScreen" position="0,0" size="220,176">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="220,90" foregroundColor="red" font="FdLcD;26" halign="center" valign="top" >
@@ -349,4 +323,5 @@
 		<widget source="parent.summary_description" render="Label" position="0,60" size="220,50" font="FdLcD;24" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
+	<include filename="~/skin_common.xml" />
 </skin>

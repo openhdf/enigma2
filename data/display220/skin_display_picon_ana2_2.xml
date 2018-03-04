@@ -20,7 +20,7 @@
   </fonts>
   <!--Main-->
   <screen name="InfoBarSummary" position="fill">
-    <widget source="session.CurrentService" render="LcdPicon" position="1,1" size="100,60" halign="center" valign="center">
+    <widget source="session.CurrentService" render="PiconRes" position="1,1" size="100,60" halign="center" valign="center">
       <convert type="ServiceName">Reference</convert>
     </widget>
     <eLabel text="TUNER:" position="120,1" size="100,25" halign="Left" font="FdLcD;20" foregroundColor="#7AFF9F" />

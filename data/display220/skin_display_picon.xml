@@ -18,18 +18,9 @@
     <!-- pick a funky name for the font, so we don't conflict  -->
     <font filename="nmsbd.ttf" name="FdLcD" scale="90" />
   </fonts>
-  <!-- template -->
-  <screen name="SummaryClockPanel">
-    <widget source="global.CurrentTime" render="Label" position="right" size="160,55" font="FdLcD;50" halign="right" valign="top" noWrap="1">
-      <convert type="ClockToText" />
-    </widget>
-    <widget source="session.RecordState" render="FixedLabel" text="Recording" position="105,50" size="129,25" foregroundColor="#ff0000" font="FdLcD;25" zPosition="1" noWrap="1">
-      <convert type="ConditionalShowHide">Blink</convert>
-    </widget>
-  </screen>
   <!-- main-->
   <screen name="InfoBarSummary" position="fill">
-    <widget source="session.CurrentService" render="Picon" position="0,110" zPosition="1" size="100,60">
+    <widget source="session.CurrentService" render="PiconRes" position="0,110" zPosition="1" size="100,60">
       <convert type="ServiceName">Reference</convert>
     </widget>
     <widget source="session.CurrentService" render="Label" position="top" size="*,43" font="FdLcD;36" halign="center" foregroundColor="#00ffff">
@@ -174,29 +165,5 @@
     <widget source="parent.Text" render="Label" position="top" size="*,95" font="FdLcD;31" halign="center" valign="center" />
     <widget source="parent.selectedChoice" render="Label" position="bottom" size="*,44" font="FdLcD;44" halign="center" valign="center" />
   </screen>
-  <!--EMC-->
-  <screen name="EMCSelection_summary" position="0,0" size="220,176">
-    <widget source="parent.Service" render="Label" position="0,0" size="220,120" font="FdLcD;24" halign="center" valign="center">
-      <convert type="ServiceName">NameOnly</convert>
-    </widget>
-    <widget source="parent.Service" render="Label" position="0,122" size="105,46" font="FdLcD;24" halign="center">
-      <convert type="ServiceTime">Duration</convert>
-      <convert type="ClockToText">AsLength</convert>
-    </widget>
-    <widget source="parent.Service" render="Label" position="110,122" size="105,46" font="FdLcD;24" halign="right">
-      <convert type="MovieInfo">FileSize</convert>
-    </widget>
-  </screen>
-  <screen name="EMCMoviePlayerSummary" position="0,0" size="220,176">
-    <widget source="session.CurrentService" render="Label" position="0,0" size="220,90" font="FdLcD;26" valign="top" halign="center">
-      <convert type="ServiceName">Name</convert>
-    </widget>
-    <widget source="session.CurrentService" render="Progress" position="0,95" size="220,10" borderWidth="2" foregroundColor="#FFFF00">
-      <convert type="ServicePosition">Position</convert>
-    </widget>
-    <widget source="session.CurrentService" render="Label" position="0,107" size="220,26" font="FdLcD;25" halign="center" foregroundColor="#FFFF00">
-      <convert type="ServicePosition">Remaining</convert>
-    </widget>
-    <panel name="SummaryClockPanel" />
-  </screen>
+  <include filename="~/skin_common.xml" />
 </skin>

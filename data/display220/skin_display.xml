@@ -19,13 +19,6 @@
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
 
-<!-- template -->
-	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="120,142" size="100,45" font="FdLcD;40" halign="right" valign="bottom" noWrap="1">
-			<convert type="ClockToText"></convert>
-		</widget>
-	</screen>
-
 	<screen name="SummaryIconsPanel">
 		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update_stable.png" position="0,0" size="30,30" >
 			<convert type="ConditionalShowHide"></convert>
@@ -450,4 +443,5 @@
 		<widget source="parent.summary_action" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<widget source="parent.summary_status" render="Label" position="0,41" size="220,18" font="FdLcD;16" halign="left" noWrap="1" />
 	</screen>
+	<include filename="~/skin_common.xml" />
 </skin>

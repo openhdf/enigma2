@@ -20,7 +20,7 @@
   </fonts>
   <!--Main-->
   <screen name="InfoBarSummary" position="fill">
-    <widget source="session.CurrentService" render="LcdPicon" position="1,1" size="100,60" halign="center" valign="center">
+    <widget source="session.CurrentService" render="PiconRes" position="1,1" size="100,60" halign="center" valign="center">
       <convert type="ServiceName">Reference</convert>
     </widget>
     <widget source="session.CurrentService" position="110,0" size="45,45" render="Label" font="Meteo; 40" noWrap="1" valign="center">

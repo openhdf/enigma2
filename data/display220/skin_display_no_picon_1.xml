@@ -19,13 +19,6 @@
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
 
-<!-- template -->
-	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="120,142" size="100,45" font="FdLcD;40" halign="right" valign="bottom" noWrap="1">
-			<convert type="ClockToText"></convert>
-		</widget>
-	</screen>
-
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="220,176">
 		<widget source="session.CurrentService" render="Label" position="0,10" size="220,25" font="FdLcD;25" halign="center" foregroundColor="#2E64FE">
@@ -288,4 +281,5 @@
 		<widget source="parent.text_summary" render="Label" position="0,16" size="220,54" font="FdLcD;12" halign="left" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 	</screen>
+	<include filename="~/skin_common.xml" />
 </skin>
