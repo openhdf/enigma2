@@ -193,8 +193,8 @@ void *gRC::thread()
 					if (!m_spinner_enabled)
 					{
 						eDebug("[gRC] main thread is non-idle! display spinner!");
-						std::ofstream dummy("/tmp/doPythonStackTrace");
-						dummy.close();
+							std::ofstream dummy("/tmp/doPythonStackTrace");
+							dummy.close();
 					}
 					enableSpinner();
 				} else

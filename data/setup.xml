@@ -351,6 +351,7 @@
 		<item level="2" text="Show Log Manager in extensions list ?" description="Allows you to show/hide Log Manager in extensions (blue button).">config.logmanager.showinextensions</item>
 		<item level="2" text="Maximum no of days:" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
 		<item level="2" text="Maximum space used (MB):" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
+		<item level="2" text="Log python stack trace on spinner (may have side effects) ?" description="Set to yes ONLY TEMPORARILY for debugging the root cause of a spinner.">config.crash.pystackonspinner</item>
 	</setup>
 	<setup key="timeshift" title="Timeshift settings">
 		<item level="2" text="Automatically start timeshift after" description="When enabled, timeshift starts automatically in background after specified time.">config.timeshift.startdelay</item>

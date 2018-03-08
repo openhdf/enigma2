@@ -503,10 +503,14 @@ profile("Load:VolumeControl")
 from Components.VolumeControl import VolumeControl
 
 profile("Load:StackTracePrinter")
+from Components.StackTrace import StackTracePrinter
+StackTracePrinterInst = StackTracePrinter()
+
 from threading import Thread, current_thread
 from sys import _current_frames
 from traceback import extract_stack
 from time import sleep
+
 class StackTracePrinter(Thread):
 	def __init__(self):
 		Thread.__init__(self)
