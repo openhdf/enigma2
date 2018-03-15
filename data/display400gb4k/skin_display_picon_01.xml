@@ -500,4 +500,6 @@
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 	</screen>
+	<include filename="~/skin_display.xml" />
+	<include filename="~/skin_common.xml" />
 </skin>
