@@ -293,4 +293,6 @@
 		<panel name="SummaryIconsPanel" />
 		<panel name="SummaryClockPanel" />
 	</screen>
+	<include filename="~/skin_display.xml" />
+	<include filename="~/skin_common.xml" />
 </skin>
