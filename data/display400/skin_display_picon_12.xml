@@ -358,4 +358,6 @@
 		</widget>
 		<panel name="RecordingPanel" />
 	</screen>
+	<include filename="~/skin_display.xml" />
+	<include filename="~/skin_common.xml" />
 </skin>
