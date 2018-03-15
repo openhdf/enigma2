@@ -297,4 +297,6 @@
 	<screen name="webradioFSdisplay13" position="0,0" size="400,240">
 		<widget source="Zeile2" render="Label" position="5,90" size="390,100" font="FdLcD;30" noWrap="0" />
 	</screen>
+	<include filename="~/skin_display.xml" />
+	<include filename="~/skin_common.xml" />
 </skin>
