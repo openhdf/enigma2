@@ -223,6 +223,28 @@ AC_ARG_WITH(blitaccelerationthreshold,
 
 AC_DEFINE_UNQUOTED(GFX_SURFACE_BLIT_ACCELERATION_THRESHOLD, $with_blitaccelerationthreshold,[Configure threshold for accelerated blit operations (in bytes)])
 
+AC_ARG_WITH(alphablendingacceleration,
+	AC_HELP_STRING([--with-alphablendingacceleration=never/always/auto], [alphablending acceleration strategy: never accelerate / always accelerate / automatically decide when to accelerate (default)]),
+	[[with_alphablendingacceleration=$withval]],
+	[[with_alphablendingacceleration=auto]]
+)
+
+if test x"$with_alphablendingacceleration" = xnever ; then
+	AC_DEFINE_UNQUOTED(FORCE_NO_BLENDING_ACCELERATION, 1, [Do not attempt to accelerate alphablending blits])
+elif test x"$with_alphablendingacceleration" = xalways ; then
+	AC_DEFINE_UNQUOTED(FORCE_ALPHABLENDING_ACCELERATION, 1, [Accelerate alphablending blits])
+fi
+
+AC_ARG_WITH(accelerationaccumulation,
+	AC_HELP_STRING([--with-accelerationaccumulation], [accumulate blit/fill acceleration operations]),
+	[[with_accelerationaccumulation=$withval]],
+	[[with_accelerationaccumulation=no]]
+)
+
+if test x"$with_accelerationaccumulation" = xyes ; then
+	AC_DEFINE(SUPPORT_ACCUMULATED_ACCELERATION_OPERATIONS, 1,[Accumulate blit/fill acceleration operations])
+fi
+
 AC_ARG_WITH(machinebuild,
 	[  --with-machinebuild=NAME machine build [[none,atemeo5200,atemeo6000...]]],
 	[MACHINEBUILD="$withval"],[MACHINEBUILD="atemeo5200"])
@@ -534,6 +556,7 @@ fi
 
 if test "$BOXTYPE" == "u5" -o "$BOXTYPE" == "u5pvr"; then
 	AC_DEFINE(HAVE_HISILICON, 1,[define add HISILICON chip])
+	AC_DEFINE(FORCE_ALPHABLENDING_ACCELERATION, 1,[define when the framebuffer acceleration has alphablending support, but detection slow down all])
 fi
 
 if test "$BOXTYPE" == "wetekplay" -o "$BOXTYPE" == "wetekplay2" -o "$BOXTYPE" == "wetekhub"; then
