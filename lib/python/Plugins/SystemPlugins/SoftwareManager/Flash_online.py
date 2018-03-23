@@ -35,14 +35,11 @@ MTDROOTFS = getMachineMtdRoot()
 images = []
 global imagesCounter
 imagesCounter = 0
-#images.append(["Team", "http://teamimages.hdfreaks.cc"])
-#images.append(["Latest", "http://images.hdfreaks.cc"])
-#images.append(["V5.5", "http://v55.hdfreaks.cc"])
-#images.append(["V6.0", "http://beta6.hdfreaks.cc"])
-images.append(["switch to V5.5", "http://teamimages.hdfreaks.cc"])
-images.append(["switch to V6.2", "http://v55.hdfreaks.cc"])
-images.append(["switch to V6.1", "http://v62.hdfreaks.cc"])
-images.append(["switch to Team", "http://v60.hdfreaks.cc"])
+images.append(["switch to V6.3", "http://v62.hdfreaks.cc"])
+images.append(["switch to V6.1", "http://v63.hdfreaks.cc"])
+images.append(["switch to V5.5", "http://v60.hdfreaks.cc"])
+images.append(["switch to Team", "http://v55.hdfreaks.cc"])
+images.append(["switch to V6.2", "http://teamimages.hdfreaks.cc"])
 
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
@@ -498,10 +495,8 @@ class doFlashImage(Screen):
 			self["key_yellow"].setText("")
 			self.feedurl = images[self.imagesCounter][1]
 			self["key_blue"].setText(images[self.imagesCounter][0])
-			if self.imagesCounter == 0:
-				url = '%s' % (self.feedurl)
-			else:
-				url = '%s/%s' % (self.feedurl,box)
+			#if self.imagesCounter == 0:
+			url = '%s/%s' % (self.feedurl,box)
 			req = urllib2.Request(url)
 			try:
 				response = urllib2.urlopen(req)
