@@ -1119,7 +1119,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						painter.clippop();
 						continue;
 					}
-					painter.blit(pixmap, rect.topLeft(), rect, 0);
+					painter.blit(pixmap, rect.topLeft(), rect, gPainter::BT_ALPHABLEND);
 				}
 				else
 					painter.fill(rect);
