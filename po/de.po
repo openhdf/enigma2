@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-03-09 10:50+0100\n"
+"PO-Revision-Date: 2018-03-28 19:57+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -14318,3 +14318,12 @@ msgstr "Aktivieren Sie die Unterstützung von Schnittdateien für Audiodateien. 
 
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr "Zeige Kapitelpositionen für unterstützte Videodateien an. ( Ab GStreamer Version 1 )"
+
+msgid "reliable, retune"
+msgstr "zuverlässig, retune"
+
+msgid "traditional (fast), retune"
+msgstr "klassisch (schnell), retune"
+
+msgid "This allows you to show drivers modules in downloads"
+msgstr "Dies erlaubt Ihnen die Anzeige von Treibern im Downloadbereich"
