@@ -2,6 +2,7 @@ from enigma import getPrevAsciiCode
 from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, fileExists
 from Components.Harddisk import harddiskmanager
+from Tools.LoadPixmap import LoadPixmap
 from copy import copy as copy_copy
 from os import path as os_path
 from time import localtime, strftime
@@ -392,14 +393,24 @@ class ConfigSelection(ConfigElement):
 			return _(descr)
 		return descr
 
+#	def getMulti(self, selected):
+#		if self._descr is not None:
+#			descr = self._descr
+#		else:
+#			descr = self._descr = self.description[self.value]
+#		if descr:
+#			return "text", _(descr)
+#		return "text", descr
+
 	def getMulti(self, selected):
-		if self._descr is not None:
-			descr = self._descr
+		from config import config
+		if self.graphic and config.usage.boolean_graphic.value:
+			if self.value:
+				return ('pixmap', self.trueIcon)
+			else:
+				return ('pixmap', self.falseIcon)
 		else:
-			descr = self._descr = self.description[self.value]
-		if descr:
-			return "text", _(descr)
-		return "text", descr
+			return ("text", self.descriptions[self.value])
 
 	# HTML
 	def getHTML(self, id):
