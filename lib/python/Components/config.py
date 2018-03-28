@@ -393,24 +393,14 @@ class ConfigSelection(ConfigElement):
 			return _(descr)
 		return descr
 
-#	def getMulti(self, selected):
-#		if self._descr is not None:
-#			descr = self._descr
-#		else:
-#			descr = self._descr = self.description[self.value]
-#		if descr:
-#			return "text", _(descr)
-#		return "text", descr
-
 	def getMulti(self, selected):
-		from config import config
-		if self.graphic and config.usage.boolean_graphic.value:
-			if self.value:
-				return ('pixmap', self.trueIcon)
-			else:
-				return ('pixmap', self.falseIcon)
+		if self._descr is not None:
+			descr = self._descr
 		else:
-			return ("text", self.descriptions[self.value])
+			descr = self._descr = self.description[self.value]
+		if descr:
+			return "text", _(descr)
+		return "text", descr
 
 	# HTML
 	def getHTML(self, id):
@@ -436,10 +426,22 @@ class ConfigSelection(ConfigElement):
 # descriptions.
 #
 class ConfigBoolean(ConfigElement):
-	def __init__(self, default = False, descriptions = {False: _("false"), True: _("true")}):
+	def __init__(self, default = False, descriptions = {False: _("false"), True: _("true")}, graphic=True):
 		ConfigElement.__init__(self)
 		self.descriptions = descriptions
 		self.value = self.last_value = self.default = default
+		self.graphic = False
+		if graphic:
+			from skin import switchPixmap
+			offPath = switchPixmap.get('menu_off')
+			onPath = switchPixmap.get('menu_on')
+			if offPath and onPath:
+				falseIcon = LoadPixmap(offPath, cached=True)
+				trueIcon = LoadPixmap(onPath, cached=True)
+				if falseIcon and trueIcon:
+					self.falseIcon = falseIcon
+					self.trueIcon = trueIcon
+					self.graphic = True
 
 	def handleKey(self, key):
 		if key in (KEY_LEFT, KEY_RIGHT):
@@ -456,10 +458,14 @@ class ConfigBoolean(ConfigElement):
 		return descr
 
 	def getMulti(self, selected):
-		descr = self.descriptions[self.value]
-		if descr:
-			return "text", _(descr)
-		return "text", descr
+		from config import config
+		if self.graphic and config.usage.boolean_graphic.value:
+			if self.value:
+				return ('pixmap', self.trueIcon)
+			else:
+				return ('pixmap', self.falseIcon)
+		else:
+			return ("text", self.descriptions[self.value])
 
 	def tostring(self, value):
 		if not value:
