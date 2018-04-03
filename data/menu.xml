@@ -85,6 +85,7 @@ self.session.open(HdmiCECSetupScreen)
 				<id val="record_menu" />
 				<item level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
 				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
+				<item level="0" text="HDMI-IN Recording settings" entryID="hdmirecord_setup" requires="HDMIin"><setup id="HDMIRecord"/></item>
 				<item level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
 			</menu>
 
@@ -232,6 +233,7 @@ self.session.open(SABnzbdSetupScreen)
 					<id val="record_menu" />
 					<item level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
 					<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
+					<item level="0" text="HDMI-IN Recording settings" entryID="hdmirecord_setup" requires="HDMIin"><setup id="HDMIRecord"/></item>
 					<item level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
 				</menu>
 				<menu level="1" text="Network" entryID="network_menu">
