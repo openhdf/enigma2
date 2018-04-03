@@ -322,7 +322,8 @@ class doFlashImage(Screen):
 		self.hide()
 		if self.Online:
 			if self.imagesCounter == 0:
-				url = self.feedurl + "/" + sel
+				url = self.feedurl + "/" + box + "/" + sel
+				#url = self.feedurl + "/" + sel
 			else:
 				url = self.feedurl + "/" + box + "/" + sel
 			#print "URL:", url
