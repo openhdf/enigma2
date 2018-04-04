@@ -137,27 +137,18 @@ class AVSwitch:
 		self.modes_available = modes.split(' ')
 
 	def readPreferredModes(self):
-		if config.av.edid_override.value == False:
-			try:
-				f = open("/proc/stb/video/videomode_edid")
-				modes = f.read()[:-1]
-				f.close()
-				self.modes_preferred = modes.split(' ')
-				print "[AVSwitch] reading edid modes: ", self.modes_preferred
-			except IOError:
-				print "[AVSwitch] reading edid modes failed, using all modes"
-				try:
-					f = open("/proc/stb/video/videomode_preferred")
-					modes = f.read()[:-1]
-					f.close()
-					self.modes_preferred = modes.split(' ')
-					print "[AVSwitch] reading _preferred modes: ", self.modes_preferred
-				except IOError:
-					print "[AVSwitch] reading preferred modes failed, using all modes"
-					self.modes_preferred = self.modes_available
-		else:
+		try:
+			f = open("/proc/stb/video/videomode_preferred")
+			modes = f.read()[:-1]
+			f.close()
+			self.modes_preferred = modes.split(' ')
+		except IOError:
+			print "[AVSwitch] reading preferred modes failed, using all modes"
 			self.modes_preferred = self.modes_available
-			print "[AVSwitch] used default modes: ", self.modes_preferred
+
+		if self.modes_preferred != self.last_modes_preferred:
+			self.last_modes_preferred = self.modes_preferred
+			self.on_hotplug("HDMI") # must be HDMI
 
 	def is24hzAvailable(self):
 		try:
