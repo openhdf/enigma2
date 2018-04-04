@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-04-03 13:43+0200\n"
+"PO-Revision-Date: 2018-04-04 14:31+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -11021,6 +11021,9 @@ msgstr "Auswahl des Videomodus."
 
 msgid "Allow unsupported modes"
 msgstr "Erlaube nicht unterstützte Modi"
+
+msgid "This option allows you to use all HDMI Modes"
+msgstr "Mit dieser Option können Sie alle HDMI-Modi verwenden"
 
 msgid "Video output"
 msgstr "Video Ausgang"
