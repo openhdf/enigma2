@@ -96,7 +96,7 @@ class QuadPipChannelEntry:
 			chName = ch[0]
 
 		if chName is None:
-			chName = " <No Channel>"
+			chName = _("<No Channel>")
 
 		return chName
 
@@ -144,7 +144,7 @@ class QuadPipChannelList(QuadPipChannelData):
 	def __init__(self):
 		QuadPipChannelData.__init__(self)
 		self._curIdx = config.plugins.quadpip.lastchannel.value # starting from 1
-		self.defaultEntryPreName = "Quad PiP channel "
+		self.defaultEntryPreName = _("Quad PiP channel ")
 
 	def saveAll(self):
 		self.dataSave()
@@ -317,7 +317,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 			_isEmpty = False
 			chName = self.newChannel.getChannelName(sIdx)
 			if chName is None:
-				chName = " <empty>"
+				chName = _(" <empty>")
 				_isEmpty = True
 			self.descChannels.append(("%d)  %s" % (idx, chName), sIdx, _isEmpty))
 
@@ -568,7 +568,7 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 				entryName = "%s%d" % (self.qpipChannelList.getDefaultPreName(), ch.getIndex())
 
 			if self.qpipChannelList.getIdx() == ch.getIndex():
-				entryName += " (current channel)"
+				entryName += _(" (current channel)")
 
 			entry.append(entryName)
 			entry.append("1) " + ch.getChannelName("1"))
