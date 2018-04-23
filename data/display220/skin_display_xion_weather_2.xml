@@ -21,18 +21,11 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="220,176">
-		<widget source="session.CurrentService" render="PiconRes" position="center,center" zPosition="1" halign="center" valign="center" size="220,132" alphatest="on">
-			<convert type="ServiceName">Reference</convert>
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="220,50" font="FdLcD;50" halign="center" valign="top" noWrap="1" foregroundColor="#D7D7D7">
+			<convert type="ClockToText">Format:%H:%M:%S</convert>
 		</widget>
-		<!--widget source="global.CurrentTime" render="Label" position="132,145" size="88,46" font="FdLcD;35" noWrap="1">
-			<convert type="ClockToText"></convert>
-		</widget-->
-		
-		<!--widget source="session.Event_Now" render="Progress" position="0,155" size="130,14" borderWidth="3" >
-			<convert type="EventTime">Progress</convert>
-		</widget-->
-		<widget source="session.RecordState" render="FixedLabel" text="Record" position="center,140" foregroundColor="#ff0000" size="100,25" font="FdLcD;25" zPosition="0" noWrap="1">
-			<convert type="ConditionalShowHide">Blink</convert>
+		<widget source="session.CurrentService" render="PiconRes" position="center,60" size="160,100" halign="center" valign="center">
+			<convert type="ServiceName">Reference</convert>
 		</widget>
 	</screen>
 
@@ -92,7 +85,7 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
 		<widget source="parent.title" render="Label" position="top" size="*,65" font="FdLcD;30" halign="center" valign="top" />
-		<widget source="parent.menu" render="Label" position="top" size="*,57" font="FdLcD;26" halign="left" valign="center">
+		<widget source="parent.menu" render="Label" position="top" size="*,57" font="FdLcD;25" halign="center" valign="center">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -128,18 +121,15 @@
 
 <!-- standby -->
 	<screen name="StandbySummary" position="fill">
-		<widget source="session.MSNWeather" render="Label" position="0,0" size="220,95" font="FdLcD;90" zPosition="1" halign="center" valign="center" noWrap="1" alphatest="on" >
-			<convert type="MSNWeather">temperature_current</convert>
+		<widget source="session.CurrentService" position="1,1" size="220,40" render="Label" font="Meteo; 40" noWrap="1" halign="center">
+			<convert type="XionHDFWeather">Day_0,MeteoFont</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="0,100" size="220,76" halign="center" valign="center" font="FdLcD;70" >
-				<convert type="ClockToText"></convert>
+		<widget source="session.CurrentService" render="Label" position="1,40" size="220,80" font="FdLcD; 80" halign="center" noWrap="1" foregroundColor="#D7D7D7" transparent="1" zPosition="2">
+			<convert type="XionHDFWeather">Day_0,DayTemp</convert>
 		</widget>
-		<!--widget source="session.MSNWeather" render="Label" position="0,180" size="400,30" font="FdLcD;40" zPosition="2" halign="center" valign="center" noWrap="1" alphatest="on">
-			<convert type="MSNWeather">temperature_heigh_low,current</convert>
-		</widget-->
-		<!--widget source="session.MSNWeather" render="Label" position="80,32" size="132,32" font="FdLcD;20" zPosition="1" halign="left" valign="left" alphatest="on">
-			<convert type="MSNWeather">city</convert>
-		</widget-->
+		<widget source="global.CurrentTime" render="Label" position="0,130" size="220,40" font="FdLcD;40" halign="center" valign="top" noWrap="1" foregroundColor="#D7D7D7">
+			<convert type="ClockToText">Format:%H:%M:%S</convert>
+		</widget>
 	</screen>
 
 <!-- Plugin browser -->
