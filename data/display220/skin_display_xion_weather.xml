@@ -21,11 +21,14 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="220,176">
-		<widget source="session.MSNWeather" render="Label" position="0,0" size="220,95" font="FdLcD;90" zPosition="1" halign="center" valign="center" noWrap="1" alphatest="on" >
-			<convert type="MSNWeather">temperature_current</convert>
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="220,50" font="FdLcD;50" halign="center" valign="top" noWrap="1" foregroundColor="#D7D7D7">
+			<convert type="ClockToText">Format:%H:%M:%S</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="0,100" size="220,76" halign="center" valign="center" font="FdLcD;70" >
-				<convert type="ClockToText"></convert>
+		<widget source="session.CurrentService" position="5,100" size="120,100" render="Label" font="Meteo; 60" noWrap="1" halign="left">
+			<convert type="XionHDFWeather">Day_0,MeteoFont</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="75,105" size="140,100" font="FdLcD; 60" halign="right" noWrap="1" foregroundColor="#D7D7D7" transparent="1" zPosition="2">
+			<convert type="XionHDFWeather">Day_0,DayTemp</convert>
 		</widget>
 	</screen>
 
@@ -85,7 +88,7 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
 		<widget source="parent.title" render="Label" position="top" size="*,65" font="FdLcD;30" halign="center" valign="top" />
-		<widget source="parent.menu" render="Label" position="top" size="*,57" font="FdLcD;26" halign="left" valign="center">
+		<widget source="parent.menu" render="Label" position="top" size="*,57" font="FdLcD;25" halign="center" valign="center">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
@@ -121,11 +124,11 @@
 
 <!-- standby -->
 	<screen name="StandbySummary" position="fill">
-		<widget source="session.MSNWeather" render="Label" position="0,0" size="220,95" font="FdLcD;90" zPosition="1" halign="center" valign="center" noWrap="1" alphatest="on" >
-			<convert type="MSNWeather">temperature_current</convert>
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="220,50" font="FdLcD;50" halign="center" valign="top" noWrap="1" foregroundColor="#D7D7D7">
+			<convert type="ClockToText">Format:%H:%M:%S</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="0,100" size="220,76" halign="center" valign="center" font="FdLcD;70" >
-				<convert type="ClockToText"></convert>
+		<widget source="session.CurrentService" render="Label" position="1,80" size="220,100" font="FdLcD; 90" halign="center" noWrap="1" foregroundColor="#D7D7D7" transparent="1" zPosition="2">
+			<convert type="XionHDFWeather">Day_0,DayTemp</convert>
 		</widget>
 	</screen>
 
