@@ -15,7 +15,7 @@ from enigma import eServiceReference, eActionMap
 from Components.Label import Label
 import os
 
-updateversion = "21.03.2017"
+updateversion = "24.04.2017"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -431,7 +431,7 @@ class HotkeySetupSelect(Screen):
 		functionslist = []
 		catagories = {}
 		for function in self.hotkeyFunctions:
-			if not catagories.has_key(function[2]):
+			if function[2] not in catagories:
 				catagories[function[2]] = []
 			catagories[function[2]].append(function)
 		for catagorie in sorted(list(catagories)):
@@ -470,8 +470,10 @@ class HotkeySetupSelect(Screen):
 					self.selected.remove(currentSelected[:2])
 				else:
 					if currentSelected[0][1].startswith("ZapPanic"):
+						from Screens.ChannelSelection import SimpleChannelSelection
 						self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey Panic") + " " + self.key[0][0], currentBouquet=True)
 					elif currentSelected[0][1].startswith("Zap"):
+						from Screens.ChannelSelection import SimpleChannelSelection
 						self.session.openWithCallback(self.zaptoCallback, SimpleChannelSelection, _("Hotkey zap") + " " + self.key[0][0], currentBouquet=True)
 					else:
 						self.selected.append(currentSelected[:2])
