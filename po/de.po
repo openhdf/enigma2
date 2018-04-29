@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-04-23 14:52+0200\n"
+"PO-Revision-Date: 2018-05-01 14:52+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3499,6 +3499,12 @@ msgstr "Legt die Standard Einstellung für neu angelegte Timer fest."
 
 msgid "Long press emulation with button"
 msgstr "Emulation 'Langer-Druck' mit Taste"
+
+msgid "Turn on the TV from standby with 'zap and record' timer"
+msgstr "TV einschalten durch einen 'Umschalten und Aufnehmen' Timer"
+
+msgid "If you have activated HDMI-CEC, you can specify here whether a 'zap and record' timer also turns on the TV."
+msgstr "Wenn Sie HDMI-CEC aktiviert haben, können Sie hier angeben ob ein \"Umschalten und Aufnehmen\" Timer auch den Fernseher mit einschaltet."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Diese hier eingestellte Taste emuliert einen langen Tastendruck, gefolgt von der Taste ihrer Wahl (diese Funktion hat Vorrang vor anderen Tastenzuweisungen)."
