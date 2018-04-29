@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF XPE Keymap 04.02.2018" -->
+	<!-- "HDF XPE Keymap 29.04.2018" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -704,6 +704,8 @@
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_PREVIOUS" mapto="moveUp" flags="m"/>
+		<key id="KEY_NEXT" mapto="moveDown" flags="m"/>
 	</map>
 
 	<map context="ColorActions">
