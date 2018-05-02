@@ -691,6 +691,9 @@ msgstr "%-H:%M"
 msgid "%2d:%02d"
 msgstr "%2d:%02d"
 
+msgid "\n%Y/%m/%d  %H:%M - "
+msgstr "\n%d.%m.%Y  %H:%M - "
+
 #. TRANSLATORS: full time representation hour:minute:seconds
 #, python-format
 msgid "%2d:%02d:%02d"
