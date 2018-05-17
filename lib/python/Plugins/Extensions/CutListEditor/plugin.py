@@ -54,12 +54,13 @@ class CutListContextMenu(FixedMenu):
 	RET_GRABFRAME = 7
 	RET_TOGGLEINTRO = 8
 	RET_MOVIECUT = 9
+	RET_REMOVEALL = 10
 
 	SHOW_STARTCUT = 0
 	SHOW_ENDCUT = 1
 	SHOW_DELETECUT = 2
 
-	def __init__(self, session, state, nearmark):
+	def __init__(self, session, state, nearmark, removeall=1):
 		menu = [(_("back"), self.close)] #, (None, )]
 
 		if state == self.SHOW_STARTCUT:
@@ -86,6 +87,11 @@ class CutListContextMenu(FixedMenu):
 			menu.append((_("insert mark here"), self.insertMark))
 		else:
 			menu.append((_("remove this mark"), self.removeMark))
+
+		if removeall:
+			menu.append((_("Remove all cuts and marks"), self.removeAll))
+		else:
+			menu.append((_("Remove all cuts and marks"), ))
 
 		menu.append((_("grab this frame as bitmap"), self.grabFrame))
 
@@ -120,12 +126,15 @@ class CutListContextMenu(FixedMenu):
 	def removeAfter(self):
 		self.close(self.RET_REMOVEAFTER)
 
+	def removeAll(self):
+		self.close(self.RET_REMOVEALL)
+
 	def grabFrame(self):
 		self.close(self.RET_GRABFRAME)
-
+		
 	def toggleIntro(self):
 		self.close(self.RET_TOGGLEINTRO)
-
+		
 	def callMovieCut(self):
 		self.close(self.RET_MOVIECUT)
 
@@ -158,8 +167,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				}
 			</convert>
 		</widget>
-		<widget name="Timeline" position="50,485" size="615,20" backgroundColor="#505555" pointer="skin_default/position_arrow.png:3,5" foregroundColor="black" />
-		<ePixmap pixmap="skin_default/icons/mp_buttons.png" position="305,515" size="109,13" alphatest="on" />
+		<widget name="Timeline" position="50,485" size="615,20" backgroundColor="#505555" pointer="position_arrow.png:3,5" foregroundColor="black" />
+		<ePixmap pixmap="icons/mp_buttons.png" position="305,515" size="109,13" alphatest="on" />
 	</screen>"""
 
 	def __init__(self, session, service):
@@ -198,6 +207,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				"setMark": (self.setMark, _("Make this mark just a mark")),
 				"addMark": (self.__addMark, _("Add a mark")),
 				"removeMark": (self.__removeMark, _("Remove a mark")),
+				"removeAll": (self.__removeAll, _("Remove all cuts and marks")),
 				"leave": (self.exit, _("Exit editor")),
 				"showMenu": (self.showMenu, _("menu")),
 			}, prio=-4)
@@ -217,8 +227,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.onClose.append(self.__onClose)
 
 	def __onClose(self):
-		if self.seekstate != self.SEEK_STATE_PLAY: # fix possible box freeze (e.g. OS1+)
-			self.unPauseService()
+		self.crashFix()
 		self.session.nav.playService(self.old_service, forceRestart=True)
 
 	def updateStateLabel(self, state):
@@ -260,6 +269,15 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		m = m and m[0]
 		if m is not None:
 			self.removeMark(m)
+
+	def __removeAll(self):
+		if len(self.cut_list):
+			self.session.openWithCallback(self.__removeAllCallback, MessageBox, _("Are you sure to delete all cuts and marks?"), default=False)
+
+	def __removeAllCallback(self, ret):
+		if ret:
+			self.cut_list = []
+			self.uploadCuesheet()
 
 	def exit(self):
 		self.close()
@@ -340,7 +358,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		else:
 			nearmark = True
 
-		self.session.openWithCallback(self.menuCallback, CutListContextMenu, state, nearmark)
+		self.session.openWithCallback(self.menuCallback, CutListContextMenu, state, nearmark, len(self.cut_list))
 
 	def menuCallback(self, *result):
 		if not len(result):
@@ -406,6 +424,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.inhibit_seek = True
 			self.uploadCuesheet()
 			self.inhibit_seek = False
+		elif result == CutListContextMenu.RET_REMOVEALL:
+			self.__removeAllCallback(True)
 		elif result == CutListContextMenu.RET_GRABFRAME:
 			self.grabFrame()
 		elif result == CutListContextMenu.RET_TOGGLEINTRO:
@@ -414,12 +434,20 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.inhibit_seek = True
 			self.uploadCuesheet()
 			self.inhibit_seek = False
-			self.session.nav.playService(self.old_service, forceRestart=True) #required for actually writing the .cuts file
+			cservice = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.crashFix()
+			#self.session.nav.playService(self.old_service, forceRestart=True) #required for actually writing the .cuts file
+			self.session.nav.playService(cservice, forceRestart=True) #required for actually writing the .cuts file
 			self.pauseService()
 			try:
-				MovieCut(session=self.session, service=self.session.nav.getCurrentlyPlayingServiceReference())
+				MovieCut(session=self.session, service=cservice)
 			except:
 				print "[CutListEditor] calling MovieCut failed"
+
+	def crashFix(self):
+		# fix possible box freeze (e.g. OS1+)
+		if self.seekstate != self.SEEK_STATE_PLAY:
+			self.unPauseService()
 
 	# we modify the "play" behavior a bit:
 	# if we press pause while being in slowmotion, we will pause (and not play)

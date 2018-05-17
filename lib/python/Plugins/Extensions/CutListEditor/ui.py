@@ -1,20 +1,19 @@
+import bisect
+
+from enigma import getDesktop, iPlayableService
+
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ServicePosition import ServicePositionGauge
 from Components.ActionMap import HelpableActionMap
-from Components.MultiContent import MultiContentEntryText
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.VideoWindow import VideoWindow
 from Components.Label import Label
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
-from Components.GUIComponent import GUIComponent
-from enigma import eListboxPythonMultiContent, eListbox, getDesktop, gFont, iPlayableService, RT_HALIGN_RIGHT
 from Screens.FixedMenu import FixedMenu
 from Screens.HelpMenu import HelpableScreen
-from ServiceReference import ServiceReference
 from Components.Sources.List import List
 
-import bisect
 
 def CutListEntry(where, what):
 	w = where / 90
@@ -55,18 +54,18 @@ class CutListContextMenu(FixedMenu):
 
 		if state == self.SHOW_STARTCUT:
 			menu.append((_("start cut here"), self.startCut))
-		#else:
-			#menu.append((_("start cut here"), ))
+		else:
+			menu.append((_("start cut here"), ))
 
 		if state == self.SHOW_ENDCUT:
 			menu.append((_("end cut here"), self.endCut))
-		#else:
-			#menu.append((_("end cut here"), ))
+		else:
+			menu.append((_("end cut here"), ))
 
 		if state == self.SHOW_DELETECUT:
 			menu.append((_("delete cut"), self.deleteCut))
-		#else:
-			#menu.append((_("delete cut"), ))
+		else:
+			menu.append((_("delete cut"), ))
 
 		menu.append((_("remove before this position"), self.removeBefore))
 		menu.append((_("remove after this position"), self.removeAfter))
@@ -139,6 +138,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		<ePixmap pixmap="icons/mp_buttons.png" position="305,515" size="109,13" alphatest="on" />
 	</screen>"""
 
+	tutorial_seen = False
+
 	def __init__(self, session, service):
 		self.skin = CutListEditor.skin
 		Screen.__init__(self, session)
@@ -180,8 +181,6 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				"showMenu": (self.showMenu, _("menu")),
 			}, prio=-4)
 
-		self.tutorial_seen = False
-
 		self.onExecBegin.append(self.showTutorial)
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -201,8 +200,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self["SeekState"].setText(state[3].strip())
 
 	def showTutorial(self):
-		if not self.tutorial_seen:
-			self.tutorial_seen = True
+		if not CutListEditor.tutorial_seen:
+			CutListEditor.tutorial_seen = True
 			self.session.open(MessageBox,_("Welcome to the cutlist editor.\n\nSeek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n\nThen seek to the end, press OK, select 'end cut'. That's it."), MessageBox.TYPE_INFO)
 
 	def checkSkipShowHideLock(self):
