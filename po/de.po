@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-05-01 14:52+0200\n"
+"PO-Revision-Date: 2018-05-17 15:52+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -691,8 +691,12 @@ msgstr "%-H:%M"
 msgid "%2d:%02d"
 msgstr "%2d:%02d"
 
-msgid "\n%Y/%m/%d  %H:%M - "
-msgstr "\n%d.%m.%Y  %H:%M - "
+msgid ""
+"\n"
+"%Y/%m/%d  %H:%M - "
+msgstr ""
+"\n"
+"%d.%m.%Y  %H:%M - "
 
 #. TRANSLATORS: full time representation hour:minute:seconds
 #, python-format
@@ -3379,6 +3383,12 @@ msgstr "Schnitteditor"
 
 msgid "Cutlist editor..."
 msgstr "Schnitteditor..."
+
+msgid "Remove all cuts and marks"
+msgstr "Alle Markierungen und Schnitte entfernen"
+
+msgid "Are you sure to delete all cuts and marks?"
+msgstr "Wollen Sie alle Markierungen und Schnitte entfernen?"
 
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "Filmschnitt ausführen (benötigt MovieCut Plugin)"
