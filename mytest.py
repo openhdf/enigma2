@@ -395,10 +395,6 @@ class PowerKey:
 		self.doAction(action = config.usage.on_long_powerpress.value)
 
 	def doAction(self, action):
-		if Screens.Standby.TVinStandby:
-			Screens.Standby.setTVstate('on')
-			return
-
 		self.standbyblocked = 1
 		if action == "shutdown":
 			self.shutdown()

@@ -372,8 +372,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
 					Screens.Standby.inStandby.paused_service = None
-					#not wake up tv
-					Screens.Standby.setTVstate('off')
 					#wakeup standby
 					Screens.Standby.inStandby.Power()
 					self.log(5, "wakeup and zap to recording service")
@@ -508,7 +506,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				return True
 
 			if self.justplay:
-				Screens.Standby.setTVstate('on')
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
 					#eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
@@ -613,21 +610,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if debug: print "[RECORDTIMER] self.autostate=%s" % self.autostate, "wasRecTimerWakeup=%s" % wasRecTimerWakeup, "self.wasInStandby=%s" % self.wasInStandby, "self.afterEvent=%s" % self.afterEvent
 
 			if self.afterEvent == AFTEREVENT.STANDBY or (self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby and (not wasRecTimerWakeup or (wasRecTimerWakeup and isRecordTime))):
-				if not Screens.Standby.inStandby and not Screens.Standby.TVinStandby:# not already in standby
-					callback = self.sendStandbyNotification
-					message = _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
-					messageboxtyp = MessageBox.TYPE_YESNO
-					timeout = 180
-					default = True
-					if InfoBar and InfoBar.instance:
-						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
-					else:
-						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
-				elif Screens.Standby.TVinStandby:
-					self.sendStandbyNotification(True)
-
-			if Screens.Standby.inStandby:
-				Screens.Standby.setTVstate('reset')
+				if not Screens.Standby.inStandby: # not already in standby
+					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName()), timeout = 180)
 
 			if isRecordTime or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900:
 				if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby) or (self.afterEvent == AFTEREVENT.AUTO and wasRecTimerWakeup):
@@ -646,9 +630,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					if Screens.Standby.inStandby: # in standby
 						print "[RecordTimer] quitMainloop #1"
 						quitMainloop(1)
-					elif Screens.Standby.TVinStandby:
-						Screens.Standby.setTVstate('reset')
-						self.sendTryQuitMainloopNotification(True)
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName()), default = True, timeout = 180)
 			elif self.afterEvent == AFTEREVENT.AUTO and wasRecTimerWakeup:
@@ -1171,23 +1152,22 @@ class RecordTimer(timer.Timer):
 	def getNextRecordingTimeOld(self, getNextStbPowerOn = False):
 		now = time()
 		if getNextStbPowerOn:
-			switchTVon = config.recording.switchTVon.value
 			save_act = -1, 0
 			for timer in self.timer_list:
 				next_act = timer.getNextActivation(getNextStbPowerOn)
-				if timer.justplay or next_act + 3 < now:
+				if timer.justplay or next_act < now:
 					continue
 				if debug: print "[recordtimer] next stb power up", strftime("%a, %Y/%m/%d %H:%M", localtime(next_act))
 				if save_act[0] == -1:
-					save_act = next_act, int(not timer.always_zap or not switchTVon)
+					save_act = next_act, int(not timer.always_zap)
 				else:
 					if next_act < save_act[0]:
-						save_act = next_act, int(not timer.always_zap or not switchTVon)
+						save_act = next_act, int(not timer.always_zap)
 			return save_act
 		else:
 			for timer in self.timer_list:
 				next_act = timer.getNextActivation()
-				if timer.justplay or next_act + 3 < now or timer.end == next_act:
+				if timer.justplay or next_act < now:
 					continue
 				return next_act
 		return -1
