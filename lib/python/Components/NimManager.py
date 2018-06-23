@@ -1,4 +1,4 @@
-from boxbranding import getBoxType
+from boxbranding import getBoxType, getBrandOEM
 from time import localtime, mktime
 from datetime import datetime
 import xml.etree.cElementTree
@@ -240,7 +240,7 @@ class SecConfigure:
 						print "diseqcmode: ", nim.diseqcMode.value
 						if nim.diseqcMode.value == "single":			#single
 							currentCircular = False
-							if nim.diseqcA.value in ("360", "560"):
+							if nim.diseqcA.value in ("360", "560"): 
 								currentCircular = nim.simpleDiSEqCSetCircularLNB.value
 							if nim.simpleSingleSendDiSEqC.value:
 								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA, diseqc13V = nim.diseqc13V.value, CircularLNB = currentCircular)
@@ -428,10 +428,10 @@ class SecConfigure:
 								print "positionnumber out of range"
 						else:
 							print "no product in list"
-
+							
 					if currLnb.unicable.value == "unicable_user":
 #TODO satpositions for satcruser
-						if currLnb.dictionuser.value == "EN50607":
+						if currLnb.dictionuser.value == "EN50607": 
 							sec.setLNBSatCRformat(1)
 							sec.setLNBSatCR(currLnb.satcruserEN50607.index)
 							sec.setLNBSatCRvco(currLnb.satcrvcouserEN50607[currLnb.satcruserEN50607.index].value*1000)
@@ -751,12 +751,12 @@ class NIM(object):
 			print "%s is not suportetd "%(what)
 			return False
 		if self.isMultiType():
-			print"%s is multitype"%(self.slot)
+			#print"[adenin] %s is multitype"%(self.slot)
 			for type in self.multi_type.values():
 				if what in self.compatible[type]:
 					return True
 		elif  what in self.compatible[self.getType()]:
-			print"%s is NOT multitype"%(self.slot)
+			#print"[adenin] %s is NOT multitype"%(self.slot)
 			return True
 		return False
 
@@ -786,7 +786,7 @@ class NIM(object):
 		if name is None:
 			name = chr(ord('A') + self.slot)
 		return name
-
+	
 	slot_input_name = property(getSlotInputName)
 
 	def getSlotName(self):
@@ -1190,6 +1190,8 @@ class NimManager:
 				entries[current_slot] = {}
 			elif line.startswith("Type:"):
 				entries[current_slot]["type"] = str(line[6:])
+				if entries[current_slot]["type"] == "DVB-S2X":
+					entries[current_slot]["type"] = "DVB-S2"
 				entries[current_slot]["isempty"] = False
 			elif line.strip().startswith("Input_Name:"):
 				entries[current_slot]["input_name"] = str(line.strip()[12:])
@@ -1843,7 +1845,7 @@ def InitNimManager(nimmgr, update_slots = []):
 							tmp.positions[article] = ConfigSubList()
 							tmp.positions[article].append(ConfigInteger(default=positions, limits = (positions, positions)))
 							tmp.diction[article] = ConfigSelection(choices = dictionlist, default = dictionlist[0][0])
-
+							
 							scrlist = []
 							scrlist_append = scrlist.append
 							vcolist=unicableproducts[manufacturer][article].get("frequencies")
@@ -1865,7 +1867,7 @@ def InitNimManager(nimmgr, update_slots = []):
 							tmp_lofl_article_append = tmp.lofl[article].append
 							tmp_lofh_article_append = tmp.lofh[article].append
 							tmp_loft_article_append = tmp.loft[article].append
-
+							
 							for cnt in range(1,positions+1):
 								lofl = int(positionslist[cnt][0])
 								lofh = int(positionslist[cnt][1])
@@ -2211,7 +2213,7 @@ def InitNimManager(nimmgr, update_slots = []):
 	nimmgr.sec = SecConfigure(nimmgr)
 
 	def tunerTypeChanged(nimmgr, configElement):
-		if int(iDVBFrontend.dvb_api_version) < 5:
+		if int(iDVBFrontend.dvb_api_version) < 5 or getBrandOEM() in ('vuplus'):
 			print "dvb_api_version ",iDVBFrontend.dvb_api_version
 			print "api <5 or old style tuner driver"
 			fe_id = configElement.fe_id
@@ -2227,7 +2229,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			if slot.isMultiType():
 				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 				types = slot.getMultiTypeList()
-				print"[adenin]",types
+				#print"[adenin]",types
 				for FeType in types.itervalues():
 					if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 						continue
