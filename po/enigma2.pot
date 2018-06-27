@@ -1638,10 +1638,10 @@ msgstr ""
 msgid "if set to 'no', only an debug message is written to the Debug log "
 msgstr ""
 
-msgid "Log python stack trace on spinner (may have side effects) ?"
+msgid "Log python stack trace on spinner ?"
 msgstr ""
 
-msgid "Set to yes ONLY TEMPORARILY for debugging the root cause of a spinner."
+msgid "Set to yes for debugging the root cause of a spinner."
 msgstr ""
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
