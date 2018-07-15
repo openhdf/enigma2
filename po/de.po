@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-06-27 13:57+0200\n"
+"PO-Revision-Date: 2018-07-15 15:07+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -10589,6 +10589,12 @@ msgstr "Suche benutzte Transponder im Kabel Netzwerk.. bitte warten..."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Versuche eine neue Aktualisierungsliste herunterzuladen. Bitte warten..."
+
+msgid "Trying to download a new updatelist. Please wait..."
+msgstr "Es wird versucht eine neue Update-Liste zu laden. Bitte warten..."
+
+msgid "There was an error downloading the updatelist. Please try again."
+msgstr "Beim Herunterladen der Update-Liste gab es einen Fehler. Bitte versuchen Sie es noch einmal."
 
 msgid "Tue"
 msgstr "Di"
