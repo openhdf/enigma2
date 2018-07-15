@@ -10784,6 +10784,12 @@ msgstr ""
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr ""
 
+msgid "Trying to download a new updatelist. Please wait..."
+msgstr ""
+
+msgid "There was an error downloading the updatelist. Please try again."
+msgstr ""
+
 msgid "Tue"
 msgstr ""
 
