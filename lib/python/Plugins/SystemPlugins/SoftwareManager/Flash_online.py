@@ -386,7 +386,7 @@ class doFlashImage(Screen):
 					text += _("Simulate (no write)")
 					if SystemInfo["HaveMultiBoot"]:
 						cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
-					elif getMachineBuild() in ("u5","u5pvr"):
+					elif getMachineBuild() in ("u51","u52","u53","u5","u5pvr"):
 						cmdlist.append("%s -n -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
 					elif getMachineBuild() in ("h9"):
 						cmdlist.append("%s -n -f -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
