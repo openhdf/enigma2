@@ -9104,6 +9104,12 @@ msgstr ""
 msgid "Show picons in service list"
 msgstr ""
 
+msgid "Enable installation of HDF default picons"
+msgstr ""
+
+msgid "Enable automatic installations of HDF default picons"
+msgstr ""
+
 msgid "The servicelist is reloaded."
 msgstr ""
 
