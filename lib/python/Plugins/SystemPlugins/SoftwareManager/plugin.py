@@ -1673,7 +1673,7 @@ class UpdatePlugin(Screen):
 		else:
 			if doUpdate:
 				# Ask for Update,
-				message += _("Do you want to update your %s %s?") % (getMachineBrand(), getMachineName()) + "\n" + _("After pressing OK, please wait!")
+				message += _("Do you want to update your %s %s?") % (getMachineBrand(), getMachineName()) + " " + _("After pressing OK, please wait!")
 				self.session.openWithCallback(self.runUpgrade, MessageBox, message, default = False, picon = picon)
 			else:
 				# Don't Update RED LIGHT !!
@@ -1766,7 +1766,7 @@ class UpdatePlugin(Screen):
 					self.checkTraficLight()
 					return
 				if self.total_packages and self.TraficCheck and self.TraficResult:
-					message = _("Do you want to update your %s %s") % (getMachineBrand(), getMachineName()) + "                 \n(%s " % self.total_packages + _("Packages") + ")"
+					message = _("Do you want to update your %s %s") % (getMachineBrand(), getMachineName()) + " (%s " % self.total_packages + _("Packages") + ")"
 					if config.plugins.softwaremanager.updatetype.value == "cold":
 						choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
 					else:
