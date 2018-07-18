@@ -515,6 +515,7 @@ def InitUsageConfig():
 	config.epg.virgin = ConfigYesNo(default = False)
 	config.epg.saveepg = ConfigYesNo(default = True)
 	config.usage.streamlinkserver = ConfigYesNo(default = False)
+	config.usage.hdfpicon = ConfigYesNo(default = True)
 
 	def EpgSettingsChanged(configElement):
 		from enigma import eEPGCache
