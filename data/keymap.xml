@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 29.04.2018" -->
+	<!-- "HDF Default Keymap 31.07.2018" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -938,8 +938,8 @@
 		<key id="KEY_NEXTSONG" mapto="fastforward" flags="b" />
 		<key id="KEY_SCREEN" mapto="activatePiP" flags="b" />
 		<key id="KEY_SCREEN" mapto="activatePiP_long" flags="l" />
-		<key id="KEY_PROGRAM" mapto="timer" flags="b" />
-		<key id="KEY_PROGRAM" mapto="timer_long" flags="l" />
+		<key id="KEY_PROGRAM" mapto="prog" flags="b" />
+		<key id="KEY_PROGRAM" mapto="prog_long" flags="l" />
 		<key id="KEY_PLAY" mapto="play" flags="b" />
 		<key id="KEY_PLAY" mapto="play_long" flags="l" />
 		<key id="KEY_PLAYPAUSE" mapto="playpause" flags="b"/>
