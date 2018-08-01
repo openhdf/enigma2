@@ -14334,6 +14334,9 @@ msgstr ""
 msgid "Timer long"
 msgstr ""
 
+msgid "Program long"
+msgstr ""
+
 msgid "Timeshift long"
 msgstr ""
 
