@@ -186,8 +186,8 @@ void bsodFatal(const char *component)
 		stringFromFile(f, "stbmodel", "/proc/stb/info/gbmodel");
 		stringFromFile(f, "kernelcmdline", "/proc/cmdline");
 		stringFromFile(f, "nimsockets", "/proc/bus/nim_sockets");
-		stringFromFile(f, "imageversion", "/etc/image-version");
-		stringFromFile(f, "imageissue", "/etc/issue.net");
+		stringFromFile(f, "imageversion", "/etc/hdf-version");
+		stringFromFile(f, "imageissue", "/etc/hdf-build");
 
 		/* dump the log ringbuffer */
 		fprintf(f, "\n\n");
