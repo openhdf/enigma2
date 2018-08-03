@@ -6401,6 +6401,12 @@ print bcolors.OKGREEN + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + bcolors.ENDC
 try:
 	os.system("rm -f /etc/enigma2/boxinformations")
 	os.system("touch /etc/enigma2/boxinformations")
+	os.system("rm -f /etc/enigma2/hdf-version")
+	os.system("touch /etc/enigma2/hdf-version")
+	os.system("rm -f /etc/enigma2/hdf-build")
+	os.system("touch /etc/enigma2/hdf-build")
+	os.system("echo " + getImageVersion() + " > /etc/hdf-version")
+	os.system("echo build " + getImageBuild() + " > /etc/hdf-build")
 	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
 	os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/boxinformations")
@@ -6414,4 +6420,4 @@ try:
 	os.system("echo ~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
 	os.system("cat /proc/cpuinfo >> /etc/enigma2/boxinformations")
 except:
-    pass
+	pass
