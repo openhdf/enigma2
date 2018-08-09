@@ -1,7 +1,13 @@
+from boxbranding import getMachineBrand, getMachineName
+from os import path
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, getConfigListEntry
+from Components.config import config, configfile, getConfigListEntry
 from Components.Sources.StaticText import StaticText
+from Tools.Directories import fileExists
+
+if path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0"):
+	import Components.HdmiCec
 
 class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -47,11 +53,11 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			"menu": self.closeRecursive,
 		}, -2)
 
+		self.onChangedEntry = [ ]
 		self.list = []
 		self.logpath_entry = None
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
-		self.updateAddress()
 
 	def createSetup(self):
 		self.list = []
@@ -79,17 +85,24 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
+		self.updateAddress()
+
+	def changedEntry(self):
+		if self["config"].getCurrent()[0] == _("Enabled"):
+			self.createSetup()
+		for x in self.onChangedEntry:
+			x()
+
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
-		self.createSetup()
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
-		self.createSetup()
 
 	def keyGo(self):
 		for x in self["config"].list:
 			x[1].save()
+		configfile.save()
 		self.close()
 
 	def keyCancel(self):
@@ -105,17 +118,14 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			self.keyGo()
 
 	def setFixedAddress(self):
-		import Components.HdmiCec
 		Components.HdmiCec.hdmi_cec.setFixedPhysicalAddress(Components.HdmiCec.hdmi_cec.getPhysicalAddress())
 		self.updateAddress()
 
 	def clearFixedAddress(self):
-		import Components.HdmiCec
 		Components.HdmiCec.hdmi_cec.setFixedPhysicalAddress("0.0.0.0")
 		self.updateAddress()
 
 	def updateAddress(self):
-		import Components.HdmiCec
 		self["current_address"].setText(_("Current CEC address") + ": " + Components.HdmiCec.hdmi_cec.getPhysicalAddress())
 		if config.hdmicec.fixed_physical_address.value == "0.0.0.0":
 			fixedaddresslabel = ""
