@@ -10,6 +10,16 @@ if ! grep ^config.misc.firstrun=false /etc/enigma2/settings >/dev/null; then
 	rm -rf /etc/enigma2/key.pem &
 fi
 
+if [ -e /proc/stb/info/boxtype ]; then
+	stbcheck=`cat /proc/stb/info/boxtype | cut -c1-6`
+	if [ $stbcheck == "sf8008" ]; then
+		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
+		if [ 0 == $count ];then
+			libreader 720P_50
+		fi
+	fi
+fi
+
 #check for installed vfdcontrol
 if grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
 	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then

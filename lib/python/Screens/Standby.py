@@ -37,6 +37,8 @@ class Standby2(Screen):
 		# set LCDminiTV
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			setLCDModeMinitTV(config.lcd.modeminitv.value)
+		if (getBrandOEM() in ('fulan','clap') or getBoxType() in ('sf8008')):
+			open("/proc/stb/hdmi/output", "w").write("on")
 		#remove wakup files and reset wakup state
 		PowerTimer.resetTimerWakeup()
 		RecordTimer.resetTimerWakeup()
@@ -145,6 +147,9 @@ class Standby2(Screen):
 			self.avswitch.setInput("SCART")
 		else:
 			self.avswitch.setInput("AUX")
+
+		if (getBrandOEM() in ('fulan','clap') or getBoxType() in ('sf8008')):
+			open("/proc/stb/hdmi/output", "w").write("off")
 
 		if int(config.usage.hdd_standby_in_standby.value) != -1: # HDD standby timer value (box in standby) / -1 = same as when box is active
 			for hdd in harddiskmanager.HDDList():
