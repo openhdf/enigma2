@@ -5600,9 +5600,10 @@ class InfoBarCueSheetSupport:
 	def __serviceStarted(self):
 		if self.is_closing:
 			return
-		print "new service started! trying to download cuts!"
+#		print "new service started! trying to download cuts!"
 		self.downloadCuesheet()
 
+		self.resume_point = None
 		if self.ENABLE_RESUME_SUPPORT:
 			for (pts, what) in self.cut_list:
 				if what == self.CUT_TYPE_LAST:
