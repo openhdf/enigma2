@@ -26,7 +26,7 @@ class Tuner:
 				parm.pls_mode = transponder[11]
 				parm.pls_code = transponder[12]
 			else:
-				parm.is_id = -1
+				parm.is_id = eDVBFrontendParametersSatellite.No_Stream_Id_Filter
 				parm.pls_mode = 0
 				parm.pls_code = 1
 			self.tuneSatObj(parm)
