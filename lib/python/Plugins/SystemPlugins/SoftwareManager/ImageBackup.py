@@ -20,7 +20,7 @@ from time import time, strftime, localtime
 from os import path, system, makedirs, listdir, walk, statvfs, remove
 import commands
 import datetime
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
 VERSION = "Version 6.3 openHDF"
 HaveGZkernel = True
@@ -66,6 +66,7 @@ class ImageBackup(Screen):
 		self.IMAGEFOLDER = getImageFolder()
 		self.HDFIMAGEVERSION = getImageVersion()
 		self.HDFIMAGEBUILD = getImageBuild()
+		self.HDFIMAGENAME = getImageDistro()
 		self.UBINIZE_ARGS = getMachineUBINIZE()
 		self.MKUBIFS_ARGS = getMachineMKUBIFS()
 		self.MTDKERNEL = getMachineMtdKernel()
@@ -269,7 +270,7 @@ class ImageBackup(Screen):
 		self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 		self.MAINDESTOLD = "%s/%s" %(self.DIRECTORY, self.MODEL)
 		self.MAINDEST = "%s/%s" %(self.DIRECTORY,self.IMAGEFOLDER)
-		self.EXTRA = "%s/fullbackup_%s_%s/%s_build_%s" % (self.DIRECTORY, self.IMAGEFOLDER, self.HDFIMAGEVERSION, self.DATE, self.HDFIMAGEBUILD)
+		self.EXTRA = "%s/fullbackup_%s_%s/%s_%s_build_%s" % (self.DIRECTORY, self.IMAGEFOLDER, self.HDFIMAGEVERSION, self.DATE, self.HDFIMAGENAME, self.HDFIMAGEBUILD)
 		self.EXTRAROOT = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
 		self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 		self.message = "echo -e '\n"
@@ -288,7 +289,7 @@ class ImageBackup(Screen):
 			self.message += _("will take about 30 minutes for this system\n")
 		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"]:
 			self.message += _("because of the used filesystem the back-up\n")
-			self.message += _("will take about 1-4 minutes for this system\n")
+			self.message += _("will take about 2-10 minutes for this system\n")
 		else:
 			self.message += _("this will take between 2 and 9 minutes\n")
 		self.message += "\n_________________________________________________\n\n"
