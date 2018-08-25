@@ -183,7 +183,7 @@ class FlashOnline(Screen):
 		files = []
 		if SystemInfo["HaveMultiBoot"]:
 			path = PATH
-			if getMachineBuild() in ("hd51","vs1500","h7","8100s","gb7252",'sf8008'):
+			if getMachineBuild() in ("hd51","vs1500","h7","8100s","gb7252","cc1","sf8008"):
 				for name in os.listdir(path):
 					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
 						try:
@@ -375,61 +375,60 @@ class doFlashImage(Screen):
 		self.Start_Flashing()
 
 	def Start_Flashing(self):
-		if getBoxType() in "dm7080" "dm820" "dm520" "dm525":
-			os.system('/usr/lib/enigma2/python/Plugins/Extensions/dBackup/bin/swaproot 0')
-		else:
-			print "Start Flashing"
-			cmdlist = []
-			if os.path.exists(ofgwritePath):
-				text = _("Flashing: ")
-				if self.simulate:
-					text += _("Simulate (no write)")
-					if SystemInfo["HaveMultiBoot"]:
-						if getMachineBuild() in ("sf8008"):
-							cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, self.MTDROOTFS, self.MTDKERNEL, flashTmp))
-						else:
-							cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
-					elif getMachineBuild() in ("u51","u52","u53","u5","u5pvr"):
-						cmdlist.append("%s -n -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
-					elif getMachineBuild() in ("h9"):
-						cmdlist.append("%s -n -f -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
+		print "Start Flashing"
+		cmdlist = []
+		if os.path.exists(ofgwritePath):
+			text = _("Flashing: ")
+			if self.simulate:
+				text += _("Simulate (no write)")
+				if SystemInfo["HaveMultiBoot"]:
+					if getMachineBuild() in ("cc1","sf8008"):
+						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, self.MTDROOTFS, self.MTDKERNEL, flashTmp))
 					else:
-						cmdlist.append("%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
-					self.close()
-					message = "echo -e '\n"
-					message += _('Show only found image and mtd partitions.\n')
-					message += "'"
+						cmdlist.append("%s -n -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
+				elif getMachineBuild() in ("u51","u52","u53","u5","u5pvr","cc1","sf8008"):
+					cmdlist.append("%s -n -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
+				elif getMachineBuild() in ("h9"):
+					cmdlist.append("%s -n -f -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 				else:
-					text += _("root and kernel")
-					if SystemInfo["HaveMultiBoot"]:
-						if self.List not in ("STARTUP","cmdline.txt"):
-							os.system('mkfs.ext4 -F ' + self.devrootfs)
-					if getMachineBuild() in ("sf8008"):
+					cmdlist.append("%s -n -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
+				self.close()
+				message = "echo -e '\n"
+				message += _('Show only found image and mtd partitions.\n')
+				message += "'"
+			else:
+				text += _("root and kernel")
+				if SystemInfo["HaveMultiBoot"]:
+					if self.List not in ("STARTUP","cmdline.txt"):
+						os.system('mkfs.ext4 -F ' + self.devrootfs)
+					if getMachineBuild() in ("cc1","sf8008"):
 						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, self.MTDROOTFS, self.MTDKERNEL, flashTmp))
 					else:
 						cmdlist.append("%s -r -k -m%s %s > /dev/null 2>&1" % (ofgwritePath, self.multi, flashTmp))
-					elif getMachineBuild() in ("u5","u5pvr","sf8008"):
-						cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
-					elif getMachineBuild() in ("h9"):
-						cmdlist.append("%s -f -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
-					else:
-						cmdlist.append("%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
-					message = "echo -e '\n"
-					if self.List not in ("STARTUP","cmdline.txt") and SystemInfo["HaveMultiBoot"]:
-						message += _('ofgwrite flashing ready.\n')
-						message += _('please press exit to go back to the menu.\n')
-					else:
-						message += _('ofgwrite will stop enigma2 now to run the flash.\n')
-						message += _('Your STB will freeze during the flashing process.\n')
-						message += _('Please: DO NOT reboot your STB and turn off the power.\n')
-						message += _('The image or kernel will be flashing and auto booted in few minutes.\n')
-						if self.box() == 'gb800solo':
-							message += _('GB800SOLO takes about 20 mins !!\n')
-					message += "'"
-					cmdlist.append(message)
-					self.session.open(Console, title = text, cmdlist = cmdlist, finishedCallback = self.quit, closeOnSuccess = False)
-					if self.List not in ("STARTUP","cmdline.txt"):
-						self.close()
+				elif getMachineBuild() in ("u51","u52","u53","u5","u5pvr","cc1","sf8008"):
+					cmdlist.append("%s -r%s -k%s %s > /dev/null 2>&1" % (ofgwritePath, MTDROOTFS, MTDKERNEL, flashTmp))
+				elif getMachineBuild() in ("h9"):
+					cmdlist.append("%s -f -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
+				else:
+					cmdlist.append("%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
+				message = "echo -e '\n"
+				if self.List not in ("STARTUP","cmdline.txt") and SystemInfo["HaveMultiBoot"]:
+					message += _('ofgwrite flashing ready.\n')
+					message += _('please press exit to go back to the menu.\n')
+				else:
+					message += _('ofgwrite will stop enigma2 now to run the flash.\n')
+					message += _('Your STB will freeze during the flashing process.\n')
+					message += _('Please: DO NOT reboot your STB and turn off the power.\n')
+					message += _('The image or kernel will be flashing and auto booted in few minutes.\n')
+					if self.box() == 'gb800solo':
+						message += _('GB800SOLO takes about 20 mins !!\n')
+				message += "'"
+				cmdlist.append(message)
+				self.session.open(Console, title = text, cmdlist = cmdlist, finishedCallback = self.quit, closeOnSuccess = False)
+				if not self.simulate:
+					fbClass.getInstance().lock()
+				if self.List not in ("STARTUP","cmdline.txt"):
+					self.close()
 
 	def prepair_flashtmp(self, tmpPath):
 		if os.path.exists(flashTmp):
