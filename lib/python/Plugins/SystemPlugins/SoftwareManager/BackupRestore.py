@@ -44,16 +44,16 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
 	if backuppath.endswith('/'):
-		return backuppath + 'backup_' + boxtype
+		return backuppath + 'backup_' + distro + '_'+ boxtype
 	else:
-		return backuppath + '/backup_' + boxtype
+		return backuppath + '/backup_' + distro + '_'+ boxtype
 
 def getOldBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
 	if backuppath.endswith('/'):
-		return backuppath + 'backup'
+		return backuppath + 'backup_' + boxtype
 	else:
-		return backuppath + '/backup'
+		return backuppath + '/backup_' + boxtype
 
 def getBackupFilename():
 	return "enigma2settingsbackup.tar.gz"
@@ -292,7 +292,6 @@ class RestoreMenu(Screen):
 	def setWindowTitle(self):
 		self.setTitle(_("Restore backups"))
 
-
 	def fill_list(self):
 		self.flist = []
 		self.path = getBackupPath()
@@ -365,6 +364,8 @@ class RestoreScreen(Screen, ConfigListScreen):
 			"cancel": self.close,
 		}, -1)
 		self.backuppath = getBackupPath()
+#		if path.exists(self.backuppath) == False:
+#			self.backuppath = getOldBackupPath()
 		if not path.isdir(self.backuppath):
 			self.backuppath = getOldBackupPath()
 		self.backupfile = getBackupFilename()
