@@ -215,7 +215,7 @@ class ImageBackup(Screen):
 					except IndexError:
 						print '[ImageBackup] - IndexError in file: %s' %name
 						self.error_files += '/boot/' + name + ', ' 
-			if getMachineBuild() not in ("gb7252"):
+			if getMachineBuild() not in ("gb7252","cc1","sf8008"):
 				files.append("Recovery")
 		return files
 
