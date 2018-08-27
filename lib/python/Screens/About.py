@@ -554,9 +554,9 @@ class SystemNetworkInfo(Screen):
 						else:
 							accesspoint = status[self.iface]["accesspoint"]
 						if self.has_key("BSSID"):
-							self.AboutText += _('Accesspoint:') + '\t' + accesspoint + '\n'
+							self.AboutText += _('Accesspoint:') + '\t' + '\t' + accesspoint + '\n'
 						if self.has_key("ESSID"):
-							self.AboutText += _('SSID:') + '\t' + essid + '\n'
+							self.AboutText += _('SSID:') + '\t' + '\t' + essid + '\n'
 
 						quality = status[self.iface]["quality"]
 						if self.has_key("quality"):
@@ -567,11 +567,11 @@ class SystemNetworkInfo(Screen):
 						else:
 							bitrate = str(status[self.iface]["bitrate"]) + " Mb/s"
 						if self.has_key("bitrate"):
-							self.AboutText += _('Bitrate:') + '\t' + bitrate + '\n'
+							self.AboutText += _('Bitrate:') + '\t' + '\t' + bitrate + '\n'
 
 						signal = status[self.iface]["signal"]
 						if self.has_key("signal"):
-							self.AboutText += _('Signal Strength:') + '\t' + signal + '\n'
+							self.AboutText += _('Signal Strength:') + '\t' + '\t' + signal + '\n'
 
 						if status[self.iface]["encryption"] == "off":
 							if accesspoint == "Not-Associated":
@@ -581,7 +581,7 @@ class SystemNetworkInfo(Screen):
 						else:
 							encryption = _("Enabled")
 						if self.has_key("enc"):
-							self.AboutText += _('Encryption:') + '\t' + "\t" + encryption + '\n'
+							self.AboutText += _('Encryption:') + '\t' + encryption + '\n'
 
 						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] is False:
 							self.LinkState = False
