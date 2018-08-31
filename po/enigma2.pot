@@ -4409,10 +4409,22 @@ msgstr ""
 msgid "Exceeds dual layer medium!"
 msgstr ""
 
+msgid "Execution"
+msgstr ""
+
+msgid "Executing"
+msgstr ""
+
+msgid "Execution:"
+msgstr ""
+
 msgid "Execution finished!!"
 msgstr ""
 
 msgid "Execution progress:"
+msgstr ""
+
+msgid "Start Execution:"
 msgstr ""
 
 msgid "Exif"

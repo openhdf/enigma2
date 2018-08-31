@@ -40,8 +40,8 @@ class Console(Screen):
 		self.setTitle(self.newtitle)
 
 	def startRun(self):
-		self["text"].setText(_("Execution progress:") + "\n\n")
-		self["summary_description"].setText(_("Execution progress:"))
+		self["text"].setText(_("Start Execution:") + "\n\n")
+		self["summary_description"].setText(_("Execution:"))
 		print "Console: executing in run", self.run, " the command:", self.cmdlist[self.run]
 		if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
 			self.runFinished(-1) # so we must call runFinished manual
@@ -56,8 +56,8 @@ class Console(Screen):
 		else:
 			lastpage = self["text"].isAtLastPage()
 			str = self["text"].getText()
-			str += _("Execution finished!!")
-			self["summary_description"].setText(_("Execution finished!!"))
+			str += _("\nExecution finished!!")
+			self["summary_description"].setText(_("\nExecution finished!!"))
 			self["text"].setText(str)
 			if lastpage:
 				self["text"].lastPage()
