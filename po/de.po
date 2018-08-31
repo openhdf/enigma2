@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-08-01 15:12+0200\n"
+"PO-Revision-Date: 2018-08-31 17:49+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4376,8 +4376,27 @@ msgstr "überall"
 msgid "Exceeds dual layer medium!"
 msgstr "Übersteigt die Größe eines Dual-Layer-Mediums!"
 
+msgid "Execution"
+msgstr "Ausführung"
+
+msgid "Executing"
+msgstr "Ausführung"
+
+msgid "Execution:"
+msgstr "Ausführung:"
+
 msgid "Execution finished!!"
 msgstr "Ausführung beendet!"
+
+msgid ""
+"\n"
+"Execution finished!!"
+msgstr ""
+"\n"
+"Ausführung beendet!"
+
+msgid "Start Execution:"
+msgstr "Starte Ausführung:"
 
 msgid "Execution progress:"
 msgstr "Ausführung Fortschritt:"
