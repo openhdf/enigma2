@@ -196,7 +196,7 @@ self.session.open(SABnzbdSetupScreen)
 				</menu>
 
 				<!-- Menu / Settings / Frontpanel Menu -->
-				<menu weight="15" level="0" text="Frontpanel" entryID="fp_menu">
+				<menu weight="15" level="0" text="Frontpanel / Display / VFD" entryID="fp_menu">
 					<id val="fp_menu" />
 					<menu level="0" text="Display" entryID="display_selection" requires="Display">
 						<id val="display" />
