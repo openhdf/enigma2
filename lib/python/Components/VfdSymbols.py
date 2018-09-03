@@ -8,6 +8,7 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import SystemInfo
 from boxbranding import getBoxType, getMachineBuild
 import Components.RecordingConfig
+from Screens.Standby import Standby, TryQuitMainloop
 
 POLLTIME = 5 # seconds
 
@@ -130,7 +131,7 @@ class SymbolsCheckPoller:
 				else:
 					open("/proc/stb/fp/standbyled", "w").write("off")
 					self.led = "0"
-			else:
+			elif not Screens.Standby.inStandby:
 				open("/proc/stb/fp/poweronled", "w").write("on")
 
 		else:
