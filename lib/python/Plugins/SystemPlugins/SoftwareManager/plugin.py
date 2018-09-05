@@ -585,8 +585,8 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			self["introduction"].setText(_("Overwrite picon files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwriteBootlogofilesEntry:
 			self["introduction"].setText(_("Overwrite bootlogo files during software upgrade?"))
-		elif self["config"].getCurrent() == self.overwriteBootlogofilesEntry:
-			self["introduction"].setText(_("Overwrite bootlogo files during software upgrade?"))
+		elif self["config"].getCurrent() == self.overwriteSpinnerfilesEntry:
+			self["introduction"].setText(_("Overwrite spinner files during software upgrade?"))
 		elif self["config"].getCurrent() == self.epgcacheEntry:
 			self["introduction"].setText(_("Save epg cache before start the backup?"))
 		elif self["config"].getCurrent() == self.updatetypeEntry:

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-08-31 17:49+0200\n"
+"PO-Revision-Date: 2018-09-05 18:05+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13361,7 +13361,7 @@ msgid "Save EPG Cache ?"
 msgstr "Speichere EPG Cache ?"
 
 msgid "Save epg cache before start the backup?"
-msgstr "Speichere EPG Cache vor dem Backup?"
+msgstr "Speichere das EPG vor dem Backup?"
 
 msgid "Overwrite Driver Files ?"
 msgstr "Treiber-Module überschreiben ?"
@@ -13479,22 +13479,25 @@ msgid "Unattended upgrade without GUI"
 msgstr "Automatisches Update ohne Anzeige"
 
 msgid "Select how your box will upgrade."
-msgstr "Auswahl des Update Mode."
+msgstr "Welcher Modus soll beim Update benutzt werden?"
 
 msgid "Overwrite setting files (channellist) during software upgrade?"
 msgstr "Überschreiben der Sender/Kanallisten beim Update?"
 
 msgid "Autosave setting files (channellist/settings) before start online flash?"
-msgstr "Sicherung der Settings (Kanalliste/Einstellungen) vor Online Flash?"
+msgstr "Sicherung der Settings (Kanalliste/Einstellungen) vor einem Online Flash?"
 
 msgid "Overwrite driver files during software upgrade?"
 msgstr "Überschreiben der Kernel/Treiber beim Update?"
+
+msgid "Overwrite bootlogo files during software upgrade?"
+msgstr "Überschreiben des Bootlogos beim Update?"
 
 msgid "Overwrite softcam files during software upgrade?"
 msgstr "Überschreiben der Softcam Dateien beim Update?"
 
 msgid "Overwrite picon files during software upgrade?"
-msgstr "Überschreiben der picon Datein beim Update?"
+msgstr "Sollen Picons beim Update überschrieben werden?"
 
 msgid "Choose backup files"
 msgstr "Backup wiederherstellen"
