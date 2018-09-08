@@ -230,7 +230,7 @@ class InfoBarUnhandledKey:
 				self.pressedButtonsDialog.setButton((key_name for key_name,value in KEYIDS.items() if value==key).next())
 				self.pressedButtonsDialog.show()
 				self.hideShowPressedButtonsTimer.start(2000, True)
-			print "Enable debug mode for every pressed key."
+			# print "Enable debug mode for every pressed key."
 			try:
 				print 'KEY: %s %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0],datetime.now())
 			except:

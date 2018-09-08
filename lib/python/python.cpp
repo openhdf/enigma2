@@ -1,12 +1,12 @@
 #include <lib/base/eerror.h>
                 /* avoid warnigs :) */
+#include <lib/base/nconfig.h>
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
 extern "C" void init_enigma();
 extern "C" void eBaseInit(void);
 extern "C" void eConsoleInit(void);
 extern void bsodFatal(const char *component);
-extern void quitMainloop(int exitCode);
 
 #define SKIP_PART2
 #include <lib/python/python.h>
@@ -119,8 +119,12 @@ void ePyObject::decref(const char *file, int line)
 
 ePython::ePython()
 {
-//	Py_VerboseFlag = 1;
-
+       FILE *f;
+       f = fopen("/etc/enigma2/verbose", "r");
+       if (f)
+       {
+               Py_VerboseFlag = 1;
+       }
 //	Py_OptimizeFlag = 1;
 
 	Py_Initialize();
@@ -211,8 +215,6 @@ int ePython::call(ePyObject pFunc, ePyObject pArgs)
 			Py_DECREF(ArgStr);
 			/* immediately show BSOD, so we have the actual error at the bottom */
 		 	bsodFatal(0);
-			/* and make sure we quit (which would also eventually cause a bsod, but with useless termination messages) */
-			quitMainloop(5);
 		}
 	}
 	return res;

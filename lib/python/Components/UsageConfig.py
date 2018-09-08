@@ -20,6 +20,7 @@ def InitUsageConfig():
 	config.downloader.autoupdate_time = ConfigClock(default = 7200)
 	config.downloader.autoupdate_last = ConfigNumber(default = 0)
 	config.downloader.autoupdate_runinstandby = ConfigYesNo(default = False)
+
 	choicelist = []
 	for i in (30, 60, 120, 180, 240, 360, 720):
 		if i < 60:
@@ -706,6 +707,7 @@ def InitUsageConfig():
 	config.seek.withjumps_avoid_zero   = ConfigYesNo(default = True)
 
 	config.crash = ConfigSubsection()
+	config.crash.restart = ConfigYesNo(default = False)
 	config.crash.details = ConfigYesNo(default = True)
 	config.crash.enabledebug = ConfigYesNo(default = False)
 	config.crash.debugloglimit = ConfigSelectionNumber(min = 1, max = 10, stepwidth = 1, default = 4, wraparound = True)

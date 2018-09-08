@@ -1,4 +1,6 @@
 #include <lib/base/nconfig.h>
+#include <lib/base/eenv.h>
+#include <fstream>
 
 eConfigManager *eConfigManager::instance = NULL;
 
@@ -34,4 +36,32 @@ bool eConfigManager::getConfigBoolValue(const char *key, bool defaultvalue)
 	if (value == "True" || value == "true") return true;
 	if (value == "False" || value == "false") return false;
 	return defaultvalue;
+}
+
+const std::string eConfigManager::getConfigString(const std::string &key, const std::string &defaultValue)
+{
+        std::string value = eConfigManager::getConfigValue(key.c_str());
+
+        //we get at least the default value if python is still alive
+        if (!value.empty())
+                return value;
+
+        value = defaultValue;
+
+        // get value from enigma2 settings file
+        std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
+        if (in.good()) {
+                do {
+                        std::string line;
+                        std::getline(in, line);
+                        size_t size = key.size();
+                        if (!line.compare(0, size, key) && line[size] == '=') {
+                                value = line.substr(size + 1);
+                                break;
+                        }
+                } while (in.good());
+                in.close();
+        }
+
+        return value;
 }
