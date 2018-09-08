@@ -707,7 +707,7 @@ def InitUsageConfig():
 	config.seek.withjumps_avoid_zero   = ConfigYesNo(default = True)
 
 	config.crash = ConfigSubsection()
-	config.crash.restart = ConfigYesNo(default = False)
+	config.crash.restart = ConfigYesNo(default = True)
 	config.crash.details = ConfigYesNo(default = True)
 	config.crash.enabledebug = ConfigYesNo(default = False)
 	config.crash.debugloglimit = ConfigSelectionNumber(min = 1, max = 10, stepwidth = 1, default = 4, wraparound = True)
