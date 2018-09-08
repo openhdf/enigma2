@@ -17,6 +17,75 @@ from gettext import dgettext
 import Components.RecordingConfig
 
 inStandby = None
+TVinStandby = None
+
+class TVstate: #load in Navigation
+	def __init__(self):
+		global TVinStandby
+		if TVinStandby is not None:
+			print "[Standby] only one TVstate instance is allowed!"
+			#raise TVinStandby
+		TVinStandby = self
+
+		try:
+			import Components.HdmiCec
+			self.hdmicec_instance = Components.HdmiCec.hdmi_cec.instance
+			self.hdmicec_ok = self.hdmicec_instance and config.hdmicec.enabled.value
+		except:
+			self.hdmicec_ok = False
+
+		self.waitTVstateTimer = eTimer()
+		self.waitTVstateTimer.callback.append(self.waitTVstateTimerCB)
+
+	def skipHdmiCecNow(self, value):
+		if self.hdmicec_ok:
+			if value is True or value is False:
+				self.hdmicec_instance.tv_skip_messages = value
+				self.hdmicec_instance.tv_skip_setinput = value
+			elif 'zaptimer' in value:
+				self.hdmicec_instance.tv_skip_messages = config.hdmicec.control_tv_wakeup.value and not config.hdmicec.tv_wakeup_zaptimer.value and inStandby is not None
+				self.hdmicec_instance.tv_skip_setinput = config.hdmicec.report_active_source.value and not config.hdmicec.active_source_zaptimer.value and inStandby is None
+			elif 'zapandrecordtimer' in value:
+				self.hdmicec_instance.tv_skip_messages = config.hdmicec.control_tv_wakeup.value and not config.hdmicec.tv_wakeup_zapandrecordtimer.value and inStandby is not None
+				self.hdmicec_instance.tv_skip_setinput = config.hdmicec.report_active_source.value and not config.hdmicec.active_source_zapandrecordtimer.value and inStandby is None
+			elif 'wakeuppowertimer' in value:
+				self.hdmicec_instance.tv_skip_messages = config.hdmicec.control_tv_wakeup.value and not config.hdmicec.tv_wakeup_wakeuppowertimer.value and inStandby is not None
+				self.hdmicec_instance.tv_skip_setinput = config.hdmicec.report_active_source.value and not config.hdmicec.active_source_wakeuppowertimer.value and inStandby is None
+
+	def getTVstandby(self, value):
+		if self.hdmicec_ok:
+			if 'zaptimer' in value:
+				return config.hdmicec.control_tv_wakeup.value and not config.hdmicec.tv_wakeup_zaptimer.value
+			elif 'zapandrecordtimer' in value:
+				return config.hdmicec.control_tv_wakeup.value and not config.hdmicec.tv_wakeup_zapandrecordtimer.value
+			elif 'wakeuppowertimer' in value:
+				return config.hdmicec.control_tv_wakeup.value and not config.hdmicec.tv_wakeup_wakeuppowertimer.value
+			elif 'waitfortimesync' in value:
+				return config.hdmicec.control_tv_wakeup.value and not (config.hdmicec.deepstandby_waitfortimesync.value and config.workaround.deeprecord.value)
+		return False
+
+	def getTVstate(self, value):
+		if self.hdmicec_ok:
+			return value in self.hdmicec_instance.tv_powerstate and (config.hdmicec.control_tv_standby.value and 'on' in value or config.hdmicec.control_tv_wakeup.value and 'standby' in value)
+		return False
+
+	def setTVstate(self, value):
+		if self.waitTVstateTimer.isActive():
+			self.waitTVstateTimer.stop()
+
+		self.setTVstate_value = value
+
+		if not self.hdmicec_ok:
+			print '[Standby] HDMI-CEC is not enabled or unavailable !!!'
+		elif self.hdmicec_instance.stateTimer.isActive():
+			self.waitTVstateTimer.start(1000,True)
+		elif value == 'on' or (value == 'power' and config.hdmicec.handle_deepstandby_events.value and not self.hdmicec_instance.handleTimer.isActive()):
+			self.hdmicec_instance.wakeupMessages(value != 'power')
+		elif value == 'standby':
+			self.hdmicec_instance.standbyMessages()
+
+	def waitTVstateTimerCB(self):
+		self.setTVstate(self.setTVstate_value)
 
 def setLCDModeMinitTV(value):
 	try:

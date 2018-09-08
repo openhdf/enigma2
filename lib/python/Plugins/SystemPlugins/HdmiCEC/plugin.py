@@ -1,9 +1,12 @@
 from boxbranding import getMachineBrand, getMachineName
 from os import path
+
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile, getConfigListEntry
 from Components.Sources.StaticText import StaticText
+from Components.Label import Label
+
 from Tools.Directories import fileExists
 
 if path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0"):
@@ -11,14 +14,15 @@ if path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0"):
 
 class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	skin = """
-	<screen position="c-300,c-250" size="600,500" title="HDMI-CEC setup">
-		<widget name="config" position="25,25" size="550,350" />
-		<widget source="current_address" render="Label" position="25,375" size="550,30" zPosition="10" font="Regular;21" halign="left" valign="center" />
-		<widget source="fixed_address" render="Label" position="25,405" size="550,30" zPosition="10" font="Regular;21" halign="left" valign="center" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="20,e-45" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="160,e-45" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="300,e-45" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="440,e-45" size="140,40" alphatest="on" />
+	<screen position="c-300,c-250" size="600,500" title="HDMI CEC setup">
+		<widget name="config" position="15,15" size="720,350" scrollbarMode="showOnDemand"/>
+		<widget name="description" position="15,375" size="720,90" font="Regular;19" halign="center" valign="center" />
+		<widget source="current_address" render="Label" position="15,475" size="550,30" zPosition="10" font="Regular;21" halign="left" valign="center" />
+		<widget source="fixed_address" render="Label" position="15,505" size="550,30" zPosition="10" font="Regular;21" halign="left" valign="center" />
+		<ePixmap pixmap="buttons/red.png" position="20,e-45" size="140,40" alphatest="on" />
+		<ePixmap pixmap="buttons/green.png" position="160,e-45" size="140,40" alphatest="on" />
+		<ePixmap pixmap="buttons/yellow.png" position="300,e-45" size="140,40" alphatest="on" />
+		<ePixmap pixmap="buttons/blue.png" position="440,e-45" size="140,40" alphatest="on" />
 		<widget source="key_red" render="Label" position="20,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget source="key_green" render="Label" position="160,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget source="key_yellow" render="Label" position="300,e-45" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
@@ -26,13 +30,10 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		self.skin = HdmiCECSetupScreen.skin
 		Screen.__init__(self, session)
-
-		self.setTitle(_("HDMI-CEC setup"))
+		Screen.setTitle(self, _("HDMI CEC Setup"))
 
 		from Components.ActionMap import ActionMap
-		from Components.Button import Button
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -40,10 +41,11 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		self["key_blue"] = StaticText(_("Clear fixed"))
 		self["current_address"] = StaticText()
 		self["fixed_address"] = StaticText()
+		self["description"] = Label()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
 		{
-			"ok": self.keyOk,
+			"ok": self.keyGo,
 			"save": self.keyGo,
 			"cancel": self.keyCancel,
 			"green": self.keyGo,
@@ -51,44 +53,66 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			"yellow": self.setFixedAddress,
 			"blue": self.clearFixedAddress,
 			"menu": self.closeRecursive,
+			"up": self.keyUp,
+			"down": self.keyDown,
 		}, -2)
 
 		self.onChangedEntry = [ ]
 		self.list = []
-		self.logpath_entry = None
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 
 	def createSetup(self):
 		self.list = []
-		self.list.append(getConfigListEntry(_("Enabled"), config.hdmicec.enabled))
+		self.list.append(getConfigListEntry(_("Enabled"), config.hdmicec.enabled, _('helptext'), 'refreshlist'))
 		if config.hdmicec.enabled.value:
-			self.list.append(getConfigListEntry(_("Put TV in standby"), config.hdmicec.control_tv_standby))
-			self.list.append(getConfigListEntry(_("Wakeup TV from standby"), config.hdmicec.control_tv_wakeup))
-			self.list.append(getConfigListEntry(_("Regard deep standby as standby"), config.hdmicec.handle_deepstandby_events))
-			self.list.append(getConfigListEntry(_("Switch TV to correct input"), config.hdmicec.report_active_source))
-			self.list.append(getConfigListEntry(_("Use TV remote control"), config.hdmicec.report_active_menu))
-			self.list.append(getConfigListEntry(_("Handle standby from TV"), config.hdmicec.handle_tv_standby))
-			self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup))
-			self.list.append(getConfigListEntry(_("Wakeup signal from TV"), config.hdmicec.tv_wakeup_detection))
-			self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding))
-			self.list.append(getConfigListEntry(_("Put receiver in standby"), config.hdmicec.control_receiver_standby))
-			self.list.append(getConfigListEntry(_("Wakeup receiver from standby"), config.hdmicec.control_receiver_wakeup))
-			self.list.append(getConfigListEntry(_("Minimum send interval"), config.hdmicec.minimum_send_interval))
-			self.list.append(getConfigListEntry(_("Repeat leave standby messages"), config.hdmicec.repeat_wakeup_timer))
-			self.list.append(getConfigListEntry(_("Send 'sourceactive' before zap timers"), config.hdmicec.sourceactive_zaptimers))
-			self.list.append(getConfigListEntry(_("Detect next boxes before standby"), config.hdmicec.next_boxes_detect))
-			self.list.append(getConfigListEntry(_("Debug to file"), config.hdmicec.debug))
-			self.logpath_entry = getConfigListEntry(_("Select path for logfile"), config.hdmicec.log_path)
-			if config.hdmicec.debug.value != "0":
-				self.list.append(self.logpath_entry)
+			tab = ' ' * 10
+			self.list.append(getConfigListEntry(_("Regard deep standby as standby"), config.hdmicec.handle_deepstandby_events, _('helptext'),'refreshlist'))
+			if config.hdmicec.handle_deepstandby_events.value and config.workaround.deeprecord.value:
+				self.list.append(getConfigListEntry(tab + _("Wait for timesync at startup"), config.hdmicec.deepstandby_waitfortimesync, _("If the 'deep standby workaround' is enabled, it waits until the system time is syncronised before the TV is turned on. This way, switching on can be prevented if a timer follows. Syncronization takes a maximum of 2 minutes."), ))
+			self.list.append(getConfigListEntry(_("Put TV in standby"), config.hdmicec.control_tv_standby, _('helptext'),'refreshlist'))
+			if config.hdmicec.control_tv_standby.value:
+				self.list.append(getConfigListEntry(tab + _("TV was not in standby mode at startup"), config.hdmicec.tv_standby_notinstandby, _('helptext'), ))
+				self.list.append(getConfigListEntry(tab + _("TV has another input active"), config.hdmicec.tv_standby_notinputactive, _('helptext'), ))
+			self.list.append(getConfigListEntry(_("Wakeup TV from standby"), config.hdmicec.control_tv_wakeup, _('helptext') ,'refreshlist'))
+			if config.hdmicec.control_tv_wakeup.value:
+				self.list.append(getConfigListEntry(tab + _("Start a 'zap' recording timer"), config.hdmicec.tv_wakeup_zaptimer, _('helptext'), ))
+				self.list.append(getConfigListEntry(tab + _("Start a 'zap and record' recording timer"), config.hdmicec.tv_wakeup_zapandrecordtimer, _('helptext'), ))
+				self.list.append(getConfigListEntry(tab + _("Start a 'wakeup' power timer"), config.hdmicec.tv_wakeup_wakeuppowertimer, _('helptext'), ))
+			self.list.append(getConfigListEntry(_("Switch TV to correct input"), config.hdmicec.report_active_source, _('helptext'),'refreshlist'))
+			if config.hdmicec.report_active_source.value:
+				self.list.append(getConfigListEntry(tab + _("TV was already on powered"), config.hdmicec.active_source_alreadyon, _('helptext'), ))
+				self.list.append(getConfigListEntry(tab + _("Start a 'zap' recording timer"), config.hdmicec.active_source_zaptimer, _('helptext'), ))
+				self.list.append(getConfigListEntry(tab + _("Start a 'zap and record' recording timer"), config.hdmicec.active_source_zapandrecordtimer, _('helptext'), ))
+				self.list.append(getConfigListEntry(tab + _("Start a 'wakeup' power timer"), config.hdmicec.active_source_wakeuppowertimer, _('helptext'), ))
+			self.list.append(getConfigListEntry(_("Send repeated standby and wakeup messages"), config.hdmicec.messages_repeat, _('Try to send more messages if not all commands are executed.\n') + _('(e.g. TV wakeup, but not switched to correct input)'),'refreshlist' ))
+			if (config.hdmicec.control_tv_standby.value or config.hdmicec.control_tv_wakeup.value) and int(config.hdmicec.messages_repeat.value):
+				self.list.append(getConfigListEntry(_("Check power state from TV"), config.hdmicec.check_tv_powerstate, _('If the power state is reached, the repeated messages are stopped.'), 'refreshlist'))
+			self.list.append(getConfigListEntry(_("Use TV remote control"), config.hdmicec.report_active_menu, _('helptext'),))
+			self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup, _('helptext'),))
+			self.list.append(getConfigListEntry(_("Handle standby from TV"), config.hdmicec.handle_tv_standby, _('helptext'),'refreshlist'))
+			self.list.append(getConfigListEntry(_("Handle input from TV"), config.hdmicec.handle_tv_input, _('helptext'),'refreshlist'))
+			if config.hdmicec.handle_tv_standby.value == 'deepstandby' or config.hdmicec.handle_tv_input.value == 'deepstandby':
+				self.list.append(getConfigListEntry(tab + _("Put from standby to deep standby"), config.hdmicec.handle_tv_standby_to_deepstandby, _("If the receiver in standby, then switch to deep standby?"),))
+			if config.hdmicec.handle_tv_standby.value != 'disabled' or config.hdmicec.handle_tv_input.value != 'disabled':
+				self.list.append(getConfigListEntry(tab + _("Time delay to handle the TV event"), config.hdmicec.handle_tv_delaytime, _("'Handle standby from TV' has a higher priority as 'Handle input from TV'"),))
+			self.list.append(getConfigListEntry(_("Forward volume keys"), config.hdmicec.volume_forwarding, _('helptext'),))
+			self.list.append(getConfigListEntry(_("Put your AV Receiver in standby"), config.hdmicec.control_receiver_standby, _('helptext'),))
+			self.list.append(getConfigListEntry(_("Wakeup your AV Receiver from standby"), config.hdmicec.control_receiver_wakeup, _('helptext'),))
+			self.list.append(getConfigListEntry(_("Minimum send interval"), config.hdmicec.minimum_send_interval, _('Try to slow down the send interval if not all commands are executed.\n') + _('(e.g. TV wakeup, but not switched to correct input)'), ))
+			if fileExists("/proc/stb/hdmi/preemphasis"):
+				self.list.append(getConfigListEntry(_("Use HDMI-preemphasis"), config.hdmicec.preemphasis, _('helptext'),))
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
 		self.updateAddress()
+		self.showHelpText()
 
+	# for summary:
 	def changedEntry(self):
-		if self["config"].getCurrent()[0] == _("Enabled"):
+		cur = self["config"].getCurrent()
+		if cur and (len(cur) > 2 and cur[2] == 'refreshlist' or len(cur) > 3 and cur[3] == 'refreshlist'):
 			self.createSetup()
 		for x in self.onChangedEntry:
 			x()
@@ -98,6 +122,14 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
+
+	def keyDown(self):
+		self["config"].moveDown()
+		self.showHelpText()
+
+	def keyUp(self):
+		self["config"].moveUp()
+		self.showHelpText()
 
 	def keyGo(self):
 		for x in self["config"].list:
@@ -109,13 +141,6 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		for x in self["config"].list:
 			x[1].cancel()
 		self.close()
-
-	def keyOk(self):
-		currentry = self["config"].getCurrent()
-		if currentry == self.logpath_entry:
-			self.set_path()
-		else:
-			self.keyGo()
 
 	def setFixedAddress(self):
 		Components.HdmiCec.hdmi_cec.setFixedPhysicalAddress(Components.HdmiCec.hdmi_cec.getPhysicalAddress())
@@ -133,32 +158,14 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			fixedaddresslabel = _("Using fixed address") + ": " + config.hdmicec.fixed_physical_address.value
 		self["fixed_address"].setText(fixedaddresslabel)
 
-	def logPath(self, res):
-		if res is not None:
-			config.hdmicec.log_path.value = res
-
-	def set_path(self):
-		inhibitDirs = ["/autofs", "/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/tmp", "/usr"]
-		from Screens.LocationBox import LocationBox
-		txt = _("Select directory for logfile")
-		self.session.openWithCallback(self.logPath, LocationBox, text=txt, currDir=config.hdmicec.log_path.value,
-				bookmarks=config.hdmicec.bookmarks, autoAdd=False, editDir=True,
-				inhibitDirs=inhibitDirs, minFree=1
-				)
-
-def main(session, **kwargs):
-	session.open(HdmiCECSetupScreen)
-
-def startSetup(menuid):
-	# only show in the menu when set to intermediate or higher
-	if menuid == "video" and config.usage.setup_level.index >= 1:
-		return [(_("HDMI-CEC setup"), main, "hdmi_cec_setup", 0)]
-	return []
+	def showHelpText(self):
+		cur = self["config"].getCurrent()
+		if cur and len(cur) > 2 and not cur[2] in ('refreshlist', _('helptext')):
+			self["description"].setText(cur[2])
+		elif cur and len(cur) > 3 and not cur[3] in ('refreshlist', _('helptext')):
+			self["description"].setText(cur[3])
+		else:
+			self["description"].setText(" ")
 
 def Plugins(**kwargs):
-	from os import path
-	if path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0"):
-		import Components.HdmiCec
-		from Plugins.Plugin import PluginDescriptor
-		return [PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc = startSetup)]
 	return []

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-09-08 08:00+0200\n"
+"PO-Revision-Date: 2018-09-08 14:16+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -18,6 +18,72 @@ msgstr ""
 
 msgid "Welcome..."
 msgstr "Willkommen..."
+
+msgid "Routing request"
+msgstr "Routinganfrage"
+
+msgid "Put from standby to deep standby"
+msgstr "Schalte vom Standby in den Deep Standby-Modus"
+
+msgid "If the receiver in standby, then switch to deep standby?"
+msgstr "Wenn der Receiver im Standby-Modus ist, in den Deep-Standby-Modus wechseln?"
+
+msgid "Wait for timesync at startup"
+msgstr "Warte beim Systemstart auf Zeitsynchronisation"
+
+msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised before the TV is turned on. This way, switching on can be prevented if a timer follows. Syncronization takes a maximum of 2 minutes."
+msgstr "Wenn der 'Deep Standby Workaround' aktiviert ist, wird gewartet bis die Systemzeit syncronisiert wurde bevor der TV angeschaltet. So kann ein Einschalten verhindert werden wenn ein Timer folgt. Die Syncronisierung dauert maximal 2 Minuten."
+
+msgid "TV was not in standby mode at startup"
+msgstr "TV war beim Start nicht im Standby"
+
+msgid "TV was already on powered"
+msgstr "TV war bereits eingeschaltet"
+
+msgid "TV has another input active"
+msgstr "TV hat einen anderen Eingang aktiv"
+
+msgid "Start a 'zap' recording timer"
+msgstr "Beim Start eines 'Umschalten' Timers"
+
+msgid "Start a 'zap and record' recording timer"
+msgstr "Beim Start eines 'Umschalten und Aufnehmen' Timers"
+
+msgid "Start a 'wakeup' power timer"
+msgstr "Beim Start eines 'Aufwecken' Power-Timers"
+
+msgid "Try to send more messages if not all commands are executed.\n"
+msgstr "Versuchen Sie mehrere Mitteilungen zu senden wenn nicht alle Kommandos ausgeführt werden.\n"
+
+msgid "(e.g. TV wakeup, but not switched to correct input)"
+msgstr "(z.Bsp. TV aufwecken, aber es wird nicht auf den korrekten Eingang geschaltet)"
+
+msgid "If the power state is reached, the repeated messages are stopped."
+msgstr "Ist der erwartete Betriebszustand erreicht, wird die Wiederholung der Mitteilungen gestoppt."
+
+msgid "Send repeated standby and wakeup messages"
+msgstr "Sende wiederholende Aufwach- und Standby Mitteilungen"
+
+msgid "Check power state from TV"
+msgstr "Überprüfe den Betriebszustand vom TV"
+
+msgid "Handle input from TV"
+msgstr "TV-Eingänge verwalten"
+
+msgid "Try to slow down the send interval if not all commands are executed.\n"
+msgstr "Versuchen Sie das Sendeintervall zu verlangsamen wenn nicht alle Kommandos ausgeführt werden.\n"
+
+msgid "Time delay to handle the TV event"
+msgstr "Zeitverzögerung für die Ausführung des TV-Ereignisses"
+
+msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
+msgstr "'TV-Standby verwalten' hat eine höhere Priorität als 'TV-Eingänge verwalten'"
+
+msgid "%d sec"
+msgstr "%d sek"
+
+msgid "%d times"
+msgstr "%d mal"
 
 msgid "OFF"
 msgstr "Aus"
@@ -2560,6 +2626,12 @@ msgstr "Wähle zwischen täglich, wöchentlich, wochentags oder benutzerdefinier
 
 msgid "Choose the location for crash and debuglogs."
 msgstr "Wähle den Speicherort für Crash- und Debug-Logs"
+
+msgid "Disable Enigma2 restart on crash"
+msgstr "Enigma2 Neustart nach Softwarefehler deaktivieren"
+
+msgid "Disable Enigma2 automatically restarts on crash"
+msgstr "Automatischen Enigma2 Neustart nach Softwarefehler deaktivieren"
 
 #, python-format
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
@@ -10974,7 +11046,7 @@ msgid "Using LNB %d"
 msgstr "Benutze LNB %d"
 
 msgid "Using fixed address"
-msgstr "Benutze feste Adresse"
+msgstr "Benutzte feste Adresse"
 
 msgid "Using old profile: "
 msgstr "Benutze altes Profil:"
@@ -11311,7 +11383,12 @@ msgstr "Wähle Verzeichnis"
 msgid "Wakeup signal from TV"
 msgstr "Einschaltsignal vom Fernseher"
 
-#, python-format
+msgid "Put your AV Receiver in standby"
+msgstr "AV Receiver in den Standby schalten"
+
+msgid "Wakeup your AV Receiver from standby"
+msgstr "AV Receiver aus dem Standby wecken"
+
 msgid "Wakeup your %s %s from standby"
 msgstr "%s %s aus Bereitschaft einschalten"
 
