@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-09-05 18:05+0200\n"
+"PO-Revision-Date: 2018-09-08 08:00+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -7468,7 +7468,7 @@ msgid "Prefer subtitles for hearing impaired"
 msgstr "Bevorzuge Untertitel für Hörgeschädigte"
 
 msgid "Prefer subtitles stored by service"
-msgstr "Bevorzugte Untertitel für jeden Sender speichern"
+msgstr "Eingestellte Untertitel des Programms speichern"
 
 msgid "Preferred tuner"
 msgstr "Bevorzugter Tuner"
@@ -10041,10 +10041,10 @@ msgstr ""
 "Bitte installiere es."
 
 msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Die Timer-Datei (pm_timers.xml) ist kaputt und konnte nicht geladen werden."
+msgstr "Die Timer-Datei (pm_timers.xml) ist beschädigt und konnte nicht geladen werden."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Die Timer-Datei (timers.xml) ist kaputt und konnte nicht geladen werden."
+msgstr "Die Timer-Datei (timers.xml) ist beschädigt und konnte nicht geladen werden."
 
 #, python-format
 msgid "The user interface of your %s %s is restarting"
