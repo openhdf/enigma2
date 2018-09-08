@@ -5,7 +5,6 @@
 #include <sstream>
 #include <execinfo.h>
 #include <dlfcn.h>
-#include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/nconfig.h>
 #include <lib/gdi/gmaindc.h>
@@ -18,6 +17,7 @@
 #endif
 
 #include "version_info.h"
+extern void quitMainloop(int exitCode);
 
 /************************************************/
 
@@ -30,34 +30,6 @@ static const char *crash_emailaddr =
 
 /* Defined in bsod.cpp */
 void retrieveLogBuffer(const char **p1, unsigned int *s1, const char **p2, unsigned int *s2);
-
-static const std::string getConfigString(const std::string &key, const std::string &defaultValue)
-{
-	std::string value = eConfigManager::getConfigValue(key.c_str());
-
-	//we get at least the default value if python is still alive
-	if (!value.empty())
-		return value;
-
-	value = defaultValue;
-
-	// get value from enigma2 settings file
-	std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
-	if (in.good()) {
-		do {
-			std::string line;
-			std::getline(in, line);
-			size_t size = key.size();
-			if (!line.compare(0, size, key) && line[size] == '=') {
-				value = line.substr(size + 1);
-				break;
-			}
-		} while (in.good());
-		in.close();
-	}
-
-	return value;
-}
 
 /* get the kernel log aka dmesg */
 static void getKlog(FILE* f)
@@ -128,7 +100,7 @@ void bsodFatal(const char *component)
 	std::string crashlog_name;
 	std::ostringstream os;
 	std::ostringstream os_text;
-	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
+	os << eConfigManager::getConfigString("config.crash.debug_path", "/home/root/logs/");
 	os << "enigma2_crash_";
 	os << time(0);
 	os << ".log";
@@ -173,7 +145,7 @@ void bsodFatal(const char *component)
 			"component=%s\n\n",
 			tm_str,
 			__DATE__,
-			getConfigString("config.skin.primary_skin", "Default Skin").c_str(),
+			eConfigManager::getConfigString("config.skin.primary_skin", "Default Skin").c_str(),
 			enigma2_date,
 			enigma2_branch,
 			enigma2_rev,
@@ -229,7 +201,7 @@ void bsodFatal(const char *component)
 		"Your receiver restarts in 10 seconds!\n"
 		"Component: " << component;
 	
-	os << getConfigString("config.crash.debug_text", os_text.str());
+	os << eConfigManager::getConfigString("config.crash.debug_text", os_text.str());
 
 	p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 
@@ -297,6 +269,7 @@ void bsodFatal(const char *component)
 	 * executing here.
 	 */
 	if (component) raise(SIGKILL);
+	quitMainloop(5);
 }
 
 #if defined(__MIPSEL__)

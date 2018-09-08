@@ -638,7 +638,7 @@ class PluginDownloadBrowser(Screen):
 
 		for x in self.pluginlist:
 			split = x[3].split('-', 1)
-			print x, split
+			# print x, split
 			if x[0][0:14] == 'kernel-module-':
 				split[0] = "kernel modules"
 			elif x[0][0:15] == 'enigma2-locale-':
