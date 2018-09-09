@@ -21,7 +21,7 @@ choicelist = [
 	("deepstandby", _("Deep standby")),
 	]
 config.hdmicec.handle_tv_standby = ConfigSelection(default = "standby", choices = choicelist)
-config.hdmicec.handle_tv_input = ConfigSelection(default = "standby", choices = choicelist)
+config.hdmicec.handle_tv_input = ConfigSelection(default = "disabled", choices = choicelist)
 config.hdmicec.handle_tv_wakeup = ConfigSelection(
 	choices = {
 	"disabled": _("Disabled"),
@@ -41,8 +41,11 @@ config.hdmicec.control_receiver_standby = ConfigYesNo(default = False)
 config.hdmicec.handle_deepstandby_events = ConfigYesNo(default = False)
 config.hdmicec.preemphasis = ConfigYesNo(default = False)
 choicelist = []
-for i in (10, 50, 100, 150, 250, 500, 750, 1000, 1500, 2000):
-	choicelist.append(("%d" % i, "%d ms" % i))
+for i in (1,10,30,60,120,300,600,900,1800,3600):
+	if i/60<1:
+		choicelist.append(("%d" % i, _("%d sec") % i))
+	else:
+		choicelist.append(("%d" % i, _("%d min") % (i/60)))
 config.hdmicec.minimum_send_interval = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
 choicelist = []
 for i in range(1,11):
@@ -54,7 +57,7 @@ for i in (10,30,60,120,300,600,900,1800,3600):
 		choicelist.append(("%d" % i, _("%d sec") % i))
 	else:
 		choicelist.append(("%d" % i, _("%d min") % (i/60)))
-config.hdmicec.handle_tv_delaytime = ConfigSelection(default = "300", choices = choicelist)
+config.hdmicec.handle_tv_delaytime = ConfigSelection(default = "1", choices = choicelist)
 config.hdmicec.handle_tv_standby_to_deepstandby = ConfigYesNo(default = True)
 config.hdmicec.check_tv_powerstate = ConfigYesNo(default = False)
 config.hdmicec.deepstandby_waitfortimesync = ConfigYesNo(default = True)
@@ -363,6 +366,8 @@ class HdmiCec:
 
 	def standby(self):
 		if not Screens.Standby.inStandby:
+			import NavigationInstance
+			NavigationInstance.instance.skipWakeup = True
 			from Screens.InfoBar import InfoBar
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(Screens.Standby.Standby)
