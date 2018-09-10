@@ -132,6 +132,13 @@ if [ "$ret" -ne "1" ]; then
 		if [ $stbcheck == "u5" ]; then
 			killall -9 showiframe; sleep 5
 		fi
+		if [ $stbcheck == "cc" ]; then
+			killall -9 libreader; sleep 5
+		fi
+		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-6`
+		if [ $stbcheck == "sf8008" ]; then
+			killall -9 libreader; sleep 5
+		fi
 	fi
 fi
 
