@@ -140,11 +140,8 @@ class Standby2(Screen):
 
 	def TVoff(self):
 		print "[Standby] TVoff"
-		try:
-			config.hdmicec.control_tv_standby_skipnow.setValue(False)
-			config.hdmicec.TVoffCounter.value += 1
-		except:
-			pass # no HdmiCec
+		TVinStandby.skipHdmiCecNow(False)
+		TVinStandby.setTVstate('standby')
 
 	def setMute(self):
 		if eDVBVolumecontrol.getInstance().isMuted():
@@ -190,6 +187,7 @@ class Standby2(Screen):
 			setLCDModeMinitTV("0")
 
 		self.paused_service = None
+		self.prev_running_service = None
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		service = self.prev_running_service and self.prev_running_service.toString()
 		if service:
@@ -346,8 +344,9 @@ class TryQuitMainloop(MessageBox):
 			default_yes = True
 			timeout=30
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
-			default_yes = False
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
+			default_yes = False
+			timeout=30
 
 		if reason and inStandby:
 			session.nav.record_event.append(self.getRecordEvent)
