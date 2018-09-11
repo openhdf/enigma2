@@ -41,18 +41,15 @@ config.hdmicec.control_receiver_standby = ConfigYesNo(default = False)
 config.hdmicec.handle_deepstandby_events = ConfigYesNo(default = False)
 config.hdmicec.preemphasis = ConfigYesNo(default = False)
 choicelist = []
-for i in (1,10,30,60,120,300,600,900,1800,3600):
-	if i/60<1:
-		choicelist.append(("%d" % i, _("%d sec") % i))
-	else:
-		choicelist.append(("%d" % i, _("%d min") % (i/60)))
+for i in (10, 50, 100, 150, 250, 500, 750, 1000, 1500, 2000):
+	choicelist.append(("%d" % i, "%d ms" % i))
 config.hdmicec.minimum_send_interval = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
 choicelist = []
 for i in range(1,11):
 	choicelist.append(("%d" % i, _("%d times") % i))
 config.hdmicec.messages_repeat = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
 choicelist = []
-for i in (10,30,60,120,300,600,900,1800,3600):
+for i in (1,10,30,60,120,300,600,900,1800,3600):
 	if i/60<1:
 		choicelist.append(("%d" % i, _("%d sec") % i))
 	else:
