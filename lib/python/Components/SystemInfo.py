@@ -2,7 +2,7 @@ from os import path
 from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
-from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getDisplayType, getHaveRCA, getHaveDVI
+from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getDisplayType, getHaveRCA, getHaveDVI, getHaveYUV, getHaveSCART
 
 SystemInfo = { }
 
@@ -57,7 +57,7 @@ SystemInfo["HasExternalPIP"] = getMachineBuild() not in ('et9x00', 'et6x00', 'et
 SystemInfo["hasPIPVisibleProc"] = fileCheck("/proc/stb/vmpeg/1/visible")
 SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_left")
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
-SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display")
+SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display") and getDisplayType() not in ('7segment')
 SystemInfo["grautec"] = fileExists("/tmp/usbtft")
 SystemInfo["isGBIPBOX"] = fileExists("/usr/lib/enigma2/python/gbipbox.so")
 SystemInfo["CIHelper"] = fileExists("/usr/bin/cihelper")
