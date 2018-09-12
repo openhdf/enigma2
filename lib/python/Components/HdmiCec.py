@@ -41,7 +41,7 @@ config.hdmicec.control_receiver_standby = ConfigYesNo(default = False)
 config.hdmicec.handle_deepstandby_events = ConfigYesNo(default = False)
 config.hdmicec.preemphasis = ConfigYesNo(default = False)
 choicelist = []
-for i in (10, 50, 100, 150, 250, 500, 750, 1000, 1500, 2000):
+for i in (10, 20, 30, 50, 100, 150, 250, 500, 750, 1000, 1500, 2000, 2500, 3000 ,3500):
 	choicelist.append(("%d" % i, "%d ms" % i))
 config.hdmicec.minimum_send_interval = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
 choicelist = []
@@ -49,17 +49,17 @@ for i in range(1,11):
 	choicelist.append(("%d" % i, _("%d times") % i))
 config.hdmicec.messages_repeat = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
 choicelist = []
-for i in (1,10,30,60,120,300,600,900,1800,3600):
+for i in (1,2,3,4,5,10,15,30,60,120,300,600,900,1800,3600):
 	if i/60<1:
 		choicelist.append(("%d" % i, _("%d sec") % i))
 	else:
 		choicelist.append(("%d" % i, _("%d min") % (i/60)))
 config.hdmicec.handle_tv_delaytime = ConfigSelection(default = "1", choices = choicelist)
 config.hdmicec.handle_tv_standby_to_deepstandby = ConfigYesNo(default = True)
-config.hdmicec.check_tv_powerstate = ConfigYesNo(default = False)
+config.hdmicec.check_tv_powerstate = ConfigYesNo(default = True)
 config.hdmicec.deepstandby_waitfortimesync = ConfigYesNo(default = True)
 config.hdmicec.tv_standby_notinstandby = ConfigYesNo(default = True)
-config.hdmicec.tv_standby_notinputactive = ConfigYesNo(default = False)
+config.hdmicec.tv_standby_notinputactive = ConfigYesNo(default = True)
 config.hdmicec.tv_wakeup_zaptimer = ConfigYesNo(default = True)
 config.hdmicec.tv_wakeup_zapandrecordtimer = ConfigYesNo(default = False)
 config.hdmicec.tv_wakeup_wakeuppowertimer = ConfigYesNo(default = False)
