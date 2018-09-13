@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-09-08 14:16+0200\n"
+"PO-Revision-Date: 2018-09-14 08:46+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -5467,6 +5467,18 @@ msgstr "ECM in HTTP-Streams integrieren"
 
 msgid "Include EIT in http streams"
 msgstr "EIT in HTTP-Streams integrieren"
+
+msgid "Always include ECM in recordings"
+msgstr "Immer ECM mit aufnehmen"
+
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgstr "Immer ECM mit aufnehmen. Diese Einstellung setzt die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und nachträglich entschlüsselt, wenn die Hardware diese Funktion unterstützt. Standard: Aus."
+
+msgid "Never decrypt while recording"
+msgstr "Bei der Aufnahme niemals entschlüsseln"
+
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgstr "Während einer Aufnahme niemals entschlüsseln. Diese Funktion setzt die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und müssen nachträglich entschlüsselt werden. Standard: Aus."
 
 msgid "Increase time scale"
 msgstr "Erhöhe Zeitspanne"
