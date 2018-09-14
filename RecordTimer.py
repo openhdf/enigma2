@@ -10,7 +10,6 @@ from enigma import eEPGCache, getBestPlayableServiceReference, eStreamServer, eS
 from Components.config import config
 from Components import Harddisk
 from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
-from Components.SystemInfo import SystemInfo
 from Components.TimerSanityCheck import TimerSanityCheck
 import Components.RecordingConfig
 from Screens.MessageBox import MessageBox
@@ -381,7 +380,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					Screens.Standby.inStandby.Power()
 					self.log(5, "wakeup and zap to recording service")
 				else:
-					Screens.Standby.TVinStandby.setTVstate('on')
 					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 					if cur_zap_ref and not cur_zap_ref.getPath():# we do not zap away if it is no live service
 						self.setRecordingPreferredTuner()
@@ -560,7 +558,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					#wakeup standby
 					Screens.Standby.inStandby.Power()
 				else:
-					Screens.Standby.TVinStandby.setTVstate('on')
 					self.log(11, _("zapping"))
 					found = False
 					notFound = False
@@ -651,16 +648,16 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			NavigationInstance.instance.RecordTimer.saveTimer()
 
 			box_instandby = Screens.Standby.inStandby
-			tv_instandby = Screens.Standby.TVinStandby.getTVstate('standby')
+			tv_notactive = Screens.Standby.TVinStandby.getTVstate('notactive')
 			isRecordTime = abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or NavigationInstance.instance.RecordTimer.getStillRecording()
 
-			if debug: print "[RECORDTIMER] box_instandby=%s" % box_instandby, "tv_instandby=%s" % tv_instandby, "wasRecTimerWakeup=%s" % wasRecTimerWakeup, "self.wasInStandby=%s" % self.wasInStandby, "self.afterEvent=%s" % self.afterEvent
+			if debug: print "[RECORDTIMER] box_instandby=%s" % box_instandby, "tv_notactive=%s" % tv_notactive, "wasRecTimerWakeup=%s" % wasRecTimerWakeup, "self.wasInStandby=%s" % self.wasInStandby, "self.afterEvent=%s" % self.afterEvent, "isRecordTime=%s" % isRecordTime
 
 			timeout = 30
 			default = True
 			messageboxtyp = MessageBox.TYPE_YESNO
 			if self.afterEvent == AFTEREVENT.STANDBY or (self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby and (not wasRecTimerWakeup or (wasRecTimerWakeup and isRecordTime))):
-				if not box_instandby and not tv_instandby:# not already in standby
+				if not box_instandby and not tv_notactive:# not already in standby
 					callback = self.sendStandbyNotification
 					message = _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
 					if InfoBar and InfoBar.instance:

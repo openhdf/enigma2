@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-09-14 08:46+0200\n"
+"PO-Revision-Date: 2018-09-14 19:54+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -28,6 +28,12 @@ msgstr "Schalte vom Standby in den Deep Standby-Modus"
 msgid "If the receiver in standby, then switch to deep standby?"
 msgstr "Wenn der Receiver im Standby-Modus ist, in den Deep-Standby-Modus wechseln?"
 
+msgid "Check state from TV"
+msgstr "Überprüfung des TV Status"
+
+msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly."
+msgstr "Es wird versucht den aktuellen TV-Status zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren."
+
 msgid "Wait for timesync at startup"
 msgstr "Warte beim Systemstart auf Zeitsynchronisation"
 
@@ -36,6 +42,27 @@ msgstr "Wenn der 'Deep Standby Workaround' aktiviert ist, wird gewartet bis die 
 
 msgid "TV was not in standby mode at startup"
 msgstr "TV war beim Start nicht im Standby"
+
+msgid "Even if TV has another input active?"
+msgstr "Auch wenn der TV einen anderen Eingang aktiviert hat?"
+
+msgid "Even if a 'zap' recording timer starting?"
+msgstr "Auch wenn ein 'Umschalten' Aufnahme Timer startet?"
+
+msgid "Even if a 'zap and record' recording timer starting?"
+msgstr "Auch wenn ein 'Umschalten und Aufnehmen' Timer startet?"
+
+msgid "Even if a 'wakeup' power timer starting?"
+msgstr "Auch wenn ein 'Aufwecken' Power-Timer startet?"
+
+msgid "Try to send repeated commands if not all are executed. This is done at a slower send interval.\n"
+msgstr "Versuchen Sie wiederholte Befehle zu senden wenn nicht alle ausgeführt werden. Dies erfolgt in einem langsameren Sendeintervall.\n"
+
+msgid "Repeat the sent standby and wakeup commands"
+msgstr "Sende wiederholende Aufwach- und Standby Kommandos"
+
+msgid "Check power and input state from TV"
+msgstr "Überprüfe den Betriebszustand vom TV"
 
 msgid "TV was already on powered"
 msgstr "TV war bereits eingeschaltet"
@@ -73,11 +100,11 @@ msgstr "TV-Eingänge verwalten"
 msgid "Try to slow down the send interval if not all commands are executed.\n"
 msgstr "Versuchen Sie das Sendeintervall zu verlangsamen wenn nicht alle Kommandos ausgeführt werden.\n"
 
-msgid "Time delay to handle the TV event"
-msgstr "Zeitverzögerung für die Ausführung des TV-Ereignisses"
+msgid "Time delay until standby or deep standby"
+msgstr "Zeitverzögerung bis zum Standby oder Deep-Standby"
 
 msgid "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
-msgstr "'TV-Standby verwalten' hat eine höhere Priorität als 'TV-Eingänge verwalten'"
+msgstr "'TV-Standby verwalten' besitzt eine höhere Priorität als 'TV-Eingänge verwalten'"
 
 msgid "%d sec"
 msgstr "%d sek"
