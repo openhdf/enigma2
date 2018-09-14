@@ -281,7 +281,7 @@ def InitUsageConfig():
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert")) ])
 
-	config.usage.window_timeout = ConfigSelectionNumber(default = 180, stepwidth = 1, min = 1, max = 600, wraparound = True)
+	config.usage.window_timeout = ConfigSelectionNumber(default = 90, stepwidth = 1, min = 1, max = 600, wraparound = True)
 
 	choicelist = [("standby", _("Standby")),("deepstandby", _("Deep Standby"))]
 	config.usage.sleep_timer_action = ConfigSelection(default = "deepstandby", choices = choicelist)
