@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-09-14 19:54+0200\n"
+"PO-Revision-Date: 2018-09-17 15:14+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -31,20 +31,36 @@ msgstr "Wenn der Receiver im Standby-Modus ist, in den Deep-Standby-Modus wechse
 msgid "Check state from TV"
 msgstr "Überprüfung des TV Status"
 
-msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly."
-msgstr "Es wird versucht den aktuellen TV-Status zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren."
+msgid ""
+"An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\n"
+"On the other hand, tries to respond better to different operating conditions."
+msgstr ""
+"Es wird versucht den aktuellen TV Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren.\n"
+"Andererseits wird versucht auf verschiedene Betriebszustände besser zu reagieren."
 
 msgid "Wait for timesync at startup"
 msgstr "Warte beim Systemstart auf Zeitsynchronisation"
 
-msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised before the TV is turned on. This way, switching on can be prevented if a timer follows. Syncronization takes a maximum of 2 minutes."
-msgstr "Wenn der 'Deep Standby Workaround' aktiviert ist, wird gewartet bis die Systemzeit syncronisiert wurde bevor der TV angeschaltet. So kann ein Einschalten verhindert werden wenn ein Timer folgt. Die Syncronisierung dauert maximal 2 Minuten."
+msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised. Depending on the requirement, the devices wake up will continuing after a maximum of 2 minutes."
+msgstr "Wenn der 'Deep Standby Workaround' aktiviert ist wird gewartet bis die Systemzeit syncronisiert wurde. Je nach Erfordernis wird das aufwecken der Geräte in maximal 2 Minuten fortgesetzt."
 
 msgid "TV was not in standby mode at startup"
 msgstr "TV war beim Start nicht im Standby"
 
 msgid "Even if TV has another input active?"
 msgstr "Auch wenn der TV einen anderen Eingang aktiviert hat?"
+
+msgid "Slowing down for the send interval"
+msgstr "Verlangsamung des Sendeintervalles"
+
+msgid "Repeat the standby commands?"
+msgstr "Auch die Standby-Kommandos wiederholen?"
+
+msgid "Is not necessary in most cases."
+msgstr "Ist in den meisten Fällen nicht erforderlich."
+
+msgid "The time is multiplied by the repeat counter and added to the minimum send interval."
+msgstr "Die Zeit wird mit dem Wiederholungszähler multipliziert und zum minimalen Sendeintervall addiert."
 
 msgid "Even if a 'zap' recording timer starting?"
 msgstr "Auch wenn ein 'Umschalten' Aufnahme Timer startet?"
@@ -55,8 +71,8 @@ msgstr "Auch wenn ein 'Umschalten und Aufnehmen' Timer startet?"
 msgid "Even if a 'wakeup' power timer starting?"
 msgstr "Auch wenn ein 'Aufwecken' Power-Timer startet?"
 
-msgid "Try to send repeated commands if not all are executed. This is done at a slower send interval.\n"
-msgstr "Versuchen Sie wiederholte Befehle zu senden wenn nicht alle ausgeführt werden. Dies erfolgt in einem langsameren Sendeintervall.\n"
+msgid "Try to send repeated commands if not all commands are executed. This is done at a slower send interval."
+msgstr "Versuchen Sie wiederholte Befehle zu senden wenn nicht alle Kommandos ausgeführt werden. Dies erfolgt in einem langsameren Sendeintervall."
 
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Sende wiederholende Aufwach- und Standby Kommandos"
@@ -487,11 +503,9 @@ msgstr ""
 "\n"
 "Erweiterte Optionen und Einstellungen."
 
-#, python-format
 msgid "After pressing OK, please wait!"
 msgstr "Nachdem OK gedrückt wurde, bitte warten!"
 
-#, python-format
 msgid ""
 "\n"
 "An Input/output error usually indicates a corrupted filesystem! Please check the filesystem of your timeshift-device!"
@@ -499,7 +513,6 @@ msgstr ""
 "\n"
 "Ein Ein-/Ausgabefehler deutet oft auf ein defektes Dateisystem hin! Bitte das Timeshift-Verzeichnis überprüfen!"
 
-#, python-format
 msgid ""
 "\n"
 "Backup your %s %s settings."
@@ -514,7 +527,6 @@ msgstr ""
 "\n"
 "Upgrade Quell-Adresse bearbeiten."
 
-#, python-format
 msgid ""
 "\n"
 "Manage extensions or plugins for your %s %s"
@@ -522,7 +534,6 @@ msgstr ""
 "\n"
 "Verwaltung der Erweiterungen und Plugins der %s %s"
 
-#, python-format
 msgid ""
 "\n"
 "Online update of your %s %s software."
@@ -608,7 +619,6 @@ msgstr ""
 "\n"
 "Plugin wird beendet."
 
-#, python-format
 msgid ""
 "\n"
 "Restore your %s %s settings."
@@ -616,7 +626,6 @@ msgstr ""
 "\n"
 "Wiederherstellen der %s %s Einstellungen."
 
-#, python-format
 msgid ""
 "\n"
 "Restore your %s %s with a new firmware."
@@ -654,95 +663,72 @@ msgstr ""
 "\n"
 "Anzeigen, installieren und entfernen verfügbarer oder installierter Pakete."
 
-#, python-format
 msgid "Show"
 msgstr "Zeige"
 
-#, python-format
 msgid "Show WerbeZapper"
 msgstr "Zeige WerbeZapper"
 
-#, python-format
 msgid "Show OscamInfo"
 msgstr "Zeige OscamInfo"
 
-#, python-format
 msgid "Show OscamStatusView"
 msgstr "Zeige OscamStatusView"
 
-#, python-format
 msgid "Show CoolTVGuide"
 msgstr "Zeige CoolTVGuide"
 
-#, python-format
 msgid "Show HDF-Toolbox"
 msgstr "Zeige HDF-Toolbox"
 
-#, python-format
 msgid "Show DreamPlex"
 msgstr "Zeige DreamPlex"
 
-#, python-format
 msgid "Show Graphical EPG"
 msgstr "Zeige Grafisches EPG"
 
-#, python-format
 msgid "Show Single EPG"
 msgstr "Zeige Einzel EPG"
 
-#, python-format
 msgid "Show Multi EPG"
 msgstr "Zeige Multi EPG"
 
-#, python-format
 msgid "Show Eventview"
 msgstr "Zeige Eventanzeige"
 
-#, python-format
 msgid "Show CoolSingleGuide"
 msgstr "Zeige CoolSingleGuide"
 
-#, python-format
 msgid "Show CoolInfoGuide"
 msgstr "Zeige CoolInfoGuide"
 
-#, python-format
 msgid "Show EtPortal"
 msgstr "Zeige EtPortal"
 
-#, python-format
 msgid "Show EPG"
 msgstr "Zeige EPG"
 
-#, python-format
 msgid "Show Media Portal"
 msgstr "Zeige Media Portal"
 
-#, python-format
 msgid "Show Enhanced Movie Center"
 msgstr "Zeige Enhanced Movie Center"
 
-#, python-format
 msgid "Show Zap-History Browser"
 msgstr "Zeige ZapHistorieBrowser (wenn installiert)"
 
-#, python-format
 msgid "Show EMC"
 msgstr "Zeige EMC"
 
-#, python-format
 msgid "Show Movielist"
 msgstr "Zeige Filmliste"
 
-#, python-format
 msgid "Show Simple Movie List"
 msgstr "Zeige Simple Movie List"
 
-#, python-format
 msgid "Bookmark button mode"
 msgstr "Bookmark / Media Button Belegung"
 
-#, python-format
 msgid "Use function assigned to bookmark button"
 msgstr "Welche Funktion soll auf der Bookmark Taste liegen"
 
@@ -779,8 +765,6 @@ msgstr "und"
 msgid "%-H:%M"
 msgstr "%-H:%M"
 
-#. TRANSLATORS: short time representation hour:minute
-#, python-format
 msgid "%2d:%02d"
 msgstr "%2d:%02d"
 
@@ -791,19 +775,15 @@ msgstr ""
 "\n"
 "%d.%m.%Y  %H:%M - "
 
-#. TRANSLATORS: full time representation hour:minute:seconds
-#, python-format
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
 msgid "%A %d %B"
 msgstr "%A %d %B"
 
-#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
 msgstr "%A %e %B"
 
-#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%A %e %B %Y"
 msgstr "%A %e %B %Y"
 
@@ -813,15 +793,12 @@ msgstr "%A %e %b"
 msgid "%H:%M"
 msgstr "%H:%M"
 
-#. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
 msgstr "%a %e %B %Y"
 
-#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%a %e/%m"
 msgstr "%a %e/%m"
 
-#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
@@ -832,76 +809,60 @@ msgstr ""
 "\n"
 "%02d.%02d.%d, %02d:%02d  -  %s"
 
-#, python-format
 msgid "%d GB"
 msgstr "%d GB"
 
-#, python-format
 msgid "%d Gb"
 msgstr "%d Gb"
 
-#, python-format
 msgid "%d KB"
 msgstr "%d KB"
 
-#, python-format
 msgid "%d MB"
 msgstr "%d MB"
 
-#, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 msgstr[1] "%d Mins"
 
-#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, python-format
 msgid "%d channel found"
 msgid_plural "%d channels found"
 msgstr[0] "%d Sender gefunden!"
 msgstr[1] "%d Sender gefunden!"
 
-#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d Stunde"
 msgstr[1] "%d Stunden"
 
-#, python-format
 msgid "%d job is running in the background!"
 msgid_plural "%d jobs are running in the background!"
 msgstr[0] "Es laufen noch %d Jobs im Hintergrund!"
 msgstr[1] "Es laufen noch %d Jobs im Hintergrund!"
 
-#, python-format
 msgid "%d jobs are running in the background!"
 msgstr "Es laufen noch %d Jobs im Hintergrund!"
 
-#, python-format
 msgid "%d kB"
 msgstr "%d kB"
 
-#, python-format
 msgid "%d min"
 msgstr "%d min"
 
-#, python-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] "%d Minute"
 msgstr[1] "%d Minuten"
 
-#, python-format
 msgid "%d minutes"
 msgstr "%d Minuten"
 
-#, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d Sekunde"
 msgstr[1] "%d Sekunden"
 
-#, python-format
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
 msgstr[0] "%d Funk-Netzwerk gefunden!"
@@ -913,62 +874,47 @@ msgstr "%d-%m"
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
-#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
 msgstr "%k:%M %e/%m"
 
-#, python-format
 msgid "%s %s advanced remote control (native)"
 msgstr "%s %s erweiterte Fernbedienung (native)"
 
-#, python-format
 msgid "%s %s format data DVD (HDTV compatible)"
 msgstr "Daten-DVD im %s %s Format (HDTV-kompatibel)"
 
-#, python-format
 msgid "%s %s front panel"
 msgstr "%s %s Frontpaneel"
 
-#, python-format
 msgid "%s %s ir keyboard"
 msgstr "%s %s IR Tastatur"
 
-#, python-format
 msgid "%s %s ir mouse"
 msgstr "%s %s IR Maus"
 
-#, python-format
 msgid "%s %s remote control (native)"
 msgstr "%s %s Fernbedienung (native)"
 
-#, python-format
 msgid "%s %s software because updates are available."
 msgstr "%s %s Software, da Aktualisierungen verfügbar sind."
 
-#, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
-#. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
-#, python-format
 msgid "%s is no longer used. Should it be deleted?"
 msgstr "%s wird nicht mehr benötigt. Soll es gelöscht werden?"
 
-#, python-format
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
 msgstr[0] "%s neues Paket verfügbar"
 msgstr[1] "%s neue Pakete verfügbar"
 
-#, python-format
 msgid "%s%d min"
 msgstr "%s %d Min"
 
-#, python-format
 msgid "%s/%s: %s"
 msgstr "%s/%s: %s"
 
-#, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' enthält %d Datei(en) und %d Verzeichnis(se).\n"
 
@@ -1119,7 +1065,6 @@ msgstr "A"
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Eine Updateprüfung läuft im Hintergrund. Bitte ein paar Minuten warten und erneut versuchen."
 
-#, python-format
 msgid ""
 "A configuration file (%s) has been modified since it was installed.\n"
 "Do you want to keep your modifications?"
@@ -1127,7 +1072,6 @@ msgstr ""
 "Eine Konfigurationsdatei (%s) wurde nach der Installation verändert.\n"
 "Soll die geänderte Version erhalten bleiben?"
 
-#, python-format
 msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
@@ -1135,15 +1079,12 @@ msgstr ""
 "Eine Konfigurationsdatei (%s) wurde seit der Installation verändert.\n"
 "Diese Version behalten?"
 
-#, python-format
 msgid "Powertimer Message Popup counter (in seconds)"
 msgstr "Powertimer Nachrichtenfenster Countdown (in Sekunden)"
 
-#, python-format
 msgid "Configure how long the powertimer message is displayed."
 msgstr "Legt fest wie lange die Nachricht zum Ausführen eines Powertimers angezeigt wird."
 
-#, python-format
 msgid ""
 "A finished power timer wants to shut down\n"
 "your %s %s. Shutdown now?"
@@ -1151,7 +1092,6 @@ msgstr ""
 "Ein Powertimer will die %s %s ausschalten.\n"
 "Jetzt ausschalten?"
 
-#, python-format
 msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
@@ -1174,7 +1114,6 @@ msgstr ""
 "\n"
 "Jetzt neu starten?"
 
-#, python-format
 msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
@@ -1182,7 +1121,6 @@ msgstr ""
 "Ein Powertimer will die %s %s in Bereitschaft schalten.\n"
 "Jetzt ausführen?"
 
-#, python-format
 msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
@@ -1204,7 +1142,6 @@ msgstr ""
 "Folgende Maßnahmen wurden versucht, jedoch ohne Erfolg:\n"
 "\n"
 
-#, python-format
 msgid ""
 "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
@@ -1215,7 +1152,6 @@ msgstr ""
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Grafischer EPG für alle Sender einer bestimmten Favoritenliste"
 
-#, python-format
 msgid ""
 "A recording has been started:\n"
 "%s"
@@ -1338,7 +1274,6 @@ msgstr "Abbrechen mit Meldung"
 msgid "never abort"
 msgstr "Niemals abbrechen"
 
-#, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Ein erforderliches Hilfsprogramm (%s) wurde nicht gefunden."
 
@@ -1354,7 +1289,6 @@ msgstr ""
 "\n"
 "Die zweite Netzwerkverbindung deaktivieren?"
 
-#, python-format
 msgid ""
 "A sleep timer wants to set your\n"
 "%s %s to standby. Do that now?"
@@ -1362,7 +1296,6 @@ msgstr ""
 "Ein Ausschalttimer möchte die %s %s\n"
 "in Bereitschaft schalten. Jetzt in Bereitschaft gehen?"
 
-#, python-format
 msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
@@ -1443,7 +1376,6 @@ msgstr "AFP-Server Einstellungen"
 msgid "AFP setup"
 msgstr "AFP-Server Einstellungen"
 
-#, python-format
 msgid "AV aspect is %s."
 msgstr "AV Aspect ist %s."
 
@@ -1645,7 +1577,6 @@ msgstr "Deine %s %s wird jetzt neu gestartet..."
 msgid "Your %s %s will restart Enigma2..."
 msgstr "Deine %s %s startet Enigma2 neu..."
 
-#, python-format
 msgid ""
 "Do you want to completely reboot your box now? \n"
 "If not, only Enigma is restarting."
@@ -1821,11 +1752,9 @@ msgstr "Rot eingefärbt"
 msgid "Divide"
 msgstr "Standard"
 
-#, python-format
 msgid "%d pixels wide"
 msgstr "%d Pixel breit"
 
-#, python-format
 msgid "%s pixels wide"
 msgstr "%s Pixel breit"
 
@@ -1908,7 +1837,6 @@ msgstr ""
 "Sicher dass das Netzwerk neu gestartet werden soll?\n"
 "\n"
 
-#, python-format
 msgid ""
 "\n"
 "Backup your running %s %s image to HDD or USB."
@@ -1944,7 +1872,6 @@ msgstr "Bist Du sicher das die EPG Daten an diesen Ort gespeichert werden sollen
 msgid "Are you sure you want to send this log:\n"
 msgstr "Bist Du sicher das diese Log Datei gesendet werden soll:\n"
 
-#, python-format
 msgid "Are you sure you want to update your %s %s?"
 msgstr "Sicher das die %s %s aktualisiert werden soll?"
 
@@ -1993,11 +1920,9 @@ msgstr "Audio Sprachwahl 4"
 msgid "Audio options..."
 msgstr "Audio Einstellungen..."
 
-#, python-format
 msgid "Audio track (%s) format"
 msgstr "Format der Audiospur (%s)"
 
-#, python-format
 msgid "Audio track (%s) language"
 msgstr "Sprache der Audiospur (%s)"
 
@@ -2007,7 +1932,6 @@ msgstr "Autor: "
 msgid "Authoring mode"
 msgstr "Autorenmodus"
 
-#. TRANSLATORS: (aspect ratio policy: always try to display as fullscreen, when there is no content (black bars) on left/right, even if this breaks the aspect.
 msgid "Auto"
 msgstr "Auto"
 
@@ -2247,11 +2171,9 @@ msgstr "Aktiviere die Stream Puffer Status Anzeige"
 msgid "Show the buffering status in percent if playing streams"
 msgstr "Zeigt den Pufferstatus in Prozent beim Abspielen von Streams"
 
-#, python-format
 msgid "Build:\t%s"
 msgstr "%s"
 
-#, python-format
 msgid "Build: %s"
 msgstr "%s"
 
@@ -2261,7 +2183,6 @@ msgstr "Bulgarisch"
 msgid "Burn DVD"
 msgstr "Brenne DVD"
 
-#, python-format
 msgid "Burn audio track (%s)"
 msgstr "Brenne die Audiospur (%s)"
 
@@ -2319,7 +2240,6 @@ msgstr "CCcam ECM Info"
 msgid "CCcam Info"
 msgstr "CCcam Info"
 
-#, python-format
 msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
@@ -2361,7 +2281,6 @@ msgstr "Favoritenliste wechseln"
 msgid "CI assignment"
 msgstr "CI-Zuweisung"
 
-#, python-format
 msgid "CPU:\t%s"
 msgstr "CPU:\t%s"
 
@@ -2617,7 +2536,6 @@ msgstr "Suche nach Updates..."
 msgid "Checking the internet connection"
 msgstr "Prüfung der Internetverbindung"
 
-#, python-format
 msgid ""
 "Checking tuner %d\n"
 "DiSEqC port %s for %s"
@@ -2628,11 +2546,9 @@ msgstr ""
 msgid "Children/Youth"
 msgstr "Kinder/Jugend"
 
-#, python-format
 msgid "Chipset:\tBCM%s"
 msgstr "Chipsatz:\tBCM%s"
 
-#, python-format
 msgid "Chipset: BCM%s"
 msgstr "Chipsatz: BCM%s"
 
@@ -2660,11 +2576,9 @@ msgstr "Enigma2 Neustart nach Softwarefehler deaktivieren"
 msgid "Disable Enigma2 automatically restarts on crash"
 msgstr "Automatischen Enigma2 Neustart nach Softwarefehler deaktivieren"
 
-#, python-format
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr "Wähle einen Ort wo die EPG Daten gespeichert werden wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
 
-#, python-format
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "Wähle den Dateinamen für die EPG-Daten wenn die %s %s ausgeschaltet wird. Das kann nützlich sein wenn mehrere Boxen verwendet werden."
 
@@ -2677,6 +2591,9 @@ msgstr "Wähle was bei der 0-Taste passieren soll, wenn PiP aktiv ist."
 msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Wähle ob Mehrkanalton zu Stereo runter gerechnet werden soll."
 
+msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
+msgstr "Heruntermischen von Mehrkanalton zu Stereo."
+
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr "Soll ein Icon angezeigt werden, wenn sich ein Antennenrotor bewegt."
 
@@ -2684,7 +2601,7 @@ msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr "Wählen Sie, ob Mehrkanalton als PCM ausgegeben werden soll"
 
 msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
-msgstr "Wählen Sie, ob AC3-Tonspuren ( Dolby Digital ) zu Stereo heruntergerechnet werden soll."
+msgstr "Wählen Sie, ob AC3-Tonspuren (Dolby Digital) zu Stereo heruntergerechnet werden soll."
 
 msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
 msgstr "Wählen Sie, ob DTS-Tonspuren zu Stereo heruntergerechnet werden soll."
@@ -2693,13 +2610,13 @@ msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded
 msgstr "Wählen Sie, ob DTS-Tonspuren zu Stereo heruntergerechnet werden soll oder transkodiert."
 
 msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
-msgstr "Wählen Sie, ob WMA Pro Tonspuren zu Stereo heruntergerechnet werden soll oder transkodiert."
+msgstr "Wählen Sie, ob WMA-Pro-Tonspuren zu Stereo heruntergerechnet werden soll oder transkodiert."
 
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Wählen Sie, ob AAC-Tonspuren transkodiert werden sollen."
 
 msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
-msgstr "Wählen Sie, ob AC3-Plus Tonspuren transkodiert werden sollen nach AC3"
+msgstr "Wählen Sie, ob AC3+-Tonspuren transkodiert werden sollen nach AC3"
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Wähle Level der Anzeige für Menü/Einstellungen. 'Expert'-Level zeigt alle Punkte."
@@ -2842,7 +2759,6 @@ msgstr "Dateinamen für Aufnahmen"
 msgid "Name - Date filenames"
 msgstr "Name - Datum als Dateiname"
 
-#, python-format
 msgid "Configfile %s saved."
 msgstr "Konfigurationsdatei %s gespeichert."
 
@@ -2852,7 +2768,6 @@ msgstr "Konfigmodus"
 msgid "Set default"
 msgstr "Zurücksetzen"
 
-#, python-format
 msgid "Configuration mode: %s"
 msgstr "Konfigurationsmodus: %s"
 
@@ -3264,7 +3179,6 @@ msgstr "Netzwerk erneut konfigurieren"
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Konfiguriere das Netzwerk und drücken OK um den Vorgang zu starten "
 
-#, python-format
 msgid "Do you want to enter a username and password for this host?\n"
 msgstr "Soll für diese Verbindung ein Benutzername und ein Passwort vergeben werden?\n"
 
@@ -3349,15 +3263,12 @@ msgstr "Kopieren"
 msgid "Copying files"
 msgstr "Dateien kopieren"
 
-#, python-format
 msgid "Cores:\t%s"
 msgstr "Kerne:\t%s"
 
-#, python-format
 msgid "Clock Speed:\t%s"
 msgstr "Taktfrequenz:\t%s"
 
-#, python-format
 msgid "Could not connect to %s %s .NFI image feed server:"
 msgstr "Verbindung zum %s %s NFI Image Feed Server konnte nicht hergestellt werden:"
 
@@ -3370,19 +3281,15 @@ msgstr "Konnte das Medium nicht laden! Keine DVD eingelegt?"
 msgid "No free tuner, could not open Picture in Picture"
 msgstr "Keiner freier Tuner, Bild in Bild konnte nicht geöffnet werden"
 
-#, python-format
 msgid "Could not open the file %s!"
 msgstr "Kann Datei %s nicht öffnen!"
 
-#, python-format
 msgid "Could not record due to conflicting timer %s"
 msgstr "Aufnahme wegen in Konflikt stehendem Timer %s fehlgeschlagen"
 
-#, python-format
 msgid "Could not record due to invalid service %s"
 msgstr "Aufnahme wegen unbekanntem Sender %s fehlgeschlagen"
 
-#, python-format
 msgid "Could not save configfile %s!"
 msgstr "Kann Config-Datei %s nicht speichern!"
 
@@ -3404,7 +3311,6 @@ msgstr "AP- und SC-Dateien erzeugen"
 msgid "Creating Hardlink to Timeshift file failed!"
 msgstr "Anlegen von Hardlink zur Timeshift-Datei fehlgeschlagen!"
 
-#, python-format
 msgid "Creating directory %s failed."
 msgstr "Erzeugen des Verzeichnisses %s fehlgeschlagen."
 
@@ -3642,7 +3548,6 @@ msgstr "Verzögerung:"
 msgid "Delete"
 msgstr "Löschen"
 
-#, python-format
 msgid "Delete %s?"
 msgstr "%s löschen?"
 
@@ -3670,7 +3575,6 @@ msgstr "löschen..."
 msgid "Deleted"
 msgstr "Gelöscht"
 
-#, python-format
 msgid "Deleted %s!"
 msgstr "%s gelöscht!"
 
@@ -3746,7 +3650,6 @@ msgstr "DiSEqC A/B/C/D"
 msgid "DiSEqC mode"
 msgstr "DiSEqC-Modus"
 
-#, python-format
 msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC Port %s: %s"
 
@@ -3777,7 +3680,6 @@ msgstr "Direkte Wiedergabe verknüpfter Titel ohne Menü"
 msgid "Directory"
 msgstr "Verzeichnis"
 
-#, python-format
 msgid "Directory %s does not exist."
 msgstr "Verzeichnis %s existiert nicht."
 
@@ -3811,31 +3713,24 @@ msgstr "Aktiviere die LED Display Einstellungen"
 msgid "If this set to yes, the systemplugin vfdcontrol can be used after restart."
 msgstr "Bei ja wird das Plugin vfdcontrol installiert."
 
-#, python-format
 msgid "Power LED State in Deep-Standby and Standby"
 msgstr "Power LED Anzeige im Deep-Standby und Standby"
 
-#, python-format
 msgid "Power LED state during deep-standby and standby."
 msgstr "Power LED Anzeige im Deep-Standby und Standby"
 
-#, python-format
 msgid "LCD scroll speed"
 msgstr "LCD Scroll Geschwindigkeit"
 
-#, python-format
 msgid "Time for next LCD scrolling"
 msgstr "Zeitraum bis zum nächsten LCD Scrolling"
 
-#, python-format
 msgid "Show blinking rec symbol in LCD during recording"
 msgstr "Zeige blinkendes REC Symbol bei aktiven Aufnahmen"
 
-#, python-format
 msgid "Enable blinking rec symbol on the LCD Display"
 msgstr "Aktiviert das blinkendes REC Symbol bei aktiven Aufnahmen"
 
-#, python-format
 msgid ""
 "GUI needs a restart to apply new skin.\n"
 "Do you want to Restart the GUI now?"
@@ -3843,7 +3738,6 @@ msgstr ""
 "Enigma muss jetzt neugestartet werden.\n"
 "Soll der Neustart jetzt durchgeführt werden?"
 
-#, python-format
 msgid "Select skin:"
 msgstr "Skinauswahl:"
 
@@ -3909,11 +3803,9 @@ msgstr ""
 "Das Dateisystem wirklich konvertieren?\n"
 "Dieser Schritt kann nicht rückgängig gemacht werden!"
 
-#, python-format
 msgid "Do you really want to delete %s ?"
 msgstr "Willst Du %s wirklich löschen?"
 
-#, python-format
 msgid "Do you really want to delete %s?"
 msgstr "%s wirklich löschen?"
 
@@ -3923,7 +3815,6 @@ msgstr "Wirklich löschen?"
 msgid "Do you really want to delete this timer ?"
 msgstr "Willst Du diesen Timer wirklich löschen?"
 
-#, python-format
 msgid "Do you really want to download the plugin \"%s\"?"
 msgstr "Das Plugin \"%s\" wirklich herunterladen?"
 
@@ -3937,34 +3828,27 @@ msgstr ""
 "Das Laufwerk wirklich formatieren?\n"
 "Sämtliche Daten auf dem Laufwerk gehen dabei verloren!"
 
-#, python-format
 msgid "Do you really want to permamently remove '%s' from trash can ?"
 msgstr "Soll die Datei %s wirklich endgültig aus dem Mülleimer entfernt werden?"
 
 msgid "Do you really want to permanently remove from trash can ?"
 msgstr "Wirklich endgültig aus dem Mülleimer löschen?"
 
-#, python-format
 msgid "Do you really want to hold the plugin \"%s\"?"
 msgstr "Das Plugin \"%s\" wirklich sperren?"
 
-#, python-format
 msgid "Do you really want to remove directory %s from the disk?"
 msgstr "Das Verzeichnis %s wirklich von der Festplatte löschen?"
 
-#, python-format
 msgid "Do you really want to remove the plugin \"%s\"?"
 msgstr "Das Plugin \"%s\" wirklich deinstallieren?"
 
-#, python-format
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Den Timer für %s wirklich löschen?"
 
-#, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Das Lesezeichen %s wirklich löschen?"
 
-#, python-format
 msgid "Do you really want to unhold the plugin \"%s\"?"
 msgstr "Das Plugin \"%s\" wirklich entsperren?"
 
@@ -3999,7 +3883,6 @@ msgstr "Jetzt nach Sender suchen?"
 msgid "Do you want to do another manual service scan?"
 msgstr "Eine weitere manuelle Suche durchführen?"
 
-#, python-format
 msgid "Do you want to download the image to %s ?"
 msgstr "Das Image nach %s herunterladen?"
 
@@ -4012,11 +3895,9 @@ msgstr "Die DVD im Laufwerk abspielen?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Vor dem Brennen eine Vorschau der DVD ansehen?"
 
-#, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr "Die %s %s neu starten?"
 
-#, python-format
 msgid "Do you want to reboot your receiver?"
 msgstr "Soll die Box neu gestartet werden?"
 
@@ -4036,22 +3917,18 @@ msgstr ""
 "Willst Du alles gewählten Dateien senden:\n"
 "(Wähle 'Nein' um nur die gerade gewählte Datei zu senden.)"
 
-#, python-format
 msgid "Do you want to update your %s %s"
 msgstr "Update für %s %s"
 
 msgid "Aborting updateprogress"
 msgstr "Update wurde abgebrochen"
 
-#, python-format
 msgid "Do you want to update your %s %s?"
 msgstr "Update für %s %s?"
 
-#, python-format
 msgid "Show new Packages"
 msgstr "Zeige die zu aktualisierenden Pakete an"
 
-#, python-format
 msgid "Upgrade and ask to reboot"
 msgstr "Installieren und nach Neustart fragen"
 
@@ -4064,11 +3941,9 @@ msgstr "Nicht speichern"
 msgid "Don't stop current event but disable coming events"
 msgstr "Aktuelle Aufnahme nicht beenden aber zukünftige deaktivieren"
 
-#, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr "Beendet - %d installierte oder aktualisierte Pakete"
 
-#, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
 msgstr "Beendet - %d Pakete mit %d Fehlern installiert, aktualisiert oder entfernt"
 
@@ -4084,7 +3959,6 @@ msgstr "Es ist möglich, dass die Box nach dem Update nicht mehr startet."
 msgid "If you really want to try the update without backup, press Yes."
 msgstr "Soll ein Update trotzdem durchgeführt werden, dann bestätige mit Ja."
 
-#, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
 msgstr[0] "Beendet - %d Paket (%s) installiert, aktualisiert oder entfernt."
@@ -4093,7 +3967,6 @@ msgstr[1] "Beendet - %d Pakete (%s) installiert, aktualisiert oder entfernt."
 msgid "Download"
 msgstr "Herunterladen"
 
-#, python-format
 msgid "Download %s from server"
 msgstr "%s vom Server herunterladen"
 
@@ -4112,11 +3985,9 @@ msgstr "Herunterladen"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
 
-#, python-format
 msgid "Drivers:\t%s"
 msgstr "Treiber:\t%s"
 
-#, python-format
 msgid "Drivers: %s"
 msgstr "Treiber: %s"
 
@@ -4171,7 +4042,6 @@ msgstr "EPG Speicherort"
 msgid "EPG settings"
 msgstr "EPG Einstellungen"
 
-#, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "FEHLER - Suche fehlgeschlagen (%s)!"
 
@@ -4211,11 +4081,9 @@ msgstr "Verstecke die VBI Linie für diesen Sender"
 msgid "Edit settings"
 msgstr "Einstellungen bearbeiten"
 
-#, python-format
 msgid "Edit the Nameserver configuration of your %s %s.\n"
 msgstr "Bearbeite die DNS Einstellungen der %s %s.\n"
 
-#, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Bearbeite die Netzwerk-Konfiguration der %s %s.\n"
 
@@ -4438,7 +4306,6 @@ msgstr "Ausführen des Plugins fehlgeschlagen"
 msgid "Error reading webpage!"
 msgstr "Fehler beim Lesen der Web-Seite!"
 
-#, python-format
 msgid ""
 "Error:\n"
 "%s"
@@ -4446,7 +4313,6 @@ msgstr ""
 "Fehler:\n"
 "%s"
 
-#, python-format
 msgid ""
 "Error: %s\n"
 "Retry?"
@@ -4638,7 +4504,6 @@ msgstr "Fehlgeschlagen"
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Kann /tmp/positionersetup.log nicht schreiben: "
 
-#, python-format
 msgid "Fan %d"
 msgstr "Lüfter %d"
 
@@ -4790,7 +4655,6 @@ msgstr "Freitag"
 msgid "From :"
 msgstr "Von:"
 
-#, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprozessor-Version: %d"
 
@@ -5174,7 +5038,6 @@ msgstr "Verberge CI Nachrichten"
 msgid "Infobar frontend data source"
 msgstr "Infobar Datenquelle auswählen"
 
-#, python-format
 msgid "Choose the source of the front end data displayed by the infobar. 'Lamedb' is as stored on file. 'Tuner' is as reported by the tuner."
 msgstr "Wähle die Quelle für die Daten in der Infobar. \"Lamdb\" ist in einer Datei gespeichert. \"Tuner\" wird direkt vom Tuner geliefert."
 
@@ -5421,7 +5284,6 @@ msgstr "Wenn 'Ja' eingestellt ist wird Infobar bei schnellem Vor- und Rücklauf 
 msgid "If set to 'yes; the infobar will remain shown permanently in 'paused' state (no timeout)."
 msgstr "Wenn 'Ja' eingestellt ist, wird die Infobar im pausierten Zustand dauerhaft angezeigt und nicht ausgeblendet."
 
-#, python-format
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr "Wenn der Text zu lang für das Display ist läuft es mehrfach durch (Anzahl der Durchgänge):"
 
@@ -5654,7 +5516,6 @@ msgstr "Nur interne Festplatte"
 msgid "Interval between keys when repeating:"
 msgstr "Zeit zwischen Tastendrücken wenn Wiederholung aktiv:"
 
-#, python-format
 msgid "Invalid directory selected: %s"
 msgstr "Ungültiges Verzeichnis ausgewählt: %s"
 
@@ -5724,7 +5585,6 @@ msgstr "Nur Umschalten oder Belegung im Hotkey benutzen"
 msgid "Just change channels revert"
 msgstr "Nur Umschalten - rückwärts"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just scale"
 msgstr "Nur Skalieren"
 
@@ -5734,11 +5594,9 @@ msgstr "Nur Umschalten"
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Filmliste offen lassen wenn Musikdateien abgespielt werden."
 
-#, python-format
 msgid "Kernel:\t%s"
 msgstr "Kernel:\t%s"
 
-#, python-format
 msgid "Kernel: %s"
 msgstr "Kernel: %s"
 
@@ -5760,7 +5618,6 @@ msgstr "HotKey-Tasten-Belegungen"
 msgid "Button setup for"
 msgstr "Button Einstellungen für"
 
-#, python-format
 msgid ""
 "Click on your remote on the button you want to change, then click on OK\n"
 "\n"
@@ -5770,7 +5627,6 @@ msgstr ""
 "\n"
 "* für diese Funktionen muss die keymap.lng aktiviert werden"
 
-#, python-format
 msgid "Select the desired function and click on OK to assign it. Use CH+/- to toggle between the lists. Select an assigned function and click on OK to de-assign it."
 msgstr "Wähle die gewünschte Funktion und drücke auf OK zum anwenden. Benutze CH+/- zum wechseln der Listen. Wähle eine Funktion erneut zum abwählen."
 
@@ -5822,11 +5678,9 @@ msgstr "Letzte Konfiguration"
 msgid "Last speed"
 msgstr "Letzte Geschwindigkeit"
 
-#, python-format
 msgid "Last update:\t%s"
 msgstr "Letztes Update:\t%s"
 
-#, python-format
 msgid "Last update: %s"
 msgstr "Letztes Update: %s"
 
@@ -5861,7 +5715,6 @@ msgstr "Links vom Sendernamen"
 msgid "Leisure hobbies"
 msgstr "Freizeit/Hobby"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
 msgstr "Letterbox"
 
@@ -5937,7 +5790,6 @@ msgstr "Bouquet Tasten tauschen"
 msgid "Keep service + Reverse bouquet buttons"
 msgstr "Laufender Kanal + Bouquet Tasten tauschen"
 
-#, python-format
 msgid "List version %d, found %d channel"
 msgid_plural "List version %d, found %d channels"
 msgstr[0] "Listen Version %d, %d Sender gefunden"
@@ -5961,7 +5813,6 @@ msgstr "Wiedergabeliste laden"
 msgid "Load/Save"
 msgstr "Laden/Speichern"
 
-#, python-format
 msgid "Local box"
 msgstr "Lokale Box"
 
@@ -6049,7 +5900,6 @@ msgstr "Aus dieser Markierung nur eine Markierung machen"
 msgid "Manage extensions"
 msgstr "Erweiterungen verwalten"
 
-#, python-format
 msgid "Manage your %s %s's software"
 msgstr "Verwaltung der Software der %s %s."
 
@@ -6137,7 +5987,6 @@ msgstr "MiniDLNA Einstellungen"
 msgid "MiniDLNA setup"
 msgstr "MiniDLNA Einstellungen"
 
-#, python-format
 msgid "Minimum age %d years"
 msgstr "Mindestalter %d Jahre"
 
@@ -6179,7 +6028,6 @@ msgstr "Auflösung [Video Ausgang]"
 msgid "Audio Auto Volume Level"
 msgstr "Automatische Tonanpassung für"
 
-#, python-format
 msgid "Model:\t%s %s\n"
 msgstr "Modell:\t%s %s\n"
 
@@ -6333,7 +6181,6 @@ msgstr "N/V"
 msgid "NFI image flashing"
 msgstr "NFI Image Flashing"
 
-#, python-format
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
 "NFI Image Flashen beendet.\n"
@@ -6366,7 +6213,6 @@ msgstr "Name:"
 msgid "Nameserver"
 msgstr "DNS"
 
-#, python-format
 msgid "Nameserver %d"
 msgstr "DNS %d"
 
@@ -6487,7 +6333,6 @@ msgstr ""
 "Keine Festplatte gefunden oder\n"
 "Festplatte nicht initialisiert."
 
-#, python-format
 msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
@@ -6495,7 +6340,6 @@ msgstr ""
 "Das Laufwerk wurde nach der Initialisierung nach /media/hdd gemountet. Jetzt muss das System neu gestartet werden.\n"
 "Jetzt die %s %s neu starten?"
 
-#, python-format
 msgid "Cannot format partition %d"
 msgstr "Partition %d konnte nicht formatiert werden"
 
@@ -6541,70 +6385,54 @@ msgstr ""
 "Eine Aufnahme, Timeshift oder ein Serverdienst wie Samba oder NFS ist aktiv.\n"
 "Bitte zuerst den Festplattenzugriff stoppen und erneut probieren"
 
-#, python-format
 msgid "Partitioner"
 msgstr "Partitionierer"
 
-#, python-format
 msgid "Formatting partition %d"
 msgstr "Formatiere Partition %d"
 
-#, python-format
 msgid "Devicelist"
 msgstr "Laufwerksliste"
 
-#, python-format
 msgid "Restart %s %s"
 msgstr "Neustart der %s %s"
 
-#, python-format
 msgid "Partitioning failed!"
 msgstr "Partitionierung fehlgeschlagen!"
 
 msgid "Partitions"
 msgstr "Partitionen"
 
-#, python-format
 msgid "One partition"
 msgstr "Eine Partition"
 
-#, python-format
 msgid "Two partitions (50% - 50%)"
 msgstr "Zwei Partitionen (50% - 50%)"
 
-#, python-format
 msgid "Two partitions (75% - 25%)"
 msgstr "Zwei Partitionen (75% - 25%)"
 
-#, python-format
 msgid "Three partitions (33% - 33% - 33%)"
 msgstr "Drei Partitionen (33% - 33% - 33%)"
 
-#, python-format
 msgid "Four partitions (25% - 25% - 25% - 25%)"
 msgstr "Vier Partitionen (25% - 25% - 25% - 25%)"
 
-#, python-format
 msgid "Please select your preferred configuration."
 msgstr "Bitte eine gewünschte Konfiguration wählen."
 
-#, python-format
 msgid "You need to initialize your storage device first"
 msgstr "Vorher muss das Laufwerk initialisiert werden"
 
-#, python-format
 msgid "Format as"
 msgstr "Formatieren als"
 
-#, python-format
 msgid "Partitioning..."
 msgstr "Partitionierung läuft..."
 
-#, python-format
 msgid "Initialize disk"
 msgstr "Initialisiere Laufwerk"
 
-#, python-format
 msgid ""
 "Cannot umount current device.\n"
 "A record in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem.\n"
@@ -6772,7 +6600,6 @@ msgstr "Nein, nichts tun"
 msgid "Do nothing"
 msgstr "Ohne Belegung ... nichts"
 
-#, python-format
 msgid "No, just start my %s %s"
 msgstr "Nein, nur die %s %s starten"
 
@@ -6791,7 +6618,6 @@ msgstr "NodeID: "
 msgid "None"
 msgstr "Keine"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 msgid "Nonlinear"
 msgstr "Nicht linear"
 
@@ -6810,11 +6636,9 @@ msgstr "nicht blinked"
 msgid "Not associated"
 msgstr "Nicht verknüpft"
 
-#, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Nicht genügend freier Speicherplatz. Bitte lösche nicht mehr benötigte Dateien und versuche es erneut. (%d MB benötigt, %d MB verfügbar)"
 
-#, python-format
 msgid ""
 "Not enough free Diskspace!\n"
 "\n"
@@ -7039,7 +6863,6 @@ msgstr "Seite rechts"
 msgid "Page up"
 msgstr "Seite hoch"
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&scan"
 msgstr "Pan&Scan"
 
@@ -7264,7 +7087,6 @@ msgstr ""
 "Konfiguriere das Netzwerk durch Ausfüllen der entsprechenden Werte.\n"
 "Drücke OK zum Fortfahren"
 
-#, python-format
 msgid "Please connect your receiver to the internet"
 msgstr "Bitte die Box mit dem Internet verbinden"
 
@@ -7567,7 +7389,7 @@ msgid "Prefer AC3+ track"
 msgstr "Bevorzuge AC3+ Tonspur"
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
-msgstr "Wenn auf 'Ja' gestellt so wird AC3+ Ton benutzt wenn verfügbar."
+msgstr "Wenn auf 'Ja' gestellt, wird die %s %s AC3+-Ton benutzen (wenn verfügbar)."
 
 msgid "Prefer audio track stored by service"
 msgstr "Bevorzuge gespeicherte Tonspur des Senders"
@@ -7638,7 +7460,6 @@ msgstr "OK drücken zum Aktivieren."
 msgid "Press OK to edit the settings."
 msgstr "OK drücken zum Editieren."
 
-#, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Drücke OK, um weitere Details zu %s zu erhalten."
 
@@ -7741,7 +7562,6 @@ msgstr "Fernseher in Standby versetzen"
 msgid "Put receiver in standby"
 msgstr "Receiver in Standby versetzen"
 
-#, python-format
 msgid "Put your %s %s in standby"
 msgstr "%s %s in Bereitschaft versetzen"
 
@@ -7766,7 +7586,6 @@ msgstr "RGB"
 msgid "Radio"
 msgstr "Radio"
 
-#, python-format
 msgid "Red long"
 msgstr "Rot lang"
 
@@ -7776,7 +7595,6 @@ msgstr "Umbenennen..."
 msgid "Random"
 msgstr "zufällig"
 
-#, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Einstufung vom Sender - %d"
 
@@ -7792,19 +7610,15 @@ msgstr "Kartenleser"
 msgid "Reader Statistics"
 msgstr "Statistik vom Kartenleser"
 
-#, python-format
 msgid "Ready to install \"%s\" ?"
 msgstr "Fertig zur Installation von \"%s\"?"
 
-#, python-format
 msgid "Ready to install %s ?"
 msgstr "Fertig zur Installation von %s ?"
 
-#, python-format
 msgid "Ready to remove \"%s\" ?"
 msgstr "Fertig zum Löschen von \"%s\"?"
 
-#, python-format
 msgid "Ready to remove %s ?"
 msgstr "Wollen Sie - %s - deinstallieren?"
 
@@ -7820,7 +7634,6 @@ msgstr "Den Unterkanal-Schnellumschalter wirklich beenden?"
 msgid "Really reboot now?"
 msgstr "Trotzdem neu booten?"
 
-#, python-format
 msgid "Really reflash your %s %s and reboot now?"
 msgstr "Die %s %s wirklich flashen und neu starten?"
 
@@ -7833,7 +7646,6 @@ msgstr "Trotzdem ausschalten?"
 msgid "Really upgrade the frontprocessor and reboot now?"
 msgstr "Den Frontprozessor wirklich aktualisieren und neu starten?"
 
-#, python-format
 msgid "Really upgrade your %s %s and reboot now?"
 msgstr "Die %s %s wirklich aktualisieren und neu starten?"
 
@@ -7852,7 +7664,6 @@ msgstr "Aufnahme jetzt"
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Aufnahme wurde gestartet! Timeshift wird jetzt angehalten ..."
 
-#, python-format
 msgid "Record time limited due to conflicting timer %s"
 msgstr "Aufnahmezeit aufgrund des in Konflikt stehenden Timers %s begrenzt"
 
@@ -7895,7 +7706,6 @@ msgstr "Zeitskala verkleinern"
 msgid "Reenter new PIN"
 msgstr "Neuen PIN erneut eingeben"
 
-#, python-format
 msgid ""
 "Reflash in progress\n"
 "Please wait until your %s %s reboots\n"
@@ -7941,26 +7751,21 @@ msgstr "verbleibend und verstrichen"
 msgid "Remember service PIN"
 msgstr "Service PIN merken"
 
-#, python-format
 msgid "Blind scan"
 msgstr "Blindsuchlauf"
 
-#, python-format
 msgid "Blindscan was canceled by the user."
 msgstr "Blindsuchlauf durch Nutzer abgebrochen."
 
 msgid "Remote box"
 msgstr "Entfernte Box"
 
-#, python-format
 msgid "Remote Box Channel Import"
 msgstr "Entfernte Box Bouquet Import"
 
-#, python-format
 msgid "Remote Tuner Server Setup"
 msgstr "Box als Remote Tuner"
 
-#, python-format
 msgid "Select bouquets to convert"
 msgstr "Bouquet auswählen"
 
@@ -8048,7 +7853,6 @@ msgstr "Entferne"
 msgid "Removing Service"
 msgstr "Lösche Sender"
 
-#, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr "Löschen des Verzeichnisses %s fehlgeschlagen. (nicht leer?)"
 
@@ -8064,7 +7868,6 @@ msgstr "Umbenennen fehlgeschlagen!"
 msgid "Rename to:"
 msgstr "Umbenennen in:"
 
-#, python-format
 msgid "Renamed %s!"
 msgstr "%s umbenannt!"
 
@@ -8175,7 +7978,6 @@ msgstr "Wiederherstellung..."
 msgid "Resume from last position"
 msgstr "An letzter Position fortsetzen"
 
-#, python-format
 msgid "Resume position at %s"
 msgstr "Wiedergabestart ab %s"
 
@@ -8347,13 +8149,9 @@ msgstr "Suche"
 msgid "Scan "
 msgstr "Suche "
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
-#, python-format
 msgid "Scan %s"
 msgstr "Durchsuche %s"
 
-#. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
-#, python-format
 msgid "Scan %s band"
 msgstr "Durchsuche %s Band"
 
@@ -8369,18 +8167,14 @@ msgstr "WLAN-Netzwerke suchen"
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device.\n"
 msgstr "Durchsucht Ihr Netzwerk nach WLAN-Zugangspunkten und stellt eine Verbindung mit Hilfe Ihres gewählten WLAN-Gerätes her.\n"
 
-#, python-format
 msgid "Scanning %s..."
 msgstr "Durchsuche %s..."
 
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, python-format
 msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Suche - %d%% erledigt"
 msgstr[1] "Suche - %d%% erledigt"
 
-#, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Suche beendet, %d Sender gefunden"
@@ -8787,7 +8581,6 @@ msgstr "Wähle die Sprungweite für die Seekbar."
 msgid "Set the name the recording will get."
 msgstr "Setze den Namen den die Aufnahme bekommen soll."
 
-#, python-format
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Wähle die Durchlaufgeschwindigkeit für Text im Display"
 
@@ -8872,7 +8665,6 @@ msgstr "Satelliten-Ausrüstung konfigurieren"
 msgid "Setup your timezone."
 msgstr "Zeitzone konfigurieren."
 
-#, python-format
 msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
 msgstr "Soll der Assistent fortfahren und die Image-Datei %s in den Flashspeicher schreiben?"
 
@@ -9365,7 +9157,6 @@ msgstr "Bilder als Diashow anzeigen"
 msgid "Slide show interval (sec.)"
 msgstr "Diaschau-Intervall (sek.)"
 
-#, python-format
 msgid "Slot %d"
 msgstr "Steckplatz %d"
 
@@ -9441,7 +9232,6 @@ msgstr "Entschuldigung Feeds sind auf instabil eingestellt. Wenn instabile Updat
 msgid "Allow unstable (untested) updates"
 msgstr "Erlaube instabile (ungetestete) Updates"
 
-#, python-format
 msgid ""
 "Your image is out of date!\n"
 "After such a long time, there is a risk that your %s %s  will not\n"
@@ -9460,7 +9250,6 @@ msgstr ""
 msgid "Sorry uShare Config is Missing"
 msgstr "Entschuldigung Konfiguration für uShare fehlt"
 
-#, python-format
 msgid "Sorry, %s has not been installed!"
 msgstr "Entschuldigung %s wurde nicht installiert!"
 
@@ -9888,7 +9677,6 @@ msgstr "Synchronisiere Systemzeit mit Transponder oder Internet."
 msgid "System"
 msgstr "System"
 
-#, python-format
 msgid "System temperature: %s"
 msgstr "Systemtemperatur: %s"
 
@@ -9898,7 +9686,6 @@ msgstr "System:"
 msgid "TB"
 msgstr "TB"
 
-#. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "ÜBERSETZER INFO"
 
@@ -9983,7 +9770,6 @@ msgstr "Teste DiSEqC Einstellungen"
 msgid "Test mode"
 msgstr "Testmodus"
 
-#, python-format
 msgid "Test the network configuration of your %s %s.\n"
 msgstr "Überprüfe die Netzwerk-Konfiguration der %s %s\n"
 
@@ -10006,7 +9792,6 @@ msgstr ""
 "Vielen Dank, dass Du den Assistenten benutzt hast.\n"
 "Drücke OK zum Fortfahren."
 
-#, python-format
 msgid ""
 "Thank you for using the wizard. Your %s %s is now ready to use.\n"
 "Please press OK to start using your %s %s."
@@ -10028,7 +9813,6 @@ msgstr ""
 "Das Plugin CoolTVGuide ist nicht installiert!\n"
 "Bitte installieren."
 
-#, python-format
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
 msgstr "Der DVD-Standard unterstützt keine H.264 (HDTV) Videos. Soll stattdessen eine Daten-DVD im %s %s-Format (die nicht in einem herkömmlichen DVD-Player abspielbar ist) erstellt werden?"
 
@@ -10073,11 +9857,9 @@ msgstr ""
 "Der USB-Stick wurde bootfähig gemacht.\n"
 "Du kannst jetzt eine NFI-Imagedatei herunterladen!"
 
-#, python-format
 msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr "Die %s %s liest die EPG Daten alle x Stunden."
 
-#, python-format
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Die %s %s speichert die EPG alle x Stunden."
 
@@ -10087,7 +9869,6 @@ msgstr "Die Sicherung ist fehlgeschlagen. Bitte einen anderes Sicherungs Verzeic
 msgid "The current update maybe unstable"
 msgstr "Das aktuelle Update könnte instabil sein"
 
-#, python-format
 msgid ""
 "The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\n"
 "Make sure you select a valid partition type."
@@ -10095,7 +9876,6 @@ msgstr ""
 "Das Verzeichnis %s ist nicht EXT2/3/4 oder NTFS formatiert.\n"
 "Wähle eine passende Formatierung."
 
-#, python-format
 msgid ""
 "The directory %s is not writable.\n"
 "Make sure you select a writable directory instead."
@@ -10103,7 +9883,6 @@ msgstr ""
 "Das Verzeichnis %s ist nicht beschreibbar.\n"
 "Stelle sicher, dass ein beschreibbares Verzeichnis angegeben wurde."
 
-#, python-format
 msgid ""
 "The following device was found:\n"
 "\n"
@@ -10133,14 +9912,12 @@ msgstr ""
 "Das NetzwerkWizard Plugin ist nicht installiert!\n"
 "Bitte installiere es."
 
-#, python-format
 msgid "The path %s already exists."
 msgstr "Der Pfad %s existiert bereits."
 
 msgid "The pin code you entered is wrong."
 msgstr "Der eingegebene PIN Code ist falsch"
 
-#, python-format
 msgid "The results have been written to %s."
 msgstr "Die Ergebnisse des Tests wurden in der Datei %s gespeichert."
 
@@ -10157,11 +9934,9 @@ msgstr "Die Timer-Datei (pm_timers.xml) ist beschädigt und konnte nicht geladen
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Die Timer-Datei (timers.xml) ist beschädigt und konnte nicht geladen werden."
 
-#, python-format
 msgid "The user interface of your %s %s is restarting"
 msgstr "Die Benutzeroberfläche der %s %s startet neu"
 
-#, python-format
 msgid ""
 "The user interface of your %s %s is restarting\n"
 "due to an error in mytest.py"
@@ -10186,7 +9961,6 @@ msgstr ""
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Der Assistent kann jetzt die Einstellungen sichern. Soll dies nun durchgeführt werden?"
 
-#, python-format
 msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
 msgstr "Der Assistent hat eine Konfigurations-Sicherungsdatei entdeckt. Die Einstellungen von %s wiederherstellen?"
 
@@ -10196,7 +9970,6 @@ msgstr "Der Assistent ist nun beendet."
 msgid "There are at least "
 msgstr "Es sind mindestens "
 
-#, python-format
 msgid "There are at least %s updates available."
 msgstr "Es sind mindestens %s Updates verfügbar."
 
@@ -10220,7 +9993,6 @@ msgstr ""
 "der gewählten Partition vorhanden ist.\n"
 "Wirklich fortfahren?"
 
-#, python-format
 msgid "This %s %s cannot decode %s streams!"
 msgstr "Diese %s %s kann %s Streams nicht dekodieren!"
 
@@ -10353,7 +10125,6 @@ msgstr "Diese Option bestimmt die Unterdrückung falscher, digitaler Umrisse. Di
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Diese Option bestimmt die Scalerschärfe. Dieser Punkt wirkt sich aus wenn ein Bild vergrößert werden muss."
 
-#, python-format
 msgid ""
 "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
 "First, a USB stick needs to be prepared so that it becomes bootable.\n"
@@ -10622,15 +10393,12 @@ msgstr "Titeldetails"
 msgid "Titleset mode"
 msgstr "Titleset"
 
-#, python-format
 msgid "To audio selection"
 msgstr "Zur Ton Auswahl"
 
-#, python-format
 msgid "To subtitle selection"
 msgstr "Zur Untertitel Auswahl"
 
-#, python-format
 msgid ""
 "To update your %s %s firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
@@ -10849,13 +10617,11 @@ msgstr "Aktualisieren"
 msgid "Update channel list only"
 msgstr "Nur Senderliste aktualisieren"
 
-#, python-format
 msgid "Update completed, %d package was installed."
 msgid_plural "Update completed, %d packages were installed."
 msgstr[0] "Update vollendet, %d Paket aktualisiert."
 msgstr[1] "Update vollendet, %d Pakete aktualisiert."
 
-#, python-format
 msgid "Update failed. Your %s %s does not have a working internet connection."
 msgstr "Update fehlgeschlagen. Deine %s %s hat keine Internetverbindung"
 
@@ -10868,14 +10634,12 @@ msgstr "Updatefeed nicht verfügbar."
 msgid "Updating software catalog"
 msgstr "Softwarekatalog wird aktualisiert."
 
-#, python-format
 msgid "Upgrade and reboot system"
 msgstr "Upgrade und System neu starten"
 
 msgid "Upgrade finished."
 msgstr "Upgrade beendet."
 
-#, python-format
 msgid ""
 "Upgrade in progress\n"
 "Please wait until your %s %s reboots\n"
@@ -11080,7 +10844,6 @@ msgstr "Benutzername (HTTP)"
 msgid "Username:"
 msgstr "Benutzername:"
 
-#, python-format
 msgid "Using LNB %d"
 msgstr "Benutze LNB %d"
 
@@ -11090,7 +10853,6 @@ msgstr "Benutzte feste Adresse"
 msgid "Using old profile: "
 msgstr "Benutze altes Profil:"
 
-#, python-format
 msgid "Using tuner %s"
 msgstr "Benutze Tuner %s"
 
@@ -11115,7 +10877,6 @@ msgstr "Bevorzugte Tuner bei Aufnahmen, Mehrfachauswahl möglich"
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Experimentell: strikte Beschränkung der Tuner bei Aufnahmen"
 
-#, python-format
 msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
 msgstr "Welcher Tuner soll für Aufnahmen bevorzugt werden, wenn mehr als ein Tuner zur Verfügung steht."
 
@@ -11128,14 +10889,12 @@ msgstr "Scart-Videorekorder"
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (Intro-Trailer)"
 
-#, python-format
 msgid "Version:\t%s"
 msgstr "Version:\t%s"
 
 msgid "Version: "
 msgstr "Version: "
 
-#, python-format
 msgid "Version: %s"
 msgstr "Version: %s"
 
@@ -11151,7 +10910,6 @@ msgstr "ViX EPG"
 msgid "Video Enhancement Settings"
 msgstr "Bildoptimierungs Einstellungen"
 
-#, python-format
 msgid "Record Infobar"
 msgstr "Aufnahme InfobarEinstellungen"
 
@@ -11243,7 +11001,6 @@ msgstr "erzwinge aktiviert"
 msgid "force disabled"
 msgstr "erzwinge deaktiviert"
 
-#, python-format
 msgid "Audio Sync Einstellungen"
 msgstr "Audio-Sync Einstellungen"
 
@@ -11253,7 +11010,6 @@ msgstr "Bild Einstellungen"
 msgid "Video wizard"
 msgstr "Bild Assistent"
 
-#, python-format
 msgid "Video: %s fps"
 msgstr "Video: %s FPS"
 
@@ -11471,11 +11227,9 @@ msgstr ""
 "\n"
 "Dann spule zum Ende des Bereiches, drücke OK und wähle 'Schnitt beenden' - fertig."
 
-#, python-format
 msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
 msgstr "Willkommen im Image-Upgrade-Assistenten. Der Assistent wird bei der Aktualisierung der Firmware für %s %s helfen. Mit diesem Assistenten können die aktuellen Einstellungen gesichert werden und es gibt eine kleine Einweisung wie die Firmware aktualisiert werden kann."
 
-#, python-format
 msgid ""
 "Welcome.\n"
 "\n"
@@ -11489,7 +11243,6 @@ msgstr ""
 "\n"
 "Drücke OK auf der Fernbedienung um die Netzwerk Einstellungen vorzunehmen."
 
-#, python-format
 msgid ""
 "Welcome.\n"
 "\n"
@@ -11622,7 +11375,7 @@ msgid "When enabled, the receiver will automatically use the subtitles which you
 msgstr "Wenn aktiviert benutzt der Receiver die Untertitel die schon früher benutzen worden sind."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr "Wenn auf 'Ja' gestellt so, wird AC3 Ton benutzt wenn verfügbar."
+msgstr "Wenn auf 'Ja' gestellt, wird die %s %s AC3-Ton benutzen (wenn verfügbar)."
 
 msgid "When enabled, timeshift starts automatically in background after specified time."
 msgstr "Wenn aktiviert startet Timeshift automatisch nach der angegebenen Zeit."
@@ -11630,7 +11383,6 @@ msgstr "Wenn aktiviert startet Timeshift automatisch nach der angegebenen Zeit."
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Wenn aktiviert benutzt der Receiver DHCP zur Netzwerkkonfiguration."
 
-#, python-format
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Wenn auf 'Ja' gestellt so wird die Box Aktivitäten am SCART-Eingang erkennen."
 
@@ -11655,7 +11407,6 @@ msgstr "Wenn der Bildinhalt ein Aspect/Ratio von 4:3 hat wähle ob das Bild skal
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Wenn ein Sender eingestellt ist durchsucht die Box den Transponder nach Änderungen und speichert sie. Nur 'Nein' einstellen wenn Du weißt was Du tust."
 
-#, python-format
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
@@ -11745,7 +11496,6 @@ msgstr "Mit dieser Option kannst Du Jobs in Erweiterungen verstecken (kurzer Dru
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
 
-#, python-format
 msgid ""
 "Write error while recording. Disk full?\n"
 "%s"
@@ -11816,7 +11566,6 @@ msgstr "Ja, diesen Film löschen und zurück zur Filmauswahl"
 msgid "Yesterday"
 msgstr "Gestern"
 
-#, python-format
 msgid ""
 "You already have a bootlogo installed,\n"
 "would you like to remove\n"
@@ -11826,7 +11575,6 @@ msgstr ""
 "soll es entfernt werden\n"
 "\"%s\"?"
 
-#, python-format
 msgid ""
 "You already have a channel list installed,\n"
 "would you like to remove\n"
@@ -11841,7 +11589,6 @@ msgstr "Die Installation kann abgebrochen werden."
 msgid "You can cancel the removal."
 msgstr "Das Löschen kann abgebrochen werden."
 
-#, python-format
 msgid "You can continue watching TV etc. while this is running."
 msgstr "Der Vorgang findet im Hintergrund statt, die Box kann  ganz normal weiter genutzt werden."
 
@@ -11854,7 +11601,6 @@ msgstr "Du kannst die Liste zeitlich oder alphanumerisch sortiert haben."
 msgid "You can install this plugin."
 msgstr "Du kannst diese Erweiterung installieren."
 
-#, python-format
 msgid "You can only burn %s %s recordings!"
 msgstr "Nur %s %s-Aufnahmen können gebrannt werden!"
 
@@ -11899,11 +11645,9 @@ msgstr "Du hast keine Logs zum Löschen gewählt."
 msgid "You have selected no logs to send."
 msgstr "Du hast keine Logs zum Verschicken gewählt."
 
-#, python-format
 msgid "You have to wait %s!"
 msgstr "Du musst %s warten!"
 
-#, python-format
 msgid ""
 "You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
@@ -11920,15 +11664,12 @@ msgstr "Timeshift scheint aktiv zu sein. Stoppen?"
 msgid "You system does not support ext4"
 msgstr "Ihr System unterstützt nicht das ext4 Dateisystem"
 
-#, python-format
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Deine Box wird neu Starten wenn Du OK auf der Fernbedienung drückst."
 
-#, python-format
 msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
 msgstr "Die %s %s ist nicht mit dem Internet verbunden. Bitte überprüfe die Netzwerkeinstellungen und versuche es erneut."
 
-#, python-format
 msgid ""
 "Your %s %s is now ready to be used.\n"
 "\n"
@@ -11940,7 +11681,6 @@ msgstr ""
 "Die Internetverbindung funktioniert nun.\n"
 "\n"
 
-#, python-format
 msgid ""
 "Your %s %s is now ready to use.\n"
 "\n"
@@ -11954,23 +11694,18 @@ msgstr ""
 "\n"
 "Drücke OK zum Fortfahren."
 
-#, python-format
 msgid "Your %s %s is rebooting"
 msgstr "Deine %s %s startet neu"
 
-#, python-format
 msgid "Your %s %s is shutting down"
 msgstr "Deine %s %s schaltet sich aus"
 
-#, python-format
 msgid "Your %s %s is shutting down. Please stand by..."
 msgstr "Ihre %s %s schaltet sich nun aus. Bitte warte einen Moment..."
 
-#, python-format
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Die %s %s könnte jetzt unbenutzbar sein. Bitte im Handbuch nach Hinweisen suchen bevor die %s %s neu gestartet wird."
 
-#, python-format
 msgid ""
 "Your %s %s wants to reboot your STB_BOX.\n"
 "Do that now?"
@@ -11978,7 +11713,6 @@ msgstr ""
 "Die %s %s möchte jetzt neu starten.\n"
 "Jetzt neu starten?"
 
-#, python-format
 msgid ""
 "Your %s %s wants to restart the user interface.\n"
 "Do that now?"
@@ -11987,7 +11721,6 @@ msgstr ""
 "\n"
 "Jetzt neu starten?"
 
-#, python-format
 msgid ""
 "Your %s %s wants to set your STB_BOX to standby.\n"
 "Do that now?"
@@ -11995,7 +11728,6 @@ msgstr ""
 "Die %s %s möchte jetzt in Bereitschaft schalten.\n"
 "Jetzt in Bereitschaft schalten?"
 
-#, python-format
 msgid ""
 "Your %s %s wants to shut down your STB_BOX.\n"
 "Do that now?"
@@ -12003,7 +11735,6 @@ msgstr ""
 "Die %s %s möchte jetzt ausschalten.\n"
 "Jetzt ausschalten?"
 
-#, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install \"%s\" ?"
@@ -12011,7 +11742,6 @@ msgstr ""
 "Die %s %s wird neu gestartet wenn der Service installiert ist.\n"
 "Bereit \"%s\" zu installieren?"
 
-#, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service.\n"
 "\n"
@@ -12028,7 +11758,6 @@ msgstr ""
 "Ihre %s %s wird nach der Installation des Services neu gestartet\n"
 "Wollen Sie - %s - installieren?"
 
-#, python-format
 msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
@@ -12042,7 +11771,6 @@ msgstr "Die Sicherung ist geglückt. Die Box wird nun den weiteren Aktualisierun
 msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
 msgstr "Die Zusammenstellung überschreitet die Größe eines einfachen Mediums, es wird ein Dual-Layer-Rohling benötigt!"
 
-#, python-format
 msgid ""
 "Your config file is not well-formed:\n"
 "%s"
@@ -12060,7 +11788,6 @@ msgstr ""
 "Ihre Frontprozessor-Firmware muss aktualisiert werden.\n"
 "Drücke OK, um das Upgrade zu starten."
 
-#, python-format
 msgid ""
 "Your frontprocessor will be upgraded\n"
 "Please wait until your %s %s reboots\n"
@@ -12077,18 +11804,15 @@ msgstr ""
 "Ihre Internetverbindung funktioniert nicht!\n"
 "Bitte wähle eine Option zum Fortfahren."
 
-#, python-format
 msgid "Your internet connection is working (ip: %s)"
 msgstr "Deine Internetverbindung besteht (IP:%s)"
 
 msgid "Your network configuration has been activated."
 msgstr "Ihre Netzwerk-Konfiguration wurde aktiviert."
 
-#, python-format
 msgid "Your receiver does not have an internet connection"
 msgstr "Deine Box hat keine Internetverbindung"
 
-#, python-format
 msgid "Your receiver is not connected to the internet"
 msgstr "Deine Box ist nicht mit dem Internet verbunden"
 
@@ -12266,7 +11990,6 @@ msgstr "Erweitert"
 msgid "not available"
 msgstr "nichts ausgewählt"
 
-#, python-format
 msgid "%s: Not Available"
 msgstr "%s: Nicht Verfügbar"
 
@@ -12327,7 +12050,6 @@ msgstr "Hintergrundbild"
 msgid "ballet"
 msgstr "Ballett"
 
-#, python-format
 msgid "bc%s"
 msgstr "bc%s"
 
@@ -12403,7 +12125,6 @@ msgstr "Verbunden"
 msgid "continue"
 msgstr "Weiter"
 
-#, python-format
 msgid "Continue in background"
 msgstr "Weiter im Hintergrund"
 
@@ -12419,7 +12140,6 @@ msgstr "In die Favoritenliste kopieren"
 msgid "create directory"
 msgstr "Verzeichnis erstellen"
 
-#, python-format
 msgid "currently installed image: %s"
 msgstr "Derzeit installiertes Image: %s"
 
@@ -12955,7 +12675,6 @@ msgstr "ProvID"
 msgid "provider:"
 msgstr "Anbieter:"
 
-#, python-format
 msgid "reboot system"
 msgstr "Box neu starten"
 
@@ -13409,7 +13128,6 @@ msgstr "Wintersport"
 msgid "wireless network interface"
 msgstr "Funk Netzwerkadapter"
 
-#, python-format
 msgid "with %d error"
 msgid_plural "with %d errors"
 msgstr[0] "mit %d Fehler"
@@ -13442,7 +13160,6 @@ msgstr "Ja"
 msgid "yes (keep feeds)"
 msgstr "Ja (Feeds behalten)"
 
-#, python-format
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Ihre %s %s könnte jetzt unbenutzbar sein. Bitte konsultieren Sie das Handbuch bevor Sie ihre %s %s rebooten."
 
@@ -13654,7 +13371,6 @@ msgstr "Mount Übersicht"
 msgid "UserManager"
 msgstr "Benutzerverwaltung"
 
-#, python-format
 msgid "Network Neighbourhood"
 msgstr "Netzwerkumgebung"
 
@@ -13755,7 +13471,6 @@ msgstr "Swap Ort:"
 msgid "Swap Size:"
 msgstr "Swap Größe:"
 
-#, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
@@ -13821,7 +13536,6 @@ msgstr "Sprachen löschen"
 msgid "Default Language can not be deleted !!"
 msgstr "Die Standardsprache kann nicht gelöscht werden!"
 
-#, python-format
 msgid "Show \"add to EPGRefresh\" in"
 msgstr "Zeige \"zu EPGRefresh hinzufügen\" in"
 
@@ -13922,22 +13636,34 @@ msgid "Current EPG cachefile:"
 msgstr "Aktueller EPG Dateiname:"
 
 msgid "AAC downmix"
-msgstr "AAC Downmix"
+msgstr "AAC-Downmix"
 
 msgid "AAC transcoding"
-msgstr "AAC Transcoding"
-
-msgid "AC3plus transcoding"
-msgstr "AC3 Plus Transcoding"
+msgstr "AAC-Transcoding"
 
 msgid "Dolby Digital / DTS downmix"
-msgstr "DD/DTS Downmix"
+msgstr "DD/DTS-Downmix"
 
 msgid "AC3 downmix"
-msgstr "AC3 Downmix"
+msgstr "AC3-Downmix"
+
+msgid "PCM Multichannel"
+msgstr "PCM-Mehrkanal"
 
 msgid "AC3 plus transcoding"
-msgstr "AC3 Plus Transcoding"
+msgstr "AC3+-Transkoding"
+
+msgid "AAC plus downmix"
+msgstr "AAC+-Downmix"
+
+msgid "DTS HD downmix"
+msgstr "DTS-HD-Downmix"
+
+msgid "AAC Plus downmix"
+msgstr "AAC+-Downmix"
+
+msgid "AC3plus transcoding"
+msgstr "AC3+-Transkoding"
 
 msgid "controlled by HDMI"
 msgstr "Steuerung über HDMI"
@@ -13948,8 +13674,11 @@ msgstr "Best Mögliches / Steuerung über HDMI"
 msgid "DTS downmix"
 msgstr "DTS-Downmix"
 
+msgid "convert to AC3"
+msgstr "Umwandeln zu AC3"
+
 msgid "force AC3plus"
-msgstr "Erzwinge AC3 Plus"
+msgstr "Erzwinge AC3+"
 
 msgid "convert to DTS"
 msgstr "Konvertieren zu DTS"
@@ -13963,7 +13692,6 @@ msgstr "Konvertieren zu Mehrkanalton PCM"
 msgid "always"
 msgstr "immer"
 
-#, python-format
 msgid "Last Image Updates"
 msgstr "Zeige letzte Updates"
 
@@ -13985,11 +13713,9 @@ msgstr "Wähle das Standardverzeichnis für die Automatischeaufnahme. Drücke 'O
 msgid "Setup Usage"
 msgstr "Einstellungen"
 
-#, python-format
 msgid "Deep-Standby"
 msgstr "Ausschalten - Deep Standby"
 
-#, python-format
 msgid "OK long"
 msgstr "OK lang"
 
