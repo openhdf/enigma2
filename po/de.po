@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-09-17 15:14+0200\n"
+"PO-Revision-Date: 2018-09-17 19:06+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1402,6 +1402,38 @@ msgstr "Aktiviere"
 
 msgid "Activate PiP"
 msgstr "Aktiviere PiP"
+
+msgid "Enable Quad PIP"
+msgstr "Aktiviere Quad PIP"
+
+msgid "Quad Picture in Picture"
+msgstr "Quad Bild im Bild"
+
+msgid "Quad PiP channel "
+msgstr "Quad PiP Kanal "
+
+msgid "Quad PiP Channel Selection"
+msgstr "Quad PiP Kanal Auswahl"
+
+msgid "<No Channel>"
+msgstr "< Kein Kanal >"
+
+msgid "  Red key : Show/Hide channel name"
+msgstr "  Rot : Zeige/Verstecke Kanelname"
+
+msgid "  Menu key : Select quad channel"
+msgstr "  Menü : Kanal Auswahl"
+
+msgid ""
+"EPG key : Switch to quad PiP entry\n"
+"Ok key : Add to new entry\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG : Wechsel zum PiP Eintrag\n"
+"OK : Neuer Eintrag hinzufügen\n"
+"PVR : PiP Kanal umbenennen\n"
+"Exit : Editieren beenden"
 
 msgid "Open service list and select next channel for PiP"
 msgstr "Öffne Senderliste und wähle den nächsten Sender für PiP"
@@ -10523,6 +10555,13 @@ msgstr "Tuner:"
 
 msgid "Tuner configuration"
 msgstr "Tunerkonfiguration"
+
+msgid ""
+"\n"
+"<This tuner is configured automatically>"
+msgstr ""
+"\n"
+"< Dieser Tuner wird automatisch konfiguriert >"
 
 msgid "Tuner settings"
 msgstr "Tuner Einstellungen"
