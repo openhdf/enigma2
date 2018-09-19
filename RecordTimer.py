@@ -681,7 +681,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 			if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby):
 				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
-					if not box_instandby and not tv_instandby: # not already in standby
+					if not box_instandby and not tv_notactive: # not already in standby
 						callback = self.sendTryQuitMainloopNotification
 						message = _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName())
 						if InfoBar and InfoBar.instance:
