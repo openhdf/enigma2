@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-09-18 19:47+0200\n"
+"PO-Revision-Date: 2018-09-19 16:56+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3741,6 +3741,12 @@ msgstr "Display (VFD/LCD)"
 
 msgid "Enable LED Display plugin"
 msgstr "Aktiviere die LED Display Einstellungen"
+
+msgid "Screenshot of LCD in /tmp"
+msgstr "Screenshot vom LCD in /tmp speichern"
+
+msgid "Enable screenshot of LCD in /tmp"
+msgstr "Aktiviert den Screenshot vom LCD in den /tmp Ordner"
 
 msgid "If this set to yes, the systemplugin vfdcontrol can be used after restart."
 msgstr "Bei ja wird das Plugin vfdcontrol installiert."
