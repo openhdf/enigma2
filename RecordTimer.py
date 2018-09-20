@@ -9,7 +9,7 @@ from enigma import eEPGCache, getBestPlayableServiceReference, eStreamServer, eS
 
 from Components.config import config
 from Components import Harddisk
-from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
+from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval, ConfigSelection, ConfigSelectionNumber
 from Components.TimerSanityCheck import TimerSanityCheck
 import Components.RecordingConfig
 from Screens.MessageBox import MessageBox
@@ -29,6 +29,8 @@ from enigma import pNavigation, eDVBFrontend
 
 wasRecTimerWakeup = False
 InfoBar = False
+def powermessagetimeout(self):
+	messagetimeout = config.usage.window_timeout.value
 #
 debug = False
 #
@@ -653,7 +655,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 			if debug: print "[RECORDTIMER] box_instandby=%s" % box_instandby, "tv_notactive=%s" % tv_notactive, "wasRecTimerWakeup=%s" % wasRecTimerWakeup, "self.wasInStandby=%s" % self.wasInStandby, "self.afterEvent=%s" % self.afterEvent, "isRecordTime=%s" % isRecordTime
 
-			timeout = 30
+			timeout = (config.usage.window_timeout.value)
 			default = True
 			messageboxtyp = MessageBox.TYPE_YESNO
 			if self.afterEvent == AFTEREVENT.STANDBY or (self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby and (not wasRecTimerWakeup or (wasRecTimerWakeup and isRecordTime))):
