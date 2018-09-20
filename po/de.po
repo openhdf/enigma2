@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-09-19 17:10+0200\n"
+"PO-Revision-Date: 2018-09-20 17:06+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1418,6 +1418,21 @@ msgstr "Quad PiP Kanal Auswahl"
 msgid "<No Channel>"
 msgstr "< Kein Kanal >"
 
+msgid "Show/Hide focus bar"
+msgstr "Zeige/verstecke den Fokusrahmen"
+
+msgid "Next quad PiP channel"
+msgstr "Auf die nächste Sendergruppe schalten"
+
+msgid "Select channel audio"
+msgstr "Kanalauswahl für die Tonausgabe"
+
+msgid "Show channel selection"
+msgstr "Zeige die Sendergruppen"
+
+msgid "Zap focused channel on full screen"
+msgstr "Schalte im Vollbildmodus auf den ausgewählten Sender"
+
 msgid " (current channel)"
 msgstr " (aktueller Kanal)"
 
@@ -1425,7 +1440,10 @@ msgid "  Red key : Show/Hide channel name"
 msgstr "  Rot : Zeige/Verstecke Kanalname"
 
 msgid "  Menu key : Select quad channel"
-msgstr "  Menü : Kanal Auswahl"
+msgstr "  Menü : Wähle Sendergruppe"
+
+msgid "Really delete this entry?"
+msgstr "Sendergruppe wirklich löschen?"
 
 msgid ""
 "EPG key : Switch to quad PiP entry\n"
@@ -1434,7 +1452,7 @@ msgid ""
 "Exit key : Finish channel edit"
 msgstr ""
 "EPG : Wechsel zum PiP Eintrag\n"
-"OK  : Neuer Eintrag hinzufügen\n"
+"OK   : Neuen Eintrag hinzufügen\n"
 "PVR : PiP Kanal umbenennen\n"
 "Exit : Editieren beenden"
 

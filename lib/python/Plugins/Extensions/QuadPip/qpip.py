@@ -512,8 +512,14 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 	def keyYellow(self):
 		curChannel = self.getSelectedChannel()
 		if curChannel:
+			self.session.openWithCallback(self.removeCallback, MessageBox, _("Really delete this entry?"))
+
+	def removeCallback(self, answer):
+		curChannel = self.getSelectedChannel()
+		if answer and curChannel:
 			self.oldPosition = self["ChannelList"].getIndex()
 			self.qpipChannelList.removeChannel(curChannel)
+			self.force_exit = True
 			self.updateChannelList()
 
 	def keyBlue(self):
