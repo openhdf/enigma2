@@ -2632,6 +2632,13 @@ msgstr "Enigma2 Neustart nach Softwarefehler deaktivieren"
 msgid "Disable Enigma2 automatically restarts on crash"
 msgstr "Automatischen Enigma2 Neustart nach Softwarefehler deaktivieren"
 
+msgid "Max number of crash pop-ups shown"
+msgstr "Maximale Anzahl der Enigma2 Crash Nachrichten"
+
+msgid "Define how often Enigma2 will show crash pop-ups."
+msgstr "Definiere wie oft Crash Nachrichten angezeigt werden."
+
+
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr "Wähle einen Ort wo die EPG Daten gespeichert werden wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
 
