@@ -24,11 +24,11 @@ aeDSsave = False
 wasTimerWakeup = False
 def powermessagetimeout(self):
 	messagetimeout = config.usage.window_timeout.value
-try:
-	from Screens.InfoBar import InfoBar
-except Exception, e:
-	print "[PowerTimer] import from 'Screens.InfoBar import InfoBar' failed:", e
-	InfoBar = False
+#try:
+#	from Screens.InfoBar import InfoBar
+#except Exception, e:
+#	print "[PowerTimer] import from 'Screens.InfoBar import InfoBar' failed:", e
+InfoBar = False
 #+++
 debug = False
 #+++
