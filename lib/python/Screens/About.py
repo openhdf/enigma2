@@ -156,7 +156,7 @@ class About(Screen):
 						image = "5"
 				f.close()
 				if bootname: bootname = "   (%s)" %bootname 
-				AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
+				AboutText += _("Selected Image:\t%s") % "STARTUP_" + image + bootname + "\n"
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
 			f.seek(22)

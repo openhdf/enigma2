@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-09-20 17:06+0200\n"
+"PO-Revision-Date: 2018-09-29 17:01+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -566,6 +566,15 @@ msgstr "Image zum Flashen auswählen"
 
 msgid "Flash On the Fly"
 msgstr "Flashen   Online / Local"
+
+msgid "Please select what to do after first booting the image:\n"
+msgstr "Bitte auswählen was nach dem ersten Starten erledigt werden soll:\n"
+
+msgid "Automatic restore of all settings and plugins?"
+msgstr "Auto-Wiederherstellung Einstellungen/Plugins?"
+
+msgid "Don't restore settings and plugins!"
+msgstr "Den normalen Start-Wizard ausführen!"
 
 msgid "Unzipping files, Please wait ..."
 msgstr "Datei wird entpackt, bitte warten ..."
@@ -2637,7 +2646,6 @@ msgstr "Maximale Anzahl der Enigma2 Crash Nachrichten"
 
 msgid "Define how often Enigma2 will show crash pop-ups."
 msgstr "Definiere wie oft Crash Nachrichten angezeigt werden."
-
 
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr "Wähle einen Ort wo die EPG Daten gespeichert werden wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
@@ -14208,6 +14216,9 @@ msgstr "MultiBoot Auswahl"
 
 msgid "Do you want to reboot now with selected image?"
 msgstr "Soll die Box jetzt mit dem gewählten Image neu gestartet werden?"
+
+msgid "Selected Image:\t%s"
+msgstr "Image Wahl:\t%s"
 
 msgid "no image found"
 msgstr "Kein Image gefunden"
