@@ -493,7 +493,7 @@
 		<widget backgroundColor="XionBackground" font="FdLcD; 40" foregroundColor="XionFont1" render="Label" position="10,170" size="388,58" source="session.CurrentService" halign="center" transparent="1" zPosition="8" valign="center">
 			<convert type="XionHDFWeather">Day_0,Description</convert>
 		</widget>
-		<widget noWrap="1" backgroundColor="XionBackground" font="FdLcD; 75" foregroundColor="XionFont1" render="Label" position="268,10" size="140,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
+		<widget noWrap="1" backgroundColor="XionBackground" font="FdLcD; 75" foregroundColor="XionFont1" render="Label" position="268,10" size="120,100" source="session.CurrentService" zPosition="8" halign="left" transparent="1">
 			<convert type="XionHDFWeather">Day_0,FeelTemp</convert>
 		</widget>
 		<widget noWrap="1" backgroundColor="XionBackground" font="FdLcD; 75" foregroundColor="XionFont1" render="Label" position="268,85" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
