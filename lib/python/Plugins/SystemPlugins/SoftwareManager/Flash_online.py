@@ -80,10 +80,13 @@ class FlashOnline(Screen):
 			self.devrootfs = "/dev/mmcblk1p3"
 		self.multi = 1
 		self.list = self.list_files("/boot")
+		self.MTDKERNEL = getMachineMtdKernel()
+		self.MTDROOTFS = getMachineMtdRoot()
 
 		Screen.setTitle(self, _("Flash On the Fly"))
 		if SystemInfo["HaveMultiBoot"]:
 			self["key_blue"] = Button(_("Multiboot Select"))
+			self.read_current_multiboot()
 		else:
 			self["key_blue"] = Button(_(" "))
 		self["key_green"] = Button(_("Online"))
@@ -142,13 +145,13 @@ class FlashOnline(Screen):
 
 	def yellow(self):
 		if self.check_hdd():
-			self.session.open(doFlashImage, online = False, list=self.list[self.selection], multi=self.multi, devrootfs=self.devrootfs)
+			self.session.open(doFlashImage, online = False, list=self.list[self.selection], multi=self.multi, devrootfs=self.devrootfs, mtdkernel=self.MTDKERNEL, mtdrootfs=self.MTDROOTFS)
 		else:
 			self.close()
 
 	def green(self):
 		if self.check_hdd():
-			self.session.open(doFlashImage, online = True, list=self.list[self.selection], multi=self.multi, devrootfs=self.devrootfs)
+			self.session.open(doFlashImage, online = True, list=self.list[self.selection], multi=self.multi, devrootfs=self.devrootfs, mtdkernel=self.MTDKERNEL, mtdrootfs=self.MTDROOTFS)
 		else:
 			self.close()
 
@@ -167,6 +170,40 @@ class FlashOnline(Screen):
 			print "[Flash Online] MULTI:",self.multi
 			self.devrootfs = self.find_rootfs_dev(self.list[self.selection])
 			print "[Flash Online] MULTI rootfs ", self.devrootfs
+			
+			self.read_current_multiboot()
+
+	def read_current_multiboot(self):
+		if getMachineBuild() in ("hd51","vs1500","h7"):
+			if self.list[self.selection] == "Recovery":
+				cmdline = self.read_startup("/boot/STARTUP").split("=",3)[3].split(" ",1)[0]
+			else:
+				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",3)[3].split(" ",1)[0]
+		elif getMachineBuild() in ("8100s"):
+			if self.list[self.selection] == "Recovery":
+				cmdline = self.read_startup("/boot/STARTUP").split("=",4)[4].split(" ",1)[0]
+			else:
+				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",4)[4].split(" ",1)[0]
+		elif getMachineBuild() in ("cc1","sf8008","ustym4kpro"):
+			if self.list[self.selection] == "Recovery":
+				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+			else:
+				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+		elif getMachineBuild() in ("osmio4k"):
+			if self.list[self.selection] == "Recovery":
+				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+			else:
+				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+		else:
+			if self.list[self.selection] == "Recovery":
+				cmdline = self.read_startup("/boot/cmdline.txt").split("=",1)[1].split(" ",1)[0]
+			else:
+				cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+		cmdline = cmdline.lstrip("/dev/")
+		self.MTDROOTFS = cmdline
+		self.MTDKERNEL = cmdline[:-1] + str(int(cmdline[-1:]) -1)
+		print "[Flash Online] kernel device: ",self.MTDKERNEL
+		print "[Flash Online] rootfsdevice: ",self.MTDROOTFS
 
 	def read_startup(self, FILE):
 		file = FILE
@@ -223,7 +260,7 @@ class doFlashImage(Screen):
 		<widget name="imageList" position="10,10" zPosition="1" size="680,450" font="Regular;20" scrollbarMode="showOnDemand" transparent="1" />
 	</screen>"""
 
-	def __init__(self, session, online, list=None, multi=None, devrootfs=None ):
+	def __init__(self, session, online, list=None, multi=None, devrootfs=None, mtdkernel=None, mtdrootfs=None ):
 		Screen.__init__(self, session)
 		self.session = session
 
@@ -240,6 +277,8 @@ class doFlashImage(Screen):
 		self.List = list
 		self.multi=multi
 		self.devrootfs=devrootfs
+		self.MTDKERNEL = mtdkernel
+		self.MTDROOTFS = mtdrootfs
 		self.imagePath = imagePath
 		self.feedurl = images[self.imagesCounter][1]
 		self["imageList"] = MenuList(self.imagelist)
@@ -253,7 +292,6 @@ class doFlashImage(Screen):
 			"cancel": self.quit,
 		}, -2)
 		self.onLayoutFinish.append(self.layoutFinished)
-
 
 	def quit(self):
 		if self.simulate or self.List not in ("STARTUP","cmdline.txt"):
@@ -372,7 +410,44 @@ class doFlashImage(Screen):
 
 	def cmdFinished(self):
 		self.prepair_flashtmp(flashPath)
+		self.flashWithRestoreQuestion()
 		self.Start_Flashing()
+
+	def flashWithRestoreQuestion(self, ret = True):
+		try:
+			if os.path.exists('/media/hdd/images/hdfrestore'):
+				os.unlink('/media/hdd/images/hdfrestore')
+				print "AfterFlashAction: delete /media/hdd/images/hdfrestore"
+		except:
+			print "AfterFlashAction: failed to delete /media/hdd/images/hdfrestore"
+		if ret:
+			print "flashWithRestoreQuestion"
+			title =_("Please select what to do after first booting the image:\n")
+			list = ((_("Automatic restore of all settings and plugins?"), "completerestore"),
+			(_("Don't restore settings and plugins!"), "norestore"))
+			self.session.openWithCallback(self.AfterFlashAction, ChoiceBox,title=title,list=list)
+		else:
+			self.show()
+
+	def AfterFlashAction(self, answer):
+		print "starting AfterFlashAction"
+		norestore = False
+		completerestore = False
+		if answer is not None:
+			if answer[1] == "norestore":
+				print "norestore: no action required"
+			if answer[1] == "completerestore":
+				try:
+					if not os.path.exists('/media/hdd/images'):
+						os.makedirs('/media/hdd/images')
+					print "AfterFlashAction: create /media/hdd/images/hdfrestore"
+					open('/media/hdd/images/hdfrestore','w').close()
+				except:
+					print "AfterFlashAction: failed to create /media/hdd/images/hdfrestore"
+			else:
+				self.show()
+		else:
+			self.show()
 
 	def Start_Flashing(self):
 		print "Start Flashing"
