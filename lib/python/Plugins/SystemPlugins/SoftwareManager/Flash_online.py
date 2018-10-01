@@ -8,6 +8,7 @@ from Components.Task import Task, Job, job_manager, Condition
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 from Components import Harddisk
+from Components.config import config,getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigYesNo, ConfigSelection
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -52,6 +53,16 @@ def Freespace(dev):
 	space = (statdev.f_bavail * statdev.f_frsize) / 1024
 	print "[Flash Online] Free space on %s = %i kilobytes" %(dev, space)
 	return space
+
+def getBackupPath():
+	backuppath = config.plugins.configurationbackup.backuplocation.value
+	if backuppath.endswith('/'):
+		return backuppath + 'backup_' + getImageDistro() + '_'+ getBoxType()
+	else:
+		return backuppath + '/backup_' + getImageDistro() + '_'+ getBoxType()
+
+def getBackupFilename():
+	return "enigma2settingsbackup.tar.gz"
 
 class FlashOnline(Screen):
 	skin = """
@@ -274,6 +285,9 @@ class doFlashImage(Screen):
 		self.imagelist = []
 		self.simulate = False
 		self.Online = online
+		self.backuppath = getBackupPath()
+		self.backupfile = getBackupFilename()
+		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 		self.List = list
 		self.multi=multi
 		self.devrootfs=devrootfs
@@ -441,7 +455,10 @@ class doFlashImage(Screen):
 					if not os.path.exists('/media/hdd/images'):
 						os.makedirs('/media/hdd/images')
 					print "AfterFlashAction: create /media/hdd/images/hdfrestore"
-					open('/media/hdd/images/hdfrestore','w').close()
+					print "AfterFlashAction: filename:",self.fullbackupfilename
+					backupsourcefile = self.fullbackupfilename
+					backupdestfile = '/media/hdd/images/hdfrestore'
+					shutil.copyfile(backupsourcefile, backupdestfile)
 				except:
 					print "AfterFlashAction: failed to create /media/hdd/images/hdfrestore"
 			else:
