@@ -459,7 +459,7 @@ class doFlashImage(Screen):
 					backupsourcefile = self.fullbackupfilename
 					backupdestfile = '/media/hdd/images/hdfrestore'
 					if not os.path.exists(backupsourcefile):
-						self.session.open(MessageBox, _("No settings found. Please backup your settings before!"), type = MessageBox.TYPE_ERROR)
+						print "AfterFlashAction: No settings found."
 					else:
 						shutil.copyfile(backupsourcefile, backupdestfile)
 				except:
