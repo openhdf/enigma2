@@ -30,7 +30,6 @@ class MultiBootStartup(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.title = _("MultiBoot Selector")
-		self.skinName = ["MultiBootStartupDS"]
 		self.emmc = False
 		self.checkEMMC()
 		if self.emmc:
