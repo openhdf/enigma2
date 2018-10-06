@@ -391,7 +391,8 @@ class doFlashImage(Screen):
 			self.session.openWithCallback(self.ImageDownloadCB, JobView, job, backgroundable = False, afterEventChangeable = False)
 		else:
 			if sel == str(flashTmp):
-				self.Start_Flashing()
+				self.flashWithRestoreQuestion()
+				#self.Start_Flashing()
 			else:
 				self.unzip_image(self.filename, flashPath)
 
@@ -425,23 +426,18 @@ class doFlashImage(Screen):
 	def cmdFinished(self):
 		self.prepair_flashtmp(flashPath)
 		self.flashWithRestoreQuestion()
-		self.Start_Flashing()
 
-	def flashWithRestoreQuestion(self, ret = True):
+	def flashWithRestoreQuestion(self):
 		try:
 			if os.path.exists('/media/hdd/images/hdfrestore'):
 				os.unlink('/media/hdd/images/hdfrestore')
 				print "AfterFlashAction: delete /media/hdd/images/hdfrestore"
 		except:
 			print "AfterFlashAction: failed to delete /media/hdd/images/hdfrestore"
-		if ret:
-			print "flashWithRestoreQuestion"
-			title =_("Please select what to do after first booting the image:\n")
-			list = ((_("Automatic restore of all settings and plugins?"), "completerestore"),
-			(_("Don't restore settings and plugins!"), "norestore"))
-			self.session.openWithCallback(self.AfterFlashAction, ChoiceBox,title=title,list=list)
-		else:
-			self.show()
+		title =_("Please select what to do after first booting the image:\n")
+		list = ((_("Automatic restore of all settings and plugins?"), "completerestore"),
+		(_("Don't restore settings and plugins!"), "norestore"))
+		self.session.openWithCallback(self.AfterFlashAction, ChoiceBox,title=title,list=list)
 
 	def AfterFlashAction(self, answer):
 		print "starting AfterFlashAction"
@@ -464,10 +460,7 @@ class doFlashImage(Screen):
 						shutil.copyfile(backupsourcefile, backupdestfile)
 				except:
 					print "AfterFlashAction: failed to create /media/hdd/images/hdfrestore"
-			else:
-				self.show()
-		else:
-			self.show()
+		self.Start_Flashing()
 
 	def Start_Flashing(self):
 		print "Start Flashing"
@@ -577,7 +570,8 @@ class doFlashImage(Screen):
 					if files.endswith(".ubi") or files.endswith(".bin") or files.endswith('.jffs2') or files.endswith('.img'):
 						self.prepair_flashtmp(strPath)
 						break
-				self.Start_Flashing()
+				#self.Start_Flashing()
+				self.flashWithRestoreQuestion()
 			elif binorzip == 1:
 				self.unzip_image(strPath + '/' + filename, flashPath)
 			else:
