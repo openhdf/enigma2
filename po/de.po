@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-09-29 17:01+0200\n"
+"PO-Revision-Date: 2018-10-07 08:25+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -2119,6 +2119,25 @@ msgstr "Einstellungen sichern"
 
 msgid "Set backupfiles to defaults"
 msgstr "Zurücksetzen der Dateien"
+
+msgid "Restore settings backup after restart"
+msgstr "Automatische Wiederherstellung"
+
+msgid "Restore after Restart Enigma"
+msgstr "Wiederherstellung nach Enigma Neustart"
+
+msgid "Please restart Enigma now to restore your settings."
+msgstr "Bitte Enigma neustarten um die Wiederherstellung zu starten."
+
+msgid "Do you want to restore your settings after Enigma restart?"
+msgstr "Sollen die gesicherten Einstellungen nach einem Neustart automatisch wiederhergestellt werden?"
+
+msgid ""
+"\n"
+"Restore automatically your saved settings after Enigma restart."
+msgstr ""
+"\n"
+"Automatisches Wiederherstellen der gesicherten Settings nach einem Enigma Neustart."
 
 msgid ""
 "\n"

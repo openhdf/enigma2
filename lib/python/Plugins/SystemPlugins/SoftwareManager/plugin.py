@@ -44,7 +44,8 @@ from ImageWizard import ImageWizard
 from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
 from SoftwareTools import iSoftwareTools
 import os
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
+import shutil
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getImageDistro
 
 boxtype = getBoxType()
 brandoem = getBrandOEM()
@@ -141,6 +142,16 @@ def load_cache(cache_file):
 	fd.close()
 	return cache_data
 
+def getBackupPath():
+	backuppath = config.plugins.configurationbackup.backuplocation.value
+	if backuppath.endswith('/'):
+		return backuppath + 'backup_' + getImageDistro() + '_'+ getBoxType()
+	else:
+		return backuppath + '/backup_' + getImageDistro() + '_'+ getBoxType()
+
+def getBackupFilename():
+	return "enigma2settingsbackup.tar.gz"
+
 class UpdatePluginMenu(Screen):
 
 	skin = """
@@ -219,6 +230,7 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("backuplocation", _("Select backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
 			self.list.append(("backupfiles", _("Select backup files"),  _("Select files for backup.") + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("resetbackupfiles",_("Set backupfiles to defaults"), _("\nReset selection of files for backup to default." ) + self.oktext, None))
+			self.list.append(("autorestorebackup",_("Restore settings backup after restart"), _("\nRestore automatically your saved settings after Enigma restart." ) + self.oktext, None))
 			if config.usage.setup_level.index >= 2: # expert+
 				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
 			self.list.append(("ipkg-source",_("Select upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext, None))
@@ -406,6 +418,9 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "resetbackupfiles"):
 					restartbox = self.session.openWithCallback(self.coldrestartGUI,MessageBox,_("Set selected files for backup to default \nand restart Enigma now?"), MessageBox.TYPE_YESNO)
 					restartbox.setTitle(_("Restart Enigma"))
+				elif (currentEntry == "autorestorebackup"):
+					restartbox = self.session.openWithCallback(self.autorestorebackup,MessageBox,_("Do you want to restore your settings after Enigma restart?"), MessageBox.TYPE_YESNO)
+					restartbox.setTitle(_("Restore after Restart Enigma"))
 				elif (currentEntry == "advancedrestore"):
 					self.session.open(RestoreMenu, self.skin_path)
 				elif (currentEntry == "ipkg-source"):
@@ -419,6 +434,31 @@ class UpdatePluginMenu(Screen):
 			self.session.open(TryQuitMainloop, 9)
 		else:
 			self.close()
+
+	def autorestorebackup(self, answer):
+		if answer is True:
+			try:
+				if not os.path.exists('/media/hdd/images'):
+					os.makedirs('/media/hdd/images')
+				print "AfterFlashAction: create /media/hdd/images/hdfrestore"
+				print "AfterFlashAction: filename:",self.fullbackupfilename
+				backupsourcefile = self.fullbackupfilename
+				backupdestfile = '/media/hdd/images/hdfrestore'
+				if not os.path.exists(backupsourcefile):
+					print "AfterFlashAction: No settings found."
+				else:
+					shutil.copyfile(backupsourcefile, backupdestfile)
+					self.session.open(MessageBox, _("Please restart Enigma now to restore your settings."), MessageBox.TYPE_INFO, timeout = 10)
+			except:
+				print "AfterFlashAction: failed to create /media/hdd/images/hdfrestore"
+		else:
+			try:
+				if os.path.exists('/media/hdd/images/hdfrestore'):
+					os.unlink('/media/hdd/images/hdfrestore')
+					print "AfterFlashAction: delete /media/hdd/images/hdfrestore"
+			except:
+				print "AfterFlashAction: failed to delete /media/hdd/images/hdfrestore"
+		self.close()
 
 	def backupfiles_choosen(self, ret):
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
@@ -517,6 +557,9 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteSpinnerfilesEntry = None
 		self.updatetypeEntry = None
 		self.epgcacheEntry = None
+		self.backuppath = getBackupPath()
+		self.backupfile = getBackupFilename()
+		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 
 		self.list = [ ]
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
