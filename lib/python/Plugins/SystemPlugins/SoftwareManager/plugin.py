@@ -1729,6 +1729,12 @@ class UpdatePlugin(Screen):
 			self.TraficCheck = True
 			print "create /etc/last-upgrades-git.log with opkg list-upgradable"
 			os.system("opkg list-upgradable > /etc/last-upgrades-git.log")
+			if not os.system("grep 'skins-xionhdf' /etc/last-upgrades-git.log"):
+				print "Xion skin update = Yes"
+				open('/media/hdd/images/xionrestore','w').close()
+			else:
+				print "Xion skin update = No"
+				os.unlink('/media/hdd/images/xionrestore')
 			if os.system("grep 'dvb-module\|kernel-module\|platform-util' /etc/last-upgrades-git.log"):
 				print "Upgrade asap = Yes"
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
