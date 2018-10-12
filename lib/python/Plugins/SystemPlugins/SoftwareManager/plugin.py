@@ -1734,7 +1734,8 @@ class UpdatePlugin(Screen):
 				open('/media/hdd/images/xionrestore','w').close()
 			else:
 				print "Xion skin update = No"
-				os.unlink('/media/hdd/images/xionrestore')
+				if os.path.exists('/media/hdd/images/hdfrestore'):
+					os.unlink('/media/hdd/images/xionrestore')
 			if os.system("grep 'dvb-module\|kernel-module\|platform-util' /etc/last-upgrades-git.log"):
 				print "Upgrade asap = Yes"
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
