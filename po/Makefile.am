@@ -19,9 +19,7 @@ enigma2.pot: enigma2-py.pot enigma2-xml.pot
 	cat $^ | $(MSGUNIQ) --no-wrap --no-location -o $@ -
 
 %.po: enigma2.pot
-	if [ -f $@ ]; then \
-		$(MSGMERGE) --backup=none --no-wrap --no-location -s -U $@ $< && touch $@; \
-	else \
+	if [ ! -f $@ ]; then \
 		$(MSGINIT) -l $@ -o $@ -i $< --no-translator; \
 	fi
 
