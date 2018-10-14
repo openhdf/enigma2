@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-10-14 17:07+0200\n"
+"PO-Revision-Date: 2018-10-14 17:50+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -8320,10 +8320,10 @@ msgstr "Scrollgeschwindigkeit"
 msgid "Scrolling Speed (software render)"
 msgstr "Scrollgeschwindigkeit (Software Renderer)"
 
-msgid "Set the scrolling speed of text on the front display, this is used by software renderer in some skins."
-msgstr "Setzen Sie die Scrollgeschwindigkeit für Text im Display. Wird vom Software-Renderer in einigen Skins genutzt."
+msgid "Set the scrolling speed of text on the front display, this uses a software render use in some skins."
+msgstr "Setzt die Scrollgeschwindigkeit für Text im Display. Wird vom Software-Renderer in einigen Skins genutzt."
 
-msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
+msgid "Set the delay time between repeated loops, this uses a software render use in some skins."
 msgstr "Setzt die Verzögerungszeit zwischen Scrolldurchläufen. Wird vom Software-Renderer in einigen Skins genutzt."
 
 msgid "Scrolling delay (software render)"
@@ -9329,10 +9329,10 @@ msgid "Software manager setup"
 msgstr "Softwareverwaltung Einstellungen"
 
 msgid "Software restore"
-msgstr "Software wiederherstellen"
+msgstr "Software Wiederherstellung"
 
 msgid "Software update"
-msgstr "Software aktualisieren"
+msgstr "Software Aktualisierung"
 
 msgid "Software Update Settings"
 msgstr "Software Update Einstellungen"
@@ -13821,6 +13821,9 @@ msgstr "Konvertieren zu DTS"
 
 msgid "force_dts"
 msgstr "Erzwinge DTS"
+
+msgid "use_hdmi_cacenter"
+msgstr "Nutze HDMI CaCenter"
 
 msgid "convert to multi-channel PCM"
 msgstr "Konvertieren zu Mehrkanalton PCM"
