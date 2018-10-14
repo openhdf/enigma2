@@ -201,15 +201,15 @@ class UpdatePluginMenu(Screen):
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
 		if self.menu == 0:
 			print "building menu entries"
-			self.list.append(("software-update", _("Software update"), _("\nOnline update of your %s %s software.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			self.list.append(("software-restore", _("Software restore"), _("\nRestore your %s %s with a new firmware.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			self.list.append(("backup-image", _("Image Full-Backup"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
+			self.list.append(("software-update", _("Software update"), _("\nOnline update of your %s %s software.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
+			self.list.append(("software-restore", _("Software restore"), _("\nRestore your %s %s with a new firmware.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
+			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
+			self.list.append(("backup-image", _("Image Full-Backup"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			if not boxtype.startswith('az') and not boxtype in ('dm500hd','dm500hdv2','dm900','dm800','dm800se','dm800sev2','dm7020hd','dm7020hdv2','dm8000') and not brandoem.startswith('cube') and not brandoem.startswith('wetek'):
-				self.list.append(("flash-online", _("Image Online-Flash"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local extensions and install them.") + self.oktext, None))
+				self.list.append(("flash-online", _("Image Online-Flash"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
+			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
+			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
+			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local extensions and install them.") + "\n" + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if p.__call__.has_key("SoftwareSupported"):
 					callFnc = p.__call__["SoftwareSupported"](None)
@@ -224,16 +224,16 @@ class UpdatePluginMenu(Screen):
 							menuEntryDescription = _('Extended Software Plugin')
 						self.list.append(('default-plugin', menuEntryName, menuEntryDescription + self.oktext, callFnc))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("advanced", _("Advanced options"), _("\nAdvanced options and settings." ) + self.oktext, None))
+				self.list.append(("advanced", _("Advanced options"), _("\nAdvanced options and settings." ) + "\n" + self.oktext, None))
 		elif self.menu == 1:
-			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date." ) + self.oktext, None))
-			self.list.append(("backuplocation", _("Select backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
-			self.list.append(("backupfiles", _("Select backup files"),  _("Select files for backup.") + self.oktext + "\n\n" + self.infotext, None))
-			self.list.append(("resetbackupfiles",_("Set backupfiles to defaults"), _("\nReset selection of files for backup to default." ) + self.oktext, None))
-			self.list.append(("autorestorebackup",_("Restore settings backup after restart"), _("\nRestore automatically your saved settings after Enigma restart." ) + self.oktext, None))
+			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date." ) + "\n" + self.oktext, None))
+			self.list.append(("backuplocation", _("Select backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + "\n" + self.oktext, None))
+			self.list.append(("backupfiles", _("Select backup files"),  _("\nSelect files for backup.") + "\n" + self.oktext, None))
+			self.list.append(("resetbackupfiles",_("Set backupfiles to defaults"), _("\nReset selection of files for backup to default." ) + "\n" + self.oktext, None))
+			self.list.append(("autorestorebackup",_("Restore settings backup after restart"), _("\nRestore automatically your saved settings after Enigma restart.\nWhen selected, the last backup of the settings for the box is used.\nWhen restarting Enigma2, a restore will be displayed on the screen." ) + "\n" + self.oktext, None))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
-			self.list.append(("ipkg-source",_("Select upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext, None))
+				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + "\n" + self.oktext, None))
+			self.list.append(("ipkg-source",_("Select upgrade source"), _("\nEdit the upgrade source address." ) + "\n" + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if p.__call__.has_key("AdvancedSoftwareSupported"):
 					callFnc = p.__call__["AdvancedSoftwareSupported"](None)
