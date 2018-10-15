@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-10-14 18:23+0200\n"
+"PO-Revision-Date: 2018-10-15 17:38+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -5113,7 +5113,7 @@ msgid "HDMI"
 msgstr "HDMI"
 
 msgid "HDMI CEC"
-msgstr "HDMI-CEC Einstellungen"
+msgstr "HDMI CEC Einstellungen"
 
 msgid "HDMI CEC Setup"
 msgstr "HDMI CEC Einstellungen"
@@ -8765,7 +8765,7 @@ msgid "Settings"
 msgstr "Einstellungen"
 
 msgid "Settings..."
-msgstr "Einstellungen..."
+msgstr "Generelle Einstellungen"
 
 msgid "PluginBrowser filter settings..."
 msgstr "PluginBrowser Filtereinstellungen..."
@@ -9828,7 +9828,7 @@ msgid "TSID"
 msgstr "TSID"
 
 msgid "TUNING"
-msgstr "Bild- und Feineinstellung"
+msgstr "Bild und Feineinstellung"
 
 msgid "TV button mode"
 msgstr "TV Taste bewirkt"
@@ -10171,7 +10171,7 @@ msgid "This option allows you to boost the green tones in the picture."
 msgstr "Diese Option erlaubt es den Grünanteil des Bildes zu verstärken."
 
 msgid "This option allows you to choose from the two channel lists that are available."
-msgstr "Diese Option gibt dir die Wahl zwischen den beiden verfügbaren Senderlisten."
+msgstr "Diese Option gibt dir die Wahl zwischen den beiden verfügbaren Senderlisten. Dafür muss der Skin diese Slim Darstellung unterstützen."
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
 msgstr "Diese Option erlaubt dir zu wählen was der erste Tastendruck in der Senderliste bewirkt ('2' springt zu '2' oder 'A' zuerst)"
@@ -11065,7 +11065,7 @@ msgid "Video fine tuning"
 msgstr "Bild-Feineinstellung"
 
 msgid "Video fine-tuning"
-msgstr "Bild- und Feineinstellung"
+msgstr "Bild und Feineinstellung"
 
 msgid "Testscreens that are helpfull to fine-tune your display"
 msgstr "Testbilder zur besseren Bild- und Feineinstellung"
