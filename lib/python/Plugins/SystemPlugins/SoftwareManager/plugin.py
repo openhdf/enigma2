@@ -1644,6 +1644,9 @@ class UpdatePlugin(Screen):
 
 		self.activityTimer.start(100, False)
 
+		if os.path.exists('/etc/enigma2/xionrestore'):
+			os.unlink('/etc/enigma2/xionrestore')
+
 	def CheckDate(self):
 		# Check if image is not to old for update (max 60days)
 		self.CheckDateDone = True
@@ -1731,18 +1734,11 @@ class UpdatePlugin(Screen):
 			os.system("opkg list-upgradable > /etc/last-upgrades-git.log")
 			if not os.system("grep 'skins-xionhdf' /etc/last-upgrades-git.log"):
 				print "Xion skin update = Yes"
-				if not os.path.exists("/media/hdd"):
-					print "no hdd present to save xionrestore file"
-				else:
-					if not os.path.exists("/media/hdd/images"):
-						os.makedirs('/media/hdd/images')
-						open('/media/hdd/images/xionrestore','w').close()
-					else:
-						open('/media/hdd/images/xionrestore','w').close()
+				open('/etc/enigma2/xionrestore','w').close()
 			else:
 				print "Xion skin update = No"
-				if os.path.exists('/media/hdd/images/hdfrestore'):
-					os.unlink('/media/hdd/images/xionrestore')
+				if os.path.exists('/etc/enigma2/xionrestore'):
+					os.unlink('/etc/enigma2/xionrestore')
 			if os.system("grep 'oe-alliance-drivers\|dvb-module\|kernel-module\|platform-util' /etc/last-upgrades-git.log"):
 				print "Upgrade asap = Yes"
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
