@@ -11,8 +11,8 @@ if ! grep ^config.misc.firstrun=false /etc/enigma2/settings >/dev/null; then
 fi
 
 if [ -e /proc/stb/info/boxtype ]; then
-	stbcheck=`cat /proc/stb/info/boxtype | cut -c1-6`
-	if [ $stbcheck == "sf8008" ]; then
+	stbcheck=`cat /proc/stb/info/boxtype`
+	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ]; then
 		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
 		if [ 0 == $count ];then
 			libreader 720P_50
@@ -50,16 +50,16 @@ chmod -R 755 /usr/scripts
 # check for settings files
 [ -f @sysconfdir@/enigma2/settings ] || cp @datadir@/enigma2/defaults/* @sysconfdir@/enigma2/
 
-# check for sundtek tuner helper lib
+#check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
-	LIBS="/opt/lib/libmediaclient.so /usr/lib/libopen.so.0.0.0"
+	LIBS="/opt/lib/libmediaclient.so @libdir@/libopen.so.0.0.0"
 else
-	LIBS="/usr/lib/libopen.so.0.0.0"
+	LIBS="@libdir@/libopen.so.0.0.0"
 fi
 
 #check for specific pagecache helper lib
-if [ -e /usr/lib/libpagecache.so ]; then
-	LIBS="$LIBS /usr/lib/libpagecache.so"
+if [ -e @libdir@/libpagecache.so ]; then
+	LIBS="$LIBS @libdir@/libpagecache.so"
 fi
 
 #check for receiver specific passthrough helper lib
@@ -132,11 +132,8 @@ if [ "$ret" -ne "1" ]; then
 		if [ $stbcheck == "u5" ]; then
 			killall -9 showiframe; sleep 5
 		fi
-		if [ $stbcheck == "cc" ]; then
-			killall -9 libreader; sleep 5
-		fi
-		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-6`
-		if [ $stbcheck == "sf8008" ]; then
+		stbcheck=`cat /proc/stb/info/boxtype`
+		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ] ; then
 			killall -9 libreader; sleep 5
 		fi
 	fi
@@ -172,17 +169,17 @@ case $ret in
 		/sbin/reboot
 		;;
 	42)
-		python /usr/lib/enigma2/python/upgrade.pyo
+		python @libdir@/enigma2/python/upgrade.pyo
 		;;
 	43)
 		init 1
 		;;
 	44)
 		# little hack but it will be fixed soon in drivers
-		/usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear
-		/usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi
+		@libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/bin/fbclear
+		/usr/bin/showiframe @libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/wait.mvi
 		echo fpupload >/proc/vfd && sleep 3 && dd bs=256k if=/tmp/micom.bin of=/dev/mcu
-		/usr/bin/showiframe /usr/lib/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi
+		/usr/bin/showiframe @libdir@/enigma2/python/Plugins/SystemPlugins/MICOMUpgrade/reboot.mvi
 		# Wait forever for the user to power off
 		while(true) ; do sleep 60 ; done
 		;;
