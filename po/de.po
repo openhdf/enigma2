@@ -5962,7 +5962,7 @@ msgid "Log results to harddisk"
 msgstr "Ergebnisse auf die Festplatte schreiben"
 
 msgid "LogManager"
-msgstr "Log-Verwaltung"
+msgstr "Log Verwaltung"
 
 msgid "Logs"
 msgstr "Logs Einstellungen"
@@ -5971,7 +5971,7 @@ msgid "Logs location"
 msgstr "Speicherort für Logs"
 
 msgid "Logs manager"
-msgstr "Log-Verwaltung"
+msgstr "Log Verwaltung"
 
 msgid "Logs older then the set no of days will be deleted."
 msgstr "Log Datei die älter sind als diese Anzahl von Tagen werden gelöscht."
