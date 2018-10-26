@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-10-25 01:34+0300\n"
+"PO-Revision-Date: 2018-10-26 13:53+0300\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
 "Language: tr\n"
@@ -19,16 +19,16 @@ msgid "Welcome..."
 msgstr "Hoşgeldiniz..."
 
 msgid "Routing request"
-msgstr ""
+msgstr "Yönlendirme isteği"
 
 msgid "Put from standby to deep standby"
-msgstr ""
+msgstr "Beklemeden derin beklemeye alın"
 
 msgid "If the receiver in standby, then switch to deep standby?"
-msgstr ""
+msgstr "Alıcı bekleme modundaysa, daha sonra derin beklemeye geçin?"
 
 msgid "Check state from TV"
-msgstr ""
+msgstr "TV'den durumu kontrol et"
 
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible "
@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 
 msgid "Wait for timesync at startup"
-msgstr ""
+msgstr "Başlangıçta zaman senkronizasyonunu bekle"
 
 msgid ""
 "If the 'deep standby workaround' is enabled, it waits until the system time is "
@@ -47,13 +47,13 @@ msgid ""
 msgstr ""
 
 msgid "TV was not in standby mode at startup"
-msgstr ""
+msgstr "TV başlangıçta bekleme modunda değil"
 
 msgid "Even if TV has another input active?"
 msgstr ""
 
 msgid "Slowing down for the send interval"
-msgstr ""
+msgstr "Gönderme aralığı için aşağı çekiliyor"
 
 msgid "Repeat the standby commands?"
 msgstr ""
@@ -64,7 +64,7 @@ msgstr ""
 msgid ""
 "The time is multiplied by the repeat counter and added to the minimum send "
 "interval."
-msgstr ""
+msgstr "Zaman tekrar sayacı ile çarpılır ve minimum gönderme aralığına eklenir."
 
 msgid "Even if a 'zap' recording timer starting?"
 msgstr ""
@@ -84,7 +84,7 @@ msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
 msgid "Check power and input state from TV"
-msgstr ""
+msgstr "TV'den güç ve giriş durumunu kontrol edin"
 
 msgid "TV was already on powered"
 msgstr ""
@@ -102,19 +102,19 @@ msgid "Start a 'wakeup' power timer"
 msgstr ""
 
 msgid "Try to send more messages if not all commands are executed.\n"
-msgstr ""
+msgstr "Tüm komutlar yürütülemiyorsa daha fazla mesaj göndermeye çalışın.\n"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr ""
 
 msgid "If the power state is reached, the repeated messages are stopped."
-msgstr ""
+msgstr "Güç durumuna ulaşıldığında, tekrarlanan mesajlar durdurulur."
 
 msgid "Send repeated standby and wakeup messages"
 msgstr ""
 
 msgid "Check power state from TV"
-msgstr ""
+msgstr "TV'den güç durumunu kontrol et"
 
 msgid "Handle input from TV"
 msgstr ""
@@ -144,49 +144,49 @@ msgid "BLINK"
 msgstr ""
 
 msgid "LED 0: Box is on"
-msgstr ""
+msgstr "LED 0: Alıcı açık"
 
 msgid "LED 0: Box is on and recording"
-msgstr ""
+msgstr "LED 0: Alıcı açık ve kayıt yapıyor"
 
 msgid "LED 0: Box is standby"
-msgstr ""
+msgstr "LED 0: Alıcı beklemede"
 
 msgid "LED 0: Box is standby and recording"
-msgstr ""
+msgstr "LED 0: Alıcı bekleme ve kayıtta"
 
 msgid "LED 1: Box is on"
-msgstr ""
+msgstr "LED 1: Alıcı açık"
 
 msgid "LED 1: Box is on and recording"
-msgstr ""
+msgstr "LED 1: Alıcı açık ve kayıt yapıyor"
 
 msgid "LED 1: Box is standby"
-msgstr ""
+msgstr "LED 1: Alıcı beklemede"
 
 msgid "LED 1: Box is standby and recording"
-msgstr ""
+msgstr "LED 1: Alıcı bekleme ve kayıtta"
 
 msgid "Config Menu..."
-msgstr ""
+msgstr "Yapılandırma Menüsü ..."
 
 msgid "Start Update every "
-msgstr ""
+msgstr "Her şeyi güncellemeye başla"
 
 msgid "An automated refresh will start after this duration."
-msgstr ""
+msgstr "Bu süreden sonra otomatik yenileme başlayacaktır."
 
 msgid "An automated refresh will start at this time."
-msgstr ""
+msgstr "Otomatik yenileme, şu anda başlayacaktır."
 
 msgid "Choose the type of AutoUpdate."
-msgstr ""
+msgstr "Otomatik Güncelleme türünü seçin."
 
 msgid "Start Update on enigma2 start?"
-msgstr ""
+msgstr "Enigma2 başlangıcında Güncellemeyi Başlat?"
 
 msgid "Periodic Timer"
-msgstr ""
+msgstr "Periyodik Zamanlayıcı"
 
 msgid "Just on Startup"
 msgstr ""
@@ -392,7 +392,7 @@ msgid "HDMI-IN Recording settings"
 msgstr ""
 
 msgid "Frame rate"
-msgstr ""
+msgstr "Kare hızı"
 
 msgid "Interlaced"
 msgstr ""
@@ -401,12 +401,14 @@ msgid ""
 "The bitrate of the video encoder. Larger value improves quality and increases "
 "file size."
 msgstr ""
+"Video kodlayıcının bit hızı. Daha büyük değer kaliteyi artırır ve dosya "
+"boyutunu artırır."
 
 msgid "The width of the picture. The input will be scaled to match this value."
-msgstr ""
+msgstr "Resmin genişliği. Girdi, bu değere uyacak şekilde ölçeklendirilecektir."
 
 msgid "The height of the picture. The input will be scaled to match this value."
-msgstr ""
+msgstr "Resmin yüksekliği. Girdi, bu değere uyacak şekilde ölçeklendirilecektir."
 
 msgid ""
 "The frame rate of the recording. Ideally, this will match the frame rate of "
@@ -418,9 +420,11 @@ msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
 "specific need."
 msgstr ""
+"Çoğu durumda bu, Hayır olarak ayarlanmalıdır. Sadece çok özel bir "
+"gereksiniminiz varsa etkinleştirin."
 
 msgid "The aspect ratio of the recording."
-msgstr ""
+msgstr "Kaydın en boy oranı."
 
 msgid "Zap to"
 msgstr ""
@@ -483,7 +487,7 @@ msgid "Use Harddisk Hardware Standby Timer"
 msgstr ""
 
 msgid "Option to enable the Hardware Standby Timer"
-msgstr ""
+msgstr "Donanım Bekleme Zamanlayıcısı'nı etkinleştirmek için seçenek"
 
 msgid ""
 "Configure the hard disk drive to go to standby after the specified idle time "
@@ -528,6 +532,9 @@ msgid ""
 "An Input/output error usually indicates a corrupted filesystem! Please check "
 "the filesystem of your timeshift-device!"
 msgstr ""
+"\n"
+"Bir Giriş / çıkış hatası genellikle bozuk bir dosya sistemini gösterir! Lütfen "
+"timeshift-cihazınızın dosya sistemini kontrol edin!"
 
 msgid ""
 "\n"
@@ -585,7 +592,7 @@ msgid "Please select what to do after first booting the image:\n"
 msgstr ""
 
 msgid "Automatic restore of all settings and plugins?"
-msgstr ""
+msgstr "Tüm ayarların ve eklentilerin otomatik olarak geri yüklensin mi?"
 
 msgid "Don't restore settings and plugins!"
 msgstr ""
@@ -602,7 +609,7 @@ msgstr ""
 " daha yüksek)"
 
 msgid " (higher than rotor any auto)"
-msgstr "(erhangi bir rotordan daha yüksek otomatik)"
+msgstr "(herhangi bir rotordan daha yüksek otomatik)"
 
 msgid " (lower than any auto)"
 msgstr " herhangi bir otomatikden daha düşük)"
@@ -2183,6 +2190,7 @@ msgstr ""
 
 msgid "Do you want to restore your settings after Enigma restart?"
 msgstr ""
+"Enigma yeniden başladıktan sonra ayarlarınızı geri yüklemek ister misiniz?"
 
 msgid ""
 "\n"
@@ -2190,6 +2198,11 @@ msgid ""
 "When selected, the last backup of the settings for the box is used.\n"
 "When restarting Enigma2, a restore will be displayed on the screen."
 msgstr ""
+"\n"
+"Enigma yeniden başlatıldıktan sonra kayıtlı ayarlarınızı otomatik olarak geri "
+"yükleyin.\n"
+"Seçildiğinde, alıcının ayarlarının son yedeği kullanılır.\n"
+"Enigma2 yeniden başlatıldığında, ekranda bir geri yükleme görüntülenecektir."
 
 msgid ""
 "\n"
@@ -2706,7 +2719,7 @@ msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
 msgid "Disable Enigma2 restart on crash"
-msgstr ""
+msgstr "Enigma2 kilitlenme durumunda yeniden başlatmayı devre dışı bırak"
 
 msgid "Disable Enigma2 automatically restarts on crash"
 msgstr ""
@@ -5449,7 +5462,7 @@ msgid "Hours Mins"
 msgstr "Saat Dak."
 
 msgid "Hours Mins Secs"
-msgstr "Saat Dak. San."
+msgstr "Saat Dak San"
 
 msgid "How many minutes do you want to record?"
 msgstr "Kaç dakikalık kayıt başlatmak istiyorsunuz?"
@@ -10430,6 +10443,8 @@ msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
 msgstr ""
+"Seçilen bölümde yeterli alan olmayabilir.\n"
+"Gerçekten devam etmek istiyor musun?"
 
 msgid "This %s %s cannot decode %s streams!"
 msgstr "Bu %s %s, %s akışlarını çözemez!"
@@ -10516,6 +10531,8 @@ msgstr "Bu seçenek menülerdeki sıralamanın kapatılmasını sağlar."
 msgid ""
 "This option allows you to disable sorting of the option in setting screen's"
 msgstr ""
+"Bu seçenek, ayar ekranlarında seçeneğin sıralamasını devre dışı bırakmanızı "
+"sağlar."
 
 msgid "This option allows you to disable sorting of the plugin browser."
 msgstr ""
@@ -10993,10 +11010,10 @@ msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Yeni paket listesi indiriliyor. Lütfen bekleyin..."
 
 msgid "Trying to download a new updatelist. Please wait..."
-msgstr ""
+msgstr "Yeni bir güncelleme listesi indirmeye çalışıyor. Lütfen bekle..."
 
 msgid "There was an error downloading the updatelist. Please try again."
-msgstr ""
+msgstr "Güncelleme listesi indirilirken bir hata oluştu. Lütfen tekrar deneyin."
 
 msgid "Tue"
 msgstr "Sal"
@@ -11026,6 +11043,8 @@ msgid ""
 "\n"
 "<This tuner is configured automatically>"
 msgstr ""
+"\n"
+"<Bu tuner otomatik olarak yapılandırıldı>"
 
 msgid "Tuner settings"
 msgstr "Tuner ayarları"
@@ -11406,6 +11425,9 @@ msgid ""
 "subtitles will not be used. Enable this option to allow these subtitles to be "
 "used."
 msgstr ""
+"Genellikle altyazı dili ses dili ile aynı olduğunda altyazılar "
+"kullanılmayacaktır. Bu altyazıların kullanılmasına izin vermek için bu "
+"seçeneği etkinleştirin."
 
 msgid "VCR scart"
 msgstr "VCR scart"
@@ -11478,7 +11500,7 @@ msgid "Allow unsupported modes"
 msgstr "Desteklenmeyen modlara izin ver"
 
 msgid "This option allows you to use all HDMI Modes"
-msgstr ""
+msgstr "Bu seçenek tüm HDMI Modlarını kullanmanıza izin verir"
 
 msgid ""
 "Use automatic mode detection.\n"
@@ -11491,25 +11513,29 @@ msgstr ""
 "dışı bırakın."
 
 msgid "Default Modes Selected."
-msgstr ""
+msgstr "Varsayılan Modlar Seçildi."
 
 msgid "Auto Modes Selected."
-msgstr ""
+msgstr "Otomatik Modlar Seçildi."
 
 msgid "Video output"
 msgstr "Video çıkışı"
 
 msgid "This option allows you can force the HLG Modes for UHD"
-msgstr ""
+msgstr "Bu seçenek, UHD için HLG Modlarını zorlayabilmenizi sağlar"
 
 msgid "This option allows you can force the HDR10 Modes for UHD"
-msgstr ""
+msgstr "Bu seçenek UHD için HDR10 Modlarını zorlayabilmenizi sağlar"
 
 msgid "This option allows you can enable or disable the 12 Bit Color Mode"
 msgstr ""
+"Bu seçenek, 12 Bit Renk Modunu etkinleştirmenizi veya devre dışı bırakmanızı "
+"sağlar."
 
 msgid "This option allows you can enable or disable the 10 Bit Color Mode"
 msgstr ""
+"Bu seçenek 10 Bit Renk Modunu etkinleştirmenizi veya devre dışı bırakmanızı "
+"sağlar."
 
 msgid "HLG Support"
 msgstr "HLG Desteği"
@@ -11695,10 +11721,10 @@ msgid "Key Events"
 msgstr ""
 
 msgid "Select path for logfile"
-msgstr ""
+msgstr "Günlük dosyası için yol seçin"
 
 msgid "Select directory for logfile"
-msgstr ""
+msgstr "Günlük dosyası için dizin seçin"
 
 msgid "Select Location"
 msgstr "Konum Seçin"
@@ -12082,6 +12108,8 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
+"Yedekleme eklentileri bulundu\n"
+"şimdi kurmak ister misin?"
 
 #: Backup/restore
 msgid "Install Plugins"
@@ -12637,10 +12665,10 @@ msgid "add to parental protection"
 msgstr "ebeveyn korumasına ekle"
 
 msgid "add bouquet to parental protection"
-msgstr ""
+msgstr "ebeveyn korumaya buket ekle"
 
 msgid "remove bouquet from parental protection"
-msgstr ""
+msgstr "ebeveyn korumadan buket kaldır"
 
 msgid "address:"
 msgstr "adres:"
@@ -14122,7 +14150,7 @@ msgid ""
 msgstr ""
 
 msgid "No IPTV media server found"
-msgstr ""
+msgstr "IPTV medya sunucusu bulunamadı"
 
 msgid ""
 "\n"
@@ -14955,13 +14983,13 @@ msgid "Buffer size"
 msgstr "Tampon boyutu"
 
 msgid "Buffer duration"
-msgstr ""
+msgstr "Tampon süresi"
 
 msgid "Auto turn on subtitles"
 msgstr ""
 
 msgid "Auto select stream"
-msgstr ""
+msgstr "Otomatik akış seç"
 
 msgid "Connection speed"
 msgstr "Bağlantı hızı"
@@ -14973,7 +15001,7 @@ msgid "Enable cut file support for audio files"
 msgstr ""
 
 msgid "Enable chapter support for video files"
-msgstr ""
+msgstr "Video dosyaları için bölüm desteğini etkinleştir"
 
 msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
 msgstr ""
