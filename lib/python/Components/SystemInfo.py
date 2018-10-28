@@ -2,7 +2,7 @@ from os import path
 from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
-from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getDisplayType, getHaveRCA, getHaveDVI, getHaveYUV, getHaveSCART, getHaveAVJACK
+from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getDisplayType, getHaveRCA, getHaveDVI, getHaveYUV, getHaveSCART, getHaveAVJACK, getHaveSCARTYUV, getHaveHDMI
 
 SystemInfo = { }
 
@@ -90,4 +90,7 @@ SystemInfo["HDMIin"] = getMachineBuild() in ('inihdp', 'hd2400', 'et10000', 'dm7
 SystemInfo["HaveRCA"] = getHaveRCA() in ('True')
 SystemInfo["HaveDVI"] = getHaveDVI() in ('True')
 SystemInfo["HaveAVJACK"] = getHaveAVJACK() in ('True')
-SystemInfo["HAVE_SCART"] = getHaveSCART() in ('True')
+SystemInfo["HaveSCART"] = getHaveSCART() in ('True')
+SystemInfo["HaveSCARTYUV"] = getHaveSCARTYUV() in ('True')
+SystemInfo["HaveYUV"] = getHaveYUV() in ('True')
+SystemInfo["HaveHDMI"] = getHaveHDMI() in ('True')
