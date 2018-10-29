@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-10-21 07:58+0200\n"
+"PO-Revision-Date: 2018-10-30 05:46+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1912,7 +1912,27 @@ msgstr ""
 "\n"
 "FullBackup deiner laufenden %s %s auf HDD oder USB."
 
-#
+msgid "Back-up Tool for a %s\n"
+msgstr "Back-up Tool für %s\n"
+
+msgid "Please be patient, a backup will now be made,\n"
+msgstr "Bitte etwas Geduld, das Backup wird erstellt,\n"
+
+msgid "because of the used filesystem the back-up\n"
+msgstr "abhängig vom System dauert das Backup\n"
+
+msgid "will take about 30 minutes for this system\n"
+msgstr "ca. 30 Minuten\n"
+
+msgid "will take about 1-5 minutes for this system\n"
+msgstr "zwischen 1-5 Minuten\n"
+
+msgid "will take about 2-10 minutes for this system\n"
+msgstr "zwischen 2-10 Minuten\n"
+
+msgid "this will take between 2 and 9 minutes\n"
+msgstr "zwischen 2-9 Minuten\n"
+
 msgid ""
 "Are you sure you want to restore\n"
 "the following backup:\n"
