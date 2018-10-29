@@ -25,7 +25,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDis
 VERSION = "Version 6.3 openHDF"
 
 HaveGZkernel = True
-if getMachineBuild() in ('sf8008','cc1','dags72604', 'u51','u52','u53','h9','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s'):
+if getMachineBuild() in ('ustym4kpro','hd60','i55plus','osmio4k','sf8008','cc1','dags72604', 'u51','u52','u53','h9','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s'):
 	HaveGZkernel = False
 
 isDreamboxXZ = False
@@ -297,8 +297,8 @@ class ImageBackup(Screen):
 		self.EXTRAROOT = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
 		self.EXTRAOLD = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.MODEL)
 		self.message = "echo -e '\n"
-		self.message += (_("Back-up Tool for a %s\n" %self.SHOWNAME)).upper()
-		self.message += VERSION + '\n'
+		self.message += (_("Back-up Tool for a %s\n" %self.SHOWNAME))
+		self.message += '\n' + VERSION + '\n'
 		self.message += "_________________________________________________\n\n"
 		self.message += _("Please be patient, a backup will now be made,\n")
 		if self.ROOTFSTYPE == "ubi":
@@ -420,7 +420,8 @@ class ImageBackup(Screen):
 				cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
 
 			else:
-				cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
+				#cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
+				cmdlist.append("dd if=/dev/%s %s/vmlinux.gz" % (self.MTDKERNEL ,self.WORKDIR))
 			cmdlist.append('echo " "')
 
 			if HaveGZkernel:
