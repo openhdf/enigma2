@@ -490,15 +490,17 @@
 		<widget source="session.CurrentService" position="3,3" transparent="1" zPosition="8" size="160,160" render="Label" font="Meteo; 125" halign="center" valign="center" foregroundColor="XionMeteoFont" backgroundColor="XionBackground" noWrap="1">
 			<convert  type="XionHDFWeather">Day_0,MeteoFont</convert>
 		</widget>
-		<widget backgroundColor="XionBackground" font="FdLcD; 40" foregroundColor="XionFont1" render="Label" position="10,170" size="388,58" source="session.CurrentService" halign="center" transparent="1" zPosition="8" valign="center">
+		<widget backgroundColor="XionBackground" font="FdLcD; 35" foregroundColor="XionFont1" render="Label" position="10,140" size="388,128" source="session.CurrentService" halign="center" transparent="1" zPosition="8" valign="center">
 			<convert type="XionHDFWeather">Day_0,Description</convert>
 		</widget>
-		<widget noWrap="1" backgroundColor="XionBackground" font="FdLcD; 75" foregroundColor="XionFont1" render="Label" position="268,10" size="120,100" source="session.CurrentService" zPosition="8" halign="left" transparent="1">
-			<convert type="XionHDFWeather">Day_0,FeelTemp</convert>
+		<widget noWrap="1" backgroundColor="XionBackground" font="FdLcD; 75" foregroundColor="XionFont1" render="Label" position="268,10" size="80,80" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
+			<convert type="XionHDFWeather">Day_0,DayTemp1</convert>
 		</widget>
-		<widget noWrap="1" backgroundColor="XionBackground" font="FdLcD; 75" foregroundColor="XionFont1" render="Label" position="268,85" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
-			<convert type="XionHDFWeather">Day_0,MinMaxTemp</convert>
+		<eLabel text="°" font="FdLcD; 75" position="350,10" size="30,80" backgroundColor="XionBackground" foregroundColor="XionFont1" zPosition="8" />
+		<widget noWrap="1" backgroundColor="XionBackground" font="FdLcD; 75" foregroundColor="XionFont1" render="Label" position="268,85" size="80,80" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
+			<convert type="XionHDFWeather">Day_0,MaxTemp1</convert>
 		</widget>
+		<eLabel text="°" font="FdLcD; 75" position="350,85" size="30,80" backgroundColor="XionBackground" foregroundColor="XionFont1" zPosition="8" />
 	</screen>
 	<include filename="~/skin_display.xml" />
 	<include filename="~/skin_common.xml" />
