@@ -2,7 +2,7 @@ from os import path
 from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
-from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getDisplayType, getHaveRCA, getHaveDVI, getHaveYUV, getHaveSCART, getHaveAVJACK
+from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getDisplayType, getHaveRCA, getHaveDVI, getHaveYUV, getHaveSCART, getHaveAVJACK, getHaveSCARTYUV, getHaveHDMI
 
 SystemInfo = { }
 
@@ -69,7 +69,8 @@ SystemInfo["HaveMultiBootHD"] = fileCheck("/boot/STARTUP") and getMachineBuild()
 SystemInfo["HaveMultiBootXC"] = fileCheck("/boot/cmdline.txt")
 SystemInfo["HaveMultiBootGB"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('gb7252')
 SystemInfo["HaveMultiBootCY"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('8100s')
-SystemInfo["HaveMultiBootDS"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('cc1','sf8008') and fileCheck("/dev/sda")
+SystemInfo["HaveMultiBootOS"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('osmio4k')
+SystemInfo["HaveMultiBootDS"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('cc1','sf8008','ustym4kpro') and fileCheck("/dev/sda")
 SystemInfo["need_dsw"] = getBoxType() not in ('osminiplus','osmega')
 SystemInfo["HaveCISSL"] = fileCheck("/etc/ssl/certs/customer.pem") and fileCheck("/etc/ssl/certs/device.pem")
 SystemInfo["HasMultichannelPCM"] = fileCheck("/proc/stb/audio/multichannel_pcm")
@@ -89,4 +90,7 @@ SystemInfo["HDMIin"] = getMachineBuild() in ('inihdp', 'hd2400', 'et10000', 'dm7
 SystemInfo["HaveRCA"] = getHaveRCA() in ('True')
 SystemInfo["HaveDVI"] = getHaveDVI() in ('True')
 SystemInfo["HaveAVJACK"] = getHaveAVJACK() in ('True')
-SystemInfo["HAVE_SCART"] = getHaveSCART() in ('True')
+SystemInfo["HaveSCART"] = getHaveSCART() in ('True')
+SystemInfo["HaveSCARTYUV"] = getHaveSCARTYUV() in ('True')
+SystemInfo["HaveYUV"] = getHaveYUV() in ('True')
+SystemInfo["HaveHDMI"] = getHaveHDMI() in ('True')
