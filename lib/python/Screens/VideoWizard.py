@@ -17,10 +17,12 @@ config.misc.showtestcard = ConfigBoolean(default = False)
 has_rca = False
 has_dvi = False
 has_jack = False
+has_scart = False
 
 has_rca = SystemInfo["HaveRCA"]
 has_dvi = SystemInfo["HaveDVI"]
 has_jack = SystemInfo["HaveAVJACK"]
+has_scart = SystemInfo["HaveSCART"]
 
 class VideoWizardSummary(WizardSummary):
 	skin = (
@@ -109,9 +111,9 @@ class VideoWizard(WizardLanguage, Rc):
 				descr = port
 				if descr == 'HDMI' and has_dvi:
 					descr = 'DVI'
-				if descr == 'Scart' and has_rca:
+				if descr == 'Scart' and has_rca and not has_scart:
 					descr = 'RCA'
-				if descr == 'Scart' and has_jack:
+				if descr == 'Scart' and has_jack and not has_scart:
 					descr = 'Jack'
 				if port != "DVI-PC":
 					list.append((descr,port))
