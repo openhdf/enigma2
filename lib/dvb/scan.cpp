@@ -111,7 +111,7 @@ int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTr
 	case 32: // NSS 806 (40.5W) 4059R, 3774L
 		ret = orbital_position != 3195 || tsid != 21;
 		break;
-	case 126:  // 11221H and 11387H on Utelsat 7.0E with same ONID/TSID (126/40700) and 11304H, 11262H (126/30300)
+	case 126:  // 11221H and 11387H on Utelsat 7.0E with same ONID/TSID (126/40700) and 11304H, 11262H (126/30300) 
 		ret = orbital_position != 70 || (tsid != 40700 && tsid !=30300);
 		break;
 	case 3622:  // 11881H and 12284V on Badr 26.0E with same ONID/TSID (3622/100)
@@ -652,7 +652,7 @@ void eDVBScan::addLcnToDB(eDVBNamespace ns, eOriginalNetworkID onid, eTransportS
 		sprintf(row, "%08x:%04x:%04x:%04x:%05d:%08d\n", ns.get(), onid.get(), tsid.get(), sid.get(), lcn, signal);
 		fseek(m_lcn_file, 0, SEEK_END);
 		size = ftell(m_lcn_file);
-
+		
 		for (int i = 0; i < size / 39; i++)
 		{
 			char tmp[40];
@@ -666,7 +666,7 @@ void eDVBScan::addLcnToDB(eDVBNamespace ns, eOriginalNetworkID onid, eTransportS
 				break;
 			}
 		}
-
+			
 		if (!added)
 		{
 			fseek(m_lcn_file, 0, SEEK_END);
@@ -781,7 +781,7 @@ int eDVBScan::sameChannel(iDVBFrontendParameters *ch1, iDVBFrontendParameters *c
 	int diff;
 	if (ch1->calculateDifference(ch2, diff, exact))
 		return 0;
-	if (diff < 2000) // more than 2mhz difference?
+	if (diff < 4000) // more than 4mhz difference?
 		return 1;
 	return 0;
 }
@@ -885,11 +885,11 @@ void eDVBScan::channelDone()
 						eDVBFrontendParametersTerrestrial terr;
 						terr.set(d);
 						feparm->setDVBT(terr);
-
+						
 						unsigned long hash=0;
 						feparm->getHash(hash);
 						ns = buildNamespace(onid, tsid, hash);
-
+						
 						addChannelToScan(feparm);
 						break;
 					}
@@ -1005,16 +1005,16 @@ void eDVBScan::channelDone()
 						{
 							if (system != iDVBFrontend::feTerrestrial)
 								break; // when current locked transponder is no terrestrial transponder ignore this descriptor
-
+								
 							if (ns.get() == 0)
 								break; // invalid namespace
-
+								
 							int signal = 0;
 							ePtr<iDVBFrontend> fe;
-
+							
 							if (!m_channel->getFrontend(fe))
 								signal = fe->readFrontendData(iFrontendInformation_ENUMS::signalQuality);
-
+							
 							LogicalChannelDescriptor &d = (LogicalChannelDescriptor&)**desc;
 							for (LogicalChannelListConstIterator it = d.getChannelList()->begin(); it != d.getChannelList()->end(); it++)
 							{
@@ -1262,7 +1262,7 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 
 	if (m_lcn_file)
 		fclose(m_lcn_file);
-
+		
 	if (m_flags & scanRemoveServices)
 	{
 		m_lcn_file = fopen(eEnv::resolve("${sysconfdir}/enigma2/lcndb").c_str(), "w");
