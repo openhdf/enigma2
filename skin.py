@@ -21,8 +21,8 @@ if not os.path.exists("/usr/share/enigma2/skin_text.xml"):
 	config.vfd.show = ConfigNothing()
 
 colorNames = {}
-switchPixmap = {}
 colorNamesHuman = {}
+switchPixmap = {}
 # Predefined fonts, typically used in built-in screens and for components like
 # the movie list and so.
 fonts = {
@@ -743,7 +743,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				raise SkinError('[Skin] pixmap needs filename attribute')
 			resolved_png = resolveFilename(SCOPE_ACTIVE_SKIN, filename, path_prefix=path_prefix)
 			if fileExists(resolved_png):
-				switchPixmap[name] = resolved_png
+				switchPixmap[name] = LoadPixmap(resolved_png, cached=True)
 			else:
 				raise SkinError('[Skin] switchpixmap pixmap filename="%s" (%s) not found' % (filename, resolved_png))
 
