@@ -92,8 +92,11 @@ def setLCDModeMinitTV(value):
 class Standby2(Screen):
 	def Power(self):
 		print "[Standby] leave standby"
-		if (getBrandOEM() in ('fulan','clap','dinobot') or getBoxType() in ('sf8008')):
-			open("/proc/stb/hdmi/output", "w").write("on")
+		if (getBrandOEM() in ('fulan','clap','dinobot') or getBoxType() in ('sf8008','ustym4kpro')):
+			try:
+				open("/proc/stb/hdmi/output", "w").write("on")
+			except:
+				pass
 		#set input to encoder
 		self.avswitch.setInput("ENCODER")
 		#restart last played service
@@ -206,8 +209,11 @@ class Standby2(Screen):
 		else:
 			self.avswitch.setInput("AUX")
 
-		if (getBrandOEM() in ('fulan','clap') or getBoxType() in ('sf8008')):
-			open("/proc/stb/hdmi/output", "w").write("off")
+		if (getBrandOEM() in ('fulan','clap','dinobot') or getBoxType() in ('sf8008','ustym4kpro')):
+			try:
+				open("/proc/stb/hdmi/output", "w").write("off")
+			except:
+				pass
 
 		if int(config.usage.hdd_standby_in_standby.value) != -1: # HDD standby timer value (box in standby) / -1 = same as when box is active
 			for hdd in harddiskmanager.HDDList():
