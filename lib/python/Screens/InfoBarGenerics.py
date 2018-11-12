@@ -4660,56 +4660,42 @@ class InfoBarPiP:
 				self.session.pip.servicePath = currentServicePath
 
 	def showPiP(self):
-		self.lastPiPServiceTimeoutTimer.stop()
-		slist = self.servicelist
-		if self.session.pipshown:
-			if slist and slist.dopipzap:
-				self.togglePipzap()
-			if self.session.pipshown:
-				lastPiPServiceTimeout = int(config.usage.pip_last_service_timeout.value)
-				if lastPiPServiceTimeout >= 0:
-					self.lastPiPService = self.session.pip.getCurrentServiceReference()
-					if lastPiPServiceTimeout:
-						self.lastPiPServiceTimeoutTimer.startLongTimer(lastPiPServiceTimeout)
-				del self.session.pip
-				if SystemInfo["LCDMiniTV"]:
-					if config.lcd.modepip.value >= "1":
-						print '[LCDMiniTV] disable PIP'
-						f = open("/proc/stb/lcd/mode", "w")
-						f.write(config.lcd.modeminitv.value)
-						f.close()
-				self.session.pipshown = False
-			if hasattr(self, "ScreenSaverTimerStart"):
-				self.ScreenSaverTimerStart()
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		iptv_service = str(ServiceReference(ref))
+		if iptv_service.startswith('4097:') or iptv_service.startswith('5001:') or iptv_service.startswith('5002:'):
+			self.session.open(MessageBox, _("PiP is currently not available because your are using iptv streams!"), MessageBox.TYPE_INFO)
 		else:
-			service = self.session.nav.getCurrentService()
-			info = service and service.info()
-			if info:
-				xres = str(info.getInfo(iServiceInformation.sVideoWidth))
-			if info and int(xres) <= 720 or getMachineBuild() != 'blackbox7405':
-				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.setAnimationMode(0)
-				self.session.pip.show()
-				newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
-				if self.session.pip.playService(newservice):
-					self.session.pipshown = True
-					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
-						print '[LCDMiniTV] enable PIP'
-						f = open("/proc/stb/lcd/mode", "w")
-						f.write(config.lcd.modepip.value)
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_width", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_height", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
-						f.write("1")
-						f.close()
-				else:
-					newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+			self.lastPiPServiceTimeoutTimer.stop()
+			slist = self.servicelist
+			if self.session.pipshown:
+				if slist and slist.dopipzap:
+					self.togglePipzap()
+				if self.session.pipshown:
+					lastPiPServiceTimeout = int(config.usage.pip_last_service_timeout.value)
+					if lastPiPServiceTimeout >= 0:
+						self.lastPiPService = self.session.pip.getCurrentServiceReference()
+						if lastPiPServiceTimeout:
+							self.lastPiPServiceTimeoutTimer.startLongTimer(lastPiPServiceTimeout)
+					del self.session.pip
+					if SystemInfo["LCDMiniTV"]:
+						if config.lcd.modepip.value >= "1":
+							print '[LCDMiniTV] disable PIP'
+							f = open("/proc/stb/lcd/mode", "w")
+							f.write(config.lcd.modeminitv.value)
+							f.close()
+					self.session.pipshown = False
+				if hasattr(self, "ScreenSaverTimerStart"):
+					self.ScreenSaverTimerStart()
+			else:
+				service = self.session.nav.getCurrentService()
+				info = service and service.info()
+				if info:
+					xres = str(info.getInfo(iServiceInformation.sVideoWidth))
+				if info and int(xres) <= 720 or getMachineBuild() != 'blackbox7405':
+					self.session.pip = self.session.instantiateDialog(PictureInPicture)
+					self.session.pip.setAnimationMode(0)
+					self.session.pip.show()
+					newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 					if self.session.pip.playService(newservice):
 						self.session.pipshown = True
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
@@ -4728,15 +4714,34 @@ class InfoBarPiP:
 							f.write("1")
 							f.close()
 					else:
-						self.lastPiPService = None
-						self.session.pipshown = False
-						del self.session.pip
-			elif info:
-				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
-			else:
-				self.session.open(MessageBox, _("No active channel found."), type = MessageBox.TYPE_INFO,timeout = 5 )
-		if self.session.pipshown and hasattr(self, "screenSaverTimer"):
-			self.screenSaverTimer.stop()
+						newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+						if self.session.pip.playService(newservice):
+							self.session.pipshown = True
+							self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+							if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
+								print '[LCDMiniTV] enable PIP'
+								f = open("/proc/stb/lcd/mode", "w")
+								f.write(config.lcd.modepip.value)
+								f.close()
+								f = open("/proc/stb/vmpeg/1/dst_width", "w")
+								f.write("0")
+								f.close()
+								f = open("/proc/stb/vmpeg/1/dst_height", "w")
+								f.write("0")
+								f.close()
+								f = open("/proc/stb/vmpeg/1/dst_apply", "w")
+								f.write("1")
+								f.close()
+						else:
+							self.lastPiPService = None
+							self.session.pipshown = False
+							del self.session.pip
+				elif info:
+					self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO,timeout = 5 )
+				else:
+					self.session.open(MessageBox, _("No active channel found."), type = MessageBox.TYPE_INFO,timeout = 5 )
+			if self.session.pipshown and hasattr(self, "screenSaverTimer"):
+				self.screenSaverTimer.stop()
 
 	def clearLastPiPService(self):
 		self.lastPiPService = None
