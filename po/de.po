@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-11-15 19:53+0100\n"
+"PO-Revision-Date: 2018-11-17 07:39+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -8128,7 +8128,7 @@ msgid "Restore is running..."
 msgstr "Wiederherstellung wird ausgeführt..."
 
 msgid "Restore system settings"
-msgstr "Einstellungen wiederherstellen"
+msgstr "Einstellungen der letzten Sicherung wiederherstellen"
 
 msgid "Restoring..."
 msgstr "Wiederherstellung..."
@@ -8546,7 +8546,7 @@ msgid "Select the movie path"
 msgstr "Wähle Filmpfad"
 
 msgid "Select upgrade source"
-msgstr "Auswähl der Update-Quelle"
+msgstr "Auswahl der Update-Quelle"
 
 msgid "Select upgrade source to edit."
 msgstr "Wähle eine Update-Quelle zum Bearbeiten"
@@ -13950,6 +13950,12 @@ msgstr "Schneller Vorlauf"
 
 msgid "File long"
 msgstr "File lang"
+
+msgid "Playpause long"
+msgstr "Playpause lang"
+
+msgid "Angle long"
+msgstr "Angel lang"
 
 msgid "Help"
 msgstr "Hilfe"
