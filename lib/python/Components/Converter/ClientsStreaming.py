@@ -61,7 +61,7 @@ class ClientsStreaming(Converter, Poll, object):
 		ips = []
 		names = []
 		encoders = []
-		extrainfo = _("ClientIP") + "\t" + _("Transcode")  + "\t" + _("Channel")  + "\n"
+		extrainfo = "\n" + _("ClientIP") + "\t\t" + _("Transcode")  + "\t\t" + _("Channel")  + "\n\n"
 		info = ""
 
 		for x in self.streamServer.getConnectedClients():
@@ -96,7 +96,7 @@ class ClientsStreaming(Converter, Poll, object):
 
 			clients.append((ip, service_name, encoder))
 			
-			extrainfo += ("%-8s\t%s\t%s") % (ip, encoder, service_name) +"\n"
+			extrainfo += ("%-8s\t%s\t\t%s") % (ip, encoder, service_name) + "\n"
 			
 			
 			
@@ -113,7 +113,7 @@ class ClientsStreaming(Converter, Poll, object):
 		elif self.type == self.EXTRA_INFO:
 			return extrainfo
 		elif self.type == self.SHORT_ALL:
-			return _("Total clients streaming: %d (%s)") % (len(clients), ' '.join(names))
+			return _("Total clients streaming: %d ( %s )") % (len(clients), ' '.join(names))
 		elif self.type == self.ALL:
 			return '\n'.join(' '.join(elems) for elems in clients)
 		elif self.type == self.INFO or self.type == self.INFO_RESOLVE or self.type == self.INFO_RESOLVE_SHORT:

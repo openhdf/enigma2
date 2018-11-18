@@ -27,9 +27,10 @@ class StreamingClientsInfo(Screen):
 		Screen.setTitle(self, title)
 
 		self["ScrollLabel"] = ScrollLabel()
+		self["ScrollLabel2"] = ScrollLabel()
 
 		self["key_red"] = Button(_("Close"))
-		self["key_blue"] = Button()
+		self["key_blue"] = Button(_("Stop Streams"))
 		self["actions"] = ActionMap(["ColorActions", "SetupActions", "DirectionActions"],
 			{
 				"cancel": self.exit,
@@ -57,9 +58,13 @@ class StreamingClientsInfo(Screen):
 		self.timer.stop()
 
 	def update_info(self):
-		clients = ClientsStreaming("INFO_RESOLVE")
+		clients = ClientsStreaming("SHORT_ALL")
+		clients2 = ClientsStreaming("EXTRA_INFO")
+		#clients3 = ClientsStreaming("SHORT_ALL")
 		text = clients.getText()
-		self["ScrollLabel"].setText(text or _("No clients streaming"))
+		text2 = clients2.getText()
+		self["ScrollLabel"].setText(text or _("Currently nothing is streamed to clients"))
+		self["ScrollLabel2"].setText(text2 or _("Currently nothing is streamed to clients"))
 		self["key_blue"].setText(text and _("Stop Streams") or "")
 		self.timer.startLongTimer(5)
 
