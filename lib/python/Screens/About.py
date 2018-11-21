@@ -8,7 +8,7 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
-from enigma import eTimer, getEnigmaVersionString
+from enigma import eTimer, getEnigmaVersionString, getDesktop
 from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate, getOEVersion, getImageType, getBrandOEM
 
 from Components.Pixmap import MultiPixmap
@@ -43,7 +43,7 @@ class About(Screen):
 			})
 
 	def populate(self):
-		self["lab1"] = StaticText(_("openHDF by HDF Image Team"))
+		self["lab1"] = StaticText(_("openHDF"))
 		self["lab2"] = StaticText(_("Support at") + " www.HDFreaks.cc")
 		model = None
 		AboutText = ""
@@ -176,9 +176,15 @@ class About(Screen):
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
 		#AboutText += _("GStreamer:\t%s") % gstcmd2 + "\n"
 		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
-		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + " to Build #" + getImageBuild() + "\n"
-		AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
+		#AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
+		if getMachineBuild() not in ('vuduo4k','v8plus','ustym4kpro','hd60','i55plus','osmio4k','h9','h9combo','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u51','cc1','sf8008'):
+			AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
+		else:
+			AboutText += _("Flashed:\tMultiboot active\n")
+		AboutText += _("Skin:\t%s\n") % config.skin.primary_skin.value[0:-9]
+		AboutText += _("Resolution:\t%s\n") % _('%s x %s') % (getDesktop(0).size().width(), getDesktop(0).size().height())
+		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + " to Build #" + getImageBuild() + "\n"
 		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
 		AboutText += _("Network:")
 		for x in about.GetIPsFromNetworkInterfaces():

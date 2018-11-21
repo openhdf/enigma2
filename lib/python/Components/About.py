@@ -8,10 +8,7 @@ def getVersionString():
 
 def getFlashDateString():
 	try:
-		if path.exists("/boot/STARTUP"):
-			return _("Multiboot active")
-		else:
-			return time.strftime(_("%Y-%m-%d"), time.localtime(os.stat("/boot").st_ctime))
+		return time.strftime(_("%Y-%m-%d"), time.localtime(os.stat("/boot").st_ctime))
 	except:
 		return _("unknown")
 
