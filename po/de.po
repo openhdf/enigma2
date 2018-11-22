@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-11-21 14:33+0100\n"
+"PO-Revision-Date: 2018-11-24 10:50+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -8730,6 +8730,9 @@ msgstr "Setze den Sender für diesen Timer."
 
 msgid "Set the date the timer must start."
 msgstr "Setze das Datum für den Start des Timers."
+
+msgid "Rename name and description for new events"
+msgstr "Ändere für neue Aufnahmen den Namen und die Beschreibung"
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, select left/right to select an existing location."
 msgstr "Wähle das Standardverzeichnis für Sofortaufnahmen. Drücke 'OK' um ein neues Verzeichnis zu wählen. Benutze Kreuz links/rechts um bestehende Verzeichnisse zu wählen."
