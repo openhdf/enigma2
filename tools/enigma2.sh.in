@@ -95,11 +95,6 @@ sysctl -p
 (sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
 	[ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
 
-VERBOSE=''
-if [ "$(grep config.log.level /etc/enigma2/settings)" == "config.log.level=3" ]; then
-	VERBOSE='--verbose'
-fi
-
 if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
 	RANDOMIZE1970=''
 	time=`date +%Y` ;
@@ -110,14 +105,14 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 	if [ -z $CONFIG_CRASH_DEBUG_PATH ]; then
 		LD_PRELOAD=$LIBS /usr/bin/enigma2 --debug-no-color &> /home/root/logs/Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
 	else
-		LD_PRELOAD=$LIBS /usr/bin/enigma2 --debug-no-color $VERBOSE &> ${CONFIG_CRASH_DEBUG_PATH}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
+		LD_PRELOAD=$LIBS /usr/bin/enigma2 --debug-no-color &> ${CONFIG_CRASH_DEBUG_PATH}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)$RANDOMIZE1970.log
 	fi
 else
 	# in case $TERM is "linux" the serial output is activated - discard debug output
 	if [ "$TERM" = linux ]; then
-		LD_PRELOAD=$LIBS @bindir@/enigma2 $VERBOSE 2> /dev/null
+		LD_PRELOAD=$LIBS @bindir@/enigma2 2> /dev/null
 	else
-		LD_PRELOAD=$LIBS @bindir@/enigma2 $VERBOSE
+		LD_PRELOAD=$LIBS @bindir@/enigma2
 	fi
 fi
 
