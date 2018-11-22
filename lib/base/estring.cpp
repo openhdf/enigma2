@@ -457,23 +457,15 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 
 	int i=0, t=0;
 	std::string output = "";
-	bool no_table_id = false;
-	bool ignore_table_id = false;
+	int no_table_id = 0;
+	if (table >= NOTABLEID){
+		no_table_id = NOTABLEID;
+		table &= ~NOTABLEID;
+	}
+
 
 	if ( tsidonid )
 		encodingHandler.getTransponderDefaultMapping(tsidonid, table);
-
-	if (table & NO_TABLEID){
-		no_table_id = true;
-		table &= ~NO_TABLEID;
-	}
-
-	if (table & IGNORE_TABLEID){
-		ignore_table_id = true;
-		table &= ~IGNORE_TABLEID;
-	}
-
-        int table_preset = table;
 
 	// first byte in strings may override general encoding table.
 	if (!no_table_id){
@@ -532,8 +524,15 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 				++i;
 				table = UTF16LE_ENCODING;
 				break;
-			case HUFFMAN_ENCODING:
-				table = HUFFMAN_ENCODING;
+			case 0x1F:
+				{
+					// Attempt to decode Freesat Huffman encoded string
+					std::string decoded_string = huffmanDecoder.decode(data, len);
+					if (!decoded_string.empty())
+						return decoded_string;
+				}
+				++i;
+				eDebug("[convertDVBUTF8] failed to decode bbc freesat huffman");
 				break;
 			case 0x0:
 			case 0xC ... 0xF:
@@ -543,11 +542,6 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 				break;
 		}
 	}
-
-	if (ignore_table_id) {
-		table = table_preset;
-	}
-
 	bool useTwoCharMapping = !table || (tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid));
 
 	if (useTwoCharMapping && table == 5) { // i hope this dont break other transponders which realy use ISO8859-5 and two char byte mapping...
@@ -559,17 +553,6 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 
 	switch(table)
 	{
-		case HUFFMAN_ENCODING:
-		{
-			// Attempt to decode Freesat Huffman encoded string
-			std::string decoded_string = huffmanDecoder.decode(data, len);
-			if (!decoded_string.empty()){
-				output = decoded_string;
-				if (pconvertedLen)
-					*pconvertedLen += len;
-			}
-			break;
-		}
 		case UTF8_ENCODING:
 			output = std::string((char*)data + i, len - i);
 			if (pconvertedLen)
