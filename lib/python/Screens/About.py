@@ -182,8 +182,7 @@ class About(Screen):
 			AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
 		else:
 			AboutText += _("Flashed:\tMultiboot active\n")
-		AboutText += _("Skin:\t%s\n") % config.skin.primary_skin.value[0:-9]
-		AboutText += _("Resolution:\t%s\n") % _('%s x %s') % (getDesktop(0).size().width(), getDesktop(0).size().height())
+		AboutText += _("Skin:\t%s (%s x %s)\n") % (config.skin.primary_skin.value[0:-9], getDesktop(0).size().width(), getDesktop(0).size().height())
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + " to Build #" + getImageBuild() + "\n"
 		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
 		AboutText += _("Network:")
