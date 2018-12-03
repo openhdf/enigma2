@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-11-24 10:50+0100\n"
+"PO-Revision-Date: 2018-12-03 18:52+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1919,14 +1919,97 @@ msgstr ""
 "\n"
 "FullBackup deiner laufenden %s %s auf HDD oder USB."
 
-msgid "Back-up Tool for %s\n"
-msgstr "Back-up Tool für %s\n"
+msgid "Full backup on %s"
+msgstr "Full Backup nach %s"
+
+msgid "Backup Tool for"
+msgstr "Backup Tool für"
+
+msgid "Create:"
+msgstr "Erstelle:"
+
+msgid "Almost there... "
+msgstr "Fast fertig... "
+
+msgid "Now building the USB-Image"
+msgstr "Das USB-Image wird jetzt erstellt"
+
+msgid "Multiboot Image created on: %s"
+msgstr "Multiboot Image erstellt unter: %s"
+
+msgid "and there is made an extra copy on:"
+msgstr "eine weitere Kopie liegt unter:"
+
+msgid "Please wait...almost ready! "
+msgstr "Bitte warten...fast fertig! "
 
 msgid "Please be patient, a backup will now be made,\n"
-msgstr "Bitte etwas Geduld, das Backup wird erstellt,\n"
+msgstr "Bitte etwas Geduld, das Backup wird erstellt.\n"
 
-msgid "because of the used filesystem the back-up\n"
-msgstr "abhängig vom System dauert das Backup\n"
+msgid "To restore the image:"
+msgstr "Zur Wiederherstellung des Images:"
+
+msgid "Use OnlineFlash in SoftwareManager"
+msgstr "Benutze das Image Online-Flash in der Softwareerwaltung"
+
+msgid "Time required for this process:"
+msgstr "Benötigte Zeit für diesen Vorgang:"
+
+msgid "There is a valid USB-flash drive detected in one "
+msgstr "Es wurde ein geeigneter USB-Stick "
+
+msgid "of the USB-ports, therefore an extra copy of the "
+msgstr "für eine Extra Kopie an einem der USB-Ports gefunden "
+
+msgid "back-up image will now be copied to that USB-flash drive. "
+msgstr "Das Backup Image wird jetzt zusätzlich auf diesen Stick kopiert."
+
+msgid "This only takes about 1 or 2 minutes"
+msgstr "Das wird etwa 1 oder 2 Minuten dauern"
+
+msgid "Backup finished and copied to your USB-flash drive"
+msgstr "Das Backup wurde erstellt und zusätzlich auf den USB-Stick kopiert"
+
+msgid "Image creation failed - "
+msgstr "Image Erstellung fehlgeschlagen - "
+
+msgid "Probable causes could be"
+msgstr "Mögliche Probleme könnten sein"
+
+msgid "     wrong back-up destination "
+msgstr "     falsches Backup Ziel "
+
+msgid "     no space left on back-up device"
+msgstr "     kein freier Speicherplatz auf dem Backup Laufwerk"
+
+msgid "     no writing permission on back-up device"
+msgstr "     keine Schreibrechte auf dem Backup Laufwerk"
+
+msgid "%s not found !!"
+msgstr "%s nicht gefunden !!"
+
+msgid ""
+"No USB-Device found for fullbackup !!\n"
+"\n"
+msgstr ""
+"Kein USB Laufwerk für Full Backup gefunden !!\n"
+"\n"
+
+msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
+msgstr "Für ein direktes Backup auf einen USB-Stick muss der Stick\n"
+
+msgid ""
+"contain a file with the name: \n"
+"\n"
+msgstr ""
+"eine Datei mit folgendem Namen enthalten: \n"
+"\n"
+
+msgid "backupstick or backupstick.txt"
+msgstr "backupstick oder backupstick.txt"
+
+msgid "because of the used filesystem the back-up "
+msgstr "Abhängig vom System dauert das Backup "
 
 msgid "will take about 30 minutes for this system\n"
 msgstr "ca. 30 Minuten\n"
@@ -13594,11 +13677,15 @@ msgstr "Seitenverhältnis"
 msgid ""
 "USB = Do you want to make a back-up on USB?\n"
 "This will take between 4 and 15 minutes depending on the used filesystem and is fully automatic.\n"
-"Make sure you first insert an USB flash drive before you select USB."
+"Make sure you first insert an USB flash drive before you select USB.\n"
+"This USB drive must contain a file with the name\n"
+"backupstick or backupstick.txt."
 msgstr ""
 "USB = Willst du ein Backup auf USB erstellen? \n"
 "Das dauert nur ein paar Minuten und geht vollautomatisch.\n"
-"Bitte erst einen USB Stick anschließen bevor man USB auswählt."
+"Bitte erst einen USB Stick anschließen bevor man USB auswählt.\n"
+"Dieses USB Laufwerk muss eine Datei mit dem Namen\n"
+"backupstick oder backupstick.txt enthalten."
 
 msgid ""
 "HDD = Do you want to make an USB-back-up image on HDD? \n"
