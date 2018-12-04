@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<options>
+
+	<channelgroup name="Sky Sport HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>Sky Sport News HD</name>
+			<ref>1:0:19:6C:C:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 1 HD</name>
+			<ref>1:0:19:81:6:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 2 HD</name>
+			<ref>1:0:19:72:D:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 3 HD</name>
+			<ref>1:0:19:10C:6:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 4 HD</name>
+			<ref>1:0:19:116:D:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 5 HD</name>
+			<ref>1:0:19:120:C:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 6 HD</name>
+			<ref>1:0:19:12A:9:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 7 HD</name>
+			<ref>1:0:19:134:4:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 8 HD</name>
+			<ref>1:0:19:13E:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 9 HD</name>
+			<ref>1:0:19:148:6:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 10 HD</name>
+			<ref>1:0:19:152:10:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 11 HD</name>
+			<ref>1:0:19:102:B:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Austria HD</name>
+			<ref>1:0:19:8F:9:85:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+	
+	<channelgroup name="Sky Bundesliga" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>Sky Sport Bundesliga 1</name>
+			<ref>1:0:16:DF:4:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 2</name>
+			<ref>1:0:D3:106:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 3</name>
+			<ref>1:0:D3:110:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 4</name>
+			<ref>1:0:D3:11A:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 5</name>
+			<ref>1:0:D3:124:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 6</name>
+			<ref>1:0:D3:12E:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 7</name>
+			<ref>1:0:D3:138:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 8</name>
+			<ref>1:0:D3:142:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 9</name>
+			<ref>1:0:D3:14C:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 10</name>
+			<ref>1:0:D3:FC:3:85:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+	
+	<channelgroup name="Sky Bundesliga HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>Sky Sport Bundesliga 1 HD</name>
+			<ref>1:0:19:69:C:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 2 HD</name>
+			<ref>1:0:19:10B:6:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 3 HD</name>
+			<ref>1:0:19:115:D:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 4 HD</name>
+			<ref>1:0:19:11F:C:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 5 HD</name>
+			<ref>1:0:19:129:9:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 6 HD</name>
+			<ref>1:0:19:133:4:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 7 HD</name>
+			<ref>1:0:19:13D:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 8 HD</name>
+			<ref>1:0:19:147:6:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 9 HD</name>
+			<ref>1:0:19:151:10:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Bundesliga 10 HD</name>
+			<ref>1:0:19:101:B:85:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+
+	<channelgroup name="Eurosport HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>Eurosport HD  | </name>
+			<ref>1:0:19:84:B:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Eurosport 2 HD  | </name>
+			<ref>1:0:19:6D:9:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Eurosport 1 Deutschland  | </name>
+			<ref>1:0:1:79E0:443:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>		
+			<name>Eurosport 360 HD 01  | </name>
+			<ref>1:0:19:10E:6:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Eurosport 360 HD 02  | </name>
+			<ref>1:0:19:118:D:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Eurosport 360 HD 03  | </name>
+			<ref>1:0:19:122:C:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Eurosport 360 HD 04  | </name>
+			<ref>1:0:19:12C:B:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Eurosport 360 HD 05  | </name>
+			<ref>1:0:19:136:8:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Eurosport 360 HD 06  | </name>
+			<ref>1:0:19:140:9:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Eurosport 360 HD 07  | </name>
+			<ref>1:0:19:14A:10:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Eurosport 360 HD 08  | </name>
+			<ref>1:0:19:154:A:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Eurosport 360 HD 09  | </name>
+			<ref>1:0:19:104:E:85:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+
+	<channelgroup name="Sky Select" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>Sky Select</name>
+			<ref>1:0:16:12:4:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Select 1</name>
+			<ref>1:0:16:FB:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Select 2</name>
+			<ref>1:0:16:105:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Select 3</name>
+			<ref>1:0:16:10F:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Select 4</name>
+			<ref>1:0:16:119:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Select 5</name>
+			<ref>1:0:16:123:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Select 6</name>
+			<ref>1:0:16:12D:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Select 7</name>
+			<ref>1:0:16:137:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Select 8</name>
+			<ref>1:0:16:141:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Select 9</name>
+			<ref>1:0:16:14B:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Select Event A</name>
+			<ref>1:0:16:FE:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Select Event B</name>
+			<ref>1:0:16:14E:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Blue Movie</name>
+			<ref>1:0:16:201:B:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Blue Movie 1</name>
+			<ref>1:0:D3:159:B:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Blue Movie 2</name>
+			<ref>1:0:D3:163:B:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Blue Movie 3</name>
+			<ref>1:0:D3:16D:B:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Beate-Uhse.TV HD</name>
+			<ref>1:0:19:85:3:85:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+	
+	<channelgroup name="NDR HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>NDR Schleswig Holstein HD  | </name>
+			<ref>1:0:19:285A:401:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>NDR Niedersachsen HD  | </name>
+			<ref>1:0:19:2857:401:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>NDR Hamburg HD  | </name>
+			<ref>1:0:19:2859:401:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>NDR Mecklenburg Vorpommern HD  | </name>
+			<ref>1:0:19:2858:401:1:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+
+	<channelgroup name="WDR HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>WDR Aachen HD</name>
+			<ref>1:0:19:6F80:457:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>WDR Bielefeld HD</name>
+			<ref>1:0:19:6EA6:4B1:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>WDR Dortmund HD</name>
+			<ref>1:0:19:6EA7:4B1:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>WDR Duisburg HD</name>
+			<ref>1:0:19:6F83:457:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>WDR Düsseldorf HD</name>
+			<ref>1:0:19:6EA8:4B1:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>WDR Essen HD</name>
+			<ref>1:0:19:6EA9:4B1:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>WDR Köln HD</name>
+			<ref>1:0:19:6EA5:4B1:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>WDR Münster HD</name>
+			<ref>1:0:19:6EAA:4B1:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>WDR Siegen HD</name>
+			<ref>1:0:19:6EAB:4B1:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>WDR Wuppertal HD</name>
+			<ref>1:0:19:6F81:457:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>WDR Bonn HD</name>
+			<ref>1:0:19:6F82:457:1:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>	
+	
+	<channelgroup name="SWR HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>SWR Baden Würtenberg HD</name>
+			<ref>1:0:19:283F:3FB:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>SWR Reinland Pfalz HD</name>
+			<ref>1:0:19:2840:3FB:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>SR Fernsehen</name>
+			<ref>1:0:1:6F46:445:1:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+	
+	<channelgroup name="BR HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>BR Nord HD</name>
+			<ref>1:0:19:2856:401:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>BR Süd HD</name>
+			<ref>1:0:19:2855:401:1:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+	
+	<channelgroup name="MDR HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>MDR Thüringen HD</name>
+			<ref>1:0:19:2872:425:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>MDR Sachsen HD</name>
+			<ref>1:0:19:2870:425:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>MDR S-Anhalt HD</name>
+			<ref>1:0:19:2871:425:1:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+
+	<channelgroup name="rbb HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>rbb Berlin HD</name>
+			<ref>1:0:19:286F:425:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>rbb Brandenburg HD</name>
+			<ref>1:0:19:286E:425:1:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+
+	<channelgroup name="HD+ Channel" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
+		<channel>
+			<name>Sat1 HD</name>
+			<ref>1:0:19:EF74:3F9:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>RTL HD</name>
+			<ref>1:0:19:EF10:421:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>RTL2 HD</name>
+			<ref>1:0:19:EF15:421:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Super RTL HD</name>
+			<ref>1:0:19:2E9B:411:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>kabel eins HD</name>
+			<ref>1:0:19:EF76:3F9:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Vox HD</name>
+			<ref>1:0:19:EF11:421:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>ProSieben HD</name>
+			<ref>1:0:19:EF75:3F9:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>ProSieben MAXX HD</name>
+			<ref>1:0:19:EF78:3F9:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>DMAX HD</name>
+			<ref>1:0:19:151A:455:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Welt HD</name>
+			<ref>1:0:19:5274:41D:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>TELE 5 HD</name>
+			<ref>1:0:19:1519:455:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>n-tv HD</name>
+			<ref>1:0:19:EF14:421:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sport1 HD</name>
+			<ref>1:0:19:1581:41F:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Nick/MTV+ HD</name>
+			<ref>1:0:19:5273:41D:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>sixx HD</name>
+			<ref>1:0:19:EF77:3F9:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>DELUXE MUSIC HD</name>
+			<ref>1:0:19:157F:41F:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>MTV HD</name>
+			<ref>1:0:19:2777:409:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>RTL Nitro HD</name>
+			<ref>1:0:19:2EAF:411:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>SAT.1 Gold HD</name>
+			<ref>1:0:19:30D4:413:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>TLC HD</name>
+			<ref>1:0:19:2774:409:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Disney Channel HD</name>
+			<ref>1:0:19:157C:41F:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>INSIGHT TV HD</name>
+			<ref>1:0:19:1392:3EA:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>UHD1 by Astra HD</name>
+			<ref>1:0:1F:2:40B:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Travelxp 4k</name>
+			<ref>1:0:1F:183A:40B:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>RTL UHD</name>
+			<ref>1:0:1F:307A:3F5:1:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>	
+
+	<channelgroup name="Sky Sport"  notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>Sky Sport 1</name>
+			<ref>1:0:16:DD:4:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 2</name>
+			<ref>1:0:16:DE:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 3</name>
+			<ref>1:0:D3:107:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 4</name>
+			<ref>1:0:D3:111:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 5</name>
+			<ref>1:0:D3:11B:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 6</name>
+			<ref>1:0:D3:125:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 7</name>
+			<ref>1:0:D3:12F:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 8</name>
+			<ref>1:0:D3:139:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 9</name>
+			<ref>1:0:D3:143:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 10</name>
+			<ref>1:0:D3:14D:2:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport 11</name>
+			<ref>1:0:D3:FD:3:85:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>Sky Sport Austria</name>
+			<ref>1:0:16:1E:2:85:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+
+	<channelgroup name="ORF 2 HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>ORF 2 B HD  | </name>
+			<ref>1:0:19:33F7:3ED:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 K HD  | </name>
+			<ref>1:0:19:33F6:3ED:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 N HD  | </name>
+			<ref>1:0:19:1334:3EF:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 O HD  | </name>
+			<ref>1:0:19:33F8:3ED:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 S HD  | </name>
+			<ref>1:0:19:33F9:3ED:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 St HD  | </name>
+			<ref>1:0:19:33F5:3ED:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 T HD  | </name>
+			<ref>1:0:19:33FA:3ED:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 V HD  | </name>
+			<ref>1:0:19:33FB:3ED:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+            <name>ORF 2 W HD  | </name>
+			<ref>1:0:19:1330:3EF:1:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+
+	<channelgroup name="ORF 2 SD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
+		<channel>
+			<name>ORF 2 B  | </name>
+			<ref>1:0:1:32CA:45D:1:C00000:0:0:0:</ref>
+		</channel>
+		<channel>
+			<name>ORF 2 B  | </name>
+			<ref>1:0:1:32CD:45D:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 K  | </name>
+			<ref>1:0:1:32D3:45D:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 N  | </name>
+			<ref>1:0:1:32CC:45D:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 O  | </name>
+			<ref>1:0:1:32CE:45D:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 S  | </name>
+			<ref>1:0:1:32CF:45D:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 St  | </name>
+			<ref>1:0:1:32D2:45D:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 T  | </name>
+			<ref>1:0:1:32D0:45D:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+			<name>ORF 2 V  | </name>
+			<ref>1:0:1:32D1:45D:1:C00000:0:0:0:</ref>
+		</channel>
+        <channel>
+            <name>ORF 2 W  | </name>
+			<ref>1:0:1:32CB:45D:1:C00000:0:0:0:</ref>
+		</channel>
+	</channelgroup>
+
+</options>

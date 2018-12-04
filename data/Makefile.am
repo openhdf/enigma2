@@ -20,6 +20,7 @@ dist_pkgdata_DATA = \
 	freesat.t1 \
 	freesat.t2 \
 	unicable.xml \
+	groupedservices \
 	hd-testcard.mvi \
 	distro-logo.png \
 	distro-lcd-logo.png
