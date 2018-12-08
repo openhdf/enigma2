@@ -273,12 +273,12 @@ class InfoBarUnhandledKey:
 				self.hideShowPressedButtonsTimer.start(2000, True)
 			# print "Enable debug mode for every pressed key."
 			try:
-				print 'KEY: %s %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0],datetime.now())
+				print 'KEY: %s %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0],datetime.datetime.now())
 			except:
 				try:
-					print 'KEY: %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),datetime.now()) # inverse dictionary lookup in KEYIDS
+					print 'KEY: %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),datetime.datetime.now()) # inverse dictionary lookup in KEYIDS
 				except:
-					print 'KEY: %s %s' % (key,datetime.now())
+					print 'KEY: %s %s' % (key,datetime.datetime.now())
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
