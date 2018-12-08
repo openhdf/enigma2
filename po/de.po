@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-12-03 18:52+0100\n"
+"PO-Revision-Date: 2018-12-11 17:37+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -5485,6 +5485,12 @@ msgstr "Erweiterungen"
 
 msgid "picons"
 msgstr "Senderlogos"
+
+msgid "Service picons aspect ratio"
+msgstr "Senderlogos Seitenverhältnis"
+
+msgid "Set the aspect ratio of the service picons."
+msgstr "Einstellung des Seitenverhältnisses der Senderlogos."
 
 msgid "security"
 msgstr "Sicherheit"
