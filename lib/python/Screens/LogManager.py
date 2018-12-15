@@ -96,18 +96,32 @@ class LogManagerPoller:
 
 	def JobTrim(self):
 		filename = ""
-		for filename in glob(config.crash.debug_path.value + '*.log'):
-			try:
-				if path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
-					fh = open(filename, 'rb+')
-					fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
-					data = fh.read()
-					fh.seek(0) # rewind
-					fh.write(data)
-					fh.truncate()
-					fh.close()
-			except:
-				pass
+		if config.crash.debug_path.value = '':
+			for filename in glob('/home/root/logs/*.log'):
+				try:
+					if path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
+						fh = open(filename, 'rb+')
+						fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
+						data = fh.read()
+						fh.seek(0) # rewind
+						fh.write(data)
+						fh.truncate()
+						fh.close()
+				except:
+					pass
+		else:
+			for filename in glob(config.crash.debug_path.value + '*.log'):
+				try:
+					if path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
+						fh = open(filename, 'rb+')
+						fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
+						data = fh.read()
+						fh.seek(0) # rewind
+						fh.write(data)
+						fh.truncate()
+						fh.close()
+				except:
+					pass
 		self.TrimTimer.startLongTimer(3600) #once an hour
 
 	def JobTrash(self):
