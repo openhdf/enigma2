@@ -1,4 +1,4 @@
-bin_SCRIPTS = enigma2.sh
+bin_SCRIPTS = enigma2.sh enigma2_pre_start.sh
 lib_LTLIBRARIES = libopen.la
 
 CFLAGS += -DLIBC_SO=\"$(base_libdir)/libc.so.6\"
