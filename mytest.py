@@ -505,13 +505,9 @@ profile("Load:StackTracePrinter")
 from Components.StackTrace import StackTracePrinter
 StackTracePrinterInst = StackTracePrinter()
 
-from threading import Thread, current_thread
-from sys import _current_frames
-from traceback import extract_stack
-from time import sleep
-
-from time import time, localtime, strftime
+from time import time, localtime, strftime, sleep
 from Tools.StbHardware import setFPWakeuptime, setRTCtime
+
 def runScreenTest():
 	config.misc.startCounter.value += 1
 
