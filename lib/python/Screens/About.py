@@ -84,7 +84,7 @@ class About(Screen):
 			cpuMHz = "   (1,3 GHz)"
 		elif getMachineBuild() in ('u5','u51','u52','u53','u5pvr','h9','sf8008','hd60','i55plus'):
 			cpuMHz = "   (1,6 GHz)"
-		elif getMachineBuild() in ('et1x000','hd52','hd51','sf4008','vs1500','h7','8100s'):
+		elif getMachineBuild() in ('sf5008','et13000','et1x000','hd52','hd51','sf4008','vs1500','h7','osmio4k'):
 			try:
 				import binascii
 				f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
@@ -157,6 +157,14 @@ class About(Screen):
 				f.close()
 				if bootname: bootname = "   (%s)" %bootname 
 				AboutText += _("Selected Image:\t%s") % "STARTUP_" + image + bootname + "\n"
+		elif getMachineBuild() in ('osmio4k'):
+			if path.exists('/boot/STARTUP'):
+				f = open('/boot/STARTUP', 'r')
+				f.seek(38)
+				image = f.read(1) 
+				f.close()
+				if bootname: bootname = "   (%s)" %bootname 
+				AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image + bootname + "\n"
 		if path.exists('/boot/STARTUP'):
 			f = open('/boot/STARTUP', 'r')
 			f.seek(22)
