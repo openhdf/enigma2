@@ -51,7 +51,7 @@ def getChipSetString():
 			return "unavailable"
 
 def getCPUString():
-	if getMachineBuild() in ('vuuno4k', 'vuultimo4k','vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'gb7252', 'dags7252', 'vs1500', 'h7', '8100s'):
+	if getMachineBuild() in ('vuuno4k', 'vuultimo4k','vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'gb7252', 'dags7252', 'vs1500', 'h7', '8100s','osmio4k'):
 		return "Broadcom "
 	elif getMachineBuild() in ('u5','u51','u52','u53','u5pvr','h9','sf8008','hd60','i55plus'):
 		return "Hisilicon"
@@ -82,7 +82,7 @@ def getCPUSpeedString():
 		return "1,6 GHz"
 	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex'):
 		return "1,3 GHz"
-	elif getMachineBuild() in ('hd51','hd52','sf4008','vs1500','et1x000','h7','8100s'):
+	elif getMachineBuild() in ('hd51','hd52','sf4008','vs1500','et1x000','h7','8100s','osmio4k'):
 		try:
 			import binascii
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
