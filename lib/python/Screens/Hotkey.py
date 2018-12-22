@@ -252,11 +252,11 @@ def getHotkeyFunctions():
 	if SystemInfo["HaveMultiBootGB"]:
 		hotkeyFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartupGB/MultiBootStartup", "InfoBar"))
 	if SystemInfo["HaveMultiBootCY"]:
-		ButtonSetupFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartupCY/MultiBootStartup", "InfoBar"))
+		hotkeyFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartupCY/MultiBootStartup", "InfoBar"))
 	if SystemInfo["HaveMultiBootDS"]:
-		ButtonSetupFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartupDS/MultiBootStartup", "InfoBar"))
+		hotkeyFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartupDS/MultiBootStartup", "InfoBar"))
 	if SystemInfo["HaveMultiBootOS"]:
-		ButtonSetupFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartupOS/MultiBootStartup", "InfoBar"))
+		hotkeyFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartupOS/MultiBootStartup", "InfoBar"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
 	hotkeyFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
 	if getHaveCI() in ('True'):
