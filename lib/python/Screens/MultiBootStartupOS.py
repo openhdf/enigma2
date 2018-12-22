@@ -8,7 +8,7 @@ from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components import Harddisk
 from os import path, listdir, system, makedirs
-from os import path, listdir, system
+import re
 
 class MultiBootStartup(ConfigListScreen, Screen):
 
