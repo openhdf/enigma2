@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 31.07.2018" -->
+	<!-- "HDF Default Keymap 23.12.2018" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -119,11 +119,10 @@
 		<key id="KEY_EPG" mapto="showEventGuidePlugin" flags="l" /-->
 	</map>
 
-	<map context="InfobarInstantRecord">
+	<!--map context="InfobarInstantRecord">
 		<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
 		<key id="KEY_RECORD" mapto="ShortRecord" flags="b" />
-		<!--key id="KEY_RECORD" mapto="LongRecord" flags="l" /-->
-	</map>
+	</map -->
 
 	<map context="InfobarExtensions">
 		<key id="KEY_SUBTITLE" mapto="subtitleSelection" flags="l" />
