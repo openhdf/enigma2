@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-12-11 17:37+0100\n"
+"PO-Revision-Date: 2018-12-24 07:34+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -14127,6 +14127,12 @@ msgstr "Bild im Bild lang"
 
 msgid "Prov/Fav long"
 msgstr "Prov/Fav lang"
+
+msgid "Eject"
+msgstr "Auswerfen"
+
+msgid "Eject long"
+msgstr "Auswerfen lang"
 
 msgid "Power long"
 msgstr "Power lang"
