@@ -16,7 +16,7 @@ from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
-updateversion = "21.12.2018"
+updateversion = "2.12.2018"
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -117,6 +117,8 @@ def getHotkeys():
 	(_("Plugin"), "mark", "Infobar/showMovies"),
 	(_("Prov/Fav"), "ab", "Infobar/openFavouritesList"),
 	(_("Prov/Fav long"), "ab_long", ""),
+	(_("EJECTCD"), "ejectcd", "Infobar/vmodeSelection"),
+	(_("EJECTCD long"), "ejectcd_long", ""),
 	(_("Power (use button menu)"), "powerstandby", ""),
 	(_("Power long (use button menu)"), "powerstandby_long", ""),
 	(_("Previous"), "previous", "Infobar/historyZapBackward"),
