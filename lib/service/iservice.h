@@ -931,6 +931,8 @@ public:
 
 		evHBBTVInfo,
 
+		evVideoGammaChanged,
+
 		evUser = 0x100
 	};
 };
