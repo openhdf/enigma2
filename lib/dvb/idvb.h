@@ -764,7 +764,7 @@ public:
 		enum { eventUnknown = 0,
 			eventSizeChanged = VIDEO_EVENT_SIZE_CHANGED,
 			eventFrameRateChanged = VIDEO_EVENT_FRAME_RATE_CHANGED,
-			eventProgressiveChanged = 16
+			eventProgressiveChanged = 16,
 			eventGammaChanged = 17
 		} type;
 		unsigned char aspect;
@@ -772,6 +772,7 @@ public:
 		unsigned short width;
 		bool progressive;
 		unsigned short framerate;
+		unsigned short gamma;
 	};
 
 	virtual RESULT connectVideoEvent(const sigc::slot1<void, struct videoEvent> &event, ePtr<eConnection> &connection) = 0;
@@ -781,6 +782,7 @@ public:
 	virtual int getVideoProgressive() = 0;
 	virtual int getVideoFrameRate() = 0;
 	virtual int getVideoAspect() = 0;
+	virtual int getVideoGamma() = 0;
 };
 
 #endif //SWIG
