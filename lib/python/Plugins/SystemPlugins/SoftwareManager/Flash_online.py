@@ -36,12 +36,13 @@ MTDROOTFS = getMachineMtdRoot()
 images = []
 global imagesCounter
 imagesCounter = 0
+images.append(["switch to V6.4", "http://images.hdfreaks.cc"])
 images.append(["switch to V6.3", "http://v64.hdfreaks.cc"])
 images.append(["switch to V6.2", "http://v63.hdfreaks.cc"])
 images.append(["switch to V6.1", "http://v62.hdfreaks.cc"])
 images.append(["switch to V5.5", "http://v60.hdfreaks.cc"])
 images.append(["switch to Team", "http://v55.hdfreaks.cc"])
-images.append(["switch to V6.4", "http://teamimages.hdfreaks.cc"])
+images.append(["switch to V6.3", "http://teamimages.hdfreaks.cc"])
 
 imagePath = '/media/hdd/images'
 flashPath = '/media/hdd/images/flash'
