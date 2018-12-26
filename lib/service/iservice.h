@@ -391,6 +391,7 @@ public:
 		sIsDedicated3D,
 		sHideVBI,
 		sCenterDVBSubs,
+		sGamma,
 
 		sUser = 0x100
 	};
