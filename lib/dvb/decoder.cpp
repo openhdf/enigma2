@@ -578,6 +578,21 @@ void eDVBVideo::video_event(int)
 				eDebugNoNewLine("PROGRESSIVE_CHANGED %d\n", m_progressive);
 				/* emit */ m_event(event);
 			}
+			else if (evt.type == 17 /*VIDEO_EVENT_GAMMA_CHANGED*/)
+			{
+				struct iTSMPEGDecoder::videoEvent event;
+				event.type = iTSMPEGDecoder::videoEvent::eventGammaChanged;
+				/*
+				 * Possible gamma values
+				 * 0: Traditional gamma - SDR luminance range
+				 * 1: Traditional gamma - HDR luminance range
+				 * 2: SMPTE ST2084 (aka HDR10)
+				 * 3: Hybrid Log-gamma
+				 */
+				m_gamma = event.gamma = evt.u.frame_rate;
+				eDebugNoNewLine("GAMMA_CHANGED %d\n", m_gamma);
+				/* emit */ m_event(event);
+			}
 			else
 				eDebugNoNewLine("unhandled DVBAPI Video Event %d\n", evt.type);
 		}
@@ -665,6 +680,21 @@ int eDVBVideo::getFrameRate()
 		}
 	}
 	return m_framerate;
+}
+
+int eDVBVideo::getGamma()
+{
+	/* when closing the video device invalidates the attributes, we can rely on VIDEO_EVENTs */
+	if (!m_close_invalidates_attributes)
+	{
+		if (m_gamma == -1)
+		{
+			char tmp[64];
+			sprintf(tmp, "/proc/stb/vmpeg/%d/gamma", m_dev);
+			CFile::parseIntHex(&m_gamma, tmp);
+		}
+	}
+	return m_gamma;
 }
 
 DEFINE_REF(eDVBPCR);
@@ -1392,5 +1422,12 @@ int eTSMPEGDecoder::getVideoAspect()
 {
 	if (m_video)
 		return m_video->getAspect();
+	return -1;
+}
+
+int eTSMPEGDecoder::getVideoGamma()
+{
+	if (m_video)
+		return m_video->getGamma();
 	return -1;
 }
