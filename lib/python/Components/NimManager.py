@@ -1358,8 +1358,7 @@ class NimManager:
 				except:
 					pass
 
-		slots.sort()
-		return slots
+		return list(set(slots))
 
 	def canEqualTo(self, slotid):
 		type = self.getNimType(slotid)
