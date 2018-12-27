@@ -7,7 +7,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components import Harddisk
-from os import path, listdir, system, makedirs
+from os import path, listdir, system, makedirs, path
 import re
 
 class MultiBootStartup(ConfigListScreen, Screen):
@@ -53,15 +53,23 @@ class MultiBootStartup(ConfigListScreen, Screen):
 
 	def getImageInformation(self):
 		self.friendlylist = []
-		makedirs("/tmp/boot")
+		if not path.isdir("/tmp/boot"):
+			makedirs("/tmp/boot")
 		for name in self.list:
 			device = self.read_startup("/boot/" + name).split("=",4)[4].split(" ",1)[0]
 			system("mount %s /tmp/boot" % device)
-			version = self.searchString("/tmp/boot/etc/image-version", "^version=")
-			creator = self.searchString("/tmp/boot/etc/image-version", "^creator=")
-			build = self.searchString("/tmp/boot/etc/image-version", "^build=")
+			try:
+				if path.isfile("/tmp/boot/etc/image-version"):
+					version = self.searchString("/tmp/boot/etc/image-version", "^version=")
+					creator = self.searchString("/tmp/boot/etc/image-version", "^creator=")
+					build = self.searchString("/tmp/boot/etc/image-version", "^build=")
+					version = "%s %s #%s" % (creator,version,build)
+				else:
+				    version = open("/tmp/boot/etc/issue").readlines()[-2].upper().strip()[:-6]
+			except:
+				version = "unknown"
 			system("umount /tmp/boot && ls /tmp/boot")
-			self.friendlylist.append("%s %s %s" % (creator,version,build))
+			self.friendlylist.append("%s" % (version))
 		system("rmdir /tmp/boot && ls /tmp")
 
 	def searchString(self, file, search):
@@ -79,7 +87,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		return SimpleSummary
 
 	def startup(self):
-		self["config"].setText(_("Select Image: %s %s") % (self.list[self.selection],self.friendlylist[self.selection] ))
+		self["config"].setText(_("Select Image: %s - %s") % (self.list[self.selection],self.friendlylist[self.selection] ))
 
 	def save(self):
 		print "[MultiBootStartup] select new startup: ", self.list[self.selection]
