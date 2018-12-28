@@ -20,6 +20,7 @@ from Components.ProgressBar import ProgressBar
 from Tools.StbHardware import getFPVersion
 
 import os
+import re
 from os import path, popen, system
 from re import search
 
@@ -136,42 +137,49 @@ class About(Screen):
 			f = open('/boot/bootname', 'r')
 			bootname = f.readline().split('=')[1]
 			f.close()
-		if getMachineBuild() in ('cc1','sf8008'):
-			if path.exists('/boot/STARTUP'):
-				f = open('/boot/STARTUP', 'r')
-				f.seek(5)
-				image = f.read(4)
-				if image == "emmc":
-					image = "1"
-				elif image == "usb0":
-					f.seek(13)
-					image = f.read(1)
-					if image == "1":
-						image = "2"
-					elif image == "3":
-						image = "3"
-					elif image == "5":
-						image = "4"
-					elif image == "7":
-						image = "5"
-				f.close()
-				if bootname: bootname = "   (%s)" %bootname 
-				AboutText += _("Image:\t%s") % "STARTUP_" + image + bootname + "\n"
-		elif getMachineBuild() in ('osmio4k'):
-			if path.exists('/boot/STARTUP'):
+		if path.exists('/boot/STARTUP'):
+			if getMachineBuild() in ('osmio4k'):
 				f = open('/boot/STARTUP', 'r')
 				f.seek(38)
 				image = f.read(1) 
 				f.close()
 				if bootname: bootname = "   (%s)" %bootname 
-				AboutText += _("Image:\t%s") % "STARTUP_" + image + bootname + "\n"
-		if path.exists('/boot/STARTUP'):
-			f = open('/boot/STARTUP', 'r')
-			f.seek(22)
-			image = f.read(1)
-			f.close()
-			if bootname: bootname = "   (%s)" %bootname
-			AboutText += _("Image started:\t%s") % "STARTUP_" + image + bootname + "\n"
+				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
+			elif getMachineBuild() in ('cc1','sf8008'):
+				if path.exists('/boot/STARTUP'):
+					f = open('/boot/STARTUP', 'r')
+					f.seek(5)
+					image = f.read(4)
+					if image == "emmc":
+						image = "1"
+					elif image == "usb0":
+						f.seek(13)
+						image = f.read(1)
+						if image == "1":
+							image = "2"
+						elif image == "3":
+							image = "3"
+						elif image == "5":
+							image = "4"
+						elif image == "7":
+							image = "5"
+					f.close()
+					if bootname: bootname = "   (%s)" %bootname 
+					AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
+			else:
+				f = open('/boot/STARTUP', 'r')
+				f.seek(22)
+				image = f.read(1)
+				f.close()
+				if bootname: bootname = "   (%s)" %bootname
+				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
+
+		if path.isfile("/etc/issue"):
+			version = open("/etc/issue").readlines()[-2].upper().strip()[:-6]
+			if path.isfile("/etc/image-version"):
+				build = self.searchString("/etc/image-version", "^build=")
+				version = "%s #%s" % (version,build)
+			AboutText += _("Image:\t%s") % version + "\n"
 
 		string = getDriverDate()
 		year = string[0:4]
@@ -182,14 +190,18 @@ class About(Screen):
 		gstcmd2 = os.system(gstcmd)
 		#return (gstcmd2)
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
-		#AboutText += _("GStreamer:\t%s") % gstcmd2 + "\n"
 		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
-		#AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
-		if getMachineBuild() not in ('vuduo4k','v8plus','ustym4kpro','hd60','i55plus','osmio4k','h9','h9combo','vuzero4k','sf5008','et13000','et1x000','hd51','hd52','vusolo4k','vuuno4k','vuuno4kse','vuultimo4k','sf4008','dm820','dm7080','dm900','dm920', 'gb7252', 'dags7252', 'vs1500','h7','xc7439','8100s','u5','u5pvr','u52','u53','u51','cc1','sf8008'):
-			AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
-		else:
+		if path.exists('/boot/STARTUP'):
+			#if getMachineBuild() in ('cc1','sf8008'):
+			#	os.system("tune2fs -l /dev/sda2 | grep 'Filesystem created:' | cut -d ' ' -f 9-13 > /tmp/flashdate" )
+			#else:
+			#	os.system("tune2fs -l /dev/sda1 | grep 'Filesystem created:' | cut -d ' ' -f 9-13 > /tmp/flashdate" )
+			#flashdate = open('/tmp/flashdate', 'r').read()
+			#AboutText += _("Flashed:\t%s") % flashdate
 			AboutText += _("Flashed:\tMultiboot active\n")
+		else:
+			AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
 		AboutText += _("Skin:\t%s (%s x %s)\n") % (config.skin.primary_skin.value[0:-9], getDesktop(0).size().width(), getDesktop(0).size().height())
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + " to Build #" + getImageBuild() + "\n"
 		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
@@ -258,6 +270,13 @@ class About(Screen):
 		AboutLcdText = AboutText.replace('\t', ' ')
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
+
+	def searchString(self, file, search):
+		f = open(file)
+		for line in f:
+			if re.match(search, line):
+				return line.split("=")[1].replace('\n', '')
+		f.close()
 
 	def showTranslationInfo(self):
 		self.session.open(TranslationInfo)
