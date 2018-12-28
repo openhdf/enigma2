@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-12-29 12:32+0100\n"
+"PO-Revision-Date: 2019-01-01 17:32+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3130,6 +3130,12 @@ msgstr "Konfiguriere die Helligkeit des Frontpanels bei Bereitschaft."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Konfiguriere die Farben der externen Untertitel. Alternativ (Normal in Weiß, italic in Gelb, Fett in Cyan, Unterstrich in Grün),  Weiß oder Gelb."
+
+msgid "Show background behind subtitles"
+msgstr "Hintergrund hinter Untertiteln anzeigen"
+
+msgid "Configure if behind the subtitles a background is shown."
+msgstr "Konfiguriere, ob hinter Untertiteln ein Untergrund gezeigt werden soll."
 
 msgid "Configure the color of the teletext subtitles."
 msgstr "Konfiguriere die Farbe von Videotext-Untertiteln."
