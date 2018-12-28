@@ -123,6 +123,8 @@ def getHotkeys():
 	(_("Plugin"), "mark", "Infobar/showMovies"),
 	(_("Prov/Fav"), "ab", "Infobar/openFavouritesList"),
 	(_("Prov/Fav long"), "ab_long", ""),
+	(_("Eject"), "ejectcd", "Infobar/vmodeSelection"),
+	(_("Eject long"), "ejectcd_long", ""),
 	(_("Power (use button menu)"), "powerstandby", ""),
 	(_("Power long (use button menu)"), "powerstandby_long", ""),
 	(_("Previous"), "previous", "Infobar/historyZapBackward"),
