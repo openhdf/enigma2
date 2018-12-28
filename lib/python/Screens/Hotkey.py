@@ -16,7 +16,13 @@ from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
-updateversion = "2.12.2018"
+updateversion = "28.12.2018"
+
+if os.uname()[4] == "aarch64":
+	pathLen=26
+else:
+	pathLen=24
+ppath=os.environ['PYTHONPATH'].split(os.pathsep)[0]
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -117,8 +123,6 @@ def getHotkeys():
 	(_("Plugin"), "mark", "Infobar/showMovies"),
 	(_("Prov/Fav"), "ab", "Infobar/openFavouritesList"),
 	(_("Prov/Fav long"), "ab_long", ""),
-	(_("Eject"), "ejectcd", "Infobar/vmodeSelection"),
-	(_("Eject long"), "ejectcd_long", ""),
 	(_("Power (use button menu)"), "powerstandby", ""),
 	(_("Power long (use button menu)"), "powerstandby_long", ""),
 	(_("Previous"), "previous", "Infobar/historyZapBackward"),
@@ -175,21 +179,21 @@ def getHotkeyFunctions():
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
 		if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:
-			if twinPaths.has_key(plugin.path[24:]):
-				twinPaths[plugin.path[24:]] += 1
+			if twinPaths.has_key(plugin.path[pathLen:]):
+				twinPaths[plugin.path[pathLen:]] += 1
 			else:
-				twinPaths[plugin.path[24:]] = 1
-			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "EPG"))
+				twinPaths[plugin.path[pathLen:]] = 1
+			hotkeyFunctions.append((plugin.name, plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]) , "EPG"))
 			twinPlugins.append(plugin.name)
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
 		if plugin.name not in twinPlugins and plugin.path:
-			if twinPaths.has_key(plugin.path[24:]):
-				twinPaths[plugin.path[24:]] += 1
+			if twinPaths.has_key(plugin.path[pathLen:]):
+				twinPaths[plugin.path[pathLen:]] += 1
 			else:
-				twinPaths[plugin.path[24:]] = 1
-			hotkeyFunctions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "Plugins"))
+				twinPaths[plugin.path[pathLen:]] = 1
+			hotkeyFunctions.append((plugin.name, plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]) , "Plugins"))
 			twinPlugins.append(plugin.name)
 	hotkeyFunctions.append((_("Show Graphical Multi EPG"), "Infobar/openGraphEPG", "EPG"))
 	hotkeyFunctions.append((_("Show Event View"), "Infobar/openEventView", "EPG"))
@@ -294,7 +298,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
 	hotkeyFunctions.append((_("Language"), "Module/Screens.LanguageSelection/LanguageSelection", "Setup"))
 	hotkeyFunctions.append((_("Skin setup"), "Module/Screens.SkinSelector/SkinSelector", "Setup"))
-	if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Kodi/plugin.pyo"):
+	if os.path.isfile(ppath+"/Plugins/Extensions/Kodi/plugin.pyo"):
 		hotkeyFunctions.append((_("Kodi Media Center"), "Kodi/", "Plugins"))
 	if os.path.isdir("/etc/ppanel"):
 		for x in [x for x in os.listdir("/etc/ppanel") if x.endswith(".xml")]:
@@ -620,11 +624,11 @@ class InfoBarHotkey():
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
 					if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:
-						if twinPaths.has_key(plugin.path[24:]):
-							twinPaths[plugin.path[24:]] += 1
+						if twinPaths.has_key(plugin.path[pathLen:]):
+							twinPaths[plugin.path[pathLen:]] += 1
 						else:
-							twinPaths[plugin.path[24:]] = 1
-						if plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]])== "/".join(selected):
+							twinPaths[plugin.path[pathLen:]] = 1
+						if plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]])== "/".join(selected):
 							self.runPlugin(plugin)
 							return
 						twinPlugins.append(plugin.name)
@@ -632,11 +636,11 @@ class InfoBarHotkey():
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
 					if plugin.name not in twinPlugins and plugin.path:
-						if twinPaths.has_key(plugin.path[24:]):
-							twinPaths[plugin.path[24:]] += 1
+						if twinPaths.has_key(plugin.path[pathLen:]):
+							twinPaths[plugin.path[pathLen:]] += 1
 						else:
-							twinPaths[plugin.path[24:]] = 1
-						if plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]])== "/".join(selected):
+							twinPaths[plugin.path[pathLen:]] = 1
+						if plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]])== "/".join(selected):
 							self.runPlugin(plugin)
 							return
 						twinPlugins.append(plugin.name)
@@ -672,12 +676,12 @@ class InfoBarHotkey():
 					self.show()
 			elif selected[0] == "PPanel":
 				ppanelFileName = '/etc/ppanels/' + selected[1] + ".xml"
-				if os.path.isfile(ppanelFileName) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
+				if os.path.isfile(ppanelFileName) and os.path.isdir(ppath+"/Plugins/Extensions/PPanel"):
 					from Plugins.Extensions.PPanel.ppanel import PPanel
 					self.session.open(PPanel, name=selected[1] + ' PPanel', node=None, filename=ppanelFileName, deletenode=None)
 			elif selected[0] == "Shellscript":
 				command = '/usr/scripts/' + selected[1] + ".sh"
-				if os.path.isfile(command) and os.path.isdir('/usr/lib/enigma2/python/Plugins/Extensions/PPanel'):
+				if os.path.isfile(command) and os.path.isdir(ppath+"/Plugins/Extensions/PPanel"):
 					from Plugins.Extensions.PPanel.ppanel import Execute
 					self.session.open(Execute, selected[1] + " shellscript", None, command)
 				else:
@@ -690,7 +694,7 @@ class InfoBarHotkey():
 				except Exception as e:
 					print('[EMCPlayer] showMovies exception:\n' + str(e))
 			elif selected[0] == "Kodi":
-				if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Kodi/plugin.pyo"):
+				if os.path.isfile(ppath+"/Plugins/Extensions/Kodi/plugin.pyo"):
 					from Plugins.Extensions.Kodi.plugin import KodiMainScreen
 					self.session.open(KodiMainScreen)
 			elif selected[0] == "DeviceManager":
