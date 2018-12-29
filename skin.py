@@ -785,8 +785,8 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			resolved_font = resolveFilename(SCOPE_FONTS, filename, path_prefix=path_prefix)
 			if not fileExists(resolved_font): #when font is not available look at current skin path
 				resolved_font = resolveFilename(SCOPE_ACTIVE_SKIN, filename)
-				if fileExists(resolveFilename(SCOPE_ACTIVE_SKIN, filename)):
-					resolved_font = resolveFilename(SCOPE_ACTIVE_SKIN, filename)
+				if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, filename)):
+					resolved_font = resolveFilename(SCOPE_CURRENT_SKIN, filename)
 				elif fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)):
 					resolved_font = resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)
 			addFont(resolved_font, name, scale, is_replacement, render)
