@@ -386,21 +386,14 @@ class ConfigSelection(ConfigElement):
 		self.value = self.choices[(i + 1) % nchoices]
 
 	def getText(self):
-		if self._descr is not None:
-			return self._descr
-		descr = self._descr = self.description[self.value]
-		if descr:
-			return _(descr)
-		return descr
+		if self._descr is None:
+			self._descr = self.description[self.value]
+		return self._descr
 
 	def getMulti(self, selected):
-		if self._descr is not None:
-			descr = self._descr
-		else:
-			descr = self._descr = self.description[self.value]
-		if descr:
-			return "text", _(descr)
-		return "text", descr
+		if self._descr is None:
+			self._descr = self.description[self.value]
+		return ("text", self._descr)
 
 	# HTML
 	def getHTML(self, id):
@@ -441,10 +434,7 @@ class ConfigBoolean(ConfigElement):
 			self.value = True
 
 	def getText(self):
-		descr = self.descriptions[self.value]
-		if descr:
-			return _(descr)
-		return descr
+		return self.descriptions[self.value]
 
 	def getMulti(self, selected):
 		from config import config
@@ -486,16 +476,16 @@ class ConfigBoolean(ConfigElement):
 			self.last_value = self.value
 
 class ConfigYesNo(ConfigBoolean):
-	def __init__(self, default = False, graphic = True):
-		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("no"), True: _("yes")}, graphic = graphic)
+	def __init__(self, default = False):
+		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("no"), True: _("yes")})
 
 class ConfigOnOff(ConfigBoolean):
-	def __init__(self, default = False, graphic = True):
-		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("off"), True: _("on")}, graphic = graphic)
+	def __init__(self, default = False):
+		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("off"), True: _("on")})
 
 class ConfigEnableDisable(ConfigBoolean):
-	def __init__(self, default = False, graphic = True):
-		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("disable"), True: _("enable")}, graphic = graphic)
+	def __init__(self, default = False):
+		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("disable"), True: _("enable")})
 
 class ConfigDateTime(ConfigElement):
 	def __init__(self, default, formatstring, increment = 86400):
@@ -1502,6 +1492,7 @@ class ConfigSet(ConfigElement):
 
 	description = property(lambda self: descriptionList(self.choices.choices, choicesList.LIST_TYPE_LIST))
 
+
 class ConfigDictionarySet(ConfigElement):
 	def __init__(self, default = {}):
 		ConfigElement.__init__(self)
@@ -2141,3 +2132,15 @@ class ConfigCECAddress(ConfigSequence):
 	def getHTML(self, id):
 		# we definitely don't want leading zeros
 		return '.'.join(["%d" % d for d in self.value])
+
+class ConfigAction(ConfigElement):
+	def __init__(self, action, *args):
+		ConfigElement.__init__(self)
+		self.value = "(OK)"
+		self.action = action
+		self.actionargs = args
+	def handleKey(self, key):
+		if (key == KEY_OK):
+			self.action(*self.actionargs)
+	def getMulti(self, dummy):
+		pass
