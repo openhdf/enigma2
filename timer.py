@@ -175,8 +175,7 @@ class Timer:
 
 	def cleanup(self):
 		self.processed_timers = [entry for entry in self.processed_timers if entry.disabled]
-		if hasattr(self, 'saveTimer'):
-			self.saveTimer()
+		self.saveTimer()
 
 	def cleanupDisabled(self):
 		disabled_timers = [entry for entry in self.processed_timers if entry.disabled]
@@ -186,8 +185,7 @@ class Timer:
 	def cleanupDaily(self, days):
 		limit = time() - (days * 3600 * 24)
 		self.processed_timers = [entry for entry in self.processed_timers if (entry.disabled and entry.repeated) or (entry.end and (entry.end > limit))]
-		if hasattr(self, 'saveTimer'):
-			self.saveTimer()
+		self.saveTimer()
 
 	def addTimerEntry(self, entry, noRecalc=0):
 		entry.processRepeated()
@@ -312,3 +310,6 @@ class Timer:
 		# we keep on processing the first entry until it goes into the future.
 		while self.timer_list and self.timer_list[0].getNextActivation() < t:
 			self.doActivate(self.timer_list[0])
+
+	def saveTimer(self):
+		pass
