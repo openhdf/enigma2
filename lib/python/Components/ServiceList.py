@@ -154,6 +154,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.listHeight = self.instance.size().height()
 		self.listWidth = self.instance.size().width()
 		self.setItemsPerPage()
+		self.setServiceFontsize()
 		return rc
 
 	def connectSelChanged(self, fnc):
