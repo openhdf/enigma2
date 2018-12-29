@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-12-24 07:34+0100\n"
+"PO-Revision-Date: 2018-12-29 11:47+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -11634,6 +11634,12 @@ msgstr "Wenn aktiviert werden Videotext Untertitel an der Originalposition darge
 
 msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr "Wenn aktiviert wird die SCART Option im Hauptmenü gezeigt."
+
+msgid "Show True/False as graphical switch"
+msgstr "Zeige \"Ja / Nein\" als grafischen Schalter"
+
+msgid "Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch."
+msgstr "Aktivieren Sie diese Option, um alle Optionen für \"Wahr / Falsch\", \"Ja / Nein\", \"Ein / Aus\" und \"Ein- / Ausschalten\" als grafischen Schalter anzuzeigen."
 
 msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr "Zeige Filmlänge in Filmliste (Start verzögert sich dadurch etwas)."
