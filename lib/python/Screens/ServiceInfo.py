@@ -55,8 +55,8 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.list = source
 		self.l.setList(self.list)
-		self.fontName = "Regular"
-		self.fontSize = 23
+                self.fontName, self.fontSize = skin.parameters.get("ServiceInfoFont", ('Regular', 23))
+                self.l.setFont(0, gFont(self.fontName, self.fontSize))
 		self.ItemHeight = 25
 
 	def applySkin(self, desktop, screen):
@@ -145,18 +145,16 @@ class ServiceInfo(Screen):
 			videomode = "-"
 			resolution = "-"
 			if self.info:
-				videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
+				videocodec =  ("MPEG2", "MPEG4", "MPEG1", "MPEG4-II", "VC1", "VC1-SM", "HEVC", "H265", "CAVS", "-" )[self.info and self.info.getInfo(iServiceInformation.sVideoType)]
 				width = self.info.getInfo(iServiceInformation.sVideoWidth)
 				height = self.info.getInfo(iServiceInformation.sVideoHeight)
 				if width > 0 and height > 0:
 					resolution = "%dx%d" % (width,height)
-					resolution += ("i", "p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
+					resolution += ("i", "p", "-")[self.info.getInfo(iServiceInformation.sProgressive)]
 					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
-					if aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
-						aspect = "4:3"
-					else:
-						aspect = "16:9"
+					aspect = aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ) and "4:3" or "16:9"
+					resolution += " - ["+aspect+"]"
 				f = open("/proc/stb/video/videomode")
 				videomode = f.read()[:-1].replace('\n','')
 				f.close()
@@ -174,10 +172,10 @@ class ServiceInfo(Screen):
 		else:
 			if self.transponder_info:
 				tp_info = ConvertToHumanReadable(self.transponder_info)
-				conv = { "tuner_type" 		: _("Transponder type"),
+				conv = { "tuner_type"		: _("Transponder type"),
 						 "system"			: _("System"),
 						 "modulation"		: _("Modulation"),
-						 "orbital_position" : _("Orbital position"),
+						 "orbital_position"	: _("Orbital position"),
 						 "frequency"		: _("Frequency"),
 						 "symbol_rate"		: _("Symbol rate"),
 						 "bandwidth"		: _("Bandwidth"),
@@ -185,13 +183,16 @@ class ServiceInfo(Screen):
 						 "inversion"		: _("Inversion"),
 						 "pilot"			: _("Pilot"),
 						 "rolloff"			: _("Roll-off"),
+						 "is_id"			: _("Input Stream ID"),
+						 "pls_mode"			: _("PLS Mode"),
+						 "pls_code"			: _("PLS Code"),
 						 "fec_inner"		: _("FEC"),
 						 "code_rate_lp"		: _("Coderate LP"),
 						 "code_rate_hp"		: _("Coderate HP"),
 						 "constellation"	: _("Constellation"),
-						 "transmission_mode": _("Transmission mode"),
+						 "transmission_mode"	: _("Transmission mode"),
 						 "guard_interval" 	: _("Guard interval"),
-						 "hierarchy_information": _("Hierarchy information") }
+						 "hierarchy_information": _("Hierarchy information")}
 				Labels = [(conv[i], tp_info[i], i == "orbital_position" and TYPE_VALUE_ORBIT_DEC or TYPE_VALUE_DEC) for i in tp_info.keys() if i in conv]
 				self.fillList(Labels)
 
@@ -236,7 +237,10 @@ class ServiceInfo(Screen):
 						(_("Inversion"), frontendData["inversion"], TYPE_TEXT),
 						(_("FEC"), frontendData["fec_inner"], TYPE_TEXT),
 						(_("Pilot"), frontendData.get("pilot", None), TYPE_TEXT),
-						(_("Roll-off"), frontendData.get("rolloff", None), TYPE_TEXT))
+						(_("Roll-off"), frontendData.get("rolloff", None), TYPE_TEXT),
+						(_("Input Stream ID"), frontendData.get("is_id", 0), TYPE_VALUE_DEC),
+						(_("PLS Mode"), frontendData.get("pls_mode", None), TYPE_TEXT),
+						(_("PLS Code"), frontendData.get("pls_code", 0), TYPE_VALUE_DEC))
 			elif frontendDataOrg["tuner_type"] == "DVB-C":
 				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
 						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
@@ -259,6 +263,13 @@ class ServiceInfo(Screen):
 						(_("Transmission mode"), frontendData["transmission_mode"], TYPE_TEXT),
 						(_("Guard interval"), frontendData["guard_interval"], TYPE_TEXT),
 						(_("Hierarchy info"), frontendData["hierarchy_information"], TYPE_TEXT))
+			elif frontendDataOrg["tuner_type"] == "ATSC":
+				return ((_("NIM"), chr(ord('A') + frontendData["tuner_number"]), TYPE_TEXT),
+						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
+						(_("System"), frontendData["system"], TYPE_TEXT),
+						(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
+						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
+						(_("Inversion"), frontendData["inversion"], TYPE_TEXT))
 		return [ ]
 
 	def fillList(self, Labels):
