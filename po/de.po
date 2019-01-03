@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-01-01 17:43+0100\n"
+"PO-Revision-Date: 2019-01-03 18:26+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3682,10 +3682,10 @@ msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
 msgid "DVB subtitle black transparency"
-msgstr "DVB Untertitel Transparenz"
+msgstr "Transparenz für DVB Untertitel"
 
 msgid "Subtitle black transparency"
-msgstr "Transparenz für Untertitel"
+msgstr "Transparenz für Videotext Untertitel"
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -8280,7 +8280,7 @@ msgid "Rewind speeds"
 msgstr "Rücklauf Geschwindigkeiten"
 
 msgid "Rewrap teletext subtitles"
-msgstr "Videotextuntertitel anders formatieren"
+msgstr "Videotext Untertitel anders formatieren"
 
 msgid "Right"
 msgstr "Rechts"
@@ -9782,13 +9782,13 @@ msgid "Subtitle border width"
 msgstr "Untertitel Randbreite"
 
 msgid "Subtitle delay when timing is bad"
-msgstr "Verzögerung Untertitel bei schlechtem Timing"
+msgstr "Verzögerung der Untertitel bei schlechtem Timing"
 
 msgid "Subtitle delay when timing lacks"
-msgstr "Verzögerung Untertitel bei fehlendem Timing"
+msgstr "Verzögerung der Untertitel bei fehlendem Timing"
 
 msgid "Subtitle font size"
-msgstr "Untertitel Schriftgröße"
+msgstr "Videotext Untertitel Schriftgröße"
 
 msgid "Subtitle language selection 1"
 msgstr "Untertitel Sprachwahl 1"
@@ -10022,7 +10022,7 @@ msgid "Tags"
 msgstr "Tags"
 
 msgid "Teletext subtitle color"
-msgstr "Farbe Videotextuntertitel"
+msgstr "Farbe Videotext Untertitel"
 
 msgid "Telnet Interface"
 msgstr "Interface:"
@@ -11043,10 +11043,13 @@ msgid "Use official channel numbering"
 msgstr "Benutze offizielle Sendernummern"
 
 msgid "Use original DVB subtitle position"
-msgstr "Benutze originale Position der DVB Untertitel"
+msgstr "Position der DVB Untertitel"
 
 msgid "Use original teletext position"
 msgstr "Benutze originale Position der Videotext Untertitel"
+
+msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
+msgstr "Entfernt Texte für Hörgeschädigte aus externen Untertiteln (z.B. Beschreibungen von Geräuschen)."
 
 msgid "Use power measurement"
 msgstr "Stromaufnahme messen"
