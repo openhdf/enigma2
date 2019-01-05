@@ -1449,32 +1449,10 @@ class InfoBarChannelSelection:
 		self.servicelist.historyZap(-1)
 
 	def historyBack(self):
-		if config.usage.historymode.value == "0":
-			self.servicelist.historyBack()
-		if config.usage.historymode.value == "1":
-			self.servicelist.historyZap(-1)
-		if config.usage.historymode.value == "3":
-			self.volumeDown()
-		elif config.usage.historymode.value == "2":
-			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
-				self.showZapHistoryBrowser()
-		else:
-			return 1
-			#self.servicelist.historyZap(-1)
+		self.servicelist.historyBack()
 
 	def historyNext(self):
-		if config.usage.historymode.value == "0":
-			self.servicelist.historyNext()
-		if config.usage.historymode.value == "1":
-			self.servicelist.historyZap(+1)
-		if config.usage.historymode.value == "3":
-			self.volumeUp()
-		elif config.usage.historymode.value == "2":
-			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
-				self.showZapHistoryBrowser()
-		else:
-			return 1
-			#self.servicelist.historyZap(+1)
+		self.servicelist.historyNext()
 
 	def useBookmark(self):
 		if config.usage.bookmarkmode.value == "1":
