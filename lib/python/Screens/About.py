@@ -83,7 +83,7 @@ class About(Screen):
 			cpuMHz = "   (1,7 GHz)"
 		elif getMachineBuild() in ('formuler1tc','formuler1','triplex'):
 			cpuMHz = "   (1,3 GHz)"
-		elif getMachineBuild() in ('u5','u51','u52','u53','u5pvr','h9','sf8008','hd60','i55plus'):
+		elif getMachineBuild() in ('u5','u51','u52','u53','u5pvr','h9','sf8008','hd60',"hd61",'i55plus'):
 			cpuMHz = "   (1,6 GHz)"
 		elif getMachineBuild() in ('sf5008','et13000','et1x000','hd52','hd51','sf4008','vs1500','h7','osmio4k'):
 			try:
