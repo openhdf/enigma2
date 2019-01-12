@@ -83,7 +83,7 @@ class About(Screen):
 			cpuMHz = "   (1,7 GHz)"
 		elif getMachineBuild() in ('formuler1tc','formuler1','triplex'):
 			cpuMHz = "   (1,3 GHz)"
-		elif getMachineBuild() in ('u5','u51','u52','u53','u5pvr','h9','sf8008','hd60',"hd61",'i55plus'):
+		elif getMachineBuild() in ('u5','u51','u52','u53','u5pvr','h9','sf8008','sf8008s','sf8008t','hd60',"hd61",'i55plus'):
 			cpuMHz = "   (1,6 GHz)"
 		elif getMachineBuild() in ('sf5008','et13000','et1x000','hd52','hd51','sf4008','vs1500','h7','osmio4k'):
 			try:
@@ -145,7 +145,7 @@ class About(Screen):
 				f.close()
 				if bootname: bootname = "   (%s)" %bootname 
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
-			elif getMachineBuild() in ('cc1','sf8008'):
+			elif getMachineBuild() in ('cc1','sf8008','sf8008s','sf8008t'):
 				if path.exists('/boot/STARTUP'):
 					f = open('/boot/STARTUP', 'r')
 					f.seek(5)
@@ -193,7 +193,7 @@ class About(Screen):
 		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
 		if path.exists('/boot/STARTUP'):
-			#if getMachineBuild() in ('cc1','sf8008'):
+			#if getMachineBuild() in ('cc1','sf8008','sf8008s','sf8008t'):
 			#	os.system("tune2fs -l /dev/sda2 | grep 'Filesystem created:' | cut -d ' ' -f 9-13 > /tmp/flashdate" )
 			#else:
 			#	os.system("tune2fs -l /dev/sda1 | grep 'Filesystem created:' | cut -d ' ' -f 9-13 > /tmp/flashdate" )

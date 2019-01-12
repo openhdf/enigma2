@@ -92,7 +92,7 @@ def setLCDModeMinitTV(value):
 class Standby2(Screen):
 	def Power(self):
 		print "[Standby] leave standby"
-		if (getBrandOEM() in ('fulan','clap','dinobot') or getBoxType() in ('sf8008','ustym4kpro')):
+		if (getBrandOEM() in ('fulan','clap','dinobot') or getBoxType() in ('sf8008','sf8008s','sf8008t','ustym4kpro')):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("on")
 			except:
@@ -209,7 +209,7 @@ class Standby2(Screen):
 		else:
 			self.avswitch.setInput("AUX")
 
-		if (getBrandOEM() in ('fulan','clap','dinobot') or getBoxType() in ('sf8008','ustym4kpro')):
+		if (getBrandOEM() in ('fulan','clap','dinobot') or getBoxType() in ('sf8008','sf8008s','sf8008t','ustym4kpro')):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("off")
 			except:
