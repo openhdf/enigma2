@@ -336,14 +336,14 @@ class ImageBackup(Screen):
 		if isDreamboxXZ:
 			cmd1 = "(cd /tmp/bi/root && find . -type s) >/tmp/sockets"
 #			cmd1 = "%s -cJf %s/root.tar.xz -C /tmp/bi/root ." % (self.MKFS, self.WORKDIR)
-			cmd2 = "%s -C /tmp/bi/root -z --exclude-from=/tmp/sockets -cf %s/root.tar.gz ." % (self.MKFS, self.WORKDIR)
+			cmd2 = "%s -C /tmp/bi/root -z --exclude-from=/tmp/sockets --exclude ./run/avahi-daemon/socket -cf %s/root.tar.gz ." % (self.MKFS, self.WORKDIR)
 			cmd3 = None
 		elif "jffs2" in self.ROOTFSTYPE.split():
 			cmd1 = "%s --root=/tmp/bi/root --faketime --output=%s/root.jffs2 %s" % (self.MKFS, self.WORKDIR, self.MKUBIFS_ARGS)
 			cmd2 = None
 			cmd3 = None
 		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or self.MACHINEBUILD in ("u51","u52","u53","u54","u5","u5pvr","cc1","sf8008","sf8008s","sf8008t","ustym4kpro","v8plus","multibox","h9combo","hd60","hd61"):
-			cmd1 = "%s -cf %s/rootfs.tar -C /tmp/bi/root --exclude ./var/nmbd --exclude ./var/lib/samba/private/msg.sock ." % (self.MKFS, self.WORKDIR)
+			cmd1 = "%s -cf %s/rootfs.tar -C /tmp/bi/root --exclude ./var/nmbd --exclude ./run/avahi-daemon/socket --exclude ./var/lib/samba/private/msg.sock ." % (self.MKFS, self.WORKDIR)
 			cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 			cmd3 = None
 		else:
