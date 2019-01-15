@@ -290,11 +290,13 @@ class ChannelContextMenu(Screen):
 		self["menu"] = ChoiceList(menu)
 
 	def playMain(self):
-		# XXX: we want to keep the current selection
 		sel = self.csel.getCurrentSelection()
-		self.csel.zap()
-		self.csel.setCurrentSelection(sel)
-		self.close()
+		if sel and sel.valid() and self.csel.dopipzap and (not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1):
+			self.csel.zap()
+			self.csel.setCurrentSelection(sel)
+			self.close(True)
+		else:
+			return 0
 
 	def okbuttonClick(self):
 		self["menu"].getCurrent()[0][1]()
