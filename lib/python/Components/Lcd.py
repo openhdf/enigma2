@@ -273,6 +273,24 @@ class LCD:
 	def setLEDBlinkingTime(self, value):
 		eDBoxLCD.getInstance().setLED(value, 2)
 
+	def setPowerLEDstanbystate(configElement):
+		if fileExists("/proc/stb/power/standbyled"):
+			f = open("/proc/stb/power/standbyled", "w")
+			f.write(configElement.value)
+			f.close()
+
+	def setPowerLEDdeepstanbystate(configElement):
+		if fileExists("/proc/stb/power/suspendled"):
+			f = open("/proc/stb/power/suspendled", "w")
+			f.write(configElement.value)
+			f.close()
+
+	config.usage.lcd_standbypowerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+	config.usage.lcd_standbypowerled.addNotifier(setPowerLEDstanbystate)
+
+	config.usage.lcd_deepstandbypowerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+	config.usage.lcd_deepstandbypowerled.addNotifier(setPowerLEDdeepstanbystate)
+
 	def setLCDMiniTVMode(self, value):
 		print 'setLCDMiniTVMode',value
 		f = open('/proc/stb/lcd/mode', "w")
