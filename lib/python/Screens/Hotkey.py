@@ -16,7 +16,7 @@ from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
-updateversion = "13.01.2019"
+updateversion = "19.01.2019"
 
 if os.uname()[4] == "aarch64":
 	pathLen=26
@@ -166,9 +166,9 @@ def getHotkeys():
 	(_("Y-Tube/WWW long"), "www_long", ""),
 	(_("Directory "), "directory", ""),
 	(_("Directory long"), "directory_long", ""),
-	(_("MOUSE"), "mouse", ""),
+	(_("MOUSE"), "mouse", "Module/Screens.ServiceInfo/ServiceInfo"),
 	(_("MOUSE long"), "mouse_long", ""),
-	(_("VOD"), "vod", ""),
+	(_("VOD"), "vod", "Infobar/seekFwdVod"),
 	(_("VOD long"), "vod_long", ""),
 	(_("Zoom"), "ZoomInOut", "InfobarGenerics/ZoomInOut"),]
 
