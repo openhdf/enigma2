@@ -543,46 +543,55 @@ class SystemNetworkInfo(Screen):
 		self.iface = "eth0"
 		eth0 = about.getIfConfig('eth0')
 		if eth0.has_key('addr'):
-			self.AboutText += _("IP:") + "\t" + "\t" + eth0['addr'] + "\n"
+			self.AboutText += _("IP:") + "\t\t" + eth0['addr'] + "\n"
 			if eth0.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + "\t" + eth0['netmask'] + "\n"
+				self.AboutText += _("Netmask:") + "\t\t" + eth0['netmask'] + "\n"
 			if eth0.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + "\t" + eth0['hwaddr'] + "\n"
+				self.AboutText += _("MAC:") + "\t\t" + eth0['hwaddr'] + "\n"
 			self.iface = 'eth0'
 
 		eth1 = about.getIfConfig('eth1')
 		if eth1.has_key('addr'):
-			self.AboutText += _("IP:") + "\t" + "\t" + eth1['addr'] + "\n"
+			self.AboutText += _("IP:") + "\t\t" + eth1['addr'] + "\n"
 			if eth1.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + "\t" + eth1['netmask'] + "\n"
+				self.AboutText += _("Netmask:") + "\t\t" + eth1['netmask'] + "\n"
 			if eth1.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + "\t" + eth1['hwaddr'] + "\n"
+				self.AboutText += _("MAC:") + "\t\t" + eth1['hwaddr'] + "\n"
 			self.iface = 'eth1'
 
 		ra0 = about.getIfConfig('ra0')
 		if ra0.has_key('addr'):
-			self.AboutText += _("IP:") + "\t" + "\t" + ra0['addr'] + "\n"
+			self.AboutText += _("IP:") + "\t\t" + ra0['addr'] + "\n"
 			if ra0.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + "\t" + ra0['netmask'] + "\n"
+				self.AboutText += _("Netmask:") + "\t\t" + ra0['netmask'] + "\n"
 			if ra0.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + "\t" + ra0['hwaddr'] + "\n"
+				self.AboutText += _("MAC:") + "\t\t" + ra0['hwaddr'] + "\n"
 			self.iface = 'ra0'
 
 		wlan0 = about.getIfConfig('wlan0')
 		if wlan0.has_key('addr'):
-			self.AboutText += _("IP:") + "\t" + "\t" + wlan0['addr'] + "\n"
+			self.AboutText += _("IP:") + "\t\t" + wlan0['addr'] + "\n"
 			if wlan0.has_key('netmask'):
-				self.AboutText += _("Netmask:") + "\t" + "\t" + wlan0['netmask'] + "\n"
+				self.AboutText += _("Netmask:") + "\t\t" + wlan0['netmask'] + "\n"
 			if wlan0.has_key('hwaddr'):
-				self.AboutText += _("MAC:") + "\t" + "\t" + wlan0['hwaddr'] + "\n"
+				self.AboutText += _("MAC:") + "\t\t" + wlan0['hwaddr'] + "\n"
 			self.iface = 'wlan0'
+
+		wlan1 = about.getIfConfig('wlan1')
+		if wlan1.has_key('addr'):
+			self.AboutText += _("IP:") + "\t\t" + wlan1['addr'] + "\n"
+			if wlan1.has_key('netmask'):
+				self.AboutText += _("Netmask:") + "\t\t" + wlan1['netmask'] + "\n"
+			if wlan1.has_key('hwaddr'):
+				self.AboutText += _("MAC:") + "\t\t" + wlan1['hwaddr'] + "\n"
+			self.iface = 'wlan1'
 
 		rx_bytes, tx_bytes = about.getIfTransferredData(self.iface)
 		self.AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + "\n"
-		self.AboutText += _("Bytes sent:") + "\t" + "\t" + tx_bytes + "\n"
+		self.AboutText += _("Bytes sent:") + "\t\t" + tx_bytes + "\n"
 
 		hostname = file('/proc/sys/kernel/hostname').read()
-		self.AboutText += "\n" + _("Hostname:") + "\t" + "\t" + hostname + "\n"
+		self.AboutText += "\n" + _("Hostname:") + "\t\t" + hostname + "\n"
 		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
 
 	def cleanup(self):
@@ -598,22 +607,22 @@ class SystemNetworkInfo(Screen):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					if self.iface == 'wlan0' or self.iface == 'ra0':
+					if self.iface == 'wlan0' or self.iface == 'wlan1' or self.iface == 'ra0':
 						if status[self.iface]["essid"] == "off":
 							essid = _("No Connection")
 						else:
-							essid = status[self.iface]["essid"]
+							essid = str(status[self.iface]["essid"])
 						if status[self.iface]["accesspoint"] == "Not-Associated":
 							accesspoint = _("Not-Associated")
 							essid = _("No Connection")
 						else:
-							accesspoint = status[self.iface]["accesspoint"]
+							accesspoint = str(status[self.iface]["accesspoint"])
 						if self.has_key("BSSID"):
-							self.AboutText += _('Accesspoint:') + '\t' + '\t' + accesspoint + '\n'
+							self.AboutText += _('Accesspoint:') + '\t\t' + accesspoint + '\n'
 						if self.has_key("ESSID"):
-							self.AboutText += _('SSID:') + '\t' + '\t' + essid + '\n'
+							self.AboutText += _('SSID:') + '\t\t' + essid + '\n'
 
-						quality = status[self.iface]["quality"]
+						quality = str(status[self.iface]["quality"])
 						if self.has_key("quality"):
 							self.AboutText += _('Link Quality:') + '\t' + quality + '\n'
 
@@ -622,11 +631,11 @@ class SystemNetworkInfo(Screen):
 						else:
 							bitrate = str(status[self.iface]["bitrate"]) + " Mb/s"
 						if self.has_key("bitrate"):
-							self.AboutText += _('Bitrate:') + '\t' + '\t' + bitrate + '\n'
+							self.AboutText += _('Bitrate:') + '\t\t' + bitrate + '\n'
 
-						signal = status[self.iface]["signal"]
+						signal = str(status[self.iface]["signal"])
 						if self.has_key("signal"):
-							self.AboutText += _('Signal Strength:') + '\t' + '\t' + signal + '\n'
+							self.AboutText += _('Signal Strength:') + '\t\t' + signal + '\n'
 
 						if status[self.iface]["encryption"] == "off":
 							if accesspoint == "Not-Associated":
@@ -636,7 +645,7 @@ class SystemNetworkInfo(Screen):
 						else:
 							encryption = _("Enabled")
 						if self.has_key("enc"):
-							self.AboutText += _('Encryption:') + '\t' + encryption + '\n'
+							self.AboutText += _('Encryption:') + '\t\t' + encryption + '\n'
 
 						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] is False:
 							self.LinkState = False
