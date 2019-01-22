@@ -80,28 +80,21 @@ def findLcdPicon(serviceName):
 			return ""
 
 def getLcdPiconName(serviceName):
-	#remove the path and name fields, and replace ':' by '_'
 	sname = '_'.join(GetWithAlternative(serviceName).split(':', 10)[:10])
-	pngname = findLcdPicon(sname)
+	pngname = findPicon(sname)
 	if not pngname:
 		fields = sname.split('_', 3)
-		if len(fields) > 2 and fields[2] != '1': #fallback to 1 for services with different service types
-			fields[2] = '1'
-		if len(fields) > 0 and fields[0] != '1': #fallback to 1 for IPTV streams
+		if len(fields) > 0 and fields[0] != '1':
 			fields[0] = '1'
-		if len(fields) > 0 and fields[0] == '5001': #fallback to 1 for IPTV streams
-			fields[0] = '1'
-		if len(fields) > 0 and fields[0] == '5002': #fallback to 1 for IPTV streams
-			fields[0] = '1'
-		pngname = findLcdPicon('_'.join(fields))
+		pngname = findPicon('_'.join(fields))
 	if not pngname: # picon by channel name
 		name = ServiceReference(serviceName).getServiceName()
 		name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
 		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 		if len(name) > 0:
-			pngname = findLcdPicon(name)
+			pngname = findPicon(name)
 			if not pngname and len(name) > 2 and name.endswith('hd'):
-				pngname = findLcdPicon(name[:-2])
+				pngname = findPicon(name[:-2])
 	return pngname
 
 class LcdPicon(Renderer):
