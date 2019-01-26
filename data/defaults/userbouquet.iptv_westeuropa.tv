@@ -1,0 +1,200 @@
+#NAME IPTV Westeuropa
+#SERVICE 1:64:1:0:0:0:0:0:0:0:
+#DESCRIPTION Update 20.01.2019 by Team www.hdfreaks.cc
+#SERVICE 1:64:0:0:0:0:0:0:0:0::
+#DESCRIPTION Great Britain - UK
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/bbc-one
+#DESCRIPTION BBC 1 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/bbc-1-wales
+#DESCRIPTION BBC 1 Wales (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/bbc-1-scotland
+#DESCRIPTION BBC 1 Scotland (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/bbc-1-north-ireland
+#DESCRIPTION BBC 1 North Ireland (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/bbc-two
+#DESCRIPTION BBC 2 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/cbeebiesbbc-four
+#DESCRIPTION BBC 4 CBeebies (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/bbc-parliament
+#DESCRIPTION BBC Parliament (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/forces-tv
+#DESCRIPTION Forces TV (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/itv1
+#DESCRIPTION ITV 1 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/itv-plus-1
+#DESCRIPTION ITV 1 +1 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/itv2
+#DESCRIPTION ITV 2 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/itv2-plus-1
+#DESCRIPTION ITV 2 +1 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/itv3
+#DESCRIPTION ITV 3 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/itv3-plus-1
+#DESCRIPTION ITV 3 +1 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/itv4
+#DESCRIPTION ITV 4 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/itv4-plus-1
+#DESCRIPTION ITV 4 +1 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/itvbe
+#DESCRIPTION ITV Be (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/challenge
+#DESCRIPTION Challenge (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/channel-4
+#DESCRIPTION Channel 4 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/e4
+#DESCRIPTION E 4 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/more4
+#DESCRIPTION More 4 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/channel-5
+#DESCRIPTION Channel 5 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/5-star
+#DESCRIPTION 5* (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/5usa
+#DESCRIPTION 5 USA (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/really
+#DESCRIPTION Really (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/yesterday
+#DESCRIPTION Yesterday (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/pick-tv
+#DESCRIPTION Pick TV (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/cbs-reality
+#DESCRIPTION CBS Reality (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/cbs-reality1
+#DESCRIPTION CBS Reality +1 (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/cbs-drama
+#DESCRIPTION CBS Drama (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/cbs-action
+#DESCRIPTION CBS Action (filmon)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//127.0.0.1%3a8088/https%3a//www.filmon.com/tv/tru-tv
+#DESCRIPTION Tru TV (filmon)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//unilivemtveu-lh.akamaihd.net/i/mtvmusic24_1@134926/master.m3u8
+#DESCRIPTION MTV Music24
+#SERVICE 4097:0:1:108:0:0:0:0:0:0:http%3a//skydvn-nowtv-atv-prod.skydvn.com/atv/skynews/1404/live/06.m3u8
+#DESCRIPTION Sky News
+#SERVICE 1:64:0:0:0:0:0:0:0:0::Daenemark
+#DESCRIPTION Daenemark
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//dr01-lh.akamaihd.net/i/live/dr01_0@147054/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION DR 1 HD (1080p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//dr02-lh.akamaihd.net/i/live/dr02_0@147055/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION DR 2 HD (1080p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//dr03-lh.akamaihd.net/i/live/dr03_0@147056/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION DR 3 HD (1080p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//dr04-lh.akamaihd.net/i/live/dr04_0@147057/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION DR K (1080p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//dr05-lh.akamaihd.net/i/live/dr05_0@147058/master.m3u8?u=n1info#X-Forwarded-For=78.157.96.0
+#DESCRIPTION DR Ultra (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdn-lt-hls-vod.tv2lorry.dk/fhls/p/2045321/sp/204532100/serveFlavor/entryId/0_0u9letdh/v/1/flavorId/0_p5f7q6yf/name/a.mp4/index.m3u8:
+#DESCRIPTION TV2 Lorry
+#SERVICE 1:64:0:0:0:0:0:0:0:0::Finnland
+#DESCRIPTION Finland
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//yletv-lh.akamaihd.net/i/yletv1hls_1@103188/master.m3u8?u=n1info#X-Forwarded-For=87.92.1.250
+#DESCRIPTION YLE TV 1 HD (720p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//yletv-lh.akamaihd.net/i/yletv2hls_1@103189/master.m3u8?u=n1info#X-Forwarded-For=87.92.1.250
+#DESCRIPTION YLE TV 2 HD (720p)
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Norwegen
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//nrk1us-f.akamaihd.net/i/nrk1us_0@102847/master.m3u8?#X-Forwarded-For=5.249.230.1
+#DESCRIPTION NRK 1
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//nrk2us-f.akamaihd.net/i/nrk2us_0@107231/master.m3u8?#X-Forwarded-For=5.249.230.1
+#DESCRIPTION NRK 2
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//nrk3us-f.akamaihd.net/i/nrk3us_0@107233/master.m3u8?#X-Forwarded-For=5.249.230.1
+#DESCRIPTION NRK 3
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Griechenland
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.streams.ovh%3a1935/cannali/cannali/playlist.m3u8:Canali
+#DESCRIPTION Canali (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//live.cretetv.gr/cretetv/myStream:CreteTv
+#DESCRIPTION CreteTv (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wpso.com%3a1936/hls/wzra.m3u8?#User-Agent=Android:Greek Voice
+#DESCRIPTION Greek Voice (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.ioniantv.gr%3a8081/ionian/live/playlist.m3u8:Ionian Channel
+#DESCRIPTION Ionian Channel (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//flashcloud.mediacdn.com/live/kontratv/.m3u8:Kontra
+#DESCRIPTION Kontra (400p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//138.197.136.102%3a8081/live/greektv/playlist.m3u8:Montreal Greek TV
+#DESCRIPTION Montreal Greek TV (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.netvtoronto.com%3a1935/NetvToronto/NetvToronto/playlist.m3u8:NETV Toronto
+#DESCRIPTION NETV Toronto (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream2.omegatv.net/hls-live/livepkgr/_definst_/liveevent/omegatv.m3u8:Omega
+#DESCRIPTION Omega (300p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//81.21.47.74/hls/live.m3u8:Sigma CY
+#DESCRIPTION Sigma CY (864p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.62.176.153/hls/tv100/index.m3u8:TV 100
+#DESCRIPTION TV 100 (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.streams.ovh%3a1935/tvfilopoli/tvfilopoli/playlist.m3u8:TV Filopoli
+#DESCRIPTION TV Filopoli (360p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//streamer-cache.grnet.gr/parliament/hls/webtv.m3u8:VOULI
+#DESCRIPTION VOULI (540p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//wpso.com%3a1936/hls/music1.m3u8?#User-Agent=Android
+#DESCRIPTION TILEMOUSIKI
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.ioniantv.gr%3a8081/ionian/live/playlist.m3u8
+#DESCRIPTION Ionian Channel 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott.ec.streamcloud.be/live/disk1/EBS/hls_el/EBS-audio_AACL_ell_66400_207=66400-video=800000.m3u8
+#DESCRIPTION EBS 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott.ec.streamcloud.be/live/disk1/EBSplus/hls_el/EBSplus-audio_AACL_ell_66400_407=66400-video=800000.m3u8
+#DESCRIPTION EBS Plus 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.cretetv.gr%3a1935/cretetv/myStream/playlist.m3u8
+#DESCRIPTION KPHTH TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//176.9.123.140%3a1935/messinia/messinia/master.m3u8
+#DESCRIPTION Messinia TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.streams.ovh%3a1935/cannali/cannali/playlist.m3u8
+#DESCRIPTION CANNALI 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//176.9.123.140%3a1935/hellastv/_definst_/mp4%3astream/master.m3u8
+#DESCRIPTION Hellas TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.netvtoronto.com%3a1935/NetvToronto/NetvToronto/playlist.m3u8
+#DESCRIPTION NETV Toronto 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream2.svbllc.com%3a1935/mega/mega.stream/playlist.m3u8
+#DESCRIPTION Mega Cosmos 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.streams.ovh%3a1935/tvfilopoli/tvfilopoli/playlist.m3u8
+#DESCRIPTION TV Filopoli 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.62.176.153/hls/tv100/index.m3u8
+#DESCRIPTION TV 100 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//srv.viiideo.gr%3a1935/neatv/live/playlist.m3u8
+#DESCRIPTION NEA TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//srv.viiideo.gr%3a1935/axeloos/live/playlist.m3u8
+#DESCRIPTION Axelwos TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//82.192.84.30%3a554/live/myStream.sdp/playlist.m3u8
+#DESCRIPTION 4E 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//erato.multiserver.gr%3a1935/imp/imp/playlist.m3u8
+#DESCRIPTION Lychnos 
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Italien
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//skyianywhere2-i.akamaihd.net%3a80/hls/live/200275/tg24/stream6/streamPlaylist.m3u8
+#DESCRIPTION SKY TG24 HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//b2everyrai-lh.akamaihd.net/i/rai4_1@181951/master.m3u8
+#DESCRIPTION Rai 4 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//b2everyrai-lh.akamaihd.net/i/raimovie_1@67348/master.m3u8
+#DESCRIPTION Rai Movie HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//b2everyrai-lh.akamaihd.net/i/raigulp_1@66350/master.m3u8
+#DESCRIPTION RAI Gulp HD   
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//hlslive.msf.ticdn.it/hls/CH10/live.m3u8?type=live-cupertino
+#DESCRIPTION R101 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//hlslive.msf.ticdn.it/hls/CH14/live.m3u8?type=live-cupertino
+#DESCRIPTION ALTAINFEDELTA
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wma07.fluidstream.net%3a1935/TeleArena/livestream/chunklist_w565254048.m3u8:TeleArena (404p)
+#DESCRIPTION TeleArena (404p))
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//radioitaliatv-lh.akamaihd.net/i/radioitaliatv_1@329645/index_720x480_av-p.m3u8:Radio Italia TV (480p)
+#DESCRIPTION Radio Italia TV (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//mi1.wz.tv2000.it/mirror/High/chunklist.m3u8:TV2000 (404p)
+#DESCRIPTION TV2000 (404p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//77.72.196.214%3a8554/live/mp4%3aAltoAdigeTV/chunklist.m3u8?time=1465231804284:Alto Adige (216p)
+#DESCRIPTION Alto Adige (216p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wms.shared.streamshow.it/canale7/canale7/chunklist_w139218648.m3u8:Canale 7 (288p)
+#DESCRIPTION Canale 7 (288p)
+#SERVICE 1:64:0:0:0:0:0:0:0:0::
+#DESCRIPTION Island
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tv.vodafoneplay.is/n4/03.m3u8:
+#DESCRIPTION N4
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ruvruverl-live.hls.adaptive.level3.net/ruv/ruverl/index/stream4.m3u8:
+#DESCRIPTION RUV
+#SERVICE 1:64:0:0:0:0:0:0:0:0::
+#DESCRIPTION Luxemburg
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wowza02.newmedia.lu/channel1/smil%3achannel1/playlist.m3u8
+#DESCRIPTION RTL Tele Letzebourg 
+#SERVICE 1:64:0:0:0:0:0:0:0:0::Schweden
+#DESCRIPTION Schweden
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdn-kanal10.crossnet.net%3a1935/kanal10/mp4%3akanal10sverige/playlist.m3u8:TV10 (Zweden)
+#DESCRIPTION TV10 (Zweden)
+#SERVICE 1:64:0:0:0:0:0:0:0:0::
+#DESCRIPTION Spanien
+

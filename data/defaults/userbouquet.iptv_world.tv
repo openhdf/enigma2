@@ -1,32 +1,18 @@
 #NAME IPTV World
 #SERVICE 1:64:1:0:0:0:0:0:0:0:
-#DESCRIPTION Update 16.02.2018 by Team www.hdfreaks.cc
+#DESCRIPTION Update 21.06.2018 by Team www.hdfreaks.cc
 #SERVICE 1:64:21:0:0:0:0:0:0:0:
 #DESCRIPTION Latino
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//cdnp1.iblups.com/live/ playpath=33hssQ13ID swfUrl=https%3a//iblups.com/jw7/jwplayer.flash.swf pageUrl=https%3a//iblups.com/e_RaceTvTelemundo/ live=1
-#DESCRIPTION Race TV
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//iphone.rtpa.stream.flumotion.com/rtpa/tv-iphone/main.m3u8
 #DESCRIPTION RTPA
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//a3live-lh.akamaihd.net/i/mghds/geomega_1@328914/index_3_av-b.m3u8
-#DESCRIPTION MEGA 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//a3live-lh.akamaihd.net/i/antena3/antena3_1@35248/index_1_av-p.m3u8
-#DESCRIPTION ANTENA 3 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//a3live-lh.akamaihd.net/i/lasexta_1@35272/index_2_av-b.m3u8
-#DESCRIPTION LA SEXTA 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wscvlive-lh.akamaihd.net/i/WSCV_LIVE2@183618/index_1500_av-p.m3u8
-#DESCRIPTION Telemundo 
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//aztecalive-lh.akamaihd.net/i/0qm7cjvop_1@502476/master.m3u8
 #DESCRIPTION Azteca Trece 
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//aztecahls2-lh.akamaihd.net/i/aztecahls2_1@455692/master.m3u8
 #DESCRIPTION Acteca Mas 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//video7.stream.mx%3a1935/raxatv/raxatv/chunklist_w884577146.m3u8
-#DESCRIPTION RaxaTV Anime 
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//68.235.35.243%3a1935/lamegamundial/lamegamundial2/playlist.m3u8
 #DESCRIPTION La Mega Mundial 
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream2.dynalias.com%3a1935/live/tvlive1/playlist.m3u8
 #DESCRIPTION Canal 10 Cancun 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//74.222.3.185%3a1935/live/ngrp%3agalatvmerida_all/plalist.m3u8
-#DESCRIPTION Gala TV Merida 
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wowzacontrol.com%3a1935/stream34/stream34/playlist.m3u8
 #DESCRIPTION RCG 1 Saltillo 
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wowzacontrol.com%3a1936/stream23/stream23/playlist.m3u8
@@ -39,10 +25,6 @@
 #DESCRIPTION TV DIARIO DO SERTÃO 
 #SERVICE 1:64:0:0:0:0:0:0:0:0:
 #DESCRIPTION World
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//mexicoserver.miamitvchannel.com/miamitv/smil%3amiamitvmexico/playlist.m3u8?tecnotv.info?iptv.m3u8
-#DESCRIPTION Miami tv
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//mexicoserver.miamitvchannel.com/miamitv/smil%3amiamitv/playlist.m3u8?tecnotv.info?iptv.m3u8
-#DESCRIPTION Miami +18
 #SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//4.31.30.145%3a9040
 #DESCRIPTION Love on Top
 #SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//4.31.30.145%3a9002
@@ -59,10 +41,6 @@
 #DESCRIPTION RTL Tele Letzebourg (720p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//dwstream4-lh.akamaihd.net/i/dwstream4_live@131329/index_1_av-b.m3u8?sd=10&rebase=on&hdntl=:Deutsche Welle (400p)
 #DESCRIPTION Deutsche Welle (400p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//abclive.abcnews.com/i/abc_live4@136330/index_2500_av-b.m3u8?sd=10&rebase=on:abc NEWS (720p)
-#DESCRIPTION abc NEWS (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cbsnewshd-lh.akamaihd.net/i/CBSNHD_7@199302/index_700_av-p.m3u8
-#DESCRIPTION CBS NEWS HD
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//trtcanlitv-lh.akamaihd.net/i/TRTWORLD_1@321783/index_720p_av-p.m3u8:TRT World (720p)
 #DESCRIPTION TRT World (720p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//a3live-lh.akamaihd.net/i/antena3_1@35248/master.m3u8
@@ -71,37 +49,66 @@
 #DESCRIPTION Enorme-tv (480p)
 #SERVICE 1:64:0:0:0:0:0:0:0:0::USA
 #DESCRIPTION USA
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//adultswim-vodlive.cdn.turner.com/the-venture-bros/stream.m3u8
-#DESCRIPTION Adult Swim 1
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//adultswim-vodlive.cdn.turner.com/live/rick-and-morty/stream.m3u8
-#DESCRIPTION Adult Swim 2 
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//amd.cdn.turner.com/adultswim/big/streams/playlists/animated-marathon.m3u8
-#DESCRIPTION Adult Swim 3 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8:Weather Nation
-#DESCRIPTION Weather Nation
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rt-eng-live.hls.adaptive.level3.net/rt/eng/index1600.m3u8:RT America
-#DESCRIPTION RT America
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tribwdaf-lh.akamaihd.net/i/WDAFBreaking_1@394769/index_1900_av-b.m3u8?sd=10&rebase=on:Fox 4 News Kansas City, MI
-#DESCRIPTION Fox 4 News Kansas City, MI
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net/hls/live/224672/WHBQ/564k/prog.m3u8:Fox 13 Memphis, TN
-#DESCRIPTION Fox 13 Memphis, TN
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net%3a80/hls/live/224709/KOKI/904k/prog.m3u8:Fox 23 news Tulsa, OH
-#DESCRIPTION Fox 23 news Tulsa, OH
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net%3a80/hls/live/224671/WFXT/904k/prog.m3u8:Fox 25 News Boston, MA
-#DESCRIPTION Fox 25 News Boston, MA
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net%3a80/hls/live/224710/WFOX/904k/prog.m3u8:Fox 30 News Jacksonville, FL
-#DESCRIPTION Fox 30 News Jacksonville, FL
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//abclive.abcnews.com/i/abc_live4@136330/index_2500_av-b.m3u8?sd=10&rebase=on:abc NEWS (720p)
+#DESCRIPTION abc NEWS (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
+#DESCRIPTION ABC WGN_9 News (Chicago)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdn-videos.akamaized.net/btv/desktop/akamai/europe/live/primary.m3u8
+#DESCRIPTION Bloomberg
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//reflect-ch68-bronxnet-tv.cablecast.tv/live/WIFI-1896k-720p/WIFI-1896k-720p.m3u8:Bronxnet Channel 68
 #DESCRIPTION Bronxnet Channel 68
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//reflect-ch69-bronxnet-tv.cablecast.tv/live/WIFI-1896k-720p/WIFI-1896k-720p.m3u8:Bronxnet Channel 69
 #DESCRIPTION Bronxnet Channel 69
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//reflect-ch70-bronxnet-tv.cablecast.tv/live/WIFI-1896k-720p/WIFI-1896k-720p.m3u8:Bronxnet Channel 70
 #DESCRIPTION Bronxnet Channel 70
-#SERVICE 4097:0:0:0:0:0:0:0:0:0:http%3a//cspan1-lh.akamaihd.net/i/cspan1_1@304727/index_1000_av-p.m3u8?sd=10&rebase=on:C-SPAN 1 news US
-#DESCRIPTION C-SPAN 1 news US
-#SERVICE 4097:0:0:0:0:0:0:0:0:0:http%3a//cspan2-lh.akamaihd.net/i/cspan2_1@304728/index_1000_av-p.m3u8?sd=10&rebase=on:C-SPAN 2 news US
-#DESCRIPTION C-SPAN 2 news US
-#SERVICE 4097:0:0:0:0:0:0:0:0:0:http%3a//cspan3-lh.akamaihd.net/i/cspan3_1@304729/index_1000_av-p.m3u8?sd=10&rebase=on:C-SPAN 3 news US
-#DESCRIPTION C-SPAN 3 news US
 #SERVICE 4097:0:0:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net/hls/live/224708/KIRO/564k/prog.m3u8:CBS 7 Seattle, WA
 #DESCRIPTION CBS 7 Seattle, WA
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cbsnewshd-lh.akamaihd.net/i/CBSNHD_7@199302/index_700_av-p.m3u8
+#DESCRIPTION CBS NEWS HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//www.cbsnews.com/common/video/dai_prod.m3u8:US:CBS News
+#DESCRIPTION CBS News
+#SERVICE 4097:0:0:0:0:0:0:0:0:0:http%3a//cspan1-lh.akamaihd.net/i/cspan1_1@304727/index_1000_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION C-SPAN 1 news US
+#SERVICE 4097:0:0:0:0:0:0:0:0:0:http%3a//cspan2-lh.akamaihd.net/i/cspan2_1@304728/index_1000_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION C-SPAN 2 news US
+#SERVICE 4097:0:0:0:0:0:0:0:0:0:http%3a//cspan3-lh.akamaihd.net/i/cspan3_1@304729/index_1000_av-p.m3u8?sd=10&rebase=on
+#DESCRIPTION C-SPAN 3 news US
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tribwdaf-lh.akamaihd.net/i/WDAFBreaking_1@394769/index_1900_av-b.m3u8?sd=10&rebase=on
+#DESCRIPTION Fox 4 News Kansas City, MI
+#SERVICE 4097:0:1:126:0:0:0:0:0:0:https%3a//api.new.livestream.com/accounts/2363281/events/1763520/live.m3u8
+#DESCRIPTION Fox 5 News (Washington DC)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net/hls/live/224672/WHBQ/564k/prog.m3u8
+#DESCRIPTION Fox 13 Memphis, TN
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net%3a80/hls/live/224709/KOKI/904k/prog.m3u8
+#DESCRIPTION Fox 23 news Tulsa, OH
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net%3a80/hls/live/224671/WFXT/904k/prog.m3u8
+#DESCRIPTION Fox 25 News Boston, MA
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cmghlslive-i.akamaihd.net%3a80/hls/live/224710/WFOX/904k/prog.m3u8
+#DESCRIPTION Fox 30 News Jacksonville, FL
+#SERVICE 4097:0:1:116:0:0:0:0:0:0:http%3a//tvemsnbc-lh.akamaihd.net/i/nbcmsnbc_1@122532/master.m3u8
+#DESCRIPTION MSNBC
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//kntvlive-f.akamaihd.net/i/kntvb2_1@15530/master.m3u8
+#DESCRIPTION NBC_11 News (Bay Area)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//api.new.livestream.com/accounts/12240447/events/3818578/live.m3u8
+#DESCRIPTION NBC_13 News
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//api.new.livestream.com/accounts/1506296/events/1569171/live.m3u8
+#DESCRIPTION NBC KXAN News (Austin)
+#SERVICE 4097:0:1:130:0:0:0:0:0:0:http%3a//api.new.livestream.com/accounts/8522553/events/live/live.m3u8
+#DESCRIPTION WCCB News (Charlotte)
+#SERVICE 4097:0:1:128:0:0:0:0:0:0:http%3a//api.new.livestream.com/accounts/22998687/events/6864865/live.m3u8
+#DESCRIPTION WXXV 25 News (Mississippi)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//adultswim-vodlive.cdn.turner.com/the-venture-bros/stream.m3u8
+#DESCRIPTION Adult Swim 1
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//adultswim-vodlive.cdn.turner.com/live/rick-and-morty/stream.m3u8
+#DESCRIPTION Adult Swim 2 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//amd.cdn.turner.com/adultswim/big/streams/playlists/animated-marathon.m3u8
+#DESCRIPTION Adult Swim 3
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//mexicoserver.miamitvchannel.com/miamitv/smil%3amiamitvmexico/playlist.m3u8?tecnotv.info?iptv.m3u8
+#DESCRIPTION Miami tv
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//mexicoserver.miamitvchannel.com/miamitv/smil%3amiamitv/playlist.m3u8?tecnotv.info?iptv.m3u8
+#DESCRIPTION Miami +18
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8:Weather Nation
+#DESCRIPTION Weather Nation
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rt-eng-live.hls.adaptive.level3.net/rt/eng/index1600.m3u8:RT America
+#DESCRIPTION RT America
+
