@@ -24,7 +24,8 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
 		eDVBFrontendParametersSatellite.PLS_Gold,
 		0, # default gold PLS code
-		1079, 1, _("Astra 1 - 19.2e")),
+		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+		1079, 1, _("Astra 1 19.2e")),
 
 		# astra 235 astra ses
 		( 12168, 27500, \
@@ -35,7 +36,8 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
 		eDVBFrontendParametersSatellite.PLS_Gold,
 		0, # default gold PLS code
-		3224, 3, _("Astra 3 - 23.5e")),
+		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+		3224, 3, _("Astra 3 23.5e")),
 
 		# astra 282 bbc
 		( 10773, 22000, \
@@ -46,7 +48,8 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
 		eDVBFrontendParametersSatellite.PLS_Gold,
 		0, # default gold PLS code
-		2045, 2, _("Astra 2 - 28.2e")),
+		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+		2045, 2, _("Astra 2 28.2e")),
 
 		# hotbird 130 rai
 		( 10992, 27500, \
@@ -57,9 +60,9 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
 		eDVBFrontendParametersSatellite.PLS_Gold,
 		0, # default gold PLS code
-		12400, 318, _("Hotbird - 13.0e")),
+		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+		12400, 318, _("Hotbird 13.0e")),
 
- 		# eutelsat 160 hrt
  		( 10721, 27500, \
  		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_3_4, \
  		eDVBFrontendParametersSatellite.Inversion_Off, 160, \
@@ -68,6 +71,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
 		eDVBFrontendParametersSatellite.PLS_Gold,
 		0,  # default gold PLS code
+		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
  		20100, 366, _("Eutelsat 16A - 16.0e")),
 
 		# thor  3592 CT24
@@ -79,6 +83,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
 		eDVBFrontendParametersSatellite.PLS_Gold,
 		0, # default gold PLS code
+		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
 		706, 1536, _("Thor 5/6/7 - 0.8w")),
 
 		# hispasat 300 tsa
@@ -90,7 +95,8 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
 		eDVBFrontendParametersSatellite.PLS_Gold,
 		0, # default gold PLS code
-		1388, 1388, _("Hispasat - 30.0w")),
+		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+		1388, 1388, _("Hispasat 30.0w")),
 	]
 
 	SAT_TABLE_FREQUENCY = 0
@@ -103,12 +109,13 @@ class AutoDiseqc(Screen, ConfigListScreen):
 	SAT_TABLE_MODULATION = 7
 	SAT_TABLE_ROLLOFF = 8
 	SAT_TABLE_PILOT = 9
-	SAT_TABLE_ISID = 10
-	SAT_TABLE_PLSMODE = 11
-	SAT_TABLE_PLSCODE = 12
-	SAT_TABLE_TSID = 13
-	SAT_TABLE_ONID = 14
-	SAT_TABLE_NAME = 15
+	SAT_TABLE_IS_ID = 10
+	SAT_TABLE_PLS_MODE = 11
+	SAT_TABLE_PLS_CODE = 12
+	SAT_TABLE_T2MI_PLP_ID = 13
+	SAT_TABLE_TSID = 14
+	SAT_TABLE_ONID = 15
+	SAT_TABLE_NAME = 16
 
 	def __init__(self, session, feid, nr_of_ports, simple_tone, simple_sat_change):
 		Screen.__init__(self, session)

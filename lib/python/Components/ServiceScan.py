@@ -79,6 +79,10 @@ class ServiceScan:
 								tp.FEC_3_4 : "3/4", tp.FEC_5_6 : "5/6", tp.FEC_7_8 : "7/8",
 								tp.FEC_8_9 : "8/9", tp.FEC_3_5 : "3/5", tp.FEC_4_5 : "4/5",
 								tp.FEC_9_10 : "9/10", tp.FEC_None : "NONE" }.get(tp.fec, ""))
+						if tp.is_id > -1 and tp.system == tp.System_DVB_S2:
+							tp_text = ("%s IS %d") % (tp_text, tp.is_id)
+						if tp.t2mi_plp_id > tp.No_T2MI_PLP_Id and tp.system == tp.System_DVB_S2:
+							tp_text = ("%s T2MI %d") % (tp_text, tp.t2mi_plp_id)
 					elif tp_type == iDVBFrontend.feCable:
 						network = _("Cable")
 						tp = transponder.getDVBC()
@@ -115,6 +119,31 @@ class ServiceScan:
 								tp.Bandwidth_Auto : "Bw Auto", tp.Bandwidth_5MHz : "Bw 5MHz",
 								tp.Bandwidth_1_712MHz : "Bw 1.712MHz", tp.Bandwidth_10MHz : "Bw 10MHz"
 							}.get(tp.bandwidth, ""))
+					elif tp_type == iDVBFrontend.feATSC:
+						network = _("ATSC")
+						tp = transponder.getATSC()
+						freqMHz = "%0.1f MHz" % (tp.frequency/1000000.)
+						tp_text = ("%s %s %s %s") % (
+							{
+								tp.System_ATSC : _("ATSC"),
+								tp.System_DVB_C_ANNEX_B : _("DVB-C ANNEX B")
+							}.get(tp.system, ""),
+							{
+								tp.Modulation_Auto : _("Auto"),
+								tp.Modulation_QAM16 : "QAM16",
+								tp.Modulation_QAM32 : "QAM32",
+								tp.Modulation_QAM64 : "QAM64",
+								tp.Modulation_QAM128 : "QAM128",
+								tp.Modulation_QAM256 : "QAM256",
+								tp.Modulation_VSB_8 : "8VSB",
+								tp.Modulation_VSB_16 : "16VSB"
+							}.get(tp.modulation, ""),
+							freqMHz.replace(".0",""),
+							{
+								tp.Inversion_Off : _("Off"),
+								tp.Inversion_On :_("On"),
+								tp.Inversion_Unknown : _("Auto")
+							}.get(tp.inversion, ""))
 					else:
 						print "unknown transponder type in scanStatusChanged"
 				self.network.setText(network)
