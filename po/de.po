@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-01-28 18:15+0100\n"
+"PO-Revision-Date: 2019-01-29 18:40+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -27,6 +27,12 @@ msgstr "Schalte vom Standby in den Deep Standby-Modus"
 
 msgid "If the receiver in standby, then switch to deep standby?"
 msgstr "Wenn der Receiver im Standby-Modus ist, in den Deep-Standby-Modus wechseln?"
+
+msgid "Ignore unexpectedly wakeup and stay in standby"
+msgstr "Unerwartetes Aufwachen ignorieren und im Standby bleiben"
+
+msgid "This is a workaround for some devices there wakeup again after switching in standby. The wak up command's from other devices will ignored for few seconds."
+msgstr "Dies ist ein Workaround für einige Geräte die nach dem Umschalten in den Standby wieder geweckt werden. Damit wird das Aufwecken durch andere Geräte für einige Sekunden ignoriert."
 
 msgid "Check state from TV"
 msgstr "Überprüfung des TV Status"
