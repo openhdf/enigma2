@@ -58,6 +58,24 @@ class About(Screen):
 				line =line[1].replace(' ','')
 				netspeed += line
 				return str(netspeed)
+		def netspeed_ra0():
+			netspeed=""
+			for line in popen('iwconfig ra0 | grep Bit | cut -c 75-85','r'):
+				line = line.strip()
+				netspeed += line
+				return str(netspeed)
+		def netspeed_wlan0():
+			netspeed=""
+			for line in popen('iwconfig wlan0 | grep Bit | cut -c 75-85','r'):
+				line = line.strip()
+				netspeed += line
+				return str(netspeed)
+		def netspeed_wlan1():
+			netspeed=""
+			for line in popen('iwconfig wlan1 | grep Bit | cut -c 75-85','r'):
+				line = line.strip()
+				netspeed += line
+				return str(netspeed)
 		self["lab1"] = StaticText(_("openHDF"))
 		self["lab2"] = StaticText(_("Support at") + " www.HDFreaks.cc")
 		model = None
@@ -220,8 +238,29 @@ class About(Screen):
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + " to Build #" + getImageBuild() + "\n"
 		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
 		AboutText += _("Network:")
-		for x in about.GetIPsFromNetworkInterfaces():
-			AboutText += "\t" + x[0] + ": " + x[1] + " (" + netspeed() + ")\n"
+		eth0 = about.getIfConfig('eth0')
+		eth1 = about.getIfConfig('eth1')
+		ra0 = about.getIfConfig('ra0')
+		wlan0 = about.getIfConfig('wlan0')
+		wlan1 = about.getIfConfig('wlan1')
+		if eth0.has_key('addr'):
+			for x in about.GetIPsFromNetworkInterfaces():
+				AboutText += "\t" + x[0] + ": " + x[1] + " (" + netspeed() + ")\n"
+		elif eth1.has_key('addr'):
+			for x in about.GetIPsFromNetworkInterfaces():
+				AboutText += "\t" + x[0] + ": " + x[1] + " (" + netspeed_eth1() + ")\n"
+		elif ra0.has_key('addr'):
+			for x in about.GetIPsFromNetworkInterfaces():
+				AboutText += "\t" + x[0] + ": " + x[1] + " (~" + netspeed_ra0() + ")\n"
+		elif wlan0.has_key('addr'):
+			for x in about.GetIPsFromNetworkInterfaces():
+				AboutText += "\t" + x[0] + ": " + x[1] + " (~" + netspeed_wlan0() + ")\n"
+		elif wlan1.has_key('addr'):
+			for x in about.GetIPsFromNetworkInterfaces():
+				AboutText += "\t" + x[0] + ": " + x[1] + " (~" + netspeed_wlan1() + ")\n"
+		else:
+			for x in about.GetIPsFromNetworkInterfaces():
+				AboutText += "\t" + x[0] + ": " + x[1] + "\n"
 
 		fp_version = getFPVersion()
 		if fp_version is None:
