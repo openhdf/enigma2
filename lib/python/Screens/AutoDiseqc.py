@@ -63,29 +63,6 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
 		12400, 318, _("Hotbird 13.0e")),
 
- 		( 10721, 27500, \
- 		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_3_4, \
- 		eDVBFrontendParametersSatellite.Inversion_Off, 160, \
- 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
- 		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
-		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
-		eDVBFrontendParametersSatellite.PLS_Gold,
-		0,  # default gold PLS code
-		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
- 		20100, 366, _("Eutelsat 16A - 16.0e")),
-
-		# thor  3592 CT24
-		( 12072, 28000, \
-		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_7_8, \
-		eDVBFrontendParametersSatellite.Inversion_Off, 3592, \
-		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
-		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
-		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
-		eDVBFrontendParametersSatellite.PLS_Gold,
-		0, # default gold PLS code
-		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
-		706, 1536, _("Thor 5/6/7 - 0.8w")),
-
 		# hispasat 300 tsa
 		( 10890, 27500, \
 		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_3_4, \
@@ -304,7 +281,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
 		elif dict["tuner_state"] == "UNKNOWN":
                         self["tunerstatusbar"].setText(_("Tuner status UNKNOWN"))
-
+			
 		if dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
 			self.tunerStopScan(False)
 			return
