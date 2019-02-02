@@ -279,12 +279,20 @@ class LCD:
 			f.write(configElement.value)
 			f.close()
 
+	def setPowerLEDstate(configElement):
+		if fileExists("/proc/stb/power/powerled"):
+			f = open("/proc/stb/power/powerled", "w")
+			f.write(configElement.value)
+			f.close()
+
 	def setPowerLEDdeepstanbystate(configElement):
 		if fileExists("/proc/stb/power/suspendled"):
 			f = open("/proc/stb/power/suspendled", "w")
 			f.write(configElement.value)
 			f.close()
 
+	config.usage.lcd_powerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
+	config.usage.lcd_powerled.addNotifier(setPowerLEDstate)
 	config.usage.lcd_standbypowerled = ConfigSelection(default = "on", choices = [("off", _("Off")), ("on", _("On"))])
 	config.usage.lcd_standbypowerled.addNotifier(setPowerLEDstanbystate)
 
