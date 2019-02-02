@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-01-29 18:40+0100\n"
+"PO-Revision-Date: 2019-02-02 12:55+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3995,6 +3995,12 @@ msgstr "Power LED Anzeige im Deep-Standby"
 
 msgid "Power LED state during standby."
 msgstr "Power LED Anzeige im Standby"
+
+msgid "Turn on the power LED."
+msgstr "Power-LED Mode"
+
+msgid "Power LED can be turned on or off here."
+msgstr "Power-LED kann hier an oder ausgeschaltet werden.."
 
 msgid "Power LED state during deep-standby."
 msgstr "Hier können Sie einstellen, ob die Power-LED im Deep-Standby an oder aus sein soll."
