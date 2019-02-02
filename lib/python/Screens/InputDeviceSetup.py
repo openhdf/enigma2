@@ -12,8 +12,6 @@ from Tools.LoadPixmap import LoadPixmap
 from Components.Pixmap import Pixmap
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
 
-boxtype = getBoxType()
-
 class InputDeviceSelection(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -272,18 +270,20 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("11", _("et9200/9500/6500")),
 				("13", _("et4000")),
 				("14", _("XP1000")),
-				("16", _("HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500")),
+				("16", _("HD51/HD11/HD1100/HD12xx/HD1500/HD5xxC/VS1xxx")),
 				("17", _("XP3000")),
 				("18", _("F1/F3/F4/F4-TURBO/TRIPLEX")),
 				("19", _("HD2400")),
 				("20", _("Zgemma Star S/2S/H1/H2")),
 				("21", _("Zgemma H.S/H.2S/H.2H/H5/H7")),
 				("500", _("WWIO_BRE2ZE_TC")),
-				("501", _("OCTAGON_SFXXX8")),
+				("501", _("OCTAGON_SF4008")),
 				("502", _("GIGABLUE Black")),
 				("503", _("MIRACLEBOX_TWINPLUS")),
 				("504", _("E3HD/XPEEDLX/GI")),
-				("505", _("ODIN_M7"))
+				("505", _("ODIN_M7")),
+				("507", _("Beyonwiz U4")),
+				("511", _("OCTAGON SF5008"))
 				]
 		defaultRcList = [
 				("default", 0),
@@ -329,14 +329,15 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("sf4008", 501),
 				("g100", 501),
 				("sf4018", 501),
-				("sf5008", 9),
 				("gbquadplus", 502),
 				("g300", 503),
 				("e3hd", 504),
 				("et7000mini", 504),
 				("et1x000", 504),
 				("xpeedc.", 504),
-				("odinm7", 505)
+				("odinm7", 505),
+				("beyonwizu4", 507),
+				("sf5008", 511)
 				]
 	else:
 		rcList = [
@@ -347,11 +348,11 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("6", _("DMM advanced")),
 				("7", _("et5000/6000")),
 				("8", _("VU+")),
-				("9", _("et8000/et10000/et13000/SF5008")),
+				("9", _("et8000/et10000/et13000")),
 				("11", _("et9200/9500/6500")),
 				("13", _("et4000")),
 				("14", _("XP1000")),
-				("16", _("HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500")),
+				("16", _("HD51/HD11/HD1100/HD12xx/HD1500/HD5xxC/VS1xxx")),
 				("17", _("XP3000")),
 				("18", _("F1/F3/F4/F4-TURBO/TRIPLEX")),
 				("19", _("HD2400")),
@@ -395,7 +396,6 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("xp1000", 14),
 				("xp3000", 17),
 				("sh1", 20),
-				("sf5008", 9),
 				("h3", 21),
 				("h5", 21),
 				("h7", 21),
@@ -419,8 +419,13 @@ class RemoteControlType(Screen, ConfigListScreen):
 			"save": self.keySave,
 		}, -1)
 
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+
 		self["key_green"] = StaticText(_("Save"))
 		self["key_red"] = StaticText(_("Cancel"))
+		self["footnote"] = StaticText()
+		self["description"] = StaticText()
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
