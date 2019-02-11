@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-02-03 10:49+0100\n"
+"PO-Revision-Date: 2019-02-11 16:57+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -10318,6 +10318,12 @@ msgstr "Dieses wieder beschreibbare Medium ist bereits formatiert - durch eine N
 
 msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
 msgstr "Dies erlaubt die Schriftgröße relativ zu den Skineinstellungen zu ändern, 1 erhöht die Größe um 1 und -1 verringert die Größe um 1"
+
+msgid "Progress Bar Width *"
+msgstr "Breite der Fortschrittsanzeige *"
+
+msgid "This allows you change the size of progressBarWidth, so 1 increases by 1 point size, and -1 decreases by 1 point size. After change this option you must restart the enigma GUI"
+msgstr "Dies erlaubt die Änderung der Breite der Fortaschrittsanzeige, 1 erhöht die Breite um 1 und -1 verringert die Größe um 1. Nach der Änderung muss die Enigma Oberfläche neu gestartet werden"
 
 msgid "This allows you change the number of rows shown."
 msgstr "Dies erlaubt anzugeben wie viele Zeilen gezeigt werden sollen."

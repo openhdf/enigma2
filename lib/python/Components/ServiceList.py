@@ -74,7 +74,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.ServiceNameFontSize = 22
 		self.ServiceInfoFontName = "Regular"
 		self.ServiceInfoFontSize = 18
-		self.progressBarWidth = 52
+		self.progressBarWidth = config.usage.serviceinfo_progressBarWidth.value
 		self.fieldMargins = 10
 
 		self.onSelectionChanged = [ ]
