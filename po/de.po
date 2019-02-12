@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-02-11 16:57+0100\n"
+"PO-Revision-Date: 2019-02-13 05:27+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -11831,6 +11831,22 @@ msgstr "Wenn 'Ja' wird bei jeder Senderliste die Favoritenauswahl gezeigt. Wenn 
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Mit dieser Option kannst Du Jobs in Erweiterungen verstecken (kurzer Druck auf Blau)."
+
+msgid ""
+"Write error while recording. Disk %s\n"
+"%s"
+msgstr ""
+"Schreibfehler bei der Aufnahme. Festplatte %s\n"
+"%s"
+
+msgid "not found!"
+msgstr "nicht gefunden!"
+
+msgid "not writable!"
+msgstr "nicht beschreibbar!"
+
+msgid "full?"
+msgstr "voll?"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
