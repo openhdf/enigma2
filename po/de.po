@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-02-13 17:11+0100\n"
+"PO-Revision-Date: 2019-02-14 16:10+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -11628,6 +11628,12 @@ msgstr "Zeige Nachricht wenn eine Aufnahme startet."
 
 msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
 msgstr "Wenn aktiviert ist es einer Aufnahme gestattet das Live-Programm zu unterbrechen wenn keine freien Tuner mehr zur Verfügung stehen."
+
+msgid "Preparation time for recording (seconds)"
+msgstr "Vorbereitungszeit für die Aufnahme (in Sekunden)"
+
+msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
+msgstr "In dieser Zeit wird der Sender und das Aufnahmeziel überprüft. Ist das Aufnahmeziel (z.B. NAS) nicht rechtzeitig zur Aufnahme bereit, kann diese Zeit vergrößert werden."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
 msgstr "Wenn aktiviert wird eine Warnung angezeigt und der Benutzer hat die Möglichkeit Timeshift zu stoppen oder fortzuführen."
