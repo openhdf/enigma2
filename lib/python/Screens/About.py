@@ -76,6 +76,12 @@ class About(Screen):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
+		def freeflash():
+			freeflash=""
+			for line in popen("df -mh / | grep -v '^Filesystem' | awk '{print $4}'",'r'):
+				line = line.strip()
+				freeflash += line
+				return str(freeflash)
 		self["lab1"] = StaticText(_("openHDF"))
 		self["lab2"] = StaticText(_("Support at") + " www.HDFreaks.cc")
 		model = None
@@ -234,6 +240,7 @@ class About(Screen):
 			AboutText += _("Flashed:\tMultiboot active\n")
 		else:
 			AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
+		AboutText += _("Free Flash:\t%s\n") % freeflash()
 		AboutText += _("Skin:\t%s (%s x %s)\n") % (config.skin.primary_skin.value[0:-9], getDesktop(0).size().width(), getDesktop(0).size().height())
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + " to Build #" + getImageBuild() + "\n"
 		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
