@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-02-16 07:56+0100\n"
+"PO-Revision-Date: 2019-02-21 06:25+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3046,6 +3046,9 @@ msgstr "Konfigurieren der IP-Adresse."
 
 msgid "Configure the amount of time that will be presented."
 msgstr "Konfiguriere die Zeitspanne die angezeigt wird."
+
+msgid "Configure the history of time that will be presented."
+msgstr "Einstellen der vergangenen Zeit, die angezeigt werden soll."
 
 msgid "Configure the aspect ratio of the screen."
 msgstr "Konfiguriere das Bildverhältnis für den Bildschirm."
@@ -10560,6 +10563,9 @@ msgstr "Zeit Aktualisierung in Minuten:"
 
 msgid "Time scale"
 msgstr "Zeitraum"
+
+msgid "Time history"
+msgstr "Zeithistorie"
 
 msgid "Time settings"
 msgstr "Zeit Einstellungen"
