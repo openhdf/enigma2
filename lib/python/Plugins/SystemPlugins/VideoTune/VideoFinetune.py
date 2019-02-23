@@ -168,7 +168,7 @@ class VideoFinetune(Screen):
 
 	def callNext(self):
 		if self.next:
-			self.next()
+			next(self)
 
 	def bbox(self, x, y, width, height, col, xx, yy):
 		c = self["Canvas"]
@@ -408,7 +408,7 @@ class VideoFinetune(Screen):
 	def testpicCallback(self, key):
 		if key:
 			if key == True:
-				self.next()
+				next(self)
 			else:
 				self.keyNumber(key)
 		else:

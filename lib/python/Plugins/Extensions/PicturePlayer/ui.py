@@ -549,7 +549,7 @@ class Pic_Full_View(Screen):
 			self["pic"].instance.setPixmap(self.currPic[2].__deref__())
 			self.currPic = []
 
-			self.next()
+			next(self)
 			self.start_decode()
 
 	def finish_decode(self, picInfo=""):
