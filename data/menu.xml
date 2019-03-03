@@ -52,6 +52,7 @@ from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 self.session.open(HdmiCECSetupScreen)
 </code>
 				</item>
+				<item level="2" entryID="subtitle_setup"><setup id="subtitlesetup" /></item>
 			</menu>
 
 			<!-- Menu / Settings / Audio Menu -->
