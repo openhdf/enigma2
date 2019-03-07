@@ -377,7 +377,7 @@ def InitUsageConfig():
 		if slotx in slots_x:
 			continue
 		slotname = ''
-		for x in range(0,slots):
+		for x in range(0,min(10,slots)):
 			if (slotx & 2**x):
 				name = nimmanager.nim_slots[x].getSlotName()
 				if not slotname:
@@ -386,7 +386,8 @@ def InitUsageConfig():
 					if len(name.split()) == 2:
 						name = name.split()[1]
 					slotname += '+' + name
-		multi.append((str(slotx), slotname))
+		if slotname:
+			multi.append((str(slotx), slotname))
 	#//
 
 	multi = sorted(multi, key=lambda x: x[1])
