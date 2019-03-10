@@ -16,7 +16,7 @@ from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
-updateversion = "19.01.2019"
+updateversion = "10.03.2019"
 
 if os.uname()[4] == "aarch64":
 	pathLen=26
@@ -59,7 +59,7 @@ def getHotkeys():
 	(_("F6"), "f6", "Plugins/Extensions/EnhancedMovieCenter/1"),
 	(_("F6 long"), "f6_long", "Infobar/showMovies"),
 	(_("Audio"), "audio", "Infobar/audioSelection"),
-	(_("Audio long"), "audio_long", ""),
+	(_("Audio long"), "audio_long", "Infobar/subtitleSelection"),
 	(_("Back "), "back", "Infobar/historyZap"),
 	(_("Back long"), "back_long", "Plugins/Extensions/ZapHistoryBrowser/1"),
 	(_("Channel up"), "channelup", "Infobar/zapUp"),
