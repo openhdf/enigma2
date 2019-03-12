@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-02-21 06:25+0100\n"
+"PO-Revision-Date: 2019-03-12 18:24+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -8990,6 +8990,9 @@ msgstr "Satelliten-Ausrüstung konfigurieren"
 
 msgid "Setup your timezone."
 msgstr "Zeitzone konfigurieren."
+
+msgid "Please set your time zone"
+msgstr "Bitte richtige Zeitzone einstellen"
 
 msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
 msgstr "Soll der Assistent fortfahren und die Image-Datei %s in den Flashspeicher schreiben?"

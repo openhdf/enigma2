@@ -2,6 +2,7 @@ import xml.etree.cElementTree
 
 from os import environ, unlink, symlink
 import time
+from boxbranding import getMachineBrand
 
 class Timezones:
 	def __init__(self):
