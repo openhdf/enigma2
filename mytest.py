@@ -18,10 +18,6 @@ enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 boxtype = getBoxType()
 
-#write twisted log to /dev/null
-from twisted.python import log
-log.startLogging(open('/dev/null', 'w'))
-
 from traceback import print_exc
 profile("SetupDevices")
 import Components.SetupDevices
@@ -49,6 +45,13 @@ from Navigation import Navigation
 
 profile("LOAD:skin")
 from skin import readSkin
+
+from twisted.python import log
+config.misc.enabletwistedlog = ConfigYesNo(default = False)
+if config.misc.enabletwistedlog.value == True:
+	log.startLogging(open('/tmp/twisted.log', 'w'))
+else:
+	log.startLogging(open('/dev/null', 'w'))
 
 profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
