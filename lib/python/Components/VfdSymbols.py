@@ -13,7 +13,7 @@ POLLTIME = 5 # seconds
 
 def SymbolsCheck(session, **kwargs):
 		global symbolspoller, POLLTIME
-		if getBoxType() in ('sf8008','sf8008s','sf8008t','clap4k','alien5','osninopro','osnino','osninoplus','tmtwin4k','mbmicrov2','revo4k','force3uhd','wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx') or getMachineBuild() in ('dags7362' , 'dags73625', 'dags5'):
+		if getBoxType() in ('alien5','osninopro','osnino','osninoplus','tmtwin4k','mbmicrov2','revo4k','force3uhd','wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', 'mbmicro', 'e4hd', 'e4hdhybrid', 'dm7020hd', 'dm7020hdv2', '9910lx', '9911lx', '9920lx') or getMachineBuild() in ('dags7362' , 'dags73625', 'dags5','ustym4kpro','beyonwizv2','sf8008','gbmv200','cc1'):
 			POLLTIME = 1
 		symbolspoller = SymbolsCheckPoller(session)
 		symbolspoller.start()
@@ -66,13 +66,13 @@ class SymbolsCheckPoller:
 				open("/proc/stb/lcd/symbol_circle", "w").write("3")
 			else:
 				open("/proc/stb/lcd/symbol_circle", "w").write("0")
-		elif getBoxType() in ('mixosf5', 'mixoslumi', 'mixosf7', 'gi9196m', 'sf3038'):
+		elif getBoxType() in ('alphatriple','mixosf5', 'mixoslumi', 'mixosf7', 'gi9196m', 'sf3038') and fileExists("/proc/stb/lcd/symbol_recording"):
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			if recordings > 0:
 				open("/proc/stb/lcd/symbol_recording", "w").write("1")
 			else:
 				open("/proc/stb/lcd/symbol_recording", "w").write("0")
-		elif getBoxType() in ('ixussone', 'ixusszero', 'osnino'):
+		elif getBoxType() in ('alien5','osninopro','wetekplay', 'wetekplay2', 'wetekhub', 'ixussone', 'ixusszero', '9910lx', '9911lx', 'osnino', 'osninoplus', '9920lx') and fileExists("/proc/stb/lcd/powerled"):
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
@@ -84,7 +84,7 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			elif self.led == "1":
 				open("/proc/stb/lcd/powerled", "w").write("0")
-		elif getBoxType() in ('mbmicro', 'e4hd', 'e4hdhybrid'):
+		elif getBoxType() in ('mbmicrov2','mbmicro', 'e4hd', 'e4hdhybrid') and fileExists("/proc/stb/lcd/powerled"):
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
@@ -96,7 +96,7 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			elif self.led == "1":
 				open("/proc/stb/lcd/powerled", "w").write("1")
-		elif getBoxType() in ('dm7020hd', 'dm7020hdv2'):
+		elif getBoxType() in ('dm7020hd', 'dm7020hdv2') and fileExists("/proc/stb/fp/led_set"):
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
@@ -108,7 +108,7 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			else:
 				open("/proc/stb/fp/led_set", "w").write("0xffffffff")
-		elif getMachineBuild() in ('dags7362' , 'dags73625', 'dags5'):
+		elif getMachineBuild() in ('dags7362' , 'dags73625', 'dags5') or getBoxType() in ('tmtwin4k','revo4k','force3uhd') and fileExists("/proc/stb/lcd/symbol_rec"):
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
 			if recordings > 0:
@@ -120,7 +120,7 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			elif self.led == "1":
 				open("/proc/stb/lcd/symbol_rec", "w").write("0")
-		elif getBoxType() in ('sf8008','sf8008s','sf8008t','clap4k'):
+		elif getMachineBuild() in ('sf8008','cc1','ustym4kpro','beyonwizv2'):
 			import Screens.Standby
 			recordings = len(NavigationInstance.instance.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			if recordings > 0:
@@ -129,6 +129,7 @@ class SymbolsCheckPoller:
 				open("/proc/stb/fp/poweronled", "w").write("on")
 			elif Screens.Standby.inStandby:
 				open("/proc/stb/fp/standbyled", "w").write("on")
+
 		else:
 			if not fileExists("/proc/stb/lcd/symbol_recording") or not fileExists("/proc/stb/lcd/symbol_record_1") or not fileExists("/proc/stb/lcd/symbol_record_2"):
 				return
@@ -147,7 +148,6 @@ class SymbolsCheckPoller:
 				open("/proc/stb/lcd/symbol_recording", "w").write("0")
 				open("/proc/stb/lcd/symbol_record_1", "w").write("0")
 				open("/proc/stb/lcd/symbol_record_2", "w").write("0")
-
 
 	def Subtitle(self):
 		if not fileExists("/proc/stb/lcd/symbol_smartcard"):

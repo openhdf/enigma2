@@ -18,6 +18,10 @@ enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 boxtype = getBoxType()
 
+#write twisted log to /dev/null
+from twisted.python import log
+log.startLogging(open('/dev/null', 'w'))
+
 from traceback import print_exc
 profile("SetupDevices")
 import Components.SetupDevices
