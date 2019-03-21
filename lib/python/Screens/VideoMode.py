@@ -518,6 +518,11 @@ class AudioSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Volume adjust slow"), config.usage.volume_step_slow, _("Step value for single press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)")))
 			self.list.append(getConfigListEntry(_("Volume adjust fast"), config.usage.volume_step_fast, _("Step value for fast switching or long press the volume button. Depending on the setting (if greater) and the current volume (if less) will adjusted the step. (30 to 4, 18 to 3, 9 to 2 and 3 to 1)")))
 
+			if SystemInfo["CanBTAudio"]:
+				self.list.append(getConfigListEntry(_("Enable BT Audio"), config.av.btaudio, _("This Option allows you to switch Audio to BT Speakers.")))
+			if SystemInfo["CanBTAudioDelay"]:
+				self.list.append(getConfigListEntry(_("General BT Audio delay"), config.av.btaudiodelay, _("This option configures the general audio delay for BT Speakers.")))
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		if config.usage.sort_settings.value:
