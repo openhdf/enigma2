@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-03-22 18:40+0100\n"
+"PO-Revision-Date: 2019-03-23 18:31+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4449,7 +4449,13 @@ msgid "Enable Virgin EPG"
 msgstr "Virgin EPG aktivieren"
 
 msgid "Enable debug log"
-msgstr "Aktiviere Debug Log"
+msgstr "Aktiviere Debug Log *"
+
+msgid "Enable twisted log *"
+msgstr "Aktiviere Twisted Log *"
+
+msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does."
+msgstr "Diese Option aktiviert das Twisted Log. Dieses Log enthält detailierte Informationen über die Twisted Ausgaben."
 
 msgid "Enable freesat EPG"
 msgstr "Freesat EPG aktivieren"
