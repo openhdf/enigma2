@@ -697,13 +697,17 @@ class ChannelSelectionEPG:
 			sely = int(sely) - int(self.listHeight)
 		menu1 = _("Record now")
 		menu2 = _("Record next")
+		menu3 = _("Zap next")
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				menu1 = _("Stop recording now")
 			elif timer.eit == eventidnext and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				menu2 = _("Change next timer")
-		menu = [(menu1, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordCurrentTimer), (menu2, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordNextTimer)]
-		self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, list=menu, keys=['red', 'green'], skin_name="RecordTimerQuestion")
+		menu = [(menu1, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordCurrentTimer),
+				(menu2, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordNextTimer),
+				(menu3, 'CALLFUNC', self.ChoiceBoxCB, self.doZapTimer)
+				]
+		self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, list=menu, keys=['red', 'green', 'yellow'], skin_name="RecordTimerQuestion")
 		self.ChoiceBoxDialog.instance.move(ePoint(selx-self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y()+sely))
 		self.showChoiceBoxDialog()
 
