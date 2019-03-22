@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-03-12 18:24+0100\n"
+"PO-Revision-Date: 2019-03-22 18:40+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1582,6 +1582,21 @@ msgstr "Aufnahmetimer für aktuelles Programm hinzufügen"
 
 msgid "Add a zap timer for current event"
 msgstr "Umschalttimer für aktuelles Programm hinzufügen"
+
+msgid "Add Record Timer"
+msgstr "Aufnahmetimer hinzufügen"
+
+msgid "Add Zap+Record Timer"
+msgstr "Umschaltaufnahmetimer hinzuf."
+
+msgid "Zap+Record next"
+msgstr "Nächste Sendung umsch.+aufn."
+
+msgid "Add Zap Timer"
+msgstr "Umschalttimer hinzufügen"
+
+msgid "Zap next"
+msgstr "Umschalten bei nächster Sendung"
 
 msgid "Add a zap timer for next event"
 msgstr "Umschalttimer für die nächste Sendung hinzufügen"
@@ -7975,10 +7990,10 @@ msgid "Record"
 msgstr "Aufnahme"
 
 msgid "Record next"
-msgstr "Aufnahme nächste Sendung"
+msgstr "Aufnahme der nächsten Sendung"
 
 msgid "Record now"
-msgstr "Aufnahme jetzt"
+msgstr "Aufnahme starten"
 
 msgid "Record started! Stopping timeshift now ..."
 msgstr "Aufnahme wurde gestartet! Timeshift wird jetzt angehalten ..."
