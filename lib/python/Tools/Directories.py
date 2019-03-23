@@ -35,6 +35,9 @@ SCOPE_ACTIVE_SKIN = 19
 SCOPE_LCDSKIN = 20
 SCOPE_ACTIVE_LCDSKIN = 21
 SCOPE_AUTORECORD = 22
+SCOPE_DEFAULTDIR = 23
+SCOPE_DEFAULTPARTITION = 24
+SCOPE_DEFAULTPARTITIONMOUNTDIR = 25
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
@@ -58,7 +61,9 @@ defaultPaths = {
 		SCOPE_PLAYLIST: (eEnv.resolve("${sysconfdir}/enigma2/playlist/"), PATH_CREATE),
 
 		SCOPE_USERETC: ("", PATH_DONTCREATE), # user home directory
-
+		SCOPE_DEFAULTDIR: (eEnv.resolve("${datadir}/enigma2/defaults/"), PATH_CREATE),
+		SCOPE_DEFAULTPARTITION: ("/dev/mtdblock6", PATH_DONTCREATE),
+		SCOPE_DEFAULTPARTITIONMOUNTDIR: (eEnv.resolve("${datadir}/enigma2/dealer"), PATH_CREATE),
 		SCOPE_METADIR: (eEnv.resolve("${datadir}/meta"), PATH_CREATE),
 	}
 
@@ -240,7 +245,7 @@ def defaultRecordingLocation(candidate=None):
 		havelocal = False
 		for candidate in mounts:
 			try:
-				islocal = candidate[0].startswith('/dev/') # Good enough
+				islocal = candidate[1].startswith('/dev/') # Good enough
 				stat = os.statvfs(candidate[1])
 				# Free space counts double
 				size = (stat.f_blocks + stat.f_bavail) * stat.f_bsize
@@ -304,10 +309,7 @@ def getRecordingFilename(basename, dirname = None):
 		filename += c
 
 	# max filename length for ext4 is 255 (minus 8 characters for .ts.meta)
-	# But must not truncate in the middle of a multi-byte utf8 character!
-	# So convert the truncation to unicode and back, ignoring errors.
-	# The result will be valid utf8 and so xml parsing will be OK.
-	filename = unicode(filename[:247], 'utf8', 'ignore').encode('utf8', 'ignore')
+	filename = filename[:247]
 
 	if dirname is not None:
 		if not dirname.startswith('/'):
