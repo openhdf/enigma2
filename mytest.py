@@ -51,7 +51,7 @@ config.misc.enabletwistedlog = ConfigYesNo(default = False)
 if config.misc.enabletwistedlog.value == True:
 	log.startLogging(open('/tmp/twisted.log', 'w'))
 else:
-	log.startLogging(open('/dev/null', 'w'))
+	log.startLogging(sys.stdout)
 
 profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
