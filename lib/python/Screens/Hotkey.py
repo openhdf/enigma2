@@ -16,7 +16,7 @@ from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
-updateversion = "10.03.2019"
+updateversion = "24.03.2019"
 
 if os.uname()[4] == "aarch64":
 	pathLen=26
@@ -304,6 +304,8 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
 	hotkeyFunctions.append((_("Language"), "Module/Screens.LanguageSelection/LanguageSelection", "Setup"))
 	hotkeyFunctions.append((_("Skin setup"), "Module/Screens.SkinSelector/SkinSelector", "Setup"))
+	hotkeyFunctions.append((_("OscamInfo"), "Module/Screens.OScamInfo/OscamInfoMenu", "Plugins"))
+	hotkeyFunctions.append((_("CCcamInfo"), "Module/Screens.CCcamInfo/CCcamInfoMain", "Plugins"))
 	if os.path.isfile(ppath+"/Plugins/Extensions/Kodi/plugin.pyo"):
 		hotkeyFunctions.append((_("Kodi Media Center"), "Kodi/", "Plugins"))
 	if os.path.isdir("/etc/ppanel"):
