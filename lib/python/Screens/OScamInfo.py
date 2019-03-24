@@ -578,10 +578,10 @@ class oscInfo(Screen, OscamInfo):
 		self.scrolling = False
 		self.webif_data = self.readXML(typ = self.what)
 		ypos = 10
-		ysize = 350
+		ysize = 600
 		self.rows = 12
 		self.itemheight = 25
-		self.sizeLH = sizeH - 20
+		self.sizeLH = sizeH - 2
 		self.skin = """<screen position="center,center" size="%d, %d" title="Client Info" >""" % (sizeH, ysize)
 		button_width = int(sizeH / 4)
 		for k, v in enumerate(["red", "green", "yellow", "blue"]):
@@ -589,7 +589,7 @@ class oscInfo(Screen, OscamInfo):
 			self.skin += """<ePixmap name="%s" position="%d,%d" size="35,25" pixmap="/usr/share/enigma2/skin_default/buttons/key_%s.png" zPosition="1" transparent="1" alphatest="on" />""" % (v, xpos, ypos, v)
 			self.skin += """<widget source="key_%s" render="Label" position="%d,%d" size="%d,%d" font="Regular;18" zPosition="1" valign="center" transparent="1" />""" % (v, xpos + 40, ypos, button_width, 22)
 		self.skin +="""<ePixmap name="divh" position="0,37" size="%d,2" pixmap="/usr/share/enigma2/skin_default/div-h.png" transparent="1" alphatest="on" />""" % sizeH
-		self.skin +="""<widget name="output" position="10,45" size="%d,%d" zPosition="1" scrollbarMode="showOnDemand" />""" % ( self.sizeLH, ysize - 50)
+		self.skin +="""<widget name="output" position="10,45" size="%d,%d" zPosition="1" scrollbarMode="showOnDemand" />""" % ( self.sizeLH, ysize - 30)
 		self.skin += """</screen>"""
 		Screen.__init__(self, session)
 		self.mlist = oscMenuList([])
@@ -825,8 +825,8 @@ class oscInfo(Screen, OscamInfo):
 class oscEntitlements(Screen, OscamInfo):
 	global HDSKIN, sizeH
 	sizeLH = sizeH - 20
-	skin = """<screen position="center,center" size="%s, 400" title="Client Info" >
-			<widget source="output" render="Listbox" position="10,10" size="%s,400" scrollbarMode="showOnDemand" >
+	skin = """<screen position="center,center" size="%s, 600" title="Client Info" >
+			<widget source="output" render="Listbox" position="10,10" size="%s,600" scrollbarMode="showOnDemand" >
 				<convert type="TemplatedMultiContent">
 				{"templates":
 					{"default": (55,[
@@ -965,8 +965,8 @@ class oscEntitlements(Screen, OscamInfo):
 class oscReaderStats(Screen, OscamInfo):
 	global HDSKIN, sizeH
 	sizeLH = sizeH - 20
-	skin = """<screen position="center,center" size="%s, 700" title="Client Info" >
-			<widget source="output" render="Listbox" position="10,10" size="%s,700" scrollbarMode="showOnDemand" >
+	skin = """<screen position="center,center" size="%s, 600" title="Client Info" >
+			<widget source="output" render="Listbox" position="10,10" size="%s,600" scrollbarMode="showOnDemand" >
 				<convert type="TemplatedMultiContent">
 				{"templates":
 					{"default": (25,[
