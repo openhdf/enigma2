@@ -166,9 +166,67 @@ class About(Screen):
 			AboutText += _("DMIPS:\t") + dMIPS + "\n"
 		else:
 			AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
+
+		tempinfo = ""
+		if path.exists('/proc/stb/sensors/temp0/value'):
+			f = open('/proc/stb/sensors/temp0/value', 'r')
+			tempinfo = f.read()
+			f.close()
+		elif path.exists('/proc/stb/fp/temp_sensor'):
+			f = open('/proc/stb/fp/temp_sensor', 'r')
+			tempinfo = f.read()
+			f.close()
+		elif path.exists('/proc/stb/sensors/temp/value'):
+			f = open('/proc/stb/sensors/temp/value', 'r')
+			tempinfo = f.read()
+			f.close()
+		elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
+			if getBoxType() in ('mutant51', 'ax51', 'zgemmah7', 'e4hdultra'):
+				tempinfo = ""
+			else:
+				f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
+				tempinfo = f.read()
+				tempinfo = tempinfo[:-4]
+				f.close()
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
+			mark = str('\xc2\xb0')
+			AboutText += _("System Temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+
+		tempinfo = ""
+		if path.exists('/proc/stb/fp/temp_sensor_avs'):
+			f = open('/proc/stb/fp/temp_sensor_avs', 'r')
+			tempinfo = f.read()
+			f.close()
+		elif path.exists('/proc/stb/power/avs'):
+			f = open('/proc/stb/power/avs', 'r')
+			tempinfo = f.read()
+			f.close()
+		elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
+			try:
+				f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
+				tempinfo = f.read()
+				tempinfo = tempinfo[:-4]
+				f.close()
+			except:
+				tempinfo = ""
+		elif path.exists('/proc/hisi/msp/pm_cpu'):
+			try:
+				for line in open('/proc/hisi/msp/pm_cpu').readlines():
+					line = [x.strip() for x in line.strip().split(":")]
+					if line[0] in ("Tsensor"):
+						temp = line[1].split("=")
+						temp = line[1].split(" ")
+						tempinfo = temp[2]
+			except:
+				tempinfo = ""
+		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
+			mark = str('\xc2\xb0')
+			AboutText += _("CPU Temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 		AboutText += _("HDF Version:\tV%s") % getImageVersion() + " Build #" + getImageBuild() + " based on " + getOEVersion() + "\n"
 		AboutText += _("Kernel (Box):\t%s") % about.getKernelVersionString() + " (" + getBoxType() + ")" + "\n"
+
 		imagestarted = ""
 		bootname = ''
 		if path.exists('/boot/bootname'):
@@ -179,9 +237,9 @@ class About(Screen):
 			if getMachineBuild() in ('osmio4k'):
 				f = open('/boot/STARTUP', 'r')
 				f.seek(38)
-				image = f.read(1) 
+				image = f.read(1)
 				f.close()
-				if bootname: bootname = "   (%s)" %bootname 
+				if bootname: bootname = "   (%s)" %bootname
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 			elif getMachineBuild() in ('cc1','sf8008','sf8008s','sf8008t'):
 				if path.exists('/boot/STARTUP'):
@@ -202,7 +260,7 @@ class About(Screen):
 						elif image == "7":
 							image = "5"
 					f.close()
-					if bootname: bootname = "   (%s)" %bootname 
+					if bootname: bootname = "   (%s)" %bootname
 					AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 			else:
 				f = open('/boot/STARTUP', 'r')
@@ -276,61 +334,6 @@ class About(Screen):
 			fp_version = _("Frontprocessor:\tVersion %s") % fp_version
 			AboutText += fp_version + "\n"
 
-		tempinfo = ""
-		if path.exists('/proc/stb/sensors/temp0/value'):
-			f = open('/proc/stb/sensors/temp0/value', 'r')
-			tempinfo = f.read()
-			f.close()
-		elif path.exists('/proc/stb/fp/temp_sensor'):
-			f = open('/proc/stb/fp/temp_sensor', 'r')
-			tempinfo = f.read()
-			f.close()
-		elif path.exists('/proc/stb/sensors/temp/value'):
-			f = open('/proc/stb/sensors/temp/value', 'r')
-			tempinfo = f.read()
-			f.close()
-		elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
-			if getBoxType() in ('mutant51', 'ax51', 'zgemmah7', 'e4hdultra'):
-				tempinfo = ""
-			else:
-				f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
-				tempinfo = f.read()
-				tempinfo = tempinfo[:-4]
-				f.close()
-		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
-			mark = str('\xc2\xb0')
-			AboutText += _("System Temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
-
-		tempinfo = ""
-		if path.exists('/proc/stb/fp/temp_sensor_avs'):
-			f = open('/proc/stb/fp/temp_sensor_avs', 'r')
-			tempinfo = f.read()
-			f.close()
-		elif path.exists('/proc/stb/power/avs'):
-			f = open('/proc/stb/power/avs', 'r')
-			tempinfo = f.read()
-			f.close()
-		elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
-			try:
-				f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
-				tempinfo = f.read()
-				tempinfo = tempinfo[:-4]
-				f.close()
-			except:
-				tempinfo = ""
-		elif path.exists('/proc/hisi/msp/pm_cpu'):
-			try:
-				for line in open('/proc/hisi/msp/pm_cpu').readlines():
-					line = [x.strip() for x in line.strip().split(":")]
-					if line[0] in ("Tsensor"):
-						temp = line[1].split("=")
-						temp = line[1].split(" ")
-						tempinfo = temp[2]
-			except:
-				tempinfo = ""
-		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
-			mark = str('\xc2\xb0')
-			AboutText += _("CPU Temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
 		AboutLcdText = AboutText.replace('\t', ' ')
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
