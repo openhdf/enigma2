@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-03-23 18:31+0100\n"
+"PO-Revision-Date: 2019-03-25 18:27+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -9751,6 +9751,45 @@ msgstr "Stoppe Test nach # fehlgeschlagenen Transpondern"
 msgid "Stop testing plane after # successful transponders"
 msgstr "Stoppe Test nach # erfolgreichen Transpondern"
 
+msgid "Overall progress:"
+msgstr "Gesamtfortschritt:"
+
+msgid "Progress:"
+msgstr "Fortschritt:"
+
+msgid "Failed:"
+msgstr "Fehlgeschlagen:"
+
+msgid "Succeeded:"
+msgstr "Erfolgreich:"
+
+msgid "Not tested:"
+msgstr "Nicht getestet:"
+
+msgid "With errors:"
+msgstr "Mit Fehlern:"
+
+msgid "successful"
+msgstr "Erfolgreich"
+
+msgid "failed"
+msgstr "Fehlgeschlagen"
+
+msgid "with_errors"
+msgstr "Mit_Fehlern"
+
+msgid "with errors"
+msgstr "Mit Fehlern"
+
+msgid "not_tested"
+msgstr "Nicht_getestet"
+
+msgid "not tested"
+msgstr "Nicht getestet"
+
+msgid "untestable"
+msgstr "Untestbar"
+
 msgid "Stop timer recording"
 msgstr "Timeraufnahme beenden"
 
@@ -12677,9 +12716,6 @@ msgstr "Experimental Filme/Video"
 
 msgid "extensions."
 msgstr "Erweiterungen."
-
-msgid "failed"
-msgstr "fehlgeschlagen"
 
 msgid "false"
 msgstr "nein"
