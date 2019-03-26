@@ -1448,6 +1448,9 @@ class InfoBarChannelSelection:
 	def historyZapBackward(self):
 		self.servicelist.historyZap(-1)
 
+	def historyZapMenu(self):
+		self.servicelist.historyZap(+0)
+
 	def historyBack(self):
 		self.servicelist.historyBack()
 

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-03-25 18:27+0100\n"
+"PO-Revision-Date: 2019-03-26 17:12+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -269,6 +269,9 @@ msgstr "Zap Verlauf Menü vor"
 
 msgid "History Zap Menu Minus"
 msgstr "Zap Verlauf Menü zurück"
+
+msgid "History Zap Menu"
+msgstr "Zap Verlauf Menü"
 
 msgid "History back"
 msgstr "Zap Verlauf zurück"

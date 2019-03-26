@@ -2276,6 +2276,20 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if info: historylist.append((info.getName(x[-1]), x[-1]))
 		self.session.openWithCallback(self.historyMenuClosed, HistoryZapSelector, historylist, selpos, mark, invert_items=True, redirect_buttons=True, wrap_around=True)
 
+	def historyZapMenu(self, direction):
+		hlen = len(self.history)
+		if hlen < 1: return
+		mark = self.history_pos
+		selpos = self.history_pos
+		if selpos < 0: selpos = 0
+		if selpos > hlen: selpos = hlen
+		serviceHandler = eServiceCenter.getInstance()
+		historylist = [ ]
+		for x in self.history:
+			info = serviceHandler.info(x[-1])
+			if info: historylist.append((info.getName(x[-1])))
+		self.session.openWithCallback(self.historyMenuClosed, HistoryZapSelector, historylist, selpos, mark, invert_items=True, redirect_buttons=True, wrap_around=True)
+
 	def historyMenuClosed(self, retval):
 		if not retval: return
 		hlen = len(self.history)
