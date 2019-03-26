@@ -16,7 +16,7 @@ from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
-updateversion = "24.03.2019"
+updateversion = "26.03.2019"
 
 if os.uname()[4] == "aarch64":
 	pathLen=26
@@ -224,6 +224,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Show Service List"), "Infobar/openServiceList", "InfoBar"))
 	hotkeyFunctions.append((_("History Zap Menu Plus"), "Infobar/historyZapForward", "InfoBar"))
 	hotkeyFunctions.append((_("History Zap Menu Minus"), "Infobar/historyZapBackward", "InfoBar"))
+	hotkeyFunctions.append((_("History Zap Menu"), "Infobar/historyZapMenu", "InfoBar"))
 	hotkeyFunctions.append((_("History back"), "Infobar/historyBack", "InfoBar"))
 	hotkeyFunctions.append((_("History next"), "Infobar/historyNext", "InfoBar"))
 	hotkeyFunctions.append((_("Show Audioselection"), "Infobar/audioSelection", "InfoBar"))
