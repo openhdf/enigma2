@@ -5112,7 +5112,7 @@ class InfoBarAudioSelection:
 	def __init__(self):
 		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions",
 			{
-				#"audioSelection": (self.audioSelection, _("Audio options...")),
+				"audioSelection": (self.audioSelection, _("Audio options...")),
 				"audio_key": (self.audio_key, _("Audio options...")),
 				"audioSelectionLong": (self.audioDownmixToggle, _("Toggle Digital downmix...")),
 			})
