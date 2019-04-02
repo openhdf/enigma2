@@ -439,6 +439,3 @@ def getSize(path, pattern=".*"):
 	elif os.path.isfile(path):
 		path_size = os.path.getsize(path)
 	return path_size
-
-def shellquote(s):
-    return "'" + s.replace("'", "'\\''") + "'"
