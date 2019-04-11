@@ -294,7 +294,10 @@ class ServiceInfo(Poll, Converter, object):
 					pass
 				f.close()
 			if not video_rate:
-				video_rate = int(self.getServiceInfoString(info, iServiceInformation.sFrameRate))
+				try:
+					video_rate = int(self.getServiceInfoString(info, iServiceInformation.sFrameRate))
+				except:
+					return "N/A fps"
 			return video_rate, lambda x: "%d fps" % ((x+500)/1000)
 		elif self.type == self.TRANSFERBPS:
 			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x/1024))
