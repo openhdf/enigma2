@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF Default Keymap 07.03.2019" -->
+	<!-- "HDF Default Keymap 13.04.2019" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -262,9 +262,9 @@
 		<!--key id="KEY_DIRECTORY" mapto="showPluginBrowser" flags="mm" /-->
 	</map>
 
-	<!--map context="InfobarAudioSelectionActions">
+	<map context="InfobarAudioSelectionActions">
 		<key id="KEY_AUDIO" mapto="audioSelection" flags="m" />
-	</map-->
+	</map>
 
 	<!--map context="InfobarSubtitleSelectionActions">
 		<key id="KEY_SUBTITLE" mapto="subtitleSelection" flags="m" />
