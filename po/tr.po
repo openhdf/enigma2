@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2018-12-13 05:14+0300\n"
+"PO-Revision-Date: 2019-04-17 10:51+0300\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
 "Language: tr\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid "Welcome..."
@@ -191,7 +191,7 @@ msgid "Run in Standby?"
 msgstr ""
 
 msgid "Start Update when in Standby?"
-msgstr ""
+msgstr "Bekleme modundayken Güncelleme başlatılsın mı?"
 
 msgid "Start Update every Day at (hh:mm)"
 msgstr ""
@@ -1156,7 +1156,6 @@ msgstr ""
 "Bir kayıt şu anda devam ediyor \n"
 "Ne yapmak istiyor sunuz?"
 
-#
 msgid ""
 "PowerOff while Recording in progress!\n"
 "Entering standby, after recording the box will shutdown."
@@ -1425,9 +1424,6 @@ msgstr ""
 
 msgid "Really delete this entry?"
 msgstr "Gerçekten bu girdi silinsin mi?"
-
-msgid "VideoFinetune"
-msgstr ""
 
 msgid ""
 "EPG key : Switch to quad PiP entry\n"
@@ -1880,7 +1876,6 @@ msgstr ""
 "\n"
 "Alıcıdaki çalışan %s %s imajı  HDD veya USB aygıtlarına yedekle."
 
-#
 msgid ""
 "Are you sure you want to restore\n"
 "the following backup:\n"
@@ -1981,7 +1976,7 @@ msgid "Auto focus"
 msgstr "Otomatik odaklanma"
 
 msgid "Auto focus commencing ..."
-msgstr ""
+msgstr "Otomatik odaklama başlıyor ..."
 
 msgid "Auto language selection"
 msgstr "Otomatik dil seçimi"
@@ -2081,15 +2076,6 @@ msgstr "Sistem ayarlarını yedekle"
 
 msgid "Set backupfiles to defaults"
 msgstr "Yedek dosyalarını varsayılanlara ayarla"
-
-msgid "Restore settings backup after restart"
-msgstr ""
-
-msgid "Restore after Restart Enigma"
-msgstr ""
-
-msgid "Please restart Enigma now to restore your settings."
-msgstr ""
 
 msgid "Do you want to restore your settings after Enigma restart?"
 msgstr "Enigma yeniden başladıktan sonra ayarlarınızı geri yüklemek ister misiniz?"
@@ -3408,11 +3394,6 @@ msgid "You can skip this function and turn off the TV when you wake the receiver
 msgstr "Bu işlevi atlayabilir ve alıcıyı bekleme modundan uyandırdığınızda ve hemen bekleme moduna geçtiğinizde TV'yi kapatabilirsiniz."
 
 msgid "Switch off the TV to correct input"
-msgstr ""
-
-msgid ""
-"Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n"
-"(If the TV does not turn back on, may require a slower transmission interval or the repetition of wake-up commands.)"
 msgstr ""
 
 msgid "Activation takes place immediately. If this feature is not supported, the volume keys has no function!"
@@ -8227,9 +8208,6 @@ msgstr "Kaydırma Hızı"
 msgid "Scrolling Speed (software render)"
 msgstr ""
 
-msgid "Set the scrolling speed of text on the front display, this uses a software render use in some skins."
-msgstr ""
-
 msgid "Set the delay time between repeated loops, this uses a software render use in some skins."
 msgstr "Tekrarlama döngüleri arasındaki gecikme süresini ayarlayın, bu, bazı arayüzlerde kullanılabilecek bir yazılım kullanır."
 
@@ -8343,11 +8321,6 @@ msgstr "Besleme listesinden istenilen bir imajı seçin"
 
 msgid "Select destination for:"
 msgstr "Hedefi seçin:"
-
-msgid ""
-"\n"
-"Select files for backup."
-msgstr ""
 
 msgid "Select files/folders to backup"
 msgstr "Yedeklenecek dosyaları/klasörleri seçin"
@@ -13619,7 +13592,7 @@ msgid "DTS downmix"
 msgstr "DTS downmix"
 
 msgid "convert to AC3"
-msgstr ""
+msgstr "AC3'e dönüştür"
 
 msgid "force AC3plus"
 msgstr ""
@@ -14192,7 +14165,7 @@ msgid ""
 msgstr ""
 
 msgid "Enigma2 playback system"
-msgstr ""
+msgstr "Enigma2 çalma sistemi"
 
 msgid "Embedded subtitles"
 msgstr ""
@@ -14509,9 +14482,6 @@ msgstr ""
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Lütfen sabırlı olun, şimdi bir yedekleme yapılacak,\n"
 
-msgid "because of the used filesystem the back-up\n"
-msgstr ""
-
 msgid "will take about 30 minutes for this system\n"
 msgstr "bu sistem için yaklaşık 30 dakika sürecek\n"
 
@@ -14533,12 +14503,6 @@ msgid ""
 msgstr ""
 "\n"
 "Tamam'a bastıktan sonra lütfen bekleyin!"
-
-msgid "Playpause long"
-msgstr ""
-
-msgid "Angle long"
-msgstr ""
 
 msgid "Total clients streaming: %d ( %s )"
 msgstr ""
@@ -15085,3 +15049,342 @@ msgstr "Görsel Arayüz Kurulumu"
 
 msgid "Configure if and how the record indicator will be shown in the channel selection list."
 msgstr "Kanal seçim listesinde kayıt göstergesinin gösterilip gösterilmeyeceğini ve nasıl gösterileceğini yapılandırın."
+
+msgid "Restore settings backup after restart"
+msgstr ""
+
+msgid "Restore after Restart Enigma"
+msgstr ""
+
+msgid "Please restart Enigma now to restore your settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore automatically your saved settings after Enigma restart."
+msgstr ""
+
+msgid ""
+"Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n"
+"(If the TV does not turn back on, you may need to turn on 'Repeat the sent standby and wakeup commands'.)"
+msgstr ""
+
+msgid "Activation takes place immediately. If this feature is not supported, no function will be changed."
+msgstr ""
+
+msgid ""
+"Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n"
+"(If the TV does not turn back on, may require a slower transmission interval or the repetition of wake-up commands.)"
+msgstr ""
+
+msgid ""
+"\n"
+"Select files for backup."
+msgstr ""
+
+msgid "Set the scrolling speed of text on the front display, this uses a software render use in some skins."
+msgstr ""
+
+msgid "VideoFinetune"
+msgstr ""
+
+msgid "because of the used filesystem the back-up\n"
+msgstr ""
+
+msgid "Playpause long"
+msgstr ""
+
+msgid "Angle long"
+msgstr ""
+
+msgid "Rename name and description for new events"
+msgstr ""
+
+msgid ""
+"USB = Do you want to make a back-up on USB?\n"
+"This will take between 4 and 15 minutes depending on the used filesystem and is fully automatic.\n"
+"Make sure you first insert an USB flash drive before you select USB.\n"
+"This USB drive must contain a file with the name\n"
+"backupstick or backupstick.txt."
+msgstr ""
+
+msgid "To restore the image:"
+msgstr ""
+
+msgid "Use OnlineFlash in SoftwareManager"
+msgstr ""
+
+msgid "Time required for this process:"
+msgstr ""
+
+msgid "There is a valid USB-flash drive detected in one "
+msgstr ""
+
+msgid "of the USB-ports, therefore an extra copy of the "
+msgstr ""
+
+msgid "back-up image will now be copied to that USB-flash drive. "
+msgstr ""
+
+msgid "This only takes about 1 or 2 minutes"
+msgstr ""
+
+msgid "Backup finished and copied to your USB-flash drive"
+msgstr ""
+
+msgid "Image creation failed - "
+msgstr ""
+
+msgid "Probable causes could be"
+msgstr ""
+
+msgid "     wrong back-up destination "
+msgstr ""
+
+msgid "     no space left on back-up device"
+msgstr ""
+
+msgid "     no writing permission on back-up device"
+msgstr ""
+
+msgid "%s not found !!"
+msgstr ""
+
+msgid ""
+"No USB-Device found for fullbackup !!\n"
+"\n"
+msgstr ""
+
+msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
+msgstr ""
+
+msgid ""
+"contain a file with the name: \n"
+"\n"
+msgstr ""
+
+msgid "backupstick or backupstick.txt"
+msgstr ""
+
+msgid "Full backup on %s"
+msgstr ""
+
+msgid "Backup Tool for"
+msgstr ""
+
+msgid "Create:"
+msgstr "Oluştur:"
+
+msgid "Almost there... "
+msgstr ""
+
+msgid "Now building the USB-Image"
+msgstr ""
+
+msgid "Multiboot Image created on: %s"
+msgstr ""
+
+msgid "and there is made an extra copy on:"
+msgstr ""
+
+msgid "Please wait...almost ready! "
+msgstr ""
+
+msgid "Service picons aspect ratio"
+msgstr ""
+
+msgid "Set the aspect ratio of the service picons."
+msgstr ""
+
+msgid "Eject"
+msgstr ""
+
+msgid "Eject long"
+msgstr ""
+
+msgid "Show True/False as graphical switch"
+msgstr ""
+
+msgid "Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch."
+msgstr ""
+
+msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
+msgstr ""
+
+msgid "Configure whether another tuner from the preferred list is allocated instead of sharing a tuner that is already active recording the same channel."
+msgstr ""
+
+msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
+msgstr ""
+
+msgid "Show background behind subtitles"
+msgstr ""
+
+msgid "Configure if behind the subtitles a background is shown."
+msgstr ""
+
+msgid "Subtitle black transparency"
+msgstr ""
+
+msgid "Configure the transparency of the black background of subtitles."
+msgstr ""
+
+msgid "Show additional slider value"
+msgstr ""
+
+msgid "Enable the current value of the slider at end of the slider bar."
+msgstr ""
+
+msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
+msgstr ""
+
+msgid "Power LED state during standby."
+msgstr ""
+
+msgid "Power LED state during deep-standby."
+msgstr ""
+
+msgid "Power LED State in Deep-Standby"
+msgstr ""
+
+msgid "Time delay for the repeated transmission"
+msgstr ""
+
+msgid "The time is multiplied by the current repeat counter."
+msgstr ""
+
+msgid "Advanced Settings"
+msgstr "Gelişmiş Ayarlar"
+
+msgid "Load Default Settings"
+msgstr ""
+
+msgid "Try to send repeated commands if not all commands are executed.\n"
+msgstr ""
+
+msgid "Try to slow down the send interval if not all commands are executed."
+msgstr ""
+
+msgid "Network Speed:"
+msgstr "Ağ Hızı:"
+
+msgid "Ignore unexpectedly wakeup and stay in standby"
+msgstr ""
+
+msgid "This is a workaround for some devices there wakeup again after switching in standby. The wak up command's from other devices will ignored for few seconds."
+msgstr ""
+
+msgid "Turn on the power LED."
+msgstr ""
+
+msgid "Power LED can be turned on or off here."
+msgstr ""
+
+msgid "Progress Bar Width *"
+msgstr ""
+
+msgid "This allows you change the size of progressBarWidth, so 1 increases by 1 point size, and -1 decreases by 1 point size. After change this option you must restart the enigma GUI"
+msgstr ""
+
+msgid ""
+"Write error while recording. Disk %s\n"
+"%s"
+msgstr ""
+
+msgid "not found!"
+msgstr ""
+
+msgid "not writable!"
+msgstr ""
+
+msgid "full?"
+msgstr "dolu mu?"
+
+msgid "Mount '%s' has not enough free space to record."
+msgstr ""
+
+msgid ""
+"Write error at start of recording. Disk %s\n"
+"%s"
+msgstr ""
+
+msgid "unknown error!"
+msgstr "bilinmeyen hata!"
+
+msgid "Preparation time for recording (seconds)"
+msgstr ""
+
+msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
+msgstr ""
+
+msgid "Free Flash:\t%s\n"
+msgstr ""
+
+msgid "Configure the history of time that will be presented."
+msgstr ""
+
+msgid "Please set your time zone"
+msgstr "Lütfen saat diliminizi ayarlayın"
+
+msgid "Add Record Timer"
+msgstr ""
+
+msgid "Add Zap+Record Timer"
+msgstr ""
+
+msgid "Zap+Record next"
+msgstr ""
+
+msgid "Add Zap Timer"
+msgstr ""
+
+msgid "Zap next"
+msgstr ""
+
+msgid "Enable twisted log *"
+msgstr ""
+
+msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does."
+msgstr ""
+
+msgid "Overall progress:"
+msgstr "Genel ilerleme:"
+
+msgid "Progress:"
+msgstr "İlerleme:"
+
+msgid "Failed:"
+msgstr "Başarısız:"
+
+msgid "Succeeded:"
+msgstr "Başarılı:"
+
+msgid "Not tested:"
+msgstr "Test edilmedi:"
+
+msgid "With errors:"
+msgstr ""
+
+msgid "successful"
+msgstr "başarılı"
+
+msgid "with_errors"
+msgstr ""
+
+msgid "with errors"
+msgstr ""
+
+msgid "not_tested"
+msgstr "test edilmedi"
+
+msgid "not tested"
+msgstr ""
+
+msgid "untestable"
+msgstr ""
+
+msgid "History Zap Menu"
+msgstr ""
+
+msgid "update bookmarks"
+msgstr ""
