@@ -22,7 +22,7 @@ import commands
 import datetime
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
-VERSION = _("Version") + " 6.4 openHDF"
+VERSION = _("Version %s %s") %(getImageDistro(), getImageVersion())
 
 HaveGZkernel = True
 if getMachineBuild() in ('vuduo4k','v8plus','ustym4kpro','hd60',"hd61",'i55plus','osmio4k','sf8008','sf8008s','sf8008t','cc1','dags72604', 'u51','u52','u53','h9','h9combo','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s'):
