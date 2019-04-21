@@ -1,6 +1,6 @@
 from os import path
 from enigma import eDVBResourceManager, Misc_Options
-from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN
+from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN, fileHas
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getDisplayType, getHaveRCA, getHaveDVI, getHaveYUV, getHaveSCART, getHaveAVJACK, getHaveSCARTYUV, getHaveHDMI, getHaveHDMIinHD
 
