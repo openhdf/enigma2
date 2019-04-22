@@ -186,6 +186,9 @@ class ImageBackup(Screen):
 				self.selection = 0
 			self["key_yellow"].setText(_(self.list[self.selection]))
 			self.read_current_multiboot()
+			self.selectionmultiboot1 = self.list[self.selection]
+			self.selectionmultiboot = self.selectionmultiboot1.replace(" ", "").replace(".", "").lower()
+			#print 'selectionmultiboot: %s' %self.selectionmultiboot
 
 	def read_current_multiboot(self):
 		if SystemInfo["HasRootSubdir"]:
@@ -643,7 +646,7 @@ class ImageBackup(Screen):
 			cmdlist.append('cp -f /usr/share/bootargs.bin %s/bootargs.bin' %(self.MAINDESTROOT))
 		if SystemInfo["HaveMultiBoot"] and not SystemInfo["HasRootSubdir"]:
 			cmdlist.append('opkg install p7zip > /dev/null 2>&1')
-			cmdlist.append('7za a -r -bt -bd -bb0 %s/full_backups/%s-%s-%s-%s-backup-%s.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.HDFIMAGEBUILD, self.MODEL, self.DATE, self.MAINDESTROOT))
+			cmdlist.append('7za a -r -bt -bd -bb0 %s/full_backups/%s-multiboot-%s-%s-backup-%s.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.selectionmultiboot, self.MODEL, self.DATE, self.MAINDESTROOT))
 		elif SystemInfo["HasRootSubdir"]:
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/unforce_%s.txt' %(self.MAINDESTROOT, self.MACHINEBUILD))
 			cmdlist.append('7za a -r -bt -bd -bb0 %s/full_backups/%s-%s-%s-%s-backup-%s_mmc.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.HDFIMAGEBUILD, self.MODEL, self.DATE, self.MAINDESTROOT))
@@ -673,7 +676,7 @@ class ImageBackup(Screen):
 			if SystemInfo["HasRootSubdir"]:
 				cmdlist.append('echo -e "' + _("Image created on:\n%s/full_backups/%s-%s-%s-%s-backup-%s_mmc.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.HDFIMAGEBUILD, self.MODEL, self.DATE) + '"')
 			else:
-				cmdlist.append('echo -e "' + _("Image created on:\n%s/full_backups/%s-%s-%s-%s-backup-%s.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.HDFIMAGEBUILD, self.MODEL, self.DATE) + '"')
+				cmdlist.append('echo -e "' + _("Image created on:\n%s/full_backups/%s-multiboot-%s-%s-backup-%s.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.selectionmultiboot, self.MODEL, self.DATE) + '"')
 			cmdlist.append('echo "_____________________________________________________________________\n"')
 			cmdlist.append('echo "' + _("To restore the image:") + '"')
 			cmdlist.append('echo "' + _("Use OnlineFlash in SoftwareManager") + '"')
@@ -696,9 +699,9 @@ class ImageBackup(Screen):
 		#if SystemInfo["HasRootSubdir"]:
 		cmdlist.append("rm -rf %s/fullbackup_%s" %(self.DIRECTORY, self.MODEL))
 
-		if SystemInfo["HasRootSubdir"]:
-			cmdlist.append("umount /tmp/bi/RootSubdir")
-			cmdlist.append("rmdir /tmp/bi/RootSubdir")
+		if SystemInfo["HasRootSubdir"] or SystemInfo["HaveMultiBoot"]:
+			cmdlist.append("umount /tmp/bi/RootSubdir > /dev/null 2>&1")
+			cmdlist.append("rmdir /tmp/bi/RootSubdir > /dev/null 2>&1")
 		else:
 			cmdlist.append("umount /tmp/bi/root")
 			cmdlist.append("rmdir /tmp/bi/root")
