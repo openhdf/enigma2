@@ -7,6 +7,7 @@ from Components.Harddisk import Harddisk
 from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
+from Components.SystemInfo import SystemInfo
 from Components.Console import Console
 from enigma import eTimer, getEnigmaVersionString, getDesktop
 from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate, getOEVersion, getImageType, getBrandOEM
@@ -23,6 +24,20 @@ import os
 import re
 from os import path, popen, system
 from re import search
+
+def find_rootfssubdir(file):
+	startup_content = read_startup("/boot/" + file)
+	rootsubdir = startup_content[startup_content.find("rootsubdir=")+11:].split()[0]
+	if rootsubdir.startswith("linuxrootfs"):
+		return rootsubdir
+	return
+
+def read_startup(FILE):
+	file = FILE
+	with open(file, 'r') as myfile:
+		data=myfile.read().replace('\n', '')
+	myfile.close()
+	return data
 
 class About(Screen):
 	def __init__(self, session):
@@ -233,35 +248,30 @@ class About(Screen):
 			f = open('/boot/bootname', 'r')
 			bootname = f.readline().split('=')[1]
 			f.close()
-		if path.exists('/boot/STARTUP'):
-			if getMachineBuild() in ('osmio4k'):
+		if SystemInfo["HasRootSubdir"]:
+			image = find_rootfssubdir("STARTUP")
+			AboutText += _("Selected Image:\t%s") % "STARTUP_" + image[-1:] + bootname + "\n"
+		elif getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro','beyonwizv2',"viper4k"):
+			if path.exists('/boot/STARTUP'):
 				f = open('/boot/STARTUP', 'r')
-				f.seek(38)
-				image = f.read(1)
+				f.seek(5)
+				image = f.read(4)
+				if image == "emmc":
+					image = "1"
+				elif image == "usb0":
+					f.seek(13)
+					image = f.read(1)
+					if image == "1":
+						image = "2"
+					elif image == "3":
+						image = "3"
+					elif image == "5":
+						image = "4"
+					elif image == "7":
+						image = "5"
 				f.close()
-				if bootname: bootname = "   (%s)" %bootname
+				if bootname: bootname = "   (%s)" %bootname 
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
-			elif getMachineBuild() in ('cc1','sf8008','sf8008s','sf8008t'):
-				if path.exists('/boot/STARTUP'):
-					f = open('/boot/STARTUP', 'r')
-					f.seek(5)
-					image = f.read(4)
-					if image == "emmc":
-						image = "1"
-					elif image == "usb0":
-						f.seek(13)
-						image = f.read(1)
-						if image == "1":
-							image = "2"
-						elif image == "3":
-							image = "3"
-						elif image == "5":
-							image = "4"
-						elif image == "7":
-							image = "5"
-					f.close()
-					if bootname: bootname = "   (%s)" %bootname
-					AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 			else:
 				f = open('/boot/STARTUP', 'r')
 				f.seek(22)
