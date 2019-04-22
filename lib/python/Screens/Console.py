@@ -3,6 +3,7 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
+from Screens.MessageBox import MessageBox
 
 class Console(Screen):
 	def __init__(self, session, title = "Console", cmdlist = None, finishedCallback = None, closeOnSuccess = False):
@@ -27,7 +28,7 @@ class Console(Screen):
 
 		self.cmdlist = cmdlist
 		self.newtitle = title
-
+		self.cancel_cnt = 0
 		self.onShown.append(self.updateTitle)
 
 		self.container = eConsoleAppContainer()
@@ -94,11 +95,18 @@ class Console(Screen):
 			self.show()
 			self.Shown = True
 
-	def cancel(self):
-		if self.run == len(self.cmdlist):
+	def cancel(self, force = False):
+		self.cancel_cnt += 1
+		if force or self.run == len(self.cmdlist):
 			self.close()
 			self.container.appClosed.remove(self.runFinished)
 			self.container.dataAvail.remove(self.dataAvail)
+			if force:
+				self.container.kill()
+		else:
+			if self.cancel_cnt >= 3:
+				self.session.openWithCallback(self.cancel, MessageBox, _("Cancel the Script?"), type=MessageBox.TYPE_YESNO, default=False)
+				self.cancel_cnt = -1
 
 	def dataAvail(self, str):
 		lastpage = self["text"].isAtLastPage()
