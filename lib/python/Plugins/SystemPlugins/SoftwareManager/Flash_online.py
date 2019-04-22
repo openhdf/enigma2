@@ -647,6 +647,13 @@ class doFlashImage(Screen):
 					if line.find('zip"') > -1:
 						e = line.find('zip"')
 						self.imagelist.append(line[t+9:e+3])
+					if SystemInfo["HasRootSubdir"]:
+						if line.find('recovery_emmc.zip"') > -1:
+							x = line.find('recovery_emmc.zip"')
+							self.imagelist.remove(line[t+9:e+3])
+						if line.find('usb.zip"') > -1:
+							x = line.find('usb.zip"')
+							self.imagelist.remove(line[t+9:e+3])
 					if line.find('.xz"') > -1:
 						e = line.find('xz"')
 						self.imagelist.append(line[t+9:e+2])
@@ -656,8 +663,6 @@ class doFlashImage(Screen):
 			for name in os.listdir(self.imagePath):
 				if name.endswith(".zip") or name.endswith(".xz"): # and name.find(box) > 1:
 					self.imagelist.append(name)
-#				if name.find(box):
-#					self.imagelist.append(name)
 			self.imagelist.sort()
 			if os.path.exists(flashTmp):
 				for file in os.listdir(flashTmp):
