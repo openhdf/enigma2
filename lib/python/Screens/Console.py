@@ -19,7 +19,7 @@ class Console(Screen):
 		self["summary_description"] = StaticText("")
 		self["actions"] = ActionMap(["ColorActions", "WizardActions", "DirectionActions"],
 		{
-			"ok": self.cancel,
+			"ok": self.ok,
 			"back": self.cancel,
 			"up": self["text"].pageUp,
 			"down": self["text"].pageDown,
@@ -29,6 +29,7 @@ class Console(Screen):
 		self.cmdlist = cmdlist
 		self.newtitle = title
 		self.cancel_cnt = 0
+		self.cancel_msg = None
 		self.onShown.append(self.updateTitle)
 
 		self.container = eConsoleAppContainer()
@@ -52,16 +53,14 @@ class Console(Screen):
 			self.errorOcurred = True
 		self.run += 1
 		if self.run != len(self.cmdlist):
-			if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
+			if self.doExec(self.cmdlist[self.run]): #start of container application failed...
 				self.runFinished(-1) # so we must call runFinished manual
 		else:
+			if self.cancel_msg:
+				self.cancel_msg.close()
 			lastpage = self["text"].isAtLastPage()
-			str = self["text"].getText()
-			str += _("\nExecution finished!!")
-			self["summary_description"].setText(_("\nExecution finished!!"))
-			self["text"].setText(str)
-			if lastpage:
-				self["text"].lastPage()
+			self["text"].appendText('\n' + _("Execution finished!!"))
+			self["summary_description"].setText('\n' + _("Execution finished!!"))
 			if self.finishedCallback is not None:
 				self.finishedCallback()
 			if not self.errorOcurred and self.closeOnSuccess:
@@ -95,18 +94,26 @@ class Console(Screen):
 			self.show()
 			self.Shown = True
 
+	def ok(self):
+		if self.run == len(self.cmdlist):
+			self.cancel()
+
 	def cancel(self, force = False):
+		if self.cancel_msg is not None:
+			self.cancel_cnt = 0
+			self.cancel_msg = None
+			if not force:
+				return
 		self.cancel_cnt += 1
 		if force or self.run == len(self.cmdlist):
 			self.close()
 			self.container.appClosed.remove(self.runFinished)
 			self.container.dataAvail.remove(self.dataAvail)
-			if force:
+			if self.run != len(self.cmdlist):
 				self.container.kill()
-		else:
-			if self.cancel_cnt >= 3:
-				self.session.openWithCallback(self.cancel, MessageBox, _("Cancel the Script?"), type=MessageBox.TYPE_YESNO, default=False)
-				self.cancel_cnt = -1
+		elif self.cancel_cnt >= 3:
+			self.cancel_msg = self.session.openWithCallback(self.cancel, MessageBox, _("Cancel the Script?"), type=MessageBox.TYPE_YESNO, default=False)
+			self.cancel_msg.show()
 
 	def dataAvail(self, str):
 		lastpage = self["text"].isAtLastPage()
