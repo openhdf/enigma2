@@ -79,6 +79,7 @@ SystemInfo["HasMultichannelPCM"] = fileCheck("/proc/stb/audio/multichannel_pcm")
 SystemInfo["HaveTouchSensor"] = getBoxType() in ('dm520', 'dm525', 'dm900')
 SystemInfo["DefaultDisplayBrightness"] = getBoxType() == 'dm900' and 8 or 5
 SystemInfo["HasRootSubdir"] = fileHas("/proc/cmdline", "rootsubdir=")
+SystemInfo["HaveMultiBootADV"] = SystemInfo["HaveMultiBoot"] and SystemInfo["HasRootSubdir"]
 SystemInfo["RecoveryMode"] = SystemInfo["HasRootSubdir"] or fileCheck("/proc/stb/fp/boot_mode")
 SystemInfo["LCDMiniTV"] = fileExists("/proc/stb/lcd/mode")
 SystemInfo["LcdLiveTV"] = fileCheck("/proc/stb/fb/sd_detach")

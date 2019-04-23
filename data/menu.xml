@@ -325,6 +325,7 @@ else:
 			<item text="MultiBoot Selector" level="0" requires="HaveMultiBootCY" entryID="deep_standby"><screen module="MultiBootStartupCY" screen="MultiBootStartup" /></item>
 			<item text="MultiBoot Selector" level="0" requires="HaveMultiBootDS" entryID="deep_standby"><screen module="MultiBootStartupDS" screen="MultiBootStartup" /></item>
 			<item text="MultiBoot Selector" level="0" requires="HaveMultiBootOS" entryID="deep_standby"><screen module="MultiBootStartupOS" screen="MultiBootStartup" /></item>
+			<item text="MultiBoot Selector" level="0" requires="HaveMultiBootADV" entryID="deep_standby"><screen module="MultiBootStartupADV" screen="MultiBootStartup" /></item>
 			<item text="Recovery Mode" requires="RecoveryMode" entryID="maintenance_mode"><screen module="Standby" screen="TryQuitMainloop">16</screen></item>
 			<item text="PowerTimer" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
 			<item text="Restart enigma" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
