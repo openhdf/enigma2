@@ -78,6 +78,7 @@ class ImageBackup(Screen):
 		self.ROOTFSTYPE = getImageFileSystem().strip()
 		self.IMAGEDISTRO = getImageDistro()
 		self.DISTROVERSION = getImageVersion()
+		self.selectionmultiboot = getImageDistro()
 
 		if self.MACHINEBUILD in ("hd51","vs1500","h7","8100s"):
 			self.MTDBOOT = "mmcblk0p1"
@@ -649,6 +650,7 @@ class ImageBackup(Screen):
 			cmdlist.append('cp -f /usr/share/fastboot.bin %s/fastboot.bin' %(self.MAINDESTROOT))
 			cmdlist.append('cp -f /usr/share/bootargs.bin %s/bootargs.bin' %(self.MAINDESTROOT))
 		if SystemInfo["HaveMultiBoot"] and not SystemInfo["HasRootSubdir"]:
+			print "selectionmultiboot: %s" %self.selectionmultiboot
 			cmdlist.append('opkg install p7zip > /dev/null 2>&1')
 			cmdlist.append('7za a -r -bt -bd -bb0 %s/full_backups/%s-multiboot-%s-%s-backup-%s.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.selectionmultiboot, self.MODEL, self.DATE, self.MAINDESTROOT))
 		elif SystemInfo["HasRootSubdir"]:
