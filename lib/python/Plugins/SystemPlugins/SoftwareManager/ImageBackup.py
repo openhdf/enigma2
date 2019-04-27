@@ -189,7 +189,6 @@ class ImageBackup(Screen):
 			self.read_current_multiboot()
 			self.selectionmultiboot1 = self.list[self.selection]
 			self.selectionmultiboot = self.selectionmultiboot1.replace(" ", "").replace(".", "").lower()
-			#print 'selectionmultiboot: %s' %self.selectionmultiboot
 
 	def read_current_multiboot(self):
 		if SystemInfo["HasRootSubdir"]:
@@ -351,7 +350,7 @@ class ImageBackup(Screen):
 			self.message += _("Backup Tool for an") + ' %s' %self.SHOWNAME.upper() + " - " + VERSION + '\n'
 		else:
 			self.message += _("Backup Tool for") + ' %s' %self.SHOWNAME.upper() + " - " + VERSION + '\n'
-		self.message += "_____________________________________________________________________\n\n"
+		self.message += "________________________________________________________________________________\n\n"
 		self.message += _("Please be patient, a backup will now be made,\n")
 		if self.ROOTFSTYPE == "ubi":
 			self.message += _("because of the used filesystem the back-up ")
@@ -368,7 +367,7 @@ class ImageBackup(Screen):
 		else:
 			self.message += _("because of the used filesystem the back-up ")
 			self.message += _("this will take between 2 and 9 minutes\n")
-		self.message += "_____________________________________________________________________\n"
+		self.message += "________________________________________________________________________________\n"
 		self.message += "'"
 
 		## PREPARING THE BUILDING ENVIRONMENT
@@ -650,9 +649,18 @@ class ImageBackup(Screen):
 			cmdlist.append('cp -f /usr/share/fastboot.bin %s/fastboot.bin' %(self.MAINDESTROOT))
 			cmdlist.append('cp -f /usr/share/bootargs.bin %s/bootargs.bin' %(self.MAINDESTROOT))
 		if SystemInfo["HaveMultiBoot"] and not SystemInfo["HasRootSubdir"]:
+			imageversionfile = "/tmp/bi/RootSubdir/etc/image-version"
+			if os.path.exists(imageversionfile) is True:
+				os.system("less /tmp/bi/RootSubdir/etc/image-version | grep build= | cut -d= -f2 > /tmp/.imagebuild")
+				brand = open("/tmp/.imagebuild","r")
+				self.backupbuild = brand.readline().replace('\n', '').lower()
+				brand.close()
+			else:
+				self.backupbuild = "-"
+			print "self.backupbuild: %s" %self.backupbuild
 			print "selectionmultiboot: %s" %self.selectionmultiboot
 			cmdlist.append('opkg install p7zip > /dev/null 2>&1')
-			cmdlist.append('7za a -r -bt -bd -bb0 %s/full_backups/%s-multiboot-%s-%s-backup-%s.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.selectionmultiboot, self.MODEL, self.DATE, self.MAINDESTROOT))
+			cmdlist.append('7za a -r -bt -bd -bb0 %s/full_backups/%s-multiboot-%s-%s-%s-backup-%s.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.selectionmultiboot, self.MODEL, self.backupbuild, self.DATE, self.MAINDESTROOT))
 		elif SystemInfo["HasRootSubdir"]:
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/unforce_%s.txt' %(self.MAINDESTROOT, self.MACHINEBUILD))
 			cmdlist.append('7za a -r -bt -bd -bb0 %s/full_backups/%s-%s-%s-%s-backup-%s_mmc.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.HDFIMAGEBUILD, self.MODEL, self.DATE, self.MAINDESTROOT))
@@ -678,23 +686,23 @@ class ImageBackup(Screen):
 				file_found = False
 
 		if SystemInfo["HaveMultiBoot"] and not self.list[self.selection] == "Recovery":
-			cmdlist.append('echo "_____________________________________________________________________\n"')
+			cmdlist.append('echo "________________________________________________________________________________\n"')
 			if SystemInfo["HasRootSubdir"]:
 				cmdlist.append('echo -e "' + _("Image created on:\n%s/full_backups/%s-%s-%s-%s-backup-%s_mmc.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.HDFIMAGEBUILD, self.MODEL, self.DATE) + '"')
 			else:
-				cmdlist.append('echo -e "' + _("Image created on:\n%s/full_backups/%s-multiboot-%s-%s-backup-%s.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.selectionmultiboot, self.MODEL, self.DATE) + '"')
-			cmdlist.append('echo "_____________________________________________________________________\n"')
+				cmdlist.append('echo -e "' + _("Image created on:\n%s/full_backups/%s-multiboot-%s-%s-%s-backup-%s.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.selectionmultiboot, self.MODEL, self.backupbuild, self.DATE) + '"')
+			cmdlist.append('echo "________________________________________________________________________________\n"')
 			cmdlist.append('echo "' + _("To restore the image:") + '"')
 			cmdlist.append('echo "' + _("Use OnlineFlash in SoftwareManager") + '"')
 		elif file_found:
-			cmdlist.append('echo "_____________________________________________________________________\n"')
+			cmdlist.append('echo "________________________________________________________________________________\n"')
 			cmdlist.append('echo -e "' + _("Image created on:\n%s/full_backups/%s-%s-%s-%s-backup-%s.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.HDFIMAGEBUILD, self.MODEL, self.DATE) + '"')
-			cmdlist.append('echo "_____________________________________________________________________\n"')
+			cmdlist.append('echo "________________________________________________________________________________\n"')
 			cmdlist.append('echo "' + _("To restore the image:") + '"')
 			cmdlist.append('echo "' + _("Please check the manual of the receiver") + '"')
 			cmdlist.append('echo "' + _("on how to restore the image") + '"')
 		else:
-			cmdlist.append('echo "_____________________________________________________________________\n"')
+			cmdlist.append('echo "________________________________________________________________________________\n"')
 			cmdlist.append('echo "' + _("Image creation failed - ") + '"')
 			cmdlist.append('echo "' + _("Probable causes could be") + ':"')
 			cmdlist.append('echo "' + _("     wrong back-up destination ") + '"')
