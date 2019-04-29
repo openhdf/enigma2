@@ -25,12 +25,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDis
 VERSION = _("Version %s %s") %(getImageDistro().upper(), getImageVersion())
 
 HaveGZkernel = True
-if SystemInfo["HasRootSubdir"] or getMachineBuild() in ('gbmv200','vuduo4k','ustym4kpro','beyonwizv2','viper4k','i55plus','osmio4k','osmio4kplus','sf8008','cc1','dags72604', 'u41', 'u51','u52','u53','u54','u55','u56','h9','h9combo','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s'):
-	HaveGZkernel = False
-
-isDreamboxXZ = False
-if getBoxType() in "dm7080" "dm820" "dm520" "dm525" "dm900":
-	isDreamboxXZ = True
+if SystemInfo["HasRootSubdir"] or getMachineBuild() in ('gbmv200','vuduo4k','ustym4kpro','beyonwizv2','viper4k','i55plus','osmio4k','osmio4kplus','sf8008','cc1','dags72604', 'u41', 'u51','u52','u53','u54','u55','u56','h9','h9combo','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s','dm7080','dm820','dm520','dm525','dm900'):
 	HaveGZkernel = False
 
 def Freespace(dev):
@@ -92,7 +87,6 @@ class ImageBackup(Screen):
 		else:
 			self.MTDBOOT = "none"
 			self.EMMCIMG = "none"
-
 		print "[FULL BACKUP] BOX MACHINEBUILD = >%s<" %self.MACHINEBUILD
 		print "[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME
 		print "[FULL BACKUP] BOX MACHINEBRAND = >%s<" %self.MACHINEBRAND
@@ -110,12 +104,6 @@ class ImageBackup(Screen):
 		print "[FULL BACKUP] EMMCIMG = >%s<" %self.EMMCIMG
 		print "[FULL BACKUP] IMAGEDISTRO = >%s<" %self.IMAGEDISTRO
 		print "[FULL BACKUP] DISTROVERSION = >%s<" %self.DISTROVERSION
-
-		if isDreamboxXZ:
-			self.IMAGEFOLDER = self.MODEL
-# fix me to xz
-			self.ROOTFSTYPE = "tar.gz"
-			self.ROOTFSBIN = "root.tar.gz"
 
 		self.error_files = ''
 		self.list = self.list_files("/boot")
@@ -321,25 +309,16 @@ class ImageBackup(Screen):
 		self.FASTBOOT = "/usr/bin/ext2simg"
 		self.WORKDIR= "%s/bi" %self.DIRECTORY
 		self.TARGET="XX"
-		if isDreamboxXZ:
-			self.XZ = "/usr/bin/xz"
-			self.MKFS = "/bin/tar"
 
 		## TESTING IF ALL THE TOOLS FOR THE BUILDING PROCESS ARE PRESENT
-		if isDreamboxXZ:
-			if not path.exists(self.XZ):
-				text = "%s not found !!" %self.XZ
-				self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
-				return
-		else:
-			if not path.exists(self.MKFS):
-				text = "%s not found !!" %self.MKFS
-				self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
-				return
-			if not path.exists(self.NANDDUMP):
-				text = "%s not found !!" %self.NANDDUMP
-				self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
-				return
+		if not path.exists(self.MKFS):
+			text = "%s not found !!" %self.MKFS
+			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
+			return
+		if not path.exists(self.NANDDUMP):
+			text = "%s not found !!" %self.NANDDUMP
+			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
+			return
 
 		self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
 		self.MAINDEST = "%s/fullbackup_%s/%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE, self.IMAGEFOLDER)
@@ -355,9 +334,6 @@ class ImageBackup(Screen):
 		if self.ROOTFSTYPE == "ubi":
 			self.message += _("because of the used filesystem the back-up ")
 			self.message += _("will take about 3-12 minutes for this system\n")
-		elif isDreamboxXZ:
-			self.message += _("because of the used filesystem the back-up ")
-			self.message += _("will take about 1-5 minutes for this system\n")
 		elif SystemInfo["HaveMultiBoot"] and self.list[self.selection] == "Recovery":
 			self.message += _("because of the used filesystem the back-up ")
 			self.message += _("will take about 30 minutes for this system\n")
@@ -388,17 +364,12 @@ class ImageBackup(Screen):
 				system("mount /dev/%s %s" %(self.MTDROOTFS, self.backuproot))
 		else:
 			system("mount --bind / %s" %(self.backuproot))
-		if isDreamboxXZ:
-			cmd1 = "(cd /tmp/bi/root && find . -type s) >/tmp/sockets"
-#			cmd1 = "%s -cJf %s/root.tar.xz -C /tmp/bi/root ." % (self.MKFS, self.WORKDIR)
-			cmd2 = "%s -C /tmp/bi/root -z --exclude-from=/tmp/sockets --exclude ./run/avahi-daemon/socket -cf %s/root.tar.gz ." % (self.MKFS, self.WORKDIR)
-			cmd3 = None
 		if "jffs2" in self.ROOTFSTYPE.split():
 			cmd1 = "%s --root=%s --faketime --output=%s/root.jffs2 %s" % (self.MKFS,  self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
 			cmd2 = None
 			cmd3 = None
 		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or SystemInfo["HasRootSubdir"] or self.MACHINEBUILD in ("gbmv200","u51","u52","u53","u54","u56","u5","u5pvr","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"):
-			cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./var/lib/samba/private/msg.sock ." % (self.MKFS, self.WORKDIR, self.backuproot)
+			cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./run --exclude ./var/lib/samba/private/msg.sock ." % (self.MKFS, self.WORKDIR, self.backuproot)
 			cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 			cmd3 = None
 		else:
@@ -470,23 +441,22 @@ class ImageBackup(Screen):
 			cmdlist.append("mkfs.ext4 -F -i 4096 %s/rootfs.ext4 -d /tmp/bi/root" % (self.WORKDIR))
 
 		cmdlist.append('echo " "')
-		if not isDreamboxXZ:
-			cmdlist.append('echo "' + _("Create:") + ' kerneldump"')
- 			cmdlist.append('echo " "')
-			if SystemInfo["HaveMultiBoot"]:
-				if SystemInfo["HasRootSubdir"]:
-					cmdlist.append("dd if=%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
-				else:
-					cmdlist.append("dd if=/dev/%s of=%s/kernel.bin" % (self.MTDKERNEL ,self.WORKDIR))
-			elif self.MTDKERNEL.startswith('mmcblk0'):
-				cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
+		cmdlist.append('echo "' + _("Create:") + ' kerneldump"')
+ 		cmdlist.append('echo " "')
+		if SystemInfo["HaveMultiBoot"]:
+			if SystemInfo["HasRootSubdir"]:
+				cmdlist.append("dd if=%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
 			else:
-				cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
-			cmdlist.append('echo " "')
+				cmdlist.append("dd if=/dev/%s of=%s/kernel.bin" % (self.MTDKERNEL ,self.WORKDIR))
+		elif self.MTDKERNEL.startswith('mmcblk0'):
+			cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
+		else:
+			cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
+		cmdlist.append('echo " "')
 
-			if HaveGZkernel:
-				cmdlist.append('echo "' + _("Check:") + ' kerneldump"')
-			cmdlist.append("sync")
+		if HaveGZkernel:
+			cmdlist.append('echo "' + _("Check:") + ' kerneldump"')
+		cmdlist.append("sync")
 
 		if ( SystemInfo["HaveMultiBootHD"] or SystemInfo["HaveMultiBootXC"] or SystemInfo["HaveMultiBootCY"] or SystemInfo["HaveMultiBootOS"]) and self.list[self.selection] == "Recovery":
 			BLOCK_SIZE=512
@@ -557,6 +527,7 @@ class ImageBackup(Screen):
 			f.write('</Partition_Info>\n')
 			f.close()
 			cmdlist.append('mkupdate -s 00000003-00000001-01010101 -f %s/emmc_partitions.xml -d %s/%s' % (self.WORKDIR,self.WORKDIR,self.EMMCIMG))
+		print cmdlist
 		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, finishedCallback = self.doFullBackupCB, closeOnSuccess = True)
 
 	def doFullBackupCB(self):
@@ -594,8 +565,7 @@ class ImageBackup(Screen):
 		elif self.MTDKERNEL.startswith('mmcblk0'):
 			system('mv %s/%s %s/%s' %(self.WORKDIR, self.KERNELBIN, self.MAINDEST, self.KERNELBIN))
 		else:
-			if not isDreamboxXZ:
-				system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
+			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 
 		if SystemInfo["HaveMultiBoot"] and self.list[self.selection] == "Recovery":
 			system('mv %s/%s %s/%s' %(self.WORKDIR,self.EMMCIMG, self.MAINDEST,self.EMMCIMG))
@@ -609,8 +579,7 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "Rename the unforce_%s.txt to force_%s.txt and move it to the root of your usb-stick" > %s/force_%s_READ.ME' %(self.MACHINEBUILD, self.MACHINEBUILD, self.MAINDEST, self.MACHINEBUILD))
 			cmdlist.append('echo "When you enter the recovery menu then it will force to install the image in the linux1 selection" >> %s/force_%s_READ.ME' %(self.MAINDEST, self.MACHINEBUILD))
 		else:
-			if not isDreamboxXZ:
-				cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
+			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
 
 		if self.MODEL in ("gbquad4k","gbue4k"):
 			system('mv %s/boot.bin %s/boot.bin' %(self.WORKDIR, self.MAINDEST))
@@ -676,14 +645,13 @@ class ImageBackup(Screen):
 			print 'ROOTFS bin file not found'
 			file_found = False
 
-		if not isDreamboxXZ:
-			if not path.exists("%s/%s" % (self.MAINDEST, self.KERNELBIN)):
-				print 'KERNEL bin file not found'
-				file_found = False
+		if not path.exists("%s/%s" % (self.MAINDEST, self.KERNELBIN)):
+			print 'KERNEL bin file not found'
+			file_found = False
 
-			if path.exists("%s/noforce" % self.MAINDEST):
-				print 'NOFORCE bin file not found'
-				file_found = False
+		if path.exists("%s/noforce" % self.MAINDEST):
+			print 'NOFORCE bin file not found'
+			file_found = False
 
 		if SystemInfo["HaveMultiBoot"] and not self.list[self.selection] == "Recovery":
 			cmdlist.append('echo "________________________________________________________________________________\n"')
