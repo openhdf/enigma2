@@ -1,8 +1,8 @@
 from os import path
 from enigma import eDVBResourceManager, Misc_Options
-from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN, fileHas
+from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN, fileHas, pathExists
 from Tools.HardwareInfo import HardwareInfo
-from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getDisplayType, getHaveRCA, getHaveDVI, getHaveYUV, getHaveSCART, getHaveAVJACK, getHaveSCARTYUV, getHaveHDMI, getHaveHDMIinHD
+from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getDisplayType, getHaveRCA, getHaveDVI, getHaveYUV, getHaveSCART, getHaveAVJACK, getHaveSCARTYUV, getHaveHDMI, getHaveHDMIinHD, getMachineMtdKernel, getMachineMtdRoot
 
 SystemInfo = { }
 
@@ -79,7 +79,7 @@ SystemInfo["HasMultichannelPCM"] = fileCheck("/proc/stb/audio/multichannel_pcm")
 SystemInfo["HaveTouchSensor"] = getBoxType() in ('dm520', 'dm525', 'dm900')
 SystemInfo["DefaultDisplayBrightness"] = getBoxType() == 'dm900' and 8 or 5
 SystemInfo["HasRootSubdir"] = fileHas("/proc/cmdline", "rootsubdir=")
-SystemInfo["HaveMultiBootADV"] = SystemInfo["HaveMultiBoot"] and SystemInfo["HasRootSubdir"]
+SystemInfo["HaveMultiBootADV"] = SystemInfo["HaveMultiBoot"] and SystemInfo["HasRootSubdir"] and getMachineBuild() not in ('hd51','vs1500','h7')
 SystemInfo["RecoveryMode"] = SystemInfo["HasRootSubdir"] or fileCheck("/proc/stb/fp/boot_mode")
 SystemInfo["LCDMiniTV"] = fileExists("/proc/stb/lcd/mode")
 SystemInfo["LcdLiveTV"] = fileCheck("/proc/stb/fb/sd_detach")
@@ -98,3 +98,10 @@ SystemInfo["HaveSCART"] = getHaveSCART() in ('True')
 SystemInfo["HaveSCARTYUV"] = getHaveSCARTYUV() in ('True')
 SystemInfo["HaveYUV"] = getHaveYUV() in ('True')
 SystemInfo["HaveHDMI"] = getHaveHDMI() in ('True')
+SystemInfo["canMultiBoot"] = getMachineBuild() in ('hd51','vs1500','h7','h9combo','hd60','hd61','multibox','8100s') and (1, 4, 'mmcblk0p') or getMachineBuild() in ('gb7252') and (3, 3, 'mmcblk0p') or getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro','beyonwizv2','viper4k') and fileCheck("/dev/sda") and (0, 3, 'sda') or getMachineBuild() in ('osmio4k','osmio4kplus','xc7439') and (1, 4, 'mmcblk1p')
+SystemInfo["canMode12"] = getMachineBuild() in ('hd51','vs1500','h7') and ('brcm_cma=440M@328M brcm_cma=192M@768M', 'brcm_cma=520M@248M brcm_cma=200M@768M')
+SystemInfo["HAScmdline"] = fileCheck("/boot/cmdline.txt")
+SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or SystemInfo["canMultiBoot"] and fileHas("/proc/cmdline", "root=/dev/sda")
+SystemInfo["HasSDmmc"] = SystemInfo["canMultiBoot"] and "sd" in SystemInfo["canMultiBoot"][2] and "mmcblk" in getMachineMtdRoot() 
+SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
+SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
