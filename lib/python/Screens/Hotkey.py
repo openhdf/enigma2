@@ -16,7 +16,7 @@ from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
-updateversion = "27.03.2019"
+updateversion = "02.05.2019"
 
 if os.uname()[4] == "aarch64":
 	pathLen=26
@@ -260,16 +260,8 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((_("Toggle HDMI-In Picture In Picture"), "Infobar/HDMIInPiP", "InfoBar"))
 	if SystemInfo["LcdLiveTV"]:
 		hotkeyFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
-	if SystemInfo["HaveMultiBootHD"]:
-		hotkeyFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartup/MultiBootStartup", "InfoBar"))
-	if SystemInfo["HaveMultiBootGB"]:
-		hotkeyFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartupGB/MultiBootStartup", "InfoBar"))
-	if SystemInfo["HaveMultiBootCY"]:
-		hotkeyFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartupCY/MultiBootStartup", "InfoBar"))
-	if SystemInfo["HaveMultiBootDS"]:
-		hotkeyFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartupDS/MultiBootStartup", "InfoBar"))
-	if SystemInfo["HaveMultiBootOS"]:
-		hotkeyFunctions.append((_("MultiBoot Selector"), "Module/Screens.MultiBootStartupOS/MultiBootStartup", "InfoBar"))
+	if SystemInfo["canMultiBoot"]:
+		hotkeyFunctions.append((_("MultiBootSelector"), "Module/Screens.MultiBootSelector/MultiBootSelector", "InfoBar"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
 	hotkeyFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
 	if getHaveCI() in ('True'):
