@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-05-02 17:42+0200\n"
+"PO-Revision-Date: 2019-05-02 18:57+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -573,6 +573,13 @@ msgid ""
 msgstr ""
 "\n"
 "Flashen   Online / Local Ihrer %s %s."
+
+msgid ""
+"\n"
+"Maintain your %s %s device."
+msgstr ""
+"\n"
+"Verwaltung der Multiboots der %s %s."
 
 msgid "Online = Download a image and flash it"
 msgstr "Online = Image online laden und Flashen."
@@ -14627,6 +14634,63 @@ msgstr "Wähle ein installiertes Image aus und dann die Neustart-Taste."
 
 msgid "SDcard is not initialised for multiboot - Exit and use ViX MultiBoot Manager to initialise"
 msgstr "SD-Karte ist nicht für Multiboot initialisiert. Benutze Multiboot Verwaltung zur Initialisierung."
+
+msgid "Note: slot list does not show current image or empty slots."
+msgstr "Hinweis: Die Slotliste zeigt kein aktuelles Image oder leere Slot an."
+
+msgid "Retrieving image slots - Please wait..."
+msgstr "Image-Slots abrufen - Bitte warten Sie ..."
+
+msgid "slot%s - %s "
+msgstr "Slot %s - %s "
+
+msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
+msgstr "Das Entfernen dieses Slots wird nicht in %s GUI angezeigt. Möchten Sie den Image-Slot %s wirklich löschen?"
+
+msgid "Are you sure you want to delete image slot %s ?"
+msgstr "Möchten Sie den Image-Slot %s wirklich löschen?"
+
+msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
+msgstr "Multiboot-Manager - SD-Karte kann nicht initialisiert werden, wenn das Image auf der SD-Karte ausgeführt wird."
+
+msgid "Multiboot manager - The SDcard must be at least 8MB."
+msgstr "Multiboot-Manager - Die SD-Karte muss mindestens 8 MB groß sein."
+
+msgid "Multiboot manager - SDcard initialization run, please restart Image."
+msgstr "Multiboot-Manager - Initialisierung der SD-Karte. Bitte starten Sie die Box neu."
+
+msgid "Retrieving image list - Please wait..."
+msgstr "Image-Liste abrufen - Bitte warten Sie ..."
+
+msgid "Cannot find images - please try later"
+msgstr "Images können nicht gefunden werden. Versuchen Sie es später noch einmal"
+
+msgid "Cannot delete downloaded image"
+msgstr "Das heruntergeladene Image kann nicht gelöscht werden"
+
+msgid "Remove confirmation"
+msgstr "Entfernen bestätigen"
+
+msgid "Use the cursor keys to select an installed image and then Erase button."
+msgstr "Wähle ein installiertes Image aus und danach die Löschen-Taste."
+
+msgid "Multiboot ERROR! - no %s in boot partition."
+msgstr "Multiboot Fehler! - kein %s in boot partition."
+
+msgid "No images found"
+msgstr "Keine Images gefunden"
+
+msgid "MultiBoot image manager"
+msgstr "MultiBoot Image Manager"
+
+msgid "Press Init to format SDcard."
+msgstr "Drücken Sie Init, um die SD-Karte zu formatieren."
+
+msgid "Erase"
+msgstr "Löschen"
+
+msgid "Init SDcard"
+msgstr "Init SDcard"
 
 msgid ""
 "Mode 1 suppports Kodi, PiP may not work.\n"

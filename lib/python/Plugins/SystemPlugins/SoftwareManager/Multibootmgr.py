@@ -146,7 +146,7 @@ class MultiBootWizard(Screen):
 						self.session.open(MessageBox, _("Multiboot manager - The SDcard must be at least 8MB."), MessageBox.TYPE_INFO, timeout=10)
 						self.close
 					else:
-						self.session.open(MessageBox, _("Multiboot manager - SDcard initialization run, please restart OpenViX."), MessageBox.TYPE_INFO, timeout=10)
+						self.session.open(MessageBox, _("Multiboot manager - SDcard initialization run, please restart Image."), MessageBox.TYPE_INFO, timeout=10)
 						cmdlist = []
 						cmdlist.append("dd if=/dev/zero of=/dev/sda bs=512 count=1 conv=notrunc")
 						cmdlist.append("rm -f /tmp/init.sh")
