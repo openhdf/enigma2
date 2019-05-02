@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-04-27 12:43+0200\n"
+"PO-Revision-Date: 2019-05-02 17:42+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -14618,6 +14618,43 @@ msgstr "Multiboot Auswahl"
 
 msgid "MultiBoot Selector"
 msgstr "MultiBoot Auswahl"
+
+msgid "Multiboot Image Selector"
+msgstr "MultiBoot Auswahl"
+
+msgid "Use the cursor keys to select an installed image and then Reboot button."
+msgstr "Wähle ein installiertes Image aus und dann die Neustart-Taste."
+
+msgid "SDcard is not initialised for multiboot - Exit and use ViX MultiBoot Manager to initialise"
+msgstr "SD-Karte ist nicht für Multiboot initialisiert. Benutze Multiboot Verwaltung zur Initialisierung."
+
+msgid ""
+"Mode 1 suppports Kodi, PiP may not work.\n"
+"Mode 12 supports PiP, Kodi may not work."
+msgstr ""
+"Mode 1 unterstützt Kodi, PiP könnte nicht funktionieren.\n"
+"Mode 12 unterstützt Pip, Kodi könnte nicht funktionieren."
+
+msgid "Empty slot"
+msgstr "Leerer Slot"
+
+msgid "slot%s -%s - %s (current image)"
+msgstr "Slot %s - %s - %s (aktuelles Image)"
+
+msgid "slot%s -%s- %s "
+msgstr "Slot %s - %s - %s"
+
+msgid "slot%s - %s mode 1 (current image)"
+msgstr "Slot %s - %s Mode 1 (aktuelles Image)"
+
+msgid "slot%s - %s mode 1"
+msgstr "Slot %s - %s Mode 1"
+
+msgid "slot%s - %s mode 12 (current image)"
+msgstr "Slot %s - %s Mode 12 (aktuelles Image)"
+
+msgid "slot%s - %s mode 12"
+msgstr "Slot %s - %s Mode 12"
 
 msgid "Do you want to reboot now with selected image?"
 msgstr "Soll die Box jetzt mit dem gewählten Image neu gestartet werden?"
