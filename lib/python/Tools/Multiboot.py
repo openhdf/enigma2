@@ -111,7 +111,13 @@ class GetImagelist():
 					Creator = open("%s/etc/issue" %self.OsPath).readlines()[-2].capitalize().strip()[:-6].replace("-release", " rel")
 				except:
 					Creator = _("unknow")
-				print "Tools/Multiboot Creator %s" %Creator 
+				if Creator.startswith("Openhdf"):
+					reader = boxbranding_reader(self.OsPath)
+					BuildType = reader.getImageType()
+					Build = reader.getImageBuild()
+					Dev = BuildType != "release" and " %s" % reader.getImageDevBuild() or ''
+					BuildVersionHDF = "%s %s %s" % (Creator, BuildType[0:3], Build)
+					BuildVersionHDF = BuildVersionHDF.replace("rel", "#")
 				if Creator.startswith("Openpli"):
 					build = [x.split("-")[-2:-1][0][-8:] for x in open("%s/var/lib/opkg/info/openpli-bootlogo.control" %self.OsPath).readlines() if x.startswith("Version:")]
 					Date = "%s-%s-%s" % (build[0][6:], build[0][4:6], build[0][2:4])
@@ -126,8 +132,10 @@ class GetImagelist():
 					st = os.stat('%s/var/lib/opkg/status' %self.OsPath)
 					tm = time.localtime(st.st_mtime)
 					if tm.tm_year >= 2011:
-						Date = time.strftime("%d-%m-%Y", tm).replace("-20", "-")
-					BuildVersion = "%s rel %s" % (Creator, Date)
+						Date = time.strftime("%d.%m.%Y", tm)
+					BuildVersion = "%s release %s" % (Creator, Date)
+					if Creator.startswith("Openhdf"):
+						BuildVersion = "%s release %s" % (BuildVersionHDF, Date)
 				self.imagelist[self.slot2] =  { 'imagename': '%s' %BuildVersion, 'part': '%s' %self.part2 }
 			self.phase = self.UNMOUNT
 			self.run()
