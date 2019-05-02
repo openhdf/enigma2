@@ -211,7 +211,7 @@ class UpdatePluginMenu(Screen):
 			if not boxtype.startswith('az') and not boxtype in ('dm500hd','dm500hdv2','dm520','dm800','dm800se','dm800sev2','dm820','dm7020hd','dm7020hdv2','dm7080','dm8000') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
 				self.list.append(("flash-online", _("Image Online-Flash"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			if SystemInfo["canMultiBoot"]:
-				self.list.append(("multiboot-manager", _("Multiboot Manager"), _("\nMaintain your multiboot device.") + self.oktext, None))
+				self.list.append(("multiboot-manager", _("Image Multiboot Manager"), _("\nMaintain your %s %s device.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local extensions and install them.") + "\n" + self.oktext, None))
