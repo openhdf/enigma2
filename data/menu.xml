@@ -320,7 +320,6 @@ else:
 			<item text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
 			<item text="SleepTimer" entryID="sleep" level="0" requires="DeepstandbySupport" ><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
 			<item text="Multiboot Image Selector" level="0" requires="canMultiBoot" entryID="restart"><screen module="MultiBootSelector" screen="MultiBootSelector" /></item>
-			<item text="Multiboot Image Selector" level="0" requires="HaveMultiBootHD" entryID="deep_standby"><screen module="MultiBootStartup" screen="MultiBootStartup" /></item>
 			<item text="Recovery Mode" requires="RecoveryMode" entryID="maintenance_mode"><screen module="Standby" screen="TryQuitMainloop">16</screen></item>
 			<item text="PowerTimer" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
 			<item text="Restart enigma" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
