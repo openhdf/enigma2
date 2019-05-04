@@ -68,13 +68,14 @@ class GetImagelist():
 
 	def run(self):
 		if SystemInfo["HasRootSubdir"]:
-			if self.phase == self.MOUNT:
-				self.part2 = getMachineMtdRoot()
-				self.imagelist[self.slot2] = { 'imagename': _("Empty slot"), 'part': '%s' %self.part2 }
 			if self.slot == 1 and os.path.islink("/dev/block/by-name/linuxrootfs"):
+				self.part2 = os.readlink("/dev/block/by-name/linuxrootfs")[5:]
 				self.container.ePopen('mount /dev/block/by-name/linuxrootfs /tmp/testmount' if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
 			else:
+				self.part2 = os.readlink("/dev/block/by-name/userdata")[5:]
 				self.container.ePopen('mount /dev/block/by-name/userdata /tmp/testmount' if self.phase == self.MOUNT else 'umount /tmp/testmount', self.appClosed)
+			if self.phase == self.MOUNT:
+				self.imagelist[self.slot2] = { 'imagename': _("Empty slot"), 'part': '%s' %self.part2 }
 		else:
 			if self.SDmmc == self.LastRun:
 				self.part2 = getMachineMtdRoot()	# process mmc slot
