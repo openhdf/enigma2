@@ -655,9 +655,6 @@ class doFlashImage(Screen):
 						if line.find('recovery_emmc.zip"') > -1:
 							x = line.find('recovery_emmc.zip"')
 							self.imagelist.remove(line[t+9:e+3])
-						if line.find('usb.zip"') > -1:
-							x = line.find('usb.zip"')
-							self.imagelist.remove(line[t+9:e+3])
 					if line.find('.xz"') > -1:
 						e = line.find('xz"')
 						self.imagelist.append(line[t+9:e+2])
