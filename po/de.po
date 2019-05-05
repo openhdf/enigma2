@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-05-03 05:10+0200\n"
+"PO-Revision-Date: 2019-05-05 05:40+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -14722,6 +14722,9 @@ msgstr "Slot %s - %s Mode 12"
 
 msgid "Do you want to reboot now with selected image?"
 msgstr "Soll die Box jetzt mit dem gewählten Image neu gestartet werden?"
+
+msgid "Do you want to reboot now the image in slot %s?"
+msgstr "Soll das Image im Slot %s jetzt gestartet werden?"
 
 msgid "Selected Image:\t%s"
 msgstr "Image Wahl:\t%s"
