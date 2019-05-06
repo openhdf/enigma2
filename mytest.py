@@ -5,6 +5,9 @@ from time import time
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 	sys.path.append("/usr/lib/enigma2/python/enigma.zip")
 
+if os.path.isfile("/media/hdd/images/hdfrestoremultiboot"):
+	os.rename('/media/hdd/images/hdfrestoremultiboot', '/media/hdd/images/hdfrestore')
+
 from Tools.Profile import profile, profile_final
 profile("PYTHON_START")
 
