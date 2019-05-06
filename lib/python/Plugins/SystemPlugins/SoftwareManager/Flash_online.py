@@ -496,10 +496,17 @@ class doFlashImage(Screen):
 						shutil.copyfile(backupsourcefile, backupdestfile)
 				except:
 					print "AfterFlashAction: failed to create /media/hdd/images/hdfrestore"
-		self.Start_Flashing()
+		message = _("Do you want to start flashing now?\nEnigma2 is stopped and then automatically restarted.\nPlease check in advance for ongoing recordings!")
+		self.session.openWithCallback(self.initFlashing,MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
+
+	def initFlashing(self, answer):
+		if answer is True:
+			self.Start_Flashing()
+		else:
+			self.close()
 
 	def Start_Flashing(self):
-		print "Start Flashing"
+		print "Start Flashing"		
 		cmdlist = []
 		if os.path.exists(ofgwritePath):
 			text = _("Flashing: ")
