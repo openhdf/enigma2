@@ -163,9 +163,9 @@ class GetImagelist():
 					tm = time.localtime(st.st_mtime)
 					if tm.tm_year >= 2011:
 						Date = time.strftime("%d.%m.%Y", tm)
-					BuildVersion = "%s release %s" % (Creator, Date)
+					BuildVersion = _("%s release %s") % (Creator, Date)
 					if Creator.startswith("Openhdf"):
-						BuildVersion = "%s release %s" % (BuildVersionHDF, Date)
+						BuildVersion = _("%s release %s") % (BuildVersionHDF, Date)
 				self.imagelist[self.slot2] =  { 'imagename': '%s' %BuildVersion, 'part': '%s' %self.part2 }
 			self.phase = self.UNMOUNT
 			self.run()
