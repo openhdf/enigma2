@@ -63,13 +63,13 @@ class MultiBootWizard(Screen):
 		else:
 			self["key_red"] = StaticText(_("Cancel"))
 			self["description"] = StaticText(_("Use the cursor keys to select an installed image and then Erase button."))
-			self["options"] = StaticText(_("Note: slot list does not show current image or empty slots."))
+			self["options"] = StaticText(_("Note: startup list does not show current image or empty startups."))
 			self["key_green"] = StaticText(_("Erase"))
 			if SystemInfo["HasSDmmc"]:
 				self["key_yellow"] = StaticText(_("Init SDcard"))
 			else:
 				self["key_yellow"] = StaticText("")
-			self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Retrieving image slots - Please wait...")), "Queued"))])
+			self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Retrieving image startups - Please wait...")), "Queued"))])
 			imagedict = []
 			self.getImageList = None
 			self.startit()
@@ -106,19 +106,19 @@ class MultiBootWizard(Screen):
 		if SystemInfo["HasSDmmc"]:
 			currentimageslot += 1
 		for x in sorted(imagedict.keys()):
-			if imagedict[x]["imagename"] != _("Empty slot") and x != currentimageslot:
-				list.append(ChoiceEntryComponent('',((_("slot%s - %s ")) % (x, imagedict[x]['imagename']), x)))
+			if imagedict[x]["imagename"] != _("Empty startup") and x != currentimageslot:
+				list.append(ChoiceEntryComponent('',((_("startup %s - %s ")) % (x, imagedict[x]['imagename']), x)))
 		self["config"].setList(list)
 
 	def erase(self):
 		self.currentSelected = self["config"].l.getCurrentSelection()
 		if self.currentSelected[0][1] != "Queued":
 			if SystemInfo["HasRootSubdir"]:
-				message = _("Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?") %(getMachineBuild(), self.currentSelected[0][1])
+				message = _("Removal of this startup will not show in %s Gui.  Are you sure you want to delete image startup %s ?") %(getMachineBuild(), self.currentSelected[0][1])
 				ybox = self.session.openWithCallback(self.doErase, MessageBox, message, MessageBox.TYPE_YESNO, default=True)
 				ybox.setTitle(_("Remove confirmation"))
 			else:
-				message = _("Are you sure you want to delete image slot %s ?") %self.currentSelected[0][1]
+				message = _("Are you sure you want to delete image startup %s ?") %self.currentSelected[0][1]
 				ybox = self.session.openWithCallback(self.doErase, MessageBox, message, MessageBox.TYPE_YESNO, default=True)
 				ybox.setTitle(_("Remove confirmation"))
 

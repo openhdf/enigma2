@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-05-06 18:19+0200\n"
+"PO-Revision-Date: 2019-05-07 16:37+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -5173,6 +5173,9 @@ msgstr "Deutsch"
 msgid "Get latest experimental image"
 msgstr "Neuestes Experimental-Image"
 
+msgid "%s release %s"
+msgstr "%s vom %s"
+
 msgid "Get latest release image"
 msgstr "Neuestes Release-Image"
 
@@ -9566,7 +9569,7 @@ msgstr "Bilder als Diashow anzeigen"
 msgid "Slide show interval (sec.)"
 msgstr "Diaschau-Intervall (sek.)"
 
-msgid "Slot %d"
+msgid "Startup %d"
 msgstr "Steckplatz %d"
 
 msgid "Slovak"
@@ -14656,20 +14659,20 @@ msgstr "Wähle ein installiertes Image aus und dann die Neustart/OK Taste."
 msgid "SDcard is not initialised for multiboot - Exit and use ViX MultiBoot Manager to initialise"
 msgstr "SD-Karte ist nicht für Multiboot initialisiert. Benutze Multiboot Verwaltung zur Initialisierung."
 
-msgid "Note: slot list does not show current image or empty slots."
-msgstr "Hinweis: Die Slotliste zeigt kein aktuelles Image oder leere Slot an."
+msgid "Note: startup list does not show current image or empty startups."
+msgstr "Hinweis: Die Startupliste zeigt kein aktuelles Image oder leere Startups an."
 
-msgid "Retrieving image slots - Please wait..."
-msgstr "Image-Slots abrufen - Bitte warten Sie ..."
+msgid "Retrieving image startups - Please wait..."
+msgstr "Image-Startups abrufen - Bitte warten Sie ..."
 
-msgid "slot%s - %s "
-msgstr "Slot %s - %s "
+msgid "startup %s - %s "
+msgstr "Startup %s - %s "
 
-msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr "Das Entfernen dieses Slots wird nicht in %s GUI angezeigt. Soll das Image im Slot %s wirklich gelöscht werden?"
+msgid "Removal of this startup will not show in %s Gui.  Are you sure you want to delete image startup %s ?"
+msgstr "Das Entfernen dieses Startups wird nicht in %s GUI angezeigt. Soll das Image im Startup %s wirklich gelöscht werden?"
 
-msgid "Are you sure you want to delete image slot %s ?"
-msgstr "Soll das Image im Slot %s wirklich gelöscht werden?"
+msgid "Are you sure you want to delete image startup %s ?"
+msgstr "Soll das Image im Startup %s wirklich gelöscht werden?"
 
 msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
 msgstr "Multiboot-Manager - SD-Karte kann nicht initialisiert werden, wenn das Image auf der SD-Karte ausgeführt wird."
@@ -14720,32 +14723,32 @@ msgstr ""
 "Mode 1 unterstützt Kodi, PiP könnte nicht funktionieren.\n"
 "Mode 12 unterstützt Pip, Kodi könnte nicht funktionieren."
 
-msgid "Empty slot"
-msgstr "Leerer Slot"
+msgid "Empty startup"
+msgstr "Leerer Startup"
 
-msgid "slot%s -%s - %s (current image)"
-msgstr "Slot %s - %s - %s (aktuelles Image)"
+msgid "startup %s -%s - %s (current image)"
+msgstr "Startup %s - %s - %s (aktuelles Image)"
 
-msgid "slot%s -%s- %s "
-msgstr "Slot %s - %s - %s"
+msgid "startup %s -%s- %s "
+msgstr "Startup %s - %s - %s"
 
-msgid "slot%s - %s mode 1 (current image)"
-msgstr "Slot %s - %s Mode 1 (aktuelles Image)"
+msgid "startup %s - %s mode 1 (current image)"
+msgstr "Startup %s - %s Mode 1 (aktuelles Image)"
 
-msgid "slot%s - %s mode 1"
-msgstr "Slot %s - %s Mode 1"
+msgid "startup %s - %s mode 1"
+msgstr "Startup %s - %s Mode 1"
 
-msgid "slot%s - %s mode 12 (current image)"
-msgstr "Slot %s - %s Mode 12 (aktuelles Image)"
+msgid "startup %s - %s mode 12 (current image)"
+msgstr "Startup %s - %s Mode 12 (aktuelles Image)"
 
-msgid "slot%s - %s mode 12"
-msgstr "Slot %s - %s Mode 12"
+msgid "startup%s - %s mode 12"
+msgstr "Startup %s - %s Mode 12"
 
 msgid "Do you want to reboot now with selected image?"
 msgstr "Soll die Box jetzt mit dem gewählten Image neu gestartet werden?"
 
-msgid "Do you want to reboot now the image in slot %s?"
-msgstr "Soll das Image im Slot %s jetzt gestartet werden?"
+msgid "Do you want to reboot now the image in startup %s?"
+msgstr "Soll das Image im Startup %s jetzt gestartet werden?"
 
 msgid "Selected Image:\t%s"
 msgstr "Image Wahl:\t%s"

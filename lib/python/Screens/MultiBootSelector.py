@@ -45,7 +45,7 @@ class MultiBootSelector(Screen):
 		self["key_green"] = StaticText(_("Reboot"))
 		if SystemInfo["canMode12"]:
 			self["options"] = StaticText(_("Mode 1 suppports Kodi, PiP may not work.\nMode 12 supports PiP, Kodi may not work."))
-		self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Retrieving image slots - Please wait...")), "Queued"))])
+		self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Retrieving image startups - Please wait...")), "Queued"))])
 		imagedict = []
 		self.mtdboot = "%s1" % SystemInfo["canMultiBoot"][2]
  		if SystemInfo["canMultiBoot"][2] == "sda":
@@ -86,17 +86,17 @@ class MultiBootSelector(Screen):
 		if imagedict:
 			if not SystemInfo["canMode12"]:
 				for x in sorted(imagedict.keys()):
-					if imagedict[x]["imagename"] != _("Empty slot"):
-						list.append(ChoiceEntryComponent('',((_("slot%s -%s - %s (current image)") if x == currentimageslot else _("slot%s -%s- %s ")) % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x)))
+					if imagedict[x]["imagename"] != _("Empty startup"):
+						list.append(ChoiceEntryComponent('',((_("startup %s -%s - %s (current image)") if x == currentimageslot else _("startup %s -%s- %s ")) % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x)))
 			else:
 				for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
-					if imagedict[x]["imagename"] != _("Empty slot"):
-						list.append(ChoiceEntryComponent('',((_("slot%s - %s mode 1 (current image)") if x == currentimageslot and mode != 12 else _("slot%s - %s mode 1")) % (x, imagedict[x]['imagename']), x)))
+					if imagedict[x]["imagename"] != _("Empty startup"):
+						list.append(ChoiceEntryComponent('',((_("startup %s - %s mode 1 (current image)") if x == currentimageslot and mode != 12 else _("startup %s - %s mode 1")) % (x, imagedict[x]['imagename']), x)))
 				list.append("                                 ")
 				list.append("                                 ")
 				for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
-						if SystemInfo["canMode12"] and imagedict[x]["imagename"] != _("Empty slot"):
-							list.append(ChoiceEntryComponent('',((_("slot%s - %s mode 12 (current image)") if x == currentimageslot and mode == 12 else _("slot%s - %s mode 12")) % (x, imagedict[x]['imagename']), x)))
+						if SystemInfo["canMode12"] and imagedict[x]["imagename"] != _("Empty startup"):
+							list.append(ChoiceEntryComponent('',((_("startup %s - %s mode 12 (current image)") if x == currentimageslot and mode == 12 else _("startup %s - %s mode 12")) % (x, imagedict[x]['imagename']), x)))
 		else:
 			list.append(ChoiceEntryComponent('',((_("No images found")), "Waiter")))
 		self["config"].setList(list)
