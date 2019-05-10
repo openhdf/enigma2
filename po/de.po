@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-05-07 16:37+0200\n"
+"PO-Revision-Date: 2019-05-10 17:10+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -260,6 +260,9 @@ msgstr "Startet eine Sofortaufnahme"
 
 msgid "Hotkey Setup"
 msgstr "Hotkey Einstellungen"
+
+msgid "Toggle Extra Keys"
+msgstr "Extra Tasten"
 
 msgid "History next"
 msgstr "Zap Verlauf vor"
