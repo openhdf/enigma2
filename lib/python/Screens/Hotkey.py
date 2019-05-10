@@ -16,7 +16,7 @@ from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
-updateversion = "02.05.2019"
+updateversion = "10.05.2019"
 
 if os.uname()[4] == "aarch64":
 	pathLen=26
@@ -579,17 +579,17 @@ class InfoBarHotkey():
 	def getKeyFunctions(self, key):
 		if key in ("play", "playpause", "Stop", "stop", "pause", "rewind", "next", "previous", "fastforward", "skip_back", "skip_forward") and (self.__class__.__name__ == "MoviePlayer" or hasattr(self, "timeshiftActivated") and self.timeshiftActivated()):
 			return False
-		selection = getattr(config.misc.hotkey, key).value.split(',')
+		selection = eval("config.misc.hotkey." + key + ".value.split(',')")
 		selected = []
 		for x in selection:
 			if x.startswith("ZapPanic"):
 				selected.append(((_("Panic to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
 			elif x.startswith("Zap"):
 				selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
-			elif x:
-				function = next((function for function in getHotkeyFunctions() if function[1] == x), None)
+			else:
+				function = list(function for function in getHotkeyFunctions() if function[1] == x )
 				if function:
-					selected.append(function)
+					selected.append(function[0])
 		return selected
 
 	def getHelpText(self, key):
