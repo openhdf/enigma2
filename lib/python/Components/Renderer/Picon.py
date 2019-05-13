@@ -100,7 +100,10 @@ def getPiconName(serviceName):
 					pngname = findPicon('_'.join(fields))
 					if pngname:
 						newpng = '/usr/share/enigma2/picon/' + name + '.png'
-						os.symlink(pngname, newpng)
+						try:
+							os.symlink(pngname, newpng)
+						except:
+							pass
 						break
 				if tmp == "FF": break
 	return pngname
