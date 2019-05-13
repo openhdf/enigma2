@@ -455,7 +455,9 @@ class UpdatePluginMenu(Screen):
 					print "AfterFlashAction: No settings found."
 				else:
 					shutil.copyfile(backupsourcefile, backupdestfile)
-					self.session.open(MessageBox, _("Please restart Enigma now to restore your settings."), MessageBox.TYPE_INFO, timeout = 10)
+					os.system("cp /usr/share/enigma2/defaults/settings /etc/enigma2/")
+					message = _("Enigma must be restarted to auto restore your saved settings now!")
+					self.session.openWithCallback(self.initEnigmaGUI,MessageBox, message, MessageBox.TYPE_INFO, timeout=10)
 			except:
 				print "AfterFlashAction: failed to create /media/hdd/images/hdfrestore"
 		else:
@@ -466,6 +468,12 @@ class UpdatePluginMenu(Screen):
 			except:
 				print "AfterFlashAction: failed to delete /media/hdd/images/hdfrestore"
 		self.close()
+
+	def initEnigmaGUI(self, answer):
+		if answer is True:
+			os.system("killall -9 enigma2")
+		else:
+			self.close()
 
 	def backupfiles_choosen(self, ret):
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
