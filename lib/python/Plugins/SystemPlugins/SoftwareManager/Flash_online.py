@@ -468,9 +468,6 @@ class doFlashImage(Screen):
 			if os.path.exists('/media/hdd/images/hdfrestore'):
 				os.unlink('/media/hdd/images/hdfrestore')
 				print "AfterFlashAction: delete /media/hdd/images/hdfrestore"
-			if os.path.exists('/media/hdd/images/hdfrestoremultiboot'):
-				os.unlink('/media/hdd/images/hdfrestoremultiboot')
-				print "AfterFlashAction: delete /media/hdd/images/hdfrestoremultiboot"
 		except:
 			print "AfterFlashAction: failed to delete /media/hdd/images/hdfrestore"
 		title =_("Please select what to do after first booting the image:\n")
@@ -492,10 +489,7 @@ class doFlashImage(Screen):
 					print "AfterFlashAction: create /media/hdd/images/hdfrestore"
 					print "AfterFlashAction: filename:",self.fullbackupfilename
 					backupsourcefile = self.fullbackupfilename
-					if SystemInfo["HaveMultiBoot"]:
-						backupdestfile = '/media/hdd/images/hdfrestoremultiboot'
-					else:
-						backupdestfile = '/media/hdd/images/hdfrestore'
+					backupdestfile = '/media/hdd/images/hdfrestore'
 					if not os.path.exists(backupsourcefile):
 						print "AfterFlashAction: No settings found."
 					else:
