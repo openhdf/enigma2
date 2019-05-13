@@ -453,6 +453,7 @@ class UpdatePluginMenu(Screen):
 				backupdestfile = '/media/hdd/images/hdfrestore'
 				if not os.path.exists(backupsourcefile):
 					print "AfterFlashAction: No settings found."
+					self.session.open(MessageBox, _("Please create a backup of your settings before."), MessageBox.TYPE_INFO, timeout = 20)
 				else:
 					shutil.copyfile(backupsourcefile, backupdestfile)
 					os.system("cp /usr/share/enigma2/defaults/settings /etc/enigma2/")
