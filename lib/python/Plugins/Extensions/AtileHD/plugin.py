@@ -24,7 +24,10 @@ from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Tools.Directories import *
 from Tools.LoadPixmap import LoadPixmap
-from Plugins.Extensions.WeatherPlugin.plugin import MSNWeatherPlugin
+if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WeatherPlugin/plugin.pyo"):
+	from Plugins.Extensions.WeatherPlugin.plugin import MSNWeatherPlugin
+else:
+	pass
 from Tools import Notifications
 from os import listdir, remove, rename, system, path, symlink, chdir, makedirs, mkdir
 import shutil
