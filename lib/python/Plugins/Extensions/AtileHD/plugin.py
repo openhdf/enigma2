@@ -41,7 +41,7 @@ def Plugins(**kwargs):
 	return [PluginDescriptor(name=_("%s Setup") % cur_skin, description=_("Personalize your Skin"), where = PluginDescriptor.WHERE_MENU, icon="plugin.png", fnc=menu)]
 
 def menu(menuid, **kwargs):
-	if menuid == "system" and not config.skin.primary_skin.value == "XionHDF/skin.xml" and not config.skin.primary_skin.value =="SevenHD/skin.xml" and not config.skin.primary_skin.value == "KravenVB/skin.xml":
+	if menuid == "gui_menu" and not config.skin.primary_skin.value == "XionHDF/skin.xml" and not config.skin.primary_skin.value =="SevenHD/skin.xml" and not config.skin.primary_skin.value == "KravenVB/skin.xml":
 		return [(_("Setup - %s") % cur_skin, main, "atilehd_setup", None)]
 	else:
 		pass
@@ -52,7 +52,7 @@ def main(session, **kwargs):
 	session.open(AtileHD_Config)
 
 def isInteger(s):
-	try: 
+	try:
 		int(s)
 		return True
 	except ValueError:
@@ -82,12 +82,12 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		self.skin_lines = []
 		self.changed_screens = False
 		Screen.__init__(self, session)
-		
+
 		self.start_skin = config.skin.primary_skin.value
 
 		if self.start_skin != "skin.xml":
 			self.getInitConfig()
-		
+
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 
@@ -533,7 +533,7 @@ class AtileHDScreens(Screen):
 		
 		if not self.selectionChanged in self["menu"].onSelectionChanged:
 			self["menu"].onSelectionChanged.append(self.selectionChanged)
-		
+
 		self.onLayoutFinish.append(self.createMenuList)
 
 	def selectionChanged(self):
@@ -602,7 +602,7 @@ class AtileHDScreens(Screen):
 			self["Picture"].show()
 		else:
 			self["Picture"].hide()
-	
+
 	def keyCancel(self):
 		self.close()
 
