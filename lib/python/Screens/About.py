@@ -136,6 +136,8 @@ class About(Screen):
 
 		if getMachineBuild() in ('vusolo4k'):
 			cpuMHz = "   (1,5 GHz)"
+		elif getMachineBuild() in ('u41','u42'):
+			cpuMHz = "   (1,0 GHz)"
 		elif getMachineBuild() in ('vuuno4k','dm900','gb7252','dags7252'):
 			cpuMHz = "   (1,7 GHz)"
 		elif getMachineBuild() in ('formuler1tc','formuler1','triplex'):
