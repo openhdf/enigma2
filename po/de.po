@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-06-08 18:08+0200\n"
+"PO-Revision-Date: 2019-06-11 18:39+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1911,6 +1911,12 @@ msgstr "Aktiviere den Streamlinkserver für YouTube Videos"
 
 msgid "Enable autostart of streamlinkserver to play youtube videos inside your channellist. This install streamlinksrv package and needs a reboot!"
 msgstr "Aktiviert den Autostart für den Streamlinkserver um Youtube Videos innerhalb der Senderliste abzuspielen. Die Aktivierung dieser Option installiert das streamlinksrv Paket und braucht einen Neustart!"
+
+msgid "Install ClearMem-Lite to play records without dropouts"
+msgstr "Installiere das Plugin ClearMem-Lite bei Wiedergabeproblemen"
+
+msgid "This option install the plugin ClearMem-Lite. After restart Enigma2, you can activate this plugin under extensions. Set the option 'Auto timeout' to 10 seconds and try to play your recordings again. This plugin is needed for Gigablue Quad+ STB."
+msgstr "Diese Option installiert das Plugin ClearMem-Lite. Nach einem Enigma2 Neustart kann es unter Erweiterungen aktiviert werden. Im Plugin die Option 'Auto timeout' auf 10 Sekunden stellen und die Wiedergabe der Aufnahmen testen. Dieses Plugin wird für die Gigablue Quad+ benötigt."
 
 msgid "Enable fallback remote receiver"
 msgstr "Aktiviere Reservereceiver"

@@ -264,6 +264,7 @@
 		<item level="2" text="Show recording symbol depending on recording type" description="Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh).">config.recording.show_rec_symbol_for_rec_types</item>
 		<item level="2" text="Show warning before box restart based on recording type" description="Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI.">config.recording.warn_box_restart_rec_types</item>
 		<item level="2" text="Enable streamlinkserver to play Youtube videos" description="Enable autostart of streamlinkserver to play youtube videos inside your channellist. This install streamlinksrv package and needs a reboot!">config.usage.streamlinkserver</item>
+		<item level="2" text="Install ClearMem-Lite to play records without dropouts" description="This option install the plugin ClearMem-Lite. After restart Enigma2, you can activate this plugin under extensions. Set the option 'Auto timeout' to 10 seconds and try to play your recordings again. This plugin is needed for Gigablue Quad+ STB.">config.usage.cleanmemlite</item>
 	</setup>
 	<setup key="HDMIRecord" title="HDMI Recording">
 		<item level="0" text="Bitrate" description="The bitrate of the video encoder. Larger value improves quality and increases file size.">config.hdmirecord.bitrate</item>
