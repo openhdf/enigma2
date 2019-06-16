@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-06-11 18:39+0200\n"
+"PO-Revision-Date: 2019-06-16 05:48+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.2\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid "Welcome..."
@@ -1820,7 +1820,7 @@ msgid "Allows more detailed to be in the crash log"
 msgstr "Erweiterte Informationen im Crash-Log eintragen"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
-msgstr "Regelmäßiges lesen der EPG Daten von der %s %s erlauben."
+msgstr "Regelmäßiges Lesen der EPG-Daten aus der 'EPG-Datei' erlauben."
 
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Regelmäßiges schreiben der EPG Daten von der %s %s erlauben."
@@ -2897,10 +2897,10 @@ msgid "Define how often Enigma2 will show crash pop-ups."
 msgstr "Definiere wie oft Crash Nachrichten angezeigt werden."
 
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
-msgstr "Wähle einen Ort wo die EPG Daten gespeichert werden wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
+msgstr "Wähle einen Ort wo die EPG Daten gespeichert werden, wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
 
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
-msgstr "Wähle den Dateinamen für die EPG-Daten wenn die %s %s ausgeschaltet wird. Das kann nützlich sein wenn mehrere Boxen verwendet werden."
+msgstr "Wähle den Dateinamen für die EPG-Daten, wenn die %s %s ausgeschaltet wird. Das kann nützlich sein wenn mehrere Boxen verwendet werden."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Wähle das Zeitraster auf das die Grafiken gerundet werden."
@@ -3098,7 +3098,7 @@ msgid "Configure an additional delay to improve subtitle synchronisation."
 msgstr "Konfiguriere eine zusätzliche Verzögerung um die Synchronisation mit Untertiteln zu verbessern."
 
 msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr "Stelle eine wie viele Minuten abgelaufene Daten im EPG erhalten bleiben sollen. Es kann hilfreich sein wenn Informationen gerade beendeter Sendungen benötigt oder wenn das Ende einer Sendung sich verzögert."
+msgstr "Stelle ein wie viele Minuten abgelaufene Daten im EPG erhalten bleiben sollen. Es kann hilfreich sein, wenn Informationen gerade beendeter Sendungen benötigt werden oder wenn das Ende einer Sendung sich verzögert."
 
 msgid "Configure how recording filenames are constructed."
 msgstr "Konfigurieren der Zusammensetzung des Dateinamens von Aufnahmen"
@@ -5151,7 +5151,7 @@ msgid "Allows you to hide the extensions of known file types."
 msgstr "Hiermit werden die Endungen bei bekannten Filetypen ausgeblendet."
 
 msgid "Configure the number of days after which items are automatically removed from the trash can."
-msgstr "Nach wievielen Tagen sollen Dateien im Papierkorb automatisch gelöscht werden?"
+msgstr "Nach wie vielen Tagen sollen Dateien im Papierkorb automatisch gelöscht werden?"
 
 msgid "Clean network trash cans"
 msgstr "Soll auch der Netzwerkpapierkorb aufgeräumt werden?"
@@ -11162,25 +11162,25 @@ msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
 msgid "Use EIT EPG information when it is available."
-msgstr "Benutze EIT EPG-Informationen benutzen wenn sie vorhanden sind."
+msgstr "Benutze EIT EPG-Informationen, wenn sie vorhanden sind."
 
 msgid "Use FreeSat EPG information when it is available."
-msgstr "Benutze Freesat EPG-Informationen benutzen wenn sie vorhanden sind."
+msgstr "Benutze Freesat EPG-Informationen, wenn sie vorhanden sind."
 
 msgid "Use MHW EPG information when it is available."
-msgstr "Benutze MHW EPG-Informationen benutzen wenn sie vorhanden sind."
+msgstr "Benutze MHW EPG-Informationen, wenn sie vorhanden sind."
 
 msgid "Use Netmed EPG information when it is available."
-msgstr "Benutze NetMed EPG-Informationen benutzen wenn sie vorhanden sind."
+msgstr "Benutze NetMed EPG-Informationen, wenn sie vorhanden sind."
 
 msgid "Use Virgin EPG information when it is available."
-msgstr "Benutze Virgin EPG-Informationen benutzen wenn sie vorhanden sind."
+msgstr "Benutze Virgin EPG-Informationen, wenn sie vorhanden sind."
 
 msgid "Maximum number of days in EPG"
 msgstr "Maximale Anzahl von Tagen vom EPG"
 
 msgid "Use for load only x days in EPG"
-msgstr "Festlegen der Tage zum laden des EPG"
+msgstr "Festlegen wie viele Tage vom EPG geladen werden sollen"
 
 msgid "Tuning algorithm"
 msgstr "Tuning-Algorithmus"
@@ -11204,7 +11204,7 @@ msgid "Use ViX coloured Buttons *"
 msgstr "Farbbutton von Enigma2 benutzen *"
 
 msgid "Use ViaSat EPG information when it is available."
-msgstr "Benutze ViaSat EPG-Informationen benutzen wenn sie vorhanden sind."
+msgstr "Benutze ViaSat EPG-Informationen, wenn sie vorhanden sind."
 
 msgid "Use WOL"
 msgstr "WOL benutzen"
@@ -11773,10 +11773,10 @@ msgid "When enabled the online checker will also check for experimental versions
 msgstr "Wenn aktiviert werden auch experimentelle Updates gesucht."
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
-msgstr "Wenn aktiviert werden AIT Daten in HTTP Stream eingebettet. Dies erlaubt es Klienten HBBTV zu benutzen."
+msgstr "Wenn aktiviert, werden AIT Daten in HTTP Stream eingebettet. Dies erlaubt es Klienten HBBTV zu benutzen."
 
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
-msgstr "Wenn aktiviert werden EIT Daten in HTTP Streams eingebettet. Dies erlaubt es Klienten ein EPG anzuzeigen."
+msgstr "Wenn aktiviert, werden EIT Daten in HTTP Streams eingebettet. Dies erlaubt es Klienten ein EPG anzuzeigen."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 msgstr "Zeige Nachricht wenn ein Film endet und ein neuer Film beginnt"
