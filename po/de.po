@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-06-16 05:48+0200\n"
+"PO-Revision-Date: 2019-06-22 11:53+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4419,6 +4419,15 @@ msgstr "ECM Zeit"
 
 msgid "EPG"
 msgstr "EPG"
+
+msgid "Updating cache, please wait..."
+msgstr "Cache wird aktualisiert, bitte warten ..."
+
+msgid "Press MENU to install additional language(s)."
+msgstr "Drücken Sie 'Menü', um weitere Sprachen zu installieren."
+
+msgid "Update Cache"
+msgstr "Cache aktualisieren"
 
 msgid "EPG Cache Check"
 msgstr "EPG Cache Überprüfung"
