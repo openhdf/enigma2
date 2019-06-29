@@ -2544,6 +2544,12 @@ RESULT eDVBServicePlay::startTimeshift()
 		fileout << "1";
 	}
 
+	fileout.open("/proc/stb/lcd/symbol_record");
+	if(fileout.is_open())
+	{
+		fileout << "1";
+	}
+
 	delete [] templ;
 
 	if (m_timeshift_fd < 0)
@@ -2584,6 +2590,12 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 
 	ofstream fileout;
 	fileout.open("/proc/stb/lcd/symbol_timeshift");
+	if(fileout.is_open())
+	{
+		fileout << "0";
+	}
+
+	fileout.open("/proc/stb/lcd/symbol_record");
 	if(fileout.is_open())
 	{
 		fileout << "0";
