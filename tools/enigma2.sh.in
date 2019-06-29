@@ -21,8 +21,15 @@ if [ -e /proc/stb/info/boxtype ]; then
 fi
 
 #check for installed vfdcontrol
-if grep ^'getBoxType = gbtrio4k' /etc/enigma2/boxinformations >/dev/null; then
+if grep ^"getBoxType = gbtrio4k" /etc/enigma2/boxinformations >/dev/null; then
 	echo "vfdcontrol default installed"
+	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
+		echo "vfdcontrol installed"
+	else
+		opkg remove --force-depends enigma2-plugin-systemplugins-vfdcontrol
+		opkg update
+		opkg install --force-reinstall enigma2-plugin-systemplugins-vfdcontrol
+	fi
 else
 	if grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
 		if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
