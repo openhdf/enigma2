@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-06-22 11:53+0200\n"
+"PO-Revision-Date: 2019-06-30 15:43+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -8022,7 +8022,7 @@ msgid "Rename..."
 msgstr "Umbenennen..."
 
 msgid "Random"
-msgstr "zufällig"
+msgstr "Zufällig"
 
 msgid "Rating defined by broadcaster - %d"
 msgstr "Einstufung vom Sender - %d"
@@ -12537,10 +12537,16 @@ msgid "advertisement/shopping"
 msgstr "Werbung/Einkaufen"
 
 msgid "alphabetic"
-msgstr "alphabetisch"
+msgstr "Alphabetisch"
 
 msgid "alphabetic reverse"
-msgstr "umgekehrtes Alphabet"
+msgstr "Umgekehrt alphabetisch"
+
+msgid "alpha then oldest"
+msgstr "Alphabetisch dann älteste"
+
+msgid "alpharev then newest"
+msgstr "Alphabetisch rückwärts dann neueste"
 
 msgid "alternative"
 msgstr "Alternative"
@@ -12846,7 +12852,7 @@ msgid "flat alphabetic"
 msgstr "Strikt alphabetisch"
 
 msgid "flat alphabetic reverse"
-msgstr "Strikt umgedreht alphabetisch"
+msgstr "Strikt umgekehrt alphabetisch"
 
 msgid "folk/traditional music"
 msgstr "Folk/traditionelle Musik"
@@ -13273,7 +13279,7 @@ msgid "restart GUI"
 msgstr "Benutzeroberfläche neu starten"
 
 msgid "reverse by date"
-msgstr "umgekehrt nach Datum"
+msgstr "Umgekehrt nach Datum"
 
 msgid "rewind to the previous chapter"
 msgstr "Zum vorherigen Kapitel zurück"
@@ -13441,7 +13447,7 @@ msgid "show/game show (general)"
 msgstr "Show/Spielshow (allgemein)"
 
 msgid "shuffle"
-msgstr "zufällig"
+msgstr "Zufällig"
 
 msgid "shut down"
 msgstr "Ausschalten"
