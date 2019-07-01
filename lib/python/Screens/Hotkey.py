@@ -16,7 +16,7 @@ from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
-updateversion = "10.05.2019"
+updateversion = "11.07.2019"
 
 if os.uname()[4] == "aarch64":
 	pathLen=26
@@ -657,13 +657,13 @@ class InfoBarHotkey():
 					return 0
 			elif selected[0] == "Module":
 				try:
-					exec "from " + selected[1] + " import *"
-					exec "self.session.open(" + ",".join(selected[2:]) + ")"
+					exec "from %s import %s" % (selected[1], selected[2])
+					exec "self.session.open(%s)" %  ",".join(selected[2:])
 				except:
 					print "[Hotkey] error during executing module %s, screen %s" % (selected[1], selected[2])
 			elif selected[0] == "Setup":
-				exec "from Screens.Setup import *"
-				exec "self.session.open(Setup, \"" + selected[1] + "\")"
+				from Screens.Setup import Setup
+				exec "self.session.open(Setup, \"%s\")" % selected[1]
 			elif selected[0].startswith("Zap"):
 				if selected[0] == "ZapPanic":
 					self.servicelist.history = []
