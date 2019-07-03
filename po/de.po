@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-07-03 07:16+0200\n"
+"PO-Revision-Date: 2019-07-03 07:47+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -14715,6 +14715,9 @@ msgstr "Soll das Image im Startup %s wirklich gelöscht werden?"
 
 msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
 msgstr "Multiboot-Manager - SD-Karte kann nicht initialisiert werden, wenn das Image auf der SD-Karte ausgeführt wird."
+
+msgid "Multiboot manager - SDcard initialization run, please restart your Image."
+msgstr "Multiboot-Manager - Initialisierung der SD-Karte. Bitte starten Sie die Box neu."
 
 msgid "Multiboot manager - The SDcard must be at least 8MB."
 msgstr "Multiboot-Manager - Die SD-Karte muss mindestens 8 MB groß sein."
