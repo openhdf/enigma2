@@ -1148,6 +1148,8 @@ class EPGSelection(Screen, HelpableScreen):
 			if self.zapnumberstarted:
 				self.dozumberzap()
 			else:
+				if config.epgselection.graph_ok.value == 'Zap':
+					self.infoKeyPressed()
 				if config.epgselection.graph_ok.value == 'Zap' or config.epgselection.enhanced_ok.value == 'Zap' or config.epgselection.infobar_ok.value == 'Zap' or config.epgselection.multi_ok.value == 'Zap':
 					self.zapTo()
 				if config.epgselection.graph_ok.value == 'Zap + Exit' or config.epgselection.enhanced_ok.value == 'Zap + Exit' or config.epgselection.infobar_ok.value == 'Zap + Exit' or config.epgselection.multi_ok.value == 'Zap + Exit':
