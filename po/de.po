@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-07-03 07:47+0200\n"
+"PO-Revision-Date: 2019-08-23 16:58+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -10799,6 +10799,15 @@ msgstr "Timer-Auswahl..."
 msgid "Timer type"
 msgstr "Timer-Art"
 
+msgid "Default 'Timer type'"
+msgstr "Standard für die Timer-Art"
+
+msgid "Default 'After event'"
+msgstr "Standard für die Aktion nach der Aufnahme"
+
+msgid "Configure default setting for new timers. Need a restart after changing."
+msgstr "Legt die Standardeinstellung für neu angelegte Timer fest. Benötigt nach der Änderung einen Enigma Neustart."
+
 msgid "Timers"
 msgstr "Timer"
 
@@ -12573,7 +12582,7 @@ msgid "audio tracks"
 msgstr "Tonspuren"
 
 msgid "auto"
-msgstr "automatisch"
+msgstr "Automatisch"
 
 msgid "auto deepstandby"
 msgstr "automatisch Ausschalten"
@@ -12582,7 +12591,7 @@ msgid "auto standby"
 msgstr "automatisch Bereitschaft"
 
 msgid "automatic"
-msgstr "automatisch"
+msgstr "Automatisch"
 
 msgid "back"
 msgstr "zurück"
@@ -13219,7 +13228,7 @@ msgid "reboot system"
 msgstr "Box neu starten"
 
 msgid "record"
-msgstr "aufnehmen"
+msgstr "Aufnehmen"
 
 msgid "recording..."
 msgstr "nimmt auf..."
@@ -13704,10 +13713,10 @@ msgid "your %s %s might be unusable now. Please consult the manual for further a
 msgstr "Ihre %s %s könnte jetzt unbenutzbar sein. Bitte konsultieren Sie das Handbuch bevor Sie ihre %s %s rebooten."
 
 msgid "zap"
-msgstr "umschalten"
+msgstr "Umschalten"
 
 msgid "zap and record"
-msgstr "umschalten und aufnehmen"
+msgstr "Umschalten und Aufnehmen"
 
 msgid "zapped"
 msgstr "Umgeschaltet"

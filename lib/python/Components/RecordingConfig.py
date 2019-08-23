@@ -1,5 +1,6 @@
 from config import ConfigSelectionNumber, ConfigYesNo, ConfigSubsection, ConfigSelection, config
 from enigma import pNavigation
+from Components.SystemInfo import SystemInfo
 
 def InitRecordingConfig():
 	config.recording = ConfigSubsection()
@@ -20,6 +21,12 @@ def InitRecordingConfig():
 	config.recording.never_decrypt = ConfigYesNo(default = False)
 	config.recording.offline_decode_delay = ConfigSelectionNumber(min = 1, max = 10000, stepwidth = 10, default = 1000, wraparound = True)
 	config.recording.ecm_data = ConfigSelection(choices = [("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default = "normal")
+	config.recording.default_timertype = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))],default = "record")
+	if SystemInfo["DeepstandbySupport"]:
+		shutdownString = _("go to deep standby")
+	else:
+		shutdownString = _("shut down")
+	config.recording.default_afterevent = ConfigSelection(choices = [("0", _("do nothing")), ("1", _("go to standby")), ("2", shutdownString), ("3", _("auto"))], default = "3")
 	config.recording.include_ait = ConfigYesNo(default = True)
 	config.recording.show_rec_symbol_for_rec_types = ConfigSelection(choices = [("any", _("any recordings")), ("real", _("real recordings")), ("real_streaming", _("real recordings or streaming")), ("real_pseudo", _("real or pseudo recordings"))], default = "real_streaming")
 	config.recording.warn_box_restart_rec_types    = ConfigSelection(choices = [("any", _("any recordings")), ("real", _("real recordings")), ("real_streaming", _("real recordings or streaming")), ("real_pseudo", _("real or pseudo recordings"))], default = "real_streaming")
@@ -27,8 +34,6 @@ def InitRecordingConfig():
 	config.recording.ask_to_abort_streaming        = ConfigSelection(choices = [("ask", _("ask user")), ("abort_no_msg", _("just abort, no message")), ("abort_msg", _("just abort, show message")), ("never_abort", _("never abort"))], default = "abort_msg")
 	config.recording.ask_to_abort_pip              = ConfigSelection(choices = [("ask", _("ask user")), ("abort_no_msg", _("just abort, no message")), ("abort_msg", _("just abort, show message")), ("never_abort", _("never abort"))], default = "abort_msg")
 	config.recording.prepare_time                  = ConfigSelectionNumber(min = 20, max = 120, stepwidth = 10, default = 20, wraparound = True)
-	config.recording.timerentry_justplay = ConfigSelection(choices = [
-		("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))], default = "record")
 
 def recType(configString):
 	if   (configString == "any"):            return pNavigation.isAnyRecording
