@@ -568,6 +568,7 @@ def InitUsageConfig():
 	config.epg.viasat = ConfigYesNo(default = True)
 	config.epg.netmed = ConfigYesNo(default = True)
 	config.epg.virgin = ConfigYesNo(default = False)
+	config.epg.opentv = ConfigYesNo(default = True)
 	config.epg.saveepg = ConfigYesNo(default = True)
 	config.usage.streamlinkserver = ConfigYesNo(default = False)
 	config.usage.cleanmemlite = ConfigYesNo(default = False)
@@ -588,6 +589,8 @@ def InitUsageConfig():
 			mask &= ~(eEPGCache.NETMED_SCHEDULE | eEPGCache.NETMED_SCHEDULE_OTHER)
 		if not config.epg.virgin.value:
 			mask &= ~(eEPGCache.VIRGIN_NOWNEXT | eEPGCache.VIRGIN_SCHEDULE)
+		if not config.epg.opentv.value:
+			mask &= ~eEPGCache.OPENTV
 		eEPGCache.getInstance().setEpgSources(mask)
 	config.epg.eit.addNotifier(EpgSettingsChanged)
 	config.epg.mhw.addNotifier(EpgSettingsChanged)
