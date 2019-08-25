@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-08-23 16:58+0200\n"
+"PO-Revision-Date: 2019-08-25 13:47+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4533,6 +4533,9 @@ msgstr "ViaSat EPG aktivieren"
 
 msgid "Enable Virgin EPG"
 msgstr "Virgin EPG aktivieren"
+
+msgid "Enable OpenTV EPG"
+msgstr "OpenTV EPG aktivieren"
 
 msgid "Enable debug log"
 msgstr "Aktiviere Debug Log *"
@@ -11193,6 +11196,9 @@ msgstr "Benutze NetMed EPG-Informationen, wenn sie vorhanden sind."
 
 msgid "Use Virgin EPG information when it is available."
 msgstr "Benutze Virgin EPG-Informationen, wenn sie vorhanden sind."
+
+msgid "Use OpenTV EPG information when it is available."
+msgstr "Benutze OpenTV EPG-Informationen, wenn sie vorhanden sind."
 
 msgid "Maximum number of days in EPG"
 msgstr "Maximale Anzahl von Tagen vom EPG"
