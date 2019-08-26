@@ -26,6 +26,7 @@ from TimerEntry import TimerEntry, InstantRecordTimerEntry
 from ServiceReference import ServiceReference
 from Tools.HardwareInfo import HardwareInfo
 from RecordTimer import TIMERTYPE
+from skin import getSkinFactor
 
 mepg_config_initialized = False
 # PiPServiceRelation installed?
