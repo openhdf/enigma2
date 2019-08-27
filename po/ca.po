@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-30 22:11+0100\n"
-"PO-Revision-Date: 2013-10-26 15:43+0100\n"
+"PO-Revision-Date: 2019-08-27 05:20+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #
 msgid ""
@@ -11488,4 +11488,3 @@ msgstr "gravar"
 #
 msgid "zapped"
 msgstr "zappejat"
-
