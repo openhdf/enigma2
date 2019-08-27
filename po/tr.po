@@ -40,7 +40,7 @@ msgstr ""
 msgid "Wait for timesync at startup"
 msgstr "Başlangıçta zaman senkronizasyonunu bekle"
 
-msgid "If the 'deep standby workaround' is enabled, it waits until the system time is syncronised. Depending on the requirement, the devices wake up will continuing after a maximum of 2 minutes."
+msgid "If the 'deep standby workaround' is enabled, it waits until the system time is synchronized. Depending on the requirement, the devices wake up will continuing after a maximum of 2 minutes."
 msgstr ""
 
 msgid "TV was not in standby mode at startup"
@@ -3117,7 +3117,7 @@ msgstr "Ad sunucusunu (DNS) yapılandırın."
 msgid "Configure the netmask."
 msgstr "Ağ maskesini yapılandır."
 
-msgid "Configure the number of days after which items are automaticaly removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trash can."
 msgstr "Öğeleri otomatik olarak çöp kutusundan kaldırmak için gün sayısını yapılandırın."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -4732,7 +4732,7 @@ msgstr "Tam ekran"
 msgid "Full screen"
 msgstr "Tam ekran"
 
-msgid "Fulview resulution"
+msgid "Fulview Resolution"
 msgstr "Tam görünüm çözünürlüğü"
 
 msgid "Fullview resolution"
@@ -9402,7 +9402,7 @@ msgstr "Zaman kaydırmayı durdur"
 msgid "Stop timeshift while recording?"
 msgstr "Kayıt sırasında zaman kaydırma işlemi durdurulsun mu ?"
 
-msgid "Stop's timeshift being used if a recording is in progress. (adviseable for usb sticks)"
+msgid "Stop's timeshift being used if a recording is in progress. (advisable for usb sticks)"
 msgstr ""
 
 msgid "Stopped"
@@ -10081,10 +10081,10 @@ msgstr "Bu seçenek, 3B modunu seçmenizi sağlar"
 msgid "This option lets you show the option in the extension screen"
 msgstr "Bu seçenek, eklentiler ekranında seçeneğin görüntülenmesini sağlar"
 
-msgid "This option moves the PVR status from the seprate window into the MoviePlayer infobar."
+msgid "This option moves the PVR status from the separate window into the MoviePlayer infobar."
 msgstr ""
 
-msgid "This option set the level of surpression of musquito noise (Musquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
+msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
 
 msgid "This option sets  the picture contrast."
@@ -10733,7 +10733,7 @@ msgstr "Genişletilmiş listeyi kullan"
 msgid "Update delay for Events in List"
 msgstr "Listedeki etkinlikler için gecikme güncelleme"
 
-msgid "Update delay for Events in List. Scrolling in List is faster with higher delay, specialy on big Lists !"
+msgid "Update delay for Events in List. Scrolling in List is faster with higher delay, especially on big Lists !"
 msgstr ""
 
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
@@ -11230,7 +11230,7 @@ msgstr "Batı"
 msgid "West limit set"
 msgstr "Batı limit ayarı"
 
-msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
+msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
 msgstr ""
 
 msgid "What do you want to scan?"
@@ -11332,7 +11332,7 @@ msgstr "Etkinleştirildiğinde, teleteks altyazıları orijinal konumlarında g�
 msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr "Etkinleştirildiğinde, VCR scart seçeneği ana menüde gösterilir"
 
-msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
+msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr "Etkinleştirildiğinde, her kaydın uzunluğu film göstergesinde gösterilir (bu ek yükleme süresine neden olabilir)."
 
 msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
