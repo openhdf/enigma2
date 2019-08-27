@@ -1183,7 +1183,7 @@ msgid "Configure the netmask."
 msgstr ""
 
 msgid ""
-"Configure the number of days after which items are automaticaly removed from "
+"Configure the number of days after which items are automatically removed from "
 "the trash can."
 msgstr ""
 
@@ -5966,7 +5966,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"When enabled, the lenght of each recording will be shown in the movielist "
+"When enabled, the length of each recording will be shown in the movielist "
 "(this might cause some additional loading time)."
 msgstr ""
 
