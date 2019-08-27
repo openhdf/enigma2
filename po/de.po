@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-08-27 04:28+0200\n"
+"PO-Revision-Date: 2019-08-27 05:27+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -5162,9 +5162,6 @@ msgstr "Stoppe vorherige Sendung bei Rückkehr zur Fimliste."
 msgid "Allows you to hide the extensions of known file types."
 msgstr "Hiermit werden die Endungen bei bekannten Filetypen ausgeblendet."
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
-msgstr "Nach wie vielen Tagen sollen Dateien im Papierkorb automatisch gelöscht werden?"
-
 msgid "Clean network trash cans"
 msgstr "Soll auch der Netzwerkpapierkorb aufgeräumt werden?"
 
@@ -9757,7 +9754,7 @@ msgid "Sports"
 msgstr "Sport"
 
 msgid "Standard"
-msgstr "standard"
+msgstr "Standard"
 
 msgid "Standby"
 msgstr "Bereitschaft"
