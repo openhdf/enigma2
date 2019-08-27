@@ -1963,7 +1963,7 @@ msgstr "Configure the netmask."
 
 #, fuzzy
 msgid "Configure the number of days after which items are automatically removed from the trash can."
-msgstr "Configure the number of days after which items are automaticaly removed from the trash can."
+msgstr "Configure the number of days after which items are automatically removed from the trash can."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -7916,7 +7916,7 @@ msgstr ""
 msgid "This option moves the PVR status from the separate window into the Movie Player infobar."
 msgstr ""
 
-msgid "This option set the level of surpression of musquito noise (Musquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
+msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
 
 msgid "This option sets  the picture contrast."
@@ -8935,7 +8935,7 @@ msgstr "West limit set"
 msgid "What Day of week ?"
 msgstr ""
 
-msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
+msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
 msgstr ""
 
 msgid "What date of month ?"
@@ -9033,7 +9033,7 @@ msgstr "When enabled, a popup message will be shown when a recording starts."
 
 #, fuzzy
 msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
-msgstr "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
+msgstr "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 
 msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
 msgstr "When enabled, the original line breaks will be removed from the teletext subtitles."

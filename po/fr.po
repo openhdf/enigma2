@@ -2668,7 +2668,7 @@ msgstr "Configure le masque de réseau."
 msgid "Configure the number of days after which items are automatically removed from the trash can."
 msgstr "Configure le nombre de jours après lesquels les éléments dans la corbeille seront automatiquement effacés."
 
-msgid "Configure the number of days after which items are automaticaly removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trash can."
 msgstr "Configure le nombre de jours après lequel les éléments sont automatiquement retirés de la corbeille."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -4615,7 +4615,7 @@ msgstr "Transparence complète"
 msgid "Fullscreen"
 msgstr "Ecran complet"
 
-msgid "Fulview resulution"
+msgid "Fulview Resolution"
 msgstr "Résolution plein écran"
 
 msgid "Function of OK button"
@@ -9631,7 +9631,7 @@ msgstr "Afficher la boite à outils HDF"
 msgid "Show HDFreaks module packages"
 msgstr "Afficher les paquets du module HDFreaks"
 
-msgid "Show HDMI Output Resulution"
+msgid "Show HDMI Output Resolution"
 msgstr "Afficher la résolution de sortie HDMI."
 
 msgid "Show HDMI-Output Res"
@@ -10504,7 +10504,7 @@ msgstr "Arrêter PauseDirect et sauver le buffer comme film et démarrer l’enr
 msgid "Stop timeshift while recording?"
 msgstr "Stopper le PauseDirect pendant un enregistrement?"
 
-msgid "Stop's timeshift being used if a recording is in progress. (adviseable for usb sticks)"
+msgid "Stop's timeshift being used if a recording is in progress. (advisable for usb sticks)"
 msgstr "Arrêter le PauseDirect en cours si un enregistrement est en cours. (recommandé sur les clés USB)."
 
 msgid "Stopped"
@@ -11374,10 +11374,10 @@ msgstr "Cette option vous permet de choisir le mode 3D"
 msgid "This option lets you show the option in the extension screen"
 msgstr "Cette option vous permet d'afficher l'option dans l'écran d'extension."
 
-msgid "This option moves the PVR status from the seprate window into the MoviePlayer infobar."
+msgid "This option moves the PVR status from the separate window into the MoviePlayer infobar."
 msgstr "Cette option va déplacer le statut PVR d’une fenêtre séparée vers l’infobarre du lecteur de film."
 
-msgid "This option set the level of surpression of musquito noise (Musquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
+msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Cette option régle le niveau de suppression du bruit de moustique (le bruit de moustique est un aliasing aléatoire en raison de la forte compression). Évidemment, cela va au détriment des détails de l'image."
 
 msgid "This option sets  the picture contrast."
@@ -12034,7 +12034,7 @@ msgstr[1] "Mise-à-jour terminée, %d paquets installés."
 msgid "Update delay for Events in List"
 msgstr "Mise à jour du délai pour la liste des évènements"
 
-msgid "Update delay for Events in List. Scrolling in List is faster with higher delay, specialy on big Lists !"
+msgid "Update delay for Events in List. Scrolling in List is faster with higher delay, especially on big Lists !"
 msgstr "Mise à jour du délai pour la liste des évènements. Parcourir la liste est plus rapide avec un délai plus grand, en particulier sur les longues listes!"
 
 #, python-format
@@ -12747,7 +12747,7 @@ msgstr "Limite ouest définie"
 msgid "What Day of week ?"
 msgstr "Quel jour de la semaine?"
 
-msgid "What action is required on complettion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
+msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do ecaxtly that."
 msgstr "Quelle action est requise à la fin d’une programmation? ‘Auto’ laisse le récepteur retourner dans l’état qu’il avait quand la programmation a démarré. ‘Ne rien faire’, ‘Aller en veille’ et ‘Aller en veille profonde’ font ce qu’ils décrivent."
 
 msgid "What date of month ?"
@@ -12855,7 +12855,7 @@ msgstr "Lorsqu’il est activé, les sous-titres télétextes seront affiché à
 msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr "Lorsqu’il est activé, l’option VCR scart/perital sera affichée dans le menu principal"
 
-msgid "When enabled, the lenght of each recording will be shown in the movielist (this might cause some additional loading time)."
+msgid "When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time)."
 msgstr "Lorsqu’il est activé, la longueur de chaque enregistrement sera affiché dans la liste des films (cela peut causer un temps de chargement additionnel)."
 
 msgid "When enabled, the original line breaks will be removed from the teletext subtitles."
@@ -13175,7 +13175,7 @@ msgstr ""
 msgid "You need to initialize your storage device first"
 msgstr "Vous devez d’abord initialiser le périphérique de stockage"
 
-msgid "You seem to be in timeshft, the service wil breifly stop as timeshfit stops."
+msgid "You seem to be in timeshft, the service will briefly stop as timeshfit stops."
 msgstr "Vous semblez être en PauseDirect, le service s’arrêtera brièvement en même temps que le PauseDirect s’arrête."
 
 msgid "You seem to be in timeshift!"
