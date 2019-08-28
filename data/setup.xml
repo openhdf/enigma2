@@ -125,6 +125,8 @@
 		<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.usage.show_channel_numbers_in_servicelist</item>
 		<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown.">config.usage.servicetype_icon_mode</item>
 		<item level="1" text="Show record indicator" description="Configure if and how the record indicator will be shown in the channel selection list.">config.usage.record_indicator_mode</item>
+		<item level="1" text="Show two lines per entry" description="Show service name and event description among each other instead of side by side.">config.usage.servicelist_twolines</item>
+		<item level="1" text="Show columns" description="Configure if and how wide the service name column will be shown in the channel selection list." requires="config.usage.servicelist_twolines" value="False">config.usage.servicelist_column</item>
 		<item level="1" text="Show crypto icons" description="Configure if and how crypto icons will be shown in the channel selection list.">config.usage.crypto_icon_mode</item>
 		<item level="1" text="Show picons in service list" description="Configure if service picons will be shown in the servicelist.">config.usage.service_icon_enable</item>
 		<item level="1" text="Service picons aspect ratio" description="Set the aspect ratio of the service picons." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_ratio</item>
