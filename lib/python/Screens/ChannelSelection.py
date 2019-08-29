@@ -1385,6 +1385,7 @@ class ChannelSelectionBase(Screen):
 				"nextMarker": self.nextMarker,
 				"prevMarker": self.prevMarker,
 				"gotAsciiCode": self.keyAsciiCode,
+				"toggleTwoLines": self.toggleTwoLines,
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
 				"3": self.keyNumberGlobal,
@@ -1834,6 +1835,13 @@ class ChannelSelectionBase(Screen):
 		charstr = unichar.encode('utf-8')
 		if len(charstr) == 1:
 			self.servicelist.moveToChar(charstr[0])
+
+	def toggleTwoLines(self):
+		if self.servicelist.mode == self.servicelist.MODE_FAVOURITES:
+			config.usage.servicelist_twolines.value = not config.usage.servicelist_twolines.value
+			config.usage.servicelist_twolines.save()
+		else:
+			return 0
 
 	def getRoot(self):
 		return self.servicelist.getRoot()
