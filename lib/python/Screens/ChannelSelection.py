@@ -694,8 +694,11 @@ class ChannelSelectionEPG:
 		pos = self.servicelist.instance.position().y()
 		sely = int(pos)+(int(self.servicelist.ItemHeight)*int(indx))
 		temp = int(self.servicelist.instance.position().y())+int(self.servicelist.instance.size().height())
-		if int(sely) >= temp:
-			sely = int(sely) - int(self.listHeight)
+		if config.usage.servicelist_twolines.value:
+			sely = int(sely) - int(temp)
+		else:
+			if int(sely) >= temp:
+				sely = int(sely) - int(self.listHeight)
 		menu1 = _("Record now")
 		menu2 = _("Record next")
 		menu3 = _("Zap next")
