@@ -923,6 +923,32 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							}
 						}
 
+						//record icon stuff
+						if (isRecorded && m_record_indicator_mode < 3 && m_pixmaps[picRecord])
+						{
+							eSize pixmap_size = m_pixmaps[picRecord]->size();
+							eRect area = m_element_position[celServiceInfo];
+							int offs = 0;
+							if (m_record_indicator_mode == 1)
+							{
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
+								area = m_element_position[celServiceName];
+								offs = xoffs;
+								xoffs += pixmap_size.width() + m_items_distances;
+							}
+							int correction = (area.height() - pixmap_size.height()) / 2;
+							area.moveBy(offset);
+							if (m_record_indicator_mode == 2)
+							{
+								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
+								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
+							}
+							painter.clip(area);
+							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
+							painter.clippop();
+						}
+
 						//service type marker stuff
 						if (m_servicetype_icon_mode)
 						{
@@ -988,32 +1014,6 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						{
 							m_element_position[celServiceInfo].setLeft(nameLeft+xoffs);
 							m_element_position[celServiceInfo].setWidth(nameWidth-xoffs);
-						}
-
-						//record icon stuff
-						if (isRecorded && m_record_indicator_mode < 3 && m_pixmaps[picRecord])
-						{
-							eSize pixmap_size = m_pixmaps[picRecord]->size();
-							eRect area = m_element_position[celServiceInfo];
-							int offs = 0;
-							if (m_record_indicator_mode == 1)
-							{
-								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
-								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
-								area = m_element_position[celServiceName];
-								offs = xoffs;
-								xoffs += pixmap_size.width() + m_items_distances;
-							}
-							int correction = (area.height() - pixmap_size.height()) / 2;
-							area.moveBy(offset);
-							if (m_record_indicator_mode == 2)
-							{
-								m_element_position[celServiceInfo].setLeft(area.left() + pixmap_size.width() + m_items_distances);
-								m_element_position[celServiceInfo].setWidth(area.width() - pixmap_size.width() - m_items_distances);
-							}
-							painter.clip(area);
-							painter.blit(m_pixmaps[picRecord], ePoint(area.left() + offs, offset.y() + correction), area, gPainter::BT_ALPHABLEND);
-							painter.clippop();
 						}
 					}
 				}
