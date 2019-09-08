@@ -125,8 +125,6 @@
 		<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown.">config.usage.servicetype_icon_mode</item>
 		<item level="1" text="Show record indicator" description="Configure if and how the record indicator will be shown in the channel selection list.">config.usage.record_indicator_mode</item>
 		<item level="1" text="Show two lines per entry" description="Show service name and event description among each other instead of side by side.">config.usage.servicelist_twolines</item>
-		<item level="1" text="Alignment channel number" description="Vertical alignement for the service number." requires="config.usage.servicelist_twolines">config.usage.servicelist_servicenumber_valign</item>
-		<item level="1" text="Alignment event-progress" description="Vertical alignement for the event-progress." requires="config.usage.servicelist_twolines">config.usage.servicelist_eventprogress_valign</item>
 		<item level="1" text="Channel name wide" description="Configure if and how wide columns will be shown in the channel selection list.">config.usage.servicelist_column</item>
 		<item level="1" text="Show crypto icons" description="Configure if and how crypto icons will be shown in the channel selection list.">config.usage.crypto_icon_mode</item>
 		<item level="1" text="Show picons in service list" description="Configure if service picons will be shown in the servicelist.">config.usage.service_icon_enable</item>
