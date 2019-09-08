@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-09-02 19:33+0200\n"
+"PO-Revision-Date: 2019-09-01 08:59+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3165,21 +3165,6 @@ msgstr "Zeige unbekannte Videoauflösung als"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Zeige unbekannte Videoauflösungen mit der nächsthöheren oder höchsten Auflösung."
-
-msgid "Alignment channel number"
-msgstr "Ausrichtung Kanalnummer"
-
-msgid "Vertical alignement for the service number."
-msgstr "Vertikale Ausrichtung der Kanalnummer."
-
-msgid "Alignment event-progress"
-msgstr "Ausrichtung Sendungsfortschritt"
-
-msgid "Vertical alignement for the event-progress."
-msgstr "Vertikale Ausrichtung des Sendungsfortschritt."
-
-msgid "upper line"
-msgstr "obere Zeile"
 
 msgid "Show preview of current mode (*)."
 msgstr "Zeige Vorschau des aktuellen Modus (*)."
@@ -7378,12 +7363,6 @@ msgstr "Prozent links"
 
 msgid "Percentage right"
 msgstr "Prozent rechts"
-
-msgid "Remaining minutes left"
-msgstr "verbleibende Minuten Rechts"
-
-msgid "Remaining minutes right"
-msgstr "verbleibende Minuten Links"
 
 msgid "Perform a full image backup"
 msgstr "Image Backup durchführen"
