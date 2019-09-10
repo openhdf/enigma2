@@ -448,8 +448,7 @@ class ConfigBoolean(ConfigElement):
 		from skin import switchPixmap
 		if self.graphic and config.usage.boolean_graphic.value and switchPixmap.get("menu_on", False) and switchPixmap.get("menu_off", False):
 			return ('pixmap', self.value and switchPixmap["menu_on"] or switchPixmap["menu_off"])
-		else:
-			return ("text", self.descriptions[self.value])
+		return ("text", self.descriptions[self.value])
 
 	def tostring(self, value):
 		if not value:
