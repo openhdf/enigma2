@@ -166,6 +166,19 @@
 		  <convert type="MovieInfo">FileSize</convert>
 		</widget>
 	</screen>
+	<screen name="MediaPlayerLCDScreen" position="0,0" size="128,32">
+		<widget source="session.CurrentService" render="Label" position="0,9" size="132,20" font="FdLcD;16" halign="left" valign="top" zPosition="1" noWrap="1" transparent="1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="0,26" size="50,6" borderWidth="1" zPosition="1" >
+			<convert type="ServicePosition">VFDPosition</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="58,22" size="70,12" font="FdLcD;10" halign="right" valign="bottom" noWrap="1" zPosition="1" transparent="1" >
+			<convert type="ServicePosition">VFDPosition</convert>
+		</widget>
+		<panel name="SummaryIconsPanel" />
+		<panel name="SummaryClockPanel" />
+	</screen>	
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="128,32">
 		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="128,14" font="FdLcD;14" halign="center" valign="bottom" zPosition="1" noWrap="1">
@@ -212,9 +225,8 @@
 		</widget>
 		</screen>
 <!-- Plugin browser -->
-	<screen name="PluginBrowserSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="center" valign="top" zPosition="1" noWrap="1" />
-		<widget source="entry" render="Label" position="fill" size="*,18" font="FdLcD;10" halign="center" valign="top" zPosition="1" />
+	<screen name="PluginBrowserSummary" position="0,0" size="128,32">
+		<widget source="parent.Title" render="Label" position="top" size="128,32" font="FdLcD;16" halign="center" valign="center" zPosition="1" noWrap="1" />
 	</screen>
 <!-- JobView Summary -->
 	<screen name="JobView_summary" position="0,0" size="128,32">
@@ -372,5 +384,8 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="160,16" font="FdLcD;12" halign="left" noWrap="1" />
 		<widget source="parent.summary_action" render="Label" position="0,16" size="128,16" font="FdLcD;14" halign="left" noWrap="1" />
 		<!--<widget source="parent.summary_status" render="Label" position="0,41" size="128,18" font="FdLcD;12" halign="left" noWrap="1" />-->
+	</screen>
+	<screen name="RdsInfoDisplaySummary" position="0,0" size="128,32">
+		<widget source="message" render="RunningText" position="0,0"  size="128,32" options="movetype=running,direction=top,startpoint=0,startdelay=2000,repeat=3,always=0,wrap=1,oneshot=1" font="FdLcD;16" halign="center" valign="center" />
 	</screen>
 </skin>
