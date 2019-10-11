@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-09-01 08:59+0200\n"
+"PO-Revision-Date: 2019-10-12 18:45+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3693,6 +3693,12 @@ msgstr "Sie können diese Funktion überspringen und den TV ausschalten, wenn Si
 
 msgid "Switch off the TV to correct input"
 msgstr "Schalte den TV aus um den Eingang zu korrigieren"
+
+msgid "Enable command line function"
+msgstr "Befehlszeilenfunktion aktivieren"
+
+msgid "Activate an way to send individual or specific internal HDMI-CEC commands from the command line. Type on command line 'echo help > %s' and then read the file '%s' for a short help."
+msgstr "Aktivieren Sie die Möglichkeit, individuelle oder festgelegte interne HDMI-CEC-Befehle von der Befehlszeile zu senden. Geben Sie in der Befehlszeile \"echo help > %s\" ein und lesen Sie die Datei \"%s\" um eine kurze Hilfe zu erhalten."
 
 msgid ""
 "Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n"
