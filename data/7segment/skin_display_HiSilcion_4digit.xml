@@ -62,28 +62,26 @@
 	</screen>
 
 <!-- movieplayer-->
-	<screen name="MovieSelectionSummary" position="0,0" size="132,64">
-		<widget source="parent.Service" render="Label" position="0,0" size="120,25" font="Regular;14">
-			<convert type="ServiceName">Name</convert>
+	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="1,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ServicePosition">Remaining,7segment</convert>
 		</widget>
-	</screen>
-
-	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
-			<convert type="ServicePosition">Remaining,Negate</convert>
-		</widget>
-	</screen>
-
-	<screen name="MovieContextMenuSummary" position="0,0" size="132,64">
-		<widget source="selected" render="Label" position="0,0" size="124,32" font="Regular;16" />
 	</screen>
 
 <!-- DVD -->
-	<screen name="DVDSummary" position="0,0" size="132,1">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
-			<convert type="ServicePosition">Remaining,Negate</convert>
+	<screen name="DVDSummary" position="0,0" size="1,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ServicePosition">Remaining,7segment</convert>
 		</widget>
 	</screen>
+
+<!-- MediaPlayer -->
+	<screen name="MediaPlayerLCDScreen" position="0,0" size="1,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ServicePosition">Remaining,7segment</convert>
+		</widget>
+	</screen>
+
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="132,64">
@@ -130,13 +128,30 @@
 	</screen>
 
 <!-- standby -->
-	<screen name="StandbySummary" position="0,0" size="132,64">
-		<widget source="global.CurrentTime" render="Label" position="0,0" size="120,64" font="Regular;48" halign="center" valign="center">
-			<convert type="ClockToText">Format:%d.%m.%H:%M</convert>
+	<screen name="StandbySummary" position="0,0" size="1,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ConfigEntryTest">config.usage.show_in_standby,time,CheckSourceBoolean</convert>
+			<convert type="VfdDisplay">Clock</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" position="0,4" zPosition="1" size="120,64" text=" ">
-			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
-			<convert type="ConditionalShowHide">Blink</convert>
+		<widget source="session.CurrentService" render="FixedLabel" position="0,0" size="1,1" text="    ">
+			<convert type="ConfigEntryTest">config.usage.show_in_standby,nothing,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,time,CheckSourceBoolean</convert>
+			<convert type="VfdDisplay">Clock</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,RecBlink,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink,3000</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Rec,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="session.CurrentService" render="FixedLabel" position="0,0" size="1,1" text="    ">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Nothing,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
 
@@ -151,28 +166,20 @@
 	</screen>
 
 <!-- EMC  -->
-	<screen name="EMCSelection_summary" position="0,0" size="132,64">
-		<widget source="parent.Service" render="Label" position="0,0" size="132,64" font="Regular;18" >
-			<convert type="ServiceName">Name</convert>
-		</widget>
+	<screen name="EMCSelection_summary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
 	</screen>
-	<screen name="EMCMoviePlayerSummary" position="0,0" size="132,1">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="132,1">
-			<convert type="ServicePosition">Remaining,Negate</convert>
-		</widget>
+	<screen name="EMCSelectionSummary" position="0,0" size="1,1">
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
 	</screen>
-	<screen name="MovieMenu_summary" position="0,0" size="132,64">
-		<widget source="parent.menu" render="Label" position="0,0" size="132,1" font="Regular;16" halign="left" valign="top">
-			<convert type="StringListSelection" />
+	<screen name="EMCMoviePlayerSummary" position="0,0" size="1,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
+			<convert type="ServicePosition">Remaining,7segment</convert>
 		</widget>
 	</screen>
 
-<!-- mediaplayer -->
-	<screen name="MediaPlayerLCDScreen" position="0,0" size="132,64">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1" >
-			<convert type="ServicePosition">Remaining,Negate</convert>
-		</widget>
-	</screen>
 <!-- Timer -->
 	<screen name="TimerEntry_summary" position="0,0" size="132,64">
 		<widget source="parent.summary_description" render="Label" position="fill" size="120,20" font="Regular;18" />
