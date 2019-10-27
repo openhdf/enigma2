@@ -240,7 +240,7 @@ class ServiceInfo(Screen):
 						(_("System"), frontendData["system"], TYPE_TEXT),
 						(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
 						(_("Orbital position"), frontendData["orbital_position"], TYPE_VALUE_DEC),
-						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
+						(_("Frequency"), frontendData.get("frequency", 0), TYPE_VALUE_FREQ_FLOAT),
 						(_("Symbol rate"), frontendData["symbol_rate"], TYPE_VALUE_DEC),
 						(_("Polarization"), frontendData["polarization"], TYPE_TEXT),
 						(_("Inversion"), frontendData["inversion"], TYPE_TEXT),
