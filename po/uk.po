@@ -10194,10 +10194,10 @@ msgstr "Необхідно почекати %s!"
 
 #
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.hdfreaks.cc.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Вам потрібно з'єднати PC з Вашим Drembox'ом. Якщо необхідно більше інформації, будь ласка відвідайте сайт http://www.dm7025.de.\n"
+"Вам потрібно з'єднати PC з Вашим Drembox'ом. Якщо необхідно більше інформації, будь ласка відвідайте сайт http://www.hdfreaks.cc.\n"
 "Зараз Ваш Drembox буде вимкнено. Після виконання всіх інструкцій з сайта, Ваше нове програмне забезпечення запропонує відновити свої налаштування."
 
 msgid "You seem to be in timeshift!"

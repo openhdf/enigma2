@@ -10444,10 +10444,10 @@ msgstr "Musisz poczekać na %s!"
 
 #
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.hdfreaks.cc.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Potrzebujesz PC połączonego z odbiornikiem. Więcej informacji na stronie http://www.dm7025.de.\n"
+"Potrzebujesz PC połączonego z odbiornikiem. Więcej informacji na stronie http://www.hdfreaks.cc.\n"
 "Teraz odbiornik zostanie wyłączony. Po wykonaniu  instrukcji aktualizacji ze strony, nowe oprogramowanie zapyta czy przywrócić ustawienia."
 
 msgid "You seem to be in timeshift!"

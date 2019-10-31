@@ -9347,10 +9347,10 @@ msgstr "Espere por favor %s!"
 
 #, fuzzy
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.hdfreaks.cc.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Você precisa de um computador conectado ao receptor. Se você precisar de instruções adicionais, visite o website http://www.dm7025.de.\n"
+"Você precisa de um computador conectado ao receptor. Se você precisar de instruções adicionais, visite o website http://www.hdfreaks.cc.\n"
 "O seu receptor será interrompido agora. Depois de ter realizado as instruções de atualização do site, o seu novo firmware irá pedir para restaurar suas configurações."
 
 msgid "You seem to be in timeshift!"
