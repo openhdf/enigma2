@@ -9948,10 +9948,10 @@ msgstr ""
 #
 #, fuzzy
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.hdfreaks.cc.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Et caldrà un PC connectat a la %s %s. Si necesites més instruccions, consulta la pàgina web http://www.dm7025.de.\n"
+"Et caldrà un PC connectat a la %s %s. Si necesites més instruccions, consulta la pàgina web http://www.hdfreaks.cc.\n"
 "Ara s'apagarà la %s %s. Després d'haver fer l'actualització segons les instruccions de la web,  el nou firmware et demanarà actualitzar la configuració."
 
 msgid "You seem to be in timeshift!"

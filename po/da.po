@@ -10280,10 +10280,10 @@ msgstr "Du må vente %s!"
 
 #
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.hdfreaks.cc.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Du skal have en PC forbundet til din %s %s. Hvis du mangler yderligere Informationer, så gå til websiden http://www.dm7025.de.\n"
+"Du skal have en PC forbundet til din %s %s. Hvis du mangler yderligere Informationer, så gå til websiden http://www.hdfreaks.cc.\n"
 "Din %s %s bliver slukket nu. Efter du har udført opdateringen Instruktioner fra websiden, vil den nye firmware vil bede dig om at geninstallere, dine indstillinger."
 
 msgid "You seem to be in timeshift!"

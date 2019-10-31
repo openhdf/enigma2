@@ -9961,10 +9961,10 @@ msgstr "Morate pričekati %s!"
 
 #
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.hdfreaks.cc.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Vi trebate PC spojen s vašim %s %som. Ukoliko trebate dodatne instrukcije, molim posjetite ovu stranicu http://www.dm7025.de.\n"
+"Vi trebate PC spojen s vašim %s %som. Ukoliko trebate dodatne instrukcije, molim posjetite ovu stranicu http://www.hdfreaks.cc.\n"
 "Vaš %s %s će sada stati. Nakon što ste izvršili proceduru nadogradnje prema uputama s Web stranice, vaš novi softver će vas pitati želite li vratiti sigurnosnu kopiju vaših postavki."
 
 msgid "You seem to be in timeshift!"

@@ -9978,10 +9978,10 @@ msgstr "Þú þarf að bíða %s!"
 
 #
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.hdfreaks.cc.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Þú þarft að hafa tölvu tengda við %s %sið. Ef þú þarft nánari upplýsingar þá skoðaðu síðuna http://www.dm7025.de.\n"
+"Þú þarft að hafa tölvu tengda við %s %sið. Ef þú þarft nánari upplýsingar þá skoðaðu síðuna http://www.hdfreaks.cc.\n"
 "%s %sið verður núna stoppað. Eftir að þú hefur uppfært samkvæmt leiðbeinungunum á síðunni þá mun nýja stýrikerfið biðja þig um að setja aftur inn afritið."
 
 msgid "You seem to be in timeshift!"

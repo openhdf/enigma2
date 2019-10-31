@@ -12053,16 +12053,12 @@ msgstr "Nevybrali jste zprávu k odeslání."
 msgid "You have to wait %s!"
 msgstr "Musíte čekat %s!"
 
-#, fuzzy, python-format
-#| msgid ""
-#| "You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.opena.tv.\n"
-#| "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.hdfreaks.cc.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
 "Zkopírujte obraz (image) na USB disk a vložte jej do předního portu. Váš %s %s se za chvíli vypne. Poté jej zapněte a na požádání stiskněte tlačítko OK (Power).\n"
-"Po provedení aktualizace se Vás přijímač zeptá na obnovu nastavení. Pokud potřebujete další pokyny, navštivte prosím webové stránky http://www.opena.tv."
+"Po provedení aktualizace se Vás přijímač zeptá na obnovu nastavení. Pokud potřebujete další pokyny, navštivte prosím webové stránky http://www.hdfreaks.cc."
 
 msgid "You seem to be in timeshift!"
 msgstr "Zdá se, že je to timeshift!"

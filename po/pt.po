@@ -10264,10 +10264,10 @@ msgstr "Espere por favor %s!"
 
 #
 msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.hdfreaks.cc.\n"
 "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Necessita de um PC ligado á %s %s.Para mais instruções, visite http://www.dm7025.de.\n"
+"Necessita de um PC ligado á %s %s.Para mais instruções, visite http://www.hdfreaks.cc.\n"
 "A %s %s está em espera.Depois de actualizar a sua box seguindo as instruções, poderá gravar as suas definições. "
 
 msgid "You seem to be in timeshift!"
