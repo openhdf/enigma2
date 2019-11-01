@@ -19298,13 +19298,6 @@ msgstr ""
 #~ msgid "You must set at least one Command"
 #~ msgstr "Musíte nastavit alespoň jeden příkaz !"
 
-#~ msgid ""
-#~ "You need a PC connected to your %s %s. If you need further instructions, please visit the website http://www.hdfreaks.cc.\n"
-#~ "Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
-#~ msgstr ""
-#~ "Zkopírujte obraz (image) na USB disk a vložte jej do předního portu. Pokud potřebujete další pokyny, navštivte prosím webové stránky. \n"
-#~ "Váš %s %s bude nyní vypnut. Po zapnutí se řiďte pokyny na předním displeji a proveďte aktualizaci firmware. Pak můžete být požádáni o obnovu nastavení. To je vše."
-
 #~ msgid "Your STB will freeze during the flashing process.\n"
 #~ msgstr "Funkčnost vašeho přijímače bude během změny Image omezena.\n"
 
