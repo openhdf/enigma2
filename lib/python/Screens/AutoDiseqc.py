@@ -69,32 +69,28 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
  		# eutelsat 160 hrt
  		( 10721000, 27500, \
- 		eDVBFrontendParametersSatellite.Polarisation_Horizontal,
- 		eDVBFrontendParametersSatellite.FEC_3_4,
- 		eDVBFrontendParametersSatellite.Inversion_Off, 160, \
- 		eDVBFrontendParametersSatellite.System_DVB_S,
- 		eDVBFrontendParametersSatellite.Modulation_Auto,
- 		eDVBFrontendParametersSatellite.RollOff_auto,
-		eDVBFrontendParametersSatellite.Pilot_Unknown,
+		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_3_4, \
+		eDVBFrontendParametersSatellite.Inversion_Off, 160, \
+		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
+		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
 		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
 		eDVBFrontendParametersSatellite.PLS_Gold,
 		eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
 		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+		eDVBFrontendParametersSatellite.T2MI_Default_Pid,
  		20100, 366, _("Eutelsat 16A 16.0e")),
  
 		# thor  3592 CT24
 		( 12072000, 28000, \
-		eDVBFrontendParametersSatellite.Polarisation_Vertical,
-		eDVBFrontendParametersSatellite.FEC_7_8,
+		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_7_8, \
 		eDVBFrontendParametersSatellite.Inversion_Off, 3592, \
-		eDVBFrontendParametersSatellite.System_DVB_S,
-		eDVBFrontendParametersSatellite.Modulation_Auto,
-		eDVBFrontendParametersSatellite.RollOff_auto,
-		eDVBFrontendParametersSatellite.Pilot_Unknown,
+		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
+		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
 		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
 		eDVBFrontendParametersSatellite.PLS_Gold,
 		eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
 		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+		eDVBFrontendParametersSatellite.T2MI_Default_Pid,
 		706, 1536, _("Thor 5/6/7 0.8w")),
 
 		# hispasat 300 tsa
