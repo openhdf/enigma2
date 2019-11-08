@@ -115,6 +115,7 @@ class Harddisk:
 		self.mount_path = None
 		self.mount_device = None
 		self.phys_path = os.path.realpath(self.sysfsPath('device'))
+		self.internal = "pci" in self.phys_path or "ahci" in self.phys_path or "sata" in self.phys_path
 
 		if self.type == DEVTYPE_UDEV:
 			self.dev_path = '/dev/' + self.device
@@ -137,7 +138,7 @@ class Harddisk:
 					break
 
 		print "new Harddisk", self.device, '->', self.dev_path, '->', self.disk_path
-		if not removable:
+		if (self.internal or not removable):
 			self.startIdle()
 
 	def __lt__(self, ob):
