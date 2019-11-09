@@ -3,7 +3,7 @@ from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 from shutil import move
 import time
 
-from enigma import eTimer
+from enigma import eTimer, eConsoleAppContainer
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -30,8 +30,10 @@ from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
+from random import Random
 from subprocess import call
 import commands
+import string
 import os
 import glob
 
@@ -1065,7 +1067,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
 		# CHECK WHICH BOXES NOW SUPPORT MAC-CHANGE VIA GUI
-		if getBoxType() not in ('DUMMY') and self.iface == 'eth0':
+		if getBoxType() not in ('DUMMY',) and self.iface == 'eth0':
 			menu.append((_("Network MAC settings"), "mac"))
 
 		return menu
@@ -3957,3 +3959,123 @@ class NetworkServicesSummary(Screen):
 		self["status_summary"].text = status_summary
 		self["autostartstatus_summary"].text = autostartstatus_summary
 		
+class NetworkPassword(ConfigListScreen, Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = "NetworkPassword"
+		self.onChangedEntry = []
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.selectionChanged)
+		Screen.setTitle(self, _("Password Setup"))
+
+		self["key_red"] = StaticText(_("Exit"))
+		self["key_green"] = StaticText(_("Save"))
+		self["key_yellow"] = StaticText(_("Random password"))
+		self["key_blue"] = StaticText("")
+
+		self["actions"] = ActionMap(["SetupActions", "ColorActions", "VirtualKeyboardActions"], {
+			"red": self.close,
+			"cancel": self.close,
+			"green": self.SetPasswd,
+			"save": self.SetPasswd,
+			"yellow": self.newRandom,
+			'showVirtualKeyboard': self.KeyText
+			})
+
+		self["description"] = Label()
+		self['footnote'] = Label()
+		self["VKeyIcon"] = Boolean(False)
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+
+		self.user="root"
+		self.output_line = ""
+
+		self.updateList()
+		if self.selectionChanged not in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def selectionChanged(self):
+		item = self["config"].getCurrent()
+		self["description"].setText(item[2])
+
+	def newRandom(self):
+		self.password.value = self.GeneratePassword()
+		self["config"].invalidateCurrent()
+	
+	def updateList(self):
+		self.password = NoSave(ConfigPassword(default=""))
+		instructions = _("You must set a root password in order to be able to use network services,"
+						" such as FTP, telnet or ssh.")
+		self.list.append(getConfigListEntry(_('New password'), self.password, instructions))
+		self['config'].list = self.list
+		self['config'].l.setList(self.list)
+
+	def GeneratePassword(self): 
+		passwdChars = string.letters + string.digits
+		passwdLength = 10
+		return ''.join(Random().sample(passwdChars, passwdLength)) 
+
+	def SetPasswd(self):
+		self.hideHelpWindow()
+		password = self.password.value
+		if not password:
+			self.session.openWithCallback(self.showHelpWindow, MessageBox, _("The password can not be blank.") , MessageBox.TYPE_ERROR)
+			return
+		#print "[NetworkPassword] Changing the password for %s to %s" % (self.user,self.password) 
+		self.container = eConsoleAppContainer()
+		self.container.appClosed.append(self.runFinished)
+		self.container.dataAvail.append(self.dataAvail)
+		retval = self.container.execute("echo -e '%s\n%s' | (passwd %s)"  % (password, password, self.user))
+		if retval:
+			message=_("Unable to change password")
+			self.session.openWithCallback(self.showHelpWindow, MessageBox, message , MessageBox.TYPE_ERROR)
+		else:
+			message=_("Password changed")
+			self.session.open(MessageBox, message , MessageBox.TYPE_INFO, timeout=5)
+			self.close()
+
+	def showHelpWindow(self, ret=None):
+		if self['config'].getCurrent() and isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self["config"].getCurrent()[1].help_window.instance is not None:
+				self["config"].getCurrent()[1].help_window.show()
+
+	def hideHelpWindow(self):
+		if self['config'].getCurrent() and isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self["config"].getCurrent()[1].help_window.instance is not None:
+				self["config"].getCurrent()[1].help_window.hide()
+
+	def KeyText(self):
+		if self['config'].getCurrent() and isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self["config"].getCurrent()[1].help_window.instance is not None:
+				self["config"].getCurrent()[1].help_window.hide()
+			from Screens.VirtualKeyBoard import VirtualKeyBoard
+			self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
+
+	def VirtualKeyBoardCallback(self, callback = None):
+		if callback is not None and len(callback):
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
+		self.showHelpWindow()
+
+
+	def dataAvail(self,data):
+		self.output_line += data
+		while True:
+			i = self.output_line.find('\n')
+			if i == -1:
+				break
+			self.processOutputLine(self.output_line[:i+1])
+			self.output_line = self.output_line[i+1:]
+
+	def processOutputLine(self,line):
+		if line.find('password: '):
+			self.container.write("%s\n" % self.password.value)
+
+	def runFinished(self,retval):
+		del self.container.dataAvail[:]
+		del self.container.appClosed[:]
+		del self.container
+		self.close()
+

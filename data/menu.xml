@@ -239,24 +239,25 @@ self.session.open(SABnzbdSetupScreen)
 				</menu>
 				<menu level="1" text="Network" entryID="network_menu">
 					<id val="network" />
-					<item level="0" text="Device setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
-					<item level="1" text="Mounts setup" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
-					<item level="2" text="AFP setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
-					<item level="2" text="FTP setup" entryID="netftp_setup"><screen module="NetworkSetup" screen="NetworkFtp"/></item>
-					<item level="2" text="Inadyn setup" entryID="Inadyn_setup"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
-					<item level="2" text="MiniDLNA setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
-					<item level="2" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
-					<item level="2" text="OpenVPN setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
+					<item weight="0" level="0" text="Device setup" entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item weight="1" level="1" text="Mounts setup" entryID="netmounts_setup"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
+					<item weight="2" level="2" text="FTP setup" entryID="netftp_setup"><screen module="NetworkSetup" screen="NetworkFtp"/></item>
+					<item weight="3" level="2" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
+					<item weight="4" level="2" text="Telnet setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
+					<item weight="5" level="2" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
+					<item weight="6" level="2" text="Password Setup" entryID="password_setup"><screen module="NetworkSetup" screen="NetworkPassword"/></item>
+					<item weight="7" level="2" text="AFP setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
+					<item weight="8" level="2" text="Inadyn setup" entryID="Inadyn_setup"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
+					<item weight="9" level="2" text="MiniDLNA setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
+					<item weight="10" level="2" text="OpenVPN setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
 					<!--item level="2" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item-->
-					<item level="2" text="SABnzbd setup" entryID="netsabnzbd_setup" requires="SABSetup">
+					<item weight="11" level="2" text="SABnzbd setup" entryID="netsabnzbd_setup" requires="SABSetup">
 						<code>
 from Plugins.SystemPlugins.SABnzbd.plugin import SABnzbdSetupScreen
 self.session.open(SABnzbdSetupScreen)
 						</code>
 					</item>
-					<item level="2" text="Samba setup" entryID="netsmba_setup"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
-					<item level="2" text="Telnet setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
-					<item level="2" text="uShare setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
+					<item weight="12" level="2" text="uShare setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
 				</menu>
 				<item level="0" entryID="dvdplayer_setup"><setup id="dvdplayer" /></item>
 				<item level="0" entryID="time_setup"><setup id="time"/></item>
