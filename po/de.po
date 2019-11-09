@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-10-31 07:45+0100\n"
+"PO-Revision-Date: 2019-11-09 12:25+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -7351,6 +7351,24 @@ msgstr "Passwort (HTTPWD)"
 
 msgid "Password:"
 msgstr "Passwort:"
+
+msgid "Password Setup"
+msgstr "Passwort Einstellungen"
+
+msgid "New password"
+msgstr "Neues Passwort"
+
+msgid "Random password"
+msgstr "Zufallspasswort"
+
+msgid "The password can not be blank."
+msgstr "Das Passwort darf nicht leer sein."
+
+msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+msgstr "Hier kann ein Rootpasswort festgelegt werden, um es für Netzwerkdienste wie FTP, Telnet oder SSH nutzen zu können."
+
+msgid "Password changed"
+msgstr "Passwort wurde geändert"
 
 msgid "Pause"
 msgstr "Pause"
