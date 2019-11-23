@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2019-11-09 12:25+0100\n"
+"PO-Revision-Date: 2019-11-23 09:45+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3615,6 +3615,12 @@ msgstr "Kann keine installierte Senderliste finden."
 
 msgid "Could not load medium! No disc inserted?"
 msgstr "Konnte das Medium nicht laden! Keine DVD eingelegt?"
+
+msgid "Could not open Picture in Picture"
+msgstr "Bild in Bild ist aktuell nicht möglich"
+
+msgid "Your %s %s does not support PiP HD"
+msgstr "Ihre %s %s unterstützt kein Bild im Bild HD"
 
 msgid "No free tuner, could not open Picture in Picture"
 msgstr "Keiner freier Tuner, Bild in Bild konnte nicht geöffnet werden"
