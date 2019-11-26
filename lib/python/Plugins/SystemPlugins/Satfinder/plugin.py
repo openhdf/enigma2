@@ -324,7 +324,7 @@ class Satfinder(ScanSetup, ServiceScan):
 						fec = self.scan_sat.fec.value
 
 					transponder = (
-						self.scan_sat.frequency.floatint,
+						self.scan_sat.frequency.value,
 						self.scan_sat.symbolrate.value,
 						self.scan_sat.polarization.value,
 						fec,
@@ -477,7 +477,7 @@ def SatfinderMain(session, close=None, **kwargs):
 	if len(nimList) == 0:
 		session.open(MessageBox, _("No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."), MessageBox.TYPE_ERROR)
 	else:
-		session.open(Satfinder)
+		session.openWithCallback(close, Satfinder)
 
 def SatfinderStart(menuid, **kwargs):
 	if menuid == "scan":
