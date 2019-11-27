@@ -37,7 +37,8 @@ images = []
 global imagesCounter
 imagesCounter = 0
 images.append(["switch to V6.3", "http://images.hdfreaks.cc"])
-images.append(["switch to Team", "http://v63.hdfreaks.cc"])
+images.append(["switch to V6.5", "http://v63.hdfreaks.cc"])
+images.append(["switch to Team", "http://v65.hdfreaks.cc"])
 images.append(["switch to V6.4", "http://teamimages.hdfreaks.cc"])
 
 imagePath = '/media/hdd/images'
