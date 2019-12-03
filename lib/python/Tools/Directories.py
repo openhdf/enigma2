@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 import os
-import stat
 
 from enigma import eEnv, getDesktop
 from re import compile
+from stat import S_IMODE
 
 pathExists = os.path.exists
-isMount = os.path.ismount  # Only used in OpenATV /lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py.
 
 SCOPE_TRANSPONDERDATA = 0
 SCOPE_SYSETC = 1
@@ -108,11 +107,12 @@ def resolveFilename(scope, base="", path_prefix=None):
 		skin = os.path.dirname(config.skin.primary_skin.value)
 		resolveList = [
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], skin),
+			os.path.join(defaultPaths[SCOPE_CONFIG][0], "skin_common"),
+			defaultPaths[SCOPE_CONFIG][0],  # Can we deprecate top level of SCOPE_CONFIG directory to allow a clean up?
 			os.path.join(defaultPaths[SCOPE_SKIN][0], skin),
-			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_%d" % getDesktop(0).size().height()),
+			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_fallback_%d" % getDesktop(0).size().height()),
 			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_default"),
-			defaultPaths[SCOPE_CONFIG][0],  # Deprecated top level of SCOPE_CONFIG directory.
-			defaultPaths[SCOPE_SKIN][0]  # Deprecated top level of SCOPE_SKIN directory.
+			defaultPaths[SCOPE_SKIN][0]  # Can we deprecate top level of SCOPE_SKIN directory to allow a clean up?
 		]
 		for item in resolveList:
 			file = os.path.join(item, base)
@@ -128,11 +128,12 @@ def resolveFilename(scope, base="", path_prefix=None):
 			skin = ""
 		resolveList = [
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], "display", skin),
+			os.path.join(defaultPaths[SCOPE_CONFIG][0], "display", "skin_common"),
+			defaultPaths[SCOPE_CONFIG][0],  # Can we deprecate top level of SCOPE_CONFIG directory to allow a clean up?
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], skin),
-			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_%s" % getDesktop(1).size().height()),
+			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_fallback_%s" % getDesktop(1).size().height()),
 			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_default"),
-			defaultPaths[SCOPE_CONFIG][0],  # Deprecated top level of SCOPE_CONFIG directory.
-			defaultPaths[SCOPE_LCDSKIN][0]  # Deprecated top level of SCOPE_LCDSKIN directory.
+			defaultPaths[SCOPE_LCDSKIN][0]  # Can we deprecate top level of SCOPE_LCDSKIN directory to allow a clean up?
 		]
 		for item in resolveList:
 			file = os.path.join(item, base)
@@ -143,20 +144,21 @@ def resolveFilename(scope, base="", path_prefix=None):
 		# This import must be here as this module finds the config file as part of the config initialisation.
 		from Components.config import config
 		skin = os.path.dirname(config.skin.primary_skin.value)
-		if hasattr(config.skin, "display_skin"):
-			display = os.path.dirname(config.skin.display_skin.value)
-		else:
-			display = ""
+		display = os.path.dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else None
 		resolveList = [
 			os.path.join(defaultPaths[SCOPE_CONFIG][0], "fonts"),
-			os.path.join(defaultPaths[SCOPE_SKIN][0], skin),
-			os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_default"),
-			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], display),
-			os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_default"),
-			defaultPaths[SCOPE_FONTS][0],
-			os.path.join(defaultPaths[SCOPE_CONFIG][0], skin),  # Deprecated skin in SCOPE_CONFIG directory.
-			os.path.join(defaultPaths[SCOPE_CONFIG][0], display)  # Deprecated display in SCOPE_CONFIG directory.
+			os.path.join(defaultPaths[SCOPE_CONFIG][0], skin)
 		]
+		if display:
+			resolveList.append(os.path.join(defaultPaths[SCOPE_CONFIG][0], "display", display))
+		resolveList.append(os.path.join(defaultPaths[SCOPE_CONFIG][0], "skin_common"))
+		resolveList.append(defaultPaths[SCOPE_CONFIG][0])  # Can we deprecate top level of SCOPE_CONFIG directory to allow a clean up?
+		resolveList.append(os.path.join(defaultPaths[SCOPE_SKIN][0], skin))
+		resolveList.append(os.path.join(defaultPaths[SCOPE_SKIN][0], "skin_default"))
+		if display:
+			resolveList.append(os.path.join(defaultPaths[SCOPE_LCDSKIN][0], display))
+		resolveList.append(os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_default"))
+		resolveList.append(defaultPaths[SCOPE_FONTS][0])
 		for item in resolveList:
 			file = os.path.join(item, base)
 			if pathExists(file):
@@ -332,11 +334,16 @@ def copyfile(src, dst):
 		f2.close()
 	try:
 		st = os.stat(src)
-		mode = stat.S_IMODE(st.st_mode)
-		os.chmod(dst, mode)
-		os.utime(dst, (st.st_atime, st.st_mtime))
+		try:
+			os.chmod(dst, S_IMODE(st.st_mode))
+		except OSError, e:
+			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+		try:
+			os.utime(dst, (st.st_atime, st.st_mtime))
+		except OSError, e:
+			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
 	except OSError, e:
-		print "[Directories] Error %d: Copying stats from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
 	return status
 
 def copytree(src, dst, symlinks=False):
@@ -362,11 +369,16 @@ def copytree(src, dst, symlinks=False):
 			print "[Directories] Error %d: Copying tree '%s' to '%s'! (%s)" % (e.errno, srcname, dstname, os.strerror(e.errno))
 	try:
 		st = os.stat(src)
-		mode = stat.S_IMODE(st.st_mode)
-		os.chmod(dst, mode)
-		os.utime(dst, (st.st_atime, st.st_mtime))
+		try:
+			os.chmod(dst, S_IMODE(st.st_mode))
+		except OSError, e:
+			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+		try:
+			os.utime(dst, (st.st_atime, st.st_mtime))
+		except OSError, e:
+			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
 	except OSError, e:
-		print "[Directories] Error %d: Copying stats from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
+		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (e.errno, src, dst, os.strerror(e.errno))
 
 # Renames files or if source and destination are on different devices moves them in background
 # input list of (source, destination)
@@ -381,8 +393,7 @@ def moveFiles(fileList):
 	except OSError, e:
 		if e.errno == 18:  # errno.EXDEV - Invalid cross-device link
 			print "[Directories] Warning: Cannot rename across devices, trying slower move."
-			from Tools.CopyFiles import moveFiles as extMoveFiles  # OpenViX, OpenATV, Beyonwiz
-			# from Screens.CopyFiles import moveFiles as extMoveFiles  # OpenPLi
+			from Tools.CopyFiles import moveFiles as extMoveFiles
 			extMoveFiles(fileList, item[0])
 			print "[Directories] Moving files in background."
 		else:
@@ -427,12 +438,15 @@ def getExtension(file):
 
 def mediafilesInUse(session):
 	from Components.MovieList import KNOWN_EXTENSIONS
-	files = [x[2] for x in lsof() if getExtension(x[2]) in KNOWN_EXTENSIONS]
+	files = [os.path.basename(x[2]) for x in lsof() if getExtension(x[2]) in KNOWN_EXTENSIONS]
 	service = session.nav.getCurrentlyPlayingServiceOrGroup()
 	filename = service and service.getPath()
-	if filename and "://" in filename:  # When path is a stream ignore it.
-		filename = None
-	return set([file for file in files if not(filename and file.startswith(filename) and files.count(filename) < 2)])
+	if filename:
+		if "://" in filename:  # When path is a stream ignore it.
+			filename = None
+		else:
+			filename = os.path.basename(filename)
+	return set([file for file in files if not(filename and file == filename and files.count(filename) < 2)])
 
 # Prepare filenames for use in external shell processing. Filenames may
 # contain spaces or other special characters.  This method adjusts the
