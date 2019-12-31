@@ -8,8 +8,8 @@ import re
 import os
 import urllib2
 
-if not os.path.isdir('/tmp/poster'):
-	os.mkdir('/tmp/poster')
+if not os.path.isdir('/media/hdd/poster'):
+	os.mkdir('/media/hdd/poster')
 
 class pstrCnvrt(Converter, object):
 
@@ -35,7 +35,7 @@ class pstrCnvrt(Converter, object):
 					else:
 						self.evntNm = re.sub('\s+', '+', self.evnt)
 					self.evntNmPstr = self.evntNm + ".jpg"
-					if not os.path.exists("/tmp/poster/%s.jpg"%(self.evntNm)):
+					if not os.path.exists("/media/hdd/poster/%s.jpg"%(self.evntNm)):
 						ses_ep = self.sessionEpisode(event)
 						if ses_ep != "" and len(ses_ep) > 0:
 							self.srch = "tv"
@@ -57,7 +57,7 @@ class pstrCnvrt(Converter, object):
 
 		imgP = (jp['results'][0]['poster_path'])
 		url_poster = "https://image.tmdb.org/t/p/w185_and_h278_bestv2%s"%(imgP)
-		dwn_poster = "/tmp/poster/%s.jpg"%(self.evntNm)
+		dwn_poster = "/media/hdd/poster/%s.jpg"%(self.evntNm)
 		if not os.path.exists(dwn_poster):
 			with open(dwn_poster,'wb') as f:
 				f.write(urllib2.urlopen(url_poster).read())
