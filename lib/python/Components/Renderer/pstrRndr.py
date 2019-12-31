@@ -34,7 +34,7 @@ class pstrRndr(Renderer):
 			eventName = self.source.text
 			if eventName :
 				posterNm = re.sub('\s+', '+', eventName)
-				pstrNm = "/tmp/" + self.path + posterNm + ".jpg"
+				pstrNm = "/media/hdd/" + self.path + posterNm + ".jpg"
 
 				if os.path.exists(pstrNm):
 					self.instance.setPixmap(loadJPG(pstrNm))
