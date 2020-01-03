@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from boxbranding import getBoxType
 from sys import maxint
 
