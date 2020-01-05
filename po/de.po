@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2020-01-05 09:58+0100\n"
+"PO-Revision-Date: 2020-01-05 16:38+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -9283,6 +9283,12 @@ msgstr "Zeige WLAN-Status"
 
 msgid "Show animation while busy"
 msgstr "Zeige Animation bei Beschäftigung"
+
+msgid "Location for infobar poster"
+msgstr "Speicherort für Infobar Poster"
+
+msgid "Define location to save infobar poster, if its activated inside skinsetup."
+msgstr "Legt den Speicherort für das Infobar Poster fest, wenn es im Skin aktiviert ist."
 
 msgid "Show background in Radio Mode"
 msgstr "Zeige Hintergrund im Radio Modus"

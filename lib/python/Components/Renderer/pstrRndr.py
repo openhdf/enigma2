@@ -3,8 +3,16 @@
 
 from Renderer import Renderer 
 from enigma import ePixmap, loadJPG
+from Components.UsageConfig import *
 import os
 import re
+
+posterpath = '/media/hdd/'
+posterpath = config.usage.posterpath.value
+
+if not posterpath:
+	posterpath = "/media/hdd/"
+print "posterpath:", posterpath
 
 class pstrRndr(Renderer):
 
@@ -34,7 +42,7 @@ class pstrRndr(Renderer):
 			eventName = self.source.text
 			if eventName :
 				posterNm = re.sub('\s+', '+', eventName)
-				pstrNm = "/media/hdd/" + self.path + posterNm + ".jpg"
+				pstrNm = posterpath + self.path + posterNm + ".jpg"
 
 				if os.path.exists(pstrNm):
 					self.instance.setPixmap(loadJPG(pstrNm))
