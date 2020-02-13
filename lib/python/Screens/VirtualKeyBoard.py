@@ -25,7 +25,7 @@ class VirtualKeyBoardEntryComponent:
 		pass
 
 class VirtualKeyBoard(Screen):
-	def __init__(self, session, title="", **kwargs):
+	def __init__(self, session, title=_("Virtual KeyBoard Text:"), currPos=None, **kwargs):
 		Screen.__init__(self, session)
 		self.setTitle(_("Virtual KeyBoard"))
 		self.keys_list = []
