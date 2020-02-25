@@ -266,7 +266,7 @@ class FlashOnline(Screen):
 						if (cmdline != cmdline_startup) and (name != "STARTUP"):
 							files.append(name)
 				files.insert(0,"STARTUP")
-			elif getMachineBuild() in ("gbmv200","ustym4kpro","hd51","vs1500","h7","8100s","gb7252","cc1","sf8008","osmio4k","osmio4kplus","osmini4k","beyonwizv2","viper4k"):
+			elif getMachineBuild() in ("gb72604","gbmv200","ustym4kpro","hd51","vs1500","h7","8100s","gb7252","cc1","sf8008","osmio4k","osmio4kplus","osmini4k","beyonwizv2","viper4k"):
 				for name in os.listdir(path):
 					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
 						try:
