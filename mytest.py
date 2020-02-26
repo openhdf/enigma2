@@ -19,6 +19,15 @@ enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 boxtype = getBoxType()
 
 from traceback import print_exc
+
+profile("Geolocation")
+import Tools.Geolocation
+Tools.Geolocation.InitGeolocation()
+
+profile("TimeZones")
+import Components.Timezones
+Components.Timezones.InitTimeZones()
+
 profile("SetupDevices")
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
