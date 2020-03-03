@@ -497,17 +497,10 @@ class doFlashImage(Screen):
 						shutil.copyfile(backupsourcefile, backupdestfile)
 				except:
 					print "AfterFlashAction: failed to create /media/hdd/images/hdfrestore"
-		message = _("Do you want to start flashing now?\nEnigma2 is stopped and then automatically restarted.\nPlease check in advance for ongoing recordings!")
-		self.session.openWithCallback(self.initFlashing,MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
-
-	def initFlashing(self, answer):
-		if answer is True:
-			self.Start_Flashing()
-		else:
-			self.close()
+		self.Start_Flashing()
 
 	def Start_Flashing(self):
-		print "Start Flashing"		
+		print "Start Flashing"
 		cmdlist = []
 		if os.path.exists(ofgwritePath):
 			text = _("Flashing: ")
@@ -547,20 +540,7 @@ class doFlashImage(Screen):
 					cmdlist.append("%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
 				else:
 					cmdlist.append("%s -r -k %s > /dev/null 2>&1" % (ofgwritePath, flashTmp))
-				message = "echo -e '\n"
-				if self.List not in ("STARTUP","cmdline.txt") and SystemInfo["HaveMultiBoot"] and not SystemInfo["HasRootSubdir"]:
-					message += _('ofgwrite flashing ready.\n')
-					message += _('please press exit to go back to the menu.\n')
-				else:
-					message += _('ofgwrite will stop enigma2 now to run the flash.\n')
-					message += _('Your STB will freeze during the flashing process.\n')
-					message += _('Please: DO NOT reboot your STB and turn off the power.\n')
-					message += _('The image or kernel will be flashing and auto booted in few minutes.\n')
-					if self.box() == 'gb800solo':
-						message += _('GB800SOLO takes about 20 mins !!\n')
-				message += "'"
-				cmdlist.append(message)
-				self.session.open(Console, title = text, cmdlist = cmdlist, finishedCallback = self.quit, closeOnSuccess = False)
+				self.session.open(Console, title = text, cmdlist = cmdlist, finishedCallback = self.quit, closeOnSuccess = True)
 				if not self.simulate:
 					fbClass.getInstance().lock()
 				if self.List not in ("STARTUP","cmdline.txt"):
