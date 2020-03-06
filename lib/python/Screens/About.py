@@ -79,19 +79,19 @@ class About(Screen):
 				return str(netspeed)
 		def netspeed_ra0():
 			netspeed=""
-			for line in popen('iwconfig ra0 | grep Bit | cut -c 75-85','r'):
+			for line in popen('iwconfig ra0 | grep Bit | cut -c 20-30','r'):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
 		def netspeed_wlan0():
 			netspeed=""
-			for line in popen('iwconfig wlan0 | grep Bit | cut -c 75-85','r'):
+			for line in popen('iwconfig wlan0 | grep Bit | cut -c 20-30','r'):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
 		def netspeed_wlan1():
 			netspeed=""
-			for line in popen('iwconfig wlan1 | grep Bit | cut -c 75-85','r'):
+			for line in popen('iwconfig wlan1 | grep Bit | cut -c 20-30','r'):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
