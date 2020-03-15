@@ -104,7 +104,6 @@ class ImageBackup(Screen):
 		print "[FULL BACKUP] ROOTFSBIN = >%s<" %self.ROOTFSBIN
 		print "[FULL BACKUP] KERNELBIN = >%s<" %self.KERNELBIN
 		print "[FULL BACKUP] ROOTFSTYPE = >%s<" %self.ROOTFSTYPE
-		print "[FULL BACKUP] EMMCIMG = >%s<" %self.EMMCIMG
 		print "[FULL BACKUP] IMAGEDISTRO = >%s<" %self.IMAGEDISTRO
 		print "[FULL BACKUP] DISTROVERSION = >%s<" %self.DISTROVERSION
 
@@ -468,12 +467,7 @@ class ImageBackup(Screen):
 		cmdlist.append('echo " "')
 		cmdlist.append('echo "' + _("Create:") + ' kerneldump"')
  		cmdlist.append('echo " "')
-		if SystemInfo["HaveMultiBoot"]:
-			if SystemInfo["HasRootSubdir"]:
-				cmdlist.append("dd if=%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
-			else:
-				cmdlist.append("dd if=/dev/%s of=%s/kernel.bin" % (self.MTDKERNEL ,self.WORKDIR))
-		elif self.MTDKERNEL.startswith('mmcblk0'):
+		if SystemInfo["HaveMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
 			cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
 		else:
 			cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
@@ -592,9 +586,7 @@ class ImageBackup(Screen):
 			system('mv %s/rootfs.tar.xz %s/rootfs.tar.xz' %(self.WORKDIR, self.MAINDEST))
 		else:
 			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
-		if SystemInfo["HaveMultiBoot"]:
-			system('mv %s/kernel.bin %s/kernel.bin' %(self.WORKDIR, self.MAINDEST))
-		elif self.MTDKERNEL.startswith('mmcblk0'):
+		if SystemInfo["HaveMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
 			system('mv %s/%s %s/%s' %(self.WORKDIR, self.KERNELBIN, self.MAINDEST, self.KERNELBIN))
 		else:
 			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
