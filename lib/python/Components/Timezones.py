@@ -93,13 +93,11 @@ class Timezones:
 		self.timezones = {}
 		self.loadTimezones()
 		self.readTimezones()
-		self.callbacksBefore = []
-		self.callbacksAfter = []
-		# This is a work around to maintain support of AutoTimers
-		# until AutoTimers are updated to use the Timezones
-		# callbacks.  Once AutoTimers are updated *all* AutoTimer
-		# code should be removed from the Timezones.py code!
-		self.autotimerInit()
+		self.autotimerCheck()
+		if self.autotimerPollDelay is None:
+			self.autotimerPollDelay = AT_POLL_DELAY
+		self.timer = eTimer()
+		self.autotimerUpdate = False
 
 	# Scan the zoneinfo directory tree and all load all timezones found.
 	#
@@ -138,11 +136,11 @@ class Timezones:
 				tz = "%s/%s" % (base, file)
 				area, zone = tz.split("/", 1)
 				name = commonTimezoneNames.get(tz, zone)  # Use the more common name if one is defined.
-				area = area.encode(encoding="UTF-8", errors="ignore")
-				zone = zone.encode(encoding="UTF-8", errors="ignore")
+				area = area.encode("UTF-8")
+				zone = zone.encode("UTF-8")
 				if name is None:
 					continue
-				name = name.encode(encoding="UTF-8", errors="ignore")
+				name = name.encode("UTF-8")
 				zones.append((zone, name.replace("_", " ")))
 			if area:
 				if area in self.timezones:
@@ -204,8 +202,8 @@ class Timezones:
 			for zone in root.findall("zone"):
 				name = zone.get("name", "")
 				zonePath = zone.get("zone", "")
-				name = name.encode(encoding="UTF-8", errors="ignore")
-				zonePath = zonePath.encode(encoding="UTF-8", errors="ignore")
+				name = name.encode("UTF-8")
+				zonePath = zonePath.encode("UTF-8")
 				if path.exists(path.join(TIMEZONE_DATA, zonePath)):
 					zones.append((zonePath, name))
 				else:
@@ -245,12 +243,14 @@ class Timezones:
 			choices = self.getTimezoneList(area=area)
 		return areaDefaultZone.setdefault(area, choices[0][0])
 
-	def activateTimezone(self, zone, area, runCallbacks=True):
+	def activateTimezone(self, zone, area):
 		# print "[Timezones] activateTimezone DEBUG: Area='%s', Zone='%s'" % (area, zone)
-		if runCallbacks:
-			for method in self.callbacksBefore:
-				if method:
-					method()
+		self.autotimerCheck()
+		if self.autotimerAvailable and config.plugins.autotimer.autopoll.value:
+			print "[Timezones] Trying to stop main AutoTimer poller."
+			if self.autotimerPoller is not None:
+				self.autotimerPoller.stop()
+			self.autotimerUpdate = True
 		tz = zone if area in ("Classic", "Generic") else path.join(area, zone)
 		file = path.join(TIMEZONE_DATA, tz)
 		if not path.isfile(file):
@@ -277,43 +277,6 @@ class Timezones:
 			e_tzset()
 		if path.exists("/proc/stb/fp/rtc_offset"):
 			setRTCoffset()
-		if runCallbacks:
-			for method in self.callbacksAfter:
-				if method:
-					method()
-
-	def addCallbackBefore(self, callback):
-		self.callbacksBefore.append(callback)
-
-	def removeCallbackBefore(self, callback):
-		if callback in self.callbacks:
-			self.callbacksBefore.remove(callback)
-
-	def addCallbackAfter(self, callback):
-		self.callbacksAfter.append(callback)
-
-	def removeCallbackAfter(self, callback):
-		if callback in self.callbacks:
-			self.callbacksAfter.remove(callback)
-
-	def autotimerInit(self):  # This code should be moved into the AutoTimer plugin!
-		self.autotimerCheck()
-		if self.autotimerPollDelay is None:
-			self.autotimerPollDelay = AT_POLL_DELAY
-		self.timer = eTimer()
-		self.autotimerUpdate = False
-		self.addCallbackBefore(self.autotimerBefore)
-		self.addCallbackAfter(self.autotimerAfter)
-
-	def autotimerBefore(self):
-		self.autotimerCheck()
-		if self.autotimerAvailable and config.plugins.autotimer.autopoll.value:
-			print "[Timezones] Trying to stop main AutoTimer poller."
-			if self.autotimerPoller is not None:
-				self.autotimerPoller.stop()
-			self.autotimerUpdate = True
-
-	def autotimerAfter(self):
 		if self.autotimerAvailable and config.plugins.autotimer.autopoll.value:
 			if self.autotimerUpdate:
 				self.timer.stop()
@@ -323,6 +286,9 @@ class Timezones:
 			self.timer.startLongTimer(AT_POLL_DELAY * 60)
 
 	def autotimerCheck(self):
+		self.autotimerAvailable = False
+		self.autotimerPollDelay = None
+		return None
 		try:
 			# Create attributes autotimer & autopoller for backwards compatibility.
 			# Their use is deprecated.
