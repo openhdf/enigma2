@@ -54,10 +54,15 @@ AT_POLL_DELAY = 3  # Minutes - This is for AutoTimers!
 
 def InitTimeZones():
 	tz = geolocation.get("timezone", None)
-	if tz is None:
+	proxy = geolocation.get("proxy", False)
+	if tz is None or proxy is True:
 		area = DEFAULT_AREA
 		zone = timezones.getTimezoneDefault(area=area)
-		print "[Timezones] Geolocation not available!  (area='%s', zone='%s')" % (area, zone)
+		if proxy:
+			msg = " - proxy in use"
+		else:
+			msg = ""
+		print "[Timezones] Geolocation not available%s!  (area='%s', zone='%s')" % (msg, area, zone)
 	elif DEFAULT_AREA == "Classic":
 		area = "Classic"
 		zone = tz
@@ -68,11 +73,6 @@ def InitTimeZones():
 	config.timezone = ConfigSubsection()
 	config.timezone.area = ConfigSelection(default=area, choices=timezones.getTimezoneAreaList())
 	config.timezone.val = ConfigSelection(default=timezones.getTimezoneDefault(), choices=timezones.getTimezoneList())
-	if not config.timezone.area.saved_value:
-		config.timezone.area.value = area
-	if not config.timezone.val.saved_value:
-		config.timezone.val.value = zone
-	config.timezone.save()
 
 	def timezoneAreaChoices(configElement):
 		choices = timezones.getTimezoneList(area=configElement.value)
@@ -231,7 +231,7 @@ class Timezones:
 	def getTimezoneDefault(self, area=None, choices=None):
 		areaDefaultZone = {
 			"Australia": "Sydney",
-			"Classic": "Europe/London",
+			"Classic": "Europe/%s" % DEFAULT_ZONE,
 			"Etc": "GMT",
 			"Europe": DEFAULT_ZONE,
 			"Generic": "UTC",
