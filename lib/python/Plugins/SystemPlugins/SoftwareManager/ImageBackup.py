@@ -468,7 +468,7 @@ class ImageBackup(Screen):
 		cmdlist.append('echo "' + _("Create:") + ' kerneldump"')
  		cmdlist.append('echo " "')
 		if SystemInfo["HaveMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
-			cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
+			cmdlist.append("dd if=%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
 		else:
 			cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
 		cmdlist.append('echo " "')
