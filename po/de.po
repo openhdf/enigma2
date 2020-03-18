@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2020-03-01 08:26+0100\n"
+"PO-Revision-Date: 2020-03-19 15:45+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -177,7 +177,7 @@ msgid "Config Menu..."
 msgstr "Konfiguration..."
 
 msgid "Start Update every "
-msgstr "Starte das Update alle"
+msgstr "Starte das Update alle "
 
 msgid "An automated refresh will start after this duration."
 msgstr "Nach dieser Zeit werden die IPTV Listen automatisch geladen."
@@ -9137,11 +9137,29 @@ msgstr "Rotor konfigurieren."
 msgid "Setup your satellite equipment"
 msgstr "Satelliten-Ausrüstung konfigurieren"
 
-msgid "Setup your timezone."
-msgstr "Zeitzone konfigurieren."
+msgid "Time zone area"
+msgstr "Zeitzonenbereich"
+
+msgid "Time zone"
+msgstr "Zeitzone"
+
+msgid "Setup your timezone area."
+msgstr "Wählen Sie Ihre Zeitzone."
+
+msgid "Your timezone in the area."
+msgstr "Ihre Zeitzone in Ihrem Gebiet."
+
+msgid "Select your time zone area or region."
+msgstr "Wählen Sie Ihren Zeitzonenbereich oder Ihre Region aus."
+
+msgid "Select the time zone within the area or region."
+msgstr "Wählen Sie die Zeitzone innerhalb des Gebiets oder der Region aus."
 
 msgid "Please set your time zone"
 msgstr "Bitte richtige Zeitzone einstellen"
+
+msgid "Europe"
+msgstr "Europa"
 
 msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
 msgstr "Soll der Assistent fortfahren und die Image-Datei %s in den Flashspeicher schreiben?"
