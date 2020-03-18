@@ -13,7 +13,8 @@
 		<item level="1" text="Use m3u (playlists) files over Ethernet" description="Configure to enable to use settings placed somewhere in your Lan.">config.usage.settingsoverlan_m3u</item>
 	</setup>
 	<setup key="time" title="Time settings">
-		<item level="0" text="Timezone" description="Setup your timezone.">config.timezone.val</item>
+		<item level="0" text="Time zone area" description="Select your time zone area or region.">config.timezone.area</item>
+		<item level="0" text="Time zone" description="Select the time zone within the area or region.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronize systemtime using transponder or internet.">config.misc.SyncTimeUsing</item>
 		<item level="0" text="NTP server" description="Configure your NTP server." requires="config.misc.SyncTimeUsing" >config.misc.NTPserver</item>
 		<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval." requires="config.misc.SyncTimeUsing" >config.misc.useNTPminutes</item>
