@@ -1,30 +1,19 @@
 import sys
 from enigma import ePythonOutput
 
-class EnigmaOutput:
-	def __init__(self):
-		self.buf = ''
-		pass
+class EnigmaLog:
+	def __init__(self, level):
+		self.level = level
+		self.line = ""
 
 	def write(self, data):
 		if isinstance(data, unicode):
-			data = data.encode("UTF-8")
-		if '\n' in data:
-			frame = sys._getframe(1)
-			filename = frame.f_code.co_filename
-			self.buf += data
-			if 'BugHunting' in filename:
-				ePythonOutput('',0,'',self.buf)
-			else:
-				if '/usr/lib/enigma2/python/' in filename:
-					filename = filename.replace('/usr/lib/enigma2/python/', '')
-				elif '/git/' in filename:
-					filename = filename.split('/git/')[1]
-				ePythonOutput(filename, frame.f_lineno, frame.f_code.co_name, self.buf)
-			self.buf = ''
-
-		else:
-			self.buf += data
+			data = data.encode(encoding="UTF-8", errors="ignore")
+		self.line += data
+		if "\n" in data:
+			frame = sys._getframe(1)  # OpenHDF, OpenATV
+			ePythonOutput(frame.f_code.co_filename, frame.f_lineno, frame.f_code.co_name, self.line)  # OpenHDF, OpenATV
+			self.line = ""
 
 	def flush(self):
 		pass
@@ -32,4 +21,13 @@ class EnigmaOutput:
 	def isatty(self):
 		return True
 
-sys.stdout = sys.stderr = EnigmaOutput()
+class EnigmaLogDebug(EnigmaLog):
+	def __init__(self):
+		EnigmaLog.__init__(self, 4)  # lvlDebug = 4
+
+class EnigmaLogFatal(EnigmaLog):
+	def __init__(self):
+		EnigmaLog.__init__(self, 1)  # lvlError = 1
+
+sys.stdout = EnigmaLogDebug()
+sys.stderr = EnigmaLogFatal()
