@@ -92,6 +92,7 @@ if [ -x @bindir@/showiframe ]; then
 fi
 
 # hook to execute scripts always before enigma2 start
+[ -f @bindir@/enigma2_pre_start.sh ] || echo "#!/bin/sh" > @bindir@/enigma2_pre_start.sh && chmod -R 755 @bindir@/enigma2_pre_start.sh
 [ -x @bindir@/enigma2_pre_start.sh ] && @bindir@/enigma2_pre_start.sh
 [ -x @bindir@/enigma2_pre_start_ciplus.sh ] && @bindir@/enigma2_pre_start_ciplus.sh
 
