@@ -195,8 +195,8 @@ void eFilePushThread::thread()
 
 				if (m_stream_mode)
 				{
-					eDebug("[eFilePushThread] reached EOF, but we are in stream mode. delaying 1 second.");
-					sleep(1);
+					eDebug("[eFilePushThread] reached EOF, but we are in stream mode. delaying 3 second.");
+					sleep(3);
 					continue;
 				}
 				else if (++eofcount < 10)
