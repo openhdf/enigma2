@@ -65,6 +65,8 @@ def GetBoxName():
 		box = box[0:3] + 'x00'
 	elif box == 'odinm9':
 		box = 'maram9'
+	elif box.startswith('sf8008m'):
+		box = "sf8008m"
 	elif box.startswith('sf8008'):
 		box = "sf8008"
 	elif box.startswith('twinboxlcdci'):
@@ -124,12 +126,12 @@ class GetImagelist():
 
 	def appClosed(self, data, retval, extra_args):
 		if retval == 0 and self.phase == self.MOUNT:
-			BuildVersion = "  "	
-			Build = " "	#ViX Build No.#
-			Dev = " "	#ViX Dev No.#
-			Creator = " " 	#Openpli Openvix Openatv etc #
-			Date = " "	
-			BuildType = " "	#release etc #
+			BuildVersion = "  "
+			Build = " "
+			Dev = " "
+			Creator = " "
+			Date = " "
+			BuildType = " "
 			self.OsPath = "NoPath"
 			if SystemInfo["HasRootSubdir"]:
 				if self.slot == 1 and os.path.isfile("/tmp/testmount/linuxrootfs1/usr/bin/enigma2"):
@@ -164,10 +166,13 @@ class GetImagelist():
 					Dev = BuildType != "release" and " %s" % reader.getImageDevBuild() or ''
 					BuildVersion = "%s %s %s %s" % (Creator, BuildType[0:3], Build, Dev)
 				else:
-					st = os.stat('%s/var/lib/opkg/status' %self.OsPath)
-					tm = time.localtime(st.st_mtime)
-					if tm.tm_year >= 2011:
-						Date = time.strftime("%d.%m.%Y", tm)
+					try:
+						st = os.stat('%s/var/lib/opkg/status' %self.OsPath)
+						tm = time.localtime(st.st_mtime)
+						if tm.tm_year >= 2011:
+							Date = time.strftime("%d.%m.%Y", tm)
+					except:
+						pass
 					BuildVersion = _("%s release %s") % (Creator, Date)
 					if Creator.startswith("Openhdf"):
 						BuildVersion = _("%s release %s") % (BuildVersionHDF, Date)
@@ -188,7 +193,6 @@ class GetImagelist():
 			if not os.path.ismount('/tmp/testmount'):
 				os.rmdir('/tmp/testmount')
 			self.callback(self.imagelist)
-
 
 class boxbranding_reader:		# many thanks to Huevos for creating this reader - well beyond my skill levels! 
 	def __init__(self, OsPath):
@@ -277,7 +281,6 @@ class boxbranding_reader:		# many thanks to Huevos for creating this reader - we
 		out.append("\t\toutput = None%s" % eol)
 		out.append("print output%s" % eol)
 		return ''.join(out)
-
 
 class EmptySlot():
 	MOUNT = 0
