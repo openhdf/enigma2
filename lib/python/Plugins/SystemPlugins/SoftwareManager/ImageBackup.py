@@ -1,9 +1,8 @@
 #################################################################################
 #       FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 4.x     		#
-#	                         						                            #
 #					MAKES A FULLBACKUP READY FOR FLASHING.						#
-#																				#
 #################################################################################
+
 import os
 from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
@@ -25,7 +24,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDis
 VERSION = _("Version %s %s") %(getImageDistro().upper(), getImageVersion())
 
 HaveGZkernel = True
-if SystemInfo["HasRootSubdir"] or getMachineBuild() in ('gbmv200','vuduo4k','ustym4kpro','beyonwizv2','viper4k','i55plus','osmio4k','osmio4kplus','sf8008','cc1','dags72604', 'u41', 'u51','u52','u53','u54','u55','u56','h9','h9combo','vuzero4k','u5','u5pvr','sf5008','et13000','et1x000',"vuuno4k","vuuno4kse", "vuultimo4k", "vusolo4k", "spark", "spark7162", "hd51", "hd52", "sf4008", "dags7252", "gb7252", "vs1500","h7",'xc7439','8100s','dm7080','dm820','dm520','dm525','dm900'):
+if SystemInfo["HasRootSubdir"] or getMachineBuild() in ('multibox','gbmv200','viper4k','i55plus','osmio4k','osmio4kplus','sf8008','cc1','dags72604', 'u41', 'u51','u52','u53','u54','u55','u56','h9','h9combo','u5','u5pvr','sf5008','et1x000','hd51','hd52','sf4008', 'dags7252','gb7252','vs1500','h7','xc7439','8100s','dm7080','dm820','dm520','dm525','dm900'):
 	HaveGZkernel = False
 
 def Freespace(dev):
@@ -75,21 +74,25 @@ class ImageBackup(Screen):
 		self.DISTROVERSION = getImageVersion()
 		self.selectionmultiboot = getImageDistro()
 
-		if self.MACHINEBUILD in ("hd51","vs1500","h7","8100s"):
-			self.MTDBOOT = "mmcblk0p1"
-			self.EMMCIMG = "disk.img"
-		elif self.MACHINEBUILD in ("xc7439","osmio4k","osmio4kplus"):
-			self.MTDBOOT = "mmcblk1p1"
-			self.EMMCIMG = "emmc.img"
-		elif self.MACHINEBUILD in ("gbmv200","cc1","sf8008","ustym4kpr"):
-			self.MTDBOOT = "none"
-			self.EMMCIMG = "usb_update.bin"
-		elif self.MACHINEBUILD in ("h9combo","v8plus","multibox","hd60","hd61"):
-			self.MTDBOOT = "none"
-			self.EMMCIMG = "rootfs.fastboot.gz"
+		if SystemInfo["canRecovery"]:
+			self.EMMCIMG = SystemInfo["canRecovery"][0]
+			self.MTDBOOT = SystemInfo["canRecovery"][1]
 		else:
 			self.MTDBOOT = "none"
 			self.EMMCIMG = "none"
+
+		if self.MACHINEBUILD in ("hd51","vs1500","h7","8100s"):
+			self.MTDBOOT = "mmcblk0p1"
+			self.EMMCIMG = "disk.img"
+
+		if self.MACHINEBUILD in ("xc7439","osmio4k","osmio4kplus"):
+			self.MTDBOOT = "mmcblk1p1"
+			self.EMMCIMG = "emmc.img"
+
+		if self.MACHINEBUILD in ("gbmv200","cc1","sf8008","ustym4kpr"):
+			self.MTDBOOT = "none"
+			self.EMMCIMG = "usb_update.bin"
+
 		print "[FULL BACKUP] BOX MACHINEBUILD = >%s<" %self.MACHINEBUILD
 		print "[FULL BACKUP] BOX MACHINENAME = >%s<" %self.MACHINENAME
 		print "[FULL BACKUP] BOX MACHINEBRAND = >%s<" %self.MACHINEBRAND
@@ -314,11 +317,11 @@ class ImageBackup(Screen):
 		self.WORKDIR= "%s/bi" %self.DIRECTORY
 		self.TARGET="XX"
 
-		## TESTING IF ALL THE TOOLS FOR THE BUILDING PROCESS ARE PRESENT
 		if not path.exists(self.MKFS):
 			text = "%s not found !!" %self.MKFS
 			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
 			return
+
 		if not path.exists(self.NANDDUMP):
 			text = "%s not found !!" %self.NANDDUMP
 			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
@@ -426,56 +429,34 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "' + _("Create:") + ' logo dump"')
 			cmdlist.append("dd if=/dev/mtd4 of=%s/logo.bin" % self.WORKDIR)
 
-		if self.MACHINEBUILD  in ("v8plus","multibox","h9combo","hd60","hd61"):
-			cmdlist.append('echo " "')
+		if self.EMMCIMG == "usb_update.bin" and self.RECOVERY:
+			SEEK_CONT = (Harddisk.getFolderSize(self.backuproot) / 1024) + 10000
 			cmdlist.append('echo "' + _("Create:") + " fastboot dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/fastboot.bin" % self.WORKDIR)
 			cmdlist.append('echo "' + _("Create:") + " bootargs dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p2 of=%s/bootargs.bin" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + " bootoptions dump" + '"')
-			cmdlist.append("dd if=/dev/mmcblk0p5 of=%s/bootoptions.bin" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + " baseparam dump" + '"')
-			cmdlist.append("dd if=/dev/mmcblk0p6 of=%s/baseparam.bin" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + " pq_param dump" + '"')
-			cmdlist.append("dd if=/dev/mmcblk0p7 of=%s/pq_param.bin" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + " logo dump" + '"')
-			cmdlist.append("dd if=/dev/mmcblk0p8 of=%s/logo.bin" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + " rootfs dump" + '"')
-			cmdlist.append("dd if=/dev/zero of=%s/rootfs.ext4 seek=1048576 count=0 bs=1024" % (self.WORKDIR))
-			cmdlist.append("mkfs.ext4 -F -i 4096 %s/rootfs.ext4 -d /tmp/bi/root" % (self.WORKDIR))
-
-		if self.MACHINEBUILD  in ("cc1","sf8008","sf8008s","sf8008t","ustym4kpro"):
-			cmdlist.append('echo " "')
-			cmdlist.append('echo "' + _("Create:") + ' fastboot dump"')
-			cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/fastboot.bin" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + ' bootargs dump"')
-			cmdlist.append("dd if=/dev/mmcblk0p2 of=%s/bootargs.bin" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + ' boot dump"')
+			cmdlist.append('echo "' + _("Create:") + " boot dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p3 of=%s/boot.img" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + ' baseparam.dump"')
+			cmdlist.append('echo "' + _("Create:") + " baseparam dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p4 of=%s/baseparam.img" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + ' pq_param dump"')
+			cmdlist.append('echo "' + _("Create:") + " pq_param dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p5 of=%s/pq_param.bin" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + ' logo dump"')
+			cmdlist.append('echo "' + _("Create:") + " logo dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p6 of=%s/logo.img" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + ' deviceinfo dump"')
+			cmdlist.append('echo "' + _("Create:") + " deviceinfo dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p7 of=%s/deviceinfo.bin" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + ' apploader dump"')
+			cmdlist.append('echo "' + _("Create:") + " apploader dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p8 of=%s/apploader.bin" % self.WORKDIR)
-			cmdlist.append('echo "' + _("Create:") + ' rootfs dump"')
-			cmdlist.append("dd if=/dev/zero of=%s/rootfs.ext4 seek=524288 count=0 bs=1024" % (self.WORKDIR))
+			cmdlist.append('echo "' + _("Create:") + " rootfs dump" + '"')
+			cmdlist.append("dd if=/dev/zero of=%s/rootfs.ext4 seek=%s count=0 bs=1024" % (self.WORKDIR, SEEK_CONT))
 			cmdlist.append("mkfs.ext4 -F -i 4096 %s/rootfs.ext4 -d /tmp/bi/root" % (self.WORKDIR))
 
 		cmdlist.append('echo " "')
 		cmdlist.append('echo "' + _("Create:") + ' kerneldump"')
  		cmdlist.append('echo " "')
-		if SystemInfo["HaveMultiBoot"]:
-			if SystemInfo["HasRootSubdir"]:
-				cmdlist.append("dd if=%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
-			else:
-				cmdlist.append("dd if=/dev/%s of=%s/kernel.bin" % (self.MTDKERNEL ,self.WORKDIR))
-		elif self.MTDKERNEL.startswith('mmcblk0'):
-			cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
+
+		if SystemInfo["HaveMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
+			cmdlist.append("dd if=%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
 		else:
 			cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
 		cmdlist.append('echo " "')
@@ -619,7 +600,7 @@ class ImageBackup(Screen):
 			system('mv %s/rescue.bin %s/rescue.bin' %(self.WORKDIR, self.MAINDEST))
 			system('cp -f /usr/share/gpt.bin %s/gpt.bin' %(self.MAINDEST))
 
-		if self.MACHINEBUILD in ("h9","i55plus","h9combo","v8plus","multibox","hd60","hd61"):
+		if self.MACHINEBUILD in ("h9","i55plus"):
 			system('mv %s/fastboot.bin %s/fastboot.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/pq_param.bin %s/pq_param.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/bootargs.bin %s/bootargs.bin' %(self.WORKDIR, self.MAINDEST))
@@ -628,6 +609,7 @@ class ImageBackup(Screen):
 
 		if self.MACHINEBUILD in ("h9combo","v8plus","multibox","hd60","hd61"):
 			system('mv %s/baseparam.bin %s/bootoptions.bin' %(self.WORKDIR, self.MAINDEST))
+			system('mv %s/uImage %s/uImage' %(self.WORKDIR, self.MAINDEST))
 
 		if self.MODEL in ("gbquad", "gbquadplus", "gb800ue", "gb800ueplus", "gbultraue", "gbultraueh", "twinboxlcd", "twinboxlcdci", "singleboxlcd", "sf208", "sf228"):
 			lcdwaitkey = '/usr/share/lcdwaitkey.bin'
@@ -636,10 +618,12 @@ class ImageBackup(Screen):
 				system('cp %s %s/lcdwaitkey.bin' %(lcdwaitkey, self.MAINDEST))
 			if path.exists(lcdwarning):
 				system('cp %s %s/lcdwarning.bin' %(lcdwarning, self.MAINDEST))
+
 		if self.MODEL in ("e4hdultra","protek4k"):
 			lcdwarning = '/usr/share/lcdflashing.bmp'
 			if path.exists(lcdwarning):
 				system('cp %s %s/lcdflashing.bmp' %(lcdwarning, self.MAINDEST))
+
 		if self.MODEL == "gb800solo":
 			burnbat = "%s/fullbackup_%s/%s" % (self.DIRECTORY, self.MODEL, self.DATE)
 			f = open("%s/burn.bat" % (burnbat), "w")
@@ -653,8 +637,10 @@ class ImageBackup(Screen):
 		if self.MACHINEBUILD in ("h9","i55plus","hd60","hd61"):
 			cmdlist.append('cp -f /usr/share/fastboot.bin %s/fastboot.bin' %(self.MAINDESTROOT))
 			cmdlist.append('cp -f /usr/share/bootargs.bin %s/bootargs.bin' %(self.MAINDESTROOT))
-		if self.MACHINEBUILD in ("multibox","v8plus","h9combo"):
-			cmdlist.append('cp -f /usr/share/update_bootargs_%s.bin %s/update_bootargs_%s.bin' %(self.MACHINEBUILD,self.EXTRAROOT,self.MACHINEBUILD))
+
+		if SystemInfo["canRecovery"]:
+			cmdlist.append('7za a -r -bt -bd %s/%s-%s-%s-backup-%s_recovery.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE, self.MAINDESTROOT))
+
 		if SystemInfo["HaveMultiBoot"] and not SystemInfo["HasRootSubdir"]:
 			imageversionfile = "/tmp/bi/RootSubdir/etc/image-version"
 			if os.path.exists(imageversionfile) is True:
@@ -702,6 +688,8 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "' + _("Use OnlineFlash in SoftwareManager") + '"')
 		elif file_found:
 			cmdlist.append('echo "________________________________________________________________________________\n"')
+			if SystemInfo["canRecovery"] and self.RECOVERY:
+				cmdlist.append('echo "' + _("Image created on: %s/%s-%s-%s-backup-%s_recovery.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE) + '"')
 			cmdlist.append('echo -e "' + _("Image created on:\n%s/full_backups/%s-%s-%s-%s-backup-%s.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.HDFIMAGEBUILD, self.MODEL, self.DATE) + '"')
 			cmdlist.append('echo "________________________________________________________________________________\n"')
 			cmdlist.append('echo "' + _("To restore the image:") + '"')
@@ -716,7 +704,6 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "' + _("     no writing permission on back-up device") + '"')
 			cmdlist.append('echo " "')
 
-		#if SystemInfo["HasRootSubdir"]:
 		cmdlist.append("rm -rf %s/fullbackup_%s" %(self.DIRECTORY, self.MODEL))
 
 		if SystemInfo["HasRootSubdir"] or SystemInfo["HaveMultiBoot"]:
