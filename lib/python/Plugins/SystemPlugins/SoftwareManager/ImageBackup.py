@@ -376,11 +376,11 @@ class ImageBackup(Screen):
 			cmd2 = None
 			cmd3 = None
 		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or SystemInfo["HasRootSubdir"] or self.MACHINEBUILD in ("gbmv200","u51","u52","u53","u54","u56","u5","u5pvr","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k","v8plus","multibox","h9combo","hd60","hd61"):
-			cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./run --exclude ./var/lib/samba/private/msg.sock ." % (self.MKFS, self.WORKDIR, self.backuproot)
+			cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./run --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock ." % (self.MKFS, self.WORKDIR, self.backuproot)
 			cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 			cmd3 = None
 		elif "tar.xz" in self.ROOTFSTYPE.split():
-			cmd1 = "%s -cJf %s/rootfs.tar.xz -C %s --exclude ./var/nmbd --exclude ./run --exclude ./var/lib/samba/private/msg.sock ." % (self.MKFS, self.WORKDIR, self.backuproot)
+			cmd1 = "%s -cJf %s/rootfs.tar.xz -C %s --exclude ./var/nmbd --exclude ./run --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock ." % (self.MKFS, self.WORKDIR, self.backuproot)
 			cmd2 = None
 			cmd3 = None
 		else:
@@ -407,7 +407,7 @@ class ImageBackup(Screen):
 			cmdlist.append(cmd2)
 		if cmd3:
 			cmdlist.append(cmd3)
-		cmdlist.append("chmod 644 %s/%s" %(self.WORKDIR, self.ROOTFSBIN))
+		#cmdlist.append("chmod 644 %s/%s" %(self.WORKDIR, self.ROOTFSBIN))
 
 		if self.MODEL in ("gbquad4k","gbue4k","gbx34k"):
 			cmdlist.append('echo " "')
@@ -429,7 +429,29 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "' + _("Create:") + ' logo dump"')
 			cmdlist.append("dd if=/dev/mtd4 of=%s/logo.bin" % self.WORKDIR)
 
-		if self.EMMCIMG == "usb_update.bin" and self.RECOVERY:
+		if self.MACHINEBUILD  in ("cc1","sf8008","sf8008s","sf8008t","ustym4kpro"):
+			cmdlist.append('echo " "')
+			cmdlist.append('echo "' + _("Create:") + ' fastboot dump"')
+			cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/fastboot.bin" % self.WORKDIR)
+			cmdlist.append('echo "' + _("Create:") + ' bootargs dump"')
+			cmdlist.append("dd if=/dev/mmcblk0p2 of=%s/bootargs.bin" % self.WORKDIR)
+			cmdlist.append('echo "' + _("Create:") + ' boot dump"')
+			cmdlist.append("dd if=/dev/mmcblk0p3 of=%s/boot.img" % self.WORKDIR)
+			cmdlist.append('echo "' + _("Create:") + ' baseparam.dump"')
+			cmdlist.append("dd if=/dev/mmcblk0p4 of=%s/baseparam.img" % self.WORKDIR)
+			cmdlist.append('echo "' + _("Create:") + ' pq_param dump"')
+			cmdlist.append("dd if=/dev/mmcblk0p5 of=%s/pq_param.bin" % self.WORKDIR)
+			cmdlist.append('echo "' + _("Create:") + ' logo dump"')
+			cmdlist.append("dd if=/dev/mmcblk0p6 of=%s/logo.img" % self.WORKDIR)
+			cmdlist.append('echo "' + _("Create:") + ' deviceinfo dump"')
+			cmdlist.append("dd if=/dev/mmcblk0p7 of=%s/deviceinfo.bin" % self.WORKDIR)
+			cmdlist.append('echo "' + _("Create:") + ' apploader dump"')
+			cmdlist.append("dd if=/dev/mmcblk0p8 of=%s/apploader.bin" % self.WORKDIR)
+			cmdlist.append('echo "' + _("Create:") + ' rootfs dump"')
+			cmdlist.append("dd if=/dev/zero of=%s/rootfs.ext4 seek=524288 count=0 bs=1024" % (self.WORKDIR))
+			cmdlist.append("mkfs.ext4 -F -i 4096 %s/rootfs.ext4 -d /tmp/bi/root" % (self.WORKDIR))
+
+		if self.EMMCIMG == "usb_update.bin" and SystemInfo["canRecovery"]:
 			SEEK_CONT = (Harddisk.getFolderSize(self.backuproot) / 1024) + 10000
 			cmdlist.append('echo "' + _("Create:") + " fastboot dump" + '"')
 			cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/fastboot.bin" % self.WORKDIR)
@@ -455,8 +477,13 @@ class ImageBackup(Screen):
 		cmdlist.append('echo "' + _("Create:") + ' kerneldump"')
  		cmdlist.append('echo " "')
 
-		if SystemInfo["HaveMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
-			cmdlist.append("dd if=%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
+		if SystemInfo["HaveMultiBoot"]:
+			if SystemInfo["HasRootSubdir"]:
+				cmdlist.append("dd if=%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
+			else:
+				cmdlist.append("dd if=/dev/%s of=%s/kernel.bin" % (self.MTDKERNEL ,self.WORKDIR))
+		elif self.MTDKERNEL.startswith('mmcblk0'):
+			cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
 		else:
 			cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
 		cmdlist.append('echo " "')
@@ -638,8 +665,8 @@ class ImageBackup(Screen):
 			cmdlist.append('cp -f /usr/share/fastboot.bin %s/fastboot.bin' %(self.MAINDESTROOT))
 			cmdlist.append('cp -f /usr/share/bootargs.bin %s/bootargs.bin' %(self.MAINDESTROOT))
 
-		if SystemInfo["canRecovery"]:
-			cmdlist.append('7za a -r -bt -bd %s/%s-%s-%s-backup-%s_recovery.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE, self.MAINDESTROOT))
+		#if SystemInfo["canRecovery"]:
+			#cmdlist.append('7za a -r -bt -bd %s/%s-%s-%s-backup-%s_recovery.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE, self.MAINDESTROOT))
 
 		if SystemInfo["HaveMultiBoot"] and not SystemInfo["HasRootSubdir"]:
 			imageversionfile = "/tmp/bi/RootSubdir/etc/image-version"
@@ -688,8 +715,8 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "' + _("Use OnlineFlash in SoftwareManager") + '"')
 		elif file_found:
 			cmdlist.append('echo "________________________________________________________________________________\n"')
-			if SystemInfo["canRecovery"] and self.RECOVERY:
-				cmdlist.append('echo "' + _("Image created on: %s/%s-%s-%s-backup-%s_recovery.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE) + '"')
+			#if SystemInfo["canRecovery"]:
+			#	cmdlist.append('echo "' + _("Image created on: %s/%s-%s-%s-backup-%s_recovery.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.MODEL, self.DATE) + '"')
 			cmdlist.append('echo -e "' + _("Image created on:\n%s/full_backups/%s-%s-%s-%s-backup-%s.zip") %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.HDFIMAGEBUILD, self.MODEL, self.DATE) + '"')
 			cmdlist.append('echo "________________________________________________________________________________\n"')
 			cmdlist.append('echo "' + _("To restore the image:") + '"')
