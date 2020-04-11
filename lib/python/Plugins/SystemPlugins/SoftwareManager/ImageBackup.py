@@ -21,10 +21,10 @@ import commands
 import datetime
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
-VERSION = _("Version %s %s") %(getImageDistro().upper(), getImageVersion())
+VERSION = _("Version %s %s.1") %(getImageDistro().upper(), getImageVersion())
 
 HaveGZkernel = True
-if SystemInfo["HasRootSubdir"] or getMachineBuild() in ('multibox','gbmv200','viper4k','i55plus','osmio4k','osmio4kplus','sf8008','cc1','dags72604', 'u41', 'u51','u52','u53','u54','u55','u56','h9','h9combo','u5','u5pvr','sf5008','et1x000','hd51','hd52','sf4008', 'dags7252','gb7252','vs1500','h7','xc7439','8100s','dm7080','dm820','dm520','dm525','dm900'):
+if SystemInfo["HasRootSubdir"] or getMachineBuild() in ('multibox','gbmv200','viper4k','i55plus','osmio4k','osmio4kplus','osmini4k','sf8008','cc1','dags72604', 'u41', 'u51','u52','u53','u54','u55','u56','h9','h9combo','u5','u5pvr','sf5008','et1x000','hd51','hd52','sf4008', 'dags7252','gb7252','vs1500','h7','xc7439','8100s','dm7080','dm820','dm520','dm525','dm900'):
 	HaveGZkernel = False
 
 def Freespace(dev):
@@ -85,7 +85,7 @@ class ImageBackup(Screen):
 			self.MTDBOOT = "mmcblk0p1"
 			self.EMMCIMG = "disk.img"
 
-		if self.MACHINEBUILD in ("xc7439","osmio4k","osmio4kplus"):
+		if self.MACHINEBUILD in ("xc7439","osmio4k","osmio4kplus","osmini4k"):
 			self.MTDBOOT = "mmcblk1p1"
 			self.EMMCIMG = "emmc.img"
 
@@ -205,7 +205,7 @@ class ImageBackup(Screen):
 					cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
 				else:
 					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-			elif self.MACHINEBUILD in ("osmio4k","osmio4kplus"):
+			elif self.MACHINEBUILD in ("osmio4k","osmio4kplus","osmini4k"):
 				if self.list[self.selection] == "Recovery":
 					cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
 				else:
