@@ -49,7 +49,7 @@ from Tools import Directories, Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN
 from Tools.KeyBindings import getKeyDescription
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, pNavigation, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, eDVBDB, quitMainloop
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getDriverDate, getImageVersion, getImageBuild, getMachineProcModel, getMachineBuild
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getDriverDate, getImageVersion, getImageBuild, getMachineProcModel, getMachineBuild ,getMachineMtdKernel
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -6440,6 +6440,7 @@ try:
 	os.system("echo getMachineBuild = " + getMachineBuild() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getChipSetString = " + about.getChipSetString() + " >> /etc/enigma2/boxinformations")
+	os.system("echo getMachineMtdKernel = " + getMachineMtdKernel() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getBrandOEM = " + getBrandOEM() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getDriverDate = " + getDriverDate() + " >> /etc/enigma2/boxinformations")
 	os.system("echo getImageVersion = " + getImageVersion() + " >> /etc/enigma2/boxinformations")
