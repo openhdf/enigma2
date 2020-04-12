@@ -7,6 +7,18 @@
 		</widget>
 	</screen>
 
+<!-- MyRecPanel -->
+	<screen name="MyRecPanel">
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,RecBlink,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink,3000</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,Rec,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+
 <!-- Wizard -->
 	<screen name="WizardSummary" position="0,0" size="1,1">
 		<eLabel position="0,0" size="1,1" text=" HI " />
@@ -25,6 +37,8 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
+		<panel name="MyClockPanel" />
+		<panel name="MyRecPanel" />
 	</screen>
 
 <!-- movieplayer-->
@@ -165,7 +179,7 @@
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="    ">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Nothing,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
-		</widget>
+		</widget>	
 	</screen>
 
 <!-- webradioFS  -->
