@@ -1,121 +1,175 @@
 #NAME IPTV Osteuropa
 #SERVICE 1:64:1:0:0:0:0:0:0:0:
-#DESCRIPTION Update 23.06.2018 by Team www.hdfreaks.cc
-#SERVICE 1:64:58:0:0:0:0:0:0:0:
-#DESCRIPTION +++ROMANIA+++
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//edge70.rcs-rds.ro/digi24edge/smil%3adigi24.smil/master.m3u8
-#DESCRIPTION digi24
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//188.138.235.52/live/512_direct
-#DESCRIPTION ProTV 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//46.4.14.12%3a9999/intermedia1/intermedia1/playlist.m3u8
-#DESCRIPTION Intermedia 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//webmobile.xdev.ro%3a81/tv13/playlist.m3u8
-#DESCRIPTION NEST TV Suceava
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//webmobile.xdev.ro%3a81/tv7/playlist.m3u8
-#DESCRIPTION Cromtel TV
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//46.4.14.12%3a9999/btvsvlive/btvsvlive/playlist.m3u8
-#DESCRIPTION Bucovina TV Suceava
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//82.76.40.76%3a80/utvedge/utvlive/playlist.m3u8
-#DESCRIPTION UTV Music
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//81.196.202.152/live/InfoHd
-#DESCRIPTION INFO HD Media
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//86.123.175.99/live/myStream/master.m3u8
-#DESCRIPTION Brasov TV
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//s1.streamnet.ro%3a8014/stream.flv
-#DESCRIPTION ITV SATU MARE 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//rtmp2.chrominance.ro/enescu/ playpath=encoder1 swfUrl=http%3a//www.chrominance.ro/enescu/jwplayer/jwplayer.flash.swf pageUrl=http%3a//www.chrominance.ro/enescu/
-#DESCRIPTION 6TV
+#DESCRIPTION Update 06.01.2020 by Team www.hdfreaks.cc
 #SERVICE 1:64:0:0:0:0:0:0:0:0:
 #DESCRIPTION Albanien 
-#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//82.114.65.202%3a1935/live/rrokumtv/playlist.m3u8
-#DESCRIPTION RROKUM HD (720p)
 #SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//66.55.93.204/hls-live/livepkgr/_definst_/report/stream.m3u8
 #DESCRIPTION REPORT TV (450p)
-#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//tv.balkanweb.com%3a8081/news24/livestream/playlist.m3u8
-#DESCRIPTION NEWS 24 (432p)
-#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//84.20.77.50%3a554/live/rtmp.stream/playlist.m3u8
-#DESCRIPTION TV Jug (404p)
-#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//stream.shqiptv.com%3a7080/altvusa/index.m3u8
-#DESCRIPTION ALBANIAN TV USA (480p)
+#SERVICE 1:0:1:0:0:0:0:0:0:0:http%3a//84.22.32.190%3a8007/rtk1hd
+#DESCRIPTION RTK 1 HD
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//uk4.streamingpulse.com%3a1935/RTVZiK/RTVZiK/playlist.m3u8
 #DESCRIPTION RTV Zeri Danimarke (720p) 
-#SERVICE 4097:0:1:1:0:0:0:0:0:0:rtmp%3a//live.tvkoha.tv/live/koha/livestream
-#DESCRIPTION KOHA TV (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.opoja.tv%3a8000/live/HD/TvOpoja/1.m3u8 
-#DESCRIPTION OPOJA TV (720p)
-#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//xrozafashkoder1x.api.channel.livestream.com/3.0/playlist.m3u8
-#DESCRIPTION ROZAFA(576p)  
+#SERVICE 4097:0:1:3:0:0:0:0:0:0:http%3a//79.106.48.2/live/rtsh_1ott/playlist.m3u8
+#DESCRIPTION RTSH 1
+#SERVICE 4097:0:1:3:0:0:0:0:0:0:http%3a//79.106.48.2/live/rtsh_2ott_p3/playlist.m3u8
+#DESCRIPTION RTSH 2
+#SERVICE 4097:0:1:7:0:0:0:0:0:0:http%3a//79.106.48.2/live/rtsh_3ott_p3/playlist.m3u8
+#DESCRIPTION RTSH 3
+#SERVICE 4097:0:1:9:0:0:0:0:0:0:http%3a//79.106.48.2/live/rtsh_plus_ott_p3/playlist.m3u8
+#DESCRIPTION RTSH Plus
+#SERVICE 4097:0:1:11:0:0:0:0:0:0:http%3a//79.106.48.2/live/rtsh_shqip_ott_p2/playlist.m3u8
+#DESCRIPTION RTSH Shqip
+#SERVICE 4097:0:1:13:0:0:0:0:0:0:http%3a//79.106.48.2/live/rtsh_sport_ott_p3/playlist.m3u8
+#DESCRIPTION RTSH Sport 
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Armenien
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s10/index.m3u8
+#DESCRIPTION 21TV HD (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s9/index.m3u8
+#DESCRIPTION AR 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s32/index.m3u8 
+#DESCRIPTION Armenia Comedy 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s4/index.m3u8 
+#DESCRIPTION Armenia TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s11/index.m3u8
+#DESCRIPTION ArmNews TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s8/index.m3u8
+#DESCRIPTION ATV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s74/index.m3u8 
+#DESCRIPTION Bazmoc ATV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s1/index.m3u8
+#DESCRIPTION H1 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s2/index.m3u8
+#DESCRIPTION H2 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s22/index.m3u8 
+#DESCRIPTION Hay kino 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s42/index.m3u8
+#DESCRIPTION Jan TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s5/index.m3u8
+#DESCRIPTION Kentron TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s12/index.m3u8
+#DESCRIPTION MOTV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s3/index.m3u8 
+#DESCRIPTION Shant 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s13/index.m3u8
+#DESCRIPTION Shoxakat TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s46/index.m3u8 
+#DESCRIPTION Tuntunik 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s7/index.m3u8 
+#DESCRIPTION Yerkir Media 
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Bosnien & Herzegowina
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//tv.si/ts/Hayat/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION HAYAT 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.210.205.41%3a8080/OBN/index.m3u8
+#DESCRIPTION OBN
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Croatia - Kroatien - Hrvatska
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//tv.si/ts/CMC/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION CMC TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.210.205.41%3a8080/DOMATV/index.m3u8
+#DESCRIPTION Doma TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//195.29.70.82/PLTV/88888888/224/3221226407/04.m3u8
+#DESCRIPTION GB
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/HRT1/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION HRT 1 (mobia.si)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/HRT2/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION HRT 2 (mobia.si)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//tv.si/ts/HRT1/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION HRT 1 (tv.si)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//tv.si/ts/HRT2/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION HRT 2 (tv.si)
+#SERVICE 4097:0:1:387:4E84:16E:A00000:0:0:0:http%3a//195.29.70.67/PLTV/88888888/224/3221226280/04.m3u8
+#DESCRIPTION HRT 3
+#SERVICE 4097:0:1:388:4E84:16E:A00000:0:0:0:http%3a//195.29.70.89/PLTV/88888888/224/3221226281/04.m3u8
+#DESCRIPTION HRT 4
+#SERVICE 4097:0:1:FA1:4:601:FFFF0000:0:0:0:http%3a//195.29.70.84/PLTV/88888888/224/3221226195/04.m3u8
+#DESCRIPTION RTL Hrvatska
 #SERVICE 1:64:0:0:0:0:0:0:0:0::Czech
 #DESCRIPTION Czech - Tschechien
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//nn.geo.joj.sk/hls/family-540.m3u8
 #DESCRIPTION JOJ Family 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tv.slusnejkanal.cz/hls/sktv.m3u8:
-#DESCRIPTION Rebel 2
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//65.254.55.10%3a4000/live/196/196.m3u8
-#DESCRIPTION Ceskoslovensko HD
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//65.254.55.10%3a4000/live/195/195.m3u8
-#DESCRIPTION Nick
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//65.254.55.10%3a4000/live/197/197.m3u8
-#DESCRIPTION Eurosport
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Griechenland
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//82.192.84.30%3a554/live/myStream.sdp/playlist.m3u8
+#DESCRIPTION 4E 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//srv.viiideo.gr%3a1935/axeloos/live/playlist.m3u8
+#DESCRIPTION Axelwos TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.streams.ovh%3a1935/cannali/cannali/playlist.m3u8
+#DESCRIPTION Cannali
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//live.cretetv.gr/cretetv/myStream
+#DESCRIPTION CreteTv (480p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.ioniantv.gr%3a8081/ionian/live/playlist.m3u8
+#DESCRIPTION Ionian Channel (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//flashcloud.mediacdn.com/live/kontratv/.m3u8
+#DESCRIPTION Kontra (400p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.cretetv.gr%3a1935/cretetv/myStream/playlist.m3u8
+#DESCRIPTION KPHTH TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//erato.multiserver.gr%3a1935/imp/imp/playlist.m3u8
+#DESCRIPTION Lychnos 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream2.svbllc.com%3a1935/mega/mega.stream/playlist.m3u8
+#DESCRIPTION Mega Cosmos 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//176.9.123.140%3a1935/messinia/messinia/master.m3u8
+#DESCRIPTION Messinia TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.netvtoronto.com%3a1935/NetvToronto/NetvToronto/playlist.m3u8
+#DESCRIPTION NETV Toronto 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//81.21.47.74/hls/live.m3u8
+#DESCRIPTION Sigma CY (864p)
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//wpso.com%3a1936/hls/music1.m3u8?#User-Agent=Android
+#DESCRIPTION TILEMOUSIKI
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.62.176.153/hls/tv100/index.m3u8
+#DESCRIPTION TV 100 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//live.streams.ovh%3a1935/tvfilopoli/tvfilopoli/playlist.m3u8
+#DESCRIPTION TV Filopoli 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//streamer-cache.grnet.gr/parliament/hls/webtv.m3u8
+#DESCRIPTION VOULI (540p)
 #SERVICE 1:64:0:0:0:0:0:0:0:0:Polen
 #DESCRIPTION Polen (thx osaosa)
-#SERVICE 4097:0:1:2C:0:4C:0:0:0:0:https%3a//stream.smcdn.pl/fokustv-p/stream1/playlist.m3u8:Fokus TV
-#DESCRIPTION Fokus TV
-#SERVICE 4097:0:1:2B:0:1:0:0:0:0:http%3a//stream.hopechannel.pl/livetv/colombo/hope_high/index.m3u8:Hope Channel
+#SERVICE 4097:0:1:2B:0:1:0:0:0:0:http%3a//stream.hopechannel.pl/livetv/colombo/hope_high/index.m3u8
 #DESCRIPTION Hope Channel
-#SERVICE 4097:0:1:32:0:47:0:0:0:0:https%3a//stream.tvimperium.pl/ram/hls_adaptive/tvimperium_hi/index.m3u8:Imperium TV Gliwice
-#DESCRIPTION Imperium TV Gliwice
-#SERVICE 4097:0:1:17:0:F:0:0:0:0:rtmp%3a//stream.tvkujawy.pl/live/broadcast:Kujawy TV
-#DESCRIPTION Kujawy TV
-#SERVICE 4097:0:1:B:0:63:0:0:0:0:https%3a//stream.mango.pl%3a4443/mango/_definst_/live/chunklist_w762274906.m3u8:Mango TV
+#SERVICE 4097:0:1:B:0:63:0:0:0:0:https%3a//stream.mango.pl%3a4443/mango/_definst_/live/chunklist_w762274906.m3u8
 #DESCRIPTION Mango TV
-#SERVICE 4097:0:1:F:0:11:0:0:0:0:rtmp%3a//stream.sferatv.pl/sferalive/_definst_/mp4%3alive3:Sfera TV
-#DESCRIPTION Sfera TV
-#SERVICE 4097:0:1:B:0:15:0:0:0:0:rtmp%3a//live-tvk.tvkstella.pl/flvplayback/StellaLive:Stella
+#SERVICE 4097:0:1:B:0:15:0:0:0:0:rtmp%3a//live-tvk.tvkstella.pl/flvplayback/StellaLive
 #DESCRIPTION Stella
-#SERVICE 4097:0:1:B:0:14:0:0:0:0:rtsp%3a//trwamtv.live.e53-po.insyscd.net/trwamtv.live-rtsp/trwamtv_500.stream:Trwam TV
-#DESCRIPTION Trwam TV
-#SERVICE 4097:0:1:21:0:58:0:0:0:0:http%3a//m2-tvrepublika.4vod.tv/smil%3apremium_abr.ism/chunklist_b1600000.m3u8?:TV Republika
+#SERVICE 4097:0:1:21:0:58:0:0:0:0:http%3a//m2-tvrepublika.4vod.tv/smil%3apremium_abr.ism/chunklist_b1600000.m3u8?
 #DESCRIPTION TV Republika
-#SERVICE 4097:0:1:2B:0:4C:0:0:0:0:http%3a//217.173.176.107%3a1935/live/ngrp%3atvk.stream_all/master.m3u8:TV Toruń
+#SERVICE 4097:0:1:2B:0:4C:0:0:0:0:http%3a//217.173.176.107%3a1935/live/ngrp%3atvk.stream_all/master.m3u8
 #DESCRIPTION TV Toruń
-#SERVICE 4097:0:1:B:0:C:0:0:0:0:https%3a//redir.cache.orange.pl/jupiter/o2-cl4//livetvopl/list.m3u8:tvo
-#DESCRIPTION tvo
-#SERVICE 4097:0:1:7:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpbialystok:TVP 3 Białystok
+#SERVICE 4097:0:1:7:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpbialystok
 #DESCRIPTION TVP 3 Białystok
-#SERVICE 4097:0:1:8:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpbydgoszcz:TVP 3 Bydgoszcz
+#SERVICE 4097:0:1:8:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpbydgoszcz
 #DESCRIPTION TVP 3 Bydgoszcz
-#SERVICE 4097:0:1:9:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpgdansk:TVP 3 Gdańsk
+#SERVICE 4097:0:1:9:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpgdansk
 #DESCRIPTION TVP 3 Gdańsk
-#SERVICE 4097:0:1:10:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpgorzow:TVP 3 Gorzów
+#SERVICE 4097:0:1:10:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpgorzow
 #DESCRIPTION TVP 3 Gorzów
-#SERVICE 4097:0:1:11:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpkatowice:TVP 3 Katowice
+#SERVICE 4097:0:1:11:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpkatowice
 #DESCRIPTION TVP 3 Katowice
-#SERVICE 4097:0:1:12:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpkielce:TVP 3 Kielce
+#SERVICE 4097:0:1:12:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpkielce
 #DESCRIPTION TVP 3 Kielce
-#SERVICE 4097:0:1:13:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpkrakow:TVP 3 Kraków
+#SERVICE 4097:0:1:13:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpkrakow
 #DESCRIPTION TVP 3 Kraków
-#SERVICE 4097:0:1:14:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvplublin:TVP 3 Lublin
+#SERVICE 4097:0:1:14:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvplublin
 #DESCRIPTION TVP 3 Lublin
-#SERVICE 4097:0:1:16:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpolsztyn:TVP 3 Olsztyn
+#SERVICE 4097:0:1:16:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpolsztyn
 #DESCRIPTION TVP 3 Olsztyn
-#SERVICE 4097:0:1:17:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpopole:TVP 3 Opole
+#SERVICE 4097:0:1:17:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpopole
 #DESCRIPTION TVP 3 Opole
-#SERVICE 4097:0:1:18:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvppoznan:TVP 3 Poznań
+#SERVICE 4097:0:1:18:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvppoznan
 #DESCRIPTION TVP 3 Poznań
-#SERVICE 4097:0:1:19:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvprzeszow:TVP 3 Rzeszów
+#SERVICE 4097:0:1:19:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvprzeszow
 #DESCRIPTION TVP 3 Rzeszów
-#SERVICE 4097:0:1:20:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpszczecin:TVP 3 Szczecin
+#SERVICE 4097:0:1:20:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpszczecin
 #DESCRIPTION TVP 3 Szczecin
-#SERVICE 4097:0:1:21:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpwarszawa:TVP 3 Warszawa
+#SERVICE 4097:0:1:21:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpwarszawa
 #DESCRIPTION TVP 3 Warszawa
-#SERVICE 4097:0:1:22:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpwroclaw:TVP 3 Wrocław
+#SERVICE 4097:0:1:22:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpwroclaw
 #DESCRIPTION TVP 3 Wrocław
-#SERVICE 4097:0:1:15:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvplodz:TVP 3 Łódź
+#SERVICE 4097:0:1:15:0:48:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvplodz
 #DESCRIPTION TVP 3 Łódź
-#SERVICE 4097:0:1:10:0:8:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpinfo:TVP Info
+#SERVICE 4097:0:1:10:0:8:0:0:0:0:http%3a//hbbtvlive.v3.tvp.pl/hbbtvlive/livestream.php?app_id=tvpinfo
 #DESCRIPTION TVP Info
-#SERVICE 4097:0:1:24:0:4A:0:0:0:0:http%3a//gargoyle.tomkow.pl/hls/tvt.m3u8:TVT Zgorzelec
+#SERVICE 4097:0:1:24:0:4A:0:0:0:0:http%3a//gargoyle.tomkow.pl/hls/tvt.m3u8
 #DESCRIPTION TVT Zgorzelec
 #SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/27D4F385/4195/0/hls576/576p/list.m3u8?#User-Agent=Mozilla/5.0
 #DESCRIPTION POLSAT VIASAT NATURE
@@ -132,13 +186,149 @@
 #SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//hls.redefine.pl/99520853/1576/0/hls576/576p/list.m3u8?#User-Agent=Mozilla/5.0
 #DESCRIPTION 4FUN TV
 #SERVICE 1:64:0:0:0:0:0:0:0:0:
-#DESCRIPTION Moldavia
+#DESCRIPTION Rumänien
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//46.4.14.12%3a9999/btvsvlive/btvsvlive/playlist.m3u8
+#DESCRIPTION Bucovina TV Suceava
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//webmobile.xdev.ro%3a81/tv7/playlist.m3u8
+#DESCRIPTION Cromtel TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//edge70.rcs-rds.ro/digi24edge/smil%3adigi24.smil/master.m3u8
+#DESCRIPTION digi24
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//webmobile.xdev.ro%3a81/tv13/playlist.m3u8
+#DESCRIPTION NEST TV Suceava
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//82.76.40.76%3a80/utvedge/utvlive/playlist.m3u8
+#DESCRIPTION UTV Music
 #SERVICE 1:64:0:0:0:0:0:0:0:0:
-#DESCRIPTION Ostblock
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//wse.planeta-online.tv%3a1935/live/channel_130/chunklist.m3u8
-#DESCRIPTION Planeta
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ntk.cdnvideo.ru%3a1935/ntk-live//ntk.sdp/playlist.m3u8
-#DESCRIPTION NTK
+#DESCRIPTION Serbien
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/DOQ/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION 24 KITCHEN
+#SERVICE 5002:0:1:4EBB:CA4:3:EB0000:0:0:0:http%3a//mobia.si/ts/DMSAT/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia 
+#DESCRIPTION DM SAT 
+#SERVICE 1:0:1:0:0:0:0:0:0:0:http%3a//212.200.102.3%3a5000/rtp/239.0.0.1%3a5000
+#DESCRIPTION K::CN 1 
+#SERVICE 1:0:1:0:0:0:0:0:0:0:http%3a//212.200.102.3%3a5000/rtp/239.0.0.2%3a5000 
+#DESCRIPTION K::CN 2 
+#SERVICE 1:0:1:0:0:0:0:0:0:0:http%3a//212.200.102.3%3a5000/rtp/239.0.0.3%3a5000
+#DESCRIPTION K::CN 3
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/FISHUN/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia: SRB%3a LOV I RIBOLOV
+#DESCRIPTION LOV I RIBOLOV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.210.205.41%3a8080/PINK/index.m3u8
+#DESCRIPTION PINK
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.210.205.41%3a8080/PRVA/index.m3u8
+#DESCRIPTION PRVA 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//62.210.205.41%3a8080/RTS1/index.m3u8
+#DESCRIPTION RTS 1 HD (576p)
+#SERVICE 5002:0:1:3:0:0:0:0:0:0:https%3a//rts-live.morescreens.com/RTS_1_001/playlist.m3u8?video_id=5&authority_instance_id=spectar-prd-rts&token=5e6e98591b79888f5826c026b9e684bbb7531cd9&detected_delivery_method=mpegdash:RTS 1 HD
+#DESCRIPTION RTS 1 HD
+#SERVICE 5002:0:1:3:0:0:0:0:0:0:https%3a//rts-live.morescreens.com/RTS_1_002/playlist.m3u8?video_id=4&authority_instance_id=spectar-prd-rts&token=5e6e98591b79888f5826c026b9e684bbb7531cd9&detected_delivery_method=mpegdash:RTS 2 HD
+#DESCRIPTION RTS 2 HD
+#SERVICE 5002:0:1:3:0:0:0:0:0:0:http%3a//rts-live.morescreens.com/RTS_1_013/playlist.m3u8?video_id=2&authority_instance_id=spectar-prd-rts&token=token=mpegdash:RTS 3
+#DESCRIPTION RTS 3
+#SERVICE 5002:0:1:3:0:0:0:0:0:0:https%3a//rts-live.morescreens.com/RTS_1_005/playlist.m3u8?video_id=14&authority_instance_id=spectar-prd-rts&token=5e6e98591b79888f5826c026b9e684bbb7531cd9&detected_delivery_method=mpegdash:RTS DRAMA
+#DESCRIPTION RTS DRAMA
+#SERVICE 5002:0:1:3:0:0:0:0:0:0:https%3a//rts-live.morescreens.com/RTS_1_003/playlist.m3u8?video_id=16886&authority_instance_id=spectar-prd-rts&token=5e6e98591b79888f5826c026b9e684bbb7531cd9&detected_delivery_method=mpegdash:RTS KOLO
+#DESCRIPTION RTS KOLO
+#SERVICE 5002:0:1:3:0:0:0:0:0:0:https%3a//rts-live.morescreens.com/RTS_1_007/playlist.m3u8?video_id=8&authority_instance_id=spectar-prd-rts&token=5e6e98591b79888f5826c026b9e684bbb7531cd9&detected_delivery_method=mpegdash:RTS MUZIKA
+#DESCRIPTION RTS MUZIKA
+#SERVICE 5002:0:1:3:0:0:0:0:0:0:https%3a//rts-live.morescreens.com/RTS_1_014/playlist.m3u8?video_id=16889&authority_instance_id=spectar-prd-rts&token=5e6e98591b79888f5826c026b9e684bbb7531cd9&detected_delivery_method=mpegdash:RTS SVET HD
+#DESCRIPTION RTS SVET HD
+#SERVICE 5002:0:1:3:0:0:0:0:0:0:https%3a//rts-live.morescreens.com/RTS_1_004/playlist.m3u8?video_id=16&authority_instance_id=spectar-prd-rts&token=5e6e98591b79888f5826c026b9e684bbb7531cd9&detected_delivery_method=mpegdash:RTS TREZOR
+#DESCRIPTION RTS TREZOR
+#SERVICE 5002:0:1:3:0:0:0:0:0:0:https%3a//rts-live.morescreens.com/RTS_1_006/playlist.m3u8?video_id=11&authority_instance_id=spectar-prd-rts&token=5e6e98591b79888f5826c026b9e684bbb7531cd9&detected_delivery_method=mpegdash:RTS ZIVOT
+#DESCRIPTION RTS ZIVOT 
+#SERVICE 5002:0:1:4E59:C86:3:EB0000:0:0:0:http%3a//mobia.si/ts/TV1000/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia 
+#DESCRIPTION TV 1000 
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Slowakei
+#SERVICE 4097:0:1:41:0:0:0:0:0:0:https%3a//ocko-live.ssl.cdn.cra.cz/channels/stv1/playlist/cze/live_hd.m3u8:Jednotka
+#DESCRIPTION Jednotka
+#SERVICE 4097:0:1:43:0:0:0:0:0:0:https%3a//ocko-live.ssl.cdn.cra.cz/channels/stv2/playlist/cze/live_hd.m3u8:Dvojka
+#DESCRIPTION Dvojka 
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Slowenien
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/Slo1/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION TV Slovenija 1
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/Slo2/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION TV Slovenija 2
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/Slo3/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION TV Slovenija 3
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/AKanal/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION A KANAL
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/Carli/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION Čarli TV
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/Brio/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION BRIO 
+#SERVICE 5002:0:1:4EA7:CA4:3:EB0000:0:0:0:http%3a//mobia.si/ts/DaVinciLear/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION Da Vinci Learning 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/DISCOVERYHD/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION DISCOVERY SHOWCASE HD
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/UniversalChannel/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia 
+#DESCRIPTION DIVA 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/FoxCrime/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia 
+#DESCRIPTION FOX CRIME 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/FoxLife/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia 
+#DESCRIPTION FOX LIFE 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/GOTV/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION GOTV
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/HBO/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION HBO 1
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/HBOC/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION HBO 2
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/HISTORYHD/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION HISTORY
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/PopKino/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia 
+#DESCRIPTION Kino 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/Minimax/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia 
+#DESCRIPTION MINIMAX 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/Nova24TV/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION NOVA 24 TV
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/PopOto/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION OTO
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/PETELIN/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION PETELIN TV
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/PinkSi/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia 
+#DESCRIPTION PINK SI 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts//PinkTV3/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION PINK TV 3
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts//PlanetTV/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION PLANET TV
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/PopTV/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION POP TV
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/SPORTTVHD/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION Sport 1 HD
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/SPORTTV2HD/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION Sport 2 HD
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/TELEM/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION TELE M
+#SERVICE 5002:0:1:4E94:C86:3:EB0000:0:0:0:http%3a//mobia.si/ts/TravelChannel/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION Travel Channel 
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/TVAS/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION TV AS
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/TVCELJE/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION TV CELJE
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/VASKANAL/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION VAS KANAL
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//mobia.si/ts/VTV/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
+#DESCRIPTION VTV
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Ungarn
+#SERVICE 4097:0:1:21:0:0:0:0:0:0:http%3a//78.109.108.62%3a1003/m1
+#DESCRIPTION M1
+#SERVICE 4097:0:1:23:0:0:0:0:0:0:http%3a//78.109.108.62%3a1004/m2
+#DESCRIPTION M2
+#SERVICE 4097:0:1:19:0:0:0:0:0:0:http%3a//78.109.108.62%3a1001/duna
+#DESCRIPTION Duna
+#SERVICE 4097:0:1:25:0:0:0:0:0:0:http%3a//78.109.108.62%3a1002/dunaworld
+#DESCRIPTION Duna World
+#SERVICE 4097:0:1:27:0:0:0:0:0:0:http%3a//78.109.108.62%3a1006/rtl
+#DESCRIPTION RTL KLUB
+#SERVICE 4097:0:1:29:0:0:0:0:0:0:http%3a//78.109.108.62%3a1007/rtl2
+#DESCRIPTION RTL 2 HU
+#SERVICE 4097:0:1:31:0:0:0:0:0:0:http%3a//78.109.108.62%3a3001/rtv1
+#DESCRIPTION RTV 1
+#SERVICE 4097:0:1:33:0:0:0:0:0:0:http%3a//78.109.108.62%3a3002/rtv2
+#DESCRIPTION RTV 2 
+#SERVICE 1:64:0:0:0:0:0:0:0:0:
+#DESCRIPTION Sonstige - Ostblock
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//89.218.30.37/ktklive/live.hq/playlist.m3u8
 #DESCRIPTION Ktklive  Kasachstan
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ios.cdn.bg%3a2006/fls/bonair.stream/playlist.m3u8
