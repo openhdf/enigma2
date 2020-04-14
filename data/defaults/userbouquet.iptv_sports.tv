@@ -1,107 +1,60 @@
 #NAME IPTV Sports
 #SERVICE 1:64:1:0:0:0:0:0:0:0:
-#DESCRIPTION Update 29.05.2018 by Team www.hdfreaks.cc
-#SERVICE 1:64:7:0:0:0:0:0:0:0::
-#DESCRIPTION Fußball und mehr
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//eventhlshttps-i.akamaihd.net/hls/live/263645/ssn-hd-https/indexvideo-3400.m3u8
+#DESCRIPTION Update 09.04.2020 by Team www.hdfreaks.cc
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//eventhlshttps-i.akamaihd.net/hls/live/263645/ssn-hd-https/mastervideo-3400.m3u8
 #DESCRIPTION Sky Sport News (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//dvt3wqo156bx.cloudfront.net/livechannel2/smil:switch2.smil/chunklist_b3174400_tkd293emF0b2tlbmhhc2g9UVg5UHB6OTU2UTFUenQ3RDhDcGxreTFiZ3JHc0NPS1lTVFN6Z2lNcFVOUT0=.m3u8
-#DESCRIPTION Sportime 1 (720P)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//dvt3wqo156bx.cloudfront.net/livechannel4/smil:switch4.smil/chunklist_b3174400_tkd293emF0b2tlbmhhc2g9TmtBblV0Q2ZKNWp5dzFkREYxdFROdGVtcEtKMllkbDg3Um8xTWZUc1BBVT0=.m3u8
-#DESCRIPTION Sportime 2 (720P)
-#SERVICE 4097:0:19:33FD:3ED:1:C00000:0:0:0:http%3a//apasfiisl.apa.at/ipad/orfs_q6a/orf.sdp/playlist.m3u8
-#DESCRIPTION ORF Sport+ HD   VPN
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//212.18.35.210/LIVE/EUROSPORT/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
-#DESCRIPTION EuroSport 1
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//212.18.35.210/LIVE/SK1/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
-#DESCRIPTION SportKlub1
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//212.18.35.210/LIVE/SK2/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
-#DESCRIPTION SportKlub2
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//212.18.35.210/LIVE/SK3/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
-#DESCRIPTION SportKlub3
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//212.18.35.210/LIVE/S1/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
-#DESCRIPTION S1
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//212.18.35.210/LIVE/S2/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
-#DESCRIPTION S2
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:https%3a//212.18.35.210/LIVE/EXTREME/stream_iptv_2000k.m3u8?#User-Agent=AppleCoreMedia
-#DESCRIPTION Extreme Sports
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.148.123.121%3a8888/ipvt_010
-#DESCRIPTION Arena Sport 1 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.148.123.121%3a8888/ipvt_011
-#DESCRIPTION Arena Sport 2 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.148.123.121%3a8888/ipvt_012
-#DESCRIPTION Arena Sport 3 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.148.123.121%3a8888/ipvt_013
-#DESCRIPTION Arena Sport 4 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.148.123.121%3a8888/ipvt_014
-#DESCRIPTION Arena Sport 5
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//51.15.42.158%3a8081/tv/match-boec/chunks.m3u8
-#DESCRIPTION Матч!Боец  
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//51.15.42.158%3a8081/tv/eurosport-1/chunks.m3u8
-#DESCRIPTION Eurosport 1
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//51.15.42.158%3a8081/tv/eurosport-2/chunks.m3u8
-#DESCRIPTION Eurosport 2
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//playlist.onlybest.tv/ru/channel/bf270b93cb04ab5f292d74f3144b4bcf/2/index.m3u8
-#DESCRIPTION Матч! Боец 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//playlist.onlybest.tv/ru/channel/262f9cb9e35b2e64d0571c3e9c1cd4fa/867/index.m3u8
-#DESCRIPTION Football 1 HD 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//playlist.onlybest.tv/ru/channel/262f9cb9e35b2e64d0571c3e9c1cd4fa/868/index.m3u8
-#DESCRIPTION Football 2 HD 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//playlist.onlybest.tv/ru/channel/bf270b93cb04ab5f292d74f3144b4bcf/29/index.m3u8
-#DESCRIPTION Матч! Футбол 1 HD 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//playlist.onlybest.tv/ru/channel/bf270b93cb04ab5f292d74f3144b4bcf/23/index.m3u8
-#DESCRIPTION Матч! Футбол 2 HD 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//playlist.onlybest.tv/ru/channel/bf270b93cb04ab5f292d74f3144b4bcf/24/index.m3u8
-#DESCRIPTION Матч! Футбол 3 HD
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//playlist.onlybest.tv/ru/channel/262f9cb9e35b2e64d0571c3e9c1cd4fa/5/index.m3u8
-#DESCRIPTION Матч!Футбол 1 576p 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//playlist.onlybest.tv/ru/channel/262f9cb9e35b2e64d0571c3e9c1cd4fa/6/index.m3u8
-#DESCRIPTION Матч!Футбол 2 576p 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//playlist.onlybest.tv/ru/channel/262f9cb9e35b2e64d0571c3e9c1cd4fa/7/index.m3u8
-#DESCRIPTION Матч!Футбол 3 576p 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//playlist.onlybest.tv/ru/channel/bf270b93cb04ab5f292d74f3144b4bcf/291/index.m3u8
-#DESCRIPTION КХЛ HD
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//217.107.192.37%3a9981/stream/channelid/1973655388?ticket=25827ED231ABE1EC00C4331D72178C12B126E1CD&profile=pass
-#DESCRIPTION Матч! Футбол 1 HD 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//217.107.192.37%3a9981/stream/channelid/433894475?ticket=3EB424DF141D94AA99BD6679C83BC5F35FCD962C&profile=pass
-#DESCRIPTION Матч! Футбол 2 HD 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//217.107.192.37%3a9981/stream/channelid/434875036?ticket=4FD0FA752ECCD4C739FE66BF1D05320B701B08F5&profile=pass
-#DESCRIPTION Матч! Футбол 3 HD 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//217.107.192.37%3a9981/stream/channelid/565927419?ticket=5D819A67447EB26A0F8889C7A5E87C21FC558B10&profile=pass
+#SERVICE 5002:0:19:33FD:3ED:1:C00000:0:0:0:https%3a//orfs.mdn.ors.at/out/u/orfs/q8c/manifest.m3u8
+#DESCRIPTION ORF Sport+ HD (720p)
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//rmtvlive-lh.akamaihd.net/i/rmtv_1@154306/index_1000_av-p.m3u8?sd=10&rebase=on?xtreamiptv.m3u8
+#DESCRIPTION Real Madrid TV HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//a.jsrdn.com/broadcast/22723/+0000/hi/c.m3u8
+#DESCRIPTION World of Free Sports TV
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.18/index.m3u8
+#DESCRIPTION Матч! Наш Спорт 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.47/index.m3u8
+#DESCRIPTION Матч! Игра (HD) 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.143/index.m3u8
 #DESCRIPTION Наш Футбол HD 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//206.51.143.155%3a1935/live/2.smil/playlist.m3u8
-#DESCRIPTION Fight Catch Network
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//178.22.187.253%3a1935/streaming-tv/mp4%3amyStream3
-#DESCRIPTION Automoto Tv  
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.1/index.m3u8
+#DESCRIPTION Матч Игра 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.93/index.m3u8
+#DESCRIPTION Eurosport 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.150/index.m3u8
+#DESCRIPTION Eurosport 2 HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.34/index.m3u8
+#DESCRIPTION Матч! Футбол 1 HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.82/index.m3u8
+#DESCRIPTION Матч! Футбол 2 HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.169/index.m3u8
+#DESCRIPTION Матч! Футбол 3 HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.53/index.m3u8
+#DESCRIPTION Матч! Футбол 1 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.100/index.m3u8
+#DESCRIPTION Матч! Футбол 2 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.102/index.m3u8
+#DESCRIPTION Матч! Футбол 3 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.84/index.m3u8
+#DESCRIPTION Матч! Арена (HD) 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.4/index.m3u8
+#DESCRIPTION Матч! Арена 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.72/index.m3u8
+#DESCRIPTION Матч! HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.16/index.m3u8
+#DESCRIPTION Матч! 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.248/index.m3u8
+#DESCRIPTION КХЛ HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.184/index.m3u8
+#DESCRIPTION Матч! БОЕЦ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.80/index.m3u8
+#DESCRIPTION Extreme Sports 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s79/index.m3u8
+#DESCRIPTION Fast&Fun Box
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//ott-cdn.ucom.am/s86/index.m3u8
+#DESCRIPTION FightBox
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//adtv.ercdn.net/adsport1/adsport1.m3u8
 #DESCRIPTION Abu Dhabi Sports 1 (720p)
 #SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//adtv.ercdn.net/adsport2/adsport2.m3u8
 #DESCRIPTION Abu Dhabi Sports 2 (720p)
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//rmtv24hweblive-lh.akamaihd.net/i/rmtv24hweben_1@300662/index_3_av-b.m3u8
-#DESCRIPTION Real Madrid TV (404p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//sevillafc_live-lh.akamaihd.net/i/video_0@354142/master.m3u8
-#DESCRIPTION Sevilla FC TV (480p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//37.247.100.99/Bursaspor/bursaspor/playlist.m3u8
-#DESCRIPTION BURSA SPORT (480p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//stream.sportstv.com.tr%3a1935/sportstv/SportsTV3/playlist.m3u8
-#DESCRIPTION SportsTV (488p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//tjktv.ercdn.net/tjktv_576p.m3u8:TJK TV (576p)
-#DESCRIPTION TJK TV (576p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//edge02.dcarsat.com.ar%3a1935/DXTV/DXTV/master.m3u8:DXTX Argentina (432p)
-#DESCRIPTION DXTX Argentina (432p)
 #SERVICE 1:64:3:0:0:0:0:0:0:0:
 #DESCRIPTION American Sports
-#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8?u=n1info#X-Forwarded-For=209.239.112.104
-#DESCRIPTION NBC GOLF (1080p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//svglive3-event.level3.nfl.com/nflent3/live/nfl_now/NFLNOW_4500k.m3u8:NFL NOW
-#DESCRIPTION NFL NOW (720p)
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//p12a-lh.akamaihd.net/i/arizona_delivery@199730/master.m3u8
-#DESCRIPTION PAC arizona
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//p12b-lh.akamaihd.net/i/bayarea_delivery@429334/master.m3u8
-#DESCRIPTION PAC bayarea
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//p12l-lh.akamaihd.net/i/la_delivery@425541/master.m3u8
-#DESCRIPTION PAC delivery
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//p12o-lh.akamaihd.net/i/oregon_delivery@103261/master.m3u8
-#DESCRIPTION PAC Oregon 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//p12w-lh.akamaihd.net/i/washington_delivery@426584/master.m3u8
-#DESCRIPTION PAC washington
+

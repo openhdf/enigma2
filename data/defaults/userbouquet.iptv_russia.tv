@@ -1,201 +1,338 @@
 #NAME IPTV Russia
 #SERVICE 1:64:1:0:0:0:0:0:0:0:
-#DESCRIPTION Update 15.07.2018 by Team www.hdfreaks.cc
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//secure-streams.akamaized.net/rt-doc/index2500.m3u8:RT Doc HD
+#DESCRIPTION Update 06.04.2020 by Team www.hdfreaks.cc
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//rt-doc.secure.footprint.net/1101.m3u8
 #DESCRIPTION RT Doc HD
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//secure-streams.akamaized.net/rt-uk/index2500.m3u8:RT UK HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//rt-uk.secure.footprint.net/1106.m3u8
 #DESCRIPTION RT UK HD
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//secure-streams.akamaized.net/rt-usa/index2500.m3u8:RT USA HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//rt-usa.secure.footprint.net/1105.m3u8
 #DESCRIPTION RT USA HD
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//hls-igi.cdnvideo.ru/igi/igi_sq/playlist.m3u8
-#DESCRIPTION iz.RU 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdnmg.secure.live.rtr-vesti.ru/live/smil%3arhd.smil/chunklist_b1600000.m3u8
-#DESCRIPTION Россия 1 HD 1 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//cdnmg.secure.live.rtr-vesti.ru/live/smil%3artrp.smil/chunklist_b1600000.m3u8
-#DESCRIPTION Россия-Планета HD 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=45&u=demo&p=demo
-#DESCRIPTION Ru-Беларусь1 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=46&u=demo&p=demo
-#DESCRIPTION Ru-Беларусь2 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=52&u=demo&p=demo
-#DESCRIPTION Ru-Беларусь3 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=102&u=demo&p=demo
-#DESCRIPTION Ru-Беларусь5 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=47&u=demo&p=demo
-#DESCRIPTION Ru-ОНТ 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=120&u=demo&p=demo
-#DESCRIPTION Ru-ВТВ 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=48&u=demo&p=demo
-#DESCRIPTION Ru-РЕНБеларусь 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=49&u=demo&p=demo
-#DESCRIPTION Ru-НТВБеларусь 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=50&u=demo&p=demo
-#DESCRIPTION Ru-РоссияРТР 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=51&u=demo&p=demo
-#DESCRIPTION Ru-МИР 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=34&u=demo&p=demo
-#DESCRIPTION Ru-TV1000 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=35&u=demo&p=demo
-#DESCRIPTION Ru-TV1000Action 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=36&u=demo&p=demo
-#DESCRIPTION Ru-TV1000РусскоеКино 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=38&u=demo&p=demo
-#DESCRIPTION Ru-History 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=8&u=demo&p=demo
-#DESCRIPTION Ru-Мульт 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=9&u=demo&p=demo
-#DESCRIPTION Ru-24Техно 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=13&u=demo&p=demo
-#DESCRIPTION Ru-FineLiving 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=14&u=demo&p=demo
-#DESCRIPTION Ru-XX1 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=6&u=demo&p=demo
-#DESCRIPTION Ru-Домашний 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=15&u=demo&p=demo
-#DESCRIPTION Ru-Ктоестькто 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=17&u=demo&p=demo
-#DESCRIPTION Ru-ТНТInternational 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=20&u=demo&p=demo
-#DESCRIPTION Ru-MTVDance 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=21&u=demo&p=demo
-#DESCRIPTION Ru-VH1Classic 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=22&u=demo&p=demo
-#DESCRIPTION Ru-CN 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=24&u=demo&p=demo
-#DESCRIPTION Ru-ExtremeSport 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=25&u=demo&p=demo
-#DESCRIPTION Ru-JimJam 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=26&u=demo&p=demo
-#DESCRIPTION Ru-Мояпланета 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=27&u=demo&p=demo
-#DESCRIPTION Ru-Наука2.0 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=29&u=demo&p=demo
-#DESCRIPTION Ru-BridgeTVРусскийХит 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=30&u=demo&p=demo
-#DESCRIPTION Ru-RTGTV 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=31&u=demo&p=demo
-#DESCRIPTION Ru-ОкеанТВ 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=32&u=demo&p=demo
-#DESCRIPTION Ru-BridgeTV 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=33&u=demo&p=demo
-#DESCRIPTION Ru-Сарафан  
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=55&u=demo&p=demo
-#DESCRIPTION Ru-EgoistTV 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=57&u=demo&p=demo
-#DESCRIPTION Ru-Телекафе 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=58&u=demo&p=demo
-#DESCRIPTION Ru-A1 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=60&u=demo&p=demo
-#DESCRIPTION Ru-Живи 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=61&u=demo&p=demo
-#DESCRIPTION Ru-MTV 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=65&u=demo&p=demo
-#DESCRIPTION Ru-ТелеканалФутбол 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=67&u=demo&p=demo
-#DESCRIPTION Ru-Театр 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=70&u=demo&p=demo
-#DESCRIPTION Ru-СовСек 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=71&u=demo&p=demo
-#DESCRIPTION Ru-Galaxy 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=72&u=demo&p=demo
-#DESCRIPTION Ru-Мама 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=73&u=demo&p=demo
-#DESCRIPTION Ru-VH1Europe 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=74&u=demo&p=demo
-#DESCRIPTION Ru-РодноеКино 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=76&u=demo&p=demo
-#DESCRIPTION Ru-NickJr. 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=79&u=demo&p=demo
-#DESCRIPTION Ru-ТНТMusic 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=80&u=demo&p=demo
-#DESCRIPTION Ru-Кинокомедия 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=81&u=demo&p=demo
-#DESCRIPTION Ru-Индийскоекино 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=82&u=demo&p=demo
-#DESCRIPTION Ru-Мужскоекино 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=83&u=demo&p=demo
-#DESCRIPTION Ru-КухняТВ 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=85&u=demo&p=demo
-#DESCRIPTION Ru-АвтоПлюс 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=86&u=demo&p=demo
-#DESCRIPTION Ru-365Дней 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=87&u=demo&p=demo
-#DESCRIPTION Ru-Nickelodeon 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=88&u=demo&p=demo
-#DESCRIPTION Ru-Перец 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=89&u=demo&p=demo
-#DESCRIPTION Ru-SonyHD 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=90&u=demo&p=demo
-#DESCRIPTION Ru-ParamountComedy 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=93&u=demo&p=demo
-#DESCRIPTION Ru-ParamountChannel 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=96&u=demo&p=demo
-#DESCRIPTION Ru-Киносерия 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=97&u=demo&p=demo
-#DESCRIPTION Ru-РБК 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=98&u=demo&p=demo
-#DESCRIPTION Ru-SonySci-fi 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=99&u=demo&p=demo
-#DESCRIPTION Ru-RTVi 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=101&u=demo&p=demo
-#DESCRIPTION Ru-Ностальгия 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=103&u=demo&p=demo
-#DESCRIPTION Ru-Sony 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=104&u=demo&p=demo
-#DESCRIPTION Ru-EuronewsРоссия 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=105&u=demo&p=demo
-#DESCRIPTION Ru-CBSReality 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=106&u=demo&p=demo
-#DESCRIPTION Ru-Карусель 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=108&u=demo&p=demo
-#DESCRIPTION Ru-Домкино 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=109&u=demo&p=demo
-#DESCRIPTION Ru-МУЗ 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=111&u=demo&p=demo
-#DESCRIPTION Ru-Жара 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=112&u=demo&p=demo
-#DESCRIPTION Ru-Кинохит  
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=115&u=demo&p=demo
-#DESCRIPTION Ru-Музыкапервого 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=119&u=demo&p=demo
-#DESCRIPTION Ru-Boomerang 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=123&u=demo&p=demo
-#DESCRIPTION Ru-Киномикс 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=124&u=demo&p=demo
-#DESCRIPTION Ru-Звезда 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=128&u=demo&p=demo
-#DESCRIPTION Ru-Киносемья 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=131&u=demo&p=demo
-#DESCRIPTION Ru-Союз  
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=133&u=demo&p=demo
-#DESCRIPTION Ru-Время 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=134&u=demo&p=demo
-#DESCRIPTION Ru-MTVRocks 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=136&u=demo&p=demo
-#DESCRIPTION Ru-History 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=137&u=demo&p=demo
-#DESCRIPTION Ru-RussianExtreme 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=139&u=demo&p=demo
-#DESCRIPTION Ru-TDK 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=140&u=demo&p=demo
-#DESCRIPTION Ru-MTVHits 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=141&u=demo&p=demo
-#DESCRIPTION Ru-Travel+Adventure 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//91.149.172.100%3a80/channel?id=143&u=demo&p=demo
-#DESCRIPTION Ru-SonyTurbo  
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//video.platformcraft.ru/hls/rossp/proza/playlist.m3u8
-#DESCRIPTION ЛитКлуб ТВ - Проза 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//video.platformcraft.ru/hls/rossp/slovo/playlist.m3u8
-#DESCRIPTION ЛитКлуб ТВ - Слово 
-#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//video.platformcraft.ru/hls/rossp/stihi/playlist.m3u8
-#DESCRIPTION ЛитКлуб ТВ - Стихи
-#SERVICE 4097:0:1:1:0:0:0:0:0:0:http%3a//meteotv.cdnvideo.ru/meteotv/meteotv.sdp/master.m3u8
-#DESCRIPTION Meteo TV 
-#SERVICE 4097:0:1:2:0:0:0:0:0:0:http%3a//live-1gorodskoi.cdnvideo.ru/1gorodskoi/klg.sdp/playlist.m3u8
-#DESCRIPTION Perviy Gorodskoy Kanal Kaliningrad
-#SERVICE 4097:0:1:3:0:0:0:0:0:0:http%3a//live-1gorodskoi.cdnvideo.ru/1gorodskoi/kzn.sdp/playlist.m3u8
-#DESCRIPTION Perviy Gorodskoy Kanal Kazan
-#SERVICE 4097:0:1:4:0:0:0:0:0:0:http%3a//live-1gorodskoi.cdnvideo.ru/1gorodskoi/nn.sdp/playlist.m3u8
-#DESCRIPTION Perviy Gorodskoy Kanal Nizhniy Novgorod
-#SERVICE 4097:0:1:5:0:0:0:0:0:0:http%3a//live-1gorodskoi.cdnvideo.ru/1gorodskoi/1kirov.sdp/playlist.m3u8
-#DESCRIPTION Perviy Gorodskoy Kanal Kirov
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//rt-news.secure.footprint.net/1103.m3u8
+#DESCRIPTION RT NEWS HD
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.3/video.m3u8
+#DESCRIPTION Travel Channel 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.4/video.m3u8
+#DESCRIPTION Спорт 1  
+#SERVICE 5002:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.9/video.m3u8
+#DESCRIPTION Brigde Deluxe
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.8/video.m3u8
+#DESCRIPTION NHK WORLD TV  
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.13/video.m3u8
+#DESCRIPTION FOX 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.15/video.m3u8
+#DESCRIPTION Ю-ТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.16/video.m3u8
+#DESCRIPTION MATCH
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.17/video.m3u8
+#DESCRIPTION Ностальгия 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.18/video.m3u8
+#DESCRIPTION СПОРТ ПЛЮС НТВ-ПЛЮС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.19/video.m3u8
+#DESCRIPTION НТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.20/video.m3u8
+#DESCRIPTION ТНТ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.21/video.m3u8
+#DESCRIPTION ПЯТНИЦА 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.22/video.m3u8
+#DESCRIPTION Россия 1 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.23/video.m3u8
+#DESCRIPTION Россия К 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.24/video.m3u8
+#DESCRIPTION СТС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.25/video.m3u8
+#DESCRIPTION Россия 24 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.26/video.m3u8
+#DESCRIPTION ТВ-3 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.27/video.m3u8
+#DESCRIPTION Звезда 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.28/video.m3u8
+#DESCRIPTION КИНОСОЮЗ НТВ-ПЛЮС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.32/video.m3u8
+#DESCRIPTION Mezzo Live 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.33/video.m3u8
+#DESCRIPTION Animal Planet HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.34/video.m3u8
+#DESCRIPTION Матч! Футбол 1 HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.35/video.m3u8
+#DESCRIPTION Nickelodeon 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.39/video.m3u8
+#DESCRIPTION Перец 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.42/video.m3u8
+#DESCRIPTION Домашний 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.44/video.m3u8
+#DESCRIPTION КИНОХИТ НТВ-ПЛЮС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.45/video.m3u8
+#DESCRIPTION НАШЕ НОВОЕ КИНО НТВ-ПЛЮС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.46/video.m3u8
+#DESCRIPTION HD КИНО НТВ-ПЛЮС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.48/video.m3u8
+#DESCRIPTION HD Life 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.47/video.m3u8
+#DESCRIPTION HD СПОРТ НТВ-ПЛЮС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.50/video.m3u8
+#DESCRIPTION Discovery Channel HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.51/video.m3u8
+#DESCRIPTION MTV live HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.52/video.m3u8
+#DESCRIPTION СПОРТ НТВ-ПЛЮС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.53/video.m3u8
+#DESCRIPTION ФУТБОЛ 1 НТВ-ПЛЮС
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.82/video.m3u8
+#DESCRIPTION ФУТБОЛ 2 НТВ-ПЛЮС
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.102/video.m3u8
+#DESCRIPTION ФУТБОЛ 3 НТВ-ПЛЮС  
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.54/video.m3u8
+#DESCRIPTION ПРЕМЬЕРА НТВ-ПЛЮС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.55/video.m3u8
+#DESCRIPTION КИНОКЛУБ НТВ-ПЛЮС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.56/video.m3u8
+#DESCRIPTION НАШЕ КИНО НТВ-ПЛЮС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.57/video.m3u8
+#DESCRIPTION Первый канал 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.58/video.m3u8
+#DESCRIPTION РЕН ТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.59/video.m3u8
+#DESCRIPTION Кто есть кто 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.60/video.m3u8
+#DESCRIPTION КИНО ПЛЮС НТВ-ПЛЮС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.62/video.m3u8
+#DESCRIPTION Fine Living 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.61/video.m3u8
+#DESCRIPTION HustlerBlue TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.64/video.m3u8
+#DESCRIPTION Nuart
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.107/video.m3u8
+#DESCRIPTION Эгоист ТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.108/video.m3u8
+#DESCRIPTION Playboy TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.179/video.m3u8
+#DESCRIPTION Softsex  
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.65/video.m3u8
+#DESCRIPTION AMEDIA 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.66/video.m3u8
+#DESCRIPTION AMEDIA HIT 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.67/video.m3u8
+#DESCRIPTION Amedia Premium 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.68/video.m3u8
+#DESCRIPTION TВ-21М 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.69/video.m3u8
+#DESCRIPTION АРМ ТВ (тест) 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.70/video.m3u8
+#DESCRIPTION Investigation Discovery 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.71/video.m3u8
+#DESCRIPTION VH1 Classic 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.72/video.m3u8
+#DESCRIPTION Матч! HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.73/video.m3u8
+#DESCRIPTION Cartoon Network 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.74/video.m3u8
+#DESCRIPTION DTX 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.75/video.m3u8
+#DESCRIPTION Discovery Science 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.76/video.m3u8
+#DESCRIPTION AMC 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.77/video.m3u8
+#DESCRIPTION MTV Dance 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.78/video.m3u8
+#DESCRIPTION CBS Reality 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.79/video.m3u8
+#DESCRIPTION MCM Top 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.80/video.m3u8
+#DESCRIPTION Extreme Sports 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.81/video.m3u8
+#DESCRIPTION JimJam 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.84/video.m3u8
+#DESCRIPTION Спорт 1 HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.85/video.m3u8
+#DESCRIPTION MGM HD Russia 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.88/video.m3u8
+#DESCRIPTION Discovery Channel 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.89/video.m3u8
+#DESCRIPTION MTV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.90/video.m3u8
+#DESCRIPTION Nick Jr. 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.91/video.m3u8
+#DESCRIPTION Animal Planet 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.92/video.m3u8
+#DESCRIPTION TLC 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.93/video.m3u8
+#DESCRIPTION Eurosport 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.94/video.m3u8
+#DESCRIPTION VH1 European 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.95/video.m3u8
+#DESCRIPTION Mezzo 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.96/video.m3u8
+#DESCRIPTION CBS Drama 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.100/video.m3u8
+#DESCRIPTION ФУТБОЛ 2 НТВ-ПЛЮС 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.101/video.m3u8
+#DESCRIPTION ТВЦ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.104/video.m3u8
+#DESCRIPTION ТЕЛЕКАФЕ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.105/video.m3u8
+#DESCRIPTION Канал Disney 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.109/video.m3u8
+#DESCRIPTION THT-Comedy TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.110/video.m3u8
+#DESCRIPTION STV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.111/video.m3u8
+#DESCRIPTION РБК-ТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.112/video.m3u8
+#DESCRIPTION Кинорейс 1 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.113/video.m3u8
+#DESCRIPTION Кинорейс 2 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.115/video.m3u8
+#DESCRIPTION Совершенно секретно 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.118/video.m3u8
+#DESCRIPTION Gulli 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.119/video.m3u8
+#DESCRIPTION Dange TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.120/video.m3u8
+#DESCRIPTION RTG TV  
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.123/video.m3u8
+#DESCRIPTION Outdoor Channel 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.124/video.m3u8
+#DESCRIPTION BRIDGE TV 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.125/video.m3u8
+#DESCRIPTION RUSONG TV  
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.138/video.m3u8
+#DESCRIPTION Первый образовательный 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.143/video.m3u8
+#DESCRIPTION Наш футбол HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.145/video.m3u8
+#DESCRIPTION Amedia Premium HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.150/video.m3u8
+#DESCRIPTION Eurosport 2 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.152/video.m3u8
+#DESCRIPTION Nickelodeon 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.156/video.m3u8
+#DESCRIPTION BBC World News 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.159/video.m3u8
+#DESCRIPTION CCTV-Русский 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.160/video.m3u8
+#DESCRIPTION MTV Hits 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.161/video.m3u8
+#DESCRIPTION Дом Кино 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.162/video.m3u8
+#DESCRIPTION Музыка Первого 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.163/video.m3u8
+#DESCRIPTION Карусель   
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.169/video.m3u8
+#DESCRIPTION ФУТБОЛ 3 НТВ-ПЛЮС HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.170/video.m3u8
+#DESCRIPTION TV1000 Comedy HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.171/video.m3u8
+#DESCRIPTION TV 1000 Megahit HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.172/video.m3u8
+#DESCRIPTION TV 1000 Premium HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.173/video.m3u8
+#DESCRIPTION Viasat Nature/History HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.175/video.m3u8
+#DESCRIPTION 365 дней ТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.176/video.m3u8
+#DESCRIPTION Европа Плюс ТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.177/video.m3u8
+#DESCRIPTION Комедия ТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.178/video.m3u8
+#DESCRIPTION Индия ТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.180/video.m3u8
+#DESCRIPTION Ля-минор ТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.181/video.m3u8
+#DESCRIPTION МНОГОсерийное ТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.182/video.m3u8
+#DESCRIPTION Мужское кино 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.183/video.m3u8
+#DESCRIPTION Кухня ТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.184/video.m3u8
+#DESCRIPTION Боец 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.185/video.m3u8
+#DESCRIPTION Авто Плюс  
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.194/video.m3u8
+#DESCRIPTION Русский Иллюзион 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.198/video.m3u8
+#DESCRIPTION ЕвроКино 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.199/video.m3u8
+#DESCRIPTION FOX 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.200/video.m3u8
+#DESCRIPTION Дом Кино International 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.201/video.m3u8
+#DESCRIPTION Время: далекое и близкое 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.202/video.m3u8
+#DESCRIPTION MTV Rocks 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.203/video.m3u8
+#DESCRIPTION Fox Life 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.204/video.m3u8
+#DESCRIPTION История 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.206/video.m3u8
+#DESCRIPTION Пятый канал 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.208/video.m3u8
+#DESCRIPTION Первый МЕТЕО 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.209/video.m3u8
+#DESCRIPTION ТВ СЭЙЛ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.210/video.m3u8
+#DESCRIPTION CTC Love  
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.214/video.m3u8
+#DESCRIPTION Продвижение 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.215/video.m3u8
+#DESCRIPTION Загородная жизнь 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.216/video.m3u8
+#DESCRIPTION Радость моя 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.219/video.m3u8
+#DESCRIPTION Мир сериала 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.223/video.m3u8
+#DESCRIPTION DFM REGION 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.233/video.m3u8
+#DESCRIPTION Travel and Adventure 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.235/video.m3u8
+#DESCRIPTION Barely legal 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.242/video.m3u8
+#DESCRIPTION THT+0 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.247/video.m3u8
+#DESCRIPTION НТВ HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.2.248/video.m3u8
+#DESCRIPTION Телеканал КХЛ HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.1/video.m3u8
+#DESCRIPTION Охота и рыбалка 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.3/video.m3u8
+#DESCRIPTION Драйв 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.4/video.m3u8
+#DESCRIPTION Усадьба 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.7/video.m3u8
+#DESCRIPTION Домашние животные 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.9/video.m3u8
+#DESCRIPTION Комедия 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.12/video.m3u8
+#DESCRIPTION Живая Планета 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.14/video.m3u8
+#DESCRIPTION CINEMA 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.16/video.m3u8
+#DESCRIPTION Техно 24 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.18/video.m3u8
+#DESCRIPTION Доктор 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.19/video.m3u8
+#DESCRIPTION Моя планета 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.20/video.m3u8
+#DESCRIPTION Наука 2.0 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.21/video.m3u8
+#DESCRIPTION История 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.23/video.m3u8
+#DESCRIPTION Мульт 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.35/video.m3u8
+#DESCRIPTION Юмор ТВ 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.37/video.m3u8
+#DESCRIPTION ТНТ4 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.45/video.m3u8
+#DESCRIPTION Конный мир 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.49/video.m3u8
+#DESCRIPTION Русский Экстрим 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.50/video.m3u8
+#DESCRIPTION Первый HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.56/video.m3u8
+#DESCRIPTION Русский Роман HD 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.71/video.m3u8
+#DESCRIPTION ТНТ Music 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.72/video.m3u8
+#DESCRIPTION Ani 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:http%3a//178.217.72.66/225.201.3.75/video.m3u8
+#DESCRIPTION Ю ТВ 
+ 
