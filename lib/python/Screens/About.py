@@ -19,6 +19,7 @@ from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 
 from Tools.StbHardware import getFPVersion
+from Tools.Directories import fileCheck
 
 import os
 import re
@@ -318,6 +319,12 @@ class About(Screen):
 		AboutText += _("Skin:\t%s (%s x %s)\n") % (config.skin.primary_skin.value.split('/')[0], getDesktop(0).size().width(), getDesktop(0).size().height())
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + " to Build #" + getImageBuild() + "\n"
 		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
+		if SystemInfo["WakeOnLAN"]:
+			if fileCheck("/proc/stb/power/wol"):
+				WOLmode = open("/proc/stb/power/wol").read()[:-1]
+			if fileCheck("/proc/stb/fp/wol"):
+				WOLmode = open("/proc/stb/fp/wol").read()[:-1]
+			AboutText += _("WakeOnLAN:\t%s\n") % WOLmode
 		AboutText += _("Network:")
 		eth0 = about.getIfConfig('eth0')
 		eth1 = about.getIfConfig('eth1')
