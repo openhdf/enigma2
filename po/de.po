@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2020-04-12 05:56+0200\n"
+"PO-Revision-Date: 2020-04-15 09:07+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4102,6 +4102,27 @@ msgstr "Power LED Anzeige im Deep-Standby"
 
 msgid "Power LED state during standby."
 msgstr "Power LED Anzeige im Standby"
+
+msgid "Power LED State when Running."
+msgstr "Power LED Anzeige im Betrieb"
+
+msgid "Power LED State in Standby"
+msgstr "Power LED Anzeige im Standby"
+
+msgid "PowerControl FrontDisplay Normal Mode"
+msgstr "Power Control Front Display im Betrieb"
+
+msgid "PowerControl FrontDisplay Standby Mode"
+msgstr "Power Control Front Display im Standby"
+
+msgid "PowerControl FrontDisplay Suspend Mode"
+msgstr "Power Control Front Display im Deep-Standby"
+
+msgid "This option allows you to Power Off the display."
+msgstr "Mit dieser Option kann das Display an oder ausgeschaltet werden."
+
+msgid "Set LED Color or disable the LED."
+msgstr "Setzen oder deaktivieren der Power LED Farbe"
 
 msgid "Turn on the power LED."
 msgstr "Power-LED Mode"
@@ -9261,7 +9282,7 @@ msgid "Show blinking Clock in Standby on Display during recording"
 msgstr "Zeige REC im Display bei Aufnahmen oder Auswahl im Standby"
 
 msgid "In the Standby blinking Clock on the LCD Display"
-msgstr "Im Standby blinkende Uhr im LCD-Display"
+msgstr "Aktiviert das blinkendes REC Symbol bei aktiven Aufnahmen im Standby"
 
 msgid "Show HDMI-Output Res"
 msgstr "Zeige HDMI Ausgangsauflösung"
