@@ -37,10 +37,7 @@ import string
 import os
 import glob
 
-if float(getVersionString()) >= 4.0:
-	basegroup = "packagegroup-base"
-else:
-	basegroup = "task-base"
+basegroup = "packagegroup-base"
 
 class NetworkAdapterSelection(Screen,HelpableScreen):
 	def __init__(self, session):
