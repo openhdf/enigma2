@@ -249,6 +249,13 @@ class About(Screen):
 		AboutText += _("HDF Version:\tV%s") % getImageVersion() + " Build #" + getImageBuild() + " based on " + getOEVersion() + "\n"
 		AboutText += _("Kernel (Box):\t%s") % about.getKernelVersionString() + " (" + getBoxType() + ")" + "\n"
 
+		if path.isfile("/etc/issue"):
+			version = open("/etc/issue").readlines()[-2].upper().strip()[:-6]
+			if path.isfile("/etc/image-version"):
+				build = self.searchString("/etc/image-version", "^build=")
+				version = "%s #%s" % (version,build)
+			AboutText += _("Image:\t%s") % version + "\n"
+
 		imagestarted = ""
 		bootname = ''
 		if path.exists('/boot/bootname'):
@@ -287,12 +294,13 @@ class About(Screen):
 				if bootname: bootname = "   (%s)" %bootname
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 
-		if path.isfile("/etc/issue"):
-			version = open("/etc/issue").readlines()[-2].upper().strip()[:-6]
-			if path.isfile("/etc/image-version"):
-				build = self.searchString("/etc/image-version", "^build=")
-				version = "%s #%s" % (version,build)
-			AboutText += _("Image:\t%s") % version + "\n"
+		if SystemInfo["HaveMultiBoot"]:
+			os.system("tune2fs -l /dev/root | grep 'Filesystem created:' | cut -d ' ' -f 9-13 > /tmp/flashdate" )
+			flashdate = open('/tmp/flashdate', 'r').read()
+			AboutText += _("Flashed:\t%s") % flashdate
+			#AboutText += _("Flashed:\tMultiboot active\n")
+		else:
+			AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
 
 		string = getDriverDate()
 		year = string[0:4]
@@ -305,16 +313,6 @@ class About(Screen):
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
 		AboutText += _("GStreamer:\t%s") % about.getGStreamerVersionString() + "\n"
 		AboutText += _("Python:\t%s\n") % about.getPythonVersionString()
-		if path.exists('/boot/STARTUP'):
-			#if getMachineBuild() in ('cc1','sf8008','sf8008s','sf8008t'):
-			#	os.system("tune2fs -l /dev/sda2 | grep 'Filesystem created:' | cut -d ' ' -f 9-13 > /tmp/flashdate" )
-			#else:
-			#	os.system("tune2fs -l /dev/sda1 | grep 'Filesystem created:' | cut -d ' ' -f 9-13 > /tmp/flashdate" )
-			#flashdate = open('/tmp/flashdate', 'r').read()
-			#AboutText += _("Flashed:\t%s") % flashdate
-			AboutText += _("Flashed:\tMultiboot active\n")
-		else:
-			AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
 		AboutText += _("Free Flash:\t%s\n") % freeflash()
 		AboutText += _("Skin:\t%s (%s x %s)\n") % (config.skin.primary_skin.value.split('/')[0], getDesktop(0).size().width(), getDesktop(0).size().height())
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + " to Build #" + getImageBuild() + "\n"
