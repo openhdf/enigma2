@@ -385,8 +385,7 @@ class UpdatePluginMenu(Screen):
 						self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
 						self.session.open(FlashOnline)
 					else:
-						#self.session.openWithCallback(self.doBackup, MessageBox, _("Do you want to backup your image and settings before?"), default = True)
-						self.session.open(FlashOnline)
+						self.session.openWithCallback(self.doBackup, MessageBox, _("Do you want to backup your image and settings before?"), default = True)
 				elif (currentEntry == "multiboot-manager"):
 					self.session.open(MultiBootWizard)
 				elif (currentEntry == "backup-image"):
