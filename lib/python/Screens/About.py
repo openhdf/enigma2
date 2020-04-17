@@ -510,11 +510,11 @@ class SystemMemoryInfo(Screen):
 		self.skinName = ["SystemMemoryInfo", "About"]
 		self["lab1"] = StaticText(_("OpenHDF"))
 		self["AboutScrollLabel"] = ScrollLabel()
-
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.close,
 				"ok": self.close,
+				"blue": self.showMemoryInfo,
 				"up": self["AboutScrollLabel"].pageUp,
 				"down": self["AboutScrollLabel"].pageDown,
 			})
@@ -576,6 +576,9 @@ class SystemMemoryInfo(Screen):
 
 	def createSummary(self):
 		return AboutSummary
+
+	def showMemoryInfo(self):
+		self.session.open(MemoryInfo)
 
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
