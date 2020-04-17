@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2020-04-17 17:13+0200\n"
+"PO-Revision-Date: 2020-04-17 17:37+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -611,6 +611,15 @@ msgstr "Startup %s - %s"
 
 msgid "Empty slot"
 msgstr "Leeres Startup"
+
+msgid "(current image)"
+msgstr "(aktuelles Image)"
+
+msgid "Slot %s: %s%s"
+msgstr "Startup %s: %s%s"
+
+msgid "Slot %s: %s - Mode %d%s"
+msgstr "Startup %s: %s - Mode %d%s"
 
 msgid "No, do not flash an image"
 msgstr "Nein, kein Image flashen"
@@ -14928,6 +14937,12 @@ msgstr "Multiboot Fehler! - kein %s in boot partition."
 
 msgid "No images found"
 msgstr "Keine Images gefunden"
+
+msgid "Downloaded Images"
+msgstr "Heruntergeladene Images"
+
+msgid "Do not flash image"
+msgstr "Jetzt kein Image flashen"
 
 msgid "MultiBoot image manager"
 msgstr "MultiBoot Image Manager"
