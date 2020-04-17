@@ -82,23 +82,25 @@ class MultiBootSelector(Screen):
 	def ImageList(self, imagedict):
 		list = []
 		mode = GetCurrentImageMode() or 0
-		currentimageslot = GetCurrentImage() or 1
+		currentimageslot = GetCurrentImage()
+		print "[MultiBootSelector] reboot1 slot:", currentimageslot
+		current = "  %s" % _("(current image)")
+		slotSingle = _("Slot %s: %s%s")
+		slotMulti = _("Slot %s: %s - Mode %d%s")
 		if imagedict:
-			if not SystemInfo["canMode12"]:
-				for x in sorted(imagedict.keys()):
-					if imagedict[x]["imagename"] != _("Empty startup"):
-						list.append(ChoiceEntryComponent('',((_("startup %s -%s - %s (current image)") if x == currentimageslot else _("startup %s -%s- %s ")) % (x, imagedict[x]['part'][0:3], imagedict[x]['imagename']), x)))
-			else:
-				for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
-					if imagedict[x]["imagename"] != _("Empty startup"):
-						list.append(ChoiceEntryComponent('',((_("startup %s - %s mode 1 (current image)") if x == currentimageslot and mode != 12 else _("startup %s - %s mode 1")) % (x, imagedict[x]['imagename']), x)))
-				list.append("                                 ")
-				list.append("                                 ")
-				for x in range(1, SystemInfo["canMultiBoot"][1] + 1):
-						if SystemInfo["canMode12"] and imagedict[x]["imagename"] != _("Empty startup"):
-							list.append(ChoiceEntryComponent('',((_("startup %s - %s mode 12 (current image)") if x == currentimageslot and mode == 12 else _("startup %s - %s mode 12")) % (x, imagedict[x]['imagename']), x)))
+			indextot = 0
+			for index, x in enumerate(sorted(imagedict.keys())):
+				if imagedict[x]["imagename"] != _("Empty slot"):
+					if SystemInfo["canMode12"]:
+						list.insert(index, ChoiceEntryComponent("", (slotMulti % (x, imagedict[x]["imagename"], 1, current if x == currentimageslot and mode != 12 else ""), x)))
+						list.append(ChoiceEntryComponent("", (slotMulti % (x, imagedict[x]["imagename"], 12, current if x == currentimageslot and mode == 12 else ""), x + 12)))
+						indextot = index + 1
+					else:
+						list.append(ChoiceEntryComponent("", (slotSingle % (x, imagedict[x]["imagename"], current if x == currentimageslot else ""), x)))
+			if SystemInfo["canMode12"]:
+				list.insert(indextot, " ")
 		else:
-			list.append(ChoiceEntryComponent('',((_("No images found")), "Waiter")))
+			list.append(ChoiceEntryComponent("", ((_("No images found")), "Waiter")))
 		self["config"].setList(list)
 
 	def reboot(self):
