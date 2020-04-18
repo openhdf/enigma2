@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2020-04-17 17:37+0200\n"
+"PO-Revision-Date: 2020-04-18 15:26+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -595,6 +595,9 @@ msgstr "Image zum Flashen auswählen"
 
 msgid "Flash On the Fly"
 msgstr "Flashen   Online / Local"
+
+msgid "Save settings and EPG data"
+msgstr "Einstellungen und EPG-Daten speichern"
 
 msgid ""
 "Do you want to flash image\n"
