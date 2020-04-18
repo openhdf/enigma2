@@ -295,10 +295,10 @@ class About(Screen):
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 
 		if SystemInfo["HaveMultiBoot"]:
-			os.system("tune2fs -l /dev/root | grep 'Filesystem created:' | cut -d ' ' -f 9-13 > /tmp/flashdate" )
-			flashdate = open('/tmp/flashdate', 'r').read()
-			AboutText += _("Flashed:\t%s") % flashdate
-			#AboutText += _("Flashed:\tMultiboot active\n")
+			MyFlashDate = about.getFlashDateString()
+			if path.isfile("/etc/filesystems"):
+				AboutText += _("Flashed:\t%s") % MyFlashDate + "\n"
+				#AboutText += _("Flashed:\tMultiboot active\n")
 		else:
 			AboutText += _("Flashed:\t%s\n") % about.getFlashDateString()
 
