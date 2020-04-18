@@ -332,8 +332,8 @@ class FlashImage(Screen):
 		if retval:
 			self.recordcheck = False
 			title =_("Please select what to do after first booting the image:\n")
-			choices = ((_("Automatic restore of all settings and plugins?"), "restoresettingsandallplugins"),
-			(_("Don't restore settings and plugins!"), "wizard"),
+			choices = ((_("Don't restore settings and plugins!"), "wizard"),
+			(_("Automatic restore of all settings and plugins?"), "restoresettingsandallplugins"),
 			(_("Do not flash image"), "abort"))
 			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox,title=title,list=choices,selection=self.SelectPrevPostFlashAction())
 		else:
