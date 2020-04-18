@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-19 23:44+0100\n"
-"PO-Revision-Date: 2020-04-18 15:26+0200\n"
+"PO-Revision-Date: 2020-04-18 16:30+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -608,6 +608,9 @@ msgstr ""
 
 msgid "slot%s - %s (current image)"
 msgstr "Startup %s - %s (aktuelles Image)"
+
+msgid "slot%s - %s (current)"
+msgstr "Startup %s - %s (aktuell)"
 
 msgid "slot%s - %s"
 msgstr "Startup %s - %s"
