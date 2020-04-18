@@ -157,9 +157,9 @@ class GetImagelist():
 
 	def appClosed(self, data="", retval=0, extra_args=None):
 		BuildVersion = "  "
-		Build = " "  # ViX Build No.
+		Build = " "  # ViX Openhdf Build No.
 		Dev = " "  # ViX Dev No.
-		Creator = " "  # Openpli Openvix Openatv etc
+		Creator = " "  # Openpli Openvix Openatv Openhdf etc
 		Date = " "
 		BuildType = " "  # release etc
 		if retval:
@@ -171,6 +171,13 @@ class GetImagelist():
 				imagedir = Imagemount
 			if path.isfile("%s/usr/bin/enigma2" % imagedir):
 				Creator = open("%s/etc/issue" % imagedir).readlines()[-2].capitalize().strip()[:-6].replace("-release", " rel")
+				if Creator.startswith("Openhdf"):
+					reader = boxbranding_reader(imagedir)
+					BuildType = reader.getImageType()
+					Build = reader.getImageBuild()
+					Dev = BuildType != "release" and " %s" % reader.getImageDevBuild() or ''
+					BuildVersionHDF = "%s %s %s" % (Creator, BuildType[0:3], Build)
+					BuildVersionHDF = BuildVersionHDF.replace("rel", "#")
 				if Creator.startswith("Openvix"):
 					reader = boxbranding_reader(imagedir)
 					BuildType = reader.getImageType()
@@ -187,6 +194,8 @@ class GetImagelist():
 					except Exception:
 						date = _("Unknown")
 					BuildVersion = "%s (%s)" % (open(path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], date)
+					if Creator.startswith("Openhdf"):
+						BuildVersion = _("%s release %s") % (BuildVersionHDF, date)
 				self.imagelist[self.slot] = {"imagename": "%s" % BuildVersion}
 			else:
 				self.imagelist[self.slot] = {"imagename": _("Empty slot")}
