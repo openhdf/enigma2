@@ -10,9 +10,9 @@ from Components.SystemInfo import SystemInfo
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
-from Tools.Directories import fileExists, fileCheck, pathExists, fileHas
+from Tools.Directories import copyfile, pathExists
 from Tools.BoundFunction import boundFunction
-from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, ReadSTARTUP, GetSTARTUPFile
+from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode, GetImagelist
 
 class MultiBootSelector(Screen):
 
@@ -47,13 +47,10 @@ class MultiBootSelector(Screen):
 			self["options"] = StaticText(_("Mode 1 suppports Kodi, PiP may not work.\nMode 12 supports PiP, Kodi may not work."))
 		self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Retrieving image startups - Please wait...")), "Queued"))])
 		imagedict = []
-		self.mtdboot = "%s1" % SystemInfo["canMultiBoot"][2]
- 		if SystemInfo["canMultiBoot"][2] == "sda":
-			self.mtdboot = "%s3" %getMachineMtdRoot()[0:8]
 		self.getImageList = None
+		self.mountDir = "/tmp/startupmount"
+		self.callLater(self.getBootOptions)
 		self.title = screentitle
-		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' %(SystemInfo["canMultiBoot"][2])):
-			self.startit()
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "MenuActions"],
 		{
@@ -76,10 +73,30 @@ class MultiBootSelector(Screen):
 	def layoutFinished(self):
 		self.setTitle(self.title)
 
-	def startit(self):
-		self.getImageList = GetImagelist(self.ImageList)
+	def cancel(self, value=None):
+		self.container = Console()
+		self.container.ePopen("umount %s" % self.mountDir, boundFunction(self.unmountCallback, value))
 
-	def ImageList(self, imagedict):
+	def unmountCallback(self, value, data=None, retval=None, extra_args=None):
+		self.container.killAll()
+		if not path.ismount(self.mountDir):
+			rmdir(self.mountDir)
+		self.close(value)
+
+	def getBootOptions(self, value=None):
+		self.container = Console()
+		if path.isdir(self.mountDir) and path.ismount(self.mountDir):
+			self.getImagesList()
+		else:
+			if not path.isdir(self.mountDir):
+				mkdir(self.mountDir)
+			self.container.ePopen("mount %s %s" % (SystemInfo["MBbootdevice"], self.mountDir), self.getImagesList)
+
+	def getImagesList(self, data=None, retval=None, extra_args=None):
+		self.container.killAll()
+		self.getImageList = GetImagelist(self.getImagelistCallback)
+
+	def getImagelistCallback(self, imagedict):
 		list = []
 		mode = GetCurrentImageMode() or 0
 		currentimageslot = GetCurrentImage()
@@ -105,47 +122,24 @@ class MultiBootSelector(Screen):
 
 	def reboot(self):
 		self.currentSelected = self["config"].l.getCurrentSelection()
+		self.slot = self.currentSelected[0][1]
+		message = _("Do you want to reboot now the image in startup %s?") %self.slot
 		if self.currentSelected[0][1] != "Queued":
-			self.container = Console()
-			if pathExists('/tmp/startupmount'):
-				self.ContainterFallback()
+			print "[MultiBootSelector] reboot2 rebootslot = %s, " % self.slot
+			print "[MultiBootSelector] reboot3 slotinfo = %s" % SystemInfo["canMultiBoot"]
+			if self.slot < 12:
+				copyfile(path.join(self.mountDir, SystemInfo["canMultiBoot"][self.slot]["startupfile"]), path.join(self.mountDir, "STARTUP"))
 			else:
-				mkdir('/tmp/startupmount')
-				if SystemInfo["HasRootSubdir"]:
-					if fileExists("/dev/block/by-name/bootoptions"):
-						self.container.ePopen('mount /dev/block/by-name/bootoptions /tmp/startupmount', self.ContainterFallback)
-					elif fileExists("/dev/block/by-name/boot"):
-						self.container.ePopen('mount /dev/block/by-name/boot /tmp/startupmount', self.ContainterFallback)
+				self.slot -= 12
+				startupfile = path.join(self.mountDir, SystemInfo["canMultiBoot"][self.slot]["startupfile"].replace("BOXMODE_1", "BOXMODE_12"))
+				print "[MultiBootSelector] reboot5 startupfile = %s" % startupfile
+				if "BOXMODE" in startupfile:
+					copyfile(startupfile, path.join(self.mountDir, "STARTUP"))
 				else:
-					self.container.ePopen('mount /dev/%s /tmp/startupmount' % self.mtdboot, self.ContainterFallback)
-
-	def ContainterFallback(self, data=None, retval=None, extra_args=None):
-		self.container.killAll()
-		slot = self.currentSelected[0][1]
-		mode = GetCurrentImageMode() or 0
-		currentimageslot = GetCurrentImage() or 1
-		if pathExists("/tmp/startupmount/%s" %GetSTARTUPFile()):
-			if currentimageslot == slot and SystemInfo["canMode12"]:
-				if mode == 12:
-					startupFileContents = ReadSTARTUP().replace("boxmode=12'","boxmode=1'").replace(SystemInfo["canMode12"][1],SystemInfo["canMode12"][0])
-					open('/tmp/startupmount/%s'%GetSTARTUPFile(), 'w').write(startupFileContents)
-				else:
-					startupFileContents = ReadSTARTUP().replace("boxmode=1'","boxmode=12'").replace(SystemInfo["canMode12"][0],SystemInfo["canMode12"][1])
-					open('/tmp/startupmount/%s'%GetSTARTUPFile(), 'w').write(startupFileContents)
-			elif  fileExists("/tmp/startupmount/STARTUP_1"):
-				copyfile("/tmp/startupmount/STARTUP_%s" % slot, "/tmp/startupmount/%s" %GetSTARTUPFile())
-			elif fileExists("/tmp/startupmount/STARTUP_LINUX_4_BOXMODE_12"):
-				if mode == 1:
-					copyfile("/tmp/startupmount/STARTUP_LINUX_%s_BOXMODE_1" % slot, "/tmp/startupmount/%s" %GetSTARTUPFile())
-				else:
-					copyfile("/tmp/startupmount/STARTUP_LINUX_%s_BOXMODE_12" % slot, "/tmp/startupmount/%s" %GetSTARTUPFile())
-			elif fileExists("/tmp/startupmount/STARTUP_LINUX_4"):
-				copyfile("/tmp/startupmount/STARTUP_LINUX_%s" % slot, "/tmp/startupmount/%s" %GetSTARTUPFile())
-
-			message = _("Do you want to reboot now the image in startup %s?") %slot
+					f = open(startupfile, "r").read().replace("boxmode=1'", "boxmode=12'").replace("%s" % SystemInfo["canMode12"][0], "%s" % SystemInfo["canMode12"][1])
+					open(path.join(self.mountDir, "STARTUP"), "w").write(f)
+					self.session.openWithCallback(self.restartImage,MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
 			self.session.openWithCallback(self.restartImage,MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
-		else:
-			self.session.open(MessageBox, _("Multiboot ERROR! - no %s in boot partition.") %GetSTARTUPFile(), MessageBox.TYPE_INFO, timeout=20)
 
 	def restartImage(self, answer):
 		if answer is True:
