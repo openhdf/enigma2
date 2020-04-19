@@ -117,8 +117,8 @@ class ImageBackup(Screen):
 		self["key_red"] = Button("HDD")
 		self["key_blue"] = Button(_("Exit"))
 		if SystemInfo["HaveMultiBoot"]:
-			self["key_yellow"] = Button(_("Select Multiboot"))
-			self["info-multi"] = Label(_("You can select with yellow the OnlineFlash Image\n or select Recovery to create a USB Disk Image for clean Install."))
+			self["key_yellow"] = Button(_("Current Startup"))
+			self["info-multi"] = Label(_("You can switch between the startups with yellow button.\nIf no selection is made, the current startup is automatically taken."))
 			self.read_current_multiboot()
 		else:
 			self["key_yellow"] = Button("")
