@@ -5,7 +5,6 @@
 
 from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
-from Components.Sources.StaticText import StaticText
 from Components.Button import Button
 from Components.SystemInfo import SystemInfo
 from Components.Label import Label
@@ -15,7 +14,7 @@ from Components import Harddisk
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from time import time, strftime, localtime
-from os import path, system, makedirs, listdir, walk, statvfs, remove
+from os import listdir, makedirs, path, statvfs, system, walk
 import commands
 import datetime
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem

@@ -21,24 +21,21 @@ from Components.config import config,getConfigListEntry, ConfigSubsection, Confi
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Label import Label
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.SelectionList import SelectionList
 from Components.PluginComponent import plugins
 from Components.PackageInfo import PackageInfoHandler
 from Components.Language import language
 from Components.AVSwitch import AVSwitch
-from Components.Task import job_manager
-from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_ACTIVE_SKIN, SCOPE_METADIR, SCOPE_CURRENT_SKIN
+from Tools.Directories import SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_PLUGIN, SCOPE_METADIR, SCOPE_PLUGINS, fileExists, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService,  getEnigmaVersionString
+from enigma import eEnv, ePicLoad, eRCInput, eTimer, getDesktop, getEnigmaVersionString, getPrevAsciiCode
 from cPickle import dump, load
-from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
-from time import time, gmtime, strftime, localtime
+from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, path as os_path, remove, stat
+from time import time
 from stat import ST_MTIME
 from datetime import date, timedelta
 from twisted.web import client
-from twisted.internet import reactor
 
 from ImageBackup import ImageBackup
 from Flash_online import FlashOnline
@@ -1861,7 +1858,6 @@ class UpdatePlugin(Screen):
 					error = _("Your %s %s isn't connected to the internet properly. Please check it and try again.") % (getMachineBrand(), getMachineName())
 				self.status.setText(_("Error") +  " - " + error)
 		#print event, "-", param
-		pass
 
 	def startActualUpgrade(self, answer):
 		if not answer or not answer[1]:
@@ -2292,7 +2288,6 @@ class PacketManager(Screen, NumericalTextInput):
 				cmd = self.ipkg.ipkg + " list"
 				self.Console.ePopen(cmd, self.IpkgList_Finished)
 		#print event, "-", param
-		pass
 
 	def IpkgList_Finished(self, result, retval, extra_args = None):
 		result = result.replace('\n ',' - ')
@@ -2576,7 +2571,6 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		elif event == IpkgComponent.EVENT_DONE:
 			self.buildPacketList()
 
-		pass
 
 	def buildEntryComponent(self, name, version, description, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))

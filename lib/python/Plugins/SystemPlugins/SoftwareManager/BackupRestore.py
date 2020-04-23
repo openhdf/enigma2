@@ -1,25 +1,21 @@
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
-from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Pixmap import Pixmap
 from Tools.LoadPixmap import LoadPixmap
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
 from Components.Sources.List import List
 from Components.Button import Button
-from Components.config import getConfigListEntry, configfile, ConfigSelection, ConfigSubsection, ConfigText, ConfigLocations
+from Components.config import ConfigLocations, ConfigSubsection, ConfigText, configfile
 from Components.config import config
-from Components.ConfigList import ConfigList,ConfigListScreen
+from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from Components.Network import iNetwork
-from Plugins.Plugin import PluginDescriptor
-from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
+from enigma import eConsoleAppContainer, eEPGCache, eEnv
 from Tools.Directories import *
-from os import system, popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
-from time import gmtime, strftime, localtime, sleep
+from os import listdir, makedirs, path, popen, remove, rename, stat
 from datetime import date
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro
 import ShellCompatibleFunctions

@@ -2,7 +2,6 @@ from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from Components.Task import Task, Job, job_manager, Condition
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 from Components.ProgressBar import ProgressBar
@@ -11,12 +10,12 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Components.Console import Console
 from Tools.BoundFunction import boundFunction
-from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetBoxName
+from Tools.Multiboot import GetBoxName, GetCurrentImage, GetImagelist
 from enigma import eTimer, fbClass
-import os, urllib2, json, shutil, math, time, zipfile, shutil
+import json, os, shutil, shutil, time, urllib2, zipfile
 
 
-from boxbranding import getBoxType, getImageDistro, getMachineBuild, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel
+from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineMtdKernel, getMachineMtdRoot, getMachineName
 
 feedserver = 'flash.hdfreaks.cc'
 feedurl = 'http://%s/%s/json' %(feedserver, getImageDistro())
