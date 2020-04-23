@@ -1,19 +1,14 @@
-from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Wizard import wizardManager
 from Screens.Rc import Rc
 from Screens.Screen import Screen
-from Components.Label import Label
-from Components.MenuList import MenuList
-from Components.PluginComponent import plugins
-from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
-from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
-from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
+from Components.Pixmap import Pixmap
+from os import R_OK, W_OK, access
 from enigma import eEnv
 from boxbranding import getBoxType, getImageDistro
 
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigBoolean
+from Components.config import ConfigBoolean, ConfigLocations, ConfigSubsection, ConfigText, config
 from Components.Harddisk import harddiskmanager
 
 boxtype = getBoxType()
