@@ -575,29 +575,21 @@ class ImageBackup(Screen):
 		cmdlist.append('echo "' + _("Almost there... ") + '"')
 		cmdlist.append('echo "' + _("Now building the Backup Image") + '"')
 
-		if self.EMMCIMG == "usb_update.bin" and SystemInfo["canRecovery"]:
-			system('rm -rf %s' %self.MAINDESTROOT)
-			if not path.exists(self.MAINDESTROOT):
-				makedirs(self.MAINDESTROOT)
-			f = open("%s/imageversion" %self.MAINDESTROOT, "w")
-			f.write(self.IMAGEVERSION)
-			f.close()
-		else:
-			system('rm -rf %s' %self.MAINDEST)
-			if not path.exists(self.MAINDEST):
-				makedirs(self.MAINDEST)
-			f = open("%s/imageversion" %self.MAINDEST, "w")
-			f.write(self.IMAGEVERSION)
-			f.close()
+		system('rm -rf %s' %self.MAINDEST)
+		if not path.exists(self.MAINDEST):
+			makedirs(self.MAINDEST)
+		f = open("%s/imageversion" %self.MAINDEST, "w")
+		f.write(self.IMAGEVERSION)
+		f.close()
 
-			if self.ROOTFSBIN == "rootfs.tar.bz2":
-				system('mv %s/rootfs.tar.bz2 %s/rootfs.tar.bz2' %(self.WORKDIR, self.MAINDEST))
-			else:
-				system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
-			if SystemInfo["canMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
-				system('mv %s/%s %s/%s' %(self.WORKDIR, self.KERNELBIN, self.MAINDEST, self.KERNELBIN))
-			else:
-				system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
+		if self.ROOTFSBIN == "rootfs.tar.bz2":
+			system('mv %s/rootfs.tar.bz2 %s/rootfs.tar.bz2' %(self.WORKDIR, self.MAINDEST))
+		else:
+			system('mv %s/root.%s %s/%s' %(self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
+		if SystemInfo["canMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
+			system('mv %s/%s %s/%s' %(self.WORKDIR, self.KERNELBIN, self.MAINDEST, self.KERNELBIN))
+		else:
+			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 
 		if self.ROOTFSBIN == "rootfs.tar.bz2":
 			system('mv %s/rootfs.tar.bz2 %s/rootfs.tar.bz2' %(self.WORKDIR, self.MAINDEST))
