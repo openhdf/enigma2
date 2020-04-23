@@ -48,7 +48,7 @@ class FlashOnline(Screen):
 		self.imagesList = {}
 		self.setIndex = 0
 		self.expanded = []
-		self.customDirs = [ "images", "backups", "full_backups" ]
+		self.customDirs = [ "images", "backup", "backups", "full_backups" ]
 		Screen.setTitle(self, _("Flash On the Fly"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText()
