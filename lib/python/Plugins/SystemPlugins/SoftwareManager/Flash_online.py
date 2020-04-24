@@ -267,7 +267,10 @@ class FlashImage(Screen):
 			if not 'backup' in str(retval):
 				if SystemInfo["canMultiBoot"]:
 					self.multibootslot = retval[0]
-				self.session.openWithCallback(self.backupQuestionCB, MessageBox, _('Do you want to backup your settings now?'), default=True, timeout=10)
+				if config.plugins.softwaremanager.autosaveSettingsfilesEntry.value:
+					self.session.openWithCallback(self.backupQuestionCB, MessageBox, _('Do you want to backup your settings now?'), default=True, timeout=1)
+				else:
+					self.session.openWithCallback(self.backupQuestionCB, MessageBox, _('Do you want to backup your settings now?'), default=True, timeout=10)
 				return
 
 			def findmedia(path):
