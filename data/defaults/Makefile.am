@@ -22,12 +22,5 @@ dist_install_DATA = \
 	userbouquet.bef007.tv \
 	userbouquet.bef008.tv \
 	userbouquet.bef009.tv \
-	userbouquet.iptv_austria_swiss.tv \
-	userbouquet.iptv_deutschland.tv \
-	userbouquet.iptv_music.tv \
-	userbouquet.iptv_osteuropa.tv \
-	userbouquet.iptv_russia.tv \
-	userbouquet.iptv_sports.tv \
-	userbouquet.iptv_webcams.tv \
-	userbouquet.iptv_world.tv \
+	userbouquet.bef010.tv \
 	whitelist
