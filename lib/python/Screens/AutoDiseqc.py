@@ -16,7 +16,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
 	sat_frequencies = [
 		# astra 192 zdf
-		( 11953000, 27500, \
+		( 11953, 27500, \
 		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_3_4, \
 		eDVBFrontendParametersSatellite.Inversion_Off, 192, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
@@ -29,7 +29,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		1079, 1, _("Astra 1 19.2e")),
 
 		# astra 235 astra ses
-		( 12168000, 27500, \
+		( 12168, 27500, \
 		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_3_4, \
 		eDVBFrontendParametersSatellite.Inversion_Off, 235, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
@@ -42,7 +42,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		3224, 3, _("Astra 3 23.5e")),
 
 		# astra 282 bbc
-		( 11778000, 22000, \
+		( 10773, 22000, \
 		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_5_6, \
 		eDVBFrontendParametersSatellite.Inversion_Off, 282, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
@@ -55,7 +55,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		2045, 2, _("Astra 2 28.2e")),
 
 		# hotbird 130 rai
-		( 10992000, 27500, \
+		( 10992, 27500, \
 		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_2_3, \
 		eDVBFrontendParametersSatellite.Inversion_Off, 130, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
@@ -68,7 +68,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		12400, 318, _("Hotbird 13.0e")),
 
  		# eutelsat 160 hrt
- 		( 10721000, 27500, \
+		( 10890, 27500, \
 		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_3_4, \
 		eDVBFrontendParametersSatellite.Inversion_Off, 160, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
@@ -81,7 +81,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
  		20100, 366, _("Eutelsat 16A 16.0e")),
  
 		# thor  3592 CT24
-		( 12072000, 28000, \
+		( 12072, 28000, \
 		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_7_8, \
 		eDVBFrontendParametersSatellite.Inversion_Off, 3592, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
@@ -94,7 +94,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		706, 1536, _("Thor 5/6/7 0.8w")),
 
 		# hispasat 300 tsa
-		( 10890000, 27500, \
+		( 10890, 27500, \
 		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_3_4, \
 		eDVBFrontendParametersSatellite.Inversion_Off, 3300, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
@@ -105,6 +105,32 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
 		eDVBFrontendParametersSatellite.T2MI_Default_Pid,
 		1388, 1388, _("Hispasat 30.0w")),
+
+		# eutelsat 160e hrt
+		( 10721, 27500, \
+		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_3_4, \
+		eDVBFrontendParametersSatellite.Inversion_Off, 160, \
+		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
+		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
+		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+		eDVBFrontendParametersSatellite.PLS_Gold,
+		eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+		eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+		20100, 366, _("Eutelsat 16A 16.0e")),
+
+		# thor 08w Sky News
+		( 12418, 28000, \
+		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_7_8, \
+		eDVBFrontendParametersSatellite.Inversion_Off, 90, \
+		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
+		eDVBFrontendParametersSatellite.RollOff_auto, eDVBFrontendParametersSatellite.Pilot_Unknown, \
+		eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+		eDVBFrontendParametersSatellite.PLS_Gold,
+		eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+		eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+		6400, 156, _("Eutelsat 9B 9.0e")),
 	]
 
 	SAT_TABLE_FREQUENCY = 0
