@@ -1495,15 +1495,14 @@ void eEPGCache::save()
 			free(buf);
 			return;
 		}
-	
-		free(buf);
-	
+
 		// check for enough free space on storage
 		tmp=s.f_bfree;
 		tmp*=s.f_bsize;
 		if ( tmp < (eventData::CacheSize*12)/10 ) // 20% overhead
 		{
 			eDebug("[eEPGCache] not enough free space at '%s' %lld bytes available but %u needed", buf, tmp, (eventData::CacheSize*12)/10);
+			free(buf);
 			fclose(f);
 			return;
 		}
@@ -2075,7 +2074,7 @@ void eEPGCache::channel_data::OPENTV_checkCompletion(uint32_t data_crc)
 				sids.push_back(m_OPENTV_channels_map[channelid].serviceId);
 				cache->submitEventData(sids, chids, it->second.startTime, it->second.duration, m_OPENTV_descriptors_map[it->second.title_crc].c_str(), "", "", 0, eEPGCache::OPENTV);
 			}
-			// m_OPENTV_EIT_map.erase(it); // removed for further testing due to seg fault, endless spinner and blocking issues
+			m_OPENTV_EIT_map.erase(it);
 		}
 		m_OPENTV_descriptors_map.clear();
 
