@@ -2,7 +2,7 @@ from os import path, listdir
 from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN, fileHas, pathExists
 from Tools.HardwareInfo import HardwareInfo
-from boxbranding import getBoxType, getBrandOEM, getDisplayType, getHaveAVJACK, getHaveDVI, getHaveHDMI, getHaveRCA, getHaveSCART, getHaveSCARTYUV, getHaveYUV, getMachineBuild, getMachineMtdRoot, getMachineMtdKernel, getHaveHDMIinHD
+from boxbranding import getBoxType, getBrandOEM, getDisplayType, getHaveAVJACK, getHaveDVI, getHaveHDMI, getHaveRCA, getHaveSCART, getHaveSCARTYUV, getHaveYUV, getMachineBuild, getMachineMtdRoot, getMachineMtdKernel, getHaveHDMIinHD, getHaveMiniTV, getHaveHDMIinFHD, getHaveWOL, getHaveWWOL, getHaveCI, getHaveTranscoding2, getHaveCI
 
 SystemInfo = { }
 SystemInfo["HasRootSubdir"] = False	# This needs to be here so it can be reset by getMultibootslots!
@@ -93,14 +93,20 @@ SystemInfo["LCDsymbol_circle"] = fileCheck("/proc/stb/lcd/symbol_circle")
 SystemInfo["ForceLNBPowerChanged"] = fileCheck("/proc/stb/frontend/fbc/force_lnbon")
 SystemInfo["ForceToneBurstChanged"] = fileCheck("/proc/stb/frontend/fbc/force_toneburst")
 SystemInfo["USETunersetup"] = SystemInfo["ForceLNBPowerChanged"] or SystemInfo["ForceToneBurstChanged"]
-SystemInfo["HDMIin"] = getHaveHDMIinHD() in ('True')
-SystemInfo["HaveRCA"] = getHaveRCA() in ('True')
-SystemInfo["HaveDVI"] = getHaveDVI() in ('True')
-SystemInfo["HaveAVJACK"] = getHaveAVJACK() in ('True')
-SystemInfo["HaveSCART"] = getHaveSCART() in ('True')
-SystemInfo["HaveSCARTYUV"] = getHaveSCARTYUV() in ('True')
-SystemInfo["HaveYUV"] = getHaveYUV() in ('True')
-SystemInfo["HaveHDMI"] = getHaveHDMI() in ('True')
+SystemInfo["HDMIin"] = getHaveHDMIinHD()
+SystemInfo["HDMIinFHD"] = getHaveHDMIinFHD()
+SystemInfo["HaveRCA"] = getHaveRCA()
+SystemInfo["HaveDVI"] = getHaveDVI()
+SystemInfo["HaveAVJACK"] = getHaveAVJACK()
+SystemInfo["HaveSCART"] = getHaveSCART()
+SystemInfo["HaveSCARTYUV"] = getHaveSCARTYUV()
+SystemInfo["HaveYUV"] = getHaveYUV()
+SystemInfo["HaveHDMI"] = getHaveHDMI()
+SystemInfo["HaveMiniTV"] = getHaveMiniTV()
+SystemInfo["HaveWOL"] = getHaveWOL()
+SystemInfo["HaveWWOL"] = getHaveWWOL()
+SystemInfo["HaveTranscoding2"] = getHaveTranscoding2()
+SystemInfo["HaveCI"] = getHaveCI()
 SystemInfo["HaveMultiBoot"] = (fileCheck("/boot/STARTUP") or fileCheck("/boot/cmdline.txt"))
 SystemInfo["HaveMultiBootHD"] = fileCheck("/boot/STARTUP") and getMachineBuild() in ('hd51','vs1500','h7','ceryon7252')
 SystemInfo["HaveMultiBootXC"] = fileCheck("/boot/cmdline.txt")
