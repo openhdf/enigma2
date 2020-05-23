@@ -7,14 +7,6 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	VideoEnhancement WirelessLan NetworkWizard FastScan \
 	SABnzbdSetup OSD3DSetup DeviceManager SwapManager LCNScanner
 
-if HAVE_LIBVUGLES2
-SUBDIRS += AnimationSetup
-endif
-
-if HAVE_OSDANIMATION
-SUBDIRS += AnimationSetup
-endif
-
 if DREAMBOX
 SUBDIRS += FrontprocessorUpgrade NFIFlash
 endif
