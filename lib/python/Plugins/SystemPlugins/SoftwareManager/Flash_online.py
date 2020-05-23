@@ -316,7 +316,7 @@ class FlashImage(Screen):
 					if isDevice or 'no_backup' == retval:
 						self.startBackupsettings(retval)
 					else:
-						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternatively you can mount the network drive after the flash and perform a manufacturer reset to autorestore"), simple=True)
+						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup.\nThis means after the flash the autorestore will not work.\nAlternatively you can mount the network drive after the flash\nand manually restore your settings."), simple=True)
 				except:
 					self.session.openWithCallback(self.abort, MessageBox, _("Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
 			else:
