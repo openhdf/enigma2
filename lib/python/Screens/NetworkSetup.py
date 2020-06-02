@@ -39,6 +39,7 @@ import commands
 import string
 import os
 import glob
+import sys
 
 basegroup = "packagegroup-base"
 
@@ -1868,7 +1869,7 @@ class NetworkSABnzbd(Screen):
 		self.my_sabnzbd_active = False
 		self.my_sabnzbd_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.SABnzbStartStop, 'yellow': self.activateSABnzbd})
-		self.service_name = 'sabnzbd'
+		self.service_name = ("sabnzbd3" if sys.version_info[0] >= 3 else "sabnzbd")
 		self.checkSABnzbdService()
 
 	def checkSABnzbdService(self):
