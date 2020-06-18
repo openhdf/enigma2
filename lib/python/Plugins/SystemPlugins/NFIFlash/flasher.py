@@ -1,24 +1,20 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from boxbranding import getImageVersion
+
+from enigma import eConsoleAppContainer, eEnv
+
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
-from Screens.Standby import TryQuitMainloop
 from Screens.Console import Console
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
-from Components.Sources.Progress import Progress
-from Components.Sources.Boolean import Boolean
-from Components.Label import Label
 from Components.FileList import FileList
 from Components.Task import Task, Job, job_manager, Condition
 from Screens.TaskView import JobView
 from Tools.Directories import fileExists
 from Tools.HardwareInfo import HardwareInfo
-from os import system
-from enigma import eConsoleAppContainer, quitMainloop, eEnv
-from boxbranding import getImageVersion
-from Components.About import about
+
 
 class md5Postcondition(Condition):
 	def __init__(self):

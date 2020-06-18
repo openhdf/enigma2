@@ -2,34 +2,30 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
+from boxbranding import getImageVersion, getMachineBrand, getMachineName
+from os import system, access, R_OK
+import re
+import six
+
+from enigma import eConsoleAppContainer, eTimer
+from twisted.web import client
+
 from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.TaskView import JobView
-from Components.About import about
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
-from Components.Label import Label
 from Components.FileList import FileList
-from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText
 from Components.ScrollLabel import ScrollLabel
 from Components.Harddisk import harddiskmanager
 from Components.Task import Task, Job, job_manager, Condition
-from Tools.Directories import fileExists, isMount, resolveFilename, SCOPE_HDD, SCOPE_MEDIA
+from Tools.Directories import isMount, resolveFilename, SCOPE_HDD, SCOPE_MEDIA
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Downloader import downloadWithProgress
-from enigma import eConsoleAppContainer, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eTimer
-from boxbranding import getImageVersion, getMachineBrand, getMachineName
-from os import system, path, access, stat, remove, W_OK, R_OK
-from twisted.web import client
-from twisted.internet import reactor, defer
-from twisted.python import failure
-import re
-from six.moves import range
 
 class ImageDownloadJob(Job):
 	def __init__(self, url, filename, device=None, mountpoint="/"):
@@ -438,6 +434,7 @@ class NFIDownload(Screen):
 		self.target_dir = None
 
 	def tool_avail(self, string):
+		string = six.ensure_str(string)
 		print("[tool_avail]" + string)
 		self.taskstring += string
 

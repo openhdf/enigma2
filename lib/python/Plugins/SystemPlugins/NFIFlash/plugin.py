@@ -1,9 +1,8 @@
 from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 from Tools.HardwareInfo import HardwareInfo
-from Tools.Directories import fileExists
 from .downloader import NFIDownload, filescan
-from .flasher import NFIFlash
+
 
 def NFIFlasherMain(session, tmp = None, **kwargs):
 	session.open(NFIDownload, "/home/root" )
