@@ -317,6 +317,7 @@ class About(Screen):
 		AboutText += _("Skin:\t%s (%s x %s)\n") % (config.skin.primary_skin.value.split('/')[0], getDesktop(0).size().width(), getDesktop(0).size().height())
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + " to Build #" + getImageBuild() + "\n"
 		AboutText += _("E2 (re)starts:\t%s\n") % config.misc.startCounter.value
+		AboutText += _("Uptime") + ":\t" + about.getBoxUptime() + "\n"
 		if SystemInfo["WakeOnLAN"]:
 			if fileCheck("/proc/stb/power/wol"):
 				WOLmode = open("/proc/stb/power/wol").read()[:-1]
