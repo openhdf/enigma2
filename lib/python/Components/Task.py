@@ -7,7 +7,6 @@ from __future__ import print_function
 from __future__ import division
 from Tools.CList import CList
 import six
-from six.moves import map
 
 class Job(object):
 	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = list(range(4))
@@ -499,7 +498,6 @@ class ToolExistsPrecondition(Condition):
 			path = os.environ.get('PATH', '').split(os.pathsep)
 			path.append(task.cwd + '/')
 			# FIXME PY3 map,filter
-			#absolutes = list(filter(lambda _file: os.access(_file, os.X_OK), list(map(lambda directory, _file = task.cmd: os.path.join(directory, _file), path))))
 			absolutes = list([_file for _file in list(map(lambda directory, _file = task.cmd: os.path.join(directory, _file), path)) if os.access(_file, os.X_OK)])
 			if absolutes:
 				self.realpath = absolutes[0]
