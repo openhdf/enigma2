@@ -72,13 +72,47 @@ static void stringFromFile(FILE* f, const char* context, const char* filename)
 }
 
 static bool bsodhandled = false;
+static bool bsodrestart =  true;
+static int bsodcnt = 0;
 
+int getBsodCounter()
+{
+	return bsodcnt;
+}
+
+void resetBsodCounter()
+{
+	bsodcnt = 0;
+}
+
+bool bsodRestart()
+{
+	return bsodrestart;
+}
 void bsodFatal(const char *component)
 {
+	//handle python crashes	
+	bool bsodpython = (eConfigManager::getConfigBoolValue("config.crash.bsodpython", false) && eConfigManager::getConfigBoolValue("config.crash.bsodpython_ready", false));
+	//hide bs after x bs counts and no more write crash log	-> setting values 0-10 (always write the first crashlog)
+	int bsodhide = eConfigManager::getConfigIntValue("config.crash.bsodhide", 5);
+	//restart after x bs counts -> setting values 0-10 (0 = never restart)
+	int bsodmax = eConfigManager::getConfigIntValue("config.crash.bsodmax", 5);
+	//force restart after max crashes
+	int bsodmaxmax = 100;
+
+	bsodcnt++;
+	if ((bsodmax && bsodcnt > bsodmax) || component || bsodcnt > bsodmaxmax)
+		bsodpython = false;
+	if (bsodpython && bsodcnt-1 && bsodcnt > bsodhide && (!bsodmax || bsodcnt < bsodmax) && bsodcnt < bsodmaxmax)
+	{
+		sleep(1);
+		return;
+	}
+	bsodrestart = true;
+
 	/* show no more than one bsod while shutting down/crashing */
 	if (bsodhandled) {
 		if (component) {
-			eSyncLog();
 			sleep(1);
 			raise(SIGKILL);
 		}
@@ -170,11 +204,20 @@ void bsodFatal(const char *component)
 
 		/* dump the kernel log */
 		getKlog(f);
-
 		fsync(fileno(f));
 		fclose(f);
 	}
 
+<<<<<<< HEAD
+=======
+	if (bsodpython && bsodcnt == 1 && !bsodhide) //write always the first crashlog
+	{
+		bsodrestart = false;
+		bsodhandled = false;
+		sleep(1);
+		return;
+	}
+>>>>>>> 38003988f4... rework error outout based on pli
 	ePtr<gMainDC> my_dc;
 	gMainDC::getInstance(my_dc);
 
@@ -183,7 +226,10 @@ void bsodFatal(const char *component)
 	p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
 	p.setBackgroundColor(gRGB(0x1A1A1A));
 	p.setForegroundColor(gRGB(0xFFFFFF));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 38003988f4... rework error outout based on pli
 	int hd =  my_dc->size().width() == 1920;
 	ePtr<gFont> font = new gFont("Regular", hd ? 30 : 20);
 	p.setFont(font);
@@ -195,6 +241,7 @@ void bsodFatal(const char *component)
 	os.clear();
 	os_text.clear();
 
+<<<<<<< HEAD
 	os_text << "We are really sorry. Your receiver encountered "
 		"a software problem, and needs to be restarted.\n"
 		"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
@@ -202,6 +249,34 @@ void bsodFatal(const char *component)
 		"Component: " << component;
 	
 	os << eConfigManager::getConfigString("config.crash.debug_text", os_text.str());
+=======
+	if (!bsodpython)
+	{
+		os_text << "We are really sorry. Your receiver encountered "
+			"a software problem, and needs to be restarted.\n"
+			"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
+			"Your receiver restarts in 10 seconds!\n"
+			"Component: " << component;
+
+		os << getConfigString("config.crash.debug_text", os_text.str());
+	}
+	else
+	{
+		std::string txt;
+		if (!bsodmax && bsodcnt < bsodmaxmax)
+			txt = "not (max " + std::to_string(bsodmaxmax) + " times)";	
+		else if (bsodmax - bsodcnt > 0)
+			txt = "if it happens "+ std::to_string(bsodmax - bsodcnt) + " more times";
+		else
+			txt = "if it happens next times";
+		os_text << "We are really sorry. Your receiver encountered "
+			"a software problem. So far it has occurred " << bsodcnt << " times.\n"
+			"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
+			"Your receiver restarts " << txt << " by python crashes!\n"
+			"Component: " << component;
+		os << os_text.str();
+	}
+>>>>>>> 38003988f4... rework error outout based on pli
 
 	p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 
@@ -255,7 +330,6 @@ void bsodFatal(const char *component)
 		usable_area = eRect(hd ? 30 : 100, hd ? 180 : 170, my_dc->size().width() - (hd ? 60 : 180), my_dc->size().height() - (hd ? 30 : 20));
 		p.renderText(usable_area, logtail, gPainter::RT_HALIGN_LEFT);
 	}
-	eSyncLog();
 	sleep(10);
 
 	/*
@@ -268,6 +342,18 @@ void bsodFatal(const char *component)
 	 * We'd risk destroying things with every additional instruction we're
 	 * executing here.
 	 */
+<<<<<<< HEAD
+=======
+
+	if (bsodpython)
+	{
+		bsodrestart = false;
+		bsodhandled = false;
+		p.setBackgroundColor(gRGB(0,0,0,0xFF));
+		p.clear();
+		return;
+	}
+>>>>>>> 38003988f4... rework error outout based on pli
 	if (component) raise(SIGKILL);
 	quitMainloop(5);
 }
@@ -275,11 +361,11 @@ void bsodFatal(const char *component)
 #if defined(__MIPSEL__)
 void oops(const mcontext_t &context)
 {
-	eDebug("PC: %08lx", (unsigned long)context.pc);
+	eLog(lvlFatal, "PC: %08lx", (unsigned long)context.pc);
 	int i;
 	for (i=0; i<32; i += 4)
 	{
-		eDebug("%08x %08x %08x %08x",
+		eLog(lvlFatal, "    %08x %08x %08x %08x",
 			(int)context.gregs[i+0], (int)context.gregs[i+1],
 			(int)context.gregs[i+2], (int)context.gregs[i+3]);
 	}
@@ -295,10 +381,14 @@ void print_backtrace()
 {
 	void *array[15];
 	size_t size;
-	int cnt;
+	size_t cnt;
 
 	size = backtrace(array, 15);
+<<<<<<< HEAD
 	eDebug("Backtrace:");
+=======
+	eLog(lvlFatal, "Backtrace:");
+>>>>>>> 38003988f4... rework error outout based on pli
 	for (cnt = 1; cnt < size; ++cnt)
 	{
 		Dl_info info;
@@ -306,7 +396,7 @@ void print_backtrace()
 		if (dladdr(array[cnt], &info)
 			&& info.dli_fname != NULL && info.dli_fname[0] != '\0')
 		{
-			eDebug("%s(%s) [0x%X]", info.dli_fname, info.dli_sname != NULL ? info.dli_sname : "n/a", (unsigned long int) array[cnt]);
+			eLog(lvlFatal, "%s(%s) [0x%lX]", info.dli_fname, info.dli_sname != NULL ? info.dli_sname : "n/a", (unsigned long int) array[cnt]);
 		}
 	}
 }
@@ -318,7 +408,7 @@ void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 	oops(uc->uc_mcontext);
 #endif
 	print_backtrace();
-	eDebug("-------FATAL SIGNAL");
+	eLog(lvlFatal, "-------FATAL SIGNAL");
 	bsodFatal("enigma2, signal");
 }
 

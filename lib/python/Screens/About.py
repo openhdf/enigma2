@@ -11,9 +11,9 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.SystemInfo import SystemInfo
-from Components.Console import Console
-from enigma import eTimer, getEnigmaVersionString, getDesktop
-from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate, getOEVersion, getImageType, getBrandOEM
+from Components.config import config
+from enigma import eTimer, getEnigmaVersionString, getDesktop, eGetEnigmaDebugLvl
+from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -44,9 +44,147 @@ def read_startup(FILE):
 			data=myfile.read().replace('\n', '')
 		myfile.close()
 	except IOError:
-		print("[ERROR] failed to open file %s" % file)
-		data = " "
-	return data
+		print("[ERROR] failed to open file %s" % filename)
+	return ret
+
+def parseLines(filename):
+	ret = ["N/A"]
+	try:
+		f = open(filename, "rb")
+		ret = f.readlines()
+		f.close()
+	except IOError:
+		print("[ERROR] failed to open file %s" % filename)
+	return ret
+
+def MyDateConverter(StringDate):
+	## StringDate must be a string "YYYY-MM-DD" or "YYYYMMDD"
+	try:
+		if len(StringDate) == 8:
+			year = StringDate[0:4]
+			month = StringDate[4:6]
+			day = StringDate[6:8]
+			StringDate = ' '.join((year, month, day))
+		else:
+			StringDate = StringDate.replace("-", " ")
+		StringDate = time.strftime(config.usage.date.full.value, time.strptime(StringDate, "%Y %m %d"))
+		return StringDate
+	except:
+		return _("unknown")
+
+def getAboutText():
+	AboutText = ""
+	AboutText += _("Model:\t\t%s %s\n") % (getMachineBrand(), getMachineName())
+	AboutText += _("OEM Model:\t\t%s\n") % getMachineBuild()
+
+	bootloader = ""
+	if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
+		f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
+		bootloader = f.readline().replace('\x00', '').replace('\n', '')
+		f.close()
+		AboutText += _("Bootloader:\t\t%s\n") % (bootloader)
+
+	if path.exists('/proc/stb/info/chipset'):
+		AboutText += _("Chipset:\t\t%s") % about.getChipSetString() + "\n"
+
+	AboutText += _("CPU:\t\t%s  (%s)  %s cores") % (about.getCPUString(), about.getCPUSpeedString(), about.getCpuCoresString()) + "\n"
+
+	imagestarted = ""
+	bootname = ''
+	if path.exists('/boot/bootname'):
+		f = open('/boot/bootname', 'r')
+		bootname = f.readline().split('=')[1]
+		f.close()
+	if SystemInfo["canMultiBoot"]:
+		slot = image = GetCurrentImage()
+		bootmode = ""
+		part = _("eMMC slot %s") %slot
+		if SystemInfo["canMode12"]:
+			bootmode = _(" bootmode = %s") %GetCurrentImageMode()
+		if SystemInfo["HasHiSi"] and "sda" in SystemInfo["canMultiBoot"][slot]['device']:
+			if slot > 4:
+				image -=4
+			else:
+				image -=1
+			part = "SDcard slot %s (%s) " %(image, SystemInfo["canMultiBoot"][slot]['device'])
+		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + str(slot) + "  (" + part + bootmode + ")\n"
+
+	AboutText += _("Version / Build:\t\t%s  (%s)") % (getImageVersion(), MyDateConverter(getImageBuild())) + "\n"
+	AboutText += _("Kernel:\t\t%s") % about.getKernelVersionString() + "\n"
+	AboutText += _("Drivers:\t\t%s") % MyDateConverter(getDriverDate()) + "\n"
+
+	skinWidth = getDesktop(0).size().width()
+	skinHeight = getDesktop(0).size().height()
+
+	AboutText += _("Skin:\t\t%s") % config.skin.primary_skin.value.split("/")[0] + _("  (%s x %s)") % (skinWidth, skinHeight) + "\n"
+
+	AboutText += _("GStreamer:\t\t%s") % about.getGStreamerVersionString() + "\n"
+	AboutText += _("Python:\t\t%s") % about.getPythonVersionString() + "\n"
+
+	MyFlashDate = about.getFlashDateString()
+	if MyFlashDate != _("unknown"):
+		AboutText += _("Installed:\t\t%s") % MyDateConverter(MyFlashDate) + "\n"
+
+	AboutText += _("Last E2 update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
+	AboutText += _("Enigma2 debug level:\t%d") % eGetEnigmaDebugLvl() + "\n"
+
+	fp_version = getFPVersion()
+	if fp_version is None:
+		fp_version = ""
+	elif fp_version != 0:
+		fp_version = _("Frontprocessor version:\t%s") % fp_version
+		AboutText += fp_version + "\n"
+
+	tempinfo = ""
+	if path.exists('/proc/stb/sensors/temp0/value'):
+		f = open('/proc/stb/sensors/temp0/value', 'r')
+		tempinfo = f.read()
+		f.close()
+	elif path.exists('/proc/stb/fp/temp_sensor'):
+		f = open('/proc/stb/fp/temp_sensor', 'r')
+		tempinfo = f.read()
+		f.close()
+	elif path.exists('/proc/stb/sensors/temp/value'):
+		f = open('/proc/stb/sensors/temp/value', 'r')
+		tempinfo = f.read()
+		f.close()
+	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
+		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + SIGN + "C\n"
+
+	tempinfo = ""
+	if path.exists('/proc/stb/fp/temp_sensor_avs'):
+		f = open('/proc/stb/fp/temp_sensor_avs', 'r')
+		tempinfo = f.read()
+		f.close()
+	elif path.exists('/proc/stb/power/avs'):
+		f = open('/proc/stb/power/avs', 'r')
+		tempinfo = f.read()
+		f.close()
+	elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
+		try:
+			f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
+			tempinfo = f.read()
+			tempinfo = tempinfo[:-4]
+			f.close()
+		except:
+			tempinfo = ""
+	elif path.exists('/proc/hisi/msp/pm_cpu'):
+		try:
+			for line in open('/proc/hisi/msp/pm_cpu').readlines():
+				line = [x.strip() for x in line.strip().split(":")]
+				if line[0] in ("Tsensor"):
+					temp = line[1].split("=")
+					temp = line[1].split(" ")
+					tempinfo = temp[2]
+					if getMachineBuild() in ('u41', 'u42', 'u43'):
+						tempinfo = str(int(tempinfo) - 15)
+		except:
+			tempinfo = ""
+	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
+		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + SIGN + "C\n"
+	AboutLcdText = AboutText.replace('\t', ' ')
+
+	return AboutText, AboutLcdText
 
 class About(Screen):
 	def __init__(self, session):
