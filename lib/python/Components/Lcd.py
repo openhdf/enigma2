@@ -187,7 +187,7 @@ class LCD:
 		eDBoxLCD.getInstance().setFlipped(value)
 
 	def setScreenShot(self, value):
- 		eDBoxLCD.getInstance().setDump(value)
+		eDBoxLCD.getInstance().setDump(value)
 
 	def isOled(self):
 		return eDBoxLCD.getInstance().isOled()
@@ -432,7 +432,7 @@ def InitLcd():
 			def setLCDModePiP(configElement):
 				pass
 			def setLCDScreenshot(configElement):
- 				ilcd.setScreenShot(configElement.value)
+				ilcd.setScreenShot(configElement.value)
 
 			if getBoxType() in ('gbquad4k', 'gbue4k'):
 				config.lcd.modepip = ConfigSelection(choices={
@@ -448,7 +448,7 @@ def InitLcd():
 						default = "0")
 			config.lcd.modepip.addNotifier(setLCDModePiP)
 			config.lcd.screenshot = ConfigYesNo(default=False)
- 			config.lcd.screenshot.addNotifier(setLCDScreenshot)
+			config.lcd.screenshot.addNotifier(setLCDScreenshot)
 
 			if getBoxType() in ('gbquad4k', 'gbue4k'):
 				#  (0:normal, 1:video0, 2:fb, 3:vide0+fb, 4:video1, 5:vide0+video1, 6:video1+fb, 7:video0+video1+fb)
