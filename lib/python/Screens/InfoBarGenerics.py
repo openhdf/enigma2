@@ -2649,7 +2649,7 @@ class InfoBarEPG:
 
 	def showETPORTAL(self):
 		try:
-			from Plugins.Extensions.EtPortal.plugin import *
+			from Plugins.Extensions.EtPortal.plugin import EtPortalScreen
 			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
 		except Exception as e:
