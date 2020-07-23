@@ -636,7 +636,7 @@ def InitUsageConfig():
 	config.osd.threeDznorm = ConfigSlider(default = 50, increment = 1, limits = (0, 100))
 	config.osd.show3dextensions = ConfigYesNo(default = False)
 	choiceoptions = [("mode1", _("Mode 1")), ("mode2", _("Mode 2"))]
-        config.osd.threeDsetmode = ConfigSelection(default = 'mode1', choices = choiceoptions )
+	config.osd.threeDsetmode = ConfigSelection(default = 'mode1' , choices = choiceoptions )
 
 	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
 	for p in harddiskmanager.getMountedPartitions():
