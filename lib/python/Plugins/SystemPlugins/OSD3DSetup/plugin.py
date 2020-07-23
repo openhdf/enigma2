@@ -409,7 +409,7 @@ def toggleTAB(session, **kwargs):
 	return []
 
 def toggleext(value):
- 	mode = getmode()
+	mode = getmode()
 	znorm = getznorm()
 	if mode is None:
 		mode = value
