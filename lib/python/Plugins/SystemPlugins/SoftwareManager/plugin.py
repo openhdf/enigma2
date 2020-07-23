@@ -122,7 +122,7 @@ def write_cache(cache_file, cache_data):
 		try:
 			mkdir( os_path.dirname(cache_file) )
 		except OSError:
-			    print(os_path.dirname(cache_file), 'is a file')
+			print(os_path.dirname(cache_file), 'is a file')
 	fd = open(cache_file, 'w')
 	dump(cache_data, fd, -1)
 	fd.close()
@@ -951,7 +951,7 @@ class PluginManager(Screen, PackageInfoHandler):
 				self["key_blue"].setText("")
 				if len(self.selectedFiles) == 0 and iSoftwareTools.available_updates != 0:
 					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + ' ' + _("updates available."))
-                                elif len(self.selectedFiles) != 0:
+				elif len(self.selectedFiles) != 0:
 					self["status"].setText(str(len(self.selectedFiles)) + ' ' + _("packages selected."))
 				else:
 					self["status"].setText(_("There are currently no outstanding actions."))
@@ -1732,8 +1732,8 @@ class UpdatePlugin(Screen):
 		socket.setdefaulttimeout(currentTimeoutDefault)
 
 		if default:
-		        # We'll ask later
-		        self.runUpgrade(True)
+			# We'll ask later
+			self.runUpgrade(True)
 		else:
 			if doUpdate:
 				# Ask for Update,
