@@ -28,7 +28,7 @@ startswap = None
 def SwapAutostart(reason, session=None, **kwargs):
 	global startswap
 	if reason == 0:
- 		if config.plugins.swapmanager.swapautostart.value:
+		if config.plugins.swapmanager.swapautostart.value:
 			print("[SwapManager] autostart")
 			startswap = StartSwap()
 			startswap.start()
