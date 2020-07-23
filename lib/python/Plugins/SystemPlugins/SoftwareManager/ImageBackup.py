@@ -462,7 +462,7 @@ class ImageBackup(Screen):
 
 		cmdlist.append('echo " "')
 		cmdlist.append('echo "' + _("Create:") + ' kerneldump"')
- 		cmdlist.append('echo " "')
+		cmdlist.append('echo " "')
 
 		if SystemInfo["HaveMultiBoot"]:
 			if SystemInfo["HasRootSubdir"]:
