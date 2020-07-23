@@ -22,8 +22,8 @@ class EtAnalogClockLCD(Renderer):
 		self.forend = -1
 		self.linewidth = 1
 		self.positionheight = 1
-                self.positionwidth = 1
-                self.linesize = 1
+		self.positionwidth = 1
+		self.linesize = 1
 
 	GUI_WIDGET = eCanvas
 
