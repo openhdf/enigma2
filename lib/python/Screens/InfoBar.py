@@ -180,9 +180,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showEMC(self):
 		try:
-			from Plugins.Extensions.EnhancedMovieCenter.plugin import *
+			import Plugins.Extensions.EnhancedMovieCenter.plugin
 			from Components.PluginComponent import plugins
-			showMoviesNew()
+			EnhancedMovieCenter.showMoviesNew()
 		except Exception as e:
 			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO, timeout = 10 )
 
