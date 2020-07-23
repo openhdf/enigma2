@@ -60,8 +60,8 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.list = source
 		self.l.setList(self.list)
-                self.fontName, self.fontSize = skin.parameters.get("ServiceInfoFont", ('Regular', 23))
-                self.l.setFont(0, gFont(self.fontName, self.fontSize))
+		self.fontName, self.fontSize = skin.parameters.get("ServiceInfoFont", ('Regular', 23))
+		self.l.setFont(0, gFont(self.fontName, self.fontSize))
 		self.ItemHeight = 25
 
 	def applySkin(self, desktop, screen):
