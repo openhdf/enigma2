@@ -106,7 +106,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 		suffix = data[1]
 	path = base
 	# If base is "" then set path to the scope.  Otherwise use the scope to resolve the base filename.
-	if base is "":
+	if base == "":
 		path, flags = defaultPaths.get(scope)
 		# If the scope is SCOPE_CURRENT_SKIN or SCOPE_ACTIVE_SKIN append the current skin to the scope path.
 		if scope in (SCOPE_CURRENT_SKIN, SCOPE_ACTIVE_SKIN):
