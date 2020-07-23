@@ -239,8 +239,8 @@ class wpaSupplicant:
 					'key': config.plugins.wlan.psk.value,
 				}
 
-			for (key, item) in wsconfig.items():
-				if item is "None" or item is "":
+			for (key, item) in list(wsconfig.items()):
+				if item == "None" or item == "":
 					if key == 'hiddenessid':
 						wsconfig['hiddenessid'] = False
 					if key == 'ssid':
