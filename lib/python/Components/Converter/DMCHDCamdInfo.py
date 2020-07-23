@@ -38,7 +38,7 @@ class DMCHDCamdInfo(Converter, object):
 		service = self.source.service
 		info = service and service.info()
 		if not info:
-		   return ""
+			return ""
 		camd = None
 
 		# OoZooN
@@ -51,8 +51,8 @@ class DMCHDCamdInfo(Converter, object):
 		# Merlin2
 		elif fileExists("/etc/clist.list"):
 			try:
-		   		camdlist = open("/etc/clist.list", "r")
-		   	except:
+				camdlist = open("/etc/clist.list", "r")
+			except:
 				return None
 
 		# GP3
@@ -67,7 +67,7 @@ class DMCHDCamdInfo(Converter, object):
 					if x[1] == 1:
 						camd = x[2]
 				return camd
-		   	except:
+			except:
 				return None
 
 		else:
