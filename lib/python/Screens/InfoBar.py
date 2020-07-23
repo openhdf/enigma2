@@ -188,7 +188,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showETPORTAL(self):
 		try:
-			from Plugins.Extensions.EtPortal.plugin import *
+			from Plugins.Extensions.EtPortal.plugin import EtPortalScreen
 			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
 		except Exception as e:
@@ -214,7 +214,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showWWW(self):
 		try:
-			from Plugins.Extensions.EtPortal.plugin import *
+			from Plugins.Extensions.EtPortal.plugin import EtPortalScreen
 			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
 		except Exception as e:
@@ -244,7 +244,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def showBoxPortal(self):
 		if getMachineBrand() == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton'):
 			try:
-				from Plugins.Extensions.EtPortal.plugin import *
+				from Plugins.Extensions.EtPortal.plugin import EtPortalScreen
 				from Components.PluginComponent import plugins
 				self.session.open(EtPortalScreen)
 			except Exception as e:

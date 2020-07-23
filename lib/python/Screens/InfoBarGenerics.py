@@ -2657,15 +2657,15 @@ class InfoBarEPG:
 
 	def showEMC(self):
 		try:
-			from Plugins.Extensions.EnhancedMovieCenter.plugin import *
+			import Plugins.Extensions.EnhancedMovieCenter.plugin
 			from Components.PluginComponent import plugins
-			showMoviesNew()
+			EnhancedMovieCenter.showMoviesNew()
 		except Exception as e:
 			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO, timeout = 10 )
 
 	def showMEDIAPORTAL(self):
 		try:
-			from Plugins.Extensions.MediaPortal.plugin import *
+			from Plugins.Extensions.MediaPortal.plugin import haupt_Screen
 			from Components.PluginComponent import plugins
 			self.session.open(haupt_Screen)
 		except Exception as e:
@@ -2673,7 +2673,7 @@ class InfoBarEPG:
 
 	def showDREAMPLEX(self):
 		try:
-			from Plugins.Extensions.DreamPlex.plugin import *
+			from Plugins.Extensions.DreamPlex.plugin import DPS_MainMenu
 			from Components.PluginComponent import plugins
 			self.session.open(DPS_MainMenu)
 		except Exception as e:
