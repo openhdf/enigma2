@@ -683,12 +683,14 @@ class InfoBarHotkey():
 					from Plugins.Extensions.PPanel.ppanel import PPanel
 					self.session.open(PPanel, name=selected[1] + ' PPanel', node=None, filename=ppanelFileName, deletenode=None)
 			elif selected[0] == "Shellscript":
-				command = '/usr/scripts/' + selected[1] + ".sh"
-				if os.path.isfile(command) and os.path.isdir(ppath+"/Plugins/Extensions/PPanel"):
-					from Plugins.Extensions.PPanel.ppanel import Execute
-					self.session.open(Execute, selected[1] + " shellscript", None, command)
-				else:
-					os.system(command)
+				command = '/usr/script/' + selected[1] + ".sh"
+				if os.path.isfile(command):
+					if ".hidden." in command:
+						from enigma import eConsoleAppContainer
+						eConsoleAppContainer().execute(command)
+					else:
+						from Screens.Console import Console
+						self.session.open(Console, selected[1] + " shellscript", command, closeOnSuccess=selected[1].startswith('!'), showStartStopText=False)
 			elif selected[0] == "EMC":
 				try:
 					from Plugins.Extensions.EnhancedMovieCenter.plugin import showMoviesNew
@@ -701,5 +703,5 @@ class InfoBarHotkey():
 					from Plugins.Extensions.Kodi.plugin import KodiMainScreen
 					self.session.open(KodiMainScreen)
 			elif selected[0] == "DeviceManager":
-				from Plugins.SystemPlugins.DeviceManager.HddSetup import *
+				from Plugins.SystemPlugins.DeviceManager.HddSetup import HddSetup
 				self.session.open(HddSetup)
