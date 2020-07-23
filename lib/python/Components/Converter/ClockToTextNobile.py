@@ -101,10 +101,10 @@ class ClockToTextNobile(Converter, object):
 			#return strftime("%A %B %d, %Y", t)
 		elif self.type == self.FORMAT:
 			spos = self.fmt_string.find('%')
-			self.fmt_string = self.fmt_string.replace('%A', _(DAYWEEK[t.tm_wday]))
-		        self.fmt_string = self.fmt_string.replace('%B', _(MONTHS[t.tm_mon-1]))
-		        self.fmt_string = self.fmt_string.replace('%a', _(shortDAYWEEK[t.tm_wday]))
-		        self.fmt_string = self.fmt_string.replace('%b', _(shortMONTHS[t.tm_mon-1]))
+			self.fmt_string = self.fmt_string.replace('%A',_(DAYWEEK[t.tm_wday]))
+			self.fmt_string = self.fmt_string.replace('%B',_(MONTHS[t.tm_mon-1]))
+			self.fmt_string = self.fmt_string.replace('%a',_(shortDAYWEEK[t.tm_wday]))
+			self.fmt_string = self.fmt_string.replace('%b',_(shortMONTHS[t.tm_mon-1]))
 			if spos > 0:
 				s1 = self.fmt_string[:spos]
 				s2 = strftime(self.fmt_string[spos:], t)
