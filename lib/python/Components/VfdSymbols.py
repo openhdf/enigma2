@@ -10,7 +10,7 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import SystemInfo
 from boxbranding import getBoxType, getMachineBuild
 from time import time
-from . import Components.RecordingConfig
+from . import RecordingConfig
 
 POLLTIME = 5 # seconds
 
