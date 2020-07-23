@@ -8,11 +8,11 @@ def filter(g):
 	while True:
 		t = g.next()
 		if t[1] == "/*":
-			while g.next()[1] != "*/":
+			while next(g)[1] != "*/":
 				pass
 			continue
 		if t[1] == "//":
-			while g.next()[1] != "\n":
+			while next(g)[1] != "\n":
 				pass
 			continue
 
@@ -98,7 +98,7 @@ def do_file(f, mode):
 						firsthit = 0
 
 					if mode == "parse":
-						print("{\"" + actionname + "\", \"" + t + "\", " + string.join((classname, t), "::") + "},")
+						print("{\"" + actionname + "\", \"" + t + "\", " + "::".join((classname, t)) + "},")
 
 					counter += 1
 
