@@ -164,7 +164,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		))
 
 		# Only allow editing toggle mode when the 3d switch command is supposed to apear in menu or 3d should be turned on automatically
-		if self.menuext.value is not "none" or self.auto.value:
+		if self.menuext.value != "none" or self.auto.value:
 			list.append(getConfigListEntry(_("Toggle mode"), self.toggle))
 
 		# Only allow editing user prompt when the 3d auto toggle is activated
