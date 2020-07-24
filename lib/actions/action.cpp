@@ -80,6 +80,7 @@ void eActionMap::unbindAction(const std::string &context, ePyObject function)
 {
 	//eDebug("[eActionMap] unbind function from %s", context.c_str());
 	for (std::multimap<int64_t, eActionBinding>::iterator i(m_bindings.begin()); i != m_bindings.end(); ++i)
+	{
 		if (i->second.m_fnc && (PyObject_RichCompareBool(i->second.m_fnc, function, Py_EQ) == 1))
 		{
 			Py_DECREF(i->second.m_fnc);
@@ -89,7 +90,6 @@ void eActionMap::unbindAction(const std::string &context, ePyObject function)
 	}
 	eFatal("[eActionMap] unbindAction with illegal python reference");
 }
-
 
 void eActionMap::bindKey(const std::string &domain, const std::string &device, int key, int flags, const std::string &context, const std::string &action)
 {
