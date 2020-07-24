@@ -243,7 +243,7 @@ void bsodFatal(const char *component)
 			"Your receiver restarts in 10 seconds!\n"
 			"Component: " << component;
 
-		os << getConfigString("config.crash.debug_text", os_text.str());
+		os << eConfigManager::getConfigString("config.crash.debug_text", os_text.str());
 	}
 	else
 	{
