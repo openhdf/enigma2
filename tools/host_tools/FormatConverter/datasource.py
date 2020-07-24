@@ -16,7 +16,7 @@ class datasource:
 		return "N/A"
 
 	def getStatus(self):
-		text = str(len(list(self.transponderlist.keys()))) + " Satellites" + "\n"
+		text = str(len(self.transponderlist.keys())) + " Satellites" + "\n"
 		return text
 
 	def printAll(self):
@@ -42,7 +42,7 @@ class datasource:
 			self.satnames[satpos] = satname
 
 	def addTransponder(self, satpos, transponder):
-		if len(list(transponder.keys())) >= 6:
+		if len(transponder.keys()) >= 6:
 			self.transponderlist[satpos].append(transponder)
 
 class genericdatasource(datasource):
@@ -103,7 +103,7 @@ class genericdatasource(datasource):
 		sources = []
 		for source in self.datasources:
 			if source != self:
-				list.append(source.getName() + (" (%d sats)" % len(list(source.transponderlist.keys()))))
+				list.append(source.getName() + (" (%d sats)" % len(source.transponderlist.keys())))
 				sources.append(source)
 		choice = inputChoices(list)
 		if choice is None:
