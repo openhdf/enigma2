@@ -208,8 +208,6 @@ void bsodFatal(const char *component)
 		fclose(f);
 	}
 
-<<<<<<< HEAD
-=======
 	if (bsodpython && bsodcnt == 1 && !bsodhide) //write always the first crashlog
 	{
 		bsodrestart = false;
@@ -217,7 +215,6 @@ void bsodFatal(const char *component)
 		sleep(1);
 		return;
 	}
->>>>>>> 38003988f4... rework error outout based on pli
 	ePtr<gMainDC> my_dc;
 	gMainDC::getInstance(my_dc);
 
@@ -226,10 +223,7 @@ void bsodFatal(const char *component)
 	p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
 	p.setBackgroundColor(gRGB(0x1A1A1A));
 	p.setForegroundColor(gRGB(0xFFFFFF));
-<<<<<<< HEAD
 
-=======
->>>>>>> 38003988f4... rework error outout based on pli
 	int hd =  my_dc->size().width() == 1920;
 	ePtr<gFont> font = new gFont("Regular", hd ? 30 : 20);
 	p.setFont(font);
@@ -241,15 +235,6 @@ void bsodFatal(const char *component)
 	os.clear();
 	os_text.clear();
 
-<<<<<<< HEAD
-	os_text << "We are really sorry. Your receiver encountered "
-		"a software problem, and needs to be restarted.\n"
-		"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
-		"Your receiver restarts in 10 seconds!\n"
-		"Component: " << component;
-	
-	os << eConfigManager::getConfigString("config.crash.debug_text", os_text.str());
-=======
 	if (!bsodpython)
 	{
 		os_text << "We are really sorry. Your receiver encountered "
@@ -276,7 +261,6 @@ void bsodFatal(const char *component)
 			"Component: " << component;
 		os << os_text.str();
 	}
->>>>>>> 38003988f4... rework error outout based on pli
 
 	p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 
@@ -342,8 +326,6 @@ void bsodFatal(const char *component)
 	 * We'd risk destroying things with every additional instruction we're
 	 * executing here.
 	 */
-<<<<<<< HEAD
-=======
 
 	if (bsodpython)
 	{
@@ -353,7 +335,6 @@ void bsodFatal(const char *component)
 		p.clear();
 		return;
 	}
->>>>>>> 38003988f4... rework error outout based on pli
 	if (component) raise(SIGKILL);
 	quitMainloop(5);
 }
@@ -384,11 +365,7 @@ void print_backtrace()
 	size_t cnt;
 
 	size = backtrace(array, 15);
-<<<<<<< HEAD
 	eDebug("Backtrace:");
-=======
-	eLog(lvlFatal, "Backtrace:");
->>>>>>> 38003988f4... rework error outout based on pli
 	for (cnt = 1; cnt < size; ++cnt)
 	{
 		Dl_info info;
