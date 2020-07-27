@@ -226,12 +226,12 @@ class Player(Screen, InfoBarNotifications):
 			self.setSeekState(self.PLAYER_PLAYING)
 
 VIDEO_FMT_PRIORITY_MAP = {
-	'38' : 1, #MP4 Original (HD)
-	'37' : 2, #MP4 1080p (HD)
-	'22' : 3, #MP4 720p (HD)
-	'18' : 4, #MP4 360p
-	'35' : 5, #FLV 480p
-	'34' : 6, #FLV 360p
+	'38': 1, #MP4 Original (HD)
+	'37': 2, #MP4 1080p (HD)
+	'22': 3, #MP4 720p (HD)
+	'18': 4, #MP4 360p
+	'35': 5, #FLV 480p
+	'34': 6, #FLV 360p
 }
 std_headers = {
 	'User-Agent': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.6) Gecko/20100627 Firefox/3.6.6',
@@ -267,7 +267,7 @@ class PlayerLauncher:
 				if ('url_encoded_fmt_stream_map' or 'fmt_url_map') in videoinfo:
 					break
 			except (URLError, HTTPException, socket.error) as err:
-				print("Error: unable to download video infopage",str(err))
+				print("Error: unable to download video infopage", str(err))
 				return video_url
 
 		if ('url_encoded_fmt_stream_map' or 'fmt_url_map') not in videoinfo:
@@ -288,13 +288,13 @@ class PlayerLauncher:
 			if 'url_encoded_fmt_stream_map' in videoinfo:
 				(fmturl, fmtid) = fmtstring.split('&itag=')
 				if fmturl.find("url=") !=-1:
-					fmturl = fmturl.replace("url=","")
+					fmturl = fmturl.replace("url=", "")
 			else:
-				(fmtid,fmturl) = fmtstring.split('|')
+				(fmtid, fmturl) = fmtstring.split('|')
 			if fmtid in VIDEO_FMT_PRIORITY_MAP:
 				video_fmt_map[VIDEO_FMT_PRIORITY_MAP[fmtid]] = { 'fmtid': fmtid, 'fmturl': unquote_plus(fmturl) }
 			fmt_infomap[int(fmtid)] = unquote_plus(fmturl)
-		print("got",sorted(fmt_infomap.iterkeys()))
+		print("got", sorted(fmt_infomap.iterkeys()))
 		if video_fmt_map and len(video_fmt_map):
 			video_url = video_fmt_map[sorted(video_fmt_map.iterkeys())[0]]['fmturl'].split(';')[0]
 			#print "found best available video format:",video_fmt_map[sorted(video_fmt_map.iterkeys())[0]]['fmtid']

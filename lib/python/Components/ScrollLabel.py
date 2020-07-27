@@ -21,9 +21,9 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			scrollbar_attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
 				if "borderColor" in attrib or "borderWidth" in attrib:
-					scrollbar_attribs.append((attrib,value))
+					scrollbar_attribs.append((attrib, value))
 				if "transparent" in attrib or "backgroundColor" in attrib:
-					widget_attribs.append((attrib,value))
+					widget_attribs.append((attrib, value))
 			skin.applyAllAttributes(self.instance, desktop, widget_attribs, parent.scale)
 			skin.applyAllAttributes(self.scrollbar, desktop, scrollbar_attribs+widget_attribs, parent.scale)
 			ret = True
@@ -35,12 +35,12 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		lines = int(s.height() / lineheight)
 		self.pageHeight = int(lines * lineheight)
 		self.instance.resize(eSize(s.width(), self.pageHeight+ int(lineheight/6)))
-		self.scrollbar.move(ePoint(s.width()-10,0))
-		self.scrollbar.resize(eSize(10,self.pageHeight+ int(lineheight/6)))
+		self.scrollbar.move(ePoint(s.width()-10, 0))
+		self.scrollbar.resize(eSize(10, self.pageHeight+ int(lineheight/6)))
 		self.scrollbar.setOrientation(eSlider.orVertical)
-		self.scrollbar.setRange(0,100)
+		self.scrollbar.setRange(0, 100)
 		self.scrollbar.setBorderWidth(1)
-		self.long_text.move(ePoint(0,0))
+		self.long_text.move(ePoint(0, 0))
 		self.long_text.resize(eSize(s.width()-30, self.pageHeight*40))
 		self.setText(self.message)
 		return ret
@@ -48,7 +48,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 	def setText(self, text):
 		self.message = text
 		if self.long_text is not None and self.pageHeight:
-			self.long_text.move(ePoint(0,0))
+			self.long_text.move(ePoint(0, 0))
 			self.long_text.setText(self.message)
 			text_height=self.long_text.calculateSize().height()
 			total=self.pageHeight

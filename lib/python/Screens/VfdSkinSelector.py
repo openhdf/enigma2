@@ -115,7 +115,7 @@ class VFDSkinSelector(Screen):
 		self.loadPreview()
 
 	def info(self):
-		aboutbox = self.session.open(MessageBox,_("\nVFD Skin-Selector\nby satinfo & henrylicious (thank you for support)\n\nPlugin to select skin for VFD-Display\n\n - for GigaBlue UE and GigaBlue Quad\n - for VU+ Ultimo and VU+ Duo2"), MessageBox.TYPE_INFO)
+		aboutbox = self.session.open(MessageBox, _("\nVFD Skin-Selector\nby satinfo & henrylicious (thank you for support)\n\nPlugin to select skin for VFD-Display\n\n - for GigaBlue UE and GigaBlue Quad\n - for VU+ Ultimo and VU+ Duo2"), MessageBox.TYPE_INFO)
 		aboutbox.setTitle(_("About..."))
 
 	def find(self, arg, dirname, names):
@@ -136,7 +136,7 @@ class VFDSkinSelector(Screen):
 		config.skin.display_skin.value = skinfile
 		config.skin.display_skin.save()
 		print("Selected Value", config.skin.display_skin.value)
-		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply new skin.\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
+		restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _("GUI needs a restart to apply new skin.\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 
 	def loadPreview(self):

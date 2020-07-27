@@ -10,7 +10,7 @@ def getFlashDateString():
 	try:
 		tm = time.localtime(os.stat("/etc/version").st_mtime)
 		if tm.tm_year >= 2011:
-			return time.strftime(_("%d.%m.%Y %H:%M:%S"),tm)
+			return time.strftime(_("%d.%m.%Y %H:%M:%S"), tm)
 		else:
 			return _("unknown")
 	except:
@@ -25,8 +25,8 @@ def getGStreamerVersionString():
 
 def getKernelVersionString():
 	try:
-		f = open("/proc/version","r")
-		kernelversion = f.read().split(' ', 4)[2].split('-',2)[0]
+		f = open("/proc/version", "r")
+		kernelversion = f.read().split(' ', 4)[2].split('-', 2)[0]
 		f.close()
 		return kernelversion
 	except:
@@ -37,27 +37,27 @@ def getModelString():
 		return model
 
 def getChipSetString():
-	if getMachineBuild() in ('dm7080','dm820'):
+	if getMachineBuild() in ('dm7080', 'dm820'):
 		return "7435"
-	elif getMachineBuild() in ('dm520','dm525'):
+	elif getMachineBuild() in ('dm520', 'dm525'):
 		return "73625"
-	elif getMachineBuild() in ('dm900','dm920'):
+	elif getMachineBuild() in ('dm900', 'dm920'):
 		return "7252S"
-	elif getMachineBuild() in ('hd51','sf4008'):
+	elif getMachineBuild() in ('hd51', 'sf4008'):
 		return "7251S"
 	else:
 		try:
 			f = open('/proc/stb/info/chipset', 'r')
 			chipset = f.read()
 			f.close()
-			return str(chipset.lower().replace('\n','').replace('bcm','').replace('brcm','').replace('sti',''))
+			return str(chipset.lower().replace('\n', '').replace('bcm', '').replace('brcm', '').replace('sti', ''))
 		except IOError:
 			return "unavailable"
 
 def getCPUString():
-	if getMachineBuild() in ('vuuno4k', 'vuultimo4k','vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gbx34k', 'dags7252', 'vs1500', 'h7', '8100s','osmio4k','osmio4kplus','osmini4k'):
+	if getMachineBuild() in ('vuuno4k', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gbx34k', 'dags7252', 'vs1500', 'h7', '8100s', 'osmio4k', 'osmio4kplus', 'osmini4k'):
 		return "Broadcom "
-	elif getMachineBuild() in ('u41','u42','u5','u51','u52','u53','u5pvr','h9','sf8008','sf8008m','sf8008s','sf8008t','hd60','hd61','i55plus'):
+	elif getMachineBuild() in ('u41', 'u42', 'u5', 'u51', 'u52', 'u53', 'u5pvr', 'h9', 'sf8008', 'sf8008m', 'sf8008s', 'sf8008t', 'hd60', 'hd61', 'i55plus'):
 		return "Hisilicon"
 	else:
 		try:
@@ -67,7 +67,7 @@ def getCPUString():
 			for x in lines:
 				splitted = x.split(': ')
 				if len(splitted) > 1:
-					splitted[1] = splitted[1].replace('\n','')
+					splitted[1] = splitted[1].replace('\n', '')
 					if splitted[0].startswith("system type"):
 						system = splitted[1].split(' ')[0]
 					elif splitted[0].startswith("Processor"):
@@ -80,21 +80,21 @@ def getCPUString():
 def getCPUSpeedString():
 	if getMachineBuild() in ('vusolo4k', 'gbx34k'):
 		return "1,5 GHz"
-	elif getMachineBuild() in ('vuuno4k','dm900', 'gb7252', 'dags7252'):
+	elif getMachineBuild() in ('vuuno4k', 'dm900', 'gb7252', 'dags7252'):
 		return "1,7 GHz"
-	elif getMachineBuild() in ('u5','u51','u52','u53','u5pvr','h9','sf8008','sf8008m','sf8008s','sf8008t','hd60','hd61','i55plus', 'gbmv200'):
+	elif getMachineBuild() in ('u5', 'u51', 'u52', 'u53', 'u5pvr', 'h9', 'sf8008', 'sf8008m', 'sf8008s', 'sf8008t', 'hd60', 'hd61', 'i55plus', 'gbmv200'):
 		return "1,6 GHz"
-	elif getMachineBuild() in ('u41','u42'):
+	elif getMachineBuild() in ('u41', 'u42'):
 		return "1,0 GHz"
-	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex'):
+	elif getMachineBuild() in ('formuler1tc', 'formuler1', 'triplex'):
 		return "1,3 GHz"
-	elif getMachineBuild() in ('hd51','hd52','sf4008','vs1500','et1x000','h7','8100s','osmio4k','osmio4kplus','osmini4k'):
+	elif getMachineBuild() in ('hd51', 'hd52', 'sf4008', 'vs1500', 'et1x000', 'h7', '8100s', 'osmio4k', 'osmio4kplus', 'osmini4k'):
 		try:
 			import binascii
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 			clockfrequency = f.read()
 			f.close()
-			return "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
+			return "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000, 1))
 		except:
 			return "1,7 GHz"
 	else:
@@ -104,13 +104,13 @@ def getCPUSpeedString():
 			for x in lines:
 				splitted = x.split(': ')
 				if len(splitted) > 1:
-					splitted[1] = splitted[1].replace('\n','')
+					splitted[1] = splitted[1].replace('\n', '')
 					if splitted[0].startswith("cpu MHz"):
 						mhz = float(splitted[1].split(' ')[0])
 						if mhz and mhz >= 1000:
-							mhz = "%s GHz" % str(round(mhz/1000,1))
+							mhz = "%s GHz" % str(round(mhz/1000, 1))
 						else:
-							mhz = "%s MHz" % str(round(mhz,1))
+							mhz = "%s MHz" % str(round(mhz, 1))
 			file.close()
 			return mhz
 		except IOError:
@@ -123,11 +123,11 @@ def getCpuCoresString():
 		for x in lines:
 			splitted = x.split(': ')
 			if len(splitted) > 1:
-				splitted[1] = splitted[1].replace('\n','')
+				splitted[1] = splitted[1].replace('\n', '')
 				if splitted[0].startswith("processor"):
-					if getMachineBuild() in ('gbmv200','u51','u52','u53','u54','u55','u56','vuultimo4k','u5','u5pvr','h9','h9combo','h10','alien5','cc1','sf8008','sf8008m','hd60','hd61','i55plus','ustym4kpro','beyonwizv2','viper4k','v8plus','vuduo4k','multibox'):
+					if getMachineBuild() in ('gbmv200', 'u51', 'u52', 'u53', 'u54', 'u55', 'u56', 'vuultimo4k', 'u5', 'u5pvr', 'h9', 'h9combo', 'h10', 'alien5', 'cc1', 'sf8008', 'sf8008m', 'hd60', 'hd61', 'i55plus', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'v8plus', 'vuduo4k', 'multibox'):
 						cores = 4
-					elif getMachineBuild() in ('u41','u42','u43'):
+					elif getMachineBuild() in ('u41', 'u42', 'u43'):
 						cores = 2
 					elif int(splitted[1]) > 0:
 						cores = 2
@@ -156,7 +156,7 @@ def getIfConfig(ifname):
 	infos['hwaddr']  = 0x8927 # SIOCSIFHWADDR
 	infos['netmask'] = 0x891b # SIOCGIFNETMASK
 	try:
-		for k,v in infos.items():
+		for k, v in infos.items():
 			ifreq[k] = _ifinfo(sock, v, ifname)
 	except:
 		pass
@@ -218,7 +218,7 @@ def getBoxUptime():
 		if secs > 86400:
 			days = secs / 86400
 			secs = secs % 86400
-			time = ngettext("%d day","%d days", days) % days + " "
+			time = ngettext("%d day", "%d days", days) % days + " "
 		h = secs / 3600
 		m = (secs % 3600) / 60
 		time += ngettext("%d hour", "%d hours", h) % h + " "

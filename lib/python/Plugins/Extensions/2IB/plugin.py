@@ -145,9 +145,9 @@ def InfoBarPlugins__init__(self):
 		else:
 			VZ_MODE = "-1"
 		if VZ_MODE == "1":
-			self["SIBActions"] = ActionMap(["SIBwithVZActions"],{"ok_but": self.switch,"exit_but": self.swOff}, -1)
+			self["SIBActions"] = ActionMap(["SIBwithVZActions"], {"ok_but": self.switch,"exit_but": self.swOff}, -1)
 		else:
-			self["SIBActions"] = ActionMap(["SIBActions"],{"ok_but": self.switch,"exit_but": self.swOff}, -1)
+			self["SIBActions"] = ActionMap(["SIBActions"], {"ok_but": self.switch,"exit_but": self.swOff}, -1)
 		self.SIBtimer = eTimer()
 		self.SIBtimer.callback.append(self.swOff)
 		self.SIBdialog = self.session.instantiateDialog(SecondInfoBar)
@@ -167,7 +167,7 @@ def InfoBarPlugins__init__(self):
 
 
 def switch(self):
-	if isinstance(self,InfoBar):
+	if isinstance(self, InfoBar):
 		if config.plugins.SecondInfoBar.Mode.value == "sib":
 			if not self.shown and not self.SIBdialog.shown:
 				self.toggleShow()
@@ -209,7 +209,7 @@ def switch(self):
 
 
 def swOff(self):
-	if isinstance(self,InfoBar):
+	if isinstance(self, InfoBar):
 		if not(self.shown or self.SIBdialog.shown) and (VZ_MODE == "2"):
 			self.newHide()
 		else:

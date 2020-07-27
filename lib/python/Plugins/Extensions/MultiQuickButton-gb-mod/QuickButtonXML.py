@@ -170,7 +170,7 @@ class QuickButtonXML(object):
 			xml += "\t\t</content>\n"
 		return xml
 
-	def saveMenu(self,path):
+	def saveMenu(self, path):
 		xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
 		if self.list != None:
 			category = "Menu"

@@ -37,7 +37,7 @@ class MultiBootWizard(Screen):
 		self["options"] = StaticText(_("Note: startup list does not show current image or empty startups."))
 		self["key_green"] = StaticText(_("Erase"))
 		self["key_yellow"] = StaticText("")
-		self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Retrieving image startups - Please wait...")), "Queued"))])
+		self["config"] = ChoiceList(list=[ChoiceEntryComponent('', ((_("Retrieving image startups - Please wait...")), "Queued"))])
 		imagedict = []
 		self.getImageList = None
 		self.startit()
@@ -74,7 +74,7 @@ class MultiBootWizard(Screen):
 			currentimageslot += 1
 		for x in sorted(imagedict.keys()):
 			if imagedict[x]["imagename"] != _("Empty startup") and x != currentimageslot:
-				list.append(ChoiceEntryComponent('',((_("startup %s - %s ")) % (x, imagedict[x]['imagename']), x)))
+				list.append(ChoiceEntryComponent('', ((_("startup %s - %s ")) % (x, imagedict[x]['imagename']), x)))
 		self["config"].setList(list)
 
 	def erase(self):

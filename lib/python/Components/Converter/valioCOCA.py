@@ -56,7 +56,7 @@ class valioCOCA(Poll, Converter, object):
 							c = "0%s" % c
 						c = c[:2].upper()
 						if c in self.systemCaids and c not in caidlist:
-							caidlist[c] = (self.systemCaids.get(c),0)
+							caidlist[c] = (self.systemCaids.get(c), 0)
 					ecm_info = self.ecmfile()
 					if ecm_info:
 						emu_caid = ecm_info.get("caid", "")
@@ -65,7 +65,7 @@ class valioCOCA(Poll, Converter, object):
 							if len(c) == 3:
 								c = "0%s" % c
 							c = c[:2].upper()
-							caidlist[c] = (self.systemCaids.get(c),1)
+							caidlist[c] = (self.systemCaids.get(c), 1)
 						# caid
 						caid = ecm_info.get("caid", "")
 						caid = caid.lstrip("0x")

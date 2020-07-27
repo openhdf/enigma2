@@ -242,7 +242,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.bouquetlist_active = False
 			self['bouquetlist'] = EPGBouquetList(graphic=graphic)
 			self['bouquetlist'].hide()
-			self['timeline_text'] = TimelineText(type=self.type,graphic=graphic)
+			self['timeline_text'] = TimelineText(type=self.type, graphic=graphic)
 			self['Event'] = Event()
 			self['primetime'] = Label(_('PRIMETIME'))
 			self['change_bouquet'] = Label(_('CHANGE BOUQUET'))
@@ -759,7 +759,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if event is not None and not self.eventviewDialog and not eventviewopen:
 			if self.type != EPG_TYPE_SIMILAR:
 				if self.type == EPG_TYPE_INFOBARGRAPH:
-					self.eventviewDialog = self.session.instantiateDialog(EventViewSimple,event, service, skin='InfoBarEventView')
+					self.eventviewDialog = self.session.instantiateDialog(EventViewSimple, event, service, skin='InfoBarEventView')
 					self.eventviewDialog.show()
 				else:
 					self.session.open(EventViewEPGSelect, event, service, callback=self.eventViewCallback, similarEPGCB=self.openSimilarList)
@@ -771,7 +771,7 @@ class EPGSelection(Screen, HelpableScreen):
 			if self.type != EPG_TYPE_SIMILAR:
 				if self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH:
 					self.eventviewDialog.hide()
-					self.eventviewDialog = self.session.instantiateDialog(EventViewSimple,event, service, skin='InfoBarEventView')
+					self.eventviewDialog = self.session.instantiateDialog(EventViewSimple, event, service, skin='InfoBarEventView')
 					self.eventviewDialog.show()
 
 	def redButtonPressed(self):
@@ -1004,7 +1004,7 @@ class EPGSelection(Screen, HelpableScreen):
 		title = None
 		for timer in self.session.nav.RecordTimer.timer_list:
 			#if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
-			if ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr and (timer.eit == eventid or (x and x[1] in (2,7,12))):
+			if ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr and (timer.eit == eventid or (x and x[1] in (2, 7, 12))):
 				if timer.isRunning():
 					cb_func1 = lambda ret: self.removeTimer(timer)
 					cb_func2 = lambda ret: self.editTimer(timer)
@@ -1028,14 +1028,14 @@ class EPGSelection(Screen, HelpableScreen):
 				newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(event))
 				self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 		if title:
-			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['green', 'blue', 'yellow','red'], skin_name="RecordTimerQuestion")
+			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['green', 'blue', 'yellow', 'red'], skin_name="RecordTimerQuestion")
 			serviceref = eServiceReference(str(self['list'].getCurrent()[1]))
 			pos = self['list'].getSelectionPosition(serviceref)
 			posx = pos[0]
 			dialogwidth = self.ChoiceBoxDialog.instance.size().width()
 			if posx - dialogwidth < 0:
 				posx = dialogwidth
-			self.ChoiceBoxDialog.instance.move(ePoint(posx-dialogwidth,self.instance.position().y()+pos[1]))
+			self.ChoiceBoxDialog.instance.move(ePoint(posx-dialogwidth, self.instance.position().y()+pos[1]))
 			self.showChoiceBoxDialog()
 
 	def recButtonPressed(self):
@@ -1274,7 +1274,7 @@ class EPGSelection(Screen, HelpableScreen):
 		isRecordEvent = False
 		for timer in self.session.nav.RecordTimer.timer_list:
 			#if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
-			if ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr and (timer.eit == eventid or (x and x[1] in (2,7,12))):
+			if ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr and (timer.eit == eventid or (x and x[1] in (2, 7, 12))):
 				isRecordEvent = True
 				break
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:

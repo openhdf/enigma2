@@ -46,7 +46,7 @@ class MultiBootSelector(Screen):
 		self["key_green"] = StaticText(_("Reboot"))
 		if SystemInfo["canMode12"]:
 			self["options"] = StaticText(_("Mode 1 suppports Kodi, PiP may not work.\nMode 12 supports PiP, Kodi may not work."))
-		self["config"] = ChoiceList(list=[ChoiceEntryComponent('',((_("Retrieving image startups - Please wait...")), "Queued"))])
+		self["config"] = ChoiceList(list=[ChoiceEntryComponent('', ((_("Retrieving image startups - Please wait...")), "Queued"))])
 		imagedict = []
 		self.getImageList = None
 		self.mountDir = "/tmp/startupmount"
@@ -139,8 +139,8 @@ class MultiBootSelector(Screen):
 				else:
 					f = open(startupfile, "r").read().replace("boxmode=1'", "boxmode=12'").replace("%s" % SystemInfo["canMode12"][0], "%s" % SystemInfo["canMode12"][1])
 					open(path.join(self.mountDir, "STARTUP"), "w").write(f)
-					self.session.openWithCallback(self.restartImage,MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
-			self.session.openWithCallback(self.restartImage,MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
+					self.session.openWithCallback(self.restartImage, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
+			self.session.openWithCallback(self.restartImage, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
 
 	def restartImage(self, answer):
 		if answer is True:

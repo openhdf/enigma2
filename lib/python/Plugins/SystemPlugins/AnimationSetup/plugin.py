@@ -12,7 +12,7 @@ from boxbranding import getBrandOEM
 # default = disabled
 g_default = {
         "current": 0,
-        "speed"  : 20,
+        "speed": 20,
 }
 g_max_speed = 30
 
@@ -44,11 +44,11 @@ class AnimationSetupConfig(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, self.entrylist)
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions",], {
-			"ok"     : self.keyGreen,
-			"green"  : self.keyGreen,
-			"yellow" : self.keyYellow,
-			"red"    : self.keyRed,
-			"cancel" : self.keyRed,
+			"ok": self.keyGreen,
+			"green": self.keyGreen,
+			"yellow": self.keyYellow,
+			"red": self.keyRed,
+			"cancel": self.keyRed,
 		}, -2)
 		self["key_red"]   = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))

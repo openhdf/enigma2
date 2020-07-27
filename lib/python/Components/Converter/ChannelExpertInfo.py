@@ -203,10 +203,10 @@ class ChannelExpertInfo(Converter, object):
 						 eDVBFrontendParametersSatellite.System_DVB_S2: 'DVB-S2'
 						}[frontendData.get('system', eDVBFrontendParametersSatellite.System_DVB_S)]
 						modulation = {
-						 eDVBFrontendParametersSatellite.Modulation_Auto : 'Auto',
-						 eDVBFrontendParametersSatellite.Modulation_QPSK : 'QPSK',
-						 eDVBFrontendParametersSatellite.Modulation_8PSK : '8PSK',
-						 eDVBFrontendParametersSatellite.Modulation_QAM16 : 'QAM16',
+						 eDVBFrontendParametersSatellite.Modulation_Auto: 'Auto',
+						 eDVBFrontendParametersSatellite.Modulation_QPSK: 'QPSK',
+						 eDVBFrontendParametersSatellite.Modulation_8PSK: '8PSK',
+						 eDVBFrontendParametersSatellite.Modulation_QAM16: 'QAM16',
 						}[frontendData.get('modulation', eDVBFrontendParametersSatellite.Modulation_Auto)]
 						if (self.tunertype == 'linelist'):
 							tunerinfo = frequency + '  ' + pol + '  ' + fec + '  ' + symbolrate + '  ' + orb

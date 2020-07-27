@@ -123,7 +123,7 @@ class MessageBox(Screen):
 		else:
 			textsize = self["text"].getSize()
 			if textsize[0] < textsize[1]:
-				textsize = (textsize[1],textsize[0]+10)
+				textsize = (textsize[1], textsize[0]+10)
 			if textsize[0] > 520:
 				textsize = (textsize[0], textsize[1]+25)
 			else:

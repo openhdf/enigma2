@@ -23,7 +23,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDis
 VERSION = _("Version %s %s.1") %(getImageDistro().upper(), getImageVersion())
 
 HaveGZkernel = True
-if SystemInfo["HasRootSubdir"] or getMachineBuild() in ('multibox','gbmv200','viper4k','i55plus','osmio4k','osmio4kplus','osmini4k','sf8008','cc1','dags72604', 'u41', 'u51','u52','u53','u54','u55','u56','h9','h9combo','u5','u5pvr','sf5008','et1x000','hd51','hd52','sf4008', 'dags7252','gb7252','vs1500','h7','xc7439','8100s','dm7080','dm820','dm520','dm525','dm900'):
+if SystemInfo["HasRootSubdir"] or getMachineBuild() in ('multibox', 'gbmv200', 'viper4k', 'i55plus', 'osmio4k', 'osmio4kplus', 'osmini4k', 'sf8008', 'cc1', 'dags72604', 'u41', 'u51', 'u52', 'u53', 'u54', 'u55', 'u56', 'h9', 'h9combo', 'u5', 'u5pvr', 'sf5008', 'et1x000', 'hd51', 'hd52', 'sf4008', 'dags7252', 'gb7252', 'vs1500', 'h7', 'xc7439', '8100s', 'dm7080', 'dm820', 'dm520', 'dm525', 'dm900'):
 	HaveGZkernel = False
 
 def Freespace(dev):
@@ -80,15 +80,15 @@ class ImageBackup(Screen):
 			self.MTDBOOT = "none"
 			self.EMMCIMG = "none"
 
-		if self.MACHINEBUILD in ("hd51","vs1500","h7","8100s"):
+		if self.MACHINEBUILD in ("hd51", "vs1500", "h7", "8100s"):
 			self.MTDBOOT = "mmcblk0p1"
 			self.EMMCIMG = "disk.img"
 
-		if self.MACHINEBUILD in ("xc7439","osmio4k","osmio4kplus","osmini4k"):
+		if self.MACHINEBUILD in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k"):
 			self.MTDBOOT = "mmcblk1p1"
 			self.EMMCIMG = "emmc.img"
 
-		if self.MACHINEBUILD in ("gbmv200","cc1","sf8008","ustym4kpr"):
+		if self.MACHINEBUILD in ("gbmv200", "cc1", "sf8008", "ustym4kpr"):
 			self.MTDBOOT = "none"
 			self.EMMCIMG = "usb_update.bin"
 
@@ -189,37 +189,37 @@ class ImageBackup(Screen):
 			self.MTDKERNEL = self.find_kernel_dev(self.list[self.selection])
 			self.ROOTFSSUBDIR = self.find_rootfssubdir(self.list[self.selection])
 		else:
-			if self.MACHINEBUILD in ("hd51","vs1500","h7"):
+			if self.MACHINEBUILD in ("hd51", "vs1500", "h7"):
 				if self.list[self.selection] == "Recovery":
-					cmdline = self.read_startup("/boot/STARTUP").split("=",3)[3].split(" ",1)[0]
+					cmdline = self.read_startup("/boot/STARTUP").split("=", 3)[3].split(" ", 1)[0]
 				else:
-					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",3)[3].split(" ",1)[0]
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=", 3)[3].split(" ", 1)[0]
 			elif self.MACHINEBUILD in ("8100s"):
 				if self.list[self.selection] == "Recovery":
-					cmdline = self.read_startup("/boot/STARTUP").split("=",4)[4].split(" ",1)[0]
+					cmdline = self.read_startup("/boot/STARTUP").split("=", 4)[4].split(" ", 1)[0]
 				else:
-					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",4)[4].split(" ",1)[0]
-			elif self.MACHINEBUILD in ("gbmv200","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k"):
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=", 4)[4].split(" ", 1)[0]
+			elif self.MACHINEBUILD in ("gbmv200", "cc1", "sf8008", "ustym4kpro", "beyonwizv2", "viper4k"):
 				if self.list[self.selection] == "Recovery":
-					cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+					cmdline = self.read_startup("/boot/STARTUP").split("=", 1)[1].split(" ", 1)[0]
 				else:
-					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
-			elif self.MACHINEBUILD in ("osmio4k","osmio4kplus","osmini4k"):
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=", 1)[1].split(" ", 1)[0]
+			elif self.MACHINEBUILD in ("osmio4k", "osmio4kplus", "osmini4k"):
 				if self.list[self.selection] == "Recovery":
-					cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
+					cmdline = self.read_startup("/boot/STARTUP").split("=", 1)[1].split(" ", 1)[0]
 				else:
-					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=", 1)[1].split(" ", 1)[0]
 			else:
 				if self.list[self.selection] == "Recovery":
-					cmdline = self.read_startup("/boot/cmdline.txt").split("=",1)[1].split(" ",1)[0]
+					cmdline = self.read_startup("/boot/cmdline.txt").split("=", 1)[1].split(" ", 1)[0]
 				else:
-					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=",1)[1].split(" ",1)[0]
+					cmdline = self.read_startup("/boot/" + self.list[self.selection]).split("=", 1)[1].split(" ", 1)[0]
 			cmdline = cmdline.lstrip("/dev/")
 			self.MTDROOTFS = cmdline
 			self.MTDKERNEL = cmdline[:-1] + str(int(cmdline[-1:]) -1)
 		print("[FULL BACKUP] Multiboot rootfs ", self.MTDROOTFS)
 		print("[FULL BACKUP] Multiboot kernel ", self.MTDKERNEL)
-		print("[FULL BACKUP] rootfssubdir: ",self.ROOTFSSUBDIR)
+		print("[FULL BACKUP] rootfssubdir: ", self.ROOTFSSUBDIR)
 
 	def read_startup(self, FILE):
 		self.file = FILE
@@ -263,17 +263,17 @@ class ImageBackup(Screen):
 						cmdline_startup = self.find_rootfssubdir("STARTUP")
 						if (cmdline != cmdline_startup) and (name != "STARTUP"):
 							files.append(name)
-				files.insert(0,"STARTUP")
+				files.insert(0, "STARTUP")
 			else:
 				for name in listdir(self.path):
 					if path.isfile(path.join(self.path, name)):
 						try:
-							if self.MACHINEBUILD in ("hd51","vs1500","h7"):
-								cmdline = self.read_startup("/boot/" + name).split("=",3)[3].split(" ",1)[0]
+							if self.MACHINEBUILD in ("hd51", "vs1500", "h7"):
+								cmdline = self.read_startup("/boot/" + name).split("=", 3)[3].split(" ", 1)[0]
 							elif self.MACHINEBUILD in ("8100s"):
-								cmdline = self.read_startup("/boot/" + name).split("=",4)[4].split(" ",1)[0]
+								cmdline = self.read_startup("/boot/" + name).split("=", 4)[4].split(" ", 1)[0]
 							else:
-								cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
+								cmdline = self.read_startup("/boot/" + name).split("=", 1)[1].split(" ", 1)[0]
 							if cmdline in Harddisk.getextdevices("ext4"):
 								files.append(name)
 						except IndexError:
@@ -304,7 +304,7 @@ class ImageBackup(Screen):
 		self.IMAGEVERSION = self.imageInfo()
 		if "ubi" in self.ROOTFSTYPE.split():
 			self.MKFS = "/usr/sbin/mkfs.ubifs"
-		elif "tar.bz2" in self.ROOTFSTYPE.split() or "tar.xz" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or SystemInfo["HasRootSubdir"] or self.MACHINEBUILD in ("gbmv200","u51","u52","u53","u54","u56","u5","u5pvr","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k","v8plus","multibox","h9combo","hd60","hd61"):
+		elif "tar.bz2" in self.ROOTFSTYPE.split() or "tar.xz" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or SystemInfo["HasRootSubdir"] or self.MACHINEBUILD in ("gbmv200", "u51", "u52", "u53", "u54", "u56", "u5", "u5pvr", "cc1", "sf8008", "ustym4kpro", "beyonwizv2", "viper4k", "v8plus", "multibox", "h9combo", "hd60", "hd61"):
 			self.MKFS = "/bin/tar"
 			self.BZIP2 = "/usr/bin/bzip2"
 		else:
@@ -374,7 +374,7 @@ class ImageBackup(Screen):
 			cmd1 = "%s --root=%s --faketime --output=%s/root.jffs2 %s" % (self.MKFS,  self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
 			cmd2 = None
 			cmd3 = None
-		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or SystemInfo["HasRootSubdir"] or self.MACHINEBUILD in ("gbmv200","u51","u52","u53","u54","u56","u5","u5pvr","cc1","sf8008","ustym4kpro","beyonwizv2","viper4k","v8plus","multibox","h9combo","hd60","hd61"):
+		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or SystemInfo["HasRootSubdir"] or self.MACHINEBUILD in ("gbmv200", "u51", "u52", "u53", "u54", "u56", "u5", "u5pvr", "cc1", "sf8008", "ustym4kpro", "beyonwizv2", "viper4k", "v8plus", "multibox", "h9combo", "hd60", "hd61"):
 			cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./run --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock ." % (self.MKFS, self.WORKDIR, self.backuproot)
 			cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 			cmd3 = None
@@ -408,14 +408,14 @@ class ImageBackup(Screen):
 			cmdlist.append(cmd3)
 		#cmdlist.append("chmod 644 %s/%s" %(self.WORKDIR, self.ROOTFSBIN))
 
-		if self.MODEL in ("gbquad4k","gbue4k","gbx34k"):
+		if self.MODEL in ("gbquad4k", "gbue4k", "gbx34k"):
 			cmdlist.append('echo " "')
 			cmdlist.append('echo "' + _("Create:") + ' boot dump"')
 			cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/boot.bin" % self.WORKDIR)
 			cmdlist.append('echo "' + _("Create:") + ' rescue dump"')
 			cmdlist.append("dd if=/dev/mmcblk0p3 of=%s/rescue.bin" % self.WORKDIR)
 
-		if self.MACHINEBUILD  in ("h9","i55plus"):
+		if self.MACHINEBUILD  in ("h9", "i55plus"):
 			cmdlist.append('echo " "')
 			cmdlist.append('echo "' + _("Create:") + ' fastboot dump"')
 			cmdlist.append("dd if=/dev/mtd0 of=%s/fastboot.bin" % self.WORKDIR)
@@ -450,12 +450,12 @@ class ImageBackup(Screen):
 			cmdlist.append("dd if=/dev/zero of=%s/rootfs.ext4 seek=%s count=60 bs=1024" % (self.WORKDIR, SEEK_CONT))
 			cmdlist.append("mkfs.ext4 -F -i 4096 %s/rootfs.ext4" % (self.WORKDIR))
 			cmdlist.append("mkdir -p %s/userdata" % self.WORKDIR)
-			cmdlist.append("mount %s/rootfs.ext4 %s/userdata" %(self.WORKDIR,self.WORKDIR))
+			cmdlist.append("mount %s/rootfs.ext4 %s/userdata" %(self.WORKDIR, self.WORKDIR))
 			cmdlist.append("mkdir -p %s/userdata/linuxrootfs1" % self.WORKDIR)
 			cmdlist.append("mkdir -p %s/userdata/linuxrootfs2" % self.WORKDIR)
 			cmdlist.append("mkdir -p %s/userdata/linuxrootfs3" % self.WORKDIR)
 			cmdlist.append("mkdir -p %s/userdata/linuxrootfs4" % self.WORKDIR)
-			cmdlist.append("rsync -aAX %s/ %s/userdata/linuxrootfs1/" % (self.backuproot,self.WORKDIR))
+			cmdlist.append("rsync -aAX %s/ %s/userdata/linuxrootfs1/" % (self.backuproot, self.WORKDIR))
 			cmdlist.append("umount %s/userdata" %(self.WORKDIR))
 
 		cmdlist.append('echo " "')
@@ -464,11 +464,11 @@ class ImageBackup(Screen):
 
 		if SystemInfo["HaveMultiBoot"]:
 			if SystemInfo["HasRootSubdir"]:
-				cmdlist.append("dd if=%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
+				cmdlist.append("dd if=%s of=%s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
 			else:
-				cmdlist.append("dd if=/dev/%s of=%s/kernel.bin" % (self.MTDKERNEL ,self.WORKDIR))
+				cmdlist.append("dd if=/dev/%s of=%s/kernel.bin" % (self.MTDKERNEL, self.WORKDIR))
 		elif self.MTDKERNEL.startswith('mmcblk0'):
-			cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL ,self.WORKDIR, self.KERNELBIN))
+			cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
 		else:
 			cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
 		cmdlist.append('echo " "')
@@ -493,13 +493,13 @@ class ImageBackup(Screen):
 			FOURTH_KERNEL_PARTITION_OFFSET = int(THRID_ROOTFS_PARTITION_OFFSET) + int(ROOTFS_PARTITION_SIZE)
 			FOURTH_ROOTFS_PARTITION_OFFSET = int(FOURTH_KERNEL_PARTITION_OFFSET) + int(KERNEL_PARTITION_SIZE)
 			SWAP_PARTITION_OFFSET = int(FOURTH_ROOTFS_PARTITION_OFFSET) + int(ROOTFS_PARTITION_SIZE)
-			EMMC_IMAGE = "%s/%s"% (self.WORKDIR,self.EMMCIMG)
+			EMMC_IMAGE = "%s/%s"% (self.WORKDIR, self.EMMCIMG)
 			EMMC_IMAGE_SIZE=3817472
 			EMMC_IMAGE_SEEK = int(EMMC_IMAGE_SIZE) * int(BLOCK_SECTOR)
 			cmdlist.append('echo " "')
 			cmdlist.append('echo "' + _("Create:") + ' Recovery Fullbackup %s"'% (self.EMMCIMG))
 			cmdlist.append('echo " "')
-			cmdlist.append('dd if=/dev/zero of=%s bs=%s count=0 seek=%s' % (EMMC_IMAGE, BLOCK_SIZE , EMMC_IMAGE_SEEK))
+			cmdlist.append('dd if=/dev/zero of=%s bs=%s count=0 seek=%s' % (EMMC_IMAGE, BLOCK_SIZE, EMMC_IMAGE_SEEK))
 			cmdlist.append('parted -s %s mklabel gpt' %EMMC_IMAGE)
 			PARTED_END_BOOT = int(IMAGE_ROOTFS_ALIGNMENT) + int(BOOT_PARTITION_SIZE)
 			cmdlist.append('parted -s %s unit KiB mkpart boot fat16 %s %s' % (EMMC_IMAGE, IMAGE_ROOTFS_ALIGNMENT, PARTED_END_BOOT ))
@@ -548,12 +548,12 @@ class ImageBackup(Screen):
 				f.write('<Part Sel="1" PartitionName="userdata" FlashType="emmc" FileSystem="ext3/4" Start="130M" Length="7000M" SelectFile="rootfs.ext4"/>\n')
 			f.write('</Partition_Info>\n')
 			f.close()
-			cmdlist.append('mkupdate -s 00000003-00000001-01010101 -f %s/emmc_partitions.xml -d %s/%s' % (self.WORKDIR,self.WORKDIR,self.EMMCIMG))
-		elif self.MACHINEBUILD  in ("v8plus","multibox","h9combo","hd60","hd61"):
+			cmdlist.append('mkupdate -s 00000003-00000001-01010101 -f %s/emmc_partitions.xml -d %s/%s' % (self.WORKDIR, self.WORKDIR, self.EMMCIMG))
+		elif self.MACHINEBUILD  in ("v8plus", "multibox", "h9combo", "hd60", "hd61"):
 			cmdlist.append('echo " "')
 			cmdlist.append('echo "' + _("Create: Recovery Fullbackup %s")% (self.EMMCIMG) + '"')
 			cmdlist.append('echo " "')
-			cmdlist.append('%s -zv %s/rootfs.ext4 %s/%s' % (self.FASTBOOT,self.WORKDIR,self.WORKDIR,self.EMMCIMG))
+			cmdlist.append('%s -zv %s/rootfs.ext4 %s/%s' % (self.FASTBOOT, self.WORKDIR, self.WORKDIR, self.EMMCIMG))
 		print(cmdlist)
 		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, finishedCallback = self.doFullBackupCB, closeOnSuccess = True)
 
@@ -604,13 +604,13 @@ class ImageBackup(Screen):
 		else:
 			system('mv %s/vmlinux.gz %s/%s' %(self.WORKDIR, self.MAINDEST, self.KERNELBIN))
 
-		if SystemInfo["HaveMultiBoot"] and self.list[self.selection] == "Recovery" or self.MACHINEBUILD  in ("v8plus","multibox","h9combo","hd60","hd61"):
-			system('mv %s/%s %s/%s' %(self.WORKDIR,self.EMMCIMG, self.MAINDEST,self.EMMCIMG))
-		elif self.MODEL in ("vuultimo4k","vusolo4k", "vuduo2", "vusolo2", "vusolo", "vuduo", "vuultimo", "vuuno"):
+		if SystemInfo["HaveMultiBoot"] and self.list[self.selection] == "Recovery" or self.MACHINEBUILD  in ("v8plus", "multibox", "h9combo", "hd60", "hd61"):
+			system('mv %s/%s %s/%s' %(self.WORKDIR, self.EMMCIMG, self.MAINDEST, self.EMMCIMG))
+		elif self.MODEL in ("vuultimo4k", "vusolo4k", "vuduo2", "vusolo2", "vusolo", "vuduo", "vuultimo", "vuuno"):
 			cmdlist.append('echo "This file forces a reboot after the update." > %s/reboot.update' %self.MAINDEST)
-		elif self.MODEL in ("vuzero" , "vusolose", "vuuno4k"):
+		elif self.MODEL in ("vuzero", "vusolose", "vuuno4k"):
 			cmdlist.append('echo "This file forces the update." > %s/force.update' %self.MAINDEST)
-		elif self.MODEL in ("novaip" , "zgemmai55" , "sf98", "xpeedlxpro",'evoslim'):
+		elif self.MODEL in ("novaip", "zgemmai55", "sf98", "xpeedlxpro", 'evoslim'):
 			cmdlist.append('echo "This file forces the update." > %s/force' %self.MAINDEST)
 		elif SystemInfo["HasRootSubdir"]:
 			cmdlist.append('echo "Rename the unforce_%s.txt to force_%s.txt and move it to the root of your usb-stick" > %s/force_%s_READ.ME' %(self.MACHINEBUILD, self.MACHINEBUILD, self.MAINDEST, self.MACHINEBUILD))
@@ -618,19 +618,19 @@ class ImageBackup(Screen):
 		else:
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' %self.MAINDEST)
 
-		if self.MODEL in ("gbquad4k","gbue4k","gbx34k"):
+		if self.MODEL in ("gbquad4k", "gbue4k", "gbx34k"):
 			system('mv %s/boot.bin %s/boot.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/rescue.bin %s/rescue.bin' %(self.WORKDIR, self.MAINDEST))
 			system('cp -f /usr/share/gpt.bin %s/gpt.bin' %(self.MAINDEST))
 
-		if self.MACHINEBUILD in ("h9","i55plus"):
+		if self.MACHINEBUILD in ("h9", "i55plus"):
 			system('mv %s/fastboot.bin %s/fastboot.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/pq_param.bin %s/pq_param.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/bootargs.bin %s/bootargs.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/baseparam.bin %s/baseparam.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/logo.bin %s/logo.bin' %(self.WORKDIR, self.MAINDEST))
 
-		if self.MACHINEBUILD in ("h9combo","v8plus","multibox","hd60","hd61"):
+		if self.MACHINEBUILD in ("h9combo", "v8plus", "multibox", "hd60", "hd61"):
 			system('mv %s/baseparam.bin %s/bootoptions.bin' %(self.WORKDIR, self.MAINDEST))
 			system('mv %s/uImage %s/uImage' %(self.WORKDIR, self.MAINDEST))
 
@@ -642,7 +642,7 @@ class ImageBackup(Screen):
 			if path.exists(lcdwarning):
 				system('cp %s %s/lcdwarning.bin' %(lcdwarning, self.MAINDEST))
 
-		if self.MODEL in ("e4hdultra","protek4k"):
+		if self.MODEL in ("e4hdultra", "protek4k"):
 			lcdwarning = '/usr/share/lcdflashing.bmp'
 			if path.exists(lcdwarning):
 				system('cp %s %s/lcdflashing.bmp' %(lcdwarning, self.MAINDEST))
@@ -656,7 +656,7 @@ class ImageBackup(Screen):
 			f.write('"\n')
 			f.close()
 
-		if self.MACHINEBUILD in ("h9","i55plus"):
+		if self.MACHINEBUILD in ("h9", "i55plus"):
 			cmdlist.append('cp -f /usr/share/fastboot.bin %s/fastboot.bin' %(self.MAINDESTROOT))
 			cmdlist.append('cp -f /usr/share/bootargs.bin %s/bootargs.bin' %(self.MAINDESTROOT))
 
@@ -675,7 +675,7 @@ class ImageBackup(Screen):
 			imageversionfile = "/tmp/bi/RootSubdir/etc/image-version"
 			if path.exists(imageversionfile) is True:
 				system("less /tmp/bi/RootSubdir/etc/image-version | grep build= | cut -d= -f2 > /tmp/.imagebuild")
-				brand = open("/tmp/.imagebuild","r")
+				brand = open("/tmp/.imagebuild", "r")
 				self.backupbuild = brand.readline().replace('\n', '').lower()
 				brand.close()
 			else:
@@ -760,7 +760,7 @@ class ImageBackup(Screen):
 		AboutText += _("Backup Date: %s\n") % strftime("%Y-%m-%d", localtime(self.START))
 
 		if path.exists('/proc/stb/info/chipset'):
-			AboutText += _("Chipset: BCM%s") % about.getChipSetString().lower().replace('\n','').replace('bcm','') + "\n"
+			AboutText += _("Chipset: BCM%s") % about.getChipSetString().lower().replace('\n', '').replace('bcm', '') + "\n"
 
 		AboutText += _("CPU: %s") % about.getCPUString() + "\n"
 		AboutText += _("Cores: %s") % about.getCpuCoresString() + "\n"

@@ -53,7 +53,7 @@ class DMCHDCaidDisplay(Poll, Converter, object):
 				caids = info.getInfoObject(iServiceInformation.sCAIDs)
 				if caids:
 					for cs in self.systemCaids:
-						caidlist[cs] = (self.systemCaids.get(cs),0)
+						caidlist[cs] = (self.systemCaids.get(cs), 0)
 
 					for caid in caids:
 						c = "%x" % int(caid)
@@ -61,7 +61,7 @@ class DMCHDCaidDisplay(Poll, Converter, object):
 							c = "0%s" % c
 						c = c[:2].upper()
 						if c in self.systemCaids:
-							caidlist[c] = (self.systemCaids.get(c),1)
+							caidlist[c] = (self.systemCaids.get(c), 1)
 
 					ecm_info = self.ecmfile()
 					if ecm_info:
@@ -71,7 +71,7 @@ class DMCHDCaidDisplay(Poll, Converter, object):
 							if len(c) == 3:
 								c = "0%s" % c
 							c = c[:2].upper()
-							caidlist[c] = (self.systemCaids.get(c),2)
+							caidlist[c] = (self.systemCaids.get(c), 2)
 		return caidlist
 
 	getCaidlist = property(get_caidlist)

@@ -109,7 +109,7 @@ class g16ServiceNameEventNobile(Converter, object):
 						if not short[:-2] in tmp:
 							tmp = short.strip() + "..." + tmp
 			tmp = tmp.replace("\r", " ").replace("\n", " ").replace("\xc2\x8a", " ")
-			return re.sub('[\s\t]+', ' ',tmp)
+			return re.sub('[\s\t]+', ' ', tmp)
 		else:
 			return "Error reading EPG data"
 

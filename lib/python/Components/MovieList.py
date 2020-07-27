@@ -199,11 +199,11 @@ class MovieList(GUIComponent):
 			attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
-					font = skin.parseFont(value, ((1,1),(1,1)))
+					font = skin.parseFont(value, ((1, 1), (1, 1)))
 					self.fontName = font.family
 					self.fontSize = font.pointSize
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			self.skinAttributes = attribs
 			self.setFontsize()
 		rc = GUIComponent.applySkin(self, desktop, parent)
@@ -326,22 +326,22 @@ class MovieList(GUIComponent):
 				txt = p[1]
 				if txt == ".Trash":
 					if self.screenwidth and self.screenwidth == 1920:
-						res.append(MultiContentEntryPixmapAlphaBlend(pos=(3,5), size=(iconSize,37), png=self.iconTrash))
+						res.append(MultiContentEntryPixmapAlphaBlend(pos=(3, 5), size=(iconSize, 37), png=self.iconTrash))
 						res.append(MultiContentEntryText(pos=(40+20, 5), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
 						res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trashcan")))
 						return res
 					else:
-						res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,2), size=(iconSize,24), png=self.iconTrash))
+						res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 2), size=(iconSize, 24), png=self.iconTrash))
 						res.append(MultiContentEntryText(pos=(iconSize+10, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
 						res.append(MultiContentEntryText(pos=(width-150, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trashcan")))
 						return res
 			if self.screenwidth and self.screenwidth == 1920:
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(3,5), size=(iconSize,iconSize), png=self.iconFolder))
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(3, 5), size=(iconSize, iconSize), png=self.iconFolder))
 				res.append(MultiContentEntryText(pos=(40+20, 5), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
 				res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
 				return res
 			else:
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,2), size=(iconSize,iconSize), png=self.iconFolder))
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 2), size=(iconSize, iconSize), png=self.iconFolder))
 				res.append(MultiContentEntryText(pos=(iconSize+10, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
 				res.append(MultiContentEntryText(pos=(width-150, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
 				return res
@@ -397,10 +397,10 @@ class MovieList(GUIComponent):
 		if switch == 'i':
 			if self.screenwidth and self.screenwidth == 1920:
 				iconSize = 42
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(2,3), size=(iconSize,iconSize), png=data.icon))
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(2, 3), size=(iconSize, iconSize), png=data.icon))
 			else:
 				iconSize = 22
-				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(iconSize,20), png=data.icon))
+				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 1), size=(iconSize, 20), png=data.icon))
 		elif switch == 'p':
 			if self.screenwidth and self.screenwidth == 1920:
 				iconSize = 42
@@ -408,14 +408,14 @@ class MovieList(GUIComponent):
 				iconSize = 48
 			if data.part is not None and data.part > 0:
 				if self.screenwidth and self.screenwidth == 1920:
-					res.append(MultiContentEntryProgress(pos=(0,10), size=(iconSize+5,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+					res.append(MultiContentEntryProgress(pos=(0, 10), size=(iconSize+5, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 				else:
-					res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+					res.append(MultiContentEntryProgress(pos=(0, 5), size=(iconSize-2, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
 				if self.screenwidth and self.screenwidth == 1920:
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(iconSize,iconSize), png=data.icon))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 1), size=(iconSize, iconSize), png=data.icon))
 				else:
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(iconSize,20), png=data.icon))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 1), size=(iconSize, 20), png=data.icon))
 		elif switch == 's':
 			if self.screenwidth and self.screenwidth == 1920:
 				iconSize = 42
@@ -423,14 +423,14 @@ class MovieList(GUIComponent):
 				iconSize = 22
 			if data.part is not None and data.part > 0:
 				if self.screenwidth and self.screenwidth == 1920:
-					res.append(MultiContentEntryProgress(pos=(0,10), size=(iconSize+5,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+					res.append(MultiContentEntryProgress(pos=(0, 10), size=(iconSize+5, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 				else:
-					res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+					res.append(MultiContentEntryProgress(pos=(0, 5), size=(iconSize-2, 16), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
 				if self.screenwidth and self.screenwidth == 1920:
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(iconSize,iconSize), png=data.icon))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 1), size=(iconSize, iconSize), png=data.icon))
 				else:
-					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,1), size=(iconSize,20), png=data.icon))
+					res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, 1), size=(iconSize, 20), png=data.icon))
 
 		begin_string = ""
 		if begin > 0:
@@ -641,7 +641,7 @@ class MovieList(GUIComponent):
 
 			if this_tags == ['']:
 				# No tags? Auto tag!
-				this_tags = name.replace(',',' ').replace('.',' ').replace('_',' ').replace(':',' ').split()
+				this_tags = name.replace(',', ' ').replace('.', ' ').replace('_', ' ').replace(':', ' ').split()
 			else:
 				realtags.update(this_tags)
 			for tag in this_tags:

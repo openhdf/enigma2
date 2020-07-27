@@ -48,7 +48,7 @@ class SoftwareTools(PackageInfoHandler):
 			self.NotifierCallback = callback
 		iNetwork.checkNetworkState(self.checkNetworkCB)
 
-	def checkNetworkCB(self,data):
+	def checkNetworkCB(self, data):
 		if data is not None:
 			if data <= 2:
 				self.NetworkConnectionAvailable = True

@@ -73,7 +73,7 @@ class FileBrowser(Screen):
 				if filename.upper().endswith("VIDEO_TS/"):
 					print("dvd structure found, trying to open...")
 					dvdpath = filename[0:-9]
-					lastpath = (dvdpath.rstrip("/").rsplit("/",1))[0]
+					lastpath = (dvdpath.rstrip("/").rsplit("/", 1))[0]
 					print("lastpath video_ts/=", lastpath)
 					self.close(dvdpath)
 					return
@@ -82,12 +82,12 @@ class FileBrowser(Screen):
 				pathname = self["filelist"].getCurrentDirectory() or ""
 				if fileExists(pathname+"VIDEO_TS.IFO"):
 					print("dvd structure found, trying to open...")
-					lastpath = (pathname.rstrip("/").rsplit("/",1))[0]
+					lastpath = (pathname.rstrip("/").rsplit("/", 1))[0]
 					print("lastpath video_ts.ifo=", lastpath)
 					self.close(pathname)
 				if fileExists(pathname+"VIDEO_TS/VIDEO_TS.IFO"):
 					print("dvd structure found, trying to open...")
-					lastpath = (pathname.rstrip("/").rsplit("/",1))[0]
+					lastpath = (pathname.rstrip("/").rsplit("/", 1))[0]
 					print("lastpath video_ts.ifo=", lastpath)
 					pathname += "VIDEO_TS"
 					self.close(pathname)
@@ -481,7 +481,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		print("AudioInfoAvail ", repr(audioTuple))
 		if audioTuple:
 			#audioString = "%d: %s (%s)" % (audioTuple[0],audioTuple[1],audioTuple[2])
-			audioString = "%s (%s)" % (audioTuple[1],audioTuple[2])
+			audioString = "%s (%s)" % (audioTuple[1], audioTuple[2])
 			self["audioLabel"].setText(audioString)
 			if audioTuple != self.last_audioTuple and not self.in_menu:
 				self.doShow()
@@ -508,7 +508,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if angleTuple:
 			angleString = ""
 			if angleTuple[1] > 1:
-				angleString = "%d / %d" % (angleTuple[0],angleTuple[1])
+				angleString = "%d / %d" % (angleTuple[0], angleTuple[1])
 				self["anglePix"].show()
 			else:
 				self["anglePix"].hide()
@@ -537,15 +537,15 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def askLeavePlayer(self):
 		if self.autoplay:
-			self.exitCB((None,"exit"))
+			self.exitCB((None, "exit"))
 			return
 		choices = [(_("Exit"), "exit"), (_("Continue playing"), "play")]
 		if True or not self.physicalDVD:
-			choices.insert(1,(_("Return to file browser"), "browser"))
+			choices.insert(1, (_("Return to file browser"), "browser"))
 		if self.physicalDVD:
 			cur = self.session.nav.getCurrentlyPlayingServiceReference()
 			if cur and not cur.toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
-			    choices.insert(0,(_("Play DVD"), "playPhysical" ))
+			    choices.insert(0, (_("Play DVD"), "playPhysical" ))
 		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list = choices)
 
 	def sendKey(self, key):
@@ -647,7 +647,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			print("play", newref.toString())
 			if curref is None or curref != newref:
 				if newref.toString().endswith("/VIDEO_TS") or newref.toString().endswith("/"):
-					names = newref.toString().rsplit("/",3)
+					names = newref.toString().rsplit("/", 3)
 					if names[2].startswith("Disk ") or names[2].startswith("DVD "):
 						name = str(names[1]) + " - " + str(names[2])
 					else:
@@ -789,7 +789,7 @@ def filescan_open(list, session, **kwargs):
 			if x.mimetype == "video/x-dvd-iso":
 				dvd_filelist.append(x.path)
 			if x.mimetype == "video/x-dvd":
-				dvd_filelist.append(x.path.rsplit('/',1)[0])
+				dvd_filelist.append(x.path.rsplit('/', 1)[0])
 		session.open(DVDPlayer, dvd_filelist=dvd_filelist)
 
 def filescan(**kwargs):
@@ -801,7 +801,7 @@ def filescan(**kwargs):
 			return fileExists(file.path)
 
 	return [
-		LocalScanner(mimetypes = ["video/x-dvd","video/x-dvd-iso"],
+		LocalScanner(mimetypes = ["video/x-dvd", "video/x-dvd-iso"],
 			paths_to_scan =
 				[
 					ScanPath(path = "video_ts", with_subdirs = False),

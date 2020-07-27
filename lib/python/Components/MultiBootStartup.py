@@ -87,7 +87,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		self.path = PATH
 		for name in listdir(self.path):
 			if path.isfile(path.join(self.path, name)):
-				cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
+				cmdline = self.read_startup("/boot/" + name).split("=", 1)[1].split(" ", 1)[0]
 				if cmdline in Harddisk.getextdevices("ext4") and not name == "STARTUP":
 					files.append(name)
 		return files

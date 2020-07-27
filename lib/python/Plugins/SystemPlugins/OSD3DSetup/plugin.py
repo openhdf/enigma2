@@ -123,7 +123,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.menuext = ConfigSelection(choices = menulist, default = nz(menuext, "none"))
 		self.auto = ConfigYesNo(default = nz(auto, False))
 		self.toggle = ConfigSelection(choices = togglelist, default = nz(toggle, val_sidebyside))
-		self.prompt = ConfigInteger(nz(prompt,10), limits=(0, 30))
+		self.prompt = ConfigInteger(nz(prompt, 10), limits=(0, 30))
 		# adding notifiers to immediatelly preview changed 3D settings
 		self.mode.addNotifier(self.setPreviewSettings, initial_call = False)
 		self.znorm.addNotifier(self.setPreviewSettings, initial_call = False)
@@ -299,7 +299,7 @@ class InfoAuto3D(Screen):
 			"blue": self.keyBlue,
 			"cancel": self.keyCancel
 		}, -2)
-		self.blueTimer.start(nz(config.plugins.OSD3DSetup.prompt.value,10) * 1000)
+		self.blueTimer.start(nz(config.plugins.OSD3DSetup.prompt.value, 10) * 1000)
 		InfoAuto3D.Instance = self #set instance - only one should be running
 
 	def keyBlue(self):
@@ -327,7 +327,7 @@ def setConfiguredSettings():
 def getmode():
 	file = open(path_mode, "r")
 	if file:
-		return file.readline().replace('\n','')
+		return file.readline().replace('\n', '')
 		file.close()
 	else:
 		return val_auto
@@ -335,7 +335,7 @@ def getmode():
 def getznorm():
 	file = open(path_znorm, "r")
 	if file:
-		return int(file.readline().replace('\n','').replace('%d',''))
+		return int(file.readline().replace('\n', '').replace('%d', ''))
 		file.close()
 	else:
 		return val_auto

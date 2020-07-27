@@ -111,7 +111,7 @@ class EventName(Converter, object):
 			return description + extended
 		elif self.type == self.ID:
 			return str(event.getEventId())
-		elif int(self.type) in (6,7) or int(self.type) >= 21:
+		elif int(self.type) in (6, 7) or int(self.type) >= 21:
 			try:
 				reference = self.source.service
 				info = reference and self.source.info

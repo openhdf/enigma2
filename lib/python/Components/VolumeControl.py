@@ -77,7 +77,7 @@ class VolumeControl:
 		else:
 			self.getInputConfig()
 			step = config.usage.volume_step_slow.value
-		self.stepVolTimer.start(self.repeat,True)
+		self.stepVolTimer.start(self.repeat, True)
 		return step
 
 	def getInputConfig(self):

@@ -90,7 +90,7 @@ class SkinSelectorBase:
 		self.config.value = skinfile
 		self.config.save()
 		configfile.save()
-		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
+		restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _("GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 
 	def up(self):
@@ -110,7 +110,7 @@ class SkinSelectorBase:
 		self.loadPreview()
 
 	def info(self):
-		aboutbox = self.session.open(MessageBox,_("Enigma2 skin selector"), MessageBox.TYPE_INFO)
+		aboutbox = self.session.open(MessageBox, _("Enigma2 skin selector"), MessageBox.TYPE_INFO)
 		aboutbox.setTitle(_("About..."))
 
 	def loadPreview(self):
@@ -146,7 +146,7 @@ class SkinSelector(Screen, SkinSelectorBase):
 	PICONDEFAULTSKIN = None
 
 	skinlist = []
-	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2")
+	root = os.path.join(eEnv.resolve("${datadir}"), "enigma2")
 
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
@@ -162,7 +162,7 @@ class LcdSkinSelector(Screen, SkinSelectorBase):
 	PICONDEFAULTSKIN = "< Default with Picon >"
 
 	skinlist = []
-	root = os.path.join(eEnv.resolve("${datadir}"),"enigma2/display/")
+	root = os.path.join(eEnv.resolve("${datadir}"), "enigma2/display/")
 
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
