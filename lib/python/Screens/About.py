@@ -1038,7 +1038,7 @@ class MemoryInfo(Screen):
 			self['pfree'].setText("%.1f %s" % (100.*free/mem,'%'))
 			self['pused'].setText("%.1f %s" % (100.*(mem-free)/mem,'%'))
 
-		except Exception, e:
+		except Exception as e:
 			print("[About] getMemoryInfo FAIL:", e)
 
 	def clearMemory(self):

@@ -180,7 +180,7 @@ class MultiQuickButton(Screen):
 						space2 = "]"
 					globals()['functionbutton_%s' % button] = space1 + functionbutton + space2
 
-				except Exception, a:
+				except Exception as a:
 					self.a = a
 			else:
 				globals()['functionbutton_%s' % button] = " "
@@ -507,7 +507,7 @@ class QuickButton(Screen):
 				else:
 					list.append(QuickButtonListEntry('red',(_(e[0]),e[0], '')))
 
-		except Exception, e:
+		except Exception as e:
 			self.e = e
 			list = []
 
@@ -648,7 +648,7 @@ class QuickButton(Screen):
 		self.changed = True
 		try:
 			self.session.openWithCallback(self.QuickPluginSelected,ChoiceBox,_("Functions") ,self.getFunctionList())
-		except Exception,e:
+		except Exception as e:
 			self.session.open(MessageBox,_("No valid function file found"), type = MessageBox.TYPE_ERROR,timeout = 5)
 
 	def addplugin(self):

@@ -173,7 +173,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
 			self.session.open(MediaPlayer)
 			no_plugin = False
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showEMC(self):
@@ -181,7 +181,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Plugins.Extensions.EnhancedMovieCenter.plugin import *
 			from Components.PluginComponent import plugins
 			showMoviesNew()
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showETPORTAL(self):
@@ -189,7 +189,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Plugins.Extensions.EtPortal.plugin import *
 			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showMEDIAPORTAL(self):
@@ -207,7 +207,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				from Plugins.Extensions.MediaPortal.plugin import MPList
 				self.session.open(MPList)
 			no_plugin = False
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showWWW(self):
@@ -215,14 +215,14 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Plugins.Extensions.EtPortal.plugin import *
 			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def BackZap(self):
 		if config.OpenWebif.enabled.value:
 			try:
 				os.system("wget -q -O /tmp/.message.txt 'http://127.0.0.1/web/remotecontrol?command=11' &  > /dev/null 2>&1")
-			except Exception, e:
+			except Exception as e:
 				self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 		else:
 			self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type = MessageBox.TYPE_INFO,timeout = 10 )
@@ -245,7 +245,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				from Plugins.Extensions.EtPortal.plugin import *
 				from Components.PluginComponent import plugins
 				self.session.open(EtPortalScreen)
-			except Exception, e:
+			except Exception as e:
 				self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 		else:
 			self.showMovies()
@@ -358,7 +358,7 @@ def setAudioTrack(service):
 			matchedAc3 = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3)
 			if matchedAc3: return
 			tracks.selectTrack(0)    # fallback to track 1(0)
-	except Exception, e:
+	except Exception as e:
 		print("[MoviePlayer] audioTrack exception:\n" + str(e))
 
 def tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3):
@@ -571,7 +571,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 						else:
 							self.movielistAgain()
 						return
-					except Exception, e:
+					except Exception as e:
 						print("[InfoBar] Failed to move to .Trash folder:", e)
 						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 				info = serviceHandler.info(ref)

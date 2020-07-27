@@ -226,7 +226,7 @@ def checkQuickSel(self, path):
 		menu = xml.dom.minidom.parse(path)
 		db = QuickButtonXML(menu)
 		list = db.getSelection()
-	except Exception, e:
+	except Exception as e:
 		self.session.open(MessageBox,("XML " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
 		print("[MultiQuickbutton] ERROR: ",e)
 
@@ -265,14 +265,14 @@ def execQuick(self,entry):
 					try:
 						screen = "self.session.open(" + entry[4] + ")"
 						exec(screen)
-					except Exception, e:
+					except Exception as e:
 						self.session.open(MessageBox,("Screen " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
-			except Exception, e:
+			except Exception as e:
 				self.session.open(MessageBox,("Module " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
 		if entry[5] <> "":
 			try:
 				exec(entry[5])
-			except Exception, e:
+			except Exception as e:
 				self.session.open(MessageBox,("Code " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
 
 def quickSelectGlobal(self, key):

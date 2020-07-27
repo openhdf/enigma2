@@ -454,13 +454,13 @@ class MovieList(GUIComponent):
 				desc = info.getInfoString(serviceref, iServiceInformation.sDescription)		# get description
 				ref = info.getInfoString(serviceref, iServiceInformation.sServiceref)		# get reference
 				service = ServiceReference(ref).getServiceName()				# get service name
-			except Exception, e:
+			except Exception as e:
 				print(('[MovieList] load extended infos get failed: ', e))
 			if ext == '2':
 				try:
 					picon = getPiconName(ref)
 					picon = loadPNG(picon)
-				except Exception, e:
+				except Exception as e:
 					print(('[MovieList] load picon get failed: ', e))
 
 			# TODO: make it shorter in future, this is the first way to get the extendedList

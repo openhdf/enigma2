@@ -394,7 +394,7 @@ def menutoggle3d(session, **kwargs):
 		eam.keyPressed(TYPE_STANDARD, 139, FLAG_MAKE) #menu
 		#Release the key
 		eam.keyPressed(TYPE_STANDARD, 139, FLAG_BREAK) #menu
-	except Exception, e:
+	except Exception as e:
 		print("[OSD3D Setup] toggle3d exception:\n" + str(e))
 	return []
 

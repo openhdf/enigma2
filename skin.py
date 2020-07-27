@@ -57,7 +57,7 @@ def getSkinFactor(refresh = False):
 			if not skinfactor in [1, 1.5, 3]:
 				print('[SKIN] getSkinFactor unknown result (%s) -> set skinfactor to 1' %skinfactor)
 				skinfactor = 1
-		except Exception, err:
+		except Exception as err:
 			skinfactor = 1
 			print('[SKIN] getSkinFactor failed: ', err)
 	return skinfactor
@@ -207,7 +207,7 @@ if config.skin.primary_skin.value != DEFAULT_SKIN:
 				try:
 					addSkin(primary_skin_path + file, SCOPE_SKIN)
 					print("[SKIN] loading user defined %s skin file: %s" %(file.replace('skin_user_','')[:-4], primary_skin_path + file))
-				except (SkinError, IOError, OSError, AssertionError), err:
+				except (SkinError, IOError, OSError, AssertionError) as err:
 					print("[SKIN] not loading user defined %s skin file: %s - error: %s" %(file.replace('skin_user_','')[:-4], primary_skin_path + file, err))
 
 '''
@@ -233,14 +233,14 @@ def load_modular_files():
 			try:
 				addSkin(primary_skin_path + f, SCOPE_SKIN)
 				print("[SKIN] loading modular skin file : ", (primary_skin_path + f))
-			except (SkinError, IOError, AssertionError), err:
+			except (SkinError, IOError, AssertionError) as err:
 				print("[SKIN] failed to load modular skin file : ", err)
 load_modular_files()
 
 try:
 	if not addSkin(config.skin.primary_skin.value):
 		raise SkinError, "primary skin not found"
-except Exception, err:
+except Exception as err:
 	print("SKIN ERROR:", err)
 	skin = DEFAULT_SKIN
 	if config.skin.primary_skin.value == skin:
@@ -430,7 +430,7 @@ class AttributeParser:
 			getattr(self, attrib)(value)
 		except AttributeError:
 			print("[SKIN] Attribute \"%s\" with value \"%s\" in object of type \"%s\" is not implemented" % (attrib, value, self.guiObject.__class__.__name__))
-		except SkinError, ex:
+		except SkinError as ex:
 			print("\033[91m[SKIN] Error:", ex, end=' ')
 			print("\033[0m")
 		except:
@@ -442,7 +442,7 @@ class AttributeParser:
 				getattr(self, attrib)(value)
 			except AttributeError:
 				print("[SKIN] Attribute \"%s\" with value \"%s\" in object of type \"%s\" is not implemented" % (attrib, value, self.guiObject.__class__.__name__))
-			except SkinError, ex:
+			except SkinError as ex:
 				print("\033[91m[Skin] Error:", ex, end=' ')
 				print("\033[0m")
 			except:
@@ -831,7 +831,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				width = int(get("width", size))
 				global fonts
 				fonts[name] = (font, size, height, width)
-			except Exception, ex:
+			except Exception as ex:
 				print("[SKIN] bad font alias", ex)
 
 	for c in skin.findall("parameters"):
@@ -846,7 +846,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 						parameters[name] = (str(font[0]), int(font[1]))
 				else:
 					parameters[name] = map(int, value.split(","))
-			except Exception, ex:
+			except Exception as ex:
 				print("[SKIN] bad parameter", ex)
 
 	for c in skin.findall("constant-widgets"):
@@ -1282,7 +1282,7 @@ def readSkin(screen, skin, names, desktop):
 			codeText = widget.text.strip()
 			widgetType = widget.attrib.get('type')
 			code = compile(codeText, "skin applet", "exec")
-		except Exception, ex:
+		except Exception as ex:
 			raise SkinError("applet failed to compile: " + str(ex))
 		if widgetType == "onLayoutFinish":
 			screen.onLayoutFinish.append(code)
@@ -1315,7 +1315,7 @@ def readSkin(screen, skin, names, desktop):
 			p = processors.get(w.tag, process_none)
 			try:
 				p(w, context)
-			except SkinError, e:
+			except SkinError as e:
 				print("[SKIN] SKIN ERROR in screen '%s' widget '%s':" % (name, w.tag), e)
 
 		cw = widget.findall("constant-widget")
@@ -1348,7 +1348,7 @@ def readSkin(screen, skin, names, desktop):
 			cc = SkinContext
 		try:
 			c = cc(context, widget.attrib.get('position'), widget.attrib.get('size'), widget.attrib.get('font'))
-		except Exception, ex:
+		except Exception as ex:
 			raise SkinError("Failed to create skincontext (%s,%s,%s) in %s: %s" % (widget.attrib.get('position'), widget.attrib.get('size'), widget.attrib.get('font'), context, ex) )
 		process_screen(widget, c)
 
@@ -1367,7 +1367,7 @@ def readSkin(screen, skin, names, desktop):
 		context.x = 0 # reset offsets, all components are relative to screen
 		context.y = 0 # coordinates.
 		process_screen(myscreen, context)
-	except Exception, e:
+	except Exception as e:
 		print("[SKIN] SKIN ERROR in %s:" % name, e)
 
 	from Components.GUIComponent import GUIComponent

@@ -149,7 +149,7 @@ def saveResumePoints():
 		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
 		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
 		f.close()
-	except Exception, ex:
+	except Exception as ex:
 		print("[InfoBar] Failed to write resumepoints:", ex)
 	resumePointCacheLast = int(time())
 
@@ -159,7 +159,7 @@ def loadResumePoints():
 		PickleFile = cPickle.load(file)
 		file.close()
 		return PickleFile
-	except Exception, ex:
+	except Exception as ex:
 		print("[InfoBar] Failed to load resumepoints:", ex)
 		return {}
 
@@ -2641,7 +2641,7 @@ class InfoBarEPG:
 				if plugin.name.startswith(' HDF Toolbox'):
 					self.runPlugin(plugin)
 					break
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showETPORTAL(self):
@@ -2649,7 +2649,7 @@ class InfoBarEPG:
 			from Plugins.Extensions.EtPortal.plugin import *
 			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showEMC(self):
@@ -2657,7 +2657,7 @@ class InfoBarEPG:
 			from Plugins.Extensions.EnhancedMovieCenter.plugin import *
 			from Components.PluginComponent import plugins
 			showMoviesNew()
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showMEDIAPORTAL(self):
@@ -2665,7 +2665,7 @@ class InfoBarEPG:
 			from Plugins.Extensions.MediaPortal.plugin import *
 			from Components.PluginComponent import plugins
 			self.session.open(haupt_Screen)
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showDREAMPLEX(self):
@@ -2673,7 +2673,7 @@ class InfoBarEPG:
 			from Plugins.Extensions.DreamPlex.plugin import *
 			from Components.PluginComponent import plugins
 			self.session.open(DPS_MainMenu)
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showOSCAMINFO(self):
@@ -2682,7 +2682,7 @@ class InfoBarEPG:
 				if plugin.name == _("OscamInfo"):
 					self.runPlugin(plugin)
 					break
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The OscamInfo plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showOSCAMSTATUS(self):
@@ -2691,7 +2691,7 @@ class InfoBarEPG:
 				if plugin.name == _("OSCam Status View"):
 					self.runPlugin(plugin)
 					break
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The OSCamStatusView plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showWERBEZAPPER(self):
@@ -2700,7 +2700,7 @@ class InfoBarEPG:
 				if plugin.name == _("Werbezapper"):
 					self.runPlugin(plugin)
 					break
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showWERBEZAPPERMON(self):
@@ -2709,7 +2709,7 @@ class InfoBarEPG:
 				if plugin.name == _("Werbezapper Start / Stop monitoring"):
 					self.runPlugin(plugin)
 					break
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showZapHistoryBrowser(self):
@@ -2718,7 +2718,7 @@ class InfoBarEPG:
 				if plugin.name == _("Zap-Historie Browser"):
 					self.runPlugin(plugin)
 					break
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The Zap-History Browser plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showsimplelist(self):
@@ -2727,7 +2727,7 @@ class InfoBarEPG:
 				if plugin.name == _("Simple Movie List"):
 					self.runPlugin(plugin)
 					break
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("Please wait."), type = MessageBox.TYPE_INFO,timeout = 1 )
 
 	def SingleServiceEPG(self):
@@ -4527,7 +4527,7 @@ class InfoBarExtensions:
 					from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
 					self.session.open(MediaPlayer)
 					no_plugin = False
-				except Exception, e:
+				except Exception as e:
 					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 from Tools.BoundFunction import boundFunction
@@ -4556,7 +4556,7 @@ class InfoBarPlugins:
 		else:
 			try:
 				plugin(session = self.session)
-			except Exception, err:
+			except Exception as err:
 				print('[InfoBarGenerics] Error: ', err)
 
 from Components.Task import job_manager
@@ -5293,7 +5293,7 @@ class InfoBarRedButton:
 		for x in self.onReadyForAIT:
 			try:
 				x(orgId)
-			except Exception, ErrMsg:
+			except Exception as ErrMsg:
 				print(ErrMsg)
 				#self.onReadyForAIT.remove(x)
 
@@ -5301,7 +5301,7 @@ class InfoBarRedButton:
 		try:
 			self["HbbtvApplication"].setApplicationName("")
 			self.updateAIT()
-		except Exception, ErrMsg:
+		except Exception as ErrMsg:
 			pass
 
 	def detectedHbbtvApplication(self):
@@ -5314,7 +5314,7 @@ class InfoBarRedButton:
 					self.updateAIT(x[3])
 					self["HbbtvApplication"].setApplicationName(x[1])
 					break
-		except Exception, ErrMsg:
+		except Exception as ErrMsg:
 			pass
 
 	def activateRedButton(self):
@@ -6395,13 +6395,13 @@ class InfoBarOpenOnTopHelper:
 	def openInfoBarMessage(self, message, messageboxtyp, timeout=-1):
 		try:
 			self.session.open(MessageBox, message, messageboxtyp, timeout=timeout)
-		except Exception, e:
+		except Exception as e:
 			print("[InfoBarOpenMessage] Exception:", e)
 
 	def openInfoBarMessageWithCallback(self, callback, message, messageboxtyp, timeout=-1, default=True):
 		try:
 			self.session.openWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
-		except Exception, e:
+		except Exception as e:
 			print("[openInfoBarMessageWithCallback] Exception:", e)
 
 	def openInfoBarSession(self, session, option=None):
@@ -6410,7 +6410,7 @@ class InfoBarOpenOnTopHelper:
 				self.session.open(session)
 			else:
 				self.session.open(session, option)
-		except Exception, e:
+		except Exception as e:
 			print("[openInfoBarSession] Exception:", e)
 #########################################################################################
 
