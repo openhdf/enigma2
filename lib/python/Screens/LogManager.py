@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from Screens.Screen import Screen
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
@@ -533,7 +534,7 @@ class LogManagerViewLog(Screen):
 			font = gFont("Regular", int(16*f))
 		self["list"].instance.setFont(font)
 		fontwidth = getTextBoundarySize(self.instance, font, self["list"].instance.size(), _(" ")).width()
-		listwidth = int(self["list"].instance.size().width() / fontwidth) - 2
+		listwidth = int(self["list"].instance.size().width() // fontwidth) - 2
 		if path.exists(self.logfile):
 			for line in file(self.logfile ).readlines():
 				line = line.replace('\t', ' '*9)

@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from Tools.Profile import profile
 profile("LOAD:ElementTree")
 import xml.etree.cElementTree
@@ -54,7 +55,7 @@ def getSkinFactor(refresh = False):
 	global skinfactor
 	if refresh or not skinfactor:
 		try:
-			skinfactor = getDesktop(0).size().width() / 1280.0
+			skinfactor = getDesktop(0).size().width() // 1280.0
 			if not skinfactor in [1, 1.5, 3]:
 				print('[SKIN] getSkinFactor unknown result (%s) -> set skinfactor to 1' %skinfactor)
 				skinfactor = 1
@@ -260,7 +261,7 @@ def parseCoordinate(s, e, size=0, font=None):
 		if not size:
 			val = 0
 		else:
-			val = (e - size)/2
+			val = (e - size)//2
 	elif s == '*':
 		return None
 	else:
@@ -268,13 +269,13 @@ def parseCoordinate(s, e, size=0, font=None):
 			val = e
 			s = s[1:]
 		elif s[0] is 'c':
-			val = e/2
+			val = e//2
 			s = s[1:]
 		else:
 			val = 0
 		if s:
 			if s[-1] is '%':
-				val += e * int(s[:-1]) / 100
+				val += e * int(s[:-1]) // 100
 			elif s[-1] is 'w':
 				val += fonts[font][3] * int(s[:-1])
 			elif s[-1] is 'h':
@@ -314,7 +315,7 @@ def parsePosition(s, scale, object = None, desktop = None, size = None):
 		parentsize = getParentSize(object, desktop)
 	xval = parseCoordinate(x, parentsize.width(), size and size.width())
 	yval = parseCoordinate(y, parentsize.height(), size and size.height())
-	return ePoint(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
+	return ePoint(xval * scale[0][0] // scale[0][1], yval * scale[1][0] // scale[1][1])
 
 def parseSize(s, scale, object = None, desktop = None):
 	if s in variables:
@@ -325,7 +326,7 @@ def parseSize(s, scale, object = None, desktop = None):
 		parentsize = getParentSize(object, desktop)
 	xval = parseCoordinate(x, parentsize.width())
 	yval = parseCoordinate(y, parentsize.height())
-	return eSize(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
+	return eSize(xval * scale[0][0] // scale[0][1], yval * scale[1][0] // scale[1][1])
 
 def parseFont(s, scale):
 	try:
@@ -334,7 +335,7 @@ def parseFont(s, scale):
 		size = f[1]
 	except:
 		name, size = s.split(';')
-	return gFont(name, int(size) * scale[0][0] / scale[0][1])
+	return gFont(name, int(size) * scale[0][0] // scale[0][1])
 
 def parseColor(s):
 	if s[0] != '#':
@@ -632,7 +633,7 @@ class AttributeParser:
 		if value in variables:
 			value = variables[value]
 		x, y = value.split(',')
-		self.guiObject.setTextOffset(ePoint(int(x) * self.scaleTuple[0][0] / self.scaleTuple[0][1], int(y) * self.scaleTuple[1][0] / self.scaleTuple[1][1]))
+		self.guiObject.setTextOffset(ePoint(int(x) * self.scaleTuple[0][0] // self.scaleTuple[0][1], int(y) * self.scaleTuple[1][0] // self.scaleTuple[1][1]))
 		if isVTISkin:
 			self.guiObject.setUseVTIWorkaround()
 	def flags(self, value):

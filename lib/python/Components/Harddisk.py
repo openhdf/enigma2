@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from future.utils import raise_
 import os
 import time
@@ -87,7 +88,7 @@ def getFolderSize(path):
 def Freespace(dev):
 	try:
 		statdev = os.statvfs(dev)
-		space = (statdev.f_bavail * statdev.f_frsize) / 1024
+		space = (statdev.f_bavail * statdev.f_frsize) // 1024
 	except:
 		space = 0
 	return space
@@ -198,10 +199,10 @@ class Harddisk:
 			if dev:
 				stat = os.statvfs(dev)
 				cap = int(stat.f_blocks * stat.f_bsize)
-				return cap / 1000 / 1000
+				return cap // 1000 // 1000
 			else:
 				return cap
-		return cap / 1000 * 512 / 1000
+		return cap // 1000 * 512 // 1000
 
 	def capacity(self):
 		cap = self.diskSize()
@@ -209,7 +210,7 @@ class Harddisk:
 			return ""
 		if cap < 1000:
 			return "%03d MB" % cap
-		return "%d.%03d GB" % (cap/1000, cap%1000)
+		return "%d.%03d GB" % (cap//1000, cap%1000)
 
 	def model(self):
 		try:
@@ -232,7 +233,7 @@ class Harddisk:
 		if dev:
 			try:
 				stat = os.statvfs(dev)
-				return int((stat.f_bfree/1000) * (stat.f_bsize/1024))
+				return int((stat.f_bfree//1000) * (stat.f_bsize//1024))
 			except:
 				pass
 		return -1
@@ -1119,7 +1120,7 @@ class MkfsTask(Task.LoggingTask):
 					d = data.strip(' \x08\r\n').split('/', 1)
 					if '\x08' in d[1]:
 						d[1] = d[1].split('\x08', 1)[0]
-					self.setProgress(80*int(d[0])/int(d[1]))
+					self.setProgress(80*int(d[0])//int(d[1]))
 				except Exception as e:
 					print("[Mkfs] E:", e)
 				return # don't log the progess

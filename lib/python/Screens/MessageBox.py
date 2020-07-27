@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 import enigma
 
 from Screens.Screen import Screen
@@ -148,7 +149,7 @@ class MessageBox(Screen):
 		wsizey = textsize[1]+listsize[1]
 		wsize = (wsizex, wsizey)
 		self.instance.resize(enigma.eSize(*wsize))
-		self.instance.move(enigma.ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))
+		self.instance.move(enigma.ePoint((desktop_w-wsizex)//2, (desktop_h-wsizey)//2))
 
 	def initTimeout(self, timeout):
 		self.timeout = timeout

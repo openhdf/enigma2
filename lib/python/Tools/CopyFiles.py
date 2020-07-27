@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from Components.Task import PythonTask, Task, Job, job_manager as JobManager
 from Tools.Directories import fileExists
 from enigma import eTimer
@@ -46,7 +47,7 @@ class AddFileProcessTask(Task):
 		if self.srcsize <= 0 or not fileExists(self.destfile, 'r'):
 			return
 
-		self.setProgress(int((path.getsize(self.destfile)/float(self.srcsize))*100))
+		self.setProgress(int((path.getsize(self.destfile)//float(self.srcsize))*100))
 		self.ProgressTimer.start(5000, True)
 
 	def prepare(self):
@@ -61,14 +62,14 @@ class AddFileProcessTask(Task):
 
 def copyFiles(fileList, name):
 	for src, dst in fileList:
-		if path.isdir(src) or int(path.getsize(src))/1000/1000 > 100:
+		if path.isdir(src) or int(path.getsize(src))//1000//1000 > 100:
 			JobManager.AddJob(CopyFileJob(src, dst, name))
 		else:
 			copy2(src, dst)
 
 def moveFiles(fileList, name):
 	for src, dst in fileList:
-		if path.isdir(src) or int(path.getsize(src))/1000/1000 > 100:
+		if path.isdir(src) or int(path.getsize(src))//1000//1000 > 100:
 			JobManager.AddJob(MoveFileJob(src, dst, name))
 		else:
 			move(src, dst)

@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigSelection, getConfigListEntry
@@ -438,29 +439,29 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 		dw = self.session.desktop.size().width()
 		dh = self.session.desktop.size().height()
 		pw, ph = {1080:("center", "center"), 720:("center", "center"), 576:("center", "20%")}.get(dh, ("center", "center"))
-		(sw, sh) = {1080:(dw/3, dh/2), 720:(int(dw/2), int(dh/1.5)), 576:(int(dw/1.3), int(dh/1.5))}.get(dh, (28, 24))
+		(sw, sh) = {1080:(dw//3, dh//2), 720:(int(dw//2), int(dh//1.5)), 576:(int(dw//1.3), int(dh//1.5))}.get(dh, (28, 24))
 		button_margin = 5
 		button_h = 40
 		list_y = 40+button_margin*3
 		self.fontSize = {1080:(28, 24), 720:(24, 20), 576:(20, 18)}.get(dh, (28, 24))
 		self.skin = QuadPiPChannelSelection.skin % (pw, ph, \
 														sw, sh+list_y, \
-														sw/8-70, button_margin, \
-														sw/8-70+sw/4, button_margin, \
-														sw/8-70+sw/4*2, button_margin, \
-														sw/8-70+sw/4*3, button_margin, \
-														sw/8-70, button_margin, \
-														sw/8-70+sw/4, button_margin, \
-														sw/8-70+sw/4*2, button_margin, \
-														sw/8-70+sw/4*3, button_margin, \
+														sw//8-70, button_margin, \
+														sw//8-70+sw//4, button_margin, \
+														sw//8-70+sw//4*2, button_margin, \
+														sw//8-70+sw//4*3, button_margin, \
+														sw//8-70, button_margin, \
+														sw//8-70+sw//4, button_margin, \
+														sw//8-70+sw//4*2, button_margin, \
+														sw//8-70+sw//4*3, button_margin, \
 														0, list_y, sw, sh, \
-														sw/16, 1, sw-sw/16*2, sh/13, \
-														sw/11, 1+sh/13, 			sw-sw/16*2-sw/8, sh/18, \
-														sw/11, 1+sh/13+sh/18, 	sw-sw/16*2-sw/8, sh/18, \
-														sw/11, 1+sh/13+sh/18*2, 	sw-sw/16*2-sw/8, sh/18, \
-														sw/11, 1+sh/13+sh/18*3, 	sw-sw/16*2-sw/8, sh/18, \
+														sw//16, 1, sw-sw//16*2, sh//13, \
+														sw//11, 1+sh//13, 			sw-sw//16*2-sw//8, sh//18, \
+														sw//11, 1+sh//13+sh//18, 	sw-sw//16*2-sw//8, sh//18, \
+														sw//11, 1+sh//13+sh//18*2, 	sw-sw//16*2-sw//8, sh//18, \
+														sw//11, 1+sh//13+sh//18*3, 	sw-sw//16*2-sw//8, sh//18, \
 														self.fontSize[0], self.fontSize[1], \
-														sh/3)
+														sh//3)
 		self["key_red"] = Label(_("Select"))
 		self["key_green"] = Label(_("Add"))
 		self["key_yellow"] = Label(_("Remove"))
@@ -780,16 +781,16 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 		self.movePositionMap["down"] = [-1, 3, 4, 1, 2]
 
 		self.labelPositionMap = {}
-		self.labelPositionMap["ch1"] = (w/8,		h/4-h/36,		w/4,	h/18)
-		self.labelPositionMap["ch2"] = (w/8+w/2,	h/4-h/36,		w/4,	h/18)
-		self.labelPositionMap["ch3"] = (w/8,		h/4-h/36+h/2,	w/4,	h/18)
-		self.labelPositionMap["ch4"] = (w/8+w/2,	h/4-h/36+h/2,	w/4,	h/18)
+		self.labelPositionMap["ch1"] = (w//8,		h//4-h//36,		w//4,	h//18)
+		self.labelPositionMap["ch2"] = (w//8+w//2,	h//4-h//36,		w//4,	h//18)
+		self.labelPositionMap["ch3"] = (w//8,		h//4-h//36+h//2,	w//4,	h//18)
+		self.labelPositionMap["ch4"] = (w//8+w//2,	h//4-h//36+h//2,	w//4,	h//18)
 
 		self.decoderIdxMap = [None, 0, 1, 2, 3]
 
 		self.fontSize = {1080:40, 720:28, 576:18}.get(h, 40)
-		self.text1Pos = (w-w/3, h-h/18-h/18, w/3, h/18)
-		self.text2Pos = (w-w/3, h-h/18, w/3, h/18)
+		self.text1Pos = (w-w//3, h-h//18-h//18, w//3, h//18)
+		self.text2Pos = (w-w//3, h-h//18, w//3, h//18)
 
 	def moveFrame(self):
 		self.showFocus()

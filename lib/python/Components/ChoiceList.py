@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from __future__ import division
 from .MenuList import MenuList
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
@@ -9,7 +10,7 @@ from os import path
 
 def row_delta_y():
 	font = skin.fonts["ChoiceList"]
-	return (int(font[2]) - int(font[1]))/2
+	return (int(font[2]) - int(font[1]))//2
 
 def ChoiceEntryComponent(key = None, text = ["--"]):
 	res = [ text ]

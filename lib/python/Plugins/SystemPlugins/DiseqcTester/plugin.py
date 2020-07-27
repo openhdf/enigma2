@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 import random
 
 from Screens.Satconfig import NimSelection
@@ -49,8 +50,8 @@ class ResultParser:
 		countfailed = len(failed)
 		countsuccessful = len(successful)
 		countall = countfailed + countsuccessful
-		percentfailed = round(countfailed / float(countall + 0.0001) * 100)
-		percentsuccessful = round(countsuccessful / float(countall + 0.0001) * 100)
+		percentfailed = round(countfailed // float(countall + 0.0001) * 100)
+		percentsuccessful = round(countsuccessful // float(countall + 0.0001) * 100)
 		text += "Tested %d transponders\n%d (%d %%) transponders succeeded\n%d (%d %%) transponders failed\n" % (countall, countsuccessful, percentsuccessful, countfailed, percentfailed)
 		reasons = {}
 		completelist = []
@@ -289,7 +290,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		for sat in nimmanager.getSatListForNim(self.feid):
 			for transponder in nimmanager.getTransponders(sat[0]):
 				#print transponder
-				mytransponder = (transponder[1] / 1000, transponder[2] / 1000, transponder[3], transponder[4], transponder[7], sat[0], transponder[5], transponder[6], transponder[8], transponder[9], transponder[10], transponder[11], transponder[12], transponder[13], transponder[14], transponder[15], transponder[16])
+				mytransponder = (transponder[1] // 1000, transponder[2] // 1000, transponder[3], transponder[4], transponder[7], sat[0], transponder[5], transponder[6], transponder[8], transponder[9], transponder[10], transponder[11], transponder[12], transponder[13], transponder[14], transponder[15], transponder[16])
 				self.analyseTransponder(mytransponder)
 
 	def getIndexForTransponder(self, transponder):

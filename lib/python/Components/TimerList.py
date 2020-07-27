@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from __future__ import division
 from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_BOTTOM, getDesktop
 
 from .HTMLComponent import HTMLComponent
@@ -50,7 +51,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		if timer.justplay:
 			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (begin[1]))
 		else:
-			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
+			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) // 60))
 		if screenwidth and screenwidth == 1920:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 225, 38, width-225, 35, 4, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
 		else:

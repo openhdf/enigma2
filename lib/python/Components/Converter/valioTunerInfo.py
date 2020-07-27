@@ -9,6 +9,7 @@
 
 
 from __future__ import absolute_import
+from __future__ import division
 from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached
@@ -37,8 +38,8 @@ class valioTunerInfo(Converter, object):
 				frontendData = (feinfo and feinfo.getAll(True))
 				if (frontendData is not None):
 					if ((frontendData.get("tuner_type") == "DVB-S") or (frontendData.get("tuner_type") == "DVB-C")):
-						frequency = str(int(frontendData.get("frequency") / 1000))
-						symbolrate = str(int(frontendData.get("symbol_rate")) / 1000)
+						frequency = str(int(frontendData.get("frequency") // 1000))
+						symbolrate = str(int(frontendData.get("symbol_rate")) // 1000)
 						try:
 							if (frontendData.get("tuner_type") == "DVB-S"):
 								polarisation_i = frontendData.get("polarization")
@@ -49,7 +50,7 @@ class valioTunerInfo(Converter, object):
 						except:
 							Ret_Text = "FQ:" + frequency + "  SR:" + symbolrate
 					elif (frontendData.get("tuner_type") == "DVB-T"):
-						frequency = str((frontendData.get("frequency") / 1000)) + " MHz"
+						frequency = str((frontendData.get("frequency") // 1000)) + " MHz"
 						Ret_Text = "Freq: " + frequency
 			return Ret_Text
 		return "n/a"

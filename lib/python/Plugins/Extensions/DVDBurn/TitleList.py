@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from . import DVDProject, TitleList, TitleCutter, TitleProperties, ProjectSettings, DVDToolbox, Process
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
@@ -118,7 +119,7 @@ class TitleList(Screen, HelpableScreen):
 		self.checkBackgroundJobs()
 		if self.backgroundJob:
 			j = self.backgroundJob
-			menu.append(("%s: %s (%d%%)" % (j.getStatustext(), j.name, int(100*j.progress/float(j.end))), self.showBackgroundJob))
+			menu.append(("%s: %s (%d%%)" % (j.getStatustext(), j.name, int(100*j.progress//float(j.end))), self.showBackgroundJob))
 		menu.append((_("DVD media toolbox"), self.toolbox))
 		if self.project.settings.output.value == "dvd":
 			if len(self["titles"].list):
@@ -305,12 +306,12 @@ class TitleList(Screen, HelpableScreen):
 			self["title_label"].text = _("Please add titles to the compilation.")
 
 	def updateSize(self):
-		size = self.project.size/(1024*1024)
+		size = self.project.size//(1024*1024)
 		MAX_DL = self.project.MAX_DL-100
 		MAX_SL = self.project.MAX_SL-100
 		print("updateSize:", size, "MAX_DL:", MAX_DL, "MAX_SL:", MAX_SL)
 		if size > MAX_DL:
-			percent = 100 * size / float(MAX_DL)
+			percent = 100 * size // float(MAX_DL)
 			self["space_label_dual"].text = "%d MB (%.2f%%)" % (size, percent)
 			self["space_bar_dual"].value = int(percent)
 			self["space_bar_single"].value = 100
@@ -320,7 +321,7 @@ class TitleList(Screen, HelpableScreen):
 			if self.previous_size < MAX_DL:
 				self.session.open(MessageBox, text = _("Exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
 		elif size > MAX_SL:
-			percent = 100 * size / float(MAX_DL)
+			percent = 100 * size // float(MAX_DL)
 			self["space_label_dual"].text = "%d MB (%.2f%%)" % (size, percent)
 			self["space_bar_dual"].value = int(percent)
 			self["space_bar_single"].value = 100
@@ -330,7 +331,7 @@ class TitleList(Screen, HelpableScreen):
 			if self.previous_size < MAX_SL:
 				self.session.open(MessageBox, text = _("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), timeout = 10, type = MessageBox.TYPE_INFO)
 		elif size < MAX_SL:
-			percent = 100 * size / float(MAX_SL)
+			percent = 100 * size // float(MAX_SL)
 			self["space_label_single"].text = "%d MB (%.2f%%)" % (size, percent)
 			self["space_bar_single"].value = int(percent)
 			self["space_bar_dual"].value = 0

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from Screens.Screen import Screen
 from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.Pixmap import Pixmap
@@ -185,7 +186,7 @@ class Dish(Screen):
 				mrt = 3600 - mrt
 			if mrt % 10:
 				mrt += 10
-			mrt = round((mrt * 1000 / self.getTurningSpeed(pol) ) / 10000) + 3
+			mrt = round((mrt * 1000 // self.getTurningSpeed(pol) ) // 10000) + 3
 		return mrt
 
 	def getTurningSpeed(self, pol=0):
@@ -240,12 +241,12 @@ class Dish(Screen):
 			return "N/A"
 		if orbpos > 1800:
 			orbpos = 3600 - orbpos
-			return "%d.%d°W" % (orbpos/10, orbpos%10)
-		return "%d.%d°E" % (orbpos/10, orbpos%10)
+			return "%d.%d°W" % (orbpos//10, orbpos%10)
+		return "%d.%d°E" % (orbpos//10, orbpos%10)
 
 	def FormatTurnTime(self, time):
 		t = abs(time)
-		return "%s%02d:%02d" % (time < 0 and "- " or "", t/60%60, t%60)
+		return "%s%02d:%02d" % (time < 0 and "- " or "", t//60%60, t%60)
 
 class Dishpip(Dish, Screen):
 	STATE_HIDDEN = 0

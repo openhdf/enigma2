@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.HelpMenu import HelpableScreen
@@ -99,13 +100,13 @@ class DVDToolbox(Screen):
 				else:
 					self.formattable = False
 			elif line.find("Legacy lead-out at:") > -1:
-				used = int(line.rsplit('=', 1)[1]) / 1048576.0
+				used = int(line.rsplit('=', 1)[1]) // 1048576.0
 				print("[dvd+rw-mediainfo] lead out used =", used)
 			elif line.find("formatted:") > -1:
-				formatted_capacity = int(line.rsplit('=', 1)[1]) / 1048576.0
+				formatted_capacity = int(line.rsplit('=', 1)[1]) // 1048576.0
 				print("[dvd+rw-mediainfo] formatted capacity =", formatted_capacity)
 			elif formatted_capacity == 0 and line.find("READ CAPACITY:") > -1:
-				read_capacity = int(line.rsplit('=', 1)[1]) / 1048576.0
+				read_capacity = int(line.rsplit('=', 1)[1]) // 1048576.0
 				print("[dvd+rw-mediainfo] READ CAPACITY =", read_capacity)
 		for line in mediuminfo.splitlines():
 			if line.find("Free Blocks:") > -1:
@@ -114,7 +115,7 @@ class DVDToolbox(Screen):
 				except:
 					size = 0
 				if size > 0:
-					capacity = size / 1048576
+					capacity = size // 1048576
 					if used:
 						used = capacity-used
 					print("[dvd+rw-mediainfo] free blocks capacity=%d, used=%d" % (capacity, used))
@@ -138,7 +139,7 @@ class DVDToolbox(Screen):
 			self["key_yellow"].text = _("Format")
 		else:
 			self["key_yellow"].text = ""
-		percent = 100 * used / (capacity or 1)
+		percent = 100 * used // (capacity or 1)
 		if capacity > 4600:
 			self["space_label"].text = "%d / %d MB" % (used, capacity) + " (%.2f%% " % percent + _("of a DUAL layer medium used.") + ")"
 			self["space_bar"].value = int(percent)

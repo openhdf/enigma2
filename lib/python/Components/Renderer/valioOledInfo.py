@@ -7,6 +7,7 @@
 #######################################################################
 
 from __future__ import absolute_import
+from __future__ import division
 from enigma import eLabel
 from .Renderer import Renderer
 from os import popen
@@ -72,7 +73,7 @@ class valioOledInfo(Renderer, VariableText):
 					tstLine = out_lines[lidx].split()
 					if "MemFree:" in tstLine:
 						templ = int(out_lines[lidx].split()[1])
-						fmem = "%d mb" %(templ/1024)
+						fmem = "%d mb" %(templ//1024)
 						self.unten = str(fmem)
 			self.Zaehler = self.Zaehler + 1
 			self.text = self.oben + "\n" + self.unten

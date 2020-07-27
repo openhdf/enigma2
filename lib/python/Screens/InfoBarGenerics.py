@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Harddisk import harddiskmanager, findMountPoint
 from Components.Input import Input
@@ -365,7 +366,7 @@ class InfoBarScreenSaver:
 
 class HideVBILine(Screen):
 	def __init__(self, session):
-		self.skin = """<screen position="0,0" size="%s,%s" flags="wfNoBorder" zPosition="1"/>""" % (getDesktop(0).size().width(), getDesktop(0).size().height() / 360 + 1)
+		self.skin = """<screen position="0,0" size="%s,%s" flags="wfNoBorder" zPosition="1"/>""" % (getDesktop(0).size().width(), getDesktop(0).size().height() // 360 + 1)
 		Screen.__init__(self, session)
 
 class SecondInfoBar(Screen):
@@ -811,14 +812,14 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def doHide(self):
 		if self.__state != self.STATE_HIDDEN:
 			if self.dimmed > 0:
-				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed//config.usage.show_infobar_dimming_speed.value))
 				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
 				self.hide()
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			if self.dimmed > 0:
-				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed//config.usage.show_infobar_dimming_speed.value))
 				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
@@ -1165,7 +1166,7 @@ class InfoBarNumberZap:
 	def keyNumberGlobal(self, number):
 		if "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4)/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
+			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4)//2, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
@@ -3428,7 +3429,7 @@ class Seekbar(Screen):
 				position = self.seek.getPlayPosition()
 				if self.length and position and int(self.length[1]) > 0:
 					if int(position[1]) > 0:
-						self.percent = float(position[1]) * 100.0 / float(self.length[1])
+						self.percent = float(position[1]) * 100.0 // float(self.length[1])
 				else:
 					self.close()
 
@@ -3446,8 +3447,8 @@ class Seekbar(Screen):
 			x = 145 + int(2.7 * self.percent)
 			self["cursor"].moveTo(x, 15, 1)
 			self["cursor"].startMoving()
-			pts = int(float(self.length[1]) / 100.0 * self.percent)
-			self["time"].setText("%d:%02d" % ((pts/60/90000), ((pts/90000)%60)))
+			pts = int(float(self.length[1]) // 100.0 * self.percent)
+			self["time"].setText("%d:%02d" % ((pts//60//90000), ((pts//90000)%60)))
 
 	def exit(self):
 		self.cursorTimer.stop()
@@ -3455,16 +3456,16 @@ class Seekbar(Screen):
 
 	def keyOK(self):
 		if self.length:
-			self.seek.seekTo(int(float(self.length[1]) / 100.0 * self.percent))
+			self.seek.seekTo(int(float(self.length[1]) // 100.0 * self.percent))
 			self.exit()
 
 	def keyLeft(self):
-		self.percent -= float(config.seek.sensibility.value) / 10.0
+		self.percent -= float(config.seek.sensibility.value) // 10.0
 		if self.percent < 0.0:
 			self.percent = 0.0
 
 	def keyRight(self):
-		self.percent += float(config.seek.sensibility.value) / 10.0
+		self.percent += float(config.seek.sensibility.value) // 10.0
 		if self.percent > 100.0:
 			self.percent = 100.0
 
@@ -4074,7 +4075,7 @@ class InfoBarSeek:
 			if not len[0] and not pos[0]:
 				if len[1] <= pos[1]:
 					return 0
-				time = (len[1] - pos[1])*speedden/(90*speednom)
+				time = (len[1] - pos[1])*speedden//(90*speednom)
 				return time
 		return False
 
@@ -4573,7 +4574,7 @@ class InfoBarJobman:
 			return []
 
 	def getJobName(self, job):
-		return "%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
+		return "%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100*job.progress//float(job.end)))
 
 	def showJobView(self, job):
 		from Screens.TaskView import JobView
@@ -5428,7 +5429,7 @@ class InfoBarResolutionSelection:
 		yres = int(yresString, 16)
 		fps = int(fpsString)
 		fpsFloat = float(fps)
-		fpsFloat = fpsFloat/1000
+		fpsFloat = fpsFloat//1000
 
 		# do we need a new sorting with this way here?
 		# or should we disable some choices?
@@ -5651,9 +5652,9 @@ class InfoBarCueSheetSupport:
 			# Hmm, this implies we don't resume if the length is unknown...
 			if (last > 900000) and (not length[1]  or (last < length[1] - 900000)):
 				self.resume_point = last
-				l = last / 90000
+				l = last // 90000
 				if "ask" in config.usage.on_movie_start.value or not length[1]:
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=10, default="yes" in config.usage.on_movie_start.value)
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l//3600, l%3600//60, l%60))), timeout=10, default="yes" in config.usage.on_movie_start.value)
 				elif config.usage.on_movie_start.value == "resume":
 # TRANSLATORS: The string "Resuming playback" flashes for a moment
 # TRANSLATORS: at the start of a movie, when the user has selected
@@ -6272,7 +6273,7 @@ class InfoBarPowersaver:
 				message = _("And will shutdown your receiver over ")
 			else:
 				message = _("And will put your receiver in standby over ")
-			m = abs(time / 60)
+			m = abs(time // 60)
 			message = _("The sleep timer has been activated.") + "\n" + message + ngettext("%d minute", "%d minutes", m) % m
 			self.sleepTimer.startLongTimer(abs(time))
 		else:
@@ -6326,13 +6327,13 @@ class InfoBarSleepTimer:
 
 	def sleepTimerState(self):
 		if self.sleepTimer.isActive():
-			return (self.sleepStartTime - time()) / 60
+			return (self.sleepStartTime - time()) // 60
 		return 0
 
 	def setSleepTimer(self, sleepTime, showMessage = True):
 		print("[InfoBarSleepTimer] set sleeptimer", sleepTime)
 		if sleepTime:
-			m = abs(sleepTime / 60)
+			m = abs(sleepTime // 60)
 			message = _("The sleep timer has been activated.") + "\n" + _("Delay:") + " " + _("%d minutes") % m
 			self.sleepTimer.startLongTimer(sleepTime)
 			self.sleepStartTime = time() + sleepTime

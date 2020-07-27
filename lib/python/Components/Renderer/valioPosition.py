@@ -7,6 +7,7 @@
 #######################################################################
 
 from __future__ import absolute_import
+from __future__ import division
 from Components.VariableText import VariableText
 from enigma import eLabel
 from .Renderer import Renderer
@@ -28,9 +29,9 @@ class valioPosition(Renderer, VariableText):
 					if (frontendData.get("tuner_type") == "DVB-S"):
 						orbital_pos = int(frontendData["orbital_position"])
 						if orbital_pos > 1800:
-							orb_pos = str((float(3600 - orbital_pos))/10.0) + "°W"
+							orb_pos = str((float(3600 - orbital_pos))//10.0) + "°W"
 						elif orbital_pos > 0:
-							orb_pos = str((float(orbital_pos))/10.0) + "°E"
+							orb_pos = str((float(orbital_pos))//10.0) + "°E"
 					elif (frontendData.get("tuner_type") == "DVB-T"):
 						orb_pos = "DVB-T"
 					elif (frontendData.get("tuner_type") == "DVB-C"):

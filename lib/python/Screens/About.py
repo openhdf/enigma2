@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from .Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -154,7 +155,7 @@ class About(Screen):
 				f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 				clockfrequency = f.read()
 				f.close()
-				cpuMHz = "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000, 1))
+				cpuMHz = "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16)//1000000, 1))
 			except:
 				cpuMHz = "1,7 GHz"
 		else:
@@ -448,19 +449,19 @@ class Devices(Screen):
 				size = Harddisk(device).diskSize()
 				free = Harddisk(device).free()
 
-				if ((float(size) / 1024) / 1024) >= 1:
-					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + " " + _("TB")
-				elif (size / 1024) >= 1:
-					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) +  " " + _("GB")
+				if ((float(size) // 1024) // 1024) >= 1:
+					sizeline = _("Size: ") + str(round(((float(size) // 1024) // 1024), 2)) + " " + _("TB")
+				elif (size // 1024) >= 1:
+					sizeline = _("Size: ") + str(round((float(size) // 1024), 2)) +  " " + _("GB")
 				elif size >= 1:
 					sizeline = _("Size: ") + str(size) +  " " + _("MB")
 				else:
 					sizeline = _("Size: ") + _("unavailable")
 
-				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) +  " " + _("TB")
-				elif (free / 1024) >= 1:
-					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) +  " " + _("GB")
+				if ((float(free) // 1024) // 1024) >= 1:
+					freeline = _("Free: ") + str(round(((float(free) // 1024) // 1024), 2)) +  " " + _("TB")
+				elif (free // 1024) >= 1:
+					freeline = _("Free: ") + str(round((float(free) // 1024), 2)) +  " " + _("GB")
 				elif free >= 1:
 					freeline = _("Free: ") + str(free) +  " " + _("MB")
 				else:
@@ -1036,9 +1037,9 @@ class MemoryInfo(Screen):
 			self['rmemtext'].setText(rtext)
 			self['rmemvalue'].setText(rvalue)
 
-			self["slide"].setValue(int(100.0*(mem-free)/mem+0.25))
-			self['pfree'].setText("%.1f %s" % (100.*free/mem, '%'))
-			self['pused'].setText("%.1f %s" % (100.*(mem-free)/mem, '%'))
+			self["slide"].setValue(int(100.0*(mem-free)//mem+0.25))
+			self['pfree'].setText("%.1f %s" % (100.*free//mem, '%'))
+			self['pused'].setText("%.1f %s" % (100.*(mem-free)//mem, '%'))
 
 		except Exception as e:
 			print("[About] getMemoryInfo FAIL:", e)

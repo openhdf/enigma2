@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import ActionMap
@@ -281,7 +282,7 @@ class FlashImage(Screen):
 					if not '/mmc' in path and os.path.isdir(path) and os.access(path, os.W_OK):
 						try:
 							statvfs = os.statvfs(path)
-							return (statvfs.f_bavail * statvfs.f_frsize) / (1 << 20)
+							return (statvfs.f_bavail * statvfs.f_frsize) // (1 << 20)
 						except:
 							pass
 
@@ -499,7 +500,7 @@ class FlashImage(Screen):
 			self.abort()
 
 	def downloadProgress(self, current, total):
-		self["progress"].setValue(int(100 * current / total))
+		self["progress"].setValue(int(100 * current // total))
 
 	def downloadError(self, reason, status):
 		self.downloader.stop()

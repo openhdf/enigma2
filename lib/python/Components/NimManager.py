@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 import os
 from boxbranding import getBoxType, getBrandOEM
 from time import localtime, mktime
@@ -1144,15 +1145,15 @@ class NimManager:
 								dir = 'E'
 							if freq >= 10000000 and freq <= 13000000:
 								fake_sat_pos = sat_pos
-								tmp_sat.update({'name':'%3.1f%c Ku-band satellite' %(sat_pos/10.0, dir)})
+								tmp_sat.update({'name':'%3.1f%c Ku-band satellite' %(sat_pos//10.0, dir)})
 								#tmp_sat.update({"band":"Ku"})
 							if freq >= 3000000 and freq <= 4000000:
 								fake_sat_pos = sat_pos + 1
-								tmp_sat.update({'name':'%3.1f%c C-band satellite' %(sat_pos/10.0, dir)})
+								tmp_sat.update({'name':'%3.1f%c C-band satellite' %(sat_pos//10.0, dir)})
 								#tmp_sat.update({"band":"C"})
 							if freq >= 17000000 and freq <= 23000000:
 								fake_sat_pos = sat_pos + 2
-								tmp_sat.update({'name':'%3.1f%c Ka-band satellite' %(sat_pos/10.0, dir)})
+								tmp_sat.update({'name':'%3.1f%c Ka-band satellite' %(sat_pos//10.0, dir)})
 								#tmp_sat.update({"band":"Ka"})
 							tmp_tp.append((
 									0,			#???

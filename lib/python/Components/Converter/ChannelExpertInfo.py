@@ -3,6 +3,7 @@
 # ChannelExpertInfo Converter by mcbain // v0.1 // 20111109
 #
 from __future__ import absolute_import
+from __future__ import division
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial
 from Components.Element import cached
@@ -59,8 +60,8 @@ class ChannelExpertInfo(Converter, object):
 			frontendData = (feinfo and feinfo.getAll(True))
 			if (frontendData is not None):
 				if ((frontendData.get('tuner_type') == 'DVB-S') or (frontendData.get('tuner_type') == 'DVB-C')):
-					frequency = (str((frontendData.get('frequency') / 1000)) + ' MHz')
-					symbolrate = str(int((frontendData.get('symbol_rate', 0) / 1000)))
+					frequency = (str((frontendData.get('frequency') // 1000)) + ' MHz')
+					symbolrate = str(int((frontendData.get('symbol_rate', 0) // 1000)))
 					if (frontendData.get('tuner_type') == 'DVB-S'):
 						try:
 							orb = {
@@ -167,9 +168,9 @@ class ChannelExpertInfo(Converter, object):
 						except:
 							orbital_pos = float(frontendData["orbital_position"])
 							if orbital_pos > 1800:
-								orb_pos = str((float(3600 - orbital_pos)) / 10.0) + "° W"
+								orb_pos = str((float(3600 - orbital_pos)) // 10.0) + "° W"
 							elif orbital_pos > 0:
-								orb_pos = str((float(orbital_pos)) / 10.0) + "° E"
+								orb_pos = str((float(orbital_pos)) // 10.0) + "° E"
 							orb = ('Unsupported SAT (%s)' % str(orb_pos))
 						if (self.tunertype == 'linelist'):
 							pol = {
@@ -302,8 +303,8 @@ class ChannelExpertInfo(Converter, object):
 				if transponderData['tuner_type'] == 'DVB-S':
 					orbital = float(transponderData['orbital_position'])
 					if orbital > 1800:
-						orbital = str((float(3600 - orbital)) / 10.0) + '° W'
+						orbital = str((float(3600 - orbital)) // 10.0) + '° W'
 					else:
-						orbital = str((float(orbital)) / 10.0) + '° E'
+						orbital = str((float(orbital)) // 10.0) + '° E'
 					return orbital
 		return ''

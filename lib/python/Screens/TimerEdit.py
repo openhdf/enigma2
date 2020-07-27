@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
@@ -200,7 +201,7 @@ class TimerEditList(Screen):
 			try:
 				name = str(timer.name)
 				time = "%s %s ... %s" % (FuzzyTime(timer.begin)[0], FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1])
-				duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)
+				duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) // 60)
 				service = str(timer.service_ref.getServiceName())
 
 				if timer.state == RealTimerEntry.StateWaiting:
@@ -258,7 +259,7 @@ class TimerEditList(Screen):
 				else:
 					ref = timer.service_ref.ref.toString()
 				begin = timer.begin + config.recording.margin_before.value*60
-				duration = (timer.end - begin - config.recording.margin_after.value*60) / 60
+				duration = (timer.end - begin - config.recording.margin_after.value*60) // 60
 				if duration <= 0:
 					duration = 30 # it seems to be a reminder or a justplay timer without end time, so search epg events for the next 30 min
 				list = epgcache.lookupEvent([ 'IBDT', (ref, 0, begin, duration) ])

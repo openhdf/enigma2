@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from __future__ import division
 import skin
 from .HTMLComponent import HTMLComponent
 from .GUIComponent import GUIComponent
@@ -33,11 +34,11 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		lineheight=fontRenderClass.getInstance().getLineHeight( self.long_text.getFont() )
 		if not lineheight:
 			lineheight = 30 # assume a random lineheight if nothing is visible
-		lines = int(s.height() / lineheight)
+		lines = int(s.height() // lineheight)
 		self.pageHeight = int(lines * lineheight)
-		self.instance.resize(eSize(s.width(), self.pageHeight+ int(lineheight/6)))
+		self.instance.resize(eSize(s.width(), self.pageHeight+ int(lineheight//6)))
 		self.scrollbar.move(ePoint(s.width()-10, 0))
-		self.scrollbar.resize(eSize(10, self.pageHeight+ int(lineheight/6)))
+		self.scrollbar.resize(eSize(10, self.pageHeight+ int(lineheight//6)))
 		self.scrollbar.setOrientation(eSlider.orVertical)
 		self.scrollbar.setRange(0, 100)
 		self.scrollbar.setBorderWidth(1)
@@ -92,8 +93,8 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 				self.pages = None
 
 	def updateScrollbar(self):
-		start = -self.long_text.position().y() * 100 / self.total
-		vis = self.pageHeight * 100 / self.total
+		start = -self.long_text.position().y() * 100 // self.total
+		vis = self.pageHeight * 100 // self.total
 		self.scrollbar.setStartEnd(start, start+vis)
 
 	def getText(self):

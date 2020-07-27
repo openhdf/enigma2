@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from __future__ import division
 from enigma import eListboxPythonMultiContent, eListbox, gFont, getDesktop, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
 
@@ -42,7 +43,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 		height = self.l.getItemSize().height()
 		width = self.l.getItemSize().width()
 		res = [ None ]
-		x = width / 2
+		x = width // 2
 		if screenwidth and screenwidth == 1920:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 39, 3, width, 38, 2, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, gettimerType(timer)))
 		else:
@@ -96,7 +97,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 3, 20, 20, self.iconRepeat))
 			else:
 				repeatedtext = begin[0] # date
-			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
+			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) // 60))
 			if screenwidth and screenwidth == 1920:
 				res.append((eListboxPythonMultiContent.TYPE_TEXT, 225, 38, width-225, 35, 3, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
 			else:

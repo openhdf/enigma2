@@ -5,6 +5,7 @@
 
 
 from __future__ import absolute_import
+from __future__ import division
 from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached
@@ -58,8 +59,8 @@ class DMCHDSmartInfo(Poll, Converter, object):
 				frontendData = (feinfo and feinfo.getAll(True))
 				if (frontendData is not None):
 					if ((frontendData.get("tuner_type") == "DVB-S") or (frontendData.get("tuner_type") == "DVB-C")):
-						frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
-						symbolrate = (str((frontendData.get("symbol_rate") / 1000)) + "")
+						frequency = (str((frontendData.get("frequency") // 1000)) + " MHz")
+						symbolrate = (str((frontendData.get("symbol_rate") // 1000)) + "")
 						try:
 							if (frontendData.get("tuner_type") == "DVB-S"):
 								polarisation_i = frontendData.get("polarization")
@@ -154,7 +155,7 @@ class DMCHDSmartInfo(Poll, Converter, object):
 								elif orbital_pos == 2120:
 									orb_pos = 'Echostar 2 (148.0W)'
 								else:
-									orb_pos = str((float(3600 - orbital_pos))/10.0) + "W"
+									orb_pos = str((float(3600 - orbital_pos))//10.0) + "W"
 							elif orbital_pos > 0:
 								if orbital_pos == 192:
 									orb_pos = 'Astra 1F (19.2E)'
@@ -275,10 +276,10 @@ class DMCHDSmartInfo(Poll, Converter, object):
 								elif orbital_pos == 30:
 									orb_pos = 'Telecom 2 (3.0E)'
 								else:
-									orb_pos = str((float(orbital_pos))/10.0) + "E"
+									orb_pos = str((float(orbital_pos))//10.0) + "E"
 						Ret_Text = Ret_Text + "" + orb_pos + ""
 					elif (frontendData.get("tuner_type") == "DVB-T"):
-						frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
+						frequency = (str((frontendData.get("frequency") // 1000)) + " MHz")
 						Ret_Text = Ret_Text + "Frequency: " + frequency
 				prvd = info.getInfoString(iServiceInformation.sProvider)
 				#Ret_Text = prvd + "  " + Ret_Text

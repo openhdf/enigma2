@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from .HTMLComponent import HTMLComponent
 from .GUIComponent import GUIComponent
 from skin import parseColor, parseFont
@@ -255,13 +256,13 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def setItemsPerPage(self):
 		if self.listHeight > 0:
-			itemHeight = int(self.listHeight / (config.usage.serviceitems_per_page.value / (1 + float(config.usage.servicelist_twolines.value))))
+			itemHeight = int(self.listHeight // (config.usage.serviceitems_per_page.value // (1 + float(config.usage.servicelist_twolines.value))))
 		else:
 			itemHeight = 28
 		self.ItemHeight = itemHeight
 		self.l.setItemHeight(itemHeight)
 		if self.listHeight:
-			self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+			self.instance.resize(eSize(self.listWidth, self.listHeight // itemHeight * itemHeight))
 
 	def setServiceFontsize(self):
 		self.ServiceNumberFont = gFont(self.ServiceNameFontName, self.ServiceNameFontSize + config.usage.servicenum_fontsize.value)

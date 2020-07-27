@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from __future__ import division
 from .Converter import Converter
 from Components.Converter.Converter import Converter
 from time import localtime, strftime
@@ -74,11 +75,11 @@ class VFDClockToText(Converter, object):
 
 		# handle durations
 		if self.type == self.IN_MINUTES:
-			return "%d min" % (time / 60)
+			return "%d min" % (time // 60)
 		elif self.type == self.AS_LENGTH:
 			if time < 0:
 				return ""
-			return "%d:%02d" % (time / 60, time % 60)
+			return "%d:%02d" % (time // 60, time % 60)
 		elif self.type == self.TIMESTAMP:
 			return str(time)
 

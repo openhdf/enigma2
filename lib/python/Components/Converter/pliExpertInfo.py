@@ -3,6 +3,7 @@
 #
 
 from __future__ import absolute_import
+from __future__ import division
 from enigma import iServiceInformation, eServiceCenter, iPlayableService, iPlayableServicePtr
 from Components.Converter.Converter import Converter
 from Components.Element import cached
@@ -88,8 +89,8 @@ class pliExpertInfo(Poll, Converter, object):
 			if (frontendDataOrg is not None):
 				frontendData = ConvertToHumanReadable(frontendDataOrg)
 				if ((frontendDataOrg.get("tuner_type") == "DVB-S") or (frontendDataOrg.get("tuner_type") == "DVB-C")):
-					frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
-					symbolrate = (str((frontendData.get("symbol_rate") / 1000)))
+					frequency = (str((frontendData.get("frequency") // 1000)) + " MHz")
+					symbolrate = (str((frontendData.get("symbol_rate") // 1000)))
 					fec_inner = frontendData.get("fec_inner")
 					if (frontendDataOrg.get("tuner_type") == "DVB-S"):
 						Ret_Text += sep + frontendData.get("system")
@@ -176,7 +177,7 @@ class pliExpertInfo(Poll, Converter, object):
 							elif orbital_pos == 2120:
 								orb_pos = 'Echostar 2'
 							else:
-								orb_pos = str((float(3600 - orbital_pos))/10.0) + "W"
+								orb_pos = str((float(3600 - orbital_pos))//10.0) + "W"
 						elif orbital_pos > 0:
 							if orbital_pos == 192:
 								orb_pos = 'Astra 1F'
@@ -297,7 +298,7 @@ class pliExpertInfo(Poll, Converter, object):
 							elif orbital_pos == 30:
 								orb_pos = 'Telecom 2'
 							else:
-								orb_pos = str((float(orbital_pos))/10.0) + "E"
+								orb_pos = str((float(orbital_pos))//10.0) + "E"
 						Ret_Text += sep + orb_pos + "\n"
 						Ret_Text += frequency + sep + frontendData.get("polarization_abbreviation")
 						Ret_Text += sep + symbolrate
@@ -305,7 +306,7 @@ class pliExpertInfo(Poll, Converter, object):
 					else:
 						Ret_Text += sep + "DVB-C " + frequency + " MHz" + sep + fec_inner + sep + symbolrate
 				elif (frontendData.get("tuner_type") == "DVB-T"):
-					frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
+					frequency = (str((frontendData.get("frequency") // 1000)) + " MHz")
 					Ret_Text = "Frequency: " + frequency
 
 		if (self.type == self.SMART_INFO_H or self.type == self.SMART_INFO_V or self.type == self.SERVICE_INFO):
@@ -321,8 +322,8 @@ class pliExpertInfo(Poll, Converter, object):
 			if (frontendDataOrg is not None):
 				frontendData = ConvertToHumanReadable(frontendDataOrg)
 				if ((frontendDataOrg.get("tuner_type") == "DVB-S") or (frontendDataOrg.get("tuner_type") == "DVB-C")):
-					frequency = (str((frontendData.get("frequency") / 1000)))
-					symbolrate = (str((frontendData.get("symbol_rate") / 1000)))
+					frequency = (str((frontendData.get("frequency") // 1000)))
+					symbolrate = (str((frontendData.get("symbol_rate") // 1000)))
 					fec_inner = frontendData.get("fec_inner")
 					if (frontendDataOrg.get("tuner_type") == "DVB-S"):
 						Ret_Text += sep + frontendData.get("system")
@@ -331,21 +332,21 @@ class pliExpertInfo(Poll, Converter, object):
 						Ret_Text += sep + fec_inner + " " + frontendData.get("modulation")
 						orbital_pos = int(frontendDataOrg["orbital_position"])
 						if orbital_pos > 1800:
-							orb_pos = str((float(3600 - orbital_pos)) / 10.0) + "W"
+							orb_pos = str((float(3600 - orbital_pos)) // 10.0) + "W"
 						elif orbital_pos > 0:
-							orb_pos = str((float(orbital_pos)) / 10.0) + "E"
+							orb_pos = str((float(orbital_pos)) // 10.0) + "E"
 						Ret_Text += sep + orb_pos
 					else:
 						Ret_Text += sep + "DVB-C " + frequency + " MHz" + sep + fec_inner + sep + symbolrate
 				elif (frontendDataOrg.get("tuner_type") == "DVB-T"):
-					frequency = (str((frontendData.get("frequency") / 1000)))
+					frequency = (str((frontendData.get("frequency") // 1000)))
 					Ret_Text += sep + "DVB-T" + sep + "Frequency:" + sep + frequency + " MHz"
 
 			if (feinfo is not None) and (xresol > 0):
 				Res_Text += ("MPEG2 ", "MPEG4 ", "MPEG1 ", "MPEG4-II ", "VC1 ", "VC1-SM ", "")[info.getInfo(iServiceInformation.sVideoType)]
 				Res_Text += str(xresol) + "x" + str(yresol)
 				Res_Text += ("i", "p", "")[info.getInfo(iServiceInformation.sProgressive)]
-				Res_Text += str((info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
+				Res_Text += str((info.getInfo(iServiceInformation.sFrameRate) + 500) // 1000)
 
 		if (self.type == self.SMART_INFO_H or self.type == self.SMART_INFO_V or self.type == self.CRYPTO_INFO):
 

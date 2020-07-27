@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from Plugins.Plugin import PluginDescriptor
 
 from Screens.Screen import Screen
@@ -27,11 +28,11 @@ config.plugins.CutListEditor = ConfigSubsection()
 config.plugins.CutListEditor.showIntro = ConfigYesNo(default=True)
 
 def CutListEntry(where, what):
-	w = where / 90
+	w = where // 90
 	ms = w % 1000
-	s = (w / 1000) % 60
-	m = (w / 60000) % 60
-	h = w / 3600000
+	s = (w // 1000) % 60
+	m = (w // 60000) % 60
+	h = w // 3600000
 	if what == 0:
 		type = "IN"
 		type_col = 0x004000

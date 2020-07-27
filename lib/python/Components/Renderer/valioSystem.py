@@ -7,6 +7,7 @@
 #######################################################################
 
 from __future__ import absolute_import
+from __future__ import division
 from Components.VariableText import VariableText
 from Components.Sensors import sensors
 from Tools.HardwareInfo import HardwareInfo
@@ -54,7 +55,7 @@ class valioSystem(Renderer, VariableText):
 			except:
 				pass
 			if self.ZeigeTemp:
-				self.text = "cpu "+loada+"\ntmp "+str(maxtemp)+"°C\nfan "+str(int(fan/2))
+				self.text = "cpu "+loada+"\ntmp "+str(maxtemp)+"°C\nfan "+str(int(fan//2))
 			else:
 				self.text = "cpu\n"+loada
 

@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from __future__ import division
 from Components.config import config, ConfigSubsection, ConfigSubList, ConfigInteger, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence, ConfigYesNo
 from . import TitleCutter
 
@@ -94,7 +95,7 @@ class DVDTitle:
 
 		if template.find("$l") >= 0:
 			l = self.length
-			lengthstring = "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+			lengthstring = "%d:%02d:%02d" % (l//3600, l%3600//60, l%60)
 			template = template.replace("$l", lengthstring)
 		if self.timeCreate:
 			template = template.replace("$Y", str(self.timeCreate[0]))
@@ -146,10 +147,10 @@ class DVDTitle:
 				self.chaptermarks.append(reloc_pts)
 
 		if len(self.cutlist) > 1:
-			part = accumulated_in / (self.length*90000.0)
+			part = accumulated_in // (self.length*90000.0)
 			usedsize = int ( part * self.filesize )
 			self.estimatedDiskspace = usedsize
-			self.length = accumulated_in / 90000
+			self.length = accumulated_in // 90000
 
 	def getChapterMarks(self, template="$h:$m:$s.$t"):
 		timestamps = [ ]
@@ -163,9 +164,9 @@ class DVDTitle:
 		else:
 			chapters = self.chaptermarks
 		for p in chapters:
-			timestring = template.replace("$h", str(p / (90000 * 3600)))
-			timestring = timestring.replace("$m", ("%02d" % (p % (90000 * 3600) / (90000 * 60))))
-			timestring = timestring.replace("$s", ("%02d" % (p % (90000 * 60) / 90000)))
-			timestring = timestring.replace("$t", ("%03d" % ((p % 90000) / 90)))
+			timestring = template.replace("$h", str(p // (90000 * 3600)))
+			timestring = timestring.replace("$m", ("%02d" % (p % (90000 * 3600) // (90000 * 60))))
+			timestring = timestring.replace("$s", ("%02d" % (p % (90000 * 60) // 90000)))
+			timestring = timestring.replace("$t", ("%03d" % ((p % 90000) // 90)))
 			timestamps.append(timestring)
 		return timestamps

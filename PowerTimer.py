@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 import os
 from boxbranding import getMachineBrand, getMachineName
 import xml.etree.cElementTree
@@ -164,7 +165,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				self.backoff += 300
 				if self.backoff > 900:
 					self.backoff = 900
-		self.log(10, "backoff: retry in %d minutes" % (int(self.backoff)/60))
+		self.log(10, "backoff: retry in %d minutes" % (int(self.backoff)//60))
 
 	def activate(self):
 		global RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup, InfoBar
@@ -812,12 +813,12 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					seconds = int(now-self.netbytes_time)
 					self.netbytes = newbytes
 					self.netbytes_time = now
-					diffbytes = float(newbytes - oldbytes) * 8 / 1024 / seconds 	#in kbit/s
+					diffbytes = float(newbytes - oldbytes) * 8 // 1024 // seconds 	#in kbit/s
 					if diffbytes < 0:
 						print('[PowerTimer] Receive/Transmit -> overflow interface counter, waiting for next value')
 						return True
 					else:
-						print('[PowerTimer] Receive/Transmit kilobits per second: %0.2f (%0.2f MByte in %d seconds), actualBytes=%d, time is %s' % (diffbytes, diffbytes/8/1024*seconds, seconds, self.netbytes, ctime(self.netbytes_time)))
+						print('[PowerTimer] Receive/Transmit kilobits per second: %0.2f (%0.2f MByte in %d seconds), actualBytes=%d, time is %s' % (diffbytes, diffbytes//8//1024*seconds, seconds, self.netbytes, ctime(self.netbytes_time)))
 					if diffbytes > self.trafficlimit:
 						return True
 			except:

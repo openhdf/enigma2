@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -220,7 +221,7 @@ class OscamInfo:
 						if ecmtime == "0" or ecmtime == "":
 							ecmtime = _("n/a")
 						else:
-							ecmtime = str(float(ecmtime) / 1000)[:5]
+							ecmtime = str(float(ecmtime) // 1000)[:5]
 					else:
 						ecmtime = "not available"
 					srvname = cl.find("request").text
@@ -585,7 +586,7 @@ class oscInfo(Screen, OscamInfo):
 		self.itemheight = 25
 		self.sizeLH = sizeH - 2
 		self.skin = """<screen position="center,center" size="%d, %d" title="Client Info" >""" % (sizeH, ysize)
-		button_width = int(sizeH / 4)
+		button_width = int(sizeH // 4)
 		for k, v in enumerate(["red", "green", "yellow", "blue"]):
 			xpos = k * button_width
 			self.skin += """<ePixmap name="%s" position="%d,%d" size="35,25" pixmap="/usr/share/enigma2/skin_default/buttons/key_%s.png" zPosition="1" transparent="1" alphatest="on" />""" % (v, xpos, ypos, v)
@@ -799,7 +800,7 @@ class oscInfo(Screen, OscamInfo):
 			self.listchange = False
 			self["output"].l.setItemHeight(int(self.itemheight*f))
 			self["output"].instance.setScrollbarMode(0) #"showOnDemand"
-			self.rows = int(self["output"].instance.size().height() / (self.itemheight*f))
+			self.rows = int(self["output"].instance.size().height() // (self.itemheight*f))
 			if self.what != "l" and self.rows < len(self.out):
 				self.enableScrolling(True)
 				return
@@ -1083,8 +1084,8 @@ class oscReaderStats(Screen, OscamInfo):
 						rcs = j.attrib["rcs"]
 						num = j.text
 						if rcs == "found":
-							avg_time = str(float(avgtime) / 1000)[:5]
-							last_time = str(float(lasttime) / 1000)[:5]
+							avg_time = str(float(avgtime) // 1000)[:5]
+							last_time = str(float(lasttime) // 1000)[:5]
 							if "lastrequest" in j.attrib:
 								lastreq = j.attrib["lastrequest"]
 								try:

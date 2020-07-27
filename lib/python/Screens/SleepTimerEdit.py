@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from __future__ import division
 from Screens.InfoBar import InfoBar
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -111,7 +112,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 					if length and position:
 						remaining = length[1] - position[1]
 						if remaining > 0:
-							remaining = remaining / 90000
+							remaining = remaining // 90000
 			else: # DVB
 				epg = eEPGCache.getInstance()
 				event = epg.lookupEventTime(ref, -1, 0)

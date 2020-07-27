@@ -5,6 +5,7 @@ from __future__ import print_function
 #################################################################################
 
 from __future__ import absolute_import
+from __future__ import division
 from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
 from Components.Button import Button
@@ -29,7 +30,7 @@ if SystemInfo["HasRootSubdir"] or getMachineBuild() in ('multibox', 'gbmv200', '
 
 def Freespace(dev):
 	statdev = statvfs(dev)
-	space = (statdev.f_bavail * statdev.f_frsize) / 1024
+	space = (statdev.f_bavail * statdev.f_frsize) // 1024
 	print("[FULL BACKUP] Free space on %s = %i kilobytes" %(dev, space))
 	return space
 
@@ -430,7 +431,7 @@ class ImageBackup(Screen):
 			cmdlist.append("dd if=/dev/mtd4 of=%s/logo.bin" % self.WORKDIR)
 
 		if self.EMMCIMG == "usb_update.bin" and self.list[self.selection] == "Recovery":
-			SEEK_CONT = (Harddisk.getFolderSize(self.backuproot)/ 1024) + 100000
+			SEEK_CONT = (Harddisk.getFolderSize(self.backuproot)// 1024) + 100000
 			cmdlist.append('echo "' + _("Create:") + " fastboot dump" + '"')
 			cmdlist.append('cp -f /usr/share/fastboot.bin %s/fastboot.bin' %(self.WORKDIR))
 			cmdlist.append('echo "' + _("Create:") + " bootargs dump" + '"')

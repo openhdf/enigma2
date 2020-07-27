@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from __future__ import division
 from . import _
 from enigma import *
 from Screens.Screen import Screen
@@ -64,7 +65,7 @@ class HddSetup(Screen):
 		self.disks = list()
 		self.mdisks = Disks()
 		for disk in self.mdisks.disks:
-			capacity = "%d MB" % (disk[1] / (1024 * 1024))
+			capacity = "%d MB" % (disk[1] // (1024 * 1024))
 			self.disks.append(DiskEntry(disk[3], capacity, disk[2]))
 		self["menu"] = List(self.disks)
 		self["key_red"] = Button(_("Exit"))
@@ -97,7 +98,7 @@ class HddSetup(Screen):
 		self.disks = list()
 		self.mdisks = Disks()
 		for disk in self.mdisks.disks:
-			capacity = "%d MB" % (disk[1] / (1024 * 1024))
+			capacity = "%d MB" % (disk[1] // (1024 * 1024))
 			self.disks.append(DiskEntry(disk[3], capacity, disk[2]))
 
 		self["menu"].setList(self.disks)

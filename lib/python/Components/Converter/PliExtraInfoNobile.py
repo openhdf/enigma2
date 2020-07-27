@@ -1,6 +1,7 @@
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
 
 from __future__ import absolute_import
+from __future__ import division
 from enigma import iServiceInformation, iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
@@ -297,7 +298,7 @@ class PliExtraInfo(Poll, Converter, object):
 			return ""
 		yres = info.getInfo(iServiceInformation.sVideoHeight)
 		mode = ("i", "p", "", " ")[info.getInfo(iServiceInformation.sProgressive)]
-		fps  = str((info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
+		fps  = str((info.getInfo(iServiceInformation.sFrameRate) + 500) // 1000)
 		if int(fps) <= 0:
 			fps = ""
 		return str(xres) + "x" + str(yres) + mode + fps
@@ -382,9 +383,9 @@ class PliExtraInfo(Poll, Converter, object):
 	def createOrbPos(self, feraw):
 		orbpos = feraw.get("orbital_position")
 		if orbpos > 1800:
-			return str((float(3600 - orbpos)) / 10.0) + "\xc2\xb0 W"
+			return str((float(3600 - orbpos)) // 10.0) + "\xc2\xb0 W"
 		elif orbpos > 0:
-			return str((float(orbpos)) / 10.0) + "\xc2\xb0 E"
+			return str((float(orbpos)) // 10.0) + "\xc2\xb0 E"
 		return ""
 
 	def createOrbPosOrTunerSystem(self, fedata, feraw):
@@ -478,7 +479,7 @@ class PliExtraInfo(Poll, Converter, object):
 			elif orbpos == 2120:
 				orb_pos = 'Echostar 2'
 			else:
-				orb_pos = str((float(3600 - orbpos)) / 10.0) + "W"
+				orb_pos = str((float(3600 - orbpos)) // 10.0) + "W"
 		elif orbpos > 0:
 			if orbpos == 192:
 				orb_pos = 'Astra 1F'
@@ -599,7 +600,7 @@ class PliExtraInfo(Poll, Converter, object):
 			elif orbpos == 30:
 				orb_pos = 'Telecom 2'
 			else:
-				orb_pos = str((float(orbpos)) / 10.0) + "E"
+				orb_pos = str((float(orbpos)) // 10.0) + "E"
 		return orb_pos
 
 	def createProviderName(self, info):

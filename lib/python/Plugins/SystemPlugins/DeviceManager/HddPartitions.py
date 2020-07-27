@@ -1,5 +1,6 @@
 # for localized messages
 from __future__ import absolute_import
+from __future__ import division
 from . import _
 
 from enigma import *
@@ -201,7 +202,7 @@ class HddPartitions(Screen):
 		self.mountpoints.read()
 		count = 1
 		for part in self.disk[5]:
-			capacity = "%d MB" % (part[1] / (1024 * 1024))
+			capacity = "%d MB" % (part[1] // (1024 * 1024))
 			mp = self.mountpoints.get(self.disk[0], count)
 			rmp = self.mountpoints.getRealMount(self.disk[0], count)
 			if len(mp) > 0:

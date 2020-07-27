@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from boxbranding import getMachineBrand, getMachineName
 import xml.etree.cElementTree
 from datetime import datetime
@@ -223,7 +224,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.stop_MountTest(None, cmd)
 		elif cmd == 'freespace':
 			s = os.statvfs(dirname)
-			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
+			if (s.f_bavail * s.f_bsize) // 1000000 < 1024:
 				self.stop_MountTest(None, cmd)
 		elif cmd == 'driveawake':
 			if not subprocess.call('touch %s/drive.awake' % dirname, shell=True):
@@ -250,7 +251,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			elif not os.access(self.MountPath, os.W_OK):
 				return ("mount '%s' is not writeable." % self.MountPath, 2)
 			s = os.statvfs(self.MountPath)
-			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
+			if (s.f_bavail * s.f_bsize) // 1000000 < 1024:
 				return ("mount '%s' has not enough free space to record." % self.MountPath, 3)
 			else:
 				return ("unknown error.", 0)
@@ -278,7 +279,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return False
 
 		s = os.statvfs(dirname)
-		if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
+		if (s.f_bavail * s.f_bsize) // 1000000 < 1024:
 			self.log(0, _("Mount '%s' has not enough free space to record.") % dirname)
 			self.MountPathErrorNumber = 3
 			return False
@@ -419,7 +420,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			description = self.description
 			if self.repeated:
 				epgcache = eEPGCache.getInstance()
-				queryTime=self.begin+(self.end-self.begin)/2
+				queryTime=self.begin+(self.end-self.begin)//2
 				evt = epgcache.lookupEventTime(rec_ref, queryTime)
 				if evt:
 					if self.rename_repeat:
@@ -783,7 +784,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		elif next_state == self.StateEnded or next_state == self.StateFailed:
 			old_end = self.end
 			if self.setAutoincreaseEnd():
-				self.log(12, "autoincrease recording %d minute(s)" % int((self.end - old_end)/60))
+				self.log(12, "autoincrease recording %d minute(s)" % int((self.end - old_end)//60))
 				self.state -= 1
 				return True
 			if self.justplay:
@@ -1525,7 +1526,7 @@ class RecordTimer(timer.Timer):
 						bt = localtime(begin)
 						bday = bt.tm_wday
 						begin2 = 1440 + bt.tm_hour * 60 + bt.tm_min
-						end2 = begin2 + duration / 60
+						end2 = begin2 + duration // 60
 					xbt = localtime(x.begin)
 					xet = localtime(timer_end)
 					offset_day = False
@@ -1535,7 +1536,7 @@ class RecordTimer(timer.Timer):
 						if oday == -1: oday = 6
 						offset_day = x.repeated & (1 << oday)
 					xbegin = 1440 + xbt.tm_hour * 60 + xbt.tm_min
-					xend = xbegin + ((timer_end - x.begin) / 60)
+					xend = xbegin + ((timer_end - x.begin) // 60)
 					if xend < xbegin:
 						xend += 1440
 					if x.repeated & (1 << bday) and checking_time:

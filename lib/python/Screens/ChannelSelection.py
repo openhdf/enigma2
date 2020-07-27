@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from boxbranding import getMachineBuild, getMachineBrand, getMachineName
 import os
 from Tools.Profile import profile
@@ -1128,7 +1129,7 @@ class ChannelSelectionEdit:
 				direction = _("W")
 			else:
 				direction = _("E")
-			messageText = _("Are you sure to remove all %d.%d%s%s services?") % (unsigned_orbpos/10, unsigned_orbpos%10, "\xc2\xb0", direction)
+			messageText = _("Are you sure to remove all %d.%d%s%s services?") % (unsigned_orbpos//10, unsigned_orbpos%10, "\xc2\xb0", direction)
 		self.session.openWithCallback(self.removeSatelliteServicesCallback, MessageBox, messageText)
 
 	def removeSatelliteServicesCallback(self, answer):
@@ -1654,7 +1655,7 @@ class ChannelSelectionBase(Screen):
 											h = _("W")
 										else:
 											h = _("E")
-										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
+										service_name = ("%d.%d" + h) % (orbpos // 10, orbpos % 10)
 								if not '(type == 1)' in srvtypes:
 									service_type = "HD-%s"%(service_type)
 								if len(service_name) > 34:
@@ -2859,7 +2860,7 @@ class HistoryZapSelector(Screen):
 					begin = event.getBeginTime()
 					if begin is not None:
 						end = begin + event.getDuration()
-						remaining = (end - int(time())) / 60
+						remaining = (end - int(time())) // 60
 						prefix = ""
 						if remaining > 0:
 							prefix = "+"

@@ -2,6 +2,7 @@ from __future__ import print_function
 # fake-enigma
 
 from __future__ import absolute_import
+from __future__ import division
 class slot:
 	def __init__(self):
 		self.list = [ ]
@@ -29,7 +30,7 @@ class eTimer:
 
 	def start(self, msec, singleshot = False):
 		print("start timer", msec)
-		self.next_activation = time.time() + msec / 1000.0
+		self.next_activation = time.time() + msec // 1000.0
 		self.msec = msec
 		self.singleshot = singleshot
 		timers.add(self)
@@ -43,7 +44,7 @@ class eTimer:
 	def do(self):
 		if self.singleshot:
 			self.stop()
-		self.next_activation += self.msec / 1000.0
+		self.next_activation += self.msec // 1000.0
 		self.timeout()
 
 def runIteration():

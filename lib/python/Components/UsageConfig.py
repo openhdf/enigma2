@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 import os
 from time import time
 from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent, eDVBFrontend, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
@@ -29,7 +30,7 @@ def InitUsageConfig():
 		if i < 60:
 			m = ngettext("%d minute", "%d minutes", i) % i
 		else:
-			m = abs(i / 60)
+			m = abs(i // 60)
 			m = ngettext("%d hour", "%d hours", m) % m
 		choicelist.append(("%d" % i, m))
 	config.downloader.autoupdate_timer = ConfigSelection(default = "240", choices = choicelist)
@@ -186,10 +187,10 @@ def InitUsageConfig():
 	for i in (10, 30):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	for i in (60, 120, 300, 600, 1200, 1800):
-		m = i / 60
+		m = i // 60
 		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
 	for i in (3600, 7200, 14400):
-		h = i / 3600
+		h = i // 3600
 		choicelist.append(("%d" % i, ngettext("%d hour", "%d hours", h) % h))
 	config.usage.hdd_standby = ConfigSelection(default = "60", choices = [("0", _("No standby"))] + choicelist)
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
@@ -202,7 +203,7 @@ def InitUsageConfig():
 		("no", _("no")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
 	choicelist = [("-1", _("Disabled")), ("0", _("No timeout"))]
 	for i in [60, 300, 600, 900, 1800, 2700, 3600]:
-		m = i/60
+		m = i//60
 		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
 	config.usage.pip_last_service_timeout = ConfigSelection(default = "-1", choices = choicelist)
 
@@ -295,7 +296,7 @@ def InitUsageConfig():
 	config.usage.sleep_timer_action = ConfigSelection(default = "deepstandby", choices = choicelist)
 	choicelist = [("0", _("Disabled")), ("event_standby", _("Execute after current event"))]
 	for i in range(900, 14401, 900):
-		m = abs(i / 60)
+		m = abs(i // 60)
 		m = ngettext("%d minute", "%d minutes", m) % m
 		choicelist.append((str(i), _("Execute in ") + m))
 	config.usage.sleep_timer = ConfigSelection(default = "0", choices = choicelist)
@@ -337,7 +338,7 @@ def InitUsageConfig():
 		if i < 60:
 			m = ngettext("%d second", "%d seconds", i) % i
 		else:
-			m = abs(i / 60)
+			m = abs(i // 60)
 			m = ngettext("%d minute", "%d minutes", m) % m
 		choicelist.append(("%d" % i, m))
 	config.usage.screen_saver = ConfigSelection(default = "0", choices = choicelist)
@@ -729,7 +730,7 @@ def InitUsageConfig():
 	for i in (2, 3, 4, 5, 10, 20, 30):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	for i in (60, 120, 300):
-		m = i / 60
+		m = i // 60
 		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
 	config.timeshift.startdelay = ConfigSelection(default = "0", choices = choicelist)
 	config.timeshift.showinfobar = ConfigYesNo(default = True)
@@ -900,7 +901,7 @@ def InitUsageConfig():
 		if i == 0:
 			subtitle_delay_choicelist.append(("0", _("No delay")))
 		else:
-			subtitle_delay_choicelist.append(("%d" % i, "%2.1f sec" % (i / 90000.)))
+			subtitle_delay_choicelist.append(("%d" % i, "%2.1f sec" % (i // 90000.)))
 	config.subtitles.subtitle_noPTSrecordingdelay = ConfigSelection(default = "315000", choices = subtitle_delay_choicelist)
 
 	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default = False)

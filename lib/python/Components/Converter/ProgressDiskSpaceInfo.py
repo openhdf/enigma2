@@ -1,5 +1,6 @@
 # coders by Vlamo 2012 (version: 0.2)
 from __future__ import absolute_import
+from __future__ import division
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from .Poll import Poll
@@ -141,7 +142,7 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 				if check > 1:
 					if result[0] > 0:
 						result[1] = result[0] - result[2]	# used
-						result[3] = result[1] * 100 / result[0]	# use%
+						result[3] = result[1] * 100 // result[0]	# use%
 					break
 			fd.close()
 		except:
@@ -171,7 +172,7 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 				result[0] = st.f_bsize * st.f_blocks	# size
 				result[2] = st.f_bsize * st.f_bavail	# avail
 				result[1] = result[0] - result[2]	# used
-				result[3] = result[1] * 100 / result[0]	# use%
+				result[3] = result[1] * 100 // result[0]	# use%
 		return result
 
 	def getSizeStr(self, value, u=0):
@@ -180,7 +181,7 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 			fmt = "%(size)u.%(frac)d %(unit)s"
 			while (value >= 1024) and (u < len(SIZE_UNITS)):
 				(value, mod) = divmod(value, 1024)
-				fractal = mod * 10 / 1024
+				fractal = mod * 10 // 1024
 				u += 1
 		else:
 			fmt = "%(size)u %(unit)s"

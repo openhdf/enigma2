@@ -3,6 +3,7 @@ from __future__ import print_function
 #from . import _
 
 from __future__ import absolute_import
+from __future__ import division
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -204,9 +205,9 @@ class SwapManager(Screen):
 
 		if self.swapsize > 0:
 			if self.swapsize >= 1024:
-				self.swapsize = int(self.swapsize) / 1024
+				self.swapsize = int(self.swapsize) // 1024
 				if self.swapsize >= 1024:
-					self.swapsize = int(self.swapsize) / 1024
+					self.swapsize = int(self.swapsize) // 1024
 				self.swapsize = str(self.swapsize) + ' ' + 'MB'
 			else:
 				self.swapsize = str(self.swapsize) + ' ' + 'KB'

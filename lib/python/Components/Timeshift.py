@@ -30,6 +30,7 @@
 
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from .Components.ActionMap import ActionMap, HelpableActionMap
 from .Components.ServiceEventTracker import ServiceEventTracker
 from .Components.config import config
@@ -835,12 +836,12 @@ class InfoBarTimeshift:
 			if not timeshift_saved:
 				try:
 					stat = os.statvfs(config.usage.autorecord_path.value)
-					freespace = stat.f_bfree / 1000 * stat.f_bsize / 1000
+					freespace = stat.f_bfree // 1000 * stat.f_bsize // 1000
 					randomint = randint(1, 999)
 
 					if timeshiftfile is None:
 						# Get Filesize for Free Space Check
-						filesize = int(os.path.getsize("%s%s" % (config.usage.timeshift_path.value, savefilename)) / (1024*1024))
+						filesize = int(os.path.getsize("%s%s" % (config.usage.timeshift_path.value, savefilename)) // (1024*1024))
 
 						# Save Current Event by copying it to the other device
 						if filesize <= freespace:
@@ -852,7 +853,7 @@ class InfoBarTimeshift:
 							self.ptsCreateEITFile(fullname)
 					elif timeshiftfile.startswith("pts_livebuffer"):
 						# Get Filesize for Free Space Check
-						filesize = int(os.path.getsize("%s%s" % (config.usage.timeshift_path.value, timeshiftfile)) / (1024*1024))
+						filesize = int(os.path.getsize("%s%s" % (config.usage.timeshift_path.value, timeshiftfile)) // (1024*1024))
 
 						# Save stored timeshift by copying it to the other device
 						if filesize <= freespace:
@@ -1012,7 +1013,7 @@ class InfoBarTimeshift:
 		if freespace:
 			try:
 				stat = os.statvfs(config.usage.timeshift_path.value)
-				freespace = stat.f_bavail * stat.f_bsize / 1024 / 1024
+				freespace = stat.f_bavail * stat.f_bsize // 1024 // 1024
 			except:
 				print("[TIMESHIFT] - error reading disk space - function 'checking for free space' can't used")
 
@@ -1079,12 +1080,12 @@ class InfoBarTimeshift:
 			self.ptsEventCleanTimerSTOP()
 		else:
 			if timeshiftEnabled and not isSeekable:
-				if freespace + (filesize / 1024 / 1024) < int(config.timeshift.timeshiftCheckFreeSpace.value):
+				if freespace + (filesize // 1024 // 1024) < int(config.timeshift.timeshiftCheckFreeSpace.value):
 					self.ptsAskUser("space")
 				elif time() - self.pts_starttime > 3600 * config.timeshift.timeshiftMaxHours.value:
 					self.ptsAskUser("time")
 			elif isSeekable:
-				if freespace + (filesize / 1024 / 1024) < int(config.timeshift.timeshiftCheckFreeSpace.value):
+				if freespace + (filesize // 1024 // 1024) < int(config.timeshift.timeshiftCheckFreeSpace.value):
 					self.ptsAskUser("space_and_save")
 				elif time() - self.pts_starttime > 3600 * config.timeshift.timeshiftMaxHours.value:
 					self.ptsAskUser("time_and_save")
@@ -1412,8 +1413,8 @@ class InfoBarTimeshift:
 
 			cur_pos = self.pvrStateDialog["PTSSeekPointer"].position
 			jumptox = int(cur_pos[0]) - (int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8)
-			jumptoperc = round((jumptox / float(self.pvrStateDialog["PTSSeekBack"].instance.size().width())) * 100, 0)
-			jumptotime = int((length / 100) * jumptoperc)
+			jumptoperc = round((jumptox // float(self.pvrStateDialog["PTSSeekBack"].instance.size().width())) * 100, 0)
+			jumptotime = int((length // 100) * jumptoperc)
 			jumptodiff = position - jumptotime
 
 			self.doSeekRelative(-jumptodiff)
@@ -1444,7 +1445,7 @@ class InfoBarTimeshift:
 		length = self.ptsGetLength()
 
 		if length >= 1:
-			tpixels = int((float(int((position*100)/length))/100)*self.pvrStateDialog["PTSSeekBack"].instance.size().width())
+			tpixels = int((float(int((position*100)//length))//100)*self.pvrStateDialog["PTSSeekBack"].instance.size().width())
 			self.pvrStateDialog["PTSSeekPointer"].setPosition(int(self.pvrStateDialog["PTSSeekBack"].instance.position().x())+8+tpixels, self.pvrStateDialog["PTSSeekPointer"].position[1])
 
 	def ptsMoveSeekPointer(self, direction=None):

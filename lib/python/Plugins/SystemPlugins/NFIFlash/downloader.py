@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -104,8 +105,8 @@ class ImageDownloadTask(Task):
 	def download_progress(self, recvbytes, totalbytes):
 		#print "[update_progress] recvbytes=%d, totalbytes=%d" % (recvbytes, totalbytes)
 		if ( recvbytes - self.last_recvbytes  ) > 10000: # anti-flicker
-			self.progress = int(100*(float(recvbytes)/float(totalbytes)))
-			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (recvbytes/1024, totalbytes/1024)
+			self.progress = int(100*(float(recvbytes)//float(totalbytes)))
+			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (recvbytes//1024, totalbytes//1024)
 			self.last_recvbytes = recvbytes
 
 	def download_failed(self, failure_instance=None, error_message=""):
