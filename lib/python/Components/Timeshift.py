@@ -29,11 +29,12 @@
 
 
 from __future__ import print_function
-from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.ServiceEventTracker import ServiceEventTracker
-from Components.config import config
-from Components.SystemInfo import SystemInfo
-from Components.Task import job_manager as JobManager
+from __future__ import absolute_import
+from .Components.ActionMap import ActionMap, HelpableActionMap
+from .Components.ServiceEventTracker import ServiceEventTracker
+from .Components.config import config
+from .Components.SystemInfo import SystemInfo
+from .Components.Task import job_manager as JobManager
 
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox

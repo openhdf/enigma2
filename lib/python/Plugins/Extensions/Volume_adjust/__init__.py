@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Components.Language import language
 from Tools.Directories import resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE #@UnresolvedImport
 import gettext, os

@@ -1,6 +1,7 @@
 from __future__ import print_function
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
+from __future__ import absolute_import
+from .HTMLComponent import HTMLComponent
+from .GUIComponent import GUIComponent
 from skin import parseColor, parseFont
 
 from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect, eSize, getDesktop
@@ -9,8 +10,8 @@ from Tools.TextBoundary import getTextBoundarySize
 
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 
-from Components.Renderer.Picon import getPiconName
-from Components.config import config
+from .Components.Renderer.Picon import getPiconName
+from .Components.config import config
 
 def refreshServiceList(configElement = None):
 	from Screens.InfoBar import InfoBar
@@ -173,7 +174,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def setCurrent(self, ref, adjust=True):
 		if self.l.setCurrent(ref):
 			return None
-		from Components.ServiceEventTracker import InfoBarCount
+		from .Components.ServiceEventTracker import InfoBarCount
 		if adjust and config.usage.multibouquet.value and InfoBarCount == 1 and ref and ref.type != 8192:
 			print("[servicelist] search for service in userbouquets")
 			if self.serviceList:

@@ -1,9 +1,10 @@
+from __future__ import absolute_import
 from future.utils import raise_
 import xml.sax
 from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKIN, copyfile, copytree
-from Components.NimManager import nimmanager
-from Components.Ipkg import IpkgComponent
-from Components.config import config, configfile
+from .Components.NimManager import nimmanager
+from .Components.Ipkg import IpkgComponent
+from .Components.config import config, configfile
 from boxbranding import getBoxType
 from enigma import eConsoleAppContainer, eDVBDB
 import os
@@ -338,7 +339,7 @@ class PackageInfoHandler:
 			self.installSkin(skin["directory"], skin["name"])
 		elif currentAttribute == "config":
 			if self.currentIndex == 0:
-				from Components.config import configfile
+				from .Components.config import configfile
 				configfile.save()
 			config = attributes["config"][self.currentIndex]
 			self.mergeConfig(config["directory"], config["name"])

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from enigma import loadPNG, loadJPG
 
 def LoadPixmap(path, desktop = None, cached = False):

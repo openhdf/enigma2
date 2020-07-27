@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.Setup import setupdom
 from Screens.LocationBox import AutorecordLocationBox, TimeshiftLocationBox

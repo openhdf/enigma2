@@ -1,5 +1,6 @@
-from ConditionalWidget import ConditionalWidget
-from GUIComponent import GUIComponent
+from __future__ import absolute_import
+from .ConditionalWidget import ConditionalWidget
+from .GUIComponent import GUIComponent
 
 from enigma import ePixmap, eTimer
 

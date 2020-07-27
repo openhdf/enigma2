@@ -1,6 +1,7 @@
 from __future__ import print_function
 # plugin from Sif Team
 
+from __future__ import absolute_import
 from enigma import eDVBDB, eServiceReference, eServiceCenter
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox

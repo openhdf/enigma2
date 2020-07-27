@@ -8,6 +8,7 @@
 #source code of your modifications.
 
 from __future__ import print_function
+from __future__ import absolute_import
 from enigma import eTimer
 from Components.ActionMap import ActionMap
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigSelection, ConfigYesNo, NoSave, ConfigNothing, ConfigNumber

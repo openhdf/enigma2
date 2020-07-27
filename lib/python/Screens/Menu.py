@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.ParentalControlSetup import ProtectedScreen
 from Components.Sources.List import List

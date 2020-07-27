@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 ## Zap-History Browser by AliAbdul
+from __future__ import absolute_import
 from Components.ActionMap import ActionMap
 from Components.config import config, ConfigInteger, ConfigSelection, ConfigSubsection, getConfigListEntry
 from Components.ConfigList import ConfigListScreen

@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import ActionMap

@@ -1,6 +1,7 @@
-from config import ConfigSelectionNumber, ConfigYesNo, ConfigSubsection, ConfigSelection, config
+from __future__ import absolute_import
+from .config import ConfigSelectionNumber, ConfigYesNo, ConfigSubsection, ConfigSelection, config
 from enigma import pNavigation
-from Components.SystemInfo import SystemInfo
+from .Components.SystemInfo import SystemInfo
 
 def InitRecordingConfig():
 	config.recording = ConfigSubsection()

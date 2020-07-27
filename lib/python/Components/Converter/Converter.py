@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Components.Element import Element
 
 class Converter(Element):

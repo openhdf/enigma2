@@ -15,8 +15,9 @@
 #
 #######################################################################
 
+from __future__ import absolute_import
 import math
-from Renderer import Renderer
+from .Renderer import Renderer
 from skin import parseColor
 from enigma import eCanvas, eSize, gRGB, eRect
 from Components.VariableText import VariableText

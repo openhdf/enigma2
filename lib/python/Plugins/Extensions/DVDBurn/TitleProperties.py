@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.InputBox import InputBox
@@ -15,7 +16,7 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_
 from Components.config import config, getConfigListEntry, ConfigInteger, ConfigSubsection, ConfigSelection
 from Components.ConfigList import ConfigListScreen
 from Components.AVSwitch import AVSwitch
-import DVDTitle
+from . import DVDTitle
 import six
 
 class TitleProperties(Screen, ConfigListScreen):

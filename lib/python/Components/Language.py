@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from __future__ import print_function
+from __future__ import absolute_import
 import gettext
 import locale
 import os
@@ -181,7 +182,7 @@ class Language:
 		self.callbacks.append(callback)
 
 	def delLanguage(self, delLang = None):
-		from Components.config import config, configfile
+		from .Components.config import config, configfile
 		from shutil import rmtree
 		lang = config.osd.language.value
 

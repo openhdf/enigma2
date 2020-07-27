@@ -23,6 +23,7 @@
 #	<convert type="CamdInfo">Camd</convert>
 # </widget>
 
+from __future__ import absolute_import
 from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached

@@ -9,6 +9,7 @@ Maintainer: U{Felix Domke<mailto:tmbinc@elitedvb.net>}
 """
 
 # System imports
+from __future__ import absolute_import
 import select, errno, sys
 
 # Twisted imports

@@ -1,9 +1,10 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from enigma import eTimer
 
-import Components.Task
+from . import Components.Task
 from Screens.MessageBox import MessageBox
-from Components.config import config
+from .Components.config import config
 
 
 def EpgCacheLoadCheck(session=None, **kwargs):

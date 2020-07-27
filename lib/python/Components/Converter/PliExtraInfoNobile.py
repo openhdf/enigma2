@@ -1,12 +1,13 @@
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
 
+from __future__ import absolute_import
 from enigma import iServiceInformation, iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
 from Tools.Transponder import ConvertToHumanReadable
 from Tools.GetEcmInfo import GetEcmInfo
-from Poll import Poll
+from .Poll import Poll
 
 def addspace(text):
 	if text:

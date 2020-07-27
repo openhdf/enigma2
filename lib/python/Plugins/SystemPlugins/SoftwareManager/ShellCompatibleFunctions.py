@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
 import subprocess, shutil, os
 
 # MANDATORY_RIGHTS contains commands to ensure correct rights for certain files

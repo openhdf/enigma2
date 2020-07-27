@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import Components.Task
 from Components.config import config
 from Components import Harddisk

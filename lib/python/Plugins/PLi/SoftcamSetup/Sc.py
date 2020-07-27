@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from . import _
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -20,7 +21,7 @@ from Components.Converter.ServiceInfo import *
 from ServiceReference import ServiceReference
 import os
 from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent, eServiceReference
-from camcontrol import CamControl
+from .camcontrol import CamControl
 
 class ConfigAction(ConfigElement):
 	def __init__(self, action, *args):

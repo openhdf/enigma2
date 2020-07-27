@@ -1,7 +1,8 @@
 # coders by Vlamo 2012 (version: 0.2)
+from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from Poll import Poll
+from .Poll import Poll
 from os import popen, statvfs
 
 SIZE_UNITS = ["B", "KB", "MB", "GB", "TB", "PB", "EB"]

@@ -1,5 +1,6 @@
 from __future__ import print_function
-from Screen import Screen
+from __future__ import absolute_import
+from .Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Components.InputDevice import iInputDevices, iRcTypeControl

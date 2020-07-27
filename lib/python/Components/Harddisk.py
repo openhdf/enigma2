@@ -1,13 +1,14 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from future.utils import raise_
 import os
 import time
 from Tools.CList import CList
-from SystemInfo import SystemInfo
-from Components.Console import Console
+from .SystemInfo import SystemInfo
+from .Components.Console import Console
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType, getMachineBuild
-import Task
+from . import Task
 import re
 from six.moves import range
 

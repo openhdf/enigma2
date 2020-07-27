@@ -5,6 +5,7 @@ from __future__ import print_function
 #from Components.Label import Label
 #from Components.MenuList import MenuList
 #from Components.Slider import Slider
+from __future__ import absolute_import
 from Components.NimManager import nimmanager
 from Plugins.Plugin import PluginDescriptor
 from Screens.ScanSetup import ScanSetup

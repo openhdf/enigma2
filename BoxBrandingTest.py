@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import boxbranding
 print("getMachineBuild=%s<" %boxbranding.getMachineBuild())
 print("getMachineMake=%s<" %boxbranding.getMachineMake())

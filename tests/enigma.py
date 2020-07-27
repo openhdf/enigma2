@@ -1,6 +1,7 @@
 from __future__ import print_function
 # fake-enigma
 
+from __future__ import absolute_import
 class slot:
 	def __init__(self):
 		self.list = [ ]

@@ -1,6 +1,7 @@
 from __future__ import print_function
 # takes a header file, outputs action ids
 
+from __future__ import absolute_import
 import tokenize, sys, string
 
 def filter(g):

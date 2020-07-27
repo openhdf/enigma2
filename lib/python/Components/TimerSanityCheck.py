@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import NavigationInstance
 from time import localtime, mktime, gmtime
 from ServiceReference import ServiceReference
@@ -6,7 +7,7 @@ from enigma import iServiceInformation, eServiceCenter, eServiceReference, getBe
 from timer import TimerEntry
 
 from Tools.CIHelper import cihelper
-from Components.config import config
+from .Components.config import config
 from six.moves import range
 class TimerSanityCheck:
 	def __init__(self, timerlist, newtimer=None):

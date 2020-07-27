@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.Converter.StringList import StringList
 from six.moves import range
 

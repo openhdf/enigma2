@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import Components.Task
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox

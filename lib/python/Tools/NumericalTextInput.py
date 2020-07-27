@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+from __future__ import absolute_import
 from enigma import eTimer
 from Components.Language import language
 

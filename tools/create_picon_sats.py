@@ -7,6 +7,7 @@
 #
 # by pieterg, 2008
 
+from __future__ import absolute_import
 import os, sys
 from six.moves import range
 

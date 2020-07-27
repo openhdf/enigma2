@@ -1,8 +1,9 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import os
 import re
-from MenuList import MenuList
-from Components.Harddisk import harddiskmanager
+from .MenuList import MenuList
+from .Components.Harddisk import harddiskmanager
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename, fileExists, pathExists
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 	eServiceReference, eServiceCenter, gFont

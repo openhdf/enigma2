@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from boxbranding import getBoxType, getImageVersion, getMachineBuild
 from sys import modules
 import socket, fcntl, struct, time, os

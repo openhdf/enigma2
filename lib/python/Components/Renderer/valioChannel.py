@@ -6,9 +6,10 @@
 #
 #######################################################################
 
+from __future__ import absolute_import
 from Components.VariableText import VariableText
 from enigma import eLabel, eServiceCenter
-from Renderer import Renderer
+from .Renderer import Renderer
 from Screens.InfoBar import InfoBar
 from six.moves import range
 

@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from skin import parseColor, parseFont, parseSize
 from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigSelectionNumber
 from Components.Pixmap import Pixmap
@@ -28,7 +29,7 @@ from Tools.Alternatives import CompareWithAlternatives
 from Tools import Notifications
 from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER,\
 	RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, eSize, eRect, eTimer, getBestPlayableServiceReference, loadPNG
-from GraphMultiEpgSetup import GraphMultiEpgSetup
+from .GraphMultiEpgSetup import GraphMultiEpgSetup
 from time import localtime, time, strftime
 from six.moves import range
 

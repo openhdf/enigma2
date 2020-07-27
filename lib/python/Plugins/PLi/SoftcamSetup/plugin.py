@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 from . import _
 from Plugins.Plugin import PluginDescriptor
 
 def main(session, **kwargs):
-	import Sc
+	from . import Sc
 	session.open(Sc.ScSelection)
 
 def menu(menuid, **kwargs):

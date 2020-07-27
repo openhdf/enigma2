@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from enigma import eDVBDB, eDVBResourceManager, getLinkedSlotID, isFBCLink
 from Screens.Screen import Screen
 from Components.SystemInfo import SystemInfo

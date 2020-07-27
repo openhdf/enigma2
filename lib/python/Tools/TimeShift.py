@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Components.Task import Task, Job
 from Components.config import config
 from Tools.Directories import fileExists

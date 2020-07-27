@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Screens.Console import Console
 from Tools.Log import Log
 

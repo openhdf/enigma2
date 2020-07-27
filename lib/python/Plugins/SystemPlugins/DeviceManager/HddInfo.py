@@ -1,4 +1,5 @@
 # for localized messages
+from __future__ import absolute_import
 from . import _
 
 from enigma import *

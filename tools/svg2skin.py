@@ -10,6 +10,7 @@
 # tested only with a single inkscape-generated SVG.
 
 from __future__ import print_function
+from __future__ import absolute_import
 import sys
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler

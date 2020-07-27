@@ -14,6 +14,7 @@
 #source code of your modifications.
 
 from __future__ import print_function
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.ChannelSelection import ChannelSelection
@@ -24,14 +25,14 @@ from Components.PluginComponent import plugins
 from Components.config import config, ConfigSubsection, ConfigYesNo
 from Plugins.Plugin import PluginDescriptor
 from Plugins.Plugin import PluginDescriptor
-from QuickButtonXML import QuickButtonXML
-from MultiQuickButton import MultiQuickButton, QuickButton
+from .QuickButtonXML import QuickButtonXML
+from .MultiQuickButton import MultiQuickButton, QuickButton
 
 import xml.sax.xmlreader
 import os.path
 import os
 import keymapparser
-from __init__ import _
+from .__init__ import _
 
 
 baseInfoBarPlugins__init__ = None

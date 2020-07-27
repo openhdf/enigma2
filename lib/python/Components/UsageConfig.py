@@ -1,15 +1,16 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import os
 from time import time
 from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent, eDVBFrontend, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
-from Components.About import about
-from Components.Harddisk import harddiskmanager
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
+from .Components.About import about
+from .Components.Harddisk import harddiskmanager
+from .config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, fileExists, fileCheck
 from boxbranding import getBoxType, getMachineBuild, getMachineName, getBrandOEM, getDisplayType
-from Components.NimManager import nimmanager
-from Components.ServiceList import refreshServiceList
-from SystemInfo import SystemInfo
+from .Components.NimManager import nimmanager
+from .Components.ServiceList import refreshServiceList
+from .SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
 from keyids import KEYIDS
 from sys import maxsize
@@ -612,10 +613,10 @@ def InitUsageConfig():
 	config.epg.cacheloadsched = ConfigYesNo(default = False)
 	config.epg.cachesavesched = ConfigYesNo(default = False)
 	def EpgCacheLoadSchedChanged(configElement):
-		import EpgLoadSave
+		from . import EpgLoadSave
 		EpgLoadSave.EpgCacheLoadCheck()
 	def EpgCacheSaveSchedChanged(configElement):
-		import EpgLoadSave
+		from . import EpgLoadSave
 		EpgLoadSave.EpgCacheSaveCheck()
 	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback = False)
 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback = False)
@@ -805,7 +806,7 @@ def InitUsageConfig():
 	config.crash.skin_error_crash = ConfigYesNo(default = True)
 
 	def updateStackTracePrinter(configElement):
-		from Components.StackTrace import StackTracePrinter
+		from .Components.StackTrace import StackTracePrinter
 		if configElement.value:
 			if (os.path.isfile("/tmp/doPythonStackTrace")):
 				os.remove("/tmp/doPythonStackTrace")

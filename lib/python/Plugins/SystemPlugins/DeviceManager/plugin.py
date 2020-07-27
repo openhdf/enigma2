@@ -1,8 +1,9 @@
 # for localized messages
+from __future__ import absolute_import
 from . import _
 
-from HddSetup import HddSetup
-from HddMount import HddFastRemove
+from .HddSetup import HddSetup
+from .HddMount import HddFastRemove
 from Plugins.Plugin import PluginDescriptor
 
 def deviceManagerMain(session, **kwargs):

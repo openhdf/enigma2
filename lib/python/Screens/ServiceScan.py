@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import Screens.InfoBar
 from enigma import eServiceReference, eTimer
 

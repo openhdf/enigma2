@@ -1,7 +1,8 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import os
 
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigSlider
+from .Components.config import config, ConfigSubList, ConfigSubsection, ConfigSlider
 from Tools.BoundFunction import boundFunction
 
 import NavigationInstance

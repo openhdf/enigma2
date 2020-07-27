@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from boxbranding import getBoxType
 from os import path as os_path
 from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigBoolean, ConfigNothing, NoSave

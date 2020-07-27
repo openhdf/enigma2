@@ -5,6 +5,7 @@
 # print>>log, "Some text"
 # because the log unit looks enough like a file!
 
+from __future__ import absolute_import
 import sys
 from cStringIO import StringIO
 import threading

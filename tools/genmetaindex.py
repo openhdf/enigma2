@@ -1,4 +1,5 @@
 # usage: genmetaindex.py <xml-files>  > index.xml
+from __future__ import absolute_import
 import sys, os
 from xml.etree.ElementTree import ElementTree, Element
 

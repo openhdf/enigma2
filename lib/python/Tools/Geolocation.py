@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from json import loads
 from urllib.error import URLError
 from urllib.request import urlopen

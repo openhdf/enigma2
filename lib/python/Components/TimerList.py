@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_BOTTOM, getDesktop
 
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
+from .HTMLComponent import HTMLComponent
+from .GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from Tools.LoadPixmap import LoadPixmap
 from timer import TimerEntry

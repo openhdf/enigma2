@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Components.Element import Element
 from os import path
 # this is not a GUI renderer.

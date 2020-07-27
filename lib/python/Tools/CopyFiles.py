@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.Task import PythonTask, Task, Job, job_manager as JobManager
 from Tools.Directories import fileExists
 from enigma import eTimer

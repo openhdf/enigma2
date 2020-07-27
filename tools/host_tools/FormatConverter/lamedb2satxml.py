@@ -1,5 +1,6 @@
 #!/usr/bin/python
 from __future__ import print_function
+from __future__ import absolute_import
 from datasource import genericdatasource
 from satxml import satxml
 from lamedb import lamedb

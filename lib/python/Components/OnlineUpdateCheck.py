@@ -1,12 +1,13 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from time import time
 from boxbranding import getImageVersion
 
 from enigma import eTimer
 
-import Components.Task
-from Components.Ipkg import IpkgComponent
-from Components.config import config
+from . import Components.Task
+from .Components.Ipkg import IpkgComponent
+from .Components.config import config
 
 
 def OnlineUpdateCheck(session=None, **kwargs):

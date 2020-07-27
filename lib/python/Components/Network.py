@@ -1,10 +1,11 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import re
 import os
 import netifaces as ni
 from socket import *
-from Components.Console import Console
-from Components.PluginComponent import plugins
+from .Components.Console import Console
+from .Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from boxbranding import getBoxType
 from six.moves import range
@@ -35,7 +36,7 @@ class Network:
 
 	def onRemoteRootFS(self):
 		if self.remoteRootFS is None:
-			import Harddisk
+			from . import Harddisk
 			for parts in Harddisk.getProcMounts():
 				if parts[1] == '/' and parts[2] == 'nfs':
 					self.remoteRootFS = True

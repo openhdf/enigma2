@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from urllib.request import urlopen
 from urllib.error import URLError
 from urllib.parse import urlencode

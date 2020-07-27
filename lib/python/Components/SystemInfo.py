@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from os import path, listdir
 from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN, fileHas, pathExists

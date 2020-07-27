@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from os import path
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl

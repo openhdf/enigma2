@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from enigma import eTimer, eDVBResourceManager, eDVBDiseqcCommand, eDVBFrontendParametersSatellite, iDVBFrontend
 
 from Screens.Screen import Screen
@@ -25,8 +26,8 @@ from random import SystemRandom as SystemRandom
 from threading import Thread as Thread
 from threading import Event as Event
 
-import log
-import rotor_calc
+from . import log
+from . import rotor_calc
 from six.moves import range
 
 class PositionerSetup(Screen):

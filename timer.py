@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from bisect import insort
 from time import time, localtime, mktime
 from enigma import eTimer, eActionMap

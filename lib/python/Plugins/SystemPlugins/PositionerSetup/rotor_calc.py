@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import math
 
 f = 1.00 / 298.257 # Earth flattning factor

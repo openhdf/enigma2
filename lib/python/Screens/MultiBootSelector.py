@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from os import mkdir, path
 from shutil import copyfile
 from boxbranding import getMachineBuild, getMachineMtdRoot

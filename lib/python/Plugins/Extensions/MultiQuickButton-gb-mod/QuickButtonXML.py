@@ -7,10 +7,11 @@
 #This means you also have to distribute
 #source code of your modifications.
 
+from __future__ import absolute_import
 import xml.dom.minidom
 from xml.dom import minidom, Node
 from Tools.XMLTools import stringToXML
-from __init__ import _
+from .__init__ import _
 
 functionfile = "/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/mqbfunctions.xml"
 

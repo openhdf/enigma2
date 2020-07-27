@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Tools.Profile import profile
 profile("LOAD:ElementTree")
 import xml.etree.cElementTree

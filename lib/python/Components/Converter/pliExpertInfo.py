@@ -2,13 +2,14 @@
 #  Coded by Vali, updated by Mirakels for openpli
 #
 
+from __future__ import absolute_import
 from enigma import iServiceInformation, eServiceCenter, iPlayableService, iPlayableServicePtr
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
 from Tools.Transponder import ConvertToHumanReadable
 from Tools.GetEcmInfo import GetEcmInfo
-from Poll import Poll
+from .Poll import Poll
 
 class pliExpertInfo(Poll, Converter, object):
 	SMART_LABEL = 0

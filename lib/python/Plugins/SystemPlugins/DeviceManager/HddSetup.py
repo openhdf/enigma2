@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from . import _
 from enigma import *
 from Screens.Screen import Screen
@@ -5,7 +6,7 @@ from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from ExtrasList import ExtrasList
+from .ExtrasList import ExtrasList
 from Components.MenuList import MenuList
 from Components.GUIComponent import GUIComponent
 from Components.HTMLComponent import HTMLComponent
@@ -14,12 +15,12 @@ from Components.Button import Button
 from Components.Label import Label
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
-from HddPartitions import HddPartitions
-from HddInfo import HddInfo
-from Disks import Disks
-from ExtraMessageBox import ExtraMessageBox
-from ExtraActionBox import ExtraActionBox
-from MountPoints import MountPoints
+from .HddPartitions import HddPartitions
+from .HddInfo import HddInfo
+from .Disks import Disks
+from .ExtraMessageBox import ExtraMessageBox
+from .ExtraActionBox import ExtraActionBox
+from .MountPoints import MountPoints
 from boxbranding import getMachineBrand, getMachineName
 import os
 import sys

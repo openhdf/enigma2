@@ -6,9 +6,10 @@
 #
 #######################################################################
 
+from __future__ import absolute_import
 from Components.VariableText import VariableText
 from enigma import eLabel, eEPGCache
-from Renderer import Renderer
+from .Renderer import Renderer
 from time import localtime
 
 class nanoNextEvent(Renderer, VariableText):

@@ -1,5 +1,6 @@
 from __future__ import print_function
 #read the comment to this file in lib/service/iservice.h !!
+from __future__ import absolute_import
 import sys
 import os
 

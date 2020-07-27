@@ -4,6 +4,7 @@ from __future__ import print_function
 #					MAKES A FULLBACKUP READY FOR FLASHING.						#
 #################################################################################
 
+from __future__ import absolute_import
 from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
 from Components.Button import Button

@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 # Plugin definition
+from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 
 from Screens.Menu import Menu, mdom

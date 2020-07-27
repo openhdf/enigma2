@@ -1,6 +1,7 @@
 from __future__ import print_function
 # Listen to hotplug events. Can be used to listen for hotplug events and
 # similar things, like network connections being (un)plugged.
+from __future__ import absolute_import
 import os
 import socket
 

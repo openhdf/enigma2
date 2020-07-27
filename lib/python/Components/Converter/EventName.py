@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from enigma import eEPGCache
 
 from Components.Converter.Converter import Converter

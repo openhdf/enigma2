@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
@@ -19,7 +20,7 @@ from Tools.Directories import *
 from os import listdir, makedirs, path, popen, remove, rename, stat
 from datetime import date
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro
-import ShellCompatibleFunctions
+from . import ShellCompatibleFunctions
 
 boxtype = getBoxType()
 distro = getImageDistro()

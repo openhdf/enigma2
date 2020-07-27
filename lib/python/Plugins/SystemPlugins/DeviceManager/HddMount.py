@@ -1,4 +1,5 @@
 # for localized messages
+from __future__ import absolute_import
 from . import _
 
 from enigma import *
@@ -18,9 +19,9 @@ from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
 
-from MountPoints import MountPoints
-from Disks import Disks
-from ExtraMessageBox import ExtraMessageBox
+from .MountPoints import MountPoints
+from .Disks import Disks
+from .ExtraMessageBox import ExtraMessageBox
 from boxbranding import getMachineBrand, getMachineName
 
 import os

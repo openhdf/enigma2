@@ -8,6 +8,7 @@
 #source code of your modifications.
 
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
 from Components.Label import Label
@@ -22,15 +23,15 @@ from Screens.LocationBox import LocationBox
 from Components.Sources.List import List
 from Plugins.Plugin import PluginDescriptor
 from Screens.Standby import TryQuitMainloop
-from QuickButtonList import QuickButtonList, QuickButtonListEntry
-from QuickButtonXML import QuickButtonXML
+from .QuickButtonList import QuickButtonList, QuickButtonListEntry
+from .QuickButtonXML import QuickButtonXML
 from enigma import getDesktop
 from Tools.Directories import *
 import xml.sax.xmlreader
 import keymapparser
 import os
 import os.path
-from __init__ import _
+from .__init__ import _
 import six
 
 functionfile = "/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/mqbfunctions.xml"

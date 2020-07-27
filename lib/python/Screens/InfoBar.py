@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Tools.Profile import profile
 from Tools.BoundFunction import boundFunction
 
@@ -761,7 +762,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 				pass
 
 	def getPlaylistServiceInfo(self, service):
-		from MovieSelection import playlist
+		from .MovieSelection import playlist
 		for i, item in enumerate(playlist):
 			if item == service:
 				if config.usage.on_movie_eof.value == "repeatcurrent":

@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import errno
 import time
 import xml.etree.cElementTree
@@ -6,7 +7,7 @@ import xml.etree.cElementTree
 from enigma import eTimer  # This is for AutoTimers!
 from os import environ, path, symlink, unlink, walk
 
-from Components.config import ConfigSelection, ConfigSubsection, config
+from .Components.config import ConfigSelection, ConfigSubsection, config
 from Tools.Geolocation import geolocation
 from Tools.StbHardware import setRTCoffset
 

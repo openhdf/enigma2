@@ -1,7 +1,8 @@
 from __future__ import print_function
 # the implementation here is a bit crappy.
+from __future__ import absolute_import
 import time
-from Directories import resolveFilename, SCOPE_CONFIG
+from .Directories import resolveFilename, SCOPE_CONFIG
 from boxbranding import getBoxType
 
 boxtype = getBoxType()

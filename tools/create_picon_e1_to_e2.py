@@ -6,6 +6,7 @@ from __future__ import print_function
 # It will read the servicenames from the lamedb and create symlinks
 # for the servicereference names.
 
+from __future__ import absolute_import
 import os, sys
 from six.moves import range
 

@@ -18,7 +18,8 @@
 #  distributed other than under the conditions noted above.
 #
 
-from Renderer import Renderer
+from __future__ import absolute_import
+from .Renderer import Renderer
 from enigma import eCanvas, eRect, gFont
 from skin import parseColor, parseFont
 

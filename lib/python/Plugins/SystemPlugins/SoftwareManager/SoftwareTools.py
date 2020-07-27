@@ -1,4 +1,5 @@
 # -*- coding: iso-8859-1 -*-
+from __future__ import absolute_import
 from Components.Console import Console
 from Components.PackageInfo import PackageInfoHandler
 from Components.Language import language

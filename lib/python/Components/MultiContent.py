@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from enigma import eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_VALIGN_TOP
 
 def MultiContentTemplateColor(n): return 0xff000000 | n

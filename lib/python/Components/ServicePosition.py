@@ -1,6 +1,7 @@
 from __future__ import print_function
-from PerServiceDisplay import PerServiceDisplay, PerServiceBase
-from Components.GUIComponent import GUIComponent
+from __future__ import absolute_import
+from .PerServiceDisplay import PerServiceDisplay, PerServiceBase
+from .Components.GUIComponent import GUIComponent
 from enigma import eTimer, iPlayableService, ePositionGauge
 import time
 
