@@ -577,28 +577,28 @@ class QuickButton(Screen):
 
 	def keyLeft(self):
 		if len(self["list"].list) > 0:
-			while 1:
+			while True:
 				self["list"].instance.moveSelection(self["list"].instance.pageUp)
 				if self["list"].l.getCurrentSelection()[0][1] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
 					break
 
 	def keyRight(self):
 		if len(self["list"].list) > 0:
-			while 1:
+			while True:
 				self["list"].instance.moveSelection(self["list"].instance.pageDown)
 				if self["list"].l.getCurrentSelection()[0][1] != "--" or self["list"].l.getCurrentSelectionIndex() == len(self["list"].list) - 1:
 					break
 
 	def up(self):
 		if len(self["list"].list) > 0:
-			while 1:
+			while True:
 				self["list"].instance.moveSelection(self["list"].instance.moveUp)
 				if self["list"].l.getCurrentSelection()[0][1] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
 					break
 
 	def down(self):
 		if len(self["list"].list) > 0:
-			while 1:
+			while True:
 				self["list"].instance.moveSelection(self["list"].instance.moveDown)
 				if self["list"].l.getCurrentSelection()[0][1] != "--" or self["list"].l.getCurrentSelectionIndex() == len(self["list"].list) - 1:
 					break
@@ -676,7 +676,7 @@ class QuickButton(Screen):
 
 			self["list"].setList(list)
 			if len(self["list"].list) > 0:
-				while 1:
+				while True:
 					self["list"].instance.moveSelection(self["list"].instance.moveDown)
 					if self["list"].l.getCurrentSelection()[0][1] != '--' or self["list"].l.getCurrentSelectionIndex() == len(self["list"].list) - 1:
 						break

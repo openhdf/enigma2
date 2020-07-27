@@ -879,8 +879,7 @@ class oscEntitlements(Screen, OscamInfo):
 		self.close()
 
 	def buildList(self, data):
-		caids = data.keys()
-		caids.sort()
+		caids = sorted(data.keys())
 		outlist = []
 		res = [ ("CAID", _("System"), "1", "2", "3", "4", "5", "Total", _("Reshare"), "") ]
 		for i in caids:
@@ -1018,8 +1017,7 @@ class oscReaderStats(Screen, OscamInfo):
 		self.close()
 
 	def buildList(self, data):
-		caids = data.keys()
-		caids.sort()
+		caids = sorted(data.keys())
 		outlist = []
 		res = [ ("CAID", "System", "1", "2", "3", "4", "5", "Total", "Reshare", "") ]
 		for i in caids:

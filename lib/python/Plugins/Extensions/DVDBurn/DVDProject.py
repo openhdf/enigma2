@@ -69,7 +69,7 @@ class DVDProject:
 			list.append('\t\t\t<properties ')
 			audiotracks = []
 			for key, val in title.properties.dict().iteritems():
-				if type(val) is ConfigSubList:
+				if isinstance(val, ConfigSubList):
 					audiotracks.append('\t\t\t<audiotracks>\n')
 					for audiotrack in val:
 						audiotracks.append('\t\t\t\t<audiotrack ')
