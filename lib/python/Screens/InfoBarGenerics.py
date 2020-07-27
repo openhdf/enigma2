@@ -59,7 +59,7 @@ from bisect import insort
 from sys import maxsize
 from keyids import KEYIDS
 import itertools, datetime
-import os, cPickle
+import os, six.moves.cPickle
 
 # hack alert!
 from Screens.Menu import MainMenu, Menu, mdom
@@ -150,7 +150,7 @@ def saveResumePoints():
 	global resumePointCache, resumePointCacheLast
 	try:
 		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
-		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+		six.moves.cPickle.dump(resumePointCache, f, six.moves.cPickle.HIGHEST_PROTOCOL)
 		f.close()
 	except Exception as ex:
 		print("[InfoBar] Failed to write resumepoints:", ex)
@@ -159,7 +159,7 @@ def saveResumePoints():
 def loadResumePoints():
 	try:
 		file = open('/etc/enigma2/resumepoints.pkl', 'rb')
-		PickleFile = cPickle.load(file)
+		PickleFile = six.moves.cPickle.load(file)
 		file.close()
 		return PickleFile
 	except Exception as ex:

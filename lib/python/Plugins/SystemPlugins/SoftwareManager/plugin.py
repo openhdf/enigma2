@@ -32,7 +32,7 @@ from Tools.Directories import SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_PLUGIN, SCOPE_MET
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from enigma import eEnv, ePicLoad, eRCInput, eTimer, getDesktop, getEnigmaVersionString, getPrevAsciiCode
-from cPickle import dump, load
+from six.moves.cPickle import dump, load
 from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, path as os_path, remove, stat
 from time import time
 from stat import ST_MTIME

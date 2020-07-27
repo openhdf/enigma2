@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 import os
 import time
-import cPickle as pickle
+import six.moves.cPickle as pickle
 
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput, pNavigation
 

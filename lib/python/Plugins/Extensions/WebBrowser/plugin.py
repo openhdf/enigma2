@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 
-import time, os, socket, thread, socket, copy
+import time, os, socket, six.moves._thread, socket, copy
 from socket import gaierror, error
 from os import path as os_path, remove as os_remove
 
@@ -13,11 +13,11 @@ from gdata.service import BadAuthentication
 from twisted.web import client
 from twisted.internet import reactor
 
-from urlparse import parse_qs
+from six.moves.urllib.parse import parse_qs
 from urllib.parse import quote, unquote_plus, unquote
 from urllib.request import Request, urlopen as urlopen2
 from urllib.error import URLError
-from httplib import HTTPConnection, CannotSendRequest, BadStatusLine, HTTPException
+from six.moves.http_client import HTTPConnection, CannotSendRequest, BadStatusLine, HTTPException
 
 from Components.Button import Button
 from Components.Label import Label
@@ -331,7 +331,7 @@ class PlayerService:
 
 	def start(self, timeout = 1):
 		self.socket_timeout = timeout
-		thread.start_new_thread(self.run, (True,))
+		six.moves._thread.start_new_thread(self.run, (True,))
 
 	def stop(self):
 		self.enable = False
