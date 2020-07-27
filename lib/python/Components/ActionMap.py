@@ -1,5 +1,6 @@
 from __future__ import print_function
 from enigma import eActionMap
+import six
 
 class ActionMap:
 	def __init__(self, contexts=None, actions=None, prio=0):
@@ -85,7 +86,7 @@ class HelpableActionMap(ActionMap):
 		if not actions: actions = {}
 		alist = [ ]
 		adict = { }
-		for (action, funchelp) in actions.iteritems():
+		for (action, funchelp) in six.iteritems(actions):
 			# check if this is a tuple
 			if isinstance(funchelp, tuple):
 				alist.append((action, funchelp[1]))
@@ -114,7 +115,7 @@ class HelpableNumberActionMap(ActionMap):
 		if not actions: actions = {}
 		alist = [ ]
 		adict = { }
-		for (action, funchelp) in actions.iteritems():
+		for (action, funchelp) in six.iteritems(actions):
 			# check if this is a tuple
 			if isinstance(funchelp, tuple):
 				alist.append((action, funchelp[1]))

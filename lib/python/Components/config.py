@@ -7,6 +7,7 @@ from Tools.LoadPixmap import LoadPixmap
 from copy import copy as copy_copy
 from os import path as os_path
 from time import localtime, strftime
+import six
 
 # ConfigElement, the base class of all ConfigElements.
 
@@ -41,7 +42,7 @@ class ConfigElement(object):
 		self.callNotifiersOnSaveAndCancel = False
 
 	def getNotifiers(self):
-		return [func for (func, val, call_on_save_and_cancel) in self.__notifiers.itervalues()]
+		return [func for (func, val, call_on_save_and_cancel) in six.itervalues(self.__notifiers)]
 
 	def setNotifiers(self, val):
 		print("just readonly access to notifiers is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers")
@@ -49,7 +50,7 @@ class ConfigElement(object):
 	notifiers = property(getNotifiers, setNotifiers)
 
 	def getNotifiersFinal(self):
-		return [func for (func, val, call_on_save_and_cancel) in self.__notifiers_final.itervalues()]
+		return [func for (func, val, call_on_save_and_cancel) in six.itervalues(self.__notifiers_final)]
 
 	def setNotifiersFinal(self, val):
 		print("just readonly access to notifiers_final is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers")
@@ -215,7 +216,7 @@ class choicesList(object): # XXX: we might want a better name for this
 		if self.type == choicesList.LIST_TYPE_LIST:
 			ret = [not isinstance(x, tuple) and x or x[0] for x in self.choices]
 		else:
-			ret = self.choices.keys()
+			ret = list(self.choices.keys())
 		return ret or [""]
 
 	def __iter__(self):
@@ -234,7 +235,7 @@ class choicesList(object): # XXX: we might want a better name for this
 			assert isinstance(orig, tuple)
 			self.choices[index] = (orig[0], descr)
 		else:
-			key = self.choices.keys()[index]
+			key = list(self.choices.keys())[index]
 			self.choices[key] = descr
 
 	def __getitem__(self, index):
@@ -243,7 +244,7 @@ class choicesList(object): # XXX: we might want a better name for this
 			if isinstance(ret, tuple):
 				ret = ret[0]
 			return ret
-		return self.choices.keys()[index]
+		return list(self.choices.keys())[index]
 
 	def index(self, value):
 		try:
@@ -260,7 +261,7 @@ class choicesList(object): # XXX: we might want a better name for this
 			else:
 				self.choices[index] = value
 		else:
-			key = self.choices.keys()[index]
+			key = list(self.choices.keys())[index]
 			orig = self.choices[key]
 			del self.choices[key]
 			self.choices[value] = orig
@@ -274,7 +275,7 @@ class choicesList(object): # XXX: we might want a better name for this
 			if isinstance(default, tuple):
 				default = default[0]
 		else:
-			default = choices.keys()[0]
+			default = list(choices.keys())[0]
 		return default
 
 class descriptionList(choicesList): # XXX: we might want a better name for this
@@ -282,7 +283,7 @@ class descriptionList(choicesList): # XXX: we might want a better name for this
 		if self.type == choicesList.LIST_TYPE_LIST:
 			ret = [not isinstance(x, tuple) and x or x[1] for x in self.choices]
 		else:
-			ret = self.choices.values()
+			ret = list(self.choices.values())
 		return ret or [""]
 
 	def __iter__(self):
@@ -1911,7 +1912,7 @@ class Config(ConfigSubsection):
 		ConfigSubsection.__init__(self)
 
 	def pickle_this(self, prefix, topickle, result):
-		for (key, val) in sorted(topickle.items(), key=lambda x: int(x[0]) if x[0].isdigit() else x[0].lower()):
+		for (key, val) in sorted(list(topickle.items()), key=lambda x: int(x[0]) if x[0].isdigit() else x[0].lower()):
 			name = '.'.join((prefix, key))
 			if isinstance(val, dict):
 				self.pickle_this(name, val, result)

@@ -17,6 +17,7 @@ from Tools.HardwareInfo import HardwareInfo
 from Tools.BoundFunction import boundFunction
 from Components.About import about
 from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
+import six
 
 maxFixedLnbPositions = 0
 
@@ -318,7 +319,7 @@ class SecConfigure:
 				if slot.isMultiType():
 					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 					types = slot.getMultiTypeList()
-					for FeType in types.itervalues():
+					for FeType in six.itervalues(types):
 						if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 							continue
 						elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
@@ -634,7 +635,7 @@ class SecConfigure:
 		if PN is None:
 			return
 
-		if ManufacturerName in ProductDict.keys():			# manufacture are listed, use its ConfigSubsection
+		if ManufacturerName in list(ProductDict.keys()):			# manufacture are listed, use its ConfigSubsection
 			tmp = ProductDict[ManufacturerName]
 			if PN in tmp.product.choices.choices:
 				return
@@ -1774,7 +1775,7 @@ def InitNimManager(nimmgr, update_slots = []):
 		unicablematrixproducts.update({manufacturer.get("name"):m})						#add dict manufacturer to dict unicablematrixproducts
 
 	UnicableLnbManufacturers = sorted(unicablelnbproducts.keys())
-	UnicableMatrixManufacturers = unicablematrixproducts.keys()
+	UnicableMatrixManufacturers = list(unicablematrixproducts.keys())
 	UnicableMatrixManufacturers.sort()
 
 	unicable_choices = {
@@ -2282,7 +2283,7 @@ def InitNimManager(nimmgr, update_slots = []):
 				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 				types = slot.getMultiTypeList()
 				#print"[adenin]",types
-				for FeType in types.itervalues():
+				for FeType in six.itervalues(types):
 					if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 						continue
 					elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
@@ -2308,7 +2309,7 @@ def InitNimManager(nimmgr, update_slots = []):
 					except:
 						print("[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available")
 
-					for x in iDVBFrontendDict.iteritems():
+					for x in six.iteritems(iDVBFrontendDict):
 						if x[1] == system:
 							frontend.overrideType(x[0])
 							break

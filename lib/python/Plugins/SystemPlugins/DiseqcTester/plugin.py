@@ -335,7 +335,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self.clearTransponder()
 		print("----------- fillTransponderList")
 		print("index:", self.currentlyTestedIndex)
-		keys = self.indexlist.keys()
+		keys = list(self.indexlist.keys())
 		if self.getContinueScanning():
 			print("index:", self.getTextualIndexRepresentation(self.currentlyTestedIndex))
 			for transponder in self.indexlist[self.currentlyTestedIndex]:
@@ -356,20 +356,20 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		# TODO use other function to scan more randomly
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex = 0
-			keys = self.indexlist.keys()
+			keys = list(self.indexlist.keys())
 			keys.sort(key = lambda a: a[2]) # sort by orbpos
 			self["overall_progress"].setRange(len(keys))
 			self["overall_progress"].setValue(self.myindex)
 			return keys[0]
 		elif self.test_type == self.TEST_TYPE_RANDOM:
-			self.randomkeys = self.indexlist.keys()
+			self.randomkeys = list(self.indexlist.keys())
 			random.shuffle(self.randomkeys)
 			self.myindex = 0
 			self["overall_progress"].setRange(len(self.randomkeys))
 			self["overall_progress"].setValue(self.myindex)
 			return self.randomkeys[0]
 		elif self.test_type == self.TEST_TYPE_COMPLETE:
-			keys = self.indexlist.keys()
+			keys = list(self.indexlist.keys())
 			print("keys:", keys)
 			successorindex = {}
 			for index in keys:
@@ -406,7 +406,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		# TODO use other function to scan more randomly
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex += 1
-			keys = self.indexlist.keys()
+			keys = list(self.indexlist.keys())
 			keys.sort(key = lambda a: a[2]) # sort by orbpos
 
 			self["overall_progress"].setValue(self.myindex)
@@ -437,7 +437,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 	# the algorithm checks, if we should continue scanning
 	def getContinueScanning(self):
 		if self.test_type == self.TEST_TYPE_QUICK or self.test_type == self.TEST_TYPE_RANDOM:
-			return self.myindex < len(self.indexlist.keys())
+			return self.myindex < len(list(self.indexlist.keys()))
 		elif self.test_type == self.TEST_TYPE_COMPLETE:
 			return self.myindex < len(self.keylist)
 

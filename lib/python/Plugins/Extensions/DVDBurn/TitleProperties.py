@@ -16,6 +16,7 @@ from Components.config import config, getConfigListEntry, ConfigInteger, ConfigS
 from Components.ConfigList import ConfigListScreen
 from Components.AVSwitch import AVSwitch
 import DVDTitle
+import six
 
 class TitleProperties(Screen, ConfigListScreen):
 	skin = """
@@ -157,10 +158,10 @@ class LanguageChoices():
 		syslang = syslanguage.getLanguage()[:2]
 		self.langdict = { }
 		self.choices = []
-		for key, val in LanguageCodes.iteritems():
+		for key, val in six.iteritems(LanguageCodes):
 			if len(key) == 2:
 				self.langdict[key] = val[0]
-		for key, val in self.langdict.iteritems():
+		for key, val in six.iteritems(self.langdict):
 			if key not in (syslang, 'en'):
 				self.langdict[key] = val
 				self.choices.append((key, val))
@@ -174,7 +175,7 @@ class LanguageChoices():
 		DVB_lang = DVB_lang.lower()
 		for word in ("stereo", "audio", "description", "2ch", "dolby digital"):
 			DVB_lang = DVB_lang.replace(word, "").strip()
-		for key, val in LanguageCodes.iteritems():
+		for key, val in six.iteritems(LanguageCodes):
 			if DVB_lang.find(key.lower()) == 0:
 				if len(key) == 2:
 					return key
@@ -185,7 +186,7 @@ class LanguageChoices():
 					return key
 				else:
 					DVB_lang = (LanguageCodes[key])[0]
-		for key, val in self.langdict.iteritems():
+		for key, val in six.iteritems(self.langdict):
 			if val == DVB_lang:
 				return key
 		return "nolang"

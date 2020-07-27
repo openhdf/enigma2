@@ -13,6 +13,7 @@ from Components.NimManager import nimmanager, getConfigSatlist
 from Components.config import config, ConfigSelection, getConfigListEntry
 from Components.TuneTest import Tuner
 from Tools.Transponder import getChannelNumber, channel2frequency
+import six
 
 class Satfinder(ScanSetup, ServiceScan):
 	def __init__(self, session):
@@ -177,7 +178,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		if slot.isMultiType():
 			eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 			types = slot.getMultiTypeList()
-			for FeType in types.itervalues():
+			for FeType in six.itervalues(types):
 				if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 					continue
 				elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":

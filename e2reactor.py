@@ -122,8 +122,8 @@ class PollReactor(posixbase.PosixReactorBase):
 		"""Remove all selectables, and return a list of them."""
 		if self.waker is not None:
 			self.removeReader(self.waker)
-		result = selectables.values()
-		fds = selectables.keys()
+		result = list(selectables.values())
+		fds = list(selectables.keys())
 		reads.clear()
 		writes.clear()
 		selectables.clear()

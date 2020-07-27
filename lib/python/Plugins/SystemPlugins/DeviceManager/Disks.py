@@ -155,7 +155,7 @@ class Disks:
 		fdisk = os.popen(cmd, 'r')
 		res = fdisk.read().strip()
 		fdisk.close()
-		if res in self.ptypes.keys():
+		if res in list(self.ptypes.keys()):
 			return self.ptypes[res]
 		return res
 

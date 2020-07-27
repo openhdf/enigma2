@@ -31,6 +31,7 @@ import keymapparser
 import os
 import os.path
 from __init__ import _
+import six
 
 functionfile = "/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/mqbfunctions.xml"
 config.plugins.QuickButton = ConfigSubsection()
@@ -936,7 +937,7 @@ class MultiQuickButtonMacro(Screen):
 			self["buttonblue"].setText("")
 			self.addkey = True
 			self.buttonlist =[]
-			for key in sorted(self.buttondic.iterkeys()):
+			for key in sorted(six.iterkeys(self.buttondic)):
 				self.buttonlist.append((_("Button : ") + self.buttondic[key], key))
 			self["menu"].setList(self.buttonlist)
 

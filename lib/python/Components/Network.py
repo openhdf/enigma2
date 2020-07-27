@@ -248,7 +248,7 @@ class Network:
 		return len(self.ifaces)
 
 	def getFriendlyAdapterName(self, x):
-		if x in self.friendlyNames.keys():
+		if x in list(self.friendlyNames.keys()):
 			return self.friendlyNames.get(x, x)
 		self.friendlyNames[x] = self.getFriendlyAdapterNaming(x)
 		return self.friendlyNames.get(x, x) # when we have no friendly name, use adapter name
@@ -300,7 +300,7 @@ class Network:
 		return iface
 
 	def getAdapterList(self):
-		return self.ifaces.keys()
+		return list(self.ifaces.keys())
 
 	def getAdapterAttribute(self, iface, attribute):
 		if iface in self.ifaces:

@@ -14,6 +14,7 @@ from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eDVBFrontendParametersATSC, eConsoleAppContainer, eDVBResourceManager, iDVBFrontend
 from Components.Converter.ChannelNumbers import channelnumbers
 from boxbranding import getMachineBrand
+import six
 
 def buildTerTransponder(frequency,
 		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
@@ -676,7 +677,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		if slot.isMultiType():
 			eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 			types = slot.getMultiTypeList()
-			for FeType in types.itervalues():
+			for FeType in six.itervalues(types):
 				if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 					continue
 				elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
@@ -1990,7 +1991,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 
 			#assign nims
 			tag_dvbc_default = tag_dvbt_default = tag_dvbs_default = tag_atsc_default = True
-			for item in networks.iteritems():
+			for item in six.iteritems(networks):
 				req_type = item[0]
 				for req_network in item[1]:
 					for nim in nimmanager.nim_slots:

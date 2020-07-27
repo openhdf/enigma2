@@ -122,7 +122,7 @@ class FlashOnline(Screen):
 		for catagorie in reversed(sorted(self.imagesList.keys())):
 			if catagorie in self.expanded:
 				list.append(ChoiceEntryComponent('expanded', ((str(catagorie)), "Expander")))
-				for image in reversed(sorted(self.imagesList[catagorie].keys(), key=lambda x: x.split(os.sep)[-1])):
+				for image in reversed(sorted(list(self.imagesList[catagorie].keys()), key=lambda x: x.split(os.sep)[-1])):
 					list.append(ChoiceEntryComponent('verticalline', ((str(self.imagesList[catagorie][image]['name'])), str(self.imagesList[catagorie][image]['link']))))
 			else:
 				for image in self.imagesList[catagorie].keys():

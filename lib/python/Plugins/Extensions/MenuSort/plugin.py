@@ -18,6 +18,7 @@ from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.SystemInfo import SystemInfo
 
 from xml.etree.cElementTree import parse as cet_parse
+import six
 try:
 	from xml.etree.cElementTree import ParseError
 except ImportError as ie:
@@ -26,9 +27,9 @@ from Tools.XMLTools import stringToXML
 
 try:
 	dict.iteritems
-	iteritems = lambda d: d.iteritems()
+	iteritems = lambda d: six.iteritems(d)
 except AttributeError:
-	iteritems = lambda d: d.items()
+	iteritems = lambda d: list(d.items())
 
 from operator import itemgetter
 from shutil import copyfile, Error
