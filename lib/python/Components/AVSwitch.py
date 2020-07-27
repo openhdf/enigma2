@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from .config import config, ConfigSlider, ConfigSelection, ConfigSubDict, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
-from .Components.About import about
+from Components.About import about
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 from enigma import eAVSwitch, eDVBVolumecontrol, getDesktop

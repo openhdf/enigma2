@@ -8,7 +8,7 @@ from twisted.internet import threads
 from enigma import eDBoxLCD, eTimer, eActionMap
 
 from .config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
-from .Components.SystemInfo import SystemInfo
+from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 from Screens.Screen import Screen
 import Screens.Standby

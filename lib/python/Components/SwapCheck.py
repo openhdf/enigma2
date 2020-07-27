@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from .Components.Console import Console
+from Components.Console import Console
 import os
 
 swapdevice = None

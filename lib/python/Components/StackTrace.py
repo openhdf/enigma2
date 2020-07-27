@@ -5,7 +5,7 @@ from threading import Thread, current_thread
 from sys import _current_frames
 from traceback import extract_stack
 from time import sleep
-from .Components.config import config, ConfigYesNo
+from Components.config import config, ConfigYesNo
 
 class StackTracePrinter(Thread):
 	@classmethod

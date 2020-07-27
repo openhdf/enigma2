@@ -9,13 +9,13 @@ from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformat
 
 from .GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
-from .Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend, MultiContentEntryProgress
-from .Components.config import config
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend, MultiContentEntryProgress
+from Components.config import config
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
 from Screens.LocationBox import defaultInhibitDirs
 from ServiceReference import ServiceReference
-from .Components.Renderer.Picon import getPiconName
+from Components.Renderer.Picon import getPiconName
 import NavigationInstance
 import skin
 from six.moves import range

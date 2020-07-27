@@ -2,8 +2,8 @@ from __future__ import print_function
 from __future__ import absolute_import
 import os
 from enigma import eConsoleAppContainer
-from .Components.Harddisk import harddiskmanager
-from .Components.config import config
+from Components.Harddisk import harddiskmanager
+from Components.config import config
 from shutil import rmtree
 from boxbranding import getImageDistro, getImageVersion
 

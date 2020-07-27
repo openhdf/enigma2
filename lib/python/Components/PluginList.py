@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from .MenuList import MenuList
 
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
-from .Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
 
 from enigma import eListboxPythonMultiContent, gFont, BT_SCALE, BT_KEEP_ASPECT_RATIO
 from Tools.LoadPixmap import LoadPixmap

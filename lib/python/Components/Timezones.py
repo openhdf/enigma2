@@ -7,7 +7,7 @@ import xml.etree.cElementTree
 from enigma import eTimer  # This is for AutoTimers!
 from os import environ, path, symlink, unlink, walk
 
-from .Components.config import ConfigSelection, ConfigSubsection, config
+from Components.config import ConfigSelection, ConfigSubsection, config
 from Tools.Geolocation import geolocation
 from Tools.StbHardware import setRTCoffset
 

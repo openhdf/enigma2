@@ -5,9 +5,9 @@ from .config import config
 from enigma import eDBoxLCD, eTimer, iPlayableService, pNavigation, iServiceInformation
 import NavigationInstance
 from Tools.Directories import fileExists
-from .Components.ParentalControl import parentalControl
-from .Components.ServiceEventTracker import ServiceEventTracker
-from .Components.SystemInfo import SystemInfo
+from Components.ParentalControl import parentalControl
+from Components.ServiceEventTracker import ServiceEventTracker
+from Components.SystemInfo import SystemInfo
 from boxbranding import getBoxType, getMachineBuild
 from time import time
 from . import Components.RecordingConfig

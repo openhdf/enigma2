@@ -6,8 +6,8 @@ from boxbranding import getImageVersion
 from enigma import eTimer
 
 from . import Components.Task
-from .Components.Ipkg import IpkgComponent
-from .Components.config import config
+from Components.Ipkg import IpkgComponent
+from Components.config import config
 
 
 def OnlineUpdateCheck(session=None, **kwargs):

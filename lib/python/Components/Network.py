@@ -4,8 +4,8 @@ import re
 import os
 import netifaces as ni
 from socket import *
-from .Components.Console import Console
-from .Components.PluginComponent import plugins
+from Components.Console import Console
+from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from boxbranding import getBoxType
 from six.moves import range

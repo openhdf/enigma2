@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from .Components.FanControl import fancontrol
+from Components.FanControl import fancontrol
 from six.moves import range
 
 class Sensors:

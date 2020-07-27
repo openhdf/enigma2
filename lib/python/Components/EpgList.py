@@ -6,12 +6,12 @@ from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, loadPNG, gFo
 
 from .HTMLComponent import HTMLComponent
 from .GUIComponent import GUIComponent
-from .Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
-from .Components.Renderer.Picon import getPiconName
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
+from Components.Renderer.Picon import getPiconName
 from skin import parseColor, parseFont, parameters as skinparameter, getSkinFactor
 from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
-from .Components.config import config
+from Components.config import config
 from ServiceReference import ServiceReference
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.TextBoundary import getTextBoundarySize

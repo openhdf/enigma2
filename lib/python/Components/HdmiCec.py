@@ -7,7 +7,7 @@ import datetime
 from fcntl import ioctl
 from enigma import eTimer, eHdmiCEC, eActionMap
 from .config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, NoSave
-from .Components.Console import Console
+from Components.Console import Console
 from Tools.Directories import fileExists, pathExists
 from time import time
 import Screens.Standby

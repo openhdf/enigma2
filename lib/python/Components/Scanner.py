@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
-from .Components.PluginComponent import plugins
+from Components.PluginComponent import plugins
 
 import os
 from mimetypes import guess_type, add_type
@@ -125,7 +125,7 @@ def scanDevice(mountpoint):
 		if p.with_subdirs == True and ScanPath(path=p.path) in paths_to_scan:
 			paths_to_scan.remove(ScanPath(path=p.path))
 
-	from .Components.Harddisk import harddiskmanager
+	from Components.Harddisk import harddiskmanager
 	blockdev = mountpoint.rstrip("/").rsplit('/', 1)[-1]
 	error, blacklisted, removable, is_cdrom, partitions, medium_found = harddiskmanager.getBlockDevInfo(blockdev)
 

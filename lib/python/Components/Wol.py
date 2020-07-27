@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from .config import config, ConfigSelection, ConfigNothing
-from .Components.SystemInfo import SystemInfo
+from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 from boxbranding import getBoxType
 

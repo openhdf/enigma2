@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from .MenuList import MenuList
-from .Components.ParentalControl import IMG_WHITESERVICE, IMG_WHITEBOUQUET, IMG_BLACKSERVICE, IMG_BLACKBOUQUET
+from Components.ParentalControl import IMG_WHITESERVICE, IMG_WHITEBOUQUET, IMG_BLACKSERVICE, IMG_BLACKBOUQUET
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
 
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
@@ -33,7 +33,7 @@ class ParentalControlList(MenuList):
 		self.l.setItemHeight(32)
 
 	def toggleSelectedLock(self):
-		from .Components.ParentalControl import parentalControl
+		from Components.ParentalControl import parentalControl
 		print("self.l.getCurrentSelection():", self.l.getCurrentSelection())
 		print("self.l.getCurrentSelectionIndex():", self.l.getCurrentSelectionIndex())
 		curSel = self.l.getCurrentSelection()

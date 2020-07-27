@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
 from __future__ import division
-from .Components.Task import Task, Job, job_manager, AbortedPostcondition, ReturncodePostcondition
+from Components.Task import Task, Job, job_manager, AbortedPostcondition, ReturncodePostcondition
 from Tools.Directories import fileExists, shellquote
-from .Components.MovieList import MOVIE_EXTENSIONS
+from Components.MovieList import MOVIE_EXTENSIONS
 from enigma import eTimer
 import os
 
