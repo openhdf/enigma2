@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
@@ -134,7 +135,7 @@ class VFDSkinSelector(Screen):
 		addSkin(skinfile, SCOPE_CONFIG)
 		config.skin.display_skin.value = skinfile
 		config.skin.display_skin.save()
-		print "Selected Value", config.skin.display_skin.value
+		print("Selected Value", config.skin.display_skin.value)
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply new skin.\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 

@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import eConsoleAppContainer
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
@@ -42,7 +43,7 @@ class Console(Screen):
 	def startRun(self):
 		self["text"].setText(_("Start Execution:") + "\n\n")
 		self["summary_description"].setText(_("Execution:"))
-		print "Console: executing in run", self.run, " the command:", self.cmdlist[self.run]
+		print("Console: executing in run", self.run, " the command:", self.cmdlist[self.run])
 		if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
 			self.runFinished(-1) # so we must call runFinished manual
 
@@ -86,7 +87,7 @@ class Console(Screen):
 				f.close()
 
 	def yellow(self):
-		print 'Yellow Pressed'
+		print('Yellow Pressed')
 		if self.Shown == True:
 			self.hideScreen()
 			self.Shown = False

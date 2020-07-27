@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
@@ -45,7 +46,7 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self.createSetup()
 
 	def createSetup(self):
-		print "Creating Graph Epg Setup"
+		print("Creating Graph Epg Setup")
 		self.list = [ ]
 		self.list.append(getConfigListEntry(_("Event font size (relative to skin size)"), config.misc.graph_mepg.ev_fontsize))
 		self.list.append(getConfigListEntry(_("Time scale"), config.misc.graph_mepg.prev_time_period))

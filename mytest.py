@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 import os
 from time import time
@@ -95,11 +96,11 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 
 def useSyncUsingChanged(configelement):
 	if config.misc.SyncTimeUsing.value == "0":
-		print "[Time By]: Transponder"
+		print("[Time By]: Transponder")
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
 		enigma.eEPGCache.getInstance().timeUpdated()
 	else:
-		print "[Time By]: NTP"
+		print("[Time By]: NTP")
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
 		enigma.eEPGCache.getInstance().timeUpdated()
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
@@ -107,7 +108,7 @@ config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
 def NTPserverChanged(configelement):
 	if config.misc.NTPserver.value == "pool.ntp.org":
 		return
-	print "[NTPDATE] save /etc/default/ntpdate"
+	print("[NTPDATE] save /etc/default/ntpdate")
 	f = open("/etc/default/ntpdate", "w")
 	f.write('NTPSERVERS="' + config.misc.NTPserver.value + '"')
 	f.close()
@@ -127,7 +128,7 @@ try:
 	def runReactor():
 		reactor.run(installSignalHandlers=False)
 except ImportError:
-	print "twisted not available"
+	print("twisted not available")
 	def runReactor():
 		enigma.runMainloop()
 
@@ -158,9 +159,9 @@ def dump(dir, p = ""):
 				had[str(value)] = 1
 				dump(value, p + "/" + str(name))
 			else:
-				print p + "/" + str(name) + ":" + str(dir.__class__) + "(cycle)"
+				print(p + "/" + str(name) + ":" + str(dir.__class__) + "(cycle)")
 	else:
-		print p + ":" + str(dir)
+		print(p + ":" + str(dir))
 
 # + ":" + str(dir.__class__)
 
@@ -221,7 +222,7 @@ class Session:
 			try:
 				p(reason=0, session=self)
 			except:
-				print "Plugin raised exception at WHERE_SESSIONSTART"
+				print("Plugin raised exception at WHERE_SESSIONSTART")
 				import traceback
 				traceback.print_exc()
 
@@ -341,7 +342,7 @@ class Session:
 
 	def close(self, screen, *retval):
 		if not self.in_exec:
-			print "close after exec!"
+			print("close after exec!")
 			return
 
 		# be sure that the close is for the right dialog!
@@ -415,7 +416,7 @@ class PowerKey:
 		if action == "shutdown":
 			self.shutdown()
 		elif action == "show_menu":
-			print "Show shutdown Menu"
+			print("Show shutdown Menu")
 			root = mdom.getroot()
 			for x in root.findall("menu"):
 				y = x.find("id")
@@ -543,7 +544,7 @@ def runScreenTest():
 
 	def runNextScreen(session, screensToRun, *result):
 		if result:
-			print "[mytest.py] quitMainloop #3"
+			print("[mytest.py] quitMainloop #3")
 			enigma.quitMainloop(*result)
 			return
 
@@ -585,11 +586,11 @@ def runScreenTest():
 		f.write('-E2-')
 		f.close()
 
-	print "lastshutdown=%s		(True = last shutdown was OK)" % config.usage.shutdownOK.value
-	print "NOK shutdown action=%s" % config.usage.shutdownNOK_action.value
-	print "bootup action=%s" % config.usage.boot_action.value
+	print("lastshutdown=%s		(True = last shutdown was OK)" % config.usage.shutdownOK.value)
+	print("NOK shutdown action=%s" % config.usage.shutdownNOK_action.value)
+	print("bootup action=%s" % config.usage.boot_action.value)
 	if not config.usage.shutdownOK.value and not config.usage.shutdownNOK_action.value == 'normal' or not config.usage.boot_action.value == 'normal':
-		print "last shutdown = %s" % config.usage.shutdownOK.value
+		print("last shutdown = %s" % config.usage.shutdownOK.value)
 		import Screens.PowerLost
 		Screens.PowerLost.PowerLost(session)
 
@@ -603,7 +604,7 @@ def runScreenTest():
 
 	runReactor()
 
-	print "[mytest.py] normal shutdown"
+	print("[mytest.py] normal shutdown")
 	config.misc.startCounter.save()
 	config.usage.shutdownOK.setValue(True)
 	config.usage.shutdownOK.save()
@@ -614,7 +615,7 @@ def runScreenTest():
 	nowTime = time()
 #	if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
 	if not config.misc.SyncTimeUsing.value == "0" or boxtype.startswith('gb') or getBrandOEM().startswith('ini'):
-		print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
+		print("dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime)))
 		setRTCtime(nowTime)
 
 	#recordtimer
@@ -670,7 +671,7 @@ def runScreenTest():
 	]
 	wakeupList.sort()
 
-	print "="*100
+	print("="*100)
 	if wakeupList and wakeupList[0][0] > 0:
 		startTime = wakeupList[0]
 		# wakeup time before timer begins
@@ -693,10 +694,10 @@ def runScreenTest():
 			nextPluginName = " (%s)" % nextPluginName
 		else:
 			nextPluginName = ""
-		print "[mytest.py] set next wakeup type to '%s'%s %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[startTime[1]], nextPluginName, {0:"and starts normal",1:"and starts in standby"}[setStandby])
+		print("[mytest.py] set next wakeup type to '%s'%s %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[startTime[1]], nextPluginName, {0:"and starts normal",1:"and starts in standby"}[setStandby]))
 		if forceNextRecord:
-			print "[mytest.py] set from 'vps-plugin' or just before a 'record-timer' starts, set 'record-timer' wakeup flag"
-		print "[mytest.py] set next wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime))
+			print("[mytest.py] set from 'vps-plugin' or just before a 'record-timer' starts, set 'record-timer' wakeup flag")
+		print("[mytest.py] set next wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime)))
 		#set next wakeup
 		setFPWakeuptime(wptime)
 		#set next standby only after shutdown in deep standby
@@ -706,9 +707,9 @@ def runScreenTest():
 	else:
 		config.misc.nextWakeup.value = "-1,-1,-1,0,0,-1,0"
 		setFPWakeuptime(int(nowTime) - 3600) #minus one hour -> overwrite old wakeup time
-		print "[mytest.py] no set next wakeup time"
+		print("[mytest.py] no set next wakeup time")
 	config.misc.nextWakeup.save()
-	print "="*100
+	print("="*100)
 
 	profile("stopService")
 	session.nav.stopService()
@@ -788,7 +789,7 @@ if boxtype in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', '
 			f.write('0')
 			f.close()
 	except:
-		print "Error disable enable_clock for ini5000 boxes"
+		print("Error disable enable_clock for ini5000 boxes")
 
 if boxtype in ('dm7080', 'dm820', 'dm900', 'dm920', 'gb7252'):
 	f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
@@ -839,9 +840,9 @@ try:
 
 	Components.ParentalControl.parentalControl.save()
 except:
-	print 'EXCEPTION IN PYTHON STARTUP CODE:'
-	print '-'*60
+	print('EXCEPTION IN PYTHON STARTUP CODE:')
+	print('-'*60)
 	print_exc(file=stdout)
-	print "[mytest.py] quitMainloop #4"
+	print("[mytest.py] quitMainloop #4")
 	enigma.quitMainloop(5)
-	print '-'*60
+	print('-'*60)

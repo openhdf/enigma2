@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 from time import time
 from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent, eDVBFrontend, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
@@ -219,7 +220,7 @@ def InitUsageConfig():
 			if not os.path.exists(tmpvalue):
 				os.system("mkdir -p %s" %tmpvalue)
 		except:
-			print "Failed to create recording path: %s" %tmpvalue
+			print("Failed to create recording path: %s" %tmpvalue)
 		if not config.usage.default_path.value.endswith('/'):
 			config.usage.default_path.setValue(tmpvalue + '/')
 			config.usage.default_path.save()
@@ -791,7 +792,7 @@ def InitUsageConfig():
 			try:
 				os.mkdir(config.crash.debug_path.value,0755)
 			except:
-				print "Failed to create log path: %s" %config.crash.debug_path.value
+				print("Failed to create log path: %s" %config.crash.debug_path.value)
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
 
 	crashlogheader = _("We are really sorry. Your receiver encountered " \
@@ -1679,7 +1680,7 @@ def refreshServiceList(configElement = None):
 			servicelist.setMode()
 
 def patchTuxtxtConfFile(dummyConfigElement):
-	print "[tuxtxt] patching tuxtxt2.conf"
+	print("[tuxtxt] patching tuxtxt2.conf")
 	if config.usage.tuxtxt_font_and_res.value == "X11_SD":
 		tuxtxt2 = [["UseTTF",0],
 		           ["TTFBold",1],
@@ -1754,7 +1755,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 	try:
 		os.system(command)
 	except:
-		print "Error: failed to patch %s!" % TUXTXT_CFG_FILE
-	print "[tuxtxt] patched tuxtxt2.conf"
+		print("Error: failed to patch %s!" % TUXTXT_CFG_FILE)
+	print("[tuxtxt] patched tuxtxt2.conf")
 
 	config.usage.tuxtxt_ConfFileHasBeenPatched.setValue(True)

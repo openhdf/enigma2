@@ -13,6 +13,7 @@
 #This means you also have to distribute
 #source code of your modifications.
 
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.ChannelSelection import ChannelSelection
@@ -41,10 +42,10 @@ line = "------------------------------------------------------------------"
 def autostart(reason, **kwargs):
 	if reason == 0:
 		if config.plugins.QuickButton.enable.value:
-			print line
-			print "[MultiQuickButton] enabled: ",config.plugins.QuickButton.enable.value
+			print(line)
+			print("[MultiQuickButton] enabled: ",config.plugins.QuickButton.enable.value)
 			checkMQBKeys()
-			print line
+			print(line)
 			global baseInfoBarPlugins__init__, baserunPlugin
 			if "session" in kwargs:
 				session = kwargs["session"]
@@ -60,11 +61,11 @@ def autostart(reason, **kwargs):
 				InfoBarPlugins.execQuick = execQuick
 				InfoBarPlugins.quickSelectGlobal = quickSelectGlobal
 		else:
-			print line
-			print "[MultiQuickButton] disabled"
-			print line
+			print(line)
+			print("[MultiQuickButton] disabled")
+			print(line)
 	else:
-		print "[MultiQuickButton] checking keymap.xml..."
+		print("[MultiQuickButton] checking keymap.xml...")
 		rePatchKeymap()
 
 def checkMQBKeys():
@@ -227,7 +228,7 @@ def checkQuickSel(self, path):
 		list = db.getSelection()
 	except Exception, e:
 		self.session.open(MessageBox,("XML " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
-		print "[MultiQuickbutton] ERROR: ",e
+		print("[MultiQuickbutton] ERROR: ",e)
 
 	if list <> None:
 		if len(list) == 1:

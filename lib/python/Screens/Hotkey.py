@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
@@ -660,7 +661,7 @@ class InfoBarHotkey():
 					exec "from %s import %s" % (selected[1], selected[2])
 					exec "self.session.open(%s)" %  ",".join(selected[2:])
 				except:
-					print "[Hotkey] error during executing module %s, screen %s" % (selected[1], selected[2])
+					print("[Hotkey] error during executing module %s, screen %s" % (selected[1], selected[2]))
 			elif selected[0] == "Setup":
 				from Screens.Setup import Setup
 				exec "self.session.open(Setup, \"%s\")" % selected[1]

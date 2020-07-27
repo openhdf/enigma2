@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -40,7 +41,7 @@ def read_startup(FILE):
 			data=myfile.read().replace('\n', '')
 		myfile.close()
 	except IOError:
-		print "[ERROR] failed to open file %s" % file
+		print("[ERROR] failed to open file %s" % file)
 		data = " "
 	return data
 
@@ -906,7 +907,7 @@ class ViewGitLog(Screen):
 			self["text"].setText(releasenotes)
 			summarytext = releasenotes
 		except:
-			print "there is a problem with reading log file"
+			print("there is a problem with reading log file")
 		try:
 			self['title_summary'].setText(summarytext[0] + ':')
 			self['text_summary'].setText(summarytext[1])
@@ -943,7 +944,7 @@ class TranslationInfo(Screen):
 				continue
 			(type, value) = l
 			infomap[type] = value
-		print infomap
+		print(infomap)
 
 		self["TranslationInfo"] = StaticText(info)
 
@@ -1038,7 +1039,7 @@ class MemoryInfo(Screen):
 			self['pused'].setText("%.1f %s" % (100.*(mem-free)/mem,'%'))
 
 		except Exception, e:
-			print "[About] getMemoryInfo FAIL:", e
+			print("[About] getMemoryInfo FAIL:", e)
 
 	def clearMemory(self):
 		from os import system

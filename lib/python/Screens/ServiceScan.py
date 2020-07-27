@@ -1,3 +1,4 @@
+from __future__ import print_function
 import Screens.InfoBar
 from enigma import eServiceReference, eTimer
 
@@ -49,7 +50,7 @@ class ServiceScan(Screen):
 				lcn = LCNBuildHelper()
 				lcn.buildAfterScan()
 			except Exception, e:
-				print e
+				print(e)
 
 			if self.currentInfobar.__class__.__name__ == "InfoBar":
 				selectedService = self["servicelist"].getCurrentSelection()

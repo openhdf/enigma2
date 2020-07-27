@@ -1,3 +1,4 @@
+from __future__ import print_function
 # for localized messages
 #from . import _
 
@@ -26,7 +27,7 @@ def SwapAutostart(reason, session=None, **kwargs):
 	global startswap
 	if reason == 0:
  		if config.plugins.swapmanager.swapautostart.value:
-			print "[SwapManager] autostart"
+			print("[SwapManager] autostart")
 			startswap = StartSwap()
 			startswap.start()
 
@@ -46,7 +47,7 @@ class StartSwap:
 					swap_place = parts[0]
 					file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if swap_place not in l])
 					rename('/etc/fstab.tmp','/etc/fstab')
-					print "[SwapManager] Found a swap partition:", swap_place
+					print("[SwapManager] Found a swap partition:", swap_place)
 		else:
 			devicelist = []
 			for p in harddiskmanager.getMountedPartitions():
@@ -58,14 +59,14 @@ class StartSwap:
 					for filename in glob(device[1] + '/swap*'):
 						if path.exists(filename):
 							swap_place = filename
-							print "[SwapManager] Found a swapfile on ", swap_place
+							print("[SwapManager] Found a swapfile on ", swap_place)
 
 		f = file('/proc/swaps').read()
 		if f.find(swap_place) == -1:
-			print "[SwapManager] Starting swapfile on ", swap_place
+			print("[SwapManager] Starting swapfile on ", swap_place)
 			system('swapon ' + swap_place)
 		else:
-			print "[SwapManager] Swapfile is already active on ", swap_place
+			print("[SwapManager] Swapfile is already active on ", swap_place)
 
 #######################################################################
 class SwapManager(Screen):

@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Tools.Profile import profile
 from Tools.BoundFunction import boundFunction
 
@@ -571,7 +572,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 							self.movielistAgain()
 						return
 					except Exception, e:
-						print "[InfoBar] Failed to move to .Trash folder:", e
+						print("[InfoBar] Failed to move to .Trash folder:", e)
 						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 				info = serviceHandler.info(ref)
 				name = info and info.getName(ref) or _("this recording")

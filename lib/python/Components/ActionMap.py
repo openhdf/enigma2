@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import eActionMap
 
 class ActionMap:
@@ -43,14 +44,14 @@ class ActionMap:
 		self.checkBind()
 
 	def action(self, context, action):
-		print " ".join(("action -> ", context, action))
+		print(" ".join(("action -> ", context, action)))
 		if self.actions.has_key(action):
 			res = self.actions[action]()
 			if res is not None:
 				return res
 			return 1
 		else:
-			print "unknown action %s/%s! typo in keymap?" % (context, action)
+			print("unknown action %s/%s! typo in keymap?" % (context, action))
 			return 0
 
 	def destroy(self):

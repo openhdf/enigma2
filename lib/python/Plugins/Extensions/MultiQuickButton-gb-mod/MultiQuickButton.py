@@ -7,6 +7,7 @@
 #This means you also have to distribute
 #source code of your modifications.
 
+from __future__ import print_function
 from Components.ActionMap import ActionMap
 from Components.MenuList import MenuList
 from Components.Label import Label
@@ -812,7 +813,7 @@ class MultiQuickButtonMacro(Screen):
 		try:
 			self["title"]=StaticText(self.title)
 		except:
-			print 'self["title"] was not found in skin'
+			print('self["title"] was not found in skin')
 
 		self.list = []
 		self["menu"] = List(self.list)

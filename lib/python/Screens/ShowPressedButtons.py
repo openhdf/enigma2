@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Components.Label import Label
 
@@ -11,5 +12,5 @@ class ShowPressedButtons(Screen):
 		self["ShowPressedButton"] = Label()
 
 	def setButton(self, key):
-		print key
+		print(key)
 		self["ShowPressedButton"].setText(str(key))

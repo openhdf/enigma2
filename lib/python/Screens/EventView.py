@@ -1,3 +1,4 @@
+from __future__ import print_function
 from time import localtime, mktime, time, strftime
 
 from enigma import eEPGCache, eTimer, eServiceReference, ePoint
@@ -150,7 +151,7 @@ class EventViewBase:
 		self['actions'].setEnabled(True)
 
 	def finishedAdd(self, answer):
-		print "finished add"
+		print("finished add")
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -183,7 +184,7 @@ class EventViewBase:
 		else:
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
-			print "Timeredit aborted"
+			print("Timeredit aborted")
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -259,7 +260,7 @@ class EventViewBase:
 			fail = True
 
 		if fail:
-			print 'wrong timestamp detected: source = %s ,date = %s ,time = %s' %(beginTimeString,begindate,begintime)
+			print('wrong timestamp detected: source = %s ,date = %s ,time = %s' %(beginTimeString,begindate,begintime))
 			return
 		###
 

@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigSlider, getConfigListEntry, ConfigYesNo
@@ -394,7 +395,7 @@ def menutoggle3d(session, **kwargs):
 		#Release the key
 		eam.keyPressed(TYPE_STANDARD, 139, FLAG_BREAK) #menu
 	except Exception, e:
-		print "[OSD3D Setup] toggle3d exception:\n" + str(e)
+		print("[OSD3D Setup] toggle3d exception:\n" + str(e))
 	return []
 
 #if there is a command in extensions selection...

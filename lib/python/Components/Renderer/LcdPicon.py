@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os, re, unicodedata
 from Renderer import Renderer
 from enigma import ePixmap, ePicLoad
@@ -28,11 +29,11 @@ def onMountpointAdded(mountpoint):
 		if os.path.isdir(path) and path not in searchPaths:
 			for fn in os.listdir(path):
 				if fn.endswith('.png'):
-					print "[LcdPicon] adding path:", path
+					print("[LcdPicon] adding path:", path)
 					searchPaths.append(path)
 					break
 	except Exception, ex:
-		print "[LcdPicon] Failed to investigate %s:" % mountpoint, ex
+		print("[LcdPicon] Failed to investigate %s:" % mountpoint, ex)
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
@@ -42,7 +43,7 @@ def onMountpointRemoved(mountpoint):
 		path = os.path.join(mountpoint, 'picon') + '/'
 	try:
 		searchPaths.remove(path)
-		print "[LcdPicon] removed path:", path
+		print("[LcdPicon] removed path:", path)
 	except:
 		pass
 

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 from Components.Harddisk import harddiskmanager
 from twisted.internet.protocol import Protocol, Factory
@@ -6,7 +7,7 @@ from twisted.internet.protocol import Protocol, Factory
 hotplugNotifier = []
 
 def processHotplugData(self, v):
-	print "hotplug:", v
+	print("hotplug:", v)
 	action = v.get("ACTION")
 	device = v.get("DEVPATH")
 	physdevpath = v.get("PHYSDEVPATH")
@@ -36,16 +37,16 @@ class Hotplug(Protocol):
 		pass
 
 	def connectionMade(self):
-		print "HOTPLUG connection!"
+		print("HOTPLUG connection!")
 		self.received = ""
 
 	def dataReceived(self, data):
-		print "hotplug:", data
+		print("hotplug:", data)
 		self.received += data
-		print "complete", self.received
+		print("complete", self.received)
 
 	def connectionLost(self, reason):
-		print "HOTPLUG connection lost!"
+		print("HOTPLUG connection lost!")
 		data = self.received.split('\0')[:-1]
 		v = {}
 		for x in data:
@@ -56,7 +57,7 @@ class Hotplug(Protocol):
 
 def autostart(reason, **kwargs):
 	if reason == 0:
-		print "starting hotplug handler"
+		print("starting hotplug handler")
 		from twisted.internet import reactor
 		import os
 		try:

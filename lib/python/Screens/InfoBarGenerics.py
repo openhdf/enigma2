@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Harddisk import harddiskmanager, findMountPoint
 from Components.Input import Input
@@ -149,7 +150,7 @@ def saveResumePoints():
 		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
 		f.close()
 	except Exception, ex:
-		print "[InfoBar] Failed to write resumepoints:", ex
+		print("[InfoBar] Failed to write resumepoints:", ex)
 	resumePointCacheLast = int(time())
 
 def loadResumePoints():
@@ -159,7 +160,7 @@ def loadResumePoints():
 		file.close()
 		return PickleFile
 	except Exception, ex:
-		print "[InfoBar] Failed to load resumepoints:", ex
+		print("[InfoBar] Failed to load resumepoints:", ex)
 		return {}
 
 def updateresumePointCache():
@@ -210,7 +211,7 @@ def hasActiveSubservicesForCurrentChannel(current_service):
 
 def ToggleVideo():
 	mode = open("/proc/stb/video/policy").read()[:-1]
-	print mode
+	print(mode)
 	if mode == "letterbox":
 		f = open("/proc/stb/video/policy", "w")
 		f.write("panscan")
@@ -273,12 +274,12 @@ class InfoBarUnhandledKey:
 				self.hideShowPressedButtonsTimer.start(2000, True)
 			# print "Enable debug mode for every pressed key."
 			try:
-				print 'KEY: %s %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0],datetime.datetime.now())
+				print('KEY: %s %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0],datetime.datetime.now()))
 			except:
 				try:
-					print 'KEY: %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),datetime.datetime.now()) # inverse dictionary lookup in KEYIDS
+					print('KEY: %s %s %s' % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),datetime.datetime.now())) # inverse dictionary lookup in KEYIDS
 				except:
-					print 'KEY: %s %s' % (key,datetime.datetime.now())
+					print('KEY: %s %s' % (key,datetime.datetime.now()))
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -3648,7 +3649,7 @@ class InfoBarSeek:
 
 		global seek_withjumps_muted
 		if seek_withjumps_muted and eDVBVolumecontrol.getInstance().isMuted():
-			print "STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute"
+			print("STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute")
 			seek_withjumps_muted = False
 			eDVBVolumecontrol.getInstance().volumeUnMute()
 
@@ -3856,7 +3857,7 @@ class InfoBarSeek:
 						return
 		except:
 			from sys import exc_info
-			print "[InfoBarGenerics] error in 'def doSeekRelative'", exc_info()[:2]
+			print("[InfoBarGenerics] error in 'def doSeekRelative'", exc_info()[:2])
 
 		seekable = self.getSeek()
 		if seekable is None or int(seekable.getLength()[1]) < 1:
@@ -4081,7 +4082,7 @@ class InfoBarSeek:
 
 		global seek_withjumps_muted
 		if seek_withjumps_muted and eDVBVolumecontrol.getInstance().isMuted():
-			print "STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute"
+			print("STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute")
 			seek_withjumps_muted = False
 			eDVBVolumecontrol.getInstance().volumeUnMute()
 
@@ -4282,7 +4283,7 @@ class InfoBarExtensions:
 		try:
 			self.showExtensionSelection()
 		except:
-			print "[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu"
+			print("[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu")
 			from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
 			self.session.open(QuickMenu)
 
@@ -4430,7 +4431,7 @@ class InfoBarExtensions:
 			from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
 			self.session.open(RestartNetwork)
 		except:
-			print'[INFOBARGENERICS] failed to restart network'
+			print('[INFOBARGENERICS] failed to restart network')
 
 	def showAutoTimerList(self):
 		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.pyo"):
@@ -4556,7 +4557,7 @@ class InfoBarPlugins:
 			try:
 				plugin(session = self.session)
 			except Exception, err:
-				print '[InfoBarGenerics] Error: ', err
+				print('[InfoBarGenerics] Error: ', err)
 
 from Components.Task import job_manager
 class InfoBarJobman:
@@ -4662,7 +4663,7 @@ class InfoBarPiP:
 					del self.session.pip
 					if SystemInfo["LCDMiniTV"]:
 						if config.lcd.modepip.value >= "1":
-							print '[LCDMiniTV] disable PIP'
+							print('[LCDMiniTV] disable PIP')
 							f = open("/proc/stb/lcd/mode", "w")
 							f.write(config.lcd.modeminitv.value)
 							f.close()
@@ -4683,7 +4684,7 @@ class InfoBarPiP:
 						self.session.pipshown = True
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 						if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
-							print '[LCDMiniTV] enable PIP'
+							print('[LCDMiniTV] enable PIP')
 							f = open("/proc/stb/lcd/mode", "w")
 							f.write(config.lcd.modepip.value)
 							f.close()
@@ -4702,7 +4703,7 @@ class InfoBarPiP:
 							self.session.pipshown = True
 							self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 							if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
-								print '[LCDMiniTV] enable PIP'
+								print('[LCDMiniTV] enable PIP')
 								f = open("/proc/stb/lcd/mode", "w")
 								f.write(config.lcd.modepip.value)
 								f.close()
@@ -4788,7 +4789,7 @@ class InfoBarQuickMenu:
 		try:
 			self.showExtensionSelection()
 		except:
-			print "[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu"
+			print("[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu")
 			from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
 			self.session.open(QuickMenu)
 
@@ -5025,7 +5026,7 @@ class InfoBarInstantRecord:
 		#check 5001 or 5002 iptv channels
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		iptv_service = str(ServiceReference(ref))
-		print "IPTV Service Name:", iptv_service
+		print("IPTV Service Name:", iptv_service)
 		if iptv_service.startswith('5001:') or iptv_service.startswith('5002:'):
 			self.session.open(MessageBox,_("You are watching 5001 or 5002 IPTV channel." + "\n" + "IPTV recording is working only for 4097 services!" + "\n" + "Please use 4097 IPTV streams for recording!"), MessageBox.TYPE_INFO, timeout=15)
 			return
@@ -5034,7 +5035,7 @@ class InfoBarInstantRecord:
 		if config.plugins.serviceapp.servicemp3.replace.value:
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			iptv_service = str(ServiceReference(ref))
-			print "IPTV Service Name:", iptv_service
+			print("IPTV Service Name:", iptv_service)
 			if iptv_service.startswith('4097:'):
 				self.session.open(MessageBox,_("IPTV recording is not working with activated gstplayer or exteplayer3." + "\n" + "Please use original settings within serviceapp!"), MessageBox.TYPE_INFO, timeout=15)
 				return
@@ -5093,18 +5094,18 @@ class InfoBarAudioSelection:
 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def audioSelected(self, ret=None):
-		print "[infobar::audioSelected]", ret
+		print("[infobar::audioSelected]", ret)
 
 	def audioDownmixToggle(self, popup = True):
 		if SystemInfo["CanDownmixAC3"]:
 			if config.av.downmix_ac3.value:
 				message = _("Dolby Digital downmix is now") + " " + _("disabled")
-				print '[Audio] Dolby Digital downmix is now disabled'
+				print('[Audio] Dolby Digital downmix is now disabled')
 				config.av.downmix_ac3.setValue(False)
 			else:
 				config.av.downmix_ac3.setValue(True)
 				message = _("Dolby Digital downmix is now") + " " + _("enabled")
-				print '[Audio] Dolby Digital downmix is now enabled'
+				print('[Audio] Dolby Digital downmix is now enabled')
 			if popup:
 				Notifications.AddPopup(text = message, type = MessageBox.TYPE_INFO, timeout = 5, id = "DDdownmixToggle")
 
@@ -5293,7 +5294,7 @@ class InfoBarRedButton:
 			try:
 				x(orgId)
 			except Exception, ErrMsg:
-				print ErrMsg
+				print(ErrMsg)
 				#self.onReadyForAIT.remove(x)
 
 	def updateInfomation(self):
@@ -5308,7 +5309,7 @@ class InfoBarRedButton:
 		info = service and service.info()
 		try:
 			for x in info.getInfoObject(iServiceInformation.sHBBTVUrl):
-				print x
+				print(x)
 				if x[0] in (-1, 1):
 					self.updateAIT(x[3])
 					self["HbbtvApplication"].setApplicationName(x[1])
@@ -5350,29 +5351,29 @@ class InfoBarAspectSelection:
 		self.__ExGreen_state = self.STATE_HIDDEN
 
 	def ExGreen_doAspect(self):
-		print "do self.STATE_ASPECT"
+		print("do self.STATE_ASPECT")
 		self.__ExGreen_state = self.STATE_ASPECT
 		self.aspectSelection()
 
 	def ExGreen_doResolution(self):
-		print "do self.STATE_RESOLUTION"
+		print("do self.STATE_RESOLUTION")
 		self.__ExGreen_state = self.STATE_RESOLUTION
 		self.resolutionSelection()
 
 	def ExGreen_doHide(self):
-		print "do self.STATE_HIDDEN"
+		print("do self.STATE_HIDDEN")
 		self.__ExGreen_state = self.STATE_HIDDEN
 
 	def ExGreen_toggleGreen(self, arg=""):
-		print self.__ExGreen_state
+		print(self.__ExGreen_state)
 		if self.__ExGreen_state == self.STATE_HIDDEN:
-			print "self.STATE_HIDDEN"
+			print("self.STATE_HIDDEN")
 			self.ExGreen_doAspect()
 		elif self.__ExGreen_state == self.STATE_ASPECT:
-			print "self.STATE_ASPECT"
+			print("self.STATE_ASPECT")
 			self.ExGreen_doResolution()
 		elif self.__ExGreen_state == self.STATE_RESOLUTION:
-			print "self.STATE_RESOLUTION"
+			print("self.STATE_RESOLUTION")
 			self.ExGreen_doHide()
 
 	def aspectSelection(self):
@@ -5418,7 +5419,7 @@ class InfoBarResolutionSelection:
 				fpsString = f.read()
 				f.close()
 			except:
-				print"[InfoBarResolutionSelection] Error open /proc/stb/vmpeg/0/framerate !!"
+				print("[InfoBarResolutionSelection] Error open /proc/stb/vmpeg/0/framerate !!")
 				fpsString = '50000'
 
 		xres = int(xresString, 16)
@@ -5451,7 +5452,7 @@ class InfoBarResolutionSelection:
 		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
 
 		mode = open("/proc/stb/video/videomode").read()[:-1]
-		print mode
+		print(mode)
 		for x in range(len(tlist)):
 			if tlist[x][1] == mode:
 				selection = x
@@ -5644,7 +5645,7 @@ class InfoBarCueSheetSupport:
 			if seekable is None:
 				return # Should not happen?
 			length = seekable.getLength() or (None,0)
-			print "seekable.getLength() returns:", length
+			print("seekable.getLength() returns:", length)
 			# Hmm, this implies we don't resume if the length is unknown...
 			if (last > 900000) and (not length[1]  or (last < length[1] - 900000)):
 				self.resume_point = last
@@ -5892,7 +5893,7 @@ class InfoBarTeletextPlugin:
 					#"startTeletext": (self.startTeletext, _("View teletext..."))
 				})
 		else:
-			print "no teletext plugin found!"
+			print("no teletext plugin found!")
 
 	def startTeletext(self):
 		self.teletext_plugin(session=self.session, service=self.session.nav.getCurrentService())
@@ -6260,10 +6261,10 @@ class InfoBarPowersaver:
 		if answer:
 			self.goShutdownOrStandby(int(config.usage.inactivity_timer.value))
 		else:
-			print "[InfoBarPowersaver] abort"
+			print("[InfoBarPowersaver] abort")
 
 	def setSleepTimer(self, time):
-		print "[InfoBarPowersaver] set sleeptimer", time
+		print("[InfoBarPowersaver] set sleeptimer", time)
 		if time:
 			if time < 0:
 				message = _("And will shutdown your receiver over ")
@@ -6292,7 +6293,7 @@ class InfoBarPowersaver:
 
 	def sleepTimerTimeoutCallback(self, answer):
 		if answer == "extend":
-			print "[InfoBarPowersaver] extend sleeptimer"
+			print("[InfoBarPowersaver] extend sleeptimer")
 			if self.sleepTimerSetting < 0:
 				self.setSleepTimer(-900)
 			else:
@@ -6300,19 +6301,19 @@ class InfoBarPowersaver:
 		elif answer:
 			self.goShutdownOrStandby(self.sleepTimerSetting)
 		else:
-			print "[InfoBarPowersaver] abort"
+			print("[InfoBarPowersaver] abort")
 			self.setSleepTimer(0)
 
 	def goShutdownOrStandby(self, value):
 		if value < 0:
 			if Screens.Standby.inStandby:
-				print "[InfoBarPowersaver] already in standby now shut down"
+				print("[InfoBarPowersaver] already in standby now shut down")
 				RecordTimerEntry.TryQuitMainloop()
 			elif not Screens.Standby.inTryQuitMainloop:
-				print "[InfoBarPowersaver] goto shutdown"
+				print("[InfoBarPowersaver] goto shutdown")
 				self.session.open(Screens.Standby.TryQuitMainloop, 1)
 		elif not Screens.Standby.inStandby:
-			print "[InfoBarPowersaver] goto standby"
+			print("[InfoBarPowersaver] goto standby")
 			self.session.open(Screens.Standby.Standby)
 
 class InfoBarSleepTimer:
@@ -6327,7 +6328,7 @@ class InfoBarSleepTimer:
 		return 0
 
 	def setSleepTimer(self, sleepTime, showMessage = True):
-		print "[InfoBarSleepTimer] set sleeptimer", sleepTime
+		print("[InfoBarSleepTimer] set sleeptimer", sleepTime)
 		if sleepTime:
 			m = abs(sleepTime / 60)
 			message = _("The sleep timer has been activated.") + "\n" + _("Delay:") + " " + _("%d minutes") % m
@@ -6373,15 +6374,15 @@ class InfoBarSleepTimer:
 	def goStandby(self, answer = None):
 		if config.usage.sleep_timer_action.value == "standby" or answer:
 			if not Screens.Standby.inStandby:
-				print "[InfoBarSleepTimer] goto standby"
+				print("[InfoBarSleepTimer] goto standby")
 				self.session.open(Screens.Standby.Standby)
 		elif answer is None:
 			if not Screens.Standby.inStandby:
 				if not Screens.Standby.inTryQuitMainloop:
-					print "[InfoBarSleepTimer] goto deep standby"
+					print("[InfoBarSleepTimer] goto deep standby")
 					self.session.open(Screens.Standby.TryQuitMainloop, 1)
 			else:
-				print "[InfoBarSleepTimer] goto deep standby"
+				print("[InfoBarSleepTimer] goto deep standby")
 				quitMainloop(1)
 
 #########################################################################################
@@ -6395,13 +6396,13 @@ class InfoBarOpenOnTopHelper:
 		try:
 			self.session.open(MessageBox, message, messageboxtyp, timeout=timeout)
 		except Exception, e:
-			print "[InfoBarOpenMessage] Exception:", e
+			print("[InfoBarOpenMessage] Exception:", e)
 
 	def openInfoBarMessageWithCallback(self, callback, message, messageboxtyp, timeout=-1, default=True):
 		try:
 			self.session.openWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 		except Exception, e:
-			print "[openInfoBarMessageWithCallback] Exception:", e
+			print("[openInfoBarMessageWithCallback] Exception:", e)
 
 	def openInfoBarSession(self, session, option=None):
 		try:
@@ -6410,20 +6411,20 @@ class InfoBarOpenOnTopHelper:
 			else:
 				self.session.open(session, option)
 		except Exception, e:
-			print "[openInfoBarSession] Exception:", e
+			print("[openInfoBarSession] Exception:", e)
 #########################################################################################
 
-print bcolors.OKGREEN + "~~~~ read box informations ~~~~~~~~~" + bcolors.ENDC
-print bcolors.OKBLUE + "MachineName =", getMachineName() + bcolors.ENDC
-print bcolors.OKBLUE + "MachineBrand =", getMachineBrand() + bcolors.ENDC
-print bcolors.OKBLUE + "BoxType =", getBoxType() + bcolors.ENDC
-print bcolors.OKBLUE + "getMachineBuild =", getMachineBuild() + bcolors.ENDC
-print bcolors.OKBLUE + "ChipString =", about.getChipSetString() + bcolors.ENDC
-print bcolors.OKBLUE + "OEM =", getBrandOEM() + bcolors.ENDC
-print bcolors.OKBLUE + "Driverdate =", getDriverDate() + bcolors.ENDC
-print bcolors.OKBLUE + "Imageversion =", getImageVersion() + bcolors.ENDC
-print bcolors.OKBLUE + "Imagebuild =", getImageBuild() + bcolors.ENDC
-print bcolors.OKGREEN + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + bcolors.ENDC
+print(bcolors.OKGREEN + "~~~~ read box informations ~~~~~~~~~" + bcolors.ENDC)
+print(bcolors.OKBLUE + "MachineName =", getMachineName() + bcolors.ENDC)
+print(bcolors.OKBLUE + "MachineBrand =", getMachineBrand() + bcolors.ENDC)
+print(bcolors.OKBLUE + "BoxType =", getBoxType() + bcolors.ENDC)
+print(bcolors.OKBLUE + "getMachineBuild =", getMachineBuild() + bcolors.ENDC)
+print(bcolors.OKBLUE + "ChipString =", about.getChipSetString() + bcolors.ENDC)
+print(bcolors.OKBLUE + "OEM =", getBrandOEM() + bcolors.ENDC)
+print(bcolors.OKBLUE + "Driverdate =", getDriverDate() + bcolors.ENDC)
+print(bcolors.OKBLUE + "Imageversion =", getImageVersion() + bcolors.ENDC)
+print(bcolors.OKBLUE + "Imagebuild =", getImageBuild() + bcolors.ENDC)
+print(bcolors.OKGREEN + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + bcolors.ENDC)
 
 try:
 	os.system("rm -f /etc/enigma2/boxinformations")

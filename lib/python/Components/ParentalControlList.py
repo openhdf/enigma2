@@ -1,3 +1,4 @@
+from __future__ import print_function
 from MenuList import MenuList
 from Components.ParentalControl import IMG_WHITESERVICE, IMG_WHITEBOUQUET, IMG_BLACKSERVICE, IMG_BLACKBOUQUET
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
@@ -32,8 +33,8 @@ class ParentalControlList(MenuList):
 
 	def toggleSelectedLock(self):
 		from Components.ParentalControl import parentalControl
-		print "self.l.getCurrentSelection():", self.l.getCurrentSelection()
-		print "self.l.getCurrentSelectionIndex():", self.l.getCurrentSelectionIndex()
+		print("self.l.getCurrentSelection():", self.l.getCurrentSelection())
+		print("self.l.getCurrentSelectionIndex():", self.l.getCurrentSelectionIndex())
 		curSel = self.l.getCurrentSelection()
 		if curSel[0][2]:
 			parentalControl.unProtectService(self.l.getCurrentSelection()[0][0])
