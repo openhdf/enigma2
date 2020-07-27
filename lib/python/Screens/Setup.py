@@ -14,6 +14,7 @@ from gettext import dgettext
 from boxbranding import getMachineBrand, getMachineName
 
 import xml.etree.cElementTree
+from six.moves import range
 
 def setupdom(plugin=None):
 	# read the setupmenu

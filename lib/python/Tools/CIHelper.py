@@ -6,6 +6,7 @@ from timer import TimerEntry
 import NavigationInstance
 
 import os
+from six.moves import range
 
 class CIHelper:
 

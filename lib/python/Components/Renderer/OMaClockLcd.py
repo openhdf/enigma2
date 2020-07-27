@@ -6,6 +6,7 @@ from Components.VariableText import VariableText
 from Components.config import config
 
 from boxbranding import getBoxType
+from six.moves import range
 
 LCDSIZE400 = []
 LCDSIZE720 = []

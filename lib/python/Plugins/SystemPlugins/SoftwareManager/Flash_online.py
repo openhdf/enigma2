@@ -17,6 +17,7 @@ import json, os, shutil, shutil, time, urllib.request, urllib.error, urllib.pars
 
 
 from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineMtdKernel, getMachineMtdRoot, getMachineName
+from six.moves import range
 
 feedserver = 'flash.hdfreaks.cc'
 feedurl = 'http://%s/%s/json' %(feedserver, getImageDistro())

@@ -13,6 +13,7 @@ from Components.config import config
 from ServiceReference import ServiceReference
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.TextBoundary import getTextBoundarySize
+from six.moves import range
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1

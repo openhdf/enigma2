@@ -3,6 +3,7 @@ from Components.Task import Task, Job, DiskspacePrecondition, Condition, ToolExi
 from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
 import os
+from six.moves import range
 
 class png2yuvTask(Task):
 	def __init__(self, job, inputfile, outputfile):
@@ -204,7 +205,7 @@ class MplexTaskPostcondition(Condition):
 		}[task.error]
 
 class MplexTask(Task):
-	ERROR_UNDERRUN, ERROR_UNKNOWN = range(2)
+	ERROR_UNDERRUN, ERROR_UNKNOWN = list(range(2))
 	def __init__(self, job, outputfile, inputfiles=None, demux_task=None, weighting = 500):
 		Task.__init__(self, job, "Mux ES into PS")
 		self.weighting = weighting
@@ -317,7 +318,7 @@ class BurnTaskPostcondition(Condition):
 		}[task.error]
 
 class BurnTask(Task):
-	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_FILETOOLARGE, ERROR_ISOTOOLARGE, ERROR_MINUSRWBUG, ERROR_UNKNOWN = range(10)
+	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_FILETOOLARGE, ERROR_ISOTOOLARGE, ERROR_MINUSRWBUG, ERROR_UNKNOWN = list(range(10))
 	def __init__(self, job, extra_args=None, tool="growisofs"):
 		if not extra_args: extra_args = []
 		Task.__init__(self, job, job.name)

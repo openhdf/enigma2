@@ -55,6 +55,7 @@ from time import time, localtime, strftime
 from random import randint
 
 import os
+from six.moves import range
 
 class InfoBarTimeshift:
 

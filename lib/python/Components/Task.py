@@ -4,9 +4,10 @@
 
 from __future__ import print_function
 from Tools.CList import CList
+from six.moves import range
 
 class Job(object):
-	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = range(4)
+	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = list(range(4))
 	def __init__(self, name):
 		self.tasks = [ ]
 		self.resident_tasks = [ ]

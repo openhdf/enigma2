@@ -10,6 +10,7 @@ from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from os import system as os_system, path as os_path, mkdir
 from boxbranding import getMachineBrand, getMachineName
+from six.moves import range
 
 config.misc.defaultchosen = ConfigBoolean(default = False)
 

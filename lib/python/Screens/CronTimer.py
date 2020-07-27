@@ -13,6 +13,7 @@ from Tools.Directories import fileExists
 from os import system, listdir, rename, path, mkdir
 from time import sleep
 from boxbranding import getMachineBrand, getMachineName
+from six.moves import range
 
 class CronTimers(Screen):
 	def __init__(self, session):

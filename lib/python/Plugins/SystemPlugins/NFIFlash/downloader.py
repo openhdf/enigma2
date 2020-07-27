@@ -27,6 +27,7 @@ from twisted.web import client
 from twisted.internet import reactor, defer
 from twisted.python import failure
 import re
+from six.moves import range
 
 class ImageDownloadJob(Job):
 	def __init__(self, url, filename, device=None, mountpoint="/"):
@@ -150,7 +151,7 @@ class PartitionTaskPostcondition(Condition):
 		}[task.error]
 
 class PartitionTask(Task):
-	ERROR_UNKNOWN, ERROR_BLKRRPART = range(2)
+	ERROR_UNKNOWN, ERROR_BLKRRPART = list(range(2))
 	def __init__(self, job):
 		Task.__init__(self, job, "partitioning")
 		self.postconditions.append(PartitionTaskPostcondition())
@@ -351,7 +352,7 @@ class DeviceBrowser(Screen, HelpableScreen):
 	def exit(self):
 		self.close(False)
 
-(ALLIMAGES, RELEASE, EXPERIMENTAL, STICK_WIZARD, START) = range(5)
+(ALLIMAGES, RELEASE, EXPERIMENTAL, STICK_WIZARD, START) = list(range(5))
 
 class NFIDownload(Screen):
 	skin = """

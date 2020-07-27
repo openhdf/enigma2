@@ -35,6 +35,7 @@ from Components.config import config, ConfigSubsection, ConfigNumber
 from Components.Slider import Slider
 
 from Components.SystemInfo import SystemInfo
+from six.moves import range
 
 config.plugins.quadpip = ConfigSubsection()
 config.plugins.quadpip.lastchannel = ConfigNumber(default = 1)

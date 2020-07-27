@@ -1,4 +1,5 @@
 from Tools.Profile import profile
+from six.moves import range
 
 profile("LOAD:GUISkin")
 from Components.GUISkin import GUISkin
@@ -11,7 +12,7 @@ from enigma import eRCInput, eTimer
 
 class Screen(dict, GUISkin):
 
-	NO_SUSPEND, SUSPEND_STOPS, SUSPEND_PAUSES = range(3)
+	NO_SUSPEND, SUSPEND_STOPS, SUSPEND_PAUSES = list(range(3))
 	ALLOW_SUSPEND = NO_SUSPEND
 
 	global_screen = None

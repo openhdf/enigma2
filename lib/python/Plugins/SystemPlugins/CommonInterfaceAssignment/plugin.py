@@ -19,6 +19,7 @@ from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
 from os import system, path as os_path
 from boxbranding import getMachineBrand, getMachineName, getBoxType
 import os
+from six.moves import range
 
 class CIselectMainMenu(Screen):
 	skin = """

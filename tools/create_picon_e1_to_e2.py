@@ -7,6 +7,7 @@ from __future__ import print_function
 # for the servicereference names.
 
 import os, sys
+from six.moves import range
 
 f = open(sys.argv[1]).readlines()
 

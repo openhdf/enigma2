@@ -1,4 +1,5 @@
 from Components.FanControl import fancontrol
+from six.moves import range
 
 class Sensors:
 	# (type, name, unit, directory)
@@ -23,7 +24,7 @@ class Sensors:
 	# returns a list of sensorids of type "type"
 	def getSensorsList(self, type = None):
 		if type is None:
-			return range(len(self.sensors_list))
+			return list(range(len(self.sensors_list)))
 		list = []
 		for sensorid in range(len(self.sensors_list)):
 			if self.sensors_list[sensorid][0] == type:

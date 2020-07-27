@@ -13,6 +13,7 @@ from Components import Harddisk
 from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval, ConfigSelection, ConfigSelectionNumber
 from Components.TimerSanityCheck import TimerSanityCheck
 import Components.RecordingConfig
+from six.moves import range
 Components.RecordingConfig.InitRecordingConfig()
 from Screens.MessageBox import MessageBox
 import Screens.Standby

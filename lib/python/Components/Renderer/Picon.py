@@ -7,6 +7,7 @@ from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, r
 from Components.Harddisk import harddiskmanager
 from Components.config import config, ConfigBoolean
 from ServiceReference import ServiceReference
+from six.moves import range
 
 searchPaths = []
 lastPiconPath = None

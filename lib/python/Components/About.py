@@ -2,6 +2,7 @@ from boxbranding import getBoxType, getImageVersion, getMachineBuild
 from sys import modules
 import socket, fcntl, struct, time, os
 from os import path
+from six.moves import range
 
 def getVersionString():
 	return getImageVersion()

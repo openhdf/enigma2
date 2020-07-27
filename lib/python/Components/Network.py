@@ -7,6 +7,7 @@ from Components.Console import Console
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from boxbranding import getBoxType
+from six.moves import range
 
 class Network:
 	def __init__(self):
@@ -680,7 +681,7 @@ class Network:
 
 		mask = 1<<31
 		xnet = (1<<32)-1
-		cidr_range = range(0, 32)
+		cidr_range = list(range(0, 32))
 		cidr = int(nmask)
 		if cidr not in cidr_range:
 			print('cidr invalid: %d' % cidr)

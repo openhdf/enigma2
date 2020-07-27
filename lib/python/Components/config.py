@@ -8,6 +8,7 @@ from copy import copy as copy_copy
 from os import path as os_path
 from time import localtime, strftime
 import six
+from six.moves import range
 
 # ConfigElement, the base class of all ConfigElements.
 
@@ -188,7 +189,7 @@ KEY_END = 6
 KEY_TOGGLEOW = 7
 KEY_ASCII = 8
 KEY_TIMEOUT = 9
-KEY_NUMBERS = range(12, 12+10)
+KEY_NUMBERS = list(range(12, 12+10))
 KEY_0 = 12
 KEY_9 = 12+9
 
@@ -754,7 +755,7 @@ class ConfigIP(ConfigSequence):
 			value += str(i)
 		leftPos = sum(block_strlen[:self.marked_block])+self.marked_block
 		rightPos = sum(block_strlen[:(self.marked_block+1)])+self.marked_block
-		mBlock = range(leftPos, rightPos)
+		mBlock = list(range(leftPos, rightPos))
 		return value, mBlock
 
 	def getMulti(self, selected):
@@ -872,13 +873,13 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 	def getMulti(self, selected):
 		if self.visible_width:
 			if self.allmarked:
-				mark = range(0, min(self.visible_width, len(self.text)))
+				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
 				mark = [self.marked_pos-self.offset]
 			return "mtext"[1-selected:], self.text[self.offset:self.offset+self.visible_width].encode("utf-8")+" ", mark
 		else:
 			if self.allmarked:
-				mark = range(0, len(self.text))
+				mark = list(range(0, len(self.text)))
 			else:
 				mark = [self.marked_pos]
 			return "mtext"[1-selected:], self.text.encode("utf-8")+" ", mark
@@ -1156,13 +1157,13 @@ class ConfigText(ConfigElement, NumericalTextInput):
 	def getMulti(self, selected):
 		if self.visible_width:
 			if self.allmarked:
-				mark = range(0, min(self.visible_width, len(self.text)))
+				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
 				mark = [self.marked_pos-self.offset]
 			return "mtext"[1-selected:], self.text[self.offset:self.offset+self.visible_width].encode("utf-8")+" ", mark
 		else:
 			if self.allmarked:
-				mark = range(0, len(self.text))
+				mark = list(range(0, len(self.text)))
 			else:
 				mark = [self.marked_pos]
 			return "mtext"[1-selected:], self.text.encode("utf-8")+" ", mark
@@ -1359,7 +1360,7 @@ class ConfigDirectory(ConfigText):
 
 	def getMulti(self, selected):
 		if self.text == "":
-			return "mtext"[1-selected:], _("List of storage devices"), range(0)
+			return "mtext"[1-selected:], _("List of storage devices"), list(range(0))
 		else:
 			return ConfigText.getMulti(self, selected)
 
@@ -1493,7 +1494,7 @@ class ConfigSet(ConfigElement):
 			else:
 				chstr = "("+self.description[ch]+")"
 			len_val1 = len(val1)
-			return "mtext", val1+chstr+val2, range(len_val1, len_val1 + len(chstr))
+			return "mtext", val1+chstr+val2, list(range(len_val1, len_val1 + len(chstr)))
 
 	def onDeselect(self, session):
 		self.pos = -1
@@ -1720,9 +1721,9 @@ class ConfigLocations(ConfigElement):
 					off = 0
 				else:
 					off = min(ind1+1-self.visible_width/2, len(valstr)-self.visible_width)
-				return "mtext", valstr[off:off+self.visible_width], range(ind1-off, ind2-off)
+				return "mtext", valstr[off:off+self.visible_width], list(range(ind1-off, ind2-off))
 			else:
-				return "mtext", valstr, range(ind1, ind2)
+				return "mtext", valstr, list(range(ind1, ind2))
 
 	def onDeselect(self, session):
 		self.pos = -1
@@ -2138,7 +2139,7 @@ class ConfigCECAddress(ConfigSequence):
 			value += str(i)
 		leftPos = sum(block_strlen[:self.marked_block])+self.marked_block
 		rightPos = sum(block_strlen[:(self.marked_block+1)])+self.marked_block
-		mBlock = range(leftPos, rightPos)
+		mBlock = list(range(leftPos, rightPos))
 		return value, mBlock
 
 	def getMulti(self, selected):

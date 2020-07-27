@@ -63,6 +63,7 @@ import os, cPickle
 from Screens.Menu import MainMenu, Menu, mdom
 from Screens.Setup import Setup
 import Screens.Standby
+from six.moves import range
 
 class bcolors:
     HEADER = '\033[95m'

@@ -9,6 +9,7 @@ from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType, getMachineBuild
 import Task
 import re
+from six.moves import range
 
 def readFile(filename):
 	file = open(filename)

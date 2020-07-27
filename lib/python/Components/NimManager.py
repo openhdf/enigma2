@@ -18,6 +18,7 @@ from Tools.BoundFunction import boundFunction
 from Components.About import about
 from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
 import six
+from six.moves import range
 
 maxFixedLnbPositions = 0
 
@@ -1791,7 +1792,7 @@ def InitNimManager(nimmgr, update_slots = []):
 	advanced_lnb_diction_user_choices = [("EN50494", "Unicable(EN50494)"), ("EN50607", "JESS(EN50607)")]
 
 	prio_list = [ ("-1", _("Auto")) ]
-	for prio in range(65)+range(14000, 14065)+range(19000, 19065):
+	for prio in list(range(65))+list(range(14000, 14065))+list(range(19000, 19065)):
 		description = ""
 		if prio == 0:
 			description = _(" (disabled)")

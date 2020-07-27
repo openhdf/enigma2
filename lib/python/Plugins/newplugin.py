@@ -2,6 +2,7 @@
 
 from __future__ import print_function
 import os
+from six.moves import range
 
 os.system("clear")
 internalname = raw_input("Internal plugin name (no whitespaces, plugin directory): ")

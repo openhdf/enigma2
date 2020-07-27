@@ -6,6 +6,7 @@ from datasource import genericdatasource
 from satxml import satxml
 from lamedb import lamedb
 from input import *
+from six.moves import range
 
 
 maindata = genericdatasource()

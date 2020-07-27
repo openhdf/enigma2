@@ -14,6 +14,7 @@ from Components.VariableText import VariableText
 from Components.Sensors import sensors
 from Components.config import config
 from Tools.HardwareInfo import HardwareInfo
+from six.moves import range
 
 class valioOledInfo(Renderer, VariableText):
 	def __init__(self):
@@ -52,7 +53,7 @@ class valioOledInfo(Renderer, VariableText):
 							maxtemp = tt
 				except:
 					pass
-				self.unten = str(maxtemp) + " °C"
+				self.unten = str(maxtemp) + " Â°C"
 			elif self.Zaehler == 21:
 				self.oben = "loads:"
 				loada = 0

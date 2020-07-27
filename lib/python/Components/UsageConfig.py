@@ -13,6 +13,7 @@ from SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
 from keyids import KEYIDS
 from sys import maxsize
+from six.moves import range
 
 def InitUsageConfig():
 	config.downloader = ConfigSubsection()

@@ -7,6 +7,7 @@ import os
 from enigma import eEnv, getDesktop
 from re import compile
 from stat import S_IMODE
+from six.moves import range
 
 pathExists = os.path.exists
 isMount = os.path.ismount # needed for old plugins

@@ -9,6 +9,7 @@ from os import environ, listdir, remove, rename, system
 from Components.ServiceEventTracker import ServiceEventTracker
 import gettext
 from Poll import Poll
+from six.moves import range
 
 class ExtremeInfo(Poll, Converter, object):
     TUNERINFO = 0

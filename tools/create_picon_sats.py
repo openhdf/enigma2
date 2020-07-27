@@ -8,6 +8,7 @@
 # by pieterg, 2008
 
 import os, sys
+from six.moves import range
 
 f = open(sys.argv[1]).readlines()
 

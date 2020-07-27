@@ -1,6 +1,7 @@
 from __future__ import print_function
 import sys
 import inspect
+from six.moves import range
 
 #WARNING! Dont use inspect.stack()! its very very very slow.
 def getFrames(deep=2):

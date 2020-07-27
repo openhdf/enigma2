@@ -47,6 +47,7 @@ from SoftwareTools import iSoftwareTools
 import os
 import shutil
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getImageDistro
+from six.moves import range
 
 boxtype = getBoxType()
 brandoem = getBrandOEM()

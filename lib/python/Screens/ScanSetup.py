@@ -15,6 +15,7 @@ from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVB
 from Components.Converter.ChannelNumbers import channelnumbers
 from boxbranding import getMachineBrand
 import six
+from six.moves import range
 
 def buildTerTransponder(frequency,
 		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,

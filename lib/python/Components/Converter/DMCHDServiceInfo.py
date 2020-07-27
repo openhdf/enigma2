@@ -16,6 +16,7 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from enigma import eServiceCenter, eServiceReference, iServiceInformation
 from xml.etree.cElementTree import parse
+from six.moves import range
 
 ##########################################################################
 

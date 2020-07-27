@@ -13,6 +13,7 @@ from Components.SystemInfo import SystemInfo
 from PowerTimer import AFTEREVENT, TIMERTYPE
 from time import localtime, mktime, time, strftime
 from datetime import datetime
+from six.moves import range
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):

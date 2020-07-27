@@ -6,6 +6,7 @@ import xml.dom.minidom
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
 from boxbranding import getMachineBrand, getMachineName
 import six
+from six.moves import range
 
 class ConfigColor(ConfigSequence):
 	def __init__(self, default=None):
@@ -22,7 +23,7 @@ class ConfigFilename(ConfigText):
 		cut_len = min(len(self.text), 40)
 		filename = (self.text.rstrip("/").rsplit("/", 1))[1].encode("utf-8")[:cut_len] + " "
 		if self.allmarked:
-			mark = range(0, len(filename))
+			mark = list(range(0, len(filename)))
 		else:
 			mark = [filename]
 		return "mtext"[1-selected:], filename, mark

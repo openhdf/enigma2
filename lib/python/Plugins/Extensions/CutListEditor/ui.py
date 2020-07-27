@@ -14,6 +14,7 @@ from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
 from Screens.FixedMenu import FixedMenu
 from Screens.HelpMenu import HelpableScreen
 from Components.Sources.List import List
+from six.moves import range
 
 
 def CutListEntry(where, what):

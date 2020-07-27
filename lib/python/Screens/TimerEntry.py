@@ -26,6 +26,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
 from os import statvfs
+from six.moves import range
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):

@@ -8,6 +8,7 @@ from boxbranding import getBoxType, getMachineBuild, getBrandOEM
 from SystemInfo import SystemInfo
 import os
 from time import sleep
+from six.moves import range
 
 has_scart = False
 has_scartyuv = False

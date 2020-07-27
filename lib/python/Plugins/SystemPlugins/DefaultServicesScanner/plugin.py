@@ -14,6 +14,7 @@ from Tools.Directories import resolveFilename, SCOPE_CONFIG, copyfile
 #from Screens.Screen import Screen
 from os import unlink
 from enigma import eTimer, eDVBDB
+from six.moves import range
 
 class DefaultServiceScan(ServiceScan):
 	skin = """

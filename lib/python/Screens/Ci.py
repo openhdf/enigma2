@@ -18,6 +18,7 @@ from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 from Tools.BoundFunction import boundFunction
 from boxbranding import getBrandOEM, getBoxType
 import time
+from six.moves import range
 
 if getBoxType() in ('zgemmah9combo'):
 	MAX_NUM_CI = 1

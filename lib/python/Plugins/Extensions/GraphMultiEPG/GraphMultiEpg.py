@@ -30,6 +30,7 @@ from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, RT_HA
 	RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, eSize, eRect, eTimer, getBestPlayableServiceReference, loadPNG
 from GraphMultiEpgSetup import GraphMultiEpgSetup
 from time import localtime, time, strftime
+from six.moves import range
 
 MAX_TIMELINES = 6
 

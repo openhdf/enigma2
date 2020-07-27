@@ -27,6 +27,7 @@ from threading import Event as Event
 
 import log
 import rotor_calc
+from six.moves import range
 
 class PositionerSetup(Screen):
 

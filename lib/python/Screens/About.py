@@ -26,6 +26,7 @@ import os
 import re
 from os import path, popen, system
 from re import search
+from six.moves import range
 
 def find_rootfssubdir(file):
 	startup_content = read_startup("/boot/" + file)

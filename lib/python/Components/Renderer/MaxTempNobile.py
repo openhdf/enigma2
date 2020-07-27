@@ -27,6 +27,7 @@ from Tools.HardwareInfo import HardwareInfo
 from enigma import eLabel
 from Renderer import Renderer
 from os import popen
+from six.moves import range
 
 class MaxTempNobile(Renderer, VariableText):
 	def __init__(self):
@@ -52,7 +53,7 @@ class MaxTempNobile(Renderer, VariableText):
 							maxtemp = tt
 				except:
 					pass
-				self.text = str(maxtemp) + "°C"
+				self.text = str(maxtemp) + "Â°C"
 			else:
 				loada = 0
 				try:

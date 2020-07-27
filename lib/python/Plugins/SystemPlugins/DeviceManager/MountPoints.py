@@ -1,6 +1,7 @@
 from __future__ import print_function
 import os
 import re
+from six.moves import range
 
 class MountPoints():
 	def __init__(self):

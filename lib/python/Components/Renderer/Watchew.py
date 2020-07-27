@@ -5,6 +5,7 @@ from skin import parseColor
 from enigma import eCanvas, eSize, gRGB, eRect
 from Components.VariableText import VariableText
 from Components.config import config
+from six.moves import range
 class Watchew(Renderer):
 
     def __init__(self):

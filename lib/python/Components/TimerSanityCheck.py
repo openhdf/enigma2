@@ -7,6 +7,7 @@ from timer import TimerEntry
 
 from Tools.CIHelper import cihelper
 from Components.config import config
+from six.moves import range
 class TimerSanityCheck:
 	def __init__(self, timerlist, newtimer=None):
 		self.localtimediff = 25*3600 - mktime(gmtime(25*3600))

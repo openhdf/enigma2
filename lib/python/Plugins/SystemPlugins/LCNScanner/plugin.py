@@ -15,6 +15,7 @@ import sys
 import re
 import shutil
 import xml.etree.cElementTree
+from six.moves import range
 
 class LCN():
 	service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'

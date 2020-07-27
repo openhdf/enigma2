@@ -11,6 +11,7 @@ from Components.Sensors import sensors
 from Tools.HardwareInfo import HardwareInfo
 from enigma import eLabel
 from Renderer import Renderer
+from six.moves import range
 
 class valioSystem(Renderer, VariableText):
 	def __init__(self):
@@ -52,7 +53,7 @@ class valioSystem(Renderer, VariableText):
 			except:
 				pass
 			if self.ZeigeTemp:
-				self.text = "cpu "+loada+"\ntmp "+str(maxtemp)+"°C\nfan "+str(int(fan/2))
+				self.text = "cpu "+loada+"\ntmp "+str(maxtemp)+"Â°C\nfan "+str(int(fan/2))
 			else:
 				self.text = "cpu\n"+loada
 

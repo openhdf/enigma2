@@ -15,6 +15,7 @@ from Components.Sources.List import List
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, getConfigListEntry
 import skin
+from six.moves import range
 
 def getScale():
 	return AVSwitch().getFramebufferScale()

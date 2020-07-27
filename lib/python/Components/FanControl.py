@@ -7,6 +7,7 @@ from Tools.BoundFunction import boundFunction
 import NavigationInstance
 from enigma import iRecordableService, pNavigation
 from boxbranding import getBoxType
+from six.moves import range
 
 class FanControl:
 	# ATM there's only support for one fan

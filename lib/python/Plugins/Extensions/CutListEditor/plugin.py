@@ -14,6 +14,7 @@ from enigma import getDesktop, iPlayableService
 from Screens.FixedMenu import FixedMenu
 from Screens.HelpMenu import HelpableScreen
 from Components.Sources.List import List
+from six.moves import range
 try:
 	from Plugins.Extensions.MovieCut.plugin import main as MovieCut
 except:

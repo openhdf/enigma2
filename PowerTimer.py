@@ -16,6 +16,7 @@ from Tools import Directories, Notifications
 from Tools.XMLTools import stringToXML
 import timer
 import NavigationInstance
+from six.moves import range
 
 #global variables begin
 DSsave = False

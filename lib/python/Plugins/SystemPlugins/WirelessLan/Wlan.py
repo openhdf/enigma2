@@ -7,6 +7,7 @@ from Components.Console import Console
 from Components.Network import iNetwork
 from pythonwifi.iwlibs import getNICnames, Wireless, Iwfreq, getWNICnames
 from pythonwifi import flags as wififlags
+from six.moves import range
 
 
 list = ["WPA/WPA2", "WPA2", "WPA", "WEP", "Unencrypted"]

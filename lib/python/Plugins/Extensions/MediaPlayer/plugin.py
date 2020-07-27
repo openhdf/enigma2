@@ -29,6 +29,7 @@ from Components.config import config
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_ACTIVE_SKIN
 from Tools.BoundFunction import boundFunction
 from settings import MediaPlayerSettings, Load_defaults
+from six.moves import range
 
 
 class MyPlayList(PlayList):

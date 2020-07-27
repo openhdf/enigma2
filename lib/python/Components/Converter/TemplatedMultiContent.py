@@ -1,5 +1,6 @@
 from __future__ import print_function
 from Components.Converter.StringList import StringList
+from six.moves import range
 
 class TemplatedMultiContent(StringList):
 	"""Turns a python tuple list into a multi-content list which can be used in a listbox renderer."""

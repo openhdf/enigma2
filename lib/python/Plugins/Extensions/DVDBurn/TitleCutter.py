@@ -3,6 +3,7 @@ from Plugins.Extensions.CutListEditor.ui import CutListEditor
 from Components.ServiceEventTracker import ServiceEventTracker
 from enigma import iPlayableService, iServiceInformation
 from Tools.Directories import fileExists
+from six.moves import range
 
 class TitleCutter(CutListEditor):
 	def __init__(self, session, t):
