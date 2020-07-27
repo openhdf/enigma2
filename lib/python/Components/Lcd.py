@@ -90,7 +90,7 @@ class IconCheckPoller:
 
 class LCD:
 	def __init__(self):
-		eActionMap.getInstance().bindAction('', -maxint -1, self.DimUpEvent)
+		eActionMap.getInstance().bindAction('', -maxsize -1, self.DimUpEvent)
 		self.autoDimDownLCDTimer = eTimer()
 		self.autoDimDownLCDTimer.callback.append(self.autoDimDownLCD)
 		self.autoDimUpLCDTimer = eTimer()
@@ -106,7 +106,7 @@ class LCD:
 		eActionMap.getInstance().unbindAction('', self.DimUpEvent)
 
 	def leaveStandby(self):
-		eActionMap.getInstance().bindAction('', -maxint -1, self.DimUpEvent)
+		eActionMap.getInstance().bindAction('', -maxsize -1, self.DimUpEvent)
 
 	def DimUpEvent(self, key, flag):
 		self.autoDimDownLCDTimer.stop()

@@ -479,7 +479,7 @@ class HdmiCec:
 
 			self.volumeForwardingEnabled = False
 			self.volumeForwardingDestination = 0
-			eActionMap.getInstance().bindAction('', -maxint - 1, self.keyEvent)
+			eActionMap.getInstance().bindAction('', -maxsize - 1, self.keyEvent)
 			config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding, initial_call = False)
 			config.hdmicec.enabled.addNotifier(self.configVolumeForwarding)
 

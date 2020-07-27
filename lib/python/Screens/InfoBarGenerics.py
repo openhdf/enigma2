@@ -257,7 +257,7 @@ class InfoBarDish:
 
 class InfoBarLongKeyDetection:
 	def __init__(self):
-		eActionMap.getInstance().bindAction('', -maxint -1, self.detection) #highest prio
+		eActionMap.getInstance().bindAction('', -maxsize -1, self.detection) #highest prio
 		self.LongButtonPressed = False
 
 	#this function is called on every keypress!
@@ -282,8 +282,8 @@ class InfoBarUnhandledKey:
 		self.hideShowPressedButtonsTimer.callback.append(self.pressedButtonsDialog.hide)
 		self.onLayoutFinish.append(self.pressedButtonsDialog.hide)
 
-		eActionMap.getInstance().bindAction('', -maxint -1, self.actionA) #highest prio
-		eActionMap.getInstance().bindAction('', maxint, self.actionB) #lowest prio
+		eActionMap.getInstance().bindAction('', -maxsize -1, self.actionA) #highest prio
+		eActionMap.getInstance().bindAction('', maxsize, self.actionB) #lowest prio
 		self.flags = (1<<1)
 		self.uflags = 0
 
@@ -339,7 +339,7 @@ class InfoBarScreenSaver:
 		self.screensaver.hide()
 
 	def __onExecBegin(self):
-		eActionMap.getInstance().bindAction('', -maxint - 1, self.keypressScreenSaver)
+		eActionMap.getInstance().bindAction('', -maxsize - 1, self.keypressScreenSaver)
 		self.ScreenSaverTimerStart()
 
 	def __onExecEnd(self):
@@ -5799,7 +5799,7 @@ class InfoBarNotifications:
 				self.hide()
 				dlg.show()
 				self.notificationDialog = dlg
-				eActionMap.getInstance().bindAction('', -maxint - 1, self.keypressNotification)
+				eActionMap.getInstance().bindAction('', -maxsize - 1, self.keypressNotification)
 			else:
 				dlg = self.session.open(n[1], *n[2], **n[3])
 
@@ -6455,7 +6455,7 @@ class InfoBarPowersaver:
 		self.restartInactiveTimer()
 		self.sleepTimer = eTimer()
 		self.sleepTimer.callback.append(self.sleepTimerTimeout)
-		eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
+		eActionMap.getInstance().bindAction('', -maxsize - 1, self.keypress)
 
 	def keypress(self, key, flag):
 		if flag:
