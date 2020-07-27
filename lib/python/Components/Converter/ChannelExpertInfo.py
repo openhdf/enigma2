@@ -297,7 +297,7 @@ class ChannelExpertInfo(Converter, object):
 		if transponderData is not None:
 			if isinstance(transponderData, float):
 				return ''
-			if transponderData.has_key('tuner_type'):
+			if 'tuner_type' in transponderData:
 				if transponderData['tuner_type'] == 'DVB-S':
 					orbital = float(transponderData['orbital_position'])
 					if orbital > 1800:

@@ -237,7 +237,7 @@ class AutoToggle3D(Screen):
 				ServiceName = os.path.basename(Service.getPath())
 				extension = ServiceName.split('.')
 				extension = extension[-1].lower()
-				if not EXTENSIONS.has_key(extension):
+				if extension not in EXTENSIONS:
 					ServiceName = ""
 			#or a channel...
 			else:

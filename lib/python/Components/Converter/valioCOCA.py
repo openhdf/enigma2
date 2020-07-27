@@ -55,7 +55,7 @@ class valioCOCA(Poll, Converter, object):
 						if len(c) == 3:
 							c = "0%s" % c
 						c = c[:2].upper()
-						if self.systemCaids.has_key(c) and not caidlist.has_key(c):
+						if c in self.systemCaids and c not in caidlist:
 							caidlist[c] = (self.systemCaids.get(c),0)
 					ecm_info = self.ecmfile()
 					if ecm_info:
@@ -149,7 +149,7 @@ class valioCOCA(Poll, Converter, object):
 						if len(item) > 1:
 							info[item[0].strip().lower()] = item[1].strip()
 						else:
-							if not info.has_key("caid"):
+							if "caid" not in info:
 								x = line.lower().find("caid")
 								if x != -1:
 									y = line.find(",")

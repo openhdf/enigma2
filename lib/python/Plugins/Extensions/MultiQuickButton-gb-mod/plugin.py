@@ -291,7 +291,7 @@ class MQBActionMap(ActionMap):
 				  "console","f4","web","mail","m1","m2","fav", "fav_long", "screen", "screen_long", "history", "history_long", \
 				  "subtitle","subtitle_long","filelist","filelist_long","playlist","playlist_long","timer","timer_long", \
 				  "timeshift","timeshift_long","mark","mark_long","search","search_long","slow","slow_long")
-		if (action in quickSelection and self.actions.has_key(action)):
+		if (action in quickSelection and action in self.actions):
 			res = self.actions[action](action)
 			if res is not None:
 				return res

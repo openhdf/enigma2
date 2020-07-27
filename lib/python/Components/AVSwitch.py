@@ -124,9 +124,9 @@ class AVSwitch:
 	modes["YPbPr"] = modes["HDMI"]
 	if has_scartyuv:
 		modes["Scart-YPbPr"] = modes["HDMI"]
-	if modes.has_key("YPbPr") and not has_yuv:
+	if "YPbPr" in modes and not has_yuv:
 		del modes["YPbPr"]
-	if modes.has_key("Scart") and not has_scart and not has_rca and not has_avjack:
+	if "Scart" in modes and not has_scart and not has_rca and not has_avjack:
 			del modes["Scart"]
 
 	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):

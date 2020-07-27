@@ -653,7 +653,7 @@ class PluginDownloadBrowser(Screen):
 			elif x[0][0:13] == 'gstreamer1.0-':
 				split[0] = "gstreamer"
 
-			if not self.plugins.has_key(split[0]):
+			if split[0] not in self.plugins:
 				self.plugins[split[0]] = []
 
 			if split[0] == "kernel modules":
