@@ -54,7 +54,7 @@ class DMCHDMaxTemp(Renderer, VariableText):
 							maxtemp = tt
 				except:
 					pass
-                                self.text = str(maxtemp) + "°C"
+				self.text = str(maxtemp) + "°C"
 			else:
 				loada = 0
 				try:
