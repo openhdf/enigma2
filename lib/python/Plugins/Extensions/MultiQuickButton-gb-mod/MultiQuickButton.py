@@ -684,7 +684,7 @@ class QuickButton(Screen):
 	def delete(self):
 		self.changed = True
 		name = self["list"].l.getCurrentSelection()[0][1]
-		if name and name <> "--":
+		if name and name != "--":
 			self.XML_db.rmEntry(name)
 
 			list = []

@@ -57,7 +57,7 @@ class QuickButtonXML(object):
 
 	def getSelection(self):
 		selection = []
-		if self.list <> []:
+		if self.list != []:
 			for i in self.list:
 				if i[1] == "1":
 					selection.append((i))
@@ -65,7 +65,7 @@ class QuickButtonXML(object):
 
 	def setSelection(self, name, sel):
 		selection = []
-		if self.list <> []:
+		if self.list != []:
 			for i in self.list:
 				if i[0] == name:
 					selection.append((i[0], sel, i[2], i[3], i[4], i[5]))
@@ -76,7 +76,7 @@ class QuickButtonXML(object):
 
 	def rmEntry(self, name):
 		selection = []
-		if self.list <> []:
+		if self.list != []:
 			for i in self.list:
 				if i[0] == name:
 					pass
@@ -86,12 +86,12 @@ class QuickButtonXML(object):
 		return self.list
 
 	def addPluginEntry(self, name):
-		if name <> None:
+		if name != None:
 			code = "\nfor plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):\n	if plugin.name == _(\""+ name + "\"):\n		runPlugin(self, plugin)\n		break\n"
 		else:
 			return ""
 		idx = 0
-		if self.list <> []:
+		if self.list != []:
 			for i in self.list:
 				if i[2] == "Menu":
 					idx += 1
@@ -113,7 +113,7 @@ class QuickButtonXML(object):
 		return self.list
 
 	def addFunctionEntry(self, name):
-		if name <> None:
+		if name != None:
 			functionname = name
 			mqbfunctionfile = functionfile
 			self.mqbfunctions = xml.dom.minidom.parse(mqbfunctionfile)
@@ -134,7 +134,7 @@ class QuickButtonXML(object):
 		else:
 			return ""
 		idx = 0
-		if self.list <> []:
+		if self.list != []:
 			for i in self.list:
 				if i[2] == "Menu":
 					idx += 1
@@ -156,27 +156,27 @@ class QuickButtonXML(object):
 		return self.list
 
 	def mkContent(self, n):
-		if n <> None:
+		if n != None:
 			xml = "\t\t<content>\n"
 			xml += "\t\t\t<name>" + stringToXML(n[0]) + "</name>\n"
-			if n[1] <> "":
+			if n[1] != "":
 				xml += "\t\t\t<sel>1</sel>\n"
-			if n[3] <> "":
+			if n[3] != "":
 				xml += "\t\t\t<module>" + n[3] + "</module>\n"
-			if n[4] <> "":
+			if n[4] != "":
 				xml += "\t\t\t<screen><![CDATA[" + n[4] + "]]></screen>\n"
-			if n[5] <> "":
+			if n[5] != "":
 				xml += "\t\t\t<code><![CDATA[" + n[5] + "]]></code>\n"
 			xml += "\t\t</content>\n"
 		return xml
 
 	def saveMenu(self,path):
 		xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n"
-		if self.list <> None:
+		if self.list != None:
 			category = "Menu"
 			xml += "<xml>\n\t<" + category + ">\n"
 			for n in self.list:
-				if n[0] <> "--":
+				if n[0] != "--":
 					if category == n[2]:
 						xml += self.mkContent(n)
 					else:

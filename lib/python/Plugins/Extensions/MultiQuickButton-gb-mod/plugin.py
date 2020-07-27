@@ -230,7 +230,7 @@ def checkQuickSel(self, path):
 		self.session.open(MessageBox,("XML " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
 		print("[MultiQuickbutton] ERROR: ",e)
 
-	if list <> None:
+	if list != None:
 		if len(list) == 1:
 			self.execQuick(list[0])
 		elif len(list) > 1:
@@ -256,12 +256,12 @@ def getQuickList(self, list):
 	return quickList
 
 def execQuick(self,entry):
-	if entry <> None:
-		if entry[3] <> "":
+	if entry != None:
+		if entry[3] != "":
 			try:
 				module_import = "from " + entry[3] + " import *"
 				exec(module_import)
-				if entry[4] <> "":
+				if entry[4] != "":
 					try:
 						screen = "self.session.open(" + entry[4] + ")"
 						exec(screen)
@@ -269,7 +269,7 @@ def execQuick(self,entry):
 						self.session.open(MessageBox,("Screen " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
 			except Exception as e:
 				self.session.open(MessageBox,("Module " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
-		if entry[5] <> "":
+		if entry[5] != "":
 			try:
 				exec(entry[5])
 			except Exception as e:
