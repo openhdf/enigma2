@@ -1,3 +1,4 @@
+from future.utils import raise_
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigText, ConfigYesNo, ConfigSubList, ConfigInteger
 from Components.ServiceList import refreshServiceList
 #from Screens.ChannelSelection import service_types_tv
@@ -259,7 +260,7 @@ class ParentalControl:
 			if not self.filesOpened:
 				self.open()
 				return getattr(self, name)
-		raise AttributeError, name
+		raise_(AttributeError, name)
 
 	def hideBlacklist(self):
 		if self.blacklist:

@@ -239,7 +239,7 @@ load_modular_files()
 
 try:
 	if not addSkin(config.skin.primary_skin.value):
-		raise SkinError, "primary skin not found"
+		raise SkinError("primary skin not found")
 except Exception as err:
 	print("SKIN ERROR:", err)
 	skin = DEFAULT_SKIN

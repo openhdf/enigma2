@@ -1,3 +1,4 @@
+from future.utils import raise_
 import xml.sax
 from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKIN, copyfile, copytree
 from Components.NimManager import nimmanager
@@ -26,7 +27,7 @@ class InfoHandler(xml.sax.ContentHandler):
 		self.data = ""
 
 	def printError(self, error):
-		raise InfoHandlerParseError, error
+		raise_(InfoHandlerParseError, error)
 
 	def startElement(self, name, attrs):
 		self.elements.append(name)
