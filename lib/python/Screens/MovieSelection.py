@@ -6,7 +6,7 @@ import six.moves.cPickle as pickle
 
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput, pNavigation
 
-from .Screen import Screen
+from Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
 from Components.MenuList import MenuList

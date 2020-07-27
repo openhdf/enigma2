@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
-from .Screen import Screen
+from Screen import Screen
 from .ServiceScan import ServiceScan
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable, integer_limits, ConfigFloat
 

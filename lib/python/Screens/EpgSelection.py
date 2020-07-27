@@ -3,7 +3,7 @@ from time import localtime, time, strftime, mktime
 
 from enigma import eServiceReference, eTimer, eServiceCenter, ePoint
 
-from .Screen import Screen
+from Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Components.About import about
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap

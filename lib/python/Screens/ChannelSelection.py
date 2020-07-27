@@ -6,7 +6,7 @@ from boxbranding import getMachineBuild, getMachineBrand, getMachineName
 import os
 from Tools.Profile import profile
 
-from .Screen import Screen
+from Screen import Screen
 import Screens.InfoBar
 import Components.ParentalControl
 from Components.Button import Button

@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from .Screen import Screen
+from Screen import Screen
 from Components.config import ConfigClock, ConfigDateTime, getConfigListEntry
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
