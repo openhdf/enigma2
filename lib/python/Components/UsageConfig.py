@@ -12,7 +12,7 @@ from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
 from keyids import KEYIDS
-from sys import maxint
+from sys import maxsize
 
 def InitUsageConfig():
 	config.downloader = ConfigSubsection()

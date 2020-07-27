@@ -10,7 +10,7 @@ from Tools.Directories import fileExists, pathExists
 from time import time
 import Screens.Standby
 
-from sys import maxint
+from sys import maxsize
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = False) # query from this value in hdmi_cec.cpp

@@ -54,7 +54,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
 
 from time import time, localtime, strftime
 from bisect import insort
-from sys import maxint
+from sys import maxsize
 from keyids import KEYIDS
 import itertools, datetime
 import os, cPickle

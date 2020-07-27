@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from boxbranding import getBoxType
-from sys import maxint
+from sys import maxsize
 
 from twisted.internet import threads
 from enigma import eDBoxLCD, eTimer, eActionMap
