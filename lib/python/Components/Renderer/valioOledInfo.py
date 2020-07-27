@@ -9,7 +9,7 @@
 from __future__ import absolute_import
 from __future__ import division
 from enigma import eLabel
-from .Renderer import Renderer
+from Renderer import Renderer
 from os import popen
 from time import localtime, strftime
 from Components.VariableText import VariableText

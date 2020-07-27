@@ -12,7 +12,7 @@ from Components.VariableText import VariableText
 from Components.Sensors import sensors
 from Tools.HardwareInfo import HardwareInfo
 from enigma import eLabel
-from .Renderer import Renderer
+from Renderer import Renderer
 from six.moves import range
 
 class valioSystem(Renderer, VariableText):
