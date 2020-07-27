@@ -286,7 +286,7 @@ class UpdatePluginMenu(Screen):
 	def checkFeedStatus(self):
 	##check hdfreaks feed status
 		try:
-			from urllib import urlopen
+			from urllib.request import urlopen
 			hdfonlinestatus = urlopen("http://status.hdfreaks.cc/index.php")
 			hdfstatus = hdfonlinestatus.read()
 			if 'rot.png' in hdfstatus:
@@ -1695,7 +1695,7 @@ class UpdatePlugin(Screen):
 			return
 
 	def checkTraficLight(self):
-		from urllib import urlopen
+		from urllib.request import urlopen
 		import socket
 		currentTimeoutDefault = socket.getdefaulttimeout()
 		socket.setdefaulttimeout(3)

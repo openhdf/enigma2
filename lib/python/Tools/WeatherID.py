@@ -1,9 +1,6 @@
-#-*- coding: UTF-8 -*-
-
-# source: https://code.google.com/p/python-weather-api/
-
-from urllib2 import urlopen, URLError
-from urllib import urlencode
+from urllib.request import urlopen
+from urllib.error import URLError
+from urllib.parse import urlencode
 import sys
 import re
 import json

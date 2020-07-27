@@ -13,8 +13,9 @@ from twisted.web import client
 from twisted.internet import reactor
 
 from urlparse import parse_qs
-from urllib import quote, unquote_plus, unquote
-from urllib2 import Request, URLError, urlopen as urlopen2
+from urllib.parse import quote, unquote_plus, unquote
+from urllib.request import Request, urlopen as urlopen2
+from urllib.error import URLError
 from httplib import HTTPConnection, CannotSendRequest, BadStatusLine, HTTPException
 
 from Components.Button import Button

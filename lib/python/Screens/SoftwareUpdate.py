@@ -17,7 +17,7 @@ from boxbranding import getImageVersion, getImageBuild, getMachineBrand, getMach
 
 from os import rename, path, remove
 from gettext import dgettext
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 ocram = ''
 
@@ -70,7 +70,7 @@ class SoftwareUpdateChanges(Screen):
 		global ocram
 		try:
 			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersion() + '/' + getBoxType() + '/'  + self.logtype + '-git.log'
-			sourcefile, headers = urllib.urlretrieve(sourcefile)
+			sourcefile, headers = urllib.request.urlretrieve(sourcefile)
 			rename(sourcefile, '/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
 			releasenotes = fd.read()
@@ -244,7 +244,7 @@ class UpdatePlugin(Screen):
 				self.updating = False
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
-				from urllib import urlopen
+				from urllib.request import urlopen
 				import socket
 				currentTimeoutDefault = socket.getdefaulttimeout()
 				socket.setdefaulttimeout(3)
