@@ -1,19 +1,16 @@
-from __future__ import absolute_import
 from boxbranding import getMachineBrand, getMachineName
 import time
 import sys
+import six
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Console import Console
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from Components.PluginComponent import plugins
 from Components.ActionMap import ActionMap
 from Tools.Directories import fileExists
-from Plugins.Plugin import PluginDescriptor
-from boxbranding import getMachineBrand, getMachineName
-import time
+
 
 class SABnzbdSetupScreen(Screen):
 	skin = """
@@ -60,6 +57,7 @@ class SABnzbdSetupScreen(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
 
 	def InstalldataAvail(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if not str:
 			restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Your %s %s will be restarted after the installation of service.\n\nDo you want to install now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
@@ -87,6 +85,7 @@ class SABnzbdSetupScreen(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.UninstalldataAvail)
 
 	def UninstalldataAvail(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if str:
 			restartbox = self.session.openWithCallback(self.RemovePackage, MessageBox, _('Your %s %s will be restarted after the removal of service\nDo you want to remove now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
