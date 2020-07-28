@@ -16,6 +16,7 @@ from Tools.HardwareInfo import HardwareInfo
 from keyids import KEYIDS
 from sys import maxsize
 from six.moves import range
+from six.moves import map
 
 def InitUsageConfig():
 	config.downloader = ConfigSubsection()
@@ -1653,7 +1654,7 @@ def updateChoices(sel, choices):
 				if x < val:
 					defval = str(x)
 					break
-		sel.setChoices(map(str, choices), defval)
+		sel.setChoices(list(map(str, choices)), defval)
 
 def preferredPath(path):
 	if config.usage.setup_level.index < 2 or path == "<default>":

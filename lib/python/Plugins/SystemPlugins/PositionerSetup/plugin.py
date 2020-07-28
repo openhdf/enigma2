@@ -30,6 +30,7 @@ from threading import Event as Event
 from . import log
 from . import rotor_calc
 from six.moves import range
+from six.moves import map
 
 class PositionerSetup(Screen):
 
@@ -79,7 +80,7 @@ class PositionerSetup(Screen):
 			self.advanced = True
 			self.advancedconfig = config.Nims[self.feid].dvbs.advanced
 			self.advancedsats = self.advancedconfig.sat
-			self.availablesats = map(lambda x: x[0], nimmanager.getRotorSatListForNim(self.feid))
+			self.availablesats = [x[0] for x in nimmanager.getRotorSatListForNim(self.feid)]
 		else:
 			self.advanced = False
 
@@ -745,7 +746,7 @@ class PositionerSetup(Screen):
 
 		def optimise(readings):
 			xi = list(readings.keys())
-			yi = map(lambda x_y : x_y[0], list(readings.values()))
+			yi = [x_y[0] for x_y in list(readings.values())]
 			x0 = sum(map(mul, xi, yi)) // sum(yi)
 			xm = xi[yi.index(max(yi))]
 			return x0, xm
@@ -880,7 +881,7 @@ class PositionerSetup(Screen):
 
 		def optimise(readings):
 			xi = list(readings.keys())
-			yi = map(lambda x_y1 : x_y1[0], list(readings.values()))
+			yi = [x_y1[0] for x_y1 in list(readings.values())]
 			x0 = int(round(sum(map(mul, xi, yi)) // sum(yi)))
 			xm = xi[yi.index(max(yi))]
 			return x0, xm

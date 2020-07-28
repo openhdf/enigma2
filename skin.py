@@ -2,6 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
 from Tools.Profile import profile
+from six.moves import map
 profile("LOAD:ElementTree")
 import xml.etree.cElementTree
 import os
@@ -853,7 +854,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					if isinstance(font, list) and len(font) == 2:
 						parameters[name] = (str(font[0]), int(font[1]))
 				else:
-					parameters[name] = map(int, value.split(","))
+					parameters[name] = list(map(int, value.split(",")))
 			except Exception as ex:
 				print("[SKIN] bad parameter", ex)
 

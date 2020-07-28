@@ -7,6 +7,7 @@ from keyids import KEYIDS
 
 # these are only informational (for help)...
 from Tools.KeyBindings import addKeyBinding
+from six.moves import map
 
 class KeymapError(Exception):
 	def __init__(self, message):
