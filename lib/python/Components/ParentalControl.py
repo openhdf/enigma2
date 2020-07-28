@@ -262,7 +262,7 @@ class ParentalControl:
 			if not self.filesOpened:
 				self.open()
 				return getattr(self, name)
-		raisei AttributeError(name)
+		raise AttributeError(name)
 
 	def hideBlacklist(self):
 		if self.blacklist:
