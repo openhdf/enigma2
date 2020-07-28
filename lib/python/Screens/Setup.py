@@ -22,10 +22,10 @@ def setupdom(plugin=None):
 	# read the setupmenu
 	if plugin:
 		# first we search in the current path
-		setupfile = file(resolveFilename(SCOPE_CURRENT_PLUGIN, plugin + '/setup.xml'), 'r')
+		setupfile = open(resolveFilename(SCOPE_CURRENT_PLUGIN, plugin + '/setup.xml'), 'r')
 	else:
 		# if not found in the current path, we use the global datadir-path
-		setupfile = file(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
+		setupfile = open(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
 	setupfiledom = xml.etree.cElementTree.parse(setupfile)
 	setupfile.close()
 	return setupfiledom

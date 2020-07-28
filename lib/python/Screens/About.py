@@ -666,7 +666,7 @@ class SystemMemoryInfo(Screen):
 				"down": self["AboutScrollLabel"].pageDown,
 			})
 
-		out_lines = file("/proc/meminfo").readlines()
+		out_lines = open("/proc/meminfo").readlines()
 		self.AboutText = _("RAM") + '\n\n'
 		RamTotal = "-"
 		RamFree = "-"
@@ -845,7 +845,7 @@ class SystemNetworkInfo(Screen):
 		self.AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + "\n"
 		self.AboutText += _("Bytes sent:") + "\t\t" + tx_bytes + "\n"
 
-		hostname = file('/proc/sys/kernel/hostname').read()
+		hostname = open('/proc/sys/kernel/hostname').read()
 		self.AboutText += "\n" + _("Hostname:") + "\t\t" + hostname + "\n"
 		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
 

@@ -536,7 +536,7 @@ class LogManagerViewLog(Screen):
 		fontwidth = getTextBoundarySize(self.instance, font, self["list"].instance.size(), _(" ")).width()
 		listwidth = int(self["list"].instance.size().width() // fontwidth) - 2
 		if path.exists(self.logfile):
-			for line in file(self.logfile ).readlines():
+			for line in open(self.logfile ).readlines():
 				line = line.replace('\t', ' '*9)
 				if len(line) > listwidth:
 					pos = 0
@@ -631,7 +631,7 @@ class LogManagerFb(Screen):
 		self.setTitle(self.SOURCELIST.getCurrentDirectory())
 
 	def onFileAction(self):
-		config.logmanager.additionalinfo.setValue(file(self.SOURCELIST.getCurrentDirectory()+self.SOURCELIST.getFilename()).read())
+		config.logmanager.additionalinfo.setValue(open(self.SOURCELIST.getCurrentDirectory()+self.SOURCELIST.getFilename()).read())
 		if self["list"].getCurrentDirectory():
 			config.logmanager.path.setValue(self["list"].getCurrentDirectory())
 			config.logmanager.path.save()
