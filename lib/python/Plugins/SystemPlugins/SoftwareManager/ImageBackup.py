@@ -18,8 +18,12 @@ from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from time import time, strftime, localtime
 from os import listdir, makedirs, path, statvfs, system, walk
-import commands
+if sys.version_info[0] >= 3:
+	import subprocess
+else:
+	import commands
 import datetime
+import sys
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
 VERSION = _("Version %s %s.1") %(getImageDistro().upper(), getImageVersion())
@@ -779,8 +783,14 @@ class ImageBackup(Screen):
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
 		AboutText += _("[Enigma2 Settings]\n")
-		AboutText += commands.getoutput("cat /etc/enigma2/settings")
+		if sys.version_info[0] >= 3:
+			AboutText += subprocess.getoutput("cat /etc/enigma2/settings")
+		else:
+			AboutText += commands.getoutput("cat /etc/enigma2/settings")
 		AboutText += _("\n[Installed Plugins]\n")
-		AboutText += commands.getoutput("opkg list_installed | grep enigma2-plugin-")
+		if sys.version_info[0] >= 3:
+			AboutText += subprocess.getoutput("opkg list_installed | grep enigma2-plugin-")
+		else:
+			AboutText += commands.getoutput("opkg list_installed | grep enigma2-plugin-")
 
 		return AboutText
