@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import division
 from boxbranding import getImageVersion, getMachineBrand, getMachineName
 from os import system, access, R_OK
 import re
@@ -26,6 +24,7 @@ from Components.Task import Task, Job, job_manager, Condition
 from Tools.Directories import isMount, resolveFilename, SCOPE_HDD, SCOPE_MEDIA
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Downloader import downloadWithProgress
+
 
 class ImageDownloadJob(Job):
 	def __init__(self, url, filename, device=None, mountpoint="/"):
@@ -101,8 +100,8 @@ class ImageDownloadTask(Task):
 	def download_progress(self, recvbytes, totalbytes):
 		#print "[update_progress] recvbytes=%d, totalbytes=%d" % (recvbytes, totalbytes)
 		if ( recvbytes - self.last_recvbytes  ) > 10000: # anti-flicker
-			self.progress = int(100*(float(recvbytes)//float(totalbytes)))
-			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (recvbytes//1024, totalbytes//1024)
+			self.progress = int(100*(float(recvbytes)/float(totalbytes)))
+			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (recvbytes/1024, totalbytes/1024)
 			self.last_recvbytes = recvbytes
 
 	def download_failed(self, failure_instance=None, error_message=""):
