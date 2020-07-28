@@ -19,6 +19,7 @@ from Tools.XMLTools import stringToXML
 import timer
 import NavigationInstance
 from six.moves import range
+import six
 
 #global variables begin
 DSsave = False

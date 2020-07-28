@@ -7,7 +7,6 @@ from Components.config import config, configfile
 from boxbranding import getBoxType
 from enigma import eConsoleAppContainer, eDVBDB
 import os
-import six
 
 class InfoHandlerParseError(Exception):
 	def __init__(self, value):
@@ -339,7 +338,6 @@ class PackageInfoHandler:
 			self.installSkin(skin["directory"], skin["name"])
 		elif currentAttribute == "config":
 			if self.currentIndex == 0:
-				from Components.config import configfile
 				configfile.save()
 			config = attributes["config"][self.currentIndex]
 			self.mergeConfig(config["directory"], config["name"])
