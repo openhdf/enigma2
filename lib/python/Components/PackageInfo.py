@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from future.utils import raise_
 import xml.sax
 from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKIN, copyfile, copytree
 from Components.NimManager import nimmanager
@@ -8,6 +7,7 @@ from Components.config import config, configfile
 from boxbranding import getBoxType
 from enigma import eConsoleAppContainer, eDVBDB
 import os
+import six
 
 class InfoHandlerParseError(Exception):
 	def __init__(self, value):
@@ -28,7 +28,7 @@ class InfoHandler(xml.sax.ContentHandler):
 		self.data = ""
 
 	def printError(self, error):
-		raise_(InfoHandlerParseError, error)
+		raise InfoHandlerParseError(error)
 
 	def startElement(self, name, attrs):
 		self.elements.append(name)

@@ -1,7 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
-from future.utils import raise_
 import os
 import time
 from Tools.CList import CList
@@ -12,6 +11,7 @@ from boxbranding import getBoxType, getMachineBuild
 from . import Task
 import re
 from six.moves import range
+import six
 
 def readFile(filename):
 	file = open(filename)
@@ -467,7 +467,7 @@ class Harddisk:
 
 	def createExt4ConversionJob(self):
 		if not isFileSystemSupported('ext4'):
-			raise_(Exception, _("You system does not support ext4"))
+			raise Exception("You system does not support ext4")
 		job = Task.Job(_("Converting ext3 to ext4..."))
 		if not os.path.exists('/sbin/tune2fs'):
 			addInstallTask(job, 'e2fsprogs-tune2fs')
@@ -594,7 +594,7 @@ class Partition:
 		if self.mountpoint:
 			return os.statvfs(self.mountpoint)
 		else:
-			raise_(OSError, "Device %s is not mounted" % self.device)
+			raise OSError("Device %s is not mounted" % self.device)
 
 	def free(self):
 		try:
