@@ -96,7 +96,7 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 			kwargs["headers"].update(AuthHeaders)
 		else:
 			kwargs["headers"] = AuthHeaders
-
+	url = six.ensure_binary(url)
 	factory = HTTPClientFactory(url, *args, **kwargs)
 	reactor.connectTCP(host, port, factory)
 
@@ -748,6 +748,7 @@ class CCcamInfoMain(Screen):
 
 	def showFreeMemory(self, result, retval, extra_args):
 		if retval == 0:
+			result = six.ensure_str(result)
 			if result.__contains__("Total:"):
 				idx = result.index("Total:")
 				result = result[idx+6:]

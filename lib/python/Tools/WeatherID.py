@@ -6,12 +6,13 @@ import sys
 import re
 import json
 from six.moves import range
+import six
 
 WOEID_SEARCH_URL     = 'http://query.yahooapis.com/v1/public/yql'
 WOEID_QUERY_STRING   = 'select line1, line2, line3, line4, woeid from geo.placefinder where text="%s"'
 
 def get_woeid_from_yahoo(search_string):
-	encoded_string = search_string.encode('utf-8')
+	encoded_string = six.ensure_str(search_string)
 	params = {'q': WOEID_QUERY_STRING % encoded_string, 'format': 'json'}
 	url = '?'.join((WOEID_SEARCH_URL, urlencode(params)))
 	try:

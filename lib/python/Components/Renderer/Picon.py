@@ -9,6 +9,7 @@ from Components.Harddisk import harddiskmanager
 from Components.config import config, ConfigBoolean
 from ServiceReference import ServiceReference
 from six.moves import range
+import six, sys
 
 searchPaths = []
 lastPiconPath = None
@@ -83,7 +84,10 @@ def getPiconName(serviceName):
 	pngname = findPicon(sname)
 	if not pngname: # picon by channel name
 		name = ServiceReference(serviceName).getServiceName()
-		name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
+		if sys.version_info[0] >= 3:
+			name = six.ensure_str(unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore'))
+		else:
+			name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
 		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 		if len(name) > 0:
 			pngname = findPicon(name)

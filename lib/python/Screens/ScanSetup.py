@@ -204,6 +204,7 @@ class CableTransponderSearchSupport:
 		self.cable_search_session.close(True)
 
 	def getCableTransponderData(self, str):
+		str = six.ensure_str(str)
 		#prepend any remaining data from the previous call
 		str = self.remainingdata + str
 		#split in lines
@@ -420,6 +421,7 @@ class TerrestrialTransponderSearchSupport:
 			self.terrestrialTransponderSearch(freq, bandWidth)
 
 	def getTerrestrialTransponderData(self, str):
+		str = six.ensure_str(str)
 		self.terrestrial_search_data += str
 
 	def setTerrestrialTransponderData(self):

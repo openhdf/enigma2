@@ -39,10 +39,11 @@ class inputDevices:
 
 		for evdev in devices:
 			try:
-				buffer = "\0"*512
+				_buffer = "\0"*512
 				self.fd = os_open("/dev/input/" + evdev, O_RDWR | O_NONBLOCK)
-				self.name = ioctl(self.fd, EVIOCGNAME(256), buffer)
-				self.name = self.name[:self.name.find("\0")]
+				self.name = ioctl(self.fd, EVIOCGNAME(256), _buffer)
+				self.name = self.name[:self.name.find(b"\0")]
+				self.name = six.ensure_str(self.name)
 				if str(self.name).find("Keyboard") != -1:
 					self.name = 'keyboard'
 				os_close(self.fd)

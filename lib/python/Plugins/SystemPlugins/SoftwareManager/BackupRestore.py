@@ -21,6 +21,7 @@ from os import listdir, makedirs, path, popen, remove, rename, stat
 from datetime import date
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro
 from . import ShellCompatibleFunctions
+import six
 
 boxtype = getBoxType()
 distro = getImageDistro()
@@ -478,6 +479,7 @@ class installedPlugins(Screen):
 		self.container.execute("opkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base'")
 
 	def dataAvail(self, strData):
+		strData = six.ensure_str(strData)
 		if self.type == self.LIST:
 			strData = self.remainingdata + strData
 			lines = strData.split('\n')

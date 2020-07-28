@@ -77,7 +77,7 @@ class VirtualKeyBoard(Screen):
 
 		self["country"] = StaticText("")
 		self["header"] = Label(title)
-		self["text"] = Input(currPos=len(kwargs.get("text", "").decode("utf-8", 'ignore')), allMarked=False, **kwargs)
+		self["text"] = Input(currPos=len(six.ensure_text(kwargs.get("text", ""))), allMarked=False, **kwargs)
 		self["list"] = VirtualKeyBoardList([])
 
 		self["actions"] = NumberActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
@@ -337,7 +337,7 @@ class VirtualKeyBoard(Screen):
 			else:
 				width = key_bg_width
 				res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, h), png=self.key_bg))
-				text.append(MultiContentEntryText(pos=(x, 0), size=(width, h), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
+				text.append(MultiContentEntryText(pos=(x, 0), size=(width, h), font=0, text=six.ensure_str(key), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
 			x += width
 		return res + text
 
@@ -378,7 +378,7 @@ class VirtualKeyBoard(Screen):
 
 	def okClicked(self):
 		self.smsChar = None
-		text = (self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12].encode("UTF-8")
+		text = six.ensure_str((self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12])
 
 		if text == "EXIT":
 			self.close(None)
@@ -397,7 +397,8 @@ class VirtualKeyBoard(Screen):
 			self.shiftClicked()
 
 		elif text == "SPACE":
-			self["text"].char(" ".encode("UTF-8"))
+                        self['text'].char(six.ensure_str(" "))
+
 
 		elif text == "OK":
 			self.close(self["text"].getText())
@@ -413,7 +414,7 @@ class VirtualKeyBoard(Screen):
 
 	def okLongClicked(self):
 		self.smsChar = None
-		text = (self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12].encode("UTF-8")
+		text = six.ensure_str((self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12])
 
 		if text == "BACKSPACE":
 			self["text"].deleteAllChars()
@@ -472,7 +473,7 @@ class VirtualKeyBoard(Screen):
 
 	def keyGotAscii(self):
 		self.smsChar = None
-		if self.selectAsciiKey(str(unichr(getPrevAsciiCode()).encode('utf-8'))):
+		if six.ensure_str(self.selectAsciiKey(str(unichr(getPrevAsciiCode())))):
 			self.okClicked()
 
 	def selectAsciiKey(self, char):

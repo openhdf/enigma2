@@ -48,6 +48,7 @@ from .SoftwareTools import iSoftwareTools
 import os
 import shutil
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getImageDistro
+import six
 from six.moves import range
 
 boxtype = getBoxType()
@@ -1520,7 +1521,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			self.thumbnail = "/tmp/" + thumbnailUrl.split('/')[-1]
 			print("[PluginDetails] downloading screenshot " + thumbnailUrl + " to " + self.thumbnail)
 			if iSoftwareTools.NetworkConnectionAvailable:
-				client.downloadPage(thumbnailUrl, self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
+				client.downloadPage(six.ensure_binary(thumbnailUrl), self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
 			else:
 				self.setThumbnail(noScreenshot = True)
 		else:
@@ -1711,6 +1712,7 @@ class UpdatePlugin(Screen):
 			urlopenSTATUS = "http://status.hdfreaks.cc/index.php"
 			d = urlopen(urlopenSTATUS)
 			tmpStatus = d.read()
+			tmpStatus = six.ensure_str(tmpStatus)
 			if config.softwareupdate.updatebeta.value and 'gelb.png' in tmpStatus:
 				message = _("Caution update not tested yet !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see http://www.hdfreaks.cc") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
 				picon = MessageBox.TYPE_ERROR
@@ -2149,12 +2151,12 @@ class PacketManager(Screen, NumericalTextInput):
 	def keyNumberGlobal(self, val):
 		key = self.getKey(val)
 		if key is not None:
-			keyvalue = key.encode("utf-8")
+			keyvalue = six.ensure_str(key)
 			if len(keyvalue) == 1:
 				self.setNextIdx(keyvalue[0])
 
 	def keyGotAscii(self):
-		keyvalue = unichr(getPrevAsciiCode()).encode("utf-8")
+		keyvalue = six.ensure_str(six.unichr(getPrevAsciiCode()))
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 
@@ -2295,6 +2297,8 @@ class PacketManager(Screen, NumericalTextInput):
 	def IpkgList_Finished(self, result, retval, extra_args = None):
 		result = result.replace('\n ', ' - ')
 		if result:
+			result = six.ensure_str(result)
+			result = result.replace('\n ', ' - ')
 			self.packetlist = []
 			last_name = ""
 			for x in result.splitlines():
@@ -2316,6 +2320,7 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def IpkgListInstalled_Finished(self, result, retval, extra_args = None):
 		if result:
+			result = six.ensure_str(result)
 			self.installed_packetlist = {}
 			for x in result.splitlines():
 				tokens = x.split(' - ')
@@ -2331,6 +2336,7 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def OpkgListUpgradeable_Finished(self, result, retval, extra_args = None):
 		if result:
+			result = six.ensure_str(result)
 			self.upgradeable_packages = {}
 			for x in result.splitlines():
 				tokens = x.split(' - ')
@@ -2520,12 +2526,12 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 	def keyNumberGlobal(self, val):
 		key = self.getKey(val)
 		if key is not None:
-			keyvalue = key.encode("utf-8")
+			keyvalue = six.ensure_str(key)
 			if len(keyvalue) == 1:
 				self.setNextIdx(keyvalue[0])
 
 	def keyGotAscii(self):
-		keyvalue = unichr(getPrevAsciiCode()).encode("utf-8")
+		keyvalue = six.ensure_str(six.unichr(getPrevAsciiCode()))
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 

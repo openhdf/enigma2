@@ -9,6 +9,7 @@ from Components.Network import iNetwork
 from pythonwifi.iwlibs import getNICnames, Wireless, Iwfreq, getWNICnames
 from pythonwifi import flags as wififlags
 from six.moves import range
+import six
 
 
 list = ["WPA/WPA2", "WPA2", "WPA", "WEP", "Unencrypted"]
@@ -285,6 +286,7 @@ class Status:
 		self.WlanConsole.ePopen(cmd, self.iwconfigFinished, iface)
 
 	def iwconfigFinished(self, result, retval, extra_args):
+		result = six.ensure_str(result)
 		iface = extra_args
 		data = { 'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False }
 		for line in result.splitlines():

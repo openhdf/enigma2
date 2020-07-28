@@ -840,7 +840,7 @@ def createTimer(xml):
 		}[timertype]
 	begin = int(xml.get("begin"))
 	end = int(xml.get("end"))
-	repeated = xml.get("repeated").encode("utf-8")
+	repeated = six.ensure_str(xml.get("repeated"))
 	disabled = int(xml.get("disabled") or "0")
 	afterevent = str(xml.get("afterevent") or "nothing")
 	afterevent = {
@@ -879,7 +879,7 @@ def createTimer(xml):
 	for l in xml.findall("log"):
 		ltime = int(l.get("time"))
 		code = int(l.get("code"))
-		msg = l.text.strip().encode("utf-8")
+		msg = six.ensure_str(l.text).strip()
 		entry.log_entries.append((ltime, code, msg))
 
 	return entry

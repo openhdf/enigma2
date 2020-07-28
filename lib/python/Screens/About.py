@@ -29,6 +29,9 @@ import re
 from os import path, popen, system
 from re import search
 from six.moves import range
+import six
+
+SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
 def find_rootfssubdir(file):
 	startup_content = read_startup("/boot/" + file)
@@ -615,6 +618,7 @@ class Devices(Screen):
 		self.Console.ePopen("df -mh | grep -v '^Filesystem'", self.Stage1Complete)
 
 	def Stage1Complete(self, result, retval, extra_args=None):
+		result = six.ensure_str(result)
 		result = result.replace('\n                        ', ' ').split('\n')
 		self.mountinfo = ""
 		for line in result:
@@ -705,6 +709,7 @@ class SystemMemoryInfo(Screen):
 		return RamText
 
 	def Stage1Complete(self, result, retval, extra_args=None):
+		result = six.ensure_str(result)
 		flash = str(result).replace('\n', '')
 		flash = flash.split()
 		RamTotal = self.MySize(flash[1])
@@ -923,6 +928,7 @@ class SystemNetworkInfo(Screen):
 			iNetwork.getLinkState(self.iface, self.dataAvail)
 
 	def dataAvail(self, data):
+		data = six.ensure_str(data)
 		self.LinkState = None
 		for line in data.splitlines():
 			line = line.strip()

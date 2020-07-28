@@ -52,6 +52,7 @@ from Tools import Notifications
 from RecordTimer import TIMERTYPE
 from time import localtime, time
 from os import remove
+import six
 try:
 	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict
 	plugin_PiPServiceRelation_installed = True
@@ -1838,8 +1839,8 @@ class ChannelSelectionBase(Screen):
 			self.removeCurrentService()
 
 	def keyAsciiCode(self):
-		unichar = unichr(getPrevAsciiCode())
-		charstr = unichar.encode('utf-8')
+		unichar = six.unichr(getPrevAsciiCode())
+		charstr = six.ensure_str(unichar)
 		if len(charstr) == 1:
 			self.servicelist.moveToChar(charstr[0])
 

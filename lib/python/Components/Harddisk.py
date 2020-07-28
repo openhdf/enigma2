@@ -106,7 +106,7 @@ class Harddisk:
 		elif os.access("/dev/.devfsd", 0):
 			self.type = DEVTYPE_DEVFS
 		else:
-			print("Unable to determine structure of /dev")
+			print("[Harddisk] Unable to determine structure of /dev")
 
 		self.max_idle_time = 0
 		self.idle_running = False
@@ -142,7 +142,7 @@ class Harddisk:
 					self.disk_path = disk_path
 					break
 
-		print("new Harddisk", self.device, '->', self.dev_path, '->', self.disk_path)
+		print("[Harddisk] new Harddisk", self.device, '->', self.dev_path, '->', self.disk_path)
 		if (self.internal or not removable):
 			self.startIdle()
 
@@ -333,7 +333,7 @@ class Harddisk:
 		return 1
 
 	def killPartitionTable(self):
-		zero = 512 * '\0'
+		zero = 512 * b'\0'
 		h = open(self.dev_path, 'wb')
 		# delete first 9 sectors, which will likely kill the first partition too
 		for i in range(9):
@@ -341,7 +341,7 @@ class Harddisk:
 		h.close()
 
 	def killPartition(self, n):
-		zero = 512 * '\0'
+		zero = 512 * b'\0'
 		part = self.partitionPath(n)
 		h = open(part, 'wb')
 		for i in range(3):
@@ -351,7 +351,7 @@ class Harddisk:
 	def createInitializeJob(self):
 		job = Task.Job(_("Initializing storage device..."))
 		size = self.diskSize()
-		print("[HD] size: %s MB" % size)
+		print("[Harddisk] size: %s MB" % size)
 
 		task = UnmountTask(job, self)
 
@@ -1048,9 +1048,10 @@ class UnmountTask(Task.LoggingTask):
 	def prepare(self):
 		try:
 			dev = self.hdd.disk_path.split('/')[-1]
+			dev = six.ensure_binary(dev)
 			open('/dev/nomount.%s' % dev, "wb").close()
 		except Exception as e:
-			print("ERROR: Failed to create /dev/nomount file:", e)
+			print("[Harddisk] ERROR: Failed to create /dev/nomount file:", e)
 		self.setTool('umount')
 		self.args.append('-f')
 		for dev in self.hdd.enumMountDevices():
@@ -1058,7 +1059,7 @@ class UnmountTask(Task.LoggingTask):
 			self.postconditions.append(Task.ReturncodePostcondition())
 			self.mountpoints.append(dev)
 		if not self.mountpoints:
-			print("UnmountTask: No mountpoints found?")
+			print("[Harddisk] UnmountTask: No mountpoints found?")
 			self.cmd = 'true'
 			self.args = [self.cmd]
 	def afterRun(self):
@@ -1066,7 +1067,7 @@ class UnmountTask(Task.LoggingTask):
 			try:
 				os.rmdir(path)
 			except Exception as ex:
-				print("Failed to remove path '%s':" % path, ex)
+				print("[Harddisk] Failed to remove path '%s':" % path, ex)
 
 class MountTask(Task.LoggingTask):
 	def __init__(self, job, hdd):
@@ -1106,7 +1107,8 @@ class MkfsTask(Task.LoggingTask):
 	def prepare(self):
 		self.fsck_state = None
 	def processOutput(self, data):
-		print("[Mkfs]", data)
+		data = six.ensure_str(data)
+		print("[Harddisk][Mkfs]", data)
 		if 'Writing inode tables:' in data:
 			self.fsck_state = 'inode'
 		elif 'Creating journal' in data:
@@ -1122,7 +1124,7 @@ class MkfsTask(Task.LoggingTask):
 						d[1] = d[1].split('\x08', 1)[0]
 					self.setProgress(80*int(d[0])//int(d[1]))
 				except Exception as e:
-					print("[Mkfs] E:", e)
+					print("[Harddisk][Mkfs] E:", e)
 				return # don't log the progess
 		self.log.append(data)
 

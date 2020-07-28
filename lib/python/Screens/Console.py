@@ -6,6 +6,7 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
+import six
 
 class Console(Screen):
 	def __init__(self, session, title = "Console", cmdlist = None, finishedCallback = None, closeOnSuccess = False):
@@ -104,7 +105,5 @@ class Console(Screen):
 			self.container.dataAvail.remove(self.dataAvail)
 
 	def dataAvail(self, str):
-		lastpage = self["text"].isAtLastPage()
-		self["text"].setText(self["text"].getText() + str)
-		if lastpage:
-			self["text"].lastPage()
+		str = six.ensure_str(str)
+		self["text"].appendText(str)

@@ -5,6 +5,7 @@ from Tools.Profile import profile
 profile("LOAD:ElementTree")
 import xml.etree.cElementTree
 import os
+import six
 
 profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, eRect, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, addFont, gRGB, eWindowStyleSkinned, getDesktop
@@ -363,19 +364,19 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 			# If wfNoBorder is applied after the size has been set, the window will fail to clear the title area.
 			# Similar situation for a scrollbar in a listbox; when the scrollbar setting is applied after
 			# the size, a scrollbar will not be shown until the selection moves for the first time
-			if attrib == 'size':
-				size = value.encode("utf-8")
-			elif attrib == 'position':
-				pos = value.encode("utf-8")
-			elif attrib == 'font':
-				font = value.encode("utf-8")
+			if attrib == "size":
+				size = six.ensure_str(value)
+			elif attrib == "position":
+				pos = six.ensure_str(value)
+			elif attrib == "font":
+				font = six.ensure_str(value)
 				skinAttributes.append((attrib, font))
 			else:
-				skinAttributes.append((attrib, value.encode("utf-8")))
-	if pos is not None:
+				skinAttributes.append((attrib, six.ensure_str(value)))
+	if pos != None:
 		pos, size = context.parse(pos, size, font)
 		skinAttributes.append(('position', pos))
-	if size is not None:
+	if size != None:
 		skinAttributes.append(('size', size))
 
 def morphRcImagePath(value):

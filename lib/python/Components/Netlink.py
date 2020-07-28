@@ -4,6 +4,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 import os
 import socket
+import six
 
 class NetlinkSocket(socket.socket):
 	def __init__(self):
@@ -12,7 +13,7 @@ class NetlinkSocket(socket.socket):
 		self.bind((os.getpid(), -1))
 
 	def parse(self):
-		data = self.recv(512)
+		data = six.ensure_str(self.recv(512))
 		event = {}
 		for item in data.split('\x00'):
 			if not item:

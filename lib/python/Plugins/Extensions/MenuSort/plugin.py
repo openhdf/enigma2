@@ -64,7 +64,7 @@ class MenuWeights:
 			return
 
 		for node in config.findall('entry'):
-			text = node.get('text', '').encode("UTF-8")
+			text = six.ensure_str(node.get('text', ''))
 			weight = node.get("weight", None)
 			hidden = node.get('hidden', False)
 			hidden = hidden and hidden.lower() == "yes"
@@ -222,7 +222,7 @@ class SortableMenu(Menu, HelpableScreen):
 					return
 			elif not SystemInfo.get(requires, False):
 				return
-		MenuTitle = _(node.get("text", "??").encode("UTF-8"))
+		MenuTitle = six.ensure_str(_(node.get("text", "??")))
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
 		x = node.get("flushConfigOnClose")

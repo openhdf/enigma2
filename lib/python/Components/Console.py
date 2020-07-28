@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 import enigma, ctypes, os
-
+import six
 
 class ConsoleItem:
 	def __init__(self, containers, cmd, callback, extra_args):
@@ -41,7 +41,7 @@ class ConsoleItem:
 		self.container = None
 		callback = self.callback
 		if callback is not None:
-			data = ''.join(self.appResults)
+			data = b''.join(self.appResults)
 			callback(data, retval, self.extra_args)
 
 class Console(object):
@@ -65,6 +65,7 @@ class Console(object):
 	def eBatchCB(self, data, retval, _extra_args):
 		(cmds, callback, extra_args) = _extra_args
 		if self.debug:
+			data = six.ensure_str(data)
 			print('[eBatch] retval=%s, cmds left=%d, data:\n%s' % (retval, len(cmds), data))
 		if cmds:
 			cmd = cmds.pop(0)
