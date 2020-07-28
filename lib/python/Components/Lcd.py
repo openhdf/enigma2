@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
 from boxbranding import getBoxType
@@ -136,7 +137,7 @@ class LCD:
 
 	def setBright(self, value):
 		value *= 255
-		value /= 10
+		value //= 10
 		if value > 255:
 			value = 255
 		self.autoDimDownLCDTimer.stop()
@@ -149,7 +150,7 @@ class LCD:
 
 	def setStandbyBright(self, value):
 		value *= 255
-		value /= 10
+		value //= 10
 		if value > 255:
 			value = 255
 		self.autoDimDownLCDTimer.stop()
@@ -163,7 +164,7 @@ class LCD:
 
 	def setDimBright(self, value):
 		value *= 255
-		value /= 10
+		value //= 10
 		if value > 255:
 			value = 255
 		self.dimBrightness = value
@@ -173,7 +174,7 @@ class LCD:
 
 	def setContrast(self, value):
 		value *= 63
-		value /= 20
+		value //= 20
 		if value > 63:
 			value = 63
 		eDBoxLCD.getInstance().setLCDContrast(value)
