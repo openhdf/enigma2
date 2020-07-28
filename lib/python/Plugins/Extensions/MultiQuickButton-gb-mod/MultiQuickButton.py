@@ -93,12 +93,12 @@ class MultiQuickButton(Screen):
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/key_3.png" zPosition="2" position="605,490" size="35,25" alphatest="on" />
 			<widget name="key_red" backgroundColor="#1f771f" zPosition="2" position="50,445" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="key_green" backgroundColor="#1f771f" position="240,445" zPosition="2" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget name="key_yellow" backgroundColor="#1f771f" position="450,445" zPosition="2"  size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget name="key_blue" backgroundColor="#1f771f" position="640,445" zPosition="2"  size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="key_yellow" backgroundColor="#1f771f" position="450,445" zPosition="2" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="key_blue" backgroundColor="#1f771f" position="640,445" zPosition="2" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="key_0" backgroundColor="#1f771f" zPosition="2" position="50,484" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="key_1" backgroundColor="#1f771f" position="240,484" zPosition="2" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget name="key_2" backgroundColor="#1f771f" position="450,484" zPosition="2"  size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget name="key_3" backgroundColor="#1f771f" position="640,484" zPosition="2"  size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="key_2" backgroundColor="#1f771f" position="450,484" zPosition="2" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="key_3" backgroundColor="#1f771f" position="640,484" zPosition="2" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="background" backgroundColor="#220a0a0a" zPosition="1" position="0,450" size="800,80" font="Regular;20" halign="left" valign="center" />
 		</screen>""" % (MultiQuickButton_version)
 	else:
@@ -115,12 +115,12 @@ class MultiQuickButton(Screen):
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/key_3.png" zPosition="2" position="486,290" size="35,25" alphatest="on" />
 			<widget name="key_red" backgroundColor="#1f771f" zPosition="2" position="35,245" size="250,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="key_green" backgroundColor="#1f771f" position="185,245" zPosition="2" size="250,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget name="key_yellow" backgroundColor="#1f771f" position="355,245" zPosition="2"  size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget name="key_blue" backgroundColor="#1f771f" position="515,245" zPosition="2"  size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="key_yellow" backgroundColor="#1f771f" position="355,245" zPosition="2" size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="key_blue" backgroundColor="#1f771f" position="515,245" zPosition="2" size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="key_0" backgroundColor="#1f771f" position="35,285" zPosition="2" size="250,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="key_1" backgroundColor="#1f771f" position="185,285" zPosition="2" size="250,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget name="key_2" backgroundColor="#1f771f" position="355,285" zPosition="2"  size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget name="key_3" backgroundColor="#1f771f" position="515,285" zPosition="2"  size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="key_2" backgroundColor="#1f771f" position="355,285" zPosition="2" size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="key_3" backgroundColor="#1f771f" position="515,285" zPosition="2" size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="background" backgroundColor="#220a0a0a" zPosition="1" position="0,320" size="620,80" font="Regular;20" halign="left" valign="center" />
 		</screen>""" % (MultiQuickButton_version)
 
@@ -195,29 +195,29 @@ class MultiQuickButton(Screen):
 		self.list.append(QuickButtonListEntry('', ((_('yellow') + _(' long')) + functionbutton_yellow_long, 'yellow_long')))
 		self.list.append(QuickButtonListEntry('', (_('blue') + functionbutton_blue, 'blue')))
 		self.list.append(QuickButtonListEntry('', ((_('blue') + _(' long')) + functionbutton_blue_long, 'blue_long')))
-                self.list.append(QuickButtonListEntry('', (_('Console (kbd)') + functionbutton_console, 'console')))
-                self.list.append(QuickButtonListEntry('', (_('F1') + functionbutton_f1, 'f1')))
-                self.list.append(QuickButtonListEntry('', (_('F2') + functionbutton_f2, 'f2')))
-                self.list.append(QuickButtonListEntry('', (_('F3') + functionbutton_f3, 'f3')))
-                self.list.append(QuickButtonListEntry('', (_('F4') + functionbutton_f4, 'f4')))
-                self.list.append(QuickButtonListEntry('', (_('F6 (kbd) WWW') + functionbutton_web, 'web')))
-                self.list.append(QuickButtonListEntry('', (_('F7 (kbd) MAIL') + functionbutton_mail, 'mail')))
-                self.list.append(QuickButtonListEntry('', (_('F10 (kbd) M2') + functionbutton_m2, 'm2')))
-                self.list.append(QuickButtonListEntry('', (_('F11 (kbd) M1') + functionbutton_m1, 'm1')))
-                self.list.append(QuickButtonListEntry('', (_('FAV') + functionbutton_fav, 'fav')))
-                self.list.append(QuickButtonListEntry('', ((_('FAV') + _(' long')) + functionbutton_fav_long, 'fav_long')))
-                self.list.append(QuickButtonListEntry('', (_('SCREEN') + functionbutton_screen, 'screen')))
-                self.list.append(QuickButtonListEntry('', ((_('SCREEN') + _(' long')) + functionbutton_screen_long, 'screen_long')))
-                #self.list.append(QuickButtonListEntry('',(_('TimerDot') + functionbutton_timer, 'timer')))
-                #self.list.append(QuickButtonListEntry('',((_('TimerDot') + _(' long')) + functionbutton_timer_long, 'timer_long')))
-                self.list.append(QuickButtonListEntry('', (_('HISTORY') + functionbutton_history, 'history')))
-                self.list.append(QuickButtonListEntry('', ((_('HISTORY') + _(' long')) + functionbutton_history_long, 'history_long')))
-                self.list.append(QuickButtonListEntry('', (_('subtitle') + functionbutton_subtitle, 'subtitle')))
-                self.list.append(QuickButtonListEntry('', ((_('subtitle') + _(' long')) + functionbutton_subtitle_long, 'subtitle_long')))
-                self.list.append(QuickButtonListEntry('', (_('TEXT') + functionbutton_text, 'text')))
-                self.list.append(QuickButtonListEntry('', ((_('TEXT') + _(' long')) + functionbutton_text_long, 'text_long')))
-                self.list.append(QuickButtonListEntry('', (_('EPG') + functionbutton_epg, 'epg')))
-                self.list.append(QuickButtonListEntry('', ((_('EPG') + _(' long')) + functionbutton_epg_long, 'epg_long')))
+		self.list.append(QuickButtonListEntry('', (_('Console (kbd)') + functionbutton_console, 'console')))
+		self.list.append(QuickButtonListEntry('', (_('F1') + functionbutton_f1, 'f1')))
+		self.list.append(QuickButtonListEntry('', (_('F2') + functionbutton_f2, 'f2')))
+		self.list.append(QuickButtonListEntry('', (_('F3') + functionbutton_f3, 'f3')))
+		self.list.append(QuickButtonListEntry('', (_('F4') + functionbutton_f4, 'f4')))
+		self.list.append(QuickButtonListEntry('', (_('F6 (kbd) WWW') + functionbutton_web, 'web')))
+		self.list.append(QuickButtonListEntry('', (_('F7 (kbd) MAIL') + functionbutton_mail, 'mail')))
+		self.list.append(QuickButtonListEntry('', (_('F10 (kbd) M2') + functionbutton_m2, 'm2')))
+		self.list.append(QuickButtonListEntry('', (_('F11 (kbd) M1') + functionbutton_m1, 'm1')))
+		self.list.append(QuickButtonListEntry('', (_('FAV') + functionbutton_fav, 'fav')))
+		self.list.append(QuickButtonListEntry('', ((_('FAV') + _(' long')) + functionbutton_fav_long, 'fav_long')))
+		self.list.append(QuickButtonListEntry('', (_('SCREEN') + functionbutton_screen, 'screen')))
+		self.list.append(QuickButtonListEntry('', ((_('SCREEN') + _(' long')) + functionbutton_screen_long, 'screen_long')))
+		#self.list.append(QuickButtonListEntry('',(_('TimerDot') + functionbutton_timer, 'timer')))
+		#self.list.append(QuickButtonListEntry('',((_('TimerDot') + _(' long')) + functionbutton_timer_long, 'timer_long')))
+		self.list.append(QuickButtonListEntry('', (_('HISTORY') + functionbutton_history, 'history')))
+		self.list.append(QuickButtonListEntry('', ((_('HISTORY') + _(' long')) + functionbutton_history_long, 'history_long')))
+		self.list.append(QuickButtonListEntry('', (_('subtitle') + functionbutton_subtitle, 'subtitle')))
+		self.list.append(QuickButtonListEntry('', ((_('subtitle') + _(' long')) + functionbutton_subtitle_long, 'subtitle_long')))
+		self.list.append(QuickButtonListEntry('', (_('TEXT') + functionbutton_text, 'text')))
+		self.list.append(QuickButtonListEntry('', ((_('TEXT') + _(' long')) + functionbutton_text_long, 'text_long')))
+		self.list.append(QuickButtonListEntry('', (_('EPG') + functionbutton_epg, 'epg')))
+		self.list.append(QuickButtonListEntry('', ((_('EPG') + _(' long')) + functionbutton_epg_long, 'epg_long')))
 		#self.list.append(QuickButtonListEntry('',(_('HELP') + functionbutton_help, 'help')))
 		#self.list.append(QuickButtonListEntry('',((_('HELP') + _(' long')) + functionbutton_help_long, 'help_long')))
 		self.list.append(QuickButtonListEntry('', (_('INFO') + functionbutton_info, 'info')))
@@ -304,7 +304,7 @@ class MultiQuickButton(Screen):
 				if os.path.exists(path) is True:
 					self.session.openWithCallback(self.updateAfterButtonChange, QuickButton, path, (_("Quickbutton Key : ") + _(returnValue)))
 				else:
-					self.session.open(MessageBox, ("file %s not found!" % (path)),  MessageBox.TYPE_ERROR)
+					self.session.open(MessageBox, ("file %s not found!" % (path)), MessageBox.TYPE_ERROR)
 
 	def updateAfterButtonChange(self, res = None):
 		self.updateList()
@@ -434,7 +434,7 @@ class MultiQuickButton(Screen):
 		self.session.open(MultiQuickButtonMacro)
 
 	def showAbout(self):
-		self.session.open(MessageBox, ("Multi Quickbutton idea is based on\nGP2\'s Quickbutton\nVersion: 2.7\nby Emanuel CLI-Team 2009\nwww.cablelinux.info\n ***special thanks*** to:\ngutemine & AliAbdul & Dr.Best ;-)\n\nChanges for Gigablue by scp\nsome@email.org\nwww.homepage.org\nVersion %s" % (MultiQuickButton_version)),  MessageBox.TYPE_INFO)
+		self.session.open(MessageBox, ("Multi Quickbutton idea is based on\nGP2\'s Quickbutton\nVersion: 2.7\nby Emanuel CLI-Team 2009\nwww.cablelinux.info\n ***special thanks*** to:\ngutemine & AliAbdul & Dr.Best ;-)\n\nChanges for Gigablue by scp\nsome@email.org\nwww.homepage.org\nVersion %s" % (MultiQuickButton_version)), MessageBox.TYPE_INFO)
 
 	def callRestart(self, restart):
 		if restart == True:
@@ -472,8 +472,8 @@ class QuickButton(Screen):
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/button_blue.png" zPosition="2" position="585,487" size="25,25" alphatest="on" />
 			<widget name="key_red" backgroundColor="#1f771f" zPosition="2" position="50,480" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="key_green" backgroundColor="#1f771f" position="240,480" zPosition="2" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget name="key_yellow" backgroundColor="#1f771f" position="430,480" zPosition="2"  size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget name="key_blue" backgroundColor="#1f771f" position="620,480" zPosition="2"  size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="key_yellow" backgroundColor="#1f771f" position="430,480" zPosition="2" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="key_blue" backgroundColor="#1f771f" position="620,480" zPosition="2" size="180,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="background" backgroundColor="#220a0a0a" zPosition="1" position="0,480" size="800,40" font="Regular;20" halign="left" valign="center" />
 		</screen>"""
 	else:
@@ -486,8 +486,8 @@ class QuickButton(Screen):
 			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/button_blue.png" zPosition="2" position="435,387" size="25,25" alphatest="on" />
 			<widget name="key_red" backgroundColor="#1f771f" zPosition="2" position="40,380" size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="key_green" backgroundColor="#1f771f" position="180,380" zPosition="2" size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget name="key_yellow" backgroundColor="#1f771f" position="320,380" zPosition="2"  size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-			<widget name="key_blue" backgroundColor="#1f771f" position="460,380" zPosition="2"  size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="key_yellow" backgroundColor="#1f771f" position="320,380" zPosition="2" size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+			<widget name="key_blue" backgroundColor="#1f771f" position="460,380" zPosition="2" size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 			<widget name="background" backgroundColor="#220a0a0a" zPosition="1" position="0,380" size="600,40" font="Regular;20" halign="left" valign="center" />
 		</screen>"""
 
@@ -537,7 +537,7 @@ class QuickButton(Screen):
 
 	def error(self):
 		if self.e:
-			self.session.open(MessageBox, ("XML " + _("Error") + ": %s" % self.e),  MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, ("XML " + _("Error") + ": %s" % self.e), MessageBox.TYPE_ERROR)
 			self.close(None)
 
 
@@ -793,8 +793,8 @@ class MultiQuickButtonMacro(Screen):
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/button_blue.png" zPosition="2" position="490,350" size="25,25" alphatest="on" />
 		<widget name="buttonred" backgroundColor="#1f771f" position="35,343" zPosition="2" size="250,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 		<widget name="buttongreen" backgroundColor="#1f771f" position="185,343" zPosition="2" size="250,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-		<widget name="buttonyellow" backgroundColor="#1f771f" position="355,343" zPosition="2"  size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
-		<widget name="buttonblue" backgroundColor="#1f771f" position="515,343" zPosition="2"  size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+		<widget name="buttonyellow" backgroundColor="#1f771f" position="355,343" zPosition="2" size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
+		<widget name="buttonblue" backgroundColor="#1f771f" position="515,343" zPosition="2" size="150,40" font="Regular;20" halign="left" valign="center" transparent="1" />
 		<widget source="menu" render="Listbox" position="10,50" size="500,285" scrollbarMode="showOnDemand" >
 			<convert type="TemplatedMultiContent" transparent="0">
 				{"template": [
