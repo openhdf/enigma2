@@ -18,6 +18,7 @@ from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from time import time, strftime, localtime
 from os import listdir, makedirs, path, statvfs, system, walk
+import sys
 if sys.version_info[0] >= 3:
 	import subprocess
 else:

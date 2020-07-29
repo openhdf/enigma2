@@ -19,6 +19,7 @@ from datetime import datetime
 from enigma import eTimer, eBackgroundFileEraser, eLabel, getDesktop, gFont, fontRenderClass
 from Tools.TextBoundary import getTextBoundarySize
 from glob import glob
+import sys
 
 import Components.Task
 
