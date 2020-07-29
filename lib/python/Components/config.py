@@ -397,7 +397,7 @@ class ConfigSelection(ConfigElement):
 		return self._descr
 
 	def getMulti(self, selected):
-		from .config import config
+		from Components.config import config
 		from skin import switchPixmap
 		if self._descr is None:
 			self._descr = self.description[self.value]
@@ -449,7 +449,7 @@ class ConfigBoolean(ConfigElement):
 		return self.descriptions[self.value]
 
 	def getMulti(self, selected):
-		from .config import config
+		from Components.config import config
 		from skin import switchPixmap
 		if self.graphic and config.usage.boolean_graphic.value and switchPixmap.get("menu_on", False) and switchPixmap.get("menu_off", False):
 			return ('pixmap', self.value and switchPixmap["menu_on"] or switchPixmap["menu_off"])

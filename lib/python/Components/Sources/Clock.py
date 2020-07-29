@@ -3,7 +3,7 @@ from Components.Element import cached
 from enigma import eTimer
 from time import time as getTime
 
-from .Source import Source
+from Components.Sources.Source import Source
 
 class Clock(Source):
 	def __init__(self):

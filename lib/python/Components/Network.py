@@ -38,8 +38,8 @@ class Network:
 
 	def onRemoteRootFS(self):
 		if self.remoteRootFS is None:
-			from . import Harddisk
-			for parts in Harddisk.getProcMounts():
+			from Components.Harddisk import getProcMounts
+			for parts in getProcMounts():
 				if parts[1] == '/' and parts[2] == 'nfs':
 					self.remoteRootFS = True
 					break

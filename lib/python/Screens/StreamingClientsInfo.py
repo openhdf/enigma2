@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.ScrollLabel import ScrollLabel

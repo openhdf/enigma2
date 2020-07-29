@@ -6,7 +6,7 @@ from boxbranding import getMachineBuild, getMachineBrand, getMachineName
 import os
 from Tools.Profile import profile
 
-from Screen import Screen
+from Screens.Screen import Screen
 import Screens.InfoBar
 import Components.ParentalControl
 from Components.Button import Button
@@ -21,7 +21,7 @@ from Components.Renderer.Picon import getPiconName
 from Screens.TimerEdit import TimerSanityConflict
 from six.moves import range
 profile("ChannelSelection.py 1")
-from .EpgSelection import EPGSelection
+from Screens.EpgSelection import EPGSelection
 from enigma import eActionMap, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
 from Components.config import config, configfile, ConfigSubsection, ConfigText, ConfigYesNo
 from Tools.NumericalTextInput import NumericalTextInput
@@ -37,7 +37,7 @@ from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from RecordTimer import RecordTimerEntry, AFTEREVENT
-from .TimerEntry import TimerEntry, InstantRecordTimerEntry
+from Screens.TimerEntry import TimerEntry, InstantRecordTimerEntry
 from Screens.InputBox import InputBox, PinInput
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.ChoiceBox import ChoiceBox

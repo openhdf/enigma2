@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from Screen import Screen
-from .MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
 from Components.AVSwitch import AVSwitch
 from Tools import Notifications
 

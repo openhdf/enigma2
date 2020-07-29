@@ -615,11 +615,11 @@ def InitUsageConfig():
 	config.epg.cacheloadsched = ConfigYesNo(default = False)
 	config.epg.cachesavesched = ConfigYesNo(default = False)
 	def EpgCacheLoadSchedChanged(configElement):
-		from . import EpgLoadSave
-		EpgLoadSave.EpgCacheLoadCheck()
+		import Components.EpgLoadSave
+		Components.EpgLoadSave.EpgCacheLoadCheck()
 	def EpgCacheSaveSchedChanged(configElement):
-		from . import EpgLoadSave
-		EpgLoadSave.EpgCacheSaveCheck()
+		import Components.EpgLoadSave
+		Components.EpgLoadSave.EpgCacheSaveCheck()
 	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback = False)
 	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback = False)
 	config.epg.cacheloadtimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)

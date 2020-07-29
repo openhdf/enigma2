@@ -762,7 +762,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 				pass
 
 	def getPlaylistServiceInfo(self, service):
-		from .MovieSelection import playlist
+		from Screens.MovieSelection import playlist
 		for i, item in enumerate(playlist):
 			if item == service:
 				if config.usage.on_movie_eof.value == "repeatcurrent":
