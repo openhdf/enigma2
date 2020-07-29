@@ -72,44 +72,9 @@ static void stringFromFile(FILE* f, const char* context, const char* filename)
 }
 
 static bool bsodhandled = false;
-static bool bsodrestart =  true;
-static int bsodcnt = 0;
 
-int getBsodCounter()
-{
-	return bsodcnt;
-}
-
-void resetBsodCounter()
-{
-	bsodcnt = 0;
-}
-
-bool bsodRestart()
-{
-	return bsodrestart;
-}
 void bsodFatal(const char *component)
 {
-	//handle python crashes	
-	bool bsodpython = (eConfigManager::getConfigBoolValue("config.crash.bsodpython", false) && eConfigManager::getConfigBoolValue("config.crash.bsodpython_ready", false));
-	//hide bs after x bs counts and no more write crash log	-> setting values 0-10 (always write the first crashlog)
-	int bsodhide = eConfigManager::getConfigIntValue("config.crash.bsodhide", 5);
-	//restart after x bs counts -> setting values 0-10 (0 = never restart)
-	int bsodmax = eConfigManager::getConfigIntValue("config.crash.bsodmax", 5);
-	//force restart after max crashes
-	int bsodmaxmax = 100;
-
-	bsodcnt++;
-	if ((bsodmax && bsodcnt > bsodmax) || component || bsodcnt > bsodmaxmax)
-		bsodpython = false;
-	if (bsodpython && bsodcnt-1 && bsodcnt > bsodhide && (!bsodmax || bsodcnt < bsodmax) && bsodcnt < bsodmaxmax)
-	{
-		sleep(1);
-		return;
-	}
-	bsodrestart = true;
-
 	/* show no more than one bsod while shutting down/crashing */
 	if (bsodhandled) {
 		if (component) {
@@ -208,13 +173,6 @@ void bsodFatal(const char *component)
 		fclose(f);
 	}
 
-	if (bsodpython && bsodcnt == 1 && !bsodhide) //write always the first crashlog
-	{
-		bsodrestart = false;
-		bsodhandled = false;
-		sleep(1);
-		return;
-	}
 	ePtr<gMainDC> my_dc;
 	gMainDC::getInstance(my_dc);
 
@@ -235,32 +193,13 @@ void bsodFatal(const char *component)
 	os.clear();
 	os_text.clear();
 
-	if (!bsodpython)
-	{
-		os_text << "We are really sorry. Your receiver encountered "
-			"a software problem, and needs to be restarted.\n"
-			"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
-			"Your receiver restarts in 10 seconds!\n"
-			"Component: " << component;
-
-		os << eConfigManager::getConfigString("config.crash.debug_text", os_text.str());
-	}
-	else
-	{
-		std::string txt;
-		if (!bsodmax && bsodcnt < bsodmaxmax)
-			txt = "not (max " + std::to_string(bsodmaxmax) + " times)";	
-		else if (bsodmax - bsodcnt > 0)
-			txt = "if it happens "+ std::to_string(bsodmax - bsodcnt) + " more times";
-		else
-			txt = "if it happens next times";
-		os_text << "We are really sorry. Your receiver encountered "
-			"a software problem. So far it has occurred " << bsodcnt << " times.\n"
-			"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
-			"Your receiver restarts " << txt << " by python crashes!\n"
-			"Component: " << component;
-		os << os_text.str();
-	}
+	os_text << "We are really sorry. Your receiver encountered "
+		"a software problem, and needs to be restarted.\n"
+		"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
+		"Your receiver restarts in 10 seconds!\n"
+		"Component: " << component;
+	
+	os << eConfigManager::getConfigString("config.crash.debug_text", os_text.str());
 
 	p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 
@@ -326,15 +265,6 @@ void bsodFatal(const char *component)
 	 * We'd risk destroying things with every additional instruction we're
 	 * executing here.
 	 */
-
-	if (bsodpython)
-	{
-		bsodrestart = false;
-		bsodhandled = false;
-		p.setBackgroundColor(gRGB(0,0,0,0xFF));
-		p.clear();
-		return;
-	}
 	if (component) raise(SIGKILL);
 	quitMainloop(5);
 }
