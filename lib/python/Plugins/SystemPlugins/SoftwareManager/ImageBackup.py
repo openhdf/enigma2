@@ -24,7 +24,6 @@ if sys.version_info[0] >= 3:
 else:
 	import commands
 import datetime
-import sys
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
 VERSION = _("Version %s %s.1") %(getImageDistro().upper(), getImageVersion())

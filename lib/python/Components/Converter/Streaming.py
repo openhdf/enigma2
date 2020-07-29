@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from Components.Converter import Converter
+from Components.Converter.Converter import Converter
 from Components.Element import cached
 
 # the protocol works as the following:
