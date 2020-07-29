@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from .config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigText
+from Components.config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigText
 from Components.Timezones import timezones
 from Components.Language import language
 from Components.Keyboard import keyboard

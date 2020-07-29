@@ -3,7 +3,6 @@
 # A task is the run of an external tool, with proper methods for failure handling
 
 from __future__ import print_function
-from __future__ import absolute_import
 from __future__ import division
 from Tools.CList import CList
 from six.moves import range

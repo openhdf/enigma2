@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from .GUIComponent import GUIComponent
+from Components.GUIComponent import GUIComponent
 from enigma import eTimer
 
 class ConditionalWidget(GUIComponent):

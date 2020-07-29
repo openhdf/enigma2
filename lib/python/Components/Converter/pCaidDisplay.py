@@ -22,7 +22,7 @@ from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
-from .Poll import Poll
+from Components.Converter.Poll import Poll
 
 class pCaidDisplay(Poll, Converter, object):
 	def __init__(self, type):

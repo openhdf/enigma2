@@ -1,14 +1,11 @@
 from __future__ import print_function
-from __future__ import absolute_import
 from enigma import eActionMap
 import six
 
 class ActionMap:
 	def __init__(self, contexts=None, actions=None, prio=0):
-		if not actions: actions = {}
-		if not contexts: contexts = []
-		self.actions = actions
-		self.contexts = contexts
+		self.contexts = contexts or []
+		self.actions = actions or {}
 		self.prio = prio
 		self.p = eActionMap.getInstance()
 		self.bound = False

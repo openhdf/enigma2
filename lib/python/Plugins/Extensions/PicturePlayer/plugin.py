@@ -2,7 +2,6 @@ from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 from enigma import getDesktop
 from Components.config import config
-from .ui import *
 
 #------------------------------------------------------------------------------------------
 

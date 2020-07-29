@@ -8,7 +8,7 @@ from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from enigma import eDVBCI_UI, eDVBCIInterfaces
-from .Poll import Poll
+from Components.Converter.Poll import Poll
 
 class ModuleControl(Poll, Converter, object):
 	SLOT1 = 0

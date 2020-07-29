@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from __future__ import division
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from .Poll import Poll
+from Components.Converter.Poll import Poll
 from os import popen, statvfs
 
 SIZE_UNITS = ["B", "KB", "MB", "GB", "TB", "PB", "EB"]

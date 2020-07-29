@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from __future__ import division
-from .ConditionalWidget import ConditionalWidget
-from .GUIComponent import GUIComponent
+from Components.ConditionalWidget import ConditionalWidget
+from Components.GUIComponent import GUIComponent
 
 from enigma import ePixmap, eTimer
 

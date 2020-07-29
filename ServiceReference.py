@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from enigma import eServiceReference, eServiceCenter, getBestPlayableServiceReference
 import NavigationInstance
 

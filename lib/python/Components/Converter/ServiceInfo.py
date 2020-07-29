@@ -4,7 +4,7 @@ from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
 from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
 from Components.Element import cached
-from .Poll import Poll
+from Components.Converter.Poll import Poll
 
 from os import path
 

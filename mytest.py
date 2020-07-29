@@ -1,5 +1,4 @@
 from __future__ import print_function
-from __future__ import absolute_import
 import sys
 import os
 from time import time
@@ -53,13 +52,6 @@ from Navigation import Navigation
 profile("LOAD:skin")
 from skin import readSkin
 
-from twisted.python import log
-config.misc.enabletwistedlog = ConfigYesNo(default = False)
-if config.misc.enabletwistedlog.value == True:
-	log.startLogging(open('/tmp/twisted.log', 'w'))
-else:
-	log.startLogging(sys.stdout)
-
 profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
 from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave, ConfigNumber
@@ -87,8 +79,8 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 #def leaveStandby():
 #	print "!!!!!!!!!!!!!!!!!leave standby"
 
-#def standbyCountChanged(configElement):
-#	print "!!!!!!!!!!!!!!!!!enter standby num", configElement.value
+#def standbyCountChanged(configelement):
+#	print "!!!!!!!!!!!!!!!!!enter standby num", configelement.value
 #	from Screens.Standby import inStandby
 #	inStandby.onClose.append(leaveStandby)
 
@@ -121,6 +113,9 @@ config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback = True)
 
 profile("Twisted")
 try:
+	import twisted.python.runtime
+	twisted.python.runtime.platform.supportsThreads = lambda: True
+
 	import e2reactor
 	e2reactor.install()
 
@@ -135,14 +130,18 @@ except ImportError:
 
 profile("LOAD:Plugin")
 
+from twisted.python import log
+config.misc.enabletwistedlog = ConfigYesNo(default = False)
+if config.misc.enabletwistedlog.value == True:
+	log.startLogging(open('/tmp/twisted.log', 'w'))
+else:
+	log.startLogging(sys.stdout)
+
 # initialize autorun plugins and plugin menu entries
 from Components.PluginComponent import plugins
 
 profile("LOAD:Wizard")
-from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
-from Screens.VideoWizard import *
-
 import Screens.Rc
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
@@ -497,7 +496,7 @@ class AutoScartControl:
 		config.av.vcrswitch.addNotifier(self.recheckVCRSb)
 		enigma.eAVSwitch.getInstance().vcr_sb_notifier.get().append(self.VCRSbChanged)
 
-	def recheckVCRSb(self, configElement):
+	def recheckVCRSb(self, configelement):
 		self.VCRSbChanged(self.current_vcr_sb)
 
 	def VCRSbChanged(self, value):

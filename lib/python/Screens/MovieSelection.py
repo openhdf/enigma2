@@ -2,11 +2,12 @@ from __future__ import print_function
 from __future__ import absolute_import
 import os
 import time
+import six
 import six.moves.cPickle as pickle
 
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput, pNavigation
 
-from Screen import Screen
+from Screens.Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
 from Components.MenuList import MenuList
@@ -748,42 +749,42 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			a()
 
 	def btn_red(self):
-		from .InfoBar import InfoBar
+		from Screens.InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			self._callButton(config.movielist.btn_red.value)
 	def btn_green(self):
-		from .InfoBar import InfoBar
+		from Screens.InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			self._callButton(config.movielist.btn_green.value)
 	def btn_yellow(self):
-		from .InfoBar import InfoBar
+		from Screens.InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			self._callButton(config.movielist.btn_yellow.value)
 	def btn_blue(self):
-		from .InfoBar import InfoBar
+		from Screens.InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if not InfoBarInstance.LongButtonPressed:
 			self._callButton(config.movielist.btn_blue.value)
 	def btn_redlong(self):
-		from .InfoBar import InfoBar
+		from Screens.InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if InfoBarInstance.LongButtonPressed:
 			self._callButton(config.movielist.btn_redlong.value)
 	def btn_greenlong(self):
-		from .InfoBar import InfoBar
+		from Screens.InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if InfoBarInstance.LongButtonPressed:
 			self._callButton(config.movielist.btn_greenlong.value)
 	def btn_yellowlong(self):
-		from .InfoBar import InfoBar
+		from Screens.InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if InfoBarInstance.LongButtonPressed:
 			self._callButton(config.movielist.btn_yellowlong.value)
 	def btn_bluelong(self):
-		from .InfoBar import InfoBar
+		from Screens.InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
 		if InfoBarInstance.LongButtonPressed:
 			self._callButton(config.movielist.btn_bluelong.value)
@@ -837,7 +838,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.list.moveToChar(charstr[0], self["chosenletter"])
 
 	def keyAsciiCode(self):
-		unichar = unichr(getPrevAsciiCode())
+		unichar = six.unichr(getPrevAsciiCode())
 		charstr = unichar.encode("utf-8")
 		if len(charstr) == 1:
 			self.list.moveToString(charstr[0], self["chosenletter"])
@@ -2027,7 +2028,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		Tools.Trashcan.cleanAll(os.path.split(current.getPath())[0])
 
 	def showNetworkMounts(self):
-		from . import NetworkSetup
+		import NetworkSetup
 		self.session.open(NetworkSetup.NetworkMountsMenu)
 
 	def showDeviceMounts(self):

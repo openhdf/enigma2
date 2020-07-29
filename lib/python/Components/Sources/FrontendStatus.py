@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from Source import Source
+from Components.Sources.Source import Source
 from enigma import eTimer
 
 class FrontendStatus(Source):

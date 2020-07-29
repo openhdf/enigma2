@@ -10,7 +10,7 @@ from Tools.Directories import fileExists, resolveFilename
 from os import environ, listdir, remove, rename, system
 from Components.ServiceEventTracker import ServiceEventTracker
 import gettext
-from .Poll import Poll
+from Components.Converter.Poll import Poll
 from six.moves import range
 
 class ExtremeInfo(Poll, Converter, object):

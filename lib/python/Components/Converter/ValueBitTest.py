@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from .Converter import Converter
+from Components.Converter import Converter
 from Components.Element import cached
 
 class ValueBitTest(Converter, object):

@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from .Converter import Converter
+from Components.Converter import Converter
 from enigma import eListboxPythonStringContent
 from Components.Element import cached
 

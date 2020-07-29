@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from .config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigSlider, ConfigNothing
+from Components.config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigSlider, ConfigNothing
 from enigma import eRFmod
 from Components.SystemInfo import SystemInfo
 from six.moves import range

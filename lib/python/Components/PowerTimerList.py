@@ -3,8 +3,8 @@ from __future__ import division
 from enigma import eListboxPythonMultiContent, eListbox, gFont, getDesktop, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
 
-from .HTMLComponent import HTMLComponent
-from .GUIComponent import GUIComponent
+from Components.HTMLComponent import HTMLComponent
+from Components.GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from Tools.LoadPixmap import LoadPixmap
 from timer import TimerEntry
