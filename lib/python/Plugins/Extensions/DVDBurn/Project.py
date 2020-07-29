@@ -1,17 +1,14 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from Tools.Directories import fileExists
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence, ConfigSubList
-from . import DVDTitle
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, ConfigSequence, ConfigSubList
+from . import Title
 import xml.dom.minidom
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
-from boxbranding import getMachineBrand, getMachineName
 import six
-from six.moves import range
 
 class ConfigColor(ConfigSequence):
-	def __init__(self, default=None):
-		if not default: default = [128, 128, 128]
+	def __init__(self, default = [128, 128, 128]):
 		ConfigSequence.__init__(self, seperator = "#", limits = [(0, 255), (0, 255), (0, 255)], default = default)
 
 class ConfigFilename(ConfigText):
@@ -20,48 +17,51 @@ class ConfigFilename(ConfigText):
 
 	def getMulti(self, selected):
 		if self.text == "":
-			return "mtext"[1-selected:], "", 0
+			return ("mtext"[1-selected:], "", 0)
 		cut_len = min(len(self.text), 40)
-		filename = (self.text.rstrip("/").rsplit("/", 1))[1].encode("utf-8")[:cut_len] + " "
+		filename = six.ensure_str((self.text.rstrip("/").rsplit("/", 1))[1])[:cut_len] + " "
 		if self.allmarked:
 			mark = list(range(0, len(filename)))
 		else:
 			mark = [filename]
-		return "mtext"[1-selected:], filename, mark
-
-class DVDProject:
+		return ("mtext"[1-selected:], filename, mark)
+	
+class Project:
 	MAX_SL = 4480
 	MAX_DL = 8150
+	MAX_BD = 24220
 	def __init__(self):
 		self.titles = [ ]
 		self.target = None
 		self.settings = ConfigSubsection()
 		self.settings.name = ConfigText(fixed_size = False, visible_width = 40)
-		self.settings.authormode = ConfigSelection(choices = [("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Seperate titles with a main menu")), ("data_ts", _("%s %s format data DVD (HDTV compatible)") % (getMachineBrand(), getMachineName()))])
+		self.settings.authormode = ConfigSelection(choices = [("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Seperate titles with a main menu")), ("bdmv", _("BDMV Compatible Bludisc (HDTV only)")), ("data_ts", _("Dreambox format data DVD (HDTV compatible)"))])
 		self.settings.titlesetmode = ConfigSelection(choices = [("single", _("Simple titleset (compatibility for legacy players)")), ("multi", _("Complex (allows mixing audio tracks and aspects)"))], default="multi")
-		self.settings.output = ConfigSelection(choices = [("iso", _("Create DVD-ISO")), ("dvd", _("Burn DVD"))])
+		self.settings.output = ConfigSelection(choices = [("iso", _("Create DVD-ISO")), ("medium", _("Burn to medium"))])
 		self.settings.isopath = ConfigText(fixed_size = False, visible_width = 40)
-		self.settings.dataformat = ConfigSelection(choices = [("iso9660_1", "ISO9660 Level 1"), ("iso9660_4", "ISO9660 version 2"), ("udf", "UDF")])
+		self.settings.dataformat = ConfigSelection(choices = [("iso9660_1", ("ISO9660 Level 1")), ("iso9660_4", ("ISO9660 version 2")), ("udf", ("UDF"))])
 		self.settings.menutemplate = ConfigFilename()
 		self.settings.vmgm = ConfigFilename()
 		self.filekeys = ["vmgm", "isopath", "menutemplate"]
 		self.menutemplate = MenuTemplate()
 		self.error = ""
 		self.session = None
+		self.finished_burning = False
 
 	def addService(self, service):
-		title = DVDTitle.DVDTitle(self)
+		title = Title.Title(self)
 		title.addService(service)
 		self.titles.append(title)
 		return title
 
 	def saveProject(self, path):
 		from Tools.XMLTools import stringToXML
-		list = ['<?xml version="1.0" encoding="utf-8" ?>\n',
-				'<DreamDVDBurnerProject>\n',
-				'\t<settings ']
+		list = []
+		list.append('<?xml version="1.0" encoding="utf-8" ?>\n')
+		list.append('<DreamDVDBurnerProject>\n')
+		list.append('\t<settings ')
 		for key, val in six.iteritems(self.settings.dict()):
-			list.append( key + '="' + str(val.value) + '" ' )
+			list.append( key + '="' + str(val.getValue()) + '" ' )
 		list.append('/>\n')
 		list.append('\t<titles>\n')
 		for title in self.titles:
@@ -77,11 +77,11 @@ class DVDProject:
 					for audiotrack in val:
 						audiotracks.append('\t\t\t\t<audiotrack ')
 						for subkey, subval in six.iteritems(audiotrack.dict()):
-							audiotracks.append( subkey + '="' + str(subval.value) + '" ' )
+							audiotracks.append( subkey + '="' + str(subval.getValue()) + '" ' )
 						audiotracks.append(' />\n')
 					audiotracks.append('\t\t\t</audiotracks>\n')
 				else:
-					list.append( key + '="' + str(val.value) + '" ' )
+					list.append( key + '="' + str(val.getValue()) + '" ' )
 			list.append('/>\n')
 			for line in audiotracks:
 				list.append(line)
@@ -89,13 +89,13 @@ class DVDProject:
 		list.append('\t</titles>\n')
 		list.append('</DreamDVDBurnerProject>\n')
 
-		name = self.settings.name.value
+		name = self.settings.name.getValue()
 		i = 0
 		filename = path + name + ".ddvdp.xml"
 		while fileExists(filename):
-			i += 1
+			i = i+1
 			filename = path + name + str(i).zfill(3) + ".ddvdp.xml"
-		try:
+		try:	
 			file = open(filename, "w")
 			for x in list:
 				file.write(x)
@@ -107,7 +107,7 @@ class DVDProject:
 	def load(self, filename):
 		ret = self.loadProject(filename)
 		if ret:
-			ret = self.menutemplate.loadTemplate(self.settings.menutemplate.value)
+			ret = self.menutemplate.loadTemplate(self.settings.menutemplate.getValue())
 			self.error += self.menutemplate.error
 		return ret
 
@@ -129,7 +129,7 @@ class DVDProject:
 						self.xmlGetTitleNodeRecursive(node)
 
 			for key in self.filekeys:
-				val = self.settings.dict()[key].value
+				val = self.settings.dict()[key].getValue()
 				if not fileExists(val):
 					if val[0] != "/":
 						if key.find("font") == 0:
@@ -141,7 +141,7 @@ class DVDProject:
 							continue
 					self.error += "\n%s '%s' not found" % (key, val)
 		#except AttributeError:
-			#print "loadProject AttributeError", self.error
+		  	#print "loadProject AttributeError", self.error
 			#self.error += (" in project '%s'") % (filename)
 			#return False
 			return True
@@ -154,21 +154,21 @@ class DVDProject:
 				#raise AttributeError
 			while i < node.attributes.length:
 				item = node.attributes.item(i)
-				key = item.name.encode("utf-8")
+				key = six.ensure_str(item.name)
 				try:
 					val = eval(item.nodeValue)
 				except (NameError, SyntaxError):
-					val = item.nodeValue.encode("utf-8")
+					val = six.ensure_str(item.nodeValue)
 				try:
 					print("config[%s].setValue(%s)" % (key, val))
 					config.dict()[key].setValue(val)
-				except KeyError:
-					self.error = "unknown attribute '%s'" % key
+				except (KeyError):
+					self.error = "unknown attribute '%s'" % (key)
 					print("KeyError", self.error)
 					raise AttributeError
 				i += 1
 		except AttributeError:
-			self.error += " XML attribute error '%s'" % node.toxml()
+			self.error += (" XML attribute error '%s'") % node.toxml()
 			return False
 
 	def xmlGetTitleNodeRecursive(self, node, title_idx = -1):
@@ -179,13 +179,13 @@ class DVDProject:
 			if subnode.nodeType == xml.dom.minidom.Element.nodeType:
 				if subnode.tagName == 'title':
 					title_idx += 1
-					title = DVDTitle.DVDTitle(self)
+					title = Title.Title(self)
 					self.titles.append(title)
 					self.xmlGetTitleNodeRecursive(subnode, title_idx)
 				if subnode.tagName == 'path':
 					print("path:", subnode.firstChild.data)
 					filename = subnode.firstChild.data
-					self.titles[title_idx].addFile(filename.encode("utf-8"))
+					self.titles[title_idx].addFile(six.ensure_str(filename))
 				if subnode.tagName == 'properties':
 					self.xmlAttributesToConfig(node, self.titles[title_idx].properties)
 				if subnode.tagName == 'audiotracks':
@@ -201,7 +201,7 @@ class DVDProject:
 
 	size = property(getSize)
 
-class MenuTemplate(DVDProject):
+class MenuTemplate(Project):
 	def __init__(self):
 		self.settings = ConfigSubsection()
 		self.settings.titleformat = ConfigText(fixed_size = False, visible_width = 40)
@@ -236,11 +236,39 @@ class MenuTemplate(DVDProject):
 		self.settings.thumb_size = ConfigSequence(seperator = ',', default = [200, 158], limits = [(0, 576), (-1, 720)])
 		self.settings.thumb_border = ConfigInteger(default = 2, limits = (0, 20))
 		self.filekeys = ["menubg", "menuaudio", "fontface_headline", "fontface_title", "fontface_subtitle"]
-		from .TitleProperties import languageChoices
-		self.settings.menulang = ConfigSelection(choices = languageChoices.choices, default=languageChoices.choices[1][0])
+		choicelist = iso639language.getChoices()
+		self.settings.menulang = ConfigSelection(choicelist, default=choicelist[1][0])
+		tvsys = config.av.tvsystem
+		if tvsys not in ("pal", "ntsc"):
+			tvsys = "pal"
+		self.settings.video_format = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC")}, default=tvsys)
 		self.error = ""
 
 	def loadTemplate(self, filename):
-		ret = DVDProject.loadProject(self, filename)
-		DVDProject.error = self.error
+		ret = Project.loadProject(self, filename)
+		Project.error = self.error
 		return ret
+
+from Tools.ISO639 import ISO639Language
+
+class DVDISO639Language(ISO639Language):
+	def __init__(self):
+		ISO639Language.__init__(self, self.PRIMARY)
+
+	def get_dvd_id(self, language):
+		ret = "nolang"
+		if language in self.idlist_by_name:
+			for lang in self.idlist_by_name[language]:
+				if len(lang) == 2:
+					return lang
+		return ret
+
+	def get_bludisc_id(self, language):
+		ret = "und"
+		if language in self.idlist_by_name:
+			for lang in self.idlist_by_name[language]:
+				if len(lang) == 3:
+					return lang
+		return ret
+
+iso639language = DVDISO639Language()
