@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from Components.VariableText import VariableText
 from enigma import eLabel, eDVBVolumecontrol, eTimer
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 
 class RendVolumeTextNobile(Renderer, VariableText):
 	def __init__(self):

@@ -82,7 +82,7 @@ dom_skins = [ ]
 def addSkin(name, scope = SCOPE_SKIN):
 	# read the skin
 	if name is None or not len(name):
-		#print "[SKIN ERROR] attempt to add a skin without filename"
+		print("[SKIN ERROR] attempt to add a skin without filename")
 		return False
 	filename = resolveFilename(scope, name)
 	if fileExists(filename):
@@ -1370,8 +1370,8 @@ def readSkin(screen, skin, names, desktop):
 			"panel": process_panel
 	}
 
+	print("[SKIN] processing screen %s:" % name)
 	try:
-		print("[SKIN] processing screen %s:" % name)
 		context.x = 0 # reset offsets, all components are relative to screen
 		context.y = 0 # coordinates.
 		process_screen(myscreen, context)

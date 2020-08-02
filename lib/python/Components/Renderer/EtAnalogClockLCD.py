@@ -4,7 +4,7 @@
 from __future__ import absolute_import
 from __future__ import division
 import math
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from skin import parseColor
 from enigma import eCanvas, eSize, gRGB, eRect
 from Components.VariableText import VariableText
