@@ -1870,7 +1870,9 @@ class ConfigSubsection(object):
 			value.load()
 
 	def __getattr__(self, name):
-		return self.content.items[name]
+		if name in self.content.items:
+			return self.content.items[name]
+		raise AttributeError(name)
 
 	def getSavedValue(self):
 		res = self.content.stored_values
@@ -1893,11 +1895,11 @@ class ConfigSubsection(object):
 	saved_value = property(getSavedValue, setSavedValue)
 
 	def save(self):
-		for x in self.content.items.values():
+		for x in list(self.content.items.values()):
 			x.save()
 
 	def load(self):
-		for x in self.content.items.values():
+		for x in list(self.content.items.values()):
 			x.load()
 
 	def dict(self):
@@ -1915,7 +1917,7 @@ class Config(ConfigSubsection):
 		ConfigSubsection.__init__(self)
 
 	def pickle_this(self, prefix, topickle, result):
-		for (key, val) in sorted(list(topickle.items()), key=lambda x: int(x[0]) if x[0].isdigit() else x[0].lower()):
+		for (key, val) in sorted(topickle.items(), key=lambda x: str(x[0]) if x[0].isdigit() else x[0].lower()):
 			name = '.'.join((prefix, key))
 			if isinstance(val, dict):
 				self.pickle_this(name, val, result)
@@ -1995,7 +1997,7 @@ class Config(ConfigSubsection):
 			print("Config: Couldn't write %s" % filename)
 
 	def loadFromFile(self, filename, base_file=True):
-		self.unpickle(open(filename, "r"), base_file)
+		self.unpickle(open(filename, "r", encoding='utf-8'), base_file)
 
 config = Config()
 config.misc = ConfigSubsection()
@@ -2044,7 +2046,7 @@ configfile = ConfigFile()
 configfile.load()
 
 def getConfigListEntry(*args):
-	assert len(args) > 1, "getConfigListEntry needs a minimum of two arguments (descr, configElement)"
+	assert len(args) > 0, "getConfigListEntry needs a minimum of one argument (descr)"
 	return args
 
 def updateConfigElement(element, newelement):

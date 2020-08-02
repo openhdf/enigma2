@@ -1,10 +1,11 @@
 from __future__ import print_function
-from __future__ import absolute_import
 from json import loads
-from urllib.error import URLError
-from urllib.request import urlopen
 
 from Components.config import ConfigYesNo, config
+from six.moves.urllib.request import urlopen
+
+from six.moves.urllib.error import URLError
+
 
 # Data available from http://ip-api.com/json/:
 #
@@ -50,7 +51,7 @@ def InitGeolocation():
 	if config.misc.enableGeolocation.value:
 		if len(geolocation) == 0:
 			try:
-				response = urlopen("http://ip-api.com/json/?fields=33279807", data=None, timeout=10).read()
+				response = urlopen("http://ip-api.com/json/?fields=33288191", data=None, timeout=10).read()
 				# print "[Geolocation] DEBUG:", response
 				if response:
 					geolocation = loads(response)
