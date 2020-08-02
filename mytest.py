@@ -173,7 +173,7 @@ from Screens.SessionGlobals import SessionGlobals
 from Screens.Screen import Screen
 
 profile("Screen")
-Screen.globalScreen = Globals()
+Screen.global_screen = Globals()
 
 # Session.open:
 # * push current active dialog ('current_dialog') onto stack
