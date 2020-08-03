@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 # by digiteng...12-2019
 
-from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.UsageConfig import *
 import json
 import re
 import os
-import urllib.request, urllib.error, urllib.parse
+from six.moves import urllib
+from six.moves.urllib.parse import quote
 
 posterpath = '/media/hdd/'
 posterpath = config.usage.posterpath.value
@@ -60,7 +60,7 @@ class pstrCnvrt(Converter, object):
 	text = property(getText)
 	
 	def searchPoster(self):
-		url_json = "https://api.themoviedb.org/3/search/%s?api_key=3c3efcf47c3577558812bb9d64019d65&query=%s"%(self.srch, self.evntNm)
+		url_json = 'https://api.themoviedb.org/3/search/%s?api_key=3c3efcf47c3577558812bb9d64019d65&query=%s'%(self.srch, quote(self.evnt))
 		jp = json.load(urllib.request.urlopen(url_json))
 
 		imgP = (jp['results'][0]['poster_path'])

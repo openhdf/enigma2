@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 import six
 import Components.Task
 from Screens.ChoiceBox import ChoiceBox
@@ -19,7 +18,7 @@ from boxbranding import getImageVersion, getImageBuild, getMachineBrand, getMach
 
 from os import rename, path, remove
 from gettext import dgettext
-import urllib.request, urllib.parse, urllib.error
+from six.moves import urllib
 
 ocram = ''
 
@@ -72,7 +71,7 @@ class SoftwareUpdateChanges(Screen):
 		global ocram
 		try:
 			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersion() + '/' + getBoxType() + '/'  + self.logtype + '-git.log'
-			sourcefile, headers = urllib.request.urlretrieve(sourcefile)
+			sourcefile, headers = urllib.urlretrieve(sourcefile)
 			rename(sourcefile, '/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
 			releasenotes = fd.read()
@@ -94,7 +93,7 @@ class SoftwareUpdateChanges(Screen):
 				else:
 					releasever = releasever[0].replace(':', "")
 			if self.logtype == 'oe':
-				imagever = getImageBuild()
+				imagever = int(getImageBuild())
 			else:
 				imagever = int(getImageBuild())+865
 			while int(releasever) > int(imagever):

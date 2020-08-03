@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 # CCcam Info by AliAbdul
 from __future__ import print_function
-from __future__ import absolute_import
 from base64 import encodestring
 from os import listdir, remove, rename, system, popen, path
 
@@ -38,12 +37,7 @@ CFG = "/etc/CCcam.cfg"
 #############################################################
 
 ###global
-f = 1
-screenwidth = getDesktop(0).size().width()
-if screenwidth and screenwidth == 1920:
-	f = 1.5
-elif screenwidth and screenwidth > 1920:
-	f = 3
+sf = skin.getSkinFactor()
 ###global
 
 def confPath():
@@ -326,12 +320,12 @@ def CCcamConfigListEntry(file):
 
 	if content == org:
 		png = lock_on
-		x, y, w, h = skin.parameters.get("SelectionListLock", (5*f, 0, 25*f, 25*f))
+		x, y, w, h = skin.parameters.get("SelectionListLock", (5*sf, 0, 25*sf, 25*sf))
 	else:
 		png = lock_off
-		x, y, w, h = skin.parameters.get("SelectionListLockOff", (5*f, 0, 25*f, 25*f))
+		x, y, w, h = skin.parameters.get("SelectionListLockOff", (5*sf, 0, 25*sf, 25*sf))
 	res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=png))
-	x, y, w, h = skin.parameters.get("SelectionListDescr", (45*f, 2*f, 550*f, 25*f))
+	x, y, w, h = skin.parameters.get("SelectionListDescr", (45*sf, 2*sf, 550*sf, 25*sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 
 	return res
@@ -341,12 +335,12 @@ def CCcamMenuConfigListEntry(name, blacklisted):
 
 	if blacklisted:
 		png = lock_off
-		x, y, w, h = skin.parameters.get("SelectionListLockOff", (5*f, 0, 25*f, 25*f))
+		x, y, w, h = skin.parameters.get("SelectionListLockOff", (5*sf, 0, 25*sf, 25*sf))
 	else:
 		png = lock_on
-		x, y, w, h = skin.parameters.get("SelectionListLock", (5*f, 0, 25*f, 25*f))
+		x, y, w, h = skin.parameters.get("SelectionListLock", (5*sf, 0, 25*sf, 25*sf))
 	res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=png))
-	x, y, w, h = skin.parameters.get("SelectionListDescr", (45*f, 2*f, 550*f, 25*f))
+	x, y, w, h = skin.parameters.get("SelectionListDescr", (45*sf, 2*sf, 550*sf, 25*sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 
 	return res
@@ -684,7 +678,7 @@ class CCcamInfoMain(Screen):
 							while string.endswith(" "):
 								string = string[:-1]
 
-							idx = string.index(" ")
+							idx = " ".index()
 							uphops = string[:idx]
 							string = string[idx+1:]
 
@@ -892,7 +886,7 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 								while string.endswith(" "):
 									string = string[:-1]
 
-								idx = string.index(" ")
+								idx = " ".index()
 								maxdown = string[idx+1:]
 
 								while maxdown.startswith(" "):
@@ -1434,7 +1428,7 @@ class CCcamInfoShareInfo(Screen):
 							while string.endswith(" "):
 								string = string[:-1]
 
-							idx = string.index(" ")
+							idx = " ".index()
 							uphops = string[:idx]
 							string = string[idx+1:]
 

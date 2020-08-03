@@ -36,3 +36,4 @@ stamp-h1
 *.tar.gz
 *.bak
 __pycache__
+*.pyc
