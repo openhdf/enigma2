@@ -1,6 +1,5 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from __future__ import division
 from enigma import getPrevAsciiCode
 from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, fileExists
@@ -453,7 +452,8 @@ class ConfigBoolean(ConfigElement):
 		from skin import switchPixmap
 		if self.graphic and config.usage.boolean_graphic.value and switchPixmap.get("menu_on", False) and switchPixmap.get("menu_off", False):
 			return ('pixmap', self.value and switchPixmap["menu_on"] or switchPixmap["menu_off"])
-		return ("text", self.descriptions[self.value])
+		else:
+			return ("text", self.descriptions[self.value])
 
 	def tostring(self, value):
 		if not value:
@@ -985,7 +985,7 @@ class ConfigFloat(ConfigSequence):
 		ConfigSequence.__init__(self, seperator = ".", limits = limits, default = default)
 
 	def getFloat(self):
-		return float(self.value[1] // float(self.limits[1][1] + 1) + self.value[0])
+		return float(self.value[1] / float(self.limits[1][1] + 1) + self.value[0])
 
 	float = property(getFloat)
 
@@ -993,7 +993,7 @@ class ConfigFloat(ConfigSequence):
 		return int(self.value[0] * float(self.limits[1][1] + 1) + self.value[1])
 
 	def setFloatInt(self, val):
-		self.value[0] = val // float(self.limits[1][1] + 1)
+		self.value[0] = val / float(self.limits[1][1] + 1)
 		self.value[1] = val % float(self.limits[1][1] + 1)
 
 	floatint = property(getFloatInt, setFloatInt)
@@ -1719,10 +1719,10 @@ class ConfigLocations(ConfigElement):
 					ind2 = len(valstr)
 				i += 1
 			if self.visible_width and len(valstr) > self.visible_width:
-				if ind1+1 < self.visible_width//2:
+				if ind1+1 < self.visible_width/2:
 					off = 0
 				else:
-					off = min(ind1+1-self.visible_width//2, len(valstr)-self.visible_width)
+					off = min(ind1+1-self.visible_width/2, len(valstr)-self.visible_width)
 				return "mtext", valstr[off:off+self.visible_width], list(range(ind1-off, ind2-off))
 			else:
 				return "mtext", valstr, list(range(ind1, ind2))
@@ -1759,7 +1759,7 @@ class ConfigSubsectionContent(object):
 # config.dipswitches.append(ConfigYesNo())
 # config.dipswitches.append(ConfigYesNo())
 # config.dipswitches.append(ConfigYesNo())
-class ConfigSubList(list, object):
+class ConfigSubList(list):
 	def __init__(self):
 		list.__init__(self)
 		self.stored_values = {}
@@ -1802,7 +1802,7 @@ class ConfigSubList(list, object):
 # care must be taken that the 'key' has a proper
 # str() method, because it will be used in the config
 # file.
-class ConfigSubDict(dict, object):
+class ConfigSubDict(dict):
 	def __init__(self):
 		dict.__init__(self)
 		self.stored_values = {}
@@ -1987,7 +1987,7 @@ class Config(ConfigSubsection):
 		text = self.pickle()
 		try:
 			import os
-			f = open(filename + ".writing", "w")
+			f = open(filename + ".writing", "w", encoding='utf-8')
 			f.write(text)
 			f.flush()
 			os.fsync(f.fileno())
