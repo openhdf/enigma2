@@ -3,7 +3,6 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
-#include <poll.h>
 
 #if defined(__sh__) // this allows filesystem tasks to be prioritised
 #include <sys/vfs.h>
@@ -31,7 +30,7 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	  m_run_state(0)
 {
 	if (m_buffer == NULL)
-		eFatal("[eFilePushThread] Failed to allocate %d bytes", buffersize);
+		eFatal("[eFilePushThread] Failed to allocate %zu bytes", buffersize);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
 }
 
@@ -150,7 +149,7 @@ void eFilePushThread::thread()
 
 			if (buf_end == 0)
 			{
-				/* on EOF, try COMMITting once. */
+#ifndef HAVE_ALIEN5				/* on EOF, try COMMITting once. */
 				if (m_send_pvr_commit)
 				{
 					struct pollfd pfd;
@@ -184,7 +183,7 @@ void eFilePushThread::thread()
 						continue;
 					}
 				}
-
+#endif
 				if (m_stop)
 					break;
 
@@ -196,14 +195,22 @@ void eFilePushThread::thread()
 
 				if (m_stream_mode)
 				{
-					eDebug("[eFilePushThread] reached EOF, but we are in stream mode. delaying 3 second.");
-					sleep(3);
+					eDebug("[eFilePushThread] reached EOF, but we are in stream mode. delaying 1 second.");
+#if HAVE_ALIEN5
+				usleep(50000);
+#else
+					sleep(1);
+#endif
 					continue;
 				}
 				else if (++eofcount < 10)
 				{
 					eDebug("[eFilePushThread] reached EOF, but the file may grow. delaying 1 second.");
+#if HAVE_ALIEN5
+								usleep(50000);
+#else
 					sleep(1);
+#endif
 					continue;
 				}
 				break;
@@ -235,8 +242,14 @@ void eFilePushThread::thread()
 #if HAVE_HISILICON
 							usleep(100000);
 #endif
+#if HAVE_ALIEN5
+							usleep(100000);
+#endif
 							continue;
 						}
+#if HAVE_ALIEN5
+						usleep(50000);
+#endif
 						eDebug("[eFilePushThread] write: %m");
 						sendEvent(evtWriteError);
 						break;
@@ -253,6 +266,9 @@ void eFilePushThread::thread()
 				if (m_sg)
 					current_span_remaining -= buf_end;
 			}
+#if HAVE_ALIEN5
+			usleep(10);
+#endif
 		}
 #if defined(__sh__) // closes video device for the reverse playback workaround
 		close(fd_video);
@@ -543,13 +559,6 @@ void eFilePushThreadRecorder::thread()
 	/* m_stop must be evaluated after each syscall. */
 	while (!m_stop)
 	{
-		/* this works around the buggy Broadcom encoder that always returns even if there is no data */
-		/* (works like O_NONBLOCK even when not opened as such), prevent idle waiting for the data */
-		/* this won't ever hurt, because it will return immediately when there is data or an error condition */
-
-		struct pollfd pfd = { m_fd_source, POLLIN, 0 };
-		poll(&pfd, 1, 100);
-
 		ssize_t bytes;
 		if (m_protocol == _PROTO_RTSP_TCP)
 			bytes = read_dmx(m_fd_source, m_buffer, m_buffersize);
@@ -564,10 +573,12 @@ void eFilePushThreadRecorder::thread()
 				break;
 			}
 			if (errno == EINTR || errno == EBUSY || errno == EAGAIN)
+			{
 #if HAVE_HISILICON
 				usleep(100000);
 #endif
-			continue;
+				continue;
+			}
 			if (errno == EOVERFLOW)
 			{
 				eWarning("[eFilePushThreadRecorder] OVERFLOW while recording");
@@ -592,7 +603,7 @@ void eFilePushThreadRecorder::thread()
 #endif
 		if (w < 0)
 		{
-			eWarning("[eFilePushThreadRecorder] WRITE ERROR, aborting thread: %m");
+			eDebug("[eFilePushThreadRecorder] WRITE ERROR, aborting thread: %m");
 			sendEvent(evtWriteError);
 			break;
 		}
