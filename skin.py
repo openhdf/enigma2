@@ -1255,16 +1255,16 @@ def readSkin(screen, skin, names, desktop):
 			name = n
 			break
 	else:
-		name = "<embedded-in-'%s'>" % screen.__class__.__name__
-
-	# otherwise try embedded skin
-	if myscreen is None:
-		myscreen = getattr(screen, "parsedSkin", None)
-
-	# try uncompiled embedded skin
-	if myscreen is None and getattr(screen, "skin", None):
-		skin = screen.skin
-		print("[SKIN] Parsing embedded skin", name)
+		name = "<embedded-in-%s>" % screen.__class__.__name__
+	if myScreen is None:  # Otherwise try embedded skin.
+		myScreen = getattr(screen, "parsedSkin", None)
+	if myScreen is None and getattr(screen, "skin", None):  # Try uncompiled embedded skin.
+		if isinstance(screen.skin, list):
+			print("[Skin] Resizable embedded skin %s template found!" % name)
+			skin = screen.skin[0] % tuple([x * getDesktop(0).size().height() / 720 for x in screen.skin[1:]])
+		else:
+			skin = screen.skin
+		print("[Skin] Parsing embedded skin '%s'." % name)
 		if isinstance(skin, tuple):
 			for s in skin:
 				candidate = xml.etree.cElementTree.fromstring(s)
