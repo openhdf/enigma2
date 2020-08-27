@@ -7,32 +7,62 @@ from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
-from Components.MenuList import MenuList
-from Components.config import config, configfile
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
-from enigma import eEnv, ePicLoad
-import os
+from Screens.HelpMenu import HelpableScreen
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop, QUIT_RESTART
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_LCDSKIN, SCOPE_SKIN
 
 
-class SkinSelectorBase:
-	def __init__(self, session, args=None):
-		self.setTitle(_("Skin Selector"))
-		self.skinlist = []
-		self.previewPath = ""
-		if self.SKINXML and os.path.exists(os.path.join(self.root, self.SKINXML)):
-			self.skinlist.append(self.DEFAULTSKIN)
-		if self.PICONSKINXML and os.path.exists(os.path.join(self.root, self.PICONSKINXML)):
-			self.skinlist.append(self.PICONDEFAULTSKIN)
-		for root, dirs, files in os.walk(self.root, followlinks=True):
-			for subdir in dirs:
-				if subdir == "skin_default":
-					continue
-				dir = os.path.join(root, subdir)
-				if os.path.exists(os.path.join(dir, self.SKINXML)):
-					self.skinlist.append(subdir)
-			dirs = []
+class SkinSelector(Screen, HelpableScreen):
+	skin = ["""
+	<screen name="SkinSelector" position="center,center" size="%d,%d">
+		<widget name="preview" position="center,%d" size="%d,%d" alphatest="blend" />
+		<widget source="skins" render="Listbox" position="center,%d" size="%d,%d" enableWrapAround="1" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{
+				"template": [
+					MultiContentEntryText(pos = (%d, 0), size = (%d, %d), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 1),
+					MultiContentEntryText(pos = (%d, 0), size = (%d, %d), font = 0, flags = RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text = 2)
+				],
+				"fonts": [gFont("Regular",%d)],
+				"itemHeight": %d
+				}
+			</convert>
+		</widget>
+		<widget source="description" render="Label" position="center,e-%d" size="%d,%d" font="Regular;%d" valign="center" />
+		<widget source="key_red" render="Label" position="%d,e-%d" size="%d,%d" backgroundColor="key_red" font="Regular;%d" foregroundColor="key_text" halign="center" valign="center" />
+		<widget source="key_green" render="Label" position="%d,e-%d" size="%d,%d" backgroundColor="key_green" font="Regular;%d" foregroundColor="key_text" halign="center" valign="center" />
+	</screen>""",
+		670, 570,
+		10, 356, 200,
+		230, 650, 240,
+		10, 350, 30,
+		370, 260, 30,
+		25,
+		30,
+		85, 650, 25, 20,
+		10, 50, 140, 40, 20,
+		160, 50, 140, 40, 20
+	]
 
-		self["key_red"] = StaticText(_("Close"))
+	def __init__(self, session, screenTitle=_("GUI Skin")):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+
+		element = domScreens.get("SkinSelector", (None, None))[0]
+		if element and 'introduction' in [widget.get('source', None) for widget in element.findall("widget")]:
+			#screen from loaded skin is  not compatible so remove the screen
+			del domScreens["SkinSelector"]
+		Screen.setTitle(self, screenTitle)
+		self.rootDir = resolveFilename(SCOPE_SKIN)
+		self.config = config.skin.primary_skin
+		self.current = currentPrimarySkin
+		self.xmlList = ["skin.xml"]
+		self.onChangedEntry = []
+		self["skins"] = List(enableWrapAround=True)
+		self["preview"] = Pixmap()
+		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["introduction"] = StaticText(_("Press OK to activate the selected skin."))
 		self["SkinList"] = MenuList(self.skinlist)
