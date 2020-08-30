@@ -51,6 +51,13 @@ class Screen(dict, GUISkin):
 		# don't care about having or not having focus.
 		self.stand_alone = False
 		self.keyboardMode = None
+		self.desktop = None
+		self.instance = None
+		self.summaries = CList()
+		self["Title"] = StaticText()
+		self["ScreenPath"] = StaticText()
+		self.screenPath = ""  # This is the current screen path without the title.
+		self.screenTitle = ""  # This is the current screen title without the path.
 
 	def saveKeyboardMode(self):
 		rcinput = eRCInput.getInstance()
@@ -168,6 +175,61 @@ class Screen(dict, GUISkin):
 		for val in list(self.values()) + self.renderer:
 			if isinstance(val, GUIComponent) or isinstance(val, Source):
 				val.onHide()
+
+	def getScreenPath(self):
+		return self.screenPath
+
+	def setTitle(self, title, showPath=True):
+		try:  # This protects against calls to setTitle() before being fully initialised like self.session is accessed *before* being defined.
+			if self.session and len(self.session.dialog_stack) > 2:
+				self.screenPath = " > ".join(ds[0].getTitle() for ds in self.session.dialog_stack[2:])
+			else:
+				self.screenPath = ""
+			if self.instance:
+				self.instance.setTitle(title)
+			self.summaries.setTitle(title)
+		except AttributeError:
+			pass
+		self.screenTitle = title
+		if showPath and config.usage.menu_path.value == "large":
+			screenPath = ""
+			screenTitle = "%s > %s" % (self.screenPath, title) if self.screenPath else title
+		elif showPath and config.usage.menu_path.value == "small":
+			screenPath = "%s >" % self.screenPath if self.screenPath else ""
+			screenTitle = title
+		else:
+			screenPath = ""
+			screenTitle = title
+		self["ScreenPath"].text = screenPath
+		self["Title"].text = screenTitle
+
+	def getTitle(self):
+		return self.screenTitle
+
+	title = property(getTitle, setTitle)
+
+	def setFocus(self, o):
+		self.instance.setFocus(o.instance)
+
+	def setKeyboardModeNone(self):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmNone)
+
+	def setKeyboardModeAscii(self):
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmAscii)
+
+	def restoreKeyboardMode(self):
+		rcinput = eRCInput.getInstance()
+		if self.keyboardMode is not None:
+			rcinput.setKeyboardMode(self.keyboardMode)
+
+	def saveKeyboardMode(self):
+		rcinput = eRCInput.getInstance()
+		self.keyboardMode = rcinput.getKeyboardMode()
+
+	def setDesktop(self, desktop):
+		self.desktop = desktop
 
 	def setAnimationMode(self, mode):
 		if self.instance:
