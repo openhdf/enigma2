@@ -252,3 +252,92 @@ class Screen(dict, GUISkin):
 		self.__callLaterTimer = eTimer()
 		self.__callLaterTimer.callback.append(function)
 		self.__callLaterTimer.start(0, True)
+
+	def applySkin(self):
+		# DEBUG: baseRes = (getDesktop(GUI_SKIN_ID).size().width(), getDesktop(GUI_SKIN_ID).size().height())
+		baseRes = (720, 576)  # FIXME: A skin might have set another resolution, which should be the base res.
+		zPosition = 0
+		for (key, value) in self.skinAttributes:
+			if key == "baseResolution":
+				baseRes = tuple([int(x) for x in value.split(",")])
+			elif key == "zPosition":
+				zPosition = int(value)
+		self.scale = ((baseRes[0], baseRes[0]), (baseRes[1], baseRes[1]))
+		if not self.instance:
+			self.instance = eWindow(self.desktop, zPosition)
+		if "title" not in self.skinAttributes and self.screenTitle:
+			self.skinAttributes.append(("title", self.screenTitle))
+		else:
+			for attribute in self.skinAttributes:
+				if attribute[0] == "title":
+					self.setTitle(_(attribute[1]))
+		self.skinAttributes.sort(key=lambda a: {"position": 1}.get(a[0], 0))  # We need to make sure that certain attributes come last.
+		applyAllAttributes(self.instance, self.desktop, self.skinAttributes, self.scale)
+		self.createGUIScreen(self.instance, self.desktop)
+
+	def createGUIScreen(self, parent, desktop, updateonly=False):
+		for val in self.renderer:
+			if isinstance(val, GUIComponent):
+				if not updateonly:
+					val.GUIcreate(parent)
+				if not val.applySkin(desktop, self):
+					print("[Screen] Warning: Skin is missing renderer '%s' in %s." % (val, str(self)))
+		for key in self:
+			val = self[key]
+			if isinstance(val, GUIComponent):
+				if not updateonly:
+					val.GUIcreate(parent)
+				depr = val.deprecationInfo
+				if val.applySkin(desktop, self):
+					if depr:
+						print("[Screen] WARNING: OBSOLETE COMPONENT '%s' USED IN SKIN. USE '%s' INSTEAD!" % (key, depr[0]))
+						print("[Screen] OBSOLETE COMPONENT WILL BE REMOVED %s, PLEASE UPDATE!" % depr[1])
+				elif not depr:
+					print("[Screen] Warning: Skin is missing element '%s' in %s." % (key, str(self)))
+		for w in self.additionalWidgets:
+			if not updateonly:
+				w.instance = w.widget(parent)
+				# w.instance.thisown = 0
+			applyAllAttributes(w.instance, desktop, w.skinAttributes, self.scale)
+		for f in self.onLayoutFinish:
+			if not isinstance(f, type(self.close)):
+				exec f in globals(), locals()  # Python 2
+				# exec(f, globals(), locals())  # Python 3
+			else:
+				f()
+
+	def deleteGUIScreen(self):
+		for (name, val) in self.items():
+			if isinstance(val, GUIComponent):
+				val.GUIdelete()
+
+	def createSummary(self):
+		return None
+
+	def addSummary(self, summary):
+		if summary is not None:
+			self.summaries.append(summary)
+
+	def removeSummary(self, summary):
+		if summary is not None:
+			self.summaries.remove(summary)
+
+
+class ScreenSummary(Screen):
+	skin = """
+	<screen position="fill" flags="wfNoBorder">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="e,20" font="Regular;16" halign="center" valign="center">
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+		<widget source="Title" render="Label" position="0,25" size="e,45" font="Regular;18" halign="center" valign="center" />
+	</screen>"""
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent=parent)
+		self["Title"] = StaticText(parent.getTitle())
+		names = parent.skinName
+		if not isinstance(names, list):
+			names = [names]
+		self.skinName = ["%sSummary" % x for x in names]
+		self.skinName.append("ScreenSummary")
+		self.skin = parent.__dict__.get("skinSummary", self.skin)  # If parent has a "skinSummary" defined, use that as default.
