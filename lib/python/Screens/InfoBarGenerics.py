@@ -673,7 +673,13 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.hideVBILineScreen.hide()
 
 	def OkPressed(self):
-		self.toggleShow()
+		if config.usage.okbutton_mode.value == "0":
+			self.toggleShow()
+		elif config.usage.okbutton_mode.value == "1":
+			try:
+				self.openServiceList()
+			except:
+				self.toggleShow()
 
 	def SwitchSecondInfoBarScreen(self):
 		if self.lastSecondInfoBar == int(config.usage.show_second_infobar.value):
