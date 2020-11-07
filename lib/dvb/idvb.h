@@ -307,11 +307,6 @@ public:
 		:eServiceReference(string)
 	{
 	}
-
-	eServiceReferenceDVB(const std::string &string)
-		:eServiceReference(string)
-	{
-	}
 };
 
 #ifndef SWIG
