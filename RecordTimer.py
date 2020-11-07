@@ -22,6 +22,7 @@ import timer
 import NavigationInstance
 from ServiceReference import ServiceReference
 from enigma import pNavigation, eDVBFrontend
+from Components.SystemInfo import SystemInfo
 import subprocess, threading
 
 # ok, for descriptions etc we have:
