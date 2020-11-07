@@ -458,6 +458,19 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.backoff = 100
 		self.log(10, "backoff: retry in %d seconds" % self.backoff)
 
+# Report the tuner that the current recording is using
+	def log_tuner(self, level, state):
+		feinfo = self.record_service and self.record_service.frontendInfo()
+		if feinfo:
+			fedata = feinfo.getFrontendData()
+			tn = fedata.get("tuner_number") if fedata else -1
+			if tn >= 0:
+				tuner_info = "Tuner " + chr(ord('A') + tn)
+			else:		tuner_info = SystemInfo["HDMIin"] and "HDMI-IN" or "Unknown source"
+		else:
+			tuner_info = "Tuner not (yet) allocated"
+		self.log(level, "%s recording from: %s" % (state, tuner_info))
+
 	def activate(self):
 		global wasRecTimerWakeup, InfoBar
 		if not InfoBar:
@@ -766,6 +779,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					# retry
 					self.begin = time() + self.backoff
 					return False
+				self.log_tuner(11, "start")
 				return True
 
 		elif next_state == self.StateEnded or next_state == self.StateFailed:
@@ -774,6 +788,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.log(12, "autoincrease recording %d minute(s)" % int((self.end - old_end)/60))
 				self.state -= 1
 				return True
+			self.log_tuner(12, "stop")
 			if self.justplay:
 				self.log(12, _("end zapping"))
 			else:
