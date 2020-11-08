@@ -64,6 +64,7 @@ class pstrCnvrt(Converter, object):
 
 		imgP = (jp['results'][0]['poster_path'])
 		url_poster = "https://image.tmdb.org/t/p/w185_and_h278_bestv2%s"%(imgP)
+		#url_poster = "https://image.tmdb.org/t/p/w300_and_h450_bestv2%s"%(imgP)
 		dwn_poster = posterpath + "poster/%s.jpg"%(self.evntNm)
 		if not os.path.exists(dwn_poster):
 			with open(dwn_poster,'wb') as f:
