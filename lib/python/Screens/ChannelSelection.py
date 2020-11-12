@@ -1382,13 +1382,14 @@ class ChannelSelectionBase(Screen):
 		self.bouquet_mark_edit = OFF
 
 		self.pathChangeDisabled = False
+		self.showSatDetails = False
 
 		self["ChannelSelectBaseActions"] = NumberActionMap(["ChannelSelectBaseActions", "NumberActions", "InputAsciiActions"],
 			{
 				"showFavourites": self.showFavourites,
 				"showAllServices": self.showAllServices,
 				"showProviders": self.showProviders,
-				"showSatellites": self.showSatellites,
+				"showSatellites": boundFunction(self.showSatellites, changeMode=True),
 				"nextBouquet": self.nextBouquet,
 				"prevBouquet": self.prevBouquet,
 				"nextMarker": self.nextMarker,
@@ -1599,7 +1600,7 @@ class ChannelSelectionBase(Screen):
 				count += 1
 		return count
 
-	def showSatellites(self):
+	def showSatellites(self, changeMode=False):
 		if not self.pathChangeDisabled:
 			ref = serviceRefAppendPath(self.service_types_ref, 'FROM SATELLITES ORDER BY satellitePosition')
 			if self.showSatDetails:
@@ -1620,48 +1621,51 @@ class ChannelSelectionBase(Screen):
 						justSet = True
 						self.clearPath()
 						self.enterPath(ref, True)
+					if changeMode and currentRoot and currentRoot == ref:
+						self.showSatDetails = not self.showSatDetails
+						justSet = True
+						self.clearPath()
+						self.enterPath(ref, True)
+						if self.showSatDetails:
+							self["key_green"].setText(_("Simple"))
+						else:
+							self["key_green"].setText(_("Extended"))
 				if justSet:
 					addCableAndTerrestrialLater = []
 					serviceHandler = eServiceCenter.getInstance()
-					for srvtypes in typeslist:
-						ref = eServiceReference('%s FROM SATELLITES ORDER BY satellitePosition'%(srvtypes))
-						servicelist = serviceHandler.list(ref)
-						if servicelist is not None:
-							while True:
-								service = servicelist.getNext()
-								if not service.valid(): #check if end of list
-									break
-								unsigned_orbpos = service.getUnsignedData(4) >> 16
-								orbpos = service.getData(4) >> 16
-								if orbpos < 0:
-									orbpos += 3600
-								if service.getPath().find("FROM PROVIDER") != -1:
-									service_type = _("Providers") + " (%d)"%(self.getServicesCount(service))
-								elif ("flags == %d" % FLAG_SERVICE_NEW_FOUND) in service.getPath():
-									service_type = _("New") + " (%d)"%(self.getServicesCount(service))
+					servicelist = serviceHandler.list(ref)
+					if servicelist is not None:
+						while True:
+							service = servicelist.getNext()
+							if not service.valid(): #check if end of list
+								break
+							unsigned_orbpos = service.getUnsignedData(4) >> 16
+							orbpos = service.getData(4) >> 16
+							if orbpos < 0:
+								orbpos += 3600
+							if "FROM PROVIDER" in service.getPath():
+								service_type = self.showSatDetails and _("Providers")
+							elif ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in service.getPath():
+								service_type = self.showSatDetails and _("New")
+							else:
+								service_type = _("Services")
+							if service_type:
+								if unsigned_orbpos == 0xFFFF: #Cable
+									service_name = _("Cable")
+									addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))			
+								elif unsigned_orbpos == 0xEEEE: #Terrestrial
+									service_name = _("Terrestrial")
+									addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))			
 								else:
-									service_type = _("Services") + " (%d)"%(self.getServicesCount(service))
-								try:
-									service_name = str(nimmanager.getSatDescription(orbpos))
-								except:
-									if unsigned_orbpos == 0xFFFF: #Cable
-										service_name = _("Cable")
-										addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))
-									elif unsigned_orbpos == 0xEEEE: #Terrestrial
-										service_name = _("Terrestrial")
-										addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))
-									else:
+									try:
+										service_name = str(nimmanager.getSatDescription(orbpos))
+									except:
 										if orbpos > 1800: # west
 											orbpos = 3600 - orbpos
 											h = _("W")
 										else:
 											h = _("E")
 										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
-								if not '(type == 1)' in srvtypes:
-									service_type = "HD-%s"%(service_type)
-								if len(service_name) > 34:
-									service.setName("%s - %s" % (service_name[:-2], service_type))
-								else:
 									service.setName("%s - %s" % (service_name, service_type))
 									self.servicelist.addService(service)
 						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -1959,7 +1963,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		else:
 			self.skinName = "ChannelSelection"
 
-		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions", "ChannelSelectBaseActions"],
 			{
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
