@@ -23,12 +23,6 @@
 
 #include <sys/time.h>
 
-#if HAVE_ALIEN5
-extern "C" {
-#include <codec.h>
-}
-#endif
-
 #define HTTP_TIMEOUT 10
 
 /*
@@ -93,7 +87,7 @@ static void gst_sleepms(uint32_t msec)
 			break; // Completed the entire sleep time; all done.
 		else if (errno == EINTR)
 			continue; // Interrupted by a signal. Try again.
-		else 
+		else
 			break; // Some other error; bail out.
 	}
 	errno = olderrno;
@@ -107,7 +101,7 @@ static void gst_sleepms(uint32_t msec)
  * see: https://bugzilla.gnome.org/show_bug.cgi?id=619434
  * As a workaround, we run the subsink in sync=false mode
  */
-#if GST_VERSION_MAJOR < 1 
+#if GST_VERSION_MAJOR < 1
 #define GSTREAMER_SUBTITLE_SYNC_MODE_BUG
 #else
 #undef GSTREAMER_SUBTITLE_SYNC_MODE_BUG
@@ -510,7 +504,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_last_seek_pos = 0;
 	m_media_lenght = 0;
 #endif
-	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)";
+	m_useragent = "Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openHDF;;;)";
 	m_extra_headers = "";
 	m_download_buffer_path = "";
 	m_prev_decoder_time = -1;
@@ -735,9 +729,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 			g_object_set(dvb_videosink, "e2-async", FALSE, NULL);
 			g_object_set(m_gst_playbin, "video-sink", dvb_videosink, NULL);
 		}
-#if HAVE_ALIEN5
-		aml_set_mediaplay_source((void *)m_gst_playbin,(int)m_sourceinfo.is_audio);
-#endif
 		/*
 		 * avoid video conversion, let the dvbmediasink handle that using native video flag
 		 * volume control is done by hardware, do not use soft volume flag
@@ -1195,7 +1186,7 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 			{
 				eDebug("[eServiceMP3] blocked pipeline we need to flush playposition in pts at last pos before paused is %" G_GINT64_FORMAT, (gint64)pts);
 				seekTo(pts);
-				
+
 			}
 			else if (getPlayPosition(pts) >= 0)
 			{
@@ -1405,7 +1396,7 @@ GstElement *getVideoDecElement(GstElement *m_gst_playbin, int i)
 
 	if (!e)
 		eDebug("no VideoDecElement");
-		
+
 	return e;
 }
 GstElement * getAudioDecElement(GstElement *m_gst_playbin, int i)
@@ -1430,9 +1421,9 @@ GstElement * getAudioDecElement(GstElement *m_gst_playbin, int i)
 
 	if (!e)
 		eDebug("no audioDecElement");
-		
+
 	return e;
-} 
+}
 void eServiceMP3::AmlSwitchAudio(int index)
 {
 	gint i, n_audio = 0;
@@ -1465,7 +1456,7 @@ unsigned int eServiceMP3::get_pts_pcrscr(void)
 	unsigned int value = 0;
 
 	handle = open("/sys/class/tsync/pts_pcrscr", O_RDONLY);
-	if (handle < 0) {      
+	if (handle < 0) {
          return value;
 	}
 	size = read(handle, s, sizeof(s));
@@ -3511,7 +3502,7 @@ void eServiceMP3::loadCuesheet()
 		//eDebug("[eServiceMP3] skip loading cuesheet multiple times");
 		return;
 	}
- 
+
 	m_cue_entries.clear();
 
 	std::string filename = m_ref.path + ".cuts";
@@ -3561,7 +3552,7 @@ void eServiceMP3::saveCuesheet()
 
 	struct stat s;
 	bool removefile = false;
-	bool use_videocuesheet = eConfigManager::getConfigBoolValue("config.usage.useVideoCuesheet"); 
+	bool use_videocuesheet = eConfigManager::getConfigBoolValue("config.usage.useVideoCuesheet");
 	bool use_audiocuesheet = eConfigManager::getConfigBoolValue("config.usage.useAudioCuesheet");
 	bool exist_cuesheetfile = (stat(filename.c_str(), &s) == 0);
 
