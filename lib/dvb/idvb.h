@@ -362,6 +362,7 @@ public:
 		dxHideVBI=512,
 		dxIsScrambledPMT=1024,
 		dxCenterDVBSubs=2048,
+		dxNoEIT=4096,
 	};
 
 	bool usePMT() const { return !(m_flags & dxNoDVB); }
@@ -369,6 +370,7 @@ public:
 	bool isDedicated3D() const { return m_flags & dxIsDedicated3D; }
 	bool doHideVBI() const { return m_flags & dxHideVBI; }
 	bool doCenterDVBSubs() const { return m_flags & dxCenterDVBSubs; }
+	bool useEIT() const { return !(m_flags & dxNoEIT); }
 
 	CAID_LIST m_ca;
 
