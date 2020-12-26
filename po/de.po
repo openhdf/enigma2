@@ -8616,6 +8616,12 @@ msgstr "SABnzbd Einstellungen"
 msgid "SABnzbd setup"
 msgstr "SABnzbd Einstellungen"
 
+msgid "SATPI Setup"
+msgstr "SATPI (SATIP Server)"
+
+msgid "Setup SATPI"
+msgstr "Einstellungen SATPI"
+
 msgid "SID"
 msgstr "SID"
 
