@@ -247,12 +247,13 @@ self.session.open(SABnzbdSetupScreen)
 					<item weight="4" level="2" text="Telnet setup" entryID="nettelnet_setup"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
 					<item weight="5" level="2" text="NFS setup" entryID="netnfs_setup"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
 					<item weight="6" level="2" text="Password Setup" entryID="password_setup"><screen module="NetworkSetup" screen="NetworkPassword"/></item>
-					<item weight="7" level="2" text="AFP setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
-					<item weight="8" level="2" text="Inadyn setup" entryID="Inadyn_setup"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
-					<item weight="9" level="2" text="MiniDLNA setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
-					<item weight="10" level="2" text="OpenVPN setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
+					<item weight="7" level="2" text="SATPI Setup" entryID="netsatpi_setup"><screen module="NetworkSetup" screen="NetworkSATPI"/></item>
+					<item weight="8" level="2" text="AFP setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
+					<item weight="9" level="2" text="Inadyn setup" entryID="Inadyn_setup"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
+					<item weight="10" level="2" text="MiniDLNA setup" entryID="netushare_setup"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
+					<item weight="11" level="2" text="OpenVPN setup" entryID="netvpn_setup"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
 					<!--item level="2" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item-->
-					<item weight="11" level="2" text="SABnzbd setup" entryID="netsabnzbd_setup" requires="SABSetup">
+					<item weight="12" level="2" text="SABnzbd setup" entryID="netsabnzbd_setup" requires="SABSetup">
 						<code>
 from Plugins.SystemPlugins.SABnzbd.plugin import SABnzbdSetupScreen
 self.session.open(SABnzbdSetupScreen)
