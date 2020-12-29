@@ -10715,6 +10715,12 @@ msgstr "SD-Kartenschalter FEHLER! - bereits auf mmc"
 msgid "SHOUTcast"
 msgstr "SHOUTcast"
 
+msgid "MinisatIP Setup"
+msgstr "MINISATIP (SATIP Server)"
+
+msgid "Setup MINISATIP"
+msgstr "Einstellungen MINISATIP"
+
 msgid "SID"
 msgstr "SID"
 
