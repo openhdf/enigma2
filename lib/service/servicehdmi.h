@@ -113,6 +113,7 @@ private:
 
 	int m_target_fd;
 	int m_encoder_fd;
+	int m_buffersize;
 
 	int doPrepare();
 	int doRecord();
