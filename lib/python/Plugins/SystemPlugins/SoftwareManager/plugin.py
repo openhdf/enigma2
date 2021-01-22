@@ -286,8 +286,9 @@ class UpdatePluginMenu(Screen):
 	##check hdfreaks feed status
 		try:
 			from urllib import urlopen
-			hdfonlinestatus = urlopen("http://status.hdfreaks.cc/index.php")
+			hdfonlinestatus = urlopen("https://status.hdfreaks.cc/index.php")
 			hdfstatus = hdfonlinestatus.read()
+			hdfbutton = "/usr/share/enigma2/skin_default/hdf_status_red.png"
 			if 'rot.png' in hdfstatus:
 				hdfbutton = "/usr/share/enigma2/skin_default/hdf_status_red.png"
 				self["Arrow1"].setPosition("300","427")
@@ -1705,11 +1706,11 @@ class UpdatePlugin(Screen):
 		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 		# run in parallel to the package update.
 		try:
-			urlopenSTATUS = "http://status.hdfreaks.cc/index.php"
+			urlopenSTATUS = "https://status.hdfreaks.cc/index.php"
 			d = urlopen(urlopenSTATUS)
 			tmpStatus = d.read()
 			if config.softwareupdate.updatebeta.value and 'gelb.png' in tmpStatus:
-				message = _("Caution update not tested yet !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see http://www.hdfreaks.cc") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
+				message = _("Caution update not tested yet !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see https://www.hdfreaks.cc") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
 				picon = MessageBox.TYPE_ERROR
 				default = False
 			elif 'rot.png' in tmpStatus:
@@ -1718,19 +1719,19 @@ class UpdatePlugin(Screen):
 					picon = MessageBox.TYPE_ERROR
 					default = False
 				else:
-					message = _("Update is reported as faulty !!") + "\n" + _("Aborting updateprogress") + "\n\n" + _("For more information see http://www.hdfreaks.cc")# + "\n\n" + _("Last Status Date") + ": " + statusDate
+					message = _("Update is reported as faulty !!") + "\n" + _("Aborting updateprogress") + "\n\n" + _("For more information see https://www.hdfreaks.cc")# + "\n\n" + _("Last Status Date") + ": " + statusDate
 					picon = MessageBox.TYPE_ERROR
 					default = False
 					doUpdate = False
 		except:
-			message = _("The status of the current update could not be checked because http://www.hdfreaks.cc could not be reached for some reason") + "\n"
+			message = _("The status of the current update could not be checked because https://www.hdfreaks.cc could not be reached for some reason") + "\n"
 			picon = MessageBox.TYPE_ERROR
 			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
 
 		if default:
-		        # We'll ask later
-		        self.runUpgrade(True)
+			# We'll ask later
+			self.runUpgrade(True)
 		else:
 			if doUpdate:
 				# Ask for Update,
