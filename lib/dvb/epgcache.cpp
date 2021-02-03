@@ -1995,7 +1995,7 @@ void eEPGCache::submitEventData(const std::vector<int>& sids, const std::vector<
 
 	eit_event_t *evt_struct = (eit_event_t*) (data + EIT_SIZE);
 
-	uint16_t eventId = start & 0xFFFF;
+	uint16_t eventId = (event_id == 0) ? start & 0xFFFF : event_id;
 	evt_struct->setEventId(eventId);
 
 	//6 bytes start time, 3 bytes duration
@@ -2562,84 +2562,184 @@ PyObject *eEPGCache::search(ePyObject arg)
 					}
 					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
 					{
-						/* new block to release epgcache lock before Py_END_ALLOW_THREADS is called
-						   otherwise there might be a deadlock with other python thread waiting for the epgcache lock */
 						singleLock s(cache_lock);
-						std::string text;
+						std::string title;
 						for (DescriptorMap::iterator it(eventData::descriptors.begin());
 							it != eventData::descriptors.end(); ++it)
 						{
 							uint8_t *data = it->second.data;
-							int textlen = 0;
-							const char *textptr = NULL;
-							if ( data[0] == 0x4D && querytype > 0 && querytype < 5 ) // short event descriptor
+							eit_short_event_descriptor_struct *short_event_descriptor = (eit_short_event_descriptor_struct *) ((u_char *) data);
+							if ((u_char)short_event_descriptor->descriptor_tag == (u_char)SHORT_EVENT_DESCRIPTOR ) // short event descriptor
 							{
-								textptr = (const char*)&data[6];
-								textlen = data[5];
-								if (data[6] < 0x20)
+								const char *titleptr = (const char*)&data[6];
+								int title_len = (int)short_event_descriptor->event_name_length;
+								if (data[EIT_SHORT_EVENT_DESCRIPTOR_SIZE] < 0x20) // Codepage
 								{
 									/* custom encoding */
-									text = convertDVBUTF8((unsigned char*)textptr, textlen, 0x40, 0);
-									textptr = text.data();
-									textlen = text.length();
+									title = convertDVBUTF8((unsigned char*)titleptr, title_len, 0x40, 0);
+									titleptr = title.data();
+									title_len = title.length();
 								}
-							}
-							else if ( data[0] == 0x4E && querytype == 5 ) // extended event descriptor
-							{
-								textptr = (const char*)&data[8];
-								textlen = data[7];
-								if (data[8] < 0x20)
+								if (title_len < textlen)
+									/*Doesn't fit, so cannot match anything */
+									continue;
+								if (querytype == EXAKT_TITLE_SEARCH)
 								{
-									/* custom encoding */
-									text = convertDVBUTF8((unsigned char*)textptr, textlen, 0x40, 0);
-									textptr = text.data();
-									textlen = text.length();
-								}
-							}
-							/* if we have a descriptor, the argument may not be bigger */
-							if (textlen > 0 && strlen <= textlen )
-							{
-								if (querytype == 1)
-								{
-									/* require exact text match */
-									if (textlen != strlen)
+									/* require exact title match */
+									if (title_len != textlen)
 										continue;
 								}
-								else if (querytype == 3)
+								else if (querytype == START_TITLE_SEARCH)
 								{
 									/* Do a "startswith" match by pretending the text isn't that long */
-									textlen = strlen;
+									title_len = textlen;
 								}
-								else if (querytype == 4)
+								if (casetype == NO_CASE_CHECK)
 								{
-									/* Offset to adjust the pointer based on the text length difference */
-									textptr = textptr + textlen - strlen;
-									textlen = strlen;
-								}
-								if (casetype)
-								{
-									while (textlen >= strlen)
+									while (title_len >= textlen)
 									{
-										if (!strncasecmp(textptr, str, strlen))
+										if (!strncasecmp(titleptr, str, textlen))
 										{
 											descr.push_back(it->first);
 											break;
 										}
-										textlen--;
-										textptr++;
+										title_len--;
+										titleptr++;
 									}
 								}
-								else
+								else if (casetype == CASE_CHECK)
 								{
-									while (textlen >= strlen)
+									while (title_len >= textlen)
 									{
-										if (!memcmp(textptr, str, strlen))
+										if (!memcmp(titleptr, str, textlen))
 										{
 											descr.push_back(it->first);
 											break;
 										}
-										textlen--;
-										textptr++;
+										title_len--;
+										titleptr++;
+									}
+								}
+								else if (casetype == REGEX_CHECK)
+								{
+									std::regex pattern(str);
+									std::string input(titleptr,title_len);
+									if (regex_search(input.begin(),input.end(),pattern))
+									{
+										descr.push_back(it->first);
+									}
+								}
+							}
+						}
+					}
+					Py_END_ALLOW_THREADS;
+				}
+				else
+				{
+					PyErr_SetString(PyExc_StandardError,
+						"type error");
+					eDebug("[eEPGCache] tuple arg 4 is not a string");
+					return NULL;
+				}
+			}
+			else if (tuplesize > 4 && (querytype == PARTIAL_DESCRIPTION_SEARCH) )
+			{
+				ePyObject obj = PyTuple_GET_ITEM(arg, 3);
+				if (PyString_Check(obj))
+				{
+					int casetype = PyLong_AsLong(PyTuple_GET_ITEM(arg, 4));
+					int textlen = PyString_Size(obj);
+					int lloop=0;
+					const char *ctype = casetypestr(casetype);
+					eDebug("[eEPGCache] lookup events with '%s' in content (%s)", str, ctype);
+					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
+					{
+						singleLock s(cache_lock);
+						std::string content;
+						for (DescriptorMap::iterator it(eventData::descriptors.begin());
+							it != eventData::descriptors.end(); ++it)
+						{
+							uint8_t *data = it->second.data;
+							
+							eit_extended_descriptor_struct *extended_event_descriptor = (eit_extended_descriptor_struct *) ((u_char *) data);
+							if ( (u_char)extended_event_descriptor->descriptor_tag == (u_char)EXTENDED_EVENT_DESCRIPTOR ) // extended event descriptor
+							{
+								int content_len = data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+1]; //struct extended_event_descriptor+item information (always "0", see epg.dat for structure)
+								const char *contentptr = (const char*)&data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2];
+								if (data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2] < 0x20) //Codepage
+								{
+									/* custom encoding */
+									content = convertDVBUTF8((unsigned char*)contentptr, content_len, 0x40, 0);
+									contentptr = content.data();
+									content_len = content.length();
+								}
+								#ifdef DEBUG
+								int dbglen=content_len;
+								#endif
+								if (content_len < textlen)
+									/*Doesn't fit, so cannot match anything */
+									continue;
+								if (casetype == NO_CASE_CHECK)
+								{
+									while (content_len >= textlen)
+									{
+										if (!strncasecmp(contentptr, str, textlen))
+										{
+											descr.push_back(it->first);
+											#ifdef DEBUG
+											eDebug("[eEPGCache] IC Debug: Content length %x, Content %s\n",content_len,contentptr);
+											char buff[1000]={0};
+											eDebug("[eEPGCache] EIT data:\n");
+			 								std::string tmp="";
+			 								int z=0;
+											for (lloop=0x0;lloop<(dbglen+EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2);lloop++)
+											{
+												if ((lloop>0) && (lloop%16==0)) { eDebug(buff); z=0; }
+												snprintf(&buff[z*3], sizeof(buff), "%02X ", data[lloop]);
+												z++;
+											}
+											if (z>1) { eDebug(buff);}
+											#endif
+											break;
+										}
+										content_len--;
+										contentptr++;
+									}
+								}
+								else if (casetype == CASE_CHECK)
+								{
+									while (content_len >= textlen)
+									{
+										if (!memcmp(contentptr, str, textlen))
+										{
+											descr.push_back(it->first);
+											#ifdef DEBUG
+											eDebug("[eEPGCache] CC Debug: Content length %x, Content %s\n",content_len,contentptr);
+											char buff[1000]={0};
+											eDebug("[eEPGCache] EIT data:\n");
+			 								std::string tmp="";
+			 								int z=0;
+											for (lloop=0x0;lloop<(dbglen+EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2);lloop++)
+											{
+												if ((lloop>0) && (lloop%16==0)) { eDebug(buff); z=0; }
+												snprintf(&buff[z*3], sizeof(buff), "%02X ", data[lloop]);
+												z++;
+											}
+											if (z>1) { eDebug(buff);}
+											#endif
+											break;
+										}
+										content_len--;
+										contentptr++;
+									}
+								}
+								else if (casetype == REGEX_CHECK)
+								{
+									std::regex pattern(str);
+									std::string input(contentptr,content_len);
+									if (regex_search(input.begin(),input.end(),pattern))
+									{
+										descr.push_back(it->first);
 									}
 								}
 							}
