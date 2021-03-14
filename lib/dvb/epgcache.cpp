@@ -40,7 +40,7 @@ struct eventData
 {
 	uint8_t rawEITdata[10];
 	uint8_t n_crc;
-	uint8_t type;
+	uint16_t type;
 	uint32_t *crc_list;
 	static DescriptorMap descriptors;
 	static uint8_t data[];
@@ -104,7 +104,7 @@ static uint32_t calculate_crc_hash(const uint8_t *data, int size)
 }
 
 eventData::eventData(const eit_event_struct* e, int size, int _type, int tsidonid)
-	:n_crc(0), type(_type & 0xFF), crc_list(NULL)
+	:n_crc(0), type(_type & 0xFFFF), crc_list(NULL)
 {
 	if (!e)
 		return; /* Used when loading from file */
@@ -421,7 +421,6 @@ void eEPGCache::timeUpdated()
 			eDebug("[eEPGCache] time updated.. start EPG Mainloop");
 			run();
 			m_running = true;
-			/*emit*/ epgCacheStarted();
 		} else
 			messages.send(Message(Message::timeChanged));
 	}
@@ -527,7 +526,7 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 			goto next;
 
 		if ((start_time != 3599) &&  // NVOD Service
-				(start_time < (now+4*maxdays*24*60*60)) &&  // maxdays for EPG - no more than 4 weeks in future
+				(start_time < (now+maxdays*24*60*60)) &&  // maxdays for EPG - no more than maxdays in future
 				((onid != 1714) || (duration != (24*3600-1))))  // PlatformaHD invalid event
 		{
 			uint16_t event_id = eit_event->getEventId();
@@ -856,6 +855,7 @@ void eEPGCache::thread()
 		eDebug("[eEPGCache] thread failed to modify scheduling priority (%m)");
 	}
 	if (load_epg) { load(); }
+	/*emit*/ epgCacheStarted();
 	cleanLoop();
 	runLoop();
 	save();
@@ -922,7 +922,7 @@ void eEPGCache::load()
 		}
 		char text1[13];
 		ret = fread( text1, 13, 1, f);
-		if ( !memcmp( text1, "ENIGMA_EPG_V7", 13) )
+		if ( !memcmp( text1, "ENIGMA_EPG_V8", 13) )
 		{
 			singleLock s(cache_lock);
 			if (eventDB.size() > 0)
@@ -951,9 +951,9 @@ void eEPGCache::load()
 				while(size--)
 				{
 					uint8_t len=0;
-					uint8_t type=0;
+					uint16_t type=0;
 					eventData *event=0;
-					ret = fread( &type, sizeof(uint8_t), 1, f);
+					ret = fread( &type, sizeof(uint16_t), 1, f);
 					ret = fread( &len, sizeof(uint8_t), 1, f);
 					event = new eventData(0, len, type);
 					event->n_crc = (len-10) / sizeof(uint32_t);
@@ -1137,7 +1137,7 @@ void eEPGCache::save()
 		int cnt=0;
 		unsigned int magic = EPG_MAGIC;
 		fwrite(&magic, sizeof(int), 1, f);
-		const char *text = "UNFINISHED_V7";
+		const char *text = "UNFINISHED_V8";
 		fwrite( text, 13, 1, f );
 		int size = eventDB.size();
 		fwrite( &size, sizeof(int), 1, f );
@@ -1150,7 +1150,7 @@ void eEPGCache::save()
 			for (timeMap::iterator time_it(timemap.begin()); time_it != timemap.end(); ++time_it)
 			{
 				uint8_t len = time_it->second->n_crc * sizeof(uint32_t) + 10;
-				fwrite( &time_it->second->type, sizeof(uint8_t), 1, f );
+				fwrite( &time_it->second->type, sizeof(uint16_t), 1, f );
 				fwrite( &len, sizeof(uint8_t), 1, f);
 				fwrite( time_it->second->rawEITdata, 10, 1, f);
 				fwrite( time_it->second->crc_list, sizeof(uint32_t), time_it->second->n_crc, f);
@@ -1191,7 +1191,7 @@ void eEPGCache::save()
 		// has been written to disk.
 		fsync(fileno(f));
 		fseek(f, sizeof(int), SEEK_SET);
-		fwrite("ENIGMA_EPG_V7", 13, 1, f);
+		fwrite("ENIGMA_EPG_V8", 13, 1, f);
 		fclose(f);
 	}
 }
