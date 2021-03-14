@@ -2170,7 +2170,7 @@ unsigned int eEPGCache::getEpgmaxdays()
 
 static const char* getStringFromPython(ePyObject obj)
 {
-	char *result = 0;
+	const char *result = 0;
 	if (PyString_Check(obj))
 	{
 		result = PyString_AS_STRING(obj);
@@ -2212,7 +2212,7 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 
 	if (PyString_Check(serviceReferences))
 	{
-		char *refstr;
+		const char *refstr;
 		refstr = PyString_AS_STRING(serviceReferences);
 		if (!refstr)
 		{
@@ -2241,7 +2241,7 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 			PyObject* item = PyList_GET_ITEM(serviceReferences, i);
 			if (PyString_Check(item))
 			{
-				char *refstr;
+				const char *refstr;
 				refstr = PyString_AS_STRING(item);
 				if (!refstr)
 				{
@@ -2394,8 +2394,10 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 //     0 = search for similar broadcastings (SIMILAR_BROADCASTINGS_SEARCH)
 //     1 = search events with exactly title name (EXACT_TITLE_SEARCH)
 //     2 = search events with text in title name (PARTIAL_TITLE_SEARCH)
-//     3 = search events with text in description name (PARTIAL_DESCRIPTION_SEARCH)
-//     4 = search events starting with title name (START_TITLE_SEARCH)
+//     3 = search events starting with title name (START_TITLE_SEARCH)
+//     4 = search events ending with title name (END_TITLE_SEARCH)
+//     5 = search events with text in description (PARTIAL_DESCRIPTION_SEARCH)
+//     6 = search events with matching CRID
 //  when type is 0 (SIMILAR_BROADCASTINGS_SEARCH)
 //   the fourth is the servicereference string
 //   the fifth is the eventid
@@ -2434,7 +2436,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 	int eventid = -1;
 	const char *argstring=0;
 	char *refstr=0;
-	int argcount=0;
+	ssize_t argcount=0;
 	int querytype=-1;
 	bool needServiceEvent=false;
 	int maxmatches=0;
@@ -2449,8 +2451,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 			ePyObject obj = PyTuple_GET_ITEM(arg,0);
 			if (PyString_Check(obj))
 			{
-				argcount = PyString_Size(obj);
-				argstring = PyString_AS_STRING(obj);
+				argstring = PyUnicode_AsUTF8AndSize(obj, &argcount);
 				for (int i=0; i < argcount; ++i)
 					switch(argstring[i])
 					{
@@ -2492,7 +2493,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 				ePyObject obj = PyTuple_GET_ITEM(arg, 3);
 				if (PyString_Check(obj))
 				{
-					refstr = PyString_AS_STRING(obj);
+					const char *refstr = PyString_AS_STRING(obj);
 					eServiceReferenceDVB ref(refstr);
 					if (ref.valid())
 					{
@@ -2539,14 +2540,14 @@ PyObject *eEPGCache::search(ePyObject arg)
 					return NULL;
 				}
 			}
-			else if (tuplesize > 4 && ((querytype == EXAKT_TITLE_SEARCH) || (querytype==START_TITLE_SEARCH) || (querytype==PARTIAL_TITLE_SEARCH)))
+			else if (tuplesize > 4 && ((querytype == EXAKT_TITLE_SEARCH) || (querytype==START_TITLE_SEARCH)  || (querytype==END_TITLE_SEARCH) || (querytype==PARTIAL_TITLE_SEARCH)))
 			{
 				ePyObject obj = PyTuple_GET_ITEM(arg, 3);
 				if (PyString_Check(obj))
 				{
 					int casetype = PyLong_AsLong(PyTuple_GET_ITEM(arg, 4));
-					const char *str = PyString_AS_STRING(obj);
-					int textlen = PyString_Size(obj);
+					ssize_t textlen;
+					const char *str = PyUnicode_AsUTF8AndSize(obj, &textlen);
 					const char *ctype = casetypestr(casetype);
 					switch (querytype)
 					{
@@ -2556,8 +2557,14 @@ PyObject *eEPGCache::search(ePyObject arg)
 						case PARTIAL_TITLE_SEARCH:
 							eDebug("[eEPGCache] lookup events with '%s' in title (%s)", str, ctype);
 							break;
-						case PARTIAL_DESCRIPTION_SEARCH:
+						case START_TITLE_SEARCH:
 							eDebug("[eEPGCache] lookup events, title starting with '%s' (%s)", str, ctype);
+							break;
+						case END_TITLE_SEARCH:
+							eDebug("[eEPGCache] lookup events, title ending with '%s' (%s)", str, ctype);
+							break;
+						case PARTIAL_DESCRIPTION_SEARCH:
+							eDebug("[eEPGCache] lookup events with '%s' in the description (%s)", str, ctype);
 							break;
 					}
 					Py_BEGIN_ALLOW_THREADS; /* No Python code in this section, so other threads can run */
@@ -2594,6 +2601,13 @@ PyObject *eEPGCache::search(ePyObject arg)
 									/* Do a "startswith" match by pretending the text isn't that long */
 									title_len = textlen;
 								}
+								else if (querytype == END_TITLE_SEARCH)
+								{
+									/* Do a "endswith" match by pretending the text isn't that long */
+									titleptr = titleptr + title_len - textlen;
+									title_len = textlen;
+								}
+
 								if (casetype == NO_CASE_CHECK)
 								{
 									while (title_len >= textlen)
@@ -2648,7 +2662,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 				if (PyString_Check(obj))
 				{
 					int casetype = PyLong_AsLong(PyTuple_GET_ITEM(arg, 4));
-					int textlen = PyString_Size(obj);
+					ssize_t textlen;
+					const char *str = PyUnicode_AsUTF8AndSize(obj, &textlen);
 					int lloop=0;
 					const char *ctype = casetypestr(casetype);
 					eDebug("[eEPGCache] lookup events with '%s' in content (%s)", str, ctype);
