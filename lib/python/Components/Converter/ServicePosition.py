@@ -3,7 +3,7 @@ from __future__ import division
 from Components.Converter import Converter
 from Components.Sources.Clock import Clock
 from time import time as getTime, localtime, strftime
-from Components.Converter.Poell import Poll
+from Components.Converter.Poll import Poll
 from enigma import iPlayableService
 from Components.Element import cached, ElementError
 from Components.config import config
