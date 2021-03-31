@@ -1193,7 +1193,7 @@ class HdmiCec:
 				internaltxt = "  Available internal commands: "
 				space = len(internaltxt) * " "
 				addspace = False
-				for key in sorted(CECintcmd.keys()):
+				for key in sorted(list(CECintcmd.keys())):
 					internaltxt += "%s'%s' or '%s'\n" %(space if addspace else "", key, CECintcmd[key])
 					addspace = True
 				txt  = "Help for the hdmi-cec command line function\n"

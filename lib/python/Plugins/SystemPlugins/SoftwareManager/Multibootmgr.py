@@ -73,7 +73,7 @@ class MultiBootWizard(Screen):
 		currentimageslot = GetCurrentImage()
 		if SystemInfo["HasSDmmc"]:
 			currentimageslot += 1
-		for x in sorted(imagedict.keys()):
+		for x in sorted(list(imagedict.keys())):
 			if imagedict[x]["imagename"] != _("Empty startup") and x != currentimageslot:
 				list.append(ChoiceEntryComponent('', ((_("startup %s - %s ")) % (x, imagedict[x]['imagename']), x)))
 		self["config"].setList(list)

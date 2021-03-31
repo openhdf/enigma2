@@ -348,7 +348,7 @@ class Network:
 		self.resetNetworkConsole = Console()
 		self.commands = []
 		self.commands.append("/etc/init.d/avahi-daemon stop")
-		for iface in self.ifaces.keys():
+		for iface in list(self.ifaces.keys()):
 			if iface != 'eth0' or not self.onRemoteRootFS():
 				self.commands.append("ip addr flush dev " + iface + " scope global")
 		self.commands.append("/etc/init.d/networking stop")
@@ -428,7 +428,7 @@ class Network:
 		self.msgPlugins()
 		self.commands = []
 		self.commands.append("/etc/init.d/avahi-daemon stop")
-		for iface in self.ifaces.keys():
+		for iface in list(self.ifaces.keys()):
 			if iface != 'eth0' or not self.onRemoteRootFS():
 				self.commands.append("ifdown " + iface)
 				self.commands.append("ip addr flush dev " + iface + " scope global")
@@ -454,6 +454,7 @@ class Network:
 
 	def getLinkStateFinished(self, result, retval, extra_args):
 		(callback) = extra_args
+		result = six.ensure_str(result)
 
 		if self.LinkConsole is not None:
 			if len(self.LinkConsole.appContainers) == 0:
@@ -462,31 +463,31 @@ class Network:
 	def stopPingConsole(self):
 		if self.PingConsole is not None:
 			if len(self.PingConsole.appContainers):
-				for name in self.PingConsole.appContainers.keys():
+				for name in list(self.PingConsole.appContainers.keys()):
 					self.PingConsole.kill(name)
 
 	def stopLinkStateConsole(self):
 		if self.LinkConsole is not None:
 			if len(self.LinkConsole.appContainers):
-				for name in self.LinkConsole.appContainers.keys():
+				for name in list(self.LinkConsole.appContainers.keys()):
 					self.LinkConsole.kill(name)
 
 	def stopDNSConsole(self):
 		if self.DnsConsole is not None:
 			if len(self.DnsConsole.appContainers):
-				for name in self.DnsConsole.appContainers.keys():
+				for name in list(self.DnsConsole.appContainers.keys()):
 					self.DnsConsole.kill(name)
 
 	def stopRestartConsole(self):
 		if self.restartConsole is not None:
 			if len(self.restartConsole.appContainers):
-				for name in self.restartConsole.appContainers.keys():
+				for name in list(self.restartConsole.appContainers.keys()):
 					self.restartConsole.kill(name)
 
 	def stopGetInterfacesConsole(self):
 		if self.Console is not None:
 			if len(self.Console.appContainers):
-				for name in self.Console.appContainers.keys():
+				for name in list(self.Console.appContainers.keys()):
 					self.Console.kill(name)
 
 	def stopDeactivateInterfaceConsole(self):
@@ -511,7 +512,7 @@ class Network:
 				return False
 
 	def checkDNSLookup(self, statecallback):
-		cmd1 = "nslookup www.dream-multimedia-tv.de"
+		cmd1 = "nslookup www.cloudflare.com"
 		cmd2 = "nslookup www.heise.de"
 		cmd3 = "nslookup www.google.de"
 		self.DnsConsole = Console()

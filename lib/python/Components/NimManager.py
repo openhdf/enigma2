@@ -1776,7 +1776,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			m_update({product.get("name"):p})								#add dict product to dict manufacturer
 		unicablematrixproducts.update({manufacturer.get("name"):m})						#add dict manufacturer to dict unicablematrixproducts
 
-	UnicableLnbManufacturers = sorted(unicablelnbproducts.keys())
+	UnicableLnbManufacturers = sorted(list(unicablelnbproducts.keys()))
 	UnicableMatrixManufacturers = list(unicablematrixproducts.keys())
 	UnicableMatrixManufacturers.sort()
 
@@ -1855,7 +1855,7 @@ def InitNimManager(nimmgr, update_slots = []):
 
 			def fillUnicableConf(sectionDict, unicableproducts, vco_null_check):
 				for manufacturer in unicableproducts:
-					products = sorted(unicableproducts[manufacturer].keys())
+					products = sorted(list(unicableproducts[manufacturer].keys()))
 					products_valide = []
 					products_valide_append = products_valide.append
 					tmp = ConfigSubsection()
@@ -2349,7 +2349,7 @@ def InitNimManager(nimmgr, update_slots = []):
 				addMultiType = True
 		if slot.isMultiType() and addMultiType:
 			typeList = []
-			for id in slot.getMultiTypeList().keys():
+			for id in list(slot.getMultiTypeList().keys()):
 				type = slot.getMultiTypeList()[id]
 				typeList.append((id, type))
 			nim.multiType = ConfigSelection(typeList, "0")

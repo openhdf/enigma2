@@ -191,7 +191,7 @@ class Timezones:
 			else:
 				key = name
 			data[key] = (zone, name)
-		return [data[x] for x in sorted(data.keys())]
+		return [data[x] for x in sorted(list(data.keys()))]
 
 	# Read the timezones.xml file and load all time zones found.
 	#
@@ -240,7 +240,7 @@ class Timezones:
 	# Return a sorted list of all Area entries.
 	#
 	def getTimezoneAreaList(self):
-		return sorted(self.timezones.keys())
+		return sorted(list(self.timezones.keys()))
 
 	# Return a sorted list of all Zone entries for an Area.
 	#

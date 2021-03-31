@@ -207,7 +207,7 @@ class ServiceInfo(Screen):
 						 "transmission_mode"		: _("Transmission mode"),
 						 "guard_interval"			: _("Guard interval"),
 						 "hierarchy_information"	: _("Hierarchy information")}
-				Labels = [(conv[i], tp_info[i], i == "orbital_position" and TYPE_VALUE_ORBIT_DEC or TYPE_VALUE_DEC) for i in tp_info.keys() if i in conv]
+				Labels = [(conv[i], tp_info[i], i == "orbital_position" and TYPE_VALUE_ORBIT_DEC or TYPE_VALUE_DEC) for i in list(tp_info.keys()) if i in conv]
 				self.fillList(Labels)
 
 	def pids(self):

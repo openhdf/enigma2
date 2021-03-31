@@ -108,7 +108,7 @@ class MultiBootSelector(Screen):
 		slotMulti = _("Slot %s: %s - Mode %d%s")
 		if imagedict:
 			indextot = 0
-			for index, x in enumerate(sorted(imagedict.keys())):
+			for index, x in enumerate(sorted(list(imagedict.keys()))):
 				if imagedict[x]["imagename"] != _("Empty slot"):
 					if SystemInfo["canMode12"]:
 						list.insert(index, ChoiceEntryComponent("", (slotMulti % (x, imagedict[x]["imagename"], 1, current if x == currentimageslot and mode != 12 else ""), (x, 1))))

@@ -16,7 +16,7 @@ class datasource:
 		return "N/A"
 
 	def getStatus(self):
-		text = str(len(self.transponderlist.keys())) + " Satellites" + "\n"
+		text = str(len(list(self.transponderlist.keys()))) + " Satellites" + "\n"
 		return text
 
 	def printAll(self):
