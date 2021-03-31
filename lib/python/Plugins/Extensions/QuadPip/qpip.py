@@ -37,7 +37,6 @@ from Components.config import config, ConfigSubsection, ConfigNumber
 from Components.Slider import Slider
 
 from Components.SystemInfo import SystemInfo
-from six.moves import range
 
 config.plugins.quadpip = ConfigSubsection()
 config.plugins.quadpip.lastchannel = ConfigNumber(default = 1)
@@ -308,7 +307,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 
 	def updateDescChannels(self):
 		self.descChannels = []
-		for idx in range(1, 5):
+		for idx in list(range(1, 5)):
 			sIdx = str(idx)
 			_isEmpty = False
 			chName = self.newChannel.getChannelName(sIdx)
@@ -362,7 +361,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 				#self.addChannel(serviceName, sref)
 				_title = _('Choice where to put "%s"') % serviceName
 				_list = []
-				for idx in range(1, 5):
+				for idx in list(range(1, 5)):
 					sIdx = str(idx)
 					_isEmpty = False
 					chName = self.newChannel.getChannelName(sIdx)
@@ -391,7 +390,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 				self.updateDescChannelList()
 
 	def getNewChannel(self):
-		for idx in range(1, 5):
+		for idx in list(range(1, 5)):
 			sIdx = str(idx)
 			ch = self.newChannel.getChannel(sIdx)
 			if ch is not None:
@@ -925,7 +924,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 		self.curChannel = channel.channel.copy()
 
 		self.session.qPips = []
-		for idx in range(1, 5):
+		for idx in list(range(1, 5)):
 			chInfo = channel.getChannel(str(idx))
 			if chInfo is None:
 				continue
@@ -971,7 +970,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 			self.curPlayAudio = -1
 
 	def updateChannelName(self, channel):
-		for idx in range(1, 5):
+		for idx in list(range(1, 5)):
 			self["ch%d" % idx].setText((channel and channel.getChannelName(str(idx))) or "No channel")
 
 	def disableFCC(self):

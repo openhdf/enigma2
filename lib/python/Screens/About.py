@@ -28,7 +28,6 @@ import os
 import re
 from os import path, popen, system
 from re import search
-from six.moves import range
 import six
 
 SIGN = '°' if six.PY3 else str('\xc2\xb0')
@@ -559,7 +558,7 @@ class Devices(Screen):
 		self.Console = Console()
 		niminfo = ""
 		nims = nimmanager.nimList()
-		for count in range(len(nims)):
+		for count in list(range(len(nims))):
 			if niminfo:
 				niminfo += "\n"
 			niminfo += nims[count]
@@ -671,7 +670,7 @@ class SystemMemoryInfo(Screen):
 		self.AboutText = _("RAM") + '\n\n'
 		RamTotal = "-"
 		RamFree = "-"
-		for lidx in range(len(out_lines) - 1):
+		for lidx in list(range(len(out_lines) - 1)):
 			tstLine = out_lines[lidx].split()
 			if "MemTotal:" in tstLine:
 				MemTotal = out_lines[lidx].split()

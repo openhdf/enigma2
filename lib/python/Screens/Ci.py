@@ -19,7 +19,6 @@ from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 from Tools.BoundFunction import boundFunction
 from boxbranding import getBrandOEM, getBoxType
 import time
-from six.moves import range
 
 if getBoxType() in ('zgemmah9combo'):
 	MAX_NUM_CI = 1
@@ -48,7 +47,7 @@ def setRelevantPidsRouting(configElement):
 def InitCiConfig():
 	config.ci = ConfigSubList()
 	config.cimisc = ConfigSubsection()
-	for slot in range(MAX_NUM_CI):
+	for slot in list(range(MAX_NUM_CI)):
 		config.ci.append(ConfigSubsection())
 		config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices = [("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))], default = "auto")
 		config.ci[slot].use_static_pin = ConfigYesNo(default = True)
@@ -515,7 +514,7 @@ class CiSelection(Screen):
 		self.onLayoutFinish.append(self.initialUpdate)
 
 	def initialUpdate(self):
-		for slot in range(MAX_NUM_CI):
+		for slot in list(range(MAX_NUM_CI)):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state != -1:
 				self.slots.append(slot)
@@ -622,7 +621,7 @@ class CiSelection(Screen):
 		pass
 
 	def cancel(self):
-		for slot in range(MAX_NUM_CI):
+		for slot in list(range(MAX_NUM_CI)):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state != -1:
 				CiHandler.unregisterCIMessageHandler(slot)

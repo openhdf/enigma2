@@ -28,7 +28,6 @@ from ServiceReference import ServiceReference
 from Tools.HardwareInfo import HardwareInfo
 from RecordTimer import TIMERTYPE
 from skin import getSkinFactor
-from six.moves import range
 
 mepg_config_initialized = False
 # PiPServiceRelation installed?
@@ -251,7 +250,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['jump'] = Label(_('JUMP 24 HOURS'))
 			self['page'] = Label(_('PAGE UP/DOWN'))
 			self.time_lines = []
-			for x in range(0, MAX_TIMELINES):
+			for x in list(range(0, MAX_TIMELINES)):
 				pm = Pixmap()
 				self.time_lines.append(pm)
 				self['timeline%d' % x] = pm
@@ -515,7 +514,7 @@ class EPGSelection(Screen, HelpableScreen):
 		elif self.type == EPG_TYPE_MULTI:
 			curr = self['list'].getCurrentChangeCount()
 			self['list'].fillMultiEPG(self.services, self.ask_time)
-			for i in range(curr):
+			for i in list(range(curr)):
 				self['list'].updateMultiEPG(1)
 		elif self.type == EPG_TYPE_SINGLE or self.type == EPG_TYPE_ENHANCED or self.type == EPG_TYPE_INFOBAR:
 			try:

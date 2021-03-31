@@ -20,7 +20,6 @@ from Tools.BoundFunction import boundFunction
 from Components.About import about
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
 import six
-from six.moves import range
 
 maxFixedLnbPositions = 0
 
@@ -353,11 +352,11 @@ class SecConfigure:
 			pass
 
 		lnbSat = {}
-		for x in range(1, 71):
+		for x in list(range(1, 71)):
 			lnbSat[x] = []
 
 		#wildcard for all satellites ( for rotor )
-		for x in range(3601, 3605):
+		for x in list(range(3601, 3605)):
 			lnb = int(advanced.sat[x].lnb.value)
 			if lnb != 0:
 				for x in self.NimManager.satList:
@@ -365,7 +364,7 @@ class SecConfigure:
 					lnbSat[lnb].append(x[0])
 
 		#wildcard for user satellites ( for rotor )
-		for x in range(3605, 3607):
+		for x in list(range(3605, 3607)):
 			lnb = int(advanced.sat[x].lnb.value)
 			if lnb != 0:
 				for user_sat in self.NimManager.satList:
@@ -379,7 +378,7 @@ class SecConfigure:
 				print("add", x[0], "to", lnb)
 				lnbSat[lnb].append(x[0])
 
-		for x in range(1, 71):
+		for x in list(range(1, 71)):
 			if len(lnbSat[x]) > 0:
 				currLnb = advanced.lnb[x]
 				if sec.addLNB():
@@ -677,7 +676,7 @@ class SecConfigure:
 
 			tmp.vco[PN] = ConfigSubList()
 
-			for cnt in range(0, SatCR + 1):
+			for cnt in list(range(0, SatCR + 1)):
 				vcofreq = (cnt == SatCR) and vco or 0		# equivalent to vcofreq = (cnt == SatCR) ? vco : 0
 				if vcofreq == 0 :
 					scrlist.append(("%d" %(cnt+1), "SCR %d " %(cnt+1) +_("not used")))
@@ -691,7 +690,7 @@ class SecConfigure:
 			tmp.lofl[PN] = ConfigSubList()
 			tmp.lofh[PN] = ConfigSubList()
 			tmp.loft[PN] = ConfigSubList()
-			for cnt in range(1, positions+1):
+			for cnt in list(range(1, positions+1)):
 				lofl = int(positionslist[cnt][0])
 				lofh = int(positionslist[cnt][1])
 				loft = int(positionslist[cnt][2])
@@ -1110,9 +1109,9 @@ class NimManager:
 						if freq[0] == "s" or freq[0] == "S":
 							if ((version == 3) and len(x[1]) > len(t2_sv3)) or ((version == 4) and len(x[1]) > len(t2_sv4)):
 								continue
-							for y in range(0, len(x[0])):
+							for y in list(range(0, len(x[0]))):
 								tp.update({t1[y]:x[0][y]})
-							for y in range(0, len(x[1])):
+							for y in list(range(0, len(x[1]))):
 								if version == 3:
 									tp.update({t2_sv3[y]:x[1][y]})
 								elif version == 4:
@@ -1407,7 +1406,7 @@ class NimManager:
 				mode = self.getNimConfig(nim).dvbs
 				nimHaveRotor = mode.configMode.value == "simple" and mode.diseqcMode.value  in ("positioner", "positioner_select")
 				if not nimHaveRotor and mode.configMode.value == "advanced":
-					for x in range(3601, 3607):
+					for x in list(range(3601, 3607)):
 						lnb = int(mode.advanced.sat[x].lnb.value)
 						if lnb != 0:
 							nimHaveRotor = True
@@ -1447,7 +1446,7 @@ class NimManager:
 	def somethingConnected(self, slotid = -1):
 		if slotid == -1:
 			connected = False
-			for id in range(self.getSlotCount()):
+			for id in list(range(self.getSlotCount())):
 				if self.somethingConnected(id):
 					connected = True
 			return connected
@@ -1509,7 +1508,7 @@ class NimManager:
 						if str(x[0]) in nim.userSatellitesList.value:
 							list.append(x)
 			elif configMode == "advanced":
-				for x in range(3601, 3605):
+				for x in list(range(3601, 3605)):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						for x in self.satList:
 							list.append(x)
@@ -1517,7 +1516,7 @@ class NimManager:
 					for x in self.satList:
 						if int(nim.advanced.sat[x[0]].lnb.value) != 0:
 							list.append(x)
-				for x in range(3605, 3607):
+				for x in list(range(3605, 3607)):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						for user_sat in self.satList:
 							if str(user_sat[0]) in nim.advanced.sat[x].userSatellitesList.value and user_sat not in list:
@@ -1541,7 +1540,7 @@ class NimManager:
 						if str(x[0]) in nim.userSatellitesList.value:
 							list.append(x)
 			elif configMode == "advanced":
-				for x in range(3601, 3605):
+				for x in list(range(3601, 3605)):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						for x in self.satList:
 							list.append(x)
@@ -1552,7 +1551,7 @@ class NimManager:
 							lnb = nim.advanced.lnb[lnbnum]
 							if lnb.diseqcMode.value == "1_2":
 								list.append(x)
-				for x in range(3605, 3607):
+				for x in list(range(3605, 3607)):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						for user_sat in self.satList:
 							if str(user_sat[0]) in nim.advanced.sat[x].userSatellitesList.value and user_sat not in list:
@@ -1642,7 +1641,7 @@ def InitSecParams():
 
 jess_alias = ("JESS", "UNICABLE2", "SCD2", "EN50607", "EN 50607")
 
-lscr = [("scr%d" % i) for i in range(1, 33)]
+lscr = [("scr%d" % i) for i in list(range(1, 33))]
 
 def InitNimManager(nimmgr, update_slots = []):
 	hw = HardwareInfo()
@@ -1656,7 +1655,7 @@ def InitNimManager(nimmgr, update_slots = []):
 	if addNimConfig:
 		InitSecParams()
 		config.Nims = ConfigSubList()
-		for x in range(len(nimmgr.nim_slots)):
+		for x in list(range(len(nimmgr.nim_slots))):
 			tmp = ConfigSubsection()
 			tmp.dvbs = ConfigSubsection()
 			tmp.dvbc = ConfigSubsection()
@@ -1691,9 +1690,9 @@ def InitNimManager(nimmgr, update_slots = []):
 			scr=[]
 			scr_append = scr.append
 			scr_pop = scr.pop
-			for i in range(len(lscr)):
+			for i in list(range(len(lscr))):
 				scr_append(product.get(lscr[i], "0"))
-			for i in range(len(lscr)):
+			for i in list(range(len(lscr))):
 				if scr[len(lscr)-i-1] == "0":
 					scr_pop()
 				else:
@@ -1714,7 +1713,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			positions=[]
 			positions_append = positions.append
 			positions_append(int(product.get("positions", 1)))
-			for cnt in range(positions[0]):
+			for cnt in list(range(positions[0])):
 				lof=[]
 				lof.append(int(product.get("lofl", 9750)))
 				lof.append(int(product.get("lofh", 10600)))
@@ -1739,9 +1738,9 @@ def InitNimManager(nimmgr, update_slots = []):
 			scr=[]
 			scr_append = scr.append
 			scr_pop = scr.pop
-			for i in range(len(lscr)):
+			for i in list(range(len(lscr))):
 				scr_append(product.get(lscr[i], "0"))
-			for i in range(len(lscr)):
+			for i in list(range(len(lscr))):
 				if scr[len(lscr)-i-1] == "0":
 					scr_pop()
 				else:
@@ -1762,7 +1761,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			positions=[]
 			positions_append = positions.append
 			positions_append(int(product.get("positions", 1)))
-			for cnt in range(positions[0]):
+			for cnt in list(range(positions[0])):
 				lof=[]
 				lof.append(int(product.get("lofl", 9750)))
 				lof.append(int(product.get("lofh", 10600)))
@@ -1787,9 +1786,9 @@ def InitNimManager(nimmgr, update_slots = []):
 		"unicable_user": "Unicable "+_("User defined")}
 	unicable_choices_default = "unicable_lnb"
 
-	advanced_lnb_satcr_user_choicesEN50494 = [("%d" % i, "SatCR %d" % i) for i in range(1, 9)]
+	advanced_lnb_satcr_user_choicesEN50494 = [("%d" % i, "SatCR %d" % i) for i in list(range(1, 9))]
 
-	advanced_lnb_satcr_user_choicesEN50607 = [("%d" % i, "SatCR %d" % i) for i in range(1, 33)]
+	advanced_lnb_satcr_user_choicesEN50607 = [("%d" % i, "SatCR %d" % i) for i in list(range(1, 33))]
 
 	advanced_lnb_diction_user_choices = [("EN50494", "Unicable(EN50494)"), ("EN50607", "JESS(EN50607)")]
 
@@ -1808,7 +1807,7 @@ def InitNimManager(nimmgr, update_slots = []):
 
 	advanced_lnb_csw_choices = [("none", _("None")), ("AA", _("Port A")), ("AB", _("Port B")), ("BA", _("Port C")), ("BB", _("Port D"))]
 
-	advanced_lnb_ucsw_choices = [("0", _("None"))] + [(str(y), _("Input ") + str(y)) for y in range(1, 17)]
+	advanced_lnb_ucsw_choices = [("0", _("None"))] + [(str(y), _("Input ") + str(y)) for y in list(range(1, 17))]
 
 	diseqc_mode_choices = [
 		("single", _("Single")), ("toneburst_a_b", _("Toneburst A/B")),
@@ -1826,7 +1825,7 @@ def InitNimManager(nimmgr, update_slots = []):
 	advanced_satlist_choices = nimmgr.satList + [
 		(3601, _('All satellites 1 (USALS)'), 1), (3602, _('All satellites 2 (USALS)'), 1),
 		(3603, _('All satellites 3 (USALS)'), 1), (3604, _('All satellites 4 (USALS)'), 1), (3605, _('Selecting satellites 1 (USALS)'), 1), (3606, _('Selecting satellites 2 (USALS)'), 1)]
-	advanced_lnb_choices = [("0", _("not configured"))] + [(str(y), "LNB " + str(y)) for y in range(1, (maxFixedLnbPositions+1))]
+	advanced_lnb_choices = [("0", _("not configured"))] + [(str(y), "LNB " + str(y)) for y in list(range(1, (maxFixedLnbPositions+1)))]
 	advanced_voltage_choices = [("polarization", _("Polarization")), ("13V", _("13 V")), ("18V", _("18 V"))]
 	advanced_tonemode_choices = [("band", _("Band")), ("on", _("On")), ("off", _("Off"))]
 	advanced_lnb_toneburst_choices = [("none", _("None")), ("A", _("A")), ("B", _("B"))]
@@ -1893,7 +1892,7 @@ def InitNimManager(nimmgr, update_slots = []):
 							scrlist_append = scrlist.append
 							vcolist=unicableproducts[manufacturer][article].get("frequencies")
 							tmp.vco[article] = ConfigSubList()
-							for cnt in range(1, len(vcolist)+1):
+							for cnt in list(range(1, len(vcolist)+1)):
 								vcofreq = int(vcolist[cnt-1])
 								if vcofreq == 0 and vco_null_check:
 									scrlist_append(("%d" %cnt, "SCR %d " %cnt +_("not used")))
@@ -1911,7 +1910,7 @@ def InitNimManager(nimmgr, update_slots = []):
 							tmp_lofh_article_append = tmp.lofh[article].append
 							tmp_loft_article_append = tmp.loft[article].append
 							
-							for cnt in range(1, positions+1):
+							for cnt in list(range(1, positions+1)):
 								lofl = int(positionslist[cnt][0])
 								lofh = int(positionslist[cnt][1])
 								loft = int(positionslist[cnt][2])
@@ -2046,7 +2045,7 @@ def InitNimManager(nimmgr, update_slots = []):
 				lnb.addNotifier(configLNBChanged, initial_call = False)
 				tmp.lnb = lnb
 				nim.advanced.sat[x[0]] = tmp
-			for x in range(3601, 3607):
+			for x in list(range(3601, 3607)):
 				tmp = ConfigSubsection()
 				tmp.voltage = ConfigSelection(advanced_voltage_choices, "polarization")
 				tmp.tonemode = ConfigSelection(advanced_tonemode_choices, "band")

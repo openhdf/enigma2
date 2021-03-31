@@ -8,7 +8,6 @@ from Components.Console import Console
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from boxbranding import getBoxType
-from six.moves import range
 import six
 from six.moves import map
 
@@ -341,7 +340,7 @@ class Network:
 
 	def changeNameserver(self, oldnameserver, newnameserver):
 		if oldnameserver in self.nameservers:
-			for i in range(len(self.nameservers)):
+			for i in list(range(len(self.nameservers))):
 				if self.nameservers[i] == oldnameserver:
 					self.nameservers[i] = newnameserver
 

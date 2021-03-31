@@ -9,7 +9,6 @@ from copy import copy as copy_copy
 from os import path as os_path
 from time import localtime, strftime
 import six
-from six.moves import range
 
 # ConfigElement, the base class of all ConfigElements.
 

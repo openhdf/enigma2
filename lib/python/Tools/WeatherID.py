@@ -5,7 +5,6 @@ from six.moves.urllib.request import urlopen
 import sys
 import re
 import json
-from six.moves import range
 import six
 
 WOEID_SEARCH_URL     = 'http://query.yahooapis.com/v1/public/yql'

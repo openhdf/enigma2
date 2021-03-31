@@ -16,7 +16,6 @@ from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval,
 from Components.TimerSanityCheck import TimerSanityCheck
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
-from six.moves import range
 import six
 from Screens.MessageBox import MessageBox
 import Screens.Standby
@@ -928,13 +927,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				wd_timer = datetime.fromtimestamp(self.begin).isoweekday()*-1
 				wd_repeated = bin(128+int(self.repeated))
 
-				for s in range(wd_timer-1, -8, -1):
+				for s in list(range(wd_timer-1, -8, -1)):
 					count_day +=1
 					if int(wd_repeated[s]):
 						next_day = s
 						break
 				if next_day == 0:
-					for s in range(-1, wd_timer-1, -1):
+					for s in list(range(-1, wd_timer-1, -1)):
 						count_day +=1
 						if int(wd_repeated[s]):
 							next_day = s
@@ -1508,7 +1507,7 @@ class RecordTimer(timer.Timer):
 					sref.setUnsignedData(2, tsid)
 					sref.setUnsignedData(5, parent_sid)
 					sref.setUnsignedData(6, parent_tsid)
-					for cnt in range(num):
+					for cnt in list(range(num)):
 						subservice = event.getLinkageService(sref, cnt)
 						if sref.toCompareString() == subservice.toCompareString():
 							check = True

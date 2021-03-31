@@ -49,7 +49,6 @@ import os
 import shutil
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getImageDistro
 import six
-from six.moves import range
 
 boxtype = getBoxType()
 brandoem = getBrandOEM()
@@ -2417,7 +2416,7 @@ class IpkgInstaller(Screen):
 
 		self.list = SelectionList()
 		self["list"] = self.list
-		for listindex in range(len(list)):
+		for listindex in list(range(len(list))):
 			self.list.addSelection(list[listindex], list[listindex], listindex, False)
 
 		self["key_red"] = StaticText(_("Close"))

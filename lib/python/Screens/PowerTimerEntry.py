@@ -15,7 +15,6 @@ from Components.SystemInfo import SystemInfo
 from PowerTimer import AFTEREVENT, TIMERTYPE
 from time import localtime, mktime, time, strftime
 from datetime import datetime
-from six.moves import range
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):
@@ -196,7 +195,7 @@ class TimerEntry(Screen, ConfigListScreen):
 					self.list.append(self.netipEntry)
 					if self.timerrntry_netip.value == "yes":
 						self.list.append(self.ipcountEntry)
-						for x in range(0, self.ipcount.value):
+						for x in list(range(0, self.ipcount.value)):
 							self.list.append(getConfigListEntry(("%d. " + _("IP address")) %(x+1), self.ipadressEntry[x]))
 
 		else:
@@ -369,7 +368,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.trafficlimit = self.timerrntry_trafficlimit.value
 		self.timer.netip = self.timerrntry_netip.value
 		self.timer.ipadress = "%d.%d.%d.%d" % (self.ipadressEntry[0].value[0], self.ipadressEntry[0].value[1], self.ipadressEntry[0].value[2], self.ipadressEntry[0].value[3])
-		for x in range(1, self.ipcount.value):
+		for x in list(range(1, self.ipcount.value)):
 			self.timer.ipadress += ",%d.%d.%d.%d" % (self.ipadressEntry[x].value[0], self.ipadressEntry[x].value[1], self.ipadressEntry[x].value[2], self.ipadressEntry[x].value[3])
 
 		self.saveTimer()

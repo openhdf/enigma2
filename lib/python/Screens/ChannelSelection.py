@@ -19,7 +19,6 @@ from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredTimerPath
 from Components.Renderer.Picon import getPiconName
 from Screens.TimerEdit import TimerSanityConflict
-from six.moves import range
 profile("ChannelSelection.py 1")
 from Screens.EpgSelection import EPGSelection
 from enigma import eActionMap, eServiceReferenceDVB, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
@@ -2291,7 +2290,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def historyClear(self):
 		if self and self.servicelist:
-			for i in range(0, len(self.history)-1):
+			for i in list(range(0, len(self.history)-1)):
 				del self.history[0]
 			self.history_pos = len(self.history)-1
 			return True

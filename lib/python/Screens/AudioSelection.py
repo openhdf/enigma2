@@ -19,7 +19,6 @@ from enigma import iPlayableService, eTimer, eSize
 from Tools.ISO639 import LanguageCodes
 from Tools.BoundFunction import boundFunction
 from boxbranding import getBoxType
-from six.moves import range
 FOCUS_CONFIG, FOCUS_STREAMS = list(range(2))
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
 
@@ -197,7 +196,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					self.settings.channelmode.addNotifier(self.changeMode, initial_call = False)
 					conflist.append(getConfigListEntry(_("Channel"), self.settings.channelmode, None))
 				selectedAudio = self.audioTracks.getCurrentTrack()
-				for x in range(n):
+				for x in list(range(n)):
 					number = str(x + 1)
 					i = audio.getTrackInfo(x)
 					languages = i.getLanguage().split('/')

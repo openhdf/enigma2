@@ -11,7 +11,6 @@ from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from os import system as os_system, path as os_path, mkdir
 from boxbranding import getMachineBrand, getMachineName
-from six.moves import range
 
 config.misc.defaultchosen = ConfigBoolean(default = False)
 
@@ -51,7 +50,7 @@ class DefaultWizard(WizardLanguage, DreamInfoHandler):
 		configList = []
 		self.fillPackagesList()
 		self.packagesConfig = []
-		for x in range(len(self.packageslist)):
+		for x in list(range(len(self.packageslist))):
 			entry = ConfigYesNo()
 			self.packagesConfig.append(entry)
 			configList.append(getConfigListEntry(self.packageslist[x][0]["attributes"]["name"], entry))
@@ -61,7 +60,7 @@ class DefaultWizard(WizardLanguage, DreamInfoHandler):
 		print("selection made")
 		#self.installPackage(int(index))
 		self.indexList = []
-		for x in range(len(self.packagesConfig)):
+		for x in list(range(len(self.packagesConfig))):
 			if self.packagesConfig[x].value:
 				self.indexList.append(x)
 

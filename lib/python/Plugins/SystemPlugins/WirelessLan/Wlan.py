@@ -3,7 +3,6 @@ from __future__ import print_function
 from os import system, path as os_path
 import sys, re
 import six
-from six.moves import range
 
 if sys.version_info[0] < 3:
 	from string import maketrans, strip
@@ -87,7 +86,7 @@ class Wlan:
 		scanresults = list(Cell.all(self.iface, 5))
 		aps = {}
 		if scanresults is not None:
-			for i in range(len(scanresults)):
+			for i in list(range(len(scanresults))):
 				bssid = scanresults[i].ssid
 				aps[bssid] = {
 					'active': True,
@@ -436,7 +435,7 @@ class Status:
 			scanresults = list(Cell.all(iface, 5))
 			aps = {}
 			if scanresults is not None:
-				for i in range(len(scanresults)):
+				for i in list(range(len(scanresults))):
 					bssid = scanresults[i].ssid
 					aps[bssid] = {
 						'active': True,

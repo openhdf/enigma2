@@ -30,7 +30,6 @@ from Tools.WeatherID import get_woeid_from_yahoo
 from Tools import Notifications
 from os import listdir, remove, rename, system, path, symlink, chdir, makedirs, mkdir
 import shutil
-from six.moves import range
 
 cur_skin = config.skin.primary_skin.value.replace('/skin.xml', '')
 
@@ -514,7 +513,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			elif 'count' in id_dic:
 				result_no = int(id_dic['count'])
 				location_list = []
-				for i in range(0, result_no):
+				for i in list(range(0, result_no)):
 					location_list.append(id_dic[i])
 				self.session.openWithCallback(self.select_weather_id_callback, WeatherLocationChoiceList, location_list)
 

@@ -8,7 +8,6 @@ from __future__ import print_function
 
 from __future__ import absolute_import
 import os, sys
-from six.moves import range
 
 f = open(sys.argv[1]).readlines()
 
@@ -35,7 +34,7 @@ while len(f):
 	filename = filename.replace('/', '_').replace('\\', '_').replace('&', '_').replace('\'', '').replace('"', '').replace('`', '')
 	filename = filename.replace('\n', '')
 
-	for i in range(len(filename)):
+	for i in list(range(len(filename))):
 		if ord(filename[i]) > 127:
 			filename = filename[0:i] + '_' + filename[i + 1:]
 

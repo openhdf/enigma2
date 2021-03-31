@@ -27,7 +27,6 @@ from Components.VariableText import VariableText
 from enigma import eLabel, eServiceCenter
 from Components.Renderer.Renderer import Renderer
 from Screens.InfoBar import InfoBar
-from six.moves import range
 
 MYCHANSEL = InfoBar.instance.servicelist
 
@@ -54,7 +53,7 @@ class DMCHDChNumber(Renderer, VariableText):
 				serviceHandler = eServiceCenter.getInstance()
 				mySSS = serviceHandler.list(myRoot)
 				SRVList = mySSS and mySSS.getContent("SN", True)
-				for i in range(len(SRVList)):
+				for i in list(range(len(SRVList))):
 					if chx == i:
 						break
 					testlinet = SRVList[i]

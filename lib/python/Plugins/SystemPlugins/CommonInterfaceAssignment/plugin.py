@@ -21,7 +21,6 @@ from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
 from os import system, path as os_path
 from boxbranding import getMachineBrand, getMachineName, getBoxType
 import os
-from six.moves import range
 import six
 
 class CIselectMainMenu(Screen):
@@ -60,7 +59,7 @@ class CIselectMainMenu(Screen):
 		self.state = { }
 		self.list = [ ]
 		if  NUM_CI and NUM_CI > 0:
-			for slot in range(NUM_CI):
+			for slot in list(range(NUM_CI)):
 				state = eDVBCI_UI.getInstance().getState(slot)
 				if state != -1:
 					appname = _("Slot %d") %(slot+1) + " - " + _("unknown error")
@@ -377,7 +376,7 @@ class CAidSelect(Screen):
 		self.list = SelectionList()
 		self["list"] = self.list
 
-		for listindex in range(len(list)):
+		for listindex in list(range(len(list))):
 			if find_in_list(selected_caids, list[listindex][0], 0):
 				self.list.addSelection(list[listindex][0], list[listindex][1], listindex, True)
 			else:
@@ -621,7 +620,7 @@ global_session = None
 def isModule():
 	NUM_CI = eDVBCIInterfaces.getInstance() and eDVBCIInterfaces.getInstance().getNumOfSlots()
 	if NUM_CI and NUM_CI > 0:
-		for slot in range(NUM_CI):
+		for slot in list(range(NUM_CI)):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state > 0:
 				return True

@@ -15,7 +15,6 @@ from Tools.Directories import resolveFilename, SCOPE_CONFIG, copyfile
 #from Screens.Screen import Screen
 from os import unlink
 from enigma import eTimer, eDVBDB
-from six.moves import range
 
 class DefaultServiceScan(ServiceScan):
 	skin = """
@@ -74,7 +73,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		self.onFirstExecBegin.append(self.runScan)
 
 	def selectSat(self, index):
-		for satindex in range(len(self.multiscanlist)):
+		for satindex in list(range(len(self.multiscanlist))):
 			if satindex != index:
 				self.multiscanlist[satindex][1].setValue(False)
 			else:

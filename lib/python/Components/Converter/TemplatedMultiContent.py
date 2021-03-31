@@ -1,7 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from Components.Converter.StringList import StringList
-from six.moves import range
 
 class TemplatedMultiContent(StringList):
 	"""Turns a python tuple list into a multi-content list which can be used in a listbox renderer."""
@@ -43,7 +42,7 @@ class TemplatedMultiContent(StringList):
 				# make a simple list compatible for this converter
 				tmp = []
 				src = self.source.list
-				for x in range(len(src)):
+				for x in list(range(len(src))):
 					if not isinstance(src[x], tuple) and not isinstance(src[x], list):
 						tmp.append((src[x],))
 					else:

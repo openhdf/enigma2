@@ -15,7 +15,6 @@ from gettext import dgettext
 from boxbranding import getMachineBrand, getMachineName
 
 import xml.etree.cElementTree
-from six.moves import range
 import six
 
 def setupdom(plugin=None):
@@ -151,7 +150,7 @@ class Setup(ConfigListScreen, Screen):
 
 	def getIndexFromItem(self, item):
 		if item is not None:
-			for x in range(len(self["config"].list)):
+			for x in list(range(len(self["config"].list))):
 				if self["config"].list[x][0] == item[0]:
 					return x
 		return None

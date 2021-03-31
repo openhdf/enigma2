@@ -28,7 +28,6 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
 from os import statvfs
-from six.moves import range
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):
@@ -518,7 +517,7 @@ class TimerEntry(Screen, ConfigListScreen):
 					ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 					parent = self.timer.service_ref.ref
 					selection = 0
-					for x in range(n):
+					for x in list(range(n)):
 						i = event.getLinkageService(parent, x)
 						if i.toString() == ref.toString():
 							selection = x

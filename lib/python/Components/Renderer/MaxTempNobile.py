@@ -28,7 +28,6 @@ from Tools.HardwareInfo import HardwareInfo
 from enigma import eLabel
 from Components.Renderer.Renderer import Renderer
 from os import popen
-from six.moves import range
 
 class MaxTempNobile(Renderer, VariableText):
 	def __init__(self):
@@ -47,7 +46,7 @@ class MaxTempNobile(Renderer, VariableText):
 				try:
 					templist = sensors.getSensorsList(sensors.TYPE_TEMPERATURE)
 					tempcount = len(templist)
-					for count in range(tempcount):
+					for count in list(range(tempcount)):
 						id = templist[count]
 						tt = sensors.getSensorValue(id)
 						if tt > maxtemp:

@@ -7,7 +7,6 @@ from skin import parseColor
 from enigma import eCanvas, eSize, gRGB, eRect
 from Components.VariableText import VariableText
 from Components.config import config
-from six.moves import range
 class WatchesNobile(Renderer):
 
     def __init__(self):
@@ -60,7 +59,7 @@ class WatchesNobile(Renderer):
         deltay = abs((y1 - y0))
         error = (-deltax // 2)
         y = y0
-        for x in range(x0, (x1 + 1)):
+        for x in list(range(x0, (x1 + 1))):
             if steep:
                 self.instance.fillRect(eRect(y, x, 2, 2), self.fColor)
             else:

@@ -1,6 +1,5 @@
 from __future__ import absolute_import
 from Tools.Profile import profile
-from six.moves import range
 
 profile("LOAD:GUISkin")
 from Components.GUISkin import GUISkin

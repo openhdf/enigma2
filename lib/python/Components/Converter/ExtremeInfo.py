@@ -11,7 +11,6 @@ from os import environ, listdir, remove, rename, system
 from Components.ServiceEventTracker import ServiceEventTracker
 import gettext
 from Components.Converter.Poll import Poll
-from six.moves import range
 
 class ExtremeInfo(Poll, Converter, object):
     TUNERINFO = 0
@@ -1222,7 +1221,7 @@ class ExtremeInfo(Poll, Converter, object):
             list = self.tv_list
         number = '---'
         if name in list:
-            for idx in range(1, len(list)):
+            for idx in list(range(1, len(list))):
                 if name == list[idx - 1]:
                     number = str(idx)
                     break

@@ -12,7 +12,6 @@ from Tools.Notifications import AddPopup
 from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
 import time
 import six
-from six.moves import range
 
 TYPE_SERVICE = "SERVICE"
 TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
@@ -30,7 +29,7 @@ def InitParentalControl():
 	config.ParentalControl.retries.servicepin.time = ConfigInteger(default = 3)
 	config.ParentalControl.servicepin = ConfigSubList()
 	config.ParentalControl.servicepin.append(ConfigPIN(default = 0))
-	config.ParentalControl.age = ConfigSelection(default = "18", choices = [("0", _("No age block"))] + list((str(x), "%d+" % x) for x in range(3, 19)))
+	config.ParentalControl.age = ConfigSelection(default = "18", choices = [("0", _("No age block"))] + list((str(x), "%d+" % x) for x in list(range(3, 19))))
 	config.ParentalControl.hideBlacklist = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections = ConfigSubsection()
 	config.ParentalControl.config_sections.hdftoolbox = ConfigYesNo(default = False)

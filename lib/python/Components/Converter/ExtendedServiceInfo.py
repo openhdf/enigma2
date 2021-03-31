@@ -5,7 +5,6 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from enigma import eServiceCenter, eServiceReference, iServiceInformation
 from xml.etree.cElementTree import parse
-from six.moves import range
 
 class ExtendedServiceInfo(Converter, object):
     SERVICENAME = 0
@@ -123,7 +122,7 @@ class ExtendedServiceInfo(Converter, object):
             list = self.tv_list
         number = ''
         if name in list:
-            for idx in range(1, len(list)):
+            for idx in list(range(1, len(list))):
                 if name == list[idx - 1]:
                     number = str(idx)
                     break

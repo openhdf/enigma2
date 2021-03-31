@@ -8,7 +8,6 @@ from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, r
 from Components.Harddisk import harddiskmanager
 from Components.config import config, ConfigBoolean
 from ServiceReference import ServiceReference
-from six.moves import range
 import six, sys
 
 searchPaths = []
@@ -101,7 +100,7 @@ def getPiconName(serviceName):
 		if len(fields) > 2:
 			while not pngname:
 				tmp = ''
-				for i in range(256):
+				for i in list(range(256)):
 					tmp = hex(i)[2:].upper().zfill(2)
 					fields[2] = tmp
 					pngname = findPicon('_'.join(fields))

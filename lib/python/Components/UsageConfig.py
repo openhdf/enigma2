@@ -15,7 +15,6 @@ from Components.SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
 from keyids import KEYIDS
 from sys import maxsize
-from six.moves import range
 from six.moves import map
 
 def InitUsageConfig():
@@ -86,7 +85,7 @@ def InitUsageConfig():
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
 
 	choicelist = [("-1", _("Divide")), ("0", _("Disable"))]
-	for i in range(100, 1325, 25):
+	for i in list(range(100, 1325, 25)):
 		choicelist.append(("%d" % i, ngettext("%d pixel wide", "%d pixels wide", i) % i))
 	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
 	config.usage.servicelist_column.addNotifier(refreshServiceList)
@@ -120,7 +119,7 @@ def InitUsageConfig():
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 
 	choicelist = []
-	for i in range(1, 21):
+	for i in list(range(1, 21)):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
 	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [("0", _("No timeout"))] + choicelist)
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
@@ -296,7 +295,7 @@ def InitUsageConfig():
 	choicelist = [("standby", _("Standby")), ("deepstandby", _("Deep Standby"))]
 	config.usage.sleep_timer_action = ConfigSelection(default = "deepstandby", choices = choicelist)
 	choicelist = [("0", _("Disabled")), ("event_standby", _("Execute after current event"))]
-	for i in range(900, 14401, 900):
+	for i in list(range(900, 14401, 900)):
 		m = abs(i // 60)
 		m = ngettext("%d minute", "%d minutes", m) % m
 		choicelist.append((str(i), _("Execute in ") + m))
@@ -365,14 +364,14 @@ def InitUsageConfig():
 	slots = len(nimmanager.nim_slots)
 	multi = []
 	slots_x = []
-	for i in range(0, slots):
+	for i in list(range(0, slots)):
 		slotname = nimmanager.nim_slots[i].getSlotName()
 		nims.append((str(i), slotname))
 		rec_nims.append((str(i), slotname))
 		slotx = 2**i
 		slots_x.append(slotx)
 		multi.append((str(slotx), slotname))
-		for x in range(i+1, slots):
+		for x in list(range(i+1, slots)):
 			slotx += 2**x
 			name = nimmanager.nim_slots[x].getSlotName()
 			if len(name.split()) == 2:
@@ -382,11 +381,11 @@ def InitUsageConfig():
 			multi.append((str(slotx), slotname))
 
 	#//advanced tuner combination up to 10 tuners
-	for slotx in range(1, 2**min(10, slots)):
+	for slotx in list(range(1, 2**min(10, slots))):
 		if slotx in slots_x:
 			continue
 		slotname = ''
-		for x in range(0, min(10, slots)):
+		for x in list(range(0, min(10, slots))):
 			if (slotx & 2**x):
 				name = nimmanager.nim_slots[x].getSlotName()
 				if not slotname:
@@ -879,7 +878,7 @@ def InitUsageConfig():
 	config.subtitles.subtitle_alignment = ConfigSelection(choices = [("left", _("left")), ("center", _("center")), ("right", _("right"))], default = "center")
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default = False)
 	config.subtitles.subtitle_borderwidth = ConfigSelection(choices = ["1", "2", "3", "4", "5"], default = "3")
-	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["%d" % x for x in range(16, 101) if not x % 2], default = "40")
+	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["%d" % x for x in list(range(16, 101)) if not x % 2], default = "40")
 	backtrans = [
 		("0", _("No transparency")),
 		("12", "5%"),
@@ -898,7 +897,7 @@ def InitUsageConfig():
 	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default = "0", choices = backtrans)
 
 	subtitle_delay_choicelist = []
-	for i in range(-54000000, 54045000, 45000):
+	for i in list(range(-54000000, 54045000, 45000)):
 		if i == 0:
 			subtitle_delay_choicelist.append(("0", _("No delay")))
 		else:
@@ -1000,8 +999,8 @@ def InitUsageConfig():
 	config.autolanguage.audio_epglanguage_alternative.addNotifier(setEpgLanguageAlternative)
 	config.autolanguage.audio_epglanguage_alternative.addNotifier(epglanguage)
 
-	def getselectedlanguages(range):
-		return [eval("config.autolanguage.audio_autoselect%x.value" % x) for x in range]
+	def getselectedlanguages(_range):
+		return [eval("config.autolanguage.audio_autoselect%x.value" % x) for x in _range]
 	def autolanguage(configElement):
 		config.autolanguage.audio_autoselect1.setChoices([x for x in audio_language_choices if x[0] and x[0] not in getselectedlanguages((2, 3, 4)) or not x[0] and not config.autolanguage.audio_autoselect2.value])
 		config.autolanguage.audio_autoselect2.setChoices([x for x in audio_language_choices if x[0] and x[0] not in getselectedlanguages((1, 3, 4)) or not x[0] and not config.autolanguage.audio_autoselect3.value])
@@ -1020,20 +1019,20 @@ def InitUsageConfig():
 	config.autolanguage.audio_usecache = ConfigYesNo(default = True)
 
 	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices [2:]
-	def getselectedsublanguages(range):
-		return [eval("config.autolanguage.subtitle_autoselect%x.value" % x) for x in range]
+	def getselectedsublanguages(_range):
+		return [eval("config.autolanguage.subtitle_autoselect%x.value" % x) for x in _range]
 	def autolanguagesub(configElement):
 		config.autolanguage.subtitle_autoselect1.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((2, 3, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect2.value])
 		config.autolanguage.subtitle_autoselect2.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((1, 3, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect3.value])
 		config.autolanguage.subtitle_autoselect3.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((1, 2, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect4.value])
 		config.autolanguage.subtitle_autoselect4.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((1, 2, 3)) or not x[0]])
 		choicelist = [('0', _("None"))]
-		for y in range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else(4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0)))):
+		for y in _range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else(4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0)))):
 			choicelist.append((str(y), ", ".join([eval("config.autolanguage.subtitle_autoselect%x.getText()" % x) for x in (y & 1, y & 2, y & 4 and 3, y & 8 and 4) if x])))
 		if config.autolanguage.subtitle_autoselect3.value:
 			choicelist.append((str(y+1), "All"))
 		config.autolanguage.equal_languages.setChoices(choicelist, default="0")
-	config.autolanguage.equal_languages = ConfigSelection(default="0", choices=[str(x) for x in range(0, 16)])
+	config.autolanguage.equal_languages = ConfigSelection(default="0", choices=[str(x) for x in list(range(0, 16))])
 	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices, default="")
 	config.autolanguage.subtitle_autoselect2 = ConfigSelection(choices=subtitle_language_choices, default="")
 	config.autolanguage.subtitle_autoselect3 = ConfigSelection(choices=subtitle_language_choices, default="")
@@ -1501,7 +1500,7 @@ def InitUsageConfig():
 		config.epgselection.infobar_preview_mode = ConfigSelection(choices = [("0", _("Disabled")), ("1", _("Fullscreen"))], default = "1")
 	config.epgselection.infobar_roundto = ConfigSelection(default = "15", choices = [("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60)])
 	choicelist=[]
-	for i in range(0, 135, 15):
+	for i in list(range(0, 135, 15)):
 		choicelist.append(("%d" %i, _("%d minutes") %i))
 	config.epgselection.infobar_histminutes = ConfigSelection(default = "0", choices = choicelist)
 	config.epgselection.infobar_prevtime = ConfigClock(default = time())

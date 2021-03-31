@@ -16,7 +16,6 @@ import sys
 import re
 import shutil
 import xml.etree.cElementTree
-from six.moves import range
 
 class LCN():
 	service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
@@ -43,7 +42,7 @@ class LCN():
 		if lcn == 0:
 			return
 
-		for i in range(0, len(self.lcnlist)):
+		for i in list(range(0, len(self.lcnlist))):
 			if self.lcnlist[i][0] == lcn:
 				if self.lcnlist[i][5] > signal:
 					self.addLcnToList(namespace, nid, tsid, sid, lcn + 16536, signal)

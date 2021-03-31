@@ -32,7 +32,6 @@ from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, RT_HA
 	RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, eSize, eRect, eTimer, getBestPlayableServiceReference, loadPNG
 from .GraphMultiEpgSetup import GraphMultiEpgSetup
 from time import localtime, time, strftime
-from six.moves import range
 
 MAX_TIMELINES = 6
 
@@ -224,7 +223,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def getIndexFromService(self, serviceref):
 		if serviceref is not None:
-			for x in range(len(self.list)):
+			for x in list(range(len(self.list))):
 				if CompareWithAlternatives(self.list[x][0], serviceref.toString()):
 					return x
 		return 0
@@ -508,7 +507,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						color_sel = foreColorSelected))
 				# recording icons
 				if rec is not None:
-					for i in range(len(rec[1])):
+					for i in list(range(len(rec[1]))):
 						if ewidth < (i + 1) * 22:
 							break
 						res.append(MultiContentEntryPixmapAlphaTest(
@@ -711,7 +710,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 					backcolor = self.backColor, backcolor_sel = self.backColor) )
 
 			xpos = 0 # eventLeft
-			for x in range(0, num_lines):
+			for x in list(range(0, num_lines)):
 				res.append( MultiContentEntryText(
 					pos = (service_rect.width() + xpos-tlMove, 0),
 					size = (incWidth, itemHeight),
@@ -724,7 +723,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 				line.setPosition(xpos + eventLeft, old_pos[1])
 				line.visible = True
 				xpos += incWidth
-			for x in range(num_lines, MAX_TIMELINES):
+			for x in list(range(num_lines, MAX_TIMELINES)):
 				time_lines[x].visible = False
 			self.l.setList([res])
 			self.time_base = time_base
@@ -771,7 +770,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
 		self.time_lines = [ ]
-		for x in range(0, MAX_TIMELINES):
+		for x in list(range(0, MAX_TIMELINES)):
 			pm = Pixmap()
 			self.time_lines.append(pm)
 			self["timeline%d"%(x)] = pm

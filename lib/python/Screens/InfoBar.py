@@ -12,7 +12,6 @@ from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
 from Tools.Directories import fileExists
-from six.moves import range
 
 profile("LOAD:enigma")
 import enigma
@@ -325,7 +324,7 @@ def setAudioTrack(service):
 		if not nTracks: return
 		idx = 0
 		trackList = []
-		for i in range(nTracks):
+		for i in list(range(nTracks)):
 			audioInfo = tracks.getTrackInfo(i)
 			lang = audioInfo.getLanguage()
 			if lang in langC:

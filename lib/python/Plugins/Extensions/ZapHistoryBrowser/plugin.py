@@ -16,7 +16,6 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Tools.Directories import resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
 import gettext
-from six.moves import range
 
 ################################################
 
@@ -204,7 +203,7 @@ class ZapHistoryBrowser(Screen, ProtectedScreen):
 
 	def clear(self):
 		if self.allowChanges:
-			for i in range(0, len(self.servicelist.history)):
+			for i in list(range(0, len(self.servicelist.history))):
 				del self.servicelist.history[0]
 			self.buildList()
 			self.servicelist.history_pos = 0

@@ -8,7 +8,6 @@ import os
 from enigma import eEnv, getDesktop
 from re import compile
 from stat import S_IMODE
-from six.moves import range
 import six
 
 pathExists = os.path.exists
@@ -221,7 +220,7 @@ def comparePath(leftPath, rightPath):
 		rightPath = rightPath[:-1]
 	left = leftPath.split(os.sep)
 	right = rightPath.split(os.sep)
-	for segment in range(len(left)):
+	for segment in list(range(len(left))):
 		if left[segment] != right[segment]:
 			return False
 	return True
