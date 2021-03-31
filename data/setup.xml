@@ -368,6 +368,7 @@
 	<setup key="remotesetup" title="Button setup">
 		<item level="1" text="Action on long powerbutton press" description="Setup what a long press on the power button does.">config.usage.on_long_powerpress</item>
 		<item level="1" text="Action on short powerbutton press" description="Setup what a short press on the power button does.">config.usage.on_short_powerpress</item>
+		<item level="0" text="OK button mode" description="Select what you want the OK button to activate:">config.usage.okbutton_mode</item>
 		<!--item level="1" text="History buttons mode" description="Configure the function of the &lt;  &gt; buttons.">config.usage.historymode</item-->
 		<item level="0" text="Subservice mode" description="Select if you want the Subservice mode to be activated.">config.plisettings.Subservice</item>
 		<item level="0" text="Keymap Selection" description="Select the keymap that you want to use:">config.usage.keymap</item>

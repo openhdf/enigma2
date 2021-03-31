@@ -13,7 +13,7 @@ class eServiceFactoryHDMI: public iServiceHandler
 public:
 	eServiceFactoryHDMI();
 	virtual ~eServiceFactoryHDMI();
-	enum { id = 0x2000 };
+	enum { id = eServiceReference::idServiceHDMIIn };
 
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);
 	RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr);
@@ -55,10 +55,11 @@ public:
 	RESULT subtitle(ePtr<iSubtitleOutput> &ptr) { ptr = 0; return -1; }
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr) { ptr = 0; return -1; }
 
-	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
-	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
-	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
-	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
+	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = nullptr; return -1; }
+	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = nullptr; return -1; }
+	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = nullptr; return -1; }
+	RESULT tap(ePtr<iTapService> &ptr) { ptr = nullptr; return -1; };
+	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = nullptr; return -1; }
 
 	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr) { ptr = 0; return -1; }
 	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = 0; return -1; }

@@ -290,8 +290,9 @@ class UpdatePluginMenu(Screen):
 	##check hdfreaks feed status
 		try:
 			from six.moves.urllib.request import urlopen
-			hdfonlinestatus = urlopen("http://status.hdfreaks.cc/index.php")
+			hdfonlinestatus = urlopen("https://status.hdfreaks.cc/index.php")
 			hdfstatus = hdfonlinestatus.read()
+			hdfbutton = "/usr/share/enigma2/skin_default/hdf_status_red.png"
 			if 'rot.png' in hdfstatus:
 				hdfbutton = "/usr/share/enigma2/skin_default/hdf_status_red.png"
 				self["Arrow1"].setPosition("300", "427")
@@ -1667,11 +1668,11 @@ class UpdatePlugin(Screen):
 			os.unlink('/etc/enigma2/xionrestore')
 
 	def CheckDate(self):
-		# Check if image is not to old for update (max 60days)
+		# Check if image is not to old for update (max 120days)
 		self.CheckDateDone = True
 		tmpdate = getEnigmaVersionString()
 		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
-		datedelay = imageDate +  timedelta(days=60)
+		datedelay = imageDate +  timedelta(days=120)
 		message = _("Your image is out of date!\n"
 				"After such a long time, there is a risk that your %s %s  will not\n"
 				"boot after online-update, or will show disfunction in running Image.\n"
@@ -1709,12 +1710,12 @@ class UpdatePlugin(Screen):
 		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 		# run in parallel to the package update.
 		try:
-			urlopenSTATUS = "http://status.hdfreaks.cc/index.php"
+			urlopenSTATUS = "https://status.hdfreaks.cc/index.php"
 			d = urlopen(urlopenSTATUS)
 			tmpStatus = d.read()
 			tmpStatus = six.ensure_str(tmpStatus)
 			if config.softwareupdate.updatebeta.value and 'gelb.png' in tmpStatus:
-				message = _("Caution update not tested yet !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see http://www.hdfreaks.cc") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
+				message = _("Caution update not tested yet !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see https://www.hdfreaks.cc") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
 				picon = MessageBox.TYPE_ERROR
 				default = False
 			elif 'rot.png' in tmpStatus:
@@ -1723,12 +1724,12 @@ class UpdatePlugin(Screen):
 					picon = MessageBox.TYPE_ERROR
 					default = False
 				else:
-					message = _("Update is reported as faulty !!") + "\n" + _("Aborting updateprogress") + "\n\n" + _("For more information see http://www.hdfreaks.cc")# + "\n\n" + _("Last Status Date") + ": " + statusDate
+					message = _("Update is reported as faulty !!") + "\n" + _("Aborting updateprogress") + "\n\n" + _("For more information see https://www.hdfreaks.cc")# + "\n\n" + _("Last Status Date") + ": " + statusDate
 					picon = MessageBox.TYPE_ERROR
 					default = False
 					doUpdate = False
 		except:
-			message = _("The status of the current update could not be checked because http://www.hdfreaks.cc could not be reached for some reason") + "\n"
+			message = _("The status of the current update could not be checked because https://www.hdfreaks.cc could not be reached for some reason") + "\n"
 			picon = MessageBox.TYPE_ERROR
 			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
@@ -1862,7 +1863,7 @@ class UpdatePlugin(Screen):
 				if self.updating:
 					error = _("Your %s %s isn't connected to the internet properly. Please check it and try again.") % (getMachineBrand(), getMachineName())
 				self.status.setText(_("Error") +  " - " + error)
-		#print event, "-", param
+		#print(event, "-", param)
 
 	def startActualUpgrade(self, answer):
 		if not answer or not answer[1]:
@@ -2292,7 +2293,7 @@ class PacketManager(Screen, NumericalTextInput):
 					self.Console = Console()
 				cmd = self.ipkg.ipkg + " list"
 				self.Console.ePopen(cmd, self.IpkgList_Finished)
-		#print event, "-", param
+		#print(event, "-", param)
 
 	def IpkgList_Finished(self, result, retval, extra_args = None):
 		result = result.replace('\n ', ' - ')

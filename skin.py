@@ -217,16 +217,16 @@ if config.skin.primary_skin.value != DEFAULT_SKIN:
 try:
 	if config.skin.primary_skin.value != DEFAULT_SKIN:
 		addSkin(primary_skin_path + 'skin_user_colors.xml', SCOPE_SKIN)
-		print "[SKIN] loading user defined colors for skin", (primary_skin_path + 'skin_user_colors.xml')
+		print("[SKIN] loading user defined colors for skin", (primary_skin_path + 'skin_user_colors.xml'))
 except (SkinError, IOError, AssertionError), err:
-	print "[SKIN] not loading user defined colors for skin"
+	print("[SKIN] not loading user defined colors for skin")
 
 try:
 	if config.skin.primary_skin.value != DEFAULT_SKIN:
 		addSkin(primary_skin_path + 'skin_user_header.xml', SCOPE_SKIN)
-		print "[SKIN] loading user defined header file for skin", (primary_skin_path + 'skin_user_header.xml')
+		print("[SKIN] loading user defined header file for skin", (primary_skin_path + 'skin_user_header.xml'))
 except (SkinError, IOError, AssertionError), err:
-	print "[SKIN] not loading user defined header file for skin"
+	print("[SKIN] not loading user defined header file for skin")
 '''
 
 def load_modular_files():
@@ -747,7 +747,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					bpp = int(bpp)
 				else:
 					bpp = 32
-				#print "Resolution:", xres,yres,bpp
+				#print("Resolution:", xres,yres,bpp)
 				from enigma import gMainDC
 				gMainDC.getInstance().setResolution(xres, yres)
 				desktop.resize(eSize(xres, yres))
@@ -823,7 +823,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				elif fileExists(resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)):
 					resolved_font = resolveFilename(SCOPE_ACTIVE_LCDSKIN, filename)
 			addFont(resolved_font, name, scale, is_replacement, render)
-			#print "Font: ", resolved_font, name, scale, is_replacement
+			#print("Font: ", resolved_font, name, scale, is_replacement)
 
 		fallbackFont = resolveFilename(SCOPE_FONTS, "fallback.font", path_prefix=path_prefix)
 		if fileExists(fallbackFont):
@@ -917,7 +917,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 
 		style.setTitleFont(font)
 		style.setTitleOffset(offset)
-		#print "  ", font, offset
+		#print("  ", font, offset)
 		for borderset in windowstyle.findall("borderset"):
 			bsName = str(borderset.attrib.get("name"))
 			for pixmap in borderset.findall("pixmap"):
@@ -933,7 +933,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 						style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
 					except:
 						pass
-				#print "  borderset:", bpName, filename
+				#print("  borderset:", bpName, filename)
 		for color in windowstyle.findall("color"):
 			get_attr = color.attrib.get
 			colorType = get_attr("name")
@@ -1215,7 +1215,7 @@ def readSkin(screen, skin, names, desktop):
 			print("widget has no name and no source!")
 			return
 		if wname:
-			#print "Widget name=", wname
+			#print("Widget name=", wname)
 			visited_components.add(wname)
 			# get corresponding 'gui' object
 			try:
@@ -1226,7 +1226,7 @@ def readSkin(screen, skin, names, desktop):
 			collectAttributes(attributes, widget, context, skin_path_prefix, ignore=('name',))
 		elif wsource:
 			# get corresponding source
-			#print "Widget source=", wsource
+			#print("Widget source=", wsource)
 			while True: # until we found a non-obsolete source
 				# parse our current "wsource", which might specifiy a "related screen" before the dot,
 				# for example to reference a parent, global or session-global screen.
@@ -1236,8 +1236,8 @@ def readSkin(screen, skin, names, desktop):
 				while len(path) > 1:
 					scr = screen.getRelatedScreen(path[0])
 					if scr is None:
-						#print wsource
-						#print name
+						#print(wsource)
+						#print(name)
 						raise SkinError("specified related screen '" + wsource + "' was not found in screen '" + name + "'!")
 					path = path[1:]
 				# resolve the source.
@@ -1262,12 +1262,12 @@ def readSkin(screen, skin, names, desktop):
 			for converter in widget.findall("convert"):
 				ctype = converter.get('type')
 				assert ctype, "'convert'-tag needs a 'type'-attribute"
-				#print "Converter:", ctype
+				#print("Converter:", ctype)
 				try:
 					parms = converter.text.strip()
 				except:
 					parms = ""
-				#print "Params:", parms
+				#print("Params:", parms)
 				converter_class = my_import('.'.join(("Components", "Converter", ctype))).__dict__.get(ctype)
 				c = None
 				for i in source.downstream_elements:

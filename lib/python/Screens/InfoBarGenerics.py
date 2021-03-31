@@ -51,8 +51,9 @@ import NavigationInstance
 from Tools import Directories, Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN
 from Tools.KeyBindings import getKeyDescription
-from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, pNavigation, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, eDVBDB, quitMainloop
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getDriverDate, getImageVersion, getImageBuild, getMachineProcModel, getMachineBuild, getMachineMtdKernel, getDisplayType
+from Tools.ServiceReference import hdmiInServiceRef
+from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getDriverDate, getImageVersion, getImageBuild, getMachineProcModel, getMachineBuild ,getMachineMtdKernel, getDisplayType
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -525,7 +526,7 @@ class SecondInfoBar(Screen):
 			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
 	def finishedAdd(self, answer):
-		# print "finished add"
+		# print("finished add")
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -554,7 +555,7 @@ class SecondInfoBar(Screen):
 		else:
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
-			# print "Timeredit aborted"
+			# print("Timeredit aborted")
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -690,7 +691,13 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		self.hideVBILineScreen.hide()
 
 	def OkPressed(self):
-		self.toggleShow()
+		if config.usage.okbutton_mode.value == "0":
+			self.toggleShow()
+		elif config.usage.okbutton_mode.value == "1":
+			try:
+				self.openServiceList()
+			except:
+				self.toggleShow()
 
 	def SwitchSecondInfoBarScreen(self):
 		if self.lastSecondInfoBar == int(config.usage.show_second_infobar.value):
@@ -1624,7 +1631,7 @@ class InfoBarMenu:
 		self.session.infobar = None
 
 	def mainMenu(self):
-		# print "loading mainmenu XML..."
+		# print("loading mainmenu XML...")
 		menu = mdom.getroot()
 		assert menu.tag == "menu", "root element in menu must be 'menu'!"
 
@@ -3522,7 +3529,7 @@ class InfoBarSeek:
 				self.screen = screen
 
 			def action(self, contexts, action):
-				# print "action:", action
+				# print("action:", action)
 				if action[:5] == "seek:":
 					time = int(action[5:])
 					self.screen.doSeekRelative(time * 90000)
@@ -4049,7 +4056,7 @@ class InfoBarSeek:
 			self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
 
 	def rwdSeekTo(self, minutes):
-#		print "rwdSeekTo"
+#		print("rwdSeekTo")
 		self.doSeekRelative(-minutes * 60 * 90000)
 
 	def checkSkipShowHideLock(self):
@@ -5117,7 +5124,7 @@ class InfoBarInstantRecord:
 			if len(simulTimerList) > 1: # with other recording
 				name = simulTimerList[1].name
 				name_date = ' '.join((name, strftime('%F %T', localtime(simulTimerList[1].begin))))
-				# print "[TIMER] conflicts with", name_date
+				# print("[TIMER] conflicts with", name_date)
 				recording.autoincrease = True	# start with max available length, then increment
 				if recording.setAutoincreaseEnd():
 					self.session.nav.RecordTimer.record(recording)
@@ -5130,7 +5137,7 @@ class InfoBarInstantRecord:
 			recording.autoincrease = False
 
 	def isInstantRecordRunning(self):
-#		print "self.recording:", self.recording
+#		print("self.recording:", self.recording)
 		if self.recording:
 			for x in self.recording:
 				if x.isRunning():
@@ -5138,12 +5145,12 @@ class InfoBarInstantRecord:
 		return False
 
 	def recordQuestionCallback(self, answer):
-		# print 'recordQuestionCallback'
-#		print "pre:\n", self.recording
+		# print('recordQuestionCallback')
+#		print("pre:\n", self.recording)
 
-		# print 'test1'
+		# print('test1')
 		if answer is None or answer[1] == "no":
-			# print 'test2'
+			# print('test2')
 			self.saveTimeshiftEventPopupActive = False
 			return
 		list = []
@@ -5176,21 +5183,21 @@ class InfoBarInstantRecord:
 			elif answer[1] == "manualendtime":
 				self.setEndtime(len(self.recording)-1)
 		elif answer[1] == "savetimeshift":
-			# print 'test1'
+			# print('test1')
 			if self.isSeekable() and self.pts_eventcount != self.pts_currplaying:
-				# print 'test2'
+				# print('test2')
 				InfoBarTimeshift.SaveTimeshift(self, timeshiftfile="pts_livebuffer_%s" % self.pts_currplaying)
 			else:
-				# print 'test3'
+				# print('test3')
 				Notifications.AddNotification(MessageBox, _("Timeshift will get saved at end of event!"), MessageBox.TYPE_INFO, timeout=5)
 				self.save_current_timeshift = True
 				config.timeshift.isRecording.value = True
 		elif answer[1] == "savetimeshiftEvent":
-			# print 'test4'
+			# print('test4')
 			InfoBarTimeshift.saveTimeshiftEventPopup(self)
 
 		elif answer[1].startswith("pts_livebuffer") is True:
-			# print 'test2'
+			# print('test2')
 			InfoBarTimeshift.SaveTimeshift(self, timeshiftfile=answer[1])
 
 		if answer[1] != "savetimeshiftEvent":
@@ -5206,7 +5213,7 @@ class InfoBarInstantRecord:
 	def TimeDateInputClosed(self, ret):
 		if len(ret) > 1:
 			if ret[0]:
-#				print "stopping recording at", strftime("%F %T", localtime(ret[1]))
+#				print("stopping recording at", strftime("%F %T", localtime(ret[1])))
 				if self.recording[self.selectedEntry].end != ret[1]:
 					self.recording[self.selectedEntry].autoincrease = False
 				self.recording[self.selectedEntry].end = ret[1]
@@ -5222,7 +5229,7 @@ class InfoBarInstantRecord:
 			self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5  ", maxSize=True, type=Input.NUMBER)
 
 	def inputCallback(self, value):
-#		print "stopping recording after", int(value), "minutes."
+#		print("stopping recording after", int(value), "minutes.")
 		entry = self.recording[self.selectedEntry]
 		if value is not None:
 			value = value.replace(" ", "")
@@ -5266,14 +5273,17 @@ class InfoBarInstantRecord:
 			self.session.open(MessageBox, _("You are watching 5001 or 5002 IPTV channel." + "\n" + "IPTV recording is working only for 4097 services!" + "\n" + "Please use 4097 IPTV streams for recording!"), MessageBox.TYPE_INFO, timeout=15)
 			return
 
-		#check serviceapp settings for gstplayer or exteplayer3
-		if config.plugins.serviceapp.servicemp3.replace.value:
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			iptv_service = str(ServiceReference(ref))
-			print("IPTV Service Name:", iptv_service)
-			if iptv_service.startswith('4097:'):
-				self.session.open(MessageBox, _("IPTV recording is not working with activated gstplayer or exteplayer3." + "\n" + "Please use original settings within serviceapp!"), MessageBox.TYPE_INFO, timeout=15)
-				return
+		try:
+			#check serviceapp settings for gstplayer or exteplayer3
+			if config.plugins.serviceapp.servicemp3.replace.value:
+				ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+				iptv_service = str(ServiceReference(ref))
+				print("IPTV Service Name:", iptv_service)
+				if iptv_service.startswith('4097:'):
+					self.session.open(MessageBox,_("IPTV recording is not working with activated gstplayer or exteplayer3." + "\n" + "Please use original settings within serviceapp!"), MessageBox.TYPE_INFO, timeout=15)
+					return
+		except:
+			pass
 
 		if isStandardInfoBar(self):
 			common = ((_("Add recording (stop after current event)"), "event"),
@@ -5829,7 +5839,7 @@ class InfoBarServiceNotifications:
 			})
 
 	def serviceHasEnded(self):
-#		print "service end!"
+#		print("service end!")
 		try:
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		except:
@@ -5862,7 +5872,7 @@ class InfoBarCueSheetSupport:
 	def __serviceStarted(self):
 		if self.is_closing:
 			return
-#		print "new service started! trying to download cuts!"
+#		print("new service started! trying to download cuts!")
 		self.downloadCuesheet()
 
 		self.resume_point = None
@@ -5990,7 +6000,7 @@ class InfoBarCueSheetSupport:
 	def toggleMark(self, onlyremove=False, onlyadd=False, tolerance=5*90000, onlyreturn=False):
 		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
-#			print "not seekable"
+#			print("not seekable")
 			return
 
 		nearest_cutpoint = self.getNearestCutPoint(current_pos)
@@ -6030,7 +6040,7 @@ class InfoBarCueSheetSupport:
 		cue = self.__getCuesheet()
 
 		if cue is None:
-#			print "upload failed, no cuesheet interface"
+#			print("upload failed, no cuesheet interface")
 			return
 		cue.setCutList(self.cut_list)
 
@@ -6038,7 +6048,7 @@ class InfoBarCueSheetSupport:
 		cue = self.__getCuesheet()
 
 		if cue is None:
-#			print "download failed, no cuesheet interface"
+#			print("download failed, no cuesheet interface")
 			self.cut_list = [ ]
 		else:
 			self.cut_list = cue.getCutList()
@@ -6283,8 +6293,8 @@ class InfoBarZoom:
 			zoomval=abs(self.zoomrate)+10
 		else:
 			zoomval=self.zoomrate
-		# print "zoomRate:", self.zoomrate
-		# print "zoomval:", zoomval
+		# print("zoomRate:", self.zoomrate)
+		# print("zoomval:", zoomval)
 		file = open("/proc/stb/vmpeg/0/zoomrate", "w")
 		file.write('%d' % int(zoomval))
 		file.close()
@@ -6302,7 +6312,7 @@ class InfoBarHdmi:
 		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 
-		if getMachineBuild() in ('inihdp', 'hd2400', 'dm7080', 'dm820', 'dm900', 'gb7252', 'vuultimo4k', 'et13000') or getBoxType() in ('spycat4k', 'spycat4kcombo'):
+		if SystemInfo['HDMIin']:
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
 			if not self.hdmi_enabled_pip:
@@ -6317,14 +6327,14 @@ class InfoBarHdmi:
 		if self.LongButtonPressed:
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+				self.session.pip.playService(hdmiInServiceRef())
 				self.session.pip.show()
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 			else:
 				curref = self.session.pip.getCurrentService()
-				if curref and curref.type != 8192:
-					self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+				if curref and curref.type != eServiceReference.idServiceHDMIIn:
+					self.session.pip.playService(hdmiInServiceRef())
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 				else:
 					self.session.pipshown = False
@@ -6334,20 +6344,16 @@ class InfoBarHdmi:
 		slist = self.servicelist
 		if slist.dopipzap:
 			curref = self.session.pip.getCurrentService()
-			if curref and curref.type != 8192:
-				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+			if curref and curref.type != eServiceReference.idServiceHDMIIn:
+				self.session.pip.playService(hdmiInServiceRef())
 			else:
 				self.session.pip.playService(slist.servicelist.getCurrent())
 		else:
 			curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if curref and curref.type != 8192:
-				if curref and curref.type != -1 and os.path.splitext(curref.toString().split(":")[10])[1].lower() in AUDIO_EXTENSIONS.union(MOVIE_EXTENSIONS, DVD_EXTENSIONS):
-					setResumePoint(self.session)
-				self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
-			elif isStandardInfoBar(self):
+			if curref and curref.type != eServiceReference.idServiceHDMIIn:
+				self.session.nav.playService(hdmiInServiceRef())
+			else:
 				self.session.nav.playService(slist.servicelist.getCurrent())
-			else:
-				self.session.nav.playService(self.cur_service)
 
 	def getHDMIInFullScreen(self):
 		if not self.hdmi_enabled_full:
@@ -6362,47 +6368,8 @@ class InfoBarHdmi:
 			return _("Turn off HDMI-IN PiP mode")
 
 	def HDMIInPiP(self):
-		if not hasattr(self.session, 'pip') and not self.session.pipshown:
-			self.hdmi_enabled_pip = True
-			self.session.pip = self.session.instantiateDialog(PictureInPicture)
-			self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
-			self.session.pip.show()
-			self.session.pipshown = True
-		else:
-			curref = self.session.pip.getCurrentService()
-			if curref and curref.type != 8192:
-				self.hdmi_enabled_pip = True
-				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
-			else:
-				self.hdmi_enabled_pip = False
-				self.session.pipshown = False
-				del self.session.pip
-
-	def HDMIInFull(self):
-		slist = self.servicelist
-		curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if curref and curref.type != 8192:
-			self.hdmi_enabled_full = True
-			self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
-		else:
-			self.hdmi_enabled_full = False
-			self.session.nav.playService(slist.servicelist.getCurrent())
-
-	def getHDMIInFullScreen(self):
-		if not self.hdmi_enabled_full:
-			return _("Turn on HDMI-IN Full screen mode")
-		else:
-			return _("Turn off HDMI-IN Full screen mode")
-
-	def getHDMIInPiPScreen(self):
-		if not self.hdmi_enabled_pip:
-			return _("Turn on HDMI-IN PiP mode")
-		else:
-			return _("Turn off HDMI-IN PiP mode")
-
-	def HDMIInPiP(self):
-		if getMachineBuild() in ('dm7080', 'dm820', 'dm900'):
-			f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "r")
+		if getMachineBuild() in ('dm7080', 'dm820', 'dm900', 'dm920'):
+			f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
 			check=f.read()
 			f.close()
 			if check.startswith("off"):
@@ -6423,15 +6390,15 @@ class InfoBarHdmi:
 			if not hasattr(self.session, 'pip') and not self.session.pipshown:
 				self.hdmi_enabled_pip = True
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+				self.session.pip.playService(hdmiInServiceRef())
 				self.session.pip.show()
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 			else:
 				curref = self.session.pip.getCurrentService()
-				if curref and curref.type != 8192:
+				if curref and curref.type != eServiceReference.idServiceHDMIIn:
 					self.hdmi_enabled_pip = True
-					self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
+					self.session.pip.playService(hdmiInServiceRef())
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 				else:
 					self.hdmi_enabled_pip = False
@@ -6439,117 +6406,57 @@ class InfoBarHdmi:
 					del self.session.pip
 
 	def HDMIInFull(self):
-		slist = self.servicelist
-		curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if curref and curref.type != 8192:
-			self.hdmi_enabled_full = True
-			self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
-		else:
-			self.hdmi_enabled_full = False
-			self.session.nav.playService(slist.servicelist.getCurrent())
-
-class InfoBarPowersaver:
-	def __init__(self):
-		self.inactivityTimer = eTimer()
-		self.inactivityTimer.callback.append(self.inactivityTimeout)
-		self.restartInactiveTimer()
-		self.sleepTimer = eTimer()
-		self.sleepTimer.callback.append(self.sleepTimerTimeout)
-		eActionMap.getInstance().bindAction('', -maxsize - 1, self.keypress)
-
-	def keypress(self, key, flag):
-		if flag:
-			self.restartInactiveTimer()
-
-	def restartInactiveTimer(self):
-		time = abs(int(config.usage.inactivity_timer.value))
-		if time:
-			self.inactivityTimer.startLongTimer(time)
-		else:
-			self.inactivityTimer.stop()
-
-	def inactivityTimeout(self):
-		if config.usage.inactivity_timer_blocktime.value:
-			curtime = localtime(time())
-			if curtime.tm_year != 1970: #check if the current time is valid
-				curtime = (curtime.tm_hour, curtime.tm_min, curtime.tm_sec)
-				begintime = tuple(config.usage.inactivity_timer_blocktime_begin.value)
-				endtime = tuple(config.usage.inactivity_timer_blocktime_end.value)
-				if begintime <= endtime and (curtime >= begintime and curtime < endtime) or begintime > endtime and (curtime >= begintime or curtime < endtime):
-					duration = (endtime[0]*3600 + endtime[1]*60) - (curtime[0]*3600 + curtime[1]*60 + curtime[2])
-					if duration:
-						if duration < 0:
-							duration += 24*3600
-						self.inactivityTimer.startLongTimer(duration)
-						return
-		if Screens.Standby.inStandby:
-			self.inactivityTimeoutCallback(True)
-		else:
-			if int(config.usage.inactivity_timer.value) < 0:
-				message = _("Your receiver will shutdown due to inactivity.")
+		if getMachineBuild() in ('dm7080', 'dm820', 'dm900', 'dm920'):
+			f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
+			check=f.read()
+			f.close()
+			if check.startswith("off"):
+				f=open("/proc/stb/video/videomode","r")
+				self.oldvideomode=f.read()
+				f.close()
+				f=open("/proc/stb/video/videomode_50hz","r")
+				self.oldvideomode_50hz=f.read()
+				f.close()
+				f=open("/proc/stb/video/videomode_60hz","r")
+				self.oldvideomode_60hz=f.read()
+				f.close()
+				f=open("/proc/stb/video/videomode","w")
+				if getMachineBuild() in ('dm900', 'dm920'):
+					f.write("1080p")
+				else:
+					f.write("720p")
+				f.close()
+				f=open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f.write("on")
+				f.close()
+				f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f.write("on")
+				f.close()
 			else:
-				message = _("Your receiver will got to standby due to inactivity.")
-			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.inactivityTimeoutCallback, MessageBox, message, timeout=60, simple = True)
-
-	def inactivityTimeoutCallback(self, answer):
-		if answer:
-			self.goShutdownOrStandby(int(config.usage.inactivity_timer.value))
+				f=open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f.write("off")
+				f.close()
+				f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f.write("off")
+				f.close()
+				f=open("/proc/stb/video/videomode","w")
+				f.write(self.oldvideomode)
+				f.close()
+				f=open("/proc/stb/video/videomode_50hz","w")
+				f.write(self.oldvideomode_50hz)
+				f.close()
+				f=open("/proc/stb/video/videomode_60hz","w")
+				f.write(self.oldvideomode_60hz)
+				f.close()
 		else:
-			print("[InfoBarPowersaver] abort")
-
-	def setSleepTimer(self, time):
-		print("[InfoBarPowersaver] set sleeptimer", time)
-		if time:
-			if time < 0:
-				message = _("And will shutdown your receiver over ")
+			slist = self.servicelist
+			curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if curref and curref.type != eServiceReference.idServiceHDMIIn:
+				self.hdmi_enabled_full = True
+				self.session.nav.playService(hdmiInServiceRef())
 			else:
-				message = _("And will put your receiver in standby over ")
-			m = abs(time // 60)
-			message = _("The sleep timer has been activated.") + "\n" + message + ngettext("%d minute", "%d minutes", m) % m
-			self.sleepTimer.startLongTimer(abs(time))
-		else:
-			message = _("The sleep timer has been disabled.")
-			self.sleepTimer.stop()
-		Notifications.AddPopup(message, type = MessageBox.TYPE_INFO, timeout = 5)
-		self.sleepTimerSetting = time
-
-	def sleepTimerTimeout(self):
-		if Screens.Standby.inStandby:
-			self.sleepTimerTimeoutCallback(True)
-		else:
-			list = [ (_("Yes"), True), (_("Extend sleeptimer 15 minutes"), "extend"), (_("No"), False) ]
-			if self.sleepTimerSetting < 0:
-				message = _("Your receiver will shutdown due to the sleeptimer.")
-			elif self.sleepTimerSetting > 0:
-				message = _("Your receiver will got to stand by due to the sleeptimer.")
-			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple = True, list = list)
-
-	def sleepTimerTimeoutCallback(self, answer):
-		if answer == "extend":
-			print("[InfoBarPowersaver] extend sleeptimer")
-			if self.sleepTimerSetting < 0:
-				self.setSleepTimer(-900)
-			else:
-				self.setSleepTimer(900)
-		elif answer:
-			self.goShutdownOrStandby(self.sleepTimerSetting)
-		else:
-			print("[InfoBarPowersaver] abort")
-			self.setSleepTimer(0)
-
-	def goShutdownOrStandby(self, value):
-		if value < 0:
-			if Screens.Standby.inStandby:
-				print("[InfoBarPowersaver] already in standby now shut down")
-				RecordTimerEntry.TryQuitMainloop()
-			elif not Screens.Standby.inTryQuitMainloop:
-				print("[InfoBarPowersaver] goto shutdown")
-				self.session.open(Screens.Standby.TryQuitMainloop, 1)
-		elif not Screens.Standby.inStandby:
-			print("[InfoBarPowersaver] goto standby")
-			self.session.open(Screens.Standby.Standby)
+				self.hdmi_enabled_full = False
+				self.session.nav.playService(slist.servicelist.getCurrent())
 
 class InfoBarSleepTimer:
 	def __init__(self):

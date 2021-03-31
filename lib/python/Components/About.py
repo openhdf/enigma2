@@ -4,7 +4,6 @@ from boxbranding import getBoxType, getImageVersion, getMachineBuild
 from sys import modules
 import socket, fcntl, struct, time, os
 from os import path
-from six.moves import range
 
 def getVersionString():
 	return getImageVersion()
@@ -159,7 +158,7 @@ def getIfConfig(ifname):
 	infos['hwaddr']  = 0x8927 # SIOCSIFHWADDR
 	infos['netmask'] = 0x891b # SIOCGIFNETMASK
 	try:
-		for k, v in infos.items():
+		for k, v in list(infos.items()):
 			ifreq[k] = _ifinfo(sock, v, ifname)
 	except:
 		pass
@@ -175,7 +174,7 @@ def GetIPsFromNetworkInterfaces():
 	while True:
 		_bytes = max_possible * struct_size
 		names = array.array('B')
-		for i in range(0, _bytes):
+		for i in list(range(0, _bytes)):
 			names.append(0)
 		outbytes = struct.unpack('iL', fcntl.ioctl(
 			s.fileno(),
@@ -188,7 +187,7 @@ def GetIPsFromNetworkInterfaces():
 			break
 	namestr = names.tostring()
 	ifaces = []
-	for i in range(0, outbytes, struct_size):
+	for i in list(range(0, outbytes, struct_size)):
 		iface_name = bytes.decode(namestr[i:i+16]).split('\0', 1)[0].encode('ascii')
 		if iface_name != 'lo':
 			iface_addr = socket.inet_ntoa(namestr[i+20:i+24])

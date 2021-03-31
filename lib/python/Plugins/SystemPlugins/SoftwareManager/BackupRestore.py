@@ -118,7 +118,7 @@ class BackupScreen(Screen, ConfigListScreen):
 			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
 				self.backupdirs = self.backupdirs + " /tmp/changed-configfiles.txt"
 
-			cmd1 = "opkg list-installed | egrep -v '^ ' | awk '{print $1 }' | egrep 'enigma2-plugin-|task-base|packagegroup-base|^ca-certificates$|^davfs2$|^joe$|^mc$|^mergerfs$|^nano$|^openvpn|^easy-rsa$|^simple-rsa$|^perl|^rclone$|^streamproxy$|^wget$' > /tmp/installed-list.txt"
+			cmd1 = "opkg list-installed | egrep -v '^ ' | awk '{print $1 }' | egrep 'enigma2-plugin-|task-base|packagegroup-base|^ca-certificates$|minilocale|^davfs2$|^joe$|^mc$|^mergerfs$|^nano$|^openvpn|^easy-rsa$|^simple-rsa$|^perl|^rclone$|^streamproxy$|^wget$' > /tmp/installed-list.txt"
 			cmd2 = "opkg list-changed-conffiles > /tmp/changed-configfiles.txt"
 			cmd3 = "echo -n Backup is running ...please wait"
 			cmd4 = "tar -czf " + self.fullbackupfilename + " " + self.backupdirs + " 2>/tmp/settingsbackup.log"

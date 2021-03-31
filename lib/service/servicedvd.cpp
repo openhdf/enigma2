@@ -1176,12 +1176,12 @@ eAutoInitPtr<eServiceFactoryDVD> init_eServiceFactoryDVD(eAutoInitNumbers::servi
 		PyModuleDef_HEAD_INIT,
 		"servicedvd",	/* m_name */
 		"servicedvd",	/* m_doc */
-		-1,				/* m_size */
-		NULL,			/* m_methods */
-		NULL,			/* m_reload */
-		NULL,			/* m_traverse */
-		NULL,			/* m_clear */
-		NULL,			/* m_free */
+		-1,		/* m_size */
+		NULL,		/* m_methods */
+		NULL,		/* m_reload */
+		NULL,		/* m_traverse */
+		NULL,		/* m_clear */
+		NULL,		/* m_free */
 	};
 #endif
 

@@ -382,14 +382,14 @@ static PyMethodDef console_module_methods[] = {
 #if PY_MAJOR_VERSION >= 3
 	static struct PyModuleDef eConsole_moduledef = {
 	PyModuleDef_HEAD_INIT,
-	"eConsoleImpl",																			/* m_name */
+	"eConsoleImpl",		/* m_name */
 	"Module that implements eConsoleAppContainer with working cyclic garbage collection.",	/* m_doc */
-	-1,																						/* m_siz
-	console_module_methods,																	/* m_methods */
-	NULL,																					/* m_reload */
-	NULL,																					/* m_traverse */
-	NULL,																					/* m_clear */
-	NULL,																					/* m_free */
+	-1,			/* m_size */
+	console_module_methods,	/* m_methods */
+	NULL,			/* m_reload */
+	NULL,			/* m_traverse */
+	NULL,			/* m_clear */
+	NULL,			/* m_free */
 	};
 #endif
 

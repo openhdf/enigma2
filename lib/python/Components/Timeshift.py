@@ -210,7 +210,7 @@ class InfoBarTimeshift:
 		# Init PTS Infobar
 
 	def __seekableStatusChanged(self):
-		# print ('[TIMESHIFT] - pts_currplaying %s, pts_nextplaying %s, pts_eventcount %s, pts_firstplayable %s' % (self.pts_currplaying, self.pts_nextplaying, self.pts_eventcount, self.pts_firstplayable))
+		# print('[TIMESHIFT] - pts_currplaying %s, pts_nextplaying %s, pts_eventcount %s, pts_firstplayable %s' % (self.pts_currplaying, self.pts_nextplaying, self.pts_eventcount, self.pts_firstplayable))
 		self["TimeshiftActivateActions"].setEnabled(not self.isSeekable() and self.timeshiftEnabled())
 		state = self.getSeek() is not None and self.timeshiftEnabled()
 		self["SeekActionsPTS"].setEnabled(state)
@@ -300,7 +300,7 @@ class InfoBarTimeshift:
 			self.pts_CheckFileChanged_timer.start(1000, False)
 			self.pts_file_changed = False
 		else:
-			print ('[TIMESHIFT] - "pts_livebuffer_%s" file was not found -> put pointer to the first (current) "pts_livebuffer_%s" file' % (self.pts_currplaying, self.pts_currplaying + 1))
+			print('[TIMESHIFT] - "pts_livebuffer_%s" file was not found -> put pointer to the first (current) "pts_livebuffer_%s" file' % (self.pts_currplaying, self.pts_currplaying + 1))
 			self.pts_currplaying += 1
 			self.pts_firstplayable += 1
 			self.setSeekState(self.SEEK_STATE_PLAY)
@@ -1046,7 +1046,7 @@ class InfoBarTimeshift:
 					if not filename.startswith("timeshift."):
 						filecounter += 1
 					if ((statinfo.st_mtime < (time()-3600*config.timeshift.timeshiftMaxHours.value)) or any(filename in s for s in removeFiles)) and (self.saveTimeshiftEventPopupActive is False) and not any(filename in s for s in lockedFiles):
-						# print "[TIMESHIFT] - Erasing set of old timeshift files (base file, .eit, .meta, .sc) %s" % filename
+						# print("[TIMESHIFT] - Erasing set of old timeshift files (base file, .eit, .meta, .sc) %s" % filename)
 						filesize += os.path.getsize("%s%s"  % (config.usage.timeshift_path.value, filename))
 						self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
 						if os.path.exists("%s%s.eit" % (config.usage.timeshift_path.value, filename)):
@@ -1063,7 +1063,7 @@ class InfoBarTimeshift:
 				elif (statinfo is not None):
 					# remove anything still left over another 24h later
 					if statinfo.st_mtime < (time()-3600*(24+config.timeshift.timeshiftMaxHours.value)):
-						# print "[TIMESHIFT] - Erasing very old timeshift file %s" % filename
+						# print("[TIMESHIFT] - Erasing very old timeshift file %s" % filename)
 						if filename.endswith(".del") is True:
 							filesize += os.path.getsize("%s%s"  % (config.usage.timeshift_path.value, filename))
 							try:
@@ -1091,7 +1091,7 @@ class InfoBarTimeshift:
 					self.ptsAskUser("time_and_save")
 			if self.checkEvents_value != int(config.timeshift.timeshiftCheckEvents.value):
 				if self.pts_cleanEvent_timer.isActive():
-					#print "[TIMESHIFT] - 'cleanEvent_timer' was changed"
+					#print("[TIMESHIFT] - 'cleanEvent_timer' was changed")
 					self.pts_cleanEvent_timer.stop()
 					if int(config.timeshift.timeshiftCheckEvents.value):
 						self.ptsEventCleanTimerSTART()

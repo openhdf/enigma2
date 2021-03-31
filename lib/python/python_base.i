@@ -402,14 +402,14 @@ static PyMethodDef base_module_methods[] = {
 #if PY_MAJOR_VERSION >= 3
 	static struct PyModuleDef eBase_moduledef = {
 	PyModuleDef_HEAD_INIT,
-	"eBaseImpl",																			/* m_name */
+	"eBaseImpl",	        /* m_name */
 	"Module that implements some enigma classes with working cyclic garbage collection.",	/* m_doc */
-	-1,																						/* m_siz
-	base_module_methods,																	/* m_methods */
-	NULL,																					/* m_reload */
-	NULL,																					/* m_traverse */
-	NULL,																					/* m_clear */
-	NULL,																					/* m_free */
+	-1,			/* m_size */
+	base_module_methods,	/* m_methods */
+	NULL,			/* m_reload */
+	NULL,			/* m_traverse */
+	NULL,			/* m_clear */
+	NULL,			/* m_free */
 	};
 #endif
 

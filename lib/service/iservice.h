@@ -16,17 +16,26 @@ class eServiceReference
 public:
 	enum
 	{
-		idInvalid=-1,
-		idStructure,	// service_id == 0 is root
-		idDVB,
-		idFile,
-		idUser=0x1000,
-		idServiceMP3=0x1001
+		idServiceIsScrambled  = 0x0100,				//  256  Added to normal id to indicate scrambling
+		idInvalid             = -1,
+		idStructure           = 0x0000,				//    0 service_id == 0 is root
+		idDVB                 = 0x0001,				//    1
+		idFile                = 0x0002,				//    2
+		idServiceM2TS         = 0x0003,				//    3
+		idDVBScrambled        = idDVB + idServiceIsScrambled,	//  257/0x0101
+		idUser                = 0x1000,				// 4096
+		idServiceMP3          = 0x1001,				// 4097
+		idServiceAirPlay      = 0x1009,				// 4105
+		idServiceXINE         = 0x1010,				// 4112
+		idServiceDVD          = 0x1111,				// 4369
+		idServiceAzBox        = 0x1112,                         // 4370
+		idServiceHDMIIn       = 0x2000,				// 8192
 	};
 	int type;
 
 	enum
 	{
+		noFlags=0,
 		isDirectory=1,		// SHOULD enter  (implies mustDescent)
 		mustDescent=2,		// cannot be played directly - often used with "isDirectory" (implies canDescent)
 		/*
@@ -100,7 +109,6 @@ public:
 		memset(data, 0, sizeof(data));
 		number = 0;
 	}
-#ifndef SWIG
 	eServiceReference(int type, int flags)
 		: type(type), flags(flags)
 	{
@@ -152,19 +160,23 @@ public:
 		data[4]=data4;
 		number = 0;
 	}
-	operator bool() const
-	{
-		return valid();
-	}
-#endif
 	eServiceReference(int type, int flags, const std::string &path)
 		: type(type), flags(flags), path(path)
 	{
 		memset(data, 0, sizeof(data));
 	}
+#ifdef SWIG
+	eServiceReference(const eServiceReference &ref);
+#endif
 	eServiceReference(const std::string &string);
 	std::string toString() const;
 	std::string toCompareString() const;
+#ifndef SWIG
+	operator bool() const
+	{
+		return valid();
+	}
+#endif
 	bool operator==(const eServiceReference &c) const
 	{
 		if (type != c.type)
@@ -653,6 +665,19 @@ public:
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
 
+SWIG_IGNORE(iTapService);
+class iTapService: public iObject
+{
+#ifdef SWIG
+	iTapService();
+	~iTapService();
+#endif
+public:
+	virtual bool startTapToFD(int fd, const std::vector<int> &pids, int packetsize = 188)=0;
+	virtual void stopTapToFD()=0;
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<iTapService>, iTapServicePtr);
+
 	/* not related to eCueSheet */
 
 class iCueSheet_ENUMS
@@ -962,6 +987,7 @@ public:
 	virtual SWIG_VOID(RESULT) subServices(ePtr<iSubserviceList> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) frontendInfo(ePtr<iFrontendInformation> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) timeshift(ePtr<iTimeshiftService> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) tap(ePtr<iTapService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) cueSheet(ePtr<iCueSheet> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) subtitle(ePtr<iSubtitleOutput> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) audioDelay(ePtr<iAudioDelay> &SWIG_OUTPUT)=0;
