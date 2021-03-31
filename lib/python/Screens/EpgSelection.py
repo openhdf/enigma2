@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from time import localtime, time, strftime, mktime
 
 from enigma import eServiceReference, eTimer, eServiceCenter, ePoint

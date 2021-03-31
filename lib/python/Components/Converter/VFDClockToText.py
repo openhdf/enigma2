@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from __future__ import division
 from Components.Converter import Converter
 from Components.Converter.Converter import Converter

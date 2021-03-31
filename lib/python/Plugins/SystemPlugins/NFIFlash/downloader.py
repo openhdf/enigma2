@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 from __future__ import print_function
 from boxbranding import getImageVersion, getMachineBrand, getMachineName
 from os import system, access, R_OK

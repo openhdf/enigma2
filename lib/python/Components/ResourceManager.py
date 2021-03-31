@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from __future__ import print_function
 class ResourceManager:
 	def __init__(self):

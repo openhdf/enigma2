@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from __future__ import print_function
 from os import path
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
