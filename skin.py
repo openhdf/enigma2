@@ -352,7 +352,7 @@ def collectAttributes(skinAttributes, node, context, skin_path_prefix=None, igno
 	size = None
 	pos = None
 	font = None
-	for attrib, value in node.items():
+	for attrib, value in list(node.items()):
 		if attrib not in ignore:
 			if attrib in filenames:
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, value, path_prefix=skin_path_prefix)

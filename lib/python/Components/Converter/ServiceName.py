@@ -21,22 +21,23 @@ class ServiceName(Converter, object):
 	TRANSPONDER = 6
 
 	def __init__(self, type):
-		Converter.__init__(self, type)
+		_type = type
+		Converter.__init__(self, _type)
 		self.epgQuery = eEPGCache.getInstance().lookupEventTime
 		self.mode = ""
-		if ';' in type:
-			type, self.mode = type.split(';')
-		if type == "Provider":
+		if ';' in _type:
+			_type, self.mode = _type.split(';')
+		if self.type == "Provider":
 			self.type = self.PROVIDER
-		elif type == "Reference":
+		elif _type == "Reference":
 			self.type = self.REFERENCE
-		elif type == "EditReference":
+		elif _type == "EditReference":
 			self.type = self.EDITREFERENCE
-		elif type == "NameOnly":
+		elif _type == "NameOnly":
 			self.type = self.NAME_ONLY
-		elif type == "NameAndEvent":
+		elif _type == "NameAndEvent":
 			self.type = self.NAME_EVENT
-		elif type == "TransponderInfo":
+		elif _type == "TransponderInfo":
 			self.type = self.TRANSPONDER
 		else:
 			self.type = self.NAME

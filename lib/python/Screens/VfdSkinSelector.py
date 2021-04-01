@@ -71,7 +71,7 @@ class VFDSkinSelector(Screen):
 
 	def fill(self):
 		i = 0
-		self.filesArray = sorted(filter(lambda x: x.endswith('.xml'), os.listdir(self.root)))
+		self.filesArray = sorted([x for x in os.listdir(self.root) if x.endswith('.xml')])
 		config.skin.display_skin = ConfigSelection(choices = self.filesArray)
 		while i < len(self.filesArray):
 			self.list.append((_(self.filesArray[i].split('.')[0]), "chose"))

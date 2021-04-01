@@ -178,7 +178,7 @@ class SecConfigure:
 		try:
 			for slot in nim_slots:
 				if slot.frontend_id is not None:
-					types = [type for type in ["DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
+					types = [_type for _type in ["DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, _type)]
 					if "DVB-T2" in types:
 						# DVB-T2 implies DVB-T support
 						types.remove("DVB-T")
@@ -763,8 +763,8 @@ class NIM(object):
 			return False
 		if self.isMultiType():
 			#print"[adenin] %s is multitype"%(self.slot)
-			for type in self.multi_type.values():
-				if what in self.compatible[type]:
+			for _type in list(self.multi_type.values()):
+				if what in self.compatible[_type]:
 					return True
 		elif  what in self.compatible[self.getType()]:
 			#print"[adenin] %s is NOT multitype"%(self.slot)
@@ -1018,7 +1018,7 @@ class NimManager:
 		try:
 			for slot in self.nim_slots:
 				if slot.frontend_id is not None:
-					types = [type for type in ["DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "DVB-S2X", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, type)]
+					types = [_type for _type in ["DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "DVB-S2X", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, _type)]
 					if "DVB-T2" in types:
 						# DVB-T2 implies DVB-T support
 						types.remove("DVB-T")
@@ -1027,8 +1027,8 @@ class NimManager:
 						types.remove("DVB-S")
 					if len(types) > 1:
 						slot.multi_type = {}
-						for type in types:
-							slot.multi_type[str(types.index(type))] = type
+						for _type in types:
+							slot.multi_type[str(types.index(_type))] = _type
 		except:
 			pass
 
@@ -1272,7 +1272,7 @@ class NimManager:
 				entries[current_slot]["isempty"] = True
 		nimfile.close()
 
-		for id, entry in entries.items():
+		for _id, entry in entries.items():
 			if not ("name" in entry and "type" in entry):
 				entry["name"] =  _("N/A")
 				entry["type"] = None
@@ -1281,7 +1281,7 @@ class NimManager:
 			if not ("has_outputs" in entry):
 				entry["has_outputs"] = True
 			if "frontend_device" in entry: # check if internally connectable
-				if path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]) and ((id > 0) or (getBoxType() == 'vusolo2')):
+				if path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]) and ((_id > 0) or (getBoxType() == 'vusolo2')):
 					entry["internally_connectable"] = entry["frontend_device"] - 1
 				else:
 					entry["internally_connectable"] = None
@@ -1294,10 +1294,10 @@ class NimManager:
 				else:
 					entry["multi_type"] = {}
 			if not ("input_name" in entry):
-				entry["input_name"] = chr(ord('A') + id)
+				entry["input_name"] = chr(ord('A') + _id)
 			if "supports_blind_scan" not in entry:
 				entry["supports_blind_scan"] = False
-			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"], i2c = entry["i2c"], is_empty = entry["isempty"], input_name = entry.get("input_name", None), supports_blind_scan = entry["supports_blind_scan"]))
+			self.nim_slots.append(NIM(slot = _id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"], i2c = entry["i2c"], is_empty = entry["isempty"], input_name = entry.get("input_name", None), supports_blind_scan = entry["supports_blind_scan"]))
 
 	def hasNimType(self, chktype):
 		for slot in self.nim_slots:
@@ -1369,8 +1369,8 @@ class NimManager:
 		slots = []
 		if self.nim_slots[slotid].internallyConnectableTo() is not None:
 			slots.append(self.nim_slots[slotid].internallyConnectableTo())
-		for type in self.nim_slots[slotid].connectableTo():
-			for slot in self.getNimListOfType(type, exception = slotid):
+		for _type in self.nim_slots[slotid].connectableTo():
+			for slot in self.getNimListOfType(_type, exception = slotid):
 				if self.hasOutputs(slot) and slot not in slots:
 					slots.append(slot)
 		# remove nims, that have a conntectedTo reference on
@@ -1387,9 +1387,9 @@ class NimManager:
 		return list(set(slots))
 
 	def canEqualTo(self, slotid):
-		type = self.getNimType(slotid)
-		type = type[:5] # DVB-S2X --> DVB-S2 --> DVB-S, DVB-T2 --> DVB-T, DVB-C2 --> DVB-C
-		nimList = self.getNimListOfType(type, slotid)
+		_type = self.getNimType(slotid)
+		_type = _type[:5] # DVB-S2X --> DVB-S2 --> DVB-S, DVB-T2 --> DVB-T, DVB-C2 --> DVB-C
+		nimList = self.getNimListOfType(_type, slotid)
 		for nim in nimList[:]:
 			if self.nim_slots[nim].canBeCompatible('DVB-S'):
 				mode = self.getNimConfig(nim).dvbs
@@ -1413,7 +1413,7 @@ class NimManager:
 							nimHaveRotor = True
 							break
 					if not nimHaveRotor:
-						for sat in mode.advanced.sat.values():
+						for sat in list(mode.advanced.sat.values()):
 							lnb_num = int(sat.lnb.value)
 							diseqcmode = lnb_num and mode.advanced.lnb[lnb_num].diseqcMode.value or ""
 							if diseqcmode == "1_2":

@@ -205,8 +205,8 @@ def getIfTransferredData(ifname):
 
 def getPythonVersionString():
 	try:
-		import commands
-		status, output = commands.getstatusoutput("python -V")
+		import subprocess
+		status, output = subprocess.getstatusoutput("python -V")
 		return output.split(' ')[1]
 	except:
 		return _("unknown")

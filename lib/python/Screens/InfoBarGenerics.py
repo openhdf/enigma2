@@ -4343,7 +4343,7 @@ class InfoBarExtensions:
 		return _("CCcam Info")
 
 	def getCCcamInfo(self):
-		softcams = sorted(filter(lambda x: x.startswith('softcam.'), os.listdir("/etc/init.d/")))
+		softcams = sorted([x for x in os.listdir("/etc/init.d/") if x.startswith('softcam.')])
 
 		for softcam in softcams:
 			if "cccam" in os.readlink('/etc/init.d/softcam').lower() and config.cccaminfo.showInExtensions.value:

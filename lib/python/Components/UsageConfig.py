@@ -1562,7 +1562,7 @@ def InitUsageConfig():
 	config.epgselection.graph_infowidth = ConfigSelectionNumber(default = 50, stepwidth = 25, min = 0, max = 150, wraparound = True)
 	config.epgselection.graph_rec_icon_height = ConfigSelection(choices = [("bottom", _("bottom")), ("top", _("top")), ("middle", _("middle")),  ("hide", _("hide"))], default = "bottom")
 
-	softcams = sorted(filter(lambda x: x.startswith('softcam.'), os.listdir("/etc/init.d/")))
+	softcams = sorted([x for x in os.listdir("/etc/init.d/") if x.startswith('softcam.')])
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
 	config.oscaminfo.userdatafromconf = ConfigYesNo(default = False)

@@ -1781,7 +1781,7 @@ class ConfigSubList(list):
 
 	def setSavedValue(self, values):
 		self.stored_values = dict(values)
-		for (key, val) in self.stored_values.items():
+		for (key, val) in list(self.stored_values.items()):
 			if int(key) < len(self):
 				self[int(key)].saved_value = val
 
@@ -1807,16 +1807,16 @@ class ConfigSubDict(dict):
 		self.stored_values = {}
 
 	def save(self):
-		for x in self.values():
+		for x in list(self.values()):
 			x.save()
 
 	def load(self):
-		for x in self.values():
+		for x in list(self.values()):
 			x.load()
 
 	def getSavedValue(self):
 		res = {}
-		for (key, val) in self.items():
+		for (key, val) in list(self.items()):
 			sv = val.saved_value
 			if sv is not None:
 				res[str(key)] = sv
@@ -1824,7 +1824,7 @@ class ConfigSubDict(dict):
 
 	def setSavedValue(self, values):
 		self.stored_values = dict(values)
-		for (key, val) in self.items():
+		for (key, val) in list(self.items()):
 			if str(key) in self.stored_values:
 				val.saved_value = self.stored_values[str(key)]
 
@@ -1869,13 +1869,13 @@ class ConfigSubsection(object):
 			value.load()
 
 	def __getattr__(self, name):
-		if name in self.content.items:
+		if name in list(self.content.items):
 			return self.content.items[name]
 		raise AttributeError(name)
 
 	def getSavedValue(self):
 		res = self.content.stored_values
-		for (key, val) in self.content.items.items():
+		for (key, val) in list(self.content.items.items()):
 			sv = val.saved_value
 			if sv is not None:
 				res[key] = sv
@@ -1886,7 +1886,7 @@ class ConfigSubsection(object):
 	def setSavedValue(self, values):
 		values = dict(values)
 		self.content.stored_values = values
-		for (key, val) in self.content.items.items():
+		for (key, val) in list(self.content.items.items()):
 			value = values.get(key, None)
 			if value is not None:
 				val.saved_value = value

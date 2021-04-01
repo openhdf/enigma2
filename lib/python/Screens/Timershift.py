@@ -316,7 +316,8 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 	def createSummary(self):
 		return SetupSummary
 
-	def addItems(self, _list, parentNode):
+	def addItems(self, list, parentNode):
+		_list = list
 		for x in parentNode:
 			if not x.tag:
 				continue

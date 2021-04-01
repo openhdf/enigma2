@@ -150,21 +150,21 @@ from Plugins.Plugin import PluginDescriptor
 profile("misc")
 had = dict()
 
-def dump(dir, p = ""):
-	if isinstance(dir, dict):
-		for (entry, val) in dir.items():
+def dump(_dir, p = ""):
+	if isinstance(_dir, dict):
+		for (entry, val) in list(_dir.items()):
 			dump(val, p + "(dict)/" + entry)
-	if hasattr(dir, "__dict__"):
-		for name, value in dir.__dict__.items():
+	if hasattr(_dir, "__dict__"):
+		for name, value in list(_dir.__dict__.items()):
 			if str(value) not in had:
 				had[str(value)] = 1
 				dump(value, p + "/" + str(name))
 			else:
-				print(p + "/" + str(name) + ":" + str(dir.__class__) + "(cycle)")
+				print(p + "/" + str(name) + ":" + str(_dir.__class__) + "(cycle)")
 	else:
-		print(p + ":" + str(dir))
+		print(p + ":" + str(_dir))
 
-# + ":" + str(dir.__class__)
+# + ":" + str(_dir.__class__)
 
 # display
 

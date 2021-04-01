@@ -268,7 +268,7 @@ class boxbranding_reader:  # Many thanks to Huevos for creating this reader - we
 		loc = {}
 		for att in list(self.output.keys()):
 			exec("def %s(self): return self.output[\"%s\"]" % (att, att), None, loc)
-		for name, value in loc.items():
+		for name, value in list(loc.items()):
 			setattr(boxbranding_reader, name, value)
 
 	def createHelperFile(self):
@@ -299,7 +299,7 @@ class boxbranding_reader:  # Many thanks to Huevos for creating this reader - we
 		out.append("\t}")
 		out.append("except Exception:")
 		out.append("\t\toutput = None")
-		out.append("print(output)")
+		out.append("print output")
 		out.append("")
 		return "\n".join(out)
 

@@ -93,7 +93,7 @@ class Wizard(Screen):
 				self.wizard[self.lastStep]["list"].append((str(attrs.get('caption')), str(attrs.get('step'))))
 			elif name == "config":
 				_type = str(attrs.get('type'))
-				self.wizard[self.lastStep]["config"]["type"] = type
+				self.wizard[self.lastStep]["config"]["type"] = _type
 				if _type == "ConfigList" or _type == "standalone":
 					try:
 						exec("from Screens." + str(attrs.get('module')) + " import *")

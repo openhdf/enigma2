@@ -72,7 +72,7 @@ class SoftwareUpdateChanges(Screen):
 		global ocram
 		try:
 			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersion() + '/' + getBoxType() + '/'  + self.logtype + '-git.log'
-			sourcefile, headers = urllib.urlretrieve(sourcefile)
+			sourcefile, headers = urllib.request.urlretrieve(sourcefile)
 			rename(sourcefile, '/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
 			releasenotes = fd.read()
