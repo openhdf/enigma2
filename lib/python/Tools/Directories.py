@@ -353,13 +353,13 @@ def InitFallbackFiles():
 # Example-pattern: match all txt-files: ".*\.txt$"
 #
 def crawlDirectory(directory, pattern):
-	list = []
+	_list = []
 	if directory:
 		expression = compile(pattern)
 		for root, dirs, files in os.walk(directory):
-			for file in files:
-				if expression.match(file) is not None:
-					list.append((root, file))
+			for _file in files:
+				if expression.match(_file) is not None:
+					_list.append((root, _file))
 	return list
 
 def copyfile(src, dst):

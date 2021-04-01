@@ -106,7 +106,7 @@ class VideoWizard(WizardLanguage, Rc):
 	def listInputChannels(self):
 		hw_type = HardwareInfo().get_device_name()
 		has_hdmi = HardwareInfo().has_hdmi()
-		list = []
+		_list = []
 
 		for port in self.hw.getPortList():
 			if self.hw.isPortUsed(port):
@@ -118,10 +118,10 @@ class VideoWizard(WizardLanguage, Rc):
 				if descr == 'Scart' and has_jack and not has_scart:
 					descr = 'Jack'
 				if port != "DVI-PC":
-					list.append((descr, port))
-		list.sort(key = lambda x: x[0])
-		print("listInputChannels:", list)
-		return list
+					_list.append((descr, port))
+		_list.sort(key = lambda x: x[0])
+		print("listInputChannels:", _list)
+		return _list
 
 	def inputSelectionMade(self, index):
 		print("inputSelectionMade:", index)
@@ -153,14 +153,14 @@ class VideoWizard(WizardLanguage, Rc):
 			self.hw.setMode(port = port, mode = modeList[0][0], rate = ratesList[0][0])
 
 	def listModes(self):
-		list = []
+		_list = []
 		print("modes for port", self.port)
 		for mode in self.hw.getModeList(self.port):
 			#if mode[0] != "PC":
-				list.append((mode[0], mode[0]))
-		print("modeslist:", list)
-		#list.sort()
-		return list
+				_list.append((mode[0], mode[0]))
+		print("modeslist:", _list)
+		#_list.sort()
+		return _list
 
 	def modeSelectionMade(self, index):
 		print("modeSelectionMade:", index)
@@ -183,7 +183,7 @@ class VideoWizard(WizardLanguage, Rc):
 	def listRates(self, querymode = None):
 		if querymode is None:
 			querymode = self.mode
-		list = []
+		_list = []
 		print("modes for port", self.port, "and mode", querymode)
 		for mode in self.hw.getModeList(self.port):
 			print(mode)
@@ -194,10 +194,10 @@ class VideoWizard(WizardLanguage, Rc):
 					if self.port == "DVI-PC":
 						print("rate:", rate)
 						if rate == "640x480":
-							list.insert(0, (rate, rate))
+							_list.insert(0, (rate, rate))
 							continue
-					list.append((rate, rate))
-		return list
+					_list.append((rate, rate))
+		return _list
 
 	def rateSelectionMade(self, index):
 		print("rateSelectionMade:", index)

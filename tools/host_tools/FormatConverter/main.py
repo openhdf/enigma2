@@ -23,19 +23,19 @@ for source in datasources:
 
 while True:
 	os.system("/usr/bin/clear")
-	list = []
+	_list = []
 	for index in list(range(len(datasources))):
-		list.append(datasources[index].getName() + (" (%d sats)" % len(list(datasources[index].transponderlist.keys()))))
-	index = inputChoices(list, "q", "quit")
+		_list.append(datasources[index].getName() + (" (%d sats)" % len(list(datasources[index].transponderlist.keys()))))
+	index = inputChoices(_list, "q", "quit")
 	if index is None:
 		break
 
 	while True:
 		print(datasources[index].getStatus())
-		list = []
+		_list = []
 		for action in datasources[index].getCapabilities():
-			list.append(action[0])
-		action = inputChoices(list)
+			_list.append(action[0])
+		action = inputChoices(_list)
 		if action is None:
 			break
 

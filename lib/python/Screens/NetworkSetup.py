@@ -36,7 +36,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from random import Random
 from subprocess import call
-import commands
+import subprocess
 import string
 import os
 import glob
@@ -629,7 +629,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.configStrings = None
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKSETUP):
 				callFnc = p.__call__["ifaceSupported"](self.iface)
-				if callFnc != None:
+				if callFnc is not None:
 					if "WlanPluginEntry" in p.__call__: # internally used only for WLAN Plugin
 						self.extended = callFnc
 						if "configStrings" in p.__call__:
@@ -1049,7 +1049,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.extendedSetup = None
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKSETUP):
 			callFnc = p.__call__["ifaceSupported"](self.iface)
-			if callFnc != None:
+			if callFnc is not None:
 				self.extended = callFnc
 				if "WlanPluginEntry" in p.__call__: # internally used only for WLAN Plugin
 					menu.append((_("Scan wireless networks"), "scanwlan"))
@@ -1243,7 +1243,7 @@ class NetworkAdapterTest(Screen):
 		self.nextStepTimer.callback.append(self.nextStepTimerFire)
 
 	def cancel(self):
-		if self.oldInterfaceState == False:
+		if self.oldInterfaceState is False:
 			iNetwork.setAdapterAttribute(self.iface, "up", self.oldInterfaceState)
 			iNetwork.deactivateInterface(self.iface)
 		self.close()
@@ -1362,7 +1362,7 @@ class NetworkAdapterTest(Screen):
 
 	def doStep4(self):
 		self["Dhcptext"].setForegroundColorNum(1)
-		if iNetwork.getAdapterAttribute(self.iface, 'dhcp') == True:
+		if iNetwork.getAdapterAttribute(self.iface, 'dhcp') is True:
 			self["Dhcp"].setForegroundColorNum(2)
 			self["Dhcp"].setText(_("enabled"))
 			self["DhcpInfo_Check"].setPixmapNum(0)
@@ -1586,9 +1586,9 @@ class NetworkAdapterTest(Screen):
 		self.activebutton = 6
 
 	def getInfoCB(self, data, status):
-		if data != None:
-			if data == True:
-				if status != None:
+		if data is not None:
+			if data is True:
+				if status is not None:
 					if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
 						self["Network"].setForegroundColorNum(1)
 						self["Network"].setText(_("disconnected"))
@@ -1928,8 +1928,8 @@ class NetworkSABnzbd(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 
 	def RemovedataAvail(self, str, retval, extra_args):
-		str = six.ensure_str(str)
-		if str:
+		_str = six.ensure_str(str)
+		if _str:
 			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove %s ?') % self.service_name, MessageBox.TYPE_YESNO)
 		else:
 			self.updateService()

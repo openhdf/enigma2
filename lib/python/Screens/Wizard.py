@@ -92,9 +92,9 @@ class Wizard(Screen):
 			elif name == "listentry":
 				self.wizard[self.lastStep]["list"].append((str(attrs.get('caption')), str(attrs.get('step'))))
 			elif name == "config":
-				type = str(attrs.get('type'))
+				_type = str(attrs.get('type'))
 				self.wizard[self.lastStep]["config"]["type"] = type
-				if type == "ConfigList" or type == "standalone":
+				if _type == "ConfigList" or _type == "standalone":
 					try:
 						exec("from Screens." + str(attrs.get('module')) + " import *")
 					except:
@@ -104,7 +104,7 @@ class Wizard(Screen):
 					if 'args' in attrs:
 						#print "has args"
 						self.wizard[self.lastStep]["config"]["args"] = str(attrs.get('args'))
-				elif type == "dynamic":
+				elif _type == "dynamic":
 					self.wizard[self.lastStep]["config"]["source"] = str(attrs.get('source'))
 					if 'evaluation' in attrs:
 						self.wizard[self.lastStep]["config"]["evaluation"] = str(attrs.get('evaluation'))

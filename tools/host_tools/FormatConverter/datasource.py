@@ -99,13 +99,13 @@ class genericdatasource(datasource):
 			print("copied %d sats with %d transponders" % (countsat, counttransponder))
 
 	def selectDatasource(self):
-		list = []
+		_list = []
 		sources = []
 		for source in self.datasources:
 			if source != self:
-				list.append(source.getName() + (" (%d sats)" % len(source.transponderlist.keys())))
+				_list.append(source.getName() + (" (%d sats)" % len(source.transponderlist.keys())))
 				sources.append(source)
-		choice = inputChoices(list)
+		choice = inputChoices(_list)
 		if choice is None:
 			return None
 		return sources[choice]

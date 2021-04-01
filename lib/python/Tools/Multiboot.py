@@ -299,7 +299,7 @@ class boxbranding_reader:  # Many thanks to Huevos for creating this reader - we
 		out.append("\t}")
 		out.append("except Exception:")
 		out.append("\t\toutput = None")
-		out.append("print output")
+		out.append("print(output)")
 		out.append("")
 		return "\n".join(out)
 

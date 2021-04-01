@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 from __future__ import division
-from Components.Converter import Converter
+from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
 from time import time
 from Components.Element import cached, ElementError

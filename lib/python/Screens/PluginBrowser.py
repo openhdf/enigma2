@@ -425,7 +425,7 @@ class PluginDownloadBrowser(Screen):
 						if partition.filesystem(mounts) in supported_filesystems:
 							candidates.append((partition.description, partition.mountpoint))
 					if candidates:
-						from Components.Renderer import Picon
+						from Components.Renderer.Renderer import Picon
 						self.postInstallCall = Picon.initPiconPaths
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list=candidates)
 					return
@@ -438,7 +438,7 @@ class PluginDownloadBrowser(Screen):
 						if partition.filesystem(mounts) in supported_filesystems:
 							candidates.append((partition.description, partition.mountpoint))
 					if candidates:
-						from Components.Renderer import LcdPicon
+						from Components.Renderer.Renderer import LcdPicon
 						self.postInstallCall = LcdPicon.initLcdPiconPaths
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install lcd picons on"), list=candidates)
 					return

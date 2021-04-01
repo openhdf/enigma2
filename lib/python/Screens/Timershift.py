@@ -47,9 +47,9 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 			config.usage.setup_level.notifiers.remove(self.levelChanged)
 
 	def levelChanged(self, configElement):
-		list = []
-		self.refill(list)
-		self["config"].setList(list)
+		_list = []
+		self.refill(_list)
+		self["config"].setList(_list)
 
 	def refill(self, list):
 		xmldata = setupdom().getroot()
@@ -74,8 +74,8 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 
 		self.onChangedEntry = [ ]
 		self.setup = "timeshift"
-		list = []
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+		_list = []
+		ConfigListScreen.__init__(self, _list, session = session, on_change = self.changedEntry)
 		self.createSetup()
 
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
@@ -173,14 +173,14 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 		self.autorecord_dirname = ConfigSelection(default = cooldefault, choices = cooltmp)
 		self.timeshift_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
 		self.autorecord_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
-		list = []
+		_list = []
 		self.timeshift_entry = getConfigListEntry(_("Timeshift location"), self.timeshift_dirname, _("Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location."))
-		list.append(self.timeshift_entry)
+		_list.append(self.timeshift_entry)
 		self.autorecord_entry = getConfigListEntry(_("Autorecord location"), self.autorecord_dirname, _("Set the default location for your autorecord-files. Press 'OK' to add new locations, select left/right to select an existing location."))
-		list.append(self.autorecord_entry)
+		_list.append(self.autorecord_entry)
 
-		self.refill(list)
-		self["config"].setList(list)
+		self.refill(_list)
+		self["config"].setList(_list)
 		if config.usage.sort_settings.value:
 			self["config"].list.sort()
 
@@ -316,7 +316,7 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 	def createSummary(self):
 		return SetupSummary
 
-	def addItems(self, list, parentNode):
+	def addItems(self, _list, parentNode):
 		for x in parentNode:
 			if not x.tag:
 				continue
@@ -351,5 +351,5 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
-					list.append((item_text, item, item_description))
+					_list.append((item_text, item, item_description))
 
