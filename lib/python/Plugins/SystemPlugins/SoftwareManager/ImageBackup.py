@@ -284,7 +284,7 @@ class ImageBackup(Screen):
 								files.append(name)
 						except IndexError:
 							print('[ImageBackup] - IndexError in file: %s' %name)
-							self.error_files += '/boot/' + name + ', ' 
+							self.error_files += '/boot/' + name + ', '
 				if getMachineBuild() not in ("gb7252"):
 					files.append("Recovery")
 		else:
@@ -696,7 +696,7 @@ class ImageBackup(Screen):
 		else:
 			cmdlist.append('opkg install p7zip > /dev/null 2>&1')
 			cmdlist.append('7za a -r -bt -bd -bb0 %s/full_backups/%s-%s-%s-%s-backup-%s.zip %s/*' %(self.DIRECTORY, self.IMAGEDISTRO, self.DISTROVERSION, self.HDFIMAGEBUILD, self.MODEL, self.DATE, self.MAINDESTROOT))
-		
+
 		cmdlist.append("sync")
 		file_found = True
 

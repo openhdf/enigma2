@@ -198,14 +198,14 @@ void bsodFatal(const char *component)
 		"Please send the logfile " << crashlog_name << " to " << crash_emailaddr << ".\n"
 		"Your receiver restarts in 10 seconds!\n"
 		"Component: " << component;
-	
+
 	os << eConfigManager::getConfigString("config.crash.debug_text", os_text.str());
 
 	p.renderText(usable_area, os.str().c_str(), gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 
 	std::string logtail;
 	int lines = 20;
-	
+
 	if (logp2)
 	{
 		unsigned int size = logs2;
@@ -217,7 +217,7 @@ void bsodFatal(const char *component)
 				if (!lines) {
 					logtail = std::string(r, logs2 - size);
 					break;
-				} 
+				}
 			}
 			else {
 				logtail = std::string(logp2, logs2);
@@ -237,7 +237,7 @@ void bsodFatal(const char *component)
 				if (!lines) {
 					logtail += std::string(r, logs1 - size);
 					break;
-				} 
+				}
 			}
 			else {
 				logtail += std::string(logp1, logs1);

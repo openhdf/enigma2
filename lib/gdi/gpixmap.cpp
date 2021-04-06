@@ -478,7 +478,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		else if (flag & blitHAlignRight)
 			pos.setLeft(_pos.right() - src.size().width());
 		pos.setWidth(src.size().width());
-		
+
 		if (flag & blitVAlignCenter)
 			pos.setTop(_pos.top() + (_pos.height() - src.size().height()) / 2);
 		else if (flag & blitVAlignBottom)

@@ -59,7 +59,7 @@ class pstrCnvrt(Convertert):
 		else:
 			return ""
 	text = property(getText)
-	
+
 	def searchPoster(self):
 		url_json = 'https://api.themoviedb.org/3/search/%s?api_key=3c3efcf47c3577558812bb9d64019d65&query=%s'%(self.srch, quote(self.evnt))
 		jp = json.load(urllib.request.urlopen(url_json))

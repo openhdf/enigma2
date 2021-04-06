@@ -3691,7 +3691,7 @@ class InfoBarSeek:
 				if config.lcd.hdd.value == "1":
 					file = open("/proc/stb/lcd/symbol_hddprogress", "w")
 					file.write('%d' % int(self.activity))
-					file.close() 
+					file.close()
 		else:
 			self.activityTimer.stop()
 			self.activity = 0
@@ -4884,7 +4884,7 @@ class InfoBarPiP:
 		else:
 			if isinstance(self, InfoBarChannelSelection):
 				self.LeftPressed()
-	
+
 	def doTogglePipzap(self):
 		if hasattr(self.session, "pip"):
 			if self.session.pipshown:
@@ -4896,7 +4896,7 @@ class InfoBarPiP:
 						if slist:
 							slist.togglePipzapSidebySide()
 							if slist.dopipzap:
-										 
+
 								self.session.pip.inactive()
 								self.session.pip.inactiveSide()
 								self.session.pip.activeToggle()
@@ -4911,7 +4911,7 @@ class InfoBarPiP:
 		else:
 			if isinstance(self, InfoBarChannelSelection):
 				self.RightPressed()
-					
+
 	def doExit(self):
 		if isinstance(self, InfoBarShowHide):
 			self.keyHide()
@@ -4953,12 +4953,12 @@ class InfoBarINFOpanel:
 			if info and info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
 				for x in self.onHBBTVActivation:
 					x()
-					
+
 			elif config.plugins.infopanel_redpanel.selection.value == '0':
 				self.instantRecord()
 			else:
 				self.doRedKeyTask()
-		
+
 		elif config.plugins.infopanel_redpanel.selection.value == '0':
 			self.instantRecord()
 		else:
@@ -4982,7 +4982,7 @@ class InfoBarINFOpanel:
 
 		except:
 			print("[InfoBarGenerics] Error on RedKeyTask !!")
-		
+
 	def softcamPanel(self):
 		try:
 			if config.plugins.infopanel_redpanel.selectionLong.value =='0':
@@ -5001,7 +5001,7 @@ class InfoBarINFOpanel:
 
 		except:
 			print("[InfoBarGenerics] Error on RedKeyTask Long!!")
-			
+
 	def StartsoftcamPanel(self):
 		try:
 			from Plugins.Extensions.Infopanel.SoftcamPanel import SoftcamPanel
@@ -5606,7 +5606,7 @@ class InfoBarAspectSelection:
 
 	def ExGreen_doHide(self):
 		print("[InfoBarGenerics] do self.STATE_HIDDEN")
-		self.__ExGreen_state = self.STATE_HIDDEN 
+		self.__ExGreen_state = self.STATE_HIDDEN
 
 	def ExGreen_toggleGreen(self, arg=""):
 		print("[InfoBarGenerics] toggleGreen:",self.__ExGreen_state)

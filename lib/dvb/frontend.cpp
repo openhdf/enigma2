@@ -1160,7 +1160,7 @@ int eDVBFrontend::calculateSignalPercentage(int signalqualitydb)
 		When using new API, signalqualitydb is Carrier-to-Noise-Ratio (CNR) - i.e. SNR at a specific point in the receiver chain
 		Minimum CNR for lock is ~20 dB, not 0 dB as previously assumed
 		Maximum expected CNR is an estimate of typical value of CNR at which limiting could occur in the absence of interference etc
-		Percentage is now of maximum expected CNR to approximately match the figures provided by any drivers that supply this data, not 2/3 of maximum expected signal as previously assumed. 
+		Percentage is now of maximum expected CNR to approximately match the figures provided by any drivers that supply this data, not 2/3 of maximum expected signal as previously assumed.
 		Using 2/3 for DVB-T gives 100% at ~33 dB, which less than half way up the scale from just acheiving lock at 20 dB and expected maximum at 50 dB
 */
 
@@ -1654,25 +1654,25 @@ int eDVBFrontend::readFrontendData(int type)
 			}
 			break;
 		case iFrontendInformation_ENUMS::signalQuality:
-/*	The signalQuality is a percentage figure representing signalQualitydB divided by its expected maximum value 
+/*	The signalQuality is a percentage figure representing signalQualitydB divided by its expected maximum value
 	A value of 0 represents 0% and 65535 represents 100%.
-	A value of zero is returned when not locked on. 
+	A value of zero is returned when not locked on.
 	A minimum value of 30-40% (depending on DVB type) can be expected when locked on when using DVB API 5.10 or later.
 	It is not a reliable indicator of closeness to limiting as:
-		(a) A generic value for the upper limit of signalQualitydB is used unless % data is provided by the driver, so the assumed upper limit may be significantly different to that of any actual tuner 
+		(a) A generic value for the upper limit of signalQualitydB is used unless % data is provided by the driver, so the assumed upper limit may be significantly different to that of any actual tuner
 		(b) Signal levels close to limiting may be accompanied by high noise (e.g. interference) levels, thus leading to moderate or low signalQualitydB values
-	Values derived from the legacy API are likely to be unreliable, with 100% being returned for a wide range of signalQualitydB values - comparison between muxes is probably safer using signalQualitydB.	
+	Values derived from the legacy API are likely to be unreliable, with 100% being returned for a wide range of signalQualitydB values - comparison between muxes is probably safer using signalQualitydB.
 */
 		case iFrontendInformation_ENUMS::signalQualitydB:
-/* 	This moved into the driver on DVB API 5.10 
+/* 	This moved into the driver on DVB API 5.10
 	When using new API:
 		(a) signalQualitydB is Carrier-to-Noise-Ratio (CNR) measured in dB - i.e. SNR at a specific point in the receiver chain
 		(b) Minimum CNR for lock is ~20 dB (exact figure depending on DVB and modulation types)
 		(c) Maximum CNR will depend on the particular tuner and DVB type, but is likely to be in the range 40-70 dB. Figures much above 70 dB are almost certainly erroneous
 		(d) Comparisons between different tuner models should be valid - i.e. differ by no more than a couple of dB + any differences in input signal
-	A value of zero is returned when not locked on. 
+	A value of zero is returned when not locked on.
 	LSB = 0.01 dB.
-	Values derived from the legacy API are likely to be unreliable. 
+	Values derived from the legacy API are likely to be unreliable.
 */
 			if (m_state == stateLock)
 			{
