@@ -151,10 +151,10 @@ class Timezones:
 				base = "Generic"
 			area = None
 			zones = []
-			for file in files:
-				if file[-4:] == ".tab" or file[-2:] == "-0" or file[-1:] == "0" or file[-2:] == "+0":  # No need for ".tab", "-0", "0", "+0" files.
+			for _file in files:
+				if _file[-4:] == ".tab" or _file[-2:] == "-0" or _file[-1:] == "0" or _file[-2:] == "+0":  # No need for ".tab", "-0", "0", "+0" files.
 					continue
-				tz = "%s/%s" % (base, file)
+				tz = "%s/%s" % (base, _file)
 				area, zone = tz.split("/", 1)
 				name = commonTimezoneNames.get(tz, zone)  # Use the more common name if one is defined.
 				if name is None:
@@ -191,7 +191,7 @@ class Timezones:
 			else:
 				key = name
 			data[key] = (zone, name)
-		return [data[x] for x in sorted(list(data.keys()))]
+		return [data[x] for x in sorted(data.keys())]
 
 	# Read the timezones.xml file and load all time zones found.
 	#
@@ -240,7 +240,7 @@ class Timezones:
 	# Return a sorted list of all Area entries.
 	#
 	def getTimezoneAreaList(self):
-		return sorted(list(self.timezones.keys()))
+		return sorted(self.timezones.keys())
 
 	# Return a sorted list of all Zone entries for an Area.
 	#
@@ -269,11 +269,11 @@ class Timezones:
 
 	def activateTimezone(self, zone, area, runCallbacks=True):
 		tz = zone if area in ("Classic", "Generic") else path.join(area, zone)
-		file = path.join(TIMEZONE_DATA, tz)
-		if not path.isfile(file):
+		_file = path.join(TIMEZONE_DATA, tz)
+		if not path.isfile(_file):
 			print("[Timezones] Error: The time zone '%s' is not available!  Using 'UTC' instead." % tz)
 			tz = "UTC"
-			file = path.join(TIMEZONE_DATA, tz)
+			_file = path.join(TIMEZONE_DATA, tz)
 		print("[Timezones] Setting time zone to '%s'." % tz)
 		try:
 			unlink("/etc/localtime")
@@ -281,9 +281,9 @@ class Timezones:
 			if err.errno != errno.ENOENT:  # No such file or directory
 				print("[Timezones] Error %d: Unlinking '/etc/localtime'! (%s)" % (err.errno, err.strerror))
 		try:
-			symlink(file, "/etc/localtime")
+			symlink(_file, "/etc/localtime")
 		except (IOError, OSError) as err:
-			print("[Timezones] Error %d: Linking '%s' to '/etc/localtime'! (%s)" % (err.errno, file, err.strerror))
+			print("[Timezones] Error %d: Linking '%s' to '/etc/localtime'! (%s)" % (err.errno, _file, err.strerror))
 		try:
 			with open("/etc/timezone", "w") as fd:
 				fd.write("%s\n" % tz)

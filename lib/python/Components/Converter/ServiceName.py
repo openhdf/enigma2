@@ -27,7 +27,7 @@ class ServiceName(Converter, object):
 		self.mode = ""
 		if ';' in _type:
 			_type, self.mode = _type.split(';')
-		if self.type == "Provider":
+		if _type == "Provider":
 			self.type = self.PROVIDER
 		elif _type == "Reference":
 			self.type = self.REFERENCE

@@ -538,6 +538,7 @@ class Harddisk:
 		self.hdd_timer = False
 		try:
 			configsettings = readFile('/etc/enigma2/settings')
+			configsettings = six.ensure_str(configsettings)
 			if "config.usage.hdd_timer" in configsettings:
 				self.hdd_timer = True
 		except:

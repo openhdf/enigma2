@@ -206,13 +206,13 @@ addSkin('skin_subtitles.xml')
 if config.skin.primary_skin.value != DEFAULT_SKIN:
 	skinpath = resolveFilename(SCOPE_SKIN, primary_skin_path)
 	if os.path.isdir(skinpath):
-		for file in sorted(os.listdir(skinpath)):
-			if file.startswith('skin_user_') and file.endswith('.xml'):
+		for _file in sorted(os.listdir(skinpath)):
+			if _file.startswith('skin_user_') and _file.endswith('.xml'):
 				try:
-					addSkin(primary_skin_path + file, SCOPE_SKIN)
-					print("[SKIN] loading user defined %s skin file: %s" %(file.replace('skin_user_', '')[:-4], primary_skin_path + file))
+					addSkin(primary_skin_path + _file, SCOPE_SKIN)
+					print("[SKIN] loading user defined %s skin file: %s" %(_file.replace('skin_user_', '')[:-4], primary_skin_path + _file))
 				except (SkinError, IOError, OSError, AssertionError) as err:
-					print("[SKIN] not loading user defined %s skin file: %s - error: %s" %(file.replace('skin_user_', '')[:-4], primary_skin_path + file, err))
+					print("[SKIN] not loading user defined %s skin file: %s - error: %s" %(_file.replace('skin_user_', '')[:-4], primary_skin_path + _file, err))
 
 '''
 try:
@@ -975,8 +975,8 @@ def loadSkin(name, scope = SCOPE_SKIN):
 	filename = resolveFilename(scope, name)
 	if fileExists(filename):
 		path = os.path.dirname(filename) + "/"
-		file = open(filename, 'r')
-		for elem in xml.etree.cElementTree.parse(file).getroot():
+		_file = open(filename, 'r', encoding="utf-8")
+		for elem in xml.etree.cElementTree.parse(_file).getroot():
 			if elem.tag == 'screen':
 				name = elem.attrib.get('name', None)
 				if name[:3].lower() == "vti":
@@ -995,7 +995,7 @@ def loadSkin(name, scope = SCOPE_SKIN):
 					elem.clear()
 			else:
 				elem.clear()
-		file.close()
+		_file.close()
 
 def loadSkinData(desktop):
 	# Kinda hackish, but this is called once by mytest.py
@@ -1372,12 +1372,15 @@ def readSkin(screen, skin, names, desktop):
 	}
 
 	print("[SKIN] processing screen %s:" % name)
-	try:
-		context.x = 0 # reset offsets, all components are relative to screen
-		context.y = 0 # coordinates.
-		process_screen(myscreen, context)
-	except Exception as e:
-		print("[SKIN] SKIN ERROR in %s:" % name, e)
+#	try:
+		#context.x = 0 # reset offsets, all components are relative to screen
+		#context.y = 0 # coordinates.
+		#process_screen(myscreen, context)
+	context.x = 0 # reset offsets, all components are relative to screen
+	context.y = 0 # coordinates.
+	process_screen(myscreen, context)
+#	except Exception as e:
+#		print("[SKIN] SKIN ERROR in %s:" % name, e)
 
 	from Components.GUIComponent import GUIComponent
 	nonvisited_components = [x for x in set(list(screen.keys())) - visited_components if isinstance(x, GUIComponent)]

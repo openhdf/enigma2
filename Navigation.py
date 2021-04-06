@@ -88,7 +88,7 @@ class Navigation:
 			if not hasFakeTime and now >= self.wakeupwindow_minus and now <= self.wakeupwindow_plus: # if there is a recording sheduled, set the wasTimerWakeup flag
 				wasTimerWakeup = True
 				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
-				file = f.write(str(wasTimerWakeup))
+				_file = f.write(str(wasTimerWakeup))
 				f.close()
 		else:
 			#secure wakeup window to prevent a wrong 'wasTimerWakeup' value as timer wakeup detection

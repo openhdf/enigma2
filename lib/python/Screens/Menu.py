@@ -190,7 +190,7 @@ class Menu(Screen, ProtectedScreen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
-		list = []
+		_list = []
 
 		menuID = None
 		for x in parent:						#walk through the actual nodelist
@@ -199,12 +199,12 @@ class Menu(Screen, ProtectedScreen):
 			if x.tag == 'item':
 				item_level = int(x.get("level", 0))
 				if item_level <= config.usage.setup_level.index:
-					self.addItem(list, x)
+					self.addItem(_list, x)
 					count += 1
 			elif x.tag == 'menu':
 				item_level = int(x.get("level", 0))
 				if item_level <= config.usage.setup_level.index:
-					self.addMenu(list, x)
+					self.addMenu(_list, x)
 					count += 1
 			elif x.tag == "id":
 				menuID = x.get("val")
@@ -215,7 +215,7 @@ class Menu(Screen, ProtectedScreen):
 				if menuupdater.updatedMenuAvailable(menuID):
 					for x in menuupdater.getUpdatedMenu(menuID):
 						if x[1] == count:
-							list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", ")), x[4]))
+							_list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", ")), x[4]))
 							count += 1
 
 		self.menuID = menuID
@@ -227,14 +227,14 @@ class Menu(Screen, ProtectedScreen):
 			for l in plugins.getPluginsForMenu(menuID):
 				# check if a plugin overrides an existing menu
 				plugin_menuid = l[2]
-				for x in list:
+				for x in _list:
 					if x[2] == plugin_menuid:
-						list.remove(x)
+						_list.remove(x)
 						break
 				if len(l) > 4 and l[4]:
-					list.append((l[0], boundFunction(l[1], self.session, self.close), l[2], l[3] or 50))
+					_list.append((l[0], boundFunction(l[1], self.session, self.close), l[2], l[3] or 50))
 				else:
-					list.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50))
+					_list.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50))
 
 		# for the skin: first try a menu_<menuID>, then Menu
 		self.skinName = [ ]
@@ -246,11 +246,11 @@ class Menu(Screen, ProtectedScreen):
 
 		# Sort by Weight
 		if config.usage.sort_menus.value:
-			list.sort()
+			_list.sort()
 		else:
-			list.sort(key=lambda x: int(x[3]))
+			_list.sort(key=lambda x: int(x[3]))
 
-		self["menu"] = List(list)
+		self["menu"] = List(_list)
 
 		self["actions"] = NumberActionMap(["OkCancelActions", "MenuActions", "NumberActions"],
 			{

@@ -19,6 +19,7 @@ class MessageBox(Screen):
 
 	def __init__(self, session, text, type=TYPE_YESNO, timeout=-1, close_on_any_key=False, default=True, enable_input=True, msgBoxID=None, picon=True, simple=False, wizard=False, list=None, skin_name=None, timeout_default=None):
 		if not list: list = []
+		_list = list
 		if not skin_name: skin_name = []
 		self.type = type
 		Screen.__init__(self, session)
@@ -67,7 +68,7 @@ class MessageBox(Screen):
 		self.initTimeout(timeout)
 
 		if picon:
-			picon = type
+			picon = self.type
 			if picon == self.TYPE_ERROR:
 				self["ErrorPixmap"].show()
 			elif picon == self.TYPE_YESNO:
@@ -75,10 +76,10 @@ class MessageBox(Screen):
 			elif picon == self.TYPE_INFO:
 				self["InfoPixmap"].show()
 
-		self.messtype = type
-		if type == self.TYPE_YESNO:
-			if list:
-				self.list = list
+		self.messtype = self.type
+		if self.type == self.TYPE_YESNO:
+			if _list:
+				self.list = _list
 			elif default:
 				self.list = [ (_("yes"), True), (_("no"), False) ]
 			else:
@@ -112,10 +113,12 @@ class MessageBox(Screen):
 		desktop_w = enigma.getDesktop(0).size().width()
 		desktop_h = enigma.getDesktop(0).size().height()
 		count = len(self.list)
+		listsize = 0
 
 		if not self["text"].text:
 			textsize = (520, 0)
 			listsize = (520, 25*count)
+			print("ListSize:", listsize)
 			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
 				self["list"].instance.move(enigma.ePoint(65, 0))
 			else:
@@ -131,6 +134,7 @@ class MessageBox(Screen):
 			else:
 				textsize = (520, textsize[1]+25)
 			listsize = (textsize[0], 25*count)
+			print("ListSize:", listsize)
 
 			self["text"].instance.resize(enigma.eSize(*textsize))
 			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
@@ -146,6 +150,7 @@ class MessageBox(Screen):
 				wsizex = textsize[0]
 			self["list"].instance.resize(enigma.eSize(*listsize))
 
+		print("ListSize:", listsize)
 		wsizey = textsize[1]+listsize[1]
 		wsize = (wsizex, wsizey)
 		self.instance.resize(enigma.eSize(*wsize))

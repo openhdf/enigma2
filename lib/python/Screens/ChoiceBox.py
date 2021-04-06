@@ -14,6 +14,7 @@ class ChoiceBox(Screen):
 		if not windowTitle: #for compatibility
 			windowTitle = titlebartext
 		if not list: list = []
+		_list = list
 		if not skin_name: skin_name = []
 		Screen.__init__(self, session)
 
@@ -48,17 +49,17 @@ class ChoiceBox(Screen):
 		self.list = []
 		self.summarylist = []
 		if keys is None:
-			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue", "text" ] + (len(list) - 10) * [""]
+			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue", "text" ] + (len(_list) - 10) * [""]
 		else:
-			self.__keys = keys + (len(list) - len(keys)) * [""]
+			self.__keys = keys + (len(_list) - len(keys)) * [""]
 
 		self.keymap = {}
 		pos = 0
-		for x in list:
+		for x in _list:
 			strpos = str(self.__keys[pos])
 			self.list.append(ChoiceEntryComponent(key = strpos, text = x))
 			if self.__keys[pos] != "":
-				self.keymap[self.__keys[pos]] = list[pos]
+				self.keymap[self.__keys[pos]] = _list[pos]
 			self.summarylist.append((self.__keys[pos], x[0]))
 			pos += 1
 		self["windowtitle"] = Label(_(windowTitle))
