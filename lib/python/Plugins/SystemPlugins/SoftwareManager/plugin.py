@@ -1952,10 +1952,10 @@ class IPKGMenu(Screen):
 		if (os_path.exists(self.path) == False):
 			self.entry = False
 			return
-		for file in listdir(self.path):
-			if file.endswith(".conf"):
-				if file not in ('arch.conf', 'opkg.conf'):
-					flist.append((file))
+		for _file in listdir(self.path):
+			if _file.endswith(".conf"):
+				if _file not in ('arch.conf', 'opkg.conf'):
+					flist.append((_file))
 					self.entry = True
 		self["filelist"].l.setList(flist)
 

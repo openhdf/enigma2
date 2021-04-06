@@ -136,8 +136,8 @@ def append_when_current_valid(current, menu, args, level=0, key=""):
 		menu.append(ChoiceEntryComponent(key, args))
 
 def removed_userbouquets_available():
-	for file in os.listdir("/etc/enigma2/"):
-		if file.startswith("userbouquet") and file.endswith(".del"):
+	for _file in os.listdir("/etc/enigma2/"):
+		if _file.startswith("userbouquet") and _file.endswith(".del"):
 			return True
 	return False
 
@@ -578,11 +578,11 @@ class ChannelContextMenu(Screen):
 
 	def restoreDeletedBouquetsCallback(self, answer):
 		if answer:
-			for file in os.listdir("/etc/enigma2/"):
-				if file.startswith("userbouquet") and file.endswith(".del"):
-					file = "/etc/enigma2/" + file
-					print("restore file ", file[:-4])
-					os.rename(file, file[:-4])
+			for _file in os.listdir("/etc/enigma2/"):
+				if _file.startswith("userbouquet") and _file.endswith(".del"):
+					_file = "/etc/enigma2/" + _file
+					print("restore file ", _file[:-4])
+					os.rename(_file, _file[:-4])
 			eDVBDBInstance = eDVBDB.getInstance()
 			eDVBDBInstance.setLoadUnlinkedUserbouquets(True)
 			eDVBDBInstance.reloadBouquets()
@@ -595,11 +595,11 @@ class ChannelContextMenu(Screen):
 
 	def purgeDeletedBouquetsCallback(self, answer):
 		if answer:
-			for file in os.listdir("/etc/enigma2/"):
-				if file.startswith("userbouquet") and file.endswith(".del"):
-					file = "/etc/enigma2/" + file
-					print("permantly remove file ", file)
-					os.remove(file)
+			for _file in os.listdir("/etc/enigma2/"):
+				if _file.startswith("userbouquet") and _file.endswith(".del"):
+					_file = "/etc/enigma2/" + _file
+					print("permantly remove file ", _file)
+					os.remove(_file)
 			self.close()
 
 	def addHideVBIFlag(self):
@@ -640,24 +640,26 @@ class SelectionEventInfo:
 		self["Event"].newEvent(service.event)
 
 def parseCurentEvent(list):
-	if len(list) >= 0:
-		list = list[0]
-		begin = list[2] - (config.recording.margin_before.value * 60)
-		end = list[2] + list[3] + (config.recording.margin_after.value * 60)
-		name = list[1]
-		description = list[5]
-		eit = list[0]
+	_list = list
+	if len(_list) >= 0:
+		_list = _list[0]
+		begin = _list[2] - (config.recording.margin_before.value * 60)
+		end = _list[2] + _list[3] + (config.recording.margin_after.value * 60)
+		name = _list[1]
+		description = _list[5]
+		eit = _list[0]
 		return begin, end, name, description, eit
 	return False
 
 def parseNextEvent(list):
-	if len(list) > 0:
-		list = list[1]
-		begin = list[2] - (config.recording.margin_before.value * 60)
-		end = list[2] + list[3] + (config.recording.margin_after.value * 60)
-		name = list[1]
-		description = list[5]
-		eit = list[0]
+	_list = list
+	if len(_list) > 0:
+		_list = _list[1]
+		begin = _list[2] - (config.recording.margin_before.value * 60)
+		end = _list[2] + _list[3] + (config.recording.margin_after.value * 60)
+		name = _list[1]
+		description = _list[5]
+		eit = _list[0]
 		return begin, end, name, description, eit
 	return False
 
@@ -767,6 +769,7 @@ class ChannelSelectionEPG:
 		self.session.open(TimerEntry, timer)
 
 	def doInstantTimer(self, zap, parseEvent, next=False):
+		_next = next
 		serviceref = ServiceReference(self.getCurrentSelection())
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		self.epgcache = eEPGCache.getInstance()
@@ -774,7 +777,7 @@ class ChannelSelectionEPG:
 		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 		if self.list is None:
 			return
-		if not next:
+		if not _next:
 			eventid = self.list[0][0]
 			eventname = str(self.list[0][1])
 		else:
@@ -795,7 +798,7 @@ class ChannelSelectionEPG:
 			sely = int(sely) - int(self.listHeight)
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
-				if not next:
+				if not _next:
 					cb_func = lambda ret: self.removeTimer(timer)
 					menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.ChoiceBoxCB)]
 					self.ChoiceBoxDialog = self.session.instantiateDialog(MessageBox, text=_('Do you really want to remove the timer for %s?') % eventname, list=menu, skin_name="RemoveTimerQuestion", picon=False)
@@ -1802,12 +1805,12 @@ class ChannelSelectionBase(Screen):
 					self.BouquetNumberActions(number)
 				else:
 					unichar = self.numericalTextInput.getKey(number)
-					charstr = six.ensure_str(unichar)
+					charstr = unichar.encode("utf-8")
 					if len(charstr) == 1:
 						self.servicelist.moveToChar(charstr[0])
 		else:
 			unichar = self.numericalTextInput.getKey(number)
-			charstr = six.ensure_str(unichar)
+			charstr = unichar.encode("utf-8")
 			if len(charstr) == 1:
 				self.servicelist.moveToChar(charstr[0])
 

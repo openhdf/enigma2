@@ -41,8 +41,8 @@ class TimerEditList(Screen):
 		Screen.setTitle(self, _("Timer List"))
 
 		self.onChangedEntry = [ ]
-		list = [ ]
-		self.list = list
+		_list = [ ]
+		self.list = _list
 		self.fillTimerList()
 
 		self["timerlist"] = TimerList(list)
@@ -117,12 +117,12 @@ class TimerEditList(Screen):
 			else:
 				if t.isRunning():
 					if t.repeated:
-						list = (
+						_list = (
 							(_("Stop current event but not coming events"), "stoponlycurrent"),
 							(_("Stop current event and disable coming events"), "stopall"),
 							(_("Don't stop current event but disable coming events"), "stoponlycoming")
 						)
-						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list)
+						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = _list)
 				else:
 					t.disable()
 			self.session.nav.RecordTimer.timeChanged(t)
@@ -323,8 +323,8 @@ class TimerEditList(Screen):
 			files = os.listdir(path)
 		except:
 			files = ""
-		for file in files:
-			if file.startswith(f):
+		for _file in files:
+			if _file.startswith(f):
 				onhdd = True
 				break
 
@@ -364,8 +364,8 @@ class TimerEditList(Screen):
 	def removeTimer(self, result):
 		if not result:
 			return
-		list = self["timerlist"]
-		cur = list.getCurrent()
+		_list = self["timerlist"]
+		cur = _list.getCurrent()
 		if cur:
 			timer = cur
 			timer.afterEvent = AFTEREVENT.NONE
@@ -380,9 +380,9 @@ class TimerEditList(Screen):
 		moviepath = os.path.normpath(resolveFilename(SCOPE_HDD))
 		movedList =[]
 		files = os.listdir(moviepath)
-		for file in files:
-			if file.startswith(self.moviename):
-				movedList.append((os.path.join(moviepath, file), os.path.join(trashpath, file)))
+		for _file in files:
+			if _file.startswith(self.moviename):
+				movedList.append((os.path.join(moviepath, _file), os.path.join(trashpath, _file)))
 		Tools.CopyFiles.moveFiles(movedList, None)
 
 	def delete(self):
@@ -400,9 +400,9 @@ class TimerEditList(Screen):
 		self.removeTimer(True)
 		from enigma import eBackgroundFileEraser
 		files = os.listdir(path)
-		for file in files:
-			if file.startswith(f):
-				eBackgroundFileEraser.getInstance().erase(os.path.realpath(path + file))
+		for _file in files:
+			if _file.startswith(f):
+				eBackgroundFileEraser.getInstance().erase(os.path.realpath(path + _file))
 
 	def refill(self):
 		oldsize = len(self.list)

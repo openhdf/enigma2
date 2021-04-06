@@ -6,12 +6,12 @@ from xml.etree.ElementTree import ElementTree, Element
 root = Element("index")
 encoding = ("unicode" if sys.version_info[0] >= 3 else "utf-8")
 
-for file in sys.argv[1:]:
+for _file in sys.argv[1:]:
 	p = ElementTree()
-	p.parse(file)
+	p.parse(_file)
 
 	package = Element("package")
-	package.set("details", os.path.basename(file))
+	package.set("details", os.path.basename(_file))
 
 	# we need all prerequisites
 	package.append(p.find("prerequisites"))

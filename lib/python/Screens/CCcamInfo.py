@@ -146,11 +146,11 @@ def translateBlock(block):
 #############################################################
 
 def getConfigValue(l):
-	list = l.split(":")
+	_list = l.split(":")
 	ret = ""
 
-	if len(list) > 1:
-		ret = (list[1]).replace("\n", "").replace("\r", "")
+	if len(_list) > 1:
+		ret = (_list[1]).replace("\n", "").replace("\r", "")
 		if ret.__contains__("#"):
 			idx = ret.index("#")
 			ret = ret[:idx]
@@ -1537,18 +1537,18 @@ class CCcamInfoConfigSwitcher(Screen):
 		self.onLayoutFinish.append(self.showConfigs)
 
 	def showConfigs(self):
-		list = []
+		_list = []
 
 		try:
 			files = listdir("/var/etc")
 		except:
 			files = []
 
-		for file in files:
-			if file.startswith("CCcam_") and file.endswith(".cfg"):
-				list.append(CCcamConfigListEntry("/var/etc/"+file))
+		for _file in files:
+			if _file.startswith("CCcam_") and _file.endswith(".cfg"):
+				_list.append(CCcamConfigListEntry("/var/etc/"+_file))
 
-		self["list"].setList(list)
+		self["list"].setList(_list)
 
 	def delete(self):
 		fileName = self["list"].getCurrent()
@@ -1674,14 +1674,14 @@ class CCcamInfoMenuConfig(Screen):
 		self.showConfigs()
 
 	def showConfigs(self):
-		list = []
+		_list = []
 		for x in menu_list:
 			if x != _("Menu config"):
 				if x in self.blacklisted:
-					list.append(CCcamMenuConfigListEntry(x, True))
+					_list.append(CCcamMenuConfigListEntry(x, True))
 				else:
-					list.append(CCcamMenuConfigListEntry(x, False))
-		self["list"].setList(list)
+					_list.append(CCcamMenuConfigListEntry(x, False))
+		self["list"].setList(_list)
 
 	def save(self):
 		content = ""

@@ -198,7 +198,7 @@ class Timezones:
 	def readTimezones(self, filename=TIMEZONE_FILE):
 		root = None
 		try:
-			with open(filename, "r") as fd:  # This open gets around a possible file handle leak in Python's XML parser.
+			with open(filename, "r", encoding="utf-8") as fd:  # This open gets around a possible file handle leak in Python's XML parser.
 				try:
 					root = xml.etree.cElementTree.parse(fd).getroot()
 				except xml.etree.cElementTree.ParseError as err:

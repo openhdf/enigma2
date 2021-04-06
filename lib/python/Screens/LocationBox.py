@@ -477,8 +477,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			lookfor = self["filelist"].getCurrentDirectory() + self.quickselect
 
 			# Select file starting with generated text
-			for file in files:
-				if file[0][0] and file[0][0].lower().startswith(lookfor):
+			for _file in files:
+				if _file[0][0] and _file[0][0].lower().startswith(lookfor):
 					self["filelist"].instance.moveSelectionTo(idx)
 					break
 				idx += 1

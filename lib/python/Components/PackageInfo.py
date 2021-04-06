@@ -213,8 +213,8 @@ class PackageInfoHandler:
 						continue
 					indexfileList.append(indexfile)
 		if len(indexfileList):
-			for file in indexfileList:
-				neededFile = self.directory[0] + "/" + file
+			for _file in indexfileList:
+				neededFile = self.directory[0] + "/" + _file
 				if os.path.isfile(neededFile):
 					self.readIndex(self.directory[0] + "/", neededFile)
 

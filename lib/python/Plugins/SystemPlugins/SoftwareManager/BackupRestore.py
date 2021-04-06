@@ -304,9 +304,9 @@ class RestoreMenu(Screen):
 		self.path = getBackupPath()
 		if path.exists(self.path) == False:
 			makedirs(self.path)
-		for file in listdir(self.path):
-			if file.endswith(".tar.gz"):
-				self.flist.append(file)
+		for _file in listdir(self.path):
+			if _file.endswith(".tar.gz"):
+				self.flist.append(_file)
 				self.entry = True
 		self.flist.sort(reverse=True)
 		self["filelist"].l.setList(self.flist)

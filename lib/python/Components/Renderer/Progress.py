@@ -18,27 +18,27 @@ class Progress(VariableValue, Renderer):
 			(self.range, self.value) = ((0, 1), 0)
 			return
 
-		range = self.source.range or 100
+		_range = self.source.range or 100
 		value = self.source.value
 		if value is None:
 			value = 0
-		if range > 2**31-1:
-			range = 2**31-1
-		if value > range:
-			value = range
+		if _range > 2**31-1:
+			_range = 2**31-1
+		if value > _range:
+			value = _range
 		if value < 0:
 			value = 0
-		(self.range, self.value) = ((0, range), value)
+		(self.range, self.value) = ((0, _range), value)
 
 	def postWidgetCreate(self, instance):
 		instance.setRange(self.__start, self.__end)
 
-	def setRange(self, range):
-		(self.__start, self.__end) = range
+	def setRange(self, _range):
+		(self.__start, self.__end) = _range
 		if self.instance is not None:
 			self.instance.setRange(self.__start, self.__end)
 
 	def getRange(self):
 		return self.__start, self.__end
 
-	range = property(getRange, setRange)
+	_range = property(getRange, setRange)

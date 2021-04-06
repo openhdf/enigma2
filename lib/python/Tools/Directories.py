@@ -463,8 +463,8 @@ def getSize(path, pattern=".*"):
 	path_size = 0
 	if os.path.isdir(path):
 		files = crawlDirectory(path, pattern)
-		for file in files:
-			filepath = os.path.join(file[0], file[1])
+		for _file in files:
+			filepath = os.path.join(f_ile[0], f_ile[1])
 			path_size += os.path.getsize(filepath)
 	elif os.path.isfile(path):
 		path_size = os.path.getsize(path)
@@ -476,15 +476,15 @@ def lsof():
 		if pid.isdigit():
 			try:
 				prog = os.readlink(os.path.join("/proc", pid, "exe"))
-				dir = os.path.join("/proc", pid, "fd")
-				for file in [os.path.join(dir, file) for file in os.listdir(dir)]:
-					lsof.append((pid, prog, os.readlink(file)))
+				_dir = os.path.join("/proc", pid, "fd")
+				for _file in [os.path.join(_dir, _file) for _file in os.listdir(_dir)]:
+					lsof.append((pid, prog, os.readlink(_file)))
 			except OSError:
 				pass
 	return lsof
 
-def getExtension(file):
-	filename, extension = os.path.splitext(file)
+def getExtension(_file):
+	filename, extension = os.path.splitext(_file)
 	return extension
 
 def mediafilesInUse(session):
@@ -497,7 +497,7 @@ def mediafilesInUse(session):
 			filename = None
 		else:
 			filename = os.path.basename(filename)
-	return set([file for file in files if not(filename and file == filename and files.count(filename) < 2)])
+	return set([_file for _file in files if not(filename and _file == filename and files.count(filename) < 2)])
 
 # Prepare filenames for use in external shell processing. Filenames may
 # contain spaces or other special characters.  This method adjusts the

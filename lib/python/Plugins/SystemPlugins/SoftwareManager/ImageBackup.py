@@ -293,12 +293,12 @@ class ImageBackup(Screen):
 
 	def SearchUSBcanidate(self):
 		for paths, subdirs, files in walk("/media"):
-			for dir in subdirs:
-				if not dir == 'hdd' and not dir == 'net':
-					for file in listdir("/media/" + dir):
-						if file.find("backupstick") > -1:
-							print("USB-DEVICE found on: /media/%s" % dir)
-							return "/media/" + dir
+			for _dir in subdirs:
+				if not _dir == 'hdd' and not _dir == 'net':
+					for _file in listdir("/media/" + _dir):
+						if _file.find("backupstick") > -1:
+							print("USB-DEVICE found on: /media/%s" % _dir)
+							return "/media/" + _dir
 			break
 		return "XX"
 

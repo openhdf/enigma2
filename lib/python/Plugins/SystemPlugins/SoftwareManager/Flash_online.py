@@ -85,15 +85,15 @@ class FlashOnline(Screen):
 	def getImagesList(self):
 
 		def getImages(files):
-			for file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
+			for _file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
 				try:
-					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(file).namelist()]):
+					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(_file).namelist()]):
 						imagetyp = _("Downloaded Images")
-						if (file.find("backup") != -1):
+						if (_file.find("backup") != -1):
 							imagetyp = _("Fullbackup Images")
 						if imagetyp not in self.imagesList:
 							self.imagesList[imagetyp] = {}
-						self.imagesList[imagetyp][file] = {'link': file, 'name': file.split(os.sep)[-1]}
+						self.imagesList[imagetyp][file] = {'link': _file, 'name': _file.split(os.sep)[-1]}
 				except:
 					pass
 
@@ -118,27 +118,27 @@ class FlashOnline(Screen):
 							media = os.path.join(media, customDir)
 							if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
 								getImages([os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
-								for dir in [dir for dir in [os.path.join(media, dir) for dir in os.listdir(media)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
-									shutil.rmtree(dir)
+								for _dir in [_dir for _dir in [os.path.join(media, _dir) for _dir in os.listdir(media)] if os.path.isdir(_dir) and os.path.splitext(_dir)[1] == ".unzipped"]:
+									shutil.rmtree(_dir)
 
-		list = []
+		_list = []
 		for catagorie in reversed(sorted(list(self.imagesList.keys()))):
 			if catagorie in self.expanded:
-				list.append(ChoiceEntryComponent('expanded', ((str(catagorie)), "Expander")))
+				_list.append(ChoiceEntryComponent('expanded', ((str(catagorie)), "Expander")))
 				for image in reversed(sorted(list(self.imagesList[catagorie].keys()), key=lambda x: x.split(os.sep)[-1])):
-					list.append(ChoiceEntryComponent('verticalline', ((str(self.imagesList[catagorie][image]['name'])), str(self.imagesList[catagorie][image]['link']))))
+					_list.append(ChoiceEntryComponent('verticalline', ((str(self.imagesList[catagorie][image]['name'])), str(self.imagesList[catagorie][image]['link']))))
 			else:
-				for image in list(self.imagesList[catagorie].keys()):
-					list.append(ChoiceEntryComponent('expandable', ((str(catagorie)), "Expander")))
+				for image in _list(self.imagesList[catagorie].keys()):
+					_list.append(ChoiceEntryComponent('expandable', ((str(catagorie)), "Expander")))
 					break
-		if list:
-			self["list"].setList(list)
+		if _list:
+			self["list"].setList(_list)
 			if self.setIndex:
-				self["list"].moveToIndex(self.setIndex if self.setIndex < len(list) else len(list) - 1)
+				self["list"].moveToIndex(self.setIndex if self.setIndex < len(_list) else len(_list) - 1)
 				if self["list"].l.getCurrentSelection()[0][1] == "Expander":
 					self.setIndex -= 1
 					if self.setIndex:
-						self["list"].moveToIndex(self.setIndex if self.setIndex < len(list) else len(list) - 1)
+						self["list"].moveToIndex(self.setIndex if self.setIndex < len(_list) else len(_list) - 1)
 				self.setIndex = 0
 			self.selectionChanged()
 		else:

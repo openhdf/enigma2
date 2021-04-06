@@ -77,9 +77,9 @@ class CopyMeta(Task):
 		from os import listdir
 		path, filename = sourcefile.rstrip("/").rsplit("/", 1)
 		tsfiles = listdir(path)
-		for file in tsfiles:
-			if file.startswith(filename+"."):
-				self.args += [path+'/'+file]
+		for _file in tsfiles:
+			if _file.startswith(filename+"."):
+				self.args += [path+'/'+_file]
 		self.args += [self.job.workspace]
 		self.weighting = 15
 
@@ -184,9 +184,9 @@ class DemuxTask(Task):
 
 		if failed:
 			import os
-			for file in self.generated_files:
+			for _file in self.generated_files:
 				try:
-					os.remove(file)
+					os.remove(_file)
 				except OSError:
 					pass
 

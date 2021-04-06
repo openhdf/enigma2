@@ -167,9 +167,9 @@ def openList(session, files):
 
 	res = { }
 
-	for file in files:
+	for _file in files:
 		for s in scanner:
-			s.handleFile(res, file)
+			s.handleFile(res, _file)
 
 	choices = [ (r.description, r, res[r], session) for r in res ]
 	Len = len(choices)

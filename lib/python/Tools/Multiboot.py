@@ -35,14 +35,14 @@ def getMultibootslots():
 		if not path.isdir(Imagemount):
 			mkdir(Imagemount)
 		Console().ePopen("/bin/mount %s %s" % (SystemInfo["MBbootdevice"], Imagemount))
-		for file in glob.glob(path.join(Imagemount, "STARTUP_*")):
-			if "STARTUP_RECOVERY" in file:
+		for _file in glob.glob(path.join(Imagemount, "STARTUP_*")):
+			if "STARTUP_RECOVERY" in _file:
 				SystemInfo["RecoveryMode"] = True
 				print("[multiboot] [getMultibootslots] RecoveryMode is set to:%s" % SystemInfo["RecoveryMode"])
-			slotnumber = file.rsplit("_", 3 if "BOXMODE" in file else 1)[1]
+			slotnumber = _file.rsplit("_", 3 if "BOXMODE" in _file else 1)[1]
 			if slotnumber.isdigit() and slotnumber not in bootslots:
 				slot = {}
-				for line in open(file).readlines():
+				for line in open(_file).readlines():
 					# print "Multiboot getMultibootslots readlines = %s " %line
 					if "root=" in line:
 						line = line.rstrip("\n")

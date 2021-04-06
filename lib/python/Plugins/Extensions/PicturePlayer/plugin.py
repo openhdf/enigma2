@@ -23,10 +23,11 @@ def menu(menuid, **kwargs):
 	return []
 
 def filescan_open(list, session, **kwargs):
+	_list = list
 	# Recreate List as expected by PicView
-	filelist = [((file.path, False), None) for file in list]
+	filelist = [((_file.path, False), None) for _file in _list]
 	from .ui import Pic_Full_View
-	session.open(Pic_Full_View, filelist, 0, file.path)
+	session.open(Pic_Full_View, filelist, 0, _file.path)
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
@@ -34,8 +35,8 @@ def filescan(**kwargs):
 
 	# Overwrite checkFile to only detect local
 	class LocalScanner(Scanner):
-		def checkFile(self, file):
-			return os.path.exists(file.path)
+		def checkFile(self, _file):
+			return os.path.exists(_file.path)
 
 	return \
 		LocalScanner(mimetypes = ["image/jpeg", "image/png", "image/gif", "image/bmp"],

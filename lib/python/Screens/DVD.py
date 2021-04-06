@@ -668,12 +668,12 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if pathExists(devicepath):
 			from Components.Scanner import scanDevice
 			res = scanDevice(devicepath)
-			list = [ (r.description, r, res[r], self.session) for r in res ]
-			if list:
-				(desc, scanner, files, session) = list[0]
-				for file in files:
-					print(file)
-					if file.mimetype == "video/x-dvd":
+			_list = [ (r.description, r, res[r], self.session) for r in res ]
+			if _list:
+				(desc, scanner, files, session) = _list[0]
+				for _file in files:
+					print(_file)
+					if _file.mimetype == "video/x-dvd":
 						print("physical dvd found:", devicepath)
 						self.physicalDVD = True
 						return

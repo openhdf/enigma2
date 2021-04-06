@@ -251,9 +251,9 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self.onShown.append(self.applySettings)
 
 		self.playlistIOInternal = PlaylistIOInternal()
-		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
-		if list:
-			for x in list:
+		_list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
+		if _list:
+			for x in _list:
 				self.playlist.addFile(x.ref)
 			self.playlist.updateList()
 
@@ -691,8 +691,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			self.playlist.clear()
 			self.savePlaylistOnExit = False
 			self.isAudioCD = True
-			for file in self.cdAudioTrackFiles:
-				ref = eServiceReference(4097, 0, file)
+			for _file in self.cdAudioTrackFiles:
+				ref = eServiceReference(4097, 0, _file)
 				self.playlist.addFile(ref)
 			try:
 				from Plugins.Extensions.CDInfo.plugin import Query
@@ -776,8 +776,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			extension = path[0].rsplit('.', 1)[-1]
 			if extension in self.playlistparsers:
 				playlist = self.playlistparsers[extension]()
-				list = playlist.open(path[1])
-				for x in list:
+				_list = playlist.open(path[1])
+				for x in _list:
 					self.playlist.addFile(x.ref)
 			self.playlist.updateList()
 
@@ -900,8 +900,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			extension = ServiceRef.getPath()[ServiceRef.getPath().rfind('.') + 1:]
 			if extension in self.playlistparsers:
 				playlist = self.playlistparsers[extension]()
-				list = playlist.open(ServiceRef.getPath())
-				for x in list:
+				_list = playlist.open(ServiceRef.getPath())
+				for x in _list:
 					self.playlist.addFile(x.ref)
 			self.playlist.updateList()
 		# check if MerlinMusicPlayer is installed and merlinmp3player.so is running
@@ -1108,12 +1108,12 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				devpath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
 				self.cdAudioTrackFiles = []
 				res = scanDevice(devpath)
-				list = [ (r.description, r, res[r], self.session) for r in res ]
-				if list:
-					(desc, scanner, files, session) = list[0]
-					for file in files:
-						if file.mimetype == "audio/x-cda":
-							self.cdAudioTrackFiles.append(file.path)
+				_list = [ (r.description, r, res[r], self.session) for r in res ]
+				if _list:
+					(desc, scanner, files, session) = _list[0]
+					for _file in files:
+						if _file.mimetype == "audio/x-cda":
+							self.cdAudioTrackFiles.append(_file.path)
 			else:
 				self.cdAudioTrackFiles = []
 				if self.isAudioCD:
@@ -1167,35 +1167,38 @@ def menu(menuid, **kwargs):
 	return []
 
 def filescan_open(list, session, **kwargs):
+	_list = list
 	from enigma import eServiceReference
 
 	mp = session.open(MediaPlayer)
 	mp.playlist.clear()
 	mp.savePlaylistOnExit = False
 
-	for file in list:
-		if file.mimetype == "video/MP2T":
+	for _file in _list:
+		if _file.mimetype == "video/MP2T":
 			stype = 1
 		else:
 			stype = 4097
-		ref = eServiceReference(stype, 0, file.path)
+		ref = eServiceReference(stype, 0, _file.path)
 		mp.playlist.addFile(ref)
 
 	mp.changeEntry(0)
 	mp.switchToPlayList()
 
 def audioCD_open(list, session, **kwargs):
+	_list = list
 	mp = session.open(MediaPlayer)
-	mp.cdAudioTrackFiles = [f.path for f in list]
+	mp.cdAudioTrackFiles = [f.path for f in _list]
 	mp.playAudioCD()
 
 def movielist_open(list, session, **kwargs):
-	if not list:
+	_list = list
+	if not _list:
 		# sanity
 		return
 	from enigma import eServiceReference
 	from Screens.InfoBar import InfoBar
-	f = list[0]
+	f = _list[0]
 	if f.mimetype == "video/MP2T":
 		stype = 1
 	else:
