@@ -279,18 +279,18 @@ class Setup(ConfigListScreen, Screen):
 				if not isinstance(item, ConfigNothing):
 					list.append((item_text, item, item_description))
 
-def getSetupTitle(id):
+def getSetupTitle(setupId):
 	xmldata = setupdom().getroot()
 	for x in xmldata.findall("setup"):
 		if x.get("key") == setupId:
 			if _(six.ensure_str(x.get("title", ""))) == _("OSD Settings") or _(six.ensure_str(x.get("title", ""))) == _("Softcam Setup") or _(six.ensure_str(x.get("title", ""))) == _("EPG settings"):
 				return _("Settings...")
 			return six.ensure_str(x.get("title", ""))
-	raise SetupError("unknown setup id '%s'!" % repr(id))
+	raise SetupError("unknown setup id '%s'!" % repr(setupId))
 
-def getSetupTitleLevel(id):
+def getSetupTitleLevel(setupId):
 	xmldata = setupdom().getroot()
 	for x in xmldata.findall("setup"):
-		if x.get("key") == id:
+		if x.get("key") == setupId:
 			return int(x.get("level", 0))
 	return 0
