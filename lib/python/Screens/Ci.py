@@ -220,9 +220,9 @@ class MMIDialog(Screen):
 		elif action == 3:		#mmi already there (called from infobar)
 			self.showScreen()
 
-	def addEntry(self, list, entry):
+	def addEntry(self, _list, entry):
 		if entry[0] == "TEXT":		#handle every item (text / pin only?)
-			list.append( (entry[1], ConfigNothing(), entry[2]) )
+			_list.append( (entry[1], ConfigNothing(), entry[2]) )
 		if entry[0] == "PIN":
 			pinlength = entry[1]
 			if entry[3] == 1:
@@ -232,7 +232,7 @@ class MMIDialog(Screen):
 				# unmasked pins:
 				x = ConfigPIN(0, len = pinlength)
 			self["subtitle"].setText(entry[2])
-			list.append( getConfigListEntry("", x) )
+			_list.append( getConfigListEntry("", x) )
 			self["bottom"].setText(_("please press OK when ready"))
 
 	def okbuttonClick(self):
@@ -322,22 +322,22 @@ class MMIDialog(Screen):
 			self.is_pin_list += 1
 		self.keyConfigEntry(KEY_RIGHT)
 
-	def updateList(self, list):
+	def updateList(self, _list):
 		List = self["entries"]
 		try:
 			List.instance.moveSelectionTo(0)
 		except:
 			pass
-		List.l.setList(list)
+		List.l.setList(_list)
 
 	def showWait(self):
 		self.tag = "WAIT"
 		self["title"].setText("")
 		self["subtitle"].setText("")
 		self["bottom"].setText("")
-		list = [ ]
-		list.append( (self.wait_text, ConfigNothing()) )
-		self.updateList(list)
+		_list = [ ]
+		_list.append( (self.wait_text, ConfigNothing()) )
+		self.updateList(_list)
 
 	def showScreen(self):
 		if self.screen_data is not None:
@@ -346,7 +346,7 @@ class MMIDialog(Screen):
 		else:
 			screen = self.handler.getMMIScreen(self.slotid)
 
-		list = [ ]
+		_list = [ ]
 
 		self.timer.stop()
 		if len(screen) > 0 and screen[0][0] == "CLOSE":
@@ -372,7 +372,7 @@ class MMIDialog(Screen):
 						break
 					else:
 						self.is_pin_list = 0
-						self.addEntry(list, entry)
+						self.addEntry(_list, entry)
 				else:
 					if entry[0] == "TITLE":
 						self["title"].setText(entry[1])
@@ -381,8 +381,8 @@ class MMIDialog(Screen):
 					elif entry[0] == "BOTTOM":
 						self["bottom"].setText(entry[1])
 					elif entry[0] == "TEXT":
-						self.addEntry(list, entry)
-			self.updateList(list)
+						self.addEntry(_list, entry)
+			self.updateList(_list)
 
 	def ciStateChanged(self):
 		do_close = False
