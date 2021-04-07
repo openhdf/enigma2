@@ -1,6 +1,5 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from __future__ import division
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Harddisk import harddiskmanager, findMountPoint
 from Components.Input import Input
@@ -47,7 +46,6 @@ from Screens.ShowPressedButtons import ShowPressedButtons
 from ServiceReference import ServiceReference, isPlayableForCur
 from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecordPath
 from Screens.TimerEntry import TimerEntry as TimerEntry
-import NavigationInstance
 from Tools import Directories, Notifications
 from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN
 from Tools.KeyBindings import getKeyDescription
@@ -158,9 +156,9 @@ def saveResumePoints():
 
 def loadResumePoints():
 	try:
-		file = open('/etc/enigma2/resumepoints.pkl', 'rb')
-		PickleFile = six.moves.cPickle.load(file)
-		file.close()
+		f = open('/etc/enigma2/resumepoints.pkl', 'rb')
+		PickleFile = six.moves.cPickle.load(f)
+		f.close()
 		return PickleFile
 	except Exception as ex:
 		print("[InfoBarGenerics] Failed to load resumepoints:", ex)
@@ -339,7 +337,6 @@ class InfoBarScreenSaver:
 		self.screensaver.hide()
 
 	def __onExecBegin(self):
-		eActionMap.getInstance().bindAction('', -maxsize - 1, self.keypressScreenSaver)
 		self.ScreenSaverTimerStart()
 
 	def __onExecEnd(self):
@@ -379,7 +376,7 @@ class InfoBarScreenSaver:
 
 class HideVBILine(Screen):
 	def __init__(self, session):
-		self.skin = """<screen position="0,0" size="%s,%s" flags="wfNoBorder" zPosition="1"/>""" % (getDesktop(0).size().width(), getDesktop(0).size().height() // 360 + 1)
+		self.skin = """<screen position="0,0" size="%s,%s" flags="wfNoBorder" zPosition="1"/>""" % (getDesktop(0).size().width(), getDesktop(0).size().height() / 360 + 1)
 		Screen.__init__(self, session)
 
 class SecondInfoBar(Screen):
@@ -517,7 +514,7 @@ class SecondInfoBar(Screen):
 		refstr = serviceref.ref.toString()
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret : not ret or self.removeTimer(timer)
+				cb_func = lambda ret: not ret or self.removeTimer(timer)
 				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
 				break
 		else:
@@ -616,12 +613,12 @@ class SecondInfoBar(Screen):
 			self.key_green_choice = self.ADD_TIMER
 
 	def openSimilarList(self):
-		id = self.event and self.event.getEventId()
+		_id = self.event and self.event.getEventId()
 		refstr = str(self.currentService)
-		if id is not None:
+		if _id is not None:
 			self.hide()
 			self.secondInfoBarWasShown = False
-			self.session.open(EPGSelection, refstr, None, id)
+			self.session.open(EPGSelection, refstr, None, _id)
 
 class InfoBarShowHide(InfoBarScreenSaver):
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
@@ -634,7 +631,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	skipToggleShow = False
 
 	def __init__(self):
-		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"],
+		self["ShowHideActions"] = ActionMap(["InfobarShowHideActions"],
 			{
 				"LongOKPressed": self.toggleShowLong,
 				"toggleShow": self.OkPressed,
@@ -831,14 +828,14 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def doHide(self):
 		if self.__state != self.STATE_HIDDEN:
 			if self.dimmed > 0:
-				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed//config.usage.show_infobar_dimming_speed.value))
+				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
 				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
 				self.hide()
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			if self.dimmed > 0:
-				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed//config.usage.show_infobar_dimming_speed.value))
+				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
 				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
@@ -863,7 +860,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 #					pass
 
 	def toggleHotkeyShow(self):
-		if not hasattr(self, "LongButtonPressed"):
+		if not "LongButtonPressed" in self:
 			self.LongButtonPressed = False
 		if not self.LongButtonPressed:
 			if self.__state == self.STATE_HIDDEN:
@@ -964,7 +961,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def showSecondInfoBar(self):
 		if isStandardInfoBar(self) and config.usage.show_second_infobar.value == "EPG":
-			if not(hasattr(self, "hotkeyGlobal") and self.hotkeyGlobal("info") != 0):
+			if not (hasattr(self, "hotkeyGlobal") and self.hotkeyGlobal("info") != 0):
 				self.showDefaultEPG()
 		elif self.secondInfoBarScreen and config.usage.show_second_infobar.value and not self.secondInfoBarScreen.shown:
 			self.show()
@@ -1005,7 +1002,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.__locked -= 1
 		except:
 			self.__locked = 0
-		if self.__locked  <0:
+		if self.__locked < 0:
 			self.__locked = 0
 		if self.execing:
 			self.startHideTimer()
@@ -1185,7 +1182,7 @@ class InfoBarNumberZap:
 	def keyNumberGlobal(self, number):
 		if "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4)//2, self.pvrStateDialog["PTSSeekPointer"].position[1])
+			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4)/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
@@ -3448,7 +3445,7 @@ class Seekbar(Screen):
 				position = self.seek.getPlayPosition()
 				if self.length and position and int(self.length[1]) > 0:
 					if int(position[1]) > 0:
-						self.percent = float(position[1]) * 100.0 // float(self.length[1])
+						self.percent = float(position[1]) * 100.0 / float(self.length[1])
 				else:
 					self.close()
 
@@ -3466,8 +3463,8 @@ class Seekbar(Screen):
 			x = 145 + int(2.7 * self.percent)
 			self["cursor"].moveTo(x, 15, 1)
 			self["cursor"].startMoving()
-			pts = int(float(self.length[1]) // 100.0 * self.percent)
-			self["time"].setText("%d:%02d" % ((pts//60//90000), ((pts//90000)%60)))
+			pts = int(float(self.length[1]) / 100.0 * self.percent)
+			self["time"].setText("%d:%02d" % ((pts/60/90000), ((pts/90000)%60)))
 
 	def exit(self):
 		self.cursorTimer.stop()
@@ -3475,16 +3472,16 @@ class Seekbar(Screen):
 
 	def keyOK(self):
 		if self.length:
-			self.seek.seekTo(int(float(self.length[1]) // 100.0 * self.percent))
+			self.seek.seekTo(int(float(self.length[1]) / 100.0 * self.percent))
 			self.exit()
 
 	def keyLeft(self):
-		self.percent -= float(config.seek.sensibility.value) // 10.0
+		self.percent -= float(config.seek.sensibility.value) / 10.0
 		if self.percent < 0.0:
 			self.percent = 0.0
 
 	def keyRight(self):
-		self.percent += float(config.seek.sensibility.value) // 10.0
+		self.percent += float(config.seek.sensibility.value) / 10.0
 		if self.percent > 100.0:
 			self.percent = 100.0
 
@@ -3684,14 +3681,14 @@ class InfoBarSeek:
 			SystemInfo["SeekStatePlay"] = True
 			if os.path.exists("/proc/stb/lcd/symbol_hdd"):
 				if config.lcd.hdd.value == "1":
-					file = open("/proc/stb/lcd/symbol_hdd", "w")
-					file.write('%d' % int(hdd))
-					file.close()
+					f = open("/proc/stb/lcd/symbol_hdd", "w")
+					f.write('%d' % int(hdd))
+					f.close()
 			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
 				if config.lcd.hdd.value == "1":
-					file = open("/proc/stb/lcd/symbol_hddprogress", "w")
-					file.write('%d' % int(self.activity))
-					file.close()
+					f = open("/proc/stb/lcd/symbol_hddprogress", "w")
+					f.write('%d' % int(self.activity))
+					f.close()
 		else:
 			self.activityTimer.stop()
 			self.activity = 0
@@ -3700,13 +3697,13 @@ class InfoBarSeek:
 
 		SystemInfo["SeekStatePlay"] = True
 		if os.path.exists("/proc/stb/lcd/symbol_hdd"):
-			file = open("/proc/stb/lcd/symbol_hdd", "w")
-			file.write('%d' % int(hdd))
-			file.close()
+			f = open("/proc/stb/lcd/symbol_hdd", "w")
+			f.write('%d' % int(hdd))
+			f.close()
 		if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
-			file = open("/proc/stb/lcd/symbol_hddprogress", "w")
-			file.write('%d' % int(self.activity))
-			file.close()
+			f = open("/proc/stb/lcd/symbol_hddprogress", "w")
+			f.write('%d' % int(self.activity))
+			f.close()
 		if self.LastseekAction:
 			self.DoSeekAction()
 
@@ -3814,7 +3811,7 @@ class InfoBarSeek:
 			self.lastseekstate = self.seekstate
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 
-	def unPauseService(self):#
+	def unPauseService(self):
 		SystemInfo["StatePlayPause"] = False
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			if self.seekAction != 0: self.playpauseService()
@@ -4301,14 +4298,6 @@ class InfoBarExtensions:
 	def bluekey_ex(self):
 		self.showExtensionSelection()
 
-	def quickmenuStart(self):
-		try:
-			self.showExtensionSelection()
-		except:
-			print("[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu")
-			from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
-			self.session.open(QuickMenu)
-
 	def SelectopenEventView(self):
 		try:
 			self.openEventView()
@@ -4328,7 +4317,7 @@ class InfoBarExtensions:
 		return _("Restart Network")
 
 	def getRestartNetwork(self):
-			return [((boundFunction(self.getRestartNetworkname), boundFunction(self.openRestartNetwork), lambda: True), None)]
+		return [((boundFunction(self.getRestartNetworkname), boundFunction(self.openRestartNetwork), lambda: True), None)]
 
 	def get3DSetupname(self):
 		return _("OSD 3D Setup")
@@ -4398,7 +4387,7 @@ class InfoBarExtensions:
 		self.updateExtensions()
 		extensionsList = self.extensionsList[:]
 		keys = []
-		list = []
+		_list = []
 		colorlist = []
 		for x in self.availableKeys:
 			if x in self.extensionKeys:
@@ -4407,7 +4396,7 @@ class InfoBarExtensions:
 				if extension[2]():
 					name = str(extension[0]())
 					if self.availableKeys.index(x) < 10:
-						list.append((extension[0](), extension))
+						_list.append((extension[0](), extension))
 					else:
 						colorlist.append((extension[0](), extension))
 					keys.append(x)
@@ -4415,11 +4404,11 @@ class InfoBarExtensions:
 				else:
 					extensionsList.remove(extension)
 		if config.usage.sort_extensionslist.value:
-			list.sort()
+			_list = sorted(_list)
 		for x in colorlist:
-			list.append(x)
-		list.extend([(x[0](), x) for x in extensionsList])
-		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list, keys = keys, skin_name = "ExtensionsList")
+			_list.append(x)
+		_list.extend([(x[0](), x) for x in extensionsList])
+		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = _list, keys = keys, skin_name = "ExtensionsList")
 
 	def extensionCallback(self, answer):
 		if answer is not None:
@@ -4593,7 +4582,7 @@ class InfoBarJobman:
 			return []
 
 	def getJobName(self, job):
-		return "%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100*job.progress//float(job.end)))
+		return "%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
 
 	def showJobView(self, job):
 		from Screens.TaskView import JobView
@@ -4851,7 +4840,7 @@ class InfoBarPiP:
 			self.showPiP()
 
 	def doSwapPiP(self):
-		if hasattr(self.session, "pip"):
+		if "pip" in self.session:
 			if InfoBarPiP.pipWindowActive:
 				slist = self.servicelist
 				if slist and self.session.pipshown:
@@ -4886,7 +4875,7 @@ class InfoBarPiP:
 				self.LeftPressed()
 
 	def doTogglePipzap(self):
-		if hasattr(self.session, "pip"):
+		if "pip" in self.session:
 			if self.session.pipshown:
 				if config.usage.pip_mode.value == "byside":
 					if InfoBarPiP.pipWindowActive:
@@ -5025,14 +5014,6 @@ class InfoBarQuickMenu:
 
 	def bluekey_qm(self):
 		self.showExtensionSelection()
-
-	def quickmenuStart(self):
-		try:
-			self.showExtensionSelection()
-		except:
-			print("[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu")
-			from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
-			self.session.open(QuickMenu)
 
 class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to
@@ -5670,7 +5651,7 @@ class InfoBarResolutionSelection:
 		yres = int(yresString, 16)
 		fps = int(fpsString)
 		fpsFloat = float(fps)
-		fpsFloat = fpsFloat//1000
+		fpsFloat = fpsFloat/1000
 
 		# do we need a new sorting with this way here?
 		# or should we disable some choices?
@@ -5895,7 +5876,7 @@ class InfoBarCueSheetSupport:
 				self.resume_point = last
 				l = last // 90000
 				if "ask" in config.usage.on_movie_start.value or not length[1]:
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l//3600, l%3600//60, l%60))), timeout=10, default="yes" in config.usage.on_movie_start.value)
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=10, default="yes" in config.usage.on_movie_start.value)
 				elif config.usage.on_movie_start.value == "resume":
 # TRANSLATORS: The string "Resuming playback" flashes for a moment
 # TRANSLATORS: at the start of a movie, when the user has selected
@@ -6294,9 +6275,9 @@ class InfoBarZoom:
 			zoomval=self.zoomrate
 		# print("zoomRate:", self.zoomrate)
 		# print("zoomval:", zoomval)
-		file = open("/proc/stb/vmpeg/0/zoomrate", "w")
-		file.write('%d' % int(zoomval))
-		file.close()
+		f = open("/proc/stb/vmpeg/0/zoomrate", "w")
+		f.write('%d' % int(zoomval))
+		f.close()
 
 	def ZoomOff(self):
 		self.zoomrate = 0
@@ -6465,13 +6446,13 @@ class InfoBarSleepTimer:
 
 	def sleepTimerState(self):
 		if self.sleepTimer.isActive():
-			return (self.sleepStartTime - time()) // 60
+			return (self.sleepStartTime - time()) / 60
 		return 0
 
 	def setSleepTimer(self, sleepTime, showMessage = True):
 		print("[InfoBarSleepTimer] set sleeptimer", sleepTime)
 		if sleepTime:
-			m = abs(sleepTime // 60)
+			m = abs(sleepTime / 60)
 			message = _("The sleep timer has been activated.") + "\n" + _("Delay:") + " " + _("%d minutes") % m
 			self.sleepTimer.startLongTimer(sleepTime)
 			self.sleepStartTime = time() + sleepTime

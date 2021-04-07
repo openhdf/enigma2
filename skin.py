@@ -258,34 +258,41 @@ addSkin('skin_default.xml')
 profile("LoadSkinDefaultDone")
 
 def parseCoordinate(s, e, size=0, font=None):
-	s = s.strip()
-	if s == "center":
-		if not size:
-			val = 0
-		else:
-			val = (e - size)//2
-	elif s == '*':
+	orig = s = s.strip()
+	if s == "center":  # For speed as this can be common case.
+		val = 0 if not size else (e - size) // 2
+	elif s == "*":
 		return None
 	else:
-		if s[0] == 'e':
-			val = e
-			s = s[1:]
-		elif s[0] == 'c':
-			val = e//2
-			s = s[1:]
-		else:
-			val = 0
-		if s:
-			if s[-1] == '%':
-				val += e * int(s[:-1]) // 100
-			elif s[-1] == 'w':
-				val += fonts[font][3] * int(s[:-1])
-			elif s[-1] == 'h':
-				val += fonts[font][2] * int(s[:-1])
-			else:
-				val += int(s)
-	if val < 0:
-		val = 0
+		try:
+			val = int(s)  # For speed try a simple number first.
+		except ValueError:
+			if font is None and ("w" in s or "h" in s):
+				print("[Skin] Error: 'w' or 'h' is being used in a field where neither is valid. Input string: '%s'" % orig)
+				return 0
+			if "center" in s:
+				s = s.replace("center", str((e - size) / 2.0))
+			if "e" in s:
+				s = s.replace("e", str(e))
+			if "c" in s:
+				s = s.replace("c", str(e / 2.0))
+			if "w" in s:
+				s = s.replace("w", "*%s" % str(fonts[font][3]))
+			if "h" in s:
+				s = s.replace("h", "*%s" % str(fonts[font][2]))
+			if "%" in s:
+				s = s.replace("%", "*%s" % str(e / 100.0))
+			if "f" in s:
+				s = s.replace("f", str(getSkinFactor()))
+			try:
+				val = int(s)  # For speed try a simple number first.
+			except ValueError:
+				try:
+					val = int(eval(s))
+				except Exception as err:
+					print("[Skin] %s '%s': Coordinate '%s', processed to '%s', cannot be evaluated!" % (type(err).__name__, err, orig, s))
+					val = 0
+	# print("[Skin] DEBUG: parseCoordinate s='%s', e='%s', size=%s, font='%s', val='%s'." % (s, e, size, font, val))
 	return val
 
 def getParentSize(object, desktop):
@@ -1372,15 +1379,12 @@ def readSkin(screen, skin, names, desktop):
 	}
 
 	print("[SKIN] processing screen %s:" % name)
-#	try:
-		#context.x = 0 # reset offsets, all components are relative to screen
-		#context.y = 0 # coordinates.
-		#process_screen(myscreen, context)
-	context.x = 0 # reset offsets, all components are relative to screen
-	context.y = 0 # coordinates.
-	process_screen(myscreen, context)
-#	except Exception as e:
-#		print("[SKIN] SKIN ERROR in %s:" % name, e)
+	try:
+		context.x = 0 # reset offsets, all components are relative to screen
+		context.y = 0 # coordinates.
+		process_screen(myscreen, context)
+	except Exception as e:
+		print("[SKIN] SKIN ERROR in %s:" % name, e)
 
 	from Components.GUIComponent import GUIComponent
 	nonvisited_components = [x for x in set(list(screen.keys())) - visited_components if isinstance(x, GUIComponent)]

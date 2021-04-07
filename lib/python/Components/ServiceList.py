@@ -69,8 +69,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 		self.root = None
 		self.mode = self.MODE_NORMAL
-		self.listHeight = None
-		self.listWidth = None
+		self.listHeight = 0
+		self.listWidth = 0
 		self.ServiceNumberFontName = "Regular"
 		self.ServiceNumberFontSize = 20
 		self.ServiceNameFontName = "Regular"

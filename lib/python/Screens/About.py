@@ -13,7 +13,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.SystemInfo import SystemInfo
 from Components.config import config
 from enigma import eTimer, getEnigmaVersionString, getDesktop, eGetEnigmaDebugLvl
-from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
+from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate, getBrandOEM, getOEVersion
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork

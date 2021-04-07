@@ -150,12 +150,13 @@ from Plugins.Plugin import PluginDescriptor
 profile("misc")
 had = dict()
 
+
 def dump(_dir, p = ""):
 	if isinstance(_dir, dict):
-		for (entry, val) in list(_dir.items()):
+		for (entry, val) in _dir.items():
 			dump(val, p + "(dict)/" + entry)
 	if hasattr(_dir, "__dict__"):
-		for name, value in list(_dir.__dict__.items()):
+		for name, value in _dir.__dict__.items():
 			if str(value) not in had:
 				had[str(value)] = 1
 				dump(value, p + "/" + str(name))
@@ -759,9 +760,9 @@ profile("Init:DebugLogCheck")
 import Screens.LogManager
 Screens.LogManager.AutoLogManager()
 
-profile("Init:OnlineCheckState")
-import Components.OnlineUpdateCheck
-Components.OnlineUpdateCheck.OnlineUpdateCheck()
+#profile("Init:OnlineCheckState")
+#import Components.OnlineUpdateCheck
+#Components.OnlineUpdateCheck.OnlineUpdateCheck()
 
 profile("Init:NTPSync")
 import Components.NetworkTime
