@@ -729,7 +729,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if pathExists(devicepath):
 			from Components.Scanner import scanDevice
 			res = scanDevice(devicepath)
-                        _list = [ (r.description, r, res[r], self.session) for r in res ]
+			_list = [ (r.description, r, res[r], self.session) for r in res ]
 			if _list:
 				(desc, scanner, files, session) = _list[0]
 				for _file in files:
