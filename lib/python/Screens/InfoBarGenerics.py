@@ -340,9 +340,10 @@ class InfoBarScreenSaver:
 		self.ScreenSaverTimerStart()
 
 	def __onExecEnd(self):
+		if self.screensaver.shown:
+			self.screensaver.hide()
+			eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 		self.screenSaverTimer.stop()
-		self.screensaver.hide()
-		eActionMap.getInstance().unbindAction('', self.keypressScreenSaver)
 
 	def ScreenSaverTimerStart(self):
 		time = int(config.usage.screen_saver.value)
