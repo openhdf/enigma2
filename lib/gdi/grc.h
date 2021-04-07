@@ -67,6 +67,8 @@ struct gOpcode
 		sendShow,
 		sendHide,
 #ifdef USE_LIBVUGLES2
+		sendShowItem,
+		setFlush,
 		setView,
 #endif
 	} opcode;
@@ -156,6 +158,18 @@ struct gOpcode
 			eSize size;
 		} *setShowHideInfo;
 #ifdef USE_LIBVUGLES2
+		struct psetShowItemInfo
+		{
+			long dir;
+			ePoint point;
+			eSize size;
+		} *setShowItemInfo;
+		
+		struct psetFlush
+		{
+			bool enable;
+		} *setFlush;
+		
 		struct psetViewInfo
 		{
 			eSize size;
@@ -276,9 +290,9 @@ public:
 		BT_VALIGN_BOTTOM = 128
 	};
 
+	void blitScale(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0, int aflags = BT_SCALE);
 	void blit(gPixmap *pixmap, ePoint pos, const eRect &clip=eRect(), int flags=0);
 	void blit(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0);
-	void blitScale(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0, int aflags = BT_SCALE);
 
 	void setPalette(gRGB *colors, int start=0, int len=256);
 	void setPalette(gPixmap *source);
@@ -303,6 +317,8 @@ public:
 	void sendShow(ePoint point, eSize size);
 	void sendHide(ePoint point, eSize size);
 #ifdef USE_LIBVUGLES2
+	void sendShowItem(long dir, ePoint point, eSize size);
+	void setFlush(bool val);
 	void setView(eSize size);
 #endif
 };

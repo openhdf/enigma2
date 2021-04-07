@@ -431,21 +431,18 @@ void gPainter::clear()
 	m_rc->submit(o);
 }
 
+void gPainter::blitScale(gPixmap *pixmap, const eRect &pos, const eRect &clip, int flags, int aflags)
+{
+	blit(pixmap, pos, clip, flags | aflags);
+}
+
 void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 {
-	blitScale(pixmap, eRect(pos, eSize()), clip, flags, 0); // 0 to prevent automatic adding of scaling flag
+	blit(pixmap, eRect(pos, eSize()), clip, flags);
 }
 
 void gPainter::blit(gPixmap *pixmap, const eRect &pos, const eRect &clip, int flags)
 {
-	// support aligned blitting within a specific rectangle
-	blitScale(pixmap, pos, clip, flags, 0); // 0 to prevent automatic adding of scaling flag
-}
-
-void gPainter::blitScale(gPixmap *pixmap, const eRect &position, const eRect &clip, int flags, int aflags)
-{
-	flags |= aflags;
-
 	if ( m_dc->islocked() )
 		return;
 	gOpcode o;
@@ -459,7 +456,7 @@ void gPainter::blitScale(gPixmap *pixmap, const eRect &position, const eRect &cl
 	o.parm.blit->pixmap = pixmap;
 	o.parm.blit->clip = clip;
 	o.parm.blit->flags = flags;
-	o.parm.blit->position = position;
+	o.parm.blit->position = pos;
 	m_rc->submit(o);
 }
 
@@ -476,7 +473,7 @@ void gPainter::setPalette(gRGB *colors, int start, int len)
 	o.parm.setPalette = new gOpcode::para::psetPalette;
 	p->data=new gRGB[len];
 
-	memcpy(p->data, colors, len*sizeof(gRGB));
+	memcpy(static_cast<void*>(p->data), colors, len*sizeof(gRGB));
 	p->start=start;
 	p->colors=len;
 	o.parm.setPalette->palette = p;
@@ -672,6 +669,30 @@ void gPainter::sendHide(ePoint point, eSize size)
 }
 
 #ifdef USE_LIBVUGLES2
+void gPainter::sendShowItem(long dir, ePoint point, eSize size)
+{
+       if ( m_dc->islocked() )
+               return;
+       gOpcode o;
+       o.opcode=gOpcode::sendShowItem;
+       o.dc = m_dc.grabRef();
+       o.parm.setShowItemInfo = new gOpcode::para::psetShowItemInfo;
+       o.parm.setShowItemInfo->dir = dir;
+       o.parm.setShowItemInfo->point = point;
+       o.parm.setShowItemInfo->size = size;
+       m_rc->submit(o);
+}
+void gPainter::setFlush(bool val)
+{
+       if ( m_dc->islocked() )
+               return;
+       gOpcode o;
+       o.opcode=gOpcode::setFlush;
+       o.dc = m_dc.grabRef();
+       o.parm.setFlush = new gOpcode::para::psetFlush;
+       o.parm.setFlush->enable = val;
+       m_rc->submit(o);
+}
 void gPainter::setView(eSize size)
 {
 	if ( m_dc->islocked() )
@@ -844,7 +865,7 @@ void gDC::exec(const gOpcode *o)
 		if (o->parm.setPalette->palette->colors > (m_pixmap->surface->clut.colors-o->parm.setPalette->palette->start))
 			o->parm.setPalette->palette->colors = m_pixmap->surface->clut.colors-o->parm.setPalette->palette->start;
 		if (o->parm.setPalette->palette->colors)
-			memcpy(m_pixmap->surface->clut.data+o->parm.setPalette->palette->start, o->parm.setPalette->palette->data, o->parm.setPalette->palette->colors*sizeof(gRGB));
+			memcpy(static_cast<void*>(m_pixmap->surface->clut.data+o->parm.setPalette->palette->start), o->parm.setPalette->palette->data, o->parm.setPalette->palette->colors*sizeof(gRGB));
 
 		delete[] o->parm.setPalette->palette->data;
 		delete o->parm.setPalette->palette;
@@ -901,6 +922,10 @@ void gDC::exec(const gOpcode *o)
 	case gOpcode::sendHide:
 		break;
 #ifdef USE_LIBVUGLES2
+	case gOpcode::sendShowItem:
+		break;
+	case gOpcode::setFlush:
+		break;
 	case gOpcode::setView:
 		break;
 #endif

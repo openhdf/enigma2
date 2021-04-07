@@ -172,6 +172,7 @@ void gFBDC::exec(const gOpcode *o)
 			gles_do_animation();
 		else
 			fb->blit();
+		gles_flush();
 #else
 		fb->blit();
 #endif
@@ -223,6 +224,7 @@ void gFBDC::exec(const gOpcode *o)
 		gles_set_buffer((unsigned int *)surface.data);
 		gles_set_animation(1, o->parm.setShowHideInfo->point.x(), o->parm.setShowHideInfo->point.y(), o->parm.setShowHideInfo->size.width(), o->parm.setShowHideInfo->size.height());
 #endif
+		delete o->parm.setShowHideInfo;
 		break;
 	}
 	case gOpcode::sendHide:
@@ -234,12 +236,27 @@ void gFBDC::exec(const gOpcode *o)
 		gles_set_buffer((unsigned int *)surface.data);
 		gles_set_animation(0, o->parm.setShowHideInfo->point.x(), o->parm.setShowHideInfo->point.y(), o->parm.setShowHideInfo->size.width(), o->parm.setShowHideInfo->size.height());
 #endif
+		delete o->parm.setShowHideInfo;
 		break;
 	}
 #ifdef USE_LIBVUGLES2
+	case gOpcode::sendShowItem:
+	{
+		gles_set_buffer((unsigned int *)surface.data);
+		gles_set_animation_listbox(o->parm.setShowItemInfo->dir, o->parm.setShowItemInfo->point.x(), o->parm.setShowItemInfo->point.y(), o->parm.setShowItemInfo->size.width(), o->parm.setShowItemInfo->size.height());
+		delete o->parm.setShowItemInfo;
+		break;
+	}
+	case gOpcode::setFlush:	
+	{
+		gles_set_flush(o->parm.setFlush->enable);
+		delete o->parm.setFlush;
+		break;
+	}
 	case gOpcode::setView:
 	{
 		gles_viewport(o->parm.setViewInfo->size.width(), o->parm.setViewInfo->size.height(), fb->Stride());
+		delete o->parm.setViewInfo;
 		break;
 	}
 #endif
@@ -351,7 +368,7 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	{
 		surface.clut.colors = 256;
 		surface.clut.data = new gRGB[surface.clut.colors];
-		memset(surface.clut.data, 0, sizeof(*surface.clut.data)*surface.clut.colors);
+		memset(static_cast<void*>(surface.clut.data), 0, sizeof(*surface.clut.data)*surface.clut.colors);
 	}
 
 	surface_back.clut = surface.clut;
@@ -443,4 +460,6 @@ void setAnimation_current(int a) {
 void setAnimation_speed(int speed) {
 	CFile::writeInt("/proc/stb/fb/animation_speed", speed);
 }
+
+void setAnimation_current_listbox(int a) {}
 #endif
