@@ -62,11 +62,7 @@ chmod -R 755 /usr/scripts
 [ -f @sysconfdir@/enigma2/settings ] || cp @datadir@/enigma2/defaults/* @sysconfdir@/enigma2/
 
 # any debuglevel passed?
-if [ -z $ENIGMA_DEBUG_LVL ]; then
-	DEBUG_LVL=3
-else
-	DEBUG_LVL=$ENIGMA_DEBUG_LVL
-fi
+DEBUG_LVL=${ENIGMA_DEBUG_LVL:-4}
 
 #check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
@@ -128,18 +124,18 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 		RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
 	fi
 	LOGFOLDER="/home/root/logs/"
+	LOGFILE=${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
 	if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
 	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
 		LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
 	fi
-	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2 &> ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+	ln -sf ${LOGFILE} ${LOGFOLDER}currlog
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2 2>&1 | tee -a ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+	ln -sf ${LOGFILE} ${LOGFOLDER}lastlog
+	ret=${PIPESTATUS[0]}
 else
-	# in case $TERM is "linux" the serial output is activated - discard debug output
-	if [ "$TERM" = linux ]; then
-		LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2 2> /dev/null
-	else
-		LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2
-	fi
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2
+	ret=$?
 fi
 
 # enigma2 exit codes:
@@ -149,8 +145,6 @@ fi
 # 3 - restart enigma
 #
 # >128 signal
-
-ret=$?
 
 if [ "$ret" -ne "1" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
