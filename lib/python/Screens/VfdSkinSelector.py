@@ -32,7 +32,6 @@ class VFDSkinSelector(Screen):
 			<widget name="key_blue" position="520,350" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
-	skinlist = []
 	root = eEnv.resolve("/usr/share/enigma2/display/")
 
 	def __init__(self, session, args = None):
@@ -42,11 +41,20 @@ class VFDSkinSelector(Screen):
 		self.list = []
 		self.previewPath = ""
 		self.actual = None
-		path.walk(self.root, self.find, "")
+
+		for root, dirs, files in walk(self.root, followlinks=True):
+			for x in files:
+				if x.startswith("skinvfd") and x.endswith(".xml"):
+					if root is not self.root:
+						subdir = root[19:]
+						skinname = x
+						self.list.append(skinname)
+					else:
+						skinname = x
+						self.list.append(skinname)
 
 		self["key_red"] = StaticText(_("Close"))
 		self["introduction"] = StaticText(_("Press OK to activate the selected skin."))
-		self.skinlist.sort()
 		self["SkinList"] = MenuList(self.list)
 		self["Preview"] = Pixmap()
 
@@ -118,18 +126,6 @@ class VFDSkinSelector(Screen):
 	def info(self):
 		aboutbox = self.session.open(MessageBox, _("\nVFD Skin-Selector\nby satinfo & henrylicious (thank you for support)\n\nPlugin to select skin for VFD-Display\n\n - for GigaBlue UE and GigaBlue Quad\n - for VU+ Ultimo and VU+ Duo2"), MessageBox.TYPE_INFO)
 		aboutbox.setTitle(_("About..."))
-
-	def find(self, arg, dirname, names):
-		for x in names:
-			if x.startswith("skinvfd") and x.endswith(".xml"):
-				if dirname != self.root:
-					subdir = dirname[19:]
-					skinname = x
-					skinname = subdir + "/" + skinname
-					self.list.append(skinname)
-				else:
-					skinname = x
-					self.list.append(skinname)
 
 	def ok(self):
 		skinfile = self["SkinList"].getCurrent()[0] + ".xml"
