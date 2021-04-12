@@ -131,8 +131,8 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 	fi
 	ln -sf ${LOGFILE} ${LOGFOLDER}currlog
 	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2 2>&1 | tee -a ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
-	ln -sf ${LOGFILE} ${LOGFOLDER}lastlog
 	ret=${PIPESTATUS[0]}
+	ln -sf ${LOGFILE} ${LOGFOLDER}lastlog
 else
 	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2
 	ret=$?
