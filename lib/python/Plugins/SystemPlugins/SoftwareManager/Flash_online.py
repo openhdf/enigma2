@@ -16,13 +16,13 @@ from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetBoxName, GetCurrentImage, GetImagelist
 from enigma import eTimer, fbClass
 import json, os, shutil, shutil, time, zipfile
-from six.moves.urllib.request import urlopen
+from six.moves.urllib.request import urlopen, Request
 
 
 from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineMtdKernel, getMachineMtdRoot, getMachineName
 
 feedserver = 'flash.hdfreaks.cc'
-feedurl = 'http://%s/%s/json' %(feedserver, getImageDistro())
+feedurl = 'https://%s/%s/json' %(feedserver, getImageDistro())
 
 def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('zImage', 'uImage', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_kernel.bin', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi', 'rootfs.bin')]) >= 2
@@ -93,7 +93,7 @@ class FlashOnline(Screen):
 							imagetyp = _("Fullbackup Images")
 						if imagetyp not in self.imagesList:
 							self.imagesList[imagetyp] = {}
-						self.imagesList[imagetyp][file] = {'link': _file, 'name': _file.split(os.sep)[-1]}
+						self.imagesList[imagetyp][_file] = {'link': _file, 'name': _file.split(os.sep)[-1]}
 				except:
 					pass
 
@@ -101,9 +101,7 @@ class FlashOnline(Screen):
 			box = GetBoxName()
 			if not self.jsonlist:
 				try:
-					self.jsonlist = dict(json.load(urlopen('%s/%s' % (feedurl, box))))
-					#if config.usage.alternative_imagefeed.value:
-					#	self.jsonlist.update(dict(json.load(urlopen('%s%s' % (config.usage.alternative_imagefeed.value, box)))))
+					self.jsonlist = dict(json.load(urlopen(Request('%s/%s' % (feedurl, box), headers={'User-Agent': 'Mozilla/5.0'}))))
 				except:
 					pass
 			self.imagesList = dict(self.jsonlist)
