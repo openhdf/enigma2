@@ -25,7 +25,7 @@ def ParentalControlEntryComponent(service, name, protectionType):
 	return res
 
 class ParentalControlList(MenuList):
-	def __init__(self, list, enableWrapAround = False):
+	def __init__(self, list, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setItemHeight(32)

@@ -63,7 +63,7 @@ class SelectBouquet(Screen):
 	def cancelClick(self):
 		self.close(None)
 
-def zapToService(service, preview = False, zapback = False):
+def zapToService(service, preview=False, zapback=False):
 	if Servicelist.startServiceRef is None:
 		Servicelist.startServiceRef = Session.nav.getCurrentlyPlayingServiceReference()
 	if not service is None:
@@ -124,7 +124,7 @@ def changeBouquetCB(direction, epgcall):
 	epg = epgcall
 	Session.openWithCallback(onSelectBouquetClose, SelectBouquet, bouquets, epg_bouquet, direction)
 
-def main(session, servicelist = None, **kwargs):
+def main(session, servicelist=None, **kwargs):
 	global Session
 	Session = session
 	global Servicelist
@@ -156,7 +156,7 @@ def reopen(answer):
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")
 	descr = _("A graphical EPG for all services of an specific bouquet")
-	list = [(PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EVENTINFO, needsRestart = False, fnc=main))]
+	list = [(PluginDescriptor(name=name, description=descr, where=PluginDescriptor.WHERE_EVENTINFO, needsRestart=False, fnc=main))]
 	if config.misc.graph_mepg.extension_menu.value:
-		list.append(PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=main))
+		list.append(PluginDescriptor(name=name, description=descr, where=PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart=False, fnc=main))
 	return list

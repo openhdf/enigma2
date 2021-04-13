@@ -324,22 +324,22 @@ class MovieList(GUIComponent):
 				if txt == ".Trash":
 					if self.screenwidth and self.screenwidth == 1920:
 						res.append(MultiContentEntryPixmapAlphaBlend(pos=(3,5), size=(iconSize,37), png=self.iconTrash))
-						res.append(MultiContentEntryText(pos=(40+20, 5), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
+						res.append(MultiContentEntryText(pos=(40+20, 5), size=(width-166, self.itemHeight), font=0, flags=RT_HALIGN_LEFT, text=_("Deleted items")))
 						res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trashcan")))
 						return res
 					else:
 						res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,2), size=(iconSize,24), png=self.iconTrash))
-						res.append(MultiContentEntryText(pos=(iconSize+10, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
+						res.append(MultiContentEntryText(pos=(iconSize+10, 0), size=(width-166, self.itemHeight), font=0, flags=RT_HALIGN_LEFT, text=_("Deleted items")))
 						res.append(MultiContentEntryText(pos=(width-150, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Trashcan")))
 						return res
 			if self.screenwidth and self.screenwidth == 1920:
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(3,5), size=(iconSize,iconSize), png=self.iconFolder))
-				res.append(MultiContentEntryText(pos=(40+20, 5), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+				res.append(MultiContentEntryText(pos=(40+20, 5), size=(width-166, self.itemHeight), font=0, flags=RT_HALIGN_LEFT, text=txt))
 				res.append(MultiContentEntryText(pos=(width-145, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
 				return res
 			else:
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(0,2), size=(iconSize,iconSize), png=self.iconFolder))
-				res.append(MultiContentEntryText(pos=(iconSize+10, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+				res.append(MultiContentEntryText(pos=(iconSize+10, 0), size=(width-166, self.itemHeight), font=0, flags=RT_HALIGN_LEFT, text=txt))
 				res.append(MultiContentEntryText(pos=(width-150, 0), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=_("Directory")))
 				return res
 		if (data == -1) or (data is None):
@@ -431,7 +431,7 @@ class MovieList(GUIComponent):
 
 		begin_string = ""
 		if begin > 0:
-			begin_string = ', '.join(FuzzyTime(begin, inPast = True))
+			begin_string = ', '.join(FuzzyTime(begin, inPast=True))
 
 		if ext != '0':
 			ih = self.itemHeight / 2
@@ -469,7 +469,7 @@ class MovieList(GUIComponent):
 					if ext == '2':
 						piconSize = ih * 2
 						res.append(MultiContentEntryText(pos=(iconSize+20, 5), size=(width - iconSize - dateSize - 15, ih+2), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
-						res.append(MultiContentEntryPixmapAlphaTest(pos=(width - 48 - 5, 1), size=(piconSize, ih-2), png=picon, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO))
+						res.append(MultiContentEntryPixmapAlphaTest(pos=(width - 48 - 5, 1), size=(piconSize, ih-2), png=picon, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
 					res.append(MultiContentEntryText(pos=(iconSize+20, ih), size=(width - iconSize - dateSize - 15, ih), font=1, flags=RT_HALIGN_LEFT, text=desc))
 					res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 					return res
@@ -480,26 +480,26 @@ class MovieList(GUIComponent):
 					if ext == '2':
 						piconSize = ih * 2
 						res.append(MultiContentEntryText(pos=(iconSize + 8, 0), size=(width - iconSize - dateSize - 15, ih+2), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
-						res.append(MultiContentEntryPixmapAlphaTest(pos=(width - 48 - 5, 1), size=(piconSize, ih-2), png=picon, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO))
+						res.append(MultiContentEntryPixmapAlphaTest(pos=(width - 48 - 5, 1), size=(piconSize, ih-2), png=picon, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
 					res.append(MultiContentEntryText(pos=(iconSize + 8, ih), size=(width - iconSize - dateSize - 15, ih), font=1, flags=RT_HALIGN_LEFT, text=desc))
 					res.append(MultiContentEntryText(pos=(width - dateSize - 5, ih), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=begin_string))
 					return res
 			else:
 				if self.screenwidth and self.screenwidth == 1920:
-					res.append(MultiContentEntryText(pos=(iconSize+20, 5), size=(width-iconSize-dateSize-15, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+					res.append(MultiContentEntryText(pos=(iconSize+20, 5), size=(width-iconSize-dateSize-15, ih), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
 					res.append(MultiContentEntryText(pos=(width-dateSize, ih), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 					return res
 				else:
-					res.append(MultiContentEntryText(pos=(iconSize+8, 0), size=(width-iconSize-dateSize-15, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+					res.append(MultiContentEntryText(pos=(iconSize+8, 0), size=(width-iconSize-dateSize-15, ih), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
 					res.append(MultiContentEntryText(pos=(width-dateSize-5, ih), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
 					return res
 		else:
 			if self.screenwidth and self.screenwidth == 1920:
-				res.append(MultiContentEntryText(pos=(iconSize+20, 5), size=(width-iconSize-dateSize-15, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+				res.append(MultiContentEntryText(pos=(iconSize+20, 5), size=(width-iconSize-dateSize-15, ih), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
 				res.append(MultiContentEntryText(pos=(width-dateSize, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 				return res
 			else:
-				res.append(MultiContentEntryText(pos=(iconSize+8, 0), size=(width-iconSize-dateSize-15, ih), font = 0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER, text = data.txt))
+				res.append(MultiContentEntryText(pos=(iconSize+8, 0), size=(width-iconSize-dateSize-15, ih), font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER, text=data.txt))
 				res.append(MultiContentEntryText(pos=(width-dateSize-5, 0), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER, text=begin_string))
 				return res
 
@@ -554,7 +554,7 @@ class MovieList(GUIComponent):
 		instance.setContent(None)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 
-	def reload(self, root = None, filter_tags = None):
+	def reload(self, root=None, filter_tags=None):
 		if self.reloadDelayTimer is not None:
 			self.reloadDelayTimer.stop()
 			self.reloadDelayTimer = None
@@ -668,15 +668,15 @@ class MovieList(GUIComponent):
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaNumericSortKey) + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_REVERSE:
-			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaNumericSortKey, reverse = True) + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey, reverse = True)
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaNumericSortKey, reverse=True) + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey, reverse=True)
 		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT:
 			self.list.sort(key=self.buildAlphaNumericFlatSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE:
-			self.list.sort(key=self.buildAlphaNumericFlatSortKey, reverse = True)
+			self.list.sort(key=self.buildAlphaNumericFlatSortKey, reverse=True)
 		elif self.sort_type == MovieList.SORT_RECORDED:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildBeginTimeSortKey) + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey)
 		elif self.sort_type == MovieList.SORT_RECORDED_REVERSE:
-			self.list = sorted(self.list[:numberOfDirs], key=self.buildBeginTimeSortKey, reverse = True) + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse = True)
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildBeginTimeSortKey, reverse=True) + sorted(self.list[numberOfDirs:], key=self.buildBeginTimeSortKey, reverse=True)
 		elif self.sort_type == MovieList.SHUFFLE:
 			dirlist = self.list[:numberOfDirs]
 			shufflelist = self.list[numberOfDirs:]
@@ -685,7 +685,7 @@ class MovieList(GUIComponent):
 		elif self.sort_type == MovieList.SORT_ALPHA_DATE_OLDEST_FIRST:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey) + sorted(self.list[numberOfDirs:], key=self.buildAlphaDateSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST:
-			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey, reverse = True) + sorted(self.list[numberOfDirs:], key=self.buildAlphaDateSortKey, reverse = True)
+			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey, reverse=True) + sorted(self.list[numberOfDirs:], key=self.buildAlphaDateSortKey, reverse=True)
 
 		for x in self.list:
 			if x[1]:
@@ -728,7 +728,7 @@ class MovieList(GUIComponent):
 		for movies, tags in rtags.items():
 			movie = movies[0]
 			# format the tag lists so that they are in 'original' order
-			tags.sort(key = movie.find)
+			tags.sort(key=movie.find)
 			first = movie.find(tags[0])
 			last = movie.find(tags[-1]) + len(tags[-1])
 			match = movie

@@ -131,8 +131,7 @@ class Player(Screen, InfoBarNotifications):
 		}, -2)
 		self["sidebar"] = Label(_("/"))
 
-		self.__event_tracker = ServiceEventTracker(screen = self, eventmap =
-		{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
 			iPlayableService.evStart: self.__serviceStarted,
 			iPlayableService.evEOF: self.__evEOF,
@@ -170,7 +169,7 @@ class Player(Screen, InfoBarNotifications):
 
 	def doExit(self):
 		list = ((_("Yes"), "y"), (_("No, but play video again"), "n"),)
-		self.session.openWithCallback(self.cbDoExit, ChoiceBox, title=_("Stop playing this movie?"), list = list)
+		self.session.openWithCallback(self.cbDoExit, ChoiceBox, title=_("Stop playing this movie?"), list=list)
 
 	def cbDoExit(self, answer):
 		answer = answer and answer[1]
@@ -330,7 +329,7 @@ class PlayerService:
 		except OSError:
 			pass
 
-	def start(self, timeout = 1):
+	def start(self, timeout=1):
 		self.socket_timeout = timeout
 		thread.start_new_thread(self.run, (True,))
 
@@ -340,7 +339,7 @@ class PlayerService:
 	def isRunning(self):
 		return self.enable
 
-	def run(self, e = True):
+	def run(self, e=True):
 		if self.enable:
 			return
 		print "PlayerService start!!"
@@ -394,9 +393,9 @@ class PlayerService:
 			from Screens.VirtualKeyBoard import VirtualKeyBoard
 			wb_lock()
 			self.vk_conn = conn
-			self.session.openWithCallback(self.cbOpenKeyboard, VirtualKeyBoard, title = (_("Enter your input data")), text = "")
+			self.session.openWithCallback(self.cbOpenKeyboard, VirtualKeyBoard, title=(_("Enter your input data")), text="")
 
-        def cbOpenKeyboard(self, data = None):
+        def cbOpenKeyboard(self, data=None):
 		print "virtual keyboard callback!!"
 		wb_unlock()
 		self.sendResponse(self.vk_conn, data)
@@ -550,23 +549,23 @@ class BrowserLauncher(ConfigListScreen, Screen):
 
 		if self.conf_mouse == "" or self.getHandlerName(self.conf_mouse) is None:
 			self.conf_mouse = self.mouse_list[0][0]
-		self.mouse = ConfigSelection(default = self.conf_mouse, choices = self.mouse_list)
+		self.mouse = ConfigSelection(default=self.conf_mouse, choices=self.mouse_list)
 		self.list.append(getConfigListEntry(_('Mouse'), self.mouse))
 
 		if self.conf_keyboard == "" or self.getHandlerName(self.conf_keyboard) is None:
 			self.conf_keyboard = self.keyboard_list[0][0]
-		self.keyboard = ConfigSelection(default = self.conf_keyboard, choices = self.keyboard_list)
+		self.keyboard = ConfigSelection(default=self.conf_keyboard, choices=self.keyboard_list)
 		self.list.append(getConfigListEntry(_('Keyboard'), self.keyboard))
 
 		if self.conf_alpha == "":
 			self.conf_alpha = "255"
-		self.alpha = ConfigSlider(default = int(self.conf_alpha), increment = 10, limits = (0, 255))
+		self.alpha = ConfigSlider(default=int(self.conf_alpha), increment=10, limits=(0, 255))
 		self.list.append(getConfigListEntry(_("Alpha Value"), self.alpha))
 
 		if self.conf_keymap == "":
 			self.conf_keymap = self.getLanguage()
 		self.lang_list = [("en", "English"), ("de", "German")]
-		self.langs = ConfigSelection(default = self.conf_keymap, choices = self.lang_list)
+		self.langs = ConfigSelection(default=self.conf_keymap, choices=self.lang_list)
 		self.list.append(getConfigListEntry(_("Language"), self.langs))
 
 		self["config"].list = self.list
@@ -722,7 +721,7 @@ class BrowserLauncher(ConfigListScreen, Screen):
 			self.lock = False
 			self.doExit()
 
-	def callbackLauncherAppClosed(self, retval = 1):
+	def callbackLauncherAppClosed(self, retval=1):
 		self.lock = False
 
 def sessionstart(session, **kwargs):
@@ -734,7 +733,7 @@ def main(session, **kwargs):
 	session.open(BrowserLauncher)
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = False, fnc=sessionstart),
-		PluginDescriptor(name=_("Web Browser"), description="start web browser", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)]
+	return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, needsRestart=False, fnc=sessionstart),
+		PluginDescriptor(name=_("Web Browser"), description="start web browser", where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main)]
 
 

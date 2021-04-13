@@ -324,7 +324,7 @@ class HotkeySetup(Screen):
 		self.hotkeyFunctions = getHotkeyFunctions()
 		for x in self.hotkeys:
 			self.list.append(ChoiceEntryComponent('',(x[0], x[1])))
-		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(self.hotkeys) or 16], selection = 0)
+		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(self.hotkeys) or 16], selection=0)
 		self["choosen"] = ChoiceList(list=[])
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
 		{
@@ -669,7 +669,7 @@ class InfoBarHotkey():
 					self.servicelist.history = []
 					self.pipShown() and self.showPiP()
 				self.servicelist.servicelist.setCurrent(eServiceReference("/".join(selected[1:])))
-				self.servicelist.zap(enable_pipzap = True)
+				self.servicelist.zap(enable_pipzap=True)
 				if hasattr(self, "lastservice"):
 					self.lastservice = eServiceReference("/".join(selected[1:]))
 					self.close()

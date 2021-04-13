@@ -821,7 +821,7 @@ class SystemNetworkInfo(Screen):
 
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["selected"] = StaticText("HDF:" + getImageVersion())
 
 		AboutText = _("Model: %s %s\n") % (getMachineBrand(), getMachineName())

@@ -309,34 +309,34 @@ def menu(menuid, **kwargs):
 def Plugins(**kwargs):
 	if config.plugins.QuickButton.mainmenu.value:
 		return [PluginDescriptor(
-				where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART],
-				fnc = autostart),
+				where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART],
+				fnc=autostart),
 				PluginDescriptor(
 				name="Multi Quickbutton",
 				description="Multi Quickbutton for Keyboard and RC SCP Version",
-				where = PluginDescriptor.WHERE_PLUGINMENU,
+				where=PluginDescriptor.WHERE_PLUGINMENU,
 				icon="multiquickbutton.png",
 				fnc=main),
 				PluginDescriptor(
 				name="Multi Quickbutton",
-				where = PluginDescriptor.WHERE_EXTENSIONSMENU,
+				where=PluginDescriptor.WHERE_EXTENSIONSMENU,
 				fnc=main),
 				PluginDescriptor(
 				name="Multi Quickbutton",
 				description="Multi Quickbutton for Keyboard and RC SCP Version",
-				where = PluginDescriptor.WHERE_MENU,
+				where=PluginDescriptor.WHERE_MENU,
 				fnc=menu)]
 	else:
 		return [PluginDescriptor(
-				where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART],
-				fnc = autostart),
+				where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART],
+				fnc=autostart),
 				PluginDescriptor(
 				name="Multi Quickbutton",
 				description="Multi Quickbutton for Keyboard and RC SCP Version",
-				where = PluginDescriptor.WHERE_PLUGINMENU,
+				where=PluginDescriptor.WHERE_PLUGINMENU,
 				icon="multiquickbutton.png",
 				fnc=main),
 				PluginDescriptor(
 				name="Multi Quickbutton",
-				where = PluginDescriptor.WHERE_EXTENSIONSMENU,
+				where=PluginDescriptor.WHERE_EXTENSIONSMENU,
 				fnc=main)]

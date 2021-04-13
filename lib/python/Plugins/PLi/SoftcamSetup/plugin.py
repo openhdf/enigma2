@@ -11,5 +11,5 @@ def menu(menuid, **kwargs):
 	return []
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "Softcam Cardserver Manager", description = "Lets you configure your softcams", where = PluginDescriptor.WHERE_MENU, fnc = menu),
-			PluginDescriptor(name="Softcam Cardserver Manager", description="start/stop Softcams", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)]
+	return [PluginDescriptor(name="Softcam Cardserver Manager", description="Lets you configure your softcams", where=PluginDescriptor.WHERE_MENU, fnc=menu),
+			PluginDescriptor(name="Softcam Cardserver Manager", description="start/stop Softcams", where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)]
