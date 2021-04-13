@@ -75,7 +75,7 @@ def Plugins(**kwargs):
 
 def SIBsetup(menuid):
 	if menuid != "system":
-		return [ ]
+		return []
 	return [(_("Second InfoBar ..."), openSIBsetup, "sibsetup", None)]
 def openSIBsetup(session, **kwargs):
 	session.open(SIBsetupScreen)

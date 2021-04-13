@@ -26,7 +26,7 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 backupfile = "enigma2settingsbackup.tar.gz"
 
 def checkConfigBackup():
-	parts = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
+	parts = [(r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
 	if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
 		parts.append(('mtd backup','/media/backup'))
 	for x in parts:
@@ -132,7 +132,7 @@ class ImageWizard(WizardLanguage, Rc):
 		pass
 
 	def listDevices(self):
-		list = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
+		list = [(r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
 		for x in list:
 			result = access(x[1], W_OK) and access(x[1], R_OK)
 			if result is False or x[1] == '/':

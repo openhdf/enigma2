@@ -29,16 +29,16 @@ class DMCHDCaidDisplay(Poll, Converter, object):
 		Converter.__init__(self, type)
 		self.type = type
 		self.systemCaids = {
-			"06" : "I",
-			"01" : "S",
-			"18" : "N",
-			"05" : "V",
-			"0B" : "CO",
-			"17" : "BC",
-			"0D" : "CW",
-			"4A" : "DC",
-			"55" : "BG",
-			"09" : "NDS" }
+			"06": "I",
+			"01": "S",
+			"18": "N",
+			"05": "V",
+			"0B": "CO",
+			"17": "BC",
+			"0D": "CW",
+			"4A": "DC",
+			"55": "BG",
+			"09": "NDS"}
 
 		self.poll_interval = 2000
 		self.poll_enabled = True

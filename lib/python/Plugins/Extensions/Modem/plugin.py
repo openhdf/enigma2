@@ -109,9 +109,9 @@ class ModemSetup(Screen):
 		self.password = ConfigPassword(password, fixed_size=False)
 		self.phone = ConfigText(getTelephone(), fixed_size=False)
 		self.phone.setUseableChars(u"0123456789")
-		lst = [ (_("Username"), self.username),
+		lst = [(_("Username"), self.username),
 			(_("Password"), self.password),
-			(_("Phone number"), self.phone) ]
+			(_("Phone number"), self.phone)]
 		self["list"] = ConfigList(lst)
 		self["key_green"] = Button("")
 		self["key_red"] = Button("")

@@ -313,7 +313,7 @@ class InfoAuto3D(Screen):
 		self.blueTimer.stop()
 		self.autoclose()
 
-def nz(value, nullvalue) :
+def nz(value, nullvalue):
    if value is None:
    	return nullvalue
    else:

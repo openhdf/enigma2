@@ -400,7 +400,7 @@ class MultiQuickButton(Screen):
 		self.text = self.mqbkeymap.read()
 		self.mqbkeymap.close()
 		self.keys = [	"<key id=\"KEY_OK\" mapto=\"ok\" flags=\"m\" />",
-				"<key id=\"KEY_EXIT\" mapto=\"exit\" flags=\"m\" />" ]
+				"<key id=\"KEY_EXIT\" mapto=\"exit\" flags=\"m\" />"]
 
 		if config.plugins.QuickButton.okexitstate.value:
 			config.plugins.QuickButton.okexitstate.setValue(False)
@@ -488,7 +488,7 @@ class QuickButton(Screen):
 			<widget name="background" backgroundColor="#220a0a0a" zPosition="1" position="0,380" size="600,40" font="Regular;20" halign="left" valign="center" />
 		</screen>"""
 
-	def __init__(self, session, path=None, title="" ):
+	def __init__(self, session, path=None, title=""):
 		Screen.__init__(self, session)
 		self.session = session
 		self.path = path
@@ -605,7 +605,7 @@ class QuickButton(Screen):
 	def getPluginsList(self):
 		unic = []
 		twins = [""]
-		pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
+		pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
 		pluginlist.sort(key=lambda p: p.name)
 		for plugin in pluginlist:
 			if plugin.name in twins:
@@ -626,7 +626,7 @@ class QuickButton(Screen):
 
 	def add(self):
 		self.changed = True
-		self.session.openWithCallback(self.setNewEntryType,ChoiceBox,_("MQB Functions and Plugins") ,self.getNewEntryType())
+		self.session.openWithCallback(self.setNewEntryType,ChoiceBox,_("MQB Functions and Plugins"),self.getNewEntryType())
 
 	def setNewEntryType(self, selection):
 		if selection:
@@ -646,13 +646,13 @@ class QuickButton(Screen):
 	def addfunction(self):
 		self.changed = True
 		try:
-			self.session.openWithCallback(self.QuickPluginSelected,ChoiceBox,_("Functions") ,self.getFunctionList())
+			self.session.openWithCallback(self.QuickPluginSelected,ChoiceBox,_("Functions"),self.getFunctionList())
 		except Exception,e:
 			self.session.open(MessageBox,_("No valid function file found"), type=MessageBox.TYPE_ERROR,timeout=5)
 
 	def addplugin(self):
 		self.changed = True
-		self.session.openWithCallback(self.QuickPluginSelected,ChoiceBox,_("Plugins") ,self.getPluginsList())
+		self.session.openWithCallback(self.QuickPluginSelected,ChoiceBox,_("Plugins"),self.getPluginsList())
 
 	def QuickPluginSelected(self, choice):
 		if choice:
@@ -836,52 +836,52 @@ class MultiQuickButtonMacro(Screen):
 		self.addkey = False
 
 		self.buttondic = {
-					"011" : "0",
-					"002" : "1",
-					"003" : "2",
-					"004" : "3",
-					"005" : "4",
-					"006" : "5",
-					"007" : "6",
-					"008" : "7",
-					"009" : "8",
-					"010" : "9",
-					"116" : _("Power"),
-					"139" : _("Menu"),
-					"402" : _("Channel +"),
-					"403" : _("Channel -"),
-					"358" : _("Info"),
-					"352" : _("OK"),
-					"105" : _("Cross Left"),
-					"106" : _("Cross Right"),
-					"103" : _("Cross Up"),
-					"108" : _("Cross Down"),
-					"174" : _("EXIT"),
-					"398" : _("red"),
-					"401" : _("blue"),
-					"399" : _("green"),
-					"400" : _("yellow"),
-					"207" : _("Play"),
-					"119" : _("Pause"),
-					"128" : _("Stop"),
-					"167" : _("Record"),
-					"208" : _("FastForward >>"),
-					"168" : _("Rewind <<"),
-					"107" : _("END"),
-					"102" : _("HOME"),
-					"392" : _("Audio"),
-					"370" : _("Subtitle"),
-					"168" : _("Rewind <<"),
-					"388" : _("TEXT"),
-					"377" : _("TV"),
-					"385" : _("RADIO"),
-					"393" : _("PVR"),
-					"138" : _("HELP"),
-					"115" : _("Volume +"),
-					"114" : _("Volume -"),
-					"113" : _("Mute"),
-					"407" : _("Forward >"),
-					"412" : _("Backward <")
+					"011": "0",
+					"002": "1",
+					"003": "2",
+					"004": "3",
+					"005": "4",
+					"006": "5",
+					"007": "6",
+					"008": "7",
+					"009": "8",
+					"010": "9",
+					"116": _("Power"),
+					"139": _("Menu"),
+					"402": _("Channel +"),
+					"403": _("Channel -"),
+					"358": _("Info"),
+					"352": _("OK"),
+					"105": _("Cross Left"),
+					"106": _("Cross Right"),
+					"103": _("Cross Up"),
+					"108": _("Cross Down"),
+					"174": _("EXIT"),
+					"398": _("red"),
+					"401": _("blue"),
+					"399": _("green"),
+					"400": _("yellow"),
+					"207": _("Play"),
+					"119": _("Pause"),
+					"128": _("Stop"),
+					"167": _("Record"),
+					"208": _("FastForward >>"),
+					"168": _("Rewind <<"),
+					"107": _("END"),
+					"102": _("HOME"),
+					"392": _("Audio"),
+					"370": _("Subtitle"),
+					"168": _("Rewind <<"),
+					"388": _("TEXT"),
+					"377": _("TV"),
+					"385": _("RADIO"),
+					"393": _("PVR"),
+					"138": _("HELP"),
+					"115": _("Volume +"),
+					"114": _("Volume -"),
+					"113": _("Mute"),
+					"407": _("Forward >"),
+					"412": _("Backward <")
 				}
 
 		self.onLayoutFinish.append(self.createMenu)
