@@ -22,7 +22,7 @@ def SimpleEntry(name, picture):
 
 class ExtrasList(MenuList, HTMLComponent, GUIComponent):
 
-    def __init__(self, list, enableWrapAround = False):
+    def __init__(self, list, enableWrapAround=False):
         GUIComponent.__init__(self)
         self.l = eListboxPythonMultiContent()
         self.list = list

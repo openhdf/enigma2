@@ -24,7 +24,7 @@ detected_DVD = None
 
 class FileBrowser(Screen):
 
-	def __init__(self, session, dvd_filelist = [ ]):
+	def __init__(self, session, dvd_filelist=[ ]):
 		Screen.__init__(self, session)
 
 		# for the skin: first try FileBrowser_DVDPlayer, then FileBrowser, this allows individual skinning
@@ -45,7 +45,7 @@ class FileBrowser(Screen):
 				currDir = None
 
 			inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var"]
-			self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(iso|img)", useServiceRef = True)
+			self.filelist = FileList(currDir, matchingPattern="(?i)^.*\.(iso|img)", useServiceRef=True)
 			self["filelist"] = self.filelist
 
 		self["FilelistActions"] = ActionMap(["SetupActions"],
@@ -142,7 +142,7 @@ class DVDSummary(Screen):
 		self["Title"].setText(title)
 
 class DVDOverlay(Screen):
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		desktop_size = getDesktop(0).size()
 		DVDOverlay.skin = """<screen name="DVDOverlay" position="0,0" size="%d,%d" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />""" %(desktop_size.width(), desktop_size.height())
 		Screen.__init__(self, session)
@@ -265,11 +265,11 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		config.seek.enter_backward.setValue(self.saved_config_enter_backward)
 		config.seek.on_pause.setValue(self.saved_config_seek_on_pause)
 
-	def __init__(self, session, dvd_device = None, dvd_filelist = [ ], args = None):
+	def __init__(self, session, dvd_device=None, dvd_filelist=[ ], args=None):
 		Screen.__init__(self, session)
 		InfoBarBase.__init__(self)
 		InfoBarNotifications.__init__(self)
-		InfoBarCueSheetSupport.__init__(self, actionmap = "MediaPlayerCueSheetActions")
+		InfoBarCueSheetSupport.__init__(self, actionmap="MediaPlayerCueSheetActions")
 		InfoBarShowHide.__init__(self)
 		InfoBarAudioSelection.__init__(self)
 		InfoBarSubtitleSupport.__init__(self)
@@ -296,8 +296,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.totalTitles = 0
 		self.currentTitle = 0
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStopped: self.__serviceStopped,
 				iPlayableService.evUser: self.__timeUpdated,
 				iPlayableService.evUser+1: self.__statePlay,
@@ -545,7 +544,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			cur = self.session.nav.getCurrentlyPlayingServiceReference()
 			if cur and not cur.toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
 			    choices.insert(0,(_("Play DVD"), "playPhysical" ))
-		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list = choices)
+		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list=choices)
 
 	def sendKey(self, key):
 		keys = self.getServiceInterface("keys")
@@ -800,18 +799,17 @@ def filescan(**kwargs):
 			return fileExists(file.path)
 
 	return [
-		LocalScanner(mimetypes = ["video/x-dvd","video/x-dvd-iso"],
-			paths_to_scan =
-				[
-					ScanPath(path = "video_ts", with_subdirs = False),
-					ScanPath(path = "VIDEO_TS", with_subdirs = False),
-					ScanPath(path = "", with_subdirs = False),
+		LocalScanner(mimetypes=["video/x-dvd","video/x-dvd-iso"],
+			paths_to_scan=[
+					ScanPath(path="video_ts", with_subdirs=False),
+					ScanPath(path="VIDEO_TS", with_subdirs=False),
+					ScanPath(path="", with_subdirs=False),
 				],
-			name = "DVD",
-			description = _("Play DVD"),
-			openfnc = filescan_open,
+			name="DVD",
+			description=_("Play DVD"),
+			openfnc=filescan_open,
 		)]
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "DVDPlayer", description = "Play DVDs", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu),
-		PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)]
+	return [PluginDescriptor(name="DVDPlayer", description="Play DVDs", where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu),
+		PluginDescriptor(where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan)]

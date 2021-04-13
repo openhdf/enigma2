@@ -98,7 +98,7 @@ class ModemSetup(Screen):
 	def nothing(self):
 		print "nothing!"
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		global connected
 		global conn
 		self.skin = ModemSetup.skin
@@ -280,4 +280,4 @@ def main(session, **kwargs):
 	session.open(ModemSetup)
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name="Modem", description="plugin to connect to internet via builtin modem", where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=main)
+	return PluginDescriptor(name="Modem", description="plugin to connect to internet via builtin modem", where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=main)

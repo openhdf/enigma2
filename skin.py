@@ -48,7 +48,7 @@ def dump(x, i=0):
 		None
 
 skinfactor = 0
-def getSkinFactor(refresh = False):
+def getSkinFactor(refresh=False):
 	global skinfactor
 	if refresh or not skinfactor:
 		try:
@@ -75,7 +75,7 @@ class DisplaySkinError(Exception):
 
 dom_skins = [ ]
 
-def addSkin(name, scope = SCOPE_SKIN):
+def addSkin(name, scope=SCOPE_SKIN):
 	# read the skin
 	if name is None or not len(name):
 		#print "[SKIN ERROR] attempt to add a skin without filename"
@@ -92,7 +92,7 @@ def addSkin(name, scope = SCOPE_SKIN):
 			return True
 	return False
 
-def get_modular_files(name, scope = SCOPE_SKIN):
+def get_modular_files(name, scope=SCOPE_SKIN):
 	dirname = resolveFilename(scope, name + 'mySkin/')
 	file_list = []
 	if fileExists(dirname):
@@ -124,15 +124,15 @@ def skin_user_skinname():
 
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
-config.skin.primary_skin = ConfigText(default = DEFAULT_SKIN)
+config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 #config.skin.display_skin = ConfigText(default = DEFAULT_DISPLAY_SKIN)
 #config.skin.display_skin = ConfigSelection(default = "skin_display.xml", choices = [("skin_display.xml", _("Channel Name")),("skin_text_clock.xml", _("Clock"))])
 if SystemInfo["FrontpanelDisplay"] or SystemInfo["LcdDisplay"] or SystemInfo["OledDisplay"] or SystemInfo["FBLCDDisplay"]:
-	config.skin.display_skin = ConfigText(default = "skin_display.xml")
+	config.skin.display_skin = ConfigText(default="skin_display.xml")
 else:
-	config.skin.display_skin = ConfigText(default = "skin_display_text.xml")
+	config.skin.display_skin = ConfigText(default="skin_display_text.xml")
 
-def skinExists(skin = False):
+def skinExists(skin=False):
 	if not skin or not isinstance(skin, skin):
 		skin = config.skin.primary_skin.value
 	skin =  resolveFilename(SCOPE_SKIN, skin)
@@ -167,7 +167,7 @@ addSkin('skin_second_infobar.xml')
 
 # Only one of these is present, compliments of AM_CONDITIONAL
 if getBoxType() == "inihde":
-	config.skin.display_skin = ConfigText(default = "skin_display_text.xml")
+	config.skin.display_skin = ConfigText(default="skin_display_text.xml")
 
 display_skin_id = 1
 
@@ -303,7 +303,7 @@ def getParentSize(object, desktop):
 			size = desktop.size()
 	return size
 
-def parsePosition(s, scale, object = None, desktop = None, size = None):
+def parsePosition(s, scale, object=None, desktop=None, size=None):
 	if s in variables:
 		s = variables[s]
 	x, y = s.split(',')
@@ -314,7 +314,7 @@ def parsePosition(s, scale, object = None, desktop = None, size = None):
 	yval = parseCoordinate(y, parentsize.height(), size and size.height())
 	return ePoint(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
 
-def parseSize(s, scale, object = None, desktop = None):
+def parseSize(s, scale, object=None, desktop=None):
 	if s in variables:
 		s = variables[s]
 	x, y = s.split(',')
@@ -709,7 +709,7 @@ class AttributeParser:
 	def OverScan(self, value):
 		self.guiObject.setOverscan(value)
 
-def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1))):
+def applySingleAttribute(guiObject, desktop, attrib, value, scale=((1,1),(1,1))):
 	# Someone still using applySingleAttribute?
 	AttributeParser(guiObject, desktop, scale).applyOne(attrib, value)
 
@@ -959,7 +959,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		getDesktop(style_id).setMargins(r)
 
 dom_screens = {}
-def loadSkin(name, scope = SCOPE_SKIN):
+def loadSkin(name, scope=SCOPE_SKIN):
 	# Now a utility for plugins to add skin data to the screens
 	global dom_screens, display_skin_id, isVTISkin
 	filename = resolveFilename(scope, name)

@@ -87,12 +87,12 @@ class ScSelection(Screen):
 		softcams = self.softcam.getList()
 		cardservers = self.cardserver.getList()
 
-		self.softcams = ConfigSelection(choices = softcams)
+		self.softcams = ConfigSelection(choices=softcams)
 		self.softcams.value = self.softcam.current()
 
 		self.list.append(getConfigListEntry(_("Select Softcam"), self.softcams))
 		if cardservers:
-			self.cardservers = ConfigSelection(choices = cardservers)
+			self.cardservers = ConfigSelection(choices=cardservers)
 			self.cardservers.value = self.cardserver.current()
 			self.list.append(getConfigListEntry(_("Select Card Server"), self.cardservers))
 

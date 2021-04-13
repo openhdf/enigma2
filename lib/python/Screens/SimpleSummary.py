@@ -11,7 +11,7 @@ class SimpleSummary(Screen):
 	</screen>"""
 	def __init__(self, session, parent):
 
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 
 		names = parent.skinName
 		if not isinstance(names, list):
