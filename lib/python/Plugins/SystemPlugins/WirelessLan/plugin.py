@@ -303,7 +303,7 @@ class WlanScan(Screen):
 				for entry in self.newAPList:
 					if entry[0] == currentListEntry[0]:
 						newListIndex = idx
-					idx +=1
+					idx += 1
 			self['list'].setList(self.newAPList)
 			if newListIndex is not None:
 				self["list"].setIndex(newListIndex)

@@ -28,7 +28,7 @@ def eEnv_resolve_multi(path):
 	return resolve.split()
 
 config.plugins.configurationbackup = ConfigSubsection()
-if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not path.exists("/media/hdd/backup_%s" %boxtype):
+if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not path.exists("/media/hdd/backup_%s" % boxtype):
 	config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/backup/', visible_width=50, fixed_size=False)
 else:
 	config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)
@@ -39,18 +39,18 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 																			'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', '/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/', '/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd', '/usr/bin/enigma2_pre_start.sh',
 																			'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config', '/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db', '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db', '/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db',
 																			eEnv.resolve("${datadir}/enigma2/keymap.usr"), eEnv.resolve("${datadir}/enigma2/keymap.ntr"), eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]
-																			+eEnv_resolve_multi('/usr/bin/*cam*')
-																			+eEnv_resolve_multi('/usr/bin/gbox')
-																			+eEnv_resolve_multi('/etc/*.emu')
-																			+eEnv_resolve_multi('/etc/init.d/softcam*')
-																			+eEnv_resolve_multi('/etc/init.d/cardserver*'))
+																			+ eEnv_resolve_multi('/usr/bin/*cam*')
+																			+ eEnv_resolve_multi('/usr/bin/gbox')
+																			+ eEnv_resolve_multi('/etc/*.emu')
+																			+ eEnv_resolve_multi('/etc/init.d/softcam*')
+																			+ eEnv_resolve_multi('/etc/init.d/cardserver*'))
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
 	if backuppath.endswith('/'):
-		return backuppath + 'backup_' + distro + '_'+ boxtype
+		return backuppath + 'backup_' + distro + '_' + boxtype
 	else:
-		return backuppath + '/backup_' + distro + '_'+ boxtype
+		return backuppath + '/backup_' + distro + '_' + boxtype
 
 def getOldBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
@@ -410,9 +410,9 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def restartGUIornot(self, ret=False):
 		if ret == True:
-			self.session.open(Console, title=_("Your %s %s will Reboot...")% (getMachineBrand(), getMachineName()), cmdlist=["killall -9 enigma2 ; reboot"])
+			self.session.open(Console, title=_("Your %s %s will Reboot...") % (getMachineBrand(), getMachineName()), cmdlist=["killall -9 enigma2 ; reboot"])
 		else:
-			self.session.open(Console, title=_("Your %s %s will restart Enigma2...")% (getMachineBrand(), getMachineName()), cmdlist=["killall -9 enigma2"])
+			self.session.open(Console, title=_("Your %s %s will restart Enigma2...") % (getMachineBrand(), getMachineName()), cmdlist=["killall -9 enigma2"])
 
 	def runAsync(self, finished_cb):
 		self.doRestore()
@@ -495,7 +495,7 @@ class installedPlugins(Screen):
 			self.readPluginList()
 
 	def readPluginList(self):
-		installedpkgs=ShellCompatibleFunctions.listpkg(type="installed")
+		installedpkgs = ShellCompatibleFunctions.listpkg(type="installed")
 		self.PluginList = []
 		with open('/tmp/installed-list.txt') as f:
 			for line in f:

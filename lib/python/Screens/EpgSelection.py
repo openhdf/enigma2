@@ -372,11 +372,11 @@ class EPGSelection(Screen, HelpableScreen):
 				}, -1)
 			self['epgactions'].csel = self
 		if self.type == EPG_TYPE_GRAPH:
-			time_epoch=int(config.epgselection.graph_prevtimeperiod.value)
+			time_epoch = int(config.epgselection.graph_prevtimeperiod.value)
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			time_epoch=int(config.epgselection.infobar_prevtimeperiod.value)
+			time_epoch = int(config.epgselection.infobar_prevtimeperiod.value)
 		else:
-			time_epoch=None
+			time_epoch = None
 		self['list'] = EPGList(type=self.type, selChangedCB=self.onSelectionChanged, timer=session.nav.RecordTimer, time_epoch=time_epoch, overjump_empty=config.epgselection.overjump.value, graphic=graphic)
 		self.refreshTimer = eTimer()
 		self.refreshTimer.timeout.get().append(self.refreshlist)
@@ -1035,7 +1035,7 @@ class EPGSelection(Screen, HelpableScreen):
 			dialogwidth = self.ChoiceBoxDialog.instance.size().width()
 			if posx - dialogwidth < 0:
 				posx = dialogwidth
-			self.ChoiceBoxDialog.instance.move(ePoint(posx-dialogwidth,self.instance.position().y()+pos[1]))
+			self.ChoiceBoxDialog.instance.move(ePoint(posx - dialogwidth,self.instance.position().y() + pos[1]))
 			self.showChoiceBoxDialog()
 
 	def recButtonPressed(self):
@@ -1484,7 +1484,7 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				self.NumberZapField += str(number)
 			self.handleServiceName()
-			self["number"].setText(self.zaptoservicename+'\n'+self.NumberZapField)
+			self["number"].setText(self.zaptoservicename + '\n' + self.NumberZapField)
 			self["number"].show()
 			if len(self.NumberZapField) >= 4:
 				self.dozumberzap()

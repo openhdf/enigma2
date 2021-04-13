@@ -24,7 +24,7 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 
 		type = type.split(',')
 		self.shortFormat = "Short" in type
-		self.fullFormat  = "Full"  in type
+		self.fullFormat = "Full" in type
 		if "HddTemp" in type:
 			self.type = self.HDDTEMP
 		elif "LoadAvg" in type:
@@ -66,12 +66,12 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 			text = self.getLoadAvg()
 		else:
 			entry = {
-					self.MEMTOTAL:  ("Mem","Ram"),
-					self.MEMFREE:   ("Mem","Ram"),
+					self.MEMTOTAL: ("Mem","Ram"),
+					self.MEMFREE: ("Mem","Ram"),
 					self.SWAPTOTAL: ("Swap","Swap"),
-					self.SWAPFREE:  ("Swap","Swap"),
-					self.USBINFO:   ("/media/usb","USB"),
-					self.HDDINFO:   ("/media/hdd","HDD"),
+					self.SWAPFREE: ("Swap","Swap"),
+					self.USBINFO: ("/media/usb","USB"),
+					self.HDDINFO: ("/media/hdd","HDD"),
 					self.FLASHINFO: ("/","Flash"),
 				}[self.type]
 			if self.type in (self.USBINFO,self.HDDINFO,self.FLASHINFO):
@@ -79,7 +79,7 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 			else:
 				list = self.getMemInfo(entry[0])
 			if list[0] == 0:
-				text = "%s: Not Available"%(entry[1])
+				text = "%s: Not Available" % (entry[1])
 			elif self.shortFormat:
 				text = "%s: %s, in use: %s%%" % (entry[1], self.getSizeStr(list[0]), list[3])
 			elif self.fullFormat:

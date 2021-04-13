@@ -52,7 +52,7 @@ def addToHistory(instance, ref):
 		tmp = instance.servicePath[:]
 		tmp.append(ref)
 		try:
-			del instance.history[instance.history_pos+1:]
+			del instance.history[instance.history_pos + 1:]
 		except:
 			pass
 		instance.history.append(tmp)
@@ -60,7 +60,7 @@ def addToHistory(instance, ref):
 		if hlen > config.plugins.ZapHistoryConfigurator.maxEntries_zap_history.value:
 			del instance.history[0]
 			hlen -= 1
-		instance.history_pos = hlen-1
+		instance.history_pos = hlen - 1
 
 ChannelSelection.addToHistory = addToHistory
 

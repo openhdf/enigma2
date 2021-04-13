@@ -56,23 +56,23 @@ class valioClockToText(Converter, object):
 			tmpstr = strftime("%A %d %m", t)
 			sepstr = tmpstr.split(" ")
 			sepstr[0] = _(sepstr[0])
-			return sepstr[0]+"-"+sepstr[1]+"-"+sepstr[2]
+			return sepstr[0] + "-" + sepstr[1] + "-" + sepstr[2]
 		elif self.type == self.DATETIME:
 			tmpstr = strftime("%a %d %m %H:%M", t)
 			sepstr = tmpstr.split(" ")
 			sepstr[0] = _(sepstr[0])
-			return sepstr[0]+"-"+sepstr[1]+"-"+sepstr[2]+"    "+sepstr[3]
+			return sepstr[0] + "-" + sepstr[1] + "-" + sepstr[2] + "    " + sepstr[3]
 		elif self.type == self.ONLYDATE:
 			tmpstr = strftime("%a %d %m", t)
 			sepstr = tmpstr.split(" ")
 			sepstr[0] = _(sepstr[0])
-			return sepstr[0]+"-"+sepstr[1]+"-"+sepstr[2]
+			return sepstr[0] + "-" + sepstr[1] + "-" + sepstr[2]
 		elif self.type == self.FORMAT:
 			spos = self.fmt_string.find('%')
 			if spos > 0:
 				s1 = self.fmt_string[:spos]
 				s2 = strftime(self.fmt_string[spos:], t)
-				tmpstr = str(s1+s2)
+				tmpstr = str(s1 + s2)
 			else:
 				tmpstr = strftime(self.fmt_string, t)
 			newstr = []

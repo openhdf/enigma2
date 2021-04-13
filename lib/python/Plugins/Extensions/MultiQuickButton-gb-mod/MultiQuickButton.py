@@ -50,10 +50,10 @@ config.plugins.QuickButton.macroIII = ConfigText(default="")
 config.plugins.QuickButton.macroIV = ConfigText(default="")
 config.plugins.QuickButton.macroV = ConfigText(default="")
 MultiQuickButton_version = "2.7.12"
-autostart=_("Autostart") + ": "
-menuentry=_("Main menu") + ": "
-info=_("Info") + ": "
-okexit=_("OK/EXIT") + ": "
+autostart = _("Autostart") + ": "
+menuentry = _("Main menu") + ": "
+info = _("Info") + ": "
+okexit = _("OK/EXIT") + ": "
 
 values = ("red","red_long","green","green_long","yellow","yellow_long","blue","blue_long","pvr","pvr_long","radio","radio_long","text","text_long",
 			"epg","epg_long","help","help_long","info","info_long","end","end_long","home","home_long","cross_up","cross_down","cross_left","cross_right","previous","next",
@@ -301,7 +301,7 @@ class MultiQuickButton(Screen):
 				if os.path.exists(path) is True:
 					self.session.openWithCallback(self.updateAfterButtonChange, QuickButton, path, (_("Quickbutton Key : ") + _(returnValue)))
 				else:
-					self.session.open(MessageBox,("file %s not found!" % (path)),  MessageBox.TYPE_ERROR)
+					self.session.open(MessageBox,("file %s not found!" % (path)), MessageBox.TYPE_ERROR)
 
 	def updateAfterButtonChange(self, res=None):
 		self.updateList()
@@ -431,7 +431,7 @@ class MultiQuickButton(Screen):
 		self.session.open(MultiQuickButtonMacro)
 
 	def showAbout(self):
-		self.session.open(MessageBox,("Multi Quickbutton idea is based on\nGP2\'s Quickbutton\nVersion: 2.7\nby Emanuel CLI-Team 2009\nwww.cablelinux.info\n ***special thanks*** to:\ngutemine & AliAbdul & Dr.Best ;-)\n\nChanges for Gigablue by scp\nsome@email.org\nwww.homepage.org\nVersion %s" % (MultiQuickButton_version)),  MessageBox.TYPE_INFO)
+		self.session.open(MessageBox,("Multi Quickbutton idea is based on\nGP2\'s Quickbutton\nVersion: 2.7\nby Emanuel CLI-Team 2009\nwww.cablelinux.info\n ***special thanks*** to:\ngutemine & AliAbdul & Dr.Best ;-)\n\nChanges for Gigablue by scp\nsome@email.org\nwww.homepage.org\nVersion %s" % (MultiQuickButton_version)), MessageBox.TYPE_INFO)
 
 	def callRestart(self, restart):
 		if restart == True:
@@ -534,7 +534,7 @@ class QuickButton(Screen):
 
 	def error(self):
 		if self.e:
-			self.session.open(MessageBox,("XML " + _("Error") + ": %s" % self.e),  MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox,("XML " + _("Error") + ": %s" % self.e), MessageBox.TYPE_ERROR)
 			self.close(None)
 
 
@@ -693,7 +693,7 @@ class QuickButton(Screen):
 				else:
 					list.append(QuickButtonListEntry('red',(_(e[0]),e[0], '')))
 
-			lastValue="--"
+			lastValue = "--"
 			tmplist = []
 			for i in list:
 				if i[0][1] == "--" and lastValue == "--":
@@ -808,9 +808,9 @@ class MultiQuickButtonMacro(Screen):
 		self.session = session
 		Screen.__init__(self, session)
 
-		self.title=_("MultiQuickButton macro configuration")
+		self.title = _("MultiQuickButton macro configuration")
 		try:
-			self["title"]=StaticText(self.title)
+			self["title"] = StaticText(self.title)
 		except:
 			print 'self["title"] was not found in skin'
 
@@ -934,7 +934,7 @@ class MultiQuickButtonMacro(Screen):
 			self["buttonyellow"].setText("")
 			self["buttonblue"].setText("")
 			self.addkey = True
-			self.buttonlist =[]
+			self.buttonlist = []
 			for key in sorted(self.buttondic.iterkeys()):
 				self.buttonlist.append((_("Button : ") + self.buttondic[key], key))
 			self["menu"].setList(self.buttonlist)

@@ -55,7 +55,7 @@ class DMCHDCaids(Renderer):
 				    foregroundColor = self.ecmColor
 				length = len(caidlist[key][0]) * (pointSize)
 				self.instance.writeText(eRect(offset, 0, length, pointSize), foregroundColor, self.backgroundColor, self.font, caidlist[key][0], 2)
-				offset = offset +  length
+				offset = offset + length
 
 	def changed(self, what):
 		self.pull_updates()

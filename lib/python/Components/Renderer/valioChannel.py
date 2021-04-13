@@ -48,5 +48,5 @@ class valioChannel(Renderer, VariableText):
 			rx = MYCHANSEL.getBouquetNumOffset(myRoot)
 			name = info.getName()
 			name.replace('\xc2\x86', '').replace('\xc2\x87', '')
-			self.text = str(chx + rx)+". "+name
+			self.text = str(chx + rx) + ". " + name
 
