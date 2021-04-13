@@ -138,7 +138,8 @@ class valioCOCA(Poll, Converter, object):
 				except:
 					try:
 						ecm = open("/tmp/ecm.info", "rb").readlines()
-					except: pass
+					except:
+						pass
 			if ecm:
 				for line in ecm:
 					x = line.lower().find("msec")

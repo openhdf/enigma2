@@ -76,7 +76,8 @@ class g16ServiceNameEventNobile(Converter, object):
 			act_event = None
 			try:
 				act_event = self.epgQuery(eServiceReference(service.toString()), -1, 1)
-			except: pass
+			except:
+				pass
 			if act_event is None:
 				return no_desc
 		else:

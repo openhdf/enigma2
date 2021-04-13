@@ -96,7 +96,8 @@ class PliExtraInfo(Poll, Converter, object):
 					pass
 
 			if color != "\c007?7?7?" or caid_entry[4]:
-				if res: res += " "
+				if res:
+					res += " "
 				res += color + caid_entry[3]
 
 		res += "\c00??????"
@@ -309,10 +310,14 @@ class PliExtraInfo(Poll, Converter, object):
 		apid = info.getInfo(iServiceInformation.sAudioPID)
 		pcrpid = info.getInfo(iServiceInformation.sPCRPID)
 		sidpid = info.getInfo(iServiceInformation.sSID)
-		if vpid < 0 : vpid = 0
-		if apid < 0 : apid = 0
-		if pcrpid < 0 : pcrpid = 0
-		if sidpid < 0 : sidpid = 0
+		if vpid < 0 :
+			vpid = 0
+		if apid < 0 :
+			apid = 0
+		if pcrpid < 0 :
+			pcrpid = 0
+		if sidpid < 0 :
+			sidpid = 0
 		return "Pids:%04d:%04d:%04d:%05d" % (vpid, apid, pcrpid, sidpid)
 
 	def createTransponderInfo(self, fedata, feraw):

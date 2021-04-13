@@ -51,11 +51,14 @@ class VolumeControl:
 		if vol < 3:
 			step = 1
 		elif vol < 9:
-			if step > 2: step = 2
+			if step > 2:
+				step = 2
 		elif vol < 18:
-			if step > 3: step = 3
+			if step > 3:
+				step = 3
 		elif vol < 30:
-			if step > 4: step = 4
+			if step > 4:
+				step = 4
 		self.setVolume(vol+step)
 
 	def volDown(self):
@@ -64,11 +67,14 @@ class VolumeControl:
 		if vol <= 3:
 			step = 1
 		elif vol <= 9:
-			if step > 2: step = 2
+			if step > 2:
+				step = 2
 		elif vol <= 18:
-			if step > 3: step = 3
+			if step > 3:
+				step = 3
 		elif vol <= 30:
-			if step > 4: step = 4
+			if step > 4:
+				step = 4
 		self.setVolume(vol-step)
 
 	def stepVolume(self):
