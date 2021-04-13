@@ -17,7 +17,7 @@ class SimpleSummary(Screen):
 		if not isinstance(names, list):
 			names = [names]
 
-		self.skinName = [ x + "_summary" for x in names ]
+		self.skinName = [x + "_summary" for x in names]
 		self.skinName.append("SimpleSummary")
 
 		# if parent has a "skin_summary" defined, use that as default

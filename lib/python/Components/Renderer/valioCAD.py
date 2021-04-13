@@ -43,11 +43,11 @@ class valioCAD(Renderer):
 					foregroundColor = self.emmColor
 				else:
 					foregroundColor = self.ecmColor
-				length = len(caidlist[key][0]) * (pointSize )
+				length = len(caidlist[key][0]) * (pointSize)
 				self.instance.writeText(eRect(offset, 0, length, pointSize), foregroundColor, self.backgroundColor, self.font, caidlist[key][0], 2)
 				offset = offset + length
 		foregroundColor = self.clGrey
-		length = len(newtxt) * (pointSize )
+		length = len(newtxt) * (pointSize)
 		self.instance.writeText(eRect(offset, 0, length, pointSize), foregroundColor, self.backgroundColor, self.font, newtxt, 0)
 
 	def changed(self, what):
@@ -55,7 +55,7 @@ class valioCAD(Renderer):
 
 	def applySkin(self, desktop, parent):
 
-		attribs = [ ]
+		attribs = []
 		from enigma import eSize
 
 		def parseSize(str):

@@ -109,7 +109,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		try:
 			if path.exists(self.backuppath) == False:
 				makedirs(self.backuppath)
-			self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
+			self.backupdirs = ' '.join(config.plugins.configurationbackup.backupdirs.value)
 			if not "/tmp/installed-list.txt" in self.backupdirs:
 				self.backupdirs = self.backupdirs + " /tmp/installed-list.txt"
 			if not "/tmp/changed-configfiles.txt" in self.backupdirs:
@@ -137,9 +137,9 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.session.open(Console, title=_("Backup is running..."), cmdlist=cmd,finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 		except OSError:
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10 )
+				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 			else:
-				self.session.openWithCallback(self.backupErrorCB,MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10 )
+				self.session.openWithCallback(self.backupErrorCB,MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 
 	def backupFinishedCB(self,retval=None):
 		self.close(True)
@@ -174,7 +174,7 @@ class BackupSelection(Screen):
 		self.selectedFiles = config.plugins.configurationbackup.backupdirs.value
 		defaultDir = '/'
 		inhibitDirs = ["/bin", "/boot", "/dev", "/autofs", "/lib", "/proc", "/sbin", "/sys", "/hdd", "/tmp", "/mnt", "/media"]
-		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs=inhibitDirs )
+		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs=inhibitDirs)
 		self["checkList"] = self.filelist
 
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"],
@@ -508,7 +508,7 @@ class installedPlugins(Screen):
 		self.Menulist = []
 		for x in self.PluginList:
 			if x not in self.pluginsInstalled:
-				self.Menulist.append(SettingsEntry(x , True))
+				self.Menulist.append(SettingsEntry(x, True))
 		if len(self.Menulist) == 0:
 			self.close()
 		else:
@@ -587,7 +587,7 @@ class RestorePlugins(Screen):
 		item = self["menu"].getCurrent()[0]
 		state = self["menu"].getCurrent()[2]
 		if state:
-			self.list[index] = SettingsEntry(item , False)
+			self.list[index] = SettingsEntry(item, False)
 		else:
 			self.list[index] = SettingsEntry(item, True)
 
@@ -611,7 +611,7 @@ class RestorePlugins(Screen):
 
 	def SearchIPK(self, ipkname):
 		ipkname = ipkname + "*"
-		search_dirs = [ "/media/hdd", "/media/usb" ]
+		search_dirs = ["/media/hdd", "/media/usb"]
 		sdirs = " ".join(search_dirs)
 		cmd = 'find %s -name "%s" | grep -iv "./open-multiboot/*" | head -n 1' % (sdirs, ipkname)
 		res = popen(cmd).read()

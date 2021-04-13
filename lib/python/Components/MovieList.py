@@ -177,7 +177,7 @@ class MovieList(GUIComponent):
 		if root is not None:
 			self.reload(root)
 
-		self.onSelectionChanged = [ ]
+		self.onSelectionChanged = []
 		self.iconPart = []
 		for part in range(5):
 			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/part_%d_4.png" % part)))
@@ -193,7 +193,7 @@ class MovieList(GUIComponent):
 
 	def applySkin(self, desktop, parent):
 		if self.skinAttributes is not None:
-			attribs = [ ]
+			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
 					font = skin.parseFont(value, ((1,1),(1,1)))
@@ -303,7 +303,7 @@ class MovieList(GUIComponent):
 		ext = config.movielist.useextlist.value
 		width = self.l.getItemSize().width()
 		pathName = serviceref.getPath()
-		res = [ None ]
+		res = [None]
 
 		if serviceref.flags & eServiceReference.mustDescent:
 			if self.screenwidth and self.screenwidth == 1920:

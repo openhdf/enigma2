@@ -159,7 +159,7 @@ class Standby2(Screen):
 		print "[Standby] enter standby"
 		SystemInfo["StandbyState"] = True
 
-		self["actions"] = ActionMap( [ "StandbyActions" ],
+		self["actions"] = ActionMap(["StandbyActions"],
 		{
 			"power": self.Power,
 			"power_make": self.Power_make,
@@ -301,7 +301,7 @@ class QuitMainloopScreen(Screen):
 		</screen>"""
 		Screen.__init__(self, session)
 		from Components.Label import Label
-		text = { 1: _("Your %s %s is shutting down") % (getMachineBrand(), getMachineName()),
+		text = {1: _("Your %s %s is shutting down") % (getMachineBrand(), getMachineName()),
 			2: _("Your %s %s is rebooting") % (getMachineBrand(), getMachineName()),
 			3: _("The user interface of your %s %s is restarting") % (getMachineBrand(), getMachineName()),
 			4: _("Your frontprocessor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
@@ -352,7 +352,7 @@ class TryQuitMainloop(MessageBox):
 			session.nav.record_event.append(self.getRecordEvent)
 			self.skinName = ""
 		elif reason and not inStandby:
-			text = { 1: _("Really shutdown now?"),
+			text = {1: _("Really shutdown now?"),
 				2: _("Really reboot now?"),
 				3: _("Really restart now?"),
 				4: _("Really upgrade the frontprocessor and reboot now?"),

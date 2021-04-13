@@ -23,16 +23,16 @@ class valioCOCA(Poll, Converter, object):
 		Converter.__init__(self, type)
 		self.type = type
 		self.systemCaids = {
-			"06" : "I",
-			"01" : "S",
-			"18" : "N",
-			"05" : "V",
-			"0B" : "CO",
-			"17" : "B",
-			"0D" : "CW",
-			"4A" : "DC",
-			"55" : "BG",
-			"09" : "ND" }
+			"06": "I",
+			"01": "S",
+			"18": "N",
+			"05": "V",
+			"0B": "CO",
+			"17": "B",
+			"0D": "CW",
+			"4A": "DC",
+			"55": "BG",
+			"09": "ND"}
 		if config.valiflex.showEinfo.value == "showE":
 			self.have2show = True
 		else:

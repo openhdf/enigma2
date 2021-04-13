@@ -41,7 +41,7 @@ class SecParameterSetup(Screen, ConfigListScreen):
 			("Delay after voltage change before motor command", config.sec.delay_after_voltage_change_before_motor_command),
 			("Delay before sequence repeat", config.sec.delay_before_sequence_repeat),
 			("Motor running timeout", config.sec.motor_running_timeout),
-			("Motor command retries", config.sec.motor_command_retries) ]
+			("Motor command retries", config.sec.motor_command_retries)]
 		ConfigListScreen.__init__(self, list)
 
 session = None
@@ -61,14 +61,14 @@ def SecSetupStart(menuid):
 
 	# other menu than "scan"?
 	if menuid != "scan":
-		return [ ]
+		return []
 
 	# only show if DVB-S frontends are available
 	for slot in nimmgr.nim_slots:
 		if slot.isCompatible("DVB-S"):
 			return [(_("Satellite equipment setup"), SecSetupMain, "satellite_equipment_setup", None)]
 
-	return [ ]
+	return []
 
 def Plugins(**kwargs):
 	if nimmgr.hasNimType("DVB-S"):

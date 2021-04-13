@@ -23,14 +23,14 @@ class Screen(dict, GUISkin):
 		self.parent = parent
 		GUISkin.__init__(self)
 
-		self.onClose = [ ]
-		self.onFirstExecBegin = [ ]
-		self.onExecBegin = [ ]
-		self.onExecEnd = [ ]
-		self.onShown = [ ]
+		self.onClose = []
+		self.onFirstExecBegin = []
+		self.onExecBegin = []
+		self.onExecEnd = []
+		self.onShown = []
 
-		self.onShow = [ ]
-		self.onHide = [ ]
+		self.onShow = []
+		self.onHide = []
 
 		self.execing = False
 
@@ -38,11 +38,11 @@ class Screen(dict, GUISkin):
 		# already shown is false until the screen is really shown (after creation)
 		self.already_shown = False
 
-		self.renderer = [ ]
+		self.renderer = []
 
 		# in order to support screens *without* a help,
 		# we need the list in every screen. how ironic.
-		self.helpList = [ ]
+		self.helpList = []
 
 		self.close_on_next_exec = None
 
@@ -69,7 +69,7 @@ class Screen(dict, GUISkin):
 			rcinput.setKeyboardMode(self.keyboardMode)
 
 	def execBegin(self):
-		self.active_components = [ ]
+		self.active_components = []
 		if self.close_on_next_exec is not None:
 			tmp = self.close_on_next_exec
 			self.close_on_next_exec = None
@@ -131,7 +131,7 @@ class Screen(dict, GUISkin):
 			val.destroy()
 			del self[name]
 
-		self.renderer = [ ]
+		self.renderer = []
 
 		# really delete all elements now
 		self.__dict__.clear()

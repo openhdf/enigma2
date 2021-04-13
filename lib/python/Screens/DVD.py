@@ -70,7 +70,7 @@ class ChapterZap(Screen):
 
 		self["number"] = Label(self.field)
 
-		self["actions"] = NumberActionMap( [ "SetupActions" ],
+		self["actions"] = NumberActionMap(["SetupActions"],
 			{
 				"cancel": self.quit,
 				"ok": self.keyOK,
@@ -145,7 +145,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def change_infobar_seek_config(self):
 		config.seek.speeds_forward.value = [2, 4, 6, 8, 16, 32, 64]
 		config.seek.speeds_backward.value = [2, 4, 6, 8, 16, 32, 64]
-		config.seek.speeds_slowmotion.value = [ 2, 3, 4, 6 ]
+		config.seek.speeds_slowmotion.value = [2, 3, 4, 6]
 		config.seek.enter_forward.value = "2"
 		config.seek.enter_backward.value = "2"
 		config.seek.on_pause.value = "play"
@@ -158,7 +158,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		config.seek.enter_backward.value = self.saved_config_enter_backward
 		config.seek.on_pause.value = self.saved_config_seek_on_pause
 
-	def __init__(self, session, dvd_device=None, dvd_filelist=[ ], args=None):
+	def __init__(self, session, dvd_device=None, dvd_filelist=[], args=None):
 		Screen.__init__(self, session)
 		InfoBarBase.__init__(self)
 		InfoBarNotifications.__init__(self)
@@ -435,7 +435,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if self.physicalDVD:
 			cur = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if cur and not cur.toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
-			    choices.insert(0,(_("Play DVD"), "playPhysical" ))
+			    choices.insert(0,(_("Play DVD"), "playPhysical"))
 		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD player?"), list=choices)
 
 	def sendKey(self, key):
@@ -518,7 +518,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.playPhysicalCB(True)
 		elif self.physicalDVD:
 			# opened from menu with dvd in drive
-			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
+			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5)
 
 	def playPhysicalCB(self, answer):
 		if answer == True:
@@ -552,7 +552,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 					ifofilename += "/VIDEO_TS"
 				files = [("/VIDEO_TS.IFO", 0x100), ("/VTS_01_0.IFO", 0x100), ("/VTS_01_0.IFO", 0x200)] # ( filename, offset )
 				for name in files:
-					(status, isNTSC, isLowResolution) = self.readVideoAtributes( ifofilename, name )
+					(status, isNTSC, isLowResolution) = self.readVideoAtributes(ifofilename, name)
 					if status:
 						 break
 				height = getDesktop(0).size().height()
@@ -591,7 +591,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			if video_attr_high != 0:
 				status = True
 			video_attr_low = ord(ifofile.read(1))
-			print "[DVD] %s: video_attr_high = %x" % ( name, video_attr_high ), "video_attr_low = %x" % ( video_attr_low )
+			print "[DVD] %s: video_attr_high = %x" % (name, video_attr_high), "video_attr_low = %x" % (video_attr_low)
 			isNTSC = (video_attr_high & 0x10 == 0)
 			isLowResolution = (video_attr_low & 0x18 == 0x18)
 		except:
@@ -601,7 +601,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		finally:
 			if ifofile is not None:
 				ifofile.close()
-		return ( status, isNTSC, isLowResolution )
+		return (status, isNTSC, isLowResolution)
 
 	def exitCB(self, answer):
 		if answer is not None:
@@ -664,7 +664,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if pathExists(devicepath):
 			from Components.Scanner import scanDevice
 			res = scanDevice(devicepath)
-			list = [ (r.description, r, res[r], self.session) for r in res ]
+			list = [(r.description, r, res[r], self.session) for r in res]
 			if list:
 				(desc, scanner, files, session) = list[0]
 				for file in files:
