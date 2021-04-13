@@ -8,6 +8,7 @@ from Components.Sources.StaticText import StaticText
 from Components import Harddisk
 from os import path, listdir, system
 
+
 class MultiBootStartup(ConfigListScreen, Screen):
 
 	skin = """
@@ -52,11 +53,11 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		self.setTitle(self.title)
 
 	def startup(self):
-		self["config"].setText(_("Select Image: %s") %self.list[self.selection])
+		self["config"].setText(_("Select Image: %s") % self.list[self.selection])
 
 	def save(self):
 		print "[MultiBootStartuo] select new startup: ", self.list[self.selection]
-		system("cp -f /boot/%s /boot/STARTUP"%self.list[self.selection])
+		system("cp -f /boot/%s /boot/STARTUP" % self.list[self.selection])
 		self.close()
 
 	def cancel(self):
@@ -77,7 +78,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 	def read_startup(self, FILE):
 		self.file = FILE
 		with open(self.file, 'r') as myfile:
-			data=myfile.read().replace('\n', '')
+			data = myfile.read().replace('\n', '')
 		myfile.close()
 		return data
 
@@ -86,7 +87,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		self.path = PATH
 		for name in listdir(self.path):
 			if path.isfile(path.join(self.path, name)):
-				cmdline = self.read_startup("/boot/" + name).split("=",1)[1].split(" ",1)[0]
+				cmdline = self.read_startup("/boot/" + name).split("=", 1)[1].split(" ", 1)[0]
 				if cmdline in Harddisk.getextdevices("ext4") and not name == "STARTUP":
 					files.append(name)
 		return files

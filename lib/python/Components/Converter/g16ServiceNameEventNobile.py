@@ -20,6 +20,7 @@ from Components.Element import cached
 from time import localtime
 import re
 
+
 class g16ServiceNameEventNobile(Converter, object):
 	NAMEVENT = 0
 	NEXTEVENT = 1
@@ -76,7 +77,8 @@ class g16ServiceNameEventNobile(Converter, object):
 			act_event = None
 			try:
 				act_event = self.epgQuery(eServiceReference(service.toString()), -1, 1)
-			except: pass
+			except:
+				pass
 			if act_event is None:
 				return no_desc
 		else:
@@ -109,7 +111,7 @@ class g16ServiceNameEventNobile(Converter, object):
 						if not short[:-2] in tmp:
 							tmp = short.strip() + "..." + tmp
 			tmp = tmp.replace("\r", " ").replace("\n", " ").replace("\xc2\x8a", " ")
-			return re.sub('[\s\t]+', ' ',tmp)
+			return re.sub('[\s\t]+', ' ', tmp)
 		else:
 			return "Error reading EPG data"
 

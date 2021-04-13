@@ -24,7 +24,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Label import Label
-from enigma import eServiceReference,  eTimer, getDesktop
+from enigma import eServiceReference, eTimer, getDesktop
 from ServiceReference import ServiceReference
 from Components.SystemInfo import SystemInfo
 from Components.ParentalControl import parentalControl
@@ -40,7 +40,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
 
 from Screens.EpgSelection import EPGSelection
-from Screens.EventView import  EventViewEPGSelect
+from Screens.EventView import EventViewEPGSelect
 from Screens.PictureInPicture import PictureInPicture
 
 InfoBarShowHideINIT = None
@@ -59,13 +59,14 @@ except:
 	plugin_PiPServiceRelation_installed = False
 
 config.plugins.virtualzap = ConfigSubsection()
-config.plugins.virtualzap.mode = ConfigSelection(default="0", choices = [("0", _("as plugin in extended bar")),("1", _("with long OK press")), ("2", _("with exit button"))])
-config.plugins.virtualzap.usepip = ConfigYesNo(default = True)
-config.plugins.virtualzap.showpipininfobar = ConfigYesNo(default = True)
-config.plugins.virtualzap.saveLastService = ConfigYesNo(default = False)
+config.plugins.virtualzap.mode = ConfigSelection(default="0", choices=[("0", _("as plugin in extended bar")), ("1", _("with long OK press")), ("2", _("with exit button"))])
+config.plugins.virtualzap.usepip = ConfigYesNo(default=True)
+config.plugins.virtualzap.showpipininfobar = ConfigYesNo(default=True)
+config.plugins.virtualzap.saveLastService = ConfigYesNo(default=False)
 config.plugins.virtualzap.curref = ConfigText()
 config.plugins.virtualzap.curbouquet = ConfigText()
-config.plugins.virtualzap.exittimer =  ConfigInteger(0,limits = (0, 20))
+config.plugins.virtualzap.exittimer = ConfigInteger(0, limits=(0, 20))
+
 
 def autostart(reason, **kwargs):
 	if config.plugins.virtualzap.mode.value != "0":
@@ -80,6 +81,7 @@ def autostart(reason, **kwargs):
 		if config.plugins.virtualzap.mode.value == "2":
 			InfoBarShowHide.newHide = newHide
 
+
 def InfoBarShowHide__init__(self):
 	# initialize InfoBarShowHide with original __init__
 	InfoBarShowHideINIT(self)
@@ -87,14 +89,14 @@ def InfoBarShowHide__init__(self):
 	if config.plugins.virtualzap.mode.value == "1":
 		del self["ShowHideActions"]
 		# initialize own actionmap with ok = b and longOK = l
-		self["myactions"] = ActionMap( ["myShowHideActions"] ,
+		self["myactions"] = ActionMap(["myShowHideActions"],
 		{
 			"toggleShow": self.toggleShow,
 			"longOK": self.showVZ,
 			"hide": self.hide,
 		}, 1)
 	elif config.plugins.virtualzap.mode.value == "2":
-		self["ShowHideActions"] = ActionMap( ["InfobarShowHideActions"] ,
+		self["ShowHideActions"] = ActionMap(["InfobarShowHideActions"],
 		{
 			"toggleShow": self.toggleShow,
 			"hide": self.newHide,
@@ -102,7 +104,7 @@ def InfoBarShowHide__init__(self):
 
 
 def showVZ(self):
-	from  Screens.InfoBarGenerics import InfoBarEPG
+	from Screens.InfoBarGenerics import InfoBarEPG
 	# check for InfoBarEPG --> only start if true
 	if isinstance(self, InfoBarEPG):
 		# check for PiP
@@ -114,7 +116,8 @@ def showVZ(self):
 		if isinstance(self, InfoBar):
 			self.session.openWithCallback(self.VirtualZapCallback, VirtualZap, self.servicelist)
 
-def VirtualZapCallback(self, service = None, servicePath = None):
+
+def VirtualZapCallback(self, service=None, servicePath=None):
 	if isinstance(self, InfoBarPiP):
 		if service and servicePath:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
@@ -127,6 +130,7 @@ def VirtualZapCallback(self, service = None, servicePath = None):
 				del self.session.pip
 				self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 
+
 def newHide(self):
 	# remember if infobar is shown
 	visible = self.shown
@@ -135,19 +139,23 @@ def newHide(self):
 		# infobar was not shown, start VZ
 		self.showVZ()
 
+
 def Plugins(**kwargs):
- 	plist =  [PluginDescriptor(name="Virtual Zap Setup", description=_("Virtual Zap Setup"), where = [PluginDescriptor.WHERE_PLUGINMENU], icon = "plugin.png", fnc = setup)]
+ 	plist = [PluginDescriptor(name="Virtual Zap Setup", description=_("Virtual Zap Setup"), where=[PluginDescriptor.WHERE_PLUGINMENU], icon="plugin.png", fnc=setup)]
 	if config.plugins.virtualzap.mode.value == "0":
-		plist.append(PluginDescriptor(name="Virtual Zap", description=_("Virtual (PiP) Zap"), where = [PluginDescriptor.WHERE_EXTENSIONSMENU],icon = "plugin.png", fnc = main))
+		plist.append(PluginDescriptor(name="Virtual Zap", description=_("Virtual (PiP) Zap"), where=[PluginDescriptor.WHERE_EXTENSIONSMENU], icon="plugin.png", fnc=main))
 	elif config.plugins.virtualzap.mode.value == "1" or config.plugins.virtualzap.mode.value == "2":
-		plist.append(PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART],fnc = autostart))
+		plist.append(PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART], fnc=autostart))
 	return plist
 
-def setup(session,**kwargs):
+
+def setup(session, **kwargs):
 	session.open(VirtualZapConfig)
 
-def main(session,**kwargs):
+
+def main(session, **kwargs):
 	session.open(VirtualZap, kwargs["servicelist"])
+
 
 class VirtualZap(Screen):
 	sz_w = getDesktop(0).size().width()
@@ -194,7 +202,7 @@ class VirtualZap(Screen):
 	else:
 		if SystemInfo.get("NumVideoDecoders", 1) > 1 and config.plugins.virtualzap.usepip.value and not config.plugins.virtualzap.showpipininfobar.value:
 			# use standard PiP
-			config.av.pip = ConfigPosition(default=[0, 0, 0, 0], args = (719, 567, 720, 568))
+			config.av.pip = ConfigPosition(default=[0, 0, 0, 0], args=(719, 567, 720, 568))
 			x = config.av.pip.value[0]
 			y = config.av.pip.value[1]
 			w = config.av.pip.value[2]
@@ -217,7 +225,7 @@ class VirtualZap(Screen):
 					<widget backgroundColor="#101214" font="Regular;24" halign="left" name="NextEPG" position="140,645" size="860,28" transparent="1" zPosition="2"/>
 					<widget backgroundColor="#101214" font="Regular;24" foregroundColor="#fcc000" halign="right" name="NowTime" position="1015,610" size="124,28" transparent="1" zPosition="2"/>
 					<widget backgroundColor="#101214" font="Regular;24" halign="right" name="NextTime" position="1015,645" size="124,28" transparent="1" zPosition="2"/>
-				</screen>""" % (x,y,w,h)
+				</screen>""" % (x, y, w, h)
 		elif sz_w == 1024:
 			skin = """
 				<screen backgroundColor="transparent" flags="wfNoBorder" name="VirtualZapNoPiP" position="0,0" size="1024,576" title="Virtual Zap">
@@ -228,7 +236,7 @@ class VirtualZap(Screen):
 					<widget backgroundColor="#101214" font="Regular;20" halign="left" name="NextEPG" position="100,500" size="700,25" transparent="1" zPosition="2"/>
 					<widget backgroundColor="#101214" font="Regular;20" foregroundColor="#fcc000" halign="right" name="NowTime" position="800,475" size="124,25" transparent="1" zPosition="2"/>
 					<widget backgroundColor="#101214" font="Regular;20" halign="right" name="NextTime" position="800,500" size="124,25" transparent="1" zPosition="2"/>
-				</screen>""" % (x,y,w,h)
+				</screen>""" % (x, y, w, h)
 		else:
 
 			skin = """
@@ -240,9 +248,9 @@ class VirtualZap(Screen):
 					<widget backgroundColor="#101214" font="Regular;20" halign="left" name="NextEPG" position="50,500" size="500,25" transparent="1" zPosition="2"/>
 					<widget backgroundColor="#101214" font="Regular;20" foregroundColor="#fcc000" halign="right" name="NowTime" position="550,475" size="120,25" transparent="1" zPosition="2"/>
 					<widget backgroundColor="#101214" font="Regular;20" halign="right" name="NextTime" position="550,500" size="120,25" transparent="1" zPosition="2"/>
-				</screen>"""  % (x,y,w,h)
+				</screen>""" % (x, y, w, h)
 
-	def __init__(self, session, servicelist = None):
+	def __init__(self, session, servicelist=None):
 		Screen.__init__(self, session)
 		self.session = session
 		if SystemInfo.get("NumVideoDecoders", 1) > 1 and config.plugins.virtualzap.usepip.value and config.plugins.virtualzap.showpipininfobar.value:
@@ -250,7 +258,7 @@ class VirtualZap(Screen):
 			self.pipAvailable = True
 		else:
 			self.skinName = "VirtualZapNoPiP"
-			self.pipAvailable =  (SystemInfo.get("NumVideoDecoders", 1) > 1)  and config.plugins.virtualzap.usepip.value and not config.plugins.virtualzap.showpipininfobar.value
+			self.pipAvailable = (SystemInfo.get("NumVideoDecoders", 1) > 1) and config.plugins.virtualzap.usepip.value and not config.plugins.virtualzap.showpipininfobar.value
 		self.epgcache = eEPGCache.getInstance()
 		self.CheckForEPG = eTimer()
 		self.CheckForEPG.callback.append(self.CheckItNow)
@@ -272,7 +280,7 @@ class VirtualZap(Screen):
 			"yellow": self.switchAndStandardPiP,
 			"down": self.switchChannelDown,
 			"up": self.switchChannelUp,
-		},-1)
+		}, -1)
 		self.onLayoutFinish.append(self.onLayoutReady)
 		# PiP
 		if self.pipAvailable:
@@ -282,7 +290,7 @@ class VirtualZap(Screen):
 				self["video"] = VideoWindow()
 			else:
 				# show PiP in Infobar
-				self["video"] = VideoWindow(fb_width = getDesktop(0).size().width(), fb_height = getDesktop(0).size().height())
+				self["video"] = VideoWindow(fb_width=getDesktop(0).size().width(), fb_height=getDesktop(0).size().height())
 			self.currentPiP = ""
 		else:
 			# no PiP
@@ -379,8 +387,7 @@ class VirtualZap(Screen):
 	def isPlayable(self):
 		# check if service is playable
 		current = ServiceReference(self.servicelist.getCurrentSelection())
-		return not (current.ref.flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
-
+		return not (current.ref.flags & (eServiceReference.isMarker | eServiceReference.isDirectory))
 
 	def nextBouquet(self):
 		# next bouquet with first service
@@ -394,14 +401,13 @@ class VirtualZap(Screen):
 			self.servicelist.prevBouquet()
 		self.updateInfos()
 
-
 	def updateInfos(self):
 		self.resetExitTimer()
 		# update data
 		current = ServiceReference(self.servicelist.getCurrentSelection())
 		self["NowChannel"].setText(current.getServiceName())
-		nowepg, nowtimedisplay = self.getEPGNowNext(current.ref,0)
-		nextepg, nexttimedisplay = self.getEPGNowNext(current.ref,1)
+		nowepg, nowtimedisplay = self.getEPGNowNext(current.ref, 0)
+		nextepg, nexttimedisplay = self.getEPGNowNext(current.ref, 1)
 		self["NowEPG"].setText(nowepg)
 		self["NextEPG"].setText(nextepg)
 		self["NowTime"].setText(nowtimedisplay)
@@ -414,7 +420,7 @@ class VirtualZap(Screen):
 			# play in videowindow
 			self.playService(current.ref)
 
-	def getEPGNowNext(self,ref, modus):
+	def getEPGNowNext(self, ref, modus):
 		# get now || next event
 		if self.epgcache is not None:
 			event = self.epgcache.lookupEvent(['IBDCTSERNX', (ref.toString(), modus, -1)])
@@ -425,8 +431,8 @@ class VirtualZap(Screen):
 					if modus == 0:
 						timedisplay = "+%d min" % (((event[0][1] + duration) - time()) / 60)
 					elif modus == 1:
-						timedisplay = "%d min" %  (duration / 60)
-					return "%02d:%02d %s" % (t[3],t[4], event[0][4]), timedisplay
+						timedisplay = "%d min" % (duration / 60)
+					return "%02d:%02d %s" % (t[3], t[4], event[0][4]), timedisplay
 				else:
 					return "", ""
 		return "", ""
@@ -441,7 +447,7 @@ class VirtualZap(Screen):
 		if self.exitTimer.isActive():
 			self.exitTimer.stop()
 		# show EPG Event
-		epglist = [ ]
+		epglist = []
 		self.epglist = epglist
 		service = ServiceReference(self.servicelist.getCurrentSelection())
 		ref = service.ref
@@ -546,7 +552,7 @@ class VirtualZap(Screen):
 	def playService(self, service):
 		if parentalControl.getProtectionLevel(service.toCompareString()) == -1 or (parentalControl.configInitialized and parentalControl.sessionPinCached and parentalControl.sessionPinCachedValue): # check parentalControl, only play a protected service when Pin-Cache is activated and still valid
 			current_service = service
-			n_service = self.pipServiceRelation.get(service.toString(),None) # PiPServiceRelation
+			n_service = self.pipServiceRelation.get(service.toString(), None) # PiPServiceRelation
 			if n_service is not None:
 				service = eServiceReference(n_service)
 			if service and (service.flags & eServiceReference.isGroup):
@@ -565,8 +571,8 @@ class VirtualZap(Screen):
 			self.pipservice = None
 			self.currentPiP = ""
 
-
 	# switch with numbers
+
 	def keyNumberGlobal(self, number):
 		self.session.openWithCallback(self.numberEntered, NumberZap, number)
 
@@ -581,9 +587,9 @@ class VirtualZap(Screen):
 				serviceIterator = servicelist.getNext()
 				if not serviceIterator.valid(): #check end of list
 					break
-				playable = not (serviceIterator.flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
+				playable = not (serviceIterator.flags & (eServiceReference.isMarker | eServiceReference.isDirectory))
 				if playable:
-					num -= 1;
+					num -= 1
 			if not num: #found service with searched number ?
 				return serviceIterator, 0
 		return None, num
@@ -692,6 +698,7 @@ class VirtualZap(Screen):
 				"keyTV": self.servicelist.setModeTv,
 			})
 
+
 class VirtualZapConfig(Screen, ConfigListScreen):
 
 	skin = """
@@ -709,7 +716,7 @@ class VirtualZapConfig(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		self.list = [ ]
+		self.list = []
 		self.list.append(getConfigListEntry(_("Usage"), config.plugins.virtualzap.mode))
 		if SystemInfo.get("NumVideoDecoders", 1) > 1:
 			self.list.append(getConfigListEntry(_("Use PiP"), config.plugins.virtualzap.usepip))
@@ -727,9 +734,8 @@ class VirtualZapConfig(Screen, ConfigListScreen):
 		for x in self["config"].list:
 			x[1].save()
 		configfile.save()
-		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply the new settings.\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
+		restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _("GUI needs a restart to apply the new settings.\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
-
 
 	def keyClose(self):
 		for x in self["config"].list:
@@ -741,4 +747,3 @@ class VirtualZapConfig(Screen, ConfigListScreen):
 			self.session.open(TryQuitMainloop, 3)
 		else:
 			self.close()
-

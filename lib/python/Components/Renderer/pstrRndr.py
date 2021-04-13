@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # by digiteng...12-2019
 
-from Renderer import Renderer 
+from Renderer import Renderer
 from enigma import ePixmap, loadJPG
 from Components.UsageConfig import *
 import os
@@ -13,6 +13,7 @@ posterpath = config.usage.posterpath.value
 if not posterpath:
 	posterpath = "/media/hdd/"
 print "posterpath:", posterpath
+
 
 class pstrRndr(Renderer):
 
@@ -40,7 +41,7 @@ class pstrRndr(Renderer):
 
 		try:
 			eventName = self.source.text
-			if eventName :
+			if eventName:
 				posterNm = re.sub('\s+', '+', eventName)
 				pstrNm = posterpath + self.path + posterNm + ".jpg"
 

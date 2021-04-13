@@ -34,32 +34,37 @@ cur_skin = config.skin.primary_skin.value.replace('/skin.xml', '')
 # Atile
 config.plugins.AtileHD = ConfigSubsection()
 config.plugins.AtileHD.refreshInterval = ConfigNumber(default=10)
-config.plugins.AtileHD.woeid = ConfigNumber(default = 638242)
-config.plugins.AtileHD.tempUnit = ConfigSelection(default="Celsius", choices = [
+config.plugins.AtileHD.woeid = ConfigNumber(default=638242)
+config.plugins.AtileHD.tempUnit = ConfigSelection(default="Celsius", choices=[
 				("Celsius", _("Celsius")),
 				("Fahrenheit", _("Fahrenheit"))
 				])
 
+
 def Plugins(**kwargs):
-	return [PluginDescriptor(name=_("%s Setup") % cur_skin, description=_("Personalize your Skin"), where = PluginDescriptor.WHERE_MENU, icon="plugin.png", fnc=menu)]
+	return [PluginDescriptor(name=_("%s Setup") % cur_skin, description=_("Personalize your Skin"), where=PluginDescriptor.WHERE_MENU, icon="plugin.png", fnc=menu)]
+
 
 def menu(menuid, **kwargs):
-	if menuid == "gui_menu" and not config.skin.primary_skin.value == "XionHDF/skin.MySkin.xml" and not config.skin.primary_skin.value == "XionHDF/skin.xml" and not config.skin.primary_skin.value =="SevenHD/skin.xml" and not config.skin.primary_skin.value == "KravenVB/skin.xml":
+	if menuid == "gui_menu" and not config.skin.primary_skin.value == "XionHDF/skin.MySkin.xml" and not config.skin.primary_skin.value == "XionHDF/skin.xml" and not config.skin.primary_skin.value == "SevenHD/skin.xml" and not config.skin.primary_skin.value == "KravenVB/skin.xml":
 		return [(_("Setup - %s") % cur_skin, main, "atilehd_setup", None)]
 	else:
 		pass
-	return [ ]
+	return []
+
 
 def main(session, **kwargs):
 	print "[%s]: Config ..." % cur_skin
 	session.open(AtileHD_Config)
 
+
 def isInteger(s):
-	try: 
+	try:
 		int(s)
 		return True
 	except ValueError:
 		return False
+
 
 class WeatherLocationChoiceList(Screen):
 	skin = """
@@ -129,7 +134,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		</screen>
 	"""
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		self.session = session
 		self.skin_lines = []
 		self.changed_screens = False
@@ -141,7 +146,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			self.getInitConfig()
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("OK"))
@@ -219,46 +224,46 @@ class AtileHD_Config(Screen, ConfigListScreen):
 
 		# color
 		current, choices = self.getSettings(self.default_color_file, self.color_file)
-		self.myAtileHD_color = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_color = NoSave(ConfigSelection(default=current, choices=choices))
 		# sb
 		current, choices = self.getSettings(self.default_sb_file, self.sb_file)
-		self.myAtileHD_sb = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_sb = NoSave(ConfigSelection(default=current, choices=choices))
 		# frame
 		current, choices = self.getSettings(self.default_frame_file, self.frame_file)
-		self.myAtileHD_frame = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_frame = NoSave(ConfigSelection(default=current, choices=choices))
 		# center
 		current, choices = self.getSettings(self.default_center_file, self.center_file)
-		self.myAtileHD_center = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_center = NoSave(ConfigSelection(default=current, choices=choices))
 	    # lines
 		current, choices = self.getSettings(self.default_lines_file, self.lines_file)
-		self.myAtileHD_lines = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_lines = NoSave(ConfigSelection(default=current, choices=choices))
 		# sbar
 		current, choices = self.getSettings(self.default_sbar_file, self.sbar_file)
-		self.myAtileHD_sbar = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_sbar = NoSave(ConfigSelection(default=current, choices=choices))
 		# infobar
 		current, choices = self.getSettings(self.default_infobar_file, self.infobar_file)
-		self.myAtileHD_infobar = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_infobar = NoSave(ConfigSelection(default=current, choices=choices))
 		# wget
 		current, choices = self.getSettings(self.default_wget_file, self.wget_file)
-		self.myAtileHD_wget = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_wget = NoSave(ConfigSelection(default=current, choices=choices))
 		# sib
 		current, choices = self.getSettings(self.default_sib_file, self.sib_file)
-		self.myAtileHD_sib = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_sib = NoSave(ConfigSelection(default=current, choices=choices))
 		# ch_se
 		current, choices = self.getSettings(self.default_ch_se_file, self.ch_se_file)
-		self.myAtileHD_ch_se = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_ch_se = NoSave(ConfigSelection(default=current, choices=choices))
 		# ev
 		current, choices = self.getSettings(self.default_ev_file, self.ev_file)
-		self.myAtileHD_ev = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_ev = NoSave(ConfigSelection(default=current, choices=choices))
 		# emcsel
 		current, choices = self.getSettings(self.default_emcsel_file, self.emcsel_file)
-		self.myAtileHD_emcsel = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_emcsel = NoSave(ConfigSelection(default=current, choices=choices))
 		# movsel
 		current, choices = self.getSettings(self.default_movsel_file, self.movsel_file)
-		self.myAtileHD_movsel = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_movsel = NoSave(ConfigSelection(default=current, choices=choices))
 		# volume
 		current, choices = self.getSettings(self.default_volume_file, self.volume_file)
-		self.myAtileHD_volume = NoSave(ConfigSelection(default=current, choices = choices))
+		self.myAtileHD_volume = NoSave(ConfigSelection(default=current, choices=choices))
 		# myatile
 		myatile_active = self.getmyAtileState()
 		self.myAtileHD_active = NoSave(ConfigYesNo(default=myatile_active))
@@ -269,22 +274,22 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		default = ("default", _("Default"))
 
 		# search typ
-		styp = default_file.replace('_Original.xml','')
+		styp = default_file.replace('_Original.xml', '')
 		if self.is_atile:
-			search_str = '%s_atile_' %styp
+			search_str = '%s_atile_' % styp
 		else:
-			search_str = '%s_' %styp
+			search_str = '%s_' % styp
 
 		# possible setting
 		choices = []
 		files = listdir(self.skin_base_dir)
-		if path.exists(self.skin_base_dir + 'allScreens/%s/' %styp):
-			files += listdir(self.skin_base_dir + 'allScreens/%s/' %styp)
+		if path.exists(self.skin_base_dir + 'allScreens/%s/' % styp):
+			files += listdir(self.skin_base_dir + 'allScreens/%s/' % styp)
 		for f in sorted(files, key=str.lower):
 			if f.endswith('.xml') and f.startswith(search_str):
 				friendly_name = f.replace(search_str, "").replace(".xml", "").replace("_", " ")
-				if path.exists(self.skin_base_dir + 'allScreens/%s/%s' %(styp,f)):
-					choices.append((self.skin_base_dir + 'allScreens/%s/%s' %(styp,f), friendly_name))
+				if path.exists(self.skin_base_dir + 'allScreens/%s/%s' % (styp, f)):
+					choices.append((self.skin_base_dir + 'allScreens/%s/%s' % (styp, f), friendly_name))
 				else:
 					choices.append((self.skin_base_dir + f, friendly_name))
 		choices.append(default)
@@ -298,11 +303,11 @@ class AtileHD_Config(Screen, ConfigListScreen):
 					remove(myfile)
 				chdir(self.skin_base_dir)
 				symlink(default_file, user_file)
-			elif path.exists(self.skin_base_dir + 'allScreens/%s/%s' %(styp, default_file)):
+			elif path.exists(self.skin_base_dir + 'allScreens/%s/%s' % (styp, default_file)):
 				if path.islink(myfile):
 					remove(myfile)
 				chdir(self.skin_base_dir)
-				symlink(self.skin_base_dir + 'allScreens/%s/%s' %(styp, default_file), user_file)
+				symlink(self.skin_base_dir + 'allScreens/%s/%s' % (styp, default_file), user_file)
 			else:
 				current = None
 		if current is None:
@@ -334,33 +339,33 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		self.find_woeid = getConfigListEntry(_("Search weather location ID"), ConfigNothing())
 		self.list = []
 		self.list.append(self.set_myatile)
-		if len(self.myAtileHD_color.choices)>1:
+		if len(self.myAtileHD_color.choices) > 1:
 			self.list.append(self.set_color)
-		if len(self.myAtileHD_sb.choices)>1:
+		if len(self.myAtileHD_sb.choices) > 1:
 			self.list.append(self.set_sb)
-		if len(self.myAtileHD_frame.choices)>1:
+		if len(self.myAtileHD_frame.choices) > 1:
 			self.list.append(self.set_frame)
-		if len(self.myAtileHD_center.choices)>1:
+		if len(self.myAtileHD_center.choices) > 1:
 			self.list.append(self.set_center)
-		if len(self.myAtileHD_lines.choices)>1:
+		if len(self.myAtileHD_lines.choices) > 1:
 			self.list.append(self.set_lines)
-		if len(self.myAtileHD_sbar.choices)>1:
+		if len(self.myAtileHD_sbar.choices) > 1:
 			self.list.append(self.set_sbar)
-		if len(self.myAtileHD_infobar.choices)>1:
+		if len(self.myAtileHD_infobar.choices) > 1:
 			self.list.append(self.set_infobar)
-		if len(self.myAtileHD_wget.choices)>1:
+		if len(self.myAtileHD_wget.choices) > 1:
 			self.list.append(self.set_wget)
-		if len(self.myAtileHD_sib.choices)>1:
+		if len(self.myAtileHD_sib.choices) > 1:
 			self.list.append(self.set_sib)
-		if len(self.myAtileHD_ch_se.choices)>1:
+		if len(self.myAtileHD_ch_se.choices) > 1:
 			self.list.append(self.set_ch_se)
-		if len(self.myAtileHD_ev.choices)>1:
+		if len(self.myAtileHD_ev.choices) > 1:
 			self.list.append(self.set_ev)
-		if len(self.myAtileHD_emcsel.choices)>1:
+		if len(self.myAtileHD_emcsel.choices) > 1:
 			self.list.append(self.set_emcsel)
-		if len(self.myAtileHD_movsel.choices)>1:
+		if len(self.myAtileHD_movsel.choices) > 1:
 			self.list.append(self.set_movsel)
-		if len(self.myAtileHD_volume.choices)>1:
+		if len(self.myAtileHD_volume.choices) > 1:
 			self.list.append(self.set_volume)
 		self.list.append(self.set_new_skin)
 		#if not config.skin.primary_skin.value == "iFlatFHD/skin.xml":
@@ -392,7 +397,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		elif self["config"].getCurrent() == self.set_infobar:
 			self.setPicture(self.myAtileHD_infobar.value)
 		elif self["config"].getCurrent() == self.set_wget:
-			self.setPicture(self.myAtileHD_wget.value)	
+			self.setPicture(self.myAtileHD_wget.value)
 		elif self["config"].getCurrent() == self.set_sib:
 			self.setPicture(self.myAtileHD_sib.value)
 		elif self["config"].getCurrent() == self.set_ch_se:
@@ -445,7 +450,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 
 	def cancel(self):
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), MessageBox.TYPE_YESNO, default = False)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), MessageBox.TYPE_YESNO, default=False)
 		else:
 			for x in self["config"].list:
 				x[1].cancel()
@@ -486,11 +491,11 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			self["config"].setCurrentIndex(0)
 
 	def keyOk(self):
-		sel =  self["config"].getCurrent()
+		sel = self["config"].getCurrent()
 		if sel is not None and sel == self.set_new_skin:
 			self.openSkinSelector()
 		elif sel is not None and sel == self.find_woeid:
-			self.session.openWithCallback(self.search_weather_id_callback, InputBox, title = _("Please enter search string for your location"), text = "")
+			self.session.openWithCallback(self.search_weather_id_callback, InputBox, title=_("Please enter search string for your location"), text="")
 		else:
 			self.keyGreen()
 
@@ -520,7 +525,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			print res
 			config.plugins.AtileHD.woeid.value = int(res)
 
-	def skinChanged(self, ret = None):
+	def skinChanged(self, ret=None):
 		global cur_skin
 		cur_skin = config.skin.primary_skin.value.replace('/skin.xml', '')
 		if cur_skin == "skin.xml":
@@ -569,7 +574,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 				print "makedir mySkin_off"
 			if self.myAtileHD_active.value:
 				if not path.exists("mySkin") and path.exists("mySkin_off"):
-						symlink("mySkin_off","mySkin")
+						symlink("mySkin_off", "mySkin")
 			else:
 				if path.exists("mySkin"):
 					if path.exists("mySkin_off"):
@@ -580,7 +585,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 					else:
 						rename("mySkin", "mySkin_off")
 			self.restartGUI()
-		elif  config.skin.primary_skin.value != self.start_skin:
+		elif config.skin.primary_skin.value != self.start_skin:
 			self.restartGUI()
 		else:
 			if self.changed_screens:
@@ -599,7 +604,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		self["config"].setCurrentIndex(0)
 
 	def restartGUI(self):
-		restartbox = self.session.openWithCallback(self.restartGUIcb,MessageBox,_("Restart necessary, restart GUI now?"), MessageBox.TYPE_YESNO)
+		restartbox = self.session.openWithCallback(self.restartGUIcb, MessageBox, _("Restart necessary, restart GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Message"))
 
 	def about(self):
@@ -611,9 +616,10 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		else:
 			self.close()
 
+
 class AtileHD_About(Screen):
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		self.session = session
 		Screen.__init__(self, session)
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -627,6 +633,7 @@ class AtileHD_About(Screen):
 
 	def cancel(self):
 		self.close()
+
 
 class AtileHDScreens(Screen):
 
@@ -656,26 +663,26 @@ class AtileHDScreens(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		
+
 		global cur_skin
 		self.is_atile = False
 		if cur_skin == 'AtileHD':
 			self.is_atile = True
-		
+
 		self.title = _("%s additional screens") % cur_skin
 		try:
-			self["title"]=StaticText(self.title)
+			self["title"] = StaticText(self.title)
 		except:
 			print 'self["title"] was not found in skin'
-		
+
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_("on"))
-		
+
 		self["Picture"] = Pixmap()
-		
+
 		menu_list = []
 		self["menu"] = List(menu_list)
-		
+
 		self["shortcuts"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
 		{
 			"ok": self.runMenuEntry,
@@ -683,7 +690,7 @@ class AtileHDScreens(Screen):
 			"red": self.keyCancel,
 			"green": self.runMenuEntry,
 		}, -2)
-		
+
 		self.skin_base_dir = "/usr/share/enigma2/%s/" % cur_skin
 		self.screen_dir = "allScreens"
 		self.skinparts_dir = "skinparts"
@@ -691,15 +698,15 @@ class AtileHDScreens(Screen):
 		my_path = resolveFilename(SCOPE_SKIN, "%s/icons/lock_on.png" % cur_skin)
 		if not path.exists(my_path):
 			my_path = resolveFilename(SCOPE_SKIN, "skin_default/icons/lock_on.png")
-		self.enabled_pic = LoadPixmap(cached = True, path = my_path)
+		self.enabled_pic = LoadPixmap(cached=True, path=my_path)
 		my_path = resolveFilename(SCOPE_SKIN, "%s/icons/lock_off.png" % cur_skin)
 		if not path.exists(my_path):
 			my_path = resolveFilename(SCOPE_SKIN, "skin_default/icons/lock_off.png")
-		self.disabled_pic = LoadPixmap(cached = True, path = my_path)
-		
+		self.disabled_pic = LoadPixmap(cached=True, path=my_path)
+
 		if not self.selectionChanged in self["menu"].onSelectionChanged:
 			self["menu"].onSelectionChanged.append(self.selectionChanged)
-		
+
 		self.onLayoutFinish.append(self.createMenuList)
 
 	def selectionChanged(self):
@@ -754,7 +761,7 @@ class AtileHDScreens(Screen):
 				else:
 					if path.islink(dir_path + "/" + f):
 						remove(dir_path + "/" + f)
-		menu_list = [ ]
+		menu_list = []
 		for entry in f_list:
 			menu_list.append((entry[0], entry[1], entry[2]))
 		self["menu"].updateList(menu_list)
@@ -768,7 +775,7 @@ class AtileHDScreens(Screen):
 			self["Picture"].show()
 		else:
 			self["Picture"].hide()
-	
+
 	def keyCancel(self):
 		self.close()
 

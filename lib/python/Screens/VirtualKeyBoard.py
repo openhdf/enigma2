@@ -13,6 +13,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 import skin
 
+
 class VirtualKeyBoardList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
@@ -20,9 +21,11 @@ class VirtualKeyBoardList(MenuList):
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])
 
+
 class VirtualKeyBoardEntryComponent:
 	def __init__(self):
 		pass
+
 
 class VirtualKeyBoard(Screen):
 	def __init__(self, session, title=_("Virtual KeyBoard Text:"), currPos=None, **kwargs):
@@ -50,7 +53,7 @@ class VirtualKeyBoard(Screen):
 		self.key_left = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_left.png"))
 		self.key_right = LoadPixmap(path=resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/vkey_right.png"))
 
-		self.keyImages =  {
+		self.keyImages = {
 				"BACKSPACE": self.key_backspace,
 				"CLEAR": self.key_clr,
 				"ALL": self.key_all,
@@ -74,7 +77,7 @@ class VirtualKeyBoard(Screen):
 
 		self["country"] = StaticText("")
 		self["header"] = Label(title)
-		self["text"] = Input(currPos=len(kwargs.get("text", "").decode("utf-8",'ignore')), allMarked=False, **kwargs)
+		self["text"] = Input(currPos=len(kwargs.get("text", "").decode("utf-8", 'ignore')), allMarked=False, **kwargs)
 		self["list"] = VirtualKeyBoardList([])
 
 		self["actions"] = NumberActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
@@ -133,7 +136,7 @@ class VirtualKeyBoard(Screen):
 				[u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"Ü", u"*"],
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"Ö", u"Ä", u"'"],
 				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"?", u"\\",u"|",u"^", u"OK", u"LEFT", u"RIGHT"]]
+				[u"SHIFT", u"SPACE", u"?", u"\\", u"|", u"^", u"OK", u"LEFT", u"RIGHT"]]
 			self.nextLang = 'hu_HU'
 		elif self.lang == 'hu_HU':
 			self.keys_list = [
@@ -219,7 +222,7 @@ class VirtualKeyBoard(Screen):
 				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"?", u"\\", u"Ĺ", u"OK", u"LEFT", u"RIGHT"]]
 			self.nextLang = 'sk_SK'
-		elif self.lang =='sk_SK':
+		elif self.lang == 'sk_SK':
 			self.keys_list = [
 				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
 				[u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"ú", u"+"],
@@ -320,7 +323,7 @@ class VirtualKeyBoard(Screen):
 		self["country"].setText(self.lang)
 
 	def virtualKeyBoardEntryComponent(self, keys):
-		w, h = skin.parameters.get("VirtualKeyboard",(45, 45))
+		w, h = skin.parameters.get("VirtualKeyboard", (45, 45))
 		key_bg_width = self.key_bg and self.key_bg.size().width() or w
 		key_images = self.shiftMode and self.keyImagesShift or self.keyImages
 		res = [keys]
@@ -349,15 +352,15 @@ class VirtualKeyBoard(Screen):
 		self.markSelectedKey()
 
 	def markSelectedKey(self):
-		w, h = skin.parameters.get("VirtualKeyboard",(45, 45))
+		w, h = skin.parameters.get("VirtualKeyboard", (45, 45))
 		if self.previousSelectedKey is not None:
-			self.list[self.previousSelectedKey /12] = self.list[self.previousSelectedKey /12][:-1]
+			self.list[self.previousSelectedKey / 12] = self.list[self.previousSelectedKey / 12][:-1]
 		width = self.key_sel.size().width()
 		try:
-			x = self.list[self.selectedKey/12][self.selectedKey % 12 + 1][1]
+			x = self.list[self.selectedKey / 12][self.selectedKey % 12 + 1][1]
 		except IndexError:
 			self.selectedKey = self.max_key
-			x = self.list[self.selectedKey/12][self.selectedKey % 12 + 1][1]
+			x = self.list[self.selectedKey / 12][self.selectedKey % 12 + 1][1]
 		self.list[self.selectedKey / 12].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, h), png=self.key_sel))
 		self.previousSelectedKey = self.selectedKey
 		self["list"].setList(self.list)

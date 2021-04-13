@@ -7,16 +7,18 @@ def getDefaultGateway():
 				return int(tokens[2], 16)
 	return None
 
+
 def getTelephone():
 	f = open("/etc/ppp/options", "r")
 	if f:
 		for line in f.readlines():
 			if line.find('connect') == 0:
-				line = line[line.find(' ')+1:]
-				line = line[line.find(' ')+1:]
+				line = line[line.find(' ') + 1:]
+				line = line[line.find(' ') + 1:]
 				line = line[:line.find('"')]
 				return line
 	return ""
+
 
 def setOptions(tel, user):
 	f = open("/etc/ppp/options", "r+")
@@ -26,13 +28,14 @@ def setOptions(tel, user):
 		for line in lines:
 			if line.find('connect') == 0:
 				p = line.find(' ')
-				p = line.find(' ', p+1)
-				line = line[:p+1]
-				f.write(line+tel+'"\n')
+				p = line.find(' ', p + 1)
+				line = line[:p + 1]
+				f.write(line + tel + '"\n')
 			elif line.find('user') == 0:
-				f.write('user '+user+'\n')
+				f.write('user ' + user + '\n')
 			else:
 				f.write(line)
+
 
 def getSecretString():
 	f = open("/etc/ppp/pap-secrets", "r")
@@ -45,6 +48,7 @@ def getSecretString():
 			return line
 	return None
 
+
 def setSecretString(secret):
 	f = open("/etc/ppp/pap-secrets", 'r+')
 	if f:
@@ -54,7 +58,8 @@ def setSecretString(secret):
 			if line[0] == '#' or line.find('*') == -1:
 				f.write(line)
 				continue
-			f.write(secret+'\n')
+			f.write(secret + '\n')
+
 
 from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
@@ -73,16 +78,19 @@ DISCONNECT = 3
 
 gateway = None
 
+
 def pppdClosed(ret):
 	global gateway
 	print "modem disconnected", ret
 	if gateway:
 		#FIXMEEE... hardcoded for little endian!!
-		system("route add default gw %d.%d.%d.%d" %(gateway&0xFF, (gateway>>8)&0xFF, (gateway>>16)&0xFF, (gateway>>24)&0xFF))
+		system("route add default gw %d.%d.%d.%d" % (gateway & 0xFF, (gateway >> 8) & 0xFF, (gateway >> 16) & 0xFF, (gateway >> 24) & 0xFF))
+
 
 connected = False
 conn = eConsoleAppContainer()
 conn.appClosed.append(pppdClosed)
+
 
 class ModemSetup(Screen):
 	skin = """
@@ -98,20 +106,20 @@ class ModemSetup(Screen):
 	def nothing(self):
 		print "nothing!"
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		global connected
 		global conn
 		self.skin = ModemSetup.skin
 		secret = getSecretString()
 		user = secret[:secret.find('*')]
-		password = secret[secret.find('*')+1:]
+		password = secret[secret.find('*') + 1:]
 		self.username = ConfigText(user, fixed_size=False)
 		self.password = ConfigPassword(password, fixed_size=False)
 		self.phone = ConfigText(getTelephone(), fixed_size=False)
 		self.phone.setUseableChars(u"0123456789")
-		lst = [ (_("Username"), self.username),
+		lst = [(_("Username"), self.username),
 			(_("Password"), self.password),
-			(_("Phone number"), self.phone) ]
+			(_("Phone number"), self.phone)]
 		self["list"] = ConfigList(lst)
 		self["key_green"] = Button("")
 		self["key_red"] = Button("")
@@ -160,7 +168,7 @@ class ModemSetup(Screen):
 	def __layoutFinished(self):
 		global conn
 		if conn.running():
-			self["state"].setText(_("Connected!"));
+			self["state"].setText(_("Connected!"))
 			self.green_function = NONE
 			self.red_function = DISCONNECT
 		else:
@@ -188,8 +196,8 @@ class ModemSetup(Screen):
 			gateway = getDefaultGateway()
 			self["state"].setText(_("Dialing:"))
 			system("route del default")
-			system("modprobe ppp_async");
-			self.stateTimer.start(1000,False)
+			system("modprobe ppp_async")
+			self.stateTimer.start(1000, False)
 			setOptions(self.phone.getText(), self.username.getText())
 			setSecretString(self.username.getText() + ' * ' + self.password.getText())
 			ret = conn.execute("pppd", "pppd", "-d", "-detach")
@@ -242,7 +250,7 @@ class ModemSetup(Screen):
 			self["state"].setText(tmp)
 		if text.find("PAP authentication succeeded") != -1:
 			tmp = self["state"].getText()
-			tmp += "OK\n";
+			tmp += "OK\n"
 			self["state"].setText(tmp)
 			self.stateTimer.stop()
 		if text.find("ip-up finished") != -1:
@@ -251,7 +259,7 @@ class ModemSetup(Screen):
 			tmp += "Connected :)\n"
 			self["state"].setText(tmp)
 			self.red_function = DISCONNECT
-			connected=True
+			connected = True
 		if text.find("Connect script failed") != -1:
 			tmp = self["state"].getText()
 			tmp += "FAILED\n"
@@ -276,8 +284,10 @@ class ModemSetup(Screen):
 		self["list"].instance.setSelectionEnable(focus_enabled)
 		self["ListActions"].setEnabled(not focus_enabled)
 
+
 def main(session, **kwargs):
 	session.open(ModemSetup)
 
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name="Modem", description="plugin to connect to internet via builtin modem", where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=main)
+	return PluginDescriptor(name="Modem", description="plugin to connect to internet via builtin modem", where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=main)

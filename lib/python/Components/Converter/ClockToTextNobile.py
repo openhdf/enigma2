@@ -44,6 +44,7 @@ shortDAYWEEK = (_("Mo"),
                 _("Sa"),
                 _("So"))
 
+
 class ClockToTextNobile(Converter, object):
 	DEFAULT = 0
 	WITH_SECONDS = 1
@@ -95,18 +96,18 @@ class ClockToTextNobile(Converter, object):
 		elif self.type == self.DEFAULT:
 			return "%2d:%02d" % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
-			return _(strftime("%A",t)) + " " + str(t[2]) + " " + MONTHS[t[1]-1] + " " + str(t[0])
+			return _(strftime("%A", t)) + " " + str(t[2]) + " " + MONTHS[t[1] - 1] + " " + str(t[0])
 			#return strftime("%A %B %d, %Y", t)
 		elif self.type == self.FORMAT:
 			spos = self.fmt_string.find('%')
-			self.fmt_string = self.fmt_string.replace('%A',_(DAYWEEK[t.tm_wday]))
-		        self.fmt_string = self.fmt_string.replace('%B',_(MONTHS[t.tm_mon-1]))
-		        self.fmt_string = self.fmt_string.replace('%a',_(shortDAYWEEK[t.tm_wday]))
-		        self.fmt_string = self.fmt_string.replace('%b',_(shortMONTHS[t.tm_mon-1]))
+			self.fmt_string = self.fmt_string.replace('%A', _(DAYWEEK[t.tm_wday]))
+		        self.fmt_string = self.fmt_string.replace('%B', _(MONTHS[t.tm_mon - 1]))
+		        self.fmt_string = self.fmt_string.replace('%a', _(shortDAYWEEK[t.tm_wday]))
+		        self.fmt_string = self.fmt_string.replace('%b', _(shortMONTHS[t.tm_mon - 1]))
 			if spos > 0:
 				s1 = self.fmt_string[:spos]
 				s2 = strftime(self.fmt_string[spos:], t)
-				return str(s1+s2)
+				return str(s1 + s2)
 			else:
 				return strftime(self.fmt_string, t)
 

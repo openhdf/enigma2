@@ -22,15 +22,18 @@ import os
 from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent, eServiceReference
 from camcontrol import CamControl
 
+
 class ConfigAction(ConfigElement):
 	def __init__(self, action, *args):
 		ConfigElement.__init__(self)
 		self.value = "(OK)"
 		self.action = action
 		self.actionargs = args
+
 	def handleKey(self, key):
 		if (key == KEY_OK):
 			self.action(*self.actionargs)
+
 
 class ScSelection(Screen):
 	skin = """
@@ -72,9 +75,9 @@ class ScSelection(Screen):
 				"green": self.save,
 				"red": self.cancel,
 				"blue": self.blue,
-			},-1)
+			}, -1)
 
-		self.list = [ ]
+		self.list = []
 
 		self.softcam = CamControl('softcam')
 		self.cardserver = CamControl('cardserver')
@@ -87,12 +90,12 @@ class ScSelection(Screen):
 		softcams = self.softcam.getList()
 		cardservers = self.cardserver.getList()
 
-		self.softcams = ConfigSelection(choices = softcams)
+		self.softcams = ConfigSelection(choices=softcams)
 		self.softcams.value = self.softcam.current()
 
 		self.list.append(getConfigListEntry(_("Select Softcam"), self.softcams))
 		if cardservers:
-			self.cardservers = ConfigSelection(choices = cardservers)
+			self.cardservers = ConfigSelection(choices=cardservers)
 			self.cardservers.value = self.cardserver.current()
 			self.list.append(getConfigListEntry(_("Select Card Server"), self.cardservers))
 
@@ -116,10 +119,10 @@ class ScSelection(Screen):
 
 	def blue(self):
 		if os.path.exists("/tmp/ecm.info") is True:
-			self.session.open(Console,_("ECM -> ecm.info"),["cat /tmp/ecm.info"])
+			self.session.open(Console, _("ECM -> ecm.info"), ["cat /tmp/ecm.info"])
 			pass
 		elif os.path.exists("/tmp/ecm1.info") is True:
-			self.session.open(Console,_("ECM -> ecm0.info"),["cat /tmp/ecm0.info"])
+			self.session.open(Console, _("ECM -> ecm0.info"), ["cat /tmp/ecm0.info"])
 			pass
 		else:
 			msgi = _("Sorry ... no ECM Info found")
@@ -131,7 +134,7 @@ class ScSelection(Screen):
 			if "c" in what:
 				msg = _("Please wait, restarting softcam and cardserver.")
 			else:
-				msg  = _("Please wait, restarting softcam.")
+				msg = _("Please wait, restarting softcam.")
                 elif "c" in what:
 			msg = _("Please wait, restarting cardserver.")
 		self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)

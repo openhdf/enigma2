@@ -26,23 +26,26 @@ import re
 from os import path, popen, system
 from re import search
 
+
 def find_rootfssubdir(file):
 	startup_content = read_startup("/boot/" + file)
-	rootsubdir = startup_content[startup_content.find("rootsubdir=")+11:].split()[0]
+	rootsubdir = startup_content[startup_content.find("rootsubdir=") + 11:].split()[0]
 	if rootsubdir.startswith("linuxrootfs"):
 		return rootsubdir
 	return
+
 
 def read_startup(FILE):
 	file = FILE
 	try:
 		with open(file, 'r') as myfile:
-			data=myfile.read().replace('\n', '')
+			data = myfile.read().replace('\n', '')
 		myfile.close()
 	except IOError:
 		print "[ERROR] failed to open file %s" % file
 		data = " "
 	return data
+
 
 class About(Screen):
 	def __init__(self, session):
@@ -65,40 +68,45 @@ class About(Screen):
 
 	def populate(self):
 		def netspeed():
-			netspeed=""
-			for line in popen('ethtool eth0 |grep Speed','r'):
+			netspeed = ""
+			for line in popen('ethtool eth0 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ','')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_eth1():
-			netspeed=""
-			for line in popen('ethtool eth1 |grep Speed','r'):
+			netspeed = ""
+			for line in popen('ethtool eth1 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ','')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_ra0():
-			netspeed=""
-			for line in popen('iwconfig ra0 | grep Bit | cut -c 20-30','r'):
+			netspeed = ""
+			for line in popen('iwconfig ra0 | grep Bit | cut -c 20-30', 'r'):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_wlan0():
-			netspeed=""
-			for line in popen('iwconfig wlan0 | grep Bit | cut -c 20-30','r'):
+			netspeed = ""
+			for line in popen('iwconfig wlan0 | grep Bit | cut -c 20-30', 'r'):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_wlan1():
-			netspeed=""
-			for line in popen('iwconfig wlan1 | grep Bit | cut -c 20-30','r'):
+			netspeed = ""
+			for line in popen('iwconfig wlan1 | grep Bit | cut -c 20-30', 'r'):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
+
 		def freeflash():
-			freeflash=""
-			for line in popen("df -mh / | grep -v '^Filesystem' | awk '{print $4}'",'r'):
+			freeflash = ""
+			for line in popen("df -mh / | grep -v '^Filesystem' | awk '{print $4}'", 'r'):
 				line = line.strip()
 				freeflash += line
 				return str(freeflash)
@@ -135,23 +143,23 @@ class About(Screen):
 		except:
 			BootLoaderVersion = 0
 
-		if getMachineBuild() in ('vusolo4k','gbx34k'):
+		if getMachineBuild() in ('vusolo4k', 'gbx34k'):
 			cpuMHz = "   (1,5 GHz)"
-		elif getMachineBuild() in ('u41','u42'):
+		elif getMachineBuild() in ('u41', 'u42'):
 			cpuMHz = "   (1,0 GHz)"
-		elif getMachineBuild() in ('vuuno4k','dm900','gb7252','dags7252'):
+		elif getMachineBuild() in ('vuuno4k', 'dm900', 'gb7252', 'dags7252'):
 			cpuMHz = "   (1,7 GHz)"
-		elif getMachineBuild() in ('formuler1tc','formuler1','triplex'):
+		elif getMachineBuild() in ('formuler1tc', 'formuler1', 'triplex'):
 			cpuMHz = "   (1,3 GHz)"
-		elif getMachineBuild() in ('u5','u51','u52','u53','u5pvr','h9','sf8008','sf8008s','sf8008t','hd60',"hd61",'i55plus'):
+		elif getMachineBuild() in ('u5', 'u51', 'u52', 'u53', 'u5pvr', 'h9', 'sf8008', 'sf8008s', 'sf8008t', 'hd60', "hd61", 'i55plus'):
 			cpuMHz = "   (1,6 GHz)"
-		elif getMachineBuild() in ('sf5008','et13000','et1x000','hd52','hd51','sf4008','vs1500','h7','osmio4k','osmio4kplus','osmini4k'):
+		elif getMachineBuild() in ('sf5008', 'et13000', 'et1x000', 'hd52', 'hd51', 'sf4008', 'vs1500', 'h7', 'osmio4k', 'osmio4kplus', 'osmini4k'):
 			try:
 				import binascii
 				f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 				clockfrequency = f.read()
 				f.close()
-				cpuMHz = "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
+				cpuMHz = "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16) / 1000000, 1))
 			except:
 				cpuMHz = "1,7 GHz"
 		else:
@@ -164,7 +172,7 @@ class About(Screen):
 						lisp = lines.split(': ')
 						if lisp[0].startswith('cpu MHz'):
 							#cpuMHz = "   (" +  lisp[1].replace('\n', '') + " MHz)"
-							cpuMHz = "   (" +  str(int(float(lisp[1].replace('\n', '')))) + " MHz)"
+							cpuMHz = "   (" + str(int(float(lisp[1].replace('\n', '')))) + " MHz)"
 							break
 				except:
 					pass
@@ -175,16 +183,16 @@ class About(Screen):
 		if res2:
 			bogoMIPS = "" + res2.replace("\n", "")
 
-		if getMachineBuild() in ('vusolo4k','hd51','hd52','sf4008','dm900','h7','gb7252','8100s'):
+		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'h7', 'gb7252', '8100s'):
 			AboutText += _("CPU:\t%s") % about.getCPUString() + cpuMHz + "\n"
 		else:
 			AboutText += _("CPU:\t%s") % about.getCPUString() + " " + cpuMHz + "\n"
 		dMIPS = 0
 		if getMachineBuild() in ('vusolo4k'):
 			dMIPS = "10.500"
-		elif getMachineBuild() in ('hd52','hd51','sf4008','dm900','h7','gb7252','8100s'):
+		elif getMachineBuild() in ('hd52', 'hd51', 'sf4008', 'dm900', 'h7', 'gb7252', '8100s'):
 			dMIPS = "12.000"
-		if getMachineBuild() in ('vusolo4k','hd51','hd52','sf4008','dm900','h7','gb7252','8100s'):
+		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'h7', 'gb7252', '8100s'):
 			AboutText += _("DMIPS:\t") + dMIPS + "\n"
 		else:
 			AboutText += _("BogoMIPS:\t%s") % bogoMIPS + "\n"
@@ -213,7 +221,7 @@ class About(Screen):
 
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("System Temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+			AboutText += _("System Temp:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
 
 		tempinfo = ""
 		if path.exists('/proc/stb/fp/temp_sensor_avs'):
@@ -244,7 +252,7 @@ class About(Screen):
 				tempinfo = ""
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			mark = str('\xc2\xb0')
-			AboutText += _("CPU Temp:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+			AboutText += _("CPU Temp:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
 
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 		AboutText += _("HDF Version:\tV%s") % getImageVersion() + " Build #" + getImageBuild() + " based on " + getOEVersion() + "\n"
@@ -254,7 +262,7 @@ class About(Screen):
 			version = open("/etc/issue").readlines()[-2].upper().strip()[:-6]
 			if path.isfile("/etc/image-version"):
 				build = self.searchString("/etc/image-version", "^build=")
-				version = "%s #%s" % (version,build)
+				version = "%s #%s" % (version, build)
 			AboutText += _("Image:\t%s") % version + "\n"
 
 		imagestarted = ""
@@ -266,7 +274,7 @@ class About(Screen):
 		if SystemInfo["HasRootSubdir"]:
 			image = find_rootfssubdir("STARTUP")
 			AboutText += _("Selected Image:\t%s") % "STARTUP_" + image[-1:] + bootname + "\n"
-		elif getMachineBuild() in ('gbmv200','cc1','sf8008','ustym4kpro','beyonwizv2',"viper4k"):
+		elif getMachineBuild() in ('gbmv200', 'cc1', 'sf8008', 'ustym4kpro', 'beyonwizv2', "viper4k"):
 			if path.exists('/boot/STARTUP'):
 				f = open('/boot/STARTUP', 'r')
 				f.seek(5)
@@ -285,14 +293,16 @@ class About(Screen):
 					elif image == "7":
 						image = "5"
 				f.close()
-				if bootname: bootname = "   (%s)" %bootname 
+				if bootname:
+					bootname = "   (%s)" % bootname
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 			else:
 				f = open('/boot/STARTUP', 'r')
 				f.seek(22)
 				image = f.read(1)
 				f.close()
-				if bootname: bootname = "   (%s)" %bootname
+				if bootname:
+					bootname = "   (%s)" % bootname
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 
 		if SystemInfo["HaveMultiBoot"]:
@@ -380,6 +390,7 @@ class About(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class Devices(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -449,18 +460,18 @@ class Devices(Screen):
 				if ((float(size) / 1024) / 1024) >= 1:
 					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + " " + _("TB")
 				elif (size / 1024) >= 1:
-					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) +  " " + _("GB")
+					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) + " " + _("GB")
 				elif size >= 1:
-					sizeline = _("Size: ") + str(size) +  " " + _("MB")
+					sizeline = _("Size: ") + str(size) + " " + _("MB")
 				else:
 					sizeline = _("Size: ") + _("unavailable")
 
 				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) +  " " + _("TB")
+					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) + " " + _("TB")
 				elif (free / 1024) >= 1:
-					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) +  " " + _("GB")
+					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) + " " + _("GB")
 				elif free >= 1:
-					freeline = _("Free: ") + str(free) +  " " + _("MB")
+					freeline = _("Free: ") + str(free) + " " + _("MB")
 				else:
 					freeline = _("Free: ") + _("full")
 				self.list.append(mount + '\t' + sizeline + ' \t' + freeline)
@@ -504,6 +515,7 @@ class Devices(Screen):
 
 	def createSummary(self):
 		return AboutSummary
+
 
 class SystemMemoryInfo(Screen):
 	def __init__(self, session):
@@ -551,7 +563,7 @@ class SystemMemoryInfo(Screen):
 		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
 
 	def MySize(self, RamText):
-		RamText_End = RamText[len(RamText)-1]
+		RamText_End = RamText[len(RamText) - 1]
 		RamText_End2 = RamText_End
 		if RamText_End == "G":
 			RamText_End = _("GB")
@@ -560,7 +572,7 @@ class SystemMemoryInfo(Screen):
 		elif RamText_End == "K":
 			RamText_End = _("KB")
 		if RamText_End != RamText_End2:
-			RamText = RamText[0:len(RamText)-1] + " " + RamText_End
+			RamText = RamText[0:len(RamText) - 1] + " " + RamText_End
 		return RamText
 
 	def Stage1Complete(self, result, retval, extra_args=None):
@@ -581,6 +593,7 @@ class SystemMemoryInfo(Screen):
 
 	def showMemoryInfo(self):
 		self.session.open(MemoryInfo)
+
 
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
@@ -633,17 +646,18 @@ class SystemNetworkInfo(Screen):
 
 	def createscreen(self):
 		def netspeed():
-			netspeed=""
-			for line in popen('ethtool eth0 |grep Speed','r'):
+			netspeed = ""
+			for line in popen('ethtool eth0 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ','')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_eth1():
-			netspeed=""
-			for line in popen('ethtool eth1 |grep Speed','r'):
+			netspeed = ""
+			for line in popen('ethtool eth1 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ','')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
 		self.AboutText = ""
@@ -817,16 +831,17 @@ class SystemNetworkInfo(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["selected"] = StaticText("HDF:" + getImageVersion())
 
 		AboutText = _("Model: %s %s\n") % (getMachineBrand(), getMachineName())
 
 		if path.exists('/proc/stb/info/chipset'):
 			chipset = open('/proc/stb/info/chipset', 'r').read()
-			AboutText += _("Chipset: %s") % chipset.replace('\n','') + "\n"
+			AboutText += _("Chipset: %s") % chipset.replace('\n', '') + "\n"
 
 		AboutText += _("Version: %s") % getImageVersion() + "\n"
 		AboutText += _("Build: %s") % getImageVersion() + "\n"
@@ -851,6 +866,7 @@ class AboutSummary(Screen):
 
 		self["AboutText"] = StaticText(AboutText)
 
+
 class ViewGitLog(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
@@ -874,7 +890,7 @@ class ViewGitLog(Screen):
 			"right": self.pageDown,
 			"down": self.pageDown,
 			"up": self.pageUp
-		},-1)
+		}, -1)
 		self.onLayoutFinish.append(self.getlog)
 
 	def changelogtype(self):
@@ -903,7 +919,7 @@ class ViewGitLog(Screen):
 			fd = open('/etc/' + self.logtype + '-git.log', 'r')
 			releasenotes = fd.read()
 			fd.close()
-			releasenotes = releasenotes.replace('\nopenvix: build',"\n\n")
+			releasenotes = releasenotes.replace('\nopenvix: build', "\n\n")
 			self["text"].setText(releasenotes)
 			summarytext = releasenotes
 		except:
@@ -923,6 +939,7 @@ class ViewGitLog(Screen):
 
 	def closeRecursive(self):
 		self.close((_("Cancel"), ""))
+
 
 class TranslationInfo(Screen):
 	def __init__(self, session):
@@ -959,6 +976,7 @@ class TranslationInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
+
 
 class MemoryInfo(Screen):
 
@@ -1016,27 +1034,27 @@ class MemoryInfo(Screen):
 			mem = 0
 			free = 0
 			i = 0
-			for line in open('/proc/meminfo','r'):
-				( name, size, units ) = line.strip().split()
+			for line in open('/proc/meminfo', 'r'):
+				(name, size, units) = line.strip().split()
 				if name.find("MemTotal") != -1:
 					mem = int(size)
 				if name.find("MemFree") != -1:
 					free = int(size)
 				if i < 28:
-					ltext += "".join((name,"\n"))
-					lvalue += "".join((size," ",units,"\n"))
+					ltext += "".join((name, "\n"))
+					lvalue += "".join((size, " ", units, "\n"))
 				else:
-					rtext += "".join((name,"\n"))
-					rvalue += "".join((size," ",units,"\n"))
+					rtext += "".join((name, "\n"))
+					rvalue += "".join((size, " ", units, "\n"))
 				i += 1
 			self['lmemtext'].setText(ltext)
 			self['lmemvalue'].setText(lvalue)
 			self['rmemtext'].setText(rtext)
 			self['rmemvalue'].setText(rvalue)
 
-			self["slide"].setValue(int(100.0*(mem-free)/mem+0.25))
-			self['pfree'].setText("%.1f %s" % (100.*free/mem,'%'))
-			self['pused'].setText("%.1f %s" % (100.*(mem-free)/mem,'%'))
+			self["slide"].setValue(int(100.0 * (mem - free) / mem + 0.25))
+			self['pfree'].setText("%.1f %s" % (100. * free / mem, '%'))
+			self['pused'].setText("%.1f %s" % (100. * (mem - free) / mem, '%'))
 
 		except Exception, e:
 			print "[About] getMemoryInfo FAIL:", e

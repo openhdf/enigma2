@@ -7,7 +7,6 @@
 #######################################################################
 
 
-
 from Components.Converter.Converter import Converter
 from Components.Sources.bitratecalc import eBitrateCalculator
 from Components.Element import cached
@@ -15,29 +14,25 @@ from enigma import eTimer, iServiceInformation
 from Screens.InfoBar import InfoBar
 
 
-
 class valioTunerInfoBR(Converter, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.videoBitrate = None
-		self.BRvalue="n/a"
+		self.BRvalue = "n/a"
 		self.timerBR = eTimer()
 		self.timerBR.callback.append(self.starthack)
 		InfoBar.instance.onHide.append(self.hideNow)
 		InfoBar.instance.onShow.append(self.showNow)
 
-
-
 	@cached
-
 	def getText(self):
-		return "kbit/s: "+self.BRvalue
+		return "kbit/s: " + self.BRvalue
 
 	text = property(getText)
 
 	def changed(self, what):
 		self.videoBitrate = None
-		self.BRvalue="0"
+		self.BRvalue = "0"
 		Converter.changed(self, "yes")
 		if self.timerBR.isActive():
 			self.timerBR.stop()
@@ -58,12 +53,12 @@ class valioTunerInfoBR(Converter, object):
 			serviceInfo = service.info()
 			vpid = serviceInfo.getInfo(iServiceInformation.sVideoPID)
 		if vpid:
-			self.videoBitrate = eBitrateCalculator(vpid, ref.toString(), 1000, 1024*1024)
+			self.videoBitrate = eBitrateCalculator(vpid, ref.toString(), 1000, 1024 * 1024)
 			self.videoBitrate.callback.append(self.updateInfos)
 
 	def updateInfos(self, value, status):
 		if status:
-			self.BRvalue=str(value)
+			self.BRvalue = str(value)
 			Converter.changed(self, "yes")
 
 	def showNow(self):
@@ -73,10 +68,5 @@ class valioTunerInfoBR(Converter, object):
 		if self.timerBR.isActive():
 			self.timerBR.stop()
 		self.videoBitrate = None
-		self.BRvalue="0"
+		self.BRvalue = "0"
 		Converter.changed(self, "yes")
-
-
-
-
-

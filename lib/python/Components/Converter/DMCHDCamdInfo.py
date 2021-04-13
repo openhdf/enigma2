@@ -28,6 +28,7 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Tools.Directories import fileExists
 
+
 class DMCHDCamdInfo(Converter, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -86,7 +87,3 @@ class DMCHDCamdInfo(Converter, object):
 
 	def changed(self, what):
 		Converter.changed(self, what)
-
-
-
-

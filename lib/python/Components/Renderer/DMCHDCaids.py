@@ -22,6 +22,7 @@ from Renderer import Renderer
 from enigma import eCanvas, eRect, gFont
 from skin import parseColor, parseFont
 
+
 class DMCHDCaids(Renderer):
 	GUI_WIDGET = eCanvas
 
@@ -55,14 +56,14 @@ class DMCHDCaids(Renderer):
 				    foregroundColor = self.ecmColor
 				length = len(caidlist[key][0]) * (pointSize)
 				self.instance.writeText(eRect(offset, 0, length, pointSize), foregroundColor, self.backgroundColor, self.font, caidlist[key][0], 2)
-				offset = offset +  length
+				offset = offset + length
 
 	def changed(self, what):
 		self.pull_updates()
 
 	def applySkin(self, desktop, parent):
 
-		attribs = [ ]
+		attribs = []
 		from enigma import eSize
 
 		def parseSize(str):
@@ -72,7 +73,7 @@ class DMCHDCaids(Renderer):
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "size":
 			    self.instance.setSize(parseSize(value))
-			    attribs.append((attrib,value))
+			    attribs.append((attrib, value))
 			elif attrib == "nocColor":
 			    self.nocColor = parseColor(value)
 			elif attrib == "emmColor":
@@ -80,12 +81,12 @@ class DMCHDCaids(Renderer):
 			elif attrib == "ecmColor":
 			    self.ecmColor = parseColor(value)
 			elif attrib == "font":
-			    self.font = parseFont(value, ((1,1),(1,1)))
+			    self.font = parseFont(value, ((1, 1), (1, 1)))
 			elif attrib == "backgroundColor":
 			    self.backgroundColor = parseColor(value)
 			    self.instance.clear(self.backgroundColor)
-			    attribs.append((attrib,value))
+			    attribs.append((attrib, value))
 			else:
-			    attribs.append((attrib,value))
+			    attribs.append((attrib, value))
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)

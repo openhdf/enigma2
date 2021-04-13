@@ -2,12 +2,13 @@ import skin
 
 from enigma import ePoint, eSize
 
+
 class GUIComponent(object):
 	""" GUI component """
 
 	def __init__(self):
 		self.instance = None
-		self.onVisibilityChange = [ ]
+		self.onVisibilityChange = []
 		self.__visible = 0
 		self.visible = 1
 		self.skinAttributes = None
@@ -39,14 +40,14 @@ class GUIComponent(object):
 		skin.applyAllAttributes(self.instance, desktop, self.skinAttributes, parent.scale)
 		return True
 
-	def move(self, x, y = None):
+	def move(self, x, y=None):
 		# we assume, that x is already an ePoint
 		if y is None:
 			self.instance.move(x)
 		else:
 			self.instance.move(ePoint(int(x), int(y)))
 
-	def resize(self, x, y = None):
+	def resize(self, x, y=None):
 		self.width = x
 		self.height = y
 		if y is None:

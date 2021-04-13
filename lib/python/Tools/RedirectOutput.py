@@ -1,6 +1,7 @@
 import sys
 from enigma import ePythonOutput
 
+
 class EnigmaLog:
 	def __init__(self, level):
 		self.level = level
@@ -21,13 +22,16 @@ class EnigmaLog:
 	def isatty(self):
 		return True
 
+
 class EnigmaLogDebug(EnigmaLog):
 	def __init__(self):
 		EnigmaLog.__init__(self, 4)  # lvlDebug = 4
 
+
 class EnigmaLogFatal(EnigmaLog):
 	def __init__(self):
 		EnigmaLog.__init__(self, 1)  # lvlError = 1
+
 
 sys.stdout = EnigmaLogDebug()
 sys.stderr = EnigmaLogFatal()

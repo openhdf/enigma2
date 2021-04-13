@@ -15,6 +15,7 @@ from Components.Sensors import sensors
 from Components.config import config
 from Tools.HardwareInfo import HardwareInfo
 
+
 class valioOledInfo(Renderer, VariableText):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -37,7 +38,7 @@ class valioOledInfo(Renderer, VariableText):
 			elif self.Zaehler == 6:
 				self.show()
 				t = localtime(self.source.time)
-				self.oben = _(strftime("%a", t)) + " " +strftime("%d", t)
+				self.oben = _(strftime("%a", t)) + " " + strftime("%d", t)
 				self.unten = "%02d:%02d" % (t.tm_hour, t.tm_min)
 			elif self.Zaehler == 14:
 				self.oben = "temp:"
@@ -66,11 +67,11 @@ class valioOledInfo(Renderer, VariableText):
 				self.oben = "free:"
 				out_lines = []
 				out_lines = open("/proc/meminfo").readlines()
-				for lidx in range(len(out_lines)-1):
+				for lidx in range(len(out_lines) - 1):
 					tstLine = out_lines[lidx].split()
 					if "MemFree:" in tstLine:
 						templ = int(out_lines[lidx].split()[1])
-						fmem = "%d mb" %(templ/1024)
+						fmem = "%d mb" % (templ / 1024)
 						self.unten = str(fmem)
 			self.Zaehler = self.Zaehler + 1
 			self.text = self.oben + "\n" + self.unten

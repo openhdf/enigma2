@@ -19,10 +19,11 @@ import os
 updateversion = "11.07.2019"
 
 if os.uname()[4] == "aarch64":
-	pathLen=26
+	pathLen = 26
 else:
-	pathLen=24
-ppath=os.environ['PYTHONPATH'].split(os.pathsep)[0]
+	pathLen = 24
+ppath = os.environ['PYTHONPATH'].split(os.pathsep)[0]
+
 
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
@@ -170,12 +171,14 @@ def getHotkeys():
 	(_("MOUSE long"), "mouse_long", ""),
 	(_("VOD"), "vod", "Infobar/seekFwdVod"),
 	(_("VOD long"), "vod_long", ""),
-	(_("Zoom"), "ZoomInOut", "InfobarGenerics/ZoomInOut"),]
+	(_("Zoom"), "ZoomInOut", "InfobarGenerics/ZoomInOut"), ]
+
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
 for x in getHotkeys():
 	exec "config.misc.hotkey." + x[1] + " = ConfigText(default='" + x[2] + "')"
+
 
 def getHotkeyFunctions():
 	hotkeyFunctions = []
@@ -189,7 +192,7 @@ def getHotkeyFunctions():
 				twinPaths[plugin.path[pathLen:]] += 1
 			else:
 				twinPaths[plugin.path[pathLen:]] = 1
-			hotkeyFunctions.append((plugin.name, plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]) , "EPG"))
+			hotkeyFunctions.append((plugin.name, plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]), "EPG"))
 			twinPlugins.append(plugin.name)
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
 	pluginlist.sort(key=lambda p: p.name)
@@ -199,7 +202,7 @@ def getHotkeyFunctions():
 				twinPaths[plugin.path[pathLen:]] += 1
 			else:
 				twinPaths[plugin.path[pathLen:]] = 1
-			hotkeyFunctions.append((plugin.name, plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]) , "Plugins"))
+			hotkeyFunctions.append((plugin.name, plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]), "Plugins"))
 			twinPlugins.append(plugin.name)
 	hotkeyFunctions.append((_("Show Graphical Multi EPG"), "Infobar/openGraphEPG", "EPG"))
 	hotkeyFunctions.append((_("Show Event View"), "Infobar/openEventView", "EPG"))
@@ -299,7 +302,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Skin setup"), "Module/Screens.SkinSelector/SkinSelector", "Setup"))
 	hotkeyFunctions.append((_("OscamInfo"), "Module/Screens.OScamInfo/OscamInfoMenu", "Plugins"))
 	hotkeyFunctions.append((_("CCcamInfo"), "Module/Screens.CCcamInfo/CCcamInfoMain", "Plugins"))
-	if os.path.isfile(ppath+"/Plugins/Extensions/Kodi/plugin.pyo"):
+	if os.path.isfile(ppath + "/Plugins/Extensions/Kodi/plugin.pyo"):
 		hotkeyFunctions.append((_("Kodi Media Center"), "Kodi/", "Plugins"))
 	if os.path.isdir("/etc/ppanel"):
 		for x in [x for x in os.listdir("/etc/ppanel") if x.endswith(".xml")]:
@@ -310,6 +313,7 @@ def getHotkeyFunctions():
 			x = x[:-3]
 			hotkeyFunctions.append((_(" ") + " " + x, "Shellscript/" + x, "Shellscripts"))
 	return hotkeyFunctions
+
 
 class HotkeySetup(Screen):
 	def __init__(self, session, args=None):
@@ -323,8 +327,8 @@ class HotkeySetup(Screen):
 		self.hotkeys = getHotkeys()
 		self.hotkeyFunctions = getHotkeyFunctions()
 		for x in self.hotkeys:
-			self.list.append(ChoiceEntryComponent('',(x[0], x[1])))
-		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(self.hotkeys) or 16], selection = 0)
+			self.list.append(ChoiceEntryComponent('', (x[0], x[1])))
+		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(self.hotkeys) or 16], selection=0)
 		self["choosen"] = ChoiceList(list=[])
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
 		{
@@ -390,14 +394,15 @@ class HotkeySetup(Screen):
 			for x in getattr(config.misc.hotkey, key).value.split(','):
 				function = next((function for function in self.hotkeyFunctions if function[1] == x), None)
 				if function:
-					selected.append(ChoiceEntryComponent('',((function[0]), function[1])))
+					selected.append(ChoiceEntryComponent('', ((function[0]), function[1])))
 			self["choosen"].setList(selected)
+
 
 class HotkeySetupSelect(Screen):
 	def __init__(self, session, key, args=None):
 		Screen.__init__(self, session)
 		self['description'] = Label(_('Select the desired function and click on OK to assign it. Use CH+/- to toggle between the lists. Select an assigned function and click on OK to de-assign it.'))
-		self.skinName="ButtonSetupSelect"
+		self.skinName = "ButtonSetupSelect"
 		self.session = session
 		self.key = key
 		self.setTitle(_("Hotkey Setup") + " " + key[0][0])
@@ -411,7 +416,7 @@ class HotkeySetupSelect(Screen):
 		for x in self.config.value.split(','):
 			function = next((function for function in self.hotkeyFunctions if function[1] == x), None)
 			if function:
-				self.selected.append(ChoiceEntryComponent('',((function[0]), function[1])))
+				self.selected.append(ChoiceEntryComponent('', ((function[0]), function[1])))
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
@@ -448,14 +453,14 @@ class HotkeySetupSelect(Screen):
 			catagories[function[2]].append(function)
 		for catagorie in sorted(list(catagories)):
 			if catagorie in self.expanded:
-				functionslist.append(ChoiceEntryComponent('expanded',((catagorie), "Expander")))
+				functionslist.append(ChoiceEntryComponent('expanded', ((catagorie), "Expander")))
 				for function in catagories[catagorie]:
-					functionslist.append(ChoiceEntryComponent('verticalline',((function[0]), function[1])))
+					functionslist.append(ChoiceEntryComponent('verticalline', ((function[0]), function[1])))
 				if catagorie == "InfoBar":
-					functionslist.append(ChoiceEntryComponent('verticalline',((_("Zap to")), "Zap")))
-					functionslist.append(ChoiceEntryComponent('verticalline',((_("Panic to")), "ZapPanic")))
+					functionslist.append(ChoiceEntryComponent('verticalline', ((_("Zap to")), "Zap")))
+					functionslist.append(ChoiceEntryComponent('verticalline', ((_("Panic to")), "ZapPanic")))
 			else:
-				functionslist.append(ChoiceEntryComponent('expandable',((catagorie), "Expander")))
+				functionslist.append(ChoiceEntryComponent('expandable', ((catagorie), "Expander")))
 		return functionslist
 
 	def toggleMode(self):
@@ -498,7 +503,7 @@ class HotkeySetupSelect(Screen):
 	def zaptoCallback(self, *args):
 		if args:
 			currentSelected = self["list"].l.getCurrentSelection()[:]
-			currentSelected[1]=currentSelected[1][:-1] + (currentSelected[0][0] + " " + ServiceReference(args[0]).getServiceName(),)
+			currentSelected[1] = currentSelected[1][:-1] + (currentSelected[0][0] + " " + ServiceReference(args[0]).getServiceName(),)
 			self.selected.append([(currentSelected[0][0], currentSelected[0][1] + "/" + args[0].toString()), currentSelected[1]])
 
 	def keyLeft(self):
@@ -546,6 +551,7 @@ class HotkeySetupSelect(Screen):
 	def cancelCallback(self, answer):
 		answer and self.close()
 
+
 class hotkeyActionMap(ActionMap):
 	def action(self, contexts, action):
 		if (action in tuple(x[1] for x in getHotkeys()) and self.actions.has_key(action)):
@@ -555,6 +561,7 @@ class hotkeyActionMap(ActionMap):
 			return 1
 		else:
 			return ActionMap.action(self, contexts, action)
+
 
 class helpableHotkeyActionMap(HelpableActionMap):
 	def action(self, contexts, action):
@@ -566,11 +573,12 @@ class helpableHotkeyActionMap(HelpableActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
+
 class InfoBarHotkey():
 	def __init__(self):
 		self.hotkeys = getHotkeys()
 		self["HotkeyButtonActions"] = helpableHotkeyActionMap(self, "HotkeyActions",
-			dict((x[1],(self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in self.hotkeys), -10)
+			dict((x[1], (self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in self.hotkeys), -10)
 		self.onExecBegin.append(self.clearLongkeyPressed)
 
 	def clearLongkeyPressed(self):
@@ -587,7 +595,7 @@ class InfoBarHotkey():
 			elif x.startswith("Zap"):
 				selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
 			else:
-				function = list(function for function in getHotkeyFunctions() if function[1] == x )
+				function = list(function for function in getHotkeyFunctions() if function[1] == x)
 				if function:
 					selected.append(function[0])
 		return selected
@@ -629,7 +637,7 @@ class InfoBarHotkey():
 							twinPaths[plugin.path[pathLen:]] += 1
 						else:
 							twinPaths[plugin.path[pathLen:]] = 1
-						if plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]])== "/".join(selected):
+						if plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]) == "/".join(selected):
 							self.runPlugin(plugin)
 							return
 						twinPlugins.append(plugin.name)
@@ -641,7 +649,7 @@ class InfoBarHotkey():
 							twinPaths[plugin.path[pathLen:]] += 1
 						else:
 							twinPaths[plugin.path[pathLen:]] = 1
-						if plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]])== "/".join(selected):
+						if plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]) == "/".join(selected):
 							self.runPlugin(plugin)
 							return
 						twinPlugins.append(plugin.name)
@@ -658,7 +666,7 @@ class InfoBarHotkey():
 			elif selected[0] == "Module":
 				try:
 					exec "from %s import %s" % (selected[1], selected[2])
-					exec "self.session.open(%s)" %  ",".join(selected[2:])
+					exec "self.session.open(%s)" % ",".join(selected[2:])
 				except:
 					print "[Hotkey] error during executing module %s, screen %s" % (selected[1], selected[2])
 			elif selected[0] == "Setup":
@@ -669,7 +677,7 @@ class InfoBarHotkey():
 					self.servicelist.history = []
 					self.pipShown() and self.showPiP()
 				self.servicelist.servicelist.setCurrent(eServiceReference("/".join(selected[1:])))
-				self.servicelist.zap(enable_pipzap = True)
+				self.servicelist.zap(enable_pipzap=True)
 				if hasattr(self, "lastservice"):
 					self.lastservice = eServiceReference("/".join(selected[1:]))
 					self.close()
@@ -677,12 +685,12 @@ class InfoBarHotkey():
 					self.show()
 			elif selected[0] == "PPanel":
 				ppanelFileName = '/etc/ppanels/' + selected[1] + ".xml"
-				if os.path.isfile(ppanelFileName) and os.path.isdir(ppath+"/Plugins/Extensions/PPanel"):
+				if os.path.isfile(ppanelFileName) and os.path.isdir(ppath + "/Plugins/Extensions/PPanel"):
 					from Plugins.Extensions.PPanel.ppanel import PPanel
 					self.session.open(PPanel, name=selected[1] + ' PPanel', node=None, filename=ppanelFileName, deletenode=None)
 			elif selected[0] == "Shellscript":
 				command = '/usr/scripts/' + selected[1] + ".sh"
-				if os.path.isfile(command) and os.path.isdir(ppath+"/Plugins/Extensions/PPanel"):
+				if os.path.isfile(command) and os.path.isdir(ppath + "/Plugins/Extensions/PPanel"):
 					from Plugins.Extensions.PPanel.ppanel import Execute
 					self.session.open(Execute, selected[1] + " shellscript", None, command)
 				else:
@@ -695,7 +703,7 @@ class InfoBarHotkey():
 				except Exception as e:
 					print('[EMCPlayer] showMovies exception:\n' + str(e))
 			elif selected[0] == "Kodi":
-				if os.path.isfile(ppath+"/Plugins/Extensions/Kodi/plugin.pyo"):
+				if os.path.isfile(ppath + "/Plugins/Extensions/Kodi/plugin.pyo"):
 					from Plugins.Extensions.Kodi.plugin import KodiMainScreen
 					self.session.open(KodiMainScreen)
 			elif selected[0] == "DeviceManager":

@@ -23,22 +23,23 @@ from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
 from Poll import Poll
 
+
 class pCaidDisplay(Poll, Converter, object):
 	def __init__(self, type):
 		Poll.__init__(self)
 		Converter.__init__(self, type)
 		self.type = type
 		self.systemCaids = {
-			"06" : "I",
-			"01" : "S",
-			"18" : "N",
-			"05" : "V",
-			"0B" : "CO",
-			"17" : "BC",
-			"0D" : "CW",
-			"4A" : "DC",
-			"55" : "BG",
-			"09" : "NDS" }
+			"06": "I",
+			"01": "S",
+			"18": "N",
+			"05": "V",
+			"0B": "CO",
+			"17": "BC",
+			"0D": "CW",
+			"4A": "DC",
+			"55": "BG",
+			"09": "NDS"}
 
 		self.poll_interval = 2000
 		self.poll_enabled = True
@@ -53,7 +54,7 @@ class pCaidDisplay(Poll, Converter, object):
 				caids = info.getInfoObject(iServiceInformation.sCAIDs)
 				if caids:
 					for cs in self.systemCaids:
-						caidlist[cs] = (self.systemCaids.get(cs),0)
+						caidlist[cs] = (self.systemCaids.get(cs), 0)
 
 					for caid in caids:
 						c = "%x" % int(caid)
@@ -61,7 +62,7 @@ class pCaidDisplay(Poll, Converter, object):
 							c = "0%s" % c
 						c = c[:2].upper()
 						if self.systemCaids.has_key(c):
-							caidlist[c] = (self.systemCaids.get(c),1)
+							caidlist[c] = (self.systemCaids.get(c), 1)
 
 					ecm_info = self.ecmfile()
 					if ecm_info:
@@ -71,7 +72,7 @@ class pCaidDisplay(Poll, Converter, object):
 							if len(c) == 3:
 								c = "0%s" % c
 							c = c[:2].upper()
-							caidlist[c] = (self.systemCaids.get(c),2)
+							caidlist[c] = (self.systemCaids.get(c), 2)
 		return caidlist
 
 	getCaidlist = property(get_caidlist)
@@ -150,12 +151,13 @@ class pCaidDisplay(Poll, Converter, object):
 				except:
 					try:
 						ecm = open("/tmp/ecm.info", "rb").readlines()
-					except: pass
+					except:
+						pass
 			if ecm:
 				for line in ecm:
 					x = line.lower().find("msec")
 					if x != -1:
-						info["ecm time"] = line[0:x+4]
+						info["ecm time"] = line[0:x + 4]
 					else:
 						item = line.split(":", 1)
 						if len(item) > 1:
@@ -166,7 +168,7 @@ class pCaidDisplay(Poll, Converter, object):
 								if x != -1:
 									y = line.find(",")
 									if y != -1:
-										info["caid"] = line[x+5:y]
+										info["caid"] = line[x + 5:y]
 
 		return info
 

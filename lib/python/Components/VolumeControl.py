@@ -6,20 +6,23 @@ from GlobalActions import globalActionMap
 from config import config, ConfigSubsection, ConfigInteger
 
 profile("VolumeControl")
+
+
 class VolumeControl:
 	instance = None
 	"""Volume control, handles volUp, volDown, volMute actions and display a corresponding dialog"""
+
 	def __init__(self, session):
 		global globalActionMap
-		globalActionMap.actions["volumeUp"]=self.volUp
-		globalActionMap.actions["volumeDown"]=self.volDown
-		globalActionMap.actions["volumeMute"]=self.volMute
+		globalActionMap.actions["volumeUp"] = self.volUp
+		globalActionMap.actions["volumeDown"] = self.volDown
+		globalActionMap.actions["volumeMute"] = self.volMute
 
 		assert not VolumeControl.instance, "only one VolumeControl instance is allowed!"
 		VolumeControl.instance = self
 
 		config.audio = ConfigSubsection()
-		config.audio.volume = ConfigInteger(default = 50, limits = (0, 100))
+		config.audio.volume = ConfigInteger(default=50, limits=(0, 100))
 
 		self.volumeDialog = session.instantiateDialog(Volume)
 		self.volumeDialog.setAnimationMode(0)
@@ -51,12 +54,15 @@ class VolumeControl:
 		if vol < 3:
 			step = 1
 		elif vol < 9:
-			if step > 2: step = 2
+			if step > 2:
+				step = 2
 		elif vol < 18:
-			if step > 3: step = 3
+			if step > 3:
+				step = 3
 		elif vol < 30:
-			if step > 4: step = 4
-		self.setVolume(vol+step)
+			if step > 4:
+				step = 4
+		self.setVolume(vol + step)
 
 	def volDown(self):
 		vol = self.volctrl.getVolume()
@@ -64,12 +70,15 @@ class VolumeControl:
 		if vol <= 3:
 			step = 1
 		elif vol <= 9:
-			if step > 2: step = 2
+			if step > 2:
+				step = 2
 		elif vol <= 18:
-			if step > 3: step = 3
+			if step > 3:
+				step = 3
 		elif vol <= 30:
-			if step > 4: step = 4
-		self.setVolume(vol-step)
+			if step > 4:
+				step = 4
+		self.setVolume(vol - step)
 
 	def stepVolume(self):
 		if self.stepVolTimer.isActive():
@@ -77,7 +86,7 @@ class VolumeControl:
 		else:
 			self.getInputConfig()
 			step = config.usage.volume_step_slow.value
-		self.stepVolTimer.start(self.repeat,True)
+		self.stepVolTimer.start(self.repeat, True)
 		return step
 
 	def getInputConfig(self):

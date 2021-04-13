@@ -11,6 +11,7 @@ from Components.ConfigList import ConfigList, ConfigListScreen
 
 from Tools.Directories import *
 
+
 class GraphMultiEpgSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen name="GraphMultiEPGSetup" position="center,center" size="560,435" title="Electronic Program Guide Setup">
@@ -23,7 +24,7 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 			<widget name="config" position="10,50" size="550,395" />
 		</screen>"""
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.setTitle(_("GraphMultiEpg Settings"))
 
@@ -38,15 +39,15 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 			"menu": self.closeRecursive,
 		}, -1)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.session = session
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session=self.session)
 		self.createSetup()
 
 	def createSetup(self):
 		print "Creating Graph Epg Setup"
-		self.list = [ ]
+		self.list = []
 		self.list.append(getConfigListEntry(_("Event font size (relative to skin size)"), config.misc.graph_mepg.ev_fontsize))
 		self.list.append(getConfigListEntry(_("Time scale"), config.misc.graph_mepg.prev_time_period))
 		self.list.append(getConfigListEntry(_("Items per page "), config.misc.graph_mepg.items_per_page))

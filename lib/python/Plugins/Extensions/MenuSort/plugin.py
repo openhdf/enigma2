@@ -37,8 +37,10 @@ XML_CONFIG = "/etc/enigma2/menusort.xml"
 DEBUG = False
 HIDDENWEIGHT = -195948557
 
+
 class baseMethods:
 	pass
+
 
 class MenuWeights:
 	def __init__(self):
@@ -93,9 +95,10 @@ class MenuWeights:
 		weight, hidden = self.weights.get(tuple[0], (tuple[3], False))
 		return hidden
 
-	def get(self, tuple, supportHiding = True):
+	def get(self, tuple, supportHiding=True):
 		weight, hidden = self.weights.get(tuple[0], (tuple[3], False))
-		if supportHiding and hidden: return HIDDENWEIGHT
+		if supportHiding and hidden:
+			return HIDDENWEIGHT
 		return int(weight)
 
 	def cmp(self, first, second):
@@ -103,7 +106,10 @@ class MenuWeights:
 
 	def set(self, tuple):
 		self.weights[tuple[0]] = (tuple[3], tuple[4])
+
+
 menuWeights = MenuWeights()
+
 
 def Menu__init__(self, session, parent, *args, **kwargs):
 	baseMethods.Menu__init__(self, session, parent, *args, **kwargs)
@@ -113,12 +119,15 @@ def Menu__init__(self, session, parent, *args, **kwargs):
 	# remove hidden entries from list
 	i = 0
 	for x in list:
-		if menuWeights.get(x) == HIDDENWEIGHT: i += 1
-		else: break
+		if menuWeights.get(x) == HIDDENWEIGHT:
+			i += 1
+		else:
+			break
 	if i:
 		del list[:i]
 
 	self["menu"].list = list
+
 
 class SortableMenuList(MenuList):
 	def __init__(self, list):
@@ -135,11 +144,11 @@ class SortableMenuList(MenuList):
 		self.l.invalidate()
 
 	def applySkin(self, desktop, parent):
-		attribs = [ ]
+		attribs = []
 		if self.skinAttributes is not None:
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
-					self.l.setFont(0, parseFont(value, ((1,1),(1,1))))
+					self.l.setFont(0, parseFont(value, ((1, 1), (1, 1))))
 				elif attrib == "itemHeight":
 					self.l.setItemHeight(int(value))
 				elif attrib == "selectedColor":
@@ -159,11 +168,12 @@ class SortableMenuList(MenuList):
 
 		l = [
 			None,
-			(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, width, height, 0, RT_HALIGN_LEFT|RT_WRAP, menu[0], color, color),
+			(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, width, height, 0, RT_HALIGN_LEFT | RT_WRAP, menu[0], color, color),
 		]
 		if menu[0] == self.selected:
-			l.insert(1, (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, width, height, 0, RT_HALIGN_LEFT|RT_WRAP, '',  None, None, None, self.selectedColor, None, None))
+			l.insert(1, (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, width, height, 0, RT_HALIGN_LEFT | RT_WRAP, '', None, None, None, self.selectedColor, None, None))
 		return l
+
 
 class SortableMenu(Menu, HelpableScreen):
 	skin = """<screen name="SortableMenu" position="center,center" size="310,355">
@@ -172,6 +182,7 @@ class SortableMenu(Menu, HelpableScreen):
 			<ePixmap position="250,322" size="40,40" pixmap="skin_default/buttons/key_menu.png" transparent="1" alphatest="on" />
 			<ePixmap position="20,325" size="40,40" pixmap="skin_default/buttons/button_blue.png" transparent="1" alphatest="on" />
 		</screen>"""
+
 	def __init__(self, *args, **kwargs):
 		baseMethods.Menu__init__(self, *args, **kwargs) # using the base initializer saves us a few cycles
 		HelpableScreen.__init__(self)
@@ -265,7 +276,8 @@ class SortableMenu(Menu, HelpableScreen):
 				diff = abs(int(l[i][3]) - int(l[newpos][3])) + 1
 				print("[MenuSort] Using weight from %d (%d) and %d (%d) to calculate diff (%d)" % (i, int(l[i][3]), newpos, int(l[newpos][3]), diff))
 				while i < Len:
-					if DEBUG: print("[MenuSort] INCREASE WEIGHT OF", l[i][0], "BY", diff)
+					if DEBUG:
+						print("[MenuSort] INCREASE WEIGHT OF", l[i][0], "BY", diff)
 					l[i] = (l[i][0], l[i][1], l[i][2], int(l[i][3]) + diff, l[i][4])
 					i += 1
 			# we moved down, decrease weight of plugins before us
@@ -276,13 +288,16 @@ class SortableMenu(Menu, HelpableScreen):
 				diff = abs(int(l[i][3]) - int(l[newpos][3])) + 1
 				print("[MenuSort] Using weight from %d (%d) and %d (%d) to calculate diff (%d)" % (newpos, int(l[newpos][3]), i, int(l[i][3]), diff))
 				while i > -1:
-					if DEBUG: print("[MenuSort] DECREASE WEIGHT OF", l[i][0], "BY", diff)
+					if DEBUG:
+						print("[MenuSort] DECREASE WEIGHT OF", l[i][0], "BY", diff)
 					l[i] = (l[i][0], l[i][1], l[i][2], int(l[i][3]) - diff, l[i][4])
 					i -= 1
 			else:
-				if DEBUG: print("[MenuSort]", entry[0], "did not move (%d to %d)?" % (selected, newpos))
+				if DEBUG:
+					print("[MenuSort]", entry[0], "did not move (%d to %d)?" % (selected, newpos))
 
-			if DEBUG: print("[MenuSort] NEW LIST:", l)
+			if DEBUG:
+				print("[MenuSort] NEW LIST:", l)
 			self["menu"].setList(l)
 			self.selected = -1
 			self["menu"].selected = None
@@ -297,6 +312,7 @@ class SortableMenu(Menu, HelpableScreen):
 
 	def keyNumberGlobal(self, number):
 		pass
+
 
 def autostart(reason, *args, **kwargs):
 	if reason == 0:
@@ -313,8 +329,10 @@ def autostart(reason, *args, **kwargs):
 	else:
 		Menu.__init__ = baseMethods.Menu__init__
 
+
 def main(session, *args, **kwargs):
 	session.open(SortableMenu, mdom.getroot())
+
 
 def Plugins(**kwargs):
 	return [

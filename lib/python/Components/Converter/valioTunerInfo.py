@@ -7,23 +7,18 @@
 #######################################################################
 
 
-
 from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 
 
-
 class valioTunerInfo(Converter, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)
-		self.ar_fec = ["Auto", "1/2", "2/3", "3/4", "5/6", "7/8", "8/9", "3/5", "4/5", "9/10","None","None","None","None","None"]
+		self.ar_fec = ["Auto", "1/2", "2/3", "3/4", "5/6", "7/8", "8/9", "3/5", "4/5", "9/10", "None", "None", "None", "None", "None"]
 		self.ar_pol = ["H", "V", "CL", "CR", "na", "na", "na", "na", "na", "na", "na", "na"]
 
-
-
 	@cached
-
 	def getText(self):
 		service = self.source.service
 		info = service and service.info()
@@ -52,7 +47,6 @@ class valioTunerInfo(Converter, object):
 						Ret_Text = "Freq: " + frequency
 			return Ret_Text
 		return "n/a"
-
 
 	text = property(getText)
 

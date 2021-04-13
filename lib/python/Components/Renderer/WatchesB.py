@@ -22,6 +22,7 @@ from enigma import eCanvas, eSize, gRGB, eRect
 from Components.VariableText import VariableText
 from Components.config import config
 
+
 class WatchesB(Renderer):
 
 	def __init__(self):
@@ -105,5 +106,3 @@ class WatchesB(Renderer):
 			if ((attrib == 'size') and self.instance.setSize(parseSize(value))):
 				pass
 		self.instance.clear(self.bColor)
-
-

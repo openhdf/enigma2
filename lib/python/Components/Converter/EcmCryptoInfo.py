@@ -13,6 +13,7 @@ ECM_INFO = '/tmp/ecm.info'
 old_ecm_mtime = None
 data = None
 
+
 class EcmCryptoInfo(Poll, Converter, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -21,7 +22,7 @@ class EcmCryptoInfo(Poll, Converter, object):
 		self.active = False
 		self.visible = config.usage.show_cryptoinfo.value
 		self.textvalue = ''
-		self.poll_interval = 2*1000
+		self.poll_interval = 2 * 1000
 		if self.visible:
 			self.poll_enabled = True
 		else:
@@ -65,9 +66,9 @@ class EcmCryptoInfo(Poll, Converter, object):
 				if using == 'fta':
 					return 'Free to Air'
 
-				ecmInfoString=''
-				casys=''
-				state='Source: '
+				ecmInfoString = ''
+				casys = ''
+				state = 'Source: '
 				caid = ecminfo.get('caid', '')
 				address = ecminfo.get('address', '')
 				hops = ecminfo.get('hops', '')
@@ -76,11 +77,11 @@ class EcmCryptoInfo(Poll, Converter, object):
 				if caid:
 					if caid.__contains__('x'):
 						idx = caid.index('x')
-						caid = caid[idx+1:]
+						caid = caid[idx + 1:]
 						if len(caid) == 3:
 							caid = '0%s' % caid
 						caid = caid.upper()
-					casys = 'Caid: '+caid
+					casys = 'Caid: ' + caid
 				if address:
 					retaddress = '%s %s' % (_(' Source:'), address)
 					if address == ('/dev/sci0'):

@@ -18,8 +18,6 @@
 #######################################################################
 
 
-
-
 from Screens.Screen import Screen
 from Screens.InfoBarGenerics import InfoBarPlugins
 from Screens.InfoBar import InfoBar
@@ -38,7 +36,6 @@ else:
 from enigma import eTimer, ePoint
 
 
-
 try:
 	from Bp.BPutils import BPInfoBarutils
 	from enigma import Cbpconfig
@@ -47,39 +44,37 @@ except:
 	GP2test = False
 
 
-
 SIBbase__init__ = None
 SIB_StartOnlyOneTime = False
 VZ_MODE = "-1"
 
 
-config.plugins.SecondInfoBar  = ConfigSubsection()
-config.plugins.SecondInfoBar.TimeOut = ConfigInteger(default = 6, limits = (0, 30))
-config.plugins.SecondInfoBar.Mode = ConfigSelection(default="sib", choices = [
+config.plugins.SecondInfoBar = ConfigSubsection()
+config.plugins.SecondInfoBar.TimeOut = ConfigInteger(default=6, limits=(0, 30))
+config.plugins.SecondInfoBar.Mode = ConfigSelection(default="sib", choices=[
 				("nothing", _("Not enabled")),
 				("sib", _("Show Second-InfoBar")),
 				("onlysib", _("Show ONLY Second-InfoBar")),
 				("epglist", _("Show EPG-List/MerlinEPG")),
 				("subsrv", _("Show Subservices"))
 				])
-config.plugins.SecondInfoBar.GP2pass = ConfigYesNo(default = True)
-config.plugins.SecondInfoBar.HideNormalIB = ConfigYesNo(default = False)
-
+config.plugins.SecondInfoBar.GP2pass = ConfigYesNo(default=True)
+config.plugins.SecondInfoBar.HideNormalIB = ConfigYesNo(default=False)
 
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name="SecondInfoBar", where=PluginDescriptor.WHERE_MENU, fnc=SIBsetup),
-			PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = SIBautostart)]
-
+			PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=SIBautostart)]
 
 
 def SIBsetup(menuid):
 	if menuid != "system":
-		return [ ]
+		return []
 	return [(_("Second InfoBar ..."), openSIBsetup, "sibsetup", None)]
+
+
 def openSIBsetup(session, **kwargs):
 	session.open(SIBsetupScreen)
-
 
 
 class SIBsetupScreen(ConfigListScreen, Screen):
@@ -90,6 +85,7 @@ class SIBsetupScreen(ConfigListScreen, Screen):
 			<eLabel font="Regular;16" halign="right" valign="center" position="300,308" size="260,26" text="coded: 2010 by Vali"/>
 			<widget name="config" position="5,5" scrollbarMode="showOnDemand" size="590,300"/>
 		</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
@@ -120,7 +116,6 @@ class SIBsetupScreen(ConfigListScreen, Screen):
 		self.close()
 
 
-
 def SIBautostart(reason, **kwargs):
 	global SIBbase__init__
 	if "session" in kwargs:
@@ -129,7 +124,6 @@ def SIBautostart(reason, **kwargs):
 		InfoBarPlugins.__init__ = InfoBarPlugins__init__
 		InfoBarPlugins.switch = switch
 		InfoBarPlugins.swOff = swOff
-
 
 
 def InfoBarPlugins__init__(self):
@@ -145,15 +139,16 @@ def InfoBarPlugins__init__(self):
 		else:
 			VZ_MODE = "-1"
 		if VZ_MODE == "1":
-			self["SIBActions"] = ActionMap(["SIBwithVZActions"],{"ok_but": self.switch,"exit_but": self.swOff}, -1)
+			self["SIBActions"] = ActionMap(["SIBwithVZActions"], {"ok_but": self.switch, "exit_but": self.swOff}, -1)
 		else:
-			self["SIBActions"] = ActionMap(["SIBActions"],{"ok_but": self.switch,"exit_but": self.swOff}, -1)
+			self["SIBActions"] = ActionMap(["SIBActions"], {"ok_but": self.switch, "exit_but": self.swOff}, -1)
 		self.SIBtimer = eTimer()
 		self.SIBtimer.callback.append(self.swOff)
 		self.SIBdialog = self.session.instantiateDialog(SecondInfoBar)
 		if config.plugins.SecondInfoBar.Mode.value == "onlysib":
 			self.onHide.append(lambda: self.SIBdialog.hide())
 			self.onShow.append(lambda: self.SIBdialog.show())
+
 		def CheckSIBtimer():
 			if self.SIBtimer.isActive():
 				self.SIBtimer.stop()
@@ -165,9 +160,8 @@ def InfoBarPlugins__init__(self):
 	SIBbase__init__(self)
 
 
-
 def switch(self):
-	if isinstance(self,InfoBar):
+	if isinstance(self, InfoBar):
 		if config.plugins.SecondInfoBar.Mode.value == "sib":
 			if not self.shown and not self.SIBdialog.shown:
 				self.toggleShow()
@@ -177,7 +171,7 @@ def switch(self):
 				self.SIBdialog.show()
 				SIBidx = config.plugins.SecondInfoBar.TimeOut.value
 				if (SIBidx > 0):
-					self.SIBtimer.start(SIBidx*1000, True)
+					self.SIBtimer.start(SIBidx * 1000, True)
 			elif not self.shown and self.SIBdialog.shown:
 				self.SIBdialog.hide()
 			elif self.shown and self.SIBdialog.shown:
@@ -197,7 +191,7 @@ def switch(self):
 			if self.shown:
 				service = self.session.nav.getCurrentService()
 				subservices = service and service.subServices()
-				if subservices.getNumberOfSubservices()>0:
+				if subservices.getNumberOfSubservices() > 0:
 					self.subserviceSelection()
 				else:
 					self.toggleShow()
@@ -207,9 +201,8 @@ def switch(self):
 			self.toggleShow()
 
 
-
 def swOff(self):
-	if isinstance(self,InfoBar):
+	if isinstance(self, InfoBar):
 		if not(self.shown or self.SIBdialog.shown) and (VZ_MODE == "2"):
 			self.newHide()
 		else:
@@ -217,12 +210,12 @@ def swOff(self):
 			self.SIBdialog.hide()
 
 
-
 class SecondInfoBar(Screen):
 	skin = """
 		<screen flags="wfNoBorder" name="SecondInfoBar" position="center,350" size="720,200" title="Second Infobar">
 			<eLabel text="Your skin do not support SecondInfoBar !!!" position="0,0" size="720,200" font="Regular;22" halign="center" valign="center"/>
 		</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
@@ -237,12 +230,4 @@ class SecondInfoBar(Screen):
 			GPoffset_y = Cbpconfig.getInstance().getParaInt("infobar_offset_y")
 			px = GPpos.x()
 			py = GPpos.y()
-			self.instance.move(ePoint(px+GPoffset_x, py+GPoffset_y))
-
-
-
-
-
-
-
-
+			self.instance.move(ePoint(px + GPoffset_x, py + GPoffset_y))
