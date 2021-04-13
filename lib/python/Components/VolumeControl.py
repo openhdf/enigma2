@@ -6,9 +6,12 @@ from GlobalActions import globalActionMap
 from config import config, ConfigSubsection, ConfigInteger
 
 profile("VolumeControl")
+
+
 class VolumeControl:
 	instance = None
 	"""Volume control, handles volUp, volDown, volMute actions and display a corresponding dialog"""
+
 	def __init__(self, session):
 		global globalActionMap
 		globalActionMap.actions["volumeUp"] = self.volUp

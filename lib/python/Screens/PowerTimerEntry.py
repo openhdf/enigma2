@@ -13,6 +13,7 @@ from PowerTimer import AFTEREVENT, TIMERTYPE
 from time import localtime, mktime, time, strftime
 from datetime import datetime
 
+
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
@@ -400,6 +401,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def keyCancel(self):
 		self.close((False,))
+
 
 class TimerLog(Screen):
 	def __init__(self, session, timer):

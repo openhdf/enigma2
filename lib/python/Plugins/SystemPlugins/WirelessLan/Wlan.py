@@ -23,6 +23,7 @@ config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 def getWlanConfigName(iface):
 	return '/etc/wpa_supplicant.' + iface + '.conf'
 
+
 class Wlan:
 	def __init__(self, iface=None):
 		self.iface = iface
@@ -127,7 +128,9 @@ class Wlan:
 				self.oldInterfaceState = None
 				self.iface = None
 
+
 iWlan = Wlan()
+
 
 class wpaSupplicant:
 	def __init__(self):
@@ -370,5 +373,6 @@ class Status:
 			if self.wlaniface[self.iface].has_key(attribute):
 				return self.wlaniface[self.iface][attribute]
 		return None
+
 
 iStatus = Status()

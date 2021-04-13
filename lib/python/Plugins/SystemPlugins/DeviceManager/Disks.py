@@ -2,6 +2,7 @@
 import os
 import re
 
+
 class Disks:
 	ptypes = {'0': 'Empty',
 		'24': 'NEC DOS',

@@ -23,9 +23,11 @@ import ShellCompatibleFunctions
 boxtype = getBoxType()
 distro = getImageDistro()
 
+
 def eEnv_resolve_multi(path):
 	resolve = eEnv.resolve(path)
 	return resolve.split()
+
 
 config.plugins.configurationbackup = ConfigSubsection()
 if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not path.exists("/media/hdd/backup_%s" % boxtype):
@@ -45,12 +47,14 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 																			+ eEnv_resolve_multi('/etc/init.d/softcam*')
 																			+ eEnv_resolve_multi('/etc/init.d/cardserver*'))
 
+
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
 	if backuppath.endswith('/'):
 		return backuppath + 'backup_' + distro + '_' + boxtype
 	else:
 		return backuppath + '/backup_' + distro + '_' + boxtype
+
 
 def getOldBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
@@ -59,8 +63,10 @@ def getOldBackupPath():
 	else:
 		return backuppath + '/backup_' + boxtype
 
+
 def getBackupFilename():
 	return "enigma2settingsbackup.tar.gz"
+
 
 def SettingsEntry(name, checked):
 	if checked:
@@ -69,6 +75,7 @@ def SettingsEntry(name, checked):
 		picture = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_off.png"))
 
 	return (name, picture, checked)
+
 
 class BackupScreen(Screen, ConfigListScreen):
 	skin = """
@@ -351,6 +358,7 @@ class RestoreMenu(Screen):
 		cur = self["filelist"].getCurrent()
 		self["summary_description"].text = cur
 
+
 class RestoreScreen(Screen, ConfigListScreen):
 	skin = """
 		<screen position="135,144" size="350,310" title="Restore is running..." >
@@ -417,6 +425,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 	def runAsync(self, finished_cb):
 		self.doRestore()
 
+
 class RestartNetwork(Screen):
 
 	def __init__(self, session):
@@ -444,6 +453,7 @@ class RestartNetwork(Screen):
 
 	def getInterfacesDataAvail(self, data):
 		self.close()
+
 
 class installedPlugins(Screen):
 	UPDATE = 0
@@ -525,6 +535,7 @@ class installedPlugins(Screen):
 
 	def restoreCB(self, ret=None):
 		self.close()
+
 
 class RestorePlugins(Screen):
 

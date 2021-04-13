@@ -27,6 +27,7 @@ from twisted.internet import reactor, defer
 from twisted.python import failure
 import re
 
+
 class ImageDownloadJob(Job):
 	def __init__(self, url, filename, device=None, mountpoint="/"):
 		Job.__init__(self, _("Download .NFI-files for USB-flasher"))
@@ -43,6 +44,7 @@ class ImageDownloadJob(Job):
 		self.tasks[0].args += self.tasks[0].retryargs
 		Job.retry(self)
 
+
 class MountTask(Task):
 	def __init__(self, job, device, mountpoint):
 		Task.__init__(self, job, "mount")
@@ -55,12 +57,14 @@ class MountTask(Task):
 	def processOutput(self, data):
 		print "[MountTask] output:", data
 
+
 class UmountTask(Task):
 	def __init__(self, job, mountpoint):
 		Task.__init__(self, job, "mount")
 		self.setTool("umount")
 		self.args += [mountpoint]
 		self.weighting = 1
+
 
 class DownloaderPostcondition(Condition):
 	def __init__(self):
@@ -71,6 +75,7 @@ class DownloaderPostcondition(Condition):
 
 	def getErrorMessage(self, task):
 		return self.error_message
+
 
 class ImageDownloadTask(Task):
 	def __init__(self, job, url, path):
@@ -117,6 +122,7 @@ class ImageDownloadTask(Task):
 		else:
 			Task.processFinished(self, 0)
 
+
 class StickWizardJob(Job):
 	def __init__(self, path):
 		Job.__init__(self, _("USB stick wizard"))
@@ -135,6 +141,7 @@ class StickWizardJob(Job):
 		UnpackTask(self)
 		CopyTask(self)
 
+
 class PartitionTaskPostcondition(Condition):
 	def __init__(self):
 		pass
@@ -148,8 +155,10 @@ class PartitionTaskPostcondition(Condition):
 			task.ERROR_UNKNOWN: task.errormsg
 		}[task.error]
 
+
 class PartitionTask(Task):
 	ERROR_UNKNOWN, ERROR_BLKRRPART = range(2)
+
 	def __init__(self, job):
 		Task.__init__(self, job, "partitioning")
 		self.postconditions.append(PartitionTaskPostcondition())
@@ -170,6 +179,7 @@ class PartitionTask(Task):
 		else:
 			self.error = self.ERROR_UNKNOWN
 			self.errormsg = data
+
 
 class UnpackTask(Task):
 	def __init__(self, job):
@@ -196,6 +206,7 @@ class UnpackTask(Task):
 	def afterRun(self):
 		self.delayTimer.callback.remove(self.progress_increment)
 
+
 class CopyTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Copying USB flasher boot image to stick...")
@@ -220,6 +231,7 @@ class CopyTask(Task):
 	def afterRun(self):
 		self.delayTimer.callback.remove(self.progress_increment)
 
+
 class NFOViewer(Screen):
 	skin = """
 		<screen name="NFOViewer" position="center,center" size="610,410" title="Changelog" >
@@ -239,6 +251,7 @@ class NFOViewer(Screen):
 				"down": self.pageDown,
 				"up": self.pageUp
 			})
+
 	def pageUp(self):
 		self["changelog"].pageUp()
 
@@ -247,6 +260,7 @@ class NFOViewer(Screen):
 
 	def exit(self):
 		self.close(False)
+
 
 class feedDownloader:
 	def __init__(self, feed_base, box, OE_vers):
@@ -280,6 +294,7 @@ class feedDownloader:
 				entry = (name, url)
 				fileresultlist.append(entry)
 		self.callback(fileresultlist, self.OE_vers)
+
 
 class DeviceBrowser(Screen, HelpableScreen):
 	skin = """
@@ -350,7 +365,9 @@ class DeviceBrowser(Screen, HelpableScreen):
 	def exit(self):
 		self.close(False)
 
+
 (ALLIMAGES, RELEASE, EXPERIMENTAL, STICK_WIZARD, START) = range(5)
+
 
 class NFIDownload(Screen):
 	skin = """
@@ -798,8 +815,10 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		self.container.appClosed.remove(self.umountFinished)
 		self.umountCallback()
 
+
 def main(session, **kwargs):
 	session.open(NFIDownload, resolveFilename(SCOPE_HDD))
+
 
 def filescan_open(list, session, **kwargs):
 	dev = "/dev/" + list[0].path.rsplit('/', 1)[0][7:]
@@ -807,6 +826,7 @@ def filescan_open(list, session, **kwargs):
 	usbmountpoint = resolveFilename(SCOPE_MEDIA) + "usb/"
 	system("mount %s %s -o rw,sync" % (dev, usbmountpoint))
 	session.open(NFIDownload, usbmountpoint)
+
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath

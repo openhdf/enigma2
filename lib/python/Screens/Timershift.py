@@ -15,6 +15,7 @@ from Components.SystemInfo import SystemInfo
 from enigma import eEnv
 import xml.etree.cElementTree
 
+
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
@@ -38,6 +39,7 @@ class SetupSummary(Screen):
 		self["SetupValue"].text = self.parent.getCurrentValue()
 		if hasattr(self.parent, "getCurrentDescription"):
 			self.parent["description"].text = self.parent.getCurrentDescription()
+
 
 class TimeshiftSettings(Screen, ConfigListScreen):
 	def removeNotifier(self):

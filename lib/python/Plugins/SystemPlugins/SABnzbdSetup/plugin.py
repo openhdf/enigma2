@@ -10,6 +10,7 @@ from Plugins.Plugin import PluginDescriptor
 from boxbranding import getMachineBrand, getMachineName
 import time
 
+
 class SABnzbdSetupScreen(Screen):
 	skin = """
 		<screen position="center,center" size="560,310" title="Samba Setup">
@@ -157,6 +158,7 @@ class SABnzbdSetupScreen(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
 
 def Plugins(**kwargs):
 	return []

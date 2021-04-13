@@ -38,6 +38,7 @@ baserunPlugin = None
 StartOnlyOneTime = False
 line = "------------------------------------------------------------------"
 
+
 def autostart(reason, **kwargs):
 	if reason == 0:
 		if config.plugins.QuickButton.enable.value:
@@ -66,6 +67,7 @@ def autostart(reason, **kwargs):
 	else:
 		print "[MultiQuickButton] checking keymap.xml..."
 		rePatchKeymap()
+
 
 def checkMQBKeys():
 	mqbkeymapfile = "/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/keymap.xml"
@@ -111,6 +113,7 @@ def checkMQBKeys():
 	keymapparser.removeKeymap(mqbkeymapfile)
 	keymapparser.readKeymap(mqbkeymapfile)
 
+
 def rePatchKeymap():
 	globalkeymapfile = "/usr/share/enigma2/keymap.xml"
 	globalkeymap = open(globalkeymapfile, "r")
@@ -128,6 +131,7 @@ def rePatchKeymap():
 	globalkeymap = open(globalkeymapfile, "w")
 	globalkeymap.write(text)
 	globalkeymap.close()
+
 
 def InfoBarPlugins__init__(self):
 	global StartOnlyOneTime
@@ -215,8 +219,10 @@ def InfoBarPlugins__init__(self):
 		InfoBarPlugins.quickSelectGlobal = None
 	baseInfoBarPlugins__init__(self)
 
+
 def runPlugin(self, plugin):
 	baserunPlugin(self, plugin)
+
 
 def checkQuickSel(self, path):
 	list = None
@@ -240,11 +246,13 @@ def checkQuickSel(self, path):
 			else:
 				self.session.open(MessageBox, (_("file %s not found!") % (path)), MessageBox.TYPE_ERROR)
 
+
 def askForQuickList(self, res):
 	if res is None:
 		pass
 	else:
 		self.execQuick(res)
+
 
 def getQuickList(self, list):
 	quickList = []
@@ -253,6 +261,7 @@ def getQuickList(self, list):
 		quickList.append((e2))
 
 	return quickList
+
 
 def execQuick(self, entry):
 	if entry <> None:
@@ -274,6 +283,7 @@ def execQuick(self, entry):
 			except Exception, e:
 				self.session.open(MessageBox, ("Code " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
 
+
 def quickSelectGlobal(self, key):
 	if key:
 		path = '/etc/MultiQuickButton/quickbutton_' + key + '.xml'
@@ -281,6 +291,7 @@ def quickSelectGlobal(self, key):
 			self.checkQuickSel(path)
 		else:
 			self.session.open(MessageBox, ("file %s not found!" % (path)), MessageBox.TYPE_ERROR)
+
 
 class MQBActionMap(ActionMap):
 	def action(self, contexts, action):
@@ -298,13 +309,16 @@ class MQBActionMap(ActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
+
 def main(session, **kwargs):
 	session.open(MultiQuickButton)
+
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
 		return [(_("Multi Quickbutton"), main, "multi_quick", 55)]
 	return []
+
 
 def Plugins(**kwargs):
 	if config.plugins.QuickButton.mainmenu.value:

@@ -23,6 +23,7 @@ from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
 from Poll import Poll
 
+
 class pCaidDisplay(Poll, Converter, object):
 	def __init__(self, type):
 		Poll.__init__(self)

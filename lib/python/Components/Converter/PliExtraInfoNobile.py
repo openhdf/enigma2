@@ -8,10 +8,12 @@ from Tools.Transponder import ConvertToHumanReadable
 from Tools.GetEcmInfo import GetEcmInfo
 from Poll import Poll
 
+
 def addspace(text):
 	if text:
 		text += "  "
 	return text
+
 
 class PliExtraInfo(Poll, Converter, object):
 	def __init__(self, type):

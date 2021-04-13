@@ -22,15 +22,18 @@ import os
 from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent, eServiceReference
 from camcontrol import CamControl
 
+
 class ConfigAction(ConfigElement):
 	def __init__(self, action, *args):
 		ConfigElement.__init__(self)
 		self.value = "(OK)"
 		self.action = action
 		self.actionargs = args
+
 	def handleKey(self, key):
 		if (key == KEY_OK):
 			self.action(*self.actionargs)
+
 
 class ScSelection(Screen):
 	skin = """

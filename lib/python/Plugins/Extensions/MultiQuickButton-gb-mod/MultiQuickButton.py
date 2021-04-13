@@ -62,6 +62,7 @@ values = ("red", "red_long", "green", "green_long", "yellow", "yellow_long", "bl
 			"subtitle", "subtitle_long", "filelist", "filelist_long", "playlist", "playlist_long", "timer", "timer_long",
 			"timeshift", "timeshift_long", "mark", "mark_long", "search", "search_long", "slow", "slow_long")
 
+
 class MultiQuickButton(Screen):
 
 	global HD_Res
@@ -126,7 +127,6 @@ class MultiQuickButton(Screen):
 		self.session = session
 		self.menu = args
 		self.settigspath = ""
-
 
 		self["background"] = Label('')
 		self["key_red"] = Label(autostart)
@@ -257,7 +257,6 @@ class MultiQuickButton(Screen):
 		#self.list.append(QuickButtonListEntry('',((_('search') + _(' long')) + functionbutton_search_long, 'search_long')))
 		#self.list.append(QuickButtonListEntry('',(_('SLOW I>') + functionbutton_slow, 'slow')))
 		#self.list.append(QuickButtonListEntry('',((_('SLOW I>') + _(' long')) + functionbutton_slow_long, 'slow_long')))
-
 
 	def updateList(self):
 		self.createList()
@@ -439,11 +438,13 @@ class MultiQuickButton(Screen):
 		else:
 			pass
 
+
 class BackupLocationBox(LocationBox):
 	def __init__(self, session, text, filename, dir, minFree=None):
 		inhibitDirs = ["/bin", "/boot", "/dev", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
 		LocationBox.__init__(self, session, text=text, filename=filename, currDir=dir, bookmarks=config.plugins.QuickButton.backupdirs, autoAdd=True, editDir=True, inhibitDirs=inhibitDirs, minFree=minFree)
 		self.skinName = "LocationBox"
+
 
 class QuickButton(Screen):
 
@@ -536,7 +537,6 @@ class QuickButton(Screen):
 		if self.e:
 			self.session.open(MessageBox, ("XML " + _("Error") + ": %s" % self.e), MessageBox.TYPE_ERROR)
 			self.close(None)
-
 
 	def updateTitle(self):
 		self.setTitle(self.newtitle)
@@ -717,6 +717,7 @@ class QuickButton(Screen):
 		else:
 			self.close(None)
 
+
 class MultiQuickButtonChannelConfiguration(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="550,300" title="MultiQuickButton Channel Selection" >
@@ -780,6 +781,7 @@ class MultiQuickButtonChannelConfiguration(Screen, ConfigListScreen):
 			for x in self["config"].list:
 				x[1].cancel()
 			self.close(False, self.session)
+
 
 class MultiQuickButtonMacro(Screen):
 	skin = """

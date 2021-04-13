@@ -11,6 +11,7 @@ from Components.ConfigList import ConfigList, ConfigListScreen
 
 from Tools.Directories import *
 
+
 class GraphMultiEpgSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen name="GraphMultiEPGSetup" position="center,center" size="560,435" title="Electronic Program Guide Setup">

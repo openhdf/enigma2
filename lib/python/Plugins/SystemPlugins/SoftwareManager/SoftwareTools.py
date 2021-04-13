@@ -11,6 +11,7 @@ from time import time
 
 from boxbranding import getBoxType, getImageVersion
 
+
 class SoftwareTools(PackageInfoHandler):
 	lastDownloadDate = None
 	NetworkConnectionAvailable = None
@@ -19,7 +20,6 @@ class SoftwareTools(PackageInfoHandler):
 	available_updatelist = []
 	available_packetlist = []
 	installed_packetlist = {}
-
 
 	def __init__(self):
 		aboutInfo = getImageVersion()
@@ -274,5 +274,6 @@ class SoftwareTools(PackageInfoHandler):
 			if not hardware_found:
 				return False
 		return True
+
 
 iSoftwareTools = SoftwareTools()

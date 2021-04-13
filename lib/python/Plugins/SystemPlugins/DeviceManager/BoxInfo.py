@@ -1,6 +1,7 @@
 import os
 import re
 
+
 class BoxInfo:
 
     def __init__(self):

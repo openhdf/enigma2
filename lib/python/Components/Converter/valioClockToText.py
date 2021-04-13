@@ -3,7 +3,6 @@ from time import localtime, strftime
 from Components.Element import cached
 
 
-
 class valioClockToText(Converter, object):
 	DEFAULT = 0
 	WITH_SECONDS = 1
@@ -14,6 +13,7 @@ class valioClockToText(Converter, object):
 	TIMESTAMP = 6
 	ONLYDATE = 7
 	DATETIME = 8
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "WithSeconds":

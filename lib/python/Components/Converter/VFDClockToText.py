@@ -20,6 +20,7 @@ MONTHS = (_("January"),
 
 dayOfWeek = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 
+
 class VFDClockToText(Converter, object):
 	DEFAULT = 0
 	WITH_SECONDS = 1
@@ -92,7 +93,6 @@ class VFDClockToText(Converter, object):
 				return "%2d:%02d %d/%d" % (t.tm_hour, t.tm_min, t[2], t[1])
 		else:
 			return "???"
-
 
 		if self.type == self.WITH_SECONDS:
 			return "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)

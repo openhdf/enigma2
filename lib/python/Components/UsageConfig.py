@@ -13,6 +13,7 @@ from Tools.HardwareInfo import HardwareInfo
 from keyids import KEYIDS
 from sys import maxint
 
+
 def InitUsageConfig():
 	config.downloader = ConfigSubsection()
 	config.downloader.autoupdate = ConfigYesNo(default=True)
@@ -61,6 +62,7 @@ def InitUsageConfig():
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
 
 	config.usage.alternative_number_mode = ConfigYesNo(default=False)
+
 	def alternativeNumberModeChange(configElement):
 		eDVBDB.getInstance().setNumberingMode(configElement.value)
 		refreshServiceList()
@@ -129,6 +131,7 @@ def InitUsageConfig():
 	config.usage.show_infobar_dimming_speed = ConfigSelectionNumber(min=1, max=40, stepwidth=1, default=3, wraparound=True)
 	config.usage.show_second_infobar = ConfigSelection(default="2", choices=[("0", _("Off")), ("1", _("Event Info")), ("2", _("2nd Infobar INFO"))])
 	config.usage.second_infobar_timeout = ConfigSelection(default="0", choices=[("0", _("No timeout"))] + choicelist)
+
 	def showsecondinfobarChanged(configElement):
 		if config.usage.show_second_infobar.value != "INFOBAREPG":
 			SystemInfo["InfoBarEpg"] = True
@@ -213,6 +216,7 @@ def InitUsageConfig():
 		tmpvalue = config.usage.default_path.value
 		config.usage.default_path.setValue(tmpvalue + '/')
 		config.usage.default_path.save()
+
 	def defaultpathChanged(configElement):
 		tmpvalue = config.usage.default_path.value
 		try:
@@ -239,6 +243,7 @@ def InitUsageConfig():
 		tmpvalue = config.usage.timeshift_path.value
 		config.usage.timeshift_path.setValue(tmpvalue + '/')
 		config.usage.timeshift_path.save()
+
 	def timeshiftpathChanged(configElement):
 		if not config.usage.timeshift_path.value.endswith('/'):
 			tmpvalue = config.usage.timeshift_path.value
@@ -257,6 +262,7 @@ def InitUsageConfig():
 		tmpvalue = config.usage.autorecord_path.value
 		config.usage.autorecord_path.setValue(tmpvalue + '/')
 		config.usage.autorecord_path.save()
+
 	def autorecordpathChanged(configElement):
 		if not config.usage.autorecord_path.value.endswith('/'):
 			tmpvalue = config.usage.autorecord_path.value
@@ -518,7 +524,6 @@ def InitUsageConfig():
 		("300", _("normal")),
 		("100", _("fast"))])
 
-
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))
 	config.usage.show_spinner.addNotifier(SpinnerOnOffChanged)
@@ -599,19 +604,23 @@ def InitUsageConfig():
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
 	config.epg.virgin.addNotifier(EpgSettingsChanged)
 	config.epg.maxdays = ConfigSelectionNumber(min=1, max=365, stepwidth=1, default=7, wraparound=True)
+
 	def EpgmaxdaysChanged(configElement):
 		from enigma import eEPGCache
 		eEPGCache.getInstance().setEpgmaxdays(config.epg.maxdays.getValue())
 	config.epg.maxdays.addNotifier(EpgmaxdaysChanged)
 	config.epg.histminutes = ConfigSelectionNumber(min=0, max=1440, stepwidth=30, default=0, wraparound=True)
+
 	def EpgHistorySecondsChanged(configElement):
 		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.value * 60)
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 	config.epg.cacheloadsched = ConfigYesNo(default=False)
 	config.epg.cachesavesched = ConfigYesNo(default=False)
+
 	def EpgCacheLoadSchedChanged(configElement):
 		import EpgLoadSave
 		EpgLoadSave.EpgCacheLoadCheck()
+
 	def EpgCacheSaveSchedChanged(configElement):
 		import EpgLoadSave
 		EpgLoadSave.EpgCacheSaveCheck()
@@ -643,6 +652,7 @@ def InitUsageConfig():
 	config.misc.epgcachepath = ConfigSelection(default='/etc/enigma2/', choices=hddchoises)
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
 	config.misc.epgcache_filename = ConfigText(default=(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
+
 	def EpgCacheChanged(configElement):
 		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.value, config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
 		config.misc.epgcache_filename.save()
@@ -833,6 +843,7 @@ def InitUsageConfig():
 
 	def updateEraseSpeed(el):
 		eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
+
 	def updateEraseFlags(el):
 		eBackgroundFileEraser.getInstance().setEraseFlags(int(el.value))
 	config.misc.erase_speed = ConfigSelection(default="20", choices=[
@@ -981,10 +992,13 @@ def InitUsageConfig():
 		("ukr Ukr", _("Ukrainian"))]
 
 	epg_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
+
 	def setEpgLanguage(configElement):
 		eServiceEvent.setEPGLanguage(configElement.value)
+
 	def setEpgLanguageAlternative(configElement):
 		eServiceEvent.setEPGLanguageAlternative(configElement.value)
+
 	def epglanguage(configElement):
 		config.autolanguage.audio_epglanguage.setChoices([x for x in epg_language_choices if x[0] and x[0] != config.autolanguage.audio_epglanguage_alternative.value or not x[0] and not config.autolanguage.audio_epglanguage_alternative.value])
 		config.autolanguage.audio_epglanguage_alternative.setChoices([x for x in epg_language_choices if x[0] and x[0] != config.autolanguage.audio_epglanguage.value or not x[0]])
@@ -997,6 +1011,7 @@ def InitUsageConfig():
 
 	def getselectedlanguages(range):
 		return [eval("config.autolanguage.audio_autoselect%x.value" % x) for x in range]
+
 	def autolanguage(configElement):
 		config.autolanguage.audio_autoselect1.setChoices([x for x in audio_language_choices if x[0] and x[0] not in getselectedlanguages((2, 3, 4)) or not x[0] and not config.autolanguage.audio_autoselect2.value])
 		config.autolanguage.audio_autoselect2.setChoices([x for x in audio_language_choices if x[0] and x[0] not in getselectedlanguages((1, 3, 4)) or not x[0] and not config.autolanguage.audio_autoselect3.value])
@@ -1015,8 +1030,10 @@ def InitUsageConfig():
 	config.autolanguage.audio_usecache = ConfigYesNo(default=True)
 
 	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
+
 	def getselectedsublanguages(range):
 		return [eval("config.autolanguage.subtitle_autoselect%x.value" % x) for x in range]
+
 	def autolanguagesub(configElement):
 		config.autolanguage.subtitle_autoselect1.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((2, 3, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect2.value])
 		config.autolanguage.subtitle_autoselect2.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((1, 3, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect3.value])
@@ -1625,6 +1642,7 @@ def InitUsageConfig():
 	config.usage.settingsoverlan_mp = ConfigYesNo(default=True)
 	config.usage.settingsoverlan_m3u = ConfigYesNo(default=True)
 
+
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):
 	elem = config_priority.value
 	if elem in ("expert_mode", "experimental_mode"):
@@ -1637,6 +1655,7 @@ def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, con
 				elif config_priority_strictly.value == "while_available":
 					elem += eDVBFrontend.preferredFrontendPrioHigh
 	return elem
+
 
 def updateChoices(sel, choices):
 	if choices:
@@ -1651,6 +1670,7 @@ def updateChoices(sel, choices):
 					break
 		sel.setChoices(map(str, choices), defval)
 
+
 def preferredPath(path):
 	if config.usage.setup_level.index < 2 or path == "<default>":
 		return None  # config.usage.default_path.value, but delay lookup until usage
@@ -1661,14 +1681,18 @@ def preferredPath(path):
 	else:
 		return path
 
+
 def preferredTimerPath():
 	return preferredPath(config.usage.timer_path.value)
+
 
 def preferredInstantRecordPath():
 	return preferredPath(config.usage.instantrec_path.value)
 
+
 def defaultMoviePath():
 	return defaultRecordingLocation(config.usage.default_path.value)
+
 
 def refreshServiceList(configElement=None):
 	from Screens.InfoBar import InfoBar
@@ -1677,6 +1701,7 @@ def refreshServiceList(configElement=None):
 		servicelist = InfoBarInstance.servicelist
 		if servicelist:
 			servicelist.setMode()
+
 
 def patchTuxtxtConfFile(dummyConfigElement):
 	print "[tuxtxt] patching tuxtxt2.conf"

@@ -7,6 +7,7 @@ from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, e
 from Components.Element import cached
 from Components.ServiceEventTracker import ServiceEventTracker
 
+
 class ChannelExpertInfo(Converter, object):
 	TUNERINFO = 0
 	TUNERINFOBP = 1

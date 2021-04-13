@@ -7,11 +7,9 @@
 #######################################################################
 
 
-
 from Renderer import Renderer
 from enigma import eCanvas, eRect, gFont
 from skin import parseColor, parseFont
-
 
 
 class valioCAD(Renderer):

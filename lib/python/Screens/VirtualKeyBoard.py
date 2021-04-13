@@ -13,6 +13,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 import skin
 
+
 class VirtualKeyBoardList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
@@ -20,9 +21,11 @@ class VirtualKeyBoardList(MenuList):
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])
 
+
 class VirtualKeyBoardEntryComponent:
 	def __init__(self):
 		pass
+
 
 class VirtualKeyBoard(Screen):
 	def __init__(self, session, title=_("Virtual KeyBoard Text:"), currPos=None, **kwargs):

@@ -1,5 +1,6 @@
 from enigma import eActionMap
 
+
 class ActionMap:
 	def __init__(self, contexts=None, actions=None, prio=0):
 		if not actions:
@@ -58,6 +59,7 @@ class ActionMap:
 	def destroy(self):
 		pass
 
+
 class NumberActionMap(ActionMap):
 	def action(self, contexts, action):
 		numbers = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
@@ -68,6 +70,7 @@ class NumberActionMap(ActionMap):
 			return 1
 		else:
 			return ActionMap.action(self, contexts, action)
+
 
 class HelpableActionMap(ActionMap):
 	"""An Actionmap which automatically puts the actions into the helpList.
@@ -98,6 +101,7 @@ class HelpableActionMap(ActionMap):
 		ActionMap.__init__(self, [context], adict, prio)
 
 		parent.helpList.append((self, context, alist))
+
 
 class HelpableNumberActionMap(ActionMap):
 	"""An Actionmap which automatically puts the actions into the helpList.

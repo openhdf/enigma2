@@ -1,5 +1,6 @@
 from enigma import loadPNG, loadJPG
 
+
 def LoadPixmap(path, desktop=None, cached=False):
 	if path[-4:] == ".png":
 		ptr = loadPNG(path)

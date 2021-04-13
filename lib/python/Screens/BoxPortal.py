@@ -4,6 +4,7 @@ from Components.Sources.List import List
 from Components.config import config
 from Screens.InfoBar import InfoBar
 
+
 class BoxPortal(Screen):
 	skin = """
 		<screen name="Box Portal" position="center,center" size="200,100" title="Box Portal">

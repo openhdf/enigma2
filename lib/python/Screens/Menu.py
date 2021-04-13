@@ -22,6 +22,7 @@ file = open(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
 mdom = xml.etree.cElementTree.parse(file)
 file.close()
 
+
 class MenuUpdater:
 	def __init__(self):
 		self.updatedMenuItems = {}
@@ -40,10 +41,13 @@ class MenuUpdater:
 	def getUpdatedMenu(self, id):
 		return self.updatedMenuItems[id]
 
+
 menuupdater = MenuUpdater()
+
 
 class MenuSummary(Screen):
 	pass
+
 
 class Menu(Screen, ProtectedScreen):
 	ALLOW_SUSPEND = True
@@ -185,7 +189,6 @@ class Menu(Screen, ProtectedScreen):
 				return
 		destList.append((item_text, self.nothing, entryID, weight))
 
-
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
 		list = []
@@ -313,6 +316,8 @@ class Menu(Screen, ProtectedScreen):
 				return True
 			elif config.ParentalControl.config_sections.standby_menu.value and self.menuID == "shutdown":
 				return True
+
+
 class MainMenu(Menu):
 	#add file load functions for the xml-file
 

@@ -7,11 +7,9 @@
 #######################################################################
 
 
-
 from Components.VariableText import VariableText
 from Renderer import Renderer
 from enigma import eLabel
-
 
 
 class valioTranslator(VariableText, Renderer):
