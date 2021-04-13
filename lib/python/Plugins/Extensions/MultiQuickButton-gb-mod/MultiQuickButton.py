@@ -33,22 +33,22 @@ from __init__ import _
 
 functionfile = "/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/mqbfunctions.xml"
 config.plugins.QuickButton = ConfigSubsection()
-config.plugins.QuickButton.enable = ConfigYesNo(default = True)
-config.plugins.QuickButton.info = ConfigYesNo(default = True)
-config.plugins.QuickButton.okexitstate = ConfigYesNo(default = False)
-config.plugins.QuickButton.mainmenu = ConfigYesNo(default = True)
+config.plugins.QuickButton.enable = ConfigYesNo(default=True)
+config.plugins.QuickButton.info = ConfigYesNo(default=True)
+config.plugins.QuickButton.okexitstate = ConfigYesNo(default=False)
+config.plugins.QuickButton.mainmenu = ConfigYesNo(default=True)
 config.plugins.QuickButton.last_backupdir = ConfigText(default=resolveFilename(SCOPE_SYSETC))
 config.plugins.QuickButton.backupdirs = ConfigLocations(default=[resolveFilename(SCOPE_SYSETC)])
-config.plugins.QuickButton.channel1 = ConfigInteger(default = 1, limits = (0, 9999))
-config.plugins.QuickButton.channel2 = ConfigInteger(default = 2, limits = (0, 9999))
-config.plugins.QuickButton.channel3 = ConfigInteger(default = 3, limits = (0, 9999))
-config.plugins.QuickButton.channel4 = ConfigInteger(default = 4, limits = (0, 9999))
-config.plugins.QuickButton.channel5 = ConfigInteger(default = 5, limits = (0, 9999))
-config.plugins.QuickButton.macroI = ConfigText(default = "")
-config.plugins.QuickButton.macroII = ConfigText(default = "")
-config.plugins.QuickButton.macroIII = ConfigText(default = "")
-config.plugins.QuickButton.macroIV = ConfigText(default = "")
-config.plugins.QuickButton.macroV = ConfigText(default = "")
+config.plugins.QuickButton.channel1 = ConfigInteger(default=1, limits=(0, 9999))
+config.plugins.QuickButton.channel2 = ConfigInteger(default=2, limits=(0, 9999))
+config.plugins.QuickButton.channel3 = ConfigInteger(default=3, limits=(0, 9999))
+config.plugins.QuickButton.channel4 = ConfigInteger(default=4, limits=(0, 9999))
+config.plugins.QuickButton.channel5 = ConfigInteger(default=5, limits=(0, 9999))
+config.plugins.QuickButton.macroI = ConfigText(default="")
+config.plugins.QuickButton.macroII = ConfigText(default="")
+config.plugins.QuickButton.macroIII = ConfigText(default="")
+config.plugins.QuickButton.macroIV = ConfigText(default="")
+config.plugins.QuickButton.macroV = ConfigText(default="")
 MultiQuickButton_version = "2.7.12"
 autostart=_("Autostart") + ": "
 menuentry=_("Main menu") + ": "
@@ -138,7 +138,7 @@ class MultiQuickButton(Screen):
 		self["key_2"] = Label(_("Channels"))
 		self["key_3"] = Label(_("Macros"))
 		self.createList()
-		self["list"] = QuickButtonList(list=self.list, selection = 0)
+		self["list"] = QuickButtonList(list=self.list, selection=0)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "EPGSelectActions"],
 		{
 			"ok": self.run,
@@ -303,7 +303,7 @@ class MultiQuickButton(Screen):
 				else:
 					self.session.open(MessageBox,("file %s not found!" % (path)),  MessageBox.TYPE_ERROR)
 
-	def updateAfterButtonChange(self, res = None):
+	def updateAfterButtonChange(self, res=None):
 		self.updateList()
 
 	def backup(self):
@@ -322,7 +322,7 @@ class MultiQuickButton(Screen):
 				config.plugins.QuickButton.last_backupdir.save()
 				self.settigspath = path + "MultiQuickButton_settings.tar.gz"
 				if fileExists(self.settigspath):
-					self.session.openWithCallback(self.callOverwriteBackup, MessageBox,_("Overwrite existing Backup?."),type = MessageBox.TYPE_YESNO,)
+					self.session.openWithCallback(self.callOverwriteBackup, MessageBox,_("Overwrite existing Backup?."),type=MessageBox.TYPE_YESNO,)
 				else:
 					com = "tar czvf %s /etc/MultiQuickButton/" % (self.settigspath)
 					self.session.open(Console,_("Backup Settings..."),[com])
@@ -330,8 +330,8 @@ class MultiQuickButton(Screen):
 				self.session.open(
 					MessageBox,
 					_("Directory %s nonexistent.") % (path),
-					type = MessageBox.TYPE_ERROR,
-					timeout = 5
+					type=MessageBox.TYPE_ERROR,
+					timeout=5
 					)
 
 	def callOverwriteBackup(self, res):
@@ -352,9 +352,9 @@ class MultiQuickButton(Screen):
 		if path is not None:
 			self.settigspath = path + "MultiQuickButton_settings.tar.gz"
 			if fileExists(self.settigspath):
-				self.session.openWithCallback(self.callOverwriteSettings, MessageBox,_("Overwrite existing Settings?."),type = MessageBox.TYPE_YESNO,)
+				self.session.openWithCallback(self.callOverwriteSettings, MessageBox,_("Overwrite existing Settings?."),type=MessageBox.TYPE_YESNO,)
 			else:
-				self.session.open(MessageBox,_("File %s nonexistent.") % (path),type = MessageBox.TYPE_ERROR,timeout = 5)
+				self.session.open(MessageBox,_("File %s nonexistent.") % (path),type=MessageBox.TYPE_ERROR,timeout=5)
 		else:
 			pass
 
@@ -440,9 +440,9 @@ class MultiQuickButton(Screen):
 			pass
 
 class BackupLocationBox(LocationBox):
-	def __init__(self, session, text, filename, dir, minFree = None):
+	def __init__(self, session, text, filename, dir, minFree=None):
 		inhibitDirs = ["/bin", "/boot", "/dev", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
-		LocationBox.__init__(self, session, text = text, filename = filename, currDir = dir, bookmarks = config.plugins.QuickButton.backupdirs, autoAdd = True, editDir = True, inhibitDirs = inhibitDirs, minFree = minFree)
+		LocationBox.__init__(self, session, text=text, filename=filename, currDir=dir, bookmarks=config.plugins.QuickButton.backupdirs, autoAdd=True, editDir=True, inhibitDirs=inhibitDirs, minFree=minFree)
 		self.skinName = "LocationBox"
 
 class QuickButton(Screen):
@@ -488,7 +488,7 @@ class QuickButton(Screen):
 			<widget name="background" backgroundColor="#220a0a0a" zPosition="1" position="0,380" size="600,40" font="Regular;20" halign="left" valign="center" />
 		</screen>"""
 
-	def __init__(self, session, path=None, title = "" ):
+	def __init__(self, session, path=None, title="" ):
 		Screen.__init__(self, session)
 		self.session = session
 		self.path = path
@@ -510,7 +510,7 @@ class QuickButton(Screen):
 			self.e = e
 			list = []
 
-		self["list"] = QuickButtonList(list=list, selection = 0)
+		self["list"] = QuickButtonList(list=list, selection=0)
 		self["background"] = Label('')
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
@@ -606,7 +606,7 @@ class QuickButton(Screen):
 		unic = []
 		twins = [""]
 		pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
-		pluginlist.sort(key = lambda p: p.name)
+		pluginlist.sort(key=lambda p: p.name)
 		for plugin in pluginlist:
 			if plugin.name in twins:
 				pass
@@ -635,7 +635,7 @@ class QuickButton(Screen):
 			elif selection[1] == "plugins":
 				self.addplugin()
 			else:
-				self.session.open(MessageBox,_("No valid selection"), type = MessageBox.TYPE_ERROR,timeout = 5)
+				self.session.open(MessageBox,_("No valid selection"), type=MessageBox.TYPE_ERROR,timeout=5)
 
 	def getNewEntryType(self):
 		entrytype = []
@@ -648,7 +648,7 @@ class QuickButton(Screen):
 		try:
 			self.session.openWithCallback(self.QuickPluginSelected,ChoiceBox,_("Functions") ,self.getFunctionList())
 		except Exception,e:
-			self.session.open(MessageBox,_("No valid function file found"), type = MessageBox.TYPE_ERROR,timeout = 5)
+			self.session.open(MessageBox,_("No valid function file found"), type=MessageBox.TYPE_ERROR,timeout=5)
 
 	def addplugin(self):
 		self.changed = True
@@ -658,7 +658,7 @@ class QuickButton(Screen):
 		if choice:
 			for entry in self["list"].list:
 				if entry[0][0] == choice[0]:
-					self.session.open(MessageBox,_("Entry %s already exists.") % (entry[0][0]),type = MessageBox.TYPE_ERROR,timeout = 5)
+					self.session.open(MessageBox,_("Entry %s already exists.") % (entry[0][0]),type=MessageBox.TYPE_ERROR,timeout=5)
 					return
 			if choice[2] == "plugins":
 				self.XML_db.addPluginEntry(choice[1])
@@ -725,13 +725,13 @@ class MultiQuickButtonChannelConfiguration(Screen, ConfigListScreen):
 		<widget name="buttongreen" position="120,260" size="100,40" backgroundColor="green" valign="center" halign="center" zPosition="2" foregroundColor="white" font="Regular;18"/>
 		</screen>"""
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		self.session = session
 		Screen.__init__(self, session)
 
 		self.createConfigList()
 		self.onShown.append(self.setWindowTitle)
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 
 		self["buttonred"] = Label(_("Cancel"))
 		self["buttongreen"] = Label(_("OK"))
@@ -767,7 +767,7 @@ class MultiQuickButtonChannelConfiguration(Screen, ConfigListScreen):
 
 	def cancel(self):
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Quite without saving changes ?"), MessageBox.TYPE_YESNO, default = False)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Quite without saving changes ?"), MessageBox.TYPE_YESNO, default=False)
 		else:
 			for x in self["config"].list:
 				x[1].cancel()
@@ -804,7 +804,7 @@ class MultiQuickButtonMacro(Screen):
 		</widget>
 		</screen>"""
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		self.session = session
 		Screen.__init__(self, session)
 

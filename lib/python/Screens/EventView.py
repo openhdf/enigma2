@@ -128,7 +128,7 @@ class EventViewBase:
 				self.showChoiceBoxDialog()
 				break
 		else:
-			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
+			newEntry = RecordTimerEntry(self.currentService, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(self.event))
 			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
 	def ChoiceBoxCB(self, choice):
