@@ -72,7 +72,7 @@ class DMCHDCaids(Renderer):
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "size":
 			    self.instance.setSize(parseSize(value))
-			    attribs.append((attrib,value))
+			    attribs.append((attrib, value))
 			elif attrib == "nocColor":
 			    self.nocColor = parseColor(value)
 			elif attrib == "emmColor":
@@ -80,12 +80,12 @@ class DMCHDCaids(Renderer):
 			elif attrib == "ecmColor":
 			    self.ecmColor = parseColor(value)
 			elif attrib == "font":
-			    self.font = parseFont(value, ((1,1),(1,1)))
+			    self.font = parseFont(value, ((1, 1), (1, 1)))
 			elif attrib == "backgroundColor":
 			    self.backgroundColor = parseColor(value)
 			    self.instance.clear(self.backgroundColor)
-			    attribs.append((attrib,value))
+			    attribs.append((attrib, value))
 			else:
-			    attribs.append((attrib,value))
+			    attribs.append((attrib, value))
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)

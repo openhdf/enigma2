@@ -130,21 +130,21 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.newfilename = self.backuppath + "/" + dt + '-' + self.backupfile
 				if path.exists(self.newfilename):
 					remove(self.newfilename)
-				rename(self.fullbackupfilename,self.newfilename)
+				rename(self.fullbackupfilename, self.newfilename)
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, Console, title=_("Backup is running..."), cmdlist=cmd,finishedCallback=self.backupFinishedCB,closeOnSuccess=True)
+				self.session.openWithCallback(self.finished_cb, Console, title=_("Backup is running..."), cmdlist=cmd, finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 			else:
-				self.session.open(Console, title=_("Backup is running..."), cmdlist=cmd,finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
+				self.session.open(Console, title=_("Backup is running..."), cmdlist=cmd, finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 		except OSError:
 			if self.finished_cb:
 				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 			else:
-				self.session.openWithCallback(self.backupErrorCB,MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
+				self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 
-	def backupFinishedCB(self,retval=None):
+	def backupFinishedCB(self, retval=None):
 		self.close(True)
 
-	def backupErrorCB(self,retval=None):
+	def backupErrorCB(self, retval=None):
 		self.close(False)
 
 	def runAsync(self, finished_cb):
@@ -341,7 +341,7 @@ class RestoreMenu(Screen):
 	def startDelete(self, ret=False):
 		if ret == True:
 			self.exe = True
-			print "removing:",self.val
+			print "removing:", self.val
 			if path.exists(self.val) == True:
 				remove(self.val)
 			self.exe = False
@@ -396,7 +396,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 		self.session.open(Console, title=_("Restoring..."), cmdlist=restorecmdlist, finishedCallback=self.restoreFinishedCB)
 
-	def restoreFinishedCB(self,retval=None):
+	def restoreFinishedCB(self, retval=None):
 		self.session.openWithCallback(self.checkPlugins, RestartNetwork)
 
 	def checkPlugins(self):

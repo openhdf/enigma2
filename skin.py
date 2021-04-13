@@ -205,9 +205,9 @@ if config.skin.primary_skin.value != DEFAULT_SKIN:
 			if file.startswith('skin_user_') and file.endswith('.xml'):
 				try:
 					addSkin(primary_skin_path + file, SCOPE_SKIN)
-					print "[SKIN] loading user defined %s skin file: %s" % (file.replace('skin_user_','')[:-4], primary_skin_path + file)
+					print "[SKIN] loading user defined %s skin file: %s" % (file.replace('skin_user_', '')[:-4], primary_skin_path + file)
 				except (SkinError, IOError, OSError, AssertionError), err:
-					print "[SKIN] not loading user defined %s skin file: %s - error: %s" % (file.replace('skin_user_','')[:-4], primary_skin_path + file, err)
+					print "[SKIN] not loading user defined %s skin file: %s - error: %s" % (file.replace('skin_user_', '')[:-4], primary_skin_path + file, err)
 
 '''
 try:
@@ -403,16 +403,16 @@ def cachemenu():
 			if x.attrib.get('name') == 'menu_mainmenu':
 				print x.attrib.get('name')
 				for s in x.findall("ePixmap"):
-					if s.attrib.get('pixmap','') is not '':
-						pixmaplist.append(s.attrib.get('pixmap',''))
+					if s.attrib.get('pixmap', '') is not '':
+						pixmaplist.append(s.attrib.get('pixmap', ''))
 				for s in x.findall('widget'):
-					if s.attrib.get('pixmap','') is not '':
-						pixmaplist.append(s.attrib.get('pixmap',''))
+					if s.attrib.get('pixmap', '') is not '':
+						pixmaplist.append(s.attrib.get('pixmap', ''))
 	desktop = getDesktop(0)
 	for s in pixmaplist:
 		value = '/usr/share/enigma2/' + s
 		ptr = loadPixmap(value, desktop)
-		pngcache.append((value,ptr))
+		pngcache.append((value, ptr))
 try:
 	if config.skin.primary_skin.value == "XionHDF/skin.xml" or config.skin.primary_skin.value == DEFAULT_SKIN:
 		cachemenu()
@@ -420,7 +420,7 @@ except:
 	print "fail cache main menu"
 
 class AttributeParser:
-	def __init__(self, guiObject, desktop, scale=((1,1),(1,1))):
+	def __init__(self, guiObject, desktop, scale=((1, 1), (1, 1))):
 		self.guiObject = guiObject
 		self.desktop = desktop
 		self.scaleTuple = scale
@@ -709,7 +709,7 @@ class AttributeParser:
 	def OverScan(self, value):
 		self.guiObject.setOverscan(value)
 
-def applySingleAttribute(guiObject, desktop, attrib, value, scale=((1,1),(1,1))):
+def applySingleAttribute(guiObject, desktop, attrib, value, scale=((1, 1), (1, 1))):
 	# Someone still using applySingleAttribute?
 	AttributeParser(guiObject, desktop, scale).applyOne(attrib, value)
 
@@ -791,7 +791,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				else:
 					humancolor = color[1:]
 					if len(humancolor) >= 6:
-						colorNamesHuman[name] = int(humancolor,16)
+						colorNamesHuman[name] = int(humancolor, 16)
 			else:
 				print("need color and name, got %s %s" % (name, color))
 
@@ -866,7 +866,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 
 	for c in skin.findall("subtitles"):
 		from enigma import eSubtitleWidget
-		scale = ((1,1),(1,1))
+		scale = ((1, 1), (1, 1))
 		for substyle in c.findall("sub"):
 			get_attr = substyle.attrib.get
 			font = parseFont(get_attr("font"), scale)
@@ -903,8 +903,8 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		offset = eSize(20, 5)
 		for title in windowstyle.findall("title"):
 			get_attr = title.attrib.get
-			offset = parseSize(get_attr("offset"), ((1,1),(1,1)))
-			font = parseFont(get_attr("font"), ((1,1),(1,1)))
+			offset = parseSize(get_attr("offset"), ((1, 1), (1, 1)))
+			font = parseFont(get_attr("font"), ((1, 1), (1, 1)))
 
 		style.setTitleFont(font)
 		style.setTitleOffset(offset)
@@ -941,7 +941,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			style_id = int(style_id)
 		else:
 			style_id = 0
-		r = eRect(0,0,0,0)
+		r = eRect(0, 0, 0, 0)
 		v = margin.attrib.get("left")
 		if v:
 			r.setLeft(int(v))
@@ -1056,7 +1056,7 @@ class SkinContext:
 			self.w = 0
 			self.h = 0
 		else:
-			w,h = size.split(',')
+			w, h = size.split(',')
 			w = parseCoordinate(w, self.w, 0, font)
 			h = parseCoordinate(h, self.h, 0, font)
 			if pos == "bottom":
@@ -1094,7 +1094,7 @@ class SkinContextStack(SkinContext):
 			pos = (self.x, self.y)
 			size = (self.w, self.h)
 		else:
-			w,h = size.split(',')
+			w, h = size.split(',')
 			w = parseCoordinate(w, self.w, 0, font)
 			h = parseCoordinate(h, self.h, 0, font)
 			if pos == "bottom":
@@ -1124,7 +1124,7 @@ def readSkin(screen, skin, names, desktop):
 	# try all skins, first existing one have priority
 	global dom_screens
 	for n in names:
-		myscreen, path = dom_screens.get(n, (None,None))
+		myscreen, path = dom_screens.get(n, (None, None))
 		if myscreen is not None:
 			# use this name for debug output
 			name = n
@@ -1324,7 +1324,7 @@ def readSkin(screen, skin, names, desktop):
 			for w in myscreen.findall("widget"):
 				process(w)
 		for w in widget.getchildren():
-			if cw and w.tag in ("constant-widget","widget"):
+			if cw and w.tag in ("constant-widget", "widget"):
 				continue
 			process(w)
 

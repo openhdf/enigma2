@@ -59,7 +59,7 @@ class Navigation:
 		except:
 			print "=" * 100
 			print "[NAVIGATION] ERROR: can't read wakeup data"
-			self.lastshutdowntime, self.wakeuptime, self.timertime, self.wakeuptyp, self.getstandby, self.recordtime, self.forcerecord = int(now),-1,-1,0,0,-1,0
+			self.lastshutdowntime, self.wakeuptime, self.timertime, self.wakeuptyp, self.getstandby, self.recordtime, self.forcerecord = int(now), -1, -1, 0, 0, -1, 0
 		self.syncCount = 0
 		hasFakeTime = (now <= 31536000 or now - self.lastshutdowntime <= 120) and self.getstandby < 2 #set hasFakeTime only if lower than values and was last shutdown to deep standby
 		wasTimerWakeup, wasTimerWakeup_failure = getFPWasTimerWakeup(True)
@@ -67,7 +67,7 @@ class Navigation:
 
 		print "=" * 100
 		print "[NAVIGATION] was timer wakeup = %s" % wasTimerWakeup
-		print "[NAVIGATION] current time is %s -> it's fake-time suspected: %s" % (ctime(now),hasFakeTime)
+		print "[NAVIGATION] current time is %s -> it's fake-time suspected: %s" % (ctime(now), hasFakeTime)
 		print "-" * 100
 
 		thisBox = getBoxType()
@@ -96,7 +96,7 @@ class Navigation:
 		if self.wakeuptime > 0:
 			print "[NAVIGATION] wakeup time from deep-standby expected: *** %s ***" % (ctime(self.wakeuptime))
 			if config.workaround.deeprecord.value:
-				print "[NAVIGATION] timer wakeup detection window: %s - %s" % (ctime(self.wakeupwindow_minus),ctime(self.wakeupwindow_plus))
+				print "[NAVIGATION] timer wakeup detection window: %s - %s" % (ctime(self.wakeupwindow_minus), ctime(self.wakeupwindow_plus))
 		else:
 			print "[NAVIGATION] wakeup time was not set"
 		print "-" * 100
@@ -134,7 +134,7 @@ class Navigation:
 					print "-" * 100
 					print "[NAVIGATION] was timer wakeup after time sync is = True"
 					print "[NAVIGATION] wakeup time was %s" % ctime(self.wakeuptime)
-			print "[NAVIGATION] wakeup type is '%s' %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[self.wakeuptyp],{0:"and starts normal",1:"and starts in standby",2:"and starts not in standby"}[self.getstandby])
+			print "[NAVIGATION] wakeup type is '%s' %s" % ({0: "record-timer", 1: "zap-timer", 2: "power-timer", 3: "plugin-timer"}[self.wakeuptyp], {0: "and starts normal", 1: "and starts in standby", 2: "and starts not in standby"}[self.getstandby])
 			#record timer, zap timer, some plugin timer or next record timer begins in 15 mins
 			if self.wakeuptyp < 2 or self.forcerecord:
 				print "[NAVIGATION] timer starts at %s" % ctime(self.timertime)
@@ -181,10 +181,10 @@ class Navigation:
 			if self.__wasTimerWakeup:
 				print '+' * 100
 				print "[NAVIGATION] wrong signal 'was timer wakeup' detected - please activate the deep standby workaround."
-				print "[NAVIGATION] secure timer wakeup detection window: %s - %s" % (ctime(self.wakeupwindow_minus),ctime(self.wakeupwindow_plus))
+				print "[NAVIGATION] secure timer wakeup detection window: %s - %s" % (ctime(self.wakeupwindow_minus), ctime(self.wakeupwindow_plus))
 				print '+' * 100
 			if self.timertime > 0:
-				print "[NAVIGATION] next '%s' starts at %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[self.wakeuptyp], ctime(self.timertime))
+				print "[NAVIGATION] next '%s' starts at %s" % ({0: "record-timer", 1: "zap-timer", 2: "power-timer", 3: "plugin-timer"}[self.wakeuptyp], ctime(self.timertime))
 				if self.recordtime > 0 and self.timertime != self.recordtime:
 					print "[NAVIGATION] next 'record-timer' starts at %s" % ctime(self.recordtime)
 				else:
@@ -221,7 +221,7 @@ class Navigation:
 				result = "failure or the time was correct"
 
 		print "~" * 100
-		print "[NAVIGATION] time sync %s, current time is %s, sync time is %s sec." % (result,ctime(now),((self.syncCount) * 5))
+		print "[NAVIGATION] time sync %s, current time is %s, sync time is %s sec." % (result, ctime(now), ((self.syncCount) * 5))
 		self.wakeupCheck()
 
 	def gotopower(self):

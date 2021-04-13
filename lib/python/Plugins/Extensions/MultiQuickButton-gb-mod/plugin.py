@@ -42,7 +42,7 @@ def autostart(reason, **kwargs):
 	if reason == 0:
 		if config.plugins.QuickButton.enable.value:
 			print line
-			print "[MultiQuickButton] enabled: ",config.plugins.QuickButton.enable.value
+			print "[MultiQuickButton] enabled: ", config.plugins.QuickButton.enable.value
 			checkMQBKeys()
 			print line
 			global baseInfoBarPlugins__init__, baserunPlugin
@@ -216,7 +216,7 @@ def InfoBarPlugins__init__(self):
 	baseInfoBarPlugins__init__(self)
 
 def runPlugin(self, plugin):
-	baserunPlugin(self,plugin)
+	baserunPlugin(self, plugin)
 
 def checkQuickSel(self, path):
 	list = None
@@ -226,19 +226,19 @@ def checkQuickSel(self, path):
 		db = QuickButtonXML(menu)
 		list = db.getSelection()
 	except Exception, e:
-		self.session.open(MessageBox,("XML " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
-		print "[MultiQuickbutton] ERROR: ",e
+		self.session.open(MessageBox, ("XML " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
+		print "[MultiQuickbutton] ERROR: ", e
 
 	if list <> None:
 		if len(list) == 1:
 			self.execQuick(list[0])
 		elif len(list) > 1:
-			self.session.openWithCallback(self.askForQuickList,ChoiceBox,"Multi Quickbutton Menu %s" % (button), self.getQuickList(list))
+			self.session.openWithCallback(self.askForQuickList, ChoiceBox, "Multi Quickbutton Menu %s" % (button), self.getQuickList(list))
 		else:
 			if os.path.exists(path):
 				self.session.open(QuickButton, path, (_('Quickbutton: Key ') + button))
 			else:
-				self.session.open(MessageBox,(_("file %s not found!") % (path)), MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, (_("file %s not found!") % (path)), MessageBox.TYPE_ERROR)
 
 def askForQuickList(self, res):
 	if res is None:
@@ -254,7 +254,7 @@ def getQuickList(self, list):
 
 	return quickList
 
-def execQuick(self,entry):
+def execQuick(self, entry):
 	if entry <> None:
 		if entry[3] <> "":
 			try:
@@ -265,14 +265,14 @@ def execQuick(self,entry):
 						screen = "self.session.open(" + entry[4] + ")"
 						exec(screen)
 					except Exception, e:
-						self.session.open(MessageBox,("Screen " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
+						self.session.open(MessageBox, ("Screen " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
 			except Exception, e:
-				self.session.open(MessageBox,("Module " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, ("Module " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
 		if entry[5] <> "":
 			try:
 				exec(entry[5])
 			except Exception, e:
-				self.session.open(MessageBox,("Code " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, ("Code " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
 
 def quickSelectGlobal(self, key):
 	if key:
@@ -280,16 +280,16 @@ def quickSelectGlobal(self, key):
 		if os.path.exists(path):
 			self.checkQuickSel(path)
 		else:
-			self.session.open(MessageBox,("file %s not found!" % (path)), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, ("file %s not found!" % (path)), MessageBox.TYPE_ERROR)
 
 class MQBActionMap(ActionMap):
 	def action(self, contexts, action):
-		quickSelection = ("red","red_long","green","green_long","yellow","yellow_long","blue","blue_long","pvr","pvr_long","radio","radio_long",
-				  "text","text_long","epg","epg_long","help","help_long","info","info_long","end","end_long","home","home_long","cross_up","cross_down","cross_left",
-				  "cross_right","previous","next","channelup","channeldown","f1","f2","f3","audio","exit","ok","play","pause","rewind","fastforward","stop","tv",
-				  "console","f4","web","mail","m1","m2","fav", "fav_long", "screen", "screen_long", "history", "history_long",
-				  "subtitle","subtitle_long","filelist","filelist_long","playlist","playlist_long","timer","timer_long",
-				  "timeshift","timeshift_long","mark","mark_long","search","search_long","slow","slow_long")
+		quickSelection = ("red", "red_long", "green", "green_long", "yellow", "yellow_long", "blue", "blue_long", "pvr", "pvr_long", "radio", "radio_long",
+				  "text", "text_long", "epg", "epg_long", "help", "help_long", "info", "info_long", "end", "end_long", "home", "home_long", "cross_up", "cross_down", "cross_left",
+				  "cross_right", "previous", "next", "channelup", "channeldown", "f1", "f2", "f3", "audio", "exit", "ok", "play", "pause", "rewind", "fastforward", "stop", "tv",
+				  "console", "f4", "web", "mail", "m1", "m2", "fav", "fav_long", "screen", "screen_long", "history", "history_long",
+				  "subtitle", "subtitle_long", "filelist", "filelist_long", "playlist", "playlist_long", "timer", "timer_long",
+				  "timeshift", "timeshift_long", "mark", "mark_long", "search", "search_long", "slow", "slow_long")
 		if (action in quickSelection and self.actions.has_key(action)):
 			res = self.actions[action](action)
 			if res is not None:
@@ -298,7 +298,7 @@ class MQBActionMap(ActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
-def main(session,**kwargs):
+def main(session, **kwargs):
 	session.open(MultiQuickButton)
 
 def menu(menuid, **kwargs):
