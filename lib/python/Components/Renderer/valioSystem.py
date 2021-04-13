@@ -42,7 +42,7 @@ class valioSystem(Renderer, VariableText):
 					loada = out_line[:4]
 				else:
 					loada = out_line[:9]
-					loada = loada.replace(" ","\n")
+					loada = loada.replace(" ", "\n")
 			except:
 				pass
 			fan = 0

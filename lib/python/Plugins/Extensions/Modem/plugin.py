@@ -189,7 +189,7 @@ class ModemSetup(Screen):
 			self["state"].setText(_("Dialing:"))
 			system("route del default")
 			system("modprobe ppp_async")
-			self.stateTimer.start(1000,False)
+			self.stateTimer.start(1000, False)
 			setOptions(self.phone.getText(), self.username.getText())
 			setSecretString(self.username.getText() + ' * ' + self.password.getText())
 			ret = conn.execute("pppd", "pppd", "-d", "-detach")

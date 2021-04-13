@@ -104,7 +104,7 @@ class LcdPicon(Renderer):
 		Renderer.__init__(self)
 		self.PicLoad = ePicLoad()
 		self.PicLoad.PictureData.get().append(self.updatePicon)
-		self.piconsize = (0,0)
+		self.piconsize = (0, 0)
 		self.pngname = ""
 		self.lastPath = None
 		if getBoxType() in ('vuultimo', 'et10000', 'mutant2400', 'xpeedlx3', 'quadbox2400', 'atemionemesis', 'dm7020hd', 'dm7080'):
@@ -140,7 +140,7 @@ class LcdPicon(Renderer):
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "path":
 				self.addPath(value)
-				attribs.remove((attrib,value))
+				attribs.remove((attrib, value))
 			elif attrib == "size":
 				self.piconsize = value
 		self.skinAttributes = attribs

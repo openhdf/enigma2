@@ -29,7 +29,7 @@ class valioCAD(Renderer):
 		if self.instance is None:
 			return
 		self.instance.clear(self.backgroundColor)
-		caidlist,newtxt = self.source.getCaidlist
+		caidlist, newtxt = self.source.getCaidlist
 		if caidlist is None:
 			return
 		self.draw(caidlist, newtxt)
@@ -65,7 +65,7 @@ class valioCAD(Renderer):
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "size":
 				self.instance.setSize(parseSize(value))
-				attribs.append((attrib,value))
+				attribs.append((attrib, value))
 			elif attrib == "emmColor":
 				self.emmColor = parseColor(value)
 			elif attrib == "ecmColor":
@@ -73,12 +73,12 @@ class valioCAD(Renderer):
 			elif attrib == "fgColor":
 				self.clGrey = parseColor(value)
 			elif attrib == "font":
-				self.font = parseFont(value, ((1,1),(1,1)))
+				self.font = parseFont(value, ((1, 1), (1, 1)))
 			elif attrib == "backgroundColor":
 				self.backgroundColor = parseColor(value)
 				self.instance.clear(self.backgroundColor)
-				attribs.append((attrib,value))
+				attribs.append((attrib, value))
 			else:
-				attribs.append((attrib,value))
+				attribs.append((attrib, value))
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)

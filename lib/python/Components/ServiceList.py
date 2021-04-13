@@ -131,15 +131,15 @@ class ServiceList(HTMLComponent, GUIComponent):
 				elif attrib == "serviceItemHeight":
 					self.ItemHeight = int(value)
 				elif attrib == "serviceNameFont":
-					font = parseFont(value, ((1,1),(1,1)))
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.ServiceNameFontName = font.family
 					self.ServiceNameFontSize = font.pointSize
 				elif attrib == "serviceInfoFont":
-					font = parseFont(value, ((1,1),(1,1)))
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.ServiceInfoFontName = font.family
 					self.ServiceInfoFontSize = font.pointSize
 				elif attrib == "serviceNumberFont":
-					font = parseFont(value, ((1,1),(1,1)))
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.ServiceNumberFontName = font.family
 					self.ServiceNumberFontSize = font.pointSize
 				elif attrib == "progressbarHeight":

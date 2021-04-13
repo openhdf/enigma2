@@ -170,7 +170,7 @@ def getHotkeys():
 	(_("MOUSE long"), "mouse_long", ""),
 	(_("VOD"), "vod", "Infobar/seekFwdVod"),
 	(_("VOD long"), "vod_long", ""),
-	(_("Zoom"), "ZoomInOut", "InfobarGenerics/ZoomInOut"),]
+	(_("Zoom"), "ZoomInOut", "InfobarGenerics/ZoomInOut"), ]
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
@@ -323,7 +323,7 @@ class HotkeySetup(Screen):
 		self.hotkeys = getHotkeys()
 		self.hotkeyFunctions = getHotkeyFunctions()
 		for x in self.hotkeys:
-			self.list.append(ChoiceEntryComponent('',(x[0], x[1])))
+			self.list.append(ChoiceEntryComponent('', (x[0], x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.hotkey.additional_keys.value and len(self.hotkeys) or 16], selection=0)
 		self["choosen"] = ChoiceList(list=[])
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
@@ -390,7 +390,7 @@ class HotkeySetup(Screen):
 			for x in getattr(config.misc.hotkey, key).value.split(','):
 				function = next((function for function in self.hotkeyFunctions if function[1] == x), None)
 				if function:
-					selected.append(ChoiceEntryComponent('',((function[0]), function[1])))
+					selected.append(ChoiceEntryComponent('', ((function[0]), function[1])))
 			self["choosen"].setList(selected)
 
 class HotkeySetupSelect(Screen):
@@ -411,7 +411,7 @@ class HotkeySetupSelect(Screen):
 		for x in self.config.value.split(','):
 			function = next((function for function in self.hotkeyFunctions if function[1] == x), None)
 			if function:
-				self.selected.append(ChoiceEntryComponent('',((function[0]), function[1])))
+				self.selected.append(ChoiceEntryComponent('', ((function[0]), function[1])))
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
@@ -448,14 +448,14 @@ class HotkeySetupSelect(Screen):
 			catagories[function[2]].append(function)
 		for catagorie in sorted(list(catagories)):
 			if catagorie in self.expanded:
-				functionslist.append(ChoiceEntryComponent('expanded',((catagorie), "Expander")))
+				functionslist.append(ChoiceEntryComponent('expanded', ((catagorie), "Expander")))
 				for function in catagories[catagorie]:
-					functionslist.append(ChoiceEntryComponent('verticalline',((function[0]), function[1])))
+					functionslist.append(ChoiceEntryComponent('verticalline', ((function[0]), function[1])))
 				if catagorie == "InfoBar":
-					functionslist.append(ChoiceEntryComponent('verticalline',((_("Zap to")), "Zap")))
-					functionslist.append(ChoiceEntryComponent('verticalline',((_("Panic to")), "ZapPanic")))
+					functionslist.append(ChoiceEntryComponent('verticalline', ((_("Zap to")), "Zap")))
+					functionslist.append(ChoiceEntryComponent('verticalline', ((_("Panic to")), "ZapPanic")))
 			else:
-				functionslist.append(ChoiceEntryComponent('expandable',((catagorie), "Expander")))
+				functionslist.append(ChoiceEntryComponent('expandable', ((catagorie), "Expander")))
 		return functionslist
 
 	def toggleMode(self):
@@ -570,7 +570,7 @@ class InfoBarHotkey():
 	def __init__(self):
 		self.hotkeys = getHotkeys()
 		self["HotkeyButtonActions"] = helpableHotkeyActionMap(self, "HotkeyActions",
-			dict((x[1],(self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in self.hotkeys), -10)
+			dict((x[1], (self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in self.hotkeys), -10)
 		self.onExecBegin.append(self.clearLongkeyPressed)
 
 	def clearLongkeyPressed(self):

@@ -102,7 +102,7 @@ class EpgBouquetSelector(BouquetSelector):
 		self.bouquets = bouquets
 
 	def okbuttonClick(self):
-		self.selectedFunc(self.getCurrent(),self.bouquets)
+		self.selectedFunc(self.getCurrent(), self.bouquets)
 
 class SilentBouquetSelector:
 	def __init__(self, bouquets, enableWrapAround=False, current=0):
@@ -448,7 +448,7 @@ class ChannelContextMenu(Screen):
 						f.close()
 					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
-			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO,timeout=5)
+			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5)
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
@@ -670,7 +670,7 @@ class ChannelSelectionEPG:
 			{
 				"ShortRecord": (self.RecordTimerQuestion, _("Add a record timer")),
 				'LongRecord': (self.doZapTimer, _('Add a zap timer for next event'))
-			},-1)
+			}, -1)
 		self['dialogactions'] = ActionMap(['SetupActions'],
 			{
 				'cancel': self.closeChoiceBoxDialog,
@@ -715,7 +715,7 @@ class ChannelSelectionEPG:
 				(menu3, 'CALLFUNC', self.ChoiceBoxCB, self.doZapTimer)
 				]
 		self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, list=menu, keys=['red', 'green', 'yellow'], skin_name="RecordTimerQuestion")
-		self.ChoiceBoxDialog.instance.move(ePoint(selx - self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y() + sely))
+		self.ChoiceBoxDialog.instance.move(ePoint(selx - self.ChoiceBoxDialog.instance.size().width(), self.instance.position().y() + sely))
 		self.showChoiceBoxDialog()
 
 	def ChoiceBoxCB(self, choice):
@@ -800,7 +800,7 @@ class ChannelSelectionEPG:
 					cb_func2 = lambda ret: self.editTimer(timer)
 					menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func2)]
 					self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_("Select action for timer %s:") % eventname, list=menu, keys=['green', 'blue'], skin_name="RecordTimerQuestion")
-					self.ChoiceBoxDialog.instance.move(ePoint(selx - self.ChoiceBoxDialog.instance.size().width(),self.instance.position().y() + sely))
+					self.ChoiceBoxDialog.instance.move(ePoint(selx - self.ChoiceBoxDialog.instance.size().width(), self.instance.position().y() + sely))
 				self.showChoiceBoxDialog()
 				break
 		else:
@@ -1962,7 +1962,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ChannelSelectionEPG.__init__(self)
 		SelectionEventInfo.__init__(self)
 		if config.usage.servicelist_mode.value == 'simple':
-			self.skinName = ["SlimChannelSelection","SimpleChannelSelection","ChannelSelection"]
+			self.skinName = ["SlimChannelSelection", "SimpleChannelSelection", "ChannelSelection"]
 		else:
 			self.skinName = "ChannelSelection"
 
@@ -2531,7 +2531,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 class PiPZapSelection(ChannelSelection):
 	def __init__(self, session):
 		ChannelSelection.__init__(self, session)
-		self.skinName = ["SlimChannelSelection","SimpleChannelSelection","ChannelSelection"]
+		self.skinName = ["SlimChannelSelection", "SimpleChannelSelection", "ChannelSelection"]
 
 		self.startservice = None
 		self.pipzapfailed = None
@@ -2666,7 +2666,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self["RdsActions"] = HelpableActionMap(self, "InfobarRdsActions",
 		{
 			"startRassInteractive": (self.startRassInteractive, _("View Rass interactive..."))
-		},-1)
+		}, -1)
 		self["RdsActions"].setEnabled(False)
 		infobar.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
 		self.onClose.append(self.__onClose)
@@ -2880,7 +2880,7 @@ class HistoryZapSelector(Screen):
 							prefix = "+"
 						local_begin = localtime(begin)
 						local_end = localtime(end)
-						durationTime = _("%02d.%02d - %02d.%02d (%s%d min)") % (local_begin[3],local_begin[4],local_end[3],local_end[4],prefix, remaining)
+						durationTime = _("%02d.%02d - %02d.%02d (%s%d min)") % (local_begin[3], local_begin[4], local_end[3], local_end[4], prefix, remaining)
 
 			png = ""
 			picon = getPiconName(str(ServiceReference(x[1])))
