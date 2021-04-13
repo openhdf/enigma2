@@ -50,4 +50,3 @@ class valioChannel(Renderer, VariableText):
 			name = info.getName()
 			name.replace('\xc2\x86', '').replace('\xc2\x87', '')
 			self.text = str(chx + rx) + ". " + name
-

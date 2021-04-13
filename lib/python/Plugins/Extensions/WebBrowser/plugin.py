@@ -754,5 +754,3 @@ def main(session, **kwargs):
 def Plugins(**kwargs):
 	return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, needsRestart=False, fnc=sessionstart),
 		PluginDescriptor(name=_("Web Browser"), description="start web browser", where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main)]
-
-

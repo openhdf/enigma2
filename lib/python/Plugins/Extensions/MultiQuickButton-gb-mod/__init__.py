@@ -15,4 +15,3 @@ _ = lambda txt: gettext.dgettext("MultiQuickButton", txt)
 
 localeInit()
 language.addCallback(localeInit)
-

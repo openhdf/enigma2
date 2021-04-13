@@ -23,4 +23,3 @@ class ObsoleteSource(Source):
 		self.new_source = new_source
 		self.description = description
 		self.removal_date = removal_date
-

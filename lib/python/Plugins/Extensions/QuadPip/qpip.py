@@ -1015,4 +1015,3 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 				config.plugins.minitv.enable.value = self.oldMinitvEanble
 			except:
 				pass
-

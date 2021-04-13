@@ -294,7 +294,7 @@ class About(Screen):
 						image = "5"
 				f.close()
 				if bootname:
-					bootname = "   (%s)" % bootname 
+					bootname = "   (%s)" % bootname
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 			else:
 				f = open('/boot/STARTUP', 'r')

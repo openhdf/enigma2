@@ -578,4 +578,3 @@ def menu(menuid, **kwargs):
 def Plugins(**kwargs):
 	return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=sessionstart),
 			PluginDescriptor(name="Volume Adjust", description=_("select channels to add a offset to the Volume"), where=PluginDescriptor.WHERE_MENU, fnc=menu)]
-

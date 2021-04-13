@@ -100,7 +100,7 @@ class Wlan:
 
 				try:
 					channel = frequencies.index(ifobj._formatFrequency(result.frequency.getFrequency())) + 1
-				except: 
+				except:
 					channel = "Unknown"
 				# noinspection PyProtectedMember
 				aps[bssid] = {

@@ -1339,13 +1339,13 @@ class ChannelSelectionEdit:
 		l.setItemsPerPage()
 		l.setMode('MODE_TV')
 
-		# l.setMode('MODE_TV') automatically sets "hide number marker" to 
+		# l.setMode('MODE_TV') automatically sets "hide number marker" to
 		# the config.usage.hide_number_markers.value so when we are in "movemode"
-		# we need to force display of the markers here after l.setMode('MODE_TV') 
-		# has run. If l.setMode('MODE_TV') were ever removed above, 
-		# "self.servicelist.l.setHideNumberMarker(False)" could be moved 
+		# we need to force display of the markers here after l.setMode('MODE_TV')
+		# has run. If l.setMode('MODE_TV') were ever removed above,
+		# "self.servicelist.l.setHideNumberMarker(False)" could be moved
 		# directly to the "else" clause of "def toggleMoveMode".
-		if self.movemode: 
+		if self.movemode:
 			self.servicelist.l.setHideNumberMarker(False)
 
 		if close:
@@ -1668,10 +1668,10 @@ class ChannelSelectionBase(Screen):
 							if service_type:
 								if unsigned_orbpos == 0xFFFF: #Cable
 									service_name = _("Cable")
-									addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))			
+									addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))
 								elif unsigned_orbpos == 0xEEEE: #Terrestrial
 									service_name = _("Terrestrial")
-									addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))			
+									addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))
 								else:
 									try:
 										service_name = str(nimmanager.getSatDescription(orbpos))

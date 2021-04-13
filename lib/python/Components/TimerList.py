@@ -175,4 +175,3 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			op = 3600 - op
 			direction = 'W'
 		return ("%d.%d\xc2\xb0%s") % (op // 10, op % 10, direction)
-

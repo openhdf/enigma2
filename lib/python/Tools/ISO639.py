@@ -619,4 +619,3 @@ LanguageCodes = {"aar": ("Afar", "Hamitic"),
 				 "zul": ("Zulu", "Negro-african"),
 				 "zu": ("Zulu", "Negro-african"),
 				 "zun": ("Zuni", "")}
-

@@ -87,7 +87,3 @@ class DMCHDCamdInfo(Converter, object):
 
 	def changed(self, what):
 		Converter.changed(self, what)
-
-
-
-
