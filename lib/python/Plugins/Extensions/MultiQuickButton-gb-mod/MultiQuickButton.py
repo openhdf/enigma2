@@ -55,11 +55,11 @@ menuentry=_("Main menu") + ": "
 info=_("Info") + ": "
 okexit=_("OK/EXIT") + ": "
 
-values = ("red","red_long","green","green_long","yellow","yellow_long","blue","blue_long","pvr","pvr_long","radio","radio_long","text","text_long", \
-			"epg","epg_long","help","help_long","info","info_long","end","end_long","home","home_long","cross_up","cross_down","cross_left","cross_right","previous","next", \
-			"channelup","channeldown","audio","ok","exit","play","pause","fastforward","stop","rewind","tv", \
-			'console','f1','f2','f3','f4','web','mail','m1','m2',"fav", "fav_long", "screen", "screen_long", "history", "history_long", \
-			"subtitle","subtitle_long","filelist","filelist_long","playlist","playlist_long","timer","timer_long", \
+values = ("red","red_long","green","green_long","yellow","yellow_long","blue","blue_long","pvr","pvr_long","radio","radio_long","text","text_long",
+			"epg","epg_long","help","help_long","info","info_long","end","end_long","home","home_long","cross_up","cross_down","cross_left","cross_right","previous","next",
+			"channelup","channeldown","audio","ok","exit","play","pause","fastforward","stop","rewind","tv",
+			'console','f1','f2','f3','f4','web','mail','m1','m2',"fav", "fav_long", "screen", "screen_long", "history", "history_long",
+			"subtitle","subtitle_long","filelist","filelist_long","playlist","playlist_long","timer","timer_long",
 			"timeshift","timeshift_long","mark","mark_long","search","search_long","slow","slow_long")
 
 class MultiQuickButton(Screen):
@@ -399,7 +399,7 @@ class MultiQuickButton(Screen):
 		self.mqbkeymap = open(self.mqbkeymapfile, "r")
 		self.text = self.mqbkeymap.read()
 		self.mqbkeymap.close()
-		self.keys = [	"<key id=\"KEY_OK\" mapto=\"ok\" flags=\"m\" />", \
+		self.keys = [	"<key id=\"KEY_OK\" mapto=\"ok\" flags=\"m\" />",
 				"<key id=\"KEY_EXIT\" mapto=\"exit\" flags=\"m\" />" ]
 
 		if config.plugins.QuickButton.okexitstate.value:
@@ -546,7 +546,7 @@ class QuickButton(Screen):
 		name = self["list"].l.getCurrentSelection()[0][1]
 		self.changed = True
 		if returnValue is not None:
-			idx = 0;
+			idx = 0
 			if returnValue is "1":
 				list = []
 				self.XML_db.setSelection(name, "")

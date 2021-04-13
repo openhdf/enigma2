@@ -72,15 +72,15 @@ def checkMQBKeys():
 	mqbkeymap = open(mqbkeymapfile, "r")
 	text = mqbkeymap.read()
 	mqbkeymap.close()
-	ptskeys = [	"<key id=\"KEY_PLAY\" mapto=\"play\" flags=\"m\" />", \
-			"<key id=\"KEY_STOP\" mapto=\"stop\" flags=\"b\" />", \
-			"<key id=\"KEY_PAUSE\" mapto=\"pause\" flags=\"m\" />", \
-			"<key id=\"KEY_REWIND\" mapto=\"rewind\" flags=\"b\" />", \
-			"<key id=\"KEY_FASTFORWARD\" mapto=\"fastforward\" flags=\"b\" />", \
-			"<key id=\"KEY_PREVIOUSSONG\" mapto=\"rewind\" flags=\"b\" />", \
+	ptskeys = [	"<key id=\"KEY_PLAY\" mapto=\"play\" flags=\"m\" />",
+			"<key id=\"KEY_STOP\" mapto=\"stop\" flags=\"b\" />",
+			"<key id=\"KEY_PAUSE\" mapto=\"pause\" flags=\"m\" />",
+			"<key id=\"KEY_REWIND\" mapto=\"rewind\" flags=\"b\" />",
+			"<key id=\"KEY_FASTFORWARD\" mapto=\"fastforward\" flags=\"b\" />",
+			"<key id=\"KEY_PREVIOUSSONG\" mapto=\"rewind\" flags=\"b\" />",
 			"<key id=\"KEY_NEXTSONG\" mapto=\"fastforward\" flags=\"b\" />" ]
 
-	keys = [	"<key id=\"KEY_OK\" mapto=\"ok\" flags=\"m\" />", \
+	keys = [	"<key id=\"KEY_OK\" mapto=\"ok\" flags=\"m\" />",
 			"<key id=\"KEY_EXIT\" mapto=\"exit\" flags=\"m\" />" ]
 
 	if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/PermanentTimeshift"):
@@ -116,11 +116,11 @@ def rePatchKeymap():
 	globalkeymap = open(globalkeymapfile, "r")
 	text = globalkeymap.read()
 	globalkeymap.close()
-	globalkeys = [ 	"<key id=\"KEY_YELLOW\" mapto=\"timeshiftStart\" flags=\"m\" />", \
-			"<key id=\"KEY_YELLOW\" mapto=\"timeshiftActivateEndAndPause\" flags=\"m\" />", \
-			"<key id=\"KEY_VIDEO\" mapto=\"showMovies\" flags=\"m\" />", \
-			"<key id=\"KEY_RADIO\" mapto=\"showRadio\" flags=\"m\" />", \
-			"<key id=\"KEY_TEXT\" mapto=\"startTeletext\" flags=\"m\" />", \
+	globalkeys = [ 	"<key id=\"KEY_YELLOW\" mapto=\"timeshiftStart\" flags=\"m\" />",
+			"<key id=\"KEY_YELLOW\" mapto=\"timeshiftActivateEndAndPause\" flags=\"m\" />",
+			"<key id=\"KEY_VIDEO\" mapto=\"showMovies\" flags=\"m\" />",
+			"<key id=\"KEY_RADIO\" mapto=\"showRadio\" flags=\"m\" />",
+			"<key id=\"KEY_TEXT\" mapto=\"startTeletext\" flags=\"m\" />",
 			"<key id=\"KEY_HELP\" mapto=\"displayHelp\" flags=\"m\" />" ]
 	for globalkey in globalkeys:
 		globalkeyreplace = globalkey.replace("\"m\"", "\"b\"")
@@ -284,11 +284,11 @@ def quickSelectGlobal(self, key):
 
 class MQBActionMap(ActionMap):
 	def action(self, contexts, action):
-		quickSelection = ("red","red_long","green","green_long","yellow","yellow_long","blue","blue_long","pvr","pvr_long","radio","radio_long", \
-				  "text","text_long","epg","epg_long","help","help_long","info","info_long","end","end_long","home","home_long","cross_up","cross_down","cross_left", \
-				  "cross_right","previous","next","channelup","channeldown","f1","f2","f3","audio","exit","ok","play","pause","rewind","fastforward","stop","tv", \
-				  "console","f4","web","mail","m1","m2","fav", "fav_long", "screen", "screen_long", "history", "history_long", \
-				  "subtitle","subtitle_long","filelist","filelist_long","playlist","playlist_long","timer","timer_long", \
+		quickSelection = ("red","red_long","green","green_long","yellow","yellow_long","blue","blue_long","pvr","pvr_long","radio","radio_long",
+				  "text","text_long","epg","epg_long","help","help_long","info","info_long","end","end_long","home","home_long","cross_up","cross_down","cross_left",
+				  "cross_right","previous","next","channelup","channeldown","f1","f2","f3","audio","exit","ok","play","pause","rewind","fastforward","stop","tv",
+				  "console","f4","web","mail","m1","m2","fav", "fav_long", "screen", "screen_long", "history", "history_long",
+				  "subtitle","subtitle_long","filelist","filelist_long","playlist","playlist_long","timer","timer_long",
 				  "timeshift","timeshift_long","mark","mark_long","search","search_long","slow","slow_long")
 		if (action in quickSelection and self.actions.has_key(action)):
 			res = self.actions[action](action)
