@@ -12,7 +12,13 @@ from Components.Console import Console
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetBoxName, GetCurrentImage, GetImagelist
 from enigma import eTimer, fbClass
-import json, os, shutil, shutil, time, urllib2, zipfile
+import json
+import os
+import shutil
+import shutil
+import time
+import urllib2
+import zipfile
 
 
 from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineMtdKernel, getMachineMtdRoot, getMachineName
