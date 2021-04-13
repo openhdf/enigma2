@@ -3,7 +3,6 @@
 #
 
 
-
 from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached
@@ -11,9 +10,9 @@ from Components.config import config
 from Poll import Poll
 
 
-
 class DMCHDSmartInfo(Poll, Converter, object):
 	SMART_INFO_H = 1
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
@@ -25,10 +24,7 @@ class DMCHDSmartInfo(Poll, Converter, object):
 		self.ar_fec = ["Auto", "1/2", "2/3", "3/4", "5/6", "7/8", "3/5", "4/5", "8/9", "9/10", "None", "None", "None", "None", "None"]
 		self.ar_pol = ["H", "V", "CL", "CR", "na", "na", "na", "na", "na", "na", "na", "na"]
 
-
-
 	@cached
-
 	def getText(self):
 		service = self.source.service
 		info = service and service.info()
@@ -285,7 +281,6 @@ class DMCHDSmartInfo(Poll, Converter, object):
 			Ret_Text = Ret_Text
 			return Ret_Text
 		return ""
-
 
 	text = property(getText)
 

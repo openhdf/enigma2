@@ -44,6 +44,7 @@ shortDAYWEEK = (_("Mo"),
                 _("Sa"),
                 _("So"))
 
+
 class ClockToTextNobile(Converter, object):
 	DEFAULT = 0
 	WITH_SECONDS = 1

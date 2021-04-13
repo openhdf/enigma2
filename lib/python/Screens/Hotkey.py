@@ -24,6 +24,7 @@ else:
 	pathLen = 24
 ppath = os.environ['PYTHONPATH'].split(os.pathsep)[0]
 
+
 def getHotkeys():
 	return [(_("OK long"), "okbutton_long", "Infobar/openInfoBarEPG"),
 	(_("Exit "), "exit", ""),
@@ -172,10 +173,12 @@ def getHotkeys():
 	(_("VOD long"), "vod_long", ""),
 	(_("Zoom"), "ZoomInOut", "InfobarGenerics/ZoomInOut"), ]
 
+
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
 for x in getHotkeys():
 	exec "config.misc.hotkey." + x[1] + " = ConfigText(default='" + x[2] + "')"
+
 
 def getHotkeyFunctions():
 	hotkeyFunctions = []
@@ -311,6 +314,7 @@ def getHotkeyFunctions():
 			hotkeyFunctions.append((_(" ") + " " + x, "Shellscript/" + x, "Shellscripts"))
 	return hotkeyFunctions
 
+
 class HotkeySetup(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
@@ -392,6 +396,7 @@ class HotkeySetup(Screen):
 				if function:
 					selected.append(ChoiceEntryComponent('', ((function[0]), function[1])))
 			self["choosen"].setList(selected)
+
 
 class HotkeySetupSelect(Screen):
 	def __init__(self, session, key, args=None):
@@ -546,6 +551,7 @@ class HotkeySetupSelect(Screen):
 	def cancelCallback(self, answer):
 		answer and self.close()
 
+
 class hotkeyActionMap(ActionMap):
 	def action(self, contexts, action):
 		if (action in tuple(x[1] for x in getHotkeys()) and self.actions.has_key(action)):
@@ -556,6 +562,7 @@ class hotkeyActionMap(ActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
+
 class helpableHotkeyActionMap(HelpableActionMap):
 	def action(self, contexts, action):
 		if (action in tuple(x[1] for x in getHotkeys()) and self.actions.has_key(action)):
@@ -565,6 +572,7 @@ class helpableHotkeyActionMap(HelpableActionMap):
 			return 1
 		else:
 			return ActionMap.action(self, contexts, action)
+
 
 class InfoBarHotkey():
 	def __init__(self):

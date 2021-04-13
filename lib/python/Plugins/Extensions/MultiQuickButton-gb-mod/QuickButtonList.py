@@ -13,6 +13,7 @@ from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
 from Tools.LoadPixmap import LoadPixmap
 from __init__ import _
 
+
 def QuickButtonListEntry(key, text):
 	res = [text]
 	if text[0] == "--":
@@ -29,6 +30,7 @@ def QuickButtonListEntry(key, text):
 		if png is not None:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 0, 35, 25, png))
 	return res
+
 
 class QuickButtonList(MenuList):
 	def __init__(self, list, selection=0, enableWrapAround=False):

@@ -24,6 +24,7 @@ has_dvi = SystemInfo["HaveDVI"]
 has_jack = SystemInfo["HaveAVJACK"]
 has_scart = SystemInfo["HaveSCART"]
 
+
 class VideoWizardSummary(WizardSummary):
 	skin = (
 	"""<screen name="VideoWizardSummary" position="0,0" size="132,64" id="1">
@@ -51,6 +52,7 @@ class VideoWizardSummary(WizardSummary):
 
 	def setLCDPic(self, file):
 		self["pic"].instance.setPixmapFromFile(file)
+
 
 class VideoWizard(WizardLanguage, Rc):
 	skin = """

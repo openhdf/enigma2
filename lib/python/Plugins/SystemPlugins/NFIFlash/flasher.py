@@ -18,6 +18,7 @@ from enigma import eConsoleAppContainer, quitMainloop, eEnv
 from boxbranding import getImageVersion
 from Components.About import about
 
+
 class md5Postcondition(Condition):
 	def __init__(self):
 		pass
@@ -30,6 +31,7 @@ class md5Postcondition(Condition):
 		if task.returncode == 1:
 			return _("The md5sum validation failed, the file may be corrupted!")
 		return "md5 error"
+
 
 class md5verify(Task):
 	def __init__(self, job, path, md5):
@@ -52,6 +54,7 @@ class md5verify(Task):
 	def processOutput(self, data):
 		print "[md5sum]",
 
+
 class writeNAND(Task):
 	def __init__(self, job, param, box):
 		Task.__init__(self, job, "Writing image file to NAND Flash")
@@ -72,6 +75,7 @@ class writeNAND(Task):
 			self.setProgress(self.end)
 		else:
 			self.output_line = data
+
 
 class NFIFlash(Screen):
 	skin = """

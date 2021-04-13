@@ -14,6 +14,7 @@ from enigma import eEnv
 from skin import *
 import os
 
+
 class VFDSkinSelector(Screen):
 	skin = """
 		<screen name="VFD Skin-Selector" position="center,center" size="700,400" title="VFD Skin-Selector" transparent="0">
@@ -65,7 +66,6 @@ class VFDSkinSelector(Screen):
 		self["key_blue"] = Label(_("Info"))
 		self.fill()
 		self.onLayoutFinish.append(self.layoutFinished)
-
 
 	def fill(self):
 		i = 0

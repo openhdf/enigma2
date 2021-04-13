@@ -41,6 +41,7 @@ class EventViewContextMenu(Screen):
 	def cancelClick(self):
 		self.close(False)
 
+
 class EventViewBase:
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
@@ -289,7 +290,6 @@ class EventViewBase:
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
 
-
 	def pageUp(self):
 		self["epg_description"].pageUp()
 		self["FullDescription"].pageUp()
@@ -338,6 +338,7 @@ class EventViewBase:
 	def runPlugin(self, plugin):
 		plugin(session=self.session, service=self.currentService, event=self.event, eventName=self.event.getEventName())
 
+
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, event, ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skin='EventViewSimple'):
 		Screen.__init__(self, session)
@@ -345,6 +346,7 @@ class EventViewSimple(Screen, EventViewBase):
 		self.skinName = [skin, "EventView"]
 		EventViewBase.__init__(self, event, ref, callback, similarEPGCB)
 		self.key_green_choice = None
+
 
 class EventViewEPGSelect(Screen, EventViewBase):
 	def __init__(self, session, event, ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None):

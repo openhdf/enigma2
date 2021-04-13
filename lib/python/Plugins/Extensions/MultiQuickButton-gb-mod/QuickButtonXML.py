@@ -14,6 +14,7 @@ from __init__ import _
 
 functionfile = "/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/mqbfunctions.xml"
 
+
 class QuickButtonXML(object):
 
 	def __init__(self, menu=None):
@@ -52,6 +53,7 @@ class QuickButtonXML(object):
 						mnulist.append((name, sel, category, module, screen, code))
 				mnulist.append(("--", "", "", "", "", ""))
 		return mnulist[:(len(mnulist) - 1)]
+
 	def getMenu(self):
 		return self.list
 

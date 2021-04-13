@@ -22,6 +22,7 @@ from Renderer import Renderer
 from enigma import eCanvas, eRect, gFont
 from skin import parseColor, parseFont
 
+
 class DMCHDCaids(Renderer):
 	GUI_WIDGET = eCanvas
 

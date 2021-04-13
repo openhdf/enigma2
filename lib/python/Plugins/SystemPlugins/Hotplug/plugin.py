@@ -5,6 +5,7 @@ from twisted.internet.protocol import Protocol, Factory
 
 hotplugNotifier = []
 
+
 def processHotplugData(self, v):
 	print "hotplug:", v
 	action = v.get("ACTION")
@@ -31,6 +32,7 @@ def processHotplugData(self, v):
 		except AttributeError:
 			hotplugNotifier.remove(callback)
 
+
 class Hotplug(Protocol):
 	def __init__(self):
 		pass
@@ -54,6 +56,7 @@ class Hotplug(Protocol):
 			v[var] = val
 		processHotplugData(self, v)
 
+
 def autostart(reason, **kwargs):
 	if reason == 0:
 		print "starting hotplug handler"
@@ -66,6 +69,7 @@ def autostart(reason, **kwargs):
 		factory = Factory()
 		factory.protocol = Hotplug
 		reactor.listenUNIX("/tmp/hotplug.socket", factory)
+
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name="Hotplug", description="listens to hotplug events", where=PluginDescriptor.WHERE_AUTOSTART, needsRestart=True, fnc=autostart)

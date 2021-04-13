@@ -37,8 +37,12 @@ from sys import stdout, exc_info
 profile("Bouquets")
 from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, NoSave
 config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
+
+
 def setLoadUnlinkedUserbouquets(configElement):
 	enigma.eDVBDB.getInstance().setLoadUnlinkedUserbouquets(configElement.value)
+
+
 config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
 enigma.eDVBDB.getInstance().reloadBouquets()
 profile("ParentalControl")
@@ -93,6 +97,7 @@ config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandb
 #config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call = False)
 ####################################################
 
+
 def useSyncUsingChanged(configelement):
 	if config.misc.SyncTimeUsing.value == "0":
 		print "[Time By]: Transponder"
@@ -102,7 +107,10 @@ def useSyncUsingChanged(configelement):
 		print "[Time By]: NTP"
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
 		enigma.eEPGCache.getInstance().timeUpdated()
+
+
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
+
 
 def NTPserverChanged(configelement):
 	if config.misc.NTPserver.value == "pool.ntp.org":
@@ -115,6 +123,8 @@ def NTPserverChanged(configelement):
 	from Components.Console import Console
 	Console = Console()
 	Console.ePopen('/usr/bin/ntpdate-sync')
+
+
 config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback=True)
 
 profile("Twisted")
@@ -128,6 +138,7 @@ try:
 		reactor.run(installSignalHandlers=False)
 except ImportError:
 	print "twisted not available"
+
 	def runReactor():
 		enigma.runMainloop()
 
@@ -148,6 +159,7 @@ from Plugins.Plugin import PluginDescriptor
 profile("misc")
 had = dict()
 
+
 def dump(dir, p=""):
 	if isinstance(dir, dict):
 		for (entry, val) in dir.items():
@@ -165,6 +177,7 @@ def dump(dir, p=""):
 # + ":" + str(dir.__class__)
 
 # display
+
 
 profile("LOAD:ScreenGlobals")
 from Screens.Globals import Globals
@@ -198,6 +211,7 @@ Screen.global_screen = Globals()
 # .. a moment later:
 # Session.doClose:
 # * destroy screen
+
 
 class Session:
 	def __init__(self, desktop=None, summary_desktop=None, navigation=None):
@@ -370,10 +384,12 @@ class Session:
 		if self.summary is not None:
 			self.summary.show()
 
+
 profile("Standby,PowerKey")
 import Screens.Standby
 from Screens.Menu import MainMenu, mdom
 from GlobalActions import globalActionMap
+
 
 class PowerKey:
 	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
@@ -481,8 +497,10 @@ class PowerKey:
 	def sleepDeepStandby(self):
 		self.doAction(action="powertimerDeepStandby")
 
+
 profile("Scart")
 from Screens.Scart import Scart
+
 
 class AutoScartControl:
 	def __init__(self, session):
@@ -507,6 +525,7 @@ class AutoScartControl:
 			else:
 				self.scartDialog.switchToTV()
 
+
 profile("Load:CI")
 from Screens.Ci import CiHandler
 
@@ -519,6 +538,7 @@ StackTracePrinterInst = StackTracePrinter()
 
 from time import time, localtime, strftime, sleep
 from Tools.StbHardware import setFPWakeuptime, setRTCtime
+
 
 def runScreenTest():
 	config.misc.startCounter.value += 1
@@ -721,6 +741,7 @@ def runScreenTest():
 	InfoBarGenerics.saveResumePoints()
 
 	return 0
+
 
 profile("Init:skin")
 import skin

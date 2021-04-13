@@ -21,6 +21,7 @@ import urllib
 
 ocram = ''
 
+
 class SoftwareUpdateChanges(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
@@ -126,6 +127,7 @@ class SoftwareUpdateChanges(Screen):
 
 	def closeRecursive(self):
 		self.close(("menu", "menu"))
+
 
 class UpdatePlugin(Screen):
 	def __init__(self, session, *args):

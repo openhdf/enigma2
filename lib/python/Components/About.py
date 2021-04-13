@@ -7,8 +7,10 @@ import time
 import os
 from os import path
 
+
 def getVersionString():
 	return getImageVersion()
+
 
 def getFlashDateString():
 	try:
@@ -20,12 +22,15 @@ def getFlashDateString():
 	except:
 		return _("unknown")
 
+
 def getEnigmaVersionString():
 	return getImageVersion()
+
 
 def getGStreamerVersionString():
 	import enigma
 	return enigma.getGStreamerVersionString()
+
 
 def getKernelVersionString():
 	try:
@@ -36,9 +41,11 @@ def getKernelVersionString():
 	except:
 		return _("unknown")
 
+
 def getModelString():
 		model = getBoxType()
 		return model
+
 
 def getChipSetString():
 	if getMachineBuild() in ('dm7080', 'dm820'):
@@ -57,6 +64,7 @@ def getChipSetString():
 			return str(chipset.lower().replace('\n', '').replace('bcm', '').replace('brcm', '').replace('sti', ''))
 		except IOError:
 			return "unavailable"
+
 
 def getCPUString():
 	if getMachineBuild() in ('vuuno4k', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gbx34k', 'dags7252', 'vs1500', 'h7', '8100s', 'osmio4k', 'osmio4kplus', 'osmini4k'):
@@ -80,6 +88,7 @@ def getCPUString():
 			return system
 		except IOError:
 			return "unavailable"
+
 
 def getCPUSpeedString():
 	if getMachineBuild() in ('vusolo4k', 'gbx34k'):
@@ -120,6 +129,7 @@ def getCPUSpeedString():
 		except IOError:
 			return "unavailable"
 
+
 def getCpuCoresString():
 	try:
 		file = open('/proc/cpuinfo', 'r')
@@ -142,6 +152,7 @@ def getCpuCoresString():
 	except IOError:
 		return "unavailable"
 
+
 def _ifinfo(sock, addr, ifname):
 	iface = struct.pack('256s', ifname[:15])
 	info = fcntl.ioctl(sock.fileno(), addr, iface)
@@ -149,6 +160,7 @@ def _ifinfo(sock, addr, ifname):
 		return ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1].upper()
 	else:
 		return socket.inet_ntoa(info[20:24])
+
 
 def getIfConfig(ifname):
 	ifreq = {'ifname': ifname}
@@ -166,6 +178,7 @@ def getIfConfig(ifname):
 		pass
 	sock.close()
 	return ifreq
+
 
 def GetIPsFromNetworkInterfaces():
 	import socket
@@ -200,6 +213,7 @@ def GetIPsFromNetworkInterfaces():
 			ifaces.append((iface_name, iface_addr))
 	return ifaces
 
+
 def getIfTransferredData(ifname):
 	f = open('/proc/net/dev', 'r')
 	for line in f:
@@ -209,6 +223,7 @@ def getIfTransferredData(ifname):
 			f.close()
 			return rx_bytes, tx_bytes
 
+
 def getPythonVersionString():
 	try:
 		import commands
@@ -216,6 +231,7 @@ def getPythonVersionString():
 		return output.split(' ')[1]
 	except:
 		return _("unknown")
+
 
 def getBoxUptime():
 	try:
@@ -234,6 +250,7 @@ def getBoxUptime():
 		return "%s" % time
 	except:
 		return '-'
+
 
 # For modules that do "from About import about"
 about = modules[__name__]

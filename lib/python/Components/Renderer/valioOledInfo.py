@@ -15,6 +15,7 @@ from Components.Sensors import sensors
 from Components.config import config
 from Tools.HardwareInfo import HardwareInfo
 
+
 class valioOledInfo(Renderer, VariableText):
 	def __init__(self):
 		Renderer.__init__(self)

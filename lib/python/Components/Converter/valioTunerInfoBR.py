@@ -7,13 +7,11 @@
 #######################################################################
 
 
-
 from Components.Converter.Converter import Converter
 from Components.Sources.bitratecalc import eBitrateCalculator
 from Components.Element import cached
 from enigma import eTimer, iServiceInformation
 from Screens.InfoBar import InfoBar
-
 
 
 class valioTunerInfoBR(Converter, object):
@@ -26,10 +24,7 @@ class valioTunerInfoBR(Converter, object):
 		InfoBar.instance.onHide.append(self.hideNow)
 		InfoBar.instance.onShow.append(self.showNow)
 
-
-
 	@cached
-
 	def getText(self):
 		return "kbit/s: " + self.BRvalue
 

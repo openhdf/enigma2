@@ -11,6 +11,7 @@ from Components.config import config
 from enigma import eLabel, eDVBVolumecontrol, eTimer
 from Renderer import Renderer
 
+
 class valioVolumeText(Renderer, VariableText):
 	def __init__(self):
 		Renderer.__init__(self)

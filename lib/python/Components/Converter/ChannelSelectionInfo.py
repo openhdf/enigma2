@@ -7,6 +7,7 @@ from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr
 from enigma import eServiceCenter, eEPGCache, eServiceReference
 from time import localtime
 
+
 class ChannelSelectionInfo(Converter, object):
 	Reference = 1
 	NextEventTitle = 2

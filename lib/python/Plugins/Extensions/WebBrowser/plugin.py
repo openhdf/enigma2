@@ -42,11 +42,15 @@ from enigma import eTimer, eServiceReference, iPlayableService, fbClass, eRCInpu
 
 HTTPConnection.debuglevel = 1
 
+
 def excute_cmd(cmd):
 	print "prepared cmd:", cmd
 	os.system(cmd)
 
+
 alpha_value = 0
+
+
 def change_galpha(set_const, set_value):
 	op = "/proc/stb/fb/alpha_op"
 	val = "/proc/stb/fb/alpha_value"
@@ -59,10 +63,12 @@ def change_galpha(set_const, set_value):
 	if os.path.exists(val) and set_value:
 		excute_cmd("echo \"%s\" > %s" % (str(hex(alpha_value)), val))
 
+
 def enable_rc_mouse(mode): #mode=[0|1]|[False|True]
 	mouse_cond = "/proc/stb/fp/mouse"
 	if os.path.exists(mouse_cond):
 		excute_cmd("echo %d > %s" % (mode, mouse_cond))
+
 
 def is_process_running(pname):
 	if pname is None or len(pname) == 0:
@@ -73,13 +79,17 @@ def is_process_running(pname):
 		return True
 	return False
 
+
 lock = False
+
+
 def wb_lock(alpha_on=True):
 	global lock
 	lock = True
 	if alpha_on:
 		change_galpha(set_const=False, set_value=False)
 	fbClass.getInstance().unlock()
+
 
 def wb_unlock(alpha_on=True):
 	global lock
@@ -88,9 +98,11 @@ def wb_unlock(alpha_on=True):
 	fbClass.getInstance().lock()
 	lock = False
 
+
 def wb_islock():
 	global lock
 	return lock
+
 
 class Player(Screen, InfoBarNotifications):
 	skin = """
@@ -228,6 +240,7 @@ class Player(Screen, InfoBarNotifications):
 		elif self.state == self.PLAYER_PAUSED:
 			self.setSeekState(self.PLAYER_PLAYING)
 
+
 VIDEO_FMT_PRIORITY_MAP = {
 	'38': 1, #MP4 Original (HD)
 	'37': 2, #MP4 1080p (HD)
@@ -242,6 +255,7 @@ std_headers = {
 	'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 	'Accept-Language': 'en-us,en;q=0.5',
 }
+
 
 class PlayerLauncher:
 	def getVideoUrl(self, video_id):
@@ -316,6 +330,7 @@ class PlayerLauncher:
 		except Exception, msg:
 			wb_unlock()
 			print "Error >>", msg
+
 
 class PlayerService:
 	def __init__(self, session):
@@ -406,6 +421,7 @@ class PlayerService:
 		enable_rc_mouse(True)
 		conn.send(data)
 		conn.close()
+
 
 class BrowserLauncher(ConfigListScreen, Screen):
 	skin = """
@@ -724,13 +740,16 @@ class BrowserLauncher(ConfigListScreen, Screen):
 	def callbackLauncherAppClosed(self, retval=1):
 		self.lock = False
 
+
 def sessionstart(session, **kwargs):
 	enable_rc_mouse(False)
 	change_galpha(set_const=False, set_value=True)
 	excute_cmd("killall -15 arora")
 
+
 def main(session, **kwargs):
 	session.open(BrowserLauncher)
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, needsRestart=False, fnc=sessionstart),

@@ -14,6 +14,7 @@ if not posterpath:
 	posterpath = "/media/hdd/"
 print "posterpath:", posterpath
 
+
 class pstrRndr(Renderer):
 
 	def __init__(self):
