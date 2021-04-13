@@ -24,7 +24,7 @@ import zipfile
 from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineMtdKernel, getMachineMtdRoot, getMachineName
 
 feedserver = 'flash.hdfreaks.cc'
-feedurl = 'http://%s/%s/json' %(feedserver, getImageDistro())
+feedurl = 'http://%s/%s/json' % (feedserver, getImageDistro())
 
 def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('zImage', 'uImage', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_kernel.bin', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi','rootfs.bin')]) >= 2
@@ -32,9 +32,9 @@ def checkimagefiles(files):
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
 	if backuppath.endswith('/'):
-		return backuppath + 'backup_' + getImageDistro() + '_'+ getBoxType()
+		return backuppath + 'backup_' + getImageDistro() + '_' + getBoxType()
 	else:
-		return backuppath + '/backup_' + getImageDistro() + '_'+ getBoxType()
+		return backuppath + '/backup_' + getImageDistro() + '_' + getBoxType()
 
 def getBackupFilename():
 	return "enigma2settingsbackup.tar.gz"
@@ -159,7 +159,7 @@ class FlashOnline(Screen):
 			self.session.openWithCallback(self.getImagesList, FlashImage, currentSelected[0][0], currentSelected[0][1])
 
 	def keyDelete(self):
-		currentSelected= self["list"].l.getCurrentSelection()[0][1]
+		currentSelected = self["list"].l.getCurrentSelection()[0][1]
 		if not("://" in currentSelected or currentSelected in ["Expander", "Waiter"]):
 			try:
 				os.remove(currentSelected)
@@ -211,7 +211,7 @@ class FlashImage(Screen):
 		<widget name="progress" position="5,e-39" size="e-10,24" backgroundColor="#54242424"/>
 	</screen>"""
 
-	def __init__(self, session,  imagename, source):
+	def __init__(self, session, imagename, source):
 		Screen.__init__(self, session)
 		self.containerbackup = None
 		self.containerofgwrite = None
@@ -256,7 +256,7 @@ class FlashImage(Screen):
 		choices = []
 		HIslot = len(imagedict) + 1
 		currentimageslot = GetCurrentImage()
-		print "[FlashOnline] Current Image Slot %s, Imagelist %s"% (currentimageslot, imagedict)
+		print "[FlashOnline] Current Image Slot %s, Imagelist %s" % (currentimageslot, imagedict)
 		for x in range(1,HIslot):
 			choices.append(((_("slot%s - %s (current)") if x == currentimageslot else _("slot%s - %s")) % (x, imagedict[x]['imagename']), (x,True)))
 		choices.append((_("No, do not flash an image"), False))
@@ -343,7 +343,7 @@ class FlashImage(Screen):
 	def flashPostAction(self, retval=True):
 		if retval:
 			self.recordcheck = False
-			title =_("Please select what to do after first booting the image:\n")
+			title = _("Please select what to do after first booting the image:\n")
 			choices = ((_("Don't restore settings and plugins!"), "wizard"),
 			(_("Automatic restore of all settings and plugins?"), "restoresettingsandallplugins"),
 			(_("Do not flash image"), "abort"))
@@ -380,7 +380,7 @@ class FlashImage(Screen):
 			self.abort()
 
 	def postFlashActionCallback(self, answer):
-		restoreSettings   = False
+		restoreSettings = False
 		restoreAllPlugins = False
 		restoreSettingsnoPlugin = False
 		if answer is not None:
@@ -393,7 +393,7 @@ class FlashImage(Screen):
 					self.session.openWithCallback(self.recordWarning, MessageBox, _("Recording(s) are in progress or coming up in few seconds!") + '\n' + _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()), default=False)
 					return
 			if answer[1] == "restoresettings":
-				restoreSettings   = True
+				restoreSettings = True
 			if answer[1] == "restoresettingsnoplugin":
 				restoreSettings = True
 				restoreSettingsnoPlugin = True
@@ -515,7 +515,7 @@ class FlashImage(Screen):
 	def unzip(self):
 		self["header"].setText(_("Unzipping Image"))
 		self["summary_header"].setText(self["header"].getText())
-		self["info"].setText("%s\n%s"% (self.imagename, _("Please wait")))
+		self["info"].setText("%s\n%s" % (self.imagename, _("Please wait")))
 		self["progress"].hide()
 		self.delay.callback.remove(self.confirmation)
 		self.delay.callback.append(self.doUnzip)
@@ -540,8 +540,8 @@ class FlashImage(Screen):
 			self.ROOTFSSUBDIR = "none"
 			self.getImageList = self.saveImageList
 			if SystemInfo["canMultiBoot"]:
-				self.MTDKERNEL  = SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2]
-				self.MTDROOTFS  = SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2]
+				self.MTDKERNEL = SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2]
+				self.MTDROOTFS = SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2]
 				if SystemInfo["HasRootSubdir"]:
 					self.ROOTFSSUBDIR = SystemInfo["canMultiBoot"][self.multibootslot]['rootsubdir']
 			else:

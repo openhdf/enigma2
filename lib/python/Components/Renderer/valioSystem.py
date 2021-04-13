@@ -52,9 +52,9 @@ class valioSystem(Renderer, VariableText):
 			except:
 				pass
 			if self.ZeigeTemp:
-				self.text = "cpu "+loada+"\ntmp "+str(maxtemp)+"°C\nfan "+str(int(fan/2))
+				self.text = "cpu " + loada + "\ntmp " + str(maxtemp) + "°C\nfan " + str(int(fan / 2))
 			else:
-				self.text = "cpu\n"+loada
+				self.text = "cpu\n" + loada
 
 	def onShow(self):
 		self.suspended = False

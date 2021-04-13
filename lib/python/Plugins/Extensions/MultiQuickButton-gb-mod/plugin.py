@@ -17,7 +17,7 @@ from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.ChannelSelection import ChannelSelection
 from Screens.MessageBox import MessageBox
-from  Screens.InfoBarGenerics import InfoBarPlugins
+from Screens.InfoBarGenerics import InfoBarPlugins
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
 from Components.config import config, ConfigSubsection, ConfigYesNo
@@ -226,7 +226,7 @@ def checkQuickSel(self, path):
 		db = QuickButtonXML(menu)
 		list = db.getSelection()
 	except Exception, e:
-		self.session.open(MessageBox,("XML " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
+		self.session.open(MessageBox,("XML " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
 		print "[MultiQuickbutton] ERROR: ",e
 
 	if list <> None:
@@ -238,7 +238,7 @@ def checkQuickSel(self, path):
 			if os.path.exists(path):
 				self.session.open(QuickButton, path, (_('Quickbutton: Key ') + button))
 			else:
-				self.session.open(MessageBox,(_("file %s not found!") % (path)),  MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox,(_("file %s not found!") % (path)), MessageBox.TYPE_ERROR)
 
 def askForQuickList(self, res):
 	if res is None:
@@ -265,14 +265,14 @@ def execQuick(self,entry):
 						screen = "self.session.open(" + entry[4] + ")"
 						exec(screen)
 					except Exception, e:
-						self.session.open(MessageBox,("Screen " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
+						self.session.open(MessageBox,("Screen " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
 			except Exception, e:
-				self.session.open(MessageBox,("Module " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox,("Module " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
 		if entry[5] <> "":
 			try:
 				exec(entry[5])
 			except Exception, e:
-				self.session.open(MessageBox,("Code " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox,("Code " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
 
 def quickSelectGlobal(self, key):
 	if key:
@@ -280,7 +280,7 @@ def quickSelectGlobal(self, key):
 		if os.path.exists(path):
 			self.checkQuickSel(path)
 		else:
-			self.session.open(MessageBox,("file %s not found!" % (path)),  MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox,("file %s not found!" % (path)), MessageBox.TYPE_ERROR)
 
 class MQBActionMap(ActionMap):
 	def action(self, contexts, action):

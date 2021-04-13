@@ -114,7 +114,7 @@ class LanguageSelection(Screen):
 			if curlang == t[0]:
 				lang = t[1]
 				break
-		self.session.openWithCallback(self.delLangCB, MessageBox, _("Do you want to delete all other languages?") + _(" Except %s") %(lang), default=True)
+		self.session.openWithCallback(self.delLangCB, MessageBox, _("Do you want to delete all other languages?") + _(" Except %s") % (lang), default=True)
 
 	def delLangCB(self, anwser):
 		if anwser:

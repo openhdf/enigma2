@@ -28,7 +28,7 @@ class valioVolumeText(Renderer, VariableText):
 
 	def changed(self, what):
 		if not self.suspended:
-			self.text = str(eDVBVolumecontrol.getInstance().getVolume()/self.volProper)
+			self.text = str(eDVBVolumecontrol.getInstance().getVolume() / self.volProper)
 
 	def pollme(self):
 		self.changed(None)
