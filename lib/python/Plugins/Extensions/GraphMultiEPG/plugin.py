@@ -29,7 +29,7 @@ class SelectBouquet(Screen):
 				"nextBouquet": self.up,
 				"prevBouquet": self.down
 			})
-		entrys = [ (x[0], x[1]) for x in bouquets ]
+		entrys = [(x[0], x[1]) for x in bouquets]
 		self["menu"] = MenuList(entrys, enableWrapAround)
 		idx = 0
 		for x in bouquets:
@@ -83,7 +83,7 @@ def zapToService(service, preview=False, zapback=False):
 		Servicelist.startRoot = None
 
 def getBouquetServices(bouquet):
-	services = [ ]
+	services = []
 	Servicelist = eServiceCenter.getInstance().list(bouquet)
 	if not Servicelist is None:
 		while True:
@@ -140,7 +140,7 @@ def runGraphMultiEpg():
 	global bouquets
 	global epg_bouquet
 	if epg_bouquet is not None:
-		if len(bouquets) > 1 :
+		if len(bouquets) > 1:
 			cb = changeBouquetCB
 		else:
 			cb = None

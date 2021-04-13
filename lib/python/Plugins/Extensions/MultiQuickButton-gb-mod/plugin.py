@@ -78,10 +78,10 @@ def checkMQBKeys():
 			"<key id=\"KEY_REWIND\" mapto=\"rewind\" flags=\"b\" />",
 			"<key id=\"KEY_FASTFORWARD\" mapto=\"fastforward\" flags=\"b\" />",
 			"<key id=\"KEY_PREVIOUSSONG\" mapto=\"rewind\" flags=\"b\" />",
-			"<key id=\"KEY_NEXTSONG\" mapto=\"fastforward\" flags=\"b\" />" ]
+			"<key id=\"KEY_NEXTSONG\" mapto=\"fastforward\" flags=\"b\" />"]
 
 	keys = [	"<key id=\"KEY_OK\" mapto=\"ok\" flags=\"m\" />",
-			"<key id=\"KEY_EXIT\" mapto=\"exit\" flags=\"m\" />" ]
+			"<key id=\"KEY_EXIT\" mapto=\"exit\" flags=\"m\" />"]
 
 	if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/PermanentTimeshift"):
 		for ptskey in ptskeys:
@@ -116,12 +116,12 @@ def rePatchKeymap():
 	globalkeymap = open(globalkeymapfile, "r")
 	text = globalkeymap.read()
 	globalkeymap.close()
-	globalkeys = [ 	"<key id=\"KEY_YELLOW\" mapto=\"timeshiftStart\" flags=\"m\" />",
+	globalkeys = ["<key id=\"KEY_YELLOW\" mapto=\"timeshiftStart\" flags=\"m\" />",
 			"<key id=\"KEY_YELLOW\" mapto=\"timeshiftActivateEndAndPause\" flags=\"m\" />",
 			"<key id=\"KEY_VIDEO\" mapto=\"showMovies\" flags=\"m\" />",
 			"<key id=\"KEY_RADIO\" mapto=\"showRadio\" flags=\"m\" />",
 			"<key id=\"KEY_TEXT\" mapto=\"startTeletext\" flags=\"m\" />",
-			"<key id=\"KEY_HELP\" mapto=\"displayHelp\" flags=\"m\" />" ]
+			"<key id=\"KEY_HELP\" mapto=\"displayHelp\" flags=\"m\" />"]
 	for globalkey in globalkeys:
 		globalkeyreplace = globalkey.replace("\"m\"", "\"b\"")
 		text = text.replace(globalkey, globalkeyreplace)

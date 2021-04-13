@@ -73,7 +73,7 @@ class DisplaySkinError(Exception):
 	def __str__(self):
 		return "{%s}: %s. Please contact the skin's author!" % (config.skin.display_skin.value, self.msg)
 
-dom_skins = [ ]
+dom_skins = []
 
 def addSkin(name, scope=SCOPE_SKIN):
 	# read the skin
@@ -467,7 +467,7 @@ class AttributeParser:
 		pass
 	def Animation(self, value):
 		self.guiObject.setAnimationMode(
-			{ "disable": 0x00,
+			{"disable": 0x00,
 				"off": 0x00,
 				"offshow": 0x10,
 				"offhide": 0x01,
@@ -478,7 +478,7 @@ class AttributeParser:
 			}[value])
 	def animationMode(self, value):
 		self.guiObject.setAnimationMode(
-			{ "disable": 0x00,
+			{"disable": 0x00,
 				"off": 0x00,
 				"offshow": 0x10,
 				"offhide": 0x01,
@@ -588,7 +588,7 @@ class AttributeParser:
 		self.guiObject.setScrollbarBackgroundPicture(ptr)
 	def alphatest(self, value):
 		self.guiObject.setAlphatest(
-			{ "on": 1,
+			{"on": 1,
 			  "off": 0,
 			  "blend": 2,
 			}[value])
@@ -597,7 +597,7 @@ class AttributeParser:
 	def orientation(self, value): # used by eSlider
 		try:
 			self.guiObject.setOrientation(*
-				{ "orVertical": (self.guiObject.orVertical, False),
+				{"orVertical": (self.guiObject.orVertical, False),
 					"orTopToBottom": (self.guiObject.orVertical, False),
 					"orBottomToTop": (self.guiObject.orVertical, True),
 					"orHorizontal": (self.guiObject.orHorizontal, False),
@@ -609,7 +609,7 @@ class AttributeParser:
 	def valign(self, value):
 		try:
 			self.guiObject.setVAlign(
-				{ "top": self.guiObject.alignTop,
+				{"top": self.guiObject.alignTop,
 					"center": self.guiObject.alignCenter,
 					"bottom": self.guiObject.alignBottom
 				}[value])
@@ -618,7 +618,7 @@ class AttributeParser:
 	def halign(self, value):
 		try:
 			self.guiObject.setHAlign(
-				{ "left": self.guiObject.alignLeft,
+				{"left": self.guiObject.alignLeft,
 					"center": self.guiObject.alignCenter,
 					"right": self.guiObject.alignRight,
 					"block": self.guiObject.alignBlock
@@ -1158,7 +1158,7 @@ def readSkin(screen, skin, names, desktop):
 		print "[SKIN] No skin to read..."
 		myscreen = screen.parsedSkin = xml.etree.cElementTree.fromstring("<screen></screen>")
 
-	screen.skinAttributes = [ ]
+	screen.skinAttributes = []
 	skin_path_prefix = getattr(screen, "skin_path", path)
 
 	context = SkinContextStack()
@@ -1171,8 +1171,8 @@ def readSkin(screen, skin, names, desktop):
 	collectAttributes(screen.skinAttributes, myscreen, context, skin_path_prefix, ignore=("name",))
 	context = SkinContext(context, myscreen.attrib.get('position'), myscreen.attrib.get('size'))
 
-	screen.additionalWidgets = [ ]
-	screen.renderer = [ ]
+	screen.additionalWidgets = []
+	screen.renderer = []
 	visited_components = set()
 
 	def process_constant_widget(constant_widget, context):
@@ -1210,7 +1210,7 @@ def readSkin(screen, skin, names, desktop):
 			visited_components.add(wname)
 			# get corresponding 'gui' object
 			try:
-				attributes = screen[wname].skinAttributes = [ ]
+				attributes = screen[wname].skinAttributes = []
 			except:
 				raise SkinError("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
 			# assert screen[wname] is not Source
@@ -1272,7 +1272,7 @@ def readSkin(screen, skin, names, desktop):
 			renderer_class = my_import('.'.join(("Components", "Renderer", wrender))).__dict__.get(wrender)
 			renderer = renderer_class() # instantiate renderer
 			renderer.connect(source) # connect to source
-			attributes = renderer.skinAttributes = [ ]
+			attributes = renderer.skinAttributes = []
 			collectAttributes(attributes, widget, context, skin_path_prefix, ignore=('render', 'source'))
 			screen.renderer.append(renderer)
 
@@ -1292,14 +1292,14 @@ def readSkin(screen, skin, names, desktop):
 	def process_elabel(widget, context):
 		w = additionalWidget()
 		w.widget = eLabel
-		w.skinAttributes = [ ]
+		w.skinAttributes = []
 		collectAttributes(w.skinAttributes, widget, context, skin_path_prefix, ignore=('name',))
 		screen.additionalWidgets.append(w)
 
 	def process_epixmap(widget, context):
 		w = additionalWidget()
 		w.widget = ePixmap
-		w.skinAttributes = [ ]
+		w.skinAttributes = []
 		collectAttributes(w.skinAttributes, widget, context, skin_path_prefix, ignore=('name',))
 		screen.additionalWidgets.append(w)
 
@@ -1348,7 +1348,7 @@ def readSkin(screen, skin, names, desktop):
 		try:
 			c = cc(context, widget.attrib.get('position'), widget.attrib.get('size'), widget.attrib.get('font'))
 		except Exception, ex:
-			raise SkinError("Failed to create skincontext (%s,%s,%s) in %s: %s" % (widget.attrib.get('position'), widget.attrib.get('size'), widget.attrib.get('font'), context, ex) )
+			raise SkinError("Failed to create skincontext (%s,%s,%s) in %s: %s" % (widget.attrib.get('position'), widget.attrib.get('size'), widget.attrib.get('font'), context, ex))
 		process_screen(widget, c)
 
 	processors = {

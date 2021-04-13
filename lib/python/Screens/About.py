@@ -1019,7 +1019,7 @@ class MemoryInfo(Screen):
 			free = 0
 			i = 0
 			for line in open('/proc/meminfo','r'):
-				( name, size, units ) = line.strip().split()
+				(name, size, units) = line.strip().split()
 				if name.find("MemTotal") != -1:
 					mem = int(size)
 				if name.find("MemFree") != -1:

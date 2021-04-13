@@ -1,4 +1,4 @@
-keyBindings = { }
+keyBindings = {}
 
 from keyids import KEYIDS
 from Components.config import config
@@ -239,7 +239,7 @@ def queryKeyBinding(context, action):
 	if (context, action) in keyBindings:
 		return [(x[0], x[2]) for x in keyBindings[(context, action)]]
 	else:
-		return [ ]
+		return []
 
 def getKeyDescription(key):
 	if rc_model.rcIsDefault():
@@ -253,7 +253,7 @@ def getKeyDescription(key):
 		else:
 			idx = 2
 	if key in keyDescriptions[idx]:
-		return keyDescriptions[idx].get(key, [ ])
+		return keyDescriptions[idx].get(key, [])
 
 def removeKeyBindings(domain):
 	# remove all entries of domain 'domain'

@@ -24,11 +24,11 @@ detected_DVD = None
 
 class FileBrowser(Screen):
 
-	def __init__(self, session, dvd_filelist=[ ]):
+	def __init__(self, session, dvd_filelist=[]):
 		Screen.__init__(self, session)
 
 		# for the skin: first try FileBrowser_DVDPlayer, then FileBrowser, this allows individual skinning
-		self.skinName = ["FileBrowser_DVDPlayer", "FileBrowser" ]
+		self.skinName = ["FileBrowser_DVDPlayer", "FileBrowser"]
 
 		self.dvd_filelist = dvd_filelist
 		if len(dvd_filelist):
@@ -177,7 +177,7 @@ class ChapterZap(Screen):
 
 		self["number"] = Label(self.field)
 
-		self["actions"] = NumberActionMap( [ "SetupActions" ],
+		self["actions"] = NumberActionMap(["SetupActions"],
 			{
 				"cancel": self.quit,
 				"ok": self.keyOK,
@@ -252,7 +252,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def change_infobar_seek_config(self):
 		config.seek.speeds_forward.setValue([2, 4, 8, 16, 32, 64])
 		config.seek.speeds_backward.setValue([8, 16, 32, 64])
-		config.seek.speeds_slowmotion.setValue([ ])
+		config.seek.speeds_slowmotion.setValue([])
 		config.seek.enter_forward.setValue("2")
 		config.seek.enter_backward.setValue("2")
 		config.seek.on_pause.setValue("play")
@@ -265,7 +265,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		config.seek.enter_backward.setValue(self.saved_config_enter_backward)
 		config.seek.on_pause.setValue(self.saved_config_seek_on_pause)
 
-	def __init__(self, session, dvd_device=None, dvd_filelist=[ ], args=None):
+	def __init__(self, session, dvd_device=None, dvd_filelist=[], args=None):
 		Screen.__init__(self, session)
 		InfoBarBase.__init__(self)
 		InfoBarNotifications.__init__(self)
@@ -358,7 +358,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				"seekBeginning": self.seekBeginning,
 			}, -2)
 
-		self["NumberActions"] = NumberActionMap( [ "NumberActions"],
+		self["NumberActions"] = NumberActionMap(["NumberActions"],
 			{
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
@@ -543,7 +543,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if self.physicalDVD:
 			cur = self.session.nav.getCurrentlyPlayingServiceReference()
 			if cur and not cur.toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
-			    choices.insert(0,(_("Play DVD"), "playPhysical" ))
+			    choices.insert(0,(_("Play DVD"), "playPhysical"))
 		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list=choices)
 
 	def sendKey(self, key):
@@ -623,7 +623,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.playPhysicalCB(True)
 		elif self.physicalDVD:
 			# opened from menu with dvd in drive
-			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
+			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5)
 		else:
 			# opened from menu without dvd in drive
 			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, self.dvd_filelist)
@@ -726,7 +726,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if pathExists(devicepath):
 			from Components.Scanner import scanDevice
 			res = scanDevice(devicepath)
-			list = [ (r.description, r, res[r], self.session) for r in res ]
+			list = [(r.description, r, res[r], self.session) for r in res]
 			if list:
 				(desc, scanner, files, session) = list[0]
 				for file in files:

@@ -85,8 +85,8 @@ class HelpableActionMap(ActionMap):
 	def __init__(self, parent, context, actions=None, prio=0):
 		if not actions:
 			actions = {}
-		alist = [ ]
-		adict = { }
+		alist = []
+		adict = {}
 		for (action, funchelp) in actions.iteritems():
 			# check if this is a tuple
 			if isinstance(funchelp, tuple):
@@ -115,8 +115,8 @@ class HelpableNumberActionMap(ActionMap):
 	def __init__(self, parent, context, actions=None, prio=0):
 		if not actions:
 			actions = {}
-		alist = [ ]
-		adict = { }
+		alist = []
+		adict = {}
 		for (action, funchelp) in actions.iteritems():
 			# check if this is a tuple
 			if isinstance(funchelp, tuple):

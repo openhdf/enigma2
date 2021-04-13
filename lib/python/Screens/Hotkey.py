@@ -189,7 +189,7 @@ def getHotkeyFunctions():
 				twinPaths[plugin.path[pathLen:]] += 1
 			else:
 				twinPaths[plugin.path[pathLen:]] = 1
-			hotkeyFunctions.append((plugin.name, plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]) , "EPG"))
+			hotkeyFunctions.append((plugin.name, plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]), "EPG"))
 			twinPlugins.append(plugin.name)
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO])
 	pluginlist.sort(key=lambda p: p.name)
@@ -199,7 +199,7 @@ def getHotkeyFunctions():
 				twinPaths[plugin.path[pathLen:]] += 1
 			else:
 				twinPaths[plugin.path[pathLen:]] = 1
-			hotkeyFunctions.append((plugin.name, plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]) , "Plugins"))
+			hotkeyFunctions.append((plugin.name, plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]), "Plugins"))
 			twinPlugins.append(plugin.name)
 	hotkeyFunctions.append((_("Show Graphical Multi EPG"), "Infobar/openGraphEPG", "EPG"))
 	hotkeyFunctions.append((_("Show Event View"), "Infobar/openEventView", "EPG"))
@@ -587,7 +587,7 @@ class InfoBarHotkey():
 			elif x.startswith("Zap"):
 				selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
 			else:
-				function = list(function for function in getHotkeyFunctions() if function[1] == x )
+				function = list(function for function in getHotkeyFunctions() if function[1] == x)
 				if function:
 					selected.append(function[0])
 		return selected

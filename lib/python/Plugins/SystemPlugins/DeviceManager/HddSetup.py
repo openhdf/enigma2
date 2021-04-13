@@ -170,18 +170,18 @@ class HddSetup(Screen):
 			self.result = result
 			if self.isExt4Supported():
 				self.session.openWithCallback(self.initialaze, ExtraMessageBox, _("Format as"), _("Partitioner"),
-											[ [ "Ext4", "partitionmanager.png" ],
-											[ "Ext3", "partitionmanager.png" ],
-											[ "NTFS", "partitionmanager.png" ],
-											[ "Fat32", "partitionmanager.png" ],
-											[ _("Cancel"), "cancel.png" ],
+											[["Ext4", "partitionmanager.png"],
+											["Ext3", "partitionmanager.png"],
+											["NTFS", "partitionmanager.png"],
+											["Fat32", "partitionmanager.png"],
+											[_("Cancel"), "cancel.png"],
 											], 1, 4)
 			else:
 				self.session.openWithCallback(self.initialaze, ExtraMessageBox, _("Format as"), _("Partitioner"),
-											[ [ "Ext3", "partitionmanager.png" ],
-											[ "NTFS", "partitionmanager.png" ],
-											[ "Fat32", "partitionmanager.png" ],
-											[ _("Cancel"), "cancel.png" ],
+											[["Ext3", "partitionmanager.png"],
+											["NTFS", "partitionmanager.png"],
+											["Fat32", "partitionmanager.png"],
+											[_("Cancel"), "cancel.png"],
 											], 1, 3)
 
 #	def yellow(self):

@@ -15,7 +15,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.l.setSeperation(seperation)
 		self.timer = eTimer()
 		self.list = list
-		self.onSelectionChanged = [ ]
+		self.onSelectionChanged = []
 		self.current = None
 		self.session = session
 
@@ -158,7 +158,7 @@ class ConfigListScreen:
 			"8": self.keyNumberGlobal,
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal,
-			"file" : self.keyFile
+			"file": self.keyFile
 		}, -1) # to prevent left/right overriding the listbox
 
 		self.onChangedEntry = []

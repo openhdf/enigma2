@@ -14,7 +14,7 @@ from Tools.LoadPixmap import LoadPixmap
 from __init__ import _
 
 def QuickButtonListEntry(key, text):
-	res = [ text ]
+	res = [text]
 	if text[0] == "--":
 		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/op_separator.png"))
 		if png is not None:

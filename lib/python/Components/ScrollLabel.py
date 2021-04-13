@@ -17,8 +17,8 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		ret = False
 		if self.skinAttributes is not None:
 			skin.applyAllAttributes(self.long_text, desktop, self.skinAttributes, parent.scale)
-			widget_attribs = [ ]
-			scrollbar_attribs = [ ]
+			widget_attribs = []
+			scrollbar_attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if "borderColor" in attrib or "borderWidth" in attrib:
 					scrollbar_attribs.append((attrib,value))
@@ -29,7 +29,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 			ret = True
 		s = self.long_text.size()
 		self.instance.move(self.long_text.position())
-		lineheight=fontRenderClass.getInstance().getLineHeight( self.long_text.getFont() )
+		lineheight=fontRenderClass.getInstance().getLineHeight(self.long_text.getFont())
 		if not lineheight:
 			lineheight = 30 # assume a random lineheight if nothing is visible
 		lines = int(s.height() / lineheight)
@@ -112,14 +112,14 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		if self.total is not None:
 			curPos = self.long_text.position()
 			if curPos.y() < 0:
-				self.long_text.move( ePoint( curPos.x(), curPos.y() + self.pageHeight ) )
+				self.long_text.move(ePoint(curPos.x(), curPos.y() + self.pageHeight))
 				self.updateScrollbar()
 
 	def pageDown(self):
 		if self.total is not None:
 			curPos = self.long_text.position()
-			if self.total-self.pageHeight >= abs( curPos.y() - self.pageHeight ):
-				self.long_text.move( ePoint( curPos.x(), curPos.y() - self.pageHeight ) )
+			if self.total-self.pageHeight >= abs(curPos.y() - self.pageHeight):
+				self.long_text.move(ePoint(curPos.x(), curPos.y() - self.pageHeight))
 				self.updateScrollbar()
 
 	def lastPage(self):
@@ -132,7 +132,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 	def isAtLastPage(self):
 		if self.total is not None:
 			curPos = self.long_text.position()
-			return self.total - self.pageHeight < abs( curPos.y() - self.pageHeight )
+			return self.total - self.pageHeight < abs(curPos.y() - self.pageHeight)
 		else:
 			return True
 
