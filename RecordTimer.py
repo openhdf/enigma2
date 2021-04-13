@@ -45,7 +45,8 @@ def resetTimerWakeup():
 	global wasRecTimerWakeup
 	if os.path.exists("/tmp/was_rectimer_wakeup"):
 		os.remove("/tmp/was_rectimer_wakeup")
-		if debug: print "[RECORDTIMER] reset wakeup state"
+		if debug:
+			print "[RECORDTIMER] reset wakeup state"
 	wasRecTimerWakeup = False
 
 # parses an event and returns a (begin, end, name, duration, eit)-tuple.
@@ -468,7 +469,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			tn = fedata.get("tuner_number") if fedata else -1
 			if tn >= 0:
 				tuner_info = "Tuner " + chr(ord('A') + tn)
-			else:		tuner_info = SystemInfo["HDMIin"] and "HDMI-IN" or "Unknown source"
+			else:
+				tuner_info = SystemInfo["HDMIin"] and "HDMI-IN" or "Unknown source"
 		else:
 			tuner_info = "Tuner not (yet) allocated"
 		self.log(level, "%s recording from: %s" % (state, tuner_info))
@@ -574,7 +576,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if self.first_try_prepare == 0:
 				# (0) try to make a tuner available by disabling PIP
 				self.first_try_prepare += 1
-				if not InfoBar: from Screens.InfoBar import InfoBar
+				if not InfoBar:
+					from Screens.InfoBar import InfoBar
 				from Screens.InfoBarGenerics import InfoBarPiP
 				from Components.ServiceEventTracker import InfoBarCount
 				InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
@@ -808,7 +811,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			tv_notactive = Screens.Standby.TVinStandby.getTVstate('notactive')
 			isRecordTime = abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or NavigationInstance.instance.RecordTimer.getStillRecording()
 
-			if debug: print "[RECORDTIMER] box_instandby=%s" % box_instandby, "tv_notactive=%s" % tv_notactive, "wasRecTimerWakeup=%s" % wasRecTimerWakeup, "self.wasInStandby=%s" % self.wasInStandby, "self.afterEvent=%s" % self.afterEvent, "isRecordTime=%s" % isRecordTime
+			if debug:
+				print "[RECORDTIMER] box_instandby=%s" % box_instandby, "tv_notactive=%s" % tv_notactive, "wasRecTimerWakeup=%s" % wasRecTimerWakeup, "self.wasInStandby=%s" % self.wasInStandby, "self.afterEvent=%s" % self.afterEvent, "isRecordTime=%s" % isRecordTime
 
 			timeout = (config.usage.window_timeout.value)
 			default = True
@@ -959,7 +963,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if answer:
 			self.log(13, "ok, disable PIP")
 			global InfoBar
-			if not InfoBar: from Screens.InfoBar import InfoBar
+			if not InfoBar:
+				from Screens.InfoBar import InfoBar
 			from Screens.InfoBarGenerics import InfoBarPiP
 			from Components.ServiceEventTracker import InfoBarCount
 			InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
@@ -1075,7 +1080,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def switchToAll(self):
 		refStr = self.service_ref.ref.toString()
 		global InfoBar
-		if not InfoBar: from Screens.InfoBar import InfoBar
+		if not InfoBar:
+			from Screens.InfoBar import InfoBar
 		if refStr.startswith('1:0:2:'):
 			if InfoBar.instance.servicelist.mode != 1:
 				InfoBar.instance.servicelist.setModeRadio()
@@ -1398,7 +1404,8 @@ class RecordTimer(timer.Timer):
 				next_act = timer.getNextActivation(getNextStbPowerOn)
 				if timer.justplay or next_act < now:
 					continue
-				if debug: print "[recordtimer] next stb power up", strftime("%a, %Y/%m/%d %H:%M", localtime(next_act))
+				if debug:
+					print "[recordtimer] next stb power up", strftime("%a, %Y/%m/%d %H:%M", localtime(next_act))
 				if save_act[0] == -1:
 					save_act = next_act, int(not timer.always_zap)
 				else:
@@ -1537,7 +1544,8 @@ class RecordTimer(timer.Timer):
 					checking_time = x.begin < begin or begin <= x.begin <= end
 					if xbt.tm_yday != xet.tm_yday:
 						oday = bday - 1
-						if oday == -1: oday = 6
+						if oday == -1:
+							oday = 6
 						offset_day = x.repeated & (1 << oday)
 					xbegin = 1440 + xbt.tm_hour * 60 + xbt.tm_min
 					xend = xbegin + ((timer_end - x.begin) / 60)

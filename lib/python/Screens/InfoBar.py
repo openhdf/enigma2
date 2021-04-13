@@ -319,7 +319,8 @@ def setAudioTrack(service):
 		from Tools.ISO639 import LanguageCodes as langC
 		tracks = service and service.audioTracks()
 		nTracks = tracks and tracks.getNumberOfTracks() or 0
-		if not nTracks: return
+		if not nTracks:
+			return
 		idx = 0
 		trackList = []
 		for i in xrange(nTracks):
@@ -346,16 +347,20 @@ def setAudioTrack(service):
 		useAc3 = config.autolanguage.audio_defaultac3.value
 		if useAc3:
 			matchedAc3 = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3)
-			if matchedAc3: return
+			if matchedAc3:
+				return
 			matchedMpeg = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, False)
-			if matchedMpeg: return
+			if matchedMpeg:
+				return
 			tracks.selectTrack(0)    # fallback to track 1(0)
 			return
 		else:
 			matchedMpeg = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, False)
-			if matchedMpeg:	return
+			if matchedMpeg:
+				return
 			matchedAc3 = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3)
-			if matchedAc3: return
+			if matchedAc3:
+				return
 			tracks.selectTrack(0)    # fallback to track 1(0)
 	except Exception, e:
 		print("[MoviePlayer] audioTrack exception:\n" + str(e))
@@ -388,7 +393,7 @@ def tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3):
 					return True
 	return False
 
-class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG, \
+class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG,
 		InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
 		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin, InfoBarAspectSelection,
