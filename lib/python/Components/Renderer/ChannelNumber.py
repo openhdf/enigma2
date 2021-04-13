@@ -3,9 +3,12 @@ from enigma import eLabel, iPlayableService
 from Renderer import Renderer
 
 ChannelNumberClasses = []
+
+
 def doRenumber():
 	for func in ChannelNumberClasses:
 		func(True)
+
 
 class ChannelNumber(Renderer, VariableText):
 	def __init__(self):
@@ -23,4 +26,3 @@ class ChannelNumber(Renderer, VariableText):
 				self.text = str(num)
 			else:
 				self.text = '---'
-

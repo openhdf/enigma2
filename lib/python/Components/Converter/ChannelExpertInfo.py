@@ -7,6 +7,7 @@ from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, e
 from Components.Element import cached
 from Components.ServiceEventTracker import ServiceEventTracker
 
+
 class ChannelExpertInfo(Converter, object):
 	TUNERINFO = 0
 	TUNERINFOBP = 1
@@ -203,10 +204,10 @@ class ChannelExpertInfo(Converter, object):
 						 eDVBFrontendParametersSatellite.System_DVB_S2: 'DVB-S2'
 						}[frontendData.get('system', eDVBFrontendParametersSatellite.System_DVB_S)]
 						modulation = {
-						 eDVBFrontendParametersSatellite.Modulation_Auto : 'Auto',
-						 eDVBFrontendParametersSatellite.Modulation_QPSK : 'QPSK',
-						 eDVBFrontendParametersSatellite.Modulation_8PSK : '8PSK',
-						 eDVBFrontendParametersSatellite.Modulation_QAM16 : 'QAM16',
+						 eDVBFrontendParametersSatellite.Modulation_Auto: 'Auto',
+						 eDVBFrontendParametersSatellite.Modulation_QPSK: 'QPSK',
+						 eDVBFrontendParametersSatellite.Modulation_8PSK: '8PSK',
+						 eDVBFrontendParametersSatellite.Modulation_QAM16: 'QAM16',
 						}[frontendData.get('modulation', eDVBFrontendParametersSatellite.Modulation_Auto)]
 						if (self.tunertype == 'linelist'):
 							tunerinfo = frequency + '  ' + pol + '  ' + fec + '  ' + symbolrate + '  ' + orb
@@ -227,11 +228,11 @@ class ChannelExpertInfo(Converter, object):
 						}[frontendData.get('fec_inner', eDVBFrontendParametersCable.FEC_Auto)]
 						modulation = {
 						 eDVBFrontendParametersCable.Modulation_Auto: "Auto",
-						 eDVBFrontendParametersCable.Modulation_QAM16 : "QAM16",
-						 eDVBFrontendParametersCable.Modulation_QAM32 : "QAM32",
-						 eDVBFrontendParametersCable.Modulation_QAM64 : "QAM64",
-						 eDVBFrontendParametersCable.Modulation_QAM128 : "QAM128",
-						 eDVBFrontendParametersCable.Modulation_QAM256 : "QAM256"
+						 eDVBFrontendParametersCable.Modulation_QAM16: "QAM16",
+						 eDVBFrontendParametersCable.Modulation_QAM32: "QAM32",
+						 eDVBFrontendParametersCable.Modulation_QAM64: "QAM64",
+						 eDVBFrontendParametersCable.Modulation_QAM128: "QAM128",
+						 eDVBFrontendParametersCable.Modulation_QAM256: "QAM256"
 						}[frontendData.get('modulation', eDVBFrontendParametersCable.Modulation_Auto)]
 						if (self.tunertype == 'linelist'):
 							tunerinfo = frequency + '  ' + symbolrate + '  ' + modulation
@@ -241,32 +242,32 @@ class ChannelExpertInfo(Converter, object):
 							tunerinfo = 'Frequency: ' + frequency + '\nSymbolrate: ' + symbolrate + '\nModulation: ' + modulation + '\nFEC: ' + fec
 					elif (frontendData.get('tuner_type') == 'DVB-T'):
 						bandwidth = {
-						 eDVBFrontendParametersTerrestrial.Bandwidth_Auto : "Auto",
-						 eDVBFrontendParametersTerrestrial.Bandwidth_8MHz : "8 MHz",
-						 eDVBFrontendParametersTerrestrial.Bandwidth_7MHz : "7 MHz",
-						 eDVBFrontendParametersTerrestrial.Bandwidth_6MHz : "6 MHz"
+						 eDVBFrontendParametersTerrestrial.Bandwidth_Auto: "Auto",
+						 eDVBFrontendParametersTerrestrial.Bandwidth_8MHz: "8 MHz",
+						 eDVBFrontendParametersTerrestrial.Bandwidth_7MHz: "7 MHz",
+						 eDVBFrontendParametersTerrestrial.Bandwidth_6MHz: "6 MHz"
 						}[frontendData.get('bandwidth', eDVBFrontendParametersTerrestrial.Bandwidth_Auto)]
 						code_rate_lp = {
-						 eDVBFrontendParametersTerrestrial.FEC_Auto : "Auto",
-						 eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
-						 eDVBFrontendParametersTerrestrial.FEC_2_3 : "2/3",
-						 eDVBFrontendParametersTerrestrial.FEC_3_4 : "3/4",
-						 eDVBFrontendParametersTerrestrial.FEC_5_6 : "5/6",
-						 eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8"
+						 eDVBFrontendParametersTerrestrial.FEC_Auto: "Auto",
+						 eDVBFrontendParametersTerrestrial.FEC_1_2: "1/2",
+						 eDVBFrontendParametersTerrestrial.FEC_2_3: "2/3",
+						 eDVBFrontendParametersTerrestrial.FEC_3_4: "3/4",
+						 eDVBFrontendParametersTerrestrial.FEC_5_6: "5/6",
+						 eDVBFrontendParametersTerrestrial.FEC_7_8: "7/8"
 						}[frontendData.get('code_rate_lp', eDVBFrontendParametersTerrestrial.FEC_Auto)]
 						code_rate_hp = {
-						 eDVBFrontendParametersTerrestrial.FEC_Auto : "Auto",
-						 eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
-						 eDVBFrontendParametersTerrestrial.FEC_2_3 : "2/3",
-						 eDVBFrontendParametersTerrestrial.FEC_3_4 : "3/4",
-						 eDVBFrontendParametersTerrestrial.FEC_5_6 : "5/6",
-						 eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8"
+						 eDVBFrontendParametersTerrestrial.FEC_Auto: "Auto",
+						 eDVBFrontendParametersTerrestrial.FEC_1_2: "1/2",
+						 eDVBFrontendParametersTerrestrial.FEC_2_3: "2/3",
+						 eDVBFrontendParametersTerrestrial.FEC_3_4: "3/4",
+						 eDVBFrontendParametersTerrestrial.FEC_5_6: "5/6",
+						 eDVBFrontendParametersTerrestrial.FEC_7_8: "7/8"
 						}[frontendData.get('code_rate_hp', eDVBFrontendParametersTerrestrial.FEC_Auto)]
 						modulation = {
-						 eDVBFrontendParametersTerrestrial.Modulation_Auto : "Auto",
-						 eDVBFrontendParametersTerrestrial.Modulation_QPSK : "QPSK",
-						 eDVBFrontendParametersTerrestrial.Modulation_QAM16 : "QAM16",
-						 eDVBFrontendParametersTerrestrial.Modulation_QAM64 : "QAM64"
+						 eDVBFrontendParametersTerrestrial.Modulation_Auto: "Auto",
+						 eDVBFrontendParametersTerrestrial.Modulation_QPSK: "QPSK",
+						 eDVBFrontendParametersTerrestrial.Modulation_QAM16: "QAM16",
+						 eDVBFrontendParametersTerrestrial.Modulation_QAM64: "QAM64"
 						}[frontendData.get('constellation', eDVBFrontendParametersTerrestrial.Modulation_Auto)]
 						if code_rate_lp:
 							fec = code_rate_lp

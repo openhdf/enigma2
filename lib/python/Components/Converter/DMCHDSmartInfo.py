@@ -3,7 +3,6 @@
 #
 
 
-
 from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached
@@ -11,9 +10,9 @@ from Components.config import config
 from Poll import Poll
 
 
-
 class DMCHDSmartInfo(Poll, Converter, object):
 	SMART_INFO_H = 1
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
@@ -22,13 +21,10 @@ class DMCHDSmartInfo(Poll, Converter, object):
 			}[type]
 		self.poll_interval = 30000
 		self.poll_enabled = True
-		self.ar_fec = ["Auto", "1/2", "2/3", "3/4", "5/6", "7/8", "3/5", "4/5", "8/9", "9/10","None","None","None","None","None"]
+		self.ar_fec = ["Auto", "1/2", "2/3", "3/4", "5/6", "7/8", "3/5", "4/5", "8/9", "9/10", "None", "None", "None", "None", "None"]
 		self.ar_pol = ["H", "V", "CL", "CR", "na", "na", "na", "na", "na", "na", "na", "na"]
 
-
-
 	@cached
-
 	def getText(self):
 		service = self.source.service
 		info = service and service.info()
@@ -48,7 +44,7 @@ class DMCHDSmartInfo(Poll, Converter, object):
 			xresol = info.getInfo(iServiceInformation.sVideoWidth)
 			yresol = info.getInfo(iServiceInformation.sVideoHeight)
 			feinfo = (service and service.frontendInfo())
-			if (feinfo is not None) and (xresol>0):
+			if (feinfo is not None) and (xresol > 0):
 				#Ret_Text = str(xresol) + "x" + str(yresol) + "   "
 				#if (yresol > 580):
 					#Ret_Text = "HD     "
@@ -153,7 +149,7 @@ class DMCHDSmartInfo(Poll, Converter, object):
 								elif orbital_pos == 2120:
 									orb_pos = 'Echostar 2 (148.0W)'
 								else:
-									orb_pos = str((float(3600 - orbital_pos))/10.0) + "W"
+									orb_pos = str((float(3600 - orbital_pos)) / 10.0) + "W"
 							elif orbital_pos > 0:
 								if orbital_pos == 192:
 									orb_pos = 'Astra 1F (19.2E)'
@@ -274,7 +270,7 @@ class DMCHDSmartInfo(Poll, Converter, object):
 								elif orbital_pos == 30:
 									orb_pos = 'Telecom 2 (3.0E)'
 								else:
-									orb_pos = str((float(orbital_pos))/10.0) + "E"
+									orb_pos = str((float(orbital_pos)) / 10.0) + "E"
 						Ret_Text = Ret_Text + "" + orb_pos + ""
 					elif (frontendData.get("tuner_type") == "DVB-T"):
 						frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
@@ -286,15 +282,14 @@ class DMCHDSmartInfo(Poll, Converter, object):
 			return Ret_Text
 		return ""
 
-
 	text = property(getText)
 
 	def changed(self, what):
 		Converter.changed(self, what)
 
 	def kurz(self, langTxt):
-		if (len(langTxt)>23):
-			retT = langTxt[:20]+"..."
+		if (len(langTxt) > 23):
+			retT = langTxt[:20] + "..."
 			return retT
 		else:
 			return langTxt

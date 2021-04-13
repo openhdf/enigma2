@@ -24,7 +24,7 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 
 		type = type.split(',')
 		self.shortFormat = "Short" in type
-		self.fullFormat  = "Full"  in type
+		self.fullFormat = "Full" in type
 		if "HddTemp" in type:
 			self.type = self.HDDTEMP
 		elif "LoadAvg" in type:
@@ -44,7 +44,7 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 		else:
 			self.type = self.FLASHINFO
 
-		if self.type in (self.FLASHINFO,self.HDDINFO,self.USBINFO):
+		if self.type in (self.FLASHINFO, self.HDDINFO, self.USBINFO):
 			self.poll_interval = 5000
 		else:
 			self.poll_interval = 1000
@@ -66,20 +66,20 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 			text = self.getLoadAvg()
 		else:
 			entry = {
-					self.MEMTOTAL:  ("Mem","Ram"),
-					self.MEMFREE:   ("Mem","Ram"),
-					self.SWAPTOTAL: ("Swap","Swap"),
-					self.SWAPFREE:  ("Swap","Swap"),
-					self.USBINFO:   ("/media/usb","USB"),
-					self.HDDINFO:   ("/media/hdd","HDD"),
-					self.FLASHINFO: ("/","Flash"),
+					self.MEMTOTAL: ("Mem", "Ram"),
+					self.MEMFREE: ("Mem", "Ram"),
+					self.SWAPTOTAL: ("Swap", "Swap"),
+					self.SWAPFREE: ("Swap", "Swap"),
+					self.USBINFO: ("/media/usb", "USB"),
+					self.HDDINFO: ("/media/hdd", "HDD"),
+					self.FLASHINFO: ("/", "Flash"),
 				}[self.type]
-			if self.type in (self.USBINFO,self.HDDINFO,self.FLASHINFO):
+			if self.type in (self.USBINFO, self.HDDINFO, self.FLASHINFO):
 				list = self.getDiskInfo(entry[0])
 			else:
 				list = self.getMemInfo(entry[0])
 			if list[0] == 0:
-				text = "%s: Not Available"%(entry[1])
+				text = "%s: Not Available" % (entry[1])
 			elif self.shortFormat:
 				text = "%s: %s, in use: %s%%" % (entry[1], self.getSizeStr(list[0]), list[3])
 			elif self.fullFormat:
@@ -91,10 +91,10 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 	@cached
 	def getValue(self):
 		result = 0
-		if self.type in (self.MEMTOTAL,self.MEMFREE,self.SWAPTOTAL,self.SWAPFREE):
+		if self.type in (self.MEMTOTAL, self.MEMFREE, self.SWAPTOTAL, self.SWAPFREE):
 			entry = {self.MEMTOTAL: "Mem", self.MEMFREE: "Mem", self.SWAPTOTAL: "Swap", self.SWAPFREE: "Swap"}[self.type]
 			result = self.getMemInfo(entry)[3]
-		elif self.type in (self.USBINFO,self.HDDINFO,self.FLASHINFO):
+		elif self.type in (self.USBINFO, self.HDDINFO, self.FLASHINFO):
 			path = {self.USBINFO: "/media/usb", self.HDDINFO: "/media/hdd", self.FLASHINFO: "/"}[self.type]
 			result = self.getDiskInfo(path)[3]
 		return result
@@ -126,7 +126,7 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 		return textvalue
 
 	def getMemInfo(self, value):
-		result = [0,0,0,0]	# (size, used, avail, use%)
+		result = [0, 0, 0, 0]	# (size, used, avail, use%)
 		try:
 			check = 0
 			fd = open("/proc/meminfo")
@@ -160,7 +160,7 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 				return None
 			return False
 
-		result = [0,0,0,0]	# (size, used, avail, use%)
+		result = [0, 0, 0, 0]	# (size, used, avail, use%)
 		if isMountPoint():
 			try:
 				st = statvfs(path)
@@ -191,4 +191,3 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 		else:
 			self.downstream_elements.changed((self.CHANGED_POLL,))
 			self.poll_enabled = True
-

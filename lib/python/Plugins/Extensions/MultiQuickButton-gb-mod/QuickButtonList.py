@@ -13,8 +13,9 @@ from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
 from Tools.LoadPixmap import LoadPixmap
 from __init__ import _
 
+
 def QuickButtonListEntry(key, text):
-	res = [ text ]
+	res = [text]
 	if text[0] == "--":
 		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/pic/op_separator.png"))
 		if png is not None:
@@ -30,8 +31,9 @@ def QuickButtonListEntry(key, text):
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 0, 35, 25, png))
 	return res
 
+
 class QuickButtonList(MenuList):
-	def __init__(self, list, selection = 0, enableWrapAround=False):
+	def __init__(self, list, selection=0, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setItemHeight(25)

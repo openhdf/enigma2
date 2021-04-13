@@ -11,6 +11,7 @@ from Components.config import config
 from enigma import eLabel, eDVBVolumecontrol, eTimer
 from Renderer import Renderer
 
+
 class valioVolumeText(Renderer, VariableText):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -28,7 +29,7 @@ class valioVolumeText(Renderer, VariableText):
 
 	def changed(self, what):
 		if not self.suspended:
-			self.text = str(eDVBVolumecontrol.getInstance().getVolume()/self.volProper)
+			self.text = str(eDVBVolumecontrol.getInstance().getVolume() / self.volProper)
 
 	def pollme(self):
 		self.changed(None)

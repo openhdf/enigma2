@@ -1,6 +1,11 @@
 from Plugins.Plugin import PluginDescriptor
 
-import time, os, socket, thread, socket, copy
+import time
+import os
+import socket
+import thread
+import socket
+import copy
 from socket import gaierror, error
 from os import path as os_path, remove as os_remove
 
@@ -37,13 +42,17 @@ from enigma import eTimer, eServiceReference, iPlayableService, fbClass, eRCInpu
 
 HTTPConnection.debuglevel = 1
 
+
 def excute_cmd(cmd):
 	print "prepared cmd:", cmd
 	os.system(cmd)
 
+
 alpha_value = 0
+
+
 def change_galpha(set_const, set_value):
-	op  = "/proc/stb/fb/alpha_op"
+	op = "/proc/stb/fb/alpha_op"
 	val = "/proc/stb/fb/alpha_value"
 	global alpha_value
 	if os.path.exists(op) and set_const and alpha_value < 255:
@@ -54,27 +63,33 @@ def change_galpha(set_const, set_value):
 	if os.path.exists(val) and set_value:
 		excute_cmd("echo \"%s\" > %s" % (str(hex(alpha_value)), val))
 
+
 def enable_rc_mouse(mode): #mode=[0|1]|[False|True]
 	mouse_cond = "/proc/stb/fp/mouse"
 	if os.path.exists(mouse_cond):
 		excute_cmd("echo %d > %s" % (mode, mouse_cond))
 
+
 def is_process_running(pname):
 	if pname is None or len(pname) == 0:
 		return False
 
-	cmd = "/bin/ps -ef | grep %s | grep -v grep | awk \'{print $5}\'"%(pname)
+	cmd = "/bin/ps -ef | grep %s | grep -v grep | awk \'{print $5}\'" % (pname)
 	for line in os.popen(cmd).readlines():
 		return True
 	return False
 
+
 lock = False
+
+
 def wb_lock(alpha_on=True):
 	global lock
 	lock = True
 	if alpha_on:
 		change_galpha(set_const=False, set_value=False)
 	fbClass.getInstance().unlock()
+
 
 def wb_unlock(alpha_on=True):
 	global lock
@@ -83,12 +98,14 @@ def wb_unlock(alpha_on=True):
 	fbClass.getInstance().lock()
 	lock = False
 
+
 def wb_islock():
 	global lock
 	return lock
 
+
 class Player(Screen, InfoBarNotifications):
-	skin = 	"""
+	skin = """
 		<screen name="Player" flags="wfNoBorder" position="center,620" size="455,53" title="Webbrowser" backgroundColor="transparent">
 			<ePixmap pixmap="skin_default/mp_wb_background.png" position="0,0" zPosition="-1" size="455,53" />
 			<ePixmap pixmap="skin_default/icons/mp_wb_buttons.png" position="40,23" size="30,13" alphatest="on" />
@@ -106,16 +123,16 @@ class Player(Screen, InfoBarNotifications):
 			</widget>
 		</screen>
 		"""
-	PLAYER_IDLE	= 0
-	PLAYER_PLAYING 	= 1
-	PLAYER_PAUSED 	= 2
+	PLAYER_IDLE = 0
+	PLAYER_PLAYING = 1
+	PLAYER_PAUSED = 2
 
 	def __init__(self, session, service, lastservice):
 		Screen.__init__(self, session)
 		InfoBarNotifications.__init__(self)
 
-		self.session     = session
-		self.service     = service
+		self.session = session
+		self.service = service
 		self.lastservice = lastservice
 		self["actions"] = ActionMap(["OkCancelActions", "InfobarSeekActions", "MediaPlayerActions", "MovieSelectionActions"],
 		{
@@ -126,8 +143,7 @@ class Player(Screen, InfoBarNotifications):
 		}, -2)
 		self["sidebar"] = Label(_("/"))
 
-		self.__event_tracker = ServiceEventTracker(screen = self, eventmap =
-		{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
 			iPlayableService.evStart: self.__serviceStarted,
 			iPlayableService.evEOF: self.__evEOF,
@@ -165,7 +181,7 @@ class Player(Screen, InfoBarNotifications):
 
 	def doExit(self):
 		list = ((_("Yes"), "y"), (_("No, but play video again"), "n"),)
-		self.session.openWithCallback(self.cbDoExit, ChoiceBox, title=_("Stop playing this movie?"), list = list)
+		self.session.openWithCallback(self.cbDoExit, ChoiceBox, title=_("Stop playing this movie?"), list=list)
 
 	def cbDoExit(self, answer):
 		answer = answer and answer[1]
@@ -224,13 +240,14 @@ class Player(Screen, InfoBarNotifications):
 		elif self.state == self.PLAYER_PAUSED:
 			self.setSeekState(self.PLAYER_PLAYING)
 
+
 VIDEO_FMT_PRIORITY_MAP = {
-	'38' : 1, #MP4 Original (HD)
-	'37' : 2, #MP4 1080p (HD)
-	'22' : 3, #MP4 720p (HD)
-	'18' : 4, #MP4 360p
-	'35' : 5, #FLV 480p
-	'34' : 6, #FLV 360p
+	'38': 1, #MP4 Original (HD)
+	'37': 2, #MP4 1080p (HD)
+	'22': 3, #MP4 720p (HD)
+	'18': 4, #MP4 360p
+	'35': 5, #FLV 480p
+	'34': 6, #FLV 360p
 }
 std_headers = {
 	'User-Agent': 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.6) Gecko/20100627 Firefox/3.6.6',
@@ -238,6 +255,7 @@ std_headers = {
 	'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
 	'Accept-Language': 'en-us,en;q=0.5',
 }
+
 
 class PlayerLauncher:
 	def getVideoUrl(self, video_id):
@@ -266,7 +284,7 @@ class PlayerLauncher:
 				if ('url_encoded_fmt_stream_map' or 'fmt_url_map') in videoinfo:
 					break
 			except (URLError, HTTPException, socket.error), err:
-				print "Error: unable to download video infopage",str(err)
+				print "Error: unable to download video infopage", str(err)
 				return video_url
 
 		if ('url_encoded_fmt_stream_map' or 'fmt_url_map') not in videoinfo:
@@ -286,14 +304,14 @@ class PlayerLauncher:
 		for fmtstring in tmp_fmtUrlDATA:
 			if videoinfo.has_key('url_encoded_fmt_stream_map'):
 				(fmturl, fmtid) = fmtstring.split('&itag=')
-				if fmturl.find("url=") !=-1:
-					fmturl = fmturl.replace("url=","")
+				if fmturl.find("url=") != -1:
+					fmturl = fmturl.replace("url=", "")
 			else:
-				(fmtid,fmturl) = fmtstring.split('|')
+				(fmtid, fmturl) = fmtstring.split('|')
 			if VIDEO_FMT_PRIORITY_MAP.has_key(fmtid):
-				video_fmt_map[VIDEO_FMT_PRIORITY_MAP[fmtid]] = { 'fmtid': fmtid, 'fmturl': unquote_plus(fmturl) }
+				video_fmt_map[VIDEO_FMT_PRIORITY_MAP[fmtid]] = {'fmtid': fmtid, 'fmturl': unquote_plus(fmturl)}
 			fmt_infomap[int(fmtid)] = unquote_plus(fmturl)
-		print "got",sorted(fmt_infomap.iterkeys())
+		print "got", sorted(fmt_infomap.iterkeys())
 		if video_fmt_map and len(video_fmt_map):
 			video_url = video_fmt_map[sorted(video_fmt_map.iterkeys())[0]]['fmturl'].split(';')[0]
 			#print "found best available video format:",video_fmt_map[sorted(video_fmt_map.iterkeys())[0]]['fmtid']
@@ -313,6 +331,7 @@ class PlayerLauncher:
 			wb_unlock()
 			print "Error >>", msg
 
+
 class PlayerService:
 	def __init__(self, session):
 		self.enable = False
@@ -325,7 +344,7 @@ class PlayerService:
 		except OSError:
 			pass
 
-	def start(self, timeout = 1):
+	def start(self, timeout=1):
 		self.socket_timeout = timeout
 		thread.start_new_thread(self.run, (True,))
 
@@ -335,7 +354,7 @@ class PlayerService:
 	def isRunning(self):
 		return self.enable
 
-	def run(self, e = True):
+	def run(self, e=True):
 		if self.enable:
 			return
 		print "PlayerService start!!"
@@ -389,9 +408,9 @@ class PlayerService:
 			from Screens.VirtualKeyBoard import VirtualKeyBoard
 			wb_lock()
 			self.vk_conn = conn
-			self.session.openWithCallback(self.cbOpenKeyboard, VirtualKeyBoard, title = (_("Enter your input data")), text = "")
+			self.session.openWithCallback(self.cbOpenKeyboard, VirtualKeyBoard, title=(_("Enter your input data")), text="")
 
-        def cbOpenKeyboard(self, data = None):
+        def cbOpenKeyboard(self, data=None):
 		print "virtual keyboard callback!!"
 		wb_unlock()
 		self.sendResponse(self.vk_conn, data)
@@ -403,8 +422,9 @@ class PlayerService:
 		conn.send(data)
 		conn.close()
 
+
 class BrowserLauncher(ConfigListScreen, Screen):
-	skin=   """
+	skin = """
 		<screen name="BrowserLauncher" position="center,center" size="315,500" title="Web Browser">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="15,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="155,0" size="140,40" alphatest="on" />
@@ -466,7 +486,7 @@ class BrowserLauncher(ConfigListScreen, Screen):
 		change_galpha(set_const=False, set_value=False)
 		self.saveConfig()
 		self.service.stop()
-		excute_cmd("killall -15 %s"%(self.browser_name))
+		excute_cmd("killall -15 %s" % (self.browser_name))
 		excute_cmd("echo 60 > /proc/sys/vm/swappiness")
 		enable_rc_mouse(False) #rc-mouse off
 		language.activateLanguageIndex(self.current_lang_idx)
@@ -502,7 +522,7 @@ class BrowserLauncher(ConfigListScreen, Screen):
 	# mouse:keyboard:alpha_value
 	def saveConfig(self):
 		if is_process_running(self.browser_name) == False:
-			command = "echo \"%s:%s:%d:%s\" > %s"%(self.mouse.value, self.keyboard.value, int(self.alpha.value), self.langs.value, self.conf_file)
+			command = "echo \"%s:%s:%d:%s\" > %s" % (self.mouse.value, self.keyboard.value, int(self.alpha.value), self.langs.value, self.conf_file)
 			excute_cmd(command)
 
 	# mouse:keyboard:alpha_value
@@ -511,14 +531,14 @@ class BrowserLauncher(ConfigListScreen, Screen):
 			return
 		config_list = open(self.conf_file).readline().strip().split(':')
 		if len(config_list) == 3:
-			self.conf_mouse 	= config_list[0]
-			self.conf_keyboard 	= config_list[1]
-			self.conf_alpha 	= config_list[2]
+			self.conf_mouse = config_list[0]
+			self.conf_keyboard = config_list[1]
+			self.conf_alpha = config_list[2]
 		elif len(config_list) == 4:
-			self.conf_mouse 	= config_list[0]
-			self.conf_keyboard 	= config_list[1]
-			self.conf_alpha 	= config_list[2]
-			self.conf_keymap 	= config_list[3]
+			self.conf_mouse = config_list[0]
+			self.conf_keyboard = config_list[1]
+			self.conf_alpha = config_list[2]
+			self.conf_keymap = config_list[3]
 		print "load config : ", config_list
 
 	def resetExitCond(self):
@@ -537,7 +557,7 @@ class BrowserLauncher(ConfigListScreen, Screen):
 		self.devices_string = self.devices_string + ret_data
 
 	def callbakcDevicesAppClose(self, retval):
-		self.name_list  = []
+		self.name_list = []
 		self.mouse_list = None
 		self.keyboard_list = None
 
@@ -545,23 +565,23 @@ class BrowserLauncher(ConfigListScreen, Screen):
 
 		if self.conf_mouse == "" or self.getHandlerName(self.conf_mouse) is None:
 			self.conf_mouse = self.mouse_list[0][0]
-		self.mouse = ConfigSelection(default = self.conf_mouse, choices = self.mouse_list)
+		self.mouse = ConfigSelection(default=self.conf_mouse, choices=self.mouse_list)
 		self.list.append(getConfigListEntry(_('Mouse'), self.mouse))
 
 		if self.conf_keyboard == "" or self.getHandlerName(self.conf_keyboard) is None:
 			self.conf_keyboard = self.keyboard_list[0][0]
-		self.keyboard = ConfigSelection(default = self.conf_keyboard, choices = self.keyboard_list)
+		self.keyboard = ConfigSelection(default=self.conf_keyboard, choices=self.keyboard_list)
 		self.list.append(getConfigListEntry(_('Keyboard'), self.keyboard))
 
 		if self.conf_alpha == "":
 			self.conf_alpha = "255"
-		self.alpha = ConfigSlider(default = int(self.conf_alpha), increment = 10, limits = (0, 255))
+		self.alpha = ConfigSlider(default=int(self.conf_alpha), increment=10, limits=(0, 255))
 		self.list.append(getConfigListEntry(_("Alpha Value"), self.alpha))
 
 		if self.conf_keymap == "":
 			self.conf_keymap = self.getLanguage()
 		self.lang_list = [("en", "English"), ("de", "German")]
-		self.langs = ConfigSelection(default = self.conf_keymap, choices = self.lang_list)
+		self.langs = ConfigSelection(default=self.conf_keymap, choices=self.lang_list)
 		self.list.append(getConfigListEntry(_("Language"), self.langs))
 
 		self["config"].list = self.list
@@ -639,7 +659,7 @@ class BrowserLauncher(ConfigListScreen, Screen):
 		self.timer_start.stop()
 
 		self.lock = True
-		excute_cmd("killall -15 %s"%(self.browser_name))
+		excute_cmd("killall -15 %s" % (self.browser_name))
 		excute_cmd("echo 0 > /proc/sys/vm/swappiness")
 
 		kbd_cmd = " "
@@ -717,19 +737,20 @@ class BrowserLauncher(ConfigListScreen, Screen):
 			self.lock = False
 			self.doExit()
 
-	def callbackLauncherAppClosed(self, retval = 1):
+	def callbackLauncherAppClosed(self, retval=1):
 		self.lock = False
+
 
 def sessionstart(session, **kwargs):
 	enable_rc_mouse(False)
 	change_galpha(set_const=False, set_value=True)
 	excute_cmd("killall -15 arora")
 
+
 def main(session, **kwargs):
 	session.open(BrowserLauncher)
 
+
 def Plugins(**kwargs):
-	return [PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = False, fnc=sessionstart),
-		PluginDescriptor(name=_("Web Browser"), description="start web browser", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)]
-
-
+	return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, needsRestart=False, fnc=sessionstart),
+		PluginDescriptor(name=_("Web Browser"), description="start web browser", where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main)]

@@ -13,6 +13,7 @@ ECM_INFO = '/tmp/ecm.info'
 old_ecm_mtime = None
 data = None
 
+
 class ChannelCryptoInfo(Poll, Converter, object):
 	IRDCRYPT = 0
 	SECACRYPT = 1
@@ -35,7 +36,7 @@ class ChannelCryptoInfo(Poll, Converter, object):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
 
-		self.poll_interval = 2*1000
+		self.poll_interval = 2 * 1000
 		self.poll_enabled = True
 
 		if type == 'IrdCrypt':

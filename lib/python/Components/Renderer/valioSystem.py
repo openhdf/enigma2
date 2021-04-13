@@ -12,6 +12,7 @@ from Tools.HardwareInfo import HardwareInfo
 from enigma import eLabel
 from Renderer import Renderer
 
+
 class valioSystem(Renderer, VariableText):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -42,7 +43,7 @@ class valioSystem(Renderer, VariableText):
 					loada = out_line[:4]
 				else:
 					loada = out_line[:9]
-					loada = loada.replace(" ","\n")
+					loada = loada.replace(" ", "\n")
 			except:
 				pass
 			fan = 0
@@ -52,9 +53,9 @@ class valioSystem(Renderer, VariableText):
 			except:
 				pass
 			if self.ZeigeTemp:
-				self.text = "cpu "+loada+"\ntmp "+str(maxtemp)+"°C\nfan "+str(int(fan/2))
+				self.text = "cpu " + loada + "\ntmp " + str(maxtemp) + "°C\nfan " + str(int(fan / 2))
 			else:
-				self.text = "cpu\n"+loada
+				self.text = "cpu\n" + loada
 
 	def onShow(self):
 		self.suspended = False

@@ -20,6 +20,7 @@ MONTHS = (_("January"),
 
 dayOfWeek = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 
+
 class VFDClockToText(Converter, object):
 	DEFAULT = 0
 	WITH_SECONDS = 1
@@ -93,19 +94,18 @@ class VFDClockToText(Converter, object):
 		else:
 			return "???"
 
-
 		if self.type == self.WITH_SECONDS:
 			return "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
 		elif self.type == self.DEFAULT:
 			return "%2d:%02d" % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
-			return _(strftime("%A",t)) + " " + str(t[2]) + " " + MONTHS[t[1]-1] + " " + str(t[0])
+			return _(strftime("%A", t)) + " " + str(t[2]) + " " + MONTHS[t[1] - 1] + " " + str(t[0])
 		elif self.type == self.FULL:
-			return dayOfWeek[t[6]] + " %d/%d  %2d:%02d" % (t[2],t[1], t.tm_hour, t.tm_min)
+			return dayOfWeek[t[6]] + " %d/%d  %2d:%02d" % (t[2], t[1], t.tm_hour, t.tm_min)
 		elif self.type == self.SHORT_DATE:
 			return dayOfWeek[t[6]] + " %d/%d" % (t[2], t[1])
 		elif self.type == self.LONG_DATE:
-			return dayOfWeek[t[6]] + " " + str(t[2]) + " " + MONTHS[t[1]-1]
+			return dayOfWeek[t[6]] + " " + str(t[2]) + " " + MONTHS[t[1] - 1]
 		elif self.type == self.VFD:
 			return "%2d:%02d %d/%d" % (t.tm_hour, t.tm_min, t[2], t[1])
 		elif self.type == self.FORMAT:
@@ -113,7 +113,7 @@ class VFDClockToText(Converter, object):
 			if spos > 0:
 				s1 = self.fmt_string[:spos]
 				s2 = strftime(self.fmt_string[spos:], t)
-				return str(s1+s2)
+				return str(s1 + s2)
 			else:
 				return strftime(self.fmt_string, t)
 

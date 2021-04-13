@@ -29,6 +29,7 @@ from Screens.InfoBar import InfoBar
 
 MYCHANSEL = InfoBar.instance.servicelist
 
+
 class DMCHDChNumber(Renderer, VariableText):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -62,4 +63,3 @@ class DMCHDChNumber(Renderer, VariableText):
 			chx = (chx - markersOffset) + 1
 			rx = MYCHANSEL.getBouquetNumOffset(myRoot)
 			self.text = str(chx + rx)
-

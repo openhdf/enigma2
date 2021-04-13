@@ -33,6 +33,7 @@ try:
 except IOError:
 	print "WARNING: couldn't open profile file!"
 
+
 def profile(id):
 	now = time.time() - profile_start
 	if profile_file:
@@ -45,7 +46,7 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				if boxtype in ("classm", "axodin", "axodinc", "starsatlx", "evo", "genius", "galaxym6" ):
+				if boxtype in ("classm", "axodin", "axodinc", "starsatlx", "evo", "genius", "galaxym6"):
 					f = open("/dev/dbox/oled0", "w")
 					f.write("%d" % perc)
 				elif boxtype in ('gb800solo', 'gb800se', 'gb800seplus', 'gbultrase'):
@@ -63,6 +64,7 @@ def profile(id):
 				f.close()
 			except IOError:
 				pass
+
 
 def profile_final():
 	global profile_file

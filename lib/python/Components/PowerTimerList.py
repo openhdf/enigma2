@@ -9,6 +9,7 @@ from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from PowerTimer import AFTEREVENT, TIMERTYPE
 
+
 def gettimerType(timer):
 	timertype = {
 		TIMERTYPE.WAKEUP: _("Wake Up"),
@@ -22,6 +23,7 @@ def gettimerType(timer):
 		}[timer.timerType]
 	return timertype
 
+
 def getafterEvent(timer):
 	afterevent = {
 		AFTEREVENT.NONE: _("Nothing"),
@@ -30,6 +32,7 @@ def getafterEvent(timer):
 		AFTEREVENT.DEEPSTANDBY: _("Deep Standby")
 		}[timer.afterEvent]
 	return afterevent
+
 
 class PowerTimerList(HTMLComponent, GUIComponent, object):
 #
@@ -40,12 +43,12 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 		screenwidth = getDesktop(0).size().width()
 		height = self.l.getItemSize().height()
 		width = self.l.getItemSize().width()
-		res = [ None ]
+		res = [None]
 		x = width / 2
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 39, 3, width, 38, 2, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, gettimerType(timer)))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 39, 3, width, 38, 2, RT_HALIGN_LEFT | RT_VALIGN_BOTTOM, gettimerType(timer)))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 3, width, 25, 0, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, gettimerType(timer)))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 3, width, 25, 0, RT_HALIGN_LEFT | RT_VALIGN_BOTTOM, gettimerType(timer)))
 		if timer.timerType == TIMERTYPE.AUTOSTANDBY or timer.timerType == TIMERTYPE.AUTODEEPSTANDBY:
 			if self.iconRepeat and timer.autosleeprepeat != "once":
 				if screenwidth and screenwidth == 1920:
@@ -70,15 +73,15 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 				state = _("done!")
 				icon = self.iconDone
 			if screenwidth and screenwidth == 1920:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 225, 38, width-225, 35, 3, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _("Delay:") + " " + str(timer.autosleepdelay) + "(" + _("mins") + ")"))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 225, 38, width - 225, 35, 3, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, _("Delay:") + " " + str(timer.autosleepdelay) + "(" + _("mins") + ")"))
 			else:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 26, width-150, 23, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _("Delay:") + " " + str(timer.autosleepdelay) + "(" + _("mins") + ")"))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 26, width - 150, 23, 1, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, _("Delay:") + " " + str(timer.autosleepdelay) + "(" + _("mins") + ")"))
 		else:
 			if screenwidth and screenwidth == 1920:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, x+36, 3, x-3-36, 35, 3, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('At End:') + ' ' + getafterEvent(timer)))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, x + 36, 3, x - 3 - 36, 35, 3, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, _('At End:') + ' ' + getafterEvent(timer)))
 			else:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, x+24, 3, x-2-24, 23, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('At End:') + ' ' + getafterEvent(timer)))
-			days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, x + 24, 3, x - 2 - 24, 23, 1, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, _('At End:') + ' ' + getafterEvent(timer)))
+			days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 			begin = FuzzyTime(timer.begin)
 			if timer.repeated:
 				repeatedtext = []
@@ -97,9 +100,9 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 				repeatedtext = begin[0] # date
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
 			if screenwidth and screenwidth == 1920:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 225, 38, width-225, 35, 3, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 225, 38, width - 225, 35, 3, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, text))
 			else:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 26, width-150, 23, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 26, width - 150, 23, 1, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, text))
 			icon = None
 			if not processed:
 				if timer.state == TimerEntry.StateWaiting:
@@ -129,16 +132,16 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 			state = _("failed")
 			icon = self.iconFailed
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 39, 38, 225, 35, 3, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, state))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 39, 38, 225, 35, 3, RT_HALIGN_LEFT | RT_VALIGN_BOTTOM, state))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 26, 150, 23, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, state))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 26, 150, 23, 1, RT_HALIGN_LEFT | RT_VALIGN_BOTTOM, state))
 		if icon:
 			if screenwidth and screenwidth == 1920:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 3, 39, 30, 30, icon))
 			else:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 26, 20, 20, icon))
 		line = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height-2, width, 2, line))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height - 2, width, 2, line))
 
 		return res
 
@@ -187,4 +190,3 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 
 	def entryRemoved(self, idx):
 		self.l.entryRemoved(idx)
-

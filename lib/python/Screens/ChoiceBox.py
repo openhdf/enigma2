@@ -6,12 +6,15 @@ from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 import enigma
 
+
 class ChoiceBox(Screen):
-	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", windowTitle = None, allow_cancel = True, titlebartext = _("Choice Box")):
+	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", windowTitle=None, allow_cancel=True, titlebartext=_("Choice Box")):
 		if not windowTitle: #for compatibility
 			windowTitle = titlebartext
-		if not list: list = []
-		if not skin_name: skin_name = []
+		if not list:
+			list = []
+		if not skin_name:
+			skin_name = []
 		Screen.__init__(self, session)
 
 		self.allow_cancel = allow_cancel
@@ -32,9 +35,9 @@ class ChoiceBox(Screen):
 					while len(temptext) >= count:
 						if labeltext:
 							labeltext += '\n'
-						labeltext = labeltext + temptext[count-1]
+						labeltext = labeltext + temptext[count - 1]
 						count += 1
-						print 'count',count
+						print 'count', count
 					self["text"].setText(labeltext)
 				else:
 					self["text"] = Label(title)
@@ -45,7 +48,7 @@ class ChoiceBox(Screen):
 		self.list = []
 		self.summarylist = []
 		if keys is None:
-			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue", "text" ] + (len(list) - 10) * [""]
+			self.__keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue", "text"] + (len(list) - 10) * [""]
 		else:
 			self.__keys = keys + (len(list) - len(keys)) * [""]
 
@@ -53,13 +56,13 @@ class ChoiceBox(Screen):
 		pos = 0
 		for x in list:
 			strpos = str(self.__keys[pos])
-			self.list.append(ChoiceEntryComponent(key = strpos, text = x))
+			self.list.append(ChoiceEntryComponent(key=strpos, text=x))
 			if self.__keys[pos] != "":
 				self.keymap[self.__keys[pos]] = list[pos]
 			self.summarylist.append((self.__keys[pos], x[0]))
 			pos += 1
 		self["windowtitle"] = Label(_(windowTitle))
-		self["list"] = ChoiceList(list = self.list, selection = selection)
+		self["list"] = ChoiceList(list=self.list, selection=selection)
 		self["summary_list"] = StaticText()
 		self["summary_selection"] = StaticText()
 		self.updateSummary(selection)
@@ -103,18 +106,18 @@ class ChoiceBox(Screen):
 		if not self["text"].text:
 			# move list
 			textsize = (520, 0)
-			listsize = (520, itemheight*count)
+			listsize = (520, itemheight * count)
 			self["list"].instance.move(enigma.ePoint(0, 0))
 			self["list"].instance.resize(enigma.eSize(*listsize))
 		else:
 			textsize = self["text"].getSize()
 			if textsize[0] < textsize[1]:
-				textsize = (textsize[1],textsize[0]+10)
+				textsize = (textsize[1], textsize[0] + 10)
 			if textsize[0] > 520:
-				textsize = (textsize[0], textsize[1]+itemheight)
+				textsize = (textsize[0], textsize[1] + itemheight)
 			else:
-				textsize = (520, textsize[1]+itemheight)
-			listsize = (textsize[0], itemheight*count)
+				textsize = (520, textsize[1] + itemheight)
+			listsize = (textsize[0], itemheight * count)
 			# resize label
 			self["text"].instance.resize(enigma.eSize(*textsize))
 			self["text"].instance.move(enigma.ePoint(10, 10))
@@ -123,12 +126,12 @@ class ChoiceBox(Screen):
 			self["list"].instance.resize(enigma.eSize(*listsize))
 
 		wsizex = textsize[0]
-		wsizey = textsize[1]+listsize[1]
+		wsizey = textsize[1] + listsize[1]
 		wsize = (wsizex, wsizey)
 		self.instance.resize(enigma.eSize(*wsize))
 
 		# center window
-		self.instance.move(enigma.ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))
+		self.instance.move(enigma.ePoint((desktop_w - wsizex) / 2, (desktop_h - wsizey) / 2))
 
 	def left(self):
 		if len(self["list"].list) > 0:
@@ -205,11 +208,12 @@ class ChoiceBox(Screen):
 
 	def keyText(self):
 		self.goKey("text")
+
 	def updateSummary(self, curpos=0):
 		pos = 0
 		summarytext = ""
 		for entry in self.summarylist:
-			if curpos-2 < pos < curpos+5:
+			if curpos - 2 < pos < curpos + 5:
 				if pos == curpos:
 					summarytext += ">"
 					self["summary_selection"].setText(entry[1])

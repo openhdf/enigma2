@@ -7,11 +7,9 @@
 #######################################################################
 
 
-
 from Renderer import Renderer
 from enigma import eCanvas, eRect, gFont
 from skin import parseColor, parseFont
-
 
 
 class valioCAD(Renderer):
@@ -29,7 +27,7 @@ class valioCAD(Renderer):
 		if self.instance is None:
 			return
 		self.instance.clear(self.backgroundColor)
-		caidlist,newtxt = self.source.getCaidlist
+		caidlist, newtxt = self.source.getCaidlist
 		if caidlist is None:
 			return
 		self.draw(caidlist, newtxt)
@@ -43,11 +41,11 @@ class valioCAD(Renderer):
 					foregroundColor = self.emmColor
 				else:
 					foregroundColor = self.ecmColor
-				length = len(caidlist[key][0]) * (pointSize )
+				length = len(caidlist[key][0]) * (pointSize)
 				self.instance.writeText(eRect(offset, 0, length, pointSize), foregroundColor, self.backgroundColor, self.font, caidlist[key][0], 2)
 				offset = offset + length
 		foregroundColor = self.clGrey
-		length = len(newtxt) * (pointSize )
+		length = len(newtxt) * (pointSize)
 		self.instance.writeText(eRect(offset, 0, length, pointSize), foregroundColor, self.backgroundColor, self.font, newtxt, 0)
 
 	def changed(self, what):
@@ -55,7 +53,7 @@ class valioCAD(Renderer):
 
 	def applySkin(self, desktop, parent):
 
-		attribs = [ ]
+		attribs = []
 		from enigma import eSize
 
 		def parseSize(str):
@@ -65,7 +63,7 @@ class valioCAD(Renderer):
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "size":
 				self.instance.setSize(parseSize(value))
-				attribs.append((attrib,value))
+				attribs.append((attrib, value))
 			elif attrib == "emmColor":
 				self.emmColor = parseColor(value)
 			elif attrib == "ecmColor":
@@ -73,12 +71,12 @@ class valioCAD(Renderer):
 			elif attrib == "fgColor":
 				self.clGrey = parseColor(value)
 			elif attrib == "font":
-				self.font = parseFont(value, ((1,1),(1,1)))
+				self.font = parseFont(value, ((1, 1), (1, 1)))
 			elif attrib == "backgroundColor":
 				self.backgroundColor = parseColor(value)
 				self.instance.clear(self.backgroundColor)
-				attribs.append((attrib,value))
+				attribs.append((attrib, value))
 			else:
-				attribs.append((attrib,value))
+				attribs.append((attrib, value))
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)

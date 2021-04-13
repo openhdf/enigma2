@@ -13,6 +13,7 @@ from Screens.InfoBar import InfoBar
 
 MYCHANSEL = InfoBar.instance.servicelist
 
+
 class valioChannel(Renderer, VariableText):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -48,5 +49,4 @@ class valioChannel(Renderer, VariableText):
 			rx = MYCHANSEL.getBouquetNumOffset(myRoot)
 			name = info.getName()
 			name.replace('\xc2\x86', '').replace('\xc2\x87', '')
-			self.text = str(chx + rx)+". "+name
-
+			self.text = str(chx + rx) + ". " + name

@@ -17,7 +17,7 @@ from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.ChannelSelection import ChannelSelection
 from Screens.MessageBox import MessageBox
-from  Screens.InfoBarGenerics import InfoBarPlugins
+from Screens.InfoBarGenerics import InfoBarPlugins
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
 from Components.config import config, ConfigSubsection, ConfigYesNo
@@ -38,11 +38,12 @@ baserunPlugin = None
 StartOnlyOneTime = False
 line = "------------------------------------------------------------------"
 
+
 def autostart(reason, **kwargs):
 	if reason == 0:
 		if config.plugins.QuickButton.enable.value:
 			print line
-			print "[MultiQuickButton] enabled: ",config.plugins.QuickButton.enable.value
+			print "[MultiQuickButton] enabled: ", config.plugins.QuickButton.enable.value
 			checkMQBKeys()
 			print line
 			global baseInfoBarPlugins__init__, baserunPlugin
@@ -67,21 +68,22 @@ def autostart(reason, **kwargs):
 		print "[MultiQuickButton] checking keymap.xml..."
 		rePatchKeymap()
 
+
 def checkMQBKeys():
 	mqbkeymapfile = "/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/keymap.xml"
 	mqbkeymap = open(mqbkeymapfile, "r")
 	text = mqbkeymap.read()
 	mqbkeymap.close()
-	ptskeys = [	"<key id=\"KEY_PLAY\" mapto=\"play\" flags=\"m\" />", \
-			"<key id=\"KEY_STOP\" mapto=\"stop\" flags=\"b\" />", \
-			"<key id=\"KEY_PAUSE\" mapto=\"pause\" flags=\"m\" />", \
-			"<key id=\"KEY_REWIND\" mapto=\"rewind\" flags=\"b\" />", \
-			"<key id=\"KEY_FASTFORWARD\" mapto=\"fastforward\" flags=\"b\" />", \
-			"<key id=\"KEY_PREVIOUSSONG\" mapto=\"rewind\" flags=\"b\" />", \
-			"<key id=\"KEY_NEXTSONG\" mapto=\"fastforward\" flags=\"b\" />" ]
+	ptskeys = [	"<key id=\"KEY_PLAY\" mapto=\"play\" flags=\"m\" />",
+			"<key id=\"KEY_STOP\" mapto=\"stop\" flags=\"b\" />",
+			"<key id=\"KEY_PAUSE\" mapto=\"pause\" flags=\"m\" />",
+			"<key id=\"KEY_REWIND\" mapto=\"rewind\" flags=\"b\" />",
+			"<key id=\"KEY_FASTFORWARD\" mapto=\"fastforward\" flags=\"b\" />",
+			"<key id=\"KEY_PREVIOUSSONG\" mapto=\"rewind\" flags=\"b\" />",
+			"<key id=\"KEY_NEXTSONG\" mapto=\"fastforward\" flags=\"b\" />"]
 
-	keys = [	"<key id=\"KEY_OK\" mapto=\"ok\" flags=\"m\" />", \
-			"<key id=\"KEY_EXIT\" mapto=\"exit\" flags=\"m\" />" ]
+	keys = [	"<key id=\"KEY_OK\" mapto=\"ok\" flags=\"m\" />",
+			"<key id=\"KEY_EXIT\" mapto=\"exit\" flags=\"m\" />"]
 
 	if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/PermanentTimeshift"):
 		for ptskey in ptskeys:
@@ -111,23 +113,25 @@ def checkMQBKeys():
 	keymapparser.removeKeymap(mqbkeymapfile)
 	keymapparser.readKeymap(mqbkeymapfile)
 
+
 def rePatchKeymap():
 	globalkeymapfile = "/usr/share/enigma2/keymap.xml"
 	globalkeymap = open(globalkeymapfile, "r")
 	text = globalkeymap.read()
 	globalkeymap.close()
-	globalkeys = [ 	"<key id=\"KEY_YELLOW\" mapto=\"timeshiftStart\" flags=\"m\" />", \
-			"<key id=\"KEY_YELLOW\" mapto=\"timeshiftActivateEndAndPause\" flags=\"m\" />", \
-			"<key id=\"KEY_VIDEO\" mapto=\"showMovies\" flags=\"m\" />", \
-			"<key id=\"KEY_RADIO\" mapto=\"showRadio\" flags=\"m\" />", \
-			"<key id=\"KEY_TEXT\" mapto=\"startTeletext\" flags=\"m\" />", \
-			"<key id=\"KEY_HELP\" mapto=\"displayHelp\" flags=\"m\" />" ]
+	globalkeys = ["<key id=\"KEY_YELLOW\" mapto=\"timeshiftStart\" flags=\"m\" />",
+			"<key id=\"KEY_YELLOW\" mapto=\"timeshiftActivateEndAndPause\" flags=\"m\" />",
+			"<key id=\"KEY_VIDEO\" mapto=\"showMovies\" flags=\"m\" />",
+			"<key id=\"KEY_RADIO\" mapto=\"showRadio\" flags=\"m\" />",
+			"<key id=\"KEY_TEXT\" mapto=\"startTeletext\" flags=\"m\" />",
+			"<key id=\"KEY_HELP\" mapto=\"displayHelp\" flags=\"m\" />"]
 	for globalkey in globalkeys:
 		globalkeyreplace = globalkey.replace("\"m\"", "\"b\"")
 		text = text.replace(globalkey, globalkeyreplace)
 	globalkeymap = open(globalkeymapfile, "w")
 	globalkeymap.write(text)
 	globalkeymap.close()
+
 
 def InfoBarPlugins__init__(self):
 	global StartOnlyOneTime
@@ -215,8 +219,10 @@ def InfoBarPlugins__init__(self):
 		InfoBarPlugins.quickSelectGlobal = None
 	baseInfoBarPlugins__init__(self)
 
+
 def runPlugin(self, plugin):
-	baserunPlugin(self,plugin)
+	baserunPlugin(self, plugin)
+
 
 def checkQuickSel(self, path):
 	list = None
@@ -226,25 +232,27 @@ def checkQuickSel(self, path):
 		db = QuickButtonXML(menu)
 		list = db.getSelection()
 	except Exception, e:
-		self.session.open(MessageBox,("XML " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
-		print "[MultiQuickbutton] ERROR: ",e
+		self.session.open(MessageBox, ("XML " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
+		print "[MultiQuickbutton] ERROR: ", e
 
 	if list <> None:
 		if len(list) == 1:
 			self.execQuick(list[0])
 		elif len(list) > 1:
-			self.session.openWithCallback(self.askForQuickList,ChoiceBox,"Multi Quickbutton Menu %s" % (button), self.getQuickList(list))
+			self.session.openWithCallback(self.askForQuickList, ChoiceBox, "Multi Quickbutton Menu %s" % (button), self.getQuickList(list))
 		else:
 			if os.path.exists(path):
 				self.session.open(QuickButton, path, (_('Quickbutton: Key ') + button))
 			else:
-				self.session.open(MessageBox,(_("file %s not found!") % (path)),  MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, (_("file %s not found!") % (path)), MessageBox.TYPE_ERROR)
+
 
 def askForQuickList(self, res):
 	if res is None:
 		pass
 	else:
 		self.execQuick(res)
+
 
 def getQuickList(self, list):
 	quickList = []
@@ -254,7 +262,8 @@ def getQuickList(self, list):
 
 	return quickList
 
-def execQuick(self,entry):
+
+def execQuick(self, entry):
 	if entry <> None:
 		if entry[3] <> "":
 			try:
@@ -265,14 +274,15 @@ def execQuick(self,entry):
 						screen = "self.session.open(" + entry[4] + ")"
 						exec(screen)
 					except Exception, e:
-						self.session.open(MessageBox,("Screen " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
+						self.session.open(MessageBox, ("Screen " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
 			except Exception, e:
-				self.session.open(MessageBox,("Module " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, ("Module " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
 		if entry[5] <> "":
 			try:
 				exec(entry[5])
 			except Exception, e:
-				self.session.open(MessageBox,("Code " + _("Error") + ": %s" % (e)),  MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, ("Code " + _("Error") + ": %s" % (e)), MessageBox.TYPE_ERROR)
+
 
 def quickSelectGlobal(self, key):
 	if key:
@@ -280,16 +290,17 @@ def quickSelectGlobal(self, key):
 		if os.path.exists(path):
 			self.checkQuickSel(path)
 		else:
-			self.session.open(MessageBox,("file %s not found!" % (path)),  MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, ("file %s not found!" % (path)), MessageBox.TYPE_ERROR)
+
 
 class MQBActionMap(ActionMap):
 	def action(self, contexts, action):
-		quickSelection = ("red","red_long","green","green_long","yellow","yellow_long","blue","blue_long","pvr","pvr_long","radio","radio_long", \
-				  "text","text_long","epg","epg_long","help","help_long","info","info_long","end","end_long","home","home_long","cross_up","cross_down","cross_left", \
-				  "cross_right","previous","next","channelup","channeldown","f1","f2","f3","audio","exit","ok","play","pause","rewind","fastforward","stop","tv", \
-				  "console","f4","web","mail","m1","m2","fav", "fav_long", "screen", "screen_long", "history", "history_long", \
-				  "subtitle","subtitle_long","filelist","filelist_long","playlist","playlist_long","timer","timer_long", \
-				  "timeshift","timeshift_long","mark","mark_long","search","search_long","slow","slow_long")
+		quickSelection = ("red", "red_long", "green", "green_long", "yellow", "yellow_long", "blue", "blue_long", "pvr", "pvr_long", "radio", "radio_long",
+				  "text", "text_long", "epg", "epg_long", "help", "help_long", "info", "info_long", "end", "end_long", "home", "home_long", "cross_up", "cross_down", "cross_left",
+				  "cross_right", "previous", "next", "channelup", "channeldown", "f1", "f2", "f3", "audio", "exit", "ok", "play", "pause", "rewind", "fastforward", "stop", "tv",
+				  "console", "f4", "web", "mail", "m1", "m2", "fav", "fav_long", "screen", "screen_long", "history", "history_long",
+				  "subtitle", "subtitle_long", "filelist", "filelist_long", "playlist", "playlist_long", "timer", "timer_long",
+				  "timeshift", "timeshift_long", "mark", "mark_long", "search", "search_long", "slow", "slow_long")
 		if (action in quickSelection and self.actions.has_key(action)):
 			res = self.actions[action](action)
 			if res is not None:
@@ -298,45 +309,48 @@ class MQBActionMap(ActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
-def main(session,**kwargs):
+
+def main(session, **kwargs):
 	session.open(MultiQuickButton)
+
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
 		return [(_("Multi Quickbutton"), main, "multi_quick", 55)]
 	return []
 
+
 def Plugins(**kwargs):
 	if config.plugins.QuickButton.mainmenu.value:
 		return [PluginDescriptor(
-				where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART],
-				fnc = autostart),
+				where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART],
+				fnc=autostart),
 				PluginDescriptor(
 				name="Multi Quickbutton",
 				description="Multi Quickbutton for Keyboard and RC SCP Version",
-				where = PluginDescriptor.WHERE_PLUGINMENU,
+				where=PluginDescriptor.WHERE_PLUGINMENU,
 				icon="multiquickbutton.png",
 				fnc=main),
 				PluginDescriptor(
 				name="Multi Quickbutton",
-				where = PluginDescriptor.WHERE_EXTENSIONSMENU,
+				where=PluginDescriptor.WHERE_EXTENSIONSMENU,
 				fnc=main),
 				PluginDescriptor(
 				name="Multi Quickbutton",
 				description="Multi Quickbutton for Keyboard and RC SCP Version",
-				where = PluginDescriptor.WHERE_MENU,
+				where=PluginDescriptor.WHERE_MENU,
 				fnc=menu)]
 	else:
 		return [PluginDescriptor(
-				where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART],
-				fnc = autostart),
+				where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART],
+				fnc=autostart),
 				PluginDescriptor(
 				name="Multi Quickbutton",
 				description="Multi Quickbutton for Keyboard and RC SCP Version",
-				where = PluginDescriptor.WHERE_PLUGINMENU,
+				where=PluginDescriptor.WHERE_PLUGINMENU,
 				icon="multiquickbutton.png",
 				fnc=main),
 				PluginDescriptor(
 				name="Multi Quickbutton",
-				where = PluginDescriptor.WHERE_EXTENSIONSMENU,
+				where=PluginDescriptor.WHERE_EXTENSIONSMENU,
 				fnc=main)]

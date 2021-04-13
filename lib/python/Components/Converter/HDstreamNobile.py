@@ -2,12 +2,14 @@ from enigma import iServiceInformation, iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 
+
 class HDstreamNobile(Converter, object):
 	IS_HD = 0
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
-		self.type = {"showHDicon": self.IS_HD,}[type]
-		self.hook_elements = {self.IS_HD: [iPlayableService.evVideoSizeChanged],}[self.type]
+		self.type = {"showHDicon": self.IS_HD, }[type]
+		self.hook_elements = {self.IS_HD: [iPlayableService.evVideoSizeChanged], }[self.type]
 
 	@cached
 	def getBoolean(self):
@@ -28,7 +30,3 @@ class HDstreamNobile(Converter, object):
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] in self.hook_elements:
 			Converter.changed(self, what)
-
-
-
-
