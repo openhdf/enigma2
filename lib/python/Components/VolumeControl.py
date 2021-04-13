@@ -11,9 +11,9 @@ class VolumeControl:
 	"""Volume control, handles volUp, volDown, volMute actions and display a corresponding dialog"""
 	def __init__(self, session):
 		global globalActionMap
-		globalActionMap.actions["volumeUp"]=self.volUp
-		globalActionMap.actions["volumeDown"]=self.volDown
-		globalActionMap.actions["volumeMute"]=self.volMute
+		globalActionMap.actions["volumeUp"] = self.volUp
+		globalActionMap.actions["volumeDown"] = self.volDown
+		globalActionMap.actions["volumeMute"] = self.volMute
 
 		assert not VolumeControl.instance, "only one VolumeControl instance is allowed!"
 		VolumeControl.instance = self
@@ -59,7 +59,7 @@ class VolumeControl:
 		elif vol < 30:
 			if step > 4:
 				step = 4
-		self.setVolume(vol+step)
+		self.setVolume(vol + step)
 
 	def volDown(self):
 		vol = self.volctrl.getVolume()
@@ -75,7 +75,7 @@ class VolumeControl:
 		elif vol <= 30:
 			if step > 4:
 				step = 4
-		self.setVolume(vol-step)
+		self.setVolume(vol - step)
 
 	def stepVolume(self):
 		if self.stepVolTimer.isActive():

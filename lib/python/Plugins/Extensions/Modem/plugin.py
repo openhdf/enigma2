@@ -12,8 +12,8 @@ def getTelephone():
 	if f:
 		for line in f.readlines():
 			if line.find('connect') == 0:
-				line = line[line.find(' ')+1:]
-				line = line[line.find(' ')+1:]
+				line = line[line.find(' ') + 1:]
+				line = line[line.find(' ') + 1:]
 				line = line[:line.find('"')]
 				return line
 	return ""
@@ -26,11 +26,11 @@ def setOptions(tel, user):
 		for line in lines:
 			if line.find('connect') == 0:
 				p = line.find(' ')
-				p = line.find(' ', p+1)
-				line = line[:p+1]
-				f.write(line+tel+'"\n')
+				p = line.find(' ', p + 1)
+				line = line[:p + 1]
+				f.write(line + tel + '"\n')
 			elif line.find('user') == 0:
-				f.write('user '+user+'\n')
+				f.write('user ' + user + '\n')
 			else:
 				f.write(line)
 
@@ -54,7 +54,7 @@ def setSecretString(secret):
 			if line[0] == '#' or line.find('*') == -1:
 				f.write(line)
 				continue
-			f.write(secret+'\n')
+			f.write(secret + '\n')
 
 from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
@@ -78,7 +78,7 @@ def pppdClosed(ret):
 	print "modem disconnected", ret
 	if gateway:
 		#FIXMEEE... hardcoded for little endian!!
-		system("route add default gw %d.%d.%d.%d" %(gateway&0xFF, (gateway>>8)&0xFF, (gateway>>16)&0xFF, (gateway>>24)&0xFF))
+		system("route add default gw %d.%d.%d.%d" % (gateway & 0xFF, (gateway >> 8) & 0xFF, (gateway >> 16) & 0xFF, (gateway >> 24) & 0xFF))
 
 connected = False
 conn = eConsoleAppContainer()
@@ -104,7 +104,7 @@ class ModemSetup(Screen):
 		self.skin = ModemSetup.skin
 		secret = getSecretString()
 		user = secret[:secret.find('*')]
-		password = secret[secret.find('*')+1:]
+		password = secret[secret.find('*') + 1:]
 		self.username = ConfigText(user, fixed_size=False)
 		self.password = ConfigPassword(password, fixed_size=False)
 		self.phone = ConfigText(getTelephone(), fixed_size=False)
@@ -251,7 +251,7 @@ class ModemSetup(Screen):
 			tmp += "Connected :)\n"
 			self["state"].setText(tmp)
 			self.red_function = DISCONNECT
-			connected=True
+			connected = True
 		if text.find("Connect script failed") != -1:
 			tmp = self["state"].getText()
 			tmp += "FAILED\n"

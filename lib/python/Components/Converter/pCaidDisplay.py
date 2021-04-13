@@ -156,7 +156,7 @@ class pCaidDisplay(Poll, Converter, object):
 				for line in ecm:
 					x = line.lower().find("msec")
 					if x != -1:
-						info["ecm time"] = line[0:x+4]
+						info["ecm time"] = line[0:x + 4]
 					else:
 						item = line.split(":", 1)
 						if len(item) > 1:
@@ -167,7 +167,7 @@ class pCaidDisplay(Poll, Converter, object):
 								if x != -1:
 									y = line.find(",")
 									if y != -1:
-										info["caid"] = line[x+5:y]
+										info["caid"] = line[x + 5:y]
 
 		return info
 

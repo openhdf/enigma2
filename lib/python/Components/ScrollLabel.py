@@ -25,23 +25,23 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 				if "transparent" in attrib or "backgroundColor" in attrib:
 					widget_attribs.append((attrib,value))
 			skin.applyAllAttributes(self.instance, desktop, widget_attribs, parent.scale)
-			skin.applyAllAttributes(self.scrollbar, desktop, scrollbar_attribs+widget_attribs, parent.scale)
+			skin.applyAllAttributes(self.scrollbar, desktop, scrollbar_attribs + widget_attribs, parent.scale)
 			ret = True
 		s = self.long_text.size()
 		self.instance.move(self.long_text.position())
-		lineheight=fontRenderClass.getInstance().getLineHeight(self.long_text.getFont())
+		lineheight = fontRenderClass.getInstance().getLineHeight(self.long_text.getFont())
 		if not lineheight:
 			lineheight = 30 # assume a random lineheight if nothing is visible
 		lines = int(s.height() / lineheight)
 		self.pageHeight = int(lines * lineheight)
-		self.instance.resize(eSize(s.width(), self.pageHeight+ int(lineheight/6)))
-		self.scrollbar.move(ePoint(s.width()-10,0))
-		self.scrollbar.resize(eSize(10,self.pageHeight+ int(lineheight/6)))
+		self.instance.resize(eSize(s.width(), self.pageHeight + int(lineheight / 6)))
+		self.scrollbar.move(ePoint(s.width() - 10,0))
+		self.scrollbar.resize(eSize(10,self.pageHeight + int(lineheight / 6)))
 		self.scrollbar.setOrientation(eSlider.orVertical)
 		self.scrollbar.setRange(0,100)
 		self.scrollbar.setBorderWidth(1)
 		self.long_text.move(ePoint(0,0))
-		self.long_text.resize(eSize(s.width()-30, self.pageHeight*40))
+		self.long_text.resize(eSize(s.width() - 30, self.pageHeight * 40))
 		self.setText(self.message)
 		return ret
 
@@ -50,9 +50,9 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		if self.long_text is not None and self.pageHeight:
 			self.long_text.move(ePoint(0,0))
 			self.long_text.setText(self.message)
-			text_height=self.long_text.calculateSize().height()
-			total=self.pageHeight
-			pages=1
+			text_height = self.long_text.calculateSize().height()
+			total = self.pageHeight
+			pages = 1
 			while total < text_height:
 				total += self.pageHeight
 				pages += 1
@@ -68,15 +68,15 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 
 	def appendText(self, text):
 		old_text = self.getText()
-		if len(str(old_text)) >0:
+		if len(str(old_text)) > 0:
 			self.message += text
 		else:
 			self.message = text
 		if self.long_text is not None:
 			self.long_text.setText(self.message)
-			text_height=self.long_text.calculateSize().height()
-			total=self.pageHeight
-			pages=1
+			text_height = self.long_text.calculateSize().height()
+			total = self.pageHeight
+			pages = 1
 			while total < text_height:
 				total += self.pageHeight
 				pages += 1
@@ -93,7 +93,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 	def updateScrollbar(self):
 		start = -self.long_text.position().y() * 100 / self.total
 		vis = self.pageHeight * 100 / self.total
-		self.scrollbar.setStartEnd(start, start+vis)
+		self.scrollbar.setStartEnd(start, start + vis)
 
 	def getText(self):
 		return self.message
@@ -118,7 +118,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 	def pageDown(self):
 		if self.total is not None:
 			curPos = self.long_text.position()
-			if self.total-self.pageHeight >= abs(curPos.y() - self.pageHeight):
+			if self.total - self.pageHeight >= abs(curPos.y() - self.pageHeight):
 				self.long_text.move(ePoint(curPos.x(), curPos.y() - self.pageHeight))
 				self.updateScrollbar()
 

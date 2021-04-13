@@ -69,7 +69,7 @@ class SoftwareUpdateChanges(Screen):
 	def getlog(self):
 		global ocram
 		try:
-			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersion() + '/' + getBoxType() + '/'  + self.logtype + '-git.log'
+			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersion() + '/' + getBoxType() + '/' + self.logtype + '-git.log'
 			sourcefile,headers = urllib.urlretrieve(sourcefile)
 			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
@@ -82,7 +82,7 @@ class SoftwareUpdateChanges(Screen):
 			releasenotes = releasenotes.split('\n\n')
 			ver = -1
 			releasever = ""
-			viewrelease=""
+			viewrelease = ""
 			while not releasever.isdigit():
 				ver += 1
 				releasever = releasenotes[int(ver)].split('\n')
@@ -94,13 +94,13 @@ class SoftwareUpdateChanges(Screen):
 			if self.logtype == 'oe':
 				imagever = getImageBuild()
 			else:
-				imagever = int(getImageBuild())+865
+				imagever = int(getImageBuild()) + 865
 			while int(releasever) > int(imagever):
 				if ocram:
-					viewrelease += releasenotes[int(ver)]+'\n'+ocram+'\n'
+					viewrelease += releasenotes[int(ver)] + '\n' + ocram + '\n'
 					ocram = ""
 				else:
-					viewrelease += releasenotes[int(ver)]+'\n\n'
+					viewrelease += releasenotes[int(ver)] + '\n\n'
 				ver += 1
 				releasever = releasenotes[int(ver)].split('\n')
 				releasever = releasever[0].split(' ')
@@ -111,7 +111,7 @@ class SoftwareUpdateChanges(Screen):
 			self["text"].setText(viewrelease)
 			summarytext = viewrelease.split(':\n')
 			try:
-				self['title_summary'].setText(summarytext[0]+':')
+				self['title_summary'].setText(summarytext[0] + ':')
 				self['text_summary'].setText(summarytext[1])
 			except:
 				self['title_summary'].setText("")
@@ -272,7 +272,7 @@ class UpdatePlugin(Screen):
 						(_("Upgrade and reboot system"), "cold")]
 					if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/BackupManager.pyo"):
 						if not config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value:
-							choices.append((_("Perform a settings backup,") + '\n\t' + _("making a backup before updating") + '\n\t' +_("is strongly advised."), "backup"))
+							choices.append((_("Perform a settings backup,") + '\n\t' + _("making a backup before updating") + '\n\t' + _("is strongly advised."), "backup"))
 						if not config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value:
 							choices.append((_("Perform a full image backup"), "imagebackup"))
 					choices.append((_("Update channel list only"), "channels"))
@@ -307,7 +307,7 @@ class UpdatePlugin(Screen):
 					error = _("No updates available. Please try again later.")
 				if self.updating:
 					error = _("Update failed. Your %s %s does not have a working internet connection.") % (getMachineBrand(), getMachineName())
-				self.status.setText(_("Error") +  " - " + error)
+				self.status.setText(_("Error") + " - " + error)
 		elif event == IpkgComponent.EVENT_LISTITEM:
 			if 'enigma2-plugin-settings-' in param[0] and self.channellist_only > 0:
 				self.channellist_name = param[0]
@@ -402,14 +402,14 @@ class UpdatePlugin(Screen):
 		from Screens.TaskView import JobView
 		Components.Task.job_manager.in_background = False
 		if not self.autobackuprunning:
-			self.session.openWithCallback(self.startActualUpgrade(("menu", "menu")), JobView, job,  cancelable=False, backgroundable=False, afterEventChangeable=False, afterEvent="close")
+			self.session.openWithCallback(self.startActualUpgrade(("menu", "menu")), JobView, job, cancelable=False, backgroundable=False, afterEventChangeable=False, afterEvent="close")
 		else:
-			self.session.openWithCallback(self.doAutoBackup, JobView, job,  cancelable=False, backgroundable=False, afterEventChangeable=False, afterEvent="close")
+			self.session.openWithCallback(self.doAutoBackup, JobView, job, cancelable=False, backgroundable=False, afterEventChangeable=False, afterEvent="close")
 
 	def exit(self):
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0 and self.channellist_only == 0:
-				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your %s %s") % (getMachineBrand(), getMachineName()))
+				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your %s %s") % (getMachineBrand(), getMachineName()))
 			else:
 				self.close()
 		else:

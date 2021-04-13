@@ -31,7 +31,7 @@ class QuickButtonXML(object):
 			if node.nodeType == Node.ELEMENT_NODE:
 				for node2 in node.childNodes:
 					if node2.nodeType == Node.ELEMENT_NODE:
-						name = screen = code = module = sel =""
+						name = screen = code = module = sel = ""
 						for node3 in node2.childNodes:
 							if node2.nodeType == Node.ELEMENT_NODE:
 								for node4 in node3.childNodes:
@@ -51,7 +51,7 @@ class QuickButtonXML(object):
 						category = node.nodeName.encode('utf-8')
 						mnulist.append((name, sel, category, module, screen, code))
 				mnulist.append(("--", "", "", "", "", ""))
-		return mnulist[:(len(mnulist)-1)]
+		return mnulist[:(len(mnulist) - 1)]
 	def getMenu(self):
 		return self.list
 
@@ -87,7 +87,7 @@ class QuickButtonXML(object):
 
 	def addPluginEntry(self, name):
 		if name <> None:
-			code = "\nfor plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):\n	if plugin.name == _(\""+ name + "\"):\n		runPlugin(self, plugin)\n		break\n"
+			code = "\nfor plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):\n	if plugin.name == _(\"" + name + "\"):\n		runPlugin(self, plugin)\n		break\n"
 		else:
 			return ""
 		idx = 0
@@ -100,7 +100,7 @@ class QuickButtonXML(object):
 				else:
 					pass
 			if idx > 0:
-				idx +=1
+				idx += 1
 			else:
 				pass
 			tmp = self.list[:idx]
@@ -143,7 +143,7 @@ class QuickButtonXML(object):
 				else:
 					pass
 			if idx > 0:
-				idx +=1
+				idx += 1
 			else:
 				pass
 			tmp = self.list[:idx]

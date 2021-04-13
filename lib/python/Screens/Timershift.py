@@ -123,7 +123,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			locations = []
 			for validdevice in candidates:
 				locations.append(validdevice[1])
-			if Components.Harddisk.findMountPoint(os.path.realpath(configele.value))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(configele.value)) in locations:
+			if Components.Harddisk.findMountPoint(os.path.realpath(configele.value)) + '/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(configele.value)) in locations:
 				if fileExists(configele.value, "w"):
 					configele.last_value = configele.value
 					return True
@@ -132,7 +132,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 					configele.value = configele.last_value
 					self.session.open(
 						MessageBox,
-						_("The directory %s is not writable.\nMake sure you select a writable directory instead.")%dir,
+						_("The directory %s is not writable.\nMake sure you select a writable directory instead.") % dir,
 						type=MessageBox.TYPE_ERROR
 						)
 					return False
@@ -141,7 +141,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				configele.value = configele.last_value
 				self.session.open(
 					MessageBox,
-					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%dir,
+					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % dir,
 					type=MessageBox.TYPE_ERROR
 					)
 				return False
@@ -150,7 +150,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			configele.value = configele.last_value
 			self.session.open(
 				MessageBox,
-				_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%dir,
+				_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % dir,
 				type=MessageBox.TYPE_ERROR
 				)
 			return False
@@ -219,7 +219,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				locations = []
 				for validdevice in candidates:
 					locations.append(validdevice[1])
-				if Components.Harddisk.findMountPoint(os.path.realpath(res))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(res)) in locations:
+				if Components.Harddisk.findMountPoint(os.path.realpath(res)) + '/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(res)) in locations:
 					self.entrydirname.value = res
 					if config.usage.allowed_timeshift_paths.value != self.lasttimeshiftdirs:
 						tmp = config.usage.allowed_timeshift_paths.value
@@ -240,13 +240,13 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				else:
 					self.session.open(
 						MessageBox,
-						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%res,
+						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % res,
 						type=MessageBox.TYPE_ERROR
 						)
 			else:
 				self.session.open(
 					MessageBox,
-					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%res,
+					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % res,
 					type=MessageBox.TYPE_ERROR
 					)
 
@@ -270,7 +270,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			locations = []
 			for validdevice in candidates:
 				locations.append(validdevice[1])
-			if Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value))+'/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value)) in locations:
+			if Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value)) + '/' in locations or Components.Harddisk.findMountPoint(os.path.realpath(config.usage.timeshift_path.value)) in locations:
 				config.usage.timeshift_path.value = self.timeshift_dirname.value
 				config.usage.timeshift_path.save()
 				self.saveAll()
@@ -279,7 +279,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				if int(config.timeshift.startdelay.value) > 0:
 					self.session.open(
 						MessageBox,
-						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
+						_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % config.usage.timeshift_path.value,
 						type=MessageBox.TYPE_ERROR
 						)
 				else:
@@ -290,7 +290,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			if int(config.timeshift.startdelay.value) > 0:
 				self.session.open(
 					MessageBox,
-					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
+					_("The directory %s is not a EXT2, EXT3, EXT4 or NFS partition.\nMake sure you select a valid partition type.") % config.usage.timeshift_path.value,
 					type=MessageBox.TYPE_ERROR
 					)
 			else:

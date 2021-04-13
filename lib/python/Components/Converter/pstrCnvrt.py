@@ -42,7 +42,7 @@ class pstrCnvrt(Converter, object):
 					else:
 						self.evntNm = re.sub('\s+', '+', self.evnt)
 					self.evntNmPstr = self.evntNm + ".jpg"
-					if not os.path.exists(posterpath + "poster/%s.jpg"%(self.evntNm)):
+					if not os.path.exists(posterpath + "poster/%s.jpg" % (self.evntNm)):
 						ses_ep = self.sessionEpisode(event)
 						if ses_ep != "" and len(ses_ep) > 0:
 							self.srch = "tv"
@@ -59,13 +59,13 @@ class pstrCnvrt(Converter, object):
 	text = property(getText)
 	
 	def searchPoster(self):
-		url_json = "https://api.themoviedb.org/3/search/%s?api_key=3c3efcf47c3577558812bb9d64019d65&query=%s"%(self.srch, self.evntNm)
+		url_json = "https://api.themoviedb.org/3/search/%s?api_key=3c3efcf47c3577558812bb9d64019d65&query=%s" % (self.srch, self.evntNm)
 		jp = json.load(urllib2.urlopen(url_json))
 
 		imgP = (jp['results'][0]['poster_path'])
-		url_poster = "https://image.tmdb.org/t/p/w185_and_h278_bestv2%s"%(imgP)
+		url_poster = "https://image.tmdb.org/t/p/w185_and_h278_bestv2%s" % (imgP)
 		#url_poster = "https://image.tmdb.org/t/p/w300_and_h450_bestv2%s"%(imgP)
-		dwn_poster = posterpath + "poster/%s.jpg"%(self.evntNm)
+		dwn_poster = posterpath + "poster/%s.jpg" % (self.evntNm)
 		if not os.path.exists(dwn_poster):
 			with open(dwn_poster,'wb') as f:
 				f.write(urllib2.urlopen(url_poster).read())
@@ -79,7 +79,7 @@ class pstrCnvrt(Converter, object):
 			seg = re.search(i, fd)
 			if seg:
 				if re.search("Episodio",i):
-					return "S"+seg.group(2).zfill(2)+"E"+seg.group(1).zfill(2)
+					return "S" + seg.group(2).zfill(2) + "E" + seg.group(1).zfill(2)
 				else:
-					return "S"+seg.group(1).zfill(2)+"E"+seg.group(2).zfill(2)
+					return "S" + seg.group(1).zfill(2) + "E" + seg.group(2).zfill(2)
 		return ""

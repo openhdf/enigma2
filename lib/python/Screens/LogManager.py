@@ -127,7 +127,7 @@ class LogManagerPoller:
 
 	def JobTrash(self):
 		ctimeLimit = time() - (config.crash.daysloglimit.value * 3600 * 24)
-		allowedBytes = 1024*1024 * int(config.crash.sizeloglimit.value)
+		allowedBytes = 1024 * 1024 * int(config.crash.sizeloglimit.value)
 
 		mounts = []
 		matches = []
@@ -175,7 +175,7 @@ class LogManagerPoller:
 								candidates.append((st.st_mtime, fn, st.st_size))
 								size += st.st_size
 						except Exception, e:
-							print "[LogManager] Failed to stat %s:"% name, e
+							print "[LogManager] Failed to stat %s:" % name, e
 					# Remove empty directories if possible
 					for name in dirs:
 						try:
@@ -196,7 +196,7 @@ class LogManagerPoller:
 		if (seconds_since_0330am <= 0):
 			seconds_since_0330am += 86400
 		if (seconds_since_0330am > 43200):
-			self.TrashTimer.startLongTimer(int(86400-seconds_since_0330am)) #at 03:30 AM
+			self.TrashTimer.startLongTimer(int(86400 - seconds_since_0330am)) #at 03:30 AM
 		else:
 			self.TrashTimer.startLongTimer(43200) #twice a day
 
@@ -503,7 +503,7 @@ class LogManagerViewLog(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(selected)
 		self.logfile = config.crash.debug_path.value + selected
-		self.log=[]
+		self.log = []
 		self["list"] = MenuList(self.log)
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
 		{
@@ -527,24 +527,24 @@ class LogManagerViewLog(Screen):
 			f = 1.5
 		else:
 			f = 3
-		font = gFont("Console", int(16*f))
+		font = gFont("Console", int(16 * f))
 		if not int(fontRenderClass.getInstance().getLineHeight(font)):
-			font = gFont("Regular", int(16*f))
+			font = gFont("Regular", int(16 * f))
 		self["list"].instance.setFont(font)
 		fontwidth = getTextBoundarySize(self.instance, font, self["list"].instance.size(), _(" ")).width()
 		listwidth = int(self["list"].instance.size().width() / fontwidth) - 2
 		if path.exists(self.logfile):
 			for line in file(self.logfile).readlines():
-				line = line.replace('\t',' '*9)
+				line = line.replace('\t',' ' * 9)
 				if len(line) > listwidth:
 					pos = 0
 					offset = 0
 					readyline = True
 					while readyline:
-						a = " " * offset + line[pos:pos+listwidth-offset]
+						a = " " * offset + line[pos:pos + listwidth - offset]
 						self.log.append(a)
-						if len(line[pos+listwidth-offset:]):
-							pos += listwidth-offset
+						if len(line[pos + listwidth - offset:]):
+							pos += listwidth - offset
 							offset = 19
 						else:
 							readyline = False
@@ -558,7 +558,7 @@ class LogManagerViewLog(Screen):
 		self["list"].moveToIndex(0)
 
 	def gotoLastPage(self):
-		self["list"].moveToIndex(len(self.log)-1)
+		self["list"].moveToIndex(len(self.log) - 1)
 
 	def cancel(self):
 		self.close()
@@ -629,7 +629,7 @@ class LogManagerFb(Screen):
 		self.setTitle(self.SOURCELIST.getCurrentDirectory())
 
 	def onFileAction(self):
-		config.logmanager.additionalinfo.setValue(file(self.SOURCELIST.getCurrentDirectory()+self.SOURCELIST.getFilename()).read())
+		config.logmanager.additionalinfo.setValue(file(self.SOURCELIST.getCurrentDirectory() + self.SOURCELIST.getFilename()).read())
 		if self["list"].getCurrentDirectory():
 			config.logmanager.path.setValue(self["list"].getCurrentDirectory())
 			config.logmanager.path.save()

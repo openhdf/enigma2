@@ -35,7 +35,7 @@ class ChannelCryptoInfo(Poll, Converter, object):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
 
-		self.poll_interval = 2*1000
+		self.poll_interval = 2 * 1000
 		self.poll_enabled = True
 
 		if type == 'IrdCrypt':
