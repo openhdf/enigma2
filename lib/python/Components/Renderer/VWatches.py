@@ -106,5 +106,3 @@ class VWatches(Renderer):
 			if ((attrib == 'size') and self.instance.setSize(parseSize(value))):
 				pass
 		self.instance.clear(self.bColor)
-
-

@@ -142,4 +142,3 @@ class HelpableNumberActionMap(ActionMap):
 			return 1
 		else:
 			return ActionMap.action(self, contexts, action)
-

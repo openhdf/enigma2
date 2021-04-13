@@ -63,4 +63,3 @@ class DMCHDChNumber(Renderer, VariableText):
 			chx = (chx - markersOffset) + 1
 			rx = MYCHANSEL.getBouquetNumOffset(myRoot)
 			self.text = str(chx + rx)
-

@@ -3718,7 +3718,7 @@ class InfoBarSeek:
 				if config.lcd.hdd.value == "1":
 					file = open("/proc/stb/lcd/symbol_hddprogress", "w")
 					file.write('%d' % int(self.activity))
-					file.close() 
+					file.close()
 		else:
 			self.activityTimer.stop()
 			self.activity = 0

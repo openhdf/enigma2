@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # by digiteng...12-2019
 
-from Renderer import Renderer 
+from Renderer import Renderer
 from enigma import ePixmap, loadJPG
 from Components.UsageConfig import *
 import os

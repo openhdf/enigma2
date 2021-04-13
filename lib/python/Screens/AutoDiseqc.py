@@ -79,7 +79,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
 		eDVBFrontendParametersSatellite.T2MI_Default_Pid,
  		20100, 366, _("Eutelsat 16A 16.0e")),
- 
+
 		# thor  3592 CT24
 		(12072, 28000, \
 		eDVBFrontendParametersSatellite.Polarisation_Vertical, eDVBFrontendParametersSatellite.FEC_7_8, \
@@ -339,7 +339,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
 		elif dict["tuner_state"] == "UNKNOWN":
                         self["tunerstatusbar"].setText(_("Tuner status UNKNOWN"))
-			
+
 		if dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
 			self.tunerStopScan(False)
 			return

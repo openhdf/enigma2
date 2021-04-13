@@ -1019,7 +1019,7 @@ class EPGSelection(Screen, HelpableScreen):
 				break
 		else:
 			if not manual:
-				menu = [(_("Add Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer), 
+				menu = [(_("Add Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doRecordTimer),
 						(_("Add AutoTimer"), 'CALLFUNC', self.ChoiceBoxCB, self.addAutoTimerSilent),
 						(_("Add Zap Timer"), 'CALLFUNC', self.ChoiceBoxCB, self.doZapTimer),
 						(_("EPG Search"), 'CALLFUNC', self.ChoiceBoxCB, self.openEPGSearch)

@@ -231,11 +231,3 @@ class SecondInfoBar(Screen):
 			px = GPpos.x()
 			py = GPpos.y()
 			self.instance.move(ePoint(px + GPoffset_x, py + GPoffset_y))
-
-
-
-
-
-
-
-

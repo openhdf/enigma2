@@ -70,8 +70,3 @@ class valioTunerInfoBR(Converter, object):
 		self.videoBitrate = None
 		self.BRvalue = "0"
 		Converter.changed(self, "yes")
-
-
-
-
-

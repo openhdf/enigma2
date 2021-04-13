@@ -897,4 +897,3 @@ class CIHelperSetup(Screen, ConfigListScreen):
 
 	def myStop(self):
 		self.close()
-
