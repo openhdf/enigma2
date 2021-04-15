@@ -1315,4 +1315,3 @@ def stopHotplug():
 
 def InitiVideomodeHotplug(**kwargs):
 	startHotplug()
-

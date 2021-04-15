@@ -726,4 +726,3 @@ def InitLcd():
 		config.lcd.ledblinkingtime = ConfigNothing()
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call=False)
-

@@ -84,6 +84,3 @@ class satxml(datasource):
 		file = open(self.filename, "w")
 		file.write(prettyxml)
 		file.close()
-
-
-

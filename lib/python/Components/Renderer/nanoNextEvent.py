@@ -35,4 +35,3 @@ class nanoNextEvent(Renderer, VariableText):
 				duration = "%d min" % (eventNext[0][2] // 60)
 				ENext = "%02d:%02d   %s   %s" % (t[3], t[4], duration, eventNext[0][4])
 		self.text = ENext
-

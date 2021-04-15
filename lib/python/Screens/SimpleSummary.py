@@ -30,4 +30,3 @@ class SimpleSummary(Screen):
 
 	def updateService(self):
 		pass
-

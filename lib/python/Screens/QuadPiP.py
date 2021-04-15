@@ -65,4 +65,3 @@ class QuadPiP(Screen):
 
 	def getCurrentService(self):
 		return self.currentService
-
