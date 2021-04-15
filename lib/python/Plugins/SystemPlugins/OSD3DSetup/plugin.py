@@ -249,7 +249,8 @@ class AutoToggle3D(Screen):
 				info = hwnd.info(ServRef)
 				if info:
 					evt = info.getEvent(ServRef)
-					if evt: ServiceName = ServiceName + " " + evt.getEventName()
+					if evt:
+						ServiceName = ServiceName + " " + evt.getEventName()
 
 				#self.session.open(MessageBox,_(ServiceName), type = MessageBox.TYPE_INFO, timeout = 5)
 
@@ -315,8 +316,10 @@ class InfoAuto3D(Screen):
 		self.autoclose()
 
 def nz(value, nullvalue) :
-   if value is None: return nullvalue
-   else: return value
+   if value is None:
+   	return nullvalue
+   else:
+   	return value
 
 def applySettings(mode, znorm):
 	setmode(mode)

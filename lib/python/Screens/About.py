@@ -292,14 +292,16 @@ class About(Screen):
 					elif image == "7":
 						image = "5"
 				f.close()
-				if bootname: bootname = "   (%s)" %bootname
+				if bootname:
+					bootname = "   (%s)" %bootname
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 			else:
 				f = open('/boot/STARTUP', 'r')
 				f.seek(22)
 				image = f.read(1)
 				f.close()
-				if bootname: bootname = "   (%s)" %bootname
+				if bootname:
+					bootname = "   (%s)" %bootname
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 
 		if SystemInfo["HaveMultiBoot"]:

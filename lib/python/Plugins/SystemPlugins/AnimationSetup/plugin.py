@@ -262,4 +262,4 @@ def Plugins(**kwargs):
 			needsRestart = False,
 			fnc = sessionAnimationSetup),
 	]
-	return plugin_list;
+	return plugin_list
