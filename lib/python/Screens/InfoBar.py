@@ -174,7 +174,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MediaPlayer)
 			no_plugin = False
 		except Exception as e:
-			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showEMC(self):
 		try:
@@ -182,7 +182,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Components.PluginComponent import plugins
 			EnhancedMovieCenter.showMoviesNew()
 		except Exception as e:
-			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showETPORTAL(self):
 		try:
@@ -190,7 +190,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
 		except Exception as e:
-			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showMEDIAPORTAL(self):
 		try:
@@ -208,7 +208,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				self.session.open(MPList)
 			no_plugin = False
 		except Exception as e:
-			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showWWW(self):
 		try:
@@ -216,16 +216,16 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
 		except Exception as e:
-			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def BackZap(self):
 		if config.OpenWebif.enabled.value:
 			try:
 				os.system("wget -q -O /tmp/.message.txt 'http://127.0.0.1/web/remotecontrol?command=11' &  > /dev/null 2>&1")
 			except Exception as e:
-				self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type=MessageBox.TYPE_INFO, timeout=10 )
+				self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type=MessageBox.TYPE_INFO, timeout=10)
 		else:
-			self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openSleepTimer(self):
 		from Screens.SleepTimerEdit import SleepTimerEdit
@@ -246,7 +246,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				from Components.PluginComponent import plugins
 				self.session.open(EtPortalScreen)
 			except Exception as e:
-				self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+				self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 		else:
 			self.showMovies()
 
@@ -438,7 +438,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 				InfoBarPlugins, InfoBarPiP, InfoBarZoom, InfoBarHotkey:
 			x.__init__(self)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.servicelist = slist
 		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceOrGroup()
 		session.nav.playService(service)
@@ -611,7 +611,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 			self.doSeek(0)
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		elif answer in ("playlist", "playlistquit", "loop"):
-			( next_service, item, length ) = self.getPlaylistServiceInfo(self.cur_service)
+			(next_service, item, length) = self.getPlaylistServiceInfo(self.cur_service)
 			if next_service is not None:
 				if config.usage.next_movie_msg.value:
 					self.displayPlayedName(next_service, item, length)
@@ -634,7 +634,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 	def doEofInternal(self, playing):
 		if not self.execing:
 			return
-		if not playing :
+		if not playing:
 			return
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if ref:
@@ -727,7 +727,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 					self.session.pipshown = False
 					del self.session.pip
 			else:
-				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5 )
+				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5)
 
 	def movePiP(self):
 		if self.session.pipshown:

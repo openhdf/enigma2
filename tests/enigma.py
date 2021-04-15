@@ -5,7 +5,7 @@ from __future__ import absolute_import
 from __future__ import division
 class slot:
 	def __init__(self):
-		self.list = [ ]
+		self.list = []
 
 	def get(self):
 		return self.list

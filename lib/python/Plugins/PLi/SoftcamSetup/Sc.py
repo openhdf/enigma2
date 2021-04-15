@@ -75,7 +75,7 @@ class ScSelection(Screen):
 				"blue": self.blue,
 			}, -1)
 
-		self.list = [ ]
+		self.list = []
 
 		self.softcam = CamControl('softcam')
 		self.cardserver = CamControl('cardserver')

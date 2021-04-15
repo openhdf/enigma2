@@ -56,7 +56,7 @@ class FlashOnline(Screen):
 		self.imagesList = {}
 		self.setIndex = 0
 		self.expanded = []
-		self.customDirs = [ "images", "backup", "backups", "full_backups" ]
+		self.customDirs = ["images", "backup", "backups", "full_backups"]
 		Screen.setTitle(self, _("Flash On the Fly"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText()
@@ -257,7 +257,7 @@ class FlashImage(Screen):
 		choices = []
 		HIslot = len(imagedict) + 1
 		currentimageslot = GetCurrentImage()
-		print("[FlashOnline] Current Image Slot %s, Imagelist %s"% ( currentimageslot, imagedict))
+		print("[FlashOnline] Current Image Slot %s, Imagelist %s"% (currentimageslot, imagedict))
 		for x in list(range(1, HIslot)):
 			choices.append(((_("slot%s - %s (current)") if x == currentimageslot else _("slot%s - %s")) % (x, imagedict[x]['imagename']), (x, True)))
 		choices.append((_("No, do not flash an image"), False))

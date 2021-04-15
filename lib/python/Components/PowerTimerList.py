@@ -42,7 +42,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 		screenwidth = getDesktop(0).size().width()
 		height = self.l.getItemSize().height()
 		width = self.l.getItemSize().width()
-		res = [ None ]
+		res = [None]
 		x = width // 2
 		if screenwidth and screenwidth == 1920:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 39, 3, width, 38, 2, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, gettimerType(timer)))
@@ -80,7 +80,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 				res.append((eListboxPythonMultiContent.TYPE_TEXT, x+36, 3, x-3-36, 35, 3, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('At End:') + ' ' + getafterEvent(timer)))
 			else:
 				res.append((eListboxPythonMultiContent.TYPE_TEXT, x+24, 3, x-2-24, 23, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, _('At End:') + ' ' + getafterEvent(timer)))
-			days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
+			days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 			begin = FuzzyTime(timer.begin)
 			if timer.repeated:
 				repeatedtext = []

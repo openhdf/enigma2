@@ -98,7 +98,7 @@ def execute(option):
 	scanner.open(files, session)
 
 def scanDevice(mountpoint):
-	scanner = [ ]
+	scanner = []
 
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
 		l = p()
@@ -108,7 +108,7 @@ def scanDevice(mountpoint):
 
 	print("scanner:", scanner)
 
-	res = { }
+	res = {}
 
 	# merge all to-be-scanned paths, with priority to
 	# with_subdirs.
@@ -152,9 +152,9 @@ def scanDevice(mountpoint):
 
 def openList(session, files):
 	if not isinstance(files, list):
-		files = [ files ]
+		files = [files]
 
-	scanner = [ ]
+	scanner = []
 
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
 		l = p()
@@ -165,13 +165,13 @@ def openList(session, files):
 
 	print("scanner:", scanner)
 
-	res = { }
+	res = {}
 
 	for _file in files:
 		for s in scanner:
 			s.handleFile(res, _file)
 
-	choices = [ (r.description, r, res[r], session) for r in res ]
+	choices = [(r.description, r, res[r], session) for r in res]
 	Len = len(choices)
 	if Len > 1:
 		from Screens.ChoiceBox import ChoiceBox

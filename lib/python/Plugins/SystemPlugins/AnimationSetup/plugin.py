@@ -155,7 +155,7 @@ class AnimationSetupScreen(Screen):
 			{
 				"cancel": self.keyclose,
 				"save": self.ok,
-				"ok" : self.ok,
+				"ok": self.ok,
 				"yellow": self.config,
 				"blue": self.preview
 			}, -3)
@@ -171,7 +171,7 @@ class AnimationSetupScreen(Screen):
 			name = x.get("name", "??")
 			if key == config.misc.window_animation_default.value:
 				name = "* %s" % (name)
-			l.append( (name, key) )
+			l.append((name, key))
 
 		self["list"].setList(l)
 
@@ -235,7 +235,7 @@ def startAnimationSetup(menuid):
 	if menuid != "gui_menu":
 		return []
 
-	return [( _("Animations"), animationSetupMain, "animation_setup", 3)]
+	return [(_("Animations"), animationSetupMain, "animation_setup", 3)]
 
 def sessionAnimationSetup(session, reason, **kwargs):
 	setAnimation_current(config.misc.window_animation_default.value)
