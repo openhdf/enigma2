@@ -9,7 +9,7 @@ import six
 
 
 class PerServiceBase(object):
-	EventMap = { }
+	EventMap = {}
 
 	@staticmethod
 	def event(ev):

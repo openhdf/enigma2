@@ -72,7 +72,7 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 		self["key_green"] = StaticText(_("Save"))
 		self["description"] = Label(_(""))
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.setup = "timeshift"
 		_list = []
 		ConfigListScreen.__init__(self, _list, session=session, on_change=self.changedEntry)

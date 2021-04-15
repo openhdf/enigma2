@@ -29,7 +29,7 @@ def hidePlugin(plugin):
 
 def PluginComponent_getPlugins(self, where):
 	if not isinstance(where, list):
-		where = [ where ]
+		where = [where]
 
 	res = []
 	if PluginDescriptor.WHERE_EXTENSIONSMENU in where:

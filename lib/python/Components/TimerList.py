@@ -19,7 +19,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		screenwidth = getDesktop(0).size().width()
 		height = self.l.getItemSize().height()
 		width = self.l.getItemSize().width()
-		res = [ None ]
+		res = [None]
 		x = (2*width) // 3
 		if screenwidth and screenwidth == 1920:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, 39, 3, x-36, 38, 3, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timer.name))
@@ -31,7 +31,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 3, width-x-2, 23, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
 
-		days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
+		days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 		begin = FuzzyTime(timer.begin)
 		if timer.repeated:
 			repeatedtext = []

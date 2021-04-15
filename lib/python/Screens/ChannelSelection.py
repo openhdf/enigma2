@@ -80,7 +80,7 @@ class BouquetSelector(Screen):
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick
 			})
-		entrys = [ (x[0], x[1]) for x in bouquets ]
+		entrys = [(x[0], x[1]) for x in bouquets]
 		self["menu"] = MenuList(entrys, enableWrapAround)
 
 	def getCurrent(self):
@@ -162,7 +162,7 @@ class ChannelContextMenu(Screen):
 				"blue": self.showServiceInPiP,
 				"0": self.reloadServices
 			})
-		menu = [ ]
+		menu = []
 
 		self.removeFunction = False
 		self.addFunction = False
@@ -332,7 +332,7 @@ class ChannelContextMenu(Screen):
 		self.session.openWithCallback(self.close, MessageBox, _("The servicelist is reloaded."), MessageBox.TYPE_INFO, timeout=5)
 
 	def showServiceInformations(self):
-		self.session.open( ServiceInfo, self.csel.getCurrentSelection() )
+		self.session.open(ServiceInfo, self.csel.getCurrentSelection())
 
 	def setStartupService(self):
 		config.servicelist.startupservice.value = self.csel.getCurrentSelection().toString()
@@ -452,7 +452,7 @@ class ChannelContextMenu(Screen):
 						f.close()
 					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
-			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5 )
+			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5)
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
@@ -687,7 +687,7 @@ class ChannelSelectionEPG:
 		serviceref = ServiceReference(self.getCurrentSelection())
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		self.epgcache = eEPGCache.getInstance()
-		test = [ 'ITBDSECX', (refstr, 1, -1, 60) ] # search next 24 hours
+		test = ['ITBDSECX', (refstr, 1, -1, 60)] # search next 24 hours
 		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 		if len(self.list) < 2:
 			return
@@ -773,7 +773,7 @@ class ChannelSelectionEPG:
 		serviceref = ServiceReference(self.getCurrentSelection())
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		self.epgcache = eEPGCache.getInstance()
-		test = [ 'ITBDSECX', (refstr, 1, -1, 60) ] # search next 24 hours
+		test = ['ITBDSECX', (refstr, 1, -1, 60)] # search next 24 hours
 		self.list = [] if self.epgcache is None else self.epgcache.lookupEvent(test)
 		if self.list is None:
 			return
@@ -904,7 +904,7 @@ class ChannelSelectionEdit:
 		self.movemode = False
 		self.bouquet_mark_edit = OFF
 		self.mutableList = None
-		self.__marked = [ ]
+		self.__marked = []
 		self.saved_title = None
 		self.saved_root = None
 		self.current_ref = None
@@ -1377,10 +1377,10 @@ class ChannelSelectionBase(Screen):
 
 		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
 
-		self.servicePathTV = [ ]
-		self.servicePathRadio = [ ]
-		self.servicePath = [ ]
-		self.history = [ ]
+		self.servicePathTV = []
+		self.servicePathRadio = []
+		self.servicePath = []
+		self.history = []
 		self.rootChanged = False
 		self.startRoot = None
 		self.selectionNumber = ""
@@ -2316,7 +2316,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if selpos > hlen-1:
 			selpos = hlen-1
 		serviceHandler = eServiceCenter.getInstance()
-		historylist = [ ]
+		historylist = []
 		for x in self.history:
 			info = serviceHandler.info(x[-1])
 			if info:
@@ -2334,7 +2334,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if selpos > hlen:
 			selpos = hlen
 		serviceHandler = eServiceCenter.getInstance()
-		historylist = [ ]
+		historylist = []
 		for x in self.history:
 			info = serviceHandler.info(x[-1])
 			if info:
@@ -2369,8 +2369,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.lastroot.save()
 
 	def restoreRoot(self):
-		tmp = [ x for x in self.lastroot.value.split(';') if x != '' ]
-		current = [ x.toString() for x in self.servicePath ]
+		tmp = [x for x in self.lastroot.value.split(';') if x != '']
+		current = [x.toString() for x in self.servicePath]
 		if tmp != current or self.rootChanged:
 			self.clearPath()
 			cnt = 0
@@ -2735,8 +2735,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			config.radio.lastroot.save()
 
 	def restoreRoot(self):
-		tmp = [ x for x in config.radio.lastroot.value.split(';') if x != '' ]
-		current = [ x.toString() for x in self.servicePath ]
+		tmp = [x for x in config.radio.lastroot.value.split(';') if x != '']
+		current = [x.toString() for x in self.servicePath]
 		if tmp != current or self.rootChanged:
 			cnt = 0
 			for i in tmp:

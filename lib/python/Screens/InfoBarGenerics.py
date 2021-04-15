@@ -51,7 +51,7 @@ from Tools.Directories import pathExists, fileExists, getRecordingFilename, copy
 from Tools.KeyBindings import getKeyDescription
 from Tools.ServiceReference import hdmiInServiceRef
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getDriverDate, getImageVersion, getImageBuild, getMachineProcModel, getMachineBuild ,getMachineMtdKernel, getDisplayType
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getDriverDate, getImageVersion, getImageBuild, getMachineProcModel, getMachineBuild,getMachineMtdKernel, getDisplayType
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -470,7 +470,7 @@ class SecondInfoBar(Screen):
 			self.setEvent(self.event)
 
 	def getNowNext(self):
-		epglist = [ ]
+		epglist = []
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		ptr = info and info.getEvent(0)
@@ -1058,7 +1058,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.dlg_stack = None
 
 	def getNowNext(self):
-		epglist = [ ]
+		epglist = []
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		ptr = info and info.getEvent(0)
@@ -1121,7 +1121,7 @@ class NumberZap(Screen):
 
 	def __init__(self, session, number, searchNumberFunction=None):
 		Screen.__init__(self, session)
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.numberString = str(number)
 		self.field = str(number)
 		self.searchNumber = searchNumberFunction
@@ -1138,7 +1138,7 @@ class NumberZap(Screen):
 		self.handleServiceName()
 		self["service_summary"].setText(self["servicename"].getText())
 
-		self["actions"] = NumberActionMap( [ "SetupActions", "ShortcutActions" ],
+		self["actions"] = NumberActionMap(["SetupActions", "ShortcutActions"],
 			{
 				"cancel": self.quit,
 				"ok": self.keyOK,
@@ -1166,7 +1166,7 @@ class NumberZap(Screen):
 class InfoBarNumberZap:
 	""" Handles an initial number for NumberZapping """
 	def __init__(self):
-		self["NumberActions"] = NumberActionMap( [ "NumberActions"],
+		self["NumberActions"] = NumberActionMap(["NumberActions"],
 			{
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
@@ -1644,8 +1644,8 @@ class InfoBarMenu:
 		self.session.infobar = None
 
 	def toggleAspectRatio(self):
-		ASPECT = [ "auto", "16:9", "4:3" ]
-		ASPECT_MSG = { "auto":"Auto", "16:9":"16:9", "4:3":"4:3" }
+		ASPECT = ["auto", "16:9", "4:3"]
+		ASPECT_MSG = {"auto":"Auto", "16:9":"16:9", "4:3":"4:3"}
 		if config.av.aspect.value in ASPECT:
 			index = ASPECT.index(config.av.aspect.value)
 			config.av.aspect.value = ASPECT[(index+1)%3]
@@ -1905,7 +1905,7 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.redbutton_mode.value == "timerSelection":
 				self.showTimerList()
 			elif config.plisettings.redbutton_mode.value == "subserviceSelection":
@@ -1952,22 +1952,22 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.redbutton_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.redbutton_mode.value == "werbezapper":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPER()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.redbutton_mode.value == "werbezappermon":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPERMON()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -1977,7 +1977,7 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.greenbutton_mode.value == "timerSelection":
 				self.showTimerList()
 			elif config.plisettings.greenbutton_mode.value == "subserviceSelection":
@@ -2024,22 +2024,22 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.greenbutton_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.greenbutton_mode.value == "werbezapper":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPER()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.greebutton_mode.value == "werbezappermon":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPERMON()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -2049,7 +2049,7 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.yellowbutton_mode.value == "timerSelection":
 				self.showTimerList()
 			elif config.plisettings.yellowbutton_mode.value == "subserviceSelection":
@@ -2096,22 +2096,22 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.yellowbutton_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.yellowbutton_mode.value == "werbezapper":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPER()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.yellowbutton_mode.value == "werbezappermon":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPERMON()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -2121,7 +2121,7 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.bluebutton_mode.value == "timerSelection":
 				self.showTimerList()
 			elif config.plisettings.bluebutton_mode.value == "subserviceSelection":
@@ -2168,22 +2168,22 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.bluebutton_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.bluebutton_mode.value == "werbezapper":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPER()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.bluebutton_mode.value == "werbezappermon":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPERMON()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -2193,7 +2193,7 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.redbuttonlong_mode.value == "timerSelection":
 				self.showTimerList()
 			elif config.plisettings.redbuttonlong_mode.value == "subserviceSelection":
@@ -2240,22 +2240,22 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.redbuttonlong_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.redbuttonlong_mode.value == "werbezapper":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPER()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.redbuttonlong_mode.value == "werbezappermon":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPERMON()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -2265,7 +2265,7 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.greenbuttonlong_mode.value == "timerSelection":
 				self.showTimerList()
 			elif config.plisettings.greenbuttonlong_mode.value == "subserviceSelection":
@@ -2312,22 +2312,22 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.greenbuttonlong_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.greenbuttonlong_mode.value == "werbezapper":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPER()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.greenbuttonlong_mode.value == "werbezappermon":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPERMON()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -2337,7 +2337,7 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.yellowbuttonlong_mode.value == "timerSelection":
 				self.showTimerList()
 			elif config.plisettings.yellowbuttonlong_mode.value == "subserviceSelection":
@@ -2384,22 +2384,22 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.yellowbuttonlong_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.yellowbuttonlong_mode.value == "werbezapper":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPER()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.yellowbuttonlong_mode.value == "werbezappermon":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPERMON()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -2409,7 +2409,7 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.bluebuttonlong_mode.value == "timerSelection":
 				self.showTimerList()
 			elif config.plisettings.bluebuttonlong_mode.value == "subserviceSelection":
@@ -2456,22 +2456,22 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.bluebuttonlong_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.bluebuttonlong_mode.value == "werbezapper":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPER()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.bluebuttonlong_mode.value == "werbezappermon":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WerbeZapper/plugin.pyo"):
 					self.showWERBEZAPPERMON()
 				else:
-					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -2500,7 +2500,7 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
-					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -2525,7 +2525,7 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
-					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.PLIEPG_mode.value == "eventview":
 				self.openEventView()
 			else:
@@ -2654,7 +2654,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showHDFTOOLBOX(self):
 		try:
@@ -2663,7 +2663,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		except Exception as e:
-			self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showETPORTAL(self):
 		try:
@@ -2671,7 +2671,7 @@ class InfoBarEPG:
 			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
 		except Exception as e:
-			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showEMC(self):
 		try:
@@ -2679,7 +2679,7 @@ class InfoBarEPG:
 			from Components.PluginComponent import plugins
 			EnhancedMovieCenter.showMoviesNew()
 		except Exception as e:
-			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showMEDIAPORTAL(self):
 		try:
@@ -2687,7 +2687,7 @@ class InfoBarEPG:
 			from Components.PluginComponent import plugins
 			self.session.open(haupt_Screen)
 		except Exception as e:
-			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showDREAMPLEX(self):
 		try:
@@ -2695,7 +2695,7 @@ class InfoBarEPG:
 			from Components.PluginComponent import plugins
 			self.session.open(DPS_MainMenu)
 		except Exception as e:
-			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showOSCAMINFO(self):
 		try:
@@ -2704,7 +2704,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		except Exception as e:
-			self.session.open(MessageBox, _("The OscamInfo plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The OscamInfo plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showOSCAMSTATUS(self):
 		try:
@@ -2713,7 +2713,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		except Exception as e:
-			self.session.open(MessageBox, _("The OSCamStatusView plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The OSCamStatusView plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showWERBEZAPPER(self):
 		try:
@@ -2722,7 +2722,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		except Exception as e:
-			self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showWERBEZAPPERMON(self):
 		try:
@@ -2731,7 +2731,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		except Exception as e:
-			self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The WerbeZapper plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showZapHistoryBrowser(self):
 		try:
@@ -2740,7 +2740,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		except Exception as e:
-			self.session.open(MessageBox, _("The Zap-History Browser plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The Zap-History Browser plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showsimplelist(self):
 		try:
@@ -2749,7 +2749,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		except Exception as e:
-			self.session.open(MessageBox, _("Please wait."), type=MessageBox.TYPE_INFO, timeout=1 )
+			self.session.open(MessageBox, _("Please wait."), type=MessageBox.TYPE_INFO, timeout=1)
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
@@ -2796,7 +2796,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showCoolSingleGuide(self):
 		if self.servicelist is None:
@@ -2807,13 +2807,13 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, eventid=eventid)
 
 	def getNowNext(self):
-		epglist = [ ]
+		epglist = []
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		ptr = info and info.getEvent(0)
@@ -2894,22 +2894,22 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
-					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.PLIFAV_mode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.PLIFAV_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.PLIFAV_mode.value == "dreamplex":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
 					self.showDREAMPLEX()
 				else:
-					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -2940,42 +2940,42 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F1_mode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
-					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F1_mode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F1_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F1_mode.value == "dreamplex":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
 					self.showDREAMPLEX()
 				else:
-					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F1_mode.value == "oscaminfo":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/OscamInfo/plugin.pyo"):
 					self.showOSCAMINFO()
 				else:
-					self.session.open(MessageBox, _("The OscamInfo plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The OscamInfo plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F1_mode.value == "oscamstatus":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/OSCamStatusView/plugin.pyo"):
 					self.showOSCAMSTATUS()
 				else:
-					self.session.open(MessageBox, _("The OSCamStatusView plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The OSCamStatusView plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F1_mode.value == "showsimplelist":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 					self.showsimplelist()
 				else:
-					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -3006,32 +3006,32 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F2_mode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
-					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F2_mode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F2_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F2_mode.value == "dreamplex":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
 					self.showDREAMPLEX()
 				else:
-					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F2_mode.value == "showsimplelist":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 					self.showsimplelist()
 				else:
-					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -3062,32 +3062,32 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F3_mode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
-					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F3_mode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F3_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F3_mode.value == "dreamplex":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
 					self.showDREAMPLEX()
 				else:
-					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F3_mode.value == "showsimplelist":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 					self.showsimplelist()
 				else:
-					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -3118,32 +3118,32 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F4_mode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
-					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F4_mode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F4_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F4_mode.value == "dreamplex":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
 					self.showDREAMPLEX()
 				else:
-					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.F4_mode.value == "showsimplelist":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 					self.showsimplelist()
 				else:
-					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -3174,42 +3174,42 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.homemode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
-					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.homemode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.homemode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.homemode.value == "dreamplex":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
 					self.showDREAMPLEX()
 				else:
-					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.homemode.value == "oscaminfo":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/OscamInfo/plugin.pyo"):
 					self.showOSCAMINFO()
 				else:
-					self.session.open(MessageBox, _("The OscamInfo plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The OscamInfo plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.homemode.value == "oscamstatus":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/OSCamStatusView/plugin.pyo"):
 					self.showOSCAMSTATUS()
 				else:
-					self.session.open(MessageBox, _("The OSCamStatusView plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The OSCamStatusView plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.homemode.value == "showsimplelist":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 					self.showsimplelist()
 				else:
-					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -3240,42 +3240,42 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.endmode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
-					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.endmode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.endmode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.endmode.value == "dreamplex":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
 					self.showDREAMPLEX()
 				else:
-					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.endmode.value == "oscaminfo":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/OscamInfo/plugin.pyo"):
 					self.showOSCAMINFO()
 				else:
-					self.session.open(MessageBox, _("The OscamInfo plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The OscamInfo plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.endmode.value == "oscamstatus":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/OSCamStatusView/plugin.pyo"):
 					self.showOSCAMSTATUS()
 				else:
-					self.session.open(MessageBox, _("The OSCamStatusView plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The OSCamStatusView plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.endmode.value == "showsimplelist":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 					self.showsimplelist()
 				else:
-					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -3306,27 +3306,27 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.webbutton_mode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
-					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.webbutton_mode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.webbutton_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.webbutton_mode.value == "showsimplelist":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 					self.showsimplelist()
 				else:
-					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -3357,27 +3357,27 @@ class InfoBarEPG:
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/HDF-Toolbox/plugin.pyo"):
 					self.showHDFTOOLBOX()
 				else:
-					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The HDF-Toolbox is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.pluginbutton_mode.value == "etportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EtPortal/plugin.pyo"):
 					self.showETPORTAL()
 				else:
-					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.pluginbutton_mode.value == "emc":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
 					self.showEMC()
 				else:
-					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The EnhancedMovieCenter plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.pluginbutton_mode.value == "mediaportal":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"):
 					self.showMEDIAPORTAL()
 				else:
-					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			elif config.plisettings.pluginbutton_mode.value == "showsimplelist":
 				if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/simplelist/plugin.pyo"):
 					self.showsimplelist()
 				else:
-					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The Simple Movie List plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.showDefaultEPG()
 
@@ -3579,7 +3579,7 @@ class InfoBarSeek:
 		self.seekAction = 0
 		self.LastseekAction = False
 
-		self.onPlayStateChanged = [ ]
+		self.onPlayStateChanged = []
 
 		self.lockedBecauseOfSkipping = False
 
@@ -4130,7 +4130,7 @@ class InfoBarSeek:
 
 class InfoBarPVRState:
 	def __init__(self, screen=PVRState, force_show=False):
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.onPlayStateChanged.append(self.__playStateChanged)
 		self.pvrStateDialog = self.session.instantiateDialog(screen)
 		self.pvrStateDialog.setAnimationMode(0)
@@ -4375,7 +4375,7 @@ class InfoBarExtensions:
 
 	def updateExtensions(self):
 		self.extensionsList = []
-		self.availableKeys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ]
+		self.availableKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue"]
 		self.extensionKeys = {}
 		for x in self.list:
 			if x[0] == self.EXTENSION_SINGLE:
@@ -4474,7 +4474,7 @@ class InfoBarExtensions:
 				self.autotimer
 			)
 		else:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def editCallback(self, session):
 		# XXX: canceling of GUI (Overview) won't affect config values which might have been changed - is this intended?
@@ -4530,7 +4530,7 @@ class InfoBarExtensions:
 				name = event and event.getEventName() or ''
 				self.session.open(IMDB, name)
 		else:
-			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showMediaPlayer(self):
 		if isinstance(self, InfoBarExtensions):
@@ -4540,7 +4540,7 @@ class InfoBarExtensions:
 					self.session.open(MediaPlayer)
 					no_plugin = False
 				except Exception as e:
-					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 from Tools.BoundFunction import boundFunction
 import inspect
@@ -4723,9 +4723,9 @@ class InfoBarPiP:
 					self.session.pip.show()
 					newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 				elif info:
-					self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO,timeout=5 )
+					self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO,timeout=5)
 				else:
-					self.session.open(MessageBox, _("No active channel found."), type=MessageBox.TYPE_INFO,timeout=5 )
+					self.session.open(MessageBox, _("No active channel found."), type=MessageBox.TYPE_INFO,timeout=5)
 				if self.session.pip.playService(newservice,curBouquet):
 					self.session.pip.setCurrentBouquetMain(curBouquet)
 					self.session.pipshown = True
@@ -4914,8 +4914,8 @@ class InfoBarINFOpanel:
 				"infoPanel": (self.selectRedKeytask, _("INFO-Panel...")),
 				"softcamPanel": (self.softcamPanel, _("Softcam-Panel...")),
 			})
-		self.onHBBTVActivation = [ ]
-		self.onRedButtonActivation = [ ]
+		self.onHBBTVActivation = []
+		self.onRedButtonActivation = []
 
 	def selectRedKeytask(self):
 		isWEBBROWSER = None
@@ -5073,7 +5073,7 @@ class InfoBarInstantRecord:
 		begin = int(time())
 		end = begin + 3600 # dummy
 		name = "instant record"
-		info = { }
+		info = {}
 
 		self.getProgramInfoAndEvent(info, name)
 		serviceref = info["serviceref"]
@@ -5157,7 +5157,7 @@ class InfoBarInstantRecord:
 			self.session.open(TimerEdit.TimerEditList)
 		elif answer[1] == "stop":
 			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
-		elif answer[1] in ( "indefinitely", "manualduration", "manualendtime", "event"):
+		elif answer[1] in ("indefinitely", "manualduration", "manualendtime", "event"):
 			self.startInstantRecording(limitEvent=answer[1] in ("event", "manualendtime") or False)
 			if answer[1] == "manualduration":
 				self.changeDuration(len(self.recording)-1)
@@ -5505,9 +5505,9 @@ class InfoBarRedButton:
 				"activateRedButton": (self.activateRedButton, _("Red button...")),
 			})
 		self["HbbtvApplication"] = gHbbtvApplication
-		self.onHBBTVActivation = [ ]
-		self.onRedButtonActivation = [ ]
-		self.onReadyForAIT = [ ]
+		self.onHBBTVActivation = []
+		self.onRedButtonActivation = []
+		self.onReadyForAIT = []
 		self.__et = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evHBBTVInfo: self.detectedHbbtvApplication,
 				iPlayableService.evUpdatedInfo: self.updateInfomation
@@ -5605,7 +5605,7 @@ class InfoBarAspectSelection:
 		tlist= [(_("Resolution"), "resolution"), ("--", ""), (_("4_3_letterbox"), "0"), (_("4_3_panscan"), "1"), (_("16_9"), "2"), (_("16_9_always"), "3"), (_("16_10_letterbox"), "4"), (_("16_10_panscan"), "5"), (_("16_9_letterbox"), "6")]
 		for x in list(range(len(tlist))):
 			selection = x
-		keys = ["green", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+		keys = ["green", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 		self.session.openWithCallback(self.aspectSelected, ChoiceBox, title=_("Please select an aspect ratio..."), list=tlist, selection=selection, keys=keys)
 
 	def aspectSelected(self, aspect):
@@ -5673,7 +5673,7 @@ class InfoBarResolutionSelection:
 			for x in choices:
 				tlist.append(x)
 
-		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
+		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 		mode = open("/proc/stb/video/videomode").read()[:-1]
 		print("[InfoBarGenerics] videomode:",mode)
@@ -5714,7 +5714,7 @@ class VideoMode(Screen):
 		Screen.__init__(self, session)
 		self["videomode"] = Label()
 
-		self["actions"] = NumberActionMap( [ "InfobarVmodeButtonActions" ],
+		self["actions"] = NumberActionMap(["InfobarVmodeButtonActions"],
 			{
 				"vmodeSelection": self.selectVMode
 			})
@@ -5839,7 +5839,7 @@ class InfoBarCueSheetSupport:
 				"toggleMark": (self.toggleMark, _("Toggle a cut mark at the current position"))
 			}, prio=1)
 
-		self.cut_list = [ ]
+		self.cut_list = []
 		self.is_closing = False
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStart: self.__serviceStarted,
@@ -6026,7 +6026,7 @@ class InfoBarCueSheetSupport:
 
 		if cue is None:
 #			print("download failed, no cuesheet interface")
-			self.cut_list = [ ]
+			self.cut_list = []
 		else:
 			self.cut_list = cue.getCutList()
 
@@ -6468,9 +6468,9 @@ class InfoBarSleepTimer:
 					self.session.openWithCallback(self.goStandby, MessageBox, message, MessageBox.TYPE_YESNO, timeout=180, default=True)
 				return
 		if not Screens.Standby.inStandby:
-			list = [ (_("Yes"), True),
+			list = [(_("Yes"), True),
 					(_("No"), False),
-					(_("Extend"), "extend") ]
+					(_("Extend"), "extend")]
 			if config.usage.sleep_timer_action.value == "standby":
 				message = _("A sleep timer wants to set your %s %s to standby.\nDo that now or set extend additional minutes?") % (getMachineBrand(), getMachineName())
 			else:

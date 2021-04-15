@@ -124,7 +124,7 @@ def startup(reason, **kwargs):
 
 def startMain(menuid):
 	if menuid != "video_menu":
-		return [ ]
+		return []
 
 	return [(_("Video clipping"), main, "video_clipping", 10)]
 

@@ -589,7 +589,7 @@ class InfoBarHotkey():
 			elif x.startswith("Zap"):
 				selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
 			else:
-				function = list(function for function in getHotkeyFunctions() if function[1] == x )
+				function = list(function for function in getHotkeyFunctions() if function[1] == x)
 				if function:
 					selected.append(function[0])
 		return selected
