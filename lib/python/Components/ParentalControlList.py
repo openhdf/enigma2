@@ -26,6 +26,7 @@ def ParentalControlEntryComponent(service, name, protectionType):
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 0, 32, 32, entryPicture[sImage]))
 	return res
 
+
 class ParentalControlList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)

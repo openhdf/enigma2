@@ -10,6 +10,7 @@ from Components.Element import cached
 from enigma import eDVBCI_UI, eDVBCIInterfaces
 from Components.Converter.Poll import Poll
 
+
 class ModuleControl(Poll, Converter, object):
 	SLOT1 = 0
 	SLOT2 = 1

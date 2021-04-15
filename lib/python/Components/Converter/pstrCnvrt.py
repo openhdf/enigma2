@@ -20,6 +20,7 @@ if not posterpath:
 if not os.path.isdir(posterpath + "poster"):
 	os.mkdir(posterpath + "poster")
 
+
 class pstrCnvrt(Convertert):
 
 	def __init__(self, type):

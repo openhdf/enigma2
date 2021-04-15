@@ -79,6 +79,7 @@ EXTENSIONS = {
 
 confirmed3D = False
 
+
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	#class for configure 3D default settings
 	skin = """
@@ -188,9 +189,11 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		if cur:
 			self["help"].text = self.helpDict.get(cur[1], "")
 	#channging mode or znorm is immediatelly previewed
+
 	def setPreviewSettings(self, value):
 		applySettings(self.mode.value, int(self.znorm.value) - 50)
 	#setting are stored in enigma configuration file
+
 	def keyGo(self):
 		config.plugins.OSD3DSetup.mode.value = self.mode.value
 		config.plugins.OSD3DSetup.znorm.value = int(self.znorm.value) - 50
@@ -203,9 +206,11 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 		self.close()
 	#roll-back changes - read settings from configuration
+
 	def keyCancel(self):
 		setConfiguredSettings()
 		self.close()
+
 
 class AutoToggle3D(Screen):
 	#class for listening for service changing events to set 3D mode automatically
@@ -281,6 +286,7 @@ class AutoToggle3D(Screen):
 					self.CurrentMode = ret[0]
 					setmode(ret[0])
 
+
 class InfoAuto3D(Screen):
 	skin = """
 		<screen name="InfoAuto3D" position="c-345,c-320" size="700,100" backgroundColor="transparent" flags="wfNoBorder" title="Activate 3D mode">
@@ -315,18 +321,22 @@ class InfoAuto3D(Screen):
 		self.blueTimer.stop()
 		self.autoclose()
 
+
 def nz(value, nullvalue):
    if value is None:
    	return nullvalue
    else:
    	return value
 
+
 def applySettings(mode, znorm):
 	setmode(mode)
 	setznorm(znorm)
 
+
 def setConfiguredSettings():
 	applySettings(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.value))
+
 
 def getmode():
 	file = open(path_mode, "r")
@@ -336,6 +346,7 @@ def getmode():
 	else:
 		return val_auto
 
+
 def getznorm():
 	file = open(path_znorm, "r")
 	if file:
@@ -343,6 +354,7 @@ def getznorm():
 		file.close()
 	else:
 		return val_auto
+
 
 def setmode(val):
 	if not val:
@@ -353,6 +365,7 @@ def setmode(val):
 		file.close()
 	except:
 		return
+
 
 def setznorm(val):
 	if not val:
@@ -365,6 +378,8 @@ def setznorm(val):
 		return
 
 #if there is a command in menu...
+
+
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
 		if config.plugins.OSD3DSetup.toggle.value == val_sidebyside:
@@ -373,11 +388,15 @@ def menu(menuid, **kwargs):
 			return [(_("3D ON/OFF (Top And Bootom)"), menutoggle3d, "Toggle 3D mode", 44)]
 	return []
 #show configuration screen...
+
+
 def main(session, **kwargs):
 	session.open(OSD3DSetupScreen)
 
+
 def startup(session, **kwargs):
 	AutoToggle3D(session)
+
 
 def menutoggle3d(session, **kwargs):
 	mode = getmode()
@@ -403,13 +422,17 @@ def menutoggle3d(session, **kwargs):
 	return []
 
 #if there is a command in extensions selection...
+
+
 def toggleSBS(session, **kwargs):
 	toggleext(val_sidebyside)
 	return []
 
+
 def toggleTAB(session, **kwargs):
 	toggleext(val_topandbottom)
 	return []
+
 
 def toggleext(value):
 	mode = getmode()
@@ -422,6 +445,7 @@ def toggleext(value):
 		setmode(val_auto)
 	if znorm < 0 or znorm > 100:
 		setznorm(0)
+
 
 def Plugins(**kwargs):
 	pluginlist = []

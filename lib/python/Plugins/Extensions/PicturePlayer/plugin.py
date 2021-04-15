@@ -4,17 +4,21 @@ from enigma import getDesktop
 
 #------------------------------------------------------------------------------------------
 
+
 def Pic_Thumb(*args, **kwa):
 	from . import ui
 	return ui.Pic_Thumb(*args, **kwa)
+
 
 def picshow(*args, **kwa):
 	from . import ui
 	return ui.picshow(*args, **kwa)
 
+
 def main(session, **kwargs):
 	from .ui import picshow
 	session.open(picshow)
+
 
 def filescan_open(list, session, **kwargs):
 	_list = list
@@ -22,6 +26,7 @@ def filescan_open(list, session, **kwargs):
 	filelist = [((_file.path, False), None) for _file in _list]
 	from .ui import Pic_Full_View
 	session.open(Pic_Full_View, filelist, 0, _file.path)
+
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
@@ -42,6 +47,7 @@ def filescan(**kwargs):
 			description=_("View photos..."),
 			openfnc=filescan_open,
 		)
+
 
 def Plugins(**kwargs):
 	screenwidth = getDesktop(0).size().width()

@@ -6,6 +6,7 @@ import Components.RecordingConfig
 from Components.config import config
 from Components.SystemInfo import SystemInfo
 
+
 class RecordState(Source):
 	def __init__(self, session):
 		Source.__init__(self)

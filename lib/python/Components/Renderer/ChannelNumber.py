@@ -4,9 +4,12 @@ from enigma import eLabel, iPlayableService
 from Components.Renderer.Renderer import Renderer
 
 ChannelNumberClasses = []
+
+
 def doRenumber():
 	for func in ChannelNumberClasses:
 		func(True)
+
 
 class ChannelNumber(Renderer, VariableText):
 	def __init__(self):

@@ -232,15 +232,19 @@ keyDescriptions = [{
 	},
 ]
 
+
 def addKeyBinding(domain, key, context, action, flags):
 	keyBindings.setdefault((context, action), []).append((key, domain, flags))
 
 # returns a list of (key, flags) for a specified action
+
+
 def queryKeyBinding(context, action):
 	if (context, action) in keyBindings:
 		return [(x[0], x[2]) for x in keyBindings[(context, action)]]
 	else:
 		return []
+
 
 def getKeyDescription(key):
 	if rc_model.rcIsDefault():
@@ -255,6 +259,7 @@ def getKeyDescription(key):
 			idx = 2
 	if key in keyDescriptions[idx]:
 		return keyDescriptions[idx].get(key, [])
+
 
 def removeKeyBindings(domain):
 	# remove all entries of domain 'domain'

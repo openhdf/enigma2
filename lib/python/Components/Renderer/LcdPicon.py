@@ -14,6 +14,7 @@ from ServiceReference import ServiceReference
 searchPaths = []
 lastLcdPiconPath = None
 
+
 def initLcdPiconPaths():
 	global searchPaths
 	searchPaths = []
@@ -21,6 +22,7 @@ def initLcdPiconPaths():
 		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
 		onMountpointAdded(part.mountpoint)
+
 
 def onMountpointAdded(mountpoint):
 	global searchPaths
@@ -38,6 +40,7 @@ def onMountpointAdded(mountpoint):
 	except Exception as ex:
 		print("[LcdPicon] Failed to investigate %s:" % mountpoint, ex)
 
+
 def onMountpointRemoved(mountpoint):
 	global searchPaths
 	if getBoxType() in ('vuultimo', 'et10000', 'mutant2400', 'xpeedlx3', 'quadbox2400', 'atemionemesis', 'dm7020hd', 'dm7080'):
@@ -50,11 +53,13 @@ def onMountpointRemoved(mountpoint):
 	except:
 		pass
 
+
 def onPartitionChange(why, part):
 	if why == 'add':
 		onMountpointAdded(part.mountpoint)
 	elif why == 'remove':
 		onMountpointRemoved(part.mountpoint)
+
 
 def findLcdPicon(serviceName):
 	global lastLcdPiconPath
@@ -83,6 +88,7 @@ def findLcdPicon(serviceName):
 		else:
 			return ""
 
+
 def getLcdPiconName(serviceName):
 	sname = '_'.join(GetWithAlternative(serviceName).split(':', 10)[:10])
 	pngname = findLcdPicon(sname)
@@ -100,6 +106,7 @@ def getLcdPiconName(serviceName):
 			if not pngname and len(name) > 2 and name.endswith('hd'):
 				pngname = findLcdPicon(name[:-2])
 	return pngname
+
 
 class LcdPicon(Renderer):
 	def __init__(self):
@@ -173,6 +180,7 @@ class LcdPicon(Renderer):
 					else:
 						self.instance.hide()
 					self.pngname = pngname
+
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 initLcdPiconPaths()

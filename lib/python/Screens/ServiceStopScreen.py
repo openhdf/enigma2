@@ -2,6 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from Screens.MessageBox import MessageBox
 
+
 class ServiceStopScreen:
 	def __init__(self):
 		try:

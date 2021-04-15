@@ -12,6 +12,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.Pixmap import Pixmap
 from Tools.LoadPixmap import LoadPixmap
 
+
 class ExtraActionBox(Screen):
 	skin = """
 	<screen name="ExtraActionBox" position="center,center" size="560,70" title=" ">

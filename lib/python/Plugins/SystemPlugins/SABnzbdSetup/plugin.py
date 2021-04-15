@@ -163,5 +163,6 @@ class SABnzbdSetupScreen(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
+
 def Plugins(**kwargs):
 	return []

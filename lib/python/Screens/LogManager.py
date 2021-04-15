@@ -37,6 +37,7 @@ else:
 
 _session = None
 
+
 def get_size(start_path=None):
 	total_size = 0
 	if start_path:
@@ -47,13 +48,16 @@ def get_size(start_path=None):
 		return total_size
 	return 0
 
+
 def AutoLogManager(session=None, **kwargs):
 	global debuglogcheckpoller
 	debuglogcheckpoller = LogManagerPoller()
 	debuglogcheckpoller.start()
 
+
 class LogManagerPoller:
 	"""Automatically Poll LogManager"""
+
 	def __init__(self):
 		# Init Timer
 		self.TrimTimer = eTimer()
@@ -206,6 +210,7 @@ class LogManagerPoller:
 			self.TrashTimer.startLongTimer(int(86400 - seconds_since_0330am)) #at 03:30 AM
 		else:
 			self.TrashTimer.startLongTimer(43200) #twice a day
+
 
 class LogManager(Screen):
 	def __init__(self, session):
@@ -504,6 +509,7 @@ class LogManager(Screen):
 	def myclose(self):
 		self.close()
 
+
 class LogManagerViewLog(Screen):
 	def __init__(self, session, selected):
 		self.session = session
@@ -570,6 +576,7 @@ class LogManagerViewLog(Screen):
 	def cancel(self):
 		self.close()
 
+
 class LogManagerFb(Screen):
 	def __init__(self, session, logpath=None):
 		if logpath is None:
@@ -586,7 +593,6 @@ class LogManagerFb(Screen):
 		self["green"] = Label(_("move"))
 		self["yellow"] = Label(_("copy"))
 		self["blue"] = Label(_("rename"))
-
 
 		self["actions"] = ActionMap(["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "MenuActions", "NumberActions", "ColorActions"],
 			{
@@ -641,6 +647,7 @@ class LogManagerFb(Screen):
 			config.logmanager.path.setValue(self["list"].getCurrentDirectory())
 			config.logmanager.path.save()
 		self.close()
+
 
 class LogInfo(VariableText, GUIComponent):
 	FREE = 0

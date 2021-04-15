@@ -9,6 +9,7 @@ from Components.SystemInfo import SystemInfo
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, EmptySlot
 
+
 class MultiBootWizard(Screen):
 
 	skin = """

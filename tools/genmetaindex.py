@@ -33,6 +33,7 @@ for _file in sys.argv[1:]:
 
 	root.append(package)
 
+
 def indent(elem, level=0):
 	i = "\n" + level * "\t"
 	if len(elem):
@@ -47,6 +48,7 @@ def indent(elem, level=0):
 	else:
 		if level and (not elem.tail or not elem.tail.strip()):
 			elem.tail = i
+
 
 indent(root)
 

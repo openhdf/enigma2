@@ -17,6 +17,7 @@ import re
 import shutil
 import xml.etree.cElementTree
 
+
 class LCN():
 	service_types_tv = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 22) || (type == 25) || (type == 134) || (type == 195)'
 	service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2)'
@@ -163,7 +164,6 @@ class LCN():
 		#for x in self.e2services:
 			#print " self.e2services:", x
 
-
 		#for x in self.newlist:
 			#print " NEW LIST LCN :", x
 
@@ -241,7 +241,6 @@ class LCN():
 		#for x in self.e2services:
 			#print " self.e2services:", x
 
-
 		#for x in self.newlist:
 			#print " NEW LIST LCN :", x
 
@@ -298,6 +297,7 @@ class LCN():
 
 	def reloadBouquets(self):
 		eDVBDB.getInstance().reloadBouquets()
+
 
 class LCNBuildHelper():
 	def __init__(self):
@@ -399,6 +399,7 @@ class LCNBuildHelper():
 
 		lcn.reloadBouquets()
 
+
 class LCNScannerPlugin(Screen, ConfigListScreen, LCNBuildHelper):
 	skin = """
 		<screen position="center,center" size="560,400" title="LCN Scanner">
@@ -445,14 +446,17 @@ class LCNScannerPlugin(Screen, ConfigListScreen, LCNBuildHelper):
 			self.keySave()
 			configfile.save()
 
+
 def LCNScannerMain(session, **kwargs):
 	session.open(LCNScannerPlugin)
+
 
 def LCNScannerSetup(menuid, **kwargs):
 	if menuid == "scan":
 		return [("LCN Scanner", LCNScannerMain, "lcnscanner", None)]
 	else:
 		return []
+
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name="LCN", description=_("LCN plugin for DVB-T/T2 services"), where=PluginDescriptor.WHERE_MENU, fnc=LCNScannerSetup)

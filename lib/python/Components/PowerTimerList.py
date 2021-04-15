@@ -11,6 +11,7 @@ from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from PowerTimer import AFTEREVENT, TIMERTYPE
 
+
 def gettimerType(timer):
 	timertype = {
 		TIMERTYPE.WAKEUP: _("Wake Up"),
@@ -24,6 +25,7 @@ def gettimerType(timer):
 		}[timer.timerType]
 	return timertype
 
+
 def getafterEvent(timer):
 	afterevent = {
 		AFTEREVENT.NONE: _("Nothing"),
@@ -32,6 +34,7 @@ def getafterEvent(timer):
 		AFTEREVENT.DEEPSTANDBY: _("Deep Standby")
 		}[timer.afterEvent]
 	return afterevent
+
 
 class PowerTimerList(HTMLComponent, GUIComponent, object):
 #

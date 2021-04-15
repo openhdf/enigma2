@@ -2,6 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from input import inputChoices
 
+
 class datasource:
 	def __init__(self):
 		self.clear()
@@ -44,6 +45,7 @@ class datasource:
 	def addTransponder(self, satpos, transponder):
 		if len(transponder.keys()) >= 6:
 			self.transponderlist[satpos].append(transponder)
+
 
 class genericdatasource(datasource):
 	def __init__(self):

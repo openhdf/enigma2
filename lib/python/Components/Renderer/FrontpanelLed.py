@@ -2,6 +2,8 @@ from __future__ import absolute_import
 from Components.Element import Element
 from os import path
 # this is not a GUI renderer.
+
+
 class FrontpanelLed(Element):
 	def __init__(self, which=0, patterns=None, boolean=True):
 		if not patterns:

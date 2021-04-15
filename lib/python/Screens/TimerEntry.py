@@ -29,6 +29,7 @@ from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
 from os import statvfs
 
+
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
@@ -451,7 +452,6 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_afterevent.value = "nothing"
 			self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") % 1, MessageBox.TYPE_INFO, timeout=30)
 
-
 		self.timer.resetRepeated()
 		self.timer.afterEvent = {
 			"nothing": AFTEREVENT.NONE,
@@ -584,6 +584,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_tagsset.setChoices([not ret and "None" or " ".join(ret)])
 			self["config"].invalidate(self.tagsSet)
 
+
 class TimerLog(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
@@ -663,6 +664,7 @@ class TimerLog(Screen):
 			self["summary_description"].setText(str(self["loglist"].getCurrent()[1][2]))
 		else:
 			self["logentry"].setText("")
+
 
 class InstantRecordTimerEntry(TimerEntry):
 	def __init__(self, session, timer, zap):

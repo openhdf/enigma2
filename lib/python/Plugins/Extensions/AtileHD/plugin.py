@@ -42,8 +42,10 @@ config.plugins.AtileHD.tempUnit = ConfigSelection(default="Celsius", choices=[
 				("Fahrenheit", _("Fahrenheit"))
 				])
 
+
 def Plugins(**kwargs):
 	return [PluginDescriptor(name=_("%s Setup") % cur_skin, description=_("Personalize your Skin"), where=PluginDescriptor.WHERE_MENU, icon="plugin.png", fnc=menu)]
+
 
 def menu(menuid, **kwargs):
 	if menuid == "gui_menu" and not config.skin.primary_skin.value == "XionHDF/skin.MySkin.xml" and not config.skin.primary_skin.value == "XionHDF/skin.xml" and not config.skin.primary_skin.value == "SevenHD/skin.xml" and not config.skin.primary_skin.value == "KravenVB/skin.xml":
@@ -52,9 +54,11 @@ def menu(menuid, **kwargs):
 		pass
 	return []
 
+
 def main(session, **kwargs):
 	print("[%s]: Config ..." % cur_skin)
 	session.open(AtileHD_Config)
+
 
 def isInteger(s):
 	try:
@@ -62,6 +66,7 @@ def isInteger(s):
 		return True
 	except ValueError:
 		return False
+
 
 class WeatherLocationChoiceList(Screen):
 	skin = """
@@ -613,6 +618,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		else:
 			self.close()
 
+
 class AtileHD_About(Screen):
 
 	def __init__(self, session, args=0):
@@ -629,6 +635,7 @@ class AtileHD_About(Screen):
 
 	def cancel(self):
 		self.close()
+
 
 class AtileHDScreens(Screen):
 

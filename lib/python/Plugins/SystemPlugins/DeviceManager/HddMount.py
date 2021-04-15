@@ -28,6 +28,7 @@ import os
 import sys
 import re
 
+
 class HddMount(Screen):
 	skin = """
 	<screen name="HddMount" position="center,center" size="560,430" title="Hard Drive Mount">
@@ -193,9 +194,11 @@ class HddMount(Screen):
 	def quit(self):
 		self.close()
 
+
 def MountEntry(description, details):
 	picture = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/diskusb.png"))
 	return (picture, description, details)
+
 
 class HddFastRemove(Screen):
 	skin = """

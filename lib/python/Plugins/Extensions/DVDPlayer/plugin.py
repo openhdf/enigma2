@@ -24,6 +24,7 @@ lastpath = ""
 
 detected_DVD = None
 
+
 class FileBrowser(Screen):
 
 	def __init__(self, session, dvd_filelist=[]):
@@ -100,6 +101,7 @@ class FileBrowser(Screen):
 	def exit(self):
 		self.close(None)
 
+
 class DVDSummary(Screen):
 	skin = (
 	"""<screen name="DVDSummary" position="0,0" size="132,64" id="1">
@@ -143,11 +145,13 @@ class DVDSummary(Screen):
 	def setTitle(self, title):
 		self["Title"].setText(title)
 
+
 class DVDOverlay(Screen):
 	def __init__(self, session, args=None):
 		desktop_size = getDesktop(0).size()
 		DVDOverlay.skin = """<screen name="DVDOverlay" position="0,0" size="%d,%d" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />""" % (desktop_size.width(), desktop_size.height())
 		Screen.__init__(self, session)
+
 
 class ChapterZap(Screen):
 	skin = """
@@ -198,6 +202,7 @@ class ChapterZap(Screen):
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.keyOK)
 		self.Timer.start(3000, True)
+
 
 class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarPVRState, InfoBarShowHide, HelpableScreen, InfoBarCueSheetSupport, InfoBarAudioSelection, InfoBarSubtitleSupport, InfoBarSimpleEventView):
 	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES
@@ -739,12 +744,15 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 						return
 		self.physicalDVD = False
 
+
 def main(session, **kwargs):
 	session.open(DVDPlayer)
+
 
 def play(session, **kwargs):
 	from Screens import DVD
 	session.open(DVD.DVDPlayer, dvd_device=harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))
+
 
 def onPartitionChange(action, partition):
 	print("[@] onPartitionChange", action, partition)
@@ -756,6 +764,7 @@ def onPartitionChange(action, partition):
 		elif action == 'add':
 			print("[@] DVD Inserted")
 			detected_DVD = None
+
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
@@ -774,7 +783,9 @@ def menu(menuid, **kwargs):
 			return [(_("DVD Player"), play, "dvd_player", 46)]
 	return []
 
+
 from Plugins.Plugin import PluginDescriptor
+
 
 def filescan_open(list, session, **kwargs):
 	if len(list) == 1 and list[0].mimetype == "video/x-dvd":
@@ -791,6 +802,7 @@ def filescan_open(list, session, **kwargs):
 			if x.mimetype == "video/x-dvd":
 				dvd_filelist.append(x.path.rsplit('/', 1)[0])
 		session.open(DVDPlayer, dvd_filelist=dvd_filelist)
+
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
@@ -811,6 +823,7 @@ def filescan(**kwargs):
 			description=_("Play DVD"),
 			openfnc=filescan_open,
 		)]
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name="DVDPlayer", description="Play DVDs", where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu),

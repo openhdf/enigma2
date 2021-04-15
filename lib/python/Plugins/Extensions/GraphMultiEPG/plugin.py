@@ -15,6 +15,7 @@ bouquetSel = None
 epg_bouquet = None
 epg = None
 
+
 class SelectBouquet(Screen):
 	skin = """<screen name="SelectBouquet" position="center,center" size="300,240" title="Select a bouquet">
 		<widget name="menu" position="10,10" size="290,225" scrollbarMode="showOnDemand" />
@@ -64,6 +65,7 @@ class SelectBouquet(Screen):
 	def cancelClick(self):
 		self.close(None)
 
+
 def zapToService(service, preview=False, zapback=False):
 	if Servicelist.startServiceRef is None:
 		Servicelist.startServiceRef = Session.nav.getCurrentlyPlayingServiceReference()
@@ -83,6 +85,7 @@ def zapToService(service, preview=False, zapback=False):
 		Servicelist.startServiceRef = None
 		Servicelist.startRoot = None
 
+
 def getBouquetServices(bouquet):
 	services = []
 	Servicelist = eServiceCenter.getInstance().list(bouquet)
@@ -96,6 +99,7 @@ def getBouquetServices(bouquet):
 			services.append(ServiceReference(service))
 	return services
 
+
 def cleanup():
 	global Session
 	Session = None
@@ -108,8 +112,10 @@ def cleanup():
 	global epg
 	epg = None
 
+
 def closed(ret=False):
 	cleanup()
+
 
 def onSelectBouquetClose(bouquet):
 	if not bouquet is None:
@@ -120,10 +126,12 @@ def onSelectBouquetClose(bouquet):
 			epg.setServices(services)
 			epg.setTitle(ServiceReference(epg_bouquet).getServiceName())
 
+
 def changeBouquetCB(direction, epgcall):
 	global epg
 	epg = epgcall
 	Session.openWithCallback(onSelectBouquetClose, SelectBouquet, bouquets, epg_bouquet, direction)
+
 
 def main(session, servicelist=None, **kwargs):
 	global Session
@@ -135,6 +143,7 @@ def main(session, servicelist=None, **kwargs):
 	global epg_bouquet
 	epg_bouquet = Servicelist and Servicelist.getRoot()
 	runGraphMultiEpg()
+
 
 def runGraphMultiEpg():
 	global Servicelist
@@ -148,11 +157,13 @@ def runGraphMultiEpg():
 		services = getBouquetServices(epg_bouquet)
 		Session.openWithCallback(reopen, GraphMultiEPG, services, zapToService, cb, ServiceReference(epg_bouquet).getServiceName())
 
+
 def reopen(answer):
 	if answer is None:
 		runGraphMultiEpg()
 	else:
 		closed(answer)
+
 
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")

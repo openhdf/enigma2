@@ -29,8 +29,10 @@ from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineM
 feedserver = 'flash.hdfreaks.cc'
 feedurl = 'https://%s/%s/json' % (feedserver, getImageDistro())
 
+
 def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('zImage', 'uImage', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_kernel.bin', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi', 'rootfs.bin')]) >= 2
+
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
@@ -39,8 +41,10 @@ def getBackupPath():
 	else:
 		return backuppath + '/backup_' + getImageDistro() + '_' + getBoxType()
 
+
 def getBackupFilename():
 	return "enigma2settingsbackup.tar.gz"
+
 
 class FlashOnline(Screen):
 	skin = """
@@ -147,7 +151,6 @@ class FlashOnline(Screen):
 		else:
 			self.session.openWithCallback(self.close, MessageBox, _("Cannot find images - please try later"), type=MessageBox.TYPE_ERROR, timeout=3)
 
-
 	def keyOk(self):
 		currentSelected = self["list"].l.getCurrentSelection()
 		if currentSelected[0][1] == "Expander":
@@ -204,6 +207,7 @@ class FlashOnline(Screen):
 	def keyDown(self):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		self.selectionChanged()
+
 
 class FlashImage(Screen):
 	skin = """<screen position="center,center" size="640,150" flags="wfNoBorder" backgroundColor="#54242424">
@@ -532,6 +536,7 @@ class FlashImage(Screen):
 	def flashimage(self):
 		self["header"].setText(_("Flashing Image"))
 		self["summary_header"].setText(self["header"].getText())
+
 		def findimagefiles(path):
 			for path, subdirs, files in os.walk(path):
 				if not subdirs and files:

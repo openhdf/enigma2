@@ -11,6 +11,7 @@ from Components.config import config, ConfigBoolean
 searchPaths = []
 lastPiconPath = None
 
+
 def initPiconPaths():
 	global searchPaths
 	searchPaths = []
@@ -20,6 +21,7 @@ def initPiconPaths():
 		mp = path = os.path.join(part.mountpoint, 'usr/share/enigma2')
 		onMountpointAdded(part.mountpoint)
 		onMountpointAdded(mp)
+
 
 def onMountpointAdded(mountpoint):
 	global searchPaths
@@ -34,6 +36,7 @@ def onMountpointAdded(mountpoint):
 	except Exception as ex:
 		print("[Picon] Failed to investigate %s:" % mountpoint, ex)
 
+
 def onMountpointRemoved(mountpoint):
 	global searchPaths
 	path = os.path.join(mountpoint, 'picon') + '/'
@@ -43,11 +46,13 @@ def onMountpointRemoved(mountpoint):
 	except:
 		pass
 
+
 def onPartitionChange(why, part):
 	if why == 'add':
 		onMountpointAdded(part.mountpoint)
 	elif why == 'remove':
 		onMountpointRemoved(part.mountpoint)
+
 
 def findPicon(serviceName):
 	global lastPiconPath
@@ -76,6 +81,7 @@ def findPicon(serviceName):
 		else:
 			return ""
 
+
 def getPiconName(serviceName):
 	sname = '_'.join(GetWithAlternative(serviceName).split(':', 10)[:10])
 	pngname = findPicon(sname)
@@ -85,6 +91,7 @@ def getPiconName(serviceName):
 			fields[0] = '1'
 		pngname = findPicon('_'.join(fields))
 	return pngname
+
 
 class PiconRes(Renderer):
 	def __init__(self):
@@ -151,6 +158,7 @@ class PiconRes(Renderer):
 					else:
 						self.instance.hide()
 					self.pngname = pngname
+
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 initPiconPaths()

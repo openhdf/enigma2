@@ -21,6 +21,7 @@ from xml.etree.cElementTree import parse
 
 ##########################################################################
 
+
 class VFDExtendedServiceInfo(Converter, object):
 	SERVICENAME = 0
 	SERVICENUMBER = 1

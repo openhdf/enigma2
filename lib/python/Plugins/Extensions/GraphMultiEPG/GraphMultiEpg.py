@@ -63,6 +63,7 @@ config.misc.graph_mepg.extension_menu = ConfigYesNo(default=True)
 
 listscreen = config.misc.graph_mepg.default_mode.value
 
+
 class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, selChangedCB=None, timer=None, time_epoch=120, overjump_empty=True):
 		GUIComponent.__init__(self)
@@ -635,6 +636,7 @@ class EPGList(HTMLComponent, GUIComponent):
 	def resetOffset(self):
 		self.offs = 0
 
+
 class TimelineText(HTMLComponent, GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
@@ -739,6 +741,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			timeline_now.visible = True
 		else:
 			timeline_now.visible = False
+
 
 class GraphMultiEPG(Screen, HelpableScreen):
 	EMPTY = 0

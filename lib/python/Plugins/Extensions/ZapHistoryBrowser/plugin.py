@@ -19,6 +19,7 @@ import gettext
 
 ################################################
 
+
 def localeInit():
 	lang = language.getLanguage()
 	environ["LANGUAGE"] = lang[:2]
@@ -26,11 +27,13 @@ def localeInit():
 	gettext.textdomain("enigma2")
 	gettext.bindtextdomain("ZapHistoryBrowser", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/ZapHistoryBrowser/locale/"))
 
+
 def _(txt):
 	t = gettext.dgettext("ZapHistoryBrowser", txt)
 	if t == txt:
 		t = gettext.gettext(txt)
 	return t
+
 
 localeInit()
 language.addCallback(localeInit)
@@ -42,6 +45,7 @@ config.plugins.ZapHistoryConfigurator.enable_zap_history = ConfigSelection(choic
 config.plugins.ZapHistoryConfigurator.maxEntries_zap_history = ConfigInteger(default=20, limits=(1, 60))
 
 ################################################
+
 
 def addToHistory(instance, ref):
 	if config.plugins.ZapHistoryConfigurator.enable_zap_history.value == "off":
@@ -63,9 +67,11 @@ def addToHistory(instance, ref):
 			hlen -= 1
 		instance.history_pos = hlen - 1
 
+
 ChannelSelection.addToHistory = addToHistory
 
 ################################################
+
 
 class ZapHistoryConfigurator(ConfigListScreen, Screen):
 	skin = """
@@ -95,6 +101,7 @@ class ZapHistoryConfigurator(ConfigListScreen, Screen):
 
 ################################################
 
+
 class ZapHistoryBrowserList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
@@ -111,6 +118,7 @@ class ZapHistoryBrowserList(MenuList):
 			self.l.setItemHeight(21)
 			self.l.setFont(0, gFont("Regular", 21))
 			self.l.setFont(1, gFont("Regular", 16))
+
 
 def ZapHistoryBrowserListEntry(serviceName, eventName):
 	desktopSize = getDesktop(0).size()
@@ -131,6 +139,7 @@ def ZapHistoryBrowserListEntry(serviceName, eventName):
 		return res
 
 ################################################
+
 
 class ZapHistoryBrowser(Screen, ProtectedScreen):
 	skin = """
@@ -251,8 +260,10 @@ class ZapHistoryBrowser(Screen, ProtectedScreen):
 
 ################################################
 
+
 def main(session, servicelist, **kwargs):
 	session.open(ZapHistoryBrowser, servicelist)
+
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name=_("Zap-History Browser"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)

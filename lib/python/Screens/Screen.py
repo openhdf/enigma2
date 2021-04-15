@@ -10,6 +10,7 @@ from Components.GUIComponent import GUIComponent
 profile("LOAD:eRCInput")
 from enigma import eRCInput, eTimer
 
+
 class Screen(dict, GUISkin):
 
 	NO_SUSPEND, SUSPEND_STOPS, SUSPEND_PAUSES = list(range(3))

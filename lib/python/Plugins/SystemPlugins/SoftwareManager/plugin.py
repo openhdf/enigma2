@@ -53,9 +53,11 @@ import six
 boxtype = getBoxType()
 brandoem = getBrandOEM()
 
+
 def eEnv_resolve_multi(path):
 	resolve = eEnv.resolve(path)
 	return resolve.split()
+
 
 if config.softwareupdate.disableupdates.value:
 	if os.path.exists("/var/lib/opkg/status"):
@@ -116,6 +118,7 @@ config.plugins.softwaremanager.updatetype = ConfigSelection(
 	("cold", _("Unattended upgrade without GUI")),
 	], "hot")
 
+
 def write_cache(cache_file, cache_data):
 	#Does a cPickle dump
 	if not os_path.isdir(os_path.dirname(cache_file)):
@@ -126,6 +129,7 @@ def write_cache(cache_file, cache_data):
 	fd = open(cache_file, 'w')
 	dump(cache_data, fd, -1)
 	fd.close()
+
 
 def valid_cache(cache_file, cache_ttl):
 	#See if the cache file exists and is still living
@@ -139,12 +143,14 @@ def valid_cache(cache_file, cache_ttl):
 	else:
 		return 1
 
+
 def load_cache(cache_file):
 	#Does a cPickle load
 	fd = open(cache_file)
 	cache_data = load(fd)
 	fd.close()
 	return cache_data
+
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
@@ -153,8 +159,10 @@ def getBackupPath():
 	else:
 		return backuppath + '/backup_' + getImageDistro() + '_' + getBoxType()
 
+
 def getBackupFilename():
 	return "enigma2settingsbackup.tar.gz"
+
 
 class UpdatePluginMenu(Screen):
 
@@ -540,6 +548,7 @@ class UpdatePluginMenu(Screen):
 		else:
 			self.session.open(FlashOnline)
 
+
 class SoftwareManagerSetup(Screen, ConfigListScreen):
 
 	skin = """
@@ -894,7 +903,6 @@ class PluginManager(Screen, PackageInfoHandler):
 				self.statuslist.append((_("Error"), '', _("An error occurred while downloading the packetlist. Please try again."), '', '', statuspng, divpng, None, ''))
 			self["list"].style = "default"
 			self['list'].setList(self.statuslist)
-
 
 	def getUpdateInfos(self):
 		if (iSoftwareTools.lastDownloadDate is not None and iSoftwareTools.NetworkConnectionAvailable is False):
@@ -1413,6 +1421,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			<widget name="detailtext" position="10,90" size="270,330" zPosition="10" font="Regular;21" transparent="1" halign="left" valign="top"/>
 			<widget name="screenshot" position="290,90" size="300,330" alphatest="on"/>
 		</screen>"""
+
 	def __init__(self, session, plugin_path, packagedata=None):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Plugin details"))
@@ -1582,6 +1591,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Installation finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 		else:
 			self.close(True)
+
 	def UpgradeReboot(self, result):
 		if result:
 			self.session.open(TryQuitMainloop, retvalue=3)
@@ -1897,7 +1907,6 @@ class UpdatePlugin(Screen):
 		if result is not None and result:
 			self.session.open(TryQuitMainloop, retvalue=2)
 		self.close()
-
 
 
 class IPKGMenu(Screen):
@@ -2446,6 +2455,7 @@ def filescan_open(list, session, **kwargs):
 	filelist = [x.path for x in list]
 	session.open(IpkgInstaller, filelist) # list
 
+
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	return \
@@ -2457,6 +2467,7 @@ def filescan(**kwargs):
 			name="Ipkg",
 			description=_("Install extensions."),
 			openfnc=filescan_open, )
+
 
 class ShowUpdatePackages(Screen, NumericalTextInput):
 	skin = """
@@ -2521,7 +2532,6 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmAscii)
 
-
 	def keyNumberGlobal(self, val):
 		key = self.getKey(val)
 		if key is not None:
@@ -2579,7 +2589,6 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		elif event == IpkgComponent.EVENT_DONE:
 			self.buildPacketList()
 
-
 	def buildEntryComponent(self, name, version, description, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
 		if not description:
@@ -2617,13 +2626,16 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		else:
 			self.setStatus('error')
 
+
 def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
+
 
 def startSetup(menuid):
 	if menuid != "software_menu":
 		return []
 	return [(_("Software management"), UpgradeMain, "software_manager", 10)]
+
 
 def Plugins(path, **kwargs):
 	global plugin_path

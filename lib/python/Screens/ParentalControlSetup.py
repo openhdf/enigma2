@@ -13,6 +13,7 @@ from Tools.BoundFunction import boundFunction
 from enigma import eServiceCenter, eTimer, eServiceReference
 from operator import itemgetter
 
+
 class ProtectedScreen:
 	def __init__(self):
 		if self.isProtected():
@@ -29,6 +30,7 @@ class ProtectedScreen:
 
 	def closeProtectedScreen(self, result=None):
 		self.close(None)
+
 
 class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 	def __init__(self, session):
@@ -157,6 +159,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
+
 
 class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 	def __init__(self, session, pin, pinname):

@@ -33,12 +33,14 @@ import six
 
 SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
+
 def find_rootfssubdir(file):
 	startup_content = read_startup("/boot/" + file)
 	rootsubdir = startup_content[startup_content.find("rootsubdir=") + 11:].split()[0]
 	if rootsubdir.startswith("linuxrootfs"):
 		return rootsubdir
 	return
+
 
 def read_startup(FILE):
 	file = FILE
@@ -78,6 +80,7 @@ class About(Screen):
 				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_eth1():
 			netspeed = ""
 			for line in popen('ethtool eth1 |grep Speed', 'r'):
@@ -85,24 +88,28 @@ class About(Screen):
 				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_ra0():
 			netspeed = ""
 			for line in popen('iwconfig ra0 | grep Bit | cut -c 20-30', 'r'):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_wlan0():
 			netspeed = ""
 			for line in popen('iwconfig wlan0 | grep Bit | cut -c 20-30', 'r'):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_wlan1():
 			netspeed = ""
 			for line in popen('iwconfig wlan1 | grep Bit | cut -c 20-30', 'r'):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
+
 		def freeflash():
 			freeflash = ""
 			for line in popen("df -mh / | grep -v '^Filesystem' | awk '{print $4}'", 'r'):
@@ -389,6 +396,7 @@ class About(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class Devices(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -515,6 +523,7 @@ class Devices(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class SystemMemoryInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -593,6 +602,7 @@ class SystemMemoryInfo(Screen):
 	def showMemoryInfo(self):
 		self.session.open(MemoryInfo)
 
+
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -650,6 +660,7 @@ class SystemNetworkInfo(Screen):
 				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_eth1():
 			netspeed = ""
 			for line in popen('ethtool eth1 |grep Speed', 'r'):
@@ -829,6 +840,7 @@ class SystemNetworkInfo(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
@@ -862,6 +874,7 @@ class AboutSummary(Screen):
 			AboutText += _("Temperature: %s") % tempinfo.replace('\n', '') + mark + "C"
 
 		self["AboutText"] = StaticText(AboutText)
+
 
 class ViewGitLog(Screen):
 	def __init__(self, session, args=None):
@@ -936,6 +949,7 @@ class ViewGitLog(Screen):
 	def closeRecursive(self):
 		self.close((_("Cancel"), ""))
 
+
 class TranslationInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -971,6 +985,7 @@ class TranslationInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
+
 
 class MemoryInfo(Screen):
 

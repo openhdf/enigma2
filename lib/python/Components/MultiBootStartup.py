@@ -10,6 +10,7 @@ from Components.Sources.StaticText import StaticText
 from Components import Harddisk
 from os import path, listdir, system
 
+
 class MultiBootStartup(ConfigListScreen, Screen):
 
 	skin = """

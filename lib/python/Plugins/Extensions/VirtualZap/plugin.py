@@ -69,6 +69,7 @@ config.plugins.virtualzap.curref = ConfigText()
 config.plugins.virtualzap.curbouquet = ConfigText()
 config.plugins.virtualzap.exittimer = ConfigInteger(0, limits=(0, 20))
 
+
 def autostart(reason, **kwargs):
 	if config.plugins.virtualzap.mode.value != "0":
 		# overide InfoBarShowHide
@@ -81,6 +82,7 @@ def autostart(reason, **kwargs):
 		InfoBarShowHide.VirtualZapCallback = VirtualZapCallback
 		if config.plugins.virtualzap.mode.value == "2":
 			InfoBarShowHide.newHide = newHide
+
 
 def InfoBarShowHide__init__(self):
 	# initialize InfoBarShowHide with original __init__
@@ -116,6 +118,7 @@ def showVZ(self):
 		if isinstance(self, InfoBar):
 			self.session.openWithCallback(self.VirtualZapCallback, VirtualZap, self.servicelist)
 
+
 def VirtualZapCallback(self, service=None, servicePath=None):
 	if isinstance(self, InfoBarPiP):
 		if service and servicePath:
@@ -129,6 +132,7 @@ def VirtualZapCallback(self, service=None, servicePath=None):
 				del self.session.pip
 				self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 
+
 def newHide(self):
 	# remember if infobar is shown
 	visible = self.shown
@@ -136,6 +140,7 @@ def newHide(self):
 	if not visible:
 		# infobar was not shown, start VZ
 		self.showVZ()
+
 
 def Plugins(**kwargs):
 	plist = [PluginDescriptor(name="Virtual Zap Setup", description=_("Virtual Zap Setup"), where=[PluginDescriptor.WHERE_PLUGINMENU], icon="plugin.png", fnc=setup)]
@@ -145,11 +150,14 @@ def Plugins(**kwargs):
 		plist.append(PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART], fnc=autostart))
 	return plist
 
+
 def setup(session, **kwargs):
 	session.open(VirtualZapConfig)
 
+
 def main(session, **kwargs):
 	session.open(VirtualZap, kwargs["servicelist"])
+
 
 class VirtualZap(Screen):
 	sz_w = getDesktop(0).size().width()
@@ -383,7 +391,6 @@ class VirtualZap(Screen):
 		current = ServiceReference(self.servicelist.getCurrentSelection())
 		return not (current.ref.flags & (eServiceReference.isMarker | eServiceReference.isDirectory))
 
-
 	def nextBouquet(self):
 		# next bouquet with first service
 		if config.usage.multibouquet.value:
@@ -395,7 +402,6 @@ class VirtualZap(Screen):
 		if config.usage.multibouquet.value:
 			self.servicelist.prevBouquet()
 		self.updateInfos()
-
 
 	def updateInfos(self):
 		self.resetExitTimer()
@@ -567,8 +573,8 @@ class VirtualZap(Screen):
 			self.pipservice = None
 			self.currentPiP = ""
 
-
 	# switch with numbers
+
 	def keyNumberGlobal(self, number):
 		self.session.openWithCallback(self.numberEntered, NumberZap, number)
 
@@ -694,6 +700,7 @@ class VirtualZap(Screen):
 				"keyTV": self.servicelist.setModeTv,
 			})
 
+
 class VirtualZapConfig(Screen, ConfigListScreen):
 
 	skin = """
@@ -731,7 +738,6 @@ class VirtualZapConfig(Screen, ConfigListScreen):
 		configfile.save()
 		restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _("GUI needs a restart to apply the new settings.\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
-
 
 	def keyClose(self):
 		for x in self["config"].list:

@@ -37,6 +37,7 @@ try:
 except:
 	plugin_PiPServiceRelation_installed = False
 
+
 class EPGSelection(Screen, HelpableScreen):
 	EMPTY = 0
 	ADD_TIMER = 1
@@ -1546,6 +1547,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if service is not None:
 			self.setServicelistSelection(bouquet, service)
 		self.onCreate()
+
 
 class SingleEPG(EPGSelection):
 	def __init__(self, session, service, EPGtype="single"):

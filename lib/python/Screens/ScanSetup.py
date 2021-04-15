@@ -18,6 +18,7 @@ from Components.Converter.ChannelNumbers import channelnumbers
 from boxbranding import getMachineBrand
 import six
 
+
 def buildTerTransponder(frequency,
 		inversion=2, bandwidth=7000000, fechigh=6, feclow=6,
 		modulation=2, transmission=2, guard=4,
@@ -36,6 +37,7 @@ def buildTerTransponder(frequency,
 	parm.system = system
 	parm.plp_id = plp_id
 	return parm
+
 
 def getInitialTransponderList(tlist, pos):
 	list = nimmanager.getTransponders(pos)
@@ -59,6 +61,7 @@ def getInitialTransponderList(tlist, pos):
 			parm.t2mi_pid = x[14]
 			tlist.append(parm)
 
+
 def getInitialCableTransponderList(tlist, nim):
 	list = nimmanager.getTranspondersCable(nim)
 	for x in list:
@@ -71,6 +74,7 @@ def getInitialCableTransponderList(tlist, nim):
 			parm.inversion = x[5]
 			parm.system = x[6]
 			tlist.append(parm)
+
 
 def getInitialTerrestrialTransponderList(tlist, region, skip_t2=False):
 	list = nimmanager.getTranspondersTerrestrial(region)
@@ -88,6 +92,7 @@ def getInitialTerrestrialTransponderList(tlist, region, skip_t2=False):
 			parm = buildTerTransponder(x[1], x[9], x[2], x[4], x[5], x[3], x[7], x[6], x[8], x[10], x[11])
 			tlist.append(parm)
 
+
 def getInitialATSCTransponderList(tlist, nim):
 	list = nimmanager.getTranspondersATSC(nim)
 	for x in list:
@@ -98,6 +103,7 @@ def getInitialATSCTransponderList(tlist, nim):
 			parm.inversion = x[3]
 			parm.system = x[4]
 			tlist.append(parm)
+
 
 cable_bands = {
 	"DVBC_BAND_EU_VHF_I": 1 << 0,
@@ -132,6 +138,7 @@ terrestrial_autoscan_nimtype = {
 
 dual_tuner_list = ('TT3L10', 'BCM3466')
 
+
 def GetDeviceId(filter, nim_idx):
 	tuners = {}
 	device_id = 0
@@ -150,9 +157,11 @@ def GetDeviceId(filter, nim_idx):
 		socket_id += 1
 	return device_id
 
+
 def GetTerrestrial5VEnable(nim_idx):
        nim = nimmanager.nim_slots[nim_idx]
        return int(nim.config.dvbt.terrestrial_5V.value)
+
 
 class CableTransponderSearchSupport:
 #	def setCableTransponderSearchResult(self, tlist):
@@ -389,6 +398,7 @@ class CableTransponderSearchSupport:
 		tmpstr += "\n\n..."
 		self.cable_search_session = self.session.openWithCallback(self.cableTransponderSearchSessionClosed, MessageBox, tmpstr, MessageBox.TYPE_INFO)
 
+
 class TerrestrialTransponderSearchSupport:
 #	def setTerrestrialTransponderSearchResult(self, tlist):
 #		pass
@@ -577,6 +587,7 @@ class TerrestrialTransponderSearchSupport:
 		print("SCAN CMD : ", cmd)
 		self.terrestrial_search_container.execute(cmd)
 
+
 class ConfigFrequency(ConfigInteger):
 	def __init__(self, default, limits=integer_limits):
 		self._value = None
@@ -589,6 +600,7 @@ class ConfigFrequency(ConfigInteger):
 
 	value = property(ConfigInteger.getValue, setValue)
 
+
 class ConfigChannel(ConfigInteger):
 	def __init__(self, default, limits=integer_limits):
 		self._value = None
@@ -600,6 +612,7 @@ class ConfigChannel(ConfigInteger):
 			self.changed()
 
 	value = property(ConfigInteger.getValue, setValue)
+
 
 class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, TerrestrialTransponderSearchSupport):
 	def __init__(self, session):
@@ -1877,6 +1890,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 	def doCloseRecursive(self):
 		self.session.nav.playService(self.session.postScanService)
 		self.closeRecursive()
+
 
 class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, TerrestrialTransponderSearchSupport):
 	def getNetworksForNim(self, nim):
