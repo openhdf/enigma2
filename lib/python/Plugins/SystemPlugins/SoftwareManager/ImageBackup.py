@@ -54,7 +54,7 @@ class ImageBackup(Screen):
 		<widget name="info-yellow" position="10,290" zPosition="1" size="550,200" font="Regular;20" halign="left" valign="top" transparent="1" />
 	</screen>"""
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
 		self.session = session
 		self.selection = 0
@@ -142,21 +142,21 @@ class ImageBackup(Screen):
 
 	def show_Errors(self):
 		if self.error_files:
-			self.session.open(MessageBox, _('Index Error in the following files: %s') %self.error_files[:-2], type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _('Index Error in the following files: %s') %self.error_files[:-2], type=MessageBox.TYPE_ERROR)
 			self.error_files = ''
 
 	def check_hdd(self):
 		if not path.exists("/media/hdd"):
-			self.session.open(MessageBox, _("No /hdd found !!\nPlease make sure you have a HDD mounted.\n"), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("No /hdd found !!\nPlease make sure you have a HDD mounted.\n"), type=MessageBox.TYPE_ERROR)
 			return False
 		if Freespace('/media/hdd') < 300000:
-			self.session.open(MessageBox, _("Not enough free space on /hdd !!\nYou need at least 300Mb free space.\n"), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Not enough free space on /hdd !!\nYou need at least 300Mb free space.\n"), type=MessageBox.TYPE_ERROR)
 			return False
 		return True
 
 	def check_usb(self, dev):
 		if Freespace(dev) < 300000:
-			self.session.open(MessageBox, _("Not enough free space on %s !!\nYou need at least 300Mb free space.\n" % dev), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Not enough free space on %s !!\nYou need at least 300Mb free space.\n" % dev), type=MessageBox.TYPE_ERROR)
 			return False
 		return True
 
@@ -174,7 +174,7 @@ class ImageBackup(Screen):
 			text += _("To back-up directly to the USB-stick, the USB-stick MUST\n")
 			text += _("contain a file with the name: \n\n")
 			text += _("backupstick or backupstick.txt")
-			self.session.open(MessageBox, text, type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, text, type=MessageBox.TYPE_ERROR)
 		else:
 			if self.check_usb(USB_DEVICE):
 				self.doFullBackup(USB_DEVICE)
@@ -324,12 +324,12 @@ class ImageBackup(Screen):
 
 		if not path.exists(self.MKFS):
 			text = "%s not found !!" %self.MKFS
-			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _(text), type=MessageBox.TYPE_ERROR)
 			return
 
 		if not path.exists(self.NANDDUMP):
 			text = "%s not found !!" %self.NANDDUMP
-			self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _(text), type=MessageBox.TYPE_ERROR)
 			return
 
 		self.SHOWNAME = "%s %s" %(self.MACHINEBRAND, self.MODEL)
@@ -561,7 +561,7 @@ class ImageBackup(Screen):
 			cmdlist.append('echo " "')
 			cmdlist.append('%s -zv %s/rootfs.ext4 %s/%s' % (self.FASTBOOT, self.WORKDIR, self.WORKDIR, self.EMMCIMG))
 		print(cmdlist)
-		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, finishedCallback = self.doFullBackupCB, closeOnSuccess = True)
+		self.session.open(Console, title=self.TITLE, cmdlist=cmdlist, finishedCallback=self.doFullBackupCB, closeOnSuccess=True)
 
 	def doFullBackupCB(self):
 		if HaveGZkernel:
@@ -570,7 +570,7 @@ class ImageBackup(Screen):
 				text = "Kernel dump error\n"
 				text += "Please Flash your Kernel new and Backup again"
 				system('rm -rf /tmp/vmlinux.bin')
-				self.session.open(MessageBox, _(text), type = MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _(text), type=MessageBox.TYPE_ERROR)
 				return
 
 		cmdlist = []
@@ -756,7 +756,7 @@ class ImageBackup(Screen):
 		TIMELAP = str(datetime.timedelta(seconds=DIFF))
 		cmdlist.append('echo "' + _("Time required for this process: %s") %TIMELAP + '\n"')
 
-		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, closeOnSuccess = False)
+		self.session.open(Console, title=self.TITLE, cmdlist=cmdlist, closeOnSuccess=False)
 
 	def imageInfo(self):
 		AboutText = _("OpenHDF Full-Image Backupscript\n")

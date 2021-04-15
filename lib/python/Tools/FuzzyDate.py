@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from time import localtime, time
 
-def FuzzyTime(t, inPast = False):
+def FuzzyTime(t, inPast=False):
 	d = localtime(t)
 	nt = time()
 	n = localtime()

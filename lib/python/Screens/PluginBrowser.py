@@ -30,23 +30,23 @@ from time import time
 import os
 
 config.pluginfilter = ConfigSubsection()
-config.pluginfilter.hdf = ConfigYesNo(default = True)
-config.pluginfilter.po = ConfigYesNo(default = False)
-config.pluginfilter.src = ConfigYesNo(default = False)
-config.pluginfilter.kernel = ConfigYesNo(default = False)
-config.pluginfilter.kodiaddon = ConfigYesNo(default = False)
-config.pluginfilter.drivers = ConfigYesNo(default = True)
-config.pluginfilter.extensions = ConfigYesNo(default = True)
-config.pluginfilter.packagegroup = ConfigYesNo(default = False)
-config.pluginfilter.python = ConfigYesNo(default = True)
-config.pluginfilter.picons = ConfigYesNo(default = True)
-config.pluginfilter.gstreamer = ConfigYesNo(default = False)
-config.pluginfilter.security = ConfigYesNo(default = False)
-config.pluginfilter.settings = ConfigYesNo(default = True)
-config.pluginfilter.skins = ConfigYesNo(default = True)
-config.pluginfilter.display = ConfigYesNo(default = True)
-config.pluginfilter.systemplugins = ConfigYesNo(default = True)
-config.pluginfilter.userfeed = ConfigText(default = 'http://', fixed_size=False)
+config.pluginfilter.hdf = ConfigYesNo(default=True)
+config.pluginfilter.po = ConfigYesNo(default=False)
+config.pluginfilter.src = ConfigYesNo(default=False)
+config.pluginfilter.kernel = ConfigYesNo(default=False)
+config.pluginfilter.kodiaddon = ConfigYesNo(default=False)
+config.pluginfilter.drivers = ConfigYesNo(default=True)
+config.pluginfilter.extensions = ConfigYesNo(default=True)
+config.pluginfilter.packagegroup = ConfigYesNo(default=False)
+config.pluginfilter.python = ConfigYesNo(default=True)
+config.pluginfilter.picons = ConfigYesNo(default=True)
+config.pluginfilter.gstreamer = ConfigYesNo(default=False)
+config.pluginfilter.security = ConfigYesNo(default=False)
+config.pluginfilter.settings = ConfigYesNo(default=True)
+config.pluginfilter.skins = ConfigYesNo(default=True)
+config.pluginfilter.display = ConfigYesNo(default=True)
+config.pluginfilter.systemplugins = ConfigYesNo(default=True)
+config.pluginfilter.userfeed = ConfigText(default='http://', fixed_size=False)
 
 ## command to find ipk with status hold
 ## grep -B 4 hold /var/lib/opkg/status | sed '/Provides/d' | sed '/Version/d' | sed '/Status/d' | sed '/Depends/d' | sed '/--/d' | sed -e '/^ *$/d'
@@ -70,7 +70,7 @@ config.misc.pluginbrowser.plugin_order = ConfigText(default="")
 
 class PluginBrowserSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["entry"] = StaticText("")
 		self["desc"] = StaticText("")
 		self.onShow.append(self.addWatcher)
@@ -165,7 +165,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 			for (pluginname, error) in plugins.warnings:
 				text += _("%s (%s)\n") % (pluginname, error)
 			plugins.resetWarnings()
-			self.session.open(MessageBox, text = text, type = MessageBox.TYPE_WARNING)
+			self.session.open(MessageBox, text=text, type=MessageBox.TYPE_WARNING)
 
 	def save(self):
 		self.run()
@@ -231,7 +231,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 			try:
 				from Plugins.SystemPlugins.SoftwareManager.plugin import PluginManager
 			except ImportError:
-				self.session.open(MessageBox, _("The software management extension is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO, timeout = 10 )
+				self.session.open(MessageBox, _("The software management extension is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
 			else:
 				self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginManager)
 
@@ -244,7 +244,7 @@ class PluginDownloadBrowser(Screen):
 	PLUGIN_PREFIX2 = []
 	lastDownloadDate = None
 
-	def __init__(self, session, type = 0, needupdate = True):
+	def __init__(self, session, type=0, needupdate=True):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Downloadable plugins"))
 
@@ -372,13 +372,13 @@ class PluginDownloadBrowser(Screen):
 				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
 				mbox.setTitle(_("Download plugins"))
 			if self.type == self.REMOVE:
-				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name, default = False)
+				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name, default=False)
 				mbox.setTitle(_("Remove plugins"))
 			elif self.type == self.TOOGLE:
 				if 'hold' in os.popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + sel.name).read():
-					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to unhold the plugin \"%s\"?") % sel.name, default = False)
+					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to unhold the plugin \"%s\"?") % sel.name, default=False)
 				else:
-					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to hold the plugin \"%s\"?") % sel.name, default = False)
+					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to hold the plugin \"%s\"?") % sel.name, default=False)
 				mbox.setTitle(_("Hold plugins"))
 
 	def requestClose(self):
@@ -462,23 +462,23 @@ class PluginDownloadBrowser(Screen):
 
 	def doRemove(self, callback, pkgname):
 		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('packagegroup-') or pkgname.startswith('python-') or pkgname.startswith('kodi-'):
-			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + pkgname, "sync"], closeOnSuccess = True)
+			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + pkgname, "sync"], closeOnSuccess=True)
 		else:
-			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = True)
+			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess=True)
 
 	def doToogle(self, callback, pkgname):
 		if 'hold' in os.popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname).read():
 			self.ipkg_toogle = self.ipkg + ' flag user'
-			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_toogle + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
+			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_toogle + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess=False)
 		else:
 			self.ipkg_toogle = self.ipkg + ' flag hold'
-			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_toogle + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = False)
+			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_toogle + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess=False)
 
 	def doInstall(self, callback, pkgname):
 		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('packagegroup-') or pkgname.startswith('python-') or pkgname.startswith('kodi-'):
-			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_install + " " + pkgname, "sync"], closeOnSuccess = True)
+			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_install + " " + pkgname, "sync"], closeOnSuccess=True)
 		else:
-			self.session.openWithCallback(callback, Console, cmdlist = [self.ipkg_install + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess = True)
+			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_install + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess=True)
 
 	def runSettingsRemove(self, val):
 		if val:
@@ -500,7 +500,7 @@ class PluginDownloadBrowser(Screen):
 			self.setTitle(_("Hold plugins"))
 
 
-	def startIpkgListInstalled(self, pkgname = PLUGIN_PREFIX + '*'):
+	def startIpkgListInstalled(self, pkgname=PLUGIN_PREFIX + '*'):
 		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list_installed")
 
 	def startIpkgListAvailable(self):
@@ -660,15 +660,15 @@ class PluginDownloadBrowser(Screen):
 				self.plugins[split[0]] = []
 
 			if split[0] == "kernel modules":
-				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][14:], x[1]))
+				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][14:], x[1]))
 			elif split[0] == "packagegroup":
-				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][13:], x[1]))
+				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][13:], x[1]))
 			elif split[0] == "python":
-				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][0o7:], x[1]))
+				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][0o7:], x[1]))
 			elif split[0] == "gstreamer":
-				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][13:], x[1]))
+				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][13:], x[1]))
 			elif split[0] == "kodi-addon":
-				self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = verticallineIcon), x[0][11:], x[1]))
+				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][11:], x[1]))
 			elif split[0] == "languages":
 				for t in self.LanguageList:
 					if len(x[2])>2:
@@ -678,20 +678,20 @@ class PluginDownloadBrowser(Screen):
 							countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + t[0] + ".png"))
 							if countryIcon is None:
 								countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
-							self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = countryIcon), t[1], x[1]))
+							self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=countryIcon), t[1], x[1]))
 							break
 					else:
 						if t[0][:2] == x[2] and t[0][3:] != 'GB':
 							countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + t[0] + ".png"))
 							if countryIcon is None:
 								countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
-							self.plugins[split[0]].append((PluginDescriptor(name = x[0], description = x[2], icon = countryIcon), t[1], x[1]))
+							self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=countryIcon), t[1], x[1]))
 							break
 
 			else:
 				if len(split) < 2:
 					continue
-				self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
+				self.plugins[split[0]].append((PluginDescriptor(name=x[3], description=x[2], icon=verticallineIcon), split[1], x[1]))
 
 		temp = list(self.plugins.keys())
 		if config.usage.sort_pluginlist.value:
@@ -726,7 +726,7 @@ class PluginFilter(ConfigListScreen, Screen):
 
 		self.onChangedEntry = [ ]
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["actions"] = ActionMap(["SetupActions", 'ColorActions', 'VirtualKeyboardActions'],
@@ -812,9 +812,9 @@ class PluginFilter(ConfigListScreen, Screen):
 	def KeyText(self):
 		sel = self['config'].getCurrent()
 		if sel:
-			self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
+			self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].value)
 
-	def VirtualKeyBoardCallback(self, callback = None):
+	def VirtualKeyBoardCallback(self, callback=None):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].value = callback
 			self["config"].invalidate(self["config"].getCurrent())

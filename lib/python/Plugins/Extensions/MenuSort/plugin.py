@@ -95,7 +95,7 @@ class MenuWeights:
 		weight, hidden = self.weights.get(tuple[0], (tuple[3], False))
 		return hidden
 
-	def get(self, tuple, supportHiding = True):
+	def get(self, tuple, supportHiding=True):
 		weight, hidden = self.weights.get(tuple[0], (tuple[3], False))
 		if supportHiding and hidden:
 			return HIDDENWEIGHT

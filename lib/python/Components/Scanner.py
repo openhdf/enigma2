@@ -36,7 +36,7 @@ def getType(file):
 	return type
 
 class Scanner:
-	def __init__(self, name, mimetypes= [], paths_to_scan = [], description = "", openfnc = None):
+	def __init__(self, name, mimetypes=[], paths_to_scan=[], description="", openfnc=None):
 		self.mimetypes = mimetypes
 		self.name = name
 		self.paths_to_scan = paths_to_scan
@@ -58,7 +58,7 @@ class Scanner:
 			self.openfnc(list, *args, **kwargs)
 
 class ScanPath:
-	def __init__(self, path, with_subdirs = False):
+	def __init__(self, path, with_subdirs=False):
 		self.path = path
 		self.with_subdirs = with_subdirs
 
@@ -78,7 +78,7 @@ class ScanPath:
 			return self.with_subdirs.__cmp__(other.with_subdirs)
 
 class ScanFile:
-	def __init__(self, path, mimetype = None, size = None, autodetect = True):
+	def __init__(self, path, mimetype=None, size=None, autodetect=True):
 		self.path = path
 		if mimetype is None and autodetect:
 			self.mimetype = getType(path)
@@ -179,8 +179,8 @@ def openList(session, files):
 		session.openWithCallback(
 			execute,
 			ChoiceBox,
-			title = "The following viewers were found...",
-			list = choices
+			title="The following viewers were found...",
+			list=choices
 		)
 		return True
 	elif Len:

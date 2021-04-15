@@ -17,7 +17,7 @@ class Screen(dict, GUISkin):
 
 	global_screen = None
 
-	def __init__(self, session, parent = None):
+	def __init__(self, session, parent=None):
 		dict.__init__(self)
 		self.skinName = self.__class__.__name__
 		self.session = session

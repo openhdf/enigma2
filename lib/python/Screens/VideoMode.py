@@ -75,7 +75,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.onHide.append(self.stopHotplug)
 
 		self.list = [ ]
-		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		from Components.ActionMap import ActionMap
 		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
@@ -391,7 +391,7 @@ class VideoSetup(Screen, ConfigListScreen):
 			return
 
 		from Screens.MessageBox import MessageBox
-		self.session.openWithCallback(self.confirm, MessageBox, _("Is this video mode ok?"), MessageBox.TYPE_YESNO, timeout = 20, default = False)
+		self.session.openWithCallback(self.confirm, MessageBox, _("Is this video mode ok?"), MessageBox.TYPE_YESNO, timeout=20, default=False)
 
 	def getCurrent_mode(self):
 		try:
@@ -455,7 +455,7 @@ class AudioSetup(Screen, ConfigListScreen):
 		self.onHide.append(self.stopHotplug)
 
 		self.list = [ ]
-		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		from Components.ActionMap import ActionMap
 		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
@@ -614,8 +614,7 @@ class AutoVideoMode(Screen):
 		Screen.__init__(self, session)
 
 		if session != None:
-			self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-				{
+			self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 					iPlayableService.evStart: self.__evStart,
 					iPlayableService.evVideoSizeChanged: self.VideoChanged,
 					iPlayableService.evVideoProgressiveChanged: self.VideoChanged,

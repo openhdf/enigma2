@@ -177,9 +177,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	def __init__(self, session, service):
 		self.skin = CutListEditor.skin
 		Screen.__init__(self, session)
-		InfoBarSeek.__init__(self, actionmap = "CutlistSeekActions")
+		InfoBarSeek.__init__(self, actionmap="CutlistSeekActions")
 		InfoBarCueSheetSupport.__init__(self)
-		InfoBarBase.__init__(self, steal_current_service = True)
+		InfoBarBase.__init__(self, steal_current_service=True)
 		HelpableScreen.__init__(self)
 		self.old_service = session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
@@ -201,7 +201,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.updateStateLabel(self.seekstate)
 
 		desktopSize = getDesktop(0).size()
-		self["Video"] = VideoWindow(decoder = 0, fb_width=desktopSize.width(), fb_height=desktopSize.height())
+		self["Video"] = VideoWindow(decoder=0, fb_width=desktopSize.width(), fb_height=desktopSize.height())
 
 		self["actions"] = HelpableActionMap(self, "CutListEditorActions",
 			{
@@ -218,8 +218,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.tutorial_seen = False
 
 		self.onExecBegin.append(self.showTutorial)
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evCuesheetChanged: self.refillList
 			})
 
@@ -476,4 +475,4 @@ def main(session, service, **kwargs):
 	session.open(CutListEditor, service)
 
 def Plugins(**kwargs):
- 	return PluginDescriptor(name=_("Cutlist Editor"), description=_("Cutlist editor..."), where = PluginDescriptor.WHERE_MOVIELIST, needsRestart = False, fnc=main)
+ 	return PluginDescriptor(name=_("Cutlist Editor"), description=_("Cutlist editor..."), where=PluginDescriptor.WHERE_MOVIELIST, needsRestart=False, fnc=main)

@@ -10,7 +10,7 @@ from Components.Pixmap import Pixmap
 import enigma
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", windowTitle = None, allow_cancel = True, titlebartext = _("Choice Box")):
+	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", windowTitle=None, allow_cancel=True, titlebartext=_("Choice Box")):
 		if not windowTitle: #for compatibility
 			windowTitle = titlebartext
 		if not list:
@@ -59,13 +59,13 @@ class ChoiceBox(Screen):
 		pos = 0
 		for x in _list:
 			strpos = str(self.__keys[pos])
-			self.list.append(ChoiceEntryComponent(key = strpos, text = x))
+			self.list.append(ChoiceEntryComponent(key=strpos, text=x))
 			if self.__keys[pos] != "":
 				self.keymap[self.__keys[pos]] = _list[pos]
 			self.summarylist.append((self.__keys[pos], x[0]))
 			pos += 1
 		self["windowtitle"] = Label(_(windowTitle))
-		self["list"] = ChoiceList(list = self.list, selection = selection)
+		self["list"] = ChoiceList(list=self.list, selection=selection)
 		self["summary_list"] = StaticText()
 		self["summary_selection"] = StaticText()
 		self.updateSummary(selection)
