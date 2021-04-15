@@ -193,4 +193,3 @@ class ProgressDiskSpaceInfo(Poll, Converter):
 		else:
 			self.downstream_elements.changed((self.CHANGED_POLL,))
 			self.poll_enabled = True
-

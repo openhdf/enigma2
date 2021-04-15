@@ -749,4 +749,3 @@ class VirtualZapConfig(Screen, ConfigListScreen):
 			self.session.open(TryQuitMainloop, 3)
 		else:
 			self.close()
-

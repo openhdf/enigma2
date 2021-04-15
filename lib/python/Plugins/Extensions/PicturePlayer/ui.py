@@ -632,4 +632,3 @@ class Pic_Full_View(Screen):
 			self.session.nav.playService(self.oldref)
 
 		self.close(self.lastindex + self.dirlistcount)
-

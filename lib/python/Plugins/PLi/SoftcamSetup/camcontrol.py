@@ -52,4 +52,3 @@ class CamControl:
 			print("Failed to create symlink for softcam:", dst)
 			import sys
 			print(sys.exc_info()[:2])
-

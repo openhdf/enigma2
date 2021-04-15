@@ -688,4 +688,3 @@ class InstantRecordTimerEntry(TimerEntry):
 
 	def saveTimer(self):
 		self.session.nav.RecordTimer.saveTimer()
-
