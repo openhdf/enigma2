@@ -57,8 +57,10 @@ from time import time, localtime, strftime
 from bisect import insort
 from sys import maxsize
 from keyids import KEYIDS
-import itertools, datetime
-import os, six.moves.cPickle
+import itertools
+import datetime
+import os
+import six.moves.cPickle
 
 # hack alert!
 from Screens.Menu import MainMenu, Menu, mdom

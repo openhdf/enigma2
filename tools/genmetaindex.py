@@ -1,6 +1,7 @@
 # usage: genmetaindex.py <xml-files>  > index.xml
 from __future__ import absolute_import
-import sys, os
+import sys
+import os
 from xml.etree.ElementTree import ElementTree, Element
 
 root = Element("index")
