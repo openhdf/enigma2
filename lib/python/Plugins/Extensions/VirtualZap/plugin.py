@@ -145,10 +145,10 @@ def Plugins(**kwargs):
 		plist.append(PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART], fnc=autostart))
 	return plist
 
-def setup(session,**kwargs):
+def setup(session, **kwargs):
 	session.open(VirtualZapConfig)
 
-def main(session,**kwargs):
+def main(session, **kwargs):
 	session.open(VirtualZap, kwargs["servicelist"])
 
 class VirtualZap(Screen):

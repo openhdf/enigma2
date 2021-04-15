@@ -415,10 +415,10 @@ def cachemenu():
 			if x.attrib.get('name') == 'menu_mainmenu':
 				print(x.attrib.get('name'))
 				for s in x.findall("ePixmap"):
-					if s.attrib.get('pixmap','') != '':
+					if s.attrib.get('pixmap', '') != '':
 						pixmaplist.append(s.attrib.get('pixmap', ''))
 				for s in x.findall('widget'):
-					if s.attrib.get('pixmap','') != '':
+					if s.attrib.get('pixmap', '') != '':
 						pixmaplist.append(s.attrib.get('pixmap', ''))
 	desktop = getDesktop(0)
 	for s in pixmaplist:
