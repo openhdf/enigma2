@@ -17,6 +17,7 @@ IMAGE_INSTALL = ['openhdf-base', 'enigma2-plugin-settings-defaultsat', 'run-post
 PACKAGES = '/var/lib/opkg/lists'
 INSTALLEDPACKAGES = '/var/lib/opkg/status'
 
+
 def backupUserDB():
 	oldpasswd = ()
 	oldshadow = ()
@@ -80,6 +81,7 @@ def backupUserDB():
 	for item in tmpgroups:
 		groupstxt.write("%s\n" % item)
 	groupstxt.close()
+
 
 def restoreUserDB():
 	if not (os.path.isfile('/tmp/passwd.txt') and os.path.isfile('/tmp/groups.txt')):
@@ -186,6 +188,7 @@ def restoreUserDB():
 		newshadowfile.write("%s:%s:%s\n" % (name, passwd, rest))
 	newshadowfile.close()
 	shutil.move("/tmp/shadow.new", "/etc/shadow")
+
 
 def listpkg(type="installed"):
 	pkgs = []

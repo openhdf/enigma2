@@ -5,6 +5,7 @@ from struct import pack, unpack
 from Components.config import config
 from boxbranding import getBoxType, getBrandOEM
 
+
 def getFPVersion():
 	ret = None
 	try:
@@ -24,6 +25,7 @@ def getFPVersion():
 			print("getFPVersion failed!")
 	return ret
 
+
 def setFPWakeuptime(wutime):
 	try:
 		f = open("/proc/stb/fp/wakeup_time", "w")
@@ -36,6 +38,7 @@ def setFPWakeuptime(wutime):
 			fp.close()
 		except IOError:
 			print("setFPWakeupTime failed!")
+
 
 def setRTCoffset():
 	import time
@@ -54,6 +57,7 @@ def setRTCoffset():
 	except IOError:
 		print("set RTC Offset failed!")
 
+
 def setRTCtime(wutime):
 	if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue') or getBrandOEM().startswith('ini'):
 		setRTCoffset()
@@ -68,6 +72,7 @@ def setRTCtime(wutime):
 			fp.close()
 		except IOError:
 			print("setRTCtime failed!")
+
 
 def getFPWakeuptime():
 	ret = 0
@@ -84,7 +89,9 @@ def getFPWakeuptime():
 			print("getFPWakeupTime failed!")
 	return ret
 
+
 wasTimerWakeup = None
+
 
 def getFPWasTimerWakeup(check=False):
 	global wasTimerWakeup
@@ -117,6 +124,7 @@ def getFPWasTimerWakeup(check=False):
 	if check:
 		return wasTimerWakeup, isError
 	return wasTimerWakeup
+
 
 def clearFPWasTimerWakeup():
 	try:

@@ -17,6 +17,7 @@ add_type("video/x-matroska", ".mkv")
 add_type("audio/x-matroska", ".mka")
 add_type("video/mpeg", ".mts")
 
+
 def getType(file):
 	(type, _) = guess_type(file)
 	if type is None:
@@ -34,6 +35,7 @@ def getType(file):
 		if ext == "dat" and file[-11:-6].lower() == "avseq":
 			return "video/x-vcd"
 	return type
+
 
 class Scanner:
 	def __init__(self, name, mimetypes=[], paths_to_scan=[], description="", openfnc=None):
@@ -57,6 +59,7 @@ class Scanner:
 		if self.openfnc is not None:
 			self.openfnc(list, *args, **kwargs)
 
+
 class ScanPath:
 	def __init__(self, path, with_subdirs=False):
 		self.path = path
@@ -77,6 +80,7 @@ class ScanPath:
 		else:
 			return self.with_subdirs.__cmp__(other.with_subdirs)
 
+
 class ScanFile:
 	def __init__(self, path, mimetype=None, size=None, autodetect=True):
 		self.path = path
@@ -89,6 +93,7 @@ class ScanFile:
 	def __repr__(self):
 		return "<ScanFile " + self.path + " (" + str(self.mimetype) + ", " + str(self.size) + " MB)>"
 
+
 def execute(option):
 	print("execute", option)
 	if option is None:
@@ -96,6 +101,7 @@ def execute(option):
 
 	(_, scanner, files, session) = option
 	scanner.open(files, session)
+
 
 def scanDevice(mountpoint):
 	scanner = []
@@ -150,6 +156,7 @@ def scanDevice(mountpoint):
 	# res is a dict with scanner -> [ScanFiles]
 	return res
 
+
 def openList(session, files):
 	if not isinstance(files, list):
 		files = [files]
@@ -188,6 +195,7 @@ def openList(session, files):
 		return True
 
 	return False
+
 
 def openFile(session, mimetype, file):
 	return openList(session, [ScanFile(file, mimetype)])

@@ -2,6 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 import os
 
+
 def enumFeeds():
 	for fn in os.listdir('/etc/opkg'):
 		if fn.endswith('-feed.conf'):
@@ -15,6 +16,7 @@ def enumFeeds():
 				pass
 			except IOError:
 				pass
+
 
 def enumPlugins(filter_start=''):
 	for feed in enumFeeds():
@@ -50,6 +52,7 @@ def enumPlugins(filter_start=''):
 			file.close()
 		except IOError:
 			pass
+
 
 if __name__ == '__main__':
 	for p in enumPlugins('enigma'):

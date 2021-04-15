@@ -14,6 +14,7 @@ from Components.Pixmap import Pixmap
 
 from enigma import eCableScan, eDVBFrontendParametersCable
 
+
 class CableScan:
 	def __init__(self, text, progressbar, scanTuner, scanNetwork, scanFrequency, scanSymbolRate, scanModulation, keepNumbers, hdList):
 		self.text = text
@@ -55,6 +56,7 @@ class CableScan:
 
 	def isDone(self):
 		return self.done
+
 
 class CableScanStatus(Screen):
 	skin = """
@@ -105,6 +107,7 @@ class CableScanStatus(Screen):
 		self.restoreService()
 		self.close()
 
+
 config.plugins.CableScan = ConfigSubsection()
 config.plugins.CableScan.keepnumbering = ConfigYesNo(default=False)
 config.plugins.CableScan.hdlist = ConfigYesNo(default=False)
@@ -118,6 +121,7 @@ config.plugins.CableScan.modulation = ConfigSelection(
 		(str(eDVBFrontendParametersCable.Modulation_QAM128), "QAM128"),
 		(str(eDVBFrontendParametersCable.Modulation_QAM256), "QAM256")],
 	default=str(eDVBFrontendParametersCable.Modulation_QAM64))
+
 
 class CableScanScreen(ConfigListScreen, Screen):
 	skin = """
@@ -171,6 +175,7 @@ class CableScanScreen(ConfigListScreen, Screen):
 	def keyCancel(self):
 		self.close()
 
+
 def CableScanMain(session, **kwargs):
 	nims = nimmanager.getNimListOfType("DVB-C")
 
@@ -186,11 +191,13 @@ def CableScanMain(session, **kwargs):
 		else:
 			session.open(CableScanScreen)
 
+
 def CableScanStart(menuid, **kwargs):
 	if menuid == "scan":
 		return [(_("Cable Scan"), CableScanMain, "cablescan", None)]
 	else:
 		return []
+
 
 def Plugins(**kwargs):
 	if nimmanager.hasNimType("DVB-C"):

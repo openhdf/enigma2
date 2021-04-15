@@ -7,6 +7,7 @@ from Components.Element import cached, ElementError
 from Components.config import config
 from enigma import eEPGCache
 
+
 class EventTime(Poll, Converter, object):
 	STARTTIME = 0
 	ENDTIME = 1
@@ -155,7 +156,6 @@ class EventTime(Poll, Converter, object):
 				except:
 					# failed to return any epg data.
 					return None
-
 
 	@cached
 	def getValue(self):

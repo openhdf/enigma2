@@ -1,5 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
+
+
 def getDefaultGateway():
 	f = open("/proc/net/route", "r")
 	if f:
@@ -8,6 +10,7 @@ def getDefaultGateway():
 			if tokens[1] == '00000000': #dest 0.0.0.0
 				return int(tokens[2], 16)
 	return None
+
 
 def getTelephone():
 	f = open("/etc/ppp/options", "r")
@@ -19,6 +22,7 @@ def getTelephone():
 				line = line[:line.find('"')]
 				return line
 	return ""
+
 
 def setOptions(tel, user):
 	f = open("/etc/ppp/options", "r+")
@@ -36,6 +40,7 @@ def setOptions(tel, user):
 			else:
 				f.write(line)
 
+
 def getSecretString():
 	f = open("/etc/ppp/pap-secrets", "r")
 	if f:
@@ -47,6 +52,7 @@ def getSecretString():
 			return line
 	return None
 
+
 def setSecretString(secret):
 	f = open("/etc/ppp/pap-secrets", 'r+')
 	if f:
@@ -57,6 +63,7 @@ def setSecretString(secret):
 				f.write(line)
 				continue
 			f.write(secret + '\n')
+
 
 from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
@@ -75,6 +82,7 @@ DISCONNECT = 3
 
 gateway = None
 
+
 def pppdClosed(ret):
 	global gateway
 	print("modem disconnected", ret)
@@ -82,9 +90,11 @@ def pppdClosed(ret):
 		#FIXMEEE... hardcoded for little endian!!
 		system("route add default gw %d.%d.%d.%d" % (gateway & 0xFF, (gateway >> 8) & 0xFF, (gateway >> 16) & 0xFF, (gateway >> 24) & 0xFF))
 
+
 connected = False
 conn = eConsoleAppContainer()
 conn.appClosed.append(pppdClosed)
+
 
 class ModemSetup(Screen):
 	skin = """
@@ -278,8 +288,10 @@ class ModemSetup(Screen):
 		self["list"].instance.setSelectionEnable(focus_enabled)
 		self["ListActions"].setEnabled(not focus_enabled)
 
+
 def main(session, **kwargs):
 	session.open(ModemSetup)
+
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name="Modem", description="plugin to connect to internet via builtin modem", where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=main)

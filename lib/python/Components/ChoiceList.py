@@ -8,9 +8,11 @@ from Tools.Directories import fileExists
 import skin
 from os import path
 
+
 def row_delta_y():
 	font = skin.fonts["ChoiceList"]
 	return (int(font[2]) - int(font[1])) // 2
+
 
 def ChoiceEntryComponent(key=None, text=["--"]):
 	res = [text]
@@ -36,6 +38,7 @@ def ChoiceEntryComponent(key=None, text=["--"]):
 				x, y, w, h = skin.parameters.get("ChoicelistIcon", (5, 0, 35, 25))
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 	return res
+
 
 class ChoiceList(MenuList):
 	def __init__(self, list, selection=0, enableWrapAround=False):

@@ -16,6 +16,7 @@ from Tools.Directories import copyfile, pathExists
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode, GetImagelist
 
+
 class MultiBootSelector(Screen):
 
 	skin = """

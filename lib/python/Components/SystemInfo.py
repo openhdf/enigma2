@@ -11,11 +11,14 @@ SystemInfo["RecoveryMode"] = False or fileCheck("/proc/stb/fp/boot_mode")	# This
 from Tools.Multiboot import getMBbootdevice, getMultibootslots  # This import needs to be here to avoid a SystemInfo load loop!
 
 #FIXMEE...
+
+
 def getNumVideoDecoders():
 	idx = 0
 	while fileExists("/dev/dvb/adapter0/video%d" % idx, 'f'):
 		idx += 1
 	return idx
+
 
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
 SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
@@ -31,6 +34,7 @@ def countFrontpanelLEDs():
 		leds += 1
 
 	return leds
+
 
 SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
 SystemInfo["ZapMode"] = fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode")

@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.VolumeBar import VolumeBar
 
+
 class Volume(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)

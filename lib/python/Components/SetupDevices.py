@@ -4,6 +4,7 @@ from Components.Timezones import timezones
 from Components.Language import language
 from Components.Keyboard import keyboard
 
+
 def InitSetupDevices():
 
 	def keyboardNotifier(configElement):

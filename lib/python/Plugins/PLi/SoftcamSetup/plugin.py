@@ -2,14 +2,17 @@ from __future__ import absolute_import
 from . import _
 from Plugins.Plugin import PluginDescriptor
 
+
 def main(session, **kwargs):
 	from . import Sc
 	session.open(Sc.ScSelection)
+
 
 def menu(menuid, **kwargs):
 	if menuid == "cam":
 		return [(_("Softcam Manager..."), main, "softcam_setup", 45)]
 	return []
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name="Softcam Cardserver Manager", description="Lets you configure your softcams", where=PluginDescriptor.WHERE_MENU, fnc=menu),

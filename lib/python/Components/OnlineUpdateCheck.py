@@ -9,10 +9,12 @@ from Components import Task
 from Components.Ipkg import IpkgComponent
 from Components.config import config
 
+
 def OnlineUpdateCheck(session=None, **kwargs):
 	global onlineupdatecheckpoller
 	onlineupdatecheckpoller = OnlineUpdateCheckPoller()
 	onlineupdatecheckpoller.start()
+
 
 class OnlineUpdateCheckPoller:
 	def __init__(self):
@@ -76,6 +78,7 @@ class OnlineUpdateCheckPoller:
 				config.softwareupdate.updatefound.setValue(False)
 		pass
 
+
 class VersionCheck:
 	def __init__(self):
 		pass
@@ -101,5 +104,6 @@ class VersionCheck:
 				return False
 		else:
 			return False
+
 
 versioncheck = VersionCheck()

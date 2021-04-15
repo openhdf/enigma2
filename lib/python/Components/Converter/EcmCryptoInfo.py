@@ -14,6 +14,7 @@ ECM_INFO = '/tmp/ecm.info'
 old_ecm_mtime = None
 data = None
 
+
 class EcmCryptoInfo(Poll, Converter, object):
 	def __init__(self, type):
 		Converter.__init__(self, type)

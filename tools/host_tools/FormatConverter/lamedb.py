@@ -2,6 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from datasource import datasource
 
+
 class lamedb(datasource):
 	def __init__(self, filename="lamedb"):
 		datasource.__init__(self)

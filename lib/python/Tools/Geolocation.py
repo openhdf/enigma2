@@ -47,6 +47,7 @@ from six.moves.urllib.error import URLError
 config.misc.enableGeolocation = ConfigYesNo(default=True)
 geolocation = {}
 
+
 def InitGeolocation():
 	global geolocation
 	if config.misc.enableGeolocation.value:
@@ -75,6 +76,7 @@ def InitGeolocation():
 	else:
 		geolocation = {}
 		print("[Geolocation] Warning: Geolocation has been disabled by user configuration!")
+
 
 def RefreshGeolocation():
 	global geolocation

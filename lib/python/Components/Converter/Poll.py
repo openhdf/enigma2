@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from enigma import eTimer
 
+
 class Poll(object):
 	def __init__(self):
 		self.__poll_timer = eTimer()

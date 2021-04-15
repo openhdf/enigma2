@@ -8,6 +8,7 @@ from Components.HTMLComponent import HTMLComponent
 from Tools.Directories import fileExists
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
+
 def SimpleEntry(name, picture):
     res = [(name, picture)]
     picture = '/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager/icons/' + picture

@@ -162,6 +162,7 @@ MAPPINGS = {
 	'nl_NL': MAP_NL,
 	}
 
+
 class NumericalTextInput:
 	def __init__(self, nextFunc=None, handleTimeout=True, search=False, mapping=None):
 		self.useableChars = None

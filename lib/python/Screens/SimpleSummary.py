@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from Screens.Screen import Screen
 #from Components.Sources.Source import ObsoleteSource
 
+
 class SimpleSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">

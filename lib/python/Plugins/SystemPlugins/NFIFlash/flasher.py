@@ -29,6 +29,7 @@ class md5Postcondition(Condition):
 			return _("The md5sum validation failed, the file may be corrupted!")
 		return "md5 error"
 
+
 class md5verify(Task):
 	def __init__(self, job, path, md5):
 		Task.__init__(self, job, "md5sum")
@@ -50,6 +51,7 @@ class md5verify(Task):
 	def processOutput(self, data):
 		print("[md5sum]", end=' ')
 
+
 class writeNAND(Task):
 	def __init__(self, job, param, box):
 		Task.__init__(self, job, "Writing image file to NAND Flash")
@@ -70,6 +72,7 @@ class writeNAND(Task):
 			self.setProgress(self.end)
 		else:
 			self.output_line = data
+
 
 class NFIFlash(Screen):
 	skin = """

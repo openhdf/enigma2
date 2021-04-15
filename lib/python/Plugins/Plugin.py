@@ -5,6 +5,7 @@ import os
 
 config.plugins = ConfigSubsection()
 
+
 class PluginDescriptor(object):
 	"""An object to describe a plugin."""
 

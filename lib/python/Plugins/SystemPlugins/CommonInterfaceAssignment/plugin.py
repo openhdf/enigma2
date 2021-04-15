@@ -23,6 +23,7 @@ from boxbranding import getMachineBrand, getMachineName, getBoxType
 import os
 import six
 
+
 class CIselectMainMenu(Screen):
 	skin = """
 		<screen name="CIselectMainMenu" position="center,center" size="500,250" title="CI assignment" >
@@ -95,6 +96,7 @@ class CIselectMainMenu(Screen):
 					self.session.open(CIconfigMenu, slot)
 				else:
 					self.session.open(easyCIconfigMenu, slot)
+
 
 class CIconfigMenu(Screen):
 	skin = """
@@ -330,6 +332,7 @@ class CIconfigMenu(Screen):
 		self["ServiceList"].l.setList(self.servicelist)
 		self.setServiceListInfo()
 
+
 class easyCIconfigMenu(CIconfigMenu):
 	skin = """
 		<screen name="easyCIconfigMenu" position="center,center" size="560,440" >
@@ -356,6 +359,7 @@ class easyCIconfigMenu(CIconfigMenu):
 			"yellow": self.yellowPressed,
 			"cancel": self.cancel
 		})
+
 
 class CAidSelect(Screen):
 	skin = """
@@ -404,6 +408,7 @@ class CAidSelect(Screen):
 
 	def cancel(self):
 		self.close()
+
 
 class myProviderSelection(ChannelSelectionBase):
 	skin = """
@@ -462,6 +467,7 @@ class myProviderSelection(ChannelSelectionBase):
 				self.enterPath(ref)
 			elif (ref.flags & 7) == 7 and 'provider' in ref.toString():
 				menu = [(_("Provider"), "provider"), (_("All services provider"), "providerlist")]
+
 				def addAction(choice):
 					if choice is not None:
 						if choice[1] == "provider":
@@ -540,6 +546,7 @@ class myProviderSelection(ChannelSelectionBase):
 	def cancel(self):
 		self.close(None)
 
+
 class myChannelSelection(ChannelSelectionBase):
 	skin = """
 		<screen name="myChannelSelection" position="center,center" size="560,440" title="Select service to add...">
@@ -607,8 +614,10 @@ class myChannelSelection(ChannelSelectionBase):
 	def cancel(self):
 		self.close(None)
 
+
 def activate_all(session, editcallback=False):
 	cihelper.load_ci_assignment()
+
 
 def find_in_list(list, search, listpos=0):
 	for item in list:
@@ -616,7 +625,9 @@ def find_in_list(list, search, listpos=0):
 			return True
 	return False
 
+
 global_session = None
+
 
 def isModule():
 	NUM_CI = eDVBCIInterfaces.getInstance() and eDVBCIInterfaces.getInstance().getNumOfSlots()
@@ -627,9 +638,11 @@ def isModule():
 				return True
 	return False
 
+
 def sessionstart(reason, session):
 	global global_session
 	global_session = session
+
 
 def autostart(reason, **kwargs):
 	global global_session
@@ -639,13 +652,16 @@ def autostart(reason, **kwargs):
 	elif reason == 1:
 		global_session = None
 
+
 def main(session, **kwargs):
 	session.open(CIselectMainMenu)
+
 
 def menu(menuid, **kwargs):
 	if menuid == "cam" and isModule():
 		return [(_("Common Interface Assignment"), main, "ci_assign", 11)]
 	return []
+
 
 def Plugins(**kwargs):
 	if config.usage.setup_level.index > 1:

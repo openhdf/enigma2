@@ -10,6 +10,7 @@ gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
 gettext.textdomain("enigma2")
 gettext.bindtextdomain("Volume_adjust", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/Volume_adjust/locale/"))
 
+
 def _(txt):
 	t = gettext.dgettext("Volume_adjust", txt)
 	if t == txt:
