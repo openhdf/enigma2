@@ -142,7 +142,7 @@ class MultiBootSelector(Screen):
 					open(path.join(self.mountDir, "STARTUP"), "w").write(f)
 			else:
 				copyfile(path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]["startupfile"]), path.join(self.mountDir, "STARTUP"))
-			self.session.openWithCallback(self.restartImage,MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
+			self.session.openWithCallback(self.restartImage, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
 
 	def restartImage(self, answer):
 		if answer is True:

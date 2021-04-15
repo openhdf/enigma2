@@ -28,9 +28,9 @@ def PluginEntryComponentSelected(plugin, width=440):
 		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/plugin.png"))
 	else:
 		png = plugin.icon
-	nx, ny, nh = skin.parameters.get("PluginBrowserName",(120, 5, 25))
-	dx, dy, dh = skin.parameters.get("PluginBrowserDescr",(120, 26, 17))
-	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon",(10, 5, 100, 40))
+	nx, ny, nh = skin.parameters.get("PluginBrowserName", (120, 5, 25))
+	dx, dy, dh = skin.parameters.get("PluginBrowserDescr", (120, 26, 17))
+	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon", (10, 5, 100, 40))
 	return [
 		plugin,
 		MultiContentEntryText(pos=(nx, ny), size=(width - nx, nh), backcolor_sel=0xDC143C),

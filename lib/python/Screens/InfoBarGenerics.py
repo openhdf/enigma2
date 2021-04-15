@@ -51,7 +51,7 @@ from Tools.Directories import pathExists, fileExists, getRecordingFilename, copy
 from Tools.KeyBindings import getKeyDescription
 from Tools.ServiceReference import hdmiInServiceRef
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getDriverDate, getImageVersion, getImageBuild, getMachineProcModel, getMachineBuild,getMachineMtdKernel, getDisplayType
+from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getDriverDate, getImageVersion, getImageBuild, getMachineProcModel, getMachineBuild, getMachineMtdKernel, getDisplayType
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -172,7 +172,7 @@ def updateresumePointCache():
 
 def ToggleVideo():
 	mode = open("/proc/stb/video/policy").read()[:-1]
-	print("[InfoBarGenerics] toggle videomode:",mode)
+	print("[InfoBarGenerics] toggle videomode:", mode)
 	if mode == "letterbox":
 		f = open("/proc/stb/video/policy", "w")
 		f.write("panscan")
@@ -1645,7 +1645,7 @@ class InfoBarMenu:
 
 	def toggleAspectRatio(self):
 		ASPECT = ["auto", "16:9", "4:3"]
-		ASPECT_MSG = {"auto":"Auto", "16:9":"16:9", "4:3":"4:3"}
+		ASPECT_MSG = {"auto": "Auto", "16:9": "16:9", "4:3": "4:3"}
 		if config.av.aspect.value in ASPECT:
 			index = ASPECT.index(config.av.aspect.value)
 			config.av.aspect.value = ASPECT[(index + 1) % 3]
@@ -4723,10 +4723,10 @@ class InfoBarPiP:
 					self.session.pip.show()
 					newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 				elif info:
-					self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO,timeout=5)
+					self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5)
 				else:
-					self.session.open(MessageBox, _("No active channel found."), type=MessageBox.TYPE_INFO,timeout=5)
-				if self.session.pip.playService(newservice,curBouquet):
+					self.session.open(MessageBox, _("No active channel found."), type=MessageBox.TYPE_INFO, timeout=5)
+				if self.session.pip.playService(newservice, curBouquet):
 					self.session.pip.setCurrentBouquetMain(curBouquet)
 					self.session.pipshown = True
 					InfoBarPiP.pipWindowActive = False
@@ -4748,7 +4748,7 @@ class InfoBarPiP:
 				else:
 					if config.usage.pip_mode.value == "standard":
 						newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
-					if self.session.pip.playService(newservice,curBouquet):
+					if self.session.pip.playService(newservice, curBouquet):
 						self.session.pip.setCurrentBouquetMain(curBouquet)
 						self.session.pipshown = True
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
@@ -5261,7 +5261,7 @@ class InfoBarInstantRecord:
 				iptv_service = str(ServiceReference(ref))
 				print("IPTV Service Name:", iptv_service)
 				if iptv_service.startswith('4097:'):
-					self.session.open(MessageBox,_("IPTV recording is not working with activated gstplayer or exteplayer3." + "\n" + "Please use original settings within serviceapp!"), MessageBox.TYPE_INFO, timeout=15)
+					self.session.open(MessageBox, _("IPTV recording is not working with activated gstplayer or exteplayer3." + "\n" + "Please use original settings within serviceapp!"), MessageBox.TYPE_INFO, timeout=15)
 					return
 		except:
 			pass
@@ -5533,7 +5533,7 @@ class InfoBarRedButton:
 		info = service and service.info()
 		try:
 			for x in info.getInfoObject(iServiceInformation.sHBBTVUrl):
-				print("[InfoBarGenerics] HbbtvApplication:",x)
+				print("[InfoBarGenerics] HbbtvApplication:", x)
 				if x[0] in (-1, 1):
 					self.updateAIT(x[3])
 					self["HbbtvApplication"].setApplicationName(x[1])
@@ -5589,7 +5589,7 @@ class InfoBarAspectSelection:
 		self.__ExGreen_state = self.STATE_HIDDEN
 
 	def ExGreen_toggleGreen(self, arg=""):
-		print("[InfoBarGenerics] toggleGreen:",self.__ExGreen_state)
+		print("[InfoBarGenerics] toggleGreen:", self.__ExGreen_state)
 		if self.__ExGreen_state == self.STATE_HIDDEN:
 			print("[InfoBarGenerics] self.STATE_HIDDEN")
 			self.ExGreen_doAspect()
@@ -5676,7 +5676,7 @@ class InfoBarResolutionSelection:
 		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 		mode = open("/proc/stb/video/videomode").read()[:-1]
-		print("[InfoBarGenerics] videomode:",mode)
+		print("[InfoBarGenerics] videomode:", mode)
 		for x in list(range(len(tlist))):
 			if tlist[x][1] == mode:
 				selection = x
@@ -6344,7 +6344,7 @@ class InfoBarHdmi:
 
 	def HDMIInPiP(self):
 		if getMachineBuild() in ('dm7080', 'dm820', 'dm900', 'dm920'):
-			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
+			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "r")
 			check = f.read()
 			f.close()
 			if check.startswith("off"):
@@ -6382,45 +6382,45 @@ class InfoBarHdmi:
 
 	def HDMIInFull(self):
 		if getMachineBuild() in ('dm7080', 'dm820', 'dm900', 'dm920'):
-			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
+			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "r")
 			check = f.read()
 			f.close()
 			if check.startswith("off"):
-				f = open("/proc/stb/video/videomode","r")
+				f = open("/proc/stb/video/videomode", "r")
 				self.oldvideomode = f.read()
 				f.close()
-				f = open("/proc/stb/video/videomode_50hz","r")
+				f = open("/proc/stb/video/videomode_50hz", "r")
 				self.oldvideomode_50hz = f.read()
 				f.close()
-				f = open("/proc/stb/video/videomode_60hz","r")
+				f = open("/proc/stb/video/videomode_60hz", "r")
 				self.oldvideomode_60hz = f.read()
 				f.close()
-				f = open("/proc/stb/video/videomode","w")
+				f = open("/proc/stb/video/videomode", "w")
 				if getMachineBuild() in ('dm900', 'dm920'):
 					f.write("1080p")
 				else:
 					f.write("720p")
 				f.close()
-				f = open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f = open("/proc/stb/audio/hdmi_rx_monitor", "w")
 				f.write("on")
 				f.close()
-				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "w")
 				f.write("on")
 				f.close()
 			else:
-				f = open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f = open("/proc/stb/audio/hdmi_rx_monitor", "w")
 				f.write("off")
 				f.close()
-				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "w")
 				f.write("off")
 				f.close()
-				f = open("/proc/stb/video/videomode","w")
+				f = open("/proc/stb/video/videomode", "w")
 				f.write(self.oldvideomode)
 				f.close()
-				f = open("/proc/stb/video/videomode_50hz","w")
+				f = open("/proc/stb/video/videomode_50hz", "w")
 				f.write(self.oldvideomode_50hz)
 				f.close()
-				f = open("/proc/stb/video/videomode_60hz","w")
+				f = open("/proc/stb/video/videomode_60hz", "w")
 				f.write(self.oldvideomode_60hz)
 				f.close()
 		else:

@@ -146,9 +146,9 @@ def InfoBarPlugins__init__(self):
 		else:
 			VZ_MODE = "-1"
 		if VZ_MODE == "1":
-			self["SIBActions"] = ActionMap(["SIBwithVZActions"], {"ok_but": self.switch,"exit_but": self.swOff}, -1)
+			self["SIBActions"] = ActionMap(["SIBwithVZActions"], {"ok_but": self.switch, "exit_but": self.swOff}, -1)
 		else:
-			self["SIBActions"] = ActionMap(["SIBActions"], {"ok_but": self.switch,"exit_but": self.swOff}, -1)
+			self["SIBActions"] = ActionMap(["SIBActions"], {"ok_but": self.switch, "exit_but": self.swOff}, -1)
 		self.SIBtimer = eTimer()
 		self.SIBtimer.callback.append(self.swOff)
 		self.SIBdialog = self.session.instantiateDialog(SecondInfoBar)

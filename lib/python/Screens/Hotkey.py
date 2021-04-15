@@ -172,7 +172,7 @@ def getHotkeys():
 	(_("MOUSE long"), "mouse_long", ""),
 	(_("VOD"), "vod", "Infobar/seekFwdVod"),
 	(_("VOD long"), "vod_long", ""),
-	(_("Zoom"), "ZoomInOut", "InfobarGenerics/ZoomInOut"),]
+	(_("Zoom"), "ZoomInOut", "InfobarGenerics/ZoomInOut"), ]
 
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=True)
