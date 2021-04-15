@@ -43,7 +43,7 @@ class EPGSelection(Screen, HelpableScreen):
 	REMOVE_TIMER = 2
 	ZAP = 1
 
-	def __init__(self, session, service = None, zapFunc = None, eventid = None, bouquetChangeCB=None, serviceChangeCB = None, EPGtype = None, StartBouquet = None, StartRef = None, bouquets = None):
+	def __init__(self, session, service=None, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype=None, StartBouquet=None, StartRef=None, bouquets=None):
 		Screen.__init__(self, session)
 		self.setTitle(_('EPG Selection'))
 		HelpableScreen.__init__(self)
@@ -408,7 +408,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if key:
 			self.session.openWithCallback(self.onSetupClose, Setup, key)
 
-	def onSetupClose(self, test = None):
+	def onSetupClose(self, test=None):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if self.type == EPG_TYPE_GRAPH:
 				self.close('reopengraph')
@@ -543,7 +543,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.moveTimeLines(True)
 
-	def updEvent(self, dir, visible = True):
+	def updEvent(self, dir, visible=True):
 		ret = self['list'].selEntry(dir, visible)
 		if ret:
 			self.moveTimeLines(True)
@@ -1287,7 +1287,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
 			self.infoKeyPressed(True)
 
-	def moveTimeLines(self, force = False):
+	def moveTimeLines(self, force=False):
 		self.updateTimelineTimer.start((60 - int(time()) % 60) * 1000)
 		self['timeline_text'].setEntries(self['list'], self['timeline_now'], self.time_lines, force)
 		self['list'].l.invalidate()
@@ -1327,7 +1327,7 @@ class EPGSelection(Screen, HelpableScreen):
 					(self.type in (EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_preview_mode.value in ('1', '2')) or
 					(self.type == EPG_TYPE_ENHANCED and config.epgselection.enhanced_preview_mode.value)):
 					if '0:0:0:0:0:0:0:0:0' not in self.StartRef.toString():
-						self.zapFunc(None, zapback = True)
+						self.zapFunc(None, zapback=True)
 				elif '0:0:0:0:0:0:0:0:0' in self.StartRef.toString():
 					self.session.nav.playService(self.StartRef)
 				else:
@@ -1368,7 +1368,7 @@ class EPGSelection(Screen, HelpableScreen):
 						if self.session.pipshown:
 							self.session.pipshown = False
 							del self.session.pip
-						self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = False)
+						self.zapFunc(ref.ref, bouquet=self.getCurrentBouquet(), preview=False)
 						return
 					if not self.session.pipshown:
 						self.session.pip = self.session.instantiateDialog(PictureInPicture)
@@ -1383,13 +1383,13 @@ class EPGSelection(Screen, HelpableScreen):
 						if self.session.pipshown:
 							self.session.pipshown = False
 							del self.session.pip
-						self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = False)
+						self.zapFunc(ref.ref, bouquet=self.getCurrentBouquet(), preview=False)
 						return
 					if self.prevch != service.toString() and currservice != service.toString():
 						self.session.pip.playService(service)
 						self.currch = self.session.pip.getCurrentService() and str(self.session.pip.getCurrentService().toString())
 				else:
-					self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = prev)
+					self.zapFunc(ref.ref, bouquet=self.getCurrentBouquet(), preview=prev)
 					self.currch = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString())
 				self['list'].setCurrentlyPlaying(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
@@ -1499,7 +1499,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.service, self.bouquet = self.searchNumber(int(self.NumberZapField))
 			self.zaptoservicename = ServiceReference(self.service).getServiceName()
 
-	def numberEntered(self, service = None, bouquet = None):
+	def numberEntered(self, service=None, bouquet=None):
 		if service is not None:
 			self.zapToNumber(service, bouquet)
 

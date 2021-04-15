@@ -237,7 +237,7 @@ class LogManager(Screen):
 		self.previouslySent = config.logmanager.sentfiles.value
 		self.defaultDir = config.crash.debug_path.value
 		self.matchingPattern = 'enigma2_crash_'
-		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories = False, matchingPattern = self.matchingPattern )
+		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories=False, matchingPattern=self.matchingPattern )
 		self["list"] = self.filelist
 		self["LogsSize"] = self.logsinfo = LogInfo(config.crash.debug_path.value, LogInfo.USED, update=False)
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -335,7 +335,7 @@ class LogManager(Screen):
 			ybox = self.session.openWithCallback(self.doDelete3, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Delete Confirmation"))
 		else:
-			self.session.open(MessageBox, _("You have selected no logs to delete."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("You have selected no logs to delete."), MessageBox.TYPE_INFO, timeout=10)
 
 	def doDelete1(self, answer):
 		self.selectedFiles = self["list"].getSelectedList()
@@ -371,7 +371,7 @@ class LogManager(Screen):
 			self["list"].changeDir(self.defaultDir)
 			self["LogsSize"].update(config.crash.debug_path.value)
 
-	def sendlog(self, addtionalinfo = None):
+	def sendlog(self, addtionalinfo=None):
 		try:
 			self.sel = self["list"].getCurrent()[0]
 		except:
@@ -400,7 +400,7 @@ class LogManager(Screen):
 				ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
 				ybox.setTitle(_("Send Confirmation"))
 		else:
-			self.session.open(MessageBox, _("You have selected no logs to send."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("You have selected no logs to send."), MessageBox.TYPE_INFO, timeout=10)
 
 	def sendlog1(self, answer):
 		if answer:
@@ -434,9 +434,9 @@ class LogManager(Screen):
 			self.session.openWithCallback(self.doSendlog, LogManagerFb)
 		else:
 			from Screens.VirtualKeyBoard import VirtualKeyBoard
-			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = _("Additional Info"))
+			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title=_("Additional Info"))
 
-	def doSendlog(self, additonalinfo = None):
+	def doSendlog(self, additonalinfo=None):
 		ref = str(time())
 		# Create the container (outer) email message.
 		msg = MIMEMultipart()
@@ -497,9 +497,9 @@ class LogManager(Screen):
 					s.quit()
 					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the SVN team team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log'), MessageBox.TYPE_INFO)
 			except Exception as e:
-				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout=10)
 		else:
-			self.session.open(MessageBox, _('You have not setup your user info in the setup screen\nPress MENU, and enter your info, then try again'), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _('You have not setup your user info in the setup screen\nPress MENU, and enter your info, then try again'), MessageBox.TYPE_INFO, timeout=10)
 
 	def myclose(self):
 		self.close()
@@ -581,7 +581,7 @@ class LogManagerFb(Screen):
 		self.session = session
 		Screen.__init__(self, session)
 
-		self["list"] = FileList(logpath, matchingPattern = "^.*")
+		self["list"] = FileList(logpath, matchingPattern="^.*")
 		self["red"] = Label(_("delete"))
 		self["green"] = Label(_("move"))
 		self["yellow"] = Label(_("copy"))
@@ -647,7 +647,7 @@ class LogInfo(VariableText, GUIComponent):
 	USED = 1
 	SIZE = 2
 
-	def __init__(self, path, type, update = True):
+	def __init__(self, path, type, update=True):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type

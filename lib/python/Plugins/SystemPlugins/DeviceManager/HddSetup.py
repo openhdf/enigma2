@@ -28,9 +28,9 @@ import sys
 
 def DiskEntry(model, size, removable):
 	if removable:
-		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/diskusb.png"))
+		picture = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/diskusb.png"))
 	else:
-		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/disk.png"))
+		picture = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/disk.png"))
 
 	return (picture, model, size)
 
@@ -59,7 +59,7 @@ class HddSetup(Screen):
 		</widget>
 	</screen>"""
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		self.session = session
 		Screen.__init__(self, session)
 		self.disks = list()
@@ -199,7 +199,7 @@ class HddSetup(Screen):
 #										], 1, 5)
 
 	def yellow(self):
-		self.session.open(MessageBox, _("Please use Harddisk Setup to initialize your drive."), MessageBox.TYPE_INFO, timeout = 10)
+		self.session.open(MessageBox, _("Please use Harddisk Setup to initialize your drive."), MessageBox.TYPE_INFO, timeout=10)
 
 	def green(self):
 		if len(self.mdisks.disks) > 0:

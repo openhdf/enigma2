@@ -302,7 +302,7 @@ class Disks:
 		os.system("/sbin/mdev -s")
 		return 0
 
-	def chkfs(self, device, partition, fstype = 0):
+	def chkfs(self, device, partition, fstype=0):
 		fdevice = '%s%d' % (device, partition)
 		print('[DeviceManager] checking device %s' % fdevice)
 		if self.isMountedP(device, partition):
@@ -327,7 +327,7 @@ class Disks:
 			return 0
 		return -2
 
-	def mkfs(self, device, partition, fstype = 0):
+	def mkfs(self, device, partition, fstype=0):
 		dev = "%s%d" % (device, partition)
 		size = 0
 		partitions = open("/proc/partitions")

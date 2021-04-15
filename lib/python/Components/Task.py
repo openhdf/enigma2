@@ -78,7 +78,7 @@ class Job(object):
 			self.tasks[self.current_task].run(self.taskCallback)
 			self.state_changed()
 
-	def taskCallback(self, task, res, stay_resident = False):
+	def taskCallback(self, task, res, stay_resident=False):
 		cb_idx = self.tasks.index(task)
 		if stay_resident:
 			if cb_idx not in self.resident_tasks:
@@ -151,7 +151,7 @@ class Task(object):
 	def setCmdline(self, cmdline):
 		self.cmdline = cmdline
 
-	def checkPreconditions(self, immediate = False):
+	def checkPreconditions(self, immediate=False):
 		not_met = [ ]
 		if immediate:
 			preconditions = self.immediate_preconditions
@@ -230,9 +230,9 @@ class Task(object):
 	def abort(self):
 		if self.container:
 			self.container.kill()
-		self.finish(aborted = True)
+		self.finish(aborted=True)
 
-	def finish(self, aborted = False):
+	def finish(self, aborted=False):
 		self.afterRun()
 		not_met = [ ]
 		if aborted:
@@ -291,7 +291,7 @@ class PythonTask(Task):
 	def abort(self):
 		self.aborted = True
 		if self.callback is None:
-			self.finish(aborted = True)
+			self.finish(aborted=True)
 	def onTimer(self):
 		self.setProgress(self.pos)
 	def onComplete(self, result):
@@ -376,7 +376,7 @@ class JobManager:
 			return True
 		else:
 			print("[Task] unrecoverable task failure\n", job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)))
-			Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
+			Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)), type=MessageBox.TYPE_ERROR )
 			return False
 
 	def jobDone(self, job, task, problems):
@@ -498,7 +498,7 @@ class ToolExistsPrecondition(Condition):
 			path = os.environ.get('PATH', '').split(os.pathsep)
 			path.append(task.cwd + '/')
 			# FIXME PY3 map,filter
-			absolutes = list([_file for _file in list(map(lambda directory, _file = task.cmd: os.path.join(directory, _file), path)) if os.access(_file, os.X_OK)])
+			absolutes = list([_file for _file in list(map(lambda directory, _file=task.cmd: os.path.join(directory, _file), path)) if os.access(_file, os.X_OK)])
 			if absolutes:
 				self.realpath = absolutes[0]
 				return True

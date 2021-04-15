@@ -55,22 +55,22 @@ VZ_MODE = "-1"
 
 
 config.plugins.SecondInfoBar  = ConfigSubsection()
-config.plugins.SecondInfoBar.TimeOut = ConfigInteger(default = 6, limits = (0, 30))
-config.plugins.SecondInfoBar.Mode = ConfigSelection(default="sib", choices = [
+config.plugins.SecondInfoBar.TimeOut = ConfigInteger(default=6, limits=(0, 30))
+config.plugins.SecondInfoBar.Mode = ConfigSelection(default="sib", choices=[
 				("nothing", _("Not enabled")),
 				("sib", _("Show Second-InfoBar")),
 				("onlysib", _("Show ONLY Second-InfoBar")),
 				("epglist", _("Show EPG-List/MerlinEPG")),
 				("subsrv", _("Show Subservices"))
 				])
-config.plugins.SecondInfoBar.GP2pass = ConfigYesNo(default = True)
-config.plugins.SecondInfoBar.HideNormalIB = ConfigYesNo(default = False)
+config.plugins.SecondInfoBar.GP2pass = ConfigYesNo(default=True)
+config.plugins.SecondInfoBar.HideNormalIB = ConfigYesNo(default=False)
 
 
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name="SecondInfoBar", where=PluginDescriptor.WHERE_MENU, fnc=SIBsetup),
-			PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = SIBautostart)]
+			PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=SIBautostart)]
 
 
 

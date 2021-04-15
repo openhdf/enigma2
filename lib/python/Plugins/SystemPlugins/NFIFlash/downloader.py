@@ -113,7 +113,7 @@ class ImageDownloadTask(Task):
 
 	def download_finished(self, string=""):
 		if self.aborted:
-			self.finish(aborted = True)
+			self.finish(aborted=True)
 		else:
 			Task.processFinished(self, 0)
 
@@ -292,7 +292,7 @@ class DeviceBrowser(Screen, HelpableScreen):
 			<widget name="filelist" position="5,210" size="510,220" scrollbarMode="showOnDemand" />
 		</screen>"""
 
-	def __init__(self, session, startdir, message="", showDirectories = True, showFiles = True, showMountpoints = True, matchingPattern = "", useServiceRef = False, inhibitDirs = False, inhibitMounts = False, isTop = False, enableWrapAround = False, additionalExtensions = None):
+	def __init__(self, session, startdir, message="", showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern="", useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, enableWrapAround=False, additionalExtensions=None):
 		Screen.__init__(self, session)
 
 		HelpableScreen.__init__(self)
@@ -301,7 +301,7 @@ class DeviceBrowser(Screen, HelpableScreen):
 		self["key_green"] = StaticText()
 		self["message"] = StaticText(message)
 
-		self.filelist = FileList(startdir, showDirectories = showDirectories, showFiles = showFiles, showMountpoints = showMountpoints, matchingPattern = matchingPattern, useServiceRef = useServiceRef, inhibitDirs = inhibitDirs, inhibitMounts = inhibitMounts, isTop = isTop, enableWrapAround = enableWrapAround, additionalExtensions = additionalExtensions)
+		self.filelist = FileList(startdir, showDirectories=showDirectories, showFiles=showFiles, showMountpoints=showMountpoints, matchingPattern=matchingPattern, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, enableWrapAround=enableWrapAround, additionalExtensions=additionalExtensions)
 		self["filelist"] = self.filelist
 
 		self["FilelistActions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -532,7 +532,7 @@ class NFIDownload(Screen):
 		self["menu"].setList(imagelist)
 
 	def getUSBPartitions(self):
-		allpartitions = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
+		allpartitions = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
 		print("[getUSBPartitions]", allpartitions)
 		usbpartition = []
 		for x in allpartitions:
@@ -587,7 +587,7 @@ class NFIDownload(Screen):
 			job.afterEvent = "close"
 			job_manager.AddJob(job)
 			job_manager.failed_jobs = []
-			self.session.openWithCallback(self.StickWizardCB, JobView, job, afterEventChangeable = False)
+			self.session.openWithCallback(self.StickWizardCB, JobView, job, afterEventChangeable=False)
 
 		elif self.branch != STICK_WIZARD:
 			url = self.feedlists[self.branch][self.image_idx][1]
@@ -600,13 +600,13 @@ class NFIDownload(Screen):
 			job.afterEvent = "close"
 			job_manager.AddJob(job)
 			job_manager.failed_jobs = []
-			self.session.openWithCallback(self.ImageDownloadCB, JobView, job, afterEventChangeable = False)
+			self.session.openWithCallback(self.ImageDownloadCB, JobView, job, afterEventChangeable=False)
 
 	def StickWizardCB(self, ret=None):
 		print("[StickWizardCB]", ret)
 #		print job_manager.active_jobs, job_manager.failed_jobs, job_manager.job_classes, job_manager.in_background, job_manager.active_job
 		if len(job_manager.failed_jobs) == 0:
-			self.session.open(MessageBox, _("The USB stick was prepared to be bootable.\nNow you can download an NFI image file!"), type = MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("The USB stick was prepared to be bootable.\nNow you can download an NFI image file!"), type=MessageBox.TYPE_INFO)
 			if len(self.feedlists[ALLIMAGES]) == 0:
 				self.getFeed()
 			else:
@@ -630,7 +630,7 @@ class NFIDownload(Screen):
 
 			class USBBackupScreen(BackupScreen):
 				def __init__(self, session, usbmountpoint):
-					BackupScreen.__init__(self, session, runBackup = True)
+					BackupScreen.__init__(self, session, runBackup=True)
 					self.backuppath = usbmountpoint
 					self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 
@@ -639,7 +639,7 @@ class NFIDownload(Screen):
 			self.showHint()
 
 	def showHint(self, ret=None):
-		self.session.open(MessageBox, _("To update your %s %s firmware, please follow these steps:\n1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard.") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO)
+		self.session.open(MessageBox, _("To update your %s %s firmware, please follow these steps:\n1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO)
 		self.umountCallback = self.keyRed
 		self.umount()
 
@@ -676,7 +676,7 @@ class NFIDownload(Screen):
 
 	def checkUSBStick(self):
 		self.target_dir = None
-		allpartitions = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
+		allpartitions = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
 		print("[checkUSBStick] found partitions:", allpartitions)
 		usbpartition = []
 		for x in allpartitions:
@@ -812,11 +812,10 @@ def filescan_open(list, session, **kwargs):
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	return \
-		Scanner(mimetypes = ["application/x-dream-image"],
-			paths_to_scan =
-				[
-					ScanPath(path = "", with_subdirs = False),
+		Scanner(mimetypes=["application/x-dream-image"],
+			paths_to_scan=[
+					ScanPath(path="", with_subdirs=False),
 				],
-			name = "NFI",
-			description = (_("Download .NFI-files for USB-flasher")+"..."),
-			openfnc = filescan_open, )
+			name="NFI",
+			description=(_("Download .NFI-files for USB-flasher")+"..."),
+			openfnc=filescan_open, )

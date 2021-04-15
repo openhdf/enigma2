@@ -92,8 +92,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("Watch recordings..."))]))
 		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("Listen to the radio..."))]))
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				enigma.iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged
 			})
 
@@ -175,7 +174,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MediaPlayer)
 			no_plugin = False
 		except Exception as e:
-			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO, timeout = 10 )
+			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
 
 	def showEMC(self):
 		try:
@@ -183,7 +182,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Components.PluginComponent import plugins
 			EnhancedMovieCenter.showMoviesNew()
 		except Exception as e:
-			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO, timeout = 10 )
+			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
 
 	def showETPORTAL(self):
 		try:
@@ -191,7 +190,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
 		except Exception as e:
-			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO, timeout = 10 )
+			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
 
 	def showMEDIAPORTAL(self):
 		try:
@@ -209,7 +208,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				self.session.open(MPList)
 			no_plugin = False
 		except Exception as e:
-			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO, timeout = 10 )
+			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
 
 	def showWWW(self):
 		try:
@@ -217,16 +216,16 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
 		except Exception as e:
-			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO, timeout = 10 )
+			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
 
 	def BackZap(self):
 		if config.OpenWebif.enabled.value:
 			try:
 				os.system("wget -q -O /tmp/.message.txt 'http://127.0.0.1/web/remotecontrol?command=11' &  > /dev/null 2>&1")
 			except Exception as e:
-				self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type = MessageBox.TYPE_INFO, timeout = 10 )
+				self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type=MessageBox.TYPE_INFO, timeout=10 )
 		else:
-			self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type = MessageBox.TYPE_INFO, timeout = 10 )
+			self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type=MessageBox.TYPE_INFO, timeout=10 )
 
 	def openSleepTimer(self):
 		from Screens.SleepTimerEdit import SleepTimerEdit
@@ -247,7 +246,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				from Components.PluginComponent import plugins
 				self.session.open(EtPortalScreen)
 			except Exception as e:
-				self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO, timeout = 10 )
+				self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
 		else:
 			self.showMovies()
 
@@ -298,7 +297,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if self.lastservice and ':0:/' in self.lastservice.toString():
 			self.lastservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
-		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled = self.timeshiftEnabled())
+		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled=self.timeshiftEnabled())
 
 	def movieSelected(self, service):
 		ref = self.lastservice
@@ -307,7 +306,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 				self.session.nav.playService(ref)
 		else:
-			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
+			self.session.open(MoviePlayer, service, slist=self.servicelist, lastservice=ref)
 
 	def showBoxPortal(self):
 		if getMachineBrand() == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton'):
@@ -406,7 +405,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 
 	instance = None
 
-	def __init__(self, session, service, slist = None, lastservice = None):
+	def __init__(self, session, service, slist=None, lastservice=None):
 		Screen.__init__(self, session)
 		InfoBarAspectSelection.__init__(self)
 		InfoBarAudioSelection.__init__(self)
@@ -448,8 +447,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 		self.onClose.append(self.__onClose)
 		self.onShow.append(self.doButtonsCheck)
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				enigma.iPlayableService.evStart: self.__evStart
 			})
 
@@ -511,7 +509,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 				)
 
 			from Screens.ChoiceBox import ChoiceBox
-			self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Stop playing this movie?"), list = list)
+			self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Stop playing this movie?"), list=list)
 		else:
 			self.leavePlayerConfirmed([True, how])
 
@@ -680,7 +678,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 							break
 			else:
 				slist.moveDown()
-			slist.zap(enable_pipzap = True)
+			slist.zap(enable_pipzap=True)
 		else:
 			InfoBarSeek.seekFwd(self)
 
@@ -702,7 +700,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 							break
 			else:
 				slist.moveUp()
-			slist.zap(enable_pipzap = True)
+			slist.zap(enable_pipzap=True)
 		else:
 			InfoBarSeek.seekBack(self)
 
@@ -729,7 +727,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 					self.session.pipshown = False
 					del self.session.pip
 			else:
-				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type = MessageBox.TYPE_INFO, timeout = 5 )
+				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5 )
 
 	def movePiP(self):
 		if self.session.pipshown:
@@ -780,7 +778,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 
 	def displayPlayedName(self, ref, index, n):
 		from Tools import Notifications
-		Notifications.AddPopup(text = _("%s/%s: %s") % (index, n, self.ref2HumanName(ref)), type = MessageBox.TYPE_INFO, timeout = 5)
+		Notifications.AddPopup(text=_("%s/%s: %s") % (index, n, self.ref2HumanName(ref)), type=MessageBox.TYPE_INFO, timeout=5)
 
 	def ref2HumanName(self, ref):
 		return enigma.eServiceCenter.getInstance().info(ref).getName(ref)

@@ -163,7 +163,7 @@ MAPPINGS = {
 	}
 
 class NumericalTextInput:
-	def __init__(self, nextFunc=None, handleTimeout = True, search = False, mapping = None):
+	def __init__(self, nextFunc=None, handleTimeout=True, search=False, mapping=None):
 		self.useableChars=None
 		self.nextFunction=nextFunc
 		if handleTimeout:
