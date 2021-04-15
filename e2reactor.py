@@ -17,6 +17,7 @@ from twisted.internet import main, posixbase, error
 #from twisted.internet.pollreactor import PollReactor, poller
 
 from enigma import getApplication
+import six
 
 # globals
 reads = {}
