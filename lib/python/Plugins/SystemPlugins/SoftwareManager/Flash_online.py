@@ -15,7 +15,12 @@ from Components.Console import Console
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetBoxName, GetCurrentImage, GetImagelist
 from enigma import eTimer, fbClass
-import json, os, shutil, shutil, time, zipfile
+import json
+import os
+import shutil
+import shutil
+import time
+import zipfile
 from six.moves.urllib.request import urlopen, Request
 
 

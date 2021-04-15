@@ -7,7 +7,8 @@ from __future__ import print_function
 # for the servicereference names.
 
 from __future__ import absolute_import
-import os, sys
+import os
+import sys
 
 f = open(sys.argv[1]).readlines()
 
