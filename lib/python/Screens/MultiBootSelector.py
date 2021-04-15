@@ -39,7 +39,7 @@ class MultiBootSelector(Screen):
 		Screen.__init__(self, session)
 		screentitle = _("Multiboot Image Selector")
 		self["key_red"] = StaticText(_("Cancel"))
-		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' %(SystemInfo["canMultiBoot"][2])):
+		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' % (SystemInfo["canMultiBoot"][2])):
 			self["description"] = StaticText(_("Use the cursor keys to select an installed image and then Reboot button."))
 		else:
 			self["description"] = StaticText(_("SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"))

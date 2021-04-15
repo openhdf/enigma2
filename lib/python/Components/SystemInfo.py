@@ -13,7 +13,7 @@ from Tools.Multiboot import getMBbootdevice, getMultibootslots  # This import ne
 #FIXMEE...
 def getNumVideoDecoders():
 	idx = 0
-	while fileExists("/dev/dvb/adapter0/video%d"% idx, 'f'):
+	while fileExists("/dev/dvb/adapter0/video%d" % idx, 'f'):
 		idx += 1
 	return idx
 

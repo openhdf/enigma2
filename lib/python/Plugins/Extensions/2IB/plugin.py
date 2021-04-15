@@ -54,7 +54,7 @@ SIB_StartOnlyOneTime = False
 VZ_MODE = "-1"
 
 
-config.plugins.SecondInfoBar  = ConfigSubsection()
+config.plugins.SecondInfoBar = ConfigSubsection()
 config.plugins.SecondInfoBar.TimeOut = ConfigInteger(default=6, limits=(0, 30))
 config.plugins.SecondInfoBar.Mode = ConfigSelection(default="sib", choices=[
 				("nothing", _("Not enabled")),
@@ -178,7 +178,7 @@ def switch(self):
 				self.SIBdialog.show()
 				SIBidx = config.plugins.SecondInfoBar.TimeOut.value
 				if (SIBidx > 0):
-					self.SIBtimer.start(SIBidx*1000, True)
+					self.SIBtimer.start(SIBidx * 1000, True)
 			elif not self.shown and self.SIBdialog.shown:
 				self.SIBdialog.hide()
 			elif self.shown and self.SIBdialog.shown:
@@ -198,7 +198,7 @@ def switch(self):
 			if self.shown:
 				service = self.session.nav.getCurrentService()
 				subservices = service and service.subServices()
-				if subservices.getNumberOfSubservices()>0:
+				if subservices.getNumberOfSubservices() > 0:
 					self.subserviceSelection()
 				else:
 					self.toggleShow()
@@ -238,7 +238,7 @@ class SecondInfoBar(Screen):
 			GPoffset_y = Cbpconfig.getInstance().getParaInt("infobar_offset_y")
 			px = GPpos.x()
 			py = GPpos.y()
-			self.instance.move(ePoint(px+GPoffset_x, py+GPoffset_y))
+			self.instance.move(ePoint(px + GPoffset_x, py + GPoffset_y))
 
 
 
