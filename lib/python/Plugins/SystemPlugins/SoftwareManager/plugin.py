@@ -89,11 +89,11 @@ config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.re
 																			'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', '/usr/lib/enigma2/python/Plugins/Extensions/VMC/DB/', '/usr/lib/enigma2/python/Plugins/Extensions/VMC/youtv.pwd',
 																			'/usr/lib/enigma2/python/Plugins/Extensions/VMC/vod.config', '/usr/lib/enigma2/python/Plugins/Extensions/MP3Browser/db', '/usr/lib/enigma2/python/Plugins/Extensions/MovieBrowser/db', '/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db',
 																			eEnv.resolve("${datadir}/enigma2/keymap.usr"), eEnv.resolve("${datadir}/enigma2/keymap.ntr"), eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]
-																			+eEnv_resolve_multi('/usr/bin/*cam*')
-																			+eEnv_resolve_multi('/usr/bin/gbox')
-																			+eEnv_resolve_multi('/etc/*.emu')
-																			+eEnv_resolve_multi('/etc/init.d/softcam*')
-																			+eEnv_resolve_multi('/etc/init.d/cardserver*'))
+																			+ eEnv_resolve_multi('/usr/bin/*cam*')
+																			+ eEnv_resolve_multi('/usr/bin/gbox')
+																			+ eEnv_resolve_multi('/etc/*.emu')
+																			+ eEnv_resolve_multi('/etc/init.d/softcam*')
+																			+ eEnv_resolve_multi('/etc/init.d/cardserver*'))
 
 config.plugins.softwaremanager = ConfigSubsection()
 config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
@@ -149,9 +149,9 @@ def load_cache(cache_file):
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
 	if backuppath.endswith('/'):
-		return backuppath + 'backup_' + getImageDistro() + '_'+ getBoxType()
+		return backuppath + 'backup_' + getImageDistro() + '_' + getBoxType()
 	else:
-		return backuppath + '/backup_' + getImageDistro() + '_'+ getBoxType()
+		return backuppath + '/backup_' + getImageDistro() + '_' + getBoxType()
 
 def getBackupFilename():
 	return "enigma2settingsbackup.tar.gz"
@@ -215,7 +215,7 @@ class UpdatePluginMenu(Screen):
 				self.list.append(("multiboot-manager", _("Image Multiboot Manager"), _("\nMaintain your %s %s device.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("system-restore", _("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
-			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local extensions and install them.") + "\n" + self.oktext, None))
+			self.list.append(("ipkg-install", _("Install local extension"), _("\nScan for local extensions and install them.") + "\n" + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if "SoftwareSupported" in p.__call__:
 					callFnc = p.__call__["SoftwareSupported"](None)
@@ -233,12 +233,12 @@ class UpdatePluginMenu(Screen):
 				self.list.append(("advanced", _("Advanced options"), _("\nAdvanced options and settings.") + "\n" + self.oktext, None))
 		elif self.menu == 1:
 			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date.") + "\n" + self.oktext, None))
-			self.list.append(("backuplocation", _("Select backup location"),  _("\nSelect your backup device.\nCurrent device: ") + config.plugins.configurationbackup.backuplocation.value + "\n" + self.oktext, None))
-			self.list.append(("backupfiles", _("Select backup files"),  _("\nSelect files for backup.") + "\n" + self.oktext, None))
+			self.list.append(("backuplocation", _("Select backup location"), _("\nSelect your backup device.\nCurrent device: ") + config.plugins.configurationbackup.backuplocation.value + "\n" + self.oktext, None))
+			self.list.append(("backupfiles", _("Select backup files"), _("\nSelect files for backup.") + "\n" + self.oktext, None))
 			self.list.append(("resetbackupfiles", _("Set backupfiles to defaults"), _("\nReset selection of files for backup to default.") + "\n" + self.oktext, None))
 			self.list.append(("autorestorebackup", _("Restore settings backup after restart"), _("\nRestore automatically your saved settings after Enigma restart.\nWhen selected, the last backup of the settings for the box is used.\nWhen restarting Enigma2, a restore will be displayed on the screen.") + "\n" + self.oktext, None))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages.") + "\n" + self.oktext, None))
+				self.list.append(("ipkg-manager", _("Packet management"), _("\nView, install and remove available or installed packages.") + "\n" + self.oktext, None))
 			self.list.append(("ipkg-source", _("Select upgrade source"), _("\nEdit the upgrade source address.") + "\n" + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if "AdvancedSoftwareSupported" in p.__call__:
@@ -419,7 +419,7 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "backuplocation"):
 					parts = [(r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
 					for x in parts:
-						if not access(x[1], F_OK|R_OK|W_OK) or x[1] == '/':
+						if not access(x[1], F_OK | R_OK | W_OK) or x[1] == '/':
 							parts.remove(x)
 					if len(parts):
 						self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title=_("Please select medium to use as backup location"), list=parts)
@@ -613,7 +613,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.overwriteBootlogofilesEntry = getConfigListEntry(_("Overwrite Bootlogo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
 		self.overwriteSpinnerfilesEntry = getConfigListEntry(_("Overwrite Spinner Files ?"), config.plugins.softwaremanager.overwriteSpinnerFiles)
 		self.epgcacheEntry = getConfigListEntry(_("Save EPG Cache ?"), config.plugins.softwaremanager.epgcache)
-		self.updatetypeEntry  = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
+		self.updatetypeEntry = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
 		#if getBoxType().startswith('et'):
 		self.list.append(self.updatetypeEntry)
 		self.list.append(self.autosaveSettingsfilesEntry)
@@ -1204,7 +1204,7 @@ class PluginManager(Screen, PackageInfoHandler):
 	def runExecuteFinished(self):
 		self.reloadPluginlist()
 		if plugins.restartRequired or self.restartRequired:
-			self.session.openWithCallback(self.ExecuteReboot, MessageBox, _("Install or remove finished.") +" "+_("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.ExecuteReboot, MessageBox, _("Install or remove finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 		else:
 			self.selectedFiles = []
 			self.restartRequired = False
@@ -1437,8 +1437,8 @@ class PluginDetails(Screen, PackageInfoHandler):
 			"red": self.exit,
 			"green": self.go,
 			"up": self.pageUp,
-			"down":	self.pageDown,
-			"left":	self.pageUp,
+			"down": self.pageDown,
+			"left": self.pageUp,
 			"right": self.pageDown,
 		}, -1)
 
@@ -1579,7 +1579,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 	def runUpgradeFinished(self):
 		self.reloadPluginlist()
 		if plugins.restartRequired or self.restartRequired:
-			self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Installation finished.") +" "+_("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Installation finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 		else:
 			self.close(True)
 	def UpgradeReboot(self, result):
@@ -1671,20 +1671,20 @@ class UpdatePlugin(Screen):
 		self.CheckDateDone = True
 		tmpdate = getEnigmaVersionString()
 		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
-		datedelay = imageDate +  timedelta(days=120)
+		datedelay = imageDate + timedelta(days=120)
 		message = _("Your image is out of date!\n"
 				"After such a long time, there is a risk that your %s %s  will not\n"
 				"boot after online-update, or will show disfunction in running Image.\n"
 				"A new flash will increase the stability\n"
 				"An online update is done at your own risk !!\n"
-				"Do you still want to update?")  % (getMachineBrand(), getMachineName())
+				"Do you still want to update?") % (getMachineBrand(), getMachineName())
 
 		if datedelay > date.today():
 			self.updating = True
 			self.activityTimer.start(100, False)
 			self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
 		else:
-			print("[SOFTWAREMANAGER] Your image is to old (%s), you need to flash new !!" %getEnigmaVersionString())
+			print("[SOFTWAREMANAGER] Your image is to old (%s), you need to flash new !!" % getEnigmaVersionString())
 			self.session.openWithCallback(self.checkDateCallback, MessageBox, message, default=False)
 			return
 
@@ -1861,7 +1861,7 @@ class UpdatePlugin(Screen):
 					error = _("No packages were upgraded yet. So you can check your network and try again.")
 				if self.updating:
 					error = _("Your %s %s isn't connected to the internet properly. Please check it and try again.") % (getMachineBrand(), getMachineName())
-				self.status.setText(_("Error") +  " - " + error)
+				self.status.setText(_("Error") + " - " + error)
 		#print(event, "-", param)
 
 	def startActualUpgrade(self, answer):
@@ -1885,7 +1885,7 @@ class UpdatePlugin(Screen):
 			if self.packages != 0 and self.error == 0:
 				if fileExists("/etc/enigma2/.removelang"):
 					language.delLanguage()
-				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your %s %s?") % (getMachineBrand(), getMachineName()))
+				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your %s %s?") % (getMachineBrand(), getMachineName()))
 			else:
 				self.close()
 		else:
@@ -1998,13 +1998,13 @@ class IPKGSource(Screen):
 				pass
 
 		desk = getDesktop(0)
-		x= int(desk.size().width())
-		y= int(desk.size().height())
+		x = int(desk.size().width())
+		y = int(desk.size().height())
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 
-		if (y>=720):
+		if (y >= 720):
 			self["text"] = Input(text, maxSize=False, type=Input.TEXT)
 		else:
 			self["text"] = Input(text, maxSize=False, visible_width=55, type=Input.TEXT)
@@ -2242,7 +2242,7 @@ class PacketManager(Screen, NumericalTextInput):
 			self.session.openWithCallback(self.runRemoveFinished, Ipkg, cmdList=self.cmdList)
 
 	def runRemoveFinished(self):
-		self.session.openWithCallback(self.RemoveReboot, MessageBox, _("Remove finished.") +" "+_("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.RemoveReboot, MessageBox, _("Remove finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 
 	def RemoveReboot(self, result):
 		if result is None:
@@ -2264,7 +2264,7 @@ class PacketManager(Screen, NumericalTextInput):
 			self.session.openWithCallback(self.runUpgradeFinished, Ipkg, cmdList=self.cmdList)
 
 	def runUpgradeFinished(self):
-		self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 
 	def UpgradeReboot(self, result):
 		if result is None:

@@ -22,8 +22,8 @@ class Progress(VariableValue, Renderer):
 		value = self.source.value
 		if value is None:
 			value = 0
-		if _range > 2**31-1:
-			_range = 2**31-1
+		if _range > 2**31 - 1:
+			_range = 2**31 - 1
 		if value > _range:
 			value = _range
 		if value < 0:

@@ -20,16 +20,16 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		height = self.l.getItemSize().height()
 		width = self.l.getItemSize().width()
 		res = [None]
-		x = (2*width) // 3
+		x = (2 * width) // 3
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 39, 3, x-36, 38, 3, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timer.name))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 39, 3, x - 36, 38, 3, RT_HALIGN_LEFT | RT_VALIGN_BOTTOM, timer.name))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 3, x-24, 25, 0, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timer.name))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 3, x - 24, 25, 0, RT_HALIGN_LEFT | RT_VALIGN_BOTTOM, timer.name))
 		text = ("%s  %s") % (timer.service_ref.getServiceName(), self.getOrbitalPos(timer.service_ref))
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 3, width-x-3, 35, 4, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 3, width - x - 3, 35, 4, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, text))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 3, width-x-2, 23, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 3, width - x - 2, 23, 1, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, text))
 
 		days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 		begin = FuzzyTime(timer.begin)
@@ -49,13 +49,13 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		else:
 			repeatedtext = begin[0] # date
 		if timer.justplay:
-			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (begin[1]))
+			text = repeatedtext + ((" %s " + _("(ZAP)")) % (begin[1]))
 		else:
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) // 60))
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 225, 38, width-225, 35, 4, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 225, 38, width - 225, 35, 4, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, text))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 26, width-150, 23, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 26, width - 150, 23, 1, RT_HALIGN_RIGHT | RT_VALIGN_BOTTOM, text))
 		icon = None
 		if not processed and (not timer.disabled or (timer.repeated and timer.isRunning() and not timer.justplay)):
 			if timer.state == TimerEntry.StateWaiting:
@@ -90,9 +90,9 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			icon = self.iconFailed
 
 		if screenwidth and screenwidth == 1920:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 39, 38, 225, 35, 4, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, state))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 39, 38, 225, 35, 4, RT_HALIGN_LEFT | RT_VALIGN_BOTTOM, state))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 26, 150, 23, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, state))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 26, 150, 23, 1, RT_HALIGN_LEFT | RT_VALIGN_BOTTOM, state))
 		if icon:
 			if screenwidth and screenwidth == 1920:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 3, 39, 30, 30, icon))
@@ -105,7 +105,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 			else:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 3, 20, 20, self.iconAutoTimer))
 		line = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height-2, width, 2, line))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height - 2, width, 2, line))
 
 		return res
 

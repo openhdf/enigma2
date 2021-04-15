@@ -290,13 +290,13 @@ class PluginDownloadBrowser(Screen):
 		if os.path.isfile('/usr/bin/opkg'):
 			self.ipkg = '/usr/bin/opkg'
 			self.ipkg_install = self.ipkg + ' install --force-overwrite'
-			self.ipkg_remove =  self.ipkg + ' remove --autoremove --force-depends'
-			self.ipkg_toogle =  self.ipkg + ' flag hold'
+			self.ipkg_remove = self.ipkg + ' remove --autoremove --force-depends'
+			self.ipkg_toogle = self.ipkg + ' flag hold'
 		else:
 			self.ipkg = 'ipkg'
 			self.ipkg_install = 'ipkg install --force-overwrite -force-defaults'
-			self.ipkg_remove =  self.ipkg + ' remove'
-			self.ipkg_toogle =  self.ipkg + ' flag hold'
+			self.ipkg_remove = self.ipkg + ' remove'
+			self.ipkg_toogle = self.ipkg + ' flag hold'
 
 	def createSummary(self):
 		return PluginBrowserSummary
@@ -369,16 +369,16 @@ class PluginDownloadBrowser(Screen):
 			self.updateList()
 		else:
 			if self.type == self.DOWNLOAD:
-				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
+				mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
 				mbox.setTitle(_("Download plugins"))
 			if self.type == self.REMOVE:
-				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name, default=False)
+				mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name, default=False)
 				mbox.setTitle(_("Remove plugins"))
 			elif self.type == self.TOOGLE:
 				if 'hold' in os.popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + sel.name).read():
-					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to unhold the plugin \"%s\"?") % sel.name, default=False)
+					mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to unhold the plugin \"%s\"?") % sel.name, default=False)
 				else:
-					mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to hold the plugin \"%s\"?") % sel.name, default=False)
+					mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to hold the plugin \"%s\"?") % sel.name, default=False)
 				mbox.setTitle(_("Hold plugins"))
 
 	def requestClose(self):
@@ -518,7 +518,7 @@ class PluginDownloadBrowser(Screen):
 			self.run = 1
 			self.startIpkgListInstalled()
 		elif self.type == self.TOOGLE:
-			self.run =1
+			self.run = 1
 			self.startIpkgListInstalled()
 
 	def installFinished(self):
@@ -671,7 +671,7 @@ class PluginDownloadBrowser(Screen):
 				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][11:], x[1]))
 			elif split[0] == "languages":
 				for t in self.LanguageList:
-					if len(x[2])>2:
+					if len(x[2]) > 2:
 						tmpT = t[0].lower()
 						tmpT = tmpT.replace('_', '-')
 						if tmpT == x[2]:
@@ -722,7 +722,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["status"] = StaticText()
-		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
+		self["labelExitsave"] = Label("[Exit] = " + _("Cancel") + "              [Ok] =" + _("Save"))
 
 		self.onChangedEntry = []
 		self.list = []

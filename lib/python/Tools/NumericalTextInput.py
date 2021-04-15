@@ -164,8 +164,8 @@ MAPPINGS = {
 
 class NumericalTextInput:
 	def __init__(self, nextFunc=None, handleTimeout=True, search=False, mapping=None):
-		self.useableChars=None
-		self.nextFunction=nextFunc
+		self.useableChars = None
+		self.nextFunction = nextFunc
 		if handleTimeout:
 			self.timer = eTimer()
 			self.timer.callback.append(self.timeout)
@@ -184,7 +184,7 @@ class NumericalTextInput:
 		self.useableChars = six.text_type(useable)
 
 	def getKey(self, num):
-		cnt=0
+		cnt = 0
 		if self.lastKey != num:
 			if self.lastKey != -1:
 				self.nextChar()

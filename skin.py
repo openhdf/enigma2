@@ -59,7 +59,7 @@ def getSkinFactor(refresh=False):
 		try:
 			skinfactor = getDesktop(0).size().width() // 1280.0
 			if not skinfactor in [1, 1.5, 3]:
-				print('[SKIN] getSkinFactor unknown result (%s) -> set skinfactor to 1' %skinfactor)
+				print('[SKIN] getSkinFactor unknown result (%s) -> set skinfactor to 1' % skinfactor)
 				skinfactor = 1
 		except Exception as err:
 			skinfactor = 1
@@ -140,7 +140,7 @@ else:
 def skinExists(skin=False):
 	if not skin or not isinstance(skin, skin):
 		skin = config.skin.primary_skin.value
-	skin =  resolveFilename(SCOPE_SKIN, skin)
+	skin = resolveFilename(SCOPE_SKIN, skin)
 	if not fileExists(skin):
 		if fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
 			config.skin.primary_skin.value = DEFAULT_SKIN
@@ -210,9 +210,9 @@ if config.skin.primary_skin.value != DEFAULT_SKIN:
 			if _file.startswith('skin_user_') and _file.endswith('.xml'):
 				try:
 					addSkin(primary_skin_path + _file, SCOPE_SKIN)
-					print("[SKIN] loading user defined %s skin file: %s" %(_file.replace('skin_user_', '')[:-4], primary_skin_path + _file))
+					print("[SKIN] loading user defined %s skin file: %s" % (_file.replace('skin_user_', '')[:-4], primary_skin_path + _file))
 				except (SkinError, IOError, OSError, AssertionError) as err:
-					print("[SKIN] not loading user defined %s skin file: %s - error: %s" %(_file.replace('skin_user_', '')[:-4], primary_skin_path + _file, err))
+					print("[SKIN] not loading user defined %s skin file: %s - error: %s" % (_file.replace('skin_user_', '')[:-4], primary_skin_path + _file, err))
 
 '''
 try:
@@ -399,7 +399,7 @@ def loadPixmap(path, desktop):
 	cached = False
 	option = path.find("#")
 	if option != -1:
-		options = path[option+1:].split(',')
+		options = path[option + 1:].split(',')
 		path = path[:option]
 		cached = "cached" in options
 	ptr = LoadPixmap(morphRcImagePath(path), desktop, cached)
@@ -422,7 +422,7 @@ def cachemenu():
 						pixmaplist.append(s.attrib.get('pixmap', ''))
 	desktop = getDesktop(0)
 	for s in pixmaplist:
-		value ='/usr/share/enigma2/'+s
+		value = '/usr/share/enigma2/' + s
 		ptr = loadPixmap(value, desktop)
 		pngcache.append((value, ptr))
 try:
@@ -518,8 +518,8 @@ class AttributeParser:
 		global pngcache
 		ptr = None
 		for cvalue, cptr in pngcache:
-			if cvalue== value:
-				ptr=cptr
+			if cvalue == value:
+				ptr = cptr
 		if ptr is None:
 			if not fileExists(value):
 				ptr = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, value), self.desktop)
@@ -530,8 +530,8 @@ class AttributeParser:
 		global pngcache
 		ptr = None
 		for cvalue, cptr in pngcache:
-			if cvalue== value:
-				ptr=cptr
+			if cvalue == value:
+				ptr = cptr
 		if ptr is None:
 			if not fileExists(value):
 				ptr = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, value), self.desktop)
@@ -542,8 +542,8 @@ class AttributeParser:
 		global pngcache
 		ptr = None
 		for cvalue, cptr in pngcache:
-			if cvalue== value:
-				ptr=cptr
+			if cvalue == value:
+				ptr = cptr
 		if ptr is None:
 			if not fileExists(value):
 				ptr = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, value), self.desktop)
@@ -554,8 +554,8 @@ class AttributeParser:
 		global pngcache
 		ptr = None
 		for cvalue, cptr in pngcache:
-			if cvalue== value:
-				ptr=cptr
+			if cvalue == value:
+				ptr = cptr
 		if ptr is None:
 			if not fileExists(value):
 				ptr = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, value), self.desktop)
@@ -566,8 +566,8 @@ class AttributeParser:
 		global pngcache
 		ptr = None
 		for cvalue, cptr in pngcache:
-			if cvalue== value:
-				ptr=cptr
+			if cvalue == value:
+				ptr = cptr
 		if ptr is None:
 			if not fileExists(value):
 				ptr = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, value), self.desktop)
@@ -578,8 +578,8 @@ class AttributeParser:
 		global pngcache
 		ptr = None
 		for cvalue, cptr in pngcache:
-			if cvalue== value:
-				ptr=cptr
+			if cvalue == value:
+				ptr = cptr
 		if ptr is None:
 			if not fileExists(value):
 				ptr = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, value), self.desktop)
@@ -590,8 +590,8 @@ class AttributeParser:
 		global pngcache
 		ptr = None
 		for cvalue, cptr in pngcache:
-			if cvalue== value:
-				ptr=cptr
+			if cvalue == value:
+				ptr = cptr
 		if ptr is None:
 			if not fileExists(value):
 				ptr = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, value), self.desktop)

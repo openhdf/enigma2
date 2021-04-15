@@ -64,7 +64,7 @@ class SkinSelectorBase:
 
 	def layoutFinished(self):
 		self.picload.setPara((self["Preview"].instance.size().width(), self["Preview"].instance.size().height(), 0, 0, 1, 1, "#00000000"))
-		tmp = self.config.value.find("/"+self.SKINXML)
+		tmp = self.config.value.find("/" + self.SKINXML)
 		if tmp != -1:
 			tmp = self.config.value[:tmp]
 			idx = 0
@@ -87,7 +87,7 @@ class SkinSelectorBase:
 			skinfile = self["SkinList"].getCurrent()
 			skinfile = os.path.join(skinfile, self.SKINXML)
 
-		print("Skinselector: Selected Skin: "+self.root+skinfile)
+		print("Skinselector: Selected Skin: " + self.root + skinfile)
 		self.config.value = skinfile
 		self.config.save()
 		configfile.save()
