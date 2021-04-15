@@ -8,9 +8,9 @@ from Tools.LoadPixmap import LoadPixmap
 from Components.Label import Label
 
 def MessageBoxEntry(name, picture):
-	pixmap = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/" + picture));
+	pixmap = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/" + picture))
 	if not pixmap:
-		pixmap = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/empty.png"));
+		pixmap = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/empty.png"))
 
 	return (pixmap, name)
 

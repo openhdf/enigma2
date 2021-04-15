@@ -114,7 +114,8 @@ def getPiconName(serviceName):
 						except:
 							pass
 						break
-				if tmp == "FF": break
+				if tmp == "FF":
+					break
 	return pngname
 
 class Picon(Renderer):
