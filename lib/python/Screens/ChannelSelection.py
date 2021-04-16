@@ -1670,11 +1670,11 @@ class ChannelSelectionBase(Screen):
 								if orbpos < 0:
 									orbpos += 3600
 								if "FROM PROVIDER" in service.getPath():
-									service_type = self.showSatDetails and _("Providers") + " (%d)"%(self.getServicesCount(service))
-								elif ("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) in service.getPath():
-									service_type = self.showSatDetails and _("New") + " (%d)"%(self.getServicesCount(service))
+									service_type = self.showSatDetails and _("Providers") + " (%d)" % (self.getServicesCount(service))
+								elif ("flags == %d" % (FLAG_SERVICE_NEW_FOUND)) in service.getPath():
+									service_type = self.showSatDetails and _("New") + " (%d)" % (self.getServicesCount(service))
 								else:
-									service_type = _("Services") + " (%d)"%(self.getServicesCount(service))
+									service_type = _("Services") + " (%d)" % (self.getServicesCount(service))
 								if service_type:
 									if unsigned_orbpos == 0xFFFF: #Cable
 										service_name = _("Cable")
@@ -1694,7 +1694,7 @@ class ChannelSelectionBase(Screen):
 											service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
 									if not '(type == 1)' in x:
 										if self.showSatDetails:
-											service_type = "HD-%s"%(service_type)
+											service_type = "HD-%s" % (service_type)
 										else:
 											break
 									service.setName("%s - %s" % (service_name, service_type))
@@ -1710,7 +1710,7 @@ class ChannelSelectionBase(Screen):
 									cur_ref.getUnsignedData(3), # ONID
 									self.service_types_ref.getPath())
 								ref.setPath(path)
-								ref.setName(_("Current transponder") + " (%d)"%(self.getServicesCount(ref)))
+								ref.setName(_("Current transponder") + " (%d)" % (self.getServicesCount(ref)))
 								self.servicelist.addService(ref, beforeCurrent=True)
 							for (service_name, service_ref) in addCableAndTerrestrialLater:
 								ref = eServiceReference(service_ref)
@@ -1718,11 +1718,11 @@ class ChannelSelectionBase(Screen):
 								self.servicelist.addService(ref, beforeCurrent=True)
 							uhdref = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 31) && (name != .) ORDER BY name')
 							if uhdref and self.showSatDetails and not "(type == 1)" in x:
-								uhdref.setName(("%s - " %(service_name) + ("%s-%s" % ("UHD", _("Services")))) + " (%d)"%(self.getServicesCount(uhdref)))
+								uhdref.setName(("%s - " % (service_name) + ("%s-%s" % ("UHD", _("Services")))) + " (%d)" % (self.getServicesCount(uhdref)))
 								self.servicelist.addService(uhdref, beforeCurrent=True)
 							skyref = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 211) && (name != .) ORDER BY name')
 							if skyref and self.showSatDetails and not "(type == 1)" in x:
-								skyref.setName("%s - %s" % ("Sky Deutschland 19.2E", _("Subservices")) + " (%d)"%(self.getServicesCount(skyref)))
+								skyref.setName("%s - %s" % ("Sky Deutschland 19.2E", _("Subservices")) + " (%d)" % (self.getServicesCount(skyref)))
 								self.servicelist.addService(skyref)
 							hdref = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 25) && (name != .) ORDER BY name')
 							#if hdref:
