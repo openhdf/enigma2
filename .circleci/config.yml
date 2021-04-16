@@ -39,10 +39,10 @@ jobs:
             - run:
                 name: Installing Python 3.8
                 command: |
-                  sudo apt install python3.8-dev python3-pip
+                  sudo apt install python3.8-dev python3-pip python3-six
                   sudo unlink /usr/bin/python
                   sudo ln -s /usr/bin/python3.8 /usr/bin/python
-                  pip3 install --upgrade pip tox six
+                  python -m pip install --upgrade pip tox six
                   python -V
       - when:
           condition:
