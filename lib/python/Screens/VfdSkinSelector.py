@@ -16,6 +16,7 @@ from enigma import eEnv
 from skin import *
 import os
 
+
 class VFDSkinSelector(Screen):
 	skin = """
 		<screen name="VFD Skin-Selector" position="center,center" size="700,400" title="VFD Skin-Selector" transparent="0">
@@ -34,7 +35,7 @@ class VFDSkinSelector(Screen):
 
 	root = eEnv.resolve("/usr/share/enigma2/display/")
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 
 		Screen.__init__(self, session)
 
@@ -76,11 +77,10 @@ class VFDSkinSelector(Screen):
 		self.fill()
 		self.onLayoutFinish.append(self.layoutFinished)
 
-
 	def fill(self):
 		i = 0
 		self.filesArray = sorted([x for x in os.listdir(self.root) if x.endswith('.xml')])
-		config.skin.display_skin = ConfigSelection(choices = self.filesArray)
+		config.skin.display_skin = ConfigSelection(choices=self.filesArray)
 		while i < len(self.filesArray):
 			self.list.append((_(self.filesArray[i].split('.')[0]), "chose"))
 			i = i + 1

@@ -10,6 +10,7 @@ from Components.GUIComponent import GUIComponent
 profile("LOAD:eRCInput")
 from enigma import eRCInput, eTimer
 
+
 class Screen(dict, GUISkin):
 
 	NO_SUSPEND, SUSPEND_STOPS, SUSPEND_PAUSES = list(range(3))
@@ -17,21 +18,21 @@ class Screen(dict, GUISkin):
 
 	global_screen = None
 
-	def __init__(self, session, parent = None):
+	def __init__(self, session, parent=None):
 		dict.__init__(self)
 		self.skinName = self.__class__.__name__
 		self.session = session
 		self.parent = parent
 		GUISkin.__init__(self)
 
-		self.onClose = [ ]
-		self.onFirstExecBegin = [ ]
-		self.onExecBegin = [ ]
-		self.onExecEnd = [ ]
-		self.onShown = [ ]
+		self.onClose = []
+		self.onFirstExecBegin = []
+		self.onExecBegin = []
+		self.onExecEnd = []
+		self.onShown = []
 
-		self.onShow = [ ]
-		self.onHide = [ ]
+		self.onShow = []
+		self.onHide = []
 
 		self.execing = False
 
@@ -39,11 +40,11 @@ class Screen(dict, GUISkin):
 		# already shown is false until the screen is really shown (after creation)
 		self.already_shown = False
 
-		self.renderer = [ ]
+		self.renderer = []
 
 		# in order to support screens *without* a help,
 		# we need the list in every screen. how ironic.
-		self.helpList = [ ]
+		self.helpList = []
 
 		self.close_on_next_exec = None
 
@@ -70,7 +71,7 @@ class Screen(dict, GUISkin):
 			rcinput.setKeyboardMode(self.keyboardMode)
 
 	def execBegin(self):
-		self.active_components = [ ]
+		self.active_components = []
 		if self.close_on_next_exec is not None:
 			tmp = self.close_on_next_exec
 			self.close_on_next_exec = None
@@ -132,7 +133,7 @@ class Screen(dict, GUISkin):
 			val.destroy()
 			del self[name]
 
-		self.renderer = [ ]
+		self.renderer = []
 
 		# really delete all elements now
 		self.__dict__.clear()

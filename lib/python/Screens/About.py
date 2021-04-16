@@ -33,18 +33,20 @@ import six
 
 SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
+
 def find_rootfssubdir(file):
 	startup_content = read_startup("/boot/" + file)
-	rootsubdir = startup_content[startup_content.find("rootsubdir=")+11:].split()[0]
+	rootsubdir = startup_content[startup_content.find("rootsubdir=") + 11:].split()[0]
 	if rootsubdir.startswith("linuxrootfs"):
 		return rootsubdir
 	return
+
 
 def read_startup(FILE):
 	file = FILE
 	try:
 		with open(file, 'r') as myfile:
-			data=myfile.read().replace('\n', '')
+			data = myfile.read().replace('\n', '')
 		myfile.close()
 	except IOError:
 		print("[ERROR] failed to open file %s" % filename)
@@ -72,39 +74,44 @@ class About(Screen):
 
 	def populate(self):
 		def netspeed():
-			netspeed=""
+			netspeed = ""
 			for line in popen('ethtool eth0 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ', '')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_eth1():
-			netspeed=""
+			netspeed = ""
 			for line in popen('ethtool eth1 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ', '')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_ra0():
-			netspeed=""
+			netspeed = ""
 			for line in popen('iwconfig ra0 | grep Bit | cut -c 20-30', 'r'):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_wlan0():
-			netspeed=""
+			netspeed = ""
 			for line in popen('iwconfig wlan0 | grep Bit | cut -c 20-30', 'r'):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_wlan1():
-			netspeed=""
+			netspeed = ""
 			for line in popen('iwconfig wlan1 | grep Bit | cut -c 20-30', 'r'):
 				line = line.strip()
 				netspeed += line
 				return str(netspeed)
+
 		def freeflash():
-			freeflash=""
+			freeflash = ""
 			for line in popen("df -mh / | grep -v '^Filesystem' | awk '{print $4}'", 'r'):
 				line = line.strip()
 				freeflash += line
@@ -158,7 +165,7 @@ class About(Screen):
 				f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 				clockfrequency = f.read()
 				f.close()
-				cpuMHz = "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16)//1000000, 1))
+				cpuMHz = "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16) // 1000000, 1))
 			except:
 				cpuMHz = "1,7 GHz"
 		else:
@@ -171,7 +178,7 @@ class About(Screen):
 						lisp = lines.split(': ')
 						if lisp[0].startswith('cpu MHz'):
 							#cpuMHz = "   (" +  lisp[1].replace('\n', '') + " MHz)"
-							cpuMHz = "   (" +  str(int(float(lisp[1].replace('\n', '')))) + " MHz)"
+							cpuMHz = "   (" + str(int(float(lisp[1].replace('\n', '')))) + " MHz)"
 							break
 				except:
 					pass
@@ -292,14 +299,16 @@ class About(Screen):
 					elif image == "7":
 						image = "5"
 				f.close()
-				if bootname: bootname = "   (%s)" %bootname
+				if bootname:
+					bootname = "   (%s)" % bootname
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 			else:
 				f = open('/boot/STARTUP', 'r')
 				f.seek(22)
 				image = f.read(1)
 				f.close()
-				if bootname: bootname = "   (%s)" %bootname
+				if bootname:
+					bootname = "   (%s)" % bootname
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 
 		if SystemInfo["HaveMultiBoot"]:
@@ -387,6 +396,7 @@ class About(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class Devices(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -456,18 +466,18 @@ class Devices(Screen):
 				if ((float(size) // 1024) // 1024) >= 1:
 					sizeline = _("Size: ") + str(round(((float(size) // 1024) // 1024), 2)) + " " + _("TB")
 				elif (size // 1024) >= 1:
-					sizeline = _("Size: ") + str(round((float(size) // 1024), 2)) +  " " + _("GB")
+					sizeline = _("Size: ") + str(round((float(size) // 1024), 2)) + " " + _("GB")
 				elif size >= 1:
-					sizeline = _("Size: ") + str(size) +  " " + _("MB")
+					sizeline = _("Size: ") + str(size) + " " + _("MB")
 				else:
 					sizeline = _("Size: ") + _("unavailable")
 
 				if ((float(free) // 1024) // 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) // 1024) // 1024), 2)) +  " " + _("TB")
+					freeline = _("Free: ") + str(round(((float(free) // 1024) // 1024), 2)) + " " + _("TB")
 				elif (free // 1024) >= 1:
-					freeline = _("Free: ") + str(round((float(free) // 1024), 2)) +  " " + _("GB")
+					freeline = _("Free: ") + str(round((float(free) // 1024), 2)) + " " + _("GB")
 				elif free >= 1:
-					freeline = _("Free: ") + str(free) +  " " + _("MB")
+					freeline = _("Free: ") + str(free) + " " + _("MB")
 				else:
 					freeline = _("Free: ") + _("full")
 				self.list.append(mount + '\t' + sizeline + ' \t' + freeline)
@@ -512,6 +522,7 @@ class Devices(Screen):
 
 	def createSummary(self):
 		return AboutSummary
+
 
 class SystemMemoryInfo(Screen):
 	def __init__(self, session):
@@ -559,7 +570,7 @@ class SystemMemoryInfo(Screen):
 		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
 
 	def MySize(self, RamText):
-		RamText_End = RamText[len(RamText)-1]
+		RamText_End = RamText[len(RamText) - 1]
 		RamText_End2 = RamText_End
 		if RamText_End == "G":
 			RamText_End = _("GB")
@@ -568,7 +579,7 @@ class SystemMemoryInfo(Screen):
 		elif RamText_End == "K":
 			RamText_End = _("KB")
 		if RamText_End != RamText_End2:
-			RamText = RamText[0:len(RamText)-1] + " " + RamText_End
+			RamText = RamText[0:len(RamText) - 1] + " " + RamText_End
 		return RamText
 
 	def Stage1Complete(self, result, retval, extra_args=None):
@@ -590,6 +601,7 @@ class SystemMemoryInfo(Screen):
 
 	def showMemoryInfo(self):
 		self.session.open(MemoryInfo)
+
 
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
@@ -642,17 +654,18 @@ class SystemNetworkInfo(Screen):
 
 	def createscreen(self):
 		def netspeed():
-			netspeed=""
+			netspeed = ""
 			for line in popen('ethtool eth0 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ', '')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
+
 		def netspeed_eth1():
-			netspeed=""
+			netspeed = ""
 			for line in popen('ethtool eth1 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ', '')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
 		self.AboutText = ""
@@ -827,9 +840,10 @@ class SystemNetworkInfo(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["selected"] = StaticText("HDF:" + getImageVersion())
 
 		AboutText = _("Model: %s %s\n") % (getMachineBrand(), getMachineName())
@@ -860,6 +874,7 @@ class AboutSummary(Screen):
 			AboutText += _("Temperature: %s") % tempinfo.replace('\n', '') + mark + "C"
 
 		self["AboutText"] = StaticText(AboutText)
+
 
 class ViewGitLog(Screen):
 	def __init__(self, session, args=None):
@@ -934,6 +949,7 @@ class ViewGitLog(Screen):
 	def closeRecursive(self):
 		self.close((_("Cancel"), ""))
 
+
 class TranslationInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -969,6 +985,7 @@ class TranslationInfo(Screen):
 				"cancel": self.close,
 				"ok": self.close,
 			})
+
 
 class MemoryInfo(Screen):
 
@@ -1027,7 +1044,7 @@ class MemoryInfo(Screen):
 			free = 0
 			i = 0
 			for line in open('/proc/meminfo', 'r'):
-				( name, size, units ) = line.strip().split()
+				(name, size, units) = line.strip().split()
 				if name.find("MemTotal") != -1:
 					mem = int(size)
 				if name.find("MemFree") != -1:
@@ -1044,9 +1061,9 @@ class MemoryInfo(Screen):
 			self['rmemtext'].setText(rtext)
 			self['rmemvalue'].setText(rvalue)
 
-			self["slide"].setValue(int(100.0*(mem-free)//mem+0.25))
-			self['pfree'].setText("%.1f %s" % (100.*free//mem, '%'))
-			self['pused'].setText("%.1f %s" % (100.*(mem-free)//mem, '%'))
+			self["slide"].setValue(int(100.0 * (mem - free) // mem + 0.25))
+			self['pfree'].setText("%.1f %s" % (100. * free // mem, '%'))
+			self['pused'].setText("%.1f %s" % (100. * (mem - free) // mem, '%'))
 
 		except Exception as e:
 			print("[About] getMemoryInfo FAIL:", e)

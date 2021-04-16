@@ -17,6 +17,7 @@ add_type("video/x-matroska", ".mkv")
 add_type("audio/x-matroska", ".mka")
 add_type("video/mpeg", ".mts")
 
+
 def getType(file):
 	(type, _) = guess_type(file)
 	if type is None:
@@ -29,14 +30,15 @@ def getType(file):
 		p = file.rfind('.')
 		if p == -1:
 			return None
-		ext = file[p+1:].lower()
+		ext = file[p + 1:].lower()
 
 		if ext == "dat" and file[-11:-6].lower() == "avseq":
 			return "video/x-vcd"
 	return type
 
+
 class Scanner:
-	def __init__(self, name, mimetypes= [], paths_to_scan = [], description = "", openfnc = None):
+	def __init__(self, name, mimetypes=[], paths_to_scan=[], description="", openfnc=None):
 		self.mimetypes = mimetypes
 		self.name = name
 		self.paths_to_scan = paths_to_scan
@@ -57,8 +59,9 @@ class Scanner:
 		if self.openfnc is not None:
 			self.openfnc(list, *args, **kwargs)
 
+
 class ScanPath:
-	def __init__(self, path, with_subdirs = False):
+	def __init__(self, path, with_subdirs=False):
 		self.path = path
 		self.with_subdirs = with_subdirs
 
@@ -77,8 +80,9 @@ class ScanPath:
 		else:
 			return self.with_subdirs.__cmp__(other.with_subdirs)
 
+
 class ScanFile:
-	def __init__(self, path, mimetype = None, size = None, autodetect = True):
+	def __init__(self, path, mimetype=None, size=None, autodetect=True):
 		self.path = path
 		if mimetype is None and autodetect:
 			self.mimetype = getType(path)
@@ -89,6 +93,7 @@ class ScanFile:
 	def __repr__(self):
 		return "<ScanFile " + self.path + " (" + str(self.mimetype) + ", " + str(self.size) + " MB)>"
 
+
 def execute(option):
 	print("execute", option)
 	if option is None:
@@ -97,8 +102,9 @@ def execute(option):
 	(_, scanner, files, session) = option
 	scanner.open(files, session)
 
+
 def scanDevice(mountpoint):
-	scanner = [ ]
+	scanner = []
 
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
 		l = p()
@@ -108,7 +114,7 @@ def scanDevice(mountpoint):
 
 	print("scanner:", scanner)
 
-	res = { }
+	res = {}
 
 	# merge all to-be-scanned paths, with priority to
 	# with_subdirs.
@@ -150,11 +156,12 @@ def scanDevice(mountpoint):
 	# res is a dict with scanner -> [ScanFiles]
 	return res
 
+
 def openList(session, files):
 	if not isinstance(files, list):
-		files = [ files ]
+		files = [files]
 
-	scanner = [ ]
+	scanner = []
 
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
 		l = p()
@@ -165,13 +172,13 @@ def openList(session, files):
 
 	print("scanner:", scanner)
 
-	res = { }
+	res = {}
 
 	for _file in files:
 		for s in scanner:
 			s.handleFile(res, _file)
 
-	choices = [ (r.description, r, res[r], session) for r in res ]
+	choices = [(r.description, r, res[r], session) for r in res]
 	Len = len(choices)
 	if Len > 1:
 		from Screens.ChoiceBox import ChoiceBox
@@ -179,8 +186,8 @@ def openList(session, files):
 		session.openWithCallback(
 			execute,
 			ChoiceBox,
-			title = "The following viewers were found...",
-			list = choices
+			title="The following viewers were found...",
+			list=choices
 		)
 		return True
 	elif Len:
@@ -188,6 +195,7 @@ def openList(session, files):
 		return True
 
 	return False
+
 
 def openFile(session, mimetype, file):
 	return openList(session, [ScanFile(file, mimetype)])

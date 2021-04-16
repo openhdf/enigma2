@@ -16,6 +16,7 @@ from Tools.Directories import copyfile, pathExists
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode, GetImagelist
 
+
 class MultiBootSelector(Screen):
 
 	skin = """
@@ -39,7 +40,7 @@ class MultiBootSelector(Screen):
 		Screen.__init__(self, session)
 		screentitle = _("Multiboot Image Selector")
 		self["key_red"] = StaticText(_("Cancel"))
-		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' %(SystemInfo["canMultiBoot"][2])):
+		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' % (SystemInfo["canMultiBoot"][2])):
 			self["description"] = StaticText(_("Use the cursor keys to select an installed image and then Reboot button."))
 		else:
 			self["description"] = StaticText(_("SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"))
@@ -142,7 +143,7 @@ class MultiBootSelector(Screen):
 					open(path.join(self.mountDir, "STARTUP"), "w").write(f)
 			else:
 				copyfile(path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]["startupfile"]), path.join(self.mountDir, "STARTUP"))
-			self.session.openWithCallback(self.restartImage,MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
+			self.session.openWithCallback(self.restartImage, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
 
 	def restartImage(self, answer):
 		if answer is True:

@@ -1,7 +1,8 @@
 from __future__ import absolute_import
 from __future__ import print_function
 from os import system, path as os_path
-import sys, re
+import sys
+import re
 import six
 
 if sys.version_info[0] < 3:
@@ -20,11 +21,12 @@ liste = ["WPA/WPA2", "WPA2", "WPA", "WEP", "Unencrypted"]
 weplist = ["ASCII", "HEX"]
 
 config.plugins.wlan = ConfigSubsection()
-config.plugins.wlan.essid = NoSave(ConfigText(default = "", fixed_size = False))
-config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default = False))
-config.plugins.wlan.encryption = NoSave(ConfigSelection(liste, default = "WPA/WPA2"))
-config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default = "ASCII"))
-config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False))
+config.plugins.wlan.essid = NoSave(ConfigText(default="", fixed_size=False))
+config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default=False))
+config.plugins.wlan.encryption = NoSave(ConfigSelection(liste, default="WPA/WPA2"))
+config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default="ASCII"))
+config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
+
 
 def getWlanConfigName(iface):
 	driver = iNetwork.detectWlanModule(iface)
@@ -32,19 +34,21 @@ def getWlanConfigName(iface):
 		return '/etc/wl.conf.' + iface
 	return '/etc/wpa_supplicant.' + iface + '.conf'
 
+
 class Wlan:
-	def __init__(self, iface = None):
+	def __init__(self, iface=None):
 		self.iface = iface
 		self.oldInterfaceState = None
 
-		a = ''; b = ''
+		a = ''
+		b = ''
 		for i in list(range(0, 255)):
 			a += chr(i)
 			if i < 32 or i > 127:
 				b += ' '
 			else:
 				b += chr(i)
-		if sys.version_info[0] >=3:
+		if sys.version_info[0] >= 3:
 			self.asciitrans = str.maketrans(a, b)
 		else:
 			self.asciitrans = maketrans(a, b)
@@ -65,8 +69,7 @@ class Wlan:
 
 		return ifnames
 
-
-	def setInterface(self, iface = None):
+	def setInterface(self, iface=None):
 		self.iface = iface
 
 	def getInterface(self):
@@ -78,7 +81,7 @@ class Wlan:
 		if self.oldInterfaceState is False:
 			if iNetwork.getAdapterAttribute(self.iface, "up") is False:
 				iNetwork.setAdapterAttribute(self.iface, "up", True)
-				system("ifconfig "+self.iface+" up")
+				system("ifconfig " + self.iface + " up")
 				driver = iNetwork.detectWlanModule(self.iface)
 				if driver in ('brcm-wl', ):
 					system("wl up")
@@ -113,14 +116,16 @@ class Wlan:
 		if self.oldInterfaceState is not None:
 			if self.oldInterfaceState is False:
 				iNetwork.setAdapterAttribute(self.iface, "up", False)
-				system("ifconfig "+self.iface+" down")
+				system("ifconfig " + self.iface + " down")
 				driver = iNetwork.detectWlanModule(self.iface)
 				if driver in ('brcm-wl', ):
 					system("wl down")
 				self.oldInterfaceState = None
 				self.iface = None
 
+
 iWlan = Wlan()
+
 
 class brcmWLConfig:
 	def __init__(self):
@@ -135,7 +140,7 @@ class brcmWLConfig:
 
 		fp = open(getWlanConfigName(iface), 'w')
 
-		fp.write('ssid='+essid+'\n')
+		fp.write('ssid=' + essid + '\n')
 		if encryption in ('WPA', 'WPA2', 'WPA/WPA2', 'WEP'):
 			if encryption == "WPA/WPA2":
 				encryption = "WPA2"
@@ -185,16 +190,17 @@ class brcmWLConfig:
 		}
 		return wsconf
 
+
 class wpaSupplicant:
 	def __init__(self):
 		pass
 
 	def writeBcmWifiConfig(self, iface, essid, encryption, psk):
 		contents = ""
-		contents += "ssid="+essid+"\n"
-		contents += "method="+encryption+"\n"
-		contents += "key="+psk+"\n"
-		print("content = \n"+contents)
+		contents += "ssid=" + essid + "\n"
+		contents += "method=" + encryption + "\n"
+		contents += "key=" + psk + "\n"
+		print("content = \n" + contents)
 
 		fd = open(getWlConfName(iface), "w")
 		fd.write(contents)
@@ -258,7 +264,7 @@ class wpaSupplicant:
 		fp.write('fast_reauth=1\n')
 		fp.write('ap_scan=1\n')
 		fp.write('network={\n')
-		fp.write('\tssid="'+essid+'"\n')
+		fp.write('\tssid="' + essid + '"\n')
 		if hiddenessid:
 			fp.write('\tscan_ssid=1\n')
 		else:
@@ -277,13 +283,13 @@ class wpaSupplicant:
 				fp.write('\tproto=WPA RSN\n')
 				fp.write('\tpairwise=CCMP TKIP\n')
 				fp.write('\tgroup=CCMP TKIP\n')
-			fp.write('\tpsk="'+psk+'"\n')
+			fp.write('\tpsk="' + psk + '"\n')
 		elif encryption == 'WEP':
 			fp.write('\tkey_mgmt=NONE\n')
 			if wepkeytype == 'ASCII':
-				fp.write('\twep_key0="'+psk+'"\n')
+				fp.write('\twep_key0="' + psk + '"\n')
 			else:
-				fp.write('\twep_key0='+psk+'\n')
+				fp.write('\twep_key0=' + psk + '\n')
 		else:
 			fp.write('\tkey_mgmt=NONE\n')
 		fp.write('}')
@@ -317,7 +323,7 @@ class wpaSupplicant:
 					config.plugins.wlan.essid.value = essid
 
 				elif split[0] == 'proto':
-					if split[1] == 'WPA' :
+					if split[1] == 'WPA':
 						mode = 'WPA'
 					if split[1] == 'RSN':
 						mode = 'WPA2'
@@ -373,6 +379,7 @@ class wpaSupplicant:
 		#print "[Wlan.py] WS-CONFIG-->",wsconfig
 		return wsconfig
 
+
 class Status:
 	def __init__(self):
 		self.wlaniface = {}
@@ -386,7 +393,7 @@ class Status:
 			self.WlanConsole.killAll()
 			self.WlanConsole = None
 
-	def getDataForInterface(self, iface, callback = None):
+	def getDataForInterface(self, iface, callback=None):
 		self.WlanConsole = Console()
 		cmd = "iwconfig " + iface
 		if callback is not None:
@@ -397,7 +404,7 @@ class Status:
 		result = six.ensure_str(result)
 		iface = extra_args
 		ssid = "off"
-		data = { 'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False, 'channel': False, 'encryption_type': False, 'frequency': False, 'frequency_norm': False }
+		data = {'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False, 'channel': False, 'encryption_type': False, 'frequency': False, 'frequency_norm': False}
 		for line in result.splitlines():
 			line = line.strip()
 			if "ESSID" in line:
@@ -405,29 +412,29 @@ class Status:
 					ssid = "off"
 				else:
 					if "Nickname" in line:
-						ssid=(line[line.index('ESSID')+7:line.index('"  Nickname')])
+						ssid = (line[line.index('ESSID') + 7:line.index('"  Nickname')])
 					else:
-						ssid=(line[line.index('ESSID')+7:len(line)-1])
+						ssid = (line[line.index('ESSID') + 7:len(line) - 1])
 				if ssid != "off":
 					data['essid'] = ssid
 			if "Access Point" in line:
 				if "Sensitivity" in line:
-					ap=line[line.index('Access Point')+14:line.index('   Sensitivity')]
+					ap = line[line.index('Access Point') + 14:line.index('   Sensitivity')]
 				else:
-					ap=line[line.index('Access Point')+14:len(line)]
+					ap = line[line.index('Access Point') + 14:len(line)]
 				if ap is not None:
 					data['accesspoint'] = ap
 			if "Frequency" in line:
-				frequency = line[line.index('Frequency')+10 :line.index(' GHz')]
+				frequency = line[line.index('Frequency') + 10:line.index(' GHz')]
 				if frequency is not None:
 					data['frequency'] = frequency
 			if "Bit Rate" in line:
 				if "kb" in line:
-					br = line[line.index('Bit Rate')+9 :line.index(' kb/s')]
+					br = line[line.index('Bit Rate') + 9:line.index(' kb/s')]
 				elif "Gb" in line:
-					br = line[line.index('Bit Rate')+9 :line.index(' Gb/s')]
+					br = line[line.index('Bit Rate') + 9:line.index(' Gb/s')]
 				else:
-					br = line[line.index('Bit Rate')+9 :line.index(' Mb/s')]
+					br = line[line.index('Bit Rate') + 9:line.index(' Mb/s')]
 				if br is not None:
 					data['bitrate'] = br
 
@@ -481,5 +488,6 @@ class Status:
 			if attribute in self.wlaniface[self.iface]:
 				return self.wlaniface[self.iface][attribute]
 		return None
+
 
 iStatus = Status()

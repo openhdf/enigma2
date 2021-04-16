@@ -9,10 +9,12 @@ from Components import Task
 from Components.Ipkg import IpkgComponent
 from Components.config import config
 
+
 def OnlineUpdateCheck(session=None, **kwargs):
 	global onlineupdatecheckpoller
 	onlineupdatecheckpoller = OnlineUpdateCheckPoller()
 	onlineupdatecheckpoller.start()
+
 
 class OnlineUpdateCheckPoller:
 	def __init__(self):
@@ -58,7 +60,7 @@ class OnlineUpdateCheckPoller:
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
-				print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
+				print('[OnlineVersionCheck] %s Updates available' % self.total_packages)
 				if self.total_packages:
 					from six.moves.urllib.request import urlopen
 					import socket
@@ -75,6 +77,7 @@ class OnlineUpdateCheckPoller:
 			else:
 				config.softwareupdate.updatefound.setValue(False)
 		pass
+
 
 class VersionCheck:
 	def __init__(self):
@@ -101,5 +104,6 @@ class VersionCheck:
 				return False
 		else:
 			return False
+
 
 versioncheck = VersionCheck()

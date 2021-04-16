@@ -36,11 +36,12 @@ MAX_ORBITPOSITION_WILDCARDS = 6
 ORBITPOSITION_LIMIT = 3600
 
 iDVBFrontendDict = {
-	iDVBFrontend.feSatellite:	"DVB-S",
-	iDVBFrontend.feCable:		"DVB-C",
-	iDVBFrontend.feTerrestrial:	"DVB-T",
-	iDVBFrontend.feATSC:		"ATSC",
+	iDVBFrontend.feSatellite: "DVB-S",
+	iDVBFrontend.feCable: "DVB-C",
+	iDVBFrontend.feTerrestrial: "DVB-T",
+	iDVBFrontend.feATSC: "ATSC",
 }
+
 
 def getConfigSatlist(orbpos, satlist):
 	default_orbpos = None
@@ -50,6 +51,7 @@ def getConfigSatlist(orbpos, satlist):
 			break
 	return ConfigSatlist(satlist, default_orbpos)
 
+
 class SecConfigure:
 	def getConfiguredSats(self):
 		return self.configuredSatellites
@@ -58,7 +60,7 @@ class SecConfigure:
 		sec.addSatellite(orbpos)
 		self.configuredSatellites.add(orbpos)
 
-	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50, fastDiSEqC = False, setVoltageTone = True, diseqc13V = False, CircularLNB = False):
+	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode=diseqcParam.NO, diseqcpos=diseqcParam.SENDNO, orbpos=0, longitude=0, latitude=0, loDirection=0, laDirection=0, turningSpeed=rotorParam.FAST, useInputPower=True, inputPowerDelta=50, fastDiSEqC=False, setVoltageTone=True, diseqc13V=False, CircularLNB=False):
 		if orbpos is None or orbpos == 3600 or orbpos == 3601:
 			return
 		#simple defaults
@@ -168,12 +170,12 @@ class SecConfigure:
 		sec.clear() ## this do unlinking NIMs too !!
 		print("sec config cleared")
 
-		self.linked = { }
-		self.satposdepends = { }
-		self.equal = { }
+		self.linked = {}
+		self.satposdepends = {}
+		self.equal = {}
 
 		nim_slots = self.NimManager.nim_slots
-		used_nim_slots = [ ]
+		used_nim_slots = []
 
 		try:
 			for slot in nim_slots:
@@ -239,7 +241,7 @@ class SecConfigure:
 			if slot.canBeCompatible("DVB-S"):
 				nim = slot.config.dvbs
 				print("slot: " + str(x) + " configmode: " + str(nim.configMode.value))
-				if nim.configMode.value in ( "loopthrough", "satposdepends", "nothing" ):
+				if nim.configMode.value in ("loopthrough", "satposdepends", "nothing"):
 					pass
 				else:
 					sec.setSlotNotLinked(x)
@@ -252,24 +254,24 @@ class SecConfigure:
 							if nim.diseqcA.value in ("360", "560"):
 								currentCircular = nim.simpleDiSEqCSetCircularLNB.value
 							if nim.simpleSingleSendDiSEqC.value:
-								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA, diseqc13V = nim.diseqc13V.value, CircularLNB = currentCircular)
+								self.addLNBSimple(sec, slotid=x, orbpos=nim.diseqcA.orbital_position, toneburstmode=diseqcParam.NO, diseqcmode=diseqcParam.V1_0, diseqcpos=diseqcParam.AA, diseqc13V=nim.diseqc13V.value, CircularLNB=currentCircular)
 							else:
-								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.value, CircularLNB = currentCircular)
+								self.addLNBSimple(sec, slotid=x, orbpos=nim.diseqcA.orbital_position, toneburstmode=diseqcParam.NO, diseqcmode=diseqcParam.NONE, diseqcpos=diseqcParam.SENDNO, diseqc13V=nim.diseqc13V.value, CircularLNB=currentCircular)
 						elif nim.diseqcMode.value == "toneburst_a_b":		#Toneburst A/B
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.A, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.value)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.B, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO, diseqc13V = nim.diseqc13V.value)
+							self.addLNBSimple(sec, slotid=x, orbpos=nim.diseqcA.orbital_position, toneburstmode=diseqcParam.A, diseqcmode=diseqcParam.V1_0, diseqcpos=diseqcParam.SENDNO, diseqc13V=nim.diseqc13V.value)
+							self.addLNBSimple(sec, slotid=x, orbpos=nim.diseqcB.orbital_position, toneburstmode=diseqcParam.B, diseqcmode=diseqcParam.V1_0, diseqcpos=diseqcParam.SENDNO, diseqc13V=nim.diseqc13V.value)
 						elif nim.diseqcMode.value == "diseqc_a_b":		#DiSEqC A/B
 							fastDiSEqC = nim.simpleDiSEqCOnlyOnSatChange.value
 							setVoltageTone = nim.simpleDiSEqCSetVoltageTone.value
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone, diseqc13V = nim.diseqc13V.value)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone, diseqc13V = nim.diseqc13V.value)
+							self.addLNBSimple(sec, slotid=x, orbpos=nim.diseqcA.orbital_position, toneburstmode=diseqcParam.NO, diseqcmode=diseqcParam.V1_0, diseqcpos=diseqcParam.AA, fastDiSEqC=fastDiSEqC, setVoltageTone=setVoltageTone, diseqc13V=nim.diseqc13V.value)
+							self.addLNBSimple(sec, slotid=x, orbpos=nim.diseqcB.orbital_position, toneburstmode=diseqcParam.NO, diseqcmode=diseqcParam.V1_0, diseqcpos=diseqcParam.AB, fastDiSEqC=fastDiSEqC, setVoltageTone=setVoltageTone, diseqc13V=nim.diseqc13V.value)
 						elif nim.diseqcMode.value == "diseqc_a_b_c_d":		#DiSEqC A/B/C/D
 							fastDiSEqC = nim.simpleDiSEqCOnlyOnSatChange.value
 							setVoltageTone = nim.simpleDiSEqCSetVoltageTone.value
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone, diseqc13V = nim.diseqc13V.value)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone, diseqc13V = nim.diseqc13V.value)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcC.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BA, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone, diseqc13V = nim.diseqc13V.value)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcD.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BB, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone, diseqc13V = nim.diseqc13V.value)
+							self.addLNBSimple(sec, slotid=x, orbpos=nim.diseqcA.orbital_position, toneburstmode=diseqcParam.NO, diseqcmode=diseqcParam.V1_0, diseqcpos=diseqcParam.AA, fastDiSEqC=fastDiSEqC, setVoltageTone=setVoltageTone, diseqc13V=nim.diseqc13V.value)
+							self.addLNBSimple(sec, slotid=x, orbpos=nim.diseqcB.orbital_position, toneburstmode=diseqcParam.NO, diseqcmode=diseqcParam.V1_0, diseqcpos=diseqcParam.AB, fastDiSEqC=fastDiSEqC, setVoltageTone=setVoltageTone, diseqc13V=nim.diseqc13V.value)
+							self.addLNBSimple(sec, slotid=x, orbpos=nim.diseqcC.orbital_position, toneburstmode=diseqcParam.NO, diseqcmode=diseqcParam.V1_0, diseqcpos=diseqcParam.BA, fastDiSEqC=fastDiSEqC, setVoltageTone=setVoltageTone, diseqc13V=nim.diseqc13V.value)
+							self.addLNBSimple(sec, slotid=x, orbpos=nim.diseqcD.orbital_position, toneburstmode=diseqcParam.NO, diseqcmode=diseqcParam.V1_0, diseqcpos=diseqcParam.BB, fastDiSEqC=fastDiSEqC, setVoltageTone=setVoltageTone, diseqc13V=nim.diseqc13V.value)
 						elif nim.diseqcMode.value in ("positioner", "positioner_select"):		#Positioner
 							current_mode = 3
 							sat = 0
@@ -284,29 +286,29 @@ class SecConfigure:
 								loValue = rotorParam.EAST
 							else:
 								loValue = rotorParam.WEST
-							inputPowerDelta=nim.powerThreshold.value
-							useInputPower=False
-							turning_speed=0
+							inputPowerDelta = nim.powerThreshold.value
+							useInputPower = False
+							turning_speed = 0
 							if nim.powerMeasurement.value:
-								useInputPower=True
-								turn_speed_dict = { "fast": rotorParam.FAST, "slow": rotorParam.SLOW }
+								useInputPower = True
+								turn_speed_dict = {"fast": rotorParam.FAST, "slow": rotorParam.SLOW}
 								if nim.turningSpeed.value in turn_speed_dict:
 									turning_speed = turn_speed_dict[nim.turningSpeed.value]
 								else:
 									beg_time = localtime(nim.fastTurningBegin.value)
 									end_time = localtime(nim.fastTurningEnd.value)
-									turning_speed = ((beg_time.tm_hour+1) * 60 + beg_time.tm_min + 1) << 16
-									turning_speed |= (end_time.tm_hour+1) * 60 + end_time.tm_min + 1
-							self.addLNBSimple(sec, slotid = x, diseqcmode = current_mode,
-								orbpos = sat,
-								longitude = nim.longitude.float,
-								loDirection = loValue,
-								latitude = nim.latitude.float,
-								laDirection = laValue,
-								turningSpeed = turning_speed,
-								useInputPower = useInputPower,
-								inputPowerDelta = inputPowerDelta,
-								diseqc13V = nim.diseqc13V.value)
+									turning_speed = ((beg_time.tm_hour + 1) * 60 + beg_time.tm_min + 1) << 16
+									turning_speed |= (end_time.tm_hour + 1) * 60 + end_time.tm_min + 1
+							self.addLNBSimple(sec, slotid=x, diseqcmode=current_mode,
+								orbpos=sat,
+								longitude=nim.longitude.float,
+								loDirection=loValue,
+								latitude=nim.latitude.float,
+								laDirection=laValue,
+								turningSpeed=turning_speed,
+								useInputPower=useInputPower,
+								inputPowerDelta=inputPowerDelta,
+								diseqc13V=nim.diseqc13V.value)
 					elif nim.configMode.value == "advanced": #advanced config
 						self.updateAdvanced(sec, x)
 			if slot.canBeCompatible("DVB-T"):
@@ -385,9 +387,10 @@ class SecConfigure:
 					print("No space left on m_lnbs (max No. 144 LNBs exceeded)")
 					return
 
-				posnum = 1;	#default if LNB movable
+				posnum = 1
+				#default if LNB movable
 				if x <= maxFixedLnbPositions:
-					posnum = x;
+					posnum = x
 					sec.setLNBSatCRpositionnumber(x)	# LNB has fixed Position
 				else:
 					sec.setLNBSatCRpositionnumber(0)	# or not (movable LNB)
@@ -420,10 +423,10 @@ class SecConfigure:
 						if product_name in manufacturer_scr:
 							diction = manufacturer.diction[product_name].value
 							positionsoffset = manufacturer.positionsoffset[product_name][0].value
-							if diction !="EN50607" or ((posnum <= (positionsoffset + manufacturer_positions_value) and (posnum > positionsoffset) and x <= maxFixedLnbPositions)): #for every allowed position
-								sec.setLNBSatCRformat(diction =="EN50607" and 1 or 0)
+							if diction != "EN50607" or ((posnum <= (positionsoffset + manufacturer_positions_value) and (posnum > positionsoffset) and x <= maxFixedLnbPositions)): #for every allowed position
+								sec.setLNBSatCRformat(diction == "EN50607" and 1 or 0)
 								sec.setLNBSatCR(manufacturer_scr[product_name].index)
-								sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer_scr[product_name].index].value*1000)
+								sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer_scr[product_name].index].value * 1000)
 								sec.setLNBSatCRpositions(manufacturer_positions_value)
 								sec.setLNBLOFL(manufacturer.lofl[product_name][position_idx].value * 1000)
 								sec.setLNBLOFH(manufacturer.lofh[product_name][position_idx].value * 1000)
@@ -443,11 +446,11 @@ class SecConfigure:
 						if currLnb.dictionuser.value == "EN50607":
 							sec.setLNBSatCRformat(1)
 							sec.setLNBSatCR(currLnb.satcruserEN50607.index)
-							sec.setLNBSatCRvco(currLnb.satcrvcouserEN50607[currLnb.satcruserEN50607.index].value*1000)
+							sec.setLNBSatCRvco(currLnb.satcrvcouserEN50607[currLnb.satcruserEN50607.index].value * 1000)
 						else:
 							sec.setLNBSatCRformat(0)
 							sec.setLNBSatCR(currLnb.satcruserEN50494.index)
-							sec.setLNBSatCRvco(currLnb.satcrvcouserEN50494[currLnb.satcruserEN50494.index].value*1000)
+							sec.setLNBSatCRvco(currLnb.satcrvcouserEN50494[currLnb.satcruserEN50494.index].value * 1000)
 
 						sec.setLNBLOFL(currLnb.lofl.value * 1000)
 						sec.setLNBLOFH(currLnb.lofh.value * 1000)
@@ -507,11 +510,11 @@ class SecConfigure:
 					# Committed Diseqc Command
 					cdc = currLnb.commitedDiseqcCommand.value
 
-					c = { "none": diseqcParam.SENDNO,
+					c = {"none": diseqcParam.SENDNO,
 						"AA": diseqcParam.AA,
 						"AB": diseqcParam.AB,
 						"BA": diseqcParam.BA,
-						"BB": diseqcParam.BB }
+						"BB": diseqcParam.BB}
 
 					if cdc in c:
 						sec.setCommittedCommand(c[cdc])
@@ -530,7 +533,7 @@ class SecConfigure:
 
 						udc = int(currLnb.uncommittedDiseqcCommand.value)
 						if udc > 0:
-							sec.setUncommittedCommand(0xF0|(udc-1))
+							sec.setUncommittedCommand(0xF0 | (udc - 1))
 						else:
 							sec.setUncommittedCommand(0) # SENDNO
 
@@ -564,7 +567,7 @@ class SecConfigure:
 					if currLnb.powerMeasurement.value:
 						sec.setUseInputpower(True)
 						sec.setInputpowerDelta(currLnb.powerThreshold.value)
-						turn_speed_dict = { "fast": rotorParam.FAST, "slow": rotorParam.SLOW }
+						turn_speed_dict = {"fast": rotorParam.FAST, "slow": rotorParam.SLOW}
 						if currLnb.turningSpeed.value in turn_speed_dict:
 							turning_speed = turn_speed_dict[currLnb.turningSpeed.value]
 						else:
@@ -584,7 +587,7 @@ class SecConfigure:
 				for y in lnbSat[x]:
 					self.addSatellite(sec, y)
 					if x > maxFixedLnbPositions:
-						satpos = x > maxFixedLnbPositions and (3606-(70 - x)) or y
+						satpos = x > maxFixedLnbPositions and (3606 - (70 - x)) or y
 					else:
 						satpos = y
 					currSat = advanced.sat[satpos]
@@ -651,55 +654,55 @@ class SecConfigure:
 			tmp.loft = ConfigSubDict()
 			tmp.bootuptime = ConfigSubDict()
 			tmp.diction = ConfigSubDict()
-			tmp.product = ConfigSelection(choices = [], default = None)
+			tmp.product = ConfigSelection(choices=[], default=None)
 			tmp.positions = ConfigSubDict()
 			tmp.positionsoffset = ConfigSubDict()
 
 		if PN not in tmp.product.choices.choices:
 			print("[reconstructUnicableDate] Product %s not in unicable.xml" % PN)
 			scrlist = []
-			SatCR = int(PDict.get('scr', {PN:1}).get(PN, 1)) - 1
-			vco = int(PDict.get('vco', {PN:0}).get(PN, 0).get(str(SatCR), 1))
+			SatCR = int(PDict.get('scr', {PN: 1}).get(PN, 1)) - 1
+			vco = int(PDict.get('vco', {PN: 0}).get(PN, 0).get(str(SatCR), 1))
 
-			positionslist=[1, (9750, 10600, 11700)]	##adenin_todo
+			positionslist = [1, (9750, 10600, 11700)]	##adenin_todo
 			positions = int(positionslist[0])
 			tmp.positions[PN] = ConfigSubList()
-			tmp.positions[PN].append(ConfigInteger(default=positions, limits = (positions, positions)))
+			tmp.positions[PN].append(ConfigInteger(default=positions, limits=(positions, positions)))
 
 			tmp.bootuptime[PN] = ConfigSubList()
-			tmp.bootuptime[PN].append(ConfigInteger(default=0, limits = (0, 0)))
+			tmp.bootuptime[PN].append(ConfigInteger(default=0, limits=(0, 0)))
 
-			positionsoffsetlist=[0,]	##adenin_todo
+			positionsoffsetlist = [0, ]	##adenin_todo
 			positionsoffset = int(positionsoffsetlist[0])
 			tmp.positionsoffset[PN] = ConfigSubList()
-			tmp.positionsoffset[PN].append(ConfigInteger(default=positionsoffset, limits = (positionsoffset, positionsoffset)))
+			tmp.positionsoffset[PN].append(ConfigInteger(default=positionsoffset, limits=(positionsoffset, positionsoffset)))
 
 			tmp.vco[PN] = ConfigSubList()
 
 			for cnt in list(range(0, SatCR + 1)):
 				vcofreq = (cnt == SatCR) and vco or 0		# equivalent to vcofreq = (cnt == SatCR) ? vco : 0
-				if vcofreq == 0 :
-					scrlist.append(("%d" %(cnt+1), "SCR %d " %(cnt+1) +_("not used")))
+				if vcofreq == 0:
+					scrlist.append(("%d" % (cnt + 1), "SCR %d " % (cnt + 1) + _("not used")))
 				else:
-					scrlist.append(("%d" %(cnt+1), "SCR %d" %(cnt+1)))
+					scrlist.append(("%d" % (cnt + 1), "SCR %d" % (cnt + 1)))
 				print("vcofreq %d" % vcofreq)
-				tmp.vco[PN].append(ConfigInteger(default=vcofreq, limits = (vcofreq, vcofreq)))
+				tmp.vco[PN].append(ConfigInteger(default=vcofreq, limits=(vcofreq, vcofreq)))
 
-			tmp.scr[PN] = ConfigSelection(choices = scrlist, default = scrlist[SatCR][0])
+			tmp.scr[PN] = ConfigSelection(choices=scrlist, default=scrlist[SatCR][0])
 
 			tmp.lofl[PN] = ConfigSubList()
 			tmp.lofh[PN] = ConfigSubList()
 			tmp.loft[PN] = ConfigSubList()
-			for cnt in list(range(1, positions+1)):
+			for cnt in list(range(1, positions + 1)):
 				lofl = int(positionslist[cnt][0])
 				lofh = int(positionslist[cnt][1])
 				loft = int(positionslist[cnt][2])
-				tmp.lofl[PN].append(ConfigInteger(default=lofl, limits = (lofl, lofl)))
-				tmp.lofh[PN].append(ConfigInteger(default=lofh, limits = (lofh, lofh)))
-				tmp.loft[PN].append(ConfigInteger(default=loft, limits = (loft, loft)))
+				tmp.lofl[PN].append(ConfigInteger(default=lofl, limits=(lofl, lofl)))
+				tmp.lofh[PN].append(ConfigInteger(default=lofh, limits=(lofh, lofh)))
+				tmp.loft[PN].append(ConfigInteger(default=loft, limits=(loft, loft)))
 
 			dictionlist = [("EN50494", "Unicable(EN50494)")]	##adenin_todo
-			tmp.diction[PN] = ConfigSelection(choices = dictionlist, default = dictionlist[0][0])
+			tmp.diction[PN] = ConfigSelection(choices=dictionlist, default=dictionlist[0][0])
 
 			tmp.product.choices.choices.append(PN)
 			tmp.product.choices.default = PN
@@ -719,9 +722,11 @@ class SecConfigure:
 		self.configuredSatellites = set()
 		self.update()
 
+
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type=None, frontend_id=None, i2c=None, is_empty=False, input_name = None, supports_blind_scan = False):
-		if not multi_type: multi_type = {}
+	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type=None, frontend_id=None, i2c=None, is_empty=False, input_name=None, supports_blind_scan=False):
+		if not multi_type:
+			multi_type = {}
 		self.slot = slot
 		_type = type
 
@@ -759,14 +764,14 @@ class NIM(object):
 
 	def canBeCompatible(self, what):
 		if not self.isSupported():
-			print("%s is not suportetd "%(what))
+			print("%s is not suportetd " % (what))
 			return False
 		if self.isMultiType():
 			#print"[adenin] %s is multitype"%(self.slot)
 			for _type in list(self.multi_type.values()):
 				if what in self.compatible[_type]:
 					return True
-		elif  what in self.compatible[self.getType()]:
+		elif what in self.compatible[self.getType()]:
 			#print"[adenin] %s is NOT multitype"%(self.slot)
 			return True
 		return False
@@ -918,6 +923,7 @@ class NIM(object):
 	config = property(lambda self: config.Nims[self.slot])
 	empty = property(lambda self: self.getType() is None)
 
+
 class NimManager:
 	def getConfiguredSats(self):
 		return self.sec.getConfiguredSats()
@@ -932,7 +938,7 @@ class NimManager:
 		nimConfig = config.Nims[nim].dvbc
 		if nimConfig.configMode.value != "nothing" and nimConfig.scan_type.value == "provider":
 			return self.transponderscable[self.cablesList[nimConfig.scan_provider.index][0]]
-		return [ ]
+		return []
 
 	def getTranspondersTerrestrial(self, region):
 		return self.transpondersterrestrial[region]
@@ -1008,11 +1014,11 @@ class NimManager:
 			return orbpos + 1800
 
 	def readTransponders(self):
-		self.satellites = { }
-		self.transponders = { }
-		self.transponderscable = { }
-		self.transpondersterrestrial = { }
-		self.transpondersatsc = { }
+		self.satellites = {}
+		self.transponders = {}
+		self.transponderscable = {}
+		self.transpondersterrestrial = {}
+		self.transpondersatsc = {}
 		db = eDVBDB.getInstance()
 
 		try:
@@ -1039,6 +1045,7 @@ class NimManager:
 			else: #satellites.xml not found or corrupted
 				from Tools.Notifications import AddPopup
 				from Screens.MessageBox import MessageBox
+
 				def emergencyAid():
 					if not path.exists("/etc/enigma2/lamedb"):
 						print("/etc/enigma2/lamedb not found")
@@ -1111,17 +1118,17 @@ class NimManager:
 							if ((version == 3) and len(x[1]) > len(t2_sv3)) or ((version == 4) and len(x[1]) > len(t2_sv4)):
 								continue
 							for y in list(range(0, len(x[0]))):
-								tp.update({t1[y]:x[0][y]})
+								tp.update({t1[y]: x[0][y]})
 							for y in list(range(0, len(x[1]))):
 								if version == 3:
-									tp.update({t2_sv3[y]:x[1][y]})
+									tp.update({t2_sv3[y]: x[1][y]})
 								elif version == 4:
-									tp.update({t2_sv4[y]:x[1][y]})
+									tp.update({t2_sv4[y]: x[1][y]})
 							if ((int(tp.get("namespace"), 16) >> 16) & 0xFFF) != int(tp.get("position")):
-								print("Namespace %s and Position %s are not identical"% (tp.get("namespace"), tp.get("position")))
+								print("Namespace %s and Position %s are not identical" % (tp.get("namespace"), tp.get("position")))
 								continue
 							if version >= 4:
-								tp.update({"supposition":((int(tp.get("namespace", "0"), 16) >> 24) & 0x0F)})
+								tp.update({"supposition": ((int(tp.get("namespace", "0"), 16) >> 24) & 0x0F)})
 						elif freq[0] == "c" or freq[0] == "C":
 							print("DVB-C")
 							continue
@@ -1145,15 +1152,15 @@ class NimManager:
 								dir = 'E'
 							if freq >= 10000000 and freq <= 13000000:
 								fake_sat_pos = sat_pos
-								tmp_sat.update({'name':'%3.1f%c Ku-band satellite' %(sat_pos//10.0, dir)})
+								tmp_sat.update({'name': '%3.1f%c Ku-band satellite' % (sat_pos // 10.0, dir)})
 								#tmp_sat.update({"band":"Ku"})
 							if freq >= 3000000 and freq <= 4000000:
 								fake_sat_pos = sat_pos + 1
-								tmp_sat.update({'name':'%3.1f%c C-band satellite' %(sat_pos//10.0, dir)})
+								tmp_sat.update({'name': '%3.1f%c C-band satellite' % (sat_pos // 10.0, dir)})
 								#tmp_sat.update({"band":"C"})
 							if freq >= 17000000 and freq <= 23000000:
 								fake_sat_pos = sat_pos + 2
-								tmp_sat.update({'name':'%3.1f%c Ka-band satellite' %(sat_pos//10.0, dir)})
+								tmp_sat.update({'name': '%3.1f%c Ka-band satellite' % (sat_pos // 10.0, dir)})
 								#tmp_sat.update({"band":"Ka"})
 							tmp_tp.append((
 									0,			#???
@@ -1169,9 +1176,9 @@ class NimManager:
 									-1,			#tsid  -1 -> any tsid are valid
 									-1			#onid  -1 -> any tsid are valid
 								))
-							tmp_sat.update({'flags':int(tp.get("flags"))})
-							satDict.update({fake_sat_pos:tmp_sat})
-							self.transponders.update({fake_sat_pos:tmp_tp})
+							tmp_sat.update({'flags': int(tp.get("flags"))})
+							satDict.update({fake_sat_pos: tmp_sat})
+							self.transponders.update({fake_sat_pos: tmp_tp})
 
 					for sat_pos in satDict:
 						self.satellites.update({sat_pos: satDict.get(sat_pos).get('name')})
@@ -1179,9 +1186,9 @@ class NimManager:
 
 					return True
 
-				AddPopup(_("satellites.xml not found or corrupted!\nIt is possible to watch TV,\nbut it's not possible to search for new TV channels\nor to configure tuner settings"), type = MessageBox.TYPE_ERROR, timeout = 0, id = "SatellitesLoadFailed")
+				AddPopup(_("satellites.xml not found or corrupted!\nIt is possible to watch TV,\nbut it's not possible to search for new TV channels\nor to configure tuner settings"), type=MessageBox.TYPE_ERROR, timeout=0, id="SatellitesLoadFailed")
 				if not emergencyAid():
-					AddPopup(_("resoring satellites.xml not posibel!"), type = MessageBox.TYPE_ERROR, timeout = 0, id = "SatellitesLoadFailed")
+					AddPopup(_("resoring satellites.xml not posibel!"), type=MessageBox.TYPE_ERROR, timeout=0, id="SatellitesLoadFailed")
 					return
 
 		if self.hasNimType("DVB-C") or self.hasNimType("DVB-T") or self.hasNimType("DVB-T2"):
@@ -1215,7 +1222,7 @@ class NimManager:
 		# Type will be either "DVB-S", "DVB-S2", "DVB-S2X", "DVB-T", "DVB-C" or None.
 
 		# nim_slots is an array which has exactly one entry for each slot, even for empty ones.
-		self.nim_slots = [ ]
+		self.nim_slots = []
 
 		try:
 			nimfile = open("/proc/bus/nim_sockets")
@@ -1274,7 +1281,7 @@ class NimManager:
 
 		for _id, entry in entries.items():
 			if not ("name" in entry and "type" in entry):
-				entry["name"] =  _("N/A")
+				entry["name"] = _("N/A")
 				entry["type"] = None
 			if not ("i2c" in entry):
 				entry["i2c"] = None
@@ -1297,7 +1304,7 @@ class NimManager:
 				entry["input_name"] = chr(ord('A') + _id)
 			if "supports_blind_scan" not in entry:
 				entry["supports_blind_scan"] = False
-			self.nim_slots.append(NIM(slot = _id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"], i2c = entry["i2c"], is_empty = entry["isempty"], input_name = entry.get("input_name", None), supports_blind_scan = entry["supports_blind_scan"]))
+			self.nim_slots.append(NIM(slot=_id, description=entry["name"], type=entry["type"], has_outputs=entry["has_outputs"], internally_connectable=entry["internally_connectable"], multi_type=entry["multi_type"], frontend_id=entry["frontend_device"], i2c=entry["i2c"], is_empty=entry["isempty"], input_name=entry.get("input_name", None), supports_blind_scan=entry["supports_blind_scan"]))
 
 	def hasNimType(self, chktype):
 		for slot in self.nim_slots:
@@ -1324,7 +1331,7 @@ class NimManager:
 	def getI2CDevice(self, slotid):
 		return self.nim_slots[slotid].getI2C()
 
-	def getNimListOfType(self, type, exception = -1):
+	def getNimListOfType(self, type, exception=-1):
 		# returns a list of indexes for NIMs compatible to the given type, except for 'exception'
 		_list = []
 		for x in self.nim_slots:
@@ -1338,7 +1345,7 @@ class NimManager:
 		sec = secClass.getInstance()
 		global maxFixedLnbPositions
 		maxFixedLnbPositions = sec.getMaxFixedLnbPositions()
-		self.satList = [ ]
+		self.satList = []
 		self.cablesList = []
 		self.terrestrialsList = []
 		self.atscList = []
@@ -1348,7 +1355,7 @@ class NimManager:
 
 	# get a list with the friendly full description
 	def nimList(self):
-		_list = [ ]
+		_list = []
 		for slot in self.nim_slots:
 			_list.append(slot.friendly_full_description)
 		return _list
@@ -1370,7 +1377,7 @@ class NimManager:
 		if self.nim_slots[slotid].internallyConnectableTo() is not None:
 			slots.append(self.nim_slots[slotid].internallyConnectableTo())
 		for _type in self.nim_slots[slotid].connectableTo():
-			for slot in self.getNimListOfType(_type, exception = slotid):
+			for slot in self.getNimListOfType(_type, exception=slotid):
 				if self.hasOutputs(slot) and slot not in slots:
 					slots.append(slot)
 		# remove nims, that have a conntectedTo reference on
@@ -1405,7 +1412,7 @@ class NimManager:
 		for nim in nimList[:]:
 			if self.nim_slots[nim].canBeCompatible('DVB-S'):
 				mode = self.getNimConfig(nim).dvbs
-				nimHaveRotor = mode.configMode.value == "simple" and mode.diseqcMode.value  in ("positioner", "positioner_select")
+				nimHaveRotor = mode.configMode.value == "simple" and mode.diseqcMode.value in ("positioner", "positioner_select")
 				if not nimHaveRotor and mode.configMode.value == "advanced":
 					for x in list(range(3601, 3607)):
 						lnb = int(mode.advanced.sat[x].lnb.value)
@@ -1444,7 +1451,7 @@ class NimManager:
 
 	# returns True if something is configured to be connected to this nim
 	# if slotid == -1, returns if something is connected to ANY nim
-	def somethingConnected(self, slotid = -1):
+	def somethingConnected(self, slotid=-1):
 		if slotid == -1:
 			connected = False
 			for id in list(range(self.getSlotCount())):
@@ -1559,78 +1566,79 @@ class NimManager:
 								_list.append(user_sat)
 		return _list
 
+
 def InitSecParams():
 	config.sec = ConfigSubsection()
 
-	x = ConfigInteger(default=25, limits = (0, 9999))
+	x = ConfigInteger(default=25, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_CONT_TONE_DISABLE_BEFORE_DISEQC, configElement.value))
 	config.sec.delay_after_continuous_tone_disable_before_diseqc = x
 
-	x = ConfigInteger(default=10, limits = (0, 9999))
+	x = ConfigInteger(default=10, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_FINAL_CONT_TONE_CHANGE, configElement.value))
 	config.sec.delay_after_final_continuous_tone_change = x
 
-	x = ConfigInteger(default=10, limits = (0, 9999))
+	x = ConfigInteger(default=10, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_FINAL_VOLTAGE_CHANGE, configElement.value))
 	config.sec.delay_after_final_voltage_change = x
 
-	x = ConfigInteger(default=120, limits = (0, 9999))
+	x = ConfigInteger(default=120, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BETWEEN_DISEQC_REPEATS, configElement.value))
 	config.sec.delay_between_diseqc_repeats = x
 
-	x = ConfigInteger(default=100, limits = (0, 9999))
+	x = ConfigInteger(default=100, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_LAST_DISEQC_CMD, configElement.value))
 	config.sec.delay_after_last_diseqc_command = x
 
-	x = ConfigInteger(default=50, limits = (0, 9999))
+	x = ConfigInteger(default=50, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_TONEBURST, configElement.value))
 	config.sec.delay_after_toneburst = x
 
-	x = ConfigInteger(default=75, limits = (0, 9999))
+	x = ConfigInteger(default=75, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS, configElement.value))
 	config.sec.delay_after_change_voltage_before_switch_command = x
 
-	x = ConfigInteger(default=200, limits = (0, 9999))
+	x = ConfigInteger(default=200, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS, configElement.value))
 	config.sec.delay_after_enable_voltage_before_switch_command = x
 
-	x = ConfigInteger(default=700, limits = (0, 9999))
+	x = ConfigInteger(default=700, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BETWEEN_SWITCH_AND_MOTOR_CMD, configElement.value))
 	config.sec.delay_between_switch_and_motor_command = x
 
-	x = ConfigInteger(default=500, limits = (0, 9999))
+	x = ConfigInteger(default=500, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER, configElement.value))
 	config.sec.delay_after_voltage_change_before_measure_idle_inputpower = x
 
-	x = ConfigInteger(default=900, limits = (0, 9999))
+	x = ConfigInteger(default=900, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_MOTOR_CMD, configElement.value))
 	config.sec.delay_after_enable_voltage_before_motor_command = x
 
-	x = ConfigInteger(default=500, limits = (0, 9999))
+	x = ConfigInteger(default=500, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_MOTOR_STOP_CMD, configElement.value))
 	config.sec.delay_after_motor_stop_command = x
 
-	x = ConfigInteger(default=500, limits = (0, 9999))
+	x = ConfigInteger(default=500, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD, configElement.value))
 	config.sec.delay_after_voltage_change_before_motor_command = x
 
-	x = ConfigInteger(default=70, limits = (0, 9999))
+	x = ConfigInteger(default=70, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BEFORE_SEQUENCE_REPEAT, configElement.value))
 	config.sec.delay_before_sequence_repeat = x
 
-	x = ConfigInteger(default=360, limits = (0, 9999))
+	x = ConfigInteger(default=360, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_RUNNING_TIMEOUT, configElement.value))
 	config.sec.motor_running_timeout = x
 
-	x = ConfigInteger(default=1, limits = (0, 5))
+	x = ConfigInteger(default=1, limits=(0, 5))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_COMMAND_RETRIES, configElement.value))
 	config.sec.motor_command_retries = x
 
-	x = ConfigInteger(default=50, limits = (0, 9999))
+	x = ConfigInteger(default=50, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_DISEQC_RESET_CMD, configElement.value))
 	config.sec.delay_after_diseqc_reset_cmd = x
 
-	x = ConfigInteger(default=150, limits = (0, 9999))
+	x = ConfigInteger(default=150, limits=(0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_DISEQC_PERIPHERIAL_POWERON_CMD, configElement.value))
 	config.sec.delay_after_diseqc_peripherial_poweron_cmd = x
 
@@ -1640,11 +1648,13 @@ def InitSecParams():
 # the C(++) part should can handle this
 # the configElement should be only visible when diseqc 1.2 is disabled
 
+
 jess_alias = ("JESS", "UNICABLE2", "SCD2", "EN50607", "EN 50607")
 
 lscr = [("scr%d" % i) for i in list(range(1, 33))]
 
-def InitNimManager(nimmgr, update_slots = []):
+
+def InitNimManager(nimmgr, update_slots=[]):
 	hw = HardwareInfo()
 	addNimConfig = False
 	try:
@@ -1683,99 +1693,99 @@ def InitNimManager(nimmgr, update_slots = []):
 
 	entry = root.find("lnb")
 	for manufacturer in entry.getchildren():
-		m={}
+		m = {}
 		m_update = m.update
 		for product in manufacturer.getchildren():
-			p={}												#new dict empty for new product
+			p = {}												#new dict empty for new product
 			p_update = p.update
-			scr=[]
+			scr = []
 			scr_append = scr.append
 			scr_pop = scr.pop
 			for i in list(range(len(lscr))):
 				scr_append(product.get(lscr[i], "0"))
 			for i in list(range(len(lscr))):
-				if scr[len(lscr)-i-1] == "0":
+				if scr[len(lscr) - i - 1] == "0":
 					scr_pop()
 				else:
-					break;
+					break
 
-			p_update({"frequencies":tuple(scr)})								#add scr frequencies to dict product
+			p_update({"frequencies": tuple(scr)})								#add scr frequencies to dict product
 
 			diction = product.get("format", "EN50494").upper()
 			if diction in jess_alias:
 				diction = "EN50607"
 			else:
 				diction = "EN50494"
-			p_update({"diction":tuple([diction])})								#add diction to dict product
+			p_update({"diction": tuple([diction])})								#add diction to dict product
 
 			positionsoffset = product.get("positionsoffset", 0)
-			p_update({"positionsoffset":tuple([positionsoffset])})						#add positionsoffset to dict product
+			p_update({"positionsoffset": tuple([positionsoffset])})						#add positionsoffset to dict product
 
-			positions=[]
+			positions = []
 			positions_append = positions.append
 			positions_append(int(product.get("positions", 1)))
 			for cnt in list(range(positions[0])):
-				lof=[]
+				lof = []
 				lof.append(int(product.get("lofl", 9750)))
 				lof.append(int(product.get("lofh", 10600)))
 				lof.append(int(product.get("threshold", 11700)))
 				positions_append(tuple(lof))
 
-			p_update({"positions":tuple(positions)})							#add positons to dict product
+			p_update({"positions": tuple(positions)})							#add positons to dict product
 
 			bootuptime = product.get("bootuptime", 2700)
-			p_update({"bootuptime":tuple([bootuptime])})							#add add boot up time
+			p_update({"bootuptime": tuple([bootuptime])})							#add add boot up time
 
-			m_update({product.get("name"):p})								#add dict product to dict manufacturer
-		unicablelnbproducts.update({manufacturer.get("name"):m})
+			m_update({product.get("name"): p})								#add dict product to dict manufacturer
+		unicablelnbproducts.update({manufacturer.get("name"): m})
 
 	entry = root.find("matrix")
 	for manufacturer in entry.getchildren():
-		m={}
+		m = {}
 		m_update = m.update
 		for product in manufacturer.getchildren():
-			p={}												#new dict empty for new product
+			p = {}												#new dict empty for new product
 			p_update = p.update
-			scr=[]
+			scr = []
 			scr_append = scr.append
 			scr_pop = scr.pop
 			for i in list(range(len(lscr))):
 				scr_append(product.get(lscr[i], "0"))
 			for i in list(range(len(lscr))):
-				if scr[len(lscr)-i-1] == "0":
+				if scr[len(lscr) - i - 1] == "0":
 					scr_pop()
 				else:
-					break;
+					break
 
-			p_update({"frequencies":tuple(scr)})								#add scr frequencies to dict product
+			p_update({"frequencies": tuple(scr)})								#add scr frequencies to dict product
 
 			diction = product.get("format", "EN50494").upper()
 			if diction in jess_alias:
 				diction = "EN50607"
 			else:
 				diction = "EN50494"
-			p_update({"diction":tuple([diction])})								#add diction to dict product
+			p_update({"diction": tuple([diction])})								#add diction to dict product
 
 			positionsoffset = product.get("positionsoffset", 0)
-			p_update({"positionsoffset":tuple([positionsoffset])})						#add positionsoffset to dict product
+			p_update({"positionsoffset": tuple([positionsoffset])})						#add positionsoffset to dict product
 
-			positions=[]
+			positions = []
 			positions_append = positions.append
 			positions_append(int(product.get("positions", 1)))
 			for cnt in list(range(positions[0])):
-				lof=[]
+				lof = []
 				lof.append(int(product.get("lofl", 9750)))
 				lof.append(int(product.get("lofh", 10600)))
 				lof.append(int(product.get("threshold", 11700)))
 				positions_append(tuple(lof))
 
-			p_update({"positions":tuple(positions)})							#add positons to dict product
+			p_update({"positions": tuple(positions)})							#add positons to dict product
 
 			bootuptime = product.get("bootuptime", 2700)
-			p_update({"bootuptime":tuple([bootuptime])})							#add boot up time
+			p_update({"bootuptime": tuple([bootuptime])})							#add boot up time
 
-			m_update({product.get("name"):p})								#add dict product to dict manufacturer
-		unicablematrixproducts.update({manufacturer.get("name"):m})						#add dict manufacturer to dict unicablematrixproducts
+			m_update({product.get("name"): p})								#add dict product to dict manufacturer
+		unicablematrixproducts.update({manufacturer.get("name"): m})						#add dict manufacturer to dict unicablematrixproducts
 
 	UnicableLnbManufacturers = sorted(list(unicablelnbproducts.keys()))
 	UnicableMatrixManufacturers = list(unicablematrixproducts.keys())
@@ -1784,7 +1794,7 @@ def InitNimManager(nimmgr, update_slots = []):
 	unicable_choices = {
 		"unicable_lnb": _("Unicable LNB"),
 		"unicable_matrix": _("Unicable Matrix"),
-		"unicable_user": "Unicable "+_("User defined")}
+		"unicable_user": "Unicable " + _("User defined")}
 	unicable_choices_default = "unicable_lnb"
 
 	advanced_lnb_satcr_user_choicesEN50494 = [("%d" % i, "SatCR %d" % i) for i in list(range(1, 9))]
@@ -1793,8 +1803,8 @@ def InitNimManager(nimmgr, update_slots = []):
 
 	advanced_lnb_diction_user_choices = [("EN50494", "Unicable(EN50494)"), ("EN50607", "JESS(EN50607)")]
 
-	prio_list = [ ("-1", _("Auto")) ]
-	for prio in list(range(65))+list(range(14000, 14065))+list(range(19000, 19065)):
+	prio_list = [("-1", _("Auto"))]
+	for prio in list(range(65)) + list(range(14000, 14065)) + list(range(19000, 19065)):
 		description = ""
 		if prio == 0:
 			description = _(" (disabled)")
@@ -1826,7 +1836,7 @@ def InitNimManager(nimmgr, update_slots = []):
 	advanced_satlist_choices = nimmgr.satList + [
 		(3601, _('All satellites 1 (USALS)'), 1), (3602, _('All satellites 2 (USALS)'), 1),
 		(3603, _('All satellites 3 (USALS)'), 1), (3604, _('All satellites 4 (USALS)'), 1), (3605, _('Selecting satellites 1 (USALS)'), 1), (3606, _('Selecting satellites 2 (USALS)'), 1)]
-	advanced_lnb_choices = [("0", _("not configured"))] + [(str(y), "LNB " + str(y)) for y in list(range(1, (maxFixedLnbPositions+1)))]
+	advanced_lnb_choices = [("0", _("not configured"))] + [(str(y), "LNB " + str(y)) for y in list(range(1, (maxFixedLnbPositions + 1)))]
 	advanced_voltage_choices = [("polarization", _("Polarization")), ("13V", _("13 V")), ("18V", _("18 V"))]
 	advanced_tonemode_choices = [("band", _("Band")), ("on", _("On")), ("off", _("Off"))]
 	advanced_lnb_toneburst_choices = [("none", _("None")), ("A", _("A")), ("B", _("B"))]
@@ -1852,7 +1862,7 @@ def InitNimManager(nimmgr, update_slots = []):
 				if lnb == 1 or lnb > maxFixedLnbPositions:
 					section.unicable = ConfigSelection(unicable_choices, unicable_choices_default)
 				else:
-					section.unicable = ConfigSelection(choices = {"unicable_matrix": _("Unicable Matrix"),"unicable_user": "Unicable "+_("User defined")}, default = "unicable_matrix")
+					section.unicable = ConfigSelection(choices={"unicable_matrix": _("Unicable Matrix"), "unicable_user": "Unicable " + _("User defined")}, default="unicable_matrix")
 
 			def fillUnicableConf(sectionDict, unicableproducts, vco_null_check):
 				for manufacturer in unicableproducts:
@@ -1879,29 +1889,29 @@ def InitNimManager(nimmgr, update_slots = []):
 						bootuptimelist = unicableproducts[manufacturer][article].get("bootuptime")
 						bootuptime = int(bootuptimelist[0])
 						tmp.bootuptime[article] = ConfigSubList()
-						tmp.bootuptime[article].append(ConfigInteger(default=bootuptime, limits = (bootuptime, bootuptime)))
+						tmp.bootuptime[article].append(ConfigInteger(default=bootuptime, limits=(bootuptime, bootuptime)))
 
 						dictionlist = [unicableproducts[manufacturer][article].get("diction")]
-						if dictionlist[0][0] !="EN50607" or ((lnb > positionsoffset) and (lnb <= (positions + positionsoffset))):
+						if dictionlist[0][0] != "EN50607" or ((lnb > positionsoffset) and (lnb <= (positions + positionsoffset))):
 							tmp.positionsoffset[article] = ConfigSubList()
-							tmp.positionsoffset[article].append(ConfigInteger(default=positionsoffset, limits = (positionsoffset, positionsoffset)))
+							tmp.positionsoffset[article].append(ConfigInteger(default=positionsoffset, limits=(positionsoffset, positionsoffset)))
 							tmp.positions[article] = ConfigSubList()
-							tmp.positions[article].append(ConfigInteger(default=positions, limits = (positions, positions)))
-							tmp.diction[article] = ConfigSelection(choices = dictionlist, default = dictionlist[0][0])
+							tmp.positions[article].append(ConfigInteger(default=positions, limits=(positions, positions)))
+							tmp.diction[article] = ConfigSelection(choices=dictionlist, default=dictionlist[0][0])
 
 							scrlist = []
 							scrlist_append = scrlist.append
-							vcolist=unicableproducts[manufacturer][article].get("frequencies")
+							vcolist = unicableproducts[manufacturer][article].get("frequencies")
 							tmp.vco[article] = ConfigSubList()
-							for cnt in list(range(1, len(vcolist)+1)):
-								vcofreq = int(vcolist[cnt-1])
+							for cnt in list(range(1, len(vcolist) + 1)):
+								vcofreq = int(vcolist[cnt - 1])
 								if vcofreq == 0 and vco_null_check:
-									scrlist_append(("%d" %cnt, "SCR %d " %cnt +_("not used")))
+									scrlist_append(("%d" % cnt, "SCR %d " % cnt + _("not used")))
 								else:
-									scrlist_append(("%d" %cnt, "SCR %d" %cnt))
-								tmp.vco[article].append(ConfigInteger(default=vcofreq, limits = (vcofreq, vcofreq)))
+									scrlist_append(("%d" % cnt, "SCR %d" % cnt))
+								tmp.vco[article].append(ConfigInteger(default=vcofreq, limits=(vcofreq, vcofreq)))
 
-							tmp.scr[article] = ConfigSelection(choices = scrlist, default = scrlist[0][0])
+							tmp.scr[article] = ConfigSelection(choices=scrlist, default=scrlist[0][0])
 
 							tmp.lofl[article] = ConfigSubList()
 							tmp.lofh[article] = ConfigSubList()
@@ -1911,18 +1921,18 @@ def InitNimManager(nimmgr, update_slots = []):
 							tmp_lofh_article_append = tmp.lofh[article].append
 							tmp_loft_article_append = tmp.loft[article].append
 
-							for cnt in list(range(1, positions+1)):
+							for cnt in list(range(1, positions + 1)):
 								lofl = int(positionslist[cnt][0])
 								lofh = int(positionslist[cnt][1])
 								loft = int(positionslist[cnt][2])
-								tmp_lofl_article_append(ConfigInteger(default=lofl, limits = (lofl, lofl)))
-								tmp_lofh_article_append(ConfigInteger(default=lofh, limits = (lofh, lofh)))
-								tmp_loft_article_append(ConfigInteger(default=loft, limits = (loft, loft)))
+								tmp_lofl_article_append(ConfigInteger(default=lofl, limits=(lofl, lofl)))
+								tmp_lofh_article_append(ConfigInteger(default=lofh, limits=(lofh, lofh)))
+								tmp_loft_article_append(ConfigInteger(default=loft, limits=(loft, loft)))
 							products_valide_append(article)
 
-					if len(products_valide)==0:
+					if len(products_valide) == 0:
 						products_valide_append("None")
-					tmp.product = ConfigSelection(choices = products_valide, default = products_valide[0])
+					tmp.product = ConfigSelection(choices=products_valide, default=products_valide[0])
 					sectionDict[manufacturer] = tmp
 
 			print("MATRIX")
@@ -1937,19 +1947,19 @@ def InitNimManager(nimmgr, update_slots = []):
 
 			#TODO satpositions for satcruser
 
-			section.bootuptimeuser = ConfigInteger(default=2700, limits = (0, 15000))
+			section.bootuptimeuser = ConfigInteger(default=2700, limits=(0, 15000))
 			section.dictionuser = ConfigSelection(advanced_lnb_diction_user_choices, default="EN50494")
 			section.satcruserEN50494 = ConfigSelection(advanced_lnb_satcr_user_choicesEN50494, default="1")
 			section.satcruserEN50607 = ConfigSelection(advanced_lnb_satcr_user_choicesEN50607, default="1")
 
 			tmpEN50494 = ConfigSubList()
 			for i in (1284, 1400, 1516, 1632, 1748, 1864, 1980, 2096):
-				tmpEN50494.append(ConfigInteger(default=i, limits = (950, 2150)))
+				tmpEN50494.append(ConfigInteger(default=i, limits=(950, 2150)))
 			section.satcrvcouserEN50494 = tmpEN50494
 
 			tmpEN50607 = ConfigSubList()
 			for i in (1210, 1420, 1680, 2040, 984, 1020, 1056, 1092, 1128, 1164, 1256, 1292, 1328, 1364, 1458, 1494, 1530, 1566, 1602, 1638, 1716, 1752, 1788, 1824, 1860, 1896, 1932, 1968, 2004, 2076, 2112, 2148):
-				tmpEN50607.append(ConfigInteger(default=i, limits = (950, 2150)))
+				tmpEN50607.append(ConfigInteger(default=i, limits=(950, 2150)))
 			section.satcrvcouserEN50607 = tmpEN50607
 
 			nim.advanced.unicableconnected = ConfigYesNo(default=False)
@@ -1964,26 +1974,26 @@ def InitNimManager(nimmgr, update_slots = []):
 #				tuner2 =  chr(int(nim.advanced.unicableconnectedTo.saved_value) + ord('A'))
 #				txt = _("Misconfigured unicable connection from tuner %(tuner1)s to tuner %(tuner2)s!\nTuner %(tuner1)s option \"connected to\" are disabled now") % locals()
 				txt = _("Misconfigured unicable connection from tuner %s to tuner %s!\nTuner %s option \"connected to\" are disabled now") % (chr(int(x) + ord('A')), chr(int(nim.advanced.unicableconnectedTo.saved_value) + ord('A')), chr(int(x) + ord('A')),)
-				AddPopup(txt, type = MessageBox.TYPE_ERROR, timeout = 0, id = "UnicableConnectionFailed")
+				AddPopup(txt, type=MessageBox.TYPE_ERROR, timeout=0, id="UnicableConnectionFailed")
 
 			section.unicableTuningAlgo = ConfigSelection([("reliable", _("reliable")), ("traditional", _("traditional (fast)")), ("reliable_retune", _("reliable, retune")), ("traditional_retune", _("traditional (fast), retune"))], default="reliable_retune")
 
 	def configDiSEqCModeChanged(configElement):
 		section = configElement.section
 		if configElement.value == "1_2" and isinstance(section.longitude, ConfigNothing):
-			section.longitude = ConfigFloat(default = [5, 100], limits = [(0, 359), (0, 999)])
+			section.longitude = ConfigFloat(default=[5, 100], limits=[(0, 359), (0, 999)])
 			section.longitudeOrientation = ConfigSelection(longitude_orientation_choices, "east")
-			section.latitude = ConfigFloat(default = [50, 767], limits = [(0, 359), (0, 999)])
+			section.latitude = ConfigFloat(default=[50, 767], limits=[(0, 359), (0, 999)])
 			section.latitudeOrientation = ConfigSelection(latitude_orientation_choices, "north")
-			section.tuningstepsize = ConfigFloat(default = [0, 360], limits = [(0, 9), (0, 999)])
-			section.rotorPositions = ConfigInteger(default = 99, limits = [1, 999])
-			section.turningspeedH = ConfigFloat(default = [2, 3], limits = [(0, 9), (0, 9)])
-			section.turningspeedV = ConfigFloat(default = [1, 7], limits = [(0, 9), (0, 9)])
+			section.tuningstepsize = ConfigFloat(default=[0, 360], limits=[(0, 9), (0, 999)])
+			section.rotorPositions = ConfigInteger(default=99, limits=[1, 999])
+			section.turningspeedH = ConfigFloat(default=[2, 3], limits=[(0, 9), (0, 9)])
+			section.turningspeedV = ConfigFloat(default=[1, 7], limits=[(0, 9), (0, 9)])
 			section.powerMeasurement = ConfigYesNo(default=True)
 			section.powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm7025" and 50 or 15, limits=(0, 100))
 			section.turningSpeed = ConfigSelection(turning_speed_choices, "fast")
-			section.fastTurningBegin = ConfigDateTime(default=advanced_lnb_fast_turning_btime, formatstring = _("%H:%M"), increment = 600)
-			section.fastTurningEnd = ConfigDateTime(default=advanced_lnb_fast_turning_etime, formatstring = _("%H:%M"), increment = 600)
+			section.fastTurningBegin = ConfigDateTime(default=advanced_lnb_fast_turning_btime, formatstring=_("%H:%M"), increment=600)
+			section.fastTurningEnd = ConfigDateTime(default=advanced_lnb_fast_turning_etime, formatstring=_("%H:%M"), increment=600)
 
 	def configLNBChanged(configElement):
 		x = configElement.slot_id
@@ -1995,9 +2005,9 @@ def InitNimManager(nimmgr, update_slots = []):
 		lnbs = nim.advanced.lnb
 		if lnb and lnb not in lnbs:
 			section = lnbs[lnb] = ConfigSubsection()
-			section.lofl = ConfigInteger(default=9750, limits = (0, 99999))
-			section.lofh = ConfigInteger(default=10600, limits = (0, 99999))
-			section.threshold = ConfigInteger(default=11700, limits = (0, 99999))
+			section.lofl = ConfigInteger(default=9750, limits=(0, 99999))
+			section.lofh = ConfigInteger(default=10600, limits=(0, 99999))
+			section.threshold = ConfigInteger(default=11700, limits=(0, 99999))
 			section.increased_voltage = ConfigYesNo(False)
 			section.toneburst = ConfigSelection(advanced_lnb_toneburst_choices, "none")
 			section.longitude = ConfigNothing()
@@ -2022,7 +2032,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			tmp = ConfigSelection(lnb_choices, lnb_choices_default)
 			tmp.slot_id = x
 			tmp.lnb_id = lnb
-			tmp.addNotifier(configLOFChanged, initial_call = False)
+			tmp.addNotifier(configLOFChanged, initial_call=False)
 			section.lof = tmp
 
 	def configModeChanged(configMode):
@@ -2043,7 +2053,7 @@ def InitNimManager(nimmgr, update_slots = []):
 				tmp.rotorposition = ConfigInteger(default=1, limits=(1, 255))
 				lnb = ConfigSelection(advanced_lnb_choices, "0")
 				lnb.slot_id = slot_id
-				lnb.addNotifier(configLNBChanged, initial_call = False)
+				lnb.addNotifier(configLNBChanged, initial_call=False)
 				tmp.lnb = lnb
 				nim.advanced.sat[x[0]] = tmp
 			for x in list(range(3601, 3607)):
@@ -2054,9 +2064,9 @@ def InitNimManager(nimmgr, update_slots = []):
 				tmp.userSatellitesList = ConfigText('[]')
 				tmp.rotorposition = ConfigInteger(default=1, limits=(1, 255))
 				lnbnum = maxFixedLnbPositions + x - 3600
-				lnb = ConfigSelection([("0", _("not configured")), (str(lnbnum), "LNB %d"%(lnbnum))], "0")
+				lnb = ConfigSelection([("0", _("not configured")), (str(lnbnum), "LNB %d" % (lnbnum))], "0")
 				lnb.slot_id = slot_id
-				lnb.addNotifier(configLNBChanged, initial_call = False)
+				lnb.addNotifier(configLNBChanged, initial_call=False)
 				tmp.lnb = lnb
 				nim.advanced.sat[x] = tmp
 
@@ -2118,10 +2128,10 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.simpleDiSEqCSetVoltageTone = ConfigYesNo(True)
 			nim.simpleDiSEqCOnlyOnSatChange = ConfigYesNo(False)
 			nim.simpleDiSEqCSetCircularLNB = ConfigYesNo(True)
-			nim.diseqcA = ConfigSatlist(list = diseqc_satlist_choices)
-			nim.diseqcB = ConfigSatlist(list = diseqc_satlist_choices)
-			nim.diseqcC = ConfigSatlist(list = diseqc_satlist_choices)
-			nim.diseqcD = ConfigSatlist(list = diseqc_satlist_choices)
+			nim.diseqcA = ConfigSatlist(list=diseqc_satlist_choices)
+			nim.diseqcB = ConfigSatlist(list=diseqc_satlist_choices)
+			nim.diseqcC = ConfigSatlist(list=diseqc_satlist_choices)
+			nim.diseqcD = ConfigSatlist(list=diseqc_satlist_choices)
 			nim.positionerMode = ConfigSelection(positioner_mode_choices, "usals")
 			nim.userSatellitesList = ConfigText('[]')
 			nim.pressOKtoList = ConfigNothing()
@@ -2129,56 +2139,56 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.longitudeOrientation = ConfigSelection(longitude_orientation_choices, "east")
 			nim.latitude = ConfigFloat(default=[50, 767], limits=[(0, 359), (0, 999)])
 			nim.latitudeOrientation = ConfigSelection(latitude_orientation_choices, "north")
-			nim.tuningstepsize = ConfigFloat(default = [0, 360], limits = [(0, 9), (0, 999)])
-			nim.rotorPositions = ConfigInteger(default = 99, limits = [1, 999])
-			nim.turningspeedH = ConfigFloat(default = [2, 3], limits = [(0, 9), (0, 9)])
-			nim.turningspeedV = ConfigFloat(default = [1, 7], limits = [(0, 9), (0, 9)])
+			nim.tuningstepsize = ConfigFloat(default=[0, 360], limits=[(0, 9), (0, 999)])
+			nim.rotorPositions = ConfigInteger(default=99, limits=[1, 999])
+			nim.turningspeedH = ConfigFloat(default=[2, 3], limits=[(0, 9), (0, 9)])
+			nim.turningspeedV = ConfigFloat(default=[1, 7], limits=[(0, 9), (0, 9)])
 			nim.powerMeasurement = ConfigYesNo(False)
 			nim.powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm8000" and 15 or 50, limits=(0, 100))
 			nim.turningSpeed = ConfigSelection(turning_speed_choices, "fast")
 			btime = datetime(1970, 1, 1, 7, 0)
-			nim.fastTurningBegin = ConfigDateTime(default = mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 900)
+			nim.fastTurningBegin = ConfigDateTime(default=mktime(btime.timetuple()), formatstring=_("%H:%M"), increment=900)
 			etime = datetime(1970, 1, 1, 19, 0)
-			nim.fastTurningEnd = ConfigDateTime(default = mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 900)
+			nim.fastTurningEnd = ConfigDateTime(default=mktime(etime.timetuple()), formatstring=_("%H:%M"), increment=900)
 
 	def createCableConfig(nim, x):
 		try:
 			nim.scan_networkid
 		except:
 			_list = [(x[0], x[0]) for x in nimmgr.cablesList]
-			nim.scan_networkid = ConfigInteger(default = 0, limits = (0, 99999))
+			nim.scan_networkid = ConfigInteger(default=0, limits=(0, 99999))
 			possible_scan_types = [("bands", _("Frequency bands")), ("steps", _("Frequency steps")), ("provider", _("Provider"))]
-			nim.scan_provider = ConfigSelection(default = "0", choices = _list)
-			nim.scan_type = ConfigSelection(default = "provider", choices = possible_scan_types)
-			nim.scan_band_EU_VHF_I = ConfigYesNo(default = True)
-			nim.scan_band_EU_MID = ConfigYesNo(default = True)
-			nim.scan_band_EU_VHF_III = ConfigYesNo(default = True)
-			nim.scan_band_EU_UHF_IV = ConfigYesNo(default = True)
-			nim.scan_band_EU_UHF_V = ConfigYesNo(default = True)
-			nim.scan_band_EU_SUPER = ConfigYesNo(default = True)
-			nim.scan_band_EU_HYPER = ConfigYesNo(default = True)
-			nim.scan_band_US_LOW = ConfigYesNo(default = False)
-			nim.scan_band_US_MID = ConfigYesNo(default = False)
-			nim.scan_band_US_HIGH = ConfigYesNo(default = False)
-			nim.scan_band_US_SUPER = ConfigYesNo(default = False)
-			nim.scan_band_US_HYPER = ConfigYesNo(default = False)
-			nim.scan_frequency_steps = ConfigInteger(default = 1000, limits = (1000, 10000))
-			nim.scan_mod_qam16 = ConfigYesNo(default = False)
-			nim.scan_mod_qam32 = ConfigYesNo(default = False)
-			nim.scan_mod_qam64 = ConfigYesNo(default = True)
-			nim.scan_mod_qam128 = ConfigYesNo(default = False)
-			nim.scan_mod_qam256 = ConfigYesNo(default = True)
-			nim.scan_sr_6900 = ConfigYesNo(default = True)
-			nim.scan_sr_6875 = ConfigYesNo(default = True)
-			nim.scan_sr_ext1 = ConfigInteger(default = 0, limits = (0, 7230))
-			nim.scan_sr_ext2 = ConfigInteger(default = 0, limits = (0, 7230))
+			nim.scan_provider = ConfigSelection(default="0", choices=_list)
+			nim.scan_type = ConfigSelection(default="provider", choices=possible_scan_types)
+			nim.scan_band_EU_VHF_I = ConfigYesNo(default=True)
+			nim.scan_band_EU_MID = ConfigYesNo(default=True)
+			nim.scan_band_EU_VHF_III = ConfigYesNo(default=True)
+			nim.scan_band_EU_UHF_IV = ConfigYesNo(default=True)
+			nim.scan_band_EU_UHF_V = ConfigYesNo(default=True)
+			nim.scan_band_EU_SUPER = ConfigYesNo(default=True)
+			nim.scan_band_EU_HYPER = ConfigYesNo(default=True)
+			nim.scan_band_US_LOW = ConfigYesNo(default=False)
+			nim.scan_band_US_MID = ConfigYesNo(default=False)
+			nim.scan_band_US_HIGH = ConfigYesNo(default=False)
+			nim.scan_band_US_SUPER = ConfigYesNo(default=False)
+			nim.scan_band_US_HYPER = ConfigYesNo(default=False)
+			nim.scan_frequency_steps = ConfigInteger(default=1000, limits=(1000, 10000))
+			nim.scan_mod_qam16 = ConfigYesNo(default=False)
+			nim.scan_mod_qam32 = ConfigYesNo(default=False)
+			nim.scan_mod_qam64 = ConfigYesNo(default=True)
+			nim.scan_mod_qam128 = ConfigYesNo(default=False)
+			nim.scan_mod_qam256 = ConfigYesNo(default=True)
+			nim.scan_sr_6900 = ConfigYesNo(default=True)
+			nim.scan_sr_6875 = ConfigYesNo(default=True)
+			nim.scan_sr_ext1 = ConfigInteger(default=0, limits=(0, 7230))
+			nim.scan_sr_ext2 = ConfigInteger(default=0, limits=(0, 7230))
 
 	def createTerrestrialConfig(nim, x):
 		try:
 			nim.terrestrial
 		except:
 			_list = [(x[0], x[0]) for x in nimmgr.terrestrialsList]
-			nim.terrestrial = ConfigSelection(choices = _list)
+			nim.terrestrial = ConfigSelection(choices=_list)
 			nim.terrestrial_5V = ConfigOnOff()
 
 	def createATSCConfig(nim, x):
@@ -2186,7 +2196,7 @@ def InitNimManager(nimmgr, update_slots = []):
 			nim.atsc
 		except:
 			_list = [(x[0], x[0]) for x in nimmgr.atscList]
-			nim.atsc = ConfigSelection(choices = _list)
+			nim.atsc = ConfigSelection(choices=_list)
 
 	try:
 		for slot in nimmgr.nim_slots:
@@ -2212,13 +2222,13 @@ def InitNimManager(nimmgr, update_slots = []):
 	for slot in nimmgr.nim_slots:
 		x = slot.slot
 		nim = config.Nims[x]
-		nim.force_legacy_signal_stats = ConfigYesNo(default = False)
+		nim.force_legacy_signal_stats = ConfigYesNo(default=False)
 		if slot.canBeCompatible("DVB-S"):
 			nim = config.Nims[x].dvbs
 			createSatConfig(nim, x, empty_slots)
 			config_mode_choices = [("nothing", _("nothing connected")),
 				("simple", _("simple")), ("advanced", _("advanced"))]
-			if len(nimmgr.getNimListOfType(slot.type, exception = x)) > 0:
+			if len(nimmgr.getNimListOfType(slot.type, exception=x)) > 0:
 				config_mode_choices.append(("equal", _("equal to")))
 				config_mode_choices.append(("satposdepends", _("second cable of motorized LNB")))
 			if len(nimmgr.canConnectTo(x)) > 0:
@@ -2229,40 +2239,40 @@ def InitNimManager(nimmgr, update_slots = []):
 			else:
 				tmp = ConfigSelection(config_mode_choices, "simple")
 			tmp.slot_id = x
-			tmp.addNotifier(configModeChanged, initial_call = False)
+			tmp.addNotifier(configModeChanged, initial_call=False)
 			nim.configMode = tmp
 			nim.configMode.connectedToChanged = boundFunction(connectedToChanged, x, nimmgr)
-			nim.connectedTo.addNotifier(boundFunction(connectedToChanged, x, nimmgr), initial_call = False)
+			nim.connectedTo.addNotifier(boundFunction(connectedToChanged, x, nimmgr), initial_call=False)
 		if slot.canBeCompatible("DVB-C"):
 			nim = config.Nims[x].dvbc
 			nim.configMode = ConfigSelection(
-				choices = {
+				choices={
 					"enabled": _("enabled"),
 					"nothing": _("nothing connected"),
 					},
-				default = "enabled")
+				default="enabled")
 			createCableConfig(nim, x)
 		if slot.canBeCompatible("DVB-T"):
 			nim = config.Nims[x].dvbt
 			nim.configMode = ConfigSelection(
-				choices = {
+				choices={
 					"enabled": _("enabled"),
 					"nothing": _("nothing connected"),
 					},
-				default = "enabled")
+				default="enabled")
 			createTerrestrialConfig(nim, x)
 		if slot.canBeCompatible("ATSC"):
 			nim = config.Nims[x].atsc
 			nim.configMode = ConfigSelection(
-				choices = {
+				choices={
 					"enabled": _("enabled"),
 					"nothing": _("nothing connected"),
 					},
-				default = "enabled")
+				default="enabled")
 			createATSCConfig(nim, x)
 		if not(slot.canBeCompatible("DVB-S") or slot.canBeCompatible("DVB-T") or slot.canBeCompatible("DVB-C") or slot.canBeCompatible("ATSC")):
 			empty_slots += 1
-			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing")
+			nim.configMode = ConfigSelection(choices={"nothing": _("disabled")}, default="nothing")
 			if slot.type is not None:
 				print("pls add support for this frontend type!", slot.type)
 
@@ -2328,10 +2338,9 @@ def InitNimManager(nimmgr, update_slots = []):
 					except:
 						print("[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available")
 
-
 					nimmgr.enumerateNIMs()
 				else:
-					print("tuner type is already %d" %cur_type)
+					print("tuner type is already %d" % cur_type)
 			else:
 				print("[ERROR] path not found: /proc/stb/frontend/%d/mode" % fe_id)
 
@@ -2386,5 +2395,6 @@ def InitNimManager(nimmgr, update_slots = []):
 			empty = False
 		if empty:
 			empty_slots += 1
+
 
 nimmanager = NimManager()

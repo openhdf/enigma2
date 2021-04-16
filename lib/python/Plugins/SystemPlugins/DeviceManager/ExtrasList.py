@@ -8,6 +8,7 @@ from Components.HTMLComponent import HTMLComponent
 from Tools.Directories import fileExists
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
+
 def SimpleEntry(name, picture):
     res = [(name, picture)]
     picture = '/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager/icons/' + picture
@@ -23,7 +24,7 @@ def SimpleEntry(name, picture):
 
 class ExtrasList(MenuList, HTMLComponent, GUIComponent):
 
-    def __init__(self, list, enableWrapAround = False):
+    def __init__(self, list, enableWrapAround=False):
         GUIComponent.__init__(self)
         self.l = eListboxPythonMultiContent()
         self.list = list

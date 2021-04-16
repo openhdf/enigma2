@@ -8,13 +8,17 @@ from time import time, ctime
 
 # _session = None
 #
+
+
 def AutoNTPSync(session=None, **kwargs):
 	global ntpsyncpoller
 	ntpsyncpoller = NTPSyncPoller()
 	ntpsyncpoller.start()
 
+
 class NTPSyncPoller:
 	"""Automatically Poll NTP"""
+
 	def __init__(self):
 		# Init Timer
 		self.timer = eTimer()
@@ -37,7 +41,7 @@ class NTPSyncPoller:
 		else:
 			self.update_schedule()
 
-	def update_schedule(self, result = None, retval = None, extra_args = None):
+	def update_schedule(self, result=None, retval=None, extra_args=None):
 		nowTime = time()
 		nowTimereal = ctime(nowTime)
 		if nowTime > 10000:

@@ -29,6 +29,7 @@ class md5Postcondition(Condition):
 			return _("The md5sum validation failed, the file may be corrupted!")
 		return "md5 error"
 
+
 class md5verify(Task):
 	def __init__(self, job, path, md5):
 		Task.__init__(self, job, "md5sum")
@@ -50,6 +51,7 @@ class md5verify(Task):
 	def processOutput(self, data):
 		print("[md5sum]", end=' ')
 
+
 class writeNAND(Task):
 	def __init__(self, job, param, box):
 		Task.__init__(self, job, "Writing image file to NAND Flash")
@@ -70,6 +72,7 @@ class writeNAND(Task):
 			self.setProgress(self.end)
 		else:
 			self.output_line = data
+
 
 class NFIFlash(Screen):
 	skin = """
@@ -98,7 +101,7 @@ class NFIFlash(Screen):
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
-		self.filelist = FileList(self.usbmountpoint, matchingPattern = "^.*\.(nfi|NFI)", showDirectories = False, showMountpoints = False)
+		self.filelist = FileList(self.usbmountpoint, matchingPattern="^.*\.(nfi|NFI)", showDirectories=False, showMountpoints=False)
 		self["filelist"] = self.filelist
 		self["infolabel"] = StaticText()
 
@@ -161,13 +164,13 @@ class NFIFlash(Screen):
 			if self["filelist"].getFilename() is None:
 				return
 			if self["filelist"].getCurrentDirectory() is not None:
-				self.nfifile = self["filelist"].getCurrentDirectory()+self["filelist"].getFilename()
+				self.nfifile = self["filelist"].getCurrentDirectory() + self["filelist"].getFilename()
 		else:
 			self.nfifile = nfifile
 
 		if self.nfifile.upper().endswith(".NFI"):
 			self["key_green"].text = _("Flash")
-			nfofilename = self.nfifile[0:-3]+"nfo"
+			nfofilename = self.nfifile[0:-3] + "nfo"
 			print(nfofilename, fileExists(nfofilename))
 			if fileExists(nfofilename):
 				nfocontent = open(nfofilename, "r").read()
@@ -175,7 +178,7 @@ class NFIFlash(Screen):
 				self["infolabel"].text = nfocontent
 				pos = nfocontent.find("MD5:")
 				if pos > 0:
-					self.md5sum = nfocontent[pos+5:pos+5+32] + "  " + self.nfifile
+					self.md5sum = nfocontent[pos + 5:pos + 5 + 32] + "  " + self.nfifile
 				else:
 					self.md5sum = ""
 			else:
@@ -196,15 +199,16 @@ class NFIFlash(Screen):
 		self["key_yellow"].text = ""
 		self["key_green"].text = ""
 		job_manager.AddJob(self.job)
-		self.session.openWithCallback(self.flashed, JobView, self.job, cancelable = False, backgroundable = False, afterEventChangeable = False)
+		self.session.openWithCallback(self.flashed, JobView, self.job, cancelable=False, backgroundable=False, afterEventChangeable=False)
 
 	def flashed(self, bg):
 		print("[flashed]")
 		if self.job.status == self.job.FINISHED:
 			self["status"].text = _("NFI image flashing completed. Press Yellow to Reboot!")
-			filename = self.usbmountpoint+'enigma2settingsbackup.tar.gz'
+			filename = self.usbmountpoint + 'enigma2settingsbackup.tar.gz'
 			if fileExists(filename):
-				import os.path, time
+				import os.path
+				import time
 				date = time.ctime(os.path.getmtime(filename))
 				self.session.openWithCallback(self.askRestoreCB, MessageBox, _("The wizard found a configuration backup. Do you want to restore your old settings from %s?") % date, MessageBox.TYPE_YESNO)
 			else:
@@ -216,11 +220,11 @@ class NFIFlash(Screen):
 		if ret:
 			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import getBackupFilename
 			restorecmd = ["tar -xzvf " + self.usbmountpoint + getBackupFilename() + " -C /"]
-			self.session.openWithCallback(self.unlockRebootButton, Console, title = _("Restore is running..."), cmdlist = restorecmd, closeOnSuccess = True)
+			self.session.openWithCallback(self.unlockRebootButton, Console, title=_("Restore is running..."), cmdlist=restorecmd, closeOnSuccess=True)
 		else:
 			self.unlockRebootButton()
 
-	def unlockRebootButton(self, retval = None):
+	def unlockRebootButton(self, retval=None):
 		if self.job.status == self.job.FINISHED:
 			self["key_yellow"].text = _("Reboot")
 

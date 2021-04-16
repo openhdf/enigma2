@@ -11,15 +11,18 @@ from boxbranding import getImageDistro, getImageVersion
 opkgDestinations = []
 opkgStatusPath = ''
 
+
 def opkgExtraDestinations():
 	global opkgDestinations
 	return ''.join([" --add-dest %s:%s" % (i, i) for i in opkgDestinations])
+
 
 def opkgAddDestination(mountpoint):
 	global opkgDestinations
 	if mountpoint not in opkgDestinations:
 		opkgDestinations.append(mountpoint)
 		print("[Ipkg] Added to OPKG destinations:", mountpoint)
+
 
 def onPartitionChange(why, part):
 	global opkgDestinations
@@ -42,9 +45,11 @@ def onPartitionChange(why, part):
 			except:
 				pass
 
+
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 for part in harddiskmanager.getMountedPartitions():
 	onPartitionChange('add', part)
+
 
 class IpkgComponent:
 	EVENT_INSTALL = 0
@@ -65,7 +70,7 @@ class IpkgComponent:
 	CMD_UPGRADE = 4
 	CMD_UPGRADE_LIST = 5
 
-	def __init__(self, ipkg = 'opkg'):
+	def __init__(self, ipkg='opkg'):
 		self.ipkg = ipkg
 		self.cmd = eConsoleAppContainer()
 		self.cache = None
@@ -74,7 +79,7 @@ class IpkgComponent:
 		self.excludeList = []
 		self.setCurrentCommand()
 
-	def setCurrentCommand(self, command = None):
+	def setCurrentCommand(self, command=None):
 		self.currentCommand = command
 
 	def runCmdEx(self, cmd):
@@ -87,7 +92,7 @@ class IpkgComponent:
 		if self.cmd.execute(self.ipkg + " " + cmd):
 			self.cmdFinished(-1)
 
-	def startCmd(self, cmd, args = None):
+	def startCmd(self, cmd, args=None):
 		if cmd == self.CMD_UPDATE:
 			if getImageVersion() == '4.0':
 				if os.path.exists('/var/lib/opkg/lists'):
@@ -95,7 +100,7 @@ class IpkgComponent:
 			else:
 				for fn in os.listdir('/var/lib/opkg'):
 					if fn.startswith(getImageDistro()):
-						os.remove('/var/lib/opkg/'+fn)
+						os.remove('/var/lib/opkg/' + fn)
 			self.runCmdEx("update")
 		elif cmd == self.CMD_UPGRADE:
 			append = ""
@@ -204,7 +209,7 @@ class IpkgComponent:
 			print("[Ipkg] Failed to parse: '%s'" % data)
 			print("[Ipkg]", ex)
 
-	def callCallbacks(self, event, param = None):
+	def callCallbacks(self, event, param=None):
 		for callback in self.callbackList:
 			callback(event, param)
 

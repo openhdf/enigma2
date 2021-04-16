@@ -14,6 +14,7 @@ from enigma import eListbox
 # it should expose exactly the non-content related functions
 # of the eListbox class. more or less.
 
+
 class Listbox(Renderer, object):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -83,7 +84,7 @@ class Listbox(Renderer, object):
 		self.__scrollbarMode = mode
 		if self.instance is not None:
 			self.instance.setScrollbarMode(int(
-				{ "showOnDemand": 0,
+				{"showOnDemand": 0,
 				  "showAlways": 1,
 				  "showNever": 2,
 				}[mode]))

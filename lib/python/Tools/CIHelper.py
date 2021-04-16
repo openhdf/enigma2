@@ -9,6 +9,7 @@ import NavigationInstance
 import os
 import six
 
+
 class CIHelper:
 
 	CI_ASSIGNMENT_LIST = None
@@ -17,13 +18,14 @@ class CIHelper:
 	CI_MULTIDESCRAMBLE_MODULES = ("AlphaCrypt", )
 
 	def parse_ci_assignment(self):
-		NUM_CI=eDVBCIInterfaces.getInstance().getNumOfSlots()
+		NUM_CI = eDVBCIInterfaces.getInstance().getNumOfSlots()
 		if NUM_CI > 0:
-			self.CI_ASSIGNMENT_LIST=[]
+			self.CI_ASSIGNMENT_LIST = []
+
 			def getValue(definitions, default):
 				ret = ""
 				Len = len(definitions)
-				return Len > 0 and definitions[Len-1].text or default
+				return Len > 0 and definitions[Len - 1].text or default
 
 			for ci in list(range(NUM_CI)):
 				filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(ci) + ".xml"
@@ -33,9 +35,9 @@ class CIHelper:
 
 				try:
 					tree = parse(filename).getroot()
-					read_services=[]
-					read_providers=[]
-					usingcaid=[]
+					read_services = []
+					read_providers = []
+					usingcaid = []
 					for slot in tree.findall("slot"):
 						read_slot = six.ensure_str(getValue(slot.findall("id"), False))
 
@@ -45,7 +47,7 @@ class CIHelper:
 
 						for service in slot.findall("service"):
 							read_service_ref = six.ensure_str(service.get("ref"))
-							read_services.append (read_service_ref)
+							read_services.append(read_service_ref)
 
 						for provider in slot.findall("provider"):
 							read_provider_name = six.ensure_str(provider.get("name"))
@@ -64,7 +66,7 @@ class CIHelper:
 				try:
 					eDVBCIInterfaces.getInstance().setDescrambleRules(item[0], item[1])
 				except:
-					print("[CI_Activate_Config_CI%d] error setting DescrambleRules..." %item[0])
+					print("[CI_Activate_Config_CI%d] error setting DescrambleRules..." % item[0])
 				for x in item[1][0]:
 					services.append(x)
 				for x in item[1][1]:
@@ -78,7 +80,7 @@ class CIHelper:
 				provider_services_refs = self.getProivderServices(providers)
 			self.CI_ASSIGNMENT_SERVICES_LIST = [service_refs, provider_services_refs]
 
-	def load_ci_assignment(self, force = False):
+	def load_ci_assignment(self, force=False):
 		if self.CI_ASSIGNMENT_LIST is None or force:
 			self.parse_ci_assignment()
 
@@ -152,13 +154,15 @@ class CIHelper:
 								if self.ServiceIsAssigned(timerservice):
 									if self.canMultiDescramble(service):
 										for x in (4, 2, 3):
-											if  timerservice.getUnsignedData(x) !=  service.getUnsignedData(x):
+											if timerservice.getUnsignedData(x) != service.getUnsignedData(x):
 												return 0
 									else:
 										return 0
 		return 1
 
+
 cihelper = CIHelper()
+
 
 def isPlayable(service):
 	ret = cihelper.isPlayable(service)

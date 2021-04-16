@@ -23,8 +23,10 @@ TYPE_VALUE_FREQ = 6
 TYPE_VALUE_FREQ_FLOAT = 7
 TYPE_VALUE_BITRATE = 8
 
+
 def to_unsigned(x):
 	return x & 0xFFFFFFFF
+
 
 def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 	screenwidth = getDesktop(0).size().width()
@@ -54,6 +56,7 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 		(eListboxPythonMultiContent.TYPE_TEXT, xb, yb, wb, hb, 0, RT_HALIGN_LEFT, b)
 	]
 
+
 class ServiceInfoList(HTMLComponent, GUIComponent):
 	def __init__(self, source):
 		GUIComponent.__init__(self)
@@ -66,7 +69,7 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
-			attribs = [ ]
+			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
 					font = skin.parseFont(value, ((1, 1), (1, 1)))
@@ -92,8 +95,10 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 		self.instance.setContent(self.l)
 		self.setFontsize()
 
+
 TYPE_SERVICE_INFO = 1
 TYPE_TRANSPONDER_INFO = 2
+
 
 class ServiceInfo(Screen):
 	def __init__(self, session, serviceref=None):
@@ -112,7 +117,7 @@ class ServiceInfo(Screen):
 
 		if serviceref:
 			self.type = TYPE_TRANSPONDER_INFO
-			self.skinName="ServiceInfoSimple"
+			self.skinName = "ServiceInfoSimple"
 			info = eServiceCenter.getInstance().info(serviceref)
 			self.transponder_info = info.getInfoObject(serviceref, iServiceInformation.sTransponderData)
 			# info is a iStaticServiceInformation, not a iServiceInformation
@@ -132,7 +137,7 @@ class ServiceInfo(Screen):
 				self.info = None
 				self.feinfo = None
 
-		tlist = [ ]
+		tlist = []
 
 		self["infolist"] = ServiceInfoList(tlist)
 		self.onShown.append(self.information)
@@ -159,8 +164,8 @@ class ServiceInfo(Screen):
 					resolution += ("i", "p", "-")[self.info.getInfo(iServiceInformation.sProgressive)]
 					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) // 1000)
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
-					aspect = aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ) and "4:3" or "16:9"
-					resolution += " - ["+aspect+"]"
+					aspect = aspect in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE) and "4:3" or "16:9"
+					resolution += " - [" + aspect + "]"
 					gammas = ("SDR", "HDR", "HDR10", "HLG", "")
 					if self.info.getInfo(iServiceInformation.sGamma) < len(gammas):
 						gamma = gammas[self.info.getInfo(iServiceInformation.sGamma)]
@@ -170,7 +175,7 @@ class ServiceInfo(Screen):
 				videomode = f.read()[:-1].replace('\n', '')
 				f.close()
 
-			Labels = ( (_("Name"), name, TYPE_TEXT),
+			Labels = ((_("Name"), name, TYPE_TEXT),
 					(_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
 					(_("Videoformat"), aspect, TYPE_TEXT),
 					(_("Videomode"), videomode, TYPE_TEXT),
@@ -184,7 +189,7 @@ class ServiceInfo(Screen):
 		else:
 			if self.transponder_info:
 				tp_info = ConvertToHumanReadable(self.transponder_info)
-				conv = { "tuner_type" 				: _("Transponder type"),
+				conv = {"tuner_type" 				: _("Transponder type"),
 						 "system"					: _("System"),
 						 "modulation"				: _("Modulation"),
 						 "orbital_position"			: _("Orbital position"),
@@ -212,7 +217,7 @@ class ServiceInfo(Screen):
 
 	def pids(self):
 		if self.type == TYPE_SERVICE_INFO:
-			Labels = ( (_("Video PID"), self.getServiceInfoValue(iServiceInformation.sVideoPID), TYPE_VALUE_HEX_DEC, 4),
+			Labels = ((_("Video PID"), self.getServiceInfoValue(iServiceInformation.sVideoPID), TYPE_VALUE_HEX_DEC, 4),
 					   (_("Audio PID"), self.getServiceInfoValue(iServiceInformation.sAudioPID), TYPE_VALUE_HEX_DEC, 4),
 					   (_("PCR PID"), self.getServiceInfoValue(iServiceInformation.sPCRPID), TYPE_VALUE_HEX_DEC, 4),
 					   (_("PMT PID"), self.getServiceInfoValue(iServiceInformation.sPMTPID), TYPE_VALUE_HEX_DEC, 4),
@@ -287,19 +292,19 @@ class ServiceInfo(Screen):
 						(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
 						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
 						(_("Inversion"), frontendData["inversion"], TYPE_TEXT))
-		return [ ]
+		return []
 
 	def fillList(self, Labels):
-		tlist = [ ]
+		tlist = []
 
 		for item in Labels:
 			if item[1] is None:
 				continue
 			value = item[1]
 			if len(item) < 4:
-				tlist.append(ServiceInfoListEntry(item[0]+":", value, item[2]))
+				tlist.append(ServiceInfoListEntry(item[0] + ":", value, item[2]))
 			else:
-				tlist.append(ServiceInfoListEntry(item[0]+":", value, item[2], item[3]))
+				tlist.append(ServiceInfoListEntry(item[0] + ":", value, item[2], item[3]))
 
 		self["infolist"].l.setList(tlist)
 

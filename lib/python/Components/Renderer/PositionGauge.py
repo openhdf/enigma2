@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from Components.Renderer.Renderer import Renderer
 from enigma import ePositionGauge
 
+
 class PositionGauge(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -9,7 +10,7 @@ class PositionGauge(Renderer):
 		self.__seek_position = 0
 		self.__length = 0
 		self.__seek_enable = 0
-		self.__cutlist = [ ]
+		self.__cutlist = []
 
 	GUI_WIDGET = ePositionGauge
 
@@ -25,7 +26,7 @@ class PositionGauge(Renderer):
 			(self.length, self.position) = (self.source.length or 0, self.source.position or 0)
 
 	def cutlist_changed(self):
-		self.cutlist = self.source.cutlist or [ ]
+		self.cutlist = self.source.cutlist or []
 
 	def getPosition(self):
 		return self.__position

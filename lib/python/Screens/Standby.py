@@ -22,6 +22,7 @@ import Components.RecordingConfig
 inStandby = None
 TVinStandby = None
 
+
 class TVstate: #load in Navigation
 	def __init__(self):
 		global TVinStandby
@@ -83,6 +84,7 @@ class TVstate: #load in Navigation
 			elif value == 'standby':
 				self.hdmicec_instance.standbyMessages()
 
+
 def setLCDModeMinitTV(value):
 	try:
 		f = open("/proc/stb/lcd/mode", "w")
@@ -90,6 +92,7 @@ def setLCDModeMinitTV(value):
 		f.close()
 	except:
 		pass
+
 
 class Standby2(Screen):
 	def Power(self):
@@ -161,7 +164,7 @@ class Standby2(Screen):
 		print("[Standby] enter standby")
 		SystemInfo["StandbyState"] = True
 
-		self["actions"] = ActionMap( [ "StandbyActions" ],
+		self["actions"] = ActionMap(["StandbyActions"],
 		{
 			"power": self.Power,
 			"power_make": self.Power_make,
@@ -194,7 +197,7 @@ class Standby2(Screen):
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
 		if not self.paused_service:
-			self.timeHandler =  eDVBLocalTimeHandler.getInstance()
+			self.timeHandler = eDVBLocalTimeHandler.getInstance()
 			if self.timeHandler.ready():
 				if self.session.nav.getCurrentlyPlayingServiceOrGroup():
 					self.stopService()
@@ -257,6 +260,7 @@ class Standby2(Screen):
 			self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
+
 class Standby(Standby2):
 	def __init__(self, session):
 		if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance):
@@ -278,6 +282,7 @@ class Standby(Standby2):
 	def doStandby(self):
 		Notifications.AddNotification(Screens.Standby.Standby2)
 
+
 class StandbySummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
@@ -290,10 +295,12 @@ class StandbySummary(Screen):
 		</widget>
 	</screen>"""
 
+
 from enigma import quitMainloop, iRecordableService
 from Screens.MessageBox import MessageBox
 from time import time
 from Components.Task import job_manager
+
 
 class QuitMainloopScreen(Screen):
 	def __init__(self, session, retvalue=1):
@@ -303,7 +310,7 @@ class QuitMainloopScreen(Screen):
 		</screen>"""
 		Screen.__init__(self, session)
 		from Components.Label import Label
-		text = { 1: _("Your %s %s is shutting down") % (getMachineBrand(), getMachineName()),
+		text = {1: _("Your %s %s is shutting down") % (getMachineBrand(), getMachineName()),
 			2: _("Your %s %s is rebooting") % (getMachineBrand(), getMachineName()),
 			3: _("The user interface of your %s %s is restarting") % (getMachineBrand(), getMachineName()),
 			4: _("Your frontprocessor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
@@ -316,11 +323,13 @@ class QuitMainloopScreen(Screen):
 			45: _("Your %s %s goes to WOL") % (getMachineBrand(), getMachineName())}.get(retvalue)
 		self["text"] = Label(text)
 
+
 inTryQuitMainloop = False
 quitMainloopCode = 1
 
+
 class TryQuitMainloop(MessageBox):
-	def __init__(self, session, retvalue=1, timeout=-1, default_yes = True):
+	def __init__(self, session, retvalue=1, timeout=-1, default_yes=True):
 		self.retval = retvalue
 		self.ptsmainloopvalue = retvalue
 		recordings = session.nav.getRecordings(False, Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
@@ -344,17 +353,17 @@ class TryQuitMainloop(MessageBox):
 		if inTimeshift:
 			reason = _("You seem to be in timeshift!") + '\n'
 			default_yes = True
-			timeout=30
+			timeout = 30
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 			default_yes = False
-			timeout=30
+			timeout = 30
 
 		if reason and inStandby:
 			session.nav.record_event.append(self.getRecordEvent)
 			self.skinName = ""
 		elif reason and not inStandby:
-			text = { 1: _("Really shutdown now?"),
+			text = {1: _("Really shutdown now?"),
 				2: _("Really reboot now?"),
 				3: _("Really restart now?"),
 				4: _("Really upgrade the frontprocessor and reboot now?"),
@@ -365,7 +374,7 @@ class TryQuitMainloop(MessageBox):
 				44: _("Really upgrade the front panel and reboot now?"),
 				45: _("Really WOL now?")}.get(retvalue)
 			if text:
-				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+				MessageBox.__init__(self, session, reason + text, type=MessageBox.TYPE_YESNO, timeout=timeout, default=default_yes)
 				self.skinName = "MessageBoxSimple"
 				session.nav.record_event.append(self.getRecordEvent)
 				self.connected = True
@@ -395,7 +404,7 @@ class TryQuitMainloop(MessageBox):
 	def close(self, value):
 		global quitMainloopCode
 		if self.connected:
-			self.connected=False
+			self.connected = False
 			self.session.nav.record_event.remove(self.getRecordEvent)
 		if value:
 			self.hide()

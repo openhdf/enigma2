@@ -18,9 +18,11 @@ class MessageBox(Screen):
 	TYPE_ERROR = 3
 
 	def __init__(self, session, text, type=TYPE_YESNO, timeout=-1, close_on_any_key=False, default=True, enable_input=True, msgBoxID=None, picon=True, simple=False, wizard=False, list=None, skin_name=None, timeout_default=None):
-		if not list: list = []
+		if not list:
+			list = []
 		_list = list
-		if not skin_name: skin_name = []
+		if not skin_name:
+			skin_name = []
 		self.type = type
 		Screen.__init__(self, session)
 		self.skinName = ["MessageBox"]
@@ -81,9 +83,9 @@ class MessageBox(Screen):
 			if _list:
 				self.list = _list
 			elif default:
-				self.list = [ (_("yes"), True), (_("no"), False) ]
+				self.list = [(_("yes"), True), (_("no"), False)]
 			else:
-				self.list = [ (_("no"), False), (_("yes"), True) ]
+				self.list = [(_("no"), False), (_("yes"), True)]
 		else:
 			self.list = []
 
@@ -117,7 +119,7 @@ class MessageBox(Screen):
 
 		if not self["text"].text:
 			textsize = (520, 0)
-			listsize = (520, 25*count)
+			listsize = (520, 25 * count)
 			print("ListSize:", listsize)
 			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
 				self["list"].instance.move(enigma.ePoint(65, 0))
@@ -128,12 +130,12 @@ class MessageBox(Screen):
 		else:
 			textsize = self["text"].getSize()
 			if textsize[0] < textsize[1]:
-				textsize = (textsize[1], textsize[0]+10)
+				textsize = (textsize[1], textsize[0] + 10)
 			if textsize[0] > 520:
-				textsize = (textsize[0], textsize[1]+25)
+				textsize = (textsize[0], textsize[1] + 25)
 			else:
-				textsize = (520, textsize[1]+25)
-			listsize = (textsize[0], 25*count)
+				textsize = (520, textsize[1] + 25)
+			listsize = (textsize[0], 25 * count)
 			print("ListSize:", listsize)
 
 			self["text"].instance.resize(enigma.eSize(*textsize))
@@ -144,17 +146,17 @@ class MessageBox(Screen):
 
 			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
 				self["list"].instance.move(enigma.ePoint(65, textsize[1]))
-				wsizex = textsize[0]+65
+				wsizex = textsize[0] + 65
 			else:
 				self["list"].instance.move(enigma.ePoint(0, textsize[1]))
 				wsizex = textsize[0]
 			self["list"].instance.resize(enigma.eSize(*listsize))
 
 		print("ListSize:", listsize)
-		wsizey = textsize[1]+listsize[1]
+		wsizey = textsize[1] + listsize[1]
 		wsize = (wsizex, wsizey)
 		self.instance.resize(enigma.eSize(*wsize))
-		self.instance.move(enigma.ePoint((desktop_w-wsizex)//2, (desktop_h-wsizey)//2))
+		self.instance.move(enigma.ePoint((desktop_w - wsizex) // 2, (desktop_h - wsizey) // 2))
 
 	def initTimeout(self, timeout):
 		self.timeout = timeout
@@ -228,7 +230,8 @@ class MessageBox(Screen):
 			self.close(True)
 
 	def goEntry(self, entry=None):
-		if not entry: entry = []
+		if not entry:
+			entry = []
 		if entry and len(entry) > 3 and isinstance(entry[1], str) and entry[1] == "CALLFUNC":
 			arg = entry[3]
 			entry[2](arg)

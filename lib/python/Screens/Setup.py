@@ -17,6 +17,7 @@ from boxbranding import getMachineBrand, getMachineName
 import xml.etree.cElementTree
 import six
 
+
 def setupdom(plugin=None):
 	# read the setupmenu
 	if plugin:
@@ -29,11 +30,13 @@ def setupdom(plugin=None):
 	setupfile.close()
 	return setupfiledom
 
+
 def getConfigMenuItem(configElement):
 	for item in setupdom().getroot().findall('./setup/item/.'):
 		if item.text == configElement:
 			return _(item.attrib["text"]), eval(configElement)
 	return "", None
+
 
 class SetupError(Exception):
 	def __init__(self, message):
@@ -42,9 +45,10 @@ class SetupError(Exception):
 	def __str__(self):
 		return self.msg
 
+
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
 		self["SetupValue"] = StaticText("")
@@ -74,6 +78,7 @@ class SetupSummary(Screen):
 			else:
 				self.parent['footnote'].text = (_(" "))
 
+
 class Setup(ConfigListScreen, Screen):
 
 	ALLOW_SUSPEND = True
@@ -98,22 +103,22 @@ class Setup(ConfigListScreen, Screen):
 	def __init__(self, session, setup, plugin=None, PluginLanguageDomain=None):
 		Screen.__init__(self, session)
 		# for the skin: first try a setup_<setupID>, then Setup
-		self.skinName = ["setup_" + setup, "Setup" ]
+		self.skinName = ["setup_" + setup, "Setup"]
 
 		self['footnote'] = Label()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self["status"] = StaticText()
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.item = None
 		self.setup = setup
 		self.plugin = plugin
 		self.PluginLanguageDomain = PluginLanguageDomain
 		list = []
-		self.onNotifiers = [ ]
+		self.onNotifiers = []
 		self.refill(list)
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, list, session=session, on_change=self.changedEntry)
 		self.createSetup()
 
 		#check for list.entries > 0 else self.close
@@ -202,9 +207,9 @@ class Setup(ConfigListScreen, Screen):
 			if self["config"].getCurrent()[1].help_window.instance is not None:
 				self["config"].getCurrent()[1].help_window.hide()
 		from Screens.VirtualKeyBoard import VirtualKeyBoard
-		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].value)
 
-	def VirtualKeyBoardCallback(self, callback = None):
+	def VirtualKeyBoardCallback(self, callback=None):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].setValue(callback)
 			self["config"].invalidate(self["config"].getCurrent())
@@ -279,6 +284,7 @@ class Setup(ConfigListScreen, Screen):
 				if not isinstance(item, ConfigNothing):
 					list.append((item_text, item, item_description))
 
+
 def getSetupTitle(setupId):
 	xmldata = setupdom().getroot()
 	for x in xmldata.findall("setup"):
@@ -287,6 +293,7 @@ def getSetupTitle(setupId):
 				return _("Settings...")
 			return six.ensure_str(x.get("title", ""))
 	raise SetupError("unknown setup id '%s'!" % repr(setupId))
+
 
 def getSetupTitleLevel(setupId):
 	xmldata = setupdom().getroot()

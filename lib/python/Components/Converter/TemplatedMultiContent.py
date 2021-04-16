@@ -2,8 +2,10 @@ from __future__ import print_function
 from __future__ import absolute_import
 from Components.Converter.StringList import StringList
 
+
 class TemplatedMultiContent(StringList):
 	"""Turns a python tuple list into a multi-content list which can be used in a listbox renderer."""
+
 	def __init__(self, args):
 		StringList.__init__(self, args)
 		from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_CENTER, RT_VALIGN_BOTTOM, RT_WRAP, BT_SCALE
@@ -48,7 +50,7 @@ class TemplatedMultiContent(StringList):
 					else:
 						tmp.append(src[x])
 			except Exception as error:
-				print('[TemplatedMultiContent] - %s' %error)
+				print('[TemplatedMultiContent] - %s' % error)
 				tmp = self.source.list
 			self.content.setList(tmp)
 

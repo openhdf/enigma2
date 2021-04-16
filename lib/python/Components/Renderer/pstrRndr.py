@@ -16,6 +16,7 @@ if not posterpath:
 	posterpath = "/media/hdd/"
 print("posterpath:", posterpath)
 
+
 class pstrRndr(Renderer):
 
 	def __init__(self):
@@ -42,7 +43,7 @@ class pstrRndr(Renderer):
 
 		try:
 			eventName = self.source.text
-			if eventName :
+			if eventName:
 				posterNm = re.sub('\s+', '+', eventName)
 				pstrNm = posterpath + self.path + posterNm + ".jpg"
 

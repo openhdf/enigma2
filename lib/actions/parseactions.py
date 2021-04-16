@@ -2,7 +2,10 @@ from __future__ import print_function
 # takes a header file, outputs action ids
 
 from __future__ import absolute_import
-import tokenize, sys, string
+import tokenize
+import sys
+import string
+
 
 def filter(g):
 	while True:
@@ -19,6 +22,7 @@ def filter(g):
 		if t[1] != "\n":
 #			print t
 			yield t[1]
+
 
 def do_file(f, mode):
 	tokens = filter(tokenize.generate_tokens(open(f, 'r').readline))
@@ -101,6 +105,7 @@ def do_file(f, mode):
 						print("{\"" + actionname + "\", \"" + t + "\", " + "::".join((classname, t)) + "},")
 
 					counter += 1
+
 
 mode = sys.argv[1]
 

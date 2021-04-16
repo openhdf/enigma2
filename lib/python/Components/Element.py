@@ -7,8 +7,10 @@ from six.moves import reduce
 
 # a bidirectional connection
 
+
 def cached(f):
 	name = f.__name__
+
 	def wrapper(self):
 		cache = self.cache
 		if cache is None:
@@ -18,12 +20,14 @@ def cached(f):
 		return cache[name][1]
 	return wrapper
 
+
 class ElementError(Exception):
 	def __init__(self, message):
 		self.msg = message
 
 	def __str__(self):
 		return self.msg
+
 
 class Element(object):
 	CHANGED_DEFAULT = 0   # initial "pull" state
@@ -37,7 +41,7 @@ class Element(object):
 	def __init__(self):
 		self.downstream_elements = CList()
 		self.master = None
-		self.sources = [ ]
+		self.sources = []
 		self.source = None
 		self.__suspended = True
 		self.cache = None
@@ -72,7 +76,7 @@ class Element(object):
 			# sources are owned by the Screen, so don't destroy them here.
 			self.destroy()
 		self.source = None
-		self.sources = [ ]
+		self.sources = []
 
 	def disconnectDownstream(self, downstream):
 		self.downstream_elements.remove(downstream)
@@ -84,7 +88,7 @@ class Element(object):
 
 	# default action: push downstream
 	def changed(self, *args, **kwargs):
-		self.cache = { }
+		self.cache = {}
 		self.downstream_elements.changed(*args, **kwargs)
 		self.cache = None
 

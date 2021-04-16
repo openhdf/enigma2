@@ -4,6 +4,7 @@ from os import listdir
 from Components.Console import Console
 from Tools.Directories import SCOPE_KEYMAPS, pathExists, resolveFilename
 
+
 class Keyboard:
 	def __init__(self):
 		self.keyboardMaps = []
@@ -43,5 +44,6 @@ class Keyboard:
 
 	def getDefaultKeyboardMap(self):
 		return 'default.kmap'
+
 
 keyboard = Keyboard()

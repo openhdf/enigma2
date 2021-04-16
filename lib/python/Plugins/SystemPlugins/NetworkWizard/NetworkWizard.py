@@ -13,6 +13,7 @@ from enigma import eTimer
 from boxbranding import getMachineBrand, getMachineName, getBoxType
 from os import system
 
+
 class NetworkWizard(WizardLanguage, Rc):
 	skin = """
 		<screen position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
@@ -34,9 +35,10 @@ class NetworkWizard(WizardLanguage, Rc):
 			</widget>
 			<widget name="HelpWindow" pixmap="buttons/key_text.png" position="125,170" zPosition="1" size="1,1" transparent="1" alphatest="on" />
 		</screen>"""
-	def __init__(self, session, interface = None):
+
+	def __init__(self, session, interface=None):
 		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")
-		WizardLanguage.__init__(self, session, showSteps = False, showStepSlider = False)
+		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
 		Rc.__init__(self)
 		Screen.setTitle(self, _("NetworkWizard"))
 		self.session = session
@@ -72,7 +74,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.getInstalledInterfaceCount()
 		self.isWlanPluginInstalled()
 
-	def exitWizardQuestion(self, ret = False):
+	def exitWizardQuestion(self, ret=False):
 		if ret:
 			self.markDone()
 			self.close()
@@ -167,7 +169,7 @@ class NetworkWizard(WizardLanguage, Rc):
 			if len(self.Adapterlist) == 0:
 				#Reset Network to defaults if network broken
 				iNetwork.resetNetworkConfig('lan', self.resetNetworkConfigCB)
-				self.resetRef = self.session.openWithCallback(self.resetNetworkConfigFinished, MessageBox, _("Please wait while we prepare your network interfaces..."), type = MessageBox.TYPE_INFO, enable_input = False)
+				self.resetRef = self.session.openWithCallback(self.resetNetworkConfigFinished, MessageBox, _("Please wait while we prepare your network interfaces..."), type=MessageBox.TYPE_INFO, enable_input=False)
 			if iface in iNetwork.getInstalledAdapters():
 				if iface in iNetwork.configuredNetworkAdapters and len(iNetwork.configuredNetworkAdapters) == 1:
 					if iNetwork.getAdapterAttribute(iface, 'up') is True:
@@ -210,7 +212,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.originalInterfaceStateChanged = True
 		if iNetwork.getAdapterAttribute(iface, "dhcp") is True:
 			iNetwork.checkNetworkState(self.AdapterSetupEndFinished)
-			self.AdapterRef = self.session.openWithCallback(self.AdapterSetupEndCB, MessageBox, _("Please wait while we test your network..."), type = MessageBox.TYPE_INFO, enable_input = False)
+			self.AdapterRef = self.session.openWithCallback(self.AdapterSetupEndCB, MessageBox, _("Please wait while we test your network..."), type=MessageBox.TYPE_INFO, enable_input=False)
 		else:
 			self.currStep = self.getStepWithID("confdns")
 			self.afterAsyncCode()
@@ -242,12 +244,12 @@ class NetworkWizard(WizardLanguage, Rc):
 					text1 = _("Your %s %s is now ready to be used.\n\nYour internet connection is working now.\n\n") % (getMachineBrand(), getMachineName())
 					text2 = _('Accesspoint:') + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
 					text3 = _('SSID:') + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
-					text4 = _('Link quality:') + "\t" + str(status[self.selectedInterface]["quality"])+ "\n"
+					text4 = _('Link quality:') + "\t" + str(status[self.selectedInterface]["quality"]) + "\n"
 					text5 = _('Signal strength:') + "\t" + str(status[self.selectedInterface]["signal"]) + "\n"
 					text6 = _('Bitrate:') + "\t" + str(status[self.selectedInterface]["bitrate"]) + "\n"
 					text7 = _('Encryption:') + " " + str(status[self.selectedInterface]["encryption"]) + "\n"
 					text8 = _("Please press OK to continue.")
-					infotext = text1 + text2 + text3 + text4 + text5 + text7 +"\n" + text8
+					infotext = text1 + text2 + text3 + text4 + text5 + text7 + "\n" + text8
 					self.currStep = self.getStepWithID("checkWlanstatusend")
 					self.Text = infotext
 					if str(status[self.selectedInterface]["accesspoint"]) == "Not-Associated":
@@ -256,7 +258,7 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def checkNetwork(self):
 		iNetwork.checkNetworkState(self.checkNetworkStateCB)
-		self.checkRef = self.session.openWithCallback(self.checkNetworkCB, MessageBox, _("Please wait while we test your network..."), type = MessageBox.TYPE_INFO, enable_input = False)
+		self.checkRef = self.session.openWithCallback(self.checkNetworkCB, MessageBox, _("Please wait while we test your network..."), type=MessageBox.TYPE_INFO, enable_input=False)
 
 	def checkNetworkCB(self, data):
 		if data is True:
@@ -305,7 +307,7 @@ class NetworkWizard(WizardLanguage, Rc):
 					for entry in self.newAPlist:
 						if entry == currentListEntry:
 							newListIndex = idx
-						idx +=1
+						idx += 1
 				self.wizard[self.currStep]["evaluatedlist"] = self.newAPlist
 				self['list'].setList(self.newAPlist)
 				if newListIndex is not None:
@@ -315,7 +317,7 @@ class NetworkWizard(WizardLanguage, Rc):
 	def listAccessPoints(self):
 		self.APList = []
 		if self.WlanPluginInstalled is False:
-			self.APList.append( ( _("No networks found"), None ) )
+			self.APList.append((_("No networks found"), None))
 		else:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iWlan
 			iWlan.setInterface(self.selectedInterface)
@@ -328,8 +330,8 @@ class NetworkWizard(WizardLanguage, Rc):
 				for ap in aps:
 					a = aps[ap]
 					if a['active']:
-						tmplist.append( (a['bssid'], a['essid']) )
-						complist.append( (a['bssid'], a['essid']) )
+						tmplist.append((a['bssid'], a['essid']))
+						complist.append((a['bssid'], a['essid']))
 
 				for entry in tmplist:
 					if entry[1] == "":
@@ -337,13 +339,12 @@ class NetworkWizard(WizardLanguage, Rc):
 							if compentry[0] == entry[0]:
 								complist.remove(compentry)
 				for entry in complist:
-					self.APList.append( (entry[1], entry[1]) )
+					self.APList.append((entry[1], entry[1]))
 			if not len(aps):
-				self.APList.append( ( _("No networks found"), None ) )
+				self.APList.append((_("No networks found"), None))
 
 		self.rescanTimer.start(4000)
 		return self.APList
-
 
 	def AccessPointsSelectionMoved(self):
 		self.ap = self.selection

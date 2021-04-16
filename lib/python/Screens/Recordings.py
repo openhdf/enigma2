@@ -18,9 +18,10 @@ import six
 from enigma import eEnv
 import xml.etree.cElementTree
 
+
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
 		self["SetupValue"] = StaticText("")
@@ -41,6 +42,7 @@ class SetupSummary(Screen):
 		self["SetupValue"].text = self.parent.getCurrentValue()
 		if hasattr(self.parent, "getCurrentDescription"):
 			self.parent["description"].text = self.parent.getCurrentDescription()
+
 
 class RecordingSettings(Screen, ConfigListScreen):
 	def removeNotifier(self):
@@ -74,10 +76,10 @@ class RecordingSettings(Screen, ConfigListScreen):
 		self["key_green"] = StaticText(_("Save"))
 		self["description"] = Label(_(""))
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.setup = "recording"
 		list = []
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, list, session=session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
@@ -100,13 +102,13 @@ class RecordingSettings(Screen, ConfigListScreen):
 			configele.value = configele.last_value
 			self.session.open(
 				MessageBox,
-				_("The directory %s is not writable.\nMake sure you select a writable directory instead.")%dir,
-				type = MessageBox.TYPE_ERROR
+				_("The directory %s is not writable.\nMake sure you select a writable directory instead.") % dir,
+				type=MessageBox.TYPE_ERROR
 				)
 			return False
 
 	def createSetup(self):
-		self.styles = [ ("<default>", _("<Default movie location>")), ("<current>", _("<Current movielist location>")), ("<timer>", _("<Last timer location>")) ]
+		self.styles = [("<default>", _("<Default movie location>")), ("<current>", _("<Current movielist location>")), ("<timer>", _("<Last timer location>"))]
 		styles_keys = [x[0] for x in self.styles]
 		tmp = config.movielist.videodirs.value
 		default = config.usage.default_path.value
@@ -114,21 +116,21 @@ class RecordingSettings(Screen, ConfigListScreen):
 			tmp = tmp[:]
 			tmp.append(default)
 # 		print "DefaultPath: ", default, tmp
-		self.default_dirname = ConfigSelection(default = default, choices = tmp)
+		self.default_dirname = ConfigSelection(default=default, choices=tmp)
 		tmp = config.movielist.videodirs.value
 		default = config.usage.timer_path.value
 		if default not in tmp and default not in styles_keys:
 			tmp = tmp[:]
 			tmp.append(default)
 # 		print "TimerPath: ", default, tmp
-		self.timer_dirname = ConfigSelection(default = default, choices = self.styles+tmp)
+		self.timer_dirname = ConfigSelection(default=default, choices=self.styles + tmp)
 		tmp = config.movielist.videodirs.value
 		default = config.usage.instantrec_path.value
 		if default not in tmp and default not in styles_keys:
 			tmp = tmp[:]
 			tmp.append(default)
 # 		print "InstantrecPath: ", default, tmp
-		self.instantrec_dirname = ConfigSelection(default = default, choices = self.styles+tmp)
+		self.instantrec_dirname = ConfigSelection(default=default, choices=self.styles + tmp)
 		self.default_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
 		self.timer_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
 		self.instantrec_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
@@ -227,13 +229,13 @@ class RecordingSettings(Screen, ConfigListScreen):
 				if default not in tmp and default not in styles_keys:
 					tmp = tmp[:]
 					tmp.append(default)
-				self.timer_dirname.setChoices(self.styles+tmp, default=default)
+				self.timer_dirname.setChoices(self.styles + tmp, default=default)
 				tmp = config.movielist.videodirs.value
 				default = self.instantrec_dirname.value
 				if default not in tmp and default not in styles_keys:
 					tmp = tmp[:]
 					tmp.append(default)
-				self.instantrec_dirname.setChoices(self.styles+tmp, default=default)
+				self.instantrec_dirname.setChoices(self.styles + tmp, default=default)
 				self.entrydirname.value = res
 			if self.entrydirname.last_value != res:
 				self.checkReadWriteDir(self.entrydirname)
@@ -265,7 +267,7 @@ class RecordingSettings(Screen, ConfigListScreen):
 
 	def keyCancel(self):
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
 			self.close()
 
@@ -308,4 +310,3 @@ class RecordingSettings(Screen, ConfigListScreen):
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
 					list.append((item_text, item, item_description))
-

@@ -39,29 +39,30 @@ from skin import parseColor, parseFont
 
 
 # scroll type:
-NONE     = 0
-RUNNING  = 1
+NONE = 0
+RUNNING = 1
 SWIMMING = 2
-AUTO     = 3
+AUTO = 3
 # direction:
-LEFT     = 0
-RIGHT    = 1
-TOP      = 2
-BOTTOM   = 3
+LEFT = 0
+RIGHT = 1
+TOP = 2
+BOTTOM = 3
 # halign:
 #LEFT     = 0
 #RIGHT    = 1
-CENTER   = 2
-BLOCK    = 3
+CENTER = 2
+BLOCK = 3
+
 
 class RunningText(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
-		self.type     = NONE
-		self.txfont   = gFont("Regular", 14)
-		self.soffset  = (0, 0)
+		self.type = NONE
+		self.txfont = gFont("Regular", 14)
+		self.soffset = (0, 0)
 		self.txtflags = 0
-		self.txtext   = ""
+		self.txtext = ""
 		self.scroll_label = self.mTimer = self.mStartPoint = None
 		self.X = self.Y = self.W = self.H = self.mStartDelay = 0
 		self.mAlways = 1		# always move text
@@ -74,7 +75,6 @@ class RunningText(Renderer):
 		self.lineHeight = 0		# for text height auto correction on dmm-enigma2
 		self.mShown = 0
 
-
 	GUI_WIDGET = eWidget
 
 	def postWidgetCreate(self, instance):
@@ -83,7 +83,7 @@ class RunningText(Renderer):
 				x, y = value.split(',')
 				self.W, self.H = int(x), int(y)
 		self.instance.move(ePoint(0, 0))
-		self.instance.resize( eSize(self.W, self.H) )
+		self.instance.resize(eSize(self.W, self.H))
 		self.scroll_label = eLabel(instance)
 		self.mTimer = eTimer()
 		self.mTimer.callback.append(self.movingLoop)
@@ -104,6 +104,7 @@ class RunningText(Renderer):
 			except:
 					x = default
 			return x
+
 		def setWrapFlag(attrib, value):
 			if (attrib.lower() == "wrap" and value == "0") or \
 			   (attrib.lower() == "nowrap" and value != "0"):
@@ -113,7 +114,7 @@ class RunningText(Renderer):
 
 		self.halign = valign = eLabel.alignLeft
 		if self.skinAttributes:
-			attribs = [ ]
+			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
 					self.txfont = parseFont(value, ((1, 1), (1, 1)))
@@ -128,11 +129,11 @@ class RunningText(Renderer):
 				elif attrib == "borderWidth":			# fake for openpli-enigma2
 					self.soffset = (-int(value), -int(value))
 				elif attrib == "valign" and value in ("top", "center", "bottom"):
-					valign = { "top": eLabel.alignTop, "center": eLabel.alignCenter, "bottom": eLabel.alignBottom }[value]
-					self.txtflags |= { "top": RT_VALIGN_TOP, "center": RT_VALIGN_CENTER, "bottom": RT_VALIGN_BOTTOM }[value]
+					valign = {"top": eLabel.alignTop, "center": eLabel.alignCenter, "bottom": eLabel.alignBottom}[value]
+					self.txtflags |= {"top": RT_VALIGN_TOP, "center": RT_VALIGN_CENTER, "bottom": RT_VALIGN_BOTTOM}[value]
 				elif attrib == "halign" and value in ("left", "center", "right", "block"):
-					self.halign = { "left": eLabel.alignLeft, "center": eLabel.alignCenter, "right": eLabel.alignRight, "block": eLabel.alignBlock }[value]
-					self.txtflags |= { "left": RT_HALIGN_LEFT, "center": RT_HALIGN_CENTER, "right": RT_HALIGN_RIGHT, "block": RT_HALIGN_BLOCK }[value]
+					self.halign = {"left": eLabel.alignLeft, "center": eLabel.alignCenter, "right": eLabel.alignRight, "block": eLabel.alignBlock}[value]
+					self.txtflags |= {"left": RT_HALIGN_LEFT, "center": RT_HALIGN_CENTER, "right": RT_HALIGN_RIGHT, "block": RT_HALIGN_BLOCK}[value]
 				elif attrib == "noWrap":
 					setWrapFlag(attrib, value)
 				elif attrib == "options":
@@ -149,8 +150,8 @@ class RunningText(Renderer):
 							setWrapFlag(opt, val)
 						elif opt == "movetype" and val in ("none", "running", "swimming"):
 							self.type = {"none": NONE, "running": RUNNING, "swimming": SWIMMING}[val]
-						elif opt =="direction" and val in ("left", "right", "top", "bottom"):
-							self.direction = { "left": LEFT, "right": RIGHT, "top": TOP, "bottom": BOTTOM }[val]
+						elif opt == "direction" and val in ("left", "right", "top", "bottom"):
+							self.direction = {"left": LEFT, "right": RIGHT, "top": TOP, "bottom": BOTTOM}[val]
 						elif opt == "step" and val:
 							self.mStep = retValue(val, 1, self.mStep)
 						elif opt == "steptime" and val:
@@ -161,11 +162,11 @@ class RunningText(Renderer):
 							self.mLoopTimeout = retValue(val, 0, self.mLoopTimeout)
 						elif opt == "oneshot" and val:
 							self.mOneShot = retValue(val, 0, self.mOneShot)
-						elif opt =="repeat" and val:
+						elif opt == "repeat" and val:
 							self.mRepeat = retValue(val, 0, self.mRepeat)
-						elif opt =="always" and val:
+						elif opt == "always" and val:
 							self.mAlways = retValue(val, 0, self.mAlways)
-						elif opt =="startpoint" and val:
+						elif opt == "startpoint" and val:
 							self.mStartPoint = int(val)
 						elif opt == "pagedelay" and val:
 							self.mPageDelay = retValue(val, 0, self.mPageDelay)
@@ -178,26 +179,27 @@ class RunningText(Renderer):
 					elif attrib == "transparent":
 						self.scroll_label.setTransparent(int(value))
 
-
-
 			self.skinAttributes = attribs
 		ret = Renderer.applySkin(self, desktop, screen)
 
-		if self.mOneShot: self.mOneShot = max(self.mStepTimeout, self.mOneShot)
-		if self.mLoopTimeout: self.mLoopTimeout = max(self.mStepTimeout, self.mLoopTimeout)
-		if self.mPageDelay: self.mPageDelay = max(self.mStepTimeout, self.mPageDelay)
+		if self.mOneShot:
+			self.mOneShot = max(self.mStepTimeout, self.mOneShot)
+		if self.mLoopTimeout:
+			self.mLoopTimeout = max(self.mStepTimeout, self.mLoopTimeout)
+		if self.mPageDelay:
+			self.mPageDelay = max(self.mStepTimeout, self.mPageDelay)
 
 		self.scroll_label.setFont(self.txfont)
 		if not (self.txtflags & RT_WRAP):
 			self.scroll_label.setNoWrap(1)
 		self.scroll_label.setVAlign(valign)
 		self.scroll_label.setHAlign(self.halign)
-		self.scroll_label.move( ePoint(0, 0) )
-		self.scroll_label.resize( eSize(self.W, self.H) )
+		self.scroll_label.move(ePoint(0, 0))
+		self.scroll_label.resize(eSize(self.W, self.H))
 		# test for auto correction text height:
 		if self.direction in (TOP, BOTTOM):
 			from enigma import fontRenderClass
-			flh = int(fontRenderClass.getInstance().getLineHeight(self.txfont) or self.txfont.pointSize//6 + self.txfont.pointSize)
+			flh = int(fontRenderClass.getInstance().getLineHeight(self.txfont) or self.txfont.pointSize // 6 + self.txfont.pointSize)
 			self.scroll_label.setText("WQq")
 			if flh > self.scroll_label.calculateSize().height():
 				self.lineHeight = flh
@@ -215,7 +217,8 @@ class RunningText(Renderer):
 		Renderer.connect(self, source)
 
 	def changed(self, what):
-		if not self.mTimer is None: self.mTimer.stop()
+		if not self.mTimer is None:
+			self.mTimer.stop()
 		if what[0] == self.CHANGED_CLEAR:
 			self.txtext = ""
 			if self.instance:
@@ -228,7 +231,7 @@ class RunningText(Renderer):
 					self.moveLabel(self.X, self.Y)
 
 	def moveLabel(self, X, Y):
-		self.scroll_label.move( ePoint( X-self.soffset[0], Y-self.soffset[1] ) )
+		self.scroll_label.move(ePoint(X - self.soffset[0], Y - self.soffset[1]))
 
 	def calcMoving(self):
 		self.X = self.Y = 0
@@ -250,7 +253,7 @@ class RunningText(Renderer):
 		text_height = text_size.height()
 
 		if self.direction in (LEFT, RIGHT) or not (self.txtflags & RT_WRAP):
-			text_width +=10
+			text_width += 10
 
 		self.mStop = None
 		# text height correction if necessary:
@@ -296,7 +299,7 @@ class RunningText(Renderer):
 						self.mStep = (self.direction == RIGHT) and abs(self.mStep) or -abs(self.mStep)
 				else:
 					if text_width == self.W:
-						text_width += max(2, text_width//20)
+						text_width += max(2, text_width // 20)
 					self.A = self.W - text_width
 					self.B = self.X
 					if self.halign == LEFT:
@@ -341,7 +344,7 @@ class RunningText(Renderer):
 						self.mStep = abs(self.mStep)
 				else:
 					if text_height == self.H:
-						text_height += max(2, text_height//40)
+						text_height += max(2, text_height // 40)
 					self.A = self.H - text_height
 					self.B = self.Y
 					if self.direction == TOP:
@@ -368,8 +371,6 @@ class RunningText(Renderer):
 			else: # if self.direction in (TOP,BOTTOM):
 				self.moveLabel(self.X, self.P)
 
-
-
 		self.mCount = self.mRepeat
 		self.mTimer.start(self.mStartDelay, True)
 		return True
@@ -383,7 +384,8 @@ class RunningText(Renderer):
 			timeout = self.mStepTimeout
 			if (self.mStop is not None) and (self.mStop + abs(self.mStep) > self.P >= self.mStop):
 				if (self.type == RUNNING) and (self.mOneShot > 0):
-					if (self.mRepeat > 0) and (self.mCount-1 <= 0): return
+					if (self.mRepeat > 0) and (self.mCount - 1 <= 0):
+						return
 					timeout = self.mOneShot
 				elif (self.type == SWIMMING) and (self.mPageLength > 0) and (self.mPageDelay > 0):
 					if (self.direction == TOP) and (self.mStep < 0):
@@ -399,7 +401,8 @@ class RunningText(Renderer):
 		else:
 			if self.mRepeat > 0:
 				self.mCount -= 1
-				if self.mCount == 0: return
+				if self.mCount == 0:
+					return
 			timeout = self.mLoopTimeout
 			if self.type == RUNNING:
 				if self.P < self.A:
@@ -411,5 +414,3 @@ class RunningText(Renderer):
 
 		self.P += self.mStep
 		self.mTimer.start(timeout, True)
-
-

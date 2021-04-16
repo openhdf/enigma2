@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
-from  Components import Netlink
+from Components import Netlink
 import enigma
 import os
+
 
 class NetlinkReader():
 	def __init__(self):
 		from twisted.internet import reactor
 		self.nls = Netlink.NetlinkSocket()
 		reactor.addReader(self)
+
 	def fileno(self):
 		return self.nls.fileno()
+
 	def doRead(self):
 		for event in self.nls.parse():
 			try:
@@ -31,11 +34,14 @@ class NetlinkReader():
 			except KeyError:
 				# Ignore "not found"
 				pass
+
 	def connectionLost(self, failure):
 		# Ignore...
 		print("connectionLost?", failure)
 		self.nls.close()
+
 	def logPrefix(self):
 		return 'NetlinkReader'
+
 
 reader = NetlinkReader()

@@ -13,6 +13,7 @@ from Tools.Directories import fileExists
 if path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0"):
 	import Components.HdmiCec
 
+
 class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	skin = """
 	<screen position="c-300,c-250" size="600,500" title="HDMI CEC setup">
@@ -59,9 +60,9 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			"down": self.keyDown,
 		}, -2)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.advancedSettings("start")
 		self.createSetup()
 
@@ -107,7 +108,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Ignore unexpectedly wakeup and stay in standby"), config.hdmicec.workaround_turnbackon, _("This is a workaround for some devices there wakeup again after switching in standby. The wak up command's from other devices will ignored for few seconds."),))
 			if fileExists("/proc/stb/hdmi/preemphasis"):
 				self.list.append(getConfigListEntry(_("Use HDMI-preemphasis"), config.hdmicec.preemphasis, _('With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables.'),))
-			self.list.append(getConfigListEntry(_("Enable command line function"), config.hdmicec.commandline, _("Activate an way to send individual or specific internal HDMI-CEC commands from the command line. Type on command line 'echo help > %s' and then read the file '%s' for a short help.") %(Components.HdmiCec.cmdfile,Components.HdmiCec.hlpfile), ))
+			self.list.append(getConfigListEntry(_("Enable command line function"), config.hdmicec.commandline, _("Activate an way to send individual or specific internal HDMI-CEC commands from the command line. Type on command line 'echo help > %s' and then read the file '%s' for a short help.") % (Components.HdmiCec.cmdfile, Components.HdmiCec.hlpfile), ))
 			self.list.append(getConfigListEntry(_("Enable debug log"), config.hdmicec.debug, _('Allows you to enable the debug log. They contain very detailed information of everything the system does.') + _("\n* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"), ))
 
 		self["config"].list = self.list
@@ -116,7 +117,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		self.updateAddress()
 		self.showHelpText()
 
-	def advancedSettings(self, mode = None, savevalues = False):
+	def advancedSettings(self, mode=None, savevalues=False):
 		advconfigs = ('deepstandby_waitfortimesync', 'tv_standby_notinputactive', 'tv_wakeup_zaptimer', 'tv_wakeup_zapandrecordtimer', 'tv_wakeup_wakeuppowertimer',
 						'workaround_activesource', 'handle_tv_input', 'handle_tv_delaytime', 'messages_repeat', 'check_tv_state', 'workaround_turnbackon')
 		cecconf = config.hdmicec.dict()
@@ -165,7 +166,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		#for x in self["config"].list:
 		#	x[1].save()
 		#configfile.save()
-		self.advancedSettings(savevalues = True)
+		self.advancedSettings(savevalues=True)
 		self.close()
 
 	def keyCancel(self):
@@ -197,6 +198,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			self["description"].setText(cur[3])
 		else:
 			self["description"].setText(" ")
+
 
 def Plugins(**kwargs):
 	return []

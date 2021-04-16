@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import absolute_import
-import subprocess, shutil, os
+import subprocess
+import shutil
+import os
 
 # MANDATORY_RIGHTS contains commands to ensure correct rights for certain files
 MANDATORY_RIGHTS = "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh"
@@ -15,13 +17,14 @@ IMAGE_INSTALL = ['openhdf-base', 'enigma2-plugin-settings-defaultsat', 'run-post
 PACKAGES = '/var/lib/opkg/lists'
 INSTALLEDPACKAGES = '/var/lib/opkg/status'
 
+
 def backupUserDB():
-	oldpasswd=()
-	oldshadow=()
-	oldgroups=()
-	neededgroups=[]
-	tmppasswd=[]
-	tmpgroups=[]
+	oldpasswd = ()
+	oldshadow = ()
+	oldgroups = ()
+	neededgroups = []
+	tmppasswd = []
+	tmpgroups = []
 
 	with open('/etc/passwd') as f:
 		oldpasswd = f.readlines()
@@ -47,7 +50,7 @@ def backupUserDB():
 			sname, spasswd, bullshit = y.split(':', 2)
 			if name == sname:
 				# Store hash in password field
-				passwd=spasswd
+				passwd = spasswd
 
 		# ... also search his group ...
 		for z in oldgroups:
@@ -58,7 +61,7 @@ def backupUserDB():
 					neededgroups.append(gname)
 
 				# ... add group's name after numeric gid and store his line in backup ...
-				newpwd = ":".join( ( name, passwd, uid, gid, gname, gecos, home, shell ) )
+				newpwd = ":".join((name, passwd, uid, gid, gname, gecos, home, shell))
 				tmppasswd.append(newpwd)
 
 	# Copy only needed groups into backup ...
@@ -79,17 +82,18 @@ def backupUserDB():
 		groupstxt.write("%s\n" % item)
 	groupstxt.close()
 
+
 def restoreUserDB():
 	if not (os.path.isfile('/tmp/passwd.txt') and os.path.isfile('/tmp/groups.txt')):
 		return
 
-	oldpasswd=[]
-	oldgroups=[]
-	newpasswd=[]
-	newgroups=[]
-	takenuids=[]
-	takengids=[]
-	successusers=[]
+	oldpasswd = []
+	oldgroups = []
+	newpasswd = []
+	newgroups = []
+	takenuids = []
+	takengids = []
+	successusers = []
 
 	with open('/tmp/passwd.txt') as f:
 		oldpasswd = f.readlines()
@@ -169,7 +173,7 @@ def restoreUserDB():
 		if usersuccess:
 			successusers.append([oldname, oldpasswd])
 
-	shadow=[]
+	shadow = []
 	with open('/etc/shadow') as f:
 		shadow = f.readlines()
 		shadow = [x.strip() for x in shadow]
@@ -184,6 +188,7 @@ def restoreUserDB():
 		newshadowfile.write("%s:%s:%s\n" % (name, passwd, rest))
 	newshadowfile.close()
 	shutil.move("/tmp/shadow.new", "/etc/shadow")
+
 
 def listpkg(type="installed"):
 	pkgs = []

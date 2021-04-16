@@ -6,6 +6,7 @@ from enigma import eLabel, eSlider, iFrontendInformation
 
 from math import log
 
+
 class TunerInfo(GUIComponent):
 	SNR = 0
 	SNR_DB = 1
@@ -21,7 +22,7 @@ class TunerInfo(GUIComponent):
 	SYNC_STATE = 8
 	LOCK = 9
 
-	def __init__(self, type, servicefkt = None, frontendfkt = None, statusDict = None):
+	def __init__(self, type, servicefkt=None, frontendfkt=None, statusDict=None):
 		GUIComponent.__init__(self)
 		self.instance = None
 		self.message = None
@@ -46,8 +47,8 @@ class TunerInfo(GUIComponent):
 		if not val:
 			return 0
 		if val < 2500:
-			return int(log(val)//log(2))
-		return val*100//65535
+			return int(log(val) // log(2))
+		return val * 100 // 65535
 
 	def update(self):
 		if self.type == self.SNR_DB:

@@ -24,13 +24,14 @@ lastpath = ""
 
 detected_DVD = None
 
+
 class FileBrowser(Screen):
 
-	def __init__(self, session, dvd_filelist = [ ]):
+	def __init__(self, session, dvd_filelist=[]):
 		Screen.__init__(self, session)
 
 		# for the skin: first try FileBrowser_DVDPlayer, then FileBrowser, this allows individual skinning
-		self.skinName = ["FileBrowser_DVDPlayer", "FileBrowser" ]
+		self.skinName = ["FileBrowser_DVDPlayer", "FileBrowser"]
 
 		self.dvd_filelist = dvd_filelist
 		if len(dvd_filelist):
@@ -47,7 +48,7 @@ class FileBrowser(Screen):
 				currDir = None
 
 			inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var"]
-			self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(iso|img)", useServiceRef = True)
+			self.filelist = FileList(currDir, matchingPattern="(?i)^.*\.(iso|img)", useServiceRef=True)
 			self["filelist"] = self.filelist
 
 		self["FilelistActions"] = ActionMap(["SetupActions"],
@@ -81,12 +82,12 @@ class FileBrowser(Screen):
 			if self["filelist"].canDescent(): # isDir
 				self["filelist"].descent()
 				pathname = self["filelist"].getCurrentDirectory() or ""
-				if fileExists(pathname+"VIDEO_TS.IFO"):
+				if fileExists(pathname + "VIDEO_TS.IFO"):
 					print("dvd structure found, trying to open...")
 					lastpath = (pathname.rstrip("/").rsplit("/", 1))[0]
 					print("lastpath video_ts.ifo=", lastpath)
 					self.close(pathname)
-				if fileExists(pathname+"VIDEO_TS/VIDEO_TS.IFO"):
+				if fileExists(pathname + "VIDEO_TS/VIDEO_TS.IFO"):
 					print("dvd structure found, trying to open...")
 					lastpath = (pathname.rstrip("/").rsplit("/", 1))[0]
 					print("lastpath video_ts.ifo=", lastpath)
@@ -99,6 +100,7 @@ class FileBrowser(Screen):
 
 	def exit(self):
 		self.close(None)
+
 
 class DVDSummary(Screen):
 	skin = (
@@ -143,11 +145,13 @@ class DVDSummary(Screen):
 	def setTitle(self, title):
 		self["Title"].setText(title)
 
+
 class DVDOverlay(Screen):
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		desktop_size = getDesktop(0).size()
-		DVDOverlay.skin = """<screen name="DVDOverlay" position="0,0" size="%d,%d" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />""" %(desktop_size.width(), desktop_size.height())
+		DVDOverlay.skin = """<screen name="DVDOverlay" position="0,0" size="%d,%d" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />""" % (desktop_size.width(), desktop_size.height())
 		Screen.__init__(self, session)
+
 
 class ChapterZap(Screen):
 	skin = """
@@ -179,7 +183,7 @@ class ChapterZap(Screen):
 
 		self["number"] = Label(self.field)
 
-		self["actions"] = NumberActionMap( [ "SetupActions" ],
+		self["actions"] = NumberActionMap(["SetupActions"],
 			{
 				"cancel": self.quit,
 				"ok": self.keyOK,
@@ -198,6 +202,7 @@ class ChapterZap(Screen):
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.keyOK)
 		self.Timer.start(3000, True)
+
 
 class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarPVRState, InfoBarShowHide, HelpableScreen, InfoBarCueSheetSupport, InfoBarAudioSelection, InfoBarSubtitleSupport, InfoBarSimpleEventView):
 	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES
@@ -254,7 +259,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def change_infobar_seek_config(self):
 		config.seek.speeds_forward.setValue([2, 4, 8, 16, 32, 64])
 		config.seek.speeds_backward.setValue([8, 16, 32, 64])
-		config.seek.speeds_slowmotion.setValue([ ])
+		config.seek.speeds_slowmotion.setValue([])
 		config.seek.enter_forward.setValue("2")
 		config.seek.enter_backward.setValue("2")
 		config.seek.on_pause.setValue("play")
@@ -267,11 +272,11 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		config.seek.enter_backward.setValue(self.saved_config_enter_backward)
 		config.seek.on_pause.setValue(self.saved_config_seek_on_pause)
 
-	def __init__(self, session, dvd_device = None, dvd_filelist = [ ], args = None):
+	def __init__(self, session, dvd_device=None, dvd_filelist=[], args=None):
 		Screen.__init__(self, session)
 		InfoBarBase.__init__(self)
 		InfoBarNotifications.__init__(self)
-		InfoBarCueSheetSupport.__init__(self, actionmap = "MediaPlayerCueSheetActions")
+		InfoBarCueSheetSupport.__init__(self, actionmap="MediaPlayerCueSheetActions")
 		InfoBarShowHide.__init__(self)
 		InfoBarAudioSelection.__init__(self)
 		InfoBarSubtitleSupport.__init__(self)
@@ -298,22 +303,21 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.totalTitles = 0
 		self.currentTitle = 0
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStopped: self.__serviceStopped,
 				iPlayableService.evUser: self.__timeUpdated,
-				iPlayableService.evUser+1: self.__statePlay,
-				iPlayableService.evUser+2: self.__statePause,
-				iPlayableService.evUser+3: self.__osdFFwdInfoAvail,
-				iPlayableService.evUser+4: self.__osdFBwdInfoAvail,
-				iPlayableService.evUser+5: self.__osdStringAvail,
-				iPlayableService.evUser+6: self.__osdAudioInfoAvail,
-				iPlayableService.evUser+7: self.__osdSubtitleInfoAvail,
-				iPlayableService.evUser+8: self.__chapterUpdated,
-				iPlayableService.evUser+9: self.__titleUpdated,
-				iPlayableService.evUser+11: self.__menuOpened,
-				iPlayableService.evUser+12: self.__menuClosed,
-				iPlayableService.evUser+13: self.__osdAngleInfoAvail
+				iPlayableService.evUser + 1: self.__statePlay,
+				iPlayableService.evUser + 2: self.__statePause,
+				iPlayableService.evUser + 3: self.__osdFFwdInfoAvail,
+				iPlayableService.evUser + 4: self.__osdFBwdInfoAvail,
+				iPlayableService.evUser + 5: self.__osdStringAvail,
+				iPlayableService.evUser + 6: self.__osdAudioInfoAvail,
+				iPlayableService.evUser + 7: self.__osdSubtitleInfoAvail,
+				iPlayableService.evUser + 8: self.__chapterUpdated,
+				iPlayableService.evUser + 9: self.__titleUpdated,
+				iPlayableService.evUser + 11: self.__menuOpened,
+				iPlayableService.evUser + 12: self.__menuClosed,
+				iPlayableService.evUser + 13: self.__osdAngleInfoAvail
 			})
 
 		self["DVDPlayerDirectionActions"] = ActionMap(["DirectionActions"],
@@ -361,7 +365,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				"seekBeginning": self.seekBeginning,
 			}, -2)
 
-		self["NumberActions"] = NumberActionMap( [ "NumberActions"],
+		self["NumberActions"] = NumberActionMap(["NumberActions"],
 			{
 				"1": self.keyNumberGlobal,
 				"2": self.keyNumberGlobal,
@@ -478,7 +482,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def __osdAudioInfoAvail(self):
 		info = self.getServiceInterface("info")
-		audioTuple = info and info.getInfoObject(iServiceInformation.sUser+6)
+		audioTuple = info and info.getInfoObject(iServiceInformation.sUser + 6)
 		print("AudioInfoAvail ", repr(audioTuple))
 		if audioTuple:
 			#audioString = "%d: %s (%s)" % (audioTuple[0],audioTuple[1],audioTuple[2])
@@ -490,7 +494,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def __osdSubtitleInfoAvail(self):
 		info = self.getServiceInterface("info")
-		subtitleTuple = info and info.getInfoObject(iServiceInformation.sUser+7)
+		subtitleTuple = info and info.getInfoObject(iServiceInformation.sUser + 7)
 		print("SubtitleInfoAvail ", repr(subtitleTuple))
 		if subtitleTuple:
 			subtitleString = ""
@@ -504,7 +508,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def __osdAngleInfoAvail(self):
 		info = self.getServiceInterface("info")
-		angleTuple = info and info.getInfoObject(iServiceInformation.sUser+8)
+		angleTuple = info and info.getInfoObject(iServiceInformation.sUser + 8)
 		print("AngleInfoAvail ", repr(angleTuple))
 		if angleTuple:
 			angleString = ""
@@ -546,8 +550,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if self.physicalDVD:
 			cur = self.session.nav.getCurrentlyPlayingServiceReference()
 			if cur and not cur.toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
-			    choices.insert(0, (_("Play DVD"), "playPhysical" ))
-		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list = choices)
+			    choices.insert(0, (_("Play DVD"), "playPhysical"))
+		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list=choices)
 
 	def sendKey(self, key):
 		keys = self.getServiceInterface("keys")
@@ -562,28 +566,28 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.sendKey(iServiceKeys.keyUser)
 
 	def nextSubtitleTrack(self):
-		self.sendKey(iServiceKeys.keyUser+1)
+		self.sendKey(iServiceKeys.keyUser + 1)
 
 	def enterDVDAudioMenu(self):
-		self.sendKey(iServiceKeys.keyUser+2)
+		self.sendKey(iServiceKeys.keyUser + 2)
 
 	def nextChapter(self):
-		self.sendKey(iServiceKeys.keyUser+3)
+		self.sendKey(iServiceKeys.keyUser + 3)
 
 	def prevChapter(self):
-		self.sendKey(iServiceKeys.keyUser+4)
+		self.sendKey(iServiceKeys.keyUser + 4)
 
 	def nextTitle(self):
-		self.sendKey(iServiceKeys.keyUser+5)
+		self.sendKey(iServiceKeys.keyUser + 5)
 
 	def prevTitle(self):
-		self.sendKey(iServiceKeys.keyUser+6)
+		self.sendKey(iServiceKeys.keyUser + 6)
 
 	def enterDVDMenu(self):
-		self.sendKey(iServiceKeys.keyUser+7)
+		self.sendKey(iServiceKeys.keyUser + 7)
 
 	def nextAngle(self):
-		self.sendKey(iServiceKeys.keyUser+8)
+		self.sendKey(iServiceKeys.keyUser + 8)
 
 	def seekBeginning(self):
 		if self.service:
@@ -626,7 +630,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.playPhysicalCB(True)
 		elif self.physicalDVD:
 			# opened from menu with dvd in drive
-			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
+			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5)
 		else:
 			# opened from menu without dvd in drive
 			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, self.dvd_filelist)
@@ -729,7 +733,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if pathExists(devicepath):
 			from Components.Scanner import scanDevice
 			res = scanDevice(devicepath)
-			_list = [ (r.description, r, res[r], self.session) for r in res ]
+			_list = [(r.description, r, res[r], self.session) for r in res]
 			if _list:
 				(desc, scanner, files, session) = _list[0]
 				for _file in files:
@@ -740,12 +744,15 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 						return
 		self.physicalDVD = False
 
+
 def main(session, **kwargs):
 	session.open(DVDPlayer)
+
 
 def play(session, **kwargs):
 	from Screens import DVD
 	session.open(DVD.DVDPlayer, dvd_device=harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))
+
 
 def onPartitionChange(action, partition):
 	print("[@] onPartitionChange", action, partition)
@@ -757,6 +764,7 @@ def onPartitionChange(action, partition):
 		elif action == 'add':
 			print("[@] DVD Inserted")
 			detected_DVD = None
+
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
@@ -775,14 +783,16 @@ def menu(menuid, **kwargs):
 			return [(_("DVD Player"), play, "dvd_player", 46)]
 	return []
 
+
 from Plugins.Plugin import PluginDescriptor
+
 
 def filescan_open(list, session, **kwargs):
 	if len(list) == 1 and list[0].mimetype == "video/x-dvd":
 		splitted = list[0].path.split('/')
 		if len(splitted) > 2:
 			if splitted[1] == 'media' and (splitted[2].startswith('sr') or splitted[2] == 'dvd'):
-				session.open(DVDPlayer, dvd_device="/dev/%s" %(splitted[2]))
+				session.open(DVDPlayer, dvd_device="/dev/%s" % (splitted[2]))
 				return
 	else:
 		dvd_filelist = []
@@ -793,6 +803,7 @@ def filescan_open(list, session, **kwargs):
 				dvd_filelist.append(x.path.rsplit('/', 1)[0])
 		session.open(DVDPlayer, dvd_filelist=dvd_filelist)
 
+
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 
@@ -802,18 +813,18 @@ def filescan(**kwargs):
 			return fileExists(file.path)
 
 	return [
-		LocalScanner(mimetypes = ["video/x-dvd", "video/x-dvd-iso"],
-			paths_to_scan =
-				[
-					ScanPath(path = "video_ts", with_subdirs = False),
-					ScanPath(path = "VIDEO_TS", with_subdirs = False),
-					ScanPath(path = "", with_subdirs = False),
+		LocalScanner(mimetypes=["video/x-dvd", "video/x-dvd-iso"],
+			paths_to_scan=[
+					ScanPath(path="video_ts", with_subdirs=False),
+					ScanPath(path="VIDEO_TS", with_subdirs=False),
+					ScanPath(path="", with_subdirs=False),
 				],
-			name = "DVD",
-			description = _("Play DVD"),
-			openfnc = filescan_open,
+			name="DVD",
+			description=_("Play DVD"),
+			openfnc=filescan_open,
 		)]
 
+
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "DVDPlayer", description = "Play DVDs", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu),
-		PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)]
+	return [PluginDescriptor(name="DVDPlayer", description="Play DVDs", where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu),
+		PluginDescriptor(where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan)]

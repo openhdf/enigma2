@@ -21,9 +21,10 @@ from glob import glob
 import stat
 
 config.plugins.swapmanager = ConfigSubsection()
-config.plugins.swapmanager.swapautostart = ConfigYesNo(default = False)
+config.plugins.swapmanager.swapautostart = ConfigYesNo(default=False)
 
 startswap = None
+
 
 def SwapAutostart(reason, session=None, **kwargs):
 	global startswap
@@ -33,6 +34,7 @@ def SwapAutostart(reason, session=None, **kwargs):
 			startswap = StartSwap()
 			startswap.start()
 
+
 class StartSwap:
 	def __init__(self):
 		self.Console = Console()
@@ -40,7 +42,7 @@ class StartSwap:
 	def start(self):
 	 	self.Console.ePopen("sfdisk -l /dev/sd? | grep swap", self.startSwap2)
 
-	def startSwap2(self, result = None, retval = None, extra_args = None):
+	def startSwap2(self, result=None, retval=None, extra_args=None):
 		swap_place = ""
 		if result and result.find('sd') != -1:
 			for line in result.split('\n'):
@@ -71,6 +73,8 @@ class StartSwap:
 			print("[SwapManager] Swapfile is already active on ", swap_place)
 
 #######################################################################
+
+
 class SwapManager(Screen):
 	skin = """
 	<screen name="SwapManager" position="center,center" size="420,250" title="Swap File Manager" flags="wfBorder" >
@@ -91,6 +95,7 @@ class SwapManager(Screen):
 		<widget name="inactive" position="160,200" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
 		<widget name="active" position="160,200" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="green"/>
 	</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Swap Manager"))
@@ -118,7 +123,7 @@ class SwapManager(Screen):
 		self.activityTimer.timeout.get().append(self.getSwapDevice)
 		self.updateSwap()
 
-	def updateSwap(self, result = None, retval = None, extra_args = None):
+	def updateSwap(self, result=None, retval=None, extra_args=None):
 		self["actions"].setEnabled(False)
 		self.swap_active = False
 		self['autostart_on'].hide()
@@ -142,7 +147,7 @@ class SwapManager(Screen):
 			remove('/tmp/swapdevices.tmp')
 		self.Console.ePopen("sfdisk -l /dev/sd? | grep swap", self.updateSwap2)
 
-	def updateSwap2(self, result = None, retval = None, extra_args = None):
+	def updateSwap2(self, result=None, retval=None, extra_args=None):
 		self.swapsize = 0
 		self.swap_place = ''
 		self.swap_active = False
@@ -259,7 +264,7 @@ class SwapManager(Screen):
 			else:
 				self.doCreateSwap()
 
-	def createDel2(self, result, retval, extra_args = None):
+	def createDel2(self, result, retval, extra_args=None):
 		if retval == 0:
 			remove(self.swap_place)
 			if config.plugins.swapmanager.swapautostart.value:
@@ -277,9 +282,9 @@ class SwapManager(Screen):
 			if partition.filesystem(mounts) in supported_filesystems:
 				candidates.append((partition.description, partition.mountpoint))
 		if len(candidates):
-			self.session.openWithCallback(self.doCSplace, ChoiceBox, title = _("Please select device to use as swapfile location"), list = candidates)
+			self.session.openWithCallback(self.doCSplace, ChoiceBox, title=_("Please select device to use as swapfile location"), list=candidates)
 		else:
-			self.session.open(MessageBox, _("Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"), MessageBox.TYPE_INFO, timeout=10)
 
 	def doCSplace(self, name):
 		if name:
@@ -314,9 +319,11 @@ class SwapManager(Screen):
 			mybox.setTitle(_("Info"))
 		self.updateSwap()
 
+
 def main(session, **kwargs):
 	session.open(SwapManager)
 
+
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "Swap Manager", description = _("Manage your swapfile"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main), \
-			PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, fnc = SwapAutostart)]
+	return [PluginDescriptor(name="Swap Manager", description=_("Manage your swapfile"), where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
+			PluginDescriptor(where=PluginDescriptor.WHERE_AUTOSTART, fnc=SwapAutostart)]

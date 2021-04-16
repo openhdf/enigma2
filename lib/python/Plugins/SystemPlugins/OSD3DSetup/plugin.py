@@ -40,12 +40,12 @@ else:
 	togglelist = {val_sidebyside: _("Side by Side - Off"), val_topandbottom: _("Top and Bottom - Off")}
 
 config.plugins.OSD3DSetup = ConfigSubsection()
-config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = val_auto)
-config.plugins.OSD3DSetup.znorm = ConfigInteger(default = 0)
-config.plugins.OSD3DSetup.menuext = ConfigSelection(choices = menulist, default = "none")
-config.plugins.OSD3DSetup.auto = ConfigYesNo(default = False)
-config.plugins.OSD3DSetup.toggle = ConfigSelection(choices = togglelist, default = val_sidebyside)
-config.plugins.OSD3DSetup.prompt = ConfigInteger(default = 10)
+config.plugins.OSD3DSetup.mode = ConfigSelection(choices=modelist, default=val_auto)
+config.plugins.OSD3DSetup.znorm = ConfigInteger(default=0)
+config.plugins.OSD3DSetup.menuext = ConfigSelection(choices=menulist, default="none")
+config.plugins.OSD3DSetup.auto = ConfigYesNo(default=False)
+config.plugins.OSD3DSetup.toggle = ConfigSelection(choices=togglelist, default=val_sidebyside)
+config.plugins.OSD3DSetup.prompt = ConfigInteger(default=10)
 
 # Flags
 FLAG_MAKE = 0
@@ -78,6 +78,7 @@ EXTENSIONS = {
 	}
 
 confirmed3D = False
+
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	#class for configure 3D default settings
@@ -119,19 +120,19 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		toggle = config.plugins.OSD3DSetup.toggle.value
 		prompt = config.plugins.OSD3DSetup.prompt.value
 
-		self.mode = ConfigSelection(choices = modelist, default = nz(mode, val_auto))
-		self.znorm = ConfigSlider(default = znorm + 50, increment = 1, limits = (0, 100))
-		self.menuext = ConfigSelection(choices = menulist, default = nz(menuext, "none"))
-		self.auto = ConfigYesNo(default = nz(auto, False))
-		self.toggle = ConfigSelection(choices = togglelist, default = nz(toggle, val_sidebyside))
+		self.mode = ConfigSelection(choices=modelist, default=nz(mode, val_auto))
+		self.znorm = ConfigSlider(default=znorm + 50, increment=1, limits=(0, 100))
+		self.menuext = ConfigSelection(choices=menulist, default=nz(menuext, "none"))
+		self.auto = ConfigYesNo(default=nz(auto, False))
+		self.toggle = ConfigSelection(choices=togglelist, default=nz(toggle, val_sidebyside))
 		self.prompt = ConfigInteger(nz(prompt, 10), limits=(0, 30))
 		# adding notifiers to immediatelly preview changed 3D settings
-		self.mode.addNotifier(self.setPreviewSettings, initial_call = False)
-		self.znorm.addNotifier(self.setPreviewSettings, initial_call = False)
+		self.mode.addNotifier(self.setPreviewSettings, initial_call=False)
+		self.znorm.addNotifier(self.setPreviewSettings, initial_call=False)
 
 		self.refresh()
 		self.initHelpTexts()
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session=self.session)
 		self["config"].onSelectionChanged.append(self.updateHelp)
 
 	def keyLeft(self):
@@ -188,9 +189,11 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		if cur:
 			self["help"].text = self.helpDict.get(cur[1], "")
 	#channging mode or znorm is immediatelly previewed
+
 	def setPreviewSettings(self, value):
 		applySettings(self.mode.value, int(self.znorm.value) - 50)
 	#setting are stored in enigma configuration file
+
 	def keyGo(self):
 		config.plugins.OSD3DSetup.mode.value = self.mode.value
 		config.plugins.OSD3DSetup.znorm.value = int(self.znorm.value) - 50
@@ -203,9 +206,11 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 		self.close()
 	#roll-back changes - read settings from configuration
+
 	def keyCancel(self):
 		setConfiguredSettings()
 		self.close()
+
 
 class AutoToggle3D(Screen):
 	#class for listening for service changing events to set 3D mode automatically
@@ -216,7 +221,7 @@ class AutoToggle3D(Screen):
 		self.session = session
 		Screen.__init__(self, session)
 		#associate event tracker with class methods
-		self.et = ServiceEventTracker(screen = self, eventmap = {iPlayableService.evUpdatedEventInfo: self.UpdInfo, iPlayableService.evUpdatedInfo: self.UpdInfo})
+		self.et = ServiceEventTracker(screen=self, eventmap={iPlayableService.evUpdatedEventInfo: self.UpdInfo, iPlayableService.evUpdatedInfo: self.UpdInfo})
 		#read and apply settings stored in configuration file - enigma starts...
 		setConfiguredSettings()
 		#read current mode
@@ -249,7 +254,8 @@ class AutoToggle3D(Screen):
 				info = hwnd.info(ServRef)
 				if info:
 					evt = info.getEvent(ServRef)
-					if evt: ServiceName = ServiceName + " " + evt.getEventName()
+					if evt:
+						ServiceName = ServiceName + " " + evt.getEventName()
 
 				#self.session.open(MessageBox,_(ServiceName), type = MessageBox.TYPE_INFO, timeout = 5)
 
@@ -279,6 +285,7 @@ class AutoToggle3D(Screen):
 				if self.CurrentMode != ret[0]:
 					self.CurrentMode = ret[0]
 					setmode(ret[0])
+
 
 class InfoAuto3D(Screen):
 	skin = """
@@ -314,16 +321,22 @@ class InfoAuto3D(Screen):
 		self.blueTimer.stop()
 		self.autoclose()
 
-def nz(value, nullvalue) :
-   if value is None: return nullvalue
-   else: return value
+
+def nz(value, nullvalue):
+   if value is None:
+   	return nullvalue
+   else:
+   	return value
+
 
 def applySettings(mode, znorm):
 	setmode(mode)
 	setznorm(znorm)
 
+
 def setConfiguredSettings():
 	applySettings(config.plugins.OSD3DSetup.mode.value, int(config.plugins.OSD3DSetup.znorm.value))
+
 
 def getmode():
 	file = open(path_mode, "r")
@@ -333,6 +346,7 @@ def getmode():
 	else:
 		return val_auto
 
+
 def getznorm():
 	file = open(path_znorm, "r")
 	if file:
@@ -340,6 +354,7 @@ def getznorm():
 		file.close()
 	else:
 		return val_auto
+
 
 def setmode(val):
 	if not val:
@@ -350,6 +365,7 @@ def setmode(val):
 		file.close()
 	except:
 		return
+
 
 def setznorm(val):
 	if not val:
@@ -362,6 +378,8 @@ def setznorm(val):
 		return
 
 #if there is a command in menu...
+
+
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
 		if config.plugins.OSD3DSetup.toggle.value == val_sidebyside:
@@ -370,11 +388,15 @@ def menu(menuid, **kwargs):
 			return [(_("3D ON/OFF (Top And Bootom)"), menutoggle3d, "Toggle 3D mode", 44)]
 	return []
 #show configuration screen...
+
+
 def main(session, **kwargs):
 	session.open(OSD3DSetupScreen)
 
+
 def startup(session, **kwargs):
 	AutoToggle3D(session)
+
 
 def menutoggle3d(session, **kwargs):
 	mode = getmode()
@@ -400,13 +422,17 @@ def menutoggle3d(session, **kwargs):
 	return []
 
 #if there is a command in extensions selection...
+
+
 def toggleSBS(session, **kwargs):
 	toggleext(val_sidebyside)
 	return []
 
+
 def toggleTAB(session, **kwargs):
 	toggleext(val_topandbottom)
 	return []
+
 
 def toggleext(value):
 	mode = getmode()
@@ -420,6 +446,7 @@ def toggleext(value):
 	if znorm < 0 or znorm > 100:
 		setznorm(0)
 
+
 def Plugins(**kwargs):
 	pluginlist = []
 	from os import path
@@ -427,11 +454,11 @@ def Plugins(**kwargs):
 	auto = config.plugins.OSD3DSetup.auto.value
 	if path.exists(path_mode):
 		if menuext == "menu" or menuext == "menuext":
-			pluginlist.append(PluginDescriptor(name = "3D toggle ON/OFF", description = _("3D toggle ON/OFF"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu))
+			pluginlist.append(PluginDescriptor(name="3D toggle ON/OFF", description=_("3D toggle ON/OFF"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu))
 		if menuext == "ext" or menuext == "menuext":
-			pluginlist.append(PluginDescriptor(name = "3D ON/OFF (Side by Side)", description = _("3D ON/OFF (Side by Side)"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc = toggleSBS))
-			pluginlist.append(PluginDescriptor(name = "3D ON/OFF (Top and Bottom)", description = _("3D ON/OFF (Top and Bottom)"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc = toggleTAB))
-		pluginlist.append(PluginDescriptor(name = "OSD 3D setup", description = _("Adjust 3D settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main))
-		pluginlist.append(PluginDescriptor(name = "OSD 3D setup", description = "", where = PluginDescriptor.WHERE_SESSIONSTART, fnc = startup))
+			pluginlist.append(PluginDescriptor(name="3D ON/OFF (Side by Side)", description=_("3D ON/OFF (Side by Side)"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart=False, fnc=toggleSBS))
+			pluginlist.append(PluginDescriptor(name="3D ON/OFF (Top and Bottom)", description=_("3D ON/OFF (Top and Bottom)"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart=False, fnc=toggleTAB))
+		pluginlist.append(PluginDescriptor(name="OSD 3D setup", description=_("Adjust 3D settings"), where=PluginDescriptor.WHERE_PLUGINMENU, fnc=main))
+		pluginlist.append(PluginDescriptor(name="OSD 3D setup", description="", where=PluginDescriptor.WHERE_SESSIONSTART, fnc=startup))
 		return pluginlist
 	return pluginlist

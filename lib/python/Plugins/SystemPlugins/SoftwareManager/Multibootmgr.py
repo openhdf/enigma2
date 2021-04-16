@@ -9,6 +9,7 @@ from Components.SystemInfo import SystemInfo
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, EmptySlot
 
+
 class MultiBootWizard(Screen):
 
 	skin = """
@@ -30,7 +31,7 @@ class MultiBootWizard(Screen):
 	</screen>
 	"""
 
-	def __init__(self, session,menu_path=""):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("MultiBoot image manager"))
 		self["key_red"] = StaticText(_("Cancel"))
@@ -82,11 +83,11 @@ class MultiBootWizard(Screen):
 		self.currentSelected = self["config"].l.getCurrentSelection()
 		if self.currentSelected[0][1] != "Queued":
 			if SystemInfo["HasRootSubdir"]:
-				message = _("Removal of this startup will not show in %s Gui.  Are you sure you want to delete image startup %s ?") %(getMachineBuild(), self.currentSelected[0][1])
+				message = _("Removal of this startup will not show in %s Gui.  Are you sure you want to delete image startup %s ?") % (getMachineBuild(), self.currentSelected[0][1])
 				ybox = self.session.openWithCallback(self.doErase, MessageBox, message, MessageBox.TYPE_YESNO, default=True)
 				ybox.setTitle(_("Remove confirmation"))
 			else:
-				message = _("Are you sure you want to delete image startup %s ?") %self.currentSelected[0][1]
+				message = _("Are you sure you want to delete image startup %s ?") % self.currentSelected[0][1]
 				ybox = self.session.openWithCallback(self.doErase, MessageBox, message, MessageBox.TYPE_YESNO, default=True)
 				ybox.setTitle(_("Remove confirmation"))
 		self.startit()

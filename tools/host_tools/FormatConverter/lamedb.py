@@ -2,8 +2,9 @@ from __future__ import print_function
 from __future__ import absolute_import
 from datasource import datasource
 
+
 class lamedb(datasource):
-	def __init__(self, filename = "lamedb"):
+	def __init__(self, filename="lamedb"):
 		datasource.__init__(self)
 		self.setFilename(filename)
 
@@ -56,7 +57,7 @@ class lamedb(datasource):
 			print(sat)
 			self.addSat(sat, sat)
 			transponders = sats[sat]
-			transponders.sort(key = lambda a: a[0])
+			transponders.sort(key=lambda a: a[0])
 			for transpondertuple in transponders:
 				transponder = transpondertuple[0]
 				tsid = transpondertuple[1]

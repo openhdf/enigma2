@@ -2,8 +2,9 @@ from __future__ import absolute_import
 from enigma import eServiceReference, eServiceCenter, getBestPlayableServiceReference
 import NavigationInstance
 
+
 class ServiceReference(eServiceReference):
-	def __init__(self, ref, reftype = eServiceReference.idInvalid, flags = 0, path = ''):
+	def __init__(self, ref, reftype=eServiceReference.idInvalid, flags=0, path=''):
 		if reftype != eServiceReference.idInvalid:
 			self.ref = eServiceReference(reftype, flags, path)
 		elif not isinstance(ref, eServiceReference):
@@ -38,6 +39,7 @@ class ServiceReference(eServiceReference):
 		ref = self.ref
 		return ref.flags & eServiceReference.isGroup or (ref.type in (eServiceReference.idDVB, eServiceReference.idDVB + eServiceReference.idServiceIsScrambled, eServiceReference.idServiceHDMIIn, eServiceReference.idServiceMP3))
 
+
 def getPlayingref(ref):
 	playingref = None
 	if NavigationInstance.instance:
@@ -46,9 +48,11 @@ def getPlayingref(ref):
 		playingref = eServiceReference()
 	return playingref
 
+
 def isPlayableForCur(ref):
 	info = eServiceCenter.getInstance().info(ref)
 	return info and info.isPlayable(ref, getPlayingref(ref))
+
 
 def resolveAlternate(ref):
 	nref = None

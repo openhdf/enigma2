@@ -10,6 +10,7 @@ from Components.Element import cached
 from enigma import eDVBCI_UI, eDVBCIInterfaces
 from Components.Converter.Poll import Poll
 
+
 class ModuleControl(Poll, Converter, object):
 	SLOT1 = 0
 	SLOT2 = 1
@@ -57,7 +58,7 @@ class ModuleControl(Poll, Converter, object):
 	def getFilename(self, state, slot):
 		name = ""
 		if state == 0:
-			name =  _("no module found")
+			name = _("no module found")
 		elif state == 1:
 			name = _("init modules")
 		elif state == 2:
@@ -67,21 +68,21 @@ class ModuleControl(Poll, Converter, object):
 	def getSlotname(self, state, slot):
 		name = ""
 		if state == 0:
-			name = _("Slot %d") %(slot+1) + " - " + _("no module found")
+			name = _("Slot %d") % (slot + 1) + " - " + _("no module found")
 		elif state == 1:
-			name = _("Slot %d") %(slot+1) + " - " + _("init modules")
+			name = _("Slot %d") % (slot + 1) + " - " + _("init modules")
 		elif state == 2:
-			name = _("Slot %d") %(slot+1) + " - " + eDVBCI_UI.getInstance().getAppName(slot).upper()
+			name = _("Slot %d") % (slot + 1) + " - " + eDVBCI_UI.getInstance().getAppName(slot).upper()
 		return name
 
 	def getPiconname(self, state, slot):
 		name = ""
 		if state == 0:
-			name = "NOMODULE_SLOT%d" %(slot)
+			name = "NOMODULE_SLOT%d" % (slot)
 		elif state == 1:
-			name = "INITMODULE_SLOT%d" %(slot)
+			name = "INITMODULE_SLOT%d" % (slot)
 		elif state == 2:
-			name = "READY_SLOT%d" %(slot)
+			name = "READY_SLOT%d" % (slot)
 		return name
 
 	@cached
@@ -89,7 +90,7 @@ class ModuleControl(Poll, Converter, object):
 		name = ""
 		service = self.source.service
 		if service:
-			NUM_CI=eDVBCIInterfaces.getInstance().getNumOfSlots()
+			NUM_CI = eDVBCIInterfaces.getInstance().getNumOfSlots()
 			if NUM_CI > 0:
 				self.control = True
 			else:
@@ -144,9 +145,9 @@ class ModuleControl(Poll, Converter, object):
 				if state != -1:
 					name = self.getSlotname(state, 0)
 				else:
-					name = _("Slot %d") %(1) + " - " + _("no module found")
+					name = _("Slot %d") % (1) + " - " + _("no module found")
 			else:
-				name = _("Slot %d") %(1) + " - " + _("no module found")
+				name = _("Slot %d") % (1) + " - " + _("no module found")
 			return name
 		elif self.type == self.SLOT2:
 			if self.control:
@@ -154,9 +155,9 @@ class ModuleControl(Poll, Converter, object):
 				if state != -1:
 					name = self.getSlotname(state, 1)
 				else:
-					name = _("Slot %d") %(2) + " - " + _("no module found")
+					name = _("Slot %d") % (2) + " - " + _("no module found")
 			else:
-				name = _("Slot %d") %(2) + " - " + _("no module found")
+				name = _("Slot %d") % (2) + " - " + _("no module found")
 			return name
 		elif self.type == self.SLOT3:
 			if self.control:
@@ -164,9 +165,9 @@ class ModuleControl(Poll, Converter, object):
 				if state != -1:
 					name = self.getSlotname(state, 2)
 				else:
-					name = _("Slot %d") %(3) + " - " + _("no module found")
+					name = _("Slot %d") % (3) + " - " + _("no module found")
 			else:
-				name = _("Slot %d") %(3) + " - " + _("no module found")
+				name = _("Slot %d") % (3) + " - " + _("no module found")
 			return name
 		elif self.type == self.SLOT4:
 			if self.control:
@@ -174,9 +175,9 @@ class ModuleControl(Poll, Converter, object):
 				if state != -1:
 					name = self.getSlotname(state, 3)
 				else:
-					name = _("Slot %d") %(4) + " - " + _("no module found")
+					name = _("Slot %d") % (4) + " - " + _("no module found")
 			else:
-				name = _("Slot %d") %(4) + " - " + _("no module found")
+				name = _("Slot %d") % (4) + " - " + _("no module found")
 			return name
 
 		elif self.type == self.PICON1:

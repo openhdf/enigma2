@@ -7,11 +7,12 @@ from __future__ import print_function
 # for the servicereference names.
 
 from __future__ import absolute_import
-import os, sys
+import os
+import sys
 
 f = open(sys.argv[1]).readlines()
 
-f = f[f.index("services\n")+1:-3]
+f = f[f.index("services\n") + 1:-3]
 
 while len(f):
 	ref = [int(x, 0x10) for x in f[0][:-1].split(':')]
@@ -42,4 +43,4 @@ while len(f):
 		os.symlink(filename, linkname)
 	else:
 		print("could not find %s (%s)" % (filename, name))
-	f =f[3:]
+	f = f[3:]

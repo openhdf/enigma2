@@ -25,11 +25,11 @@ liste = ["Unencrypted", "WEP", "WPA", "WPA/WPA2", "WPA2"]
 weplist = ["ASCII", "HEX"]
 
 config.plugins.wlan = ConfigSubsection()
-config.plugins.wlan.essid = NoSave(ConfigText(default = "", fixed_size = False))
-config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default = False))
-config.plugins.wlan.encryption = NoSave(ConfigSelection(liste, default = "WPA2"))
-config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default = "ASCII"))
-config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False))
+config.plugins.wlan.essid = NoSave(ConfigText(default="", fixed_size=False))
+config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default=False))
+config.plugins.wlan.encryption = NoSave(ConfigSelection(liste, default="WPA2"))
+config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default="ASCII"))
+config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 
 
 class WlanStatus(Screen):
@@ -216,6 +216,7 @@ class WlanStatus(Screen):
 				self["statuspic"].setPixmapNum(0)
 			self["statuspic"].show()
 
+
 class WlanScan(Screen):
 	skin = """
 		<screen name="WlanScan" position="center,center" size="560,400" title="Select a wireless network" >
@@ -285,7 +286,7 @@ class WlanScan(Screen):
 		iWlan.setInterface(self.iface)
 		self.w = iWlan.getInterface()
 		self.onLayoutFinish.append(self.layoutFinished)
-		self.getAccessPoints(refresh = False)
+		self.getAccessPoints(refresh=False)
 
 	def layoutFinished(self):
 		self.setTitle(_("Select a wireless network"))
@@ -322,7 +323,7 @@ class WlanScan(Screen):
 
 	def updateAPList(self):
 		newList = []
-		newList = self.getAccessPoints(refresh = True)
+		newList = self.getAccessPoints(refresh=True)
 		self.newAPList = []
 		tmpList = []
 		newListIndex = None
@@ -336,7 +337,7 @@ class WlanScan(Screen):
 
 		if len(tmpList):
 			for entry in tmpList:
-				self.newAPList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6] ))
+				self.newAPList.append(self.buildEntryComponent(entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6]))
 
 			currentListEntry = self["list"].getCurrent()
 			if currentListEntry is not None:
@@ -344,7 +345,7 @@ class WlanScan(Screen):
 				for entry in self.newAPList:
 					if entry[0] == currentListEntry[0]:
 						newListIndex = idx
-					idx +=1
+					idx += 1
 			self['list'].setList(self.newAPList)
 			if newListIndex is not None:
 				self["list"].setIndex(newListIndex)
@@ -353,7 +354,7 @@ class WlanScan(Screen):
 			self.buildWlanList()
 			self.setInfo()
 
-	def getAccessPoints(self, refresh = False):
+	def getAccessPoints(self, refresh=False):
 		self.APList = []
 		self.cleanList = []
 		aps = iWlan.getNetworkList()
@@ -364,8 +365,8 @@ class WlanScan(Screen):
 			for ap in aps:
 				a = aps[ap]
 				if a['active']:
-					tmpList.append( (a['essid'], a['bssid']) )
-					compList.append( (a['essid'], a['bssid'], a['encrypted'], a['iface'], a['maxrate'], a['signal'], a['frequency_norm']) )
+					tmpList.append((a['essid'], a['bssid']))
+					compList.append((a['essid'], a['bssid'], a['encrypted'], a['iface'], a['maxrate'], a['signal'], a['frequency_norm']))
 
 			for entry in tmpList:
 				if entry[0] == "":
@@ -373,14 +374,14 @@ class WlanScan(Screen):
 						if compentry[1] == entry[1]:
 							compList.remove(compentry)
 			for entry in compList:
-				self.cleanList.append( ( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6]) )
+				self.cleanList.append((entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6]))
 				if entry[0] not in self.oldlist:
-					self.oldlist[entry[0]] = { 'data': entry }
+					self.oldlist[entry[0]] = {'data': entry}
 				else:
 					self.oldlist[entry[0]]['data'] = entry
 
 		for entry in self.cleanList:
-			self.APList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6] ))
+			self.APList.append(self.buildEntryComponent(entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6]))
 
 		if refresh is False:
 			self['list'].setList(self.APList)
@@ -399,7 +400,7 @@ class WlanScan(Screen):
 	def buildWlanList(self):
 		self.WlanList = []
 		for entry in self['list'].list:
-			self.WlanList.append( (entry[0], entry[0]) )
+			self.WlanList.append((entry[0], entry[0]))
 
 	def getLength(self):
 		return self.listLength
@@ -413,12 +414,14 @@ class WlanScan(Screen):
 def WlanStatusScreenMain(session, iface):
 	session.open(WlanStatus, iface)
 
+
 def callFunction(iface):
 	iWlan.setInterface(iface)
 	i = iWlan.getWirelessInterfaces()
 	if iface in i or iNetwork.isWirelessInterface(iface):
 		return WlanStatusScreenMain
 	return None
+
 
 def configStrings(iface):
 	driver = iNetwork.detectWlanModule(iface)
@@ -441,5 +444,6 @@ def configStrings(iface):
 	ret += "\tpre-down wpa_cli -i" + iface + " terminate || true\n"
 	return ret
 
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where = PluginDescriptor.WHERE_NETWORKSETUP, needsRestart = False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuration...")})
+	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where=PluginDescriptor.WHERE_NETWORKSETUP, needsRestart=False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuration...")})

@@ -7,12 +7,14 @@ from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from Tools.LoadPixmap import LoadPixmap
 from Components.Label import Label
 
+
 def MessageBoxEntry(name, picture):
-	pixmap = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/" + picture));
+	pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/" + picture))
 	if not pixmap:
-		pixmap = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/empty.png"));
+		pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/DeviceManager/icons/empty.png"))
 
 	return (pixmap, name)
+
 
 class ExtraMessageBox(Screen):
 	skin = """
@@ -73,7 +75,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()  + (o
 		</applet>
 	</screen>"""
 
-	def __init__(self, session, message = "", title = "", menulist = [], type = 0, exitid = -1, default = 0, timeout = 0):
+	def __init__(self, session, message="", title="", menulist=[], type=0, exitid=-1, default=0, timeout=0):
 		# type exist for compability... will be ignored
 		Screen.__init__(self, session)
 		self.session = session

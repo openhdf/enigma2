@@ -5,17 +5,18 @@ from skin import applyAllAttributes
 from Tools.CList import CList
 from Components.Sources.StaticText import StaticText
 
+
 class GUISkin:
 	__module__ = __name__
 
 	def __init__(self):
 		self["Title"] = StaticText()
-		self.onLayoutFinish = [ ]
+		self.onLayoutFinish = []
 		self.summaries = CList()
 		self.instance = None
 		self.desktop = None
 
-	def createGUIScreen(self, parent, desktop, updateonly = False):
+	def createGUIScreen(self, parent, desktop, updateonly=False):
 		for val in self.renderer:
 			if isinstance(val, GUIComponent):
 				if not updateonly:
@@ -73,6 +74,7 @@ class GUISkin:
 			self.summaries.setTitle(title)
 		except:
 			pass
+
 	def getTitle(self):
 		return self["Title"].text
 

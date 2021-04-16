@@ -38,6 +38,7 @@ def CutListEntry(where, what):
 		type_col = 0x000000
 	return (where, what), "%dh:%02dm:%02ds:%03d" % (h, m, s, ms), type, type_col
 
+
 class CutListContextMenu(FixedMenu):
 	RET_STARTCUT = 0
 	RET_ENDCUT = 1
@@ -108,6 +109,7 @@ class CutListContextMenu(FixedMenu):
 	def grabFrame(self):
 		self.close(self.RET_GRABFRAME)
 
+
 class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """
 	<screen position="0,0" size="720,576" flags="wfNoBorder">
@@ -147,9 +149,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.skin = CutListEditor.skin
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Cutlist editor"))
-		InfoBarSeek.__init__(self, actionmap = "CutlistSeekActions")
+		InfoBarSeek.__init__(self, actionmap="CutlistSeekActions")
 		InfoBarCueSheetSupport.__init__(self)
-		InfoBarBase.__init__(self, steal_current_service = True)
+		InfoBarBase.__init__(self, steal_current_service=True)
 		HelpableScreen.__init__(self)
 		self.old_service = session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
@@ -171,7 +173,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.updateStateLabel(self.seekstate)
 
 		desktopSize = getDesktop(0).size()
-		self["Video"] = VideoWindow(decoder = 0, fb_width=desktopSize.width(), fb_height=desktopSize.height())
+		self["Video"] = VideoWindow(decoder=0, fb_width=desktopSize.width(), fb_height=desktopSize.height())
 
 		self["actions"] = HelpableActionMap(self, "CutListEditorActions",
 			{
@@ -185,8 +187,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			}, prio=-4)
 
 		self.onExecBegin.append(self.showTutorial)
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evCuesheetChanged: self.refillList
 			})
 
@@ -243,7 +244,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.close()
 
 	def getCutlist(self):
-		r = [ ]
+		r = []
 		for e in self.cut_list:
 			r.append(CutListEntry(*e))
 		return r
@@ -272,8 +273,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		l1 = len(new_list)
 		l2 = len(self.last_cuts)
 		for i in list(range(min(l1, l2))):
-			if new_list[l1-i-1] != self.last_cuts[l2-i-1]:
-				self["cutlist"].setIndex(l1-i-1)
+			if new_list[l1 - i - 1] != self.last_cuts[l2 - i - 1]:
+				self["cutlist"].setIndex(l1 - i - 1)
 				break
 		self.last_cuts = new_list
 

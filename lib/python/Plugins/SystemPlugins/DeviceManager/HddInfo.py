@@ -20,6 +20,7 @@ import os
 import sys
 import re
 
+
 class HddInfo(ConfigListScreen, Screen):
 	skin = """
 	<screen name="HddInfo" position="center,center" size="560,430" title="Hard Drive Info">
@@ -126,4 +127,3 @@ class HddInfo(ConfigListScreen, Screen):
 			if temp:
 				self["temp"].setText(_("Disk temperature: %s") % temp[0].lstrip())
 		hddtemp.close()
-

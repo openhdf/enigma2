@@ -13,8 +13,9 @@ from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from enigma import eEnv, ePicLoad
 import os
 
+
 class SkinSelectorBase:
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		self.setTitle(_("Skin Selector"))
 		self.skinlist = []
 		self.previewPath = ""
@@ -64,7 +65,7 @@ class SkinSelectorBase:
 
 	def layoutFinished(self):
 		self.picload.setPara((self["Preview"].instance.size().width(), self["Preview"].instance.size().height(), 0, 0, 1, 1, "#00000000"))
-		tmp = self.config.value.find("/"+self.SKINXML)
+		tmp = self.config.value.find("/" + self.SKINXML)
 		if tmp != -1:
 			tmp = self.config.value[:tmp]
 			idx = 0
@@ -87,7 +88,7 @@ class SkinSelectorBase:
 			skinfile = self["SkinList"].getCurrent()
 			skinfile = os.path.join(skinfile, self.SKINXML)
 
-		print("Skinselector: Selected Skin: "+self.root+skinfile)
+		print("Skinselector: Selected Skin: " + self.root + skinfile)
 		self.config.value = skinfile
 		self.config.save()
 		configfile.save()
@@ -140,6 +141,7 @@ class SkinSelectorBase:
 		if answer is True:
 			self.session.open(TryQuitMainloop, 3)
 
+
 class SkinSelector(Screen, SkinSelectorBase):
 	SKINXML = "skin.xml"
 	DEFAULTSKIN = "< Default >"
@@ -149,12 +151,13 @@ class SkinSelector(Screen, SkinSelectorBase):
 	skinlist = []
 	root = os.path.join(eEnv.resolve("${datadir}"), "enigma2")
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		SkinSelectorBase.__init__(self, args)
 		Screen.setTitle(self, _("Skin setup"))
 		self.skinName = "SkinSelector"
 		self.config = config.skin.primary_skin
+
 
 class LcdSkinSelector(Screen, SkinSelectorBase):
 	SKINXML = "skin_display.xml"
@@ -165,7 +168,7 @@ class LcdSkinSelector(Screen, SkinSelectorBase):
 	skinlist = []
 	root = os.path.join(eEnv.resolve("${datadir}"), "enigma2/display/")
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		SkinSelectorBase.__init__(self, args)
 		Screen.setTitle(self, _("Skin setup"))

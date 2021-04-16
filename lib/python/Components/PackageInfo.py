@@ -8,11 +8,14 @@ from boxbranding import getBoxType
 from enigma import eConsoleAppContainer, eDVBDB
 import os
 
+
 class InfoHandlerParseError(Exception):
 	def __init__(self, value):
 		self.value = value
+
 	def __str__(self):
 		return repr(self.value)
+
 
 class InfoHandler(xml.sax.ContentHandler):
 	def __init__(self, prerequisiteMet, directory):
@@ -101,9 +104,9 @@ class InfoHandler(xml.sax.ContentHandler):
 						directory = self.directory + directory
 				else:
 					directory = self.directory
-				self.attributes[self.filetype].append({ "name": str(self.fileattrs["name"]), "directory": directory })
+				self.attributes[self.filetype].append({"name": str(self.fileattrs["name"]), "directory": directory})
 
-		if name in ( "default", "package" ):
+		if name in ("default", "package"):
 			self.list.append({"attributes": self.attributes, 'prerequisites': self.globalprerequisites})
 			self.attributes = {}
 			self.globalprerequisites = {}
@@ -130,7 +133,7 @@ class PackageInfoHandler:
 	STATUS_ERROR = 2
 	STATUS_INIT = 4
 
-	def __init__(self, statusCallback, blocking = False, neededTag = None, neededFlag = None):
+	def __init__(self, statusCallback, blocking=False, neededTag=None, neededFlag=None):
 		self.directory = "/"
 
 		self.neededTag = neededTag
@@ -181,7 +184,7 @@ class PackageInfoHandler:
 		except InfoHandlerParseError:
 			pass
 
-	def fillPackagesList(self, prerequisites = True):
+	def fillPackagesList(self, prerequisites=True):
 		self.packageslist = []
 		packages = []
 		if not isinstance(self.directory, list):
@@ -199,7 +202,7 @@ class PackageInfoHandler:
 					self.packageslist.remove(package)
 		return self.packageslist
 
-	def fillPackagesIndexList(self, prerequisites = True):
+	def fillPackagesIndexList(self, prerequisites=True):
 		self.packagesIndexlist = []
 		indexfileList = []
 
@@ -224,7 +227,7 @@ class PackageInfoHandler:
 					self.packagesIndexlist.remove(package)
 		return self.packagesIndexlist
 
-	def fillPackageDetails(self, details = None):
+	def fillPackageDetails(self, details=None):
 		self.packageDetails = []
 		detailsfile = details
 		if not isinstance(self.directory, list):
@@ -359,7 +362,7 @@ class PackageInfoHandler:
 		fd.close()
 		return lines
 
-	def mergeConfig(self, directory, name, merge = True):
+	def mergeConfig(self, directory, name, merge=True):
 		if os.path.isfile(directory + name):
 			config.loadFromFile(directory + name, base_file=False)
 			configfile.save()
@@ -388,7 +391,7 @@ class PackageInfoHandler:
 			if self.console.execute("cp -a %s %s" % (directory, resolveFilename(SCOPE_SKIN))):
 				self.installNext()
 
-	def mergeServices(self, directory, name, merge = False):
+	def mergeServices(self, directory, name, merge=False):
 		if os.path.isfile(directory + name):
 			db = eDVBDB.getInstance()
 			db.reloadServicelist()

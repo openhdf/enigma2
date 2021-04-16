@@ -1,6 +1,7 @@
 # usage: genmetaindex.py <xml-files>  > index.xml
 from __future__ import absolute_import
-import sys, os
+import sys
+import os
 from xml.etree.ElementTree import ElementTree, Element
 
 root = Element("index")
@@ -32,20 +33,22 @@ for _file in sys.argv[1:]:
 
 	root.append(package)
 
+
 def indent(elem, level=0):
-	i = "\n" + level*"\t"
+	i = "\n" + level * "\t"
 	if len(elem):
 		if not elem.text or not elem.text.strip():
 			elem.text = i + "\t"
 		if not elem.tail or not elem.tail.strip():
 			elem.tail = i
 		for elem in elem:
-			indent(elem, level+1)
+			indent(elem, level + 1)
 		if not elem.tail or not elem.tail.strip():
 			elem.tail = i
 	else:
 		if level and (not elem.tail or not elem.tail.strip()):
 			elem.tail = i
+
 
 indent(root)
 

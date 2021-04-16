@@ -69,7 +69,7 @@ class TaskListScreen(Screen):
 		idx = self['tasklist'].getIndex()
 		self.tasklist = []
 		for job in job_manager.getPendingJobs():
-			self.tasklist.append((job, job.name, job.getStatustext(), int(100*job.progress//float(job.end)), str(100*job.progress//float(job.end)) + "%" ))
+			self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress // float(job.end)), str(100 * job.progress // float(job.end)) + "%"))
 		self['tasklist'].setList(self.tasklist)
 		self['tasklist'].updateList(self.tasklist)
 		self['tasklist'].setIndex(idx)
@@ -94,4 +94,3 @@ class TaskListScreen(Screen):
 
 	def keySave(self):
 		self.close()
-

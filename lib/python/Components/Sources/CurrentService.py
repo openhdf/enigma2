@@ -5,6 +5,7 @@ from Components.Sources.Source import Source
 from Components.Element import cached
 import NavigationInstance
 
+
 class CurrentService(PerServiceBase, Source):
 	def __init__(self, navcore):
 		Source.__init__(self)
@@ -47,4 +48,3 @@ class CurrentService(PerServiceBase, Source):
 	def destroy(self):
 		PerServiceBase.destroy(self)
 		Source.destroy(self)
-
