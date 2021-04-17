@@ -1,10 +1,7 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
-from __future__ import print_function
-from __future__ import absolute_import
 import sys
 import os
-import six
+import string
 import re
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler, property_lexical_handler
@@ -32,7 +29,7 @@ class parseXML(ContentHandler, LexicalHandler):
 	def startElement(self, name, attrs):
 		for x in ["text", "title", "value", "caption", "description"]:
 			try:
-				k = six.ensure_str(attrs[x])
+				k = str(attrs[x].encode('utf-8'))
 				if k.strip() != "" and not self.ishex.match(k):
 					attrlist.add((k, self.last_comment))
 					self.last_comment = None
@@ -51,9 +48,9 @@ if not no_comments:
 
 for arg in sys.argv[1:]:
 	if os.path.isdir(arg):
-		for _file in os.listdir(arg):
-			if _file.endswith(".xml"):
-				parser.parse(os.path.join(arg, _file))
+		for file in os.listdir(arg):
+			if file.endswith(".xml"):
+				parser.parse(os.path.join(arg, file))
 	else:
 		parser.parse(arg)
 
@@ -61,13 +58,13 @@ for arg in sys.argv[1:]:
 	attrlist.sort(key=lambda a: a[0])
 
 	for (k, c) in attrlist:
-		print()
-		print('#: ' + arg)
-		k.replace("\\n", "\"\n\"")
+		print
+		print '#: ' + arg
+		string.replace(k, "\\n", "\"\n\"")
 		if c:
 			for l in c.split('\n'):
-				print("#. ", l)
-		print('msgid "' + six.ensure_str(k) + '"')
-		print('msgstr ""')
+				print "#. ", l
+		print 'msgid "' + str(k) + '"'
+		print 'msgstr ""'
 
 	attrlist = set()
