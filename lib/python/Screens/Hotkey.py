@@ -188,7 +188,7 @@ def getHotkeyFunctions():
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
 		if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:
-			if twinPaths.has_key(plugin.path[pathLen:]):
+			if plugin.path[pathLen:] in twinPaths:
 				twinPaths[plugin.path[pathLen:]] += 1
 			else:
 				twinPaths[plugin.path[pathLen:]] = 1
@@ -198,7 +198,7 @@ def getHotkeyFunctions():
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
 		if plugin.name not in twinPlugins and plugin.path:
-			if twinPaths.has_key(plugin.path[pathLen:]):
+			if plugin.path[pathLen:] in twinPaths:
 				twinPaths[plugin.path[pathLen:]] += 1
 			else:
 				twinPaths[plugin.path[pathLen:]] = 1
@@ -554,7 +554,7 @@ class HotkeySetupSelect(Screen):
 
 class hotkeyActionMap(ActionMap):
 	def action(self, contexts, action):
-		if (action in tuple(x[1] for x in getHotkeys()) and self.actions.has_key(action)):
+		if (action in tuple(x[1] for x in getHotkeys()) and action in self.actions):
 			res = self.actions[action](action)
 			if res is not None:
 				return res
@@ -565,7 +565,7 @@ class hotkeyActionMap(ActionMap):
 
 class helpableHotkeyActionMap(HelpableActionMap):
 	def action(self, contexts, action):
-		if (action in tuple(x[1] for x in getHotkeys()) and self.actions.has_key(action)):
+		if (action in tuple(x[1] for x in getHotkeys()) and action in self.actions):
 			res = self.actions[action](action)
 			if res is not None:
 				return res
@@ -633,7 +633,7 @@ class InfoBarHotkey():
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
 					if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:
-						if twinPaths.has_key(plugin.path[pathLen:]):
+						if plugin.path[pathLen:] in twinPaths:
 							twinPaths[plugin.path[pathLen:]] += 1
 						else:
 							twinPaths[plugin.path[pathLen:]] = 1
@@ -645,7 +645,7 @@ class InfoBarHotkey():
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
 					if plugin.name not in twinPlugins and plugin.path:
-						if twinPaths.has_key(plugin.path[pathLen:]):
+						if plugin.path[pathLen:] in twinPaths:
 							twinPaths[plugin.path[pathLen:]] += 1
 						else:
 							twinPaths[plugin.path[pathLen:]] = 1
