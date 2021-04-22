@@ -46,7 +46,7 @@ def getMultibootslots():
 			if slotnumber.isdigit() and slotnumber not in bootslots:
 				slot = {}
 				for line in open(_file).readlines():
-					# print "Multiboot getMultibootslots readlines = %s " %line
+					# print("Multiboot getMultibootslots readlines = %s " %line)
 					if "root=" in line:
 						line = line.rstrip("\n")
 						device = getparam(line, "root")
@@ -311,7 +311,7 @@ class boxbranding_reader:  # Many thanks to Huevos for creating this reader - we
 		out.append("\t}")
 		out.append("except Exception:")
 		out.append("\t\toutput = None")
-		out.append("print output")
+		out.append("print(output)")
 		out.append("")
 		return "\n".join(out)
 
