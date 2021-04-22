@@ -90,8 +90,10 @@ class Title:
 		for audiotrack in self.properties.audiotracks:
 			active = audiotrack.active.getValue()
 			if active:
-				trackstring = audiotrack.format.getValue()
-				trackstring += ' (' + audiotrack.language.getValue() + ')'
+				trackstring = audiotrack.format.value
+				language = audiotrack.language.value
+				if language in languageChoices.langdict:
+					trackstring += ' (' + languageChoices.langdict[language] + ')'
 				audiolist.append(trackstring)
 		audiostring = ', '.join(audiolist)
 		template = template.replace("$A", audiostring)

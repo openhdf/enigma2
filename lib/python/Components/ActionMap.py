@@ -55,6 +55,7 @@ class ActionMap:
 		self.checkBind()
 
 	def action(self, context, action):
+		print(" ".join(("action -> ", context, action)))
 		if action in self.actions:
 			res = self.actions[action]()
 			if res is not None:
