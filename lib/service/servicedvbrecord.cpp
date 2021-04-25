@@ -144,7 +144,7 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 			{
 				std::string fname = filename;
 				fname.erase(fname.length()-2, 2);
-				fname += "eit";
+				fname += ".eit";
 				eEPGCache::getInstance()->saveEventToFile(fname.c_str(), ref, eit_event_id, begTime, endTime);
 			}
 		}
