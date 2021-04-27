@@ -836,5 +836,5 @@ def filescan(**kwargs):
 					ScanPath(path="", with_subdirs=False),
 				],
 			name="NFI",
-			description =(_("Download .NFI-files for USB-flasher") + "..."),
+			description=(_("Download .NFI-files for USB-flasher") + "..."),
 			openfnc=filescan_open, )

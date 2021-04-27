@@ -971,12 +971,12 @@ class EPGList(HTMLComponent, GUIComponent):
 					flags=BT_SCALE))
 		if self.borderBottomPix is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos =(r1.x, r1.h - self.serviceBorderWidth),
+					pos=(r1.x, r1.h - self.serviceBorderWidth),
 					size=(r1.w, self.serviceBorderWidth),
 					png=self.borderBottomPix,
 					flags=BT_SCALE))
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos =(r2.x, r2.h - self.eventBorderWidth),
+					pos=(r2.x, r2.h - self.eventBorderWidth),
 					size=(r2.w, self.eventBorderWidth),
 					png=self.borderBottomPix,
 					flags=BT_SCALE))
@@ -993,12 +993,12 @@ class EPGList(HTMLComponent, GUIComponent):
 					flags=BT_SCALE))
 		if self.borderRightPix is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos =(r1.w - self.serviceBorderWidth, r1.x),
+					pos=(r1.w - self.serviceBorderWidth, r1.x),
 					size=(self.serviceBorderWidth, r1.h),
 					png=self.borderRightPix,
 					flags=BT_SCALE))
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos =(r2.x + r2.w - self.eventBorderWidth, r2.y),
+					pos=(r2.x + r2.w - self.eventBorderWidth, r2.y),
 					size=(self.eventBorderWidth, r2.h),
 					png=self.borderRightPix,
 					flags=BT_SCALE))
@@ -1154,7 +1154,7 @@ class EPGList(HTMLComponent, GUIComponent):
 							flags=BT_SCALE))
 				if borderBottomPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
-							pos =(left + xpos, height - self.eventBorderWidth),
+							pos=(left + xpos, height - self.eventBorderWidth),
 							size=(ewidth, self.eventBorderWidth),
 							png=borderBottomPix,
 							flags=BT_SCALE))
@@ -1166,7 +1166,7 @@ class EPGList(HTMLComponent, GUIComponent):
 							flags=BT_SCALE))
 				if borderRightPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
-							pos =(left + xpos + ewidth - self.eventBorderWidth, top),
+							pos=(left + xpos + ewidth - self.eventBorderWidth, top),
 							size=(self.eventBorderWidth, height),
 							png=borderRightPix,
 							flags=BT_SCALE))
@@ -1709,7 +1709,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 			res.append(MultiContentEntryText(
 				pos=(5, 0),
-				size =(service_rect.width() - 15, self.listHeight),
+				size=(service_rect.width() - 15, self.listHeight),
 				font=0, flags=alignnment,
 				text=_(datestr),
 				color=foreColor,
@@ -1988,7 +1988,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 						flags=BT_SCALE))
 			if borderBottomPix is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
-						pos =(left, r1.h - self.BorderWidth),
+						pos=(left, r1.h - self.BorderWidth),
 						size=(r1.w, self.BorderWidth),
 						png=borderBottomPix,
 						flags=BT_SCALE))
@@ -2000,7 +2000,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 						flags=BT_SCALE))
 			if borderRightPix is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
-						pos =(r1.w - self.BorderWidth, left),
+						pos=(r1.w - self.BorderWidth, left),
 						size=(self.BorderWidth, r1.h),
 						png=borderRightPix,
 						flags=BT_SCALE))

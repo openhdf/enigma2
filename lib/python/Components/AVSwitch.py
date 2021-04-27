@@ -38,28 +38,28 @@ class AVSwitch:
 	rates = {} # high-level, use selectable modes.
 	modes = {}  # a list of (high-level) modes for a certain port.
 
-	rates["PAL"] = { "50Hz": {50: "pal"},
+	rates["PAL"] = {"50Hz": {50: "pal"},
 							"60Hz": {60: "pal60"},
 							"multi": {50: "pal", 60: "pal60"}}
 
-	rates["NTSC"] = { "60Hz": {60: "ntsc"}}
+	rates["NTSC"] = {"60Hz": {60: "ntsc"}}
 
-	rates["Multi"] = { "multi": {50: "pal", 60: "ntsc"}}
+	rates["Multi"] = {"multi": {50: "pal", 60: "ntsc"}}
 
-	rates["480i"] = { "60Hz": {60: "480i"}}
+	rates["480i"] = {"60Hz": {60: "480i"}}
 
-	rates["576i"] = { "50Hz": {50: "576i"}}
+	rates["576i"] = {"50Hz": {50: "576i"}}
 
-	rates["480p"] = { "60Hz": {60: "480p"}}
+	rates["480p"] = {"60Hz": {60: "480p"}}
 
-	rates["576p"] = { "50Hz": {50: "576p"}}
+	rates["576p"] = {"50Hz": {50: "576p"}}
 
-	rates["720p"] = { "50Hz": {50: "720p50"},
+	rates["720p"] = {"50Hz": {50: "720p50"},
 							"60Hz": {60: "720p"},
 							"multi": {50: "720p50", 60: "720p"},
 							"auto": {50: "720p50", 60: "720p", 24: "720p24"}}
 
-	rates["1080i"] = { "50Hz": {50: "1080i50"},
+	rates["1080i"] = {"50Hz": {50: "1080i50"},
 							"60Hz": {60: "1080i"},
 							"multi": {50: "1080i50", 60: "1080i"},
 							"auto": {50: "1080i50", 60: "1080i", 24: "1080p24"}}
