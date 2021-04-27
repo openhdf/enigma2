@@ -164,7 +164,7 @@ class TimerEditList(Screen):
 				self["actions"].actions.update({"yellow": self.removeTimerQuestion})
 				self["key_yellow"].setText(_("Stop"))
 				self.key_yellow_choice = self.STOP
-			elif ((not cur.isRunning())or cur.repeated) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
+			elif ((not cur.isRunning()) or cur.repeated) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
 				self["actions"].actions.update({"yellow": self.toggleDisabledState})
 				self["key_yellow"].setText(_("Disable"))
 				self.key_yellow_choice = self.DISABLE

@@ -988,7 +988,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 					self.scan_sat.t2mi_pid.value = eDVBFrontendParametersSatellite.T2MI_Default_Pid
 				self.createSetup()
 			elif len(cur) > 1:
-				if cur[1] in(
+				if cur[1] in (
 				self.scan_ter.bandwidth,
 				self.scan_sat.frequency,
 				self.scan_sat.inversion, self.scan_sat.symbolrate,
@@ -2030,7 +2030,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 								self.nim_enable.append(nimconfig)
 								self.list.append(getConfigListEntry(_("Scan ") + nim.slot_name + " (DVB-S) " + req_network[1], nimconfig))
 								break
-						elif req_type in ("DVB-C", "DVB-C2") and nim.config.dvbc.configMode.value != "nothing"and not tag_dvbc:
+						elif req_type in ("DVB-C", "DVB-C2") and nim.config.dvbc.configMode.value != "nothing" and not tag_dvbc:
 							if req_network in nimmanager.getCableDescription(nim.slot):
 								tag_dvbc = True
 								nimconfig = ConfigYesNo(default=tag_dvbc_default)
