@@ -14,6 +14,7 @@ from Tools.FuzzyDate import FuzzyTime
 from time import time
 from timer import TimerEntry as RealTimerEntry
 
+
 class PowerTimerEditList(Screen):
 	EMPTY = 0
 	ENABLE = 1
@@ -121,20 +122,20 @@ class PowerTimerEditList(Screen):
 		cur = self["timerlist"].getCurrent()
 		if cur:
 			if self.key_red_choice != self.DELETE:
-				self["actions"].actions.update({"red":self.removeTimerQuestion})
+				self["actions"].actions.update({"red": self.removeTimerQuestion})
 				self["key_red"].setText(_("Delete"))
 				self.key_red_choice = self.DELETE
 
 			if cur.disabled and (self.key_yellow_choice != self.ENABLE):
-				self["actions"].actions.update({"yellow":self.toggleDisabledState})
+				self["actions"].actions.update({"yellow": self.toggleDisabledState})
 				self["key_yellow"].setText(_("Enable"))
 				self.key_yellow_choice = self.ENABLE
 			elif cur.isRunning() and not cur.repeated and (self.key_yellow_choice != self.EMPTY):
 				self.removeAction("yellow")
 				self["key_yellow"].setText(" ")
 				self.key_yellow_choice = self.EMPTY
-			elif ((not cur.isRunning())or cur.repeated) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
-				self["actions"].actions.update({"yellow":self.toggleDisabledState})
+			elif ((not cur.isRunning()) or cur.repeated) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
+				self["actions"].actions.update({"yellow": self.toggleDisabledState})
 				self["key_yellow"].setText(_("Disable"))
 				self.key_yellow_choice = self.DISABLE
 		else:
