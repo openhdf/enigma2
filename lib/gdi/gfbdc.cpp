@@ -247,7 +247,7 @@ void gFBDC::exec(const gOpcode *o)
 		delete o->parm.setShowItemInfo;
 		break;
 	}
-	case gOpcode::setFlush:	
+	case gOpcode::setFlush:
 	{
 		gles_set_flush(o->parm.setFlush->enable);
 		delete o->parm.setFlush;

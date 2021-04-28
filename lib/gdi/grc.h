@@ -164,12 +164,12 @@ struct gOpcode
 			ePoint point;
 			eSize size;
 		} *setShowItemInfo;
-		
+
 		struct psetFlush
 		{
 			bool enable;
 		} *setFlush;
-		
+
 		struct psetViewInfo
 		{
 			eSize size;
