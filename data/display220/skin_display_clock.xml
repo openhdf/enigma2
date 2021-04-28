@@ -15,7 +15,7 @@
 		<color color="#000000" name="WindowTitleBackground"/>
 	</windowstyle>
 	<fonts>
-		<!-- pick a funky name for the font, so we don't conflict  -->     
+		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="90"/>
 		<font filename="verdana.ttf" name="FdLcDLight" scale="90"/>
 	</fonts>
@@ -35,7 +35,7 @@
 	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/analog_lcd_rec.png" position="0,0" size="720,576" zPosition="1" transparent="1" alphatest="on" >
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
-	</screen> 
+	</screen>
 
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="fill">
@@ -135,8 +135,8 @@
 	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/analog_lcd_rec.png" position="0,0" size="720,576" zPosition="1" transparent="1" alphatest="on" >
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
-	</screen>         
-	
+	</screen>
+
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,26" font="FdLcD;25" noWrap="1" />

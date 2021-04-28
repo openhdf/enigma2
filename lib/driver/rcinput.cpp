@@ -34,7 +34,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 
 	if (ev->type != EV_KEY)
 		return;
-		
+
 	eDebug("[eRCDeviceInputDev] %x %x %x", ev->value, ev->code, ev->type);
 
 	int km = iskeyboard ? input->getKeyboardMode() : eRCInput::kmNone;
@@ -358,7 +358,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		ev->code = KEY_SLOW;
 	}
 #endif
-	
+
 #if KEY_TEXT_TO_KEY_AUDIO
 	if (ev->code == KEY_AUDIO)
 	{
@@ -545,7 +545,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		ev->code = KEY_MODE;
 	}
 #endif
-	
+
 
 #if KEY_GUIDE_TO_KEY_EPG
 	if (ev->code == KEY_HELP)

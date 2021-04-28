@@ -176,7 +176,7 @@
     </widget>
   </screen>
 <!-- EMC-->
-	<screen name="EMCSelection_summary" position="0,0" size="400,176"> 
+	<screen name="EMCSelection_summary" position="0,0" size="400,176">
 		<widget source="parent.Service" render="Label" position="0,0" size="400,120" foregroundColor="#FFFF00" font="FdLcD;24" halign="center" valign="center" >
 			<convert type="ServiceName">NameOnly</convert>
 		</widget>
@@ -191,7 +191,7 @@
 	<screen name="EMCSelectionSummary" position="0,0" size="400,176">
 		<panel name="EMCSelection_summary" />
 	</screen>
-	<screen name="EMCMoviePlayerSummary" position="0,0" size="400,176"> 
+	<screen name="EMCMoviePlayerSummary" position="0,0" size="400,176">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="400,90" foregroundColor="#FFFF00" font="FdLcD;26" valign="top" halign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
