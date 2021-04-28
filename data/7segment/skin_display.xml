@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <skin>
-<!-- MyClockPanel -->	
+<!-- MyClockPanel -->
 	<screen name="MyClockPanel">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay"></convert>
@@ -81,12 +81,12 @@
 		<panel name="MyRecPanel" />
 	</screen>
 
-<!-- Numberzap -->    
+<!-- Numberzap -->
 	<screen name="NumberZap_summary" position="0,0" size="1,1">
 		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay">Number;nozero</convert>
 		</widget>
-	</screen> 
+	</screen>
 	<screen name="NumberZapPicon_summary" position="0,0" size="1,1">
 		<widget source="parent.number_summary" render="Label" position="0,0" size="1,1">
 			<convert type="VfdDisplay">Number;nozero</convert>
@@ -179,7 +179,7 @@
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="    ">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Nothing,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
-		</widget>	
+		</widget>
 	</screen>
 
 <!-- webradioFS  -->

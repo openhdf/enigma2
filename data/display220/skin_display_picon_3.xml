@@ -53,8 +53,8 @@
 		</widget>
 		<panel name="SummaryClockPanel" />
 	</screen>
-    
-  
+
+
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="fill">
 		<widget source="parent.ServiceEvent" render="Picon" zPosition="1" position="center,10" size="100,60" alphatest="on" >
@@ -66,12 +66,12 @@
 		<widget source="parent.ServiceEvent" render="Label" position="0,145" size="110,25" font="Regular; 25" foregroundColor="#F78181" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
-		</widget>		
+		</widget>
 		<widget source="parent.ServiceEvent" render="Progress" position="115,150" size="105,24" borderWidth="2" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
 	</screen>
-  
+
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="220,176">
 		<widget source="parent.title" render="Label" position="0,38" size="220,30" font="FdLcD;28" halign="left" noWrap="1" />
@@ -95,7 +95,7 @@
 			</widget>
 		</panel>
 	</screen>
-	
+
 	<screen name="MovieContextMenuSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
 		<widget source="selected" render="Label" position="top" size="*,32" font="FdLcD;16" />
@@ -193,7 +193,7 @@
 
 	<screen name="ChoiceBox_summary" position="fill">
 		<widget source="parent.summary_list" render="Label" position="top" size="*,181" font="FdLcD;25" halign="left" />
-    </screen>	
+    </screen>
 
 	<screen name="MessageBox_summary" position="fill">
 		<widget source="parent.Text" render="Label" position="top" size="*,95" font="FdLcD;31" halign="center" valign="center" />

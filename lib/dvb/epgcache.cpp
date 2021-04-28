@@ -1465,7 +1465,7 @@ void eEPGCache::save()
 		std::vector<char> vEPGDAT(m_filename.begin(), m_filename.end());
 		vEPGDAT.push_back('\0');
 		const char* EPGDAT = &vEPGDAT[0];
-	
+
 		/* create empty file */
 		FILE *f = fopen(EPGDAT, "wb");
 		if (!f)
@@ -1476,7 +1476,7 @@ void eEPGCache::save()
 			if (!f)
 				return;
 		}
-	
+
 		char* buf = realpath(EPGDAT, NULL);
 		if (!buf)
 		{
@@ -1484,9 +1484,9 @@ void eEPGCache::save()
 			fclose(f);
 			return;
 		}
-	
+
 		eDebug("[eEPGCache] store epg to realpath '%s'", buf);
-	
+
 		struct statfs s;
 		off64_t tmp;
 		if (statfs(buf, &s) < 0) {
@@ -1506,7 +1506,7 @@ void eEPGCache::save()
 			fclose(f);
 			return;
 		}
-	
+
 		int cnt=0;
 		unsigned int magic = 0x98765432;
 		fwrite( &magic, sizeof(int), 1, f);
@@ -3566,7 +3566,7 @@ unsigned int eEPGCache::getEpgSources()
 	return enabledSources;
 }
 
-unsigned int eEPGCache::getEpgmaxdays()  
+unsigned int eEPGCache::getEpgmaxdays()
 {
 	return maxdays;
 }
@@ -3852,7 +3852,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 					int textlen = PyString_GET_SIZE(obj);
 #else
 					int textlen = PyString_Size(obj);
-#endif              
+#endif
 					const char *ctype = casetypestr(casetype);
 					switch (querytype)
 					{
@@ -3971,7 +3971,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 							it != eventData::descriptors.end(); ++it)
 						{
 							uint8_t *data = it->second.data;
-							
+
 							eit_extended_descriptor_struct *extended_event_descriptor = (eit_extended_descriptor_struct *) ((u_char *) data);
 							if ( (u_char)extended_event_descriptor->descriptor_tag == (u_char)EXTENDED_EVENT_DESCRIPTOR ) // extended event descriptor
 							{
@@ -4052,7 +4052,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 									{
 										descr.push_back(it->first);
 									}
-								}                               
+								}
 							}
 						}
 					}
@@ -4594,9 +4594,9 @@ void eEPGCache::channel_data::GetEquiv(void)
 {
 	nb_equiv=0;
 	m_equiv.resize(100);
- 
+
  	FILE *eq=fopen(FILE_EQUIV,"r");
- 	if (eq) 
+ 	if (eq)
 	{
 		char linea[256];
 		while ((fgets(linea,256,eq)!=NULL) && (nb_equiv<100))
@@ -4632,7 +4632,7 @@ void eEPGCache::channel_data::GetEquiv(void)
 bool eEPGCache::channel_data::log_open ()
 {
 	log_file = fopen (FILE_LOG, "w");
-	 
+
 	return (log_file != NULL);
 }
 
@@ -4652,14 +4652,14 @@ void eEPGCache::channel_data::log_add (const char *message, ...)
 	now_time = time (NULL);
 	loctime = localtime (&now_time);
 	strftime (msg, 255, "%d/%m/%Y %H:%M:%S ", loctime);
-	 
+
 	if (log_file != NULL) fwrite (msg, strlen (msg), 1, log_file);
 
 	va_start (args, message);
 	vsnprintf (msg, 16*1024, message, args);
 	va_end (args);
 	msg[(16*1024)-1] = '\0';
-	 
+
 	if (log_file != NULL)
 	{
 		fwrite (msg, strlen (msg), 1, log_file);
@@ -4912,7 +4912,7 @@ void eEPGCache::channel_data::storeMHWTitle(std::map<uint32_t, mhw_title_t>::ite
 		{
 			switch (itTitle->second.mhw2_theme)  // convert to standar theme
 			{
-			case 0x0: content_id = 0x10;break;  // Cine 
+			case 0x0: content_id = 0x10;break;  // Cine
 			case 0x1: content_id = 0x40;break; // Deportes
 			case 0x2: content_id = 0x10;break; // Series
 			case 0x3: content_id = 0x50;break; // Infantiles
@@ -4958,7 +4958,7 @@ void eEPGCache::channel_data::storeMHWTitle(std::map<uint32_t, mhw_title_t>::ite
 			switch (itTitle->second.mhw2_theme)  // convert to standar theme
 			{
 			// New clasification for 7 days epg
-			case 0x0: content_id = 0x10;break;  // Cine 
+			case 0x0: content_id = 0x10;break;  // Cine
 			case 0x10: content_id = 0x10;break; // Cine
 			case 0x20: content_id = 0x10;break; // Series
 			case 0x30: content_id = 0x20;break; // Informacion
@@ -4988,7 +4988,7 @@ void eEPGCache::channel_data::storeMHWTitle(std::map<uint32_t, mhw_title_t>::ite
 
 	// Feed the data to eEPGCache::sectionRead()
 	cache->sectionRead( data, MHW, this );
-	
+
 	int i;
 	for (i=0;i<nb_equiv;i++)
 	{
@@ -5098,7 +5098,7 @@ void eEPGCache::channel_data::readMHWData(const uint8_t *data)
 		{
 			mhw_channel_name_t *channel = (mhw_channel_name_t*) &data[4 + i*record_size];
 			m_channels[i]=*channel;
-		
+
 			if (f)
 				fprintf(f,"(%s) %x:%x:%x\n",m_channels[i].name,m_channels[i].getChannelId(),
 					m_channels[i].getTransportStreamId(),m_channels[i].getNetworkId());
@@ -5620,7 +5620,7 @@ void eEPGCache::channel_data::readMHWData2(const uint8_t *data)
 									u_char mhw2_minutes = data[pos+13];
 										ndate = MjdToEpochTime(mhw2_mjd) + (((mhw2_hours&0xf0)>>4)*10+(mhw2_hours&0x0f)) * 3600 + (((mhw2_minutes&0xf0)>>4)*10+(mhw2_minutes&0x0f)) * 60;
 									edate = MjdToEpochTime(itTitle->second.mhw2_mjd)
-									+ (((itTitle->second.mhw2_hours&0xf0)>>4)*10+(itTitle->second.mhw2_hours&0x0f)) * 3600 
+									+ (((itTitle->second.mhw2_hours&0xf0)>>4)*10+(itTitle->second.mhw2_hours&0x0f)) * 3600
 									+ (((itTitle->second.mhw2_minutes&0xf0)>>4)*10+(itTitle->second.mhw2_minutes&0x0f)) * 60;
 									next_date = localtime(&ndate);
 										if (ndate > edate)
@@ -5742,7 +5742,7 @@ void eEPGCache::channel_data::readMHWData2_old(const uint8_t *data)
 			fprintf(f,"#########################################\n");
 			fprintf(f,"#\n");
 		}
-		
+
 		for (int i=0; i < num_channels; ++i)
 		{
 			mhw_channel_name_t channel;
@@ -6017,8 +6017,8 @@ void eEPGCache::channel_data::readMHWData2_old(const uint8_t *data)
 								time_t ndate, edate;
 								struct tm *next_date;
 											ndate = replay_time[n];
-								edate = MjdToEpochTime(itTitle->second.mhw2_mjd) 
-									+ (((itTitle->second.mhw2_hours&0xf0)>>4)*10+(itTitle->second.mhw2_hours&0x0f)) * 3600 
+								edate = MjdToEpochTime(itTitle->second.mhw2_mjd)
+									+ (((itTitle->second.mhw2_hours&0xf0)>>4)*10+(itTitle->second.mhw2_hours&0x0f)) * 3600
 									+ (((itTitle->second.mhw2_minutes&0xf0)>>4)*10+(itTitle->second.mhw2_minutes&0x0f)) * 60;
 								next_date = localtime(&ndate);
 								if (ndate > edate)

@@ -172,7 +172,7 @@
 		<widget source="parent.Title" render="Label" position="0,0" size="220,55" font="FdLcD;26" halign="center" valign="center" foregroundColor="red" />
 		<widget name="scan_progress" render="Progress" position="0,60" size="220,12" foregroundColor="#02c6ff" borderWidth="2" />
 		<panel name="SummaryClockPanel" />
-	</screen> 
+	</screen>
 
 <!-- EPG -->
 	<screen name="EPGExtensionsList_summary" position="0,0" size="220,176">
