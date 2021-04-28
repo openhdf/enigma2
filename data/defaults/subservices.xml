@@ -55,7 +55,7 @@
 			<ref>1:0:19:8F:9:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-	
+
 	<channelgroup name="Sky Bundesliga" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
 		<channel>
 			<name>Sky Sport Bundesliga 1</name>
@@ -98,7 +98,7 @@
 			<ref>1:0:D3:FC:3:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-	
+
 	<channelgroup name="Sky Bundesliga HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
 		<channel>
 			<name>Sky Sport Bundesliga 1 HD</name>
@@ -155,7 +155,7 @@
 			<name>Eurosport 1 Deutschland</name>
 			<ref>1:0:1:79E0:443:1:C00000:0:0:0:</ref>
 		</channel>
-		<channel>		
+		<channel>
 			<name>Eurosport 360 HD 01</name>
 			<ref>1:0:19:10E:6:85:C00000:0:0:0:</ref>
 		</channel>
@@ -192,7 +192,7 @@
 			<ref>1:0:19:104:E:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-	
+
 	<channelgroup name="Sport1" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
 		<channel>
 			<name>Sport1</name>
@@ -278,7 +278,7 @@
 			<ref>1:0:19:79:E:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-	
+
 	<channelgroup name="Blue Movie" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:time:len=75">
 		<channel>
 			<name>Blue Movie</name>
@@ -301,7 +301,7 @@
 			<ref>1:0:19:79:E:85:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-	
+
 	<channelgroup name="NDR HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
 		<channel>
 			<name>NDR Schleswig Holstein HD</name>
@@ -366,8 +366,8 @@
 			<name>WDR Bonn HD</name>
 			<ref>1:0:19:6F82:457:1:C00000:0:0:0:</ref>
 		</channel>
-	</channelgroup>	
-	
+	</channelgroup>
+
 	<channelgroup name="SWR HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
 		<channel>
 			<name>SWR Baden Würtenberg HD</name>
@@ -382,7 +382,7 @@
 			<ref>1:0:1:6F46:445:1:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-	
+
 	<channelgroup name="BR HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
 		<channel>
 			<name>BR Nord HD</name>
@@ -393,7 +393,7 @@
 			<ref>1:0:19:2855:401:1:C00000:0:0:0:</ref>
 		</channel>
 	</channelgroup>
-	
+
 	<channelgroup name="MDR HD" notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
 		<channel>
 			<name>MDR Thüringen HD</name>
@@ -505,7 +505,7 @@
 			<name>Disney Channel HD</name>
 			<ref>1:0:19:157C:41F:1:C00000:0:0:0:</ref>
 		</channel>
-		</channelgroup>	
+		</channelgroup>
 
 	<channelgroup name="Sky Sport"  notActiveShowName="Momentan kein Programm" displayPattern="chn:title:len=120">
 		<channel>
