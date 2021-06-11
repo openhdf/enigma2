@@ -1007,7 +1007,6 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 	}
 	else
 	{
-			// TODO: handle the listing itself
 		// if (ref.... == -1) .. return "... bouquets ...";
 		// could be also done in another serviceFactory (with seperate ID) to seperate actual services and lists
 			// TODO: cache
@@ -1377,6 +1376,15 @@ RESULT eDVBServicePlay::start()
 
 		type = eDVBServicePMTHandler::streamclient;
 	}
+
+#if HAVE_ALIEN5
+	if(m_is_stream || m_is_pvr)
+	{
+			eDebug("[eDVBServicePlay]start m_is_pvr %d", m_is_pvr);
+			aml_set_demux2_source();
+	}
+#endif
+
 
 	m_first_program_info = 1;
 	ePtr<iTsSource> source = createTsSource(service, packetsize);

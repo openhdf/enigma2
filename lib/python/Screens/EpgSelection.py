@@ -875,9 +875,9 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def openIMDb(self):
 		try:
-			from Plugins.Extensions.IMDb.plugin import IMDB, IMDBEPGSelection
+			from Plugins.Extensions.IMDb.plugin import IMDB
 			try:
-				cur = self['list'].getCurrent()
+				cur = self['list' + str(self.activeList)].getCurrent()
 				event = cur[0]
 				name = event.getEventName()
 			except:

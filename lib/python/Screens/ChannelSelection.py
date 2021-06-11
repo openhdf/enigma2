@@ -1656,7 +1656,7 @@ class ChannelSelectionBase(Screen):
 				if justSet:
 					addCableAndTerrestrialLater = []
 					serviceHandler = eServiceCenter.getInstance()
-					reflist = [service_types_tv, '1:7:11:0:0:0:0:0:0:0:(type == 17) || (type == 25) || (type == 134) || (type == 195)']
+					reflist = [service_types_tv, '1:7:11:0:0:0:0:0:0:0:(type == 17) || (type == 22) || (type == 25) || (type == 31) || (type == 32) || (type == 134) || (type == 195)']
 					for x in reflist:
 						ref = serviceRefAppendPath(x, 'FROM SATELLITES ORDER BY satellitePosition')
 						servicelist = serviceHandler.list(ref)
@@ -1722,7 +1722,7 @@ class ChannelSelectionBase(Screen):
 								self.servicelist.addService(uhdref, beforeCurrent=True)
 							skyref = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 211) && (name != .) ORDER BY name')
 							if skyref and self.showSatDetails and not "(type == 1)" in x:
-								skyref.setName("%s - %s" % ("Sky Deutschland 19.2E", _("Subservices")) + " (%d)" % (self.getServicesCount(skyref)))
+								skyref.setName("%s - %s" % ("19.2E Sky Deutschland", _("Subservices")) + " (%d)" % (self.getServicesCount(skyref)))
 								self.servicelist.addService(skyref)
 							hdref = eServiceReference('1:7:1:0:0:0:0:0:0:0:(type == 25) && (name != .) ORDER BY name')
 							#if hdref:
