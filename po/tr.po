@@ -461,7 +461,7 @@ msgstr "%d dak"
 
 #, fuzzy, python-format
 msgid "%d minute"
-msgid_plural "%d minuts"
+msgid_plural "%d minutes"
 msgstr[0] "%d dakika"
 msgstr[1] "%d dakika"
 

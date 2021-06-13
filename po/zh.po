@@ -445,7 +445,7 @@ msgstr "%d 分钟"
 
 #, fuzzy, python-format
 msgid "%d minute"
-msgid_plural "%d minuts"
+msgid_plural "%d minutes"
 msgstr[0] "%d menit"
 msgstr[1] "%d menit"
 
