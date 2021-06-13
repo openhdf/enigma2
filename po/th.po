@@ -437,7 +437,7 @@ msgstr "%d นาที"
 
 #, python-format
 msgid "%d minute"
-msgid_plural "%d minuts"
+msgid_plural "%d minutes"
 msgstr[0] ""
 msgstr[1] ""
 
