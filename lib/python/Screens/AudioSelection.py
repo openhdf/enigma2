@@ -425,7 +425,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		config.av.downmix_dts.save()
 
 	def setAACTranscode(self, transcode):
-		config.av.transcodeaac.setValue(transcode)
+		config.av.transcodeaac.setValue(transcode.value)
 		config.av.transcodeaac.save()
 
 	def changeMode(self, mode):
