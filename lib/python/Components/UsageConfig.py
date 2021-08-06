@@ -4,7 +4,7 @@ from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTun
 from Components.About import about
 from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, fileExists, fileCheck
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, fileExists, fileCheck, fileContains
 from boxbranding import getBoxType, getMachineBuild, getMachineName, getBrandOEM, getDisplayType
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
@@ -56,6 +56,24 @@ def InitUsageConfig():
 	config.usage.numzaptimeoutmode = ConfigSelection(default="standard", choices=[("standard", _("Standard")), ("userdefined", _("User defined")), ("off", _("off"))])
 	config.usage.numzaptimeout1 = ConfigSelectionNumber(default=3000, stepwidth=250, min=250, max=10000, wraparound=True)
 	config.usage.numzaptimeout2 = ConfigSelectionNumber(default=1000, stepwidth=250, min=250, max=10000, wraparound=True)
+	if fileContains("/etc/network/interfaces", "iface eth0 inet static") and not fileContains("/etc/network/interfaces", "iface wlan0 inet dhcp") or fileContains("/etc/network/interfaces", "iface wlan0 inet static") and fileContains("/run/ifstate", "wlan0=wlan0"):
+		config.usage.dns = ConfigSelection(default="custom", choices=[
+			("custom", _("Static IP or Custom")),
+			("google", _("Google DNS")),
+			("cloudflare", _("Cloudflare")),
+			("opendns-familyshield", _("OpenDNS FamilyShield")),
+			("opendns-home", _("OpenDNS Home"))
+		])
+	else:
+		config.usage.dns = ConfigSelection(default="dhcp-router", choices=[
+			("dhcp-router", _("DHCP Router")),
+			("custom", _("Static IP or Custom")),
+			("google", _("Google DNS")),
+			("cloudflare", _("Cloudflare")),
+			("opendns-familyshield", _("OpenDNS FamilyShield")),
+			("opendns-home", _("OpenDNS Home"))
+		])
+
 	config.usage.subnetwork = ConfigYesNo(default=True)
 	config.usage.subnetwork_cable = ConfigYesNo(default=True)
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
