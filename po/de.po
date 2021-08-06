@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-16 22:56+0200\n"
-"PO-Revision-Date: 2021-06-13 08:14+0200\n"
+"PO-Revision-Date: 2021-08-07 12:36+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3527,6 +3527,15 @@ msgstr "Netzwerkkarte konfigurieren"
 
 msgid "Configure nameservers"
 msgstr "DNS konfigurieren"
+
+msgid "Nameserver configuration"
+msgstr "Nameserver Dienst"
+
+msgid "Static IP or Custom"
+msgstr "Statische IP oder frei definiert"
+
+msgid "DHCP Router"
+msgstr "DNS über DHCP vom Router"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Einstellen auf welchen Laufwerken im Hintergrund gelöscht werden soll."
