@@ -132,6 +132,7 @@
 		<item level="1" text="Show picons in service list" description="Configure if service picons will be shown in the servicelist.">config.usage.service_icon_enable</item>
 		<item level="1" text="Service picons aspect ratio" description="Set the aspect ratio of the service picons." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_ratio</item>
 		<item level="2" text="Enable installation of HDF default picons" description="Enable automatic installations of HDF default picons">config.usage.hdfpicon</item>
+		<item level="2" text="Enable streamlinkserver to play Youtube videos" description="Enable autostart of streamlinkserver to play youtube videos inside your channellist. This install streamlinksrv package and needs a reboot!">config.usage.streamlinkserver</item>
 		<item level="1" text="Number of rows" description="This allows you change the number of rows shown.">config.usage.serviceitems_per_page</item>
 		<item level="1" text="Service number font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.servicenum_fontsize</item>
 		<item level="1" text="Service name font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.servicename_fontsize</item>
