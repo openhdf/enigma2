@@ -55,9 +55,6 @@ class pServiceEvent(object):
 	def getShortDescription(self):
 		return self.m_ShortDescriptionNow if self.now_or_next == self.NOW else self.m_ShortDescriptionNext
 
-	def getExtendedDescriptionation(self):
-		return self.m_ExtendedDescriptionNow if self.now_or_next == self.NOW else self.m_ExtendedDescriptionNext
-
 	def getExtendedDescription(self):
 		return self.m_ExtendedDescriptionNow if self.now_or_next == self.NOW else self.m_ExtendedDescriptionNext
 
