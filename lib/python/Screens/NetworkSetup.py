@@ -626,11 +626,11 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				if self.hasGatewayConfigEntry.value:
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
 
-			#if not self.dhcpConfigEntry.value:
-				#self.primaryDNSEntry = getConfigListEntry(_('Primary DNS') + " (" + _("Nameserver %d") % 1 + ")", self.manualPrimaryDNS)
-				#self.secondaryDNSEntry = getConfigListEntry(_('Secondary DNS') + " (" + _("Nameserver %d") % 2 + ")", self.manualSecondaryDNS)
-				#self.list.append(self.primaryDNSEntry)
-				#self.list.append(self.secondaryDNSEntry)
+			if not self.dhcpConfigEntry.value:
+				self.primaryDNSEntry = getConfigListEntry(_('Primary DNS') + " (" + _("Nameserver %d") % 1 + ")", self.manualPrimaryDNS)
+				self.secondaryDNSEntry = getConfigListEntry(_('Secondary DNS') + " (" + _("Nameserver %d") % 2 + ")", self.manualSecondaryDNS)
+				self.list.append(self.primaryDNSEntry)
+				self.list.append(self.secondaryDNSEntry)
 
 			havewol = False
 			if SystemInfo["WakeOnLAN"] and not getBoxType() in ('et10000', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbultraueh', 'gbipbox', 'gbquad', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
