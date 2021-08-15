@@ -1,0 +1,55 @@
+#NAME Streams (Radio)
+#SERVICE 1:64:1:0:0:0:0:0:0:0:
+#DESCRIPTION Update 11.08.2021 by Team www.hdfreaks.cc
+#SERVICE 1:64:D:0:0:0:0:0:0:0::
+#DESCRIPTION Radio R.SA Sachsen
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/rsa-live/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA Livestream
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/maxis/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA Maxis Maximal
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/classicrock/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA Classic Rock 
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/rsa-oldies/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA Oldies
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/rsa-rockzirkus/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA Rockzirkus
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/rsa-ostrock/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA Ostrock
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/rsa-beatles/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA Beatles Radio
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/disco/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA Disco
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/80erdisco/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA 80er Disco
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/80erhits/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA 80er Hits
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/60er/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA 60er Oldies
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/70er/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA 70er Oldies
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/schlager/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA 80er Schlager
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.rsa-sachsen.de/country/mp3-192/homepage/?mode=preroll
+#DESCRIPTION R.SA 80er Country
+#SERVICE 1:64:D:0:0:0:0:0:0:0::
+#DESCRIPTION Radio 80s80s
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.80s80s.de/web/mp3-192/homepage/?mode=preroll
+#DESCRIPTION 80s80s Real
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.80s80s.de/rock/mp3-192/homepage/?mode=preroll
+#DESCRIPTION 80s80s Rock
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.80s80s.de/dm/mp3-192/homepage/?mode=preroll
+#DESCRIPTION 80s80s DM
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.80s80s.de/wave/mp3-192/homepage/?mode=preroll
+#DESCRIPTION 80s80s Wave
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.80s80s.de/party/mp3-192/homepage/?mode=preroll
+#DESCRIPTION 80s80s Party
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.80s80s.de/love/mp3-192/homepage/?mode=preroll
+#DESCRIPTION 80s80s Love
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.80s80s.de/ndw/mp3-192/homepage/?mode=preroll
+#DESCRIPTION 80s80s NDW
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.80s80s.de/100/mp3-192/homepage/?mode=preroll
+#DESCRIPTION 80s80s Prince
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.80s80s.de/mj/mp3-192/homepage/?mode=preroll
+#DESCRIPTION 80s80s Michael Jackson
+#SERVICE 4097:0:1:0:0:0:0:0:0:0:https%3a//streams.80s80s.de/italohits/mp3-192/homepage/?mode=preroll
+#DESCRIPTION 80s80s Italo Disco
