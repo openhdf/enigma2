@@ -133,6 +133,7 @@
 		<item level="1" text="Service picons aspect ratio" description="Set the aspect ratio of the service picons." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_ratio</item>
 		<item level="2" text="Enable installation of HDF default picons" description="Enable automatic installations of HDF default picons">config.usage.hdfpicon</item>
 		<item level="2" text="Enable streamlinkserver to play Youtube videos" description="Enable autostart of streamlinkserver to play youtube videos inside your channellist. This install streamlinksrv package and needs a reboot!">config.usage.streamlinkserver</item>
+		<item level="2" text="Enable installation of ServiceApp to support 5001 and 5002 streams" description="This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!">config.usage.serviceapp</item>
 		<item level="1" text="Number of rows" description="This allows you change the number of rows shown.">config.usage.serviceitems_per_page</item>
 		<item level="1" text="Service number font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.servicenum_fontsize</item>
 		<item level="1" text="Service name font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.servicename_fontsize</item>
@@ -272,6 +273,7 @@
 		<item level="2" text="Show recording symbol depending on recording type" description="Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh).">config.recording.show_rec_symbol_for_rec_types</item>
 		<item level="2" text="Show warning before box restart based on recording type" description="Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI.">config.recording.warn_box_restart_rec_types</item>
 		<item level="2" text="Enable streamlinkserver to play Youtube videos" description="Enable autostart of streamlinkserver to play youtube videos inside your channellist. This install streamlinksrv package and needs a reboot!">config.usage.streamlinkserver</item>
+		<item level="2" text="Enable installation of ServiceApp to support 5001 and 5002 streams" description="This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!">config.usage.serviceapp</item>
 		<item level="2" text="Install ClearMem-Lite to play records without dropouts" description="This option install the plugin ClearMem-Lite. After restart Enigma2, you can activate this plugin under extensions. Set the option 'Auto timeout' to 10 seconds and try to play your recordings again. This plugin is needed for Gigablue Quad+ STB.">config.usage.cleanmemlite</item>
 	</setup>
 	<setup key="HDMIRecord" title="HDMI Recording">
