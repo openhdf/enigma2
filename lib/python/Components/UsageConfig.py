@@ -589,6 +589,7 @@ def InitUsageConfig():
 	config.epg.opentv = ConfigYesNo(default=True)
 	config.epg.saveepg = ConfigYesNo(default=True)
 	config.usage.streamlinkserver = ConfigYesNo(default=False)
+	config.usage.serviceapp = ConfigYesNo(default=False)
 	config.usage.cleanmemlite = ConfigYesNo(default=False)
 	config.usage.hdfpicon = ConfigYesNo(default=True)
 
