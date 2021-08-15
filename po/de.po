@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-16 22:56+0200\n"
-"PO-Revision-Date: 2021-08-07 12:36+0200\n"
+"PO-Revision-Date: 2021-08-15 12:10+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -5299,6 +5299,12 @@ msgstr ""
 
 msgid "Enable streamlinkserver to play Youtube videos"
 msgstr "Aktiviere den Streamlinkserver für YouTube Videos"
+
+msgid "Enable installation of ServiceApp to support 5001 and 5002 streams"
+msgstr "Aktiviere die ServiceApp für 5001 und 5002 Streams"
+
+msgid "This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!"
+msgstr "Diese Option installiert die aktuelle ServiceApp vom Feed und entfernt die ServiceHisilicon, wenn installiert. Die Installation der ServiceApp braucht einen Neustart!"
 
 msgid "Enable teletext caching"
 msgstr "Videotext Cache aktivieren"
