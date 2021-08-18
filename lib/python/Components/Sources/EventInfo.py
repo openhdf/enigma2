@@ -1,6 +1,6 @@
 from Components.PerServiceDisplay import PerServiceBase
 from Components.Element import cached
-from enigma import iPlayableService, iServiceInformation, eServiceReference, eEPGCache
+from enigma import iPlayableService, iServiceInformation, eServiceReference, eEPGCache, eTimer
 from Source import Source
 
 # Fake eServiceEvent to fill Event_Now and Event_Next in Infobar for Streams
@@ -51,7 +51,7 @@ class pServiceEvent(object):
 
 	def getEventName(self):
 		return self.m_EventNameNow if self.now_or_next == self.NOW else self.m_EventNameNext
-	
+
 	def getShortDescription(self):
 		return self.m_ShortDescriptionNow if self.now_or_next == self.NOW else self.m_ShortDescriptionNext
 
@@ -91,6 +91,11 @@ class EventInfo(PerServiceBase, Source, object):
 		self.now_or_next = now_or_next
 		self.epgQuery = eEPGCache.getInstance().lookupEventTime
 
+		self.newEvent = ""
+		self.oldEvent = ""
+		self.eventtimer = eTimer()
+		self.eventtimer.callback.append(self.refresh)
+
 	@cached
 	def getEvent(self):
 		service = self.navcore.getCurrentService()
@@ -103,6 +108,8 @@ class EventInfo(PerServiceBase, Source, object):
 				if not ret and refstr.split(':')[0] in ['4097', '5001', '5002', '5003']: # No EPG Try to get Meta
 					ev = pServiceEvent(info, self.now_or_next)
 					if ev.getEventName:
+						self.newEvent = ev
+						self.eventtimer.start(2000, True)
 						return ev
 		return ret
 
@@ -112,6 +119,12 @@ class EventInfo(PerServiceBase, Source, object):
 		if what == iPlayableService.evEnd:
 			self.changed((self.CHANGED_CLEAR,))
 		else:
+			self.changed((self.CHANGED_ALL,))
+
+	def refresh(self):
+		if self.newEvent != self.oldEvent:
+			self.eventtimer.stop()
+			self.oldEvent = self.newEvent
 			self.changed((self.CHANGED_ALL,))
 
 	def destroy(self):
