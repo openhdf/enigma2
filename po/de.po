@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-16 22:56+0200\n"
-"PO-Revision-Date: 2021-08-15 12:10+0200\n"
+"PO-Revision-Date: 2021-08-22 19:32+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4925,7 +4925,13 @@ msgid "Download .NFI-files for USB-flasher"
 msgstr ".NFI-Files für USB-Flasher runterladen"
 
 msgid "Download plugins"
-msgstr "Plugins installieren"
+msgstr "Installieren"
+
+msgid "Download Plugins"
+msgstr "Installieren"
+
+msgid "Lock Plugins"
+msgstr "Sperren"
 
 msgid "Downloadable plugins"
 msgstr "Plugins herunterladen"
@@ -10997,7 +11003,10 @@ msgid "Remove items from trash can after (days)"
 msgstr "Lösche Mülleimer nach (Tagen)"
 
 msgid "Remove plugins"
-msgstr "Plugins löschen"
+msgstr "Löschen"
+
+msgid "Remove Plugins"
+msgstr "Löschen"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Entfernt Texte für Hörgeschädigte aus externen Untertiteln (z.B. Beschreibungen von Geräuschen)."
