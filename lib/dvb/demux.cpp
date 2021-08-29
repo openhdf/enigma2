@@ -135,13 +135,6 @@ RESULT eDVBDemux::setSourcePVR(int pvrnum)
 	if (fd < 0) return -1;
 	int n = m_dvr_source_offset + pvrnum;
 	int res = ::ioctl(fd, DMX_SET_SOURCE, &n);
-	if (res && pvrnum)
-	{
-		eDebug("[eDVBDemux] DMX_SET_SOURCE dvr%d failed: %m falling back to dvr0", pvrnum);
-		pvrnum = 0;
-		n = m_dvr_source_offset + pvrnum;
-		res = ::ioctl(fd, DMX_SET_SOURCE, &n);
-	}
 	if (res)
 		eDebug("[eDVBDemux] DMX_SET_SOURCE dvr%d failed: %m", pvrnum);
 	source = -1;
@@ -451,9 +444,10 @@ eDVBRecordFileThread::eDVBRecordFileThread(int packetsize, int bufferCount, int 
 	 * can't handle that and segfaults. If you want the "normal" behaviour, just use -1 (or leave it out
 	 * completely, the default declaration).
 	 */
+	// the buffer should be higher than the hardware buffer size, accounts for RTSP header
 	eFilePushThreadRecorder(
-		/*buffer*/ (unsigned char*) ::mmap(NULL, (buffersize > 0) ? (buffersize * bufferCount) : (bufferCount * packetsize * 1024), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0),
-		/*buffersize*/ (buffersize > 0) ? buffersize : (packetsize * 1024)),
+		/*buffer*/ (unsigned char*) ::mmap(NULL, (buffersize > 0) ? (buffersize * bufferCount) : (bufferCount * packetsize * 1050), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0),
+		/*buffersize*/ (buffersize > 0) ? buffersize : (packetsize * 1050)),
 	 m_ts_parser(packetsize),
 	 m_current_offset(0),
 	 m_fd_dest(-1),
@@ -511,12 +505,8 @@ int eDVBRecordFileThread::AsyncIO::wait()
 {
 	if (aio.aio_buf != NULL) // Only if we had a request outstanding
 	{
-		int res;
-		while (1)
+		while (aio_error(&aio) == EINPROGRESS)
 		{
-			res = aio_error(&aio);
-			if (res != EINPROGRESS)
-				break;
 			eDebug("[eDVBRecordFileThread] Waiting for I/O to complete");
 			struct aiocb* paio = &aio;
 			int r = aio_suspend(&paio, 1, NULL);
@@ -526,20 +516,11 @@ int eDVBRecordFileThread::AsyncIO::wait()
 				return -1;
 			}
 		}
-		if (res == 0 || res == ECANCELED)
+		int r = aio_return(&aio);
+		aio.aio_buf = NULL;
+		if (r < 0)
 		{
-			__ssize_t r = aio_return(&aio);
-			aio.aio_buf = NULL;
-			if (r < 0)
-			{
-				eWarning("[eDVBRecordFileThread] wait: aio_return returned failure: %m");
-				return -1;
-			}
-		}
-		else //res > 0
-		{
-			aio.aio_buf = NULL;
-			eWarning("[eDVBRecordFileThread] wait: aio_return returned failure: %m");
+			eDebug("[eDVBRecordFileThread] wait: aio_return returned failure: %m");
 			return -1;
 		}
 	}
@@ -559,34 +540,23 @@ int eDVBRecordFileThread::AsyncIO::poll()
 {
 	if (aio.aio_buf == NULL)
 		return 0;
-	int res = aio_error(&aio);
-	if (res == EINPROGRESS)
+	if (aio_error(&aio) == EINPROGRESS)
 	{
 		return 1;
 	}
-	else if (res > 0)
+	int r = aio_return(&aio);
+	aio.aio_buf = NULL;
+	if (r < 0)
 	{
-		aio.aio_buf = NULL;
-		eWarning("[eDVBRecordFileThread] poll: aio_return returned failure: %m");
+		eDebug("[eDVBRecordFileThread] poll: aio_return returned failure: %m");
 		return -1;
 	}
-	else if (res == 0 || res == ECANCELED)
-	{
-		__ssize_t r = aio_return(&aio);
-		aio.aio_buf = NULL;
-		if (r < 0)
-		{
-			eDebug("[eDVBRecordFileThread] wait: aio_return returned failure: %m");
-			return -1;
-		}
-	}
-	aio.aio_buf = NULL;
 	return 0;
 }
 
 int eDVBRecordFileThread::AsyncIO::start(int fd, off_t offset, size_t nbytes, void* buffer)
 {
-	memset(&aio, 0, sizeof(aiocb)); // Documentation says "zero it before call".
+	memset(&aio, 0, sizeof(struct aiocb)); // Documentation says "zero it before call".
 	aio.aio_fildes = fd;
 	aio.aio_nbytes = nbytes;
 	aio.aio_offset = offset;   // Offset can be omitted with O_APPEND
