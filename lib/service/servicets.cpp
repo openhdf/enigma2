@@ -182,6 +182,7 @@ int eServiceTS::openHttpConnection(std::string url)
 	if (connect(fd, (sockaddr*)&addr, sizeof(addr)) == -1) {
 		std::string msg = "connect failed for: " + url;
 		eDebug(msg.c_str());
+		close(fd);
 		return -1;
 	}
 
@@ -192,7 +193,10 @@ int eServiceTS::openHttpConnection(std::string url)
 	request.append("Connection: close\n");
 	request.append("\n");
 	//eDebug(request.c_str());
-	write(fd, request.c_str(), request.length());
+	if (write(fd, request.c_str(), request.length()) == -1)
+	{
+		eDebug("[eServiceTS] failed to write response %m");
+	}
 
 	int rc;
 	size_t buflen = 1000;
