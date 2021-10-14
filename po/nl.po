@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 22:56+0200\n"
+"POT-Creation-Date: 2021-10-14 22:48+0200\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
@@ -3400,6 +3400,9 @@ msgstr "Sluit dialoog"
 msgid "Close title selection"
 msgstr "Sluit titelselectie"
 
+msgid "Cloudflare"
+msgstr ""
+
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
@@ -4207,6 +4210,9 @@ msgstr "DAC"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DHCP Router"
+msgstr ""
 
 msgid "DLNA support"
 msgstr "DLNA support"
@@ -5336,6 +5342,9 @@ msgstr ""
 msgid "Enable installation of HDF default picons"
 msgstr ""
 
+msgid "Enable installation of ServiceApp to support 5001 and 5002 streams"
+msgstr ""
+
 #, fuzzy
 msgid "Enable intro screen"
 msgstr "Auto Fastscan inschakelen"
@@ -6429,6 +6438,9 @@ msgid "Go up the list"
 msgstr "Ga naar boven in de lijst"
 
 msgid "Gold"
+msgstr ""
+
+msgid "Google DNS"
 msgstr ""
 
 msgid "Goto"
@@ -8746,6 +8758,10 @@ msgstr "Nameserver"
 msgid "Nameserver %d"
 msgstr "Nameserver %d"
 
+#, fuzzy
+msgid "Nameserver configuration"
+msgstr "verlaat nameserver configuratie"
+
 msgid "Nameserver settings"
 msgstr "Nameserver instellingen"
 
@@ -9430,6 +9446,13 @@ msgstr ""
 #, fuzzy
 msgid "Open/Media long"
 msgstr "Lang-rood"
+
+msgid "OpenDNS FamilyShield"
+msgstr ""
+
+#, fuzzy
+msgid "OpenDNS Home"
+msgstr "Voeg autotimer toe"
 
 msgid "OpenHDF"
 msgstr ""
@@ -13844,6 +13867,9 @@ msgstr ""
 msgid "Starting on"
 msgstr "Start op"
 
+msgid "Static IP or Custom"
+msgstr ""
+
 msgid "Status"
 msgstr "Status"
 
@@ -15109,6 +15135,9 @@ msgstr "Deze instelling bepaalt de video output (of resolutie)"
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Deze optie stelt de schermresolutie in de PC-modus in."
 
+msgid "This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!"
+msgstr ""
+
 msgid "This option install the plugin ClearMem-Lite. After restart Enigma2, you can activate this plugin under extensions. Set the option 'Auto timeout' to 10 seconds and try to play your recordings again. This plugin is needed for Gigablue Quad+ STB."
 msgstr ""
 
@@ -16157,9 +16186,6 @@ msgid "Use MHW EPG information when it is available."
 msgstr "Gebruik MHW EPG informatie indien beschikbaar."
 
 msgid "Use MP (mediaportal) files over Ethernet"
-msgstr ""
-
-msgid "Use Manual dns-nameserver"
 msgstr ""
 
 msgid "Use Netmed EPG information when it is available."
