@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 22:56+0200\n"
+"POT-Creation-Date: 2021-10-14 22:48+0200\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlac/TimoJ\n"
@@ -3668,6 +3668,9 @@ msgstr "Sulje valinta"
 msgid "Close title selection"
 msgstr "Sulje otsikon valinta"
 
+msgid "Cloudflare"
+msgstr ""
+
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
@@ -4536,6 +4539,9 @@ msgstr "DAC"
 
 msgid "DHCP"
 msgstr "DCHP"
+
+msgid "DHCP Router"
+msgstr ""
 
 msgid "DLNA support"
 msgstr "DLNA tuki"
@@ -5796,6 +5802,9 @@ msgstr ""
 msgid "Enable installation of HDF default picons"
 msgstr ""
 
+msgid "Enable installation of ServiceApp to support 5001 and 5002 streams"
+msgstr ""
+
 #, fuzzy
 msgid "Enable intro screen"
 msgstr "Ota käyttöön autom. pikahaku"
@@ -6972,6 +6981,9 @@ msgid "Go up the list"
 msgstr "Mene luettelossa ylöspäin"
 
 msgid "Gold"
+msgstr ""
+
+msgid "Google DNS"
 msgstr ""
 
 msgid "Goto"
@@ -9492,6 +9504,11 @@ msgid "Nameserver %d"
 msgstr "Nimipalvelin %d"
 
 #
+#, fuzzy
+msgid "Nameserver configuration"
+msgstr "Lopeta nimipalvelimen määritys"
+
+#
 msgid "Nameserver settings"
 msgstr "Nimipalvelimen asetukset"
 
@@ -10249,6 +10266,13 @@ msgstr ""
 #, fuzzy
 msgid "Open/Media long"
 msgstr "Pitkä punainen"
+
+msgid "OpenDNS FamilyShield"
+msgstr ""
+
+#, fuzzy
+msgid "OpenDNS Home"
+msgstr "Lisää automaattiajastus"
 
 msgid "OpenHDF"
 msgstr ""
@@ -15130,6 +15154,9 @@ msgstr ""
 msgid "Starting on"
 msgstr "Alkaen"
 
+msgid "Static IP or Custom"
+msgstr ""
+
 msgid "Status"
 msgstr "Tila"
 
@@ -16487,6 +16514,9 @@ msgstr "Tämä asetus määrittää video-ulostulon tilan (tai resoluution)."
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Tämä asetus määrittää näytön resoluution PC-ulostulotilassa."
 
+msgid "This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!"
+msgstr ""
+
 msgid "This option install the plugin ClearMem-Lite. After restart Enigma2, you can activate this plugin under extensions. Set the option 'Auto timeout' to 10 seconds and try to play your recordings again. This plugin is needed for Gigablue Quad+ STB."
 msgstr ""
 
@@ -17628,9 +17658,6 @@ msgid "Use MHW EPG information when it is available."
 msgstr "Käytä MHW-ohjelmaoppaan tietoja, jos saatavilla."
 
 msgid "Use MP (mediaportal) files over Ethernet"
-msgstr ""
-
-msgid "Use Manual dns-nameserver"
 msgstr ""
 
 msgid "Use Netmed EPG information when it is available."

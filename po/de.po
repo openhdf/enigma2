@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 22:56+0200\n"
+"POT-Creation-Date: 2021-10-14 22:48+0200\n"
 "PO-Revision-Date: 2021-10-05 12:16+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
@@ -3379,6 +3379,9 @@ msgstr "Dialog schließen"
 msgid "Close title selection"
 msgstr "Titelauswahl schließen"
 
+msgid "Cloudflare"
+msgstr ""
+
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
@@ -3527,15 +3530,6 @@ msgstr "Netzwerkkarte konfigurieren"
 
 msgid "Configure nameservers"
 msgstr "DNS konfigurieren"
-
-msgid "Nameserver configuration"
-msgstr "Nameserver Dienst"
-
-msgid "Static IP or Custom"
-msgstr "Statische IP oder frei definiert"
-
-msgid "DHCP Router"
-msgstr "DNS über DHCP vom Router"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Einstellen auf welchen Laufwerken im Hintergrund gelöscht werden soll."
@@ -4164,6 +4158,9 @@ msgstr "DAC"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DHCP Router"
+msgstr "DNS über DHCP vom Router"
 
 msgid "DLNA support"
 msgstr "DLNA-Unterstützung"
@@ -4927,12 +4924,6 @@ msgstr ".NFI-Files für USB-Flasher runterladen"
 msgid "Download plugins"
 msgstr "Installieren"
 
-msgid "Download Plugins"
-msgstr "Installieren"
-
-msgid "Lock Plugins"
-msgstr "Sperren"
-
 msgid "Downloadable plugins"
 msgstr "Plugins herunterladen"
 
@@ -5282,6 +5273,9 @@ msgstr "Aktiviere Infobar Ausblendung"
 msgid "Enable installation of HDF default picons"
 msgstr "Aktiviere Installation der HDF Default Picons"
 
+msgid "Enable installation of ServiceApp to support 5001 and 5002 streams"
+msgstr "Aktiviere die ServiceApp für 5001 und 5002 Streams"
+
 msgid "Enable intro screen"
 msgstr "Begrüßungsbildschirm aktivieren"
 
@@ -5305,12 +5299,6 @@ msgstr ""
 
 msgid "Enable streamlinkserver to play Youtube videos"
 msgstr "Aktiviere den Streamlinkserver für YouTube Videos"
-
-msgid "Enable installation of ServiceApp to support 5001 and 5002 streams"
-msgstr "Aktiviere die ServiceApp für 5001 und 5002 Streams"
-
-msgid "This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!"
-msgstr "Diese Option installiert die aktuelle ServiceApp vom Feed und entfernt die ServiceHisilicon, wenn installiert. Die Installation der ServiceApp braucht einen Neustart!"
 
 msgid "Enable teletext caching"
 msgstr "Videotext Cache aktivieren"
@@ -6365,6 +6353,9 @@ msgid "Go up the list"
 msgstr "In der Liste rauf gehen"
 
 msgid "Gold"
+msgstr ""
+
+msgid "Google DNS"
 msgstr ""
 
 msgid "Goto"
@@ -8627,6 +8618,9 @@ msgstr "DNS"
 msgid "Nameserver %d"
 msgstr "DNS %d"
 
+msgid "Nameserver configuration"
+msgstr "Nameserver Dienst"
+
 msgid "Nameserver settings"
 msgstr "DNS Einstellungen"
 
@@ -9313,6 +9307,13 @@ msgstr "Open/Media lang"
 
 msgid "Open/Media long"
 msgstr "Open/Media lang"
+
+msgid "OpenDNS FamilyShield"
+msgstr ""
+
+#, fuzzy
+msgid "OpenDNS Home"
+msgstr "Öffnet den AutoTimer"
 
 #, fuzzy
 msgid "OpenHDF"
@@ -11003,9 +11004,6 @@ msgid "Remove items from trash can after (days)"
 msgstr "Lösche Mülleimer nach (Tagen)"
 
 msgid "Remove plugins"
-msgstr "Löschen"
-
-msgid "Remove Plugins"
 msgstr "Löschen"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
@@ -13540,6 +13538,9 @@ msgstr ""
 msgid "Starting on"
 msgstr "Beginnend ab"
 
+msgid "Static IP or Custom"
+msgstr "Statische IP oder frei definiert"
+
 msgid "Status"
 msgstr "Aktiviere die Stream Puffer Status Anzeige"
 
@@ -14780,6 +14781,9 @@ msgstr "Diese Option erlaubt es den Videoausgang oder die Bildauflösung einzust
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Diese Option erlaubt es 3D Surround Sound zu aktivieren."
 
+msgid "This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!"
+msgstr "Diese Option installiert die aktuelle ServiceApp vom Feed und entfernt die ServiceHisilicon, wenn installiert. Die Installation der ServiceApp braucht einen Neustart!"
+
 msgid "This option install the plugin ClearMem-Lite. After restart Enigma2, you can activate this plugin under extensions. Set the option 'Auto timeout' to 10 seconds and try to play your recordings again. This plugin is needed for Gigablue Quad+ STB."
 msgstr "Diese Option installiert das Plugin ClearMem-Lite. Nach einem Enigma2 Neustart kann es unter Erweiterungen aktiviert werden. Im Plugin die Option 'Auto timeout' auf 10 Sekunden stellen und die Wiedergabe der Aufnahmen testen. Dieses Plugin wird für die Gigablue Quad+ benötigt."
 
@@ -15797,9 +15801,6 @@ msgstr "Benutze MHW EPG-Informationen, wenn sie vorhanden sind."
 
 msgid "Use MP (mediaportal) files over Ethernet"
 msgstr ""
-
-msgid "Use Manual dns-nameserver"
-msgstr "DNS-Server manuell einstellen"
 
 msgid "Use Netmed EPG information when it is available."
 msgstr "Benutze NetMed EPG-Informationen, wenn sie vorhanden sind."

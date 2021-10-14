@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 22:56+0200\n"
+"POT-Creation-Date: 2021-10-14 22:48+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -3399,6 +3399,9 @@ msgstr "Sulge aken"
 msgid "Close title selection"
 msgstr "Sulge pealkirja valik"
 
+msgid "Cloudflare"
+msgstr ""
+
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
@@ -4207,6 +4210,9 @@ msgstr "DAC"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DHCP Router"
+msgstr ""
 
 msgid "DLNA support"
 msgstr "DLNA tugi"
@@ -5334,6 +5340,9 @@ msgstr ""
 msgid "Enable installation of HDF default picons"
 msgstr ""
 
+msgid "Enable installation of ServiceApp to support 5001 and 5002 streams"
+msgstr ""
+
 #, fuzzy
 msgid "Enable intro screen"
 msgstr "Luba automaatne kiirotsing"
@@ -6424,6 +6433,9 @@ msgid "Go up the list"
 msgstr "Liigu nimekirjas üles"
 
 msgid "Gold"
+msgstr ""
+
+msgid "Google DNS"
 msgstr ""
 
 msgid "Goto"
@@ -8736,6 +8748,10 @@ msgstr "Nimeserver"
 msgid "Nameserver %d"
 msgstr "Nimeserver %d"
 
+#, fuzzy
+msgid "Nameserver configuration"
+msgstr "Välju nimeserverite seadistusest"
+
 msgid "Nameserver settings"
 msgstr "Nimeserveri seaded"
 
@@ -9418,6 +9434,13 @@ msgstr ""
 #, fuzzy
 msgid "Open/Media long"
 msgstr "PUNANE pikk"
+
+msgid "OpenDNS FamilyShield"
+msgstr ""
+
+#, fuzzy
+msgid "OpenDNS Home"
+msgstr "Lisa autotaimer"
 
 msgid "OpenHDF"
 msgstr ""
@@ -13820,6 +13843,9 @@ msgstr ""
 msgid "Starting on"
 msgstr "Alates"
 
+msgid "Static IP or Custom"
+msgstr ""
+
 msgid "Status"
 msgstr "Olek"
 
@@ -15087,6 +15113,9 @@ msgstr "See valik määrab väljundi ekraanilahutuse"
 msgid "This option configures you can set Auto Volume Level."
 msgstr "See valik määrab ekraani lahutuse PC väljundi režiimis."
 
+msgid "This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!"
+msgstr ""
+
 msgid "This option install the plugin ClearMem-Lite. After restart Enigma2, you can activate this plugin under extensions. Set the option 'Auto timeout' to 10 seconds and try to play your recordings again. This plugin is needed for Gigablue Quad+ STB."
 msgstr ""
 
@@ -16123,9 +16152,6 @@ msgid "Use MHW EPG information when it is available."
 msgstr "MHW EPG kasutamine, kui see on saadaval."
 
 msgid "Use MP (mediaportal) files over Ethernet"
-msgstr ""
-
-msgid "Use Manual dns-nameserver"
 msgstr ""
 
 msgid "Use Netmed EPG information when it is available."

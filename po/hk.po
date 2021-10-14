@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 22:56+0200\n"
+"POT-Creation-Date: 2021-10-14 22:48+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -3410,6 +3410,9 @@ msgstr ""
 msgid "Close title selection"
 msgstr "關閉標題選項"
 
+msgid "Cloudflare"
+msgstr ""
+
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
@@ -4200,6 +4203,9 @@ msgstr ""
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DHCP Router"
+msgstr ""
 
 #, fuzzy
 msgid "DLNA support"
@@ -5340,6 +5346,9 @@ msgstr ""
 msgid "Enable installation of HDF default picons"
 msgstr "預設頻道清單已經安裝完成。"
 
+msgid "Enable installation of ServiceApp to support 5001 and 5002 streams"
+msgstr ""
+
 #, fuzzy
 msgid "Enable intro screen"
 msgstr "不能創建symlink!"
@@ -6427,6 +6436,9 @@ msgid "Go up the list"
 msgstr ""
 
 msgid "Gold"
+msgstr ""
+
+msgid "Google DNS"
 msgstr ""
 
 msgid "Goto"
@@ -8775,6 +8787,10 @@ msgstr "DNS伺服器"
 msgid "Nameserver %d"
 msgstr "DNS %d"
 
+#, fuzzy
+msgid "Nameserver configuration"
+msgstr "調諧器配置"
+
 msgid "Nameserver settings"
 msgstr "DNS設定"
 
@@ -9462,6 +9478,13 @@ msgstr ""
 
 msgid "Open/Media long"
 msgstr ""
+
+msgid "OpenDNS FamilyShield"
+msgstr ""
+
+#, fuzzy
+msgid "OpenDNS Home"
+msgstr "導入自動計時器"
 
 msgid "OpenHDF"
 msgstr ""
@@ -13891,6 +13914,9 @@ msgstr ""
 msgid "Starting on"
 msgstr "開始"
 
+msgid "Static IP or Custom"
+msgstr ""
+
 #, fuzzy
 msgid "Status"
 msgstr "狀態:"
@@ -15116,6 +15142,9 @@ msgstr ""
 msgid "This option configures you can set Auto Volume Level."
 msgstr ""
 
+msgid "This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!"
+msgstr ""
+
 msgid "This option install the plugin ClearMem-Lite. After restart Enigma2, you can activate this plugin under extensions. Set the option 'Auto timeout' to 10 seconds and try to play your recordings again. This plugin is needed for Gigablue Quad+ STB."
 msgstr ""
 
@@ -16150,9 +16179,6 @@ msgid "Use MHW EPG information when it is available."
 msgstr ""
 
 msgid "Use MP (mediaportal) files over Ethernet"
-msgstr ""
-
-msgid "Use Manual dns-nameserver"
 msgstr ""
 
 msgid "Use Netmed EPG information when it is available."
