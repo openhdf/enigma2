@@ -12,7 +12,7 @@ jobs:
       CXX: g++-<< parameters.CC >>
       PY: << parameters.PYTHON >>
     docker:
-      - image: cimg/base:stable-18.04
+      - image: cimg/base:stable-20.04
     resource_class: small
     steps:
       - run:
