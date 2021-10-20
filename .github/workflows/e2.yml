@@ -44,7 +44,9 @@ jobs:
       run: |
         sudo add-apt-repository universe
         sudo apt update
-        sudo apt install python2.7-dev python-pip
+        sudo apt install python2.7-dev
+        curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
+        sudo python2 get-pip.py
         pip install --upgrade pip tox
         python -V
     - name: Getting gstreamer
