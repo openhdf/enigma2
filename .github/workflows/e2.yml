@@ -35,7 +35,7 @@ jobs:
       if: ${{ matrix.python == '3.9' }}
       run: |
         sudo apt install python3.9-dev python3-pip
-        sudo unlink /usr/bin/python
+        sudo unlink /usr/bin/python || true
         sudo ln -s /usr/bin/python3.9 /usr/bin/python
         python -m pip install --upgrade pip tox six
         python -V

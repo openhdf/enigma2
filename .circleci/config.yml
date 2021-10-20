@@ -40,7 +40,7 @@ jobs:
                 name: Installing Python 3.9
                 command: |
                   sudo apt install python3.9-dev python3-pip python3-six
-                  sudo unlink /usr/bin/python
+                  sudo unlink /usr/bin/python || true
                   sudo ln -s /usr/bin/python3.9 /usr/bin/python
                   python -m pip install --upgrade pip tox six
                   python -V
