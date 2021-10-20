@@ -17,7 +17,7 @@ matrix:
             - build-essential
             - automake
             - libtool
-            - python3.8-dev
+            - python3.9-dev
             - zlib1g-dev
             - gettext
             - swig
@@ -31,9 +31,9 @@ matrix:
             - libjpeg-turbo8-dev
             - libgif-dev
       env:
-        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8 && PYTHON=3.8"
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8 && PYTHON=3.9"
       before_install:
-        - pyenv global 3.8
+        - pyenv global 3.9
         - pip3 install --upgrade pip tox six
     - os: linux
       addons:
@@ -74,7 +74,7 @@ matrix:
             - build-essential
             - automake
             - libtool
-            - python3.8-dev
+            - python3.9-dev
             - zlib1g-dev
             - gettext
             - swig
@@ -88,9 +88,9 @@ matrix:
             - libjpeg-turbo8-dev
             - libgif-dev
       env:
-        - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10 && PYTHON=3.8"
+        - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10 && PYTHON=3.9"
       before_install:
-        - pyenv global 3.8
+        - pyenv global 3.9
         - pip3 install --upgrade pip tox six
     - os: linux
       addons:

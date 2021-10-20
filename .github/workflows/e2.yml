@@ -12,7 +12,7 @@ jobs:
       matrix:
         os: [ubuntu-18.04]
         gcc: [8, 10]
-        python: [2.7,3.8]
+        python: [2.7,3.9]
       fail-fast: false
     steps:
     - uses: actions/checkout@v2.3.4
@@ -31,12 +31,12 @@ jobs:
         libfreetype6-dev libsigc++-2.0-dev libxml2-dev libfribidi-dev \
         libssl-dev libavahi-client-dev libjpeg-turbo8-dev \
         libgif-dev
-    - name: Installing Python 3.8
-      if: ${{ matrix.python == '3.8' }}
+    - name: Installing Python 3.9
+      if: ${{ matrix.python == '3.9' }}
       run: |
-        sudo apt install python3.8-dev python3-pip
+        sudo apt install python3.9-dev python3-pip
         sudo unlink /usr/bin/python
-        sudo ln -s /usr/bin/python3.8 /usr/bin/python
+        sudo ln -s /usr/bin/python3.9 /usr/bin/python
         python -m pip install --upgrade pip tox six
         python -V
     - name: Installing Python 2.7

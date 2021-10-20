@@ -34,14 +34,14 @@ jobs:
             libgif-dev
       - when:
           condition:
-            equal: [ "3.8", << parameters.PYTHON >> ]
+            equal: [ "3.9", << parameters.PYTHON >> ]
           steps:
             - run:
-                name: Installing Python 3.8
+                name: Installing Python 3.9
                 command: |
-                  sudo apt install python3.8-dev python3-pip python3-six
+                  sudo apt install python3.9-dev python3-pip python3-six
                   sudo unlink /usr/bin/python
-                  sudo ln -s /usr/bin/python3.8 /usr/bin/python
+                  sudo ln -s /usr/bin/python3.9 /usr/bin/python
                   python -m pip install --upgrade pip tox six
                   python -V
       - when:
@@ -108,4 +108,4 @@ workflows:
           matrix:
             parameters:
               CC: ["8", "10"]
-              PYTHON: ["2.7", "3.8"]
+              PYTHON: ["2.7", "3.9"]
