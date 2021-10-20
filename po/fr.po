@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 22:56+0200\n"
+"POT-Creation-Date: 2021-10-14 22:48+0200\n"
 "PO-Revision-Date: 2019-10-31 07:46+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
@@ -3361,6 +3361,9 @@ msgstr "Fermer le dialogue"
 msgid "Close title selection"
 msgstr "Fermer sélection titre"
 
+msgid "Cloudflare"
+msgstr ""
+
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
@@ -4140,6 +4143,9 @@ msgstr "DAC"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DHCP Router"
+msgstr ""
 
 msgid "DLNA support"
 msgstr "Support DLNA"
@@ -5236,6 +5242,9 @@ msgstr "Activer l’effacement progressif de la barre d’info"
 msgid "Enable installation of HDF default picons"
 msgstr ""
 
+msgid "Enable installation of ServiceApp to support 5001 and 5002 streams"
+msgstr ""
+
 #, fuzzy
 msgid "Enable intro screen"
 msgstr "Activer le fast scan automatique"
@@ -6300,6 +6309,9 @@ msgid "Go up the list"
 msgstr "Remonter la liste"
 
 msgid "Gold"
+msgstr ""
+
+msgid "Google DNS"
 msgstr ""
 
 msgid "Goto"
@@ -8528,6 +8540,10 @@ msgstr "Nom Serveur"
 msgid "Nameserver %d"
 msgstr "Nom serveur %d"
 
+#, fuzzy
+msgid "Nameserver configuration"
+msgstr "Quitter la configuration nom serveur"
+
 msgid "Nameserver settings"
 msgstr "Paramètres nom serveur"
 
@@ -9200,6 +9216,13 @@ msgstr "Multimédia"
 #, fuzzy
 msgid "Open/Media long"
 msgstr "Média long"
+
+msgid "OpenDNS FamilyShield"
+msgstr ""
+
+#, fuzzy
+msgid "OpenDNS Home"
+msgstr "Ouvrir AutoTimer"
 
 msgid "OpenHDF"
 msgstr "OpenHDF"
@@ -13354,6 +13377,9 @@ msgstr "Démarrer/arrêter le moniteur de WerbeZapper (zap des pubs)"
 msgid "Starting on"
 msgstr "Démarre sur"
 
+msgid "Static IP or Custom"
+msgstr ""
+
 msgid "Status"
 msgstr "Statut"
 
@@ -14575,6 +14601,9 @@ msgstr "Cette option permet de configurer le mode de sortie vidéo (ou résoluti
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Cette option permet de configurer le niveau du volume auto."
 
+msgid "This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!"
+msgstr ""
+
 msgid "This option install the plugin ClearMem-Lite. After restart Enigma2, you can activate this plugin under extensions. Set the option 'Auto timeout' to 10 seconds and try to play your recordings again. This plugin is needed for Gigablue Quad+ STB."
 msgstr ""
 
@@ -15585,9 +15614,6 @@ msgstr "Utiliser les informations de l’EPG MHW quand il est disponible."
 
 msgid "Use MP (mediaportal) files over Ethernet"
 msgstr "Utiliser les fichiers MP (MediaPortal) via Ethernet"
-
-msgid "Use Manual dns-nameserver"
-msgstr ""
 
 msgid "Use Netmed EPG information when it is available."
 msgstr "Utiliser les informations de l’EPG Netmed quand il est disponible."

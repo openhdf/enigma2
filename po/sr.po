@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 22:56+0200\n"
+"POT-Creation-Date: 2021-10-14 22:48+0200\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
@@ -3686,6 +3686,9 @@ msgstr ""
 msgid "Close title selection"
 msgstr "Zatvori zbor naslova"
 
+msgid "Cloudflare"
+msgstr ""
+
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
@@ -4556,6 +4559,9 @@ msgstr ""
 #
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DHCP Router"
+msgstr ""
 
 msgid "DLNA support"
 msgstr ""
@@ -5819,6 +5825,9 @@ msgstr ""
 msgid "Enable installation of HDF default picons"
 msgstr ""
 
+msgid "Enable installation of ServiceApp to support 5001 and 5002 streams"
+msgstr ""
+
 msgid "Enable intro screen"
 msgstr ""
 
@@ -7013,6 +7022,9 @@ msgid "Go up the list"
 msgstr ""
 
 msgid "Gold"
+msgstr ""
+
+msgid "Google DNS"
 msgstr ""
 
 msgid "Goto"
@@ -9576,6 +9588,11 @@ msgid "Nameserver %d"
 msgstr "Nejmserver %d"
 
 #
+#, fuzzy
+msgid "Nameserver configuration"
+msgstr "Napustite konfiguraciju nejmservera"
+
+#
 msgid "Nameserver settings"
 msgstr "Postavke nejmservera"
 
@@ -10330,6 +10347,12 @@ msgid "Open/Media"
 msgstr ""
 
 msgid "Open/Media long"
+msgstr ""
+
+msgid "OpenDNS FamilyShield"
+msgstr ""
+
+msgid "OpenDNS Home"
 msgstr ""
 
 msgid "OpenHDF"
@@ -15285,6 +15308,9 @@ msgstr ""
 msgid "Starting on"
 msgstr "Pokrećem"
 
+msgid "Static IP or Custom"
+msgstr ""
+
 msgid "Status"
 msgstr ""
 
@@ -16621,6 +16647,9 @@ msgstr ""
 msgid "This option configures you can set Auto Volume Level."
 msgstr ""
 
+msgid "This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!"
+msgstr ""
+
 msgid "This option install the plugin ClearMem-Lite. After restart Enigma2, you can activate this plugin under extensions. Set the option 'Auto timeout' to 10 seconds and try to play your recordings again. This plugin is needed for Gigablue Quad+ STB."
 msgstr ""
 
@@ -17766,9 +17795,6 @@ msgid "Use MHW EPG information when it is available."
 msgstr ""
 
 msgid "Use MP (mediaportal) files over Ethernet"
-msgstr ""
-
-msgid "Use Manual dns-nameserver"
 msgstr ""
 
 msgid "Use Netmed EPG information when it is available."

@@ -177,15 +177,24 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 	int fd = open(file, O_RDONLY);
 	if (fd == -1) return NULL;
-	if (lseek(fd, BMP_SIZE_OFFSET, SEEK_SET) == -1) return NULL;
+	if (lseek(fd, BMP_SIZE_OFFSET, SEEK_SET) == -1) {
+		close(fd);
+		return NULL;
+	}
 	read(fd, buff, 4);
 	*x = buff[0] + (buff[1] << 8) + (buff[2] << 16) + (buff[3] << 24);
 	read(fd, buff, 4);
 	*y = buff[0] + (buff[1] << 8) + (buff[2] << 16) + (buff[3] << 24);
-	if (lseek(fd, BMP_TORASTER_OFFSET, SEEK_SET) == -1) return NULL;
+	if (lseek(fd, BMP_TORASTER_OFFSET, SEEK_SET) == -1) {
+		close(fd);
+		return NULL;
+	}
 	read(fd, buff, 4);
 	int raster = buff[0] + (buff[1] << 8) + (buff[2] << 16) + (buff[3] << 24);
-	if (lseek(fd, BMP_BPP_OFFSET, SEEK_SET) == -1) return NULL;
+	if (lseek(fd, BMP_BPP_OFFSET, SEEK_SET) == -1) {
+		close(fd);
+		return NULL;
+	}
 	read(fd, buff, 2);
 	int bpp = buff[0] + (buff[1] << 8);
 
@@ -200,8 +209,10 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 			fetch_pallete(fd, pallete, 16);
 			lseek(fd, raster, SEEK_SET);
 			unsigned char * tbuffer = new unsigned char[*x / 2 + 1];
-			if (tbuffer == NULL)
+			if (tbuffer == NULL) {
+				close(fd);
 				return NULL;
+			}
 			for (int i = 0; i < *y; i++)
 			{
 				read(fd, tbuffer, (*x) / 2 + *x % 2);
@@ -237,8 +248,10 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 			fetch_pallete(fd, pallete, 256);
 			lseek(fd, raster, SEEK_SET);
 			unsigned char * tbuffer = new unsigned char[*x];
-			if (tbuffer == NULL)
+			if (tbuffer == NULL) {
+				close(fd);
 				return NULL;
+			}
 			for (int i = 0; i < *y; i++)
 			{
 				read(fd, tbuffer, *x);
@@ -281,6 +294,7 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 	close(fd);
 	return(pic_buffer);
+
 }
 
 //---------------------------------------------------------------------
@@ -1144,16 +1158,17 @@ PyObject *ePicLoad::getInfo(const char *filename)
 
 int ePicLoad::getData(ePtr<gPixmap> &result)
 {
-	result = 0;
 	if (m_filepara == NULL)
 	{
 		eDebug("[ePicLoad] - Weird situation, I wasn't decoding anything!");
+		result = 0;
 		return 1;
 	}
 	if(m_filepara->pic_buffer == NULL)
 	{
 		delete m_filepara;
 		m_filepara = NULL;
+		result = 0;
 		return 0;
 	}
 
@@ -1348,9 +1363,7 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y, int aspect, int resize_mode, int rotate, unsigned int background, std::string cachefile)
 {
 	long asp1, asp2;
-	result = 0;
 	eDebug("[ePicLoad] deprecated loadPic function used!!! please use the non blocking version! you can see demo code in Pictureplayer plugin... this function is removed in the near future!");
-	ePicLoad mPL;
 
 	switch(aspect)
 	{
@@ -1372,10 +1385,13 @@ SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y
 	else
 		PyTuple_SET_ITEM(tuple, 6,  PyString_FromString("#00000000"));
 
+	ePicLoad mPL;
 	mPL.setPara(tuple);
 
 	if(!mPL.startDecode(filename.c_str(), 0, 0, false))
 		mPL.getData(result);
+	else
+		result = 0;
 
 	return 0;
 }

@@ -112,6 +112,9 @@ class EventName(Converter, object):
 			return description + extended
 		elif self.type == self.ID:
 			return str(event.getEventId())
+		#elif self.type == self.EVENT_EXTRADATA:
+			# This calls lib/python/Components/Sources/EventInfo.py's getExtraEventData 
+		#	return event.getExtraEventData()
 		elif int(self.type) in (6, 7) or int(self.type) >= 21:
 			try:
 				reference = self.source.service
