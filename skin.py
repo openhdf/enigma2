@@ -1,6 +1,5 @@
 from __future__ import absolute_import
 from __future__ import print_function
-from __future__ import division
 from Tools.Profile import profile
 from six.moves import map
 profile("LOAD:ElementTree")
@@ -61,7 +60,7 @@ def getSkinFactor(refresh=False):
 	global skinfactor
 	if refresh or not skinfactor:
 		try:
-			skinfactor = getDesktop(0).size().width() // 1280.0
+			skinfactor = getDesktop(0).size().width() / 1280.0
 			if not skinfactor in [1, 1.5, 3]:
 				print('[SKIN] getSkinFactor unknown result (%s) -> set skinfactor to 1' % skinfactor)
 				skinfactor = 1
@@ -283,7 +282,7 @@ profile("LoadSkinDefaultDone")
 def parseCoordinate(s, e, size=0, font=None):
 	orig = s = s.strip()
 	if s == "center":  # For speed as this can be common case.
-		val = 0 if not size else (e - size) // 2
+		val = 0 if not size else (e - size) / 2
 	elif s == "*":
 		return None
 	else:
@@ -349,7 +348,7 @@ def parsePosition(s, scale, object=None, desktop=None, size=None):
 		parentsize = getParentSize(object, desktop)
 	xval = parseCoordinate(x, parentsize.width(), size and size.width())
 	yval = parseCoordinate(y, parentsize.height(), size and size.height())
-	return ePoint(xval * scale[0][0] // scale[0][1], yval * scale[1][0] // scale[1][1])
+	return ePoint(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
 
 
 def parseSize(s, scale, object=None, desktop=None):
@@ -361,7 +360,7 @@ def parseSize(s, scale, object=None, desktop=None):
 		parentsize = getParentSize(object, desktop)
 	xval = parseCoordinate(x, parentsize.width())
 	yval = parseCoordinate(y, parentsize.height())
-	return eSize(xval * scale[0][0] // scale[0][1], yval * scale[1][0] // scale[1][1])
+	return eSize(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
 
 
 def parseFont(s, scale):
@@ -371,7 +370,7 @@ def parseFont(s, scale):
 		size = f[1]
 	except:
 		name, size = s.split(';')
-	return gFont(name, int(size) * scale[0][0] // scale[0][1])
+	return gFont(name, int(size) * scale[0][0] / scale[0][1])
 
 
 def parseColor(s):
@@ -706,7 +705,7 @@ class AttributeParser:
 		if value in variables:
 			value = variables[value]
 		x, y = value.split(',')
-		self.guiObject.setTextOffset(ePoint(int(x) * self.scaleTuple[0][0] // self.scaleTuple[0][1], int(y) * self.scaleTuple[1][0] // self.scaleTuple[1][1]))
+		self.guiObject.setTextOffset(ePoint(int(x) * self.scaleTuple[0][0] / self.scaleTuple[0][1], int(y) * self.scaleTuple[1][0] / self.scaleTuple[1][1]))
 		if isVTISkin:
 			self.guiObject.setUseVTIWorkaround()
 
@@ -1429,29 +1428,21 @@ def readSkin(screen, skin, names, desktop):
 		screen.additionalWidgets.append(w)
 
 	def process_screen(widget, context):
-		def process(w):
-			conditional = w.attrib.get('conditional')
-			if conditional and not [i for i in conditional.split(",") if i in list(screen.keys())]:
-				return
-			objecttypes = w.attrib.get('objectTypes', '').split(",")
-			if len(objecttypes) > 1 and (objecttypes[0] not in list(screen.keys()) or not [i for i in objecttypes[1:] if i == screen[objecttypes[0]].__class__.__name__]):
-				return
-			p = processors.get(w.tag, process_none)
+		widgets = widget.getchildren() if PY2 else widget
+		for w in widgets.findall('constant-widget'):
+			processConstant(w, context)
+		for w in widgets:
+			conditional = w.attrib.get("conditional")
+			if conditional and not [i for i in conditional.split(",") if i in screen.keys()]:
+				continue
+			objecttypes = w.attrib.get("objectTypes", "").split(",")
+			if len(objecttypes) > 1 and (objecttypes[0] not in screen.keys() or not [i for i in objecttypes[1:] if i == screen[objecttypes[0]].__class__.__name__]):
+				continue
+			p = processors.get(w.tag, processNone)
 			try:
 				p(w, context)
-			except SkinError as e:
-				print("[SKIN] SKIN ERROR in screen '%s' widget '%s':" % (name, w.tag), e)
-
-		cw = widget.findall("constant-widget")
-		if cw:
-			for w in cw:
-				process(w)
-			for w in myscreen.findall("widget"):
-				process(w)
-		for w in widget.getchildren():
-			if cw and w.tag in ("constant-widget", "widget"):
-				continue
-			process(w)
+			except SkinError as err:
+				print("[Skin] Error in screen '%s' widget '%s' %s!" % (name, w.tag, str(err)))
 
 	def process_panel(widget, context):
 		n = widget.attrib.get('name')
