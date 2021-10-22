@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from __future__ import division
 from Components.config import config
 import os
 import time
@@ -174,7 +173,7 @@ class GetEcmInfo:
 				source = info.get('source', None)
 				if source:
 					# MGcam
-					self.textvalue = "%s %s %.3f @ %s" % (info['eEnc'], info['eCaid'], (float(info['eTime']) // 1000), info['eSrc'])
+					self.textvalue = "%s %s %.3f @ %s" % (info['eEnc'], info['eCaid'], (float(info['eTime']) / 1000), info['eSrc'])
 				else:
 					reader = info.get('reader', '')
 					if reader:

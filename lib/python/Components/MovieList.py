@@ -1,6 +1,5 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from __future__ import division
 import os
 import struct
 import random
@@ -451,11 +450,11 @@ class MovieList(GUIComponent):
 			begin_string = ', '.join(FuzzyTime(begin, inPast=True))
 
 		if ext != '0':
-			ih = self.itemHeight // 2
+			ih = self.itemHeight / 2
 		else:
 			ih = self.itemHeight
 		lenSize = ih * 3 # 25 -> 75
-		dateSize = ih * 145 // 25   # 25 -> 145
+		dateSize = ih * 145 / 25   # 25 -> 145
 		if ext != '0':
 			getrec = info.getName(serviceref)
 			fileName, fileExtension = os.path.splitext(getrec)
@@ -481,8 +480,8 @@ class MovieList(GUIComponent):
 			if fileExtension in RECORD_EXTENSIONS:
 				if self.screenwidth and self.screenwidth == 1920:
 					if ext == '1':
-						res.append(MultiContentEntryText(pos=(iconSize + 20, 5), size=(width - iconSize - dateSize - dateSize // 2 - 15, ih), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
-						res.append(MultiContentEntryText(pos=(width - dateSize - dateSize // 2 - 5, 1), size=(dateSize + dateSize // 2, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=service))
+						res.append(MultiContentEntryText(pos=(iconSize + 20, 5), size=(width - iconSize - dateSize - dateSize / 2 - 15, ih), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
+						res.append(MultiContentEntryText(pos=(width - dateSize - dateSize / 2 - 5, 1), size=(dateSize + dateSize / 2, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=service))
 					if ext == '2':
 						piconSize = ih * 2
 						res.append(MultiContentEntryText(pos=(iconSize + 20, 5), size=(width - iconSize - dateSize - 15, ih + 2), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
@@ -492,8 +491,8 @@ class MovieList(GUIComponent):
 					return res
 				else:
 					if ext == '1':
-						res.append(MultiContentEntryText(pos=(iconSize + 8, 0), size=(width - iconSize - dateSize - dateSize // 2 - 15, ih), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
-						res.append(MultiContentEntryText(pos=(width - dateSize - dateSize // 2 - 5, 1), size=(dateSize + dateSize // 2, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=service))
+						res.append(MultiContentEntryText(pos=(iconSize + 8, 0), size=(width - iconSize - dateSize - dateSize / 2 - 15, ih), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
+						res.append(MultiContentEntryText(pos=(width - dateSize - dateSize / 2 - 5, 1), size=(dateSize + dateSize / 2, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=service))
 					if ext == '2':
 						piconSize = ih * 2
 						res.append(MultiContentEntryText(pos=(iconSize + 8, 0), size=(width - iconSize - dateSize - 15, ih + 2), font=0, flags=RT_HALIGN_LEFT, text=data.txt))

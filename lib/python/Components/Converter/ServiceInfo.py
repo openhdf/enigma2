@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from __future__ import division
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService, eServiceReference
 from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
@@ -12,7 +11,7 @@ from os import path
 WIDESCREEN = [1, 3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
 
 
-class ServiceInfo(Poll, Converter, object):
+class ServiceInfo(Poll, Converter):
 	HAS_TELETEXT = 1
 	IS_MULTICHANNEL = 2
 	AUDIO_STEREO = 3
@@ -329,11 +328,11 @@ class ServiceInfo(Poll, Converter, object):
 					video_rate = int(self.getServiceInfoString(info, iServiceInformation.sFrameRate))
 				except:
 					return "N/A fps"
-			return video_rate, lambda x: "%d fps" % ((x + 500) // 1000)
+			return video_rate, lambda x: "%d fps" % ((x + 500) / 1000)
 		elif self.type == self.PROGRESSIVE:
 			return self._getProgressiveStr(info)
 		elif self.type == self.TRANSFERBPS:
-			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x // 1024))
+			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x / 1024))
 		elif self.type == self.HAS_HBBTV:
 			return info.getInfoString(iServiceInformation.sHBBTVUrl)
 		elif self.type == self.FREQ_INFO:

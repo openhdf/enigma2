@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from __future__ import division
 from Components.config import config
 from Components.Renderer.Renderer import Renderer
 from enigma import eLabel, eTimer
@@ -28,7 +27,7 @@ class RollerCharLCDLong(VariableText, Renderer):
 
         self.skinAttributes = attribs
         if width and fontsize:
-            self.stringlength = int(width // fontsize * 1.9)
+            self.stringlength = int(width / fontsize * 1.9)
         return Renderer.applySkin(self, desktop, parent)
 
     GUI_WIDGET = eLabel

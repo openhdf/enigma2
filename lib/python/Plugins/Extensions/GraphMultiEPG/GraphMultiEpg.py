@@ -302,9 +302,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		global listscreen
 		if self.listHeight > 0:
 			if listscreen:
-				itemHeight = self.listHeight // config.misc.graph_mepg.items_per_page_listscreen.value
+				itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page_listscreen.value
 			else:
-				itemHeight = self.listHeight // config.misc.graph_mepg.items_per_page.value
+				itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page.value
 		else:
 			itemHeight = 54 # some default (270/5)
 		if listscreen:
@@ -557,11 +557,11 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.fillMultiEPG(None) # refill
 					return True
 			elif dir == +3: #next day
-				self.offs += 60 * 24 // self.time_epoch
+				self.offs += 60 * 24 / self.time_epoch
 				self.fillMultiEPG(None) # refill
 				return True
 			elif dir == -3: #prev day
-				self.offs -= 60 * 24 // self.time_epoch
+				self.offs -= 60 * 24 / self.time_epoch
 				if self.offs < 0:
 					self.offs = 0
 				self.fillMultiEPG(None) # refill
@@ -695,9 +695,9 @@ class TimelineText(HTMLComponent, GUIComponent):
 			time_steps = 60 if time_epoch > 180 else 30
 			num_lines = time_epoch // time_steps
 			timeStepsCalc = time_steps * 60
-			incWidth = event_rect.width() // num_lines
+			incWidth = event_rect.width() / num_lines
 			if int(config.misc.graph_mepg.center_timeline.value):
-				tlMove = incWidth // 2
+				tlMove = incWidth / 2
 				tlFlags = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 			else:
 				tlMove = 0
@@ -733,7 +733,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 		now = time()
 		if now >= time_base and now < (time_base + time_epoch * 60):
-			xpos = int((((now - time_base) * event_rect.width()) // (time_epoch * 60)) - (timeline_now.instance.size().width() // 2))
+			xpos = int((((now - time_base) * event_rect.width()) / (time_epoch * 60)) - (timeline_now.instance.size().width() / 2))
 			old_pos = timeline_now.position
 			new_pos = (xpos + eventLeft, old_pos[1])
 			if old_pos != new_pos:

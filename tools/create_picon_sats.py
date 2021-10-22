@@ -8,7 +8,6 @@
 # by pieterg, 2008
 
 from __future__ import absolute_import
-from __future__ import division
 import os
 import sys
 
@@ -33,7 +32,7 @@ while len(f) > 2:
 		ref[4] = 1
 		servicetype = 'tv'
 
-	sat = str(ref[1] // 16 // 16 // 16 // 16)
+	sat = str(ref[1] / 16 / 16 / 16 / 16)
 
 #	SID:NS:TSID:ONID:STYPE:UNUSED(channelnumber in enigma1)
 #	X   X  X    X    D     D

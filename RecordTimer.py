@@ -809,7 +809,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		elif next_state == self.StateEnded or next_state == self.StateFailed:
 			old_end = self.end
 			if self.setAutoincreaseEnd():
-				self.log(12, "autoincrease recording %d minute(s)" % int((self.end - old_end) // 60))
+				self.log(12, "autoincrease recording %d minute(s)" % int((self.end - old_end) / 60))
 				self.state -= 1
 				return True
 			self.log_tuner(12, "stop")

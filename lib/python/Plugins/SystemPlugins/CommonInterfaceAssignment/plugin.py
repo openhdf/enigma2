@@ -1,6 +1,5 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from __future__ import division
 from Screens.Screen import Screen
 from Screens.ChannelSelection import *
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
@@ -536,7 +535,7 @@ class myProviderSelection(ChannelSelectionBase):
 											h = _("W")
 										else:
 											h = _("E")
-										service_name = ("%d.%d" + h) % (orbpos // 10, orbpos % 10)
+										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
 								service.setName("%s - %s" % (service_name, service_type))
 								self.servicelist.addService(service)
 						self.servicelist.finishFill()

@@ -179,7 +179,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				self.backoff += 300
 				if self.backoff > 900:
 					self.backoff = 900
-		self.log(10, "backoff: retry in %d minutes" % (int(self.backoff) // 60))
+		self.log(10, "backoff: retry in %d minutes" % (int(self.backoff) / 60))
 
 	def activate(self):
 		global RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup, InfoBar
@@ -857,7 +857,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						print('[PowerTimer] Receive/Transmit -> overflow interface counter, waiting for next value')
 						return True
 					else:
-						print('[PowerTimer] Receive/Transmit kilobits per second: %0.2f (%0.2f MByte in %d seconds), actualBytes=%d, time is %s' % (diffbytes, diffbytes // 8 // 1024 * seconds, seconds, self.netbytes, ctime(self.netbytes_time)))
+						print('[PowerTimer] Receive/Transmit kilobits per second: %0.2f (%0.2f MByte in %d seconds), actualBytes=%d, time is %s' % (diffbytes, diffbytes / 8 / 1024 * seconds, seconds, self.netbytes, ctime(self.netbytes_time)))
 					if diffbytes > self.trafficlimit:
 						return True
 			except:

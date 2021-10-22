@@ -1,6 +1,5 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from __future__ import division
 from enigma import eConsoleAppContainer
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
@@ -78,7 +77,7 @@ class Console(Screen):
 			while count > 0:
 				count -= 1
 				f = open('/proc/stb/video/alpha', 'w')
-				f.write('%i' % (255 * count // 40))
+				f.write('%i' % (255 * count / 40))
 				f.close()
 
 		else:
@@ -87,7 +86,7 @@ class Console(Screen):
 			while count < 40:
 				count += 1
 				f = open('/proc/stb/video/alpha', 'w')
-				f.write('%i' % (255 * count // 40))
+				f.write('%i' % (255 * count / 40))
 				f.close()
 
 	def yellow(self):

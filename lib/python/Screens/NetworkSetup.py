@@ -1,6 +1,5 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from __future__ import division
 from boxbranding import getBoxType, getMachineBrand, getMachineName
 from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 from shutil import move

@@ -1,7 +1,6 @@
 from __future__ import print_function
 
 from __future__ import absolute_import
-from __future__ import division
 import os
 import re
 
@@ -266,27 +265,27 @@ class Disks:
 		elif fstype == 3:
 			ptype = "b"
 		if type == 0:
-			psize = size // 1048576
+			psize = size / 1048576
 			if psize > 128000:
 				print("[DeviceManager] Detected >128GB disk, using 4k alignment")
 				flow = "8,,%s\n0,0\n0,0\n0,0\nwrite\n" % ptype
 			else:
 				flow = ",,%s\nwrite\n" % ptype
 		elif type == 1:
-			psize = size // 1048576 // 2
+			psize = size / 1048576 / 2
 			flow = ",%dM,%s\n,,%s\nwrite\n" % (psize, ptype, ptype)
 		elif type == 2:
-			psize = size // 1048576 // 4 * 3
+			psize = size / 1048576 / 4 * 3
 			flow = ",%dM,%s\n,,%s\nwrite\n" % (psize, ptype, ptype)
 		elif type == 3:
-			psize = size // 1048576 // 3
+			psize = size / 1048576 / 3
 			flow = ",%dM,%s\n,%dM,%s\n,,%s\nwrite\n" % (psize,
 				ptype,
 				psize,
 				ptype,
 				ptype)
 		elif type == 4:
-			psize = size // 1048576 // 4
+			psize = size / 1048576 / 4
 			flow = ",%dM,%s\n,%dM,%s\n,%dM,%s\n,,%s\nwrite\n" % (psize,
 				ptype,
 				psize,
@@ -353,7 +352,7 @@ class Disks:
 
 		if fstype == 0:
 			cmd = "/sbin/mkfs.ext4 "
-			psize = size // 1024
+			psize = size / 1024
 			if psize > 20000:
 				version = open('/proc/version', 'r').read().split(' ', 4)[2].split('.', 2)[:2]
 				if version[0] > 3 and version[1] >= 2:
@@ -361,7 +360,7 @@ class Disks:
 			cmd += '-m0 -O dir_index /dev/' + dev
 		elif fstype == 1:
 			cmd = "/sbin/mkfs.ext3 "
-			psize = size // 1024
+			psize = size / 1024
 			if psize > 250000:
 				cmd += "-T largefile -O sparse_super -N 262144 "
 			elif psize > 16384:

@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from __future__ import division
 from Components.config import config
 from Components.Converter.Converter import Converter
 from Components.Element import cached
@@ -7,7 +6,7 @@ from enigma import eServiceCenter, eServiceReference, iServiceInformation
 from xml.etree.cElementTree import parse
 
 
-class ExtendedServiceInfo(Converter, object):
+class ExtendedServiceInfo(Converter):
     SERVICENAME = 0
     SERVICENUMBER = 1
     ORBITALPOSITION = 2
@@ -141,8 +140,8 @@ class ExtendedServiceInfo(Converter, object):
                     orbital = transponderData['orbital_position']
                     orbital = int(orbital)
                     if orbital > 1800:
-                        orbital = str(float(3600 - orbital) // 10.0) + 'W'
+                        orbital = str(float(3600 - orbital) / 10.0) + 'W'
                     else:
-                        orbital = str(float(orbital) // 10.0) + 'E'
+                        orbital = str(float(orbital) / 10.0) + 'E'
                     return orbital
         return ''

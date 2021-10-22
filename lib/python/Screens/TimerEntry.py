@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from __future__ import division
 from time import localtime, mktime, time, strftime
 from datetime import datetime
 

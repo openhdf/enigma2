@@ -375,7 +375,7 @@ class VideoFinetune(Screen):
 			y = i * height // 14
 			h = y - l
 			gamma = 0.6 + i * 0.2
-			col = int(math.pow(.5, 1.0 // gamma) * 256.0)
+			col = int(math.pow(.5, 1.0 / gamma) * 256.0)
 			c.fill(offset_x + width // 2, offset_y + l, width // 2, h, RGB(col, col, col))
 
 			c.writeText(offset_x + width // 2, offset_y + l, width // 2, h, RGB(0, 0, 0), RGB(col, col, col), fnt, "%1.2f" % gamma, RT_WRAP | RT_HALIGN_RIGHT)

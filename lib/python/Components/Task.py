@@ -4,7 +4,6 @@
 
 from __future__ import absolute_import
 from __future__ import print_function
-from __future__ import division
 from Tools.CList import CList
 import six
 
@@ -39,7 +38,7 @@ class Job(object):
 		if self.current_task == len(self.tasks):
 			return self.end
 		t = self.tasks[self.current_task]
-		jobprogress = t.weighting * t.progress // float(t.end) + sum([task.weighting for task in self.tasks[:self.current_task]])
+		jobprogress = t.weighting * t.progress / float(t.end) + sum([task.weighting for task in self.tasks[:self.current_task]])
 		return int(jobprogress * self.weightScale)
 
 	progress = property(getProgress)
@@ -65,7 +64,7 @@ class Job(object):
 		self.state_changed()
 		self.runNext()
 		sumTaskWeightings = sum([t.weighting for t in self.tasks]) or 1
-		self.weightScale = self.end // float(sumTaskWeightings)
+		self.weightScale = self.end / float(sumTaskWeightings)
 
 	def runNext(self):
 		if self.current_task == len(self.tasks):
@@ -502,7 +501,7 @@ class DiskspacePrecondition(Condition):
 			return False
 
 	def getErrorMessage(self, task):
-		return _("Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)") % (self.diskspace_required // 1024 // 1024, self.diskspace_available // 1024 // 1024)
+		return _("Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)") % (self.diskspace_required / 1024 / 1024, self.diskspace_available / 1024 / 1024)
 
 
 class ToolExistsPrecondition(Condition):
