@@ -348,7 +348,7 @@ def parsePosition(s, scale, object=None, desktop=None, size=None):
 		parentsize = getParentSize(object, desktop)
 	xval = parseCoordinate(x, parentsize.width(), size and size.width())
 	yval = parseCoordinate(y, parentsize.height(), size and size.height())
-	return ePoint(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
+	return ePoint(xval * scale[0][0] // scale[0][1], yval * scale[1][0] // scale[1][1])
 
 
 def parseSize(s, scale, object=None, desktop=None):
@@ -360,7 +360,7 @@ def parseSize(s, scale, object=None, desktop=None):
 		parentsize = getParentSize(object, desktop)
 	xval = parseCoordinate(x, parentsize.width())
 	yval = parseCoordinate(y, parentsize.height())
-	return eSize(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
+	return eSize(xval * scale[0][0] // scale[0][1], yval * scale[1][0] // scale[1][1])
 
 
 def parseFont(s, scale):
@@ -370,7 +370,7 @@ def parseFont(s, scale):
 		size = f[1]
 	except:
 		name, size = s.split(';')
-	return gFont(name, int(size) * scale[0][0] / scale[0][1])
+	return gFont(name, int(int(size) * scale[0][0] / scale[0][1]))
 
 
 def parseColor(s):
