@@ -1428,7 +1428,7 @@ def readSkin(screen, skin, names, desktop):
 		screen.additionalWidgets.append(w)
 
 	def process_screen(widget, context):
-		widgets = widget.getchildren() if PY2 else widget
+		widgets = widget.getchildren() if six.PY2 else widget
 		for w in widgets.findall('constant-widget'):
 			processConstant(w, context)
 		for w in widgets:
