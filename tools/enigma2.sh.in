@@ -112,7 +112,8 @@ if [ "$(grep config.log.level /etc/enigma2/settings)" == "config.log.level=3" ];
 	VERBOSE='--verbose'
 fi
 
-if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
+if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
+	DEBUG_LVL='4'
 	RANDOMIZE1970=''
 	time=`date +%Y` ;
 	if [ "$time" = 1970 ]; then
@@ -123,14 +124,9 @@ if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.e
 	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
 		LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
 	fi
-	LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color $VERBOSE &> ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2 &> ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
 else
-	# in case $TERM is "linux" the serial output is activated - discard debug output
-	if [ "$TERM" = linux ]; then
-		LD_PRELOAD=$LIBS @bindir@/enigma2 $VERBOSE 2> /dev/null
-	else
-		LD_PRELOAD=$LIBS @bindir@/enigma2 $VERBOSE
-	fi
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2
 fi
 
 # enigma2 exit codes:
