@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-14 22:48+0200\n"
-"PO-Revision-Date: 2021-11-29 18:02+0100\n"
+"PO-Revision-Date: 2021-12-12 12:36+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -11029,6 +11029,12 @@ msgstr "Wiederholungen"
 
 msgid "Require authentication for http streams"
 msgstr "Authentifizierung für HTTP Streams"
+
+msgid "Http(s) stream start delay"
+msgstr "Http(s) Verzögerung beim Streamstart"
+
+msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr "Definieren Sie eine zusätzliche Verzögerung in Millisekunden vor dem Start von http(s) Streams."
 
 msgid "Required medium type:"
 msgstr "Benötigte Rohlingsorte:"
