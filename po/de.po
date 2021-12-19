@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-14 22:48+0200\n"
-"PO-Revision-Date: 2021-12-12 12:36+0100\n"
+"PO-Revision-Date: 2021-12-19 06:59+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -15159,6 +15159,9 @@ msgstr "Bild in Grafik umschalten"
 
 msgid "Toggle Picture In Picture Zap"
 msgstr "Bild in Bild Umschaltung wechseln"
+
+msgid "Cycle Picture In Picture"
+msgstr "Bild in Bild Modus wechseln"
 
 msgid "Toggle a cut mark at the current position"
 msgstr "Schnittmarke an der aktuellen Position ändern"

@@ -16,7 +16,7 @@ from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
-updateversion = "11.07.2019"
+updateversion = "19.12.2021"
 
 if os.uname()[4] == "aarch64":
 	pathLen = 26
@@ -257,6 +257,7 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((_("Swap Picture In Picture"), "Infobar/swapPiP", "InfoBar"))
 		hotkeyFunctions.append((_("Move Picture In Picture"), "Infobar/movePiP", "InfoBar"))
 		hotkeyFunctions.append((_("Toggle Picture In Picture Zap"), "Infobar/togglePipzap", "InfoBar"))
+		hotkeyFunctions.append((_("Cycle Picture In Picture"), "Infobar/activePiP", "InfoBar"))
 	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))
 	if getHaveHDMIinHD() in ('True') or getHaveHDMIinFHD() in ('True'):
 		hotkeyFunctions.append((_("Toggle HDMI-In Full Screen"), "Infobar/HDMIInFull", "InfoBar"))
