@@ -587,7 +587,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
 		self["TrashcanSize"] = self.trashinfo = TrashInfo(config.movielist.last_videodir.value, TrashInfo.USED, update=False)
 
-		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions",
+		self["InfobarActions"] = HelpableActionMap(self, ["InfobarActions"],
 			{
 				"showMovies": (self.doPathSelect, _("Select the movie path")),
 				"showRadio": (self.btn_radio, boundFunction(self.getinitUserDefinedActionsDescription, "btn_radio")),
@@ -610,7 +610,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				"9": self.keyNumberGlobal
 			})
 
-		self["playbackActions"] = HelpableActionMap(self, "MoviePlayerActions",
+		self["playbackActions"] = HelpableActionMap(self, ["MoviePlayerActions"],
 			{
 				"leavePlayer": (self.playbackStop, _("Stop")),
 				"moveNext": (self.playNext, _("Play next")),
@@ -618,13 +618,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				"channelUp": (self.moveToFirstOrFirstFile, _("Go to first movie or top of list")),
 				"channelDown": (self.moveToLastOrFirstFile, _("Go to first movie or last item")),
 			})
-		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
+		self["MovieSelectionActions"] = HelpableActionMap(self, ["MovieSelectionActions"],
 			{
 				"contextMenu": (self.doContext, _("Menu")),
 				"showEventInfo": (self.showEventInformation, _("Show event details")),
 			})
 
-		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
+		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
 			{
 				"red": (self.btn_red, boundFunction(self.getinitUserDefinedActionsDescription, "btn_red")),
 				"green": (self.btn_green, boundFunction(self.getinitUserDefinedActionsDescription, "btn_green")),
@@ -635,18 +635,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				"yellowlong": (self.btn_yellowlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_yellowlong")),
 				"bluelong": (self.btn_bluelong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_bluelong")),
 			})
-		self["FunctionKeyActions"] = HelpableActionMap(self, "FunctionKeyActions",
+		self["FunctionKeyActions"] = HelpableActionMap(self, ["FunctionKeyActions"],
 			{
 				"f1": (self.btn_F1, boundFunction(self.getinitUserDefinedActionsDescription, "btn_F1")),
 				"f2": (self.btn_F2, boundFunction(self.getinitUserDefinedActionsDescription, "btn_F2")),
 				"f3": (self.btn_F3, boundFunction(self.getinitUserDefinedActionsDescription, "btn_F3")),
 			})
-		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"],
 			{
 				"cancel": (self.abort, _("Exit movie list")),
 				"ok": (self.itemSelected, _("Select movie")),
 			})
-		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
+		self["DirectionActions"] = HelpableActionMap(self, ["DirectionActions"],
 			{
 				"up": (self.keyUp, _("Go up the list")),
 				"down": (self.keyDown, _("Go down the list"))
@@ -659,7 +659,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		ssfwd = lambda: self.seekRelative(1, config.seek.selfdefined_79.value * 90000)
 		sback = lambda: self.seekRelative(-1, config.seek.selfdefined_46.value * 90000)
 		ssback = lambda: self.seekRelative(-1, config.seek.selfdefined_79.value * 90000)
-		self["SeekActions"] = HelpableActionMap(self, "MovielistSeekActions",
+		self["SeekActions"] = HelpableActionMap(self, ["MovielistSeekActions"],
 			{
 				"playpauseService": (self.preview, _("Preview")),
 				"seekFwd": (sfwd, tFwd),

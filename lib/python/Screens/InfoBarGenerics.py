@@ -1364,7 +1364,7 @@ class InfoBarChannelSelection:
 		if config.misc.initialchannelselection.value:
 			self.onShown.append(self.firstRun)
 
-		self["ChannelSelectActions"] = HelpableActionMap(self, "InfobarChannelSelection",
+		self["ChannelSelectActions"] = HelpableActionMap(self, ["InfobarChannelSelection"],
 			{
 				"switchChannelUp": (self.UpPressed, _("Open service list and select previous channel")),
 				"switchChannelDown": (self.DownPressed, _("Open service list and select next channel")),
@@ -1658,7 +1658,7 @@ class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
 
 	def __init__(self):
-		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",
+		self["MenuActions"] = HelpableActionMap(self, ["InfobarMenuActions"],
 			{
 				"mainMenu": (self.mainMenu, _("Enter main menu...")),
 				"showNetworkSetup": (self.showNetworkMounts, _("Show network mounts ...")),
@@ -1735,7 +1735,7 @@ class InfoBarSimpleEventView:
 	""" Opens the Eventview for now/next """
 
 	def __init__(self):
-		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
+		self["EPGActions"] = HelpableActionMap(self, ["InfobarEPGActions"],
 			{
 				"showEventInfo": (self.openEventView, _("show event details")),
 				"InfoPressed": (self.openEventView, _("show event details")),
@@ -2439,7 +2439,7 @@ class InfoBarSeek:
 	SEEK_STATE_PAUSE = (1, 0, 0, "||")
 	SEEK_STATE_EOF = (1, 0, 0, "END")
 
-	def __init__(self, actionmap="InfobarSeekActions"):
+	def __init__(self, actionmap=["InfobarSeekActions"]):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
 				iPlayableService.evStart: self.__serviceStarted,
@@ -2469,7 +2469,7 @@ class InfoBarSeek:
 				else:
 					return HelpableActionMap.action(self, contexts, action)
 
-		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap,
+		self["SeekActions"] = InfoBarSeekActionMap(self, [actionmap],
 			{
 				"playpauseService": self.playpauseService,
 				"pauseService": (self.pauseService, _("Pause playback")),
@@ -2486,7 +2486,7 @@ class InfoBarSeek:
 			}, prio=-1) # give them a little more priority to win over color buttons
 		self["SeekActions"].setEnabled(False)
 
-		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, "InfobarSeekActionsPTS",
+		self["SeekActionsPTS"] = InfoBarSeekActionMap(self, ["InfobarSeekActionsPTS"],
 			{
 				"playpauseService": self.playpauseService,
 				"pauseService": (self.pauseService, _("Pause playback")),
@@ -3186,7 +3186,7 @@ class InfoBarShowMovies:
 	# it calls a not further specified "movie list" on up/down/movieList,
 	# so this is not more than an action map
 	def __init__(self):
-		self["MovieListActions"] = HelpableActionMap(self, "InfobarMovieListActions",
+		self["MovieListActions"] = HelpableActionMap(self, ["InfobarMovieListActions"],
 			{
 				"movieList": (self.showMovies, _("Open the movie list")),
 				"up": (self.up, _("Open the movie list")),
@@ -3205,7 +3205,7 @@ class InfoBarExtensions:
 		self.list = []
 
 		if config.plisettings.ColouredButtons.value:
-			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
+			self["InstantExtensionsActions"] = HelpableActionMap(self, ["InfobarExtensions"],
 				{
 					"extensions": (self.bluekey_ex, _("Show extensions...")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
@@ -3218,7 +3218,7 @@ class InfoBarExtensions:
 					"openDreamPlex": (self.showDreamPlex, _("Show the DreamPlex player...")),
 				}, 1) # lower priority
 		else:
-			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions",
+			self["InstantExtensionsActions"] = HelpableActionMap(self, ["InfobarExtensions"],
 				{
 					"extensions": (self.bluekey_ex, _("view extensions...")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
@@ -3541,7 +3541,7 @@ class InfoBarPiP:
 		self.lastPiPService = None
 
 		if SystemInfo["PIPAvailable"] and isinstance(self, InfoBarEPG):
-			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions",
+			self["PiPActions"] = HelpableActionMap(self, ["InfobarPiPActions"],
 				{
 					"activatePiP": (self.activePiP, self.activePiPName),
 				})
@@ -3727,7 +3727,7 @@ class InfoBarPiP:
 
 class InfoBarQuickMenu:
 	def __init__(self):
-		self["QuickMenuActions"] = HelpableActionMap(self, "InfoBarQuickMenu",
+		self["QuickMenuActions"] = HelpableActionMap(self, ["InfoBarQuickMenu"],
 				{
 					"quickmenu": (self.bluekey_qm, _("Quick Menu...")),
 				})
@@ -3741,7 +3741,7 @@ class InfoBarInstantRecord:
 	start/stop instant records"""
 
 	def __init__(self):
-		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord",
+		self["InstantRecordActions"] = HelpableActionMap(self, ["InfobarInstantRecord"],
 			{
 				"instantRecord": (self.instantRecord, _("Instant recording...")),
 			})
@@ -4020,7 +4020,7 @@ class InfoBarInstantRecord:
 
 class InfoBarAudioSelection:
 	def __init__(self):
-		self["AudioSelectionAction"] = HelpableActionMap(self, "InfobarAudioSelectionActions",
+		self["AudioSelectionAction"] = HelpableActionMap(self, ["InfobarAudioSelectionActions"],
 			{
 				"audioSelection": (self.audioSelection, _("Audio options...")),
 				"audio_key": (self.audio_key, _("Audio options...")),
@@ -4062,13 +4062,13 @@ class InfoBarAudioSelection:
 
 class InfoBarSubserviceSelection:
 	def __init__(self):
-		self["SubserviceSelectionAction"] = HelpableActionMap(self, "InfobarSubserviceSelectionActions",
+		self["SubserviceSelectionAction"] = HelpableActionMap(self, ["InfobarSubserviceSelectionActions"],
 			{
 				"GreenPressed": (self.GreenPressed),
 				"subserviceSelection": (self.subserviceSelection),
 			})
 
-		self["SubserviceQuickzapAction"] = HelpableActionMap(self, "InfobarSubserviceQuickzapActions",
+		self["SubserviceQuickzapAction"] = HelpableActionMap(self, ["InfobarSubserviceQuickzapActions"],
 			{
 				"nextSubservice": (self.nextSubservice, _("Switch to next sub service")),
 				"prevSubservice": (self.prevSubservice, _("Switch to previous sub service"))
@@ -4221,7 +4221,7 @@ gHbbtvApplication = HbbtvApplication()
 
 class InfoBarRedButton:
 	def __init__(self):
-		self["RedButtonActions"] = HelpableActionMap(self, "InfobarRedButtonActions",
+		self["RedButtonActions"] = HelpableActionMap(self, ["InfobarRedButtonActions"],
 			{
 				"activateRedButton": (self.activateRedButton, _("Red button...")),
 			})
@@ -4275,7 +4275,7 @@ class InfoBarRedButton:
 
 class InfoBarTimerButton:
 	def __init__(self):
-		self["TimerButtonActions"] = HelpableActionMap(self, "InfobarTimerButtonActions",
+		self["TimerButtonActions"] = HelpableActionMap(self, ["InfobarTimerButtonActions"],
 			{
 				"timerSelection": (self.timerSelection, _("Timer selection...")),
 			})
@@ -4290,7 +4290,7 @@ class InfoBarAspectSelection:
 	STATE_RESOLUTION = 2
 
 	def __init__(self):
-		self["AspectSelectionAction"] = HelpableActionMap(self, "InfobarAspectSelectionActions",
+		self["AspectSelectionAction"] = HelpableActionMap(self, ["InfobarAspectSelectionActions"],
 			{
 				"aspectSelection": (self.ExGreen_toggleGreen, _("Aspect list...")),
 			})
@@ -4426,7 +4426,7 @@ class InfoBarResolutionSelection:
 
 class InfoBarVmodeButton:
 	def __init__(self):
-		self["VmodeButtonActions"] = HelpableActionMap(self, "InfobarVmodeButtonActions",
+		self["VmodeButtonActions"] = HelpableActionMap(self, ["InfobarVmodeButtonActions"],
 			{
 				"vmodeSelection": (self.vmodeSelection, _("Letterbox zoom")),
 			})
@@ -4562,7 +4562,7 @@ class InfoBarCueSheetSupport:
 	ENABLE_RESUME_SUPPORT = False
 
 	def __init__(self, actionmap="InfobarCueSheetActions"):
-		self["CueSheetActions"] = HelpableActionMap(self, actionmap,
+		self["CueSheetActions"] = HelpableActionMap(self, [actionmap],
 			{
 				"jumpPreviousMark": (self.jumpPreviousMark, _("Jump to previous marked position")),
 				"jumpNextMark": (self.jumpNextMark, _("Jump to next marked position")),
@@ -4846,7 +4846,7 @@ class InfoBarTeletextPlugin:
 			self.teletext_plugin = p
 
 		if self.teletext_plugin is not None:
-			self["TeletextActions"] = HelpableActionMap(self, "InfobarTeletextActions",
+			self["TeletextActions"] = HelpableActionMap(self, ["InfobarTeletextActions"],
 				{
 					#"startTeletext": (self.startTeletext, _("View teletext..."))
 				})
@@ -4860,7 +4860,7 @@ class InfoBarTeletextPlugin:
 class InfoBarSubtitleSupport:
 	def __init__(self):
 		object.__init__(self)
-		self["SubtitleSelectionAction"] = HelpableActionMap(self, "InfobarSubtitleSelectionActions",
+		self["SubtitleSelectionAction"] = HelpableActionMap(self, ["InfobarSubtitleSelectionActions"],
 			{
 				"subtitleSelection": (self.subtitleSelection, _("Subtitle selection...")),
 			})
@@ -4985,7 +4985,7 @@ class InfoBarZoom:
 		self.zoomrate = 0
 		self.zoomin = 1
 
-		self["ZoomActions"] = HelpableActionMap(self, "InfobarZoomActions",
+		self["ZoomActions"] = HelpableActionMap(self, ["InfobarZoomActions"],
 			{
 				"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV...")),
 				"ZoomOff": (self.ZoomOff, _("Zoom Off...")),
@@ -5032,7 +5032,7 @@ class InfoBarHdmi:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
 			if not self.hdmi_enabled_pip:
 				self.addExtension((self.getHDMIInPiPScreen, self.HDMIInPiP, lambda: True), "green")
-		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions",
+		self["HDMIActions"] = HelpableActionMap(self, ["InfobarHDMIActions"],
 			{
 				"HDMIin": (self.HDMIIn, _("Switch to HDMI in mode")),
 				"HDMIinLong": (self.HDMIInLong, _("Switch to HDMI in mode")),

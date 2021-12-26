@@ -63,20 +63,20 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 		self["key_blue"] = StaticText("")
 		self["introduction"] = StaticText(self.edittext)
 
-		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"],
 			{
 			"cancel": (self.close, _("Exit network interface list")),
 			"ok": (self.okbuttonClick, _("Select interface")),
 			})
 
-		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
+		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
 			{
 			"red": (self.close, _("Exit network interface list")),
 			"green": (self.okbuttonClick, _("Select interface")),
 			"blue": (self.openNetworkWizard, _("Use the network wizard to configure selected network adapter")),
 			})
 
-		self["DefaultInterfaceAction"] = HelpableActionMap(self, "ColorActions",
+		self["DefaultInterfaceAction"] = HelpableActionMap(self, ["ColorActions"],
 			{
 			"yellow": (self.setDefaultInterface, [_("Set interface as the default Interface"), _("* Only available if more than one interface is active.")]),
 			})
@@ -268,13 +268,13 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["introduction"] = StaticText(_("Press OK to activate the settings."))
 		self.createConfig()
 
-		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"],
 			{
 			"cancel": (self.cancel, _("Exit nameserver configuration")),
 			"ok": (self.ok, _("Activate current configuration")),
 			})
 
-		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
+		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
 			{
 			"red": (self.cancel, _("Exit nameserver configuration")),
 			"green": (self.ok, _("Activate current configuration")),
@@ -452,13 +452,13 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self.createConfig()
 
-		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"],
 			{
 			"cancel": (self.keyCancel, _("exit network adapter configuration")),
 			"ok": (self.keySave, _("activate network adapter configuration")),
 			})
 
-		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
+		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
 			{
 			"red": (self.keyCancel, _("exit network adapter configuration")),
 			"green": (self.keySave, _("activate network adapter configuration")),
@@ -887,7 +887,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.errortext = _("No working wireless network interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface.")
 		self.missingwlanplugintxt = _("The wireless LAN plugin is not installed!\nPlease install it.")
 
-		self["WizardActions"] = HelpableActionMap(self, "WizardActions",
+		self["WizardActions"] = HelpableActionMap(self, ["WizardActions"],
 			{
 			"up": (self.up, _("move up to previous entry")),
 			"down": (self.down, _("move down to next entry")),
@@ -895,13 +895,13 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			"right": (self.right, _("move down to last entry")),
 			})
 
-		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"],
 			{
 			"cancel": (self.close, _("exit networkadapter setup menu")),
 			"ok": (self.ok, _("select menu entry")),
 			})
 
-		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
+		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
 			{
 			"red": (self.close, _("exit networkadapter setup menu")),
 			})

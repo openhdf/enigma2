@@ -585,7 +585,7 @@ class helpableHotkeyActionMap(HelpableActionMap):
 class InfoBarHotkey():
 	def __init__(self):
 		self.hotkeys = getHotkeys()
-		self["HotkeyButtonActions"] = helpableHotkeyActionMap(self, "HotkeyActions",
+		self["HotkeyButtonActions"] = helpableHotkeyActionMap(self, ["HotkeyActions"],
 			dict((x[1], (self.hotkeyGlobal, boundFunction(self.getHelpText, x[1]))) for x in self.hotkeys), -10)
 		self.onExecBegin.append(self.clearLongkeyPressed)
 
