@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-14 22:48+0200\n"
-"PO-Revision-Date: 2022-01-02 15:57+0100\n"
+"PO-Revision-Date: 2022-01-02 18:02+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4510,6 +4510,18 @@ msgstr "Verzeichnis Browser"
 msgid "Directory long"
 msgstr "Directory lang"
 
+msgid "MOUSE long"
+msgstr "MOUSE lang"
+
+msgid "VOD long"
+msgstr "VOD lang"
+
+msgid "Kodi long"
+msgstr "Kodi lang"
+
+msgid "YouTube long"
+msgstr "YouTube lang"
+
 msgid "Disable"
 msgstr "Aus"
 
@@ -7958,10 +7970,6 @@ msgstr ""
 
 msgid "MOUSE"
 msgstr ""
-
-#, fuzzy
-msgid "MOUSE long"
-msgstr "OK lang"
 
 msgid "MQB Functions and Plugins"
 msgstr ""
@@ -16025,10 +16033,6 @@ msgstr "VMGM (Intro-Trailer)"
 
 msgid "VOD"
 msgstr ""
-
-#, fuzzy
-msgid "VOD long"
-msgstr "OK lang"
 
 msgid "VPN"
 msgstr ""
