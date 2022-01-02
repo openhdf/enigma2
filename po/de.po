@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-14 22:48+0200\n"
-"PO-Revision-Date: 2021-12-19 06:59+0100\n"
+"PO-Revision-Date: 2022-01-02 15:57+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3477,6 +3477,12 @@ msgstr "Konfiguriert ob das EPG immer gespeichert werden soll."
 
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Konfigurieren ob und wie Picons in der Senderliste gezeigt werden."
+
+msgid "Keep focus on current service while entering servicelist."
+msgstr "Halte den Fokus auf den aktuell gespielten Sender in der Senderliste."
+
+msgid "Configure to keep focus on the current played service while entering the servicelist via the bouquet buttons."
+msgstr "Halte den Fokus auf den aktuell gespielten Sender, während die Senderliste über die Bouquet-Tasten aufgerufen wird."
 
 msgid "Configure interface"
 msgstr "Netzwerkkarte konfigurieren"
