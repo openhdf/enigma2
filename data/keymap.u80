@@ -1,6 +1,6 @@
 <!--suppress XmlUnboundNsPrefix -->
 <keymap>
-	<!-- "HDF u80 Keymap 02.01.2022" -->
+	<!-- "HDF u80 Keymap 05.01.2022" -->
 	<map context="2ndInfobarActions">
 		<key id="KEY_UP" mapto="pageUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="pageDown" flags="mr" />
@@ -907,6 +907,8 @@
 		<key id="KEY_MP3" mapto="youtube_long" flags="l" />
 		<key id="KEY_PLAYER" mapto="kodi" flags="b" />
 		<key id="KEY_PLAYER" mapto="kodi_long" flags="l" />
+		<key id="KEY_F10" mapto="netflix" flags="b" />
+		<key id="KEY_F10" mapto="netflix_long" flags="l" />
 	</map>
 	<map context="SubtitlesActions">
 		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />

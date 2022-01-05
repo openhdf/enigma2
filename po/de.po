@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-14 22:48+0200\n"
-"PO-Revision-Date: 2022-01-02 18:02+0100\n"
+"PO-Revision-Date: 2022-01-05 17:38+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4521,6 +4521,9 @@ msgstr "Kodi lang"
 
 msgid "YouTube long"
 msgstr "YouTube lang"
+
+msgid "Netflix long"
+msgstr "Netflix lang"
 
 msgid "Disable"
 msgstr "Aus"
