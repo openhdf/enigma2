@@ -162,6 +162,12 @@ class Standby2(Screen):
 		print "[Standby] enter standby"
 		SystemInfo["StandbyState"] = True
 
+		if os.path.exists("/usr/scripts/enterstandby.sh") is True:
+			os.system("chmod 755 /usr/scripts/enterstandby.sh")
+			os.system("/usr/scripts/enterstandby.sh")
+		else:
+			print "/usr/scripts/enterstandby.sh not found"
+
 		self["actions"] = ActionMap(["StandbyActions"],
 		{
 			"power": self.Power,
