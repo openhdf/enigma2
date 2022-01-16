@@ -21,7 +21,8 @@ if [ -e /proc/stb/info/boxtype ]; then
 fi
 
 #check for installed vfdcontrol
-if grep ^"getBoxType = gbtrio4k" /etc/enigma2/boxinformations >/dev/null; then
+stbcheck=`cat /proc/stb/info/boxtype`
+if [ $stbcheck == "gbtrio4k" ] || [ $stbcheck == "gbue4k" ] || [ $stbcheck == "gbip4k" ]; then
 	echo "vfdcontrol default installed"
 	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
 		echo "vfdcontrol installed"
