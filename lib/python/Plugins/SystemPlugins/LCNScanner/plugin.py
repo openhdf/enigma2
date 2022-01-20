@@ -3,7 +3,7 @@
 
 from os import path as os_path
 from sys import modules
-from xml.etree.cElementTree import parse
+from xml.etree.ElementTree import parse
 
 from enigma import eDVBDB, eServiceCenter, eServiceReference
 

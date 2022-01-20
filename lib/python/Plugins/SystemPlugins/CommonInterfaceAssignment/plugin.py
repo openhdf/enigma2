@@ -10,7 +10,7 @@ from Components.SelectionList import SelectionList
 from Components.MenuList import MenuList
 from ServiceReference import ServiceReference
 from Plugins.Plugin import PluginDescriptor
-from xml.etree.cElementTree import parse as ci_parse
+from xml.etree.ElementTree import parse as ci_parse
 from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 from Tools.CIHelper import cihelper
 from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter

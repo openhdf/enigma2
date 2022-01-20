@@ -1,5 +1,4 @@
-
-from xml.etree.cElementTree import parse
+from xml.etree.ElementTree import parse
 
 from enigma import eActionMap
 from six.moves import map

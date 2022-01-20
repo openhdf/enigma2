@@ -6,7 +6,7 @@ from os import fsync
 from os import path as os_path
 from os import remove, rename
 from time import ctime, localtime, mktime, strftime, time
-from xml.etree.cElementTree import parse
+from xml.etree.ElementTree import parse
 
 from boxbranding import getMachineBrand, getMachineName
 from enigma import eActionMap, quitMainloop

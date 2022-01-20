@@ -1,6 +1,6 @@
 
 from gettext import dgettext
-from xml.etree.cElementTree import parse
+from xml.etree.ElementTree import parse
 
 from boxbranding import getMachineBrand, getMachineName
 from enigma import eEnv

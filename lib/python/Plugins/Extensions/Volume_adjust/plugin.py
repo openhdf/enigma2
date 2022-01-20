@@ -6,7 +6,7 @@
 
 
 from os import path as os_path
-from xml.etree.cElementTree import parse as ci_parse
+from xml.etree.ElementTree import parse as ci_parse
 
 from Components.ActionMap import ActionMap
 from Components.config import (ConfigInteger, ConfigNothing, ConfigNumber,

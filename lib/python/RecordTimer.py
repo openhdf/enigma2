@@ -6,7 +6,7 @@ from os import W_OK, access, fsync, makedirs
 from os import path as os_path
 from os import remove, rename, statvfs
 from time import ctime, localtime, strftime, time
-from xml.etree.cElementTree import parse
+from xml.etree.ElementTree import parse
 
 from boxbranding import getMachineBrand, getMachineName
 from enigma import (eActionMap, eEPGCache, eServiceCenter, eServiceReference,

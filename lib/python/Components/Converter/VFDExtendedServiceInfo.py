@@ -12,7 +12,7 @@
 ## If you rename, move, delete or add a channel the numbers will not be OK any more. You have to restart E2 then
 ##
 
-from xml.etree.cElementTree import parse
+from xml.etree.ElementTree import parse
 
 from enigma import eServiceCenter, eServiceReference, iServiceInformation
 

@@ -1,7 +1,7 @@
 
 # Plugin definition
 
-from xml.etree.cElementTree import parse as cet_parse
+from xml.etree.ElementTree import parse as cet_parse
 
 from enigma import RT_HALIGN_LEFT, RT_WRAP, eListboxPythonMultiContent, gFont
 from six import ensure_str, iteritems
@@ -17,7 +17,7 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileExists
 
 try:
-	from xml.etree.cElementTree import ParseError
+	from xml.etree.ElementTree import ParseError
 except ImportError as ie:
 	ParseError = SyntaxError
 from Tools.XMLTools import stringToXML

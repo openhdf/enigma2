@@ -1,10 +1,9 @@
-
 from errno import ENOENT
 from os import environ
 from os import path as os_path
 from os import symlink, unlink, walk
 from time import gmtime, localtime, strftime, time
-from xml.etree.cElementTree import ParseError, parse
+from xml.etree.ElementTree import ParseError, parse
 
 from six import ensure_str, text_type
 

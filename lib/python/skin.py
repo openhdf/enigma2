@@ -4,7 +4,7 @@ from errno import ENOENT
 from os import listdir
 from os.path import basename, dirname, isfile
 from os.path import join as pathjoin
-from xml.etree.cElementTree import (Element, ElementTree, ParseError,
+from xml.etree.ElementTree import (Element, ElementTree, ParseError,
                                     fromstring, parse)
 
 from enigma import (BT_ALPHABLEND, BT_ALPHATEST, addFont, eLabel, ePixmap,

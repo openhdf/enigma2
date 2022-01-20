@@ -1,5 +1,5 @@
 
-from xml.etree.cElementTree import parse
+from xml.etree.ElementTree import parse
 
 from six import ensure_str
 

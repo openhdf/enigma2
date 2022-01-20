@@ -11,7 +11,7 @@ from shutil import copy2
 from stat import S_IMODE
 from tempfile import mkstemp
 from traceback import print_exc
-from xml.etree.cElementTree import Element, ParseError, fromstring, parse
+from xml.etree.ElementTree import Element, ParseError, fromstring, parse
 
 from enigma import eEnv, eGetEnigmaDebugLvl, getDesktop
 from six import PY2
