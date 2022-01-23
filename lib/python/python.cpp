@@ -133,7 +133,6 @@ ePython::ePython()
 	PyImport_AppendInittab("eConsoleImpl", PyInit_eConsoleImpl);
 
 	Py_Initialize();
-	PyEval_InitThreads();
 
 }
 
