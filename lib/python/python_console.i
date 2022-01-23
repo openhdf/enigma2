@@ -167,7 +167,7 @@ extern "C" {
 					PyErr_SetString(PyExc_TypeError, err);
 					return NULL;
 				}
-				argv[argpos++] = PyString_AsString(arg);
+				argv[argpos++] = PyUnicode_AsUTF8(arg);
 			}
 			argv[argpos] = 0;
 			return PyInt_FromLong(self->cont->execute(argv[0], argv+1));

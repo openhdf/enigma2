@@ -1454,7 +1454,7 @@ RESULT ePicLoad::setPara(PyObject *val)
 		int as			= PyLong_AsLong(PySequence_Fast_GET_ITEM(fast, 3));
 		bool useCache		= PyLong_AsLong(PySequence_Fast_GET_ITEM(fast, 4));
 		int resizeType	        = PyLong_AsLong(PySequence_Fast_GET_ITEM(fast, 5));
-		const char *bg_str	= PyString_AsString(PySequence_Fast_GET_ITEM(fast, 6));
+		const char *bg_str	= PyUnicode_AsUTF8(PySequence_Fast_GET_ITEM(fast, 6));
 		return setPara(width, height, aspectRatio, as, useCache, resizeType, bg_str);
 	}
 }
