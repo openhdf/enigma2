@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-14 22:48+0200\n"
-"PO-Revision-Date: 2022-01-22 15:24+0100\n"
+"PO-Revision-Date: 2022-01-23 18:29+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -10235,8 +10235,11 @@ msgstr "Rotoreinstellungen"
 msgid "Power"
 msgstr "Einschalt / Ausschalt Timer"
 
-msgid "Power (use button menu)"
-msgstr "Power (Tasten Einstellungen)"
+msgid "Power (use button menu settings)"
+msgstr "Power (in den Tasten Einstellungen ändern)"
+
+msgid "Power long (use button menu settings)"
+msgstr "Power lang (in den Tasten Einstellungen ändern)"
 
 msgid "Power LED State in Deep-Standby"
 msgstr "Power LED Anzeige im Deep-Standby"
@@ -10255,9 +10258,6 @@ msgstr "Hier können Sie einstellen, ob die Power-LED im Deep-Standby an oder au
 
 msgid "Power LED state during standby."
 msgstr "Power LED Anzeige im Standby."
-
-msgid "Power long (use button menu)"
-msgstr "Power lang (Tasten Einstellungen)"
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
