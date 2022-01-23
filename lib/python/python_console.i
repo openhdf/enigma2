@@ -157,7 +157,7 @@ extern "C" {
 			while(argpos < argc)
 			{
 				PyObject *arg = PyTuple_GET_ITEM(argt, argpos);
-				if (!PyString_Check(arg))
+				if (!PyUnicode_Check(arg))
 				{
 					char err[255];
 					if (argpos)
