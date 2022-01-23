@@ -9665,8 +9665,15 @@ msgstr "Einstellungen Rotor Log"
 msgid "Positioner setup"
 msgstr "Rotoreinstellungen"
 
-msgid "Power (use button menu)"
-msgstr "Power (Tasten Einstellungen)"
+#, fuzzy
+msgid "Power"
+msgstr "Einschalt / Ausschalt Timer"
+
+msgid "Power (use button menu settings)"
+msgstr "Power (in den Tasten Einstellungen ändern)"
+
+msgid "Power long (use button menu settings)"
+msgstr "Power lang (in den Tasten Einstellungen ändern)"
 
 msgid "Power LED State in Deep-Standby"
 msgstr "Power LED Anzeige im Deep-Standby"
@@ -9685,9 +9692,6 @@ msgstr "Hier können Sie einstellen, ob die Power-LED im Deep-Standby an oder au
 
 msgid "Power LED state during standby."
 msgstr "Power LED Anzeige im Standby."
-
-msgid "Power long (use button menu)"
-msgstr "Power lang (Tasten Einstellungen)"
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "Energieverwaltung. Weitere Informationen finden Sie in der Bedienungsanleitung Ihres Receivers."
