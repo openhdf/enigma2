@@ -458,8 +458,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						ePyObject psize = PyTuple_GET_ITEM(value, 2);
 
 							/* convert value to Long. fallback to -1 on error. */
-						int value = (pvalue && PyLong_Check(pvalue)) ? PyInt_AsLong(pvalue) : -1;
-						int size = (pvalue && PyLong_Check(psize)) ? PyInt_AsLong(psize) : 100;
+						int value = (pvalue && PyLong_Check(pvalue)) ? PyLong_AsLong(pvalue) : -1;
+						int size = (pvalue && PyLong_Check(psize)) ? PyLong_AsLong(psize) : 100;
 						int value_area = 0;
 
 							/* draw value at the end of the slider */
@@ -529,7 +529,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						for (int i = 0; i < entries; ++i)
 						{
 							ePyObject entry = PyList_GET_ITEM(plist, i);
-							int num = PyLong_Check(entry) ? PyInt_AsLong(entry) : -1;
+							int num = PyLong_Check(entry) ? PyLong_AsLong(entry) : -1;
 
 							if ((num < 0) || (num >= glyphs))
 								eWarning("[eListboxPythonMultiContent] glyph index %d in PythonConfigList out of bounds!", num);
@@ -562,7 +562,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						ePyObject ppixmap = PyTuple_GET_ITEM(value, 1);
 
 						if (PyLong_Check(ppixmap) && data) /* if the pixemap is in fact a number, it refers to the 'data' list. */
-							ppixmap = PyTuple_GetItem(data, PyInt_AsLong(ppixmap));
+							ppixmap = PyTuple_GetItem(data, PyLong_AsLong(ppixmap));
 
 						ePtr<gPixmap> pixmap;
 						if (SwigFromPython(pixmap, ppixmap))
@@ -876,7 +876,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				goto error_out;
 			}
 
-			int type = PyInt_AsLong(PyTuple_GET_ITEM(item, 0));
+			int type = PyLong_AsLong(PyTuple_GET_ITEM(item, 0));
 
 			switch (type)
 			{
@@ -922,7 +922,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					pborderColor = lookupColor(PyTuple_GET_ITEM(item, 13), data);
 
 				if (PyLong_Check(pstring) && data) /* if the string is in fact a number, it refers to the 'data' list. */
-					pstring = PyTuple_GetItem(data, PyInt_AsLong(pstring));
+					pstring = PyTuple_GetItem(data, PyLong_AsLong(pstring));
 
 							/* don't do anything if we have 'None' as string */
 				if (!pstring || pstring == Py_None)
@@ -932,27 +932,27 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				#if PY_VERSION_HEX >= 0x030a0000
 
-					int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyInt_AsLong(px);
+					int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
 					x += offset.x();
 
-					int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyInt_AsLong(py);
+					int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
 					y += offset.y();
 
-					int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyInt_AsLong(pwidth);
-					int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyInt_AsLong(pheight);
+					int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth);
+					int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
 
 				#else
 
-					int x = PyInt_AsLong(px) + offset.x();
-					int y = PyInt_AsLong(py) + offset.y();
-					int width = PyInt_AsLong(pwidth);
-					int height = PyInt_AsLong(pheight);
+					int x = PyLong_AsLong(px) + offset.x();
+					int y = PyLong_AsLong(py) + offset.y();
+					int width = PyLong_AsLong(pwidth);
+					int height = PyLong_AsLong(pheight);
 
 				#endif
 
-				int flags = PyInt_AsLong(pflags);
-				int fnt = PyInt_AsLong(pfnt);
-				int bwidth = pborderWidth ? PyInt_AsLong(pborderWidth) : 0;
+				int flags = PyLong_AsLong(pflags);
+				int fnt = PyLong_AsLong(pfnt);
+				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 0;
 
 				if (m_font.find(fnt) == m_font.end())
 				{
@@ -1070,35 +1070,35 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				#if PY_VERSION_HEX >= 0x030a0000
 
-					int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyInt_AsLong(px);
+					int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
 					x += offset.x();
 
-					int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyInt_AsLong(py);
+					int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
 					y += offset.y();
 
-					int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyInt_AsLong(pwidth);
-					int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyInt_AsLong(pheight);
-					int filled = PyFloat_Check(pfilled_perc) ? (int)PyFloat_AsDouble(pfilled_perc) : PyInt_AsLong(pfilled_perc);
+					int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth);
+					int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
+					int filled = PyFloat_Check(pfilled_perc) ? (int)PyFloat_AsDouble(pfilled_perc) : PyLong_AsLong(pfilled_perc);
 
 				#else
 
-					int x = PyInt_AsLong(px) + offset.x();
-					int y = PyInt_AsLong(py) + offset.y();
-					int width = PyInt_AsLong(pwidth);
-					int height = PyInt_AsLong(pheight);
-					int filled = PyInt_AsLong(pfilled_perc);
+					int x = PyLong_AsLong(px) + offset.x();
+					int y = PyLong_AsLong(py) + offset.y();
+					int width = PyLong_AsLong(pwidth);
+					int height = PyLong_AsLong(pheight);
+					int filled = PyLong_AsLong(pfilled_perc);
 
 				#endif
 
 
 				if ((filled < 0) && data) /* if the string is in a negative number, it refers to the 'data' list. */
-					filled = PyInt_AsLong(PyTuple_GetItem(data, -filled));
+					filled = PyLong_AsLong(PyTuple_GetItem(data, -filled));
 
 							/* don't do anything if percent out of range */
 				if ((filled < 0) || (filled > 100))
 					continue;
 
-				int bwidth = pborderWidth ? PyInt_AsLong(pborderWidth) : 2;
+				int bwidth = pborderWidth ? PyLong_AsLong(pborderWidth) : 2;
 
 				eRect rect(x, y, width, height);
 				painter.clip(rect);
@@ -1131,7 +1131,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				{
 					ePtr<gPixmap> pixmap;
 					if (PyLong_Check(ppixmap) && data) /* if the pixmap is in fact a number, it refers to the data list */
-						ppixmap = PyTuple_GetItem(data, PyInt_AsLong(ppixmap));
+						ppixmap = PyTuple_GetItem(data, PyLong_AsLong(ppixmap));
 
 					if (SwigFromPython(pixmap, ppixmap))
 					{
@@ -1169,7 +1169,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 
 				if (PyLong_Check(ppixmap) && data) /* if the pixmap is in fact a number, it refers to the 'data' list. */
-					ppixmap = PyTuple_GetItem(data, PyInt_AsLong(ppixmap));
+					ppixmap = PyTuple_GetItem(data, PyLong_AsLong(ppixmap));
 
 							/* don't do anything if we have 'None' as pixmap */
 				if (!ppixmap || ppixmap == Py_None)
@@ -1177,21 +1177,21 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				#if PY_VERSION_HEX >= 0x030a0000
 
-					int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyInt_AsLong(px);
+					int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
 					x += offset.x();
 
-					int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyInt_AsLong(py);
+					int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
 					y += offset.y();
 
-					int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyInt_AsLong(pwidth);
-					int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyInt_AsLong(pheight);
+					int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyLong_AsLong(pwidth);
+					int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyLong_AsLong(pheight);
 
 				#else
 
-					int x = PyInt_AsLong(px) + offset.x();
-					int y = PyInt_AsLong(py) + offset.y();
-					int width = PyInt_AsLong(pwidth);
-					int height = PyInt_AsLong(pheight);
+					int x = PyLong_AsLong(px) + offset.x();
+					int y = PyLong_AsLong(py) + offset.y();
+					int width = PyLong_AsLong(pwidth);
+					int height = PyLong_AsLong(pheight);
 
 				#endif
 
@@ -1211,7 +1211,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					pbackColorSelected = lookupColor(PyTuple_GET_ITEM(item, 7), data);
 
 				if (size > 8)
-					flags = PyInt_AsLong(PyTuple_GET_ITEM(item, 8));
+					flags = PyLong_AsLong(PyTuple_GET_ITEM(item, 8));
 
 				eRect rect(x, y, width, height);
 				painter.clip(rect);

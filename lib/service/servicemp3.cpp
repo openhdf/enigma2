@@ -3445,7 +3445,7 @@ void eServiceMP3::setCutList(ePyObject list)
 			continue;
 		}
 		pts_t pts = PyLong_AsLongLong(ppts);
-		int type = PyInt_AsLong(ptype);
+		int type = PyLong_AsLong(ptype);
 		m_cue_entries.insert(cueEntry(pts, type));
 		eDebug("[eServiceMP3] adding %" G_GINT64_FORMAT " type %d", (gint64)pts, type);
 	}
