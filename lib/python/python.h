@@ -19,7 +19,6 @@
 #define PyString_Size PyBytes_Size
 
 #define PyInt_AsLong PyLong_AsLong
-#define PyInt_Check PyLong_Check
 #endif
 
 class ePyObject

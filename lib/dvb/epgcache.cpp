@@ -2349,7 +2349,7 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 				uint8_t event_type = (uint8_t) PyInt_AsLong(eventTypeIsTuple ? PyTuple_GET_ITEM(eventTypeList, j) : PyList_GET_ITEM(eventTypeList, j));
 				event_types.push_back(event_type);
 			}
-		} else if (PyInt_Check(eventTypeList)) {
+		} else if (PyLong_Check(eventTypeList)) {
 			uint8_t event_type = (uint8_t) PyInt_AsLong(eventTypeList);
 			event_types.push_back(event_type);
 		} else {
