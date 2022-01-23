@@ -22,7 +22,7 @@ fi
 
 #check for installed vfdcontrol
 stbcheck=`cat /proc/stb/info/boxtype`
-if [ $stbcheck == "gbtrio4k" ] || [ $stbcheck == "gbue4k" ] || [ $stbcheck == "gbip4k" ]; then
+if [ $stbcheck == "gbue4k" ] || [ $stbcheck == "gbip4k" ]; then
 	echo "vfdcontrol default installed"
 	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
 		echo "vfdcontrol installed"
