@@ -1222,15 +1222,15 @@ PyObject *ePicLoad::getInfo(const char *filename)
 			PyList_SET_ITEM(list, pos++,  PyUnicode_FromString(exif->m_exifinfo->CameraMake));
 			PyList_SET_ITEM(list, pos++,  PyUnicode_FromString(exif->m_exifinfo->CameraModel));
 			PyList_SET_ITEM(list, pos++,  PyUnicode_FromString(exif->m_exifinfo->DateTime));
-			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d x %d", exif->m_exifinfo->Width, exif->m_exifinfo->Height));
+			PyList_SET_ITEM(list, pos++,  PyUnicode_FromFormat("%d x %d", exif->m_exifinfo->Width, exif->m_exifinfo->Height));
 			PyList_SET_ITEM(list, pos++,  PyUnicode_FromString(exif->m_exifinfo->FlashUsed));
 			PyList_SET_ITEM(list, pos++,  PyUnicode_FromString(exif->m_exifinfo->Orientation));
 			PyList_SET_ITEM(list, pos++,  PyUnicode_FromString(exif->m_exifinfo->Comments));
 			PyList_SET_ITEM(list, pos++,  PyUnicode_FromString(exif->m_exifinfo->MeteringMode));
 			PyList_SET_ITEM(list, pos++,  PyUnicode_FromString(exif->m_exifinfo->ExposureProgram));
 			PyList_SET_ITEM(list, pos++,  PyUnicode_FromString(exif->m_exifinfo->LightSource));
-			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d", exif->m_exifinfo->CompressionLevel));
-			PyList_SET_ITEM(list, pos++,  PyString_FromFormat("%d", exif->m_exifinfo->ISOequivalent));
+			PyList_SET_ITEM(list, pos++,  PyUnicode_FromFormat("%d", exif->m_exifinfo->CompressionLevel));
+			PyList_SET_ITEM(list, pos++,  PyUnicode_FromFormat("%d", exif->m_exifinfo->ISOequivalent));
 			sprintf(tmp, "%.2f", exif->m_exifinfo->Xresolution);
 			PyList_SET_ITEM(list, pos++,  PyUnicode_FromString(tmp));
 			sprintf(tmp, "%.2f", exif->m_exifinfo->Yresolution);
