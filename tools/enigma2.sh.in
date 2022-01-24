@@ -20,34 +20,6 @@ if [ -e /proc/stb/info/boxtype ]; then
 	fi
 fi
 
-#check for installed vfdcontrol
-stbcheck=`cat /proc/stb/info/boxtype`
-if [ $stbcheck == "gbue4k" ] || [ $stbcheck == "gbip4k" ]; then
-	echo "vfdcontrol default installed"
-	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
-		echo "vfdcontrol installed"
-	else
-		opkg remove --force-depends enigma2-plugin-systemplugins-vfdcontrol
-		opkg update
-		opkg install --force-reinstall enigma2-plugin-systemplugins-vfdcontrol
-	fi
-else
-	if grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
-		if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
-			echo "vfdcontrol installed"
-		else
-			opkg update
-			opkg install --force-reinstall enigma2-plugin-systemplugins-vfdcontrol
-		fi
-	fi
-	if ! grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
-		if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
-			opkg remove enigma2-plugin-systemplugins-vfdcontrol
-			rm -rf /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl
-		fi
-	fi
-fi
-
 [ -L /usr/lib/libssl.so.0.9.8 ] || ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
 
 [ -L /usr/lib/libcrypto.so.0.9.8 ] || ln -s /usr/lib/libcrypto.so.1.0.0 /usr/lib/libcrypto.so.0.9.8
