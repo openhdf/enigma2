@@ -525,19 +525,8 @@ void eWidgetDesktop::resize(eSize size)
 	m_screen.m_screen_size = size;
 }
 
-eRect eWidgetDesktop::bounds() const
+void eWidgetDesktop::sendShow(ePoint point, eSize size)
 {
-	const eSize size = m_screen.m_screen_size;
-	return eRect(
-			m_margins.left(),
-			m_margins.top(),
-			size.width() - m_margins.left() - m_margins.right(), // width
-			size.height() - m_margins.top() - m_margins.bottom() // height
-		);
-}
-
-#ifdef HAVE_OSDANIMATION
-void eWidgetDesktop::sendShow(ePoint point, eSize size) {
 	if(m_style_id!=0)
 		return;
 
@@ -554,4 +543,13 @@ void eWidgetDesktop::sendHide(ePoint point, eSize size)
 	painter.sendHide(point, size);
 }
 
-#endif
+eRect eWidgetDesktop::bounds() const
+{
+	const eSize size = m_screen.m_screen_size;
+	return eRect(
+			m_margins.left(),
+			m_margins.top(),
+			size.width() - m_margins.left() - m_margins.right(), // width
+			size.height() - m_margins.top() - m_margins.bottom() // height
+		);
+}
