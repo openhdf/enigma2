@@ -21,7 +21,7 @@ class pServiceEvent(object):
 		self.m_ShortDescriptionNext = ""
 		self.m_ExtendedDescriptionNow = ""
 		self.m_ExtendedDescriptionNext = ""
-		
+
 		sTagTitle = info.getInfoString(iServiceInformation.sTagTitle)
 		if sTagTitle:
 			sTagTitleList = sTagTitle.split(" - ")
@@ -53,7 +53,7 @@ class pServiceEvent(object):
 
 	def getEventName(self):
 		return self.m_EventNameNow if self.now_or_next == self.NOW else self.m_EventNameNext
-	
+
 	def getShortDescription(self):
 		return self.m_ShortDescriptionNow if self.now_or_next == self.NOW else self.m_ShortDescriptionNext
 

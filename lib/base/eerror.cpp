@@ -148,11 +148,11 @@ int formatTime(char *buf, int bufferSize, int flags)
 			gettimeofday(&tim, NULL);
 			localtime_r(&tim.tv_sec, &loctime);
 			if (debugTime & 4) {
-				pos += snprintf(buf + pos, bufferSize - pos, "%04d-%02d-%02d ", 
+				pos += snprintf(buf + pos, bufferSize - pos, "%04d-%02d-%02d ",
 					loctime.tm_year + 1900, loctime.tm_mon + 1, loctime.tm_mday);
 			}
 			if (debugTime & 2) {
-				pos += snprintf(buf + pos, bufferSize - pos, "%02d:%02d:%02d.%04lu ", 
+				pos += snprintf(buf + pos, bufferSize - pos, "%02d:%02d:%02d.%04lu ",
 					loctime.tm_hour, loctime.tm_min, loctime.tm_sec, tim.tv_usec / 100L);
 			}
 		}

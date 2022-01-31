@@ -44,8 +44,8 @@ public:
 
 typedef std::map<std::string, CacheItem> NameToPixmap;
 
-static bool CompareLastUsed(NameToPixmap::value_type i, NameToPixmap::value_type j) 
-{ 
+static bool CompareLastUsed(NameToPixmap::value_type i, NameToPixmap::value_type j)
+{
 	return i.second.lastUsed < j.second.lastUsed;
 }
 

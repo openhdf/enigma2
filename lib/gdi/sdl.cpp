@@ -121,11 +121,11 @@ void gSDLDC::evFlip()
 {
 	if (!m_window)
 		return;
-	
+
 	// Clear
 	SDL_SetRenderDrawColor(m_render, 0, 0, 0, 0);
 	SDL_RenderClear(m_render);
-	
+
 	// Render OSD
 	SDL_UpdateTexture(m_osd_tex, NULL, m_osd->pixels, m_osd->pitch);
 	SDL_RenderCopy(m_render, m_osd_tex, NULL, NULL);

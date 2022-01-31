@@ -556,7 +556,7 @@ class HdmiCec:
 					self.volumeForwardingDestination = 5 # on: send volume keys to receiver
 				else:
 					self.volumeForwardingDestination = 0 # off: send volume keys to tv
-				print("[hdmiCEC][messageReceived]: volume forwarding=%s, address=%s \n" % (self.volumeForwardingDestination, address))					
+				print("[hdmiCEC][messageReceived]: volume forwarding=%s, address=%s \n" % (self.volumeForwardingDestination, address))
 				if config.hdmicec.volume_forwarding.value:
 					self.CECwritedebug('[HdmiCec] volume forwarding to device %02x enabled' % self.volumeForwardingDestination, True)
 					self.volumeForwardingEnabled = True
@@ -1334,7 +1334,7 @@ class HdmiCec:
 
 							if config.hdmicec.debug.value:
 								self.debugTx(address, cmd, data)
-							
+
 							eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 						self.cmdWaitTimer.startLongTimer(waittime)
 				except Exception as e:

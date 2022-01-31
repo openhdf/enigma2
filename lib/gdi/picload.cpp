@@ -331,8 +331,8 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 /**
  * @brief Load a png
  *
- * If you make change to png_load, check the functionality with PngSuite  
- * http://www.schaik.com/pngsuite/  
+ * If you make change to png_load, check the functionality with PngSuite
+ * http://www.schaik.com/pngsuite/
  * These are test images in all standard PNG.
  *
  * @param filepara
@@ -1446,11 +1446,11 @@ RESULT ePicLoad::setPara(PyObject *val)
 		ePyObject pas = PySequence_Fast_GET_ITEM(fast, 2);
 
 		#if PY_VERSION_HEX >= 0x030a0000
-			double aspectRatio 	= PyFloat_Check(pas) ? PyFloat_AsDouble(pas) : PyLong_AsDouble(pas); 
+			double aspectRatio 	= PyFloat_Check(pas) ? PyFloat_AsDouble(pas) : PyLong_AsDouble(pas);
 		#else
 			double aspectRatio 	= PyInt_AsLong(pas);
 		#endif
-		
+
 		int as			= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 3));
 		bool useCache		= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 4));
 		int resizeType	        = PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 5));
