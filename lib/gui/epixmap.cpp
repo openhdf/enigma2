@@ -1,3 +1,4 @@
+#include <lib/base/wrappers.h>
 #include <lib/gui/epixmap.h>
 #include <lib/gdi/epng.h>
 #include <lib/gui/ewidgetdesktop.h>
@@ -36,11 +37,11 @@ void ePixmap::setPixmap(ePtr<gPixmap> &pixmap)
 
 void ePixmap::setPixmapFromFile(const char *filename)
 {
-	loadPNG(m_pixmap, filename);
+	loadImage(m_pixmap, filename, m_scale, m_scale ? size().width() : 0, m_scale ? size().height() : 0);
 
 	if (!m_pixmap)
 	{
-		eDebug("[ePixmap] setPixmapFromFile: loadPNG failed");
+		eDebug("[ePixmap] setPixmapFromFile: load %s failed", filename);
 		return;
 	}
 
@@ -122,7 +123,7 @@ int ePixmap::event(int event, void *data, void *data2)
 		return 0;
 	case evtChangedSize:
 		checkSize();
-			/* fall trough. */
+		[[fallthrough]];
 	default:
 		return eWidget::event(event, data, data2);
 	}

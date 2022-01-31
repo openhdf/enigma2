@@ -1,10 +1,7 @@
-from __future__ import print_function
 # takes a header file, outputs action ids
-
-from __future__ import absolute_import
+from __future__ import print_function
 import tokenize
 import sys
-import string
 
 
 def filter(g):
@@ -38,7 +35,7 @@ def do_file(f, mode):
 	while True:
 		try:
 			t = next(tokens)
-		except:
+		except Exception as e:
 			break
 
 		if t == "class":
@@ -67,7 +64,7 @@ def do_file(f, mode):
 						pass
 
 					try:
-						print(actionname)
+						print(classname)
 					except:
 						pass
 

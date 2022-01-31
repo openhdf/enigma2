@@ -7,10 +7,6 @@
 
 #include <time.h>
 
-#ifdef USE_LIBVUGLES2
-#include <vuplus_gles.h>
-#endif
-
 #ifdef HAVE_OSDANIMATION
 #include <lib/base/cfile.h>
 #endif
@@ -167,15 +163,7 @@ void gFBDC::exec(const gOpcode *o)
 		break;
 	}
 	case gOpcode::flush:
-#ifdef USE_LIBVUGLES2
-		if (gles_is_animation())
-			gles_do_animation();
-		else
-			fb->blit();
-		gles_flush();
-#else
 		fb->blit();
-#endif
 #ifdef CONFIG_ION
 		if (surface_back.data_phys)
 		{
@@ -220,10 +208,6 @@ void gFBDC::exec(const gOpcode *o)
 #ifdef HAVE_OSDANIMATION
 		CFile::writeIntHex("/proc/stb/fb/animation_mode", 0x01);
 #endif
-#ifdef USE_LIBVUGLES2
-		gles_set_buffer((unsigned int *)surface.data);
-		gles_set_animation(1, o->parm.setShowHideInfo->point.x(), o->parm.setShowHideInfo->point.y(), o->parm.setShowHideInfo->size.width(), o->parm.setShowHideInfo->size.height());
-#endif
 		delete o->parm.setShowHideInfo;
 		break;
 	}
@@ -232,34 +216,9 @@ void gFBDC::exec(const gOpcode *o)
 #ifdef HAVE_OSDANIMATION
 		CFile::writeIntHex("/proc/stb/fb/animation_mode", 0x10);
 #endif
-#ifdef USE_LIBVUGLES2
-		gles_set_buffer((unsigned int *)surface.data);
-		gles_set_animation(0, o->parm.setShowHideInfo->point.x(), o->parm.setShowHideInfo->point.y(), o->parm.setShowHideInfo->size.width(), o->parm.setShowHideInfo->size.height());
-#endif
 		delete o->parm.setShowHideInfo;
 		break;
 	}
-#ifdef USE_LIBVUGLES2
-	case gOpcode::sendShowItem:
-	{
-		gles_set_buffer((unsigned int *)surface.data);
-		gles_set_animation_listbox(o->parm.setShowItemInfo->dir, o->parm.setShowItemInfo->point.x(), o->parm.setShowItemInfo->point.y(), o->parm.setShowItemInfo->size.width(), o->parm.setShowItemInfo->size.height());
-		delete o->parm.setShowItemInfo;
-		break;
-	}
-	case gOpcode::setFlush:
-	{
-		gles_set_flush(o->parm.setFlush->enable);
-		delete o->parm.setFlush;
-		break;
-	}
-	case gOpcode::setView:
-	{
-		gles_viewport(o->parm.setViewInfo->size.width(), o->parm.setViewInfo->size.height(), fb->Stride());
-		delete o->parm.setViewInfo;
-		break;
-	}
-#endif
 	default:
 		gDC::exec(o);
 		break;

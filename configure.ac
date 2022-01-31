@@ -252,15 +252,6 @@ AC_ARG_WITH(machinebuild,
 AC_SUBST(MACHINEBUILD)
 AC_DEFINE_UNQUOTED(MACHINEBUILD,"$MACHINEBUILD",[machine build])
 
-AC_ARG_WITH(libvugles2,
-	AS_HELP_STRING([--with-libvugles2],[use libvugles2, yes or no]),
-	[with_libvugles2=$withval],[with_libvugles2=no])
-if test "$with_libvugles2" = "yes"; then
-	PKG_CHECK_MODULES(LIBVUGLES2, [libvugles2])
-	GLES_CFLAGS="-DUSE_LIBVUGLES2"
-fi
-AM_CONDITIONAL(HAVE_LIBVUGLES2, test "$with_libvugles2" = "yes")
-
 AC_ARG_WITH(libhiaccel,
 	AS_HELP_STRING([--with-libhiaccel],[use libhiaccel, yes or no]),
 	[with_libhiaccel=$withval],[with_libhiaccel=no])

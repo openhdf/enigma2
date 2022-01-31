@@ -77,7 +77,7 @@ void DumpUnfreed()
 #endif
 
 int debugLvl = lvlDebug;
-static bool debugTime = false;
+static int debugTime = 2; // Bitmap: 0 = none, 1 = secs since boot, 2 = local time, 3 = boot and local, 6 = local date/time, 7 = boot and date/time
 
 static pthread_mutex_t DebugLock = PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 #define RINGBUFFER_SIZE 16384
@@ -93,7 +93,7 @@ static void logOutput(const char *data, unsigned int len)
 		if (remaining > len)
 			remaining = len;
 
-		memcpy(ringbuffer + ringbuffer_head, data, remaining);
+		memcpy(ringbuffer + ringbuffer_head, data, remaining); //NOSONAR
 		len -= remaining;
 		data += remaining;
 		ringbuffer_head += remaining;
@@ -136,16 +136,39 @@ extern void bsodFatal(const char *component);
 
 #define eDEBUG_BUFLEN    1024
 
+int formatTime(char *buf, int bufferSize, int flags)
+{
+	int pos = 0;
+	struct timespec tp;
+	struct tm loctime;
+	struct timeval tim;
+
+	if (!(flags & _DBGFLG_NOTIME)) {
+		if (debugTime & 6) {
+			gettimeofday(&tim, NULL);
+			localtime_r(&tim.tv_sec, &loctime);
+			if (debugTime & 4) {
+				pos += snprintf(buf + pos, bufferSize - pos, "%04d-%02d-%02d ", 
+					loctime.tm_year + 1900, loctime.tm_mon + 1, loctime.tm_mday);
+			}
+			if (debugTime & 2) {
+				pos += snprintf(buf + pos, bufferSize - pos, "%02d:%02d:%02d.%04lu ", 
+					loctime.tm_hour, loctime.tm_min, loctime.tm_sec, tim.tv_usec / 100L);
+			}
+		}
+		if (debugTime & 1) {
+			clock_gettime(CLOCK_MONOTONIC, &tp);
+			pos += snprintf(buf + pos, bufferSize - pos, "<%6lu.%04lu> ", tp.tv_sec, tp.tv_nsec/100000);
+		}
+	}
+	return pos;
+}
+
 void eDebugImpl(int flags, const char* fmt, ...)
 {
 	char * buf = new char[eDEBUG_BUFLEN];
-	int pos = 0;
-	struct timespec tp;
 
-	if (debugTime && !(flags & _DBGFLG_NOTIME)) {
-		clock_gettime(CLOCK_MONOTONIC, &tp);
-		pos = snprintf(buf, eDEBUG_BUFLEN, "<%6lu.%03lu> ", tp.tv_sec, tp.tv_nsec/1000000);
-	}
+	int pos = formatTime(buf, eDEBUG_BUFLEN, flags);
 
 	va_list ap;
 	va_start(ap, fmt);
@@ -162,8 +185,8 @@ void eDebugImpl(int flags, const char* fmt, ...)
 		// pos still contains size of timestring
 		// +2 for \0 and optional newline
 		buf = new char[pos + vsize + 2];
-		if (debugTime && !(flags & _DBGFLG_NOTIME))
-			pos = snprintf(buf, pos + vsize, "<%6lu.%03lu> ", tp.tv_sec, tp.tv_nsec/1000000);
+		pos = formatTime(buf, pos + vsize, flags);
+
 		va_start(ap, fmt);
 		vsize = vsnprintf(buf + pos, vsize + 1, fmt, ap);
 		va_end(ap);
@@ -180,7 +203,8 @@ void eDebugImpl(int flags, const char* fmt, ...)
 
 	logOutput(buf, pos);
 
-	::write(2, buf, pos);
+	ssize_t ret = ::write(2, buf, pos);
+	if (ret < 0) (void)ret;
 
 	delete[] buf;
 	if (flags & _DBGFLG_FATAL)
@@ -200,7 +224,7 @@ int eGetEnigmaDebugLvl()
 	return debugLvl;
 }
 
-void setDebugTime(bool enable)
+void setDebugTime(int flags)
 {
-	debugTime = enable;
+	debugTime = flags;
 }

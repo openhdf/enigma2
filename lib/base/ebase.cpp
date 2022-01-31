@@ -277,14 +277,14 @@ int eMainloop::processOneEvent(long user_timeout, PyObject **res, ePyObject addi
 					m_inActivate = 0;
 				}
 				if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
-					eLog(5, "[eMainloop::processOneEvent] unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
+					eTrace("[eMainloop::processOneEvent] unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
 			}
 		}
 		for (; i < fdcount; ++i)
 		{
 			if (pfd[i].revents)
 			{
-				if (!*res)
+				if (!*res)  // NOSONAR
 					*res = PyList_New(0);
 				ePyObject it = PyTuple_New(2);
 				PyTuple_SET_ITEM(it, 0, PyInt_FromLong(pfd[i].fd));

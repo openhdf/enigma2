@@ -3,6 +3,7 @@
 #include <lib/base/httpsstream.h>
 #include <lib/base/eerror.h>
 #include <lib/base/wrappers.h>
+#include <lib/base/nconfig.h> // access to python config
 
 // for shutdown
 #include <sys/socket.h>
@@ -620,5 +621,4 @@ ssize_t eHttpsStream::SSL_readLine(SSL *ssl, char** buffer, size_t* bufsize)
 		}
 		if ((*buffer)[i] != '\r') i++;
 	}
-	return -1;
 }
