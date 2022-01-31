@@ -3,10 +3,6 @@
 
 #include <lib/gdi/gpixmap.h>
 
-#ifndef __GLIBC__
-#include <sys/types.h>
-#endif
-
 #ifndef SWIG
 
 class PixmapCache
