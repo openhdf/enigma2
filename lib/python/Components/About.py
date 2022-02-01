@@ -1,12 +1,16 @@
 from __future__ import absolute_import
+from array import array
 from boxbranding import getBoxType, getImageVersion, getMachineBuild
+from fcntl import ioctl
+from os import path
+from socket import AF_INET, SOCK_DGRAM, inet_ntoa, socket
+from struct import pack, unpack
+from sys import maxsize
 from sys import modules
-import socket
 import fcntl
+import os
 import struct
 import time
-import os
-from os import path
 
 
 def getVersionString():
@@ -155,63 +159,52 @@ def getCpuCoresString():
 
 
 def _ifinfo(sock, addr, ifname):
-	iface = struct.pack('256s', ifname[:15])
-	info = fcntl.ioctl(sock.fileno(), addr, iface)
+	iface = pack('256s', bytes(ifname[:15], 'utf-8'))
+	info = ioctl(sock.fileno(), addr, iface)
 	if addr == 0x8927:
-		return ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1].upper()
+		return ''.join(['%02x:' % ord(chr(char)) for char in info[18:24]])[:-1].upper()
 	else:
-		return socket.inet_ntoa(info[20:24])
+		return inet_ntoa(info[20:24])
 
 
 def getIfConfig(ifname):
-	ifreq = {'ifname': ifname}
+	ifreq = {"ifname": ifname}
 	infos = {}
-	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	# offsets defined in /usr/include/linux/sockios.h on linux 2.6
-	infos['addr'] = 0x8915 # SIOCGIFADDR
-	infos['brdaddr'] = 0x8919 # SIOCGIFBRDADDR
-	infos['hwaddr'] = 0x8927 # SIOCSIFHWADDR
-	infos['netmask'] = 0x891b # SIOCGIFNETMASK
+	sock = socket(AF_INET, SOCK_DGRAM)
+	# Offsets defined in /usr/include/linux/sockios.h on linux 2.6.
+	infos["addr"] = 0x8915  # SIOCGIFADDR
+	infos["brdaddr"] = 0x8919  # SIOCGIFBRDADDR
+	infos["hwaddr"] = 0x8927  # SIOCSIFHWADDR
+	infos["netmask"] = 0x891b  # SIOCGIFNETMASK
 	try:
-		for k, v in list(infos.items()):
+		for k, v in infos.items():
 			ifreq[k] = _ifinfo(sock, v, ifname)
-	except:
+	except Exception as ex:
+		print("[About] getIfConfig Ex: %s" % str(ex))
 		pass
 	sock.close()
 	return ifreq
 
 
 def GetIPsFromNetworkInterfaces():
-	import socket
-	import fcntl
-	import struct
-	import array
-	import sys
-	is_64bits = sys.maxsize > 2**32
-	struct_size = 40 if is_64bits else 32
-	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	max_possible = 8 # initial value
+	structSize = 40 if maxsize > 2 ** 32 else 32
+	sock = socket(AF_INET, SOCK_DGRAM)
+	maxPossible = 8  # Initial value.
 	while True:
-		_bytes = max_possible * struct_size
-		names = array.array('B')
-		for i in list(range(0, _bytes)):
+		_bytes = maxPossible * structSize
+		names = array("B")
+		for index in range(_bytes):
 			names.append(0)
-		outbytes = struct.unpack('iL', fcntl.ioctl(
-			s.fileno(),
-			0x8912,  # SIOCGIFCONF
-			struct.pack('iL', _bytes, names.buffer_info()[0])
-		))[0]
+		outbytes = unpack("iL", ioctl(sock.fileno(), 0x8912, pack("iL", _bytes, names.buffer_info()[0])))[0]  # 0x8912 = SIOCGIFCONF
 		if outbytes == _bytes:
-			max_possible *= 2
+			maxPossible *= 2
 		else:
 			break
-	namestr = names.tostring()
 	ifaces = []
-	for i in list(range(0, outbytes, struct_size)):
-		iface_name = bytes.decode(namestr[i:i + 16]).split('\0', 1)[0].encode('ascii')
-		if iface_name != 'lo':
-			iface_addr = socket.inet_ntoa(namestr[i + 20:i + 24])
-			ifaces.append((iface_name, iface_addr))
+	for index in range(0, outbytes, structSize):
+		ifaceName = str(names[index:index + 16]).split("\0", 1)[0]
+		if ifaceName != "lo":
+			ifaces.append((ifaceName, inet_ntoa(names[index + 20:index + 24])))
 	return ifaces
 
 
@@ -241,11 +234,11 @@ def getBoxUptime():
 		secs = int(f.readline().split('.')[0])
 		f.close()
 		if secs > 86400:
-			days = secs // 86400
+			days = secs / 86400
 			secs = secs % 86400
 			time = ngettext("%d day", "%d days", days) % days + " "
-		h = secs // 3600
-		m = (secs % 3600) // 60
+		h = secs / 3600
+		m = (secs % 3600) / 60
 		time += ngettext("%d hour", "%d hours", h) % h + " "
 		time += ngettext("%d minute", "%d minutes", m) % m
 		return "%s" % time

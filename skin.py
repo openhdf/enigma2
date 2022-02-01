@@ -837,6 +837,10 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 				addFont(filename, name, scale, isReplacement, render)
 				# Log provided by C++ addFont code.
 				# print("[Skin] Add font: Font path='%s', name='%s', scale=%d, isReplacement=%s, render=%d." % (filename, name, scale, isReplacement, render))
+			elif isfile(SCOPE_SKINS + filename):
+				# emedded fonts
+				filename = SCOPE_SKINS + filename
+				addFont(filename, name, scale, isReplacement, render)
 			else:
 				raise SkinError("Font file '%s' not found" % filename)
 		fallbackFont = resolveFilename(SCOPE_FONTS, "fallback.font", path_prefix=pathSkin)
