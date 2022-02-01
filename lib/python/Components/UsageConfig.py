@@ -6,7 +6,7 @@ from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTun
 from Components.About import about
 from Components.Harddisk import harddiskmanager
 from Components.config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, fileExists, fileCheck, fileContains
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC, defaultRecordingLocation, fileExists, fileCheck, fileContains
 from boxbranding import getBoxType, getMachineBuild, getMachineName, getBrandOEM, getDisplayType
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
@@ -163,6 +163,7 @@ def InitUsageConfig():
 
 	config.usage.show_picon_bkgrn = ConfigSelection(default="transparent", choices=[("none", _("Disabled")), ("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
 	config.usage.show_menupath = ConfigSelection(default="large", choices=[("large", _("large")), ("small", _("small"))])
+	config.usage.showScreenPath = ConfigSelection(default="small", choices=[("off", _("Disabled")), ("small", _("Small")), ("large", _("Large"))])
 
 	config.usage.show_spinner = ConfigYesNo(default=True)
 	config.usage.enable_tt_caching = ConfigYesNo(default=True)
@@ -270,27 +271,9 @@ def InitUsageConfig():
 			tmpvalue = config.usage.timeshift_path.value
 			config.usage.timeshift_path.setValue(tmpvalue + '/')
 			config.usage.timeshift_path.save()
+
 	config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback=False)
 	config.usage.allowed_timeshift_paths = ConfigLocations(default=[resolveFilename(SCOPE_TIMESHIFT)])
-
-	if not os.path.exists(resolveFilename(SCOPE_AUTORECORD)):
-		try:
-			os.mkdir(resolveFilename(SCOPE_AUTORECORD), 0o755)
-		except:
-			pass
-	config.usage.autorecord_path = ConfigText(default=resolveFilename(SCOPE_AUTORECORD))
-	if not config.usage.default_path.value.endswith('/'):
-		tmpvalue = config.usage.autorecord_path.value
-		config.usage.autorecord_path.setValue(tmpvalue + '/')
-		config.usage.autorecord_path.save()
-
-	def autorecordpathChanged(configElement):
-		if not config.usage.autorecord_path.value.endswith('/'):
-			tmpvalue = config.usage.autorecord_path.value
-			config.usage.autorecord_path.setValue(tmpvalue + '/')
-			config.usage.autorecord_path.save()
-	config.usage.autorecord_path.addNotifier(autorecordpathChanged, immediate_feedback=False)
-	config.usage.allowed_autorecord_paths = ConfigLocations(default=[resolveFilename(SCOPE_AUTORECORD)])
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min=1, max=31, stepwidth=1, default=7, wraparound=True)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
@@ -312,6 +295,12 @@ def InitUsageConfig():
 		("simple", _("Simple")),
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert"))])
+
+	config.usage.wakeup_enabled = ConfigSelection(default="no", choices=[
+		("no", _("Disabled")),
+		("yes", _("Enabled")),
+		("standby", _("Enabled, only from standby")),
+		("deepstandby", _("Enabled, only from deep standby"))])
 
 	config.usage.window_timeout = ConfigSelectionNumber(default=90, stepwidth=1, min=1, max=600, wraparound=True)
 
