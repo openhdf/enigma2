@@ -2634,7 +2634,7 @@ def Plugins(path, **kwargs):
 	plugin_path = path
 	list = [
 		PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=startSetup),
-		PluginDescriptor(name=_("Ipkg"), where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan)
+		#PluginDescriptor(name=_("Ipkg"), where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan)
 	]
 	list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=UpgradeMain))
 	list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your %s %s's software") % (getMachineBrand(), getMachineName()), where=PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart=False, fnc=UpgradeMain))
