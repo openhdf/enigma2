@@ -725,7 +725,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 	global colors, fonts, menus, parameters, setups, switchPixmap
 	for tag in domSkin.findall("output"):
 		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
-		if screenID == GUI_SKIN_ID:
+		if scrnID == GUI_SKIN_ID:
 			for res in tag.findall("resolution"):
 				xres = res.attrib.get("xres")
 				xres = int(xres) if xres else 720
@@ -833,14 +833,14 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 			else:
 				render = 0
 			filename = resolveFilename(SCOPE_FONTS, filename, path_prefix=pathSkin)
+			filename_emb = resolveFilename(SCOPE_SKIN, filename, path_prefix=pathSkin)
 			if isfile(filename):
 				addFont(filename, name, scale, isReplacement, render)
 				# Log provided by C++ addFont code.
 				# print("[Skin] Add font: Font path='%s', name='%s', scale=%d, isReplacement=%s, render=%d." % (filename, name, scale, isReplacement, render))
-			elif isfile(SCOPE_SKINS + filename):
+			elif isfile(filename_emb):
 				# emedded fonts
-				filename = SCOPE_SKINS + filename
-				addFont(filename, name, scale, isReplacement, render)
+				addFont(filename_emb, name, scale, isReplacement, render)
 			else:
 				raise SkinError("Font file '%s' not found" % filename)
 		fallbackFont = resolveFilename(SCOPE_FONTS, "fallback.font", path_prefix=pathSkin)
