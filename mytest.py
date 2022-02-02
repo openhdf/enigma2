@@ -12,6 +12,7 @@ import enigma
 from boxbranding import getBoxType, getBrandOEM, getMachineBuild
 import eConsoleImpl
 import eBaseImpl
+from time import time, strftime, localtime
 enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
@@ -394,7 +395,6 @@ class PowerKey:
 
 	def shutdown(self):
 		wasRecTimerWakeup = False
-		from time import time
 		recordings = self.session.nav.getRecordings()
 		if not recordings:
 			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
@@ -599,28 +599,66 @@ def runScreenTest():
 
 	profile("wakeup")
 
-	try:
-		from Plugins.SystemPlugins.VFDControl.plugin import SetTime
-		SetTime()
-	except:
-		print("[mytest] Failed SetTime from VFDControl !!")
+	nowTime = time()  # Get currentTime.
+#	if not config.misc.SyncTimeUsing.value == "0" or getBrandOEM() == 'gigablue':
+	if not config.misc.SyncTimeUsing.value == "0" or boxtype.startswith('gb') or getBrandOEM().startswith('ini'):
+		print("dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime)))
+		setRTCtime(nowTime)
 
-	from time import time, strftime, localtime
-	from Tools.StbHardware import setFPWakeuptime, setRTCtime
-	from Screens.SleepTimerEdit import isNextWakeupTime
-	#get currentTime
-	nowTime = time()
+	#recordtimer
+	if session.nav.isRecordTimerImageStandard:	#check RecordTimer instance
+		tmp = session.nav.RecordTimer.getNextRecordingTime(getNextStbPowerOn=True)
+		nextRecordTime = tmp[0]
+		nextRecordTimeInStandby = tmp[1]
+	else:
+		nextRecordTime = session.nav.RecordTimer.getNextRecordingTime()
+		nextRecordTimeInStandby = session.nav.RecordTimer.isNextRecordAfterEventActionAuto()
+	#zaptimer
+	nextZapTime = session.nav.RecordTimer.getNextZapTime()
+	nextZapTimeInStandby = 0
+	#powertimer
+	tmp = session.nav.PowerTimer.getNextPowerManagerTime(getNextStbPowerOn=True)
+	nextPowerTime = tmp[0]
+	nextPowerTimeInStandby = tmp[1]
+	#plugintimer
+	tmp = plugins.getNextWakeupTime(getPluginIdent=True)
+	nextPluginTime = tmp[0]
+	nextPluginIdent = tmp[1] #"pluginname | pluginfolder"
+	tmp = tmp[1].lower()
+	#start in standby, depending on plugin type
+	if "epgrefresh" in tmp:
+		nextPluginName = "EPGRefresh"
+		nextPluginTimeInStandby = 1
+	elif "vps" in tmp:
+		nextPluginName = "VPS"
+		nextPluginTimeInStandby = 1
+	elif "serienrecorder" in tmp:
+		nextPluginName = "SerienRecorder"
+		nextPluginTimeInStandby = 0 # plugin function for deep standby from standby not compatible (not available)
+	elif "elektro" in tmp:
+		nextPluginName = "Elektro"
+		nextPluginTimeInStandby = 1
+	elif "minipowersave" in tmp:
+		nextPluginName = "MiniPowersave"
+		nextPluginTimeInStandby = 1
+	elif "enhancedpowersave" in tmp:
+		nextPluginName = "EnhancedPowersave"
+		nextPluginTimeInStandby = 1
+	else:
+		#default for plugins
+		nextPluginName = nextPluginIdent
+		nextPluginTimeInStandby = 0
+
 	wakeupList = [
-		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
-					(session.nav.RecordTimer.getNextZapTime(), 1),
-					(plugins.getNextWakeupTime(), 2),
-					(isNextWakeupTime(), 3))
+		x for x in ((nextRecordTime, 0, nextRecordTimeInStandby),
+					(nextZapTime, 1, nextZapTimeInStandby),
+					(nextPowerTime, 2, nextPowerTimeInStandby),
+					(nextPluginTime, 3, nextPluginTimeInStandby))
 		if x[0] != -1
 	]
 	sorted(wakeupList)
 	recordTimerWakeupAuto = False
 	if wakeupList:
-		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
@@ -701,6 +739,9 @@ Components.Network.InitNetwork()
 profile("LCD")
 import Components.Lcd
 Components.Lcd.InitLcd()
+profile("UserInterface")
+import Screens.UserInterfacePositioner
+Screens.UserInterfacePositioner.InitOsd()
 
 profile("EpgCacheSched")
 import Components.EpgLoadSave
