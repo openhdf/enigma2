@@ -96,11 +96,11 @@ def setEPGCachePath(configElement):
 
 def useSyncUsingChanged(configelement):
 	if config.misc.SyncTimeUsing.value == "0":
-		print("[Startup] Time by Transponder")
+		print("[StartEnigma] Time by Transponder")
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
 		enigma.eEPGCache.getInstance().timeUpdated()
 	else:
-		print("[Startup] Time by NTP")
+		print("[StartEnigma] Time by NTP")
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
 		enigma.eEPGCache.getInstance().timeUpdated()
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged, immediate_feedback=True)
@@ -108,7 +108,7 @@ config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged, immediate_feedback=Tr
 def NTPserverChanged(configelement):
 	if config.misc.NTPserver.value == "pool.ntp.org":
 		return
-	print("[Startup] save /etc/default/ntpdate")
+	print("[StartEnigma] save /etc/default/ntpdate")
 	f = open("/etc/default/ntpdate", "w")
 	f.write('NTPSERVERS="' + config.misc.NTPserver.value + '"')
 	f.close()
@@ -231,7 +231,7 @@ class Session:
 			try:
 				p(reason=0, session=self)
 			except:
-				print("[Startup] Plugin raised exception at WHERE_SESSIONSTART")
+				print("[StartEnigma] Plugin raised exception at WHERE_SESSIONSTART")
 				import traceback
 				traceback.print_exc()
 
@@ -405,13 +405,13 @@ class PowerKey:
 				f.close()
 				wasRecTimerWakeup = int(_file) and True or False
 			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup:
-				print("[Startup] PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!")
+				print("[StartEnigma] PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!")
 				self.standby()
 			else:
-				print("[Startup] PowerOff - Now!")
+				print("[StartEnigma] PowerOff - Now!")
 				self.session.open(Screens.Standby.TryQuitMainloop, 1)
 		elif not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
-			print("[Startup] PowerOff - Now!")
+			print("[StartEnigma] PowerOff - Now!")
 			self.session.open(Screens.Standby.TryQuitMainloop, 1)
 		else:
 			return 0
@@ -436,7 +436,7 @@ class PowerKey:
 					exec("from " + selected[1] + " import *")
 					exec("self.session.open(" + ",".join(selected[2:]) + ")")
 				except:
-					print("[Startup] error during executing module %s, screen %s" % (selected[1], selected[2]))
+					print("[StartEnigma] error during executing module %s, screen %s" % (selected[1], selected[2]))
 			elif selected[0] == "Menu":
 				from Screens.Menu import MainMenu, mdom
 				root = mdom.getroot()
@@ -473,7 +473,7 @@ class AutoScartControl:
 		self.VCRSbChanged(self.current_vcr_sb)
 
 	def VCRSbChanged(self, value):
-		#print("[Startup] vcr sb changed to", value)
+		#print("[StartEnigma] vcr sb changed to", value)
 		self.current_vcr_sb = value
 		if config.av.vcrswitch.value or value > 2:
 			if value:
@@ -667,10 +667,10 @@ def runScreenTest():
 		if not config.misc.useTransponderTime.value:
 			print("dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime)))
 			setRTCtime(nowTime)
-		print("[Startup] set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime)))
+		print("[StartEnigma] set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime)))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
-		print("[Startup] recordTimerWakeupAuto',recordTimerWakeupAuto")
+		print("[StartEnigma] recordTimerWakeupAuto',recordTimerWakeupAuto")
 		config.misc.prev_wakeup_time.value = startTime[0]
 		config.misc.prev_wakeup_time_type.value = startTime[1]
 		config.misc.prev_wakeup_time_type.save()
