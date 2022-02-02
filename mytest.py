@@ -56,9 +56,7 @@ profile("LOAD:skin")
 from skin import readSkin
 
 profile("LOAD:Tools")
-from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
-
-InitFallbackFiles()
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 
 profile("config.misc")
 config.misc.boxtype = ConfigText(default=boxtype)
