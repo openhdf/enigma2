@@ -69,30 +69,31 @@ static inline void RemoveTrack(unsigned int addr, unsigned int type)
 inline void * operator new(size_t size, const char *file, int line)
 {
 	void *ptr = (void *)malloc(size);
-	AddTrack((uintptr_t)ptr, size, file, line, 1);
+	AddTrack((unsigned int)ptr, size, file, line, 1);
 	return(ptr);
 };
 
 inline void operator delete(void *p)
 {
-	RemoveTrack((uintptr_t)p,1);
+	RemoveTrack((unsigned int)p,1);
 	free(p);
 };
 
 inline void * operator new[](size_t size, const char *file, int line)
 {
 	void *ptr = (void *)malloc(size);
-	AddTrack((uintptr_t)ptr, size, file, line, 2);
+	AddTrack((unsigned int)ptr, size, file, line, 2);
 	return(ptr);
 };
 
 inline void operator delete[](void *p)
 {
-	RemoveTrack((uintptr_t)p, 2);
+	RemoveTrack((unsigned int)p, 2);
 	free(p);
 };
 
 void DumpUnfreed();
+#define new new(__FILE__, __LINE__)
 
 #endif // MEMLEAK_CHECK
 
@@ -107,43 +108,6 @@ void DumpUnfreed();
 #ifndef SWIG
 
 #define CHECKFORMAT __attribute__ ((__format__(__printf__, 2, 3)))
-
-extern int logOutputConsole;
-extern int logOutputColors;
-
-void _eFatal(const char *file, int line, const char *function, const char* fmt, ...);
-#define eFatal(args ...) _eFatal(__FILE__, __LINE__, __FUNCTION__, args)
-enum { lvlDebug=1, lvlWarning=2, lvlFatal=4 };
-
-#ifdef DEBUG
-	void _eDebug(const char *file, int line, const char *function, const char* fmt, ...);
-#define eDebug(args ...) _eDebug(__FILE__, __LINE__, __FUNCTION__, args)
-#define eLog(level, args ...) _eDebug(__FILE__, __LINE__, __FUNCTION__, args)
-	void _eDebugNoNewLineStart(const char *file, int line, const char *function, const char* fmt, ...);
-#define eDebugNoNewLineStart(args ...) _eDebugNoNewLineStart(__FILE__, __LINE__, __FUNCTION__, args)
-#define eLogNoNewLineStart(level, args ...) _eDebugNoNewLineStart(__FILE__, __LINE__, __FUNCTION__, args)
-	void CHECKFORMAT eDebugNoNewLine(const char*, ...);
-#define eLogNoNewLine(level, args ...) eDebugNoNewLine(args)
-	void CHECKFORMAT eDebugNoNewLineEnd(const char*, ...);
-	void eDebugEOL(void);
-	void _eWarning(const char *file, int line, const char *function, const char* fmt, ...);
-#define eWarning(args ...) _eWarning(__FILE__, __LINE__, __FUNCTION__, args)
-	#define ASSERT(x) { if (!(x)) eFatal("%s:%d ASSERTION %s FAILED!", __FILE__, __LINE__, #x); }
-	void _eSyncLog(void);
-#define eSyncLog(void) _eSyncLog(void)
-#else  // DEBUG
-	inline void eDebug(const char* fmt, ...)
-	{
-	}
-
-	inline void eDebugNoNewLineStart(const char* fmt, ...)
-	{
-	}
-
-	inline void eDebugNoNewLine(const char* fmt, ...)
-	{
-	}
->>>>>>> origin/master
 
 /*
  * Current loglevel
