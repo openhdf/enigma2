@@ -1,3 +1,4 @@
+from __future__ import print_function
 from __future__ import absolute_import
 from Components.VariableText import VariableText
 from Components.Renderer.Renderer import Renderer
@@ -13,8 +14,11 @@ class Label(VariableText, Renderer):
 	GUI_WIDGET = eLabel
 
 	def connect(self, source):
-		Renderer.connect(self, source)
-		self.changed((self.CHANGED_DEFAULT,))
+		if(source):
+			Renderer.connect(self, source)
+			self.changed((self.CHANGED_DEFAULT,))
+		else:
+			print("SKINERROR: render label has no source")
 
 	def changed(self, what):
 		if what[0] == self.CHANGED_CLEAR:

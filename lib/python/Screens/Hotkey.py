@@ -182,6 +182,7 @@ for x in getHotkeys():
 	exec("config.misc.hotkey." + x[1] + " = ConfigText(default='" + x[2] + "')")
 
 
+
 def getHotkeyFunctions():
 	hotkeyFunctions = []
 	twinPlugins = []
@@ -259,6 +260,7 @@ def getHotkeyFunctions():
 		hotkeyFunctions.append((_("Swap Picture In Picture"), "Infobar/swapPiP", "InfoBar"))
 		hotkeyFunctions.append((_("Move Picture In Picture"), "Infobar/movePiP", "InfoBar"))
 		hotkeyFunctions.append((_("Toggle Picture In Picture Zap"), "Infobar/togglePipzap", "InfoBar"))
+		hotkeyFunctions.append((_("Cycle Picture In Picture"), "Infobar/activePiP", "InfoBar"))
 	hotkeyFunctions.append((_("Activate HbbTV (Redbutton)"), "Infobar/activateRedButton", "InfoBar"))
 	if getHaveHDMIinHD() in ('True') or getHaveHDMIinFHD() in ('True'):
 		hotkeyFunctions.append((_("Toggle HDMI-In Full Screen"), "Infobar/HDMIInFull", "InfoBar"))

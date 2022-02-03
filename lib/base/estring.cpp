@@ -981,6 +981,7 @@ std::string replace_all(const std::string &in, const std::string &entity, const 
 {
 	std::string out = in;
 	std::string::size_type loc = 0;
+
 	if( table == -1 )
 		table = defaultEncodingTable;
 
@@ -1034,7 +1035,6 @@ std::string replace_all(const std::string &in, const std::string &entity, const 
 			loc += 2;
 		}
 		break;
-
 	default:
 		while ((loc = out.find(entity, loc)) != std::string::npos)
 		{

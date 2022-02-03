@@ -40,6 +40,7 @@ def setFPWakeuptime(wutime):
 			print("setFPWakeupTime failed!")
 
 
+
 def setRTCoffset():
 	import time
 	if time.localtime().tm_isdst == 0:
@@ -58,6 +59,7 @@ def setRTCoffset():
 		print("set RTC Offset failed!")
 
 
+
 def setRTCtime(wutime):
 	if getBoxType() in ('gb800solo', 'gb800se', 'gb800ue') or getBrandOEM().startswith('ini'):
 		setRTCoffset()
@@ -72,6 +74,7 @@ def setRTCtime(wutime):
 			fp.close()
 		except IOError:
 			print("setRTCtime failed!")
+
 
 
 def getFPWakeuptime():

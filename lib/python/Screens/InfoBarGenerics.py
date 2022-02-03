@@ -315,13 +315,19 @@ class InfoBarUnhandledKey:
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
-		try:
-			print('[InfoBarGenerics] KEY: %s %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value == key), getKeyDescription(key)[0]))
-		except:
+		if config.plisettings.ShowPressedButtons.value:
+			if config.hdf.ShowPressedButtonGUI.value:
+				self.pressedButtonsDialog.setButton((key_name for key_name, value in KEYIDS.items() if value == key).next())
+				self.pressedButtonsDialog.show()
+				self.hideShowPressedButtonsTimer.start(2000, True)
+			# print "Enable debug mode for every pressed key."
 			try:
-				print('[InfoBarGenerics] KEY: %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value == key))) # inverse dictionary lookup in KEYIDS
+				print('[InfoBarGenerics] KEY: %s %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value == key), getKeyDescription(key)[0]))
 			except:
-				print('[InfoBarGenerics] KEY: %s %s' % (key, flag))
+				try:
+					print('[InfoBarGenerics] KEY: %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value == key))) # inverse dictionary lookup in KEYIDS
+				except:
+					print('[InfoBarGenerics] KEY: %s %s' % (key, flag))
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -650,6 +656,7 @@ class SecondInfoBar(Screen):
 			self.hide()
 			self.secondInfoBarWasShown = False
 			self.session.open(EPGSelection, refstr, None, _id)
+
 
 
 class InfoBarShowHide(InfoBarScreenSaver):
@@ -5078,6 +5085,7 @@ class InfoBarQuickMenu:
 
 	def bluekey_qm(self):
 		self.showExtensionSelection()
+
 
 
 class InfoBarInstantRecord:

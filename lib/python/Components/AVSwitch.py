@@ -274,6 +274,21 @@ class AVSwitch:
 			except IOError:
 				print("[AVSwitch] writing initial videomode to /etc/videomode failed.")
 
+		if SystemInfo["have24hz"]:
+			try:
+				open("/proc/stb/video/videomode_24hz", "w").write(mode_24)
+			except IOError:
+				print( "[VideoHardware] cannot open /proc/stb/video/videomode_24hz")
+
+		if getBrandOEM() in ('gigablue'):
+			try:
+				# use 50Hz mode (if available) for booting
+				f = open("/etc/videomode", "w")
+				f.write(mode_50)
+				f.close()
+			except IOError:
+				print("[AVSwitch] writing initial videomode to /etc/videomode failed.")
+
 		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 		self.setColorFormat(map[config.av.colorformat.value])
 

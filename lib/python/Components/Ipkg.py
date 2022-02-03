@@ -24,6 +24,7 @@ def opkgAddDestination(mountpoint):
 		print("[Ipkg] Added to OPKG destinations:", mountpoint)
 
 
+
 def onPartitionChange(why, part):
 	global opkgDestinations
 	global opkgStatusPath

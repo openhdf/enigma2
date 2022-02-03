@@ -1533,6 +1533,9 @@ class NimManager:
 	def getNimListForSat(self, orb_pos):
 		return [nim.slot for nim in self.nim_slots if nim.isCompatible("DVB-S") and not nim.isFBCLink() and orb_pos in [sat[0] for sat in self.getSatListForNim(nim.slot)]]
 
+	def getNimListForSat(self, orb_pos):
+		return [nim.slot for nim in self.nim_slots if nim.isCompatible("DVB-S") and not nim.isFBCLink() and orb_pos in [sat[0] for sat in self.getSatListForNim(nim.slot)]]
+
 	def getRotorSatListForNim(self, slotid):
 		_list = []
 		if self.nim_slots[slotid].isCompatible("DVB-S"):
@@ -1564,6 +1567,7 @@ class NimManager:
 							if str(user_sat[0]) in nim.advanced.sat[x].userSatellitesList.value and user_sat not in _list:
 								_list.append(user_sat)
 		return _list
+
 
 
 def InitSecParams():

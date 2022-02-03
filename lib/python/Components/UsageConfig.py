@@ -6,7 +6,7 @@ from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTun
 from Components.About import about
 from Components.Harddisk import harddiskmanager
 from Components.config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC, defaultRecordingLocation, fileExists, fileCheck, fileContains
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, fileExists, fileCheck, fileContains
 from boxbranding import getBoxType, getMachineBuild, getMachineName, getBrandOEM, getDisplayType
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
@@ -15,6 +15,7 @@ from Tools.HardwareInfo import HardwareInfo
 from keyids import KEYIDS
 from sys import maxsize
 from six.moves import map
+
 
 
 def InitUsageConfig():
@@ -271,9 +272,27 @@ def InitUsageConfig():
 			tmpvalue = config.usage.timeshift_path.value
 			config.usage.timeshift_path.setValue(tmpvalue + '/')
 			config.usage.timeshift_path.save()
-
 	config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback=False)
 	config.usage.allowed_timeshift_paths = ConfigLocations(default=[resolveFilename(SCOPE_TIMESHIFT)])
+
+	if not os.path.exists(resolveFilename(SCOPE_AUTORECORD)):
+		try:
+			os.mkdir(resolveFilename(SCOPE_AUTORECORD), 0o755)
+		except:
+			pass
+	config.usage.autorecord_path = ConfigText(default=resolveFilename(SCOPE_AUTORECORD))
+	if not config.usage.default_path.value.endswith('/'):
+		tmpvalue = config.usage.autorecord_path.value
+		config.usage.autorecord_path.setValue(tmpvalue + '/')
+		config.usage.autorecord_path.save()
+
+	def autorecordpathChanged(configElement):
+		if not config.usage.autorecord_path.value.endswith('/'):
+			tmpvalue = config.usage.autorecord_path.value
+			config.usage.autorecord_path.setValue(tmpvalue + '/')
+			config.usage.autorecord_path.save()
+	config.usage.autorecord_path.addNotifier(autorecordpathChanged, immediate_feedback=False)
+	config.usage.allowed_autorecord_paths = ConfigLocations(default=[resolveFilename(SCOPE_AUTORECORD)])
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min=1, max=31, stepwidth=1, default=7, wraparound=True)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
@@ -368,6 +387,13 @@ def InitUsageConfig():
 
 	config.usage.remote_fallback_enabled = ConfigYesNo(default=False)
 	config.usage.remote_fallback = ConfigText(default="http://192.168.123.123:8001", fixed_size=False)
+
+
+	choicelist = [("0", _("Disabled"))]
+	for i in (10, 50, 100, 500, 1000, 2000):
+		choicelist.append(("%d" % i, _("%d ms") % i))
+
+	config.usage.http_startdelay = ConfigSelection(default="0", choices=choicelist)
 
 	nims = [("-1", _("auto")), ("expert_mode", _("Expert mode")), ("experimental_mode", _("Experimental mode"))]
 	rec_nims = [("-2", _("Disabled")), ("-1", _("auto")), ("expert_mode", _("Expert mode")), ("experimental_mode", _("Experimental mode"))]
@@ -1680,6 +1706,7 @@ def updateChoices(sel, choices):
 					defval = str(x)
 					break
 		sel.setChoices(list(map(str, choices)), defval)
+
 
 
 def preferredPath(path):

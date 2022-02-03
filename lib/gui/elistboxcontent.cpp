@@ -459,7 +459,15 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 							/* convert value to Long. fallback to -1 on error. */
 						int value = (pvalue && PyInt_Check(pvalue)) ? PyInt_AsLong(pvalue) : -1;
 						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
+						int value_area = 0;
 
+							/* draw value at the end of the slider */
+						if (eConfigManager::getConfigBoolValue("config.usage.show_slider_value", true))
+						{
+							value_area = 100;
+							painter.setFont(fnt2);
+							painter.renderText(eRect(ePoint(offset.x()-15, offset.y()), m_itemsize), std::to_string(value), gPainter::RT_HALIGN_RIGHT| gPainter::RT_VALIGN_CENTER, border_color, border_size);
+						}
 							/* calc. slider length */
 						int width = (m_itemsize.width() - m_seperation - 15) * value / size;
 						int height = m_itemsize.height();

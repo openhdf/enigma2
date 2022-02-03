@@ -87,6 +87,7 @@ class parseXML(ContentHandler):
 		print("""\t\t<widget source="%s" render="Label" position="%d,%d" size="%d,%d" %s />""" % (id, x, y, width, height, font))
 
 
+
 parser = make_parser()
 contentHandler = parseXML()
 parser.setContentHandler(contentHandler)

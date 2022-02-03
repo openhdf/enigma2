@@ -453,6 +453,11 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		if self.seekstate != self.SEEK_STATE_PLAY:
 			self.unPauseService()
 
+	def crashFix(self):
+		# fix possible box freeze (e.g. OS1+)
+		if self.seekstate != self.SEEK_STATE_PLAY:
+			self.unPauseService()
+
 	# we modify the "play" behavior a bit:
 	# if we press pause while being in slowmotion, we will pause (and not play)
 	def playpauseService(self):

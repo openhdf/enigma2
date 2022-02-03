@@ -16,6 +16,7 @@ from Tools.Directories import fileExists
 from Tools.HardwareInfo import HardwareInfo
 
 
+
 class md5Postcondition(Condition):
 	def __init__(self):
 		pass
@@ -50,6 +51,7 @@ class md5verify(Task):
 
 	def processOutput(self, data):
 		print("[md5sum]", end=' ')
+
 
 
 class writeNAND(Task):

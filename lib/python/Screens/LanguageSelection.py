@@ -175,6 +175,15 @@ class LanguageSelection(Screen):
 		self.updateList()
 		self.selectActiveLanguage()
 
+	def installLanguage(self):
+		from Screens.PluginBrowser import PluginDownloadBrowser
+		self.session.openWithCallback(self.update_after_installLanguage, PluginDownloadBrowser, 0)
+
+	def update_after_installLanguage(self):
+		language.InitLang()
+		self.updateList()
+		self.selectActiveLanguage()
+
 	def changed(self):
 		self.run(justlocal=True)
 

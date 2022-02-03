@@ -32,6 +32,7 @@ from . import rotor_calc
 from six.moves import map
 
 
+
 class PositionerSetup(Screen):
 
 	@staticmethod

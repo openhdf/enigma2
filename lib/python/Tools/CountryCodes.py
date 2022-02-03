@@ -130,6 +130,7 @@ ISO3166 = [
 	(_("Lithuania"), "LT", "LTU"),
 	(_("Luxembourg"), "LU", "LUX"),
 	(_("Macao"), "MO", "MAC"),
+	(_("Macedonia (the former Yugoslav Republic of)"), "MK", "MKD"),
 	(_("Madagascar"), "MG", "MDG"),
 	(_("Malawi"), "MW", "MWI"),
 	(_("Malaysia"), "MY", "MYS"),

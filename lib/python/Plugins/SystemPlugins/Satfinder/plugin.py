@@ -17,6 +17,7 @@ from Tools.Transponder import getChannelNumber, channel2frequency
 import six
 
 
+
 class Satfinder(ScanSetup, ServiceScan):
 	def __init__(self, session):
 		self.initcomplete = False

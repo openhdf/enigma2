@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-14 22:48+0200\n"
-"PO-Revision-Date: 2021-10-14 23:01+0200\n"
+"PO-Revision-Date: 2022-01-23 18:29+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1230,6 +1230,13 @@ msgstr ""
 "%s %s nach dem Aufnahme oder Powertimer Ereignis ab.\n"
 "Jetzt in den Standby gehen?"
 
+msgid ""
+"PowerOff while Recording in progress!\n"
+"Entering standby, after recording the box will shutdown."
+msgstr ""
+"Ausschalten, während eine Aufnahme läuft!\n"
+"Die Box geht jetzt in Standby und wird nach der Aufnahme ausgeschaltet."
+
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Eine Updateprüfung läuft im Hintergrund. Bitte ein paar Minuten warten und erneut versuchen."
 
@@ -2432,6 +2439,42 @@ msgstr "Bitrate"
 msgid "Bitrate:"
 msgstr "Bitrate:"
 
+msgid "Belgium"
+msgstr ""
+
+msgid "Belize"
+msgstr ""
+
+msgid "Benin"
+msgstr ""
+
+msgid "Blinking REC Symbol"
+msgstr "Blinkendes REC"
+
+msgid "Block noise reduction"
+msgstr "Block Noise Reduzierung"
+
+msgid "Bermuda"
+msgstr ""
+
+msgid "Beyonwiz U4"
+msgstr ""
+
+msgid "Bhutan"
+msgstr ""
+
+msgid "Big PiP"
+msgstr "Großes PIP"
+
+msgid "Bildbetrachter"
+msgstr ""
+
+msgid "Bitrate"
+msgstr "Bitrate"
+
+msgid "Bitrate:"
+msgstr "Bitrate:"
+
 msgid "Black"
 msgstr "Schwarz"
 
@@ -3478,6 +3521,12 @@ msgstr "Konfiguriert ob das EPG immer gespeichert werden soll."
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Konfigurieren ob und wie Picons in der Senderliste gezeigt werden."
 
+msgid "Keep focus on current service while entering servicelist."
+msgstr "Halte den Fokus auf den aktuell gespielten Sender in der Senderliste."
+
+msgid "Configure to keep focus on the current played service while entering the servicelist via the bouquet buttons."
+msgstr "Halte den Fokus auf den aktuell gespielten Sender, während die Senderliste über die Bouquet-Tasten aufgerufen wird."
+
 msgid "Configure interface"
 msgstr "Netzwerkkarte konfigurieren"
 
@@ -4292,6 +4341,24 @@ msgstr "Legt fest, welche Vorspulgeschwindigkeit beim Cueing benutzt wird. Alle 
 msgid "Delay before key repeat starts:"
 msgstr "Verzögerung bevor Tastenwiederholung startet:"
 
+msgid "Define the mode to turn on 3D automatically or by quick toggle menu command [Side By Side] or [Top And Bottom]."
+msgstr ""
+
+msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
+msgstr "Legt fest wie schnell die Zeitsprünge wiederholt werden. Werte unter 0,5s machen eventuell Probleme mit NAS Laufwerken."
+
+msgid "Defines the jump distance for backward jumps. The value is multiplied by the rewind speed, e.g. -4x. Values significantly lower than 2s may not work with all media files."
+msgstr "Definiert die Sprungweite für Rückwärtssprünge. Der Wert wird mit der Rückspulgeschwindigkeit multipliziert. Werte unter 2s funktionieren nicht mit allen Media Dateien."
+
+msgid "Defines the jump distance for forward jumps. The value is multiplied by the wind speed, e.g. 4x. Values significantly lower than 4s may not work with all media files."
+msgstr "Definiert die Sprungweite für Vorwärtssprünge. Der Wert wird mit der Spulgeschwindigkeit multipliziert. Werte unter 4s funktionieren nicht mit allen Media Dateien."
+
+msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
+msgstr "Legt fest, welche Vorspulgeschwindigkeit beim Cueing benutzt wird. Alle anderen Vor- und Rückspulgeschwindigkeiten verwenden Zeitsprünge."
+
+msgid "Delay before key repeat starts:"
+msgstr "Verzögerung bevor Tastenwiederholung startet:"
+
 msgid "Delay for external subtitles"
 msgstr "Verzögerung für externe Untertitel"
 
@@ -4503,6 +4570,21 @@ msgstr "Verzeichnis Browser"
 
 msgid "Directory long"
 msgstr "Directory lang"
+
+msgid "MOUSE long"
+msgstr "MOUSE lang"
+
+msgid "VOD long"
+msgstr "VOD lang"
+
+msgid "Kodi long"
+msgstr "Kodi lang"
+
+msgid "YouTube long"
+msgstr "YouTube lang"
+
+msgid "Netflix long"
+msgstr "Netflix lang"
 
 msgid "Disable"
 msgstr "Aus"
@@ -4843,6 +4925,22 @@ msgstr "Den normalen Start-Wizard ausführen!"
 msgid "Don't save"
 msgstr "Nicht speichern"
 
+msgid "Dominica"
+msgstr ""
+
+msgid "Dominican Republic"
+msgstr ""
+
+#, fuzzy
+msgid "Don't ask again!"
+msgstr "Wieder mounten"
+
+msgid "Don't restore settings and plugins!"
+msgstr "Den normalen Start-Wizard ausführen!"
+
+msgid "Don't save"
+msgstr "Nicht speichern"
+
 msgid "Don't stop current event but disable coming events"
 msgstr "Aktuelle Aufnahme nicht beenden aber zukünftige deaktivieren"
 
@@ -4878,8 +4976,11 @@ msgstr "%s vom Server herunterladen"
 msgid "Download .NFI-files for USB-flasher"
 msgstr ".NFI-Files für USB-Flasher runterladen"
 
-msgid "Download plugins"
+msgid "Download Plugins"
 msgstr "Installieren"
+
+msgid "Lock Plugins"
+msgstr "Sperren"
 
 msgid "Downloadable plugins"
 msgstr "Plugins herunterladen"
@@ -5361,6 +5462,69 @@ msgstr ""
 
 msgid "Enter your high band local oscillator frequency. For more information consult the spec sheet of your LNB."
 msgstr ""
+
+msgid "Enter your input data"
+msgstr ""
+
+msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
+msgstr ""
+
+msgid "Enter the service pin"
+msgstr "Bitte den Sender-PIN Code eingeben"
+
+#, fuzzy, python-format
+msgid "Entry %s already exists."
+msgstr "Der Pfad %s existiert bereits."
+
+#, fuzzy
+msgid "Epg/Guide"
+msgstr "Epg/Guide lang"
+
+msgid "Epg/Guide long"
+msgstr "Epg/Guide lang"
+
+msgid "Equal to"
+msgstr "Gleich wie"
+
+msgid "Equatorial Guinea"
+msgstr ""
+
+msgid "Erase"
+msgstr "Löschen"
+
+#, fuzzy
+msgid "Eritrea"
+msgstr "Stream"
+
+msgid "Error"
+msgstr "Fehler"
+
+msgid "Error checking disk. The disk may be damaged"
+msgstr "Fehler beim Überprüfen der Festplatte"
+
+msgid "Error code"
+msgstr "Fehler Code"
+
+msgid "Error downloading change log."
+msgstr "Fehler beim herunterladen vom change.log."
+
+#, python-format
+msgid ""
+"Error during downloading image\n"
+"%s\n"
+"%s"
+msgstr ""
+"Fehler beim Herunterladen vom Image\n"
+"%s\n"
+"%s"
+
+#, python-format
+msgid ""
+"Error during unzipping image\n"
+"%s"
+msgstr ""
+"Fehler beim Entpacken vom Image\n"
+"%s"
 
 msgid "Enter your input data"
 msgstr ""
@@ -5989,6 +6153,31 @@ msgstr ""
 "Flashen vom Image war nicht erfolgreich\n"
 "%s"
 
+msgid "Flashing image successful"
+msgstr "Flashen vom Image war erfolgreich"
+
+#, python-format
+msgid ""
+"Flashing image successful.\n"
+"Press ok to close.\n"
+"\n"
+"Flashed:\n"
+"%s"
+msgstr ""
+"Flashen vom Image war erfolgreich.\n"
+"Ok drücken zum Beenden.\n"
+"\n"
+"Geflasht wurde:\n"
+"%s"
+
+#, python-format
+msgid ""
+"Flashing image was not successful\n"
+"%s"
+msgstr ""
+"Flashen vom Image war nicht erfolgreich\n"
+"%s"
+
 msgid "Following tasks will be done after you press OK!"
 msgstr "Folgendes wird ausgeführt, nachdem OK gedrückt wurde!"
 
@@ -6488,6 +6677,91 @@ msgstr "Version:\t%s"
 
 msgid "HDFreaks"
 msgstr ""
+
+msgid "HDMI"
+msgstr "HDMI"
+
+msgid "HDMI CEC"
+msgstr "HDMI CEC Einstellungen"
+
+msgid "HD60"
+msgstr ""
+
+msgid "HDD"
+msgstr ""
+
+#, fuzzy
+msgid "HDMI Colordepth"
+msgstr "HDMI Farbprofile"
+
+msgid "HDMI Colorimetry"
+msgstr "HDMI Farbprofile"
+
+#, fuzzy
+msgid "HDMI Colorspace"
+msgstr "Farbraum"
+
+msgid "HDMI HDR Type"
+msgstr ""
+
+#, fuzzy
+msgid "HDMI Recording"
+msgstr "Aufnahme"
+
+#, fuzzy
+msgid "HDMI Rx"
+msgstr "HDMI Rx lang"
+
+msgid "HDMI Rx long"
+msgstr "HDMI Rx lang"
+
+msgid "HDMI-IN Recording settings"
+msgstr "HDMI-IN Aufnahmen"
+
+msgid "HDR10 Support"
+msgstr "HDR10 Unterstützung"
+
+msgid "HELP"
+msgstr ""
+
+msgid "HI-cleanup for external subtitles"
+msgstr "Hörgeschädigten-Bereinigung für externe Untertitel"
+
+msgid "HISTORY"
+msgstr ""
+
+msgid "HLG Support"
+msgstr "HLG-Unterstützung"
+
+msgid "HOME"
+msgstr ""
+
+#, fuzzy
+msgid "Haiti"
+msgstr "Warte"
+
+msgid "Handle input from TV"
+msgstr "TV-Eingänge verwalten"
+
+msgid ""
+"HDD = Do you want to make an USB-back-up image on HDD? \n"
+"This only takes 2 or 10 minutes and is fully automatic."
+msgstr ""
+"HDD = Willst du ein Backup auf HDD erstellen? \n"
+"Das dauert nur ein paar Minuten und geht vollautomatisch."
+
+#, fuzzy, python-format
+msgid "HDF Build: %s"
+msgstr "%s"
+
+msgid "HDF Toolbox GigaBlue"
+msgstr ""
+
+msgid "Hard disk standby after"
+msgstr "Festplatten Ruhezustand nach"
+
+msgid "Hard disk standby in box standby after"
+msgstr "Festplatten Ruhezustand im Standby nach"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -7949,10 +8223,6 @@ msgstr ""
 
 msgid "MOUSE"
 msgstr ""
-
-#, fuzzy
-msgid "MOUSE long"
-msgstr "OK lang"
 
 msgid "MQB Functions and Plugins"
 msgstr ""
@@ -10211,6 +10481,12 @@ msgstr "Einschalt / Ausschalt Timer"
 msgid "Power (use button menu)"
 msgstr "Power (Tasten Einstellungen)"
 
+msgid "Power (use button menu settings)"
+msgstr "Power (in den Tasten Einstellungen ändern)"
+
+msgid "Power long (use button menu settings)"
+msgstr "Power lang (in den Tasten Einstellungen ändern)"
+
 msgid "Power LED State in Deep-Standby"
 msgstr "Power LED Anzeige im Deep-Standby"
 
@@ -10228,9 +10504,6 @@ msgstr "Hier können Sie einstellen, ob die Power-LED im Deep-Standby an oder au
 
 msgid "Power LED state during standby."
 msgstr "Power LED Anzeige im Standby."
-
-msgid "Power long (use button menu)"
-msgstr "Power lang (Tasten Einstellungen)"
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
@@ -10661,55 +10934,6 @@ msgid "Read Userdata from oscam.conf"
 msgstr "Lese Benutzerdaten aus oscam.comf"
 
 #, fuzzy, python-format
-msgid "Read cache speed: %s"
-msgstr "Rücklauf Geschwindigkeiten"
-
-msgid "Read disk cache speed: unknown"
-msgstr ""
-
-msgid "Read disk speed: unknown"
-msgstr ""
-
-#, fuzzy, python-format
-msgid "Read speed: %s"
-msgstr "Rücklauf Geschwindigkeiten"
-
-msgid "Reader"
-msgstr "Kartenleser"
-
-msgid "Reader Statistics"
-msgstr "Statistik vom Kartenleser"
-
-#, python-format
-msgid "Ready to install \"%s\" ?"
-msgstr "Fertig zur Installation von \"%s\"?"
-
-#, python-format
-msgid "Ready to install %s ?"
-msgstr "Fertig zur Installation von %s ?"
-
-#, python-format
-msgid "Ready to remove \"%s\" ?"
-msgstr "Fertig zum Löschen von \"%s\"?"
-
-#, python-format
-msgid "Ready to remove %s ?"
-msgstr "Wollen Sie - %s - deinstallieren?"
-
-#, fuzzy
-msgid "Really WOL now?"
-msgstr "Trotzdem neu booten?"
-
-msgid "Really close without saving settings?"
-msgstr "Wirklich ohne Sichern beenden?"
-
-msgid "Really delete done timers?"
-msgstr "Vollendete Timer wirklich löschen?"
-
-msgid "Really delete this entry?"
-msgstr "Sendergruppe wirklich löschen?"
-
-msgid "Really exit the subservices quickzap?"
 msgstr "Den Unterkanal-Schnellumschalter wirklich beenden?"
 
 msgid "Really reboot into Recovery Mode?"
@@ -10960,7 +11184,7 @@ msgstr "Löschen beendet."
 msgid "Remove items from trash can after (days)"
 msgstr "Lösche Mülleimer nach (Tagen)"
 
-msgid "Remove plugins"
+msgid "Remove Plugins"
 msgstr "Löschen"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
@@ -11026,6 +11250,12 @@ msgstr "Wiederholungen"
 
 msgid "Require authentication for http streams"
 msgstr "Authentifizierung für HTTP Streams"
+
+msgid "Http(s) stream start delay"
+msgstr "Http(s) Verzögerung beim Streamstart"
+
+msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr "Definieren Sie eine zusätzliche Verzögerung in Millisekunden vor dem Start von http(s) Streams."
 
 msgid "Required medium type:"
 msgstr "Benötigte Rohlingsorte:"
@@ -11287,9 +11517,6 @@ msgstr "SATPI (SATIP Server)"
 msgid "SCPC optimized search range"
 msgstr "SCPC optimierter Suchbereich"
 
-msgid "SCR timing adjustment, in conjunction with SCR socket and operation of several SCR devices with one cable."
-msgstr ""
-
 msgid "SCREEN"
 msgstr ""
 
@@ -11315,14 +11542,8 @@ msgstr ""
 msgid "SID"
 msgstr "SID"
 
-msgid "SINGLE LAYER DVD"
-msgstr "SINGLE LAYER DVD"
-
-msgid "SPDIF"
-msgstr "SPDIF"
-
-msgid "SSID:"
-msgstr "SSID:"
+msgid "SCR timing adjustment, in conjunction with SCR socket and operation of several SCR devices with one cable."
+msgstr ""
 
 #, fuzzy
 msgid "Sa"
@@ -15151,6 +15372,9 @@ msgstr "Bild in Grafik umschalten"
 msgid "Toggle Picture In Picture Zap"
 msgstr "Bild in Bild Umschaltung wechseln"
 
+msgid "Cycle Picture In Picture"
+msgstr "Bild in Bild Modus wechseln"
+
 msgid "Toggle a cut mark at the current position"
 msgstr "Schnittmarke an der aktuellen Position ändern"
 
@@ -16007,10 +16231,6 @@ msgstr "VMGM (Intro-Trailer)"
 
 msgid "VOD"
 msgstr ""
-
-#, fuzzy
-msgid "VOD long"
-msgstr "OK lang"
 
 msgid "VPN"
 msgstr ""

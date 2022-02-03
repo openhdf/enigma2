@@ -24,6 +24,7 @@ from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPytho
 from .camcontrol import CamControl
 
 
+
 class ConfigAction(ConfigElement):
 	def __init__(self, action, *args):
 		ConfigElement.__init__(self)

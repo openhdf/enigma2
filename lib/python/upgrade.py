@@ -25,6 +25,7 @@ def opkgAddDestination(mountpoint):
 		print("[Ipkg] Added to OPKG destinations:", mountpoint)
 
 
+
 mounts = os.listdir('/media')
 for mount in mounts:
 	mount = os.path.join('/media', mount)

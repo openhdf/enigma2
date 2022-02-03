@@ -226,6 +226,7 @@ class eAVSwitch:
 		print("[eAVSwitch] wss set to %d" % value)
 
 
+
 eAVSwitch()
 
 eDVBVolumecontrol = None
@@ -260,6 +261,7 @@ class eRFmod:
 		print("[eRFmod] set finetune to %d" % value)
 
 
+
 eRFmod()
 
 
@@ -281,6 +283,7 @@ class eDBoxLCD:
 
 	def setInverted(self, value):
 		print("[eDBoxLCD] set inverted to %d" % value)
+
 
 
 eDBoxLCD()

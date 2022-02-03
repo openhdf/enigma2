@@ -10,6 +10,7 @@ import skin
 from six.moves import zip
 
 
+
 class ConfigList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list, session=None):
 		GUIComponent.__init__(self)

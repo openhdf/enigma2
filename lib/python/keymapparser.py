@@ -10,6 +10,7 @@ from Tools.KeyBindings import addKeyBinding
 from six.moves import map
 
 
+
 class KeymapError(Exception):
 	def __init__(self, message):
 		self.msg = message

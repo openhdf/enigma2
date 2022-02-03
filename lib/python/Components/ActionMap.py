@@ -6,6 +6,7 @@ import six
 from Tools.KeyBindings import queryKeyBinding
 
 
+
 class ActionMap:
 	def __init__(self, contexts=None, actions=None, prio=0):
 		self.contexts = contexts or []

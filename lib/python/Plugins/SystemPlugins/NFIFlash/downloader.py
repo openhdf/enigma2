@@ -27,6 +27,7 @@ from Tools.HardwareInfo import HardwareInfo
 from Tools.Downloader import downloadWithProgress
 
 
+
 class ImageDownloadJob(Job):
 	def __init__(self, url, filename, device=None, mountpoint="/"):
 		Job.__init__(self, _("Download .NFI-files for USB-flasher"))
@@ -55,6 +56,7 @@ class MountTask(Task):
 
 	def processOutput(self, data):
 		print("[MountTask] output:", data)
+
 
 
 class UmountTask(Task):
@@ -366,6 +368,7 @@ class DeviceBrowser(Screen, HelpableScreen):
 
 
 (ALLIMAGES, RELEASE, EXPERIMENTAL, STICK_WIZARD, START) = list(range(5))
+
 
 
 class NFIDownload(Screen):

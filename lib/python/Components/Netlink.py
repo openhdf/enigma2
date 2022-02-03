@@ -7,6 +7,7 @@ import socket
 import six
 
 
+
 class NetlinkSocket(socket.socket):
 	def __init__(self):
 		NETLINK_KOBJECT_UEVENT = 15 # hasn't landed in socket yet, see linux/netlink.h

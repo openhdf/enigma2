@@ -4,6 +4,7 @@ from enigma import eServiceCenter
 from Components.Sources.Source import Source
 
 
+
 class ServiceEvent(Source, object):
 	def __init__(self):
 		Source.__init__(self)

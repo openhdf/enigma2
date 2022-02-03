@@ -96,6 +96,7 @@ def setPreferredTagEditor(te):
 		print("Preferred tag editor already set to", preferredTagEditor, "ignoring", te)
 
 
+
 def getPreferredTagEditor():
 	global preferredTagEditor
 	return preferredTagEditor

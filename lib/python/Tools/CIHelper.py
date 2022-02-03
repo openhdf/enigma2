@@ -10,6 +10,7 @@ import os
 import six
 
 
+
 class CIHelper:
 
 	CI_ASSIGNMENT_LIST = None
