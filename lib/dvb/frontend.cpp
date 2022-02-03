@@ -1148,14 +1148,6 @@ void eDVBFrontend::checkRetune()
 		eDebug("[eDVBFrontend] not retuning after tune error 3 (noPatEntry) - disabled");
 }
 
-void eDVBFrontend::retune()
-{
-	m_timeout->stop();
-	m_state = stateFailed;
-	m_data[CSW] = m_data[UCSW] = m_data[TONEBURST] = -1; // reset diseqc
-	m_stateChanged(this);
-}
-
 #define INRANGE(X,Y,Z) (((X<=Y) && (Y<=Z))||((Z<=Y) && (Y<=X)) ? 1 : 0)
 
 /* unsigned 32 bit division */
