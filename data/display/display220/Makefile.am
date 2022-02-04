@@ -1,7 +1,6 @@
+installdir = $(pkgdatadir)/display/lcd_skin
+
 SUBDIRS = Wettericons
 
-installdir = $(pkgdatadir)/display/
-dist_install_DATA = *.png
+dist_install_DATA = *.xml *.png
 
-datainstalldir = $(pkgdatadir)/display
-dist_datainstall_DATA = *.xml

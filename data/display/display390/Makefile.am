@@ -1,5 +1,4 @@
-installdir = $(pkgdatadir)/display/skin_default
-dist_install_DATA = *.png
+installdir = $(pkgdatadir)/display/lcd_skin
 
-datainstalldir = $(pkgdatadir)/display
-dist_datainstall_DATA = *.xml *.png
+dist_install_DATA = *.xml *.png
+
