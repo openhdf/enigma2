@@ -28,7 +28,7 @@
 		gettimeofday(&end, NULL); \
 		duration = (((end.tv_usec - start.tv_usec)/1000) + 1000 ) % 1000; \
 		if (duration>35) \
-			eDebug("[eDVBFrontend] Slow ioctl '%s', potential driver issue, %dms",x,duration); \
+			eTrace("[eDVBFrontend] Slow ioctl '%s', potential driver issue, %dms",x,duration); \
 	} while(0)
 
 #define eDebugNoSimulateNoNewLineEnd(x...) \

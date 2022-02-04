@@ -175,5 +175,7 @@ void streamingDataToDict(ePyObject &dest, ePtr<iStreamData> data)
 		PutToDict(dest, "adapter", adapter);
 		data->getDemuxId(demux);
 		PutToDict(dest, "demux", demux);
+		data->getDefaultAudioPid(default_audio_pid);
+		PutToDict(dest, "default_audio_pid", default_audio_pid);
 	}
 }

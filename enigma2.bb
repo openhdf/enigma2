@@ -29,27 +29,6 @@ do_package_write_ipk[noexec] = "1"
 do_rm_work[noexec] = "1"
 do_rm_work_all[noexec] = "1"
 
-ACLOCALDIR = "${B}/aclocal-copy"
-e2_copy_aclocal () {
-        rm -rf ${ACLOCALDIR}/
-        mkdir -p ${ACLOCALDIR}/
-        if [ -d ${STAGING_DATADIR_NATIVE}/aclocal ]; then
-                cp-noerror ${STAGING_DATADIR_NATIVE}/aclocal/ ${ACLOCALDIR}/
-        fi
-        if [ -d ${STAGING_DATADIR}/aclocal -a "${STAGING_DATADIR_NATIVE}/aclocal" != "${STAGING_DATADIR}/aclocal" ]; then
-                cp-noerror ${STAGING_DATADIR}/aclocal/ ${ACLOCALDIR}/
-        fi
-}
-
-do_unpack[noexec] = "1"
-do_patch[no_exec] = "1"
-do_populate_sysroot[noexec] = "1"
-do_populate_lic[noexec] = "1"
-do_packagedata[noexec] = "1"
-do_package_write_ipk[noexec] = "1"
-do_rm_work[noexec] = "1"
-do_rm_work_all[noexec] = "1"
-
 bindir = "/usr/bin"
 sbindir = "/usr/sbin"
 
@@ -61,7 +40,6 @@ EXTRA_OECONF = " \
     --with-boxtype=${MACHINE} \
     --with-machinebuild="${MACHINEBUILD}" \
     --with-libsdl=no \
-    --enable-dependency-tracking \
     ${@bb.utils.contains("GST_VERSION", "1.0", "--with-gstversion=1.0", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "textlcd", "--with-textlcd" , "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "colorlcd", "--with-colorlcd" , "", d)} \
