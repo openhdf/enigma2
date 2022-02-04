@@ -3,6 +3,7 @@
 #include <lib/gdi/font.h>
 #include <lib/python/python.h>
 #include <lib/gdi/epng.h>
+#include <lib/base/nconfig.h>
 #include <sstream>
 
 using namespace std;
