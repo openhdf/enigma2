@@ -9,6 +9,7 @@
 
 #include "absdiff.h"
 #define SEC_DEBUG
+#undef SEC_DEBUG
 
 #ifdef SEC_DEBUG
 #define eSecDebug(arg...) eDebug(arg)

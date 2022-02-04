@@ -1108,7 +1108,7 @@ void eDVBDB::loadBouquet(const char *path)
 		}
 	}
 
-	eDebug("[eDVBDB] loading bouquet... %s", file_path.c_str());
+	eTrace("[eDVBDB] loading bouquet... %s", file_path.c_str());
 	CFile fp(file_path, "rt");
 
 	if (fp)
