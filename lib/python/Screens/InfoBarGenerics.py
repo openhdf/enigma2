@@ -4345,7 +4345,7 @@ class InfoBarExtensions:
 				{
 					"extensions": (self.bluekey_ex, _("view extensions...")),
 					"showPluginBrowser": (self.showPluginBrowser, _("Show the plugin browser..")),
-					"showEventInfo": (self.SelectopenEventView, _("Show the infomation on current event.")),
+					"showEventInfo": (self.SelectopenEventView, _("Show the information on current event.")),
 					"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 				}, 1) # lower priority
 

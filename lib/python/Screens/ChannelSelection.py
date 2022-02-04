@@ -324,7 +324,7 @@ class ChannelContextMenu(Screen):
 	def removeEntry(self):
 		if self.removeFunction and self.csel.servicelist.getCurrent() and self.csel.servicelist.getCurrent().valid():
 			if self.csel.confirmRemove:
-				list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session again"), "never")]
+				list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask again this session"), "never")]
 				self.session.openWithCallback(self.removeFunction, MessageBox, _("Are you sure to remove this entry?") + "\n%s" % self.getCurrentSelectionName(), list=list)
 			else:
 				self.removeFunction(True)
