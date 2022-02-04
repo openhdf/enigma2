@@ -145,6 +145,7 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 	invalidate(m_visible_region); // invalidate old visible regions
 	m_visible_region.rects.clear();
 
+	int line = 0;
 	int verticalShift=0;
 	int original_position = eConfigManager::getConfigIntValue("config.subtitles.dvb_subtitles_original_position");
 
@@ -168,14 +169,16 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 	{
 		if (original_position)
 		{
+			int lines = m_dvb_page.m_regions.size();
 			int lowerborder = eConfigManager::getConfigIntValue("config.subtitles.subtitle_position", -1);
 			if (lowerborder >= 0)
 			{
 				if (original_position == 1)
-					it->m_position=ePoint(it->m_position.x(), it->m_position.y()-verticalShift);
+					it->m_position=ePoint(it->m_position.x(), p.m_display_size.height() - (lines - line) * it->m_pixmap->size().height() - lowerborder);
 				else
 					it->m_position=ePoint(it->m_position.x(), it->m_position.y() + 55 - lowerborder);
 			}
+			line++;
 		}
 		eDebug("[eSubtitleWidget] add %d %d %d %d", it->m_position.x(), it->m_position.y(), it->m_pixmap->size().width(), it->m_pixmap->size().height());
 		//eDebug("[eSubtitleWidget] disp width %d, disp height %d", p.m_display_size.width(), p.m_display_size.height());
@@ -274,11 +277,20 @@ void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 	invalidate(m_visible_region); // invalidate new regions
 }
 
+void eSubtitleWidget::setPage(const eVobSubtitlePage &p)
+{
+	eRect r = eRect(0, 0, 720, 576);
+	ePtr<gPixmap> pixmap = p.m_pixmap;
+	setPixmap(pixmap, r, r);
+	m_hide_subtitles_timer->start(p.m_timeout, true);
+}
+
 void eSubtitleWidget::clearPage()
 {
 	m_page_ok = 0;
 	m_dvb_page_ok = 0;
 	m_pango_page_ok = 0;
+	m_pixmap = 0;
 	invalidate(m_visible_region);
 	m_visible_region.rects.clear();
 }
