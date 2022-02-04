@@ -7,7 +7,6 @@ dist_install_DATA = \
 	bouquets.tv \
 	settings \
 	epgrefresh.xml \
-	menusort.xml \
 	radiode_playlist \
 	subservices.xml \
 	userbouquet.favourites.tv \
