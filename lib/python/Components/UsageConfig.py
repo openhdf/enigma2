@@ -6,7 +6,7 @@ from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTun
 from Components.About import about
 from Components.Harddisk import harddiskmanager
 from Components.config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, fileExists, fileCheck, fileContains
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_HDD, SCOPE_SYSETC, defaultRecordingLocation, fileExists, fileCheck, fileContains
 from boxbranding import getBoxType, getMachineBuild, getMachineName, getBrandOEM, getDisplayType
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
@@ -275,12 +275,12 @@ def InitUsageConfig():
 	config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback=False)
 	config.usage.allowed_timeshift_paths = ConfigLocations(default=[resolveFilename(SCOPE_TIMESHIFT)])
 
-	if not os.path.exists(resolveFilename(SCOPE_AUTORECORD)):
+	if not os.path.exists(resolveFilename(SCOPE_HDD)):
 		try:
-			os.mkdir(resolveFilename(SCOPE_AUTORECORD), 0o755)
+			os.mkdir(resolveFilename(SCOPE_HDD), 0o755)
 		except:
 			pass
-	config.usage.autorecord_path = ConfigText(default=resolveFilename(SCOPE_AUTORECORD))
+	config.usage.autorecord_path = ConfigText(default=resolveFilename(SCOPE_HDD))
 	if not config.usage.default_path.value.endswith('/'):
 		tmpvalue = config.usage.autorecord_path.value
 		config.usage.autorecord_path.setValue(tmpvalue + '/')
@@ -292,7 +292,7 @@ def InitUsageConfig():
 			config.usage.autorecord_path.setValue(tmpvalue + '/')
 			config.usage.autorecord_path.save()
 	config.usage.autorecord_path.addNotifier(autorecordpathChanged, immediate_feedback=False)
-	config.usage.allowed_autorecord_paths = ConfigLocations(default=[resolveFilename(SCOPE_AUTORECORD)])
+	config.usage.allowed_autorecord_paths = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min=1, max=31, stepwidth=1, default=7, wraparound=True)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
