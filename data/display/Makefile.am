@@ -7,63 +7,63 @@ DISPLAYTYPE = display
 endif
 
 if HAVE_TEXTLCD
-SUBDIRS += displaytext
+SUBDIRS displaytext
 endif
 
 if HAVE_COLORLCD2
-SUBDIRS += display96
+SUBDIRS display96
 endif
 
 if HAVE_COLORLCD1
-SUBDIRS += display128
+SUBDIRS display128
 endif
 
 if HAVE_COLORLCD3
-SUBDIRS += display128dm
+SUBDIRS display128dm
 endif
 
 if HAVE_BWLCD128
-SUBDIRS += display128
+SUBDIRS display128
 endif
 
 if HAVE_COLORLCD220
-SUBDIRS += display220
+SUBDIRS display220
 endif
 
 if HAVE_COLORLCD390
-SUBDIRS += display390
+SUBDIRS display390
 endif
 
 if HAVE_COLORLCD400
 if GB7252
-SUBDIRS += display400gb4k
+SUBDIRS display400gb4k
 else
-SUBDIRS += display400
+SUBDIRS display400
 endif
 endif
 
 if HAVE_COLORLCD720
-SUBDIRS += display720
+SUBDIRS display720
 endif
 
 if HAVE_BWLCD255
-SUBDIRS += display255
+SUBDIRS display255
 endif
 
 if HAVE_BWLCD140
-SUBDIRS += display140
+SUBDIRS display140
 endif
 
 if HAVE_GRAUTEC8000
-SUBDIRS += grautec8000
+SUBDIRS grautec8000
 endif
 
 if HAVE_GRAUTEC70X0
-SUBDIRS += grautec70x0
+SUBDIRS grautec70x0
 endif
 
 if HAVE_7SEGMENT
-SUBDIRS += 7segment
+SUBDIRS 7segment
 endif
 
 dist_install_DATA = skin_display.xml
