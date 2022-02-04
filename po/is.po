@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-14 22:48+0200\n"
+"POT-Creation-Date: 2022-02-04 09:29+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -289,9 +289,6 @@ msgstr "Tími"
 msgid " and"
 msgstr ""
 
-msgid " long"
-msgstr ""
-
 msgid "!! Bootloader Upgrade !!"
 msgstr ""
 
@@ -525,11 +522,6 @@ msgstr ""
 msgid "%s %s advanced remote control (native)"
 msgstr ""
 
-#
-#, fuzzy, python-format
-msgid "%s %s format data DVD (HDTV compatible)"
-msgstr "%s %s gagna formaður DVD diskur (HDTV samhæfður)"
-
 #, python-format
 msgid "%s %s front panel"
 msgstr ""
@@ -704,9 +696,6 @@ msgid "-"
 msgstr ""
 
 msgid "--- Feed Status"
-msgstr ""
-
-msgid "/"
 msgstr ""
 
 msgid "/media/custom"
@@ -1611,13 +1600,7 @@ msgstr "Viðbót"
 msgid "Add AutoTimer"
 msgstr ""
 
-msgid "Add Functions to MQB Key"
-msgstr ""
-
 msgid "Add New Quad Channel Entry"
-msgstr ""
-
-msgid "Add Plugins to MQB Key"
 msgstr ""
 
 msgid "Add Timer"
@@ -1751,6 +1734,10 @@ msgstr ""
 #, fuzzy
 msgid "Advanced"
 msgstr "meiri stillingar"
+
+#, fuzzy
+msgid "Advanced Options"
+msgstr "Sérfræði stillingar"
 
 #, fuzzy
 msgid "Advanced Settings"
@@ -1931,10 +1918,6 @@ msgstr ""
 msgid "Alpha"
 msgstr "Gegnsæi"
 
-#, fuzzy
-msgid "Alpha Value"
-msgstr "Gegnsæi"
-
 msgid "Alphanumeric"
 msgstr ""
 
@@ -2025,9 +2008,6 @@ msgid "Antigua and Barbuda"
 msgstr ""
 
 msgid "Any activity"
-msgstr ""
-
-msgid "Apr"
 msgstr ""
 
 msgid "April"
@@ -2157,6 +2137,11 @@ msgstr "Spyrja notanda"
 msgid "Aspect"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Aspect Ratio"
+msgstr "Velja staðsetningu"
+
 msgid "Aspect list..."
 msgstr ""
 
@@ -2223,19 +2208,6 @@ msgstr ""
 #, fuzzy
 msgid "Audio settings"
 msgstr "Breyta stillingum"
-
-#
-#, fuzzy, python-format
-msgid "Audio track (%s) format"
-msgstr "hljóð rás (%s) form"
-
-#
-#, fuzzy, python-format
-msgid "Audio track (%s) language"
-msgstr "hljóð rás (%s) tungumál"
-
-msgid "Aug"
-msgstr ""
 
 msgid "August"
 msgstr ""
@@ -2371,6 +2343,15 @@ msgstr ""
 msgid "B"
 msgstr "B"
 
+msgid "BDMV Bludisc (HDTV titles only)"
+msgstr ""
+
+msgid "BDMV Compatible Bludisc (HDTV only)"
+msgstr ""
+
+msgid "BLUDISC RECORDABLE"
+msgstr ""
+
 msgid "BT 2020 CL"
 msgstr ""
 
@@ -2468,10 +2449,6 @@ msgstr ""
 msgid "Backup Mode"
 msgstr "Afritun tókst ekki."
 
-#, fuzzy
-msgid "Backup Settings..."
-msgstr "Afrita kerfis stillingar"
-
 #
 #, fuzzy
 msgid "Backup Tool for"
@@ -2507,11 +2484,6 @@ msgstr ""
 #, fuzzy
 msgid "Backup your settings now?"
 msgstr "Afrita kerfis stillingar"
-
-#
-#, fuzzy
-msgid "Backward <"
-msgstr "fara til baka"
 
 msgid "Bahamas"
 msgstr ""
@@ -2582,9 +2554,6 @@ msgstr ""
 msgid "Benin"
 msgstr ""
 
-msgid "Bereitschaft / Neustart"
-msgstr ""
-
 msgid "Bermuda"
 msgstr ""
 
@@ -2595,9 +2564,6 @@ msgid "Bhutan"
 msgstr ""
 
 msgid "Big PiP"
-msgstr ""
-
-msgid "Bildbetrachter"
 msgstr ""
 
 #, fuzzy
@@ -2713,15 +2679,14 @@ msgstr ""
 msgid "Burkina Faso"
 msgstr ""
 
+msgid "Burn Bludisc"
+msgstr ""
+
 msgid "Burn DVD"
 msgstr "Brenna DVD"
 
-#
-#, fuzzy, python-format
-msgid "Burn audio track (%s)"
-msgstr "brenna hljóð rás (%s)"
-
-msgid "Burn existing image to DVD"
+#, fuzzy
+msgid "Burn existing image to medium"
 msgstr "Brenna tilbúna mynd á DVD"
 
 #, fuzzy
@@ -2738,9 +2703,6 @@ msgid "But you have activated \"Install unstable updates\""
 msgstr ""
 
 msgid "Button"
-msgstr ""
-
-msgid "Button : "
 msgstr ""
 
 msgid "Button setup"
@@ -3132,14 +3094,6 @@ msgstr "Rás"
 msgid "Channel \t\t\tVolume +"
 msgstr ""
 
-#, fuzzy
-msgid "Channel +"
-msgstr "Rás"
-
-#, fuzzy
-msgid "Channel -"
-msgstr "Rás"
-
 msgid "Channel 1 at start"
 msgstr ""
 
@@ -3148,14 +3102,6 @@ msgstr ""
 
 msgid "Channel List"
 msgstr ""
-
-#, fuzzy
-msgid "Channel Name"
-msgstr "Rás"
-
-#, fuzzy
-msgid "Channel Selection"
-msgstr "Rása val"
 
 #, fuzzy
 msgid "Channel down"
@@ -3227,10 +3173,6 @@ msgstr "Rása val"
 
 #, fuzzy
 msgid "Channelname"
-msgstr "Rás"
-
-#, fuzzy
-msgid "Channels"
 msgstr "Rás"
 
 #, fuzzy
@@ -3472,11 +3414,6 @@ msgstr ""
 msgid "Clients"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Clock"
-msgstr "læst"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -3645,10 +3582,6 @@ msgid "Configure if service picons will be shown in the servicelist."
 msgstr ""
 
 msgid "Configure interface"
-msgstr "Stilla netkort"
-
-#, fuzzy
-msgid "Configure macro"
 msgstr "Stilla netkort"
 
 msgid "Configure nameservers"
@@ -3882,6 +3815,9 @@ msgstr ""
 msgid "Configure to enable to use settings placed somewhere in your Lan."
 msgstr ""
 
+msgid "Configure to keep focus on the current played service while entering the servicelist via the bouquet buttons."
+msgstr ""
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
 
@@ -3971,9 +3907,6 @@ msgid "Connected!"
 msgstr "Tengdur!"
 
 msgid "Connected: "
-msgstr ""
-
-msgid "Console (kbd)"
 msgstr ""
 
 msgid "Constellation"
@@ -4090,7 +4023,7 @@ msgid "Could not find suitable media - Please remove some downloaded images or i
 msgstr ""
 
 #, fuzzy
-msgid "Could not load medium! No disc inserted?"
+msgid "Could not load Medium! No disc inserted?"
 msgstr "Gat ekki lesið disk! Er enginn diskur í drifi?"
 
 msgid "Could not open Picture in Picture"
@@ -4126,7 +4059,14 @@ msgstr ""
 msgid "Create"
 msgstr "endurtekinn"
 
+msgid "Create Bludisc ISO file"
+msgstr ""
+
 msgid "Create DVD-ISO"
+msgstr "Búa til DVD-ISO"
+
+#, fuzzy
+msgid "Create ISO"
 msgstr "Búa til DVD-ISO"
 
 #
@@ -4176,20 +4116,6 @@ msgid "Cron Manager"
 msgstr ""
 
 msgid "CronTimers"
-msgstr ""
-
-msgid "Cross Down"
-msgstr ""
-
-msgid "Cross Left"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Cross Right"
-msgstr "Hægri"
-
-msgid "Cross Up"
 msgstr ""
 
 msgid "Cuba"
@@ -4281,6 +4207,11 @@ msgstr ""
 
 msgid "Cutlist editor..."
 msgstr "Klippingastjóri..."
+
+#
+#, fuzzy
+msgid "Cycle Picture In Picture"
+msgstr "Færa Mynd í Mynd"
 
 #, python-format
 msgid "Cylinders: %s (max) %s (current)"
@@ -4383,20 +4314,9 @@ msgstr "DVD skráar stjóri"
 msgid "DVD Player"
 msgstr "fela spilara"
 
-msgid "DVD data format"
-msgstr ""
-
-#, fuzzy
-msgid "DVD file browser"
-msgstr "DVD skráar stjóri"
-
-#
-msgid "DVD media toolbox"
-msgstr "DVD miðla tól"
-
 #
 #, fuzzy
-msgid "DVD titlelist"
+msgid "DVD Titlelist"
 msgstr "DVD titlaskrá"
 
 #
@@ -4421,9 +4341,6 @@ msgid "Deactivate"
 msgstr ""
 
 msgid "Debug Logs"
-msgstr ""
-
-msgid "Dec"
 msgstr ""
 
 msgid "December"
@@ -4482,6 +4399,9 @@ msgid "Default settings"
 msgstr "Upphafs stillingar"
 
 msgid "Defaults"
+msgstr ""
+
+msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
 
 msgid "Define location to save infobar poster, if its activated inside skinsetup."
@@ -4654,12 +4574,6 @@ msgstr ""
 msgid "Devices"
 msgstr ""
 
-msgid "Dezember"
-msgstr ""
-
-msgid "Di"
-msgstr ""
-
 #
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -4712,9 +4626,6 @@ msgstr "Hringi:"
 msgid "Diction"
 msgstr "Lýsing"
 
-msgid "Dienstag"
-msgstr ""
-
 #, python-format
 msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
@@ -4748,11 +4659,6 @@ msgstr "Möppu vafri"
 #
 #, fuzzy, python-format
 msgid "Directory %s does not exist."
-msgstr "Mappa %s ekki til."
-
-#
-#, fuzzy, python-format
-msgid "Directory %s nonexistent."
 msgstr "Mappa %s ekki til."
 
 #
@@ -4872,9 +4778,6 @@ msgstr ""
 #, fuzzy
 msgid "Djibouti"
 msgstr "Um"
-
-msgid "Do"
-msgstr ""
 
 #
 #, fuzzy
@@ -5061,6 +4964,11 @@ msgstr "Viltu spila DVD diskinn sem er í spilaranum?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Viltu forskoða þennan DVD disk fyrir brennslu?"
 
+#
+#, fuzzy
+msgid "Do you want to produce this collection?"
+msgstr "Viltu brenna þessa skráar safn á DVD disk?"
+
 #, fuzzy, python-format
 msgid "Do you want to reboot now the image in startup %s?"
 msgstr "Viltu hlaða niður stýrikerfinu á %s ?"
@@ -5128,6 +5036,11 @@ msgstr ""
 msgid "Dominican Republic"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Don't add this recording"
+msgstr "þessi upptaka"
+
 msgid "Don't ask again!"
 msgstr ""
 
@@ -5157,11 +5070,6 @@ msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
 msgstr[0] "Búin, setti inn, uppfærði eða tót út %d pakka með %d villum"
 msgstr[1] "Búin, setti inn, uppfærði eða tót út %d pakka með %d villum"
-
-#
-#, fuzzy
-msgid "Donnerstag"
-msgstr "Aftengja"
 
 #
 #, fuzzy
@@ -5205,7 +5113,12 @@ msgstr "Hala niður íforrits upplýsingum. Vinsamlega bíðið..."
 msgid "Downmix"
 msgstr ""
 
-msgid "DreamPlex"
+#
+#, fuzzy
+msgid "Dreambox format data DVD (HDTV compatible)"
+msgstr "%s %s gagna formaður DVD diskur (HDTV samhæfður)"
+
+msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr ""
 
 msgid "Drivers"
@@ -5276,9 +5189,6 @@ msgstr ""
 msgid "EMC_Selection:"
 msgstr "Staðsetning bíómynda"
 
-msgid "END"
-msgstr ""
-
 msgid "EPG"
 msgstr ""
 
@@ -5325,9 +5235,6 @@ msgstr ""
 msgid "ERROR - failed to scan (%s)!"
 msgstr "VILLA - gat ekki leitað (%s)!"
 
-msgid "EXIT"
-msgstr ""
-
 #
 msgid "East"
 msgstr "Austur"
@@ -5350,6 +5257,11 @@ msgstr "Breyta"
 
 msgid "Edit Quad Channel Entry"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Edit Title"
+msgstr "Breyta titili"
 
 msgid "Edit chapters of current title"
 msgstr "Breyta köflum núverandi titils"
@@ -5449,9 +5361,6 @@ msgid "Enable CIHelper for SLOT CI1"
 msgstr ""
 
 msgid "Enable EIT EPG"
-msgstr ""
-
-msgid "Enable LED Display plugin"
 msgstr ""
 
 msgid "Enable MHW EPG"
@@ -5598,6 +5507,14 @@ msgstr ""
 msgid "Enabled"
 msgstr "Virkt"
 
+#
+#, fuzzy
+msgid "Enabled, only from deep standby"
+msgstr "fara í djúpsvefn"
+
+msgid "Enabled, only from standby"
+msgstr ""
+
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr ""
 
@@ -5607,6 +5524,10 @@ msgstr "Kóðun:"
 #
 msgid "Encryption"
 msgstr "Kóðun"
+
+#, fuzzy
+msgid "Encryption Type:"
+msgstr "Kóðun:"
 
 #
 #, fuzzy
@@ -5688,19 +5609,11 @@ msgstr ""
 msgid "Enter your high band local oscillator frequency. For more information consult the spec sheet of your LNB."
 msgstr ""
 
-msgid "Enter your input data"
-msgstr ""
-
 msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
 msgstr ""
 
 msgid "Entitlements"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Entry %s already exists."
-msgstr "Slóðin %s er þegar til."
 
 msgid "Epg/Guide"
 msgstr ""
@@ -5772,9 +5685,6 @@ msgstr ""
 "Villa: %s\n"
 "Reyna aftur?"
 
-msgid "Erweiterungen"
-msgstr ""
-
 msgid "Es folgt:"
 msgstr ""
 
@@ -5843,6 +5753,10 @@ msgstr ""
 
 msgid "Everywhere"
 msgstr ""
+
+#, fuzzy
+msgid "Exceeds Bludisc medium!"
+msgstr "Þarf meira en tveggja laga disk!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Þarf meira en tveggja laga disk!"
@@ -6033,9 +5947,6 @@ msgstr ""
 msgid "F"
 msgstr ""
 
-msgid "F.List"
-msgstr ""
-
 msgid "F1"
 msgstr ""
 
@@ -6043,12 +5954,6 @@ msgid "F1 long"
 msgstr ""
 
 msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr ""
-
-msgid "F10 (kbd) M2"
-msgstr ""
-
-msgid "F11 (kbd) M1"
 msgstr ""
 
 msgid "F2"
@@ -6078,16 +5983,7 @@ msgstr ""
 msgid "F6"
 msgstr ""
 
-msgid "F6 (kbd) WWW"
-msgstr ""
-
 msgid "F6 long"
-msgstr ""
-
-msgid "F7 (kbd) MAIL"
-msgstr ""
-
-msgid "FAV"
 msgstr ""
 
 msgid "FCC 1953"
@@ -6184,9 +6080,6 @@ msgid ""
 "Please unmount Fixed Mounted Devices with Device Manager Panel!"
 msgstr ""
 
-msgid "FastForward >>"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Fastforward"
@@ -6203,12 +6096,6 @@ msgstr "Eftirlætis listar"
 msgid "Favourites"
 msgstr "Eftirlætis listar"
 
-msgid "Feb"
-msgstr ""
-
-msgid "Februar"
-msgstr ""
-
 msgid "February"
 msgstr ""
 
@@ -6216,10 +6103,6 @@ msgid "Fiji"
 msgstr ""
 
 msgid "File"
-msgstr ""
-
-#, python-format
-msgid "File %s nonexistent."
 msgstr ""
 
 msgid "File appears to be busy.\n"
@@ -6413,16 +6296,8 @@ msgstr ""
 msgid "Formatting partition %d"
 msgstr "Taka út titil"
 
-msgid "Forward >"
-msgstr ""
-
 msgid "Forward volume keys"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Fr"
-msgstr "Fös"
 
 msgid "Frame rate"
 msgstr ""
@@ -6466,9 +6341,6 @@ msgstr ""
 msgid "Free: "
 msgstr ""
 
-msgid "Freitag"
-msgstr ""
-
 #
 msgid "French"
 msgstr "Franska"
@@ -6489,6 +6361,11 @@ msgid "Frequency"
 msgstr "Tíðni"
 
 #
+#, fuzzy
+msgid "Frequency Norm:"
+msgstr "Tíðni"
+
+#
 msgid "Frequency bands"
 msgstr "Tíðni bönd"
 
@@ -6499,6 +6376,11 @@ msgstr "Skref við tíðnileit (khz)"
 #
 msgid "Frequency steps"
 msgstr "Tíðniskref"
+
+#
+#, fuzzy
+msgid "Frequency:"
+msgstr "Tíðni"
 
 #
 msgid "Fri"
@@ -6553,14 +6435,7 @@ msgstr "Staðsetning bíómynda"
 msgid "Function of OK button"
 msgstr ""
 
-#, fuzzy
-msgid "Functions"
-msgstr "Samskipti"
-
 msgid "G"
-msgstr ""
-
-msgid "G.List"
 msgstr ""
 
 msgid "GB"
@@ -6894,12 +6769,6 @@ msgstr ""
 msgid "HDF Build: %s"
 msgstr ""
 
-msgid "HDF Toolbox GigaBlue"
-msgstr ""
-
-msgid "HDF Toolbox Xtrend ET10000"
-msgstr ""
-
 #
 #, fuzzy, python-format
 msgid "HDF Version:\tV%s"
@@ -6947,19 +6816,10 @@ msgstr ""
 msgid "HDR10 Support"
 msgstr ""
 
-msgid "HELP"
-msgstr ""
-
 msgid "HI-cleanup for external subtitles"
 msgstr ""
 
-msgid "HISTORY"
-msgstr ""
-
 msgid "HLG Support"
-msgstr ""
-
-msgid "HOME"
 msgstr ""
 
 #
@@ -7208,6 +7068,9 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr "Í hvað margar mínútur viltu taka upp?"
 
+msgid "Http(s) stream start delay"
+msgstr ""
+
 #
 msgid "Hue"
 msgstr "Litatónn"
@@ -7234,7 +7097,7 @@ msgstr ""
 msgid "IMDb Search"
 msgstr ""
 
-msgid "INFO"
+msgid "INFO-Panel..."
 msgstr ""
 
 #
@@ -7393,9 +7256,6 @@ msgstr ""
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr ""
 
-msgid "If this set to yes, the systemplugin vfdcontrol can be used after restart."
-msgstr ""
-
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr ""
 
@@ -7419,11 +7279,6 @@ msgid ""
 msgstr ""
 "Ef þú sérð þetta þá er eitthvað að scart\n"
 "tengingunni.Ýttu á OK til að fara til baka."
-
-msgid ""
-"If you want to quit the Browser,\n"
-"Press RED -> EXIT."
-msgstr ""
 
 #
 msgid ""
@@ -7631,11 +7486,6 @@ msgstr "Stilling tækis"
 
 #
 msgid "Information"
-msgstr "Upplýsingar"
-
-#
-#, fuzzy
-msgid "Informationen"
 msgstr "Upplýsingar"
 
 #
@@ -7911,14 +7761,6 @@ msgstr ""
 msgid "Jamaica"
 msgstr ""
 
-msgid "Jan"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Januar"
-msgstr "handvirkt"
-
 #
 #, fuzzy
 msgid "January"
@@ -7935,12 +7777,6 @@ msgid "Job View"
 msgstr "Skoða vinnslu"
 
 msgid "Jordan"
-msgstr ""
-
-msgid "Jul"
-msgstr ""
-
-msgid "Juli"
 msgstr ""
 
 msgid "July"
@@ -7975,15 +7811,7 @@ msgstr ""
 msgid "Jump to prime time"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Jun"
-msgstr "Sun"
-
 msgid "June"
-msgstr ""
-
-msgid "Juni"
 msgstr ""
 
 msgid "Just change channels"
@@ -8010,6 +7838,9 @@ msgid "KB"
 msgstr "B"
 
 msgid "Kazakhstan"
+msgstr ""
+
+msgid "Keep focus on current service while entering servicelist."
 msgstr ""
 
 #
@@ -8060,9 +7891,6 @@ msgstr "Staðsetning bíómynda"
 msgid "Kiribati"
 msgstr ""
 
-msgid "Kleiner Test"
-msgstr ""
-
 msgid "Kodi Addons"
 msgstr ""
 
@@ -8070,11 +7898,6 @@ msgstr ""
 #, fuzzy
 msgid "Kodi Media Center"
 msgstr "Spilari"
-
-#
-#, fuzzy
-msgid "Konfiguration"
-msgstr "Stilling móttakara"
 
 msgid "Korea (Democratic People's Republic of)"
 msgstr ""
@@ -8171,6 +7994,9 @@ msgid "Languages"
 msgstr "Tungumál"
 
 msgid "Lao People's Democratic Republic"
+msgstr ""
+
+msgid "Large"
 msgstr ""
 
 #
@@ -8522,9 +8348,6 @@ msgstr ""
 msgid "MB"
 msgstr ""
 
-msgid "MINISATIP Setup"
-msgstr ""
-
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
 
@@ -8534,25 +8357,13 @@ msgstr ""
 msgid "MOUSE long"
 msgstr ""
 
-msgid "MQB Functions and Plugins"
-msgstr ""
-
 msgid "Macao"
 msgstr ""
 
 msgid "Macedonia (the former Yugoslav Republic of)"
 msgstr ""
 
-msgid "Macros"
-msgstr ""
-
 msgid "Madagascar"
-msgstr ""
-
-msgid "Maerz"
-msgstr ""
-
-msgid "Mai"
 msgstr ""
 
 #
@@ -8633,9 +8444,6 @@ msgstr "Handvirk leit á sendi"
 #
 msgid "Manufacturer"
 msgstr "Framleiðandi"
-
-msgid "Mar"
-msgstr ""
 
 msgid "MaraM9"
 msgstr ""
@@ -8734,11 +8542,6 @@ msgstr "Spilari"
 
 #
 #, fuzzy
-msgid "Media Player"
-msgstr "Spilari"
-
-#
-#, fuzzy
 msgid "Media long"
 msgstr "Spilari"
 
@@ -8761,6 +8564,11 @@ msgstr "Diskur er ekki skrifanlegur DVD diskur!"
 #
 msgid "Medium is not empty!"
 msgstr "Diskur er ekki tómur!"
+
+#
+#, fuzzy
+msgid "Medium toolbox"
+msgstr "DVD miðla tól"
 
 msgid "Memory"
 msgstr ""
@@ -8798,9 +8606,6 @@ msgid "Message"
 msgstr ""
 
 msgid "Mexico"
-msgstr ""
-
-msgid "Mi"
 msgstr ""
 
 msgid "Micronesia (Federated States of)"
@@ -8846,14 +8651,6 @@ msgstr ""
 
 msgid "Missing "
 msgstr ""
-
-msgid "Mittwoch"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Mo"
-msgstr "Mán"
 
 #
 #, fuzzy
@@ -8927,11 +8724,6 @@ msgstr "Mánudagur"
 
 msgid "Mongolia"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Montag"
-msgstr "mánuður"
 
 msgid "Montenegro"
 msgstr ""
@@ -9011,9 +8803,6 @@ msgid "Mounts Setup"
 msgstr ""
 
 msgid "Mounts setup"
-msgstr ""
-
-msgid "Mouse"
 msgstr ""
 
 msgid "Move"
@@ -9123,13 +8912,6 @@ msgstr ""
 msgid "Multi EPG"
 msgstr "Mörg EPG"
 
-#, fuzzy
-msgid "Multi QuickButton settings"
-msgstr "Stillingar safns"
-
-msgid "Multi Quickbutton"
-msgstr ""
-
 #
 #, fuzzy
 msgid "MultiBoot Selector"
@@ -9144,11 +8926,6 @@ msgstr ""
 #, fuzzy
 msgid "MultiEPG settings"
 msgstr "Stillingar safns"
-
-#
-#, fuzzy
-msgid "MultiQuickButton macro configuration"
-msgstr "Stilling móttakara"
 
 msgid "Multiboot Image Selector"
 msgstr ""
@@ -9179,9 +8956,6 @@ msgid "Multistream"
 msgstr "Margir gervihnettir"
 
 msgid "Music/Ballet/Dance"
-msgstr ""
-
-msgid "Mute"
 msgstr ""
 
 #
@@ -9612,13 +9386,6 @@ msgstr ""
 msgid "No updates available. Please try again later."
 msgstr ""
 
-msgid "No valid function file found"
-msgstr ""
-
-#, fuzzy
-msgid "No valid selection"
-msgstr "Staðsetning bíómynda"
-
 msgid "No wireless networks found! Searching..."
 msgstr "Ekkert þráðlaust net fannst! Leita..."
 
@@ -9645,11 +9412,6 @@ msgid ""
 msgstr ""
 "Ekkert virkt þráðlaust netkort fannst.\n"
 " Athugaðu hvort að það sé tengt samhæft þráðlaust netkort eða athugaðu með stillingar á því."
-
-#
-#, fuzzy
-msgid "No, but play video again"
-msgstr "Nei, en byrja frá byrjun"
 
 #
 msgid "No, but restart from begin"
@@ -9696,6 +9458,9 @@ msgstr "Kvörðunar aðferð"
 #
 msgid "North"
 msgstr "Norður"
+
+msgid "North Macedonia (The Republic of)"
+msgstr ""
 
 msgid "Northern Mariana Islands"
 msgstr ""
@@ -9788,11 +9553,6 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Nov"
-msgstr "Nei"
-
-#
-#, fuzzy
 msgid "November"
 msgstr "Færa austur"
 
@@ -9859,9 +9619,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr "Leiðbeindu mér með uppfærsluna"
 
-msgid "OK/EXIT"
-msgstr ""
-
 msgid "ONID"
 msgstr "ONID"
 
@@ -9890,9 +9647,6 @@ msgid "OScam Info"
 msgstr ""
 
 msgid "OScam info"
-msgstr ""
-
-msgid "Oct"
 msgstr ""
 
 #
@@ -10064,9 +9818,6 @@ msgstr "Upplýsingar"
 msgid "Other"
 msgstr ""
 
-msgid "Output"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Overall progress:"
@@ -10109,12 +9860,6 @@ msgstr "Skrifa yfir stillinga skrár við hugbúnaðar uppfærslu?"
 #, fuzzy
 msgid "Overwrite driver files during software upgrade?"
 msgstr "Skrifa yfir stillinga skrár við hugbúnaðar uppfærslu?"
-
-msgid "Overwrite existing Backup?."
-msgstr ""
-
-msgid "Overwrite existing Settings?."
-msgstr ""
 
 #, fuzzy
 msgid "Overwrite picon files during software upgrade?"
@@ -10380,9 +10125,6 @@ msgstr "Síma númer"
 msgid "PiP"
 msgstr ""
 
-msgid "PiP is currently not available because your are using iptv streams!"
-msgstr ""
-
 msgid "Picon"
 msgstr ""
 
@@ -10422,11 +10164,6 @@ msgstr "Færa Mynd í Mynd"
 #
 #, fuzzy
 msgid "Picture player"
-msgstr "Mynd spilari"
-
-#
-#, fuzzy
-msgid "PictureCenterFS"
 msgstr "Mynd spilari"
 
 #
@@ -10713,11 +10450,6 @@ msgid "Please select tag to filter..."
 msgstr "Vinsamlega veldu merki til að sía út..."
 
 #
-#, fuzzy
-msgid "Please select the backup path..."
-msgstr "Veldu slóð að mynd..."
-
-#
 msgid "Please select the movie path..."
 msgstr "Veldu slóð að mynd..."
 
@@ -10730,11 +10462,6 @@ msgstr ""
 "Veldu það netkort sem að þú vilt nota fyrir veraldarvefs tengingu.\n"
 "\n"
 "Ýttu á OK til að halda áfram."
-
-#
-#, fuzzy
-msgid "Please select the restore path..."
-msgstr "Veldu slóð að mynd..."
 
 #
 msgid ""
@@ -11054,9 +10781,6 @@ msgstr "Uppsetning mótors"
 #
 msgid "Positioner setup"
 msgstr "Uppsetning mótors"
-
-msgid "Power"
-msgstr ""
 
 #
 #, fuzzy
@@ -11527,20 +11251,6 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Hraðstökk"
 
-msgid "Quickbutton Key : "
-msgstr ""
-
-msgid "Quickbutton: Key "
-msgstr ""
-
-#
-#, fuzzy
-msgid "Quite without saving changes ?"
-msgstr "Viltu loka án þess að vista stillingar?"
-
-msgid "RADIO"
-msgstr ""
-
 msgid "RAM"
 msgstr ""
 
@@ -11733,6 +11443,11 @@ msgstr ""
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
 msgstr "Upptöku tími takmarkaður vegna annarar tímastillingar, %s"
+
+#
+#, fuzzy
+msgid "Recordable media toolbox"
+msgstr "DVD miðla tól"
 
 #
 msgid "Recording"
@@ -12143,14 +11858,6 @@ msgstr "Prufa aftur"
 msgid "Restart your network connection and interfaces.\n"
 msgstr "Endurræsa nettengingu og netkort.\n"
 
-msgid "Restarting Enigma2 to load:\n"
-msgstr ""
-
-msgid ""
-"Restarting Enigma2 to set\n"
-"Multi QuickButton Autostart"
-msgstr ""
-
 #
 msgid "Restore"
 msgstr "Setja inn"
@@ -12158,11 +11865,6 @@ msgstr "Setja inn"
 #, fuzzy
 msgid "Restore Plugins"
 msgstr "Taka út íforrit"
-
-#
-#, fuzzy
-msgid "Restore Settings..."
-msgstr "Setja inn kerfis stillingar"
 
 #
 #, fuzzy
@@ -12243,11 +11945,6 @@ msgstr "Breyta rása lista"
 #
 #, fuzzy
 msgid "Rewind"
-msgstr "Hraði hraðspólunar til baka"
-
-#
-#, fuzzy
-msgid "Rewind <<"
 msgstr "Hraði hraðspólunar til baka"
 
 #
@@ -12344,9 +12041,6 @@ msgstr ""
 msgid "SCR timing adjustment, in conjunction with SCR socket and operation of several SCR devices with one cable."
 msgstr ""
 
-msgid "SCREEN"
-msgstr ""
-
 #, fuzzy
 msgid "SD"
 msgstr "SID"
@@ -12378,11 +12072,6 @@ msgstr ""
 #
 msgid "SSID:"
 msgstr "SSID:"
-
-#
-#, fuzzy
-msgid "Sa"
-msgstr "Lau"
 
 msgid "Saint Barthelemy"
 msgstr ""
@@ -12423,9 +12112,6 @@ msgid "Same resolution as skin"
 msgstr ""
 
 msgid "Samoa"
-msgstr ""
-
-msgid "Samstag"
 msgstr ""
 
 msgid "San Marino"
@@ -12506,11 +12192,6 @@ msgstr ""
 
 msgid "Save EPG data"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Save Settings"
-msgstr "Stillingar"
 
 msgid "Save and record"
 msgstr ""
@@ -13131,11 +12812,6 @@ msgstr "Senda DiSEqC bara við að skipta á annan gevihnött"
 
 msgid "Senegal"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Sep"
-msgstr "Uppsetning"
 
 #
 msgid "Seperate titles with a main menu"
@@ -14236,6 +13912,11 @@ msgstr "Sýna sjónvarpsspilara..."
 msgid "Show the infomation on current event."
 msgstr ""
 
+#
+#, fuzzy
+msgid "Show the information on current event."
+msgstr "fara niður í næsta atriði"
+
 msgid "Show the list of AutoTimers."
 msgstr ""
 
@@ -14581,6 +14262,9 @@ msgstr "Hægt"
 msgid "Slow motion speeds"
 msgstr ""
 
+msgid "Small"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Small progress"
@@ -14597,11 +14281,6 @@ msgstr ""
 
 msgid "Smpte 240M"
 msgstr ""
-
-#
-#, fuzzy
-msgid "So"
-msgstr "Hægt"
 
 msgid "Social/Political/Economics"
 msgstr ""
@@ -14620,6 +14299,10 @@ msgstr "Hugbúnaður"
 
 msgid "Softcam settings"
 msgstr ""
+
+#, fuzzy
+msgid "Softcam-Panel..."
+msgstr "Uppsetning hugbúnaðar umsýslu"
 
 #
 msgid "Software"
@@ -14659,9 +14342,6 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Sum íforrit eru ekki til:\n"
-
-msgid "Sonntag"
-msgstr ""
 
 msgid "Sorry ... no ECM Info found"
 msgstr ""
@@ -14705,10 +14385,6 @@ msgstr ""
 
 msgid "Sorry, there was a problem:"
 msgstr ""
-
-#, fuzzy
-msgid "Sorry, video is not available!"
-msgstr "Sum íforrit eru ekki til:\n"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -15393,9 +15069,6 @@ msgstr ""
 msgid "TEMP"
 msgstr ""
 
-msgid "TEXT"
-msgstr ""
-
 #
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
@@ -15431,7 +15104,7 @@ msgstr "TXT PID"
 
 #
 #, fuzzy
-msgid "Table of contents for collection"
+msgid "Table of content for collection"
 msgstr "Efnisyfirlit yfir safn"
 
 #
@@ -15598,9 +15271,8 @@ msgid ""
 "Please install it."
 msgstr ""
 
-#, fuzzy, python-format
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
-msgstr "DVD staðallinn er ekki með möguleika á H.264 (HDTV). Viltu búa til Vu+ Ultimo gagna disk (sem ekki er hægt að venjulegum DVD spilara) í staðinn?"
+msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
+msgstr ""
 
 #
 #, fuzzy
@@ -17609,15 +17281,9 @@ msgstr "Vídeó scart"
 msgid "VFD Skin Selector"
 msgstr ""
 
-msgid "VIDEO"
-msgstr ""
-
 #, fuzzy
 msgid "VLAN connection"
 msgstr "LAN tenging"
-
-msgid "VMC"
-msgstr ""
 
 #
 msgid "VMGM (intro trailer)"
@@ -17920,12 +17586,6 @@ msgstr ""
 msgid "Voltage mode"
 msgstr "Spennu stýring"
 
-msgid "Volume +"
-msgstr ""
-
-msgid "Volume -"
-msgstr ""
-
 msgid "Volume Adjust"
 msgstr ""
 
@@ -18077,9 +17737,6 @@ msgid ""
 "Please send the logfile %senigma2_crash_xxxxxx.log to www.hdfreaks.cc.\n"
 "Your receiver restarts in 10 seconds!\n"
 "Component: enigma2"
-msgstr ""
-
-msgid "Web Browser"
 msgstr ""
 
 msgid "Web Interface"
@@ -18485,9 +18142,6 @@ msgstr ""
 msgid "Y-Tube/WWW long"
 msgstr ""
 
-msgid "YAMP Music Player"
-msgstr ""
-
 msgid "YCbCr420"
 msgstr ""
 
@@ -18636,8 +18290,8 @@ msgstr ""
 msgid "You can install this plugin."
 msgstr "Þú getur sett inn þetta íforrit."
 
-#, fuzzy, python-format
-msgid "You can only burn %s %s recordings!"
+#, fuzzy
+msgid "You can only burn Dreambox recordings!"
 msgstr "Þú getur bara brennt %s %s upptökur!"
 
 msgid "You can remove this plugin."
@@ -18728,9 +18382,6 @@ msgid "You seem to be in timeshift!"
 msgstr ""
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
-msgstr ""
-
-msgid "You system does not support ext4"
 msgstr ""
 
 #, fuzzy
@@ -19177,7 +18828,7 @@ msgstr "bæta við valkosti"
 msgid "am"
 msgstr "Nafn"
 
-msgid "and never ask again this session again"
+msgid "and never ask again this session"
 msgstr ""
 
 #
@@ -19214,6 +18865,16 @@ msgstr "að enda"
 
 msgid "athletics"
 msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "audio track (%s) format"
+msgstr "hljóð rás (%s) form"
+
+#
+#, fuzzy, python-format
+msgid "audio track (%s) language"
+msgstr "hljóð rás (%s) tungumál"
 
 #
 msgid "audio tracks"
@@ -19285,6 +18946,11 @@ msgstr ""
 msgid "brown"
 msgstr ""
 
+#
+#, fuzzy, python-format
+msgid "burn audio track (%s)"
+msgstr "brenna hljóð rás (%s)"
+
 msgid "by date"
 msgstr ""
 
@@ -19299,10 +18965,6 @@ msgstr ""
 
 msgid "cartoon/puppets"
 msgstr ""
-
-#, fuzzy
-msgid "cat /proc/bus/input/devices"
-msgstr "Veldu inntaks tæki"
 
 msgid "center"
 msgstr ""
@@ -19630,11 +19292,6 @@ msgstr ""
 msgid "fast"
 msgstr ""
 
-#
-#, fuzzy, python-format
-msgid "file %s not found!"
-msgstr "fann 1 þráðlaust net!"
-
 msgid "file can not displayed - file not found"
 msgstr ""
 
@@ -19805,11 +19462,6 @@ msgstr "stilla einingar"
 #
 msgid "insert mark here"
 msgstr "setja merki hér"
-
-#
-#, fuzzy
-msgid "instant record"
-msgstr "Skyndi upptaka..."
 
 #
 #, fuzzy
@@ -20322,15 +19974,15 @@ msgstr "endurtaka spilunarlista"
 msgid "repeated"
 msgstr "endurtekinn"
 
-msgid "resoring satellites.xml not posibel!"
-msgstr ""
-
 #
 #, fuzzy
 msgid "restart GUI"
 msgstr "Endurræsa gluggakerfi núna?"
 
 msgid "restore deleted userbouquets"
+msgstr ""
+
+msgid "restoring satellites.xml not possible!"
 msgstr ""
 
 msgid "reverse by date"
@@ -20608,11 +20260,6 @@ msgstr ""
 msgid "stop using as startup service from standby"
 msgstr ""
 
-#
-#, fuzzy
-msgid "subtitle"
-msgstr "Undirtextar"
-
 msgid "successful"
 msgstr ""
 
@@ -20810,9 +20457,6 @@ msgstr "fara í biðstöðu"
 msgid "water sport"
 msgstr ""
 
-msgid "webradioFS"
-msgstr ""
-
 #
 msgid "weekly"
 msgstr "vikulega"
@@ -20885,11 +20529,6 @@ msgstr "er að vinna"
 
 msgid "www.vuplus-support.org"
 msgstr ""
-
-#
-#, fuzzy
-msgid "xbmc Wetter"
-msgstr "betra"
 
 #
 msgid "yellow"

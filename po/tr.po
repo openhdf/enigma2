@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-14 22:48+0200\n"
+"POT-Creation-Date: 2022-02-04 09:29+0100\n"
 "PO-Revision-Date: 2019-08-27 05:18+0200\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
@@ -295,10 +295,6 @@ msgstr "Zaman"
 msgid " and"
 msgstr " ve"
 
-#, fuzzy
-msgid " long"
-msgstr "OK uzun"
-
 msgid "!! Bootloader Upgrade !!"
 msgstr ""
 
@@ -524,10 +520,6 @@ msgid "%s %s advanced remote control (native)"
 msgstr "%s %s gelişmiş uzaktan kumanda (yerel)"
 
 #, python-format
-msgid "%s %s format data DVD (HDTV compatible)"
-msgstr "%s %s DVD veri biçimi (HDTV uyumlu)"
-
-#, python-format
 msgid "%s %s front panel"
 msgstr "%s %s ön panel"
 
@@ -684,10 +676,6 @@ msgstr ""
 
 msgid "--- Feed Status"
 msgstr "--- Besleme Durumu"
-
-#, fuzzy
-msgid "/"
-msgstr "/s"
 
 #, fuzzy
 msgid "/media/custom"
@@ -1504,13 +1492,7 @@ msgstr "Ekle"
 msgid "Add AutoTimer"
 msgstr "Otomatik zamanlayıcı ekle"
 
-msgid "Add Functions to MQB Key"
-msgstr ""
-
 msgid "Add New Quad Channel Entry"
-msgstr ""
-
-msgid "Add Plugins to MQB Key"
 msgstr ""
 
 msgid "Add Timer"
@@ -1620,6 +1602,10 @@ msgstr "Teleteks için kullanılan harflerin dikey konumunu ayarlayın."
 
 msgid "Advanced"
 msgstr "Gelişmiş"
+
+#, fuzzy
+msgid "Advanced Options"
+msgstr "Gelişmiş seçenekler"
 
 msgid "Advanced Settings"
 msgstr "Gelişmiş Ayarlar"
@@ -1783,10 +1769,6 @@ msgstr ""
 msgid "Alpha"
 msgstr "Alfa"
 
-#, fuzzy
-msgid "Alpha Value"
-msgstr "Alfa"
-
 msgid "Alphanumeric"
 msgstr "Alfanümerik"
 
@@ -1873,9 +1855,6 @@ msgstr ""
 
 msgid "Any activity"
 msgstr "Herhangi bir etkinlik"
-
-msgid "Apr"
-msgstr ""
 
 msgid "April"
 msgstr ""
@@ -2006,6 +1985,10 @@ msgstr "Sor"
 msgid "Aspect"
 msgstr "Görüntü oranı"
 
+#, fuzzy
+msgid "Aspect Ratio"
+msgstr "Görüntü oranı"
+
 msgid "Aspect list..."
 msgstr ""
 
@@ -2066,17 +2049,6 @@ msgstr "Ses seçenekleri ..."
 
 msgid "Audio settings"
 msgstr "Ses ayarları"
-
-#, python-format
-msgid "Audio track (%s) format"
-msgstr "(%s) ses izi biçimi"
-
-#, python-format
-msgid "Audio track (%s) language"
-msgstr "(%s) ses izi dili"
-
-msgid "Aug"
-msgstr ""
 
 msgid "August"
 msgstr ""
@@ -2200,6 +2172,15 @@ msgstr ""
 msgid "B"
 msgstr "B"
 
+msgid "BDMV Bludisc (HDTV titles only)"
+msgstr ""
+
+msgid "BDMV Compatible Bludisc (HDTV only)"
+msgstr ""
+
+msgid "BLUDISC RECORDABLE"
+msgstr ""
+
 msgid "BT 2020 CL"
 msgstr ""
 
@@ -2293,10 +2274,6 @@ msgstr "Yedekleme Yöneticisi"
 msgid "Backup Mode"
 msgstr "Yedekleme Yöneticisi"
 
-#, fuzzy
-msgid "Backup Settings..."
-msgstr "Ayarlar..."
-
 msgid "Backup Tool for"
 msgstr ""
 
@@ -2332,10 +2309,6 @@ msgstr "Şimdi imaj yedeklensin mi?"
 
 msgid "Backup your settings now?"
 msgstr "Ayarlarınızı şimdi yedekleyin?"
-
-#, fuzzy
-msgid "Backward <"
-msgstr "geri atla"
 
 msgid "Bahamas"
 msgstr ""
@@ -2403,9 +2376,6 @@ msgstr ""
 msgid "Benin"
 msgstr ""
 
-msgid "Bereitschaft / Neustart"
-msgstr ""
-
 msgid "Bermuda"
 msgstr ""
 
@@ -2418,9 +2388,6 @@ msgstr ""
 #, fuzzy
 msgid "Big PiP"
 msgstr "Büyük logo"
-
-msgid "Bildbetrachter"
-msgstr ""
 
 #, fuzzy
 msgid "Bitrate"
@@ -2533,14 +2500,14 @@ msgstr "Bulgarca"
 msgid "Burkina Faso"
 msgstr ""
 
+msgid "Burn Bludisc"
+msgstr ""
+
 msgid "Burn DVD"
 msgstr "DVD yaz"
 
-#, python-format
-msgid "Burn audio track (%s)"
-msgstr "(%s) ses izini yak"
-
-msgid "Burn existing image to DVD"
+#, fuzzy
+msgid "Burn existing image to medium"
 msgstr "Varolan imajı DVD'ye yaz"
 
 #, fuzzy
@@ -2557,10 +2524,6 @@ msgid "But you have activated \"Install unstable updates\""
 msgstr "Ancak \"Kararsız güncellemeleri yükle\" yi etkinleştirdiniz"
 
 msgid "Button"
-msgstr "Tuş"
-
-#, fuzzy
-msgid "Button : "
 msgstr "Tuş"
 
 msgid "Button setup"
@@ -2964,14 +2927,6 @@ msgstr "Kanal"
 msgid "Channel \t\t\tVolume +"
 msgstr "Kanal Adı"
 
-#, fuzzy
-msgid "Channel +"
-msgstr "Kanal"
-
-#, fuzzy
-msgid "Channel -"
-msgstr "Kanal"
-
 msgid "Channel 1 at start"
 msgstr "Başlangıçta kanal 1"
 
@@ -2980,13 +2935,6 @@ msgstr "Kanal Bilgisi"
 
 msgid "Channel List"
 msgstr "Kanal Listesi"
-
-msgid "Channel Name"
-msgstr "Kanal Adı"
-
-#, fuzzy
-msgid "Channel Selection"
-msgstr "Kanal seçimi"
 
 msgid "Channel down"
 msgstr "Kanal aşağı"
@@ -3050,10 +2998,6 @@ msgstr "Kanal EPG ayarları"
 
 msgid "Channelname"
 msgstr "Kanaladı"
-
-#, fuzzy
-msgid "Channels"
-msgstr "Kanal"
 
 #, fuzzy
 msgid "Channelselection:"
@@ -3290,9 +3234,6 @@ msgstr "İstemciler"
 msgid "Clients"
 msgstr "İstemciler"
 
-msgid "Clock"
-msgstr "Saat"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -3457,10 +3398,6 @@ msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Kanal simgelerinin kanal listesinde gösterilip gösterilmeyeceğini yapılandırın."
 
 msgid "Configure interface"
-msgstr "Arayüz yapılandır"
-
-#, fuzzy
-msgid "Configure macro"
 msgstr "Arayüz yapılandır"
 
 msgid "Configure nameservers"
@@ -3688,6 +3625,9 @@ msgstr ""
 msgid "Configure to enable to use settings placed somewhere in your Lan."
 msgstr ""
 
+msgid "Configure to keep focus on the current played service while entering the servicelist via the bouquet buttons."
+msgstr ""
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr "Kanal adlarını, simgeleri veya her ikisini de EPG'de gösterecek şekilde yapılandırın."
 
@@ -3775,10 +3715,6 @@ msgstr "Bağlandı!"
 
 msgid "Connected: "
 msgstr "Bağlandı:"
-
-#, fuzzy
-msgid "Console (kbd)"
-msgstr "Konsol kutusu"
 
 msgid "Constellation"
 msgstr ""
@@ -3888,7 +3824,8 @@ msgstr "Kurulu kanal listesi bulunamadı."
 msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"
 msgstr ""
 
-msgid "Could not load medium! No disc inserted?"
+#, fuzzy
+msgid "Could not load Medium! No disc inserted?"
 msgstr "Ortam yüklenemedi! Takılı disk yok?"
 
 #, fuzzy
@@ -3925,7 +3862,14 @@ msgstr "Çökme Günlükleri"
 msgid "Create"
 msgstr "Oluştur:"
 
+msgid "Create Bludisc ISO file"
+msgstr ""
+
 msgid "Create DVD-ISO"
+msgstr "DVD-ISO oluştur"
+
+#, fuzzy
+msgid "Create ISO"
 msgstr "DVD-ISO oluştur"
 
 msgid "Create directory"
@@ -3973,19 +3917,6 @@ msgstr "Cron Yöneticisi"
 
 msgid "CronTimers"
 msgstr "Cron Zamanlayıcılar"
-
-msgid "Cross Down"
-msgstr ""
-
-msgid "Cross Left"
-msgstr ""
-
-#, fuzzy
-msgid "Cross Right"
-msgstr "Sağ"
-
-msgid "Cross Up"
-msgstr ""
 
 msgid "Cuba"
 msgstr ""
@@ -4069,6 +4000,10 @@ msgstr "Film düzenleyici"
 
 msgid "Cutlist editor..."
 msgstr "Film düzenleyici..."
+
+#, fuzzy
+msgid "Cycle Picture In Picture"
+msgstr "Resim İçinde Resim Taşı"
 
 #, python-format
 msgid "Cylinders: %s (max) %s (current)"
@@ -4170,16 +4105,8 @@ msgstr "DVD dosya gezgini"
 msgid "DVD Player"
 msgstr "DVD oynatıcı"
 
-msgid "DVD data format"
-msgstr "DVD bilgi biçimi"
-
-msgid "DVD file browser"
-msgstr "DVD dosya gezgini"
-
-msgid "DVD media toolbox"
-msgstr "DVD ortam araçları"
-
-msgid "DVD titlelist"
+#, fuzzy
+msgid "DVD Titlelist"
 msgstr "DVD başlık seti"
 
 msgid "DVD-Player Setup"
@@ -4200,10 +4127,6 @@ msgstr "Etkinleştir"
 
 msgid "Debug Logs"
 msgstr "Hata ayıklama Günlükleri"
-
-#, fuzzy
-msgid "Dec"
-msgstr "Aygıtlar"
 
 #, fuzzy
 msgid "December"
@@ -4254,6 +4177,9 @@ msgstr "Varsayılan ayarlar"
 
 msgid "Defaults"
 msgstr "Varsayılanlar"
+
+msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
 
 msgid "Define location to save infobar poster, if its activated inside skinsetup."
 msgstr ""
@@ -4400,13 +4326,6 @@ msgstr "Aygıt adı:"
 msgid "Devices"
 msgstr "Aygıtlar"
 
-#, fuzzy
-msgid "Dezember"
-msgstr "Kehribar"
-
-msgid "Di"
-msgstr ""
-
 msgid "DiSEqC"
 msgstr "DiSEqC"
 
@@ -4446,9 +4365,6 @@ msgstr ""
 msgid "Diction"
 msgstr "Açıklama"
 
-msgid "Dienstag"
-msgstr ""
-
 #, python-format
 msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
@@ -4477,10 +4393,6 @@ msgstr "Dizin"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Directory %s nonexistent."
-msgstr "Klasör gezgini"
 
 msgid "Directory browser"
 msgstr "Klasör gezgini"
@@ -4578,10 +4490,6 @@ msgstr "Böl"
 #, fuzzy
 msgid "Djibouti"
 msgstr "Hakkında"
-
-#, fuzzy
-msgid "Do"
-msgstr "Aşağı"
 
 msgid "Do not change"
 msgstr "Değiştirme"
@@ -4754,6 +4662,10 @@ msgstr "Sürücüde DVD oynamak istiyor musunuz?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "DVD'yi yazmadan önce önizleme yapmak istiyor musunuz?"
 
+#, fuzzy
+msgid "Do you want to produce this collection?"
+msgstr "Bu koleksiyonu DVD ortamına yazdırmak ister misiniz?"
+
 #, fuzzy, python-format
 msgid "Do you want to reboot now the image in startup %s?"
 msgstr "Seçilen imajla şimdi yeniden başlatmak istiyor musunuz?"
@@ -4813,6 +4725,10 @@ msgid "Dominican Republic"
 msgstr ""
 
 #, fuzzy
+msgid "Don't add this recording"
+msgstr "bu kaydın"
+
+#, fuzzy
 msgid "Don't ask again!"
 msgstr "Kaydetme"
 
@@ -4839,10 +4755,6 @@ msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
 msgstr[0] "Tamam -  %d paket kuruldu, yükseltildi veya kaldırıldı (%s)"
 msgstr[1] ""
-
-#, fuzzy
-msgid "Donnerstag"
-msgstr "Bağlantıyı kes"
 
 msgid "Down"
 msgstr "Aşağı"
@@ -4882,8 +4794,11 @@ msgid "Downmix"
 msgstr "DTS downmix"
 
 #, fuzzy
-msgid "DreamPlex"
-msgstr "DreamPlex göster"
+msgid "Dreambox format data DVD (HDTV compatible)"
+msgstr "%s %s DVD veri biçimi (HDTV uyumlu)"
+
+msgid "Dreambox format data DVD (won't work in other DVD players)"
+msgstr ""
 
 msgid "Drivers"
 msgstr "Sürücüler"
@@ -4950,9 +4865,6 @@ msgstr ""
 msgid "EMC_Selection:"
 msgstr "Seçim"
 
-msgid "END"
-msgstr ""
-
 msgid "EPG"
 msgstr "EPG"
 
@@ -4998,9 +4910,6 @@ msgstr "EPG ayarları"
 msgid "ERROR - failed to scan (%s)!"
 msgstr "HATA - arama başarısız (%s)!"
 
-msgid "EXIT"
-msgstr ""
-
 msgid "East"
 msgstr "Doğu"
 
@@ -5021,6 +4930,10 @@ msgstr "Düzenle"
 
 msgid "Edit Quad Channel Entry"
 msgstr ""
+
+#, fuzzy
+msgid "Edit Title"
+msgstr "Başlığı düzenle"
 
 msgid "Edit chapters of current title"
 msgstr "Geçerli başlık için bölümleri düzenle"
@@ -5107,9 +5020,6 @@ msgstr "SLOT CI1 için CIHelperi etkinleştir"
 
 msgid "Enable EIT EPG"
 msgstr "EIT EPG etkinleştir"
-
-msgid "Enable LED Display plugin"
-msgstr ""
 
 msgid "Enable MHW EPG"
 msgstr "MHW EPG etkinleştir"
@@ -5251,6 +5161,14 @@ msgstr "Simgeleri etkinleştir"
 msgid "Enabled"
 msgstr "Etkin"
 
+#, fuzzy
+msgid "Enabled, only from deep standby"
+msgstr "derin bekleme moduna geç"
+
+#, fuzzy
+msgid "Enabled, only from standby"
+msgstr "TV'yi uyandır"
+
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr ""
 
@@ -5259,6 +5177,10 @@ msgstr "Şifreli:"
 
 msgid "Encryption"
 msgstr "Şifreleme"
+
+#, fuzzy
+msgid "Encryption Type:"
+msgstr "Şifreleme:"
 
 msgid "Encryption key"
 msgstr "Şifreleme anahtarı"
@@ -5331,18 +5253,11 @@ msgstr ""
 msgid "Enter your high band local oscillator frequency. For more information consult the spec sheet of your LNB."
 msgstr ""
 
-msgid "Enter your input data"
-msgstr ""
-
 msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
 msgstr ""
 
 msgid "Entitlements"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Entry %s already exists."
-msgstr "%s yolu zaten var."
 
 msgid "Epg/Guide"
 msgstr ""
@@ -5413,9 +5328,6 @@ msgstr ""
 "Hata: %s\n"
 "Tekrar denensin mi?"
 
-msgid "Erweiterungen"
-msgstr ""
-
 msgid "Es folgt:"
 msgstr ""
 
@@ -5484,6 +5396,9 @@ msgstr "Önizleme:"
 
 msgid "Everywhere"
 msgstr "Her yerde"
+
+msgid "Exceeds Bludisc medium!"
+msgstr ""
 
 msgid "Exceeds dual layer medium!"
 msgstr ""
@@ -5640,9 +5555,6 @@ msgstr ""
 msgid "F"
 msgstr ""
 
-msgid "F.List"
-msgstr ""
-
 msgid "F1"
 msgstr ""
 
@@ -5650,12 +5562,6 @@ msgid "F1 long"
 msgstr "F1 uzun"
 
 msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr ""
-
-msgid "F10 (kbd) M2"
-msgstr ""
-
-msgid "F11 (kbd) M1"
 msgstr ""
 
 msgid "F2"
@@ -5686,18 +5592,9 @@ msgstr "F1 uzun"
 msgid "F6"
 msgstr ""
 
-msgid "F6 (kbd) WWW"
-msgstr ""
-
 #, fuzzy
 msgid "F6 long"
 msgstr "F1 uzun"
-
-msgid "F7 (kbd) MAIL"
-msgstr ""
-
-msgid "FAV"
-msgstr ""
 
 msgid "FCC 1953"
 msgstr ""
@@ -5784,10 +5681,6 @@ msgid ""
 "Please unmount Fixed Mounted Devices with Device Manager Panel!"
 msgstr ""
 
-#, fuzzy
-msgid "FastForward >>"
-msgstr "Hızlı ileri sarma hızı"
-
 msgid "Fastforward"
 msgstr ""
 
@@ -5800,12 +5693,6 @@ msgstr ""
 msgid "Favourites"
 msgstr "Favoriler"
 
-msgid "Feb"
-msgstr ""
-
-msgid "Februar"
-msgstr ""
-
 msgid "February"
 msgstr ""
 
@@ -5815,10 +5702,6 @@ msgstr ""
 #, fuzzy
 msgid "File"
 msgstr "File uzun"
-
-#, python-format
-msgid "File %s nonexistent."
-msgstr ""
 
 msgid "File appears to be busy.\n"
 msgstr ""
@@ -5991,15 +5874,8 @@ msgstr "%s disk biçimlendiriliyor"
 msgid "Formatting partition %d"
 msgstr "%d bölüm biçimlendiriliyor"
 
-msgid "Forward >"
-msgstr ""
-
 msgid "Forward volume keys"
 msgstr "Ses tuşları ileri"
-
-#, fuzzy
-msgid "Fr"
-msgstr "Cum"
 
 msgid "Frame rate"
 msgstr "Kare hızı"
@@ -6044,9 +5920,6 @@ msgstr "Boş:"
 msgid "Free: "
 msgstr "Boş: "
 
-msgid "Freitag"
-msgstr ""
-
 msgid "French"
 msgstr "Fransızca"
 
@@ -6063,6 +5936,10 @@ msgstr ""
 msgid "Frequency"
 msgstr "Frekans"
 
+#, fuzzy
+msgid "Frequency Norm:"
+msgstr "Frekans"
+
 msgid "Frequency bands"
 msgstr "Frekans bantları"
 
@@ -6071,6 +5948,10 @@ msgstr "Frekans arama adımı (khz)"
 
 msgid "Frequency steps"
 msgstr "Frekans adımları"
+
+#, fuzzy
+msgid "Frequency:"
+msgstr "Frekans"
 
 msgid "Fri"
 msgstr "Cum"
@@ -6123,15 +6004,8 @@ msgid "Function of OK button"
 msgstr "OK tuşu fonksiyonu"
 
 #, fuzzy
-msgid "Functions"
-msgstr "Hızlı İşlemler"
-
-#, fuzzy
 msgid "G"
 msgstr "GB"
-
-msgid "G.List"
-msgstr ""
 
 msgid "GB"
 msgstr "GB"
@@ -6427,12 +6301,6 @@ msgstr ""
 msgid "HDF Build: %s"
 msgstr "Oluşum: %s"
 
-msgid "HDF Toolbox GigaBlue"
-msgstr ""
-
-msgid "HDF Toolbox Xtrend ET10000"
-msgstr ""
-
 #, python-format
 msgid "HDF Version:\tV%s"
 msgstr "HDF Sürümü:\tV%s"
@@ -6480,20 +6348,11 @@ msgstr ""
 msgid "HDR10 Support"
 msgstr "HDR10 Desteği"
 
-msgid "HELP"
-msgstr ""
-
 msgid "HI-cleanup for external subtitles"
-msgstr ""
-
-msgid "HISTORY"
 msgstr ""
 
 msgid "HLG Support"
 msgstr "HLG Desteği"
-
-msgid "HOME"
-msgstr ""
 
 #, fuzzy
 msgid "Haiti"
@@ -6712,6 +6571,9 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr "Kaç dakikalık kayıt başlatmak istiyorsunuz?"
 
+msgid "Http(s) stream start delay"
+msgstr ""
+
 msgid "Hue"
 msgstr ""
 
@@ -6735,7 +6597,7 @@ msgstr "Geçerli etkinliği IMDb'de ara"
 msgid "IMDb Search"
 msgstr "IMDb Ara"
 
-msgid "INFO"
+msgid "INFO-Panel..."
 msgstr ""
 
 msgid "IP address"
@@ -6893,9 +6755,6 @@ msgstr ""
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr "Metin ön panelden gösterilemeyecek kadar uzunsa, tekrarlanacaktır (defalarca):"
 
-msgid "If this set to yes, the systemplugin vfdcontrol can be used after restart."
-msgstr "Bu evet olarak ayarlanırsa, sistem eklentisi vfd kontrolü yeniden başlatıldıktan sonra kullanılabilir."
-
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr ""
 
@@ -6917,11 +6776,6 @@ msgid ""
 msgstr ""
 "Eğer bunu görüyorsanız, scart bağlantınızla\n"
 "ilgili bazı hatalar var. Geri dönmek için OK tuşuna basın."
-
-msgid ""
-"If you want to quit the Browser,\n"
-"Press RED -> EXIT."
-msgstr ""
 
 msgid ""
 "If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
@@ -7113,10 +6967,6 @@ msgid "InfobarEPG settings"
 msgstr "EPG bilgi çubuğu ayarları"
 
 msgid "Information"
-msgstr "Bilgi"
-
-#, fuzzy
-msgid "Informationen"
 msgstr "Bilgi"
 
 msgid "Init"
@@ -7351,13 +7201,6 @@ msgstr "24 SAAT ATLA"
 msgid "Jamaica"
 msgstr ""
 
-msgid "Jan"
-msgstr ""
-
-#, fuzzy
-msgid "Januar"
-msgstr "elle"
-
 #, fuzzy
 msgid "January"
 msgstr "elle"
@@ -7372,12 +7215,6 @@ msgid "Job View"
 msgstr "Görev İzle"
 
 msgid "Jordan"
-msgstr ""
-
-msgid "Jul"
-msgstr ""
-
-msgid "Juli"
 msgstr ""
 
 msgid "July"
@@ -7410,14 +7247,7 @@ msgstr "Önceki işaretli pozisyona atla"
 msgid "Jump to prime time"
 msgstr "Seçkin zamana atla"
 
-#, fuzzy
-msgid "Jun"
-msgstr "Paz"
-
 msgid "June"
-msgstr ""
-
-msgid "Juni"
 msgstr ""
 
 msgid "Just change channels"
@@ -7440,6 +7270,9 @@ msgid "KB"
 msgstr "B"
 
 msgid "Kazakhstan"
+msgstr ""
+
+msgid "Keep focus on current service while entering servicelist."
 msgstr ""
 
 #, fuzzy
@@ -7481,19 +7314,12 @@ msgstr ""
 msgid "Kiribati"
 msgstr ""
 
-msgid "Kleiner Test"
-msgstr ""
-
 msgid "Kodi Addons"
 msgstr ""
 
 #, fuzzy
 msgid "Kodi Media Center"
 msgstr "Medya tarama"
-
-#, fuzzy
-msgid "Konfiguration"
-msgstr "Yapılandırma modu"
 
 msgid "Korea (Democratic People's Republic of)"
 msgstr ""
@@ -7580,6 +7406,9 @@ msgid "Languages"
 msgstr "Diller"
 
 msgid "Lao People's Democratic Republic"
+msgstr ""
+
+msgid "Large"
 msgstr ""
 
 msgid "Last Image Updates"
@@ -7878,10 +7707,6 @@ msgstr "MAC:"
 msgid "MB"
 msgstr "MB"
 
-#, fuzzy
-msgid "MINISATIP Setup"
-msgstr "AFP Kurulumu"
-
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
 
@@ -7892,25 +7717,13 @@ msgstr ""
 msgid "MOUSE long"
 msgstr "OK uzun"
 
-msgid "MQB Functions and Plugins"
-msgstr ""
-
 msgid "Macao"
 msgstr ""
 
 msgid "Macedonia (the former Yugoslav Republic of)"
 msgstr ""
 
-msgid "Macros"
-msgstr ""
-
 msgid "Madagascar"
-msgstr ""
-
-msgid "Maerz"
-msgstr ""
-
-msgid "Mai"
 msgstr ""
 
 msgid "Main Menu"
@@ -7977,9 +7790,6 @@ msgstr ""
 
 msgid "Manufacturer"
 msgstr "Üretici"
-
-msgid "Mar"
-msgstr ""
 
 msgid "MaraM9"
 msgstr ""
@@ -8067,10 +7877,6 @@ msgstr "Normal"
 msgid "Media Center"
 msgstr "Medya tarama"
 
-#, fuzzy
-msgid "Media Player"
-msgstr "Medya oynatıcı"
-
 msgid "Media long"
 msgstr "Media uzun"
 
@@ -8088,6 +7894,10 @@ msgstr ""
 
 msgid "Medium is not empty!"
 msgstr ""
+
+#, fuzzy
+msgid "Medium toolbox"
+msgstr "DVD ortam araçları"
 
 msgid "Memory"
 msgstr "Bellek"
@@ -8122,10 +7932,6 @@ msgstr "İleti"
 
 msgid "Mexico"
 msgstr ""
-
-#, fuzzy
-msgid "Mi"
-msgstr "Dak"
 
 msgid "Micronesia (Federated States of)"
 msgstr ""
@@ -8170,13 +7976,6 @@ msgstr ""
 
 msgid "Missing "
 msgstr "Eksik "
-
-msgid "Mittwoch"
-msgstr ""
-
-#, fuzzy
-msgid "Mo"
-msgstr "Ptesi"
 
 #, fuzzy
 msgid "Mode"
@@ -8237,10 +8036,6 @@ msgstr "Pazartesi"
 
 msgid "Mongolia"
 msgstr ""
-
-#, fuzzy
-msgid "Montag"
-msgstr "Aylık"
 
 msgid "Montenegro"
 msgstr ""
@@ -8318,9 +8113,6 @@ msgid "Mounts Setup"
 msgstr ""
 
 msgid "Mounts setup"
-msgstr ""
-
-msgid "Mouse"
 msgstr ""
 
 msgid "Move"
@@ -8405,13 +8197,6 @@ msgstr ""
 msgid "Multi EPG"
 msgstr "Çoklu EPG"
 
-#, fuzzy
-msgid "Multi QuickButton settings"
-msgstr "Çoklu EPG ayarları"
-
-msgid "Multi Quickbutton"
-msgstr ""
-
 msgid "MultiBoot Selector"
 msgstr "Çoklu Önyükleme Seçici"
 
@@ -8425,10 +8210,6 @@ msgstr "Çoklu Önyükleme Seçici"
 
 msgid "MultiEPG settings"
 msgstr "Çoklu EPG ayarları"
-
-#, fuzzy
-msgid "MultiQuickButton macro configuration"
-msgstr "Yapılandırma için menü tuşu"
 
 #, fuzzy
 msgid "Multiboot Image Selector"
@@ -8455,9 +8236,6 @@ msgstr "Çoklu uydu"
 
 msgid "Music/Ballet/Dance"
 msgstr "Müzik/Bale/Dans"
-
-msgid "Mute"
-msgstr "Sessiz"
 
 msgid "Mute long"
 msgstr "Sessiz uzun"
@@ -8820,14 +8598,6 @@ msgstr "Güncelleme yok!"
 msgid "No updates available. Please try again later."
 msgstr "Güncelleme yok. Lütfen daha sonra tekrar deneyin."
 
-#, fuzzy
-msgid "No valid function file found"
-msgstr "Kablo tuner bulunamadı!"
-
-#, fuzzy
-msgid "No valid selection"
-msgstr "Film seçimi"
-
 msgid "No wireless networks found! Searching..."
 msgstr "Kablosuz ağ bulunamadı! Aranıyor..."
 
@@ -8851,10 +8621,6 @@ msgid ""
 msgstr ""
 "Çalışan bir kablosuz ağ arabirimi bulunamadı.\n"
 "Lütfen uyumlu bir WLAN aygıtı taktığınızı doğrulayın veya yerel ağ arayüzünüzü etkinleştirin."
-
-#, fuzzy
-msgid "No, but play video again"
-msgstr "Hayır, ancak başlangıçtan itibaren yeniden başlat"
 
 msgid "No, but restart from begin"
 msgstr "Hayır, ancak başlangıçtan itibaren yeniden başlat"
@@ -8892,6 +8658,9 @@ msgstr "Normal mod"
 
 msgid "North"
 msgstr "Kuzey"
+
+msgid "North Macedonia (The Republic of)"
+msgstr ""
 
 msgid "Northern Mariana Islands"
 msgstr ""
@@ -8988,10 +8757,6 @@ msgid "Nothing, just leave this menu"
 msgstr "Hiçbir şey, sadece bu menüden çık"
 
 #, fuzzy
-msgid "Nov"
-msgstr "Hayır"
-
-#, fuzzy
 msgid "November"
 msgstr "Sayı"
 
@@ -9055,9 +8820,6 @@ msgstr "OK uzun"
 msgid "OK, guide me through the upgrade process"
 msgstr "Tamam, güncelleme işleminde bana rehberlik yap"
 
-msgid "OK/EXIT"
-msgstr ""
-
 msgid "ONID"
 msgstr ""
 
@@ -9085,9 +8847,6 @@ msgstr "OScam Bilgisi"
 
 msgid "OScam info"
 msgstr "OScam bilgisi"
-
-msgid "Oct"
-msgstr ""
 
 msgid "Off"
 msgstr "Kapalı"
@@ -9255,9 +9014,6 @@ msgstr "OScam Bilgisi"
 msgid "Other"
 msgstr "Diğer"
 
-msgid "Output"
-msgstr "Çıktı"
-
 msgid "Overall progress:"
 msgstr "Genel ilerleme:"
 
@@ -9294,14 +9050,6 @@ msgstr "Yazılım yükseltme sırasında yapılandırma dosyaları üzerine yaz�
 
 msgid "Overwrite driver files during software upgrade?"
 msgstr "Yazılım yükseltme sırasında driver dosyaları üzerine yazılsın mı?"
-
-#, fuzzy
-msgid "Overwrite existing Backup?."
-msgstr "Setting dosyaları üzerine yazılsın mı?"
-
-#, fuzzy
-msgid "Overwrite existing Settings?."
-msgstr "Setting dosyaları üzerine yazılsın mı?"
 
 msgid "Overwrite picon files during software upgrade?"
 msgstr "Yazılım yükseltme sırasında kanal logo dosyaları üzerine yazılsın mı?"
@@ -9535,9 +9283,6 @@ msgstr "Telefon numarası"
 msgid "PiP"
 msgstr "RİR"
 
-msgid "PiP is currently not available because your are using iptv streams!"
-msgstr ""
-
 msgid "Picon"
 msgstr "Logo"
 
@@ -9567,10 +9312,6 @@ msgid "Picture in graphics"
 msgstr "Grafik içinde resim"
 
 msgid "Picture player"
-msgstr "Resim oynatıcı"
-
-#, fuzzy
-msgid "PictureCenterFS"
 msgstr "Resim oynatıcı"
 
 #, fuzzy
@@ -9804,10 +9545,6 @@ msgstr ""
 msgid "Please select tag to filter..."
 msgstr "Lütfen filtrelemek için etiket seçin ..."
 
-#, fuzzy
-msgid "Please select the backup path..."
-msgstr "Lütfen film yolunu seçin ..."
-
 msgid "Please select the movie path..."
 msgstr "Lütfen film yolunu seçin ..."
 
@@ -9819,10 +9556,6 @@ msgstr ""
 "Lütfen internet bağlantınızı kullanmak için bir ağ arayüzü seçin.\n"
 "\n"
 "Devam etmek için lütfen OK tuşuna basın."
-
-#, fuzzy
-msgid "Please select the restore path..."
-msgstr "Lütfen film yolunu seçin ..."
 
 msgid ""
 "Please select the wireless network that you want to connect to.\n"
@@ -10094,10 +9827,6 @@ msgstr "Pozisyoner kurulumu"
 
 msgid "Positioner setup"
 msgstr "Pozisyoner kurulumu"
-
-#, fuzzy
-msgid "Power"
-msgstr "alt"
 
 msgid "Power (use button menu)"
 msgstr ""
@@ -10495,19 +10224,6 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Hızlı kanal değiştir"
 
-msgid "Quickbutton Key : "
-msgstr ""
-
-msgid "Quickbutton: Key "
-msgstr ""
-
-#, fuzzy
-msgid "Quite without saving changes ?"
-msgstr "Ayarlarınızı kaydetmeden çıkmak istediğinize emin misiniz?"
-
-msgid "RADIO"
-msgstr ""
-
 msgid "RAM"
 msgstr "RAM"
 
@@ -10666,6 +10382,10 @@ msgstr "Kayıt başladı! Zaman kaydırma şimdi durduruluyor ..."
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
 msgstr "%s zamanlayıcısı ile çakışmadan dolayı kayıt süresi sınırlandırılmış"
+
+#, fuzzy
+msgid "Recordable media toolbox"
+msgstr "DVD ortam araçları"
 
 msgid "Recording"
 msgstr "Kayıt"
@@ -10998,24 +10718,11 @@ msgstr "Testi yeniden başlat"
 msgid "Restart your network connection and interfaces.\n"
 msgstr "Ağ bağlantısını ve ağ arayüzlerini yeniden başlatın.\n"
 
-#, fuzzy
-msgid "Restarting Enigma2 to load:\n"
-msgstr "Enigma'yı yeniden başlat"
-
-msgid ""
-"Restarting Enigma2 to set\n"
-"Multi QuickButton Autostart"
-msgstr ""
-
 msgid "Restore"
 msgstr "Geri yükle"
 
 msgid "Restore Plugins"
 msgstr "Eklentileri geri yükle"
-
-#, fuzzy
-msgid "Restore Settings..."
-msgstr "Geri yükleniyor..."
 
 msgid "Restore after Restart Enigma"
 msgstr ""
@@ -11086,10 +10793,6 @@ msgstr "Aygıt listesi"
 
 #, fuzzy
 msgid "Rewind"
-msgstr "Hızlı geri sarma hızları"
-
-#, fuzzy
-msgid "Rewind <<"
 msgstr "Hızlı geri sarma hızları"
 
 msgid "Rewind speeds"
@@ -11176,9 +10879,6 @@ msgstr ""
 msgid "SCR timing adjustment, in conjunction with SCR socket and operation of several SCR devices with one cable."
 msgstr ""
 
-msgid "SCREEN"
-msgstr ""
-
 msgid "SD"
 msgstr ""
 
@@ -11208,10 +10908,6 @@ msgstr "SPDIF"
 
 msgid "SSID:"
 msgstr "SSID:"
-
-#, fuzzy
-msgid "Sa"
-msgstr "Ctesi"
 
 msgid "Saint Barthelemy"
 msgstr ""
@@ -11250,9 +10946,6 @@ msgid "Same resolution as skin"
 msgstr "Arayüz ile aynı çözünürlük"
 
 msgid "Samoa"
-msgstr ""
-
-msgid "Samstag"
 msgstr ""
 
 msgid "San Marino"
@@ -11319,10 +11012,6 @@ msgstr "EPG Önbelleğini Kaydet"
 
 msgid "Save EPG data"
 msgstr "EPG verisini kaydet"
-
-#, fuzzy
-msgid "Save Settings"
-msgstr "Ayarlar"
 
 msgid "Save and record"
 msgstr "Kaydet ve kayIt"
@@ -11874,10 +11563,6 @@ msgstr "Yalnızca uydu değiştiğinde DiSEqC gönder"
 
 msgid "Senegal"
 msgstr ""
-
-#, fuzzy
-msgid "Sep"
-msgstr "Kurulum"
 
 msgid "Seperate titles with a main menu"
 msgstr "Ana menü ile başlıkları ayır"
@@ -12805,6 +12490,10 @@ msgstr "TV oynatıcısını göster ..."
 msgid "Show the infomation on current event."
 msgstr "Geçerli etkinlik hakkında bilgi için IMDb'yi arayın."
 
+#, fuzzy
+msgid "Show the information on current event."
+msgstr "Geçerli etkinlik hakkında bilgi için IMDb'yi arayın."
+
 msgid "Show the list of AutoTimers."
 msgstr "Otomatik zamanlayıcıların listesini göster."
 
@@ -13092,6 +12781,10 @@ msgstr "Slow uzun"
 msgid "Slow motion speeds"
 msgstr "Ağır çekim hızları"
 
+#, fuzzy
+msgid "Small"
+msgstr "küçük"
+
 msgid "Small progress"
 msgstr "Küçük ilerlemeler"
 
@@ -13106,10 +12799,6 @@ msgstr ""
 
 msgid "Smpte 240M"
 msgstr ""
-
-#, fuzzy
-msgid "So"
-msgstr "Göster"
 
 msgid "Social/Political/Economics"
 msgstr "Sosyal/Politik/Ekonomi"
@@ -13127,6 +12816,10 @@ msgstr "Samba Kurulumu"
 
 msgid "Softcam settings"
 msgstr "Softcam ayarları"
+
+#, fuzzy
+msgid "Softcam-Panel..."
+msgstr "LED Yöneticisi ..."
 
 msgid "Software"
 msgstr "Yazılım"
@@ -13162,9 +12855,6 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Bazı eklentiler kullanılabilir değil:\n"
-
-msgid "Sonntag"
-msgstr ""
 
 msgid "Sorry ... no ECM Info found"
 msgstr "Maalesef ... ECM Bilgileri bulunamadı"
@@ -13211,10 +12901,6 @@ msgstr ""
 
 msgid "Sorry, there was a problem:"
 msgstr ""
-
-#, fuzzy
-msgid "Sorry, video is not available!"
-msgstr "Üzgünüz, hiçbir ayrıntı yok!"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -13791,9 +13477,6 @@ msgstr "TB"
 msgid "TEMP"
 msgstr ""
 
-msgid "TEXT"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
@@ -13819,7 +13502,7 @@ msgstr ""
 msgid "TXT PID"
 msgstr ""
 
-msgid "Table of contents for collection"
+msgid "Table of content for collection"
 msgstr ""
 
 msgid "Tags"
@@ -13975,8 +13658,7 @@ msgstr ""
 "The Cool TV Guide eklentisi yüklü değil!\n"
 "Lütfen yükleyin."
 
-#, python-format
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
+msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr ""
 
 #, fuzzy
@@ -15827,16 +15509,9 @@ msgstr "VCR scart"
 msgid "VFD Skin Selector"
 msgstr "İmaj Arayüz Seçici"
 
-msgid "VIDEO"
-msgstr ""
-
 #, fuzzy
 msgid "VLAN connection"
 msgstr "LAN bağlantısı"
-
-#, fuzzy
-msgid "VMC"
-msgstr "GFM"
 
 msgid "VMGM (intro trailer)"
 msgstr ""
@@ -16100,14 +15775,6 @@ msgstr ""
 msgid "Voltage mode"
 msgstr "Voltaj modu"
 
-#, fuzzy
-msgid "Volume +"
-msgstr "Ses yükselt"
-
-#, fuzzy
-msgid "Volume -"
-msgstr "Ses yükselt"
-
 msgid "Volume Adjust"
 msgstr "Ses Ayarı"
 
@@ -16244,10 +15911,6 @@ msgid ""
 "Your receiver restarts in 10 seconds!\n"
 "Component: enigma2"
 msgstr ""
-
-#, fuzzy
-msgid "Web Browser"
-msgstr "Eklenti Gezgini"
 
 msgid "Web Interface"
 msgstr "Web Arayüzü"
@@ -16625,9 +16288,6 @@ msgstr ""
 msgid "Y-Tube/WWW long"
 msgstr ""
 
-msgid "YAMP Music Player"
-msgstr ""
-
 msgid "YCbCr420"
 msgstr ""
 
@@ -16754,8 +16414,8 @@ msgstr "Listeyi zaman veya alfanümerik olarak sıralayabilirsiniz."
 msgid "You can install this plugin."
 msgstr "Bu eklentiyi yükleyebilirsiniz."
 
-#, python-format
-msgid "You can only burn %s %s recordings!"
+#, fuzzy
+msgid "You can only burn Dreambox recordings!"
 msgstr "Yalnızca %s %s kayıtlarını yakabilirsiniz!"
 
 msgid "You can remove this plugin."
@@ -16841,9 +16501,6 @@ msgstr "Zaman kaydırmada görünüyorsunuz!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr "Zaman kaydırma var gibi gözüküyor, Zaman kaydırmayı terk etmek istiyor musunuz?"
-
-msgid "You system does not support ext4"
-msgstr "Sisteminiz ext4 desteklemiyor"
 
 #, fuzzy
 msgid "Your %s %s does not have an internet connection"
@@ -17273,7 +16930,7 @@ msgstr "alternatif"
 msgid "am"
 msgstr "İsim"
 
-msgid "and never ask again this session again"
+msgid "and never ask again this session"
 msgstr ""
 
 msgid "any recordings"
@@ -17307,6 +16964,14 @@ msgstr "sonunda"
 
 msgid "athletics"
 msgstr "atletizm"
+
+#, fuzzy, python-format
+msgid "audio track (%s) format"
+msgstr "(%s) ses izi biçimi"
+
+#, fuzzy, python-format
+msgid "audio track (%s) language"
+msgstr "(%s) ses izi dili"
 
 msgid "audio tracks"
 msgstr "ses izleri"
@@ -17368,6 +17033,10 @@ msgstr "yayıncılık/basın"
 msgid "brown"
 msgstr "Kahverengi"
 
+#, fuzzy, python-format
+msgid "burn audio track (%s)"
+msgstr "(%s) ses izini yak"
+
 msgid "by date"
 msgstr "tarihe göre"
 
@@ -17382,10 +17051,6 @@ msgstr "kart okuyucu"
 
 msgid "cartoon/puppets"
 msgstr "çizgi film/kukla"
-
-#, fuzzy
-msgid "cat /proc/bus/input/devices"
-msgstr "Giriş aygıtı seç"
 
 msgid "center"
 msgstr "merkez"
@@ -17674,10 +17339,6 @@ msgstr "moda"
 msgid "fast"
 msgstr "hızlı"
 
-#, fuzzy, python-format
-msgid "file %s not found!"
-msgstr "%d kablosuz ağı bulundu!"
-
 #, fuzzy
 msgid "file can not displayed - file not found"
 msgstr "oscam.conf dosyası bulunamadı"
@@ -17831,10 +17492,6 @@ msgstr "modülleri başlat"
 
 msgid "insert mark here"
 msgstr "buraya işaret koy"
-
-#, fuzzy
-msgid "instant record"
-msgstr "Anlık Kayıt"
 
 msgid "internally loopthrough to"
 msgstr ""
@@ -18267,14 +17924,14 @@ msgstr "oynatma listesini tekrarla"
 msgid "repeated"
 msgstr "tekrarlandı"
 
-msgid "resoring satellites.xml not posibel!"
-msgstr ""
-
 msgid "restart GUI"
 msgstr "Grafiksel arayüzü yeniden başlat"
 
 msgid "restore deleted userbouquets"
 msgstr "silinen kullanıcı buketlerini geri yükle"
+
+msgid "restoring satellites.xml not possible!"
+msgstr ""
 
 msgid "reverse by date"
 msgstr "ters tarih"
@@ -18522,10 +18179,6 @@ msgstr "başlangıç kanalını kullanmayı durdur"
 msgid "stop using as startup service from standby"
 msgstr "beklemeden sonra başlangıç kanalı kullanmayı durdur"
 
-#, fuzzy
-msgid "subtitle"
-msgstr "Altyazı"
-
 msgid "successful"
 msgstr "başarılı"
 
@@ -18699,9 +18352,6 @@ msgstr "beklemeye uyandır"
 msgid "water sport"
 msgstr "su sporları"
 
-msgid "webradioFS"
-msgstr ""
-
 msgid "weekly"
 msgstr "haftalık"
 
@@ -18774,10 +18424,6 @@ msgstr "çalışıyor"
 
 msgid "www.vuplus-support.org"
 msgstr ""
-
-#, fuzzy
-msgid "xbmc Wetter"
-msgstr "daha iyi"
 
 msgid "yellow"
 msgstr "sarı"

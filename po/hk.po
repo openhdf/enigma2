@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-14 22:48+0200\n"
+"POT-Creation-Date: 2022-02-04 09:29+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -281,9 +281,6 @@ msgstr "時間"
 msgid " and"
 msgstr ""
 
-msgid " long"
-msgstr ""
-
 msgid "!! Bootloader Upgrade !!"
 msgstr ""
 
@@ -496,10 +493,6 @@ msgstr ""
 msgid "%s %s advanced remote control (native)"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "%s %s format data DVD (HDTV compatible)"
-msgstr "Dreambox資料格式的DVD （HDTV相容）"
-
 #, python-format
 msgid "%s %s front panel"
 msgstr ""
@@ -655,9 +648,6 @@ msgid "-"
 msgstr ""
 
 msgid "--- Feed Status"
-msgstr ""
-
-msgid "/"
 msgstr ""
 
 #, fuzzy
@@ -1514,13 +1504,7 @@ msgstr "添加"
 msgid "Add AutoTimer"
 msgstr "添加新的自動計時器"
 
-msgid "Add Functions to MQB Key"
-msgstr ""
-
 msgid "Add New Quad Channel Entry"
-msgstr ""
-
-msgid "Add Plugins to MQB Key"
 msgstr ""
 
 #, fuzzy
@@ -1640,6 +1624,10 @@ msgstr ""
 
 msgid "Advanced"
 msgstr "高級"
+
+#, fuzzy
+msgid "Advanced Options"
+msgstr "高級選項"
 
 #, fuzzy
 msgid "Advanced Settings"
@@ -1814,10 +1802,6 @@ msgstr ""
 msgid "Alpha"
 msgstr "透明度"
 
-#, fuzzy
-msgid "Alpha Value"
-msgstr "透明度"
-
 msgid "Alphanumeric"
 msgstr ""
 
@@ -1904,9 +1888,6 @@ msgstr ""
 
 msgid "Any activity"
 msgstr ""
-
-msgid "Apr"
-msgstr "4月"
 
 msgid "April"
 msgstr "4月"
@@ -2049,6 +2030,10 @@ msgid "Aspect"
 msgstr "螢幕寬高比"
 
 #, fuzzy
+msgid "Aspect Ratio"
+msgstr "螢幕寬高比"
+
+#, fuzzy
 msgid "Aspect list..."
 msgstr "子服務列表..."
 
@@ -2112,17 +2097,6 @@ msgstr ""
 #, fuzzy
 msgid "Audio settings"
 msgstr "編輯設定"
-
-#, python-format
-msgid "Audio track (%s) format"
-msgstr ""
-
-#, python-format
-msgid "Audio track (%s) language"
-msgstr ""
-
-msgid "Aug"
-msgstr "8月"
 
 msgid "August"
 msgstr "8月"
@@ -2259,6 +2233,15 @@ msgstr ""
 msgid "B"
 msgstr "B"
 
+msgid "BDMV Bludisc (HDTV titles only)"
+msgstr ""
+
+msgid "BDMV Compatible Bludisc (HDTV only)"
+msgstr ""
+
+msgid "BLUDISC RECORDABLE"
+msgstr ""
+
 msgid "BT 2020 CL"
 msgstr ""
 
@@ -2353,10 +2336,6 @@ msgid "Backup Mode"
 msgstr "備份模式"
 
 #, fuzzy
-msgid "Backup Settings..."
-msgstr "正在備份..."
-
-#, fuzzy
 msgid "Backup Tool for"
 msgstr "備份模式"
 
@@ -2391,10 +2370,6 @@ msgstr ""
 #, fuzzy
 msgid "Backup your settings now?"
 msgstr "備份系統設定"
-
-#, fuzzy
-msgid "Backward <"
-msgstr "快倒"
 
 msgid "Bahamas"
 msgstr ""
@@ -2465,9 +2440,6 @@ msgstr ""
 msgid "Benin"
 msgstr ""
 
-msgid "Bereitschaft / Neustart"
-msgstr ""
-
 msgid "Bermuda"
 msgstr ""
 
@@ -2478,9 +2450,6 @@ msgid "Bhutan"
 msgstr ""
 
 msgid "Big PiP"
-msgstr ""
-
-msgid "Bildbetrachter"
 msgstr ""
 
 #, fuzzy
@@ -2602,14 +2571,14 @@ msgstr ""
 msgid "Burkina Faso"
 msgstr ""
 
+msgid "Burn Bludisc"
+msgstr ""
+
 msgid "Burn DVD"
 msgstr "燒錄 DVD"
 
-#, python-format
-msgid "Burn audio track (%s)"
-msgstr ""
-
-msgid "Burn existing image to DVD"
+#, fuzzy
+msgid "Burn existing image to medium"
 msgstr "燒錄已有的鏡像到DVD"
 
 #, fuzzy
@@ -2626,9 +2595,6 @@ msgid "But you have activated \"Install unstable updates\""
 msgstr ""
 
 msgid "Button"
-msgstr ""
-
-msgid "Button : "
 msgstr ""
 
 #, fuzzy
@@ -3037,14 +3003,6 @@ msgid "Channel \t\t\tVolume +"
 msgstr ""
 
 #, fuzzy
-msgid "Channel +"
-msgstr "頻道"
-
-#, fuzzy
-msgid "Channel -"
-msgstr "頻道"
-
-#, fuzzy
 msgid "Channel 1 at start"
 msgstr "頻道"
 
@@ -3055,13 +3013,6 @@ msgstr "頻道"
 #, fuzzy
 msgid "Channel List"
 msgstr "頻道"
-
-#, fuzzy
-msgid "Channel Name"
-msgstr "頻道"
-
-msgid "Channel Selection"
-msgstr "頻道選擇"
 
 #, fuzzy
 msgid "Channel down"
@@ -3138,9 +3089,6 @@ msgstr "Crashlog設定"
 
 #, fuzzy
 msgid "Channelname"
-msgstr "頻道"
-
-msgid "Channels"
 msgstr "頻道"
 
 #, fuzzy
@@ -3384,10 +3332,6 @@ msgstr "用戶端 IP:"
 msgid "Clients"
 msgstr "用戶端 IP:"
 
-#, fuzzy
-msgid "Clock"
-msgstr "時鐘"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -3552,10 +3496,6 @@ msgid "Configure if service picons will be shown in the servicelist."
 msgstr ""
 
 msgid "Configure interface"
-msgstr "配置網卡"
-
-#, fuzzy
-msgid "Configure macro"
 msgstr "配置網卡"
 
 msgid "Configure nameservers"
@@ -3783,6 +3723,9 @@ msgstr ""
 msgid "Configure to enable to use settings placed somewhere in your Lan."
 msgstr ""
 
+msgid "Configure to keep focus on the current played service while entering the servicelist via the bouquet buttons."
+msgstr ""
+
 msgid "Configure to show the channel names, picons, or both in the EPG."
 msgstr ""
 
@@ -3873,9 +3816,6 @@ msgstr "已連接!"
 #, fuzzy
 msgid "Connected: "
 msgstr "連接到"
-
-msgid "Console (kbd)"
-msgstr ""
 
 msgid "Constellation"
 msgstr "星位"
@@ -3988,7 +3928,7 @@ msgstr ""
 msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"
 msgstr ""
 
-msgid "Could not load medium! No disc inserted?"
+msgid "Could not load Medium! No disc inserted?"
 msgstr ""
 
 msgid "Could not open Picture in Picture"
@@ -4023,7 +3963,14 @@ msgstr ""
 msgid "Create"
 msgstr "創建"
 
+msgid "Create Bludisc ISO file"
+msgstr ""
+
 msgid "Create DVD-ISO"
+msgstr "創建DVD-ISO"
+
+#, fuzzy
+msgid "Create ISO"
 msgstr "創建DVD-ISO"
 
 #, fuzzy
@@ -4077,19 +4024,6 @@ msgstr "插件管理"
 #, fuzzy
 msgid "CronTimers"
 msgstr "計時器"
-
-msgid "Cross Down"
-msgstr ""
-
-msgid "Cross Left"
-msgstr ""
-
-#, fuzzy
-msgid "Cross Right"
-msgstr "右"
-
-msgid "Cross Up"
-msgstr ""
 
 msgid "Cuba"
 msgstr ""
@@ -4177,6 +4111,10 @@ msgstr "剪輯編輯器..."
 
 msgid "Cutlist editor..."
 msgstr "剪輯編輯器..."
+
+#, fuzzy
+msgid "Cycle Picture In Picture"
+msgstr "移動畫中畫"
 
 #, python-format
 msgid "Cylinders: %s (max) %s (current)"
@@ -4278,17 +4216,9 @@ msgstr "DVD檔流覽器"
 msgid "DVD Player"
 msgstr "DVD播放器"
 
-msgid "DVD data format"
-msgstr ""
-
-msgid "DVD file browser"
-msgstr ""
-
-msgid "DVD media toolbox"
-msgstr ""
-
-msgid "DVD titlelist"
-msgstr ""
+#, fuzzy
+msgid "DVD Titlelist"
+msgstr "計時器編輯"
 
 #, fuzzy
 msgid "DVD-Player Setup"
@@ -4310,9 +4240,6 @@ msgstr "啟動交換檔"
 
 msgid "Debug Logs"
 msgstr ""
-
-msgid "Dec"
-msgstr "12月"
 
 msgid "December"
 msgstr "12月"
@@ -4365,6 +4292,9 @@ msgstr "預設設定"
 #, fuzzy
 msgid "Defaults"
 msgstr "預設"
+
+msgid "Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
 
 msgid "Define location to save infobar poster, if its activated inside skinsetup."
 msgstr ""
@@ -4524,14 +4454,6 @@ msgstr ""
 msgid "Devices"
 msgstr "裝置"
 
-#, fuzzy
-msgid "Dezember"
-msgstr "12月"
-
-#, fuzzy
-msgid "Di"
-msgstr "D"
-
 msgid "DiSEqC"
 msgstr "DiSEqC"
 
@@ -4572,10 +4494,6 @@ msgstr "拔號:"
 msgid "Diction"
 msgstr "功能:"
 
-#, fuzzy
-msgid "Dienstag"
-msgstr "安裝"
-
 #, python-format
 msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
@@ -4605,10 +4523,6 @@ msgstr "目錄"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr ""
-
-#, python-format
-msgid "Directory %s nonexistent."
-msgstr "目錄 %s 不存在."
 
 msgid "Directory browser"
 msgstr "目錄流覽"
@@ -4714,10 +4628,6 @@ msgstr "HD 視頻"
 #, fuzzy
 msgid "Djibouti"
 msgstr "關於"
-
-#, fuzzy
-msgid "Do"
-msgstr "D"
 
 msgid "Do not change"
 msgstr ""
@@ -4884,6 +4794,10 @@ msgstr " 是否播放DVD?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr " 是否在燒錄之前預覽DVD?"
 
+#, fuzzy
+msgid "Do you want to produce this collection?"
+msgstr " 是否燒錄這個收藏到DVD光碟?"
+
 #, fuzzy, python-format
 msgid "Do you want to reboot now the image in startup %s?"
 msgstr " 是否手動掃描其他頻道?"
@@ -4943,6 +4857,10 @@ msgid "Dominican Republic"
 msgstr "捷克共和國"
 
 #, fuzzy
+msgid "Don't add this recording"
+msgstr "這個錄影"
+
+#, fuzzy
 msgid "Don't ask again!"
 msgstr "是, 以後不再詢問"
 
@@ -4969,10 +4887,6 @@ msgstr "完成 - 安裝或升級 %d 套裝軟體"
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
 msgstr[0] "完成 - 安裝, 升級或移除 %d 套裝軟體出現 %d 錯誤"
-
-#, fuzzy
-msgid "Donnerstag"
-msgstr "斷開"
 
 #, fuzzy
 msgid "Down"
@@ -5013,8 +4927,11 @@ msgid "Downmix"
 msgstr "AC3 縮減混音"
 
 #, fuzzy
-msgid "DreamPlex"
-msgstr "Dreambox"
+msgid "Dreambox format data DVD (HDTV compatible)"
+msgstr "Dreambox資料格式的DVD （HDTV相容）"
+
+msgid "Dreambox format data DVD (won't work in other DVD players)"
+msgstr ""
 
 #, fuzzy
 msgid "Drivers"
@@ -5087,9 +5004,6 @@ msgstr "時間"
 msgid "EMC_Selection:"
 msgstr "EPG 選擇"
 
-msgid "END"
-msgstr ""
-
 msgid "EPG"
 msgstr ""
 
@@ -5138,9 +5052,6 @@ msgstr ""
 msgid "ERROR - failed to scan (%s)!"
 msgstr "錯誤 - 掃描 (%s)失敗!"
 
-msgid "EXIT"
-msgstr ""
-
 msgid "East"
 msgstr "東方"
 
@@ -5162,6 +5073,10 @@ msgstr "修改"
 #, fuzzy
 msgid "Edit Quad Channel Entry"
 msgstr "編輯專案"
+
+#, fuzzy
+msgid "Edit Title"
+msgstr "修改標題"
 
 msgid "Edit chapters of current title"
 msgstr "編輯章節當前標題"
@@ -5251,9 +5166,6 @@ msgid "Enable CIHelper for SLOT CI1"
 msgstr ""
 
 msgid "Enable EIT EPG"
-msgstr ""
-
-msgid "Enable LED Display plugin"
 msgstr ""
 
 msgid "Enable MHW EPG"
@@ -5401,6 +5313,13 @@ msgstr ""
 msgid "Enabled"
 msgstr "啟用的"
 
+#, fuzzy
+msgid "Enabled, only from deep standby"
+msgstr "深度休眠"
+
+msgid "Enabled, only from standby"
+msgstr ""
+
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr ""
 
@@ -5409,6 +5328,10 @@ msgstr "加密系統: "
 
 msgid "Encryption"
 msgstr "加密系統"
+
+#, fuzzy
+msgid "Encryption Type:"
+msgstr "加密系統:"
 
 msgid "Encryption key"
 msgstr ""
@@ -5481,19 +5404,12 @@ msgstr ""
 msgid "Enter your high band local oscillator frequency. For more information consult the spec sheet of your LNB."
 msgstr ""
 
-msgid "Enter your input data"
-msgstr ""
-
 msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
 msgstr ""
 
 #, fuzzy
 msgid "Entitlements"
 msgstr "授權"
-
-#, fuzzy, python-format
-msgid "Entry %s already exists."
-msgstr "路徑 %s 已經存在."
 
 msgid "Epg/Guide"
 msgstr ""
@@ -5563,9 +5479,6 @@ msgstr ""
 "錯誤: %s\n"
 "重試?"
 
-msgid "Erweiterungen"
-msgstr ""
-
 msgid "Es folgt:"
 msgstr ""
 
@@ -5634,6 +5547,10 @@ msgstr "事件檢視"
 
 msgid "Everywhere"
 msgstr ""
+
+#, fuzzy
+msgid "Exceeds Bludisc medium!"
+msgstr "超過雙層介質！"
 
 msgid "Exceeds dual layer medium!"
 msgstr "超過雙層介質！"
@@ -5800,9 +5717,6 @@ msgstr ""
 msgid "F"
 msgstr ""
 
-msgid "F.List"
-msgstr ""
-
 #, fuzzy
 msgid "F1"
 msgstr "1"
@@ -5811,12 +5725,6 @@ msgid "F1 long"
 msgstr ""
 
 msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr ""
-
-msgid "F10 (kbd) M2"
-msgstr ""
-
-msgid "F11 (kbd) M1"
 msgstr ""
 
 #, fuzzy
@@ -5851,16 +5759,7 @@ msgstr ""
 msgid "F6"
 msgstr "6"
 
-msgid "F6 (kbd) WWW"
-msgstr ""
-
 msgid "F6 long"
-msgstr ""
-
-msgid "F7 (kbd) MAIL"
-msgstr ""
-
-msgid "FAV"
 msgstr ""
 
 msgid "FCC 1953"
@@ -5952,10 +5851,6 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "FastForward >>"
-msgstr "快進速度"
-
-#, fuzzy
 msgid "Fastforward"
 msgstr "快進"
 
@@ -5970,13 +5865,6 @@ msgstr "自定義組"
 msgid "Favourites"
 msgstr "自定義組"
 
-msgid "Feb"
-msgstr "2月"
-
-#, fuzzy
-msgid "Februar"
-msgstr "2月"
-
 msgid "February"
 msgstr "2月"
 
@@ -5985,10 +5873,6 @@ msgstr ""
 
 msgid "File"
 msgstr "文件"
-
-#, fuzzy, python-format
-msgid "File %s nonexistent."
-msgstr "目錄 %s 不存在."
 
 msgid "File appears to be busy.\n"
 msgstr ""
@@ -6167,15 +6051,8 @@ msgstr ""
 msgid "Formatting partition %d"
 msgstr "創建分區失敗"
 
-msgid "Forward >"
-msgstr ""
-
 msgid "Forward volume keys"
 msgstr ""
-
-#, fuzzy
-msgid "Fr"
-msgstr "星期五"
 
 msgid "Frame rate"
 msgstr ""
@@ -6225,9 +6102,6 @@ msgstr "空閒:"
 msgid "Free: "
 msgstr "空閒:"
 
-msgid "Freitag"
-msgstr ""
-
 msgid "French"
 msgstr "法國"
 
@@ -6244,6 +6118,10 @@ msgstr ""
 msgid "Frequency"
 msgstr "頻率"
 
+#, fuzzy
+msgid "Frequency Norm:"
+msgstr "頻率"
+
 msgid "Frequency bands"
 msgstr "頻帶"
 
@@ -6252,6 +6130,10 @@ msgstr "頻率掃描步長(khz)"
 
 msgid "Frequency steps"
 msgstr "頻率步進"
+
+#, fuzzy
+msgid "Frequency:"
+msgstr "頻率"
 
 msgid "Fri"
 msgstr "星期五"
@@ -6302,16 +6184,8 @@ msgstr "啟用解析度自動調整"
 msgid "Function of OK button"
 msgstr ""
 
-#, fuzzy
-msgid "Functions"
-msgstr "連接"
-
 msgid "G"
 msgstr ""
-
-#, fuzzy
-msgid "G.List"
-msgstr "類型列表"
 
 #, fuzzy
 msgid "GB"
@@ -6613,12 +6487,6 @@ msgstr ""
 msgid "HDF Build: %s"
 msgstr ""
 
-msgid "HDF Toolbox GigaBlue"
-msgstr ""
-
-msgid "HDF Toolbox Xtrend ET10000"
-msgstr ""
-
 #, python-format
 msgid "HDF Version:\tV%s"
 msgstr ""
@@ -6665,19 +6533,10 @@ msgstr "錄影位置設定"
 msgid "HDR10 Support"
 msgstr ""
 
-msgid "HELP"
-msgstr ""
-
 msgid "HI-cleanup for external subtitles"
 msgstr ""
 
-msgid "HISTORY"
-msgstr ""
-
 msgid "HLG Support"
-msgstr ""
-
-msgid "HOME"
 msgstr ""
 
 #, fuzzy
@@ -6912,6 +6771,9 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr "您想錄製多少分鐘?"
 
+msgid "Http(s) stream start delay"
+msgstr ""
+
 msgid "Hue"
 msgstr "色調"
 
@@ -6937,7 +6799,7 @@ msgstr "自定義當前事件時長"
 msgid "IMDb Search"
 msgstr "搜索"
 
-msgid "INFO"
+msgid "INFO-Panel..."
 msgstr ""
 
 msgid "IP address"
@@ -7094,9 +6956,6 @@ msgstr ""
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
 msgstr ""
 
-msgid "If this set to yes, the systemplugin vfdcontrol can be used after restart."
-msgstr ""
-
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr ""
 
@@ -7118,11 +6977,6 @@ msgid ""
 msgstr ""
 "如果您能看到這個提示,說明您的色差連接有錯誤.\n"
 "按OK返回."
-
-msgid ""
-"If you want to quit the Browser,\n"
-"Press RED -> EXIT."
-msgstr ""
 
 msgid ""
 "If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
@@ -7320,10 +7174,6 @@ msgid "InfobarEPG settings"
 msgstr "網卡設定"
 
 msgid "Information"
-msgstr "資訊"
-
-#, fuzzy
-msgid "Informationen"
 msgstr "資訊"
 
 msgid "Init"
@@ -7568,13 +7418,6 @@ msgstr ""
 msgid "Jamaica"
 msgstr ""
 
-msgid "Jan"
-msgstr "1月"
-
-#, fuzzy
-msgid "Januar"
-msgstr "1月"
-
 msgid "January"
 msgstr "1月"
 
@@ -7588,12 +7431,6 @@ msgid "Job View"
 msgstr "作業視圖"
 
 msgid "Jordan"
-msgstr ""
-
-msgid "Jul"
-msgstr "7月"
-
-msgid "Juli"
 msgstr ""
 
 msgid "July"
@@ -7629,14 +7466,8 @@ msgstr ""
 msgid "Jump to prime time"
 msgstr "計時器自動寫入"
 
-msgid "Jun"
-msgstr "6月"
-
 msgid "June"
 msgstr "6月"
-
-msgid "Juni"
-msgstr ""
 
 #, fuzzy
 msgid "Just change channels"
@@ -7661,6 +7492,9 @@ msgid "KB"
 msgstr "B"
 
 msgid "Kazakhstan"
+msgstr ""
+
+msgid "Keep focus on current service while entering servicelist."
 msgstr ""
 
 msgid "Keep old drive"
@@ -7702,9 +7536,6 @@ msgstr "OK=選擇"
 msgid "Kiribati"
 msgstr ""
 
-msgid "Kleiner Test"
-msgstr ""
-
 #, fuzzy
 msgid "Kodi Addons"
 msgstr "附件設定"
@@ -7712,10 +7543,6 @@ msgstr "附件設定"
 #, fuzzy
 msgid "Kodi Media Center"
 msgstr "LT 媒體中心"
-
-#, fuzzy
-msgid "Konfiguration"
-msgstr "LT 配置"
 
 msgid "Korea (Democratic People's Republic of)"
 msgstr ""
@@ -7807,6 +7634,9 @@ msgid "Languages"
 msgstr "語言"
 
 msgid "Lao People's Democratic Republic"
+msgstr ""
+
+msgid "Large"
 msgstr ""
 
 #, fuzzy
@@ -8118,9 +7948,6 @@ msgstr ""
 msgid "MB"
 msgstr "B"
 
-msgid "MINISATIP Setup"
-msgstr ""
-
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
 
@@ -8130,27 +7957,14 @@ msgstr ""
 msgid "MOUSE long"
 msgstr ""
 
-msgid "MQB Functions and Plugins"
-msgstr ""
-
 msgid "Macao"
 msgstr ""
 
 msgid "Macedonia (the former Yugoslav Republic of)"
 msgstr ""
 
-msgid "Macros"
-msgstr ""
-
 msgid "Madagascar"
 msgstr ""
-
-msgid "Maerz"
-msgstr ""
-
-#, fuzzy
-msgid "Mai"
-msgstr "郵件"
 
 #, fuzzy
 msgid "Main Menu"
@@ -8218,9 +8032,6 @@ msgstr "手動轉發器掃描"
 
 msgid "Manufacturer"
 msgstr "製造商"
-
-msgid "Mar"
-msgstr "3月"
 
 msgid "MaraM9"
 msgstr ""
@@ -8307,10 +8118,6 @@ msgid "Media Center"
 msgstr "LT 媒體中心"
 
 #, fuzzy
-msgid "Media Player"
-msgstr "媒體播放器"
-
-#, fuzzy
 msgid "Media long"
 msgstr "媒體播放器"
 
@@ -8328,6 +8135,9 @@ msgstr "媒介不是可寫DVD!"
 
 msgid "Medium is not empty!"
 msgstr "媒介不是空白的!"
+
+msgid "Medium toolbox"
+msgstr ""
 
 msgid "Memory"
 msgstr "記憶體"
@@ -8366,10 +8176,6 @@ msgstr "資訊"
 
 msgid "Mexico"
 msgstr "墨西哥"
-
-#, fuzzy
-msgid "Mi"
-msgstr "郵件"
 
 msgid "Micronesia (Federated States of)"
 msgstr ""
@@ -8417,13 +8223,6 @@ msgstr ""
 
 msgid "Missing "
 msgstr ""
-
-msgid "Mittwoch"
-msgstr ""
-
-#, fuzzy
-msgid "Mo"
-msgstr "星期一"
 
 msgid "Mode"
 msgstr "模式"
@@ -8483,10 +8282,6 @@ msgstr "星期一"
 
 msgid "Mongolia"
 msgstr ""
-
-#, fuzzy
-msgid "Montag"
-msgstr "月份"
 
 msgid "Montenegro"
 msgstr ""
@@ -8582,9 +8377,6 @@ msgstr "安裝類型"
 msgid "Mounts setup"
 msgstr "安裝類型"
 
-msgid "Mouse"
-msgstr ""
-
 msgid "Move"
 msgstr "移動"
 
@@ -8674,14 +8466,6 @@ msgid "Multi EPG"
 msgstr "多路 EPG"
 
 #, fuzzy
-msgid "Multi QuickButton settings"
-msgstr "收藏設定"
-
-#, fuzzy
-msgid "Multi Quickbutton"
-msgstr "快速按鍵"
-
-#, fuzzy
 msgid "MultiBoot Selector"
 msgstr "EMU 選擇"
 
@@ -8696,10 +8480,6 @@ msgstr "EMU 選擇"
 #, fuzzy
 msgid "MultiEPG settings"
 msgstr "預設設定"
-
-#, fuzzy
-msgid "MultiQuickButton macro configuration"
-msgstr "調諧器配置"
 
 #, fuzzy
 msgid "Multiboot Image Selector"
@@ -8726,9 +8506,6 @@ msgstr "多星"
 
 msgid "Music/Ballet/Dance"
 msgstr ""
-
-msgid "Mute"
-msgstr "靜音"
 
 #, fuzzy
 msgid "Mute long"
@@ -9114,13 +8891,6 @@ msgstr ""
 msgid "No updates available. Please try again later."
 msgstr ""
 
-msgid "No valid function file found"
-msgstr ""
-
-#, fuzzy
-msgid "No valid selection"
-msgstr "選擇無效"
-
 msgid "No wireless networks found! Searching..."
 msgstr ""
 
@@ -9144,9 +8914,6 @@ msgid ""
 msgstr ""
 "未找到可用的無線網卡.\n"
 "請確認您已連接相容的無線網卡或使用本地網卡."
-
-msgid "No, but play video again"
-msgstr "否, 重新開始播放 "
 
 msgid "No, but restart from begin"
 msgstr "否, 重新開始播放這個視頻"
@@ -9185,6 +8952,10 @@ msgstr ""
 
 msgid "North"
 msgstr "北"
+
+#, fuzzy
+msgid "North Macedonia (The Republic of)"
+msgstr "捷克共和國"
 
 msgid "Northern Mariana Islands"
 msgstr ""
@@ -9269,9 +9040,6 @@ msgstr ""
 msgid "Nothing, just leave this menu"
 msgstr ""
 
-msgid "Nov"
-msgstr "11月"
-
 msgid "November"
 msgstr "11月"
 
@@ -9340,9 +9108,6 @@ msgstr ""
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, 引導我的升級過程"
 
-msgid "OK/EXIT"
-msgstr ""
-
 msgid "ONID"
 msgstr ""
 
@@ -9372,9 +9137,6 @@ msgstr "CCcam資訊"
 #, fuzzy
 msgid "OScam info"
 msgstr "CCcam資訊"
-
-msgid "Oct"
-msgstr "10月"
 
 msgid "Off"
 msgstr "關閉"
@@ -9547,9 +9309,6 @@ msgstr "CCcam資訊"
 msgid "Other"
 msgstr "其他"
 
-msgid "Output"
-msgstr ""
-
 #, fuzzy
 msgid "Overall progress:"
 msgstr "進度:"
@@ -9588,12 +9347,6 @@ msgid "Overwrite configuration files during software upgrade?"
 msgstr ""
 
 msgid "Overwrite driver files during software upgrade?"
-msgstr ""
-
-msgid "Overwrite existing Backup?."
-msgstr ""
-
-msgid "Overwrite existing Settings?."
 msgstr ""
 
 msgid "Overwrite picon files during software upgrade?"
@@ -9840,9 +9593,6 @@ msgstr "電話號碼"
 msgid "PiP"
 msgstr ""
 
-msgid "PiP is currently not available because your are using iptv streams!"
-msgstr ""
-
 msgid "Picon"
 msgstr ""
 
@@ -9879,10 +9629,6 @@ msgstr "移動畫中畫"
 
 msgid "Picture player"
 msgstr ""
-
-#, fuzzy
-msgid "PictureCenterFS"
-msgstr "圖片播放器"
 
 msgid "PicturePlayer"
 msgstr "圖片播放器"
@@ -10119,10 +9865,6 @@ msgstr "請選擇作為備份的媒介"
 msgid "Please select tag to filter..."
 msgstr ""
 
-#, fuzzy
-msgid "Please select the backup path..."
-msgstr "請選擇電影路徑..."
-
 msgid "Please select the movie path..."
 msgstr "請選擇電影路徑..."
 
@@ -10134,10 +9876,6 @@ msgstr ""
 "請選擇連接Internet的網路裝置.\n"
 "\n"
 "按OK鍵確認."
-
-#, fuzzy
-msgid "Please select the restore path..."
-msgstr "請選擇電影路徑..."
 
 msgid ""
 "Please select the wireless network that you want to connect to.\n"
@@ -10423,10 +10161,6 @@ msgstr "極軸設定(DiSEqC 1.2)"
 
 msgid "Positioner setup"
 msgstr "極軸設定(DiSEqC 1.2)"
-
-#, fuzzy
-msgid "Power"
-msgstr "PM Showers"
 
 #, fuzzy
 msgid "Power (use button menu)"
@@ -10851,21 +10585,6 @@ msgid "Quick zap"
 msgstr ""
 
 #, fuzzy
-msgid "Quickbutton Key : "
-msgstr "快速按鍵"
-
-#, fuzzy
-msgid "Quickbutton: Key "
-msgstr "快速按鍵"
-
-#, fuzzy
-msgid "Quite without saving changes ?"
-msgstr "繼續而不保存?"
-
-msgid "RADIO"
-msgstr ""
-
-#, fuzzy
 msgid "RAM"
 msgstr "上午."
 
@@ -11030,6 +10749,9 @@ msgstr ""
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
 msgstr "由於計時器 %s 衝突導致錄製時間受限"
+
+msgid "Recordable media toolbox"
+msgstr ""
 
 msgid "Recording"
 msgstr "正在錄製"
@@ -11393,25 +11115,12 @@ msgstr "重新測驗"
 msgid "Restart your network connection and interfaces.\n"
 msgstr "重啟 Dreambox網路連接.\n"
 
-#, fuzzy
-msgid "Restarting Enigma2 to load:\n"
-msgstr "重啟Enigma2"
-
-msgid ""
-"Restarting Enigma2 to set\n"
-"Multi QuickButton Autostart"
-msgstr ""
-
 msgid "Restore"
 msgstr "恢復"
 
 #, fuzzy
 msgid "Restore Plugins"
 msgstr "移除插件"
-
-#, fuzzy
-msgid "Restore Settings..."
-msgstr "正在恢復..."
 
 #, fuzzy
 msgid "Restore after Restart Enigma"
@@ -11483,10 +11192,6 @@ msgstr "電影列表"
 #, fuzzy
 msgid "Rewind"
 msgstr "視窗"
-
-#, fuzzy
-msgid "Rewind <<"
-msgstr "快退速度"
 
 msgid "Rewind speeds"
 msgstr "快退速度"
@@ -11571,9 +11276,6 @@ msgstr ""
 msgid "SCR timing adjustment, in conjunction with SCR socket and operation of several SCR devices with one cable."
 msgstr ""
 
-msgid "SCREEN"
-msgstr ""
-
 #, fuzzy
 msgid "SD"
 msgstr "OSD"
@@ -11604,10 +11306,6 @@ msgstr ""
 
 msgid "SSID:"
 msgstr ""
-
-#, fuzzy
-msgid "Sa"
-msgstr "星期六"
 
 msgid "Saint Barthelemy"
 msgstr ""
@@ -11650,9 +11348,6 @@ msgid "Same resolution as skin"
 msgstr ""
 
 msgid "Samoa"
-msgstr ""
-
-msgid "Samstag"
 msgstr ""
 
 msgid "San Marino"
@@ -11720,10 +11415,6 @@ msgstr ""
 #, fuzzy
 msgid "Save EPG data"
 msgstr "保存播放列表"
-
-#, fuzzy
-msgid "Save Settings"
-msgstr "OSD 設定"
 
 #, fuzzy
 msgid "Save and record"
@@ -12288,9 +11979,6 @@ msgstr "當改變衛星時發送DiSEqC命令"
 
 msgid "Senegal"
 msgstr ""
-
-msgid "Sep"
-msgstr "9月"
 
 msgid "Seperate titles with a main menu"
 msgstr "與主功能表分開的標題"
@@ -13326,6 +13014,10 @@ msgid "Show the infomation on current event."
 msgstr "自定義當前事件時長"
 
 #, fuzzy
+msgid "Show the information on current event."
+msgstr "自定義當前事件時長"
+
+#, fuzzy
 msgid "Show the list of AutoTimers."
 msgstr "排序自動計時器"
 
@@ -13626,6 +13318,9 @@ msgstr "慢的"
 msgid "Slow motion speeds"
 msgstr ""
 
+msgid "Small"
+msgstr ""
+
 msgid "Small progress"
 msgstr ""
 
@@ -13640,10 +13335,6 @@ msgstr ""
 
 msgid "Smpte 240M"
 msgstr ""
-
-#, fuzzy
-msgid "So"
-msgstr "慢的"
 
 msgid "Social/Political/Economics"
 msgstr ""
@@ -13662,6 +13353,10 @@ msgstr "保護設定"
 #, fuzzy
 msgid "Softcam settings"
 msgstr "編輯設定"
+
+#, fuzzy
+msgid "Softcam-Panel..."
+msgstr "軟體管理..."
 
 msgid "Software"
 msgstr ""
@@ -13699,9 +13394,6 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "不使用這些插件:\n"
-
-msgid "Sonntag"
-msgstr ""
 
 #, fuzzy
 msgid "Sorry ... no ECM Info found"
@@ -13749,9 +13441,6 @@ msgstr ""
 
 msgid "Sorry, there was a problem:"
 msgstr ""
-
-msgid "Sorry, video is not available!"
-msgstr "抱歉, 視頻不可用!"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -14355,9 +14044,6 @@ msgstr "B"
 msgid "TEMP"
 msgstr ""
 
-msgid "TEXT"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
@@ -14383,7 +14069,7 @@ msgstr ""
 msgid "TXT PID"
 msgstr ""
 
-msgid "Table of contents for collection"
+msgid "Table of content for collection"
 msgstr ""
 
 msgid "Tags"
@@ -14549,9 +14235,8 @@ msgstr ""
 "WLAN插件未安裝!\n"
 "請先安裝."
 
-#, fuzzy, python-format
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a %s %s format data DVD (which will not play in stand-alone DVD players) instead?"
-msgstr "DVD標準並不支援H.264（HDTV）的視頻。是否創建一個Dreambox資料格式的DVD？"
+msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
+msgstr ""
 
 #, fuzzy
 msgid ""
@@ -16418,15 +16103,9 @@ msgstr "錄影機"
 msgid "VFD Skin Selector"
 msgstr "皮膚選擇"
 
-msgid "VIDEO"
-msgstr ""
-
 #, fuzzy
 msgid "VLAN connection"
 msgstr "未連接"
-
-msgid "VMC"
-msgstr ""
 
 msgid "VMGM (intro trailer)"
 msgstr ""
@@ -16696,14 +16375,6 @@ msgid "Voltage mode"
 msgstr "極化方式"
 
 #, fuzzy
-msgid "Volume +"
-msgstr "音量"
-
-#, fuzzy
-msgid "Volume -"
-msgstr "音量"
-
-#, fuzzy
 msgid "Volume Adjust"
 msgstr "音量"
 
@@ -16845,10 +16516,6 @@ msgid ""
 "Your receiver restarts in 10 seconds!\n"
 "Component: enigma2"
 msgstr ""
-
-#, fuzzy
-msgid "Web Browser"
-msgstr "流覽器"
 
 #, fuzzy
 msgid "Web Interface"
@@ -17220,10 +16887,6 @@ msgstr ""
 msgid "Y-Tube/WWW long"
 msgstr ""
 
-#, fuzzy
-msgid "YAMP Music Player"
-msgstr "My TubePlayer"
-
 msgid "YCbCr420"
 msgstr ""
 
@@ -17354,8 +17017,8 @@ msgstr ""
 msgid "You can install this plugin."
 msgstr "您可以安裝這個插件."
 
-#, fuzzy, python-format
-msgid "You can only burn %s %s recordings!"
+#, fuzzy
+msgid "You can only burn Dreambox recordings!"
 msgstr "您只能燒錄Dreamobx錄製的內容!"
 
 msgid "You can remove this plugin."
@@ -17443,9 +17106,6 @@ msgid "You seem to be in timeshift!"
 msgstr "時光平移結束"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
-msgstr ""
-
-msgid "You system does not support ext4"
 msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
@@ -17865,7 +17525,7 @@ msgstr ""
 msgid "am"
 msgstr "名稱"
 
-msgid "and never ask again this session again"
+msgid "and never ask again this session"
 msgstr ""
 
 #, fuzzy
@@ -17899,6 +17559,14 @@ msgstr ""
 
 msgid "athletics"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "audio track (%s) format"
+msgstr "單軌"
+
+#, fuzzy, python-format
+msgid "audio track (%s) language"
+msgstr "單軌"
 
 msgid "audio tracks"
 msgstr "單軌"
@@ -17960,6 +17628,10 @@ msgstr ""
 msgid "brown"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "burn audio track (%s)"
+msgstr "單軌"
+
 msgid "by date"
 msgstr ""
 
@@ -17973,9 +17645,6 @@ msgid "card reader"
 msgstr ""
 
 msgid "cartoon/puppets"
-msgstr ""
-
-msgid "cat /proc/bus/input/devices"
 msgstr ""
 
 msgid "center"
@@ -18274,10 +17943,6 @@ msgstr ""
 msgid "fast"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "file %s not found!"
-msgstr "未找到!"
-
 msgid "file can not displayed - file not found"
 msgstr ""
 
@@ -18430,9 +18095,6 @@ msgstr ""
 
 msgid "insert mark here"
 msgstr "在這裏標記"
-
-msgid "instant record"
-msgstr "即時記錄"
 
 #, fuzzy
 msgid "internally loopthrough to"
@@ -18885,14 +18547,14 @@ msgstr "重複播放列表"
 msgid "repeated"
 msgstr "重複"
 
-msgid "resoring satellites.xml not posibel!"
-msgstr ""
-
 #, fuzzy
 msgid "restart GUI"
 msgstr "重啟GUI"
 
 msgid "restore deleted userbouquets"
+msgstr ""
+
+msgid "restoring satellites.xml not possible!"
 msgstr ""
 
 msgid "reverse by date"
@@ -19147,10 +18809,6 @@ msgid "stop using as startup service from standby"
 msgstr ""
 
 #, fuzzy
-msgid "subtitle"
-msgstr "字幕"
-
-#, fuzzy
 msgid "successful"
 msgstr "安裝成功!\n"
 
@@ -19334,9 +18992,6 @@ msgstr "待機"
 msgid "water sport"
 msgstr ""
 
-msgid "webradioFS"
-msgstr ""
-
 msgid "weekly"
 msgstr "每週"
 
@@ -19407,10 +19062,6 @@ msgstr ""
 
 msgid "www.vuplus-support.org"
 msgstr ""
-
-#, fuzzy
-msgid "xbmc Wetter"
-msgstr "較好"
 
 msgid "yellow"
 msgstr "黃色"
