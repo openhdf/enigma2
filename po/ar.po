@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:19+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -2927,6 +2927,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "إلغاء"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -3430,6 +3436,11 @@ msgstr ""
 
 msgid "Clients"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Clock Skin"
+msgstr "الجلود"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -4138,6 +4149,10 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#, fuzzy
+msgid "Current"
+msgstr "إضافة باقه"
+
 msgid "Current CEC address"
 msgstr ""
 
@@ -4398,6 +4413,10 @@ msgstr "هذا التسجيل"
 #, fuzzy
 msgid "Default settings"
 msgstr "الاعدادات الافتراضيه"
+
+#, fuzzy
+msgid "Default+Picon"
+msgstr "الافتراضى"
 
 msgid "Defaults"
 msgstr ""
@@ -4740,6 +4759,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Display Settings"
+msgstr "إعدادات"
+
+#, fuzzy
+msgid "Display Skin"
 msgstr "إعدادات"
 
 #, fuzzy
@@ -5269,6 +5292,9 @@ msgstr ""
 msgid "Electronic Program Guide"
 msgstr "دليل البرنامج الالكترونى"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5505,9 +5531,6 @@ msgid "Enigma must be restarted to auto restore your saved settings now!"
 msgstr ""
 
 msgid "Enigma2 Changes"
-msgstr ""
-
-msgid "Enigma2 skin selector"
 msgstr ""
 
 msgid "Enter PIN"
@@ -6352,12 +6375,8 @@ msgstr ""
 
 #
 #, fuzzy
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"يجب إعادة تشغيل الاينجما2 لتطبيق الجلد \n"
-"هل تريد إعادة تشغيل الاينجما2 الان ؟"
+msgid "GUI Skin"
+msgstr "الجلود"
 
 #
 #, fuzzy
@@ -8652,6 +8671,22 @@ msgstr ""
 msgid "Move to position X"
 msgstr "الذهل للموضع"
 
+#, fuzzy
+msgid "Move to the next page"
+msgstr "الانتقال الى الزاويه التاليه"
+
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "الانتقال لاسفل الى البند التالى"
+
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "عوده للفصل السابق"
+
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "الانتقال لاعلى الى البند السابق"
+
 msgid "Move up a page"
 msgstr ""
 
@@ -9825,6 +9860,10 @@ msgid "Peak load (max queued requests per workerthread)"
 msgstr ""
 
 #, fuzzy
+msgid "Pending restart"
+msgstr "وضع الاستعداد/إعاده التشغيل"
+
+#, fuzzy
 msgid "Percent"
 msgstr "يمين دائرى"
 
@@ -10639,6 +10678,10 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "أضغط موافق من الريموت للمتابعه"
 
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "أضغط موافق لتفعيل الجلد المختار."
+
 msgid "Press OK to activate the selected skin."
 msgstr "أضغط موافق لتفعيل الجلد المختار."
 
@@ -10652,6 +10695,10 @@ msgstr "أضغط موافق لتحرير الاعدادات"
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "أضغط موالق للحصول على تفاصيل أكثر عن %s"
+
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "أضغط موافق لتفعيل الجلد المختار."
 
 #
 msgid "Press OK to scan"
@@ -11777,6 +11824,10 @@ msgstr ""
 
 msgid "Save EPG data"
 msgstr ""
+
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "أضغط موافق لتفعيل الجلد المختار."
 
 msgid "Save and record"
 msgstr ""
@@ -13640,7 +13691,7 @@ msgid "Size: "
 msgstr ""
 
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "أختار"
 
 msgid "Skin Setting"
@@ -13652,6 +13703,10 @@ msgstr ""
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "أختار"
 
 #
 msgid "Skins"
@@ -15718,12 +15773,20 @@ msgstr "خصائص العنوان"
 msgid "Titleset mode"
 msgstr ""
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
 #, fuzzy
 msgid "To restore the image:"
 msgstr "نعم، أستعد الاعدادات الان"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""

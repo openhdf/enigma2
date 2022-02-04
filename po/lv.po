@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -3027,6 +3027,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Atcelt"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -3550,6 +3556,9 @@ msgid "ClientIP"
 msgstr ""
 
 msgid "Clients"
+msgstr ""
+
+msgid "Clock Skin"
 msgstr ""
 
 msgid "Clock_Widget:"
@@ -4312,6 +4321,11 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Current"
+msgstr "pievienot buķeti"
+
 msgid "Current CEC address"
 msgstr ""
 
@@ -4606,6 +4620,11 @@ msgstr "šis ieraksts"
 #
 #, fuzzy
 msgid "Default settings"
+msgstr "Rediģēt iestatījumus"
+
+#
+#, fuzzy
+msgid "Default+Picon"
 msgstr "Rediģēt iestatījumus"
 
 msgid "Defaults"
@@ -4972,6 +4991,11 @@ msgstr "Atēlot 16:9 saturu kā"
 #
 #, fuzzy
 msgid "Display Settings"
+msgstr "Iestatījumi"
+
+#
+#, fuzzy
+msgid "Display Skin"
 msgstr "Iestatījumi"
 
 msgid "Display and user interface"
@@ -5556,6 +5580,9 @@ msgstr ""
 msgid "Electronic Program Guide"
 msgstr "Elektroniskais programu gids"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5799,9 +5826,6 @@ msgid "Enigma must be restarted to auto restore your saved settings now!"
 msgstr ""
 
 msgid "Enigma2 Changes"
-msgstr ""
-
-msgid "Enigma2 skin selector"
 msgstr ""
 
 msgid "Enter PIN"
@@ -6710,14 +6734,8 @@ msgstr ""
 msgid "GStreamer:\t%s"
 msgstr ""
 
-#
-#, fuzzy
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
+msgid "GUI Skin"
 msgstr ""
-"GUI nepieciešams restartēt, lai lietotu jauno ādiņu\n"
-"Vai vēlaties restartēt GUI tagad?"
 
 #
 #, fuzzy
@@ -9107,6 +9125,26 @@ msgstr ""
 msgid "Move to position X"
 msgstr "Iet uz pozīciju"
 
+#
+#, fuzzy
+msgid "Move to the next page"
+msgstr "iet uz nākamo leņķi"
+
+#
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "pārvietot lejup uz nākamo ierakstu"
+
+#
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "attīt uz iepriekšējo nodaļu"
+
+#
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "pārvietot augšup uz iepriekšējo ierakstu"
+
 msgid "Move up a page"
 msgstr ""
 
@@ -10335,6 +10373,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Pending restart"
+msgstr "Gaidstāve / Restartēt"
+
+#
+#, fuzzy
 msgid "Percent"
 msgstr "Cirkulārā labā"
 
@@ -11206,6 +11249,11 @@ msgid "Press OK on your remote control to continue."
 msgstr "Spiediet OK uz tālvadības pults, lai turpinātu."
 
 #
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Spiediet OK, lai aktivizētu iestatījumus."
+
+#
 msgid "Press OK to activate the selected skin."
 msgstr ""
 
@@ -11221,6 +11269,11 @@ msgstr "Spiediet OK, lai rediģētu iestatījumus."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Spiediet OK turpmākai informācijai priekš %s"
+
+#
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Spiediet OK, lai rediģētu iestatījumus."
 
 #
 msgid "Press OK to scan"
@@ -12458,6 +12511,11 @@ msgstr ""
 
 msgid "Save EPG data"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Dzēst pašreiz atlasīto virsrakstu"
 
 msgid "Save and record"
 msgstr ""
@@ -14410,7 +14468,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "Izvēlēties"
 
 msgid "Skin Setting"
@@ -14422,6 +14480,11 @@ msgstr ""
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Izvēlēties"
 
 #
 msgid "Skins"
@@ -16580,6 +16643,10 @@ msgstr "Nosaukuma parametri"
 msgid "Titleset mode"
 msgstr "Nosaukuma iestatīšanas režīms"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
@@ -16587,6 +16654,10 @@ msgstr ""
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Jā, atjaunot iestatījumus tagad"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""

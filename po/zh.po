@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openhdf-6.5             enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2021-08-04 21:52+0800\n"
 "Last-Translator: 孤独之剑 < haotzyy1970@163.com>\n"
 "Language-Team: 孤独之剑< haotzyy1970@163.com>\n"
@@ -2794,6 +2794,12 @@ msgstr "加拿大"
 msgid "Cancel"
 msgstr "取消"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr "取消保存时移作为电影"
 
@@ -3267,6 +3273,10 @@ msgstr "客户端IP"
 
 msgid "Clients"
 msgstr "客户端"
+
+#, fuzzy
+msgid "Clock Skin"
+msgstr "液晶显示器的外观"
 
 msgid "Clock_Widget:"
 msgstr "时钟窗口小部件:"
@@ -3948,6 +3958,10 @@ msgstr "古巴"
 msgid "Curacao"
 msgstr "库拉索岛"
 
+#, fuzzy
+msgid "Current"
+msgstr "添加当前"
+
 msgid "Current CEC address"
 msgstr "当前CEC地址"
 
@@ -4191,6 +4205,10 @@ msgstr "默认录制类型"
 
 msgid "Default settings"
 msgstr "默认设置"
+
+#, fuzzy
+msgid "Default+Picon"
+msgstr "默认"
 
 msgid "Defaults"
 msgstr "默认值"
@@ -4486,6 +4504,10 @@ msgid "Display >16:9 content as"
 msgstr "显示 > 16:9 内容"
 
 msgid "Display Settings"
+msgstr "显示设置"
+
+#, fuzzy
+msgid "Display Skin"
 msgstr "显示设置"
 
 msgid "Display and user interface"
@@ -5010,6 +5032,9 @@ msgstr "经过与剩余"
 msgid "Electronic Program Guide"
 msgstr "电子节目指南(EPG)"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr "空分区"
 
@@ -5228,9 +5253,6 @@ msgstr "现在必须重新启动Enigma才能自动恢复您保存的设置!"
 
 msgid "Enigma2 Changes"
 msgstr "Enigma2变化"
-
-msgid "Enigma2 skin selector"
-msgstr "enigma2皮肤选择器"
 
 msgid "Enter PIN"
 msgstr "输入PIN码"
@@ -6044,12 +6066,9 @@ msgstr "媒体框架"
 msgid "GStreamer:\t%s"
 msgstr "媒体框架:\t%s"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"GUI需要重新启动以应用新皮肤\n"
-"是否要立即重新启动GUI?"
+#, fuzzy
+msgid "GUI Skin"
+msgstr "皮肤"
 
 msgid ""
 "GUI needs a restart to apply new skin.\n"
@@ -8132,6 +8151,22 @@ msgstr "移动到开机列表"
 msgid "Move to position X"
 msgstr "移动到位置 X"
 
+#, fuzzy
+msgid "Move to the next page"
+msgstr "切换到下一个角度"
+
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "向下移动到下一个条目"
+
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "回到前一章"
+
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "移动到以前的条目"
+
 msgid "Move up a page"
 msgstr "移动到上一页"
 
@@ -9204,6 +9239,10 @@ msgstr "暂停播放"
 msgid "Peak load (max queued requests per workerthread)"
 msgstr "高峰负荷(最大排队请求每创建工作者线程3.)"
 
+#, fuzzy
+msgid "Pending restart"
+msgstr "待机/重启"
+
 msgid "Percent"
 msgstr "百分比"
 
@@ -9951,6 +9990,10 @@ msgstr "按MENU键可安装其他语言."
 msgid "Press OK on your remote control to continue."
 msgstr "按OK键您的远程控制以继续."
 
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "按下OK键以激活选定的皮肤."
+
 msgid "Press OK to activate the selected skin."
 msgstr "按下OK键以激活选定的皮肤."
 
@@ -9963,6 +10006,10 @@ msgstr "按OK键编辑设置."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "按OK键,以获得进一步的细节  %s"
+
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "按下OK键以激活选定的皮肤."
 
 msgid "Press OK to scan"
 msgstr "按OK键扫描"
@@ -10977,6 +11024,10 @@ msgstr "保存EPG缓存?"
 
 msgid "Save EPG data"
 msgstr "EPG数据保存"
+
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "按下OK键以激活选定的皮肤."
 
 msgid "Save and record"
 msgstr "保存和录制"
@@ -12605,7 +12656,8 @@ msgstr "网站经度"
 msgid "Size: "
 msgstr "尺寸: "
 
-msgid "Skin Selector"
+#, fuzzy
+msgid "Skin Selection Actions"
 msgstr "皮肤选择器"
 
 msgid "Skin Setting"
@@ -12617,6 +12669,10 @@ msgstr "皮肤设置"
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr "皮肤:\t%s (%s x %s)\n"
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "皮肤选择器"
 
 msgid "Skins"
 msgstr "皮肤"
@@ -14533,11 +14589,19 @@ msgstr "标题属性"
 msgid "Titleset mode"
 msgstr "标题设置模式"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr "要直接备份到U盘,U盘必须\n"
 
 msgid "To restore the image:"
 msgstr "要还原镜像:"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""

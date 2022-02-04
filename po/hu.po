@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -3043,6 +3043,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Mégse"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -3566,6 +3572,11 @@ msgstr ""
 
 msgid "Clients"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Clock Skin"
+msgstr "Skin-ek"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -4330,6 +4341,11 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Current"
+msgstr "bouquet hozzáadása"
+
 msgid "Current CEC address"
 msgstr ""
 
@@ -4627,6 +4643,11 @@ msgstr "ez a felvétel"
 #, fuzzy
 msgid "Default settings"
 msgstr "Alapértelmezett beállítások"
+
+#
+#, fuzzy
+msgid "Default+Picon"
+msgstr "Alapértelmezett"
 
 msgid "Defaults"
 msgstr ""
@@ -4993,6 +5014,11 @@ msgstr "16:9-nél szélesebb tartalom megjelenítése:"
 #
 #, fuzzy
 msgid "Display Settings"
+msgstr "Beállítások"
+
+#
+#, fuzzy
+msgid "Display Skin"
 msgstr "Beállítások"
 
 #
@@ -5580,6 +5606,9 @@ msgstr ""
 msgid "Electronic Program Guide"
 msgstr "Elektronikus Műsorújság"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5825,9 +5854,6 @@ msgid "Enigma must be restarted to auto restore your saved settings now!"
 msgstr ""
 
 msgid "Enigma2 Changes"
-msgstr ""
-
-msgid "Enigma2 skin selector"
 msgstr ""
 
 #, fuzzy
@@ -6746,12 +6772,8 @@ msgstr ""
 
 #
 #, fuzzy
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Az új skin betöltéséhez újra kell indítani a kezelő felületet.\n"
-"Megtörténhet ez most azonnal?"
+msgid "GUI Skin"
+msgstr "Skin-ek"
 
 #
 #, fuzzy
@@ -9157,6 +9179,26 @@ msgstr ""
 msgid "Move to position X"
 msgstr "Pozícióra ugrás"
 
+#
+#, fuzzy
+msgid "Move to the next page"
+msgstr "váltás a következő nézőszögre"
+
+#
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "ugrás a következő tételhez"
+
+#
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "visszatekerés az előző chapterhez"
+
+#
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "ugrás az előző tételhez"
+
 msgid "Move up a page"
 msgstr ""
 
@@ -10407,6 +10449,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Pending restart"
+msgstr "Kikapcsolás"
+
+#
+#, fuzzy
 msgid "Percent"
 msgstr "középre"
 
@@ -11300,6 +11347,11 @@ msgid "Press OK on your remote control to continue."
 msgstr "Nyomja le az OK gombot a távirányítón a folytatáshoz."
 
 #
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Nyomja le az OK gombot az új skin aktiválásához."
+
+#
 msgid "Press OK to activate the selected skin."
 msgstr "Nyomja le az OK gombot az új skin aktiválásához."
 
@@ -11315,6 +11367,11 @@ msgstr "OK gomb: beállítások módosítása"
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Nyomja le az OK gombot több részletért %s kapcsán"
+
+#
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Nyomja le az OK gombot az új skin aktiválásához."
 
 #
 msgid "Press OK to scan"
@@ -12564,6 +12621,11 @@ msgstr ""
 
 msgid "Save EPG data"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Nyomja le az OK gombot az új skin aktiválásához."
 
 msgid "Save and record"
 msgstr ""
@@ -14531,7 +14593,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "Megjelölés"
 
 msgid "Skin Setting"
@@ -14543,6 +14605,11 @@ msgstr ""
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Megjelölés"
 
 #
 msgid "Skins"
@@ -16719,6 +16786,10 @@ msgstr ""
 msgid "Titleset mode"
 msgstr ""
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
@@ -16726,6 +16797,10 @@ msgstr ""
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Igen, állítsuk vissza most a beállításokat"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""

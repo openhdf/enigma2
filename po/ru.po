@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: RU locale edited by Sowa\n"
@@ -2835,6 +2835,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Отмена"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr "Не сохранять сдвиг времени как видеозапись"
 
@@ -3327,6 +3333,10 @@ msgstr "Клиенты"
 
 msgid "Clients"
 msgstr "Клиенты"
+
+#, fuzzy
+msgid "Clock Skin"
+msgstr "Скины"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -4048,6 +4058,10 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#, fuzzy
+msgid "Current"
+msgstr "добавить букет"
+
 msgid "Current CEC address"
 msgstr "Текущий HDMI адрес"
 
@@ -4303,6 +4317,10 @@ msgstr "Тип записи по умолчанию"
 
 msgid "Default settings"
 msgstr "Настройки по умолчанию"
+
+#, fuzzy
+msgid "Default+Picon"
+msgstr "По умолчанию"
 
 msgid "Defaults"
 msgstr "Умолчания"
@@ -4619,6 +4637,10 @@ msgstr "Отображать формат 16:9 как"
 
 #, fuzzy
 msgid "Display Settings"
+msgstr "Установки"
+
+#, fuzzy
+msgid "Display Skin"
 msgstr "Установки"
 
 msgid "Display and user interface"
@@ -5144,6 +5166,9 @@ msgstr "Прошло / Осталось"
 msgid "Electronic Program Guide"
 msgstr "Электронный Программный Гид"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5376,9 +5401,6 @@ msgstr ""
 #, fuzzy
 msgid "Enigma2 Changes"
 msgstr "Изменения Энигмы"
-
-msgid "Enigma2 skin selector"
-msgstr "Переключить скин"
 
 #, fuzzy
 msgid "Enter PIN"
@@ -6207,12 +6229,9 @@ msgstr "Поток"
 msgid "GStreamer:\t%s"
 msgstr "Поток"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Для активации нового скина необходимо перезагрузить GUI\n"
-"Хотите перезагрузить GUI сейчас?"
+#, fuzzy
+msgid "GUI Skin"
+msgstr "Скины"
 
 #, fuzzy
 msgid ""
@@ -8401,6 +8420,22 @@ msgstr "Переход в начало списка"
 msgid "Move to position X"
 msgstr "Переход на позицию Х"
 
+#, fuzzy
+msgid "Move to the next page"
+msgstr "перейти в следующей угол"
+
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "переместить вниз к следующей записи"
+
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "назад на предыдущую главу"
+
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "переместить вверх к предыдущей записи"
+
 msgid "Move up a page"
 msgstr "Вверх страницы"
 
@@ -9521,6 +9556,10 @@ msgid "Peak load (max queued requests per workerthread)"
 msgstr "Пиковая загрузка (максимально запросов рабочего потока)"
 
 #, fuzzy
+msgid "Pending restart"
+msgstr "Меню выключения"
+
+#, fuzzy
 msgid "Percent"
 msgstr "Процент"
 
@@ -10288,6 +10327,10 @@ msgstr "Нажмите MENU для дополнительных опций"
 msgid "Press OK on your remote control to continue."
 msgstr "Нажмите OK для продолжения"
 
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Нажмите OK для активации выбранного скина"
+
 msgid "Press OK to activate the selected skin."
 msgstr "Нажмите OK для активации выбранного скина"
 
@@ -10300,6 +10343,10 @@ msgstr "Нажмите OK для изменения настроек"
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Нажмите ОК для получения подробной информации о %s"
+
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Нажмите OK для активации выбранного скина"
 
 msgid "Press OK to scan"
 msgstr "Нажмите OK для поиска"
@@ -11382,6 +11429,10 @@ msgstr "Сохранение кэша EPG..."
 #, fuzzy
 msgid "Save EPG data"
 msgstr "Сохранить EPG"
+
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Нажмите OK для активации выбранного скина"
 
 msgid "Save and record"
 msgstr "Сохранить и записать"
@@ -13153,7 +13204,7 @@ msgid "Size: "
 msgstr "Размер: "
 
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "Переключить скин"
 
 msgid "Skin Setting"
@@ -13165,6 +13216,10 @@ msgstr "Выбор скина"
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Переключить скин"
 
 msgid "Skins"
 msgstr "Скины"
@@ -15209,12 +15264,20 @@ msgstr "Свойства заголовка"
 msgid "Titleset mode"
 msgstr "Режим установки заголовка"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Да, восстановить установки сейчас"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""

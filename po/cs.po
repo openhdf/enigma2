@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: \n"
@@ -2843,6 +2843,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Zavřít"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr "Zrušit uložení timeshiftu jako filmu"
 
@@ -3327,6 +3333,10 @@ msgstr "Klienti"
 
 msgid "Clients"
 msgstr "Klienti"
+
+#, fuzzy
+msgid "Clock Skin"
+msgstr "Nastavení skinu LCD"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -4031,6 +4041,10 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#, fuzzy
+msgid "Current"
+msgstr "Přidat aktuální"
+
 msgid "Current CEC address"
 msgstr "Adresa akt. CEC"
 
@@ -4281,6 +4295,10 @@ msgstr "Výchozí typ nahrávání"
 
 msgid "Default settings"
 msgstr "Výchozí nastavení"
+
+#, fuzzy
+msgid "Default+Picon"
+msgstr "Výchozí"
 
 msgid "Defaults"
 msgstr "Výchozí"
@@ -4586,6 +4604,10 @@ msgid "Display >16:9 content as"
 msgstr "Zobrazit obraz > než 16:9 jako"
 
 msgid "Display Settings"
+msgstr "Nastavení VFD displeje"
+
+#, fuzzy
+msgid "Display Skin"
 msgstr "Nastavení VFD displeje"
 
 msgid "Display and user interface"
@@ -5108,6 +5130,9 @@ msgstr "Uplynulý a zbývající"
 msgid "Electronic Program Guide"
 msgstr "EPG"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5338,9 +5363,6 @@ msgstr ""
 #, fuzzy
 msgid "Enigma2 Changes"
 msgstr "Enimga2 změny"
-
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 výběr skinu"
 
 #, fuzzy
 msgid "Enter PIN"
@@ -6169,12 +6191,9 @@ msgstr "Při pož. na stream"
 msgid "GStreamer:\t%s"
 msgstr "Při pož. na stream"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Pro aktivaci skinu je potřeba restartovat GUI.\n"
-"Chcete nyní restartovat GUI?"
+#, fuzzy
+msgid "GUI Skin"
+msgstr "Skiny"
 
 #, fuzzy
 msgid ""
@@ -8341,6 +8360,22 @@ msgstr "Přesun na začátek seznamu"
 msgid "Move to position X"
 msgstr "Natáčí se na pozici X"
 
+#, fuzzy
+msgid "Move to the next page"
+msgstr "Přepnout na další pohled"
+
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "Přesunout na další záznam"
+
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "Zpět na předchozí kapitolu"
+
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "Přesunout na předcházející záznam"
+
 msgid "Move up a page"
 msgstr "Přesun na začátek"
 
@@ -9461,6 +9496,10 @@ msgid "Peak load (max queued requests per workerthread)"
 msgstr "Nejvyšší zatížení (max. požadavků na workerthreadve ve frontě )"
 
 #, fuzzy
+msgid "Pending restart"
+msgstr "Vypnutí / Restart"
+
+#, fuzzy
 msgid "Percent"
 msgstr "Procenta"
 
@@ -10217,6 +10256,10 @@ msgstr "Stiskněte tlačítko OK pro instalaci souboru"
 msgid "Press OK on your remote control to continue."
 msgstr "Stiskněte OK na dálkovém ovladači pro pokračování."
 
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Stiskněte OK pro aktivaci zvoleného skinu."
+
 msgid "Press OK to activate the selected skin."
 msgstr "Stiskněte OK pro aktivaci zvoleného skinu."
 
@@ -10229,6 +10272,10 @@ msgstr "Stiskněte OK pro úpravu nastavení."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Stiskněte OK a získejte detaily pro %s "
+
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Stiskněte OK pro aktivaci zvoleného skinu."
 
 msgid "Press OK to scan"
 msgstr "Stiskněte OK pro prohledávání"
@@ -11286,6 +11333,10 @@ msgstr "Uložit cache EPG..."
 
 msgid "Save EPG data"
 msgstr "Uložit data EPG"
+
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Stiskněte OK pro aktivaci zvoleného skinu."
 
 msgid "Save and record"
 msgstr "Uložit a pokračovat"
@@ -13006,7 +13057,8 @@ msgstr "Zeměpisná délka"
 msgid "Size: "
 msgstr "Velikost:"
 
-msgid "Skin Selector"
+#, fuzzy
+msgid "Skin Selection Actions"
 msgstr "Výběr Skinu"
 
 msgid "Skin Setting"
@@ -13018,6 +13070,10 @@ msgstr "Nastavení skinu"
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Výběr Skinu"
 
 msgid "Skins"
 msgstr "Skiny"
@@ -15005,11 +15061,19 @@ msgstr "Vlastnosti"
 msgid "Titleset mode"
 msgstr "Nastavování titulu"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr "Zálohovat přímo dostupný USB disk \n"
 
 msgid "To restore the image:"
 msgstr "Chcete-li obnovit obraz (image):"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""

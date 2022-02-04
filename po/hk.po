@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -2834,6 +2834,12 @@ msgstr "加拿大"
 msgid "Cancel"
 msgstr "取消"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -3331,6 +3337,10 @@ msgstr "用戶端 IP:"
 #, fuzzy
 msgid "Clients"
 msgstr "用戶端 IP:"
+
+#, fuzzy
+msgid "Clock Skin"
+msgstr "設定皮膚"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -4031,6 +4041,10 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#, fuzzy
+msgid "Current"
+msgstr "當前"
+
 msgid "Current CEC address"
 msgstr ""
 
@@ -4288,6 +4302,10 @@ msgstr "更改預設錄製偏移"
 
 msgid "Default settings"
 msgstr "預設設定"
+
+#, fuzzy
+msgid "Default+Picon"
+msgstr "預設"
 
 #, fuzzy
 msgid "Defaults"
@@ -4609,6 +4627,10 @@ msgstr "顯示 >16:9 內容"
 
 #, fuzzy
 msgid "Display Settings"
+msgstr "OLED設定"
+
+#, fuzzy
+msgid "Display Skin"
 msgstr "OLED設定"
 
 #, fuzzy
@@ -5131,6 +5153,9 @@ msgstr ""
 msgid "Electronic Program Guide"
 msgstr "電子節目指南"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5361,9 +5386,6 @@ msgstr ""
 #, fuzzy
 msgid "Enigma2 Changes"
 msgstr "Enigma 2 終止"
-
-msgid "Enigma2 skin selector"
-msgstr ""
 
 msgid "Enter PIN"
 msgstr ""
@@ -6202,9 +6224,7 @@ msgstr "碼流資訊"
 msgid "GStreamer:\t%s"
 msgstr ""
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
+msgid "GUI Skin"
 msgstr ""
 
 #, fuzzy
@@ -8407,6 +8427,22 @@ msgstr "螢幕左移"
 msgid "Move to position X"
 msgstr ""
 
+#, fuzzy
+msgid "Move to the next page"
+msgstr "切換到下一個角度"
+
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "向下移動到下一個項目"
+
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "退回上一個章節"
+
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "向上移動到上一個項目"
+
 msgid "Move up a page"
 msgstr ""
 
@@ -9541,6 +9577,9 @@ msgstr ""
 msgid "Peak load (max queued requests per workerthread)"
 msgstr ""
 
+msgid "Pending restart"
+msgstr ""
+
 msgid "Percent"
 msgstr ""
 
@@ -10317,6 +10356,10 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "按OK鍵確認."
 
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "按OK啟動所選皮膚."
+
 msgid "Press OK to activate the selected skin."
 msgstr "按OK啟動所選皮膚."
 
@@ -10329,6 +10372,10 @@ msgstr "按OK鍵修改設定"
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "按OK鍵獲取 %s 詳細說明"
+
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "按OK啟動所選皮膚."
 
 msgid "Press OK to scan"
 msgstr "按OK鍵開始掃描."
@@ -11415,6 +11462,10 @@ msgstr ""
 #, fuzzy
 msgid "Save EPG data"
 msgstr "保存播放列表"
+
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "按OK啟動所選皮膚."
 
 #, fuzzy
 msgid "Save and record"
@@ -13203,7 +13254,8 @@ msgstr ""
 msgid "Size: "
 msgstr "大小: "
 
-msgid "Skin Selector"
+#, fuzzy
+msgid "Skin Selection Actions"
 msgstr "皮膚選擇"
 
 #, fuzzy
@@ -13217,6 +13269,10 @@ msgstr "設定"
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "皮膚選擇"
 
 msgid "Skins"
 msgstr ""
@@ -15200,12 +15256,20 @@ msgstr "標題屬性"
 msgid "Titleset mode"
 msgstr "標題設定模式"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
 #, fuzzy
 msgid "To restore the image:"
 msgstr "是，立即還原設定"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""

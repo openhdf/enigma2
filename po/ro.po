@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: HDTV ROMANIA(superonic,costel_mbc,neutrin,otheitis,cipy_1982,neutrin,runcanion)\n"
@@ -2746,6 +2746,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Anuleaza"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -3225,6 +3231,10 @@ msgstr ""
 
 msgid "Clients"
 msgstr ""
+
+#, fuzzy
+msgid "Clock Skin"
+msgstr "Skinuri"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -3926,6 +3936,10 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#, fuzzy
+msgid "Current"
+msgstr "adauga bouquet"
+
 msgid "Current CEC address"
 msgstr ""
 
@@ -4181,6 +4195,10 @@ msgstr "aceasta inregistrare"
 
 #, fuzzy
 msgid "Default settings"
+msgstr "Setari implicite"
+
+#, fuzzy
+msgid "Default+Picon"
 msgstr "Setari implicite"
 
 msgid "Defaults"
@@ -4497,6 +4515,10 @@ msgstr "Afiseaza continutul format >16:9 ca"
 
 #, fuzzy
 msgid "Display Settings"
+msgstr "Setari"
+
+#, fuzzy
+msgid "Display Skin"
 msgstr "Setari"
 
 #, fuzzy
@@ -5008,6 +5030,9 @@ msgstr ""
 msgid "Electronic Program Guide"
 msgstr "Ghid Electronic de Programe (EPG)"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5231,9 +5256,6 @@ msgid "Enigma must be restarted to auto restore your saved settings now!"
 msgstr ""
 
 msgid "Enigma2 Changes"
-msgstr ""
-
-msgid "Enigma2 skin selector"
 msgstr ""
 
 msgid "Enter PIN"
@@ -6048,10 +6070,8 @@ msgid "GStreamer:\t%s"
 msgstr ""
 
 #, fuzzy
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr "Interfata grafica necesita repornirea pentru aplicarea noilor decoratiuniDoriti repornirea interfetei grafice acum?"
+msgid "GUI Skin"
+msgstr "Skinuri"
 
 #, fuzzy
 msgid ""
@@ -8212,6 +8232,22 @@ msgstr ""
 msgid "Move to position X"
 msgstr "Goto pozitie"
 
+#, fuzzy
+msgid "Move to the next page"
+msgstr "mergi la urmatorul unghi"
+
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "muta jos la urmatoarea intrare"
+
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "deruleaza la capitolul anterior"
+
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "muta sus la anterioara intrare"
+
 msgid "Move up a page"
 msgstr ""
 
@@ -9312,6 +9348,10 @@ msgid "Peak load (max queued requests per workerthread)"
 msgstr ""
 
 #, fuzzy
+msgid "Pending restart"
+msgstr "Asteptare / Restart"
+
+#, fuzzy
 msgid "Percent"
 msgstr "Circular drept"
 
@@ -10067,6 +10107,10 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "Va rugam apasati OK de pe telecomanda pentru a continua"
 
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Apasati OK pentru a activa setarile"
+
 msgid "Press OK to activate the selected skin."
 msgstr ""
 
@@ -10079,6 +10123,10 @@ msgstr "Apasati OK pentru a edita setarile."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Apasati OK pentru a primi detaliile urmatoare pentru %s"
+
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Apasati OK pentru a edita setarile."
 
 msgid "Press OK to scan"
 msgstr "Apasati OK pentru scanare"
@@ -11149,6 +11197,10 @@ msgstr ""
 
 msgid "Save EPG data"
 msgstr ""
+
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Eliminare titlu curent selectat"
 
 msgid "Save and record"
 msgstr ""
@@ -12900,7 +12952,7 @@ msgid "Size: "
 msgstr ""
 
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "Selectare"
 
 msgid "Skin Setting"
@@ -12912,6 +12964,10 @@ msgstr ""
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Selectare"
 
 msgid "Skins"
 msgstr "Skinuri"
@@ -14874,12 +14930,20 @@ msgstr "Proprietati titlu"
 msgid "Titleset mode"
 msgstr "Mod titlu"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Da, restaureaza setari acum"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""

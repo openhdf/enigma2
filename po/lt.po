@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
@@ -2793,6 +2793,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Atšaukti"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -3272,6 +3278,10 @@ msgstr ""
 
 msgid "Clients"
 msgstr ""
+
+#, fuzzy
+msgid "Clock Skin"
+msgstr "Temos"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -3970,6 +3980,10 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#, fuzzy
+msgid "Current"
+msgstr "pridėti paketą"
+
 msgid "Current CEC address"
 msgstr ""
 
@@ -4228,6 +4242,10 @@ msgstr "tai įrašyta"
 #, fuzzy
 msgid "Default settings"
 msgstr "Numatytieji nustatymai"
+
+#, fuzzy
+msgid "Default+Picon"
+msgstr "Numatyta"
 
 msgid "Defaults"
 msgstr ""
@@ -4542,6 +4560,10 @@ msgstr "Monitorius >16:9 turinys kaip"
 
 #, fuzzy
 msgid "Display Settings"
+msgstr "Nustatymai"
+
+#, fuzzy
+msgid "Display Skin"
 msgstr "Nustatymai"
 
 #, fuzzy
@@ -5055,6 +5077,9 @@ msgstr ""
 msgid "Electronic Program Guide"
 msgstr "Elektroninis programų gidas"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5279,9 +5304,6 @@ msgid "Enigma must be restarted to auto restore your saved settings now!"
 msgstr ""
 
 msgid "Enigma2 Changes"
-msgstr ""
-
-msgid "Enigma2 skin selector"
 msgstr ""
 
 #, fuzzy
@@ -6103,12 +6125,8 @@ msgid "GStreamer:\t%s"
 msgstr ""
 
 #, fuzzy
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Reikia paleisti iš naujo Enigma2 ,kad patvirtinti naują temą\n"
-"Jūs norite paleisti iš naujo Enigma2 dabar?"
+msgid "GUI Skin"
+msgstr "Temos"
 
 #, fuzzy
 msgid ""
@@ -8282,6 +8300,22 @@ msgstr ""
 msgid "Move to position X"
 msgstr "Eiti į poziciją"
 
+#, fuzzy
+msgid "Move to the next page"
+msgstr "perjunkite į kitą kampą"
+
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "perkelti žemyn prie kito įėjimo"
+
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "atsukti į ankstesnį skyrių"
+
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "perkelti aukštyn prie ankstesnio įėjimo"
+
 msgid "Move up a page"
 msgstr ""
 
@@ -9397,6 +9431,10 @@ msgid "Peak load (max queued requests per workerthread)"
 msgstr ""
 
 #, fuzzy
+msgid "Pending restart"
+msgstr "Budėti / Perkrauti"
+
+#, fuzzy
 msgid "Percent"
 msgstr "Apskritiminė dešinė"
 
@@ -10170,6 +10208,10 @@ msgstr "Spauskite MENU ant savo distancinio valdymo pulto papildomam pasirinkimu
 msgid "Press OK on your remote control to continue."
 msgstr "Spauskite OK savo valdymo pulte ir tęskite."
 
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Spauskite OK, kad aktyvuoti pasirinktą temą."
+
 msgid "Press OK to activate the selected skin."
 msgstr "Spauskite OK, kad aktyvuoti pasirinktą temą."
 
@@ -10182,6 +10224,10 @@ msgstr "Spauskite OK ir redaguokite nustatymus."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Spauskite OK, kad gautumėte tolimesnes detales dėl %s"
+
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Spauskite OK, kad aktyvuoti pasirinktą temą."
 
 msgid "Press OK to scan"
 msgstr "Spauskite OK paieškai."
@@ -11259,6 +11305,10 @@ msgstr ""
 
 msgid "Save EPG data"
 msgstr ""
+
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Spauskite OK, kad aktyvuoti pasirinktą temą."
 
 msgid "Save and record"
 msgstr ""
@@ -13025,7 +13075,7 @@ msgid "Size: "
 msgstr ""
 
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "Išsirinkite"
 
 msgid "Skin Setting"
@@ -13037,6 +13087,10 @@ msgstr ""
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Išsirinkite"
 
 msgid "Skins"
 msgstr "Temos"
@@ -15020,12 +15074,20 @@ msgstr "Ypatybės"
 msgid "Titleset mode"
 msgstr "Pavadinimo nustatymo būdas"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Taip, atkurti nustatymus dabar"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -3049,6 +3049,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Izhod"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -3578,6 +3584,11 @@ msgstr ""
 
 msgid "Clients"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Clock Skin"
+msgstr "Predloge"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -4352,6 +4363,11 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Current"
+msgstr "dodajanje paketa"
+
 msgid "Current CEC address"
 msgstr ""
 
@@ -4654,6 +4670,11 @@ msgstr "Vrsta snemanja"
 #, fuzzy
 msgid "Default settings"
 msgstr "Privzete nastavitve"
+
+#
+#, fuzzy
+msgid "Default+Picon"
+msgstr "Privzeto"
 
 #
 msgid "Defaults"
@@ -5022,6 +5043,11 @@ msgstr "Prikaz >16:9 razmerja slike"
 #
 #, fuzzy
 msgid "Display Settings"
+msgstr "Nastavitve"
+
+#
+#, fuzzy
+msgid "Display Skin"
 msgstr "Nastavitve"
 
 msgid "Display and user interface"
@@ -5615,6 +5641,9 @@ msgstr ""
 msgid "Electronic Program Guide"
 msgstr "Elektronski spored programov (EPG)"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5878,9 +5907,6 @@ msgid "Enigma must be restarted to auto restore your saved settings now!"
 msgstr ""
 
 msgid "Enigma2 Changes"
-msgstr ""
-
-msgid "Enigma2 skin selector"
 msgstr ""
 
 #, fuzzy
@@ -6804,12 +6830,8 @@ msgstr ""
 
 #
 #, fuzzy
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Za spremembo predloge je potrebno ponovno zagnati uporabniški vmesnik (GUI)!\n"
-"Želite to storiti sedaj?"
+msgid "GUI Skin"
+msgstr "Predloge"
 
 #
 #, fuzzy
@@ -9244,6 +9266,26 @@ msgstr ""
 msgid "Move to position X"
 msgstr "Pojdi na"
 
+#
+#, fuzzy
+msgid "Move to the next page"
+msgstr "preklop na naslednji pogled"
+
+#
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "premaik dol, na naslednji vnos"
+
+#
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "previjanje na prejšnje poglavje"
+
+#
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "premik gor, prejšnji vnos"
+
 msgid "Move up a page"
 msgstr ""
 
@@ -10505,6 +10547,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Pending restart"
+msgstr "Možnosti izklopa sprejemnika"
+
+#
+#, fuzzy
 msgid "Percent"
 msgstr "na sredini"
 
@@ -11418,6 +11465,11 @@ msgid "Press OK on your remote control to continue."
 msgstr "Za nadaljevanje pritisnite OK."
 
 #
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Za aktiviranje izbrane predloge pritisnite OK."
+
+#
 msgid "Press OK to activate the selected skin."
 msgstr "Za aktiviranje izbrane predloge pritisnite OK."
 
@@ -11433,6 +11485,11 @@ msgstr "Za spreminjanje nastavitev pritisnite OK."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Za podrobnejše informacije o %s pritisnite OK."
+
+#
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Za aktiviranje izbrane predloge pritisnite OK."
 
 #
 msgid "Press OK to scan"
@@ -12702,6 +12759,11 @@ msgstr "Shranite EPG"
 #, fuzzy
 msgid "Save EPG data"
 msgstr "Shranite EPG"
+
+#
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Za aktiviranje izbrane predloge pritisnite OK."
 
 msgid "Save and record"
 msgstr ""
@@ -14728,7 +14790,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "Izberite"
 
 msgid "Skin Setting"
@@ -14740,6 +14802,11 @@ msgstr ""
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Izberite"
 
 #
 msgid "Skins"
@@ -16933,6 +17000,10 @@ msgstr "Lastnosti naslova"
 msgid "Titleset mode"
 msgstr "Način za določanje naslovov"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
@@ -16940,6 +17011,10 @@ msgstr ""
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Da, povrni shranjene nastavitve"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
@@ -3030,6 +3030,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Cancelar"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -3551,6 +3557,11 @@ msgstr ""
 
 msgid "Clients"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Clock Skin"
+msgstr "Temas"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -4318,6 +4329,11 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Current"
+msgstr "adicionar bouquet"
+
 msgid "Current CEC address"
 msgstr "Endereço actual de CEC"
 
@@ -4612,6 +4628,11 @@ msgstr "Tipo de gravação"
 #, fuzzy
 msgid "Default settings"
 msgstr "Configurações Padrão"
+
+#
+#, fuzzy
+msgid "Default+Picon"
+msgstr "Padrão"
 
 msgid "Defaults"
 msgstr ""
@@ -4969,6 +4990,11 @@ msgstr "Mostrar 16:9 como"
 #
 #, fuzzy
 msgid "Display Settings"
+msgstr "Definições"
+
+#
+#, fuzzy
+msgid "Display Skin"
 msgstr "Definições"
 
 #
@@ -5543,6 +5569,9 @@ msgstr ""
 msgid "Electronic Program Guide"
 msgstr "Electronic Program Guide"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5790,9 +5819,6 @@ msgstr ""
 #, fuzzy
 msgid "Enigma2 Changes"
 msgstr "Enimga2 Alterações"
-
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 skin"
 
 #, fuzzy
 msgid "Enter PIN"
@@ -6715,12 +6741,8 @@ msgstr ""
 
 #
 #, fuzzy
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Gui necessita reiniciar para aplicar a nova Skin\n"
-"Deseja reiniciar agora? "
+msgid "GUI Skin"
+msgstr "Temas"
 
 #
 #, fuzzy
@@ -9116,6 +9138,26 @@ msgstr ""
 msgid "Move to position X"
 msgstr "Ir para posição"
 
+#
+#, fuzzy
+msgid "Move to the next page"
+msgstr "mudar para o proximo ângulo"
+
+#
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "ir para a entrada seguinte"
+
+#
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "voltar ao capítulo anterior"
+
+#
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "ir para a entrada anterior"
+
 msgid "Move up a page"
 msgstr "Mover pagina acima"
 
@@ -10365,6 +10407,11 @@ msgstr ""
 msgid "Peak load (max queued requests per workerthread)"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Pending restart"
+msgstr "Stanby / Reiniciar"
+
 #, fuzzy
 msgid "Percent"
 msgstr "centro"
@@ -11264,6 +11311,11 @@ msgid "Press OK on your remote control to continue."
 msgstr "Prima OK para continuar."
 
 #
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Prima OK para activar o tema selecionado."
+
+#
 msgid "Press OK to activate the selected skin."
 msgstr "Prima OK para activar o tema selecionado."
 
@@ -11279,6 +11331,11 @@ msgstr "Prima OK para editar as opções."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Prima OK para receber detalhes de %s"
+
+#
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Prima OK para activar o tema selecionado."
 
 #
 msgid "Press OK to scan"
@@ -12525,6 +12582,11 @@ msgstr "Guardar EPG"
 #, fuzzy
 msgid "Save EPG data"
 msgstr "Guardar EPG"
+
+#
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Prima OK para activar o tema selecionado."
 
 msgid "Save and record"
 msgstr "Guardar e gravar"
@@ -14484,7 +14546,7 @@ msgid "Size: "
 msgstr "Tamanho"
 
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "Enigma2 skin"
 
 msgid "Skin Setting"
@@ -14496,6 +14558,10 @@ msgstr "Configuração Skin"
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Enigma2 skin"
 
 #
 msgid "Skins"
@@ -16672,6 +16738,10 @@ msgstr "Propriedades de título"
 msgid "Titleset mode"
 msgstr "Modo de definição de título"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
@@ -16679,6 +16749,10 @@ msgstr ""
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Sim, guardar as definições"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""

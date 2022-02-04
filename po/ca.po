@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:20+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
@@ -2961,6 +2961,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Cancel·lar"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -3474,6 +3480,9 @@ msgid "ClientIP"
 msgstr ""
 
 msgid "Clients"
+msgstr ""
+
+msgid "Clock Skin"
 msgstr ""
 
 msgid "Clock_Widget:"
@@ -4208,6 +4217,11 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Current"
+msgstr "afegir llista"
+
 msgid "Current CEC address"
 msgstr ""
 
@@ -4494,6 +4508,11 @@ msgstr "aquesta gravació"
 #
 #, fuzzy
 msgid "Default settings"
+msgstr "Config OSD"
+
+#
+#, fuzzy
+msgid "Default+Picon"
 msgstr "Config OSD"
 
 msgid "Defaults"
@@ -4853,6 +4872,11 @@ msgstr ""
 #
 #, fuzzy
 msgid "Display Settings"
+msgstr "Configuracions"
+
+#
+#, fuzzy
+msgid "Display Skin"
 msgstr "Configuracions"
 
 msgid "Display and user interface"
@@ -5421,6 +5445,9 @@ msgstr ""
 msgid "Electronic Program Guide"
 msgstr ""
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5658,9 +5685,6 @@ msgid "Enigma must be restarted to auto restore your saved settings now!"
 msgstr ""
 
 msgid "Enigma2 Changes"
-msgstr ""
-
-msgid "Enigma2 skin selector"
 msgstr ""
 
 msgid "Enter PIN"
@@ -6550,14 +6574,8 @@ msgstr ""
 msgid "GStreamer:\t%s"
 msgstr ""
 
-#
-#, fuzzy
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
+msgid "GUI Skin"
 msgstr ""
-"Cal reengegar la IGU per activar la nova aparença\n"
-"Vols fer-ho ara?"
 
 #
 #, fuzzy
@@ -8904,6 +8922,22 @@ msgstr ""
 msgid "Move to position X"
 msgstr "Anar a la posició"
 
+msgid "Move to the next page"
+msgstr ""
+
+msgid "Move to the next skin"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "Canviar al subservei anterior"
+
+#
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "Canviar al subservei anterior"
+
 msgid "Move up a page"
 msgstr ""
 
@@ -10109,6 +10143,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Pending restart"
+msgstr "Repòs / Reiniciar"
+
+#
+#, fuzzy
 msgid "Percent"
 msgstr "circular dreta"
 
@@ -10966,6 +11005,11 @@ msgid "Press OK on your remote control to continue."
 msgstr ""
 
 #
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Prem OK per a activar la configuració."
+
+#
 msgid "Press OK to activate the selected skin."
 msgstr ""
 
@@ -10981,6 +11025,11 @@ msgstr ""
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Prem OK per a activar la configuració."
 
 #
 msgid "Press OK to scan"
@@ -12182,6 +12231,11 @@ msgstr ""
 
 msgid "Save EPG data"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Esborra el títol seleccionat"
 
 msgid "Save and record"
 msgstr ""
@@ -14084,8 +14138,10 @@ msgstr "Longitud"
 msgid "Size: "
 msgstr ""
 
-msgid "Skin Selector"
-msgstr ""
+#
+#, fuzzy
+msgid "Skin Selection Actions"
+msgstr "Selecció EPG"
 
 msgid "Skin Setting"
 msgstr ""
@@ -14096,6 +14152,11 @@ msgstr ""
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Reengegar la IGU ara?"
 
 #
 msgid "Skins"
@@ -16128,6 +16189,10 @@ msgstr ""
 msgid "Titleset mode"
 msgstr ""
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
@@ -16135,6 +16200,10 @@ msgstr ""
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Si, restaura la configuració ara"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:18+0200\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
@@ -2754,6 +2754,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "İptal"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -3233,6 +3239,10 @@ msgstr "İstemciler"
 
 msgid "Clients"
 msgstr "İstemciler"
+
+#, fuzzy
+msgid "Clock Skin"
+msgstr "Arayüzler"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -3924,6 +3934,10 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#, fuzzy
+msgid "Current"
+msgstr "Şu ankine ekle"
+
 msgid "Current CEC address"
 msgstr "Güncel CEC adresi"
 
@@ -4174,6 +4188,10 @@ msgstr "Varsayılan kayıt türü"
 
 msgid "Default settings"
 msgstr "Varsayılan ayarlar"
+
+#, fuzzy
+msgid "Default+Picon"
+msgstr "Varsayılan"
 
 msgid "Defaults"
 msgstr "Varsayılanlar"
@@ -4473,6 +4491,10 @@ msgid "Display >16:9 content as"
 msgstr ">16:9 içeriği şu şekilde göster"
 
 msgid "Display Settings"
+msgstr "Görüntü Ayarları"
+
+#, fuzzy
+msgid "Display Skin"
 msgstr "Görüntü Ayarları"
 
 msgid "Display and user interface"
@@ -4986,6 +5008,9 @@ msgstr "Geçen & Kalan"
 msgid "Electronic Program Guide"
 msgstr "Elektronik Televizyon Rehberi"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5210,9 +5235,6 @@ msgstr ""
 #, fuzzy
 msgid "Enigma2 Changes"
 msgstr "Enigma2 Değişiklikleri"
-
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 arayüz seçicisi"
 
 msgid "Enter PIN"
 msgstr "Parolayı girin"
@@ -6022,12 +6044,8 @@ msgid "GStreamer:\t%s"
 msgstr "Sistem Sıcaklığı:\t%s"
 
 #, fuzzy
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Yeni arayüzü etkinleştirmek için yeniden başlatma gerekiyor.\n"
-"Grafik arayüzü (GUI) yeniden başlatmak istiyor musunuz?"
+msgid "GUI Skin"
+msgstr "Arayüzler"
 
 msgid ""
 "GUI needs a restart to apply new skin.\n"
@@ -8142,6 +8160,22 @@ msgstr "Listenin başına taşı"
 msgid "Move to position X"
 msgstr ""
 
+#, fuzzy
+msgid "Move to the next page"
+msgstr "sonraki açıya geç"
+
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "sonraki girişi aşağı taşı"
+
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "bir önceki bölüme geri sar"
+
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "önceki girişi yukarı taşı"
+
 msgid "Move up a page"
 msgstr "Bir sayfa yukarı taşı"
 
@@ -9230,6 +9264,10 @@ msgstr "Yürütmeyi duraklat"
 msgid "Peak load (max queued requests per workerthread)"
 msgstr ""
 
+#, fuzzy
+msgid "Pending restart"
+msgstr "Yeniden başlat / Bekleme modu"
+
 msgid "Percent"
 msgstr "Yüzde"
 
@@ -9975,6 +10013,10 @@ msgstr "Ek seçenekler için uzaktan kumanda üzerindeki MENU tuşuna basın."
 msgid "Press OK on your remote control to continue."
 msgstr "Devam etmek için kumandanızın OK tuşuna basın."
 
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Arayüzü etkinleştirmek için OK tuşuna basın."
+
 msgid "Press OK to activate the selected skin."
 msgstr "Arayüzü etkinleştirmek için OK tuşuna basın."
 
@@ -9987,6 +10029,10 @@ msgstr "Ayarları düzenlemek için OK tuşuna basın."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Arayüzü etkinleştirmek için OK tuşuna basın."
 
 msgid "Press OK to scan"
 msgstr "Arama yapmak için OK tuşuna basın"
@@ -11012,6 +11058,10 @@ msgstr "EPG Önbelleğini Kaydet"
 
 msgid "Save EPG data"
 msgstr "EPG verisini kaydet"
+
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Arayüzü etkinleştirmek için OK tuşuna basın."
 
 msgid "Save and record"
 msgstr "Kaydet ve kayIt"
@@ -12671,7 +12721,7 @@ msgid "Size: "
 msgstr "Boyut: "
 
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "İmaj Arayüz Seçici"
 
 msgid "Skin Setting"
@@ -12683,6 +12733,10 @@ msgstr "Görsel arayüz kurulumu"
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "İmaj Arayüz Seçici"
 
 msgid "Skins"
 msgstr "Arayüzler"
@@ -14632,10 +14686,18 @@ msgstr "Başlık özellikleri"
 msgid "Titleset mode"
 msgstr "Başlık seti modu"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
 msgid "To restore the image:"
+msgstr ""
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
 msgstr ""
 
 #, python-format

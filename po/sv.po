@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: torac <info@takerman.se>\n"
@@ -3033,6 +3033,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Avbryt"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel save timeshift as movie"
 msgstr "Spara inte Timeshift som Film"
@@ -3559,6 +3565,11 @@ msgstr "Klienter"
 
 msgid "Clients"
 msgstr "Klienter"
+
+#
+#, fuzzy
+msgid "Clock Skin"
+msgstr "Utseenden ('Skins')"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -4331,6 +4342,11 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Current"
+msgstr "lägg till favoritlista"
+
 msgid "Current CEC address"
 msgstr "Nuvarande CEC adress"
 
@@ -4621,6 +4637,11 @@ msgstr "Typ av Inspelning"
 #
 msgid "Default settings"
 msgstr "Standardinställningar"
+
+#
+#, fuzzy
+msgid "Default+Picon"
+msgstr "Grund"
 
 msgid "Defaults"
 msgstr "Standard"
@@ -4978,6 +4999,11 @@ msgstr "Visa >16:9 innehåll som"
 #
 #, fuzzy
 msgid "Display Settings"
+msgstr "Inställningar"
+
+#
+#, fuzzy
+msgid "Display Skin"
 msgstr "Inställningar"
 
 #
@@ -5564,6 +5590,9 @@ msgstr "Förfluten & Kvarvarande"
 msgid "Electronic Program Guide"
 msgstr "Elektronisk Program Guide"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5813,9 +5842,6 @@ msgstr ""
 #, fuzzy
 msgid "Enigma2 Changes"
 msgstr "Enigma2 Ändringar"
-
-msgid "Enigma2 skin selector"
-msgstr "Enigma2  'skin' väljare"
 
 #, fuzzy
 msgid "Enter PIN"
@@ -6724,12 +6750,9 @@ msgid "GStreamer:\t%s"
 msgstr "Strömning "
 
 #
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"GUI måste startas om för nytt utseende\n"
-"Vill du starta om GUI nu?"
+#, fuzzy
+msgid "GUI Skin"
+msgstr "Utseenden ('Skins')"
 
 #
 #, fuzzy
@@ -9117,6 +9140,26 @@ msgstr "Flytta till början av listan"
 msgid "Move to position X"
 msgstr "Flytta till position X"
 
+#
+#, fuzzy
+msgid "Move to the next page"
+msgstr "byt till nästa position"
+
+#
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "flytta ner till nästa post"
+
+#
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "spola tillbaka till föregående kapitel"
+
+#
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "flytta upp till föregående post"
+
 msgid "Move up a page"
 msgstr "Flytta upp en sida"
 
@@ -10356,6 +10399,11 @@ msgstr "Pausa uppspelning"
 msgid "Peak load (max queued requests per workerthread)"
 msgstr "Toppbelastning (max köade frågor per workerthread)"
 
+#
+#, fuzzy
+msgid "Pending restart"
+msgstr "Viloläge / Omstart"
+
 #, fuzzy
 msgid "Percent"
 msgstr "Procent"
@@ -11227,6 +11275,11 @@ msgid "Press OK on your remote control to continue."
 msgstr "Tryck OK på din fjärrkontroll för att fortsätta."
 
 #
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Tryck OK för aktivera valt utseende.('skin')"
+
+#
 msgid "Press OK to activate the selected skin."
 msgstr "Tryck OK för aktivera valt utseende.('skin')"
 
@@ -11242,6 +11295,11 @@ msgstr "Tryck OK för att ändra inställningar."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Tryck OK för att få utförligare information om %s"
+
+#
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Tryck OK för aktivera valt utseende.('skin')"
 
 #
 msgid "Press OK to scan"
@@ -12477,6 +12535,11 @@ msgstr "Sparar EPG Cashe..."
 #, fuzzy
 msgid "Save EPG data"
 msgstr "Spara EPG"
+
+#
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Tryck OK för aktivera valt utseende.('skin')"
 
 msgid "Save and record"
 msgstr "Spara och spela in"
@@ -14404,7 +14467,7 @@ msgid "Size: "
 msgstr "Storlek:"
 
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "Enigma2  'skin' väljare"
 
 msgid "Skin Setting"
@@ -14416,6 +14479,10 @@ msgstr "Val av utseende ('skin')"
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Enigma2  'skin' väljare"
 
 #
 msgid "Skins"
@@ -16620,6 +16687,10 @@ msgstr "Titelegenskaper"
 msgid "Titleset mode"
 msgstr "Titelset läge"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
@@ -16627,6 +16698,10 @@ msgstr ""
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Ja, återställ inställningarna nu"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""

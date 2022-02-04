@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -2776,6 +2776,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "ยกเลิก"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -3255,6 +3261,10 @@ msgstr ""
 
 msgid "Clients"
 msgstr ""
+
+#, fuzzy
+msgid "Clock Skin"
+msgstr "สกิน"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -3957,6 +3967,10 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#, fuzzy
+msgid "Current"
+msgstr "เพิ่มกลุ่มรายการ"
+
 msgid "Current CEC address"
 msgstr ""
 
@@ -4213,6 +4227,10 @@ msgstr "กำลังถูกบันทึก"
 #, fuzzy
 msgid "Default settings"
 msgstr "ตั้งค่าเริ่มต้น"
+
+#, fuzzy
+msgid "Default+Picon"
+msgstr "ค่าเริ่มต้น"
 
 msgid "Defaults"
 msgstr ""
@@ -4529,6 +4547,10 @@ msgstr "แสดงรายการ >16:9 แบบ"
 
 #, fuzzy
 msgid "Display Settings"
+msgstr "การตั้งค่า"
+
+#, fuzzy
+msgid "Display Skin"
 msgstr "การตั้งค่า"
 
 #, fuzzy
@@ -5039,6 +5061,9 @@ msgstr ""
 msgid "Electronic Program Guide"
 msgstr "ผังรายการ (EPG)"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5262,9 +5287,6 @@ msgid "Enigma must be restarted to auto restore your saved settings now!"
 msgstr ""
 
 msgid "Enigma2 Changes"
-msgstr ""
-
-msgid "Enigma2 skin selector"
 msgstr ""
 
 msgid "Enter PIN"
@@ -6080,12 +6102,8 @@ msgid "GStreamer:\t%s"
 msgstr ""
 
 #, fuzzy
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"ต้องเริ่มงานโปรแกรม (GUI) ใหม่  จึงจะใช้สกินนี้ได้\n"
-"ต้องการเริ่มโปรแกรมใหม่หรือไม่?"
+msgid "GUI Skin"
+msgstr "สกิน"
 
 #, fuzzy
 msgid ""
@@ -8260,6 +8278,22 @@ msgstr ""
 msgid "Move to position X"
 msgstr "ไปยังตำแหน่ง"
 
+#, fuzzy
+msgid "Move to the next page"
+msgstr "เลือกมุมมองอันต่อไป"
+
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "ย้ายลงไป"
+
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "กลับไปตอนที่แล้ว"
+
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "ย้ายไปก่อนหน้านี้"
+
 msgid "Move up a page"
 msgstr ""
 
@@ -9365,6 +9399,10 @@ msgid "Peak load (max queued requests per workerthread)"
 msgstr ""
 
 #, fuzzy
+msgid "Pending restart"
+msgstr "ปิดเครื่อง"
+
+#, fuzzy
 msgid "Percent"
 msgstr "วนขวา"
 
@@ -10137,6 +10175,10 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "กดปุ่ม OK ที่รีโมทเพื่อทำงานต่อ"
 
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "กดปุ่ม OK เพื่อเริ่มใช้สกินที่เลือกไว้"
+
 msgid "Press OK to activate the selected skin."
 msgstr "กดปุ่ม OK เพื่อเริ่มใช้สกินที่เลือกไว้"
 
@@ -10149,6 +10191,10 @@ msgstr "กดปุ่ม OK เพื่อแก้ไข"
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "กดปุ่ม OK เพื่อดูข้อมูลอื่นของ %s เพิ่มเติม"
+
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "กดปุ่ม OK เพื่อเริ่มใช้สกินที่เลือกไว้"
 
 msgid "Press OK to scan"
 msgstr "กดปุ่ม OK เพื่อเริ่มค้นหา"
@@ -11222,6 +11268,10 @@ msgstr ""
 
 msgid "Save EPG data"
 msgstr ""
+
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "กดปุ่ม OK เพื่อเริ่มใช้สกินที่เลือกไว้"
 
 msgid "Save and record"
 msgstr ""
@@ -12977,7 +13027,7 @@ msgid "Size: "
 msgstr ""
 
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "เลือก"
 
 msgid "Skin Setting"
@@ -12989,6 +13039,10 @@ msgstr ""
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "เลือก"
 
 msgid "Skins"
 msgstr "สกิน"
@@ -14925,12 +14979,20 @@ msgstr "คุณลักษณะของเรื่อง"
 msgid "Titleset mode"
 msgstr "โหมดตั้งชื่อเรื่อง"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
 #, fuzzy
 msgid "To restore the image:"
 msgstr "ใช่ - นำสำรองการตั้งค่ากลับมาใช้ตอนนี้เลย"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""

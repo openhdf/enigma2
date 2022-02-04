@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2021-04-16 22:56+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2596,6 +2596,12 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr ""
 
@@ -3047,6 +3053,9 @@ msgid "ClientIP"
 msgstr ""
 
 msgid "Clients"
+msgstr ""
+
+msgid "Clock Skin"
 msgstr ""
 
 msgid "Clock_Widget:"
@@ -3723,6 +3732,9 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+msgid "Current"
+msgstr ""
+
 msgid "Current CEC address"
 msgstr ""
 
@@ -3956,6 +3968,9 @@ msgid "Default recording type"
 msgstr ""
 
 msgid "Default settings"
+msgstr ""
+
+msgid "Default+Picon"
 msgstr ""
 
 msgid "Defaults"
@@ -4246,6 +4261,9 @@ msgid "Display >16:9 content as"
 msgstr ""
 
 msgid "Display Settings"
+msgstr ""
+
+msgid "Display Skin"
 msgstr ""
 
 msgid "Display and user interface"
@@ -4724,6 +4742,9 @@ msgstr ""
 msgid "Electronic Program Guide"
 msgstr ""
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -4937,9 +4958,6 @@ msgid "Enigma must be restarted to auto restore your saved settings now!"
 msgstr ""
 
 msgid "Enigma2 Changes"
-msgstr ""
-
-msgid "Enigma2 skin selector"
 msgstr ""
 
 msgid "Enter PIN"
@@ -5709,9 +5727,7 @@ msgstr ""
 msgid "GStreamer:\t%s"
 msgstr ""
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
+msgid "GUI Skin"
 msgstr ""
 
 msgid ""
@@ -7735,6 +7751,18 @@ msgstr ""
 msgid "Move to position X"
 msgstr ""
 
+msgid "Move to the next page"
+msgstr ""
+
+msgid "Move to the next skin"
+msgstr ""
+
+msgid "Move to the previous page"
+msgstr ""
+
+msgid "Move to the previous skin"
+msgstr ""
+
 msgid "Move up a page"
 msgstr ""
 
@@ -8761,6 +8789,9 @@ msgstr ""
 msgid "Peak load (max queued requests per workerthread)"
 msgstr ""
 
+msgid "Pending restart"
+msgstr ""
+
 msgid "Percent"
 msgstr ""
 
@@ -9460,6 +9491,10 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr ""
 
+#, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr ""
+
 msgid "Press OK to activate the selected skin."
 msgstr ""
 
@@ -9471,6 +9506,10 @@ msgstr ""
 
 #, python-format
 msgid "Press OK to get further details for %s"
+msgstr ""
+
+#, python-format
+msgid "Press OK to keep the currently selected %s skin."
 msgstr ""
 
 msgid "Press OK to scan"
@@ -10463,6 +10502,9 @@ msgid "Save EPG Cache ?"
 msgstr ""
 
 msgid "Save EPG data"
+msgstr ""
+
+msgid "Save and activate the currently selected skin"
 msgstr ""
 
 msgid "Save and record"
@@ -12065,7 +12107,7 @@ msgstr ""
 msgid "Size: "
 msgstr ""
 
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr ""
 
 msgid "Skin Setting"
@@ -12076,6 +12118,9 @@ msgstr ""
 
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
+msgstr ""
+
+msgid "SkinSelector: Restart GUI"
 msgstr ""
 
 msgid "Skins"
@@ -13867,10 +13912,18 @@ msgstr ""
 msgid "Titleset mode"
 msgstr ""
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
 msgid "To restore the image:"
+msgstr ""
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
 msgstr ""
 
 #, python-format

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlac/TimoJ\n"
@@ -3039,6 +3039,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Peruuta"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr "Keskeytä ajansiirron muunto tallenteeksi"
 
@@ -3573,6 +3579,11 @@ msgstr "Asiakkaat"
 
 msgid "Clients"
 msgstr "Asiakkaat"
+
+#
+#, fuzzy
+msgid "Clock Skin"
+msgstr "Teema"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -4339,6 +4350,11 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Current"
+msgstr "Lisää uusi suosikkilista"
+
 msgid "Current CEC address"
 msgstr "Käytettävä CEC-osoite"
 
@@ -4626,6 +4642,11 @@ msgstr "Oletus tallennustyyppi"
 #
 msgid "Default settings"
 msgstr "Oletusasetukset"
+
+#
+#, fuzzy
+msgid "Default+Picon"
+msgstr "Oletus"
 
 msgid "Defaults"
 msgstr "Oletukset"
@@ -4977,6 +4998,11 @@ msgstr "Näytä >16:9 sisältö näin:"
 #
 #, fuzzy
 msgid "Display Settings"
+msgstr "Asetukset"
+
+#
+#, fuzzy
+msgid "Display Skin"
 msgstr "Asetukset"
 
 #
@@ -5569,6 +5595,9 @@ msgstr "Kulunut ja jäljellä oleva"
 msgid "Electronic Program Guide"
 msgstr "Ohjelmaopas"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5817,9 +5846,6 @@ msgstr ""
 
 msgid "Enigma2 Changes"
 msgstr "Enigma2:n muutokset"
-
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 teeman valinta"
 
 #, fuzzy
 msgid "Enter PIN"
@@ -6721,12 +6747,9 @@ msgid "GStreamer:\t%s"
 msgstr "Stream"
 
 #
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Teema vaihtuu kun käyttöliittymä on käynnistetty\n"
-"Haluatko käynnistää käyttöliittymän uudelleen nyt?"
+#, fuzzy
+msgid "GUI Skin"
+msgstr "Teema"
 
 #
 #, fuzzy
@@ -9103,6 +9126,26 @@ msgstr "Siirry luettelon alkuun"
 msgid "Move to position X"
 msgstr "Mene sijaintiin X"
 
+#
+#, fuzzy
+msgid "Move to the next page"
+msgstr "vaihda seuraavaan kuvakulmaan"
+
+#
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "siirry seuraavaan kohtaan"
+
+#
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "kelaa edelliseen kappaleeseen"
+
+#
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "siirry edelliseen kohtaan"
+
 msgid "Move up a page"
 msgstr "Sivu ylöspäin"
 
@@ -10337,6 +10380,11 @@ msgstr "Keskeytä toisto"
 msgid "Peak load (max queued requests per workerthread)"
 msgstr "Huippukuormitus (maksimi jonopyynnöt per työsäie)"
 
+#
+#, fuzzy
+msgid "Pending restart"
+msgstr "Sammutusvalikko"
+
 #, fuzzy
 msgid "Percent"
 msgstr "Prosenttia"
@@ -11213,6 +11261,11 @@ msgid "Press OK on your remote control to continue."
 msgstr "Jatka painamalla OK-näppäintä."
 
 #
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Ota valittu teema käyttöön painamalla OK."
+
+#
 msgid "Press OK to activate the selected skin."
 msgstr "Ota valittu teema käyttöön painamalla OK."
 
@@ -11228,6 +11281,11 @@ msgstr "Muokkaa painamalla OK."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Katso %s lisätietoja OK-näppäimellä"
+
+#
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Ota valittu teema käyttöön painamalla OK."
 
 #
 msgid "Press OK to scan"
@@ -12452,6 +12510,11 @@ msgstr "Tallennetaan kanavaoppaan välimuistia..."
 #, fuzzy
 msgid "Save EPG data"
 msgstr "Tallenna ohjelmaopas"
+
+#
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Ota valittu teema käyttöön painamalla OK."
 
 msgid "Save and record"
 msgstr "Tallenna ja jatka tallennusta"
@@ -14384,7 +14447,7 @@ msgid "Size: "
 msgstr "Koko: "
 
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "Enigma2 teeman valinta"
 
 msgid "Skin Setting"
@@ -14396,6 +14459,10 @@ msgstr "Teeman valinta"
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Enigma2 teeman valinta"
 
 #
 msgid "Skins"
@@ -16596,6 +16663,10 @@ msgstr "Ominaisuudet"
 msgid "Titleset mode"
 msgstr "Tila"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
@@ -16603,6 +16674,10 @@ msgstr ""
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Kyllä, palauta asetukset nyt"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""

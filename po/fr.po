@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: 2019-10-31 07:46+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
@@ -2806,6 +2806,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Annuler"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr "Annuler sauver PauseDirect comme film"
 
@@ -3290,6 +3296,10 @@ msgstr "Clients"
 
 msgid "Clients"
 msgstr "Clients"
+
+#, fuzzy
+msgid "Clock Skin"
+msgstr "Thèmes LCD"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -3984,6 +3994,10 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#, fuzzy
+msgid "Current"
+msgstr "ajouter l’actuel"
+
 msgid "Current CEC address"
 msgstr "Adresse actuelle CEC"
 
@@ -4234,6 +4248,10 @@ msgstr "Type d’enregistrement par défaut"
 
 msgid "Default settings"
 msgstr "Paramètres par défaut"
+
+#, fuzzy
+msgid "Default+Picon"
+msgstr "Standard"
 
 msgid "Defaults"
 msgstr "Défauts"
@@ -4532,6 +4550,10 @@ msgid "Display >16:9 content as"
 msgstr "Afficher contenu >16:9 comme"
 
 msgid "Display Settings"
+msgstr "Paramètres d’affichage"
+
+#, fuzzy
+msgid "Display Skin"
 msgstr "Paramètres d’affichage"
 
 msgid "Display and user interface"
@@ -5044,6 +5066,9 @@ msgstr "Ecoulé & restant"
 msgid "Electronic Program Guide"
 msgstr "Guide électronique programme"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5270,9 +5295,6 @@ msgstr ""
 
 msgid "Enigma2 Changes"
 msgstr "Changements Enigma2"
-
-msgid "Enigma2 skin selector"
-msgstr "Sélectionneur de thème (skin) Enigma2"
 
 #, fuzzy
 msgid "Enter PIN"
@@ -6096,12 +6118,9 @@ msgstr "Stream"
 msgid "GStreamer:\t%s"
 msgstr "GStreamer ver:\t%s"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"L'interface doit redémarrer pour appliquer ce thème\n"
-"Voulez-vous relancer l'interface maintenant?"
+#, fuzzy
+msgid "GUI Skin"
+msgstr "Thèmes"
 
 msgid ""
 "GUI needs a restart to apply new skin.\n"
@@ -8198,6 +8217,22 @@ msgstr "Déplacer vers l’accueil de la liste"
 msgid "Move to position X"
 msgstr "Aller à la position X"
 
+#, fuzzy
+msgid "Move to the next page"
+msgstr "basculer vers l'angle suivant"
+
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "déplacer en bas entrée suivante"
+
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "retour au chapitre précédant"
+
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "déplacer en haut entrée précédente"
+
 msgid "Move up a page"
 msgstr "Monter d’une page"
 
@@ -9289,6 +9324,10 @@ msgstr "Pause lecture"
 msgid "Peak load (max queued requests per workerthread)"
 msgstr "Charge de pointe (requêtes max en file d’attente par thread de travail)"
 
+#, fuzzy
+msgid "Pending restart"
+msgstr "Veille / Redémarrage"
+
 msgid "Percent"
 msgstr "Pourcent"
 
@@ -10024,6 +10063,10 @@ msgstr "Pressez MENU sur votre télécommande pour options additionnelles."
 msgid "Press OK on your remote control to continue."
 msgstr "Pressez OK sur la télécommande pour continuer."
 
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Pressez OK pour activer le thème sélectionné"
+
 msgid "Press OK to activate the selected skin."
 msgstr "Pressez OK pour activer le thème sélectionné"
 
@@ -10036,6 +10079,10 @@ msgstr "Pressez OK pour éditer les paramètres."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Pressez OK pour avoir des détails sur %s"
+
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Pressez OK pour activer le thème sélectionné"
 
 msgid "Press OK to scan"
 msgstr "Pressez OK pour analyser"
@@ -11075,6 +11122,10 @@ msgstr "Sauvegarder le cache EPG?"
 
 msgid "Save EPG data"
 msgstr "Sauver les données EPG"
+
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Pressez OK pour activer le thème sélectionné"
 
 msgid "Save and record"
 msgstr "Sauver et enregistrer"
@@ -12726,7 +12777,8 @@ msgstr "Longitude du lieu"
 msgid "Size: "
 msgstr "Taille:"
 
-msgid "Skin Selector"
+#, fuzzy
+msgid "Skin Selection Actions"
 msgstr "Sélectionner thème"
 
 msgid "Skin Setting"
@@ -12738,6 +12790,10 @@ msgstr "Configurer thème/skin"
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Sélectionner thème"
 
 msgid "Skins"
 msgstr "Thèmes"
@@ -14701,12 +14757,20 @@ msgstr "Propriétés titre"
 msgid "Titleset mode"
 msgstr "Mode jeu titre"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr "Pour sauvegarder directement sur la clé USB, la clé USB DOIT\n"
 
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Oui, restaurer les paramètres maintenant"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 09:29+0100\n"
+"POT-Creation-Date: 2022-02-04 16:02+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -2829,6 +2829,12 @@ msgstr ""
 msgid "Cancel"
 msgstr "Tühista"
 
+msgid "Cancel any changes to the currently active skin"
+msgstr ""
+
+msgid "Cancel any changes to the currently active skin and exit all menus"
+msgstr ""
+
 msgid "Cancel save timeshift as movie"
 msgstr "Ära salvesta ajanihke faile"
 
@@ -3316,6 +3322,10 @@ msgstr "Kliendid"
 
 msgid "Clients"
 msgstr "Kliendid"
+
+#, fuzzy
+msgid "Clock Skin"
+msgstr "Välimus"
 
 msgid "Clock_Widget:"
 msgstr ""
@@ -4036,6 +4046,10 @@ msgstr ""
 msgid "Curacao"
 msgstr ""
 
+#, fuzzy
+msgid "Current"
+msgstr "lisa nimekiri"
+
 msgid "Current CEC address"
 msgstr "Kasutatav CEC aadress"
 
@@ -4291,6 +4305,10 @@ msgstr "Salvestamise laad"
 
 msgid "Default settings"
 msgstr "Vaikeväärtused"
+
+#, fuzzy
+msgid "Default+Picon"
+msgstr "Vaikimisi"
 
 msgid "Defaults"
 msgstr "Vaikeväärtused"
@@ -4601,6 +4619,10 @@ msgstr ">16:9 sisu kuvamine"
 
 #, fuzzy
 msgid "Display Settings"
+msgstr "Seaded"
+
+#, fuzzy
+msgid "Display Skin"
 msgstr "Seaded"
 
 msgid "Display and user interface"
@@ -5123,6 +5145,9 @@ msgstr "Möödunud & jäänud"
 msgid "Electronic Program Guide"
 msgstr "Saatekava (EPG)"
 
+msgid "Emergency"
+msgstr ""
+
 msgid "Empty slot"
 msgstr ""
 
@@ -5355,9 +5380,6 @@ msgstr ""
 
 msgid "Enigma2 Changes"
 msgstr "Enigma2 muudatused"
-
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 teema valik"
 
 #, fuzzy
 msgid "Enter PIN"
@@ -6191,12 +6213,9 @@ msgstr "IPTV"
 msgid "GStreamer:\t%s"
 msgstr "IPTV"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Kujunduse jõustamiseks tuleb kasutajaliides taaskäivitada\n"
-"Kas teed seda kohe?"
+#, fuzzy
+msgid "GUI Skin"
+msgstr "Välimus"
 
 #, fuzzy
 msgid ""
@@ -8384,6 +8403,22 @@ msgstr "Liigu nimekirja kodukataloogi"
 msgid "Move to position X"
 msgstr "Liigu positsioonile X"
 
+#, fuzzy
+msgid "Move to the next page"
+msgstr "vali järgmine vaatenurk"
+
+#, fuzzy
+msgid "Move to the next skin"
+msgstr "liigu järgmisele reale"
+
+#, fuzzy
+msgid "Move to the previous page"
+msgstr "hüppa eelmisele peatükile"
+
+#, fuzzy
+msgid "Move to the previous skin"
+msgstr "liigu eelmisele reale"
+
 msgid "Move up a page"
 msgstr "Liigu lehe algusesse"
 
@@ -9501,6 +9536,10 @@ msgid "Peak load (max queued requests per workerthread)"
 msgstr "Tippkoormus (suurim päringute arv lõime kohta)"
 
 #, fuzzy
+msgid "Pending restart"
+msgstr "Seiskamine"
+
+#, fuzzy
 msgid "Percent"
 msgstr "Protsent"
 
@@ -10270,6 +10309,10 @@ msgstr "Vajuta MENU puldil lisavõimaluste kasutamiseks."
 msgid "Press OK on your remote control to continue."
 msgstr "Jätkamiseks vajuta OK."
 
+#, fuzzy, python-format
+msgid "Press OK to activate the selected %s skin."
+msgstr "Uue teema jõustamiseks vajuta OK."
+
 msgid "Press OK to activate the selected skin."
 msgstr "Uue teema jõustamiseks vajuta OK."
 
@@ -10282,6 +10325,10 @@ msgstr "Seadistuste muutmiseks vajuta OK."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Vajuta OK %s üksikasjade nägemiseks"
+
+#, fuzzy, python-format
+msgid "Press OK to keep the currently selected %s skin."
+msgstr "Uue teema jõustamiseks vajuta OK."
 
 msgid "Press OK to scan"
 msgstr "Otsingu alustamiseks vajuta OK"
@@ -11363,6 +11410,10 @@ msgstr "EPG salvestamine..."
 #, fuzzy
 msgid "Save EPG data"
 msgstr "Salvesta EPG"
+
+#, fuzzy
+msgid "Save and activate the currently selected skin"
+msgstr "Uue teema jõustamiseks vajuta OK."
 
 msgid "Save and record"
 msgstr "Salvesta"
@@ -13135,7 +13186,7 @@ msgid "Size: "
 msgstr "Suurus: "
 
 #, fuzzy
-msgid "Skin Selector"
+msgid "Skin Selection Actions"
 msgstr "Enigma2 teema valik"
 
 msgid "Skin Setting"
@@ -13147,6 +13198,10 @@ msgstr "Kujunduse valik"
 #, python-format
 msgid "Skin:\t%s (%s x %s)\n"
 msgstr ""
+
+#, fuzzy
+msgid "SkinSelector: Restart GUI"
+msgstr "Enigma2 teema valik"
 
 msgid "Skins"
 msgstr "Välimus"
@@ -15183,12 +15238,20 @@ msgstr "Pealkirja omadused"
 msgid "Titleset mode"
 msgstr "Testpilt"
 
+#, python-format
+msgid "To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?"
+msgstr ""
+
 msgid "To back-up directly to the USB-stick, the USB-stick MUST\n"
 msgstr ""
 
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Jah, taasta nüüd seadistused"
+
+#, python-format
+msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
+msgstr ""
 
 #, python-format
 msgid ""
