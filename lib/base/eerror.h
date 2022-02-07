@@ -115,6 +115,7 @@ void DumpUnfreed();
  * main() will check the environemnt to set the values.
  */
 extern int debugLvl;
+extern int debugTime;
 
 void CHECKFORMAT eDebugImpl(int flags, const char*, ...);
 enum { lvlTrace=5, lvlDebug=4, lvlInfo=3, lvlWarning=2, lvlError=1, lvlFatal=0 };
