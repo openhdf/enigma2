@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 import sys
 import os
-from time import time, localtime, strftime, sleep
+from time import localtime, strftime, time
 
 if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 	sys.path.append("/usr/lib/enigma2/python/enigma.zip")
