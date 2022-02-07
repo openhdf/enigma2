@@ -63,6 +63,7 @@ chmod -R 755 /usr/scripts
 
 # any debuglevel passed?
 DEBUG_LVL=${ENIGMA_DEBUG_LVL:-4}
+ENIGMA_DEBUG_TIME=${ENIGMA_DEBUG_TIME:-2}
 
 #check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
@@ -131,11 +132,11 @@ if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; t
 		LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
 	fi
 	ln -sf ${LOGFILE} ${LOGFOLDER}currlog
-	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2 2>&1 | tee -a ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_TIME=${ENIGMA_DEBUG_TIME} ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2 2>&1 | tee -a ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
 	ret=${PIPESTATUS[0]}
 	ln -sf ${LOGFILE} ${LOGFOLDER}lastlog
 else
-	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_TIME=${ENIGMA_DEBUG_TIME} ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2
 	ret=$?
 fi
 
