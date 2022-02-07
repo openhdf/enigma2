@@ -278,7 +278,7 @@ int main(int argc, char **argv)
 	if (debugLvl < 0)
 		debugLvl = 0;
 	printf("ENIGMA_DEBUG_LVL=%d\n", debugLvl);
-	debugTime = getenv("ENIGMA_DEBUG_TIME") ? atoi(getenv("ENIGMA_DEBUG_TIME")) : 0;
+	int debugTime = getenv("ENIGMA_DEBUG_TIME") ? atoi(getenv("ENIGMA_DEBUG_TIME")) : 0;
 	if (debugTime < 0)
 		setDebugTime(atoi(debugTime));
 	printf("ENIGMA_DEBUG_TIME=%d\n", debugTime);
