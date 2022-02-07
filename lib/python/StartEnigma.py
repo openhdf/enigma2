@@ -63,8 +63,6 @@ from twisted.python import log
 config.misc.enabletwistedlog = ConfigYesNo(default=False)
 if config.misc.enabletwistedlog.value == True:
 	log.startLogging(open('/tmp/twisted.log', 'w'))
-else:
-	log.startLogging(sys.stdout)
 
 profile("LOAD:Tools")
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, SCOPE_PLUGINS, SCOPE_GUISKIN
