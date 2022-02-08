@@ -41,7 +41,7 @@
 		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 75" foregroundColor="XionFont1" render="Label" position="268,85" size="120,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
 			<convert type="XionHDFWeather">Day_0,MinTemp</convert>
 		</widget>
-		<ePixmap pixmap="/usr/share/enigma2/display/weather_lcd.png" position="0,0" size="390,240" zPosition="-9" />
+		<ePixmap pixmap="/usr/share/enigma2/display/lcd_skin/weather_lcd.png" position="0,0" size="390,240" zPosition="-9" />
 	</screen>
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="390,240">
@@ -61,5 +61,5 @@
 			<convert type="XionHDFWeather">Day_0,MinTemp</convert>
 		</widget>
 	</screen>
-	<include filename="/usr/share/enigma2/display/skin_display.xml" />
+	<include filename="/usr/share/enigma2/display/lcd_skin/skin_display.xml" />
 </skin>

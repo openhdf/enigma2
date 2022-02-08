@@ -112,7 +112,7 @@
 
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="220,176" zPosition="10" flags="wfNoBorder">
-		<ePixmap pixmap="/usr/share/enigma2/display/klappuhr_blue_lcd.png" position="0,0" size="220,176" zPosition="1" />
+		<ePixmap pixmap="/usr/share/enigma2/display/lcd_skin/klappuhr_blue_lcd.png" position="0,0" size="220,176" zPosition="1" />
 		<widget source="global.CurrentTime" render="Label" position="0,138" size="220,50" font="FdLcD;26" foregroundColor="#FFFFFF" transparent="1" halign="center" zPosition="4" noWrap="1">
 			<convert type="ClockToText">Format:%d.%m.%Y</convert>
 		</widget>

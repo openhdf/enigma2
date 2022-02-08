@@ -24,7 +24,7 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="220,0" size="32,12" alphatest="blend">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/rec.png" position="220,0" size="32,12" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="session.CurrentService" render="LcdPicon" position="126,12" size="132,46" zPosition="1">
@@ -49,7 +49,7 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="220,0" size="32,12" alphatest="blend">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/rec.png" position="220,0" size="32,12" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="session.CurrentService" render="RollerCharLCDLong" position="0,13" size="256,24" font="VFD;24" noWrap="1" valign="top">
@@ -93,7 +93,7 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="220,0" size="32,12" alphatest="blend">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/rec.png" position="220,0" size="32,12" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="session.CurrentService" render="RollerCharLCDLong" position="0,13" size="256,24" font="VFD;24" noWrap="1" valign="top">
@@ -118,7 +118,7 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="220,0" size="32,12" alphatest="blend">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/rec.png" position="220,0" size="32,12" alphatest="blend">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="54,16" size="113,32" font="VFD;40" halign="right" valign="center" transparent="1">

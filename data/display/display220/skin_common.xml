@@ -470,7 +470,7 @@
       <convert type="MSNWeather">temperature_current</convert>
     </widget>
     <widget render="MSNWeatherPixmap" position="70,64" size="80,80" source="session.MSNWeather">
-      <convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/Wettericons/,png</convert>
+      <convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/lcd_skin/Wettericons/,png</convert>
     </widget>
   </screen>
   <!--WebradioFS-->

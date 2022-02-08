@@ -34,5 +34,5 @@
 			<convert type="EventTime">Progress</convert>
 		</widget>
 	</screen>
-	<include filename="/usr/share/enigma2/display/skin_display.xml" />
+	<include filename="/usr/share/enigma2/display/lcd_skin/skin_display.xml" />
 </skin>

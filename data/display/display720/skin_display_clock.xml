@@ -27,7 +27,7 @@
 	</screen>
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="720,576" flags="wfNoBorder">
-		<ePixmap pixmap="/usr/share/enigma2/display/analog_lcd.png" position="center,center" size="720,576" zPosition="0" />
+		<ePixmap pixmap="/usr/share/enigma2/display/lcd_skin/analog_lcd.png" position="center,center" size="720,576" zPosition="0" />
 	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="720,576" hColor="black" linewidth="9" zPosition="4" alphatest="on">
 		<convert type="OMaclock">Hours</convert>
 	</widget>
@@ -37,7 +37,7 @@
 	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="720,576" sColor="black" linewidth="5" zPosition="2" alphatest="on">
 		<convert type="OMaclock">Seconds</convert>
 	</widget>
-	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/analog_lcd_rec.png" position="0,0" size="720,576" zPosition="1" transparent="1" alphatest="on" >
+	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/analog_lcd_rec.png" position="0,0" size="720,576" zPosition="1" transparent="1" alphatest="on" >
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 	</screen>
@@ -121,7 +121,7 @@
 	</screen>
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="720,576" flags="wfNoBorder">
-		<ePixmap pixmap="/usr/share/enigma2/display/analog_lcd.png" position="center,center" size="720,576" zPosition="0" />
+		<ePixmap pixmap="/usr/share/enigma2/display/lcd_skin/analog_lcd.png" position="center,center" size="720,576" zPosition="0" />
 	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="720,576" hColor="black" linewidth="9" zPosition="4" alphatest="on">
 		<convert type="OMaclock">Hours</convert>
 	</widget>
@@ -131,7 +131,7 @@
 	<widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="720,576" sColor="black" linewidth="5" zPosition="2" alphatest="on">
 		<convert type="OMaclock">Seconds</convert>
 	</widget>
-	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/analog_lcd_rec.png" position="0,0" size="720,576" zPosition="1" transparent="1" alphatest="on" >
+	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/analog_lcd_rec.png" position="0,0" size="720,576" zPosition="1" transparent="1" alphatest="on" >
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 	</screen>

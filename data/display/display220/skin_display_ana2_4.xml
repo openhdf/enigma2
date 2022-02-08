@@ -60,7 +60,7 @@
       <convert type="MSNWeather">temperature_current</convert>
     </widget>
     <widget source="session.MSNWeather" position="120,33" size="30,24" render="MSNWeatherPixmap" valign="center" halign="center">
-      <convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/Wettericons/,png</convert>
+      <convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/lcd_skin/Wettericons/,png</convert>
     </widget>
   </screen>
   <!--standby-->

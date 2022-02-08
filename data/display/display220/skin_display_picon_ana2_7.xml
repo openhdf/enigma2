@@ -24,7 +24,7 @@
       <convert type="ServiceName">Reference</convert>
     </widget>
     <widget source="session.MSNWeather" position="112,1" size="60,60" render="MSNWeatherPixmap">
-      <convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/Wettericons/,png</convert>
+      <convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/lcd_skin/Wettericons/,png</convert>
     </widget>
     <widget source="session.MSNWeather" render="Label" position="155,2" size="65,22" font="FdLcD;22" halign="right" noWrap="1" foregroundColor="#00FF00" transparent="1" zPosition="2">
       <convert type="MSNWeather">temperature_current</convert>

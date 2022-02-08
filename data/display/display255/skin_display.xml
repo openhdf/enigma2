@@ -25,70 +25,70 @@
 		</widget>
 	</screen>
 	<screen name="SummaryIconsPanel">
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="139,0"  size="32,12">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/rec.png" position="139,0"  size="32,12">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/update.png" position="173,0" size="14,12" >
+		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/update.png" position="173,0" size="14,12" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/update.png" position="173,0" size="14,12" >
+		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/update.png" position="173,0" size="14,12" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/crypt.png" position="189,0"  size="10,12">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/crypt.png" position="189,0"  size="10,12">
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/txt.png" position="201,0" size="14,12">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/txt.png" position="201,0" size="14,12">
 			<convert type="ServiceInfo">HasTelext</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
- 		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/hd.png" position="217,0" size="21,12">
+ 		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/hd.png" position="217,0" size="21,12">
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">721,1980</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/dolby.png" position="240,0" size="16,12">
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/dolby.png" position="240,0" size="16,12">
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
 	<screen name="SummaryTunerStatusPanel">
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/tuner-a.png" position="158,49" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/tuner-a.png" position="158,49" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/tuner-b.png" position="167,49" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/tuner-b.png" position="167,49" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/tuner-c.png" position="176,49" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/tuner-c.png" position="176,49" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/tuner-d.png" position="185,49" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/tuner-d.png" position="185,49" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/tuner-a-act.png" position="158,49" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/tuner-a-act.png" position="158,49" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/tuner-b-act.png" position="167,49" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/tuner-b-act.png" position="167,49" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/tuner-c-act.png" position="176,49" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/tuner-c-act.png" position="176,49" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/tuner-d-act.png" position="185,49" size="9,15">
+		<widget source="session.FrontendInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/tuner-d-act.png" position="185,49" size="9,15">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
@@ -130,7 +130,7 @@
 	</screen>
 <!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="256,64">
-		<widget name="statusicon_summary" position="0,0" zPosition="3" size="23,20" pixmaps="/usr/share/enigma2/display/vfd_icons/play.png,/usr/share/enigma2/display/vfd_icons/pause.png,/usr/share/enigma2/display/vfd_icons/stop.png,/usr/share/enigma2/display/vfd_icons/forward.png,/usr/share/enigma2/display/vfd_icons/backward.png,/usr/share/enigma2/display/vfd_icons/slow.png" />
+		<widget name="statusicon_summary" position="0,0" zPosition="3" size="23,20" pixmaps="/usr/share/enigma2/display/lcd_skin/vfd_icons/play.png,/usr/share/enigma2/display/lcd_skin/vfd_icons/pause.png,/usr/share/enigma2/display/lcd_skin/vfd_icons/stop.png,/usr/share/enigma2/display/lcd_skin/vfd_icons/forward.png,/usr/share/enigma2/display/lcd_skin/vfd_icons/backward.png,/usr/share/enigma2/display/lcd_skin/vfd_icons/slow.png" />
 		<widget source="speed_summary" render="Label" position="30,0" size="160,22" font="VFD;18" halign="left" noWrap="1" />
 		<widget source="session.CurrentService" render="Label" position="0,21" size="256,20" font="VFD;17" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
@@ -236,28 +236,28 @@
 		<widget source="global.CurrentTime" render="Label" position="0,22" size="120,45" font="VFD;46" halign="left" noWrap="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/update.png" position="241,0" size="14,12">
+		<widget source="session.OnlineCheckState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/update.png" position="241,0" size="14,12">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="223,52"  size="32,12">
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/rec.png" position="223,52"  size="32,12">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/tuner-a.png" position="188,50" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/tuner-a.png" position="188,50" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/tuner-b.png" position="197,50" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/tuner-b.png" position="197,50" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/tuner-c.png" position="206,50" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/tuner-c.png" position="206,50" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/tuner-d.png" position="215,50" size="9,15">
+		<widget source="session.TunerInfo" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/tuner-d.png" position="215,50" size="9,15">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />

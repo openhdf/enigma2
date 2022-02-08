@@ -62,7 +62,7 @@
 		<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
-    <widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="0,50" size="28,12" alphatest="blend">
+    <widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/rec.png" position="0,50" size="28,12" alphatest="blend">
       <convert type="ConditionalShowHide" />
     </widget>
     </screen>
@@ -91,7 +91,7 @@
 		<convert type="ConditionalShowHide">Blink</convert>
 	</widget>
 	<screen name="DVDSummary" position="0,0" size="256,64">
-    <widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/vfd_icons/rec.png" position="0,50" size="28,12" alphatest="blend">
+    <widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/vfd_icons/rec.png" position="0,50" size="28,12" alphatest="blend">
       <convert type="ConditionalShowHide" />
     </widget>
     <widget source="session.CurrentService" render="RollerCharLCDLong" position="0,0" size="256,46" font="VFD;46" noWrap="1" valign="top">
