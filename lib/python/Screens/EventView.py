@@ -320,13 +320,18 @@ class EventViewBase:
 
 	def doContext(self):
 		if self.event:
-			menu = []
-			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
-				#only list service or event specific eventinfo plugins here, no servelist plugins
-				if 'servicelist' not in p.__call__.__code__.co_varnames:
-					menu.append((p.name, boundFunction(self.runPlugin, p)))
-			if menu:
-				self.session.open(EventViewContextMenu, menu)
+			text = _("Select action")
+			menu = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EVENTINFO)
+				if 'servicelist' not in p.fnc.__code__.co_varnames
+					if 'selectedevent' not in p.fnc.__code__.co_varnames]
+			if len(menu) == 1:
+				menu and menu[0][1]()
+			elif len(menu) > 1:
+				def boxAction(choice):
+					if choice:
+						choice[1]()
+				text += ": %s" % self.event.getEventName()
+				self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu, windowTitle=_("Event view context menu"))
 
 	def runPlugin(self, plugin):
 		plugin(session=self.session, service=self.currentService, event=self.event, eventName=self.event.getEventName())

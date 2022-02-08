@@ -583,7 +583,7 @@ def runScreenTest():
 
 	profile("wizards")
 	screensToRun = wizardManager.getWizards()
-	screensToRun += [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
+	screensToRun += [p.fnc for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 
 	screensToRun.append((100, InfoBar.InfoBar))
 	screensToRun = sorted(screensToRun, key=lambda x: x[0])
