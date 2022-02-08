@@ -8,7 +8,6 @@ from enigma import loadPNG, loadJPG, loadSVG
 
 
 def LoadPixmap(path, desktop=None, cached=None, width=0, height=0):
-    print(path)
 	if path[-4:] == ".png":
 		# cache unless caller explicity requests to not cache
 		ptr = loadPNG(path, 0, 0 if cached is False else 1)
