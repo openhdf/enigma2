@@ -581,6 +581,11 @@ def runScreenTest():
 
 	CiHandler.setSession(session)
 
+<<<<<<< HEAD
+=======
+	screensToRun = [p.fnc for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
+
+>>>>>>> 7b6780083b... Rework "PluginDescriptor" class
 	profile("wizards")
 	screensToRun = wizardManager.getWizards()
 	screensToRun += [p.fnc for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]

@@ -193,8 +193,13 @@ def getHotkeyFunctions():
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
 		if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.fnc.__code__.co_varnames:
+<<<<<<< HEAD
 			if plugin.path[pathLen:] in twinPaths:
 				twinPaths[plugin.path[pathLen:]] += 1
+=======
+			if plugin.path[24:] in twinPaths:
+				twinPaths[plugin.path[24:]] += 1
+>>>>>>> 7b6780083b... Rework "PluginDescriptor" class
 			else:
 				twinPaths[plugin.path[pathLen:]] = 1
 			hotkeyFunctions.append((plugin.name, plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]), "EPG"))
@@ -639,8 +644,13 @@ class InfoBarHotkey():
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
 					if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.fnc.__code__.co_varnames:
+<<<<<<< HEAD
 						if plugin.path[pathLen:] in twinPaths:
 							twinPaths[plugin.path[pathLen:]] += 1
+=======
+						if plugin.path[24:] in twinPaths:
+							twinPaths[plugin.path[24:]] += 1
+>>>>>>> 7b6780083b... Rework "PluginDescriptor" class
 						else:
 							twinPaths[plugin.path[pathLen:]] = 1
 						if plugin.path[pathLen:] + "/" + str(twinPaths[plugin.path[pathLen:]]) == "/".join(selected):

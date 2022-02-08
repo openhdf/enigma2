@@ -233,6 +233,7 @@ class Menu(Screen, ProtectedScreen):
 					if x[2] == plugin_menuid:
 						list.remove(x)
 						break
+<<<<<<< HEAD
 				if len(l) > 4 and l[4]:
 					list.append((l[0], boundFunction(l[1], self.session, self.close), l[2], l[3] or 50))
 				else:
@@ -249,6 +250,37 @@ class Menu(Screen, ProtectedScreen):
 		# Sort by Weight
 		if config.usage.sort_menus.value:
 			list.sort()
+=======
+				self.list.append((l[0], boundFunction(l[1], self.session, close=self.close), l[2], l[3] or 50))
+
+		if "user" in config.usage.menu_sort_mode.value and self.menuID == "mainmenu":
+			plugin_list = []
+			id_list = []
+			for l in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				l.id = (l.name.lower()).replace(' ', '_')
+				if l.id not in id_list:
+					id_list.append(l.id)
+					plugin_list.append((l.name, boundFunction(l.fnc, self.session), l.id, 200))
+
+		if self.menuID is not None and "user" in config.usage.menu_sort_mode.value:
+			self.sub_menu_sort = NoSave(ConfigDictionarySet())
+			self.sub_menu_sort.value = config.usage.menu_sort_weight.getConfigValue(self.menuID, "submenu") or {}
+			idx = 0
+			for x in self.list:
+				entry = list(self.list.pop(idx))
+				m_weight = self.sub_menu_sort.getConfigValue(entry[2], "sort") or entry[3]
+				entry.append(m_weight)
+				self.list.insert(idx, tuple(entry))
+				self.sub_menu_sort.changeConfigValue(entry[2], "sort", m_weight)
+				idx += 1
+			self.full_list = list(self.list)
+
+		if config.usage.menu_sort_mode.value == "a_z":
+			# Sort by Name
+			self.list.sort(key=self.sortByName)
+		elif "user" in config.usage.menu_sort_mode.value:
+			self.hide_show_entries()
+>>>>>>> 7b6780083b... Rework "PluginDescriptor" class
 		else:
 			list.sort(key=lambda x: int(x[3]))
 

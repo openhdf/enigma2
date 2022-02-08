@@ -733,10 +733,40 @@ class EPGSelection(Screen, HelpableScreen):
 				config.misc.prev_mepg_time = ConfigClock(default=time())
 				mepg_config_initialized = True
 			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.prev_mepg_time)
+<<<<<<< HEAD
 		elif self.type == EPG_TYPE_GRAPH:
 			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselection.graph_prevtime)
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
 			self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.epgselection.infobar_prevtime)
+=======
+
+	def furtherOptions(self):
+		menu = []
+		text = _("Select action")
+		event = self["list"].getCurrent()[0]
+		if event:
+			menu = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EVENTINFO)
+				if 'selectedevent' in p.fnc.__code__.co_varnames]
+			if menu:
+				text += ": %s" % event.getEventName()
+		if self.type == EPG_TYPE_MULTI:
+			menu.append((_("Goto specific date/time"), self.enterDateTime))
+		menu.append((_("Timer Overview"), self.openTimerOverview))
+		if len(menu) == 1:
+			menu and menu[0][1]()
+		elif len(menu) > 1:
+			def boxAction(choice):
+				if choice:
+					choice[1]()
+			self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu, windowTitle=_("Further options"))
+
+	def runPlugin(self, plugin):
+		event = self["list"].getCurrent()
+		plugin(session=self.session, selectedevent=event)
+
+	def openTimerOverview(self):
+		self.session.open(TimerEditList)
+>>>>>>> 7b6780083b... Rework "PluginDescriptor" class
 
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:

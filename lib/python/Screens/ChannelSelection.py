@@ -671,6 +671,7 @@ def parseCurentEvent(list):
 	return False
 
 
+<<<<<<< HEAD
 def parseNextEvent(list):
 	_list = list
 	if len(_list) > 0:
@@ -682,6 +683,50 @@ def parseNextEvent(list):
 		eit = _list[0]
 		return begin, end, name, description, eit
 	return False
+=======
+class ChannelSelectionEPG(InfoBarHotkey):
+	def __init__(self):
+		self.hotkeys = [("Info (EPG)", "info", "Infobar/openEventView"),
+			("Info (EPG)" + " " + _("long"), "info_long", "Infobar/showEventInfoPlugins"),
+			("EPG/Guide", "epg", "Plugins/Extensions/GraphMultiEPG/1"),
+			("EPG/Guide" + " " + _("long"), "epg_long", "Infobar/showEventInfoPlugins")]
+		self["ChannelSelectEPGActions"] = hotkeyActionMap(["ChannelSelectEPGActions"], dict((x[1], self.hotkeyGlobal) for x in self.hotkeys))
+		self.eventViewEPG = self.start_bouquet = self.epg_bouquet = None
+		self.currentSavedPath = []
+
+	def getKeyFunctions(self, key):
+		selection = eval("config.misc.hotkey." + key + ".value.split(',')")
+		selected = []
+		for x in selection:
+			function = list(function for function in hotkey.functions if function[1] == x and function[2] == "EPG")
+			if function:
+				selected.append(function[0])
+		return selected
+
+	def runPlugin(self, plugin):
+		Screens.InfoBar.InfoBar.instance.runPlugin(plugin)
+
+	def getEPGPluginList(self, getAll=False):
+		pluginlist = [(p.name, boundFunction(self.runPlugin, p), p.description or p.name) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EVENTINFO)
+				if 'selectedevent' not in p.fnc.__code__.co_varnames] or []
+		from Components.ServiceEventTracker import InfoBarCount
+		if getAll or InfoBarCount == 1:
+			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG, _("Display EPG list for current channel")))
+		pluginlist.append((_("Multi EPG"), self.openMultiServiceEPG, _("Display EPG as MultiEPG")))
+		pluginlist.append((_("Current event EPG"), self.openEventView, _("Display EPG info for current event")))
+		return pluginlist
+
+	def showEventInfoPlugins(self):
+		pluginlist = self.getEPGPluginList()
+		if pluginlist:
+			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list=pluginlist, skin_name="EPGExtensionsList")
+		else:
+			self.openSingleServiceEPG()
+
+	def EventInfoPluginChosen(self, answer):
+		if answer is not None:
+			answer[1]()
+>>>>>>> 7b6780083b... Rework "PluginDescriptor" class
 
 
 class ChannelSelectionEPG:
