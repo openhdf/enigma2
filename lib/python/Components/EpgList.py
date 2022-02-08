@@ -827,7 +827,7 @@ class EPGList(GUIComponent):
 					(eListboxPythonMultiContent.TYPE_TEXT, r5.x, r5.y, r5.w, r5.h, 1, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, _("%d min") % (duration / 60))
 				))
 			else:
-				percent = (nowTime - beginTime) * 100 / duration
+				percent = (nowTime - beginTime) * 100 // duration
 				prefix = "+"
 				remaining = ((beginTime + duration) - int(time())) / 60
 				if remaining <= 0:
@@ -1405,7 +1405,7 @@ class EPGList(GUIComponent):
 		else:
 			t = time()
 			epg_time = t - config.epg.histminutes.value * 60
-		test = ['RIBDT', (service.ref.toString(), 0, epg_time, -1)]
+		test = ['RIBDT', (service.ref.toString(), 0, int(epg_time), -1)]
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
 		if t != epg_time:
