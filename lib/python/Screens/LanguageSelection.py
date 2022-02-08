@@ -14,7 +14,7 @@ from enigma import eTimer
 
 from Screens.Rc import Rc
 
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 import gettext
 
@@ -22,11 +22,11 @@ inWizzard = False
 
 
 def LanguageEntryComponent(file, name, index):
-	png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + index + ".png"))
+	png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/" + index + ".png"))
 	if png is None:
-		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + file + ".png"))
+		png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/" + file + ".png"))
 		if png is None:
-			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
+			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
 	res = (index, name, png)
 	return res
 

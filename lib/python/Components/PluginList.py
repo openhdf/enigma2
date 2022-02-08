@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from Components.MenuList import MenuList
 
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
 
 from enigma import eListboxPythonMultiContent, gFont, BT_SCALE, BT_KEEP_ASPECT_RATIO, BT_HALIGN_CENTER, BT_VALIGN_CENTER
@@ -11,7 +11,7 @@ import skin
 
 def PluginEntryComponent(plugin, width=440):
 	if plugin.icon is None:
-		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/plugin.png"))
+		png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/plugin.png"))
 	else:
 		png = plugin.icon
 	nx, ny, nh = skin.parameters.get("PluginBrowserName", (120, 5, 25))
@@ -27,7 +27,7 @@ def PluginEntryComponent(plugin, width=440):
 
 def PluginEntryComponentSelected(plugin, width=440):
 	if plugin.icon is None:
-		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/plugin.png"))
+		png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/plugin.png"))
 	else:
 		png = plugin.icon
 	nx, ny, nh = skin.parameters.get("PluginBrowserName", (120, 5, 25))
@@ -55,7 +55,7 @@ def PluginCategoryComponent(name, png, width=440):
 
 def PluginDownloadComponent(plugin, name, version=None, width=440):
 	if plugin.icon is None:
-		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/plugin.png"))
+		png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/plugin.png"))
 	else:
 		png = plugin.icon
 	if version:

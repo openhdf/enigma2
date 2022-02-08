@@ -23,7 +23,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 
 from time import time
@@ -88,8 +88,8 @@ class PluginBrowserSummary(Screen):
 		self.parent.onChangedEntry.remove(self.selectionChanged)
 
 	def selectionChanged(self, name, desc):
-		self["entry"].text = name
-		self["desc"].text = desc
+		self["entry"].text =  six.ensure_str(name)
+		self["desc"].text =  six.ensure_str(desc)
 
 
 class PluginBrowser(Screen, ProtectedScreen):
@@ -633,9 +633,9 @@ class PluginDownloadBrowser(Screen):
 
 	def updateList(self):
 		_list = []
-		expandableIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/expandable-plugins.png"))
-		expandedIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/expanded-plugins.png"))
-		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/verticalline-plugins.png"))
+		expandableIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/expandable-plugins.png"))
+		expandedIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/expanded-plugins.png"))
+		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/verticalline-plugins.png"))
 
 		self.plugins = {}
 
@@ -679,16 +679,16 @@ class PluginDownloadBrowser(Screen):
 						tmpT = t[0].lower()
 						tmpT = tmpT.replace('_', '-')
 						if tmpT == x[2]:
-							countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + t[0] + ".png"))
+							countryIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/" + t[0] + ".png"))
 							if countryIcon is None:
-								countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
+								countryIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
 							self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=countryIcon), t[1], x[1]))
 							break
 					else:
 						if t[0][:2] == x[2] and t[0][3:] != 'GB':
-							countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + t[0] + ".png"))
+							countryIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/" + t[0] + ".png"))
 							if countryIcon is None:
-								countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
+								countryIcon = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
 							self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=countryIcon), t[1], x[1]))
 							break
 

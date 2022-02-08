@@ -8,7 +8,7 @@ from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceRef
 from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
 
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 
 from Components.Renderer.Picon import getPiconName
 from Components.config import config
@@ -32,39 +32,39 @@ class ServiceList(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
 
-		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/folder.png"))
+		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/folder.png"))
 		if pic:
 			self.l.setPixmap(self.l.picFolder, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/marker.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/marker.png"))
 		if pic:
 			self.l.setPixmap(self.l.picMarker, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_dvb-s.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_dvb-s.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_S, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_dvb-c.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_dvb-c.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_C, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_dvb-t.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_dvb-t.png"))
 		if pic:
 			self.l.setPixmap(self.l.picDVB_T, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_stream.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_stream.png"))
 		if pic:
 			self.l.setPixmap(self.l.picStream, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/ico_service_group.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_service_group.png"))
 		if pic:
 			self.l.setPixmap(self.l.picServiceGroup, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/icon_crypt.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/icon_crypt.png"))
 		if pic:
 			self.l.setPixmap(self.l.picCrypto, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/record.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/record.png"))
 		if pic:
 			self.l.setPixmap(self.l.picRecord, pic)
 
@@ -129,7 +129,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 				elif attrib == "colorServiceDescriptionSelectedFallback":
 					self.l.setColor(eListboxServiceContent.eventForegroundSelectedFallback, parseColor(value))
 				elif attrib == "picServiceEventProgressbar":
-					pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, value))
+					pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, value))
 					if pic:
 						self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
 				elif attrib == "serviceItemHeight":

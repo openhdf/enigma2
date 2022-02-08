@@ -4,7 +4,7 @@ import os
 import re
 from Components.MenuList import MenuList
 from Components.Harddisk import harddiskmanager
-from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename, fileExists, pathExists
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename, fileExists, pathExists
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 	eServiceReference, eServiceCenter, gFont
 from Tools.LoadPixmap import LoadPixmap
@@ -45,12 +45,12 @@ def FileEntryComponent(name, absolute=None, isDir=False):
 	x, y, w, h = skin.parameters.get("FileListName", (35, 1, 470, 20))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 	if isDir:
-		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/directory.png"))
+		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
 	else:
 		extension = name.split('.')
 		extension = extension[-1].lower()
 		if extension in EXTENSIONS:
-			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
+			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
 		else:
 			png = None
 	if png is not None:
@@ -280,12 +280,12 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, selected=Fal
 	x, y, w, h = skin.parameters.get("FileListMultiName", (55, 0, 470, 25))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 	if isDir:
-		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/directory.png"))
+		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
 	else:
 		extension = name.split('.')
 		extension = extension[-1].lower()
 		if extension in EXTENSIONS:
-			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
+			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
 		else:
 			png = None
 	if png is not None:
@@ -293,9 +293,9 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, selected=Fal
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 	if not name.startswith('<'):
 		if selected:
-			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
+			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
 		else:
-			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
+			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png"))
 		x, y, w, h = skin.parameters.get("FileListMultiLock", (2, 0, 25, 25))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon))
 	return res

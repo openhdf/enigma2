@@ -175,6 +175,9 @@ class ConfigElement(object):
 	def __call__(self, selected):
 		return self.getMulti(selected)
 
+	def getMulti(self, selected):  # You need to override this to do appropriate value conversion to a display renderer.
+		return ("text", self.value)
+
 	def onSelect(self, session):
 		pass
 

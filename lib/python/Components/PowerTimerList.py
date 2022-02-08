@@ -7,7 +7,7 @@ from Components.GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from Tools.LoadPixmap import LoadPixmap
 from timer import TimerEntry
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from PowerTimer import AFTEREVENT, TIMERTYPE
 
 
@@ -141,7 +141,7 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 3, 39, 30, 30, icon))
 			else:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 2, 26, 20, 20, icon))
-		line = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
+		line = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "div-h.png"))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, 0, height - 2, width, 2, line))
 
 		return res
@@ -156,14 +156,14 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 		self.l.setFont(3, gFont("Regular", 27))
 		self.l.setItemHeight(50)
 		self.l.setList(list)
-		self.iconWait = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_wait.png"))
-		self.iconRecording = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_rec.png"))
-		self.iconPrepared = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_prep.png"))
-		self.iconDone = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_done.png"))
-		self.iconRepeat = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_rep.png"))
-		self.iconZapped = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_zap.png"))
-		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_off.png"))
-		self.iconFailed = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/timer_failed.png"))
+		self.iconWait = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_wait.png"))
+		self.iconRecording = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_rec.png"))
+		self.iconPrepared = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_prep.png"))
+		self.iconDone = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_done.png"))
+		self.iconRepeat = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_rep.png"))
+		self.iconZapped = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_zap.png"))
+		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_off.png"))
+		self.iconFailed = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_failed.png"))
 
 	def getCurrent(self):
 		cur = self.l.getCurrentSelection()

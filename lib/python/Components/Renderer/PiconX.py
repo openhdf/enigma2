@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, eEnv
-from Tools.Directories import fileExists, SCOPE_CURRENT_SKIN, SCOPE_ACTIVE_SKIN, resolveFilename
+from Tools.Directories import fileExists, SCOPE_CURRENT_SKIN, SCOPE_GUISKIN, resolveFilename
 
 
 class PiconX(Renderer):
@@ -52,7 +52,7 @@ class PiconX(Renderer):
                         if fileExists(tmp):
                             pngname = tmp
                         else:
-                            pngname = resolveFilename(SCOPE_ACTIVE_SKIN, 'picon_default.png')
+                            pngname = resolveFilename(SCOPE_GUISKIN, 'picon_default.png')
                     self.nameCache['default'] = pngname
             if self.pngname != pngname:
                 self.instance.setPixmapFromFile(pngname)
