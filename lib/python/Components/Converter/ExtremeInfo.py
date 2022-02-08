@@ -13,7 +13,7 @@ from Components.Converter.Poll import Poll
 
 
 
-class ExtremeInfo(Poll, Converter, object):
+class ExtremeInfo(Poll, Converter):
     TUNERINFO = 0
     CAMNAME = 1
     NUMBER = 2

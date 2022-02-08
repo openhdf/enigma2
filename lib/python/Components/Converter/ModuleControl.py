@@ -11,7 +11,7 @@ from enigma import eDVBCI_UI, eDVBCIInterfaces
 from Components.Converter.Poll import Poll
 
 
-class ModuleControl(Poll, Converter, object):
+class ModuleControl(Poll, Converter):
 	SLOT1 = 0
 	SLOT2 = 1
 	SLOT3 = 2

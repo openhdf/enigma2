@@ -78,7 +78,7 @@ class pServiceEvent(object):
 	def getBeginTimeString(self):
 		return ""
 
-class EventInfo(PerServiceBase, Source, object):
+class EventInfo(PerServiceBase, Source):
 	NOW = 0
 	NEXT = 1
 

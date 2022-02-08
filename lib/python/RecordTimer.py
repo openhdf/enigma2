@@ -140,7 +140,7 @@ def getBqRootStr(ref):
 # please do not translate log messages
 
 
-class RecordTimerEntry(timer.TimerEntry, object):
+class RecordTimerEntry(timer.TimerEntry):
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=TIMERTYPE.JUSTPLAY, afterEvent=AFTEREVENT.DEFAULT, checkOldTimers=False, dirname=None, tags=None, descramble='notset', record_ecm='notset', rename_repeat=True, isAutoTimer=False, always_zap=TIMERTYPE.ALWAYS_ZAP, MountPath=None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers:

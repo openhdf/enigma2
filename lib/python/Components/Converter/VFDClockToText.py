@@ -22,7 +22,7 @@ MONTHS = (_("January"),
 dayOfWeek = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 
 
-class VFDClockToText(Converter, object):
+class VFDClockToText(Converter):
 	DEFAULT = 0
 	WITH_SECONDS = 1
 	IN_MINUTES = 2

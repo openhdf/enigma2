@@ -12,7 +12,7 @@ from Components.Converter.ChannelNumbers import channelnumbers
 import Screens.InfoBar
 
 
-class ServiceName(Converter, object):
+class ServiceName(Converter):
 	NAME = 0
 	NAME_ONLY = 1
 	NAME_EVENT = 2

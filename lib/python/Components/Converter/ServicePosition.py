@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
 from Components.Converter.Converter import Converter
 from Components.Sources.Clock import Clock
 from time import time as getTime, localtime, strftime
@@ -108,7 +106,7 @@ class ServicePosition(Poll, Converter):
 		seek = self.getSeek()
 		if seek is None:
 			return ""
-		if self.type == self.TYPE_SUMMARY or self.type == self.TYPE_SUMMARY:
+		if self.type == self.TYPE_SUMMARY:
 			s = self.position / 90000
 			e = (self.length / 90000) - s
 			return "%02d:%02d +%2dm" % (s / 60, s % 60, e / 60)
@@ -279,7 +277,7 @@ class ServicePosition(Poll, Converter):
 				if not self.detailed:
 					if not self.vfd:
 						if self.showHours:
-							if self.showNoSeconds and self.showNoSeconds2:
+							if self.showNoSeconds or self.showNoSeconds2:
 								if self.type == self.TYPE_LENGTH:
 									return sign_l + "%d:%02d" % (l / 3600, l % 3600 / 60)
 								elif self.type == self.TYPE_POSITION:

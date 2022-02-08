@@ -13,7 +13,6 @@ class ServicePosition(PerServiceDisplay):
 	TYPE_RELATIVE = 3
 
 	def __init__(self, navcore, type):
-		object.__init__(self)
 		self.updateTimer = eTimer()
 		self.updateTimer.callback.append(self.update)
 		PerServiceDisplay.__init__(self, navcore,

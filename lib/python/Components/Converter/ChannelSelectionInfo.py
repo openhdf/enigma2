@@ -10,7 +10,7 @@ from enigma import eServiceCenter, eEPGCache, eServiceReference
 from time import localtime
 
 
-class ChannelSelectionInfo(Converter, object):
+class ChannelSelectionInfo(Converter):
 	Reference = 1
 	NextEventTitle = 2
 	NextEventStartStopTime = 3

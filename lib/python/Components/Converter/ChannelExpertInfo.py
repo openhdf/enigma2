@@ -10,7 +10,7 @@ from Components.Element import cached
 from Components.ServiceEventTracker import ServiceEventTracker
 
 
-class ChannelExpertInfo(Converter, object):
+class ChannelExpertInfo(Converter):
 	TUNERINFO = 0
 	TUNERINFOBP = 1
 	TUNERTYPE = 2
