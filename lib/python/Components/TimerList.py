@@ -2,7 +2,6 @@ from __future__ import absolute_import
 from __future__ import division
 from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_BOTTOM, getDesktop
 
-from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from Tools.LoadPixmap import LoadPixmap
@@ -10,7 +9,7 @@ from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 
 
-class TimerList(HTMLComponent, GUIComponent, object):
+class TimerList(GUIComponent):
 #
 #  | <Name of the Timer>     <Service>  <orb.pos>|
 #  | <state>  <start, end>  |

@@ -1,11 +1,10 @@
 from __future__ import absolute_import
-from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 
 from enigma import eListboxPythonStringContent, eListbox
 
 
-class MenuList(HTMLComponent, GUIComponent):
+class MenuList(GUIComponent):
 	def __init__(self, list, enableWrapAround=True, content=eListboxPythonStringContent):
 		GUIComponent.__init__(self)
 		self.list = list

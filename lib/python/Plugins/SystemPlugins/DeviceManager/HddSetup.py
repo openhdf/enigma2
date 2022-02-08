@@ -9,7 +9,6 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from .ExtrasList import ExtrasList
 from Components.MenuList import MenuList
 from Components.GUIComponent import GUIComponent
-from Components.HTMLComponent import HTMLComponent
 from Tools.LoadPixmap import LoadPixmap
 from Components.Button import Button
 from Components.Label import Label

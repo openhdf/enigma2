@@ -1,11 +1,9 @@
 from __future__ import absolute_import
 import skin
-from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from enigma import eLabel, eWidget, eSlider, fontRenderClass, ePoint, eSize
 
 
-class ScrollLabel(HTMLComponent, GUIComponent):
 	def __init__(self, text="", showscrollbar=True):
 		GUIComponent.__init__(self)
 		self.message = text
@@ -161,9 +159,6 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.scrollbar = None
 		self.instance = None
 		self.right_text = None
-
-	def produceHTML(self):
-		return self.message
 
 	def getText(self):
 		return self.message

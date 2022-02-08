@@ -6,7 +6,6 @@ from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsecti
 from Components.Pixmap import Pixmap
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap
-from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Components.EpgList import Rect
 from Components.Sources.Event import Event
@@ -64,7 +63,7 @@ config.misc.graph_mepg.extension_menu = ConfigYesNo(default=True)
 listscreen = config.misc.graph_mepg.default_mode.value
 
 
-class EPGList(HTMLComponent, GUIComponent):
+class EPGList(GUIComponent):
 	def __init__(self, selChangedCB=None, timer=None, time_epoch=120, overjump_empty=True):
 		GUIComponent.__init__(self)
 		self.cur_event = None
@@ -637,7 +636,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.offs = 0
 
 
-class TimelineText(HTMLComponent, GUIComponent):
+class TimelineText(GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
