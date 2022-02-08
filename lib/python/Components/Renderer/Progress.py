@@ -42,4 +42,4 @@ class Progress(VariableValue, Renderer):
 	def getRange(self):
 		return self.__start, self.__end
 
-	_range = property(getRange, setRange)
+	range = property(getRange, setRange)
