@@ -281,5 +281,5 @@
 		<widget source="parent.text_summary" render="Label" position="0,16" size="220,54" font="FdLcD;12" halign="left" transparent="1" />
 		<panel name="SummaryIconsPanel" />
 	</screen>
-	<include filename="~/skin_common.xml" />
+	<include filename="skin_common.xml" />
 </skin>

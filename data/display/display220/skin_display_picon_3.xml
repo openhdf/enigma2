@@ -204,5 +204,5 @@
 		<widget source="parent.Text" render="Label" position="top" size="*,95" font="FdLcD;31" halign="center" valign="center" />
 		<widget source="parent.selectedChoice" render="Label" position="bottom" size="*,44" font="FdLcD;44" halign="center" valign="center" />
 	</screen>
-	<include filename="~/skin_common.xml" />
+	<include filename="skin_common.xml" />
 </skin>

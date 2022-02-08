@@ -483,7 +483,7 @@
   </screen>
   <!--Kodi-->
   <screen name="KodiLauncher_summary" position="fill">
-    <ePixmap pixmap="~/kodi.png" position="0,0" size="400,175" />
+    <ePixmap pixmap="kodi.png" position="0,0" size="400,175" />
   </screen>
   <screen name="KodiVideoPlayer_summary" position="fill">
     <panel name="InfoBarMoviePlayerSummary" />

@@ -321,5 +321,5 @@
 		<widget source="parent.summary_action" render="Label" position="0,66" size="220,20" font="FdLcD;19" halign="left" noWrap="1" />
 		<widget source="parent.summary_status" render="Label" position="0,41" size="220,18" font="FdLcD;16" halign="left" noWrap="1" />
 	</screen>
-	<include filename="~/skin_common.xml" />
+	<include filename="skin_common.xml" />
 </skin>

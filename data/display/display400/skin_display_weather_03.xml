@@ -502,6 +502,6 @@
 		</widget>
 		<eLabel text="°" font="FdLcD; 75" position="350,85" size="30,80" backgroundColor="XionBackground" foregroundColor="XionFont1" zPosition="8" />
 	</screen>
-	<include filename="~/skin_display.xml" />
-	<include filename="~/skin_common.xml" />
+	<include filename="skin_display.xml" />
+	<include filename="skin_common.xml" />
 </skin>

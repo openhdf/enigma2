@@ -328,5 +328,5 @@
 		<widget source="parent.summary_description" render="Label" position="0,60" size="220,50" font="FdLcD;24" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
-	<include filename="~/skin_common.xml" />
+	<include filename="skin_common.xml" />
 </skin>

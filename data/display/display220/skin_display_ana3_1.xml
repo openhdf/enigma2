@@ -39,7 +39,7 @@
   </screen>
   <!--standby-->
   <screen name="StandbySummary" position="fill">
-    <ePixmap pixmap="~/analog_lcd_3.png" position="0,0" size="220,176" zPosition="0" />
+    <ePixmap pixmap="analog_lcd_3.png" position="0,0" size="220,176" zPosition="0" />
     <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" hColor="white" linewidth="5" zPosition="2" alphatest="on">
       <convert type="OMaclock">Hours</convert>
     </widget>
@@ -49,10 +49,10 @@
     <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" sColor="red" linewidth="3" zPosition="4" alphatest="on">
       <convert type="OMaclock">Seconds</convert>
     </widget>
-    <widget source="session.RecordState" render="Pixmap" pixmap="~/analog_lcd_record.png" position="0,0" size="220,176" zPosition="1" alphatest="on">
+    <widget source="session.RecordState" render="Pixmap" pixmap="analog_lcd_record.png" position="0,0" size="220,176" zPosition="1" alphatest="on">
       <convert type="ConditionalShowHide">Blink</convert>
     </widget>
-    <ePixmap pixmap="~/analog_lcd_point.png" position="center,center" size="20,20" alphatest="on" zPosition="5" />
+    <ePixmap pixmap="analog_lcd_point.png" position="center,center" size="20,20" alphatest="on" zPosition="5" />
   </screen>
-  <include filename="~/skin_common.xml" />
+  <include filename="skin_common.xml" />
 </skin>

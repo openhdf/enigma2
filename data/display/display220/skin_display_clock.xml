@@ -276,5 +276,5 @@
 		<panel name="SummaryIconsPanel" />
 	</screen>
 
-<include filename="~/skin_common.xml" />
+<include filename="skin_common.xml" />
 </skin>
