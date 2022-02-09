@@ -246,8 +246,7 @@ class About(Screen):
 				tempinfo = ""
 
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
-			mark = str('\xc2\xb0')
-			AboutText += _("System Temp:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
+			AboutText += _("System Temp:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + SIGN + "C\n"
 
 		tempinfo = ""
 		if path.exists('/proc/stb/fp/temp_sensor_avs'):
@@ -277,8 +276,7 @@ class About(Screen):
 			except:
 				tempinfo = ""
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
-			mark = str('\xc2\xb0')
-			AboutText += _("CPU Temp:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
+			AboutText += _("CPU Temp:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + SIGN + "C\n"
 
 		AboutText += _("Cores:\t%s") % about.getCpuCoresString() + "\n"
 		AboutText += _("HDF Version:\tV%s") % getImageVersion() + " Build #" + getImageBuild() + " based on " + getOEVersion() + "\n"
@@ -890,8 +888,7 @@ class AboutSummary(Screen):
 		elif path.exists('/proc/stb/fp/temp_sensor'):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
-			mark = str('\xc2\xb0')
-			AboutText += _("Temperature: %s") % tempinfo.replace('\n', '') + mark + "C"
+			AboutText += _("Temperature: %s") % tempinfo.replace('\n', '') + SIGN + "C"
 
 		self["AboutText"] = StaticText(AboutText)
 
