@@ -6755,7 +6755,7 @@ msgstr ""
 
 #, python-format
 msgid "Image:\t%s"
-msgstr "Bild: %s"
+msgstr "Image: %s"
 
 msgid "Immediate shutdown"
 msgstr "Direkt Ausschalten"
