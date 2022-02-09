@@ -61,18 +61,6 @@ def find_rootfssubdir(file):
 	return
 
 
-def read_startup(FILE):
-	file = FILE
-	try:
-		with open(file, 'r') as myfile:
-			data = myfile.read().replace('\n', '')
-		myfile.close()
-	except IOError:
-		print("[ERROR] failed to open file %s" % file)
-		data = " "
-	return data
-
-
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -367,19 +355,20 @@ class About(Screen):
 		wlan1 = about.getIfConfig('wlan1')
 		if 'addr' in eth0:
 			for x in about.GetIPsFromNetworkInterfaces():
-				AboutText += "\t" + str(x[0]) + ": " + str(x[1]) + " (" + netspeed() + ")\n"
+				print(x)
+				AboutText += "\t" + str(x[1]) + " (" + netspeed() + ")\n"
 		elif 'addr' in eth1:
 			for x in about.GetIPsFromNetworkInterfaces():
-				AboutText += "\t" + str(x[0]) + ": " + str(x[1]) + " (" + netspeed_eth1() + ")\n"
+				AboutText += "\t" + str(x[1]) + " (" + netspeed_eth1() + ")\n"
 		elif 'addr' in ra0:
 			for x in about.GetIPsFromNetworkInterfaces():
-				AboutText += "\t" + str(x[0]) + ": " + str(x[1]) + " (~" + netspeed_ra0() + ")\n"
+				AboutText += "\t" + str(x[1]) + " (~" + netspeed_ra0() + ")\n"
 		elif 'addr' in wlan0:
 			for x in about.GetIPsFromNetworkInterfaces():
-				AboutText += "\t" + str(x[0]) + ": " + str(x[1]) + " (~" + netspeed_wlan0() + ")\n"
+				AboutText += "\t" + str(x[1]) + " (~" + netspeed_wlan0() + ")\n"
 		elif 'addr' in wlan1:
 			for x in about.GetIPsFromNetworkInterfaces():
-				AboutText += "\t" + str(x[0]) + ": " + str(x[1]) + " (~" + netspeed_wlan1() + ")\n"
+				AboutText += "\t" + str(x[1]) + " (~" + netspeed_wlan1() + ")\n"
 		else:
 			for x in about.GetIPsFromNetworkInterfaces():
 				AboutText += "\t" + str(x[0]) + ": " + str(x[1]) + "\n"
