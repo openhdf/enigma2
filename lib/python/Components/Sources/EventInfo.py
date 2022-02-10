@@ -13,7 +13,7 @@ from Components.Sources.Source import Source
 # from enigma import eServiceEvent
 
 
-class pServiceEvent(object):
+class pServiceEvent:
 	NOW = 0
 	NEXT = 1
 

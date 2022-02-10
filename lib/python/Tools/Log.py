@@ -7,7 +7,7 @@ from Tools.LogConfig import (LOG_LEVEL_DEBUG, LOG_LEVEL_ERROR, LOG_LEVEL_INFO,
                              LOG_TYPE_INFO, LOG_TYPE_WARNING, LogConfig)
 
 
-class Log(object):
+class Log:
 	@staticmethod
 	def e(text=""):
 		#ERROR

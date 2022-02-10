@@ -8,7 +8,7 @@ from Screens.MessageBox import MessageBox
 from Tools.Log import Log
 
 
-class FSBLCheckerBase(object):
+class FSBLCheckerBase:
 	def getCurrentHash(self):
 		data = None
 		try:

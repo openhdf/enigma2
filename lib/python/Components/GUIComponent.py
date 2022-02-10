@@ -6,7 +6,7 @@ from Components.config import config
 from skin import applyAllAttributes
 
 
-class GUIComponent(object):
+class GUIComponent:
 	""" GUI component """
 
 	def __init__(self):

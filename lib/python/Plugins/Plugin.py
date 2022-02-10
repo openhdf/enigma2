@@ -7,7 +7,7 @@ from Components.config import ConfigSubsection, config
 config.plugins = ConfigSubsection()
 
 
-class PluginDescriptor(object):
+class PluginDescriptor:
 	"""An object to describe a plugin."""
 
 	# where to list the plugin. Note that there are different call arguments,

@@ -725,7 +725,7 @@ class SecConfigure:
 		self.update()
 
 
-class NIM(object):
+class NIM:
 	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type=None, frontend_id=None, i2c=None, is_empty=False, input_name=None, supports_blind_scan=False):
 		if not multi_type:
 			multi_type = {}

@@ -50,7 +50,7 @@ class ConsoleItem:
 			callback(data, retval, self.extra_args)
 
 
-class Console():
+class Console:
 	def __init__(self):
 		# Still called appContainers and appResults because Network.py accesses it to
 		# know if there's still stuff running
