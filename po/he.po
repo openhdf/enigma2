@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -18,11 +18,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.3\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
 
 msgid ""
 "\n"
@@ -333,11 +328,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-#
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 msgid "%A %d %B"
 msgstr ""
 
@@ -359,15 +349,6 @@ msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%a"
-msgstr ""
-
-msgid "%a %d"
-msgstr ""
-
-msgid "%a %d %B"
-msgstr ""
-
-msgid "%a %d %b"
 msgstr ""
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
@@ -394,10 +375,6 @@ msgstr "%d.%B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -5026,6 +5003,10 @@ msgstr ""
 msgid "Download .NFI-files for USB-flasher"
 msgstr ""
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "מוריד"
+
 msgid "Download plugins"
 msgstr ""
 
@@ -6831,6 +6812,10 @@ msgid "History zap..."
 msgstr ""
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "הסר פלאגינים"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "הסר פלאגינים"
 
@@ -6948,9 +6933,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 #
@@ -9878,6 +9860,9 @@ msgstr "מספר טלפון"
 msgid "PiP"
 msgstr ""
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -11263,6 +11248,10 @@ msgstr "הסר"
 msgid "Remove Confirmation"
 msgstr "Tuner הגדרת"
 
+#, fuzzy
+msgid "Remove Plugins"
+msgstr "הסר פלאגינים"
+
 #
 #, fuzzy
 msgid "Remove Quad Channel Entry"
@@ -11431,10 +11420,6 @@ msgstr "GUI ?איתחול עכשיו"
 
 msgid "Restart GUI now?"
 msgstr "GUI ?איתחול עכשיו"
-
-#, fuzzy
-msgid "Restart Network"
-msgstr "איתחול רשת"
 
 #, fuzzy
 msgid "Restart Network Adapter"
@@ -13806,9 +13791,6 @@ msgid "Softcam Setup"
 msgstr "תוכנה"
 
 msgid "Softcam settings"
-msgstr ""
-
-msgid "Softcam-Panel..."
 msgstr ""
 
 msgid "Software"

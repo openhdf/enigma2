@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: none\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.3\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
 
 msgid ""
 "\n"
@@ -329,10 +324,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 msgid "%A %d %B"
 msgstr ""
 
@@ -355,18 +346,6 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%a %e %B %Y"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%a %e %B %Y"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -393,10 +372,6 @@ msgstr "%d.%B %Y"
 #, python-format
 msgid "%d GB"
 msgstr "%d GB"
-
-#, python-format
-msgid "%d Gb"
-msgstr "%d Gb"
 
 #, python-format
 msgid "%d KB"
@@ -4798,6 +4773,10 @@ msgstr "Download %s from server"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Download .NFI-files for USB-flasher"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Download plugins"
+
 msgid "Download plugins"
 msgstr "Download plugins"
 
@@ -6502,6 +6481,10 @@ msgstr ""
 msgid "History zap..."
 msgstr "History zap..."
 
+#, fuzzy
+msgid "Hold Plugins"
+msgstr "Plugins"
+
 msgid "Hold plugins"
 msgstr ""
 
@@ -6616,9 +6599,6 @@ msgstr "IMDB search for current event"
 
 msgid "IMDb Search"
 msgstr "IMDb Search"
-
-msgid "INFO-Panel..."
-msgstr ""
 
 msgid "IP address"
 msgstr "IP address"
@@ -9307,6 +9287,9 @@ msgstr "Phone number"
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr "Picon"
 
@@ -10580,6 +10563,10 @@ msgid "Remove Confirmation"
 msgstr "Remove Confirmation"
 
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Remove plugins"
+
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "Remove a nameserver entry"
 
@@ -10731,10 +10718,6 @@ msgstr "Restart GUI"
 
 msgid "Restart GUI now?"
 msgstr "Restart GUI now?"
-
-#, fuzzy
-msgid "Restart Network"
-msgstr "Restart network"
 
 msgid "Restart Network Adapter"
 msgstr ""
@@ -12879,10 +12862,6 @@ msgstr "Samba Setup"
 
 msgid "Softcam settings"
 msgstr "Softcam settings"
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Log Manager"
 
 msgid "Software"
 msgstr "Software"

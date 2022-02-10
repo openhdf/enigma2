@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: none\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Poedit 2.2.3\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
 
 msgid ""
 "\n"
@@ -331,10 +326,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 msgid "%A %d %B"
 msgstr ""
 
@@ -356,15 +347,6 @@ msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%a"
-msgstr ""
-
-msgid "%a %d"
-msgstr ""
-
-msgid "%a %d %B"
-msgstr ""
-
-msgid "%a %d %b"
 msgstr ""
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
@@ -392,10 +374,6 @@ msgstr "%d.%B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -4877,6 +4855,10 @@ msgstr "Stiahnuť %s zo servera"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Stiahnuť súbory .NFI pre USB-Flasher"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Sťahovanie"
+
 msgid "Download plugins"
 msgstr ""
 
@@ -6618,6 +6600,10 @@ msgid "History zap..."
 msgstr ""
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Odstrániť moduly"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Odstrániť moduly"
 
@@ -6732,9 +6718,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 #, fuzzy
@@ -9509,6 +9492,9 @@ msgstr "Telefónne číslo"
 msgid "PiP"
 msgstr ""
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -10832,6 +10818,10 @@ msgid "Remove Confirmation"
 msgstr "Nastavenie tunera"
 
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Odstrániť moduly"
+
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "Odstrániť DNS"
 
@@ -10990,10 +10980,6 @@ msgstr "Teraz reštartovať GUI?"
 
 msgid "Restart GUI now?"
 msgstr "Teraz reštartovať GUI?"
-
-#, fuzzy
-msgid "Restart Network"
-msgstr "Reštartovať sieť"
 
 #, fuzzy
 msgid "Restart Network Adapter"
@@ -13249,10 +13235,6 @@ msgstr "Softvér"
 
 msgid "Softcam settings"
 msgstr ""
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Nastavenie správcu softvéru"
 
 msgid "Software"
 msgstr "Softvér"

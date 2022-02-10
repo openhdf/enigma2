@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -17,11 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.3\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
 
 msgid ""
 "\n"
@@ -349,11 +344,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-#
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 msgid "%A %d %B"
 msgstr ""
 
@@ -376,15 +366,6 @@ msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%a"
-msgstr ""
-
-msgid "%a %d"
-msgstr ""
-
-msgid "%a %d %B"
-msgstr ""
-
-msgid "%a %d %b"
 msgstr ""
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
@@ -412,10 +393,6 @@ msgstr "%Y. %B %d."
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -5362,6 +5339,11 @@ msgstr "%s letöltése a szerverről"
 msgid "Download .NFI-files for USB-flasher"
 msgstr ".NFI fájlok letöltése az USB Flasherhez"
 
+#
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Letöltés"
+
 msgid "Download plugins"
 msgstr ""
 
@@ -7296,6 +7278,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Pluginek eltávolítása"
+
+#
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Pluginek eltávolítása"
 
@@ -7418,9 +7405,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 #
@@ -10508,6 +10492,9 @@ msgstr "Telefonszám"
 msgid "PiP"
 msgstr ""
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -12043,6 +12030,11 @@ msgstr "Tuner beállítások"
 
 #
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Pluginek eltávolítása"
+
+#
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "névszerver eltávolítása"
 
@@ -12231,11 +12223,6 @@ msgstr "Indítsam újra most a kezelő felületet?"
 #
 msgid "Restart GUI now?"
 msgstr "Indítsam újra most a kezelő felületet?"
-
-#
-#, fuzzy
-msgid "Restart Network"
-msgstr "Hálózat újraindítása"
 
 #
 #, fuzzy
@@ -14771,10 +14758,6 @@ msgstr "Szoftver"
 
 msgid "Softcam settings"
 msgstr ""
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Szoftverkezelés"
 
 #
 msgid "Software"

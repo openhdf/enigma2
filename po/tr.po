@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:18+0200\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.3\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
 
 msgid ""
 "\n"
@@ -341,10 +336,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 msgid "%A %d %B"
 msgstr "%A %d %B"
 
@@ -367,18 +358,6 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%A %d %B"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%A %d %B"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -405,10 +384,6 @@ msgstr "%A %e %B %Y"
 #, python-format
 msgid "%d GB"
 msgstr "%d GB"
-
-#, python-format
-msgid "%d Gb"
-msgstr "%d Gb"
 
 #, python-format
 msgid "%d KB"
@@ -4791,6 +4766,10 @@ msgstr "Sunucudan %s indir"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "USB bellek için .NFI dosyası indir"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Eklentileri indir"
+
 msgid "Download plugins"
 msgstr "Eklentileri indir"
 
@@ -6497,6 +6476,10 @@ msgstr "Geçmiş ileri"
 msgid "History zap..."
 msgstr "Kanal değiştirme geçmişi..."
 
+#, fuzzy
+msgid "Hold Plugins"
+msgstr "Yüklü eklentiler"
+
 msgid "Hold plugins"
 msgstr "Yüklü eklentiler"
 
@@ -6614,9 +6597,6 @@ msgstr "Geçerli etkinliği IMDb'de ara"
 
 msgid "IMDb Search"
 msgstr "IMDb Ara"
-
-msgid "INFO-Panel..."
-msgstr ""
 
 msgid "IP address"
 msgstr "IP adresi"
@@ -9321,6 +9301,9 @@ msgstr "Telefon numarası"
 msgid "PiP"
 msgstr "RİR"
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr "Logo"
 
@@ -10580,6 +10563,10 @@ msgstr "Kaldır"
 msgid "Remove Confirmation"
 msgstr "Silme Onayı"
 
+#, fuzzy
+msgid "Remove Plugins"
+msgstr "Eklentileri kaldır"
+
 msgid "Remove Quad Channel Entry"
 msgstr ""
 
@@ -10731,10 +10718,6 @@ msgstr "Grafiksel arayüzü yeniden başlat"
 
 msgid "Restart GUI now?"
 msgstr "Grafiksel arayüz şimdi yeniden başlatılsın mı?"
-
-#, fuzzy
-msgid "Restart Network"
-msgstr "Ağı yeniden başlat"
 
 msgid "Restart Network Adapter"
 msgstr "Ağ Adaptörü'nü yeniden başlatın"
@@ -12870,10 +12853,6 @@ msgstr "Samba Kurulumu"
 
 msgid "Softcam settings"
 msgstr "Softcam ayarları"
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "LED Yöneticisi ..."
 
 msgid "Software"
 msgstr "Yazılım"

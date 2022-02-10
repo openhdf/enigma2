@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -12,12 +12,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Poedit 2.2.3\n"
-
-#, fuzzy
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr "%a %e/%m  %-H:%M"
 
 msgid ""
 "\n"
@@ -331,10 +325,6 @@ msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
 #, fuzzy
-msgid "%A"
-msgstr "A"
-
-#, fuzzy
 msgid "%A %d %B"
 msgstr "%A %e %B"
 
@@ -357,18 +347,6 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%a %e %B %Y"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%a %e %B %Y"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -394,10 +372,6 @@ msgstr "%d %B %Y"
 #, python-format
 msgid "%d GB"
 msgstr "%d GB"
-
-#, python-format
-msgid "%d Gb"
-msgstr "%d Gb"
 
 #, python-format
 msgid "%d KB"
@@ -4921,6 +4895,10 @@ msgstr "Allalaadimine %s serverist"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Laadi alla .NFI-failid USB-le"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Paigalda laiendusi"
+
 msgid "Download plugins"
 msgstr "Paigalda laiendusi"
 
@@ -6697,6 +6675,10 @@ msgid "History zap..."
 msgstr "Vaadatud kanalid..."
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Paigalda laiendusi"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Paigalda laiendusi"
 
@@ -6814,9 +6796,6 @@ msgstr "IMDB otsing käesolevale saatele"
 
 msgid "IMDb Search"
 msgstr "IMDb otsing"
-
-msgid "INFO-Panel..."
-msgstr ""
 
 msgid "IP address"
 msgstr "IP aadress"
@@ -9592,6 +9571,9 @@ msgstr "Telefoninumber"
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr "Kanalilogo"
 
@@ -10916,6 +10898,10 @@ msgid "Remove Confirmation"
 msgstr "Kustutamise kinnitus"
 
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Eemalda laiendusi"
+
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "Kustuta nimeserver"
 
@@ -11070,10 +11056,6 @@ msgstr "Taaskäivita kasutajaliides"
 
 msgid "Restart GUI now?"
 msgstr "Kas taaskäivitad kasutajaliidese?"
-
-#, fuzzy
-msgid "Restart Network"
-msgstr "Taaskäivita võrk "
 
 #, fuzzy
 msgid "Restart Network Adapter"
@@ -13337,10 +13319,6 @@ msgstr "Samba seaded"
 
 msgid "Softcam settings"
 msgstr "EMU seaded"
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Logihaldur"
 
 msgid "Software"
 msgstr "Tarkvara"

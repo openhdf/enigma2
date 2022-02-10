@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2021-04-16 22:56+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,11 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
 
 msgid ""
 "\n"
@@ -293,9 +288,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-msgid "%A"
-msgstr ""
-
 msgid "%A %d %B"
 msgstr ""
 
@@ -317,15 +309,6 @@ msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%a"
-msgstr ""
-
-msgid "%a %d"
-msgstr ""
-
-msgid "%a %d %B"
-msgstr ""
-
-msgid "%a %d %b"
 msgstr ""
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
@@ -351,10 +334,6 @@ msgstr ""
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -4533,6 +4512,9 @@ msgstr ""
 msgid "Download .NFI-files for USB-flasher"
 msgstr ""
 
+msgid "Download Plugins"
+msgstr ""
+
 msgid "Download plugins"
 msgstr ""
 
@@ -6156,6 +6138,9 @@ msgstr ""
 msgid "History zap..."
 msgstr ""
 
+msgid "Hold Plugins"
+msgstr ""
+
 msgid "Hold plugins"
 msgstr ""
 
@@ -6265,9 +6250,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 msgid "IP address"
@@ -8843,6 +8825,9 @@ msgstr ""
 msgid "PiP"
 msgstr ""
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -10040,6 +10025,9 @@ msgstr ""
 msgid "Remove Confirmation"
 msgstr ""
 
+msgid "Remove Plugins"
+msgstr ""
+
 msgid "Remove Quad Channel Entry"
 msgstr ""
 
@@ -10188,9 +10176,6 @@ msgid "Restart GUI"
 msgstr ""
 
 msgid "Restart GUI now?"
-msgstr ""
-
-msgid "Restart Network"
 msgstr ""
 
 msgid "Restart Network Adapter"
@@ -12244,9 +12229,6 @@ msgid "Softcam Setup"
 msgstr ""
 
 msgid "Softcam settings"
-msgstr ""
-
-msgid "Softcam-Panel..."
 msgstr ""
 
 msgid "Software"

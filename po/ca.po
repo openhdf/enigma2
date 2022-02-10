@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:20+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
@@ -16,11 +16,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 "X-Generator: Poedit 2.2.3\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
 
 msgid ""
 "\n"
@@ -325,11 +320,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-#
-#, fuzzy
-msgid "%A"
-msgstr "Un"
-
 msgid "%A %d %B"
 msgstr ""
 
@@ -352,15 +342,6 @@ msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%a"
-msgstr ""
-
-msgid "%a %d"
-msgstr ""
-
-msgid "%a %d %B"
-msgstr ""
-
-msgid "%a %d %b"
 msgstr ""
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
@@ -388,10 +369,6 @@ msgstr "%d.%B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -5203,6 +5180,11 @@ msgstr ""
 msgid "Download .NFI-files for USB-flasher"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Descarregant"
+
 msgid "Download plugins"
 msgstr ""
 
@@ -7086,6 +7068,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Esborrar plugins"
+
+#
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Esborrar plugins"
 
@@ -7209,9 +7196,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 #
@@ -10202,6 +10186,9 @@ msgstr ""
 msgid "PiP"
 msgstr ""
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -11666,6 +11653,11 @@ msgstr ""
 msgid "Remove Confirmation"
 msgstr "Configuració del sintonitzador"
 
+#
+#, fuzzy
+msgid "Remove Plugins"
+msgstr "Esborrar plugins"
+
 msgid "Remove Quad Channel Entry"
 msgstr ""
 
@@ -11851,11 +11843,6 @@ msgstr "Reengegar la IGU ara?"
 #
 msgid "Restart GUI now?"
 msgstr "Reengegar la IGU ara?"
-
-#
-#, fuzzy
-msgid "Restart Network"
-msgstr "Reiniciar"
 
 msgid "Restart Network Adapter"
 msgstr ""
@@ -14308,9 +14295,6 @@ msgid "Softcam Setup"
 msgstr "Protegir configuració"
 
 msgid "Softcam settings"
-msgstr ""
-
-msgid "Softcam-Panel..."
 msgstr ""
 
 #

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlac/TimoJ\n"
@@ -14,12 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.3\n"
-
-#, fuzzy
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr "%a %e.%m  %-H:%M"
 
 msgid ""
 "\n"
@@ -352,11 +346,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-#
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 #, fuzzy
 msgid "%A %d %B"
 msgstr "%A %e %B"
@@ -380,18 +369,6 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e.%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%a %e %B %Y"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%a %e %B %Y"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -418,10 +395,6 @@ msgstr "%d.%m.%Y"
 #, python-format
 msgid "%d GB"
 msgstr "%d GB"
-
-#, python-format
-msgid "%d Gb"
-msgstr "%d Gb"
 
 #, python-format
 msgid "%d KB"
@@ -5349,6 +5322,10 @@ msgstr "Lataa %s palvelimelta"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Lataa .NFI-tiedostoja USB-päivitysohjelmalle"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Lataa lisäosia"
+
 msgid "Download plugins"
 msgstr "Lataa lisäosia"
 
@@ -7269,6 +7246,10 @@ msgid "History zap..."
 msgstr "Historia kanavanvaihto..."
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Lataa lisäosia"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Lataa lisäosia"
 
@@ -7392,9 +7373,6 @@ msgstr "Nykyisen ohjelman IMDB-haku"
 
 msgid "IMDb Search"
 msgstr "IMDb-haku"
-
-msgid "INFO-Panel..."
-msgstr ""
 
 #
 msgid "IP address"
@@ -10439,6 +10417,9 @@ msgstr "Puhelinnumero"
 msgid "PiP"
 msgstr "Pip-kuva"
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr "Logo"
 
@@ -11946,6 +11927,11 @@ msgstr "Poista vahvistuskysely"
 
 #
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Poista lisäosia"
+
+#
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "poista nimipalvelin"
 
@@ -12127,11 +12113,6 @@ msgstr "Käynnistetäänkö Enigma2 uudelleen?"
 #
 msgid "Restart GUI now?"
 msgstr "Käynnistetäänkö Enigma2 uudelleen?"
-
-#
-#, fuzzy
-msgid "Restart Network"
-msgstr "Käynnistä uudelleen"
 
 #
 #, fuzzy
@@ -14614,10 +14595,6 @@ msgstr "Samba-asetukset"
 
 msgid "Softcam settings"
 msgstr "Softcam-asetukset"
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Lokien hallinta"
 
 #
 msgid "Software"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -15,11 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.3\n"
 "X-Poedit-SourceCharset: utf-8\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
 
 msgid ""
 "\n"
@@ -338,10 +333,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 msgid "%A %d %B"
 msgstr ""
 
@@ -364,15 +355,6 @@ msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%a"
-msgstr ""
-
-msgid "%a %d"
-msgstr ""
-
-msgid "%a %d %B"
-msgstr ""
-
-msgid "%a %d %b"
 msgstr ""
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
@@ -400,10 +382,6 @@ msgstr "%d.%B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -5115,6 +5093,10 @@ msgstr "Hleð niður %s frá vefþjón"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Hlaða niður .NFI skrár fyrir keyranlegt USB"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Hleð niður"
+
 msgid "Download plugins"
 msgstr ""
 
@@ -6995,6 +6977,10 @@ msgid "History zap..."
 msgstr ""
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Taka út íforrit"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Taka út íforrit"
 
@@ -7117,9 +7103,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 #
@@ -10172,6 +10155,9 @@ msgstr "Síma númer"
 msgid "PiP"
 msgstr ""
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -11682,6 +11668,10 @@ msgstr "Eyða"
 msgid "Remove Confirmation"
 msgstr "Stilling móttakara"
 
+#, fuzzy
+msgid "Remove Plugins"
+msgstr "Taka út íforrit"
+
 #
 #, fuzzy
 msgid "Remove Quad Channel Entry"
@@ -11870,11 +11860,6 @@ msgstr "Endurræsa gluggakerfi núna?"
 #
 msgid "Restart GUI now?"
 msgstr "Endurræsa gluggakerfi núna?"
-
-#
-#, fuzzy
-msgid "Restart Network"
-msgstr "Endurræsi netkort"
 
 #
 #, fuzzy
@@ -14366,10 +14351,6 @@ msgstr "Hugbúnaður"
 
 msgid "Softcam settings"
 msgstr ""
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Uppsetning hugbúnaðar umsýslu"
 
 #
 msgid "Software"

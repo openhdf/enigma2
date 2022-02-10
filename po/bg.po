@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:19+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Bulgarian\n"
@@ -12,11 +12,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.3\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
 
 msgid ""
 "\n"
@@ -316,10 +311,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-#, fuzzy
-msgid "%A"
-msgstr "А"
-
 msgid "%A %d %B"
 msgstr ""
 
@@ -341,15 +332,6 @@ msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%a"
-msgstr ""
-
-msgid "%a %d"
-msgstr ""
-
-msgid "%a %d %B"
-msgstr ""
-
-msgid "%a %d %b"
 msgstr ""
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
@@ -375,10 +357,6 @@ msgstr ""
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -4800,6 +4778,10 @@ msgstr ""
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Изтегли .NFI-Файлове за USB-флашка"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Изтегляне"
+
 msgid "Download plugins"
 msgstr ""
 
@@ -6527,6 +6509,10 @@ msgid "History zap..."
 msgstr ""
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Премахни Плъгини"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Премахни Плъгини"
 
@@ -6641,9 +6627,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 #, fuzzy
@@ -9388,6 +9371,9 @@ msgstr "Телефонен номер"
 msgid "PiP"
 msgstr ""
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -10701,6 +10687,10 @@ msgid "Remove Confirmation"
 msgstr "Тунер конфигурация"
 
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Премахни Плъгини"
+
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "Добавете DNS"
 
@@ -10859,10 +10849,6 @@ msgstr "Рестарт GUI сега?"
 
 msgid "Restart GUI now?"
 msgstr "Рестарт GUI сега?"
-
-#, fuzzy
-msgid "Restart Network"
-msgstr "Рестарт мрежа"
 
 #, fuzzy
 msgid "Restart Network Adapter"
@@ -13105,9 +13091,6 @@ msgid "Softcam Setup"
 msgstr "Софтуер"
 
 msgid "Softcam settings"
-msgstr ""
-
-msgid "Softcam-Panel..."
 msgstr ""
 
 msgid "Software"

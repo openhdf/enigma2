@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: \n"
@@ -12,12 +12,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Poedit 2.2.3\n"
-
-#, fuzzy
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr "%a %e/%m"
 
 msgid ""
 "\n"
@@ -342,10 +336,6 @@ msgid "%2d:%02d:%02d"
 msgstr ""
 
 #, fuzzy
-msgid "%A"
-msgstr "A"
-
-#, fuzzy
 msgid "%A %d %B"
 msgstr "%A %e. %B"
 
@@ -369,18 +359,6 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%A %e. %B"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%A %e. %B"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 #, fuzzy
@@ -409,10 +387,6 @@ msgstr "%d. %B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -4908,6 +4882,10 @@ msgstr "Stáhnout %s ze serveru"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Stáhnout .NFI-soubory pro USB-Flasher"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Stáhnout pluginy"
+
 msgid "Download plugins"
 msgstr "Stáhnout pluginy"
 
@@ -6657,6 +6635,10 @@ msgstr "History další"
 msgid "History zap..."
 msgstr "Historie zap..."
 
+#, fuzzy
+msgid "Hold Plugins"
+msgstr "Pozastavit plugin"
+
 msgid "Hold plugins"
 msgstr "Pozastavit plugin"
 
@@ -6775,9 +6757,6 @@ msgstr "Hledat akt. pořad v IMDB"
 
 msgid "IMDb Search"
 msgstr "Prohledat IMDb"
-
-msgid "INFO-Panel..."
-msgstr ""
 
 msgid "IP address"
 msgstr "IP adresa"
@@ -9555,6 +9534,9 @@ msgstr "Telefonní číslo"
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr "Picony"
 
@@ -10845,6 +10827,10 @@ msgid "Remove Confirmation"
 msgstr "Odstranit potvrzení"
 
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Odstranit pluginy"
+
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "Přenos kanálů ze vzdáleného přijímače"
 
@@ -10998,9 +10984,6 @@ msgstr "Restartovat Enigmu"
 
 msgid "Restart GUI now?"
 msgstr "Právě teď restartovat Enigmu ?"
-
-msgid "Restart Network"
-msgstr "Restartovat síť"
 
 msgid "Restart Network Adapter"
 msgstr "Restartuji síťové připojení"
@@ -13203,10 +13186,6 @@ msgstr "Nastavení Softcam panelu"
 
 msgid "Softcam settings"
 msgstr "Softcam nastavení"
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Softcam konfigurace"
 
 msgid "Software"
 msgstr "Software"

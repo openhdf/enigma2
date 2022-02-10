@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
-"PO-Revision-Date: 2022-02-04 16:46+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"PO-Revision-Date: 2022-02-10 10:06+0100\n"
 "Last-Translator: henrylicious <dende@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -15,13 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
-"\n"
-"%d.%m.%Y  %H:%M - "
 
 msgid ""
 "\n"
@@ -351,9 +344,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-msgid "%A"
-msgstr "%A"
-
 msgid "%A %d %B"
 msgstr "%A %d %B"
 
@@ -376,15 +366,6 @@ msgstr "%d. %b %Y %-H:%M"
 
 msgid "%a"
 msgstr "%a"
-
-msgid "%a %d"
-msgstr "%a %d"
-
-msgid "%a %d %B"
-msgstr "%a %d %B"
-
-msgid "%a %d %b"
-msgstr "%a %d %b"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -410,10 +391,6 @@ msgstr "%d %B %Y"
 #, python-format
 msgid "%d GB"
 msgstr "%d GB"
-
-#, python-format
-msgid "%d Gb"
-msgstr "%d Gb"
 
 #, python-format
 msgid "%d KB"
@@ -682,7 +659,7 @@ msgid "/media/custom"
 msgstr "/media/custom"
 
 msgid "/s"
-msgstr "%s/%s: %s"
+msgstr "/s"
 
 msgid "/sec]"
 msgstr "/Sek.]"
@@ -4730,6 +4707,9 @@ msgstr "%s vom Server herunterladen"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Laden Sie .NFI-Dateien für USB-Flasher herunter"
 
+msgid "Download Plugins"
+msgstr "Plugins herunterladen"
+
 msgid "Download plugins"
 msgstr "Plugins herunterladen"
 
@@ -6390,6 +6370,9 @@ msgstr "Zap Verlauf vor"
 msgid "History zap..."
 msgstr "Zeige die Zap Historie…"
 
+msgid "Hold Plugins"
+msgstr "Plugins sperren"
+
 msgid "Hold plugins"
 msgstr "Plugins sperren"
 
@@ -6500,9 +6483,6 @@ msgstr "IMDB Suche nach laufenden Programm"
 
 msgid "IMDb Search"
 msgstr "IMDb Suche"
-
-msgid "INFO-Panel..."
-msgstr "INFO-Panel..."
 
 msgid "IP address"
 msgstr "IP-Adresse"
@@ -9132,6 +9112,9 @@ msgstr "Telefonnummer"
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr "PiP ist derzeit nicht verfügbar, da Sie IPTV-Streams verwenden!"
+
 msgid "Picon"
 msgstr "Picon"
 
@@ -10377,6 +10360,9 @@ msgstr "Entfernen"
 msgid "Remove Confirmation"
 msgstr "Löschen bestätigen"
 
+msgid "Remove Plugins"
+msgstr "Plugins entfernen"
+
 msgid "Remove Quad Channel Entry"
 msgstr "Entfernen Sie den Quad-Channel-Eintrag"
 
@@ -10528,9 +10514,6 @@ msgstr "Benutzeroberfläche neu starten"
 
 msgid "Restart GUI now?"
 msgstr "Benutzeroberfläche jetzt neu starten?"
-
-msgid "Restart Network"
-msgstr "Netzwerk neu starten"
 
 msgid "Restart Network Adapter"
 msgstr "Neustart des Netzwerkadapters"
@@ -12594,9 +12577,6 @@ msgstr "Softcam-Setup"
 
 msgid "Softcam settings"
 msgstr "Softcam Einstellungen"
-
-msgid "Softcam-Panel..."
-msgstr "Softcam-Panel..."
 
 msgid "Software"
 msgstr "Software"

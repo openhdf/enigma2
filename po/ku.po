@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -17,12 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.3\n"
-
-#, fuzzy
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr "%a %e/%m  %-H:%M"
 
 msgid ""
 "\n"
@@ -336,10 +330,6 @@ msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
 #, fuzzy
-msgid "%A"
-msgstr "A"
-
-#, fuzzy
 msgid "%A %d %B"
 msgstr "%A %e %B"
 
@@ -363,18 +353,6 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%A %e %B %Y"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 #, fuzzy
@@ -401,10 +379,6 @@ msgstr "%d.%B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -5042,6 +5016,10 @@ msgstr "Download %s from server"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Download .NFI-files for USB-flasher"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Dayni Girédayi"
+
 msgid "Download plugins"
 msgstr "Dayni Girédayi"
 
@@ -6833,6 +6811,10 @@ msgid "History zap..."
 msgstr ""
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Dayni Girédayi"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Dayni Girédayi"
 
@@ -6951,9 +6933,6 @@ msgstr "Add/remove timer for current event"
 #, fuzzy
 msgid "IMDb Search"
 msgstr "Searching"
-
-msgid "INFO-Panel..."
-msgstr ""
 
 msgid "IP address"
 msgstr "IP address"
@@ -9784,6 +9763,9 @@ msgstr "Phone number"
 msgid "PiP"
 msgstr " (PiP)"
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr "Picon"
 
@@ -11140,6 +11122,10 @@ msgid "Remove Confirmation"
 msgstr "Movie list configuration"
 
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Remove plugins"
+
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "Remove a nameserver entry"
 
@@ -11301,10 +11287,6 @@ msgstr "Restart GUI now?"
 
 msgid "Restart GUI now?"
 msgstr "Restart GUI now?"
-
-#, fuzzy
-msgid "Restart Network"
-msgstr "Restart network"
 
 #, fuzzy
 msgid "Restart Network Adapter"
@@ -13621,10 +13603,6 @@ msgstr "Çékirin"
 #, fuzzy
 msgid "Softcam settings"
 msgstr "OSD settings"
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Softcam type"
 
 msgid "Software"
 msgstr "Software"

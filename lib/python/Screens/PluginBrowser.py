@@ -101,9 +101,9 @@ class PluginBrowser(Screen, ProtectedScreen):
 
 		self.firsttime = True
 
-		self["red"] = Label(_("Remove plugins"))
-		self["green"] = Label(_("Download plugins"))
-		self["blue"] = Label(_("Hold plugins"))
+		self["red"] = Label(_("Remove Plugins"))
+		self["green"] = Label(_("Download Plugins"))
+		self["blue"] = Label(_("Hold Plugins"))
 
 		self.list = []
 		self["list"] = PluginList(self.list)

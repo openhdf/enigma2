@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
@@ -14,12 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 2.2.3\n"
-
-#, fuzzy
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr "%a %e/%m  %-H:%M"
 
 msgid ""
 "\n"
@@ -329,10 +323,6 @@ msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
 #, fuzzy
-msgid "%A"
-msgstr "A"
-
-#, fuzzy
 msgid "%A %d %B"
 msgstr "%A %e %B"
 
@@ -355,18 +345,6 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%a %e/%m"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -391,10 +369,6 @@ msgstr "%d.%B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -4888,6 +4862,10 @@ msgstr "دانلود %s از سرور"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "دانلود فایل های NFI برای USB-Flasher"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "در حال دانلود"
+
 msgid "Download plugins"
 msgstr ""
 
@@ -6647,6 +6625,10 @@ msgid "History zap..."
 msgstr ""
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "حذف پلاگین ها"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "حذف پلاگین ها"
 
@@ -6762,9 +6744,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 #, fuzzy
@@ -9554,6 +9533,9 @@ msgstr "شماره تلفن"
 msgid "PiP"
 msgstr "(تصویر در تصویر)"
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -10889,6 +10871,10 @@ msgid "Remove Confirmation"
 msgstr "پیکربندی تیونر"
 
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "حذف پلاگین ها"
+
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "حذف یک مورد nameserver"
 
@@ -11051,10 +11037,6 @@ msgstr "راه اندازی مجدد رابط گرافیک کاربری؟"
 
 msgid "Restart GUI now?"
 msgstr "راه اندازی مجدد رابط گرافیک کاربری؟"
-
-#, fuzzy
-msgid "Restart Network"
-msgstr "راه اندازی دوباره شبکه"
 
 #, fuzzy
 msgid "Restart Network Adapter"
@@ -13335,10 +13317,6 @@ msgstr "نرم افزار"
 
 msgid "Softcam settings"
 msgstr ""
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "تنظیمات مدیریت نرم افزار"
 
 msgid "Software"
 msgstr "نرم افزار"

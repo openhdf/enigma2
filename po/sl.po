@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -12,12 +12,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=2 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Poedit 2.2.3\n"
-
-#, fuzzy
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr "%a %e/%m  %-H:%M"
 
 msgid ""
 "\n"
@@ -341,11 +335,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-#
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 #, fuzzy
 msgid "%A %d %B"
 msgstr "%A %e %B"
@@ -370,18 +359,6 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%a %e/%m"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -409,10 +386,6 @@ msgstr "%d.%B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -5391,6 +5364,11 @@ msgstr "Prenesi %s iz serverja"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Prenesi .NFI-datoteke za programsko nadgradnjo preko USB"
 
+#
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Nalagam..."
+
 msgid "Download plugins"
 msgstr ""
 
@@ -7360,6 +7338,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Odstranitev vtičnikov"
+
+#
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Odstranitev vtičnikov"
 
@@ -7487,9 +7470,6 @@ msgstr ""
 #
 msgid "IMDb Search"
 msgstr "IMDb iskanje"
-
-msgid "INFO-Panel..."
-msgstr ""
 
 #, fuzzy
 msgid "IP address"
@@ -10609,6 +10589,9 @@ msgstr "Telefonska številka"
 msgid "PiP"
 msgstr " (PiP)"
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -12172,6 +12155,11 @@ msgstr "Nastavitev kanalnikov"
 
 #
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Odstranitev vtičnikov"
+
+#
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "odstranitev vnosa v imenskem strežniku"
 
@@ -12361,11 +12349,6 @@ msgstr "Ponoven zagon uporabniškega vmesnika?"
 #
 msgid "Restart GUI now?"
 msgstr "Ponoven zagon uporabniškega vmesnika?"
-
-#
-#, fuzzy
-msgid "Restart Network"
-msgstr "Ponovni zagon omrežja"
 
 #
 #, fuzzy
@@ -14966,9 +14949,6 @@ msgid "Softcam Setup"
 msgstr "Samba (SMB) nastavitve"
 
 msgid "Softcam settings"
-msgstr ""
-
-msgid "Softcam-Panel..."
 msgstr ""
 
 #

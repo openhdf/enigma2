@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
@@ -14,12 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 "X-Generator: Poedit 2.2.3\n"
-
-#, fuzzy
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr "%a %e/%m  %-H:%M"
 
 msgid ""
 "\n"
@@ -348,9 +342,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-msgid "%A"
-msgstr ""
-
 #, fuzzy
 msgid "%A %d %B"
 msgstr "%A %e %B"
@@ -375,18 +366,6 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%a %e/%m"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -413,10 +392,6 @@ msgstr "%d.%B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -5330,6 +5305,10 @@ msgstr "Download %s do Servidor"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Download ficheiros .NFI para PEN Drive"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Downloading"
+
 msgid "Download plugins"
 msgstr ""
 
@@ -7263,6 +7242,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Remover plugins"
+
+#
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Remover plugins"
 
@@ -7386,9 +7370,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 #
@@ -10469,6 +10450,9 @@ msgstr "Número de telefone"
 msgid "PiP"
 msgstr " (PiP)"
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -12004,6 +11988,11 @@ msgstr "Definições do Tuner"
 
 #
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Remover plugins"
+
+#
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "apagar servidor de DNS"
 
@@ -12192,11 +12181,6 @@ msgstr "Reiniciar GUI?"
 #
 msgid "Restart GUI now?"
 msgstr "Reiniciar GUI?"
-
-#
-#, fuzzy
-msgid "Restart Network"
-msgstr "Reiniciar a rede"
 
 #
 #, fuzzy
@@ -14721,10 +14705,6 @@ msgstr "Samba configurações"
 
 msgid "Softcam settings"
 msgstr ""
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Manager de logs"
 
 msgid "Software"
 msgstr ""

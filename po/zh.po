@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openhdf-6.5             enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2021-08-04 21:52+0800\n"
 "Last-Translator: 孤独之剑 < haotzyy1970@163.com>\n"
 "Language-Team: 孤独之剑< haotzyy1970@163.com>\n"
@@ -13,12 +13,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Poedit 3.0\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-
-#, fuzzy
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr "%a %e/%m  %-H:%M"
 
 msgid ""
 "\n"
@@ -352,10 +346,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 msgid "%A %d %B"
 msgstr "%A %d %B"
 
@@ -379,18 +369,6 @@ msgstr "%Y-%m-%d"
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%A %d %B"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%A %d %B"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -416,10 +394,6 @@ msgstr "%d %B %Y"
 #, python-format
 msgid "%d GB"
 msgstr "%d GB"
-
-#, python-format
-msgid "%d Gb"
-msgstr "%d Gb"
 
 #, python-format
 msgid "%d KB"
@@ -4806,6 +4780,10 @@ msgstr "下载 %s 从服务器"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "下载USB刷写.NFI文件"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "下载插件"
+
 msgid "Download plugins"
 msgstr "下载插件"
 
@@ -6510,6 +6488,10 @@ msgstr "历史未来"
 msgid "History zap..."
 msgstr "历史把..."
 
+#, fuzzy
+msgid "Hold Plugins"
+msgstr "持有插件"
+
 msgid "Hold plugins"
 msgstr "持有插件"
 
@@ -6622,9 +6604,6 @@ msgstr "IMDb搜索当前事件"
 
 msgid "IMDb Search"
 msgstr "IMDB搜索"
-
-msgid "INFO-Panel..."
-msgstr ""
 
 msgid "IP address"
 msgstr "IP地址"
@@ -9294,6 +9273,9 @@ msgstr "电话号码"
 msgid "PiP"
 msgstr "画中画"
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr "Picon"
 
@@ -10556,6 +10538,10 @@ msgid "Remove Confirmation"
 msgstr "删除确认"
 
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "删除插件"
+
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "添加新的四通道条目"
 
@@ -10708,9 +10694,6 @@ msgstr "重启GUI"
 
 msgid "Restart GUI now?"
 msgstr "重新启动GUI吗?"
-
-msgid "Restart Network"
-msgstr "重新启动网络"
 
 msgid "Restart Network Adapter"
 msgstr "重启网络适配器"
@@ -12798,10 +12781,6 @@ msgstr "softcam设置"
 
 msgid "Softcam settings"
 msgstr "softcam设置"
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Softcam 管理..."
 
 msgid "Software"
 msgstr "软件"

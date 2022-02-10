@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: http://sat-ukraine.info/\n"
@@ -15,12 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 "X-Generator: Poedit 2.2.3\n"
-
-#, fuzzy
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr "%a %e/%m  %-H:%M"
 
 msgid ""
 "\n"
@@ -343,11 +337,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-#
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 #, fuzzy
 msgid "%A %d %B"
 msgstr "%A %e %B"
@@ -372,18 +361,6 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%a %e %B %Y"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%a %e %B %Y"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -410,10 +387,6 @@ msgstr "%d.%B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -5316,6 +5289,11 @@ msgstr ""
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Завантажити файли .NFI з USB-флеші"
 
+#
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Завантажується..."
+
 msgid "Download plugins"
 msgstr ""
 
@@ -7240,6 +7218,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Видалення додатків"
+
+#
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Видалення додатків"
 
@@ -7363,9 +7346,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 #
@@ -10425,6 +10405,9 @@ msgstr "Телефонний номер"
 msgid "PiP"
 msgstr ""
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -11934,6 +11917,11 @@ msgstr "Конфігурація тюнера"
 
 #
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Видалення додатків"
+
+#
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "видалити DNS запис"
 
@@ -12123,11 +12111,6 @@ msgstr "Перезавантажити GUI зараз?"
 #
 msgid "Restart GUI now?"
 msgstr "Перезавантажити GUI зараз?"
-
-#
-#, fuzzy
-msgid "Restart Network"
-msgstr "Перезавантаження мережі"
 
 #
 #, fuzzy
@@ -14646,9 +14629,6 @@ msgid "Softcam Setup"
 msgstr "Програмне забезпечення"
 
 msgid "Softcam settings"
-msgstr ""
-
-msgid "Softcam-Panel..."
 msgstr ""
 
 #

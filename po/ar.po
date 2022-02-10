@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:19+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -15,11 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Poedit 2.2.3\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
 
 msgid ""
 "\n"
@@ -334,11 +329,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-#
-#, fuzzy
-msgid "%A"
-msgstr "أ"
-
 msgid "%A %d %B"
 msgstr ""
 
@@ -360,15 +350,6 @@ msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%a"
-msgstr ""
-
-msgid "%a %d"
-msgstr ""
-
-msgid "%a %d %B"
-msgstr ""
-
-msgid "%a %d %b"
 msgstr ""
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
@@ -399,10 +380,6 @@ msgstr "%d.%B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -5065,6 +5042,10 @@ msgstr ""
 msgid "Download .NFI-files for USB-flasher"
 msgstr ""
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "جارى التحميل"
+
 msgid "Download plugins"
 msgstr ""
 
@@ -6870,6 +6851,10 @@ msgid "History zap..."
 msgstr ""
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "حذف البلج إنز"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "حذف البلج إنز"
 
@@ -6987,9 +6972,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 #
@@ -9917,6 +9899,9 @@ msgstr "رقم التليفون"
 msgid "PiP"
 msgstr ""
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -11302,6 +11287,10 @@ msgstr "حذف"
 msgid "Remove Confirmation"
 msgstr "تهيئة الموالف"
 
+#, fuzzy
+msgid "Remove Plugins"
+msgstr "حذف البلج إنز"
+
 #
 #, fuzzy
 msgid "Remove Quad Channel Entry"
@@ -11470,10 +11459,6 @@ msgstr "هل تريد إعادة تشغيل الاينجما2 الان ؟"
 
 msgid "Restart GUI now?"
 msgstr "هل تريد إعادة تشغيل الاينجما2 الان ؟"
-
-#, fuzzy
-msgid "Restart Network"
-msgstr "إعادة تشغيل الشبكه"
 
 #, fuzzy
 msgid "Restart Network Adapter"
@@ -13853,9 +13838,6 @@ msgid "Softcam Setup"
 msgstr "برنامج تشغيلى"
 
 msgid "Softcam settings"
-msgstr ""
-
-msgid "Softcam-Panel..."
 msgstr ""
 
 msgid "Software"

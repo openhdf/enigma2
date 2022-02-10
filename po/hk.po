@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -12,11 +12,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
 
 msgid ""
 "\n"
@@ -327,10 +322,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 msgid "%A %d %B"
 msgstr ""
 
@@ -352,15 +343,6 @@ msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%a"
-msgstr ""
-
-msgid "%a %d"
-msgstr ""
-
-msgid "%a %d %B"
-msgstr ""
-
-msgid "%a %d %b"
 msgstr ""
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
@@ -387,10 +369,6 @@ msgstr "%d.%B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -4924,6 +4902,10 @@ msgstr ""
 msgid "Download .NFI-files for USB-flasher"
 msgstr ""
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "可下載的插件"
+
 msgid "Download plugins"
 msgstr ""
 
@@ -6695,6 +6677,10 @@ msgid "History zap..."
 msgstr "歷史"
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "下載插件"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "下載插件"
 
@@ -6818,9 +6804,6 @@ msgstr "自定義當前事件時長"
 #, fuzzy
 msgid "IMDb Search"
 msgstr "搜索"
-
-msgid "INFO-Panel..."
-msgstr ""
 
 msgid "IP address"
 msgstr ""
@@ -9632,6 +9615,9 @@ msgstr "電話號碼"
 msgid "PiP"
 msgstr ""
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -10965,6 +10951,10 @@ msgid "Remove Confirmation"
 msgstr "Gemini 配置"
 
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "移除插件"
+
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "移除DNS項目"
 
@@ -11125,10 +11115,6 @@ msgstr "重啟GUI"
 
 msgid "Restart GUI now?"
 msgstr "立即重啟GUI?"
-
-#, fuzzy
-msgid "Restart Network"
-msgstr "重啟網路"
 
 #, fuzzy
 msgid "Restart Network Adapter"
@@ -13409,10 +13395,6 @@ msgstr "保護設定"
 #, fuzzy
 msgid "Softcam settings"
 msgstr "編輯設定"
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "軟體管理..."
 
 msgid "Software"
 msgstr ""

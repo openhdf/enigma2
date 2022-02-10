@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
@@ -16,12 +16,6 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.3\n"
-
-#, fuzzy
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr "%a %e/%m  %-H:%M"
 
 msgid ""
 "\n"
@@ -323,10 +317,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 msgid "%A %d %B"
 msgstr "%A %d %B"
 
@@ -349,18 +339,6 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%A %d %B"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%A %d %B"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -387,10 +365,6 @@ msgstr "%d.%B %Y"
 #, python-format
 msgid "%d GB"
 msgstr "%d GB"
-
-#, python-format
-msgid "%d Gb"
-msgstr ""
 
 #, python-format
 msgid "%d KB"
@@ -4858,6 +4832,10 @@ msgstr "Parsisiųsta %s iš serverio"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Parsisiunčiami .NFI failai į USB diegėją"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Parsisiunčiama"
+
 msgid "Download plugins"
 msgstr ""
 
@@ -6598,6 +6576,10 @@ msgid "History zap..."
 msgstr ""
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Pašalinti papildomas programas"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Pašalinti papildomas programas"
 
@@ -6712,9 +6694,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 #, fuzzy
@@ -9487,6 +9466,9 @@ msgstr "Telefono numeris"
 msgid "PiP"
 msgstr ""
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -10809,6 +10791,10 @@ msgid "Remove Confirmation"
 msgstr "Imtuvo konfigūravimas"
 
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Pašalinti papildomas programas"
+
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "pašalinkite serverio pavadinimo įėjimą"
 
@@ -10968,10 +10954,6 @@ msgstr "Paleisti iš naujo GUI dabar?"
 
 msgid "Restart GUI now?"
 msgstr "Paleisti iš naujo GUI dabar?"
-
-#, fuzzy
-msgid "Restart Network"
-msgstr "Paleisti iš naujo tinklą"
 
 #, fuzzy
 msgid "Restart Network Adapter"
@@ -13231,10 +13213,6 @@ msgstr "Programinė įranga"
 
 msgid "Softcam settings"
 msgstr ""
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Programinės įrangos valdymo nustatymas"
 
 msgid "Software"
 msgstr "Programinė įranga"

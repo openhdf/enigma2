@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -13,11 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Poedit 2.2.3\n"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
 
 msgid ""
 "\n"
@@ -339,11 +334,6 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
-#
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 msgid "%A %d %B"
 msgstr ""
 
@@ -366,15 +356,6 @@ msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%a"
-msgstr ""
-
-msgid "%a %d"
-msgstr ""
-
-msgid "%a %d %B"
-msgstr ""
-
-msgid "%a %d %b"
 msgstr ""
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
@@ -403,10 +384,6 @@ msgstr "%d.%B %Y"
 
 #, python-format
 msgid "%d GB"
-msgstr ""
-
-#, python-format
-msgid "%d Gb"
 msgstr ""
 
 #, python-format
@@ -5402,6 +5379,10 @@ msgstr "Pobierz %s z serwera"
 msgid "Download .NFI-files for USB-flasher"
 msgstr ""
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Pobierz pluginy"
+
 msgid "Download plugins"
 msgstr "Pobierz pluginy"
 
@@ -7366,6 +7347,10 @@ msgid "History zap..."
 msgstr ""
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Pobierz pluginy"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Pobierz pluginy"
 
@@ -7490,9 +7475,6 @@ msgid "IMDB search for current event"
 msgstr ""
 
 msgid "IMDb Search"
-msgstr ""
-
-msgid "INFO-Panel..."
 msgstr ""
 
 #
@@ -10609,6 +10591,9 @@ msgstr "Numer telefonu"
 msgid "PiP"
 msgstr ""
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr ""
 
@@ -12184,6 +12169,11 @@ msgstr "Konfiguracja tunera"
 
 #
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Usuń pluginy"
+
+#
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "Usuń wpis DNS"
 
@@ -12374,11 +12364,6 @@ msgstr "Zrestartować GUI teraz?"
 #
 msgid "Restart GUI now?"
 msgstr "Zrestartować GUI teraz?"
-
-#
-#, fuzzy
-msgid "Restart Network"
-msgstr "Restartuj sieć"
 
 #
 #, fuzzy
@@ -14959,11 +14944,6 @@ msgstr "Oprogramowanie"
 
 msgid "Softcam settings"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Ustawienia 'Software manager'"
 
 #
 msgid "Software"

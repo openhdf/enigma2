@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-04 16:02+0100\n"
+"POT-Creation-Date: 2022-02-10 10:04+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: torac <info@takerman.se>\n"
@@ -15,12 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.2.3\n"
 "X-Poedit-SourceCharset: utf-8\n"
-
-#, fuzzy
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr "%a %e/%m  %-T%M"
 
 msgid ""
 "\n"
@@ -345,11 +339,6 @@ msgstr "%2d:%02d"
 msgid "%2d:%02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-#
-#, fuzzy
-msgid "%A"
-msgstr "A"
-
 #, fuzzy
 msgid "%A %d %B"
 msgstr "%A %e %B"
@@ -374,18 +363,6 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#, fuzzy
-msgid "%a %d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d %B"
-msgstr "%a %e %B %Y"
-
-#, fuzzy
-msgid "%a %d %b"
-msgstr "%a %e %B %Y"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -412,10 +389,6 @@ msgstr "%d.%B %Y"
 #, python-format
 msgid "%d GB"
 msgstr "%d GB"
-
-#, python-format
-msgid "%d Gb"
-msgstr "%d Gb"
 
 #, python-format
 msgid "%d KB"
@@ -5345,6 +5318,10 @@ msgstr "Ladda ned %s från server"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Ladda ner .NFI filer för USB-Flasher"
 
+#, fuzzy
+msgid "Download Plugins"
+msgstr "Ladda ner plugins"
+
 msgid "Download plugins"
 msgstr "Ladda ner plugins"
 
@@ -7268,6 +7245,10 @@ msgid "History zap..."
 msgstr "Zaphistorik..."
 
 #, fuzzy
+msgid "Hold Plugins"
+msgstr "Ladda ner plugins"
+
+#, fuzzy
 msgid "Hold plugins"
 msgstr "Ladda ner plugins"
 
@@ -7390,9 +7371,6 @@ msgstr "IMDb sökning för aktuell händelse"
 
 msgid "IMDb Search"
 msgstr "IMDb Sökning"
-
-msgid "INFO-Panel..."
-msgstr ""
 
 #
 msgid "IP address"
@@ -10459,6 +10437,9 @@ msgstr "Telefonnummer"
 msgid "PiP"
 msgstr "BiB"
 
+msgid "PiP is currently not available because your are using iptv streams!"
+msgstr ""
+
 msgid "Picon"
 msgstr "Picon"
 
@@ -11964,6 +11945,11 @@ msgstr "Konfirmera Borttagning"
 
 #
 #, fuzzy
+msgid "Remove Plugins"
+msgstr "Ta bort plugins"
+
+#
+#, fuzzy
 msgid "Remove Quad Channel Entry"
 msgstr "Ta bort en namnserver post"
 
@@ -12147,11 +12133,6 @@ msgstr "Starta om GUI"
 #
 msgid "Restart GUI now?"
 msgstr "Omstart av GUI nu?"
-
-#
-#, fuzzy
-msgid "Restart Network"
-msgstr "Omstart nätverk"
 
 #
 #, fuzzy
@@ -14637,10 +14618,6 @@ msgstr "Samba-Konfiguration"
 
 msgid "Softcam settings"
 msgstr "Softcaminställningar"
-
-#, fuzzy
-msgid "Softcam-Panel..."
-msgstr "Logghanterare"
 
 #
 msgid "Software"
