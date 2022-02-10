@@ -37,3 +37,4 @@ stamp-h1
 *.bak
 __pycache__
 *.pyc
+*.swp
