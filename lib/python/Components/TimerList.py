@@ -7,6 +7,9 @@ from Tools.FuzzyDate import FuzzyTime
 from Tools.LoadPixmap import LoadPixmap
 from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+import six
+
+SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
 
 class TimerList(GUIComponent):

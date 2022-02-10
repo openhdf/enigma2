@@ -27,6 +27,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
 from os import statvfs
+import six
 
 
 class TimerEntry(Screen, ConfigListScreen):
@@ -143,16 +144,21 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_afterevent = ConfigSelection(choices=[("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("auto", _("auto"))], default=afterevent)
 		self.timerentry_recordingtype = ConfigSelection(choices=[("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default=recordingtype)
 		self.timerentry_type = ConfigSelection(choices=[("once", _("once")), ("repeated", _("repeated"))], default=type)
-		self.timerentry_name = ConfigText(default=self.timer.name.replace('\xc2\x86', '').replace('\xc2\x87', '').encode("utf-8"), visible_width=50, fixed_size=False)
-		self.timerentry_description_replaced = self.timer.description.replace('\xc2\x8a', ' ').encode("utf-8")
+		# FIME Do we need these 2 lines?
+		if six.PY3:
+			self.timerentry_name = ConfigText(default=self.timer.name.replace('\x86', '').replace('\x87', ''), visible_width=50, fixed_size=False)
+			self.timerentry_description_replaced = self.timer.description.replace('\x8a', ' ')
+		else:
+			self.timerentry_name = ConfigText(default=self.timer.name.replace('\xc2\x86', '').replace('\xc2\x87', '').encode("utf-8"), visible_width=50, fixed_size=False)
+			self.timerentry_description_replaced = self.timer.description.replace('\xc2\x8a', ' ').encode("utf-8")
 		self.timerentry_description = ConfigText(default=self.timerentry_description_replaced, visible_width=50, fixed_size=False)
 		self.timerentry_tags = self.timer.tags[:]
 		# if no tags found, make name of event default tag set.
 		if not self.timerentry_tags:
-				tagname = self.timer.name.strip()
-				if tagname:
-					tagname = tagname[0].upper() + tagname[1:].replace(" ", "_")
-					self.timerentry_tags.append(tagname)
+			tagname = self.timer.name.strip()
+			if tagname:
+				tagname = tagname[0].upper() + tagname[1:].replace(" ", "_")
+				self.timerentry_tags.append(tagname)
 
 		self.timerentry_tagsset = ConfigSelection(choices=[not self.timerentry_tags and "None" or " ".join(self.timerentry_tags)])
 
