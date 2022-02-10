@@ -81,14 +81,6 @@ self.session.open(HdmiCECSetupScreen)
 				<!--item level="2" entryID="settings_overlan_setup"><setup id="settingsoverlansetup" /></item-->
 			</menu>
 
-			<!-- Aufnahme / Timeshift Menu -->
-			<menu weight="11" level="2" text="Recording / Playback" entryID="record_menu">
-				<id val="record_menu" />
-				<item level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
-				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
-				<item level="0" text="HDMI-IN Recording settings" entryID="hdmirecord_setup" requires="HDMIin"><setup id="HDMIRecord"/></item>
-				<item level="0" text="Timeshift settings" entryID="timshift_setup"><screen module="Timershift" screen="TimeshiftSettings" /></item>
-			</menu>
 
 			<!-- Menu / Settings / EPG Menu -->
 			<menu weight="15" level="2" text="EPG" entryID="epg_menu">
@@ -202,12 +194,7 @@ self.session.open(SABnzbdSetupScreen)
 					<id val="fp_menu" />
 					<item weight="5" level="0" text="Display Skin" entryID="display_skin_selector" requires="OledDisplay"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
 					<item weight="10" level="0" text="Clock Skin" entryID="clock_skin_selector" requires="OledDisplay"><screen module="SkinSelector" screen="ClockSkinSelector"/></item>
-					<menu level="0" text="Display" entryID="display_selection">
-						<id val="display" />
-						<item level="0" entryID="displaysetup" requires="Display"><setup id="display" /></item>
-						<!--item requires="OledDisplay" level="0" text="VFD Skin Selector" entryID="vfd_skin"><screen module="VfdSkinSelector" screen="VFDSkinSelector"/></item-->
-						<item requires="LCDSKINSetup" level="0" text="VFD Skin Selector" entryID="vfd_skin"><screen module="VfdSkinSelector" screen="VFDSkinSelector"/></item>
-					</menu>
+					<item level="0" entryID="displaysetup" requires="Display"><setup id="display" /></item>
 				</menu>
 
 				<!-- Menu / Settings / Devices / Input Devices -->
@@ -233,6 +220,7 @@ self.session.open(SABnzbdSetupScreen)
 					<item level="2" entryID="logs_setup"><setup id="logs" /></item>
 					<item level="2" text="Logs manager" entryID="logs_man"><screen module="LogManager" screen="LogManager"/></item>
 				</menu>
+				<!-- Aufnahme / Timeshift Menu -->
 				<menu level="2" text="Recording" entryID="record_menu">
 					<id val="record_menu" />
 					<item level="0" text="Recording settings" entryID="recording_setup"><screen module="Recordings" screen="RecordingSettings" /></item>
@@ -294,6 +282,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 				<item weight="35" text="Satfinder" entryID="satfinder" requires="Satfinder"><plugin system="Satfinder" screen="Satfinder" /></item>
 				<!-- item weight="40" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item -->
 			</menu>
+			<item weight="99" level="2" text="Software update" entryID="software_update"><screen module="SoftwareUpdate" screen="UpdatePlugin" /></item>
 		</menu>
 
 		<!-- Menu / Standby -->
