@@ -18,8 +18,6 @@ from .ExtraMessageBox import ExtraMessageBox
 from .MountPoints import MountPoints
 from .HddMount import HddMount
 
-import os
-import sys
 
 
 def PartitionEntry(description, size):

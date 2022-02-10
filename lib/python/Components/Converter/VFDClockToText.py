@@ -3,7 +3,6 @@ from Components.Converter.Converter import Converter
 from Components.Converter.Converter import Converter
 from time import localtime, strftime
 from Components.Element import cached
-from xml.etree.cElementTree import parse
 from Components.config import config
 
 MONTHS = (_("January"),

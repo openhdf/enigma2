@@ -14,7 +14,7 @@ from Components.config import config, ConfigSubsection, ConfigSelection, ConfigS
 from Components.ConfigList import ConfigList
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
-from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
+from os import rename
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 from Tools.BoundFunction import boundFunction
 from boxbranding import getBrandOEM, getBoxType

@@ -11,7 +11,6 @@ from Screens.InputBox import PinInput
 from Screens.ChannelSelection import service_types_tv
 from Tools.BoundFunction import boundFunction
 from enigma import eServiceCenter, eTimer, eServiceReference
-from operator import itemgetter
 
 
 class ProtectedScreen:

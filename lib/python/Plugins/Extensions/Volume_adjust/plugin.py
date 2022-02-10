@@ -21,7 +21,7 @@ from Plugins.Plugin import PluginDescriptor
 from xml.etree.cElementTree import parse as ci_parse
 from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 from enigma import *
-from os import system, path as os_path
+from os import path as os_path
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from .__init__ import _
 global ListChange

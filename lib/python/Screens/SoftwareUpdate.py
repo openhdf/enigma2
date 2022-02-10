@@ -318,7 +318,6 @@ class UpdatePlugin(Screen):
 				self.channellist_name = param[0]
 				self.channellist_only = 2
 		#print event, "-", param
-		pass
 
 	def setEndMessage(self, txt):
 		self.slider.setValue(4)

@@ -16,7 +16,6 @@ from Components.SystemInfo import SystemInfo
 
 import six
 from enigma import eEnv
-import xml.etree.cElementTree
 
 
 class SetupSummary(Screen):

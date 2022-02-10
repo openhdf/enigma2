@@ -2,14 +2,12 @@ from __future__ import absolute_import
 from array import array
 from boxbranding import getBoxType, getImageVersion, getMachineBuild
 from fcntl import ioctl
-from os import path
 from socket import AF_INET, SOCK_DGRAM, inet_ntoa, socket
 from struct import pack, unpack
 from sys import maxsize
 from sys import modules
 import fcntl
 import os
-import struct
 import time
 
 
@@ -183,7 +181,6 @@ def getIfConfig(ifname):
 			ifreq[k] = _ifinfo(sock, v, ifname)
 	except Exception as ex:
 		print("[About] getIfConfig Ex: %s" % str(ex))
-		pass
 	sock.close()
 	return ifreq
 

@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from os import path, listdir
+from os import path
 from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN, fileHas, pathExists, isPluginInstalled
 from Tools.HardwareInfo import HardwareInfo

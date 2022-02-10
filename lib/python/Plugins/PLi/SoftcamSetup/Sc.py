@@ -122,10 +122,8 @@ class ScSelection(Screen):
 	def blue(self):
 		if os.path.exists("/tmp/ecm.info") is True:
 			self.session.open(Console, _("ECM -> ecm.info"), ["cat /tmp/ecm.info"])
-			pass
 		elif os.path.exists("/tmp/ecm1.info") is True:
 			self.session.open(Console, _("ECM -> ecm0.info"), ["cat /tmp/ecm0.info"])
-			pass
 		else:
 			msgi = _("Sorry ... no ECM Info found")
 			self.session.open(MessageBox, msgi, MessageBox.TYPE_INFO)

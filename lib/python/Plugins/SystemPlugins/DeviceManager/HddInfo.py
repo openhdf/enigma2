@@ -16,7 +16,6 @@ from Components.ConfigList import ConfigListScreen
 from Components.config import ConfigSelection, getConfigListEntry, config
 
 import os
-import sys
 import re
 
 

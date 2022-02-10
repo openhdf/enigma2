@@ -76,7 +76,6 @@ class OnlineUpdateCheckPoller:
 					config.softwareupdate.updatefound.setValue(False)
 			else:
 				config.softwareupdate.updatefound.setValue(False)
-		pass
 
 
 class VersionCheck:

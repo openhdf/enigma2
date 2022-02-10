@@ -11,7 +11,7 @@ from Plugins.Plugin import PluginDescriptor
 from Components.config import config, ConfigSelection
 from Components.Label import Label
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_LCDSKIN
-from os import path, walk
+from os import walk
 from enigma import eEnv
 from skin import *
 import os

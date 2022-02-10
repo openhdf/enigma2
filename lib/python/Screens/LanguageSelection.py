@@ -16,7 +16,6 @@ from Screens.Rc import Rc
 
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
-import gettext
 
 inWizzard = False
 

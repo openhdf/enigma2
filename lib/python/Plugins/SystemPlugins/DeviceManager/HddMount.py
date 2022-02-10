@@ -24,8 +24,6 @@ from .ExtraMessageBox import ExtraMessageBox
 from boxbranding import getMachineBrand, getMachineName
 
 import os
-import sys
-import re
 
 
 class HddMount(Screen):

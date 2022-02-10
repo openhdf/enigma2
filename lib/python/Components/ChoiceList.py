@@ -5,7 +5,6 @@ from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists
 import skin
-from os import path
 
 
 def row_delta_y():

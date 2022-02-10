@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 from __future__ import print_function
 import enigma
-import ctypes
 import os
 import six
 

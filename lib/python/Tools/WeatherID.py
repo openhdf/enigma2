@@ -2,7 +2,6 @@
 from six.moves.urllib.error import URLError
 from six.moves.urllib.parse import urlencode
 from six.moves.urllib.request import urlopen
-import sys
 import re
 import json
 import six

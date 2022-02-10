@@ -13,8 +13,6 @@ from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Plugins.Plugin import PluginDescriptor
 import os
 import sys
-import re
-import shutil
 import xml.etree.cElementTree
 
 

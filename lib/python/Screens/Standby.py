@@ -12,11 +12,10 @@ from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
 from boxbranding import getMachineBrand, getMachineBuild, getMachineName, getBoxType, getBrandOEM
 from Tools import Notifications
-from time import localtime, time
+from time import time
 import Screens.InfoBar
 import PowerTimer
 import RecordTimer
-from gettext import dgettext
 import Components.RecordingConfig
 
 inStandby = None

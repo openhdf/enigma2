@@ -17,7 +17,7 @@ from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 from Tools.CIHelper import cihelper
 from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
 
-from os import system, path as os_path
+from os import path as os_path
 from boxbranding import getMachineBrand, getMachineName, getBoxType
 import os
 import six

@@ -6,7 +6,7 @@ import re
 import six
 
 if sys.version_info[0] < 3:
-	from string import maketrans, strip
+	from string import maketrans
 
 from enigma import eConsoleAppContainer
 

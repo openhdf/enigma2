@@ -1,8 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from boxbranding import getBoxType, getMachineBrand, getMachineName
-from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
-from shutil import move
+from os import path as os_path, remove, rename, unlink
 import time
 import six
 
@@ -34,10 +33,7 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from random import Random
-from subprocess import call
-import subprocess
 import string
-import os
 import glob
 import sys
 

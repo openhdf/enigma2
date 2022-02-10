@@ -26,7 +26,7 @@ from Tools.Directories import fileCheck
 
 import os
 import re
-from os import path, popen, system
+from os import path, popen
 from re import search
 import six
 

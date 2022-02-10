@@ -22,7 +22,6 @@ from .ExtraActionBox import ExtraActionBox
 from .MountPoints import MountPoints
 from boxbranding import getMachineBrand, getMachineName
 import os
-import sys
 
 
 def DiskEntry(model, size, removable):

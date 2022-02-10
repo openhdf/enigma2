@@ -9,7 +9,6 @@ from Components.VideoWindow import VideoWindow
 from Components.config import config, ConfigPosition, ConfigYesNo, ConfigSelection
 from Tools import Notifications
 from Screens.MessageBox import MessageBox
-from os import access, W_OK
 
 MAX_X = 720
 MAX_Y = 576
