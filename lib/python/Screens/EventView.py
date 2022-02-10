@@ -313,7 +313,7 @@ class EventViewBase:
 			ret.sort(self.sort_func)
 			for x in ret:
 				t = localtime(x[1])
-				text += strftime(_("\n%Y/%m/%d  %H:%M - "), t) + x[0]
+				text += strftime(("\n%Y/%m/%d  %H:%M - "), t) + x[0]
 			descr = self["epg_description"]
 			descr.setText(descr.getText() + text)
 			descr = self["FullDescription"]
