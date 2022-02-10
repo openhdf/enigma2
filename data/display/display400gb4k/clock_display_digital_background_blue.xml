@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<skin>
+	<windowstyle id="1" type="skinned">
+		<color color="#000000" name="Background"/>
+		<color color="#ffffff" name="LabelForeground"/>
+		<color color="#000000" name="ListboxBackground"/>
+		<color color="#ffffff" name="ListboxForeground"/>
+		<color color="#000000" name="ListboxSelectedBackground"/>
+		<color color="#ffffff" name="ListboxSelectedForeground"/>
+		<color color="#000000" name="ListboxMarkedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedForeground"/>
+		<color color="#000000" name="ListboxMarkedAndSelectedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedAndSelectedForeground"/>
+		<color color="#ffffff" name="WindowTitleForeground"/>
+		<color color="#000000" name="WindowTitleBackground"/>
+	</windowstyle>
+	<fonts>
+		<!-- pick a funky name for the font, so we don't conflict  -->
+		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
+		<font filename="Roboto-Bold.ttf" name="LCD" scale="100"/>
+	</fonts>
+<!-- standby -->
+<screen name="StandbySummary" position="0,0" size="400,240" zPosition="10" flags="wfNoBorder">
+		<ePixmap pixmap="/usr/share/enigma2/display/lcd_skin/klappuhr_blue_lcd.png" position="0,0" size="400,240" zPosition="1" />
+		<widget source="global.CurrentTime" render="Label" position="0,188" size="400,60" font="FdLcD;40" foregroundColor="#FFFFFF" transparent="1" halign="center" zPosition="4" noWrap="1">
+			<convert type="ClockToText">Format:%d.%m.%Y</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="42,20" size="200,120" font="FdLcD;120" foregroundColor="#FFFFFF" transparent="1" halign="left" zPosition="3" noWrap="1">
+			<convert type="ClockToText">Format:%H</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="220,20" size="200,120" font="FdLcD;120" foregroundColor="#FFFFFF" transparent="1" halign="left" zPosition="4" noWrap="1">
+			<convert type="ClockToText">Format:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" backgroundColor="#D70000" position="0,0" size="400,3" zPosition="20" halign="center" valign="bottom">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+	        </widget>
+	        <widget source="session.RecordState" render="FixedLabel" backgroundColor="#D70000" position="0,0" size="400,3" zPosition="20" halign="center" valign="bottom">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<include filename="skin_display.xml" />
+	<include filename="skin_common.xml" />
+</skin>

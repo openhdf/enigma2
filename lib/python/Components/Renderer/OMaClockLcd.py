@@ -1,4 +1,7 @@
+from __future__ import division
 from __future__ import absolute_import
+from past.utils import old_div
+from builtins import round
 import math
 from Components.Renderer.Renderer import Renderer
 from skin import parseColor
@@ -55,7 +58,7 @@ class OMaClockLcd(Renderer):
 
 	def calc(self, w, r, m, m1):
 		a = (w * 6)
-		z = (math.pi / 180)
+		z = (old_div(math.pi, 180))
 		x = int(round((r * math.sin((a * z)))))
 		y = int(round((r * math.cos((a * z)))))
 		return ((m + x), (m1 - y))
@@ -73,8 +76,8 @@ class OMaClockLcd(Renderer):
 			width = 218
 			height = 176
 			l = 35
-		r = (width / 2)
-		r1 = (height / 2)
+		r = (old_div(width, 2))
+		r1 = (old_div(height, 2))
 
 		if opt == 'sec':
 			if LCDSIZE400:
@@ -111,7 +114,7 @@ class OMaClockLcd(Renderer):
 			ystep = -1
 		deltax = (x1 - x0)
 		deltay = abs((y1 - y0))
-		error = (-deltax / 2)
+		error = (old_div(-deltax, 2))
 		y = y0
 		for x in list(range(x0, (x1 + 1))):
 			if steep:

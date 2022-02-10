@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<skin>
+	<windowstyle id="1" type="skinned">
+		<color color="#000000" name="Background"/>
+		<color color="#ffffff" name="LabelForeground"/>
+		<color color="#000000" name="ListboxBackground"/>
+		<color color="#ffffff" name="ListboxForeground"/>
+		<color color="#000000" name="ListboxSelectedBackground"/>
+		<color color="#ffffff" name="ListboxSelectedForeground"/>
+		<color color="#000000" name="ListboxMarkedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedForeground"/>
+		<color color="#000000" name="ListboxMarkedAndSelectedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedAndSelectedForeground"/>
+		<color color="#ffffff" name="WindowTitleForeground"/>
+		<color color="#000000" name="WindowTitleBackground"/>
+	</windowstyle>
+	<fonts>
+		<!-- pick a funky name for the font, so we don't conflict  -->
+		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
+		<font filename="Roboto-Bold.ttf" name="LCD" scale="100"/>
+	</fonts>
+<!-- standby -->
+	<screen name="StandbySummary" position="0,0" size="400,240" flags="wfNoBorder">
+		<ePixmap pixmap="/usr/share/enigma2/display/lcd_skin/analoguhr_blue_lcd.png" position="0,0" size="400,240" zPosition="0" />
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="90,30" size="400,240" hColor="white" linewidth="12" zPosition="4" alphatest="on">
+		<convert type="OMaclock">Hours</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="90,30" size="400,240" mColor="white" linewidth="12" zPosition="3" alphatest="on">
+		<convert type="OMaclock">Minutes</convert>
+	</widget>
+	<widget source="global.CurrentTime" render="OMaClockLcd" position="90,30" size="400,240" sColor="red" linewidth="9" zPosition="2" alphatest="on">
+		<convert type="OMaclock">Seconds</convert>
+	</widget>
+	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/display/lcd_skin/analoguhr_lcd_rec.png" position="0,0" size="400,240" zPosition="1" transparent="1" alphatest="on" >
+		<convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+	</screen>
+	<include filename="skin_display.xml" />
+	<include filename="skin_common.xml" />
+</skin>
