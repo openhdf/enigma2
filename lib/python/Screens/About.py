@@ -49,16 +49,7 @@ def read_startup(FILE):
 		myfile.close()
 	except IOError:
 		print("[ERROR] failed to open file %s" % filename)
-	return ret
-
-
-
-def find_rootfssubdir(file):
-	startup_content = read_startup("/boot/" + file)
-	rootsubdir = startup_content[startup_content.find("rootsubdir=") + 11:].split()[0]
-	if rootsubdir.startswith("linuxrootfs"):
-		return rootsubdir
-	return
+	return data
 
 
 class About(Screen):
