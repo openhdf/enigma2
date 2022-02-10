@@ -11,7 +11,6 @@ from Screens.Standby import TryQuitMainloop
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import fileExists, fileCheck, pathExists, fileHas
 
 
 class SDswap(Screen):

@@ -11,7 +11,6 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
-from Tools.Directories import fileExists
 
 profile("LOAD:enigma")
 import enigma

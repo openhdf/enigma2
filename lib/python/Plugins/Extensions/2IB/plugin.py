@@ -28,8 +28,8 @@ from Plugins.Plugin import PluginDescriptor
 from Components.ActionMap import ActionMap
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigSelection
 from Components.ConfigList import ConfigListScreen
-from Tools.Directories import fileExists
-if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/plugin.pyo") or fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPG/plugin.pyc"):
+from Tools.Directories import isPluginInstalled
+if isPluginInstalled("MerlinEPG"):
 	from Plugins.Extensions.MerlinEPG.plugin import Merlin_PGII
 	MerlinEPGaviable = True
 else:
@@ -132,7 +132,7 @@ def InfoBarPlugins__init__(self):
 	global VZ_MODE
 	if not SIB_StartOnlyOneTime:
 		SIB_StartOnlyOneTime = True
-		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/plugin.pyo") or fileExists("/usr/lib/enigma2/python/Plugins/Extensions/VirtualZap/plugin.pyc"):
+		if isPluginInstalled("VirtualZap"):
 			try:
 				VZ_MODE = config.plugins.virtualzap.mode.value
 			except:

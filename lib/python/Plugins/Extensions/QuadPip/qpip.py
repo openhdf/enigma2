@@ -8,7 +8,6 @@ from Components.Pixmap import Pixmap, MovingPixmap
 from Screens.MessageBox import MessageBox
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import fileExists
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 from Components.Sources.List import List
