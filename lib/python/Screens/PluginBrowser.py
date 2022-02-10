@@ -88,8 +88,8 @@ class PluginBrowserSummary(Screen):
 		self.parent.onChangedEntry.remove(self.selectionChanged)
 
 	def selectionChanged(self, name, desc):
-		self["entry"].text =  six.ensure_str(name)
-		self["desc"].text =  six.ensure_str(desc)
+		self["entry"].text = six.ensure_str(name)
+		self["desc"].text = six.ensure_str(desc)
 
 
 class PluginBrowser(Screen, ProtectedScreen):
