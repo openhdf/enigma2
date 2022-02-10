@@ -278,7 +278,7 @@ class AVSwitch:
 			try:
 				open("/proc/stb/video/videomode_24hz", "w").write(mode_24)
 			except IOError:
-				print( "[VideoHardware] cannot open /proc/stb/video/videomode_24hz")
+				print("[VideoHardware] cannot open /proc/stb/video/videomode_24hz")
 
 		if getBrandOEM() in ('gigablue'):
 			try:
