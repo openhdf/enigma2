@@ -17,11 +17,10 @@ from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
 DEFAULT_SKIN = "XionHDF/skin.xml"
-# DEFAULT_SKIN = SystemInfo["HasFullHDSkinSupport"] and "PLi-FullNightHD/skin.xml" or "PLi-HD/skin.xml"  # SD hardware is no longer supported by the default skin.
 EMERGENCY_SKIN = "skin_default/skin.xml"
 EMERGENCY_NAME = "Stone II"
 DEFAULT_DISPLAY_SKIN = "lcd_skin/skin_display_picon_01.xml"
-DEFAULT_CLOCK_SKIN = "lcd_skin/clock_lcd_analog.xml"
+DEFAULT_STANDBY_SKIN = "lcd_skin/skin_standby_analog_black.xml"
 USER_SKIN = "skin_user.xml"
 USER_SKIN_TEMPLATE = "skin_user_%s.xml"
 SUBTITLE_SKIN = "skin_subtitles.xml"
@@ -55,11 +54,11 @@ if not isfile(skin):
 	DEFAULT_SKIN = EMERGENCY_SKIN
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
-config.skin.clock_skin = ConfigText(default=DEFAULT_CLOCK_SKIN)
+config.skin.standby_skin = ConfigText(default=DEFAULT_STANDBY_SKIN)
 
 currentPrimarySkin = None
 currentDisplaySkin = None
-currentClockSkin = None
+currentStandbySkin = None
 callbacks = []
 runCallbacks = False
 
@@ -78,7 +77,7 @@ runCallbacks = False
 
 
 def InitSkins():
-	global currentPrimarySkin, currentDisplaySkin, currentClockSkin
+	global currentPrimarySkin, currentDisplaySkin, currentStandbySkin
 	runCallbacks = False
 	# Add the emergency skin.  This skin should provide enough functionality
 	# to enable basic GUI functions to work.
@@ -98,14 +97,14 @@ def InitSkins():
 			print("[Skin] Error: Adding %s display skin '%s' has failed!" % (name, config.skin.display_skin.value))
 			result.append(skin)
 		result = []
-		for skin, name in [(config.skin.clock_skin.value, "current"), (DEFAULT_CLOCK_SKIN, "default")]:
+		for skin, name in [(config.skin.standby_skin.value, "current"), (DEFAULT_STANDBY_SKIN, "default")]:
 			if skin in result:  # Don't try to add a skin that has already failed.
 				continue
-			config.skin.clock_skin.value = skin
-			if loadSkin(config.skin.clock_skin.value, scope=SCOPE_CURRENT_LCDSKIN, desktop=getDesktop(DISPLAY_SKIN_ID), screenID=DISPLAY_SKIN_ID):
-				currentClockSkin = config.skin.clock_skin.value
+			config.skin.standby_skin.value = skin
+			if loadSkin(config.skin.standby_skin.value, scope=SCOPE_CURRENT_LCDSKIN, desktop=getDesktop(DISPLAY_SKIN_ID), screenID=DISPLAY_SKIN_ID):
+				currentStandbySkin = config.skin.standby_skin.value
 				break
-			print("[Skin] Error: Adding %s display skin '%s' has failed!" % (name, config.skin.clock_skin.value))
+			print("[Skin] Error: Adding %s display skin '%s' has failed!" % (name, config.skin.standby_skin.value))
 			result.append(skin)
 	# Add the main GUI skin.
 	result = []

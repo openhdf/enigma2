@@ -193,7 +193,7 @@ self.session.open(SABnzbdSetupScreen)
 				<menu weight="15" level="0" text="Frontpanel / Display / VFD" entryID="fp_menu">
 					<id val="fp_menu" />
 					<item weight="5" level="0" text="Display Skin" entryID="display_skin_selector" requires="OledDisplay"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
-					<item weight="10" level="0" text="Clock Skin" entryID="clock_skin_selector" requires="OledDisplay"><screen module="SkinSelector" screen="ClockSkinSelector"/></item>
+					<item weight="10" level="0" text="Standby Skin" entryID="standby_skin_selector" requires="OledDisplay"><screen module="SkinSelector" screen="StandbySkinSelector"/></item>
 					<item level="0" entryID="displaysetup" requires="Display"><setup id="display" /></item>
 				</menu>
 

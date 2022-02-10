@@ -8,7 +8,7 @@ from enigma import ePicLoad, getDesktop
 from os import listdir, walk
 from os.path import dirname, exists, isdir, join as pathjoin
 
-from skin import DEFAULT_SKIN, DEFAULT_DISPLAY_SKIN, EMERGENCY_NAME, EMERGENCY_SKIN, currentDisplaySkin, currentPrimarySkin, currentClockSkin, domScreens, DISPLAY_SKIN_ID, loadSkin
+from skin import DEFAULT_SKIN, DEFAULT_DISPLAY_SKIN, EMERGENCY_NAME, EMERGENCY_SKIN, currentDisplaySkin, currentPrimarySkin, currentStandbySkin, domScreens, DISPLAY_SKIN_ID, loadSkin
 from Components.ActionMap import HelpableNumberActionMap
 from Components.config import config
 from Components.Pixmap import Pixmap
@@ -291,17 +291,17 @@ class LcdSkinSelector(SkinSelector):
 		self.loadPreview()
 
 
-class ClockSkinSelector(SkinSelector):
-	def __init__(self, session, screenTitle=_("Clock Skin")):
+class StandbySkinSelector(SkinSelector):
+	def __init__(self, session, screenTitle=_("Standby Skin")):
 		SkinSelector.__init__(self, session, screenTitle=screenTitle)
-		self.skinName = ["ClockSkinSelector", "SkinSelector"]
+		self.skinName = ["StandbySkinSelector", "SkinSelector"]
 		self.rootDir = resolveFilename(SCOPE_LCDSKIN, "lcd_skin/")
-		self.config = config.skin.clock_skin
-		self.current = currentClockSkin
+		self.config = config.skin.standby_skin
+		self.current = currentStandbySkin
 		self.xmlList = []
 		for root, dirs, files in walk(self.rootDir, followlinks=True):
 			for x in files:
-				if x.startswith("clock_display") and x.endswith(".xml"):
+				if x.startswith("standby_display") and x.endswith(".xml"):
 					if root is not self.rootDir:
 						subdir = root[19:]
 						skinname = x
@@ -322,12 +322,12 @@ class ClockSkinSelector(SkinSelector):
 			skin = _dir + skinFile
 			skinPath = pathjoin(self.rootDir, skinFile)
 			if exists(skinPath):
-				resolution = skinFile.replace(".xml", "").replace("clock_display_", "").replace("_", " ").capitalize()
+				resolution = skinFile.replace(".xml", "").replace("skin_standby_", "").replace("_", " ").capitalize()
 				preview = pathjoin(previewPath, skinFile.replace(".xml", "_prev.png") or "prev.png")
 				if skin == DEFAULT_DISPLAY_SKIN:
 					_list = [default, default, _dir, skin, resolution, preview]
 				else:
-					_list = [skinFile.replace(".xml", "").replace("clock_display_", ""), "", _dir, skin, resolution, preview]
+					_list = [skinFile.replace(".xml", "").replace("skin_standby_", ""), "", _dir, skin, resolution, preview]
 				if skin == self.current:
 					_list[1] = current
 				elif skin == self.config.value:
