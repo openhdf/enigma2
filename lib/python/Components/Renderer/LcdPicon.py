@@ -10,7 +10,7 @@ from Tools.Directories import pathExists, SCOPE_GUISKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
 from boxbranding import getBoxType
 from ServiceReference import ServiceReference
-impoer six
+import six
 
 searchPaths = []
 lastLcdPiconPath = None
