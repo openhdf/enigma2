@@ -2,18 +2,12 @@
 from __future__ import absolute_import
 from . import _
 
-from enigma import *
-from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.MenuList import MenuList
-from Components.GUIComponent import GUIComponent
-from Tools.Directories import fileExists, crawlDirectory
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Button import Button
 from Components.Label import Label
 from Components.ConfigList import ConfigListScreen
-from Components.config import ConfigSelection, getConfigListEntry, config
+from Components.config import config, getConfigListEntry
 
 import os
 import re

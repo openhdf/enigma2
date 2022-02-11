@@ -8,15 +8,14 @@ import xml.etree.cElementTree
 from os import path
 
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
-	eDVBSatelliteLNBParameters as lnbParam, \
 	eDVBSatelliteDiseqcParameters as diseqcParam, \
 	eDVBSatelliteSwitchParameters as switchParam, \
 	eDVBSatelliteRotorParameters as rotorParam, \
-	eDVBResourceManager, eDVBDB, eEnv, iDVBFrontend, pNavigation
+	eDVBResourceManager, \
+	eDVBDB, eEnv, iDVBFrontend
 
 from Tools.HardwareInfo import HardwareInfo
 from Tools.BoundFunction import boundFunction
-from Components.About import about
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
 import six
 

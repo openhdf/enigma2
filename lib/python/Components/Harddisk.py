@@ -7,7 +7,7 @@ from Tools.CList import CList
 from Components.SystemInfo import SystemInfo
 from Components.Console import Console
 from Tools.HardwareInfo import HardwareInfo
-from boxbranding import getBoxType, getMachineBuild
+from boxbranding import getMachineBuild
 import Components.Task
 import re
 import six

@@ -23,7 +23,7 @@ from Tools.FuzzyDate import FuzzyTime
 from Tools.Directories import resolveFilename, SCOPE_HDD, isPluginInstalled
 from time import time, localtime
 from timer import TimerEntry as RealTimerEntry
-from enigma import eServiceCenter, eEPGCache
+from enigma import eEPGCache
 import Tools.CopyFiles
 import os
 

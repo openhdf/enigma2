@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap, ActionMap
-from Components.config import config, ConfigNothing, ConfigYesNo, ConfigSelection, ConfigText, ConfigPassword
+from Components.config import ConfigNothing, ConfigPassword, ConfigText, config
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen

@@ -384,7 +384,6 @@ class JobManager:
 				self.active_job.start(self.jobDone)
 
 	def notifyFailed(self, job, task, problems):
-		import Tools.Notifications
 		from Screens.MessageBox import MessageBox
 		if problems[0].RECOVERABLE:
 			print("[Task] recoverable task failure\n", job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)))

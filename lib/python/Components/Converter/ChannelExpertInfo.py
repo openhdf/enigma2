@@ -5,9 +5,8 @@
 from __future__ import absolute_import
 from __future__ import division
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial
+from enigma import eDVBFrontendParametersCable, eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, iServiceInformation
 from Components.Element import cached
-from Components.ServiceEventTracker import ServiceEventTracker
 
 
 class ChannelExpertInfo(Converter):

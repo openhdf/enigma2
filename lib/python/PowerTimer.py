@@ -9,7 +9,6 @@ from time import ctime, time, strftime, localtime, mktime
 from bisect import insort
 
 from enigma import eActionMap, quitMainloop
-from Components.UsageConfig import ConfigSelection, ConfigSelectionNumber
 from Components.config import config
 from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox

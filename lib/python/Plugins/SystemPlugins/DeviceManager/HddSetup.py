@@ -1,17 +1,11 @@
 from __future__ import absolute_import
 from . import _
-from enigma import *
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from .ExtrasList import ExtrasList
-from Components.MenuList import MenuList
-from Components.GUIComponent import GUIComponent
 from Tools.LoadPixmap import LoadPixmap
 from Components.Button import Button
-from Components.Label import Label
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
 from .HddPartitions import HddPartitions

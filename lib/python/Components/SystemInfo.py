@@ -3,7 +3,7 @@ from os import path
 from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN, fileHas, pathExists, isPluginInstalled
 from Tools.HardwareInfo import HardwareInfo
-from boxbranding import getBoxType, getBrandOEM, getDisplayType, getHaveAVJACK, getHaveDVI, getHaveHDMI, getHaveRCA, getHaveSCART, getHaveSCARTYUV, getHaveYUV, getMachineBuild, getMachineMtdRoot, getMachineMtdKernel, getHaveHDMIinHD, getHaveMiniTV, getHaveHDMIinFHD, getHaveWOL, getHaveWWOL, getHaveCI, getHaveTranscoding2, getHaveCI
+from boxbranding import getBoxType, getBrandOEM, getDisplayType, getHaveAVJACK, getHaveCI, getHaveCI, getHaveDVI, getHaveHDMI, getHaveHDMIinFHD, getHaveHDMIinHD, getHaveMiniTV, getHaveRCA, getHaveSCART, getHaveSCARTYUV, getHaveTranscoding2, getHaveWOL, getHaveWWOL, getHaveYUV, getMachineBuild, getMachineMtdRoot
 
 SystemInfo = {}
 SystemInfo["HasRootSubdir"] = False	# This needs to be here so it can be reset by getMultibootslots!

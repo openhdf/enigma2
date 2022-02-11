@@ -3,24 +3,12 @@ from . import _
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
-from Screens.InfoBarGenerics import InfoBarShowHide, NumberZap, InfoBarPiP
-from Screens.InfoBar import InfoBar
-from Components.FileList import FileEntryComponent, FileList
-from Components.MenuList import MenuList
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Button import Button
+from Components.ActionMap import ActionMap
 from Components.Label import Label
-from Components.config import config, ConfigElement, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_OK
+from Components.config import ConfigElement, ConfigSelection, KEY_LEFT, KEY_OK, KEY_RIGHT, getConfigListEntry
 from Components.ConfigList import ConfigList
-from Components.Pixmap import Pixmap
-from Components.SystemInfo import SystemInfo
-from Components.Sources.List import List
-from Components.Sources.StaticText import StaticText
-from Components.Converter.PliExtraInfo import *
-from Components.Converter.ServiceInfo import *
-from ServiceReference import ServiceReference
 import os
-from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent, eServiceReference
+from enigma import eTimer
 from .camcontrol import CamControl
 
 

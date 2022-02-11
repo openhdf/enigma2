@@ -3,7 +3,7 @@
 #
 
 from __future__ import absolute_import
-from enigma import iServiceInformation, eServiceCenter, iPlayableService, iPlayableServicePtr
+from enigma import eServiceCenter, iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config

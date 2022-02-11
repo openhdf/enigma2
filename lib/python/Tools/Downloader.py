@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
-from boxbranding import getMachineBrand, getMachineName
 
 from twisted.web import client
 from twisted.internet import reactor, defer, ssl

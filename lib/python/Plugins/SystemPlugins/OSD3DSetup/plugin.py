@@ -3,7 +3,6 @@ from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigSlider, getConfigListEntry, ConfigYesNo
-from Screens.MessageBox import MessageBox
 from enigma import eActionMap
 from Components.Sources.StaticText import StaticText
 from Components.ServiceEventTracker import ServiceEventTracker

@@ -5,7 +5,6 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
-from Components.About import about
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config

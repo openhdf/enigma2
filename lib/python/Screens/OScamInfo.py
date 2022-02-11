@@ -14,7 +14,7 @@ from Components.MenuList import MenuList
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename, fileExists
 
-from enigma import eTimer, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont, getDesktop, eSize, ePoint
+from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, eTimer, gFont, getDesktop
 from xml.etree import ElementTree
 
 from operator import itemgetter

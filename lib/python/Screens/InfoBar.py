@@ -1,12 +1,9 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from Tools.Profile import profile
-from Tools.BoundFunction import boundFunction
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
-from Components.PluginComponent import plugins
-from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
@@ -15,7 +12,7 @@ from Components.Pixmap import MultiPixmap
 profile("LOAD:enigma")
 import enigma
 import os
-from boxbranding import getBoxType, getMachineBrand, getBrandOEM
+from boxbranding import getBoxType, getMachineBrand
 
 boxtype = getBoxType()
 
@@ -187,8 +184,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def showEMC(self):
 		try:
-			import Plugins.Extensions.EnhancedMovieCenter.plugin
-			from Components.PluginComponent import plugins
 			EnhancedMovieCenter.showMoviesNew()
 		except Exception as e:
 			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
@@ -196,7 +191,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def showETPORTAL(self):
 		try:
 			from Plugins.Extensions.EtPortal.plugin import EtPortalScreen
-			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
 		except Exception as e:
 			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
@@ -222,7 +216,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def showWWW(self):
 		try:
 			from Plugins.Extensions.EtPortal.plugin import EtPortalScreen
-			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
 		except Exception as e:
 			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
@@ -252,7 +245,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		if getMachineBrand() == 'GI' or boxtype.startswith('azbox') or boxtype.startswith('ini') or boxtype.startswith('venton'):
 			try:
 				from Plugins.Extensions.EtPortal.plugin import EtPortalScreen
-				from Components.PluginComponent import plugins
 				self.session.open(EtPortalScreen)
 			except Exception as e:
 				self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)

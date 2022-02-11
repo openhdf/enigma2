@@ -4,7 +4,7 @@ import re
 import os
 import netifaces as ni
 from socket import *
-from Components.config import ConfigSubsection, ConfigText, config, ConfigYesNo, ConfigSelection, ConfigNothing
+from Components.config import config
 from Components.Console import Console
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor

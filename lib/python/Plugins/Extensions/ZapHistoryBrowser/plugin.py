@@ -8,7 +8,7 @@ from Components.Label import Label
 from Components.Language import language
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText
-from enigma import eListboxPythonMultiContent, eServiceCenter, gFont, getDesktop, eSize
+from enigma import eListboxPythonMultiContent, eServiceCenter, gFont, getDesktop
 from os import environ
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChannelSelection import ChannelSelection

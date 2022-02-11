@@ -6,7 +6,7 @@ import subprocess
 
 from os import mkdir, path, rmdir, rename, remove, stat
 
-from boxbranding import getMachineBuild, getMachineMtdRoot, getBoxType, getMachineName
+from boxbranding import getBoxType, getMachineName
 from Components.Console import Console
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import pathExists

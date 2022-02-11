@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.config import ConfigSelection, ConfigSelectionNumber, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigIP
+from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSelectionNumber, ConfigSubList, ConfigYesNo, getConfigListEntry
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList

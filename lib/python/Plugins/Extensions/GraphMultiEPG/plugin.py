@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 from .GraphMultiEpg import GraphMultiEPG
-from Screens.ChannelSelection import BouquetSelector
 from enigma import eServiceCenter, eServiceReference
 from ServiceReference import ServiceReference
 from Screens.Screen import Screen

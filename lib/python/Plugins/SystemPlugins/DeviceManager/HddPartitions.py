@@ -2,7 +2,6 @@
 from __future__ import absolute_import
 from . import _
 
-from enigma import *
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List

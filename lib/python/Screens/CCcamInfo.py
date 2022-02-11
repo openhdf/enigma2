@@ -5,7 +5,7 @@ from __future__ import print_function
 from base64 import encodestring
 from os import listdir, remove, rename, system, popen, path
 
-from enigma import eListboxPythonMultiContent, eTimer, gFont, loadPNG, RT_HALIGN_RIGHT, getDesktop
+from enigma import RT_HALIGN_RIGHT, eListboxPythonMultiContent, gFont, loadPNG
 
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.config import config, getConfigListEntry
@@ -13,7 +13,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend
+from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.ScrollLabel import ScrollLabel
 from Screens.HelpMenu import HelpableScreen
 

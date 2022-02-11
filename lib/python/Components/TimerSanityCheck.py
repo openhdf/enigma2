@@ -2,7 +2,6 @@ from __future__ import print_function
 from __future__ import absolute_import
 import NavigationInstance
 from time import localtime, mktime, gmtime
-from ServiceReference import ServiceReference
 from enigma import iServiceInformation, eServiceCenter, eServiceReference, getBestPlayableServiceReference
 from timer import TimerEntry
 

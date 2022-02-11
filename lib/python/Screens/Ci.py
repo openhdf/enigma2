@@ -10,7 +10,7 @@ from Components.Pixmap import Pixmap
 from Components.Console import Console
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Boolean import Boolean
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigText, ConfigYesNo, NoSave
+from Components.config import ConfigNothing, ConfigPIN, ConfigSelection, ConfigSubList, ConfigSubsection, ConfigYesNo, KEY_0, KEY_LEFT, KEY_RIGHT, NoSave, config, getConfigListEntry
 from Components.ConfigList import ConfigList
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists

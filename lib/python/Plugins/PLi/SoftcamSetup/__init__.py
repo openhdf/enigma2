@@ -2,7 +2,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from Components.Language import language
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_LANGUAGE
+from Tools.Directories import SCOPE_PLUGINS, resolveFilename
 from os import environ as os_environ
 import gettext
 

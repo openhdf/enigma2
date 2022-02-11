@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from Components.Sources.Source import Source
 from Components.Element import cached
-from enigma import iRecordableService, pNavigation
+from enigma import iRecordableService
 import Components.RecordingConfig
 from Components.config import config
 from Components.SystemInfo import SystemInfo

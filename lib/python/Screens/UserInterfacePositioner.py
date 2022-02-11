@@ -6,9 +6,6 @@ from Components.config import config, configfile, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
-from Components.Pixmap import Pixmap
-from Components.Console import Console
-from Components.Label import Label
 from Tools.Directories import fileExists
 from enigma import getDesktop
 from os import access, R_OK

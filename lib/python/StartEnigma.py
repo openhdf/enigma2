@@ -66,7 +66,7 @@ if config.misc.enabletwistedlog.value == True:
 
 profile("LOAD:Tools")
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, SCOPE_PLUGINS, SCOPE_GUISKIN
-from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave, ConfigNumber
+from Components.config import ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, NoSave, config, configfile
 import Components.RecordingConfig
 
 profile("config.misc")
@@ -136,7 +136,7 @@ config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback=True)
 
 profile("Twisted")
 try:
-	import twisted.python.runtime
+	pass
 
 	import e2reactor
 	e2reactor.install()

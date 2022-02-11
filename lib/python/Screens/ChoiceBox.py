@@ -5,7 +5,6 @@ from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
-from Components.Pixmap import Pixmap
 import enigma
 
 

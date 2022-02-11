@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from boxbranding import getMachineBrand, getMachineName
 from os import path
 
 from Screens.Screen import Screen

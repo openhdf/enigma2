@@ -8,7 +8,7 @@ from enigma import eTimer, eEnv
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.config import config, ConfigText, ConfigPassword, KEY_LEFT, KEY_RIGHT, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_ASCII
+from Components.config import ConfigPassword, ConfigText, KEY_0, KEY_ASCII, KEY_BACKSPACE, KEY_DELETE, KEY_LEFT, KEY_RIGHT
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider

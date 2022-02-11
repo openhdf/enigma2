@@ -7,24 +7,24 @@ from datetime import datetime
 from time import localtime, strftime, ctime, time
 from bisect import insort
 import os
-from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReferenceDVB, eStreamServer, eServiceReference, iRecordableService, quitMainloop, eActionMap, setPreferredTuner, eServiceCenter
+from enigma import eActionMap, eEPGCache, eServiceCenter, eServiceReference, eStreamServer, getBestPlayableServiceReference, iRecordableService, quitMainloop, setPreferredTuner
 
 from Components.config import config
 from Components import Harddisk
-from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval, ConfigSelection, ConfigSelectionNumber
+from Components.UsageConfig import calcFrontendPriorityIntval, defaultMoviePath
 from Components.TimerSanityCheck import TimerSanityCheck
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
 import six
 from Screens.MessageBox import MessageBox
 import Screens.Standby
-from Tools.ServiceReference import service_types_tv_ref, service_types_radio_ref, serviceRefAppendPath
+from Tools.ServiceReference import service_types_radio_ref, service_types_tv_ref
 from Tools import Directories, Notifications, ASCIItranslit, Trashcan
 from Tools.XMLTools import stringToXML
 import timer
 import NavigationInstance
 from ServiceReference import ServiceReference
-from enigma import pNavigation, eDVBFrontend
+from enigma import pNavigation
 from Components.SystemInfo import SystemInfo
 import subprocess
 import threading

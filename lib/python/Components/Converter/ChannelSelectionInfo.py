@@ -5,8 +5,8 @@ from __future__ import absolute_import
 from __future__ import division
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr
-from enigma import eServiceCenter, eEPGCache, eServiceReference
+from enigma import iPlayableService
+from enigma import eEPGCache, eServiceReference
 from time import localtime
 
 

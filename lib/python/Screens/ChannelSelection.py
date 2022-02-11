@@ -21,7 +21,7 @@ from Screens.TimerEdit import TimerSanityConflict
 profile("ChannelSelection.py 1")
 from Screens.EpgSelection import EPGSelection
 from enigma import eActionMap, eServiceReferenceDVB, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
-from Components.config import config, configfile, ConfigSubsection, ConfigText, ConfigYesNo
+from Components.config import ConfigSubsection, ConfigText, config, configfile
 from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
 from Components.NimManager import nimmanager
@@ -48,8 +48,6 @@ from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from Tools import Notifications
 from Tools.ServiceReference import service_types_tv_ref, service_types_radio_ref, serviceRefAppendPath
-from Plugins.Plugin import PluginDescriptor
-from Components.PluginComponent import plugins
 from RecordTimer import TIMERTYPE
 from time import localtime, time
 from os import remove

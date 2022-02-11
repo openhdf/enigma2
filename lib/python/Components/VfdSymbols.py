@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 from twisted.internet import threads
 from Components.config import config
-from enigma import eDBoxLCD, eTimer, iPlayableService, pNavigation, iServiceInformation
+from enigma import eTimer, iPlayableService, iServiceInformation
 import NavigationInstance
 from Tools.Directories import fileExists
 from Components.ParentalControl import parentalControl

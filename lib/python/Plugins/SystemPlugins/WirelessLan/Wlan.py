@@ -8,7 +8,6 @@ import six
 if sys.version_info[0] < 3:
 	from string import maketrans
 
-from enigma import eConsoleAppContainer
 
 from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
 from Components.Console import Console

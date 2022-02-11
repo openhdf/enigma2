@@ -4,7 +4,6 @@ from datetime import datetime
 import os
 from struct import pack
 from time import time
-from fcntl import ioctl
 from sys import maxsize
 
 from enigma import eTimer, eHdmiCEC, eActionMap

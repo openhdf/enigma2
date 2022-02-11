@@ -1,11 +1,7 @@
 from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from ServiceReference import ServiceReference
-from enigma import eServiceCenter, eServiceReference, iServiceInformation, iPlayableService, eDVBFrontendParametersSatellite, eDVBFrontendParametersCable
-from Components.ServiceEventTracker import ServiceEventTracker
-from Tools.Directories import fileExists, resolveFilename
-from Components.ServiceEventTracker import ServiceEventTracker
+from enigma import eDVBFrontendParametersCable, eDVBFrontendParametersSatellite, eServiceCenter, eServiceReference, iServiceInformation
 from Components.Converter.Poll import Poll
 
 

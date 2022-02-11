@@ -6,7 +6,6 @@ from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_GUISKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
-from Components.config import config, ConfigBoolean
 
 searchPaths = []
 lastPiconPath = None

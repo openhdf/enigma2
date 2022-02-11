@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigText, ConfigYesNo, ConfigSubList, ConfigInteger
+from Components.config import ConfigInteger, ConfigPIN, ConfigSelection, ConfigSubList, ConfigSubsection, ConfigYesNo, config
 from Components.ServiceList import refreshServiceList
 #from Screens.ChannelSelection import service_types_tv
 from Screens.InputBox import PinInput

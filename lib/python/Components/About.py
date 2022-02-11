@@ -6,7 +6,6 @@ from socket import AF_INET, SOCK_DGRAM, inet_ntoa, socket
 from struct import pack, unpack
 from sys import maxsize
 from sys import modules
-import fcntl
 import os
 import time
 

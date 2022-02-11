@@ -5,12 +5,11 @@ from Components.Harddisk import harddiskmanager, findMountPoint
 from Components.Input import Input
 from Components.Label import Label
 from Components.About import about
-from Components.MovieList import AUDIO_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
+from Components.MovieList import AUDIO_EXTENSIONS
 import Screens.MovieSelection
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
-from Components.Sources.List import List
 from Components.config import config, configfile, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, preferredTimerPath, ConfigSelection
@@ -25,7 +24,7 @@ from Plugins.Plugin import PluginDescriptor
 
 from Screens.Screen import Screen
 from Screens import ScreenSaver
-from Screens.ChannelSelection import ChannelSelection, PiPZapSelection, BouquetSelector, SilentBouquetSelector, EpgBouquetSelector, service_types_tv
+from Screens.ChannelSelection import BouquetSelector, ChannelSelection, EpgBouquetSelector, PiPZapSelection
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
@@ -38,20 +37,19 @@ from Screens.PictureInPicture import PictureInPicture
 from Screens.PVRState import PVRState, TimeshiftState
 from Screens.SubtitleDisplay import SubtitleDisplay
 from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
-from Screens.Standby import Standby, TryQuitMainloop
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEdit import TimerEditList
 from Screens.UnhandledKey import UnhandledKey
 from Screens.ShowPressedButtons import ShowPressedButtons
 from ServiceReference import ServiceReference, isPlayableForCur
-from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent, AFTEREVENT, findSafeRecordPath
+from RecordTimer import AFTEREVENT, RecordTimerEntry, findSafeRecordPath, parseEvent
 from Screens.TimerEntry import TimerEntry as TimerEntry
-from Tools import Directories, Notifications
-from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN, isPluginInstalled
+from Tools import Notifications
+from Tools.Directories import fileExists, isPluginInstalled
 from Tools.KeyBindings import getKeyDescription
 from Tools.ServiceReference import hdmiInServiceRef
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getDriverDate, getImageVersion, getImageBuild, getMachineProcModel, getMachineBuild, getMachineMtdKernel, getDisplayType
+from boxbranding import getBoxType, getBrandOEM, getDisplayType, getDriverDate, getImageBuild, getImageVersion, getMachineBrand, getMachineBuild, getMachineMtdKernel, getMachineName
 
 from time import time, localtime, strftime
 from bisect import insort
@@ -2696,7 +2694,6 @@ class InfoBarEPG:
 	def showETPORTAL(self):
 		try:
 			from Plugins.Extensions.EtPortal.plugin import EtPortalScreen
-			from Components.PluginComponent import plugins
 			self.session.open(EtPortalScreen)
 		except Exception as e:
 			self.session.open(MessageBox, _("The EtPortal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
@@ -2704,7 +2701,6 @@ class InfoBarEPG:
 	def showEMC(self):
 		try:
 			import Plugins.Extensions.EnhancedMovieCenter.plugin
-			from Components.PluginComponent import plugins
 			EnhancedMovieCenter.showMoviesNew()
 		except Exception as e:
 			self.session.open(MessageBox, _("The Enhanced Movie Center plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
@@ -2712,7 +2708,6 @@ class InfoBarEPG:
 	def showMEDIAPORTAL(self):
 		try:
 			from Plugins.Extensions.MediaPortal.plugin import haupt_Screen
-			from Components.PluginComponent import plugins
 			self.session.open(haupt_Screen)
 		except Exception as e:
 			self.session.open(MessageBox, _("The Media Portal plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
@@ -2720,7 +2715,6 @@ class InfoBarEPG:
 	def showDREAMPLEX(self):
 		try:
 			from Plugins.Extensions.DreamPlex.plugin import DPS_MainMenu
-			from Components.PluginComponent import plugins
 			self.session.open(DPS_MainMenu)
 		except Exception as e:
 			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
@@ -4473,7 +4467,6 @@ class InfoBarExtensions:
 
 	def showAutoTimerList(self):
 		if isPluginInstalled("AutoTimer"):
-			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
 			self.autopoller = AutoPoller()
@@ -4979,8 +4972,7 @@ class InfoBarInstantRecord:
 			else:
 				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
 		elif answer[1] == "timer":
-			import Screens.TimerEdit
-			self.session.open(TimerEdit.TimerEditList)
+			self.session.open(TimerEditList)
 		elif answer[1] == "stop":
 			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
 		elif answer[1] in ("indefinitely", "manualduration", "manualendtime", "event"):
@@ -5386,7 +5378,6 @@ class InfoBarTimerButton:
 			})
 
 	def timerSelection(self):
-		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
 
 

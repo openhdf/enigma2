@@ -1,15 +1,11 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.Console import Console
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Pixmap import Pixmap
+from Components.ActionMap import ActionMap
 from Components.Label import Label
-from Components.MenuList import MenuList
 from Components.PluginComponent import plugins
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigEnableDisable, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry, ConfigNumber
-from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.config import config, getConfigListEntry
+from Components.ConfigList import ConfigListScreen
 
 from Tools.Directories import *
 

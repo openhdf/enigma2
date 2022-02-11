@@ -12,7 +12,6 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from . import VideoEnhancement
 
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):

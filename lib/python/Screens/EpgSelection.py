@@ -5,7 +5,6 @@ from enigma import eServiceReference, eTimer, eServiceCenter, ePoint
 
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
-from Components.About import about
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.Button import Button
 from Components.config import config, configfile, ConfigClock
@@ -27,7 +26,6 @@ from Screens.TimerEntry import TimerEntry, InstantRecordTimerEntry
 from ServiceReference import ServiceReference
 from Tools.HardwareInfo import HardwareInfo
 from RecordTimer import TIMERTYPE
-from skin import getSkinFactor
 
 mepg_config_initialized = False
 # PiPServiceRelation installed?
@@ -934,7 +932,6 @@ class EPGSelection(Screen, HelpableScreen):
 		global autopoller
 		global autotimer
 		try:
-			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
 			autopoller = AutoPoller()

@@ -4,16 +4,15 @@ from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.SystemInfo import SystemInfo
-from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo
+from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config
 from Components.PluginComponent import plugins
-from Screens.ChannelSelection import SimpleChannelSelection
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
-from enigma import eServiceReference, eActionMap
+from enigma import eServiceReference
 from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
@@ -674,7 +673,6 @@ class InfoBarHotkey():
 				except:
 					print("[Hotkey] error during executing module %s, screen %s" % (selected[1], selected[2]))
 			elif selected[0] == "Setup":
-				from Screens.Setup import Setup
 				exec("self.session.open(Setup, \"%s\")" % selected[1])
 			elif selected[0].startswith("Zap"):
 				if selected[0] == "ZapPanic":

@@ -26,7 +26,7 @@ from Screens.MessageBox import MessageBox
 from Screens.EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 from Components.ActionMap import ActionMap
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigSelection
+from Components.config import ConfigInteger, ConfigSelection, ConfigSubsection, ConfigYesNo, config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Tools.Directories import isPluginInstalled
 if isPluginInstalled("MerlinEPG"):

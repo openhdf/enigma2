@@ -8,7 +8,6 @@ from Components.Label import Label
 from Components.Button import Button
 from Components.FileList import FileList
 from Components.MenuList import MenuList
-from Components.ScrollLabel import ScrollLabel
 from Components.config import config, configfile
 from Components.FileList import MultiFileSelectList
 from Screens.MessageBox import MessageBox

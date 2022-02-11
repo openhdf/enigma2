@@ -3,12 +3,10 @@ from . import _
 
 # GUI (Screens)
 from Screens.Screen import Screen
-from Components.ConfigList import ConfigListScreen
 
 # GUI (Summary)
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
-from Screens.Setup import SetupSummary
 
 # GUI (Components)
 from Components.ActionMap import HelpableActionMap

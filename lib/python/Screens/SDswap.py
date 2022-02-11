@@ -3,10 +3,7 @@ from __future__ import absolute_import
 import os
 from Components.Sources.StaticText import StaticText
 from Components.ActionMap import ActionMap
-from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.Console import Console
-from Components.Label import Label
-from Components.SystemInfo import SystemInfo
 from Screens.Standby import TryQuitMainloop
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox

@@ -3,11 +3,10 @@ from __future__ import absolute_import
 import os
 from time import time
 from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent, eDVBFrontend, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
-from Components.About import about
 from Components.Harddisk import harddiskmanager
 from Components.config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_HDD, SCOPE_SYSETC, defaultRecordingLocation, fileExists, fileCheck, fileContains, isPluginInstalled
-from boxbranding import getBoxType, getMachineBuild, getMachineName, getBrandOEM, getDisplayType
+from Tools.Directories import SCOPE_HDD, SCOPE_HDD, SCOPE_TIMESHIFT, defaultRecordingLocation, fileCheck, fileContains, fileExists, isPluginInstalled, resolveFilename
+from boxbranding import getDisplayType
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import SystemInfo

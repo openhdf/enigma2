@@ -7,10 +7,9 @@ from Components.ActionMap import NumberActionMap
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
-from Plugins.Plugin import PluginDescriptor
 from Components.config import config, ConfigSelection
 from Components.Label import Label
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_LCDSKIN
+from Tools.Directories import SCOPE_CURRENT_LCDSKIN
 from os import walk
 from enigma import eEnv
 from skin import *

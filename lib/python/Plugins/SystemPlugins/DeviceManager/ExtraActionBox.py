@@ -2,14 +2,9 @@
 from __future__ import absolute_import
 from enigma import *
 from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
-from Components.MenuList import MenuList
-from Components.GUIComponent import GUIComponent
-from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_PLUGIN, resolveFilename
+from Tools.Directories import SCOPE_CURRENT_PLUGIN, resolveFilename
 from Components.Label import Label
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Pixmap import Pixmap
-from Tools.LoadPixmap import LoadPixmap
 
 
 class ExtraActionBox(Screen):

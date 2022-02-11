@@ -5,12 +5,9 @@ from Components.ActionMap import NumberActionMap
 from Components.config import config, getConfigListEntry, ConfigNothing, NoSave, ConfigPIN, configfile
 
 from Components.Sources.StaticText import StaticText
-from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import PinInput
-from Screens.ChannelSelection import service_types_tv
 from Tools.BoundFunction import boundFunction
-from enigma import eServiceCenter, eTimer, eServiceReference
 
 
 class ProtectedScreen:

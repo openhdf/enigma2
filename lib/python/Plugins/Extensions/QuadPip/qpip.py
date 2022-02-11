@@ -1,14 +1,9 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from Screens.Screen import Screen
-from Components.ConfigList import ConfigListScreen
-from Components.config import config, ConfigSubsection, ConfigSelection, getConfigListEntry
+from Components.config import ConfigSubsection, config
 from Components.ActionMap import ActionMap
-from Components.Pixmap import Pixmap, MovingPixmap
 from Screens.MessageBox import MessageBox
-from Components.Sources.StaticText import StaticText
-from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 from Components.Sources.List import List
 from Components.Label import Label
@@ -17,11 +12,8 @@ from Components.MenuList import MenuList
 
 from Screens.ChannelSelection import ChannelSelectionBase
 from enigma import eServiceReference
-from enigma import eListboxPythonMultiContent
 from enigma import eTimer
 from ServiceReference import ServiceReference
-from Components.FileList import FileList
-from Components.Button import Button
 from Screens.ChoiceBox import ChoiceBox
 from Screens.QuadPiP import QuadPiP
 

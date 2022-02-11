@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from __future__ import print_function
 from boxbranding import getImageVersion
 
-from enigma import eConsoleAppContainer, eEnv
+from enigma import eEnv
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox

@@ -4,8 +4,8 @@ from Components.config import config, ConfigSlider, ConfigSelection, ConfigSubDi
 from Components.About import about
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
-from enigma import eAVSwitch, eDVBVolumecontrol, getDesktop
-from boxbranding import getBoxType, getMachineBuild, getBrandOEM
+from enigma import eAVSwitch, getDesktop
+from boxbranding import getBoxType, getBrandOEM
 from Components.SystemInfo import SystemInfo
 import os
 from time import sleep

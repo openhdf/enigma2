@@ -2,12 +2,10 @@ from __future__ import print_function
 from __future__ import absolute_import
 from os import mkdir, path
 from shutil import copyfile
-from boxbranding import getMachineBuild, getMachineMtdRoot
 from Components.Sources.StaticText import StaticText
 from Components.ActionMap import ActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.Console import Console
-from Components.Label import Label
 from Components.SystemInfo import SystemInfo
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
