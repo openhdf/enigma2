@@ -301,7 +301,7 @@ class StandbySkinSelector(SkinSelector):
 		self.xmlList = []
 		for root, dirs, files in walk(self.rootDir, followlinks=True):
 			for x in files:
-				if x.startswith("standby_display") and x.endswith(".xml"):
+				if x.startswith("skin_standby") and x.endswith(".xml"):
 					if root is not self.rootDir:
 						subdir = root[19:]
 						skinname = x
