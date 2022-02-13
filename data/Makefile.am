@@ -6,7 +6,6 @@ dist_pkgdata_DATA = \
 	keytranslation.xml \
 	keymap.ntr \
 	keymap.u80 \
-	keymap.xpe \
 	keymap.lng \
 	menu.xml \
 	black.mvi \
