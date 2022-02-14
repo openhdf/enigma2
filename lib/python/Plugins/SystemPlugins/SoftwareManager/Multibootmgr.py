@@ -69,15 +69,15 @@ class MultiBootWizard(Screen):
 		self.getImageList = GetImagelist(self.ImageList)
 
 	def ImageList(self, imagedict):
-		list = []
+		_list = []
 		mode = GetCurrentImageMode() or 0
 		currentimageslot = GetCurrentImage()
 		if SystemInfo["HasSDmmc"]:
 			currentimageslot += 1
 		for x in sorted(list(imagedict.keys())):
 			if imagedict[x]["imagename"] != _("Empty startup") and x != currentimageslot:
-				list.append(ChoiceEntryComponent('', ((_("startup %s - %s ")) % (x, imagedict[x]['imagename']), x)))
-		self["config"].setList(list)
+				_list.append(ChoiceEntryComponent('', ((_("startup %s - %s ")) % (x, imagedict[x]['imagename']), x)))
+		self["config"].setList(_list)
 
 	def erase(self):
 		self.currentSelected = self["config"].l.getCurrentSelection()
