@@ -480,7 +480,7 @@ class VirtualKeyBoard(Screen):
 			self.okClicked()
 
 	def selectAsciiKey(self, char):
-		if char == " ":
+		if char == u" ":
 			char = "SPACE"
 		for keyslist in (self.shiftkeys_list, self.keys_list):
 			selkey = 0
