@@ -126,7 +126,7 @@ def write_cache(cache_file, cache_data):
 			mkdir(os_path.dirname(cache_file))
 		except OSError:
 			print(os_path.dirname(cache_file), 'is a file')
-	fd = open(cache_file, 'w')
+	fd = open(cache_file, 'wb')
 	dump(cache_data, fd, -1)
 	fd.close()
 
@@ -146,7 +146,7 @@ def valid_cache(cache_file, cache_ttl):
 
 def load_cache(cache_file):
 	#Does a cPickle load
-	fd = open(cache_file)
+	fd = open(cache_file, 'rb')
 	cache_data = load(fd)
 	fd.close()
 	return cache_data
@@ -2174,7 +2174,7 @@ class PacketManager(Screen, NumericalTextInput):
 			self["list"].setIndex(0)
 		else:
 			idx = self.getNextIdx(char)
-			if idx and idx <= self["list"].count:
+			if idx and idx <= self["list"].count():
 				self["list"].setIndex(idx)
 
 	def getNextIdx(self, char):
@@ -2304,7 +2304,7 @@ class PacketManager(Screen, NumericalTextInput):
 		#print(event, "-", param)
 
 	def IpkgList_Finished(self, result, retval, extra_args=None):
-		result = result.replace('\n ', ' - ')
+		result = result.replace(b'\n ', b' - ')
 		if result:
 			result = six.ensure_str(result)
 			result = result.replace('\n ', ' - ')
