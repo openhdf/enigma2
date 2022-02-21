@@ -42,7 +42,9 @@ def get_size(start_path=None):
 		for dirpath, dirnames, filenames in walk(start_path):
 			for f in filenames:
 				fp = path.join(dirpath, f)
-				total_size += path.getsize(fp)
+				total_size = 0
+				if not path.islink(fp):
+					total_size += path.getsize(fp)
 		return total_size
 	return 0
 
