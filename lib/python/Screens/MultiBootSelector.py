@@ -13,6 +13,7 @@ from Screens.MessageBox import MessageBox
 from Tools.Directories import copyfile, pathExists
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode, GetImagelist
+from enigma import fbClass, eRCInput
 
 
 class MultiBootSelector(Screen):
@@ -148,6 +149,142 @@ class MultiBootSelector(Screen):
 			self.session.open(TryQuitMainloop, 2)
 		else:
 			self.close()
+
+	def selectionChanged(self):
+		currentSelected = self["config"].l.getCurrentSelection()
+
+	def keyLeft(self):
+		self["config"].instance.moveSelection(self["config"].instance.moveUp)
+		self.selectionChanged()
+
+	def keyRight(self):
+		self["config"].instance.moveSelection(self["config"].instance.moveDown)
+		self.selectionChanged()
+
+	def keyUp(self):
+		self["config"].instance.moveSelection(self["config"].instance.moveUp)
+		self.selectionChanged()
+
+	def keyDown(self):
+		self["config"].instance.moveSelection(self["config"].instance.moveDown)
+		self.selectionChanged()
+
+
+class QuickBootSelector(Screen):
+
+	def __init__(self, session, *args):
+		Screen.__init__(self, session)
+		screentitle = _("QuickBoot Image Selector")
+		self.skinName = "MultiBootSelector"
+		self["key_red"] = StaticText(_("Cancel"))
+		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' % (SystemInfo["canMultiBoot"][2])):
+			self["description"] = StaticText(_("Use the cursor keys to select an installed image and then Start button."))
+		else:
+			self["description"] = StaticText(_("SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"))
+		self["options"] = StaticText(_(" "))
+		self["key_green"] = StaticText(_("Start"))
+		self["config"] = ChoiceList(list=[ChoiceEntryComponent('', ((_("Retrieving image startups - Please wait...")), "Queued"))])
+		imagedict = []
+		self.getImageList = None
+		self.mountDir = "/tmp/startupmount"
+		self.callLater(self.getBootOptions)
+		self.title = screentitle
+
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "MenuActions"],
+		{
+			"red": boundFunction(self.close, None),
+			"green": self.reboot,
+			"ok": self.reboot,
+			"cancel": boundFunction(self.close, None),
+			"up": self.keyUp,
+			"down": self.keyDown,
+			"left": self.keyLeft,
+			"right": self.keyRight,
+			"upRepeated": self.keyUp,
+			"downRepeated": self.keyDown,
+			"leftRepeated": self.keyLeft,
+			"rightRepeated": self.keyRight,
+			"menu": boundFunction(self.close, True),
+		}, -1)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(self.title)
+
+	def getBootOptions(self, value=None):
+		self.container = Console()
+		if path.isdir(self.mountDir) and path.ismount(self.mountDir):
+			self.getImagesList()
+		else:
+			if not path.isdir(self.mountDir):
+				mkdir(self.mountDir)
+			self.container.ePopen("mount %s %s" % (SystemInfo["MBbootdevice"], self.mountDir), self.getImagesList)
+
+	def getImagesList(self, data=None, retval=None, extra_args=None):
+		self.container.killAll()
+		self.getImageList = GetImagelist(self.getImagelistCallback)
+
+	def getImagelistCallback(self, imagedict):
+		_list = []
+		currentimageslot = GetCurrentImage()
+		current = "  %s" % _("(current image)")
+		slotSingle = _("Slot %s: %s%s")
+		if imagedict:
+			indextot = 0
+			for index, x in enumerate(sorted(list(imagedict.keys()))):
+				if imagedict[x]["imagename"] != _("Empty slot"):
+					_list.append(ChoiceEntryComponent("", (slotSingle % (x, imagedict[x]["imagename"], current if x == currentimageslot else ""), (x, 1))))
+		else:
+			_list.append(ChoiceEntryComponent("", ((_("No images found")), "Waiter")))
+		self["config"].setList(_list)
+
+	def reboot(self):
+		self.currentSelected = self["config"].l.getCurrentSelection()
+		if self.currentSelected[0][1] != "Queued":
+			slot = self.currentSelected[0][1][0]
+			boxmode = self.currentSelected[0][1][1]
+			message = _("Do you want to reboot now the image in startup %s?") % slot
+			self.session.openWithCallback(self.startImage, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
+
+	def startImage(self, answer):
+		slot = self["config"].l.getCurrentSelection()[0][1][0]
+		mtdroot = SystemInfo["canMultiBoot"][slot]["device"]
+		COMMAND="""
+#!/bin/bash
+mkdir /tmp/quick
+mount %s /tmp/quick
+mkdir -p /tmp/quick/var/volatile/tmp
+mount -o bind /sys /tmp/quick/sys
+mount -o bind /proc /tmp/quick/proc
+mount -o bind /dev /tmp/quick/dev
+mount -o bins /var/volatile/tmp /tmp/quick/var/volatile/tmp
+chroot /tmp/quick /bin/bash <<"EOT"
+enigma2
+EOT
+umount /tmp/quick/var/volatile/tmp /tmp/quick/dev /tmp/quick/proc /tmp/quick/sys /tmp/quick
+rm /tmp/quickboot.sh
+		""" % mtdroot
+
+		if answer is True:
+			f = open("/tmp/quickboot.sh", "w")
+			f.write(COMMAND)
+			f.close()
+			self.previousService = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.session.nav.stopService()
+			fbClass.getInstance().lock()
+			eRCInput.getInstance().lock()
+			self._startConsole = Console()
+			self._startConsole.ePopen("bash /tmp/quickboot.sh", self.e2Stopped)
+		else:
+			self.close()
+
+	def e2Stopped(self, data, retval, extraArgs):
+		eRCInput.getInstance().unlock()
+		fbClass.getInstance().unlock()
+		if self.previousService:
+			self.session.nav.playService(self.previousService)
+		self.hide()
+		self.show()
 
 	def selectionChanged(self):
 		currentSelected = self["config"].l.getCurrentSelection()
