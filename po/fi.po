@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlac/TimoJ\n"
@@ -3553,11 +3553,6 @@ msgstr "Asiakkaat"
 msgid "Clients"
 msgstr "Asiakkaat"
 
-#
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Teema"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4948,9 +4943,6 @@ msgstr "Laitteen lämpötila: %s"
 #, fuzzy
 msgid "Disk temperature: unknown"
 msgstr "Laitteen lämpötila: %s"
-
-msgid "Display"
-msgstr "Näyttö"
 
 #
 msgid "Display 16:9 content as"
@@ -7990,9 +7982,6 @@ msgstr "Inversio"
 msgid "Invert"
 msgstr "Käänteinen"
 
-msgid "Ipkg"
-msgstr "Ipkg"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -8621,6 +8610,10 @@ msgstr "MAC:"
 
 msgid "MB"
 msgstr "MB"
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "AFP-asetukset"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -11072,11 +11065,6 @@ msgstr "Kääntömoottorin asetukset"
 msgid "Positioner setup"
 msgstr "Kääntömoottorin asetukset"
 
-#
-#, fuzzy
-msgid "Power (use button menu)"
-msgstr "Näytä sammutusvalikko"
-
 #, fuzzy
 msgid "Power LED State in Deep-Standby"
 msgstr "Led virransäästötila"
@@ -11098,9 +11086,6 @@ msgstr "LED:in kirkkaus virransäästötilassa"
 #, fuzzy
 msgid "Power LED state during standby."
 msgstr "LED:in kirkkaus valmiustilassa"
-
-msgid "Power long (use button menu)"
-msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
@@ -11552,6 +11537,11 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Pika kanavanvaihto"
 
+#
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Tekstitysvalinta"
+
 msgid "RAM"
 msgstr "RAM"
 
@@ -11749,11 +11739,6 @@ msgstr "DVD-levyn työkalut"
 #
 msgid "Recording"
 msgstr "Tallenne"
-
-#
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Toisto jatkuu viimeksi katsotusta kohdasta"
 
 #, fuzzy
 msgid "Recording Setup"
@@ -14208,6 +14193,11 @@ msgstr "Näytä käännöstiedostojen ohjelmapaketit"
 
 #
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Näytä radiosoitin..."
+
+#
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "Näytä tv..."
 
@@ -14802,6 +14792,11 @@ msgstr "Sammutusvalikko"
 #
 msgid "Standby / restart"
 msgstr "Sammutusvalikko"
+
+#
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Valmiustila"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -15586,14 +15581,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"AutoTimer-lisäosaa ei ole asennettu!\n"
-"Asenna se."
-
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -15683,15 +15670,6 @@ msgstr "PIN-koodin vaihto onnistui."
 
 msgid "The PIN codes you entered are different."
 msgstr "Syöttämäsi PIN-koodit olivat erilaiset."
-
-#
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"WLAN-lisäosaa ei ole asennettu!\n"
-"Asenna se."
 
 #
 #, fuzzy
@@ -17488,6 +17466,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 #, fuzzy
 msgid "Use the extended List"
 msgstr "Käytetäänkö näitä asetuksia?"
@@ -17629,10 +17610,6 @@ msgstr "Pitkä punainen"
 #  Päävalikon VCR-SCART-toiminnon nimi
 msgid "VCR scart"
 msgstr "SCART-läpivienti"
-
-#, fuzzy
-msgid "VFD Skin Selector"
-msgstr "Enigma2 teeman valinta"
 
 #, fuzzy
 msgid "VLAN connection"
@@ -18494,9 +18471,6 @@ msgid "XP1000"
 msgstr "XP1000"
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

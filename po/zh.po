@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openhdf-6.5             enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2021-08-04 21:52+0800\n"
 "Last-Translator: 孤独之剑 < haotzyy1970@163.com>\n"
 "Language-Team: 孤独之剑< haotzyy1970@163.com>\n"
@@ -3248,10 +3248,6 @@ msgstr "客户端IP"
 msgid "Clients"
 msgstr "客户端"
 
-#, fuzzy
-msgid "Clock Skin"
-msgstr "液晶显示器的外观"
-
 msgid "Clock_Widget:"
 msgstr "时钟窗口小部件:"
 
@@ -4461,9 +4457,6 @@ msgstr "硬盘温度: %s"
 
 msgid "Disk temperature: unknown"
 msgstr "硬盘温度:未知"
-
-msgid "Display"
-msgstr "显示"
 
 msgid "Display 16:9 content as"
 msgstr "显示 16:9 内容"
@@ -7153,9 +7146,6 @@ msgstr "反转"
 msgid "Invert"
 msgstr "反转"
 
-msgid "Ipkg"
-msgstr "Ipkg安装命令"
-
 msgid "Iran (Islamic Republic of)"
 msgstr "伊朗伊斯兰共和国"
 
@@ -7702,6 +7692,10 @@ msgstr "MAC地址:"
 
 msgid "MB"
 msgstr "MB"
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "SATPI设置"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr "MIRACLEBOX_TWINPLUS"
@@ -9831,9 +9825,6 @@ msgstr "极轴设置"
 msgid "Positioner setup"
 msgstr "极轴设置"
 
-msgid "Power (use button menu)"
-msgstr "电源(使用按钮菜单)"
-
 msgid "Power LED State in Deep-Standby"
 msgstr "电源LED处于深度待机状态"
 
@@ -9851,9 +9842,6 @@ msgstr "深度待机期间的电源指示灯状态."
 
 msgid "Power LED state during standby."
 msgstr "待机时的电源LED状态."
-
-msgid "Power long (use button menu)"
-msgstr "电源 长按(使用按钮菜单)"
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr "电源管理.有关更多信息,请参阅接收机手册."
@@ -10224,6 +10212,10 @@ msgstr "快速和安全的删除您安装的设备 "
 msgid "Quick zap"
 msgstr "快速换台"
 
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "多引导镜像选择器"
+
 msgid "RAM"
 msgstr "外存储器"
 
@@ -10388,9 +10380,6 @@ msgstr "DVD媒体工具箱"
 
 msgid "Recording"
 msgstr "录制"
-
-msgid "Recording / Playback"
-msgstr "录制/回放"
 
 msgid "Recording Setup"
 msgstr "录制设置"
@@ -12459,6 +12448,10 @@ msgstr "字幕快捷菜单"
 msgid "Show systemplugins packages"
 msgstr "显示系统插件包"
 
+#, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "显示媒体播放器..."
+
 msgid "Show the Sleep Timer..."
 msgstr "显示睡眠定时器..."
 
@@ -12965,6 +12958,10 @@ msgstr "待机/重启"
 
 msgid "Standby / restart"
 msgstr "待机/重启"
+
+#, fuzzy
+msgid "Standby Skin"
+msgstr "一般待机"
 
 msgid "Standby without TV shutdown"
 msgstr "没有电视关机待机"
@@ -13628,13 +13625,6 @@ msgstr ""
 "请安装它."
 
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"没有安装增强的电影中心插件!\n"
-"请安装它."
-
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -13714,13 +13704,6 @@ msgstr "PIN码已成功更改."
 
 msgid "The PIN codes you entered are different."
 msgstr "您输入的PIN码是不同的."
-
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"没有安装简单的电影列表插件!\n"
-"请安装它."
 
 msgid "The TV was switched to the recording service!\n"
 msgstr "电视被切换到录制频道!\n"
@@ -15320,6 +15303,10 @@ msgstr "使用光标键选择已安装的镜像,然后单击'擦除'键."
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr "使用光标键选择已安装的镜像,然后单击'重新启动'按钮."
 
+#, fuzzy
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr "使用光标键选择已安装的镜像,然后单击'擦除'键."
+
 msgid "Use the extended List"
 msgstr "使用扩展列表"
 
@@ -15435,9 +15422,6 @@ msgstr "V键  长按"
 
 msgid "VCR scart"
 msgstr "录制机"
-
-msgid "VFD Skin Selector"
-msgstr "VFD皮肤选择器"
 
 msgid "VLAN connection"
 msgstr "VLAN连接"
@@ -16197,9 +16181,6 @@ msgstr "XP1000"
 
 msgid "XP3000"
 msgstr "XP3000"
-
-msgid "Xpeed keymap - keymap.xpe"
-msgstr "Xpeed键映射- keymap.xpe"
 
 msgid "Y-Tube/WWW"
 msgstr "Y /网络"

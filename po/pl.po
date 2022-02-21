@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -3576,11 +3576,6 @@ msgstr ""
 msgid "Clients"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Skiny"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -5006,9 +5001,6 @@ msgid "Disk temperature: %s"
 msgstr ""
 
 msgid "Disk temperature: unknown"
-msgstr ""
-
-msgid "Display"
 msgstr ""
 
 #
@@ -8097,10 +8089,6 @@ msgstr "Inwersja"
 msgid "Invert"
 msgstr "Odwróć"
 
-#
-msgid "Ipkg"
-msgstr "Ipkg"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -8749,6 +8737,11 @@ msgstr ""
 
 msgid "MB"
 msgstr ""
+
+#
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "Ustawienia"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -11267,11 +11260,6 @@ msgstr "Ustawienia pozycjonera"
 msgid "Positioner setup"
 msgstr "Ustawienia pozycjonera"
 
-#
-#, fuzzy
-msgid "Power (use button menu)"
-msgstr "Pokaż menu wyłączania"
-
 msgid "Power LED State in Deep-Standby"
 msgstr ""
 
@@ -11291,9 +11279,6 @@ msgstr ""
 #, fuzzy
 msgid "Power LED state during standby."
 msgstr "Przełączaj TV w stan czuwania"
-
-msgid "Power long (use button menu)"
-msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
@@ -11778,6 +11763,11 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Szybkie przełączanie"
 
+#
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Wybór napisów"
+
 msgid "RAM"
 msgstr ""
 
@@ -11981,11 +11971,6 @@ msgstr "Narzędzia DVD"
 #
 msgid "Recording"
 msgstr "Nagranie"
-
-#
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Wznawianie odtwarzania"
 
 #, fuzzy
 msgid "Recording Setup"
@@ -14538,6 +14523,11 @@ msgstr "Pokazuj 'trybiki' gdy zajęty"
 
 #
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Przejdź w tryb radio..."
+
+#
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "Przejdź w tryb TV..."
 
@@ -15152,6 +15142,11 @@ msgstr "Czuwanie / Restart"
 #, fuzzy
 msgid "Standby / restart"
 msgstr "Czuwanie / Restart"
+
+#
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Czuwanie"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -15962,15 +15957,6 @@ msgstr ""
 #
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Plugin sieci bezprzewodowej nie jest zainstalowany!\n"
-"Zainstaluj go."
-
-#
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -16058,15 +16044,6 @@ msgstr "Kod PIN został zmieniony pomyślnie."
 #
 msgid "The PIN codes you entered are different."
 msgstr "Kody PIN które wpisałeś różnią się."
-
-#
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Plugin sieci bezprzewodowej nie jest zainstalowany!\n"
-"Zainstaluj go."
 
 #
 #, fuzzy
@@ -17839,6 +17816,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr ""
 
@@ -17976,9 +17956,6 @@ msgstr ""
 
 #
 msgid "VCR scart"
-msgstr ""
-
-msgid "VFD Skin Selector"
 msgstr ""
 
 #, fuzzy
@@ -18848,9 +18825,6 @@ msgid "XP1000"
 msgstr ""
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: RU locale edited by Sowa\n"
@@ -3308,10 +3308,6 @@ msgstr "Клиенты"
 msgid "Clients"
 msgstr "Клиенты"
 
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Скины"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4592,9 +4588,6 @@ msgstr "Температура системы: %s"
 #, fuzzy
 msgid "Disk temperature: unknown"
 msgstr "Температура системы: %s"
-
-msgid "Display"
-msgstr "VFD Дисплей"
 
 msgid "Display 16:9 content as"
 msgstr "Отображать формат 16:9 как"
@@ -7382,9 +7375,6 @@ msgstr "Инверсия"
 msgid "Invert"
 msgstr "Инвертировать"
 
-msgid "Ipkg"
-msgstr "Ipkg"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -7954,6 +7944,10 @@ msgstr "MAC:"
 
 msgid "MB"
 msgstr "МБ"
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "Настройка AFP (Mac OS)"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -10155,10 +10149,6 @@ msgid "Positioner setup"
 msgstr "Настройка позиционера"
 
 #, fuzzy
-msgid "Power (use button menu)"
-msgstr "Показать Меню выключения"
-
-#, fuzzy
 msgid "Power LED State in Deep-Standby"
 msgstr "LED в полном режиме ожидания"
 
@@ -10179,9 +10169,6 @@ msgstr "Яркость LED в полном режиме ожидания"
 #, fuzzy
 msgid "Power LED state during standby."
 msgstr "Яркость LED в режиме ожидания"
-
-msgid "Power long (use button menu)"
-msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
@@ -10582,6 +10569,10 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Быстрое переключение"
 
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Выбор субтитров"
+
 msgid "RAM"
 msgstr "Оперативная память"
 
@@ -10753,10 +10744,6 @@ msgstr "Инструменты DVD"
 
 msgid "Recording"
 msgstr "Записывается"
-
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Возобновление воспроизведения"
 
 #, fuzzy
 msgid "Recording Setup"
@@ -12995,6 +12982,10 @@ msgid "Show systemplugins packages"
 msgstr "Показать пакеты с данными для перевода (po)"
 
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Включить режим воспроизведения..."
+
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "Включить режим ТВ..."
 
@@ -13531,6 +13522,10 @@ msgstr "Меню выключения"
 
 msgid "Standby / restart"
 msgstr "Меню выключения"
+
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Режим ожидания"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -14243,14 +14238,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Плагин MediaPlayer не установлен!\n"
-"Пожалуйста, установите."
-
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -14336,14 +14323,6 @@ msgstr "PIN успешно изменён!"
 
 msgid "The PIN codes you entered are different."
 msgstr "PIN коды не совпадают!"
-
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Плагин Wireless LAN не установлен!\n"
-"Пожалуйста, установите его."
 
 #, fuzzy
 msgid "The TV was switched to the recording service!\n"
@@ -16018,6 +15997,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 #, fuzzy
 msgid "Use the extended List"
 msgstr "Использовать эти настройки?"
@@ -16139,10 +16121,6 @@ msgstr ""
 
 msgid "VCR scart"
 msgstr "Видеомагнитофон"
-
-#, fuzzy
-msgid "VFD Skin Selector"
-msgstr "Переключить скин"
 
 #, fuzzy
 msgid "VLAN connection"
@@ -16943,9 +16921,6 @@ msgid "XP1000"
 msgstr ""
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2_v2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:20+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -3895,12 +3895,6 @@ msgstr ""
 msgid "Clients"
 msgstr ""
 
-#
-#
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Θέματα"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -5473,9 +5467,6 @@ msgid "Disk temperature: %s"
 msgstr ""
 
 msgid "Disk temperature: unknown"
-msgstr ""
-
-msgid "Display"
 msgstr ""
 
 #
@@ -8881,11 +8872,6 @@ msgstr "Αναστροφή"
 msgid "Invert"
 msgstr "Αντιστροφή"
 
-#
-#
-msgid "Ipkg"
-msgstr "Ipkg"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -9589,6 +9575,12 @@ msgstr ""
 
 msgid "MB"
 msgstr ""
+
+#
+#
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "Παραμετροποίηση"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -12410,12 +12402,6 @@ msgstr "Ρύθμιση positioner"
 msgid "Positioner setup"
 msgstr "Ρύθμιση positioner"
 
-#
-#
-#, fuzzy
-msgid "Power (use button menu)"
-msgstr "εμφάνιση μενού τερματισμού"
-
 msgid "Power LED State in Deep-Standby"
 msgstr ""
 
@@ -12434,9 +12420,6 @@ msgstr ""
 #, fuzzy
 msgid "Power LED state during standby."
 msgstr "Θέστε την TV σε αναμονή"
-
-msgid "Power long (use button menu)"
-msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
@@ -12987,6 +12970,12 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Γρήγορο zapping"
 
+#
+#
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Επιλογή υποτίτλων"
+
 msgid "RAM"
 msgstr ""
 
@@ -13222,12 +13211,6 @@ msgstr "Εργαλειοθήκη πολυμέσων DVD"
 #
 msgid "Recording"
 msgstr "Εγγραφή..."
-
-#
-#
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Συνέχεια αναπαραγωγής"
 
 #
 #
@@ -16070,6 +16053,12 @@ msgstr "Εμφάνιση animation κατά την καθυστέρηση"
 #
 #
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Εμφάνιση ραδιοφώνου..."
+
+#
+#
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "Εμφάνιση TV"
 
@@ -16767,6 +16756,12 @@ msgstr "Αναμονή / Επανεκκίνηση"
 #, fuzzy
 msgid "Standby / restart"
 msgstr "Αναμονή / Επανεκκίνηση"
+
+#
+#
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Αναμονή"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -17672,16 +17667,6 @@ msgstr ""
 #
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Το πρόσθετο wireless LAN δεν είναι εγκατεστημένο!\n"
-"Παρακαλώ εγκαταστήστε το."
-
-#
-#
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -17772,16 +17757,6 @@ msgstr "Το PIN έχει αλλαχθεί επιτυχώς."
 
 msgid "The PIN codes you entered are different."
 msgstr "Τα PIN που εισάγατε είναι διαφορετικά."
-
-#
-#
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Το πρόσθετο wireless LAN δεν είναι εγκατεστημένο!\n"
-"Παρακαλώ εγκαταστήστε το."
 
 #
 #
@@ -19714,6 +19689,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr ""
 
@@ -19866,9 +19844,6 @@ msgstr ""
 #
 msgid "VCR scart"
 msgstr "VCR scart"
-
-msgid "VFD Skin Selector"
-msgstr ""
 
 #
 #, fuzzy
@@ -20819,9 +20794,6 @@ msgid "XP1000"
 msgstr ""
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

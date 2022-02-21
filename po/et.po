@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -3297,10 +3297,6 @@ msgstr "Kliendid"
 msgid "Clients"
 msgstr "Kliendid"
 
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Välimus"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4574,9 +4570,6 @@ msgstr "Temperatuur: %s"
 #, fuzzy
 msgid "Disk temperature: unknown"
 msgstr "Temperatuur: %s"
-
-msgid "Display"
-msgstr ""
 
 msgid "Display 16:9 content as"
 msgstr "16:9 sisu kuvamine"
@@ -7367,9 +7360,6 @@ msgstr "Inversioon"
 msgid "Invert"
 msgstr "Vastupidi"
 
-msgid "Ipkg"
-msgstr "Ipkg"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -7937,6 +7927,10 @@ msgstr "MAC:"
 
 msgid "MB"
 msgstr "MB"
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "AFP seaded"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -10135,10 +10129,6 @@ msgid "Positioner setup"
 msgstr "Positsioneeri seadistus"
 
 #, fuzzy
-msgid "Power (use button menu)"
-msgstr "Seiskamismenüü"
-
-#, fuzzy
 msgid "Power LED State in Deep-Standby"
 msgstr "LED sügavootel"
 
@@ -10159,9 +10149,6 @@ msgstr "LED heledus sügavooterežiimil."
 #, fuzzy
 msgid "Power LED state during standby."
 msgstr "LED heledus ooterežiimil."
-
-msgid "Power long (use button menu)"
-msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
@@ -10563,6 +10550,10 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Kiire kanalivalik"
 
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Subtiitrite valik"
+
 msgid "RAM"
 msgstr "RAM"
 
@@ -10734,10 +10725,6 @@ msgstr "DVD tööriistad"
 
 msgid "Recording"
 msgstr "Salvestus"
-
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Taasesituse jätkamine"
 
 #, fuzzy
 msgid "Recording Setup"
@@ -12975,6 +12962,10 @@ msgid "Show systemplugins packages"
 msgstr "Näita tõlkefaile"
 
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Kuula raadiot..."
+
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "Vaata TV-d..."
 
@@ -13512,6 +13503,10 @@ msgstr "Seiskamine"
 
 msgid "Standby / restart"
 msgstr "Seiskamine"
+
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Ooterežiim"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -14223,14 +14218,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Autotaimer ei ole paigaldatud!\n"
-"Paigalda see."
-
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -14317,14 +14304,6 @@ msgstr "PIN kood on muudetud."
 
 msgid "The PIN codes you entered are different."
 msgstr "Sisestatud PIN koodid on erinevad."
-
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Wifi laiendus ei ole paigaldatud!\n"
-"Paigalda see."
 
 #, fuzzy
 msgid "The TV was switched to the recording service!\n"
@@ -15991,6 +15970,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 #, fuzzy
 msgid "Use the extended List"
 msgstr "Kas kasutad neid seadeid"
@@ -16112,10 +16094,6 @@ msgstr "PUNANE pikk"
 
 msgid "VCR scart"
 msgstr "VCR scart"
-
-#, fuzzy
-msgid "VFD Skin Selector"
-msgstr "Enigma2 teema valik"
 
 #, fuzzy
 msgid "VLAN connection"
@@ -16915,9 +16893,6 @@ msgid "XP1000"
 msgstr "XP1000"
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

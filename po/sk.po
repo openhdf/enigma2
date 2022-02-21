@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: none\n"
@@ -3271,10 +3271,6 @@ msgstr ""
 msgid "Clients"
 msgstr ""
 
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Vzhľady"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4539,9 +4535,6 @@ msgid "Disk temperature: %s"
 msgstr ""
 
 msgid "Disk temperature: unknown"
-msgstr ""
-
-msgid "Display"
 msgstr ""
 
 msgid "Display 16:9 content as"
@@ -7278,9 +7271,6 @@ msgstr "Inverzia"
 msgid "Invert"
 msgstr ""
 
-msgid "Ipkg"
-msgstr "Ipkg"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -7860,6 +7850,10 @@ msgstr ""
 
 msgid "MB"
 msgstr ""
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "Nastavenia"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -10065,10 +10059,6 @@ msgstr "Nastavenie motora"
 msgid "Positioner setup"
 msgstr "Nastavenie motora"
 
-#, fuzzy
-msgid "Power (use button menu)"
-msgstr "zobraziť menu vypnutia"
-
 msgid "Power LED State in Deep-Standby"
 msgstr ""
 
@@ -10085,9 +10075,6 @@ msgid "Power LED state during deep-standby."
 msgstr ""
 
 msgid "Power LED state during standby."
-msgstr ""
-
-msgid "Power long (use button menu)"
 msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
@@ -10488,6 +10475,10 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Rýchle prepínanie"
 
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Výber titulkov"
+
 msgid "RAM"
 msgstr ""
 
@@ -10660,10 +10651,6 @@ msgstr "Nástroje pre DVD"
 
 msgid "Recording"
 msgstr "Nahrávanie"
-
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Pokračujem v prehrávaní"
 
 #, fuzzy
 msgid "Recording Setup"
@@ -12885,6 +12872,10 @@ msgid "Show systemplugins packages"
 msgstr ""
 
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Prehrávanie rádia..."
+
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "Prehrávanie TV..."
 
@@ -13418,6 +13409,10 @@ msgstr "Vypnúť, reštartovať"
 #, fuzzy
 msgid "Standby / restart"
 msgstr "Vypnúť, reštartovať"
+
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Pohotovostný režim"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -14126,14 +14121,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Modul bezdrôtovej LAN nie je nainštalovaný!\n"
-"Nainštalujte ho."
-
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -14212,14 +14199,6 @@ msgstr "Kód PIN bol úspešne zmenený."
 
 msgid "The PIN codes you entered are different."
 msgstr "Kódy PIN, ktoré ste zadali, sú rôzne."
-
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Modul bezdrôtovej LAN nie je nainštalovaný!\n"
-"Nainštalujte ho."
 
 #, fuzzy
 msgid "The TV was switched to the recording service!\n"
@@ -15841,6 +15820,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr ""
 
@@ -15964,9 +15946,6 @@ msgstr ""
 
 msgid "VCR scart"
 msgstr "Scart - videorekordér"
-
-msgid "VFD Skin Selector"
-msgstr ""
 
 #, fuzzy
 msgid "VLAN connection"
@@ -16746,9 +16725,6 @@ msgid "XP1000"
 msgstr ""
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

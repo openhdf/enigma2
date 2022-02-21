@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
@@ -3298,10 +3298,6 @@ msgstr "Klanten"
 msgid "Clients"
 msgstr "Klanten"
 
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Skins"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4575,9 +4571,6 @@ msgstr "Systeem temperatuur: %s"
 #, fuzzy
 msgid "Disk temperature: unknown"
 msgstr "Systeem temperatuur: %s"
-
-msgid "Display"
-msgstr "Display"
 
 msgid "Display 16:9 content as"
 msgstr "Toon 16:9 materiaal als"
@@ -7376,9 +7369,6 @@ msgstr "Inversie"
 msgid "Invert"
 msgstr "Omgekeerd"
 
-msgid "Ipkg"
-msgstr "IPKG"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -7947,6 +7937,10 @@ msgstr "MAC:"
 
 msgid "MB"
 msgstr "MB"
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "AFP-instellingen"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -10149,10 +10143,6 @@ msgid "Positioner setup"
 msgstr "Rotor instellingen"
 
 #, fuzzy
-msgid "Power (use button menu)"
-msgstr "Afsluitmenu weergeven"
-
-#, fuzzy
 msgid "Power LED State in Deep-Standby"
 msgstr "LED deep sleep"
 
@@ -10173,9 +10163,6 @@ msgstr "LED helderheid tijdens deep sleep."
 #, fuzzy
 msgid "Power LED state during standby."
 msgstr "LED helderheid tijdens standby."
-
-msgid "Power long (use button menu)"
-msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
@@ -10578,6 +10565,10 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Snelzap"
 
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Ondertitel selectie"
+
 msgid "RAM"
 msgstr "RAM"
 
@@ -10749,10 +10740,6 @@ msgstr "DVD media gereedschap"
 
 msgid "Recording"
 msgstr "Opname"
-
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Afspelen wordt hervat"
 
 #, fuzzy
 msgid "Recording Setup"
@@ -12998,6 +12985,10 @@ msgid "Show systemplugins packages"
 msgstr "Toon taalpakketten"
 
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Radioweergave modus..."
+
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "TV-weergave modus..."
 
@@ -13536,6 +13527,10 @@ msgstr "Stand-by/Afsluiten"
 
 msgid "Standby / restart"
 msgstr "Stand-by/afsluiten"
+
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Stand-by"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -14248,14 +14243,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"De Autotimer plugin is niet geïnstalleerd!\n"
-"Installeer die aub."
-
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -14342,12 +14329,6 @@ msgstr "De pincode is succesvol gewijzigd."
 
 msgid "The PIN codes you entered are different."
 msgstr "De ingevoerde pincodes komen niet overeen."
-
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr "De WiFi-plugin is niet geïnstalleerd.Deze plugin eerst installeren a.u.b."
 
 #, fuzzy
 msgid "The TV was switched to the recording service!\n"
@@ -16025,6 +16006,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 #, fuzzy
 msgid "Use the extended List"
 msgstr "Deze settings gebruiken?"
@@ -16146,10 +16130,6 @@ msgstr "Lang-rood"
 
 msgid "VCR scart"
 msgstr "VCR scart"
-
-#, fuzzy
-msgid "VFD Skin Selector"
-msgstr "Enigma2 skinselectie"
 
 #, fuzzy
 msgid "VLAN connection"
@@ -16950,9 +16930,6 @@ msgid "XP1000"
 msgstr "XP1000"
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

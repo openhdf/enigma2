@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
@@ -3253,10 +3253,6 @@ msgstr ""
 msgid "Clients"
 msgstr ""
 
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Temos"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4514,9 +4510,6 @@ msgid "Disk temperature: %s"
 msgstr ""
 
 msgid "Disk temperature: unknown"
-msgstr ""
-
-msgid "Display"
 msgstr ""
 
 msgid "Display 16:9 content as"
@@ -7254,9 +7247,6 @@ msgstr "Pervertimas"
 msgid "Invert"
 msgstr ""
 
-msgid "Ipkg"
-msgstr "Ipkg"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -7834,6 +7824,10 @@ msgstr ""
 
 msgid "MB"
 msgstr ""
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "Nustatymai"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -10037,10 +10031,6 @@ msgstr "Pozicionieriaus nustatymas"
 msgid "Positioner setup"
 msgstr "Pozicionieriaus nustatymas"
 
-#, fuzzy
-msgid "Power (use button menu)"
-msgstr "išjungimo meniu"
-
 msgid "Power LED State in Deep-Standby"
 msgstr ""
 
@@ -10057,9 +10047,6 @@ msgid "Power LED state during deep-standby."
 msgstr ""
 
 msgid "Power LED state during standby."
-msgstr ""
-
-msgid "Power long (use button menu)"
 msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
@@ -10460,6 +10447,10 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Greitas perjungimas"
 
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Subtitrų pasirinkimas"
+
 msgid "RAM"
 msgstr ""
 
@@ -10633,10 +10624,6 @@ msgstr "DVD priemonių komplektas"
 
 msgid "Recording"
 msgstr "Įrašymas"
-
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Tęsti leidimą"
 
 #, fuzzy
 msgid "Recording Setup"
@@ -12861,6 +12848,10 @@ msgid "Show systemplugins packages"
 msgstr "Rodyti animaciją tuo metu, kai užimta"
 
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Rodyti radijo grotuvą..."
+
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "Rodyti TV grotuvą ..."
 
@@ -13396,6 +13387,10 @@ msgstr "Budėti / Perkrauti"
 #, fuzzy
 msgid "Standby / restart"
 msgstr "Budėti / Perkrauti"
+
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Budėjimas"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -14104,14 +14099,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Belaidžio tinklo programa neįdiegta!\n"
-"Prašome įdiegti tai."
-
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -14190,14 +14177,6 @@ msgstr "PIN kodas buvo pakeistas sėkmingai."
 
 msgid "The PIN codes you entered are different."
 msgstr "Jūsų įvesti PIN kodai yra skirtingi."
-
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Belaidžio tinklo programa neįdiegta!\n"
-"Prašome įdiegti tai."
 
 #, fuzzy
 msgid "The TV was switched to the recording service!\n"
@@ -15818,6 +15797,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr ""
 
@@ -15941,9 +15923,6 @@ msgstr ""
 
 msgid "VCR scart"
 msgstr "Vaizdo grotuvas"
-
-msgid "VFD Skin Selector"
-msgstr ""
 
 #, fuzzy
 msgid "VLAN connection"
@@ -16723,9 +16702,6 @@ msgid "XP1000"
 msgstr ""
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

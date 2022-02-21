@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: HDTV ROMANIA(superonic,costel_mbc,neutrin,otheitis,cipy_1982,neutrin,runcanion)\n"
@@ -3211,10 +3211,6 @@ msgstr ""
 msgid "Clients"
 msgstr ""
 
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Skinuri"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4474,9 +4470,6 @@ msgid "Disk temperature: %s"
 msgstr ""
 
 msgid "Disk temperature: unknown"
-msgstr ""
-
-msgid "Display"
 msgstr ""
 
 msgid "Display 16:9 content as"
@@ -7193,9 +7186,6 @@ msgstr "Inversare"
 msgid "Invert"
 msgstr ""
 
-msgid "Ipkg"
-msgstr "Ipkg"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -7773,6 +7763,10 @@ msgstr ""
 
 msgid "MB"
 msgstr ""
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "Configurare"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -9944,10 +9938,6 @@ msgstr "Configurare Pozitioner"
 msgid "Positioner setup"
 msgstr "Configurare Pozitioner"
 
-#, fuzzy
-msgid "Power (use button menu)"
-msgstr "arata meniul de shutdown"
-
 msgid "Power LED State in Deep-Standby"
 msgstr ""
 
@@ -9964,9 +9954,6 @@ msgid "Power LED state during deep-standby."
 msgstr ""
 
 msgid "Power LED state during standby."
-msgstr ""
-
-msgid "Power long (use button menu)"
 msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
@@ -10363,6 +10350,10 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Zap rapid"
 
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Selectare subtitrare"
+
 msgid "RAM"
 msgstr ""
 
@@ -10533,10 +10524,6 @@ msgstr "Instrumente DVD"
 
 msgid "Recording"
 msgstr "Inregistrare"
-
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Reluare redare"
 
 #, fuzzy
 msgid "Recording Setup"
@@ -12747,6 +12734,10 @@ msgid "Show systemplugins packages"
 msgstr ""
 
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Arata player-ul radio"
+
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "Arata player-ul tv"
 
@@ -13276,6 +13267,10 @@ msgstr "Asteptare / Restart"
 #, fuzzy
 msgid "Standby / restart"
 msgstr "Asteptare / Restart"
+
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Asteptare"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -13980,14 +13975,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Plugin-ul LAN wireless nu este instalat!\n"
-"Va rugam sa-l instalati."
-
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -14065,14 +14052,6 @@ msgstr ""
 
 msgid "The PIN codes you entered are different."
 msgstr ""
-
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Plugin-ul LAN wireless nu este instalat!\n"
-"Va rugam sa-l instalati."
 
 #, fuzzy
 msgid "The TV was switched to the recording service!\n"
@@ -15674,6 +15653,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr ""
 
@@ -15797,9 +15779,6 @@ msgstr ""
 
 msgid "VCR scart"
 msgstr "VCR scart"
-
-msgid "VFD Skin Selector"
-msgstr ""
 
 #, fuzzy
 msgid "VLAN connection"
@@ -16565,9 +16544,6 @@ msgid "XP1000"
 msgstr ""
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

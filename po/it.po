@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: WWW.LINSAT.NET <spaeleus@croci.org>\n"
@@ -3550,11 +3550,6 @@ msgstr ""
 msgid "Clients"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Skin..."
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4951,9 +4946,6 @@ msgid "Disk temperature: %s"
 msgstr ""
 
 msgid "Disk temperature: unknown"
-msgstr ""
-
-msgid "Display"
 msgstr ""
 
 #
@@ -7967,10 +7959,6 @@ msgstr "Inversione"
 msgid "Invert"
 msgstr ""
 
-#
-msgid "Ipkg"
-msgstr "Ipkg"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -8613,6 +8601,11 @@ msgstr ""
 
 msgid "MB"
 msgstr ""
+
+#
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "Configurazione"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -11095,11 +11088,6 @@ msgstr "Configurazione motore"
 msgid "Positioner setup"
 msgstr "Configurazione motore"
 
-#
-#, fuzzy
-msgid "Power (use button menu)"
-msgstr "Mostrare menu di arresto"
-
 msgid "Power LED State in Deep-Standby"
 msgstr ""
 
@@ -11116,9 +11104,6 @@ msgid "Power LED state during deep-standby."
 msgstr ""
 
 msgid "Power LED state during standby."
-msgstr ""
-
-msgid "Power long (use button menu)"
 msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
@@ -11576,6 +11561,11 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Zapping veloce"
 
+#
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Selezione sottotitoli"
+
 msgid "RAM"
 msgstr ""
 
@@ -11777,11 +11767,6 @@ msgstr "Strumenti DVD"
 #
 msgid "Recording"
 msgstr "Registrazione..."
-
-#
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Riavvio riproduzione..."
 
 #
 #, fuzzy
@@ -14258,6 +14243,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Radio..."
+
+#
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "TV..."
 
@@ -14857,6 +14847,11 @@ msgstr "Standby / Riavvio"
 #, fuzzy
 msgid "Standby / restart"
 msgstr "Standby / Riavvio"
+
+#
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Standby"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -15647,15 +15642,6 @@ msgstr ""
 #
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Plugin WirelessLAN non installato!\n"
-"Installarlo per poterlo abilitare."
-
-#
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -15740,15 +15726,6 @@ msgstr "Codice PIN aggiornato correttamente."
 
 msgid "The PIN codes you entered are different."
 msgstr "I codici PIN inseriti sono diversi!"
-
-#
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Plugin WirelessLAN non installato!\n"
-"Installarlo per poterlo abilitare."
 
 #
 #, fuzzy
@@ -17511,6 +17488,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr ""
 
@@ -17646,9 +17626,6 @@ msgstr ""
 #
 msgid "VCR scart"
 msgstr "Scart VCR"
-
-msgid "VFD Skin Selector"
-msgstr ""
 
 #, fuzzy
 msgid "VLAN connection"
@@ -18503,9 +18480,6 @@ msgid "XP1000"
 msgstr ""
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

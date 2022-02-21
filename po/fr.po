@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-10-31 07:46+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
@@ -3271,10 +3271,6 @@ msgstr "Clients"
 msgid "Clients"
 msgstr "Clients"
 
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Thèmes LCD"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4507,9 +4503,6 @@ msgstr "Température du disque: %s"
 
 msgid "Disk temperature: unknown"
 msgstr "Température du disque: inconnu"
-
-msgid "Display"
-msgstr "Affichage"
 
 msgid "Display 16:9 content as"
 msgstr "Afficher contenu 16:9 comme"
@@ -7212,9 +7205,6 @@ msgstr "Inversion"
 msgid "Invert"
 msgstr "Inverser"
 
-msgid "Ipkg"
-msgstr "Ipkg"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -7767,6 +7757,10 @@ msgstr "MAC:"
 
 msgid "MB"
 msgstr "MB"
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "Configuration AFP"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -9897,9 +9891,6 @@ msgstr "Paramètres positionneur"
 msgid "Positioner setup"
 msgstr "Paramètres positionneur"
 
-msgid "Power (use button menu)"
-msgstr "Power (utiliser le menu du bouton)"
-
 #, fuzzy
 msgid "Power LED State in Deep-Standby"
 msgstr "Etat de la LED d’alimentation en veille profonde et veille"
@@ -9921,9 +9912,6 @@ msgstr "Etat de la LED d’alimentation en veille profonde et veille"
 #, fuzzy
 msgid "Power LED state during standby."
 msgstr "Etat de la LED d’alimentation en veille profonde et veille"
-
-msgid "Power long (use button menu)"
-msgstr "Power long (utiliser le menu du bouton)"
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
@@ -10308,6 +10296,10 @@ msgstr "Enlever rapidement et en toute sécurité vos périphériques montés "
 msgid "Quick zap"
 msgstr "Zap rapide"
 
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Multisat tout sélectionner"
+
 msgid "RAM"
 msgstr "RAM"
 
@@ -10472,9 +10464,6 @@ msgstr "Boite outils média DVD"
 
 msgid "Recording"
 msgstr "Enregistrement"
-
-msgid "Recording / Playback"
-msgstr "Enregistrement / lecture"
 
 msgid "Recording Setup"
 msgstr "Configurer les enregistrements"
@@ -12580,6 +12569,10 @@ msgstr "Sous-titre QuickMenu"
 msgid "Show systemplugins packages"
 msgstr "Afficher les paquets des plugins systèmes"
 
+#, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Afficher le lecteur de média…"
+
 msgid "Show the Sleep Timer..."
 msgstr "Afficher le timer de sommeil…"
 
@@ -13089,6 +13082,10 @@ msgstr "Veille / Redémarrage"
 
 msgid "Standby / restart"
 msgstr "Veille / Redémarrage"
+
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Veille"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -13772,13 +13769,6 @@ msgstr ""
 "Veuillez l'installer."
 
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Le plugin EnhancedMovieCenter n'est pas installé!\n"
-"Veuillez l'installer."
-
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -13858,13 +13848,6 @@ msgstr "Le code PIN a été changé avec succès."
 
 msgid "The PIN codes you entered are different."
 msgstr "Les codes PIN saisis sont différents."
-
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Le plugin Simple Movie List n'est pas installé!\n"
-"Veuillez l'installer."
 
 msgid "The TV was switched to the recording service!\n"
 msgstr "La TV a zappé sur la chaîne enregistrée!\n"
@@ -15488,6 +15471,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr "Utiliser la liste étendue"
 
@@ -15604,9 +15590,6 @@ msgstr "V-Key long"
 
 msgid "VCR scart"
 msgstr "Péritel magnétoscope"
-
-msgid "VFD Skin Selector"
-msgstr "VFD Skin Selector"
 
 msgid "VLAN connection"
 msgstr "Connexion VLAN"
@@ -16377,9 +16360,6 @@ msgstr "XP1000"
 
 msgid "XP3000"
 msgstr "XP3000"
-
-msgid "Xpeed keymap - keymap.xpe"
-msgstr "Xpeed keymap - keymap.xpe"
 
 msgid "Y-Tube/WWW"
 msgstr "Y-Tube/WWW"

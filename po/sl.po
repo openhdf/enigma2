@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -3558,11 +3558,6 @@ msgstr ""
 msgid "Clients"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Predloge"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4991,9 +4986,6 @@ msgid "Disk temperature: %s"
 msgstr ""
 
 msgid "Disk temperature: unknown"
-msgstr ""
-
-msgid "Display"
 msgstr ""
 
 #
@@ -8087,10 +8079,6 @@ msgstr "Inverzija"
 msgid "Invert"
 msgstr ""
 
-#
-msgid "Ipkg"
-msgstr "Ipkg"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -8742,6 +8730,11 @@ msgstr ""
 
 msgid "MB"
 msgstr ""
+
+#
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "AFP nastavitve"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -11267,11 +11260,6 @@ msgstr "Nastavitve rotorja"
 msgid "Positioner setup"
 msgstr "Nastavitve rotorja"
 
-#
-#, fuzzy
-msgid "Power (use button menu)"
-msgstr "Prikaz menija za izklop"
-
 msgid "Power LED State in Deep-Standby"
 msgstr ""
 
@@ -11288,9 +11276,6 @@ msgid "Power LED state during deep-standby."
 msgstr ""
 
 msgid "Power LED state during standby."
-msgstr ""
-
-msgid "Power long (use button menu)"
 msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
@@ -11773,6 +11758,11 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Hitri preklop"
 
+#
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Izbira podnapisov"
+
 msgid "RAM"
 msgstr ""
 
@@ -11976,11 +11966,6 @@ msgstr "DVD medijska orodja"
 #
 msgid "Recording"
 msgstr "Snemanje"
-
-#
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Nadaljevanje predvajanja."
 
 #, fuzzy
 msgid "Recording Setup"
@@ -14543,6 +14528,11 @@ msgstr "Ko je sprejemnik zaposlen, naj se prikazuje animacija"
 
 #
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Odprite multimedijski predvajalnik"
+
+#
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "Prikaz TV predvajalnika"
 
@@ -15154,6 +15144,11 @@ msgstr "Možnosti izklopa sprejemnika"
 #, fuzzy
 msgid "Standby / restart"
 msgstr "Možnosti izklopa sprejemnika"
+
+#
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Stanje pripravljenosti"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -15969,15 +15964,6 @@ msgstr ""
 #
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Vtičnik za brezžično mrežo ni nameščen!\n"
-"Prosim, da ga namestite."
-
-#
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -16062,15 +16048,6 @@ msgstr "PIN koda je spremenjena."
 
 msgid "The PIN codes you entered are different."
 msgstr "Napačna PIN koda."
-
-#
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Vtičnik za brezžično mrežo ni nameščen!\n"
-"Prosim, da ga namestite."
 
 #
 #, fuzzy
@@ -17840,6 +17817,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr ""
 
@@ -17978,9 +17958,6 @@ msgstr ""
 #
 msgid "VCR scart"
 msgstr "Preklop na SCART vhod"
-
-msgid "VFD Skin Selector"
-msgstr ""
 
 #, fuzzy
 msgid "VLAN connection"
@@ -18831,9 +18808,6 @@ msgid "XP1000"
 msgstr ""
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

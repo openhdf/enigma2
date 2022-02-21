@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: torac <info@takerman.se>\n"
@@ -3539,11 +3539,6 @@ msgstr "Klienter"
 msgid "Clients"
 msgstr "Klienter"
 
-#
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Utseenden ('Skins')"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4948,10 +4943,6 @@ msgstr "Systemtemperatur: %s"
 #, fuzzy
 msgid "Disk temperature: unknown"
 msgstr "Systemtemperatur: %s"
-
-#, fuzzy
-msgid "Display"
-msgstr "Skärminställningar"
 
 #
 msgid "Display 16:9 content as"
@@ -7991,10 +7982,6 @@ msgstr "Inversion"
 msgid "Invert"
 msgstr "Invertera"
 
-#
-msgid "Ipkg"
-msgstr "Ipkg"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -8630,6 +8617,10 @@ msgstr "MAC:"
 
 msgid "MB"
 msgstr "MB"
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "AFP-konfiguration"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -11088,11 +11079,6 @@ msgstr "Motorinställning"
 msgid "Positioner setup"
 msgstr "Motorinställning"
 
-#
-#, fuzzy
-msgid "Power (use button menu)"
-msgstr "Visa menyn för avstängning"
-
 #, fuzzy
 msgid "Power LED State in Deep-Standby"
 msgstr "LED Avstängd"
@@ -11114,9 +11100,6 @@ msgstr "LED ljustyrka när mottagaren är avstängd."
 #, fuzzy
 msgid "Power LED state during standby."
 msgstr "LED ljustyrka under viloläge"
-
-msgid "Power long (use button menu)"
-msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
@@ -11570,6 +11553,11 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Snabbzap"
 
+#
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Textningsval"
+
 msgid "RAM"
 msgstr "RAM"
 
@@ -11768,11 +11756,6 @@ msgstr "DVD media verktyg"
 #
 msgid "Recording"
 msgstr "Spelar in"
-
-#
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Återupptar uppspelning"
 
 #, fuzzy
 msgid "Recording Setup"
@@ -14232,6 +14215,10 @@ msgstr "Snabbmeny Undertexter"
 msgid "Show systemplugins packages"
 msgstr "Visa översättningspaket"
 
+#, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Visa mediaspelaren..."
+
 #
 #, fuzzy
 msgid "Show the Sleep Timer..."
@@ -14826,6 +14813,11 @@ msgstr "Viloläge / Omstart"
 #
 msgid "Standby / restart"
 msgstr "Viloläge / Omstart"
+
+#
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Viloläge"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -15607,14 +15599,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Pluginet för MediaPlayer är inte installerat!\n"
-"Vänligen installera det."
-
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -15700,15 +15684,6 @@ msgstr "PIN-koden har nu ändrats."
 
 msgid "The PIN codes you entered are different."
 msgstr "PIN-koderna du matade in överensstämmer inte."
-
-#
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Pluginet för trådlöst LAN är inte installerat!\n"
-"Vänligen installera det."
 
 #
 #, fuzzy
@@ -17520,6 +17495,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 #, fuzzy
 msgid "Use the extended List"
 msgstr "Använda dessa inställningar?"
@@ -17654,10 +17632,6 @@ msgstr ""
 #
 msgid "VCR scart"
 msgstr "VCR Scart"
-
-#, fuzzy
-msgid "VFD Skin Selector"
-msgstr "Enigma2  'skin' väljare"
 
 #, fuzzy
 msgid "VLAN connection"
@@ -18515,9 +18489,6 @@ msgid "XP1000"
 msgstr ""
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

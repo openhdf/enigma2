@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:18+0200\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
@@ -3215,10 +3215,6 @@ msgstr "İstemciler"
 msgid "Clients"
 msgstr "İstemciler"
 
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Arayüzler"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4448,9 +4444,6 @@ msgstr "Sistem ısısı : %s"
 #, fuzzy
 msgid "Disk temperature: unknown"
 msgstr "Sistem ısısı : %s"
-
-msgid "Display"
-msgstr ""
 
 msgid "Display 16:9 content as"
 msgstr "16:9 içeriği şu şekilde göster"
@@ -7143,9 +7136,6 @@ msgstr "Tersine çevir"
 msgid "Invert"
 msgstr ""
 
-msgid "Ipkg"
-msgstr ""
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -7704,6 +7694,10 @@ msgstr "MAC:"
 
 msgid "MB"
 msgstr "MB"
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "AFP Kurulumu"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -9849,9 +9843,6 @@ msgstr "Pozisyoner kurulumu"
 msgid "Positioner setup"
 msgstr "Pozisyoner kurulumu"
 
-msgid "Power (use button menu)"
-msgstr ""
-
 msgid "Power LED State in Deep-Standby"
 msgstr ""
 
@@ -9869,9 +9860,6 @@ msgid "Power LED state during deep-standby."
 msgstr ""
 
 msgid "Power LED state during standby."
-msgstr ""
-
-msgid "Power long (use button menu)"
 msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
@@ -10253,6 +10241,10 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Hızlı kanal değiştir"
 
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Çoklu Önyükleme Seçici"
+
 msgid "RAM"
 msgstr "RAM"
 
@@ -10418,9 +10410,6 @@ msgstr "DVD ortam araçları"
 
 msgid "Recording"
 msgstr "Kayıt"
-
-msgid "Recording / Playback"
-msgstr "Kayıt / Oynatma"
 
 msgid "Recording Setup"
 msgstr "Kayıt Kurulumu"
@@ -12516,6 +12505,10 @@ msgid "Show systemplugins packages"
 msgstr "Sistem eklentı paketlerini göster"
 
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Ortam oynatıcı göster..."
+
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "TV oynatıcısını göster ..."
 
@@ -13038,6 +13031,10 @@ msgstr "Yeniden başlat / Bekleme modu"
 
 msgid "Standby / restart"
 msgstr "Yeniden başlat / Bekleme modu"
+
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Hazırda beklet"
 
 msgid "Standby without TV shutdown"
 msgstr "TV kapatılmadan bekleme"
@@ -13719,14 +13716,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"MediaPlayer eklentisi kurulu değil!\n"
-"Lütfen yükleyin."
-
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -13808,14 +13797,6 @@ msgstr "Parola başarıyla kaydedildi."
 
 msgid "The PIN codes you entered are different."
 msgstr "Girdiğiniz parolalar farklı."
-
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Kablosuz LAN eklentisi kurulu değil!\n"
-"Lütfen yükleyin."
 
 msgid "The TV was switched to the recording service!\n"
 msgstr ""
@@ -15429,6 +15410,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr "Genişletilmiş listeyi kullan"
 
@@ -15545,10 +15529,6 @@ msgstr ""
 
 msgid "VCR scart"
 msgstr "VCR scart"
-
-#, fuzzy
-msgid "VFD Skin Selector"
-msgstr "İmaj Arayüz Seçici"
 
 #, fuzzy
 msgid "VLAN connection"
@@ -16318,9 +16298,6 @@ msgid "XP1000"
 msgstr ""
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: 2019-08-27 05:19+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Bulgarian\n"
@@ -3208,10 +3208,6 @@ msgstr ""
 msgid "Clients"
 msgstr ""
 
-#, fuzzy
-msgid "Clock Skin"
-msgstr "Кожи"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4463,9 +4459,6 @@ msgid "Disk temperature: %s"
 msgstr ""
 
 msgid "Disk temperature: unknown"
-msgstr ""
-
-msgid "Display"
 msgstr ""
 
 msgid "Display 16:9 content as"
@@ -7183,9 +7176,6 @@ msgstr "Инверсия"
 msgid "Invert"
 msgstr ""
 
-msgid "Ipkg"
-msgstr ""
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -7757,6 +7747,10 @@ msgstr ""
 
 msgid "MB"
 msgstr ""
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "Настройки"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -9942,10 +9936,6 @@ msgstr "Настройка позиционер"
 msgid "Positioner setup"
 msgstr "Настройка позиционер"
 
-#, fuzzy
-msgid "Power (use button menu)"
-msgstr "покажи меню за изкл."
-
 msgid "Power LED State in Deep-Standby"
 msgstr ""
 
@@ -9962,9 +9952,6 @@ msgid "Power LED state during deep-standby."
 msgstr ""
 
 msgid "Power LED state during standby."
-msgstr ""
-
-msgid "Power long (use button menu)"
 msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
@@ -10361,6 +10348,10 @@ msgstr ""
 msgid "Quick zap"
 msgstr "Бързо превкл."
 
+#, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "Избор Субтитри"
+
 msgid "RAM"
 msgstr ""
 
@@ -10530,10 +10521,6 @@ msgstr ""
 
 msgid "Recording"
 msgstr "Запис"
-
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "Възобновяване на възпроизвеждането"
 
 #, fuzzy
 msgid "Recording Setup"
@@ -12744,6 +12731,10 @@ msgid "Show systemplugins packages"
 msgstr ""
 
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "Покажи радио плеъра..."
+
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "Покажи ТВ плеъра..."
 
@@ -13275,6 +13266,10 @@ msgstr "Готовност / Рестарт"
 #, fuzzy
 msgid "Standby / restart"
 msgstr "Готовност / Рестарт"
+
+#, fuzzy
+msgid "Standby Skin"
+msgstr "Готовност"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -13981,14 +13976,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Плъгинът за безжична LAN не е инсталиран!\n"
-"Моля инсталирайте го."
-
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -14066,14 +14053,6 @@ msgstr ""
 
 msgid "The PIN codes you entered are different."
 msgstr ""
-
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Плъгинът за безжична LAN не е инсталиран!\n"
-"Моля инсталирайте го."
 
 msgid "The TV was switched to the recording service!\n"
 msgstr ""
@@ -15668,6 +15647,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr ""
 
@@ -15791,9 +15773,6 @@ msgstr ""
 
 msgid "VCR scart"
 msgstr "VCR скарт"
-
-msgid "VFD Skin Selector"
-msgstr ""
 
 #, fuzzy
 msgid "VLAN connection"
@@ -16545,9 +16524,6 @@ msgid "XP1000"
 msgstr ""
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"

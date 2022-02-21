@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-10 10:04+0100\n"
+"POT-Creation-Date: 2022-02-21 19:52+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -3316,10 +3316,6 @@ msgstr "用戶端 IP:"
 msgid "Clients"
 msgstr "用戶端 IP:"
 
-#, fuzzy
-msgid "Clock Skin"
-msgstr "設定皮膚"
-
 msgid "Clock_Widget:"
 msgstr ""
 
@@ -4585,10 +4581,6 @@ msgstr "溫度"
 #, fuzzy
 msgid "Disk temperature: unknown"
 msgstr "溫度"
-
-#, fuzzy
-msgid "Display"
-msgstr "OLED設定"
 
 msgid "Display 16:9 content as"
 msgstr "顯示16:9內容"
@@ -7366,9 +7358,6 @@ msgstr "反向"
 msgid "Invert"
 msgstr ""
 
-msgid "Ipkg"
-msgstr "IPKG"
-
 msgid "Iran (Islamic Republic of)"
 msgstr ""
 
@@ -7950,6 +7939,10 @@ msgstr ""
 #, fuzzy
 msgid "MB"
 msgstr "B"
+
+#, fuzzy
+msgid "MINISATIP Setup"
+msgstr "EPG設定"
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -10187,10 +10180,6 @@ msgstr "極軸設定(DiSEqC 1.2)"
 msgid "Positioner setup"
 msgstr "極軸設定(DiSEqC 1.2)"
 
-#, fuzzy
-msgid "Power (use button menu)"
-msgstr "顯示關機功能表"
-
 msgid "Power LED State in Deep-Standby"
 msgstr ""
 
@@ -10207,9 +10196,6 @@ msgid "Power LED state during deep-standby."
 msgstr ""
 
 msgid "Power LED state during standby."
-msgstr ""
-
-msgid "Power long (use button menu)"
 msgstr ""
 
 msgid "Power management. Consult your receiver's manual for more information."
@@ -10618,6 +10604,10 @@ msgid "Quick zap"
 msgstr ""
 
 #, fuzzy
+msgid "QuickBoot Image Selector"
+msgstr "容器選擇"
+
+#, fuzzy
 msgid "RAM"
 msgstr "上午."
 
@@ -10788,10 +10778,6 @@ msgstr ""
 
 msgid "Recording"
 msgstr "正在錄製"
-
-#, fuzzy
-msgid "Recording / Playback"
-msgstr "恢復播放"
 
 #, fuzzy
 msgid "Recording Setup"
@@ -13043,6 +13029,10 @@ msgid "Show systemplugins packages"
 msgstr ""
 
 #, fuzzy
+msgid "Show the DreamPlex player..."
+msgstr "廣播重播模式下..."
+
+#, fuzzy
 msgid "Show the Sleep Timer..."
 msgstr "電視重播模式下..."
 
@@ -13588,6 +13578,10 @@ msgstr "待機 / 重啟"
 
 msgid "Standby / restart"
 msgstr ""
+
+#, fuzzy
+msgid "Standby Skin"
+msgstr "待機"
 
 msgid "Standby without TV shutdown"
 msgstr ""
@@ -14302,14 +14296,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The EnhancedMovieCenter plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"WLAN插件未安裝!\n"
-"請先安裝."
-
-#, fuzzy
-msgid ""
 "The EtPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -14394,14 +14380,6 @@ msgstr "密碼更改完成."
 
 msgid "The PIN codes you entered are different."
 msgstr ""
-
-#, fuzzy
-msgid ""
-"The Simple Movie List plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"WLAN插件未安裝!\n"
-"請先安裝."
 
 #, fuzzy
 msgid "The TV was switched to the recording service!\n"
@@ -16022,6 +16000,9 @@ msgstr ""
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
 
+msgid "Use the cursor keys to select an installed image and then Start button."
+msgstr ""
+
 #, fuzzy
 msgid "Use the extended List"
 msgstr "隱藏說明"
@@ -16144,10 +16125,6 @@ msgstr ""
 
 msgid "VCR scart"
 msgstr "錄影機"
-
-#, fuzzy
-msgid "VFD Skin Selector"
-msgstr "皮膚選擇"
 
 #, fuzzy
 msgid "VLAN connection"
@@ -16922,9 +16899,6 @@ msgid "XP1000"
 msgstr ""
 
 msgid "XP3000"
-msgstr ""
-
-msgid "Xpeed keymap - keymap.xpe"
 msgstr ""
 
 msgid "Y-Tube/WWW"
