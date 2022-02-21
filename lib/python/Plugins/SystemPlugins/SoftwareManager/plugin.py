@@ -2423,10 +2423,11 @@ class IpkgInstaller(Screen):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
 
+		_list = list
 		self.list = SelectionList()
 		self["list"] = self.list
-		for listindex in list(range(len(list))):
-			self.list.addSelection(list[listindex], list[listindex], listindex, False)
+		for listindex in list(range(len(_list))):
+			self.list.addSelection(_list[listindex], _list[listindex], listindex, False)
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Install"))
@@ -2444,9 +2445,9 @@ class IpkgInstaller(Screen):
 		}, -1)
 
 	def install(self):
-		list = self.list.getSelectionsList()
+		_list = self.list.getSelectionsList()
 		cmdList = []
-		for item in list:
+		for item in _list:
 			cmdList.append((IpkgComponent.CMD_INSTALL, {"package": item[1]}))
 		self.session.open(Ipkg, cmdList=cmdList)
 
