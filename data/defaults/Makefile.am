@@ -1,7 +1,6 @@
 installdir = $(pkgdatadir)/defaults
 
 dist_install_DATA = \
-	interfaces \
 	blacklist \
 	bouquets.radio \
 	bouquets.tv \
