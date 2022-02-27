@@ -255,7 +255,7 @@ class About(Screen):
 			except:
 				tempinfo = ""
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
-			AboutText += _("CPU Temp:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + SIGN + "C\n"
+			AboutText += _("CPU Temp:\t\t%s") % tempinfo.replace('\n', '').replace(' ', '') + SIGN + "C\n"
 
 		AboutText += _("Cores:\t\t%s") % about.getCpuCoresString() + "\n"
 		AboutText += _("HDF Version:\t\tV%s") % getImageVersion() + " Build #" + getImageBuild() + " based on " + getOEVersion() + "\n"

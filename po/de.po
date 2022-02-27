@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-21 19:53+0100\n"
-"PO-Revision-Date: 2022-02-27 06:29+0100\n"
+"PO-Revision-Date: 2022-02-27 14:37+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -2605,8 +2605,8 @@ msgid "CIselectMainMenu"
 msgstr "CIselectMainMenu"
 
 #, python-format
-msgid "CPU Temp:\t%s"
-msgstr "CPU-Temperatur: %s"
+msgid "CPU Temp:\t\t%s"
+msgstr "CPU-Temperatur:\t\t%s"
 
 #, python-format
 msgid "CPU:\t\t%s"
