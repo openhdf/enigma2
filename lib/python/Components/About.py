@@ -20,7 +20,7 @@ def getFlashDateString():
 	try:
 		tm = time.localtime(os.stat("/etc/version").st_mtime)
 		if tm.tm_year >= 2011:
-			return time.strftime(_("%d.%m.%Y %H:%M:%S"), tm)
+			return time.strftime(_("%d.%m.%Y - %H:%M:%S"), tm)
 		else:
 			return _("unknown")
 	except:
