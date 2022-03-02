@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-21 19:53+0100\n"
-"PO-Revision-Date: 2022-02-21 20:03+0100\n"
+"PO-Revision-Date: 2022-02-27 14:37+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2376,8 +2376,8 @@ msgid "Blue long"
 msgstr "Blau lang"
 
 #, python-format
-msgid "BogoMIPS:\t%s"
-msgstr "BogoMIPS: %s"
+msgid "BogoMIPS:\t\t%s"
+msgstr "BogoMIPS:\t\t%s"
 
 msgid "Bolivia (Plurinational State of)"
 msgstr "Bolivien (Plurinationaler Staat von)"
@@ -2605,12 +2605,12 @@ msgid "CIselectMainMenu"
 msgstr "CIselectMainMenu"
 
 #, python-format
-msgid "CPU Temp:\t%s"
-msgstr "CPU-Temperatur: %s"
+msgid "CPU Temp:\t\t%s"
+msgstr "CPU-Temperatur:\t\t%s"
 
 #, python-format
-msgid "CPU:\t%s"
-msgstr "CPU:\t%s"
+msgid "CPU:\t\t%s"
+msgstr "CPU:\t\t%s"
 
 #, python-format
 msgid "CPU: %s"
@@ -3044,8 +3044,8 @@ msgid "China"
 msgstr "China"
 
 #, python-format
-msgid "Chipset:\t%s"
-msgstr "Chipsatz: %s"
+msgid "Chipset:\t\t%s"
+msgstr "Chipsatz:\t\t%s"
 
 #, python-format
 msgid "Chipset: %s"
@@ -3756,8 +3756,8 @@ msgid "Copying files"
 msgstr "Dateien kopieren"
 
 #, python-format
-msgid "Cores:\t%s"
-msgstr "Kerne:\t%s"
+msgid "Cores:\t\t%s"
+msgstr "Kerne:\t\t%s"
 
 #, python-format
 msgid "Cores: %s"
@@ -4737,8 +4737,8 @@ msgid "Drivers"
 msgstr "Treiber"
 
 #, python-format
-msgid "Drivers:\t%s"
-msgstr "Treiber:\t%s"
+msgid "Drivers:\t\t%s"
+msgstr "Treiber:\t\t%s"
 
 #, python-format
 msgid "Drivers: %s"
@@ -5704,8 +5704,8 @@ msgid "Flash On the Fly"
 msgstr "Flashen   Online / Local"
 
 #, python-format
-msgid "Flashed:\t%s"
-msgstr "Geflashed:\t%s"
+msgid "Flashed:\t\t%s"
+msgstr "Geflashed:\t\t%s"
 
 #, python-format
 msgid "Flashed:\t%s\n"
@@ -5814,8 +5814,8 @@ msgid "France"
 msgstr "France"
 
 #, python-format
-msgid "Free Flash:\t%s\n"
-msgstr "Freier Flash:\t%s\n"
+msgid "Free Flash:\t\t%s\n"
+msgstr "Freier Flash:\t\t%s\n"
 
 msgid "Free Memory:"
 msgstr "Speicher frei:"
@@ -7157,8 +7157,8 @@ msgid "Kenya"
 msgstr "Kenya"
 
 #, python-format
-msgid "Kernel (Box):\t%s"
-msgstr "Kernel (Box): %s"
+msgid "Kernel (Box):\t\t%s"
+msgstr "Kernel (Box):\t\t%s"
 
 msgid "Kernel Modules"
 msgstr "Kernel Module"
@@ -7288,8 +7288,12 @@ msgid "Last speed"
 msgstr "Letzte Geschwindigkeit"
 
 #, python-format
-msgid "Last update:\t%s"
-msgstr "Letztes Update:\t%s"
+msgid "Last update:\t\t%s"
+msgstr "Letztes Update:\t\t%s"
+
+#, python-format
+msgid "E2 (re)starts:\t\t%s\n"
+msgstr "E2 (Neu)starts:\t\t%s\n"
 
 #, python-format
 msgid "Last update: %s"
@@ -7838,8 +7842,8 @@ msgid "Mode 2"
 msgstr "Modus 2"
 
 #, python-format
-msgid "Model:\t%s %s - OEM Model: %s\n"
-msgstr "Modell: %s %s - OEM-Modell: %s\n"
+msgid "Model:\t\t%s %s - OEM Model: %s\n"
+msgstr "Modell:\t\t%s %s - OEM-Modell: %s\n"
 
 msgid "Model: "
 msgstr "Modell: "
@@ -11322,8 +11326,8 @@ msgid "Select your time zone area or region."
 msgstr "Wählen Sie Ihren Zeitzonenbereich oder Ihre Region aus."
 
 #, python-format
-msgid "Selected Image:\t%s"
-msgstr "Image Wahl:\t%s"
+msgid "Selected Image:\t\t%s"
+msgstr "Gestartetes Image:\t%s"
 
 msgid "Selected mount point is already used by another drive."
 msgstr "Der angegebene Mountpunkt wird bereits verwendet."
@@ -13189,8 +13193,8 @@ msgid "System Message Check"
 msgstr "Überprüfung der Systemmeldung"
 
 #, python-format
-msgid "System Temp:\t%s"
-msgstr "Systemtemperatur: %s"
+msgid "System Temp:\t\t%s"
+msgstr "Systemtemperatur:\t%s"
 
 msgid "System: "
 msgstr "System: "

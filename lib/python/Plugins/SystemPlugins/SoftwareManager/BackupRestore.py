@@ -526,7 +526,7 @@ class installedPlugins(Screen):
 		if len(self.Menulist) == 0:
 			self.close()
 		else:
-			if os.path.exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
+			if path.exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
 				self.startInstall(True)
 			else:
 				self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))

@@ -8,8 +8,9 @@ from sys import maxsize
 from sys import modules
 import os
 import time
+from Tools.Directories import fileReadLine, fileReadLines
 
-
+MODULE_NAME = __name__.split(".")[-1]
 
 def getVersionString():
 	return getImageVersion()
@@ -19,7 +20,7 @@ def getFlashDateString():
 	try:
 		tm = time.localtime(os.stat("/etc/version").st_mtime)
 		if tm.tm_year >= 2011:
-			return time.strftime(_("%d.%m.%Y %H:%M:%S"), tm)
+			return time.strftime(_("%d.%m.%Y - %H:%M:%S"), tm)
 		else:
 			return _("unknown")
 	except:
@@ -226,23 +227,20 @@ def getPythonVersionString():
 
 
 def getBoxUptime():
-	try:
-		time = ''
-		f = open("/proc/uptime", "rb")
-		secs = int(f.readline().split('.')[0])
-		f.close()
-		if secs > 86400:
-			days = secs / 86400
-			secs = secs % 86400
-			time = ngettext("%d day", "%d days", days) % days + " "
-		h = secs / 3600
-		m = (secs % 3600) / 60
-		time += ngettext("%d hour", "%d hours", h) % h + " "
-		time += ngettext("%d minute", "%d minutes", m) % m
-		return "%s" % time
-	except:
-		return '-'
-
+	upTime = fileReadLine("/proc/uptime", source=MODULE_NAME)
+	if upTime is None:
+		return "-"
+	secs = int(upTime.split(".")[0])
+	times = []
+	if secs > 86400:
+		days = secs // 86400
+		secs = secs % 86400
+		times.append(ngettext("%d day", "%d days", days) % days)
+	h = secs // 3600
+	m = (secs % 3600) // 60
+	times.append(ngettext("%d hour", "%d hours", h) % h)
+	times.append(ngettext("%d minute", "%d minutes", m) % m)
+	return " ".join(times)
 
 # For modules that do "from About import about"
 about = modules[__name__]
