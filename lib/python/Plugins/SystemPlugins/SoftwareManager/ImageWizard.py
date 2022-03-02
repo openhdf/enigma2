@@ -8,21 +8,15 @@ from Components.Pixmap import Pixmap
 from os import R_OK, W_OK, access
 from enigma import eEnv
 from boxbranding import getBoxType, getImageDistro
+from .BackupRestore import InitConfig as BackupRestore_InitConfig
 
-from Components.config import ConfigBoolean, ConfigLocations, ConfigSubsection, ConfigText, config
+from Components.config import config
 from Components.Harddisk import harddiskmanager
 
 boxtype = getBoxType()
 distro = getImageDistro()
 
-config.misc.firstrun = ConfigBoolean(default=True)
-config.plugins.configurationbackup = ConfigSubsection()
-if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo'):
-	config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/backup/', visible_width=50, fixed_size=False)
-else:
-	config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/CCcam.cfg', '/usr/keys/', '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf', '/etc/wpa_supplicant.wlan0.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', eEnv.resolve("${datadir}/enigma2/keymap.usr")])
-
+config.plugins.configurationbackup = BackupRestore_InitConfig()
 
 backupfile = "enigma2settingsbackup.tar.gz"
 
@@ -43,12 +37,6 @@ def checkConfigBackup():
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
-				fullbackupfile = x[1] + 'backup_' + boxtype + '/' + backupfile
-				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
-					config.plugins.configurationbackup.backuplocation.save()
-					config.plugins.configurationbackup.save()
-					return x
 				fullbackupfile = x[1] + 'backup/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
@@ -57,12 +45,6 @@ def checkConfigBackup():
 					return x
 			else:
 				fullbackupfile = x[1] + '/backup_' + distro + '_' + boxtype + '/' + backupfile
-				if fileExists(fullbackupfile):
-					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
-					config.plugins.configurationbackup.backuplocation.save()
-					config.plugins.configurationbackup.save()
-					return x
-				fullbackupfile = x[1] + '/backup_' + boxtype + '/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
@@ -131,22 +113,24 @@ class ImageWizard(WizardLanguage, Rc):
 		Rc.__init__(self)
 		self.session = session
 		self["wizard"] = Pixmap()
-		Screen.setTitle(self, _("Welcome..."))
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		Screen.setTitle(self, _("ImageWizard"))
 		self.selectedDevice = None
 
 	def markDone(self):
 		pass
 
 	def listDevices(self):
-		list = [(r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
-		for x in list:
+		_list = [(r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
+		for x in _list:
 			result = access(x[1], W_OK) and access(x[1], R_OK)
 			if result is False or x[1] == '/':
-				list.remove(x)
-		for x in list:
+				_list.remove(x)
+		for x in _list:
 			if x[1].startswith('/autofs/'):
-				list.remove(x)
-		return list
+				_list.remove(x)
+		return _list
 
 	def deviceSelectionMade(self, index):
 		self.deviceSelect(index)
