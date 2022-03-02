@@ -561,12 +561,11 @@ def runScreenTest():
 
 	CiHandler.setSession(session)
 
-	screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
-
 	profile("wizards")
-	screensToRun += wizardManager.getWizards()
-	screensToRun.append((100, InfoBar.InfoBar))
+	screensToRun = wizardManager.getWizards()
+	screensToRun += [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 
+	screensToRun.append((100, InfoBar.InfoBar))
 	sorted(screensToRun, key=lambda x: str(x))
 
 	enigma.ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
