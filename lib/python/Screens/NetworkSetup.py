@@ -4455,7 +4455,7 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 
-		self["introduction"] = StaticText(_("Enable or disable Ipv6."))
+		self["introduction"] = StaticText(_("Enable or disable IPv6."))
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
