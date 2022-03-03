@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-14 22:48+0200\n"
-"PO-Revision-Date: 2022-01-23 18:29+0100\n"
+"PO-Revision-Date: 2022-03-04 06:33+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -12885,6 +12885,12 @@ msgstr "Zeige Hintergrundfarbe von Picon"
 
 msgid "Show picons in service list"
 msgstr "Zeige Picon in der Senderliste"
+
+msgid "Show picons in quickzap"
+msgstr "Senderlogos (Picons) falls vorhanden beim Quickzap anzeigen"
+
+msgid "Configure if service picons will be shown in quickzap."
+msgstr "Bei 'Ja' werden Senderlogos (Picons) falls vorhanden beim Quickzap (Umschalten) angezeigt."
 
 msgid "Show picons packages"
 msgstr "Zeige Senderlogo Pakete an"
