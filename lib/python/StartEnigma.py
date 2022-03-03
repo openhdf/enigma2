@@ -566,7 +566,7 @@ def runScreenTest():
 	screensToRun += [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 
 	screensToRun.append((100, InfoBar.InfoBar))
-	sorted(screensToRun, key=lambda x: str(x))
+	screensToRun = sorted(screensToRun, key=lambda x: x[0])
 
 	enigma.ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
 
