@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 19:52+0100\n"
+"POT-Creation-Date: 2022-03-03 13:59+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -498,7 +498,7 @@ msgstr "%d.%B %Y"
 msgid "%d.%m.   "
 msgstr ""
 
-msgid "%d.%m.%Y %H:%M:%S"
+msgid "%d.%m.%Y - %H:%M:%S"
 msgstr ""
 
 #
@@ -2695,7 +2695,7 @@ msgid "Blue long"
 msgstr ""
 
 #, python-format
-msgid "BogoMIPS:\t%s"
+msgid "BogoMIPS:\t\t%s"
 msgstr ""
 
 msgid "Bolivia (Plurinational State of)"
@@ -2940,11 +2940,11 @@ msgid "CIselectMainMenu"
 msgstr ""
 
 #, python-format
-msgid "CPU Temp:\t%s"
+msgid "CPU Temp:\t\t%s"
 msgstr ""
 
 #, python-format
-msgid "CPU:\t%s"
+msgid "CPU:\t\t%s"
 msgstr ""
 
 #, python-format
@@ -3404,7 +3404,7 @@ msgid "China"
 msgstr ""
 
 #, python-format
-msgid "Chipset:\t%s"
+msgid "Chipset:\t\t%s"
 msgstr ""
 
 #, python-format
@@ -4205,9 +4205,10 @@ msgstr "Kopiuj"
 msgid "Copying files"
 msgstr "Długie nazwy plików"
 
-#, python-format
-msgid "Cores:\t%s"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Cores:\t\t%s"
+msgstr "Nowa wersja:"
 
 #
 #, fuzzy, python-format
@@ -5196,11 +5197,6 @@ msgstr "Gdzie chcesz umieścić kopie zapasową ustawień?"
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Czy chcesz nagrać tą kolekcję na DVD?"
 
-msgid ""
-"Do you want to completely reboot your box now? \n"
-"If not, only Enigma is restarting."
-msgstr ""
-
 #
 #, fuzzy
 msgid "Do you want to continue?"
@@ -5215,6 +5211,11 @@ msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Do you want to delete the old settings in /etc/enigma2 first?"
+msgstr "Czy chcesz przywrócić własne ustawienia?"
 
 #
 msgid "Do you want to do a service scan?"
@@ -5414,6 +5415,10 @@ msgid "Drivers"
 msgstr ""
 
 #, python-format
+msgid "Drivers:\t\t%s"
+msgstr ""
+
+#, python-format
 msgid "Drivers:\t%s"
 msgstr ""
 
@@ -5442,7 +5447,7 @@ msgid "E "
 msgstr "E"
 
 #, python-format
-msgid "E2 (re)starts:\t%s\n"
+msgid "E2 (re)starts:\t\t%s\n"
 msgstr ""
 
 msgid "E3HD/XPEEDLX/GI"
@@ -5772,6 +5777,9 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Włącz tryb wielu bukietów"
 
+msgid "Enable or disable Ipv6."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr ""
 
@@ -5812,6 +5820,14 @@ msgid "Enable twisted log *"
 msgstr ""
 
 msgid "Enable zap history:"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Enable/Disable IPv6"
+msgstr "Wyłączone"
+
+msgid "Enable/Disable IPv6 support of your receiver.\n"
 msgstr ""
 
 #
@@ -6115,6 +6131,11 @@ msgstr "Wyjście"
 
 msgid "Exit EPG"
 msgstr "Wyjdź z EPG"
+
+#
+#, fuzzy
+msgid "Exit IPv6 configuration"
+msgstr "Zamknij menu konfiguracji DNS"
 
 #
 #, fuzzy
@@ -6547,12 +6568,13 @@ msgstr ""
 
 #
 #, fuzzy, python-format
-msgid "Flashed:\t%s"
+msgid "Flashed:\t\t%s"
 msgstr "Flash"
 
-#, python-format
-msgid "Flashed:\t%s\n"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Flashed:\t\t%s\n"
+msgstr "Flash"
 
 msgid "Flashing"
 msgstr ""
@@ -6664,9 +6686,10 @@ msgstr ""
 msgid "France"
 msgstr "Anuluj"
 
-#, python-format
-msgid "Free Flash:\t%s\n"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Free Flash:\t\t%s\n"
+msgstr "Flash"
 
 msgid "Free Memory:"
 msgstr ""
@@ -6802,9 +6825,10 @@ msgstr ""
 msgid "GStreamer"
 msgstr "Żądanie strumienia"
 
-#, python-format
-msgid "GStreamer:\t%s"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "GStreamer:\t\t%s"
+msgstr "Żądanie strumienia"
 
 #
 #, fuzzy
@@ -7125,7 +7149,7 @@ msgstr ""
 
 #
 #, fuzzy, python-format
-msgid "HDF Version:\tV%s"
+msgid "HDF Version:\t\tV%s"
 msgstr "Nowa wersja:"
 
 msgid "HDFreaks"
@@ -7482,6 +7506,10 @@ msgid ""
 "Please use original settings within serviceapp!"
 msgstr ""
 
+#, fuzzy
+msgid "IPv6 support"
+msgstr "Nieobsługiwany"
+
 #
 msgid "ISO file is too large for this filesystem!"
 msgstr "Plik ISO jest za duży dla tego systemu plików!"
@@ -7717,8 +7745,12 @@ msgid ""
 "%s"
 msgstr ""
 
-#, python-format
-msgid "Image:\t%s"
+#
+#, fuzzy, python-format
+msgid "Image:\t\t%s"
+msgstr "Wybierz film"
+
+msgid "ImageWizard"
 msgstr ""
 
 #
@@ -7999,7 +8031,20 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Installing plugins..."
+msgid "Installing feeds from IPK ..."
+msgstr "Instalacja zakończona."
+
+msgid "Installing feeds from feed ..."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "Instalacja zakończona."
+
+#
+#, fuzzy
+msgid "Installing plugins from feed ..."
 msgstr "Instalacja zakończona."
 
 #
@@ -8245,7 +8290,7 @@ msgid "Kenya"
 msgstr ""
 
 #, python-format
-msgid "Kernel (Box):\t%s"
+msgid "Kernel (Box):\t\t%s"
 msgstr ""
 
 #
@@ -8400,6 +8445,11 @@ msgstr "Ostatnie ustawienia"
 #
 msgid "Last speed"
 msgstr "Ostatnia prędkość"
+
+#
+#, fuzzy, python-format
+msgid "Last update:\t\t%s"
+msgstr "Aktualizacja listy pakietów"
 
 #
 #, fuzzy, python-format
@@ -9069,7 +9119,7 @@ msgstr "Model: "
 
 #
 #, fuzzy, python-format
-msgid "Model:\t%s %s - OEM Model: %s\n"
+msgid "Model:\t\t%s %s - OEM Model: %s\n"
 msgstr "Model: "
 
 #
@@ -11706,9 +11756,10 @@ msgstr ""
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend dla /tmp/mmi.socket"
 
-#, python-format
-msgid "Python:\t%s\n"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Python:\t\t%s\n"
+msgstr "Nowa wersja:"
 
 msgid "Qatar"
 msgstr ""
@@ -12551,6 +12602,11 @@ msgid "Running"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Running Myrestore script, Please wait ..."
+msgstr "Pobieranie info o pluginach. Proszę czekać..."
+
+#
 msgid "Russian"
 msgstr "Rosyjski"
 
@@ -12736,6 +12792,11 @@ msgstr ""
 
 msgid "Save EPG data"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Save IPv6 configuration"
+msgstr "Aktywuj aktualną konfigurację"
 
 #
 #, fuzzy
@@ -13351,7 +13412,7 @@ msgstr "Menu ustawień"
 
 #
 #, fuzzy, python-format
-msgid "Selected Image:\t%s"
+msgid "Selected Image:\t\t%s"
 msgstr "Wybierz film"
 
 msgid "Selected mount point is already used by another drive."
@@ -14767,7 +14828,7 @@ msgid "Skin setup"
 msgstr ""
 
 #, python-format
-msgid "Skin:\t%s (%s x %s)\n"
+msgid "Skin:\t\t%s (%s x %s)\n"
 msgstr ""
 
 #
@@ -15696,7 +15757,7 @@ msgid "System Message Check"
 msgstr "Sprawdź system plików"
 
 #, python-format
-msgid "System Temp:\t%s"
+msgid "System Temp:\t\t%s"
 msgstr ""
 
 msgid "System: "
@@ -18381,7 +18442,7 @@ msgid "Wake Up To Standby"
 msgstr "Wybudzaj TV ze stanu czuwania"
 
 #, python-format
-msgid "WakeOnLAN:\t%s\n"
+msgid "WakeOnLAN:\t\t%s\n"
 msgstr ""
 
 #
@@ -19170,6 +19231,10 @@ msgid "Your %s %s will Reboot..."
 msgstr ""
 
 #, python-format
+msgid "Your %s %s will Restart..."
+msgstr ""
+
+#, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install %s ?"
@@ -19186,10 +19251,6 @@ msgstr ""
 msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
-msgstr ""
-
-#, python-format
-msgid "Your %s %s will restart Enigma2..."
 msgstr ""
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."

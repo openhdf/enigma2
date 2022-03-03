@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 19:52+0100\n"
+"POT-Creation-Date: 2022-03-03 13:59+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: torac <info@takerman.se>\n"
@@ -487,7 +487,7 @@ msgstr "%d.%B %Y"
 msgid "%d.%m.   "
 msgstr ""
 
-msgid "%d.%m.%Y %H:%M:%S"
+msgid "%d.%m.%Y - %H:%M:%S"
 msgstr ""
 
 #, fuzzy
@@ -2657,7 +2657,7 @@ msgid "Blue long"
 msgstr "Blå"
 
 #, python-format
-msgid "BogoMIPS:\t%s"
+msgid "BogoMIPS:\t\t%s"
 msgstr ""
 
 msgid "Bolivia (Plurinational State of)"
@@ -2904,12 +2904,12 @@ msgstr ""
 msgid "CIselectMainMenu"
 msgstr ""
 
-#, python-format
-msgid "CPU Temp:\t%s"
-msgstr ""
+#, fuzzy, python-format
+msgid "CPU Temp:\t\t%s"
+msgstr "Systemtemperatur: %s"
 
 #, python-format
-msgid "CPU:\t%s"
+msgid "CPU:\t\t%s"
 msgstr ""
 
 #, python-format
@@ -3359,7 +3359,7 @@ msgid "China"
 msgstr ""
 
 #, python-format
-msgid "Chipset:\t%s"
+msgid "Chipset:\t\t%s"
 msgstr ""
 
 #, python-format
@@ -4170,9 +4170,9 @@ msgstr "Kopiera"
 msgid "Copying files"
 msgstr "Kopierar filer"
 
-#, python-format
-msgid "Cores:\t%s"
-msgstr ""
+#, fuzzy, python-format
+msgid "Cores:\t\t%s"
+msgstr "Drivrutiner: %s"
 
 #, fuzzy, python-format
 msgid "Cores: %s"
@@ -5131,11 +5131,6 @@ msgstr "Var vill du spara dina inställningar?"
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Vill du bränna denna samlig till ett DVD media?"
 
-msgid ""
-"Do you want to completely reboot your box now? \n"
-"If not, only Enigma is restarting."
-msgstr ""
-
 #
 #, fuzzy
 msgid "Do you want to continue?"
@@ -5152,6 +5147,11 @@ msgid ""
 msgstr ""
 "Vill du radera alla valda filer:\n"
 "(välj 'Nej' för att endast radera den senast valda filen.)"
+
+#
+#, fuzzy
+msgid "Do you want to delete the old settings in /etc/enigma2 first?"
+msgstr "Vill du återställa dina inställningar?"
 
 #
 msgid "Do you want to do a service scan?"
@@ -5354,6 +5354,10 @@ msgid "Drivers"
 msgstr "Drivrutiner: %s"
 
 #, fuzzy, python-format
+msgid "Drivers:\t\t%s"
+msgstr "Drivrutiner: %s"
+
+#, fuzzy, python-format
 msgid "Drivers:\t%s"
 msgstr "Drivrutiner: %s"
 
@@ -5382,7 +5386,7 @@ msgid "E "
 msgstr "Ö"
 
 #, python-format
-msgid "E2 (re)starts:\t%s\n"
+msgid "E2 (re)starts:\t\t%s\n"
 msgstr ""
 
 msgid "E3HD/XPEEDLX/GI"
@@ -5707,6 +5711,9 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Aktivera flera favoritlistor"
 
+msgid "Enable or disable Ipv6."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "Aktivera Panikknapp"
 
@@ -5746,6 +5753,14 @@ msgid "Enable twisted log *"
 msgstr "Aktivera debugloggen"
 
 msgid "Enable zap history:"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Enable/Disable IPv6"
+msgstr "Avaktiverad"
+
+msgid "Enable/Disable IPv6 support of your receiver.\n"
 msgstr ""
 
 #
@@ -6046,6 +6061,11 @@ msgstr "Avsluta"
 
 msgid "Exit EPG"
 msgstr "Avsluta EPG"
+
+#
+#, fuzzy
+msgid "Exit IPv6 configuration"
+msgstr "Avsluta namnserverkonfiguration"
 
 #
 #, fuzzy
@@ -6460,12 +6480,13 @@ msgstr ""
 
 #
 #, fuzzy, python-format
-msgid "Flashed:\t%s"
+msgid "Flashed:\t\t%s"
 msgstr "Flash"
 
-#, python-format
-msgid "Flashed:\t%s\n"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Flashed:\t\t%s\n"
+msgstr "Flash"
 
 msgid "Flashing"
 msgstr "Blinkande"
@@ -6578,9 +6599,10 @@ msgstr ""
 msgid "France"
 msgstr "romantik"
 
-#, python-format
-msgid "Free Flash:\t%s\n"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Free Flash:\t\t%s\n"
+msgstr "Flash"
 
 msgid "Free Memory:"
 msgstr "Ledigt Minne:"
@@ -6714,7 +6736,7 @@ msgid "GStreamer"
 msgstr "Strömning "
 
 #, fuzzy, python-format
-msgid "GStreamer:\t%s"
+msgid "GStreamer:\t\t%s"
 msgstr "Strömning "
 
 #
@@ -7029,7 +7051,7 @@ msgstr ""
 
 #
 #, fuzzy, python-format
-msgid "HDF Version:\tV%s"
+msgid "HDF Version:\t\tV%s"
 msgstr "Version: %s"
 
 msgid "HDFreaks"
@@ -7376,6 +7398,10 @@ msgid ""
 "Please use original settings within serviceapp!"
 msgstr ""
 
+#, fuzzy
+msgid "IPv6 support"
+msgstr "DLNA support"
+
 #
 msgid "ISO file is too large for this filesystem!"
 msgstr "ISO fil är för stor för använt filsystem!"
@@ -7629,9 +7655,13 @@ msgid ""
 "%s"
 msgstr ""
 
-#, python-format
-msgid "Image:\t%s"
-msgstr ""
+#, fuzzy, python-format
+msgid "Image:\t\t%s"
+msgstr "Raderat %s!"
+
+#, fuzzy
+msgid "ImageWizard"
+msgstr "Videoguiden"
 
 #
 msgid "Immediate shutdown"
@@ -7899,7 +7929,18 @@ msgid "Installing Service"
 msgstr "Installerar Tjänst"
 
 #, fuzzy
-msgid "Installing plugins..."
+msgid "Installing feeds from IPK ..."
+msgstr "Installera plugins"
+
+msgid "Installing feeds from feed ..."
+msgstr ""
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "Installera plugins"
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
 msgstr "Installera plugins"
 
 #
@@ -8137,7 +8178,7 @@ msgid "Kenya"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Kernel (Box):\t%s"
+msgid "Kernel (Box):\t\t%s"
 msgstr "Kernel: %s"
 
 #, fuzzy
@@ -8288,6 +8329,11 @@ msgstr "Senaste konfig"
 #
 msgid "Last speed"
 msgstr "Föregående hastighet"
+
+#
+#, fuzzy, python-format
+msgid "Last update:\t\t%s"
+msgstr "Senast Uppdaterad:%s"
 
 #
 #, fuzzy, python-format
@@ -8946,7 +8992,7 @@ msgstr "Läge"
 
 #
 #, fuzzy, python-format
-msgid "Model:\t%s %s - OEM Model: %s\n"
+msgid "Model:\t\t%s %s - OEM Model: %s\n"
 msgstr "Modell: %s"
 
 #
@@ -11496,9 +11542,10 @@ msgstr ""
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend för /tmp/mmi.socket"
 
-#, python-format
-msgid "Python:\t%s\n"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Python:\t\t%s\n"
+msgstr "Version: %s"
 
 msgid "Qatar"
 msgstr ""
@@ -12314,6 +12361,11 @@ msgid "Running"
 msgstr "Körandes"
 
 #
+#, fuzzy
+msgid "Running Myrestore script, Please wait ..."
+msgstr "Hämtar plugin information. Var vänlig vänta..."
+
+#
 msgid "Russian"
 msgstr "Ryska"
 
@@ -12499,6 +12551,11 @@ msgstr "Sparar EPG Cashe..."
 #, fuzzy
 msgid "Save EPG data"
 msgstr "Spara EPG"
+
+#
+#, fuzzy
+msgid "Save IPv6 configuration"
+msgstr "Aktivera nuvarande konfiguration"
 
 #
 #, fuzzy
@@ -13086,7 +13143,7 @@ msgid "Select your time zone area or region."
 msgstr "Konfigurera din tidzon"
 
 #, fuzzy, python-format
-msgid "Selected Image:\t%s"
+msgid "Selected Image:\t\t%s"
 msgstr "Raderat %s!"
 
 msgid "Selected mount point is already used by another drive."
@@ -14445,7 +14502,7 @@ msgid "Skin setup"
 msgstr "Val av utseende ('skin')"
 
 #, python-format
-msgid "Skin:\t%s (%s x %s)\n"
+msgid "Skin:\t\t%s (%s x %s)\n"
 msgstr ""
 
 #, fuzzy
@@ -15340,7 +15397,7 @@ msgid "System Message Check"
 msgstr "Filsystemskontroll"
 
 #, fuzzy, python-format
-msgid "System Temp:\t%s"
+msgid "System Temp:\t\t%s"
 msgstr "Systemtemperatur: %s"
 
 msgid "System: "
@@ -18044,7 +18101,7 @@ msgid "Wake Up To Standby"
 msgstr "Starta Upp till Viloläge"
 
 #, python-format
-msgid "WakeOnLAN:\t%s\n"
+msgid "WakeOnLAN:\t\t%s\n"
 msgstr ""
 
 msgid "Wakeup"
@@ -18841,6 +18898,10 @@ msgid "Your %s %s will Reboot..."
 msgstr "Din %s %s startar om."
 
 #, fuzzy, python-format
+msgid "Your %s %s will Restart..."
+msgstr "Din %s %s startar om."
+
+#, fuzzy, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install %s ?"
@@ -18865,10 +18926,6 @@ msgid ""
 msgstr ""
 "Din %s %s kommer att startas om efter borttagningen av tjänst\n"
 "Vill du ta bort nu ?"
-
-#, fuzzy, python-format
-msgid "Your %s %s will restart Enigma2..."
-msgstr "Din %s %s startar om."
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 19:52+0100\n"
+"POT-Creation-Date: 2022-03-03 13:59+0100\n"
 "PO-Revision-Date: 2021-04-16 22:56+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -430,7 +430,7 @@ msgstr ""
 msgid "%d.%m.   "
 msgstr ""
 
-msgid "%d.%m.%Y %H:%M:%S"
+msgid "%d.%m.%Y - %H:%M:%S"
 msgstr ""
 
 msgid "%e/%m, %-H:%M"
@@ -2253,7 +2253,7 @@ msgid "Blue long"
 msgstr ""
 
 #, python-format
-msgid "BogoMIPS:\t%s"
+msgid "BogoMIPS:\t\t%s"
 msgstr ""
 
 msgid "Bolivia (Plurinational State of)"
@@ -2478,11 +2478,11 @@ msgid "CIselectMainMenu"
 msgstr ""
 
 #, python-format
-msgid "CPU Temp:\t%s"
+msgid "CPU Temp:\t\t%s"
 msgstr ""
 
 #, python-format
-msgid "CPU:\t%s"
+msgid "CPU:\t\t%s"
 msgstr ""
 
 #, python-format
@@ -2880,7 +2880,7 @@ msgid "China"
 msgstr ""
 
 #, python-format
-msgid "Chipset:\t%s"
+msgid "Chipset:\t\t%s"
 msgstr ""
 
 #, python-format
@@ -3589,7 +3589,7 @@ msgid "Copying files"
 msgstr ""
 
 #, python-format
-msgid "Cores:\t%s"
+msgid "Cores:\t\t%s"
 msgstr ""
 
 #, python-format
@@ -4363,11 +4363,6 @@ msgstr ""
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr ""
 
-msgid ""
-"Do you want to completely reboot your box now? \n"
-"If not, only Enigma is restarting."
-msgstr ""
-
 msgid "Do you want to continue?"
 msgstr ""
 
@@ -4377,6 +4372,9 @@ msgstr ""
 msgid ""
 "Do you want to delete all selected files:\n"
 "(choose 'No' to only delete the currently selected file.)"
+msgstr ""
+
+msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr ""
 
 msgid "Do you want to do a service scan?"
@@ -4540,6 +4538,10 @@ msgid "Drivers"
 msgstr ""
 
 #, python-format
+msgid "Drivers:\t\t%s"
+msgstr ""
+
+#, python-format
 msgid "Drivers:\t%s"
 msgstr ""
 
@@ -4563,7 +4565,7 @@ msgid "E "
 msgstr ""
 
 #, python-format
-msgid "E2 (re)starts:\t%s\n"
+msgid "E2 (re)starts:\t\t%s\n"
 msgstr ""
 
 msgid "E3HD/XPEEDLX/GI"
@@ -4849,6 +4851,9 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr ""
 
+msgid "Enable or disable Ipv6."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr ""
 
@@ -4886,6 +4891,12 @@ msgid "Enable twisted log *"
 msgstr ""
 
 msgid "Enable zap history:"
+msgstr ""
+
+msgid "Enable/Disable IPv6"
+msgstr ""
+
+msgid "Enable/Disable IPv6 support of your receiver.\n"
 msgstr ""
 
 msgid "Enabled"
@@ -5136,6 +5147,9 @@ msgid "Exit "
 msgstr ""
 
 msgid "Exit EPG"
+msgstr ""
+
+msgid "Exit IPv6 configuration"
 msgstr ""
 
 msgid "Exit MAC-address configuration"
@@ -5483,11 +5497,11 @@ msgid "Flash On the Fly"
 msgstr ""
 
 #, python-format
-msgid "Flashed:\t%s"
+msgid "Flashed:\t\t%s"
 msgstr ""
 
 #, python-format
-msgid "Flashed:\t%s\n"
+msgid "Flashed:\t\t%s\n"
 msgstr ""
 
 msgid "Flashing"
@@ -5586,7 +5600,7 @@ msgid "France"
 msgstr ""
 
 #, python-format
-msgid "Free Flash:\t%s\n"
+msgid "Free Flash:\t\t%s\n"
 msgstr ""
 
 msgid "Free Memory:"
@@ -5700,7 +5714,7 @@ msgid "GStreamer"
 msgstr ""
 
 #, python-format
-msgid "GStreamer:\t%s"
+msgid "GStreamer:\t\t%s"
 msgstr ""
 
 msgid "GUI Skin"
@@ -5963,7 +5977,7 @@ msgid "HDF Build: %s"
 msgstr ""
 
 #, python-format
-msgid "HDF Version:\tV%s"
+msgid "HDF Version:\t\tV%s"
 msgstr ""
 
 msgid "HDFreaks"
@@ -6257,6 +6271,9 @@ msgid ""
 "Please use original settings within serviceapp!"
 msgstr ""
 
+msgid "IPv6 support"
+msgstr ""
+
 msgid "ISO file is too large for this filesystem!"
 msgstr ""
 
@@ -6480,7 +6497,10 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "Image:\t%s"
+msgid "Image:\t\t%s"
+msgstr ""
+
+msgid "ImageWizard"
 msgstr ""
 
 msgid "Immediate shutdown"
@@ -6705,7 +6725,16 @@ msgstr ""
 msgid "Installing Service"
 msgstr ""
 
-msgid "Installing plugins..."
+msgid "Installing feeds from IPK ..."
+msgstr ""
+
+msgid "Installing feeds from feed ..."
+msgstr ""
+
+msgid "Installing plugins from IPK ..."
+msgstr ""
+
+msgid "Installing plugins from feed ..."
 msgstr ""
 
 msgid "Instant Record"
@@ -6905,7 +6934,7 @@ msgid "Kenya"
 msgstr ""
 
 #, python-format
-msgid "Kernel (Box):\t%s"
+msgid "Kernel (Box):\t\t%s"
 msgstr ""
 
 msgid "Kernel Modules"
@@ -7033,6 +7062,10 @@ msgid "Last config"
 msgstr ""
 
 msgid "Last speed"
+msgstr ""
+
+#, python-format
+msgid "Last update:\t\t%s"
 msgstr ""
 
 #, python-format
@@ -7582,7 +7615,7 @@ msgid "Mode 2"
 msgstr ""
 
 #, python-format
-msgid "Model:\t%s %s - OEM Model: %s\n"
+msgid "Model:\t\t%s %s - OEM Model: %s\n"
 msgstr ""
 
 msgid "Model: "
@@ -9669,7 +9702,7 @@ msgid "Python frontend for /tmp/mmi.socket"
 msgstr ""
 
 #, python-format
-msgid "Python:\t%s\n"
+msgid "Python:\t\t%s\n"
 msgstr ""
 
 msgid "Qatar"
@@ -10315,6 +10348,9 @@ msgstr ""
 msgid "Running"
 msgstr ""
 
+msgid "Running Myrestore script, Please wait ..."
+msgstr ""
+
 msgid "Russian"
 msgstr ""
 
@@ -10475,6 +10511,9 @@ msgid "Save EPG Cache ?"
 msgstr ""
 
 msgid "Save EPG data"
+msgstr ""
+
+msgid "Save IPv6 configuration"
 msgstr ""
 
 msgid "Save and activate the currently selected skin"
@@ -10981,7 +11020,7 @@ msgid "Select your time zone area or region."
 msgstr ""
 
 #, python-format
-msgid "Selected Image:\t%s"
+msgid "Selected Image:\t\t%s"
 msgstr ""
 
 msgid "Selected mount point is already used by another drive."
@@ -12093,7 +12132,7 @@ msgid "Skin setup"
 msgstr ""
 
 #, python-format
-msgid "Skin:\t%s (%s x %s)\n"
+msgid "Skin:\t\t%s (%s x %s)\n"
 msgstr ""
 
 msgid "SkinSelector: Restart GUI"
@@ -12829,7 +12868,7 @@ msgid "System Message Check"
 msgstr ""
 
 #, python-format
-msgid "System Temp:\t%s"
+msgid "System Temp:\t\t%s"
 msgstr ""
 
 msgid "System: "
@@ -15056,7 +15095,7 @@ msgid "Wake Up To Standby"
 msgstr ""
 
 #, python-format
-msgid "WakeOnLAN:\t%s\n"
+msgid "WakeOnLAN:\t\t%s\n"
 msgstr ""
 
 msgid "Wakeup"
@@ -15718,6 +15757,10 @@ msgid "Your %s %s will Reboot..."
 msgstr ""
 
 #, python-format
+msgid "Your %s %s will Restart..."
+msgstr ""
+
+#, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install %s ?"
@@ -15734,10 +15777,6 @@ msgstr ""
 msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
-msgstr ""
-
-#, python-format
-msgid "Your %s %s will restart Enigma2..."
 msgstr ""
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."

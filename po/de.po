@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 19:53+0100\n"
+"POT-Creation-Date: 2022-03-03 13:59+0100\n"
 "PO-Revision-Date: 2022-02-27 14:37+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: openHDF\n"
@@ -488,8 +488,8 @@ msgstr "%d.%B %Y"
 msgid "%d.%m.   "
 msgstr "%d.%m.  "
 
-msgid "%d.%m.%Y %H:%M:%S"
-msgstr "%d.%m.%Y %H:%M:%S"
+msgid "%d.%m.%Y - %H:%M:%S"
+msgstr "%d.%m.%Y - %H:%M:%S"
 
 msgid "%e/%m, %-H:%M"
 msgstr "%e/%m, %-H:%M"
@@ -4550,13 +4550,6 @@ msgstr "Möchten Sie Ihre Einstellungen jetzt sichern?"
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Soll diese Zusammenstellung auf DVD gebrannt werden?"
 
-msgid ""
-"Do you want to completely reboot your box now? \n"
-"If not, only Enigma is restarting."
-msgstr ""
-"Willst du deine Box jetzt komplett neu starten?\n"
-"Wenn nicht, wird nur Enigma neu gestartet."
-
 msgid "Do you want to continue?"
 msgstr "Möchten Sie fortfahren?"
 
@@ -4569,6 +4562,9 @@ msgid ""
 msgstr ""
 "Möchten Sie alle ausgewählten Dateien löschen:\n"
 "(Wählen Sie „Nein“, um nur die aktuell ausgewählte Datei zu löschen.)"
+
+msgid "Do you want to delete the old settings in /etc/enigma2 first?"
+msgstr "Möchten Sie Ihre Einstellungen in /etc/enigma2 vorab löschen?"
 
 msgid "Do you want to do a service scan?"
 msgstr "Möchten Sie einen Sendersuchlauf durchführen?"
@@ -4741,6 +4737,10 @@ msgid "Drivers:\t\t%s"
 msgstr "Treiber:\t\t%s"
 
 #, python-format
+msgid "Drivers:\t%s"
+msgstr "Treiber:\t%s"
+
+#, python-format
 msgid "Drivers: %s"
 msgstr "Treiber: %s"
 
@@ -4760,8 +4760,8 @@ msgid "E "
 msgstr "E "
 
 #, python-format
-msgid "E2 (re)starts:\t%s\n"
-msgstr "E2 (Neu)Starts:\t%s\n"
+msgid "E2 (re)starts:\t\t%s\n"
+msgstr "E2 (Neu)starts:\t\t%s\n"
 
 msgid "E3HD/XPEEDLX/GI"
 msgstr "E3HD/XPEEDLX/GI"
@@ -5054,6 +5054,9 @@ msgstr "Begrüßungsbildschirm aktivieren"
 msgid "Enable multiple bouquets"
 msgstr "Mehrere Favoritenlisten erlauben"
 
+msgid "Enable or disable Ipv6."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "Paniktaste aktivieren"
 
@@ -5092,6 +5095,12 @@ msgstr "Aktiviere Twisted Log *"
 
 msgid "Enable zap history:"
 msgstr "Zap-Verlauf aktivieren:"
+
+msgid "Enable/Disable IPv6"
+msgstr "Aktiviere/Deaktiviere IPv6"
+
+msgid "Enable/Disable IPv6 support of your receiver.\n"
+msgstr "Aktiviere/Deaktiviere IPv6 Unterstützung auf deinem Receiver.\n"
 
 msgid "Enabled"
 msgstr "Eingeschaltet"
@@ -5351,6 +5360,9 @@ msgstr "Beenden "
 
 msgid "Exit EPG"
 msgstr "Verlasse EPG"
+
+msgid "Exit IPv6 configuration"
+msgstr "IPv6 Konfiguration beenden"
 
 msgid "Exit MAC-address configuration"
 msgstr "Beenden Sie die MAC-Adresskonfiguration"
@@ -5708,8 +5720,8 @@ msgid "Flashed:\t\t%s"
 msgstr "Geflashed:\t\t%s"
 
 #, python-format
-msgid "Flashed:\t%s\n"
-msgstr "Geflashed:\t%s\n"
+msgid "Flashed:\t\t%s\n"
+msgstr "Geflashed:\t\t%s\n"
 
 msgid "Flashing"
 msgstr "Blinkend"
@@ -5928,8 +5940,8 @@ msgid "GStreamer"
 msgstr "GStreamer"
 
 #, python-format
-msgid "GStreamer:\t%s"
-msgstr "GStreamer:\t%s"
+msgid "GStreamer:\t\t%s"
+msgstr "GStreamer:\t\t%s"
 
 msgid "GUI Skin"
 msgstr "GUI Skin"
@@ -6197,8 +6209,8 @@ msgid "HDF Build: %s"
 msgstr "HDF-Build: %s"
 
 #, python-format
-msgid "HDF Version:\tV%s"
-msgstr "HDF-Version: V%s"
+msgid "HDF Version:\t\tV%s"
+msgstr "HDF-Version:\t\tV%s"
 
 msgid "HDFreaks"
 msgstr "HDFreaks"
@@ -6493,6 +6505,9 @@ msgstr ""
 "IPTV Aufnahmen funktionieren nicht bei aktivem gstplayer oder exteplayer3.\n"
 "Bitte in der ServiceApp auf Original umstellen und neustarten!"
 
+msgid "IPv6 support"
+msgstr "IPv6-Unterstützung"
+
 msgid "ISO file is too large for this filesystem!"
 msgstr "Die ISO-Datei passt nicht auf das Dateisystem!"
 
@@ -6730,8 +6745,11 @@ msgstr ""
 "%s"
 
 #, python-format
-msgid "Image:\t%s"
-msgstr "Image: %s"
+msgid "Image:\t\t%s"
+msgstr "Image:\t\t%s"
+
+msgid "ImageWizard"
+msgstr "Image Assistent"
 
 msgid "Immediate shutdown"
 msgstr "Direkt Ausschalten"
@@ -6957,8 +6975,17 @@ msgstr "Installiere"
 msgid "Installing Service"
 msgstr "Installiere Service"
 
-msgid "Installing plugins..."
-msgstr "Installiere Plugins..."
+msgid "Installing feeds from IPK ..."
+msgstr "Installiere Feed aus IPK ..."
+
+msgid "Installing feeds from feed ..."
+msgstr "Installiere Feed vom Feed ..."
+
+msgid "Installing plugins from IPK ..."
+msgstr "Installiere Plugins aus IPK ..."
+
+msgid "Installing plugins from feed ..."
+msgstr "Installiere Plugins vom Feed ..."
 
 msgid "Instant Record"
 msgstr "Sofortaufnahme"
@@ -7292,8 +7319,8 @@ msgid "Last update:\t\t%s"
 msgstr "Letztes Update:\t\t%s"
 
 #, python-format
-msgid "E2 (re)starts:\t\t%s\n"
-msgstr "E2 (Neu)starts:\t\t%s\n"
+msgid "Last update:\t%s"
+msgstr "Letztes Update:\t%s"
 
 #, python-format
 msgid "Last update: %s"
@@ -10005,8 +10032,8 @@ msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python Frontend für /tmp/mmi.socket"
 
 #, python-format
-msgid "Python:\t%s\n"
-msgstr "Python: %s\n"
+msgid "Python:\t\t%s\n"
+msgstr "Python:\t\t%s\n"
 
 msgid "Qatar"
 msgstr "Qatar"
@@ -10658,6 +10685,9 @@ msgstr "Wie oft ausführen?"
 msgid "Running"
 msgstr "Laufend"
 
+msgid "Running Myrestore script, Please wait ..."
+msgstr "Lasse Myrestore Script laufen. Bitte warten..."
+
 msgid "Russian"
 msgstr "Russisch"
 
@@ -10819,6 +10849,9 @@ msgstr "Speichere EPG Cache ?"
 
 msgid "Save EPG data"
 msgstr "EPG immer Speichern"
+
+msgid "Save IPv6 configuration"
+msgstr "Speichere IPv6 Konfiguration"
 
 msgid "Save and activate the currently selected skin"
 msgstr "OK drücken, um den markierten Skin zu aktivieren"
@@ -12446,8 +12479,8 @@ msgid "Skin setup"
 msgstr "Skinauswahl"
 
 #, python-format
-msgid "Skin:\t%s (%s x %s)\n"
-msgstr "Haut: %s (%s x %s)\n"
+msgid "Skin:\t\t%s (%s x %s)\n"
+msgstr "Skin:\t\t%s (%s x %s)\n"
 
 msgid "SkinSelector: Restart GUI"
 msgstr "Skin Auswahl: GUI neustarten"
@@ -15536,8 +15569,8 @@ msgid "Wake Up To Standby"
 msgstr "Einschalten in Bereitschaft"
 
 #, python-format
-msgid "WakeOnLAN:\t%s\n"
-msgstr "WakeOnLAN: %s\n"
+msgid "WakeOnLAN:\t\t%s\n"
+msgstr "WakeOnLAN:\t\t%s\n"
 
 msgid "Wakeup"
 msgstr "Einschalten"
@@ -16256,6 +16289,10 @@ msgid "Your %s %s will Reboot..."
 msgstr "Deine %s %s wird jetzt neu gestartet..."
 
 #, python-format
+msgid "Your %s %s will Restart..."
+msgstr "Deine %s %s wird neu gestartet..."
+
+#, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install %s ?"
@@ -16280,10 +16317,6 @@ msgid ""
 msgstr ""
 "Deine %s %s wird nach entfernen des Services neu gestartet\n"
 "Service jetzt entfernen?"
-
-#, python-format
-msgid "Your %s %s will restart Enigma2..."
-msgstr "Deine %s %s startet Enigma2 neu..."
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Hardware erkennt das CI Protokoll selber oder Hardware arbeitet nur im Legacy Mode."

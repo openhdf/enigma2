@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 19:52+0100\n"
+"POT-Creation-Date: 2022-03-03 13:59+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: \n"
@@ -491,7 +491,7 @@ msgstr "%d. %B %Y"
 msgid "%d.%m.   "
 msgstr ""
 
-msgid "%d.%m.%Y %H:%M:%S"
+msgid "%d.%m.%Y - %H:%M:%S"
 msgstr ""
 
 #, fuzzy
@@ -2476,7 +2476,7 @@ msgid "Blue long"
 msgstr "Modré - dlouhý stisk"
 
 #, python-format
-msgid "BogoMIPS:\t%s"
+msgid "BogoMIPS:\t\t%s"
 msgstr ""
 
 msgid "Bolivia (Plurinational State of)"
@@ -2714,11 +2714,11 @@ msgid "CIselectMainMenu"
 msgstr "Nastavení CI rozhraní"
 
 #, fuzzy, python-format
-msgid "CPU Temp:\t%s"
+msgid "CPU Temp:\t\t%s"
 msgstr "CPU-Teplota: %s"
 
-#, python-format
-msgid "CPU:\t%s"
+#, fuzzy, python-format
+msgid "CPU:\t\t%s"
 msgstr "CPU:\t%s"
 
 #, fuzzy, python-format
@@ -3138,7 +3138,7 @@ msgid "China"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Chipset:\t%s"
+msgid "Chipset:\t\t%s"
 msgstr "Chipset:\tBCM%s"
 
 #, fuzzy, python-format
@@ -3882,8 +3882,8 @@ msgstr "Kopírovat"
 msgid "Copying files"
 msgstr "Kopírování souborů"
 
-#, python-format
-msgid "Cores:\t%s"
+#, fuzzy, python-format
+msgid "Cores:\t\t%s"
 msgstr "Jádra CPU:\t%s"
 
 #, fuzzy, python-format
@@ -4720,11 +4720,6 @@ msgstr "Kam chcete zazálohovat Vaše nastavení?"
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Chcete vypálit tuto kompilaci na DVD?"
 
-msgid ""
-"Do you want to completely reboot your box now? \n"
-"If not, only Enigma is restarting."
-msgstr ""
-
 #, fuzzy
 msgid "Do you want to continue?"
 msgstr "Chcete nastavit"
@@ -4738,6 +4733,10 @@ msgid ""
 msgstr ""
 "Chcete smazat všechny vybrané soubory:\n"
 "(vyberte 'Ne' ke smazání pouze aktuálně vybraných souborů.)"
+
+#, fuzzy
+msgid "Do you want to delete the old settings in /etc/enigma2 first?"
+msgstr "Chcete obnovit Vaše nastavení?"
 
 msgid "Do you want to do a service scan?"
 msgstr "Chcete vyhledat programy?"
@@ -4914,6 +4913,10 @@ msgstr ""
 msgid "Drivers"
 msgstr "Ovladače:\t%s"
 
+#, fuzzy, python-format
+msgid "Drivers:\t\t%s"
+msgstr "Ovladače:\t%s"
+
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Ovladače:\t%s"
@@ -4939,7 +4942,7 @@ msgid "E "
 msgstr "Východně"
 
 #, python-format
-msgid "E2 (re)starts:\t%s\n"
+msgid "E2 (re)starts:\t\t%s\n"
 msgstr ""
 
 msgid "E3HD/XPEEDLX/GI"
@@ -5240,6 +5243,9 @@ msgstr "Povolit automatické rychlé ladění (Fast Scan)"
 msgid "Enable multiple bouquets"
 msgstr "Povolit vícenásobné přehledy"
 
+msgid "Enable or disable Ipv6."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "Povolit tlačítko Panika"
 
@@ -5282,6 +5288,13 @@ msgstr "Povolit protokol ladění"
 #, fuzzy
 msgid "Enable zap history:"
 msgstr "Zapnout odkládání při startu"
+
+#, fuzzy
+msgid "Enable/Disable IPv6"
+msgstr "Zakázáno"
+
+msgid "Enable/Disable IPv6 support of your receiver.\n"
+msgstr ""
 
 msgid "Enabled"
 msgstr "Povolen"
@@ -5555,6 +5568,10 @@ msgstr "Ukončit"
 
 msgid "Exit EPG"
 msgstr "Ukončit EPG"
+
+#, fuzzy
+msgid "Exit IPv6 configuration"
+msgstr "Zavřít konfiguraci DNS"
 
 #, fuzzy
 msgid "Exit MAC-address configuration"
@@ -5925,12 +5942,12 @@ msgid "Flash On the Fly"
 msgstr "Flešnutí Online / HDD"
 
 #, fuzzy, python-format
-msgid "Flashed:\t%s"
+msgid "Flashed:\t\t%s"
 msgstr "Flešnutí"
 
-#, python-format
-msgid "Flashed:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Flashed:\t\t%s\n"
+msgstr "Flešnutí"
 
 msgid "Flashing"
 msgstr "Blikat"
@@ -6037,9 +6054,9 @@ msgstr "Zapnout MiniTV"
 msgid "France"
 msgstr "romance"
 
-#, python-format
-msgid "Free Flash:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Free Flash:\t\t%s\n"
+msgstr "Flešnutí"
 
 msgid "Free Memory:"
 msgstr "Volná RAM"
@@ -6159,7 +6176,7 @@ msgid "GStreamer"
 msgstr "Při pož. na stream"
 
 #, fuzzy, python-format
-msgid "GStreamer:\t%s"
+msgid "GStreamer:\t\t%s"
 msgstr "Při pož. na stream"
 
 #, fuzzy
@@ -6439,7 +6456,7 @@ msgid "HDF Build: %s"
 msgstr "Sestaveno: %s"
 
 #, fuzzy, python-format
-msgid "HDF Version:\tV%s"
+msgid "HDF Version:\t\tV%s"
 msgstr "Verze:\t%s"
 
 msgid "HDFreaks"
@@ -6762,6 +6779,10 @@ msgid ""
 "Please use original settings within serviceapp!"
 msgstr ""
 
+#, fuzzy
+msgid "IPv6 support"
+msgstr "Podpora DLNA"
+
 msgid "ISO file is too large for this filesystem!"
 msgstr "Soubor ISO je příliš veliký pro tento systém"
 
@@ -7011,8 +7032,12 @@ msgid ""
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Image:\t%s"
+msgid "Image:\t\t%s"
 msgstr "Instalováno:\t%s"
+
+#, fuzzy
+msgid "ImageWizard"
+msgstr "Video průvodce"
 
 msgid "Immediate shutdown"
 msgstr "Vypnout přijímač"
@@ -7252,7 +7277,18 @@ msgid "Installing Service"
 msgstr "Instalace služby"
 
 #, fuzzy
-msgid "Installing plugins..."
+msgid "Installing feeds from IPK ..."
+msgstr "Instalovat pluginy"
+
+msgid "Installing feeds from feed ..."
+msgstr ""
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "Instalovat pluginy"
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
 msgstr "Instalovat pluginy"
 
 msgid "Instant Record"
@@ -7463,7 +7499,7 @@ msgid "Kenya"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Kernel (Box):\t%s"
+msgid "Kernel (Box):\t\t%s"
 msgstr "Kernel:\t%s"
 
 #, fuzzy
@@ -7599,6 +7635,10 @@ msgstr "Poslední konfigurace"
 
 msgid "Last speed"
 msgstr "Poslední rychlost"
+
+#, fuzzy, python-format
+msgid "Last update:\t\t%s"
+msgstr "Poslední aktualizace:\t%s"
 
 #, python-format
 msgid "Last update:\t%s"
@@ -8184,7 +8224,7 @@ msgid "Mode 2"
 msgstr "Režim rozlišení"
 
 #, fuzzy, python-format
-msgid "Model:\t%s %s - OEM Model: %s\n"
+msgid "Model:\t\t%s %s - OEM Model: %s\n"
 msgstr "Model:\t%s %s\n"
 
 msgid "Model: "
@@ -10441,9 +10481,9 @@ msgstr ""
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend pro /tmp/mmi.socket"
 
-#, python-format
-msgid "Python:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Python:\t\t%s\n"
+msgstr "Diskové oddíly"
 
 msgid "Qatar"
 msgstr ""
@@ -11136,6 +11176,10 @@ msgstr "Spouštět"
 msgid "Running"
 msgstr "Aktivní"
 
+#, fuzzy
+msgid "Running Myrestore script, Please wait ..."
+msgstr "Čekejte prosím, rozbaluji soubory ..."
+
 msgid "Russian"
 msgstr "Rusky"
 
@@ -11304,6 +11348,10 @@ msgstr "Uložit cache EPG..."
 
 msgid "Save EPG data"
 msgstr "Uložit data EPG"
+
+#, fuzzy
+msgid "Save IPv6 configuration"
+msgstr "Aktivovat aktuální konfiguraci"
 
 #, fuzzy
 msgid "Save and activate the currently selected skin"
@@ -11833,7 +11881,7 @@ msgid "Select your time zone area or region."
 msgstr "Nastavení časové zóny."
 
 #, fuzzy, python-format
-msgid "Selected Image:\t%s"
+msgid "Selected Image:\t\t%s"
 msgstr "Vyberte skin"
 
 msgid "Selected mount point is already used by another drive."
@@ -13043,7 +13091,7 @@ msgid "Skin setup"
 msgstr "Nastavení skinu"
 
 #, python-format
-msgid "Skin:\t%s (%s x %s)\n"
+msgid "Skin:\t\t%s (%s x %s)\n"
 msgstr ""
 
 #, fuzzy
@@ -13820,7 +13868,7 @@ msgid "System Message Check"
 msgstr "Kontrola souborového systému"
 
 #, fuzzy, python-format
-msgid "System Temp:\t%s"
+msgid "System Temp:\t\t%s"
 msgstr "Systémová teplota:\t%s"
 
 msgid "System: "
@@ -16299,7 +16347,7 @@ msgid "Wake Up To Standby"
 msgstr "Probudit TV z pohotovostního režimu"
 
 #, fuzzy, python-format
-msgid "WakeOnLAN:\t%s\n"
+msgid "WakeOnLAN:\t\t%s\n"
 msgstr "Použít dálkovou aktivaci po síti (WakeOnLAN)"
 
 msgid "Wakeup"
@@ -17033,6 +17081,10 @@ msgstr "Váš %s %s byl nesprávně vypnut."
 msgid "Your %s %s will Reboot..."
 msgstr "Váš %s %s se restartuje..."
 
+#, fuzzy, python-format
+msgid "Your %s %s will Restart..."
+msgstr "Váš %s %s se restartuje..."
+
 #, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
@@ -17058,10 +17110,6 @@ msgid ""
 msgstr ""
 "Váš %s %s se po odebrání služby restartuje.\n"
 "Chcete odebrat nyní ?"
-
-#, fuzzy, python-format
-msgid "Your %s %s will restart Enigma2..."
-msgstr "Váš %s %s se restartuje..."
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""

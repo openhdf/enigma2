@@ -4460,13 +4460,13 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
 			"cancel": (self.cancel, _("Exit IPv6 configuration")),
-			"ok": (self.ok, _("Activate IPv6 configuration")),
+			"ok": (self.ok, _("Save IPv6 configuration")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
 			"red": (self.cancel, _("Exit IPv6 configuration")),
-			"green": (self.ok, _("Activate IPv6 configuration"))
+			"green": (self.ok, _("Save IPv6 configuration"))
 			})
 
 		self["actions"] = NumberActionMap(["SetupActions"],

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 19:52+0100\n"
+"POT-Creation-Date: 2022-03-03 13:59+0100\n"
 "PO-Revision-Date: 2019-10-31 07:46+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
@@ -483,7 +483,7 @@ msgstr "%d.%B %Y"
 msgid "%d.%m.   "
 msgstr ""
 
-msgid "%d.%m.%Y %H:%M:%S"
+msgid "%d.%m.%Y - %H:%M:%S"
 msgstr ""
 
 #, fuzzy
@@ -2440,8 +2440,8 @@ msgstr "Bleu"
 msgid "Blue long"
 msgstr "Bleu long"
 
-#, python-format
-msgid "BogoMIPS:\t%s"
+#, fuzzy, python-format
+msgid "BogoMIPS:\t\t%s"
 msgstr "BogoMIPS:\t%s"
 
 msgid "Bolivia (Plurinational State of)"
@@ -2682,11 +2682,11 @@ msgid "CIselectMainMenu"
 msgstr "Menu principal"
 
 #, fuzzy, python-format
-msgid "CPU Temp:\t%s"
+msgid "CPU Temp:\t\t%s"
 msgstr "CPU:\t%s"
 
-#, python-format
-msgid "CPU:\t%s"
+#, fuzzy, python-format
+msgid "CPU:\t\t%s"
 msgstr "CPU:\t%s"
 
 #, python-format
@@ -3109,7 +3109,7 @@ msgid "China"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Chipset:\t%s"
+msgid "Chipset:\t\t%s"
 msgstr "Chipset:\tBCM%s"
 
 #, fuzzy, python-format
@@ -3838,8 +3838,8 @@ msgstr "Copier"
 msgid "Copying files"
 msgstr "Copie des fichiers en cours"
 
-#, python-format
-msgid "Cores:\t%s"
+#, fuzzy, python-format
+msgid "Cores:\t\t%s"
 msgstr "Coeurs:\t%s"
 
 #, python-format
@@ -4663,11 +4663,6 @@ msgstr "Où voulez-vous sauver vos paramètres?"
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Voulez-vous graver cette collection sur le DVD?"
 
-msgid ""
-"Do you want to completely reboot your box now? \n"
-"If not, only Enigma is restarting."
-msgstr ""
-
 msgid "Do you want to continue?"
 msgstr "Voulez-vous continuer?"
 
@@ -4680,6 +4675,10 @@ msgid ""
 msgstr ""
 "Voulez-vous effacer tous les fichiers sélectionnés?\n"
 "(choisir ‘Non’ pour effacer uniquement le fichier sélectionné.)"
+
+#, fuzzy
+msgid "Do you want to delete the old settings in /etc/enigma2 first?"
+msgstr "Voulez-vous restaurer vos paramètres?"
 
 msgid "Do you want to do a service scan?"
 msgstr "Voulez-vous faire une analyse des services?"
@@ -4852,6 +4851,10 @@ msgstr ""
 msgid "Drivers"
 msgstr "Pilotes"
 
+#, fuzzy, python-format
+msgid "Drivers:\t\t%s"
+msgstr "Pilotes:\t%s"
+
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Pilotes:\t%s"
@@ -4877,7 +4880,7 @@ msgid "E "
 msgstr " "
 
 #, python-format
-msgid "E2 (re)starts:\t%s\n"
+msgid "E2 (re)starts:\t\t%s\n"
 msgstr ""
 
 msgid "E3HD/XPEEDLX/GI"
@@ -5175,6 +5178,9 @@ msgstr "Activer le fast scan automatique"
 msgid "Enable multiple bouquets"
 msgstr "Activer bouquets multiples"
 
+msgid "Enable or disable Ipv6."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "Activer le bouton de panique"
 
@@ -5215,6 +5221,13 @@ msgstr "Activer le log de débogage"
 
 msgid "Enable zap history:"
 msgstr "Activer l’historique du zap:"
+
+#, fuzzy
+msgid "Enable/Disable IPv6"
+msgstr "Désactivé PiP.\n"
+
+msgid "Enable/Disable IPv6 support of your receiver.\n"
+msgstr ""
 
 msgid "Enabled"
 msgstr "Activer"
@@ -5483,6 +5496,10 @@ msgstr "Quitter"
 
 msgid "Exit EPG"
 msgstr "Quitter EPG"
+
+#, fuzzy
+msgid "Exit IPv6 configuration"
+msgstr "Quitter la configuration nom serveur"
 
 msgid "Exit MAC-address configuration"
 msgstr "Quitter configuration de l’adresse MAC"
@@ -5854,11 +5871,11 @@ msgid "Flash On the Fly"
 msgstr "Flasher à la volée"
 
 #, fuzzy, python-format
-msgid "Flashed:\t%s"
+msgid "Flashed:\t\t%s"
 msgstr "Flashé:\t%s\n"
 
-#, python-format
-msgid "Flashed:\t%s\n"
+#, fuzzy, python-format
+msgid "Flashed:\t\t%s\n"
 msgstr "Flashé:\t%s\n"
 
 msgid "Flashing"
@@ -5965,7 +5982,7 @@ msgid "France"
 msgstr "romantique"
 
 #, fuzzy, python-format
-msgid "Free Flash:\t%s\n"
+msgid "Free Flash:\t\t%s\n"
 msgstr "Flashé:\t%s\n"
 
 msgid "Free Memory:"
@@ -6086,7 +6103,7 @@ msgid "GStreamer"
 msgstr "Stream"
 
 #, fuzzy, python-format
-msgid "GStreamer:\t%s"
+msgid "GStreamer:\t\t%s"
 msgstr "GStreamer ver:\t%s"
 
 #, fuzzy
@@ -6363,7 +6380,7 @@ msgid "HDF Build: %s"
 msgstr "Compilation HDF:\t%s"
 
 #, fuzzy, python-format
-msgid "HDF Version:\tV%s"
+msgid "HDF Version:\t\tV%s"
 msgstr "Version HDF:\t%s"
 
 msgid "HDFreaks"
@@ -6676,6 +6693,10 @@ msgid ""
 "Please use original settings within serviceapp!"
 msgstr ""
 
+#, fuzzy
+msgid "IPv6 support"
+msgstr "Support DLNA"
+
 msgid "ISO file is too large for this filesystem!"
 msgstr "Le fichier ISO est trop grand pour ce système de fichiers!"
 
@@ -6904,9 +6925,13 @@ msgid ""
 "%s"
 msgstr ""
 
-#, python-format
-msgid "Image:\t%s"
-msgstr ""
+#, fuzzy, python-format
+msgid "Image:\t\t%s"
+msgstr "%s effacé!"
+
+#, fuzzy
+msgid "ImageWizard"
+msgstr "Assistant Vidéo"
 
 msgid "Immediate shutdown"
 msgstr "Extinction immédiate"
@@ -7140,7 +7165,19 @@ msgstr "Installation"
 msgid "Installing Service"
 msgstr "Installation des services"
 
-msgid "Installing plugins..."
+#, fuzzy
+msgid "Installing feeds from IPK ..."
+msgstr "Installation plugins…"
+
+msgid "Installing feeds from feed ..."
+msgstr ""
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "Installation plugins…"
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
 msgstr "Installation plugins…"
 
 msgid "Instant Record"
@@ -7345,7 +7382,7 @@ msgid "Kenya"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Kernel (Box):\t%s"
+msgid "Kernel (Box):\t\t%s"
 msgstr "Noyau:\t%s"
 
 msgid "Kernel Modules"
@@ -7475,6 +7512,10 @@ msgstr "Dernière config"
 
 msgid "Last speed"
 msgstr "Dernière vitesse"
+
+#, fuzzy, python-format
+msgid "Last update:\t\t%s"
+msgstr "Dernière mise à jour:\t%s"
 
 #, python-format
 msgid "Last update:\t%s"
@@ -8043,7 +8084,7 @@ msgid "Mode 2"
 msgstr "Mode 2"
 
 #, fuzzy, python-format
-msgid "Model:\t%s %s - OEM Model: %s\n"
+msgid "Model:\t\t%s %s - OEM Model: %s\n"
 msgstr "Modèle:\t%s %s\n"
 
 msgid "Model: "
@@ -10249,7 +10290,7 @@ msgid "Python frontend for /tmp/mmi.socket"
 msgstr "\"Frontend\" Python pour /tmp/mmi.socket"
 
 #, fuzzy, python-format
-msgid "Python:\t%s\n"
+msgid "Python:\t\t%s\n"
 msgstr "Python ver:\t%s\n"
 
 msgid "Qatar"
@@ -10930,6 +10971,10 @@ msgstr "Exécuter combien de fois?"
 msgid "Running"
 msgstr "En cours"
 
+#, fuzzy
+msgid "Running Myrestore script, Please wait ..."
+msgstr "Décompression des fichiers, veuillez attendre…"
+
 msgid "Russian"
 msgstr "Russe"
 
@@ -11094,6 +11139,10 @@ msgstr "Sauvegarder le cache EPG?"
 
 msgid "Save EPG data"
 msgstr "Sauver les données EPG"
+
+#, fuzzy
+msgid "Save IPv6 configuration"
+msgstr "Activer la configuration courante"
 
 #, fuzzy
 msgid "Save and activate the currently selected skin"
@@ -11612,7 +11661,7 @@ msgid "Select your time zone area or region."
 msgstr "Définir votre fuseau horaire"
 
 #, fuzzy, python-format
-msgid "Selected Image:\t%s"
+msgid "Selected Image:\t\t%s"
 msgstr "%s effacé!"
 
 msgid "Selected mount point is already used by another drive."
@@ -12764,7 +12813,7 @@ msgid "Skin setup"
 msgstr "Configurer thème/skin"
 
 #, python-format
-msgid "Skin:\t%s (%s x %s)\n"
+msgid "Skin:\t\t%s (%s x %s)\n"
 msgstr ""
 
 #, fuzzy
@@ -13525,8 +13574,8 @@ msgstr "Système"
 msgid "System Message Check"
 msgstr "Vérification du système de fichiers"
 
-#, python-format
-msgid "System Temp:\t%s"
+#, fuzzy, python-format
+msgid "System Temp:\t\t%s"
 msgstr "Temp. du système:\t%s"
 
 msgid "System: "
@@ -15957,7 +16006,7 @@ msgid "Wake Up To Standby"
 msgstr "Réveil en mode veille"
 
 #, python-format
-msgid "WakeOnLAN:\t%s\n"
+msgid "WakeOnLAN:\t\t%s\n"
 msgstr ""
 
 msgid "Wakeup"
@@ -16673,6 +16722,10 @@ msgstr ""
 msgid "Your %s %s will Reboot..."
 msgstr "Votre %s %s va rédemarrer…"
 
+#, fuzzy, python-format
+msgid "Your %s %s will Restart..."
+msgstr "Votre %s %s va rédemarrer…"
+
 #, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
@@ -16698,10 +16751,6 @@ msgid ""
 msgstr ""
 "Votre %s %s sera redémarré après avoir enlever le service.\n"
 "Voulez-vous l’installer maintenant?"
-
-#, fuzzy, python-format
-msgid "Your %s %s will restart Enigma2..."
-msgstr "Votre %s %s va rédemarrer…"
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""

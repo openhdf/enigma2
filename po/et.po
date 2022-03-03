@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 19:52+0100\n"
+"POT-Creation-Date: 2022-03-03 13:59+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -467,7 +467,7 @@ msgstr "%d.%B %Y"
 msgid "%d.%m.   "
 msgstr ""
 
-msgid "%d.%m.%Y %H:%M:%S"
+msgid "%d.%m.%Y - %H:%M:%S"
 msgstr ""
 
 #, fuzzy
@@ -2465,7 +2465,7 @@ msgid "Blue long"
 msgstr "SININE pikk"
 
 #, python-format
-msgid "BogoMIPS:\t%s"
+msgid "BogoMIPS:\t\t%s"
 msgstr ""
 
 msgid "Bolivia (Plurinational State of)"
@@ -2706,11 +2706,11 @@ msgid "CIselectMainMenu"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "CPU Temp:\t%s"
+msgid "CPU Temp:\t\t%s"
 msgstr "CPU:\t%s"
 
-#, python-format
-msgid "CPU:\t%s"
+#, fuzzy, python-format
+msgid "CPU:\t\t%s"
 msgstr "CPU:\t%s"
 
 #, fuzzy, python-format
@@ -3126,7 +3126,7 @@ msgid "China"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Chipset:\t%s"
+msgid "Chipset:\t\t%s"
 msgstr "Kiibistik:\tBCM%s"
 
 #, fuzzy, python-format
@@ -3889,8 +3889,8 @@ msgstr "Kopeeri"
 msgid "Copying files"
 msgstr "Failide kopeerimine"
 
-#, python-format
-msgid "Cores:\t%s"
+#, fuzzy, python-format
+msgid "Cores:\t\t%s"
 msgstr "Tuumad:\t%s"
 
 #, fuzzy, python-format
@@ -4735,11 +4735,6 @@ msgstr "Kuhu teha varukoopia seadistustest?"
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Kas soovid selle valiku DVD-le kirjutada?"
 
-msgid ""
-"Do you want to completely reboot your box now? \n"
-"If not, only Enigma is restarting."
-msgstr ""
-
 msgid "Do you want to continue?"
 msgstr "Kas jätkad?"
 
@@ -4753,6 +4748,10 @@ msgid ""
 msgstr ""
 "Kas kustutad kõik valitud failid:\n"
 "(valides 'EI', kustutatakse ainult hetkel valitud fail.)"
+
+#, fuzzy
+msgid "Do you want to delete the old settings in /etc/enigma2 first?"
+msgstr "Kas taastad seaded?"
 
 msgid "Do you want to do a service scan?"
 msgstr "Kas käivitad kanaliotsingu?"
@@ -4928,6 +4927,10 @@ msgstr ""
 msgid "Drivers"
 msgstr "Ajurid:\t%s"
 
+#, fuzzy, python-format
+msgid "Drivers:\t\t%s"
+msgstr "Ajurid:\t%s"
+
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Ajurid:\t%s"
@@ -4953,7 +4956,7 @@ msgid "E "
 msgstr "E"
 
 #, python-format
-msgid "E2 (re)starts:\t%s\n"
+msgid "E2 (re)starts:\t\t%s\n"
 msgstr ""
 
 msgid "E3HD/XPEEDLX/GI"
@@ -5258,6 +5261,9 @@ msgstr "Luba automaatne kiirotsing"
 msgid "Enable multiple bouquets"
 msgstr "Luba lemmiknimekirjad"
 
+msgid "Enable or disable Ipv6."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "Luba paanika nupp"
 
@@ -5297,6 +5303,13 @@ msgid "Enable twisted log *"
 msgstr "Luba silumislogid"
 
 msgid "Enable zap history:"
+msgstr ""
+
+#, fuzzy
+msgid "Enable/Disable IPv6"
+msgstr "Keelatud"
+
+msgid "Enable/Disable IPv6 support of your receiver.\n"
 msgstr ""
 
 msgid "Enabled"
@@ -5575,6 +5588,10 @@ msgstr "Välju"
 
 msgid "Exit EPG"
 msgstr "Sulge saatekava"
+
+#, fuzzy
+msgid "Exit IPv6 configuration"
+msgstr "Välju nimeserverite seadistusest"
 
 msgid "Exit MAC-address configuration"
 msgstr "Välju MAC-aadressi seadistustest"
@@ -5949,12 +5966,12 @@ msgid "Flash On the Fly"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Flashed:\t%s"
+msgid "Flashed:\t\t%s"
 msgstr "Flash"
 
-#, python-format
-msgid "Flashed:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Flashed:\t\t%s\n"
+msgstr "Flash"
 
 msgid "Flashing"
 msgstr "Vilkuv"
@@ -6058,9 +6075,9 @@ msgstr ""
 msgid "France"
 msgstr "romantika"
 
-#, python-format
-msgid "Free Flash:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Free Flash:\t\t%s\n"
+msgstr "Flash"
 
 msgid "Free Memory:"
 msgstr "Vaba mälu:"
@@ -6181,7 +6198,7 @@ msgid "GStreamer"
 msgstr "IPTV"
 
 #, fuzzy, python-format
-msgid "GStreamer:\t%s"
+msgid "GStreamer:\t\t%s"
 msgstr "IPTV"
 
 #, fuzzy
@@ -6474,7 +6491,7 @@ msgid "HDF Build: %s"
 msgstr "Järk: %s"
 
 #, fuzzy, python-format
-msgid "HDF Version:\tV%s"
+msgid "HDF Version:\t\tV%s"
 msgstr "Versioon:\t%s"
 
 msgid "HDFreaks"
@@ -6801,6 +6818,10 @@ msgid ""
 "Please use original settings within serviceapp!"
 msgstr ""
 
+#, fuzzy
+msgid "IPv6 support"
+msgstr "DLNA tugi"
+
 msgid "ISO file is too large for this filesystem!"
 msgstr "ISO fail on selle failisüsteemi jaoks liiga suur!"
 
@@ -7051,9 +7072,13 @@ msgid ""
 "%s"
 msgstr ""
 
-#, python-format
-msgid "Image:\t%s"
-msgstr ""
+#, fuzzy, python-format
+msgid "Image:\t\t%s"
+msgstr "Kustutatud %s!"
+
+#, fuzzy
+msgid "ImageWizard"
+msgstr "Resolutsioon"
 
 msgid "Immediate shutdown"
 msgstr "Kohene väljalülitus"
@@ -7292,7 +7317,18 @@ msgid "Installing Service"
 msgstr "Teenuse paigaldamine"
 
 #, fuzzy
-msgid "Installing plugins..."
+msgid "Installing feeds from IPK ..."
+msgstr "Paigalda laiendusi"
+
+msgid "Installing feeds from feed ..."
+msgstr ""
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "Paigalda laiendusi"
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
 msgstr "Paigalda laiendusi"
 
 #, fuzzy
@@ -7504,7 +7540,7 @@ msgid "Kenya"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Kernel (Box):\t%s"
+msgid "Kernel (Box):\t\t%s"
 msgstr "Kernel:\t%s"
 
 #, fuzzy
@@ -7641,6 +7677,10 @@ msgstr "Viimane seadistus"
 
 msgid "Last speed"
 msgstr "Eelmine kiirus"
+
+#, fuzzy, python-format
+msgid "Last update:\t\t%s"
+msgstr "Uuendatud:\t%s"
 
 #, python-format
 msgid "Last update:\t%s"
@@ -8228,7 +8268,7 @@ msgid "Mode 2"
 msgstr "Režiim"
 
 #, fuzzy, python-format
-msgid "Model:\t%s %s - OEM Model: %s\n"
+msgid "Model:\t\t%s %s - OEM Model: %s\n"
 msgstr "Mudel:\t%s %s\n"
 
 msgid "Model: "
@@ -10501,9 +10541,9 @@ msgstr ""
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Pythoni programm /tmp/mmi.socket jaoks"
 
-#, python-format
-msgid "Python:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Python:\t\t%s\n"
+msgstr "Versioon:\t%s"
 
 msgid "Qatar"
 msgstr ""
@@ -11211,6 +11251,10 @@ msgstr "Kui tihti käivitada?"
 msgid "Running"
 msgstr "Kasutusel"
 
+#, fuzzy
+msgid "Running Myrestore script, Please wait ..."
+msgstr "Laienduste nimekirja laadimine. Oota..."
+
 msgid "Russian"
 msgstr "Vene"
 
@@ -11379,6 +11423,10 @@ msgstr "EPG salvestamine..."
 #, fuzzy
 msgid "Save EPG data"
 msgstr "Salvesta EPG"
+
+#, fuzzy
+msgid "Save IPv6 configuration"
+msgstr "Aktiveeri muudatused"
 
 #, fuzzy
 msgid "Save and activate the currently selected skin"
@@ -11909,7 +11957,7 @@ msgid "Select your time zone area or region."
 msgstr "Määra ajavöönd."
 
 #, fuzzy, python-format
-msgid "Selected Image:\t%s"
+msgid "Selected Image:\t\t%s"
 msgstr "Kustutatud %s!"
 
 msgid "Selected mount point is already used by another drive."
@@ -13169,7 +13217,7 @@ msgid "Skin setup"
 msgstr "Kujunduse valik"
 
 #, python-format
-msgid "Skin:\t%s (%s x %s)\n"
+msgid "Skin:\t\t%s (%s x %s)\n"
 msgstr ""
 
 #, fuzzy
@@ -13973,7 +14021,7 @@ msgid "System Message Check"
 msgstr "Failisüsteemi kontroll"
 
 #, fuzzy, python-format
-msgid "System Temp:\t%s"
+msgid "System Temp:\t\t%s"
 msgstr "Temperatuur: %s"
 
 msgid "System: "
@@ -16468,7 +16516,7 @@ msgid "Wake Up To Standby"
 msgstr "Käivita TV"
 
 #, python-format
-msgid "WakeOnLAN:\t%s\n"
+msgid "WakeOnLAN:\t\t%s\n"
 msgstr ""
 
 msgid "Wakeup"
@@ -17212,6 +17260,10 @@ msgid "Your %s %s will Reboot..."
 msgstr "%s %s taaskäivitub"
 
 #, fuzzy, python-format
+msgid "Your %s %s will Restart..."
+msgstr "%s %s taaskäivitub"
+
+#, fuzzy, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install %s ?"
@@ -17236,10 +17288,6 @@ msgid ""
 msgstr ""
 "%s %s taaskäivitub pärast teenuse eemaldamist\n"
 "Kas eemaldad kohe?"
-
-#, fuzzy, python-format
-msgid "Your %s %s will restart Enigma2..."
-msgstr "%s %s taaskäivitub"
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""

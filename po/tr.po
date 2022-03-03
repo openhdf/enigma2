@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 19:52+0100\n"
+"POT-Creation-Date: 2022-03-03 13:59+0100\n"
 "PO-Revision-Date: 2019-08-27 05:18+0200\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
@@ -479,7 +479,7 @@ msgstr ""
 msgid "%d.%m.   "
 msgstr ""
 
-msgid "%d.%m.%Y %H:%M:%S"
+msgid "%d.%m.%Y - %H:%M:%S"
 msgstr ""
 
 #, fuzzy
@@ -2393,7 +2393,7 @@ msgid "Blue long"
 msgstr "Mavi uzun"
 
 #, python-format
-msgid "BogoMIPS:\t%s"
+msgid "BogoMIPS:\t\t%s"
 msgstr ""
 
 msgid "Bolivia (Plurinational State of)"
@@ -2631,12 +2631,12 @@ msgstr "SLOT CI1 için CIHelper"
 msgid "CIselectMainMenu"
 msgstr "Ana Menü"
 
-#, python-format
-msgid "CPU Temp:\t%s"
+#, fuzzy, python-format
+msgid "CPU Temp:\t\t%s"
 msgstr "CPU Sıcaklığı:\t%s"
 
-#, python-format
-msgid "CPU:\t%s"
+#, fuzzy, python-format
+msgid "CPU:\t\t%s"
 msgstr "CPU:\t%s"
 
 #, fuzzy, python-format
@@ -3058,7 +3058,7 @@ msgid "China"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Chipset:\t%s"
+msgid "Chipset:\t\t%s"
 msgstr "Çipset:\tBCM%s"
 
 #, fuzzy, python-format
@@ -3777,8 +3777,8 @@ msgstr "Kopyala"
 msgid "Copying files"
 msgstr "Dosyalar kopyalanıyor"
 
-#, python-format
-msgid "Cores:\t%s"
+#, fuzzy, python-format
+msgid "Cores:\t\t%s"
 msgstr "Çekirdekler:\t%s"
 
 #, fuzzy, python-format
@@ -4605,13 +4605,6 @@ msgstr "Ayarlarınızı nereye yedeklemek istiyorsunuz?"
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Bu koleksiyonu DVD ortamına yazdırmak ister misiniz?"
 
-msgid ""
-"Do you want to completely reboot your box now? \n"
-"If not, only Enigma is restarting."
-msgstr ""
-"Alıcınızı şimdi tamamen yeniden başlatmak istiyor musunuz? \n"
-"Değilse, sadece Enigma yeniden başlatılıyor."
-
 #, fuzzy
 msgid "Do you want to continue?"
 msgstr "Şimdi yeniden başlatmak istiyor musun?"
@@ -4626,6 +4619,10 @@ msgid ""
 msgstr ""
 "Seçilen tüm dosyaları silmek istiyor musunuz:\n"
 "(Sadece seçili dosyayı silmek için 'Hayır' seçeneğini seçin.)"
+
+#, fuzzy
+msgid "Do you want to delete the old settings in /etc/enigma2 first?"
+msgstr "Enigma yeniden başladıktan sonra ayarlarınızı geri yüklemek ister misiniz?"
 
 msgid "Do you want to do a service scan?"
 msgstr "Kanal araması yapmak ister misiniz?"
@@ -4797,6 +4794,10 @@ msgstr ""
 msgid "Drivers"
 msgstr "Sürücüler"
 
+#, fuzzy, python-format
+msgid "Drivers:\t\t%s"
+msgstr "Sürücüler:\t%s"
+
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Sürücüler:\t%s"
@@ -4821,8 +4822,8 @@ msgstr "D"
 msgid "E "
 msgstr "D"
 
-#, python-format
-msgid "E2 (re)starts:\t%s\n"
+#, fuzzy, python-format
+msgid "E2 (re)starts:\t\t%s\n"
 msgstr "E2 ((yeniden)başlama:\t%s\n"
 
 msgid "E3HD/XPEEDLX/GI"
@@ -5115,6 +5116,9 @@ msgstr "Giriş ekranını etkinleştir"
 msgid "Enable multiple bouquets"
 msgstr "Çoklu buket kullanımını etkinleştir"
 
+msgid "Enable or disable Ipv6."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "Panik tuşunu etkinleştir"
 
@@ -5154,6 +5158,13 @@ msgstr ""
 #, fuzzy
 msgid "Enable zap history:"
 msgstr "Simgeleri etkinleştir"
+
+#, fuzzy
+msgid "Enable/Disable IPv6"
+msgstr "Devre dışı"
+
+msgid "Enable/Disable IPv6 support of your receiver.\n"
+msgstr ""
 
 msgid "Enabled"
 msgstr "Etkin"
@@ -5421,6 +5432,10 @@ msgstr "Çıkış"
 
 msgid "Exit EPG"
 msgstr "EPG'den Çık"
+
+#, fuzzy
+msgid "Exit IPv6 configuration"
+msgstr "Isim sunucusu ayarlarından çık"
 
 #, fuzzy
 msgid "Exit MAC-address configuration"
@@ -5781,12 +5796,12 @@ msgid "Flash On the Fly"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Flashed:\t%s"
+msgid "Flashed:\t\t%s"
 msgstr "Oluşum:\t%s"
 
-#, python-format
-msgid "Flashed:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Flashed:\t\t%s\n"
+msgstr "Oluşum:\t%s"
 
 msgid "Flashing"
 msgstr "Flaşlıyor"
@@ -5888,9 +5903,9 @@ msgstr "MiniTV kare hızı"
 msgid "France"
 msgstr "romantik"
 
-#, python-format
-msgid "Free Flash:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Free Flash:\t\t%s\n"
+msgstr "Oluşum:\t%s"
 
 msgid "Free Memory:"
 msgstr "Boş Bellek:"
@@ -6012,7 +6027,7 @@ msgid "GStreamer"
 msgstr "Akış"
 
 #, fuzzy, python-format
-msgid "GStreamer:\t%s"
+msgid "GStreamer:\t\t%s"
 msgstr "Sistem Sıcaklığı:\t%s"
 
 #, fuzzy
@@ -6291,8 +6306,8 @@ msgstr ""
 msgid "HDF Build: %s"
 msgstr "Oluşum: %s"
 
-#, python-format
-msgid "HDF Version:\tV%s"
+#, fuzzy, python-format
+msgid "HDF Version:\t\tV%s"
 msgstr "HDF Sürümü:\tV%s"
 
 msgid "HDFreaks"
@@ -6602,6 +6617,10 @@ msgid ""
 "Please use original settings within serviceapp!"
 msgstr ""
 
+#, fuzzy
+msgid "IPv6 support"
+msgstr "DLNA desteği"
+
 msgid "ISO file is too large for this filesystem!"
 msgstr "ISO dosyası bu dosya sistemi için çok büyük!"
 
@@ -6835,8 +6854,12 @@ msgid ""
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Image:\t%s"
+msgid "Image:\t\t%s"
 msgstr "İmaj"
+
+#, fuzzy
+msgid "ImageWizard"
+msgstr "Video Sihirbazı"
 
 msgid "Immediate shutdown"
 msgstr "Hemen kapat"
@@ -7069,7 +7092,19 @@ msgstr "Kuruluyor"
 msgid "Installing Service"
 msgstr "Kanal Yükleniyor"
 
-msgid "Installing plugins..."
+#, fuzzy
+msgid "Installing feeds from IPK ..."
+msgstr "Eklentiler yükleniyor ..."
+
+msgid "Installing feeds from feed ..."
+msgstr ""
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "Eklentiler yükleniyor ..."
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
 msgstr "Eklentiler yükleniyor ..."
 
 msgid "Instant Record"
@@ -7276,8 +7311,8 @@ msgstr "Ses dosyalarını çalarken Film Listesini açık tutar."
 msgid "Kenya"
 msgstr ""
 
-#, python-format
-msgid "Kernel (Box):\t%s"
+#, fuzzy, python-format
+msgid "Kernel (Box):\t\t%s"
 msgstr "Çekirdek (Kutu):\t%s"
 
 msgid "Kernel Modules"
@@ -7410,6 +7445,10 @@ msgstr "Son yapılandırma"
 
 msgid "Last speed"
 msgstr "Son hız"
+
+#, fuzzy, python-format
+msgid "Last update:\t\t%s"
+msgstr "Son güncelleme:\t%s"
 
 #, python-format
 msgid "Last update:\t%s"
@@ -7987,7 +8026,7 @@ msgid "Mode 2"
 msgstr "Mod"
 
 #, fuzzy, python-format
-msgid "Model:\t%s %s - OEM Model: %s\n"
+msgid "Model:\t\t%s %s - OEM Model: %s\n"
 msgstr "Model:\t%s %s\n"
 
 msgid "Model: "
@@ -10195,9 +10234,9 @@ msgstr ""
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr ""
 
-#, python-format
-msgid "Python:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Python:\t\t%s\n"
+msgstr "Bölümler"
 
 msgid "Qatar"
 msgstr ""
@@ -10866,6 +10905,10 @@ msgstr "Ne sıklıkta çalıştırılsın?"
 msgid "Running"
 msgstr "Çalışıyor"
 
+#, fuzzy
+msgid "Running Myrestore script, Please wait ..."
+msgstr "Dosyalar açılıyor, Lütfen bekleyin..."
+
 msgid "Russian"
 msgstr "Rusça"
 
@@ -11030,6 +11073,10 @@ msgstr "EPG Önbelleğini Kaydet"
 
 msgid "Save EPG data"
 msgstr "EPG verisini kaydet"
+
+#, fuzzy
+msgid "Save IPv6 configuration"
+msgstr "Geçerli yapılandırmayı etkinleştir"
 
 #, fuzzy
 msgid "Save and activate the currently selected skin"
@@ -11555,8 +11602,8 @@ msgstr ""
 msgid "Select your time zone area or region."
 msgstr "Saat dilimini ayarlayın."
 
-#, python-format
-msgid "Selected Image:\t%s"
+#, fuzzy, python-format
+msgid "Selected Image:\t\t%s"
 msgstr "Seçilen İmaj:\t%s"
 
 msgid "Selected mount point is already used by another drive."
@@ -12707,7 +12754,7 @@ msgid "Skin setup"
 msgstr "Görsel arayüz kurulumu"
 
 #, python-format
-msgid "Skin:\t%s (%s x %s)\n"
+msgid "Skin:\t\t%s (%s x %s)\n"
 msgstr ""
 
 #, fuzzy
@@ -13478,8 +13525,8 @@ msgstr "Sistem"
 msgid "System Message Check"
 msgstr "Dosya sistemi kontrolü"
 
-#, python-format
-msgid "System Temp:\t%s"
+#, fuzzy, python-format
+msgid "System Temp:\t\t%s"
 msgstr "Sistem Sıcaklığı:\t%s"
 
 msgid "System: "
@@ -15895,7 +15942,7 @@ msgid "Wake Up To Standby"
 msgstr "Uyanık Bekleme"
 
 #, python-format
-msgid "WakeOnLAN:\t%s\n"
+msgid "WakeOnLAN:\t\t%s\n"
 msgstr ""
 
 msgid "Wakeup"
@@ -16601,6 +16648,10 @@ msgstr ""
 msgid "Your %s %s will Reboot..."
 msgstr "%s %s yeniden başlıyor..."
 
+#, fuzzy, python-format
+msgid "Your %s %s will Restart..."
+msgstr "%s %s yeniden başlıyor..."
+
 #, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
@@ -16626,10 +16677,6 @@ msgid ""
 msgstr ""
 "Kanalın  kaldırılmasından sonra %s %s cihazınız tekrar başlatılacaktır\n"
 "Şimdi kaldırmak istiyor musunuz ?"
-
-#, python-format
-msgid "Your %s %s will restart Enigma2..."
-msgstr "%s %s yeniden başlıyor..."
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Donanımınız ci modunu kendiliğinden algılayabilir veya sadece eski modda çalışabilir."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 19:52+0100\n"
+"POT-Creation-Date: 2022-03-03 13:59+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
@@ -469,7 +469,7 @@ msgstr "%d-%m-%Y"
 msgid "%d.%m.   "
 msgstr ""
 
-msgid "%d.%m.%Y %H:%M:%S"
+msgid "%d.%m.%Y - %H:%M:%S"
 msgstr ""
 
 #, fuzzy
@@ -2466,7 +2466,7 @@ msgid "Blue long"
 msgstr "Lang-blauw"
 
 #, python-format
-msgid "BogoMIPS:\t%s"
+msgid "BogoMIPS:\t\t%s"
 msgstr ""
 
 msgid "Bolivia (Plurinational State of)"
@@ -2707,11 +2707,11 @@ msgid "CIselectMainMenu"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "CPU Temp:\t%s"
+msgid "CPU Temp:\t\t%s"
 msgstr "CPU:\t%s"
 
-#, python-format
-msgid "CPU:\t%s"
+#, fuzzy, python-format
+msgid "CPU:\t\t%s"
 msgstr "CPU:\t%s"
 
 #, fuzzy, python-format
@@ -3127,7 +3127,7 @@ msgid "China"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Chipset:\t%s"
+msgid "Chipset:\t\t%s"
 msgstr "Chipset:\tBCM%s"
 
 #, fuzzy, python-format
@@ -3889,8 +3889,8 @@ msgstr "Kopieer"
 msgid "Copying files"
 msgstr "Kopieert bestanden"
 
-#, python-format
-msgid "Cores:\t%s"
+#, fuzzy, python-format
+msgid "Cores:\t\t%s"
 msgstr "Kernen:\t%s"
 
 #, fuzzy, python-format
@@ -4737,11 +4737,6 @@ msgstr "Waar wilt u de instellingen opslaan?"
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Wilt u deze verzameling op een DVD medium schrijven?"
 
-msgid ""
-"Do you want to completely reboot your box now? \n"
-"If not, only Enigma is restarting."
-msgstr ""
-
 msgid "Do you want to continue?"
 msgstr "Wilt u doorgaan?"
 
@@ -4755,6 +4750,10 @@ msgid ""
 msgstr ""
 "Wilt u alle geselecteerde bestanden wissen:\n"
 "(kies 'Nee' om aleen het nu geselecteerde bestand te wissen)"
+
+#, fuzzy
+msgid "Do you want to delete the old settings in /etc/enigma2 first?"
+msgstr "Wilt u uw instelingen nu terugzetten?"
 
 msgid "Do you want to do a service scan?"
 msgstr "Wilt u nu zenders zoeken?"
@@ -4930,6 +4929,10 @@ msgstr ""
 msgid "Drivers"
 msgstr "Drivers:\t%s"
 
+#, fuzzy, python-format
+msgid "Drivers:\t\t%s"
+msgstr "Drivers:\t%s"
+
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "Drivers:\t%s"
@@ -4955,7 +4958,7 @@ msgid "E "
 msgstr "O"
 
 #, python-format
-msgid "E2 (re)starts:\t%s\n"
+msgid "E2 (re)starts:\t\t%s\n"
 msgstr ""
 
 msgid "E3HD/XPEEDLX/GI"
@@ -5260,6 +5263,9 @@ msgstr "Auto Fastscan inschakelen"
 msgid "Enable multiple bouquets"
 msgstr "Meerdere favorietenlijsten toestaan"
 
+msgid "Enable or disable Ipv6."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "Paniektoets gebruiken"
 
@@ -5299,6 +5305,13 @@ msgid "Enable twisted log *"
 msgstr "Activeer debug logs"
 
 msgid "Enable zap history:"
+msgstr ""
+
+#, fuzzy
+msgid "Enable/Disable IPv6"
+msgstr "Gedeactiveerd"
+
+msgid "Enable/Disable IPv6 support of your receiver.\n"
 msgstr ""
 
 msgid "Enabled"
@@ -5577,6 +5590,10 @@ msgstr "Afsluiten"
 
 msgid "Exit EPG"
 msgstr "Verlaat EPG"
+
+#, fuzzy
+msgid "Exit IPv6 configuration"
+msgstr "verlaat nameserver configuratie"
 
 msgid "Exit MAC-address configuration"
 msgstr "Verlaat Activeer MAC-adresconfiguratie"
@@ -5954,12 +5971,12 @@ msgid "Flash On the Fly"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Flashed:\t%s"
+msgid "Flashed:\t\t%s"
 msgstr "Flash"
 
-#, python-format
-msgid "Flashed:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Flashed:\t\t%s\n"
+msgstr "Flash"
 
 msgid "Flashing"
 msgstr "Bezig met flashen"
@@ -6063,9 +6080,9 @@ msgstr ""
 msgid "France"
 msgstr "romantiek"
 
-#, python-format
-msgid "Free Flash:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Free Flash:\t\t%s\n"
+msgstr "Flash"
 
 msgid "Free Memory:"
 msgstr "Vrij:"
@@ -6186,7 +6203,7 @@ msgid "GStreamer"
 msgstr "Stream"
 
 #, fuzzy, python-format
-msgid "GStreamer:\t%s"
+msgid "GStreamer:\t\t%s"
 msgstr "Stream"
 
 #, fuzzy
@@ -6479,7 +6496,7 @@ msgid "HDF Build: %s"
 msgstr "Build: %s"
 
 #, fuzzy, python-format
-msgid "HDF Version:\tV%s"
+msgid "HDF Version:\t\tV%s"
 msgstr "Versie:\t%s"
 
 msgid "HDFreaks"
@@ -6807,6 +6824,10 @@ msgid ""
 "Please use original settings within serviceapp!"
 msgstr ""
 
+#, fuzzy
+msgid "IPv6 support"
+msgstr "DLNA support"
+
 msgid "ISO file is too large for this filesystem!"
 msgstr "ISO betand is te groot voor dit bestandsysteem!"
 
@@ -7058,9 +7079,13 @@ msgid ""
 "%s"
 msgstr ""
 
-#, python-format
-msgid "Image:\t%s"
-msgstr ""
+#, fuzzy, python-format
+msgid "Image:\t\t%s"
+msgstr "%s verwijderd!"
+
+#, fuzzy
+msgid "ImageWizard"
+msgstr "Video-wizard"
 
 msgid "Immediate shutdown"
 msgstr "Onmiddellijk uitschakelen"
@@ -7300,7 +7325,18 @@ msgid "Installing Service"
 msgstr "Installeert service"
 
 #, fuzzy
-msgid "Installing plugins..."
+msgid "Installing feeds from IPK ..."
+msgstr "Installeer plugins"
+
+msgid "Installing feeds from feed ..."
+msgstr ""
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "Installeer plugins"
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
 msgstr "Installeer plugins"
 
 #, fuzzy
@@ -7513,7 +7549,7 @@ msgid "Kenya"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Kernel (Box):\t%s"
+msgid "Kernel (Box):\t\t%s"
 msgstr "Kernel:\t%s"
 
 #, fuzzy
@@ -7651,6 +7687,10 @@ msgstr "Laatste configuratie"
 
 msgid "Last speed"
 msgstr "Laatste snelheid"
+
+#, fuzzy, python-format
+msgid "Last update:\t\t%s"
+msgstr "Laatste update:\t%s"
 
 #, python-format
 msgid "Last update:\t%s"
@@ -8238,7 +8278,7 @@ msgid "Mode 2"
 msgstr "Modus"
 
 #, fuzzy, python-format
-msgid "Model:\t%s %s - OEM Model: %s\n"
+msgid "Model:\t\t%s %s - OEM Model: %s\n"
 msgstr "Model:\t%s %s\n"
 
 msgid "Model: "
@@ -10515,9 +10555,9 @@ msgstr ""
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend voor /tmp/mmi.socket"
 
-#, python-format
-msgid "Python:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Python:\t\t%s\n"
+msgstr "Versie:\t%s"
 
 msgid "Qatar"
 msgstr ""
@@ -11229,6 +11269,10 @@ msgstr "Hoe vaak uitvoeren?"
 msgid "Running"
 msgstr "Actief"
 
+#, fuzzy
+msgid "Running Myrestore script, Please wait ..."
+msgstr "Gegevens worden opgehaald. Een ogenblikje geduld a.u.b..."
+
 msgid "Russian"
 msgstr "Russisch"
 
@@ -11398,6 +11442,10 @@ msgstr "Bezig EPG-cache op te slaan..."
 #, fuzzy
 msgid "Save EPG data"
 msgstr "Sla EPG op"
+
+#, fuzzy
+msgid "Save IPv6 configuration"
+msgstr "Activeer huidige configuratie"
 
 #, fuzzy
 msgid "Save and activate the currently selected skin"
@@ -11929,7 +11977,7 @@ msgid "Select your time zone area or region."
 msgstr "Tijdzone instellen"
 
 #, fuzzy, python-format
-msgid "Selected Image:\t%s"
+msgid "Selected Image:\t\t%s"
 msgstr "%s verwijderd!"
 
 msgid "Selected mount point is already used by another drive."
@@ -13191,7 +13239,7 @@ msgid "Skin setup"
 msgstr "Skin kiezen"
 
 #, python-format
-msgid "Skin:\t%s (%s x %s)\n"
+msgid "Skin:\t\t%s (%s x %s)\n"
 msgstr ""
 
 #, fuzzy
@@ -13998,7 +14046,7 @@ msgid "System Message Check"
 msgstr "Bestandssysteemcontrole"
 
 #, fuzzy, python-format
-msgid "System Temp:\t%s"
+msgid "System Temp:\t\t%s"
 msgstr "Systeem temperatuur: %s"
 
 msgid "System: "
@@ -16504,7 +16552,7 @@ msgid "Wake Up To Standby"
 msgstr "Inschakelen naar standby"
 
 #, python-format
-msgid "WakeOnLAN:\t%s\n"
+msgid "WakeOnLAN:\t\t%s\n"
 msgstr ""
 
 msgid "Wakeup"
@@ -17249,6 +17297,10 @@ msgid "Your %s %s will Reboot..."
 msgstr "Uw %s %s wordt opnieuw gestart."
 
 #, fuzzy, python-format
+msgid "Your %s %s will Restart..."
+msgstr "Uw %s %s wordt opnieuw gestart."
+
+#, fuzzy, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install %s ?"
@@ -17273,10 +17325,6 @@ msgid ""
 msgstr ""
 "Uw %s %s zal na het verwijderen van de service opnieuw worden gestart\n"
 "Wilt u nu verwijderen?"
-
-#, fuzzy, python-format
-msgid "Your %s %s will restart Enigma2..."
-msgstr "Uw %s %s wordt opnieuw gestart."
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""

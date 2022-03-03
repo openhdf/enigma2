@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openhdf-6.5             enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-21 19:52+0100\n"
+"POT-Creation-Date: 2022-03-03 13:59+0100\n"
 "PO-Revision-Date: 2021-08-04 21:52+0800\n"
 "Last-Translator: 孤独之剑 < haotzyy1970@163.com>\n"
 "Language-Team: 孤独之剑< haotzyy1970@163.com>\n"
@@ -489,7 +489,7 @@ msgstr "%d.%B %Y"
 msgid "%d.%m.   "
 msgstr ""
 
-msgid "%d.%m.%Y %H:%M:%S"
+msgid "%d.%m.%Y - %H:%M:%S"
 msgstr ""
 
 #, fuzzy
@@ -2412,8 +2412,8 @@ msgstr "蓝色"
 msgid "Blue long"
 msgstr "蓝色 长按"
 
-#, python-format
-msgid "BogoMIPS:\t%s"
+#, fuzzy, python-format
+msgid "BogoMIPS:\t\t%s"
 msgstr "MIPS数值:\t%s"
 
 msgid "Bolivia (Plurinational State of)"
@@ -2647,12 +2647,12 @@ msgstr "CI为CI1辅助插槽"
 msgid "CIselectMainMenu"
 msgstr "选择主菜单"
 
-#, python-format
-msgid "CPU Temp:\t%s"
+#, fuzzy, python-format
+msgid "CPU Temp:\t\t%s"
 msgstr "处理器温度:\t%s"
 
-#, python-format
-msgid "CPU:\t%s"
+#, fuzzy, python-format
+msgid "CPU:\t\t%s"
 msgstr "处理器:\t%s"
 
 #, python-format
@@ -3090,8 +3090,8 @@ msgstr "智利"
 msgid "China"
 msgstr "中国"
 
-#, python-format
-msgid "Chipset:\t%s"
+#, fuzzy, python-format
+msgid "Chipset:\t\t%s"
 msgstr "芯片组:\t%s"
 
 #, python-format
@@ -3804,8 +3804,8 @@ msgstr "复制"
 msgid "Copying files"
 msgstr "复制文件"
 
-#, python-format
-msgid "Cores:\t%s"
+#, fuzzy, python-format
+msgid "Cores:\t\t%s"
 msgstr "内核:\t%s"
 
 #, python-format
@@ -4615,13 +4615,6 @@ msgstr "是否现在要备份设置?"
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "是否要将此集合刻录到光盘介质?"
 
-msgid ""
-"Do you want to completely reboot your box now? \n"
-"If not, only Enigma is restarting."
-msgstr ""
-"是否确定现在完全重新启动您的机顶盒? \n"
-"如果没有,只有Enigma正在重新启动."
-
 msgid "Do you want to continue?"
 msgstr "是否确定继续？"
 
@@ -4634,6 +4627,10 @@ msgid ""
 msgstr ""
 "是否要删除所有选定的文件:\n"
 "(选择'不'只删除当前选定的文件.)"
+
+#, fuzzy
+msgid "Do you want to delete the old settings in /etc/enigma2 first?"
+msgstr "是否恢复您的设置?"
 
 msgid "Do you want to do a service scan?"
 msgstr "是否进行频道扫描?"
@@ -4809,6 +4806,10 @@ msgstr ""
 msgid "Drivers"
 msgstr "驱动"
 
+#, fuzzy, python-format
+msgid "Drivers:\t\t%s"
+msgstr "驱动:\t%s"
+
 #, python-format
 msgid "Drivers:\t%s"
 msgstr "驱动:\t%s"
@@ -4833,8 +4834,8 @@ msgstr "E"
 msgid "E "
 msgstr " "
 
-#, python-format
-msgid "E2 (re)starts:\t%s\n"
+#, fuzzy, python-format
+msgid "E2 (re)starts:\t\t%s\n"
 msgstr "E2(重启)次数:\t%s\n"
 
 msgid "E3HD/XPEEDLX/GI"
@@ -5135,6 +5136,9 @@ msgstr "启用屏幕介绍"
 msgid "Enable multiple bouquets"
 msgstr "启用多重分组"
 
+msgid "Enable or disable Ipv6."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "启用应急按钮"
 
@@ -5173,6 +5177,13 @@ msgstr "启用崩溃日志 *"
 
 msgid "Enable zap history:"
 msgstr "启用ZAP公司历史:"
+
+#, fuzzy
+msgid "Enable/Disable IPv6"
+msgstr "禁用画中画.\n"
+
+msgid "Enable/Disable IPv6 support of your receiver.\n"
+msgstr ""
 
 msgid "Enabled"
 msgstr "启用"
@@ -5441,6 +5452,10 @@ msgstr "退出 "
 
 msgid "Exit EPG"
 msgstr "退出EPG"
+
+#, fuzzy
+msgid "Exit IPv6 configuration"
+msgstr "退出域名配置"
 
 msgid "Exit MAC-address configuration"
 msgstr "退出MAC地址配置"
@@ -5801,12 +5816,12 @@ msgstr "刷写镜像"
 msgid "Flash On the Fly"
 msgstr "内存在运行中"
 
-#, python-format
-msgid "Flashed:\t%s"
+#, fuzzy, python-format
+msgid "Flashed:\t\t%s"
 msgstr "刷写时间:\t%s"
 
-#, python-format
-msgid "Flashed:\t%s\n"
+#, fuzzy, python-format
+msgid "Flashed:\t\t%s\n"
 msgstr "刷写:\t%s\n"
 
 msgid "Flashing"
@@ -5914,8 +5929,8 @@ msgstr "小型电视"
 msgid "France"
 msgstr "法国"
 
-#, python-format
-msgid "Free Flash:\t%s\n"
+#, fuzzy, python-format
+msgid "Free Flash:\t\t%s\n"
 msgstr "可用闪存:\t%s\n"
 
 msgid "Free Memory:"
@@ -6033,8 +6048,8 @@ msgstr "千兆蓝黑"
 msgid "GStreamer"
 msgstr "媒体框架"
 
-#, python-format
-msgid "GStreamer:\t%s"
+#, fuzzy, python-format
+msgid "GStreamer:\t\t%s"
 msgstr "媒体框架:\t%s"
 
 #, fuzzy
@@ -6307,8 +6322,8 @@ msgstr ""
 msgid "HDF Build: %s"
 msgstr "HDF构建: %s"
 
-#, python-format
-msgid "HDF Version:\tV%s"
+#, fuzzy, python-format
+msgid "HDF Version:\t\tV%s"
 msgstr "HDF版本:\tV%s"
 
 msgid "HDFreaks"
@@ -6611,6 +6626,10 @@ msgstr ""
 "IPTV录制不适用于激活的gstplayer或exteplayer3.\n"
 "请在Service App中使用原始设置!"
 
+#, fuzzy
+msgid "IPv6 support"
+msgstr "DLNA支持"
+
 msgid "ISO file is too large for this filesystem!"
 msgstr "对于这个文件系统,这个文件太大了!"
 
@@ -6849,9 +6868,13 @@ msgstr ""
 "要安装的镜像无效\n"
 "%s"
 
-#, python-format
-msgid "Image:\t%s"
+#, fuzzy, python-format
+msgid "Image:\t\t%s"
 msgstr "镜像:\t%s"
+
+#, fuzzy
+msgid "ImageWizard"
+msgstr "视频向导"
 
 msgid "Immediate shutdown"
 msgstr "立即关机"
@@ -7081,7 +7104,19 @@ msgstr "安装"
 msgid "Installing Service"
 msgstr "安装服务"
 
-msgid "Installing plugins..."
+#, fuzzy
+msgid "Installing feeds from IPK ..."
+msgstr "安装插件..."
+
+msgid "Installing feeds from feed ..."
+msgstr ""
+
+#, fuzzy
+msgid "Installing plugins from IPK ..."
+msgstr "安装插件..."
+
+#, fuzzy
+msgid "Installing plugins from feed ..."
 msgstr "安装插件..."
 
 msgid "Instant Record"
@@ -7283,8 +7318,8 @@ msgstr "播放音频文件时保持电影列表打开."
 msgid "Kenya"
 msgstr "肯尼亚"
 
-#, python-format
-msgid "Kernel (Box):\t%s"
+#, fuzzy, python-format
+msgid "Kernel (Box):\t\t%s"
 msgstr "内核(机顶盒):\t%s"
 
 msgid "Kernel Modules"
@@ -7416,6 +7451,10 @@ msgstr "最后的配置"
 
 msgid "Last speed"
 msgstr "最后的速度"
+
+#, fuzzy, python-format
+msgid "Last update:\t\t%s"
+msgstr "最后更新:\t%s"
 
 #, python-format
 msgid "Last update:\t%s"
@@ -7977,8 +8016,8 @@ msgstr ""
 msgid "Mode 2"
 msgstr "模式 2"
 
-#, python-format
-msgid "Model:\t%s %s - OEM Model: %s\n"
+#, fuzzy, python-format
+msgid "Model:\t\t%s %s - OEM Model: %s\n"
 msgstr "机器型号:\t%s %s - 原装型号: %s\n"
 
 msgid "Model: "
@@ -10168,8 +10207,8 @@ msgstr "Python版本"
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python的前端 /tmp/mmi.socket"
 
-#, python-format
-msgid "Python:\t%s\n"
+#, fuzzy, python-format
+msgid "Python:\t\t%s\n"
 msgstr "Python版本:\t%s\n"
 
 msgid "Qatar"
@@ -10835,6 +10874,10 @@ msgstr "运行多长时间?"
 msgid "Running"
 msgstr "运行"
 
+#, fuzzy
+msgid "Running Myrestore script, Please wait ..."
+msgstr "正在检索镜像列表-请稍候..."
+
 msgid "Russian"
 msgstr "俄语"
 
@@ -10996,6 +11039,10 @@ msgstr "保存EPG缓存?"
 
 msgid "Save EPG data"
 msgstr "EPG数据保存"
+
+#, fuzzy
+msgid "Save IPv6 configuration"
+msgstr "激活当前配置"
 
 #, fuzzy
 msgid "Save and activate the currently selected skin"
@@ -11508,8 +11555,8 @@ msgstr "选择您所在的地区.如果不可用,请将'国家'更改为'全部'
 msgid "Select your time zone area or region."
 msgstr "选择时区或地区."
 
-#, python-format
-msgid "Selected Image:\t%s"
+#, fuzzy, python-format
+msgid "Selected Image:\t\t%s"
 msgstr "选定镜像:\t%s"
 
 msgid "Selected mount point is already used by another drive."
@@ -12642,8 +12689,8 @@ msgstr "皮肤设置"
 msgid "Skin setup"
 msgstr "皮肤设置"
 
-#, python-format
-msgid "Skin:\t%s (%s x %s)\n"
+#, fuzzy, python-format
+msgid "Skin:\t\t%s (%s x %s)\n"
 msgstr "皮肤:\t%s (%s x %s)\n"
 
 #, fuzzy
@@ -13391,8 +13438,8 @@ msgstr "系统设置"
 msgid "System Message Check"
 msgstr "文件系统检查"
 
-#, python-format
-msgid "System Temp:\t%s"
+#, fuzzy, python-format
+msgid "System Temp:\t\t%s"
 msgstr "系统温度:\t%s"
 
 #, fuzzy
@@ -15770,8 +15817,8 @@ msgstr "唤醒"
 msgid "Wake Up To Standby"
 msgstr "唤醒待机"
 
-#, python-format
-msgid "WakeOnLAN:\t%s\n"
+#, fuzzy, python-format
+msgid "WakeOnLAN:\t\t%s\n"
 msgstr "局域网唤醒:\t%s\n"
 
 msgid "Wakeup"
@@ -16497,6 +16544,10 @@ msgstr ""
 msgid "Your %s %s will Reboot..."
 msgstr "您的 %s %s 将重新启动..."
 
+#, fuzzy, python-format
+msgid "Your %s %s will Restart..."
+msgstr "您的 %s %s 将重新启动..."
+
 #, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
@@ -16522,10 +16573,6 @@ msgid ""
 msgstr ""
 "您的 %s %s 将在删除频道后重新启动.\n"
 "是否现在确定删除?"
-
-#, python-format
-msgid "Your %s %s will restart Enigma2..."
-msgstr "您的 %s %s 将重新启动Enigma2..."
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "硬件可以自行检测ci模式,也可以仅在传统模式下工作."
