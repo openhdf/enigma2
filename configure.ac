@@ -853,8 +853,6 @@ data/display/Makefile
 data/display/7segment/Makefile
 data/display/displaytext/Makefile
 data/display/display96/Makefile
-data/display/display128/Makefile
-data/display/display128dm/Makefile
 data/display/display140/Makefile
 data/display/display220/Makefile
 data/display/display220/Wettericons/Makefile
