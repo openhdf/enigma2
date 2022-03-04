@@ -864,10 +864,6 @@ data/display/display390/Makefile
 data/display/display400/Makefile
 data/display/display400gb4k/Makefile
 data/display/display720/Makefile
-data/display/grautec70x0/Makefile
-data/display/grautec70x0/fonts/Makefile
-data/display/grautec8000/Makefile
-data/display/grautec8000/fonts/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp
