@@ -300,17 +300,17 @@ class UpdatePluginMenu(Screen):
 			hdfonlinestatus = urlopen("https://status.hdfreaks.cc/index.php")
 			hdfstatus = hdfonlinestatus.read()
 			hdfbutton = "/usr/share/enigma2/skin_default/hdf_status_red.png"
-			if 'rot.png' in hdfstatus:
+			if b'rot.png' in hdfstatus:
 				hdfbutton = "/usr/share/enigma2/skin_default/hdf_status_red.png"
 				self["Arrow1"].setPosition("300", "427")
 				self["Arrow2"].setPosition("270", "432")
 				print("[status] red")
-			elif 'gelb.png' in hdfstatus:
+			elif b'gelb.png' in hdfstatus:
 				hdfbutton = "/usr/share/enigma2/skin_default/hdf_status_yellow.png"
 				self["Arrow1"].setPosition("300", "460")
 				self["Arrow2"].setPosition("270", "465")
 				print("[status] yellow")
-			elif 'gruen.png' in hdfstatus:
+			elif b'gruen.png' in hdfstatus:
 				hdfbutton = "/usr/share/enigma2/skin_default/hdf_status_green.png"
 				self["Arrow1"].setPosition("300", "500")
 				self["Arrow2"].setPosition("270", "505")
