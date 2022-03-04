@@ -349,16 +349,6 @@ if test x"$withcolorlcd" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_COLORLCD, test x"$withcolorlcd" != xno)
 
-AC_ARG_WITH(colorlcd128,
-	AC_HELP_STRING([--with-colorlcd128], [use 128x64 16bpp color display, yes or no]),
-	[[withcolorlcd128=$withval]],
-	[[withcolorlcd128=no]]
-)
-if test x"$withcolorlcd128" != xno ; then
-	AC_DEFINE(HAVE_COLORLCD128, 1,[Define when using a 128x64 color display device])
-fi
-AM_CONDITIONAL(HAVE_COLORLCD128, test x"$withcolorlcd" != xno)
-
 AC_ARG_WITH(colorlcd220,
 	AC_HELP_STRING([--with-colorlcd220], [use 220x176 16bpp color display, yes or no]),
 	[[withcolorlcd220=$withval]],
@@ -853,15 +843,11 @@ data/display/Makefile
 data/display/7segment/Makefile
 data/display/displaytext/Makefile
 data/display/display96/Makefile
-data/display/display140/Makefile
 data/display/display220/Makefile
 data/display/display220/Wettericons/Makefile
-data/display/display255/Makefile
-data/display/display255/vfd_icons/Makefile
 data/display/display390/Makefile
 data/display/display400/Makefile
 data/display/display400gb4k/Makefile
-data/display/display720/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp
