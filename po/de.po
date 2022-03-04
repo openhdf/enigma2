@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-03 13:59+0100\n"
-"PO-Revision-Date: 2022-03-03 20:52+0100\n"
+"PO-Revision-Date: 2022-03-04 15:58+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -5896,7 +5896,7 @@ msgid "Front USB 3.0"
 msgstr "Front-USB 3.0"
 
 msgid "Frontpanel / Display / VFD"
-msgstr "Frontplatte / Display / VFD"
+msgstr "Frontpanel / Display / VFD"
 
 #, python-format
 msgid "Frontprocessor:\tVersion %s"
