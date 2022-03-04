@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- modified by googgi for openhdf - version 17.08.2017-->
+<skin>
+<!-- standby -->
+	<screen name="StandbySummary" position="0,0" size="390,240">
+	    <widget source="global.CurrentTime" render="Label" position="center,40" size="225,100" font="FdLcD;85" halign="center" transparent="1" noWrap="1" >
+		<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<ePixmap position="0,140" pixmap="bar.png" size="390,2" zPosition="4" />
+		<widget source="global.CurrentTime" render="Label" position="0,155" size="390,34" font="FdLcD;34" halign="center" transparent="1" noWrap="1">
+		<convert type="ClockToText">Format:%d.%m.%Y</convert>
+		</widget>
+		<panel name="RecordingPanel" />
+	</screen>
+</skin>

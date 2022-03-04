@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<skin>
+<!-- standby -->
+	<screen name="StandbySummary" position="0,0" size="220,176">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="220,24" font="FdLcD;22" halign="left"  noWrap="1">
+			<convert type="ClockToText">FullDate</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="0,22" size="225,100" font="FdLcD;85" halign="left" noWrap="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update_stable.png" position="135,146" size="30,30" >
+			<convert type="ConditionalShowHide"></convert>
+		</widget>
+		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="update_unstable.png" position="135,146" size="30,30" >
+			<convert type="ConditionalShowHide"></convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="170,150"  size="50,26">
+			<convert type="ConditionalShowHide"></convert>
+		</widget>
+		<panel name="SummaryTunerStatusPanel" />
+	</screen>
+</skin>
