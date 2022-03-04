@@ -1,4 +1,4 @@
-installdir = $(pkgdatadir)/display
+installdir = $(pkgdatadir)/display/lcd_skin
 
 SUBDIRS = fonts
 
