@@ -699,7 +699,7 @@ def runScreenTest():
 					(nextPluginTime, 3, nextPluginTimeInStandby))
 		if x[0] != -1
 	]
-	sorted(wakeupList)
+	wakeupList = sorted(wakeupList)
 	recordTimerWakeupAuto = False
 	print("=" * 100)
 	if wakeupList and wakeupList[0][0] > 0:
