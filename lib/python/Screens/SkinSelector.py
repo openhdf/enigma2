@@ -267,7 +267,7 @@ class LcdSkinSelector(SkinSelector):
 			skinPath = pathjoin(self.rootDir, skinFile)
 			if exists(skinPath):
 				resolution = skinFile.replace(".xml", "").replace("skin_display_", "").replace("_", " ").capitalize()
-				preview = pathjoin(previewPath, skinFile.replace(".xml", "_prev.png") or "prev.png")
+				preview = pathjoin(previewPath, skinFile.replace(".xml", ".png") or "prev.png")
 				if skin == DEFAULT_DISPLAY_SKIN:
 					_list = [default, default, _dir, skin, resolution, preview]
 				else:
@@ -323,7 +323,7 @@ class StandbySkinSelector(SkinSelector):
 			skinPath = pathjoin(self.rootDir, skinFile)
 			if exists(skinPath):
 				resolution = skinFile.replace(".xml", "").replace("skin_standby_", "").replace("_", " ").capitalize()
-				preview = pathjoin(previewPath, skinFile.replace(".xml", "_prev.png") or "prev.png")
+				preview = pathjoin(previewPath, skinFile.replace(".xml", ".png") or "prev.png")
 				if skin == DEFAULT_DISPLAY_SKIN:
 					_list = [default, default, _dir, skin, resolution, preview]
 				else:
