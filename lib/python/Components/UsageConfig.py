@@ -60,7 +60,7 @@ def InitUsageConfig():
 	config.usage.numzaptimeoutmode = ConfigSelection(default="standard", choices=[("standard", _("Standard")), ("userdefined", _("User defined")), ("off", _("off"))])
 	config.usage.numzaptimeout1 = ConfigSelectionNumber(default=3000, stepwidth=250, min=250, max=10000, wraparound=True)
 	config.usage.numzaptimeout2 = ConfigSelectionNumber(default=1000, stepwidth=250, min=250, max=10000, wraparound=True)
-	config.usage.numzappicon = ConfigYesNo(default=False)
+	config.usage.numzappicon = ConfigYesNo(default=True)
 	if fileContains("/etc/network/interfaces", "iface eth0 inet static") and not fileContains("/etc/network/interfaces", "iface wlan0 inet dhcp") or fileContains("/etc/network/interfaces", "iface wlan0 inet static") and fileContains("/run/ifstate", "wlan0=wlan0"):
 		config.usage.dns = ConfigSelection(default="custom", choices=[
 			("custom", _("Static IP or Custom")),
