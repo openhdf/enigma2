@@ -4,7 +4,7 @@ from time import time
 
 from enigma import eTimer
 
-from Components import Task
+import Components.Task
 from Components.Ipkg import IpkgComponent
 from Components.config import config
 
