@@ -534,15 +534,6 @@ def mediafilesInUse(session):
 			filename = os.path.basename(filename)
 	return set([file for file in files if not(filename and file == filename and files.count(filename) < 2)])
 
-def isPluginInstalled(pluginName, pluginFile="plugin", pluginType=None):
-	for type in [x for x in listdir(scopePlugins) if x != "__pychache__" and isdir(pathjoin(scopePlugins, x))]:
-		for extension in ["", "c"]:
-			if isfile(pathjoin(scopePlugins, type, pluginName, "%s.py%s" % (pluginFile, extension))):
-				if pluginType and type != pluginType:
-					continue
-				return True
-	return False
-
 # Prepare filenames for use in external shell processing. Filenames may
 # contain spaces or other special characters.  This method adjusts the
 # filename to be a safe and single entity for passing to a shell.
@@ -551,3 +542,12 @@ def isPluginInstalled(pluginName, pluginFile="plugin", pluginType=None):
 
 def shellquote(s):
 	return "'%s'" % s.replace("'", "'\\''")
+
+
+def isPluginInstalled(pluginname, pluginfile="plugin"):
+	path, flags = defaultPaths.get(SCOPE_PLUGINS)
+	for plugintype in ["Extensions", "SystemPlugins"]:
+		for fileext in [".py", ".pyc"]:
+			fullpath = os.path.join(path, plugintype, pluginname, pluginfile + fileext)
+			if os.path.isfile(fullpath):
+				return True
