@@ -7,7 +7,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/metaparser.h>
 #include <lib/dvb_ci/dvbci.h>
-#include <lib/dvb/epgcache.h>
+#include <lib/dvb/epgtransponderdatareader.h>
 #include <lib/dvb/scan.h>
 #include <lib/dvb_ci/dvbci_session.h>
 #include <dvbsi++/ca_descriptor.h>
@@ -24,19 +24,9 @@
 #include <dvbsi++/simple_application_boundary_descriptor.h>
 #include <dvbsi++/transport_protocol_descriptor.h>
 #include <dvbsi++/application_name_descriptor.h>
-#include <dvbsi++/application_profile.h>
-#include <dvbsi++/application_descriptor.h>
-
-#define PACK_VERSION(major,minor,micro) (((major) << 16) + ((minor) << 8) + (micro))
-#define UNPACK_VERSION(version,major,minor,micro) { \
-        major = (version)&0xff; \
-        minor = (version>>8)&0xff; \
-        micro = (version>>16)&0xff; \
-}
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
-	:m_last_channel_state(-1), m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF),
-	m_no_pat_entry_delay(eTimer::create()), m_have_cached_program(false)
+	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF), m_no_pat_entry_delay(eTimer::create())
 {
 	m_use_decode_demux = 0;
 	m_pmt_pid = -1;
@@ -172,7 +162,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 		case streamserver:
 		case scrambled_streamserver:
 		case streamclient:
-			eEPGCache::getInstance()->PMTready(this);
+			eEPGTransponderDataReader::getInstance()->PMTready(this);
 			break;
 		default:
 			/* do not start epg caching for other types of services */
@@ -201,13 +191,6 @@ void eDVBServicePMTHandler::PMTready(int error)
 void eDVBServicePMTHandler::sendEventNoPatEntry()
 {
 	serviceEvent(eventNoPATEntry);
-
-	ePtr<iDVBFrontend> fe;
-	if (!m_channel->getFrontend(fe))
-	{
-		eDVBFrontend *frontend = (eDVBFrontend*)&(*fe);
-		frontend->checkRetune();
-	}
 }
 
 void eDVBServicePMTHandler::PATready(int)
@@ -220,10 +203,7 @@ void eDVBServicePMTHandler::PATready(int)
 		int pmtpid_single = -1;
 		int pmtpid = -1;
 		int cnt=0;
-		int tsid=-1;
-		std::vector<ProgramAssociationSection*>::const_iterator i = ptr->getSections().begin();
-		tsid = (*i)->getTableIdExtension(); // in PAT this is the transport stream id
-		eDebug("[eDVBServicePMTHandler] PAT TSID: 0x%04x (%d)", tsid, tsid);
+		std::vector<ProgramAssociationSection*>::const_iterator i;
 		for (i = ptr->getSections().begin(); pmtpid == -1 && i != ptr->getSections().end(); ++i)
 		{
 			const ProgramAssociationSection &pat = **i;
@@ -260,42 +240,6 @@ void eDVBServicePMTHandler::PATready(int)
 		serviceEvent(eventNoPAT);
 }
 
-static void eraseHbbTVApplications(HbbTVApplicationInfoList  *applications)
-{
-	if(applications->size() == 0)
-		return;
-	for(HbbTVApplicationInfoListConstIterator info = applications->begin() ; info != applications->end() ; ++info)
-		delete(*info);
-	applications->clear();
-}
-
-void saveData(int orgid, unsigned char* data, int sectionLength)
-{
-	int fd = 0, rc = 0;
-	char fileName[255] = {0};
-	sprintf(fileName, "/tmp/ait.%d", orgid);
-
-	if (data[6] > 0)
-	{
-		eDebug("[eDVBServicePMTHandler] section_number %d > 0", data[6]);
-		data[6] = 0;
-	}
-	if (data[7] > data[6])
-	{
-		eDebug("[eDVBServicePMTHandler] last_section_number %d > section_number %d", data[7], data[6]);
-		data[7] = data[6];
-	}
-
-	if((fd = open(fileName, O_RDWR|O_CREAT|O_TRUNC, 0644)) < 0)
-	{
-		eDebug("[eDVBServicePMTHandler] Fail to save a AIT Data.");
-		return;
-	}
-	rc = write(fd, data, sectionLength);
-	eDebug("[eDVBServicePMTHandler] Save Data Len : [%d]", rc);
-	close(fd);
-}
-
 void eDVBServicePMTHandler::AITready(int error)
 {
 	eDebug("[eDVBServicePMTHandler] AITready");
@@ -303,170 +247,83 @@ void eDVBServicePMTHandler::AITready(int error)
 	m_aitInfoList.clear();
 	if (!m_AIT.getCurrent(ptr))
 	{
-                short profilecode = 0;
-		int orgid = 0, appid = 0, profileVersion = 0;
-		m_ApplicationName = m_HBBTVUrl = "";
-
-		eraseHbbTVApplications(&m_HbbTVApplications);
-
-//		memcpy(m_AITData, ptr->getBufferData(), 4096);
-
-		int sectionLength = 0;
+		m_HBBTVUrl = "";
+		std::string tmp_url = "", tmp_path = "";
 		for (std::vector<ApplicationInformationSection*>::const_iterator it = ptr->getSections().begin(); it != ptr->getSections().end(); ++it)
 		{
-			std::list<ApplicationInformation *>::const_iterator i = (*it)->getApplicationInformation()->begin();
-			memcpy(m_AITData, ptr->getBufferData(), 4096);
-			sectionLength = (*it)->getSectionLength() + 3;
-			eDebug("[eDVBServicePMTHandler] Section Length : %d, Total Section Length : %d", (*it)->getSectionLength(), sectionLength);
-			for (; i != (*it)->getApplicationInformation()->end(); ++i)
+			for (std::list<ApplicationInformation *>::const_iterator i = (*it)->getApplicationInformation()->begin(); i != (*it)->getApplicationInformation()->end(); ++i)
 			{
-				std::string hbbtvUrl = "", applicationName = "";
-				std::string boundaryExtension = "";
-				std::string TPDescPath = "", SALDescPath = "";
-				int controlCode = (*i)->getApplicationControlCode();
-				ApplicationIdentifier * applicationIdentifier = (ApplicationIdentifier *)(*i)->getApplicationIdentifier();
-				profilecode = 0;
-				orgid = applicationIdentifier->getOrganisationId();
-				appid = applicationIdentifier->getApplicationId();
-				eDebug("[eDVBServicePMTHandler] found applicaions ids >> pid : %x, orgid : %d, appid : %d", m_ait_pid, orgid, appid);
-				if (controlCode == 1)
+				struct aitInfo aitinfo = {};
+				aitinfo.id = ((ApplicationIdentifier*)(*i)->getApplicationIdentifier())->getApplicationId();
+				for (DescriptorConstIterator desc = (*i)->getDescriptors()->begin(); desc != (*i)->getDescriptors()->end(); ++desc)
 				{
-					saveData(orgid, m_AITData, sectionLength);
-				}
-				if (controlCode == 1 || controlCode == 2) /* 1:AUTOSTART, 2:ETC */
-				{
-					for (DescriptorConstIterator desc = (*i)->getDescriptors()->begin();
-						desc != (*i)->getDescriptors()->end(); ++desc)
+					switch ((*desc)->getTag())
 					{
-						switch ((*desc)->getTag())
+					case APPLICATION_DESCRIPTOR:
+						break;
+					case APPLICATION_NAME_DESCRIPTOR:
+					{
+						ApplicationNameDescriptor *appname = (ApplicationNameDescriptor*)(*desc);
+						for (ApplicationNameConstIterator appnamesit = appname->getApplicationNames()->begin(); appnamesit != appname->getApplicationNames()->end(); ++appnamesit)
 						{
-						case APPLICATION_DESCRIPTOR:
+							aitinfo.name = (*appnamesit)->getApplicationName();
+							eDebug("[eDVBServicePMTHandler] AIT: %s", aitinfo.name.c_str());
+						}
+						break;
+					}
+					case TRANSPORT_PROTOCOL_DESCRIPTOR:
+					{
+						TransportProtocolDescriptor *transport = (TransportProtocolDescriptor*)(*desc);
+						switch (transport->getProtocolId())
 						{
-							ApplicationDescriptor* applicationDescriptor = (ApplicationDescriptor*)(*desc);
-							const ApplicationProfileList* applicationProfiles = applicationDescriptor->getApplicationProfiles();
-							ApplicationProfileConstIterator interactionit = applicationProfiles->begin();
-							for(; interactionit != applicationProfiles->end(); ++interactionit)
+						case 1: /* object carousel */
+							if (m_dsmcc_pid >= 0)
 							{
-								profilecode = (*interactionit)->getApplicationProfile();
-								profileVersion = PACK_VERSION(
-									(*interactionit)->getVersionMajor(),
-									(*interactionit)->getVersionMinor(),
-									(*interactionit)->getVersionMicro()
-								);
+								m_OC.begin(eApp, eDVBDSMCCDLDataSpec(m_dsmcc_pid), m_demux);
 							}
 							break;
-						}
-						case APPLICATION_NAME_DESCRIPTOR:
-						{
-							ApplicationNameDescriptor *nameDescriptor  = (ApplicationNameDescriptor*)(*desc);
-							ApplicationNameConstIterator interactionit = nameDescriptor->getApplicationNames()->begin();
-							for(; interactionit != nameDescriptor->getApplicationNames()->end(); ++interactionit)
-							{
-								applicationName = (*interactionit)->getApplicationName();
-								if(controlCode == 1) m_ApplicationName = applicationName;
-								break;
-							}
+						case 2: /* ip */
 							break;
-						}
-						case TRANSPORT_PROTOCOL_DESCRIPTOR:
-						{
-							TransportProtocolDescriptor *transport = (TransportProtocolDescriptor*)(*desc);
-							switch (transport->getProtocolId())
+						case 3: /* interaction */
+							for (InterActionTransportConstIterator interactionit = transport->getInteractionTransports()->begin(); interactionit != transport->getInteractionTransports()->end(); ++interactionit)
 							{
-							case 1: /* object carousel */
-								if (m_dsmcc_pid >= 0)
+								if ((*i)->getApplicationControlCode() == 0x01) /* AUTOSTART */
 								{
-									m_OC.begin(eApp, eDVBDSMCCDLDataSpec(m_dsmcc_pid), m_demux);
+									tmp_url = (*interactionit)->getUrlBase()->getUrl();
 								}
+								aitinfo.url.insert(0, (*interactionit)->getUrlBase()->getUrl());
 								break;
-							case 2: /* ip */
-								break;
-							case 3: /* interaction */
-								{
-									InterActionTransportConstIterator interactionit = transport->getInteractionTransports()->begin();
-									for(; interactionit != transport->getInteractionTransports()->end(); ++interactionit)
-									{
-										TPDescPath = (*interactionit)->getUrlBase()->getUrl();
-										break;
-									}
-									break;
-								}
 							}
 							break;
 						}
-						case GRAPHICS_CONSTRAINTS_DESCRIPTOR:
-							break;
-						case SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
-						{
-							SimpleApplicationLocationDescriptor *applicationlocation = (SimpleApplicationLocationDescriptor*)(*desc);
-							SALDescPath = applicationlocation->getInitialPath();
-							break;
-						}
-						case APPLICATION_USAGE_DESCRIPTOR:
-							break;
-						case SIMPLE_APPLICATION_BOUNDARY_DESCRIPTOR:
-							break;
-						}
+						break;
 					}
-					hbbtvUrl = TPDescPath + SALDescPath;
-				}
-				if(!hbbtvUrl.empty())
-				{
-					const char* uu = hbbtvUrl.c_str();
-					struct aitInfo aitinfo;
-					aitinfo.id = appid;
-					aitinfo.name = applicationName;
-					aitinfo.url = hbbtvUrl;
-					m_aitInfoList.push_back(aitinfo);
-					if(!strncmp(uu, "http://", 7) || !strncmp(uu, "dvb://", 6) || !strncmp(uu, "https://", 8))
+					case GRAPHICS_CONSTRAINTS_DESCRIPTOR:
+						break;
+					case SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
 					{
-						if(controlCode == 1) m_HBBTVUrl = hbbtvUrl;
-						switch(profileVersion)
+						SimpleApplicationLocationDescriptor *applicationlocation = (SimpleApplicationLocationDescriptor*)(*desc);
+						if ((*i)->getApplicationControlCode() == 0x01) /* AUTOSTART */
 						{
-							case 65793:
-							case 66049:
-								m_HbbTVApplications.push_back(new HbbTVApplicationInfo(controlCode, orgid, appid, hbbtvUrl, applicationName, profilecode));
-								break;
-							case 1280:
-							case 65538:
-							default:
-								m_HbbTVApplications.push_back(new HbbTVApplicationInfo((-1)*controlCode, orgid, appid, hbbtvUrl, applicationName, profilecode));
-								break;
+							tmp_path = applicationlocation->getInitialPath();
 						}
+						aitinfo.url += applicationlocation->getInitialPath();
+						break;
 					}
-					else if (!boundaryExtension.empty())
-					{
-						if(boundaryExtension.at(boundaryExtension.length()-1) != '/')
-						{
-							boundaryExtension += "/";
-						}
-						boundaryExtension += hbbtvUrl;
-						if(controlCode == 1) m_HBBTVUrl = boundaryExtension;
-						switch(profileVersion)
-						{
-							case 65793:
-							case 66049:
-								m_HbbTVApplications.push_back(new HbbTVApplicationInfo(controlCode, orgid, appid, boundaryExtension, applicationName, profilecode));
-								break;
-							case 1280:
-							case 65538:
-							default:
-								m_HbbTVApplications.push_back(new HbbTVApplicationInfo((-1)*controlCode, orgid, appid, boundaryExtension, applicationName, profilecode));
-								break;
-						}
+					case APPLICATION_USAGE_DESCRIPTOR:
+						break;
+					case SIMPLE_APPLICATION_BOUNDARY_DESCRIPTOR:
+						break;
 					}
 				}
+				m_HBBTVUrl = tmp_url + tmp_path;
+				m_aitInfoList.push_back(aitinfo);
 			}
 		}
-
-		if (m_HbbTVApplications.size())
+		if (!m_HBBTVUrl.empty())
 		{
-			for(HbbTVApplicationInfoListConstIterator infoiter = m_HbbTVApplications.begin() ; infoiter != m_HbbTVApplications.end() ; ++infoiter)
-				eDebug("[eDVBServicePMTHandler] Found : control[%d], name[%s], url[%s]",
-					(*infoiter)->m_ControlCode, (*infoiter)->m_ApplicationName.c_str(), (*infoiter)->m_HbbTVUrl.c_str());
 			serviceEvent(eventHBBTVInfo);
 		}
-		else eDebug("[eDVBServicePMTHandler] No found anything.");
 	}
 	/* for now, do not keep listening for table updates */
 	m_AIT.stop();
@@ -478,9 +335,9 @@ void eDVBServicePMTHandler::OCready(int error)
 	ePtr<eTable<OCSection> > ptr;
 	if (!m_OC.getCurrent(ptr))
 	{
+		std::string data;
 		for (std::vector<OCSection*>::const_iterator it = ptr->getSections().begin(); it != ptr->getSections().end(); ++it)
 		{
-			unsigned char* sectionData = (unsigned char*)(*it)->getData();
 		}
 	}
 	/* for now, do not keep listening for table updates */
@@ -497,7 +354,7 @@ void eDVBServicePMTHandler::getAITApplications(std::map<int, std::string> &aitli
 
 void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes)
 {
-	program prog;
+	program prog = {};
 
 	if (!getProgramInfo(prog))
 	{
@@ -510,35 +367,16 @@ void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &
 	}
 }
 
-PyObject *eDVBServicePMTHandler::getHbbTVApplications()
-{
-	ePyObject ret= PyList_New(0);;
-	if(m_HbbTVApplications.size())
-	{
-		for(HbbTVApplicationInfoListConstIterator infoiter = m_HbbTVApplications.begin() ; infoiter != m_HbbTVApplications.end() ; ++infoiter)
-		{
-			ePyObject tuple = PyTuple_New(6);
-			PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong((*infoiter)->m_ControlCode));
-			PyTuple_SET_ITEM(tuple, 1, PyString_FromString((*infoiter)->m_ApplicationName.c_str()));
-			PyTuple_SET_ITEM(tuple, 2, PyString_FromString((*infoiter)->m_HbbTVUrl.c_str()));
-			PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong((*infoiter)->m_OrgId));
-			PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong((*infoiter)->m_AppId));
-			PyTuple_SET_ITEM(tuple, 5, PyInt_FromLong((*infoiter)->m_ProfileCode));
-			PyList_Append(ret, tuple);
-			Py_DECREF(tuple);
-		}
-	}
-	return (PyObject*)ret;
-}
-
 int eDVBServicePMTHandler::getProgramInfo(program &program)
 {
-//	ePtr<eTable<ProgramMapSection> > ptr;
-	struct audioMap {
-		int streamType;
-		eDVBService::cacheID cacheTag;
-	};
-	int cached_apid[eDVBService::cacheMax];
+	ePtr<eTable<ProgramMapSection> > ptr;
+	int cached_apid_ac3 = -1;
+	int cached_apid_ac4 = -1;
+	int cached_apid_ddp = -1;
+	int cached_apid_mpeg = -1;
+	int cached_apid_aache = -1;
+	int cached_apid_aac = -1;
+	int cached_apid_dra = -1;
 	int cached_vpid = -1;
 	int cached_tpid = -1;
 	int ret = -1;
@@ -552,17 +390,16 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 
 	eDVBPMTParser::clearProgramInfo(program);
 
-	for (int m = 0; m < eDVBService::cacheMax; m++)
-		cached_apid[m] = -1;
-
 	if ( m_service && !m_service->cacheEmpty() )
 	{
 		cached_vpid = m_service->getCacheEntry(eDVBService::cVPID);
-		for (int m = 0; m < eDVBService::nAudioCacheTags; m++)
-		{
-			eDVBService::cacheID cTag = eDVBService::audioCacheTags[m];
-			cached_apid[cTag] = m_service->getCacheEntry(cTag);
-		}
+		cached_apid_mpeg = m_service->getCacheEntry(eDVBService::cMPEGAPID);
+		cached_apid_ac3 = m_service->getCacheEntry(eDVBService::cAC3PID);
+		cached_apid_ac4 = m_service->getCacheEntry(eDVBService::cAC4PID);
+		cached_apid_ddp = m_service->getCacheEntry(eDVBService::cDDPPID);
+		cached_apid_aache = m_service->getCacheEntry(eDVBService::cAACHEAPID);
+		cached_apid_aac = m_service->getCacheEntry(eDVBService::cAACAPID);
+		cached_apid_dra = m_service->getCacheEntry(eDVBService::cDRAAPID);
 		cached_tpid = m_service->getCacheEntry(eDVBService::cTPID);
 	}
 
@@ -571,24 +408,14 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		unsigned int i;
 		int first_non_mpeg = -1;
 		int audio_cached = -1;
-		int autoaudio[eDVBService::cacheMax];
+		int autoaudio_mpeg = -1;
+		int autoaudio_ac3 = -1;
+		int autoaudio_ac4 = -1;
+		int autoaudio_ddp = -1;
+		int autoaudio_aache = -1;
+		int autoaudio_aac = -1;
+		int autoaudio_dra = -1;
 		int autoaudio_level = 4;
-		const static audioMap audioMapMain[] = {
-			{ audioStream::atMPEG,  eDVBService::cMPEGAPID,  },
-			{ audioStream::atAC3,   eDVBService::cAC3PID,    },
-			{ audioStream::atAC4,    eDVBService::cAC4PID,   },
-			{ audioStream::atDDP,   eDVBService::cDDPPID,    },
-			{ audioStream::atAACHE,	eDVBService::cAACHEAPID, },
-			{ audioStream::atAAC,   eDVBService::cAACAPID,   },
-			{ audioStream::atDTS,   eDVBService::cDTSPID,    },
-			{ audioStream::atLPCM,  eDVBService::cLPCMPID,   },
-			{ audioStream::atDTSHD, eDVBService::cDTSHDPID,  },
-			{ audioStream::atDRA,    eDVBService::cDRAAPID,  },
-		};
-		static const int nAudioMapMain = sizeof audioMapMain / sizeof audioMapMain[0];
-
-		for (int m = 0; m < eDVBService::cacheMax; m++)
-			autoaudio[m] = -1;
 
 		std::string configvalue;
 		std::vector<std::string> autoaudio_languages;
@@ -645,40 +472,34 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 				break;
 			}
 		}
-		i = 0;
-		for (std::vector<audioStream>::const_iterator
-			as(program.audioStreams.begin());
-			as != program.audioStreams.end(); ++as, ++i)
+		for (i = 0; i < program.audioStreams.size(); i++)
 		{
-			for (int m = 0; m < eDVBService::nAudioCacheTags; m++)
+			if (program.audioStreams[i].pid == cached_apid_ac3
+			 || program.audioStreams[i].pid == cached_apid_ac4
+			 || program.audioStreams[i].pid == cached_apid_ddp
+			 || program.audioStreams[i].pid == cached_apid_mpeg
+			 || program.audioStreams[i].pid == cached_apid_aache
+			 || program.audioStreams[i].pid == cached_apid_aac
+			 || program.audioStreams[i].pid == cached_apid_dra)
 			{
-				eDVBService::cacheID cTag = eDVBService::audioCacheTags[m];
-				if (as->pid == cached_apid[cTag])
-					/* if we find the cached pids, this will be our default stream */
-
-					audio_cached = i;
-					break;
+				/* if we find the cached pids, this will be our default stream */
+				audio_cached = i;
 			}
 			/* also, we need to know the first non-mpeg (i.e. "ac3"/dts/...) stream */
-			if (as->type != audioStream::atMPEG) {
-				if (first_non_mpeg == -1)
-					first_non_mpeg = i;
-				else
-				{
-					for (int m = 0; m < eDVBService::nAudioCacheTags; m++)
-					{
-						if (as->pid == cached_apid[eDVBService::audioCacheTags[m]])
-							first_non_mpeg = i;
-							break;
-					}
-				}
+			if ((program.audioStreams[i].type != audioStream::atMPEG) && ((first_non_mpeg == -1)
+				|| (program.audioStreams[i].pid == cached_apid_ac3)
+				|| (program.audioStreams[i].pid == cached_apid_ac4)
+				|| (program.audioStreams[i].pid == cached_apid_ddp)
+				|| (program.audioStreams[i].pid == cached_apid_aache)
+				|| (program.audioStreams[i].pid == cached_apid_aac)
+				|| (program.audioStreams[i].pid == cached_apid_dra)))
+			{
+				first_non_mpeg = i;
 			}
-			if (!as->language_code.empty())
+			if (!program.audioStreams[i].language_code.empty())
 			{
 				int x = 1;
-				for (std::vector<std::string>::iterator
-					it = autoaudio_languages.begin();
-					x <= autoaudio_level && it != autoaudio_languages.end(); x++, it++)
+				for (std::vector<std::string>::iterator it = autoaudio_languages.begin();x <= autoaudio_level && it != autoaudio_languages.end();x++,it++)
 				{
 					bool languageFound = false;
 					size_t pos = 0;
@@ -687,17 +508,22 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 					audioStreamLanguages += delimiter;
 					while ((pos = audioStreamLanguages.find(delimiter)) != std::string::npos)
 					{
-						if ((*it).find(as->language_code) != std::string::npos)
+						if ((*it).find(audioStreamLanguages.substr(0, pos)) != std::string::npos)
 						{
-						for (int m = 0; m < nAudioMapMain; m++)
-						{
-							eDVBService::cacheID cTag = audioMapMain[m].cacheTag;
-							if (as->type == audioMapMain[m].streamType && (autoaudio_level > x || autoaudio[cTag] == -1))
-							{
-								autoaudio[cTag] = i;
-								break;
-							}
-						}
+							if (program.audioStreams[i].type == audioStream::atMPEG && (autoaudio_level > x || autoaudio_mpeg == -1))
+								autoaudio_mpeg = i;
+							else if (program.audioStreams[i].type == audioStream::atAC3 && (autoaudio_level > x || autoaudio_ac3 == -1))
+								autoaudio_ac3 = i;
+							else if (program.audioStreams[i].type == audioStream::atAC4 && (autoaudio_level > x || autoaudio_ac4 == -1))
+								autoaudio_ac4 = i;
+							else if (program.audioStreams[i].type == audioStream::atDDP && (autoaudio_level > x || autoaudio_ddp == -1))
+								autoaudio_ddp = i;
+							else if (program.audioStreams[i].type == audioStream::atAACHE && (autoaudio_level > x || autoaudio_aache == -1))
+								autoaudio_aache = i;
+							else if (program.audioStreams[i].type == audioStream::atAAC && (autoaudio_level > x || autoaudio_aac == -1))
+								autoaudio_aac = i;
+							else if (program.audioStreams[i].type == audioStream::atDRA && (autoaudio_level > x || autoaudio_dra == -1))
+								autoaudio_dra = i;
 							autoaudio_level = x;
 							languageFound = true;
 							break;
@@ -709,25 +535,20 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 				}
 			}
 		}
-		i = 0;
-		for (std::vector<subtitleStream>::const_iterator
-			ss(program.subtitleStreams.begin());
-			ss != program.subtitleStreams.end(); ++ss, ++i)
+		for (i = 0; i < program.subtitleStreams.size(); i++)
 		{
-			if (!ss->language_code.empty())
+			if (!program.subtitleStreams[i].language_code.empty())
 			{
 				int x = 1;
-				for (std::vector<std::string>::iterator
-					it2 = autosub_languages.begin();
-					x <= autosub_level && it2 != autosub_languages.end(); x++, it2++)
+				for (std::vector<std::string>::iterator it2 = autosub_languages.begin();x <= autosub_level && it2 != autosub_languages.end();x++,it2++)
 				{
 					if ((*it2).find(program.subtitleStreams[i].language_code) != std::string::npos)
 					{
 						autosub_level = x;
-						if (ss->subtitling_type >= 0x10)
+						if (program.subtitleStreams[i].subtitling_type >= 0x10)
 						{
 							/* DVB subs */
-							if (ss->subtitling_type >= 0x20)
+							if (program.subtitleStreams[i].subtitling_type >= 0x20)
 								autosub_dvb_hearing = i;
 							else
 								autosub_dvb_normal = i;
@@ -735,7 +556,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 						else
 						{
 							/* TXT subs */
-							if (ss->subtitling_type == 0x05)
+							if (program.subtitleStreams[i].subtitling_type == 0x05)
 								autosub_txt_hearing = i;
 							else
 								autosub_txt_normal = i;
@@ -752,24 +573,24 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 
 		if (useaudio_cache && audio_cached != -1)
 			program.defaultAudioStream = audio_cached;
-		else if (defaultac3 && autoaudio[eDVBService::cAC3PID] != -1)
-			program.defaultAudioStream = autoaudio[eDVBService::cAC3PID];
-		else if (defaultddp && autoaudio[eDVBService::cDDPPID] != -1)
-			program.defaultAudioStream = autoaudio[eDVBService::cDDPPID];
+		else if (defaultac3 && autoaudio_ac3 != -1)
+			program.defaultAudioStream = autoaudio_ac3;
+		else if (defaultddp && autoaudio_ddp != -1)
+			program.defaultAudioStream = autoaudio_ddp;
 		else
 		{
-			int defaultAudio = -1;
-			for (int m = 0; m < nAudioMapMain; m++)
-			{
-				eDVBService::cacheID cTag = audioMapMain[m].cacheTag;
-				if (autoaudio[cTag] != -1)
-				{
-					defaultAudio = autoaudio[cTag];
-					break;
-				}
-			}
-			if (defaultAudio != -1)
-				program.defaultAudioStream = defaultAudio;
+			if (autoaudio_mpeg != -1)
+				program.defaultAudioStream = autoaudio_mpeg;
+			else if (autoaudio_ac3 != -1)
+				program.defaultAudioStream = autoaudio_ac3;
+			else if (autoaudio_ac4 != -1)
+				program.defaultAudioStream = autoaudio_ac4;
+			else if (autoaudio_ddp != -1)
+				program.defaultAudioStream = autoaudio_ddp;
+			else if (autoaudio_aache != -1)
+				program.defaultAudioStream = autoaudio_aache;
+			else if (autoaudio_aac != -1)
+				program.defaultAudioStream = autoaudio_aac;
 			else if (first_non_mpeg != -1 && (defaultac3 || defaultddp))
 				program.defaultAudioStream = first_non_mpeg;
 		}
@@ -816,20 +637,6 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 	}
 	else if ( m_service && !m_service->cacheEmpty() )
 	{
-		// Same entries, but different order from audioMapMain
-		const static audioMap audioMapList[] = {
-			{ audioStream::atAC3,   eDVBService::cAC3PID,    },
-			{ audioStream::atAC4,   eDVBService::cAC4PID,    },
-			{ audioStream::atDDP,   eDVBService::cDDPPID,    },
-			{ audioStream::atAAC,   eDVBService::cAACAPID,   },
-			{ audioStream::atDTS,   eDVBService::cDTSPID,    },
-			{ audioStream::atLPCM,  eDVBService::cLPCMPID,   },
-			{ audioStream::atDTSHD, eDVBService::cDTSHDPID,  },
-			{ audioStream::atAACHE, eDVBService::cAACHEAPID, },
-			{ audioStream::atDRA,   eDVBService::cDRAAPID,   },
-			{ audioStream::atMPEG,  eDVBService::cMPEGAPID,  },
-		};
-		static const int nAudioMapList = sizeof audioMapList / sizeof audioMapList[0];
 		int cached_pcrpid = m_service->getCacheEntry(eDVBService::cPCRPID),
 			vpidtype = m_service->getCacheEntry(eDVBService::cVTYPE),
 			pmtpid = m_service->getCacheEntry(eDVBService::cPMTPID),
@@ -843,26 +650,75 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			vpidtype = videoStream::vtMPEG2;
 		if ( cached_vpid != -1 )
 		{
-			videoStream s;
+			videoStream s = {};
 			s.pid = cached_vpid;
 			s.type = vpidtype;
 			program.videoStreams.push_back(s);
 			++cnt;
 		}
-		for (int m = 0; m < nAudioMapList; m++)
+		if ( cached_apid_ac3 != -1 )
 		{
-			eDVBService::cacheID cTag = audioMapList[m].cacheTag;
-			if (cached_apid[cTag] != -1)
-			{
-				audioStream s;
-				s.type = audioMapList[m].streamType;
-				s.pid = cached_apid[cTag];
-				s.rdsPid = -1;
-				program.audioStreams.push_back(s);
-				++cnt;
-			}
+			audioStream s = {};
+			s.type = audioStream::atAC3;
+			s.pid = cached_apid_ac3;
+			s.rdsPid = -1;
+			program.audioStreams.push_back(s);
+			++cnt;
 		}
-
+		if ( cached_apid_ac4 != -1 )
+		{
+			audioStream s = {};
+			s.type = audioStream::atAC4;
+			s.pid = cached_apid_ac4;
+			s.rdsPid = -1;
+			program.audioStreams.push_back(s);
+			++cnt;
+		}
+		if ( cached_apid_ddp != -1 )
+		{
+			audioStream s = {};
+			s.type = audioStream::atDDP;
+			s.pid = cached_apid_ddp;
+			s.rdsPid = -1;
+			program.audioStreams.push_back(s);
+			++cnt;
+		}
+		if ( cached_apid_aache != -1 )
+		{
+			audioStream s = {};
+			s.type = audioStream::atAACHE;
+			s.pid = cached_apid_aache;
+			s.rdsPid = -1;
+			program.audioStreams.push_back(s);
+			++cnt;
+		}
+		if ( cached_apid_aac != -1 )
+		{
+			audioStream s = {};
+			s.type = audioStream::atAAC;
+			s.pid = cached_apid_aac;
+			s.rdsPid = -1;
+			program.audioStreams.push_back(s);
+			++cnt;
+		}
+		if ( cached_apid_dra != -1 )
+		{
+			audioStream s = {};
+			s.type = audioStream::atDRA;
+			s.pid = cached_apid_dra;
+			s.rdsPid = -1;
+			program.audioStreams.push_back(s);
+			++cnt;
+		}
+		if ( cached_apid_mpeg != -1 )
+		{
+			audioStream s = {};
+			s.type = audioStream::atMPEG;
+			s.pid = cached_apid_mpeg;
+			s.rdsPid = -1;
+			program.audioStreams.push_back(s);
+			++cnt;
+		}
 		if ( cached_pcrpid != -1 )
 		{
 			++cnt;
@@ -875,7 +731,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		}
 		if (subpid > 0)
 		{
-			subtitleStream s;
+			subtitleStream s = {};
 			s.pid = (subpid & 0xffff0000) >> 16;
 			if (s.pid != program.textPid)
 			{
@@ -897,7 +753,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		CAID_LIST &caids = m_service->m_ca;
 		for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it)
 		{
-			program::capid_pair pair;
+			program::capid_pair pair = {};
 			pair.caid = *it;
 			pair.capid = -1; // not known yet
 			pair.databytes.clear();
@@ -920,17 +776,9 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 
 int eDVBServicePMTHandler::compareAudioSubtitleCode(const std::string &subtitleTrack, const std::string &audioTrack)
 {
-	std::size_t pos = audioTrack.find("/");
-	if ( pos != std::string::npos)
+	for (const auto& _audioTrack : split(audioTrack, "/"))
 	{
-		std::string firstAudio = audioTrack.substr(0, pos);
-		std::string secondAudio = audioTrack.substr(pos + 1);
-		if (strcasecmp(subtitleTrack, firstAudio) == 0 || strcasecmp(subtitleTrack, secondAudio) == 0)
-			return 0;
-	}
-	else
-	{
-		if (strcasecmp(subtitleTrack, audioTrack) == 0)
+		if (strcasecmp(subtitleTrack.c_str(), _audioTrack.c_str()) == 0)
 			return 0;
 	}
 	return -1;
@@ -1063,7 +911,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 	{
 		if (!ref.getServiceID().get() /* incorrect sid in meta file or recordings.epl*/ )
 		{
-			eDVBTSTools tstools;
+			eDVBTSTools tstools = {};
 			bool b = source || !tstools.openFile(ref.path.c_str(), 1);
 			eWarning("[eDVBServicePMTHandler] no .meta file found, trying to find PMT pid");
 			if (source)
@@ -1168,7 +1016,7 @@ void eDVBServicePMTHandler::free()
 			demuxes[1]=demuxes[0];
 		ePtr<eTable<ProgramMapSection> > ptr;
 		m_PMT.getCurrent(ptr);
-		eDVBCAHandler::getInstance()->unregisterService(m_reference, adapterid, demuxes, ptr);
+		eDVBCAHandler::getInstance()->unregisterService(m_reference, adapterid, demuxes, (int)m_service_type, ptr);
 		m_ca_servicePtr = 0;
 	}
 
