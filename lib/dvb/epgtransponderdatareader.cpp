@@ -7,18 +7,8 @@
 
 
 eEPGTransponderDataReader* eEPGTransponderDataReader::instance;
-pthread_mutex_t eEPGTransponderDataReader::known_channel_lock = 
-#ifdef __GLIBC__
-	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
-#else
-	{{PTHREAD_MUTEX_RECURSIVE}};
-#endif
-pthread_mutex_t eEPGTransponderDataReader::last_channel_update_lock = 
-#ifdef __GLIBC__
-	PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
-#else
-	{{PTHREAD_MUTEX_RECURSIVE}};
-#endif
+pthread_mutex_t eEPGTransponderDataReader::known_channel_lock = PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
+pthread_mutex_t eEPGTransponderDataReader::last_channel_update_lock = PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
 
 DEFINE_REF(eEPGTransponderDataReader)
 
@@ -243,9 +233,14 @@ void eEPGTransponderDataReader::DVBChannelAdded(eDVBChannel *chan)
 		data->m_PrivatePid = -1;
 #endif
 #ifdef ENABLE_MHW_EPG
-		data->m_mhw2_channel_pid = 0x231; // defaults for astra 19.2 D+
-		data->m_mhw2_title_pid = 0x234; // defaults for astra 19.2 D+
-		data->m_mhw2_summary_pid = 0x236; // defaults for astra 19.2 D+
+		data->m_mhw2_channel_pid = 0x231; // defaults for astra 19.2 Movistar+
+		if (eEPGCache::getInstance()->getEpgmaxdays() < 4){
+			data->m_mhw2_title_pid = 0x234; // defaults for astra 19.2 Movistar+
+			data->m_mhw2_summary_pid = 0x236; // defaults for astra 19.2 Movistar+
+		} else {
+			data->m_mhw2_title_pid = 0x284; // change for fix 7 days epg Movistar+
+			data->m_mhw2_summary_pid = 0x282; // change for fix 7 days epg Movistar+
+		}
 #endif
 		singleLock s(known_channel_lock);
 		m_knownChannels.insert( std::pair<iDVBChannel*, eEPGChannelData* >(chan, data) );
@@ -319,21 +314,21 @@ void eEPGTransponderDataReader::DVBChannelRunning(iDVBChannel *chan)
 				RESULT res = demux->createSectionReader( this, data.m_NowNextReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize nownext reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize nownext reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_ScheduleReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize schedule reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize schedule reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_ScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize schedule other reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize schedule other reader!!");
 					return;
 				}
 
@@ -341,14 +336,14 @@ void eEPGTransponderDataReader::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_VirginNowNextReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize virgin nownext reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize virgin nownext reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_VirginScheduleReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize virgin schedule reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize virgin schedule reader!!");
 					return;
 				}
 #endif
@@ -356,28 +351,28 @@ void eEPGTransponderDataReader::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_NetmedScheduleReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize netmed schedule reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize netmed schedule reader!!");
 					return;
 				}
 
 				res = demux->createSectionReader( this, data.m_NetmedScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize netmed schedule other reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize netmed schedule other reader!!");
 					return;
 				}
 #endif
 				res = demux->createSectionReader( this, data.m_ViasatReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize viasat reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize viasat reader!!");
 					return;
 				}
 #ifdef ENABLE_PRIVATE_EPG
 				res = demux->createSectionReader( this, data.m_PrivateReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize private reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize private reader!!");
 					return;
 				}
 #endif
@@ -385,13 +380,13 @@ void eEPGTransponderDataReader::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_MHWReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize mhw reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize mhw reader!!");
 					return;
 				}
 				res = demux->createSectionReader( this, data.m_MHWReader2 );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize mhw reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize mhw reader!!");
 					return;
 				}
 #endif
@@ -399,13 +394,13 @@ void eEPGTransponderDataReader::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_FreeSatScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize FreeSat reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize FreeSat reader!!");
 					return;
 				}
 				res = demux->createSectionReader( this, data.m_FreeSatScheduleOtherReader2 );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize FreeSat reader 2!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize FreeSat reader 2!!");
 					return;
 				}
 #endif
@@ -423,25 +418,25 @@ void eEPGTransponderDataReader::DVBChannelRunning(iDVBChannel *chan)
 						res = demux->createSectionReader( this, data.m_ATSC_VCTReader );
 						if ( res )
 						{
-							eDebug("[eEPGTransponderDataReader] couldnt initialize ATSC VCT reader!!");
+							eDebug("[eEPGTransponderDataReader] could not initialize ATSC VCT reader!!");
 							return;
 						}
 						res = demux->createSectionReader( this, data.m_ATSC_MGTReader );
 						if ( res )
 						{
-							eDebug("[eEPGTransponderDataReader] couldnt initialize ATSC MGT reader!!");
+							eDebug("[eEPGTransponderDataReader] could not initialize ATSC MGT reader!!");
 							return;
 						}
 						res = demux->createSectionReader( this, data.m_ATSC_EITReader );
 						if ( res )
 						{
-							eDebug("[eEPGTransponderDataReader] couldnt initialize ATSC EIT reader!!");
+							eDebug("[eEPGTransponderDataReader] could not initialize ATSC EIT reader!!");
 							return;
 						}
 						res = demux->createSectionReader( this, data.m_ATSC_ETTReader );
 						if ( res )
 						{
-							eDebug("[eEPGTransponderDataReader] couldnt initialize ATSC ETT reader!!");
+							eDebug("[eEPGTransponderDataReader] could not initialize ATSC ETT reader!!");
 							return;
 						}
 					}
@@ -451,19 +446,19 @@ void eEPGTransponderDataReader::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_OPENTV_ChannelsReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize OpenTV channels reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize OpenTV channels reader!!");
 					return;
 				}
 				res = demux->createSectionReader( this, data.m_OPENTV_TitlesReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize OpenTV titles reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize OpenTV titles reader!!");
 					return;
 				}
 				res = demux->createSectionReader( this, data.m_OPENTV_SummariesReader );
 				if ( res )
 				{
-					eDebug("[eEPGTransponderDataReader] couldnt initialize OpenTV summaries reader!!");
+					eDebug("[eEPGTransponderDataReader] could not initialize OpenTV summaries reader!!");
 					return;
 				}
 #endif
@@ -556,7 +551,7 @@ void eEPGTransponderDataReader::PMTready(eDVBServicePMTHandler *pmthandler)
 								if (((PrivateDataSpecifierDescriptor*)(*desc))->getPrivateDataSpecifier() == 190)
 									tmp |= 1;
 								break;
-							case 0x90:
+							case 0x90: // OpenTV module descriptor?
 							{
 								Descriptor *descr = (Descriptor*)*desc;
 								int descr_len = descr->getLength();

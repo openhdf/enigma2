@@ -16,7 +16,6 @@
 
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvbtime.h>
-#include <lib/base/ebase.h>
 #include <lib/base/thread.h>
 #include <lib/base/message.h>
 #include <lib/service/event.h>
@@ -89,6 +88,8 @@ struct hash_uniqueEPGKey
 struct EventCacheItem {
 	eventMap byEvent;
 	timeMap byTime;
+	int sources;
+	EventCacheItem(): sources(0) {}
 };
 
 typedef std::tr1::unordered_map<uniqueEPGKey, EventCacheItem, hash_uniqueEPGKey, uniqueEPGKey::equal> eventCache;
@@ -100,11 +101,19 @@ typedef std::tr1::unordered_map<uniqueEPGKey, EventCacheItem, hash_uniqueEPGKey,
 
 #endif
 
+#ifndef SWIG
+
+struct eit_parental_rating {
+	u_char	country_code[3];
+	u_char	rating;
+};
+#endif
+
 class eEPGCache: public eMainloop, private eThread, public sigc::trackable
 {
 #ifndef SWIG
 	DECLARE_REF(eEPGCache)
-	bool FixOverlapping(EventCacheItem &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service);
+
 public:
 	struct Message
 	{
@@ -135,6 +144,7 @@ private:
 	static eEPGCache *instance;
 
 	unsigned int historySeconds;
+	unsigned int maxdays;
 
 	std::vector<int> onid_blacklist;
 	eventCache eventDB;
@@ -158,7 +168,8 @@ private:
 
 	void gotMessage(const Message &message);
 	void cleanLoop();
-	void submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start, long duration, const char* title, const char* short_summary, const char* long_description, char event_type, int event_id, int source);
+	void submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start, long duration, const char* title, const char* short_summary, const char* long_description, char event_type, int source, uint16_t event_id=0);
+	void submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start, long duration, const char* title, const char* short_summary, const char* long_description, std::vector<uint8_t> event_types, std::vector<eit_parental_rating> parental_ratings, int source, uint16_t event_id=0);
 	void clearCompleteEPGCache();
 
 	eServiceReferenceDVB *m_timeQueryRef;
@@ -172,9 +183,12 @@ private:
 public:
 	static eEPGCache *getInstance() { return instance; }
 
+	void crossepgImportEPGv21(std::string dbroot);
+	void clear();
 	void save();
 	void load();
 	void timeUpdated();
+	void flushEPG(int sid, int onid, int tsid);
 	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey(), bool lock = true);
 #ifndef SWIG
 	eEPGCache();
@@ -194,7 +208,7 @@ private:
 	RESULT lookupEventTime(const eServiceReference &service, time_t, const eventData *&, int direction=0);
 
 public:
-	/* Only used by servicedvbrecord.cpp to write the EIT file */
+	/* Used by servicedvbrecord.cpp, timeshift, etc. to write the EIT file */
 	RESULT saveEventToFile(const char* filename, const eServiceReference &service, int eit_event_id, time_t begTime, time_t endTime);
 
 	// Events are parsed epg events.. it's safe to use them after cache unlock
@@ -209,14 +223,15 @@ public:
 		PARTIAL_TITLE_SEARCH,
 		START_TITLE_SEARCH,
 		END_TITLE_SEARCH,
-		PARTIAL_DESCRIPTION_SEARCH,
-		CRID_SEARCH
+		PARTIAL_DESCRIPTION_SEARCH
 	};
 	enum {
 		CASE_CHECK,
-		NO_CASE_CHECK
+		NO_CASE_CHECK,
+		REGEX_CHECK
 	};
 	PyObject *lookupEvent(SWIG_PYOBJECT(ePyObject) list, SWIG_PYOBJECT(ePyObject) convertFunc=(PyObject*)0);
+	const char* casetypestr(int value);
 	PyObject *search(SWIG_PYOBJECT(ePyObject));
 
 	// eServiceEvent are parsed epg events.. it's safe to use them after cache unlock
@@ -251,11 +266,14 @@ public:
 #endif
 	,EPG_IMPORT=0x80000000
 	};
+	void setEpgmaxdays(unsigned int epgmaxdays);
 	void setEpgHistorySeconds(time_t seconds);
 	void setEpgSources(unsigned int mask);
 	unsigned int getEpgSources();
+	unsigned int getEpgmaxdays();
 
-	void submitEventData(const std::vector<eServiceReferenceDVB>& serviceRefs, long start, long duration, const char* title, const char* short_summary, const char* long_description, char event_type);
+
+	void submitEventData(const std::vector<eServiceReferenceDVB>& serviceRefs, long start, long duration, const char* title, const char* short_summary, const char* long_description, std::vector<uint8_t> event_types, std::vector<eit_parental_rating> parental_ratings, uint16_t event_id=0);
 
 	void importEvents(SWIG_PYOBJECT(ePyObject) serviceReferences, SWIG_PYOBJECT(ePyObject) list);
 	void importEvent(SWIG_PYOBJECT(ePyObject) serviceReference, SWIG_PYOBJECT(ePyObject) list);
