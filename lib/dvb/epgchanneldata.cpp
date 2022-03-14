@@ -1125,45 +1125,6 @@ void eEPGChannelData::startMHWReader2(uint16_t pid, uint8_t tid, int ext)
 	m_MHWReader2->start(m_MHWFilterMask2);
 }
 
-bool eEPGChannelData::log_open ()
-{
-	log_file = fopen (FILE_LOG, "w");
-	 
-	return (log_file != NULL);
-}
-
-void eEPGChannelData::log_close ()
-{
-	if (log_file != NULL)
-		fclose (log_file);
-}
-
-void eEPGChannelData::log_add (const char *message, ...)
-{
-	va_list args;
-	char msg[16*1024];
-	time_t now_time;
-	struct tm *loctime;
-
-	now_time = time (NULL);
-	loctime = localtime (&now_time);
-	strftime (msg, 255, "%d/%m/%Y %H:%M:%S ", loctime);
-	 
-	if (log_file != NULL) fwrite (msg, strlen (msg), 1, log_file);
-
-	va_start (args, message);
-	vsnprintf (msg, 16*1024, message, args);
-	va_end (args);
-	msg[(16*1024)-1] = '\0';
-	 
-	if (log_file != NULL)
-	{
-		fwrite (msg, strlen (msg), 1, log_file);
-		fwrite ("\n", 1, 1, log_file);
-		fflush (log_file);
-	}
-}
-
 void eEPGChannelData::GetEquiv(void)
 {
 	nb_equiv=0;
@@ -1337,8 +1298,6 @@ void eEPGChannelData::readMHWData(const uint8_t *data)
 			eDebug("[eEPGChannelData] mhw %zu titles(%zu with summary) found",
 				m_titles.size(),
 				m_program_ids.size());
-			log_add("Titles Nbr.: %d",m_titles.size());
-			log_add("Titles Nbr. with summary: %d",m_program_ids.size());
 			startMHWTimeout(5000);
 			return;
 		}
@@ -1667,8 +1626,6 @@ void eEPGChannelData::readMHWData2(const uint8_t *data)
 		if (checkMHWTimeout())
 		{
 			eDebug("[eEPGChannelData] mhw2 %d titles(%d with summary) found", m_titles.size(), m_program_ids.size());
-			log_add("Titles Nbr.: %d",m_titlesID.size());
-			log_add("Titles Nbr. with summary: %d",nbr_summary);
 			if (!m_program_ids.empty())
 			{
 				// Titles table has been read, there are summaries to read.
@@ -1810,8 +1767,6 @@ void eEPGChannelData::readMHWData2(const uint8_t *data)
 			eDebug("[eEPGChannelData] mhw2 finished(%ld) %d summaries not found",
 				::time(0),
 				m_program_ids.size());
-			log_add("Summaries not found: %d",m_program_ids.size());
-			log_add("mhw2 EPG download finished");
 		}
 	}
 abort:
@@ -1835,7 +1790,6 @@ void eEPGChannelData::readMHWData2_old(const uint8_t *data)
 		(haveData & (eEPGCache::SCHEDULE|eEPGCache::SCHEDULE_OTHER|eEPGCache::VIASAT)) )
 	{
 		eDebug("[eEPGChannelData] mhw2 aborted %d", state);
-		log_add("mhw download aborted %d", state);
 	}
 	else if (m_MHWFilterMask2.pid == m_mhw2_channel_pid && m_MHWFilterMask2.data[0] == 0xC8 && m_MHWFilterMask2.data[1] == 0)
 	// Channels table

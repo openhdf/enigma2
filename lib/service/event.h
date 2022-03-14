@@ -87,7 +87,8 @@ class eServiceEvent: public iObject
 	int m_event_id;
 	int m_pdc_pil;
 	int m_running_status;
-	std::string m_event_name, m_short_description, m_extended_description;
+	std::string m_event_name, m_short_description, m_extended_description, m_extra_event_data, m_epg_source, m_extended_description_items;
+	std::string m_series_crid, m_episode_crid;
 	static std::string m_language, m_language_alternative;
 	// .. additional info
 public:

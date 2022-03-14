@@ -70,7 +70,7 @@ typedef struct {
 	u_char	segment_last_table_id		: 8;
 
 	int getSectionLength() const		{ return section_length_hi << 8 | section_length_lo; };
-	int getServiceId() const		{ return service_id_hi << 8 | service_id_lo; };
+	int getServiceID() const		{ return service_id_hi << 8 | service_id_lo; };
 	int getTransportStreamId() const	{ return transport_stream_id_hi << 8 | transport_stream_id_lo; };
 	int getOriginalNetworkId() const	{ return original_network_id_hi << 8 | original_network_id_lo; };
 
@@ -107,6 +107,9 @@ struct eit_loop_struct1 {
 	u_char	descriptors_loop_length_lo	: 8;
 };
 
+#define EIT_SHORT_EVENT_DESCRIPTOR 0x4d
+#define EIT_SHORT_EVENT_DESCRIPTOR_SIZE 6
+
 struct eit_short_event_descriptor_struct {
 	u_char	descriptor_tag			: 8;
 	u_char	descriptor_length		: 8;
@@ -117,6 +120,9 @@ struct eit_short_event_descriptor_struct {
 
 	u_char	event_name_length		: 8;
 };
+
+#define EIT_EXTENDED_EVENT_DESCRIPOR 0x4e
+#define EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE 6
 
 typedef struct eit_event_struct {
 	u_char	event_id_hi			: 8;
@@ -149,8 +155,11 @@ typedef struct eit_event_struct {
 
 	void setEventId(uint16_t eventId)	{ event_id_hi = eventId >> 8; event_id_lo = eventId & 0xFF; };
 	void setDescriptorsLoopLength(int dll)	{ descriptors_loop_length_hi = dll >> 8; descriptors_loop_length_lo = dll & 0xFF; };
+
 } eit_event_t;
 #define EIT_LOOP_SIZE 12
+
+#define EIT_EXTENDED_EVENT_DESCRIPOR 0x4e
 
 struct eit_extended_descriptor_struct {
 	u_char descriptor_tag : 8;
