@@ -1,5 +1,4 @@
 from __future__ import print_function
-from __future__ import absolute_import
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
@@ -46,7 +45,7 @@ class TimerEditList(Screen):
 		self.list = _list
 		self.fillTimerList()
 
-		self["timerlist"] = TimerList(list)
+		self["timerlist"] = TimerList(_list)
 
 		self.key_red_choice = self.EMPTY
 		self.key_yellow_choice = self.EMPTY
@@ -223,13 +222,11 @@ class TimerEditList(Screen):
 				time = ""
 				duration = ""
 				service = ""
-				state = ""
 		else:
 			name = ""
 			time = ""
 			duration = ""
 			service = ""
-			state = ""
 		for cb in self.onChangedEntry:
 			cb(name, time, duration, service, state)
 
@@ -265,17 +262,17 @@ class TimerEditList(Screen):
 				else:
 					ref = timer.service_ref.ref.toString()
 				begin = timer.begin + config.recording.margin_before.value * 60
-				duration = (timer.end - begin - config.recording.margin_after.value * 60) / 60
+				duration = (timer.end - begin - config.recording.margin_after.value * 60) // 60
 				if duration <= 0:
 					duration = 30 # it seems to be a reminder or a justplay timer without end time, so search epg events for the next 30 min
-				list = epgcache.lookupEvent(['IBDT', (ref, 0, begin, duration)])
-				if len(list):
-					for epgevent in list:
+				_list = epgcache.lookupEvent(['IBDT', (ref, 0, begin, duration)])
+				if len(_list):
+					for epgevent in _list:
 						if timer.name.startswith(epgevent[3]):
 							event_id = epgevent[0]
 							break
 					if not event_id and timer.begin != timer.end: # no match at title search --> search in time span
-						for epgevent in list:
+						for epgevent in _list:
 							if timer.end >= (begin + epgevent[2]) and timer.begin <= epgevent[1]:
 								event_id = epgevent[0]
 								break
@@ -302,7 +299,7 @@ class TimerEditList(Screen):
 			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur)
 
 	def cleanupQuestion(self):
-		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete done timers?"))
+		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete completed timers?"))
 
 	def cleanupTimer(self, delete):
 		if delete:
@@ -338,10 +335,10 @@ class TimerEditList(Screen):
 			message = (_("Do you really want to delete %s?") % (cur.name))
 			choices = [(_("No"), "no"),
 					(_("Yes, delete from Timerlist"), "yes"),
-					(_("Yes, delete Timer and delete recording"), "yesremove")]
+					(_("Yes, delete from Timerlist and delete recording"), "yesremove")]
 			self.session.openWithCallback(self.startDelete, ChoiceBox, title=message, list=choices)
 		else:
-			self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % (cur.name), default=True)
+			self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % (cur.name), default=False)
 
 	def startDelete(self, answer):
 		if not answer or not answer[1]:
