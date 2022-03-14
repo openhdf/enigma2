@@ -1,17 +1,10 @@
 #ifndef __epgtransponderdatareader_h_
 #define __epgtransponderdatareader_h_
 
-#ifdef AUSTRALIA
-/* Restart EPG data capture */
-#define UPDATE_INTERVAL (5 * 60 * 1000)  // Australian EIT EPG is very dynamic, updates can come less than a minute apart
-/* Time to wait after tuning in before EPG data capturing starts */
-#define ZAP_DELAY (500)                  // 1/2 second (want to grab EPG data before timeshift starts)
-#else
 /* Restart EPG data capture */
 #define UPDATE_INTERVAL 3600000  // 60 min
 /* Time to wait after tuning in before EPG data capturing starts */
 #define ZAP_DELAY 2000          // 2 sec
-#endif
 
 #include <tr1/unordered_map>
 
@@ -100,7 +93,6 @@ public:
 #endif
 
 private:
-	friend class eEPGCache;
 	friend class eEPGChannelData;
 
 	static eEPGTransponderDataReader *instance;
