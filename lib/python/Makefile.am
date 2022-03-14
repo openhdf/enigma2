@@ -3,7 +3,7 @@ installdir = $(pkglibdir)/python
 SUBDIRS = Components Tools Screens Plugins
 
 install_PYTHON = \
-	BoxBrandingTest.py \ 
+	BoxBrandingTest.py \
 	e2reactor.py \
 	GlobalActions.py \
 	keyids.py \
