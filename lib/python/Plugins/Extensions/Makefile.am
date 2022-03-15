@@ -6,9 +6,5 @@ if HAVE_LIBDDVD
 SUBDIRS += DVDPlayer
 endif
 
-if GB7252
-SUBDIRS += QuadPip
-endif
-
 install_PYTHON =	\
 	__init__.py
