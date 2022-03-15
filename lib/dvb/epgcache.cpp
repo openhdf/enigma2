@@ -1126,7 +1126,7 @@ void eEPGCache::save()
 				return;
 			}
 		}
-	
+
 		char* buf = realpath(EPGDAT, NULL);
 		if (!buf)
 		{
@@ -1145,7 +1145,7 @@ void eEPGCache::save()
 			free(buf);
 			return;
 		}
-	
+
 		// check for enough free space on storage
 		tmp=st.f_bfree;
 		tmp*=st.f_bsize;
@@ -2190,7 +2190,7 @@ unsigned int eEPGCache::getEpgSources()
 	return m_enabledEpgSources;
 }
 
-unsigned int eEPGCache::getEpgmaxdays()  
+unsigned int eEPGCache::getEpgmaxdays()
 {
 	return maxdays;
 }
@@ -2702,7 +2702,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 							it != eventData::descriptors.end(); ++it)
 						{
 							uint8_t *data = it->second.data;
-							
+
 							eit_extended_descriptor_struct *extended_event_descriptor = (eit_extended_descriptor_struct *) ((u_char *) data);
 							if ( (u_char)extended_event_descriptor->descriptor_tag == (u_char)EXTENDED_EVENT_DESCRIPTOR ) // extended event descriptor
 							{
