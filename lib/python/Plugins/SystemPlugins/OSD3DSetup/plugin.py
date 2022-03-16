@@ -322,10 +322,10 @@ class InfoAuto3D(Screen):
 
 
 def nz(value, nullvalue):
-   if value is None:
-   	return nullvalue
-   else:
-   	return value
+	if value is None:
+		return nullvalue
+	else:
+		return value
 
 
 def applySettings(mode, znorm):

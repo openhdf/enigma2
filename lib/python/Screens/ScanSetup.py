@@ -159,8 +159,8 @@ def GetDeviceId(filter, nim_idx):
 
 
 def GetTerrestrial5VEnable(nim_idx):
-       nim = nimmanager.nim_slots[nim_idx]
-       return int(nim.config.dvbt.terrestrial_5V.value)
+	nim = nimmanager.nim_slots[nim_idx]
+	return int(nim.config.dvbt.terrestrial_5V.value)
 
 
 class CableTransponderSearchSupport:
