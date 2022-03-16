@@ -22,7 +22,6 @@ IOC_DIRSHIFT = IOC_SIZESHIFT + IOC_SIZEBITS
 IOC_READ = 2
 
 
-
 def EVIOCGNAME(length):
 	return (IOC_READ << IOC_DIRSHIFT) | (length << IOC_SIZESHIFT) | (0x45 << IOC_TYPESHIFT) | (0x06 << IOC_NRSHIFT)
 
@@ -237,7 +236,6 @@ class RcTypeControl():
 		if self.isSupported:
 			rc = open('/proc/stb/ir/rc/type', 'r').read().strip()
 		return int(rc)
-
 
 
 iRcTypeControl = RcTypeControl()

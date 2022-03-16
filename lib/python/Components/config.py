@@ -2063,7 +2063,6 @@ class Config(ConfigSubsection):
 		self.unpickle(open(filename, "r", encoding='utf-8'), base_file)
 
 
-
 config = Config()
 config.misc = ConfigSubsection()
 

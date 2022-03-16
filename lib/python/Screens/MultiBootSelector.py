@@ -249,7 +249,7 @@ class QuickBootSelector(Screen):
 	def startImage(self, answer):
 		slot = self["config"].l.getCurrentSelection()[0][1][0]
 		mtdroot = SystemInfo["canMultiBoot"][slot]["device"]
-		COMMAND="""
+		COMMAND = """
 #!/bin/bash
 mkdir /tmp/quick
 mount %s /tmp/quick

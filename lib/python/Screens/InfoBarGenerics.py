@@ -636,7 +636,6 @@ class SecondInfoBar(Screen):
 			self.session.open(EPGSelection, refstr, None, _id)
 
 
-
 class InfoBarShowHide(InfoBarScreenSaver):
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
 	fancy animations. """
@@ -3728,7 +3727,6 @@ class InfoBarQuickMenu:
 
 	def bluekey_qm(self):
 		self.showExtensionSelection()
-
 
 
 class InfoBarInstantRecord:

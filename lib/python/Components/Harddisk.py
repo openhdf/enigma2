@@ -59,7 +59,6 @@ def isFileSystemSupported(filesystem):
 		print("[Harddisk] Failed to read /proc/filesystems:", ex)
 
 
-
 def findMountPoint(path):
 	"""Example: findMountPoint("/media/hdd/some/file") returns "/media/hdd\""""
 	path = os.path.abspath(path)

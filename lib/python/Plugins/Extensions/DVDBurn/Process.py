@@ -7,7 +7,6 @@ from .Project import iso639language
 import Tools.Notifications
 
 
-
 class png2yuvTask(Task):
 	def __init__(self, job, inputfile, outputfile):
 		Task.__init__(self, job, "Creating menu video")
@@ -25,7 +24,6 @@ class png2yuvTask(Task):
 		print("[png2yuvTask]", data[:-1])
 
 
-
 class mpeg2encTask(Task):
 	def __init__(self, job, inputfile, outputfile):
 		Task.__init__(self, job, "Encoding menu video")
@@ -40,7 +38,6 @@ class mpeg2encTask(Task):
 
 	def processOutputLine(self, line):
 		print("[mpeg2encTask]", line[:-1])
-
 
 
 class spumuxTask(Task):
@@ -60,7 +57,6 @@ class spumuxTask(Task):
 
 	def processStderr(self, data):
 		print("[spumuxTask]", data[:-1])
-
 
 
 class MakeFifoNode(Task):
@@ -261,7 +257,6 @@ class RemoveESFiles(Task):
 		self.args += [self.demux_task.cutfile]
 
 
-
 class DVDAuthorTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Authoring DVD")
@@ -283,7 +278,6 @@ class DVDAuthorTask(Task):
 					print("[DVDAuthorTask] update mplextask progress:", self.job.mplextask.progress, "of", self.job.mplextask.end)
 			except:
 				print("couldn't set mux progress")
-
 
 
 class DVDAuthorFinalTask(Task):
@@ -951,7 +945,6 @@ class DVDJob(Job):
 		RemoveWorkspaceFolder(self)
 
 
-
 class DVDdataJob(Job):
 	def __init__(self, project):
 		Job.__init__(self, "Data DVD Burn")
@@ -997,7 +990,6 @@ class DVDdataJob(Job):
 		burnargs += ["-publisher", "Dreambox", "-V", volName, "-follow-links", self.workspace]
 		BurnTask(self, burnargs, tool)
 		RemoveWorkspaceFolder(self)
-
 
 
 class DVDisoJob(Job):

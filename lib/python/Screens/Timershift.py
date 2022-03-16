@@ -16,7 +16,6 @@ from Components.SystemInfo import SystemInfo
 import six
 
 
-
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)

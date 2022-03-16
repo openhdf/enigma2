@@ -16,7 +16,6 @@ from sys import maxsize
 from six.moves import map
 
 
-
 def InitUsageConfig():
 	config.downloader = ConfigSubsection()
 	config.downloader.autoupdate = ConfigYesNo(default=True)
@@ -387,7 +386,6 @@ def InitUsageConfig():
 
 	config.usage.remote_fallback_enabled = ConfigYesNo(default=False)
 	config.usage.remote_fallback = ConfigText(default="http://192.168.123.123:8001", fixed_size=False)
-
 
 	choicelist = [("0", _("Disabled"))]
 	for i in (10, 50, 100, 500, 1000, 2000):
@@ -1704,7 +1702,6 @@ def updateChoices(sel, choices):
 					defval = str(x)
 					break
 		sel.setChoices(list(map(str, choices)), defval)
-
 
 
 def preferredPath(path):

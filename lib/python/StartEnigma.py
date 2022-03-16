@@ -94,6 +94,7 @@ config.misc.SyncTimeUsing = ConfigSelection(default="0", choices=[("0", "Transpo
 config.misc.NTPserver = ConfigText(default='pool.ntp.org', fixed_size=False)
 config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " + _("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 
+
 def setEPGCachePath(configElement):
 	enigma.eEPGCache.getInstance().setCacheFile(configElement.value)
 
@@ -119,7 +120,10 @@ def useSyncUsingChanged(configelement):
 		print("[StartEnigma] Time by NTP")
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
 		enigma.eEPGCache.getInstance().timeUpdated()
+
+
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged, immediate_feedback=True)
+
 
 def NTPserverChanged(configelement):
 	if config.misc.NTPserver.value == "pool.ntp.org":
@@ -132,6 +136,8 @@ def NTPserverChanged(configelement):
 	from Components.Console import Console
 	Console = Console()
 	Console.ePopen('/usr/bin/ntpdate-sync')
+
+
 config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback=True)
 
 profile("Twisted")
@@ -164,6 +170,7 @@ from Plugins.Plugin import PluginDescriptor
 
 profile("misc")
 had = dict()
+
 
 def dump(dir, p=""):
 	if isinstance(dir, dict):

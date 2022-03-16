@@ -8,6 +8,8 @@ import NavigationInstance
 # Fake eServiceEvent to fill Event_Now and Event_Next in Infobar for Streams
 #
 # from enigma import eServiceEvent
+
+
 class pServiceEvent(object):
 	NOW = 0
 	NEXT = 1
@@ -50,7 +52,6 @@ class pServiceEvent(object):
 			element6 = sTagLocation
 			self.m_ExtendedDescriptionNow += "\n\n" + element6
 
-
 	def getEventName(self):
 		return self.m_EventNameNow if self.now_or_next == self.NOW else self.m_EventNameNext
 
@@ -77,6 +78,7 @@ class pServiceEvent(object):
 
 	def getBeginTimeString(self):
 		return ""
+
 
 class EventInfo(PerServiceBase, Source):
 	NOW = 0

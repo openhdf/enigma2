@@ -11,6 +11,7 @@ class SimpleSummary(Screen):
 		</widget>
 		<widget source="parent.Title" render="Label" position="6,4" size="120,42" font="Regular;18" />
 	</screen>"""
+
 	def __init__(self, session, parent):
 
 		Screen.__init__(self, session, parent=parent)

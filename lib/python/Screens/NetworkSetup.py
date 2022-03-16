@@ -4299,12 +4299,13 @@ class NetworkSATPI(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
+
 class NetworkMinisatIP(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("MinisatIP Setup"))
 		self.skinName = "NetworkMinisatIP"
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
@@ -4324,13 +4325,13 @@ class NetworkMinisatIP(Screen):
 		self.checkMINISATIPService()
 
 	def checkMINISATIPService(self):
-		print('INSTALL CHECK STARTED',self.service_name)
+		print('INSTALL CHECK STARTED', self.service_name)
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
-		print('INSTALL CHECK FINISHED',str)
+		print('INSTALL CHECK FINISHED', str)
 		if not str:
-			self.feedscheck = self.session.open(MessageBox,_('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.feedscheck = self.session.open(MessageBox, _('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
 			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "opkg update"
 			self.CheckConsole = Console()
@@ -4339,7 +4340,7 @@ class NetworkMinisatIP(Screen):
 			print('INSTALL ALREADY INSTALLED')
 			self.updateService()
 
-	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+	def checkNetworkStateFinished(self, result, retval, extra_args=None):
 		result = six.ensure_str(result)
 		if (float(getVersionString()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(getVersionString()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -4360,11 +4361,11 @@ class NetworkMinisatIP(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Installing Service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
-	def installComplete(self,result = None, retval = None, extra_args = None):
+	def installComplete(self, result = None, retval = None, extra_args = None):
 		self.message.close()
 		self.feedscheck.close()
 		self.updateService()
@@ -4384,11 +4385,11 @@ class NetworkMinisatIP(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
 		self.message.setTitle(_('Removing Service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
-	def removeComplete(self,result = None, retval = None, extra_args = None):
+	def removeComplete(self, result = None, retval = None, extra_args = None):
 		self.message.close()
 		self.updateService()
 
@@ -4413,7 +4414,7 @@ class NetworkMinisatIP(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self,result = None, retval = None, extra_args = None):
+	def updateService(self, result = None, retval = None, extra_args = None):
 		import process
 		p = process.ProcessList()
 		satpi_process = str(p.named('minisatip')).strip('[]')
@@ -4433,18 +4434,19 @@ class NetworkMinisatIP(Screen):
 			self['labactive'].show()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
-			status_summary= self['lab2'].text + ' ' + self['labrun'].text
+			status_summary = self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labrun'].hide()
 			self['labstop'].show()
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
-			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+			status_summary = self['lab2'].text + ' ' + self['labstop'].text
 		title = _("MINISATIP Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
 
 class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session):

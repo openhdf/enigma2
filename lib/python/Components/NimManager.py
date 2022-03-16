@@ -1568,7 +1568,6 @@ class NimManager:
 		return _list
 
 
-
 def InitSecParams():
 	config.sec = ConfigSubsection()
 

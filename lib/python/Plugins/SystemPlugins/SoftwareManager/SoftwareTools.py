@@ -14,7 +14,6 @@ from boxbranding import getBoxType, getImageVersion
 import six
 
 
-
 class SoftwareTools(PackageInfoHandler):
 	lastDownloadDate = None
 	NetworkConnectionAvailable = None

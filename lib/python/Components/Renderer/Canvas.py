@@ -5,7 +5,6 @@ from enigma import eCanvas, eRect, gRGB
 from Components.Renderer.Renderer import Renderer
 
 
-
 class Canvas(Renderer):
 	GUI_WIDGET = eCanvas
 

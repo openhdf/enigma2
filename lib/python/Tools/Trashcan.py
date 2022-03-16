@@ -104,7 +104,6 @@ def clean(ctimeLimit, reserveBytes):
 		print("[Trashcan] Disabled skipping check.")
 
 
-
 def cleanAll(path=None):
 	trash = getTrashFolder(path)
 	if not os.path.isdir(trash):

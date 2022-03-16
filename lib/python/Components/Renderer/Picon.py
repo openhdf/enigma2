@@ -42,7 +42,6 @@ def onMountpointAdded(mountpoint):
 		print("[Picon] Failed to investigate %s:" % mountpoint, ex)
 
 
-
 def onMountpointRemoved(mountpoint):
 	global searchPaths
 	path = os.path.join(mountpoint, 'picon') + '/'

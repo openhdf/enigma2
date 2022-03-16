@@ -42,7 +42,6 @@ def onMountpointAdded(mountpoint):
 		print("[LcdPicon] Failed to investigate %s:" % mountpoint, ex)
 
 
-
 def onMountpointRemoved(mountpoint):
 	global searchPaths
 	if getBoxType() in ('vuultimo', 'et10000', 'mutant2400', 'xpeedlx3', 'quadbox2400', 'atemionemesis', 'dm7020hd', 'dm7080'):

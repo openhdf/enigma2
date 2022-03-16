@@ -302,7 +302,7 @@ class EventViewBase:
 		ret = epgcache.search(('NB', 100, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, id))
 		if ret is not None:
 			text = '\n\n' + _('Similar broadcasts:')
-			for x in sorted(ret, key=lambda x : x[1]):
+			for x in sorted(ret, key=lambda x: x[1]):
 				t = localtime(x[1])
 				text += strftime(("\n%Y/%m/%d  %H:%M - "), t) + x[0]
 			descr = self["epg_description"]

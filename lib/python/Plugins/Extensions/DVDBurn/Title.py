@@ -3,7 +3,6 @@ from Components.config import ConfigSubsection, ConfigSubList, ConfigInteger, Co
 from . import TitleCutter
 
 
-
 class ConfigFixedText(ConfigText):
 	def __init__(self, text, visible_width=60):
 		ConfigText.__init__(self, default=text, fixed_size=True, visible_width=visible_width)

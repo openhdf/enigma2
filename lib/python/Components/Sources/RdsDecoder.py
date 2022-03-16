@@ -5,7 +5,6 @@ from enigma import iPlayableService
 from Components.Sources.Source import Source
 
 
-
 class RdsDecoder(PerServiceBase, Source):
 	def __init__(self, navcore):
 		Source.__init__(self)

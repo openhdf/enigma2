@@ -181,7 +181,6 @@ for x in getHotkeys():
 	exec("config.misc.hotkey." + x[1] + " = ConfigText(default='" + x[2] + "')")
 
 
-
 def getHotkeyFunctions():
 	hotkeyFunctions = []
 	twinPlugins = []

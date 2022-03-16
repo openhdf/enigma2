@@ -18,7 +18,6 @@ import xml.etree.cElementTree
 import six
 
 
-
 def setupdom(plugin=None):
 	# read the setupmenu
 	if plugin:

@@ -6,7 +6,6 @@ from time import time as getTime
 from Components.Sources.Source import Source
 
 
-
 class Clock(Source):
 	def __init__(self):
 		Source.__init__(self)

@@ -12,6 +12,7 @@ from Tools.Directories import fileReadLine, fileReadLines
 
 MODULE_NAME = __name__.split(".")[-1]
 
+
 def getVersionString():
 	return getImageVersion()
 
@@ -166,7 +167,6 @@ def _ifinfo(sock, addr, ifname):
 		return inet_ntoa(info[20:24])
 
 
-
 def getIfConfig(ifname):
 	ifreq = {"ifname": ifname}
 	infos = {}
@@ -241,6 +241,7 @@ def getBoxUptime():
 	times.append(ngettext("%d hour", "%d hours", h) % h)
 	times.append(ngettext("%d minute", "%d minutes", m) % m)
 	return " ".join(times)
+
 
 # For modules that do "from About import about"
 about = modules[__name__]

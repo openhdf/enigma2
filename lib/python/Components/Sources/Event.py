@@ -2,7 +2,6 @@ from __future__ import absolute_import
 from Components.Sources.Source import Source
 
 
-
 class Event(Source):
 	def __init__(self):
 		Source.__init__(self)

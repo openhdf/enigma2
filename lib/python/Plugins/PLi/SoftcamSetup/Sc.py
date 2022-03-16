@@ -12,7 +12,6 @@ from enigma import eTimer
 from .camcontrol import CamControl
 
 
-
 class ConfigAction(ConfigElement):
 	def __init__(self, action, *args):
 		ConfigElement.__init__(self)

@@ -13,7 +13,6 @@ from Components.ActionMap import ActionMap
 from Tools.Directories import fileExists
 
 
-
 class SABnzbdSetupScreen(Screen):
 	skin = """
 		<screen position="center,center" size="560,310" title="Samba Setup">

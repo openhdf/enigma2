@@ -13,7 +13,6 @@ import six
 from six.moves import map
 
 
-
 class Network:
 	def __init__(self):
 		self.ifaces = {}

@@ -366,5 +366,4 @@ class VideoEnhancement:
 			print("couldn't apply pep values.")
 
 
-
 VideoEnhancement()

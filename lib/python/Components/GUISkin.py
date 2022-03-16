@@ -6,7 +6,6 @@ from Tools.CList import CList
 from Components.Sources.StaticText import StaticText
 
 
-
 class GUISkin:
 	__module__ = __name__
 
