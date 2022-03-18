@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: http://sat-ukraine.info/\n"
@@ -205,13 +205,7 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-msgid "  Menu key : Select quad channel"
-msgstr ""
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #
@@ -230,9 +224,6 @@ msgid " (Radio)"
 msgstr ""
 
 msgid " (TV)"
-msgstr ""
-
-msgid " (current channel)"
 msgstr ""
 
 #
@@ -261,11 +252,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "S-Відео"
-
-#
-#, fuzzy
-msgid " <empty>"
-msgstr "відсутній"
 
 #, python-format
 msgid " Except %s"
@@ -1226,11 +1212,6 @@ msgid "<Last timer location>"
 msgstr ""
 
 #
-#, fuzzy
-msgid "<No Channel>"
-msgstr "Канал"
-
-#
 msgid "<unknown>"
 msgstr "<невідомий>"
 
@@ -1567,9 +1548,6 @@ msgid "Add"
 msgstr "Додати"
 
 msgid "Add AutoTimer"
-msgstr ""
-
-msgid "Add New Quad Channel Entry"
 msgstr ""
 
 msgid "Add Timer"
@@ -2675,9 +2653,6 @@ msgstr ""
 msgid "Bouvet Island"
 msgstr ""
 
-msgid "Box or driver is not support Quad PiP."
-msgstr ""
-
 msgid "Brazil"
 msgstr ""
 
@@ -3354,10 +3329,6 @@ msgstr ""
 msgid "Choice Box"
 msgstr ""
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3693,6 +3664,9 @@ msgid "Configure if and how wide columns will be shown in the channel selection 
 msgstr ""
 
 msgid "Configure if epg.dat should be saved at all."
+msgstr ""
+
+msgid "Configure if service picons will be shown in quickzap."
 msgstr ""
 
 msgid "Configure if service picons will be shown in the servicelist."
@@ -5415,20 +5389,6 @@ msgstr "Вибір таймера"
 msgid "EPG filename"
 msgstr ""
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 msgid "EPG language selection 1"
 msgstr ""
 
@@ -5453,9 +5413,6 @@ msgstr "Схід"
 msgid "East limit set"
 msgstr ""
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr ""
 
@@ -5465,9 +5422,6 @@ msgstr ""
 #
 msgid "Edit"
 msgstr "Редагувати"
-
-msgid "Edit Quad Channel Entry"
-msgstr ""
 
 #
 #, fuzzy
@@ -5594,11 +5548,6 @@ msgstr ""
 msgid "Enable OpenTV EPG"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Enable Quad PIP"
-msgstr "Ввімкнено"
-
 msgid "Enable Swap at startup"
 msgstr ""
 
@@ -5678,8 +5627,10 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Відображати фаворитні списки"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "Вимкнуто"
 
 msgid "Enable panic button"
 msgstr ""
@@ -6034,11 +5985,6 @@ msgid "Exit MAC-address configuration"
 msgstr "вийти з конфігурації DNS"
 
 #
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "Вибір каналу"
-
-#
 msgid "Exit editor"
 msgstr "Вийти з редактора"
 
@@ -6084,9 +6030,6 @@ msgstr "вийти з списку мережевих інтерфейсів"
 msgid "Exit network wizard"
 msgstr ""
 
-msgid "Exit quad PiP"
-msgstr ""
-
 #
 msgid "Exit the wizard"
 msgstr "Вихід з помічника"
@@ -6111,9 +6054,6 @@ msgstr "Експерт"
 #, fuzzy
 msgid "Expert mode"
 msgstr "Експерт"
-
-msgid "Ext. NumberZap"
-msgstr ""
 
 #
 #, fuzzy
@@ -7813,9 +7753,6 @@ msgstr "Вхід"
 msgid "Input Stream ID"
 msgstr ""
 
-msgid "Input channel name."
-msgstr ""
-
 msgid "Input config file name:"
 msgstr ""
 
@@ -9500,9 +9437,6 @@ msgstr ""
 #, fuzzy
 msgid "Next long"
 msgstr "колір тексту"
-
-msgid "Next quad PiP channel"
-msgstr ""
 
 msgid "Nicaragua"
 msgstr ""
@@ -11336,9 +11270,6 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Встановити інтерфейс як Інтерфейс за замовчуванням"
 
-msgid "Prev quad PiP channel"
-msgstr ""
-
 #
 msgid "Preview"
 msgstr ""
@@ -11524,29 +11455,6 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Quad PiP Channel Selection"
-msgstr "Вибір каналу"
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Quad PiP channel "
-msgstr "%d каналів знайдено!"
-
-#
-#, fuzzy
-msgid "Quad PiP is not available."
-msgstr " доступні оновлення."
-
-#
-#, fuzzy
-msgid "Quad Picture in Picture"
-msgstr "Перемістити PiP"
-
-#
-#, fuzzy
 msgid "Question"
 msgstr "Роздільча здатність"
 
@@ -11677,12 +11585,12 @@ msgid "Really close without saving settings?"
 msgstr "Вийти без збереження налаштувань?"
 
 #
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "Видалити виконане завдання?"
 
 #
-#, fuzzy
-msgid "Really delete this entry?"
+msgid "Really delete done timers?"
 msgstr "Видалити виконане завдання?"
 
 #
@@ -11953,11 +11861,6 @@ msgstr "Конфігурація тюнера"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "Видалення додатків"
-
-#
-#, fuzzy
-msgid "Remove Quad Channel Entry"
-msgstr "видалити DNS запис"
 
 msgid "Remove Service"
 msgstr ""
@@ -12390,9 +12293,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SHOUTcast"
 msgstr ""
 
 msgid "SID"
@@ -12849,9 +12749,6 @@ msgstr ""
 msgid "Select Location"
 msgstr "Вибрати місце розташування"
 
-msgid "Select Quad Channels"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Select Softcam"
@@ -12898,11 +12795,6 @@ msgstr "Файли для копіювання"
 #, fuzzy
 msgid "Select backup location"
 msgstr "Розташування копій"
-
-#
-#, fuzzy
-msgid "Select channel audio"
-msgstr "Виберіть канал для запису з"
 
 #
 msgid "Select channel to record from"
@@ -14044,11 +13936,6 @@ msgstr "інформація транспондера"
 msgid "Show channel numbers in channel selection"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Show channel selection"
-msgstr "Вибір каналу"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -14188,6 +14075,11 @@ msgstr ""
 #
 #, fuzzy
 msgid "Show picon background colour"
+msgstr "колір фону"
+
+#
+#, fuzzy
+msgid "Show picons in quickzap"
 msgstr "колір фону"
 
 #
@@ -14363,9 +14255,6 @@ msgid "Show warning when timeshift is stopped"
 msgstr "Дія коли фільм закінчився"
 
 msgid "Show weblinks module packages"
-msgstr ""
-
-msgid "Show/Hide focus bar"
 msgstr ""
 
 msgid "Shows live tv or informations on LCD."
@@ -16580,16 +16469,6 @@ msgstr "Вибір таймера"
 msgid "Timer type"
 msgstr "Тип Таймера"
 
-#
-#, fuzzy
-msgid "Timer+"
-msgstr "Час"
-
-#
-#, fuzzy
-msgid "Timerlist"
-msgstr "Редагування Таймера"
-
 msgid "Timers"
 msgstr ""
 
@@ -17979,9 +17858,6 @@ msgstr ""
 msgid "Volume:"
 msgstr ""
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 #
 msgid "W"
 msgstr "W"
@@ -18564,12 +18440,14 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete Timer and delete recording"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Yes, delete from Timerlist"
+msgstr "Видалити виконане завдання?"
+
+#
+#, fuzzy
+msgid "Yes, delete from Timerlist and delete recording"
 msgstr "Видалити виконане завдання?"
 
 #
@@ -18950,9 +18828,6 @@ msgid "Zap focus to Picture in Picture"
 msgstr ""
 
 msgid "Zap focus to main screen"
-msgstr ""
-
-msgid "Zap focused channel on full screen"
 msgstr ""
 
 msgid "Zap mode"
@@ -20884,9 +20759,6 @@ msgstr ""
 msgid "working"
 msgstr "працює"
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 #
 msgid "yellow"
 msgstr "жовтий"
@@ -20920,9 +20792,6 @@ msgstr "Переключений"
 #, fuzzy
 msgid "zapping"
 msgstr "Переключений"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -199,13 +199,7 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-msgid "  Menu key : Select quad channel"
-msgstr ""
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #, fuzzy, python-format
@@ -224,10 +218,6 @@ msgstr " (Raadio)"
 
 msgid " (TV)"
 msgstr " (TV)"
-
-#, fuzzy
-msgid " (current channel)"
-msgstr "Näita kanali saatekava..."
 
 #, fuzzy
 msgid " (disabled)"
@@ -252,10 +242,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "S-video (Y/C)"
-
-#, fuzzy
-msgid " <empty>"
-msgstr "tühi"
 
 #, python-format
 msgid " Except %s"
@@ -1174,10 +1160,6 @@ msgstr "<Salvestuste tavaasukoht >"
 msgid "<Last timer location>"
 msgstr "<Viimase taimeri asukoht>"
 
-#, fuzzy
-msgid "<No Channel>"
-msgstr "Kanal"
-
 msgid "<unknown>"
 msgstr "<tundmatu>"
 
@@ -1492,9 +1474,6 @@ msgstr "Lisa"
 
 msgid "Add AutoTimer"
 msgstr "Lisa autotaimer"
-
-msgid "Add New Quad Channel Entry"
-msgstr ""
 
 msgid "Add Timer"
 msgstr "Lisa taimer"
@@ -2505,10 +2484,6 @@ msgstr "Lemmiknimekirjad"
 msgid "Bouvet Island"
 msgstr ""
 
-#, fuzzy
-msgid "Box or driver is not support Quad PiP."
-msgstr "tuuner pole toetatud"
-
 msgid "Brazil"
 msgstr ""
 
@@ -3140,10 +3115,6 @@ msgstr "Kiibistik: BCM%s"
 msgid "Choice Box"
 msgstr ""
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3460,6 +3431,10 @@ msgstr "Määra, kas kanalinimekirjas näidatakse kanalilogosi."
 
 msgid "Configure if epg.dat should be saved at all."
 msgstr ""
+
+#, fuzzy
+msgid "Configure if service picons will be shown in quickzap."
+msgstr "Määra, kas kanalinimekirjas näidatakse kanalilogosi."
 
 #, fuzzy
 msgid "Configure if service picons will be shown in the servicelist."
@@ -5012,20 +4987,6 @@ msgstr "EPG faili asukoht"
 msgid "EPG filename"
 msgstr "EPG faili nimi"
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 msgid "EPG language selection 1"
 msgstr "EPG keelevalik 1"
 
@@ -5048,9 +5009,6 @@ msgstr "Ida"
 msgid "East limit set"
 msgstr "Ida piir on määratud"
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr "Ecm:"
 
@@ -5059,9 +5017,6 @@ msgstr ""
 
 msgid "Edit"
 msgstr "Muuda"
-
-msgid "Edit Quad Channel Entry"
-msgstr ""
 
 #, fuzzy
 msgid "Edit Title"
@@ -5175,10 +5130,6 @@ msgid "Enable OpenTV EPG"
 msgstr "Luba EIT EPG"
 
 #, fuzzy
-msgid "Enable Quad PIP"
-msgstr "Kasutusel"
-
-#, fuzzy
 msgid "Enable Swap at startup"
 msgstr "Luba automaatne kiirotsing"
 
@@ -5261,8 +5212,9 @@ msgstr "Luba automaatne kiirotsing"
 msgid "Enable multiple bouquets"
 msgstr "Luba lemmiknimekirjad"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "Keelatud"
 
 msgid "Enable panic button"
 msgstr "Luba paanika nupp"
@@ -5596,10 +5548,6 @@ msgstr "Välju nimeserverite seadistusest"
 msgid "Exit MAC-address configuration"
 msgstr "Välju MAC-aadressi seadistustest"
 
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "Kanalivalik"
-
 msgid "Exit editor"
 msgstr "Välju redaktorist"
 
@@ -5631,9 +5579,6 @@ msgstr "Välju võrguliideste nimekirjast"
 msgid "Exit network wizard"
 msgstr "Välju võrgu häälestusest"
 
-msgid "Exit quad PiP"
-msgstr ""
-
 msgid "Exit the wizard"
 msgstr "Välju juhendatud seadistusabist"
 
@@ -5657,10 +5602,6 @@ msgstr "Täpsem"
 #, fuzzy
 msgid "Expert mode"
 msgstr "Täpsem"
-
-#, fuzzy
-msgid "Ext. NumberZap"
-msgstr "Number"
 
 #, fuzzy
 msgid "Extend"
@@ -7251,10 +7192,6 @@ msgid "Input Stream ID"
 msgstr ""
 
 #, fuzzy
-msgid "Input channel name."
-msgstr "Kasuta kiirotsingu kanalinimesi"
-
-#, fuzzy
 msgid "Input config file name:"
 msgstr "Pikad failinimed"
 
@@ -8723,9 +8660,6 @@ msgstr "Järgmine"
 #, fuzzy
 msgid "Next long"
 msgstr "PUNANE pikk"
-
-msgid "Next quad PiP channel"
-msgstr ""
 
 msgid "Nicaragua"
 msgstr ""
@@ -10379,9 +10313,6 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Selle liidese vaikimisi liideseks määramiseks vajuta kollast nuppu."
 
-msgid "Prev quad PiP channel"
-msgstr ""
-
 msgid "Preview"
 msgstr "Eelvaade"
 
@@ -10549,25 +10480,6 @@ msgid "Qatar"
 msgstr ""
 
 #, fuzzy
-msgid "Quad PiP Channel Selection"
-msgstr "Kanalivalik"
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-#, fuzzy
-msgid "Quad PiP channel "
-msgstr "%d kanal leitud"
-
-#, fuzzy
-msgid "Quad PiP is not available."
-msgstr "Uuenduslink pole saadaval."
-
-#, fuzzy
-msgid "Quad Picture in Picture"
-msgstr "Liiguta PIP-pilt"
-
-#, fuzzy
 msgid "Question"
 msgstr "Ekraanilahutus"
 
@@ -10684,11 +10596,11 @@ msgstr "Kas taaskäivitad vastuvõtja?"
 msgid "Really close without saving settings?"
 msgstr "Kas väljud seadeid salvestamata?"
 
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "Kas kustutad aegunud taimerid?"
 
-#, fuzzy
-msgid "Really delete this entry?"
+msgid "Really delete done timers?"
 msgstr "Kas kustutad aegunud taimerid?"
 
 msgid "Really exit the subservices quickzap?"
@@ -10927,10 +10839,6 @@ msgstr "Kustutamise kinnitus"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "Eemalda laiendusi"
-
-#, fuzzy
-msgid "Remove Quad Channel Entry"
-msgstr "Kustuta nimeserver"
 
 msgid "Remove Service"
 msgstr "Eemalda teenus"
@@ -11300,9 +11208,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SHOUTcast"
 msgstr ""
 
 msgid "SID"
@@ -11701,9 +11606,6 @@ msgstr ""
 msgid "Select Location"
 msgstr "Vali asukoht"
 
-msgid "Select Quad Channels"
-msgstr ""
-
 #, fuzzy
 msgid "Select Softcam"
 msgstr "Vali asukoht"
@@ -11738,10 +11640,6 @@ msgstr "Vali failid"
 
 msgid "Select backup location"
 msgstr "Varukoopia asukoht"
-
-#, fuzzy
-msgid "Select channel audio"
-msgstr "Vali kanal, millelt salvestada"
 
 msgid "Select channel to record from"
 msgstr "Vali kanal, millelt salvestada"
@@ -12795,10 +12693,6 @@ msgstr "Näita inforibal kanalinumbreid"
 msgid "Show channel numbers in channel selection"
 msgstr "Näita lemmiknimekirjas kanalinumbreid"
 
-#, fuzzy
-msgid "Show channel selection"
-msgstr "Kanalivalik"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -12924,6 +12818,10 @@ msgstr "Näita või varja täpsemat saatetutvustust (sõltub teemast)."
 #, fuzzy
 msgid "Show picon background colour"
 msgstr "Kanalilogo tausta värv"
+
+#, fuzzy
+msgid "Show picons in quickzap"
+msgstr "Näita tõlkefaile"
 
 #, fuzzy
 msgid "Show picons in service list"
@@ -13089,9 +12987,6 @@ msgstr "Näita ajanihke lõppedes hoiatust"
 #, fuzzy
 msgid "Show weblinks module packages"
 msgstr "Näita lähtefaile (source)"
-
-msgid "Show/Hide focus bar"
-msgstr ""
 
 msgid "Shows live tv or informations on LCD."
 msgstr ""
@@ -15162,14 +15057,6 @@ msgstr "Taimeri valik..."
 msgid "Timer type"
 msgstr "Taimeri tüüp"
 
-#, fuzzy
-msgid "Timer+"
-msgstr "Taimerid"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Taimerid"
-
 msgid "Timers"
 msgstr "Taimerid"
 
@@ -16445,9 +16332,6 @@ msgstr "SININE pikk"
 msgid "Volume:"
 msgstr ""
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 msgid "W"
 msgstr "W"
 
@@ -17005,12 +16889,12 @@ msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Jah, kuid salvesta ajanihe filmina ja lõpeta salvestamine"
 
 #, fuzzy
-msgid "Yes, delete Timer and delete recording"
-msgstr "Jah, kuid salvesta ajanihe filmina ja lõpeta salvestamine"
-
-#, fuzzy
 msgid "Yes, delete from Timerlist"
 msgstr "Kas kustutad aegunud taimerid?"
+
+#, fuzzy
+msgid "Yes, delete from Timerlist and delete recording"
+msgstr "Jah, kuid salvesta ajanihe filmina ja lõpeta salvestamine"
 
 #, fuzzy
 msgid "Yes, delete this movie and return to movie list"
@@ -17408,10 +17292,6 @@ msgid "Zap focus to Picture in Picture"
 msgstr "Kanalivahetus PiP kanalil"
 
 msgid "Zap focus to main screen"
-msgstr "Fookus peaekraanile"
-
-#, fuzzy
-msgid "Zap focused channel on full screen"
 msgstr "Fookus peaekraanile"
 
 msgid "Zap mode"
@@ -19131,9 +19011,6 @@ msgstr "Hüpikaknata"
 msgid "working"
 msgstr "töös"
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 msgid "yellow"
 msgstr "kollane"
 
@@ -19159,9 +19036,6 @@ msgstr "vahetatud"
 #, fuzzy
 msgid "zapping"
 msgstr "vahetatud"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""

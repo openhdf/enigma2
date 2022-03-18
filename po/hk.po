@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -197,13 +197,7 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-msgid "  Menu key : Select quad channel"
-msgstr ""
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #, fuzzy, python-format
@@ -222,10 +216,6 @@ msgstr ""
 
 msgid " (TV)"
 msgstr ""
-
-#, fuzzy
-msgid " (current channel)"
-msgstr "下一個頻道"
 
 #, fuzzy
 msgid " (disabled)"
@@ -250,10 +240,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "HD 視頻"
-
-#, fuzzy
-msgid " <empty>"
-msgstr "空的"
 
 #, python-format
 msgid " Except %s"
@@ -1160,10 +1146,6 @@ msgstr "<預設錄影位置>"
 msgid "<Last timer location>"
 msgstr "<最近一次定時錄影位置>"
 
-#, fuzzy
-msgid "<No Channel>"
-msgstr "頻道"
-
 msgid "<unknown>"
 msgstr "<未知>"
 
@@ -1481,9 +1463,6 @@ msgstr "添加"
 #, fuzzy
 msgid "Add AutoTimer"
 msgstr "添加新的自動計時器"
-
-msgid "Add New Quad Channel Entry"
-msgstr ""
 
 #, fuzzy
 msgid "Add Timer"
@@ -2504,9 +2483,6 @@ msgstr "自定義組"
 msgid "Bouvet Island"
 msgstr ""
 
-msgid "Box or driver is not support Quad PiP."
-msgstr ""
-
 msgid "Brazil"
 msgstr "巴西"
 
@@ -3170,10 +3146,6 @@ msgstr ""
 msgid "Choice Box"
 msgstr ""
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3474,6 +3446,9 @@ msgid "Configure if and how wide columns will be shown in the channel selection 
 msgstr ""
 
 msgid "Configure if epg.dat should be saved at all."
+msgstr ""
+
+msgid "Configure if service picons will be shown in quickzap."
 msgstr ""
 
 msgid "Configure if service picons will be shown in the servicelist."
@@ -5020,20 +4995,6 @@ msgstr "EPG 選擇"
 msgid "EPG filename"
 msgstr "檔案名"
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 msgid "EPG language selection 1"
 msgstr ""
 
@@ -5057,9 +5018,6 @@ msgstr "東方"
 msgid "East limit set"
 msgstr ""
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr ""
 
@@ -5068,10 +5026,6 @@ msgstr ""
 
 msgid "Edit"
 msgstr "修改"
-
-#, fuzzy
-msgid "Edit Quad Channel Entry"
-msgstr "編輯專案"
 
 #, fuzzy
 msgid "Edit Title"
@@ -5185,10 +5139,6 @@ msgstr ""
 msgid "Enable OpenTV EPG"
 msgstr ""
 
-#, fuzzy
-msgid "Enable Quad PIP"
-msgstr "啟用的"
-
 msgid "Enable Swap at startup"
 msgstr ""
 
@@ -5270,8 +5220,9 @@ msgstr "不能創建symlink!"
 msgid "Enable multiple bouquets"
 msgstr "啟用自定義組"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "禁用"
 
 #, fuzzy
 msgid "Enable panic button"
@@ -5601,10 +5552,6 @@ msgstr "退出 DNS 配置"
 msgid "Exit MAC-address configuration"
 msgstr "退出 DNS 配置"
 
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "頻道選擇"
-
 msgid "Exit editor"
 msgstr "退出編輯"
 
@@ -5636,9 +5583,6 @@ msgstr ""
 msgid "Exit network wizard"
 msgstr "退出網路設定嚮導"
 
-msgid "Exit quad PiP"
-msgstr ""
-
 msgid "Exit the wizard"
 msgstr "退出嚮導"
 
@@ -5661,9 +5605,6 @@ msgstr "高級"
 #, fuzzy
 msgid "Expert mode"
 msgstr "高級"
-
-msgid "Ext. NumberZap"
-msgstr ""
 
 #, fuzzy
 msgid "Extend"
@@ -7241,10 +7182,6 @@ msgstr "輸入 1"
 msgid "Input Stream ID"
 msgstr ""
 
-#, fuzzy
-msgid "Input channel name."
-msgstr "下一個頻道"
-
 msgid "Input config file name:"
 msgstr ""
 
@@ -8767,10 +8704,6 @@ msgstr ""
 #, fuzzy
 msgid "Next long"
 msgstr "下一個"
-
-#, fuzzy
-msgid "Next quad PiP channel"
-msgstr "下一個頻道"
 
 msgid "Nicaragua"
 msgstr ""
@@ -10430,10 +10363,6 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr "按黃鍵來設定此介面為預設."
 
-#, fuzzy
-msgid "Prev quad PiP channel"
-msgstr "上一個頻道"
-
 msgid "Preview"
 msgstr "預覽"
 
@@ -10602,24 +10531,6 @@ msgstr "分區"
 msgid "Qatar"
 msgstr ""
 
-#, fuzzy
-msgid "Quad PiP Channel Selection"
-msgstr "頻道選擇"
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-msgid "Quad PiP channel "
-msgstr ""
-
-#, fuzzy
-msgid "Quad PiP is not available."
-msgstr "抱歉, 視頻不可用!"
-
-#, fuzzy
-msgid "Quad Picture in Picture"
-msgstr "移動畫中畫"
-
 msgid "Question"
 msgstr ""
 
@@ -10739,11 +10650,11 @@ msgstr "立即重啟(Reboot)?"
 msgid "Really close without saving settings?"
 msgstr "關閉而不保存設定?"
 
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "確實要刪除計時器?"
 
-#, fuzzy
-msgid "Really delete this entry?"
+msgid "Really delete done timers?"
 msgstr "確實要刪除計時器?"
 
 msgid "Really exit the subservices quickzap?"
@@ -10979,10 +10890,6 @@ msgstr "Gemini 配置"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "移除插件"
-
-#, fuzzy
-msgid "Remove Quad Channel Entry"
-msgstr "移除DNS項目"
 
 #, fuzzy
 msgid "Remove Service"
@@ -11353,9 +11260,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SHOUTcast"
 msgstr ""
 
 msgid "SID"
@@ -11760,10 +11664,6 @@ msgid "Select Location"
 msgstr "選擇位置"
 
 #, fuzzy
-msgid "Select Quad Channels"
-msgstr "選擇Softcam:"
-
-#, fuzzy
 msgid "Select Softcam"
 msgstr "選擇位置"
 
@@ -11797,10 +11697,6 @@ msgstr ""
 
 msgid "Select backup location"
 msgstr ""
-
-#, fuzzy
-msgid "Select channel audio"
-msgstr "選擇要錄製的頻道"
 
 msgid "Select channel to record from"
 msgstr "選擇要記錄的頻道"
@@ -12865,10 +12761,6 @@ msgstr ""
 msgid "Show channel numbers in channel selection"
 msgstr ""
 
-#, fuzzy
-msgid "Show channel selection"
-msgstr "頻道選擇"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -12994,6 +12886,10 @@ msgstr "隱藏說明"
 #, fuzzy
 msgid "Show picon background colour"
 msgstr "背景顏色"
+
+#, fuzzy
+msgid "Show picons in quickzap"
+msgstr "檢視圖示"
 
 #, fuzzy
 msgid "Show picons in service list"
@@ -13161,9 +13057,6 @@ msgid "Show warning when timeshift is stopped"
 msgstr ""
 
 msgid "Show weblinks module packages"
-msgstr ""
-
-msgid "Show/Hide focus bar"
 msgstr ""
 
 msgid "Shows live tv or informations on LCD."
@@ -15182,14 +15075,6 @@ msgid "Timer type"
 msgstr "定時類型"
 
 #, fuzzy
-msgid "Timer+"
-msgstr "計時器"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "計時器編輯"
-
-#, fuzzy
 msgid "Timers"
 msgstr "計時器"
 
@@ -16477,9 +16362,6 @@ msgstr ""
 msgid "Volume:"
 msgstr "音量"
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 msgid "W"
 msgstr "W"
 
@@ -17011,11 +16893,12 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete Timer and delete recording"
-msgstr ""
-
 #, fuzzy
 msgid "Yes, delete from Timerlist"
+msgstr "確實要刪除計時器?"
+
+#, fuzzy
+msgid "Yes, delete from Timerlist and delete recording"
 msgstr "確實要刪除計時器?"
 
 #, fuzzy
@@ -17391,9 +17274,6 @@ msgid "Zap focus to Picture in Picture"
 msgstr ""
 
 msgid "Zap focus to main screen"
-msgstr ""
-
-msgid "Zap focused channel on full screen"
 msgstr ""
 
 msgid "Zap mode"
@@ -19128,9 +19008,6 @@ msgstr ""
 msgid "working"
 msgstr ""
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 msgid "yellow"
 msgstr "黃色"
 
@@ -19156,9 +19033,6 @@ msgstr "轉自"
 #, fuzzy
 msgid "zapping"
 msgstr "轉自"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""

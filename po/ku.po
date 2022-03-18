@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -204,13 +204,7 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-msgid "  Menu key : Select quad channel"
-msgstr ""
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #, fuzzy, python-format
@@ -229,10 +223,6 @@ msgstr " (Radio)"
 
 msgid " (TV)"
 msgstr " (TV)"
-
-#, fuzzy
-msgid " (current channel)"
-msgstr "Show EPG for current channel..."
 
 #, fuzzy
 msgid " (disabled)"
@@ -257,10 +247,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "S-Video"
-
-#, fuzzy
-msgid " <empty>"
-msgstr "empty"
 
 #, python-format
 msgid " Except %s"
@@ -1184,10 +1170,6 @@ msgstr "<Default Nava Filma>"
 msgid "<Last timer location>"
 msgstr "<Last timer location>"
 
-#, fuzzy
-msgid "<No Channel>"
-msgstr "Qanal"
-
 msgid "<unknown>"
 msgstr "<unknown>"
 
@@ -1510,9 +1492,6 @@ msgstr "Çéki lé giréde"
 #, fuzzy
 msgid "Add AutoTimer"
 msgstr "Add timer"
-
-msgid "Add New Quad Channel Entry"
-msgstr ""
 
 #, fuzzy
 msgid "Add Timer"
@@ -2559,10 +2538,6 @@ msgstr "[bouquet edit]"
 msgid "Bouvet Island"
 msgstr ""
 
-#, fuzzy
-msgid "Box or driver is not support Quad PiP."
-msgstr "tuner is not supported"
-
 msgid "Brazil"
 msgstr ""
 
@@ -3214,10 +3189,6 @@ msgstr ""
 msgid "Choice Box"
 msgstr ""
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3540,6 +3511,10 @@ msgstr "Configures which video output connector will be used."
 
 msgid "Configure if epg.dat should be saved at all."
 msgstr ""
+
+#, fuzzy
+msgid "Configure if service picons will be shown in quickzap."
+msgstr "Configures which video output connector will be used."
 
 #, fuzzy
 msgid "Configure if service picons will be shown in the servicelist."
@@ -5137,20 +5112,6 @@ msgstr "EPG selection"
 msgid "EPG filename"
 msgstr "filename"
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 msgid "EPG language selection 1"
 msgstr "EPG ziman 1"
 
@@ -5174,9 +5135,6 @@ msgstr "East"
 msgid "East limit set"
 msgstr "East limit set"
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr ""
 
@@ -5185,9 +5143,6 @@ msgstr ""
 
 msgid "Edit"
 msgstr "Edit"
-
-msgid "Edit Quad Channel Entry"
-msgstr ""
 
 #, fuzzy
 msgid "Edit Title"
@@ -5301,10 +5256,6 @@ msgid "Enable OpenTV EPG"
 msgstr "Enable EIT EPG"
 
 #, fuzzy
-msgid "Enable Quad PIP"
-msgstr "Enabled"
-
-#, fuzzy
 msgid "Enable Swap at startup"
 msgstr "Qanal Liste "
 
@@ -5387,8 +5338,9 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Enable multiple bouquets"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "Disabled"
 
 #, fuzzy
 msgid "Enable panic button"
@@ -5724,10 +5676,6 @@ msgstr "Exit nameserver configuration"
 msgid "Exit MAC-address configuration"
 msgstr "Exit nameserver configuration"
 
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "Channel selection"
-
 msgid "Exit editor"
 msgstr "Exit editor"
 
@@ -5760,9 +5708,6 @@ msgstr "Exit network interface list"
 msgid "Exit network wizard"
 msgstr "Exit network wizard"
 
-msgid "Exit quad PiP"
-msgstr ""
-
 msgid "Exit the wizard"
 msgstr "Exit the wizard"
 
@@ -5785,9 +5730,6 @@ msgstr "Expert"
 #, fuzzy
 msgid "Expert mode"
 msgstr "Expert"
-
-msgid "Ext. NumberZap"
-msgstr ""
 
 #, fuzzy
 msgid "Extend"
@@ -7380,10 +7322,6 @@ msgid "Input Stream ID"
 msgstr ""
 
 #, fuzzy
-msgid "Input channel name."
-msgstr "Use fastscan channel names"
-
-#, fuzzy
 msgid "Input config file name:"
 msgstr "Long filenames"
 
@@ -8903,9 +8841,6 @@ msgstr "Next"
 #, fuzzy
 msgid "Next long"
 msgstr "Text color"
-
-msgid "Next quad PiP channel"
-msgstr ""
 
 msgid "Nicaragua"
 msgstr ""
@@ -10589,9 +10524,6 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Press yellow to set this interface as default interface."
 
-msgid "Prev quad PiP channel"
-msgstr ""
-
 msgid "Preview"
 msgstr "Preview"
 
@@ -10764,25 +10696,6 @@ msgid "Qatar"
 msgstr ""
 
 #, fuzzy
-msgid "Quad PiP Channel Selection"
-msgstr "Channel selection"
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-#, fuzzy
-msgid "Quad PiP channel "
-msgstr "%d services found!"
-
-#, fuzzy
-msgid "Quad PiP is not available."
-msgstr "Updatefeed not available."
-
-#, fuzzy
-msgid "Quad Picture in Picture"
-msgstr "Move Picture in Picture"
-
-#, fuzzy
 msgid "Question"
 msgstr "Resolution"
 
@@ -10899,11 +10812,11 @@ msgstr "Really reboot now?"
 msgid "Really close without saving settings?"
 msgstr "Really close without saving settings?"
 
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "Really delete done timers?"
 
-#, fuzzy
-msgid "Really delete this entry?"
+msgid "Really delete done timers?"
 msgstr "Really delete done timers?"
 
 msgid "Really exit the subservices quickzap?"
@@ -11150,10 +11063,6 @@ msgstr "Movie list configuration"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "Remove plugins"
-
-#, fuzzy
-msgid "Remove Quad Channel Entry"
-msgstr "Remove a nameserver entry"
 
 #, fuzzy
 msgid "Remove Service"
@@ -11529,9 +11438,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SHOUTcast"
 msgstr ""
 
 msgid "SID"
@@ -11939,9 +11845,6 @@ msgstr ""
 msgid "Select Location"
 msgstr "Select location"
 
-msgid "Select Quad Channels"
-msgstr ""
-
 #, fuzzy
 msgid "Select Softcam"
 msgstr "Select location"
@@ -11976,10 +11879,6 @@ msgstr "Select backup files"
 
 msgid "Select backup location"
 msgstr "Select backup location"
-
-#, fuzzy
-msgid "Select channel audio"
-msgstr "Select channel to record from"
 
 msgid "Select channel to record from"
 msgstr "Select channel to record from"
@@ -13056,10 +12955,6 @@ msgstr "Show channel numbers in channel selection"
 msgid "Show channel numbers in channel selection"
 msgstr "Show channel numbers in channel selection"
 
-#, fuzzy
-msgid "Show channel selection"
-msgstr "Channel selection"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -13192,6 +13087,10 @@ msgstr "Show extended description"
 #, fuzzy
 msgid "Show picon background colour"
 msgstr "Rengé Paşi"
+
+#, fuzzy
+msgid "Show picons in quickzap"
+msgstr "Show animation while busy"
 
 #, fuzzy
 msgid "Show picons in service list"
@@ -13364,9 +13263,6 @@ msgstr "Behavior when a movie is stopped"
 #, fuzzy
 msgid "Show weblinks module packages"
 msgstr "Show animation while busy"
-
-msgid "Show/Hide focus bar"
-msgstr ""
 
 msgid "Shows live tv or informations on LCD."
 msgstr ""
@@ -15437,14 +15333,6 @@ msgid "Timer type"
 msgstr "Timer type"
 
 #, fuzzy
-msgid "Timer+"
-msgstr "Vext"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Timer edit"
-
-#, fuzzy
 msgid "Timers"
 msgstr "Vext"
 
@@ -16750,9 +16638,6 @@ msgstr ""
 msgid "Volume:"
 msgstr ""
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 msgid "W"
 msgstr "W"
 
@@ -17315,11 +17200,12 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete Timer and delete recording"
-msgstr ""
-
 #, fuzzy
 msgid "Yes, delete from Timerlist"
+msgstr "Really delete done timers?"
+
+#, fuzzy
+msgid "Yes, delete from Timerlist and delete recording"
 msgstr "Really delete done timers?"
 
 #, fuzzy
@@ -17706,10 +17592,6 @@ msgid "Zap focus to Picture in Picture"
 msgstr "Zap focus to Picture in Picture"
 
 msgid "Zap focus to main screen"
-msgstr "Zap focus to main screen"
-
-#, fuzzy
-msgid "Zap focused channel on full screen"
 msgstr "Zap focus to main screen"
 
 msgid "Zap mode"
@@ -19455,9 +19337,6 @@ msgstr ""
 msgid "working"
 msgstr "working"
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 msgid "yellow"
 msgstr "yellow"
 
@@ -19484,9 +19363,6 @@ msgstr "zapped"
 #, fuzzy
 msgid "zapping"
 msgstr "zapped"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2_v2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: 2019-08-27 05:20+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -220,13 +220,7 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-msgid "  Menu key : Select quad channel"
-msgstr ""
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #
@@ -246,9 +240,6 @@ msgid " (Radio)"
 msgstr ""
 
 msgid " (TV)"
-msgstr ""
-
-msgid " (current channel)"
 msgstr ""
 
 #
@@ -279,12 +270,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "S-Video"
-
-#
-#
-#, fuzzy
-msgid " <empty>"
-msgstr "κενό"
 
 #, python-format
 msgid " Except %s"
@@ -1353,12 +1338,6 @@ msgstr "<Τελευταία τοποθεσία χρονοδιακόπτη>"
 
 #
 #
-#, fuzzy
-msgid "<No Channel>"
-msgstr "Κανάλι"
-
-#
-#
 msgid "<unknown>"
 msgstr "<άγνωστο>"
 
@@ -1732,9 +1711,6 @@ msgid "Add"
 msgstr "Προσθήκη"
 
 msgid "Add AutoTimer"
-msgstr ""
-
-msgid "Add New Quad Channel Entry"
 msgstr ""
 
 msgid "Add Timer"
@@ -2991,11 +2967,6 @@ msgstr ""
 msgid "Bouvet Island"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Box or driver is not support Quad PiP."
-msgstr "το tuner δεν υποστηρίζεται"
-
 msgid "Brazil"
 msgstr ""
 
@@ -3730,10 +3701,6 @@ msgstr ""
 msgid "Choice Box"
 msgstr ""
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -4097,6 +4064,9 @@ msgid "Configure if and how wide columns will be shown in the channel selection 
 msgstr ""
 
 msgid "Configure if epg.dat should be saved at all."
+msgstr ""
+
+msgid "Configure if service picons will be shown in quickzap."
 msgstr ""
 
 msgid "Configure if service picons will be shown in the servicelist."
@@ -6037,20 +6007,6 @@ msgstr "Επιλογή γλώσσας EPG 1"
 msgid "EPG filename"
 msgstr ""
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 #
 #
 msgid "EPG language selection 1"
@@ -6084,9 +6040,6 @@ msgstr "Ανατολή"
 msgid "East limit set"
 msgstr "Ορισμός ορίων"
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr ""
 
@@ -6097,9 +6050,6 @@ msgstr ""
 #
 msgid "Edit"
 msgstr "Επεξεργασία"
-
-msgid "Edit Quad Channel Entry"
-msgstr ""
 
 #
 #
@@ -6250,12 +6200,6 @@ msgstr ""
 msgid "Enable OpenTV EPG"
 msgstr "Ενεργοποίηση EIT EPG"
 
-#
-#
-#, fuzzy
-msgid "Enable Quad PIP"
-msgstr "Ενεργοποιήθηκε"
-
 msgid "Enable Swap at startup"
 msgstr ""
 
@@ -6345,8 +6289,11 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Ενεργοποίηση πολλαπλών μπουκέτων"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#
+#
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "Απενεργοποιήθηκε "
 
 msgid "Enable panic button"
 msgstr ""
@@ -6752,12 +6699,6 @@ msgstr "έξοδος από ρύθμιση nameserver"
 
 #
 #
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "Επιλογή Καναλιού"
-
-#
-#
 msgid "Exit editor"
 msgstr "Έξοδος απο τον editor"
 
@@ -6811,9 +6752,6 @@ msgstr "έξοδος από λίστα διεπαφών δικτύου"
 msgid "Exit network wizard"
 msgstr "Έξοδος από τον Οδηγό δικτύου"
 
-msgid "Exit quad PiP"
-msgstr ""
-
 #
 #
 msgid "Exit the wizard"
@@ -6842,9 +6780,6 @@ msgstr "Εξειδικευμένο"
 #, fuzzy
 msgid "Expert mode"
 msgstr "Εξειδικευμένο"
-
-msgid "Ext. NumberZap"
-msgstr ""
 
 #
 #
@@ -8716,10 +8651,6 @@ msgstr "Είσοδος"
 
 msgid "Input Stream ID"
 msgstr ""
-
-#, fuzzy
-msgid "Input channel name."
-msgstr "Use fastscan channel names"
 
 #
 #, fuzzy
@@ -10628,9 +10559,6 @@ msgstr ""
 #, fuzzy
 msgid "Next long"
 msgstr "χρώμα κειμένου"
-
-msgid "Next quad PiP channel"
-msgstr ""
 
 msgid "Nicaragua"
 msgstr ""
@@ -12748,9 +12676,6 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Πιέστε το ΚΙΤΡΙΝΟ για να τεθεί ως προεπιλεγμένη διεπαφή."
 
-msgid "Prev quad PiP channel"
-msgstr ""
-
 #
 #
 msgid "Preview"
@@ -12977,33 +12902,6 @@ msgstr ""
 #
 #
 #, fuzzy
-msgid "Quad PiP Channel Selection"
-msgstr "Επιλογή Καναλιού"
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-#
-# , python-format
-#, fuzzy
-msgid "Quad PiP channel "
-msgstr "%d υπηρεσίες βρέθηκαν!"
-
-#
-#
-#, fuzzy
-msgid "Quad PiP is not available."
-msgstr "Το feed ναβάθμισης δεν είναι διαθέσιμο"
-
-#
-#
-#, fuzzy
-msgid "Quad Picture in Picture"
-msgstr "Μετακίνηση Picture in Picture"
-
-#
-#
-#, fuzzy
 msgid "Question"
 msgstr "Ανάλυση"
 
@@ -13153,13 +13051,13 @@ msgstr "Κλείσιμο χωρίς αποθήκευση ρυθμίσεων;"
 
 #
 #
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "Διαγραφή όλων των ολοκληρωμένων χρονοδιακοπτών;"
 
 #
 #
-#, fuzzy
-msgid "Really delete this entry?"
+msgid "Really delete done timers?"
 msgstr "Διαγραφή όλων των ολοκληρωμένων χρονοδιακοπτών;"
 
 #
@@ -13473,12 +13371,6 @@ msgstr "Εγκατάσταση tuner"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "Απεγκατάσταση προσθέτων"
-
-#
-#
-#, fuzzy
-msgid "Remove Quad Channel Entry"
-msgstr "διαγραφή nameserver"
 
 msgid "Remove Service"
 msgstr ""
@@ -13991,9 +13883,6 @@ msgstr ""
 msgid "SDcard switch ERROR! - already on mmc"
 msgstr ""
 
-msgid "SHOUTcast"
-msgstr ""
-
 msgid "SID"
 msgstr "SID"
 
@@ -14496,9 +14385,6 @@ msgstr ""
 msgid "Select Location"
 msgstr "Επιλέξτε τοποθεσία"
 
-msgid "Select Quad Channels"
-msgstr ""
-
 #
 #
 #, fuzzy
@@ -14555,12 +14441,6 @@ msgstr "Επιλέξτε αρχεία αντιγράφου ασφαλείας"
 #, fuzzy
 msgid "Select backup location"
 msgstr "Επιλέξτε θέση του αντιγράφου ασφαλείας"
-
-#
-#
-#, fuzzy
-msgid "Select channel audio"
-msgstr "Επιλέξτε κανάλι για εγγραφή"
 
 #
 #
@@ -15829,12 +15709,6 @@ msgstr "Εμφάνιση αριθμού καναλιού στην επιλογή
 msgid "Show channel numbers in channel selection"
 msgstr "Εμφάνιση αριθμού καναλιού στην επιλογή καναλιού"
 
-#
-#
-#, fuzzy
-msgid "Show channel selection"
-msgstr "Επιλογή Καναλιού"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -16011,6 +15885,12 @@ msgstr ""
 #, fuzzy
 msgid "Show picon background colour"
 msgstr "χρώμα φόντου"
+
+#
+#
+#, fuzzy
+msgid "Show picons in quickzap"
+msgstr "Εμφάνιση animation κατά την καθυστέρηση"
 
 #
 #
@@ -16227,9 +16107,6 @@ msgstr "Συμπεριφορά όταν μια ταινία σταμάτησε"
 #, fuzzy
 msgid "Show weblinks module packages"
 msgstr "Εμφάνιση animation κατά την καθυστέρηση"
-
-msgid "Show/Hide focus bar"
-msgstr ""
 
 msgid "Shows live tv or informations on LCD."
 msgstr ""
@@ -18730,18 +18607,6 @@ msgstr "Επιλογή χρονοδιακόπτη"
 msgid "Timer type"
 msgstr "Τύπος χρονοδιακόπτη"
 
-#
-#
-#, fuzzy
-msgid "Timer+"
-msgstr "Χρόνος"
-
-#
-#
-#, fuzzy
-msgid "Timerlist"
-msgstr "Επεξεργασία χρονοδιακόπτη"
-
 msgid "Timers"
 msgstr ""
 
@@ -20302,9 +20167,6 @@ msgstr ""
 msgid "Volume:"
 msgstr ""
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 #
 #
 msgid "W"
@@ -20954,13 +20816,16 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete Timer and delete recording"
-msgstr ""
-
 #
 #
 #, fuzzy
 msgid "Yes, delete from Timerlist"
+msgstr "Διαγραφή όλων των ολοκληρωμένων χρονοδιακοπτών;"
+
+#
+#
+#, fuzzy
+msgid "Yes, delete from Timerlist and delete recording"
 msgstr "Διαγραφή όλων των ολοκληρωμένων χρονοδιακοπτών;"
 
 #
@@ -21404,10 +21269,6 @@ msgid "Zap focus to Picture in Picture"
 msgstr "Zap focus to Picture in Picture"
 
 msgid "Zap focus to main screen"
-msgstr "Zap focus to main screen"
-
-#, fuzzy
-msgid "Zap focused channel on full screen"
 msgstr "Zap focus to main screen"
 
 #
@@ -23592,9 +23453,6 @@ msgstr ""
 msgid "working"
 msgstr "λειτουργεί"
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 #
 msgid "yellow"
 msgstr "κίτρινο"
@@ -23628,9 +23486,6 @@ msgstr "zapped"
 #, fuzzy
 msgid "zapping"
 msgstr "zapped"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""

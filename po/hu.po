@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -212,13 +212,7 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-msgid "  Menu key : Select quad channel"
-msgstr ""
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #
@@ -237,9 +231,6 @@ msgid " (Radio)"
 msgstr ""
 
 msgid " (TV)"
-msgstr ""
-
-msgid " (current channel)"
 msgstr ""
 
 #
@@ -268,11 +259,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "S-Video"
-
-#
-#, fuzzy
-msgid " <empty>"
-msgstr "üres"
 
 #, python-format
 msgid " Except %s"
@@ -1258,11 +1244,6 @@ msgid "<Last timer location>"
 msgstr "<Időzítés utolsó pozíciója>"
 
 #
-#, fuzzy
-msgid "<No Channel>"
-msgstr "Csatorna"
-
-#
 msgid "<unknown>"
 msgstr "<ismeretlen>"
 
@@ -1604,9 +1585,6 @@ msgid "Add"
 msgstr "Hozzáadás"
 
 msgid "Add AutoTimer"
-msgstr ""
-
-msgid "Add New Quad Channel Entry"
 msgstr ""
 
 msgid "Add Timer"
@@ -2710,10 +2688,6 @@ msgstr ""
 msgid "Bouvet Island"
 msgstr ""
 
-#, fuzzy
-msgid "Box or driver is not support Quad PiP."
-msgstr "nem támogatott tuner"
-
 msgid "Brazil"
 msgstr ""
 
@@ -3393,10 +3367,6 @@ msgstr ""
 msgid "Choice Box"
 msgstr ""
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3732,6 +3702,9 @@ msgid "Configure if and how wide columns will be shown in the channel selection 
 msgstr ""
 
 msgid "Configure if epg.dat should be saved at all."
+msgstr ""
+
+msgid "Configure if service picons will be shown in quickzap."
 msgstr ""
 
 msgid "Configure if service picons will be shown in the servicelist."
@@ -5465,20 +5438,6 @@ msgstr "Filmek tárhelye"
 msgid "EPG filename"
 msgstr ""
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 msgid "EPG language selection 1"
 msgstr ""
 
@@ -5503,9 +5462,6 @@ msgstr "Kelet"
 msgid "East limit set"
 msgstr ""
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr ""
 
@@ -5515,9 +5471,6 @@ msgstr ""
 #
 msgid "Edit"
 msgstr "Szerkesztés"
-
-msgid "Edit Quad Channel Entry"
-msgstr ""
 
 #
 #, fuzzy
@@ -5645,11 +5598,6 @@ msgstr ""
 msgid "Enable OpenTV EPG"
 msgstr "EIT EPG engedélyezése"
 
-#
-#, fuzzy
-msgid "Enable Quad PIP"
-msgstr "Engedélyezve"
-
 msgid "Enable Swap at startup"
 msgstr ""
 
@@ -5731,8 +5679,10 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Többszörös bouquetek engedélyezése"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "Letiltva"
 
 msgid "Enable panic button"
 msgstr ""
@@ -6092,11 +6042,6 @@ msgid "Exit MAC-address configuration"
 msgstr "kliépés a névszerver beállításaiból"
 
 #
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "Csatorna választás"
-
-#
 msgid "Exit editor"
 msgstr "Kilépés a szerkesztőből"
 
@@ -6142,9 +6087,6 @@ msgstr "kliépés a hálózati interfészek listájából"
 msgid "Exit network wizard"
 msgstr "Kilépés a Hálózati Varázslóból"
 
-msgid "Exit quad PiP"
-msgstr ""
-
 #
 msgid "Exit the wizard"
 msgstr "Kilépés a Varázslóból"
@@ -6169,9 +6111,6 @@ msgstr "Haladó"
 #, fuzzy
 msgid "Expert mode"
 msgstr "Haladó"
-
-msgid "Ext. NumberZap"
-msgstr ""
 
 #
 #, fuzzy
@@ -7876,10 +7815,6 @@ msgid "Input Stream ID"
 msgstr ""
 
 #, fuzzy
-msgid "Input channel name."
-msgstr "Gyorskeresési csatorna elnevezés"
-
-#, fuzzy
 msgid "Input config file name:"
 msgstr "Hosszú fájlnevek"
 
@@ -9576,9 +9511,6 @@ msgstr ""
 #, fuzzy
 msgid "Next long"
 msgstr "szöveg színe"
-
-msgid "Next quad PiP channel"
-msgstr ""
 
 msgid "Nicaragua"
 msgstr ""
@@ -11445,9 +11377,6 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Nyomja le a sárga gombot, hogy ezt az interfészt jelölje alapértelmezettnek."
 
-msgid "Prev quad PiP channel"
-msgstr ""
-
 #
 msgid "Preview"
 msgstr "Előnézet"
@@ -11635,29 +11564,6 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Quad PiP Channel Selection"
-msgstr "Csatorna választás"
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Quad PiP channel "
-msgstr "%d csatornát találtam!"
-
-#
-#, fuzzy
-msgid "Quad PiP is not available."
-msgstr "Az elérhetők listázása: "
-
-#
-#, fuzzy
-msgid "Quad Picture in Picture"
-msgstr "Kép-A-Képben mozgatása"
-
-#
-#, fuzzy
 msgid "Question"
 msgstr "Felbontás"
 
@@ -11790,12 +11696,12 @@ msgid "Really close without saving settings?"
 msgstr "Bezárás mentés nélkül?"
 
 #
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "Töröljem a befejezett idözítéseket?"
 
 #
-#, fuzzy
-msgid "Really delete this entry?"
+msgid "Really delete done timers?"
 msgstr "Töröljem a befejezett idözítéseket?"
 
 #
@@ -12067,11 +11973,6 @@ msgstr "Tuner beállítások"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "Pluginek eltávolítása"
-
-#
-#, fuzzy
-msgid "Remove Quad Channel Entry"
-msgstr "névszerver eltávolítása"
 
 msgid "Remove Service"
 msgstr ""
@@ -12507,9 +12408,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SHOUTcast"
 msgstr ""
 
 msgid "SID"
@@ -12960,9 +12858,6 @@ msgstr ""
 msgid "Select Location"
 msgstr "Válassza ki a helyet"
 
-msgid "Select Quad Channels"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Select Softcam"
@@ -13010,11 +12905,6 @@ msgstr "Válasszon mentés-fájlokat"
 #, fuzzy
 msgid "Select backup location"
 msgstr "Válasszon mentés-helyet"
-
-#
-#, fuzzy
-msgid "Select channel audio"
-msgstr "Csatorna kiválasztása melyről fel szeretne venni"
 
 #
 msgid "Select channel to record from"
@@ -14153,11 +14043,6 @@ msgstr "Csatornaszámok megjelenítése a csatornalistában"
 msgid "Show channel numbers in channel selection"
 msgstr "Csatornaszámok megjelenítése a csatornalistában"
 
-#
-#, fuzzy
-msgid "Show channel selection"
-msgstr "Csatorna választás"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -14304,6 +14189,10 @@ msgstr ""
 #, fuzzy
 msgid "Show picon background colour"
 msgstr "háttér szín"
+
+#, fuzzy
+msgid "Show picons in quickzap"
+msgstr "Animáció megjelenítése amikor a szoftver foglalt"
 
 #
 #, fuzzy
@@ -14484,9 +14373,6 @@ msgstr "Művelet ha egy lejátszás befejeződik"
 #, fuzzy
 msgid "Show weblinks module packages"
 msgstr "Animáció megjelenítése amikor a szoftver foglalt"
-
-msgid "Show/Hide focus bar"
-msgstr ""
 
 msgid "Shows live tv or informations on LCD."
 msgstr ""
@@ -16719,16 +16605,6 @@ msgstr "Időzítés kiválasztása"
 msgid "Timer type"
 msgstr "Időzítés típusa"
 
-#
-#, fuzzy
-msgid "Timer+"
-msgstr "Idő"
-
-#
-#, fuzzy
-msgid "Timerlist"
-msgstr "Időzítő módosítása"
-
 msgid "Timers"
 msgstr ""
 
@@ -18128,9 +18004,6 @@ msgstr ""
 msgid "Volume:"
 msgstr ""
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 #
 msgid "W"
 msgstr "Ny"
@@ -18720,12 +18593,14 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete Timer and delete recording"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Yes, delete from Timerlist"
+msgstr "Töröljem a befejezett idözítéseket?"
+
+#
+#, fuzzy
+msgid "Yes, delete from Timerlist and delete recording"
 msgstr "Töröljem a befejezett idözítéseket?"
 
 #
@@ -19127,9 +19002,6 @@ msgid "Zap focus to Picture in Picture"
 msgstr ""
 
 msgid "Zap focus to main screen"
-msgstr ""
-
-msgid "Zap focused channel on full screen"
 msgstr ""
 
 msgid "Zap mode"
@@ -21070,9 +20942,6 @@ msgstr ""
 msgid "working"
 msgstr "működőképes"
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 #
 msgid "yellow"
 msgstr "sárga"
@@ -21106,9 +20975,6 @@ msgstr "ugrott"
 #, fuzzy
 msgid "zapping"
 msgstr "ugrott"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""

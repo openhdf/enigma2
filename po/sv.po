@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: torac <info@takerman.se>\n"
@@ -207,13 +207,7 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-msgid "  Menu key : Select quad channel"
-msgstr ""
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #, fuzzy, python-format
@@ -232,10 +226,6 @@ msgstr " (Radio)"
 
 msgid " (TV)"
 msgstr " (TV)"
-
-#, fuzzy
-msgid " (current channel)"
-msgstr "Visa EPG för aktuellt kanal..."
 
 #
 #, fuzzy
@@ -263,11 +253,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "S-Video"
-
-#
-#, fuzzy
-msgid " <empty>"
-msgstr "tom"
 
 #, python-format
 msgid " Except %s"
@@ -1235,11 +1220,6 @@ msgid "<Last timer location>"
 msgstr "<Senaste timers sökväg>"
 
 #
-#, fuzzy
-msgid "<No Channel>"
-msgstr "Kanal"
-
-#
 msgid "<unknown>"
 msgstr "<okänd>"
 
@@ -1591,9 +1571,6 @@ msgstr "Lägg till"
 
 msgid "Add AutoTimer"
 msgstr "Lägg till AutoTimer"
-
-msgid "Add New Quad Channel Entry"
-msgstr ""
 
 msgid "Add Timer"
 msgstr "Lägg till Timer"
@@ -2698,10 +2675,6 @@ msgstr "Kanallista"
 msgid "Bouvet Island"
 msgstr ""
 
-#, fuzzy
-msgid "Box or driver is not support Quad PiP."
-msgstr "mottagaren stöds inte"
-
 msgid "Brazil"
 msgstr ""
 
@@ -3373,10 +3346,6 @@ msgstr ""
 msgid "Choice Box"
 msgstr ""
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3724,6 +3693,10 @@ msgstr "Konfigurera vilken anslutning för videoutgången  som ska användas."
 
 msgid "Configure if epg.dat should be saved at all."
 msgstr ""
+
+#, fuzzy
+msgid "Configure if service picons will be shown in quickzap."
+msgstr "Konfigurera vilken anslutning för videoutgången  som ska användas."
 
 #, fuzzy
 msgid "Configure if service picons will be shown in the servicelist."
@@ -5443,20 +5416,6 @@ msgstr "EPG plats"
 msgid "EPG filename"
 msgstr "EPG filnamn"
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 msgid "EPG language selection 1"
 msgstr "EPG språkval 1"
 
@@ -5481,9 +5440,6 @@ msgstr "Öst"
 msgid "East limit set"
 msgstr "Ange Östlig gräns"
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr "Ecm:"
 
@@ -5493,9 +5449,6 @@ msgstr ""
 #
 msgid "Edit"
 msgstr "Ändra"
-
-msgid "Edit Quad Channel Entry"
-msgstr ""
 
 #
 #, fuzzy
@@ -5622,11 +5575,6 @@ msgstr ""
 msgid "Enable OpenTV EPG"
 msgstr "Aktivera EIT EPG"
 
-#
-#, fuzzy
-msgid "Enable Quad PIP"
-msgstr "Aktiverad"
-
 #, fuzzy
 msgid "Enable Swap at startup"
 msgstr "Kanal 1 vid start"
@@ -5711,8 +5659,10 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Aktivera flera favoritlistor"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "Avaktiverad"
 
 msgid "Enable panic button"
 msgstr "Aktivera Panikknapp"
@@ -6073,11 +6023,6 @@ msgid "Exit MAC-address configuration"
 msgstr "Avsluta namnserverkonfiguration"
 
 #
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "Kanalval"
-
-#
 msgid "Exit editor"
 msgstr "Avsluta editor"
 
@@ -6118,9 +6063,6 @@ msgstr "Avsluta nätverkskortslistan"
 msgid "Exit network wizard"
 msgstr "Avsluta nätverksguiden"
 
-msgid "Exit quad PiP"
-msgstr ""
-
 #
 msgid "Exit the wizard"
 msgstr "Avsluta guiden"
@@ -6146,10 +6088,6 @@ msgstr "Expert"
 #, fuzzy
 msgid "Expert mode"
 msgstr "Expert"
-
-#, fuzzy
-msgid "Ext. NumberZap"
-msgstr "Nummer"
 
 #, fuzzy
 msgid "Extend"
@@ -7855,10 +7793,6 @@ msgid "Input Stream ID"
 msgstr ""
 
 #, fuzzy
-msgid "Input channel name."
-msgstr "Använd fastscan kanalnamn"
-
-#, fuzzy
 msgid "Input config file name:"
 msgstr "Långa filnamn"
 
@@ -9513,9 +9447,6 @@ msgstr "Nästa"
 #, fuzzy
 msgid "Next long"
 msgstr "Textfärg"
-
-msgid "Next quad PiP channel"
-msgstr ""
 
 msgid "Nicaragua"
 msgstr ""
@@ -11362,9 +11293,6 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Tryck gul knapp för att ange detta interface som grundinterface."
 
-msgid "Prev quad PiP channel"
-msgstr ""
-
 #
 msgid "Preview"
 msgstr "Förhandsgranskning"
@@ -11552,29 +11480,6 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Quad PiP Channel Selection"
-msgstr "Kanalval"
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Quad PiP channel "
-msgstr "%d kanaler hittades"
-
-#
-#, fuzzy
-msgid "Quad PiP is not available."
-msgstr "Uppdateringsfeed ej tillgänglig."
-
-#
-#, fuzzy
-msgid "Quad Picture in Picture"
-msgstr "Flytta Bild i Bild"
-
-#
-#, fuzzy
 msgid "Question"
 msgstr "Upplösning"
 
@@ -11705,12 +11610,12 @@ msgid "Really close without saving settings?"
 msgstr "Verkligen stänga utan att spara inställningarna?"
 
 #
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "Verkligen ta bort färdiga timerinspelningar?"
 
 #
-#, fuzzy
-msgid "Really delete this entry?"
+msgid "Really delete done timers?"
 msgstr "Verkligen ta bort färdiga timerinspelningar?"
 
 #
@@ -11977,11 +11882,6 @@ msgstr "Konfirmera Borttagning"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "Ta bort plugins"
-
-#
-#, fuzzy
-msgid "Remove Quad Channel Entry"
-msgstr "Ta bort en namnserver post"
 
 msgid "Remove Service"
 msgstr "Ta bort Kanal"
@@ -12412,9 +12312,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SHOUTcast"
 msgstr ""
 
 msgid "SID"
@@ -12860,9 +12757,6 @@ msgstr ""
 msgid "Select Location"
 msgstr "Välj sökväg"
 
-msgid "Select Quad Channels"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Select Softcam"
@@ -12904,11 +12798,6 @@ msgstr "Välj backupfiler"
 #
 msgid "Select backup location"
 msgstr "Välj sökväg för backuper"
-
-#
-#, fuzzy
-msgid "Select channel audio"
-msgstr "Välj kanal att spela in från"
 
 #
 msgid "Select channel to record from"
@@ -14036,11 +13925,6 @@ msgstr "Visa kanalnummer i kanallistan"
 msgid "Show channel numbers in channel selection"
 msgstr "Visa kanalnummer i kanallistan"
 
-#
-#, fuzzy
-msgid "Show channel selection"
-msgstr "Kanalval"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -14181,6 +14065,10 @@ msgstr "'Visa eller dölj den utökade beskrivningen, (beroende av vilket 'skin'
 #, fuzzy
 msgid "Show picon background colour"
 msgstr "Visa picons bakgrundsfärg"
+
+#, fuzzy
+msgid "Show picons in quickzap"
+msgstr "Visa översättningspaket"
 
 #, fuzzy
 msgid "Show picons in service list"
@@ -14355,9 +14243,6 @@ msgstr "Visa live tv när film är stoppad"
 #, fuzzy
 msgid "Show weblinks module packages"
 msgstr "Visa källkodspaket"
-
-msgid "Show/Hide focus bar"
-msgstr ""
 
 msgid "Shows live tv or informations on LCD."
 msgstr ""
@@ -16607,14 +16492,6 @@ msgstr "Timer val"
 msgid "Timer type"
 msgstr "Timertyp"
 
-#, fuzzy
-msgid "Timer+"
-msgstr "Timers"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Timerlista"
-
 msgid "Timers"
 msgstr "Timers"
 
@@ -18022,9 +17899,6 @@ msgstr ""
 msgid "Volume:"
 msgstr ""
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 #
 msgid "W"
 msgstr "V"
@@ -18620,14 +18494,14 @@ msgstr "Spara Timeshift som Film och fortsätt inspelning"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Spara Timeshift som Film och stoppa inspelning"
 
-#, fuzzy
-msgid "Yes, delete Timer and delete recording"
-msgstr "Spara Timeshift som Film och stoppa inspelning"
-
 #
 #, fuzzy
 msgid "Yes, delete from Timerlist"
 msgstr "Verkligen ta bort färdiga timerinspelningar?"
+
+#, fuzzy
+msgid "Yes, delete from Timerlist and delete recording"
+msgstr "Spara Timeshift som Film och stoppa inspelning"
 
 #
 #, fuzzy
@@ -19056,10 +18930,6 @@ msgid "Zap focus to Picture in Picture"
 msgstr "Flytta fokus till Bild i Bild"
 
 msgid "Zap focus to main screen"
-msgstr "Flytta fokus till huvudbild"
-
-#, fuzzy
-msgid "Zap focused channel on full screen"
 msgstr "Flytta fokus till huvudbild"
 
 msgid "Zap mode"
@@ -21002,9 +20872,6 @@ msgstr ""
 msgid "working"
 msgstr "pågående"
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 #
 msgid "yellow"
 msgstr "gul"
@@ -21037,9 +20904,6 @@ msgstr "zappad"
 #, fuzzy
 msgid "zapping"
 msgstr "zappad"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""

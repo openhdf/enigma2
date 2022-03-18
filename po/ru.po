@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: RU locale edited by Sowa\n"
@@ -200,13 +200,7 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-msgid "  Menu key : Select quad channel"
-msgstr ""
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #, fuzzy, python-format
@@ -225,10 +219,6 @@ msgstr " (Радио)"
 
 msgid " (TV)"
 msgstr " (ТВ)"
-
-#, fuzzy
-msgid " (current channel)"
-msgstr "Показать EPG для текущего канала ..."
 
 #, fuzzy
 msgid " (disabled)"
@@ -253,10 +243,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "S-Video"
-
-#, fuzzy
-msgid " <empty>"
-msgstr "пустой"
 
 #, python-format
 msgid " Except %s"
@@ -1176,10 +1162,6 @@ msgstr "<Расположение записей по умолчанию>"
 msgid "<Last timer location>"
 msgstr "<Расположение последней записи>"
 
-#, fuzzy
-msgid "<No Channel>"
-msgstr "Канал"
-
 msgid "<unknown>"
 msgstr "<неизвестный>"
 
@@ -1497,9 +1479,6 @@ msgstr "Добавить"
 
 msgid "Add AutoTimer"
 msgstr "Добавить АТ"
-
-msgid "Add New Quad Channel Entry"
-msgstr ""
 
 msgid "Add Timer"
 msgstr "Добавить Таймер"
@@ -2512,10 +2491,6 @@ msgstr "Список букетов"
 msgid "Bouvet Island"
 msgstr ""
 
-#, fuzzy
-msgid "Box or driver is not support Quad PiP."
-msgstr "тюнер не поддерживается"
-
 msgid "Brazil"
 msgstr ""
 
@@ -3150,10 +3125,6 @@ msgstr "Чипсет: BCM%s"
 msgid "Choice Box"
 msgstr ""
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3472,6 +3443,10 @@ msgstr "Настроить, какие и если будут показаны �
 
 msgid "Configure if epg.dat should be saved at all."
 msgstr ""
+
+#, fuzzy
+msgid "Configure if service picons will be shown in quickzap."
+msgstr "Настроить, какие и если будут показаны иконки типов каналов."
 
 #, fuzzy
 msgid "Configure if service picons will be shown in the servicelist."
@@ -5033,20 +5008,6 @@ msgstr "Расположение файла EPG"
 msgid "EPG filename"
 msgstr "Имя файла EPG"
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 msgid "EPG language selection 1"
 msgstr "Выбор языка EPG 1"
 
@@ -5069,9 +5030,6 @@ msgstr "Восток"
 msgid "East limit set"
 msgstr "Установить ограничения на восток"
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr "Ecm:"
 
@@ -5080,9 +5038,6 @@ msgstr ""
 
 msgid "Edit"
 msgstr "Редактировать"
-
-msgid "Edit Quad Channel Entry"
-msgstr ""
 
 #, fuzzy
 msgid "Edit Title"
@@ -5196,10 +5151,6 @@ msgid "Enable OpenTV EPG"
 msgstr "Включить EIT EPG"
 
 #, fuzzy
-msgid "Enable Quad PIP"
-msgstr "Включено"
-
-#, fuzzy
 msgid "Enable Swap at startup"
 msgstr "Стартовый канал 1"
 
@@ -5282,8 +5233,9 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Включить мультибукеты"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "Отключен"
 
 msgid "Enable panic button"
 msgstr "Включить тревожную кнопку"
@@ -5617,10 +5569,6 @@ msgstr "закрыть конфигуратор DNS"
 msgid "Exit MAC-address configuration"
 msgstr "закрыть конфигуратор DNS"
 
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "Выбор каналов"
-
 msgid "Exit editor"
 msgstr "Выйти из редактора"
 
@@ -5652,9 +5600,6 @@ msgstr "Закрыть список сетевых интерфейсов"
 msgid "Exit network wizard"
 msgstr "Выйти из Мастера настройки сети"
 
-msgid "Exit quad PiP"
-msgstr ""
-
 msgid "Exit the wizard"
 msgstr "Выйти из Мастера"
 
@@ -5677,10 +5622,6 @@ msgstr "Эксперт"
 #, fuzzy
 msgid "Expert mode"
 msgstr "Эксперт"
-
-#, fuzzy
-msgid "Ext. NumberZap"
-msgstr "Номер"
 
 #, fuzzy
 msgid "Extend"
@@ -7265,10 +7206,6 @@ msgid "Input Stream ID"
 msgstr ""
 
 #, fuzzy
-msgid "Input channel name."
-msgstr "Использовать быстрый поиск имён каналов"
-
-#, fuzzy
 msgid "Input config file name:"
 msgstr "Длинное имя файла"
 
@@ -8741,9 +8678,6 @@ msgstr "След."
 #, fuzzy
 msgid "Next long"
 msgstr "цвет текста"
-
-msgid "Next quad PiP channel"
-msgstr ""
 
 msgid "Nicaragua"
 msgstr ""
@@ -10398,9 +10332,6 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Нажмите ЖЁЛТУЮ для установки данного интерфейса по умолчанию"
 
-msgid "Prev quad PiP channel"
-msgstr ""
-
 msgid "Preview"
 msgstr "Предварительный просмотр"
 
@@ -10568,25 +10499,6 @@ msgid "Qatar"
 msgstr ""
 
 #, fuzzy
-msgid "Quad PiP Channel Selection"
-msgstr "Выбор каналов"
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-#, fuzzy
-msgid "Quad PiP channel "
-msgstr "%d канал найден!"
-
-#, fuzzy
-msgid "Quad PiP is not available."
-msgstr "Обновления на сервере недоступны."
-
-#, fuzzy
-msgid "Quad Picture in Picture"
-msgstr "Переместить Картинку в картинке"
-
-#, fuzzy
 msgid "Question"
 msgstr "Разрешение"
 
@@ -10703,11 +10615,11 @@ msgstr "Действительно перезагрузить сейчас?"
 msgid "Really close without saving settings?"
 msgstr "Действительно закрыть без сохранения настроек?"
 
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "Действительно удалить выполненные таймеры?"
 
-#, fuzzy
-msgid "Really delete this entry?"
+msgid "Really delete done timers?"
 msgstr "Действительно удалить выполненные таймеры?"
 
 msgid "Really exit the subservices quickzap?"
@@ -10946,10 +10858,6 @@ msgstr "Подтверждение удаления"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "Удаление плагинов"
-
-#, fuzzy
-msgid "Remove Quad Channel Entry"
-msgstr "удалить данные DNS"
 
 msgid "Remove Service"
 msgstr "Удалить канал"
@@ -11319,9 +11227,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SHOUTcast"
 msgstr ""
 
 msgid "SID"
@@ -11723,9 +11628,6 @@ msgstr ""
 msgid "Select Location"
 msgstr "Выбрать место расположения"
 
-msgid "Select Quad Channels"
-msgstr ""
-
 #, fuzzy
 msgid "Select Softcam"
 msgstr "Выбрать место расположения"
@@ -11760,10 +11662,6 @@ msgstr "Выбор файлов резервных копий"
 
 msgid "Select backup location"
 msgstr "Выбор расположения резервных копий"
-
-#, fuzzy
-msgid "Select channel audio"
-msgstr "Выбрать канал для записи"
 
 msgid "Select channel to record from"
 msgstr "Выбрать канал для записи"
@@ -12815,10 +12713,6 @@ msgstr "Отображать номер канала в инфо-баре"
 msgid "Show channel numbers in channel selection"
 msgstr "Отображать номер канала в списке"
 
-#, fuzzy
-msgid "Show channel selection"
-msgstr "Выбор каналов"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -12944,6 +12838,10 @@ msgstr "Показать или скрыть расширенные описан
 #, fuzzy
 msgid "Show picon background colour"
 msgstr "Показ пиконов в фоне"
+
+#, fuzzy
+msgid "Show picons in quickzap"
+msgstr "Показать пакеты с данными для перевода (po)"
 
 #, fuzzy
 msgid "Show picons in service list"
@@ -13108,9 +13006,6 @@ msgstr "Предупреждать об остановке TimeShift"
 #, fuzzy
 msgid "Show weblinks module packages"
 msgstr "Показать пакеты с исходным кодом"
-
-msgid "Show/Hide focus bar"
-msgstr ""
 
 msgid "Shows live tv or informations on LCD."
 msgstr ""
@@ -15188,14 +15083,6 @@ msgstr "Выбор таймера..."
 msgid "Timer type"
 msgstr "Тип таймера"
 
-#, fuzzy
-msgid "Timer+"
-msgstr "Таймеры"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Список таймеров"
-
 msgid "Timers"
 msgstr "Таймеры"
 
@@ -16470,9 +16357,6 @@ msgstr ""
 msgid "Volume:"
 msgstr ""
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 msgid "W"
 msgstr "W"
 
@@ -17034,12 +16918,12 @@ msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Сохранить сдвиг времени как видеофайл и остановить запись"
 
 #, fuzzy
-msgid "Yes, delete Timer and delete recording"
-msgstr "Сохранить сдвиг времени как видеофайл и остановить запись"
-
-#, fuzzy
 msgid "Yes, delete from Timerlist"
 msgstr "Действительно удалить выполненные таймеры?"
+
+#, fuzzy
+msgid "Yes, delete from Timerlist and delete recording"
+msgstr "Сохранить сдвиг времени как видеофайл и остановить запись"
 
 #, fuzzy
 msgid "Yes, delete this movie and return to movie list"
@@ -17440,10 +17324,6 @@ msgid "Zap focus to Picture in Picture"
 msgstr "Переключить центр Картинки в картинке"
 
 msgid "Zap focus to main screen"
-msgstr "Переключить центр основного экрана"
-
-#, fuzzy
-msgid "Zap focused channel on full screen"
 msgstr "Переключить центр основного экрана"
 
 msgid "Zap mode"
@@ -19164,9 +19044,6 @@ msgstr ""
 msgid "working"
 msgstr "работающий"
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 msgid "yellow"
 msgstr "жёлтый"
 
@@ -19192,9 +19069,6 @@ msgstr "переключено"
 #, fuzzy
 msgid "zapping"
 msgstr "переключено"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""

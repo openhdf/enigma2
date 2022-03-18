@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
@@ -201,13 +201,7 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-msgid "  Menu key : Select quad channel"
-msgstr ""
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #, fuzzy, python-format
@@ -226,10 +220,6 @@ msgstr " (Radio)"
 
 msgid " (TV)"
 msgstr " (TV)"
-
-#, fuzzy
-msgid " (current channel)"
-msgstr "Toon EPG voor huidige kanaal"
 
 #, fuzzy
 msgid " (disabled)"
@@ -254,10 +244,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "S-video"
-
-#, fuzzy
-msgid " <empty>"
-msgstr "leeg"
 
 #, python-format
 msgid " Except %s"
@@ -1176,10 +1162,6 @@ msgstr "<Standaard lokatie voor opnames>"
 msgid "<Last timer location>"
 msgstr "<Laatste timer lokatie>"
 
-#, fuzzy
-msgid "<No Channel>"
-msgstr "Kanaal"
-
 msgid "<unknown>"
 msgstr "<onbekend>"
 
@@ -1494,9 +1476,6 @@ msgstr "Voeg toe"
 
 msgid "Add AutoTimer"
 msgstr "Voeg autotimer toe"
-
-msgid "Add New Quad Channel Entry"
-msgstr ""
 
 msgid "Add Timer"
 msgstr "Voeg timer toe"
@@ -2506,10 +2485,6 @@ msgstr "Favorietenlijst"
 msgid "Bouvet Island"
 msgstr ""
 
-#, fuzzy
-msgid "Box or driver is not support Quad PiP."
-msgstr "tuner wordt niet ondersteund"
-
 msgid "Brazil"
 msgstr ""
 
@@ -3141,10 +3116,6 @@ msgstr "Chipset: BCM%s"
 msgid "Choice Box"
 msgstr ""
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3461,6 +3432,10 @@ msgstr "Stel in of de servicetype-iconen worden getoond."
 
 msgid "Configure if epg.dat should be saved at all."
 msgstr ""
+
+#, fuzzy
+msgid "Configure if service picons will be shown in quickzap."
+msgstr "Stel in of de servicetype-iconen worden getoond."
 
 #, fuzzy
 msgid "Configure if service picons will be shown in the servicelist."
@@ -5014,20 +4989,6 @@ msgstr "EPG lokatie"
 msgid "EPG filename"
 msgstr "EPG bestandsnaam"
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 msgid "EPG language selection 1"
 msgstr "EPG taalkeuze 1"
 
@@ -5050,9 +5011,6 @@ msgstr "Oost"
 msgid "East limit set"
 msgstr "Oostelijke limiet instellen"
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr "Ecm:"
 
@@ -5061,9 +5019,6 @@ msgstr ""
 
 msgid "Edit"
 msgstr "Bewerk"
-
-msgid "Edit Quad Channel Entry"
-msgstr ""
 
 #, fuzzy
 msgid "Edit Title"
@@ -5177,10 +5132,6 @@ msgid "Enable OpenTV EPG"
 msgstr "EIT EPG inschakelen"
 
 #, fuzzy
-msgid "Enable Quad PIP"
-msgstr "Ingeschakeld"
-
-#, fuzzy
 msgid "Enable Swap at startup"
 msgstr "Auto Fastscan inschakelen"
 
@@ -5263,8 +5214,9 @@ msgstr "Auto Fastscan inschakelen"
 msgid "Enable multiple bouquets"
 msgstr "Meerdere favorietenlijsten toestaan"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "Gedeactiveerd"
 
 msgid "Enable panic button"
 msgstr "Paniektoets gebruiken"
@@ -5598,10 +5550,6 @@ msgstr "verlaat nameserver configuratie"
 msgid "Exit MAC-address configuration"
 msgstr "Verlaat Activeer MAC-adresconfiguratie"
 
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "Zenderkeuze"
-
 msgid "Exit editor"
 msgstr "Editor afsluiten"
 
@@ -5633,9 +5581,6 @@ msgstr "verlaat netwerkinterface lijst"
 msgid "Exit network wizard"
 msgstr "Verlaat netwerk wizard"
 
-msgid "Exit quad PiP"
-msgstr ""
-
 msgid "Exit the wizard"
 msgstr "Wizard afsluiten"
 
@@ -5659,10 +5604,6 @@ msgstr "Expert"
 #, fuzzy
 msgid "Expert mode"
 msgstr "Expert"
-
-#, fuzzy
-msgid "Ext. NumberZap"
-msgstr "Nummer"
 
 #, fuzzy
 msgid "Extend"
@@ -7259,10 +7200,6 @@ msgid "Input Stream ID"
 msgstr ""
 
 #, fuzzy
-msgid "Input channel name."
-msgstr "Gebruik fastscan kanaalnamen"
-
-#, fuzzy
 msgid "Input config file name:"
 msgstr "Lange naam"
 
@@ -8733,9 +8670,6 @@ msgstr "Straks"
 #, fuzzy
 msgid "Next long"
 msgstr "Lang-rood"
-
-msgid "Next quad PiP channel"
-msgstr ""
 
 msgid "Nicaragua"
 msgstr ""
@@ -10393,9 +10327,6 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Druk op geel om deze interface als standaard in te stellen."
 
-msgid "Prev quad PiP channel"
-msgstr ""
-
 msgid "Preview"
 msgstr "Voorbeeld"
 
@@ -10563,26 +10494,6 @@ msgid "Qatar"
 msgstr ""
 
 #, fuzzy
-msgid "Quad PiP Channel Selection"
-msgstr "Zenderkeuze"
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-#, fuzzy
-msgid "Quad PiP channel "
-msgstr "%d kanaal gevonden."
-
-#
-#, fuzzy
-msgid "Quad PiP is not available."
-msgstr "Updatefeed niet beschikbaar."
-
-#, fuzzy
-msgid "Quad Picture in Picture"
-msgstr "Verplaats Picture In Picture"
-
-#, fuzzy
 msgid "Question"
 msgstr "Resolutie"
 
@@ -10699,11 +10610,11 @@ msgstr "Nu herstarten?"
 msgid "Really close without saving settings?"
 msgstr "Afsluiten zonder opslaan?"
 
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "Wilt u de gebruikte timers echt wissen?"
 
-#, fuzzy
-msgid "Really delete this entry?"
+msgid "Really delete done timers?"
 msgstr "Wilt u de gebruikte timers echt wissen?"
 
 msgid "Really exit the subservices quickzap?"
@@ -10942,10 +10853,6 @@ msgstr "Verwijderen bevestiging"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "Verwijderen"
-
-#, fuzzy
-msgid "Remove Quad Channel Entry"
-msgstr "Verwijder een nameserver "
 
 msgid "Remove Service"
 msgstr "Verwijder service"
@@ -11318,9 +11225,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SHOUTcast"
 msgstr ""
 
 msgid "SID"
@@ -11721,9 +11625,6 @@ msgstr ""
 msgid "Select Location"
 msgstr "Kies lokatie"
 
-msgid "Select Quad Channels"
-msgstr ""
-
 #, fuzzy
 msgid "Select Softcam"
 msgstr "Kies lokatie"
@@ -11758,10 +11659,6 @@ msgstr "Kies backup bestanden"
 
 msgid "Select backup location"
 msgstr "Kies een backup lokatie"
-
-#, fuzzy
-msgid "Select channel audio"
-msgstr "Selecteer een zender voor opname"
 
 msgid "Select channel to record from"
 msgstr "Selecteer een zender voor opname"
@@ -12817,10 +12714,6 @@ msgstr "Toon kanaalnummers in informatiebalk."
 msgid "Show channel numbers in channel selection"
 msgstr "Toon kanaalnummers in kanaallijst"
 
-#, fuzzy
-msgid "Show channel selection"
-msgstr "Zenderkeuze"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -12947,6 +12840,10 @@ msgstr "Toon of verberg de uitgebreide beschrijving (skin afhankelijk)"
 #, fuzzy
 msgid "Show picon background colour"
 msgstr "Toon picon-achtergrondkleur"
+
+#, fuzzy
+msgid "Show picons in quickzap"
+msgstr "Toon taalpakketten"
 
 #, fuzzy
 msgid "Show picons in service list"
@@ -13112,9 +13009,6 @@ msgstr "Toon waarschuwing als timeshift gestopt wordt"
 #, fuzzy
 msgid "Show weblinks module packages"
 msgstr "Toon source-packages"
-
-msgid "Show/Hide focus bar"
-msgstr ""
 
 msgid "Shows live tv or informations on LCD."
 msgstr ""
@@ -15186,14 +15080,6 @@ msgstr "Timer selectie..."
 msgid "Timer type"
 msgstr "Type timer"
 
-#, fuzzy
-msgid "Timer+"
-msgstr "Timers"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Timers"
-
 msgid "Timers"
 msgstr "Timers"
 
@@ -16481,9 +16367,6 @@ msgstr "Lang-blauw"
 msgid "Volume:"
 msgstr ""
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 msgid "W"
 msgstr "W"
 
@@ -17042,12 +16925,12 @@ msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Ja, maar bewaar timeshift als opname en stop opname."
 
 #, fuzzy
-msgid "Yes, delete Timer and delete recording"
-msgstr "Ja, maar bewaar timeshift als opname en stop opname."
-
-#, fuzzy
 msgid "Yes, delete from Timerlist"
 msgstr "Wilt u de gebruikte timers echt wissen?"
+
+#, fuzzy
+msgid "Yes, delete from Timerlist and delete recording"
+msgstr "Ja, maar bewaar timeshift als opname en stop opname."
 
 #, fuzzy
 msgid "Yes, delete this movie and return to movie list"
@@ -17446,10 +17329,6 @@ msgid "Zap focus to Picture in Picture"
 msgstr "Zappen in PiP-scherm"
 
 msgid "Zap focus to main screen"
-msgstr "Zappen in hoofdscherm"
-
-#, fuzzy
-msgid "Zap focused channel on full screen"
 msgstr "Zappen in hoofdscherm"
 
 msgid "Zap mode"
@@ -19171,9 +19050,6 @@ msgstr "Zonder pop-up"
 msgid "working"
 msgstr "bezig"
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 msgid "yellow"
 msgstr "geel"
 
@@ -19199,9 +19075,6 @@ msgstr "zapte"
 #, fuzzy
 msgid "zapping"
 msgstr "zapte"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""

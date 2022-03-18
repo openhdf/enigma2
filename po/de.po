@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: 2022-03-18 16:41+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
@@ -229,14 +229,8 @@ msgstr "     keine Schreibrechte auf dem Backup Laufwerk"
 msgid "     wrong back-up destination "
 msgstr "     falsches Backup Ziel "
 
-msgid "  Menu key : Select quad channel"
-msgstr "  Menü : Wähle Sendergruppe"
-
 msgid "  REC  "
 msgstr "  REC "
-
-msgid "  Red key : Show/Hide channel name"
-msgstr "  Rot : Zeige/Verstecke Kanalname"
 
 #, python-format
 msgid " (Channel %s)"
@@ -254,9 +248,6 @@ msgstr " (Radio)"
 
 msgid " (TV)"
 msgstr " (TV)"
-
-msgid " (current channel)"
-msgstr " (aktueller Kanal)"
 
 msgid " (disabled)"
 msgstr " (deaktiviert)"
@@ -278,9 +269,6 @@ msgstr " - Video0+Video1"
 
 msgid " - video1"
 msgstr " - Video1"
-
-msgid " <empty>"
-msgstr " <leer>"
 
 #, python-format
 msgid " Except %s"
@@ -1155,9 +1143,6 @@ msgstr "<Standard Filmverzeichnis>"
 msgid "<Last timer location>"
 msgstr "<Letzter Timer Ort>"
 
-msgid "<No Channel>"
-msgstr "< Kein Kanal >"
-
 msgid "<unknown>"
 msgstr "<unbekannt>"
 
@@ -1466,9 +1451,6 @@ msgstr "Hinzufügen"
 
 msgid "Add AutoTimer"
 msgstr "Autotimer hinzufügen"
-
-msgid "Add New Quad Channel Entry"
-msgstr "Neuen Vierkanaleintrag hinzufügen"
 
 msgid "Add Timer"
 msgstr "Timer hinzufügen"
@@ -2416,9 +2398,6 @@ msgstr "Favoritenliste"
 msgid "Bouvet Island"
 msgstr "Bouvetinsel"
 
-msgid "Box or driver is not support Quad PiP."
-msgstr "Receiver oder Treiber unterstützt kein Quad PIP."
-
 msgid "Brazil"
 msgstr "Brasilien"
 
@@ -3058,10 +3037,6 @@ msgstr "Chipsatz: BCM%s"
 msgid "Choice Box"
 msgstr "Auswahlbox"
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr "'Auf welchen Eintrag soll \"%s\" gelegt werden?'"
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr "Wählen Sie den 3D-Modus (Nebeneinander, Oben und unten, Auto, Aus)."
 
@@ -3355,6 +3330,9 @@ msgstr "Hier können Sie einstellen, ob Spalten innerhalb der Kanalliste benutzt
 
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Konfiguriert ob das EPG immer gespeichert werden soll."
+
+msgid "Configure if service picons will be shown in quickzap."
+msgstr "Bei 'Ja' werden Senderlogos (Picons) falls vorhanden beim Quickzap (Umschalten) angezeigt."
 
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Konfigurieren ob und wie Picons in der Senderliste gezeigt werden."
@@ -4811,28 +4789,6 @@ msgstr "EPG-Auswahl"
 msgid "EPG filename"
 msgstr "EPG Dateiname"
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-"EPG-Taste : Zur Senderliste wechseln\n"
-"Ok-Taste: Ausgewählten Kanal entfernen\n"
-"PVR-Taste: Geben Sie den Kanalnamen ein\n"
-"Exit-Taste : Kanalbearbeitung beenden"
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-"EPG : Wechsel zum PiP Eintrag\n"
-"OK   : Neuen Eintrag hinzufügen\n"
-"PVR : PiP Kanal umbenennen\n"
-"Exit : Editieren beenden"
-
 msgid "EPG language selection 1"
 msgstr "EPG Sprachwahl 1"
 
@@ -4855,9 +4811,6 @@ msgstr "Ost"
 msgid "East limit set"
 msgstr "Ost Grenzwert setzen"
 
-msgid "EasyMedia"
-msgstr "EasyMedia"
-
 msgid "Ecm:"
 msgstr "ECM:"
 
@@ -4866,9 +4819,6 @@ msgstr "Ecuador"
 
 msgid "Edit"
 msgstr "Bearbeiten"
-
-msgid "Edit Quad Channel Entry"
-msgstr "Vierkanaleintrag bearbeiten"
 
 msgid "Edit Title"
 msgstr "Titel ändern"
@@ -4974,9 +4924,6 @@ msgstr "Überprüfung der Netzwerkdatenübertragung aktivieren"
 
 msgid "Enable OpenTV EPG"
 msgstr "OpenTV EPG aktivieren"
-
-msgid "Enable Quad PIP"
-msgstr "Aktiviere Quad PIP"
 
 msgid "Enable Swap at startup"
 msgstr "Swap beim Start aktivieren"
@@ -5367,9 +5314,6 @@ msgstr "IPv6 Konfiguration beenden"
 msgid "Exit MAC-address configuration"
 msgstr "Beenden Sie die MAC-Adresskonfiguration"
 
-msgid "Exit Quad Channel Selection"
-msgstr "Beenden Sie die Quad-Kanal-Auswahl"
-
 msgid "Exit editor"
 msgstr "Editor beenden"
 
@@ -5400,9 +5344,6 @@ msgstr "Netzwerkadapterübersicht beenden"
 msgid "Exit network wizard"
 msgstr "Netzwerkassistent beenden"
 
-msgid "Exit quad PiP"
-msgstr "Beenden Sie Quad-PiP"
-
 msgid "Exit the wizard"
 msgstr "Assistent beenden"
 
@@ -5423,9 +5364,6 @@ msgstr "Experte"
 
 msgid "Expert mode"
 msgstr "Expertenmodus"
-
-msgid "Ext. NumberZap"
-msgstr "Ext. NumberZap"
 
 msgid "Extend"
 msgstr "Verlängern"
@@ -6912,9 +6850,6 @@ msgstr "Eingabe "
 msgid "Input Stream ID"
 msgstr "Input Stream ID"
 
-msgid "Input channel name."
-msgstr "Geben Sie den Namen des Kanals ein."
-
 msgid "Input config file name:"
 msgstr "Konfigurationsdatei Name:"
 
@@ -8302,9 +8237,6 @@ msgstr "Demnächst"
 
 msgid "Next long"
 msgstr "Next lang"
-
-msgid "Next quad PiP channel"
-msgstr "Auf die nächste Sendergruppe schalten"
 
 msgid "Nicaragua"
 msgstr "Nicaragua"
@@ -9884,9 +9816,6 @@ msgstr "Diese hier eingestellte Taste emuliert einen langen Tastendruck, gefolgt
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Drücken Sie Gelb, um diese Schnittstelle als Standardschnittstelle festzulegen."
 
-msgid "Prev quad PiP channel"
-msgstr "Vorheriger Vierfach-PiP-Kanal"
-
 msgid "Preview"
 msgstr "Vorschau"
 
@@ -10038,21 +9967,6 @@ msgstr "Python:\t\t%s\n"
 msgid "Qatar"
 msgstr "Qatar"
 
-msgid "Quad PiP Channel Selection"
-msgstr "Quad PiP Kanal Auswahl"
-
-msgid "Quad PiP Screen"
-msgstr "Quad-PiP-Bildschirm"
-
-msgid "Quad PiP channel "
-msgstr "Quad PiP Kanal "
-
-msgid "Quad PiP is not available."
-msgstr "Quad-PiP ist nicht verfügbar."
-
-msgid "Quad Picture in Picture"
-msgstr "Quad Bild im Bild"
-
 msgid "Question"
 msgstr "Frage"
 
@@ -10162,11 +10076,12 @@ msgstr "WOL jetzt durchführen?"
 msgid "Really close without saving settings?"
 msgstr "Wirklich ohne Sichern beenden?"
 
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "Vollendete Timer wirklich löschen?"
 
-msgid "Really delete this entry?"
-msgstr "Sendergruppe wirklich löschen?"
+msgid "Really delete done timers?"
+msgstr "Vollendete Timer wirklich löschen?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Den Unterkanal-Schnellumschalter wirklich beenden?"
@@ -10383,9 +10298,6 @@ msgstr "Löschen bestätigen"
 
 msgid "Remove Plugins"
 msgstr "Plugins entfernen"
-
-msgid "Remove Quad Channel Entry"
-msgstr "Entfernen Sie den Quad-Channel-Eintrag"
 
 msgid "Remove Service"
 msgstr "Service löschen"
@@ -10732,9 +10644,6 @@ msgstr "SD-Kartenschalter FEHLER! - bereits auf Nand"
 
 msgid "SDcard switch ERROR! - already on mmc"
 msgstr "SD-Kartenschalter FEHLER! - bereits auf mmc"
-
-msgid "SHOUTcast"
-msgstr "SHOUTcast"
 
 msgid "SID"
 msgstr "SID"
@@ -11115,9 +11024,6 @@ msgstr "Bild auswählen: STARTUP_1"
 msgid "Select Location"
 msgstr "Wähle Verzeichnis"
 
-msgid "Select Quad Channels"
-msgstr "Wählen Sie Quad-Kanäle"
-
 msgid "Select Softcam"
 msgstr "Wählen Sie Softcam"
 
@@ -11148,9 +11054,6 @@ msgstr "Auswahl der zu sichernden Dateien"
 
 msgid "Select backup location"
 msgstr "Auswahl das Sicherungsverzeichnis"
-
-msgid "Select channel audio"
-msgstr "Kanalauswahl für die Tonausgabe"
 
 msgid "Select channel to record from"
 msgstr "Wähle Sender von dem aufgenommen werden soll"
@@ -12103,9 +12006,6 @@ msgstr "Zeige Sendernummer in Infobar"
 msgid "Show channel numbers in channel selection"
 msgstr "Zeige Sendernummer in Senderauswahl"
 
-msgid "Show channel selection"
-msgstr "Zeige die Sendergruppen"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr "Zeige Kapitelpositionen für unterstützte Videodateien an. ( Ab GStreamer Version 1 )"
 
@@ -12217,14 +12117,11 @@ msgstr "Zeige oder verstecke erweiterte Beschreibung (skinabhängig)."
 msgid "Show picon background colour"
 msgstr "Zeige Hintergrundfarbe von Picon"
 
-msgid "Show picons in service list"
-msgstr "Zeige Picon in der Senderliste"
-
 msgid "Show picons in quickzap"
 msgstr "Senderlogos (Picons) falls vorhanden beim Quickzap anzeigen"
 
-msgid "Configure if service picons will be shown in quickzap."
-msgstr "Bei 'Ja' werden Senderlogos (Picons) falls vorhanden beim Quickzap (Umschalten) angezeigt."
+msgid "Show picons in service list"
+msgstr "Zeige Picon in der Senderliste"
 
 msgid "Show picons packages"
 msgstr "Zeige Senderlogo Pakete an"
@@ -12366,9 +12263,6 @@ msgstr "Zeige Warnung, wenn Timeshift beendet wird"
 
 msgid "Show weblinks module packages"
 msgstr "Zeige Weblinks Pakete an"
-
-msgid "Show/Hide focus bar"
-msgstr "Zeige/verstecke den Fokusrahmen"
 
 msgid "Shows live tv or informations on LCD."
 msgstr "Zeige aktuelles TV oder Information auf den LCD."
@@ -14300,12 +14194,6 @@ msgstr "Timer-Auswahl..."
 msgid "Timer type"
 msgstr "Timer-Art"
 
-msgid "Timer+"
-msgstr "Timer+"
-
-msgid "Timerlist"
-msgstr "Timerliste"
-
 msgid "Timers"
 msgstr "Timer"
 
@@ -15508,9 +15396,6 @@ msgstr "Lautstärke erhöhen lang *"
 msgid "Volume:"
 msgstr "Volumen:"
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr "Vu+ Ultimo - Skin von schomi"
-
 msgid "W"
 msgstr "W"
 
@@ -16042,11 +15927,11 @@ msgstr "Timeshift speichern und Aufnahme fortsetzen"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Timeshift speichern und Aufnahme beenden"
 
-msgid "Yes, delete from Timerlist and delete recording"
-msgstr "Ja, den Timer und die Aufnahme löschen"
-
 msgid "Yes, delete from Timerlist"
 msgstr "Ja, den Timer löschen"
+
+msgid "Yes, delete from Timerlist and delete recording"
+msgstr "Ja, den Timer und die Aufnahme löschen"
 
 msgid "Yes, delete this movie and return to movie list"
 msgstr "Ja, diesen Film löschen und zurück zur Filmauswahl"
@@ -16451,9 +16336,6 @@ msgstr "Zap-Fokus auf Bild-in-Bild"
 
 msgid "Zap focus to main screen"
 msgstr "Zap-Fokus auf Hauptbild legen"
-
-msgid "Zap focused channel on full screen"
-msgstr "Schalte im Vollbildmodus auf den ausgewählten Sender"
 
 msgid "Zap mode"
 msgstr "Umschalt Modus"
@@ -18102,9 +17984,6 @@ msgstr "ohne Rückfrage"
 msgid "working"
 msgstr "Arbeite"
 
-msgid "www.vuplus-support.org"
-msgstr "www.vuplus-support.org"
-
 msgid "yellow"
 msgstr "gelb"
 
@@ -18129,9 +18008,6 @@ msgstr "Umgeschaltet"
 
 msgid "zapping"
 msgstr "umschalten"
-
-msgid "®"
-msgstr "®"
 
 msgid "°"
 msgstr "°"

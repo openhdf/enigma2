@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: HDTV ROMANIA(superonic,costel_mbc,neutrin,otheitis,cipy_1982,neutrin,runcanion)\n"
@@ -192,13 +192,7 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-msgid "  Menu key : Select quad channel"
-msgstr ""
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #, fuzzy, python-format
@@ -216,9 +210,6 @@ msgid " (Radio)"
 msgstr ""
 
 msgid " (TV)"
-msgstr ""
-
-msgid " (current channel)"
 msgstr ""
 
 #, fuzzy
@@ -244,10 +235,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "S-Video"
-
-#, fuzzy
-msgid " <empty>"
-msgstr "gol"
 
 #, python-format
 msgid " Except %s"
@@ -1138,10 +1125,6 @@ msgstr ""
 msgid "<Last timer location>"
 msgstr ""
 
-#, fuzzy
-msgid "<No Channel>"
-msgstr "Canal"
-
 msgid "<unknown>"
 msgstr "<necunoscut>"
 
@@ -1440,9 +1423,6 @@ msgid "Add"
 msgstr "Adauga"
 
 msgid "Add AutoTimer"
-msgstr ""
-
-msgid "Add New Quad Channel Entry"
 msgstr ""
 
 msgid "Add Timer"
@@ -2436,9 +2416,6 @@ msgstr ""
 msgid "Bouvet Island"
 msgstr ""
 
-msgid "Box or driver is not support Quad PiP."
-msgstr ""
-
 msgid "Brazil"
 msgstr ""
 
@@ -3065,10 +3042,6 @@ msgstr ""
 msgid "Choice Box"
 msgstr ""
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3372,6 +3345,9 @@ msgid "Configure if and how wide columns will be shown in the channel selection 
 msgstr ""
 
 msgid "Configure if epg.dat should be saved at all."
+msgstr ""
+
+msgid "Configure if service picons will be shown in quickzap."
 msgstr ""
 
 msgid "Configure if service picons will be shown in the servicelist."
@@ -4901,20 +4877,6 @@ msgstr "Selectare timer"
 msgid "EPG filename"
 msgstr ""
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 msgid "EPG language selection 1"
 msgstr ""
 
@@ -4938,9 +4900,6 @@ msgstr "Est"
 msgid "East limit set"
 msgstr "Setare limite"
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr ""
 
@@ -4949,9 +4908,6 @@ msgstr ""
 
 msgid "Edit"
 msgstr "Editare"
-
-msgid "Edit Quad Channel Entry"
-msgstr ""
 
 #, fuzzy
 msgid "Edit Title"
@@ -5063,10 +5019,6 @@ msgstr ""
 msgid "Enable OpenTV EPG"
 msgstr ""
 
-#, fuzzy
-msgid "Enable Quad PIP"
-msgstr "Activat"
-
 msgid "Enable Swap at startup"
 msgstr ""
 
@@ -5144,8 +5096,9 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Activeaza buchete multiple"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "Dezactivat"
 
 msgid "Enable panic button"
 msgstr ""
@@ -5465,10 +5418,6 @@ msgstr "iesire configurare nameserver"
 msgid "Exit MAC-address configuration"
 msgstr "iesire configurare nameserver"
 
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "Selectie canal"
-
 msgid "Exit editor"
 msgstr "Iesire din editor"
 
@@ -5506,9 +5455,6 @@ msgstr "iesire interfata retea"
 msgid "Exit network wizard"
 msgstr ""
 
-msgid "Exit quad PiP"
-msgstr ""
-
 msgid "Exit the wizard"
 msgstr "Iesi din ajutorul de configurare"
 
@@ -5530,9 +5476,6 @@ msgstr "Expert"
 #, fuzzy
 msgid "Expert mode"
 msgstr "Expert"
-
-msgid "Ext. NumberZap"
-msgstr ""
 
 #, fuzzy
 msgid "Extend"
@@ -7070,9 +7013,6 @@ msgstr "Intrare"
 msgid "Input Stream ID"
 msgstr ""
 
-msgid "Input channel name."
-msgstr ""
-
 msgid "Input config file name:"
 msgstr ""
 
@@ -8563,9 +8503,6 @@ msgstr ""
 #, fuzzy
 msgid "Next long"
 msgstr "textcolor"
-
-msgid "Next quad PiP channel"
-msgstr ""
 
 msgid "Nicaragua"
 msgstr ""
@@ -10182,9 +10119,6 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Setare interfata ca interfata implicita"
 
-msgid "Prev quad PiP channel"
-msgstr ""
-
 msgid "Preview"
 msgstr ""
 
@@ -10347,24 +10281,6 @@ msgid "Qatar"
 msgstr ""
 
 #, fuzzy
-msgid "Quad PiP Channel Selection"
-msgstr "Selectie canal"
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-#, fuzzy
-msgid "Quad PiP channel "
-msgstr "%d servicii gasite!"
-
-msgid "Quad PiP is not available."
-msgstr ""
-
-#, fuzzy
-msgid "Quad Picture in Picture"
-msgstr "Muta picture in picture"
-
-#, fuzzy
 msgid "Question"
 msgstr "Rezolutie"
 
@@ -10479,11 +10395,11 @@ msgstr "Reporniti sistemul acum?"
 msgid "Really close without saving settings?"
 msgstr "Inchideti fara sa salvati setarile?"
 
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "Stergeti timpii de terminare?"
 
-#, fuzzy
-msgid "Really delete this entry?"
+msgid "Really delete done timers?"
 msgstr "Stergeti timpii de terminare?"
 
 msgid "Really exit the subservices quickzap?"
@@ -10717,10 +10633,6 @@ msgstr "Configurare tuner"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "Eliminare plugin-uri"
-
-#, fuzzy
-msgid "Remove Quad Channel Entry"
-msgstr "elimina o intrare de nameserver"
 
 msgid "Remove Service"
 msgstr ""
@@ -11089,9 +11001,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SHOUTcast"
 msgstr ""
 
 msgid "SID"
@@ -11499,9 +11408,6 @@ msgstr ""
 msgid "Select Location"
 msgstr "Alege locatia"
 
-msgid "Select Quad Channels"
-msgstr ""
-
 #, fuzzy
 msgid "Select Softcam"
 msgstr "Alege locatia"
@@ -11539,10 +11445,6 @@ msgstr "Selecteaza fisierele copii de siguranta"
 #, fuzzy
 msgid "Select backup location"
 msgstr "Alege locatia copiei de siguranta"
-
-#, fuzzy
-msgid "Select channel audio"
-msgstr "Selectare canal de inregistrat"
 
 msgid "Select channel to record from"
 msgstr "Selectare canal de inregistrat"
@@ -12571,10 +12473,6 @@ msgstr "arata info despre transponder"
 msgid "Show channel numbers in channel selection"
 msgstr ""
 
-#, fuzzy
-msgid "Show channel selection"
-msgstr "Selectie canal"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -12697,6 +12595,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Show picon background colour"
+msgstr "colorit fundal"
+
+#, fuzzy
+msgid "Show picons in quickzap"
 msgstr "colorit fundal"
 
 #, fuzzy
@@ -12855,9 +12757,6 @@ msgid "Show warning when timeshift is stopped"
 msgstr "Cand un film este oprit"
 
 msgid "Show weblinks module packages"
-msgstr ""
-
-msgid "Show/Hide focus bar"
 msgstr ""
 
 msgid "Shows live tv or informations on LCD."
@@ -14861,14 +14760,6 @@ msgstr "Selectare timer"
 msgid "Timer type"
 msgstr "Tip Timer"
 
-#, fuzzy
-msgid "Timer+"
-msgstr "Ora"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Editare timer"
-
 msgid "Timers"
 msgstr ""
 
@@ -16115,9 +16006,6 @@ msgstr ""
 msgid "Volume:"
 msgstr ""
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 msgid "W"
 msgstr "W"
 
@@ -16655,11 +16543,12 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete Timer and delete recording"
-msgstr ""
-
 #, fuzzy
 msgid "Yes, delete from Timerlist"
+msgstr "Stergeti timpii de terminare?"
+
+#, fuzzy
+msgid "Yes, delete from Timerlist and delete recording"
 msgstr "Stergeti timpii de terminare?"
 
 #, fuzzy
@@ -17009,9 +16898,6 @@ msgid "Zap focus to Picture in Picture"
 msgstr ""
 
 msgid "Zap focus to main screen"
-msgstr ""
-
-msgid "Zap focused channel on full screen"
 msgstr ""
 
 msgid "Zap mode"
@@ -18712,9 +18598,6 @@ msgstr ""
 msgid "working"
 msgstr "lucreaza"
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 msgid "yellow"
 msgstr "galben"
 
@@ -18741,9 +18624,6 @@ msgstr "zapped"
 #, fuzzy
 msgid "zapping"
 msgstr "zapped"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""

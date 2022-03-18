@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
@@ -199,13 +199,7 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-msgid "  Menu key : Select quad channel"
-msgstr ""
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #, fuzzy, python-format
@@ -224,9 +218,6 @@ msgstr "(رادیو)"
 
 msgid " (TV)"
 msgstr "(تلوزیون)"
-
-msgid " (current channel)"
-msgstr ""
 
 #, fuzzy
 msgid " (disabled)"
@@ -251,10 +242,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "S-Video"
-
-#, fuzzy
-msgid " <empty>"
-msgstr "خالی"
 
 #, python-format
 msgid " Except %s"
@@ -1158,10 +1145,6 @@ msgstr "<محل پیش فرض فیلم>"
 msgid "<Last timer location>"
 msgstr "<آخرین مکان زمان>"
 
-#, fuzzy
-msgid "<No Channel>"
-msgstr "کانال"
-
 msgid "<unknown>"
 msgstr "<نامشخص>"
 
@@ -1471,9 +1454,6 @@ msgid "Add"
 msgstr "اضافه کردن"
 
 msgid "Add AutoTimer"
-msgstr ""
-
-msgid "Add New Quad Channel Entry"
 msgstr ""
 
 msgid "Add Timer"
@@ -2486,10 +2466,6 @@ msgstr ""
 msgid "Bouvet Island"
 msgstr ""
 
-#, fuzzy
-msgid "Box or driver is not support Quad PiP."
-msgstr "تیونر پشتیبانی نمیشود"
-
 msgid "Brazil"
 msgstr ""
 
@@ -3120,10 +3096,6 @@ msgstr ""
 msgid "Choice Box"
 msgstr ""
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3427,6 +3399,9 @@ msgid "Configure if and how wide columns will be shown in the channel selection 
 msgstr ""
 
 msgid "Configure if epg.dat should be saved at all."
+msgstr ""
+
+msgid "Configure if service picons will be shown in quickzap."
 msgstr ""
 
 msgid "Configure if service picons will be shown in the servicelist."
@@ -4975,20 +4950,6 @@ msgstr "انتخاب زبان EPG 1"
 msgid "EPG filename"
 msgstr ""
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 msgid "EPG language selection 1"
 msgstr "انتخاب زبان EPG 1"
 
@@ -5011,9 +4972,6 @@ msgstr "شرق"
 msgid "East limit set"
 msgstr ""
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr ""
 
@@ -5022,9 +4980,6 @@ msgstr ""
 
 msgid "Edit"
 msgstr "ویرایش"
-
-msgid "Edit Quad Channel Entry"
-msgstr ""
 
 #, fuzzy
 msgid "Edit Title"
@@ -5138,10 +5093,6 @@ msgstr ""
 msgid "Enable OpenTV EPG"
 msgstr "فعال کردن EIT EPG"
 
-#, fuzzy
-msgid "Enable Quad PIP"
-msgstr "فعال شد"
-
 msgid "Enable Swap at startup"
 msgstr ""
 
@@ -5221,8 +5172,9 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "فعال کردن چندین لیست"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "غیر فعال شد"
 
 msgid "Enable panic button"
 msgstr ""
@@ -5549,10 +5501,6 @@ msgstr "خروج از پیکربندی nameserver"
 msgid "Exit MAC-address configuration"
 msgstr "خروج از پیکربندی nameserver"
 
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "انتخاب کانال"
-
 msgid "Exit editor"
 msgstr "خروج از ویرایشگر"
 
@@ -5591,9 +5539,6 @@ msgstr "خروج از لیست رابط شبکه "
 msgid "Exit network wizard"
 msgstr "خروج از هدایتگر شبکه"
 
-msgid "Exit quad PiP"
-msgstr ""
-
 msgid "Exit the wizard"
 msgstr "خروج از هدایتگر"
 
@@ -5616,9 +5561,6 @@ msgstr "تخصصی"
 #, fuzzy
 msgid "Expert mode"
 msgstr "تخصصی"
-
-msgid "Ext. NumberZap"
-msgstr ""
 
 #, fuzzy
 msgid "Extend"
@@ -7180,9 +7122,6 @@ msgstr "ورودی"
 msgid "Input Stream ID"
 msgstr ""
 
-msgid "Input channel name."
-msgstr ""
-
 #, fuzzy
 msgid "Input config file name:"
 msgstr "نام های طولانی فایل"
@@ -8694,9 +8633,6 @@ msgstr ""
 #, fuzzy
 msgid "Next long"
 msgstr "رنگ نوشته"
-
-msgid "Next quad PiP channel"
-msgstr ""
 
 msgid "Nicaragua"
 msgstr ""
@@ -10347,9 +10283,6 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr "دکمه زرد را برای تنظیم این رابط به عنوان رابط پیش فرض فشار دهید"
 
-msgid "Prev quad PiP channel"
-msgstr ""
-
 msgid "Preview"
 msgstr "پیش نمایش"
 
@@ -10518,26 +10451,6 @@ msgid "Qatar"
 msgstr ""
 
 #, fuzzy
-msgid "Quad PiP Channel Selection"
-msgstr "انتخاب کانال"
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-#, fuzzy
-msgid "Quad PiP channel "
-msgstr "%d کانال یافت شد"
-
-#
-#, fuzzy
-msgid "Quad PiP is not available."
-msgstr "Updatefeed در دسترس نیست"
-
-#, fuzzy
-msgid "Quad Picture in Picture"
-msgstr "جابجایی تصویر در تصویر"
-
-#, fuzzy
 msgid "Question"
 msgstr "تفکیک پذیری و دقت"
 
@@ -10657,12 +10570,12 @@ msgstr "راه اندازی مجدد هم اکنون؟"
 msgid "Really close without saving settings?"
 msgstr "خروج بدون ذخیره کردن تنظیمات ؟"
 
+#, fuzzy
+msgid "Really delete completed timers?"
+msgstr "آیا واقعا قصد حذف کردن %s را دارید؟ "
+
 msgid "Really delete done timers?"
 msgstr ""
-
-#, fuzzy
-msgid "Really delete this entry?"
-msgstr "آیا واقعا قصد حذف کردن %s را دارید؟ "
 
 msgid "Really exit the subservices quickzap?"
 msgstr ""
@@ -10898,10 +10811,6 @@ msgstr "پیکربندی تیونر"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "حذف پلاگین ها"
-
-#, fuzzy
-msgid "Remove Quad Channel Entry"
-msgstr "حذف یک مورد nameserver"
 
 msgid "Remove Service"
 msgstr ""
@@ -11280,9 +11189,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SHOUTcast"
 msgstr ""
 
 msgid "SID"
@@ -11691,9 +11597,6 @@ msgstr ""
 msgid "Select Location"
 msgstr "انتخاب محل"
 
-msgid "Select Quad Channels"
-msgstr ""
-
 #, fuzzy
 msgid "Select Softcam"
 msgstr "انتخاب محل"
@@ -11733,10 +11636,6 @@ msgstr "انتخاب فایل های نسخه پشتیبان"
 #, fuzzy
 msgid "Select backup location"
 msgstr "انتخاب محل نسخه پشتیبان"
-
-#, fuzzy
-msgid "Select channel audio"
-msgstr "انتخاب کانال برای ضبط کردن از"
 
 msgid "Select channel to record from"
 msgstr "انتخاب کانال برای ضبط کردن از"
@@ -12779,10 +12678,6 @@ msgstr "نمایش شماره کانال ها در انتخاب کانال"
 msgid "Show channel numbers in channel selection"
 msgstr "نمایش شماره کانال ها در انتخاب کانال"
 
-#, fuzzy
-msgid "Show channel selection"
-msgstr "انتخاب کانال"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -12908,6 +12803,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Show picon background colour"
+msgstr "رنگ پس زمینه"
+
+#, fuzzy
+msgid "Show picons in quickzap"
 msgstr "رنگ پس زمینه"
 
 #, fuzzy
@@ -13067,9 +12966,6 @@ msgid "Show warning when timeshift is stopped"
 msgstr "عملکرد هنگامی که یک فیلم متوقف میشود"
 
 msgid "Show weblinks module packages"
-msgstr ""
-
-msgid "Show/Hide focus bar"
 msgstr ""
 
 msgid "Shows live tv or informations on LCD."
@@ -15092,14 +14988,6 @@ msgstr "انتخاب زمان"
 msgid "Timer type"
 msgstr "نوع زمان"
 
-#, fuzzy
-msgid "Timer+"
-msgstr "زمان"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "ویرایش زمان"
-
 msgid "Timers"
 msgstr ""
 
@@ -16382,9 +16270,6 @@ msgstr ""
 msgid "Volume:"
 msgstr ""
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 msgid "W"
 msgstr "W"
 
@@ -16907,10 +16792,10 @@ msgstr ""
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr ""
 
-msgid "Yes, delete Timer and delete recording"
+msgid "Yes, delete from Timerlist"
 msgstr ""
 
-msgid "Yes, delete from Timerlist"
+msgid "Yes, delete from Timerlist and delete recording"
 msgstr ""
 
 #, fuzzy
@@ -17281,9 +17166,6 @@ msgid "Zap focus to Picture in Picture"
 msgstr ""
 
 msgid "Zap focus to main screen"
-msgstr ""
-
-msgid "Zap focused channel on full screen"
 msgstr ""
 
 msgid "Zap mode"
@@ -18999,9 +18881,6 @@ msgstr ""
 msgid "working"
 msgstr "در حال کار"
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 msgid "yellow"
 msgstr "زرد"
 
@@ -19028,9 +18907,6 @@ msgstr "حذف شد"
 #, fuzzy
 msgid "zapping"
 msgstr "حذف شد"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""

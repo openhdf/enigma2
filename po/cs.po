@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: \n"
@@ -206,14 +206,7 @@ msgstr "     není povolen zápis na zálohovací zařízení"
 msgid "     wrong back-up destination "
 msgstr "     špatně zvolené místo uložení "
 
-#, fuzzy
-msgid "  Menu key : Select quad channel"
-msgstr "Náhled vybraného kanálu"
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #, fuzzy, python-format
@@ -232,10 +225,6 @@ msgstr " (Rádio)"
 
 msgid " (TV)"
 msgstr ""
-
-#, fuzzy
-msgid " (current channel)"
-msgstr "Zobrazit EPG pro aktuální kanál..."
 
 #, fuzzy
 msgid " (disabled)"
@@ -260,10 +249,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "S-Video"
-
-#, fuzzy
-msgid " <empty>"
-msgstr "Prázdné"
 
 #, python-format
 msgid " Except %s"
@@ -1194,10 +1179,6 @@ msgstr "<Výchozí umístění>"
 msgid "<Last timer location>"
 msgstr "<Poslední umístění časovače>"
 
-#, fuzzy
-msgid "<No Channel>"
-msgstr "Kanál"
-
 msgid "<unknown>"
 msgstr "<neznámý>"
 
@@ -1515,9 +1496,6 @@ msgstr "Přidat"
 
 msgid "Add AutoTimer"
 msgstr "Auto-Časovač"
-
-msgid "Add New Quad Channel Entry"
-msgstr ""
 
 msgid "Add Timer"
 msgstr "Přidat časovač"
@@ -2516,10 +2494,6 @@ msgstr "Seznam přehledů"
 msgid "Bouvet Island"
 msgstr ""
 
-#, fuzzy
-msgid "Box or driver is not support Quad PiP."
-msgstr "tuner není podporován"
-
 msgid "Brazil"
 msgstr ""
 
@@ -3152,10 +3126,6 @@ msgstr "Chipset: BCM%s"
 msgid "Choice Box"
 msgstr "Vyberte si:"
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3467,6 +3437,10 @@ msgstr "Nastavte, zda a jak široké sloupce se zobrazí ve výběru seznamu kan
 
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Konfigurace údajů EPG, které mají být uloženy."
+
+#, fuzzy
+msgid "Configure if service picons will be shown in quickzap."
+msgstr "Nastavte, zda a jak budou picony zobrazeny v seznamu kanálů."
 
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Nastavte, zda a jak budou picony zobrazeny v seznamu kanálů."
@@ -4997,20 +4971,6 @@ msgstr "Výběr EPG"
 msgid "EPG filename"
 msgstr "Název EPG"
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 msgid "EPG language selection 1"
 msgstr "EPG jazyk 1"
 
@@ -5033,9 +4993,6 @@ msgstr "Východní"
 msgid "East limit set"
 msgstr "Východní limit nastaven"
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr "ECM:"
 
@@ -5044,10 +5001,6 @@ msgstr ""
 
 msgid "Edit"
 msgstr "Upravit"
-
-#, fuzzy
-msgid "Edit Quad Channel Entry"
-msgstr "Úprava nové položky"
 
 #, fuzzy
 msgid "Edit Title"
@@ -5159,10 +5112,6 @@ msgstr "Povolit kontrolu síťového provozu"
 msgid "Enable OpenTV EPG"
 msgstr "Povolit EIT EPG"
 
-#, fuzzy
-msgid "Enable Quad PIP"
-msgstr "Povolit automatický PIN"
-
 msgid "Enable Swap at startup"
 msgstr "Zapnout odkládání při startu"
 
@@ -5243,8 +5192,9 @@ msgstr "Povolit automatické rychlé ladění (Fast Scan)"
 msgid "Enable multiple bouquets"
 msgstr "Povolit vícenásobné přehledy"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "Zakázáno"
 
 msgid "Enable panic button"
 msgstr "Povolit tlačítko Panika"
@@ -5577,10 +5527,6 @@ msgstr "Zavřít konfiguraci DNS"
 msgid "Exit MAC-address configuration"
 msgstr "Zavřít konfiguraci DNS"
 
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "Nastavení výběru kanálů"
-
 msgid "Exit editor"
 msgstr "Zavřít editor"
 
@@ -5611,10 +5557,6 @@ msgstr "Zavřít seznam síťových rozhraní"
 msgid "Exit network wizard"
 msgstr "Zavřít síťového průvodce"
 
-#, fuzzy
-msgid "Exit quad PiP"
-msgstr "Externí obraz"
-
 msgid "Exit the wizard"
 msgstr "Zavřít průvodce"
 
@@ -5638,10 +5580,6 @@ msgstr "Expertní"
 #, fuzzy
 msgid "Expert mode"
 msgstr "Expertní"
-
-#, fuzzy
-msgid "Ext. NumberZap"
-msgstr "Rozšíření funkce tlačítek 0-9"
 
 #, fuzzy
 msgid "Extend"
@@ -7210,10 +7148,6 @@ msgid "Input Stream ID"
 msgstr ""
 
 #, fuzzy
-msgid "Input channel name."
-msgstr "Jméno programu"
-
-#, fuzzy
 msgid "Input config file name:"
 msgstr "Dlouhé názvy souborů"
 
@@ -8679,10 +8613,6 @@ msgstr "Next - dlouhý stisk"
 
 msgid "Next long"
 msgstr "Next - dlouhý stisk"
-
-#, fuzzy
-msgid "Next quad PiP channel"
-msgstr "Zobrazit EPG z více kanálů"
 
 msgid "Nicaragua"
 msgstr ""
@@ -10326,10 +10256,6 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Stiskem 'ŽLUTÉHO' tlačítka nastavíte toto rozhraní jako standardní."
 
-#, fuzzy
-msgid "Prev quad PiP channel"
-msgstr "Kanál tlačítka Panika"
-
 msgid "Preview"
 msgstr "Náhled"
 
@@ -10488,25 +10414,6 @@ msgstr "Diskové oddíly"
 msgid "Qatar"
 msgstr ""
 
-#, fuzzy
-msgid "Quad PiP Channel Selection"
-msgstr "Výběr kanálú"
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-#, fuzzy
-msgid "Quad PiP channel "
-msgstr "Kanál tlačítka Panika"
-
-#, fuzzy
-msgid "Quad PiP is not available."
-msgstr "Video režim: %s"
-
-#, fuzzy
-msgid "Quad Picture in Picture"
-msgstr "PiP"
-
 msgid "Question"
 msgstr "Zeptám se:"
 
@@ -10626,12 +10533,12 @@ msgstr "Opravdu provést restart systému?"
 msgid "Really close without saving settings?"
 msgstr "Opravdu zavřít bez uloženého nastavení?"
 
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "Opravdu smazat dokončené časovače?"
 
-#, fuzzy
-msgid "Really delete this entry?"
-msgstr "Opravdu smazat tuto položku?"
+msgid "Really delete done timers?"
+msgstr "Opravdu smazat dokončené časovače?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Opravdu opustit rychlé přepínání podprogramů?"
@@ -10857,10 +10764,6 @@ msgstr "Odstranit potvrzení"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "Odstranit pluginy"
-
-#, fuzzy
-msgid "Remove Quad Channel Entry"
-msgstr "Přenos kanálů ze vzdáleného přijímače"
 
 msgid "Remove Service"
 msgstr "Odstranit službu"
@@ -11226,9 +11129,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SHOUTcast"
 msgstr ""
 
 msgid "SID"
@@ -11630,10 +11530,6 @@ msgid "Select Location"
 msgstr "Vyberte umístění"
 
 #, fuzzy
-msgid "Select Quad Channels"
-msgstr "Vyberte tuner"
-
-#, fuzzy
 msgid "Select Softcam"
 msgstr "Nastavení CAM 1"
 
@@ -11665,10 +11561,6 @@ msgstr "Vyberte zálohované soubory"
 
 msgid "Select backup location"
 msgstr "Vyberte umístění záloh"
-
-#, fuzzy
-msgid "Select channel audio"
-msgstr "Vyberte kanál z kterého chcete nahrávat"
 
 msgid "Select channel to record from"
 msgstr "Vyberte kanál z kterého chcete nahrávat"
@@ -12682,10 +12574,6 @@ msgstr "Zobrazit číslo programu v infobaru"
 msgid "Show channel numbers in channel selection"
 msgstr "Zobrazit čísla kanálů ve výběru programů"
 
-#, fuzzy
-msgid "Show channel selection"
-msgstr "Výběr kanálú"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -12805,6 +12693,10 @@ msgstr "Zobrazit/skrýt rozšířený popis, (závisí na skinu)."
 
 msgid "Show picon background colour"
 msgstr "Zobrazit barvu pozadí piconů"
+
+#, fuzzy
+msgid "Show picons in quickzap"
+msgstr "Ukázat nové balíčky"
 
 msgid "Show picons in service list"
 msgstr "Zobrazit picony v seznamu programů"
@@ -12968,9 +12860,6 @@ msgstr "Při zastavení timeshiftu zobrazit upozornění"
 #, fuzzy
 msgid "Show weblinks module packages"
 msgstr "Zobrazit zdrojové balíčky"
-
-msgid "Show/Hide focus bar"
-msgstr ""
 
 msgid "Shows live tv or informations on LCD."
 msgstr ""
@@ -14991,14 +14880,6 @@ msgstr "Výběr časovače..."
 msgid "Timer type"
 msgstr "Typ časovače"
 
-#, fuzzy
-msgid "Timer+"
-msgstr "Časovač"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Seznam časovačů"
-
 msgid "Timers"
 msgstr "Časovače"
 
@@ -16276,9 +16157,6 @@ msgstr "Hlasitost +"
 msgid "Volume:"
 msgstr "Hlasitost"
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 msgid "W"
 msgstr "Západně"
 
@@ -16828,12 +16706,12 @@ msgstr "Uložit Timeshift jako film a pokračovat v záznamu"
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Uložit Timeshift jako film a zastavit záznam"
 
-#, fuzzy
-msgid "Yes, delete Timer and delete recording"
-msgstr "Ano, odstranit z časovače a smazat nahrávku"
-
 msgid "Yes, delete from Timerlist"
 msgstr "Ano, odstranit z časovače"
+
+#, fuzzy
+msgid "Yes, delete from Timerlist and delete recording"
+msgstr "Ano, odstranit z časovače a smazat nahrávku"
 
 #, fuzzy
 msgid "Yes, delete this movie and return to movie list"
@@ -17241,10 +17119,6 @@ msgid "Zap focus to Picture in Picture"
 msgstr "Zaměřit se na obraz v obraze"
 
 msgid "Zap focus to main screen"
-msgstr "Zaměřit se na hlavní obrazovku"
-
-#, fuzzy
-msgid "Zap focused channel on full screen"
 msgstr "Zaměřit se na hlavní obrazovku"
 
 msgid "Zap mode"
@@ -18958,9 +18832,6 @@ msgstr "Bez dotazu"
 msgid "working"
 msgstr "Pracuji"
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 msgid "yellow"
 msgstr "Žluté"
 
@@ -18986,9 +18857,6 @@ msgstr "Přepnutý"
 #, fuzzy
 msgid "zapping"
 msgstr "Přepnutý"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""

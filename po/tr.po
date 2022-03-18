@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-03 13:59+0100\n"
+"POT-Creation-Date: 2022-03-18 20:34+0100\n"
 "PO-Revision-Date: 2019-08-27 05:18+0200\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
@@ -210,13 +210,7 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-msgid "  Menu key : Select quad channel"
-msgstr ""
-
 msgid "  REC  "
-msgstr ""
-
-msgid "  Red key : Show/Hide channel name"
 msgstr ""
 
 #, fuzzy, python-format
@@ -235,9 +229,6 @@ msgstr " (Radyo)"
 
 msgid " (TV)"
 msgstr " (TV)"
-
-msgid " (current channel)"
-msgstr " (mevcut kanal)"
 
 msgid " (disabled)"
 msgstr " (devre dışı)"
@@ -263,10 +254,6 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "HD videolar"
-
-#, fuzzy
-msgid " <empty>"
-msgstr "boş"
 
 #, python-format
 msgid " Except %s"
@@ -1174,9 +1161,6 @@ msgstr "<Varsayılan film konumu>"
 msgid "<Last timer location>"
 msgstr "<Son zamanlayıcı konumu>"
 
-msgid "<No Channel>"
-msgstr "<Kanal Yokl>"
-
 msgid "<unknown>"
 msgstr "<bilinmiyor>"
 
@@ -1466,9 +1450,6 @@ msgstr "Ekle"
 
 msgid "Add AutoTimer"
 msgstr "Otomatik zamanlayıcı ekle"
-
-msgid "Add New Quad Channel Entry"
-msgstr ""
 
 msgid "Add Timer"
 msgstr "Zamanlayıcı ekle"
@@ -2433,10 +2414,6 @@ msgstr "Buket Listesi"
 msgid "Bouvet Island"
 msgstr ""
 
-#, fuzzy
-msgid "Box or driver is not support Quad PiP."
-msgstr "tuner desteklenmiyor"
-
 msgid "Brazil"
 msgstr ""
 
@@ -3073,10 +3050,6 @@ msgstr "Çipset: BCM%s"
 msgid "Choice Box"
 msgstr "Konsol kutusu"
 
-#, python-format
-msgid "Choice where to put \"%s\""
-msgstr ""
-
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3374,6 +3347,10 @@ msgstr "Kanal seçim listesinde geniş sütunların gösterilip gösterilmeyece�
 
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Epg.dat dosyasının kaydedilip kaydedilmeyeceğini yapılandırın."
+
+#, fuzzy
+msgid "Configure if service picons will be shown in quickzap."
+msgstr "Kanal simgelerinin kanal listesinde gösterilip gösterilmeyeceğini yapılandırın."
 
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Kanal simgelerinin kanal listesinde gösterilip gösterilmeyeceğini yapılandırın."
@@ -4875,20 +4852,6 @@ msgstr "EPG Seçimi"
 msgid "EPG filename"
 msgstr "EPG dosya adı"
 
-msgid ""
-"EPG key : Switch to channel list\n"
-"Ok key : Remove selected channel\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
-msgid ""
-"EPG key : Switch to quad PiP entry\n"
-"Ok key : Add to new entry\n"
-"PVR key : Input channel name\n"
-"Exit key : Finish channel edit"
-msgstr ""
-
 msgid "EPG language selection 1"
 msgstr "EPG 1. dil seçimi"
 
@@ -4911,9 +4874,6 @@ msgstr "Doğu"
 msgid "East limit set"
 msgstr "Doğu limit ayarı"
 
-msgid "EasyMedia"
-msgstr ""
-
 msgid "Ecm:"
 msgstr "Ecm:"
 
@@ -4922,9 +4882,6 @@ msgstr ""
 
 msgid "Edit"
 msgstr "Düzenle"
-
-msgid "Edit Quad Channel Entry"
-msgstr ""
 
 #, fuzzy
 msgid "Edit Title"
@@ -5035,9 +4992,6 @@ msgstr "Ağ Trafiği denetimini etkinleştir"
 msgid "Enable OpenTV EPG"
 msgstr "EIT EPG etkinleştir"
 
-msgid "Enable Quad PIP"
-msgstr ""
-
 #, fuzzy
 msgid "Enable Swap at startup"
 msgstr "Otomatik hızlı tarama etkinleştir"
@@ -5116,8 +5070,9 @@ msgstr "Giriş ekranını etkinleştir"
 msgid "Enable multiple bouquets"
 msgstr "Çoklu buket kullanımını etkinleştir"
 
-msgid "Enable or disable Ipv6."
-msgstr ""
+#, fuzzy
+msgid "Enable or disable IPv6."
+msgstr "Devre dışı"
 
 msgid "Enable panic button"
 msgstr "Panik tuşunu etkinleştir"
@@ -5441,10 +5396,6 @@ msgstr "Isim sunucusu ayarlarından çık"
 msgid "Exit MAC-address configuration"
 msgstr "Isim sunucusu ayarlarından çık"
 
-#, fuzzy
-msgid "Exit Quad Channel Selection"
-msgstr "Radyo Kanal Seçimi"
-
 msgid "Exit editor"
 msgstr "Editörden çık"
 
@@ -5475,9 +5426,6 @@ msgstr "Ağ arayüzleri listesinden çık"
 msgid "Exit network wizard"
 msgstr "Ağ sihirbazından çık"
 
-msgid "Exit quad PiP"
-msgstr ""
-
 msgid "Exit the wizard"
 msgstr "Sihirbazdan çık"
 
@@ -5498,10 +5446,6 @@ msgstr "Uzman"
 
 msgid "Expert mode"
 msgstr "Uzman modu"
-
-#, fuzzy
-msgid "Ext. NumberZap"
-msgstr "Genişletilmiş numara kanal değişimi"
 
 msgid "Extend"
 msgstr ""
@@ -7027,10 +6971,6 @@ msgid "Input Stream ID"
 msgstr ""
 
 #, fuzzy
-msgid "Input channel name."
-msgstr "Bilgi çubuğu kanal ismi"
-
-#, fuzzy
 msgid "Input config file name:"
 msgstr "Uzun dosya adı"
 
@@ -8473,9 +8413,6 @@ msgid "Next"
 msgstr "Sonraki"
 
 msgid "Next long"
-msgstr ""
-
-msgid "Next quad PiP channel"
 msgstr ""
 
 msgid "Nicaragua"
@@ -10084,10 +10021,6 @@ msgstr "Daha sonra bir düğmeye uzun basmak için bu düğmeye basın (bu aynı
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Bu arayüzü varsayılan arayüz olarak ayarlamak için sarı tuşa basın."
 
-#, fuzzy
-msgid "Prev quad PiP channel"
-msgstr "Seçilen kanalı önizle"
-
 msgid "Preview"
 msgstr "Önizleme"
 
@@ -10241,22 +10174,6 @@ msgstr "Bölümler"
 msgid "Qatar"
 msgstr ""
 
-msgid "Quad PiP Channel Selection"
-msgstr ""
-
-msgid "Quad PiP Screen"
-msgstr ""
-
-msgid "Quad PiP channel "
-msgstr ""
-
-#, fuzzy
-msgid "Quad PiP is not available."
-msgstr "Video modu: %s kullanılamıyor"
-
-msgid "Quad Picture in Picture"
-msgstr ""
-
 msgid "Question"
 msgstr "Soru"
 
@@ -10372,11 +10289,12 @@ msgstr "Şimdi yeniden başlatmak istiyor musunuz?"
 msgid "Really close without saving settings?"
 msgstr "Ayarlarınızı kaydetmeden çıkmak istediğinize emin misiniz?"
 
-msgid "Really delete done timers?"
+#, fuzzy
+msgid "Really delete completed timers?"
 msgstr "Tamamlanan zamanlayıcıları silmek istiyor musunuz?"
 
-msgid "Really delete this entry?"
-msgstr "Gerçekten bu girdi silinsin mi?"
+msgid "Really delete done timers?"
+msgstr "Tamamlanan zamanlayıcıları silmek istiyor musunuz?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr ""
@@ -10594,9 +10512,6 @@ msgstr "Silme Onayı"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "Eklentileri kaldır"
-
-msgid "Remove Quad Channel Entry"
-msgstr ""
 
 msgid "Remove Service"
 msgstr "Kanalı Kaldır"
@@ -10953,9 +10868,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SHOUTcast"
 msgstr ""
 
 msgid "SID"
@@ -11350,10 +11262,6 @@ msgstr "İmaj Seç: %s"
 msgid "Select Location"
 msgstr "Konum Seçin"
 
-#, fuzzy
-msgid "Select Quad Channels"
-msgstr "Ses izi seçin"
-
 msgid "Select Softcam"
 msgstr "Softcamı seçin"
 
@@ -11387,9 +11295,6 @@ msgstr "Yedekleme dosyalarını seçin"
 
 msgid "Select backup location"
 msgstr "Yedekleme konumu seçin"
-
-msgid "Select channel audio"
-msgstr "Ses izi seçin"
 
 msgid "Select channel to record from"
 msgstr "Kayıt yapmak için kanal seçin"
@@ -12362,9 +12267,6 @@ msgstr "Bilgi çubuğunda kanal numaralarını göster"
 msgid "Show channel numbers in channel selection"
 msgstr "Kanal seçim ekranında kanal numaralarını göster"
 
-msgid "Show channel selection"
-msgstr "Kanal seçimini göster"
-
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -12478,6 +12380,10 @@ msgstr ""
 
 msgid "Show picon background colour"
 msgstr "Kanal logo arka plan rengini göster"
+
+#, fuzzy
+msgid "Show picons in quickzap"
+msgstr "Simge paketlerini göster"
 
 msgid "Show picons in service list"
 msgstr "Kanal listesinde simgeleri göster"
@@ -12628,9 +12534,6 @@ msgstr "Zaman kaydırma durduğunda uyarı göster"
 
 msgid "Show weblinks module packages"
 msgstr "Weblinks modül paketlerini göster"
-
-msgid "Show/Hide focus bar"
-msgstr ""
 
 msgid "Shows live tv or informations on LCD."
 msgstr "LCD'de canlı TV veya bilgileri göster."
@@ -14616,14 +14519,6 @@ msgstr "Zamanlayıcı seçimi..."
 msgid "Timer type"
 msgstr "Zamanlayıcı tipi"
 
-#, fuzzy
-msgid "Timer+"
-msgstr "Zamanlayıcı"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Zamanlayıcı Listesi"
-
 msgid "Timers"
 msgstr "Zamanlayıcılar"
 
@@ -15872,9 +15767,6 @@ msgstr ""
 msgid "Volume:"
 msgstr "Ses yükselt"
 
-msgid "Vu+ Ultimo - Skin by schomi"
-msgstr ""
-
 msgid "W"
 msgstr "B"
 
@@ -16407,11 +16299,12 @@ msgstr "Evet, ancak zaman kaydırmayı film olarak kaydedin ve kayıt işlemine 
 msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Evet, ancak zaman kaydırmayı film olarak kaydedin ve kaydı durdurun"
 
-msgid "Yes, delete Timer and delete recording"
-msgstr "Evet, zamanlayıcıyı sil ve kaydı sil"
-
 msgid "Yes, delete from Timerlist"
 msgstr "Evet, zamanlayıcı listesinden sil"
+
+#, fuzzy
+msgid "Yes, delete from Timerlist and delete recording"
+msgstr "Evet, zamanlayıcıyı sil ve kaydı sil"
 
 msgid "Yes, delete this movie and return to movie list"
 msgstr "Evet, bu filmi sil ve film listesine geri dön"
@@ -16795,9 +16688,6 @@ msgstr "Resim içinde Resim (RiR) kanal değiştir."
 
 msgid "Zap focus to main screen"
 msgstr "Ana ekranda kanal değiştir"
-
-msgid "Zap focused channel on full screen"
-msgstr ""
 
 msgid "Zap mode"
 msgstr "Kanal değişim modu"
@@ -18487,9 +18377,6 @@ msgstr ""
 msgid "working"
 msgstr "çalışıyor"
 
-msgid "www.vuplus-support.org"
-msgstr ""
-
 msgid "yellow"
 msgstr "sarı"
 
@@ -18515,9 +18402,6 @@ msgstr "kanal değiştirildi"
 #, fuzzy
 msgid "zapping"
 msgstr "kanal değiştirildi"
-
-msgid "®"
-msgstr ""
 
 msgid "°"
 msgstr ""
