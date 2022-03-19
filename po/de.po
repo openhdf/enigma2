@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-18 20:34+0100\n"
-"PO-Revision-Date: 2022-03-18 16:41+0100\n"
+"PO-Revision-Date: 2022-03-19 07:37+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4437,9 +4437,7 @@ msgstr "Möchten Sie %s wirklich löschen?"
 
 #, python-format
 msgid "Do you really want to delete %s?"
-msgstr ""
-"Wollen Sie %s\n"
-"wirklich löschen?"
+msgstr "Wollen Sie '%s' wirklich löschen?"
 
 msgid "Do you really want to delete ?"
 msgstr "Möchten Sie wirklich löschen?"
@@ -15655,7 +15653,7 @@ msgid "When enabled, continue to the next bouquet when the last channel of the c
 msgstr "Wenn aktiviert wird am Ende einer Favoritenliste auf den ersten Sender der nächsten Favoritenliste geschaltet. Diese Option ist nur für das schnelle Umschalten."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
-msgstr "Wenn aktiviert werden gelöscht Aufnahmen in den Mülleimer verschoben anstatt wirklich gelöscht zu werden."
+msgstr "Wenn aktiviert werden gelöschte Aufnahmen in den Mülleimer verschoben anstatt wirklich gelöscht zu werden."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Wenn aktiviert werden externe Untertitel bei Filmwiedergabe immer eingeschaltet."
