@@ -143,7 +143,7 @@ class About(Screen):
 		BootLoaderVersion = 0
 		try:
 			if bootloader:
-				AboutText += _("Bootloader:\t%s\n") % (bootloader)
+				AboutText += _("Bootloader:\t\t%s\n") % (bootloader)
 				BootLoaderVersion = int(bootloader[1:])
 		except:
 			BootLoaderVersion = 0
@@ -198,7 +198,7 @@ class About(Screen):
 		elif getMachineBuild() in ('hd52', 'hd51', 'sf4008', 'dm900', 'h7', 'gb7252', '8100s'):
 			dMIPS = "12.000"
 		if getMachineBuild() in ('vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'h7', 'gb7252', '8100s'):
-			AboutText += _("DMIPS:\t") + dMIPS + "\n"
+			AboutText += _("DMIPS:\t\t") + dMIPS + "\n"
 		else:
 			AboutText += _("BogoMIPS:\t\t%s") % bogoMIPS + "\n"
 
