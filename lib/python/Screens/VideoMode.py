@@ -80,11 +80,11 @@ class VideoSetup(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		from Components.ActionMap import ActionMap
-		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.apply,
-				"menu": self.closeRecursive,
+				"ok": self.apply,
 			}, -2)
 
 		self["key_red"] = StaticText(_("Cancel"))
@@ -461,11 +461,11 @@ class AudioSetup(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		from Components.ActionMap import ActionMap
-		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.apply,
-				"menu": self.closeRecursive,
+				"ok": self.apply,
 			}, -2)
 
 		self["key_red"] = StaticText(_("Cancel"))
