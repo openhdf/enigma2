@@ -547,7 +547,7 @@ def shellquote(s):
 def isPluginInstalled(pluginname, pluginfile="plugin"):
 	path, flags = defaultPaths.get(SCOPE_PLUGINS)
 	for plugintype in ["Extensions", "SystemPlugins"]:
-		for fileext in [".py", ".pyc"]:
+		for fileext in [".py", ".pyo", ".pyc"]:
 			fullpath = os.path.join(path, plugintype, pluginname, pluginfile + fileext)
 			if os.path.isfile(fullpath):
 				return True
