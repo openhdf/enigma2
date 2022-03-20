@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from . import _
 from Plugins.Plugin import PluginDescriptor
-
+from Plugins.SystemPlugins.SoftcamSetup.Sc import *
 
 def main(session, **kwargs):
 	from . import Sc
