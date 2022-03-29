@@ -21,4 +21,7 @@ jobs:
       - name: pycodestyle
         run: |
           pip install pycodestyle
+
+      - name: run pycodestyle
+        run: |
           pycodestyle --config=setup.cfg
