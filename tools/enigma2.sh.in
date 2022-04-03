@@ -51,6 +51,9 @@ fi
 
 [ -L /usr/lib/libcrypto.so.0.9.8 ] || ln -s /usr/lib/libcrypto.so.1.0.0 /usr/lib/libcrypto.so.0.9.8
 
+# check if /run directory exists
+[ -d /run ] || mkdir /run
+
 # check if media/net directory exists
 [ -d /media/net ] || mkdir /media/net
 
