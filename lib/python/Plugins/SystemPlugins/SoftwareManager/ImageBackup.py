@@ -382,11 +382,11 @@ class ImageBackup(Screen):
 			cmd2 = None
 			cmd3 = None
 		elif "tar.bz2" in self.ROOTFSTYPE.split() or SystemInfo["HaveMultiBoot"] or SystemInfo["HasRootSubdir"] or self.MACHINEBUILD in ("gbmv200", "u51", "u52", "u53", "u54", "u56", "u5", "u5pvr", "cc1", "sf8008", "ustym4kpro", "beyonwizv2", "viper4k", "v8plus", "multibox", "h9combo", "hd60", "hd61"):
-			cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock ." % (self.MKFS, self.WORKDIR, self.backuproot)
+			cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./run/avahi-daemon/socket --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock ." % (self.MKFS, self.WORKDIR, self.backuproot)
 			cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 			cmd3 = None
 		elif "tar.xz" in self.ROOTFSTYPE.split():
-			cmd1 = "%s -cJf %s/rootfs.tar.xz -C %s --exclude ./var/nmbd --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock ." % (self.MKFS, self.WORKDIR, self.backuproot)
+			cmd1 = "%s -cJf %s/rootfs.tar.xz -C %s --exclude ./var/nmbd --exclude ./run/avahi-daemon/socket --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock ." % (self.MKFS, self.WORKDIR, self.backuproot)
 			cmd2 = None
 			cmd3 = None
 		else:
