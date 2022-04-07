@@ -46,6 +46,8 @@ parameters = {}  # Dictionary of skin parameters used to modify code behavior.
 setups = {}  # Dictionary of images associated with setup menus.
 switchPixmap = {}  # Dictionary of switch images.
 windowStyles = {}  # Dictionary of window styles for each screen ID.
+constantWidgets = {}
+variables = {}
 
 config.skin = ConfigSubsection()
 skin = resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)
@@ -875,7 +877,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 				menus[key] = image
 				# print("[Skin] DEBUG: Menu key='%s', image='%s'." % (key, image))
 			else:
-				raise SkinError("Tag menu needs key and image, got key='%s' and image='%s'" % (key, image))
+				raise SkinError("Tag 'menu' needs key and image, got key='%s' and image='%s'" % (key, image))
 	for tag in domSkin.findall("setups"):
 		for setup in tag.findall("setup"):
 			key = setup.attrib.get("key")
@@ -884,7 +886,19 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 				setups[key] = image
 				# print("[Skin] DEBUG: Setup key='%s', image='%s'." % (key, image))
 			else:
-				raise SkinError("Tag setup needs key and image, got key='%s' and image='%s'" % (key, image))
+				raise SkinError("Tag 'setup' needs key and image, got key='%s' and image='%s'" % (key, image))
+	for tag in domSkin.findall("constant-widgets"):
+		for constant_widget in tag.findall("constant-widget"):
+			name = constant_widget.attrib.get("name")
+			if name:
+				constantWidgets[name] = constant_widget
+	for tag in domSkin.findall("variables"):
+		for parameter in tag.findall("variable"):
+			name = parameter.attrib.get("name")
+			value = parameter.attrib.get("value")
+			x, y = value.split(",")
+			if value and name:
+				variables[name] = "%s,%s" % (str(x), str(y))
 	for tag in domSkin.findall("subtitles"):
 		from enigma import eSubtitleWidget
 		scale = ((1, 1), (1, 1))
@@ -940,6 +954,10 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 			except Exception:
 				raise SkinError("Unknown color type '%s'" % colorType)
 			# print("[Skin] DEBUG: WindowStyle color type, color -" % (colorType, str(color)))
+		for scrollbar in tag.findall("scrollbar"):
+			offset = int(scrollbar.attrib.get("scrollbarOffset", 5))
+			width = int(scrollbar.attrib.get("scrollbarWidth", 20))
+			setListBoxScrollbarStyle(width, offset)
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(scrnID, style)
 	for tag in domSkin.findall("margin"):
@@ -970,6 +988,9 @@ class additionalWidget:
 # Class that makes a tuple look like something else. Some plugins just assume
 # that size is a string and try to parse it. This class makes that work.
 class SizeTuple(tuple):
+	def __str__(self):
+		return "%s,%s" % self
+
 	def split(self, *args):
 		return str(self[0]), str(self[1])
 
@@ -997,6 +1018,8 @@ class SkinContext:
 		return "Context (%s,%s)+(%s,%s) " % (self.x, self.y, self.w, self.h)
 
 	def parse(self, pos, size, font):
+		if size in variables:
+			size = variables[size]
 		if pos == "fill":
 			pos = (self.x, self.y)
 			size = (self.w, self.h)
@@ -1025,6 +1048,8 @@ class SkinContext:
 				size = (w, self.h)
 				self.w -= w
 			else:
+				if pos in variables:
+					pos = variables[pos]
 				size = (w, h)
 				pos = pos.split(",")
 				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font), self.y + parseCoordinate(pos[1], self.h, size[1], font))
@@ -1035,6 +1060,8 @@ class SkinContext:
 #
 class SkinContextStack(SkinContext):
 	def parse(self, pos, size, font):
+		if size in variables:
+			size = variables[size]
 		if pos == "fill":
 			pos = (self.x, self.y)
 			size = (self.w, self.h)
@@ -1055,6 +1082,8 @@ class SkinContextStack(SkinContext):
 				pos = (self.x + self.w - w, self.y)
 				size = (w, self.h)
 			else:
+				if pos in variables:
+					pos = variables[pos]
 				size = (w, h)
 				pos = pos.split(",")
 				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font), self.y + parseCoordinate(pos[1], self.h, size[1], font))
@@ -1250,6 +1279,12 @@ def readSkin(screen, skin, names, desktop):
 			objecttypes = w.attrib.get("objectTypes", "").split(",")
 			if len(objecttypes) > 1 and (objecttypes[0] not in screen.keys() or not [i for i in objecttypes[1:] if i == screen[objecttypes[0]].__class__.__name__]):
 				continue
+			includes = w.attrib.get("includes")
+			if includes and not [i for i in includes.split(",") if i in screen.keys()]:
+				continue
+			excludes = w.attrib.get("excludes")
+			if excludes and [i for i in excludes.split(",") if i in screen.keys()]:
+				continue
 			p = processors.get(w.tag, processNone)
 			try:
 				p(w, context)
@@ -1278,6 +1313,7 @@ def readSkin(screen, skin, names, desktop):
 
 	processors = {
 		None: processNone,
+		"constant-widget": processConstant,
 		"widget": processWidget,
 		"applet": processApplet,
 		"eLabel": processLabel,
