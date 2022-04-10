@@ -130,13 +130,13 @@ class SkinSelector(Screen, HelpableScreen):
 					# The "piconprev.png" image should be "prevpicon.png" to keep it with its partner preview image.
 					preview = pathjoin(self.rootDir, _dir + "/prev.png")
 					if skin == EMERGENCY_SKIN:
-						_list = [EMERGENCY_NAME, emergency, _dir, _dir+"/"+skinFile, resolution, preview]
+						_list = [EMERGENCY_NAME, emergency, _dir, _dir + "/" + skinFile, resolution, preview]
 					elif skin == DEFAULT_SKIN:
-						_list = [_dir, default, _dir, _dir+"/"+skinFile, resolution, preview]
+						_list = [_dir, default, _dir, _dir + "/" + skinFile, resolution, preview]
 					elif skin == DEFAULT_DISPLAY_SKIN:
-						_list = [default, default, _dir, _dir+"/"+skinFile, resolution, preview]
+						_list = [default, default, _dir, _dir + "/" + skinFile, resolution, preview]
 					else:
-						_list = [_dir, "", _dir, _dir+"/"+skinFile, resolution, preview]
+						_list = [_dir, "", _dir, _dir + "/" + skinFile, resolution, preview]
 					if skin == self.current:
 						_list[1] = current
 					elif skin == self.config.value:
