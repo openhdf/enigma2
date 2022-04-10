@@ -57,6 +57,7 @@ jobs:
         sed -i "s;prefix=/root/gstreamer;prefix=$PWD/gstreamer;g" $PWD/gstreamer/lib/x86_64-linux-gnu/pkgconfig/*.pc
     - name: Getting libdvbsi++
       run: |
+        echo installing libdvbsi++
         cd /tmp
         git clone --depth 1 git://git.opendreambox.org/git/obi/libdvbsi++.git
         cd libdvbsi++
@@ -64,14 +65,8 @@ jobs:
         ./configure
         make
         sudo make install
-        echo $PATH
     - name: Getting tuxtxt
       run: |
-        export PATH=$PATH:/tmp/gstreamer/bin
-        export LD_LIBRARY_PATH=/tmp/gstreamer/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
-        PKG_CONFIG_PATH=/tmp/gstreamer/lib/x86_64-linux-gnu/pkgconfig
-        GST_PLUGIN_SYSTEM_PATH=/tmp/gstreamer/lib/x86_64-linux-gnu/gstreamer-1.0
-        GST_PLUGIN_SCANNER=/tmp/gstreamer/libexec/gstreamer-1.0/gst-plugin-scanner
         cd /tmp
         git clone --depth 1 https://github.com/OpenPLi/tuxtxt.git
         cd tuxtxt/libtuxtxt
@@ -84,17 +79,13 @@ jobs:
         ./configure --with-boxtype=generic DVB_API_VERSION=5
         make
         sudo make install
-        popd
         echo "branding module (testing)"
-        pushd .
         cd /tmp
         git clone https://github.com/oe-alliance/branding-module.git
         cd branding-module
         autoreconf -i
         ./configure --with-boxtype=generic
         make
-        ls -la
-        popd
     - name: patch enigma cpp files
       run: |
         sed -i 's/eFatal/eDebug/g' lib/gdi/gfbdc.cpp
