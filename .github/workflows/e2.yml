@@ -51,7 +51,7 @@ jobs:
         python -V
     - name: Getting gstreamer
       run: |
-        python -V 
+        python -V
         cd /tmp/
         curl -L https://people.freedesktop.org/~slomo/gstreamer.tar.gz | tar xz
         sed -i "s;prefix=/root/gstreamer;prefix=$PWD/gstreamer;g" $PWD/gstreamer/lib/x86_64-linux-gnu/pkgconfig/*.pc
@@ -84,6 +84,20 @@ jobs:
         ./configure --with-boxtype=generic DVB_API_VERSION=5
         make
         sudo make install
+        popd
+        echo "branding module (testing)"
+        pushd .
+        cd /tmp
+        git clone https://github.com/oe-alliance/branding-module.git
+        cd branding-module
+        autoreconf -i
+        ./configure --with-boxtype=generic
+        make
+        ls -la
+        popd
+    - name: patch enigma cpp files
+      run: |
+        sed -i 's/eFatal/eDebug/g' lib/gdi/gfbdc.cpp
     - name: build enigma2
       run: |
         export PATH=$PATH:/tmp/gstreamer/bin
@@ -92,6 +106,34 @@ jobs:
         GST_PLUGIN_SYSTEM_PATH=/tmp/gstreamer/lib/x86_64-linux-gnu/gstreamer-1.0
         GST_PLUGIN_SCANNER=/tmp/gstreamer/libexec/gstreamer-1.0/gst-plugin-scanner
         autoreconf -i
-        ./configure --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-textlcd --with-gstversion=1.0 
+        ./configure --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-textlcd --with-gstversion=1.0
         make
         python -m compileall .
+    - name: patch enigma py files
+      run: |
+        sed -i 's/reloadWindowStyles()  #/# reloadWindowStyles()  #/g' lib/python/skin.py
+        sed -i 's/setResolution(xres, yres/setResolution(xres, yres, 8/g' lib/python/skin.py
+        sed -i '1 i\globals()["__builtins__"]["ngettext"] = ngettext' lib/python/Tools/Profile.py
+        sed -i '1 i\from gettext import ngettext' lib/python/Tools/Profile.py
+        sed -i 's/reactor.run/pass  # reactor.run/g' lib/python/StartEnigma.py
+        sed -i 's/enigma.quitMainloop(5)/enigma.quitMainloop(1)/' lib/python/StartEnigma.py
+        sed -i 's/import enigma/import enigma\nenigma.quitMainloop(1)/' lib/python/StartEnigma.py
+        echo 'enigma.quitMainloop(0)' >> lib/python/StartEnigma.py
+    - name: install enigma
+      run: |
+        sudo make install
+        sudo mkdir -p '/usr/local/etc/enigma2'
+        sudo sh -c "echo 'config.misc.do_overscanwizard=false' > /usr/local/etc/enigma2/settings"
+        sudo sh -c "echo 'config.misc.firstrun=false' >> /usr/local/etc/enigma2/settings"
+        sudo sh -c "echo 'config.misc.initialchannelselection=false' >> /usr/local/etc/enigma2/settings"
+        sudo sh -c "echo 'config.misc.languageselected=false' >> /usr/local/etc/enigma2/settings"
+        sudo sh -c "echo 'config.misc.videowizardenabled=false' >> /usr/local/etc/enigma2/settings"
+    - name: install boxbranding and RcModel
+      run: |
+        sudo find /tmp/branding-module/BoxBranding -name boxbranding.so -exec cp {} /usr/local/lib/enigma2/python/ \;
+        sudo find /tmp/branding-module/BoxBranding -name RcModel.py -exec cp {} /usr/local/lib/enigma2/python/Components/ \;
+        sudo mkdir -p /home/root/logs/
+    - name: start enigma2
+      run: |
+        sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib ENIGMA_DEBUG_LVL=5 enigma2
+        echo done!
