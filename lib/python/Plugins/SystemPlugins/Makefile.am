@@ -8,7 +8,7 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	SABnzbdSetup OSD3DSetup DeviceManager SwapManager LCNScanner
 
 if DREAMBOX
-SUBDIRS += FrontprocessorUpgrade NFIFlash
+SUBDIRS += FrontprocessorUpgrade
 endif
 
 if DM900
