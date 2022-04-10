@@ -1,16 +1,14 @@
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
 
-from __future__ import absolute_import
+from os import path
 from enigma import iServiceInformation, iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
-from Tools.Transponder import ConvertToHumanReadable
+from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 from Tools.GetEcmInfo import GetEcmInfo
 from Components.Converter.Poll import Poll
-import six
 
-SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
 caid_data = (
 	("0x100", "0x1ff", "Seca", "S", True),
@@ -122,22 +120,22 @@ class PliExtraInfo(Poll, Converter):
 
 		for caid_entry in caid_data:
 			if int(caid_entry[0], 16) <= int(self.current_caid, 16) <= int(caid_entry[1], 16):
-				color = "\c0000??00"
+				color = "\c0000ff00"
 			else:
-				color = "\c007?7?7?"
+				color = "\c007f7f7f"
 				try:
 					for caid in available_caids:
 						if int(caid_entry[0], 16) <= caid <= int(caid_entry[1], 16):
-							color = "\c00????00"
+							color = "\c00ffff00"
 				except:
 					pass
 
-			if color != "\c007?7?7?" or caid_entry[4]:
+			if color != "\c007f7f7f" or caid_entry[4]:
 				if res:
 					res += " "
 				res += color + caid_entry[3]
 
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoSeca(self, info):
@@ -145,7 +143,7 @@ class PliExtraInfo(Poll, Converter):
 		if int('0x100', 16) <= int(self.current_caid, 16) <= int('0x1ff', 16):
 			color = "\c004c7d3f"
 		else:
-			color = "\c009?9?9?"
+			color = "\c009f9f9f"
 			try:
 				for caid in available_caids:
 					if int('0x100', 16) <= caid <= int('0x1ff', 16):
@@ -153,7 +151,7 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 		res = color + 'S'
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoVia(self, info):
@@ -161,7 +159,7 @@ class PliExtraInfo(Poll, Converter):
 		if int('0x500', 16) <= int(self.current_caid, 16) <= int('0x5ff', 16):
 			color = "\c004c7d3f"
 		else:
-			color = "\c009?9?9?"
+			color = "\c009f9f9f"
 			try:
 				for caid in available_caids:
 					if int('0x500', 16) <= caid <= int('0x5ff', 16):
@@ -169,7 +167,7 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 		res = color + 'V'
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoIrdeto(self, info):
@@ -177,7 +175,7 @@ class PliExtraInfo(Poll, Converter):
 		if int('0x600', 16) <= int(self.current_caid, 16) <= int('0x6ff', 16):
 			color = "\c004c7d3f"
 		else:
-			color = "\c009?9?9?"
+			color = "\c009f9f9f"
 			try:
 				for caid in available_caids:
 					if int('0x600', 16) <= caid <= int('0x6ff', 16):
@@ -185,7 +183,7 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 		res = color + 'I'
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoNDS(self, info):
@@ -193,7 +191,7 @@ class PliExtraInfo(Poll, Converter):
 		if int('0x900', 16) <= int(self.current_caid, 16) <= int('0x9ff', 16):
 			color = "\c004c7d3f"
 		else:
-			color = "\c009?9?9?"
+			color = "\c009f9f9f"
 			try:
 				for caid in available_caids:
 					if int('0x900', 16) <= caid <= int('0x9ff', 16):
@@ -201,7 +199,7 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 		res = color + 'NDS'
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoConax(self, info):
@@ -209,7 +207,7 @@ class PliExtraInfo(Poll, Converter):
 		if int('0xb00', 16) <= int(self.current_caid, 16) <= int('0xbff', 16):
 			color = "\c004c7d3f"
 		else:
-			color = "\c009?9?9?"
+			color = "\c009f9f9f"
 			try:
 				for caid in available_caids:
 					if int('0xb00', 16) <= caid <= int('0xbff', 16):
@@ -217,7 +215,7 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 		res = color + 'CO'
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoCryptoW(self, info):
@@ -225,7 +223,7 @@ class PliExtraInfo(Poll, Converter):
 		if int('0xd00', 16) <= int(self.current_caid, 16) <= int('0xdff', 16):
 			color = "\c004c7d3f"
 		else:
-			color = "\c009?9?9?"
+			color = "\c009f9f9f"
 			try:
 				for caid in available_caids:
 					if int('0xd00', 16) <= caid <= int('0xdff', 16):
@@ -233,7 +231,7 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 		res = color + 'CW'
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoPowerVU(self, info):
@@ -241,7 +239,7 @@ class PliExtraInfo(Poll, Converter):
 		if int('0xe00', 16) <= int(self.current_caid, 16) <= int('0xeff', 16):
 			color = "\c004c7d3f"
 		else:
-			color = "\c009?9?9?"
+			color = "\c009f9f9f"
 			try:
 				for caid in available_caids:
 					if int('0xe00', 16) <= caid <= int('0xeff', 16):
@@ -249,7 +247,7 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 		res = color + 'P'
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoTandberg(self, info):
@@ -257,7 +255,7 @@ class PliExtraInfo(Poll, Converter):
 		if int('0x1010', 16) <= int(self.current_caid, 16) <= int('0x1010', 16):
 			color = "\c004c7d3f"
 		else:
-			color = "\c009?9?9?"
+			color = "\c009f9f9f"
 			try:
 				for caid in available_caids:
 					if int('0x1010', 16) <= caid <= int('0x1010', 16):
@@ -265,7 +263,7 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 		res = color + 'T'
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoBeta(self, info):
@@ -273,7 +271,7 @@ class PliExtraInfo(Poll, Converter):
 		if int('0x1700', 16) <= int(self.current_caid, 16) <= int('0x17ff', 16):
 			color = "\c004c7d3f"
 		else:
-			color = "\c009?9?9?"
+			color = "\c009f9f9f"
 			try:
 				for caid in available_caids:
 					if int('0x1700', 16) <= caid <= int('0x17ff', 16):
@@ -281,7 +279,7 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 		res = color + 'B'
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoNagra(self, info):
@@ -289,7 +287,7 @@ class PliExtraInfo(Poll, Converter):
 		if int('0x1800', 16) <= int(self.current_caid, 16) <= int('0x18ff', 16):
 			color = "\c004c7d3f"
 		else:
-			color = "\c009?9?9?"
+			color = "\c009f9f9f"
 			try:
 				for caid in available_caids:
 					if int('0x1800', 16) <= caid <= int('0x18ff', 16):
@@ -297,7 +295,7 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 		res = color + 'N'
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoBiss(self, info):
@@ -305,7 +303,7 @@ class PliExtraInfo(Poll, Converter):
 		if int('0x2600', 16) <= int(self.current_caid, 16) <= int('0x26ff', 16):
 			color = "\c004c7d3f"
 		else:
-			color = "\c009?9?9?"
+			color = "\c009f9f9f"
 			try:
 				for caid in available_caids:
 					if int('0x2600', 16) <= caid <= int('0x26ff', 16):
@@ -313,7 +311,7 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 		res = color + 'BI'
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoDre(self, info):
@@ -321,7 +319,7 @@ class PliExtraInfo(Poll, Converter):
 		if int('0x4ae0', 16) <= int(self.current_caid, 16) <= int('0x4ae1', 16):
 			color = "\c004c7d3f"
 		else:
-			color = "\c009?9?9?"
+			color = "\c009f9f9f"
 			try:
 				for caid in available_caids:
 					if int('0x4ae0', 16) <= caid <= int('0x4ae1', 16):
@@ -329,7 +327,7 @@ class PliExtraInfo(Poll, Converter):
 			except:
 				pass
 		res = color + 'DC'
-		res += "\c00??????"
+		res += "\c00ffffff"
 		return res
 
 	def createCryptoSpecial(self, info):
@@ -359,19 +357,41 @@ class PliExtraInfo(Poll, Converter):
 		return ""
 
 	def createResolution(self, info):
-		xres = info.getInfo(iServiceInformation.sVideoWidth)
-		if xres == -1:
-			return ""
-		yres = info.getInfo(iServiceInformation.sVideoHeight)
-		mode = ("i", "p", "", " ")[info.getInfo(iServiceInformation.sProgressive)]
-		fps = str((info.getInfo(iServiceInformation.sFrameRate) + 500) // 1000)
-		if int(fps) <= 0:
-			fps = ""
-		try:
-			gamma = ("SDR", "HDR", "HDR10", "HLG", "")[info.getInfo(iServiceInformation.sGamma)]
-			return str(xres) + "x" + str(yres) + mode + fps + addspace(gamma)
-		except:
-			return str(xres) + "x" + str(yres) + mode + fps
+		video_height = 0
+		video_width = 0
+		video_pol = " "
+		video_rate = 0
+		if path.exists("/proc/stb/vmpeg/0/yres"):
+			f = open("/proc/stb/vmpeg/0/yres", "r")
+			try:
+				video_height = int(f.read(), 16)
+			except:
+				pass
+			f.close()
+		if path.exists("/proc/stb/vmpeg/0/xres"):
+			f = open("/proc/stb/vmpeg/0/xres", "r")
+			try:
+				video_width = int(f.read(), 16)
+			except:
+				pass
+			f.close()
+		if path.exists("/proc/stb/vmpeg/0/progressive"):
+			f = open("/proc/stb/vmpeg/0/progressive", "r")
+			try:
+				video_pol = "p" if int(f.read(), 16) else "i"
+			except:
+				pass
+			f.close()
+		if path.exists("/proc/stb/vmpeg/0/framerate"):
+			f = open("/proc/stb/vmpeg/0/framerate", "r")
+			try:
+				video_rate = int(f.read())
+			except:
+				pass
+			f.close()
+
+		fps = str((video_rate + 500) / 1000)
+		return str(video_width) + "x" + str(video_height) + video_pol + fps
 
 	def createVideoCodec(self, info):
 		return codec_data.get(info.getInfo(iServiceInformation.sVideoType), "N/A")
@@ -468,10 +488,11 @@ class PliExtraInfo(Poll, Converter):
 
 	def createOrbPos(self, feraw):
 		orbpos = feraw.get("orbital_position")
-		if orbpos > 1800:
-			return str((float(3600 - orbpos)) / 10.0) + SIGN + "W"
-		elif orbpos > 0:
-			return str((float(orbpos)) / 10.0) + SIGN + "E"
+		if orbpos:
+			if orbpos > 1800:
+				return str((float(3600 - orbpos)) / 10.0) + u"\u00B0" + "W"
+			elif orbpos > 0:
+				return str((float(orbpos)) / 10.0) + u"\u00B0" + "E"
 		return ""
 
 	def createOrbPosOrTunerSystem(self, fedata, feraw):
@@ -595,12 +616,15 @@ class PliExtraInfo(Poll, Converter):
 
 	def createMisPls(self, fedata):
 		tmp = ""
-		if fedata.get("is_id") > -1:
-			tmp = "MIS %d" % fedata.get("is_id")
-		if fedata.get("pls_code") > 0:
-			tmp = addspace(tmp) + "%s %d" % (fedata.get("pls_mode"), fedata.get("pls_code"))
-		if fedata.get("t2mi_plp_id") > -1:
-			tmp = addspace(tmp) + "T2MI %d PID %d" % (fedata.get("t2mi_plp_id"), fedata.get("t2mi_pid"))
+		if fedata.get("is_id"):
+			if fedata.get("is_id") > -1:
+				tmp = "MIS %d" % fedata.get("is_id")
+		if fedata.get("pls_code"):
+			if fedata.get("pls_code") > 0:
+				tmp = addspace(tmp) + "%s %d" % (fedata.get("pls_mode"), fedata.get("pls_code"))
+		if fedata.get("t2mi_plp_id"):
+			if fedata.get("t2mi_plp_id") > -1:
+				tmp = addspace(tmp) + "T2MI %d PID %d" % (fedata.get("t2mi_plp_id"), fedata.get("t2mi_pid"))
 		return tmp
 
 	@cached
