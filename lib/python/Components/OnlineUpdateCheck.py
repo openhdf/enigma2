@@ -67,7 +67,7 @@ class OnlineUpdateCheckPoller:
 					socket.setdefaulttimeout(3)
 					config.softwareupdate.updatefound.setValue(True)
 					try:
-						config.softwareupdate.updateisunstable.setValue(urlopen("http://status.hdfreaks.cc/status").read())
+						config.softwareupdate.updateisunstable.setValue(urlopen("http://status.hdfreaks.cc/status").read().decode())
 					except:
 						config.softwareupdate.updateisunstable.setValue(1)
 					socket.setdefaulttimeout(currentTimeoutDefault)
@@ -84,10 +84,10 @@ class VersionCheck:
 	def getStableUpdateAvailable(self):
 		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
 			if config.softwareupdate.updateisunstable.value == '0':
-				print('[OnlineVersionCheck] New Release updates found')
+				#print('[OnlineVersionCheck] New Release updates found')
 				return True
 			else:
-				print('[OnlineVersionCheck] skipping as beta is not wanted')
+				#print('[OnlineVersionCheck] skipping as beta is not wanted')
 				return False
 		else:
 			return False
@@ -95,10 +95,10 @@ class VersionCheck:
 	def getUnstableUpdateAvailable(self):
 		if config.softwareupdate.updatefound.value and config.softwareupdate.check.value:
 			if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
-				print('[OnlineVersionCheck] New Experimental updates found')
+				#print('[OnlineVersionCheck] New Experimental updates found')
 				return True
 			else:
-				print('[OnlineVersionCheck] skipping as beta is not wanted')
+				#print('[OnlineVersionCheck] skipping as beta is not wanted')
 				return False
 		else:
 			return False
