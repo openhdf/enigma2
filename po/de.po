@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-18 20:34+0100\n"
-"PO-Revision-Date: 2022-03-19 07:37+0100\n"
+"PO-Revision-Date: 2022-04-17 09:36+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13689,7 +13689,7 @@ msgid "This allows you change the size of progressBarWidth, so 1 increases by 1 
 msgstr "Dies erlaubt die Änderung der Breite der Fortaschrittsanzeige, 1 erhöht die Breite um 1 und -1 verringert die Größe um 1. Nach der Änderung muss die Enigma Oberfläche neu gestartet werden"
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
-msgstr "Hier kann die Anzahl der Kanäle auf 5 stellig geändert werden, wenn mehr als 9999 Kanäle vorhhanden sind."
+msgstr "Hier kann die Anzahl der Kanäle auf 5 stellig geändert werden, wenn mehr als 9999 Kanäle vorhanden sind."
 
 msgid "This allows you to show HDFreaks modules in downloads"
 msgstr "Dadurch können Sie HDFreaks-Module in Downloads anzeigen"
@@ -16336,7 +16336,7 @@ msgid "Zap focus to main screen"
 msgstr "Zap-Fokus auf Hauptbild legen"
 
 msgid "Zap mode"
-msgstr "Umschalt Modus"
+msgstr "Umschaltmodus"
 
 msgid "Zap next"
 msgstr "Umschalten bei nächster Sendung"
