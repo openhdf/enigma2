@@ -1577,7 +1577,26 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 				break;
 		}
 	}
-	else if (!strncmp(m_description, "Si2166D", 7)) // SF8008 S2
+	else if (!strcmp(m_description, "Si21682") || !strcmp(m_description, "Si2168")) // SF4008 T/T2/C and Zgemma TC Models
+	{
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
+		{
+			case feCable:
+				ret = (int)(snr / 17);
+				cab_max = 3800;
+				break;
+			case feTerrestrial:
+				ret = (int)(snr / 22.3);
+				break;
+		}
+	}
+	else if (!strcmp(m_description, "Hi3716 Internal S2")) // SFX6008 S2
+	{
+		ret = snr;
+	}
+	else if (!strncmp(m_description, "Si2166D", 7)) // S2 - SF8008/HD51/AB Pulse 4K(mini)/GB Trio 4K/Zgemma more models/DM9O0/DM920
 	{
 		ret = snr;
 		sat_max = 1620;
