@@ -6,7 +6,7 @@ import re
 
 from enigma import ePicLoad, getDesktop
 from os import listdir, walk
-from os.path import dirname, exists, isdir, join as pathjoin
+from os.path import exists, isdir, join as pathjoin
 
 from skin import DEFAULT_SKIN, DEFAULT_DISPLAY_SKIN, EMERGENCY_NAME, EMERGENCY_SKIN, currentDisplaySkin, currentPrimarySkin, currentStandbySkin, domScreens, DISPLAY_SKIN_ID, loadSkin
 from Components.ActionMap import HelpableNumberActionMap

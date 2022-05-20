@@ -23,11 +23,11 @@ from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
-from Tools.Directories import *
+from Tools.Directories import SCOPE_SKINS, _, os, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.WeatherID import get_woeid_from_yahoo
 import Tools.Notifications
-from os import listdir, remove, rename, system, path, symlink, chdir, makedirs, mkdir
+from os import chdir, listdir, makedirs, mkdir, path, remove, rename, symlink
 import shutil
 
 cur_skin = config.skin.primary_skin.value.replace('/skin.xml', '')

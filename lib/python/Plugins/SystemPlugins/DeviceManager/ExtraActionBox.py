@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from enigma import *
+from enigma import eTimer
 from Screens.Screen import Screen
 from Tools.Directories import SCOPE_CURRENT_PLUGIN, resolveFilename
 from Components.Label import Label

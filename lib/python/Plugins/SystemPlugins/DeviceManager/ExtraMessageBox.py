@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from enigma import *
+from enigma import eTimer
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List

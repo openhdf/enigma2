@@ -12,7 +12,7 @@ from Components.Label import Label
 from Tools.Directories import SCOPE_CURRENT_LCDSKIN
 from os import walk
 from enigma import eEnv
-from skin import *
+from skin import DISPLAY_SKIN_ID, _, getDesktop, loadSkin
 import os
 
 

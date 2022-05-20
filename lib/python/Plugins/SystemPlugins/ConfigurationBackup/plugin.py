@@ -11,7 +11,7 @@ from Components.config import ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_R
 from Components.ConfigList import ConfigList
 from Plugins.Plugin import PluginDescriptor
 
-from Tools.Directories import *
+from Tools.Directories import _
 from os import path, makedirs, listdir
 from time import localtime
 from datetime import date

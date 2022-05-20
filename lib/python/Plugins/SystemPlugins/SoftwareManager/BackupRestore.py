@@ -19,9 +19,8 @@ from Components.FileList import MultiFileSelectList
 from Components.Network import iNetwork
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
-from Tools.Directories import *
-from os import system, popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
-from time import gmtime, strftime, localtime, sleep
+from Tools.Directories import SCOPE_CURRENT_SKIN, _, pathexists, resolveFilename
+from os import listdir, makedirs, path, popen, remove, rename, stat
 from datetime import date
 from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineName
 from . import ShellCompatibleFunctions

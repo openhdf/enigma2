@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from Screens.Screen import Screen
-from Screens.ChannelSelection import *
+from Screens.ChannelSelection import ChannelSelectionBase, ChoiceBox, EDIT_BOUQUET, OFF, _, boundFunction, config, eServiceReference, nimmanager
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.config import ConfigNothing

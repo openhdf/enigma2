@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from enigma import *
+from enigma import eListbox, eListboxPythonMultiContent, gFont, loadPNG
 from Components.MenuList import MenuList
 from Components.GUIComponent import GUIComponent
 from Tools.Directories import fileExists

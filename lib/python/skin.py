@@ -7,7 +7,7 @@ import xml.etree.cElementTree
 import six
 from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gRGB, BT_ALPHATEST, BT_ALPHABLEND
 from os.path import basename, dirname, isfile, join as pathjoin
-from os import listdir, unlink
+from os import listdir
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
