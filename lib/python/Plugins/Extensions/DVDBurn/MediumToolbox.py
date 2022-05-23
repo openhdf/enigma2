@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from __future__ import print_function
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText

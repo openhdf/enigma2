@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from Components.config import config, ConfigSlider, ConfigSubsection, ConfigYesNo, ConfigText, ConfigInteger
 from Components.SystemInfo import SystemInfo

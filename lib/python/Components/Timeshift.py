@@ -28,7 +28,6 @@
 # activated (currently time-shifting).
 
 
-from __future__ import print_function
 from __future__ import absolute_import
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ServiceEventTracker import ServiceEventTracker

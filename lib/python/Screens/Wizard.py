@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from boxbranding import getMachineBrand, getMachineName
 from xml.sax import make_parser

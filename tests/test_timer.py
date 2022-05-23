@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from enigma import init_nav, init_record_config, init_parental_control
 from time import time, ctime, localtime, tzset

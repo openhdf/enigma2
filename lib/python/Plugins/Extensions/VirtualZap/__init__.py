@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
 from __future__ import absolute_import
 from Components.Language import language
 from Tools.Directories import SCOPE_PLUGINS, resolveFilename

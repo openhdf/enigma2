@@ -1,4 +1,3 @@
-from __future__ import print_function
 from os import path as os_path, listdir, system
 
 opkgDestinations = ['/']

@@ -1,4 +1,3 @@
-from __future__ import print_function
 # must be fixed for the new plugin interface
 from __future__ import absolute_import
 from Tools.BoundFunction import boundFunction

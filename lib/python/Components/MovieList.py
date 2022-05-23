@@ -1,5 +1,4 @@
 from __future__ import division
-from __future__ import print_function
 from __future__ import absolute_import
 from os import path as os_path, stat
 from struct import Struct

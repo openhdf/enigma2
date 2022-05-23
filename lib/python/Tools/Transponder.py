@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC
 from Components.NimManager import nimmanager

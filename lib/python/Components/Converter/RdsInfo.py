@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from enigma import iRdsDecoder, iPlayableService
 from Components.Converter.Converter import Converter

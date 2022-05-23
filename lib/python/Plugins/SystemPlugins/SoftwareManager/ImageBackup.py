@@ -1,4 +1,3 @@
-from __future__ import print_function
 #################################################################################
 #       FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 4.x     		#
 #					MAKES A FULLBACKUP READY FOR FLASHING.						#

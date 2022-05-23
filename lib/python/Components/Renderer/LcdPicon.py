@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from os import listdir, path as os_path
 from re import sub

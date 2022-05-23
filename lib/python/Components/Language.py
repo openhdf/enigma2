@@ -1,5 +1,4 @@
 # -*- coding: UTF-8 -*-
-from __future__ import print_function
 from __future__ import absolute_import
 from gettext import install, bindtextdomain, textdomain, translation
 from locale import setlocale, LC_CTYPE, LC_COLLATE, LC_TIME, LC_MONETARY, LC_MESSAGES, LC_NUMERIC

@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from os import mkdir, path as os_path
 from shutil import copyfile

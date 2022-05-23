@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from __future__ import print_function
 from os import path as os_path, listdir
 from shutil import rmtree
 from bisect import insort

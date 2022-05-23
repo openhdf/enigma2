@@ -1,4 +1,3 @@
-from __future__ import print_function
 # plugin from Sif Team
 
 from __future__ import absolute_import

@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.ChannelSelection import ChannelSelectionBase, ChoiceBox, EDIT_BOUQUET, OFF, boundFunction, config, eServiceReference, nimmanager

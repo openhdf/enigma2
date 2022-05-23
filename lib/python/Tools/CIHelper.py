@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from xml.etree.cElementTree import parse
 from enigma import eDVBCIInterfaces, eDVBCI_UI, eEnv, eServiceCenter, eServiceReference

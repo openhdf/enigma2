@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from errno import ENOENT
 from xml.etree.cElementTree import parse, ParseError

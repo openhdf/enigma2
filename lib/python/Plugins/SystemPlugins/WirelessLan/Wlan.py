@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from __future__ import print_function
 from os import system, path as os_path
 from sys import version_info
 from re import compile as re_compile

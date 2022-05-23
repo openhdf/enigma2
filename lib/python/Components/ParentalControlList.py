@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from Components.MenuList import MenuList
 from Components.ParentalControl import IMG_WHITESERVICE, IMG_WHITEBOUQUET, IMG_BLACKSERVICE, IMG_BLACKBOUQUET

@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from os import path as os_path, access, W_OK, mkdir, rename, listdir, stat, rmdir
 from time import time

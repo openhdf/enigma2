@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from __future__ import print_function
 from sys import path as sys_path
 from os import path as os_path, chmod, system
 from time import localtime, strftime, time

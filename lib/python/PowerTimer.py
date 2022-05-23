@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from __future__ import print_function
 from __future__ import division
 from os import path as os_path, remove, rename, fsync
 from boxbranding import getMachineBrand, getMachineName
