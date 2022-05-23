@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os
-import re
+from os import system, popen
+from re import split, search
 
 
 class MountPoints():
@@ -16,7 +16,7 @@ class MountPoints():
 		for row in rows:
 			self.entries.append({
 				"row": row,
-				"data": re.split("\s+", row),
+				"data": split("\s+", row),
 				"modified": False
 			})
 
@@ -59,10 +59,10 @@ class MountPoints():
 		return ""
 
 	def umount(self, path):
-		return os.system("umount %s" % path) == 0
+		return system("umount %s" % path) == 0
 
 	def mount(self, device, partition, path):
-		return os.system("[ ! -d %s ] && mkdir %s\nmount /dev/%s%d %s" % (path, path, device, partition, path)) == 0
+		return system("[ ! -d %s ] && mkdir %s\nmount /dev/%s%d %s" % (path, path, device, partition, path)) == 0
 
 	def exist(self, path):
 		for entry in self.entries:
@@ -105,7 +105,7 @@ class MountPoints():
 			if uuid["device"] == device and uuid["partition"] == partition:
 				return uuid["uuid"]
 
-		rows = os.popen(self.blkid).read().strip().split("\n")
+		rows = popen(self.blkid).read().strip().split("\n")
 		for row in rows:
 			tmp = row.split(":")
 			if len(tmp) < 2:
@@ -117,7 +117,7 @@ class MountPoints():
 				tmp.reverse()
 				value = ":".join(tmp)
 				uuid = "00000000"
-				ret = re.search('UUID=\"([\w\-]+)\"', value)
+				ret = search('UUID=\"([\w\-]+)\"', value)
 				if ret:
 					uuid = ret.group(1)
 				self.uuids.append({

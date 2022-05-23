@@ -11,9 +11,9 @@ from Components.SystemInfo import SystemInfo
 
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_SKIN
-import six
+from six import ensure_str
 
-import xml.etree.cElementTree
+from xml.etree.cElementTree import parse
 
 from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
 
@@ -21,7 +21,7 @@ mainmenu = _("Main menu")
 
 # read the menu
 file = open(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
-mdom = xml.etree.cElementTree.parse(file)
+mdom = parse(file)
 file.close()
 
 
@@ -95,7 +95,7 @@ class Menu(Screen, ProtectedScreen):
 					return
 			elif not SystemInfo.get(requires, False):
 				return
-		MenuTitle = _(six.ensure_str(node.get("text", "??")))
+		MenuTitle = _(ensure_str(node.get("text", "??")))
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
 		x = node.get("flushConfigOnClose")
@@ -125,7 +125,7 @@ class Menu(Screen, ProtectedScreen):
 		configCondition = node.get("configcondition")
 		if configCondition and not eval(configCondition + ".value"):
 			return
-		item_text = six.ensure_str(node.get("text", ""))
+		item_text = ensure_str(node.get("text", ""))
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
 		for x in node:
@@ -271,10 +271,10 @@ class Menu(Screen, ProtectedScreen):
 				"9": self.keyNumberGlobal
 			})
 
-		a = six.ensure_str(parent.get("title", "")) or None
+		a = ensure_str(parent.get("title", "")) or None
 		a = a and _(a)
 		if a is None:
-			a = _(six.ensure_str(parent.get("text", "")))
+			a = _(ensure_str(parent.get("text", "")))
 		self["title"] = StaticText(a)
 		Screen.setTitle(self, a)
 		self.menu_title = a

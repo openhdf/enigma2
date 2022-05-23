@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from ServiceReference import ServiceReference
 from enigma import eServiceReference
-import os
+from os import path as os_path
 
 
 class PlaylistIO:
@@ -34,7 +34,7 @@ class PlaylistIO:
 		if entry[0] == "/":
 			path = entry
 		else:
-			path = os.path.dirname(filename) + "/" + entry
+			path = os_path.dirname(filename) + "/" + entry
 			for proto in self.REMOTE_PROTOS:
 				if entry.startswith(proto):
 					path = entry

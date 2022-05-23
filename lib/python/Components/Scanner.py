@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 
-import os
+from os import path as os_path, walk
 from mimetypes import guess_type, add_type
 
 add_type("application/x-debian-package", ".ipk")
@@ -137,11 +137,11 @@ def scanDevice(mountpoint):
 
 	# now scan the paths
 	for p in paths_to_scan:
-		path = os.path.join(mountpoint, p.path)
+		path = os_path.join(mountpoint, p.path)
 
-		for root, dirs, files in os.walk(path):
+		for root, dirs, files in walk(path):
 			for f in files:
-				path = os.path.join(root, f)
+				path = os_path.join(root, f)
 				if (is_cdrom and f.endswith(".wav") and f.startswith("track")) or f == "cdplaylist.cdpls":
 					sfile = ScanFile(path, "audio/x-cda")
 				else:

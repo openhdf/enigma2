@@ -1,11 +1,10 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os
 from boxbranding import getBoxType, getBrandOEM
 from time import localtime, mktime
 from datetime import datetime
-import xml.etree.cElementTree
-from os import path
+from xml.etree.cElementTree import parse
+from os import path as os_path, access, F_OK
 
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteDiseqcParameters as diseqcParam, \
@@ -17,7 +16,7 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 from Tools.HardwareInfo import HardwareInfo
 from Tools.BoundFunction import boundFunction
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
-import six
+from six import itervalues, ensure_text, iteritems
 
 maxFixedLnbPositions = 0
 
@@ -321,7 +320,7 @@ class SecConfigure:
 				if slot.isMultiType():
 					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 					types = slot.getMultiTypeList()
-					for FeType in six.itervalues(types):
+					for FeType in itervalues(types):
 						if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 							continue
 						elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
@@ -410,9 +409,9 @@ class SecConfigure:
 					sec.setLNBThreshold(11700000)
 				elif currLnb.lof.value == "unicable":
 					def setupUnicable(configManufacturer, ProductDict):
-						manufacturer_name = six.ensure_text(configManufacturer.value)
+						manufacturer_name = ensure_text(configManufacturer.value)
 						manufacturer = ProductDict[manufacturer_name]
-						product_name = six.ensure_text(manufacturer.product.value)
+						product_name = ensure_text(manufacturer.product.value)
 						if product_name == "None" and manufacturer.product.saved_value != "None":
 							product_name = manufacturer.product.value = manufacturer.product.saved_value
 						manufacturer_scr = manufacturer.scr
@@ -627,7 +626,7 @@ class SecConfigure:
 			return
 
 		if ManufacturerName is not None:
-			ManufacturerName = six.ensure_text(ManufacturerName)
+			ManufacturerName = ensure_text(ManufacturerName)
 		print("ManufacturerName %s" % ManufacturerName)
 
 		PDict = SDict.get(ManufacturerName, None)			#dict contained last stored device data
@@ -860,7 +859,7 @@ class NIM(object):
 		return multistream
 
 	def isFBCTuner(self):
-		return (self.frontend_id is not None) and os.access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, os.F_OK)
+		return (self.frontend_id is not None) and access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, F_OK)
 
 	def isFBCRoot(self):
 		return self.isFBCTuner() and (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
@@ -872,7 +871,7 @@ class NIM(object):
 		return self.isFBCTuner() and self.slot % 8 and True
 
 	def isT2MI(self):
-		return os.path.exists("/proc/stb/frontend/%d/t2mi" % self.frontend_id)
+		return os_path.exists("/proc/stb/frontend/%d/t2mi" % self.frontend_id)
 
 	def supportsBlindScan(self):
 		return self.supports_blind_scan
@@ -1045,7 +1044,7 @@ class NimManager:
 				from Screens.MessageBox import MessageBox
 
 				def emergencyAid():
-					if not path.exists("/etc/enigma2/lamedb"):
+					if not os_path.exists("/etc/enigma2/lamedb"):
 						print("/etc/enigma2/lamedb not found")
 						return None
 					f = open("/etc/enigma2/lamedb", "r")
@@ -1286,7 +1285,7 @@ class NimManager:
 			if not ("has_outputs" in entry):
 				entry["has_outputs"] = True
 			if "frontend_device" in entry: # check if internally connectable
-				if path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]) and ((_id > 0) or (getBoxType() == 'vusolo2')):
+				if os_path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]) and ((_id > 0) or (getBoxType() == 'vusolo2')):
 					entry["internally_connectable"] = entry["frontend_device"] - 1
 				else:
 					entry["internally_connectable"] = None
@@ -1688,7 +1687,7 @@ def InitNimManager(nimmgr, update_slots=[]):
 	unicablelnbproducts = {}
 	unicablematrixproducts = {}
 	file = open(eEnv.resolve("${datadir}/enigma2/unicable.xml"), 'r')
-	doc = xml.etree.cElementTree.parse(file)
+	doc = parse(file)
 	file.close()
 	root = doc.getroot()
 
@@ -2075,7 +2074,7 @@ def InitNimManager(nimmgr, update_slots=[]):
 		fe_id = configElement.fe_id
 		slot_id = configElement.slot_id
 		name = nimmgr.nim_slots[slot_id].description
-		if path.exists("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % fe_id):
+		if os_path.exists("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % fe_id):
 			f = open("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % fe_id, "w")
 			f.write(configElement.value)
 			f.close()
@@ -2083,7 +2082,7 @@ def InitNimManager(nimmgr, update_slots=[]):
 	def toneAmplitudeChanged(configElement):
 		fe_id = configElement.fe_id
 		slot_id = configElement.slot_id
-		if path.exists("/proc/stb/frontend/%d/tone_amplitude" % fe_id):
+		if os_path.exists("/proc/stb/frontend/%d/tone_amplitude" % fe_id):
 			f = open("/proc/stb/frontend/%d/tone_amplitude" % fe_id, "w")
 			f.write(configElement.value)
 			f.close()
@@ -2091,7 +2090,7 @@ def InitNimManager(nimmgr, update_slots=[]):
 	def t2miRawModeChanged(configElement):
 		fe_id = configElement.fe_id
 		slot_id = configElement.slot_id
-		if path.exists("/proc/stb/frontend/%d/t2mirawmode" % fe_id):
+		if os_path.exists("/proc/stb/frontend/%d/t2mirawmode" % fe_id):
 			f = open("/proc/stb/frontend/%d/t2mirawmode" % fe_id, "w")
 			f.write(configElement.value)
 			f.close()
@@ -2297,7 +2296,7 @@ def InitNimManager(nimmgr, update_slots=[]):
 				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 				types = slot.getMultiTypeList()
 				#print"[adenin]",types
-				for FeType in six.itervalues(types):
+				for FeType in itervalues(types):
 					if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 						continue
 					elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
@@ -2310,7 +2309,7 @@ def InitNimManager(nimmgr, update_slots=[]):
 			else:
 				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, slot.getType())
 			system = configElement.getText()
-			if path.exists("/proc/stb/frontend/%d/mode" % fe_id):
+			if os_path.exists("/proc/stb/frontend/%d/mode" % fe_id):
 				cur_type = int(open("/proc/stb/frontend/%d/mode" % fe_id, "r").read())
 				if cur_type != int(configElement.value):
 					print("tunerTypeChanged feid %d from %d to mode %d" % (fe_id, cur_type, int(configElement.value)))
@@ -2323,7 +2322,7 @@ def InitNimManager(nimmgr, update_slots=[]):
 					except:
 						print("[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available")
 
-					for x in six.iteritems(iDVBFrontendDict):
+					for x in iteritems(iDVBFrontendDict):
 						if x[1] == system:
 							frontend.overrideType(x[0])
 							break

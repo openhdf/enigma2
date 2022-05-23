@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-import skin
+from skin import applyAllAttributes
 
 from enigma import ePoint, eSize
 from Components.config import config
@@ -46,7 +46,7 @@ class GUIComponent(object):
 		#
 		if config.skin.primary_skin.value.split('/')[0] not in ('DMConcinnity-HD'):
 			self.skinAttributes.sort()
-		skin.applyAllAttributes(self.instance, desktop, self.skinAttributes, parent.scale)
+		applyAllAttributes(self.instance, desktop, self.skinAttributes, parent.scale)
 		return True
 
 	def move(self, x, y=None):

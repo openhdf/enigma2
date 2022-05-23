@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
-import enigma
+from enigma import getDesktop, ePoint, eSize, eTimer
 
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
@@ -112,8 +112,8 @@ class MessageBox(Screen):
 				}, -1)
 
 	def autoResize(self):
-		desktop_w = enigma.getDesktop(0).size().width()
-		desktop_h = enigma.getDesktop(0).size().height()
+		desktop_w = getDesktop(0).size().width()
+		desktop_h = getDesktop(0).size().height()
 		count = len(self.list)
 		listsize = 0
 
@@ -122,10 +122,10 @@ class MessageBox(Screen):
 			listsize = (520, 25 * count)
 			print("ListSize:", listsize)
 			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
-				self["list"].instance.move(enigma.ePoint(65, 0))
+				self["list"].instance.move(ePoint(65, 0))
 			else:
-				self["list"].instance.move(enigma.ePoint(0, 0))
-			self["list"].instance.resize(enigma.eSize(*listsize))
+				self["list"].instance.move(ePoint(0, 0))
+			self["list"].instance.resize(eSize(*listsize))
 
 		else:
 			textsize = self["text"].getSize()
@@ -138,30 +138,30 @@ class MessageBox(Screen):
 			listsize = (textsize[0], 25 * count)
 			print("ListSize:", listsize)
 
-			self["text"].instance.resize(enigma.eSize(*textsize))
+			self["text"].instance.resize(eSize(*textsize))
 			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
-				self["text"].instance.move(enigma.ePoint(65, 0))
+				self["text"].instance.move(ePoint(65, 0))
 			else:
-				self["text"].instance.move(enigma.ePoint(10, 10))
+				self["text"].instance.move(ePoint(10, 10))
 
 			if self["ErrorPixmap"].visible or self["QuestionPixmap"].visible or self["InfoPixmap"].visible:
-				self["list"].instance.move(enigma.ePoint(65, textsize[1]))
+				self["list"].instance.move(ePoint(65, textsize[1]))
 				wsizex = textsize[0] + 65
 			else:
-				self["list"].instance.move(enigma.ePoint(0, textsize[1]))
+				self["list"].instance.move(ePoint(0, textsize[1]))
 				wsizex = textsize[0]
-			self["list"].instance.resize(enigma.eSize(*listsize))
+			self["list"].instance.resize(eSize(*listsize))
 
 		print("ListSize:", listsize)
 		wsizey = textsize[1] + listsize[1]
 		wsize = (wsizex, wsizey)
-		self.instance.resize(enigma.eSize(*wsize))
-		self.instance.move(enigma.ePoint((desktop_w - wsizex) // 2, (desktop_h - wsizey) // 2))
+		self.instance.resize(eSize(*wsize))
+		self.instance.move(ePoint((desktop_w - wsizex) // 2, (desktop_h - wsizey) // 2))
 
 	def initTimeout(self, timeout):
 		self.timeout = timeout
 		if timeout > 0:
-			self.timer = enigma.eTimer()
+			self.timer = eTimer()
 			self.timer.callback.append(self.timerTick)
 			self.onExecBegin.append(self.startTimer)
 			self.origTitle = None

@@ -102,8 +102,8 @@ class PositionerSetup(Screen):
 						cur = feInfo.getTransponderData(True)
 					del feInfo
 					del service
-					from Screens.InfoBar import InfoBar
-					InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
+					import Screens.InfoBar
+					Screens.InfoBar.InfoBar.instance and hasattr(Screens.InfoBar.InfoBar.instance, "showPiP") and Screens.InfoBar.InfoBar.instance.showPiP()
 				if not self.openFrontend():
 					self.frontend = None # in normal case this should not happen
 					if hasattr(self, 'raw_channel'):

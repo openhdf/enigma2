@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 from boxbranding import getMachineBrand, getMachineName
-import time
-import sys
-import six
+from time import sleep
+from sys import version_info
+from six import ensure_str
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -51,14 +51,14 @@ class SABnzbdSetupScreen(Screen):
 		self.my_sabnzbd_active = False
 		self.my_sabnzbd_run = False
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'ok': self.close, 'back': self.close, 'red': self.UninstallCheck, 'green': self.SABnzbdStartStop, 'yellow': self.activateSABnzbd})
-		self.service_name = ("sabnzbd3" if sys.version_info[0] >= 3 else "sabnzbd")
+		self.service_name = ("sabnzbd3" if version_info[0] >= 3 else "sabnzbd")
 		self.onLayoutFinish.append(self.InstallCheck)
 
 	def InstallCheck(self):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
 
 	def InstalldataAvail(self, str, retval, extra_args):
-		str = six.ensure_str(str)
+		str = ensure_str(str)
 		if not str:
 			restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Your %s %s will be restarted after the installation of service.\n\nDo you want to install now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
@@ -86,7 +86,7 @@ class SABnzbdSetupScreen(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.UninstalldataAvail)
 
 	def UninstalldataAvail(self, str, retval, extra_args):
-		str = six.ensure_str(str)
+		str = ensure_str(str)
 		if str:
 			restartbox = self.session.openWithCallback(self.RemovePackage, MessageBox, _('Your %s %s will be restarted after the removal of service\nDo you want to remove now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
@@ -115,11 +115,11 @@ class SABnzbdSetupScreen(Screen):
 	def SABnzbdStartStop(self):
 		if not self.my_sabnzbd_run:
 			self.Console.ePopen('/etc/init.d/sabnzbd start')
-			time.sleep(3)
+			sleep(3)
 			self.updateService()
 		elif self.my_sabnzbd_run:
 			self.Console.ePopen('/etc/init.d/sabnzbd stop')
-			time.sleep(3)
+			sleep(3)
 			self.updateService()
 
 	def activateSABnzbd(self):
@@ -127,7 +127,7 @@ class SABnzbdSetupScreen(Screen):
 			self.Console.ePopen('update-rc.d -f sabnzbd remove')
 		else:
 			self.Console.ePopen('update-rc.d -f sabnzbd defaults')
-		time.sleep(3)
+		sleep(3)
 		self.updateService()
 
 	def updateService(self, result=None, retval=None, extra_args=None):

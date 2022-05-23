@@ -3,7 +3,7 @@ from __future__ import print_function
 from bisect import insort
 from time import time, localtime, mktime
 from enigma import eTimer, eActionMap
-import datetime
+from datetime import datetime, timedelta
 
 
 class TimerEntry:
@@ -22,7 +22,7 @@ class TimerEntry:
 		self.findNextEvent = False
 		self.resetRepeated()
 		#begindate = localtime(self.begin)
-		#newdate = datetime.datetime(begindate.tm_year, begindate.tm_mon, begindate.tm_mday 0, 0, 0);
+		#newdate = datetime(begindate.tm_year, begindate.tm_mon, begindate.tm_mday 0, 0, 0);
 		self.repeatedbegindate = begin
 		self.backoff = 0
 
@@ -48,9 +48,9 @@ class TimerEntry:
 
 	def addOneDay(self, timedatestruct):
 		oldHour = timedatestruct.tm_hour
-		newdate = (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
+		newdate = (datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + timedelta(days=1)).timetuple()
 		if localtime(mktime(newdate)).tm_hour != oldHour:
-			return (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=2)).timetuple()
+			return (datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + timedelta(days=2)).timetuple()
 		return newdate
 
 	def isFindRunningEvent(self):

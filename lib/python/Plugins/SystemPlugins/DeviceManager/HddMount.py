@@ -18,7 +18,7 @@ from .Disks import Disks
 from .ExtraMessageBox import ExtraMessageBox
 from boxbranding import getMachineBrand, getMachineName
 
-import os
+from os import system
 
 
 class HddMount(Screen):
@@ -141,7 +141,7 @@ class HddMount(Screen):
 	def customPath(self, result):
 		if result and len(result) > 0:
 			result = result.rstrip("/")
-			os.system("mkdir -p %s" % result)
+			system("mkdir -p %s" % result)
 			self.setMountPoint(result)
 
 	def setMountPoint(self, path):
@@ -168,7 +168,7 @@ class HddMount(Screen):
 			if not self.mountpoints.mount(self.device, self.partition, self.cpath):
 				self.session.open(MessageBox, _("Cannot mount new drive.\nPlease check filesystem or format it and try again"), MessageBox.TYPE_ERROR)
 			elif self.cpath == "/media/hdd":
-				os.system("/bin/mkdir -p /media/hdd/movie")
+				system("/bin/mkdir -p /media/hdd/movie")
 
 			if not self.fast:
 				message = _("Device Fixed Mount Point change needs a system restart in order to take effect.\nRestart your %s %s now?") % (getMachineBrand(), getMachineName())

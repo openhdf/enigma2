@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from os import path
+from os import path as os_path
 
 from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter, eServiceReference, eDVBDB
 
@@ -112,7 +112,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.list = [
 			getConfigListEntry(_("Video output"), config.av.videoport, _("Configures which video output connector will be used."))
 		]
-		if config.av.videoport.value in ('HDMI', 'YPbPr', 'Scart-YPbPr') and not getAutoresPlugin_enabled(): #path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
+		if config.av.videoport.value in ('HDMI', 'YPbPr', 'Scart-YPbPr') and not getAutoresPlugin_enabled(): #os_path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
 			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores, _("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
 			if config.av.autores.value in ('all', 'hd'):
 				self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay, _("Set the time before checking video source for resolution information.")))
@@ -715,28 +715,28 @@ class AutoVideoMode(Screen):
 		video_width = None
 		video_pol = None
 		video_rate = None
-		if path.exists("/proc/stb/vmpeg/0/yres"):
+		if os_path.exists("/proc/stb/vmpeg/0/yres"):
 			try:
 				f = open("/proc/stb/vmpeg/0/yres", "r")
 				video_height = int(f.read(), 16)
 				f.close()
 			except:
 				video_height = 0
-		if path.exists("/proc/stb/vmpeg/0/xres"):
+		if os_path.exists("/proc/stb/vmpeg/0/xres"):
 			try:
 				f = open("/proc/stb/vmpeg/0/xres", "r")
 				video_width = int(f.read(), 16)
 				f.close()
 			except:
 				video_width = 0
-		if path.exists("/proc/stb/vmpeg/0/progressive"):
+		if os_path.exists("/proc/stb/vmpeg/0/progressive"):
 			try:
 				f = open("/proc/stb/vmpeg/0/progressive", "r")
 				video_pol = "p" if int(f.read(), 16) else "i"
 				f.close()
 			except:
 				video_pol = "i"
-		if path.exists("/proc/stb/vmpeg/0/framerate"):
+		if os_path.exists("/proc/stb/vmpeg/0/framerate"):
 			f = open("/proc/stb/vmpeg/0/framerate", "r")
 			try:
 				video_rate = int(f.read())
@@ -977,7 +977,7 @@ class AutoVideoMode(Screen):
 				write_mode = new_mode
 			else:
 				autorestyp = 'no match'
-				if path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate in ("auto", "multi"):
+				if os_path.exists('/proc/stb/video/videomode_%shz' % new_rate) and config_rate in ("auto", "multi"):
 					f = open("/proc/stb/video/videomode_%shz" % new_rate, "r")
 					multi_videomode = f.read().replace('\n', '')
 					f.close()
@@ -1045,7 +1045,7 @@ class AutoVideoMode(Screen):
 				# before we try to write the new mode
 				changeResolution = False
 				try:
-					if path.exists("/proc/stb/video/videomode_choices"):
+					if os_path.exists("/proc/stb/video/videomode_choices"):
 						vf = open("/proc/stb/video/videomode_choices")
 						values = vf.readline().replace("\n", "").split(" ", -1)
 						for x in values:
@@ -1122,7 +1122,7 @@ class AutoVideoMode(Screen):
 
 def autostart(session):
 	global resolutionlabel
-	if not getAutoresPlugin_enabled(): #path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
+	if not getAutoresPlugin_enabled(): #os_path.exists(resolveFilename(SCOPE_PLUGINS)+'SystemPlugins/AutoResolution'):
 		if resolutionlabel is None:
 			resolutionlabel = session.instantiateDialog(AutoVideoModeLabel)
 		AutoVideoMode(session)

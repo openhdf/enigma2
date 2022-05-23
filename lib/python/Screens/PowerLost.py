@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.config import config
-import Screens.Standby
+from Screens.Standby import Standby, TryQuitMainloop, inStandby
 from boxbranding import getMachineBrand, getMachineName
 
 
@@ -22,8 +22,8 @@ class PowerLost(Screen):
 	def MsgBoxClosed(self, ret):
 		if ret:
 			if config.usage.shutdownNOK_action.value == 'deepstandby' and not config.usage.shutdownOK.value:
-				self.session.open(Screens.Standby.TryQuitMainloop, 1)
-			elif not Screens.Standby.inStandby:
-				self.session.open(Screens.Standby.Standby)
+				self.session.open(TryQuitMainloop, 1)
+			elif not inStandby:
+				self.session.open(Standby)
 
 		self.close()

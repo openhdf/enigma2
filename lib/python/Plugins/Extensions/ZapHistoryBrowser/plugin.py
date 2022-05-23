@@ -15,7 +15,7 @@ from Screens.ChannelSelection import ChannelSelection
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Tools.Directories import resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
-import gettext
+from gettext import bindtextdomain, textdomain, bindtextdomain, dgettext, gettext
 
 ################################################
 
@@ -23,15 +23,15 @@ import gettext
 def localeInit():
 	lang = language.getLanguage()
 	environ["LANGUAGE"] = lang[:2]
-	gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
-	gettext.textdomain("enigma2")
-	gettext.bindtextdomain("ZapHistoryBrowser", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/ZapHistoryBrowser/locale/"))
+	bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
+	textdomain("enigma2")
+	bindtextdomain("ZapHistoryBrowser", "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/ZapHistoryBrowser/locale/"))
 
 
 def _(txt):
-	t = gettext.dgettext("ZapHistoryBrowser", txt)
+	t = dgettext("ZapHistoryBrowser", txt)
 	if t == txt:
-		t = gettext.gettext(txt)
+		t = gettext(txt)
 	return t
 
 

@@ -3,7 +3,7 @@
 from __future__ import absolute_import
 from __future__ import print_function
 from base64 import encodestring
-from os import listdir, remove, rename, system, popen, path
+from os import listdir, remove, rename, system, popen, path as os_path
 
 from enigma import RT_HALIGN_RIGHT, eListboxPythonMultiContent, gFont, loadPNG
 
@@ -26,8 +26,8 @@ from Tools.Directories import fileExists, SCOPE_GUISKIN, resolveFilename
 from twisted.internet import reactor
 from twisted.web.client import HTTPClientFactory
 from six.moves.urllib.parse import urlparse, urlunparse
-import skin
-import six
+from skin import getSkinFactor, parameters
+from six import ensure_binary, iteritems, ensure_str
 
 #TOGGLE_SHOW = InfoBar.toggleShow
 
@@ -38,7 +38,7 @@ CFG = "/etc/CCcam.cfg"
 #############################################################
 
 ###global
-sf = skin.getSkinFactor()
+sf = getSkinFactor()
 ###global
 
 
@@ -94,7 +94,7 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 			kwargs["headers"].update(AuthHeaders)
 		else:
 			kwargs["headers"] = AuthHeaders
-	url = six.ensure_binary(url)
+	url = ensure_binary(url)
 	factory = HTTPClientFactory(url, *args, **kwargs)
 	reactor.connectTCP(host, port, factory)
 
@@ -107,7 +107,7 @@ class HelpableNumberActionMap(NumberActionMap):
 	def __init__(self, parent, context, actions, prio):
 		alist = []
 		adict = {}
-		for (action, funchelp) in six.iteritems(actions):
+		for (action, funchelp) in iteritems(actions):
 			alist.append((action, funchelp[1]))
 			adict[action] = funchelp[0]
 		NumberActionMap.__init__(self, [context], adict, prio)
@@ -207,12 +207,12 @@ menu_list = [
 
 #############################################################
 
-if path.exists(resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png")):
+if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png")):
 	lock_on = loadPNG(resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
 else:
 	lock_on = loadPNG("/usr/share/enigma2/skin_default/icons/lock_on.png")
 
-if path.exists(resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png")):
+if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png")):
 	lock_off = loadPNG(resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png"))
 else:
 	lock_off = loadPNG("/usr/share/enigma2/skin_default/icons/lock_off.png")
@@ -281,28 +281,28 @@ def CCcamListEntry(name, idx):
 		idx = "menu"
 	elif idx == 15:
 		idx = "info"
-	if path.exists(resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % str(idx))):
+	if os_path.exists(resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % str(idx))):
 		png = resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % str(idx))
 	else:
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
 	if fileExists(png):
-		x, y, w, h = skin.parameters.get("ChoicelistIcon", (5 * f, 0, 35 * f, 25 * f))
+		x, y, w, h = parameters.get("ChoicelistIcon", (5 * f, 0, 35 * f, 25 * f))
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=loadPNG(png)))
-	x, y, w, h = skin.parameters.get("ChoicelistName", (45 * f, 2 * f, 550 * f, 25 * f))
+	x, y, w, h = parameters.get("ChoicelistName", (45 * f, 2 * f, 550 * f, 25 * f))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 	return res
 
 
 def CCcamServerListEntry(name, color):
 	res = [name]
-	if path.exists(resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % color)):
+	if os_path.exists(resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % color)):
 		png = resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % color)
 	else:
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
 	if fileExists(png):
-		x, y, w, h = skin.parameters.get("ChoicelistIcon", (5 * f, 0, 35 * f, 25 * f))
+		x, y, w, h = parameters.get("ChoicelistIcon", (5 * f, 0, 35 * f, 25 * f))
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=loadPNG(png)))
-	x, y, w, h = skin.parameters.get("ChoicelistName", (45 * f, 2 * f, 550 * f, 25 * f))
+	x, y, w, h = parameters.get("ChoicelistName", (45 * f, 2 * f, 550 * f, 25 * f))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 	return res
 
@@ -340,12 +340,12 @@ def CCcamConfigListEntry(file):
 
 	if content == org:
 		png = lock_on
-		x, y, w, h = skin.parameters.get("SelectionListLock", (5 * sf, 0, 25 * sf, 25 * sf))
+		x, y, w, h = parameters.get("SelectionListLock", (5 * sf, 0, 25 * sf, 25 * sf))
 	else:
 		png = lock_off
-		x, y, w, h = skin.parameters.get("SelectionListLockOff", (5 * sf, 0, 25 * sf, 25 * sf))
+		x, y, w, h = parameters.get("SelectionListLockOff", (5 * sf, 0, 25 * sf, 25 * sf))
 	res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=png))
-	x, y, w, h = skin.parameters.get("SelectionListDescr", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
+	x, y, w, h = parameters.get("SelectionListDescr", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 
 	return res
@@ -356,12 +356,12 @@ def CCcamMenuConfigListEntry(name, blacklisted):
 
 	if blacklisted:
 		png = lock_off
-		x, y, w, h = skin.parameters.get("SelectionListLockOff", (5 * sf, 0, 25 * sf, 25 * sf))
+		x, y, w, h = parameters.get("SelectionListLockOff", (5 * sf, 0, 25 * sf, 25 * sf))
 	else:
 		png = lock_on
-		x, y, w, h = skin.parameters.get("SelectionListLock", (5 * sf, 0, 25 * sf, 25 * sf))
+		x, y, w, h = parameters.get("SelectionListLock", (5 * sf, 0, 25 * sf, 25 * sf))
 	res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=png))
-	x, y, w, h = skin.parameters.get("SelectionListDescr", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
+	x, y, w, h = parameters.get("SelectionListDescr", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 
 	return res
@@ -764,7 +764,7 @@ class CCcamInfoMain(Screen):
 
 	def showFreeMemory(self, result, retval, extra_args):
 		if retval == 0:
-			result = six.ensure_str(result)
+			result = ensure_str(result)
 			if result.__contains__("Total:"):
 				idx = result.index("Total:")
 				result = result[idx + 6:]

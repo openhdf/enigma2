@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import enigma
-import xml.etree.cElementTree
+from enigma import eActionMap
+from xml.etree.cElementTree import parse
 
 from keyids import KEYIDS
 
@@ -92,7 +92,7 @@ def parseTrans(filename, actionmap, device, keys):
 
 
 def readKeymap(filename):
-	p = enigma.eActionMap.getInstance()
+	p = eActionMap.getInstance()
 	assert p
 
 	try:
@@ -102,7 +102,7 @@ def readKeymap(filename):
 		return
 
 	try:
-		dom = xml.etree.cElementTree.parse(source)
+		dom = parse(source)
 	except:
 		raise KeymapError("[keymapparser] keymap %s not well-formed." % filename)
 
@@ -124,5 +124,5 @@ def readKeymap(filename):
 
 
 def removeKeymap(filename):
-	p = enigma.eActionMap.getInstance()
+	p = eActionMap.getInstance()
 	p.unbindKeyDomain(filename)

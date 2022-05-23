@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 from Components.Element import Element
-from os import path
+from os import path as os_path
 # this is not a GUI renderer.
 
 
@@ -21,20 +21,20 @@ class FrontpanelLed(Element):
 
 		(speed, pattern, pattern_4bit) = self.patterns[val]
 
-		if path.exists("/proc/stb/fp/led%d_pattern" % self.which):
+		if os_path.exists("/proc/stb/fp/led%d_pattern" % self.which):
 			f = open("/proc/stb/fp/led%d_pattern" % self.which, "w")
 			f.write("%08x" % pattern)
 			f.close()
 		if self.which == 0:
-			if path.exists("/proc/stb/fp/led_set_pattern"):
+			if os_path.exists("/proc/stb/fp/led_set_pattern"):
 				f = open("/proc/stb/fp/led_set_pattern", "w")
 				f.write("%08x" % pattern_4bit)
 				f.close()
-			if path.exists("/proc/stb/fp/led_set_speed"):
+			if os_path.exists("/proc/stb/fp/led_set_speed"):
 				f = open("/proc/stb/fp/led_set_speed", "w")
 				f.write("%d" % speed)
 				f.close()
-			if path.exists("/proc/stb/fp/led_pattern_speed"):
+			if os_path.exists("/proc/stb/fp/led_pattern_speed"):
 				f = open("/proc/stb/fp/led_pattern_speed", "w")
 				f.write("%d" % speed)
 				f.close()

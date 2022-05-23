@@ -7,7 +7,7 @@ from ServiceReference import ServiceReference
 from enigma import RT_HALIGN_LEFT, eDVBFrontendParametersSatellite, eListbox, eListboxPythonMultiContent, eServiceCenter, gFont, getDesktop, iServiceInformation
 from Tools.Transponder import ConvertToHumanReadable
 from Components.Converter.ChannelNumbers import channelnumbers
-import skin
+from skin import parameters, parseFont
 
 RT_HALIGN_LEFT = 0
 
@@ -44,9 +44,9 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 		else:
 			b = str(b)
 
-	x, y, w, h = skin.parameters.get("ServiceInfo", (0, 0, 300, 30))
-	xa, ya, wa, ha = skin.parameters.get("ServiceInfoLeft", (0, 0, 300, 25))
-	xb, yb, wb, hb = skin.parameters.get("ServiceInfoRight", (300, 0, 600, 25))
+	x, y, w, h = parameters.get("ServiceInfo", (0, 0, 300, 30))
+	xa, ya, wa, ha = parameters.get("ServiceInfoLeft", (0, 0, 300, 25))
+	xb, yb, wb, hb = parameters.get("ServiceInfoRight", (300, 0, 600, 25))
 	return [
 		#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
 		(eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, ""),
@@ -61,7 +61,7 @@ class ServiceInfoList(GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.list = source
 		self.l.setList(self.list)
-		self.fontName, self.fontSize = skin.parameters.get("ServiceInfoFont", ('Regular', 23))
+		self.fontName, self.fontSize = parameters.get("ServiceInfoFont", ('Regular', 23))
 		self.l.setFont(0, gFont(self.fontName, self.fontSize))
 		self.ItemHeight = 25
 
@@ -70,7 +70,7 @@ class ServiceInfoList(GUIComponent):
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
-					font = skin.parseFont(value, ((1, 1), (1, 1)))
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.fontName = font.family
 					self.fontSize = font.pointSize
 				elif attrib == "itemHeight":

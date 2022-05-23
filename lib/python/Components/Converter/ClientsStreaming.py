@@ -4,7 +4,7 @@ from Components.Converter.Poll import Poll
 from Components.Element import cached
 from enigma import eStreamServer
 from ServiceReference import ServiceReference
-import socket
+from socket import gethostbyaddr
 
 
 class ClientsStreaming(Converter, Poll):
@@ -86,7 +86,7 @@ class ClientsStreaming(Converter, Poll):
 
 			if self.type == self.INFO_RESOLVE or self.type == self.INFO_RESOLVE_SHORT:
 				try:
-					raw = socket.gethostbyaddr(ip)
+					raw = gethostbyaddr(ip)
 					ip = raw[0]
 				except:
 					pass

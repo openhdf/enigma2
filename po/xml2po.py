@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
-import sys
-import os
-import six
-import re
+from sys import argv
+from os import path as os_path, listdir
+from six import ensure_str
+from re import compile
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler, property_lexical_handler
 try:
@@ -23,7 +23,7 @@ class parseXML(ContentHandler, LexicalHandler):
 		self.isPointsElement, self.isReboundsElement = 0, 0
 		self.attrlist = attrlist
 		self.last_comment = None
-		self.ishex = re.compile('#[0-9a-fA-F]+\Z')
+		self.ishex = compile('#[0-9a-fA-F]+\Z')
 
 	def comment(self, comment):
 		if "TRANSLATORS:" in comment:
@@ -49,11 +49,11 @@ parser.setContentHandler(contentHandler)
 if not no_comments:
 	parser.setProperty(property_lexical_handler, contentHandler)
 
-for arg in sys.argv[1:]:
-	if os.path.isdir(arg):
-		for _file in os.listdir(arg):
+for arg in argv[1:]:
+	if os_path.isdir(arg):
+		for _file in listdir(arg):
 			if _file.endswith(".xml"):
-				parser.parse(os.path.join(arg, _file))
+				parser.parse(os_path.join(arg, _file))
 	else:
 		parser.parse(arg)
 

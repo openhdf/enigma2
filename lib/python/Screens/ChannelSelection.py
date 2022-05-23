@@ -2,12 +2,10 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from boxbranding import getMachineBuild, getMachineBrand, getMachineName
-import os
 from Tools.Profile import profile
 
 from Screens.Screen import Screen
 import Screens.InfoBar
-import Components.ParentalControl
 from Components.Button import Button
 from Components.ServiceList import ServiceList, refreshServiceList
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
@@ -50,9 +48,9 @@ from Tools import Notifications
 from Tools.ServiceReference import service_types_tv_ref, service_types_radio_ref, serviceRefAppendPath
 from RecordTimer import TIMERTYPE
 from time import localtime, time
-from os import remove
-import six
-SIGN = '°' if six.PY3 else str('\xc2\xb0')
+from os import remove, listdir, rename
+from six import ensure_str, PY3
+SIGN = '°' if PY3 else str('\xc2\xb0')
 try:
 	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict
 	plugin_PiPServiceRelation_installed = True
@@ -140,7 +138,7 @@ def append_when_current_valid(current, menu, args, level=0, key=""):
 
 
 def removed_userbouquets_available():
-	for _file in os.listdir("/etc/enigma2/"):
+	for _file in listdir("/etc/enigma2/"):
 		if _file.startswith("userbouquet") and _file.endswith(".del"):
 			return True
 	return False
@@ -582,11 +580,11 @@ class ChannelContextMenu(Screen):
 
 	def restoreDeletedBouquetsCallback(self, answer):
 		if answer:
-			for _file in os.listdir("/etc/enigma2/"):
+			for _file in listdir("/etc/enigma2/"):
 				if _file.startswith("userbouquet") and _file.endswith(".del"):
 					_file = "/etc/enigma2/" + _file
 					print("restore file ", _file[:-4])
-					os.rename(_file, _file[:-4])
+					rename(_file, _file[:-4])
 			eDVBDBInstance = eDVBDB.getInstance()
 			eDVBDBInstance.setLoadUnlinkedUserbouquets(True)
 			eDVBDBInstance.reloadBouquets()
@@ -599,11 +597,11 @@ class ChannelContextMenu(Screen):
 
 	def purgeDeletedBouquetsCallback(self, answer):
 		if answer:
-			for _file in os.listdir("/etc/enigma2/"):
+			for _file in listdir("/etc/enigma2/"):
 				if _file.startswith("userbouquet") and _file.endswith(".del"):
 					_file = "/etc/enigma2/" + _file
 					print("permantly remove file ", _file)
-					os.remove(_file)
+					remove(_file)
 			self.close()
 
 	def addHideVBIFlag(self):
@@ -1886,7 +1884,7 @@ class ChannelSelectionBase(Screen):
 
 	def keyAsciiCode(self):
 		unichar = six.unichr(getPrevAsciiCode())
-		charstr = six.ensure_str(unichar)
+		charstr = ensure_str(unichar)
 		if len(charstr) == 1:
 			self.servicelist.moveToChar(charstr[0])
 

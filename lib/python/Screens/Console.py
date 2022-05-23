@@ -5,7 +5,7 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
-import six
+from six import ensure_str
 
 
 class Console(Screen):
@@ -105,5 +105,5 @@ class Console(Screen):
 			self.container.dataAvail.remove(self.dataAvail)
 
 	def dataAvail(self, str):
-		str = six.ensure_str(str)
+		str = ensure_str(str)
 		self["text"].appendText(str)

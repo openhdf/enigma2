@@ -6,8 +6,8 @@
 # because the log unit looks enough like a file!
 
 from __future__ import absolute_import
-import sys
-import threading
+from sys import stdout
+from threading import Lock
 from six.moves import cStringIO as StringIO
 
 logfile = None
@@ -21,7 +21,7 @@ def open(buffersize=16384):
 	global logfile, mutex, size
 	if logfile is None:
 		logfile = StringIO()
-		mutex = threading.Lock()
+		mutex = Lock()
 		size = buffersize
 
 
@@ -35,7 +35,7 @@ def write(data):
 		logfile.write(data)
 	finally:
 		mutex.release()
-	sys.stdout.write(data)
+	stdout.write(data)
 
 
 def getvalue():

@@ -5,7 +5,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
-import enigma
+from enigma import getDesktop, ePoint, eSize
 
 
 class ChoiceBox(Screen):
@@ -99,8 +99,8 @@ class ChoiceBox(Screen):
 		}, -1)
 
 	def autoResize(self):
-		desktop_w = enigma.getDesktop(0).size().width()
-		desktop_h = enigma.getDesktop(0).size().height()
+		desktop_w = getDesktop(0).size().width()
+		desktop_h = getDesktop(0).size().height()
 		count = len(self.list)
 		itemheight = self["list"].getItemHeight()
 		if count > 15:
@@ -109,8 +109,8 @@ class ChoiceBox(Screen):
 			# move list
 			textsize = (520, 0)
 			listsize = (520, itemheight * count)
-			self["list"].instance.move(enigma.ePoint(0, 0))
-			self["list"].instance.resize(enigma.eSize(*listsize))
+			self["list"].instance.move(ePoint(0, 0))
+			self["list"].instance.resize(eSize(*listsize))
 		else:
 			textsize = self["text"].getSize()
 			if textsize[0] < textsize[1]:
@@ -121,19 +121,19 @@ class ChoiceBox(Screen):
 				textsize = (520, textsize[1] + itemheight)
 			listsize = (textsize[0], itemheight * count)
 			# resize label
-			self["text"].instance.resize(enigma.eSize(*textsize))
-			self["text"].instance.move(enigma.ePoint(10, 10))
+			self["text"].instance.resize(eSize(*textsize))
+			self["text"].instance.move(ePoint(10, 10))
 			# move list
-			self["list"].instance.move(enigma.ePoint(0, textsize[1]))
-			self["list"].instance.resize(enigma.eSize(*listsize))
+			self["list"].instance.move(ePoint(0, textsize[1]))
+			self["list"].instance.resize(eSize(*listsize))
 
 		wsizex = textsize[0]
 		wsizey = textsize[1] + listsize[1]
 		wsize = (wsizex, wsizey)
-		self.instance.resize(enigma.eSize(*wsize))
+		self.instance.resize(eSize(*wsize))
 
 		# center window
-		self.instance.move(enigma.ePoint((desktop_w - wsizex) // 2, (desktop_h - wsizey) // 2))
+		self.instance.move(ePoint((desktop_w - wsizex) // 2, (desktop_h - wsizey) // 2))
 
 	def left(self):
 		if len(self["list"].list) > 0:

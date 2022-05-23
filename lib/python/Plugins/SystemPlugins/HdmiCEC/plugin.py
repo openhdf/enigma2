@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from os import path
+from os import path as os_path
 
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
@@ -9,7 +9,7 @@ from Components.Label import Label
 
 from Tools.Directories import fileExists
 
-if path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0"):
+if os_path.exists("/dev/hdmi_cec") or os_path.exists("/dev/misc/hdmi_cec0"):
 	import Components.HdmiCec
 
 

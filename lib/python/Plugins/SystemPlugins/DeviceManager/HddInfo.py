@@ -9,8 +9,8 @@ from Components.Label import Label
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, getConfigListEntry
 
-import os
-import re
+from os import popen, system
+from re import compile as re_compile, findall
 
 
 class HddInfo(ConfigListScreen, Screen):
@@ -67,55 +67,55 @@ class HddInfo(ConfigListScreen, Screen):
 	def drawInfo(self):
 		device = "/dev/%s" % self.device
 		#regexps
-		modelRe = re.compile(r"Model Number:\s*([\w\-]+)")
-		serialRe = re.compile(r"Serial Number:\s*([\w\-]+)")
-		firmwareRe = re.compile(r"Firmware Revision:\s*([\w\-]+)")
-		cylindersRe = re.compile(r"cylinders\s*(\d+)\s*(\d+)")
-		headsRe = re.compile(r"heads\s*(\d+)\s*(\d+)")
-		sectorsRe = re.compile(r"sectors/track\s*(\d+)\s*(\d+)")
-		readDiskRe = re.compile(r"Timing buffered disk reads:\s*(.*)")
-		readCacheRe = re.compile(r"Timing buffer-cache reads:\s*(.*)")
-		tempRe = re.compile(r"%s:.*:(.*)" % device)
+		modelRe = re_compile(r"Model Number:\s*([\w\-]+)")
+		serialRe = re_compile(r"Serial Number:\s*([\w\-]+)")
+		firmwareRe = re_compile(r"Firmware Revision:\s*([\w\-]+)")
+		cylindersRe = re_compile(r"cylinders\s*(\d+)\s*(\d+)")
+		headsRe = re_compile(r"heads\s*(\d+)\s*(\d+)")
+		sectorsRe = re_compile(r"sectors/track\s*(\d+)\s*(\d+)")
+		readDiskRe = re_compile(r"Timing buffered disk reads:\s*(.*)")
+		readCacheRe = re_compile(r"Timing buffer-cache reads:\s*(.*)")
+		tempRe = re_compile(r"%s:.*:(.*)" % device)
 
 		# wake up disk... disk in standby may cause not correct value
-		os.system("/sbin/hdparm -S 0 %s" % device)
+		system("/sbin/hdparm -S 0 %s" % device)
 
-		hdparm = os.popen("/sbin/hdparm -I %s" % device)
+		hdparm = popen("/sbin/hdparm -I %s" % device)
 		for line in hdparm:
-			model = re.findall(modelRe, line)
+			model = findall(modelRe, line)
 			if model:
 				self["model"].setText(_("Model: %s") % model[0].lstrip())
-			serial = re.findall(serialRe, line)
+			serial = findall(serialRe, line)
 			if serial:
 				self["serial"].setText(_("Serial: %s") % serial[0].lstrip())
-			firmware = re.findall(firmwareRe, line)
+			firmware = findall(firmwareRe, line)
 			if firmware:
 				self["firmware"].setText(_("Firmware: %s") % firmware[0].lstrip())
-			cylinders = re.findall(cylindersRe, line)
+			cylinders = findall(cylindersRe, line)
 			if cylinders:
 				self["cylinders"].setText(_("Cylinders: %s (max) %s (current)") % (cylinders[0][0].lstrip(), cylinders[0][1].lstrip()))
-			heads = re.findall(headsRe, line)
+			heads = findall(headsRe, line)
 			if heads:
 				self["heads"].setText(_("Heads: %s (max) %s (current)") % (heads[0][0].lstrip(), heads[0][1].lstrip()))
-			sectors = re.findall(sectorsRe, line)
+			sectors = findall(sectorsRe, line)
 			if sectors:
 				self["sectors"].setText(_("Sectors: %s (max) %s (current)") % (sectors[0][0].lstrip(), sectors[0][1].lstrip()))
 		hdparm.close()
-		hdparm = os.popen("/sbin/hdparm -t %s" % device)
+		hdparm = popen("/sbin/hdparm -t %s" % device)
 		for line in hdparm:
-			readDisk = re.findall(readDiskRe, line)
+			readDisk = findall(readDiskRe, line)
 			if readDisk:
 				self["readDisk"].setText(_("Read speed: %s") % readDisk[0].lstrip())
 		hdparm.close()
-		hdparm = os.popen("/sbin/hdparm -T %s" % device)
+		hdparm = popen("/sbin/hdparm -T %s" % device)
 		for line in hdparm:
-			readCache = re.findall(readCacheRe, line)
+			readCache = findall(readCacheRe, line)
 			if readCache:
 				self["readCache"].setText(_("Read cache speed: %s") % readCache[0].lstrip())
 		hdparm.close()
-		hddtemp = os.popen("/usr/sbin/hddtemp -q %s" % device)
+		hddtemp = popen("/usr/sbin/hddtemp -q %s" % device)
 		for line in hddtemp:
-			temp = re.findall(tempRe, line)
+			temp = findall(tempRe, line)
 			if temp:
 				self["temp"].setText(_("Disk temperature: %s") % temp[0].lstrip())
 		hddtemp.close()

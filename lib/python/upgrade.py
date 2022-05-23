@@ -1,5 +1,5 @@
 from __future__ import print_function
-import os
+from os import path as os_path, listdir, system
 
 opkgDestinations = ['/']
 opkgStatusPath = ''
@@ -7,9 +7,9 @@ opkgStatusPath = ''
 
 def findMountPoint(path):
 	"""Example: findMountPoint("/media/hdd/some/file") returns "/media/hdd\""""
-	path = os.path.abspath(path)
-	while not os.path.ismount(path):
-		path = os.path.dirname(path)
+	path = os_path.abspath(path)
+	while not os_path.ismount(path):
+		path = os_path.dirname(path)
 	return path
 
 
@@ -25,17 +25,17 @@ def opkgAddDestination(mountpoint):
 		print("[Ipkg] Added to OPKG destinations:", mountpoint)
 
 
-mounts = os.listdir('/media')
+mounts = listdir('/media')
 for mount in mounts:
-	mount = os.path.join('/media', mount)
+	mount = os_path.join('/media', mount)
 	if mount and not mount.startswith('/media/net'):
 		if opkgStatusPath == '':
 			# recent opkg versions
 			opkgStatusPath = 'var/lib/opkg/status'
-			if not os.path.exists(os.path.join('/', opkgStatusPath)):
+			if not os_path.exists(os_path.join('/', opkgStatusPath)):
 				# older opkg versions
 				opkgStatusPath = 'usr/lib/opkg/status'
-		if os.path.exists(os.path.join(mount, opkgStatusPath)):
+		if os_path.exists(os_path.join(mount, opkgStatusPath)):
 			opkgAddDestination(mount)
 
-os.system('opkg ' + opkgExtraDestinations() + ' upgrade 2>&1 | tee /home/root/ipkgupgrade.log && reboot')
+system('opkg ' + opkgExtraDestinations() + ' upgrade 2>&1 | tee /home/root/ipkgupgrade.log && reboot')

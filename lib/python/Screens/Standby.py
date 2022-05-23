@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os
+from os import path as os_path, system
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config
@@ -13,7 +13,7 @@ from boxbranding import getBrandOEM, getMachineBrand, getMachineBuild, getMachin
 from Tools import Notifications
 from time import time
 import Screens.InfoBar
-import Components.RecordingConfig
+from Components.RecordingConfig import recType
 
 inStandby = None
 TVinStandby = None
@@ -27,8 +27,8 @@ class TVstate: #load in Navigation
 		TVinStandby = self
 
 		try:
-			import Components.HdmiCec
-			self.hdmicec_instance = Components.HdmiCec.hdmi_cec.instance
+			from Components.HdmiCec import hdmi_cec
+			self.hdmicec_instance = hdmi_cec.instance
 			self.hdmicec_ok = self.hdmicec_instance and config.hdmicec.enabled.value
 		except:
 			self.hdmicec_ok = False
@@ -108,9 +108,9 @@ class Standby2(Screen):
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			setLCDModeMinitTV(config.lcd.modeminitv.value)
 		#kill me
-		if os.path.exists("/usr/scripts/standby.sh") is True:
-			os.system("chmod 755 /usr/scripts/standby.sh")
-			os.system("/usr/scripts/standby.sh")
+		if os_path.exists("/usr/scripts/standby.sh") is True:
+			system("chmod 755 /usr/scripts/standby.sh")
+			system("/usr/scripts/standby.sh")
 		else:
 			print("/usr/scripts/standby.sh not found")
 		self.close(True)
@@ -294,7 +294,6 @@ class StandbySummary(Screen):
 
 from enigma import quitMainloop, iRecordableService
 from Screens.MessageBox import MessageBox
-from time import time
 from Components.Task import job_manager
 
 
@@ -328,7 +327,7 @@ class TryQuitMainloop(MessageBox):
 	def __init__(self, session, retvalue=1, timeout=-1, default_yes=True):
 		self.retval = retvalue
 		self.ptsmainloopvalue = retvalue
-		recordings = session.nav.getRecordings(False, Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
+		recordings = session.nav.getRecordings(False, recType(config.recording.warn_box_restart_rec_types.getValue()))
 		jobs = len(job_manager.getPendingJobs())
 		inTimeshift = Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance)
 		self.connected = False
@@ -386,7 +385,7 @@ class TryQuitMainloop(MessageBox):
 			return
 		else:
 			if event == iRecordableService.evEnd:
-				recordings = self.session.nav.getRecordings(False, Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
+				recordings = self.session.nav.getRecordings(False, recType(config.recording.warn_box_restart_rec_types.getValue()))
 				if not recordings: # no more recordings exist
 					rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 					if rec_time > 0 and (rec_time - time()) < 360:

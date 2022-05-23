@@ -18,7 +18,7 @@ from os import rename
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 from Tools.BoundFunction import boundFunction
 from boxbranding import getBrandOEM, getBoxType
-import time
+from time import sleep
 
 if getBoxType() in ('zgemmah9combo'):
 	MAX_NUM_CI = 1
@@ -748,7 +748,7 @@ class CIHelper(Screen):
 			self.Console.ePopen('/etc/init.d/cihelper.sh stop', self.StartStopCallback)
 
 	def StartStopCallback(self, result=None, retval=None, extra_args=None):
-		time.sleep(5)
+		sleep(5)
 		self.updateService()
 
 	def CIHelperset(self):

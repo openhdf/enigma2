@@ -1,9 +1,9 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import enigma
-import time
+from enigma import init_nav, init_record_config, init_parental_control
+from time import time, ctime, localtime, tzset
 
-import tests
+from tests import TestError
 
 #enigma.reset()
 
@@ -12,7 +12,7 @@ def test_timer(repeat=0, timer_start=3600, timer_length=1000, sim_length=86400 *
 
 	import NavigationInstance
 
-	at = time.time()
+	at = time()
 
 	t = NavigationInstance.instance.RecordTimer
 	print(t)
@@ -23,10 +23,10 @@ def test_timer(repeat=0, timer_start=3600, timer_length=1000, sim_length=86400 *
 	t.timer_list = []
 
 	# generate a timer to test
-	import xml.etree.cElementTree
-	import RecordTimer
+	from xml.etree.cElementTree import fromstring
+	from RecordTimer import createTimer
 
-	timer = RecordTimer.createTimer(xml.etree.cElementTree.fromstring(
+	timer = createTimer(fromstring(
 	"""
 		<timer
 			begin="%d"
@@ -51,24 +51,24 @@ def test_timer(repeat=0, timer_start=3600, timer_length=1000, sim_length=86400 *
 
 	timers = t.processed_timers + t.timer_list
 
-	print("start: %s" % (time.ctime(at + 10)))
+	print("start: %s" % (ctime(at + 10)))
 
 	assert len(timers) == 1
 
 	for t in timers:
 		print("begin=%d, end=%d, repeated=%d, state=%d" % (t.begin - at, t.end - at, t.repeated, t.state))
-		print("begin: %s" % (time.ctime(t.begin)))
-		print("end: %s" % (time.ctime(t.end)))
+		print("begin: %s" % (ctime(t.begin)))
+		print("end: %s" % (ctime(t.end)))
 
 	# if repeat, check if the calculated repeated time of day matches the initial time of day
 	if repeat:
-		t_initial = time.localtime(at + timer_start)
-		t_repeated = time.localtime(timers[0].begin)
+		t_initial = localtime(at + timer_start)
+		t_repeated = localtime(timers[0].begin)
 		print(t_initial)
 		print(t_repeated)
 
 	if t_initial[3:6] != t_repeated[3:6]:
-		raise tests.TestError("repeated timer time of day does not match")
+		raise TestError("repeated timer time of day does not match")
 
 
 #sys.modules["Tools.Notifications"] = FakeNotifications
@@ -82,14 +82,14 @@ enigma.init_parental_control()
 
 from events import log
 
-import calendar
+from calendar import timegm
 
 
-import os
+from os import environ
 # we are operating in CET/CEST
-os.environ['TZ'] = 'CET'
-time.tzset()
+environ['TZ'] = 'CET'
+tzset()
 
-#log(test_timer, test_name = "test_timer_repeating", base_time = calendar.timegm((2007, 3, 1, 12, 0, 0)), repeat=0x7f, sim_length = 86400 * 7)
-log(test_timer, test_name="test_timer_repeating_dst_skip", base_time=calendar.timegm((2007, 0o3, 20, 0, 0, 0)), timer_start=3600, repeat=0x7f, sim_length=86400 * 7)
-#log(test_timer, test_name = "test_timer_repeating_dst_start", base_time = calendar.timegm((2007, 03, 20, 0, 0, 0)), timer_start = 10000, repeat=0x7f, sim_length = 86400 * 7)
+#log(test_timer, test_name = "test_timer_repeating", base_time = timegm((2007, 3, 1, 12, 0, 0)), repeat=0x7f, sim_length = 86400 * 7)
+log(test_timer, test_name="test_timer_repeating_dst_skip", base_time=timegm((2007, 0o3, 20, 0, 0, 0)), timer_start=3600, repeat=0x7f, sim_length=86400 * 7)
+#log(test_timer, test_name = "test_timer_repeating_dst_start", base_time = timegm((2007, 03, 20, 0, 0, 0)), timer_start = 10000, repeat=0x7f, sim_length = 86400 * 7)

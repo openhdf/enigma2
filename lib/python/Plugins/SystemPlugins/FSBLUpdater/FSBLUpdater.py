@@ -4,7 +4,7 @@ from Tools.Log import Log
 
 from Screens.MessageBox import MessageBox
 
-import hashlib
+from hashlib import sha256
 from distutils import spawn
 
 
@@ -15,7 +15,7 @@ class FSBLCheckerBase(object):
 			with open("/dev/mtd0", 'r') as mtd0:
 				data = mtd0.read(self.BL_SIZE)
 				if data:
-					h = hashlib.sha256()
+					h = sha256()
 					h.update(data)
 					return h.hexdigest()
 		except:

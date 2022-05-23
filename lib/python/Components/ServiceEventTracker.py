@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-import six
+from six import iteritems
 InfoBarCount = 0
 
 
@@ -116,11 +116,11 @@ class ServiceEventTracker:
 			screen.session.nav.event.append(ServiceEventTracker.event)
 			ServiceEventTracker.navcore = screen.session.nav
 		EventMap = EventMap.setdefault
-		for x in six.iteritems(eventmap):
+		for x in iteritems(eventmap):
 			EventMap(x[0], []).append((self.__passall, screen, x[1]))
 		screen.onClose.append(self.__del_event)
 
 	def __del_event(self):
 		EventMap = ServiceEventTracker.EventMap.setdefault
-		for x in six.iteritems(self.__eventmap):
+		for x in iteritems(self.__eventmap):
 			EventMap(x[0], []).remove((self.__passall, self.__screen, x[1]))

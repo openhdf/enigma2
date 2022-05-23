@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import absolute_import
-import subprocess
-import shutil
-import os
+from subprocess import check_call
+from shutil import move
+from os import path as os_path
 
 # MANDATORY_RIGHTS contains commands to ensure correct rights for certain files
 MANDATORY_RIGHTS = "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh"
@@ -84,7 +84,7 @@ def backupUserDB():
 
 
 def restoreUserDB():
-	if not (os.path.isfile('/tmp/passwd.txt') and os.path.isfile('/tmp/groups.txt')):
+	if not (os_path.isfile('/tmp/passwd.txt') and os_path.isfile('/tmp/groups.txt')):
 		return
 
 	oldpasswd = []
@@ -146,7 +146,7 @@ def restoreUserDB():
 				cmd.append(oldgname)
 
 				try:
-					subprocess.check_call(cmd)
+					check_call(cmd)
 					groupsuccess = True
 				except:
 					groupsuccess = False
@@ -165,7 +165,7 @@ def restoreUserDB():
 				cmd.append(oldname)
 
 				try:
-					subprocess.check_call(cmd)
+					check_call(cmd)
 					usersuccess = True
 				except:
 					usersuccess = False
@@ -187,7 +187,7 @@ def restoreUserDB():
 				break
 		newshadowfile.write("%s:%s:%s\n" % (name, passwd, rest))
 	newshadowfile.close()
-	shutil.move("/tmp/shadow.new", "/etc/shadow")
+	move("/tmp/shadow.new", "/etc/shadow")
 
 
 def listpkg(type="installed"):

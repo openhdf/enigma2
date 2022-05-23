@@ -16,7 +16,7 @@ from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eDVBFrontendParametersATSC, eConsoleAppContainer, eDVBResourceManager, iDVBFrontend
 from Components.Converter.ChannelNumbers import channelnumbers
 from boxbranding import getMachineBrand
-import six
+from six import ensure_str, itervalues, iteritems
 
 
 def buildTerTransponder(frequency,
@@ -214,7 +214,7 @@ class CableTransponderSearchSupport:
 		self.cable_search_session.close(True)
 
 	def getCableTransponderData(self, str):
-		str = six.ensure_str(str)
+		str = ensure_str(str)
 		#prepend any remaining data from the previous call
 		str = self.remainingdata + str
 		#split in lines
@@ -432,7 +432,7 @@ class TerrestrialTransponderSearchSupport:
 			self.terrestrialTransponderSearch(freq, bandWidth)
 
 	def getTerrestrialTransponderData(self, str):
-		str = six.ensure_str(str)
+		str = ensure_str(str)
 		self.terrestrial_search_data += str
 
 	def setTerrestrialTransponderData(self):
@@ -696,7 +696,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		if slot.isMultiType():
 			eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 			types = slot.getMultiTypeList()
-			for FeType in six.itervalues(types):
+			for FeType in itervalues(types):
 				if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 					continue
 				elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
@@ -2011,7 +2011,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 
 			#assign nims
 			tag_dvbc_default = tag_dvbt_default = tag_dvbs_default = tag_atsc_default = True
-			for item in six.iteritems(networks):
+			for item in iteritems(networks):
 				req_type = item[0]
 				for req_network in item[1]:
 					for nim in nimmanager.nim_slots:

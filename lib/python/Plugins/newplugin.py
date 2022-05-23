@@ -2,19 +2,19 @@
 
 from __future__ import print_function
 from __future__ import absolute_import
-import os
+from os import system, path as os_path, listdir, mkdir
 
-os.system("clear")
+system("clear")
 internalname = raw_input("Internal plugin name (no whitespaces, plugin directory): ")
 name = raw_input("Visible plugin name: ")
 print()
 
-os.system("clear")
+system("clear")
 dirlist = []
 count = 0
 print("Plugin categories:")
-for dir in os.listdir("."):
-	if os.path.isdir(dir):
+for dir in listdir("."):
+	if os_path.isdir(dir):
 		count += 1
 		dirlist.append(dir)
 		print(count, dir)
@@ -43,7 +43,7 @@ targetlist = []
 stop = False
 
 while not stop:
-	os.system("clear")
+	system("clear")
 	print("selected targets:")
 	for where in targetlist:
 		print(where[0])
@@ -67,7 +67,7 @@ while not stop:
 
 
 pluginpath = category + "/" + internalname
-os.mkdir(pluginpath)
+mkdir(pluginpath)
 
 makefile = open(category + "/Makefile.am", "r")
 lines = makefile.readlines()
@@ -122,7 +122,7 @@ def %s(session, **kwargs):
 
 descriptorlist = []
 for count in list(range(len(targetlist))):
-	os.system("clear")
+	system("clear")
 	where = targetlist[count]
 	print("Options for target %s" % where[0])
 	descriptorlist.append(where[1](name, mainlist[count]))

@@ -13,7 +13,7 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 
-import six
+from six import ensure_str
 
 
 class SetupSummary(Screen):
@@ -57,7 +57,7 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 			if x.get("key") != self.setup:
 				continue
 			self.addItems(list, x)
-			self.setup_title = six.ensure_str(x.get("title", ""))
+			self.setup_title = ensure_str(x.get("title", ""))
 			self.seperation = int(x.get('separation', '0'))
 
 	def __init__(self, session):
@@ -342,8 +342,8 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 				if requires and not SystemInfo.get(requires, False):
 					continue
 
-				item_text = _(six.ensure_str(x.get("text", "??")))
-				item_description = _(six.ensure_str(x.get("description", " ")))
+				item_text = _(ensure_str(x.get("text", "??")))
+				item_description = _(ensure_str(x.get("description", " ")))
 				b = eval(x.text or "")
 				if b == "":
 					continue

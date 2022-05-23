@@ -26,7 +26,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
 from os import statvfs
-import six
+from six import PY3
 
 
 class TimerEntry(Screen, ConfigListScreen):
@@ -144,7 +144,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_recordingtype = ConfigSelection(choices=[("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default=recordingtype)
 		self.timerentry_type = ConfigSelection(choices=[("once", _("once")), ("repeated", _("repeated"))], default=type)
 		# FIME Do we need these 2 lines?
-		if six.PY3:
+		if PY3:
 			self.timerentry_name = ConfigText(default=self.timer.name.replace('\x86', '').replace('\x87', ''), visible_width=50, fixed_size=False)
 			self.timerentry_description_replaced = self.timer.description.replace('\x8a', ' ')
 		else:

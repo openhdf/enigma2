@@ -3,7 +3,7 @@
 
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, loadJPG
-import os
+from os import path as os_path
 
 
 class pstrRndr(Renderer):
@@ -25,7 +25,7 @@ class pstrRndr(Renderer):
 			eventName = self.source.text
 			if eventName:
 				poster = '/tmp/poster/poster.jpg'
-				if os.path.exists(poster):
+				if os_path.exists(poster):
 					self.instance.setPixmap(loadJPG(poster))
 					self.instance.show()
 				else:

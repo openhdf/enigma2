@@ -5,7 +5,7 @@ from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText
 from Components import Harddisk
-from os import path, listdir, system
+from os import path as os_path, listdir, system
 
 
 class MultiBootStartup(ConfigListScreen, Screen):
@@ -85,7 +85,7 @@ class MultiBootStartup(ConfigListScreen, Screen):
 		files = []
 		self.path = PATH
 		for name in listdir(self.path):
-			if path.isfile(path.join(self.path, name)):
+			if os_path.isfile(os_path.join(self.path, name)):
 				cmdline = self.read_startup("/boot/" + name).split("=", 1)[1].split(" ", 1)[0]
 				if cmdline in Harddisk.getextdevices("ext4") and not name == "STARTUP":
 					files.append(name)

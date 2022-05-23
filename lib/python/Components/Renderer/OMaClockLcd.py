@@ -2,7 +2,7 @@ from __future__ import division
 from __future__ import absolute_import
 from past.utils import old_div
 from builtins import round
-import math
+from math import pi, cos, sin
 from Components.Renderer.Renderer import Renderer
 from skin import parseColor
 from enigma import eCanvas, eSize, gRGB, eRect
@@ -56,9 +56,9 @@ class OMaClockLcd(Renderer):
 
 	def calc(self, w, r, m, m1):
 		a = (w * 6)
-		z = (old_div(math.pi, 180))
-		x = int(round((r * math.sin((a * z)))))
-		y = int(round((r * math.cos((a * z)))))
+		z = (old_div(pi, 180))
+		x = int(round((r * sin((a * z)))))
+		y = int(round((r * cos((a * z)))))
 		return ((m + x), (m1 - y))
 
 	def hand(self, opt):

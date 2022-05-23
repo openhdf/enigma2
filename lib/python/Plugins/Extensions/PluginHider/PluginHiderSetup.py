@@ -20,7 +20,7 @@ from Components.config import config
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 
-import inspect
+from inspect import getargspec
 
 LIST_PLUGINS = 0
 LIST_EXTENSIONS = 1
@@ -85,15 +85,15 @@ class PluginHiderSetup(Screen, HelpableScreen):
 			if self.selectedList == LIST_PLUGINS:
 				plugin(session=self.session)
 			else: #if self.selectedList == LIST_EXTENSIONS or self.selectedList == LIST_EVENTINFO:
-				from Screens.InfoBar import InfoBar
-				instance = InfoBar.instance
-				args = inspect.getargspec(plugin.__call__)[0]
+				import Screens.InfoBar
+				instance = Screens.InfoBar.InfoBar.instance
+				args = getargspec(plugin.__call__)[0]
 				if len(args) == 1:
 					plugin(session=self.session)
 				elif instance and instance.servicelist:
 					plugin(session=self.session, servicelist=instance.servicelist)
 				else:
-					session.open(MessageBox, _("Could not start Plugin:") + "\n" + _("Unable to access InfoBar."), type=MessageBox.TYPE_ERROR)
+					session.open(MessageBox, _("Could not start Plugin:") + "\n" + _("Unable to access Screens.InfoBar.InfoBar."), type=MessageBox.TYPE_ERROR)
 
 	def cancel(self):
 		config.plugins.pluginhider.hideplugins.cancel()

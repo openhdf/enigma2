@@ -12,8 +12,8 @@ from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
-from os import path
-if path.exists("/proc/stb/fb/3dmode"):
+from os import path as os_path
+if os_path.exists("/proc/stb/fb/3dmode"):
 	val_sidebyside = "sidebyside"
 	val_topandbottom = "topandbottom"
 	val_auto = "auto"
@@ -238,8 +238,7 @@ class AutoToggle3D(Screen):
 			Service = self.session.nav.getCurrentlyPlayingServiceReference()
 			#check if there is a file being played
 			if Service.getPath():
-				import os
-				ServiceName = os.path.basename(Service.getPath())
+				ServiceName = os_path.basename(Service.getPath())
 				extension = ServiceName.split('.')
 				extension = extension[-1].lower()
 				if extension not in EXTENSIONS:
@@ -448,10 +447,9 @@ def toggleext(value):
 
 def Plugins(**kwargs):
 	pluginlist = []
-	from os import path
 	menuext = config.plugins.OSD3DSetup.menuext.value
 	auto = config.plugins.OSD3DSetup.auto.value
-	if path.exists(path_mode):
+	if os_path.exists(path_mode):
 		if menuext == "menu" or menuext == "menuext":
 			pluginlist.append(PluginDescriptor(name="3D toggle ON/OFF", description=_("3D toggle ON/OFF"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu))
 		if menuext == "ext" or menuext == "menuext":

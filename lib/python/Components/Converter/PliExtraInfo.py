@@ -1,6 +1,6 @@
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
 
-from os import path
+from os import path as os_path
 from enigma import iServiceInformation, iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
@@ -361,28 +361,28 @@ class PliExtraInfo(Poll, Converter):
 		video_width = 0
 		video_pol = " "
 		video_rate = 0
-		if path.exists("/proc/stb/vmpeg/0/yres"):
+		if os_path.exists("/proc/stb/vmpeg/0/yres"):
 			f = open("/proc/stb/vmpeg/0/yres", "r")
 			try:
 				video_height = int(f.read(), 16)
 			except:
 				pass
 			f.close()
-		if path.exists("/proc/stb/vmpeg/0/xres"):
+		if os_path.exists("/proc/stb/vmpeg/0/xres"):
 			f = open("/proc/stb/vmpeg/0/xres", "r")
 			try:
 				video_width = int(f.read(), 16)
 			except:
 				pass
 			f.close()
-		if path.exists("/proc/stb/vmpeg/0/progressive"):
+		if os_path.exists("/proc/stb/vmpeg/0/progressive"):
 			f = open("/proc/stb/vmpeg/0/progressive", "r")
 			try:
 				video_pol = "p" if int(f.read(), 16) else "i"
 			except:
 				pass
 			f.close()
-		if path.exists("/proc/stb/vmpeg/0/framerate"):
+		if os_path.exists("/proc/stb/vmpeg/0/framerate"):
 			f = open("/proc/stb/vmpeg/0/framerate", "r")
 			try:
 				video_rate = int(f.read())

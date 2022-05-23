@@ -1,12 +1,12 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os
+from os import path as os_path, listdir
 
 
 def enumFeeds():
-	for fn in os.listdir('/etc/opkg'):
+	for fn in listdir('/etc/opkg'):
 		if fn.endswith('-feed.conf'):
-			file = open(os.path.join('/etc/opkg', fn))
+			file = open(os_path.join('/etc/opkg', fn))
 			feedfile = file.readlines()
 			file.close()
 			try:

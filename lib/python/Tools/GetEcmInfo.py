@@ -1,10 +1,10 @@
-import os
-import time
+from os import stat
+from time import time
 
 ECM_INFO = '/tmp/ecm.info'
 EMPTY_ECM_INFO = '', '0', '0', '0'
 
-old_ecm_time = time.time()
+old_ecm_time = time()
 info = {}
 ecm = ''
 data = EMPTY_ECM_INFO
@@ -17,7 +17,7 @@ class GetEcmInfo:
 		global info
 		global ecm
 		try:
-			ecm_time = os.stat(ECM_INFO).st_mtime
+			ecm_time = stat(ECM_INFO).st_mtime
 		except:
 			ecm_time = old_ecm_time
 			data = EMPTY_ECM_INFO
@@ -41,7 +41,7 @@ class GetEcmInfo:
 			data = self.getText()
 			return True
 		else:
-			info['ecminterval0'] = int(time.time() - ecm_time + 0.5)
+			info['ecminterval0'] = int(time() - ecm_time + 0.5)
 
 	def getEcm(self):
 		return (self.pollEcmData(), ecm)

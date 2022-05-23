@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os
+from os import path as os_path, mkdir, system, remove, listdir, readlink
 from time import time
 from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent, eDVBFrontend, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
 from Components.Harddisk import harddiskmanager
@@ -228,9 +228,9 @@ def InitUsageConfig():
 		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
 	config.usage.pip_last_service_timeout = ConfigSelection(default="-1", choices=choicelist)
 
-	if not os.path.exists(resolveFilename(SCOPE_HDD)):
+	if not os_path.exists(resolveFilename(SCOPE_HDD)):
 		try:
-			os.mkdir(resolveFilename(SCOPE_HDD), 0o755)
+			mkdir(resolveFilename(SCOPE_HDD), 0o755)
 		except:
 			pass
 	config.usage.default_path = ConfigText(default=resolveFilename(SCOPE_HDD))
@@ -242,8 +242,8 @@ def InitUsageConfig():
 	def defaultpathChanged(configElement):
 		tmpvalue = config.usage.default_path.value
 		try:
-			if not os.path.exists(tmpvalue):
-				os.system("mkdir -p %s" % tmpvalue)
+			if not os_path.exists(tmpvalue):
+				system("mkdir -p %s" % tmpvalue)
 		except:
 			print("Failed to create recording path: %s" % tmpvalue)
 		if not config.usage.default_path.value.endswith('/'):
@@ -255,9 +255,9 @@ def InitUsageConfig():
 	config.usage.autorecord_path = ConfigText(default="<default>")
 	config.usage.instantrec_path = ConfigText(default="<default>")
 
-	if not os.path.exists(resolveFilename(SCOPE_TIMESHIFT)):
+	if not os_path.exists(resolveFilename(SCOPE_TIMESHIFT)):
 		try:
-			os.mkdir(resolveFilename(SCOPE_TIMESHIFT), 0o755)
+			mkdir(resolveFilename(SCOPE_TIMESHIFT), 0o755)
 		except:
 			pass
 	config.usage.timeshift_path = ConfigText(default=resolveFilename(SCOPE_TIMESHIFT))
@@ -274,9 +274,9 @@ def InitUsageConfig():
 	config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback=False)
 	config.usage.allowed_timeshift_paths = ConfigLocations(default=[resolveFilename(SCOPE_TIMESHIFT)])
 
-	if not os.path.exists(resolveFilename(SCOPE_HDD)):
+	if not os_path.exists(resolveFilename(SCOPE_HDD)):
 		try:
-			os.mkdir(resolveFilename(SCOPE_HDD), 0o755)
+			mkdir(resolveFilename(SCOPE_HDD), 0o755)
 		except:
 			pass
 	config.usage.autorecord_path = ConfigText(default=resolveFilename(SCOPE_HDD))
@@ -680,8 +680,8 @@ def InitUsageConfig():
 
 	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
 	for p in harddiskmanager.getMountedPartitions():
-		if os.path.exists(p.mountpoint):
-			d = os.path.normpath(p.mountpoint)
+		if os_path.exists(p.mountpoint):
+			d = os_path.normpath(p.mountpoint)
 			if p.mountpoint != '/':
 				hddchoises.append((p.mountpoint, d))
 	config.misc.epgcachepath = ConfigSelection(default='/etc/enigma2/', choices=hddchoises)
@@ -689,14 +689,14 @@ def InitUsageConfig():
 	config.misc.epgcache_filename = ConfigText(default=(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
 
 	def EpgCacheChanged(configElement):
-		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.value, config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
+		config.misc.epgcache_filename.setValue(os_path.join(config.misc.epgcachepath.value, config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
 		config.misc.epgcache_filename.save()
 		eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.value)
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
 		if not config.misc.epgcache_filename.value.startswith("/etc/enigma2/"):
-			if os.path.exists('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'):
-				os.remove('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat')
+			if os_path.exists('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'):
+				remove('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat')
 	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback=False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback=False)
 
@@ -823,16 +823,16 @@ def InitUsageConfig():
 
 	debugpath = [('/home/root/logs/', '/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():
-		if os.path.exists(p.mountpoint):
-			d = os.path.normpath(p.mountpoint)
+		if os_path.exists(p.mountpoint):
+			d = os_path.normpath(p.mountpoint)
 			if p.mountpoint != '/':
 				debugpath.append((p.mountpoint + 'logs/', d))
 	config.crash.debug_path = ConfigSelection(default="/home/root/logs/", choices=debugpath)
 
 	def updatedebug_path(configElement):
-		if not os.path.exists(config.crash.debug_path.value):
+		if not os_path.exists(config.crash.debug_path.value):
 			try:
-				os.mkdir(config.crash.debug_path.value, 0o755)
+				mkdir(config.crash.debug_path.value, 0o755)
 			except:
 				print("Failed to create log path: %s" % config.crash.debug_path.value)
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback=False)
@@ -848,8 +848,8 @@ def InitUsageConfig():
 	def updateStackTracePrinter(configElement):
 		from Components.StackTrace import StackTracePrinter
 		if configElement.value:
-			if (os.path.isfile("/tmp/doPythonStackTrace")):
-				os.remove("/tmp/doPythonStackTrace")
+			if (os_path.isfile("/tmp/doPythonStackTrace")):
+				remove("/tmp/doPythonStackTrace")
 			from threading import current_thread
 			StackTracePrinter.getInstance().activate(current_thread().ident)
 		else:
@@ -1608,7 +1608,7 @@ def InitUsageConfig():
 	config.epgselection.graph_infowidth = ConfigSelectionNumber(default=50, stepwidth=25, min=0, max=150, wraparound=True)
 	config.epgselection.graph_rec_icon_height = ConfigSelection(choices=[("bottom", _("bottom")), ("top", _("top")), ("middle", _("middle")), ("hide", _("hide"))], default="bottom")
 
-	softcams = sorted([x for x in os.listdir("/etc/init.d/") if x.startswith('softcam.')])
+	softcams = sorted([x for x in listdir("/etc/init.d/") if x.startswith('softcam.')])
 	config.oscaminfo = ConfigSubsection()
 	config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
 	config.oscaminfo.userdatafromconf = ConfigYesNo(default=False)
@@ -1637,12 +1637,12 @@ def InitUsageConfig():
 	config.cccaminfo.blacklist = ConfigText(default="/media/cf/CCcamInfo.blacklisted", fixed_size=False)
 	config.cccaminfo.profiles = ConfigText(default="/media/cf/CCcamInfo.profiles", fixed_size=False)
 	SystemInfo["CCcamInstalled"] = False
-	if os.path.islink('/etc/init.d/softcam'):
+	if os_path.islink('/etc/init.d/softcam'):
 		for softcam in softcams:
-			if "cccam" in os.readlink('/etc/init.d/softcam').lower():
+			if "cccam" in readlink('/etc/init.d/softcam').lower():
 				config.cccaminfo.showInExtensions = ConfigYesNo(default=True)
 				SystemInfo["CCcamInstalled"] = True
-			elif "oscam" in os.readlink('/etc/init.d/softcam').lower():
+			elif "oscam" in readlink('/etc/init.d/softcam').lower():
 				config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
 				SystemInfo["OScamInstalled"] = True
 
@@ -1659,8 +1659,8 @@ def InitUsageConfig():
 
 	settingsoverlanchoices = [('/etc/enigma2/', 'Default')]
 	for p in harddiskmanager.getMountedPartitions():
-		if os.path.exists(p.mountpoint):
-			d = os.path.normpath(p.mountpoint)
+		if os_path.exists(p.mountpoint):
+			d = os_path.normpath(p.mountpoint)
 			if p.mountpoint != '/':
 				settingsoverlanchoices.append((p.mountpoint, d))
 	config.usage.settingsoverlan_enable = ConfigYesNo(default=False)
@@ -1810,7 +1810,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 		#if keyword is not found in file, append keyword and value
 		command += " ; if ! grep -q '%s' %s ; then echo '%s %d' >> %s ; fi" % (f[0], TUXTXT_CFG_FILE, f[0], f[1], TUXTXT_CFG_FILE)
 	try:
-		os.system(command)
+		system(command)
 	except:
 		print("Error: failed to patch %s!" % TUXTXT_CFG_FILE)
 	print("[tuxtxt] patched tuxtxt2.conf")

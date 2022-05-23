@@ -1,6 +1,6 @@
 from __future__ import absolute_import
-import six
-import Components.Task
+from six import ensure_str
+from Components.Task import job_manager
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -16,9 +16,9 @@ from Components.Slider import Slider
 from enigma import eTimer, eDVBDB
 from boxbranding import getImageVersion, getImageBuild, getMachineBrand, getMachineName, getBoxType
 
-from os import rename, path, remove
+from os import rename, path as os_path, remove
 from gettext import dgettext
-from six.moves import urllib
+from six.moves.urllib.request import urlretrieve, urlopen 
 
 ocram = ''
 
@@ -27,9 +27,9 @@ class SoftwareUpdateChanges(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.setTitle(_("OE Changes"))
-		if path.exists('/tmp/oe-git.log'):
+		if os_path.exists('/tmp/oe-git.log'):
 			remove('/tmp/oe-git.log')
-		if path.exists('/tmp/e2-git.log'):
+		if os_path.exists('/tmp/e2-git.log'):
 			remove('/tmp/e2-git.log')
 		self.logtype = 'oe'
 		self["text"] = ScrollLabel()
@@ -72,7 +72,7 @@ class SoftwareUpdateChanges(Screen):
 		global ocram
 		try:
 			sourcefile = 'http://enigma2.world-of-satellite.com/feeds/' + getImageVersion() + '/' + getBoxType() + '/' + self.logtype + '-git.log'
-			sourcefile, headers = urllib.request.urlretrieve(sourcefile)
+			sourcefile, headers = urlretrieve(sourcefile)
 			rename(sourcefile, '/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
 			releasenotes = fd.read()
@@ -166,7 +166,7 @@ class UpdatePlugin(Screen):
 		self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 
 	def checkNetworkStateFinished(self, result, retval, extra_args=None):
-		result = six.ensure_str(result)
+		result = ensure_str(result)
 		if 'bad address' in result:
 			self.session.openWithCallback(self.close, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
@@ -248,15 +248,14 @@ class UpdatePlugin(Screen):
 				self.updating = False
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
-				from six.moves.urllib.request import urlopen
-				import socket
-				currentTimeoutDefault = socket.getdefaulttimeout()
-				socket.setdefaulttimeout(3)
+				from socket import getdefaulttimeout, setdefaulttimeout
+				currentTimeoutDefault = getdefaulttimeout()
+				setdefaulttimeout(3)
 				try:
 					config.softwareupdate.updateisunstable.setValue(urlopen("http://www.status.hdfreaks.cc/status").read())
 				except:
 					config.softwareupdate.updateisunstable.setValue('1')
-				socket.setdefaulttimeout(currentTimeoutDefault)
+				setdefaulttimeout(currentTimeoutDefault)
 				self.total_packages = None
 				if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
 					self.total_packages = len(self.ipkg.getFetchedList())
@@ -274,7 +273,7 @@ class UpdatePlugin(Screen):
 					config.softwareupdate.updatefound.setValue(True)
 					choices = [(_("View the changes"), "changes"),
 						(_("Upgrade and reboot system"), "cold")]
-					if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/BackupManager.pyo"):
+					if os_path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/BackupManager.pyo"):
 						if not config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value:
 							choices.append((_("Perform a settings backup,") + '\n\t' + _("making a backup before updating") + '\n\t' + _("is strongly advised."), "backup"))
 						if not config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value:
@@ -369,9 +368,9 @@ class UpdatePlugin(Screen):
 		backup = None
 		from Plugins.SystemPlugins.ViX.BackupManager import BackupFiles
 		self.BackupFiles = BackupFiles(self.session, True)
-		Components.Task.job_manager.AddJob(self.BackupFiles.createBackupJob())
-		Components.Task.job_manager.in_background = False
-		for job in Components.Task.job_manager.getPendingJobs():
+		job_manager.AddJob(self.BackupFiles.createBackupJob())
+		job_manager.in_background = False
+		for job in job_manager.getPendingJobs():
 			if job.name == dgettext('vix', 'Backup Manager'):
 				break
 		self.showJobView(job)
@@ -380,9 +379,9 @@ class UpdatePlugin(Screen):
 		backup = None
 		from Plugins.SystemPlugins.ViX.ImageManager import ImageBackup
 		self.ImageBackup = ImageBackup(self.session, True)
-		Components.Task.job_manager.AddJob(self.ImageBackup.createBackupJob())
-		Components.Task.job_manager.in_background = False
-		for job in Components.Task.job_manager.getPendingJobs():
+		job_manager.AddJob(self.ImageBackup.createBackupJob())
+		job_manager.in_background = False
+		for job in job_manager.getPendingJobs():
 			if job.name == dgettext('vix', 'Image Manager'):
 				break
 		self.showJobView(job)
@@ -403,7 +402,7 @@ class UpdatePlugin(Screen):
 		elif job.name == dgettext('vix', 'Backup Manager'):
 			self.SettingsBackupDone = True
 		from Screens.TaskView import JobView
-		Components.Task.job_manager.in_background = False
+		job_manager.in_background = False
 		if not self.autobackuprunning:
 			self.session.openWithCallback(self.startActualUpgrade(("menu", "menu")), JobView, job, cancelable=False, backgroundable=False, afterEventChangeable=False, afterEvent="close")
 		else:

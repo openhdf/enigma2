@@ -19,7 +19,7 @@ from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.SystemInfo import SystemInfo
 
 from xml.etree.cElementTree import parse as cet_parse
-import six
+from six import iteritems, ensure_str
 try:
 	from xml.etree.cElementTree import ParseError
 except ImportError as ie:
@@ -28,7 +28,7 @@ from Tools.XMLTools import stringToXML
 
 try:
 	dict.iteritems
-	iteritems = lambda d: six.iteritems(d)
+	iteritems = lambda d: iteritems(d)
 except AttributeError:
 	iteritems = lambda d: list(d.items())
 
@@ -66,7 +66,7 @@ class MenuWeights:
 			return
 
 		for node in config.findall('entry'):
-			text = six.ensure_str(node.get('text', ''))
+			text = ensure_str(node.get('text', ''))
 			weight = node.get("weight", None)
 			hidden = node.get('hidden', False)
 			hidden = hidden and hidden.lower() == "yes"
@@ -233,7 +233,7 @@ class SortableMenu(Menu, HelpableScreen):
 					return
 			elif not SystemInfo.get(requires, False):
 				return
-		MenuTitle = six.ensure_str(_(node.get("text", "??")))
+		MenuTitle = ensure_str(_(node.get("text", "??")))
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
 		x = node.get("flushConfigOnClose")

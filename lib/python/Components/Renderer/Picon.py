@@ -1,8 +1,8 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os
-import re
-import unicodedata
+from os import path as os_path, listdir, symlink
+from re import sub
+from unicodedata import normalize
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
@@ -10,8 +10,8 @@ from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_GUISKIN, resol
 from Components.Harddisk import harddiskmanager
 from Components.config import config
 from ServiceReference import ServiceReference
-import six
-import sys
+from six import ensure_str
+from sys import version_info
 
 searchPaths = []
 lastPiconPath = None
@@ -23,7 +23,7 @@ def initPiconPaths():
 	for mp in ('/usr/share/enigma2/', '/'):
 		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
-		mp = path = os.path.join(part.mountpoint, 'usr/share/enigma2')
+		mp = path = os_path.join(part.mountpoint, 'usr/share/enigma2')
 		onMountpointAdded(part.mountpoint)
 		onMountpointAdded(mp)
 
@@ -31,9 +31,9 @@ def initPiconPaths():
 def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
-		path = os.path.join(mountpoint, 'picon') + '/'
-		if os.path.isdir(path) and path not in searchPaths:
-			for fn in os.listdir(path):
+		path = os_path.join(mountpoint, 'picon') + '/'
+		if os_path.isdir(path) and path not in searchPaths:
+			for fn in listdir(path):
 				if fn.endswith('.png'):
 					print("[Picon] adding path:", path)
 					searchPaths.append(path)
@@ -44,7 +44,7 @@ def onMountpointAdded(mountpoint):
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
-	path = os.path.join(mountpoint, 'picon') + '/'
+	path = os_path.join(mountpoint, 'picon') + '/'
 	try:
 		searchPaths.remove(path)
 		print("[Picon] removed path:", path)
@@ -92,11 +92,11 @@ def getPiconName(serviceName):
 	pngname = findPicon(sname)
 	if not pngname: # picon by channel name
 		name = ServiceReference(serviceName).getServiceName()
-		if sys.version_info[0] >= 3:
-			name = six.ensure_str(unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore'))
+		if version_info[0] >= 3:
+			name = ensure_str(normalize('NFKD', name).encode('ASCII', 'ignore'))
 		else:
-			name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
-		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
+			name = normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
+		name = sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 		if len(name) > 0:
 			pngname = findPicon(name)
 			if not pngname and len(name) > 2 and name.endswith('hd'):
@@ -116,7 +116,7 @@ def getPiconName(serviceName):
 					if pngname:
 						newpng = '/usr/share/enigma2/picon/' + name + '.png'
 						try:
-							os.symlink(pngname, newpng)
+							symlink(pngname, newpng)
 						except:
 							pass
 						break
@@ -142,7 +142,7 @@ class Picon(Renderer):
 			else:
 				pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
 		self.nopicon = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
-		if os.path.getsize(pngname):
+		if os_path.getsize(pngname):
 			self.defaultpngname = pngname
 			self.nopicon = pngname
 

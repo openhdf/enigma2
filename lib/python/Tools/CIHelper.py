@@ -5,8 +5,8 @@ from enigma import eDVBCIInterfaces, eDVBCI_UI, eEnv, eServiceCenter, eServiceRe
 from timer import TimerEntry
 import NavigationInstance
 
-import os
-import six
+from os import path as os_path
+from six import ensure_str
 
 
 class CIHelper:
@@ -29,7 +29,7 @@ class CIHelper:
 			for ci in list(range(NUM_CI)):
 				filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(ci) + ".xml"
 
-				if not os.path.exists(filename):
+				if not os_path.exists(filename):
 					continue
 
 				try:
@@ -38,19 +38,19 @@ class CIHelper:
 					read_providers = []
 					usingcaid = []
 					for slot in tree.findall("slot"):
-						read_slot = six.ensure_str(getValue(slot.findall("id"), False))
+						read_slot = ensure_str(getValue(slot.findall("id"), False))
 
 						for caid in slot.findall("caid"):
-							read_caid = six.ensure_str(caid.get("id"))
+							read_caid = ensure_str(caid.get("id"))
 							usingcaid.append(int(read_caid, 16))
 
 						for service in slot.findall("service"):
-							read_service_ref = six.ensure_str(service.get("ref"))
+							read_service_ref = ensure_str(service.get("ref"))
 							read_services.append(read_service_ref)
 
 						for provider in slot.findall("provider"):
-							read_provider_name = six.ensure_str(provider.get("name"))
-							read_provider_dvbname = six.ensure_str(provider.get("dvbnamespace"))
+							read_provider_name = ensure_str(provider.get("name"))
+							read_provider_dvbname = ensure_str(provider.get("dvbnamespace"))
 							read_providers.append((read_provider_name, int(read_provider_dvbname, 16)))
 
 						self.CI_ASSIGNMENT_LIST.append((int(read_slot), (read_services, read_providers, usingcaid)))

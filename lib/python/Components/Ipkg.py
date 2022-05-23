@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os
-import six
+from os import path as os_path, listdir, remove, system
+from six import ensure_str
 from enigma import eConsoleAppContainer
 from Components.Harddisk import harddiskmanager
 from Components.config import config
@@ -27,16 +27,16 @@ def opkgAddDestination(mountpoint):
 def onPartitionChange(why, part):
 	global opkgDestinations
 	global opkgStatusPath
-	mountpoint = os.path.normpath(part.mountpoint)
+	mountpoint = os_path.normpath(part.mountpoint)
 	if mountpoint and not mountpoint.startswith('/media/net'):
 		if why == 'add':
 			if opkgStatusPath == '':
 				# recent opkg versions
 				opkgStatusPath = 'var/lib/opkg/status'
-				if not os.path.exists(os.path.join('/', opkgStatusPath)):
+				if not os_path.exists(os_path.join('/', opkgStatusPath)):
 					# older opkg versions
 					opkgStatusPath = 'usr/lib/opkg/status'
-			if os.path.exists(os.path.join(mountpoint, opkgStatusPath)):
+			if os_path.exists(os_path.join(mountpoint, opkgStatusPath)):
 				opkgAddDestination(mountpoint)
 		elif why == 'remove':
 			try:
@@ -95,12 +95,12 @@ class IpkgComponent:
 	def startCmd(self, cmd, args=None):
 		if cmd == self.CMD_UPDATE:
 			if getImageVersion() == '4.0':
-				if os.path.exists('/var/lib/opkg/lists'):
+				if os_path.exists('/var/lib/opkg/lists'):
 					rmtree('/var/lib/opkg/lists')
 			else:
-				for fn in os.listdir('/var/lib/opkg'):
+				for fn in listdir('/var/lib/opkg'):
 					if fn.startswith(getImageDistro()):
-						os.remove('/var/lib/opkg/' + fn)
+						remove('/var/lib/opkg/' + fn)
 			self.runCmdEx("update")
 		elif cmd == self.CMD_UPGRADE:
 			append = ""
@@ -109,7 +109,7 @@ class IpkgComponent:
 			if len(self.excludeList) > 0:
 				for x in self.excludeList:
 					print("[IPKG] exclude Package (hold): '%s'" % x[0])
-					os.system("opkg flag hold " + x[0])
+					system("opkg flag hold " + x[0])
 			self.runCmdEx("upgrade" + append)
 		elif cmd == self.CMD_LIST:
 			self.fetchedList = []
@@ -135,10 +135,10 @@ class IpkgComponent:
 		if len(self.excludeList) > 0:
 			for x in self.excludeList:
 				print("[IPKG] restore Package flag (unhold): '%s'" % x[0])
-				os.system("opkg flag ok " + x[0])
+				system("opkg flag ok " + x[0])
 
 	def cmdData(self, data):
-		data = six.ensure_str(data)
+		data = ensure_str(data)
 # 		print("data:", data)
 		if self.cache is None:
 			self.cache = data

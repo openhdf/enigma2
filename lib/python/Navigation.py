@@ -1,17 +1,17 @@
 from __future__ import absolute_import
 from __future__ import print_function
-from os import path
+from os import path as os_path
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
 from Components.config import config
 from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import getFPWasTimerWakeup
 from time import time, ctime
-import RecordTimer
-import PowerTimer
+from RecordTimer import RecordTimer
+from PowerTimer import PowerTimer
 import Screens.Standby
 import NavigationInstance
-import ServiceReference
+from ServiceReference import ServiceReference
 from Screens.InfoBar import InfoBar, MoviePlayer
 from boxbranding import getBoxType, getBrandOEM, getMachineBuild
 
@@ -45,11 +45,11 @@ class Navigation:
 		self.RecordTimer = None
 		self.isRecordTimerImageStandard = False
 		if not self.RecordTimer:
-			self.RecordTimer = RecordTimer.RecordTimer()
+			self.RecordTimer = RecordTimer()
 			self.isRecordTimerImageStandard = True
 
 		self.PowerTimer = None
-		self.PowerTimer = PowerTimer.PowerTimer()
+		self.PowerTimer = PowerTimer()
 		self.__wasTimerWakeup = False
 		self.__wasRecTimerWakeup = False
 		self.__wasPowerTimerWakeup = False
@@ -261,7 +261,7 @@ class Navigation:
 			print("ignore request to play already running service(1)")
 			return 1
 		print("playing", ref and ref.toString())
-		if path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '1':
+		if os_path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '1':
 			try:
 				if '0:0:0:0:0:0:0:0:0' not in ref.toString():
 					signal = 1
@@ -274,7 +274,7 @@ class Navigation:
 				f = open("/proc/stb/lcd/symbol_signal", "w")
 				f.write("0")
 				f.close()
-		elif path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '0':
+		elif os_path.exists("/proc/stb/lcd/symbol_signal") and config.lcd.mode.value == '0':
 			f = open("/proc/stb/lcd/symbol_signal", "w")
 			f.write("0")
 			f.close()
@@ -336,7 +336,7 @@ class Navigation:
 		service = None
 		if not simulate:
 			print("recording service: %s" % (str(ref)))
-		if isinstance(ref, ServiceReference.ServiceReference):
+		if isinstance(ref, ServiceReference):
 			ref = ref.ref
 		if ref:
 			if ref.flags & eServiceReference.isGroup:
@@ -404,7 +404,7 @@ class Navigation:
 			self.pnav.stopService()
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingServiceOrGroup = None
-		if path.exists("/proc/stb/lcd/symbol_signal"):
+		if os_path.exists("/proc/stb/lcd/symbol_signal"):
 			f = open("/proc/stb/lcd/symbol_signal", "w")
 			f.write("0")
 			f.close()

@@ -11,8 +11,8 @@ from Components.config import config, ConfigSubsection, ConfigSelection, ConfigS
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
 from Screens.Screen import Screen
-import Screens.Standby
-import usb
+from Screens.Standby import inStandby, inTryQuitMainloop
+from usb import busses
 
 
 class dummyScreen(Screen):
@@ -74,7 +74,7 @@ class IconCheckPoller:
 			f.close()
 
 		USBState = 0
-		busses = usb.busses()
+		busses = busses()
 		for bus in busses:
 			devices = bus.devices
 			for dev in devices:
@@ -104,7 +104,7 @@ class LCD:
 		config.misc.standbyCounter.addNotifier(self.standbyCounterChanged, initial_call=False)
 
 	def standbyCounterChanged(self, configElement):
-		Screens.Standby.inStandby.onClose.append(self.leaveStandby)
+		inStandby.onClose.append(self.leaveStandby)
 		self.autoDimDownLCDTimer.stop()
 		self.autoDimUpLCDTimer.stop()
 		eActionMap.getInstance().unbindAction('', self.DimUpEvent)
@@ -114,19 +114,19 @@ class LCD:
 
 	def DimUpEvent(self, key, flag):
 		self.autoDimDownLCDTimer.stop()
-		if not Screens.Standby.inTryQuitMainloop:
+		if not inTryQuitMainloop:
 			if self.Brightness is not None and not self.autoDimUpLCDTimer.isActive():
 				self.autoDimUpLCDTimer.start(10, True)
 
 	def autoDimDownLCD(self):
-		if not Screens.Standby.inTryQuitMainloop:
+		if not inTryQuitMainloop:
 			if self.dimBrightness is not None and self.currBrightness > self.dimBrightness:
 				self.currBrightness = self.currBrightness - 1
 				eDBoxLCD.getInstance().setLCDBrightness(self.currBrightness)
 				self.autoDimDownLCDTimer.start(10, True)
 
 	def autoDimUpLCD(self):
-		if not Screens.Standby.inTryQuitMainloop:
+		if not inTryQuitMainloop:
 			self.autoDimDownLCDTimer.stop()
 			if self.currBrightness < self.Brightness:
 				self.currBrightness = self.currBrightness + 5
@@ -395,7 +395,7 @@ def leaveStandby():
 
 
 def standbyCounterChanged(configElement):
-	Screens.Standby.inStandby.onClose.append(leaveStandby)
+	inStandby.onClose.append(leaveStandby)
 	config.lcd.standby.apply()
 	config.lcd.ledbrightnessstandby.apply()
 	config.lcd.ledbrightnessdeepstandby.apply()
@@ -622,9 +622,9 @@ def InitLcd():
 		if SystemInfo["LcdLiveTV"]:
 			def lcdLiveTvChanged(configElement):
 				open(SystemInfo["LcdLiveTV"], "w").write(configElement.value and "0" or "1")
-				from Screens.InfoBar import InfoBar
-				InfoBarInstance = InfoBar.instance
-				InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
+				import Screens.InfoBar
+				Screens.InfoBar.InfoBarInstance = Screens.InfoBar.InfoBar.instance
+				Screens.InfoBar.InfoBarInstance and Screens.InfoBar.InfoBarInstance.session.open(dummyScreen)
 			config.lcd.showTv = ConfigYesNo(default=False)
 			config.lcd.showTv.addNotifier(lcdLiveTvChanged)
 

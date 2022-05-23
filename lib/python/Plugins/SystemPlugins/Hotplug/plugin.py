@@ -4,7 +4,7 @@ from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 from Components.Harddisk import harddiskmanager
 from twisted.internet.protocol import Protocol, Factory
-import six
+from six import ensure_str
 
 hotplugNotifier = []
 
@@ -45,7 +45,7 @@ class Hotplug(Protocol):
 		self.received = ""
 
 	def dataReceived(self, data):
-		data = six.ensure_str(data)
+		data = ensure_str(data)
 		self.received += data
 		print("complete", self.received)
 

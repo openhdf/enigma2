@@ -15,7 +15,7 @@ from .ExtraMessageBox import ExtraMessageBox
 from .ExtraActionBox import ExtraActionBox
 from .MountPoints import MountPoints
 from boxbranding import getMachineBrand, getMachineName
-import os
+from os import system
 
 
 def DiskEntry(model, size, removable):
@@ -103,7 +103,7 @@ class HddSetup(Screen):
 			mp.add(self.mdisks.disks[self.sindex][0], 1, "/media/hdd")
 			mp.write()
 			mp.mount(self.mdisks.disks[self.sindex][0], 1, "/media/hdd")
-			os.system("/bin/mkdir -p /media/hdd/movie")
+			system("/bin/mkdir -p /media/hdd/movie")
 			message = _("Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\nRestart your %s %s now?") % (getMachineBrand(), getMachineName())
 			mbox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
 			mbox.setTitle(_("Restart %s %s") % (getMachineBrand(), getMachineName()))

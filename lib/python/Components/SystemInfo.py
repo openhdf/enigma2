@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from os import path
+from os import path as os_path
 from enigma import eDVBResourceManager, Misc_Options
 from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN, fileHas, pathExists, isPluginInstalled
 from Tools.HardwareInfo import HardwareInfo
@@ -75,7 +75,7 @@ SystemInfo["HasExternalPIP"] = getMachineBuild() not in ('et9x00', 'et6x00', 'et
 SystemInfo["hasPIPVisibleProc"] = fileCheck("/proc/stb/vmpeg/1/visible")
 SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_left")
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
-SystemInfo["LCDSKINSetup"] = path.exists("/usr/share/enigma2/display")
+SystemInfo["LCDSKINSetup"] = os_path.exists("/usr/share/enigma2/display")
 SystemInfo["7segment"] = getDisplayType() in ('7segment')
 SystemInfo["CIHelper"] = fileExists("/usr/bin/cihelper")
 SystemInfo["3DMode"] = fileCheck("/proc/stb/fb/3dmode") or fileCheck("/proc/stb/fb/primary/3d")

@@ -14,10 +14,10 @@ from Components.Harddisk import harddiskmanager, getProcMounts
 from Components.Console import Console
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from os import system, stat as mystat, path, remove, rename
+from os import system, stat as mystat, path as os_path, remove, rename
 from enigma import eTimer
 from glob import glob
-import stat
+from stat import ST_SIZE
 
 config.plugins.swapmanager = ConfigSubsection()
 config.plugins.swapmanager.swapautostart = ConfigYesNo(default=False)
@@ -54,13 +54,13 @@ class StartSwap:
 		else:
 			devicelist = []
 			for p in harddiskmanager.getMountedPartitions():
-				d = path.normpath(p.mountpoint)
-				if path.exists(p.mountpoint) and p.mountpoint != "/" and not p.mountpoint.startswith('/media/net'):
+				d = os_path.normpath(p.mountpoint)
+				if os_path.exists(p.mountpoint) and p.mountpoint != "/" and not p.mountpoint.startswith('/media/net'):
 					devicelist.append((p.description, d))
 			if len(devicelist):
 				for device in devicelist:
 					for filename in glob(device[1] + '/swap*'):
-						if path.exists(filename):
+						if os_path.exists(filename):
 							swap_place = filename
 							print("[SwapManager] Found a swapfile on ", swap_place)
 
@@ -138,11 +138,11 @@ class SwapManager(Screen):
 
 	def getSwapDevice(self):
 		self.activityTimer.stop()
-		if path.exists('/etc/rcS.d/S98SwapManager'):
+		if os_path.exists('/etc/rcS.d/S98SwapManager'):
 			remove('/etc/rcS.d/S98SwapManager')
 			config.plugins.swapmanager.swapautostart.value = True
 			config.plugins.swapmanager.swapautostart.save()
-		if path.exists('/tmp/swapdevices.tmp'):
+		if os_path.exists('/tmp/swapdevices.tmp'):
 			remove('/tmp/swapdevices.tmp')
 		self.Console.ePopen("sfdisk -l /dev/sd? | grep swap", self.updateSwap2)
 
@@ -172,8 +172,8 @@ class SwapManager(Screen):
 			self['key_green'].setText(_("Create"))
 			devicelist = []
 			for p in harddiskmanager.getMountedPartitions():
-				d = path.normpath(p.mountpoint)
-				if path.exists(p.mountpoint) and p.mountpoint != "/" and not p.mountpoint.startswith('/media/net'):
+				d = os_path.normpath(p.mountpoint)
+				if os_path.exists(p.mountpoint) and p.mountpoint != "/" and not p.mountpoint.startswith('/media/net'):
 					devicelist.append((p.description, d))
 			if len(devicelist):
 				for device in devicelist:
@@ -181,7 +181,7 @@ class SwapManager(Screen):
 						self.swap_place = filename
 						self['key_green'].setText(_("Delete"))
 						info = mystat(self.swap_place)
-						self.swapsize = info[stat.ST_SIZE]
+						self.swapsize = info[ST_SIZE]
 						continue
 
 		if config.plugins.swapmanager.swapautostart.value and self.swap_place:

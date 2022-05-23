@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-import skin
+from skin import applyAllAttributes
 from Components.GUIComponent import GUIComponent
 from enigma import eLabel, eWidget, eSlider, fontRenderClass, ePoint, eSize
 
@@ -72,12 +72,12 @@ class ScrollLabel(GUIComponent):
 			for (attrib, value) in remove_attribs:
 				self.skinAttributes.remove((attrib, value))
 			if self.split:
-				skin.applyAllAttributes(self.long_text, desktop, self.skinAttributes + [("halign", "left")], parent.scale)
-				skin.applyAllAttributes(self.right_text, desktop, self.skinAttributes + [("transparent", "1"), ("halign", "left" if self.column else "right")], parent.scale)
+				applyAllAttributes(self.long_text, desktop, self.skinAttributes + [("halign", "left")], parent.scale)
+				applyAllAttributes(self.right_text, desktop, self.skinAttributes + [("transparent", "1"), ("halign", "left" if self.column else "right")], parent.scale)
 			else:
-				skin.applyAllAttributes(self.long_text, desktop, self.skinAttributes, parent.scale)
-			skin.applyAllAttributes(self.instance, desktop, widget_attribs, parent.scale)
-			skin.applyAllAttributes(self.scrollbar, desktop, scrollbar_attribs + widget_attribs, parent.scale)
+				applyAllAttributes(self.long_text, desktop, self.skinAttributes, parent.scale)
+			applyAllAttributes(self.instance, desktop, widget_attribs, parent.scale)
+			applyAllAttributes(self.scrollbar, desktop, scrollbar_attribs + widget_attribs, parent.scale)
 			ret = True
 		self.pageWidth = self.long_text.size().width()
 		self.lineheight = fontRenderClass.getInstance().getLineHeight(self.long_text.getFont()) or itemHeight # assume a random lineheight if nothing is visible

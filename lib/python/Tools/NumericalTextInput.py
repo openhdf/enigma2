@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 from enigma import eTimer
 from Components.Language import language
-import six
+from six import text_type
 
 # Dict languageCode -> array of strings
 MAP_SEARCH = (
@@ -182,7 +182,7 @@ class NumericalTextInput:
 			self.mapping = MAPPINGS.get(language.getLanguage(), MAP_DEFAULT)
 
 	def setUseableChars(self, useable):
-		self.useableChars = six.text_type(useable)
+		self.useableChars = text_type(useable)
 
 	def getKey(self, num):
 		cnt = 0

@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 from Components.Scanner import scanDevice
-from Screens.InfoBar import InfoBar
-import os
+import Screens.InfoBar
+from os import path as os_path, access, F_OK, R_OK
 
 
 def execute(option):
@@ -20,7 +20,7 @@ def mountpoint_choosen(option):
 
 	from Screens.ChoiceBox import ChoiceBox
 
-	#print "scanning", option
+	#print("scanning", option)
 	(description, mountpoint, session) = option
 	res = scanDevice(mountpoint)
 
@@ -28,10 +28,10 @@ def mountpoint_choosen(option):
 
 	if not list:
 		from Screens.MessageBox import MessageBox
-		if os.access(mountpoint, os.F_OK | os.R_OK):
+		if access(mountpoint, F_OK | R_OK):
 			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_ERROR, simple=True, timeout=5)
 		#else:
-			#print "ignore", mountpoint, "because its not accessible"
+			#print("ignore", mountpoint, "because its not accessible")
 		return
 
 	session.openWithCallback(execute, ChoiceBox,
@@ -41,7 +41,7 @@ def mountpoint_choosen(option):
 
 def scan(session):
 	from Screens.ChoiceBox import ChoiceBox
-	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if os.access(r.mountpoint, os.F_OK | os.R_OK)]
+	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if access(r.mountpoint, F_OK | R_OK)]
 	parts.append((_("Memory") + "\t/tmp", "/tmp", session))
 	session.openWithCallback(mountpoint_choosen, ChoiceBox, title=_("Please select medium to be scanned"), list=parts)
 
@@ -68,8 +68,8 @@ global_session = None
 
 
 def partitionListChanged(action, device):
-	if InfoBar.instance:
-		if InfoBar.instance.execing:
+	if Screens.InfoBar.InfoBar.instance:
+		if Screens.InfoBar.InfoBar.instance.execing:
 			if action == 'add' and device.is_hotplug:
 				#print "mountpoint", device.mountpoint
 				#print "description", device.description
@@ -101,19 +101,19 @@ def movielist_open(list, session, **kwargs):
 		# sanity
 		return
 	from enigma import eServiceReference
-	from Screens.InfoBar import InfoBar
+	import Screens.InfoBar
 	f = list[0]
 	if f.mimetype == "video/MP2T":
 		stype = 1
 	else:
 		stype = 4097
-	if InfoBar.instance:
-		path = os.path.split(f.path)[0]
+	if Screens.InfoBar.InfoBar.instance:
+		path = os_path.split(f.path)[0]
 		if not path.endswith('/'):
 			path += '/'
 		config.movielist.last_videodir.value = path
 		try:
-			InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
+			Screens.InfoBar.InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
 		except:
 			pass
 

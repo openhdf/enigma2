@@ -38,7 +38,7 @@ from Components.Task import job_manager as JobManager
 
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-import Screens.Standby
+from Screens.Standby import inStandby, inTryQuitMainloop, TryQuitMainloop
 from ServiceReference import ServiceReference
 
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
@@ -55,7 +55,7 @@ from boxbranding import getBoxType, getBrandOEM, getMachineBuild
 from time import time, localtime, strftime
 from random import randint
 
-import os
+from os import path as os_path, listdir, makedirs, stat, link, statvfs, rename, system
 
 
 class InfoBarTimeshift:
@@ -567,7 +567,7 @@ class InfoBarTimeshift:
 			InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
 
 	def eraseTimeshiftFile(self):
-		for filename in os.listdir(config.usage.timeshift_path.value):
+		for filename in listdir(config.usage.timeshift_path.value):
 			if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy"):
 				self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
 
@@ -616,12 +616,12 @@ class InfoBarTimeshift:
 		if ts and (not ts.startTimeshift() or self.pts_eventcount == 0):
 			# Update internal Event Counter
 			self.pts_eventcount += 1
-			if (getBoxType() == 'vuuno' or getBoxType() == 'vuduo') and os.path.exists("/proc/stb/lcd/symbol_timeshift"):
+			if (getBoxType() == 'vuuno' or getBoxType() == 'vuduo') and os_path.exists("/proc/stb/lcd/symbol_timeshift"):
 				if self.session.nav.RecordTimer.isRecording():
 					f = open("/proc/stb/lcd/symbol_timeshift", "w")
 					f.write("0")
 					f.close()
-			elif getMachineBuild() == 'u41' and os.path.exists("/proc/stb/lcd/symbol_record"):
+			elif getMachineBuild() == 'u41' and os_path.exists("/proc/stb/lcd/symbol_record"):
 				if self.session.nav.RecordTimer.isRecording():
 					f = open("/proc/stb/lcd/symbol_record", "w")
 					f.write("0")
@@ -657,7 +657,7 @@ class InfoBarTimeshift:
 		timeshiftdir = resolveFilename(SCOPE_TIMESHIFT)
 		if not pathExists(timeshiftdir):
 			try:
-				os.makedirs(timeshiftdir)
+				makedirs(timeshiftdir)
 			except:
 				print("[TIMESHIFT] - Failed to create %s !!" % timeshiftdir)
 
@@ -670,17 +670,17 @@ class InfoBarTimeshift:
 		filecount = 0
 		entrylist = [(_("Current Event:") + " %s" % self.pts_curevent_name, "savetimeshift")]
 
-		filelist = os.listdir(config.usage.timeshift_path.value)
+		filelist = listdir(config.usage.timeshift_path.value)
 
 		if filelist is not None:
 			try:
-				filelist = sorted(filelist, key=lambda x: int(x.split('pts_livebuffer_')[1]) if x.startswith("pts_livebuffer") and not os.path.splitext(x)[1] else x)
+				filelist = sorted(filelist, key=lambda x: int(x.split('pts_livebuffer_')[1]) if x.startswith("pts_livebuffer") and not os_path.splitext(x)[1] else x)
 			except:
 				print('[TIMESHIFT] - file sorting error, use standard sorting method')
 				filelist.sort()
 			for filename in filelist:
-				if filename.startswith("pts_livebuffer") and not os.path.splitext(filename)[1]:
-					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value, filename))
+				if filename.startswith("pts_livebuffer") and not os_path.splitext(filename)[1]:
+					statinfo = stat("%s%s" % (config.usage.timeshift_path.value, filename))
 					if statinfo.st_mtime < (time() - 5.0):
 						# Get Event Info from meta file
 						readmetafile = open("%s%s.meta" % (config.usage.timeshift_path.value, filename), "r")
@@ -729,9 +729,9 @@ class InfoBarTimeshift:
 		if timeshiftfile is not None:
 			savefilename = timeshiftfile
 		if savefilename is None:
-			for filename in os.listdir(config.usage.timeshift_path.value):
+			for filename in listdir(config.usage.timeshift_path.value):
 				if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy") and not filename.endswith(".sc"):
-					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value, filename))
+					statinfo = stat("%s%s" % (config.usage.timeshift_path.value, filename))
 					if statinfo.st_mtime > (time() - 5.0):
 						savefilename = filename
 
@@ -773,7 +773,7 @@ class InfoBarTimeshift:
 						ptsfilename = ASCIItranslit.legacyEncode(ptsfilename)
 
 					fullname = getRecordingFilename(ptsfilename, config.usage.autorecord_path.value)
-					os.link("%s%s" % (config.usage.timeshift_path.value, savefilename), "%s.ts" % fullname)
+					link("%s%s" % (config.usage.timeshift_path.value, savefilename), "%s.ts" % fullname)
 					metafile = open("%s.ts.meta" % fullname, "w")
 					metafile.write("%s\n%s\n%s\n%i\n%s" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime), metamergestring))
 					metafile.close()
@@ -810,10 +810,10 @@ class InfoBarTimeshift:
 						ptsfilename = ASCIItranslit.legacyEncode(ptsfilename)
 
 					fullname = getRecordingFilename(ptsfilename, config.usage.autorecord_path.value)
-					os.link("%s%s" % (config.usage.timeshift_path.value, timeshiftfile), "%s.ts" % fullname)
-					os.link("%s%s.meta" % (config.usage.timeshift_path.value, timeshiftfile), "%s.ts.meta" % fullname)
-					if os.path.exists("%s%s.eit" % (config.usage.timeshift_path.value, timeshiftfile)):
-						os.link("%s%s.eit" % (config.usage.timeshift_path.value, timeshiftfile), "%s.eit" % fullname)
+					link("%s%s" % (config.usage.timeshift_path.value, timeshiftfile), "%s.ts" % fullname)
+					link("%s%s.meta" % (config.usage.timeshift_path.value, timeshiftfile), "%s.ts.meta" % fullname)
+					if os_path.exists("%s%s.eit" % (config.usage.timeshift_path.value, timeshiftfile)):
+						link("%s%s.eit" % (config.usage.timeshift_path.value, timeshiftfile), "%s.eit" % fullname)
 
 					# Add merge-tag to metafile
 					if mergelater:
@@ -833,17 +833,17 @@ class InfoBarTimeshift:
 			# Let's try to copy the file in background now! This might take a while ...
 			if not timeshift_saved:
 				try:
-					stat = os.statvfs(config.usage.autorecord_path.value)
+					stat = statvfs(config.usage.autorecord_path.value)
 					freespace = stat.f_bfree / 1000 * stat.f_bsize / 1000
 					randomint = randint(1, 999)
 
 					if timeshiftfile is None:
 						# Get Filesize for Free Space Check
-						filesize = int(os.path.getsize("%s%s" % (config.usage.timeshift_path.value, savefilename)) / (1024 * 1024))
+						filesize = int(os_path.getsize("%s%s" % (config.usage.timeshift_path.value, savefilename)) / (1024 * 1024))
 
 						# Save Current Event by copying it to the other device
 						if filesize <= freespace:
-							os.link("%s%s" % (config.usage.timeshift_path.value, savefilename), "%s%s.%s.copy" % (config.usage.timeshift_path.value, savefilename, randomint))
+							link("%s%s" % (config.usage.timeshift_path.value, savefilename), "%s%s.%s.copy" % (config.usage.timeshift_path.value, savefilename, randomint))
 							copy_file = savefilename
 							metafile = open("%s.ts.meta" % fullname, "w")
 							metafile.write("%s\n%s\n%s\n%i\n%s" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime), metamergestring))
@@ -851,13 +851,13 @@ class InfoBarTimeshift:
 							self.ptsCreateEITFile(fullname)
 					elif timeshiftfile.startswith("pts_livebuffer"):
 						# Get Filesize for Free Space Check
-						filesize = int(os.path.getsize("%s%s" % (config.usage.timeshift_path.value, timeshiftfile)) / (1024 * 1024))
+						filesize = int(os_path.getsize("%s%s" % (config.usage.timeshift_path.value, timeshiftfile)) / (1024 * 1024))
 
 						# Save stored timeshift by copying it to the other device
 						if filesize <= freespace:
-							os.link("%s%s" % (config.usage.timeshift_path.value, timeshiftfile), "%s%s.%s.copy" % (config.usage.timeshift_path.value, timeshiftfile, randomint))
+							link("%s%s" % (config.usage.timeshift_path.value, timeshiftfile), "%s%s.%s.copy" % (config.usage.timeshift_path.value, timeshiftfile, randomint))
 							copyfile("%s%s.meta" % (config.usage.timeshift_path.value, timeshiftfile), "%s.ts.meta" % fullname)
-							if os.path.exists("%s%s.eit" % (config.usage.timeshift_path.value, timeshiftfile)):
+							if os_path.exists("%s%s.eit" % (config.usage.timeshift_path.value, timeshiftfile)):
 								copyfile("%s%s.eit" % (config.usage.timeshift_path.value, timeshiftfile), "%s.eit" % fullname)
 							copy_file = timeshiftfile
 
@@ -873,7 +873,7 @@ class InfoBarTimeshift:
 						copy_file = copy_file + "." + str(randomint)
 
 						# Get Event Info from meta file
-						if os.path.exists("%s.ts.meta" % fullname):
+						if os_path.exists("%s.ts.meta" % fullname):
 							readmetafile = open("%s.ts.meta" % fullname, "r")
 							servicerefname = readmetafile.readline()[0:-1]
 							eventname = readmetafile.readline()[0:-1]
@@ -882,7 +882,7 @@ class InfoBarTimeshift:
 							eventname = ""
 
 						JobManager.AddJob(CopyTimeshiftJob(self, "mv \"%s%s.copy\" \"%s.ts\"" % (config.usage.timeshift_path.value, copy_file, fullname), copy_file, fullname, eventname))
-						if not Screens.Standby.inTryQuitMainloop and not Screens.Standby.inStandby and not mergelater and self.save_timeshift_postaction != "standby":
+						if not inTryQuitMainloop and not inStandby and not mergelater and self.save_timeshift_postaction != "standby":
 							Notifications.AddNotification(MessageBox, _("Saving timeshift as movie now. This might take a while!"), MessageBox.TYPE_INFO, timeout=30)
 					else:
 						timeshift_saved = False
@@ -1010,7 +1010,7 @@ class InfoBarTimeshift:
 
 		if freespace:
 			try:
-				stat = os.statvfs(config.usage.timeshift_path.value)
+				stat = statvfs(config.usage.timeshift_path.value)
 				freespace = stat.f_bavail * stat.f_bsize / 1024 / 1024
 			except:
 				print("[TIMESHIFT] - error reading disk space - function 'checking for free space' can't used")
@@ -1027,15 +1027,15 @@ class InfoBarTimeshift:
 				for i in list(range(1, self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value + 1)):
 					removeFiles.append(("pts_livebuffer_%s") % i)
 
-		for filename in os.listdir(config.usage.timeshift_path.value):
-			if (os.path.exists("%s%s" % (config.usage.timeshift_path.value, filename))) and ((filename.startswith("timeshift.") or filename.startswith("pts_livebuffer_"))):
+		for filename in listdir(config.usage.timeshift_path.value):
+			if (os_path.exists("%s%s" % (config.usage.timeshift_path.value, filename))) and ((filename.startswith("timeshift.") or filename.startswith("pts_livebuffer_"))):
 				try:
-					statinfo = os.stat("%s%s" % (config.usage.timeshift_path.value, filename))
+					statinfo = stat("%s%s" % (config.usage.timeshift_path.value, filename))
 				except OSError:
-					statinfo = None # a .del file may have been deleted between 'os.path.exists' and 'os.stat'
+					statinfo = None # a .del file may have been deleted between 'os_path.exists' and 'stat'
 				if (justZapped is True) and (filename.endswith(".del") is False) and (filename.endswith(".copy") is False):
 					# after zapping, remove all regular timeshift files
-					filesize += os.path.getsize("%s%s" % (config.usage.timeshift_path.value, filename))
+					filesize += os_path.getsize("%s%s" % (config.usage.timeshift_path.value, filename))
 					self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
 				elif (statinfo is not None) and (filename.endswith(".eit") is False) and (filename.endswith(".meta") is False) and (filename.endswith(".sc") is False) and (filename.endswith(".del") is False) and (filename.endswith(".copy") is False):
 					# remove old files, but only complete sets of files (base file, .eit, .meta, .sc),
@@ -1045,16 +1045,16 @@ class InfoBarTimeshift:
 						filecounter += 1
 					if ((statinfo.st_mtime < (time() - 3600 * config.timeshift.timeshiftMaxHours.value)) or any(filename in s for s in removeFiles)) and (self.saveTimeshiftEventPopupActive is False) and not any(filename in s for s in lockedFiles):
 						# print("[TIMESHIFT] - Erasing set of old timeshift files (base file, .eit, .meta, .sc) %s" % filename)
-						filesize += os.path.getsize("%s%s" % (config.usage.timeshift_path.value, filename))
+						filesize += os_path.getsize("%s%s" % (config.usage.timeshift_path.value, filename))
 						self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
-						if os.path.exists("%s%s.eit" % (config.usage.timeshift_path.value, filename)):
-							filesize += os.path.getsize("%s%s.eit" % (config.usage.timeshift_path.value, filename))
+						if os_path.exists("%s%s.eit" % (config.usage.timeshift_path.value, filename)):
+							filesize += os_path.getsize("%s%s.eit" % (config.usage.timeshift_path.value, filename))
 							self.BgFileEraser.erase("%s%s.eit" % (config.usage.timeshift_path.value, filename))
-						if os.path.exists("%s%s.meta" % (config.usage.timeshift_path.value, filename)):
-							filesize += os.path.getsize("%s%s.meta" % (config.usage.timeshift_path.value, filename))
+						if os_path.exists("%s%s.meta" % (config.usage.timeshift_path.value, filename)):
+							filesize += os_path.getsize("%s%s.meta" % (config.usage.timeshift_path.value, filename))
 							self.BgFileEraser.erase("%s%s.meta" % (config.usage.timeshift_path.value, filename))
-						if os.path.exists("%s%s.sc" % (config.usage.timeshift_path.value, filename)):
-							filesize += os.path.getsize("%s%s.sc" % (config.usage.timeshift_path.value, filename))
+						if os_path.exists("%s%s.sc" % (config.usage.timeshift_path.value, filename)):
+							filesize += os_path.getsize("%s%s.sc" % (config.usage.timeshift_path.value, filename))
 							self.BgFileEraser.erase("%s%s.sc" % (config.usage.timeshift_path.value, filename))
 						if not filename.startswith("timeshift."):
 							filecounter -= 1
@@ -1063,15 +1063,15 @@ class InfoBarTimeshift:
 					if statinfo.st_mtime < (time() - 3600 * (24 + config.timeshift.timeshiftMaxHours.value)):
 						# print("[TIMESHIFT] - Erasing very old timeshift file %s" % filename)
 						if filename.endswith(".del") is True:
-							filesize += os.path.getsize("%s%s" % (config.usage.timeshift_path.value, filename))
+							filesize += os_path.getsize("%s%s" % (config.usage.timeshift_path.value, filename))
 							try:
-								os.rename("%s%s" % (config.usage.timeshift_path.value, filename), "%s%s.del_again" % (config.usage.timeshift_path.value, filename))
+								rename("%s%s" % (config.usage.timeshift_path.value, filename), "%s%s.del_again" % (config.usage.timeshift_path.value, filename))
 								self.BgFileEraser.erase("%s%s.del_again" % (config.usage.timeshift_path.value, filename))
 							except:
 								print("[TIMESHIFT] - can't rename %s%s." % (config.usage.timeshift_path.value, filename))
 								self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
 						else:
-							filesize += os.path.getsize("%s%s" % (config.usage.timeshift_path.value, filename))
+							filesize += os_path.getsize("%s%s" % (config.usage.timeshift_path.value, filename))
 							self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
 
 		if filecounter == 0:
@@ -1126,47 +1126,47 @@ class InfoBarTimeshift:
 			return
 
 		if action == "start":
-			if os.path.exists("/proc/stb/fp/led_set_pattern"):
+			if os_path.exists("/proc/stb/fp/led_set_pattern"):
 				f = open("/proc/stb/fp/led_set_pattern", "w")
 				f.write("0xa7fccf7a")
 				f.close()
-			elif os.path.exists("/proc/stb/fp/led0_pattern"):
+			elif os_path.exists("/proc/stb/fp/led0_pattern"):
 				f = open("/proc/stb/fp/led0_pattern", "w")
 				f.write("0x55555555")
 				f.close()
-			if os.path.exists("/proc/stb/fp/led_pattern_speed"):
+			if os_path.exists("/proc/stb/fp/led_pattern_speed"):
 				f = open("/proc/stb/fp/led_pattern_speed", "w")
 				f.write("20")
 				f.close()
-			elif os.path.exists("/proc/stb/fp/led_set_speed"):
+			elif os_path.exists("/proc/stb/fp/led_set_speed"):
 				f = open("/proc/stb/fp/led_set_speed", "w")
 				f.write("20")
 				f.close()
 		elif action == "stop":
-			if os.path.exists("/proc/stb/fp/led_set_pattern"):
+			if os_path.exists("/proc/stb/fp/led_set_pattern"):
 				f = open("/proc/stb/fp/led_set_pattern", "w")
 				f.write("0")
 				f.close()
-			elif os.path.exists("/proc/stb/fp/led0_pattern"):
+			elif os_path.exists("/proc/stb/fp/led0_pattern"):
 				f = open("/proc/stb/fp/led0_pattern", "w")
 				f.write("0")
 				f.close()
 
 	def ptsCreateHardlink(self):
-		for filename in os.listdir(config.usage.timeshift_path.value):
+		for filename in listdir(config.usage.timeshift_path.value):
 			if filename.startswith("timeshift.") and not filename.endswith(".sc") and not filename.endswith(".del") and not filename.endswith(".copy") and not filename.endswith(".ap"):
-				if os.path.exists("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value, self.pts_eventcount)):
+				if os_path.exists("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value, self.pts_eventcount)):
 					self.BgFileEraser.erase("%spts_livebuffer_%s.eit" % (config.usage.timeshift_path.value, self.pts_eventcount))
-				if os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_eventcount)):
+				if os_path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_eventcount)):
 					self.BgFileEraser.erase("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_eventcount))
-				if os.path.exists("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_eventcount)):
+				if os_path.exists("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_eventcount)):
 					self.BgFileEraser.erase("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_eventcount))
-				if os.path.exists("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value, self.pts_eventcount)):
+				if os_path.exists("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value, self.pts_eventcount)):
 					self.BgFileEraser.erase("%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value, self.pts_eventcount))
 				try:
 					# Create link to pts_livebuffer file
-					os.link("%s%s" % (config.usage.timeshift_path.value, filename), "%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_eventcount))
-					os.link("%s%s.sc" % (config.usage.timeshift_path.value, filename), "%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value, self.pts_eventcount))
+					link("%s%s" % (config.usage.timeshift_path.value, filename), "%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_eventcount))
+					link("%s%s.sc" % (config.usage.timeshift_path.value, filename), "%spts_livebuffer_%s.sc" % (config.usage.timeshift_path.value, self.pts_eventcount))
 
 					# Create a Meta File
 					metafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_eventcount), "w")
@@ -1182,7 +1182,7 @@ class InfoBarTimeshift:
 				if config.timeshift.autorecord.value:
 					try:
 						fullname = getRecordingFilename("%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(self.pts_starttime)), self.pts_curevent_station, self.pts_curevent_name), config.usage.autorecord_path.value)
-						os.link("%s%s" % (config.usage.timeshift_path.value, filename), "%s.ts" % fullname)
+						link("%s%s" % (config.usage.timeshift_path.value, filename), "%s.ts" % fullname)
 						# Create a Meta File
 						metafile = open("%s.ts.meta" % fullname, "w")
 						metafile.write("%s\n%s\n%s\n%i\nautosaved\n" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime)))
@@ -1207,7 +1207,7 @@ class InfoBarTimeshift:
 		ptsgetnextfile = False
 		ptsfilemerged = False
 
-		filelist = os.listdir(config.usage.autorecord_path.value)
+		filelist = listdir(config.usage.autorecord_path.value)
 
 		if filelist is not None:
 			filelist.sort()
@@ -1233,9 +1233,9 @@ class InfoBarTimeshift:
 							copyfile("%s%s.eit" % (config.usage.autorecord_path.value, ptsmergeSRC[0:-3]), "%s%s.eit" % (config.usage.autorecord_path.value, ptsmergeDEST[0:-3]))
 
 						# Delete AP and SC Files
-						if os.path.exists("%s%s.ap" % (config.usage.autorecord_path.value, ptsmergeDEST)):
+						if os_path.exists("%s%s.ap" % (config.usage.autorecord_path.value, ptsmergeDEST)):
 							self.BgFileEraser.erase("%s%s.ap" % (config.usage.autorecord_path.value, ptsmergeDEST))
-						if os.path.exists("%s%s.sc" % (config.usage.autorecord_path.value, ptsmergeDEST)):
+						if os_path.exists("%s%s.sc" % (config.usage.autorecord_path.value, ptsmergeDEST)):
 							self.BgFileEraser.erase("%s%s.sc" % (config.usage.autorecord_path.value, ptsmergeDEST))
 
 						# Add Merge Job to JobManager
@@ -1253,7 +1253,7 @@ class InfoBarTimeshift:
 
 					# If still recording or transfering, try again later ...
 					if fileExists("%s%s" % (config.usage.autorecord_path.value, ptsmergeDEST)):
-						statinfo = os.stat("%s%s" % (config.usage.autorecord_path.value, ptsmergeDEST))
+						statinfo = stat("%s%s" % (config.usage.autorecord_path.value, ptsmergeDEST))
 						if statinfo.st_mtime > (time() - 10.0):
 							self.pts_mergeRecords_timer.start(120000, True)
 							return
@@ -1306,7 +1306,7 @@ class InfoBarTimeshift:
 		if self.session.nav.RecordTimer.isRecording() or len(JobManager.getPendingJobs()) >= 1:
 			# Rename files and delete them later ...
 			self.pts_mergeCleanUp_timer.start(120000, True)
-			os.system("echo \"\" > \"%s.pts.del\"" % (srcfile[0:-3]))
+			system("echo \"\" > \"%s.pts.del\"" % (srcfile[0:-3]))
 		else:
 			# Delete Instant Record permanently now ... R.I.P.
 			self.BgFileEraser.erase("%s" % srcfile)
@@ -1327,7 +1327,7 @@ class InfoBarTimeshift:
 			self.ptsFrontpanelActions("stop")
 			config.timeshift.isRecording.value = False
 
-		if Screens.Standby.inTryQuitMainloop:
+		if inTryQuitMainloop:
 			self.pts_QuitMainloop_timer.start(30000, True)
 		else:
 			Notifications.AddNotification(MessageBox, _("Timeshift saved to your harddisk!"), MessageBox.TYPE_INFO, timeout=10)
@@ -1341,7 +1341,7 @@ class InfoBarTimeshift:
 		self.ptsFrontpanelActions("stop")
 		config.timeshift.isRecording.value = False
 
-		filelist = os.listdir(config.usage.autorecord_path.value)
+		filelist = listdir(config.usage.autorecord_path.value)
 		for filename in filelist:
 			if filename.endswith(".pts.del"):
 				srcfile = config.usage.autorecord_path.value + "/" + filename[0:-8] + ".ts"
@@ -1354,18 +1354,18 @@ class InfoBarTimeshift:
 				self.BgFileEraser.erase("%s.pts.del" % (srcfile[0:-3]))
 
 				# Restart QuitMainloop Timer to give BgFileEraser enough time
-				if Screens.Standby.inTryQuitMainloop and self.pts_QuitMainloop_timer.isActive():
+				if inTryQuitMainloop and self.pts_QuitMainloop_timer.isActive():
 					self.pts_QuitMainloop_timer.start(60000, True)
 
 	def ptsTryQuitMainloop(self):
-		if Screens.Standby.inTryQuitMainloop and (len(JobManager.getPendingJobs()) >= 1 or self.pts_mergeCleanUp_timer.isActive()):
+		if inTryQuitMainloop and (len(JobManager.getPendingJobs()) >= 1 or self.pts_mergeCleanUp_timer.isActive()):
 			self.pts_QuitMainloop_timer.start(60000, True)
 			return
 
-		if Screens.Standby.inTryQuitMainloop and self.session.ptsmainloopvalue:
+		if inTryQuitMainloop and self.session.ptsmainloopvalue:
 			self.session.dialog_stack = []
 			self.session.summary_stack = [None]
-			self.session.open(Screens.Standby.TryQuitMainloop, self.session.ptsmainloopvalue)
+			self.session.open(TryQuitMainloop, self.session.ptsmainloopvalue)
 
 	def ptsGetSeekInfo(self):
 		s = self.session.nav.getCurrentService()

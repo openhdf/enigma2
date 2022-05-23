@@ -6,7 +6,6 @@ from Components.Input import Input
 from Components.Label import Label
 from Components.About import about
 from Components.MovieList import AUDIO_EXTENSIONS
-import Screens.MovieSelection
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.ServiceEvent import ServiceEvent
@@ -19,7 +18,6 @@ from Components.Sources.StaticText import StaticText
 from Components.ScrollLabel import ScrollLabel
 from Components.Timeshift import InfoBarTimeshift
 from Components.VolumeControl import VolumeControl
-from Components.Timeshift import InfoBarTimeshift
 
 from Plugins.Plugin import PluginDescriptor
 
@@ -56,15 +54,15 @@ from time import time, localtime, strftime
 from bisect import insort
 from sys import maxsize
 from keyids import KEYIDS
-import itertools
-import datetime
-import os
-import six.moves.cPickle
+from itertools import groupby
+from datetime import datetime
+from os import path as os_path, listdir, readlink, system
+from six.moves.cPickle import load, dump, HIGHEST_PROTOCOL
 
 # hack alert!
 from Screens.Menu import MainMenu, Menu, mdom
 from Screens.Setup import Setup
-import Screens.Standby
+from Screens.Standby import inStandby, inTryQuitMainloop, Standby, TryQuitMainloop
 
 
 class bcolors:
@@ -125,9 +123,9 @@ def setResumePoint(session):
 				for k, v in list(resumePointCache.items()):
 					if v[0] < lru:
 						candidate = k
-						filepath = os.path.realpath(candidate.split(':')[-1])
+						filepath = os_path.realpath(candidate.split(':')[-1])
 						mountpoint = findMountPoint(filepath)
-						if os.path.ismount(mountpoint) and not os.path.exists(filepath):
+						if os_path.ismount(mountpoint) and not os_path.exists(filepath):
 							del resumePointCache[candidate]
 				saveResumePoints()
 
@@ -157,7 +155,7 @@ def saveResumePoints():
 	global resumePointCache, resumePointCacheLast
 	try:
 		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
-		six.moves.cPickle.dump(resumePointCache, f, six.moves.cPickle.HIGHEST_PROTOCOL)
+		dump(resumePointCache, f, HIGHEST_PROTOCOL)
 		f.close()
 	except Exception as ex:
 		print("[InfoBarGenerics] Failed to write resumepoints:", ex)
@@ -167,7 +165,7 @@ def saveResumePoints():
 def loadResumePoints():
 	try:
 		f = open('/etc/enigma2/resumepoints.pkl', 'rb')
-		PickleFile = six.moves.cPickle.load(f)
+		PickleFile = load(f)
 		f.close()
 		return PickleFile
 	except Exception as ex:
@@ -188,9 +186,9 @@ def reload_subservice_groupslist(force=False):
 	if subservice_groupslist is None or force:
 		try:
 			groupedservices = "/etc/enigma2/groupedservices"
-			if not os.path.isfile(groupedservices):
+			if not os_path.isfile(groupedservices):
 				groupedservices = "/usr/share/enigma2/groupedservices"
-			subservice_groupslist = [list(g) for k, g in itertools.groupby([line.split('#')[0].strip() for line in open(groupedservices).readlines()], lambda x:not x) if not k]
+			subservice_groupslist = [list(g) for k, g in groupby([line.split('#')[0].strip() for line in open(groupedservices).readlines()], lambda x:not x) if not k]
 		except:
 			subservice_groupslist = []
 
@@ -218,8 +216,8 @@ def getActiveSubservicesForCurrentChannel(current_service):
 				event = events[0]
 				title = event[2]
 				if title and "Sendepause" not in title:
-					starttime = datetime.datetime.fromtimestamp(event[0]).strftime('%H:%M')
-					endtime = datetime.datetime.fromtimestamp(event[0] + event[1]).strftime('%H:%M')
+					starttime = datetime.fromtimestamp(event[0]).strftime('%H:%M')
+					endtime = datetime.fromtimestamp(event[0] + event[1]).strftime('%H:%M')
 					servicename = ServiceReference(subservice).getServiceName()
 					schedule = str(starttime) + "-" + str(endtime)
 					activeSubservices.append((servicename + " " + "[ " + schedule + " ]  - " + " " + title, subservice))
@@ -365,14 +363,14 @@ class InfoBarScreenSaver:
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if ref and not (hasattr(self.session, "pipshown") and self.session.pipshown):
 				ref = ref.toString().split(":")
-				flag = ref[2] == "2" or ref[2] == "A" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
+				flag = ref[2] == "2" or ref[2] == "A" or os_path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
 		if time and flag:
 			self.screenSaverTimer.startLongTimer(time)
 		else:
 			self.screenSaverTimer.stop()
 
 	def screensaverTimeout(self):
-		if self.execing and not Screens.Standby.inStandby and not Screens.Standby.inTryQuitMainloop:
+		if self.execing and not inStandby and not inTryQuitMainloop:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
 				try:
@@ -1563,7 +1561,6 @@ class InfoBarChannelSelection:
 		elif self.LongButtonPressed:
 			return
 
-			from Screens.ChannelSelection import ChannelSelection
 			ChannelSelectionInstance = ChannelSelection.instance
 			ChannelSelectionInstance.dopipzap = True
 			if self.servicelist2.inBouquet():
@@ -1619,7 +1616,6 @@ class InfoBarChannelSelection:
 		elif self.LongButtonPressed:
 			return
 
-			from Screens.ChannelSelection import ChannelSelection
 			ChannelSelectionInstance = ChannelSelection.instance
 			ChannelSelectionInstance.dopipzap = True
 			if self.servicelist2.inBouquet():
@@ -2571,11 +2567,11 @@ class InfoBarSeek:
 			pass
 		elif not self.isSeekable():
 			SystemInfo["SeekStatePlay"] = False
-			if os.path.exists("/proc/stb/lcd/symbol_hdd"):
+			if os_path.exists("/proc/stb/lcd/symbol_hdd"):
 				f = open("/proc/stb/lcd/symbol_hdd", "w")
 				f.write("0")
 				f.close()
-			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
+			if os_path.exists("/proc/stb/lcd/symbol_hddprogress"):
 				f = open("/proc/stb/lcd/symbol_hddprogress", "w")
 				f.write("0")
 				f.close()
@@ -2601,12 +2597,12 @@ class InfoBarSeek:
 			if self.activity >= 100:
 				self.activity = 0
 			SystemInfo["SeekStatePlay"] = True
-			if os.path.exists("/proc/stb/lcd/symbol_hdd"):
+			if os_path.exists("/proc/stb/lcd/symbol_hdd"):
 				if config.lcd.hdd.value == "1":
 					f = open("/proc/stb/lcd/symbol_hdd", "w")
 					f.write('%d' % int(hdd))
 					f.close()
-			if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
+			if os_path.exists("/proc/stb/lcd/symbol_hddprogress"):
 				if config.lcd.hdd.value == "1":
 					f = open("/proc/stb/lcd/symbol_hddprogress", "w")
 					f.write('%d' % int(self.activity))
@@ -2618,11 +2614,11 @@ class InfoBarSeek:
 			self.seekAction = 0
 
 		SystemInfo["SeekStatePlay"] = True
-		if os.path.exists("/proc/stb/lcd/symbol_hdd"):
+		if os_path.exists("/proc/stb/lcd/symbol_hdd"):
 			f = open("/proc/stb/lcd/symbol_hdd", "w")
 			f.write('%d' % int(hdd))
 			f.close()
-		if os.path.exists("/proc/stb/lcd/symbol_hddprogress"):
+		if os_path.exists("/proc/stb/lcd/symbol_hddprogress"):
 			f = open("/proc/stb/lcd/symbol_hddprogress", "w")
 			f.write('%d' % int(self.activity))
 			f.close()
@@ -3164,7 +3160,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.pvrStateDialog.hide()
 
 	def __timeshiftEventName(self, state):
-		if self.timeshiftEnabled() and os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_currplaying)):
+		if self.timeshiftEnabled() and os_path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_currplaying)):
 			readmetafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_currplaying), "r")
 			servicerefname = readmetafile.readline()[0:-1]
 			eventname = readmetafile.readline()[0:-1]
@@ -3256,10 +3252,10 @@ class InfoBarExtensions:
 		return _("CCcam Info")
 
 	def getCCcamInfo(self):
-		softcams = sorted([x for x in os.listdir("/etc/init.d/") if x.startswith('softcam.')])
+		softcams = sorted([x for x in listdir("/etc/init.d/") if x.startswith('softcam.')])
 
 		for softcam in softcams:
-			if "cccam" in os.readlink('/etc/init.d/softcam').lower() and config.cccaminfo.showInExtensions.value:
+			if "cccam" in readlink('/etc/init.d/softcam').lower() and config.cccaminfo.showInExtensions.value:
 				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
 		else:
 			return []
@@ -3268,10 +3264,10 @@ class InfoBarExtensions:
 		return _("OScam Info")
 
 	def getOScamInfo(self):
-		softcams = sorted([x for x in os.listdir("/etc/init.d/") if x.startswith('softcam.')])
+		softcams = sorted([x for x in listdir("/etc/init.d/") if x.startswith('softcam.')])
 
 		for softcam in softcams:
-			if "oscam" in os.readlink('/etc/init.d/softcam') and config.oscaminfo.showInExtensions.value:
+			if "oscam" in readlink('/etc/init.d/softcam') and config.oscaminfo.showInExtensions.value:
 				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
 		else:
 			return []
@@ -3466,7 +3462,7 @@ class InfoBarExtensions:
 
 
 from Tools.BoundFunction import boundFunction
-import inspect
+from inspect import getargspec
 
 # depends on InfoBarExtensions
 
@@ -3481,7 +3477,7 @@ class InfoBarPlugins:
 	def getPluginList(self):
 		l = []
 		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EXTENSIONSMENU):
-			args = inspect.getargspec(p.__call__)[0]
+			args = getargspec(p.__call__)[0]
 			if len(args) == 1 or len(args) == 2 and isinstance(self, InfoBarChannelSelection):
 				l.append(((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None, p.name))
 		l.sort(key=lambda e: e[2]) # sort by name
@@ -4371,7 +4367,7 @@ class InfoBarResolutionSelection:
 		# do we need a new sorting with this way here?
 		# or should we disable some choices?
 		choices = []
-		if os.path.exists("/proc/stb/video/videomode_choices"):
+		if os_path.exists("/proc/stb/video/videomode_choices"):
 			f = open("/proc/stb/video/videomode_choices")
 			values = f.readline().replace("\n", "").replace("pal ", "").replace("ntsc ", "").split(" ", -1)
 			for x in values:
@@ -5196,11 +5192,11 @@ class InfoBarSleepTimer:
 			isPowerTime = abs(self.session.nav.PowerTimer.getNextPowerManagerTime() - time()) <= 900 or self.session.nav.PowerTimer.isProcessing(exceptTimer=0)
 			if isRecordTime or isPowerTime:
 				self.setSleepTimer(1800, False)
-				if not Screens.Standby.inStandby:
+				if not inStandby:
 					message = _("A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\nExtend sleep timer 30 minutes. Your %s %s\nwill shut down after Recording or Powertimer event. Get in Standby now?") % (getMachineBrand(), getMachineName())
 					self.session.openWithCallback(self.goStandby, MessageBox, message, MessageBox.TYPE_YESNO, timeout=180, default=True)
 				return
-		if not Screens.Standby.inStandby:
+		if not inStandby:
 			list = [(_("Yes"), True),
 					(_("No"), False),
 					(_("Extend"), "extend")]
@@ -5223,14 +5219,14 @@ class InfoBarSleepTimer:
 
 	def goStandby(self, answer=None):
 		if config.usage.sleep_timer_action.value == "standby" or answer:
-			if not Screens.Standby.inStandby:
+			if not inStandby:
 				print("[InfoBarSleepTimer] goto standby")
-				self.session.open(Screens.Standby.Standby)
+				self.session.open(Standby)
 		elif answer is None:
-			if not Screens.Standby.inStandby:
-				if not Screens.Standby.inTryQuitMainloop:
+			if not inStandby:
+				if not inTryQuitMainloop:
 					print("[InfoBarSleepTimer] goto deep standby")
-					self.session.open(Screens.Standby.TryQuitMainloop, 1)
+					self.session.open(TryQuitMainloop, 1)
 			else:
 				print("[InfoBarSleepTimer] goto deep standby")
 				quitMainloop(1)
@@ -5281,27 +5277,27 @@ print(bcolors.OKBLUE + "Imagebuild =", getImageBuild() + bcolors.ENDC)
 print(bcolors.OKGREEN + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" + bcolors.ENDC)
 
 try:
-	os.system("rm -f /etc/enigma2/boxinformations")
-	os.system("touch /etc/enigma2/boxinformations")
-	os.system("rm -f /etc/enigma2/hdf-version")
-	os.system("touch /etc/enigma2/hdf-version")
-	os.system("rm -f /etc/enigma2/hdf-build")
-	os.system("touch /etc/enigma2/hdf-build")
-	os.system("echo " + getImageVersion() + " > /etc/hdf-version")
-	os.system("echo build " + getImageBuild() + " > /etc/hdf-build")
-	os.system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
-	os.system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getMachineBuild = " + getMachineBuild() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getChipSetString = " + about.getChipSetString() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getMachineMtdKernel = " + getMachineMtdKernel() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getDisplayType = " + getDisplayType() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getBrandOEM = " + getBrandOEM() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getDriverDate = " + getDriverDate() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getImageVersion = " + getImageVersion() + " >> /etc/enigma2/boxinformations")
-	os.system("echo getImageBuild = " + getImageBuild() + " >> /etc/enigma2/boxinformations")
-	os.system("echo ~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
-	os.system("cat /proc/cpuinfo >> /etc/enigma2/boxinformations")
+	system("rm -f /etc/enigma2/boxinformations")
+	system("touch /etc/enigma2/boxinformations")
+	system("rm -f /etc/enigma2/hdf-version")
+	system("touch /etc/enigma2/hdf-version")
+	system("rm -f /etc/enigma2/hdf-build")
+	system("touch /etc/enigma2/hdf-build")
+	system("echo " + getImageVersion() + " > /etc/hdf-version")
+	system("echo build " + getImageBuild() + " > /etc/hdf-build")
+	system("echo ~~~ Box Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
+	system("echo getMachineName = " + getMachineName() + " >> /etc/enigma2/boxinformations")
+	system("echo getMachineBrand = " + getMachineBrand() + " >> /etc/enigma2/boxinformations")
+	system("echo getMachineBuild = " + getMachineBuild() + " >> /etc/enigma2/boxinformations")
+	system("echo getBoxType = " + getBoxType() + " >> /etc/enigma2/boxinformations")
+	system("echo getChipSetString = " + about.getChipSetString() + " >> /etc/enigma2/boxinformations")
+	system("echo getMachineMtdKernel = " + getMachineMtdKernel() + " >> /etc/enigma2/boxinformations")
+	system("echo getDisplayType = " + getDisplayType() + " >> /etc/enigma2/boxinformations")
+	system("echo getBrandOEM = " + getBrandOEM() + " >> /etc/enigma2/boxinformations")
+	system("echo getDriverDate = " + getDriverDate() + " >> /etc/enigma2/boxinformations")
+	system("echo getImageVersion = " + getImageVersion() + " >> /etc/enigma2/boxinformations")
+	system("echo getImageBuild = " + getImageBuild() + " >> /etc/enigma2/boxinformations")
+	system("echo ~~~ CPU Info ~~~~~~~~~~~~~~~~~~~~"" >> /etc/enigma2/boxinformations")
+	system("cat /proc/cpuinfo >> /etc/enigma2/boxinformations")
 except:
 	pass

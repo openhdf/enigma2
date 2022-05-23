@@ -1,10 +1,10 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import errno
-import xml.etree.cElementTree
+from errno import ENOENT
+from xml.etree.cElementTree import parse, ParseError
 
-from os import environ, path, symlink, unlink, walk
-import six
+from os import environ, path as os_path, symlink, unlink, walk
+from six import text_type, ensure_str
 from time import gmtime, localtime, strftime, time
 
 from Components.config import ConfigSelection, ConfigSubsection, config
@@ -77,7 +77,7 @@ def InitTimeZones():
 		if not config.timezone.area.value and config.timezone.val.value.find("/") == -1:
 			config.timezone.area.value = "Generic"
 		try:
-			tzLink = path.realpath("/etc/localtime")[20:]
+			tzLink = os_path.realpath("/etc/localtime")[20:]
 			msgs = []
 			if config.timezone.area.value == "Classic":
 				if config.timezone.val.value != tzLink:
@@ -160,12 +160,12 @@ class Timezones:
 				name = commonTimezoneNames.get(tz, zone)  # Use the more common name if one is defined.
 				if name is None:
 					continue
-				if isinstance(name, six.text_type):
-					name = six.ensure_str(name.encode(encoding="UTF-8", errors="ignore"))
-				if isinstance(area, six.text_type):
-					area = six.ensure_str(area.encode(encoding="UTF-8", errors="ignore"))
-				if isinstance(zone, six.text_type):
-					zone = six.ensure_str(zone.encode(encoding="UTF-8", errors="ignore"))
+				if isinstance(name, text_type):
+					name = ensure_str(name.encode(encoding="UTF-8", errors="ignore"))
+				if isinstance(area, text_type):
+					area = ensure_str(area.encode(encoding="UTF-8", errors="ignore"))
+				if isinstance(zone, text_type):
+					zone = ensure_str(zone.encode(encoding="UTF-8", errors="ignore"))
 				zones.append((zone, name.replace("_", " ")))
 			if area:
 				if area in self.timezones:
@@ -201,8 +201,8 @@ class Timezones:
 		try:
 			with open(filename, "r", encoding="utf-8") as fd:  # This open gets around a possible file handle leak in Python's XML parser.
 				try:
-					root = xml.etree.cElementTree.parse(fd).getroot()
-				except xml.etree.cElementTree.ParseError as err:
+					root = parse(fd).getroot()
+				except ParseError as err:
 					root = None
 					fd.seek(0)
 					content = fd.readlines()
@@ -215,7 +215,7 @@ class Timezones:
 					root = None
 					print("[Timezones] Error: Unable to parse time zone data in '%s' - '%s'!" % (filename, err))
 		except (IOError, OSError) as err:
-			if err.errno == errno.ENOENT:  # No such file or directory
+			if err.errno == ENOENT:  # No such file or directory
 				print("[Timezones] Note: Classic time zones in '%s' are not available." % filename)
 			else:
 				print("[Timezones] Error %d: Opening time zone file '%s'! (%s)" % (err.errno, filename, err.strerror))
@@ -225,12 +225,12 @@ class Timezones:
 		if root is not None:
 			for zone in root.findall("zone"):
 				name = zone.get("name", "")
-				if isinstance(name, six.text_type):
-					name = six.ensure_str(name.encode(encoding="UTF-8", errors="ignore"))
+				if isinstance(name, text_type):
+					name = ensure_str(name.encode(encoding="UTF-8", errors="ignore"))
 				zonePath = zone.get("zone", "")
-				if isinstance(zonePath, six.text_type):
-					zonePath = six.ensure_str(zonePath.encode(encoding="UTF-8", errors="ignore"))
-				if path.exists(path.join(TIMEZONE_DATA, zonePath)):
+				if isinstance(zonePath, text_type):
+					zonePath = ensure_str(zonePath.encode(encoding="UTF-8", errors="ignore"))
+				if os_path.exists(os_path.join(TIMEZONE_DATA, zonePath)):
 					zones.append((zonePath, name))
 				else:
 					print("[Timezones] Warning: Classic time zone '%s' (%s) is not available in '%s'!" % (name, zonePath, TIMEZONE_DATA))
@@ -269,17 +269,17 @@ class Timezones:
 		return areaDefaultZone.setdefault(area, choices[0][0])
 
 	def activateTimezone(self, zone, area, runCallbacks=True):
-		tz = zone if area in ("Classic", "Generic") else path.join(area, zone)
-		_file = path.join(TIMEZONE_DATA, tz)
-		if not path.isfile(_file):
+		tz = zone if area in ("Classic", "Generic") else os_path.join(area, zone)
+		_file = os_path.join(TIMEZONE_DATA, tz)
+		if not os_path.isfile(_file):
 			print("[Timezones] Error: The time zone '%s' is not available!  Using 'UTC' instead." % tz)
 			tz = "UTC"
-			_file = path.join(TIMEZONE_DATA, tz)
+			_file = os_path.join(TIMEZONE_DATA, tz)
 		print("[Timezones] Setting time zone to '%s'." % tz)
 		try:
 			unlink("/etc/localtime")
 		except (IOError, OSError) as err:
-			if err.errno != errno.ENOENT:  # No such file or directory
+			if err.errno != ENOENT:  # No such file or directory
 				print("[Timezones] Error %d: Unlinking '/etc/localtime'! (%s)" % (err.errno, err.strerror))
 		try:
 			symlink(_file, "/etc/localtime")
@@ -296,7 +296,7 @@ class Timezones:
 		except Exception:
 			from enigma import e_tzset
 			e_tzset()
-		if path.exists("/proc/stb/fp/rtc_offset"):
+		if os_path.exists("/proc/stb/fp/rtc_offset"):
 			setRTCoffset()
 		now = int(time())
 		timeFormat = "%a %d-%b-%Y %H:%M:%S"

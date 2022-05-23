@@ -14,7 +14,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import pathExists, createDir, removeDir
 from Components.config import config
-import os
+from os import path as os_path, statvfs
 
 # Quickselect
 from Tools.NumericalTextInput import NumericalTextInput
@@ -240,7 +240,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def createDirCallback(self, res):
 		if res:
-			path = os.path.join(self["filelist"].current_directory, res)
+			path = os_path.join(self["filelist"].current_directory, res)
 			if not pathExists(path):
 				if not createDir(path):
 					self.session.open(
@@ -348,7 +348,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			if self.minFree is not None:
 				# Try to read fs stats
 				try:
-					s = os.statvfs(currentFolder)
+					s = statvfs(currentFolder)
 					if (s.f_bavail * s.f_bsize) / 1000000 > self.minFree:
 						# Automatically confirm if we have enough free disk Space available
 						return self.selectConfirmed(True)
@@ -395,7 +395,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		if currFolder is not None:
 			free = ""
 			try:
-				stat = os.statvfs(currFolder)
+				stat = statvfs(currFolder)
 				free = ("(%0.1f GB " + _("free") + ")") % (float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 / 1024)
 			except:
 				pass

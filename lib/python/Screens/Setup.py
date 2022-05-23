@@ -14,8 +14,8 @@ from enigma import eEnv
 from gettext import dgettext
 from boxbranding import getMachineBrand, getMachineName
 
-import xml.etree.cElementTree
-import six
+from xml.etree.cElementTree import parse
+from six import ensure_str
 
 
 def setupdom(plugin=None):
@@ -26,7 +26,7 @@ def setupdom(plugin=None):
 	else:
 		# if not found in the current path, we use the global datadir-path
 		setupfile = open(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
-	setupfiledom = xml.etree.cElementTree.parse(setupfile)
+	setupfiledom = parse(setupfile)
 	setupfile.close()
 	return setupfiledom
 
@@ -97,7 +97,7 @@ class Setup(ConfigListScreen, Screen):
 			if x.get("key") != self.setup:
 				continue
 			self.addItems(list, x)
-			self.setup_title = six.ensure_str(x.get("title", ""))
+			self.setup_title = ensure_str(x.get("title", ""))
 			self.seperation = int(x.get('separation', '0'))
 
 	def __init__(self, session, setup, plugin=None, PluginLanguageDomain=None):
@@ -266,11 +266,11 @@ class Setup(ConfigListScreen, Screen):
 					continue
 
 				if self.PluginLanguageDomain:
-					item_text = dgettext(self.PluginLanguageDomain, six.ensure_str(x.get("text", "??")))
-					item_description = dgettext(self.PluginLanguageDomain, six.ensure_str(x.get("description", " ")))
+					item_text = dgettext(self.PluginLanguageDomain, ensure_str(x.get("text", "??")))
+					item_description = dgettext(self.PluginLanguageDomain, ensure_str(x.get("description", " ")))
 				else:
-					item_text = _(six.ensure_str(x.get("text", "??")))
-					item_description = _(six.ensure_str(x.get("description", " ")))
+					item_text = _(ensure_str(x.get("text", "??")))
+					item_description = _(ensure_str(x.get("description", " ")))
 
 				item_text = item_text.replace("%s %s", "%s %s" % (getMachineBrand(), getMachineName()))
 				item_description = item_description.replace("%s %s", "%s %s" % (getMachineBrand(), getMachineName()))
@@ -289,9 +289,9 @@ def getSetupTitle(setupId):
 	xmldata = setupdom().getroot()
 	for x in xmldata.findall("setup"):
 		if x.get("key") == setupId:
-			if _(six.ensure_str(x.get("title", ""))) == _("OSD Settings") or _(six.ensure_str(x.get("title", ""))) == _("Softcam Setup") or _(six.ensure_str(x.get("title", ""))) == _("EPG settings"):
+			if _(ensure_str(x.get("title", ""))) == _("OSD Settings") or _(ensure_str(x.get("title", ""))) == _("Softcam Setup") or _(ensure_str(x.get("title", ""))) == _("EPG settings"):
 				return _("Settings...")
-			return six.ensure_str(x.get("title", ""))
+			return ensure_str(x.get("title", ""))
 	raise SetupError("unknown setup id '%s'!" % repr(setupId))
 
 

@@ -6,10 +6,10 @@
 # for the servicereference names.
 
 from __future__ import absolute_import
-import os
-import sys
+from os import makedirs, symlink
+from sys import argv
 
-f = open(sys.argv[1]).readlines()
+f = open(argv[1]).readlines()
 
 f = f[f.index("services\n") + 1:-3]
 
@@ -61,12 +61,12 @@ while len(f) > 2:
 	filename = sat + "_" + provider + "_" + servicetype + "_" + filename
 
 	try:
-		os.makedirs(sat + '/' + servicetype + '/' + provider)
+		makedirs(sat + '/' + servicetype + '/' + provider)
 	except:
 		pass
 
 	try:
-		os.symlink(filename, sat + '/' + servicetype + '/' + provider + '/' + linkname)
+		symlink(filename, sat + '/' + servicetype + '/' + provider + '/' + linkname)
 	except:
 		pass
 

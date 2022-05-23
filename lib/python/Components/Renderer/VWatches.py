@@ -16,7 +16,7 @@
 #######################################################################
 
 from __future__ import absolute_import
-import math
+from math import pi, sin, cos
 from Components.Renderer.Renderer import Renderer
 from skin import parseColor
 from enigma import eCanvas, eSize, gRGB, eRect
@@ -46,9 +46,9 @@ class VWatches(Renderer):
 
 	def calculate(self, w, r, m):
 		a = (w * 6)
-		z = (math.pi / 180)
-		x = int(round((r * math.sin((a * z)))))
-		y = int(round((r * math.cos((a * z)))))
+		z = (pi / 180)
+		x = int(round((r * sin((a * z)))))
+		y = int(round((r * cos((a * z)))))
 		return ((m + x), (m - y))
 
 	def hand(self):

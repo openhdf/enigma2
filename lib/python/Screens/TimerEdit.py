@@ -24,8 +24,8 @@ from time import time, localtime
 from timer import TimerEntry as RealTimerEntry
 from enigma import eEPGCache
 from functools import cmp_to_key
-import Tools.CopyFiles
-import os
+from Tools.CopyFiles import moveFiles
+from os import path as os_path, listdir, system
 
 
 class TimerEditList(Screen):
@@ -323,7 +323,7 @@ class TimerEditList(Screen):
 		self.moviename = f
 		path = resolveFilename(SCOPE_HDD)
 		try:
-			files = os.listdir(path)
+			files = listdir(path)
 		except:
 			files = ""
 		for _file in files:
@@ -377,16 +377,16 @@ class TimerEditList(Screen):
 			self.updateState()
 
 	def MoveToTrash(self, trashpath):
-		if not os.path.exists(trashpath):
-			os.system("mkdir -p %s" % trashpath)
+		if not os_path.exists(trashpath):
+			system("mkdir -p %s" % trashpath)
 		self.removeTimer(True)
-		moviepath = os.path.normpath(resolveFilename(SCOPE_HDD))
+		moviepath = os_path.normpath(resolveFilename(SCOPE_HDD))
 		movedList = []
-		files = os.listdir(moviepath)
+		files = listdir(moviepath)
 		for _file in files:
 			if _file.startswith(self.moviename):
-				movedList.append((os.path.join(moviepath, _file), os.path.join(trashpath, _file)))
-		Tools.CopyFiles.moveFiles(movedList, None)
+				movedList.append((os_path.join(moviepath, _file), os_path.join(trashpath, _file)))
+		moveFiles(movedList, None)
 
 	def delete(self):
 		item = self["timerlist"].getCurrent()
@@ -402,10 +402,10 @@ class TimerEditList(Screen):
 		path = resolveFilename(SCOPE_HDD)
 		self.removeTimer(True)
 		from enigma import eBackgroundFileEraser
-		files = os.listdir(path)
+		files = listdir(path)
 		for _file in files:
 			if _file.startswith(f):
-				eBackgroundFileEraser.getInstance().erase(os.path.realpath(path + _file))
+				eBackgroundFileEraser.getInstance().erase(os_path.realpath(path + _file))
 
 	def refill(self):
 		oldsize = len(self.list)

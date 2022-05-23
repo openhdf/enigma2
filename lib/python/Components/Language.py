@@ -1,9 +1,9 @@
 # -*- coding: UTF-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
-import gettext
-import locale
-import os
+from gettext import install, bindtextdomain, textdomain, translation
+from locale import setlocale, LC_CTYPE, LC_COLLATE, LC_TIME, LC_MONETARY, LC_MESSAGES, LC_NUMERIC
+from os import stat, mkdir, listdir, path as os_path, environ, system
 
 from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
 from time import time, localtime, strftime
@@ -15,9 +15,9 @@ Lpackagename = "enigma2-locale-"
 
 class Language:
 	def __init__(self):
-		gettext.install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), codeset="utf-8")
-		gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
-		gettext.textdomain("enigma2")
+		install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), codeset="utf-8")
+		bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
+		textdomain("enigma2")
 		self.activeLanguage = 0
 		self.catalog = None
 		self.lang = {}
@@ -27,7 +27,7 @@ class Language:
 	def InitLang(self):
 		self.langlist = []
 		self.langlistselection = []
-		self.ll = os.listdir(LPATH)
+		self.ll = listdir(LPATH)
 		# FIXME make list dynamically
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
 		self.addLanguage("Deutsch", "de", "DE", "ISO-8859-15")
@@ -91,7 +91,7 @@ class Language:
 		try:
 			lang = self.lang[index]
 			print("Activating language " + lang[0])
-			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[index], fallback=True)
+			self.catalog = translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[index], fallback=True)
 			self.catalog.install(names=("ngettext", "pgettext"))
 			self.activeLanguage = index
 			for x in self.callbacks:
@@ -103,45 +103,45 @@ class Language:
 		# These should always be C.UTF-8 (or POSIX if C.UTF-8 is unavaible) or program code might behave
 		# differently depending on language setting
 		try:
-			locale.setlocale(locale.LC_CTYPE, ('C', 'UTF-8'))
+			setlocale(LC_CTYPE, ('C', 'UTF-8'))
 		except:
 			pass
 		try:
-			locale.setlocale(locale.LC_COLLATE, ('C', 'UTF-8'))
+			setlocale(LC_COLLATE, ('C', 'UTF-8'))
 		except:
 			try:
-				locale.setlocale(locale.LC_COLLATE, ('POSIX', ''))
+				setlocale(LC_COLLATE, ('POSIX', ''))
 			except:
 				pass
 
 		# NOTE: we do not use LC_ALL, because LC_ALL will not set any of the categories, when one of the categories fails.
 		# We'd rather try to set all available categories, and ignore the others
-		for category in [locale.LC_TIME, locale.LC_MONETARY, locale.LC_MESSAGES, locale.LC_NUMERIC]:
+		for category in [LC_TIME, LC_MONETARY, LC_MESSAGES, LC_NUMERIC]:
 			try:
-				locale.setlocale(category, (self.getLanguage(), 'UTF-8'))
+				setlocale(category, (self.getLanguage(), 'UTF-8'))
 			except:
 				pass
 
 		# Also write a locale.conf as /home/root/.config/locale.conf to apply language to interactive shells as well:
 		try:
-			os.stat('/home/root/.config')
+			stat('/home/root/.config')
 		except:
-			os.mkdir('/home/root/.config')
+			mkdir('/home/root/.config')
 
 		localeconf = open('/home/root/.config/locale.conf', 'w')
 		for category in ["LC_TIME", "LC_DATE", "LC_MONETARY", "LC_MESSAGES", "LC_NUMERIC", "LC_NAME", "LC_TELEPHONE", "LC_ADDRESS", "LC_PAPER", "LC_IDENTIFICATION", "LC_MEASUREMENT", "LANG"]:
-			if category == "LANG" or (category == "LC_DATE" and os.path.exists('/usr/lib/locale/' + self.getLanguage() + '/LC_TIME')) or os.path.exists('/usr/lib/locale/' + self.getLanguage() + '/' + category):
+			if category == "LANG" or (category == "LC_DATE" and os_path.exists('/usr/lib/locale/' + self.getLanguage() + '/LC_TIME')) or os_path.exists('/usr/lib/locale/' + self.getLanguage() + '/' + category):
 				localeconf.write('export %s="%s.%s"\n' % (category, self.getLanguage(), "UTF-8"))
 			else:
-				if os.path.exists('/usr/lib/locale/C.UTF-8/' + category):
+				if os_path.exists('/usr/lib/locale/C.UTF-8/' + category):
 					localeconf.write('export %s="C.UTF-8"\n' % category)
 				else:
 					localeconf.write('export %s="POSIX"\n' % category)
 		localeconf.close()
 		# HACK: sometimes python 2.7 reverts to the LC_TIME environment value, so make sure it has the correct value
-		os.environ["LC_TIME"] = self.getLanguage() + '.UTF-8'
-		os.environ["LANGUAGE"] = self.getLanguage() + '.UTF-8'
-		os.environ["GST_SUBTITLE_ENCODING"] = self.getGStreamerSubtitleEncoding()
+		environ["LC_TIME"] = self.getLanguage() + '.UTF-8'
+		environ["LANGUAGE"] = self.getLanguage() + '.UTF-8'
+		environ["GST_SUBTITLE_ENCODING"] = self.getGStreamerSubtitleEncoding()
 
 	def activateLanguageIndex(self, index):
 		if index < len(self.langlist):
@@ -194,26 +194,26 @@ class Language:
 			elif delLang == "en_GB" or delLang == "pt_BR":
 				delLang = delLang.lower()
 				delLang = delLang.replace('_', '-')
-				os.system("opkg remove --autoremove --force-depends " + Lpackagename + delLang)
+				system("opkg remove --autoremove --force-depends " + Lpackagename + delLang)
 			else:
-				os.system("opkg remove --autoremove --force-depends " + Lpackagename + delLang[:2])
+				system("opkg remove --autoremove --force-depends " + Lpackagename + delLang[:2])
 		else:
 			print("Delete all lang except ", lang)
-			ll = os.listdir(LPATH)
+			ll = listdir(LPATH)
 			for x in ll:
 				if len(x) > 2:
 					if x != lang and x != "de":
 						x = x.lower()
 						x = x.replace('_', '-')
-						os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
+						system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 				else:
 					if x != lang[:2] and x != "en" and x != "de":
-						os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
+						system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 					elif x == "pt":
 						if x != lang:
-							os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
+							system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 
-			os.system("touch /etc/enigma2/.removelang")
+			system("touch /etc/enigma2/.removelang")
 
 		self.InitLang()
 
@@ -225,7 +225,7 @@ class Language:
 		f.write('# date: ' + createdate + '\n#\n\n')
 		f.write('LANG_TEXT = {\n')
 		for lang in self.langlist:
-			catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[str(lang)], fallback=True)
+			catalog = translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[str(lang)], fallback=True)
 			T1 = catalog.gettext("Please use the UP and DOWN keys to select your language. Afterwards press the OK button.")
 			T2 = catalog.gettext("Language selection")
 			T3 = catalog.gettext("Cancel")

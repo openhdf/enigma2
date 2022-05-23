@@ -40,7 +40,7 @@ class Title:
 		self.resolution = (-1, -1)
 
 	def addService(self, service):
-		from os import path
+		from os import path as os_path
 		from enigma import eServiceCenter, iServiceInformation
 		from ServiceReference import ServiceReference
 		from time import localtime
@@ -57,7 +57,7 @@ class Title:
 		self.DVBname = name
 		self.DVBchannel = serviceref.getServiceName()
 		self.inputfile = service.getPath()
-		self.filesize = path.getsize(self.inputfile)
+		self.filesize = os_path.getsize(self.inputfile)
 		self.estimatedDiskspace = self.filesize
 		self.length = info.getLength(service)
 

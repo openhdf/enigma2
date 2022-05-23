@@ -7,7 +7,7 @@ from Components.Harddisk import harddiskmanager
 from copy import copy as copy_copy
 from os import path as os_path
 from time import localtime, strftime
-import six
+from six import itervalues, ensure_str, ensure_text, unichr
 
 # ConfigElement, the base class of all ConfigElements.
 
@@ -44,7 +44,7 @@ class ConfigElement(object):
 		self.callNotifiersOnSaveAndCancel = False
 
 	def getNotifiers(self):
-		return [func for (func, val, call_on_save_and_cancel) in six.itervalues(self.__notifiers)]
+		return [func for (func, val, call_on_save_and_cancel) in itervalues(self.__notifiers)]
 
 	def setNotifiers(self, val):
 		print("just readonly access to notifiers is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers")
@@ -52,7 +52,7 @@ class ConfigElement(object):
 	notifiers = property(getNotifiers, setNotifiers)
 
 	def getNotifiersFinal(self):
-		return [func for (func, val, call_on_save_and_cancel) in six.itervalues(self.__notifiers_final)]
+		return [func for (func, val, call_on_save_and_cancel) in itervalues(self.__notifiers_final)]
 
 	def setNotifiersFinal(self, val):
 		print("just readonly access to notifiers_final is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers")
@@ -880,23 +880,23 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 
 	def getValue(self):
 		try:
-			return six.ensure_str(self.text)
+			return ensure_str(self.text)
 		except UnicodeDecodeError:
 			print("Broken UTF8!")
 			return self.text
 
 	def setValue(self, val):
 		try:
-			self.text = six.ensure_text(val)
+			self.text = ensure_text(val)
 		except UnicodeDecodeError:
-			self.text = six.ensure_text(val, errors='ignore')
+			self.text = ensure_text(val, errors='ignore')
 			print("Broken UTF8!")
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
 
 	def getText(self):
-		return six.ensure_str(self.text)
+		return ensure_str(self.text)
 
 	def getMulti(self, selected):
 		if self.visible_width:
@@ -904,13 +904,13 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
 				mark = [self.marked_pos - self.offset]
-			return ("mtext"[1 - selected:], six.ensure_str(text[self.offset:self.offset + self.visible_width]) + " ", mark)
+			return ("mtext"[1 - selected:], ensure_str(text[self.offset:self.offset + self.visible_width]) + " ", mark)
 		else:
 			if self.allmarked:
 				mark = list(range(0, len(self.text)))
 			else:
 				mark = [self.marked_pos]
-			return "mtext"[1 - selected:], six.ensure_str(self.text) + " ", mark
+			return "mtext"[1 - selected:], ensure_str(self.text) + " ", mark
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
@@ -1144,7 +1144,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			self.overwrite = not self.overwrite
 		elif key == KEY_ASCII:
 			self.timeout()
-			newChar = six.unichr(getPrevAsciiCode())
+			newChar = unichr(getPrevAsciiCode())
 			if not self.useableChars or newChar in self.useableChars:
 				if self.allmarked:
 					self.deleteAllChars()
@@ -1176,23 +1176,23 @@ class ConfigText(ConfigElement, NumericalTextInput):
 
 	def getValue(self):
 		try:
-			return six.ensure_str(self.text)
+			return ensure_str(self.text)
 		except UnicodeDecodeError:
 			print("Broken UTF8!")
 			return self.text
 
 	def setValue(self, val):
 		try:
-			self.text = six.ensure_text(val)
+			self.text = ensure_text(val)
 		except UnicodeDecodeError:
-			self.text = six.ensure_text(val, errors='ignore')
+			self.text = ensure_text(val, errors='ignore')
 			print("Broken UTF8!")
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
 
 	def getText(self):
-		return six.ensure_str(self.text)
+		return ensure_str(self.text)
 
 	def getMulti(self, selected):
 		if self.visible_width:
@@ -1200,13 +1200,13 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
 				mark = [self.marked_pos - self.offset]
-			return ("mtext"[1 - selected:], six.ensure_str(self.text[self.offset:self.offset + self.visible_width]) + " ", mark)
+			return ("mtext"[1 - selected:], ensure_str(self.text[self.offset:self.offset + self.visible_width]) + " ", mark)
 		else:
 			if self.allmarked:
 				mark = list(range(0, len(self.text)))
 			else:
 				mark = [self.marked_pos]
-			return "mtext"[1 - selected:], six.ensure_str(self.text) + " ", mark
+			return "mtext"[1 - selected:], ensure_str(self.text) + " ", mark
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
@@ -1359,7 +1359,7 @@ class ConfigNumber(ConfigText):
 					return
 			else:
 				ascii = getKeyNumber(key) + 48
-			newChar = six.unichr(ascii)
+			newChar = unichr(ascii)
 			if self.allmarked:
 				self.deleteAllChars()
 				self.allmarked = False

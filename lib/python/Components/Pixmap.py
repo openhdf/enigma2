@@ -5,7 +5,7 @@ from Components.GUIComponent import GUIComponent
 from enigma import ePixmap, eTimer
 
 from Tools.Directories import resolveFilename, fileExists, SCOPE_SKIN_IMAGE, SCOPE_GUISKIN, SCOPE_LCDSKIN
-from os import path
+from os import path as os_path
 from skin import loadPixmap
 
 
@@ -109,7 +109,7 @@ class MultiPixmap(Pixmap):
 							pngfile = resolveFilename(SCOPE_SKIN_IMAGE, p, path_prefix=skin_path_prefix)
 						elif fileExists(resolveFilename(SCOPE_LCDSKIN, p, path_prefix=skin_path_prefix)):
 							pngfile = resolveFilename(SCOPE_LCDSKIN, p, path_prefix=skin_path_prefix)
-						if path.exists(pngfile):
+						if os_path.exists(pngfile):
 							self.pixmaps.append(loadPixmap(pngfile, desktop))
 					if not pixmap:
 						pixmap = resolveFilename(SCOPE_GUISKIN, pixmaps[0], path_prefix=skin_path_prefix)

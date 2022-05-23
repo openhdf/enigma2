@@ -1,15 +1,15 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import re
-import os
-import netifaces as ni
+from re import compile as re_compile
+from os import listdir, path as os_path, system
+from netifaces import ifaddresses, AF_INET, AF_LINK, gateways
 from socket import *
 from Components.config import config
 from Components.Console import Console
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from boxbranding import getBoxType
-import six
+from six import ensure_str
 from six.moves import map
 
 
@@ -75,12 +75,12 @@ class Network:
 			data['up'] = int(open('/sys/class/net/%s/flags' % iface).read().strip(), 16) & 1 == 1
 			if data['up']:
 				self.configuredInterfaces.append(iface)
-			nit = ni.ifaddresses(iface)
-			data['ip'] = self.convertIP(nit[ni.AF_INET][0]['addr']) # ipv4
-			data['netmask'] = self.convertIP(nit[ni.AF_INET][0]['netmask'])
-			data['bcast'] = self.convertIP(nit[ni.AF_INET][0]['broadcast'])
-			data['mac'] = nit[ni.AF_LINK][0]['addr'] # mac
-			data['gateway'] = self.convertIP(ni.gateways()['default'][ni.AF_INET][0]) # default gw
+			nit = ifaddresses(iface)
+			data['ip'] = self.convertIP(nit[AF_INET][0]['addr']) # ipv4
+			data['netmask'] = self.convertIP(nit[AF_INET][0]['netmask'])
+			data['bcast'] = self.convertIP(nit[AF_INET][0]['broadcast'])
+			data['mac'] = nit[AF_LINK][0]['addr'] # mac
+			data['gateway'] = self.convertIP(gateways()['default'][AF_INET][0]) # default gw
 		except:
 			data['dhcp'] = True
 			data['ip'] = [0, 0, 0, 0]
@@ -92,8 +92,8 @@ class Network:
 	def routeFinished(self, result, retval, extra_args):
 		(iface, data, callback) = extra_args
 		ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
-		ipPattern = re.compile(ipRegexp)
-		ipLinePattern = re.compile(ipRegexp)
+		ipPattern = re_compile(ipRegexp)
+		ipLinePattern = re_compile(ipRegexp)
 
 		for line in result.splitlines():
 			print(line[0:7])
@@ -232,8 +232,8 @@ class Network:
 
 	def loadNameserverConfig(self):
 		ipRegexp = "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
-		nameserverPattern = re.compile("nameserver +" + ipRegexp)
-		ipPattern = re.compile(ipRegexp)
+		nameserverPattern = re_compile("nameserver +" + ipRegexp)
+		ipPattern = re_compile(ipRegexp)
 
 		resolv = []
 		try:
@@ -256,7 +256,7 @@ class Network:
 #		print "nameservers:", self.nameservers
 
 	def getInstalledAdapters(self):
-		return [x for x in os.listdir('/sys/class/net') if not self.isBlacklisted(x)]
+		return [x for x in listdir('/sys/class/net') if not self.isBlacklisted(x)]
 
 	def getConfiguredAdapters(self):
 		return self.configuredNetworkAdapters
@@ -295,7 +295,7 @@ class Network:
 
 		moduledir = self.getWlanModuleDir(iface)
 		if moduledir:
-			name = os.path.basename(os.path.realpath(moduledir))
+			name = os_path.basename(os_path.realpath(moduledir))
 			if name in ('ath_pci', 'ath5k', 'ar6k_wlan'):
 				name = 'Atheros'
 			elif name in ('rt73', 'rt73usb', 'rt3070sta'):
@@ -468,7 +468,7 @@ class Network:
 
 	def getLinkStateFinished(self, result, retval, extra_args):
 		(callback) = extra_args
-		result = six.ensure_str(result)
+		result = ensure_str(result)
 
 		if self.LinkConsole is not None:
 			if len(self.LinkConsole.appContainers) == 0:
@@ -518,8 +518,8 @@ class Network:
 		if self.getAdapterAttribute(iface, 'up') is True:
 			return True
 		else:
-			ret = os.system("ifconfig " + iface + " up")
-			os.system("ifconfig " + iface + " down")
+			ret = system("ifconfig " + iface + " up")
+			system("ifconfig " + iface + " down")
 			if ret == 0:
 				return True
 			else:
@@ -554,7 +554,7 @@ class Network:
 			commands.append("ifdown " + iface)
 			commands.append("ip addr flush dev " + iface + " scope global")
 			#wpa_supplicant sometimes doesn't quit properly on SIGTERM
-			if os.path.exists('/var/run/wpa_supplicant/' + iface):
+			if os_path.exists('/var/run/wpa_supplicant/' + iface):
 				commands.append("wpa_cli -i" + iface + " terminate")
 
 		if not self.deactivateInterfaceConsole:
@@ -626,11 +626,11 @@ class Network:
 		if iface in self.wlan_interfaces:
 			return True
 
-		if os.path.isdir(self.sysfsPath(iface) + '/wireless'):
+		if os_path.isdir(self.sysfsPath(iface) + '/wireless'):
 			return True
 
 		# r871x_usb_drv on kernel 2.6.12 is not identifiable over /sys/class/net/'ifacename'/wireless so look also inside /proc/net/wireless
-		device = re.compile('[a-z]{2,}[0-9]*:')
+		device = re_compile('[a-z]{2,}[0-9]*:')
 		ifnames = []
 		fp = open('/proc/net/wireless', 'r')
 		for line in fp:
@@ -645,29 +645,29 @@ class Network:
 		return False
 
 	def canWakeOnWiFi(self, iface):
-		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s" % iface):
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os_path.exists("/tmp/bcm/%s" % iface):
 			return True
 
 	def getWlanModuleDir(self, iface=None):
-		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s" % iface):
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os_path.exists("/tmp/bcm/%s" % iface):
 			devicedir = self.sysfsPath("sys0") + '/device'
 		else:
 			devicedir = self.sysfsPath(iface) + '/device'
 		moduledir = devicedir + '/driver/module'
-		if os.path.isdir(moduledir):
+		if os_path.isdir(moduledir):
 			return moduledir
 
 		# identification is not possible over default moduledir
 		try:
-			for x in os.listdir(devicedir):
+			for x in listdir(devicedir):
 				# rt3070 on kernel 2.6.18 registers wireless devices as usb_device (e.g. 1-1.3:1.0) and identification is only possible over /sys/class/net/'ifacename'/device/1-xxx
 				if x.startswith("1-"):
 					moduledir = devicedir + '/' + x + '/driver/module'
-					if os.path.isdir(moduledir):
+					if os_path.isdir(moduledir):
 						return moduledir
 			# rt73, zd1211b, r871x_usb_drv on kernel 2.6.12 can be identified over /sys/class/net/'ifacename'/device/driver, so look also here
 			moduledir = devicedir + '/driver'
-			if os.path.isdir(moduledir):
+			if os_path.isdir(moduledir):
 				return moduledir
 		except:
 			pass
@@ -678,12 +678,12 @@ class Network:
 			return None
 
 		devicedir = self.sysfsPath(iface) + '/device'
-		if os.path.isdir(devicedir + '/ieee80211'):
+		if os_path.isdir(devicedir + '/ieee80211'):
 			return 'nl80211'
 
 		moduledir = self.getWlanModuleDir(iface)
 		if moduledir:
-			module = os.path.basename(os.path.realpath(moduledir))
+			module = os_path.basename(os_path.realpath(moduledir))
 			if module in ('brcm-systemport',):
 				return 'brcm-wl'
 			if module in ('ath_pci', 'ath5k'):
@@ -735,7 +735,7 @@ class Network:
 		nameservers = self.getAdapterAttribute(iface, "dns-nameservers")
 		if nameservers:
 			ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
-			ipPattern = re.compile(ipRegexp)
+			ipPattern = re_compile(ipRegexp)
 			for x in nameservers.split()[1:]:
 				ip = self.regExpMatch(ipPattern, x)
 				if ip:

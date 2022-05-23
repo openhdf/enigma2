@@ -34,7 +34,7 @@ from Components.VideoWindow import VideoWindow
 from enigma import eEPGCache
 from time import localtime, time
 from Screens.InfoBarGenerics import InfoBarShowHide, InfoBarPiP
-from Screens.InfoBar import InfoBar
+import Screens.InfoBar
 
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox

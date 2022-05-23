@@ -4,7 +4,7 @@ from Components.Task import Job, Task
 from Tools.Directories import fileExists, shellquote
 from Components.MovieList import MOVIE_EXTENSIONS
 from enigma import eTimer
-import os
+from os import path as os_path, listdir
 
 ALL_MOVIE_EXTENSIONS = MOVIE_EXTENSIONS.union((".ts",))
 
@@ -22,10 +22,10 @@ class FileTransferTask(Task):
 		self.src_isDir = src_isDir
 		self.src_file = src_file
 		self.dst_isDir = False
-		self.dst_file = dst_file + "/" + os.path.basename(src_file)
+		self.dst_file = dst_file + "/" + os_path.basename(src_file)
 		src_file_append = ""
 		if not src_isDir:
-			root, ext = os.path.splitext(src_file)
+			root, ext = os_path.splitext(src_file)
 			if ext in ALL_MOVIE_EXTENSIONS:
 				src_file = root
 				src_file_append = ".*"
@@ -51,7 +51,7 @@ class FileTransferTask(Task):
 					dst_dir_size = self.dst_file + mv_dir[1]
 			dst_size = float(self.dirSize(dst_dir_size))
 		else:
-			dst_size = float(os.path.getsize(self.dst_file))
+			dst_size = float(os_path.getsize(self.dst_file))
 		progress = dst_size / self.src_size * 100.0
 		self.setProgress(progress)
 		self.progressTimer.start(15000, True)
@@ -61,7 +61,7 @@ class FileTransferTask(Task):
 			if self.src_isDir:
 				self.src_size = float(self.dirSize(self.src_file))
 			else:
-				self.src_size = float(os.path.getsize(self.src_file))
+				self.src_size = float(os_path.getsize(self.src_file))
 			self.progressTimer.start(15000, True)
 
 	def afterRun(self):
@@ -69,12 +69,12 @@ class FileTransferTask(Task):
 		self.setProgress(100)
 
 	def dirSize(self, folder):
-		total_size = os.path.getsize(folder)
-		for item in os.listdir(folder):
-			itempath = os.path.join(folder, item)
-			if os.path.isfile(itempath):
-				total_size += os.path.getsize(itempath)
-			elif os.path.isdir(itempath):
+		total_size = os_path.getsize(folder)
+		for item in listdir(folder):
+			itempath = os_path.join(folder, item)
+			if os_path.isfile(itempath):
+				total_size += os_path.getsize(itempath)
+			elif os_path.isdir(itempath):
 				total_size += self.dirSize(itempath)
 		return total_size
 

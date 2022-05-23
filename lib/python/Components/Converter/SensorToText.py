@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 from Components.Converter.Converter import Converter
-import six
+from six import PY3
 
-SIGN = '°' if six.PY3 else str('\xc2\xb0')
+SIGN = '°' if PY3 else str('\xc2\xb0')
 
 
 class SensorToText(Converter):

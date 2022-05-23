@@ -11,9 +11,9 @@ from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config, ConfigSubsection, ConfigYesNo, ConfigSelection, configfile
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Plugins.Plugin import PluginDescriptor
-import os
-import sys
-import xml.etree.cElementTree
+from os import path as os_path
+from sys import modules
+from xml.etree.cElementTree import parse
 
 
 class LCN():
@@ -26,7 +26,7 @@ class LCN():
 		self.lcnlist = []
 		self.markers = []
 		self.e2services = []
-		mdom = xml.etree.cElementTree.parse(rulefile)
+		mdom = parse(rulefile)
 		self.root = None
 		for x in mdom.getroot():
 			if x.tag == "ruleset" and x.get("name") == rulename:
@@ -304,7 +304,7 @@ class LCNBuildHelper():
 			self.bouquetlist.append((x[0], x[1]))
 
 		self.rulelist = []
-		mdom = xml.etree.cElementTree.parse(os.path.dirname(sys.modules[__name__].__file__) + "/rules.xml")
+		mdom = parse(os_path.dirname(modules[__name__].__file__) + "/rules.xml")
 		for x in mdom.getroot():
 			if x.tag == "ruleset":
 				self.rulelist.append((x.get("name"), x.get("name")))
@@ -380,7 +380,7 @@ class LCNBuildHelper():
 				bouquet = x[0]
 				break
 
-		lcn = LCN(resolveFilename(SCOPE_CONFIG, "lcndb"), os.path.dirname(sys.modules[__name__].__file__) + "/rules.xml", rule, resolveFilename(SCOPE_CONFIG, bouquet))
+		lcn = LCN(resolveFilename(SCOPE_CONFIG, "lcndb"), os_path.dirname(modules[__name__].__file__) + "/rules.xml", rule, resolveFilename(SCOPE_CONFIG, bouquet))
 		lcn.read("TV")
 		if len(lcn.lcnlist) > 0:
 			lcn.writeTVBouquet()

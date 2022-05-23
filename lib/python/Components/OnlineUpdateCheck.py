@@ -4,7 +4,7 @@ from time import time
 
 from enigma import eTimer
 
-import Components.Task
+from Components.Task import job_manager, Job, PythonTask
 from Components.Ipkg import IpkgComponent
 from Components.config import config
 
@@ -38,12 +38,12 @@ class OnlineUpdateCheckPoller:
 
 	def onlineupdate_check(self):
 		if config.softwareupdate.check.value:
-			Components.Task.job_manager.AddJob(self.createCheckJob())
+			job_manager.AddJob(self.createCheckJob())
 		self.timer.startLongTimer(config.softwareupdate.checktimer.value * 3600)
 
 	def createCheckJob(self):
-		job = Components.Task.Job(_("OnlineVersionCheck"))
-		task = Components.Task.PythonTask(job, _("Checking for Updates..."))
+		job = Job(_("OnlineVersionCheck"))
+		task = PythonTask(job, _("Checking for Updates..."))
 		task.work = self.JobStart
 		task.weighting = 1
 		return job

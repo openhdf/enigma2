@@ -3,7 +3,7 @@ from Components.Task import Task, Job
 from Components.config import config
 from Tools.Directories import fileExists
 from enigma import eTimer
-from os import path
+from os import path as os_path
 
 
 class CopyTimeshiftJob(Job):
@@ -28,12 +28,12 @@ class AddCopyTimeshiftTask(Task):
 		if self.srcsize <= 0 or not fileExists(self.destfile, 'r'):
 			return
 
-		self.setProgress(int((path.getsize(self.destfile) / float(self.srcsize)) * 100))
+		self.setProgress(int((os_path.getsize(self.destfile) / float(self.srcsize)) * 100))
 		self.ProgressTimer.start(15000, True)
 
 	def prepare(self):
 		if fileExists(self.srcfile, 'r'):
-			self.srcsize = path.getsize(self.srcfile)
+			self.srcsize = os_path.getsize(self.srcfile)
 			self.ProgressTimer.start(15000, True)
 
 		self.toolbox.ptsFrontpanelActions("start")
@@ -67,13 +67,13 @@ class AddMergeTimeshiftTask(Task):
 		if self.srcsize <= 0 or not fileExists(self.destfile, 'r'):
 			return
 
-		self.setProgress(int((path.getsize(self.destfile) / float(self.srcsize)) * 100))
+		self.setProgress(int((os_path.getsize(self.destfile) / float(self.srcsize)) * 100))
 		self.ProgressTimer.start(7500, True)
 
 	def prepare(self):
 		if fileExists(self.srcfile, 'r') and fileExists(self.destfile, 'r'):
-			fsize1 = path.getsize(self.srcfile)
-			fsize2 = path.getsize(self.destfile)
+			fsize1 = os_path.getsize(self.srcfile)
+			fsize2 = os_path.getsize(self.destfile)
 			self.srcsize = fsize1 + fsize2
 			self.ProgressTimer.start(7500, True)
 

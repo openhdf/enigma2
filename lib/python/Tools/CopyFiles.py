@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from Components.Task import PythonTask, Task, Job, job_manager as JobManager
 from Tools.Directories import fileExists
 from enigma import eTimer
-from os import path
+from os import path as os_path
 from shutil import rmtree, copy2, move
 
 
@@ -50,12 +50,12 @@ class AddFileProcessTask(Task):
 		if self.srcsize <= 0 or not fileExists(self.destfile, 'r'):
 			return
 
-		self.setProgress(int((path.getsize(self.destfile) / float(self.srcsize)) * 100))
+		self.setProgress(int((os_path.getsize(self.destfile) / float(self.srcsize)) * 100))
 		self.ProgressTimer.start(5000, True)
 
 	def prepare(self):
 		if fileExists(self.srcfile, 'r'):
-			self.srcsize = path.getsize(self.srcfile)
+			self.srcsize = os_path.getsize(self.srcfile)
 			self.ProgressTimer.start(5000, True)
 
 	def afterRun(self):
@@ -65,7 +65,7 @@ class AddFileProcessTask(Task):
 
 def copyFiles(fileList, name):
 	for src, dst in fileList:
-		if path.isdir(src) or int(path.getsize(src)) / 1000 / 1000 > 100:
+		if os_path.isdir(src) or int(os_path.getsize(src)) / 1000 / 1000 > 100:
 			JobManager.AddJob(CopyFileJob(src, dst, name))
 		else:
 			copy2(src, dst)
@@ -73,7 +73,7 @@ def copyFiles(fileList, name):
 
 def moveFiles(fileList, name):
 	for src, dst in fileList:
-		if path.isdir(src) or int(path.getsize(src)) / 1000 / 1000 > 100:
+		if os_path.isdir(src) or int(os_path.getsize(src)) / 1000 / 1000 > 100:
 			JobManager.AddJob(MoveFileJob(src, dst, name))
 		else:
 			move(src, dst)

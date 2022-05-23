@@ -24,13 +24,11 @@ from Components.ProgressBar import ProgressBar
 from Tools.StbHardware import getFPVersion
 from Tools.Directories import fileCheck
 
-import os
-import re
-from os import path, popen
-from re import search
-import six
+from os import path as os_path, popen, system
+from re import search, match as re_match
+from six import ensure_str, PY3
 
-SIGN = '°' if six.PY3 else str('\xc2\xb0')
+SIGN = '°' if PY3 else str('\xc2\xb0')
 
 
 def find_rootfssubdir(file):
@@ -122,7 +120,7 @@ class About(Screen):
 		self["lab2"] = StaticText(_("Support @") + " www.hdfreaks.cc")
 		AboutText += _("Model:\t\t%s %s - OEM Model: %s\n") % (getMachineBrand(), getMachineName(), getBrandOEM())
 
-		if path.exists('/proc/stb/info/chipset'):
+		if os_path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset:\t\t%s") % about.getChipSetString() + "\n"
 
 		cmd = 'cat /proc/cpuinfo | grep "cpu MHz" -m 1 | awk -F ": " ' + "'{print $2}'"
@@ -136,7 +134,7 @@ class About(Screen):
 		cpuMHz = ""
 
 		bootloader = ""
-		if path.exists('/sys/firmware/devicetree/base/bolt/tag'):
+		if os_path.exists('/sys/firmware/devicetree/base/bolt/tag'):
 			f = open('/sys/firmware/devicetree/base/bolt/tag', 'r')
 			bootloader = f.readline().replace('\x00', '').replace('\n', '')
 			f.close()
@@ -168,7 +166,7 @@ class About(Screen):
 			except:
 				cpuMHz = "1,7 GHz"
 		else:
-			if path.exists('/proc/cpuinfo'):
+			if os_path.exists('/proc/cpuinfo'):
 				f = open('/proc/cpuinfo', 'r')
 				temp = f.readlines()
 				f.close()
@@ -203,19 +201,19 @@ class About(Screen):
 			AboutText += _("BogoMIPS:\t\t%s") % bogoMIPS + "\n"
 
 		tempinfo = ""
-		if path.exists('/proc/stb/sensors/temp0/value'):
+		if os_path.exists('/proc/stb/sensors/temp0/value'):
 			f = open('/proc/stb/sensors/temp0/value', 'r')
 			tempinfo = f.read()
 			f.close()
-		elif path.exists('/proc/stb/fp/temp_sensor'):
+		elif os_path.exists('/proc/stb/fp/temp_sensor'):
 			f = open('/proc/stb/fp/temp_sensor', 'r')
 			tempinfo = f.read()
 			f.close()
-		elif path.exists('/proc/stb/sensors/temp/value'):
+		elif os_path.exists('/proc/stb/sensors/temp/value'):
 			f = open('/proc/stb/sensors/temp/value', 'r')
 			tempinfo = f.read()
 			f.close()
-		elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
+		elif os_path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
 			try:
 				f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
 				tempinfo = f.read()
@@ -228,15 +226,15 @@ class About(Screen):
 			AboutText += _("System Temp:\t\t%s") % tempinfo.replace('\n', '').replace(' ', '') + SIGN + "C\n"
 
 		tempinfo = ""
-		if path.exists('/proc/stb/fp/temp_sensor_avs'):
+		if os_path.exists('/proc/stb/fp/temp_sensor_avs'):
 			f = open('/proc/stb/fp/temp_sensor_avs', 'r')
 			tempinfo = f.read()
 			f.close()
-		elif path.exists('/proc/stb/power/avs'):
+		elif os_path.exists('/proc/stb/power/avs'):
 			f = open('/proc/stb/power/avs', 'r')
 			tempinfo = f.read()
 			f.close()
-		elif path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
+		elif os_path.exists('/sys/devices/virtual/thermal/thermal_zone0/temp'):
 			try:
 				f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
 				tempinfo = f.read()
@@ -244,7 +242,7 @@ class About(Screen):
 				f.close()
 			except:
 				tempinfo = ""
-		elif path.exists('/proc/hisi/msp/pm_cpu'):
+		elif os_path.exists('/proc/hisi/msp/pm_cpu'):
 			try:
 				for line in open('/proc/hisi/msp/pm_cpu').readlines():
 					line = [x.strip() for x in line.strip().split(":")]
@@ -261,16 +259,16 @@ class About(Screen):
 		AboutText += _("HDF Version:\t\tV%s") % getImageVersion() + " Build #" + getImageBuild() + " based on " + getOEVersion() + "\n"
 		AboutText += _("Kernel (Box):\t\t%s") % about.getKernelVersionString() + " (" + getBoxType() + ")" + "\n"
 
-		if path.isfile("/etc/issue"):
+		if os_path.isfile("/etc/issue"):
 			version = open("/etc/issue").readlines()[-2].upper().strip()[:-6]
-			if path.isfile("/etc/image-version"):
+			if os_path.isfile("/etc/image-version"):
 				build = self.searchString("/etc/image-version", "^build=")
 				version = "%s #%s" % (version, build)
 			AboutText += _("Image:\t\t%s") % version + "\n"
 
 		imagestarted = ""
 		bootname = ''
-		if path.exists('/boot/bootname'):
+		if os_path.exists('/boot/bootname'):
 			f = open('/boot/bootname', 'r')
 			bootname = f.readline().split('=')[1]
 			f.close()
@@ -278,7 +276,7 @@ class About(Screen):
 			image = find_rootfssubdir("STARTUP")
 			AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image[-1:] + bootname + "\n"
 		elif getMachineBuild() in ('gbmv200', 'cc1', 'sf8008', 'ustym4kpro', 'beyonwizv2', "viper4k"):
-			if path.exists('/boot/STARTUP'):
+			if os_path.exists('/boot/STARTUP'):
 				f = open('/boot/STARTUP', 'r')
 				f.seek(5)
 				image = f.read(4)
@@ -310,7 +308,7 @@ class About(Screen):
 
 		if SystemInfo["HaveMultiBoot"]:
 			MyFlashDate = about.getFlashDateString()
-			if path.isfile("/etc/filesystems"):
+			if os_path.isfile("/etc/filesystems"):
 				AboutText += _("Flashed:\t\t%s") % MyFlashDate + "\n"
 				#AboutText += _("Flashed:\tMultiboot active\n")
 		else:
@@ -322,7 +320,7 @@ class About(Screen):
 		day = string[6:8]
 		driversdate = '-'.join((year, month, day))
 		gstcmd = 'opkg list-installed | grep "gstreamer1.0 -" | cut -c 16-32'
-		gstcmd2 = os.system(gstcmd)
+		gstcmd2 = system(gstcmd)
 		#return (gstcmd2)
 		AboutText += _("Drivers:\t\t%s") % driversdate + "\n"
 		AboutText += _("GStreamer:\t\t%s") % about.getGStreamerVersionString() + "\n"
@@ -378,7 +376,7 @@ class About(Screen):
 	def searchString(self, file, search):
 		f = open(file)
 		for line in f:
-			if re.match(search, line):
+			if re_match(search, line):
 				return line.split("=")[1].replace('\n', '')
 		f.close()
 
@@ -489,7 +487,7 @@ class Devices(Screen):
 		self.Console.ePopen("df -mh | grep -v '^Filesystem'", self.Stage1Complete)
 
 	def Stage1Complete(self, result, retval, extra_args=None):
-		result = six.ensure_str(result)
+		result = ensure_str(result)
 		result = result.replace('\n                        ', ' ').split('\n')
 		self.mountinfo = ""
 		for line in result:
@@ -581,7 +579,7 @@ class SystemMemoryInfo(Screen):
 		return RamText
 
 	def Stage1Complete(self, result, retval, extra_args=None):
-		result = six.ensure_str(result)
+		result = ensure_str(result)
 		flash = str(result).replace('\n', '')
 		flash = flash.split()
 		RamTotal = self.MySize(flash[1])
@@ -802,7 +800,7 @@ class SystemNetworkInfo(Screen):
 			iNetwork.getLinkState(self.iface, self.dataAvail)
 
 	def dataAvail(self, data):
-		data = six.ensure_str(data)
+		data = ensure_str(data)
 		self.LinkState = None
 		for line in data.splitlines():
 			line = line.strip()
@@ -846,7 +844,7 @@ class AboutSummary(Screen):
 
 		AboutText = _("Model: %s %s\n") % (getMachineBrand(), getMachineName())
 
-		if path.exists('/proc/stb/info/chipset'):
+		if os_path.exists('/proc/stb/info/chipset'):
 			chipset = open('/proc/stb/info/chipset', 'r').read()
 			AboutText += _("Chipset: %s") % chipset.replace('\n', '') + "\n"
 
@@ -863,9 +861,9 @@ class AboutSummary(Screen):
 		AboutText += _("Last update: %s") % getEnigmaVersionString()
 
 		tempinfo = ""
-		if path.exists('/proc/stb/sensors/temp0/value'):
+		if os_path.exists('/proc/stb/sensors/temp0/value'):
 			tempinfo = open('/proc/stb/sensors/temp0/value', 'r').read()
-		elif path.exists('/proc/stb/fp/temp_sensor'):
+		elif os_path.exists('/proc/stb/fp/temp_sensor'):
 			tempinfo = open('/proc/stb/fp/temp_sensor', 'r').read()
 		if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 			AboutText += _("Temperature: %s") % tempinfo.replace('\n', '') + SIGN + "C"

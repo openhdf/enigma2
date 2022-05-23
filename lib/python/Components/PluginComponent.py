@@ -1,13 +1,13 @@
 from __future__ import absolute_import
 from __future__ import print_function
-import os
+from os import path as os_path, listdir
 from shutil import rmtree
 from bisect import insort
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from Tools.Import import my_import
 from Tools.Profile import profile
 from Plugins.Plugin import PluginDescriptor
-import keymapparser
+from keymapparser import readKeymap
 
 
 class PluginComponent:
@@ -44,15 +44,15 @@ class PluginComponent:
 	def readPluginList(self, directory):
 		"""enumerates plugins"""
 		new_plugins = []
-		for c in os.listdir(directory):
-			directory_category = os.path.join(directory, c)
-			if not os.path.isdir(directory_category):
+		for c in listdir(directory):
+			directory_category = os_path.join(directory, c)
+			if not os_path.isdir(directory_category):
 				continue
-			for pluginname in os.listdir(directory_category):
+			for pluginname in listdir(directory_category):
 				if pluginname == "__pycache__":
 					continue
-				path = os.path.join(directory_category, pluginname)
-				if os.path.isdir(path):
+				path = os_path.join(directory_category, pluginname)
+				if os_path.isdir(path):
 						profile('plugin ' + pluginname)
 						try:
 							plugin = my_import('.'.join(["Plugins", c, pluginname, "plugin"]))
@@ -61,7 +61,7 @@ class PluginComponent:
 							print("Plugin ", c + "/" + pluginname, "failed to load:", exc)
 							# supress errors due to missing plugin.py* files (badly removed plugin)
 							for fn in ('plugin.py', 'plugin.pyc', 'plugin.pyo'):
-								if os.path.exists(os.path.join(path, fn)):
+								if os_path.exists(os_path.join(path, fn)):
 									self.warnings.append((c + "/" + pluginname, str(exc)))
 									from traceback import print_exc
 									print_exc()
@@ -82,10 +82,10 @@ class PluginComponent:
 							p.updateIcon(path)
 							new_plugins.append(p)
 
-						keymap = os.path.join(path, "keymap.xml")
+						keymap = os_path.join(path, "keymap.xml")
 						if fileExists(keymap):
 							try:
-								keymapparser.readKeymap(keymap)
+								readKeymap(keymap)
 							except Exception as exc:
 								print("keymap for plugin %s/%s failed to load: " % (c, pluginname), exc)
 								self.warnings.append((c + "/" + pluginname, str(exc)))

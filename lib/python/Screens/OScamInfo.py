@@ -18,15 +18,15 @@ from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, eTimer, gFont, ge
 from xml.etree import ElementTree
 
 from operator import itemgetter
-import os
-import time
-import skin
+from os import path as os_path
+from time import strftime, localtime
+from skin import getSkinFactor, parameters
 
 from six.moves import urllib
 from six.moves.urllib.request import HTTPHandler, HTTPDigestAuthHandler
 
 ###global
-sf = skin.getSkinFactor()
+sf = getSkinFactor()
 sizeH = 700
 HDSKIN = False
 screenwidth = getDesktop(0).size().width()
@@ -106,7 +106,7 @@ class OscamInfo:
 
 		if webif and port is not None:
 		# oscam reports it got webif support and webif is running (Port != 0)
-			if conf is not None and os.path.exists(conf):
+			if conf is not None and os_path.exists(conf):
 				# If we have a config file, we need to investigate it further
 				with open(conf, 'r') as data:
 					for i in data:
@@ -348,7 +348,7 @@ class OscamInfo:
 
 	def getECMInfo(self, ecminfo):
 		result = []
-		if os.path.exists(ecminfo):
+		if os_path.exists(ecminfo):
 			data = open(ecminfo, "r").readlines()
 			for i in data:
 				if "caid" in i:
@@ -460,7 +460,7 @@ class OscamInfoMenu(Screen):
 			config.oscaminfo.userdatafromconf.save()
 			self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
 		elif entry == 0:
-			if os.path.exists("/tmp/ecm.info"):
+			if os_path.exists("/tmp/ecm.info"):
 				self.session.open(oscECMInfo)
 			else:
 				pass
@@ -516,24 +516,24 @@ class OscamInfoMenu(Screen):
 				if fileExists(png):
 					png = LoadPixmap(png)
 				if png is not None:
-					x, y, w, h = skin.parameters.get("ChoicelistDash", (0, 2 * sf, 800 * sf, 2 * sf))
+					x, y, w, h = parameters.get("ChoicelistDash", (0, 2 * sf, 800 * sf, 2 * sf))
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP, x, y, w, h, png))
-					x, y, w, h = skin.parameters.get("ChoicelistName", (45 * sf, 2 * sf, 800 * sf, 25 * sf))
+					x, y, w, h = parameters.get("ChoicelistName", (45 * sf, 2 * sf, 800 * sf, 25 * sf))
 					res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, t[2:]))
 					png2 = resolveFilename(SCOPE_GUISKIN, "buttons/key_" + keys[k] + ".png")
 					if fileExists(png2):
 						png2 = LoadPixmap(png2)
 					if png2 is not None:
-						x, y, w, h = skin.parameters.get("ChoicelistIcon", (5 * sf, 0, 35 * sf, 25 * sf))
+						x, y, w, h = parameters.get("ChoicelistIcon", (5 * sf, 0, 35 * sf, 25 * sf))
 						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png2))
 			else:
-				x, y, w, h = skin.parameters.get("ChoicelistName", (45 * sf, 2 * sf, 800 * sf, 25 * sf))
+				x, y, w, h = parameters.get("ChoicelistName", (45 * sf, 2 * sf, 800 * sf, 25 * sf))
 				res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, t))
 				png2 = resolveFilename(SCOPE_GUISKIN, "buttons/key_" + keys[k] + ".png")
 				if fileExists(png2):
 					png2 = LoadPixmap(png2)
 				if png2 is not None:
-					x, y, w, h = skin.parameters.get("ChoicelistIcon", (5 * sf, 0, 35 * sf, 25 * sf))
+					x, y, w, h = parameters.get("ChoicelistIcon", (5 * sf, 0, 35 * sf, 25 * sf))
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png2))
 			menuentries.append(res)
 			if k < len(keys) - 1:
@@ -1113,7 +1113,7 @@ class oscReaderStats(Screen, OscamInfo):
 								try:
 									last_req = lastreq.split("T")[1][:-5]
 								except IndexError:
-									last_req = time.strftime("%H:%M:%S", time.localtime(float(lastreq)))
+									last_req = strftime("%H:%M:%S", localtime(float(lastreq)))
 							else:
 								last_req = ""
 						else:

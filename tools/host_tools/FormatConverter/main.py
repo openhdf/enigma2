@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from __future__ import print_function
 from __future__ import absolute_import
-import os
+from os import system
 
 from datasource import genericdatasource
 from satxml import satxml
@@ -22,7 +22,7 @@ for source in datasources:
 	source.setDatasources(datasources)
 
 while True:
-	os.system("/usr/bin/clear")
+	system("/usr/bin/clear")
 	_list = []
 	for index in list(range(len(datasources))):
 		_list.append(datasources[index].getName() + (" (%d sats)" % len(list(datasources[index].transponderlist.keys()))))

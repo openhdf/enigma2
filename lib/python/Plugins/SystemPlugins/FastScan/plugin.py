@@ -16,7 +16,7 @@ from Components.ActionMap import ActionMap
 
 from enigma import eFastScan, eDVBFrontendParametersSatellite, eTimer
 
-import os
+from os import walk, path as os_path, unlink
 
 config.misc.fastscan = ConfigSubsection()
 config.misc.fastscan.last_configuration = ConfigText(default="()")
@@ -51,8 +51,8 @@ class FastScanStatus(Screen):
 		self["scan_state"] = Label(_("scan state"))
 
 		if hasattr(self.session, "pipshown") and self.session.pipshown:
-			from Screens.InfoBar import InfoBar
-			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
+			import Screens.InfoBar
+			Screens.InfoBar.InfoBar.instance and hasattr(Screens.InfoBar.InfoBar.instance, "showPiP") and Screens.InfoBar.InfoBar.instance.showPiP()
 
 		self.prevservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
@@ -78,17 +78,17 @@ class FastScanStatus(Screen):
 		self.scan.scanProgress.get().append(self.scanProgress)
 		fstfile = None
 		fntfile = None
-		for root, dirs, files in os.walk('/tmp/'):
+		for root, dirs, files in walk('/tmp/'):
 			for f in files:
 				if f.endswith('.bin'):
 					if '_FST' in f:
-						fstfile = os.path.join(root, f)
+						fstfile = os_path.join(root, f)
 					elif '_FNT' in f:
-						fntfile = os.path.join(root, f)
+						fntfile = os_path.join(root, f)
 		if fstfile and fntfile:
 			self.scan.startFile(fntfile, fstfile)
-			os.unlink(fstfile)
-			os.unlink(fntfile)
+			unlink(fstfile)
+			unlink(fntfile)
 		else:
 			self.scan.start(self.scanTuner)
 

@@ -759,7 +759,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if event is not None and not self.eventviewDialog and not eventviewopen:
 			if self.type != EPG_TYPE_SIMILAR:
 				if self.type == EPG_TYPE_INFOBARGRAPH:
-					self.eventviewDialog = self.session.instantiateDialog(EventViewSimple, event, service, skin='InfoBarEventView')
+					self.eventviewDialog = self.session.instantiateDialog(EventViewSimple, event, service, skin='Screens.InfoBar.InfoBarEventView')
 					self.eventviewDialog.show()
 				else:
 					self.session.open(EventViewEPGSelect, event, service, callback=self.eventViewCallback, similarEPGCB=self.openSimilarList)
@@ -771,7 +771,7 @@ class EPGSelection(Screen, HelpableScreen):
 			if self.type != EPG_TYPE_SIMILAR:
 				if self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH:
 					self.eventviewDialog.hide()
-					self.eventviewDialog = self.session.instantiateDialog(EventViewSimple, event, service, skin='InfoBarEventView')
+					self.eventviewDialog = self.session.instantiateDialog(EventViewSimple, event, service, skin='Screens.InfoBar.InfoBarEventView')
 					self.eventviewDialog.show()
 
 	def redButtonPressed(self):

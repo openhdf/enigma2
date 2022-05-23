@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os
+from os import path as os_path, remove
 from threading import Thread, current_thread
 from sys import _current_frames
 from traceback import extract_stack
@@ -30,8 +30,8 @@ class StackTracePrinter(Thread):
 
 	def run(self):
 		while (self.__running == True):
-			if (os.path.isfile("/tmp/doPythonStackTrace")):
-				os.remove("/tmp/doPythonStackTrace")
+			if (os_path.isfile("/tmp/doPythonStackTrace")):
+				remove("/tmp/doPythonStackTrace")
 				if config.crash.pystackonspinner.value:
 					print("StackTrace")
 					code = []

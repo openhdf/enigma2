@@ -11,24 +11,24 @@ from Components.MenuList import MenuList
 from Components.config import config, configfile
 from Components.FileList import MultiFileSelectList
 from Screens.MessageBox import MessageBox
-from os import path, remove, walk, stat, rmdir
+from os import path as os_path, remove, walk, stat, rmdir
 from time import time, ctime
 from datetime import datetime
 from enigma import eTimer, eBackgroundFileEraser, eLabel, getDesktop, gFont, fontRenderClass
 from Tools.TextBoundary import getTextBoundarySize
 from glob import glob
-import sys
+from sys import version_info
 
-import Components.Task
+from Components.Task import job_manager, Job, PythonTask
 
 # Import smtplib for the actual sending function
-import smtplib
-import base64
+from smtplib import SMTP
+from base64 import b64decode
 
 # Here are the email package modules we'll need
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-if sys.version_info[0] >= 3:
+if version_info[0] >= 3:
 	from email.utils import formatdate
 else:
 	from email.Utils import formatdate
@@ -41,10 +41,10 @@ def get_size(start_path=None):
 	if start_path:
 		for dirpath, dirnames, filenames in walk(start_path):
 			for f in filenames:
-				fp = path.join(dirpath, f)
+				fp = os_path.join(dirpath, f)
 				total_size = 0
-				if not path.islink(fp):
-					total_size += path.getsize(fp)
+				if not os_path.islink(fp):
+					total_size += os_path.getsize(fp)
 		return total_size
 	return 0
 
@@ -81,7 +81,7 @@ class LogManagerPoller:
 
 	def TrimTimerJob(self):
 		print('[LogManager] Trim Poll Started')
-		Components.Task.job_manager.AddJob(self.createTrimJob())
+		job_manager.AddJob(self.createTrimJob())
 
 	def TrashTimerJob(self):
 		print('[LogManager] Trash Poll Started')
@@ -89,15 +89,15 @@ class LogManagerPoller:
 		# Components.Task.job_manager.AddJob(self.createTrashJob())
 
 	def createTrimJob(self):
-		job = Components.Task.Job(_("LogManager"))
-		task = Components.Task.PythonTask(job, _("Checking Logs..."))
+		job = Job(_("LogManager"))
+		task = PythonTask(job, _("Checking Logs..."))
 		task.work = self.JobTrim
 		task.weighting = 1
 		return job
 
 	def createTrashJob(self):
-		job = Components.Task.Job(_("LogManager"))
-		task = Components.Task.PythonTask(job, _("Checking Logs..."))
+		job = Job(_("LogManager"))
+		task = PythonTask(job, _("Checking Logs..."))
 		task.work = self.JobTrash
 		task.weighting = 1
 		return job
@@ -111,7 +111,7 @@ class LogManagerPoller:
 		if not config.crash.debug_path.value:
 			for filename in glob('/home/root/logs/*.log'):
 				try:
-					if path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
+					if os_path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
 						fh = open(filename, 'rb+')
 						fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
 						data = fh.read()
@@ -124,7 +124,7 @@ class LogManagerPoller:
 		else:
 			for filename in glob(config.crash.debug_path.value + '*.log'):
 				try:
-					if path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
+					if os_path.getsize(filename) > (config.crash.debugloglimit.value * 1024 * 1024):
 						fh = open(filename, 'rb+')
 						fh.seek(-(config.crash.debugloglimit.value * 1024 * 1024), 2)
 						data = fh.read()
@@ -155,8 +155,8 @@ class LogManagerPoller:
 			config.crash.lastfulljobtrashtime.save()
 			configfile.save()
 			for mount in mounts:
-				if path.isdir(path.join(mount, 'logs')):
-					matches.append(path.join(mount, 'logs'))
+				if os_path.isdir(os_path.join(mount, 'logs')):
+					matches.append(os_path.join(mount, 'logs'))
 			matches.append('/home/root/logs')
 		else:
 			#small JobTrash (in selected log file dir only) twice a day
@@ -173,7 +173,7 @@ class LogManagerPoller:
 				for root, dirs, files in walk(logsfolder, topdown=False):
 					for name in files:
 						try:
-							fn = path.join(root, name)
+							fn = os_path.join(root, name)
 							st = stat(fn)
 							#print "Logname: %s" % fn
 							#print "Last created: %s" % ctime(st.st_ctime)
@@ -190,7 +190,7 @@ class LogManagerPoller:
 					# Remove empty directories if possible
 					for name in dirs:
 						try:
-							rmdir(path.join(root, name))
+							rmdir(os_path.join(root, name))
 						except:
 							pass
 					candidates.sort()
@@ -371,7 +371,7 @@ class LogManager(Screen):
 		if answer is True:
 			self.sel = self["list"].getCurrent()[0]
 			self["list"].instance.moveSelectionTo(0)
-			if path.exists(self.defaultDir + self.sel[0]):
+			if os_path.exists(self.defaultDir + self.sel[0]):
 				remove(self.defaultDir + self.sel[0])
 			self["list"].changeDir(self.defaultDir)
 			self["LogsSize"].update(config.crash.debug_path.value)
@@ -486,12 +486,12 @@ class LogManager(Screen):
 
 			# Send the email via our own SMTP server.
 			wos_user = 'crashlogs@dummy.org'
-			wos_pwd = base64.b64decode('NDJJWnojMEpldUxX')
+			wos_pwd = b64decode('NDJJWnojMEpldUxX')
 
 			try:
 				print("connecting to server: mail.dummy.org")
 				#socket.setdefaulttimeout(30)
-				s = smtplib.SMTP("mail.dummy.org", 26)
+				s = SMTP("mail.dummy.org", 26)
 				s.login(wos_user, wos_pwd)
 				if config.logmanager.usersendcopy.value:
 					s.sendmail(fromlogman, [tocrashlogs, fromlogman], msg.as_string())
@@ -546,7 +546,7 @@ class LogManagerViewLog(Screen):
 		self["list"].instance.setFont(font)
 		fontwidth = getTextBoundarySize(self.instance, font, self["list"].instance.size(), _(" ")).width()
 		listwidth = int(self["list"].instance.size().width() / fontwidth) - 2
-		if path.exists(self.logfile):
+		if os_path.exists(self.logfile):
 			for line in open(self.logfile).readlines():
 				line = line.replace('\t', ' ' * 9)
 				if len(line) > listwidth:
@@ -580,7 +580,7 @@ class LogManagerViewLog(Screen):
 class LogManagerFb(Screen):
 	def __init__(self, session, logpath=None):
 		if logpath is None:
-			if path.isdir(config.logmanager.path.value):
+			if os_path.isdir(config.logmanager.path.value):
 				logpath = config.logmanager.path.value
 			else:
 				logpath = "/"

@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import time
+from time import time, sleep
 
 real_time = None
 time_offset = 0
@@ -8,7 +8,7 @@ time_offset = 0
 
 def setRealtime():
 	global real_time
-	real_time = time.time
+	real_time = time
 
 
 def setIdealtime():
@@ -29,7 +29,7 @@ def my_time():
 	return real_time() - time_offset
 
 
-time.time = my_time
+time = my_time
 
 
 def my_sleep(sleep):
@@ -38,4 +38,4 @@ def my_sleep(sleep):
 	print("(faking %f seconds)" % sleep)
 
 
-time.sleep = my_sleep
+sleep = my_sleep

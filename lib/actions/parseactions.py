@@ -1,7 +1,7 @@
 # takes a header file, outputs action ids
 from __future__ import print_function
-import tokenize
-import sys
+from tokenize import generate_tokens
+from sys import stderr, argv
 
 
 def filter(g):
@@ -22,9 +22,9 @@ def filter(g):
 
 
 def do_file(f, mode):
-	tokens = filter(tokenize.generate_tokens(open(f, 'r').readline))
+	tokens = filter(generate_tokens(open(f, 'r').readline))
 
-	sys.stderr.write("parsing %s\n" % f)
+	stderr.write("parsing %s\n" % f)
 
 	state = 0
 
@@ -104,7 +104,7 @@ def do_file(f, mode):
 					counter += 1
 
 
-mode = sys.argv[1]
+mode = argv[1]
 
 if mode == "parse":
 	print("""
@@ -115,7 +115,7 @@ struct eActionList
 	int m_id;
 } actions[]={""")
 
-for x in sys.argv[2:]:
+for x in argv[2:]:
 	do_file(x, mode)
 
 if mode == "parse":

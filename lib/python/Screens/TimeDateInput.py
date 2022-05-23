@@ -5,8 +5,8 @@ from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-import time
-import datetime
+from time import time, localtime, mktime
+from datetime import datetime
 
 
 class TimeDateInput(Screen, ConfigListScreen):
@@ -35,11 +35,11 @@ class TimeDateInput(Screen, ConfigListScreen):
 		if conf_time:
 			self.save_mask |= 1
 		else:
-			conf_time = ConfigClock(default=time.time()),
+			conf_time = ConfigClock(default=time()),
 		if conf_date:
 			self.save_mask |= 2
 		else:
-			conf_date = ConfigDateTime(default=time.time(), formatstring=_("%d.%B %Y"), increment=86400)
+			conf_date = ConfigDateTime(default=time(), formatstring=_("%d.%B %Y"), increment=86400)
 		self.timeinput_date = conf_date
 		self.timeinput_time = conf_time
 
@@ -55,9 +55,9 @@ class TimeDateInput(Screen, ConfigListScreen):
 		self.keyGo()
 
 	def getTimestamp(self, date, mytime):
-		d = time.localtime(date)
-		dt = datetime.datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
-		return int(time.mktime(dt.timetuple()))
+		d = localtime(date)
+		dt = datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
+		return int(mktime(dt.timetuple()))
 
 	def keyGo(self):
 		time = self.getTimestamp(self.timeinput_date.value, self.timeinput_time.value)

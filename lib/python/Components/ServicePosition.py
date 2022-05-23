@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from Components.PerServiceDisplay import PerServiceDisplay, PerServiceBase
 from Components.GUIComponent import GUIComponent
 from enigma import eTimer, iPlayableService, ePositionGauge
-import time
+from time import localtime
 
 
 class ServicePosition(PerServiceDisplay):
@@ -70,7 +70,7 @@ class ServicePosition(PerServiceDisplay):
 				if l != -1:
 					l += self.relative_base
 					try:
-						t = time.localtime(l)
+						t = localtime(l)
 						timestr = "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
 					except ValueError:
 						timestr = ""

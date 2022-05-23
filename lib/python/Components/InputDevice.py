@@ -4,15 +4,15 @@ from Components.config import config, ConfigSlider, ConfigSubsection, ConfigYesN
 from Components.SystemInfo import SystemInfo
 from fcntl import ioctl
 from boxbranding import getBoxType
-import os
-import struct
-import platform
+from os import path as os_path, listdir, open as os_open, O_RDWR, O_NONBLOCK, close as os_close, write as os_write
+from struct import pack
+from platform import machine
 
 # include/uapi/asm-generic/ioctl.h
 IOC_NRBITS = 8
 IOC_TYPEBITS = 8
-IOC_SIZEBITS = 13 if "mips" in platform.machine() else 14
-IOC_DIRBITS = 3 if "mips" in platform.machine() else 2
+IOC_SIZEBITS = 13 if "mips" in machine() else 14
+IOC_DIRBITS = 3 if "mips" in machine() else 2
 
 IOC_NRSHIFT = 0
 IOC_TYPESHIFT = IOC_NRSHIFT + IOC_NRBITS
@@ -34,15 +34,15 @@ class inputDevices:
 		self.getInputDevices()
 
 	def getInputDevices(self):
-		devices = sorted(os.listdir("/dev/input/"))
+		devices = sorted(listdir("/dev/input/"))
 
 		for evdev in devices:
 			try:
 				buffer = "\0" * 512
-				self.fd = os.open("/dev/input/" + evdev, os.O_RDWR | os.O_NONBLOCK)
+				self.fd = os_open("/dev/input/" + evdev, O_RDWR | O_NONBLOCK)
 				self.name = ioctl(self.fd, EVIOCGNAME(256), buffer).decode()
 				self.name = self.name[:self.name.find("\0")]
-				os.close(self.fd)
+				os_close(self.fd)
 			except (IOError, OSError) as err:
 				print("[InputDevice] getInputDevices " + evdev + " <ERROR: ioctl(EVIOCGNAME): " + str(err) + " >")
 				self.name = None
@@ -102,28 +102,28 @@ class inputDevices:
 	def setDefaults(self, device):
 		print("[InputDevice] setDefaults for device %s" % device)
 		self.setDeviceAttribute(device, 'configuredName', None)
-		event_repeat = struct.pack('LLHHi', 0, 0, 0x14, 0x01, 100)
-		event_delay = struct.pack('LLHHi', 0, 0, 0x14, 0x00, 700)
-		fd = os.open("/dev/input/" + device, os.O_RDWR)
-		os.write(fd, event_repeat)
-		os.write(fd, event_delay)
-		os.close(fd)
+		event_repeat = pack('LLHHi', 0, 0, 0x14, 0x01, 100)
+		event_delay = pack('LLHHi', 0, 0, 0x14, 0x00, 700)
+		fd = os_open("/dev/input/" + device, O_RDWR)
+		os_write(fd, event_repeat)
+		os_write(fd, event_delay)
+		os_close(fd)
 
 	def setRepeat(self, device, value): #REP_PERIOD
 		if self.getDeviceAttribute(device, 'enabled'):
 			print("[InputDevice] setRepeat for device %s to %d ms" % (device, value))
-			event = struct.pack('LLHHi', 0, 0, 0x14, 0x01, int(value))
-			fd = os.open("/dev/input/" + device, os.O_RDWR)
-			os.write(fd, event)
-			os.close(fd)
+			event = pack('LLHHi', 0, 0, 0x14, 0x01, int(value))
+			fd = os_open("/dev/input/" + device, O_RDWR)
+			os_write(fd, event)
+			os_close(fd)
 
 	def setDelay(self, device, value): #REP_DELAY
 		if self.getDeviceAttribute(device, 'enabled'):
 			print("[InputDevice] setDelay for device %s to %d ms" % (device, value))
-			event = struct.pack('LLHHi', 0, 0, 0x14, 0x00, int(value))
-			fd = os.open("/dev/input/" + device, os.O_RDWR)
-			os.write(fd, event)
-			os.close(fd)
+			event = pack('LLHHi', 0, 0, 0x14, 0x00, int(value))
+			fd = os_open("/dev/input/" + device, O_RDWR)
+			os_write(fd, event)
+			os_close(fd)
 
 
 class InitInputDevices:
@@ -213,7 +213,7 @@ config.plugins.remotecontroltype.rctype = ConfigInteger(default=0)
 
 class RcTypeControl():
 	def __init__(self):
-		if SystemInfo["RcTypeChangable"] and os.path.exists('/proc/stb/info/boxtype'):
+		if SystemInfo["RcTypeChangable"] and os_path.exists('/proc/stb/info/boxtype'):
 			self.isSupported = True
 			self.boxType = open('/proc/stb/info/boxtype', 'r').read().strip()
 			if config.plugins.remotecontroltype.rctype.value != 0:

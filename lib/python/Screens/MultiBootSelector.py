@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from os import mkdir, path
+from os import mkdir, path as os_path
 from shutil import copyfile
 from Components.Sources.StaticText import StaticText
 from Components.ActionMap import ActionMap
@@ -81,16 +81,16 @@ class MultiBootSelector(Screen):
 
 	def unmountCallback(self, value, data=None, retval=None, extra_args=None):
 		self.container.killAll()
-		if not path.ismount(self.mountDir):
+		if not os_path.ismount(self.mountDir):
 			rmdir(self.mountDir)
 		self.close(value)
 
 	def getBootOptions(self, value=None):
 		self.container = Console()
-		if path.isdir(self.mountDir) and path.ismount(self.mountDir):
+		if os_path.isdir(self.mountDir) and os_path.ismount(self.mountDir):
 			self.getImagesList()
 		else:
-			if not path.isdir(self.mountDir):
+			if not os_path.isdir(self.mountDir):
 				mkdir(self.mountDir)
 			self.container.ePopen("mount %s %s" % (SystemInfo["MBbootdevice"], self.mountDir), self.getImagesList)
 
@@ -133,15 +133,15 @@ class MultiBootSelector(Screen):
 			print("[MultiBootSelector] reboot3 slotinfo = %s" % SystemInfo["canMultiBoot"])
 			if SystemInfo["canMode12"]:
 				if "BOXMODE" in SystemInfo["canMultiBoot"][slot]['startupfile']:
-					startupfile = path.join(self.mountDir, "%s_%s" % (SystemInfo["canMultiBoot"][slot]['startupfile'].rsplit('_', 1)[0], boxmode))
-					copyfile(startupfile, path.join(self.mountDir, "STARTUP"))
+					startupfile = os_path.join(self.mountDir, "%s_%s" % (SystemInfo["canMultiBoot"][slot]['startupfile'].rsplit('_', 1)[0], boxmode))
+					copyfile(startupfile, os_path.join(self.mountDir, "STARTUP"))
 				else:
-					f = open(path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]['startupfile']), "r").read()
+					f = open(os_path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]['startupfile']), "r").read()
 					if boxmode == 12:
 						f = f.replace("boxmode=1'", "boxmode=12'").replace("%s" % SystemInfo["canMode12"][0], "%s" % SystemInfo["canMode12"][1])
-					open(path.join(self.mountDir, "STARTUP"), "w").write(f)
+					open(os_path.join(self.mountDir, "STARTUP"), "w").write(f)
 			else:
-				copyfile(path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]["startupfile"]), path.join(self.mountDir, "STARTUP"))
+				copyfile(os_path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]["startupfile"]), os_path.join(self.mountDir, "STARTUP"))
 			self.session.openWithCallback(self.restartImage, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
 
 	def restartImage(self, answer):
@@ -213,10 +213,10 @@ class QuickBootSelector(Screen):
 
 	def getBootOptions(self, value=None):
 		self.container = Console()
-		if path.isdir(self.mountDir) and path.ismount(self.mountDir):
+		if os_path.isdir(self.mountDir) and os_path.ismount(self.mountDir):
 			self.getImagesList()
 		else:
-			if not path.isdir(self.mountDir):
+			if not os_path.isdir(self.mountDir):
 				mkdir(self.mountDir)
 			self.container.ePopen("mount %s %s" % (SystemInfo["MBbootdevice"], self.mountDir), self.getImagesList)
 

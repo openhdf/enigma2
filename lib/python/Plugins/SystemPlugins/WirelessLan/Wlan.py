@@ -1,11 +1,11 @@
 from __future__ import absolute_import
 from __future__ import print_function
 from os import system, path as os_path
-import sys
-import re
-import six
+from sys import version_info
+from re import compile as re_compile
+from six import ensure_str
 
-if sys.version_info[0] < 3:
+if version_info[0] < 3:
 	from string import maketrans
 
 
@@ -47,7 +47,7 @@ class Wlan:
 				b += ' '
 			else:
 				b += chr(i)
-		if sys.version_info[0] >= 3:
+		if version_info[0] >= 3:
 			self.asciitrans = str.maketrans(a, b)
 		else:
 			self.asciitrans = maketrans(a, b)
@@ -56,7 +56,7 @@ class Wlan:
 		return str.translate(self.asciitrans)
 
 	def getWirelessInterfaces(self):
-		device = re.compile('[a-z]{2,}[0-9]*:')
+		device = re_compile('[a-z]{2,}[0-9]*:')
 		ifnames = []
 
 		fp = open('/proc/net/wireless', 'r')
@@ -400,7 +400,7 @@ class Status:
 		self.WlanConsole.ePopen(cmd, self.iwconfigFinished, iface)
 
 	def iwconfigFinished(self, result, retval, extra_args):
-		result = six.ensure_str(result)
+		result = ensure_str(result)
 		iface = extra_args
 		ssid = "off"
 		data = {'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False, 'channel': False, 'encryption_type': False, 'frequency': False, 'frequency_norm': False}

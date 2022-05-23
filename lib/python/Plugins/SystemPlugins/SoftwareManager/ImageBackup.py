@@ -16,13 +16,13 @@ from Components import Harddisk
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from time import time, strftime, localtime
-from os import listdir, makedirs, path, statvfs, system, walk
-import sys
-if sys.version_info[0] >= 3:
-	import subprocess
+from os import listdir, makedirs, path as os_path, statvfs, system, walk
+from sys import version_info
+if version_info[0] >= 3:
+	from subprocess import getoutput
 else:
-	import commands
-import datetime
+	from commands import getoutput
+from datetime import timedelta
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem
 
 VERSION = _("Version %s %s.1") % (getImageDistro().upper(), getImageVersion())
@@ -147,7 +147,7 @@ class ImageBackup(Screen):
 			self.error_files = ''
 
 	def check_hdd(self):
-		if not path.exists("/media/hdd"):
+		if not os_path.exists("/media/hdd"):
 			self.session.open(MessageBox, _("No /hdd found !!\nPlease make sure you have a HDD mounted.\n"), type=MessageBox.TYPE_ERROR)
 			return False
 		if Freespace('/media/hdd') < 300000:
@@ -260,7 +260,7 @@ class ImageBackup(Screen):
 			self.path = PATH
 			if SystemInfo["HasRootSubdir"]:
 				for name in listdir(self.path):
-					if path.isfile(path.join(self.path, name)):
+					if os_path.isfile(os_path.join(self.path, name)):
 						try:
 							cmdline = self.find_rootfssubdir(name)
 							if cmdline == None:
@@ -273,7 +273,7 @@ class ImageBackup(Screen):
 				files.insert(0, "STARTUP")
 			else:
 				for name in listdir(self.path):
-					if path.isfile(path.join(self.path, name)):
+					if os_path.isfile(os_path.join(self.path, name)):
 						try:
 							if self.MACHINEBUILD in ("hd51", "vs1500", "h7"):
 								cmdline = self.read_startup("/boot/" + name).split("=", 3)[3].split(" ", 1)[0]
@@ -323,12 +323,12 @@ class ImageBackup(Screen):
 		self.WORKDIR = "%s/bi" % self.DIRECTORY
 		self.TARGET = "XX"
 
-		if not path.exists(self.MKFS):
+		if not os_path.exists(self.MKFS):
 			text = "%s not found !!" % self.MKFS
 			self.session.open(MessageBox, _(text), type=MessageBox.TYPE_ERROR)
 			return
 
-		if not path.exists(self.NANDDUMP):
+		if not os_path.exists(self.NANDDUMP):
 			text = "%s not found !!" % self.NANDDUMP
 			self.session.open(MessageBox, _(text), type=MessageBox.TYPE_ERROR)
 			return
@@ -364,9 +364,9 @@ class ImageBackup(Screen):
 		self.backuproot = "/tmp/bi/root"
 		if SystemInfo["HaveMultiBoot"]:
 			self.backuproot = "/tmp/bi/RootSubdir/"
-		if not path.exists(self.WORKDIR):
+		if not os_path.exists(self.WORKDIR):
 			makedirs(self.WORKDIR)
-		if not path.exists(self.backuproot):
+		if not os_path.exists(self.backuproot):
 			makedirs(self.backuproot)
 		system("sync")
 		if SystemInfo["HaveMultiBoot"]:
@@ -566,7 +566,7 @@ class ImageBackup(Screen):
 
 	def doFullBackupCB(self):
 		if HaveGZkernel:
-			ret = commands.getoutput(' gzip -d %s/vmlinux.gz -c > /tmp/vmlinux.bin' % self.WORKDIR)
+			ret = getoutput(' gzip -d %s/vmlinux.gz -c > /tmp/vmlinux.bin' % self.WORKDIR)
 			if ret:
 				text = "Kernel dump error\n"
 				text += "Please Flash your Kernel new and Backup again"
@@ -583,7 +583,7 @@ class ImageBackup(Screen):
 		cmdlist.append('echo "' + _("Now building the Backup Image") + '"')
 
 		system('rm -rf %s' % self.MAINDEST)
-		if not path.exists(self.MAINDEST):
+		if not os_path.exists(self.MAINDEST):
 			makedirs(self.MAINDEST)
 		f = open("%s/imageversion" % self.MAINDEST, "w")
 		f.write(self.IMAGEVERSION)
@@ -644,14 +644,14 @@ class ImageBackup(Screen):
 		if self.MODEL in ("gbquad", "gbquadplus", "gb800ue", "gb800ueplus", "gbultraue", "gbultraueh", "twinboxlcd", "twinboxlcdci", "singleboxlcd", "sf208", "sf228"):
 			lcdwaitkey = '/usr/share/lcdwaitkey.bin'
 			lcdwarning = '/usr/share/lcdwarning.bin'
-			if path.exists(lcdwaitkey):
+			if os_path.exists(lcdwaitkey):
 				system('cp %s %s/lcdwaitkey.bin' % (lcdwaitkey, self.MAINDEST))
-			if path.exists(lcdwarning):
+			if os_path.exists(lcdwarning):
 				system('cp %s %s/lcdwarning.bin' % (lcdwarning, self.MAINDEST))
 
 		if self.MODEL in ("e4hdultra", "protek4k"):
 			lcdwarning = '/usr/share/lcdflashing.bmp'
-			if path.exists(lcdwarning):
+			if os_path.exists(lcdwarning):
 				system('cp %s %s/lcdflashing.bmp' % (lcdwarning, self.MAINDEST))
 
 		if self.MODEL == "gb800solo":
@@ -680,7 +680,7 @@ class ImageBackup(Screen):
 
 		if SystemInfo["HaveMultiBoot"] and not SystemInfo["HasRootSubdir"]:
 			imageversionfile = "/tmp/bi/RootSubdir/etc/image-version"
-			if path.exists(imageversionfile) is True:
+			if os_path.exists(imageversionfile) is True:
 				system("less /tmp/bi/RootSubdir/etc/image-version | grep build= | cut -d= -f2 > /tmp/.imagebuild")
 				brand = open("/tmp/.imagebuild", "r")
 				self.backupbuild = brand.readline().replace('\n', '').lower()
@@ -702,15 +702,15 @@ class ImageBackup(Screen):
 		file_found = True
 
 		if self.EMMCIMG == "usb_update.bin" and self.list[self.selection] == "Recovery":
-			if not path.isfile("%s/%s" % (self.MAINDESTROOT, self.EMMCIMG)):
+			if not os_path.isfile("%s/%s" % (self.MAINDESTROOT, self.EMMCIMG)):
 				print("[Image Backup] %s file not found" % (self.EMMCIMG))
 				file_found = False
 		else:
-			if not path.isfile("%s/%s" % (self.MAINDEST, self.ROOTFSBIN)):
+			if not os_path.isfile("%s/%s" % (self.MAINDEST, self.ROOTFSBIN)):
 				print("[Image Backup] %s file not found" % (self.ROOTFSBIN))
 				file_found = False
 
-			if not path.isfile("%s/%s" % (self.MAINDEST, self.KERNELBIN)):
+			if not os_path.isfile("%s/%s" % (self.MAINDEST, self.KERNELBIN)):
 				print("[Image Backup] %s file not found" % (self.KERNELBIN))
 				file_found = False
 
@@ -754,7 +754,7 @@ class ImageBackup(Screen):
 		cmdlist.append("sleep 5")
 		END = time()
 		DIFF = int(END - self.START)
-		TIMELAP = str(datetime.timedelta(seconds=DIFF))
+		TIMELAP = str(timedelta(seconds=DIFF))
 		cmdlist.append('echo "' + _("Time required for this process: %s") % TIMELAP + '\n"')
 
 		self.session.open(Console, title=self.TITLE, cmdlist=cmdlist, closeOnSuccess=False)
@@ -766,7 +766,7 @@ class ImageBackup(Screen):
 		AboutText += _("Model: %s %s\n") % (getMachineBrand(), getMachineName())
 		AboutText += _("Backup Date: %s\n") % strftime("%Y-%m-%d", localtime(self.START))
 
-		if path.exists('/proc/stb/info/chipset'):
+		if os_path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset: BCM%s") % about.getChipSetString().lower().replace('\n', '').replace('bcm', '') + "\n"
 
 		AboutText += _("CPU: %s") % about.getCPUString() + "\n"
@@ -784,14 +784,8 @@ class ImageBackup(Screen):
 		AboutText += _("Drivers:\t%s") % driversdate + "\n"
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
 		AboutText += _("[Enigma2 Settings]\n")
-		if sys.version_info[0] >= 3:
-			AboutText += subprocess.getoutput("cat /etc/enigma2/settings")
-		else:
-			AboutText += commands.getoutput("cat /etc/enigma2/settings")
+		AboutText += getoutput("cat /etc/enigma2/settings")
 		AboutText += _("\n[Installed Plugins]\n")
-		if sys.version_info[0] >= 3:
-			AboutText += subprocess.getoutput("opkg list_installed | grep enigma2-plugin-")
-		else:
-			AboutText += commands.getoutput("opkg list_installed | grep enigma2-plugin-")
+		AboutText += getoutput("opkg list_installed | grep enigma2-plugin-")
 
 		return AboutText

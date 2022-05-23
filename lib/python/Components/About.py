@@ -6,8 +6,8 @@ from socket import AF_INET, SOCK_DGRAM, inet_ntoa, socket
 from struct import pack, unpack
 from sys import maxsize
 from sys import modules
-import os
-import time
+from os import stat
+from time import localtime, strftime
 from Tools.Directories import fileReadLine, fileReadLines
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -19,9 +19,9 @@ def getVersionString():
 
 def getFlashDateString():
 	try:
-		tm = time.localtime(os.stat("/etc/version").st_mtime)
+		tm = localtime(stat("/etc/version").st_mtime)
 		if tm.tm_year >= 2011:
-			return time.strftime(_("%d.%m.%Y - %H:%M:%S"), tm)
+			return strftime(_("%d.%m.%Y - %H:%M:%S"), tm)
 		else:
 			return _("unknown")
 	except:

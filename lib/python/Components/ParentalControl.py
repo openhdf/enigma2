@@ -10,8 +10,8 @@ from Tools import Notifications
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Tools.Notifications import AddPopup
 from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
-import time
-import six
+from time import time
+from six import iteritems
 
 TYPE_SERVICE = "SERVICE"
 TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
@@ -163,7 +163,7 @@ class ParentalControl:
 		self.hideBlacklist()
 
 	def getCurrentTimeStamp(self):
-		return time.time()
+		return time()
 
 	def getPinList(self):
 		return [x.value for x in config.ParentalControl.servicepin]
@@ -193,7 +193,7 @@ class ParentalControl:
 		#Replaces saveWhiteList and saveBlackList:
 		#I don't like to have two functions with identical code...
 		file = open(resolveFilename(SCOPE_CONFIG, sWhichList), 'w')
-		for sService, sType in six.iteritems(vList):
+		for sService, sType in iteritems(vList):
 			#Only Services that are selected directly and Bouqets are saved.
 			#Services that are added by a bouquet are not saved.
 			#This is the reason for the change in self.whitelist and self.blacklist

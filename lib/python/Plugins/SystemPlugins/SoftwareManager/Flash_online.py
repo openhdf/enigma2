@@ -14,12 +14,11 @@ from Components.Console import Console
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetBoxName, GetCurrentImage, GetImagelist
 from enigma import eTimer, fbClass
-import json
-import os
-import shutil
-import shutil
-import time
-import zipfile
+from json import load
+from os import path as os_path, sep, listdir, remove, mkdir, access, W_OK, statvfs, stat, major, minor, makedirs, unlink, walk
+from shutil import copyfile, rmtree
+from time import time
+from zipfile import ZipFile
 from six.moves.urllib.request import urlopen, Request
 
 
@@ -93,15 +92,15 @@ class FlashOnline(Screen):
 	def getImagesList(self):
 
 		def getImages(files):
-			for _file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
+			for _file in [x for x in files if os_path.splitext(x)[1] == ".zip" and box in x]:
 				try:
-					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(_file).namelist()]):
+					if checkimagefiles([x.split(sep)[-1] for x in ZipFile(_file).namelist()]):
 						imagetyp = _("Downloaded Images")
 						if (_file.find("backup") != -1):
 							imagetyp = _("Fullbackup Images")
 						if imagetyp not in self.imagesList:
 							self.imagesList[imagetyp] = {}
-						self.imagesList[imagetyp][_file] = {'link': _file, 'name': _file.split(os.sep)[-1]}
+						self.imagesList[imagetyp][_file] = {'link': _file, 'name': _file.split(sep)[-1]}
 				except:
 					pass
 
@@ -109,29 +108,29 @@ class FlashOnline(Screen):
 			box = GetBoxName()
 			if not self.jsonlist:
 				try:
-					self.jsonlist = dict(json.load(urlopen(Request('%s/%s' % (feedurl, box), headers={'User-Agent': 'Mozilla/5.0'}))))
+					self.jsonlist = dict(load(urlopen(Request('%s/%s' % (feedurl, box), headers={'User-Agent': 'Mozilla/5.0'}))))
 				except:
 					pass
 			self.imagesList = dict(self.jsonlist)
 
-			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
+			for media in ['/media/%s' % x for x in listdir('/media')] + (['/media/net/%s' % x for x in listdir('/media/net')] if os_path.isdir('/media/net') else []):
 				mediaRoot = media
-				if not(SystemInfo['HasMMC'] and "/mmc" in media) and os.path.isdir(media):
+				if not(SystemInfo['HasMMC'] and "/mmc" in media) and os_path.isdir(media):
 					for customDir in self.customDirs:
 						media = mediaRoot
-						getImages([os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
-						if customDir in os.listdir(media):
-							media = os.path.join(media, customDir)
-							if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
-								getImages([os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
-								for _dir in [_dir for _dir in [os.path.join(media, _dir) for _dir in os.listdir(media)] if os.path.isdir(_dir) and os.path.splitext(_dir)[1] == ".unzipped"]:
-									shutil.rmtree(_dir)
+						getImages([os_path.join(media, x) for x in listdir(media) if os_path.splitext(x)[1] == ".zip" and box in x])
+						if customDir in listdir(media):
+							media = os_path.join(media, customDir)
+							if os_path.isdir(media) and not os_path.islink(media) and not os_path.ismount(media):
+								getImages([os_path.join(media, x) for x in listdir(media) if os_path.splitext(x)[1] == ".zip" and box in x])
+								for _dir in [_dir for _dir in [os_path.join(media, _dir) for _dir in listdir(media)] if os_path.isdir(_dir) and os_path.splitext(_dir)[1] == ".unzipped"]:
+									rmtree(_dir)
 
 		_list = []
 		for catagorie in reversed(sorted(list(self.imagesList.keys()))):
 			if catagorie in self.expanded:
 				_list.append(ChoiceEntryComponent('expanded', ((str(catagorie)), "Expander")))
-				for image in reversed(sorted(list(self.imagesList[catagorie].keys()), key=lambda x: x.split(os.sep)[-1])):
+				for image in reversed(sorted(list(self.imagesList[catagorie].keys()), key=lambda x: x.split(sep)[-1])):
 					_list.append(ChoiceEntryComponent('verticalline', ((str(self.imagesList[catagorie][image]['name'])), str(self.imagesList[catagorie][image]['link']))))
 			else:
 				for image in list(self.imagesList[catagorie].keys()):
@@ -165,10 +164,10 @@ class FlashOnline(Screen):
 		currentSelected = self["list"].l.getCurrentSelection()[0][1]
 		if not("://" in currentSelected or currentSelected in ["Expander", "Waiter"]):
 			try:
-				os.remove(currentSelected)
+				remove(currentSelected)
 				currentSelected = ".".join([currentSelected[:-4], "unzipped"])
-				if os.path.isdir(currentSelected):
-					shutil.rmtree(currentSelected)
+				if os_path.isdir(currentSelected):
+					rmtree(currentSelected)
 				self.setIndex = self["list"].getSelectedIndex()
 				self.imagesList = {}
 				self.getImagesList()
@@ -285,24 +284,24 @@ class FlashImage(Screen):
 
 			def findmedia(paths):
 				def avail(path):
-					if not '/mmc' in path and os.path.isdir(path) and os.access(path, os.W_OK):
+					if not '/mmc' in path and os_path.isdir(path) and access(path, W_OK):
 						try:
-							statvfs = os.statvfs(path)
+							statvfs = statvfs(path)
 							return (statvfs.f_bavail * statvfs.f_frsize) / (1 << 20)
 						except:
 							pass
 
 				def checkIfDevice(path, diskstats):
-					st_dev = os.stat(path).st_dev
-					return (os.major(st_dev), os.minor(st_dev)) in diskstats
+					st_dev = stat(path).st_dev
+					return (major(st_dev), minor(st_dev)) in diskstats
 
 				diskstats = [(int(x[0]), int(x[1])) for x in [x.split()[0:3] for x in open('/proc/diskstats').readlines()] if x[2].startswith("sd")]
 				for path in paths:
-					if os.path.isdir(path) and checkIfDevice(path, diskstats) and avail(path) > 500:
+					if os_path.isdir(path) and checkIfDevice(path, diskstats) and avail(path) > 500:
 						return (path, True)
 				mounts = []
 				devices = []
-				for path in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
+				for path in ['/media/%s' % x for x in listdir('/media')] + (['/media/net/%s' % x for x in listdir('/media/net')] if os_path.isdir('/media/net') else []):
 					if checkIfDevice(path, diskstats):
 						devices.append((path, avail(path)))
 					else:
@@ -315,15 +314,15 @@ class FlashImage(Screen):
 
 			if self.destination:
 
-				destination = os.path.join(self.destination, 'images')
-				self.zippedimage = "://" in self.source and os.path.join(destination, self.imagename) or self.source
-				self.unzippedimage = os.path.join(destination, '%s.unzipped' % self.imagename[:-4])
+				destination = os_path.join(self.destination, 'images')
+				self.zippedimage = "://" in self.source and os_path.join(destination, self.imagename) or self.source
+				self.unzippedimage = os_path.join(destination, '%s.unzipped' % self.imagename[:-4])
 
 				try:
-					if os.path.isfile(destination):
-						os.remove(destination)
-					if not os.path.isdir(destination):
-						os.mkdir(destination)
+					if os_path.isfile(destination):
+						remove(destination)
+					if not os_path.isdir(destination):
+						mkdir(destination)
 					if isDevice or 'no_backup' == retval:
 						self.startBackupsettings(retval)
 					else:
@@ -361,11 +360,11 @@ class FlashImage(Screen):
 		Settings = False
 		AllPlugins = False
 		noPlugins = False
-		if os.path.exists('/media/hdd/images/config/settings'):
+		if os_path.exists('/media/hdd/images/config/settings'):
 			Settings = True
-		if os.path.exists('/media/hdd/images/config/plugins'):
+		if os_path.exists('/media/hdd/images/config/plugins'):
 			AllPlugins = True
-		if os.path.exists('/media/hdd/images/config/noplugins'):
+		if os_path.exists('/media/hdd/images/config/noplugins'):
 			noPlugins = True
 
 		if Settings and noPlugins:
@@ -393,7 +392,7 @@ class FlashImage(Screen):
 				self.recordcheck = True
 				rec = self.session.nav.RecordTimer.isRecording()
 				next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
-				if rec or (next_rec_time > 0 and (next_rec_time - time.time()) < 360):
+				if rec or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 					self.answer = answer
 					self.session.openWithCallback(self.recordWarning, MessageBox, _("Recording(s) are in progress or coming up in few seconds!") + '\n' + _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()), default=False)
 					return
@@ -404,16 +403,16 @@ class FlashImage(Screen):
 				restoreSettingsnoPlugin = True
 			if answer[1] == "restoresettingsandallplugins":
 				try:
-					if not os.path.exists('/media/hdd/images'):
-						os.makedirs('/media/hdd/images')
+					if not os_path.exists('/media/hdd/images'):
+						makedirs('/media/hdd/images')
 					print("AfterFlashAction: create /media/hdd/images/hdfrestore")
 					print("AfterFlashAction: filename:", self.fullbackupfilename)
 					backupsourcefile = self.fullbackupfilename
 					backupdestfile = '/media/hdd/images/hdfrestore'
-					if not os.path.exists(backupsourcefile):
+					if not os_path.exists(backupsourcefile):
 						print("AfterFlashAction: No settings found.")
 					else:
-						shutil.copyfile(backupsourcefile, backupdestfile)
+						copyfile(backupsourcefile, backupdestfile)
 				except:
 					print("AfterFlashAction: failed to create /media/hdd/images/hdfrestore")
 			if restoreSettings:
@@ -421,60 +420,60 @@ class FlashImage(Screen):
 			if answer[1] != "abort":
 				if restoreSettings:
 					try:
-						if not os.path.exists('/media/hdd/images/config'):
-							os.makedirs('/media/hdd/images/config')
+						if not os_path.exists('/media/hdd/images/config'):
+							makedirs('/media/hdd/images/config')
 						open('/media/hdd/images/config/settings', 'w').close()
 					except:
 						print("[FlashOnline] postFlashActionCallback: failed to create /media/hdd/images/config/settings")
 				else:
-					if os.path.exists('/media/hdd/images/config/settings'):
-						os.unlink('/media/hdd/images/config/settings')
+					if os_path.exists('/media/hdd/images/config/settings'):
+						unlink('/media/hdd/images/config/settings')
 				if restoreAllPlugins:
 					try:
-						if not os.path.exists('/media/hdd/images/config'):
-							os.makedirs('/media/hdd/images/config')
+						if not os_path.exists('/media/hdd/images/config'):
+							makedirs('/media/hdd/images/config')
 						open('/media/hdd/images/config/plugins', 'w').close()
 					except:
 						print("[FlashOnline] postFlashActionCallback: failed to create /media/hdd/images/config/plugins")
 				else:
-					if os.path.exists('/media/hdd/images/config/plugins'):
-						os.unlink('/media/hdd/images/config/plugins')
+					if os_path.exists('/media/hdd/images/config/plugins'):
+						unlink('/media/hdd/images/config/plugins')
 				if restoreSettingsnoPlugin:
 					try:
-						if not os.path.exists('/media/hdd/images/config'):
-							os.makedirs('/media/hdd/images/config')
+						if not os_path.exists('/media/hdd/images/config'):
+							makedirs('/media/hdd/images/config')
 						open('/media/hdd/images/config/noplugins', 'w').close()
 					except:
 						print("[FlashOnline] postFlashActionCallback: failed to create /media/hdd/images/config/noplugins")
 				else:
-					if os.path.exists('/media/hdd/images/config/noplugins'):
-						os.unlink('/media/hdd/images/config/noplugins')
+					if os_path.exists('/media/hdd/images/config/noplugins'):
+						unlink('/media/hdd/images/config/noplugins')
 				if restoreSettings or restoreAllPlugins or restoreSettingsnoPlugin:
 					if config.plugins.softwaremanager.restoremode.value is not None:
 						try:
-							if not os.path.exists('/media/hdd/images/config'):
-								os.makedirs('/media/hdd/images/config')
+							if not os_path.exists('/media/hdd/images/config'):
+								makedirs('/media/hdd/images/config')
 							if config.plugins.softwaremanager.restoremode.value == "slow":
-								if not os.path.exists('/media/hdd/images/config/slow'):
+								if not os_path.exists('/media/hdd/images/config/slow'):
 									open('/media/hdd/images/config/slow', 'w').close()
-								if os.path.exists('/media/hdd/images/config/fast'):
-									os.unlink('/media/hdd/images/config/fast')
-								if os.path.exists('/media/hdd/images/config/turbo'):
-									os.unlink('/media/hdd/images/config/turbo')
+								if os_path.exists('/media/hdd/images/config/fast'):
+									unlink('/media/hdd/images/config/fast')
+								if os_path.exists('/media/hdd/images/config/turbo'):
+									unlink('/media/hdd/images/config/turbo')
 							elif config.plugins.softwaremanager.restoremode.value == "fast":
-								if not os.path.exists('/media/hdd/images/config/fast'):
+								if not os_path.exists('/media/hdd/images/config/fast'):
 									open('/media/hdd/images/config/fast', 'w').close()
-								if os.path.exists('/media/hdd/images/config/slow'):
-									os.unlink('/media/hdd/images/config/slow')
-								if os.path.exists('/media/hdd/images/config/turbo'):
-									os.unlink('/media/hdd/images/config/turbo')
+								if os_path.exists('/media/hdd/images/config/slow'):
+									unlink('/media/hdd/images/config/slow')
+								if os_path.exists('/media/hdd/images/config/turbo'):
+									unlink('/media/hdd/images/config/turbo')
 							elif config.plugins.softwaremanager.restoremode.value == "turbo":
-								if not os.path.exists('/media/hdd/images/config/turbo'):
+								if not os_path.exists('/media/hdd/images/config/turbo'):
 									open('/media/hdd/images/config/turbo', 'w').close()
-								if os.path.exists('/media/hdd/images/config/slow'):
-									os.unlink('/media/hdd/images/config/slow')
-								if os.path.exists('/media/hdd/images/config/fast'):
-									os.unlink('/media/hdd/images/config/fast')
+								if os_path.exists('/media/hdd/images/config/slow'):
+									unlink('/media/hdd/images/config/slow')
+								if os_path.exists('/media/hdd/images/config/fast'):
+									unlink('/media/hdd/images/config/fast')
 						except:
 							print("[FlashOnline] postFlashActionCallback: failed to create restore mode flagfile")
 				self.startDownload()
@@ -528,7 +527,7 @@ class FlashImage(Screen):
 
 	def doUnzip(self):
 		try:
-			zipfile.ZipFile(self.zippedimage, 'r').extractall(self.unzippedimage)
+			ZipFile(self.zippedimage, 'r').extractall(self.unzippedimage)
 			self.flashimage()
 		except:
 			self.session.openWithCallback(self.abort, MessageBox, _("Error during unzipping image\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
@@ -538,7 +537,7 @@ class FlashImage(Screen):
 		self["summary_header"].setText(self["header"].getText())
 
 		def findimagefiles(path):
-			for path, subdirs, files in os.walk(path):
+			for path, subdirs, files in walk(path):
 				if not subdirs and files:
 					return checkimagefiles(files) and path
 		imagefiles = findimagefiles(self.unzippedimage)

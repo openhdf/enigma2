@@ -1,8 +1,8 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os
-import re
-import unicodedata
+from os import listdir, path as os_path
+from re import sub
+from unicodedata import normalize
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
@@ -10,7 +10,7 @@ from Tools.Directories import pathExists, SCOPE_GUISKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
 from boxbranding import getBoxType
 from ServiceReference import ServiceReference
-import six
+from six import PY3, text_type
 
 searchPaths = []
 lastLcdPiconPath = None
@@ -29,11 +29,11 @@ def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
 		if getBoxType() in ('vuultimo', 'et10000', 'mutant2400', 'xpeedlx3', 'quadbox2400', 'atemionemesis', 'dm7020hd', 'dm7080'):
-			path = os.path.join(mountpoint, 'piconlcd') + '/'
+			path = os_path.join(mountpoint, 'piconlcd') + '/'
 		else:
-			path = os.path.join(mountpoint, 'picon') + '/'
-		if os.path.isdir(path) and path not in searchPaths:
-			for fn in os.listdir(path):
+			path = os_path.join(mountpoint, 'picon') + '/'
+		if os_path.isdir(path) and path not in searchPaths:
+			for fn in listdir(path):
 				if fn.endswith('.png'):
 					print("[LcdPicon] adding path:", path)
 					searchPaths.append(path)
@@ -45,9 +45,9 @@ def onMountpointAdded(mountpoint):
 def onMountpointRemoved(mountpoint):
 	global searchPaths
 	if getBoxType() in ('vuultimo', 'et10000', 'mutant2400', 'xpeedlx3', 'quadbox2400', 'atemionemesis', 'dm7020hd', 'dm7080'):
-		path = os.path.join(mountpoint, 'piconlcd') + '/'
+		path = os_path.join(mountpoint, 'piconlcd') + '/'
 	else:
-		path = os.path.join(mountpoint, 'picon') + '/'
+		path = os_path.join(mountpoint, 'picon') + '/'
 	try:
 		searchPaths.remove(path)
 		print("[LcdPicon] removed path:", path)
@@ -100,11 +100,11 @@ def getLcdPiconName(serviceName):
 		pngname = findLcdPicon('_'.join(fields))
 	if not pngname: # picon by channel name
 		name = ServiceReference(serviceName).getServiceName()
-		if six.PY3:
-			name = unicodedata.normalize('NFKD', name)
+		if PY3:
+			name = normalize('NFKD', name)
 		else:
-			name = unicodedata.normalize('NFKD', six.text_type(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
-		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
+			name = normalize('NFKD', text_type(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
+		name = sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 		if len(name) > 0:
 			pngname = findLcdPicon(name)
 			if not pngname and len(name) > 2 and name.endswith('hd'):
@@ -137,7 +137,7 @@ class LcdPicon(Renderer):
 					pngname = resolveFilename(SCOPE_GUISKIN, "lcd_picon_default.png")
 				else:
 					pngname = resolveFilename(SCOPE_GUISKIN, "picon_default.png")
-		if os.path.getsize(pngname):
+		if os_path.getsize(pngname):
 			self.defaultpngname = pngname
 
 	def addPath(self, value):

@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from __future__ import print_function
 # the implementation here is a bit crappy.
-import time
+from time import time
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from boxbranding import getBoxType
 
@@ -10,7 +10,7 @@ boxtype = getBoxType()
 PERCENTAGE_START = 50
 PERCENTAGE_END = 100
 
-profile_start = time.time()
+profile_start = time()
 
 profile_data = {}
 total_time = 1
@@ -37,7 +37,7 @@ except IOError:
 
 
 def profile(id):
-	now = time.time() - profile_start
+	now = time() - profile_start
 	if profile_file:
 		profile_file.write("%7.3f\t%s\n" % (now, id))
 

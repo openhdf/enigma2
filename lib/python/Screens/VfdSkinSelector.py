@@ -10,10 +10,9 @@ from Components.MenuList import MenuList
 from Components.config import config, ConfigSelection
 from Components.Label import Label
 from Tools.Directories import SCOPE_CURRENT_LCDSKIN
-from os import walk
+from os import walk, path as os_path, listdir
 from enigma import eEnv
-from skin import DISPLAY_SKIN_ID, _, getDesktop, loadSkin
-import os
+from skin import DISPLAY_SKIN_ID, getDesktop, loadSkin
 
 
 class VFDSkinSelector(Screen):
@@ -78,7 +77,7 @@ class VFDSkinSelector(Screen):
 
 	def fill(self):
 		i = 0
-		self.filesArray = sorted([x for x in os.listdir(self.root) if x.endswith('.xml')])
+		self.filesArray = sorted([x for x in listdir(self.root) if x.endswith('.xml')])
 		config.skin.display_skin = ConfigSelection(choices=self.filesArray)
 		while i < len(self.filesArray):
 			self.list.append((_(self.filesArray[i].split('.')[0]), "chose"))
@@ -141,7 +140,7 @@ class VFDSkinSelector(Screen):
 			pngpath = self.root + pngpath
 		except AttributeError:
 			pass
-		if not os.path.exists(pngpath):
+		if not os_path.exists(pngpath):
 			pngpath = "/usr/share/enigma2/display/noprev.png"
 		if self.previewPath != pngpath:
 			self.previewPath = pngpath

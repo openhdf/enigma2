@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from Components.Sources.Source import Source
 from Components.Element import cached
 from enigma import iRecordableService
-import Components.RecordingConfig
+from Components.RecordingConfig import recType
 from Components.config import config
 from Components.SystemInfo import SystemInfo
 
@@ -18,7 +18,7 @@ class RecordState(Source):
 	def gotRecordEvent(self, service, event):
 		prev_records = self.records_running
 		if event in (iRecordableService.evEnd, iRecordableService.evStart, None):
-			recs = self.session.nav.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue()))
+			recs = self.session.nav.getRecordings(False, recType(config.recording.show_rec_symbol_for_rec_types.getValue()))
 			if SystemInfo["LCDsymbol_circle"]:
 				open(SystemInfo["LCDsymbol_circle"], "w").write(recs and "1" or "0")
 			self.records_running = len(recs)

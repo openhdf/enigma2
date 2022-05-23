@@ -1,18 +1,18 @@
 # usage: genmetaindex.py <xml-files>  > index.xml
 from __future__ import absolute_import
-import sys
-import os
+from sys import version_info, argv, stdout
+from os import path as os_path
 from xml.etree.ElementTree import ElementTree, Element
 
 root = Element("index")
-encoding = ("unicode" if sys.version_info[0] >= 3 else "utf-8")
+encoding = ("unicode" if version_info[0] >= 3 else "utf-8")
 
-for _file in sys.argv[1:]:
+for _file in argv[1:]:
 	p = ElementTree()
 	p.parse(_file)
 
 	package = Element("package")
-	package.set("details", os.path.basename(_file))
+	package.set("details", os_path.basename(_file))
 
 	# we need all prerequisites
 	package.append(p.find("prerequisites"))
@@ -52,4 +52,4 @@ def indent(elem, level=0):
 
 indent(root)
 
-ElementTree(root).write(sys.stdout, encoding=encoding)
+ElementTree(root).write(stdout, encoding=encoding)

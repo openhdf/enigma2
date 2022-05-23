@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os
+from os import path as os_path, listdir
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
@@ -17,7 +17,7 @@ def initPiconPaths():
 	for mp in ('/usr/share/enigma2/', '/'):
 		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
-		mp = path = os.path.join(part.mountpoint, 'usr/share/enigma2')
+		mp = path = os_path.join(part.mountpoint, 'usr/share/enigma2')
 		onMountpointAdded(part.mountpoint)
 		onMountpointAdded(mp)
 
@@ -25,9 +25,9 @@ def initPiconPaths():
 def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
-		path = os.path.join(mountpoint, 'picon') + '/'
-		if os.path.isdir(path) and path not in searchPaths:
-			for fn in os.listdir(path):
+		path = os_path.join(mountpoint, 'picon') + '/'
+		if os_path.isdir(path) and path not in searchPaths:
+			for fn in listdir(path):
 				if fn.endswith('.png'):
 					print("[Picon] adding path:", path)
 					searchPaths.append(path)
@@ -38,7 +38,7 @@ def onMountpointAdded(mountpoint):
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
-	path = os.path.join(mountpoint, 'picon') + '/'
+	path = os_path.join(mountpoint, 'picon') + '/'
 	try:
 		searchPaths.remove(path)
 		print("[Picon] removed path:", path)
@@ -109,7 +109,7 @@ class PiconRes(Renderer):
 			else:
 				pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
 		self.nopicon = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
-		if os.path.getsize(pngname):
+		if os_path.getsize(pngname):
 			self.defaultpngname = pngname
 			self.nopicon = pngname
 

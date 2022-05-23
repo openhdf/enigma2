@@ -1,8 +1,8 @@
 from __future__ import print_function
 
 from __future__ import absolute_import
-import os
-import re
+from os import popen, system
+from re import sub
 
 
 class Disks:
@@ -112,7 +112,7 @@ class Disks:
 	def readDisks(self):
 		partitions = open("/proc/partitions")
 		for part in partitions:
-			res = re.sub("\\s+", " ", part).strip().split(" ")
+			res = sub("\\s+", " ", part).strip().split(" ")
 			if res and len(res) == 4:
 				if len(res[3]) == 3 and (res[3][:2] == "sd" or res[3][:3] == "hdb") or len(res[3]) == 7 and res[3][:6] == "mmcblk":
 					self.disks.append([res[3],
@@ -125,7 +125,7 @@ class Disks:
 	def readPartitions(self):
 		partitions = open("/proc/partitions")
 		for part in partitions:
-			res = re.sub("\\s+", " ", part).strip().split(" ")
+			res = sub("\\s+", " ", part).strip().split(" ")
 			if res and len(res) == 4:
 				if len(res[3]) > 3 and (res[3][:2] == "sd" or res[3][:3] == "hdb") or len(res[3]) > 7 and res[3][:6] == "mmcblk":
 					for i in self.disks:
@@ -154,7 +154,7 @@ class Disks:
 			dev = device[:3]
 			n = device[3:]
 		cmd = '/usr/sbin/sfdisk -c /dev/%s %s' % (dev, n)
-		fdisk = os.popen(cmd, 'r')
+		fdisk = popen(cmd, 'r')
 		res = fdisk.read().strip()
 		fdisk.close()
 		if res in list(self.ptypes.keys()):
@@ -169,7 +169,7 @@ class Disks:
 			dev = device[:3]
 			n = device[3:]
 		cmd = '/usr/sbin/sfdisk -c /dev/%s %s' % (dev, n)
-		fdisk = os.popen(cmd, 'r')
+		fdisk = popen(cmd, 'r')
 		res = fdisk.read().strip()
 		fdisk.close()
 		return res
@@ -229,25 +229,25 @@ class Disks:
 			if res and len(res) > 1:
 				if res[0][:8] == "/dev/%s" % device:
 					print("[DeviceManager] umount %s" % res[0])
-					if os.system("umount -f %s" % res[0]) != 0:
+					if system("umount -f %s" % res[0]) != 0:
 						mounts.close()
 						return False
 		mounts.close()
 		return True
 
 	def umountP(self, device, partition):
-		if os.system("umount -f /dev/%s%d" % (device, partition)) != 0:
+		if system("umount -f /dev/%s%d" % (device, partition)) != 0:
 			return False
 
 		return True
 
 	def mountP(self, device, partition, path):
-		if os.system("mount /dev/%s%d %s" % (device, partition, path)) != 0:
+		if system("mount /dev/%s%d %s" % (device, partition, path)) != 0:
 			return False
 		return True
 
 	def mount(self, fdevice, path):
-		if os.system("mount /dev/%s %s" % (fdevice, path)) != 0:
+		if system("mount /dev/%s %s" % (fdevice, path)) != 0:
 			return False
 		return True
 
@@ -295,11 +295,11 @@ class Disks:
 				ptype)
 
 		cmd = '%s -f -uS /dev/%s' % ('/usr/sbin/sfdisk', device)
-		sfdisk = os.popen(cmd, 'w')
+		sfdisk = popen(cmd, 'w')
 		sfdisk.write(flow)
 		if sfdisk.close():
 			return -2
-		os.system("/sbin/mdev -s")
+		system("/sbin/mdev -s")
 		return 0
 
 	def chkfs(self, device, partition, fstype=0):
@@ -316,11 +316,11 @@ class Disks:
 		if self.isMountedP(device, partition):
 			return -1
 		if fstype == 0 or fstype == 1:
-			ret = os.system('/sbin/e2fsck -C 0 -f -p /dev/%s' % fdevice)
+			ret = system('/sbin/e2fsck -C 0 -f -p /dev/%s' % fdevice)
 		elif fstype == 2:
-			ret = os.system('/usr/bin/ntfsfix /dev/%s' % fdevice)
+			ret = system('/usr/bin/ntfsfix /dev/%s' % fdevice)
 		elif fstype == 3:
-			ret = os.system('/sbin/dosfsck -a /dev/%s' % fdevice)
+			ret = system('/sbin/dosfsck -a /dev/%s' % fdevice)
 		if len(oldmp) > 0:
 			self.mount(fdevice, oldmp)
 		if ret == 0:
@@ -332,7 +332,7 @@ class Disks:
 		size = 0
 		partitions = open("/proc/partitions")
 		for part in partitions:
-			res = re.sub("\s+", " ", part).strip().split(" ")
+			res = sub("\s+", " ", part).strip().split(" ")
 			if res and len(res) == 4:
 				if res[3] == dev:
 					size = int(res[2])
@@ -376,7 +376,7 @@ class Disks:
 			if len(oldmp) > 0:
 				self.mount(dev, oldmp)
 			return -3
-		ret = os.system(cmd)
+		ret = system(cmd)
 
 		if len(oldmp) > 0:
 			self.mount(dev, oldmp)

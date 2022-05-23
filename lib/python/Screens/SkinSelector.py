@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from __future__ import absolute_import
-import mmap
-import re
+from mmap import mmap, PROT_READ
+from re import search
 
 from enigma import ePicLoad, getDesktop
 from os import listdir, walk
@@ -119,8 +119,8 @@ class SkinSelector(Screen, HelpableScreen):
 									"4320": "8K",
 									"8640": "16K"
 								}
-								mm = mmap.mmap(fd.fileno(), 0, prot=mmap.PROT_READ)
-								skinheight = re.search("\<?resolution.*?\syres\s*=\s*\"(\d+)\"", mm).group(1)
+								mm = mmap(fd.fileno(), 0, prot=PROT_READ)
+								skinheight = search("\<?resolution.*?\syres\s*=\s*\"(\d+)\"", mm).group(1)
 								resolution = skinheight and resolutions.get(skinheight, None)
 								mm.close()
 						except:

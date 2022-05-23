@@ -5,7 +5,7 @@ from Screens.Volume import Volume
 from Screens.Mute import Mute
 from GlobalActions import globalActionMap
 from Components.config import config, ConfigSubsection, ConfigInteger
-import six
+from six import itervalues
 
 profile("VolumeControl")
 
@@ -102,7 +102,7 @@ class VolumeControl:
 		delay = 0
 		repeat = 0
 
-		for device in six.itervalues(inputconfig):
+		for device in itervalues(inputconfig):
 			if "enabled" in device and bool(device["enabled"]):
 				if "delay" in device:
 					val = int(device["delay"])

@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from datetime import datetime
-import os
+from os import path as os_path, remove, uname, statvfs
 from struct import pack
 from time import time
 from sys import maxsize
@@ -10,7 +10,7 @@ from enigma import eTimer, eHdmiCEC, eActionMap
 from Components.config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, NoSave
 from Components.Console import Console
 from Tools.Directories import fileExists, pathExists
-import Screens.Standby
+from Screens.Standby import inStandby, TryQuitMainloop, Standby
 
 from six import PY3, ensure_binary
 
@@ -560,20 +560,20 @@ class HdmiCec:
 					self.CECwritedebug('[HdmiCec] volume forwarding to device %02x enabled' % self.volumeForwardingDestination, True)
 					self.volumeForwardingEnabled = True
 			elif cmd == 0x8f: # request power status
-				if Screens.Standby.inStandby:
+				if inStandby:
 					self.sendMessage(address, 'powerinactive')
 				else:
 					self.sendMessage(address, 'poweractive')
 			elif cmd == 0x83: # request address
 				self.sendMessage(address, 'reportaddress')
 			elif cmd == 0x85: # request active source
-				if not Screens.Standby.inStandby and config.hdmicec.report_active_source.value:
+				if not inStandby and config.hdmicec.report_active_source.value:
 					self.sendMessage(address, 'sourceactive')
 			elif cmd == 0x8c: # request vendor id
 				self.sendMessage(address, 'vendorid')
 			elif cmd == 0x8d: # menu request
 				if ctrl0 == 1: # query
-					if Screens.Standby.inStandby:
+					if inStandby:
 						self.sendMessage(address, 'menuinactive')
 					else:
 						self.sendMessage(address, 'menuactive')
@@ -625,7 +625,7 @@ class HdmiCec:
 					self.CECwritedebug('[HdmiCec] %s: %s' % (txt, active), True)
 				self.activesource = active
 				if not checkstate:
-					if cmd == 0x86 and not Screens.Standby.inStandby and self.activesource:
+					if cmd == 0x86 and not inStandby and self.activesource:
 						self.sendMessage(address, 'sourceactive')
 						if config.hdmicec.report_active_menu.value:
 							self.sendMessage(0, 'menuactive')
@@ -697,7 +697,7 @@ class HdmiCec:
 				data = pack('B', 0x00)
 			elif message == "osdname":
 				cmd = 0x47
-				data = os.uname()[1]
+				data = uname()[1]
 				data = ensure_binary(data[:14])
 			elif message == "poweractive":
 				cmd = 0x90
@@ -817,7 +817,7 @@ class HdmiCec:
 				else:
 					self.sendMessages(self.messages)
 
-			if os.path.exists("/usr/script/TvOn.sh"):
+			if os_path.exists("/usr/script/TvOn.sh"):
 				Console().ePopen("/usr/script/TvOn.sh &")
 
 	def standbyMessages(self):
@@ -846,7 +846,7 @@ class HdmiCec:
 
 				self.sendMessages(self.messages)
 
-			if os.path.exists("/usr/script/TvOff.sh"):
+			if os_path.exists("/usr/script/TvOff.sh"):
 				Console().ePopen("/usr/script/TvOff.sh &")
 
 	def sendMessagesIsActive(self, stopMessages=False):
@@ -952,7 +952,7 @@ class HdmiCec:
 				elif config.hdmicec.handle_tv_input.value == 'deepstandby':
 					deepstandby = True
 
-			if standby and Screens.Standby.inStandby:
+			if standby and inStandby:
 				self.tv_skip_messages = False
 				return
 			elif standby or deepstandby:
@@ -984,19 +984,19 @@ class HdmiCec:
 			self.CECwritedebug('[HdmiCec] go not into deepstandby... recording=%s, rectimer=%s, pwrtimer=%s' % (recording, rectimer, pwrtimer), True)
 			self.standby()
 		else:
-			from Screens.InfoBar import InfoBar
-			if InfoBar and InfoBar.instance:
+			import Screens.InfoBar
+			if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance:
 				self.CECwritedebug('[HdmiCec] go into deepstandby...', True)
-				InfoBar.instance.openInfoBarSession(Screens.Standby.TryQuitMainloop, 1)
+				Screens.InfoBar.InfoBar.instance.openScreens.InfoBar.InfoBarSession(TryQuitMainloop, 1)
 
 	def standby(self):
-		if not Screens.Standby.inStandby:
+		if not inStandby:
 			import NavigationInstance
 			NavigationInstance.instance.skipWakeup = True
-			from Screens.InfoBar import InfoBar
-			if InfoBar and InfoBar.instance:
+			import Screens.InfoBar
+			if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance:
 				self.CECwritedebug('[HdmiCec] go into standby...', True)
-				InfoBar.instance.openInfoBarSession(Screens.Standby.Standby)
+				Screens.InfoBar.InfoBar.instance.openScreens.InfoBar.InfoBarSession(Standby)
 
 	def wakeup(self):
 		if int(config.hdmicec.workaround_turnbackon.value) and self.standbytime > time():
@@ -1004,16 +1004,16 @@ class HdmiCec:
 			return
 		self.standbytime = 0
 		self.handleTimerStop(True)
-		if Screens.Standby.inStandby:
+		if inStandby:
 			self.CECwritedebug('[HdmiCec] wake up...', True)
-			Screens.Standby.inStandby.Power()
+			inStandby.Power()
 
 	def onLeaveStandby(self):
 		self.wakeupMessages()
 
 	def onEnterStandby(self, configElement):
 		self.standbytime = time() + int(config.hdmicec.workaround_turnbackon.value)
-		Screens.Standby.inStandby.onClose.append(self.onLeaveStandby)
+		inStandby.onClose.append(self.onLeaveStandby)
 		self.standbyMessages()
 
 	def onEnterDeepStandby(self, configElement):
@@ -1214,7 +1214,7 @@ class HdmiCec:
 			return
 		log_path = config.crash.debug_path.value
 		if pathExists(log_path):
-			stat = os.statvfs(log_path)
+			stat = statvfs(log_path)
 			disk_free = stat.f_bavail * stat.f_bsize / 1024
 			if self.disk_full:
 				self.start_log = True
@@ -1229,7 +1229,7 @@ class HdmiCec:
 			else:
 				return
 			now = datetime.now()
-			debugfile = os.path.join(log_path, now.strftime("Enigma2-hdmicec-%Y%m%d.log"))
+			debugfile = os_path.join(log_path, now.strftime("Enigma2-hdmicec-%Y%m%d.log"))
 			timestamp = now.strftime("%H:%M:%S.%f")[:-2]
 			debugtext = "%s %s%s\n" % (timestamp, ("[   ] " if debugprint else ""), debugtext.replace("[HdmiCec] ", ""))
 			if self.start_log:
@@ -1362,7 +1362,7 @@ class HdmiCec:
 		for f in FILES:
 			if fileExists(f):
 				try:
-					os.remove(f)
+					remove(f)
 				except Exception as e:
 					self.CECwritedebug("[HdmiCec] remove file '%s' failed - error: %s" % (f, e), True)
 

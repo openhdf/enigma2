@@ -18,7 +18,7 @@ class slot:
 
 timers = set()
 
-import time
+from time import time, sleep
 
 from events import eventfnc
 
@@ -33,7 +33,7 @@ class eTimer:
 
 	def start(self, msec, singleshot=False):
 		print("start timer", msec)
-		self.next_activation = time.time() + msec / 1000.0
+		self.next_activation = time() + msec / 1000.0
 		self.msec = msec
 		self.singleshot = singleshot
 		timers.add(self)
@@ -60,11 +60,11 @@ def runIteration():
 
 	next_timer = running_timers[0]
 
-	now = time.time()
+	now = time()
 	delay = next_timer.next_activation - now
 
 	if delay > 0:
-		time.sleep(delay)
+		sleep(delay)
 		now += delay
 
 	while len(running_timers) and running_timers[0].next_activation <= now:
@@ -307,28 +307,28 @@ eServiceCenter()
 ##################### ENIGMA CHROOT
 
 print("import directories")
-import Tools.Directories
+from Tools.Directories import defaultPaths, SCOPE_SKIN, SCOPE_CONFIG, PATH_DONTCREATE
 print("done")
 
 chroot = "."
 
-for (x, (y, z)) in Tools.Directories.defaultPaths.items():
-	Tools.Directories.defaultPaths[x] = (chroot + y, z)
+for (x, (y, z)) in defaultPaths.items():
+	defaultPaths[x] = (chroot + y, z)
 
-Tools.Directories.defaultPaths[Tools.Directories.SCOPE_SKIN] = ("../data/", Tools.Directories.PATH_DONTCREATE)
-Tools.Directories.defaultPaths[Tools.Directories.SCOPE_CONFIG] = ("/etc/enigma2/", Tools.Directories.PATH_DONTCREATE)
+defaultPaths[SCOPE_SKIN] = ("../data/", PATH_DONTCREATE)
+defaultPaths[SCOPE_CONFIG] = ("/etc/enigma2/", PATH_DONTCREATE)
 
 ##################### ENIGMA CONFIG
 
 print("import config")
-import Components.config
+from Components.config import config
 print("done")
 
 my_config = [
 "config.skin.primary_skin=None\n"
 ]
 
-Components.config.config.unpickle(my_config)
+config.unpickle(my_config)
 
 ##################### ENIGMA ACTIONS
 
@@ -342,15 +342,15 @@ class eActionMap:
 
 def init_nav():
 	print("init nav")
-	import Navigation
+	from Navigation import Navigation
 	import NavigationInstance
-	NavigationInstance.instance = Navigation.Navigation()
+	NavigationInstance.instance = Navigation()
 
 
 def init_record_config():
 	print("init recording")
-	import Components.RecordingConfig
-	Components.RecordingConfig.InitRecordingConfig()
+	from Components.RecordingConfig import InitRecordingConfig
+	InitRecordingConfig()
 
 
 def init_parental_control():
@@ -366,26 +366,26 @@ def init_all():
 	init_record_config()
 	init_parental_control()
 
-	import Components.InputDevice
-	Components.InputDevice.InitInputDevices()
+	from Components.InputDevice import InitInputDevices
+	InitInputDevices()
 
-	import Components.AVSwitch
-	Components.AVSwitch.InitAVSwitch()
+	from Components.AVSwitch import InitAVSwitch
+	InitAVSwitch()
 
-	import Components.UsageConfig
-	Components.UsageConfig.InitUsageConfig()
+	from Components.UsageConfig import InitUsageConfig
+	InitUsageConfig()
 
-	import Components.Network
-	Components.Network.InitNetwork()
+	from Components.Network import InitNetwork
+	InitNetwork()
 
-	import Components.Lcd
-	Components.Lcd.InitLcd()
+	from Components.Lcd import InitLcd
+	InitLcd()
 
-	import Components.SetupDevices
-	Components.SetupDevices.InitSetupDevices()
+	from Components.SetupDevices import InitSetupDevices
+	InitSetupDevices()
 
-	import Components.RFmod
-	Components.RFmod.InitRFmod()
+	from Components.RFmod import InitRFmod
+	InitRFmod()
 
-	import Screens.Ci
-	Screens.Ci.InitCiConfig()
+	from Screens.Ci import InitCiConfig
+	InitCiConfig()

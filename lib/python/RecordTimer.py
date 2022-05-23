@@ -2,32 +2,32 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import division
 from boxbranding import getMachineBrand, getMachineName
-import xml.etree.cElementTree
+from xml.etree.cElementTree import parse
 from datetime import datetime
 from time import localtime, strftime, ctime, time
 from bisect import insort
-import os
+from os import path as os_path, remove, makedirs, access, W_OK, statvfs, fsync, rename
 from enigma import eActionMap, eEPGCache, eServiceCenter, eServiceReference, eStreamServer, getBestPlayableServiceReference, iRecordableService, quitMainloop, setPreferredTuner
 
 from Components.config import config
 from Components import Harddisk
 from Components.UsageConfig import calcFrontendPriorityIntval, defaultMoviePath
 from Components.TimerSanityCheck import TimerSanityCheck
-import Components.RecordingConfig
-Components.RecordingConfig.InitRecordingConfig()
-import six
+from Components.RecordingConfig import InitRecordingConfig
+InitRecordingConfig()
+from six import ensure_str
 from Screens.MessageBox import MessageBox
-import Screens.Standby
+from Screens.Standby import TVinStandby, inStandby, inTryQuitMainloop, TryQuitMainloop, Standby
 from Tools.ServiceReference import service_types_radio_ref, service_types_tv_ref
 from Tools import Directories, Notifications, ASCIItranslit, Trashcan
 from Tools.XMLTools import stringToXML
-import timer
+from timer import Timer, TimerEntry
 import NavigationInstance
 from ServiceReference import ServiceReference
 from enigma import pNavigation
 from Components.SystemInfo import SystemInfo
-import subprocess
-import threading
+from subprocess import call
+from threading import Timer as thTimer, Thread
 
 # ok, for descriptions etc we have:
 # service reference	 (to get the service name)
@@ -52,8 +52,8 @@ debug = False
 
 def resetTimerWakeup():
 	global wasRecTimerWakeup
-	if os.path.exists("/tmp/was_rectimer_wakeup"):
-		os.remove("/tmp/was_rectimer_wakeup")
+	if os_path.exists("/tmp/was_rectimer_wakeup"):
+		remove("/tmp/was_rectimer_wakeup")
 		if debug:
 			print("[RECORDTIMER] reset wakeup state")
 	wasRecTimerWakeup = False
@@ -102,14 +102,14 @@ class TIMERTYPE:
 def findSafeRecordPath(dirname):
 	if not dirname:
 		return None
-	dirname = os.path.realpath(dirname)
+	dirname = os_path.realpath(dirname)
 	mountpoint = Harddisk.findMountPoint(dirname)
-	if not os.path.ismount(mountpoint):
+	if not os_path.ismount(mountpoint):
 		print('[RecordTimer] media is not mounted:', dirname)
 		return None
-	if not os.path.isdir(dirname):
+	if not os_path.isdir(dirname):
 		try:
-			os.makedirs(dirname)
+			makedirs(dirname)
 		except Exception as ex:
 			print('[RecordTimer] Failed to create dir "%s":' % dirname, ex)
 			return None
@@ -140,9 +140,9 @@ def getBqRootStr(ref):
 # please do not translate log messages
 
 
-class RecordTimerEntry(timer.TimerEntry):
+class RecordTimerEntry(TimerEntry):
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=TIMERTYPE.JUSTPLAY, afterEvent=AFTEREVENT.DEFAULT, checkOldTimers=False, dirname=None, tags=None, descramble='notset', record_ecm='notset', rename_repeat=True, isAutoTimer=False, always_zap=TIMERTYPE.ALWAYS_ZAP, MountPath=None):
-		timer.TimerEntry.__init__(self, int(begin), int(end))
+		TimerEntry.__init__(self, int(begin), int(end))
 		if checkOldTimers:
 			if self.begin < time() - 1209600:
 				self.begin = int(time())
@@ -228,15 +228,15 @@ class RecordTimerEntry(timer.TimerEntry):
 
 	def MountTest(self, dirname, cmd):
 		if cmd == 'writeable':
-			if not os.access(dirname, os.W_OK):
+			if not access(dirname, W_OK):
 				self.stop_MountTest(None, cmd)
 		elif cmd == 'freespace':
-			s = os.statvfs(dirname)
+			s = statvfs(dirname)
 			if (s.f_bavail * s.f_bsize) // 1000000 < 1024:
 				self.stop_MountTest(None, cmd)
 		elif cmd == 'driveawake':
-			if not subprocess.call('touch %s/drive.awake' % dirname, shell=True):
-				subprocess.call('rm -f %s/drive.awake' % dirname, shell=True)
+			if not call('touch %s/drive.awake' % dirname, shell=True):
+				call('rm -f %s/drive.awake' % dirname, shell=True)
 			else:
 				self.stop_MountTest(None, cmd)
 
@@ -256,9 +256,9 @@ class RecordTimerEntry(timer.TimerEntry):
 		if WRITEERROR:
 			if findSafeRecordPath(self.MountPath) is None:
 				return ("mount '%s' is not available." % self.MountPath, 1)
-			elif not os.access(self.MountPath, os.W_OK):
+			elif not access(self.MountPath, W_OK):
 				return ("mount '%s' is not writeable." % self.MountPath, 2)
-			s = os.statvfs(self.MountPath)
+			s = statvfs(self.MountPath)
 			if (s.f_bavail * s.f_bsize) // 1000000 < 1024:
 				return ("mount '%s' has not enough free space to record." % self.MountPath, 3)
 			else:
@@ -280,13 +280,13 @@ class RecordTimerEntry(timer.TimerEntry):
 			self.MountPathErrorNumber = 1
 			return False
 
-		mountwriteable = os.access(dirname, os.W_OK)
+		mountwriteable = access(dirname, W_OK)
 		if not mountwriteable:
 			self.log(0, ("Mount '%s' is not writeable." % dirname))
 			self.MountPathErrorNumber = 2
 			return False
 
-		s = os.statvfs(dirname)
+		s = statvfs(dirname)
 		if (s.f_bavail * s.f_bsize) // 1000000 < 1024:
 			self.log(0, _("Mount '%s' has not enough free space to record.") % dirname)
 			self.MountPathErrorNumber = 3
@@ -325,8 +325,8 @@ class RecordTimerEntry(timer.TimerEntry):
 		#for cmd in ('writeable', 'freespace', 'driveawake'): #driveawake is not needed
 		for cmd in ('writeable', 'freespace'):
 			print('starting thread :%s' % cmd)
-			p = threading.Thread(target=self.MountTest, args=(dirname, cmd))
-			t = threading.Timer(3, self.stop_MountTest, args=(p, cmd))
+			p = Thread(target=self.MountTest, args=(dirname, cmd))
+			t = thTimer(3, self.stop_MountTest, args=(p, cmd))
 			t.start()
 			p.start()
 			p.join()
@@ -501,7 +501,7 @@ class RecordTimerEntry(timer.TimerEntry):
 			except Exception as e:
 				print("[RecordTimer] import from 'Screens.InfoBar import InfoBar' failed:", e)
 
-		if os.path.exists("/tmp/was_rectimer_wakeup") and not wasRecTimerWakeup:
+		if os_path.exists("/tmp/was_rectimer_wakeup") and not wasRecTimerWakeup:
 			wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
 
 		next_state = self.state + 1
@@ -542,14 +542,14 @@ class RecordTimerEntry(timer.TimerEntry):
 				return True
 
 			if self.always_zap:
-				Screens.Standby.TVinStandby.skipHdmiCecNow('zapandrecordtimer')
-				if Screens.Standby.inStandby:
+				TVinStandby.skipHdmiCecNow('zapandrecordtimer')
+				if inStandby:
 					self.wasInStandby = True
 					#set service to zap after standby
-					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
-					Screens.Standby.inStandby.paused_service = None
+					inStandby.prev_running_service = self.service_ref.ref
+					inStandby.paused_service = None
 					#wakeup standby
-					Screens.Standby.inStandby.Power()
+					inStandby.Power()
 					self.log(5, "wakeup and zap to recording service")
 				else:
 					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
@@ -675,7 +675,7 @@ class RecordTimerEntry(timer.TimerEntry):
 				self.backoff = 0
 				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 				if cur_ref and not cur_ref.getPath():
-					if Screens.Standby.inStandby:
+					if inStandby:
 						self.setRecordingPreferredTuner()
 						self.failureCB(True)
 					elif not config.recording.asktozap.value:
@@ -720,15 +720,15 @@ class RecordTimerEntry(timer.TimerEntry):
 				return True
 
 			if self.justplay:
-				Screens.Standby.TVinStandby.skipHdmiCecNow('zaptimer')
-				if Screens.Standby.inStandby:
+				TVinStandby.skipHdmiCecNow('zaptimer')
+				if inStandby:
 					self.wasInStandby = True
 					self.log(11, "wakeup and zap")
 					#set service to zap after standby
-					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
-					Screens.Standby.inStandby.paused_service = None
+					inStandby.prev_running_service = self.service_ref.ref
+					inStandby.paused_service = None
 					#wakeup standby
-					Screens.Standby.inStandby.Power()
+					inStandby.Power()
 				else:
 					self.log(11, _("zapping"))
 					found = False
@@ -823,8 +823,8 @@ class RecordTimerEntry(timer.TimerEntry):
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
 
-			box_instandby = Screens.Standby.inStandby
-			tv_notactive = Screens.Standby.TVinStandby.getTVstate('notactive')
+			box_instandby = inStandby
+			tv_notactive = TVinStandby.getTVstate('notactive')
 			isRecordTime = abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or NavigationInstance.instance.RecordTimer.getStillRecording()
 
 			if debug:
@@ -857,7 +857,7 @@ class RecordTimerEntry(timer.TimerEntry):
 				return True
 
 			if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby):
-				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
+				if not inTryQuitMainloop: # no shutdown messagebox is open
 					if not box_instandby and not tv_notactive: # not already in standby
 						callback = self.sendTryQuitMainloopNotification
 						message = _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName())
@@ -869,8 +869,8 @@ class RecordTimerEntry(timer.TimerEntry):
 						print("[RecordTimer] quitMainloop #1")
 						quitMainloop(1)
 			elif self.afterEvent == AFTEREVENT.AUTO and wasRecTimerWakeup:
-				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
-					if Screens.Standby.inStandby: # in standby
+				if not inTryQuitMainloop: # no shutdown messagebox is open
+					if inStandby: # in standby
 						print("[RecordTimer] quitMainloop #2")
 						quitMainloop(1)
 			self.wasInStandby = False
@@ -917,7 +917,7 @@ class RecordTimerEntry(timer.TimerEntry):
 
 	def sendStandbyNotification(self, answer):
 		if answer:
-			session = Screens.Standby.Standby
+			session = Standby
 			option = None
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
@@ -926,7 +926,7 @@ class RecordTimerEntry(timer.TimerEntry):
 
 	def sendTryQuitMainloopNotification(self, answer):
 		if answer:
-			session = Screens.Standby.TryQuitMainloop
+			session = TryQuitMainloop
 			option = 1
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
@@ -1158,7 +1158,7 @@ class RecordTimerEntry(timer.TimerEntry):
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
 			text = _("A recording has been started:\n%s") % self.name
-			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby
+			notify = config.usage.show_message_when_recording_starts.value and not inStandby
 			if self.dirnameHadToFallback:
 				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
 				notify = True
@@ -1189,9 +1189,9 @@ class RecordTimerEntry(timer.TimerEntry):
 def createTimer(xml):
 	begin = int(xml.get("begin"))
 	end = int(xml.get("end"))
-	serviceref = ServiceReference(six.ensure_str(xml.get("serviceref")))
-	description = six.ensure_str(xml.get("description"))
-	repeated = six.ensure_str(xml.get("repeated"))
+	serviceref = ServiceReference(ensure_str(xml.get("serviceref")))
+	description = ensure_str(xml.get("description"))
+	repeated = ensure_str(xml.get("repeated"))
 	rename_repeat = int(xml.get("rename_repeat") or "1")
 	disabled = int(xml.get("disabled") or "0")
 	justplay = int(xml.get("justplay") or "0")
@@ -1210,35 +1210,35 @@ def createTimer(xml):
 		eit = None
 	location = xml.get("location")
 	if location and location != "None":
-		location = six.ensure_str(location)
+		location = ensure_str(location)
 	else:
 		location = None
 	tags = xml.get("tags")
 	if tags and tags != "None":
-		tags = six.ensure_str(tags).split(' ')
+		tags = ensure_str(tags).split(' ')
 	else:
 		tags = None
 	descramble = int(xml.get("descramble") or "1")
 	record_ecm = int(xml.get("record_ecm") or "0")
 	isAutoTimer = int(xml.get("isAutoTimer") or "0")
 
-	name = six.ensure_str(xml.get("name"))
-	#filename = six.ensure_str(xml.get("filename"))
+	name = ensure_str(xml.get("name"))
+	#filename = ensure_str(xml.get("filename"))
 	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname=location, tags=tags, descramble=descramble, record_ecm=record_ecm, isAutoTimer=isAutoTimer, always_zap=always_zap, rename_repeat=rename_repeat)
 	entry.repeated = int(repeated)
 
 	for l in xml.findall("log"):
 		time = int(l.get("time"))
 		code = int(l.get("code"))
-		msg = six.ensure_str(l.text.strip())
+		msg = ensure_str(l.text.strip())
 		entry.log_entries.append((time, code, msg))
 
 	return entry
 
 
-class RecordTimer(timer.Timer):
+class RecordTimer(Timer):
 	def __init__(self):
-		timer.Timer.__init__(self)
+		Timer.__init__(self)
 
 		self.Filename = Directories.resolveFilename(Directories.SCOPE_CONFIG, "timers.xml")
 
@@ -1289,7 +1289,7 @@ class RecordTimer(timer.Timer):
 
 	def isRecTimerWakeup(self):
 		global wasRecTimerWakeup
-		if os.path.exists("/tmp/was_rectimer_wakeup"):
+		if os_path.exists("/tmp/was_rectimer_wakeup"):
 			wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
 		else:
 			wasRecTimerWakeup = False
@@ -1309,7 +1309,7 @@ class RecordTimer(timer.Timer):
 			return
 		try:
 			file = open(self.Filename, 'r')
-			doc = xml.etree.cElementTree.parse(file)
+			doc = parse(file)
 			file.close()
 		except SyntaxError:
 			from Tools.Notifications import AddPopup
@@ -1319,7 +1319,7 @@ class RecordTimer(timer.Timer):
 
 			print("timers.xml failed to load!")
 			try:
-				os.rename(self.Filename, self.Filename + "_old")
+				rename(self.Filename, self.Filename + "_old")
 			except (IOError, OSError):
 				print("renaming broken timer failed")
 			return
@@ -1390,9 +1390,9 @@ class RecordTimer(timer.Timer):
 			file.write(x)
 		file.flush()
 
-		os.fsync(file.fileno())
+		fsync(file.fileno())
 		file.close()
-		os.rename(self.Filename + ".writing", self.Filename)
+		rename(self.Filename + ".writing", self.Filename)
 
 	def getNextZapTime(self):
 		now = time()

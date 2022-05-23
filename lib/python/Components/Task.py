@@ -5,7 +5,7 @@
 from __future__ import absolute_import
 from __future__ import print_function
 from Tools.CList import CList
-import six
+from six import ensure_str
 
 
 class Job(object):
@@ -212,7 +212,7 @@ class Task(object):
 		self.processOutput(data)
 
 	def processOutput(self, data):
-		data = six.ensure_str(data)
+		data = ensure_str(data)
 		self.output_line += data
 		while True:
 			i = self.output_line.find('\n')

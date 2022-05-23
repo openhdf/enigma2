@@ -2,16 +2,16 @@
 from six.moves.urllib.error import URLError
 from six.moves.urllib.parse import urlencode
 from six.moves.urllib.request import urlopen
-import re
-import json
-import six
+from re import search
+from json import loads
+from six import ensure_str
 
 WOEID_SEARCH_URL = 'http://query.yahooapis.com/v1/public/yql'
 WOEID_QUERY_STRING = 'select line1, line2, line3, line4, woeid from geo.placefinder where text="%s"'
 
 
 def get_woeid_from_yahoo(search_string):
-	encoded_string = six.ensure_str(search_string)
+	encoded_string = ensure_str(search_string)
 	params = {'q': WOEID_QUERY_STRING % encoded_string, 'format': 'json'}
 	url = '?'.join((WOEID_SEARCH_URL, urlencode(params)))
 	try:
@@ -21,7 +21,7 @@ def get_woeid_from_yahoo(search_string):
 
 	content_type = handler.info().dict['content-type']
 	try:
-		charset = re.search('charset\=(.*)', content_type).group(1)
+		charset = search('charset\=(.*)', content_type).group(1)
 	except AttributeError:
 		charset = 'utf-8'
 	if charset.lower() != 'utf-8':
@@ -29,7 +29,7 @@ def get_woeid_from_yahoo(search_string):
 	else:
 		json_response = handler.read()
 	handler.close()
-	yahoo_woeid_result = json.loads(json_response)
+	yahoo_woeid_result = loads(json_response)
 
 	try:
 		result = yahoo_woeid_result['query']['results']['Result']

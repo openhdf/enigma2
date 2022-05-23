@@ -6,7 +6,7 @@ from Components.Element import cached
 from Components.Converter.Poll import Poll
 from Tools.Transponder import ConvertToHumanReadable
 
-from os import path
+from os import path as os_path
 
 WIDESCREEN = [1, 3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
 
@@ -190,7 +190,7 @@ class ServiceInfo(Poll, Converter):
 		video_height = self._getVideoHeight(info)
 		video_width = self._getVideoWidth(info)
 
-		if path.exists("/proc/stb/vmpeg/0/aspect"):
+		if os_path.exists("/proc/stb/vmpeg/0/aspect"):
 			f = open("/proc/stb/vmpeg/0/aspect", "r")
 			try:
 				video_aspect = int(f.read())
@@ -316,7 +316,7 @@ class ServiceInfo(Poll, Converter):
 			return self.getServiceInfoHexString(info, iServiceInformation.sSID)
 		elif self.type == self.FRAMERATE:
 			video_rate = None
-			if path.exists("/proc/stb/vmpeg/0/framerate"):
+			if os_path.exists("/proc/stb/vmpeg/0/framerate"):
 				f = open("/proc/stb/vmpeg/0/framerate", "r")
 				try:
 					video_rate = int(f.read())
@@ -384,7 +384,7 @@ class ServiceInfo(Poll, Converter):
 
 		if self.type == self.XRES:
 			video_width = None
-			if path.exists("/proc/stb/vmpeg/0/xres"):
+			if os_path.exists("/proc/stb/vmpeg/0/xres"):
 				f = open("/proc/stb/vmpeg/0/xres", "r")
 				try:
 					video_width = int(f.read(), 16)
@@ -396,7 +396,7 @@ class ServiceInfo(Poll, Converter):
 			return str(video_width)
 		elif self.type == self.YRES:
 			video_height = None
-			if path.exists("/proc/stb/vmpeg/0/yres"):
+			if os_path.exists("/proc/stb/vmpeg/0/yres"):
 				f = open("/proc/stb/vmpeg/0/yres", "r")
 				try:
 					video_height = int(f.read(), 16)
@@ -408,7 +408,7 @@ class ServiceInfo(Poll, Converter):
 			return str(video_height)
 		elif self.type == self.FRAMERATE:
 			video_rate = None
-			if path.exists("/proc/stb/vmpeg/0/framerate"):
+			if os_path.exists("/proc/stb/vmpeg/0/framerate"):
 				f = open("/proc/stb/vmpeg/0/framerate", "r")
 				try:
 					video_rate = f.read()

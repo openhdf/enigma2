@@ -15,15 +15,15 @@ from ServiceReference import ServiceReference
 from enigma import eServiceReference
 from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
-import os
+from os import uname, environ, pathsep, path as os_path, listdir
 
 updateversion = "11.07.2019"
 
-if os.uname()[4] == "aarch64":
+if uname()[4] == "aarch64":
 	pathLen = 26
 else:
 	pathLen = 24
-ppath = os.environ['PYTHONPATH'].split(os.pathsep)[0]
+ppath = environ['PYTHONPATH'].split(pathsep)[0]
 
 
 def getHotkeys():
@@ -304,14 +304,14 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("Skin setup"), "Module/Screens.SkinSelector/SkinSelector", "Setup"))
 	hotkeyFunctions.append((_("OscamInfo"), "Module/Screens.OScamInfo/OscamInfoMenu", "Plugins"))
 	hotkeyFunctions.append((_("CCcamInfo"), "Module/Screens.CCcamInfo/CCcamInfoMain", "Plugins"))
-	if os.path.isfile(ppath + "/Plugins/Extensions/Kodi/plugin.pyo"):
+	if os_path.isfile(ppath + "/Plugins/Extensions/Kodi/plugin.pyo"):
 		hotkeyFunctions.append((_("Kodi Media Center"), "Kodi/", "Plugins"))
-	if os.path.isdir("/etc/ppanel"):
-		for x in [x for x in os.listdir("/etc/ppanel") if x.endswith(".xml")]:
+	if os_path.isdir("/etc/ppanel"):
+		for x in [x for x in listdir("/etc/ppanel") if x.endswith(".xml")]:
 			x = x[:-4]
 			hotkeyFunctions.append((_("PPanel") + " " + x, "PPanel/" + x, "PPanels"))
-	if os.path.isdir("/usr/scripts"):
-		for x in [x for x in os.listdir("/usr/scripts") if x.endswith(".sh")]:
+	if os_path.isdir("/usr/scripts"):
+		for x in [x for x in listdir("/usr/scripts") if x.endswith(".sh")]:
 			x = x[:-3]
 			hotkeyFunctions.append((_(" ") + " " + x, "Shellscript/" + x, "Shellscripts"))
 	return hotkeyFunctions
@@ -686,12 +686,12 @@ class InfoBarHotkey():
 					self.show()
 			elif selected[0] == "PPanel":
 				ppanelFileName = '/etc/ppanels/' + selected[1] + ".xml"
-				if os.path.isfile(ppanelFileName) and os.path.isdir(ppath + "/Plugins/Extensions/PPanel"):
+				if os_path.isfile(ppanelFileName) and os_path.isdir(ppath + "/Plugins/Extensions/PPanel"):
 					from Plugins.Extensions.PPanel.ppanel import PPanel
 					self.session.open(PPanel, name=selected[1] + ' PPanel', node=None, filename=ppanelFileName, deletenode=None)
 			elif selected[0] == "Shellscript":
 				command = '/usr/script/' + selected[1] + ".sh"
-				if os.path.isfile(command):
+				if os_path.isfile(command):
 					if ".hidden." in command:
 						from enigma import eConsoleAppContainer
 						eConsoleAppContainer().execute(command)
@@ -706,7 +706,7 @@ class InfoBarHotkey():
 				except Exception as e:
 					print('[EMCPlayer] showMovies exception:\n' + str(e))
 			elif selected[0] == "Kodi":
-				if os.path.isfile(ppath + "/Plugins/Extensions/Kodi/plugin.pyo"):
+				if os_path.isfile(ppath + "/Plugins/Extensions/Kodi/plugin.pyo"):
 					from Plugins.Extensions.Kodi.plugin import KodiMainScreen
 					self.session.open(KodiMainScreen)
 			elif selected[0] == "DeviceManager":

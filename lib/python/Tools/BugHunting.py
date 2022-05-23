@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import sys
-import inspect
+from sys import _getframe
+from inspect import getargvalues
 
 #WARNING! Dont use inspect.stack()! its very very very slow.
 
@@ -12,7 +12,7 @@ def getFrames(deep=2):
 	frames = []
 	for x in list(range(2, 3 + deep)):
 		try:
-			frames.append(sys._getframe(x))
+			frames.append(_getframe(x))
 		except:
 			break
 	return frames
@@ -52,8 +52,8 @@ def printCallSequenceRawData(deep=1):
 	print("\033[36m%s:%s" % (frames[0].f_code.co_filename, frames[0].f_code.co_firstlineno), end=' ')
 	for x in list(range(0, len(frames))):
 		if not x:
-			print("\033[96m%s \033[33m%s" % (frames[x].f_code.co_name, inspect.getargvalues(frames[x])))
+			print("\033[96m%s \033[33m%s" % (frames[x].f_code.co_name, getargvalues(frames[x])))
 		else:
-			print("\033[94m<-- \033[95m%s(%s:%s)\033[33m%s" % (frames[x].f_code.co_name, frames[x].f_code.co_filename.split("/")[-1], frames[x].f_lineno, inspect.getargvalues(frames[x])))
+			print("\033[94m<-- \033[95m%s(%s:%s)\033[33m%s" % (frames[x].f_code.co_name, frames[x].f_code.co_filename.split("/")[-1], frames[x].f_lineno, getargvalues(frames[x])))
 	print("\033[0m", end=' ')
 	del frames

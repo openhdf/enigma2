@@ -7,8 +7,6 @@ from Components.PluginComponent import plugins
 from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 
-from Tools.Directories import _
-
 
 class GraphMultiEpgSetup(Screen, ConfigListScreen):
 	skin = """

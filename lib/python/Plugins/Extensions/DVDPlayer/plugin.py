@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os
+from os import path as os_path
 from enigma import eTimer, iPlayableService, iServiceInformation, eServiceReference, iServiceKeys, getDesktop
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -771,7 +771,7 @@ def menu(menuid, **kwargs):
 			return [(_("DVD Player"), main, "dvd_player", 46)]
 		elif detected_DVD is None:
 			cd = harddiskmanager.getCD()
-			if cd and os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()), "VIDEO_TS")):
+			if cd and os_path.exists(os_path.join(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()), "VIDEO_TS")):
 				detected_DVD = True
 			else:
 				detected_DVD = False

@@ -14,7 +14,7 @@ from Components.NimManager import nimmanager
 from Components.config import config
 from Components.TuneTest import Tuner
 from Tools.Transponder import channel2frequency
-import six
+from six import itervalues
 
 
 class Satfinder(ScanSetup, ServiceScan):
@@ -76,8 +76,8 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.session.nav.stopService()
 				if not self.openFrontend():
 					if self.session.pipshown:
-						from Screens.InfoBar import InfoBar
-						InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
+						import Screens.InfoBar
+						Screens.InfoBar.InfoBar.instance and hasattr(Screens.InfoBar.InfoBar.instance, "showPiP") and Screens.InfoBar.InfoBar.instance.showPiP()
 						if not self.openFrontend():
 							self.frontend = None # in normal case this should not happen
 			self.tuner = Tuner(self.frontend)
@@ -169,8 +169,8 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.session.nav.stopService()
 			if not self.openFrontend():
 				if self.session.pipshown:
-					from Screens.InfoBar import InfoBar
-					InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
+					import Screens.InfoBar
+					Screens.InfoBar.InfoBar.instance and hasattr(Screens.InfoBar.InfoBar.instance, "showPiP") and Screens.InfoBar.InfoBar.instance.showPiP()
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
 		self.tuner = Tuner(self.frontend)
@@ -178,7 +178,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		if slot.isMultiType():
 			eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 			types = slot.getMultiTypeList()
-			for FeType in six.itervalues(types):
+			for FeType in itervalues(types):
 				if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 					continue
 				elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":

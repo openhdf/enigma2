@@ -2,8 +2,8 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from Components import Netlink
-import enigma
-import os
+from enigma import addInputDevice, removeInputDevice
+from os import path as os_path
 
 
 class NetlinkReader():
@@ -24,10 +24,10 @@ class NetlinkReader():
 					action = event['ACTION']
 					if action == 'add':
 						print("New input device detected:", devname)
-						enigma.addInputDevice(os.path.join('/dev', devname))
+						addInputDevice(os_path.join('/dev', devname))
 					elif action == 'remove':
 						print("Removed input device:", devname)
-						enigma.removeInputDevice(os.path.join('/dev', devname))
+						removeInputDevice(os_path.join('/dev', devname))
 				elif subsystem == 'net':
 					from Components.Network import iNetwork
 					iNetwork.hotplug(event)

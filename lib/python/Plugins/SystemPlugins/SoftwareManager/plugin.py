@@ -33,7 +33,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from enigma import eEnv, ePicLoad, eRCInput, eTimer, getDesktop, getEnigmaVersionString, getPrevAsciiCode
 from six.moves.cPickle import dump, load
-from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, path as os_path, remove, stat
+from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, path as os_path, remove, stat, system, unlink
 from time import time
 from stat import ST_MTIME
 from datetime import date, timedelta
@@ -45,10 +45,9 @@ from .ImageWizard import ImageWizard
 from .Multibootmgr import MultiBootWizard
 from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
 from .SoftwareTools import iSoftwareTools
-import os
-import shutil
+from shutil import copyfile
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getImageDistro
-import six
+from six import ensure_binary, ensure_str, unichr
 
 boxtype = getBoxType()
 brandoem = getBrandOEM()
@@ -60,20 +59,20 @@ def eEnv_resolve_multi(path):
 
 
 if config.softwareupdate.disableupdates.value:
-	if os.path.exists("/var/lib/opkg/status"):
-		os.system("mkdir /var/lib/.opkg")
-		os.system("mkdir /etc/.opkg")
-		os.system("mv /var/lib/opkg/* /var/lib/.opkg/")
-		os.system("mv /etc/opkg/* /etc/.opkg/")
+	if os_path.exists("/var/lib/opkg/status"):
+		system("mkdir /var/lib/.opkg")
+		system("mkdir /etc/.opkg")
+		system("mv /var/lib/opkg/* /var/lib/.opkg/")
+		system("mv /etc/opkg/* /etc/.opkg/")
 
 if not config.softwareupdate.disableupdates.value:
-	if os.path.exists("/var/lib/.opkg/status"):
-		os.system("mv /var/lib/.opkg/* /var/lib/opkg/")
-		os.system("mv /etc/.opkg/* /etc/opkg/")
-		os.system("rmdir /var/lib/.opkg")
-		os.system("rmdir /etc/.opkg")
+	if os_path.exists("/var/lib/.opkg/status"):
+		system("mv /var/lib/.opkg/* /var/lib/opkg/")
+		system("mv /etc/.opkg/* /etc/opkg/")
+		system("rmdir /var/lib/.opkg")
+		system("rmdir /etc/.opkg")
 
-if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
+if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
 	from Plugins.Extensions.dFlash.plugin import dFlash
 	DFLASH = True
 else:
@@ -285,7 +284,7 @@ class UpdatePluginMenu(Screen):
 		}, -1)
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.backuppath = getBackupPath()
-		if not os.path.isdir(self.backuppath):
+		if not os_path.isdir(self.backuppath):
 			self.backuppath = getOldBackupPath()
 		self.backupfile = getBackupFilename()
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
@@ -456,26 +455,26 @@ class UpdatePluginMenu(Screen):
 	def autorestorebackup(self, answer):
 		if answer is True:
 			try:
-				if not os.path.exists('/media/hdd/images'):
-					os.makedirs('/media/hdd/images')
+				if not os_path.exists('/media/hdd/images'):
+					makedirs('/media/hdd/images')
 				print("AfterFlashAction: create /media/hdd/images/hdfrestore")
 				print("AfterFlashAction: filename:", self.fullbackupfilename)
 				backupsourcefile = self.fullbackupfilename
 				backupdestfile = '/media/hdd/images/hdfrestore'
-				if not os.path.exists(backupsourcefile):
+				if not os_path.exists(backupsourcefile):
 					print("AfterFlashAction: No settings found.")
 					self.session.open(MessageBox, _("Please create a backup of your settings before."), MessageBox.TYPE_INFO, timeout=20)
 				else:
-					shutil.copyfile(backupsourcefile, backupdestfile)
-					os.system("cp /usr/share/enigma2/defaults/settings /etc/enigma2/")
+					copyfile(backupsourcefile, backupdestfile)
+					system("cp /usr/share/enigma2/defaults/settings /etc/enigma2/")
 					message = _("Enigma must be restarted to auto restore your saved settings now!")
 					self.session.openWithCallback(self.initEnigmaGUI, MessageBox, message, MessageBox.TYPE_INFO, timeout=10)
 			except:
 				print("AfterFlashAction: failed to create /media/hdd/images/hdfrestore")
 		else:
 			try:
-				if os.path.exists('/media/hdd/images/hdfrestore'):
-					os.unlink('/media/hdd/images/hdfrestore')
+				if os_path.exists('/media/hdd/images/hdfrestore'):
+					unlink('/media/hdd/images/hdfrestore')
 					print("AfterFlashAction: delete /media/hdd/images/hdfrestore")
 			except:
 				print("AfterFlashAction: failed to delete /media/hdd/images/hdfrestore")
@@ -483,7 +482,7 @@ class UpdatePluginMenu(Screen):
 
 	def initEnigmaGUI(self, answer):
 		if answer is True:
-			os.system("killall -9 enigma2")
+			system("killall -9 enigma2")
 		else:
 			self.close()
 
@@ -1530,7 +1529,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			self.thumbnail = "/tmp/" + thumbnailUrl.split('/')[-1]
 			print("[PluginDetails] downloading screenshot " + thumbnailUrl + " to " + self.thumbnail)
 			if iSoftwareTools.NetworkConnectionAvailable:
-				client.downloadPage(six.ensure_binary(thumbnailUrl), self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
+				client.downloadPage(ensure_binary(thumbnailUrl), self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
 			else:
 				self.setThumbnail(noScreenshot=True)
 		else:
@@ -1673,8 +1672,8 @@ class UpdatePlugin(Screen):
 
 		self.activityTimer.start(100, False)
 
-		if os.path.exists('/etc/enigma2/xionrestore'):
-			os.unlink('/etc/enigma2/xionrestore')
+		if os_path.exists('/etc/enigma2/xionrestore'):
+			unlink('/etc/enigma2/xionrestore')
 
 	def CheckDate(self):
 		# Check if image is not to old for update (max 120days)
@@ -1722,7 +1721,7 @@ class UpdatePlugin(Screen):
 			urlopenSTATUS = "https://status.hdfreaks.cc/index.php"
 			d = urlopen(urlopenSTATUS)
 			tmpStatus = d.read()
-			tmpStatus = six.ensure_str(tmpStatus)
+			tmpStatus = ensure_str(tmpStatus)
 			if config.softwareupdate.updatebeta.value and 'gelb.png' in tmpStatus:
 				message = _("Caution update not tested yet !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see https://www.hdfreaks.cc") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
 				picon = MessageBox.TYPE_ERROR
@@ -1761,15 +1760,15 @@ class UpdatePlugin(Screen):
 		if result:
 			self.TraficCheck = True
 			print("create /etc/last-upgrades-git.log with opkg list-upgradable")
-			os.system("opkg list-upgradable > /etc/last-upgrades-git.log")
-			if not os.system("grep 'skins-xionhdf' /etc/last-upgrades-git.log"):
+			system("opkg list-upgradable > /etc/last-upgrades-git.log")
+			if not system("grep 'skins-xionhdf' /etc/last-upgrades-git.log"):
 				print("Xion skin update = Yes")
 				open('/etc/enigma2/xionrestore', 'w').close()
 			else:
 				print("Xion skin update = No")
-				if os.path.exists('/etc/enigma2/xionrestore'):
-					os.unlink('/etc/enigma2/xionrestore')
-			if os.system("grep 'dvb-module\|kernel-module\|platform-util' /etc/last-upgrades-git.log"):
+				if os_path.exists('/etc/enigma2/xionrestore'):
+					unlink('/etc/enigma2/xionrestore')
+			if system("grep 'dvb-module\|kernel-module\|platform-util' /etc/last-upgrades-git.log"):
 				print("Upgrade asap = Yes")
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			else:
@@ -2160,12 +2159,12 @@ class PacketManager(Screen, NumericalTextInput):
 	def keyNumberGlobal(self, val):
 		key = self.getKey(val)
 		if key is not None:
-			keyvalue = six.ensure_str(key)
+			keyvalue = ensure_str(key)
 			if len(keyvalue) == 1:
 				self.setNextIdx(keyvalue[0])
 
 	def keyGotAscii(self):
-		keyvalue = six.ensure_str(six.unichr(getPrevAsciiCode()))
+		keyvalue = ensure_str(unichr(getPrevAsciiCode()))
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 
@@ -2306,7 +2305,7 @@ class PacketManager(Screen, NumericalTextInput):
 	def IpkgList_Finished(self, result, retval, extra_args=None):
 		result = result.replace(b'\n ', b' - ')
 		if result:
-			result = six.ensure_str(result)
+			result = ensure_str(result)
 			result = result.replace('\n ', ' - ')
 			self.packetlist = []
 			last_name = ""
@@ -2329,7 +2328,7 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def IpkgListInstalled_Finished(self, result, retval, extra_args=None):
 		if result:
-			result = six.ensure_str(result)
+			result = ensure_str(result)
 			self.installed_packetlist = {}
 			for x in result.splitlines():
 				tokens = x.split(' - ')
@@ -2345,7 +2344,7 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def OpkgListUpgradeable_Finished(self, result, retval, extra_args=None):
 		if result:
-			result = six.ensure_str(result)
+			result = ensure_str(result)
 			self.upgradeable_packages = {}
 			for x in result.splitlines():
 				tokens = x.split(' - ')
@@ -2536,12 +2535,12 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 	def keyNumberGlobal(self, val):
 		key = self.getKey(val)
 		if key is not None:
-			keyvalue = six.ensure_str(key)
+			keyvalue = ensure_str(key)
 			if len(keyvalue) == 1:
 				self.setNextIdx(keyvalue[0])
 
 	def keyGotAscii(self):
-		keyvalue = six.ensure_str(six.unichr(getPrevAsciiCode()))
+		keyvalue = ensure_str(unichr(getPrevAsciiCode()))
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 

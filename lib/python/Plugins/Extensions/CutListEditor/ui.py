@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import bisect
+from bisect import insort
 
 from enigma import getDesktop, iPlayableService
 
@@ -333,8 +333,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				if self.cut_start <= where <= self.context_position and what in (0, 1):
 					self.cut_list.remove((where, what))
 
-			bisect.insort(self.cut_list, (self.cut_start, 1))
-			bisect.insort(self.cut_list, (self.context_position, 0))
+			insort(self.cut_list, (self.cut_start, 1))
+			insort(self.cut_list, (self.context_position, 0))
 			self.uploadCuesheet()
 			self.cut_start = None
 		elif result == CutListContextMenu.RET_DELETECUT:
@@ -370,7 +370,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				if where <= self.context_position and what in (0, 1):
 					self.cut_list.remove((where, what))
 			# add 'in' point
-			bisect.insort(self.cut_list, (self.context_position, 0))
+			insort(self.cut_list, (self.context_position, 0))
 			self.inhibit_seek = True
 			self.uploadCuesheet()
 			self.inhibit_seek = False
@@ -380,7 +380,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				if where >= self.context_position and what in (0, 1):
 					self.cut_list.remove((where, what))
 			# add 'out' point
-			bisect.insort(self.cut_list, (self.context_position, 1))
+			insort(self.cut_list, (self.context_position, 1))
 			self.inhibit_seek = True
 			self.uploadCuesheet()
 			self.inhibit_seek = False

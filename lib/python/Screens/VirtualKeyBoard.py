@@ -14,14 +14,14 @@ from Components.MultiContent import MultiContentEntryPixmapAlphaTest, MultiConte
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-import six
-import skin
+from six import ensure_text, ensure_str
+from skin import fonts, parameters
 
 
 class VirtualKeyBoardList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		font = skin.fonts.get("VirtualKeyboard", ("Regular", 28, 45))
+		font = fonts.get("VirtualKeyboard", ("Regular", 28, 45))
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])
 
@@ -81,7 +81,7 @@ class VirtualKeyBoard(Screen):
 
 		self["country"] = StaticText("")
 		self["header"] = Label(title)
-		self["text"] = Input(currPos=len(six.ensure_text(kwargs.get("text", ""))), allMarked=False, **kwargs)
+		self["text"] = Input(currPos=len(ensure_text(kwargs.get("text", ""))), allMarked=False, **kwargs)
 		self["list"] = VirtualKeyBoardList([])
 
 		self["actions"] = NumberActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
@@ -327,7 +327,7 @@ class VirtualKeyBoard(Screen):
 		self["country"].setText(self.lang)
 
 	def virtualKeyBoardEntryComponent(self, keys):
-		w, h = skin.parameters.get("VirtualKeyboard", (45, 45))
+		w, h = parameters.get("VirtualKeyboard", (45, 45))
 		key_bg_width = self.key_bg and self.key_bg.size().width() or w
 		key_images = self.shiftMode and self.keyImagesShift or self.keyImages
 		res = [keys]
@@ -341,7 +341,7 @@ class VirtualKeyBoard(Screen):
 			else:
 				width = key_bg_width
 				res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, h), png=self.key_bg))
-				text.append(MultiContentEntryText(pos=(x, 0), size=(width, h), font=0, text=six.ensure_str(key), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
+				text.append(MultiContentEntryText(pos=(x, 0), size=(width, h), font=0, text=ensure_str(key), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
 			x += width
 		return res + text
 
@@ -356,7 +356,7 @@ class VirtualKeyBoard(Screen):
 		self.markSelectedKey()
 
 	def markSelectedKey(self):
-		w, h = skin.parameters.get("VirtualKeyboard", (45, 45))
+		w, h = parameters.get("VirtualKeyboard", (45, 45))
 		if self.previousSelectedKey is not None:
 			self.list[self.previousSelectedKey // 12] = self.list[self.previousSelectedKey // 12][:-1]
 		width = self.key_sel.size().width()
@@ -382,7 +382,7 @@ class VirtualKeyBoard(Screen):
 
 	def okClicked(self):
 		self.smsChar = None
-		text = six.ensure_str((self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12])
+		text = ensure_str((self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12])
 
 		if text == "EXIT":
 			self.close(None)
@@ -401,7 +401,7 @@ class VirtualKeyBoard(Screen):
 			self.shiftClicked()
 
 		elif text == "SPACE":
-                        self['text'].char(six.ensure_str(" "))
+                        self['text'].char(ensure_str(" "))
 
 		elif text == "OK":
 			self.close(self["text"].getText())
@@ -417,7 +417,7 @@ class VirtualKeyBoard(Screen):
 
 	def okLongClicked(self):
 		self.smsChar = None
-		text = six.ensure_str((self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12])
+		text = ensure_str((self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12])
 
 		if text == "BACKSPACE":
 			self["text"].deleteAllChars()
@@ -476,7 +476,7 @@ class VirtualKeyBoard(Screen):
 
 	def keyGotAscii(self):
 		self.smsChar = None
-		if six.ensure_str(self.selectAsciiKey(str(unichr(getPrevAsciiCode())))):
+		if ensure_str(self.selectAsciiKey(str(unichr(getPrevAsciiCode())))):
 			self.okClicked()
 
 	def selectAsciiKey(self, char):

@@ -1,15 +1,15 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import time
-import tests
+from time import time, ctime
+from tests import TestError
 
 recorded_events = []
 
 
 def event(self, name, args, kwargs):
 	global recorded_events
-	print("*EVENT*", time.time(), self, name, args, kwargs)
-	recorded_events.append((time.time(), self, name, args, kwargs))
+	print("*EVENT*", time(), self, name, args, kwargs)
+	recorded_events.append((time(), self, name, args, kwargs))
 
 
 def eventfnc(f):
@@ -30,7 +30,7 @@ def get_events():
 
 def start_log():
 	global base_time
-	base_time = time.time()
+	base_time = time()
 
 
 def end_log(test_name):
@@ -39,7 +39,7 @@ def end_log(test_name):
 	results = ""
 
 	for (t, self, method, args, kwargs) in get_events():
-		results += "%s T+%f: %s::%s(%s, *%s, *%s)\n" % (time.ctime(t), t - base_time, str(self.__class__), method, self, args, kwargs)
+		results += "%s T+%f: %s::%s(%s, *%s, *%s)\n" % (ctime(t), t - base_time, str(self.__class__), method, self, args, kwargs)
 
 	expected = None
 
@@ -61,7 +61,7 @@ def end_log(test_name):
 			f = open(test_name + ".bogus_results", "wb")
 			f.write(results)
 			f.close()
-			raise tests.TestError("test data does not match")
+			raise TestError("test data does not match")
 		else:
 			print("test compared ok")
 	else:
@@ -69,13 +69,13 @@ def end_log(test_name):
 
 
 def log(fnc, base_time=0, test_name="test", *args, **kwargs):
-	import fake_time
-	fake_time.setTime(base_time)
+	from fake_time import setTime
+	setTime(base_time)
 
 	start_log()
 	try:
 		fnc(*args, **kwargs)
 		event(None, "test_completed", [], {"test_name": test_name})
-	except tests.TestError as c:
+	except TestError as c:
 		event(None, "test_failed", [], {"test_name": test_name, "reason": str(c)})
 	end_log(test_name)

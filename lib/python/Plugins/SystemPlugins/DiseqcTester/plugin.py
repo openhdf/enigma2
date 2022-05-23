@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import random
+from random import shuffle
 
 from Screens.Satconfig import NimSelection
 from Screens.Screen import Screen
@@ -366,7 +366,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			return keys[0]
 		elif self.test_type == self.TEST_TYPE_RANDOM:
 			self.randomkeys = list(self.indexlist.keys())
-			random.shuffle(self.randomkeys)
+			shuffle(self.randomkeys)
 			self.myindex = 0
 			self["overall_progress"].setRange(len(self.randomkeys))
 			self["overall_progress"].setValue(self.myindex)
@@ -380,7 +380,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 				for otherindex in keys:
 					if otherindex != index:
 						successorindex[index].append(otherindex)
-				random.shuffle(successorindex[index])
+				shuffle(successorindex[index])
 			self.keylist = []
 			stop = False
 			currindex = None

@@ -7,7 +7,7 @@ from Tools.HardwareInfo import HardwareInfo
 from enigma import eAVSwitch, getDesktop
 from boxbranding import getBoxType, getBrandOEM
 from Components.SystemInfo import SystemInfo
-import os
+from os import access, path as os_path, W_OK
 from time import sleep
 
 has_scart = False
@@ -196,7 +196,7 @@ class AVSwitch:
 
 	def is24hzAvailable(self):
 		try:
-			self.has24pAvailable = os.access("/proc/stb/video/videomode_24hz", os.W_OK) and True or False
+			self.has24pAvailable = access("/proc/stb/video/videomode_24hz", W_OK) and True or False
 		except IOError:
 			print("[AVSwitch] failed to read video choices 24hz .")
 			self.has24pAvailable = False
@@ -421,7 +421,7 @@ class AVSwitch:
 			wss = "auto(4:3_off)"
 		else:
 			wss = "auto"
-		if os.path.exists("/proc/stb/denc/0/wss"):
+		if os_path.exists("/proc/stb/denc/0/wss"):
 			print("[AVSwitch] setting wss: %s" % wss)
 			f = open("/proc/stb/denc/0/wss", "w")
 			f.write(wss)
@@ -447,7 +447,7 @@ class AVSwitch:
 			print("[AVSwitch] setting policy43 failed.")
 
 	def setPolicy169(self, cfgelement):
-		if os.path.exists("/proc/stb/video/policy2"):
+		if os_path.exists("/proc/stb/video/policy2"):
 			print("[AVSwitch] setting policy2: %s" % cfgelement.value)
 			f = open("/proc/stb/video/policy2", "w")
 			f.write(cfgelement.value)
@@ -590,7 +590,7 @@ def InitAVSwitch():
 			default="16:9")
 
 	# Some boxes have a redundant proc entry for policy2 choices, but some don't (The choices are from a 16:9 point of view anyways)
-	if os.path.exists("/proc/stb/video/policy2_choices"):
+	if os_path.exists("/proc/stb/video/policy2_choices"):
 		policy2_choices_proc = "/proc/stb/video/policy2_choices"
 	else:
 		policy2_choices_proc = "/proc/stb/video/policy_choices"
@@ -723,7 +723,7 @@ def InitAVSwitch():
 
 	SystemInfo["ScartSwitch"] = detected
 
-	if os.path.exists("/proc/stb/hdmi/bypass_edid_checking"):
+	if os_path.exists("/proc/stb/hdmi/bypass_edid_checking"):
 		f = open("/proc/stb/hdmi/bypass_edid_checking", "r")
 		can_edidchecking = f.read().strip().split(" ")
 		f.close()
@@ -754,7 +754,7 @@ def InitAVSwitch():
 
 	config.av.edid_override.addNotifier(setUnsupportModes)
 
-	if os.path.exists("/proc/stb/video/hdmi_colorspace"):
+	if os_path.exists("/proc/stb/video/hdmi_colorspace"):
 		f = open("/proc/stb/video/hdmi_colorspace", "r")
 		have_colorspace = f.read().strip().split(" ")
 		f.close()
@@ -806,7 +806,7 @@ def InitAVSwitch():
 	else:
 		config.av.hdmicolorspace = ConfigNothing()
 
-	if os.path.exists("/proc/stb/video/hdmi_colorimetry"):
+	if os_path.exists("/proc/stb/video/hdmi_colorimetry"):
 		f = open("/proc/stb/video/hdmi_colorimetry", "r")
 		have_colorimetry = f.read().strip().split(" ")
 		f.close()
@@ -834,7 +834,7 @@ def InitAVSwitch():
 	else:
 		config.av.hdmicolorimetry = ConfigNothing()
 
-	if os.path.exists("/proc/stb/info/boxmode"):
+	if os_path.exists("/proc/stb/info/boxmode"):
 		f = open("/proc/stb/info/boxmode", "r")
 		have_boxmode = f.read().strip().split(" ")
 		f.close()
@@ -859,7 +859,7 @@ def InitAVSwitch():
 	else:
 		config.av.boxmode = ConfigNothing()
 
-	if os.path.exists("/proc/stb/video/hdmi_colordepth"):
+	if os_path.exists("/proc/stb/video/hdmi_colordepth"):
 		f = open("/proc/stb/video/hdmi_colordepth", "r")
 		have_HdmiColordepth = f.read().strip().split(" ")
 		f.close()
@@ -886,7 +886,7 @@ def InitAVSwitch():
 	else:
 		config.av.hdmicolordepth = ConfigNothing()
 
-	if os.path.exists("/proc/stb/video/hdmi_hdrtype"):
+	if os_path.exists("/proc/stb/video/hdmi_hdrtype"):
 		f = open("/proc/stb/video/hdmi_hdrtype", "r")
 		have_HdmiHdrType = f.read().strip().split(" ")
 		f.close()
@@ -914,7 +914,7 @@ def InitAVSwitch():
 	else:
 		config.av.hdmihdrtype = ConfigNothing()
 
-	if os.path.exists("/proc/stb/hdmi/hlg_support_choices"):
+	if os_path.exists("/proc/stb/hdmi/hlg_support_choices"):
 		f = open("/proc/stb/hdmi/hlg_support_choices", "r")
 		have_HDRSupport = f.read().strip().split(" ")
 		f.close()
@@ -946,7 +946,7 @@ def InitAVSwitch():
 		config.av.allow_10bit = ConfigSelection(default="0", choices=[("0", _("yes")), ("1", _("no"))])
 		config.av.allow_10bit.addNotifier(setDisable10Bit)
 
-	if os.path.exists("/proc/stb/hdmi/audio_source"):
+	if os_path.exists("/proc/stb/hdmi/audio_source"):
 		f = open("/proc/stb/hdmi/audio_source", "r")
 		can_audiosource = f.read().strip().split(" ")
 		f.close()
@@ -971,7 +971,7 @@ def InitAVSwitch():
 	else:
 		config.av.audio_source = ConfigNothing()
 
-	if os.path.exists("/proc/stb/audio/3d_surround_choices"):
+	if os_path.exists("/proc/stb/audio/3d_surround_choices"):
 		f = open("/proc/stb/audio/3d_surround_choices", "r")
 		can_3dsurround = f.read().strip().split(" ")
 		f.close()
@@ -991,7 +991,7 @@ def InitAVSwitch():
 	else:
 		config.av.surround_3d = ConfigNothing()
 
-	if os.path.exists("/proc/stb/audio/3d_surround_speaker_position_choices"):
+	if os_path.exists("/proc/stb/audio/3d_surround_speaker_position_choices"):
 		f = open("/proc/stb/audio/3d_surround_speaker_position_choices", "r")
 		can_3dsurround_speaker = f.read().strip().split(" ")
 		f.close()
@@ -1011,7 +1011,7 @@ def InitAVSwitch():
 	else:
 		config.av.surround_3d_speaker = ConfigNothing()
 
-	if os.path.exists("/proc/stb/audio/avl_choices"):
+	if os_path.exists("/proc/stb/audio/avl_choices"):
 		f = open("/proc/stb/audio/avl_choices", "r")
 		can_autovolume = f.read().strip().split(" ")
 		f.close()
@@ -1032,7 +1032,7 @@ def InitAVSwitch():
 		config.av.autovolume = ConfigNothing()
 
 	try:
-		can_pcm_multichannel = os.access("/proc/stb/audio/multichannel_pcm", os.W_OK)
+		can_pcm_multichannel = access("/proc/stb/audio/multichannel_pcm", W_OK)
 	except:
 		can_pcm_multichannel = False
 
@@ -1074,7 +1074,7 @@ def InitAVSwitch():
 			config.av.downmix_ac3 = ConfigYesNo(default=True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
 
-	if os.path.exists("/proc/stb/audio/ac3plus_choices"):
+	if os_path.exists("/proc/stb/audio/ac3plus_choices"):
 		f = open("/proc/stb/audio/ac3plus_choices", "r")
 		can_ac3plustranscode = f.read().strip().split(" ")
 		f.close()
@@ -1202,7 +1202,7 @@ def InitAVSwitch():
 		config.av.downmix_aacplus = ConfigSelection(choices=choice_list, default="downmix")
 		config.av.downmix_aacplus.addNotifier(setAACDownmixPlus)
 
-	if os.path.exists("/proc/stb/audio/aac_transcode_choices"):
+	if os_path.exists("/proc/stb/audio/aac_transcode_choices"):
 		f = open("/proc/stb/audio/aac_transcode_choices", "r")
 		can_aactranscode = f.read().strip().split(" ")
 		f.close()
@@ -1222,7 +1222,7 @@ def InitAVSwitch():
 	else:
 		config.av.transcodeaac = ConfigNothing()
 
-	if os.path.exists("/proc/stb/audio/btaudio"):
+	if os_path.exists("/proc/stb/audio/btaudio"):
 		f = open("/proc/stb/audio/btaudio", "r")
 		can_btaudio = f.read().strip().split(" ")
 		f.close()
@@ -1242,7 +1242,7 @@ def InitAVSwitch():
 	else:
 		config.av.btaudio = ConfigNothing()
 
-	if os.path.exists("/proc/stb/audio/btaudio_delay"):
+	if os_path.exists("/proc/stb/audio/btaudio_delay"):
 		f = open("/proc/stb/audio/btaudio_delay", "r")
 		can_btaudio_delay = f.read().strip().split(" ")
 		f.close()
@@ -1261,7 +1261,7 @@ def InitAVSwitch():
 	else:
 		config.av.btaudiodelay = ConfigNothing()
 
-	if os.path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
+	if os_path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
 		def setScaler_sharpness(config):
 			myval = int(config.value)
 			try:

@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from enigma import eTimer
 
-import Components.Task
+from Components.Task import job_manager, Job, PythonTask 
 from Screens.MessageBox import MessageBox
 from Components.config import config
 
@@ -42,15 +42,15 @@ class EpgCacheLoadCheckPoller:
 		self.timer.stop()
 
 	def epgcacheloadcheck(self):
-		Components.Task.job_manager.AddJob(self.createLoadCheckJob())
+		job_manager.AddJob(self.createLoadCheckJob())
 
 	def createLoadCheckJob(self):
-		job = Components.Task.Job(_("EPG Cache Check"))
+		job = Job(_("EPG Cache Check"))
 		if config.epg.cacheloadsched.value:
-			task = Components.Task.PythonTask(job, _("Reloading EPG Cache..."))
+			task = PythonTask(job, _("Reloading EPG Cache..."))
 			task.work = self.JobEpgCacheLoad
 			task.weighting = 1
-		task = Components.Task.PythonTask(job, _("Adding schedule..."))
+		task = PythonTask(job, _("Adding schedule..."))
 		task.work = self.JobSched
 		task.weighting = 1
 		return job
@@ -82,15 +82,15 @@ class EpgCacheSaveCheckPoller:
 		self.timer.stop()
 
 	def epgcachesavecheck(self):
-		Components.Task.job_manager.AddJob(self.createSaveCheckJob())
+		job_manager.AddJob(self.createSaveCheckJob())
 
 	def createSaveCheckJob(self):
-		job = Components.Task.Job(_("EPG Cache Check"))
+		job = Job(_("EPG Cache Check"))
 		if config.epg.cachesavesched.value:
-			task = Components.Task.PythonTask(job, _("Saving EPG Cache..."))
+			task = PythonTask(job, _("Saving EPG Cache..."))
 			task.work = self.JobEpgCacheSave
 			task.weighting = 1
-		task = Components.Task.PythonTask(job, _("Adding schedule..."))
+		task = PythonTask(job, _("Adding schedule..."))
 		task.work = self.JobSched
 		task.weighting = 1
 		return job

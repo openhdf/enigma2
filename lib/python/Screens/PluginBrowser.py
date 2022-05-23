@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from Screens.Screen import Screen
-import six
+from six import ensure_str
 from Screens.ParentalControlSetup import ProtectedScreen
 from Components.Language import language
 from enigma import eConsoleAppContainer, eDVBDB
@@ -24,7 +24,7 @@ from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_GUISKIN, isPluginInstalled
 from Tools.LoadPixmap import LoadPixmap
 
-import os
+from os import path as os_path, system, popen, unlink
 
 config.pluginfilter = ConfigSubsection()
 config.pluginfilter.hdf = ConfigYesNo(default=True)
@@ -62,7 +62,7 @@ def CreateFeedConfig():
 	f = open(fileconf, "w")
 	f.write(feedurl)
 	f.close()
-	os.system("ipkg update")
+	system("opkg update")
 
 
 config.misc.pluginbrowser = ConfigSubsection()
@@ -85,8 +85,8 @@ class PluginBrowserSummary(Screen):
 		self.parent.onChangedEntry.remove(self.selectionChanged)
 
 	def selectionChanged(self, name, desc):
-		self["entry"].text = six.ensure_str(name)
-		self["desc"].text = six.ensure_str(desc)
+		self["entry"].text = ensure_str(name)
+		self["desc"].text = ensure_str(desc)
 
 
 class PluginBrowser(Screen, ProtectedScreen):
@@ -131,7 +131,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.saveListsize)
 		if config.pluginfilter.userfeed.value != "http://":
-				if not os.path.exists("/etc/opkg/user-feed.conf"):
+				if not os_path.exists("/etc/opkg/user-feed.conf"):
 					CreateFeedConfig()
 
 	def isProtected(self):
@@ -289,7 +289,7 @@ class PluginDownloadBrowser(Screen):
 			"ok": self.go,
 			"back": self.requestClose,
 		})
-		if os.path.isfile('/usr/bin/opkg'):
+		if os_path.isfile('/usr/bin/opkg'):
 			self.ipkg = '/usr/bin/opkg'
 			self.ipkg_install = self.ipkg + ' install --force-overwrite'
 			self.ipkg_remove = self.ipkg + ' remove --autoremove --force-depends'
@@ -377,7 +377,7 @@ class PluginDownloadBrowser(Screen):
 				mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name, default=False)
 				mbox.setTitle(_("Remove plugins"))
 			elif self.type == self.TOOGLE:
-				if 'hold' in os.popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + sel.name).read():
+				if 'hold' in popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + sel.name).read():
 					mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to unhold the plugin \"%s\"?") % sel.name, default=False)
 				else:
 					mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to hold the plugin \"%s\"?") % sel.name, default=False)
@@ -406,7 +406,7 @@ class PluginDownloadBrowser(Screen):
 			dest = result[1]
 			if dest.startswith('/'):
 				# Custom install path, add it to the list too
-				dest = os.path.normpath(dest)
+				dest = os_path.normpath(dest)
 				extra = '--add-dest %s:%s -d %s' % (dest, dest, dest)
 				Ipkg.opkgAddDestination(dest)
 			else:
@@ -469,7 +469,7 @@ class PluginDownloadBrowser(Screen):
 			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess=True)
 
 	def doToogle(self, callback, pkgname):
-		if 'hold' in os.popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname).read():
+		if 'hold' in popen("opkg status " + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname).read():
 			self.ipkg_toogle = self.ipkg + ' flag user'
 			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_toogle + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess=False)
 		else:
@@ -530,7 +530,7 @@ class PluginDownloadBrowser(Screen):
 				print("[PluginBrowser] postInstallCall failed:", ex)
 			self.resetPostInstall()
 		try:
-			os.unlink('/tmp/opkg.conf')
+			unlink('/tmp/opkg.conf')
 		except:
 			pass
 		if self.type != self.TOOGLE:
@@ -572,7 +572,7 @@ class PluginDownloadBrowser(Screen):
 					self["text"].setText(_("Sorry feeds are down for maintenance"))
 
 	def dataAvail(self, str):
-		str = six.ensure_str(str)
+		str = ensure_str(str)
 		if self.type == self.DOWNLOAD and str.find('404 Not Found') >= 0:
 			self["text"].setText(_("Sorry feeds are down for maintenance"))
 			self.run = 3
@@ -702,7 +702,7 @@ class PluginDownloadBrowser(Screen):
 				_list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
 				for plugin in self.plugins[x]:
 					if self.type == self.TOOGLE or self.type == self.REMOVE:
-						if "hold" in os.popen("opkg status " + self.PLUGIN_PREFIX + "*" + plugin[1]).read():
+						if "hold" in popen("opkg status " + self.PLUGIN_PREFIX + "*" + plugin[1]).read():
 							_list.extend([PluginDownloadComponent(plugin[0], plugin[1] + ' holded', plugin[2], self.listWidth)])
 						else:
 							_list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])

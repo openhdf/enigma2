@@ -1,11 +1,11 @@
 from __future__ import absolute_import
 from __future__ import print_function
-import sys
-import os
+from sys import path as sys_path
+from os import path as os_path, chmod, system
 from time import localtime, strftime, time
 
-if os.path.isfile("/usr/lib/enigma2/python/enigma.zip"):
-	sys.path.append("/usr/lib/enigma2/python/enigma.zip")
+if os_path.isfile("/usr/lib/enigma2/python/enigma.zip"):
+	sys_path.append("/usr/lib/enigma2/python/enigma.zip")
 
 from Tools.Profile import profile, profile_final
 profile("PYTHON_START")
@@ -25,12 +25,12 @@ boxtype = getBoxType()
 from traceback import print_exc
 
 profile("Geolocation")
-import Tools.Geolocation
-Tools.Geolocation.InitGeolocation()
+from Tools.Geolocation import InitGeolocation
+InitGeolocation()
 
 profile("SetupDevices")
-import Components.SetupDevices
-Components.SetupDevices.InitSetupDevices()
+from Components.SetupDevices import InitSetupDevices
+InitSetupDevices()
 
 profile("SimpleSummary")
 from Screens import InfoBar
@@ -50,14 +50,14 @@ def setLoadUnlinkedUserbouquets(configElement):
 config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
 enigma.eDVBDB.getInstance().reloadBouquets()
 profile("ParentalControl")
-import Components.ParentalControl
-Components.ParentalControl.InitParentalControl()
+from Components.ParentalControl import InitParentalControl
+InitParentalControl()
 
 profile("LOAD:Navigation")
 from Navigation import Navigation
 
 profile("LOAD:skin")
-from skin import readSkin
+from skin import readSkin, loadSkinData
 
 from twisted.python import log
 config.misc.enabletwistedlog = ConfigYesNo(default=False)
@@ -67,13 +67,12 @@ if config.misc.enabletwistedlog.value == True:
 profile("LOAD:Tools")
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, SCOPE_PLUGINS, SCOPE_GUISKIN
 from Components.config import ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, NoSave, config, configfile
-import Components.RecordingConfig
 
 profile("config.misc")
 config.misc.boxtype = ConfigText(default=boxtype)
 config.misc.blackradiopic = ConfigText(default=resolveFilename(SCOPE_GUISKIN, "black.mvi"))
 radiopic = resolveFilename(SCOPE_GUISKIN, "radio.mvi")
-if os.path.exists(resolveFilename(SCOPE_CONFIG, "radio.mvi")):
+if os_path.exists(resolveFilename(SCOPE_CONFIG, "radio.mvi")):
 	radiopic = resolveFilename(SCOPE_CONFIG, "radio.mvi")
 config.misc.radiopic = ConfigText(default=radiopic)
 config.misc.nextWakeup = ConfigText(default="-1,-1,-1,0,0,-1,0")	#last shutdown time, wakeup time, timer begins, set by (0=rectimer,1=zaptimer, 2=powertimer or 3=plugin), go in standby, next rectimer, force rectimer
@@ -132,7 +131,7 @@ def NTPserverChanged(configelement):
 	f = open("/etc/default/ntpdate", "w")
 	f.write('NTPSERVERS="' + config.misc.NTPserver.value + '"')
 	f.close()
-	os.chmod("/etc/default/ntpdate", 0o755)
+	chmod("/etc/default/ntpdate", 0o755)
 	from Components.Console import Console
 	Console = Console()
 	Console.ePopen('/usr/bin/ntpdate-sync')
@@ -399,7 +398,7 @@ class Session:
 
 
 profile("Standby,PowerKey")
-import Screens.Standby
+from Screens.Standby import inTryQuitMainloop, TryQuitMainloop, TVinStandby, inStandby, Standby, quitMainloopCode
 from Screens.Menu import MainMenu, mdom
 from GlobalActions import globalActionMap
 
@@ -428,18 +427,18 @@ class PowerKey:
 		if recordings:
 			from Screens.MessageBox import MessageBox
 			self.session.openWithCallback(self.gotoStandby, MessageBox, _("Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."), type=MessageBox.TYPE_INFO, close_on_any_key=True, timeout=10)
-		elif not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
+		elif not inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
 			print("[StartEnigma] PowerOff - Now!")
-			self.session.open(Screens.Standby.TryQuitMainloop, 1)
+			self.session.open(TryQuitMainloop, 1)
 
 	def powerlong(self):
-		if Screens.Standby.inTryQuitMainloop or (self.session.current_dialog and not self.session.current_dialog.ALLOW_SUSPEND):
+		if inTryQuitMainloop or (self.session.current_dialog and not self.session.current_dialog.ALLOW_SUSPEND):
 			return
 		self.doAction(action=config.usage.on_long_powerpress.value)
 
 	def doAction(self, action):
-		if Screens.Standby.TVinStandby.getTVstate('standby'):
-			Screens.Standby.TVinStandby.setTVstate('on')
+		if TVinStandby.getTVstate('standby'):
+			TVinStandby.setTVstate('on')
 			return
 
 		self.standbyblocked = 1
@@ -458,10 +457,10 @@ class PowerKey:
 						menu_screen.setTitle(_("Standby / restart"))
 						return
 		elif action == "standby":
-			Screens.Standby.TVinStandby.skipHdmiCecNow(False)
+			TVinStandby.skipHdmiCecNow(False)
 			self.standby()
 		elif action == "standby_noTVshutdown":
-			Screens.Standby.TVinStandby.skipHdmiCecNow(True)
+			TVinStandby.skipHdmiCecNow(True)
 			self.standby()
 		elif action == "powertimerStandby":
 			val = 3
@@ -483,9 +482,9 @@ class PowerKey:
 		self.standby()
 
 	def standby(self):
-		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
+		if not inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
 			self.session.nav.skipWakeup = True
-			self.session.open(Screens.Standby.Standby)
+			self.session.open(Standby)
 
 	def openSleepTimer(self):
 		from Screens.SleepTimerEdit import SleepTimerEdit
@@ -639,7 +638,7 @@ def runScreenTest():
 
 	# kill showiframe if it is running (sh4 hack...)
 	if getMachineBuild() in ('spark', 'spark7162'):
-		os.system("killall -9 showiframe")
+		system("killall -9 showiframe")
 
 	runReactor()
 
@@ -738,7 +737,7 @@ def runScreenTest():
 		#set next wakeup
 		setFPWakeuptime(wptime)
 		#set next standby only after shutdown in deep standby
-		if Screens.Standby.quitMainloopCode != 1 and Screens.Standby.quitMainloopCode != 45:
+		if quitMainloopCode != 1 and quitMainloopCode != 45:
 			setStandby = 2 # 0=no standby, but get in standby if wakeup to timer start > 60 sec (not for plugin-timer, here is no standby), 1=standby, 2=no standby, when before was not in deep-standby
 		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d,%d" % (int(nowTime), wptime, startTime[0], startTime[1], setStandby, nextRecordTime, forceNextRecord)
 	else:
@@ -762,70 +761,69 @@ def runScreenTest():
 
 
 profile("Init:skin")
-import skin
-skin.loadSkinData(enigma.getDesktop(0))
+loadSkinData(enigma.getDesktop(0))
 
 profile("InputDevice")
-import Components.InputDevice
-Components.InputDevice.InitInputDevices()
+from Components.InputDevice import InitInputDevices
+InitInputDevices()
 import Components.InputHotplug
 
 profile("AVSwitch")
-import Components.AVSwitch
-Components.AVSwitch.InitAVSwitch()
-Components.AVSwitch.InitiVideomodeHotplug()
+from Components.AVSwitch import InitAVSwitch, InitiVideomodeHotplug
+InitAVSwitch()
+InitiVideomodeHotplug()
 
 profile("HdmiRecord")
-import Components.HdmiRecord
-Components.HdmiRecord.InitHdmiRecord()
+from Components.HdmiRecord import InitHdmiRecord
+InitHdmiRecord()
 
 profile("RecordingConfig")
-import Components.RecordingConfig
-Components.RecordingConfig.InitRecordingConfig()
+from Components.RecordingConfig import InitRecordingConfig
+InitRecordingConfig()
 
 profile("UsageConfig")
-import Components.UsageConfig
-Components.UsageConfig.InitUsageConfig()
+from Components.UsageConfig import InitUsageConfig
+InitUsageConfig()
 
 profile("TimeZones")
-import Components.Timezones
-Components.Timezones.InitTimeZones()
+from Components.Timezones import InitTimeZones
+InitTimeZones()
 
 profile("Init:DebugLogCheck")
-import Screens.LogManager
-Screens.LogManager.AutoLogManager()
+from Screens.LogManager import AutoLogManager
+AutoLogManager()
 
 profile("Init:OnlineCheckState")
-import Components.OnlineUpdateCheck
-Components.OnlineUpdateCheck.OnlineUpdateCheck()
+from Components.OnlineUpdateCheck import OnlineUpdateCheck
+OnlineUpdateCheck()
 
 profile("Init:NTPSync")
-import Components.NetworkTime
-Components.NetworkTime.AutoNTPSync()
+from Components.NetworkTime import AutoNTPSync
+AutoNTPSync()
 
 profile("Timezones")
-import Components.Timezones
-Components.Timezones.InitTimeZones()
+from Components.Timezones import InitTimeZones
+InitTimeZones()
 
 profile("Init:DebugLogCheck")
-import Screens.LogManager
-Screens.LogManager.AutoLogManager()
+from Screens.LogManager import AutoLogManager
+AutoLogManager()
 
 profile("keymapparser")
-import keymapparser
-keymapparser.readKeymap(config.usage.keymap.value)
-keymapparser.readKeymap(config.usage.keytrans.value)
-if os.path.exists(config.usage.keymap_usermod.value):
-	keymapparser.readKeymap(config.usage.keymap_usermod.value)
+from keymapparser import readKeymap
+readKeymap(config.usage.keymap.value)
+readKeymap(config.usage.keytrans.value)
+if os_path.exists(config.usage.keymap_usermod.value):
+	readKeymap(config.usage.keymap_usermod.value)
 
 profile("Network")
-import Components.Network
-Components.Network.InitNetwork()
+from Components.Network import InitNetwork
+InitNetwork()
 
 profile("LCD")
-import Components.Lcd
-Components.Lcd.InitLcd()
-Components.Lcd.IconCheck()
+from Components.Lcd import InitLcd, IconCheck
+InitLcd()
+IconCheck()
 # Disable internal clock vfd for ini5000 until we can adjust it for standby
 if boxtype in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'beyonwizt3'):
 	try:
@@ -854,27 +852,27 @@ if boxtype in ('dm7080', 'dm820', 'dm900', 'dm920', 'gb7252'):
 		f.close()
 
 profile("UserInterface")
-import Screens.UserInterfacePositioner
-Screens.UserInterfacePositioner.InitOsd()
+from Screens.UserInterfacePositioner import InitOsd
+InitOsd()
 
 profile("EpgCacheSched")
-import Components.EpgLoadSave
-Components.EpgLoadSave.EpgCacheSaveCheck()
-Components.EpgLoadSave.EpgCacheLoadCheck()
+from Components.EpgLoadSave import EpgCacheSaveCheck, EpgCacheLoadCheck
+EpgCacheSaveCheck()
+EpgCacheLoadCheck()
 
 profile("RFMod")
-import Components.RFmod
-Components.RFmod.InitRFmod()
+from Components.RFmod import InitRFmod
+InitRFmod()
 
 profile("Init:CI")
-import Screens.Ci
-Screens.Ci.InitCiConfig()
+from Screens.Ci import InitCiConfig
+InitCiConfig()
 
 profile("RcModel")
 import Components.RcModel
 
 profile("IPv6")
-if os.path.exists('/etc/enigma2/ipv6'):
+if os_path.exists('/etc/enigma2/ipv6'):
 	try:
 		fp = open('/proc/sys/net/ipv6/conf/all/disable_ipv6', 'w')
 		fp.write("1")

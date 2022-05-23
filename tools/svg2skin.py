@@ -11,7 +11,7 @@
 
 from __future__ import print_function
 from __future__ import absolute_import
-import sys
+from sys import argv
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
@@ -91,9 +91,9 @@ parser = make_parser()
 contentHandler = parseXML()
 parser.setContentHandler(contentHandler)
 contentHandler.find_bbox = True
-parser.parse(sys.argv[1])
+parser.parse(argv[1])
 bboxi = tuple([int(x) for x in contentHandler.bbox])
 contentHandler.find_bbox = False
 print('\t<screen name="" position="%d,%d" size="%d,%d" title="">' % bboxi)
-parser.parse(sys.argv[1])
+parser.parse(argv[1])
 print('\t</screen>')

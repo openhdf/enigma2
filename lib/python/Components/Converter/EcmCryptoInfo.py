@@ -7,7 +7,7 @@ from Components.Element import cached
 from Components.config import config
 from Components.Converter.Poll import Poll
 
-import os
+from os import stat
 
 ECM_INFO = '/tmp/ecm.info'
 
@@ -41,7 +41,7 @@ class EcmCryptoInfo(Poll, Converter):
 		global old_ecm_mtime
 		global data
 		try:
-			ecm_mtime = os.stat(ECM_INFO).st_mtime
+			ecm_mtime = stat(ECM_INFO).st_mtime
 		except:
 			ecm_mtime = None
 		if ecm_mtime != old_ecm_mtime:

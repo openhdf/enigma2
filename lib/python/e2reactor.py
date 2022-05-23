@@ -10,8 +10,8 @@ Maintainer: U{Felix Domke<mailto:tmbinc@elitedvb.net>}
 
 # System imports
 import select
-import errno
-import sys
+from errno import EINTR
+from sys import exc_info
 
 # Twisted imports
 from twisted.python import log, failure
@@ -19,7 +19,7 @@ from twisted.internet import main, posixbase, error
 #from twisted.internet.pollreactor import PollReactor, poller
 
 from enigma import getApplication
-import six
+from six import text_type
 
 # globals
 reads = {}
@@ -159,7 +159,7 @@ class PollReactor(posixbase.PosixReactorBase):
 					self.stop()
 				l = []
 		except select.error as e:
-			if e[0] == errno.EINTR:
+			if e[0] == EINTR:
 				return
 			else:
 				raise
@@ -197,14 +197,14 @@ class PollReactor(posixbase.PosixReactorBase):
 					why = error.ConnectionFdescWentAway('Filedescriptor went away')
 					inRead = False
 			except AttributeError as ae:
-				if "'NoneType' object has no attribute 'writeHeaders'" not in six.text_type(ae):
+				if "'NoneType' object has no attribute 'writeHeaders'" not in text_type(ae):
 					log.deferr()
-					why = sys.exc_info()[1]
+					why = exc_info()[1]
 				else:
 					why = None
 			except:
 				log.deferr()
-				why = sys.exc_info()[1]
+				why = exc_info()[1]
 		if why:
 			try:
 				self._disconnectSelectable(selectable, why, inRead)

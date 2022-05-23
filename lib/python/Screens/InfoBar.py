@@ -3,15 +3,15 @@ from __future__ import absolute_import
 from Tools.Profile import profile
 
 # workaround for required config entry dependencies.
-import Screens.MovieSelection
+from Screens.MovieSelection import MovieSelection, playlist, moveServiceFiles
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
 
 profile("LOAD:enigma")
-import enigma
-import os
+from enigma import iPlayableService, eServiceReference, eTimer, iServiceInformation, eServiceCenter
+from os import system, path as os_path
 from boxbranding import getBoxType, getMachineBrand
 
 boxtype = getBoxType()
@@ -90,8 +90,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("Listen to the radio..."))]))
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-				enigma.iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged,
-				enigma.iPlayableService.evUpdatedInfo: self.__infoChanged
+				iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged,
+				iPlayableService.evUpdatedInfo: self.__infoChanged
 			})
 
 		self.current_begin_time = 0
@@ -223,7 +223,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def BackZap(self):
 		if config.OpenWebif.enabled.value:
 			try:
-				os.system("wget -q -O /tmp/.message.txt 'http://127.0.0.1/web/remotecontrol?command=11' &  > /dev/null 2>&1")
+				system("wget -q -O /tmp/.message.txt 'http://127.0.0.1/web/remotecontrol?command=11' &  > /dev/null 2>&1")
 			except Exception as e:
 				self.session.open(MessageBox, _("The OpenWebinterface plugin is not installed or activated!\nPlease install or activate it."), type=MessageBox.TYPE_INFO, timeout=10)
 		else:
@@ -297,8 +297,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def showMovies(self, defaultRef=None):
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if self.lastservice and ':0:/' in self.lastservice.toString():
-			self.lastservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
-		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef, timeshiftEnabled=self.timeshiftEnabled())
+			self.lastservice = eServiceReference(config.movielist.curentlyplayingservice.value)
+		self.session.openWithCallback(self.movieSelected, MovieSelection, defaultRef, timeshiftEnabled=self.timeshiftEnabled())
 
 	def movieSelected(self, service):
 		ref = self.lastservice
@@ -452,7 +452,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 		self.onShow.append(self.doButtonsCheck)
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-				enigma.iPlayableService.evStart: self.__evStart
+				iPlayableService.evStart: self.__evStart
 			})
 
 		assert MoviePlayer.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
@@ -462,7 +462,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 		self.__evStart()
 
 	def __evStart(self):
-		self.switchAudioTimer = enigma.eTimer()
+		self.switchAudioTimer = eTimer()
 		self.switchAudioTimer.callback.append(self.switchAudio)
 		self.switchAudioTimer.start(750, True)    # 750 is a safe-value
 
@@ -471,8 +471,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 		if service:
 			# we go this way for other extensions as own records(they switch over pmt)
 			path = service.getPath()
-			import os
-			ext = os.path.splitext(path)[1].lower()
+			ext = os_path.splitext(path)[1].lower()
 			exts = [".mkv", ".avi", ".divx", ".mp4"]      # we need more extensions here ?
 			if ext.lower() in exts:
 				service = self.session.nav.getCurrentService()
@@ -487,7 +486,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 
 	def __onClose(self):
 		MoviePlayer.instance = None
-		from Screens.MovieSelection import playlist
 		del playlist[:]
 		Screens.InfoBar.InfoBar.instance.callServiceStarted()
 		self.session.nav.playService(self.lastservice)
@@ -554,7 +552,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 			self.leavePlayerConfirmed((True, "deleteandmovielistconfirmed"))
 
 	def movielistAgain(self):
-		from Screens.MovieSelection import playlist
 		del playlist[:]
 		self.session.nav.playService(self.lastservice)
 		self.leavePlayerConfirmed((True, "movielist"))
@@ -565,14 +562,14 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 			return
 		if answer in ("quitanddelete", "quitanddeleteconfirmed", "deleteandmovielist", "deleteandmovielistconfirmed"):
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			serviceHandler = enigma.eServiceCenter.getInstance()
+			serviceHandler = eServiceCenter.getInstance()
 			if answer in ("quitanddelete", "deleteandmovielist"):
 				msg = ''
 				if config.usage.movielist_trashcan.value:
-					import Tools.Trashcan
+					from Tools.Trashcan import createTrashFolder
 					try:
-						trash = Tools.Trashcan.createTrashFolder(ref.getPath())
-						Screens.MovieSelection.moveServiceFiles(ref, trash)
+						trash = createTrashFolder(ref.getPath())
+						moveServiceFiles(ref, trash)
 						# Moved to trash, okay
 						if answer == "quitanddelete":
 							self.close()
@@ -607,7 +604,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 			else:
 				ref = self.lastservice
 			self.returning = True
-			self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
+			self.session.openWithCallback(self.movieSelected, MovieSelection, ref)
 			self.session.nav.stopService()
 			if not config.movielist.stop_service.value:
 				self.session.nav.playService(self.lastservice)
@@ -719,7 +716,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 		else:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
-			xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
+			xres = str(info.getInfo(iServiceInformation.sVideoWidth))
 			if int(xres) <= 720 or not getMachineBuild() == 'blackbox7405':
 				from Screens.PictureInPicture import PictureInPicture
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
@@ -745,8 +742,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 		if ref and ':0:/' not in ref.toString():
 			self.playingservice = ref # movie list may change the currently playing
 		else:
-			self.playingservice = enigma.eServiceReference(config.movielist.curentlyplayingservice.value)
-		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
+			self.playingservice = eServiceReference(config.movielist.curentlyplayingservice.value)
+		self.session.openWithCallback(self.movieSelected, MovieSelection, ref)
 
 	def movieSelected(self, service):
 		if service is not None:
@@ -768,7 +765,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 				pass
 
 	def getPlaylistServiceInfo(self, service):
-		from Screens.MovieSelection import playlist
 		for i, item in enumerate(playlist):
 			if item == service:
 				if config.usage.on_movie_eof.value == "repeatcurrent":
@@ -785,4 +781,4 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 		Notifications.AddPopup(text=_("%s/%s: %s") % (index, n, self.ref2HumanName(ref)), type=MessageBox.TYPE_INFO, timeout=5)
 
 	def ref2HumanName(self, ref):
-		return enigma.eServiceCenter.getInstance().info(ref).getName(ref)
+		return eServiceCenter.getInstance().info(ref).getName(ref)
