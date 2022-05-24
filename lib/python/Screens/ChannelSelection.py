@@ -54,7 +54,7 @@ profile("ChannelSelection.py 4")
 from os import listdir, remove, rename
 from time import localtime, time
 
-from six import PY3, ensure_str
+from six import PY3, ensure_str, unichr
 
 from RecordTimer import TIMERTYPE
 from Screens.PictureInPicture import PictureInPicture
@@ -1898,7 +1898,7 @@ class ChannelSelectionBase(Screen):
 			self.removeCurrentService()
 
 	def keyAsciiCode(self):
-		unichar = six.unichr(getPrevAsciiCode())
+		unichar = unichr(getPrevAsciiCode())
 		charstr = ensure_str(unichar)
 		if len(charstr) == 1:
 			self.servicelist.moveToChar(charstr[0])

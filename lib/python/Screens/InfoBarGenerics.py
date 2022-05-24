@@ -17,6 +17,7 @@ from enigma import (eActionMap, eDVBDB, eDVBServicePMTHandler,
                     eDVBVolumecontrol, eEPGCache, eServiceCenter,
                     eServiceReference, eTimer, getDesktop, iPlayableService,
                     iServiceInformation, quitMainloop)
+from six import next as six_next
 from six.moves.cPickle import HIGHEST_PROTOCOL, dump, load
 
 from Components.About import about
@@ -309,10 +310,10 @@ class InfoBarUnhandledKey:
 				self.hideShowPressedButtonsTimer.start(2000, True)
 			# print "Enable debug mode for every pressed key."
 			try:
-				print('[InfoBarGenerics] KEY: %s %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value == key), getKeyDescription(key)[0]))
+				print('[InfoBarGenerics] KEY: %s %s %s %s' % (key, flag, six_next(key_name for key_name, value in list(KEYIDS.items()) if value == key), getKeyDescription(key)[0]))
 			except:
 				try:
-					print('[InfoBarGenerics] KEY: %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value == key))) # inverse dictionary lookup in KEYIDS
+					print('[InfoBarGenerics] KEY: %s %s %s' % (key, flag, six_next(key_name for key_name, value in list(KEYIDS.items()) if value == key))) # inverse dictionary lookup in KEYIDS
 				except:
 					print('[InfoBarGenerics] KEY: %s %s' % (key, flag))
 		self.unhandledKeyDialog.hide()

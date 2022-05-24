@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+from six import PY2, PY3
 
 ASCIItranslit = {
 	0x0022: "''",
@@ -257,8 +258,7 @@ ASCIItranslit = {
 
 
 def legacyEncode(string):
-	import six
-	if six.PY2:
+	if PY2:
 		string.decode("utf-8")
 	string2 = ""
 	for z, char in enumerate(string):
@@ -272,6 +272,6 @@ def legacyEncode(string):
 				string2 += char.encode('ascii', 'strict')
 			except:
 				string2 += "_"
-	if six.PY3:
+	if PY3:
 		string2 = string2.decode("utf-8")
 	return string2.upper()
