@@ -9,9 +9,6 @@ from __future__ import absolute_import
 from os import path as os_path
 from xml.etree.cElementTree import parse as ci_parse
 
-from enigma import *
-from six import ensure_str
-
 from Components.ActionMap import ActionMap
 from Components.config import (ConfigInteger, ConfigNothing, ConfigNumber,
                                ConfigYesNo, getConfigListEntry)
@@ -19,10 +16,12 @@ from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.Label import Label
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.StaticText import StaticText
+from enigma import *
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChannelSelection import *
 from Screens.Screen import Screen
 from ServiceReference import ServiceReference
+from six import ensure_str
 
 from .__init__ import _
 

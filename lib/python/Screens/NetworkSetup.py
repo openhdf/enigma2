@@ -4,7 +4,7 @@ from glob import glob
 from os import path as os_path
 from os import remove, rename, system, unlink
 from random import Random
-from string import digits, letters
+from string import digits, ascii_letters
 from sys import version_info
 from time import sleep
 
@@ -4091,7 +4091,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self['config'].l.setList(self.list)
 
 	def GeneratePassword(self):
-		passwdChars = letters + digits
+		passwdChars = ascii_letters + digits
 		passwdLength = 10
 		return ''.join(Random().sample(passwdChars, passwdLength))
 

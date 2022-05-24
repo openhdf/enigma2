@@ -2074,8 +2074,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		cleanAll(os_path.split(current.getPath())[0])
 
 	def showNetworkMounts(self):
-		import NetworkSetup
-		self.session.open(NetworkSetup.NetworkMountsMenu)
+		from NetworkSetup import NetworkMountsMenu
+		self.session.open(NetworkMountsMenu)
 
 	def showDeviceMounts(self):
 		from Plugins.SystemPlugins.DeviceManager.HddSetup import HddSetup
