@@ -99,7 +99,7 @@ class MultiPixmap(Pixmap):
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
-			skin_path_prefix = getattr(screen, "skin_path", path)
+			skin_path_prefix = getattr(screen, "skin_path", os_path)
 			pixmap = None
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
