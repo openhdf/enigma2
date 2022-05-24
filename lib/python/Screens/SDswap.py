@@ -1,11 +1,13 @@
 from __future__ import absolute_import
+
 from os import path as os_path
-from Components.Sources.StaticText import StaticText
+
 from Components.ActionMap import ActionMap
 from Components.Console import Console
-from Screens.Standby import TryQuitMainloop
-from Screens.Screen import Screen
+from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop
 from Tools.BoundFunction import boundFunction
 
 

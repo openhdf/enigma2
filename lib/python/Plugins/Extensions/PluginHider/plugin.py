@@ -1,16 +1,15 @@
 
 from __future__ import absolute_import
-from . import _
 
+from operator import attrgetter
+
+from Components.config import ConfigSet, ConfigSubsection, config
+from Components.PluginComponent import PluginComponent
 # Plugin definition
 from Plugins.Plugin import PluginDescriptor
 
-from Components.PluginComponent import PluginComponent
-from Components.config import config, ConfigSubsection, ConfigSet
-
+from . import _
 from .PluginHiderSetup import PluginHiderSetup
-
-from operator import attrgetter
 
 config.plugins.pluginhider = ConfigSubsection()
 config.plugins.pluginhider.hideextensions = ConfigSet(choices=[])
@@ -59,8 +58,8 @@ def autostart(reason, *args, **kwargs):
 	if reason == 0:
 		if hasattr(PluginComponent, 'pluginHider_baseGetPlugins'):
 			print("[PluginHider] Something went wrong as our autostart handler was called multiple times for startup, printing traceback and ignoring.")
-			import traceback
 			import sys
+			import traceback
 			traceback.print_stack(limit=5, file=sys.stdout)
 		else:
 			PluginComponent.pluginHider_baseGetPlugins = PluginComponent.getPlugins
@@ -71,8 +70,8 @@ def autostart(reason, *args, **kwargs):
 			del PluginComponent.pluginHider_baseGetPlugins
 		else:
 			print("[PluginHider] Something went wrong as our autostart handler was called multiple times for shutdown, printing traceback and ignoring.")
-			import traceback
 			import sys
+			import traceback
 			traceback.print_stack(limit=5, file=sys.stdout)
 
 

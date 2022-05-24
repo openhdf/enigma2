@@ -1,13 +1,18 @@
 from __future__ import absolute_import
-from os import path as os_path, listdir
+
+from os import listdir
+from os import path as os_path
 from re import compile as re_compile
-from Components.MenuList import MenuList
+
+from enigma import (RT_HALIGN_LEFT, eListboxPythonMultiContent, eServiceCenter,
+                    eServiceReference, gFont)
+
 from Components.Harddisk import harddiskmanager
-from Tools.Directories import SCOPE_GUISKIN, resolveFilename, fileExists, pathExists
-from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
-	eServiceReference, eServiceCenter, gFont
+from Components.MenuList import MenuList
+from skin import fonts, parameters
+from Tools.Directories import (SCOPE_GUISKIN, fileExists, pathExists,
+                               resolveFilename)
 from Tools.LoadPixmap import LoadPixmap
-from skin import parameters, fonts
 
 EXTENSIONS = {
 		"m4a": "music",

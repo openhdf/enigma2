@@ -1,12 +1,15 @@
 from __future__ import absolute_import
-from os import path as os_path, listdir
-from shutil import rmtree
+
 from bisect import insort
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
+from os import listdir
+from os import path as os_path
+from shutil import rmtree
+
+from keymapparser import readKeymap
+from Plugins.Plugin import PluginDescriptor
+from Tools.Directories import SCOPE_PLUGINS, fileExists, resolveFilename
 from Tools.Import import my_import
 from Tools.Profile import profile
-from Plugins.Plugin import PluginDescriptor
-from keymapparser import readKeymap
 
 
 class PluginComponent:

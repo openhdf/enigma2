@@ -4,25 +4,38 @@
 #################################################################################
 
 from __future__ import absolute_import
+
+from os import listdir, makedirs
+from os import path as os_path
+from os import statvfs, system, walk
+from sys import version_info
+from time import localtime, strftime, time
+
 from enigma import getEnigmaVersionString
-from Screens.Screen import Screen
-from Components.Button import Button
-from Components.SystemInfo import SystemInfo
-from Components.Label import Label
-from Components.ActionMap import ActionMap
-from Components.About import about
+
 from Components import Harddisk
+from Components.About import about
+from Components.ActionMap import ActionMap
+from Components.Button import Button
+from Components.Label import Label
+from Components.SystemInfo import SystemInfo
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
-from time import time, strftime, localtime
-from os import listdir, makedirs, path as os_path, statvfs, system, walk
-from sys import version_info
+from Screens.Screen import Screen
+
 if version_info[0] >= 3:
 	from subprocess import getoutput
 else:
 	from commands import getoutput
+
 from datetime import timedelta
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem
+
+from boxbranding import (getBoxType, getBrandOEM, getDriverDate, getImageBuild,
+                         getImageDistro, getImageFileSystem, getImageFolder,
+                         getImageVersion, getMachineBrand, getMachineBuild,
+                         getMachineKernelFile, getMachineMKUBIFS,
+                         getMachineMtdKernel, getMachineMtdRoot,
+                         getMachineName, getMachineRootFile, getMachineUBINIZE)
 
 VERSION = _("Version %s %s.1") % (getImageDistro().upper(), getImageVersion())
 

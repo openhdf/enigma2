@@ -1,15 +1,22 @@
 from __future__ import absolute_import
-from Screens.Wizard import wizardManager
-from Screens.WizardLanguage import WizardLanguage
-from Tools.Directories import pathExists, resolveFilename, SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITIONMOUNTDIR, SCOPE_DEFAULTPARTITION
 
-from Components.Pixmap import Pixmap, MovingPixmap
-from Components.config import config, ConfigBoolean, configfile, ConfigYesNo, getConfigListEntry
+from os import mkdir
+from os import path as os_path
+from os import system as os_system
+
+from boxbranding import getMachineBrand, getMachineName
+
+from Components.config import (ConfigBoolean, ConfigYesNo, config, configfile,
+                               getConfigListEntry)
 from Components.DreamInfoHandler import DreamInfoHandler
+from Components.Pixmap import MovingPixmap, Pixmap
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
-from os import system as os_system, path as os_path, mkdir
-from boxbranding import getMachineBrand, getMachineName
+from Screens.Wizard import wizardManager
+from Screens.WizardLanguage import WizardLanguage
+from Tools.Directories import (SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITION,
+                               SCOPE_DEFAULTPARTITIONMOUNTDIR, pathExists,
+                               resolveFilename)
 
 config.misc.defaultchosen = ConfigBoolean(default=False)
 

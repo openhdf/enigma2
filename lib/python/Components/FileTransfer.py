@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+
+from os import listdir
+from os import path as os_path
+
+from enigma import eTimer
+
+from Components.MovieList import MOVIE_EXTENSIONS
 from Components.Task import Job, Task
 from Tools.Directories import fileExists, shellquote
-from Components.MovieList import MOVIE_EXTENSIONS
-from enigma import eTimer
-from os import path as os_path, listdir
 
 ALL_MOVIE_EXTENSIONS = MOVIE_EXTENSIONS.union((".ts",))
 
@@ -82,8 +86,8 @@ class FileTransferTask(Task):
 		self.afterRun()
 		not_met = []
 		if aborted:
-			from Tools import Notifications
 			from Screens.MessageBox import MessageBox
+			from Tools import Notifications
 			Notifications.AddNotification(MessageBox, _("File transfer was cancelled by user"), type=MessageBox.TYPE_INFO)
 		else:
 			for postcondition in self.postconditions:

@@ -1,19 +1,22 @@
 from __future__ import absolute_import
-from boxbranding import getMachineBrand, getMachineName
+
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
-from enigma import eTimer, eEnv
+from boxbranding import getMachineBrand, getMachineName
+from enigma import eEnv, eTimer
 
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.config import config, ConfigPassword, ConfigText, KEY_0, KEY_ASCII, KEY_BACKSPACE, KEY_DELETE, KEY_LEFT, KEY_RIGHT
-from Components.Label import Label
-from Components.Sources.StaticText import StaticText
-from Components.Slider import Slider
 from Components.ActionMap import NumberActionMap
+from Components.config import (KEY_0, KEY_ASCII, KEY_BACKSPACE, KEY_DELETE,
+                               KEY_LEFT, KEY_RIGHT, ConfigPassword, ConfigText,
+                               config)
 from Components.ConfigList import ConfigList
+from Components.Label import Label
+from Components.Slider import Slider
 from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 
 class WizardSummary(Screen):

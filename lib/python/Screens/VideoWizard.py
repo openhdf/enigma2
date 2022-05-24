@@ -1,17 +1,15 @@
 from __future__ import absolute_import
+
+from Components.AVSwitch import iAVSwitch
+from Components.config import ConfigBoolean, config, configfile
+from Components.Pixmap import Pixmap
+from Components.SystemInfo import SystemInfo
+from Screens.Rc import Rc
+from Screens.Screen import Screen
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
-from Screens.Rc import Rc
-from Components.AVSwitch import iAVSwitch
-from Screens.Screen import Screen
-
-from Components.Pixmap import Pixmap
-from Components.config import config, ConfigBoolean, configfile
-from Components.SystemInfo import SystemInfo
-
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_GUISKIN
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKIN, resolveFilename
 from Tools.HardwareInfo import HardwareInfo
-
 
 config.misc.showtestcard = ConfigBoolean(default=False)
 

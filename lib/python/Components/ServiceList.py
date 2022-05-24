@@ -1,15 +1,15 @@
 from __future__ import absolute_import
-from Components.GUIComponent import GUIComponent
-from skin import parseColor, parseFont
 
-from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect, eSize, getDesktop
+from enigma import (eListbox, eListboxServiceContent, eRect, eServiceCenter,
+                    eServiceReference, eSize, getDesktop, gFont)
+
+from Components.config import config
+from Components.GUIComponent import GUIComponent
+from Components.Renderer.Picon import getPiconName
+from skin import parseColor, parseFont
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
-
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
-
-from Components.Renderer.Picon import getPiconName
-from Components.config import config
 
 
 def refreshServiceList(configElement=None):

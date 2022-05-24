@@ -1,10 +1,12 @@
 from __future__ import absolute_import
+
 from enigma import eConsoleAppContainer
-from Screens.Screen import Screen
+from six import ensure_str
+
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
-from six import ensure_str
+from Screens.Screen import Screen
 
 
 class Console(Screen):

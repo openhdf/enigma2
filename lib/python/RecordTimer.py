@@ -1,32 +1,43 @@
-from __future__ import absolute_import
-from __future__ import division
-from boxbranding import getMachineBrand, getMachineName
-from xml.etree.cElementTree import parse
-from datetime import datetime
-from time import localtime, strftime, ctime, time
-from bisect import insort
-from os import path as os_path, remove, makedirs, access, W_OK, statvfs, fsync, rename
-from enigma import eActionMap, eEPGCache, eServiceCenter, eServiceReference, eStreamServer, getBestPlayableServiceReference, iRecordableService, quitMainloop, setPreferredTuner
+from __future__ import absolute_import, division
 
-from Components.config import config
+from bisect import insort
+from datetime import datetime
+from os import W_OK, access, fsync, makedirs
+from os import path as os_path
+from os import remove, rename, statvfs
+from time import ctime, localtime, strftime, time
+from xml.etree.cElementTree import parse
+
+from boxbranding import getMachineBrand, getMachineName
+from enigma import (eActionMap, eEPGCache, eServiceCenter, eServiceReference,
+                    eStreamServer, getBestPlayableServiceReference,
+                    iRecordableService, quitMainloop, setPreferredTuner)
+
 from Components import Harddisk
-from Components.UsageConfig import calcFrontendPriorityIntval, defaultMoviePath
-from Components.TimerSanityCheck import TimerSanityCheck
+from Components.config import config
 from Components.RecordingConfig import InitRecordingConfig
+from Components.TimerSanityCheck import TimerSanityCheck
+from Components.UsageConfig import calcFrontendPriorityIntval, defaultMoviePath
+
 InitRecordingConfig()
-from six import ensure_str
-from Screens.MessageBox import MessageBox
-from Screens.Standby import TVinStandby, inStandby, inTryQuitMainloop, TryQuitMainloop, Standby
-from Tools.ServiceReference import service_types_radio_ref, service_types_tv_ref
-from Tools import Directories, Notifications, ASCIItranslit, Trashcan
-from Tools.XMLTools import stringToXML
-from timer import Timer, TimerEntry
-import NavigationInstance
-from ServiceReference import ServiceReference
-from enigma import pNavigation
-from Components.SystemInfo import SystemInfo
 from subprocess import call
-from threading import Timer as thTimer, Thread
+from threading import Thread
+from threading import Timer as thTimer
+
+from enigma import pNavigation
+from six import ensure_str
+
+import NavigationInstance
+from Components.SystemInfo import SystemInfo
+from Screens.MessageBox import MessageBox
+from Screens.Standby import (Standby, TryQuitMainloop, TVinStandby, inStandby,
+                             inTryQuitMainloop)
+from ServiceReference import ServiceReference
+from timer import Timer, TimerEntry
+from Tools import ASCIItranslit, Directories, Notifications, Trashcan
+from Tools.ServiceReference import (service_types_radio_ref,
+                                    service_types_tv_ref)
+from Tools.XMLTools import stringToXML
 
 # ok, for descriptions etc we have:
 # service reference	 (to get the service name)
@@ -594,8 +605,8 @@ class RecordTimerEntry(TimerEntry):
 				self.first_try_prepare += 1
 				if not InfoBar:
 					from Screens.InfoBar import InfoBar
-				from Screens.InfoBarGenerics import InfoBarPiP
 				from Components.ServiceEventTracker import InfoBarCount
+				from Screens.InfoBarGenerics import InfoBarPiP
 				InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
 				if InfoBarInstance and InfoBarPiP.pipShown(InfoBarInstance) == True:
 					if config.recording.ask_to_abort_pip.value == "ask":
@@ -980,8 +991,8 @@ class RecordTimerEntry(TimerEntry):
 			global InfoBar
 			if not InfoBar:
 				from Screens.InfoBar import InfoBar
-			from Screens.InfoBarGenerics import InfoBarPiP
 			from Components.ServiceEventTracker import InfoBarCount
+			from Screens.InfoBarGenerics import InfoBarPiP
 			InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
 			if InfoBarInstance:
 				InfoBarPiP.showPiP(InfoBarInstance)
@@ -1311,8 +1322,8 @@ class RecordTimer(Timer):
 			doc = parse(file)
 			file.close()
 		except SyntaxError:
-			from Tools.Notifications import AddPopup
 			from Screens.MessageBox import MessageBox
+			from Tools.Notifications import AddPopup
 
 			AddPopup(_("The timer file (timers.xml) is corrupt and could not be loaded."), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 
@@ -1333,8 +1344,8 @@ class RecordTimer(Timer):
 		for timer in root.findall("timer"):
 			newTimer = createTimer(timer)
 			if (self.record(newTimer, ignoreTSC=True, dosave=False) is not None) and checkit:
-				from Tools.Notifications import AddPopup
 				from Screens.MessageBox import MessageBox
+				from Tools.Notifications import AddPopup
 				timer_text = _("\nTimer '%s' disabled!") % newTimer.name
 				AddPopup(_("Timer overlap in timers.xml detected!\nPlease recheck it!") + timer_text, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 				checkit = False # at moment it is enough when the message is displayed one time

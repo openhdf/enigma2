@@ -1,17 +1,23 @@
 from __future__ import absolute_import
-from Components.config import ConfigInteger, ConfigPIN, ConfigSelection, ConfigSubList, ConfigSubsection, ConfigYesNo, config
+
+from time import time
+
+from enigma import (eDVBDB, eServiceCenter, eServiceReference, eTimer,
+                    iServiceInformation)
+from six import iteritems
+
+from Components.config import (ConfigInteger, ConfigPIN, ConfigSelection,
+                               ConfigSubList, ConfigSubsection, ConfigYesNo,
+                               config)
 from Components.ServiceList import refreshServiceList
 #from Screens.ChannelSelection import service_types_tv
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
-from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 from Tools import Notifications
-from Tools.Directories import resolveFilename, SCOPE_CONFIG
+from Tools.BoundFunction import boundFunction
+from Tools.Directories import SCOPE_CONFIG, resolveFilename
 from Tools.Notifications import AddPopup
-from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
-from time import time
-from six import iteritems
 
 TYPE_SERVICE = "SERVICE"
 TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"

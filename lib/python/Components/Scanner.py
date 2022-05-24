@@ -1,9 +1,11 @@
 from __future__ import absolute_import
-from Plugins.Plugin import PluginDescriptor
-from Components.PluginComponent import plugins
 
-from os import path as os_path, walk
-from mimetypes import guess_type, add_type
+from mimetypes import add_type, guess_type
+from os import path as os_path
+from os import walk
+
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
 
 add_type("application/x-debian-package", ".ipk")
 add_type("application/ogg", ".ogg")

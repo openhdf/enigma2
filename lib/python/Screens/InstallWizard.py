@@ -1,11 +1,15 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Components.ConfigList import ConfigListScreen
-from Components.Sources.StaticText import StaticText
-from Components.config import config, ConfigSubsection, ConfigBoolean, getConfigListEntry, ConfigSelection, ConfigYesNo, ConfigIP
-from Components.Network import iNetwork
-from Components.Ipkg import IpkgComponent
+
 from enigma import eDVBDB
+
+from Components.config import (ConfigBoolean, ConfigIP, ConfigSelection,
+                               ConfigSubsection, ConfigYesNo, config,
+                               getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
+from Components.Ipkg import IpkgComponent
+from Components.Network import iNetwork
+from Components.Sources.StaticText import StaticText
+from Screens.Screen import Screen
 
 config.misc.installwizard = ConfigSubsection()
 config.misc.installwizard.hasnetwork = ConfigBoolean(default=False)

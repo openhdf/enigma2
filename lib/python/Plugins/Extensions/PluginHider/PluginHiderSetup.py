@@ -1,26 +1,23 @@
 from __future__ import absolute_import
-from . import _
 
-# GUI (Screens)
-from Screens.Screen import Screen
-
-# GUI (Summary)
-from Screens.HelpMenu import HelpableScreen
-from Screens.MessageBox import MessageBox
+from inspect import getargspec
 
 # GUI (Components)
 from Components.ActionMap import HelpableActionMap
-from Components.SelectionList import SelectionList, SelectionEntryComponent
-from Components.Sources.StaticText import StaticText
-from Components.Pixmap import MultiPixmap
-
 # Configuration
 from Components.config import config
-
+from Components.Pixmap import MultiPixmap
 from Components.PluginComponent import plugins
+from Components.SelectionList import SelectionEntryComponent, SelectionList
+from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
+# GUI (Summary)
+from Screens.HelpMenu import HelpableScreen
+from Screens.MessageBox import MessageBox
+# GUI (Screens)
+from Screens.Screen import Screen
 
-from inspect import getargspec
+from . import _
 
 LIST_PLUGINS = 0
 LIST_EXTENSIONS = 1

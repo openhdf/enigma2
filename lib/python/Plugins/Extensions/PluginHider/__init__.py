@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+
+from gettext import bindtextdomain, dgettext, gettext
+from os import environ
+
 from Components.Language import language
 from Tools.Directories import SCOPE_PLUGINS, resolveFilename
-from os import environ 
-from gettext import bindtextdomain, dgettext, gettext
 
 
 def localeInit():

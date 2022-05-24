@@ -1,16 +1,17 @@
 from __future__ import absolute_import
+
 from os import path as os_path
 
-from Plugins.Plugin import PluginDescriptor
-from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config, ConfigNothing
 from Components.ActionMap import ActionMap
+from Components.config import ConfigNothing, config, getConfigListEntry
+from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
-from Screens.Screen import Screen
+from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):

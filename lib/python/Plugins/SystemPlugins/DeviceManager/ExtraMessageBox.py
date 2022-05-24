@@ -1,11 +1,13 @@
 from __future__ import absolute_import
+
 from enigma import eTimer
-from Screens.Screen import Screen
+
 from Components.ActionMap import ActionMap
-from Components.Sources.List import List
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
-from Tools.LoadPixmap import LoadPixmap
 from Components.Label import Label
+from Components.Sources.List import List
+from Screens.Screen import Screen
+from Tools.Directories import SCOPE_CURRENT_PLUGIN, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
 
 
 def MessageBoxEntry(name, picture):

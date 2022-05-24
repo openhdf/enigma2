@@ -1,6 +1,8 @@
 from __future__ import absolute_import
-from Components.Renderer.Renderer import Renderer
+
 from enigma import ePositionGauge
+
+from Components.Renderer.Renderer import Renderer
 
 
 class PositionGauge(Renderer):

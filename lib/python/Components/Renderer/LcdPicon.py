@@ -1,15 +1,19 @@
 from __future__ import absolute_import
-from os import listdir, path as os_path
+
+from os import listdir
+from os import path as os_path
 from re import sub
 from unicodedata import normalize
-from Components.Renderer.Renderer import Renderer
-from enigma import ePixmap, ePicLoad
-from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import pathExists, SCOPE_GUISKIN, resolveFilename
-from Components.Harddisk import harddiskmanager
+
 from boxbranding import getBoxType
-from ServiceReference import ServiceReference
+from enigma import ePicLoad, ePixmap
 from six import PY3, text_type
+
+from Components.Harddisk import harddiskmanager
+from Components.Renderer.Renderer import Renderer
+from ServiceReference import ServiceReference
+from Tools.Alternatives import GetWithAlternative
+from Tools.Directories import SCOPE_GUISKIN, pathExists, resolveFilename
 
 searchPaths = []
 lastLcdPiconPath = None

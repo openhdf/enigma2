@@ -1,6 +1,8 @@
 from __future__ import absolute_import
-from enigma import init_nav, init_record_config, init_parental_control
-from time import time, ctime, localtime, tzset
+
+from time import ctime, localtime, time, tzset
+
+from enigma import init_nav, init_parental_control, init_record_config
 
 from tests import TestError
 
@@ -23,6 +25,7 @@ def test_timer(repeat=0, timer_start=3600, timer_length=1000, sim_length=86400 *
 
 	# generate a timer to test
 	from xml.etree.cElementTree import fromstring
+
 	from RecordTimer import createTimer
 
 	timer = createTimer(fromstring(
@@ -79,12 +82,11 @@ enigma.init_record_config()
 enigma.init_parental_control()
 
 
+from calendar import timegm
+from os import environ
+
 from events import log
 
-from calendar import timegm
-
-
-from os import environ
 # we are operating in CET/CEST
 environ['TZ'] = 'CET'
 tzset()

@@ -1,19 +1,19 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.ActionMap import ActionMap
-from Components.Language import language
-from Components.config import config
-from Components.Sources.List import List
-from Components.Label import Label
-from Components.Sources.StaticText import StaticText
-from Components.Pixmap import Pixmap
-from Components.Language_cache import LANG_TEXT
+
 from enigma import eTimer
 
+from Components.ActionMap import ActionMap
+from Components.config import config
+from Components.Label import Label
+from Components.Language import language
+from Components.Language_cache import LANG_TEXT
+from Components.Pixmap import Pixmap
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Screens.MessageBox import MessageBox
 from Screens.Rc import Rc
-
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from Screens.Screen import Screen
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 inWizzard = False

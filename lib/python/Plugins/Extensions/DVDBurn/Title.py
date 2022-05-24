@@ -1,5 +1,8 @@
 from __future__ import absolute_import
-from Components.config import ConfigSubsection, ConfigSubList, ConfigInteger, ConfigText, ConfigSelection
+
+from Components.config import (ConfigInteger, ConfigSelection, ConfigSubList,
+                               ConfigSubsection, ConfigText)
+
 from . import TitleCutter
 
 
@@ -41,9 +44,11 @@ class Title:
 
 	def addService(self, service):
 		from os import path as os_path
-		from enigma import eServiceCenter, iServiceInformation
-		from ServiceReference import ServiceReference
 		from time import localtime
+
+		from enigma import eServiceCenter, iServiceInformation
+
+		from ServiceReference import ServiceReference
 		self.source = service
 		serviceHandler = eServiceCenter.getInstance()
 		info = serviceHandler.info(service)

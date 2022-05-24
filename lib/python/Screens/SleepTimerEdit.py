@@ -1,14 +1,17 @@
 from __future__ import absolute_import
-from Screens.InfoBar import InfoBar
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
+
+from time import time
+
+from enigma import eEPGCache
+
 from Components.ActionMap import ActionMap
+from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from Components.config import config, getConfigListEntry
-from enigma import eEPGCache
-from time import time
+from Screens.InfoBar import InfoBar
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 
 class SleepTimerEdit(ConfigListScreen, Screen):

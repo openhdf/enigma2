@@ -1,21 +1,27 @@
 from __future__ import absolute_import
-from boxbranding import getBoxType, getBrandOEM
-from time import localtime, mktime
+
 from datetime import datetime
+from os import F_OK, access
+from os import path as os_path
+from time import localtime, mktime
 from xml.etree.cElementTree import parse
-from os import path as os_path, access, F_OK
 
-from enigma import eDVBSatelliteEquipmentControl as secClass, \
-	eDVBSatelliteDiseqcParameters as diseqcParam, \
-	eDVBSatelliteSwitchParameters as switchParam, \
-	eDVBSatelliteRotorParameters as rotorParam, \
-	eDVBResourceManager, \
-	eDVBDB, eEnv, iDVBFrontend
+from boxbranding import getBoxType, getBrandOEM
+from enigma import eDVBDB, eDVBResourceManager
+from enigma import eDVBSatelliteDiseqcParameters as diseqcParam
+from enigma import eDVBSatelliteEquipmentControl as secClass
+from enigma import eDVBSatelliteRotorParameters as rotorParam
+from enigma import eDVBSatelliteSwitchParameters as switchParam
+from enigma import eEnv, iDVBFrontend
+from six import ensure_text, iteritems, itervalues
 
-from Tools.HardwareInfo import HardwareInfo
+from Components.config import (ConfigDateTime, ConfigFloat, ConfigInteger,
+                               ConfigNothing, ConfigOnOff, ConfigSatlist,
+                               ConfigSelection, ConfigSubDict, ConfigSubList,
+                               ConfigSubsection, ConfigText, ConfigYesNo,
+                               config)
 from Tools.BoundFunction import boundFunction
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
-from six import itervalues, ensure_text, iteritems
+from Tools.HardwareInfo import HardwareInfo
 
 maxFixedLnbPositions = 0
 
@@ -1039,8 +1045,8 @@ class NimManager:
 			if db.readSatellites(self.satList, self.satellites, self.transponders):
 				self.satList.sort() # sort by orbpos
 			else: #satellites.xml not found or corrupted
-				from Tools.Notifications import AddPopup
 				from Screens.MessageBox import MessageBox
+				from Tools.Notifications import AddPopup
 
 				def emergencyAid():
 					if not os_path.exists("/etc/enigma2/lamedb"):
@@ -1964,8 +1970,8 @@ def InitNimManager(nimmgr, update_slots=[]):
 			nim.advanced.unicableconnected = ConfigYesNo(default=False)
 			nim.advanced.unicableconnectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
 			if nim.advanced.unicableconnected.value == True and nim.advanced.unicableconnectedTo.value != nim.advanced.unicableconnectedTo.saved_value:
-				from Tools.Notifications import AddPopup
 				from Screens.MessageBox import MessageBox
+				from Tools.Notifications import AddPopup
 				nim.advanced.unicableconnected.value = False
 				nim.advanced.unicableconnected.save()
 #TODO the following three lines correct the error: 'msgid' format string with unnamed arguments cannot be properly localized

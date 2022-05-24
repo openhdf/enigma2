@@ -1,7 +1,8 @@
 from __future__ import absolute_import
-from Screens.Wizard import Wizard
+
 from Components.Label import Label
 from Components.Language import language
+from Screens.Wizard import Wizard
 
 
 class WizardLanguage(Wizard):

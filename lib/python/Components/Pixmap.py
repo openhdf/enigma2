@@ -1,12 +1,14 @@
 from __future__ import absolute_import
-from Components.ConditionalWidget import ConditionalWidget
-from Components.GUIComponent import GUIComponent
+
+from os import path as os_path
 
 from enigma import ePixmap, eTimer
 
-from Tools.Directories import resolveFilename, fileExists, SCOPE_SKIN_IMAGE, SCOPE_GUISKIN, SCOPE_LCDSKIN
-from os import path as os_path
+from Components.ConditionalWidget import ConditionalWidget
+from Components.GUIComponent import GUIComponent
 from skin import loadPixmap
+from Tools.Directories import (SCOPE_GUISKIN, SCOPE_LCDSKIN, SCOPE_SKIN_IMAGE,
+                               fileExists, resolveFilename)
 
 
 class Pixmap(GUIComponent):

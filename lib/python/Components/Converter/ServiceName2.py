@@ -19,11 +19,16 @@
 #
 
 from __future__ import absolute_import
-from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, eServiceReference, eServiceCenter, eTimer, getBestPlayableServiceReference
-from Components.Element import cached
-from Components.config import config
+
+from enigma import (eServiceCenter, eServiceReference, eTimer,
+                    getBestPlayableServiceReference, iPlayableService,
+                    iPlayableServicePtr, iServiceInformation)
+
 import NavigationInstance
+from Components.config import config
+from Components.Converter.Converter import Converter
+from Components.Element import cached
+
 try:
 	from Components.Renderer.ChannelNumber import ChannelNumberClasses
 	correctChannelNumber = True

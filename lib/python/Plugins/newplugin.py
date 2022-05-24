@@ -1,7 +1,10 @@
 #!/usr/bin/python
 
 from __future__ import absolute_import
-from os import system, path as os_path, listdir, mkdir
+
+from os import listdir, mkdir
+from os import path as os_path
+from os import system
 
 system("clear")
 internalname = raw_input("Internal plugin name (no whitespaces, plugin directory): ")

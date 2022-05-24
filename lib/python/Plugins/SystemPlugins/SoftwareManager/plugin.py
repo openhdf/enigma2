@@ -1,52 +1,65 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+
+from datetime import date, timedelta
+from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir
+from os import path as os_path
+from os import remove, stat, system, unlink
+from shutil import copyfile
+from stat import ST_MTIME
+from time import time
+
+from boxbranding import (getBoxType, getBrandOEM, getImageDistro,
+                         getMachineBrand, getMachineName)
+from enigma import (eEnv, ePicLoad, eRCInput, eTimer, getDesktop,
+                    getEnigmaVersionString, getPrevAsciiCode)
+from six import ensure_binary, ensure_str, unichr
+from six.moves.cPickle import dump, load
+from twisted.web import client
+
+from Components.ActionMap import ActionMap, NumberActionMap
+from Components.AVSwitch import AVSwitch
+from Components.config import (ConfigLocations, ConfigSelection,
+                               ConfigSubsection, ConfigText, ConfigYesNo,
+                               config, getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
+from Components.Console import Console
+from Components.Harddisk import harddiskmanager
+from Components.Input import Input
+from Components.Ipkg import IpkgComponent
+from Components.Label import Label
+from Components.Language import language
+from Components.MenuList import MenuList
+from Components.PackageInfo import PackageInfoHandler
+from Components.Pixmap import Pixmap
+from Components.PluginComponent import plugins
+from Components.ScrollLabel import ScrollLabel
+from Components.SelectionList import SelectionList
+from Components.Slider import Slider
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import SystemInfo
 from Plugins.Plugin import PluginDescriptor
-from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
+from Screens.Console import Console
+from Screens.Ipkg import Ipkg
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
-from Screens.Ipkg import Ipkg
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Input import Input
-from Components.Ipkg import IpkgComponent
-from Components.Sources.StaticText import StaticText
-from Components.ScrollLabel import ScrollLabel
-from Components.Pixmap import Pixmap
-from Components.MenuList import MenuList
-from Components.Sources.List import List
-from Components.Slider import Slider
-from Components.SystemInfo import SystemInfo
-from Components.Harddisk import harddiskmanager
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigYesNo, ConfigSelection
-from Components.ConfigList import ConfigListScreen
-from Components.Console import Console
-from Components.Label import Label
-from Components.SelectionList import SelectionList
-from Components.PluginComponent import plugins
-from Components.PackageInfo import PackageInfoHandler
-from Components.Language import language
-from Components.AVSwitch import AVSwitch
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_CURRENT_PLUGIN, SCOPE_METADIR, SCOPE_PLUGINS, fileExists, resolveFilename
+from Tools.Directories import (SCOPE_CURRENT_PLUGIN, SCOPE_GUISKIN,
+                               SCOPE_METADIR, SCOPE_PLUGINS, fileExists,
+                               resolveFilename)
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from enigma import eEnv, ePicLoad, eRCInput, eTimer, getDesktop, getEnigmaVersionString, getPrevAsciiCode
-from six.moves.cPickle import dump, load
-from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, path as os_path, remove, stat, system, unlink
-from time import time
-from stat import ST_MTIME
-from datetime import date, timedelta
-from twisted.web import client
 
-from .ImageBackup import ImageBackup
+from .BackupRestore import (BackupScreen, BackupSelection, RestoreMenu,
+                            RestoreScreen, getBackupFilename, getBackupPath,
+                            getOldBackupPath)
 from .Flash_online import FlashOnline
+from .ImageBackup import ImageBackup
 from .ImageWizard import ImageWizard
 from .Multibootmgr import MultiBootWizard
-from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
 from .SoftwareTools import iSoftwareTools
-from shutil import copyfile
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM, getImageDistro
-from six import ensure_binary, ensure_str, unichr
 
 boxtype = getBoxType()
 brandoem = getBrandOEM()
@@ -1706,8 +1719,9 @@ class UpdatePlugin(Screen):
 			return
 
 	def checkTraficLight(self):
-		from six.moves.urllib.request import urlopen
 		import socket
+
+		from six.moves.urllib.request import urlopen
 		currentTimeoutDefault = socket.getdefaulttimeout()
 		socket.setdefaulttimeout(3)
 		message = ""

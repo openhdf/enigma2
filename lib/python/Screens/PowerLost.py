@@ -1,9 +1,11 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.config import config
-from Screens.Standby import Standby, TryQuitMainloop, inStandby
+
 from boxbranding import getMachineBrand, getMachineName
+
+from Components.config import config
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Standby import Standby, TryQuitMainloop, inStandby
 
 
 class PowerLost(Screen):

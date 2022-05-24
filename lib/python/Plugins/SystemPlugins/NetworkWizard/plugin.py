@@ -1,6 +1,7 @@
 from __future__ import absolute_import
-from Plugins.Plugin import PluginDescriptor
+
 from Components.config import ConfigBoolean, config
+from Plugins.Plugin import PluginDescriptor
 
 config.misc.firstrun = ConfigBoolean(default=True)
 

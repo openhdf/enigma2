@@ -1,15 +1,20 @@
-from __future__ import absolute_import
-from __future__ import division
-from os import popen, path as os_path, lstat, walk, statvfs, access, listdir, stat, major, minor, system, rmdir, unlink
-from time import time
-from Tools.CList import CList
-from Components.SystemInfo import SystemInfo
-from Components.Console import Console
-from Tools.HardwareInfo import HardwareInfo
-from boxbranding import getMachineBuild
-from Components.Task import Job, PythonTask, LoggingTask, ConditionTask, ReturncodePostcondition
+from __future__ import absolute_import, division
+
+from os import access, listdir, lstat, major, minor
+from os import path as os_path
+from os import popen, rmdir, stat, statvfs, system, unlink, walk
 from re import search
-from six import ensure_str, ensure_binary
+from time import time
+
+from boxbranding import getMachineBuild
+from six import ensure_binary, ensure_str
+
+from Components.Console import Console
+from Components.SystemInfo import SystemInfo
+from Components.Task import (ConditionTask, Job, LoggingTask, PythonTask,
+                             ReturncodePostcondition)
+from Tools.CList import CList
+from Tools.HardwareInfo import HardwareInfo
 
 
 def readFile(filename):

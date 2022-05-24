@@ -1,18 +1,22 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSelectionNumber, ConfigSubList, ConfigYesNo, getConfigListEntry
+
+from datetime import datetime
+from time import localtime, mktime, strftime, time
+
 from Components.ActionMap import NumberActionMap
-from Components.ConfigList import ConfigListScreen
-from Components.MenuList import MenuList
 from Components.Button import Button
+from Components.config import (ConfigClock, ConfigDateTime, ConfigIP,
+                               ConfigSelection, ConfigSelectionNumber,
+                               ConfigSubList, ConfigYesNo, getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
-from Components.Sources.StaticText import StaticText
+from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
+from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 from PowerTimer import AFTEREVENT, TIMERTYPE
-from time import localtime, mktime, time, strftime
-from datetime import datetime
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 
 class TimerEntry(Screen, ConfigListScreen):

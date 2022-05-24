@@ -1,8 +1,9 @@
 # usage: genmetaindex.py <xml-files>  > index.xml
 from __future__ import absolute_import
-from sys import version_info, argv, stdout
+
 from os import path as os_path
-from xml.etree.ElementTree import ElementTree, Element
+from sys import argv, stdout, version_info
+from xml.etree.ElementTree import Element, ElementTree
 
 root = Element("index")
 encoding = ("unicode" if version_info[0] >= 3 else "utf-8")

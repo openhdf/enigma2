@@ -1,41 +1,51 @@
 from __future__ import absolute_import
-from os import path as os_path, access, W_OK, mkdir, rename, listdir, stat, rmdir
+
+from os import W_OK, access, listdir, mkdir
+from os import path as os_path
+from os import rename, rmdir, stat
 from time import time
+
+from enigma import (eRCInput, eServiceCenter, eServiceReference, eSize, eTimer,
+                    getPrevAsciiCode, iPlayableService, iServiceInformation,
+                    pNavigation)
 from six.moves.cPickle import dump, load
 
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput, pNavigation
-
-from Screens.Screen import Screen
+import NavigationInstance
+import Screens.InfoBar
+from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Button import Button
-from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
-from Components.MenuList import MenuList
-from Components.MovieList import MovieList, resetMoviePlayState, AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS
-from Components.DiskInfo import DiskInfo
-from Tools.Trashcan import TrashInfo, getTrashFolder, createTrashFolder, cleanAll
-from Components.Pixmap import Pixmap, MultiPixmap
-from Components.Label import Label
-from Components.PluginComponent import plugins
-from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet, ConfigYesNo, ConfigSelection, getConfigListEntry, ConfigSelectionNumber
+from Components.config import (ConfigInteger, ConfigLocations, ConfigSelection,
+                               ConfigSelectionNumber, ConfigSet,
+                               ConfigSubsection, ConfigText, ConfigYesNo,
+                               config, getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
+from Components.DiskInfo import DiskInfo
+from Components.Harddisk import harddiskmanager
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Components.MovieList import (AUDIO_EXTENSIONS, DVD_EXTENSIONS,
+                                  IMAGE_EXTENSIONS, MovieList,
+                                  resetMoviePlayState)
+from Components.Pixmap import MultiPixmap, Pixmap
+from Components.PluginComponent import plugins
+from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
+from Components.Sources.Boolean import Boolean
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
-from Components.Harddisk import harddiskmanager
 from Components.UsageConfig import preferredTimerPath
-from Components.Sources.Boolean import Boolean
 from Plugins.Plugin import PluginDescriptor
-from Screens.MessageBox import MessageBox
+from RecordTimer import AFTEREVENT, RecordTimerEntry
 from Screens.ChoiceBox import ChoiceBox
-from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
-import Screens.InfoBar
+from Screens.LocationBox import MovieLocationBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Tools import NumericalTextInput
-from Tools.Directories import resolveFilename, SCOPE_HDD
 from Tools.BoundFunction import boundFunction
-from Tools.CopyFiles import moveFiles, copyFiles, deleteFiles
-import NavigationInstance
-from RecordTimer import RecordTimerEntry, AFTEREVENT
-
+from Tools.CopyFiles import copyFiles, deleteFiles, moveFiles
+from Tools.Directories import SCOPE_HDD, resolveFilename
+from Tools.Trashcan import (TrashInfo, cleanAll, createTrashFolder,
+                            getTrashFolder)
 
 config.movielist = ConfigSubsection()
 config.movielist.curentlyplayingservice = ConfigText()
@@ -1250,6 +1260,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				if ext in IMAGE_EXTENSIONS:
 					try:
 						from Plugins.Extensions.PicturePlayer import ui
+
 						# Build the list for the PicturePlayer UI
 						filelist = []
 						index = 0

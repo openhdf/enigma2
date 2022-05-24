@@ -1,33 +1,41 @@
-from __future__ import absolute_import
-from __future__ import division
-from skin import parseColor, parseFont
-from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigSelectionNumber
-from Components.Pixmap import Pixmap
-from Components.Button import Button
+from __future__ import absolute_import, division
+
+from time import localtime, strftime, time
+
+from enigma import (BT_KEEP_ASPECT_RATIO, BT_SCALE, RT_HALIGN_CENTER,
+                    RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP,
+                    eEPGCache, eListbox, eListboxPythonMultiContent, eRect,
+                    eSize, eTimer, gFont, loadPNG)
+
 from Components.ActionMap import HelpableActionMap
-from Components.GUIComponent import GUIComponent
+from Components.Button import Button
+from Components.config import (ConfigClock, ConfigInteger, ConfigSelection,
+                               ConfigSelectionNumber, ConfigSubsection,
+                               ConfigYesNo, config)
 from Components.EpgList import Rect
-from Components.Sources.Event import Event
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.GUIComponent import GUIComponent
+from Components.MultiContent import (MultiContentEntryPixmapAlphaTest,
+                                     MultiContentEntryText)
+from Components.Pixmap import Pixmap
 from Components.Renderer.Picon import getPiconName
+from Components.Sources.Event import Event
 from Components.Sources.ServiceEvent import ServiceEvent
-from Screens.Screen import Screen
-from Screens.HelpMenu import HelpableScreen
-from Screens.EventView import EventViewEPGSelect
-from Screens.TimeDateInput import TimeDateInput
-from Screens.TimerEntry import TimerEntry
+from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from Screens.EpgSelection import EPGSelection
-from Screens.TimerEdit import TimerSanityConflict
+from Screens.EventView import EventViewEPGSelect
+from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
-from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
+from Screens.Screen import Screen
+from Screens.TimeDateInput import TimeDateInput
+from Screens.TimerEdit import TimerSanityConflict
+from Screens.TimerEntry import TimerEntry
 from ServiceReference import ServiceReference, isPlayableForCur
-from Tools.LoadPixmap import LoadPixmap
+from skin import parseColor, parseFont
 from Tools.Alternatives import CompareWithAlternatives
-from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER,\
-	RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, eSize, eRect, eTimer, loadPNG
+from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
+
 from .GraphMultiEpgSetup import GraphMultiEpgSetup
-from time import localtime, time, strftime
 
 MAX_TIMELINES = 6
 

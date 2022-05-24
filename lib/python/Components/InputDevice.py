@@ -1,11 +1,20 @@
 from __future__ import absolute_import
-from Components.config import config, ConfigSlider, ConfigSubsection, ConfigYesNo, ConfigText, ConfigInteger
-from Components.SystemInfo import SystemInfo
+
 from fcntl import ioctl
-from boxbranding import getBoxType
-from os import path as os_path, listdir, open as os_open, O_RDWR, O_NONBLOCK, close as os_close, write as os_write
-from struct import pack
+from os import O_NONBLOCK, O_RDWR
+from os import close as os_close
+from os import listdir
+from os import open as os_open
+from os import path as os_path
+from os import write as os_write
 from platform import machine
+from struct import pack
+
+from boxbranding import getBoxType
+
+from Components.config import (ConfigInteger, ConfigSlider, ConfigSubsection,
+                               ConfigText, ConfigYesNo, config)
+from Components.SystemInfo import SystemInfo
 
 # include/uapi/asm-generic/ioctl.h
 IOC_NRBITS = 8

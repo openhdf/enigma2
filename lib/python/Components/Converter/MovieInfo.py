@@ -1,7 +1,9 @@
 from __future__ import absolute_import
+
+from enigma import eServiceReference, iServiceInformation
+
 from Components.Converter.Converter import Converter
-from Components.Element import cached, ElementError
-from enigma import iServiceInformation, eServiceReference
+from Components.Element import ElementError, cached
 from ServiceReference import ServiceReference
 
 

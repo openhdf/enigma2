@@ -1,7 +1,10 @@
 from __future__ import absolute_import
+
+from enigma import eEnv, ePixmap
+
 from Components.Renderer.Renderer import Renderer
-from enigma import ePixmap, eEnv
-from Tools.Directories import fileExists, SCOPE_CURRENT_SKIN, SCOPE_GUISKIN, resolveFilename
+from Tools.Directories import (SCOPE_CURRENT_SKIN, SCOPE_GUISKIN, fileExists,
+                               resolveFilename)
 
 
 class PiconX(Renderer):

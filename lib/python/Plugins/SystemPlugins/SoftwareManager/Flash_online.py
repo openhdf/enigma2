@@ -1,27 +1,32 @@
 from __future__ import absolute_import
-from Components.config import config
-from Components.Label import Label
-from Components.ActionMap import ActionMap
-from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
-from Components.ProgressBar import ProgressBar
-from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
-from Screens.Screen import Screen
-from Components.Console import Console
-from Tools.BoundFunction import boundFunction
-from Tools.Multiboot import GetBoxName, GetCurrentImage, GetImagelist
-from enigma import eTimer, fbClass
+
 from json import load
-from os import path as os_path, sep, listdir, remove, mkdir, access, W_OK, statvfs, stat, major, minor, makedirs, unlink, walk
+from os import W_OK, access, listdir, major, makedirs, minor, mkdir
+from os import path as os_path
+from os import remove, sep, stat, statvfs, unlink, walk
 from shutil import copyfile, rmtree
 from time import time
 from zipfile import ZipFile
-from six.moves.urllib.request import urlopen, Request
 
+from boxbranding import (getBoxType, getImageDistro, getMachineBrand,
+                         getMachineMtdKernel, getMachineMtdRoot,
+                         getMachineName)
+from enigma import eTimer, fbClass
+from six.moves.urllib.request import Request, urlopen
 
-from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineMtdKernel, getMachineMtdRoot, getMachineName
+from Components.ActionMap import ActionMap
+from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
+from Components.config import config
+from Components.Console import Console
+from Components.Label import Label
+from Components.ProgressBar import ProgressBar
+from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import SystemInfo
+from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Tools.BoundFunction import boundFunction
+from Tools.Multiboot import GetBoxName, GetCurrentImage, GetImagelist
 
 feedserver = 'flash.hdfreaks.cc'
 feedurl = 'https://%s/%s/json' % (feedserver, getImageDistro())
@@ -336,7 +341,8 @@ class FlashImage(Screen):
 	def startBackupsettings(self, retval):
 		if retval:
 			if 'backup' == retval or True == retval:
-				from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
+				from Plugins.SystemPlugins.SoftwareManager.BackupRestore import \
+				    BackupScreen
 				self.session.openWithCallback(self.flashPostAction, BackupScreen, runBackup=True)
 			else:
 				self.flashPostAction()

@@ -1,6 +1,7 @@
 from __future__ import absolute_import
-from os import system, popen
-from re import split, search
+
+from os import popen, system
+from re import search, split
 
 
 class MountPoints():

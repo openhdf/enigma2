@@ -1,5 +1,7 @@
 from __future__ import absolute_import
+
 from Plugins.Plugin import PluginDescriptor
+
 from .SocketMMI import SocketMMIMessageHandler
 
 socketHandler = None

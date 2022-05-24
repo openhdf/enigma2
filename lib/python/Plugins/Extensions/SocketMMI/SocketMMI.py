@@ -1,5 +1,7 @@
 from __future__ import absolute_import
+
 from Screens.Ci import MMIDialog
+
 from . import socketmmi
 
 

@@ -1,5 +1,7 @@
 from __future__ import absolute_import
-from time import time, ctime
+
+from time import ctime, time
+
 from tests import TestError
 
 recorded_events = []

@@ -1,5 +1,7 @@
 from __future__ import absolute_import
+
 from boxbranding import getBoxType, getBrandOEM, getMachineName
+
 from Components.About import about
 
 

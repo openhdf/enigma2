@@ -1,11 +1,14 @@
-from __future__ import absolute_import
-from __future__ import division
-from Components.Converter.Converter import Converter
-from time import time as getTime, localtime, strftime
-from Components.Converter.Poll import Poll
+from __future__ import absolute_import, division
+
+from time import localtime, strftime
+from time import time as getTime
+
 from enigma import iPlayableService
-from Components.Element import cached, ElementError
+
 from Components.config import config
+from Components.Converter.Converter import Converter
+from Components.Converter.Poll import Poll
+from Components.Element import ElementError, cached
 
 
 class ServicePosition3(Poll, Converter):

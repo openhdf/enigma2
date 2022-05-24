@@ -1,9 +1,11 @@
 from __future__ import absolute_import
-from Components.MenuList import MenuList
-from Components.ParentalControl import IMG_WHITESERVICE, IMG_WHITEBOUQUET, IMG_BLACKSERVICE, IMG_BLACKBOUQUET
-from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
+from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
+
+from Components.MenuList import MenuList
+from Components.ParentalControl import (IMG_BLACKBOUQUET, IMG_BLACKSERVICE,
+                                        IMG_WHITEBOUQUET, IMG_WHITESERVICE)
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 #Now there is a list of pictures instead of one...

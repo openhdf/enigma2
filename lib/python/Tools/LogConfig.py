@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+
 LOG_TYPE_DEBUG = "D/ "
 LOG_TYPE_INFO = "I/ "
 LOG_TYPE_WARNING = "W/ "
@@ -18,7 +19,8 @@ class LogConfig(object):
 		if LogConfig._initialized:
 			return
 		else:
-			from Components.config import config, ConfigSubsection, ConfigOnOff, ConfigSelection
+			from Components.config import (ConfigOnOff, ConfigSelection,
+			                               ConfigSubsection, config)
 			config.log = ConfigSubsection()
 			config.log.level = ConfigSelection(
 				choices={str(LOG_LEVEL_DEBUG): "DEBUG", str(LOG_LEVEL_INFO): "INFO", str(LOG_LEVEL_WARNING): "WARNING", str(LOG_LEVEL_ERROR): "ERROR", }, default=str(LOG_LEVEL_INFO))

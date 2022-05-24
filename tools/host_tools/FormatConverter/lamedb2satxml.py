@@ -1,10 +1,12 @@
 #!/usr/bin/python
 from __future__ import absolute_import
-from datasource import genericdatasource
-from satxml import satxml
-from lamedb import lamedb
 
-from sys import argv, exit as sys_exit
+from sys import argv
+from sys import exit as sys_exit
+
+from datasource import genericdatasource
+from lamedb import lamedb
+from satxml import satxml
 
 if len(argv) != 3:
 	print("usage: %s <lamedb> <satellites.xml>" % argv[0])

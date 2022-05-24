@@ -23,11 +23,14 @@
 #######################################################################
 
 from __future__ import absolute_import
-from Components.VariableText import VariableText
-from enigma import eLabel, eEPGCache
+
+from time import localtime
+
+from enigma import eEPGCache, eLabel
+
 from Components.config import config
 from Components.Renderer.Renderer import Renderer
-from time import localtime
+from Components.VariableText import VariableText
 
 
 class NextEvent(Renderer, VariableText):

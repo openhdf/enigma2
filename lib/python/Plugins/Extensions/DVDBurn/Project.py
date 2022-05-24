@@ -1,10 +1,16 @@
 from __future__ import absolute_import
-from Tools.Directories import fileExists
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, ConfigSequence, ConfigSubList
+
+from xml.dom.minidom import Element, parseString
+
+from six import ensure_str, iteritems
+
+from Components.config import (ConfigInteger, ConfigSelection, ConfigSequence,
+                               ConfigSubList, ConfigSubsection, ConfigText,
+                               config)
+from Tools.Directories import (SCOPE_FONTS, SCOPE_PLUGINS, fileExists,
+                               resolveFilename)
+
 from . import Title
-from xml.dom.minidom import parseString, Element
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
-from six import iteritems, ensure_str
 
 
 class ConfigColor(ConfigSequence):

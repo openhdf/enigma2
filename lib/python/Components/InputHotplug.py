@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from Components import Netlink
-from enigma import addInputDevice, removeInputDevice
+
 from os import path as os_path
+
+from enigma import addInputDevice, removeInputDevice
+
+from Components import Netlink
 
 
 class NetlinkReader():

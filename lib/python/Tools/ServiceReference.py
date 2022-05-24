@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+
 from enigma import eServiceReference, eServiceReferenceDVB
 
 # type 1 = digital television service

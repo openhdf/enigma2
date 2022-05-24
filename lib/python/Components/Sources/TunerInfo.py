@@ -1,7 +1,9 @@
 from __future__ import absolute_import
-from Components.Sources.Source import Source
-from Components.NimManager import nimmanager
+
 from enigma import eDVBResourceManager
+
+from Components.NimManager import nimmanager
+from Components.Sources.Source import Source
 
 
 class TunerInfo(Source):

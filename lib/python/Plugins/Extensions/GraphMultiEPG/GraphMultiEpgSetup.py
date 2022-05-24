@@ -1,10 +1,11 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
 from Components.ActionMap import ActionMap
-from Components.Label import Label
-from Components.PluginComponent import plugins
 from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
+from Components.Label import Label
+from Components.PluginComponent import plugins
+from Screens.Screen import Screen
 
 
 class GraphMultiEpgSetup(Screen, ConfigListScreen):

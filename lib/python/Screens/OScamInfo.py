@@ -1,28 +1,27 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
-
-from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Sources.List import List
-from Components.Sources.StaticText import StaticText
-from Components.config import config, configfile, getConfigListEntry
-from Components.ConfigList import ConfigList, ConfigListScreen
-from Components.MenuList import MenuList
-
-from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import SCOPE_GUISKIN, resolveFilename, fileExists
-
-from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, eTimer, gFont, getDesktop
-from xml.etree import ElementTree
 
 from operator import itemgetter
 from os import path as os_path
-from time import strftime, localtime
-from skin import getSkinFactor, parameters
+from time import localtime, strftime
+from xml.etree import ElementTree
 
+from enigma import (RT_HALIGN_LEFT, eListboxPythonMultiContent, eTimer,
+                    getDesktop, gFont)
 from six.moves import urllib
-from six.moves.urllib.request import HTTPHandler, HTTPDigestAuthHandler
+from six.moves.urllib.request import HTTPDigestAuthHandler, HTTPHandler
+
+from Components.ActionMap import ActionMap, NumberActionMap
+from Components.config import config, configfile, getConfigListEntry
+from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.MenuList import MenuList
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from skin import getSkinFactor, parameters
+from Tools.Directories import SCOPE_GUISKIN, fileExists, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
 
 ###global
 sf = getSkinFactor()

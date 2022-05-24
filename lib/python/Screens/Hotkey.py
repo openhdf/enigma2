@@ -1,20 +1,25 @@
 from __future__ import absolute_import
+
+from os import environ, listdir
+from os import path as os_path
+from os import pathsep, uname
+
+from boxbranding import getHaveCI, getHaveHDMIinFHD, getHaveHDMIinHD
+from enigma import eServiceReference
+
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Button import Button
-from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from Components.SystemInfo import SystemInfo
-from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config
-from Components.PluginComponent import plugins
-from Screens.ChoiceBox import ChoiceBox
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Plugins.Plugin import PluginDescriptor
-from Tools.BoundFunction import boundFunction
-from ServiceReference import ServiceReference
-from enigma import eServiceReference
+from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
+from Components.config import ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.Label import Label
-from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
-from os import uname, environ, pathsep, path as os_path, listdir
+from Components.PluginComponent import plugins
+from Components.SystemInfo import SystemInfo
+from Plugins.Plugin import PluginDescriptor
+from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from ServiceReference import ServiceReference
+from Tools.BoundFunction import boundFunction
 
 updateversion = "11.07.2019"
 

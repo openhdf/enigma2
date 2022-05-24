@@ -1,10 +1,11 @@
 #-*- coding: UTF-8 -*-
+from json import loads
+from re import search
+
+from six import ensure_str
 from six.moves.urllib.error import URLError
 from six.moves.urllib.parse import urlencode
 from six.moves.urllib.request import urlopen
-from re import search
-from json import loads
-from six import ensure_str
 
 WOEID_SEARCH_URL = 'http://query.yahooapis.com/v1/public/yql'
 WOEID_QUERY_STRING = 'select line1, line2, line3, line4, woeid from geo.placefinder where text="%s"'

@@ -1,8 +1,9 @@
-from __future__ import absolute_import
-from __future__ import division
-from enigma import eComponentScan, iDVBFrontend, eTimer
-from Components.NimManager import nimmanager as nimmgr
+from __future__ import absolute_import, division
+
+from enigma import eComponentScan, eTimer, iDVBFrontend
+
 from Components.Converter.ChannelNumbers import channelnumbers
+from Components.NimManager import nimmanager as nimmgr
 
 
 class ServiceScan:

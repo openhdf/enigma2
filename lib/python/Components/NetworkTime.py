@@ -1,9 +1,12 @@
 from __future__ import absolute_import
-from Components.Console import Console
+
+from time import ctime, time
+
+from enigma import eDVBLocalTimeHandler, eEPGCache, eTimer
+
 from Components.config import config
-from enigma import eTimer, eDVBLocalTimeHandler, eEPGCache
+from Components.Console import Console
 from Tools.StbHardware import setRTCtime
-from time import time, ctime
 
 # _session = None
 #

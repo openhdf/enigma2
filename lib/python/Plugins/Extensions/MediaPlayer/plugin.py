@@ -1,34 +1,45 @@
 from __future__ import absolute_import
-from os import path as os_path, listdir, remove
-from time import strftime
+
+from os import listdir
+from os import path as os_path
+from os import remove
 from random import shuffle
+from time import strftime
+
 from boxbranding import getMachineBrand, getMachineName
+from enigma import (ePicLoad, eServiceCenter, eServiceReference, eTimer,
+                    iPlayableService, iServiceInformation)
 
-from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, ePicLoad, eServiceReference
-
-from ServiceReference import ServiceReference
-from Screens.Screen import Screen
-from Screens.HelpMenu import HelpableScreen
-from Screens.MessageBox import MessageBox
-from Screens.InputBox import InputBox
-from Screens.ChoiceBox import ChoiceBox
-from Screens.InfoBar import InfoBar, setAudioTrack
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarScreenSaver, InfoBarAudioSelection, InfoBarAspectSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport
-from Components.ActionMap import NumberActionMap, HelpableActionMap
-from Components.Label import Label
-from Components.Pixmap import Pixmap, MultiPixmap
+from Components.ActionMap import HelpableActionMap, NumberActionMap
+from Components.AVSwitch import AVSwitch
+from Components.config import config
 from Components.FileList import FileList
+from Components.Harddisk import harddiskmanager
+from Components.Label import Label
 from Components.MediaPlayer import PlayList
 from Components.MovieList import AUDIO_EXTENSIONS
+from Components.Pixmap import MultiPixmap, Pixmap
+from Components.Playlist import (PlaylistIOInternal, PlaylistIOM3U,
+                                 PlaylistIOPLS)
+from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
 from Components.ServicePosition import ServicePositionGauge
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
-from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
-from Components.AVSwitch import AVSwitch
-from Components.Harddisk import harddiskmanager
-from Components.config import config
-from Tools.Directories import fileExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_GUISKIN
+from Screens.ChoiceBox import ChoiceBox
+from Screens.HelpMenu import HelpableScreen
+from Screens.InfoBar import InfoBar, setAudioTrack
+from Screens.InfoBarGenerics import (InfoBarAspectSelection,
+                                     InfoBarAudioSelection,
+                                     InfoBarCueSheetSupport,
+                                     InfoBarNotifications, InfoBarScreenSaver,
+                                     InfoBarSeek, InfoBarSubtitleSupport)
+from Screens.InputBox import InputBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
-from .settings import MediaPlayerSettings, Load_defaults
+from Tools.Directories import (SCOPE_CONFIG, SCOPE_GUISKIN, SCOPE_PLAYLIST,
+                               fileExists, resolveFilename)
+
+from .settings import Load_defaults, MediaPlayerSettings
 
 
 class MyPlayList(PlayList):

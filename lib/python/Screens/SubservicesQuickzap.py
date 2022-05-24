@@ -1,12 +1,18 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
+from enigma import eServiceReference
+
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
-from Screens.ChoiceBox import ChoiceBox
-from Screens.MessageBox import MessageBox
-from Screens.InfoBarGenerics import InfoBarShowHide, InfoBarMenu, InfoBarInstantRecord, InfoBarTimeshift, InfoBarSeek, InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, InfoBarAudioSelection
-from enigma import eServiceReference
 from Components.ServiceEventTracker import InfoBarBase
+from Screens.ChoiceBox import ChoiceBox
+from Screens.InfoBarGenerics import (InfoBarAudioSelection, InfoBarExtensions,
+                                     InfoBarInstantRecord, InfoBarMenu,
+                                     InfoBarSeek, InfoBarShowHide,
+                                     InfoBarSubtitleSupport, InfoBarTimeshift,
+                                     InfoBarTimeshiftState)
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 
 class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,

@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from boxbranding import getBoxType
+
 from sys import maxsize
 
+from boxbranding import getBoxType
+from enigma import eActionMap, eDBoxLCD, eTimer
 from twisted.internet import threads
-from enigma import eDBoxLCD, eTimer, eActionMap
+from usb import busses
 
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
+from Components.config import (ConfigNothing, ConfigSelection, ConfigSlider,
+                               ConfigSubsection, ConfigYesNo, config)
 from Components.SystemInfo import SystemInfo
-from Tools.Directories import fileExists
 from Screens.Screen import Screen
 from Screens.Standby import inStandby, inTryQuitMainloop
-from usb import busses
+from Tools.Directories import fileExists
 
 
 class dummyScreen(Screen):

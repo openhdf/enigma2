@@ -1,10 +1,14 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
+from os import listdir
+from os import path as os_path
+from os import system
+
+from Components import Harddisk
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText
-from Components import Harddisk
-from os import path as os_path, listdir, system
+from Screens.Screen import Screen
 
 
 class MultiBootStartup(ConfigListScreen, Screen):

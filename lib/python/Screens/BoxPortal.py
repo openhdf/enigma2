@@ -1,9 +1,10 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
 from Components.ActionMap import ActionMap
-from Components.Sources.List import List
 from Components.config import config
+from Components.Sources.List import List
 from Screens.InfoBar import InfoBar
+from Screens.Screen import Screen
 
 
 class BoxPortal(Screen):

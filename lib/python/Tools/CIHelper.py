@@ -1,11 +1,14 @@
 from __future__ import absolute_import
-from xml.etree.cElementTree import parse
-from enigma import eDVBCIInterfaces, eDVBCI_UI, eEnv, eServiceCenter, eServiceReference
-from timer import TimerEntry
-import NavigationInstance
 
 from os import path as os_path
+from xml.etree.cElementTree import parse
+
+from enigma import (eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter,
+                    eServiceReference)
 from six import ensure_str
+
+import NavigationInstance
+from timer import TimerEntry
 
 
 class CIHelper:

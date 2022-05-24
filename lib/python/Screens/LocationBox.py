@@ -4,31 +4,31 @@
 
 # GUI (Screens)
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.InputBox import InputBox
-from Screens.HelpMenu import HelpableScreen
-from Screens.ChoiceBox import ChoiceBox
 
-# Generic
-from Tools.BoundFunction import boundFunction
-from Tools.Directories import pathExists, createDir, removeDir
-from Components.config import config
-from os import path as os_path, statvfs
-
-# Quickselect
-from Tools.NumericalTextInput import NumericalTextInput
-
-# GUI (Components)
-from Components.ActionMap import NumberActionMap, HelpableActionMap
-from Components.Label import Label
-from Components.Pixmap import Pixmap
-from Components.Button import Button
-from Components.FileList import FileList
-from Components.MenuList import MenuList
+from os import path as os_path
+from os import statvfs
 
 # Timer
 from enigma import eTimer
+
+# GUI (Components)
+from Components.ActionMap import HelpableActionMap, NumberActionMap
+from Components.Button import Button
+from Components.config import config
+from Components.FileList import FileList
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Components.Pixmap import Pixmap
+from Screens.ChoiceBox import ChoiceBox
+from Screens.HelpMenu import HelpableScreen
+from Screens.InputBox import InputBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+# Generic
+from Tools.BoundFunction import boundFunction
+from Tools.Directories import createDir, pathExists, removeDir
+# Quickselect
+from Tools.NumericalTextInput import NumericalTextInput
 
 defaultInhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
 

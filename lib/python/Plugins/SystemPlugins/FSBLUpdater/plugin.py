@@ -1,14 +1,13 @@
 from __future__ import absolute_import
-from Components.config import config, ConfigBoolean
-from Screens.ChoiceBox import ChoiceBox
+
+from Components.config import ConfigBoolean, config
 from Plugins.Plugin import PluginDescriptor
+from Screens.ChoiceBox import ChoiceBox
+from Tools import Notifications
 from Tools.HardwareInfo import HardwareInfo
+from Tools.Log import Log
 
 from .FSBLUpdater import FSBLUpdater
-
-from Tools.Log import Log
-from Tools import Notifications
-
 
 config.misc.fsbl_update_never = ConfigBoolean(default=False)
 

@@ -1,7 +1,9 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
+from Components.config import (ConfigInteger, ConfigSlider, ConfigSubsection,
+                               config, getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSlider, getConfigListEntry
+from Screens.Screen import Screen
 
 config.plugins.VideoClippingSetup = ConfigSubsection()
 config.plugins.VideoClippingSetup.clip_left = ConfigInteger(default=0)

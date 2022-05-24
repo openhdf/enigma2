@@ -1,6 +1,7 @@
 from __future__ import absolute_import
-from sys import _getframe
+
 from inspect import getargvalues
+from sys import _getframe
 
 #WARNING! Dont use inspect.stack()! its very very very slow.
 

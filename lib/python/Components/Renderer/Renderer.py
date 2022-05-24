@@ -1,6 +1,7 @@
 from __future__ import absolute_import
-from Components.GUIComponent import GUIComponent
+
 from Components.Element import Element
+from Components.GUIComponent import GUIComponent
 
 
 class Renderer(GUIComponent, Element):

@@ -1,5 +1,7 @@
 from __future__ import absolute_import
+
 import boxbranding
+
 print("getMachineBuild=%s<" % boxbranding.getMachineBuild())
 print("getMachineMake=%s<" % boxbranding.getMachineMake())
 print("getMachineProcModel=%s<" % boxbranding.getMachineProcModel())

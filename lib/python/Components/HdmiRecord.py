@@ -1,6 +1,8 @@
 from __future__ import absolute_import
-from Components.config import config, ConfigSelection, ConfigSubsection
+
 from boxbranding import getBoxType, getMachineBuild
+
+from Components.config import ConfigSelection, ConfigSubsection, config
 
 
 def InitHdmiRecord():

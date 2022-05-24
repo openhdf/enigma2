@@ -1,20 +1,23 @@
 # -*- coding: UTF-8 -*-
-from __future__ import absolute_import
-from __future__ import division
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_VALIGN_CENTER, getPrevAsciiCode
-from Screens.Screen import Screen
-from Components.Language import language
+from __future__ import absolute_import, division
+
+from enigma import (RT_HALIGN_CENTER, RT_VALIGN_CENTER,
+                    eListboxPythonMultiContent, getPrevAsciiCode, gFont)
+from six import ensure_str, ensure_text
+
 from Components.ActionMap import NumberActionMap
-from Components.Sources.StaticText import StaticText
 from Components.Input import Input
 from Components.Label import Label
+from Components.Language import language
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryPixmapAlphaTest, MultiContentEntryText
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from Components.MultiContent import (MultiContentEntryPixmapAlphaTest,
+                                     MultiContentEntryText)
+from Components.Sources.StaticText import StaticText
+from Screens.Screen import Screen
+from skin import fonts, parameters
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from six import ensure_text, ensure_str
-from skin import fonts, parameters
 
 
 class VirtualKeyBoardList(MenuList):

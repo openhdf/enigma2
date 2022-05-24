@@ -1,12 +1,15 @@
 from __future__ import absolute_import
-from enigma import getPrevAsciiCode
-from Tools.NumericalTextInput import NumericalTextInput
-from Tools.Directories import resolveFilename, SCOPE_CONFIG, fileExists
-from Components.Harddisk import harddiskmanager
+
 from copy import copy as copy_copy
 from os import path as os_path
 from time import localtime, strftime
-from six import itervalues, ensure_str, ensure_text, unichr
+
+from enigma import getPrevAsciiCode
+from six import ensure_str, ensure_text, itervalues, unichr
+
+from Tools.Directories import SCOPE_CONFIG, fileExists, resolveFilename
+from Tools.NumericalTextInput import NumericalTextInput
+from Components.Harddisk import harddiskmanager
 
 # ConfigElement, the base class of all ConfigElements.
 
@@ -914,7 +917,8 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
 		if session is not None:
-			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
+			from Screens.NumericalTextInputHelpDialog import \
+			    NumericalTextInputHelpDialog
 			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
 			self.help_window.setAnimationMode(0)
 			self.help_window.show()
@@ -1210,7 +1214,8 @@ class ConfigText(ConfigElement, NumericalTextInput):
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
 		if session is not None:
-			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
+			from Screens.NumericalTextInputHelpDialog import \
+			    NumericalTextInputHelpDialog
 			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
 			self.help_window.setAnimationMode(0)
 			self.help_window.show()

@@ -1,17 +1,16 @@
 from __future__ import absolute_import
-from Screens.Wizard import wizardManager
-from Screens.WizardLanguage import WizardLanguage
 
-from Screens.WizardUserInterfacePositioner import UserInterfacePositionerWizard
-from Screens.VideoWizard import VideoWizard
-from Screens.Rc import Rc
-from Screens.Screen import Screen
 from boxbranding import getBoxType
 
+from Components.config import ConfigBoolean, config, configfile
 from Components.Pixmap import Pixmap
-from Components.config import config, ConfigBoolean, configfile
-
 from Screens.LanguageSelection import LanguageWizard
+from Screens.Rc import Rc
+from Screens.Screen import Screen
+from Screens.VideoWizard import VideoWizard
+from Screens.Wizard import wizardManager
+from Screens.WizardLanguage import WizardLanguage
+from Screens.WizardUserInterfacePositioner import UserInterfacePositionerWizard
 
 config.misc.firstrun = ConfigBoolean(default=True)
 config.misc.languageselected = ConfigBoolean(default=True)

@@ -3,8 +3,10 @@
 # A task is the run of an external tool, with proper methods for failure handling
 
 from __future__ import absolute_import
-from Tools.CList import CList
+
 from six import ensure_str
+
+from Tools.CList import CList
 
 
 class Job(object):
@@ -280,8 +282,8 @@ class LoggingTask(Task):
 
 class PythonTask(Task):
 	def _run(self):
-		from twisted.internet import threads
 		from enigma import eTimer
+		from twisted.internet import threads
 		self.aborted = False
 		self.pos = 0
 		threads.deferToThread(self.work).addBoth(self.onComplete)

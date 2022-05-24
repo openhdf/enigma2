@@ -1,54 +1,70 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from boxbranding import getMachineBuild, getMachineBrand, getMachineName
-from Tools.Profile import profile
 
-from Screens.Screen import Screen
+from boxbranding import getMachineBrand, getMachineBuild, getMachineName
+
 import Screens.InfoBar
+from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Button import Button
-from Components.ServiceList import ServiceList, refreshServiceList
-from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
+from Components.Renderer.Picon import getPiconName
+from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
+from Components.ServiceList import ServiceList, refreshServiceList
 from Components.Sources.List import List
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredTimerPath
-from Components.Renderer.Picon import getPiconName
+from Screens.Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
+from Tools.Profile import profile
+
 profile("ChannelSelection.py 1")
-from Screens.EpgSelection import EPGSelection
-from enigma import eActionMap, eServiceReferenceDVB, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
+from enigma import (eActionMap, eDVBDB, eEnv, eEPGCache, ePoint, eRCInput,
+                    eServiceCenter, eServiceReference, eServiceReferenceDVB,
+                    eTimer, getPrevAsciiCode, iPlayableService,
+                    iServiceInformation, loadPNG)
+
 from Components.config import ConfigSubsection, ConfigText, config, configfile
+from Screens.EpgSelection import EPGSelection
 from Tools.NumericalTextInput import NumericalTextInput
+
 profile("ChannelSelection.py 2")
 from Components.NimManager import nimmanager
+
 profile("ChannelSelection.py 2.1")
 from Components.Sources.RdsDecoder import RdsDecoder
+
 profile("ChannelSelection.py 2.2")
-from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
+from Components.Sources.ServiceEvent import ServiceEvent
+
 profile("ChannelSelection.py 2.3")
 from Components.Input import Input
+
 profile("ChannelSelection.py 3")
-from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from RecordTimer import RecordTimerEntry, AFTEREVENT
-from Screens.TimerEntry import TimerEntry, InstantRecordTimerEntry
-from Screens.InputBox import InputBox, PinInput
-from Screens.VirtualKeyBoard import VirtualKeyBoard
+from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
+from RecordTimer import AFTEREVENT, RecordTimerEntry
 from Screens.ChoiceBox import ChoiceBox
+from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
 from Screens.ServiceInfo import ServiceInfo
+from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
+from Screens.VirtualKeyBoard import VirtualKeyBoard
+
 profile("ChannelSelection.py 4")
+from os import listdir, remove, rename
+from time import localtime, time
+
+from six import PY3, ensure_str
+
+from RecordTimer import TIMERTYPE
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
-from Tools.BoundFunction import boundFunction
 from Tools import Notifications
-from Tools.ServiceReference import service_types_tv_ref, service_types_radio_ref, serviceRefAppendPath
-from RecordTimer import TIMERTYPE
-from time import localtime, time
-from os import remove, listdir, rename
-from six import ensure_str, PY3
+from Tools.BoundFunction import boundFunction
+from Tools.ServiceReference import (service_types_radio_ref,
+                                    service_types_tv_ref, serviceRefAppendPath)
+
 SIGN = '°' if PY3 else str('\xc2\xb0')
 try:
 	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict

@@ -1,8 +1,10 @@
 from __future__ import absolute_import
-from Components.Sources.Source import Source
+
+from enigma import eTimer
+
 from Components.Element import cached
 from Components.OnlineUpdateCheck import versioncheck
-from enigma import eTimer
+from Components.Sources.Source import Source
 
 
 class OnlineUpdateStableCheck(Source):

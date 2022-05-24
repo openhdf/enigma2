@@ -1,18 +1,36 @@
 from __future__ import absolute_import
-from os import path as os_path, mkdir, system, remove, listdir, readlink
+
+from os import listdir, mkdir
+from os import path as os_path
+from os import readlink, remove, system
+from sys import maxsize
 from time import time
-from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent, eDVBFrontend, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
-from Components.Harddisk import harddiskmanager
-from Components.config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber
-from Tools.Directories import SCOPE_HDD, SCOPE_HDD, SCOPE_TIMESHIFT, defaultRecordingLocation, fileCheck, fileContains, fileExists, isPluginInstalled, resolveFilename
+
 from boxbranding import getDisplayType
+from enigma import (RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT,
+                    RT_VALIGN_CENTER, RT_WRAP, Misc_Options,
+                    eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv,
+                    eEPGCache, eServiceEvent, setEnableTtCachingOnOff,
+                    setPreferredTuner, setSpinnerOnOff,
+                    setTunerTypePriorityOrder)
+from six.moves import map
+
+from Components.config import (ConfigBoolean, ConfigClock, ConfigInteger,
+                               ConfigIP, ConfigLocations, ConfigNumber,
+                               ConfigPassword, ConfigSelection,
+                               ConfigSelectionNumber, ConfigSet, ConfigSlider,
+                               ConfigSubsection, ConfigText, ConfigYesNo,
+                               NoSave, config)
+from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import SystemInfo
-from Tools.HardwareInfo import HardwareInfo
 from keyids import KEYIDS
-from sys import maxsize
-from six.moves import map
+from Tools.Directories import (SCOPE_HDD, SCOPE_TIMESHIFT,
+                               defaultRecordingLocation, fileCheck,
+                               fileContains, fileExists, isPluginInstalled,
+                               resolveFilename)
+from Tools.HardwareInfo import HardwareInfo
 
 
 def InitUsageConfig():

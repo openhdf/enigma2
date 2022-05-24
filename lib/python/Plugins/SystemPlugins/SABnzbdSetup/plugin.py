@@ -1,15 +1,17 @@
 from __future__ import absolute_import
-from boxbranding import getMachineBrand, getMachineName
-from time import sleep
+
 from sys import version_info
+from time import sleep
+
+from boxbranding import getMachineBrand, getMachineName
 from six import ensure_str
 
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
+from Components.ActionMap import ActionMap
 from Components.Console import Console
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from Components.ActionMap import ActionMap
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Tools.Directories import fileExists
 
 

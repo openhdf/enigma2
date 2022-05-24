@@ -1,13 +1,14 @@
 from __future__ import absolute_import
-from Components.MenuList import MenuList
 
-from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from os import path as os_path
 
-from enigma import eListboxPythonMultiContent, RT_VALIGN_CENTER, gFont, eServiceCenter
+from enigma import (RT_VALIGN_CENTER, eListboxPythonMultiContent,
+                    eServiceCenter, gFont)
 
-from Tools.LoadPixmap import LoadPixmap
+from Components.MenuList import MenuList
 from skin import fonts, parameters
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
 
 STATE_PLAY = 0
 STATE_PAUSE = 1

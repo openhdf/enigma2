@@ -1,7 +1,8 @@
 from __future__ import absolute_import
-from Components.GUIComponent import GUIComponent
 
-from enigma import eListboxPythonStringContent, eListbox
+from enigma import eListbox, eListboxPythonStringContent
+
+from Components.GUIComponent import GUIComponent
 
 
 class MenuList(GUIComponent):

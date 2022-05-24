@@ -2,21 +2,27 @@
 #from . import _
 
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
-from Components.config import config, configfile, ConfigSubsection, ConfigYesNo
+
+from glob import glob
+from os import path as os_path
+from os import remove, rename
+from os import stat as mystat
+from os import system
+from stat import ST_SIZE
+
+from enigma import eTimer
+
 from Components.ActionMap import ActionMap
+from Components.config import ConfigSubsection, ConfigYesNo, config, configfile
+from Components.Console import Console
+from Components.Harddisk import getProcMounts, harddiskmanager
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.Harddisk import harddiskmanager, getProcMounts
-from Components.Console import Console
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from os import system, stat as mystat, path as os_path, remove, rename
-from enigma import eTimer
-from glob import glob
-from stat import ST_SIZE
+from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 config.plugins.swapmanager = ConfigSubsection()
 config.plugins.swapmanager.swapautostart = ConfigYesNo(default=False)

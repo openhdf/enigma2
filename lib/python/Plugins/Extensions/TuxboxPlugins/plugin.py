@@ -1,11 +1,13 @@
 # must be fixed for the new plugin interface
 from __future__ import absolute_import
-from Tools.BoundFunction import boundFunction
-from Tools.Directories import pathExists
-from Plugins.Plugin import PluginDescriptor
-from .pluginrunner import PluginRunner
 
 from os import listdir
+
+from Plugins.Plugin import PluginDescriptor
+from Tools.BoundFunction import boundFunction
+from Tools.Directories import pathExists
+
+from .pluginrunner import PluginRunner
 
 TUXBOX_PLUGINS_PATH = "/usr/lib/tuxbox/plugins/"
 

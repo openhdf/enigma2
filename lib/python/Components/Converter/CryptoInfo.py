@@ -1,9 +1,10 @@
 from __future__ import absolute_import
-from Components.Converter.Converter import Converter
-from Components.Element import cached
+
 from Components.config import config
-from Tools.GetEcmInfo import GetEcmInfo
+from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
+from Components.Element import cached
+from Tools.GetEcmInfo import GetEcmInfo
 
 
 class CryptoInfo(Poll, Converter):

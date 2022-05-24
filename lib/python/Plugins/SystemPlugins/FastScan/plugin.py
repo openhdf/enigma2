@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from Plugins.Plugin import PluginDescriptor
 
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.config import config, ConfigSelection, ConfigYesNo, getConfigListEntry, ConfigSubsection, ConfigText
+from os import path as os_path
+from os import unlink, walk
+
+from enigma import eDVBFrontendParametersSatellite, eFastScan, eTimer
+
+from Components.ActionMap import ActionMap
+from Components.config import (ConfigSelection, ConfigSubsection, ConfigText,
+                               ConfigYesNo, config, getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
-from Components.NimManager import nimmanager
 from Components.Label import Label
+from Components.NimManager import nimmanager
 from Components.Pixmap import Pixmap
 from Components.ProgressBar import ProgressBar
 from Components.ServiceList import refreshServiceList
-from Components.ActionMap import ActionMap
-
-from enigma import eFastScan, eDVBFrontendParametersSatellite, eTimer
-
-from os import walk, path as os_path, unlink
+from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 config.misc.fastscan = ConfigSubsection()
 config.misc.fastscan.last_configuration = ConfigText(default="()")

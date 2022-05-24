@@ -1,9 +1,12 @@
 from __future__ import absolute_import
-from Components.PerServiceDisplay import PerServiceBase
-from Components.Element import cached
-from enigma import iPlayableService, iServiceInformation, eServiceReference, eEPGCache
-from Components.Sources.Source import Source
+
+from enigma import (eEPGCache, eServiceReference, iPlayableService,
+                    iServiceInformation)
+
 import NavigationInstance
+from Components.Element import cached
+from Components.PerServiceDisplay import PerServiceBase
+from Components.Sources.Source import Source
 
 # Fake eServiceEvent to fill Event_Now and Event_Next in Infobar for Streams
 #

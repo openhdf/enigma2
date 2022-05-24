@@ -1,31 +1,35 @@
 from __future__ import absolute_import
-from time import localtime, time, strftime, mktime
 
-from enigma import eServiceReference, eTimer, eServiceCenter, ePoint
+from time import localtime, mktime, strftime, time
 
-from Screens.Screen import Screen
-from Screens.HelpMenu import HelpableScreen
+from enigma import ePoint, eServiceCenter, eServiceReference, eTimer
+
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.Button import Button
-from Components.config import config, configfile, ConfigClock
-from Components.EpgList import EPGList, EPGBouquetList, TimelineText, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI, EPG_TYPE_ENHANCED, EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH, EPG_TYPE_GRAPH, MAX_TIMELINES
+from Components.config import ConfigClock, config, configfile
+from Components.EpgList import (EPG_TYPE_ENHANCED, EPG_TYPE_GRAPH,
+                                EPG_TYPE_INFOBAR, EPG_TYPE_INFOBARGRAPH,
+                                EPG_TYPE_MULTI, EPG_TYPE_SIMILAR,
+                                EPG_TYPE_SINGLE, MAX_TIMELINES, EPGBouquetList,
+                                EPGList, TimelineText)
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
+from Components.Sources.ServiceEvent import ServiceEvent
 from Components.UsageConfig import preferredTimerPath
-from Screens.TimerEdit import TimerSanityConflict
-from Screens.EventView import EventViewEPGSelect, EventViewSimple
+from RecordTimer import AFTEREVENT, TIMERTYPE, RecordTimerEntry, parseEvent
 from Screens.ChoiceBox import ChoiceBox
+from Screens.EventView import EventViewEPGSelect, EventViewSimple
+from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
+from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.TimeDateInput import TimeDateInput
-from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
-from Screens.TimerEntry import TimerEntry, InstantRecordTimerEntry
+from Screens.TimerEdit import TimerSanityConflict
+from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from ServiceReference import ServiceReference
 from Tools.HardwareInfo import HardwareInfo
-from RecordTimer import TIMERTYPE
 
 mepg_config_initialized = False
 # PiPServiceRelation installed?
@@ -900,7 +904,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def addAutoTimer(self):
 		try:
-			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
+			from Plugins.Extensions.AutoTimer.AutoTimerEditor import \
+			    addAutotimerFromEvent
 			cur = self['list'].getCurrent()
 			event = cur[0]
 			if not event:
@@ -913,7 +918,8 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def addAutoTimerSilent(self):
 		try:
-			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEventSilent
+			from Plugins.Extensions.AutoTimer.AutoTimerEditor import \
+			    addAutotimerFromEventSilent
 			cur = self['list'].getCurrent()
 			event = cur[0]
 			if not event:
@@ -932,8 +938,8 @@ class EPGSelection(Screen, HelpableScreen):
 		global autopoller
 		global autotimer
 		try:
-			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
+			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			autopoller = AutoPoller()
 			autotimer = AutoTimer()
 			try:

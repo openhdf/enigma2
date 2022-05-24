@@ -1,17 +1,20 @@
 from __future__ import absolute_import
-from Screens.WizardLanguage import WizardLanguage
-from Screens.Wizard import wizardManager
-from Screens.Rc import Rc
-from Screens.Screen import Screen
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
-from Components.Pixmap import Pixmap
+
 from os import R_OK, W_OK, access
-from enigma import eEnv
+
 from boxbranding import getBoxType, getImageDistro
-from .BackupRestore import InitConfig as BackupRestore_InitConfig
+from enigma import eEnv
 
 from Components.config import config
 from Components.Harddisk import harddiskmanager
+from Components.Pixmap import Pixmap
+from Screens.Rc import Rc
+from Screens.Screen import Screen
+from Screens.Wizard import wizardManager
+from Screens.WizardLanguage import WizardLanguage
+from Tools.Directories import SCOPE_PLUGINS, fileExists, resolveFilename
+
+from .BackupRestore import InitConfig as BackupRestore_InitConfig
 
 boxtype = getBoxType()
 distro = getImageDistro()

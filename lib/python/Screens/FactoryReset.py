@@ -1,6 +1,8 @@
 from __future__ import absolute_import
-from Screens.MessageBox import MessageBox
+
 from boxbranding import getMachineBrand, getMachineName
+
+from Screens.MessageBox import MessageBox
 
 
 class FactoryReset(MessageBox):

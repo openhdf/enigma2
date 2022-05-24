@@ -1,18 +1,25 @@
-from __future__ import absolute_import
-from __future__ import division
-from time import localtime, time, strftime, mktime
+from __future__ import absolute_import, division
 
-from enigma import BT_KEEP_ASPECT_RATIO, BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eEPGCache, eListbox, eListboxPythonMultiContent, eRect, eSize, gFont, loadPNG
+from time import localtime, mktime, strftime, time
 
-from Components.GUIComponent import GUIComponent
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
-from Components.Renderer.Picon import getPiconName
-from skin import parseColor, parseFont, parameters as skinparameter, getSkinFactor
-from Tools.Alternatives import CompareWithAlternatives
-from Tools.LoadPixmap import LoadPixmap
+from enigma import (BT_KEEP_ASPECT_RATIO, BT_SCALE, RT_HALIGN_CENTER,
+                    RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP,
+                    eEPGCache, eListbox, eListboxPythonMultiContent, eRect,
+                    eSize, gFont, loadPNG)
+
 from Components.config import config
+from Components.GUIComponent import GUIComponent
+from Components.MultiContent import (MultiContentEntryPixmapAlphaBlend,
+                                     MultiContentEntryPixmapAlphaTest,
+                                     MultiContentEntryText)
+from Components.Renderer.Picon import getPiconName
 from ServiceReference import ServiceReference
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from skin import getSkinFactor
+from skin import parameters as skinparameter
+from skin import parseColor, parseFont
+from Tools.Alternatives import CompareWithAlternatives
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
 
 EPG_TYPE_SINGLE = 0

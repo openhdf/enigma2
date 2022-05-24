@@ -1,20 +1,23 @@
 from __future__ import absolute_import
+
+from functools import cmp_to_key
+from time import time
+
 from Components.ActionMap import ActionMap
 from Components.Button import Button
-from Components.Label import Label
 from Components.config import config
-from Components.PowerTimerList import PowerTimerList, gettimerType, getafterEvent
+from Components.Label import Label
+from Components.PowerTimerList import (PowerTimerList, getafterEvent,
+                                       gettimerType)
 from Components.Sources.StaticText import StaticText
-from PowerTimer import PowerTimerEntry, AFTEREVENT
-from Screens.Screen import Screen
+from PowerTimer import AFTEREVENT, PowerTimerEntry
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.PowerTimerEntry import TimerEntry, TimerLog
+from Screens.Screen import Screen
+from timer import TimerEntry as RealTimerEntry
 from Tools.BoundFunction import boundFunction
 from Tools.FuzzyDate import FuzzyTime
-from time import time
-from timer import TimerEntry as RealTimerEntry
-from functools import cmp_to_key
 
 
 class PowerTimerEditList(Screen):

@@ -1,8 +1,9 @@
 from __future__ import absolute_import
+
 from Components.GUIComponent import GUIComponent
+from Components.Sources.StaticText import StaticText
 from skin import applyAllAttributes
 from Tools.CList import CList
-from Components.Sources.StaticText import StaticText
 
 
 class GUISkin:

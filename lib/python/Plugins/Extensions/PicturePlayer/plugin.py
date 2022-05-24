@@ -1,6 +1,8 @@
 from __future__ import absolute_import
-from Plugins.Plugin import PluginDescriptor
+
 from enigma import getDesktop
+
+from Plugins.Plugin import PluginDescriptor
 
 #------------------------------------------------------------------------------------------
 
@@ -29,8 +31,9 @@ def filescan_open(list, session, **kwargs):
 
 
 def filescan(**kwargs):
-	from Components.Scanner import Scanner, ScanPath
 	import os
+
+	from Components.Scanner import Scanner, ScanPath
 
 	# Overwrite checkFile to only detect local
 	class LocalScanner(Scanner):

@@ -12,11 +12,14 @@
 ## If you rename, move, delete or add a channel the numbers will not be OK any more. You have to restart E2 then
 ##
 from __future__ import absolute_import
+
+from xml.etree.cElementTree import parse
+
+from enigma import eServiceCenter, eServiceReference, iServiceInformation
+
 from Components.config import config
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from enigma import eServiceCenter, eServiceReference, iServiceInformation
-from xml.etree.cElementTree import parse
 
 ##########################################################################
 

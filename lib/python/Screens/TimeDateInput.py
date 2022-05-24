@@ -1,12 +1,14 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Components.config import ConfigClock, ConfigDateTime, getConfigListEntry
+
+from datetime import datetime
+from time import localtime, mktime, time
+
 from Components.ActionMap import NumberActionMap
+from Components.config import ConfigClock, ConfigDateTime, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from time import time, localtime, mktime
-from datetime import datetime
+from Screens.Screen import Screen
 
 
 class TimeDateInput(Screen, ConfigListScreen):

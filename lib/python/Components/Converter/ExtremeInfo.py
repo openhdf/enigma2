@@ -1,8 +1,12 @@
 from __future__ import absolute_import
+
+from enigma import (eDVBFrontendParametersCable,
+                    eDVBFrontendParametersSatellite, eServiceCenter,
+                    eServiceReference, iServiceInformation)
+
 from Components.Converter.Converter import Converter
-from Components.Element import cached
-from enigma import eDVBFrontendParametersCable, eDVBFrontendParametersSatellite, eServiceCenter, eServiceReference, iServiceInformation
 from Components.Converter.Poll import Poll
+from Components.Element import cached
 
 
 class ExtremeInfo(Poll, Converter):

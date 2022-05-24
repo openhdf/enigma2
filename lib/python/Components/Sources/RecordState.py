@@ -1,9 +1,11 @@
 from __future__ import absolute_import
-from Components.Sources.Source import Source
-from Components.Element import cached
+
 from enigma import iRecordableService
-from Components.RecordingConfig import recType
+
 from Components.config import config
+from Components.Element import cached
+from Components.RecordingConfig import recType
+from Components.Sources.Source import Source
 from Components.SystemInfo import SystemInfo
 
 

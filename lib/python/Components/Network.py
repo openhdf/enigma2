@@ -1,15 +1,20 @@
 from __future__ import absolute_import
+
+from os import listdir
+from os import path as os_path
+from os import system
 from re import compile as re_compile
-from os import listdir, path as os_path, system
-from netifaces import ifaddresses, AF_INET, AF_LINK, gateways
 from socket import *
+
+from boxbranding import getBoxType
+from netifaces import AF_INET, AF_LINK, gateways, ifaddresses
+from six import ensure_str
+from six.moves import map
+
 from Components.config import config
 from Components.Console import Console
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
-from boxbranding import getBoxType
-from six import ensure_str
-from six.moves import map
 
 
 class Network:
@@ -694,8 +699,8 @@ class Network:
 		return 'wext'
 
 	def calc_netmask(self, nmask):
-		from struct import pack
 		from socket import inet_ntoa
+		from struct import pack
 
 		mask = 1 << 31
 		xnet = (1 << 32) - 1

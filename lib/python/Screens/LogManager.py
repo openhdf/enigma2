@@ -1,32 +1,34 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Components.GUIComponent import GUIComponent
-from Components.VariableText import VariableText
-from Components.ActionMap import ActionMap
-from Components.Label import Label
-from Components.Button import Button
-from Components.FileList import FileList
-from Components.MenuList import MenuList
-from Components.config import config, configfile
-from Components.FileList import MultiFileSelectList
-from Screens.MessageBox import MessageBox
-from os import path as os_path, remove, walk, stat, rmdir
-from time import time, ctime
-from datetime import datetime
-from enigma import eTimer, eBackgroundFileEraser, eLabel, getDesktop, gFont, fontRenderClass
-from Tools.TextBoundary import getTextBoundarySize
-from glob import glob
-from sys import version_info
 
-from Components.Task import job_manager, Job, PythonTask
-
-# Import smtplib for the actual sending function
-from smtplib import SMTP
 from base64 import b64decode
-
+from datetime import datetime
 # Here are the email package modules we'll need
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from glob import glob
+from os import path as os_path
+from os import remove, rmdir, stat, walk
+# Import smtplib for the actual sending function
+from smtplib import SMTP
+from sys import version_info
+from time import ctime, time
+
+from enigma import (eBackgroundFileEraser, eLabel, eTimer, fontRenderClass,
+                    getDesktop, gFont)
+
+from Components.ActionMap import ActionMap
+from Components.Button import Button
+from Components.config import config, configfile
+from Components.FileList import FileList, MultiFileSelectList
+from Components.GUIComponent import GUIComponent
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Components.Task import Job, PythonTask, job_manager
+from Components.VariableText import VariableText
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Tools.TextBoundary import getTextBoundarySize
+
 if version_info[0] >= 3:
 	from email.utils import formatdate
 else:

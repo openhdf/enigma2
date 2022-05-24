@@ -1,12 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from sys import argv
-from os import path as os_path, listdir
-from six import ensure_str
+
+from os import listdir
+from os import path as os_path
 from re import compile
+from sys import argv
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler, property_lexical_handler
+
+from six import ensure_str
+
 try:
 	from _xmlplus.sax.saxlib import LexicalHandler
 	no_comments = False

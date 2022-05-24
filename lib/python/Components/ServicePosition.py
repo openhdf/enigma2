@@ -1,8 +1,11 @@
 from __future__ import absolute_import
-from Components.PerServiceDisplay import PerServiceDisplay, PerServiceBase
-from Components.GUIComponent import GUIComponent
-from enigma import eTimer, iPlayableService, ePositionGauge
+
 from time import localtime
+
+from enigma import ePositionGauge, eTimer, iPlayableService
+
+from Components.GUIComponent import GUIComponent
+from Components.PerServiceDisplay import PerServiceBase, PerServiceDisplay
 
 
 class ServicePosition(PerServiceDisplay):

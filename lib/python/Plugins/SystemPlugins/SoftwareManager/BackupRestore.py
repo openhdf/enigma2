@@ -1,29 +1,37 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.Console import Console
-from Screens.Standby import TryQuitMainloop
+
+from datetime import date
+from os import listdir, makedirs
+from os import path as os_path
+from os import popen, remove, rename, stat
+
+from boxbranding import (getBoxType, getImageDistro, getMachineBrand,
+                         getMachineName)
+from enigma import eConsoleAppContainer, eEnv, eEPGCache, eTimer
+from six import ensure_str
+
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Pixmap import Pixmap
-from Tools.LoadPixmap import LoadPixmap
-from Components.Label import Label
-from Components.Sources.StaticText import StaticText
-from Components.MenuList import MenuList
-from Components.Sources.List import List
 from Components.Button import Button
-from Components.config import NoSave, getConfigListEntry, configfile, ConfigSelection, ConfigSubsection, ConfigText, ConfigLocations
-from Components.config import config
+from Components.config import (ConfigLocations, ConfigSelection,
+                               ConfigSubsection, ConfigText, NoSave, config,
+                               configfile, getConfigListEntry)
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.FileList import MultiFileSelectList
+from Components.Label import Label
+from Components.MenuList import MenuList
 from Components.Network import iNetwork
+from Components.Pixmap import Pixmap
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
+from Screens.Console import Console
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop
 from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename
-from os import listdir, makedirs, path as os_path, popen, remove, rename, stat
-from datetime import date
-from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineName
+from Tools.LoadPixmap import LoadPixmap
+
 from . import ShellCompatibleFunctions
-from six import ensure_str
 
 boxtype = getBoxType()
 distro = getImageDistro()

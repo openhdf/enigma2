@@ -1,21 +1,21 @@
 # for localized messages
 from __future__ import absolute_import
-from . import _
 
-from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.Sources.List import List
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
-from Tools.LoadPixmap import LoadPixmap
 from Components.Button import Button
 from Components.Label import Label
+from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Tools.Directories import SCOPE_CURRENT_PLUGIN, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
 
+from . import _
 from .Disks import Disks
 from .ExtraActionBox import ExtraActionBox
 from .ExtraMessageBox import ExtraMessageBox
-from .MountPoints import MountPoints
 from .HddMount import HddMount
+from .MountPoints import MountPoints
 
 
 def PartitionEntry(description, size):

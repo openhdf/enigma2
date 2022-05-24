@@ -1,7 +1,8 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
+from Screens.Screen import Screen
 
 
 class TextBox(Screen):

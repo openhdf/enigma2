@@ -1,13 +1,14 @@
 from __future__ import absolute_import
-from enigma import eListboxPythonMultiContent, eListbox, gFont, getDesktop, \
-	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM
+
+from enigma import (RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM,
+                    eListbox, eListboxPythonMultiContent, getDesktop, gFont)
 
 from Components.GUIComponent import GUIComponent
+from PowerTimer import AFTEREVENT, TIMERTYPE
+from timer import TimerEntry
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.FuzzyDate import FuzzyTime
 from Tools.LoadPixmap import LoadPixmap
-from timer import TimerEntry
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
-from PowerTimer import AFTEREVENT, TIMERTYPE
 
 
 def gettimerType(timer):

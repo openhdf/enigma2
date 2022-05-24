@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import absolute_import
-from subprocess import check_call
-from shutil import move
+
 from os import path as os_path
+from shutil import move
+from subprocess import check_call
 
 # MANDATORY_RIGHTS contains commands to ensure correct rights for certain files
 MANDATORY_RIGHTS = "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh"

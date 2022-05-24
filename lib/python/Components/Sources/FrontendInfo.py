@@ -1,8 +1,9 @@
 from __future__ import absolute_import
-from enigma import iPlayableService
-from Components.Sources.Source import Source
+
+from enigma import eDVBResourceManager, iPlayableService
+
 from Components.PerServiceDisplay import PerServiceBase
-from enigma import eDVBResourceManager
+from Components.Sources.Source import Source
 
 
 class FrontendInfo(Source, PerServiceBase):

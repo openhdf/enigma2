@@ -1,21 +1,24 @@
 from __future__ import absolute_import
+
 from os import path as os_path
 
-from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter, eServiceReference, eDVBDB
+from enigma import (eDVBDB, eServiceCenter, eServiceReference, eTimer,
+                    iPlayableService, iServiceInformation)
 
-from Screens.Screen import Screen
-from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
-from Components.SystemInfo import SystemInfo
+from Components.AVSwitch import iAVSwitch
+from Components.config import (ConfigNothing, config, configfile,
+                               getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, configfile, getConfigListEntry, ConfigNothing
 from Components.Label import Label
-from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
-from Components.Sources.Boolean import Boolean
 from Components.ServiceEventTracker import ServiceEventTracker
+from Components.Sources.Boolean import Boolean
+from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import SystemInfo
+from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
+from Screens.Screen import Screen
 from Tools.Directories import isPluginInstalled
 from Tools.HardwareInfo import HardwareInfo
-from Components.AVSwitch import iAVSwitch
 
 resolutionlabel = None
 

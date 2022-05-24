@@ -1,24 +1,28 @@
 from __future__ import absolute_import
+
+from gettext import dgettext
+from os import path as os_path
+from os import remove, rename
+
+from boxbranding import (getBoxType, getImageBuild, getImageVersion,
+                         getMachineBrand, getMachineName)
+from enigma import eDVBDB, eTimer
 from six import ensure_str
-from Components.Task import job_manager
-from Screens.ChoiceBox import ChoiceBox
-from Screens.MessageBox import MessageBox
-from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop
+from six.moves.urllib.request import urlopen, urlretrieve
+
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config
 from Components.Console import Console
 from Components.Ipkg import IpkgComponent
 from Components.ScrollLabel import ScrollLabel
-from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
-from enigma import eTimer, eDVBDB
-from boxbranding import getImageVersion, getImageBuild, getMachineBrand, getMachineName, getBoxType
-
-from os import rename, path as os_path, remove
-from gettext import dgettext
-from six.moves.urllib.request import urlretrieve, urlopen 
+from Components.Sources.StaticText import StaticText
+from Components.Task import job_manager
+from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop
 
 ocram = ''
 

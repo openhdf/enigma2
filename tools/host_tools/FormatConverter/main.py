@@ -1,12 +1,12 @@
 #!/usr/bin/python
 from __future__ import absolute_import
+
 from os import system
 
 from datasource import genericdatasource
-from satxml import satxml
-from lamedb import lamedb
 from input import inputChoices
-
+from lamedb import lamedb
+from satxml import satxml
 
 maindata = genericdatasource()
 

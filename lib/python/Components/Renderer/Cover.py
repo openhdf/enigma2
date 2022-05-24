@@ -1,11 +1,14 @@
 from __future__ import absolute_import
-from Components.Renderer.Renderer import Renderer
-from enigma import ePixmap, ePicLoad
+
+from os import path as os_path
+
+from enigma import ePicLoad, ePixmap
+
 from Components.AVSwitch import AVSwitch
 from Components.config import config
-from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Renderer.Renderer import Renderer
 from Components.Sources.CurrentService import CurrentService
-from os import path as os_path
+from Components.Sources.ServiceEvent import ServiceEvent
 
 
 class Cover(Renderer):

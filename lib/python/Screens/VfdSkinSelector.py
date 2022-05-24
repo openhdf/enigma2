@@ -1,17 +1,22 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop
-from Screens.MessageBox import MessageBox
+
+from os import listdir
+from os import path as os_path
+from os import walk
+
+from enigma import eEnv
+
 from Components.ActionMap import NumberActionMap
+from Components.config import ConfigSelection, config
+from Components.Label import Label
+from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
-from Components.MenuList import MenuList
-from Components.config import config, ConfigSelection
-from Components.Label import Label
-from Tools.Directories import SCOPE_CURRENT_LCDSKIN
-from os import walk, path as os_path, listdir
-from enigma import eEnv
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop
 from skin import DISPLAY_SKIN_ID, getDesktop, loadSkin
+from Tools.Directories import SCOPE_CURRENT_LCDSKIN
 
 
 class VFDSkinSelector(Screen):

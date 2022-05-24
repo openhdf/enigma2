@@ -1,11 +1,14 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Components.MovieList import AUDIO_EXTENSIONS
-from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Pixmap import Pixmap
-from enigma import ePoint, eTimer, iPlayableService
+
 from os import path as os_path
 from random import randint
+
+from enigma import ePoint, eTimer, iPlayableService
+
+from Components.MovieList import AUDIO_EXTENSIONS
+from Components.Pixmap import Pixmap
+from Components.ServiceEventTracker import ServiceEventTracker
+from Screens.Screen import Screen
 
 
 class Screensaver(Screen):

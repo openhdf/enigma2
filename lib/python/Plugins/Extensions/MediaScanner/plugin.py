@@ -1,8 +1,11 @@
 from __future__ import absolute_import
-from Plugins.Plugin import PluginDescriptor
-from Components.Scanner import scanDevice
+
+from os import F_OK, R_OK, access
+from os import path as os_path
+
 import Screens.InfoBar
-from os import path as os_path, access, F_OK, R_OK
+from Components.Scanner import scanDevice
+from Plugins.Plugin import PluginDescriptor
 
 
 def execute(option):
@@ -101,6 +104,7 @@ def movielist_open(list, session, **kwargs):
 		# sanity
 		return
 	from enigma import eServiceReference
+
 	import Screens.InfoBar
 	f = list[0]
 	if f.mimetype == "video/MP2T":

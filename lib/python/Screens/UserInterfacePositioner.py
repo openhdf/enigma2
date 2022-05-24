@@ -1,14 +1,17 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
+from os import R_OK, access
+
+from boxbranding import getBoxType, getBrandOEM
+from enigma import getDesktop
+
 from Components.ActionMap import ActionMap
 from Components.config import config, configfile, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
-from Components.SystemInfo import SystemInfo
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import SystemInfo
+from Screens.Screen import Screen
 from Tools.Directories import fileExists
-from enigma import getDesktop
-from os import access, R_OK
-from boxbranding import getBoxType, getBrandOEM
 
 
 def getFilePath(setting):

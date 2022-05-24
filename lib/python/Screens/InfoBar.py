@@ -1,37 +1,59 @@
 from __future__ import absolute_import
-from Tools.Profile import profile
 
-# workaround for required config entry dependencies.
-from Screens.MovieSelection import MovieSelection, playlist, moveServiceFiles
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
+from Screens.MessageBox import MessageBox
+# workaround for required config entry dependencies.
+from Screens.MovieSelection import MovieSelection, moveServiceFiles, playlist
+from Screens.Screen import Screen
+from Tools.Profile import profile
 
 profile("LOAD:enigma")
-from enigma import iPlayableService, eServiceReference, eTimer, iServiceInformation, eServiceCenter
-from os import system, path as os_path
+from os import path as os_path
+from os import system
+
 from boxbranding import getBoxType, getMachineBrand
+from enigma import (eServiceCenter, eServiceReference, eTimer,
+                    iPlayableService, iServiceInformation)
 
 boxtype = getBoxType()
 
 profile("LOAD:InfoBarGenerics")
-from Screens.InfoBarGenerics import InfoBarShowHide, \
-	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarRdsDecoder, InfoBarRedButton, InfoBarTimerButton, InfoBarVmodeButton, \
-	InfoBarEPG, InfoBarSeek, InfoBarInstantRecord, InfoBarResolutionSelection, InfoBarAspectSelection, \
-	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarUnhandledKey, InfoBarLongKeyDetection, \
-	InfoBarSubserviceSelection, InfoBarShowMovies, \
-	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView, InfoBarOpenOnTopHelper, \
-	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, InfoBarSleepTimer, \
-	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarQuickMenu, InfoBarZoom, InfoBarHdmi, \
-	setResumePoint, delResumePoint
 from Screens.Hotkey import InfoBarHotkey
+from Screens.InfoBarGenerics import (InfoBarAdditionalInfo,
+                                     InfoBarAspectSelection,
+                                     InfoBarAudioSelection,
+                                     InfoBarChannelSelection,
+                                     InfoBarCueSheetSupport, InfoBarDish,
+                                     InfoBarEPG, InfoBarExtensions,
+                                     InfoBarHdmi, InfoBarInstantRecord,
+                                     InfoBarJobman, InfoBarLongKeyDetection,
+                                     InfoBarMenu,
+                                     InfoBarMoviePlayerSummarySupport,
+                                     InfoBarNotifications, InfoBarNumberZap,
+                                     InfoBarOpenOnTopHelper, InfoBarPiP,
+                                     InfoBarPlugins, InfoBarPVRState,
+                                     InfoBarQuickMenu, InfoBarRdsDecoder,
+                                     InfoBarRedButton,
+                                     InfoBarResolutionSelection, InfoBarSeek,
+                                     InfoBarServiceErrorPopupSupport,
+                                     InfoBarServiceNotifications,
+                                     InfoBarShowHide, InfoBarShowMovies,
+                                     InfoBarSimpleEventView, InfoBarSleepTimer,
+                                     InfoBarSubserviceSelection,
+                                     InfoBarSubtitleSupport,
+                                     InfoBarSummarySupport,
+                                     InfoBarTeletextPlugin, InfoBarTimerButton,
+                                     InfoBarTimeshiftState,
+                                     InfoBarUnhandledKey, InfoBarVmodeButton,
+                                     InfoBarZoom, delResumePoint,
+                                     setResumePoint)
 
 profile("LOAD:InitBar_Components")
 from Components.ActionMap import HelpableActionMap
-from Components.Timeshift import InfoBarTimeshift
 from Components.config import config
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
+from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
+from Components.Timeshift import InfoBarTimeshift
 
 profile("LOAD:HelpableScreen")
 from Screens.HelpMenu import HelpableScreen

@@ -1,9 +1,10 @@
 from __future__ import absolute_import
+
 keyBindings = {}
 
-from keyids import KEYIDS
 from Components.config import config
 from Components.RcModel import rc_model
+from keyids import KEYIDS
 
 keyDescriptions = [{
 		KEYIDS["BTN_0"]: ("UP", "fp"),

@@ -3,13 +3,15 @@
 #
 
 from __future__ import absolute_import
+
 from enigma import eServiceCenter, iServiceInformation
-from Components.Converter.Converter import Converter
-from Components.Element import cached
+
 from Components.config import config
-from Tools.Transponder import ConvertToHumanReadable
-from Tools.GetEcmInfo import GetEcmInfo
+from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
+from Components.Element import cached
+from Tools.GetEcmInfo import GetEcmInfo
+from Tools.Transponder import ConvertToHumanReadable
 
 
 class pliExpertInfo(Poll, Converter):

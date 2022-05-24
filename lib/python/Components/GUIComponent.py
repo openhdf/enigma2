@@ -1,8 +1,9 @@
 from __future__ import absolute_import
-from skin import applyAllAttributes
 
 from enigma import ePoint, eSize
+
 from Components.config import config
+from skin import applyAllAttributes
 
 
 class GUIComponent(object):

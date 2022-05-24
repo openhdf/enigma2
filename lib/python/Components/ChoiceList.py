@@ -1,10 +1,11 @@
 from __future__ import absolute_import
-from Components.MenuList import MenuList
-from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
-from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import fileExists
+
+from Components.MenuList import MenuList
 from skin import fonts, parameters
+from Tools.Directories import SCOPE_GUISKIN, fileExists, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
 
 
 def row_delta_y():

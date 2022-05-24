@@ -1,9 +1,13 @@
 from __future__ import absolute_import
-from Components.Task import PythonTask, Task, Job, job_manager as JobManager
-from Tools.Directories import fileExists
-from enigma import eTimer
+
 from os import path as os_path
-from shutil import rmtree, copy2, move
+from shutil import copy2, move, rmtree
+
+from enigma import eTimer
+
+from Components.Task import Job, PythonTask, Task
+from Components.Task import job_manager as JobManager
+from Tools.Directories import fileExists
 
 
 class DeleteFolderTask(PythonTask):

@@ -1,12 +1,14 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
+from enigma import eStreamServer, eTimer
+
 from Components.ActionMap import ActionMap
 from Components.Button import Button
-from Components.ScrollLabel import ScrollLabel
-from Components.Converter.ClientsStreaming import ClientsStreaming
 from Components.config import config
+from Components.Converter.ClientsStreaming import ClientsStreaming
+from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
-from enigma import eTimer, eStreamServer
+from Screens.Screen import Screen
 
 
 class StreamingClientsInfo(Screen):

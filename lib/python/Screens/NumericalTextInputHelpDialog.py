@@ -1,7 +1,9 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Components.Label import Label
+
 from six import ensure_str
+
+from Components.Label import Label
+from Screens.Screen import Screen
 
 
 class NumericalTextInputHelpDialog(Screen):

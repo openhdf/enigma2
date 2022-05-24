@@ -1,8 +1,10 @@
 from __future__ import absolute_import
+
 from os import path as os_path
-from datasource import datasource
 from xml.dom import minidom
 from xml.dom.minidom import Document
+
+from datasource import datasource
 from input import inputText
 
 

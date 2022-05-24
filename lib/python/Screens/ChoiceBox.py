@@ -1,10 +1,12 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
+from enigma import ePoint, eSize, getDesktop
+
 from Components.ActionMap import NumberActionMap
-from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
+from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from enigma import getDesktop, ePoint, eSize
+from Screens.Screen import Screen
 
 
 class ChoiceBox(Screen):

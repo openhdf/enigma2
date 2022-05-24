@@ -1,17 +1,20 @@
 from __future__ import absolute_import
-from . import Project, TitleCutter, TitleProperties, ProjectSettings, MediumToolbox, Process, Bludisc
-from Screens.Screen import Screen
-from Screens.ChoiceBox import ChoiceBox
-from Screens.MessageBox import MessageBox
-from Screens.HelpMenu import HelpableScreen
-from Screens.TaskView import JobView
-from Components.Task import job_manager
-from Components.ActionMap import HelpableActionMap, ActionMap
-from Components.Sources.List import List
-from Components.Sources.StaticText import StaticText
-from Components.Sources.Progress import Progress
+
+from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Label import MultiColorLabel
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from Components.Sources.List import List
+from Components.Sources.Progress import Progress
+from Components.Sources.StaticText import StaticText
+from Components.Task import job_manager
+from Screens.ChoiceBox import ChoiceBox
+from Screens.HelpMenu import HelpableScreen
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.TaskView import JobView
+from Tools.Directories import SCOPE_PLUGINS, resolveFilename
+
+from . import (Bludisc, MediumToolbox, Process, Project, ProjectSettings,
+               TitleCutter, TitleProperties)
 
 MODE_DVD, MODE_BLUDISC = list(range(2))
 
@@ -161,9 +164,9 @@ class TitleList(Screen, HelpableScreen):
 			self.settingsCB()
 
 	def addTitle(self):
-		from Screens.MovieSelection import MovieSelection
 		from Components.ActionMap import HelpableActionMap
 		from Components.Button import Button
+		from Screens.MovieSelection import MovieSelection
 
 		class DVDMovieSelection(MovieSelection):
 			def __init__(self, session):

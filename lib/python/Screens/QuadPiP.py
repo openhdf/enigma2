@@ -1,7 +1,10 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from enigma import ePoint, eSize, eServiceCenter, getBestPlayableServiceReference, eServiceReference
+
+from enigma import (ePoint, eServiceCenter, eServiceReference, eSize,
+                    getBestPlayableServiceReference)
+
 from Components.VideoWindow import VideoWindow
+from Screens.Screen import Screen
 
 
 class QuadPiP(Screen):

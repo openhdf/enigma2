@@ -1,12 +1,19 @@
 from __future__ import absolute_import
-from Components.GUIComponent import GUIComponent
-from Components.config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, config, configfile, ConfigElement, ConfigText, ConfigPassword
-from Components.ActionMap import NumberActionMap, ActionMap
-from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer, quitMainloop
-from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
-from skin import parameters
+
+from enigma import (eListbox, eListboxPythonConfigContent, eRCInput, eTimer,
+                    quitMainloop)
 from six.moves import zip
+
+from Components.ActionMap import ActionMap, NumberActionMap
+from Components.config import (KEY_0, KEY_ASCII, KEY_BACKSPACE, KEY_DELETE,
+                               KEY_END, KEY_HOME, KEY_LEFT, KEY_NUMBERS,
+                               KEY_OK, KEY_RIGHT, KEY_TIMEOUT, KEY_TOGGLEOW,
+                               ConfigElement, ConfigPassword, ConfigText,
+                               config, configfile)
+from Components.GUIComponent import GUIComponent
+from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
+from skin import parameters
 
 
 class ConfigList(GUIComponent):

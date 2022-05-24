@@ -1,24 +1,22 @@
 
 # Plugin definition
 from __future__ import absolute_import
+
+from xml.etree.cElementTree import parse as cet_parse
+
+from enigma import RT_HALIGN_LEFT, RT_WRAP, eListboxPythonMultiContent, gFont
+from six import ensure_str, iteritems
+
+from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.MenuList import MenuList
+from Components.SystemInfo import SystemInfo
 from Plugins.Plugin import PluginDescriptor
-
-from Screens.Menu import Menu, mdom
 from Screens.HelpMenu import HelpableScreen
-
+from Screens.Menu import Menu, mdom
+from skin import parseColor, parseFont
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileExists
 
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, \
-		RT_WRAP
-from Components.MenuList import MenuList
-from skin import parseColor, parseFont
-
-from Components.ActionMap import HelpableActionMap, ActionMap
-from Components.SystemInfo import SystemInfo
-
-from xml.etree.cElementTree import parse as cet_parse
-from six import iteritems, ensure_str
 try:
 	from xml.etree.cElementTree import ParseError
 except ImportError as ie:
@@ -32,7 +30,7 @@ except AttributeError:
 	iteritems = lambda d: list(d.items())
 
 from operator import itemgetter
-from shutil import copyfile, Error
+from shutil import Error, copyfile
 
 XML_CONFIG = "/etc/enigma2/menusort.xml"
 DEBUG = False

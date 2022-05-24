@@ -1,13 +1,14 @@
-from __future__ import division
-from __future__ import absolute_import
-from past.utils import old_div
+from __future__ import absolute_import, division
+
 from builtins import round
-from math import pi, cos, sin
-from Components.Renderer.Renderer import Renderer
-from skin import parseColor
-from enigma import eCanvas, eSize, gRGB, eRect
+from math import cos, pi, sin
 
 from boxbranding import getBoxType
+from enigma import eCanvas, eRect, eSize, gRGB
+from past.utils import old_div
+
+from Components.Renderer.Renderer import Renderer
+from skin import parseColor
 
 LCDSIZE400 = []
 LCDSIZE720 = []

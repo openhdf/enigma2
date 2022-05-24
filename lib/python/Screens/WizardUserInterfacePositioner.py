@@ -1,11 +1,12 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.WizardLanguage import WizardLanguage
-from Screens.Rc import Rc
+
+from Components.Console import Console
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
-from Tools.Directories import resolveFilename, SCOPE_SKIN
-from Components.Console import Console
+from Screens.Rc import Rc
+from Screens.Screen import Screen
+from Screens.WizardLanguage import WizardLanguage
+from Tools.Directories import SCOPE_SKIN, resolveFilename
 
 
 class UserInterfacePositionerWizard(WizardLanguage, Rc):

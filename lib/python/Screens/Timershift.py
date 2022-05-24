@@ -1,19 +1,21 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.Setup import setupdom
-from Screens.LocationBox import AutorecordLocationBox, TimeshiftLocationBox
-from Screens.MessageBox import MessageBox
-from Components.Label import Label
-from Components.config import config, configfile, ConfigYesNo, ConfigNothing, ConfigSelection, getConfigListEntry
-from Components.ConfigList import ConfigListScreen
+
+from six import ensure_str
+
 from Components.ActionMap import ActionMap
+from Components.config import (ConfigNothing, ConfigSelection, ConfigYesNo,
+                               config, configfile, getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
+from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Tools.Directories import fileExists
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
-
-from six import ensure_str
+from Screens.LocationBox import AutorecordLocationBox, TimeshiftLocationBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Setup import setupdom
+from Tools.Directories import fileExists
 
 
 class SetupSummary(Screen):
@@ -114,6 +116,7 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 
 	def checkReadWriteDir(self, configele):
 		import os.path
+
 		import Components.Harddisk
 		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs', 'cifs'))
 		candidates = []
@@ -210,6 +213,7 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 	def dirnameSelected(self, res):
 		if res is not None:
 			import os.path
+
 			import Components.Harddisk
 			supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs', 'cifs'))
 			candidates = []
@@ -261,6 +265,7 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 	# you have to call them by yourself.
 	def keySave(self):
 		import os.path
+
 		import Components.Harddisk
 		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'nfs', 'cifs'))
 		candidates = []

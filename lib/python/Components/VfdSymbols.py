@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from twisted.internet import threads
-from Components.config import config
+
+from boxbranding import getBoxType, getMachineBuild
 from enigma import eTimer, iPlayableService, iServiceInformation
+from twisted.internet import threads
+
 import NavigationInstance
-from Tools.Directories import fileExists
+from Components.config import config
 from Components.ParentalControl import parentalControl
+from Components.RecordingConfig import recType
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import SystemInfo
-from boxbranding import getBoxType, getMachineBuild
-from Components.RecordingConfig import recType
+from Tools.Directories import fileExists
 
 POLLTIME = 5 # seconds
 

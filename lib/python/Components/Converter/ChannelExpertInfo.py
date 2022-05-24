@@ -2,10 +2,13 @@
 #
 # ChannelExpertInfo Converter by mcbain // v0.1 // 20111109
 #
-from __future__ import absolute_import
-from __future__ import division
+from __future__ import absolute_import, division
+
+from enigma import (eDVBFrontendParametersCable,
+                    eDVBFrontendParametersSatellite,
+                    eDVBFrontendParametersTerrestrial, iServiceInformation)
+
 from Components.Converter.Converter import Converter
-from enigma import eDVBFrontendParametersCable, eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, iServiceInformation
 from Components.Element import cached
 
 

@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+
 from re import compile as re_compile
 
 
@@ -7,6 +8,7 @@ def elementsWithTag(el, tag):
 	example: nodes = elementsWithTag(childNodes, lambda x: x == "bla")"""
 
 	from xml.dom.minidom import Element
+
 	# fiiixme! (works but isn't nice)
 	if isinstance(tag, str):
 		s = tag

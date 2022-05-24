@@ -1,9 +1,12 @@
 from __future__ import absolute_import
-from Components.Task import Task, Job, DiskspacePrecondition, Condition, ToolExistsPrecondition
+
 from Components.Harddisk import harddiskmanager
+from Components.Task import (Condition, DiskspacePrecondition, Job, Task,
+                             ToolExistsPrecondition)
 from Screens.MessageBox import MessageBox
-from .Project import iso639language
 from Tools.Notifications import AddNotificationWithCallback
+
+from .Project import iso639language
 
 
 class png2yuvTask(Task):
@@ -504,8 +507,8 @@ class ImagePrepareTask(Task):
 
 	def conduct(self):
 		try:
-			from ImageFont import truetype
 			from Image import open as Image_open
+			from ImageFont import truetype
 			s = self.job.project.menutemplate.settings
 			(width, height) = s.dimensions.getValue()
 			self.Menus.im_bg_orig = Image_open(s.menubg.getValue())
@@ -533,8 +536,8 @@ class MenuImageTask(Task):
 	def run(self, callback):
 		self.callback = callback
 		#try:
-		import ImageDraw
 		import Image
+		import ImageDraw
 		s = self.job.project.menutemplate.settings
 		s_top = s.margin_top.getValue()
 		s_bottom = s.margin_bottom.getValue()
@@ -891,7 +894,8 @@ class DVDJob(Job):
 		Job.__init__(self, "DVDBurn Job")
 		self.project = project
 		from time import strftime
-		from Tools.Directories import SCOPE_HDD, resolveFilename, createDir
+
+		from Tools.Directories import SCOPE_HDD, createDir, resolveFilename
 		new_workspace = resolveFilename(SCOPE_HDD) + "tmp/" + strftime("%Y%m%d%H%M%S")
 		createDir(new_workspace, True)
 		self.workspace = new_workspace
@@ -949,7 +953,8 @@ class DVDdataJob(Job):
 		Job.__init__(self, "Data DVD Burn")
 		self.project = project
 		from time import strftime
-		from Tools.Directories import SCOPE_HDD, resolveFilename, createDir
+
+		from Tools.Directories import SCOPE_HDD, createDir, resolveFilename
 		new_workspace = resolveFilename(SCOPE_HDD) + "tmp/" + strftime("%Y%m%d%H%M%S") + "/dvd/"
 		createDir(new_workspace, True)
 		self.workspace = new_workspace

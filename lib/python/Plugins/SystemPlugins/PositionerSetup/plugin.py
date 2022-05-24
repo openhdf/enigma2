@@ -1,34 +1,34 @@
-from __future__ import absolute_import
-from __future__ import division
-from enigma import eTimer, eDVBResourceManager, eDVBDiseqcCommand, eDVBFrontendParametersSatellite, iDVBFrontend
+from __future__ import absolute_import, division
 
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Plugins.Plugin import PluginDescriptor
-
-from Components.Label import Label
-from Components.Button import Button
-from Components.ConfigList import ConfigList
-from Components.ConfigList import ConfigListScreen
-from Components.TunerInfo import TunerInfo
-from Components.ActionMap import NumberActionMap, ActionMap
-from Components.NimManager import nimmanager
-from Components.MenuList import MenuList
-from Components.ScrollLabel import ScrollLabel
-from Components.config import config, ConfigSatlist, ConfigNothing, ConfigSelection, \
-	 ConfigSubsection, ConfigInteger, ConfigFloat, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
-from Components.TuneTest import Tuner
-from Tools.Transponder import ConvertToHumanReadable
-
-from time import sleep
 from operator import mul as mul
 from random import SystemRandom as SystemRandom
-from threading import Thread as Thread
 from threading import Event as Event
+from threading import Thread as Thread
+from time import sleep
 
-from . import log
-from . import rotor_calc
+from enigma import (eDVBDiseqcCommand, eDVBFrontendParametersSatellite,
+                    eDVBResourceManager, eTimer, iDVBFrontend)
 from six.moves import map
+
+from Components.ActionMap import ActionMap, NumberActionMap
+from Components.Button import Button
+from Components.config import (KEY_0, KEY_LEFT, KEY_RIGHT, ConfigFloat,
+                               ConfigInteger, ConfigNothing, ConfigSatlist,
+                               ConfigSelection, ConfigSubsection, config,
+                               getConfigListEntry)
+from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Components.NimManager import nimmanager
+from Components.ScrollLabel import ScrollLabel
+from Components.TunerInfo import TunerInfo
+from Components.TuneTest import Tuner
+from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Tools.Transponder import ConvertToHumanReadable
+
+from . import log, rotor_calc
 
 
 class PositionerSetup(Screen):

@@ -1,11 +1,12 @@
 from __future__ import absolute_import
+
 from time import time
 
 from enigma import eTimer
 
-from Components.Task import job_manager, Job, PythonTask
-from Components.Ipkg import IpkgComponent
 from Components.config import config
+from Components.Ipkg import IpkgComponent
+from Components.Task import Job, PythonTask, job_manager
 
 
 def OnlineUpdateCheck(session=None, **kwargs):
@@ -60,8 +61,9 @@ class OnlineUpdateCheckPoller:
 				self.total_packages = len(self.ipkg.getFetchedList())
 				print('[OnlineVersionCheck] %s Updates available' % self.total_packages)
 				if self.total_packages:
-					from six.moves.urllib.request import urlopen
 					import socket
+
+					from six.moves.urllib.request import urlopen
 					currentTimeoutDefault = socket.getdefaulttimeout()
 					socket.setdefaulttimeout(3)
 					config.softwareupdate.updatefound.setValue(True)

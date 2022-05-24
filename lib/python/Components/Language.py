@@ -1,11 +1,15 @@
 # -*- coding: UTF-8 -*-
 from __future__ import absolute_import
-from gettext import install, bindtextdomain, textdomain, translation
-from locale import setlocale, LC_CTYPE, LC_COLLATE, LC_TIME, LC_MONETARY, LC_MESSAGES, LC_NUMERIC
-from os import stat, mkdir, listdir, path as os_path, environ, system
+
+from gettext import bindtextdomain, install, textdomain, translation
+from locale import (LC_COLLATE, LC_CTYPE, LC_MESSAGES, LC_MONETARY, LC_NUMERIC,
+                    LC_TIME, setlocale)
+from os import environ, listdir, mkdir
+from os import path as os_path
+from os import stat, system
+from time import localtime, strftime, time
 
 from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
-from time import time, localtime, strftime
 
 LPATH = resolveFilename(SCOPE_LANGUAGE, "")
 

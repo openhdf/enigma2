@@ -1,7 +1,9 @@
 from __future__ import absolute_import
-from Plugins.Extensions.CutListEditor.plugin import CutListEditor
-from Components.ServiceEventTracker import ServiceEventTracker
+
 from enigma import iPlayableService, iServiceInformation
+
+from Components.ServiceEventTracker import ServiceEventTracker
+from Plugins.Extensions.CutListEditor.plugin import CutListEditor
 from Tools.Directories import fileExists
 
 
@@ -22,9 +24,11 @@ class TitleCutter(CutListEditor):
 		audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
 		if n > 0:
-			from .Title import ConfigFixedText
+			from Components.config import (ConfigSelection, ConfigSubList,
+			                               ConfigSubsection, ConfigYesNo)
+
 			from .Project import iso639language
-			from Components.config import ConfigSubsection, ConfigSubList, ConfigSelection, ConfigYesNo
+			from .Title import ConfigFixedText
 			self.t.properties.audiotracks = ConfigSubList()
 			for x in list(range(n)):
 				i = audio.getTrackInfo(x)

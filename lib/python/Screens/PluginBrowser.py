@@ -1,29 +1,33 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from six import ensure_str
-from Screens.ParentalControlSetup import ProtectedScreen
-from Components.Language import language
-from enigma import eConsoleAppContainer, eDVBDB
 
+from os import path as os_path
+from os import popen, system, unlink
+
+from enigma import eConsoleAppContainer, eDVBDB
+from six import ensure_str
+
+from Components import Ipkg
 from Components.ActionMap import ActionMap
+from Components.config import (ConfigSubsection, ConfigText, ConfigYesNo,
+                               config, configfile, getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
+from Components.Harddisk import harddiskmanager
+from Components.Label import Label
+from Components.Language import language
+from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
 from Components.PluginList import *
-from Components.Label import Label
-from Components.Pixmap import Pixmap
-from Components.Harddisk import harddiskmanager
 from Components.Sources.StaticText import StaticText
-from Components import Ipkg
-from Components.config import config, ConfigSubsection, ConfigYesNo, getConfigListEntry, configfile, ConfigText
-from Components.ConfigList import ConfigListScreen
-from Screens.MessageBox import MessageBox
+from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
+from Screens.MessageBox import MessageBox
+from Screens.ParentalControlSetup import ProtectedScreen
+from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_GUISKIN, isPluginInstalled
+from Tools.Directories import (SCOPE_GUISKIN, SCOPE_PLUGINS, isPluginInstalled,
+                               resolveFilename)
 from Tools.LoadPixmap import LoadPixmap
-
-from os import path as os_path, system, popen, unlink
 
 config.pluginfilter = ConfigSubsection()
 config.pluginfilter.hdf = ConfigYesNo(default=True)

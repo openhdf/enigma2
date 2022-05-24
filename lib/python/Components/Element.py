@@ -1,6 +1,8 @@
 from __future__ import absolute_import
-from Tools.CList import CList
+
 from six.moves import reduce
+
+from Tools.CList import CList
 
 # down                       up
 # Render Converter Converter Source

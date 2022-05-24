@@ -1,25 +1,26 @@
 from __future__ import absolute_import
-from time import localtime, mktime, time, strftime
 
-from enigma import eEPGCache, eTimer, eServiceReference, ePoint
+from time import localtime, mktime, strftime, time
 
-from Screens.Screen import Screen
-from Screens.ChoiceBox import ChoiceBox
+from enigma import eEPGCache, ePoint, eServiceReference, eTimer
+
 from Components.ActionMap import ActionMap
 from Components.Button import Button
-from Components.Label import Label
-from Components.Sources.StaticText import StaticText
-from Components.ScrollLabel import ScrollLabel
-from Components.PluginComponent import plugins
-from Components.MenuList import MenuList
-from Components.UsageConfig import preferredTimerPath
-from Components.Pixmap import Pixmap
-from Components.Sources.ServiceEvent import ServiceEvent
-from Components.Sources.Event import Event
 from Components.config import config
-from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
-from Screens.TimerEntry import TimerEntry
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Components.Pixmap import Pixmap
+from Components.PluginComponent import plugins
+from Components.ScrollLabel import ScrollLabel
+from Components.Sources.Event import Event
+from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.StaticText import StaticText
+from Components.UsageConfig import preferredTimerPath
 from Plugins.Plugin import PluginDescriptor
+from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
+from Screens.ChoiceBox import ChoiceBox
+from Screens.Screen import Screen
+from Screens.TimerEntry import TimerEntry
 from Tools.BoundFunction import boundFunction
 
 

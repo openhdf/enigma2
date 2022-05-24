@@ -1,17 +1,19 @@
 # -*- coding: iso-8859-1 -*-
 from __future__ import absolute_import
-from Components.Console import Console
-from Components.PackageInfo import PackageInfoHandler
-from Components.Language import language
-from Components.Sources.List import List
-from Components.Ipkg import IpkgComponent
-from Components.Network import iNetwork
-from Tools.Directories import SCOPE_METADIR, resolveFilename
-from Tools.HardwareInfo import HardwareInfo
+
 from time import time
 
 from boxbranding import getBoxType, getImageVersion
 from six import ensure_str
+
+from Components.Console import Console
+from Components.Ipkg import IpkgComponent
+from Components.Language import language
+from Components.Network import iNetwork
+from Components.PackageInfo import PackageInfoHandler
+from Components.Sources.List import List
+from Tools.Directories import SCOPE_METADIR, resolveFilename
+from Tools.HardwareInfo import HardwareInfo
 
 
 class SoftwareTools(PackageInfoHandler):

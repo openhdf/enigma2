@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 # by digiteng...12-2019
 
-from Components.Renderer.Renderer import Renderer
-from enigma import ePixmap, loadJPG
 from os import path as os_path
+
+from enigma import ePixmap, loadJPG
+
+from Components.Renderer.Renderer import Renderer
 
 
 class pstrRndr(Renderer):

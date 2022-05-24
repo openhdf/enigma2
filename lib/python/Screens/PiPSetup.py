@@ -1,10 +1,10 @@
-from __future__ import absolute_import
-from __future__ import division
-from Screens.Screen import Screen
+from __future__ import absolute_import, division
+
 from Components.ActionMap import NumberActionMap
-from Components.SystemInfo import SystemInfo
-from Components.Label import Label
 from Components.config import config
+from Components.Label import Label
+from Components.SystemInfo import SystemInfo
+from Screens.Screen import Screen
 
 # this is not so great.
 MAX_X = 720

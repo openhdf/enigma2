@@ -1,12 +1,18 @@
 from __future__ import absolute_import
-from Components.Task import job_manager, Job, PythonTask
-from Components.config import config
-from Components import Harddisk
-from Components.GUIComponent import GUIComponent
-from Components.VariableText import VariableText
+
+from os import W_OK, access, mkdir
+from os import path as os_path
+from os import rmdir, stat, statvfs, walk
 from time import time
-from os import path as os_path, access, W_OK, mkdir, walk, rmdir, statvfs, stat
-from enigma import pNavigation, iRecordableService, eBackgroundFileEraser, eLabel
+
+from enigma import (eBackgroundFileEraser, eLabel, iRecordableService,
+                    pNavigation)
+
+from Components import Harddisk
+from Components.config import config
+from Components.GUIComponent import GUIComponent
+from Components.Task import Job, PythonTask, job_manager
+from Components.VariableText import VariableText
 
 
 def getTrashFolder(path=None):

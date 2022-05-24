@@ -1,40 +1,46 @@
 from __future__ import absolute_import
-from boxbranding import getBoxType, getMachineBrand, getMachineName
-from os import path as os_path, remove, rename, unlink, system
+
+from glob import glob
+from os import path as os_path
+from os import remove, rename, system, unlink
+from random import Random
+from string import digits, letters
+from sys import version_info
 from time import sleep
+
+from boxbranding import getBoxType, getMachineBrand, getMachineName
+from enigma import eConsoleAppContainer, eTimer
 from six import ensure_str
 
-from enigma import eTimer, eConsoleAppContainer
-
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.Standby import TryQuitMainloop
-from Screens.HelpMenu import HelpableScreen
 from Components.About import about, getVersionString
+from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
+from Components.config import (ConfigIP, ConfigLocations, ConfigMacText,
+                               ConfigNumber, ConfigPassword, ConfigSelection,
+                               ConfigSubsection, ConfigText, ConfigYesNo,
+                               NoSave, config, getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
+from Components.FileList import MultiFileSelectList
+from Components.Input import Input
+from Components.Label import Label, MultiColorLabel
+from Components.MenuList import MenuList
 from Components.Network import iNetwork
-from Components.Sources.StaticText import StaticText
+from Components.Pixmap import MultiPixmap, Pixmap
+from Components.PluginComponent import plugins
+from Components.ScrollLabel import ScrollLabel
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
-from Components.Label import Label, MultiColorLabel
-from Components.Input import Input
-from Screens.InputBox import InputBox
-from Components.ScrollLabel import ScrollLabel
-from Components.Pixmap import Pixmap, MultiPixmap
-from Components.MenuList import MenuList
-from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNumber, ConfigLocations, NoSave, ConfigMacText
-from Components.ConfigList import ConfigListScreen
-from Components.PluginComponent import plugins
-from Components.FileList import MultiFileSelectList
-from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_GUISKIN
-from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
-from random import Random
-from string import letters, digits
-from glob import glob
-from sys import version_info
+from Screens.HelpMenu import HelpableScreen
+from Screens.InputBox import InputBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop
+from Tools.Directories import (SCOPE_GUISKIN, SCOPE_PLUGINS, fileExists,
+                               resolveFilename)
+from Tools.LoadPixmap import LoadPixmap
 
 basegroup = "packagegroup-base"
 
@@ -921,8 +927,9 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def queryWirelessDevice(self, iface):
 		try:
-			from pythonwifi.iwlibs import Wireless
 			import errno
+
+			from pythonwifi.iwlibs import Wireless
 		except ImportError:
 			return False
 		else:

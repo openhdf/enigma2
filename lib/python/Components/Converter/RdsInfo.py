@@ -1,5 +1,7 @@
 from __future__ import absolute_import
-from enigma import iRdsDecoder, iPlayableService
+
+from enigma import iPlayableService, iRdsDecoder
+
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 

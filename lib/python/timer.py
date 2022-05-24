@@ -1,8 +1,10 @@
 from __future__ import absolute_import
+
 from bisect import insort
-from time import time, localtime, mktime
-from enigma import eTimer, eActionMap
 from datetime import datetime, timedelta
+from time import localtime, mktime, time
+
+from enigma import eActionMap, eTimer
 
 
 class TimerEntry:

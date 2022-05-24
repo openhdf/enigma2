@@ -1,17 +1,21 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
+from boxbranding import (getBoxType, getBrandOEM, getMachineBrand,
+                         getMachineName)
+
+from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.config import (ConfigSelection, ConfigYesNo, config,
+                               getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
+from Components.InputDevice import iInputDevices, iRcTypeControl
+from Components.Pixmap import Pixmap
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
-from Components.InputDevice import iInputDevices, iRcTypeControl
-from Components.Sources.StaticText import StaticText
-from Components.Sources.List import List
-from Components.config import config, ConfigYesNo, getConfigListEntry, ConfigSelection
-from Components.ConfigList import ConfigListScreen
-from Components.ActionMap import ActionMap, HelpableActionMap
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from Screens.Screen import Screen
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
-from Components.Pixmap import Pixmap
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
 
 
 class InputDeviceSelection(Screen, HelpableScreen):

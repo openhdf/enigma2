@@ -1,11 +1,14 @@
 from __future__ import absolute_import
+
 from glob import glob
+from os import mkdir
+from os import path as os_path
+from os import remove, rename, rmdir, stat
 from shutil import copy2
 from subprocess import check_output
 
-from os import mkdir, path as os_path, rmdir, rename, remove, stat
-
 from boxbranding import getBoxType, getMachineName
+
 from Components.Console import Console
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import pathExists

@@ -1,12 +1,15 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
-from Components.Pixmap import Pixmap
+
 from enigma import ePicLoad
-from Components.config import config, getConfigListEntry, ConfigInteger
-from Components.ConfigList import ConfigListScreen
+
+from Components.ActionMap import ActionMap
 from Components.AVSwitch import AVSwitch
+from Components.config import ConfigInteger, config, getConfigListEntry
+from Components.ConfigList import ConfigListScreen
+from Components.Pixmap import Pixmap
+from Components.Sources.StaticText import StaticText
+from Screens.Screen import Screen
+
 from . import Title
 
 

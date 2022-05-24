@@ -1,10 +1,13 @@
 from __future__ import absolute_import
+
+from time import time
+
+from enigma import eEPGCache
+
+from Components.config import config
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from time import time
-from Components.Element import cached, ElementError
-from Components.config import config
-from enigma import eEPGCache
+from Components.Element import ElementError, cached
 
 
 class EventTime(Poll, Converter):

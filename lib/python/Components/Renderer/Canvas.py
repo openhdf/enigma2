@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+
 from enigma import eCanvas, eRect, gRGB
 
 from Components.Renderer.Renderer import Renderer

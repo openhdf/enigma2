@@ -1,67 +1,79 @@
 from __future__ import absolute_import
+
+from bisect import insort
+from datetime import datetime
+from itertools import groupby
+from os import listdir
+from os import path as os_path
+from os import readlink, system
+from sys import maxsize
+from time import localtime, strftime, time
+
+from boxbranding import (getBoxType, getBrandOEM, getDisplayType,
+                         getDriverDate, getImageBuild, getImageVersion,
+                         getMachineBrand, getMachineBuild, getMachineMtdKernel,
+                         getMachineName)
+from enigma import (eActionMap, eDVBDB, eDVBServicePMTHandler,
+                    eDVBVolumecontrol, eEPGCache, eServiceCenter,
+                    eServiceReference, eTimer, getDesktop, iPlayableService,
+                    iServiceInformation, quitMainloop)
+from six.moves.cPickle import HIGHEST_PROTOCOL, dump, load
+
+from Components.About import about
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
-from Components.Harddisk import harddiskmanager, findMountPoint
+from Components.config import ConfigBoolean, ConfigClock, config, configfile
+from Components.Harddisk import findMountPoint, harddiskmanager
 from Components.Input import Input
 from Components.Label import Label
-from Components.About import about
 from Components.MovieList import AUDIO_EXTENSIONS
-from Components.PluginComponent import plugins
-from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Sources.ServiceEvent import ServiceEvent
-from Components.Sources.Boolean import Boolean
-from Components.config import config, configfile, ConfigBoolean, ConfigClock
-from Components.SystemInfo import SystemInfo
-from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath, preferredTimerPath, ConfigSelection
 from Components.Pixmap import MovingPixmap, MultiPixmap
-from Components.Sources.StaticText import StaticText
+from Components.PluginComponent import plugins
 from Components.ScrollLabel import ScrollLabel
+from Components.ServiceEventTracker import ServiceEventTracker
+from Components.Sources.Boolean import Boolean
+from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import SystemInfo
 from Components.Timeshift import InfoBarTimeshift
+from Components.UsageConfig import (ConfigSelection, defaultMoviePath,
+                                    preferredInstantRecordPath,
+                                    preferredTimerPath)
 from Components.VolumeControl import VolumeControl
-
+from keyids import KEYIDS
 from Plugins.Plugin import PluginDescriptor
-
-from Screens.Screen import Screen
+from RecordTimer import (AFTEREVENT, RecordTimerEntry, findSafeRecordPath,
+                         parseEvent)
 from Screens import ScreenSaver
-from Screens.ChannelSelection import BouquetSelector, ChannelSelection, EpgBouquetSelector, PiPZapSelection
+from Screens.ChannelSelection import (BouquetSelector, ChannelSelection,
+                                      EpgBouquetSelector, PiPZapSelection)
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Dish import Dish
-from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.EpgSelection import EPGSelection
+from Screens.EventView import EventViewEPGSelect, EventViewSimple
 from Screens.InputBox import InputBox
+# hack alert!
+from Screens.Menu import MainMenu, Menu, mdom
 from Screens.MessageBox import MessageBox
 from Screens.MinuteInput import MinuteInput
-from Screens.TimerSelection import TimerSelection
 from Screens.PictureInPicture import PictureInPicture
 from Screens.PVRState import PVRState, TimeshiftState
+from Screens.RdsDisplay import RassInteractive, RdsInfoDisplay
+from Screens.Screen import Screen
+from Screens.Setup import Setup
+from Screens.ShowPressedButtons import ShowPressedButtons
+from Screens.Standby import (Standby, TryQuitMainloop, inStandby,
+                             inTryQuitMainloop)
 from Screens.SubtitleDisplay import SubtitleDisplay
-from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEdit import TimerEditList
-from Screens.UnhandledKey import UnhandledKey
-from Screens.ShowPressedButtons import ShowPressedButtons
-from ServiceReference import ServiceReference, isPlayableForCur
-from RecordTimer import AFTEREVENT, RecordTimerEntry, findSafeRecordPath, parseEvent
 from Screens.TimerEntry import TimerEntry as TimerEntry
+from Screens.TimerSelection import TimerSelection
+from Screens.UnhandledKey import UnhandledKey
+from ServiceReference import ServiceReference, isPlayableForCur
 from Tools import Notifications
 from Tools.Directories import fileExists, isPluginInstalled
 from Tools.KeyBindings import getKeyDescription
 from Tools.ServiceReference import hdmiInServiceRef
-from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
-from boxbranding import getBoxType, getBrandOEM, getDisplayType, getDriverDate, getImageBuild, getImageVersion, getMachineBrand, getMachineBuild, getMachineMtdKernel, getMachineName
-
-from time import time, localtime, strftime
-from bisect import insort
-from sys import maxsize
-from keyids import KEYIDS
-from itertools import groupby
-from datetime import datetime
-from os import path as os_path, listdir, readlink, system
-from six.moves.cPickle import load, dump, HIGHEST_PROTOCOL
-
-# hack alert!
-from Screens.Menu import MainMenu, Menu, mdom
-from Screens.Setup import Setup
-from Screens.Standby import inStandby, inTryQuitMainloop, Standby, TryQuitMainloop
 
 
 class bcolors:
@@ -3358,8 +3370,8 @@ class InfoBarExtensions:
 
 	def showAutoTimerList(self):
 		if isPluginInstalled("AutoTimer"):
-			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
+			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			self.autopoller = AutoPoller()
 			self.autotimer = AutoTimer()
 			try:
@@ -3460,8 +3472,9 @@ class InfoBarExtensions:
 			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 
-from Tools.BoundFunction import boundFunction
 from inspect import getargspec
+
+from Tools.BoundFunction import boundFunction
 
 # depends on InfoBarExtensions
 
@@ -4203,6 +4216,7 @@ class InfoBarSubserviceSelection:
 
 
 from Components.Sources.HbbtvApplication import HbbtvApplication
+
 gHbbtvApplication = HbbtvApplication()
 
 

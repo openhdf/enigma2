@@ -1,18 +1,23 @@
 from __future__ import absolute_import
+
 from os import path as os_path
-from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
-from Components.ParentalControl import parentalControl
+from time import ctime, time
+
+from boxbranding import getBoxType, getBrandOEM, getMachineBuild
+from enigma import (eServiceCenter, eServiceReference, eTimer,
+                    getBestPlayableServiceReference, iPlayableService,
+                    pNavigation)
+
+import NavigationInstance
+import Screens.Standby
 from Components.config import config
+from Components.ParentalControl import parentalControl
+from PowerTimer import PowerTimer
+from RecordTimer import RecordTimer
+from Screens.InfoBar import InfoBar, MoviePlayer
+from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import getFPWasTimerWakeup
-from time import time, ctime
-from RecordTimer import RecordTimer
-from PowerTimer import PowerTimer
-import Screens.Standby
-import NavigationInstance
-from ServiceReference import ServiceReference
-from Screens.InfoBar import InfoBar, MoviePlayer
-from boxbranding import getBoxType, getBrandOEM, getMachineBuild
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 

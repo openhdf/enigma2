@@ -1,10 +1,11 @@
 from __future__ import absolute_import
-from Components.MenuList import MenuList
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
-from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
-from Tools.LoadPixmap import LoadPixmap
-from skin import parameters, fonts
 
+from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
+
+from Components.MenuList import MenuList
+from skin import fonts, parameters
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
 
 selectiononpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
 selectionoffpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png"))

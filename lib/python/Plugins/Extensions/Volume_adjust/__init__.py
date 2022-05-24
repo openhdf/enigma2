@@ -1,8 +1,11 @@
 from __future__ import absolute_import
-from Components.Language import language
-from Tools.Directories import resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE #@UnresolvedImport
-from gettext import bindtextdomain, textdomain, bindtextdomain, dgettext, gettext
+
+from gettext import bindtextdomain, dgettext, gettext, textdomain
 from os import environ
+
+from Components.Language import language
+from Tools.Directories import SCOPE_LANGUAGE  # @UnresolvedImport
+from Tools.Directories import SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, resolveFilename
 
 lang = language.getLanguage()
 environ["LANGUAGE"] = lang[:2]

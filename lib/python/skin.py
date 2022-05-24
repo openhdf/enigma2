@@ -1,17 +1,24 @@
-from __future__ import absolute_import
-from __future__ import division
+from __future__ import absolute_import, division
+
 from errno import ENOENT
-from xml.etree.cElementTree import parse, ElementTree, Element, ParseError, fromstring
-from six import ensure_str
-from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gRGB, BT_ALPHATEST, BT_ALPHABLEND
-from os.path import basename, dirname, isfile, join as pathjoin
 from os import listdir
+from os.path import basename, dirname, isfile
+from os.path import join as pathjoin
+from xml.etree.cElementTree import (Element, ElementTree, ParseError,
+                                    fromstring, parse)
+
+from enigma import (BT_ALPHABLEND, BT_ALPHATEST, addFont, eLabel, ePixmap,
+                    ePoint, eRect, eSize, eWindow, eWindowStyleManager,
+                    eWindowStyleSkinned, getDesktop, getFontFaces, gFont, gRGB)
+from six import ensure_str
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
 from Components.Sources.Source import ObsoleteSource
 from Components.SystemInfo import SystemInfo
-from Tools.Directories import SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT_SKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKIN, resolveFilename, pathExists
+from Tools.Directories import (SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT_SKIN,
+                               SCOPE_FONTS, SCOPE_GUISKIN, SCOPE_SKIN,
+                               pathExists, resolveFilename)
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 

@@ -1,8 +1,10 @@
 from __future__ import absolute_import
-from Components.config import config, ConfigSelection, ConfigNothing
+
+from boxbranding import getBoxType
+
+from Components.config import ConfigNothing, ConfigSelection, config
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists
-from boxbranding import getBoxType
 
 
 class WOL:

@@ -1,31 +1,33 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
+from os import path as os_path
+from os import popen, system
+from re import match as re_match
+from re import search
+
+from boxbranding import (getBoxType, getBrandOEM, getDriverDate, getImageBuild,
+                         getImageVersion, getMachineBrand, getMachineBuild,
+                         getMachineName, getOEVersion)
+from enigma import eTimer, getDesktop, getEnigmaVersionString
+from six import PY3, ensure_str
+
+from Components.About import about
 from Components.ActionMap import ActionMap
 from Components.Button import Button
+from Components.config import config
 from Components.Console import Console
-from Components.config import config
-from Components.Sources.StaticText import StaticText
 from Components.Harddisk import Harddisk
-from Components.NimManager import nimmanager
-from Components.About import about
-from Components.ScrollLabel import ScrollLabel
-from Components.SystemInfo import SystemInfo
-from Components.config import config
-from enigma import eTimer, getDesktop, getEnigmaVersionString
-from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate, getBrandOEM, getOEVersion
-
-from Components.Pixmap import MultiPixmap
-from Components.Network import iNetwork
-
 from Components.Label import Label
+from Components.Network import iNetwork
+from Components.NimManager import nimmanager
+from Components.Pixmap import MultiPixmap
 from Components.ProgressBar import ProgressBar
-
-from Tools.StbHardware import getFPVersion
+from Components.ScrollLabel import ScrollLabel
+from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import SystemInfo
+from Screens.Screen import Screen
 from Tools.Directories import fileCheck
-
-from os import path as os_path, popen, system
-from re import search, match as re_match
-from six import ensure_str, PY3
+from Tools.StbHardware import getFPVersion
 
 SIGN = '°' if PY3 else str('\xc2\xb0')
 

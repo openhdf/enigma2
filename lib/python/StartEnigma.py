@@ -1,21 +1,27 @@
 from __future__ import absolute_import
+
+from os import chmod
+from os import path as os_path
+from os import system
 from sys import path as sys_path
-from os import path as os_path, chmod, system
 from time import localtime, strftime, time
 
 if os_path.isfile("/usr/lib/enigma2/python/enigma.zip"):
 	sys_path.append("/usr/lib/enigma2/python/enigma.zip")
 
 from Tools.Profile import profile, profile_final
+
 profile("PYTHON_START")
+
+import eBaseImpl
+import eConsoleImpl
+import enigma
+from boxbranding import getBoxType, getBrandOEM, getMachineBuild
 
 # Don't remove this line. It may seem to do nothing, but if removed,
 # it will break output redirection for crash logs.
 import Tools.RedirectOutput
-import enigma
-from boxbranding import getBoxType, getBrandOEM, getMachineBuild
-import eConsoleImpl
-import eBaseImpl
+
 enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
@@ -25,20 +31,24 @@ from traceback import print_exc
 
 profile("Geolocation")
 from Tools.Geolocation import InitGeolocation
+
 InitGeolocation()
 
 profile("SetupDevices")
 from Components.SetupDevices import InitSetupDevices
+
 InitSetupDevices()
 
 profile("SimpleSummary")
+from sys import stdout
+
 from Screens import InfoBar
 from Screens.SimpleSummary import SimpleSummary
 
-from sys import stdout
-
 profile("Bouquets")
-from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, NoSave
+from Components.config import (ConfigInteger, ConfigText, ConfigYesNo, NoSave,
+                               config, configfile)
+
 config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
 
 
@@ -50,22 +60,26 @@ config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
 enigma.eDVBDB.getInstance().reloadBouquets()
 profile("ParentalControl")
 from Components.ParentalControl import InitParentalControl
+
 InitParentalControl()
 
 profile("LOAD:Navigation")
 from Navigation import Navigation
 
 profile("LOAD:skin")
-from skin import readSkin, loadSkinData
-
 from twisted.python import log
+
+from skin import loadSkinData, readSkin
+
 config.misc.enabletwistedlog = ConfigYesNo(default=False)
 if config.misc.enabletwistedlog.value == True:
 	log.startLogging(open('/tmp/twisted.log', 'w'))
 
 profile("LOAD:Tools")
-from Tools.Directories import resolveFilename, SCOPE_CONFIG, SCOPE_PLUGINS, SCOPE_GUISKIN
-from Components.config import ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, NoSave, config, configfile
+from Components.config import (ConfigInteger, ConfigSelection, ConfigText,
+                               ConfigYesNo, NoSave, config, configfile)
+from Tools.Directories import (SCOPE_CONFIG, SCOPE_GUISKIN, SCOPE_PLUGINS,
+                               resolveFilename)
 
 profile("config.misc")
 config.misc.boxtype = ConfigText(default=boxtype)
@@ -161,10 +175,10 @@ profile("LOAD:Plugin")
 from Components.PluginComponent import plugins
 
 profile("LOAD:Wizard")
-from Screens.StartWizard import *
 import Screens.Rc
-from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
+from Screens.StartWizard import *
+from Tools.BoundFunction import boundFunction
 
 profile("misc")
 had = dict()
@@ -191,8 +205,8 @@ def dump(dir, p=""):
 
 profile("LOAD:ScreenGlobals")
 from Screens.Globals import Globals
-from Screens.SessionGlobals import SessionGlobals
 from Screens.Screen import Screen
+from Screens.SessionGlobals import SessionGlobals
 
 profile("Screen")
 Screen.globalScreen = Globals()
@@ -397,9 +411,10 @@ class Session:
 
 
 profile("Standby,PowerKey")
-from Screens.Standby import inTryQuitMainloop, TryQuitMainloop, TVinStandby, inStandby, Standby, quitMainloopCode
-from Screens.Menu import MainMenu, mdom
 from GlobalActions import globalActionMap
+from Screens.Menu import MainMenu, mdom
+from Screens.Standby import (Standby, TryQuitMainloop, TVinStandby, inStandby,
+                             inTryQuitMainloop, quitMainloopCode)
 
 
 class PowerKey:
@@ -547,6 +562,7 @@ from Components.VolumeControl import VolumeControl
 
 profile("Load:StackTracePrinter")
 from Components.StackTrace import StackTracePrinter
+
 StackTracePrinterInst = StackTracePrinter()
 
 from Tools.StbHardware import setFPWakeuptime, setRTCtime
@@ -764,52 +780,64 @@ loadSkinData(enigma.getDesktop(0))
 
 profile("InputDevice")
 from Components.InputDevice import InitInputDevices
+
 InitInputDevices()
 import Components.InputHotplug
 
 profile("AVSwitch")
 from Components.AVSwitch import InitAVSwitch, InitiVideomodeHotplug
+
 InitAVSwitch()
 InitiVideomodeHotplug()
 
 profile("HdmiRecord")
 from Components.HdmiRecord import InitHdmiRecord
+
 InitHdmiRecord()
 
 profile("RecordingConfig")
 from Components.RecordingConfig import InitRecordingConfig
+
 InitRecordingConfig()
 
 profile("UsageConfig")
 from Components.UsageConfig import InitUsageConfig
+
 InitUsageConfig()
 
 profile("TimeZones")
 from Components.Timezones import InitTimeZones
+
 InitTimeZones()
 
 profile("Init:DebugLogCheck")
 from Screens.LogManager import AutoLogManager
+
 AutoLogManager()
 
 profile("Init:OnlineCheckState")
 from Components.OnlineUpdateCheck import OnlineUpdateCheck
+
 OnlineUpdateCheck()
 
 profile("Init:NTPSync")
 from Components.NetworkTime import AutoNTPSync
+
 AutoNTPSync()
 
 profile("Timezones")
 from Components.Timezones import InitTimeZones
+
 InitTimeZones()
 
 profile("Init:DebugLogCheck")
 from Screens.LogManager import AutoLogManager
+
 AutoLogManager()
 
 profile("keymapparser")
 from keymapparser import readKeymap
+
 readKeymap(config.usage.keymap.value)
 readKeymap(config.usage.keytrans.value)
 if os_path.exists(config.usage.keymap_usermod.value):
@@ -817,10 +845,12 @@ if os_path.exists(config.usage.keymap_usermod.value):
 
 profile("Network")
 from Components.Network import InitNetwork
+
 InitNetwork()
 
 profile("LCD")
-from Components.Lcd import InitLcd, IconCheck
+from Components.Lcd import IconCheck, InitLcd
+
 InitLcd()
 IconCheck()
 # Disable internal clock vfd for ini5000 until we can adjust it for standby
@@ -852,19 +882,23 @@ if boxtype in ('dm7080', 'dm820', 'dm900', 'dm920', 'gb7252'):
 
 profile("UserInterface")
 from Screens.UserInterfacePositioner import InitOsd
+
 InitOsd()
 
 profile("EpgCacheSched")
-from Components.EpgLoadSave import EpgCacheSaveCheck, EpgCacheLoadCheck
+from Components.EpgLoadSave import EpgCacheLoadCheck, EpgCacheSaveCheck
+
 EpgCacheSaveCheck()
 EpgCacheLoadCheck()
 
 profile("RFMod")
 from Components.RFmod import InitRFmod
+
 InitRFmod()
 
 profile("Init:CI")
 from Screens.Ci import InitCiConfig
+
 InitCiConfig()
 
 profile("RcModel")

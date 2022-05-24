@@ -1,10 +1,13 @@
 from __future__ import absolute_import
+
+from socket import gethostbyaddr
+
+from enigma import eStreamServer
+
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
 from Components.Element import cached
-from enigma import eStreamServer
 from ServiceReference import ServiceReference
-from socket import gethostbyaddr
 
 
 class ClientsStreaming(Converter, Poll):

@@ -1,14 +1,15 @@
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
 
 from os import path as os_path
-from enigma import iServiceInformation, iPlayableService
-from Components.Converter.Converter import Converter
-from Components.Element import cached
-from Components.config import config
-from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
-from Tools.GetEcmInfo import GetEcmInfo
-from Components.Converter.Poll import Poll
 
+from enigma import iPlayableService, iServiceInformation
+
+from Components.config import config
+from Components.Converter.Converter import Converter
+from Components.Converter.Poll import Poll
+from Components.Element import cached
+from Tools.GetEcmInfo import GetEcmInfo
+from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 
 caid_data = (
 	("0x100", "0x1ff", "Seca", "S", True),

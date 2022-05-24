@@ -1,16 +1,20 @@
 from errno import ENOENT, EXDEV
 from inspect import stack
-from os import F_OK, R_OK, W_OK, access, chmod, link, listdir, makedirs, mkdir, readlink, remove, rename, rmdir, sep, stat, statvfs, symlink, utime, walk
-from os.path import basename, dirname, exists, getsize, isdir, isfile, islink, join as pathjoin, normpath, splitext
+from os import (F_OK, R_OK, W_OK, access, chmod, link, listdir, makedirs,
+                mkdir, readlink, remove, rename, rmdir, sep, stat, statvfs,
+                symlink, utime, walk)
+from os.path import basename, dirname, exists, getsize, isdir, isfile, islink
+from os.path import join as pathjoin
+from os.path import normpath, splitext
 from re import compile
-from six import PY2
 from shutil import copy2
 from stat import S_IMODE
 from tempfile import mkstemp
 from traceback import print_exc
 from xml.etree.cElementTree import Element, ParseError, fromstring, parse
 
-from enigma import eEnv, getDesktop, eGetEnigmaDebugLvl
+from enigma import eEnv, eGetEnigmaDebugLvl, getDesktop
+from six import PY2
 
 DEFAULT_MODULE_NAME = __name__.split(".")[-1]
 
@@ -130,7 +134,8 @@ def resolveFilename(scope, base="", path_prefix=None):
 	if base == "":  # If base is "" then set path to the scope.  Otherwise use the scope to resolve the base filename.
 		path, flags = defaultPaths.get(scope)
 		if scope == SCOPE_GUISKIN:  # If the scope is SCOPE_GUISKIN append the current skin to the scope path.
-			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialisation.
+			from Components.config import \
+			    config  # This import must be here as this module finds the config file as part of the config initialisation.
 			skin = dirname(config.skin.primary_skin.value)
 			path = pathjoin(path, skin)
 		elif scope in (SCOPE_PLUGIN_ABSOLUTE, SCOPE_PLUGIN_RELATIVE):
@@ -143,7 +148,8 @@ def resolveFilename(scope, base="", path_prefix=None):
 					relative = "%s%s%s" % (pluginCode[0], sep, pluginCode[1])
 					path = pathjoin(plugins, relative)
 	elif scope == SCOPE_GUISKIN:
-		from Components.config import config  # This import must be here as this module finds the config file as part of the config initialisation.
+		from Components.config import \
+		    config  # This import must be here as this module finds the config file as part of the config initialisation.
 		skin = dirname(config.skin.primary_skin.value)
 		resolveList = [
 			pathjoin(scopeConfig, skin),
@@ -156,7 +162,8 @@ def resolveFilename(scope, base="", path_prefix=None):
 		]
 		path = itemExists(resolveList, base)
 	elif scope == SCOPE_LCDSKIN:
-		from Components.config import config  # This import must be here as this module finds the config file as part of the config initialisation.
+		from Components.config import \
+		    config  # This import must be here as this module finds the config file as part of the config initialisation.
 		skin = dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else ""
 		resolveList = [
 			pathjoin(scopeConfig, "display", skin),
@@ -169,7 +176,8 @@ def resolveFilename(scope, base="", path_prefix=None):
 		]
 		path = itemExists(resolveList, base)
 	elif scope == SCOPE_FONTS:
-		from Components.config import config  # This import must be here as this module finds the config file as part of the config initialisation.
+		from Components.config import \
+		    config  # This import must be here as this module finds the config file as part of the config initialisation.
 		skin = dirname(config.skin.primary_skin.value)
 		display = dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else None
 		resolveList = [
@@ -479,7 +487,9 @@ def moveFiles(fileList):
 	except (IOError, OSError) as err:
 		if err.errno == EXDEV:  # EXDEV - Invalid cross-device link.
 			print("[Directories] Warning: Cannot rename across devices, trying slower move.")
-			from Tools.CopyFiles import moveFiles as extMoveFiles  # OpenViX, OpenATV, Beyonwiz
+			from Tools.CopyFiles import \
+			    moveFiles as extMoveFiles  # OpenViX, OpenATV, Beyonwiz
+
 			# from Screens.CopyFiles import moveFiles as extMoveFiles  # OpenPLi / OV
 			extMoveFiles(fileList, item[0])
 			print("[Directories] Moving files in background.")

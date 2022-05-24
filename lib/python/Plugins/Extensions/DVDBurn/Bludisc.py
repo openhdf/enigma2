@@ -1,13 +1,17 @@
 from __future__ import absolute_import
-from Components.Task import Task, Job, DiskspacePrecondition, Condition
-from Components.Harddisk import harddiskmanager
-from Tools.Directories import SCOPE_HDD, resolveFilename, createDir
-from time import strftime
-from .Process import CheckDiskspaceTask, getISOfilename, BurnTask, RemoveWorkspaceFolder
-from .Project import iso639language
-from struct import pack
+
 from os import path as os_path
 from re import search
+from struct import pack
+from time import strftime
+
+from Components.Harddisk import harddiskmanager
+from Components.Task import Condition, DiskspacePrecondition, Job, Task
+from Tools.Directories import SCOPE_HDD, createDir, resolveFilename
+
+from .Process import (BurnTask, CheckDiskspaceTask, RemoveWorkspaceFolder,
+                      getISOfilename)
+from .Project import iso639language
 
 zeros = bytearray(128)
 VIDEO_TYPES = {'video/mpeg, mpegversion=(int)1': 0x01, 'video/mpeg, mpegversion=(int)2': 0x02, 'VC1': 0xEA, 'video/x-h264': 0x1B}

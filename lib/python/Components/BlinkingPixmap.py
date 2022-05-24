@@ -1,6 +1,8 @@
 from __future__ import absolute_import
+
+from Components.ConditionalWidget import (BlinkingWidget,
+                                          BlinkingWidgetConditional)
 from Components.Pixmap import PixmapConditional
-from Components.ConditionalWidget import BlinkingWidgetConditional, BlinkingWidget
 
 
 class BlinkingPixmap(BlinkingWidget):

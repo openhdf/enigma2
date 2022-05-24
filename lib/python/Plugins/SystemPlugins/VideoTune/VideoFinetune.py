@@ -1,12 +1,13 @@
-from __future__ import absolute_import
-from __future__ import division
-from Screens.Screen import Screen
+from __future__ import absolute_import, division
+
+from enigma import RT_HALIGN_RIGHT, RT_WRAP, eSize, getDesktop, gFont, gMainDC
+
+from Components.ActionMap import NumberActionMap
 from Components.config import config
 from Components.Sources.CanvasSource import CanvasSource
-from Components.ActionMap import NumberActionMap
 from Components.SystemInfo import SystemInfo
+from Screens.Screen import Screen
 from Tools.Directories import fileExists
-from enigma import gFont, getDesktop, gMainDC, eSize, RT_HALIGN_RIGHT, RT_WRAP
 
 
 def RGB(r, g, b):

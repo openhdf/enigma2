@@ -1,18 +1,22 @@
 from __future__ import absolute_import
-from os import system, path as os_path
-from sys import version_info
+
+from os import path as os_path
+from os import system
 from re import compile as re_compile
+from sys import version_info
+
 from six import ensure_str
 
 if version_info[0] < 3:
 	from string import maketrans
 
-
-from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
-from Components.Console import Console
-from Components.Network import iNetwork
 from wifi.scan import Cell
 
+from Components.config import (ConfigPassword, ConfigSelection,
+                               ConfigSubsection, ConfigText, ConfigYesNo,
+                               NoSave, config)
+from Components.Console import Console
+from Components.Network import iNetwork
 
 liste = ["WPA/WPA2", "WPA2", "WPA", "WEP", "Unencrypted"]
 

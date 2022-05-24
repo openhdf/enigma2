@@ -19,23 +19,26 @@
 
 
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.InfoBarGenerics import InfoBarPlugins
-from Screens.InfoBar import InfoBar
-from Screens.MessageBox import MessageBox
-from Screens.EpgSelection import EPGSelection
-from Plugins.Plugin import PluginDescriptor
+
 from Components.ActionMap import ActionMap
-from Components.config import ConfigInteger, ConfigSelection, ConfigSubsection, ConfigYesNo, config, getConfigListEntry
+from Components.config import (ConfigInteger, ConfigSelection,
+                               ConfigSubsection, ConfigYesNo, config,
+                               getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
+from Plugins.Plugin import PluginDescriptor
+from Screens.EpgSelection import EPGSelection
+from Screens.InfoBar import InfoBar
+from Screens.InfoBarGenerics import InfoBarPlugins
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Tools.Directories import isPluginInstalled
+
 if isPluginInstalled("MerlinEPG"):
 	from Plugins.Extensions.MerlinEPG.plugin import Merlin_PGII
 	MerlinEPGaviable = True
 else:
 	MerlinEPGaviable = False
-from enigma import eTimer, ePoint
-
+from enigma import ePoint, eTimer
 
 try:
 	from Bp.BPutils import BPInfoBarutils

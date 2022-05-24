@@ -1,7 +1,8 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Components.TimerList import TimerList
+
 from Components.ActionMap import ActionMap
+from Components.TimerList import TimerList
+from Screens.Screen import Screen
 
 
 class TimerSelection(Screen):

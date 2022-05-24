@@ -1,14 +1,17 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.HelpMenu import HelpableScreen
+
+from six import iteritems
+
 from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
-from Components.FileList import FileList
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS, SCOPE_HDD
 from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
-from six import iteritems
+from Components.FileList import FileList
+from Components.Sources.StaticText import StaticText
+from Screens.HelpMenu import HelpableScreen
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Tools.Directories import (SCOPE_FONTS, SCOPE_HDD, SCOPE_PLUGINS,
+                               fileExists, resolveFilename)
 
 
 class FileBrowser(Screen, HelpableScreen):

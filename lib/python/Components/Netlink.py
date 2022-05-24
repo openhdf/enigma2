@@ -1,8 +1,10 @@
 # Listen to hotplug events. Can be used to listen for hotplug events and
 # similar things, like network connections being (un)plugged.
 from __future__ import absolute_import
+
 from os import getpid
-from socket import socket, AF_NETLINK, SOCK_DGRAM 
+from socket import AF_NETLINK, SOCK_DGRAM, socket
+
 from six import ensure_str
 
 

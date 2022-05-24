@@ -1,13 +1,15 @@
-from __future__ import absolute_import
-from __future__ import division
-from Screens.Screen import Screen
-from Screens.Dish import Dishpip
-from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference, eTimer
+from __future__ import absolute_import, division
+
+from enigma import (ePoint, eRect, eServiceCenter, eServiceReference, eSize,
+                    eTimer, getBestPlayableServiceReference)
+
+from Components.config import ConfigPosition, ConfigSelection, config
 from Components.SystemInfo import SystemInfo
 from Components.VideoWindow import VideoWindow
-from Components.config import ConfigPosition, ConfigSelection, config
-from Tools import Notifications
+from Screens.Dish import Dishpip
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Tools import Notifications
 
 MAX_X = 720
 MAX_Y = 576

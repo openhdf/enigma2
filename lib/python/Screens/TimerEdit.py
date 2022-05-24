@@ -1,30 +1,34 @@
+from functools import cmp_to_key
+from os import listdir
+from os import path as os_path
+from os import system
+from time import localtime, time
+
+from enigma import eEPGCache
+
 from Components.ActionMap import ActionMap
 from Components.Button import Button
-from Components.Label import Label
 from Components.config import config
+from Components.Label import Label
 from Components.MenuList import MenuList
+from Components.Sources.Event import Event
+from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.StaticText import StaticText
 from Components.TimerList import TimerList
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import preferredTimerPath
-from Components.Sources.StaticText import StaticText
-from Components.Sources.ServiceEvent import ServiceEvent
-from Components.Sources.Event import Event
-from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
-from Screens.Screen import Screen
+from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from Screens.ChoiceBox import ChoiceBox
-from Screens.MessageBox import MessageBox
-from ServiceReference import ServiceReference
 from Screens.EventView import EventViewSimple
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Screens.TimerEntry import TimerEntry, TimerLog
-from Tools.BoundFunction import boundFunction
-from Tools.FuzzyDate import FuzzyTime
-from Tools.Directories import resolveFilename, SCOPE_HDD, isPluginInstalled
-from time import time, localtime
+from ServiceReference import ServiceReference
 from timer import TimerEntry as RealTimerEntry
-from enigma import eEPGCache
-from functools import cmp_to_key
+from Tools.BoundFunction import boundFunction
 from Tools.CopyFiles import moveFiles
-from os import path as os_path, listdir, system
+from Tools.Directories import SCOPE_HDD, isPluginInstalled, resolveFilename
+from Tools.FuzzyDate import FuzzyTime
 
 
 class TimerEditList(Screen):

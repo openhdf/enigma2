@@ -1,18 +1,22 @@
 # plugin from Sif Team
 
 from __future__ import absolute_import
-from enigma import eDVBDB, eServiceReference, eServiceCenter
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.ActionMap import ActionMap
-from Components.Button import Button
-from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config, ConfigSubsection, ConfigYesNo, ConfigSelection, configfile
-from Tools.Directories import resolveFilename, SCOPE_CONFIG
-from Plugins.Plugin import PluginDescriptor
+
 from os import path as os_path
 from sys import modules
 from xml.etree.cElementTree import parse
+
+from enigma import eDVBDB, eServiceCenter, eServiceReference
+
+from Components.ActionMap import ActionMap
+from Components.Button import Button
+from Components.config import (ConfigSelection, ConfigSubsection, ConfigYesNo,
+                               config, configfile, getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
+from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Tools.Directories import SCOPE_CONFIG, resolveFilename
 
 
 class LCN():

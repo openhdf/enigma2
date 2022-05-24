@@ -1,21 +1,25 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
+from boxbranding import getMachineBrand, getMachineName
+
+from Components.config import (ConfigSelection, ConfigSubsection,
+                               getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
-from Components.config import ConfigSubsection, ConfigSelection, getConfigListEntry
 from Components.SystemInfo import SystemInfo
 from Components.Task import job_manager
 from Screens.InfoBarGenerics import InfoBarNotifications
-from Screens.Standby import inTryQuitMainloop, inStandby, Standby, TryQuitMainloop
+from Screens.Screen import Screen
+from Screens.Standby import (Standby, TryQuitMainloop, inStandby,
+                             inTryQuitMainloop)
 from Tools import Notifications
-from boxbranding import getMachineBrand, getMachineName
 
 
 class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 	def __init__(self, session, job, parent=None, cancelable=True, backgroundable=True, afterEventChangeable=True, afterEvent="nothing"):
-		from Components.Sources.StaticText import StaticText
-		from Components.Sources.Progress import Progress
-		from Components.Sources.Boolean import Boolean
 		from Components.ActionMap import ActionMap
+		from Components.Sources.Boolean import Boolean
+		from Components.Sources.Progress import Progress
+		from Components.Sources.StaticText import StaticText
 		Screen.__init__(self, session, parent)
 		Screen.setTitle(self, _("Job View"))
 		InfoBarNotifications.__init__(self)

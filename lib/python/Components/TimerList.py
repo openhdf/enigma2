@@ -1,13 +1,14 @@
-from __future__ import absolute_import
-from __future__ import division
-from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, eListbox, eListboxPythonMultiContent, gFont, getDesktop
+from __future__ import absolute_import, division
+
+from enigma import (RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM,
+                    eListbox, eListboxPythonMultiContent, getDesktop, gFont)
+from six import PY3
 
 from Components.GUIComponent import GUIComponent
+from timer import TimerEntry
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.FuzzyDate import FuzzyTime
 from Tools.LoadPixmap import LoadPixmap
-from timer import TimerEntry
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
-from six import PY3
 
 SIGN = '°' if PY3 else str('\xc2\xb0')
 

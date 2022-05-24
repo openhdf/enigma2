@@ -13,13 +13,14 @@ import select
 from errno import EINTR
 from sys import exc_info
 
-# Twisted imports
-from twisted.python import log, failure
-from twisted.internet import main, posixbase, error
-#from twisted.internet.pollreactor import PollReactor, poller
-
 from enigma import getApplication
 from six import text_type
+from twisted.internet import error, main, posixbase
+# Twisted imports
+from twisted.python import failure, log
+
+#from twisted.internet.pollreactor import PollReactor, poller
+
 
 # globals
 reads = {}

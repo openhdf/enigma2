@@ -1,6 +1,8 @@
 from __future__ import absolute_import
-from Components.config import ConfigSubsection, config
+
 from os import path as os_path
+
+from Components.config import ConfigSubsection, config
 
 config.plugins = ConfigSubsection()
 

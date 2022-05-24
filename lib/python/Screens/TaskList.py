@@ -2,12 +2,14 @@
 # taken from mytube plugin
 
 from __future__ import absolute_import
+
 from enigma import eTimer
-from Screens.Screen import Screen
+
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Sources.List import List
 from Components.Task import job_manager
+from Screens.Screen import Screen
 
 
 class TaskListScreen(Screen):

@@ -1,8 +1,10 @@
 # -*- coding: UTF-8 -*-
 from __future__ import absolute_import
+
 from enigma import eTimer
-from Components.Language import language
 from six import text_type
+
+from Components.Language import language
 
 # Dict languageCode -> array of strings
 MAP_SEARCH = (

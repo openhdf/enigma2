@@ -1,10 +1,10 @@
-from __future__ import absolute_import
-from __future__ import division
-from Components.GUIComponent import GUIComponent
+from __future__ import absolute_import, division
+
+from math import log
 
 from enigma import eLabel, eSlider, iFrontendInformation
 
-from math import log
+from Components.GUIComponent import GUIComponent
 
 
 class TunerInfo(GUIComponent):

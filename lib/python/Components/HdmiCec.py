@@ -1,17 +1,20 @@
 from __future__ import absolute_import
+
 from datetime import datetime
-from os import path as os_path, remove, uname, statvfs
+from os import path as os_path
+from os import remove, statvfs, uname
 from struct import pack
-from time import time
 from sys import maxsize
+from time import time
 
-from enigma import eTimer, eHdmiCEC, eActionMap
-from Components.config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, NoSave
-from Components.Console import Console
-from Tools.Directories import fileExists, pathExists
-from Screens.Standby import inStandby, TryQuitMainloop, Standby
-
+from enigma import eActionMap, eHdmiCEC, eTimer
 from six import PY3, ensure_binary
+
+from Components.config import (ConfigSelection, ConfigSubsection, ConfigText,
+                               ConfigYesNo, NoSave, config)
+from Components.Console import Console
+from Screens.Standby import Standby, TryQuitMainloop, inStandby
+from Tools.Directories import fileExists, pathExists
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default=False) # query from this value in hdmi_cec.cpp

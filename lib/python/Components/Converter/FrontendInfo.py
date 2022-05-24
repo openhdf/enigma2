@@ -1,7 +1,8 @@
 from __future__ import absolute_import
+
+from Components.config import config
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from Components.config import config
 from Components.NimManager import nimmanager
 
 

@@ -1,32 +1,35 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from time import localtime, mktime, time, strftime
+
 from datetime import datetime
+from os import statvfs
+from time import localtime, mktime, strftime, time
 
 from enigma import eEPGCache
+from six import PY3
 
-from Screens.Screen import Screen
-from ServiceReference import ServiceReference
-from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
-from Components.ActionMap import NumberActionMap, ActionMap
-from Components.ConfigList import ConfigListScreen
-from Components.MenuList import MenuList
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Button import Button
+from Components.config import (ConfigClock, ConfigDateTime, ConfigSelection,
+                               ConfigSubList, ConfigText, ConfigYesNo, config,
+                               getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
-from Components.Sources.StaticText import StaticText
+from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
+from Components.Sources.Boolean import Boolean
+from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import defaultMoviePath
-from Components.Sources.Boolean import Boolean
-from Screens.MovieSelection import getPreferredTagEditor
-from Screens.LocationBox import MovieLocationBox
-from Screens.ChoiceBox import ChoiceBox
-from Screens.MessageBox import MessageBox
-from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
-from os import statvfs
-from six import PY3
+from Screens.ChoiceBox import ChoiceBox
+from Screens.LocationBox import MovieLocationBox
+from Screens.MessageBox import MessageBox
+from Screens.MovieSelection import getPreferredTagEditor
+from Screens.Screen import Screen
+from Screens.Setup import SetupSummary
+from Screens.VirtualKeyBoard import VirtualKeyBoard
+from ServiceReference import ServiceReference
 
 
 class TimerEntry(Screen, ConfigListScreen):

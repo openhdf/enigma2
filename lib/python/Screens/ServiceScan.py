@@ -1,16 +1,16 @@
-from __future__ import absolute_import
-from __future__ import division
-import Screens.InfoBar
+from __future__ import absolute_import, division
+
 from enigma import eServiceReference, eTimer
 
-from Screens.Screen import Screen
-from Components.ServiceScan import ServiceScan as CScan
-from Components.ProgressBar import ProgressBar
-from Components.Label import Label
+import Screens.InfoBar
 from Components.ActionMap import ActionMap
-from Components.FIFOList import FIFOList
-from Components.Sources.FrontendInfo import FrontendInfo
 from Components.config import config
+from Components.FIFOList import FIFOList
+from Components.Label import Label
+from Components.ProgressBar import ProgressBar
+from Components.ServiceScan import ServiceScan as CScan
+from Components.Sources.FrontendInfo import FrontendInfo
+from Screens.Screen import Screen
 
 
 class ServiceScanSummary(Screen):

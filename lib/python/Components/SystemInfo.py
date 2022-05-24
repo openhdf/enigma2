@@ -1,14 +1,24 @@
 from __future__ import absolute_import
+
 from os import path as os_path
-from enigma import eDVBResourceManager, Misc_Options
-from Tools.Directories import fileExists, fileCheck, resolveFilename, SCOPE_SKIN, fileHas, pathExists, isPluginInstalled
+
+from boxbranding import (getBoxType, getBrandOEM, getDisplayType,
+                         getHaveAVJACK, getHaveCI, getHaveDVI, getHaveHDMI,
+                         getHaveHDMIinFHD, getHaveHDMIinHD, getHaveMiniTV,
+                         getHaveRCA, getHaveSCART, getHaveSCARTYUV,
+                         getHaveTranscoding2, getHaveWOL, getHaveWWOL,
+                         getHaveYUV, getMachineBuild, getMachineMtdRoot)
+from enigma import Misc_Options, eDVBResourceManager
+
+from Tools.Directories import (SCOPE_SKIN, fileCheck, fileExists, fileHas,
+                               isPluginInstalled, pathExists, resolveFilename)
 from Tools.HardwareInfo import HardwareInfo
-from boxbranding import getBoxType, getBrandOEM, getDisplayType, getHaveAVJACK, getHaveCI, getHaveCI, getHaveDVI, getHaveHDMI, getHaveHDMIinFHD, getHaveHDMIinHD, getHaveMiniTV, getHaveRCA, getHaveSCART, getHaveSCARTYUV, getHaveTranscoding2, getHaveWOL, getHaveWWOL, getHaveYUV, getMachineBuild, getMachineMtdRoot
 
 SystemInfo = {}
 SystemInfo["HasRootSubdir"] = False	# This needs to be here so it can be reset by getMultibootslots!
 SystemInfo["RecoveryMode"] = False or fileCheck("/proc/stb/fp/boot_mode")	# This needs to be here so it can be reset by getMultibootslots!
-from Tools.Multiboot import getMBbootdevice, getMultibootslots  # This import needs to be here to avoid a SystemInfo load loop!
+from Tools.Multiboot import (  # This import needs to be here to avoid a SystemInfo load loop!
+    getMBbootdevice, getMultibootslots)
 
 #FIXMEE...
 

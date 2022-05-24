@@ -1,18 +1,22 @@
 from __future__ import absolute_import
-from os import mkdir, path as os_path
+
+from os import mkdir
+from os import path as os_path
 from shutil import copyfile
-from Components.Sources.StaticText import StaticText
+
+from enigma import eRCInput, fbClass
+
 from Components.ActionMap import ActionMap
-from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
+from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Console import Console
+from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
+from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
-from Screens.MessageBox import MessageBox
-from Tools.Directories import copyfile, pathExists
 from Tools.BoundFunction import boundFunction
+from Tools.Directories import copyfile, pathExists
 from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode, GetImagelist
-from enigma import fbClass, eRCInput
 
 
 class MultiBootSelector(Screen):

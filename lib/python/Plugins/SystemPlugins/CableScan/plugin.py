@@ -1,17 +1,19 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Plugins.Plugin import PluginDescriptor
-
-from Components.Label import Label
-from Components.ActionMap import ActionMap
-from Components.NimManager import nimmanager
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry
-from Components.ConfigList import ConfigListScreen
-from Components.ProgressBar import ProgressBar
-from Components.Pixmap import Pixmap
 
 from enigma import eCableScan, eDVBFrontendParametersCable
+
+from Components.ActionMap import ActionMap
+from Components.config import (ConfigInteger, ConfigSelection,
+                               ConfigSubsection, ConfigYesNo, config,
+                               getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
+from Components.Label import Label
+from Components.NimManager import nimmanager
+from Components.Pixmap import Pixmap
+from Components.ProgressBar import ProgressBar
+from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 
 class CableScan:

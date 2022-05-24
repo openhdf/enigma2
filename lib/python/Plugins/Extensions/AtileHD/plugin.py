@@ -7,9 +7,18 @@
 #This means you also have to distribute
 #source code of your modifications.
 
+# import Tools.Notifications # is that even used?
+from os import chdir, listdir, makedirs, mkdir
+from os import path as os_path
+from os import remove, rename, symlink
+from shutil import rmtree
+
 from enigma import eTimer
+
 from Components.ActionMap import ActionMap
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigSelection, ConfigYesNo, NoSave, ConfigNothing, ConfigNumber
+from Components.config import (ConfigNothing, ConfigNumber, ConfigSelection,
+                               ConfigSubsection, ConfigYesNo, NoSave, config,
+                               getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.MenuList import MenuList
@@ -17,17 +26,14 @@ from Components.Pixmap import Pixmap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Screens.SkinSelector import SkinSelector
 from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
+from Screens.SkinSelector import SkinSelector
 from Screens.Standby import TryQuitMainloop
 from Tools.Directories import SCOPE_SKINS, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.WeatherID import get_woeid_from_yahoo
-# import Tools.Notifications # is that even used?
-from os import chdir, listdir, makedirs, mkdir, path as os_path, remove, rename, symlink
-from shutil import rmtree
 
 cur_skin = config.skin.primary_skin.value.replace('/skin.xml', '')
 
@@ -173,7 +179,8 @@ class AtileHD_Config(Screen, ConfigListScreen):
 
 	def setWeather(self):
 		try:
-			from Plugins.Extensions.WeatherPlugin.setup import MSNWeatherPluginEntriesListConfigScreen
+			from Plugins.Extensions.WeatherPlugin.setup import \
+			    MSNWeatherPluginEntriesListConfigScreen
 			self.session.open(MSNWeatherPluginEntriesListConfigScreen)
 		except:
 			self.session.open(MessageBox, _("'weatherplugin' is not installed!"), MessageBox.TYPE_INFO)

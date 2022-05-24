@@ -1,13 +1,14 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
+
+import Screens.InfoBar
 from Components.ActionMap import ActionMap
 from Components.Harddisk import harddiskmanager
-from Components.MenuList import MenuList
 from Components.Label import Label
+from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.Task import job_manager
 from Screens.MessageBox import MessageBox
-import Screens.InfoBar
+from Screens.Screen import Screen
 
 
 class HarddiskSetup(Screen):

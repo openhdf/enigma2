@@ -1,8 +1,9 @@
 from __future__ import absolute_import
-from enigma import eLabel, eEPGCache
 
-from Components.VariableText import VariableText
+from enigma import eEPGCache, eLabel
+
 from Components.Renderer.Renderer import Renderer
+from Components.VariableText import VariableText
 
 
 class NextEpgInfo(Renderer, VariableText):

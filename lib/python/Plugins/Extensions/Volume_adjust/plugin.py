@@ -5,20 +5,26 @@
 # ADD AC3 SUPPORT BY BLACK_64
 
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.ChannelSelection import *
+
+from os import path as os_path
+from xml.etree.cElementTree import parse as ci_parse
+
+from enigma import *
+
 from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
-from Components.config import ConfigInteger, ConfigNothing, getConfigListEntry, ConfigNumber, ConfigYesNo
+from Components.config import (ConfigInteger, ConfigNothing, ConfigNumber,
+                               ConfigYesNo, getConfigListEntry)
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.Label import Label
-from ServiceReference import ServiceReference
-from Plugins.Plugin import PluginDescriptor
-from xml.etree.cElementTree import parse as ci_parse
-from enigma import *
-from os import path as os_path
 from Components.ServiceEventTracker import ServiceEventTracker
+from Components.Sources.StaticText import StaticText
+from Plugins.Plugin import PluginDescriptor
+from Screens.ChannelSelection import *
+from Screens.Screen import Screen
+from ServiceReference import ServiceReference
+
 from .__init__ import _
+
 global ListChange
 ListChange = None
 config.Volume = ConfigSubsection()

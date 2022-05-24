@@ -1,15 +1,18 @@
 from __future__ import absolute_import
-from Screens.WizardLanguage import WizardLanguage
-from Screens.Rc import Rc
-from Screens.MessageBox import MessageBox
-from Screens.Screen import Screen
+
+from os import system
+
+from boxbranding import getMachineBrand, getMachineName
+from enigma import eTimer
+
+from Components.Network import iNetwork
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
-from Components.Network import iNetwork
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from enigma import eTimer
-from boxbranding import getMachineBrand, getMachineName
-from os import system
+from Screens.MessageBox import MessageBox
+from Screens.Rc import Rc
+from Screens.Screen import Screen
+from Screens.WizardLanguage import WizardLanguage
+from Tools.Directories import SCOPE_PLUGINS, resolveFilename
 
 
 class NetworkWizard(WizardLanguage, Rc):

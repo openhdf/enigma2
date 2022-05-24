@@ -1,10 +1,13 @@
 from __future__ import absolute_import
-from errno import ENOENT
-from xml.etree.cElementTree import parse, ParseError
 
-from os import environ, path as os_path, symlink, unlink, walk
-from six import text_type, ensure_str
+from errno import ENOENT
+from os import environ
+from os import path as os_path
+from os import symlink, unlink, walk
 from time import gmtime, localtime, strftime, time
+from xml.etree.cElementTree import ParseError, parse
+
+from six import ensure_str, text_type
 
 from Components.config import ConfigSelection, ConfigSubsection, config
 from Tools.Geolocation import geolocation

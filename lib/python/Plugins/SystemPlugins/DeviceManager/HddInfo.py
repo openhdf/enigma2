@@ -1,16 +1,18 @@
 # for localized messages
 from __future__ import absolute_import
-from . import _
-
-from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
-from Components.Button import Button
-from Components.Label import Label
-from Components.ConfigList import ConfigListScreen
-from Components.config import config, getConfigListEntry
 
 from os import popen, system
-from re import compile as re_compile, findall
+from re import compile as re_compile
+from re import findall
+
+from Components.ActionMap import ActionMap
+from Components.Button import Button
+from Components.config import config, getConfigListEntry
+from Components.ConfigList import ConfigListScreen
+from Components.Label import Label
+from Screens.Screen import Screen
+
+from . import _
 
 
 class HddInfo(ConfigListScreen, Screen):

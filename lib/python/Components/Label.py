@@ -1,10 +1,13 @@
 from __future__ import absolute_import
+
+from enigma import eLabel
+
+from Components.ConditionalWidget import (BlinkingWidget,
+                                          BlinkingWidgetConditional,
+                                          ConditionalWidget)
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
 from skin import parseColor
-from Components.ConditionalWidget import ConditionalWidget, BlinkingWidget, BlinkingWidgetConditional
-
-from enigma import eLabel
 
 
 class Label(VariableText, GUIComponent):

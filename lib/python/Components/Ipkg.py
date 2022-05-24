@@ -1,11 +1,16 @@
 from __future__ import absolute_import
-from os import path as os_path, listdir, remove, system
-from six import ensure_str
-from enigma import eConsoleAppContainer
-from Components.Harddisk import harddiskmanager
-from Components.config import config
+
+from os import listdir
+from os import path as os_path
+from os import remove, system
 from shutil import rmtree
+
 from boxbranding import getImageDistro, getImageVersion
+from enigma import eConsoleAppContainer
+from six import ensure_str
+
+from Components.config import config
+from Components.Harddisk import harddiskmanager
 
 opkgDestinations = []
 opkgStatusPath = ''

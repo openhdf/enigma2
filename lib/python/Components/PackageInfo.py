@@ -1,12 +1,18 @@
 from __future__ import absolute_import
+
+from os import listdir
+from os import path as os_path
+from os import system
 from xml.sax import ContentHandler, parse
-from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKIN, copyfile, copytree
-from Components.NimManager import nimmanager
-from Components.Ipkg import IpkgComponent
-from Components.config import config, configfile
+
 from boxbranding import getBoxType
 from enigma import eConsoleAppContainer, eDVBDB
-from os import path as os_path, listdir, system
+
+from Components.config import config, configfile
+from Components.Ipkg import IpkgComponent
+from Components.NimManager import nimmanager
+from Tools.Directories import (SCOPE_CONFIG, SCOPE_SKIN, copyfile, copytree,
+                               crawlDirectory, resolveFilename)
 
 
 class InfoHandlerParseError(Exception):

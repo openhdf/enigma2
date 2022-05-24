@@ -1,11 +1,11 @@
 from __future__ import absolute_import
-from Screens.Console import Console
-from Tools.Log import Log
 
-from Screens.MessageBox import MessageBox
-
-from hashlib import sha256
 from distutils import spawn
+from hashlib import sha256
+
+from Screens.Console import Console
+from Screens.MessageBox import MessageBox
+from Tools.Log import Log
 
 
 class FSBLCheckerBase(object):

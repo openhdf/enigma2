@@ -1,22 +1,26 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.Setup import getConfigMenuItem, Setup
-from Screens.InputBox import PinInput
-from Screens.MessageBox import MessageBox
-from Components.ServiceEventTracker import ServiceEventTracker
+
+from boxbranding import getBoxType
+from enigma import eSize, eTimer, iPlayableService
+
 from Components.ActionMap import NumberActionMap
+from Components.config import (ConfigNothing, ConfigOnOff, ConfigSelection,
+                               ConfigSubsection, config, getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, ConfigSubsection, getConfigListEntry, ConfigNothing, ConfigSelection, ConfigOnOff
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.Sources.StaticText import StaticText
-from Components.Sources.List import List
+from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 from Components.VolumeControl import VolumeControl
-from enigma import iPlayableService, eTimer, eSize
+from Screens.InputBox import PinInput
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Setup import Setup, getConfigMenuItem
 from Tools.ISO639 import LanguageCodes
-from boxbranding import getBoxType
+
 FOCUS_CONFIG, FOCUS_STREAMS = list(range(2))
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
 

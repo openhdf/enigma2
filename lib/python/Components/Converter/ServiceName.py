@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from Components.Converter.Converter import Converter
+
+from enigma import (eEPGCache, eServiceCenter, eServiceReference,
+                    iPlayableService, iPlayableServicePtr, iServiceInformation)
+
+import Screens.InfoBar
 from Components.config import config
-from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, eServiceReference, eEPGCache, eServiceCenter
+from Components.Converter.ChannelNumbers import channelnumbers
+from Components.Converter.Converter import Converter
 from Components.Element import cached
-from ServiceReference import resolveAlternate, ServiceReference
+from Components.NimManager import nimmanager
+from ServiceReference import ServiceReference, resolveAlternate
 from Tools.Directories import fileExists
 from Tools.Transponder import ConvertToHumanReadable
-from Components.NimManager import nimmanager
-from Components.Converter.ChannelNumbers import channelnumbers
-import Screens.InfoBar
 
 
 class ServiceName(Converter):

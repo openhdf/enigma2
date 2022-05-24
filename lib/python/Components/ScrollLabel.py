@@ -1,7 +1,9 @@
 from __future__ import absolute_import
-from skin import applyAllAttributes
+
+from enigma import eLabel, ePoint, eSize, eSlider, eWidget, fontRenderClass
+
 from Components.GUIComponent import GUIComponent
-from enigma import eLabel, eWidget, eSlider, fontRenderClass, ePoint, eSize
+from skin import applyAllAttributes
 
 
 class ScrollLabel(GUIComponent):

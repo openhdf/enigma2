@@ -1,18 +1,21 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.Console import Console
+
+from datetime import date
+from os import listdir, makedirs
+from os import path as os_path
+from time import localtime
+
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Pixmap import Pixmap
+from Components.config import (KEY_0, KEY_LEFT, KEY_RIGHT, ConfigSelection,
+                               ConfigSubsection, getConfigListEntry)
+from Components.ConfigList import ConfigList
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.config import ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
-from Components.ConfigList import ConfigList
+from Components.Pixmap import Pixmap
 from Plugins.Plugin import PluginDescriptor
-
-from os import path as os_path, makedirs, listdir
-from time import localtime
-from datetime import date
+from Screens.Console import Console
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 plugin_path = ""
 

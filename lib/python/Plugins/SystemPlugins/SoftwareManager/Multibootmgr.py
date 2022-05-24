@@ -1,13 +1,16 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
+
 from boxbranding import getMachineBuild
+
 from Components.ActionMap import ActionMap
-from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
+from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
-from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, EmptySlot
+from Tools.Multiboot import (EmptySlot, GetCurrentImage, GetCurrentImageMode,
+                             GetImagelist)
 
 
 class MultiBootWizard(Screen):

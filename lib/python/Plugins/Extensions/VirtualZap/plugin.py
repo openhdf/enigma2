@@ -21,32 +21,34 @@
 #  distributed other than under the conditions noted above.
 #
 from __future__ import absolute_import
-from Plugins.Plugin import PluginDescriptor
-from Screens.Screen import Screen
+
+from time import localtime, time
+
+from enigma import (eEPGCache, eServiceCenter, eServiceReference, eTimer,
+                    getBestPlayableServiceReference, getDesktop)
+
+import Screens.InfoBar
 from Components.ActionMap import ActionMap
 from Components.Label import Label
-from enigma import eServiceReference, eTimer, getDesktop
-from ServiceReference import ServiceReference
-from Components.SystemInfo import SystemInfo
 from Components.ParentalControl import parentalControl
-from enigma import eServiceCenter, getBestPlayableServiceReference
-from Components.VideoWindow import VideoWindow
-from enigma import eEPGCache
-from time import localtime, time
-from Screens.InfoBarGenerics import InfoBarShowHide, InfoBarPiP
-import Screens.InfoBar
-
 from Components.Sources.StaticText import StaticText
-from Screens.MessageBox import MessageBox
-from Screens.Standby import TryQuitMainloop
-
+from Components.SystemInfo import SystemInfo
+from Components.VideoWindow import VideoWindow
+from Plugins.Plugin import PluginDescriptor
 from Screens.EpgSelection import EPGSelection
 from Screens.EventView import EventViewEPGSelect
+from Screens.InfoBarGenerics import InfoBarPiP, InfoBarShowHide
+from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
+from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop
+from ServiceReference import ServiceReference
 
 InfoBarShowHideINIT = None
 
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, getConfigListEntry, configfile, ConfigPosition, ConfigText, ConfigInteger
+from Components.config import (ConfigInteger, ConfigPosition, ConfigSelection,
+                               ConfigSubsection, ConfigText, ConfigYesNo,
+                               config, configfile, getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
 
 # for localized messages
@@ -106,6 +108,7 @@ def InfoBarShowHide__init__(self):
 
 def showVZ(self):
 	from Screens.InfoBarGenerics import InfoBarEPG
+
 	# check for InfoBarEPG --> only start if true
 	if isinstance(self, InfoBarEPG):
 		# check for PiP

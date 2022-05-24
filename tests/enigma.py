@@ -17,7 +17,7 @@ class slot:
 
 timers = set()
 
-from time import time, sleep
+from time import sleep, time
 
 from events import eventfnc
 
@@ -306,7 +306,9 @@ eServiceCenter()
 ##################### ENIGMA CHROOT
 
 print("import directories")
-from Tools.Directories import defaultPaths, SCOPE_SKIN, SCOPE_CONFIG, PATH_DONTCREATE
+from Tools.Directories import (PATH_DONTCREATE, SCOPE_CONFIG, SCOPE_SKIN,
+                               defaultPaths)
+
 print("done")
 
 chroot = "."
@@ -321,6 +323,7 @@ defaultPaths[SCOPE_CONFIG] = ("/etc/enigma2/", PATH_DONTCREATE)
 
 print("import config")
 from Components.config import config
+
 print("done")
 
 my_config = [
@@ -341,8 +344,8 @@ class eActionMap:
 
 def init_nav():
 	print("init nav")
-	from Navigation import Navigation
 	import NavigationInstance
+	from Navigation import Navigation
 	NavigationInstance.instance = Navigation()
 
 

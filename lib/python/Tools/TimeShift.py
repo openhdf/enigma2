@@ -1,9 +1,12 @@
 from __future__ import absolute_import
-from Components.Task import Task, Job
-from Components.config import config
-from Tools.Directories import fileExists
-from enigma import eTimer
+
 from os import path as os_path
+
+from enigma import eTimer
+
+from Components.config import config
+from Components.Task import Job, Task
+from Tools.Directories import fileExists
 
 
 class CopyTimeshiftJob(Job):

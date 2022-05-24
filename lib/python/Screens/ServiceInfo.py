@@ -1,13 +1,17 @@
 from __future__ import absolute_import
-from Components.GUIComponent import GUIComponent
-from Screens.Screen import Screen
+
+from enigma import (RT_HALIGN_LEFT, eDVBFrontendParametersSatellite, eListbox,
+                    eListboxPythonMultiContent, eServiceCenter, getDesktop,
+                    gFont, iServiceInformation)
+
 from Components.ActionMap import ActionMap
-from Components.Label import Label
-from ServiceReference import ServiceReference
-from enigma import RT_HALIGN_LEFT, eDVBFrontendParametersSatellite, eListbox, eListboxPythonMultiContent, eServiceCenter, gFont, getDesktop, iServiceInformation
-from Tools.Transponder import ConvertToHumanReadable
 from Components.Converter.ChannelNumbers import channelnumbers
+from Components.GUIComponent import GUIComponent
+from Components.Label import Label
+from Screens.Screen import Screen
+from ServiceReference import ServiceReference
 from skin import parameters, parseFont
+from Tools.Transponder import ConvertToHumanReadable
 
 RT_HALIGN_LEFT = 0
 

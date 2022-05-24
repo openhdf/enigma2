@@ -1,13 +1,14 @@
 #
 # ChannelSelectionInfo Converter by mcbain // v0.1 // 20111109
 #
-from __future__ import absolute_import
-from __future__ import division
+from __future__ import absolute_import, division
+
+from time import localtime
+
+from enigma import eEPGCache, eServiceReference, iPlayableService
+
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from enigma import iPlayableService
-from enigma import eEPGCache, eServiceReference
-from time import localtime
 
 
 class ChannelSelectionInfo(Converter):

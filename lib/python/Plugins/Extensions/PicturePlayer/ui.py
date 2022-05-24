@@ -1,19 +1,21 @@
 from __future__ import absolute_import
 
-from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
+from enigma import ePicLoad, eSize, eTimer, getDesktop, gMainDC
 
-from Screens.Screen import Screen
-from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA, SCOPE_GUISKIN
-
-from Components.Pixmap import Pixmap, MovingPixmap
 from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
-from Components.FileList import FileList
 from Components.AVSwitch import AVSwitch
-from Components.Sources.List import List
+from Components.config import (ConfigInteger, ConfigSelection,
+                               ConfigSubsection, ConfigText, ConfigYesNo,
+                               config, getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, getConfigListEntry
+from Components.FileList import FileList
+from Components.Pixmap import MovingPixmap, Pixmap
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Screens.Screen import Screen
 from skin import parameters
+from Tools.Directories import (SCOPE_GUISKIN, SCOPE_MEDIA, pathExists,
+                               resolveFilename)
 
 
 def getScale():

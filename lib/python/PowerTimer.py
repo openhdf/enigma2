@@ -1,22 +1,26 @@
-from __future__ import absolute_import
-from __future__ import division
-from os import path as os_path, remove, rename, fsync
-from boxbranding import getMachineBrand, getMachineName
-from xml.etree.cElementTree import parse
-from datetime import datetime
-from time import ctime, time, strftime, localtime, mktime
-from bisect import insort
+from __future__ import absolute_import, division
 
+from bisect import insort
+from datetime import datetime
+from os import fsync
+from os import path as os_path
+from os import remove, rename
+from time import ctime, localtime, mktime, strftime, time
+from xml.etree.cElementTree import parse
+
+from boxbranding import getMachineBrand, getMachineName
 from enigma import eActionMap, quitMainloop
+from six import ensure_str
+
+import NavigationInstance
 from Components.config import config
 from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
-from Screens.Standby import inStandby, TVinStandby, inTryQuitMainloop, Standby, TryQuitMainloop
+from Screens.Standby import (Standby, TryQuitMainloop, TVinStandby, inStandby,
+                             inTryQuitMainloop)
+from timer import Timer, TimerEntry
 from Tools import Directories, Notifications
 from Tools.XMLTools import stringToXML
-from timer import TimerEntry, Timer
-import NavigationInstance
-from six import ensure_str
 
 #global variables begin
 DSsave = False
@@ -976,8 +980,8 @@ class PowerTimer(Timer):
 			doc = parse(file)
 			file.close()
 		except SyntaxError:
-			from Tools.Notifications import AddPopup
 			from Screens.MessageBox import MessageBox
+			from Tools.Notifications import AddPopup
 
 			AddPopup(_("The timer file (pm_timers.xml) is corrupt and could not be loaded."), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 
@@ -998,8 +1002,8 @@ class PowerTimer(Timer):
 		for timer in root.findall("timer"):
 			newTimer = createTimer(timer)
 			if (self.record(newTimer, True, dosave=False) is not None) and (checkit == True):
-				from Tools.Notifications import AddPopup
 				from Screens.MessageBox import MessageBox
+				from Tools.Notifications import AddPopup
 				AddPopup(_("Timer overlap in pm_timers.xml detected!\nPlease recheck it!"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 				checkit = False # at moment it is enough when the message is displayed one time
 

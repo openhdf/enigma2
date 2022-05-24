@@ -1,11 +1,14 @@
 from __future__ import absolute_import
-import NavigationInstance
-from time import localtime, mktime, gmtime
-from enigma import iServiceInformation, eServiceCenter, eServiceReference, getBestPlayableServiceReference
-from timer import TimerEntry
 
-from Tools.CIHelper import cihelper
+from time import gmtime, localtime, mktime
+
+from enigma import (eServiceCenter, eServiceReference,
+                    getBestPlayableServiceReference, iServiceInformation)
+
+import NavigationInstance
 from Components.config import config
+from timer import TimerEntry
+from Tools.CIHelper import cihelper
 
 
 class TimerSanityCheck:

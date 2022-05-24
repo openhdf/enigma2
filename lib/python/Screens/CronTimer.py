@@ -1,20 +1,27 @@
 from __future__ import absolute_import
+
+from os import listdir, mkdir
+from os import path as os_path
+from os import rename, system
+from time import sleep
+
+from boxbranding import getMachineBrand, getMachineName
+from six import ensure_str
+
 from Components.ActionMap import ActionMap
-from Components.config import getConfigListEntry, config, ConfigSubsection, ConfigText, ConfigSelection, ConfigInteger, ConfigClock, NoSave
+from Components.config import (ConfigClock, ConfigInteger, ConfigSelection,
+                               ConfigSubsection, ConfigText, NoSave, config,
+                               getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Label import Label
+from Components.Pixmap import Pixmap
+from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.Sources.Boolean import Boolean
-from Components.Pixmap import Pixmap
-from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Tools.Directories import fileExists
-from os import system, listdir, rename, path as os_path, mkdir
-from time import sleep
-from six import ensure_str
-from boxbranding import getMachineBrand, getMachineName
 
 
 class CronTimers(Screen):

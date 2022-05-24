@@ -1,10 +1,17 @@
 # -*- coding: UTF-8 -*-
 # CCcam Info by AliAbdul
 from __future__ import absolute_import
+
 from base64 import encodestring
-from os import listdir, remove, rename, system, popen, path as os_path
+from os import listdir
+from os import path as os_path
+from os import popen, remove, rename, system
 
 from enigma import RT_HALIGN_RIGHT, eListboxPythonMultiContent, gFont, loadPNG
+from six import ensure_binary, ensure_str, iteritems
+from six.moves.urllib.parse import urlparse, urlunparse
+from twisted.internet import reactor
+from twisted.web.client import HTTPClientFactory
 
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.config import config, getConfigListEntry
@@ -12,21 +19,17 @@ from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
+from Components.MultiContent import (MultiContentEntryPixmapAlphaBlend,
+                                     MultiContentEntryText)
 from Components.ScrollLabel import ScrollLabel
 from Screens.HelpMenu import HelpableScreen
-
 #from Screens.InfoBar import InfoBar
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Tools.Directories import fileExists, SCOPE_GUISKIN, resolveFilename
-from twisted.internet import reactor
-from twisted.web.client import HTTPClientFactory
-from six.moves.urllib.parse import urlparse, urlunparse
 from skin import getSkinFactor, parameters
-from six import ensure_binary, iteritems, ensure_str
+from Tools.Directories import SCOPE_GUISKIN, fileExists, resolveFilename
 
 #TOGGLE_SHOW = InfoBar.toggleShow
 

@@ -1,5 +1,6 @@
 from __future__ import absolute_import
-from math import sin, cos, radians, sqrt, degrees, atan, fabs, floor, asin
+
+from math import asin, atan, cos, degrees, fabs, floor, radians, sin, sqrt
 
 f = 1.00 / 298.257 # Earth flattning factor
 r_sat = 42164.57 # Distance from earth centre to satellite

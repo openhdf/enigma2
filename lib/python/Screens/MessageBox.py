@@ -1,13 +1,13 @@
-from __future__ import absolute_import
-from __future__ import division
-from enigma import getDesktop, ePoint, eSize, eTimer
+from __future__ import absolute_import, division
 
-from Screens.Screen import Screen
+from enigma import ePoint, eSize, eTimer, getDesktop
+
 from Components.ActionMap import ActionMap
 from Components.Label import Label
+from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
-from Components.MenuList import MenuList
+from Screens.Screen import Screen
 
 
 class MessageBox(Screen):

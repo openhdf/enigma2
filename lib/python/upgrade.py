@@ -1,4 +1,6 @@
-from os import path as os_path, listdir, system
+from os import listdir
+from os import path as os_path
+from os import system
 
 opkgDestinations = ['/']
 opkgStatusPath = ''

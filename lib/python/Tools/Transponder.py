@@ -1,5 +1,9 @@
 from __future__ import absolute_import
-from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC
+
+from enigma import (eDVBFrontendParametersATSC, eDVBFrontendParametersCable,
+                    eDVBFrontendParametersSatellite,
+                    eDVBFrontendParametersTerrestrial)
+
 from Components.NimManager import nimmanager
 
 

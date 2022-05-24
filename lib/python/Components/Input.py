@@ -1,10 +1,10 @@
 from __future__ import absolute_import
-from Components.GUIComponent import GUIComponent
-from Components.VariableText import VariableText
 
 from enigma import eLabel
 from six import ensure_str, ensure_text, unichr
 
+from Components.GUIComponent import GUIComponent
+from Components.VariableText import VariableText
 from Tools.NumericalTextInput import NumericalTextInput
 
 

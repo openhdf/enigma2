@@ -1,9 +1,12 @@
 ## Now FTA-render ;)
 from __future__ import absolute_import
-from math import pi, sin, cos
+
+from math import cos, pi, sin
+
+from enigma import eCanvas, eRect, eSize, gRGB
+
 from Components.Renderer.Renderer import Renderer
 from skin import parseColor
-from enigma import eCanvas, eSize, gRGB, eRect
 
 
 class Watchew(Renderer):

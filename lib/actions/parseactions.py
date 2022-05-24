@@ -1,6 +1,6 @@
 # takes a header file, outputs action ids
+from sys import argv, stderr
 from tokenize import generate_tokens
-from sys import stderr, argv
 
 
 def filter(g):

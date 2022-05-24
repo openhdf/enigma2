@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from Plugins.Plugin import PluginDescriptor
-from Components.Harddisk import harddiskmanager
-from twisted.internet.protocol import Protocol, Factory
+
 from six import ensure_str
+from twisted.internet.protocol import Factory, Protocol
+
+from Components.Harddisk import harddiskmanager
+from Plugins.Plugin import PluginDescriptor
 
 hotplugNotifier = []
 
@@ -62,8 +64,9 @@ class Hotplug(Protocol):
 def autostart(reason, **kwargs):
 	if reason == 0:
 		print("starting hotplug handler")
-		from twisted.internet import reactor
 		import os
+
+		from twisted.internet import reactor
 		try:
 			os.remove("/tmp/hotplug.socket")
 		except OSError:

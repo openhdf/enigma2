@@ -64,15 +64,18 @@ def setSecretString(secret):
 			f.write(secret + '\n')
 
 
-from Screens.Screen import Screen
-from Plugins.Plugin import PluginDescriptor
-from enigma import eConsoleAppContainer, eTimer
-from Components.Label import Label
-from Components.Button import Button
-from Components.ConfigList import ConfigList
-from Components.config import ConfigText, ConfigPassword, KEY_LEFT, KEY_RIGHT, KEY_0, KEY_DELETE, KEY_BACKSPACE
-from Components.ActionMap import NumberActionMap, ActionMap
 from os import system
+
+from enigma import eConsoleAppContainer, eTimer
+
+from Components.ActionMap import ActionMap, NumberActionMap
+from Components.Button import Button
+from Components.config import (KEY_0, KEY_BACKSPACE, KEY_DELETE, KEY_LEFT,
+                               KEY_RIGHT, ConfigPassword, ConfigText)
+from Components.ConfigList import ConfigList
+from Components.Label import Label
+from Plugins.Plugin import PluginDescriptor
+from Screens.Screen import Screen
 
 NONE = 0
 CONNECT = 1

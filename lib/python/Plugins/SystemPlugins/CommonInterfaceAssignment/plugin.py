@@ -1,21 +1,26 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.ChannelSelection import ChannelSelectionBase, ChoiceBox, EDIT_BOUQUET, OFF, boundFunction, config, eServiceReference, nimmanager
+
+from os import path as os_path
+from os import unlink
+from xml.etree.cElementTree import parse as ci_parse
+
+from boxbranding import getBoxType, getMachineBrand, getMachineName
+from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
+from six import ensure_str
+
 from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
 from Components.config import ConfigNothing
 from Components.ConfigList import ConfigList
 from Components.SelectionList import SelectionList
-from ServiceReference import ServiceReference
+from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from xml.etree.cElementTree import parse as ci_parse
-from Tools.XMLTools import stringToXML
+from Screens.ChannelSelection import (EDIT_BOUQUET, OFF, ChannelSelectionBase,
+                                      ChoiceBox, boundFunction, config,
+                                      eServiceReference, nimmanager)
+from Screens.Screen import Screen
+from ServiceReference import ServiceReference
 from Tools.CIHelper import cihelper
-from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
-
-from os import path as os_path, unlink
-from boxbranding import getMachineBrand, getMachineName, getBoxType
-from six import ensure_str
+from Tools.XMLTools import stringToXML
 
 
 class CIselectMainMenu(Screen):

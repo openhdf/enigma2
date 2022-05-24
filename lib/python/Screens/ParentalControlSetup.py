@@ -1,12 +1,13 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Components.ConfigList import ConfigListScreen
-from Components.ActionMap import NumberActionMap
-from Components.config import config, getConfigListEntry, ConfigNothing, NoSave, ConfigPIN, configfile
 
+from Components.ActionMap import NumberActionMap
+from Components.config import (ConfigNothing, ConfigPIN, NoSave, config,
+                               configfile, getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText
-from Screens.MessageBox import MessageBox
 from Screens.InputBox import PinInput
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
 
 

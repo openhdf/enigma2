@@ -1,6 +1,8 @@
 from __future__ import absolute_import
-from Components.Converter.Converter import Converter
+
 from six import PY3
+
+from Components.Converter.Converter import Converter
 
 SIGN = '°' if PY3 else str('\xc2\xb0')
 

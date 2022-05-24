@@ -1,21 +1,20 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.ParentalControlSetup import ProtectedScreen
-from Components.Sources.List import List
-from Components.ActionMap import NumberActionMap
-from Components.Sources.StaticText import StaticText
-from Components.config import configfile
-from Components.PluginComponent import plugins
-from Components.config import config
-from Components.SystemInfo import SystemInfo
-
-from Tools.BoundFunction import boundFunction
-from Tools.Directories import resolveFilename, SCOPE_SKIN
-from six import ensure_str
 
 from xml.etree.cElementTree import parse
 
+from six import ensure_str
+
+from Components.ActionMap import NumberActionMap
+from Components.config import config, configfile
+from Components.PluginComponent import plugins
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import SystemInfo
+from Screens.ParentalControlSetup import ProtectedScreen
+from Screens.Screen import Screen
 from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
+from Tools.BoundFunction import boundFunction
+from Tools.Directories import SCOPE_SKIN, resolveFilename
 
 mainmenu = _("Main menu")
 

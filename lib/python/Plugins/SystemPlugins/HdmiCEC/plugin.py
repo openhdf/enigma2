@@ -1,12 +1,12 @@
 from __future__ import absolute_import
+
 from os import path as os_path
 
-from Screens.Screen import Screen
-from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile, getConfigListEntry
-from Components.Sources.StaticText import StaticText
+from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
-
+from Components.Sources.StaticText import StaticText
+from Screens.Screen import Screen
 from Tools.Directories import fileExists
 
 if os_path.exists("/dev/hdmi_cec") or os_path.exists("/dev/misc/hdmi_cec0"):

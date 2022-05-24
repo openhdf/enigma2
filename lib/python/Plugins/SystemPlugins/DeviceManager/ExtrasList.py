@@ -1,9 +1,12 @@
 from __future__ import absolute_import
+
 from enigma import eListbox, eListboxPythonMultiContent, gFont, loadPNG
-from Components.MenuList import MenuList
+
 from Components.GUIComponent import GUIComponent
+from Components.MenuList import MenuList
+from Components.MultiContent import (MultiContentEntryPixmapAlphaTest,
+                                     MultiContentEntryText)
 from Tools.Directories import fileExists
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
 
 def SimpleEntry(name, picture):

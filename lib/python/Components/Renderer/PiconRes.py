@@ -1,10 +1,15 @@
 from __future__ import absolute_import
-from os import path as os_path, listdir
-from Components.Renderer.Renderer import Renderer
-from enigma import ePixmap, ePicLoad
-from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_GUISKIN, resolveFilename
+
+from os import listdir
+from os import path as os_path
+
+from enigma import ePicLoad, ePixmap
+
 from Components.Harddisk import harddiskmanager
+from Components.Renderer.Renderer import Renderer
+from Tools.Alternatives import GetWithAlternative
+from Tools.Directories import (SCOPE_GUISKIN, SCOPE_SKIN_IMAGE, pathExists,
+                               resolveFilename)
 
 searchPaths = []
 lastPiconPath = None

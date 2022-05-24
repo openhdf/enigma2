@@ -1,19 +1,20 @@
 from __future__ import absolute_import
+
 from bisect import insort
 
 from enigma import getDesktop, iPlayableService
 
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.ServicePosition import ServicePositionGauge
 from Components.ActionMap import HelpableActionMap
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
-from Components.VideoWindow import VideoWindow
 from Components.Label import Label
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
+from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
+from Components.ServicePosition import ServicePositionGauge
+from Components.Sources.List import List
+from Components.VideoWindow import VideoWindow
 from Screens.FixedMenu import FixedMenu
 from Screens.HelpMenu import HelpableScreen
-from Components.Sources.List import List
+from Screens.InfoBarGenerics import InfoBarCueSheetSupport, InfoBarSeek
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 
 def CutListEntry(where, what):

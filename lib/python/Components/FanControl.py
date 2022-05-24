@@ -1,12 +1,14 @@
 from __future__ import absolute_import
+
 from os import path as os_path
 
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigSlider
-from Tools.BoundFunction import boundFunction
+from boxbranding import getBoxType
+from enigma import iRecordableService, pNavigation
 
 import NavigationInstance
-from enigma import iRecordableService, pNavigation
-from boxbranding import getBoxType
+from Components.config import (ConfigSlider, ConfigSubList, ConfigSubsection,
+                               config)
+from Tools.BoundFunction import boundFunction
 
 
 class FanControl:

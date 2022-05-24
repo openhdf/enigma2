@@ -1,9 +1,12 @@
 from __future__ import absolute_import
+
+from time import localtime, strftime
+from time import time as getTime
+
+from Components.config import config
 from Components.Converter.Converter import Converter
-from time import time as getTime, localtime, strftime
 from Components.Converter.Poll import Poll
 from Components.Element import cached
-from Components.config import config
 
 
 class RemainingToText3(Poll, Converter):

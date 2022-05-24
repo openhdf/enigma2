@@ -1,14 +1,17 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
+
+from boxbranding import getBrandOEM
+from enigma import setAnimation_current, setAnimation_speed
+
 from Components.ActionMap import ActionMap
+from Components.config import (ConfigNumber, ConfigSelectionNumber, config,
+                               getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.Sources.StaticText import StaticText
-from Components.config import config, ConfigNumber, ConfigSelectionNumber, getConfigListEntry
 from Plugins.Plugin import PluginDescriptor
-from enigma import setAnimation_current, setAnimation_speed
-from boxbranding import getBrandOEM
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 # default = disabled
 g_default = {

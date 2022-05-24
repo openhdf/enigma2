@@ -1,9 +1,10 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Components.Label import Label
+
 from Components.ActionMap import ActionMap
 from Components.HelpMenuList import HelpMenuList
+from Components.Label import Label
 from Screens.Rc import Rc
+from Screens.Screen import Screen
 
 
 class HelpMenu(Screen, Rc):

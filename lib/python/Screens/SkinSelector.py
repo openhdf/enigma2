@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from mmap import mmap, PROT_READ
+
+from mmap import PROT_READ, mmap
+from os import listdir, walk
+from os.path import exists, isdir
+from os.path import join as pathjoin
 from re import search
 
 from enigma import ePicLoad, getDesktop
-from os import listdir, walk
-from os.path import exists, isdir, join as pathjoin
 
-from skin import DEFAULT_SKIN, DEFAULT_DISPLAY_SKIN, EMERGENCY_NAME, EMERGENCY_SKIN, currentDisplaySkin, currentPrimarySkin, currentStandbySkin, domScreens, DISPLAY_SKIN_ID, loadSkin
 from Components.ActionMap import HelpableNumberActionMap
 from Components.config import config
 from Components.Pixmap import Pixmap
@@ -17,7 +18,11 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_LCDSKIN, SCOPE_SKIN, SCOPE_CURRENT_LCDSKIN
+from skin import (DEFAULT_DISPLAY_SKIN, DEFAULT_SKIN, DISPLAY_SKIN_ID,
+                  EMERGENCY_NAME, EMERGENCY_SKIN, currentDisplaySkin,
+                  currentPrimarySkin, currentStandbySkin, domScreens, loadSkin)
+from Tools.Directories import (SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT_SKIN,
+                               SCOPE_LCDSKIN, SCOPE_SKIN, resolveFilename)
 
 
 class SkinSelector(Screen, HelpableScreen):

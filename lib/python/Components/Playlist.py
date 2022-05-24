@@ -1,7 +1,10 @@
 from __future__ import absolute_import
-from ServiceReference import ServiceReference
-from enigma import eServiceReference
+
 from os import path as os_path
+
+from enigma import eServiceReference
+
+from ServiceReference import ServiceReference
 
 
 class PlaylistIO:

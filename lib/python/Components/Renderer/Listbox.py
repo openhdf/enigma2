@@ -1,6 +1,8 @@
 from __future__ import absolute_import
-from Components.Renderer.Renderer import Renderer
+
 from enigma import eListbox
+
+from Components.Renderer.Renderer import Renderer
 
 # the listbox renderer is the listbox, but no listbox content.
 # the content will be provided by the source (or converter).

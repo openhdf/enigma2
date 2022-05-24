@@ -1,12 +1,14 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Components.ConfigList import ConfigListScreen
-from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
-from Components.config import config, configfile, getConfigListEntry
-from Components.NimManager import nimmanager, InitNimManager
-from Components.TuneTest import Tuner
+
 from enigma import eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer
+
+from Components.ActionMap import ActionMap
+from Components.config import config, configfile, getConfigListEntry
+from Components.ConfigList import ConfigListScreen
+from Components.NimManager import InitNimManager, nimmanager
+from Components.Sources.StaticText import StaticText
+from Components.TuneTest import Tuner
+from Screens.Screen import Screen
 
 
 class AutoDiseqc(Screen, ConfigListScreen):

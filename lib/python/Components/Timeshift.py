@@ -29,32 +29,36 @@
 
 
 from __future__ import absolute_import
+
+from os import link, listdir, makedirs
+from os import path as os_path
+from os import rename, stat, statvfs, system
+from random import randint
+from time import localtime, strftime, time
+
+from boxbranding import getBoxType, getBrandOEM, getMachineBuild
+from enigma import (eBackgroundFileEraser, eEPGCache, eServiceCenter,
+                    eServiceReference, eTimer, iPlayableService,
+                    iServiceInformation)
+
 from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.ServiceEventTracker import ServiceEventTracker
 from Components.config import config
+from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import SystemInfo
 from Components.Task import job_manager as JobManager
-
+from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from Screens.Standby import inStandby, inTryQuitMainloop, TryQuitMainloop
+from Screens.Standby import TryQuitMainloop, inStandby, inTryQuitMainloop
 from ServiceReference import ServiceReference
-
-from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from timer import TimerEntry
-
 from Tools import ASCIItranslit, Notifications
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, resolveFilename, SCOPE_TIMESHIFT
-from Tools.TimeShift import CopyTimeshiftJob, MergeTimeshiftJob, CreateAPSCFilesJob
-
-from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService, eEPGCache, eServiceReference
-from boxbranding import getBoxType, getBrandOEM, getMachineBuild
-
-from time import time, localtime, strftime
-from random import randint
-
-from os import path as os_path, listdir, makedirs, stat, link, statvfs, rename, system
+from Tools.Directories import (SCOPE_TIMESHIFT, copyfile, fileExists,
+                               getRecordingFilename, pathExists,
+                               resolveFilename)
+from Tools.TimeShift import (CopyTimeshiftJob, CreateAPSCFilesJob,
+                             MergeTimeshiftJob)
 
 
 class InfoBarTimeshift:

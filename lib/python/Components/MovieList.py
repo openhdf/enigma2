@@ -1,23 +1,30 @@
-from __future__ import division
-from __future__ import absolute_import
-from os import path as os_path, stat
-from struct import Struct
+from __future__ import absolute_import, division
+
+from os import path as os_path
+from os import stat
 from random import shuffle
+from struct import Struct
 
-from enigma import BT_KEEP_ASPECT_RATIO, BT_SCALE, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eListbox, eListboxPythonMultiContent, eServiceCenter, eServiceReference, eServiceReferenceFS, eSize, eTimer, gFont, iServiceInformation, loadPNG
+from enigma import (BT_KEEP_ASPECT_RATIO, BT_SCALE, RT_HALIGN_LEFT,
+                    RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eListbox,
+                    eListboxPythonMultiContent, eServiceCenter,
+                    eServiceReference, eServiceReferenceFS, eSize, eTimer,
+                    gFont, iServiceInformation, loadPNG)
 
-from Components.GUIComponent import GUIComponent
-from Tools.FuzzyDate import FuzzyTime
-from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryProgress, MultiContentEntryText
+import NavigationInstance
 from Components.config import config
-from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import SCOPE_GUISKIN, resolveFilename
-from Tools.TextBoundary import getTextBoundarySize
+from Components.GUIComponent import GUIComponent
+from Components.MultiContent import (MultiContentEntryPixmapAlphaBlend,
+                                     MultiContentEntryProgress,
+                                     MultiContentEntryText)
+from Components.Renderer.Picon import getPiconName
 from Screens.LocationBox import defaultInhibitDirs
 from ServiceReference import ServiceReference
-from Components.Renderer.Picon import getPiconName
-import NavigationInstance
 from skin import getSkinFactor, parseFont
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+from Tools.FuzzyDate import FuzzyTime
+from Tools.LoadPixmap import LoadPixmap
+from Tools.TextBoundary import getTextBoundarySize
 
 AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".3gp", ".3g2", ".asf", ".wma"))
 DVD_EXTENSIONS = ('.iso', '.img')

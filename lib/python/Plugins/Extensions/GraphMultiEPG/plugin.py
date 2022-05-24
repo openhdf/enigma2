@@ -1,12 +1,15 @@
 from __future__ import absolute_import
-from Plugins.Plugin import PluginDescriptor
-from .GraphMultiEpg import GraphMultiEPG
+
 from enigma import eServiceCenter, eServiceReference
-from ServiceReference import ServiceReference
-from Screens.Screen import Screen
+
 from Components.ActionMap import ActionMap
-from Components.MenuList import MenuList
 from Components.config import config
+from Components.MenuList import MenuList
+from Plugins.Plugin import PluginDescriptor
+from Screens.Screen import Screen
+from ServiceReference import ServiceReference
+
+from .GraphMultiEpg import GraphMultiEPG
 
 Session = None
 Servicelist = None

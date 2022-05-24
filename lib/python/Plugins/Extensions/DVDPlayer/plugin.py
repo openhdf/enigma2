@@ -1,21 +1,30 @@
 from __future__ import absolute_import
+
 from os import path as os_path
-from enigma import eTimer, iPlayableService, iServiceInformation, eServiceReference, iServiceKeys, getDesktop
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
+
+from enigma import (eServiceReference, eTimer, getDesktop, iPlayableService,
+                    iServiceInformation, iServiceKeys)
+
+from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
+from Components.config import config
+from Components.FileList import FileList
+from Components.Harddisk import harddiskmanager
+from Components.Label import Label
+from Components.MenuList import MenuList
+from Components.Pixmap import Pixmap
+from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
+from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
 from Screens.HelpMenu import HelpableScreen
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarShowHide, InfoBarNotifications, InfoBarAudioSelection, InfoBarSubtitleSupport, InfoBarSimpleEventView
-from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
-from Components.Label import Label
-from Components.Sources.StaticText import StaticText
-from Components.Pixmap import Pixmap
-from Components.FileList import FileList
-from Components.MenuList import MenuList
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
-from Components.config import config
-from Tools.Directories import pathExists, fileExists
-from Components.Harddisk import harddiskmanager
+from Screens.InfoBarGenerics import (InfoBarAudioSelection,
+                                     InfoBarCueSheetSupport,
+                                     InfoBarNotifications, InfoBarPVRState,
+                                     InfoBarSeek, InfoBarShowHide,
+                                     InfoBarSimpleEventView,
+                                     InfoBarSubtitleSupport)
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Tools.Directories import fileExists, pathExists
 
 lastpath = ""
 

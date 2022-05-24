@@ -1,11 +1,11 @@
 from __future__ import absolute_import
+
 from json import loads
 
-from Components.config import ConfigYesNo, config
+from six.moves.urllib.error import URLError
 from six.moves.urllib.request import urlopen
 
-from six.moves.urllib.error import URLError
-
+from Components.config import ConfigYesNo, config
 
 # Data available from http://ip-api.com/json/:
 #

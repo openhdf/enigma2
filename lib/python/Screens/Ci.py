@@ -1,23 +1,27 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.ConfigList import ConfigListScreen
-from Components.ActionMap import ActionMap
-from Components.ActionMap import NumberActionMap
+
+from os import rename
+from time import sleep
+
+from boxbranding import getBoxType, getBrandOEM
+from enigma import eDVBCI_UI, eDVBCIInterfaces, eTimer
+
+from Components.ActionMap import ActionMap, NumberActionMap
+from Components.config import (KEY_0, KEY_LEFT, KEY_RIGHT, ConfigNothing,
+                               ConfigPIN, ConfigSelection, ConfigSubList,
+                               ConfigSubsection, ConfigYesNo, NoSave, config,
+                               getConfigListEntry)
+from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.Console import Console
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.Console import Console
-from Components.Sources.StaticText import StaticText
 from Components.Sources.Boolean import Boolean
-from Components.config import ConfigNothing, ConfigPIN, ConfigSelection, ConfigSubList, ConfigSubsection, ConfigYesNo, KEY_0, KEY_LEFT, KEY_RIGHT, NoSave, config, getConfigListEntry
-from Components.ConfigList import ConfigList
+from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
-from Tools.Directories import fileExists
-from os import rename
-from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
-from boxbranding import getBrandOEM, getBoxType
-from time import sleep
+from Tools.Directories import fileExists
 
 if getBoxType() in ('zgemmah9combo'):
 	MAX_NUM_CI = 1

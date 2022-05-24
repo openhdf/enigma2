@@ -1,21 +1,28 @@
-from __future__ import absolute_import
-from __future__ import division
-from Screens.Screen import Screen
-from Screens.ServiceScan import ServiceScan
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable, integer_limits, ConfigFloat
+from __future__ import absolute_import, division
 
-from Components.ActionMap import NumberActionMap, ActionMap
+from boxbranding import getMachineBrand
+from enigma import (eComponentScan, eConsoleAppContainer,
+                    eDVBFrontendParametersATSC, eDVBFrontendParametersCable,
+                    eDVBFrontendParametersSatellite,
+                    eDVBFrontendParametersTerrestrial, eDVBResourceManager,
+                    eTimer, iDVBFrontend)
+from six import ensure_str, iteritems, itervalues
+
+from Components.ActionMap import ActionMap, NumberActionMap
+from Components.config import (ConfigEnableDisable, ConfigFloat, ConfigInteger,
+                               ConfigSelection, ConfigSlider, ConfigSubsection,
+                               ConfigYesNo, config, getConfigListEntry,
+                               integer_limits)
 from Components.ConfigList import ConfigListScreen
-from Components.NimManager import nimmanager, getConfigSatlist
+from Components.Converter.ChannelNumbers import channelnumbers
 from Components.Label import Label
+from Components.NimManager import getConfigSatlist, nimmanager
 from Components.Sources.StaticText import StaticText
-from Tools.HardwareInfo import HardwareInfo
 from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
-from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eDVBFrontendParametersATSC, eConsoleAppContainer, eDVBResourceManager, iDVBFrontend
-from Components.Converter.ChannelNumbers import channelnumbers
-from boxbranding import getMachineBrand
-from six import ensure_str, itervalues, iteritems
+from Screens.Screen import Screen
+from Screens.ServiceScan import ServiceScan
+from Tools.HardwareInfo import HardwareInfo
 
 
 def buildTerTransponder(frequency,

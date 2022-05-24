@@ -1,5 +1,7 @@
 from __future__ import absolute_import
-from sys import version_info, stdout, stderr
+
+from sys import stderr, stdout, version_info
+
 from enigma import ePythonOutput
 from six import ensure_str
 

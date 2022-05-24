@@ -1,5 +1,6 @@
 from __future__ import absolute_import
-from time import time, sleep
+
+from time import sleep, time
 
 real_time = None
 time_offset = 0

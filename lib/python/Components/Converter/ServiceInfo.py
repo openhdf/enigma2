@@ -1,12 +1,14 @@
 from __future__ import absolute_import
-from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService, eServiceReference
-from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
-from Components.Element import cached
-from Components.Converter.Poll import Poll
-from Tools.Transponder import ConvertToHumanReadable
 
 from os import path as os_path
+
+from enigma import eServiceReference, iPlayableService, iServiceInformation
+
+from Components.Converter.Converter import Converter
+from Components.Converter.Poll import Poll
+from Components.Element import cached
+from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
+from Tools.Transponder import ConvertToHumanReadable
 
 WIDESCREEN = [1, 3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
 

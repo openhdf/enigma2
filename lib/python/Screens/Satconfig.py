@@ -1,31 +1,33 @@
-from __future__ import absolute_import
-from __future__ import division
-from enigma import eDVBDB, eDVBResourceManager, getLinkedSlotID, isFBCLink
-from Screens.Screen import Screen
-from Components.SystemInfo import SystemInfo
-from Components.ActionMap import ActionMap
-from Components.ConfigList import ConfigListScreen
-from Components.NimManager import nimmanager
-from Components.Button import Button
-from Components.Label import Label
-from Components.Pixmap import Pixmap
-from Components.SelectionList import SelectionList, SelectionEntryComponent
-from Components.config import ConfigNothing, ConfigSelection, ConfigSubsection, ConfigYesNo, config, configfile, getConfigListEntry
-from Components.Sources.StaticText import StaticText
-from Components.Sources.List import List
-from Components.Sources.Boolean import Boolean
-from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
-from Screens.ServiceStopScreen import ServiceStopScreen
-from Screens.AutoDiseqc import AutoDiseqc
-from Tools.BoundFunction import boundFunction
-from boxbranding import getBoxType
+from __future__ import absolute_import, division
 
-from time import mktime, localtime
 from datetime import datetime
 from os import path as os_path
+from time import localtime, mktime
+
+from boxbranding import getBoxType
+from enigma import eDVBDB, eDVBResourceManager, getLinkedSlotID, isFBCLink
 from six import ensure_text
 
+from Components.ActionMap import ActionMap
+from Components.Button import Button
+from Components.config import (ConfigNothing, ConfigSelection,
+                               ConfigSubsection, ConfigYesNo, config,
+                               configfile, getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
+from Components.Label import Label
+from Components.NimManager import nimmanager
+from Components.Pixmap import Pixmap
+from Components.SelectionList import SelectionEntryComponent, SelectionList
+from Components.Sources.Boolean import Boolean
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import SystemInfo
+from Screens.AutoDiseqc import AutoDiseqc
+from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.ServiceStopScreen import ServiceStopScreen
+from Tools.BoundFunction import boundFunction
 from Tools.BugHunting import printCallSequence
 
 

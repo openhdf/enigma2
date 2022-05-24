@@ -1,13 +1,21 @@
 from __future__ import absolute_import
-from Components.config import config, ConfigSlider, ConfigSelection, ConfigSubDict, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
+
+from os import W_OK, access
+from os import path as os_path
+from time import sleep
+
+from boxbranding import getBoxType, getBrandOEM
+from enigma import eAVSwitch, getDesktop
+
 from Components.About import about
+from Components.config import (ConfigBoolean, ConfigEnableDisable,
+                               ConfigNothing, ConfigSelection,
+                               ConfigSelectionNumber, ConfigSlider,
+                               ConfigSubDict, ConfigSubsection, ConfigYesNo,
+                               NoSave, config)
+from Components.SystemInfo import SystemInfo
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
-from enigma import eAVSwitch, getDesktop
-from boxbranding import getBoxType, getBrandOEM
-from Components.SystemInfo import SystemInfo
-from os import access, path as os_path, W_OK
-from time import sleep
 
 has_scart = False
 has_scartyuv = False

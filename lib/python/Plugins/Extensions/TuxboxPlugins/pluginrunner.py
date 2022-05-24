@@ -1,7 +1,9 @@
 from __future__ import absolute_import
-from enigma import eDBoxLCD, eRCInput, fbClass, eConsoleAppContainer
-from Screens.Screen import Screen
+
+from enigma import eConsoleAppContainer, eDBoxLCD, eRCInput, fbClass
+
 from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 
 class PluginRunner(Screen):

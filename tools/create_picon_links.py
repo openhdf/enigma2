@@ -6,7 +6,8 @@
 # for the servicereference names.
 
 from __future__ import absolute_import
-from os import access, F_OK, symlink
+
+from os import F_OK, access, symlink
 from sys import argv
 
 f = open(argv[1]).readlines()

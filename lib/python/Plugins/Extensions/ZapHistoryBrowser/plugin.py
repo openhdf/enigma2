@@ -1,21 +1,26 @@
 # -*- coding: UTF-8 -*-
 ## Zap-History Browser by AliAbdul
 from __future__ import absolute_import
+
+from gettext import bindtextdomain, dgettext, gettext, textdomain
+from os import environ
+
+from enigma import (eListboxPythonMultiContent, eServiceCenter, getDesktop,
+                    gFont)
+
 from Components.ActionMap import ActionMap
-from Components.config import config, ConfigInteger, ConfigSelection, ConfigSubsection, getConfigListEntry
+from Components.config import (ConfigInteger, ConfigSelection,
+                               ConfigSubsection, config, getConfigListEntry)
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Language import language
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText
-from enigma import eListboxPythonMultiContent, eServiceCenter, gFont, getDesktop
-from os import environ
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChannelSelection import ChannelSelection
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
-from Tools.Directories import resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
-from gettext import bindtextdomain, textdomain, bindtextdomain, dgettext, gettext
+from Tools.Directories import SCOPE_LANGUAGE, SCOPE_PLUGINS, resolveFilename
 
 ################################################
 

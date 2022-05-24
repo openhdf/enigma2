@@ -1,18 +1,24 @@
 from __future__ import absolute_import
-from os import path as os_path, system
-from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
-from Components.config import config
-from Components.AVSwitch import AVSwitch
-from Components.SystemInfo import SystemInfo
-from Components.Harddisk import harddiskmanager
-from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
-from boxbranding import getBrandOEM, getMachineBrand, getMachineBuild, getMachineName
-from Tools import Notifications
+
+from os import path as os_path
+from os import system
 from time import time
+
+from boxbranding import (getBrandOEM, getMachineBrand, getMachineBuild,
+                         getMachineName)
+from enigma import (eDVBLocalTimeHandler, eDVBVolumecontrol, eServiceReference,
+                    eTimer)
+
 import Screens.InfoBar
+from Components.ActionMap import ActionMap
+from Components.AVSwitch import AVSwitch
+from Components.config import config
+from Components.Harddisk import harddiskmanager
 from Components.RecordingConfig import recType
+from Components.SystemInfo import SystemInfo
+from GlobalActions import globalActionMap
+from Screens.Screen import Screen
+from Tools import Notifications
 
 inStandby = None
 TVinStandby = None
@@ -291,9 +297,10 @@ class StandbySummary(Screen):
 	</screen>"""
 
 
-from enigma import quitMainloop, iRecordableService
-from Screens.MessageBox import MessageBox
+from enigma import iRecordableService, quitMainloop
+
 from Components.Task import job_manager
+from Screens.MessageBox import MessageBox
 
 
 class QuitMainloopScreen(Screen):

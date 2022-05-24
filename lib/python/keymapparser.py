@@ -1,12 +1,13 @@
 from __future__ import absolute_import
-from enigma import eActionMap
+
 from xml.etree.cElementTree import parse
 
-from keyids import KEYIDS
+from enigma import eActionMap
+from six.moves import map
 
+from keyids import KEYIDS
 # these are only informational (for help)...
 from Tools.KeyBindings import addKeyBinding
-from six.moves import map
 
 
 class KeymapError(Exception):

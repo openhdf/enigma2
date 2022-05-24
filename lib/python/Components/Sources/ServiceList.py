@@ -1,6 +1,8 @@
 from __future__ import absolute_import
-from Components.Sources.Source import Source
+
 from enigma import eServiceCenter, eServiceReference
+
+from Components.Sources.Source import Source
 
 
 class ServiceList(Source):

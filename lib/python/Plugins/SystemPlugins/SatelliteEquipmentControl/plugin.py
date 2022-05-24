@@ -1,12 +1,12 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Plugins.Plugin import PluginDescriptor
 
-from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 from Components.config import config
+from Components.ConfigList import ConfigListScreen
 from Components.NimManager import nimmanager as nimmgr
+from Plugins.Plugin import PluginDescriptor
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 
 
 class SecParameterSetup(Screen, ConfigListScreen):

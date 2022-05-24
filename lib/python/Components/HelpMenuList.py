@@ -1,9 +1,11 @@
 from __future__ import absolute_import
-from Components.GUIComponent import GUIComponent
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont
-from Tools.KeyBindings import queryKeyBinding, getKeyDescription
-from skin import parameters, fonts
+from enigma import eListbox, eListboxPythonMultiContent, gFont
+
+from Components.GUIComponent import GUIComponent
+from skin import fonts, parameters
+from Tools.KeyBindings import getKeyDescription, queryKeyBinding
+
 #getKeyPositions
 
 # [ ( actionmap, context, [(action, help), (action, help), ...] ), (actionmap, ... ), ... ]

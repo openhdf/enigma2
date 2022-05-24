@@ -1,13 +1,15 @@
 from __future__ import absolute_import
+
 from array import array
-from boxbranding import getBoxType, getImageVersion, getMachineBuild
 from fcntl import ioctl
+from os import stat
 from socket import AF_INET, SOCK_DGRAM, inet_ntoa, socket
 from struct import pack, unpack
-from sys import maxsize
-from sys import modules
-from os import stat
+from sys import maxsize, modules
 from time import localtime, strftime
+
+from boxbranding import getBoxType, getImageVersion, getMachineBuild
+
 from Tools.Directories import fileReadLine, fileReadLines
 
 MODULE_NAME = __name__.split(".")[-1]

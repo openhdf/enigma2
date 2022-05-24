@@ -6,8 +6,10 @@
 # because the log unit looks enough like a file!
 
 from __future__ import absolute_import
+
 from sys import stdout
 from threading import Lock
+
 from six.moves import cStringIO as StringIO
 
 logfile = None

@@ -1,21 +1,25 @@
 from __future__ import absolute_import
-from . import _
-from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
-from Components.Sources.List import List
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
-from Tools.LoadPixmap import LoadPixmap
-from Components.Button import Button
-from Screens.MessageBox import MessageBox
-from Screens.Standby import TryQuitMainloop
-from .HddPartitions import HddPartitions
-from .HddInfo import HddInfo
-from .Disks import Disks
-from .ExtraMessageBox import ExtraMessageBox
-from .ExtraActionBox import ExtraActionBox
-from .MountPoints import MountPoints
-from boxbranding import getMachineBrand, getMachineName
+
 from os import system
+
+from boxbranding import getMachineBrand, getMachineName
+
+from Components.ActionMap import ActionMap
+from Components.Button import Button
+from Components.Sources.List import List
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Standby import TryQuitMainloop
+from Tools.Directories import SCOPE_CURRENT_PLUGIN, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
+
+from . import _
+from .Disks import Disks
+from .ExtraActionBox import ExtraActionBox
+from .ExtraMessageBox import ExtraMessageBox
+from .HddInfo import HddInfo
+from .HddPartitions import HddPartitions
+from .MountPoints import MountPoints
 
 
 def DiskEntry(model, size, removable):

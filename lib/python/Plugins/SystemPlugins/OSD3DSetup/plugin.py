@@ -1,17 +1,22 @@
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Components.ConfigList import ConfigListScreen
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigSlider, getConfigListEntry, ConfigYesNo
-from enigma import eActionMap
-from Components.Sources.StaticText import StaticText
-from Components.ServiceEventTracker import ServiceEventTracker
-from enigma import iPlayableService, iServiceInformation, eServiceCenter, eServiceReference, eTimer
-from ServiceReference import ServiceReference
-from Plugins.Plugin import PluginDescriptor
-from Components.PluginComponent import plugins
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 from os import path as os_path
+
+from enigma import (eActionMap, eServiceCenter, eServiceReference, eTimer,
+                    iPlayableService, iServiceInformation)
+
+from Components.config import (ConfigInteger, ConfigSelection, ConfigSlider,
+                               ConfigSubsection, ConfigYesNo, config,
+                               getConfigListEntry)
+from Components.ConfigList import ConfigListScreen
+from Components.PluginComponent import plugins
+from Components.ServiceEventTracker import ServiceEventTracker
+from Components.Sources.StaticText import StaticText
+from Plugins.Plugin import PluginDescriptor
+from Screens.Screen import Screen
+from ServiceReference import ServiceReference
+from Tools.Directories import SCOPE_PLUGINS, resolveFilename
+
 if os_path.exists("/proc/stb/fb/3dmode"):
 	val_sidebyside = "sidebyside"
 	val_topandbottom = "topandbottom"
@@ -294,8 +299,8 @@ class InfoAuto3D(Screen):
 	def __init__(self, session, NewMode, Confirming):
 		self.skin = InfoAuto3D.skin
 		Screen.__init__(self, session)
-		from Components.Label import Label
 		from Components.ActionMap import ActionMap
+		from Components.Label import Label
 		self["infotext"] = Label("Press blue button to activate 3D mode")
 		self.blueTimer = eTimer()
 		self.blueTimer.callback.append(self.autoclose)
