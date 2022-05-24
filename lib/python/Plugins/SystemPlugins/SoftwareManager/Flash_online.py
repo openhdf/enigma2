@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from json import load
 from os import W_OK, access, listdir, major, makedirs, minor, mkdir
 from os import path as os_path
-from os import remove, sep, stat, statvfs, unlink, walk
+from os import remove, sep, stat, statvfs as os_statvfs, unlink, walk
 from shutil import copyfile, rmtree
 from time import time
 from zipfile import ZipFile
@@ -290,7 +290,7 @@ class FlashImage(Screen):
 				def avail(path):
 					if not '/mmc' in path and os_path.isdir(path) and access(path, W_OK):
 						try:
-							statvfs = statvfs(path)
+							statvfs = os_statvfs(path)
 							return (statvfs.f_bavail * statvfs.f_frsize) / (1 << 20)
 						except:
 							pass
