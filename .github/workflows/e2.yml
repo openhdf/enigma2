@@ -104,8 +104,8 @@ jobs:
       run: |
         sed -i 's/reloadWindowStyles()  #/# reloadWindowStyles()  #/g' lib/python/skin.py
         sed -i 's/setResolution(xres, yres/setResolution(xres, yres, 8/g' lib/python/skin.py
-        sed -i '1 i\globals()["__builtins__"]["ngettext"] = ngettext' lib/python/Tools/Profile.py
-        sed -i '1 i\from gettext import ngettext' lib/python/Tools/Profile.py
+        sed -i '2 i\globals()["__builtins__"]["ngettext"] = ngettext' lib/python/Tools/Profile.py
+        sed -i '2 i\from gettext import ngettext' lib/python/Tools/Profile.py
         sed -i 's/reactor.run/pass  # reactor.run/g' lib/python/StartEnigma.py
         sed -i 's/enigma.quitMainloop(5)/enigma.quitMainloop(1)/' lib/python/StartEnigma.py
         sed -i 's/import enigma/import enigma\nenigma.quitMainloop(1)/' lib/python/StartEnigma.py
