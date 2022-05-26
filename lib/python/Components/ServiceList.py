@@ -213,6 +213,19 @@ class ServiceList(GUIComponent):
 		self.l.getCurrent(r)
 		return r
 
+	def getPrev(self):
+		r = eServiceReference()
+		self.l.getPrev(r)
+		return r
+
+	def getNext(self):
+		r = eServiceReference()
+		self.l.getNext(r)
+		return r
+
+	def getList(self):
+		return self.l.getList()
+
 	def atBegin(self):
 		return self.instance.atBegin()
 
