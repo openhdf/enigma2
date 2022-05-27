@@ -13,7 +13,7 @@ from six import PY3, ensure_binary
 from Components.config import (ConfigSelection, ConfigSubsection, ConfigText,
                                ConfigYesNo, NoSave, config)
 from Components.Console import Console
-from Screens.Standby import Standby, TryQuitMainloop, inStandby
+from Screens import Standby
 from Tools.Directories import fileExists, pathExists
 
 config.hdmicec = ConfigSubsection()
@@ -562,20 +562,20 @@ class HdmiCec:
 					self.CECwritedebug('[HdmiCec] volume forwarding to device %02x enabled' % self.volumeForwardingDestination, True)
 					self.volumeForwardingEnabled = True
 			elif cmd == 0x8f: # request power status
-				if inStandby:
+				if Standby.inStandby:
 					self.sendMessage(address, 'powerinactive')
 				else:
 					self.sendMessage(address, 'poweractive')
 			elif cmd == 0x83: # request address
 				self.sendMessage(address, 'reportaddress')
 			elif cmd == 0x85: # request active source
-				if not inStandby and config.hdmicec.report_active_source.value:
+				if not Standby.inStandby and config.hdmicec.report_active_source.value:
 					self.sendMessage(address, 'sourceactive')
 			elif cmd == 0x8c: # request vendor id
 				self.sendMessage(address, 'vendorid')
 			elif cmd == 0x8d: # menu request
 				if ctrl0 == 1: # query
-					if inStandby:
+					if Standby.inStandby:
 						self.sendMessage(address, 'menuinactive')
 					else:
 						self.sendMessage(address, 'menuactive')
@@ -627,7 +627,7 @@ class HdmiCec:
 					self.CECwritedebug('[HdmiCec] %s: %s' % (txt, active), True)
 				self.activesource = active
 				if not checkstate:
-					if cmd == 0x86 and not inStandby and self.activesource:
+					if cmd == 0x86 and not Standby.inStandby and self.activesource:
 						self.sendMessage(address, 'sourceactive')
 						if config.hdmicec.report_active_menu.value:
 							self.sendMessage(0, 'menuactive')
@@ -954,7 +954,7 @@ class HdmiCec:
 				elif config.hdmicec.handle_tv_input.value == 'deepstandby':
 					deepstandby = True
 
-			if standby and inStandby:
+			if standby and Standby.inStandby:
 				self.tv_skip_messages = False
 				return
 			elif standby or deepstandby:
@@ -989,16 +989,16 @@ class HdmiCec:
 			import Screens.InfoBar
 			if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance:
 				self.CECwritedebug('[HdmiCec] go into deepstandby...', True)
-				Screens.InfoBar.InfoBar.instance.openScreens.InfoBar.InfoBarSession(TryQuitMainloop, 1)
+				Screens.InfoBar.InfoBar.instance.openScreens.InfoBar.InfoBarSession(Standby.TryQuitMainloop, 1)
 
 	def standby(self):
-		if not inStandby:
+		if not Standby.inStandby:
 			import NavigationInstance
 			NavigationInstance.instance.skipWakeup = True
 			import Screens.InfoBar
 			if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance:
 				self.CECwritedebug('[HdmiCec] go into standby...', True)
-				Screens.InfoBar.InfoBar.instance.openScreens.InfoBar.InfoBarSession(Standby)
+				Screens.InfoBar.InfoBar.instance.openScreens.InfoBar.InfoBarSession(Standby.Standby)
 
 	def wakeup(self):
 		if int(config.hdmicec.workaround_turnbackon.value) and self.standbytime > time():
@@ -1006,16 +1006,16 @@ class HdmiCec:
 			return
 		self.standbytime = 0
 		self.handleTimerStop(True)
-		if inStandby:
+		if Standby.inStandby:
 			self.CECwritedebug('[HdmiCec] wake up...', True)
-			inStandby.Power()
+			Standby.inStandby.Power()
 
 	def onLeaveStandby(self):
 		self.wakeupMessages()
 
 	def onEnterStandby(self, configElement):
 		self.standbytime = time() + int(config.hdmicec.workaround_turnbackon.value)
-		inStandby.onClose.append(self.onLeaveStandby)
+		Standby.inStandby.onClose.append(self.onLeaveStandby)
 		self.standbyMessages()
 
 	def onEnterDeepStandby(self, configElement):

@@ -413,8 +413,7 @@ class Session:
 profile("Standby,PowerKey")
 from GlobalActions import globalActionMap
 from Screens.Menu import MainMenu, mdom
-from Screens.Standby import (Standby, TryQuitMainloop, TVinStandby, inStandby,
-                             inTryQuitMainloop, quitMainloopCode)
+from Screens import Standby
 
 
 class PowerKey:
@@ -441,18 +440,18 @@ class PowerKey:
 		if recordings:
 			from Screens.MessageBox import MessageBox
 			self.session.openWithCallback(self.gotoStandby, MessageBox, _("Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."), type=MessageBox.TYPE_INFO, close_on_any_key=True, timeout=10)
-		elif not inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
+		elif not Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
 			print("[StartEnigma] PowerOff - Now!")
-			self.session.open(TryQuitMainloop, 1)
+			self.session.open(Standby.TryQuitMainloop, 1)
 
 	def powerlong(self):
-		if inTryQuitMainloop or (self.session.current_dialog and not self.session.current_dialog.ALLOW_SUSPEND):
+		if Standby.inTryQuitMainloop or (self.session.current_dialog and not self.session.current_dialog.ALLOW_SUSPEND):
 			return
 		self.doAction(action=config.usage.on_long_powerpress.value)
 
 	def doAction(self, action):
-		if TVinStandby.getTVstate('standby'):
-			TVinStandby.setTVstate('on')
+		if Standby.TVinStandby.getTVstate('standby'):
+			Standby.TVinStandby.setTVstate('on')
 			return
 
 		self.standbyblocked = 1
@@ -471,10 +470,10 @@ class PowerKey:
 						menu_screen.setTitle(_("Standby / restart"))
 						return
 		elif action == "standby":
-			TVinStandby.skipHdmiCecNow(False)
+			Standby.TVinStandby.skipHdmiCecNow(False)
 			self.standby()
 		elif action == "standby_noTVshutdown":
-			TVinStandby.skipHdmiCecNow(True)
+			Standby.TVinStandby.skipHdmiCecNow(True)
 			self.standby()
 		elif action == "powertimerStandby":
 			val = 3
@@ -496,9 +495,9 @@ class PowerKey:
 		self.standby()
 
 	def standby(self):
-		if not inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
+		if not Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
 			self.session.nav.skipWakeup = True
-			self.session.open(Standby)
+			self.session.open(Standby.Standby)
 
 	def openSleepTimer(self):
 		from Screens.SleepTimerEdit import SleepTimerEdit
@@ -752,7 +751,7 @@ def runScreenTest():
 		#set next wakeup
 		setFPWakeuptime(wptime)
 		#set next standby only after shutdown in deep standby
-		if quitMainloopCode != 1 and quitMainloopCode != 45:
+		if Standby.quitMainloopCode != 1 and Standby.quitMainloopCode != 45:
 			setStandby = 2 # 0=no standby, but get in standby if wakeup to timer start > 60 sec (not for plugin-timer, here is no standby), 1=standby, 2=no standby, when before was not in deep-standby
 		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d,%d" % (int(nowTime), wptime, startTime[0], startTime[1], setStandby, nextRecordTime, forceNextRecord)
 	else:

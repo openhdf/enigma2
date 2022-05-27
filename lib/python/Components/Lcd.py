@@ -12,7 +12,7 @@ from Components.config import (ConfigNothing, ConfigSelection, ConfigSlider,
                                ConfigSubsection, ConfigYesNo, config)
 from Components.SystemInfo import SystemInfo
 from Screens.Screen import Screen
-from Screens.Standby import inStandby, inTryQuitMainloop
+from Screens import Standby
 from Tools.Directories import fileExists
 
 
@@ -105,7 +105,7 @@ class LCD:
 		config.misc.standbyCounter.addNotifier(self.standbyCounterChanged, initial_call=False)
 
 	def standbyCounterChanged(self, configElement):
-		inStandby.onClose.append(self.leaveStandby)
+		Standby.inStandby.onClose.append(self.leaveStandby)
 		self.autoDimDownLCDTimer.stop()
 		self.autoDimUpLCDTimer.stop()
 		eActionMap.getInstance().unbindAction('', self.DimUpEvent)
@@ -115,19 +115,19 @@ class LCD:
 
 	def DimUpEvent(self, key, flag):
 		self.autoDimDownLCDTimer.stop()
-		if not inTryQuitMainloop:
+		if not Standby.inTryQuitMainloop:
 			if self.Brightness is not None and not self.autoDimUpLCDTimer.isActive():
 				self.autoDimUpLCDTimer.start(10, True)
 
 	def autoDimDownLCD(self):
-		if not inTryQuitMainloop:
+		if not Standby.inTryQuitMainloop:
 			if self.dimBrightness is not None and self.currBrightness > self.dimBrightness:
 				self.currBrightness = self.currBrightness - 1
 				eDBoxLCD.getInstance().setLCDBrightness(self.currBrightness)
 				self.autoDimDownLCDTimer.start(10, True)
 
 	def autoDimUpLCD(self):
-		if not inTryQuitMainloop:
+		if not Standby.inTryQuitMainloop:
 			self.autoDimDownLCDTimer.stop()
 			if self.currBrightness < self.Brightness:
 				self.currBrightness = self.currBrightness + 5
@@ -396,7 +396,7 @@ def leaveStandby():
 
 
 def standbyCounterChanged(configElement):
-	inStandby.onClose.append(leaveStandby)
+	Standby.inStandby.onClose.append(leaveStandby)
 	config.lcd.standby.apply()
 	config.lcd.ledbrightnessstandby.apply()
 	config.lcd.ledbrightnessdeepstandby.apply()
