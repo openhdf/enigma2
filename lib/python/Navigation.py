@@ -11,6 +11,8 @@ from enigma import (eServiceCenter, eServiceReference, eTimer,
 import NavigationInstance
 import Screens.Standby
 from Components.config import config
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
 from Components.ParentalControl import parentalControl
 from PowerTimer import PowerTimer
 from RecordTimer import RecordTimer
