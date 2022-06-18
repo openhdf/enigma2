@@ -32,7 +32,7 @@ from __future__ import absolute_import
 
 from os import link, listdir, makedirs
 from os import path as os_path
-from os import rename, stat, statvfs, system
+from os import rename, stat as os_stat, statvfs, system
 from random import randint
 from time import localtime, strftime, time
 
@@ -683,7 +683,7 @@ class InfoBarTimeshift:
 				filelist.sort()
 			for filename in filelist:
 				if filename.startswith("pts_livebuffer") and not os_path.splitext(filename)[1]:
-					statinfo = stat("%s%s" % (config.usage.timeshift_path.value, filename))
+					statinfo = os_stat("%s%s" % (config.usage.timeshift_path.value, filename))
 					if statinfo.st_mtime < (time() - 5.0):
 						# Get Event Info from meta file
 						readmetafile = open("%s%s.meta" % (config.usage.timeshift_path.value, filename), "r")
@@ -734,7 +734,7 @@ class InfoBarTimeshift:
 		if savefilename is None:
 			for filename in listdir(config.usage.timeshift_path.value):
 				if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy") and not filename.endswith(".sc"):
-					statinfo = stat("%s%s" % (config.usage.timeshift_path.value, filename))
+					statinfo = os_stat("%s%s" % (config.usage.timeshift_path.value, filename))
 					if statinfo.st_mtime > (time() - 5.0):
 						savefilename = filename
 
@@ -1033,7 +1033,7 @@ class InfoBarTimeshift:
 		for filename in listdir(config.usage.timeshift_path.value):
 			if (os_path.exists("%s%s" % (config.usage.timeshift_path.value, filename))) and ((filename.startswith("timeshift.") or filename.startswith("pts_livebuffer_"))):
 				try:
-					statinfo = stat("%s%s" % (config.usage.timeshift_path.value, filename))
+					statinfo = os_stat("%s%s" % (config.usage.timeshift_path.value, filename))
 				except OSError:
 					statinfo = None # a .del file may have been deleted between 'os_path.exists' and 'stat'
 				if (justZapped is True) and (filename.endswith(".del") is False) and (filename.endswith(".copy") is False):
@@ -1256,7 +1256,7 @@ class InfoBarTimeshift:
 
 					# If still recording or transfering, try again later ...
 					if fileExists("%s%s" % (config.usage.autorecord_path.value, ptsmergeDEST)):
-						statinfo = stat("%s%s" % (config.usage.autorecord_path.value, ptsmergeDEST))
+						statinfo = os_stat("%s%s" % (config.usage.autorecord_path.value, ptsmergeDEST))
 						if statinfo.st_mtime > (time() - 10.0):
 							self.pts_mergeRecords_timer.start(120000, True)
 							return
