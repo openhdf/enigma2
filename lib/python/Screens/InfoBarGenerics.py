@@ -305,7 +305,7 @@ class InfoBarUnhandledKey:
 	def actionA(self, key, flag):
 		if config.plisettings.ShowPressedButtons.value:
 			if config.hdf.ShowPressedButtonGUI.value:
-				self.pressedButtonsDialog.setButton((key_name for key_name, value in KEYIDS.items() if value == key).next())
+				self.pressedButtonsDialog.setButton(next((key_name for key_name, value in KEYIDS.items() if value == key)))
 				self.pressedButtonsDialog.show()
 				self.hideShowPressedButtonsTimer.start(2000, True)
 			# print "Enable debug mode for every pressed key."

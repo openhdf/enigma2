@@ -2905,7 +2905,7 @@ class HistoryZapSelector(Screen):
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick,
 				"jumpPreviousMark": self.prev,
-				"jumpNextMark": self.next,
+				"jumpNextMark": self.__next__,
 				"toggleMark": self.okbuttonClick,
 			})
 		self.setTitle(_("History zap..."))
@@ -2969,7 +2969,7 @@ class HistoryZapSelector(Screen):
 		else:
 			self.up()
 
-	def next(self):
+	def __next__(self):
 		if self.redirectButton:
 			self.up()
 		else:
