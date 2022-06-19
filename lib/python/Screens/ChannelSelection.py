@@ -2016,9 +2016,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self, session)
-		ChannelSelectionEdit.__init__(self)
-		ChannelSelectionEPG.__init__(self)
-		SelectionEventInfo.__init__(self)
 		if config.usage.servicelist_mode.value == 'simple':
 			self.skinName = ["SlimChannelSelection", "SimpleChannelSelection", "ChannelSelection"]
 		else:
@@ -2032,6 +2029,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				"keyTV": self.toogleTvRadio,
 			})
 
+		ChannelSelectionEdit.__init__(self)
+		ChannelSelectionEPG.__init__(self)
+		SelectionEventInfo.__init__(self)
 		self.radioTV = 0
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
