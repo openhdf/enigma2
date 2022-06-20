@@ -2167,7 +2167,7 @@ config.servicelist.startupmode = ConfigText(default='tv')
 
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, SelectionEventInfo):
 	instance = None
-
+	ALLOW_SUSPEND = True
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self, session)
 		if config.usage.servicelist_mode.value == 'simple':
