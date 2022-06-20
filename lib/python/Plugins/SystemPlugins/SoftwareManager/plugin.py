@@ -2435,11 +2435,17 @@ class IpkgInstaller(Screen):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
 
-		_list = list
 		self.list = SelectionList()
 		self["list"] = self.list
-		for listindex in list(range(len(_list))):
-			self.list.addSelection(_list[listindex], _list[listindex], listindex, False)
+		p = 0
+		if len(list):
+			p = list[0].rfind("/")
+			title = list[0][:p]
+			self.title = ("%s %s %s") % (_("Install extensions"), _("from"), title)
+
+		for listindex in range(len(list)):
+			self.list.addSelection(list[listindex][p + 1:], list[listindex], listindex, False)
+		self.list.sort()
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Install"))

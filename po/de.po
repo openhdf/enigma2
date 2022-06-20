@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-18 20:34+0100\n"
-"PO-Revision-Date: 2022-04-17 09:36+0200\n"
+"PO-Revision-Date: 2022-06-20 16:56+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -6880,6 +6880,12 @@ msgstr "Installiere Senderliste"
 
 msgid "Install extensions."
 msgstr "Erweiterungen installieren."
+
+msgid "Install extensions"
+msgstr "Installiere Erweiterungen"
+
+msgid "from"
+msgstr "von"
 
 msgid "Install lcd picons on"
 msgstr "Installiere LCD PIcon in"
