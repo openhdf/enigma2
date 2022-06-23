@@ -30,8 +30,7 @@ from six import ensure_str
 import NavigationInstance
 from Components.SystemInfo import SystemInfo
 from Screens.MessageBox import MessageBox
-from Screens.Standby import (Standby, TryQuitMainloop, TVinStandby, inStandby,
-                             inTryQuitMainloop)
+import Screens.Standby
 from ServiceReference import ServiceReference
 from timer import Timer, TimerEntry
 from Tools import ASCIItranslit, Directories, Notifications, Trashcan
@@ -552,14 +551,14 @@ class RecordTimerEntry(TimerEntry):
 				return True
 
 			if self.always_zap:
-				TVinStandby.skipHdmiCecNow('zapandrecordtimer')
-				if inStandby:
+				Screens.Standby.TVinStandby.skipHdmiCecNow('zapandrecordtimer')
+				if Screens.Standby.inStandby:
 					self.wasInStandby = True
 					#set service to zap after standby
-					inStandby.prev_running_service = self.service_ref.ref
-					inStandby.paused_service = None
+					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
+					Screens.Standby.inStandby.paused_service = None
 					#wakeup standby
-					inStandby.Power()
+					Screens.Standby.inStandby.Power()
 					self.log(5, "wakeup and zap to recording service")
 				else:
 					cur_zap_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
@@ -730,15 +729,15 @@ class RecordTimerEntry(TimerEntry):
 				return True
 
 			if self.justplay:
-				TVinStandby.skipHdmiCecNow('zaptimer')
-				if inStandby:
+				Screens.Standby.TVinStandby.skipHdmiCecNow('zaptimer')
+				if Screens.Standby.inStandby:
 					self.wasInStandby = True
 					self.log(11, "wakeup and zap")
 					#set service to zap after standby
-					inStandby.prev_running_service = self.service_ref.ref
-					inStandby.paused_service = None
+					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
+					Screens.Standby.inStandby.paused_service = None
 					#wakeup standby
-					inStandby.Power()
+					Screens.Standby.inStandby.Power()
 				else:
 					self.log(11, _("zapping"))
 					found = False
@@ -833,8 +832,8 @@ class RecordTimerEntry(TimerEntry):
 
 			NavigationInstance.instance.RecordTimer.saveTimer()
 
-			box_instandby = inStandby
-			tv_notactive = TVinStandby.getTVstate('notactive')
+			box_instandby = Screens.Standby.inStandby
+			tv_notactive = Screens.Standby.TVinStandby.getTVstate('notactive')
 			isRecordTime = abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or NavigationInstance.instance.RecordTimer.getStillRecording()
 
 			if debug:
@@ -867,7 +866,7 @@ class RecordTimerEntry(TimerEntry):
 				return True
 
 			if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby):
-				if not inTryQuitMainloop: # no shutdown messagebox is open
+				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
 					if not box_instandby and not tv_notactive: # not already in standby
 						callback = self.sendTryQuitMainloopNotification
 						message = _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % (getMachineBrand(), getMachineName())
@@ -879,8 +878,8 @@ class RecordTimerEntry(TimerEntry):
 						print("[RecordTimer] quitMainloop #1")
 						quitMainloop(1)
 			elif self.afterEvent == AFTEREVENT.AUTO and wasRecTimerWakeup:
-				if not inTryQuitMainloop: # no shutdown messagebox is open
-					if inStandby: # in standby
+				if not Screens.Standby.inTryQuitMainloop: # no shutdown messagebox is open
+					if Screens.Standby.inStandby: # in standby
 						print("[RecordTimer] quitMainloop #2")
 						quitMainloop(1)
 			self.wasInStandby = False
@@ -927,7 +926,7 @@ class RecordTimerEntry(TimerEntry):
 
 	def sendStandbyNotification(self, answer):
 		if answer:
-			session = Standby
+			session = Screens.Standby.Standby
 			option = None
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
@@ -936,7 +935,7 @@ class RecordTimerEntry(TimerEntry):
 
 	def sendTryQuitMainloopNotification(self, answer):
 		if answer:
-			session = TryQuitMainloop
+			session = Screens.Standby.TryQuitMainloop
 			option = 1
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
@@ -1168,7 +1167,7 @@ class RecordTimerEntry(TimerEntry):
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
 			text = _("A recording has been started:\n%s") % self.name
-			notify = config.usage.show_message_when_recording_starts.value and not inStandby
+			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby
 			if self.dirnameHadToFallback:
 				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
 				notify = True
