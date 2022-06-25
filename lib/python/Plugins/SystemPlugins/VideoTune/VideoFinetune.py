@@ -171,8 +171,8 @@ class VideoFinetune(Screen):
 		(self.testpic_brightness, self.testpic_contrast, self.testpic_colors, self.testpic_filter, self.testpic_gamma, self.testpic_overscan, self.testpic_fullhd, self.testpic_uhd, self.testpic_pixels)[key - 1]()
 
 	def callNext(self):
-		if self.__next__:
-			next(self)
+		if self.next:
+			self.next()
 
 	def bbox(self, x, y, width, height, col, xx, yy):
 		c = self["Canvas"]
@@ -412,7 +412,7 @@ class VideoFinetune(Screen):
 	def testpicCallback(self, key):
 		if key:
 			if key == True:
-				next(self)
+				self.next()
 			else:
 				self.keyNumber(key)
 		else:
