@@ -27,55 +27,55 @@
 	</screen>
 <!-- Icon Panel -->
 	<screen name="IconPanel">
-		<widget source="session.CurrentService" render="Pixmap" pixmap="dolby.png" position="10,0" zPosition="2" size="33,20" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/dolby.png" position="10,0" zPosition="2" size="33,20" >
 			<convert type="ServiceInfo">IsMultichannel</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="stereo.png" position="10,0" zPosition="2" size="33,20" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/stereo.png" position="10,0" zPosition="2" size="33,20" >
 			<convert type="ServiceInfo">IsStereo</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="sd.png" position="53,0" zPosition="2" size="36,20" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/sd.png" position="53,0" zPosition="2" size="36,20" >
 			<convert type="ServiceInfo">VideoWidth</convert>
 			<convert type="ValueRange">0,720</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="hd.png" position="53,0" zPosition="2" size="36,20" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/hd.png" position="53,0" zPosition="2" size="36,20" >
 			<convert type="ServiceInfo">IsHD</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="4k.png" position="53,0" zPosition="2" size="36,20" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/4k.png" position="53,0" zPosition="2" size="36,20" >
 			<convert type="ServiceInfo">Is4K</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="wide.png" position="99,0" zPosition="2" size="37,20" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/wide.png" position="99,0" zPosition="2" size="37,20" >
 			<convert type="ServiceInfo">IsWidescreen</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="crypt.png" position="146,0" zPosition="2" size="37,20" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/crypt.png" position="146,0" zPosition="2" size="37,20" >
 			<convert type="ServiceInfo">IsCrypted</convert>
 			<convert type="ConditionalShowHide" />
         </widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="txt.png" position="193,0" zPosition="2" size="37,20" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/txt.png" position="193,0" zPosition="2" size="37,20" >
 			<convert type="ServiceInfo">HasTelext</convert>
 			<convert type="ConditionalShowHide" />
         </widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="hbbtv.png" position="240,0" zPosition="2" size="54,20" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/hbbtv.png" position="240,0" zPosition="2" size="54,20" >
 			<convert type="ServiceInfo">HasHBBTV</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="Pixmap" pixmap="sub.png" position="304,0" zPosition="2" size="33,20" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="~/sub.png" position="304,0" zPosition="2" size="33,20" >
 			<convert type="ServiceInfo">SubservicesAvailable</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
 <!-- Rec Panel -->
 	<screen name="RecordingPanel">
-		<widget source="session.RecordState" render="Pixmap" position="358,0" pixmap="record.png" transparent="1" alphatest="on" size="37,20" zPosition="-1">
+		<widget source="session.RecordState" render="Pixmap" position="358,0" pixmap="~/record.png" transparent="1" alphatest="on" size="37,20" zPosition="-1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink,1000</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" position="358,0" pixmap="record.png" transparent="1" alphatest="on" size="37,20" zPosition="-1">
+		<widget source="session.RecordState" render="Pixmap" position="358,0" pixmap="~/record.png" transparent="1" alphatest="on" size="37,20" zPosition="-1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -221,7 +221,7 @@
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
 		<widget source="parent.title" render="Label" position="top" size="*,118" font="FdLcD;40" foregroundColor="#FFDD00" halign="center" valign="center" transparent="1" />
-		<ePixmap position="top" pixmap="bar.png" transparent="0" size="400,3" zPosition="4" />
+		<ePixmap position="top" pixmap="~/bar.png" transparent="0" size="400,3" zPosition="4" />
 		<widget source="parent.menu" render="Label" position="top" size="*,118" font="FdLcD;40" halign="center" valign="center">
 			<convert type="StringListSelection" />
 		</widget>
@@ -233,7 +233,7 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<eLabel position="0,138" size="400,2" backgroundColor="#BDBDBD" zPosition="3" />
-		<widget source="session.CurrentService" render="Progress" pixmap="progress1.png" position="0,140" size="400,25" transparent="1">
+		<widget source="session.CurrentService" render="Progress" pixmap="~/progress1.png" position="0,140" size="400,25" transparent="1">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 		<eLabel position="0,165" size="400,2" backgroundColor="#BDBDBD" zPosition="3" />
@@ -244,7 +244,7 @@
 	</screen>
 	<screen name="MovieContextMenuSummary" position="0,0" size="400,240">
 		<widget source="parent.Title" render="Label" position="0,0" size="400,110" font="FdLcD;30" halign="center" valign="center" />
-		<ePixmap pixmap="bar.png" position="0,111" size="400,3" transparent="0" zPosition="4" />
+		<ePixmap pixmap="~/bar.png" position="0,111" size="400,3" transparent="0" zPosition="4" />
 		<widget source="selected" render="Label" position="0,115" size="400,135" font="FdLcD;30" halign="center" valign="center" />
 	</screen>
 	<screen name="MovieSelectionSummary" position="0,0" size="400,240">
@@ -282,7 +282,7 @@
 		<eLabel text="No Cover" position="318,39" size="82,115" font="FdLcD;23" halign="center" valign="center" zPosition="-1" transparent="1" />
 		<widget source="session.CurrentService" render="Cover" position="318,37" size="82,120" zPosition="1" />
 		<eLabel position="0,164" size="400,3" backgroundColor="#87CEFA" zPosition="3" />
-		<widget source="Service" render="Progress" pixmap="progress1.png" position="0,157" size="400,17" transparent="1" zPosition="4">
+		<widget source="Service" render="Progress" pixmap="~/progress1.png" position="0,157" size="400,17" transparent="1" zPosition="4">
 			<convert type="EMCServicePosition">Position</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="235,178" size="165,62" font="FdLcD;30" zPosition="0" foregroundColor="#FFFFFF" halign="right" transparent="1">
@@ -452,7 +452,7 @@
 	    <widget source="global.CurrentTime" render="Label" position="center,40" size="225,100" font="FdLcD;85" halign="center" transparent="1" noWrap="1" >
 		<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<ePixmap position="0,140" pixmap="bar.png" size="400,2" zPosition="4" />
+		<ePixmap position="0,140" pixmap="~/bar.png" size="400,2" zPosition="4" />
 		<widget source="global.CurrentTime" render="Label" position="0,155" size="400,34" font="FdLcD;34" halign="center" transparent="1" noWrap="1">
 		<convert type="ClockToText">Format:%d.%m.%Y</convert>
 		</widget>
