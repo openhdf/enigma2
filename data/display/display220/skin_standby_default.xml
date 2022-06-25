@@ -8,13 +8,13 @@
 		<widget source="global.CurrentTime" render="Label" position="0,22" size="225,100" font="FdLcD;85" halign="left" noWrap="1">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="update_stable.png" position="135,146" size="30,30" >
+		<widget source="global.OnlineStableUpdateState" render="Pixmap" pixmap="~/update_stable.png" position="135,146" size="30,30" >
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
-		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="update_unstable.png" position="135,146" size="30,30" >
+		<widget source="global.OnlineUnstableUpdateState" render="Pixmap" pixmap="~/update_unstable.png" position="135,146" size="30,30" >
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png" position="170,150"  size="50,26">
+		<widget source="session.RecordState" render="Pixmap" pixmap="~/rec.png" position="170,150"  size="50,26">
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
 		<panel name="SummaryTunerStatusPanel" />
