@@ -1839,7 +1839,6 @@ class InfoBarEPG:
 				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
 			})
 
-<<<<<<< HEAD
 	def getEPGPluginList(self):
 		pluginlist = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EVENTINFO)]
 		if pluginlist:
@@ -1848,24 +1847,6 @@ class InfoBarEPG:
 			pluginlist.append((_("Infobar EPG"), self.openInfoBarEPG))
 			pluginlist.append((_("Multi EPG"), self.openMultiServiceEPG))
 			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG))
-=======
-		self["EPGActions"] = HelpableActionMap(self, ["InfobarEPGActions"],
-			{
-				"showEventInfo": (self.showDefaultEPG, _("Show EPG...")),
-				"showEventInfoSingleEPG": (self.showSingleEPG, _("Show single service EPG")),
-				"showEventInfoMultiEPG": (self.showMultiEPG, _("Show multi channel EPG")),
-				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
-			})
-
-	def getEPGPluginList(self, getAll=False):
-		pluginlist = [(p.name, boundFunction(self.runPlugin, p), p.description or p.name) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EVENTINFO)
-				if 'selectedevent' not in p.fnc.__code__.co_varnames] or []
-		from Components.ServiceEventTracker import InfoBarCount
-		if getAll or InfoBarCount == 1:
-			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG, _("Display EPG list for current channel")))
-		pluginlist.append((_("Multi EPG"), self.openMultiServiceEPG, _("Display EPG as MultiEPG")))
-		pluginlist.append((_("Current event EPG"), self.openEventView, _("Display EPG info for current event")))
->>>>>>> 7b6780083b... Rework "PluginDescriptor" class
 		return pluginlist
 
 	def getDefaultEPGtype(self):

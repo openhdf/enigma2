@@ -943,36 +943,6 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		config.misc.graph_mepg.save()
 		self.close(False)
 
-<<<<<<< HEAD
-=======
-	def furtherOptions(self):
-		self.showhideWindow(True)
-		menu = []
-		keys = ["blue", "menu"]
-		text = _("Select action")
-		event = self["list"].getCurrent()[0]
-		if event:
-			menu = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EVENTINFO)
-				if 'selectedevent' in p.fnc.__code__.co_varnames]
-			if menu:
-				text += ": %s" % event.getEventName()
-			keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow"][:len(menu)] + (len(menu) - 13) * [""] + keys
-		menu.append((_("Timer overview"), self.openTimerOverview))
-		menu.append((_("Setup menu"), self.showSetup, "menu"))
-
-		def boxAction(choice):
-			if choice:
-				choice[1]()
-		self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu, windowTitle=_("Further options"), keys=keys)
-
-	def runPlugin(self, plugin):
-		event = self["list"].getCurrent()
-		plugin(session=self.session, selectedevent=event)
-
-	def openTimerOverview(self):
-		self.session.open(TimerEditList)
-
->>>>>>> 7b6780083b... Rework "PluginDescriptor" class
 	def infoKeyPressed(self):
 		cur = self["list"].getCurrent()
 		event = cur[0]
