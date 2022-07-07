@@ -1,3 +1,4 @@
+from __future__ import print_function
 from __future__ import absolute_import
 
 from os import path as os_path
@@ -12,7 +13,7 @@ from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-
+from . import VideoEnhancement
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
