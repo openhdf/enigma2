@@ -1,26 +1,25 @@
-from __future__ import absolute_import
-
-from os import path as os_path
-from os import unlink
-from xml.etree.cElementTree import parse as ci_parse
-
-from boxbranding import getBoxType, getMachineBrand, getMachineName
-from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
-from six import ensure_str
-
-from Components.ActionMap import ActionMap
+from __future__ import print_function
+from Screens.Screen import Screen
+from Screens.ChannelSelection import *
+from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
 from Components.config import ConfigNothing
 from Components.ConfigList import ConfigList
+from Components.Label import Label
 from Components.SelectionList import SelectionList
-from Components.Sources.StaticText import StaticText
-from Plugins.Plugin import PluginDescriptor
-from Screens.ChannelSelection import (EDIT_BOUQUET, OFF, ChannelSelectionBase,
-                                      ChoiceBox, boundFunction, config,
-                                      eServiceReference, nimmanager)
-from Screens.Screen import Screen
+from Components.MenuList import MenuList
 from ServiceReference import ServiceReference
+from Plugins.Plugin import PluginDescriptor
+from xml.etree.cElementTree import parse as ci_parse
+from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 from Tools.CIHelper import cihelper
-from Tools.XMLTools import stringToXML
+from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
+
+from os import system, path as os_path
+from boxbranding import getMachineBrand, getMachineName, getBoxType
+import os
+import six
 
 
 class CIselectMainMenu(Screen):
@@ -277,7 +276,7 @@ class CIconfigMenu(Screen):
 			fp.close()
 		except:
 			print("[CI_Config_CI%d] xml not written" % self.ci_slot)
-			unlink(self.filename)
+			os.unlink(self.filename)
 		cihelper.load_ci_assignment(force=True)
 
 	def loadXML(self):
@@ -296,23 +295,23 @@ class CIconfigMenu(Screen):
 		try:
 			tree = ci_parse(self.filename).getroot()
 			for slot in tree.findall("slot"):
-				read_slot = ensure_str(getValue(slot.findall("id"), False))
+				read_slot = six.ensure_str(getValue(slot.findall("id"), False))
 				print("ci " + read_slot)
 				i = 0
 				for caid in slot.findall("caid"):
-					read_caid = ensure_str(caid.get("id"))
+					read_caid = six.ensure_str(caid.get("id"))
 					self.selectedcaid.append((str(read_caid), str(read_caid), i))
 					self.usingcaid.append(int(read_caid, 16))
 					i += 1
 
 				for service in slot.findall("service"):
-					read_service_name = ensure_str(service.get("name"))
-					read_service_ref = ensure_str(service.get("ref"))
+					read_service_name = six.ensure_str(service.get("name"))
+					read_service_ref = six.ensure_str(service.get("ref"))
 					self.read_services.append(read_service_ref)
 
 				for provider in slot.findall("provider"):
-					read_provider_name = ensure_str(provider.get("name"))
-					read_provider_dvbname = ensure_str(provider.get("dvbnamespace"))
+					read_provider_name = six.ensure_str(provider.get("name"))
+					read_provider_dvbname = six.ensure_str(provider.get("dvbnamespace"))
 					self.read_providers.append((read_provider_name, read_provider_dvbname))
 
 				self.ci_config.append((int(read_slot), (self.read_services, self.read_providers, self.usingcaid)))
@@ -372,18 +371,18 @@ class CAidSelect(Screen):
 			<widget source="introduction" render="Label" position="0,400" size="450,40" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 
-	def __init__(self, session, list, selected_caids):
+	def __init__(self, session, _list, selected_caids):
 
 		Screen.__init__(self, session)
 
 		self.list = SelectionList()
 		self["list"] = self.list
 
-		for listindex in list(range(len(list))):
-			if find_in_list(selected_caids, list[listindex][0], 0):
-				self.list.addSelection(list[listindex][0], list[listindex][1], listindex, True)
+		for listindex in list(range(len(_list))):
+			if find_in_list(selected_caids, _list[listindex][0], 0):
+				self.list.addSelection(_list[listindex][0], _list[listindex][1], listindex, True)
 			else:
-				self.list.addSelection(list[listindex][0], list[listindex][1], listindex, False)
+				self.list.addSelection(_list[listindex][0], _list[listindex][1], listindex, False)
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
@@ -666,8 +665,8 @@ def Plugins(**kwargs):
 	if config.usage.setup_level.index > 1:
 		return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, needsRestart=False, fnc=sessionstart),
 				PluginDescriptor(where=PluginDescriptor.WHERE_AUTOSTART, needsRestart=False, fnc=autostart),
-				PluginDescriptor(name=_("Common Interface assignment"), description=_("a gui to assign services/providers/caids to common interface modules"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)]
+				PluginDescriptor(name=_("Common Interface Assignment"), description=_("a gui to assign services/providers/caids to common interface modules"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)]
 	else:
 		return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, needsRestart=False, fnc=sessionstart),
 				PluginDescriptor(where=PluginDescriptor.WHERE_AUTOSTART, needsRestart=False, fnc=autostart),
-				PluginDescriptor(name=_("Common Interface assignment"), description=_("a gui to assign services/providers to common interface modules"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)]
+				PluginDescriptor(name=_("Common Interface Assignment"), description=_("a gui to assign services/providers to common interface modules"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)]
