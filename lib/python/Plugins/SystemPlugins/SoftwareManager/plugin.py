@@ -41,7 +41,6 @@ from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
-from Screens.Console import Console
 from Screens.Ipkg import Ipkg
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
