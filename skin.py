@@ -277,31 +277,31 @@ profile("LoadSkinDefaultDone")
 
 def parseCoordinate(s, e, size=0, font=None):
 	s = s.strip()
-	if s == "center":
-		if not size:
-			val = 0
-		else:
-			val = (e - size) / 2
-	elif s == '*':
+	if s == "center":  # For speed as this can be common case.
+		val = 0 if not size else (e - size) // 2
+	elif s == "*":
 		return None
 	else:
-		if s[0] is 'e':
-			val = e
-			s = s[1:]
-		elif s[0] is 'c':
-			val = e / 2
-			s = s[1:]
-		else:
-			val = 0
-		if s:
-			if s[-1] is '%':
-				val += e * int(s[:-1]) / 100
-			elif s[-1] is 'w':
-				val += fonts[font][3] * int(s[:-1])
-			elif s[-1] is 'h':
-				val += fonts[font][2] * int(s[:-1])
-			else:
-				val += int(s)
+		try:
+			val = int(s)  # For speed try a simple number first.
+		except ValueError:
+			if "t" in s:
+				s = s.replace("center", str((e - size) / 2.0))
+			if "e" in s:
+				s = s.replace("e", str(e))
+			if "c" in s:
+				s = s.replace("c", str(e / 2.0))
+			if "w" in s:
+				s = s.replace("w", "*%s" % str(fonts[font][3]))
+			if "h" in s:
+				s = s.replace("h", "*%s" % str(fonts[font][2]))
+			if "%" in s:
+				s = s.replace("%", "*%s" % str(e / 100.0))
+			try:
+				val = int(s)  # For speed try a simple number first.
+			except ValueError:
+				val = int(eval(s))
+	# print("[Skin] DEBUG: parseCoordinate s='%s', e='%s', size=%s, font='%s', val='%s'." % (s, e, size, font, val))
 	if val < 0:
 		val = 0
 	return val
