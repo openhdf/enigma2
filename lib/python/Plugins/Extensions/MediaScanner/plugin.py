@@ -1,29 +1,31 @@
-from __future__ import absolute_import
-
-from os import F_OK, R_OK, access
-from os import path as os_path
-
-import Screens.InfoBar
-from Components.Scanner import scanDevice
 from Plugins.Plugin import PluginDescriptor
+from Components.Scanner import scanDevice
+from Screens.InfoBar import InfoBar
+import os
 
+parentScreen = None
 
 def execute(option):
 	#print "execute", option
 	if option is None:
+		if parentScreen:
+			parentScreen.close()
 		return
 
 	(_, scanner, files, session) = option
 	scanner.open(files, session)
+	if parentScreen:
+		parentScreen.close()
 
 
 def mountpoint_choosen(option):
 	if option is None:
+		if parentScreen:
+			parentScreen.close()
 		return
 
-	from Screens.ChoiceBox import ChoiceBox
 
-	#print("scanning", option)
+	#print "scanning", option
 	(description, mountpoint, session) = option
 	res = scanDevice(mountpoint)
 
@@ -31,20 +33,25 @@ def mountpoint_choosen(option):
 
 	if not list:
 		from Screens.MessageBox import MessageBox
-		if access(mountpoint, F_OK | R_OK):
-			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_ERROR, simple=True, timeout=5)
+		if os.access(mountpoint, os.F_OK | os.R_OK):
+			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_INFO, simple=False, timeout=5)
 		#else:
-			#print("ignore", mountpoint, "because its not accessible")
+		#	print "ignore", mountpoint, "because its not accessible"
+		if parentScreen:
+			parentScreen.close()
 		return
 
+	from Screens.ChoiceBox import ChoiceBox
 	session.openWithCallback(execute, ChoiceBox,
 		title=_("The following files were found..."),
 		list=list)
 
 
-def scan(session):
+def scan(session, parent=None):
+	global parentScreen
+	parentScreen = parent
 	from Screens.ChoiceBox import ChoiceBox
-	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if access(r.mountpoint, F_OK | R_OK)]
+	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if os.access(r.mountpoint, os.F_OK | os.R_OK)]
 	parts.append((_("Memory") + "\t/tmp", "/tmp", session))
 	session.openWithCallback(mountpoint_choosen, ChoiceBox, title=_("Please select medium to be scanned"), list=parts)
 
@@ -64,15 +71,15 @@ def menuHook(menuid):
 	if menuid != "mainmenu":
 		return []
 	from Tools.BoundFunction import boundFunction
-	return [("%s (files)" % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
+	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
 
 
 global_session = None
 
 
 def partitionListChanged(action, device):
-	if Screens.InfoBar.InfoBar.instance:
-		if Screens.InfoBar.InfoBar.instance.execing:
+	if InfoBar.instance:
+		if InfoBar.instance.execing:
 			if action == 'add' and device.is_hotplug:
 				#print "mountpoint", device.mountpoint
 				#print "description", device.description
@@ -98,75 +105,10 @@ def autostart(reason, **kwargs):
 		global_session = None
 
 
-def movielist_open(list, session, **kwargs):
-	from Components.config import config
-	if not list:
-		# sanity
-		return
-	from enigma import eServiceReference
-
-	import Screens.InfoBar
-	f = list[0]
-	if f.mimetype == "video/MP2T":
-		stype = 1
-	else:
-		stype = 4097
-	if Screens.InfoBar.InfoBar.instance:
-		path = os_path.split(f.path)[0]
-		if not path.endswith('/'):
-			path += '/'
-		config.movielist.last_videodir.value = path
-		try:
-			Screens.InfoBar.InfoBar.instance.showMovies(eServiceReference(stype, 0, f.path))
-		except:
-			pass
-
-
-def filescan(**kwargs):
-	from Components.Scanner import Scanner, ScanPath
-	return [
-		Scanner(mimetypes=["video/mpeg", "video/MP2T", "video/x-msvideo", "video/mkv", "video/avi"],
-			paths_to_scan=[
-					ScanPath(path="", with_subdirs=False),
-					ScanPath(path="movie", with_subdirs=False),
-				],
-			name="Movie",
-			description=_("View Movies..."),
-			openfnc=movielist_open,
-		),
-		Scanner(mimetypes=["video/x-vcd"],
-			paths_to_scan=[
-					ScanPath(path="mpegav", with_subdirs=False),
-					ScanPath(path="MPEGAV", with_subdirs=False),
-				],
-			name="Video CD",
-			description=_("View Video CD..."),
-			openfnc=movielist_open,
-		),
-		Scanner(mimetypes=["audio/mpeg", "audio/x-wav", "application/ogg", "audio/x-flac"],
-			paths_to_scan=[
-					ScanPath(path="", with_subdirs=False),
-				],
-			name="Music",
-			description=_("Play Music..."),
-			openfnc=movielist_open,
-		),
-		Scanner(mimetypes=["audio/x-cda"],
-			paths_to_scan=[
-					ScanPath(path="", with_subdirs=False),
-				],
-			name="Audio-CD",
-			description=_("Play Audio-CD..."),
-			openfnc=movielist_open,
-		),
-		]
-
-
 def Plugins(**kwargs):
 	return [
-		PluginDescriptor(name="Media scanner", description=_("Scan files..."), where=PluginDescriptor.WHERE_PLUGINMENU, icon="MediaScanner.png", needsRestart=True, fnc=main),
+		PluginDescriptor(name=_("Media scanner"), description=_("Scan files..."), where=PluginDescriptor.WHERE_PLUGINMENU, icon="MediaScanner.png", needsRestart=True, fnc=main),
 #		PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc=menuHook),
-		PluginDescriptor(name=_("Media scanner"), where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan),
 		PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, needsRestart=True, fnc=sessionstart),
 		PluginDescriptor(where=PluginDescriptor.WHERE_AUTOSTART, needsRestart=True, fnc=autostart)
 		]
