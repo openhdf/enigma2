@@ -4,7 +4,7 @@ from Components.Label import Label
 from Components.Pixmap import MultiPixmap
 from Screens.MessageBox import MessageBox
 # workaround for required config entry dependencies.
-from Screens.MovieSelection import MovieSelection, moveServiceFiles, playlist
+import Screens.MovieSelection
 from Screens.Screen import Screen
 from Tools.Profile import profile
 
@@ -507,6 +507,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBar
 
 	def __onClose(self):
 		MoviePlayer.instance = None
+		from Screens.MovieSelection import playlist
 		del playlist[:]
 		Screens.InfoBar.InfoBar.instance.callServiceStarted()
 		self.session.nav.playService(self.lastservice)
