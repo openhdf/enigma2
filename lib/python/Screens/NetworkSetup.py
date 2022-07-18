@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 
 from glob import glob
+from os.path import exists
 from os import path as os_path
 from os import remove, rename, system, unlink
 from random import Random
@@ -166,11 +167,11 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 			self["introduction"].setText(self.edittext)
 			self["DefaultInterfaceAction"].setEnabled(False)
 
-		if num_configured_if < 2 and os_path.exists("/etc/default_gw"):
+		if num_configured_if < 2 and exists("/etc/default_gw"):
 			unlink("/etc/default_gw")
 
-		if os_path.exists("/etc/default_gw"):
-			fp = open('/etc/default_gw', 'r')
+		if exists("/etc/default_gw"):
+			fp = open("/etc/default_gw", "r")
 			result = fp.read()
 			fp.close()
 			default_gw = result
@@ -180,13 +181,13 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 				default_int = True
 			else:
 				default_int = False
-			if iNetwork.getAdapterAttribute(x[1], 'up') == True:
+			if iNetwork.getAdapterAttribute(x[1], "up") == True:
 				active_int = True
 			else:
 				active_int = False
 			self.list.append(self.buildInterfaceList(x[1], _(x[0]), default_int, active_int))
 
-		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+		if exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			self["key_blue"].setText(_("Network wizard"))
 		self["list"].setList(self.list)
 
@@ -242,7 +243,7 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 			self.session.open(MessageBox, _("Finished configuring your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
 
 	def openNetworkWizard(self):
-		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+		if exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			try:
 				from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 			except ImportError:
@@ -551,7 +552,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		if iNetwork.isWirelessInterface(self.iface):
 			driver = iNetwork.detectWlanModule(self.iface)
-			if driver in ('brcm-wl', ):
+			if driver in ("brcm-wl", ):
 				from Plugins.SystemPlugins.WirelessLan.Wlan import brcmWLConfig
 				self.ws = brcmWLConfig()
 			else:
@@ -561,7 +562,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.encryptionlist.append(("Unencrypted", _("Unencrypted")))
 			self.encryptionlist.append(("WEP", _("WEP")))
 			self.encryptionlist.append(("WPA", _("WPA")))
-			if not os_path.exists("/tmp/bcm/" + self.iface):
+			if not exists("/tmp/bcm/%s" % self.iface):
 				self.encryptionlist.append(("WPA/WPA2", _("WPA or WPA2")))
 			self.encryptionlist.append(("WPA2", _("WPA2")))
 			self.weplist = []
@@ -570,15 +571,15 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 			self.wsconfig = self.ws.loadConfig(self.iface)
 			if self.essid is None:
-				self.essid = self.wsconfig['ssid']
+				self.essid = self.wsconfig["ssid"]
 
 			if iNetwork.canWakeOnWiFi(self.iface):
 				iface_file = "/etc/network/interfaces"
 				default_v = False
-				if os_path.exists(iface_file):
-					with open(iface_file, 'r') as f:
+				if exists(iface_file):
+					with open(iface_file, "r") as f:
 						output = f.read()
-					search_str = "#only WakeOnWiFi " + self.iface
+					search_str = "#only WakeOnWiFi %s" % self.iface
 					if output.find(search_str) >= 0:
 						default_v = True
 				self.onlyWakeOnWiFi = NoSave(ConfigYesNo(default=default_v))
@@ -654,7 +655,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 						self.extended = callFnc
 						if "configStrings" in p.fnc:
 							self.configStrings = p.fnc["configStrings"]
-						isExistBcmWifi = os.path.exists("/tmp/bcm/" + self.iface)
+						isExistBcmWifi = exists("/tmp/bcm/%s" % self.iface)
 						if not isExistBcmWifi:
 							self.hiddenSSID = getConfigListEntry(_("Hidden network"), config.plugins.wlan.hiddenessid)
 							self.list.append(self.hiddenSSID)
@@ -926,16 +927,19 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def queryWirelessDevice(self, iface):
 		try:
+			from wifi.scan import Cell
 			import errno
-
-			from pythonwifi.iwlibs import Wireless
 		except ImportError:
 			return False
 		else:
+			from wifi.exceptions import InterfaceError
 			try:
-				ifobj = Wireless(iface) # a Wireless NIC Object
-				wlanresponse = ifobj.getAPaddr()
-			except IOError as xxx_todo_changeme:
+				system("ifconfig %s up" % self.iface)
+				wlanresponse = list(Cell.all(iface))
+			except InterfaceError as ie:
+				print("[NetworkSetup] queryWirelessDevice InterfaceError: %s" % str(ie))
+				return False
+			except OSError as xxx_todo_changeme:
 				(error_no, error_str) = xxx_todo_changeme.args
 				if error_no in (errno.EOPNOTSUPP, errno.ENODEV, errno.EPERM):
 					return False
