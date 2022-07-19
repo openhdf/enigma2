@@ -13,14 +13,14 @@ from Tools.Profile import profile, profile_final
 
 profile("PYTHON_START")
 
+# Don't remove this line. It may seem to do nothing, but if removed,
+# it will break output redirection for crash logs.
+import Tools.RedirectOutput
+
 import eBaseImpl
 import eConsoleImpl
 import enigma
 from boxbranding import getBoxType, getBrandOEM, getMachineBuild
-
-# Don't remove this line. It may seem to do nothing, but if removed,
-# it will break output redirection for crash logs.
-import Tools.RedirectOutput
 
 enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
