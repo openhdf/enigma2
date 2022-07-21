@@ -1,9 +1,5 @@
-from __future__ import absolute_import
-
-from sys import stderr, stdout, version_info
-
+import sys
 from enigma import ePythonOutput
-from six import ensure_str
 
 
 class EnigmaLog:
@@ -12,12 +8,12 @@ class EnigmaLog:
 		self.line = ""
 
 	def write(self, data):
-		if version_info[0] >= 3:
+		if sys.version_info[0] >= 3:
 			if isinstance(data, bytes):
-				data = ensure_str(data, errors="ignore")
+				data = data.decode(encoding="UTF-8", errors="ignore")
 		else:
 			if isinstance(data, unicode):
-				data = ensure_str(data, errors="ignore")
+				data = data.encode(encoding="UTF-8", errors="ignore")
 		self.line += data
 		if "\n" in data:
 			ePythonOutput(self.line, self.level)
@@ -40,5 +36,5 @@ class EnigmaLogFatal(EnigmaLog):
 		EnigmaLog.__init__(self, 1)  # lvlError = 1
 
 
-stdout = EnigmaLogDebug()
-stderr = EnigmaLogFatal()
+sys.stdout = EnigmaLogDebug()
+sys.stderr = EnigmaLogFatal()
