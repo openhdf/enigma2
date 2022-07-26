@@ -31,14 +31,14 @@ def filescan_open(list, session, **kwargs):
 
 
 def filescan(**kwargs):
-	import os
+	from os.path import exists
 
 	from Components.Scanner import Scanner, ScanPath
 
 	# Overwrite checkFile to only detect local
 	class LocalScanner(Scanner):
 		def checkFile(self, _file):
-			return os.path.exists(_file.path)
+			return exists(_file.path)
 
 	return \
 		LocalScanner(mimetypes=["image/jpeg", "image/png", "image/gif", "image/bmp"],
