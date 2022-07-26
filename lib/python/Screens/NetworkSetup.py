@@ -2,7 +2,6 @@ from __future__ import absolute_import
 
 from glob import glob
 from os.path import exists
-from os import path as os_path
 from os import remove, rename, system, unlink
 from random import Random
 from string import digits, ascii_letters
@@ -196,7 +195,7 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 		num_if = len(self.list)
 		old_default_gw = None
 		num_configured_if = len(iNetwork.getConfiguredAdapters())
-		if os_path.exists("/etc/default_gw"):
+		if exists("/etc/default_gw"):
 			fp = open('/etc/default_gw', 'r')
 			old_default_gw = fp.read()
 			fp.close()
@@ -1094,7 +1093,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					self.extendedSetup = ('extendedSetup', menuEntryDescription, self.extended)
 					menu.append((menuEntryName, self.extendedSetup))
 
-		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+		if exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
 		# CHECK WHICH BOXES NOW SUPPORT MAC-CHANGE VIA GUI
 		if getBoxType() not in ('DUMMY',) and self.iface == 'eth0':
