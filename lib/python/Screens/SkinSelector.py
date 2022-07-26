@@ -250,6 +250,10 @@ class LcdSkinSelector(SkinSelector):
 						subdir = root[19:]
 						skinname = "%s/%s" % (subdir, x)
 						self.xmlList.append(skinname)
+					elif root is self.rootDir:
+						subdir = self.rootDir
+						skinname = "%s/%s" % (subdir, x)
+						self.xmlList.append(skinname)
 					else:
 						skinname = x
 						self.xmlList.append(skinname)
@@ -271,10 +275,7 @@ class LcdSkinSelector(SkinSelector):
 				if skin == DEFAULT_DISPLAY_SKIN:
 					_list = [default, default, _dir, skinFile, resolution, preview]
 				else:
-					if "lcd_skin" in skinPath:
-						_list = [skinFile.replace(".xml", "").replace("skin_display_", "").split("/")[2].replace("_", " ").capitalize(), "", _dir, skinPath, resolution, preview]
-					else:
-						_list = [skinFile.replace(".xml", "").split("/")[1].replace("_", " "), "", _dir, skinPath, resolution, preview]
+					_list = [skinFile.replace(".xml", "").replace("skin_display_", "").split("/")[-1].replace("_", " ").capitalize(), "", _dir, skinPath, resolution, preview]
 				if skin == self.current:
 					_list[1] = current
 				elif skin == self.config.value:
