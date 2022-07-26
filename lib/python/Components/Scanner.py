@@ -4,7 +4,8 @@ from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 
-import os
+from os import walk
+from os.path import join
 from mimetypes import guess_type, add_type
 
 add_type("audio/dts", ".dts")
@@ -190,11 +191,11 @@ def scanDevice(mountpoint):
 
 	# now scan the paths
 	for p in paths_to_scan:
-		path = os.path.join(mountpoint, p.path)
+		path = join(mountpoint, p.path)
 
-		for root, dirs, files in os.walk(path):
+		for root, dirs, files in walk(path):
 			for f in files:
-				path = os.path.join(root, f)
+				path = join(root, f)
 				if (is_cdrom and f.endswith(".wav") and f.startswith("track")) or f == "cdplaylist.cdpls":
 					sfile = ScanFile(path, "audio/x-cda")
 				else:
@@ -227,9 +228,9 @@ def openList(session, files):
 
 	res = {}
 
-	for file in files:
+	for _file in files:
 		for s in scanner:
-			s.handleFile(res, file)
+			s.handleFile(res, _file)
 
 	choices = [(r.description, r, res[r], session) for r in res]
 	Len = len(choices)

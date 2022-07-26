@@ -1,7 +1,7 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.Scanner import scanDevice
 from Screens.InfoBar import InfoBar
-import os
+from os import access, F_OK, R_OK
 
 parentScreen = None
 
@@ -33,7 +33,7 @@ def mountpoint_choosen(option):
 
 	if not list:
 		from Screens.MessageBox import MessageBox
-		if os.access(mountpoint, os.F_OK | os.R_OK):
+		if access(mountpoint, F_OK | R_OK):
 			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_INFO, simple=False, timeout=5)
 		#else:
 		#	print "ignore", mountpoint, "because its not accessible"
@@ -51,7 +51,7 @@ def scan(session, parent=None):
 	global parentScreen
 	parentScreen = parent
 	from Screens.ChoiceBox import ChoiceBox
-	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if os.access(r.mountpoint, os.F_OK | os.R_OK)]
+	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if access(r.mountpoint, F_OK | R_OK)]
 	parts.append((_("Memory") + "\t/tmp", "/tmp", session))
 	session.openWithCallback(mountpoint_choosen, ChoiceBox, title=_("Please select medium to be scanned"), list=parts)
 
