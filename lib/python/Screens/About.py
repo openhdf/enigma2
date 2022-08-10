@@ -275,7 +275,10 @@ class About(Screen):
 			f.close()
 		if SystemInfo["HasRootSubdir"]:
 			image = find_rootfssubdir("STARTUP")
-			AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image[-1:] + bootname + "\n"
+			try:
+				AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image[-1:] + bootname + "\n"
+			except:
+				AboutText += _("Selected Image:\t\tnot available") + "\n"
 		elif getMachineBuild() in ('gbmv200', 'cc1', 'sf8008', 'ustym4kpro', 'beyonwizv2', "viper4k"):
 			if os_path.exists('/boot/STARTUP'):
 				f = open('/boot/STARTUP', 'r')
