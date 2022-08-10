@@ -306,22 +306,29 @@ class EPGList(GUIComponent):
 		global listscreen
 		if self.listHeight > 0:
 			if listscreen:
-				itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page_listscreen.value
+				itemHeight = self.listHeight // config.misc.graph_mepg.items_per_page_listscreen.getValue()
 			else:
-				itemHeight = self.listHeight / config.misc.graph_mepg.items_per_page.value
+				itemHeight = self.listHeight // config.misc.graph_mepg.items_per_page.getValue()
 		else:
 			itemHeight = 54 # some default (270/5)
 		if listscreen:
-			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page_listscreen.value))
+			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page_listscreen.getValue()))
 		else:
-			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.value))
+			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.getValue()))
 		self.l.setItemHeight(itemHeight)
 
-		self.nowEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'))
-		self.othEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherEvent.png'))
-		self.selEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'))
-		self.recEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/RecordingEvent.png'))
-		self.curSerPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentService.png'))
+		self.nowEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'))
+		self.othEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherEvent.png'))
+		self.selEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'))
+		self.recEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/RecordingEvent.png'))
+		self.curSerPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentService.png'))
+
+		# if no background png's are present at all, use the solid background borders for further calculations
+		if (self.nowEvPix, self.othEvPix, self.selEvPix, self.recEvPix, self.curSerPix) == (None, None, None, None, None):
+			self.eventBorderHorWidth = self.eventBorderWidth
+			self.eventBorderVerWidth = self.eventBorderWidth
+			self.serviceBorderHorWidth = self.serviceBorderWidth
+			self.serviceBorderVerWidth = self.serviceBorderWidth
 
 	def setEventFontsize(self):
 		self.l.setFont(1, gFont(self.entryFontName, self.entryFontSize + config.misc.graph_mepg.ev_fontsize.value))
