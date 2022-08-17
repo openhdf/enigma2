@@ -1131,7 +1131,7 @@ class NumberZap(Screen):
 			if config.usage.numzaptimeoutmode.value == "standard":
 				self.Timer.start(1000, True)
 			else:
-				self.Timer.start(config.usage.numzaptimeout2.value, True)
+				self.Timer.start(int(config.usage.numzaptimeout2.value), True)
 		self.numberString += str(number)
 		self["number"].setText(self.numberString)
 		self["number_summary"].setText(self.numberString)
@@ -1196,7 +1196,7 @@ class NumberZap(Screen):
 			if config.usage.numzaptimeoutmode.value == "standard":
 				self.Timer.start(3000, True)
 			else:
-				self.Timer.start(config.usage.numzaptimeout1.value, True)
+				self.Timer.start(int(config.usage.numzaptimeout1.value), True)
 
 
 class InfoBarNumberZap:
@@ -1233,6 +1233,18 @@ class InfoBarNumberZap:
 		# 	InfoBarTimeshift.saveTimeshiftActions(self)
 		# 	return
 
+		seekable = self.getSeek()
+        if seekable:
+			length = seekable.getLength() or (None, 0)
+			if length[1] > 0:
+				key = int(number)
+				time = (-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
+					-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
+					-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key - 1]
+
+				time = time * 90000
+				seekable.seekRelative(time < 0 and -1 or 1, abs(time))
+				return
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
