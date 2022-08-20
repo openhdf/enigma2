@@ -46,7 +46,7 @@ def Plugins(**kwargs):
 
 
 def menu(menuid, **kwargs):
-	if menuid == "gui_menu" and not config.skin.primary_skin.value == "XionHDF/skin.MySkin.xml" and not config.skin.primary_skin.value == "XionHDF/skin.xml" and not config.skin.primary_skin.value == "SevenHD/skin.xml" and not config.skin.primary_skin.value == "KravenVB/skin.xml":
+	if menuid == "gui_menu" and not config.skin.primary_skin.value == "XionHDF/skin.MySkin.xml" and not config.skin.primary_skin.value == "XionHDF/skin.xml" and not config.skin.primary_skin.value == "SevenHD/skin.xml" and not config.skin.primary_skin.value == "KravenVB/skin.xml" and not config.skin.primary_skin.value == "PlatoonHD/skin.xml":
 		return [(_("Setup - %s") % cur_skin, main, "atilehd_setup", None)]
 	else:
 		pass
