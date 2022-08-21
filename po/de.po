@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-14 22:48+0200\n"
-"PO-Revision-Date: 2022-03-04 06:33+0100\n"
+"PO-Revision-Date: 2022-08-21 07:19+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3844,6 +3844,9 @@ msgstr "Wiedergabe fortsetzen"
 
 msgid "Continue playing"
 msgstr "Abspielen fortsetzen"
+
+msgid "Continue in background"
+msgstr "Weiter im Hintergrund"
 
 msgid "Continues"
 msgstr "Endlos"
