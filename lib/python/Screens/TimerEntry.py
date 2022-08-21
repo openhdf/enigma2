@@ -22,6 +22,7 @@ from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import defaultMoviePath
 from RecordTimer import AFTEREVENT
+import Screens.ChannelSelection
 from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.MessageBox import MessageBox
@@ -378,7 +379,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		if cur == self.channelEntry:
 			self.session.openWithCallback(
 				self.finishedChannelSelection,
-				ChannelSelection.SimpleChannelSelection,
+				Screens.ChannelSelection.SimpleChannelSelection,
 				_("Select channel to record from"),
 				currentBouquet=True
 			)
@@ -390,11 +391,11 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.timerentry_dirname.value,
 				minFree=100 # We require at least 100MB free space
 			)
-		elif getPreferredTagEditor() and cur == self.tagsSet:
+		elif cur == self.tagsSet:
 			self.session.openWithCallback(
 				self.tagEditFinished,
-				getPreferredTagEditor(),
-				self.timerentry_tags
+				TagEditor,
+				tags=self.timerentry_tags
 			)
 		else:
 			self.keyGo()
