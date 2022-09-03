@@ -16,7 +16,7 @@ eDVBServiceFCCPlay::~eDVBServiceFCCPlay()
 
 void eDVBServiceFCCPlay::serviceEvent(int event)
 {
-	if (!m_is_primary) // PIP mode
+	if (!m_is_primary) // PiP mode
 	{
 		eDVBServicePlay::serviceEvent(event);
 		return;
@@ -107,10 +107,12 @@ void eDVBServiceFCCPlay::serviceEvent(int event)
 
 RESULT eDVBServiceFCCPlay::start()
 {
-	if (!m_is_primary) // PIP mode
+	RESULT ret = 0;
+
+	if (!m_is_primary) // PiP mode
 	{
-		eDVBServicePlay::start();
-		return 0;
+		ret = eDVBServicePlay::start();
+		return ret;
 	}
 
 	if (m_fcc_flag & fcc_start) // already started
@@ -124,9 +126,9 @@ RESULT eDVBServiceFCCPlay::start()
 
 		/* disable CA Interfaces on fcc_mode_preparing */
 		m_service_handler.setCaDisable(true);
-		eDVBServicePlay::start();
+		ret = eDVBServicePlay::start();
 	}
-	return 0;
+	return ret;
 }
 
 void eDVBServiceFCCPlay::pushbackFCCEvents(int event)
@@ -166,7 +168,7 @@ void eDVBServiceFCCPlay::changeFCCMode()
 		eDebug("[eDVBServiceFCCPlay] changeFCCMode [%s] disable FCC decoding.", m_reference.toString().c_str());
 		m_fcc_mode = fcc_mode_preparing;
 
-		/* stop timeshift */
+		/* stop time shift */
 		eDVBServicePlay::stopTimeshift();
 
 		/* remove CaHandler */
@@ -473,7 +475,7 @@ void eDVBServiceFCCPlay::switchToLive()
 
 	m_is_paused = m_skipmode = m_fastforward = m_slowmotion = 0; /* not supported in live mode */
 
-	/* free the timeshift service handler, we need the resources */
+	/* free the time shift service handler, we need the resources */
 	m_service_handler_timeshift.free();
 
 	m_fcc_flag &=~fcc_ready;
