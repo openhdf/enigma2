@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--suppress XmlUnboundNsPrefix, XmlUnboundNsPrefix -->
+<skin>
+<!-- standby -->
+	<screen name="StandbySummary" position="0,0" size="128,32">
+		<widget source="global.CurrentTime" render="Label" position="fill" size="120,40" font="FdLcD;38" halign="center" noWrap="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+	</screen>
+</skin>

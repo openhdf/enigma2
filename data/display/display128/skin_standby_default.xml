@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--suppress XmlUnboundNsPrefix, XmlUnboundNsPrefix -->
+<skin>
+<!-- standby -->
+	<screen name="StandbySummary" position="0,0" size="128,32">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="128,16" font="FdLcD;12" halign="left" noWrap="1">
+			<convert type="ClockToText">Format:%a  %e %b  %Y</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="0,16" size="64,16" font="FdLcD;10" halign="left" noWrap="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" pixmap="rec.png"  position="110,22" size="18,10">
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		</screen>
+</skin>

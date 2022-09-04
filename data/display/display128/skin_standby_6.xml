@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--  Skin: LCD from Magic by MiLo - Modified by Littlesat -->
+<skin>
+<!-- standby -->
+	<screen name="StandbySummary" position="fill">
+		<panel position="fill" layout="stack">
+			<widget source="global.CurrentTime" render="Label" position="fill" font="Huge" halign="center" valign="center" noWrap="1">
+				<convert type="ClockToText"/>
+			</widget>
+			<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="bottom" size="16,9">
+				<convert type="ConditionalShowHide"/>
+			</widget>
+		</panel>
+	</screen>
+</skin>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--suppress XmlUnboundNsPrefix, XmlUnboundNsPrefix -->
+<skin>
+<!-- standby -->
+	<screen name="StandbySummary" position="0,0" size="128,32">
+		<widget source="session.CurrentService" position="0,0" zPosition="1" size="34,16" render="Label" font="FdLcD;25" halign="center" valign="center" noWrap="1">
+			<convert type="XionHDFWeather">Day_0,DayTemp</convert>
+		</widget>
+		<widget source="session.CurrentService" position="40,0" zPosition="1" size="40,40" render="Label" font="Meteo;30" halign="center" valign="center" noWrap="1">
+			<convert type="XionHDFWeather">Day_0,MeteoFont</convert>
+		</widget>
+		<widget source="session.CurrentService" position="80,0" zPosition="1" size="40,16" render="Label" font="FdLcD;25" halign="right" valign="center" noWrap="1">
+			<convert type="XionHDFWeather">Day_0,MaxTemp</convert>
+		</widget>
+	</screen>
+</skin>
