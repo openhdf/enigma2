@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-18 20:34+0100\n"
-"PO-Revision-Date: 2022-09-05 17:12+0200\n"
+"PO-Revision-Date: 2022-09-10 08:19+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -14289,7 +14289,10 @@ msgstr "Zur Wiederherstellung des Images:"
 
 #, python-format
 msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
-msgstr "Um den gewählten Skin '%s' zu speichern und auszuwählen, muss das GUI neugestartet werden. Soll das GUI jetzt neugestartet werden?"
+msgstr ""
+"Um den gewählten Skin '%s' zu aktivieren,\n"
+"muss Enigma2 neugestartet werden.\n"
+"Soll Enigma2 jetzt neugestartet werden?"
 
 #, python-format
 msgid ""
