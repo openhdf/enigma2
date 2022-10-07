@@ -664,6 +664,8 @@
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
 		<key id="KEY_PREVIOUS" mapto="moveUp" flags="m"/>
 		<key id="KEY_NEXT" mapto="moveDown" flags="m"/>
+		<key id="KEY_PREVIOUS" mapto="shiftUp" flags="m" />
+		<key id="KEY_NEXT" mapto="shiftDown" flags="m" />
 	</map>
 
 	<map context="ColorActions">
