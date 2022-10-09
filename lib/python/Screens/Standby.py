@@ -96,7 +96,7 @@ class Standby2(Screen):
 	def Power(self):
 		print "[Standby] leave standby"
 		SystemInfo["StandbyState"] = False
-		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'ustym4kpro', 'beyonwizv2', 'viper4k')):
+		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sfx6008')):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("on")
 			except:
@@ -220,7 +220,7 @@ class Standby2(Screen):
 		else:
 			self.avswitch.setInput("AUX")
 
-		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'ustym4kpro', 'beyonwizv2', 'viper4k')):
+		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sfx6008')):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("off")
 			except:
