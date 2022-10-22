@@ -21,7 +21,7 @@ from Screens.Screen import Screen
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 
-updateversion = "11.07.2019"
+updateversion = "22.10.2022"
 
 if uname()[4] == "aarch64":
 	pathLen = 26
@@ -176,6 +176,8 @@ def getHotkeys():
 	(_("MOUSE long"), "mouse_long", ""),
 	(_("VOD"), "vod", "Infobar/seekFwdVod"),
 	(_("VOD long"), "vod_long", ""),
+	(_("Youtube"), "youtube", ""),
+	(_("Youtube long"), "youtube_long", ""),
 	(_("Zoom"), "ZoomInOut", "InfobarGenerics/ZoomInOut"), ]
 
 
