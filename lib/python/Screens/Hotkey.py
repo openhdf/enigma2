@@ -16,7 +16,7 @@ from Components.Label import Label
 from boxbranding import getHaveHDMIinHD, getHaveHDMIinFHD, getHaveCI
 import os
 
-updateversion = "09.01.2022"
+updateversion = "22.10.2022"
 
 if os.uname()[4] == "aarch64":
 	pathLen = 26
