@@ -4,10 +4,8 @@ from os import path as os_path
 from os import system
 from time import time
 
-from boxbranding import (getBrandOEM, getMachineBrand, getMachineBuild,
-                         getMachineName)
-from enigma import (eDVBLocalTimeHandler, eDVBVolumecontrol, eServiceReference,
-                    eTimer)
+from boxbranding import (getBrandOEM, getMachineBrand, getMachineBuild, getMachineName)
+from enigma import (eDVBLocalTimeHandler, eDVBVolumecontrol, eStreamServer, eServiceReference, eTimer)
 
 import Screens.InfoBar
 from Components.ActionMap import ActionMap
@@ -16,8 +14,10 @@ from Components.config import config
 from Components.Harddisk import harddiskmanager
 from Components.RecordingConfig import recType
 from Components.SystemInfo import SystemInfo
+from Components.Sources.StreamService import StreamServiceList
 from GlobalActions import globalActionMap
 from Screens.Screen import Screen
+from Tools.Directories import mediaFilesInUse
 from Tools import Notifications
 
 inStandby = None
@@ -355,8 +355,16 @@ class TryQuitMainloop(MessageBox):
 			reason = _("You seem to be in timeshift!") + '\n'
 			default_yes = True
 			timeout = 30
-		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+		elif recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
+			default_yes = False
+			timeout = 30
+		elif eStreamServer.getInstance().getConnectedClients() or StreamServiceList:
+			reason = _("Client is streaming from this box! ") + '\n'
+			default_yes = False
+			timeout = 30
+		elif mediaFilesInUse(session) and retvalue in (1, 2, 3, 4, 42, 44):
+			reason = _("A file from media is in use! ") + '\n'
 			default_yes = False
 			timeout = 30
 

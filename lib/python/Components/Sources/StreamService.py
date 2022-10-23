@@ -5,13 +5,14 @@ from enigma import eServiceReference, pNavigation
 from Components.Element import cached
 from Components.Sources.Source import Source
 
+StreamServiceList = []
 
 class StreamService(Source):
 	def __init__(self, navcore):
 		Source.__init__(self)
+		self.navcore = navcore
 		self.ref = None
 		self.__service = None
-		self.navcore = navcore
 
 	def serviceEvent(self, event):
 		pass
@@ -44,6 +45,8 @@ class StreamService(Source):
 			self.__service = self.navcore.recordService(self.ref)
 		self.navcore.record_event.append(self.recordEvent)
 		if self.__service is not None:
+			if self.__service.__deref__() not in StreamServiceList:
+				StreamServiceList.append(self.__service.__deref__())
 			self.__service.prepareStreaming()
 			self.__service.start()
 
@@ -51,5 +54,8 @@ class StreamService(Source):
 		print("StreamService execEnd", self.ref.toString())
 		self.navcore.record_event.remove(self.recordEvent)
 		if self.__service is not None:
+			if self.__service.__deref__() in StreamServiceList:
+				StreamServiceList.remove(self.__service.__deref__())
 			self.navcore.stopRecordService(self.__service)
+			self.ref = None
 			self.__service = None
