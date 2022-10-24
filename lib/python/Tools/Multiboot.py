@@ -36,7 +36,14 @@ def getparam(line, param):
 
 def getMultibootslots():
 	bootslots = {}
+	mode12found = False
 	if SystemInfo["MBbootdevice"]:
+		for _file in glob(os_path.join(Imagemount, 'STARTUP_*')):
+			if 'MODE_' in _file:
+				mode12found = True
+				slotnumber = _file.rsplit('_', 3)[1]
+			else:
+				slotnumber = _file.rsplit('_', 1)[1]
 		if not os_path.isdir(Imagemount):
 			mkdir(Imagemount)
 		Console().ePopen("/bin/mount %s %s" % (SystemInfo["MBbootdevice"], Imagemount))
@@ -52,14 +59,17 @@ def getMultibootslots():
 					if "root=" in line:
 						line = line.rstrip("\n")
 						device = getparam(line, "root")
-						if os_path.exists(device):
+						if os_path.exists(device) or device == 'ubi0:ubifs':
 							slot["device"] = device
 							slot["startupfile"] = os_path.basename(_file)
 							if "sda" in line:
 								slot["kernel"] = "/dev/sda%s" % line.split("sda", 1)[1].split(" ", 1)[0]
 								slot["rootsubdir"] = None
 							else:
-								slot["kernel"] = "%sp%s" % (device.split("p")[0], int(device.split("p")[1]) - 1)
+								try:
+									slot["kernel"] = "%sp%s" % (device.split("p")[0], int(device.split("p")[1]) - 1)
+								except:
+									pass
 							if "rootsubdir" in line:
 								SystemInfo["HasRootSubdir"] = True
 								print("[multiboot] [getMultibootslots] HasRootSubdir is set to:%s" % SystemInfo["HasRootSubdir"])
@@ -73,6 +83,11 @@ def getMultibootslots():
 		Console().ePopen("umount %s" % Imagemount)
 		if not os_path.ismount(Imagemount):
 			rmdir(Imagemount)
+		if not mode12found and SystemInfo["canMode12"]:
+			#the boot device has ancient content and does not contain the correct STARTUP files
+			for slot in range(1, 5):
+				bootslots[slot] = {'device': '/dev/mmcblk0p%s' % (slot * 2 + 1), 'startupfile': None}
+	print('[Multiboot] Bootslots found:', bootslots)
 	return bootslots
 
 
@@ -142,6 +157,8 @@ def GetBoxName():
 		box = "sf8008"
 	elif box.startswith('twinboxlcdci'):
 		box = "twinboxlcd"
+	elif box == "sfx6018":
+		box = "sfx6008"
 	return box
 
 
@@ -167,7 +184,10 @@ class GetImagelist():
 			self.container.ePopen("umount %s" % Imagemount, self.appClosed)
 		else:
 			self.slot = self.slots.pop(0)
-			self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imagemount), self.appClosed)
+			if SystemInfo["canMultiBoot"][self.slot]['device'] == 'ubi0:ubifs':
+				self.container.ePopen("mount -t ubifs %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imagemount), self.appClosed)
+			else:
+				self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imagemount), self.appClosed)
 
 	def appClosed(self, data="", retval=0, extra_args=None):
 		BuildVersion = "  "
@@ -340,7 +360,11 @@ class EmptySlot():
 		if self.phase == self.UNMOUNT:
 			self.container.ePopen("umount %s" % Imagemount, self.appClosed)
 		else:
-			self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imagemount), self.appClosed)
+			if SystemInfo["canMultiBoot"][self.slot]['device'] == 'ubi0:ubifs':
+				self.container.ePopen("mount -t ubifs %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imagemount), self.appClosed)
+			else:
+				self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imagemount), self.appClosed)
+
 
 	def appClosed(self, data="", retval=0, extra_args=None):
 		if retval == 0 and self.phase == self.MOUNT:
