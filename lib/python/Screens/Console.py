@@ -44,19 +44,26 @@ class Console(Screen):
 	def updateTitle(self):
 		self.setTitle(self.newtitle)
 
+	def doExec(self, cmd):
+		if isinstance(cmd, (list, tuple)):
+			return self.container.execute(cmd[0], *cmd)
+		else:
+			return self.container.execute(cmd)
+
 	def startRun(self):
 		self["text"].setText(_("Start Execution:") + "\n\n")
 		self["summary_description"].setText(_("Execution:"))
 		print("Console: executing in run", self.run, " the command:", self.cmdlist[self.run])
-		if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
+		if self.doExec(self.cmdlist[self.run]): #start of container application failed...
 			self.runFinished(-1) # so we must call runFinished manual
 
 	def runFinished(self, retval):
 		if retval:
 			self.errorOcurred = True
+			self.toggleScreenHide = True
 		self.run += 1
 		if self.run != len(self.cmdlist):
-			if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
+			if self.doExec(self.cmdlist[self.run]): #start of container application failed...
 				self.runFinished(-1) # so we must call runFinished manual
 		else:
 			lastpage = self["text"].isAtLastPage()

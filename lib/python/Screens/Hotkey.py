@@ -3,6 +3,7 @@ from __future__ import absolute_import
 from os import environ, listdir
 from os import path as os_path
 from os import pathsep, uname
+from os.path import isdir, isfile
 
 from boxbranding import getHaveCI, getHaveHDMIinFHD, getHaveHDMIinHD
 from enigma import eServiceReference
@@ -21,7 +22,7 @@ from Screens.Screen import Screen
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 
-updateversion = "22.10.2022"
+updateversion = "27.10.2022"
 
 if uname()[4] == "aarch64":
 	pathLen = 26
@@ -696,14 +697,14 @@ class InfoBarHotkey():
 					from Plugins.Extensions.PPanel.ppanel import PPanel
 					self.session.open(PPanel, name=selected[1] + ' PPanel', node=None, filename=ppanelFileName, deletenode=None)
 			elif selected[0] == "Shellscript":
-				command = '/usr/script/' + selected[1] + ".sh"
+				command = "/usr/scripts/%s.sh" % selected[1]
 				if os_path.isfile(command):
 					if ".hidden." in command:
 						from enigma import eConsoleAppContainer
 						eConsoleAppContainer().execute(command)
 					else:
 						from Screens.Console import Console
-						self.session.open(Console, selected[1] + " shellscript", command, closeOnSuccess=selected[1].startswith('!'), showStartStopText=False)
+						self.session.open(Console, selected[1], [command])
 			elif selected[0] == "EMC":
 				try:
 					from Plugins.Extensions.EnhancedMovieCenter.plugin import showMoviesNew
