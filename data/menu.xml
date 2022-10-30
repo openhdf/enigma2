@@ -258,7 +258,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 				<item weight="35" text="Satfinder" entryID="satfinder" requires="Satfinder"><plugin system="Satfinder" screen="Satfinder" /></item>
 				<!-- item weight="40" text="Remote Tuner Server Setup" entryID="netrts_setup"><screen module="NetworkSetup" screen="RemoteTunerServer"/></item -->
 			</menu>
-			<item weight="99" level="2" text="Software update" entryID="software_update"><screen module="SoftwareUpdate" screen="UpdatePlugin" /></item>
+			<!--item weight="99" level="2" text="Software update" entryID="software_update"><screen module="SoftwareUpdate" screen="UpdatePlugin" /></item-->
 		</menu>
 
 		<!-- Menu / Standby -->
