@@ -47,9 +47,9 @@ else
 	fi
 fi
 
-[ -L /usr/lib/libssl.so.0.9.8 ] || ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
+## [ -L /usr/lib/libssl.so.0.9.8 ] || ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
 
-[ -L /usr/lib/libcrypto.so.0.9.8 ] || ln -s /usr/lib/libcrypto.so.1.0.0 /usr/lib/libcrypto.so.0.9.8
+## [ -L /usr/lib/libcrypto.so.0.9.8 ] || ln -s /usr/lib/libcrypto.so.1.0.0 /usr/lib/libcrypto.so.0.9.8
 
 # check if /run directory exists
 [ -d /run ] || mkdir /run
