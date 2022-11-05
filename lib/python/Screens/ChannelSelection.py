@@ -15,6 +15,8 @@ from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredTimerPath
 from Screens.Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
+from Plugins.Plugin import PluginDescriptor
+from Components.PluginComponent import plugins
 from Tools.Profile import profile
 
 profile("ChannelSelection.py 1")
@@ -2232,6 +2234,17 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None):
 		self.curRoot = self.startRoot
 		nref = ref or self.getCurrentSelection()
+		wrappererror = None
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_ZAP):
+			(newurl, errormsg) = p(session=self.session, service=nref)
+			if errormsg:
+				wrappererror = _("Error getting link via %s\n%s") % (p.name, errormsg)
+				break
+			elif newurl:
+				nref.setAlternativeUrl(newurl)
+				break
+		if wrappererror:
+			Tools.Notifications.AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
