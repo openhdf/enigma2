@@ -62,7 +62,7 @@ from RecordTimer import TIMERTYPE
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
-from Tools import Notifications
+import Tools.Notifications
 from Tools.BoundFunction import boundFunction
 from Tools.ServiceReference import (service_types_radio_ref,
                                     service_types_tv_ref, serviceRefAppendPath)

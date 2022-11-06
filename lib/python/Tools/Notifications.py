@@ -1,4 +1,5 @@
 from __future__ import absolute_import
+from Screens.MessageBox import MessageBox
 
 notifications = []
 
@@ -36,6 +37,11 @@ def AddNotificationWithID(id, screen, *args, **kwargs):
 def AddNotificationWithIDCallback(fnc, id, screen, *args, **kwargs):
 	__AddNotification(fnc, screen, id, *args, **kwargs)
 
+def AddNotificationWithUniqueIDCallback(fnc, id, screen, *args, **kwargs):
+	for x in notifications:
+		if x[4] and x[4] == id:    # Already there...
+			return
+	__AddNotification(fnc, screen, id, *args, **kwargs)
 # we don't support notifications with callback and ID as this
 # would require manually calling the callback on cancelled popups.
 
@@ -54,7 +60,6 @@ def RemovePopup(id):
 			x[1].close()
 
 
-from Screens.MessageBox import MessageBox
 
 
 def AddPopup(text, type, timeout, id=None):
