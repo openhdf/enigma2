@@ -137,6 +137,7 @@
 		<item level="2" text="Enable installation of HDF default picons" description="Enable automatic installations of HDF default picons">config.usage.hdfpicon</item>
 		<item level="2" text="Enable streamlinkserver to play Youtube videos" description="Enable autostart of streamlinkserver to play youtube videos inside your channellist. This install streamlinksrv package and needs a reboot!">config.usage.streamlinkserver</item>
 		<item level="2" text="Enable installation of ServiceApp to support 5001 and 5002 streams" description="This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!">config.usage.serviceapp</item>
+		<item level="2" text="Enable installation of YTDL and YTDLP to support ytdl and ytdlp streams" description="This option install all wrapper for ytdl and ytdlp streams in servicelist.">config.usage.ytdlp</item>
 		<item level="1" text="Number of rows" description="This allows you change the number of rows shown.">config.usage.serviceitems_per_page</item>
 		<item level="1" text="Service number font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.servicenum_fontsize</item>
 		<item level="1" text="Service name font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.usage.servicename_fontsize</item>

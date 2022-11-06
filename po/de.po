@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-18 20:34+0100\n"
-"PO-Revision-Date: 2022-10-30 10:29+0100\n"
+"PO-Revision-Date: 2022-11-06 09:04+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -5002,6 +5002,12 @@ msgstr "Aktiviere Installation der HDF Default Picons"
 
 msgid "Enable installation of ServiceApp to support 5001 and 5002 streams"
 msgstr "Aktiviere die ServiceApp für 5001 und 5002 Streams"
+
+msgid "Enable installation of YTDL and YTDLP to support ytdl and ytdlp streams"
+msgstr "Aktiviere die Wrapper für YTDL und YTDLP Streams"
+
+msgid "This option install all wrapper for ytdl and ytdlp streams in servicelist."
+msgstr "Diese Option installiert die Wrapper für YTDL und YTDLP Streams in der Senderliste."
 
 msgid "Enable intro screen"
 msgstr "Begrüßungsbildschirm aktivieren"
