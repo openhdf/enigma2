@@ -607,6 +607,20 @@ def InitUsageConfig():
 	config.usage.cleanmemlite = ConfigYesNo(default=False)
 	config.usage.hdfpicon = ConfigYesNo(default=True)
 
+	config.usage.date = ConfigSubsection()
+	if config.osd.language.value == "de_DE":
+		config.usage.date.dayfull = ConfigSelection(default=_("%A %d.%m.%Y"), choices=choicelist)
+	else:
+		config.usage.date.dayfull = ConfigSelection(default=_("%A %-d %B %Y"), choices=choicelist)
+	config.usage.date.shortdayfull = ConfigText(default=_("%a %-d %B %Y"))
+	config.usage.date.daylong = ConfigText(default=_("%a %-d %b %Y"))
+	config.usage.date.dayshortfull = ConfigText(default=_("%A %-d %B"))
+	config.usage.date.dayshort = ConfigText(default=_("%a %-d %b"))
+	config.usage.date.daysmall = ConfigText(default=_("%a %-d"))
+	config.usage.date.full = ConfigText(default=_("%-d %B %Y"))
+	config.usage.date.long = ConfigText(default=_("%-d %b %Y"))
+	config.usage.date.short = ConfigText(default=_("%-d %b"))
+
 	def EpgSettingsChanged(configElement):
 		from enigma import eEPGCache
 		mask = 0xffffffff
