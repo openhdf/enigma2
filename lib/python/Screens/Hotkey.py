@@ -318,7 +318,7 @@ def getHotkeyFunctions():
 	if os.path.isdir("/usr/scripts"):
 		for x in [x for x in os.listdir("/usr/scripts") if x.endswith(".sh")]:
 			x = x[:-3]
-			hotkeyFunctions.append((_(" ") + " " + x, "Shellscript/" + x, "Shellscripts"))
+			hotkeyFunctions.append((x.replace("_", " ").replace(".hidden", ""), "Shellscript/" + x, "Shellscripts"))
 	return hotkeyFunctions
 
 
