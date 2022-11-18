@@ -2,6 +2,7 @@ installdir = $(datadir)/fonts
 
 dist_install_DATA = \
 	*.ttf \
+	*.ttc \
 	*.otf
 
 install-data-hook:
