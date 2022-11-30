@@ -20,9 +20,39 @@ if [ -e /proc/stb/info/boxtype ]; then
 	fi
 fi
 
+#check for installed vfdcontrol
+if grep ^"getBoxType = gbtrio4k" /etc/enigma2/boxinformations >/dev/null; then
+	echo "vfdcontrol default installed"
+	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
+		echo "vfdcontrol installed"
+	else
+		opkg remove --force-depends enigma2-plugin-systemplugins-vfdcontrol
+		opkg update
+		opkg install --force-reinstall enigma2-plugin-systemplugins-vfdcontrol
+	fi
+else
+	if grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
+		if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
+			echo "vfdcontrol installed"
+		else
+			opkg update
+			opkg install --force-reinstall enigma2-plugin-systemplugins-vfdcontrol
+		fi
+	fi
+	if ! grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
+		if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
+			opkg remove enigma2-plugin-systemplugins-vfdcontrol
+			rm -rf /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl
+		fi
+	fi
+fi
+
 [ -L /usr/lib/libssl.so.0.9.8 ] || ln -s /usr/lib/libssl.so.1.0.0 /usr/lib/libssl.so.0.9.8
 
 [ -L /usr/lib/libcrypto.so.0.9.8 ] || ln -s /usr/lib/libcrypto.so.1.0.0 /usr/lib/libcrypto.so.0.9.8
+
+# check if /run directory exists
+[ -d /run ] || mkdir /run
 
 # check if media/net directory exists
 [ -d /media/net ] || mkdir /media/net
@@ -33,6 +63,10 @@ chmod -R 755 /usr/scripts
 
 # check for settings files
 [ -f @sysconfdir@/enigma2/settings ] || cp @datadir@/enigma2/defaults/* @sysconfdir@/enigma2/
+
+# any debuglevel passed?
+DEBUG_LVL=${ENIGMA_DEBUG_LVL:-4}
+ENIGMA_DEBUG_TIME=${ENIGMA_DEBUG_TIME:-2}
 
 #check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
@@ -82,8 +116,10 @@ sysctl -p
 
 VERBOSE=''
 if [ "$(grep config.log.level /etc/enigma2/settings)" == "config.log.level=3" ]; then
-	VERBOSE='--verbose'
+	DEBUG_LVL='4'
 fi
+
+export LC_CTYPE="en_US.UTF-8"
 
 if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
 	DEBUG_LVL='4'
@@ -93,13 +129,18 @@ if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; t
 		RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
 	fi
 	LOGFOLDER="/home/root/logs/"
+	LOGFILE=${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
 	if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
 	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
 		LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
 	fi
-	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2 --debug-no-color &> ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+	ln -sf ${LOGFILE} ${LOGFOLDER}currlog
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_TIME=${ENIGMA_DEBUG_TIME} ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2 2>&1 | tee -a ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+	ret=${PIPESTATUS[0]}
+	ln -sf ${LOGFILE} ${LOGFOLDER}lastlog
 else
-	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2 --debug-no-color
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_TIME=${ENIGMA_DEBUG_TIME} ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2
+	ret=$?
 fi
 
 # enigma2 exit codes:
@@ -109,8 +150,6 @@ fi
 # 3 - restart enigma
 #
 # >128 signal
-
-ret=$?
 
 if [ "$ret" -ne "1" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
