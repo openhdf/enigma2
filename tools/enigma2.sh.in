@@ -81,9 +81,9 @@ if [ -e @libdir@/libpagecache.so ]; then
 fi
 
 #check for receiver specific passthrough helper lib
-if [ -e @libdir@/libpassthrough.so ]; then
-	LIBS="$LIBS @libdir@/libpassthrough.so"
-fi
+#if [ -e @libdir@/libpassthrough.so ]; then
+#	LIBS="$LIBS @libdir@/libpassthrough.so"
+#fi
 
 touch /etc/enigma2/settings
 
