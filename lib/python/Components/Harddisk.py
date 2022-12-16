@@ -6,7 +6,7 @@ from os import popen, rmdir, stat, statvfs, system, unlink, walk
 from re import search
 from time import time
 
-from boxbranding import getMachineBuild
+from boxbranding import getMachineBuild, getMachineMtdRoot
 from six import ensure_binary, ensure_str
 
 from Components.Console import Console
@@ -816,9 +816,9 @@ class HarddiskManager:
 		error = False
 		removable = False
 		BLACKLIST = []
-		if getMachineBuild() in ('u51', 'u52', 'u53', 'u5', 'u5pvr', 'vuzero4k', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'hd60', 'hd61', 'sf4008', 'dm900', 'dm7080', 'dm820', 'gb7252', 'gbx34k', 'dags7252', 'vs1500', 'h7', 'h10', 'h11', '8100s', 'et13000', 'sf5008', 'sf8008', 'sf8008m', 'sf8008s', 'sf8008t', 'gbmv200'):
+		if "mmcblk0p" in getMachineMtdRoot():
 			BLACKLIST = ["mmcblk0"]
-		elif getMachineBuild() in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k'):
+		elif "mmcblk1p" in getMachineMtdRoot():
 			BLACKLIST = ["mmcblk1"]
 
 		blacklisted = False
