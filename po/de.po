@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-18 20:34+0100\n"
-"PO-Revision-Date: 2022-11-06 09:04+0100\n"
+"PO-Revision-Date: 2022-12-17 18:07+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4971,16 +4971,16 @@ msgid "Enable command line function"
 msgstr "Befehlszeilenfunktion aktivieren"
 
 msgid "Enable cut file support for audio files"
-msgstr "Aktivieren Sie die Unterstützung für ausgeschnittene Dateien für Audiodateien"
+msgstr "Aktiviere Unterstützung für ausgeschnittene Dateien für Audiodateien"
 
 msgid "Enable cut file support for audio files. (e.g. mp3)"
-msgstr "Aktivieren Sie die Unterstützung für ausgeschnittene Dateien für Audiodateien. (zB mp3)"
+msgstr "Aktiviere Unterstützung für ausgeschnittene Dateien für Audiodateien. (zB mp3)"
 
 msgid "Enable cut file support for non *.ts files"
-msgstr "Aktivieren Sie die Unterstützung für ausgeschnittene Dateien für Nicht-*.ts-Dateien"
+msgstr "Aktiviere Unterstützung für ausgeschnittene Dateien für Nicht-*.ts-Dateien"
 
 msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
-msgstr "Aktivieren Sie die Unterstützung für ausgeschnittene Dateien für Nicht-*.ts-Dateien. (zB mp4)"
+msgstr "Aktiviere Unterstützung für ausgeschnittene Dateien für Nicht-*.ts-Dateien. (zB mp4)"
 
 msgid "Enable debug log"
 msgstr "Aktiviere Debug Log"
@@ -6482,7 +6482,7 @@ msgid "If enabled the video will always be de-interlaced."
 msgstr "Wenn aktiviert, wird das Video immer deinterlaced."
 
 msgid "If enabled, AIT data is included in recordings."
-msgstr "Wenn aktiviert, werden AIT Daten in die Aufnahmen eingebettet."
+msgstr "Wenn aktiviert, werden AIT Daten in die Aufnahmen eingebettet. Die AIT-Tabelle ist eine Service-Tabelle und dient beim Hybrid-TV, Hybrid Broadcast Broadband TV ( HbbTV), dem Zusammenwirken von Fernsehen und Internetfernsehen."
 
 msgid "If enabled, will checks for the time after the start of the receiver is within the time window and optionally switched to standby. If disabled, must additional be available a signal for the successful wakeup detection. (some receiver send a false or none signal)"
 msgstr "Wenn aktiviert, wird überprüft ob die Zeit nach dem Start des Receivers innerhalb des Zeitfensters ist und schaltet gegebenenfalls in den Standby-Modus. Wenn deaktiviert, muss zusätzlich noch ein Signal für die erfolgreiche Erkennung zur Verfügung stehen. (manche Receiver senden ein falsches oder kein Signal)"
@@ -13935,7 +13935,7 @@ msgid "This option configures you can set Auto Volume Level."
 msgstr "Diese Option konfiguriert, dass Sie die automatische Lautstärke einstellen können."
 
 msgid "This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!"
-msgstr "Diese Option installiert die aktuelle ServiceApp vom Feed und entfernt die ServiceHisilicon, wenn installiert. Die Installation der ServiceApp braucht einen Neustart!"
+msgstr "Diese Option installiert die aktuelle ServiceApp vom Feed und entfernt die ServiceHisilicon, wenn installiert. Die Installation der ServiceApp braucht einen kompletten Neustart!"
 
 msgid "This option install the plugin ClearMem-Lite. After restart Enigma2, you can activate this plugin under extensions. Set the option 'Auto timeout' to 10 seconds and try to play your recordings again. This plugin is needed for Gigablue Quad+ STB."
 msgstr "Diese Option installiert das Plugin ClearMem-Lite. Nach einem Enigma2 Neustart kann es unter Erweiterungen aktiviert werden. Im Plugin die Option 'Auto timeout' auf 10 Sekunden stellen und die Wiedergabe der Aufnahmen testen. Dieses Plugin wird für die Gigablue Quad+ benötigt."
@@ -17038,7 +17038,7 @@ msgid "goto deep-standby"
 msgstr "Ausschalten"
 
 msgid "goto standby"
-msgstr "In Standby gehen"
+msgstr "Standby"
 
 msgid "grab this frame as bitmap"
 msgstr "Diesen Frame als Bitmap speichern"
