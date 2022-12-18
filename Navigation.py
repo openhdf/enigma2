@@ -1,4 +1,4 @@
-from os import path
+from os import path, remove
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
 from Components.config import config
@@ -250,10 +250,7 @@ class Navigation:
 	def dispatchRecordEvent(self, rec_service, event):
 #		print "record_event", rec_service, event
 		for x in self.record_event:
-			try:
-				x(rec_service, event)
-			except:
-				pass
+			x(rec_service, event)
 
 	def playService(self, ref, checkParentalControl=True, forceRestart=False, adjust=True):
 		oldref = self.currentlyPlayingServiceOrGroup
@@ -298,7 +295,7 @@ class Navigation:
 					if alternativeref and self.pnav and self.pnav.playService(alternativeref):
 						print "Failed to start", alternativeref
 						if oldref and "://" in oldref.getPath():
-							print("[Navigation] Streaming was active -> try again") # use timer to give the streamserver the time to deallocate the tuner
+							print "[Navigation] Streaming was active -> try again" # use timer to give the streamserver the time to deallocate the tuner
 							self.retryServicePlayTimer = eTimer()
 							self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
 							self.retryServicePlayTimer.start(500, True)
@@ -316,11 +313,11 @@ class Navigation:
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 				if self.pnav.playService(playref):
-					print("[Navigation] Failed to start", playref.toString())
+					print "[Navigation] Failed to start", playref.toString()
 					self.currentlyPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
 					if oldref and "://" in oldref.getPath():
-						print("[Navigation] Streaming was active -> try again") # use timer to give the streamserver the time to deallocate the tuner
+						print "[Navigation] Streaming was active -> try again" # use timer to give the streamserver the time to deallocate the tuner
 						self.retryServicePlayTimer = eTimer()
 						self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
 						self.retryServicePlayTimer.start(500, True)
