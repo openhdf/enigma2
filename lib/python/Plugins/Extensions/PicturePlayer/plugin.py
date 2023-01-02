@@ -1,7 +1,4 @@
-from __future__ import absolute_import
-
 from enigma import getDesktop
-
 from Plugins.Plugin import PluginDescriptor
 
 #------------------------------------------------------------------------------------------
@@ -23,22 +20,20 @@ def main(session, **kwargs):
 
 
 def filescan_open(list, session, **kwargs):
-	_list = list
 	# Recreate List as expected by PicView
-	filelist = [((_file.path, False), None) for _file in _list]
+	filelist = [((file.path, False), None) for file in list]
 	from .ui import Pic_Full_View
-	session.open(Pic_Full_View, filelist, 0, _file.path)
+	session.open(Pic_Full_View, filelist, 0, filelist[0][0][0])
 
 
 def filescan(**kwargs):
-	from os.path import exists
-
 	from Components.Scanner import Scanner, ScanPath
+	import os
 
 	# Overwrite checkFile to only detect local
 	class LocalScanner(Scanner):
-		def checkFile(self, _file):
-			return exists(_file.path)
+		def checkFile(self, file):
+			return os.path.exists(file.path)
 
 	return \
 		LocalScanner(mimetypes=["image/jpeg", "image/png", "image/gif", "image/bmp"],
