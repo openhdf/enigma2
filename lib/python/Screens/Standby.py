@@ -20,6 +20,8 @@ from Screens.Screen import Screen
 from Tools.Directories import mediaFilesInUse
 from Tools import Notifications
 
+import re
+
 inStandby = None
 TVinStandby = None
 
@@ -351,6 +353,7 @@ class TryQuitMainloop(MessageBox):
 #					reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
 #			else:
 #				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
+		connectedClients = eStreamServer.getInstance().getConnectedClients()
 		if inTimeshift:
 			reason = _("You seem to be in timeshift!") + '\n'
 			default_yes = True
@@ -359,7 +362,7 @@ class TryQuitMainloop(MessageBox):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 			default_yes = False
 			timeout = 30
-		elif eStreamServer.getInstance().getConnectedClients() or StreamServiceList:
+		elif (connectedClients and len(connectedClients) > len([[re.search('127.0.0.1', str(element)) for element in x] for x in connectedClients])) or StreamServiceList:
 			reason = _("Client is streaming from this box! ") + '\n'
 			default_yes = False
 			timeout = 30
