@@ -18,7 +18,7 @@ Lpackagename = "enigma2-locale-"
 
 class Language:
 	def __init__(self):
-		install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), codeset="utf-8")
+		install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""))
 		bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
 		textdomain("enigma2")
 		self.activeLanguage = 0
