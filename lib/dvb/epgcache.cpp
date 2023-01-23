@@ -2268,7 +2268,7 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 			if (PyUnicode_Check(item))
 			{
 				const char *refstr;
-				refstr = PyString_AS_STRING(item);
+				refstr = PyUnicode_AsUTF8(item);
 				if (!refstr)
 				{
 					eDebug("[EPG:import] serviceReferences[%d] is not a string", i);
@@ -2519,7 +2519,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 				ePyObject obj = PyTuple_GET_ITEM(arg, 3);
 				if (PyUnicode_Check(obj))
 				{
-					const char *refstr = PyString_AS_STRING(obj);
+					const char *refstr = PyUnicode_AsUTF8(obj);
 					eServiceReferenceDVB ref(refstr);
 					if (ref.valid())
 					{
