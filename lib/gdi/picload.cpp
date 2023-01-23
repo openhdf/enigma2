@@ -1261,7 +1261,7 @@ PyObject *ePicLoad::getInfo(const char *filename)
 	{
 		list = PyList_New(2);
 		PyList_SET_ITEM(list, 0, PyUnicode_FromString(filename));
-		PyList_SET_ITEM(list, 1, PyUnicode_FromString(m_exif->m_szLastError));
+		PyList_SET_ITEM(list, 1, PyUnicode_FromString(exif->m_szLastError));
 	}
 	delete exif;
 
