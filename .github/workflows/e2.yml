@@ -4,127 +4,84 @@ on: [push, pull_request]
 
 jobs:
   build:
-    env:
-      CC: "gcc-${{ matrix.gcc }}"
-      CXX: "g++-${{ matrix.gcc }}"
-    runs-on: ${{ matrix.os }}
+    name: Build enigma2
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
-        os: [ubuntu-20.04]
-        gcc: [8, 9, 10]
-        python: [3.9]
-      fail-fast: false
+        gcc: [11]
+        python: ['3.10', '3.11']
     steps:
-    - uses: actions/checkout@v2.3.4
-    - name: install gcc ${{ matrix.gcc }}
-      run: |
-        sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-        sudo apt-get -q update
-        sudo apt install g++-${{ matrix.gcc }}
-    - name: install dev packages
-      run: |
-        sudo apt-get -q update
-        sudo apt-get install \
-        linux-libc-dev git build-essential libboost-all-dev \
-        automake libtool zlib1g-dev gettext \
-        swig libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev \
-        libfreetype6-dev libsigc++-2.0-dev libxml2-dev libfribidi-dev \
-        libssl-dev libavahi-client-dev libjpeg-turbo8-dev \
-        libgif-dev
-    - name: Installing Python 3.9
-      if: ${{ matrix.python == '3.9' }}
-      run: |
-        sudo apt install python3.9-dev python3-pip
-        sudo unlink /usr/bin/python || true
-        sudo ln -s /usr/bin/python3.9 /usr/bin/python
-        python -m pip install --upgrade pip tox six
-        python -V
-    - name: Installing Python 2.7
-      if: ${{ matrix.python == '2.7' }}
-      run: |
-        sudo add-apt-repository universe
-        sudo apt update
-        sudo apt install python2.7-dev
-        curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output get-pip.py
-        sudo python2 get-pip.py
-        pip install --upgrade pip tox
-        python -V
-    - name: Getting gstreamer
-      run: |
-        python -V
-        cd /tmp/
-        curl -L https://people.freedesktop.org/~slomo/gstreamer.tar.gz | tar xz
-        sed -i "s;prefix=/root/gstreamer;prefix=$PWD/gstreamer;g" $PWD/gstreamer/lib/x86_64-linux-gnu/pkgconfig/*.pc
-    - name: Getting libdvbsi++
-      run: |
-        echo installing libdvbsi++
-        cd /tmp
-        git clone --depth 1 git://git.opendreambox.org/git/obi/libdvbsi++.git
-        cd libdvbsi++
-        autoreconf -i
-        ./configure
-        make
-        sudo make install
-    - name: Getting tuxtxt
-      run: |
-        cd /tmp
-        git clone --depth 1 https://github.com/OpenPLi/tuxtxt.git
-        cd tuxtxt/libtuxtxt
-        autoreconf -i
-        ./configure --with-boxtype=generic DVB_API_VERSION=5
-        make
-        sudo make install
-        cd ../tuxtxt
-        autoreconf -i
-        ./configure --with-boxtype=generic DVB_API_VERSION=5
-        make
-        sudo make install
-        echo "branding module (testing)"
-        cd /tmp
-        git clone https://github.com/oe-alliance/branding-module.git
-        cd branding-module
-        autoreconf -i
-        ./configure --with-boxtype=generic
-        make
-    - name: patch enigma cpp files
-      run: |
-        sed -i 's/eFatal/eDebug/g' lib/gdi/gfbdc.cpp
-    - name: build enigma2
-      run: |
-        export PATH=$PATH:/tmp/gstreamer/bin
-        export LD_LIBRARY_PATH=/tmp/gstreamer/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
-        PKG_CONFIG_PATH=/tmp/gstreamer/lib/x86_64-linux-gnu/pkgconfig
-        GST_PLUGIN_SYSTEM_PATH=/tmp/gstreamer/lib/x86_64-linux-gnu/gstreamer-1.0
-        GST_PLUGIN_SCANNER=/tmp/gstreamer/libexec/gstreamer-1.0/gst-plugin-scanner
-        autoreconf -i
-        ./configure --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-textlcd --with-gstversion=1.0
-        make
-        python -m compileall .
-    - name: patch enigma py files
-      run: |
-        sed -i 's/reloadWindowStyles()  #/# reloadWindowStyles()  #/g' lib/python/skin.py
-        sed -i 's/setResolution(xres, yres/setResolution(xres, yres, 8/g' lib/python/skin.py
-        sed -i '2 i\globals()["__builtins__"]["ngettext"] = ngettext' lib/python/Tools/Profile.py
-        sed -i '2 i\from gettext import ngettext' lib/python/Tools/Profile.py
-        sed -i 's/reactor.run/pass  # reactor.run/g' lib/python/StartEnigma.py
-        sed -i 's/enigma.quitMainloop(5)/enigma.quitMainloop(1)/' lib/python/StartEnigma.py
-        sed -i 's/import enigma/import enigma\nenigma.quitMainloop(1)/' lib/python/StartEnigma.py
-        echo 'enigma.quitMainloop(0)' >> lib/python/StartEnigma.py
-    - name: install enigma
-      run: |
-        sudo make install
-        sudo mkdir -p '/usr/local/etc/enigma2'
-        sudo sh -c "echo 'config.misc.do_overscanwizard=false' > /usr/local/etc/enigma2/settings"
-        sudo sh -c "echo 'config.misc.firstrun=false' >> /usr/local/etc/enigma2/settings"
-        sudo sh -c "echo 'config.misc.initialchannelselection=false' >> /usr/local/etc/enigma2/settings"
-        sudo sh -c "echo 'config.misc.languageselected=false' >> /usr/local/etc/enigma2/settings"
-        sudo sh -c "echo 'config.misc.videowizardenabled=false' >> /usr/local/etc/enigma2/settings"
-    - name: install boxbranding and RcModel
-      run: |
-        sudo find /tmp/branding-module/BoxBranding -name boxbranding.so -exec cp {} /usr/local/lib/enigma2/python/ \;
-        sudo find /tmp/branding-module/BoxBranding -name RcModel.py -exec cp {} /usr/local/lib/enigma2/python/Components/ \;
-        sudo mkdir -p /home/root/logs/
-    - name: start enigma2
-      run: |
-        sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib ENIGMA_DEBUG_LVL=5 enigma2
-        echo done!
+      - name: Install prerequisites
+        run: |
+          sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+          sudo apt-get -q update
+          sudo apt remove -y libunwind-14-dev
+          sudo apt-get install g++-${{ matrix.gcc }}
+          sudo apt-get install linux-libc-dev
+          sudo apt-get install git
+          sudo apt-get install build-essential
+          sudo apt-get install automake
+          sudo apt-get install libtool
+          sudo apt-get install python${{ matrix.python }}-dev
+          sudo apt-get install zlib1g-dev
+          sudo apt-get install gettext
+          sudo apt-get install swig
+          sudo apt-get install libgstreamer1.0-dev
+          sudo apt-get install libgstreamer-plugins-base1.0-dev
+          sudo apt-get install libfreetype6-dev
+          sudo apt-get install libsigc++-2.0-dev
+          sudo apt-get install libfribidi-dev
+          sudo apt-get install libssl-dev
+          sudo apt-get install libavahi-client-dev
+          sudo apt-get install libjpeg-turbo8-dev
+          sudo apt-get install libgif-dev
+
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Build enigma2 dependencies, gcc-${{ matrix.gcc }}
+        env:
+          CC: "gcc-${{ matrix.gcc }}"
+          CXX: "g++-${{ matrix.gcc }}"
+        run: |
+          echo "installing libdvbsi++"
+          pushd .
+          cd /tmp
+          git clone --depth 1 https://github.com/oe-alliance/libdvbsi.git
+          cd libdvbsi
+          autoreconf -i
+          ./configure
+          make
+          sudo make install
+          popd
+          echo "installing tuxbox"
+          pushd .
+          cd /tmp
+          git clone --depth 1 https://github.com/OpenPLi/tuxtxt.git
+          cd tuxtxt/libtuxtxt
+          autoreconf -i
+          ./configure --with-boxtype=generic DVB_API_VERSION=5
+          make
+          sudo make install
+          cd ../tuxtxt
+          autoreconf -i
+          ./configure --with-boxtype=generic DVB_API_VERSION=5
+          make
+          sudo make install
+          popd
+
+      - name: Build enigma2
+        env:
+          CC: "gcc-${{ matrix.gcc }}"
+          CXX: "g++-${{ matrix.gcc }}"
+        run: |
+          pip3 install six
+          echo "compiling enigma2"
+          autoreconf -i
+          ./configure --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-gstversion=1.0 --with-textlcd
+          make
+          python -m compileall .
+          echo done!
