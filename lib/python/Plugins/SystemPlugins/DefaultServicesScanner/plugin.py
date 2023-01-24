@@ -4,7 +4,6 @@
 #from Components.Label import Label
 #from Components.MenuList import MenuList
 #from Components.Slider import Slider
-from __future__ import absolute_import
 
 #from Screens.Screen import Screen
 from os import unlink

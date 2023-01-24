@@ -1,4 +1,4 @@
-from __future__ import absolute_import, division
+from __future__ import division
 
 from time import localtime, strftime
 from time import time as getTime

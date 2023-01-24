@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-from __future__ import absolute_import
 
 from os import listdir, mkdir
 from os import path as os_path

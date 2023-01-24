@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from errno import ENOENT
 from os import environ

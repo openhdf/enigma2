@@ -1,5 +1,4 @@
 # must be fixed for the new plugin interface
-from __future__ import absolute_import
 
 from os import listdir
 

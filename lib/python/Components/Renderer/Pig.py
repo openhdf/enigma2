@@ -1,7 +1,6 @@
 ##
 ## P(icture)i(n)g(raphics) renderer
 ##
-from __future__ import absolute_import
 
 from enigma import eVideoWidget, getDesktop
 

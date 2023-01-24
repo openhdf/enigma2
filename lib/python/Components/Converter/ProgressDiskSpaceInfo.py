@@ -1,5 +1,4 @@
 # coders by Vlamo 2012 (version: 0.2)
-from __future__ import absolute_import
 
 from os import popen, statvfs
 

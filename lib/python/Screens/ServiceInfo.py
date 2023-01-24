@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from enigma import (RT_HALIGN_LEFT, eDVBFrontendParametersSatellite, eListbox,
                     eListboxPythonMultiContent, eServiceCenter, getDesktop,

@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 LOG_TYPE_DEBUG = "D/ "
 LOG_TYPE_INFO = "I/ "

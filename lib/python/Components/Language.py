@@ -1,5 +1,4 @@
 # -*- coding: UTF-8 -*-
-from __future__ import absolute_import
 
 from gettext import bindtextdomain, install, textdomain, translation
 from locale import (LC_COLLATE, LC_CTYPE, LC_MESSAGES, LC_MONETARY, LC_NUMERIC,

@@ -1,6 +1,5 @@
 # plugin from Sif Team
 
-from __future__ import absolute_import
 
 from os import path as os_path
 from sys import modules

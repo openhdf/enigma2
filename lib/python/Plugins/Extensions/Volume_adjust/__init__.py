@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from gettext import bindtextdomain, dgettext, gettext, textdomain
 from os import environ

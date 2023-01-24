@@ -11,7 +11,6 @@
 ## If you have one service in different bouquets the first index of the service will be taken
 ## If you rename, move, delete or add a channel the numbers will not be OK any more. You have to restart E2 then
 ##
-from __future__ import absolute_import
 
 from xml.etree.cElementTree import parse
 

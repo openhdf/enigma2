@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from functools import cmp_to_key
 from time import time

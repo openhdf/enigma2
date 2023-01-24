@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from Components.Harddisk import harddiskmanager
 from Components.Task import (Condition, DiskspacePrecondition, Job, Task,

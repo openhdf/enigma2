@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from inspect import getargvalues
 from sys import _getframe

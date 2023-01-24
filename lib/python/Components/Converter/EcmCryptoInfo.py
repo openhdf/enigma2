@@ -1,7 +1,6 @@
 #
 # EcmCryptoInfo Converter by mcbain // v0.1 // 20111109
 #
-from __future__ import absolute_import
 
 from os import stat
 

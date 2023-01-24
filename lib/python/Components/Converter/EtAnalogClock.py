@@ -1,7 +1,6 @@
 # original code is from openmips gb Team: [OMaclock] Converter #
 # Thx to arn354 #
 
-from __future__ import absolute_import
 
 from time import localtime
 

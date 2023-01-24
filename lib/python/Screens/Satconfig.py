@@ -1,4 +1,4 @@
-from __future__ import absolute_import, division
+from __future__ import division
 
 from datetime import datetime
 from os import path as os_path

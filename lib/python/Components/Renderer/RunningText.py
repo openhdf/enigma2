@@ -28,7 +28,6 @@
 # take a look at the discussion: http://board.dreambox-tools.info/showthread.php?6050-Erweiterung-Running-Text-render
 ################################################################################
 
-from __future__ import absolute_import
 
 from enigma import (RT_HALIGN_BLOCK, RT_HALIGN_CENTER, RT_HALIGN_LEFT,
                     RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER,

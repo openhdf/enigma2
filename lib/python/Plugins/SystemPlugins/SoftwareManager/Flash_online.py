@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from json import load
 from os import W_OK, access, listdir, major, makedirs, minor, mkdir

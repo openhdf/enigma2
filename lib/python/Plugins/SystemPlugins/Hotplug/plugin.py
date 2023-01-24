@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
 
 from six import ensure_str
 from twisted.internet.protocol import Factory, Protocol

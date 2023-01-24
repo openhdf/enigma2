@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from enigma import eDVBVolumecontrol, eTimer
 from six import itervalues

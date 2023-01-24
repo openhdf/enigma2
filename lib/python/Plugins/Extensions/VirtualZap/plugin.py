@@ -20,7 +20,6 @@
 #  modify it (if you keep the license), but it may not be commercially
 #  distributed other than under the conditions noted above.
 #
-from __future__ import absolute_import
 
 from time import localtime, time
 

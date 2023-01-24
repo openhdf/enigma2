@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from boxbranding import getBrandOEM
 from enigma import setAnimation_current, setAnimation_speed

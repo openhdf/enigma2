@@ -1,4 +1,4 @@
-from __future__ import absolute_import, division
+from __future__ import division
 
 from Components.ActionMap import NumberActionMap
 from Components.config import config

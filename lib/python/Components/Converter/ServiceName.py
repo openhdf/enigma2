@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
 
 from enigma import (eEPGCache, eServiceCenter, eServiceReference,
                     iPlayableService, iPlayableServicePtr, iServiceInformation)

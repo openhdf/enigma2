@@ -1,4 +1,4 @@
-from __future__ import absolute_import, division
+from __future__ import division
 
 from enigma import (ePoint, eRect, eServiceCenter, eServiceReference, eSize,
                     eTimer, getBestPlayableServiceReference)

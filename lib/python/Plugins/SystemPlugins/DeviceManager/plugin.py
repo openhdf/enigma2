@@ -1,5 +1,4 @@
 # for localized messages
-from __future__ import absolute_import
 
 from Plugins.Plugin import PluginDescriptor
 

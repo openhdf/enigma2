@@ -3,7 +3,6 @@
 #					MAKES A FULLBACKUP READY FOR FLASHING.						#
 #################################################################################
 
-from __future__ import absolute_import
 
 from os import listdir, makedirs
 from os import path as os_path

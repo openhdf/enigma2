@@ -2,7 +2,7 @@
 #
 # ChannelExpertInfo Converter by mcbain // v0.1 // 20111109
 #
-from __future__ import absolute_import, division
+from __future__ import division
 
 from enigma import (eDVBFrontendParametersCable,
                     eDVBFrontendParametersSatellite,

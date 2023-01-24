@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from sys import version_info
 from time import sleep

@@ -1,4 +1,4 @@
-from __future__ import absolute_import, division
+from __future__ import division
 
 from operator import mul as mul
 from random import SystemRandom as SystemRandom

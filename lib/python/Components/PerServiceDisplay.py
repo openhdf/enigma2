@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from enigma import eLabel, eSlider, eTimer, iPlayableService
 from six import iteritems

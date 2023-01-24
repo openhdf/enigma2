@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from Components.Label import Label
 from Screens.Screen import Screen

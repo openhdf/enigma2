@@ -1,5 +1,4 @@
 
-from __future__ import absolute_import
 
 from os import popen, system
 from re import sub

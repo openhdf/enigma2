@@ -1,6 +1,5 @@
 
 # Plugin definition
-from __future__ import absolute_import
 
 from xml.etree.cElementTree import parse as cet_parse
 

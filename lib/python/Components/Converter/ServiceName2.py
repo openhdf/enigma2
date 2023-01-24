@@ -18,7 +18,6 @@
 # Support: http://dream.altmaster.net/ & http://gisclub.tv
 #
 
-from __future__ import absolute_import
 
 from enigma import (eServiceCenter, eServiceReference, eTimer,
                     getBestPlayableServiceReference, iPlayableService,

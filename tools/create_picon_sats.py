@@ -7,7 +7,6 @@
 #
 # by pieterg, 2008
 
-from __future__ import absolute_import
 
 from os import makedirs, rename, symlink
 from sys import argv

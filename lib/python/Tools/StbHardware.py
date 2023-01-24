@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from fcntl import ioctl
 from struct import pack, unpack

@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from os import R_OK, W_OK, access
 

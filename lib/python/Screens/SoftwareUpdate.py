@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from gettext import dgettext
 from os import path as os_path

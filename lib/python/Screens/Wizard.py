@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler

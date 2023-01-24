@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from math import asin, atan, cos, degrees, fabs, floor, radians, sin, sqrt
 

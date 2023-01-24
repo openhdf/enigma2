@@ -4,7 +4,6 @@
 # add ModuleSlot, rename NameSlot (by Sirius)
 # add Module name upper (by Sirius)
 
-from __future__ import absolute_import
 
 from enigma import eDVBCI_UI, eDVBCIInterfaces
 

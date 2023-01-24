@@ -1,5 +1,4 @@
 #!/usr/bin/python
-from __future__ import absolute_import
 
 from sys import argv
 from sys import exit as sys_exit

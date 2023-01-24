@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
 
 from datetime import date, timedelta
 from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir

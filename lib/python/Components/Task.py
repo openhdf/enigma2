@@ -2,7 +2,6 @@
 # A Job consists of many "Tasks".
 # A task is the run of an external tool, with proper methods for failure handling
 
-from __future__ import absolute_import
 
 from six import ensure_str
 

@@ -2,7 +2,6 @@
 #  Coded by Vali, updated by Mirakels for openpli
 #
 
-from __future__ import absolute_import
 
 from enigma import eServiceCenter, iServiceInformation
 

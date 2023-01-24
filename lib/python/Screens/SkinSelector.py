@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
 
 from mmap import PROT_READ, mmap
 from os import listdir, walk

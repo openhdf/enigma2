@@ -28,7 +28,6 @@
 # activated (currently time-shifting).
 
 
-from __future__ import absolute_import
 
 from os import link, listdir, makedirs
 from os import path as os_path

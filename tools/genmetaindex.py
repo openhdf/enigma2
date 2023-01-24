@@ -1,5 +1,4 @@
 # usage: genmetaindex.py <xml-files>  > index.xml
-from __future__ import absolute_import
 
 from os import path as os_path
 from sys import argv, stdout, version_info

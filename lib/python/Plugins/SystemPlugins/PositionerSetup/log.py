@@ -5,7 +5,6 @@
 # print>>log, "Some text"
 # because the log unit looks enough like a file!
 
-from __future__ import absolute_import
 
 from sys import stdout
 from threading import Lock

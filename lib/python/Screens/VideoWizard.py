@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from Components.AVSwitch import iAVSwitch
 from Components.config import ConfigBoolean, config, configfile

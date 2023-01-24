@@ -1,4 +1,4 @@
-from __future__ import absolute_import, division
+from __future__ import division
 
 from os import access, listdir, lstat, major, minor
 from os import path as os_path

@@ -5,7 +5,6 @@
 # It will read the servicenames from the lamedb and create symlinks
 # for the servicereference names.
 
-from __future__ import absolute_import
 
 from os import makedirs, symlink
 from sys import argv

@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from os import rename
 from time import sleep

@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from enigma import eLabel
 from six import ensure_str, ensure_text, unichr

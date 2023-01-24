@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from fcntl import ioctl
 from os import O_NONBLOCK, O_RDWR

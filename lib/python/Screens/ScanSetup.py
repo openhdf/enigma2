@@ -1,4 +1,4 @@
-from __future__ import absolute_import, division
+from __future__ import division
 
 from boxbranding import getMachineBrand
 from enigma import (eComponentScan, eConsoleAppContainer,

@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from enigma import (BT_HALIGN_CENTER, BT_KEEP_ASPECT_RATIO, BT_SCALE,
                     BT_VALIGN_CENTER, eListboxPythonMultiContent, gFont)

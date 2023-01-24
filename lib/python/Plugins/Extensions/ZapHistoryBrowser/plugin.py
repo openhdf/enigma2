@@ -1,6 +1,5 @@
 # -*- coding: UTF-8 -*-
 ## Zap-History Browser by AliAbdul
-from __future__ import absolute_import
 
 from gettext import bindtextdomain, dgettext, gettext, textdomain
 from os import environ

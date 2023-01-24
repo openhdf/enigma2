@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from enigma import eConsoleAppContainer
 from six import ensure_str

@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from Components.AVSwitch import AVSwitch
 from Screens.MessageBox import MessageBox

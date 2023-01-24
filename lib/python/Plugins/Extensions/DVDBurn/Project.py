@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from xml.dom.minidom import Element, parseString
 

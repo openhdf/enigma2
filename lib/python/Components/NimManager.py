@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from datetime import datetime
 from os import F_OK, access

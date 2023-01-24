@@ -4,7 +4,6 @@
 # FIXED SERVICELIST GREENSCREEN BY SCOPE34 (AN)
 # ADD AC3 SUPPORT BY BLACK_64
 
-from __future__ import absolute_import
 
 from os import path as os_path
 from xml.etree.cElementTree import parse as ci_parse

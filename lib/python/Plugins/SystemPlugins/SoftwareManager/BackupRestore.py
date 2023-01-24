@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from datetime import date
 from os import listdir, makedirs

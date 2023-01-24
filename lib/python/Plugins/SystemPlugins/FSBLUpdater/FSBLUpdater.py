@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from distutils import spawn
 from hashlib import sha256

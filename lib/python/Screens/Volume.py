@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from Components.VolumeBar import VolumeBar
 from Screens.Screen import Screen
