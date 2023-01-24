@@ -1,5 +1,3 @@
-# -*- coding: iso-8859-1 -*-
-
 from time import time
 
 from boxbranding import getBoxType, getImageVersion
