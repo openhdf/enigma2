@@ -361,7 +361,7 @@ class TryQuitMainloop(MessageBox):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 			default_yes = False
 			timeout = 30
-		elif (connectedClients and len(connectedClients) > len([[re.search('127.0.0.1', str(element)) for element in x] for x in connectedClients])) or StreamServiceList:
+		elif (connectedClients and len(connectedClients) > len([re.findall('127.0.0.1', str(element)) for element in connectedClients])) or StreamServiceList:
 			reason = _("Client is streaming from this box! ") + '\n'
 			default_yes = False
 			timeout = 30
