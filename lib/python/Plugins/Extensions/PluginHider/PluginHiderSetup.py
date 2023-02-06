@@ -1,5 +1,5 @@
 
-from inspect import getargspec
+from inspect import getfullargspec
 
 # GUI (Components)
 from Components.ActionMap import HelpableActionMap
@@ -83,7 +83,7 @@ class PluginHiderSetup(Screen, HelpableScreen):
 			else: #if self.selectedList == LIST_EXTENSIONS or self.selectedList == LIST_EVENTINFO:
 				import Screens.InfoBar
 				instance = Screens.InfoBar.InfoBar.instance
-				args = getargspec(plugin.fnc)[0]
+				args = getfullargspec(plugin.fnc)[0]
 				if len(args) == 1:
 					plugin(session=self.session)
 				elif instance and instance.servicelist:
