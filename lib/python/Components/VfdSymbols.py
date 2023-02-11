@@ -139,7 +139,7 @@ class SymbolsCheckPoller:
 					self.led = "0"
 			elif self.led == "1":
 				open("/proc/stb/lcd/symbol_rec", "w").write("0")
-		elif getMachineBuild() in ('sf8008', 'sf8008m', 'cc1', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sfx6008') and fileExists("/proc/stb/fp/ledpowercolor"):
+		elif getMachineBuild() in ('sf8008', 'sf8008m', 'cc1', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sfx6008', 'sx88v2', 'sx888') and fileExists("/proc/stb/fp/ledpowercolor"):
 			import Screens.Standby
 			recordings = len(NavigationInstance.instance.getRecordings(False, recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
 			self.blink = not self.blink
