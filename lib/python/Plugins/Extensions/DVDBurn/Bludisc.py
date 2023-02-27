@@ -366,10 +366,10 @@ class CreateIndexTask(Task):
 		indexbuffer += INDEXES
 
 		f = open(self.job.workspace + "BDMV/index.bdmv", 'w')
-		f.write(buffer(indexbuffer))
+		f.write(memoryview(indexbuffer))
 		f.close()
 		f = open(self.job.workspace + "BDMV/BACKUP/index.bdmv", 'w')
-		f.write(buffer(indexbuffer))
+		f.write(memoryview(indexbuffer))
 		f.close()
 
 
@@ -428,10 +428,10 @@ class CreateMobjTask(Task):
 		mob += OBJECTS
 
 		f = open(self.job.workspace + "BDMV/MovieObject.bdmv", 'w')
-		f.write(buffer(mob))
+		f.write(memoryview(mob))
 		f.close()
 		f = open(self.job.workspace + "BDMV/BACKUP/MovieObject.bdmv", 'w')
-		f.write(buffer(mob))
+		f.write(memoryview(mob))
 		f.close()
 
 
@@ -603,10 +603,10 @@ class CreateMplsTask(Task):
 		mplsbuffer += PlayListMark
 
 		f = open(self.job.workspace + "BDMV/PLAYLIST/%05d.mpls" % self.mpls_num, 'w')
-		f.write(buffer(mplsbuffer))
+		f.write(memoryview(mplsbuffer))
 		f.close()
 		f = open(self.job.workspace + "BDMV/BACKUP/PLAYLIST/%05d.mpls" % self.mpls_num, 'w')
-		f.write(buffer(mplsbuffer))
+		f.write(memoryview(mplsbuffer))
 		f.close()
 
 
@@ -795,10 +795,10 @@ class CreateClpiTask(Task):
 		clpibuffer += zeros[0:4]
 
 		f = open(self.job.workspace + "BDMV/CLIPINF/%05d.clpi" % self.clip_num, 'w')
-		f.write(buffer(clpibuffer))
+		f.write(memoryview(clpibuffer))
 		f.close()
 		f = open(self.job.workspace + "BDMV/BACKUP/CLIPINF/%05d.clpi" % self.clip_num, 'w')
-		f.write(buffer(clpibuffer))
+		f.write(memoryview(clpibuffer))
 		f.close()
 
 
