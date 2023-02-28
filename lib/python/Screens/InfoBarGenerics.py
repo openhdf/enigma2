@@ -2469,7 +2469,7 @@ class InfoBarSeek:
 				else:
 					return HelpableActionMap.action(self, contexts, action)
 
-		self["SeekActions"] = InfoBarSeekActionMap(self, [actionmap],
+		self["SeekActions"] = InfoBarSeekActionMap(self, actionmap,
 			{
 				"playpauseService": self.playpauseService,
 				"pauseService": (self.pauseService, _("Pause playback")),
@@ -4561,8 +4561,8 @@ class InfoBarCueSheetSupport:
 
 	ENABLE_RESUME_SUPPORT = False
 
-	def __init__(self, actionmap="InfobarCueSheetActions"):
-		self["CueSheetActions"] = HelpableActionMap(self, [actionmap],
+	def __init__(self, actionmap=["InfobarCueSheetActions"]):
+		self["CueSheetActions"] = HelpableActionMap(self, actionmap,
 			{
 				"jumpPreviousMark": (self.jumpPreviousMark, _("Jump to previous marked position")),
 				"jumpNextMark": (self.jumpNextMark, _("Jump to next marked position")),
