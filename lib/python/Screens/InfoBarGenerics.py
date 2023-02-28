@@ -1234,7 +1234,7 @@ class InfoBarNumberZap:
 		# 	return
 
 		seekable = self.getSeek()
-        if seekable:
+		if seekable and not self.LongButtonPressed and seekable.getPlayPosition():
 			length = seekable.getLength() or (None, 0)
 			if length[1] > 0:
 				key = int(number)
@@ -1245,6 +1245,7 @@ class InfoBarNumberZap:
 				time = time * 90000
 				seekable.seekRelative(time < 0 and -1 or 1, abs(time))
 				return
+
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()

@@ -306,15 +306,25 @@
 
 	<map context="NumberActions">
 		<key id="KEY_1" mapto="1" flags="m" />
+                <key id="KEY_1" mapto="1_long" flags="l" />
 		<key id="KEY_2" mapto="2" flags="m" />
+		<key id="KEY_2" mapto="2_long" flags="l" />
 		<key id="KEY_3" mapto="3" flags="m" />
+		<key id="KEY_3" mapto="3_long" flags="l" />
 		<key id="KEY_4" mapto="4" flags="m" />
+                <key id="KEY_4" mapto="4_long" flags="l" />
 		<key id="KEY_5" mapto="5" flags="m" />
+                <key id="KEY_5" mapto="5_long" flags="l" />
 		<key id="KEY_6" mapto="6" flags="m" />
+                <key id="KEY_6" mapto="6_long" flags="l" />
 		<key id="KEY_7" mapto="7" flags="m" />
+                <key id="KEY_7" mapto="7_long" flags="l" />
 		<key id="KEY_8" mapto="8" flags="m" />
+                <key id="KEY_8" mapto="8_long" flags="l" />
 		<key id="KEY_9" mapto="9" flags="m" />
+                <key id="KEY_9" mapto="9_long" flags="l" />
 		<key id="KEY_0" mapto="0" flags="m" />
+                <key id="KEY_0" mapto="0_long" flags="l" />
 		<key id="KEY_FILE" mapto="file" flags="m" />
 		<key id="KEY_VIDEO" mapto="file" flags="m" />
 	</map>
