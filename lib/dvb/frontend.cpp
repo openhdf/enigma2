@@ -21,14 +21,15 @@
 #define ioctlMeasureStart \
 	struct timeval start, end; \
 	int duration; \
-	gettimeofday(&start, NULL);
+	if (m_debuglevel==5) { gettimeofday(&start, NULL); }
 
 #define ioctlMeasureEval(x) \
 	do { \
-		gettimeofday(&end, NULL); \
-		duration = (((end.tv_usec - start.tv_usec)/1000) + 1000 ) % 1000; \
-		if (duration>35) \
-			eTrace("[eDVBFrontend] Slow ioctl '%s', potential driver issue, %dms",x,duration); \
+		if (m_debuglevel==5) { \
+			gettimeofday(&end, NULL); \
+			duration = (((end.tv_usec - start.tv_usec)/1000) + 1000 ) % 1000; \
+			if (duration>35) { eWarning("[eDVBFrontend] Slow ioctl '%s', potential driver issue, %dms",x,duration); } \
+		} \
 	} while(0)
 
 #define eDebugNoSimulateNoNewLineEnd(x...) \
@@ -3583,8 +3584,10 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 	}
 	if (feparm->getSystem(type) || feparm->getSystems(types) || !m_enabled)
 	{
-		eDebugDeliverySystem("m_dvbid:%d m_slotid:%d type:%d types:%d m_enabled:%d", m_dvbid, m_slotid, type, types, m_enabled);
-		return 0;
+		if (m_debuglevel==5) {
+			eDebugDeliverySystem("m_dvbid:%d m_slotid:%d type:%d types:%d m_enabled:%d", m_dvbid, m_slotid, type, types, m_enabled);
+			return 0;
+		}
 	}
 	if ((type == eDVBFrontend::feSatellite) || (types & (1 << eDVBFrontend::feSatellite)))
 	{
