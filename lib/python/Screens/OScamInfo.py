@@ -760,7 +760,7 @@ class oscInfo(Screen, OscamInfo):
 		res = [""]
 		for i in listentry:
 			if i.strip() != "" or i is not None:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 5 * f, 0, self.sizeLH, self.itemheight * f, 2, RT_HALIGN_LEFT, i))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, int(5 * sf), 0, self.sizeLH, int(self.itemheight * sf), 2, RT_HALIGN_LEFT, i))
 		return res
 
 	def showData(self):
