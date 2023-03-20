@@ -3,6 +3,7 @@
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
+stbcheck=`cat /proc/stb/info/boxtype`
 
 # workaround for corrupt ssl files
 if ! grep ^config.misc.firstrun=false /etc/enigma2/settings >/dev/null; then
@@ -11,38 +12,10 @@ if ! grep ^config.misc.firstrun=false /etc/enigma2/settings >/dev/null; then
 fi
 
 if [ -e /proc/stb/info/boxtype ]; then
-	stbcheck=`cat /proc/stb/info/boxtype`
 	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sx988" ] || [ $boxcheck == "ip8" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "sfx6008" ] || [ $stbcheck == "sx88v2" ]; then
 		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
 		if [ 0 == $count ];then
 			libreader 720P_50
-		fi
-	fi
-fi
-
-#check for installed vfdcontrol
-if grep ^"getBoxType = gbtrio4k" /etc/enigma2/boxinformations >/dev/null; then
-	echo "vfdcontrol default installed"
-	if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
-		echo "vfdcontrol installed"
-	else
-		opkg remove --force-depends enigma2-plugin-systemplugins-vfdcontrol
-		opkg update
-		opkg install --force-reinstall enigma2-plugin-systemplugins-vfdcontrol
-	fi
-else
-	if grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
-		if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
-			echo "vfdcontrol installed"
-		else
-			opkg update
-			opkg install --force-reinstall enigma2-plugin-systemplugins-vfdcontrol
-		fi
-	fi
-	if ! grep ^config.misc.vfdcontrol=true /etc/enigma2/settings >/dev/null; then
-		if [ -e /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl/plugin.pyo ]; then
-			opkg remove enigma2-plugin-systemplugins-vfdcontrol
-			rm -rf /usr/lib/enigma2/python/Plugins/SystemPlugins/VFDControl
 		fi
 	fi
 fi
@@ -88,7 +61,7 @@ fi
 touch /etc/enigma2/settings
 
 if [ -x @bindir@/showiframe ]; then
-	if [[ ! `cat /proc/stb/info/boxtype` =~ "u5" ]]; then
+	if [[ ! "$stbcheck" =~ "u5" ]]; then
 		killall -9 showiframe; sleep 1
 	fi
 	if [ -f /etc/enigma2/bootlogo.mvi ]; then
@@ -153,11 +126,9 @@ fi
 
 if [ "$ret" -ne "1" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
-		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
-		if [ $stbcheck == "u5" ]; then
+		if [ ${stbcheck:0:2} == "u5" ]; then
 			killall -9 showiframe; sleep 5
 		fi
-		stbcheck=`cat /proc/stb/info/boxtype`
 		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "sfx6008" ]; then
 			killall -9 libreader; sleep 5
 		fi
@@ -200,7 +171,7 @@ case $ret in
 		/sbin/reboot
 		;;
 	42)
-		python @libdir@/enigma2/python/upgrade.pyo
+		python @libdir@/enigma2/python/upgrade.pyc
 		;;
 	43)
 		init 1
