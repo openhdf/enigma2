@@ -1151,9 +1151,13 @@ class NumberZap(Screen):
 	def __init__(self, session, number, searchNumberFunction=None):
 		Screen.__init__(self, session)
 
-		if config.usage.numzappicon.value:
+		if config.usage.numzappicon.value == 'picon':
 			self.onLayoutFinish.append(self.showPicon)
-			self.skinName = ["NumberZapPicon", "NumberZapWithName"]
+			self.skinName = ["NumberZapPicon"]
+		elif config.usage.numzappicon.value == 'name':
+			self.skinName = ["NumberZapWithName"]
+		else:
+			self.skinName = ["NumberZap"]
 
 		self.onChangedEntry = []
 		self.numberString = str(number)
