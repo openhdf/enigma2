@@ -1198,7 +1198,7 @@ class NumberZap(Screen):
 		self.Timer.callback.append(self.keyOK)
 		if config.usage.numzaptimeoutmode.value != "off":
 			if config.usage.numzaptimeoutmode.value == "standard":
-				self.Timer.start(3000, True)
+				self.Timer.start(2000, True)
 			else:
 				self.Timer.start(int(config.usage.numzaptimeout1.value), True)
 

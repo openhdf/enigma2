@@ -72,7 +72,7 @@ def InitUsageConfig():
 	config.usage.multibouquet = ConfigYesNo(default=True)
 	config.usage.maxchannelnumlen = ConfigSelection(default="4", choices=[("4", _("4")), ("5", _("5"))])
 	config.usage.numzaptimeoutmode = ConfigSelection(default="standard", choices=[("standard", _("Standard")), ("userdefined", _("User defined")), ("off", _("off"))])
-	config.usage.numzaptimeout1 = ConfigSelectionNumber(default=3000, stepwidth=250, min=250, max=10000, wraparound=True)
+	config.usage.numzaptimeout1 = ConfigSelectionNumber(default=2000, stepwidth=250, min=250, max=10000, wraparound=True)
 	config.usage.numzaptimeout2 = ConfigSelectionNumber(default=1000, stepwidth=250, min=250, max=10000, wraparound=True)
 	config.usage.numzappicon = ConfigSelection(default="picon", choices=[("picon", _("Picon")), ("name", _("Channel name")), ("number", _("Channel number"))])
 	if fileContains("/etc/network/interfaces", "iface eth0 inet static") and not fileContains("/etc/network/interfaces", "iface wlan0 inet dhcp") or fileContains("/etc/network/interfaces", "iface wlan0 inet static") and fileContains("/run/ifstate", "wlan0=wlan0"):
