@@ -329,12 +329,6 @@ def InitUsageConfig():
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert"))])
 
-	config.usage.wakeup_enabled = ConfigSelection(default="no", choices=[
-		("no", _("Disabled")),
-		("yes", _("Enabled")),
-		("standby", _("Enabled, only from standby")),
-		("deepstandby", _("Enabled, only from deep standby"))])
-
 	config.usage.window_timeout = ConfigSelectionNumber(default=90, stepwidth=1, min=1, max=600, wraparound=True)
 
 	choicelist = [("standby", _("Standby")), ("deepstandby", _("Deep Standby"))]
