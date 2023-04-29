@@ -1,17 +1,18 @@
+from time import time
+
+import NavigationInstance
 from Components.PerServiceDisplay import PerServiceBase
 from Components.Element import cached
 from enigma import iPlayableService, iServiceInformation, eServiceReference, eEPGCache
-from Source import Source
-import NavigationInstance
+from Components.Sources.Source import Source
+
 
 # Fake eServiceEvent to fill Event_Now and Event_Next in Infobar for Streams
-#
-# from enigma import eServiceEvent
-class pServiceEvent(object):
+class pServiceEvent:
 	NOW = 0
 	NEXT = 1
 
-	def __init__(self, info, now_or_next):
+	def __init__(self, info, now_or_next, service):
 		self.now_or_next = now_or_next
 
 		self.m_EventNameNow = ""
@@ -20,7 +21,9 @@ class pServiceEvent(object):
 		self.m_ShortDescriptionNext = ""
 		self.m_ExtendedDescriptionNow = ""
 		self.m_ExtendedDescriptionNext = ""
-		
+		self.m_Duration = 0
+		self.m_Begin = time()
+
 		sTagTitle = info.getInfoString(iServiceInformation.sTagTitle)
 		if sTagTitle:
 			sTagTitleList = sTagTitle.split(" - ")
@@ -49,10 +52,18 @@ class pServiceEvent(object):
 			element6 = sTagLocation
 			self.m_ExtendedDescriptionNow += "\n\n" + element6
 
+		seek = service and service.seek()
+		if seek:
+			length = seek.getLength()
+			if length[0] == 0:
+				self.m_Duration = length[1] / 90000
+			position = seek.getPlayPosition()
+			if position[0] == 0:
+				self.m_Begin = time() - position[1] / 90000
 
 	def getEventName(self):
 		return self.m_EventNameNow if self.now_or_next == self.NOW else self.m_EventNameNext
-	
+
 	def getShortDescription(self):
 		return self.m_ShortDescriptionNow if self.now_or_next == self.NOW else self.m_ShortDescriptionNext
 
@@ -60,13 +71,13 @@ class pServiceEvent(object):
 		return self.m_ExtendedDescriptionNow if self.now_or_next == self.NOW else self.m_ExtendedDescriptionNext
 
 	def getBeginTime(self):
-		return 0
+		return self.m_Begin if self.now_or_next == self.NOW else 0
 
 	def getEndTime(self):
 		return 0
 
 	def getDuration(self):
-		return 0
+		return self.m_Duration if self.now_or_next == self.NOW else 0
 
 	def getEventId(self):
 		return 0
@@ -77,7 +88,35 @@ class pServiceEvent(object):
 	def getBeginTimeString(self):
 		return ""
 
-class EventInfo(PerServiceBase, Source, object):
+	def getPdcPil(self):
+		return ""
+
+	def getGenreData(self):
+		return None
+
+	def getParentalData(self):
+		return None
+
+	def getRunningStatus(self):
+		return 0
+
+	def getSeriesCrid(self):
+		return ""
+
+	def getEpisodeCrid(self):
+		return ""
+
+	def getComponentData(self):
+		return 0
+
+	def getNumOfLinkageServices(self):
+		return 0
+
+	def getLinkageService(self):
+		return 0
+
+
+class EventInfo(PerServiceBase, Source):
 	NOW = 0
 	NEXT = 1
 
@@ -86,8 +125,8 @@ class EventInfo(PerServiceBase, Source, object):
 		PerServiceBase.__init__(self, navcore,
 			{
 				iPlayableService.evStart: self.gotEvent,
-				iPlayableService.evUpdatedEventInfo: self.gotEvent,
 				iPlayableService.evUpdatedInfo: self.gotEvent,
+				iPlayableService.evUpdatedEventInfo: self.gotEvent,
 				iPlayableService.evEnd: self.gotEvent
 			}, with_event=True)
 		self.now_or_next = now_or_next
@@ -103,7 +142,7 @@ class EventInfo(PerServiceBase, Source, object):
 				refstr = info.getInfoString(iServiceInformation.sServiceref)
 				ret = self.epgQuery(eServiceReference(refstr), -1, self.now_or_next and 1 or 0)
 				if not ret and refstr.split(':')[0] in ['4097', '5001', '5002', '5003']: # No EPG Try to get Meta
-					ev = pServiceEvent(info, self.now_or_next)
+					ev = pServiceEvent(info, self.now_or_next, service)
 					if ev.getEventName:
 						return ev
 		return ret
