@@ -684,7 +684,7 @@ class RecordTimerEntry(TimerEntry):
 				self.backoff = 0
 				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 				if cur_ref and not cur_ref.getPath():
-					if inStandby:
+					if Screens.Standby.inStandby:
 						self.setRecordingPreferredTuner()
 						self.failureCB(True)
 					elif not config.recording.asktozap.value:
