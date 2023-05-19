@@ -19,12 +19,20 @@
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
 <!-- main-->
-	<screen name="InfoBarSummary" position="0,0" size="400,240">
-		<widget source="session.CurrentService" render="PiconRes" position="center,center" zPosition="1" halign="center" valign="center" size="300,180" alphatest="on">
-			<convert type="ServiceName">Reference</convert>
+	<screen name="StandbySummary" position="fill">
+		<widget source="global.CurrentTime" render="Label" position="center,0" size="400,75" font="FdLcD;78" foregroundColor="#a8a69e" halign="center" valign="top" noWrap="1">
+			<convert type="ClockToText">Format:%d.%m.%Y</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Record" position="center,205" foregroundColor="#ff0000" size="100,25" font="FdLcD;25" zPosition="0" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="center,102" size="400,138" font="FdLcD;150" foregroundColor="#a8a69e" halign="center" noWrap="1">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,76" size="400,26" font="FdLcD;25" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,76" size="400,26" font="FdLcD;25" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000" >
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
 </skin>
