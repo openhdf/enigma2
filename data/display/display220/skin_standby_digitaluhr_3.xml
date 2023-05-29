@@ -19,16 +19,12 @@
     <font filename="nmsbd.ttf" name="FdLcD" scale="100" />
   </fonts>
   <!-- standby -->
-  <screen name="StandbySummary" position="0,0" size="220,176" zPosition="10" flags="wfNoBorder">
-    <ePixmap pixmap="/usr/share/enigma2/display/lcd_skin/klappuhr_orange_lcd.png" position="0,0" size="220,176" zPosition="1" />
-    <widget source="global.CurrentTime" render="Label" position="0,138" size="220,50" font="FdLcD;26" foregroundColor="#FFFFFF" transparent="1" halign="center" zPosition="4" noWrap="1">
+  <screen name="StandbySummary" position="0,0" size="220,176">
+    <widget source="global.CurrentTime" render="Label" position="center,20" size="220,75" font="FdLcD;42" foregroundColor="#001BA1E2" halign="center" valign="top" noWrap="1">
       <convert type="ClockToText">Format:%d.%m.%Y</convert>
     </widget>
-    <widget source="global.CurrentTime" render="Label" position="18,30" size="76,134" font="FdLcD;70" foregroundColor="#FFFFFF" transparent="1" halign="left" zPosition="3" noWrap="1">
-      <convert type="ClockToText">Format:%H</convert>
-    </widget>
-    <widget source="global.CurrentTime" render="Label" position="118,30" size="76,134" font="FdLcD;70" foregroundColor="#FFFFFF" transparent="1" halign="left" zPosition="4" noWrap="1">
-      <convert type="ClockToText">Format:%M</convert>
+    <widget source="global.CurrentTime" render="Label" position="center,73" size="220,138" font="FdLcD;82" foregroundColor="#001BA1E2" halign="center" noWrap="1">
+      <convert type="ClockToText">Format:%H:%M</convert>
     </widget>
     <widget source="session.RecordState" render="FixedLabel" text="Recording" position="center,150" size="190,25" font="FdLcD;25" zPosition="2" valign="bottom" halign="center" noWrap="1" foregroundColor="#ff0000">
       <convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>

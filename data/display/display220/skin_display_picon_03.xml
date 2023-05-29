@@ -18,16 +18,14 @@
     <!-- pick a funky name for the font, so we don't conflict  -->
     <font filename="nmsbd.ttf" name="FdLcD" scale="100" />
   </fonts>
-  <!-- standby -->
-  <screen name="StandbySummary" position="fill">
-    <widget source="session.CurrentService" position="1,1" size="220,40" render="Label" font="Meteo; 40" noWrap="1" halign="center">
-      <convert type="XionHDFWeather">Day_0,MeteoFont</convert>
+  <!--Main-->
+  <screen name="InfoBarSummary" position="fill">
+    <widget source="session.CurrentService" render="PiconRes" position="center,center" size="220,176" halign="center" valign="center">
+      <convert type="ServiceName">Reference</convert>
     </widget>
-    <widget source="session.CurrentService" render="Label" position="1,40" size="220,80" font="FdLcD; 80" halign="center" noWrap="1" foregroundColor="#D7D7D7" transparent="1" zPosition="2">
-      <convert type="XionHDFWeather">Day_0,DayTemp</convert>
-    </widget>
-    <widget source="global.CurrentTime" render="Label" position="0,130" size="220,40" font="FdLcD;40" halign="center" valign="top" noWrap="1" foregroundColor="#D7D7D7">
-      <convert type="ClockToText">Format:%H:%M:%S</convert>
+    <widget source="session.RecordState" render="FixedLabel" text="Recording" position="110,151" size="110,25" halign="Left" foregroundColor="#ff0000" font="FdLcD;22" zPosition="2" noWrap="1" valign="center">
+      <convert type="ConditionalShowHide">Blink</convert>
     </widget>
   </screen>
+  <include filename="skin_common.xml" />
 </skin>

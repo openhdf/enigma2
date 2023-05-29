@@ -18,16 +18,21 @@
     <!-- pick a funky name for the font, so we don't conflict  -->
     <font filename="nmsbd.ttf" name="FdLcD" scale="100" />
   </fonts>
-  <!-- standby -->
+  <!--standby-->
   <screen name="StandbySummary" position="fill">
-    <widget source="session.CurrentService" position="1,1" size="220,40" render="Label" font="Meteo; 40" noWrap="1" halign="center">
-      <convert type="XionHDFWeather">Day_0,MeteoFont</convert>
+    <ePixmap pixmap="~/analog_lcd_2.png" position="0,0" size="220,176" zPosition="0" />
+    <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" hColor="white" linewidth="5" zPosition="2" alphatest="on">
+      <convert type="OMaclock">Hours</convert>
     </widget>
-    <widget source="session.CurrentService" render="Label" position="1,40" size="220,80" font="FdLcD; 80" halign="center" noWrap="1" foregroundColor="#D7D7D7" transparent="1" zPosition="2">
-      <convert type="XionHDFWeather">Day_0,DayTemp</convert>
+    <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" mColor="white" linewidth="4" zPosition="3" alphatest="on">
+      <convert type="OMaclock">Minutes</convert>
     </widget>
-    <widget source="global.CurrentTime" render="Label" position="0,130" size="220,40" font="FdLcD;40" halign="center" valign="top" noWrap="1" foregroundColor="#D7D7D7">
-      <convert type="ClockToText">Format:%H:%M:%S</convert>
+    <widget source="global.CurrentTime" render="OMaClockLcd" position="0,0" size="220,176" sColor="red" linewidth="3" zPosition="4" alphatest="on">
+      <convert type="OMaclock">Seconds</convert>
     </widget>
+    <widget source="session.RecordState" render="Pixmap" pixmap="~/analog_lcd_record.png" position="0,0" size="220,176" zPosition="1" alphatest="on">
+      <convert type="ConditionalShowHide">Blink</convert>
+    </widget>
+    <ePixmap pixmap="~/analog_lcd_point.png" position="center,center" size="20,20" alphatest="on" zPosition="5" />
   </screen>
 </skin>

@@ -23,11 +23,14 @@
     <widget source="session.CurrentService" position="1,1" size="220,40" render="Label" font="Meteo; 40" noWrap="1" halign="center">
       <convert type="XionHDFWeather">Day_0,MeteoFont</convert>
     </widget>
-    <widget source="session.CurrentService" render="Label" position="1,40" size="220,80" font="FdLcD; 80" halign="center" noWrap="1" foregroundColor="#D7D7D7" transparent="1" zPosition="2">
-      <convert type="XionHDFWeather">Day_0,DayTemp</convert>
-    </widget>
     <widget source="global.CurrentTime" render="Label" position="0,130" size="220,40" font="FdLcD;40" halign="center" valign="top" noWrap="1" foregroundColor="#D7D7D7">
       <convert type="ClockToText">Format:%H:%M:%S</convert>
+    </widget>
+    <widget source="session.MSNWeather" render="Label" position="1,40" size="220,80" font="FdLcD;80" halign="center" noWrap="1" foregroundColor="#D7D7D7" transparent="1" zPosition="2">
+      <convert type="MSNWeather">temperature_current</convert>
+    </widget>
+    <widget source="session.MSNWeather" position="85,0" size="50,50" render="MSNWeatherPixmap">
+      <convert type="MSNWeather">weathericon,current,/usr/share/enigma2/display/Wettericons/,png</convert>
     </widget>
   </screen>
 </skin>
