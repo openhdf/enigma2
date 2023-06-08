@@ -29,10 +29,10 @@
 		<!-- widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 70" foregroundColor="XionFont2" render="Label" position="180,10" size="150,150" source="session.CurrentService" zPosition="3" halign="center" transparent="1">
 			<convert type="XionHDFWeather">Day_0,FeelTemp</convert>
 		</widget -->
-		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 70" foregroundColor="XionFont1" render="Label" position="268,10" size="140,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
+		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 70" foregroundColor="XionFont1" render="Label" position="258,10" size="140,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
 			<convert type="XionHDFWeather">Day_0,MaxTemp</convert>
 		</widget>
-		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 70" foregroundColor="XionFont1" render="Label" position="268,85" size="140,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
+		<widget noWrap="1" backgroundColor="XionBackground" font="Regular2; 70" foregroundColor="XionFont1" render="Label" position="258,85" size="140,100" source="session.CurrentService" zPosition="8" halign="right" transparent="1">
 			<convert type="XionHDFWeather">Day_0,MinTemp</convert>
 		</widget>
 	</screen>
