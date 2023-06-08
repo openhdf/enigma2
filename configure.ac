@@ -863,6 +863,7 @@ data/display/display220/Wettericons/Makefile
 data/display/display390/Makefile
 data/display/display400/Makefile
 data/display/display400gb4k/Makefile
+data/display/vfd255/Makefile
 include/Makefile
 lib/Makefile
 lib/base/eenv.cpp
