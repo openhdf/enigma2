@@ -11,7 +11,7 @@ SUBDIRS = display128
 endif
 
 if HAVE_BWLCD255
-SUBDIRS += vfd255
+SUBDIRS = vfd255
 endif
 
 if HAVE_TEXTLCD
