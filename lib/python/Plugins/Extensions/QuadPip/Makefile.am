@@ -5,3 +5,4 @@ install_PYTHON =	 \
 	plugin.py \
 	qpip.py \
 	keymap.xml
+	qpip.py
