@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2023-06-12 17:30+0200\n"
+"PO-Revision-Date: 2023-06-12 18:16+0200\n"
+"Last-Translator: Pike_Bishop\n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: plugin.py:21
+msgid "Enable Quad PiP"
+msgstr "Aktiviere Quad Bild im Bild"
+
+#: plugin.py:22
+msgid "Quad Picture in Picture"
+msgstr "Quad Bild im Bild"
+
+#: qpip.py:77
+msgid " <No Channel>"
+msgstr " <Kein Kanal>"
+
+#: qpip.py:123
+msgid "Quad PiP channel "
+msgstr "Quad Bild im Bild Kanal "
+
+#: qpip.py:271
+msgid "Input channel name."
+msgstr "Name des Eingangskanals"
+
+#: qpip.py:280
+msgid ""
+"EPG key : Switch to quad PiP entry\n"
+"Ok key : Add to new entry\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG: Wechsel zum Quad Bild im Bild Eintrag\n"
+"OK: Füge Sender hinzu\n"
+"PVR/Video: Ändere Sendergruppennamen\n"
+"EXIT: Beenden"
+
+#: qpip.py:282
+msgid ""
+"EPG key : Switch to channel list\n"
+"Ok key : Remove selected channel\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG: Wechsel zur Senderauswahl\n"
+"OK: Ausgewählten Sender entfernen\n"
+"PVR/Video: Ändere Sendergruppennamen\n"
+"EXIT: Beenden"
+
+#: qpip.py:297
+msgid " <empty>"
+msgstr " <leer>"
+
+#: qpip.py:345
+msgid "Choice where to put \"%s\""
+msgstr "Positionsauswahl für '%s'"
+
+#: qpip.py:419
+msgid "Quad PiP Channel Selection"
+msgstr "Quad Bild im Bild Kanalauswahl"
+
+#: qpip.py:447
+msgid "Select"
+msgstr "Auswählen"
+
+#: qpip.py:448
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: qpip.py:449
+msgid "Remove"
+msgstr "Entfernen"
+
+#: qpip.py:450
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: qpip.py:457,465
+msgid "Select Quad Channels"
+msgstr "Sendergruppe auswählen"
+
+#: qpip.py:458
+msgid "Add New Quad Channel Entry"
+msgstr "Neue Sendergruppe hinzufügen"
+
+#: qpip.py:459
+msgid "Remove Quad Channel Entry"
+msgstr "Entferne Sendergruppe"
+
+#: qpip.py:460
+msgid "Edit Quad Channel Entry"
+msgstr "Quad Sendereintrag bearbeiten"
+
+#: qpip.py:466
+msgid "Exit Quad Channel Selection"
+msgstr "Beende Quad Bild im Bild Kanalauswahl"
+
+#: qpip.py:498
+msgid "Really delete this entry?"
+msgstr "Sendergruppe wirklich löschen?"
+
+#: qpip.py:549
+msgid " (current channel)"
+msgstr " (Aktuelle Sendergruppe)"
+
+#: qpip.py:630
+msgid "Quad PiP Screen"
+msgstr "Quad Bild im Bild Bildschirm"
+
+#: qpip.py:635
+msgid "Exit quad PiP"
+msgstr "Beende Quad Bild im Bild"
+
+#: qpip.py:636
+msgid "Zap focused channel on full screen"
+msgstr "Im Vollbildmodus zum gewählten Sender umschalten"
+
+#: qpip.py:637,638,639,640
+msgid "Select channel audio"
+msgstr "Kanalauswahl für die Tonausgabe"
+
+#: qpip.py:641,642,643
+msgid "Show channel selection"
+msgstr "Sendergruppen anzeigen"
+
+#: qpip.py:644
+msgid "Prev quad PiP channel"
+msgstr "Zur vorherigen Sendergruppe schalten"
+
+#: qpip.py:645
+msgid "Next quad PiP channel"
+msgstr "Zur nächsten Sendergruppe schalten"
+
+#: qpip.py:646
+msgid "Show/Hide focus bar"
+msgstr "Fokusrahmen anzeigen/verstecken"
+
+#: qpip.py:653
+msgid "  Red key : Show/Hide texts"
+msgstr "  ROT: Zeige/Verstecke Sendernamen"
+
+#: qpip.py:654
+msgid "  Menu key : Select quad channel"
+msgstr " MENU: Wähle Sendergruppe"
+
+#: qpip.py:685
+msgid "Quad PiP is not available."
+msgstr "Quad Bild im Bild nicht verfügbar."
+
+#: qpip.py:688
+msgid "Box or driver is not support Quad PiP."
+msgstr "Receiver/Treiber unterstützt kein Quad Bild im Bild."
+
+#: qpip.py:954
+msgid "No channel"
+msgstr "Kein Kanal"

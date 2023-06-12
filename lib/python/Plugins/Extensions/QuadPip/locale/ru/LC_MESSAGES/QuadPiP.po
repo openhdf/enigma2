@@ -1,0 +1,167 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SAT>IP Client\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-07 08:53+0100\n"
+"PO-Revision-Date: 2023-06-12 18:51+0200\n"
+"Last-Translator: Dimitrij <Dima-73@inbox.lv>\n"
+"Language-Team: Dimitrij PLi\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: ../qpip.py:651
+msgid "  Menu key : Select quad channel"
+msgstr "[menu]: Выбор блока Quad"
+
+#: ../qpip.py:650
+msgid "  Red key : Show/Hide texts"
+msgstr "[red]: Скрыть/показать текст"
+
+#: ../qpip.py:546
+msgid " (current channel)"
+msgstr " (текущий блок)"
+
+#: ../qpip.py:74
+msgid " <No Channel>"
+msgstr " <Нет канала>"
+
+#: ../qpip.py:294
+msgid " <empty>"
+msgstr " <пусто>"
+
+#: ../qpip.py:445
+msgid "Add"
+msgstr "Добавить"
+
+#: ../qpip.py:455
+msgid "Add New Quad Channel Entry"
+msgstr "Добавить новый блок Quad"
+
+#: ../qpip.py:685
+msgid "Box or driver is not support Quad PiP."
+msgstr "Ресивер или драйвер не поддерживает Quad PiP!"
+
+#: ../qpip.py:342
+#, python-format
+msgid "Choice where to put \"%s\""
+msgstr "Назначение номера для \"%s\""
+
+#: ../qpip.py:279
+msgid ""
+"EPG key : Switch to channel list\n"
+"Ok key : Remove selected channel\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"Кнопка EPG: переключить на список каналов\n"
+"Кнопка Ok: удалить выбранный канал\n"
+"Кнопка PVR: ввод названия блока\n"
+"Кнопка Exit: закончить редактирование блока"
+
+#: ../qpip.py:277
+msgid ""
+"EPG key : Switch to quad PiP entry\n"
+"Ok key : Add to new entry\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"Кнопка EPG: переключить на блок(и) Quad PiP\n"
+"Кнопка Ok: добавить новый канал\n"
+"Кнопка PVR: ввод названия блока\n"
+"Кнопка Exit: закончить редактирование блока"
+
+#: ../qpip.py:447
+msgid "Edit"
+msgstr "Редактировать"
+
+#: ../qpip.py:457
+msgid "Edit Quad Channel Entry"
+msgstr "Редактировать блок Quad"
+
+#: ../plugin.py:20
+msgid "Enable Quad PiP"
+msgstr "Включить Quad PiP"
+
+#: ../qpip.py:463
+msgid "Exit Quad Channel Selection"
+msgstr "Выход из настройки блоков Quad"
+
+#: ../qpip.py:632
+msgid "Exit quad PiP"
+msgstr "Выход из Quad PiP"
+
+#: ../qpip.py:268
+msgid "Input channel name."
+msgstr "Ввод названия блока"
+
+#: ../qpip.py:642
+msgid "Next quad PiP channel"
+msgstr "Следующий блок Quad PiP"
+
+#: ../qpip.py:951
+msgid "No channel"
+msgstr "Нет канала"
+
+#: ../qpip.py:641
+msgid "Prev quad PiP channel"
+msgstr "Предыдущий блок Quad PiP"
+
+#: ../qpip.py:416
+msgid "Quad PiP Channel Selection"
+msgstr "Quad PiP - настройка блоков/каналов"
+
+#: ../qpip.py:627
+msgid "Quad PiP Screen"
+msgstr "Окно Quad PiP"
+
+#: ../qpip.py:120
+msgid "Quad PiP channel "
+msgstr "Quad PiP блок "
+
+#: ../qpip.py:682
+msgid "Quad PiP is not available."
+msgstr "Quad PiP не доступен!"
+
+#: ../plugin.py:21
+msgid "Quad Picture in Picture"
+msgstr "Quad картинка в картинке"
+
+#: ../qpip.py:495
+msgid "Really delete this entry?"
+msgstr "Действительно удалить этот блок?"
+
+#: ../qpip.py:446
+msgid "Remove"
+msgstr "Удалить"
+
+#: ../qpip.py:456
+msgid "Remove Quad Channel Entry"
+msgstr "Удалить текущий блок Quad"
+
+#: ../qpip.py:444
+msgid "Select"
+msgstr "Выбор"
+
+#: ../qpip.py:454 ../qpip.py:462
+msgid "Select Quad Channels"
+msgstr "Выбор блока Quad"
+
+#: ../qpip.py:634 ../qpip.py:635 ../qpip.py:636 ../qpip.py:637
+msgid "Select channel audio"
+msgstr "Выбор сервиса с аудио"
+
+#: ../qpip.py:638 ../qpip.py:639 ../qpip.py:640
+msgid "Show channel selection"
+msgstr "Открыть настройку блоков Quad"
+
+#: ../qpip.py:643
+msgid "Show/Hide focus bar"
+msgstr "Показать/скрыть панель выбора"
+
+#: ../qpip.py:633
+msgid "Zap focused channel on full screen"
+msgstr "Переключить выбранный сервис на весь экран"

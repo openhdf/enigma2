@@ -1,0 +1,171 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR &lt;EMAIL@ADDRESS&gt;, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-07 08:53+0100\n"
+"PO-Revision-Date: 2023-06-12 18:50+0200\n"
+"Last-Translator: Frenske <voorzitter@openpli.org>\n"
+"Language-Team: LANGUAGE &lt;LL@li.org&gt;\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: ../qpip.py:651
+msgid "  Menu key : Select quad channel"
+msgstr "Menu: Kies de vier zenders."
+
+#: ../qpip.py:650
+msgid "  Red key : Show/Hide texts"
+msgstr "Rood: Toon /  Verberg tekst."
+
+#: ../qpip.py:546
+msgid " (current channel)"
+msgstr " (huidige keuze)"
+
+#: ../qpip.py:74
+msgid " <No Channel>"
+msgstr "<Geen zender>"
+
+#: ../qpip.py:294
+msgid " <empty>"
+msgstr " <leeg>"
+
+#: ../qpip.py:445
+msgid "Add"
+msgstr "Voeg toe"
+
+#: ../qpip.py:455
+msgid "Add New Quad Channel Entry"
+msgstr "Voeg een nieuwe zender toe"
+
+#: ../qpip.py:685
+msgid "Box or driver is not support Quad PiP."
+msgstr "De box of de driver ondersteunt geen QuadPiP."
+
+#: ../qpip.py:342
+#, python-format
+msgid "Choice where to put \"%s\""
+msgstr "Kies waar je \"%s\" wilt plaatsen"
+
+#: ../qpip.py:279
+msgid ""
+"EPG key : Switch to channel list\n"
+"Ok key : Remove selected channel\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG toets : Ga naar de zenderlijst\n"
+"Ok toets : Verwijder de gekozen zender\n"
+"PVR toets : Voer de zendernaam in\n"
+"Exit toets : Stop met het aanpassen van de zenders"
+
+#: ../qpip.py:277
+msgid ""
+"EPG key : Switch to quad PiP entry\n"
+"Ok key : Add to new entry\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG toets : Ga naar het QuadPiP kanaal\n"
+"Ok toets : Voeg een zender toe\n"
+"PVR toets : Voer de zendernaam in\n"
+"Exit toets : Stop met het aanpassen van de zenders"
+
+#: ../qpip.py:447
+msgid "Edit"
+msgstr "Wijzig"
+
+#: ../qpip.py:457
+msgid "Edit Quad Channel Entry"
+msgstr "Wijzig de QuadPiP zender"
+
+#: ../plugin.py:20
+msgid "Enable Quad PiP"
+msgstr "Activeer QuadPiP"
+
+#: ../qpip.py:463
+msgid "Exit Quad Channel Selection"
+msgstr "Beëindig de QuadPIP keuze"
+
+#: ../qpip.py:632
+msgid "Exit quad PiP"
+msgstr "Beëindig QuadPiP"
+
+#: ../qpip.py:268
+msgid "Input channel name."
+msgstr "Voer de zendernaam in."
+
+#: ../qpip.py:642
+msgid "Next quad PiP channel"
+msgstr "De volgende QuadPiP zender"
+
+#: ../qpip.py:951
+msgid "No channel"
+msgstr "Geen zender"
+
+#: ../qpip.py:641
+msgid "Prev quad PiP channel"
+msgstr "Vorige QuadPiP zender"
+
+#: ../qpip.py:416
+msgid "Quad PiP Channel Selection"
+msgstr "QuadPiP zenderkeuze"
+
+#: ../qpip.py:627
+msgid "Quad PiP Screen"
+msgstr "QuadPiP scherm"
+
+#: ../qpip.py:120
+msgid "Quad PiP channel "
+msgstr "QuadPiP keuze "
+
+#: ../qpip.py:682
+msgid "Quad PiP is not available."
+msgstr "QuadPiP is niet beschikbaar."
+
+#: ../plugin.py:21
+msgid "Quad Picture in Picture"
+msgstr "Quad Picture in Picture"
+
+#: ../qpip.py:495
+msgid "Really delete this entry?"
+msgstr "Wilt u de huidige invoer verwijderen?"
+
+#: ../qpip.py:446
+msgid "Remove"
+msgstr "Verwijder"
+
+#: ../qpip.py:456
+msgid "Remove Quad Channel Entry"
+msgstr "Verwijder deze QuadPiP zender"
+
+#: ../qpip.py:444
+msgid "Select"
+msgstr "Kies"
+
+#: ../qpip.py:454 ../qpip.py:462
+msgid "Select Quad Channels"
+msgstr "Kies Quad zenders"
+
+#: ../qpip.py:634 ../qpip.py:635 ../qpip.py:636 ../qpip.py:637
+msgid "Select channel audio"
+msgstr "Kies het geluidskanaal"
+
+#: ../qpip.py:638 ../qpip.py:639 ../qpip.py:640
+msgid "Show channel selection"
+msgstr "Toon de zenderkeuze"
+
+#: ../qpip.py:643
+msgid "Show/Hide focus bar"
+msgstr "Toon / Verberg focus balk"
+
+#: ../qpip.py:633
+msgid "Zap focused channel on full screen"
+msgstr "Toon het huidige kanaal volledig"

@@ -1,0 +1,167 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenPLi Quad PiP\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-07 08:53+0100\n"
+"PO-Revision-Date: 2023-06-12 18:49+0200\n"
+"Last-Translator: tomppaa <http://www.huoltovalikko.com/>\n"
+"Language-Team: tomppaa\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: ../qpip.py:651
+msgid "  Menu key : Select quad channel"
+msgstr " Menu näppäin: Valitse Quad Kanava"
+
+#: ../qpip.py:650
+msgid "  Red key : Show/Hide texts"
+msgstr "  Punainen näppäin : Näytä/Piilota teksti"
+
+#: ../qpip.py:546
+msgid " (current channel)"
+msgstr " (nykyinen kanava)"
+
+#: ../qpip.py:74
+msgid " <No Channel>"
+msgstr " <Ei Kanavaa>"
+
+#: ../qpip.py:294
+msgid " <empty>"
+msgstr " <tyhjä>"
+
+#: ../qpip.py:445
+msgid "Add"
+msgstr "Lisää"
+
+#: ../qpip.py:455
+msgid "Add New Quad Channel Entry"
+msgstr "Lisää Uusi Quad Kanava"
+
+#: ../qpip.py:685
+msgid "Box or driver is not support Quad PiP."
+msgstr "Vastaanotin tai ajuri ei tue Quad PiP."
+
+#: ../qpip.py:342
+#, python-format
+msgid "Choice where to put \"%s\""
+msgstr "Numeromääritys kohteelle \"%s\""
+
+#: ../qpip.py:279
+msgid ""
+"EPG key : Switch to channel list\n"
+"Ok key : Remove selected channel\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG näppäin: Vaihda kanavalista\n"
+"OK näppäin: Poista valittu kanava\n"
+"PVR näppäin: Syöttä kanavan nimi \n"
+"Exit näppäin : Lopeta kanavan muokkaus"
+
+#: ../qpip.py:277
+msgid ""
+"EPG key : Switch to quad PiP entry\n"
+"Ok key : Add to new entry\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+"EPG näppäin: Vaihda Quad PiP tulo\n"
+"OK näppäin: Poista valittu kanava\n"
+"PVR näppäin: Syöttä kanavan nimi \n"
+"Exit näppäin : Lopeta kanavan muokkaus"
+
+#: ../qpip.py:447
+msgid "Edit"
+msgstr "Muokata"
+
+#: ../qpip.py:457
+msgid "Edit Quad Channel Entry"
+msgstr "Muokkaa Quad Listan kohteita"
+
+#: ../plugin.py:20
+msgid "Enable Quad PiP"
+msgstr "Ota Quad PiP käyttöön"
+
+#: ../qpip.py:463
+msgid "Exit Quad Channel Selection"
+msgstr "Poistu Quad Kanava Valinnasta"
+
+#: ../qpip.py:632
+msgid "Exit quad PiP"
+msgstr "Poistu quad PiP"
+
+#: ../qpip.py:268
+msgid "Input channel name."
+msgstr "Syötä kanavan nimi."
+
+#: ../qpip.py:642
+msgid "Next quad PiP channel"
+msgstr "Seuravaa quad PiP kanava"
+
+#: ../qpip.py:951
+msgid "No channel"
+msgstr "Ei Kanavaa"
+
+#: ../qpip.py:641
+msgid "Prev quad PiP channel"
+msgstr "Edellinen quad PiP kanava"
+
+#: ../qpip.py:416
+msgid "Quad PiP Channel Selection"
+msgstr "Quad PiP kanava valinta"
+
+#: ../qpip.py:627
+msgid "Quad PiP Screen"
+msgstr "Quad PiP Näyttö"
+
+#: ../qpip.py:120
+msgid "Quad PiP channel "
+msgstr "Quad PiP Kanava "
+
+#: ../qpip.py:682
+msgid "Quad PiP is not available."
+msgstr "Quad PiP ei ole saatavilla."
+
+#: ../plugin.py:21
+msgid "Quad Picture in Picture"
+msgstr "Quad Kuva kuvassa"
+
+#: ../qpip.py:495
+msgid "Really delete this entry?"
+msgstr "Haluatko todella poistaa tämän merkinnän?"
+
+#: ../qpip.py:446
+msgid "Remove"
+msgstr "Poista"
+
+#: ../qpip.py:456
+msgid "Remove Quad Channel Entry"
+msgstr "´Poista Quad Kanava merkintä"
+
+#: ../qpip.py:444
+msgid "Select"
+msgstr "Valitse"
+
+#: ../qpip.py:454 ../qpip.py:462
+msgid "Select Quad Channels"
+msgstr "Valitse Quad Kanavat"
+
+#: ../qpip.py:634 ../qpip.py:635 ../qpip.py:636 ../qpip.py:637
+msgid "Select channel audio"
+msgstr "Ääni palvelun valitseminen"
+
+#: ../qpip.py:638 ../qpip.py:639 ../qpip.py:640
+msgid "Show channel selection"
+msgstr "Avaa Quad asetukset"
+
+#: ../qpip.py:643
+msgid "Show/Hide focus bar"
+msgstr "Näytä/Piilota valinta palkki"
+
+#: ../qpip.py:633
+msgid "Zap focused channel on full screen"
+msgstr "Vaihda valittu kanava koko näyttöön"
