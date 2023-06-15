@@ -190,18 +190,6 @@
 		<widget source="Service" render="Label" position="fill" font="Big" noWrap="1"/>
 	</screen>
 
-<!-- standby -->
-	<screen name="StandbySummary" position="fill">
-		<panel position="fill" layout="stack">
-			<widget source="global.CurrentTime" render="Label" position="fill" font="Huge" halign="center" valign="center" noWrap="1">
-				<convert type="ClockToText"/>
-			</widget>
-			<widget source="session.RecordState" render="Pixmap" pixmap="/usr/share/enigma2/skin_default/LCDIcons/rec.png" position="bottom" size="16,9">
-				<convert type="ConditionalShowHide"/>
-			</widget>
-		</panel>
-	</screen>
-
 <!-- Plugin browser -->
 	<screen name="PluginBrowserSummary" position="fill">
 		<widget source="parent.Title" render="Label" position="top" size="*,16" font="Big" noWrap="1" />
