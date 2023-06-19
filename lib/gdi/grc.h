@@ -8,7 +8,7 @@
 */
 
 // for debugging use:
-//#define SYNC_PAINT
+// #define SYNC_PAINT
 #undef SYNC_PAINT
 
 #include <pthread.h>
@@ -35,8 +35,11 @@ struct gOpcode
 		renderPara,
 		setFont,
 
-		fill, fillRegion, clear,
+		fill,
+		fillRegion,
+		clear,
 		blit,
+		gradient,
 
 		setPalette,
 		mergePalette,
@@ -116,6 +119,15 @@ struct gOpcode
 			eRect position;
 			eRect clip;
 		} *blit;
+
+		struct pgradient
+		{
+			eRect area;
+			gRGB gradientStartColor;
+			gRGB gradientEndColor;
+			int orientation;
+			int flag;
+		} *gradient;
 
 		struct pmergePalette
 		{
@@ -270,9 +282,17 @@ public:
 		BT_VALIGN_BOTTOM = 128
 	};
 
+	enum
+	{
+		GRADIENT_VERTICAL = 0,
+		GRADIENT_HORIZONTAL = 1
+	};
+
 	void blitScale(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0, int aflags = BT_SCALE);
 	void blit(gPixmap *pixmap, ePoint pos, const eRect &clip=eRect(), int flags=0);
 	void blit(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0);
+
+	void drawGradient(const eRect &area, const gRGB &startcolor, const gRGB &endcolor, int orientation, int flag=0);
 
 	void setPalette(gRGB *colors, int start=0, int len=256);
 	void setPalette(gPixmap *source);

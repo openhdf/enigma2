@@ -4,7 +4,7 @@
 #include <lib/python/python.h>
 #include <lib/gui/elistbox.h>
 
-class eListboxPythonStringContent: public virtual iListboxContent
+class eListboxPythonStringContent : public virtual iListboxContent
 {
 	DECLARE_REF(eListboxPythonStringContent);
 public:
@@ -41,6 +41,14 @@ protected:
 	virtual void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 
 	int getItemHeight() { return m_itemheight; }
+	int getItemWidth() { return m_itemwidth; }
+	int getOrientation() { return m_orientation; }
+
+private:
+	int m_cursor;
+	int m_saved_cursor;
+	int m_saved_cursor_line;
+	ePtr<gFont> m_font_zoomed;
 
 protected:
 	ePyObject m_list;
@@ -72,7 +80,18 @@ class eListboxPythonMultiContent: public eListboxPythonStringContent
 public:
 	eListboxPythonMultiContent();
 	~eListboxPythonMultiContent();
-	enum { TYPE_TEXT, TYPE_PROGRESS, TYPE_PIXMAP, TYPE_PIXMAP_ALPHATEST, TYPE_PIXMAP_ALPHABLEND, TYPE_PROGRESS_PIXMAP };
+	enum
+	{
+		TYPE_RECT,
+		TYPE_TEXT,
+		TYPE_PROGRESS,
+		TYPE_LINEAR_GRADIENT,
+		TYPE_LINEAR_GRADIENT_ALPHABLEND,
+		TYPE_PIXMAP,
+		TYPE_PIXMAP_ALPHATEST,
+		TYPE_PIXMAP_ALPHABLEND,
+		TYPE_PROGRESS_PIXMAP
+	};
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 	int currentCursorSelectable();
 	void setList(SWIG_PYOBJECT(ePyObject) list);
@@ -86,7 +105,8 @@ public:
 	void entryRemoved(int idx);
 	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
 private:
-	std::map<int, ePtr<gFont> > m_font;
+	std::map<int, ePtr<gFont>> m_fonts;
+	std::map<int, ePtr<gFont>> m_fonts_zoomed;
 };
 
 #ifdef SWIG
@@ -111,6 +131,10 @@ private:
 #define BT_VALIGN_CENTER 64
 #define BT_VALIGN_BOTTOM 128
 #define BT_ALIGN_CENTER BT_HALIGN_CENTER | BT_VALIGN_CENTER
+
+#define GRADIENT_VERTICAL 0
+#define GRADIENT_HORIZONTAL 1
+
 #endif // SWIG
 
 #endif

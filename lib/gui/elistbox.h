@@ -7,7 +7,7 @@
 class eListbox;
 class eSlider;
 
-class iListboxContent: public iObject
+class iListboxContent : public iObject
 {
 public:
 	virtual ~iListboxContent()=0;
@@ -57,21 +57,43 @@ protected:
 };
 
 #ifndef SWIG
+struct eListboxStyleSetted
+{
+	bool transparent_background : 1;
+	bool border : 1;
+	bool background_color : 1;
+	bool foreground_color : 1;
+	bool background_color_selected : 1;
+	bool foreground_color_selected : 1;
+	bool scrollbarforeground_color : 1;
+	bool scrollbarbackground_color : 1;
+	bool scollbarborder_color : 1;
+	bool scrollbarborder_width : 1;
+	bool spacer_color : 1;
+	bool overlay : 1;
+	bool max_rows : 1;
+	bool max_columns : 1;
+	bool use_vti_workaround : 1;
+};
+
 struct eListboxStyle
 {
-	ePtr<gPixmap> m_background, m_selection;
-	int m_transparent_background;
-	gRGB m_background_color, m_background_color_selected,
-	m_foreground_color, m_foreground_color_selected, m_border_color, m_sliderborder_color, m_sliderforeground_color;
-	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set, m_sliderforeground_color_set, m_sliderborder_color_set, m_scrollbarsliderborder_size_set;
-		/*
-			{m_transparent_background m_background_color_set m_background}
-			{0 0 0} use global background color
-			{0 1 x} use background color
-			{0 0 p} use background picture
-			{1 x 0} use transparent background
-			{1 x p} use transparent background picture
-		*/
+	ePtr<gPixmap> m_background, m_selection, m_overlay;
+	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacer_color;
+	int m_max_columns;
+	int m_max_rows;
+	float m_selection_zoom;
+
+	eListboxStyleSetted is_set;
+
+	/*
+		{transparent_background background_color background}
+		{0 0 0} use global background color
+		{0 1 x} use background color
+		{0 0 p} use background picture
+		{1 x 0} use transparent background
+		{1 x p} use transparent background picture
+	*/
 
 	enum
 	{
@@ -82,9 +104,9 @@ struct eListboxStyle
 		alignBottom=alignRight,
 		alignBlock
 	};
-	int m_valign, m_halign, m_border_size, m_sliderborder_size, m_scrollbarsliderborder_size;
-	ePtr<gFont> m_font, m_secondfont;
-	ePoint m_text_offset;
+	int m_valign, m_halign, m_border_size, m_scrollbarborder_width;
+	ePtr<gFont> m_font, m_font_zoomed, m_valuefont;
+	eRect m_text_padding;
 };
 #endif
 
@@ -103,6 +125,67 @@ public:
 		showNever,
 		showLeft
 	};
+
+	enum
+	{
+		byPage,
+		byLine
+	};
+
+	enum
+	{
+		DefaultScrollBarWidth = 10,
+		DefaultScrollBarOffset = 5,
+		DefaultScrollBarBorderWidth = 1,
+		DefaultScrollBarScroll = eListbox::byPage,
+		DefaultScrollBarMode = eListbox::showNever,
+		DefaultWrapAround = true,
+		DefaultPageSize = 0
+	};
+	enum
+	{
+		orVertical = 1,
+		orHorizontal = 2,
+		orGrid = 3
+	};
+
+	enum
+	{
+		itemVertialAlignTop = 1 << 0,
+		itemVertialAlignMiddle = 1 << 1,
+		itemVertialAlignBottom = 1 << 2,
+		itemVertialAlignJustify = 1 << 3,
+		itemHorizontalAlignLeft = 1 << 4,
+		itemHorizontalAlignCenter = 1 << 5,
+		itemHorizontalAlignRight = 1 << 6,
+		itemHorizontalAlignJustify = 1 << 7,
+	};
+
+	enum
+	{
+		itemAlignLeftTop = itemVertialAlignTop + itemHorizontalAlignLeft,
+		itemAlignLeftMiddle = itemVertialAlignMiddle + itemHorizontalAlignLeft,
+		itemAlignLeftBottom = itemVertialAlignBottom + itemHorizontalAlignLeft,
+		itemAlignRightTop = itemVertialAlignTop + itemHorizontalAlignRight,
+		itemAlignRightMiddle = itemVertialAlignMiddle + itemHorizontalAlignRight,
+		itemAlignRightBottom = itemVertialAlignBottom + itemHorizontalAlignRight,
+		itemAlignCenterTop = itemVertialAlignTop + itemHorizontalAlignCenter,
+		itemAlignCenterMiddle = itemVertialAlignMiddle + itemHorizontalAlignCenter,
+		itemAlignCenterBottom = itemVertialAlignBottom + itemHorizontalAlignCenter,
+		itemAlignJustifyTop = itemVertialAlignTop + itemHorizontalAlignJustify,
+		itemAlignJustifyMiddle = itemVertialAlignMiddle + itemHorizontalAlignJustify,
+		itemAlignJustifyBottom = itemVertialAlignBottom + itemHorizontalAlignJustify,
+		itemAlignJustifyLeft = itemVertialAlignJustify + itemHorizontalAlignLeft,
+		itemAlignJustifyRight = itemVertialAlignJustify + itemHorizontalAlignRight,
+		itemAlignJustifyFull =  itemVertialAlignJustify + itemHorizontalAlignJustify,
+
+		itemAlignDefault = itemAlignLeftTop,
+		itemAlignCenter = itemAlignCenterMiddle,
+		itemAlignJustify = itemAlignJustifyFull
+	};
+
+	void setItemAlignment(int align);
+	void setScrollbarScroll(int scroll);
 	void setScrollbarMode(int mode);
 	void setWrapAround(bool);
 
@@ -141,26 +224,73 @@ public:
 	void setBackgroundColorSelected(gRGB &col);
 	void setForegroundColor(gRGB &col);
 	void setForegroundColorSelected(gRGB &col);
-	void setBorderColor(const gRGB &col);
+
+	void setSpacerColor(gRGB &col);
+	void clearSpacerColor() { m_style.is_set.spacer_color = 0; }
+
+	void clearBackgroundColor() { m_style.is_set.background_color = 0; }
+	void clearBackgroundColorSelected() { m_style.is_set.background_color_selected = 0; }
+	void clearForegroundColor() { m_style.is_set.foreground_color = 0; }
+	void clearForegroundColorSelected() { m_style.is_set.foreground_color_selected = 0; }
+
+	void setBorderColor(const gRGB &col) { m_style.m_border_color = col; }
 	void setBorderWidth(int size);
 	void setBackgroundPicture(ePtr<gPixmap> &pixmap);
 	void setSelectionPicture(ePtr<gPixmap> &pixmap);
 
-	void setSliderPicture(ePtr<gPixmap> &pm);
-	void setScrollbarBackgroundPicture(ePtr<gPixmap> &pm);
-	void setScrollbarSliderBorderWidth(int size);
-	void setScrollbarWidth(int size);
+
+	void setBackgroundPixmap(ePtr<gPixmap> &pm) { m_style.m_background = pm; }
+	void setSelectionPixmap(ePtr<gPixmap> &pm) { m_style.m_selection = pm; }
+	void setSelectionBorderHidden() { m_style.is_set.border = 1; }
+
+	void setScrollbarForegroundPixmap(ePtr<gPixmap> &pm);
+	void setScrollbarBackgroundPixmap(ePtr<gPixmap> &pm);
+	void setScrollbarBorderWidth(int width);
+
+	void setScrollbarWidth(int size) { m_scrollbar_width = size; }
+	void setScrollbarHeight(int size) { m_scrollbar_height = size; }
+	void setScrollbarOffset(int size) { m_scrollbar_offset = size; }
+	void setScrollbarLength(int size) { m_scrollbar_length = size; }
 
 	void setFont(gFont *font);
-	void setSecondFont(gFont *font);
-	void setVAlign(int align);
-	void setHAlign(int align);
-	void setTextOffset(const ePoint &textoffset);
+	void setEntryFont(gFont *font) { m_style.m_font = font; }
+	void setValueFont(gFont *font) { m_style.m_valuefont = font; }
+	void setVAlign(int align) { m_style.m_valign = align; }
+	void setHAlign(int align) { m_style.m_halign = align; }
+	void setTextPadding(const eRect &padding) { m_style.m_text_padding = padding; }
+	void setUseVTIWorkaround(void) { m_style.is_set.use_vti_workaround = 1; }
 
-	void setSliderBorderColor(const gRGB &col);
-	void setSliderBorderWidth(int size);
-	void setSliderForegroundColor(gRGB &col);
+	void setScrollbarBorderColor(const gRGB &col);
+	void setScrollbarForegroundColor(gRGB &col);
+	void setScrollbarBackgroundColor(gRGB &col);
 
+	void setMaxRows(int rows) {m_style.m_max_rows = rows; m_style.is_set.max_rows = 1;};
+	void setMaxColumns(int columns) {m_style.m_max_columns = columns; m_style.is_set.max_columns = 1;};
+	void setItemSpacing(const ePoint &spacing, bool innerOnly=false);
+	void setSelectionZoom(float zoom);
+
+	void setOverlay(ePtr<gPixmap> &pm) { m_style.m_overlay = pm; m_style.is_set.overlay = 1; }
+
+	void setPageSize(int size) { m_page_size = size; }
+
+	static void setDefaultScrollbarStyle(int width, int offset, int borderwidth, int scroll, int mode, bool enablewraparound, int pageSize)
+	{
+		defaultScrollBarWidth = width;
+		defaultScrollBarOffset = offset;
+		defaultScrollBarBorderWidth = borderwidth;
+		defaultScrollBarScroll = scroll;
+		defaultWrapAround = enablewraparound;
+		defaultScrollBarMode = mode;
+		defaultPageSize = pageSize;
+	}
+
+	static void setDefaultPadding(const eRect &padding) { defaultPadding = padding; }
+
+	void setTopIndex(int idx);
+
+	bool getWrapAround() { return m_enabled_wrap_around; }
+	int getScrollbarScroll() { return m_scrollbar_scroll; }
+	int getScrollbarMode() { return m_scrollbar_mode; }
 	int getScrollbarWidth() { return m_scrollbar_width; }
 
 #ifndef SWIG
@@ -183,15 +313,47 @@ protected:
 	void recalcSize();
 
 private:
-	int m_scrollbar_mode, m_prev_scrollbar_page;
+	ePoint getItemPostion(int index);
+	int moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int maxItems, bool indexChanged, int pageOffset, int topLeft);
+	void recalcSizeAlignment(bool scrollbarVisible);
+	int setScrollbarPosition();
+
+	static int defaultScrollBarWidth;
+	static int defaultScrollBarOffset;
+	static int defaultScrollBarBorderWidth;
+	static int defaultScrollBarScroll;
+	static int defaultScrollBarMode;
+	static int defaultPageSize;
+	static bool defaultWrapAround;
+	static eRect defaultPadding;
+
+	int m_scrollbar_mode, m_prev_scrollbar_page, m_scrollbar_scroll;
 	bool m_content_changed;
 	bool m_enabled_wrap_around;
+	bool m_itemwidth_set;
+	bool m_itemheight_set;
 
 	int m_scrollbar_width;
-	int m_top, m_selected;
+	int m_scrollbar_height;
+	int m_scrollbar_length;
+	int m_scrollbar_offset;
+	int m_scrollbar_border_width;
+	int m_top, m_left, m_selected;
 	int m_itemheight;
 	int m_items_per_page;
 	int m_selection_enabled;
+	int m_page_size;
+	int m_item_alignment;
+	int xOffset;
+	int yOffset;
+
+	bool m_native_keys_bound;
+	int m_first_selectable_item;
+	int m_last_selectable_item;
+	int m_scrollbar_calcsize;
+
+	ePoint m_spacing;
+	bool m_spacing_innerOnly;
 	ePtr<iListboxContent> m_content;
 	eSlider *m_scrollbar;
 	eListboxStyle m_style;

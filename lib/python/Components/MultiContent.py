@@ -1,8 +1,37 @@
+from __future__ import print_function
+from enigma import GRADIENT_VERTICAL, RT_HALIGN_LEFT, RT_VALIGN_TOP, eListboxPythonMultiContent
 
-from enigma import RT_HALIGN_LEFT, RT_VALIGN_TOP, eListboxPythonMultiContent
+from skin import parseColor
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
+
+
+def __resolveColor(color):
+	if isinstance(color, str):
+		try:
+			return parseColor(color).argb()
+		except Exception as err:
+			print("[MultiContent] Error: Resolve color '%s'" % str(err))
+		return None
+	return color
+
+
+def __resolvePixmap(pixmap):
+	if isinstance(pixmap, str):
+		try:
+			return LoadPixmap(resolveFilename(SCOPE_GUISKIN, pixmap))
+		except Exception as err:
+			print("[MultiContent] Error: Resolve pixmap '%s'" % str(err))
+		return None
+	return pixmap
+
 
 
 def MultiContentTemplateColor(n): return 0xff000000 | n
+
+
+def MultiContentEntryRectangle(pos=(0, 0), size=(0, 0), backgroundColor=None, backgroundColorSelected=None, borderWidth=None, borderColor=None, borderColorSelected=None):
+	return eListboxPythonMultiContent.TYPE_RECT, int(pos[0]), int(pos[1]), int(size[0]), int(size[1]), __resolveColor(backgroundColor), __resolveColor(backgroundColorSelected), borderWidth, __resolveColor(borderColor), __resolveColor(borderColorSelected)
 
 
 def MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_TOP, text="", color=None, color_sel=None, backcolor=None, backcolor_sel=None, border_width=None, border_color=None):
@@ -26,4 +55,12 @@ def MultiContentEntryProgress(pos=(0, 0), size=(0, 0), percent=None, borderWidth
 
 
 def MultiContentEntryProgressPixmap(pos=(0, 0), size=(0, 0), percent=None, pixmap=None, borderWidth=None, foreColor=None, foreColorSelected=None, backColor=None, backColorSelected=None):
-	return eListboxPythonMultiContent.TYPE_PROGRESS_PIXMAP, pos[0], pos[1], size[0], size[1], percent, pixmap, borderWidth, foreColor, foreColorSelected, backColor, backColorSelected
+	return eListboxPythonMultiContent.TYPE_PROGRESS_PIXMAP, int(pos[0]), int(pos[1]), int(size[0]), int(size[1]), percent, __resolvePixmap(pixmap), borderWidth, __resolveColor(foreColor), __resolveColor(foreColorSelected), __resolveColor(backColor), __resolveColor(backColorSelected)
+
+
+def MultiContentEntryLinearGradient(pos=(0, 0), size=(0, 0), direction=GRADIENT_VERTICAL, startColor=None, endColor=None, startColorSelected=None, endColorSelected=None):
+    return eListboxPythonMultiContent.TYPE_LINEAR_GRADIENT, int(pos[0]), int(pos[1]), int(size[0]), int(size[1]), direction, __resolveColor(startColor), __resolveColor(endColor), __resolveColor(startColorSelected), __resolveColor(endColorSelected)
+
+
+def MultiContentEntryLinearGradientAlphaBlend(pos=(0, 0), size=(0, 0), direction=GRADIENT_VERTICAL, startColor=None, endColor=None, startColorSelected=None, endColorSelected=None):
+    return eListboxPythonMultiContent.TYPE_LINEAR_GRADIENT_ALPHABLEND, int(pos[0]), int(pos[1]), int(size[0]), int(size[1]), direction, __resolveColor(startColor), __resolveColor(endColor), __resolveColor(startColorSelected), __resolveColor(endColorSelected)
