@@ -3,6 +3,7 @@
 from boxbranding import getMachineBrand, getMachineBuild, getMachineName
 
 import Screens.InfoBar
+import Components.ParentalControl
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Button import Button
 from Components.MenuList import MenuList
