@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-18 20:34+0100\n"
-"PO-Revision-Date: 2023-06-04 14:56+0200\n"
+"PO-Revision-Date: 2023-07-09 06:35+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2586,7 +2586,7 @@ msgstr "CIselectMainMenu"
 
 #, python-format
 msgid "CPU Temp:\t\t%s"
-msgstr "CPU-Temperatur:\t\t%s"
+msgstr "CPU-Temperatur:\t%s"
 
 #, python-format
 msgid "CPU:\t\t%s"
