@@ -1,7 +1,5 @@
-from __future__ import absolute_import
-
-from Components.Element import cached
 from Components.Sources.Source import Source
+from Components.Element import cached
 
 
 class List(Source):
@@ -13,11 +11,7 @@ setup the "fonts".
 This has been done so another converter could convert the list to a different format, for example
 to generate HTML."""
 
-	def __init__(self, list=None, enableWrapAround=False, item_height=25, fonts=None):
-		if not list:
-			list = []
-		if not fonts:
-			fonts = []
+	def __init__(self, list=[], enableWrapAround=True, item_height=25, fonts=[]):
 		Source.__init__(self)
 		self.__list = list
 		self.onSelectionChanged = []
@@ -107,30 +101,26 @@ to generate HTML."""
 
 	def updateList(self, list):
 		"""Changes the list without changing the selection or emitting changed Events"""
-		max_index = len(list) - 1
-		old_index = min(max_index, self.index)
+		assert len(list) == len(self.__list)
+		old_index = self.index
 		self.disable_callbacks = True
 		self.list = list
 		self.index = old_index
 		self.disable_callbacks = False
 
 	def pageUp(self):
-		if self.getIndex() == 0:
-			self.index = self.count() - 1
-		elif self.getIndex() - 10 < 0:
-			self.index = 0
-		else:
-			self.index -= 10
-		self.setIndex(self.index)
+		try:
+			instance = self.master.master.instance
+			instance.moveSelection(instance.pageUp)
+		except AttributeError:
+			return
 
 	def pageDown(self):
-		if self.getIndex() == self.count() - 1:
-			self.index = 0
-		elif self.getIndex() + 10 >= self.count():
-			self.index = self.count() - 1
-		else:
-			self.index += 10
-		self.setIndex(self.index)
+		try:
+			instance = self.master.master.instance
+			instance.moveSelection(instance.pageDown)
+		except AttributeError:
+			return
 
 	def up(self):
 		self.selectPrevious()
