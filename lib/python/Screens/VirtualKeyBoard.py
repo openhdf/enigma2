@@ -1,17 +1,12 @@
 # -*- coding: UTF-8 -*-
-from __future__ import division
-
-from enigma import (RT_HALIGN_CENTER, RT_VALIGN_CENTER,
-                    eListboxPythonMultiContent, getPrevAsciiCode, gFont)
-from six import ensure_str, ensure_text
+from enigma import RT_HALIGN_CENTER, RT_VALIGN_CENTER, eListboxPythonMultiContent, getPrevAsciiCode, gFont
 
 from Components.ActionMap import NumberActionMap
 from Components.Input import Input
 from Components.Label import Label
 from Components.Language import language
 from Components.MenuList import MenuList
-from Components.MultiContent import (MultiContentEntryPixmapAlphaTest,
-                                     MultiContentEntryText)
+from Components.MultiContent import MultiContentEntryPixmapAlphaTest, MultiContentEntryText
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from skin import fonts, parameters
@@ -59,31 +54,12 @@ class VirtualKeyBoard(Screen):
 		self.key_left = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_left.png"))
 		self.key_right = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_right.png"))
 
-		self.keyImages = {
-				"BACKSPACE": self.key_backspace,
-				"CLEAR": self.key_clr,
-				"ALL": self.key_all,
-				"EXIT": self.key_esc,
-				"OK": self.key_ok,
-				"SHIFT": self.key_shift,
-				"SPACE": self.key_space,
-				"LEFT": self.key_left,
-				"RIGHT": self.key_right
-			}
-		self.keyImagesShift = {
-				"BACKSPACE": self.key_backspace,
-				"CLEAR": self.key_clr,
-				"EXIT": self.key_esc,
-				"OK": self.key_ok,
-				"SHIFT": self.key_shift_sel,
-				"SPACE": self.key_space,
-				"LEFT": self.key_left,
-				"RIGHT": self.key_right
-			}
+		self.keyImages = {"BACKSPACE": self.key_backspace, "CLEAR": self.key_clr, "ALL": self.key_all, "EXIT": self.key_esc, "OK": self.key_ok, "SHIFT": self.key_shift, "SPACE": self.key_space, "LEFT": self.key_left, "RIGHT": self.key_right}
+		self.keyImagesShift = {"BACKSPACE": self.key_backspace, "CLEAR": self.key_clr, "EXIT": self.key_esc, "OK": self.key_ok, "SHIFT": self.key_shift_sel, "SPACE": self.key_space, "LEFT": self.key_left, "RIGHT": self.key_right}
 
 		self["country"] = StaticText("")
 		self["header"] = Label(title)
-		self["text"] = Input(currPos=len(ensure_text(kwargs.get("text", ""))), allMarked=False, **kwargs)
+		self["text"] = Input(currPos=len(kwargs.get("text", "")), allMarked=False, **kwargs)
 		self["list"] = VirtualKeyBoardList([])
 
 		self["actions"] = NumberActionMap(["OkCancelActions", "WizardActions", "ColorActions", "KeyboardInputActions", "InputBoxActions", "InputAsciiActions"],
@@ -130,202 +106,63 @@ class VirtualKeyBoard(Screen):
 		self.buildVirtualKeyBoard()
 
 	def setLang(self):
-		if self.lang == 'de_DE':
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"ü", u"+"],
-				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"ö", u"ä", u"#"],
-				[u"<", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"ALL"],
-				[u"SHIFT", u"SPACE", u"@", u"ß", u"[", u"]", u"OK", u"LEFT", u"RIGHT"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"!", u'"', u"§", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"BACKSPACE"],
-				[u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"Ü", u"*"],
-				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"Ö", u"Ä", u"'"],
-				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"?", u"\\", u"|", u"^", u"OK", u"LEFT", u"RIGHT"]]
-			self.nextLang = 'hu_HU'
-		elif self.lang == 'hu_HU':
-			self.keys_list = [
-				[u"EXIT", u"0", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"BACKSPACE"],
-				[u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"ő", u"ú"],
-				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"é", u"á", u"ű"],
-				[u"í", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"ALL"],
-				[u"SHIFT", u"SPACE", u"ö", u"ü", u"ó", u"#", u"@", u"*", u"OK", u"LEFT", u"RIGHT", u"CLEAR"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"§", u"'", u'"', u"+", u"!", u"%", u"/", u"=", u"(", u")", u"BACKSPACE"],
-				[u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"Ő", u"Ú"],
-				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"É", u"Á", u"Ű"],
-				[u"Í", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u"?", u":", u"_", u";"],
-				[u"SHIFT", u"Ö", u"Ü", u"Ó", u"&", u"<", u">", u"{", u"}", u"[", u"]", u"\\"]]
-			self.nextLang = 'es_ES'
-		elif self.lang == 'es_ES':
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"¡", u"'"],
-				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"ñ", u"ç", u"+"],
-				[u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"ALL"],
-				[u"SHIFT", u"SPACE", u"@", u"á", u"é", u"í", u"ó", u"ú", u"ü", u"º", u"ª", u"OK"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"!", u'"', u"·", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"BACKSPACE"],
-				[u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"¿", u"?"],
-				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"Ñ", u"Ç", u"*"],
-				[u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"€", u"Á", u"É", u"Í", u"Ó", u"Ú", u"Ü", u"[", u"]", u"OK"]]
-			self.nextLang = 'fi_FI'
-		elif self.lang == 'fi_FI':
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"é", u"+"],
-				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"ö", u"ä", u"#"],
-				[u"<", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"ALL"],
-				[u"SHIFT", u"SPACE", u"@", u"ß", u"ĺ", u"OK", u"LEFT", u"RIGHT"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"!", u'"', u"§", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"BACKSPACE"],
-				[u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"É", u"*"],
-				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"Ö", u"Ä", u"'"],
-				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"?", u"\\", u"Ĺ", u"OK", u"LEFT", u"RIGHT"]]
-			self.nextLang = 'lv_LV'
-		elif self.lang == 'lv_LV':
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"-", u"š"],
-				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u";", u"'", u"ū"],
-				[u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", u".", u"ž", u"ALL"],
-				[u"SHIFT", u"SPACE", u"ā", u"č", u"ē", u"ģ", u"ī", u"ķ", u"ļ", u"ņ", u"LEFT", u"RIGHT"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"!", u"@", u"$", u"*", u"(", u")", u"_", u"=", u"/", u"\\", u"BACKSPACE"],
-				[u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"+", u"Š"],
-				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u":", u'"', u"Ū"],
-				[u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u"#", u"?", u"Ž", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"Ā", u"Č", u"Ē", u"Ģ", u"Ī", u"Ķ", u"Ļ", u"Ņ", u"LEFT", u"RIGHT"]]
-			self.nextLang = 'ru_RU'
-		elif self.lang == 'ru_RU':
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"а", u"б", u"в", u"г", u"д", u"е", u"ё", u"ж", u"з", u"и", u"й", u"+"],
-				[u"к", u"л", u"м", u"н", u"о", u"п", u"р", u"с", u"т", u"у", u"ф", u"#"],
-				[u"<", u"х", u"ц", u"ч", u"ш", u"щ", u"ъ", u"ы", u",", u".", u"-", u"ALL"],
-				[u"SHIFT", u"SPACE", u"@", u"ь", u"э", u"ю", u"я", u"OK", u"LEFT", u"RIGHT"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"!", u'"', u"§", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"BACKSPACE"],
-				[u"А", u"Б", u"В", u"Г", u"Д", u"Е", u"Ё", u"Ж", u"З", u"И", u"Й", u"*"],
-				[u"К", u"Л", u"М", u"Н", u"О", u"П", u"Р", u"С", u"Т", u"У", u"Ф", u"'"],
-				[u">", u"Х", u"Ц", u"Ч", u"Ш", u"Щ", u"Ъ", u"Ы", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"?", u"\\", u"Ь", u"Э", u"Ю", u"Я", u"OK", u"LEFT", u"RIGHT"]]
-			self.nextLang = 'sv_SE'
-		elif self.lang == 'sv_SE':
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"é", u"+"],
-				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"ö", u"ä", u"#"],
-				[u"<", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"ALL"],
-				[u"SHIFT", u"SPACE", u"@", u"ß", u"ĺ", u"OK", u"LEFT", u"RIGHT"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"!", u'"', u"§", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"BACKSPACE"],
-				[u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"É", u"*"],
-				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"Ö", u"Ä", u"'"],
-				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"?", u"\\", u"Ĺ", u"OK", u"LEFT", u"RIGHT"]]
-			self.nextLang = 'sk_SK'
-		elif self.lang == 'sk_SK':
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"ú", u"+"],
-				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"ľ", u"@", u"#"],
-				[u"<", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"ALL"],
-				[u"SHIFT", u"SPACE", u"š", u"č", u"ž", u"ý", u"á", u"í", u"é", u"OK", u"LEFT", u"RIGHT"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"!", u'"', u"§", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"BACKSPACE"],
-				[u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"ť", u"*"],
-				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"ň", u"ď", u"'"],
-				[u"Á", u"É", u"Ď", u"Í", u"Ý", u"Ó", u"Ú", u"Ž", u"Š", u"Č", u"Ť", u"Ň"],
-				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"?", u"\\", u"ä", u"ö", u"ü", u"ô", u"ŕ", u"ĺ", u"OK"]]
-			self.nextLang = 'cs_CZ'
-		elif self.lang == 'cs_CZ':
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"ú", u"+"],
-				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"ů", u"@", u"#"],
-				[u"<", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"ALL"],
-				[u"SHIFT", u"SPACE", u"ě", u"š", u"č", u"ř", u"ž", u"ý", u"á", u"í", u"é", u"OK"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"!", u'"', u"§", u"$", u"%", u"&", u"/", u"(", u")", u"=", u"BACKSPACE"],
-				[u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"ť", u"*"],
-				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"ň", u"ď", u"'"],
-				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"?", u"\\", u"Č", u"Ř", u"Š", u"Ž", u"Ú", u"Á", u"É", u"OK"]]
-			self.nextLang = 'el_GR'
-		elif self.lang == 'el_GR':
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"=", u"ς", u"ε", u"ρ", u"τ", u"υ", u"θ", u"ι", u"ο", u"π", u"[", u"]"],
-				[u"α", u"σ", u"δ", u"φ", u"γ", u"η", u"ξ", u"κ", u"λ", u";", u"'", u"-"],
-				[u"\\", u"ζ", u"χ", u"ψ", u"ω", u"β", u"ν", u"μ", u",", ".", u"/", u"ALL"],
-				[u"SHIFT", u"SPACE", u"ά", u"έ", u"ή", u"ί", u"ό", u"ύ", u"ώ", u"ϊ", u"ϋ", u"OK"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"*", u"(", u")", u"BACKSPACE"],
-				[u"+", u"€", u"Ε", u"Ρ", u"Τ", u"Υ", u"Θ", u"Ι", u"Ο", u"Π", u"{", u"}"],
-				[u"Α", u"Σ", u"Δ", u"Φ", u"Γ", u"Η", u"Ξ", u"Κ", u"Λ", u":", u'"', u"_"],
-				[u"|", u"Ζ", u"Χ", u"Ψ", u"Ω", u"Β", u"Ν", u"Μ", u"<", u">", u"?", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"Ά", u"Έ", u"Ή", u"Ί", u"Ό", u"Ύ", u"Ώ", u"Ϊ", u"Ϋ", u"OK"]]
-			self.nextLang = 'pl_PL'
-		elif self.lang == 'pl_PL':
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"-", u"["],
-				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u";", u"'", u"\\"],
-				[u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"/", u"ALL"],
-				[u"SHIFT", u"SPACE", u"ą", u"ć", u"ę", u"ł", u"ń", u"ó", u"ś", u"ź", u"ż", u"OK"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"(", u")", u"=", u"BACKSPACE"],
-				[u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"*", u"]"],
-				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"?", u'"', u"|"],
-				[u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"Ą", u"Ć", u"Ę", u"Ł", u"Ń", u"Ó", u"Ś", u"Ź", u"Ż", u"OK"]]
-			self.nextLang = 'ar_AE'
-		elif self.lang == 'ar_AE':
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"ض", u"ص", u"ث", u"ق", u"ف", u"غ", u"ع", u"ه", u"خ", u"ح", u"ج", u"د"],
-				[u"ش", u"س", u"ي", u"ب", u"ل", u"ا", u"ت", u"ن", u"م", u"ك", u"ط", u"#"],
-				[u"ئ", u"ء", u"ؤ", u"ر", u"لا", u"ى", u"ة", u"و", u"ز", "ظ", u"ذ", u"ALL"],
-				[u"SHIFT", u"SPACE", u"+", u"-", u"*", u"/", u".", u",", u"@", u"%", u"&", u"OK"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"!", u'"', u"§", u"$", u"^", u"<", u">", u"(", u")", u"=", u"BACKSPACE"],
-				[u"َ", u"ً", u"ُ", u"ٌ", u"لإ", u"إ", u"‘", u"÷", u"×", u"؛", u"<", u">"],
-				[u"ِ", u"ٍ", u"]", u"[", u"لأ", u"أ", u"ـ", u"،", u"/", u":", u"~", u"'"],
-				[u"ْ", u"}", u"{", u"لآ", u"آ", u"’", u",", u".", u"؟", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"?", u"\\", u"=", u"ّ", u"~", u"OK"]]
-			self.nextLang = 'th_TH'
-		elif self.lang == 'th_TH':
-			self.keys_list = [[u"EXIT", "\xe0\xb9\x85", "\xe0\xb8\xa0", "\xe0\xb8\x96", "\xe0\xb8\xb8", "\xe0\xb8\xb6", "\xe0\xb8\x84", "\xe0\xb8\x95", "\xe0\xb8\x88", "\xe0\xb8\x82", "\xe0\xb8\x8a", u"BACKSPACE"],
-				["\xe0\xb9\x86", "\xe0\xb9\x84", "\xe0\xb8\xb3", "\xe0\xb8\x9e", "\xe0\xb8\xb0", "\xe0\xb8\xb1", "\xe0\xb8\xb5", "\xe0\xb8\xa3", "\xe0\xb8\x99", "\xe0\xb8\xa2", "\xe0\xb8\x9a", "\xe0\xb8\xa5"],
-				["\xe0\xb8\x9f", "\xe0\xb8\xab", "\xe0\xb8\x81", "\xe0\xb8\x94", "\xe0\xb9\x80", "\xe0\xb9\x89", "\xe0\xb9\x88", "\xe0\xb8\xb2", "\xe0\xb8\xaa", "\xe0\xb8\xa7", "\xe0\xb8\x87", "\xe0\xb8\x83"],
-				["\xe0\xb8\x9c", "\xe0\xb8\x9b", "\xe0\xb9\x81", "\xe0\xb8\xad", "\xe0\xb8\xb4", "\xe0\xb8\xb7", "\xe0\xb8\x97", "\xe0\xb8\xa1", "\xe0\xb9\x83", "\xe0\xb8\x9d", "", u"ALL"],
-				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT"]]
-			self.shiftkeys_list = [[u"EXIT", "\xe0\xb9\x91", "\xe0\xb9\x92", "\xe0\xb9\x93", "\xe0\xb9\x94", "\xe0\xb8\xb9", "\xe0\xb9\x95", "\xe0\xb9\x96", "\xe0\xb9\x97", "\xe0\xb9\x98", "\xe0\xb9\x99", u"BACKSPACE"],
-				["\xe0\xb9\x90", "", "\xe0\xb8\x8e", "\xe0\xb8\x91", "\xe0\xb8\x98", "\xe0\xb9\x8d", "\xe0\xb9\x8a", "\xe0\xb8\x93", "\xe0\xb8\xaf", "\xe0\xb8\x8d", "\xe0\xb8\x90", "\xe0\xb8\x85"],
-				["\xe0\xb8\xa4", "\xe0\xb8\x86", "\xe0\xb8\x8f", "\xe0\xb9\x82", "\xe0\xb8\x8c", "\xe0\xb9\x87", "\xe0\xb9\x8b", "\xe0\xb8\xa9", "\xe0\xb8\xa8", "\xe0\xb8\x8b", "", "\xe0\xb8\xbf"],
-				["", "", "\xe0\xb8\x89", "\xe0\xb8\xae", "\xe0\xb8\xba", "\xe0\xb9\x8c", "", "\xe0\xb8\x92", "\xe0\xb8\xac", "\xe0\xb8\xa6", "", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT"]]
-			self.nextLang = 'en_US'
+		if self.lang == "de_DE":
+			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ü", "+"], ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä", "#"], ["<", "y", "x", "c", "v", "b", "n", "m", ",", ".", "-", "ALL"], ["SHIFT", "SPACE", "@", "ß", "[", "]", "OK", "LEFT", "RIGHT"]]
+			self.shiftkeys_list = [["EXIT", "!", '"', "§", "$", "%", "&", "/", "(", ")", "=", "BACKSPACE"], ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "Ü", "*"], ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ö", "Ä", "'"], [">", "Y", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CLEAR"], ["SHIFT", "SPACE", "?", "\\", "|", "^", "OK", "LEFT", "RIGHT"]]
+			self.nextLang = "hu_HU"
+		elif self.lang == "hu_HU":
+			self.keys_list = [["EXIT", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "BACKSPACE"], ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ő", "ú"], ["a", "s", "d", "f", "g", "h", "j", "k", "l", "é", "á", "ű"], ["í", "y", "x", "c", "v", "b", "n", "m", ",", ".", "-", "ALL"], ["SHIFT", "SPACE", "ö", "ü", "ó", "#", "@", "*", "OK", "LEFT", "RIGHT", "CLEAR"]]
+			self.shiftkeys_list = [["EXIT", "§", "'", '"', "+", "!", "%", "/", "=", "(", ")", "BACKSPACE"], ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "Ő", "Ú"], ["A", "S", "D", "F", "G", "H", "J", "K", "L", "É", "Á", "Ű"], ["Í", "Y", "X", "C", "V", "B", "N", "M", "?", ":", "_", ";"], ["SHIFT", "Ö", "Ü", "Ó", "&", "<", ">", "{", "}", "[", "]", "\\"]]
+			self.nextLang = "es_ES"
+		elif self.lang == "es_ES":
+			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "¡", "'"], ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ñ", "ç", "+"], ["<", "z", "x", "c", "v", "b", "n", "m", ",", ".", "-", "ALL"], ["SHIFT", "SPACE", "@", "á", "é", "í", "ó", "ú", "ü", "º", "ª", "OK"]]
+			self.shiftkeys_list = [["EXIT", "!", '"', "·", "$", "%", "&", "/", "(", ")", "=", "BACKSPACE"], ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "¿", "?"], ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ñ", "Ç", "*"], [">", "Z", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CLEAR"], ["SHIFT", "SPACE", "€", "Á", "É", "Í", "Ó", "Ú", "Ü", "[", "]", "OK"]]
+			self.nextLang = "fi_FI"
+		elif self.lang == "fi_FI":
+			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "é", "+"], ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä", "#"], ["<", "y", "x", "c", "v", "b", "n", "m", ",", ".", "-", "ALL"], ["SHIFT", "SPACE", "@", "ß", "ĺ", "OK", "LEFT", "RIGHT"]]
+			self.shiftkeys_list = [["EXIT", "!", '"', "§", "$", "%", "&", "/", "(", ")", "=", "BACKSPACE"], ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "É", "*"], ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ö", "Ä", "'"], [">", "Y", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CLEAR"], ["SHIFT", "SPACE", "?", "\\", "Ĺ", "OK", "LEFT", "RIGHT"]]
+			self.nextLang = "lv_LV"
+		elif self.lang == "lv_LV":
+			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "-", "š"], ["a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "ū"], ["<", "z", "x", "c", "v", "b", "n", "m", ",", ".", "ž", "ALL"], ["SHIFT", "SPACE", "ā", "č", "ē", "ģ", "ī", "ķ", "ļ", "ņ", "LEFT", "RIGHT"]]
+			self.shiftkeys_list = [["EXIT", "!", "@", "$", "*", "(", ")", "_", "=", "/", "\\", "BACKSPACE"], ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "+", "Š"], ["A", "S", "D", "F", "G", "H", "J", "K", "L", ":", '"', "Ū"], [">", "Z", "X", "C", "V", "B", "N", "M", "#", "?", "Ž", "CLEAR"], ["SHIFT", "SPACE", "Ā", "Č", "Ē", "Ģ", "Ī", "Ķ", "Ļ", "Ņ", "LEFT", "RIGHT"]]
+			self.nextLang = "ru_RU"
+		elif self.lang == "ru_RU":
+			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["а", "б", "в", "г", "д", "е", "ё", "ж", "з", "и", "й", "+"], ["к", "л", "м", "н", "о", "п", "р", "с", "т", "у", "ф", "#"], ["<", "х", "ц", "ч", "ш", "щ", "ъ", "ы", ",", ".", "-", "ALL"], ["SHIFT", "SPACE", "@", "ь", "э", "ю", "я", "OK", "LEFT", "RIGHT"]]
+			self.shiftkeys_list = [["EXIT", "!", '"', "§", "$", "%", "&", "/", "(", ")", "=", "BACKSPACE"], ["А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "*"], ["К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "'"], [">", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", ";", ":", "_", "CLEAR"], ["SHIFT", "SPACE", "?", "\\", "Ь", "Э", "Ю", "Я", "OK", "LEFT", "RIGHT"]]
+			self.nextLang = "sv_SE"
+		elif self.lang == "sv_SE":
+			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "é", "+"], ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä", "#"], ["<", "y", "x", "c", "v", "b", "n", "m", ",", ".", "-", "ALL"], ["SHIFT", "SPACE", "@", "ß", "ĺ", "OK", "LEFT", "RIGHT"]]
+			self.shiftkeys_list = [["EXIT", "!", '"', "§", "$", "%", "&", "/", "(", ")", "=", "BACKSPACE"], ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "É", "*"], ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ö", "Ä", "'"], [">", "Y", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CLEAR"], ["SHIFT", "SPACE", "?", "\\", "Ĺ", "OK", "LEFT", "RIGHT"]]
+			self.nextLang = "sk_SK"
+		elif self.lang == "sk_SK":
+			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ú", "+"], ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ľ", "@", "#"], ["<", "y", "x", "c", "v", "b", "n", "m", ",", ".", "-", "ALL"], ["SHIFT", "SPACE", "š", "č", "ž", "ý", "á", "í", "é", "OK", "LEFT", "RIGHT"]]
+			self.shiftkeys_list = [["EXIT", "!", '"', "§", "$", "%", "&", "/", "(", ")", "=", "BACKSPACE"], ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "ť", "*"], ["A", "S", "D", "F", "G", "H", "J", "K", "L", "ň", "ď", "'"], ["Á", "É", "Ď", "Í", "Ý", "Ó", "Ú", "Ž", "Š", "Č", "Ť", "Ň"], [">", "Y", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CLEAR"], ["SHIFT", "SPACE", "?", "\\", "ä", "ö", "ü", "ô", "ŕ", "ĺ", "OK"]]
+			self.nextLang = "cs_CZ"
+		elif self.lang == "cs_CZ":
+			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ú", "+"], ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ů", "@", "#"], ["<", "y", "x", "c", "v", "b", "n", "m", ",", ".", "-", "ALL"], ["SHIFT", "SPACE", "ě", "š", "č", "ř", "ž", "ý", "á", "í", "é", "OK"]]
+			self.shiftkeys_list = [["EXIT", "!", '"', "§", "$", "%", "&", "/", "(", ")", "=", "BACKSPACE"], ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "ť", "*"], ["A", "S", "D", "F", "G", "H", "J", "K", "L", "ň", "ď", "'"], [">", "Y", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CLEAR"], ["SHIFT", "SPACE", "?", "\\", "Č", "Ř", "Š", "Ž", "Ú", "Á", "É", "OK"]]
+			self.nextLang = "el_GR"
+		elif self.lang == "el_GR":
+			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["=", "ς", "ε", "ρ", "τ", "υ", "θ", "ι", "ο", "π", "[", "]"], ["α", "σ", "δ", "φ", "γ", "η", "ξ", "κ", "λ", ";", "'", "-"], ["\\", "ζ", "χ", "ψ", "ω", "β", "ν", "μ", ",", ".", "/", "ALL"], ["SHIFT", "SPACE", "ά", "έ", "ή", "ί", "ό", "ύ", "ώ", "ϊ", "ϋ", "OK"]]
+			self.shiftkeys_list = [["EXIT", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "BACKSPACE"], ["+", "€", "Ε", "Ρ", "Τ", "Υ", "Θ", "Ι", "Ο", "Π", "{", "}"], ["Α", "Σ", "Δ", "Φ", "Γ", "Η", "Ξ", "Κ", "Λ", ":", '"', "_"], ["|", "Ζ", "Χ", "Ψ", "Ω", "Β", "Ν", "Μ", "<", ">", "?", "CLEAR"], ["SHIFT", "SPACE", "Ά", "Έ", "Ή", "Ί", "Ό", "Ύ", "Ώ", "Ϊ", "Ϋ", "OK"]]
+			self.nextLang = "pl_PL"
+		elif self.lang == "pl_PL":
+			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "-", "["], ["a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "\\"], ["<", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "ALL"], ["SHIFT", "SPACE", "ą", "ć", "ę", "ł", "ń", "ó", "ś", "ź", "ż", "OK"]]
+			self.shiftkeys_list = [["EXIT", "!", "@", "#", "$", "%", "^", "&", "(", ")", "=", "BACKSPACE"], ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "*", "]"], ["A", "S", "D", "F", "G", "H", "J", "K", "L", "?", '"', "|"], [">", "Z", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CLEAR"], ["SHIFT", "SPACE", "Ą", "Ć", "Ę", "Ł", "Ń", "Ó", "Ś", "Ź", "Ż", "OK"]]
+			self.nextLang = "ar_AE"
+		elif self.lang == "ar_AE":
+			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["ض", "ص", "ث", "ق", "ف", "غ", "ع", "ه", "خ", "ح", "ج", "د"], ["ش", "س", "ي", "ب", "ل", "ا", "ت", "ن", "م", "ك", "ط", "#"], ["ئ", "ء", "ؤ", "ر", "لا", "ى", "ة", "و", "ز", "ظ", "ذ", "ALL"], ["SHIFT", "SPACE", "+", "-", "*", "/", ".", ",", "@", "%", "&", "OK"]]
+			self.shiftkeys_list = [["EXIT", "!", '"', "§", "$", "^", "<", ">", "(", ")", "=", "BACKSPACE"], ["َ", "ً", "ُ", "ٌ", "لإ", "إ", "‘", "÷", "×", "؛", "<", ">"], ["ِ", "ٍ", "]", "[", "لأ", "أ", "ـ", "،", "/", ":", "~", "'"], ["ْ", "}", "{", "لآ", "آ", "’", ",", ".", "؟", ":", "_", "CLEAR"], ["SHIFT", "SPACE", "?", "\\", "=", "ّ", "~", "OK"]]
+			self.nextLang = "th_TH"
+		elif self.lang == "th_TH":
+			self.keys_list = [["EXIT", "\xe0\xb9\x85", "\xe0\xb8\xa0", "\xe0\xb8\x96", "\xe0\xb8\xb8", "\xe0\xb8\xb6", "\xe0\xb8\x84", "\xe0\xb8\x95", "\xe0\xb8\x88", "\xe0\xb8\x82", "\xe0\xb8\x8a", "BACKSPACE"], ["\xe0\xb9\x86", "\xe0\xb9\x84", "\xe0\xb8\xb3", "\xe0\xb8\x9e", "\xe0\xb8\xb0", "\xe0\xb8\xb1", "\xe0\xb8\xb5", "\xe0\xb8\xa3", "\xe0\xb8\x99", "\xe0\xb8\xa2", "\xe0\xb8\x9a", "\xe0\xb8\xa5"], ["\xe0\xb8\x9f", "\xe0\xb8\xab", "\xe0\xb8\x81", "\xe0\xb8\x94", "\xe0\xb9\x80", "\xe0\xb9\x89", "\xe0\xb9\x88", "\xe0\xb8\xb2", "\xe0\xb8\xaa", "\xe0\xb8\xa7", "\xe0\xb8\x87", "\xe0\xb8\x83"], ["\xe0\xb8\x9c", "\xe0\xb8\x9b", "\xe0\xb9\x81", "\xe0\xb8\xad", "\xe0\xb8\xb4", "\xe0\xb8\xb7", "\xe0\xb8\x97", "\xe0\xb8\xa1", "\xe0\xb9\x83", "\xe0\xb8\x9d", "", "ALL"], ["SHIFT", "SPACE", "OK", "LEFT", "RIGHT"]]
+			self.shiftkeys_list = [["EXIT", "\xe0\xb9\x91", "\xe0\xb9\x92", "\xe0\xb9\x93", "\xe0\xb9\x94", "\xe0\xb8\xb9", "\xe0\xb9\x95", "\xe0\xb9\x96", "\xe0\xb9\x97", "\xe0\xb9\x98", "\xe0\xb9\x99", "BACKSPACE"], ["\xe0\xb9\x90", "", "\xe0\xb8\x8e", "\xe0\xb8\x91", "\xe0\xb8\x98", "\xe0\xb9\x8d", "\xe0\xb9\x8a", "\xe0\xb8\x93", "\xe0\xb8\xaf", "\xe0\xb8\x8d", "\xe0\xb8\x90", "\xe0\xb8\x85"], ["\xe0\xb8\xa4", "\xe0\xb8\x86", "\xe0\xb8\x8f", "\xe0\xb9\x82", "\xe0\xb8\x8c", "\xe0\xb9\x87", "\xe0\xb9\x8b", "\xe0\xb8\xa9", "\xe0\xb8\xa8", "\xe0\xb8\x8b", "", "\xe0\xb8\xbf"], ["", "", "\xe0\xb8\x89", "\xe0\xb8\xae", "\xe0\xb8\xba", "\xe0\xb9\x8c", "", "\xe0\xb8\x92", "\xe0\xb8\xac", "\xe0\xb8\xa6", "", "CLEAR"], ["SHIFT", "SPACE", "OK", "LEFT", "RIGHT"]]
+			self.nextLang = "en_US"
 		else:
-			self.keys_list = [
-				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
-				[u"q", u"w", u"e", u"r", u"t", u"y", u"u", u"i", u"o", u"p", u"-", u"["],
-				[u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u";", u"'", u"\\"],
-				[u"<", u"z", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"/", u"ALL"],
-				[u"SHIFT", u"SPACE", u"OK", u"LEFT", u"RIGHT", u"*"]]
-			self.shiftkeys_list = [
-				[u"EXIT", u"!", u"@", u"#", u"$", u"%", u"^", u"&", u"(", u")", u"=", u"BACKSPACE"],
-				[u"Q", u"W", u"E", u"R", u"T", u"Y", u"U", u"I", u"O", u"P", u"+", u"]"],
-				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"?", u'"', u"|"],
-				[u">", u"Z", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
-				[u"SHIFT", u"SPACE", u"|", u"^", u"OK", u"LEFT", u"RIGHT", u"~"]]
-			self.lang = 'en_US'
-			self.nextLang = 'de_DE'
+			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "-", "["], ["a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "\\"], ["<", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/", "ALL"], ["SHIFT", "SPACE", "OK", "LEFT", "RIGHT", "*"]]
+			self.shiftkeys_list = [["EXIT", "!", "@", "#", "$", "%", "^", "&", "(", ")", "=", "BACKSPACE"], ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "+", "]"], ["A", "S", "D", "F", "G", "H", "J", "K", "L", "?", '"', "|"], [">", "Z", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CLEAR"], ["SHIFT", "SPACE", "|", "^", "OK", "LEFT", "RIGHT", "~"]]
+			self.lang = "en_US"
+			self.nextLang = "de_DE"
 		self["country"].setText(self.lang)
 
 	def virtualKeyBoardEntryComponent(self, keys):
@@ -343,7 +180,7 @@ class VirtualKeyBoard(Screen):
 			else:
 				width = key_bg_width
 				res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, h), png=self.key_bg))
-				text.append(MultiContentEntryText(pos=(x, 0), size=(width, h), font=0, text=ensure_str(key), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
+				text.append(MultiContentEntryText(pos=(x, 0), size=(width, h), font=0, text=key, flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
 			x += width
 		return res + text
 
@@ -384,7 +221,7 @@ class VirtualKeyBoard(Screen):
 
 	def okClicked(self):
 		self.smsChar = None
-		text = ensure_str((self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12])
+		text = (self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12]
 
 		if text == "EXIT":
 			self.close(None)
@@ -403,7 +240,7 @@ class VirtualKeyBoard(Screen):
 			self.shiftClicked()
 
 		elif text == "SPACE":
-                        self['text'].char(ensure_str(" "))
+			self["text"].char((" "))
 
 		elif text == "OK":
 			self.close(self["text"].getText())
@@ -419,7 +256,7 @@ class VirtualKeyBoard(Screen):
 
 	def okLongClicked(self):
 		self.smsChar = None
-		text = ensure_str((self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12])
+		text = (self.shiftMode and self.shiftkeys_list or self.keys_list)[self.selectedKey // 12][self.selectedKey % 12]
 
 		if text == "BACKSPACE":
 			self["text"].deleteAllChars()
@@ -478,11 +315,11 @@ class VirtualKeyBoard(Screen):
 
 	def keyGotAscii(self):
 		self.smsChar = None
-		if ensure_str(self.selectAsciiKey(str(unichr(getPrevAsciiCode())))):
+		if self.selectAsciiKey(str(chr(getPrevAsciiCode()))):
 			self.okClicked()
 
 	def selectAsciiKey(self, char):
-		if char == u" ":
+		if char == " ":
 			char = "SPACE"
 		for keyslist in (self.shiftkeys_list, self.keys_list):
 			selkey = 0
