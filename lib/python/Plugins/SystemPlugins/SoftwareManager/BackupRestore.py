@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 from datetime import date
 from os import listdir, makedirs
 from os import path as os_path
@@ -54,7 +52,7 @@ BLACKLISTED = ShellCompatibleFunctions.BLACKLISTED
 
 def InitConfig():
 	# BACKUPFILES contains all files and folders to back up, for wildcard entries ALWAYS use eEnv_resolve_multi!
-	BACKUPFILES = ['/etc/enigma2/', '/etc/CCcam.cfg', '/usr/keys/',
+	BACKUPFILES = ['/etc/enigma2/', '/etc/CCcam.cfg', '/usr/keys/', '/etc/sysctl.conf',
 		'/etc/davfs2/', '/etc/tuxbox/config/', '/etc/auto.network', '/etc/feeds.xml', '/etc/machine-id', '/etc/rc.local',
 		'/etc/openvpn/', '/etc/ipsec.conf', '/etc/ipsec.secrets', '/etc/ipsec.user', '/etc/strongswan.conf', '/etc/vtuner.conf',
 		'/etc/default/crond', '/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf',
@@ -171,10 +169,7 @@ class BackupScreen(ConfigListScreen, Screen):
 			if os_path.exists(self.backuppath) == False:
 				makedirs(self.backuppath)
 			InitConfig()
-			self.backupdirs = " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
-			for f in config.plugins.configurationbackup.backupdirs.value:
-				if not f.strip("/") in self.backupdirs:
-					self.backupdirs += " " + f.strip("/")
+			self.backupdirs = " ".join(f.strip("/") for f in set([*config.plugins.configurationbackup.backupdirs.value, *config.plugins.configurationbackup.backupdirs_default.value]))
 			if not "tmp/installed-list.txt" in self.backupdirs:
 				self.backupdirs += " tmp/installed-list.txt"
 			if not "tmp/changed-configfiles.txt" in self.backupdirs:
@@ -241,9 +236,9 @@ class BackupSelection(Screen):
 			<widget name="checkList" position="5,50" size="550,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
-	def __init__(self, session, title=_("Select files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs):
+	def __init__(self, session, title=_("Select files/folders to backup")):
 		Screen.__init__(self, session)
-		self.configBackupDirs = configBackupDirs
+		self.configBackupDirs = config.plugins.configurationbackup.backupdirs
 		self.setTitle(_("Select files/folders to backup"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
