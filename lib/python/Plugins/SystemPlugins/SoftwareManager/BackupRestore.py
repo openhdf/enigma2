@@ -169,7 +169,10 @@ class BackupScreen(ConfigListScreen, Screen):
 			if os_path.exists(self.backuppath) == False:
 				makedirs(self.backuppath)
 			InitConfig()
-			self.backupdirs = " ".join(f.strip("/") for f in set([*config.plugins.configurationbackup.backupdirs.value, *config.plugins.configurationbackup.backupdirs_default.value]))
+			self.backupdirs = " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
+			for f in config.plugins.configurationbackup.backupdirs.value:
+				if f.strip("/") not in self.backupdirs:
+					self.backupdirs += " %s" % f.strip("/")
 			if not "tmp/installed-list.txt" in self.backupdirs:
 				self.backupdirs += " tmp/installed-list.txt"
 			if not "tmp/changed-configfiles.txt" in self.backupdirs:
