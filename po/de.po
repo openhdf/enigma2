@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-18 20:34+0100\n"
-"PO-Revision-Date: 2023-07-09 06:35+0200\n"
+"PO-Revision-Date: 2023-08-06 16:24+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1383,6 +1383,9 @@ msgstr "AV Aspect ist %s."
 msgid "Abort"
 msgstr "Abbrechen"
 
+msgid "Really abort execution?"
+msgstr "Ausführung wirklich abbrechen?"
+
 msgid "Aborted a pseudo recording.\n"
 msgstr "Pseudo Aufnahme abgebrochen.\n"
 
@@ -2586,7 +2589,7 @@ msgstr "CIselectMainMenu"
 
 #, python-format
 msgid "CPU Temp:\t\t%s"
-msgstr "CPU-Temperatur:\t%s"
+msgstr "CPU-Temperatur:\t\t%s"
 
 #, python-format
 msgid "CPU:\t\t%s"
@@ -6662,7 +6665,7 @@ msgid "Image Manager"
 msgstr "Image Verwaltung"
 
 msgid "Image Multiboot Manager"
-msgstr "MultiBoot Images löschen"
+msgstr "Image-Multiboot-Manager"
 
 msgid "Image Online-Flash"
 msgstr "Image Online-Flash"
@@ -8045,7 +8048,7 @@ msgid "MultiBoot Selector"
 msgstr "MultiBoot Auswahl"
 
 msgid "MultiBoot image manager"
-msgstr "MultiBoot Images löschen"
+msgstr "MultiBoot Image Manager"
 
 msgid "MultiBootSelector"
 msgstr "MultiBootSelector"
@@ -9538,6 +9541,9 @@ msgstr "Bitte warten, das Netzwerk wird neu gestartet."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Bitte warten bis Feeds geprüft wurden."
+
+msgid "Please make a selection"
+msgstr "Bitte Auswahl treffen"
 
 msgid "Please wait, restarting cardserver."
 msgstr "Bitte warten, cardserver wird neu gestartet."
