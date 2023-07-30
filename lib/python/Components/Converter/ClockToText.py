@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 
 from time import localtime, strftime
 
@@ -93,7 +94,10 @@ class ClockToText(Converter):
 		elif self.type == self.TIMESTAMP:
 			return str(time)
 
-		t = localtime(time)
+		try:
+			t = localtime(time)
+		except OverflowError:
+			return "n/a"
 
 		if self.type == self.WITH_SECONDS:
 			# TRANSLATORS: full time representation hour:minute:seconds
