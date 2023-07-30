@@ -569,6 +569,7 @@ class PluginDownloadBrowser(Screen):
 		else:
 			if len(self.pluginlist) > 0:
 				self.updateList()
+				self["text"].setText(_("Please make a selection"))
 				self["list"].instance.show()
 			else:
 				if self.type == self.DOWNLOAD:
