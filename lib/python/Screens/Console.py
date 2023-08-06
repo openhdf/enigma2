@@ -31,6 +31,7 @@ class Console(Screen):
 
 		self.cmdlist = cmdlist
 		self.newtitle = title
+		self.screen_hide = False
 
 		self.onShown.append(self.updateTitle)
 
@@ -77,24 +78,12 @@ class Console(Screen):
 			if not self.errorOcurred and self.closeOnSuccess:
 				self.cancel()
 
-	def hideScreen(self):
-		if self.hideflag == True:
-			self.hideflag = False
-			count = 40
-			while count > 0:
-				count -= 1
-				f = open('/proc/stb/video/alpha', 'w')
-				f.write('%i' % (255 * count / 40))
-				f.close()
-
+	def hideScreen(self, setshow=False):
+		if self.screen_hide or setshow:
+			self.show()
 		else:
-			self.hideflag = True
-			count = 0
-			while count < 40:
-				count += 1
-				f = open('/proc/stb/video/alpha', 'w')
-				f.write('%i' % (255 * count / 40))
-				f.close()
+			self.hide()
+		self.screen_hide = not (self.screen_hide or setshow)
 
 	def yellow(self):
 		print('Yellow Pressed')
