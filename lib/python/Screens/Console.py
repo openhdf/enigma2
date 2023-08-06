@@ -4,8 +4,10 @@ from enigma import eConsoleAppContainer
 from six import ensure_str
 
 from Components.ActionMap import ActionMap
+from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
+from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
 
@@ -17,8 +19,11 @@ class Console(Screen):
 		self.closeOnSuccess = closeOnSuccess
 		self.errorOcurred = False
 		self.hideflag = True
-
 		self.Shown = True
+
+		self["key_red"] = Label(_("Cancel"))
+		self["key_yellow"] = Label(_("hide"))
+
 		self["text"] = ScrollLabel("")
 		self["summary_description"] = StaticText("")
 		self["actions"] = ActionMap(["ColorActions", "WizardActions", "DirectionActions"],
@@ -27,12 +32,12 @@ class Console(Screen):
 			"back": self.cancel,
 			"up": self["text"].pageUp,
 			"down": self["text"].pageDown,
-			"yellow": self.yellow
-		}, -2)
+			"yellow": self.yellow,
+			"red": self.key_red
+		}, -1)
 
 		self.cmdlist = cmdlist
 		self.newtitle = title
-		self.screen_hide = False
 
 		self.onShown.append(self.updateTitle)
 
@@ -61,7 +66,7 @@ class Console(Screen):
 	def runFinished(self, retval):
 		if retval:
 			self.errorOcurred = True
-			self.toggleScreenHide = True
+			self.hideScreen = True
 		self.run += 1
 		if self.run != len(self.cmdlist):
 			if self.doExec(self.cmdlist[self.run]): #start of container application failed...
@@ -80,11 +85,11 @@ class Console(Screen):
 				self.cancel()
 
 	def hideScreen(self, setshow=False):
-		if self.screen_hide or setshow:
+		if self.hideflag or setshow:
 			self.show()
 		else:
 			self.hide()
-		self.screen_hide = not (self.screen_hide or setshow)
+		self.hideflag = not (self.hideflag or setshow)
 
 	def yellow(self):
 		print('Yellow Pressed')
@@ -95,11 +100,30 @@ class Console(Screen):
 			self.show()
 			self.Shown = True
 
-	def cancel(self):
-		if self.run == len(self.cmdlist):
+	def cancel(self, force=False):
+		if self.hideflag:
+			self.hideScreen()
+			return
+		if force or self.run == len(self.cmdlist):
 			self.close()
 			self.container.appClosed.remove(self.runFinished)
 			self.container.dataAvail.remove(self.dataAvail)
+			if self.run != len(self.cmdlist):
+				self.container.kill()
+
+	def key_red(self):
+		if self.hideflag:
+			self.hideScreen()
+			return
+		if self.run == len(self.cmdlist):
+			self.cancel()
+		else:
+			self.cancel_msg = self.session.openWithCallback(self.cancelCB, MessageBox, _("Really abort execution?"), type=MessageBox.TYPE_YESNO, default=False)
+
+	def cancelCB(self, ret=None):
+		self.cancel_msg = None
+		if ret:
+			self.cancel(True)
 
 	def dataAvail(self, str):
 		str = ensure_str(str)
