@@ -47,7 +47,7 @@ def read_startup(FILE):
 			data = myfile.read().replace('\n', '')
 		myfile.close()
 	except IOError:
-		print("[ERROR] failed to open file %s" % filename)
+		print(("[ERROR] failed to open file %s" % file))
 	return data
 
 
@@ -1065,7 +1065,7 @@ class MemoryInfo(Screen):
 			self['pused'].setText("%.1f %s" % (100. * (mem - free) / mem, '%'))
 
 		except Exception as e:
-			print("[About] getMemoryInfo FAIL:", e)
+			print(("[About] getMemoryInfo FAIL:", e))
 
 	def clearMemory(self):
 		from os import system
