@@ -10,10 +10,6 @@ if HAVE_BWLCD128
 SUBDIRS = display128
 endif
 
-if HAVE_BWLCD255
-SUBDIRS = vfd255
-endif
-
 if HAVE_TEXTLCD
 SUBDIRS = displaytext
 endif
