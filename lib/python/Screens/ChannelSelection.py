@@ -1544,7 +1544,7 @@ class ChannelSelectionBase(Screen):
 				return _('Satellites')
 			if ') ORDER BY name' in pathstr:
 				return _('All')
-		return str if config.usage.multibouquet.value else _("Favorites")
+		return str
 
 	def buildTitleString(self):
 		titleStr = self.getTitle()
