@@ -1544,7 +1544,7 @@ class ChannelSelectionBase(Screen):
 				return _('Satellites')
 			if ') ORDER BY name' in pathstr:
 				return _('All')
-		return str
+		return str if config.usage.multibouquet.value else _("Favorites")
 
 	def buildTitleString(self):
 		titleStr = self.getTitle()
@@ -2509,6 +2509,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				lastservice = eServiceReference(self.lastservice.value)
 				if lastservice.valid() and self.getCurrentSelection() != lastservice:
 					self.setCurrentSelection(lastservice)
+		elif self.revertMode == MODE_TV and self.mode == MODE_RADIO:
+			self.setModeTv()
+		elif self.revertMode == MODE_RADIO and self.mode == MODE_TV:
+			self.setModeRadio()
 		self.asciiOff()
 		if config.usage.servicelistpreview_mode.value:
 			self.zapBack()
