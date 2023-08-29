@@ -1,12 +1,12 @@
 # for localized messages
-#from . import _
-
 
 from glob import glob
 from os import path as os_path
 from os import remove, rename
 from os import stat as mystat
 from os import system
+import stat
+import six
 from stat import ST_SIZE
 
 from enigma import eTimer
@@ -28,7 +28,6 @@ config.plugins.swapmanager.swapautostart = ConfigYesNo(default=False)
 
 startswap = None
 
-
 def SwapAutostart(reason, session=None, **kwargs):
 	global startswap
 	if reason == 0:
@@ -37,15 +36,16 @@ def SwapAutostart(reason, session=None, **kwargs):
 			startswap = StartSwap()
 			startswap.start()
 
-
 class StartSwap:
 	def __init__(self):
 		self.Console = Console()
 
 	def start(self):
-	 	self.Console.ePopen("sfdisk -l /dev/sd? | grep swap", self.startSwap2)
+		self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.startSwap2)
 
 	def startSwap2(self, result=None, retval=None, extra_args=None):
+		if result != None:
+			result = six.ensure_str(result)
 		swap_place = ""
 		if result and result.find('sd') != -1:
 			for line in result.split('\n'):
@@ -76,7 +76,6 @@ class StartSwap:
 			print("[SwapManager] Swapfile is already active on ", swap_place)
 
 #######################################################################
-
 
 class SwapManager(Screen):
 	skin = """
@@ -148,9 +147,11 @@ class SwapManager(Screen):
 			config.plugins.swapmanager.swapautostart.save()
 		if os_path.exists('/tmp/swapdevices.tmp'):
 			remove('/tmp/swapdevices.tmp')
-		self.Console.ePopen("sfdisk -l /dev/sd? | grep swap", self.updateSwap2)
+		self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.updateSwap2)
 
 	def updateSwap2(self, result=None, retval=None, extra_args=None):
+		if result != None:
+			result = six.ensure_str(result)
 		self.swapsize = 0
 		self.swap_place = ''
 		self.swap_active = False
@@ -213,9 +214,9 @@ class SwapManager(Screen):
 
 		if self.swapsize > 0:
 			if self.swapsize >= 1024:
-				self.swapsize = int(self.swapsize) / 1024
+				self.swapsize = int(self.swapsize) // 1024
 				if self.swapsize >= 1024:
-					self.swapsize = int(self.swapsize) / 1024
+					self.swapsize = int(self.swapsize) // 1024
 				self.swapsize = str(self.swapsize) + ' ' + 'MB'
 			else:
 				self.swapsize = str(self.swapsize) + ' ' + 'KB'
