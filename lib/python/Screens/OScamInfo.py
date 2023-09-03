@@ -35,7 +35,7 @@ elif screenwidth and screenwidth > 1920:
 	sizeH = screenwidth - 300
 elif screenwidth and screenwidth > 1024:
 	sizeH = screenwidth - 100
-	HDSKIN = False
+	HDSKIN = True
 ###global
 
 
@@ -50,8 +50,8 @@ class OscamInfo:
 	SRVNAME = 4
 	ECMTIME = 5
 	IP_PORT = 6
-	HEAD = {NAME: _("Label"), PROT: _("Protocol"),
-		CAID_SRVID: _("CAID:SrvID"), SRVNAME: _("Serv.Name"),
+	HEAD = {NAME: _("Name"), PROT: _("Protocol"),
+		CAID_SRVID: _("CAID:SrvID"), SRVNAME: _("Service Name"),
 		ECMTIME: _("ECM-Time"), IP_PORT: _("IP address")}
 	version = ""
 
@@ -514,9 +514,9 @@ class OscamInfoMenu(Screen):
 					png = LoadPixmap(png)
 				if png is not None:
 					x, y, w, h = parameters.get("ChoicelistDash", (0, 2 * sf, 800 * sf, 2 * sf))
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP, x, y, w, h, png))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP, int(x), int(y), int(w), int(h), png))
 					x, y, w, h = parameters.get("ChoicelistName", (45 * sf, 2 * sf, 800 * sf, 25 * sf))
-					res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, t[2:]))
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_HALIGN_LEFT, t[2:]))
 					png2 = resolveFilename(SCOPE_GUISKIN, "buttons/key_" + keys[k] + ".png")
 					if fileExists(png2):
 						png2 = LoadPixmap(png2)
@@ -525,13 +525,13 @@ class OscamInfoMenu(Screen):
 						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png2))
 			else:
 				x, y, w, h = parameters.get("ChoicelistName", (45 * sf, 2 * sf, 800 * sf, 25 * sf))
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, t))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_HALIGN_LEFT, t))
 				png2 = resolveFilename(SCOPE_GUISKIN, "buttons/key_" + keys[k] + ".png")
 				if fileExists(png2):
 					png2 = LoadPixmap(png2)
 				if png2 is not None:
 					x, y, w, h = parameters.get("ChoicelistIcon", (5 * sf, 0, 35 * sf, 25 * sf))
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png2))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, int(x), int(y), int(w), int(h), png2))
 			menuentries.append(res)
 			if k < len(keys) - 1:
 				k += 1
@@ -569,8 +569,8 @@ class oscECMInfo(Screen, OscamInfo):
 	def buildListEntry(self, listentry):
 		return [
 			"",
-			(eListboxPythonMultiContent.TYPE_TEXT, 10 * sf, 2 * sf, 300 * sf, 30 * sf, 0, RT_HALIGN_LEFT, listentry[0]),
-			(eListboxPythonMultiContent.TYPE_TEXT, 300 * sf, 2 * sf, 300 * sf, 30 * sf, 0, RT_HALIGN_LEFT, listentry[1])
+			(eListboxPythonMultiContent.TYPE_TEXT, int(10 * sf), int(2 * sf), int(300 * sf), int(30 * sf), 0, RT_HALIGN_LEFT, listentry[0]),
+			(eListboxPythonMultiContent.TYPE_TEXT, int(280 * sf), int(2 * sf), int(320 * sf), int(30 * sf), 0, RT_HALIGN_LEFT, listentry[1])
 			]
 
 	def showData(self):
@@ -597,7 +597,7 @@ class oscInfo(Screen, OscamInfo):
 		ysize = 600
 		self.rows = 12
 		self.itemheight = 25
-		self.sizeLH = sizeH - 2
+		self.sizeLH = sizeH - 20
 		self.skin = """<screen position="center,center" size="%d, %d" title="Client Info" >""" % (sizeH, ysize)
 		button_width = int(sizeH / 4)
 		for k, v in enumerate(["red", "green", "yellow", "blue"]):
@@ -605,7 +605,7 @@ class oscInfo(Screen, OscamInfo):
 			self.skin += """<ePixmap name="%s" position="%d,%d" size="35,25" pixmap="/usr/share/enigma2/skin_default/buttons/key_%s.png" zPosition="1" transparent="1" alphatest="on" />""" % (v, xpos, ypos, v)
 			self.skin += """<widget source="key_%s" render="Label" position="%d,%d" size="%d,%d" font="Regular;18" zPosition="1" valign="center" transparent="1" />""" % (v, xpos + 40, ypos, button_width, 22)
 		self.skin += """<ePixmap name="divh" position="0,37" size="%d,2" pixmap="/usr/share/enigma2/skin_default/div-h.png" transparent="1" alphatest="on" />""" % sizeH
-		self.skin += """<widget name="output" position="10,45" size="%d,%d" zPosition="1" scrollbarMode="showOnDemand" />""" % (self.sizeLH, ysize - 30)
+		self.skin += """<widget name="output" position="10,45" size="%d,%d" zPosition="1" scrollbarMode="showOnDemand" />""" % (self.sizeLH, ysize - 50)
 		self.skin += """</screen>"""
 		Screen.__init__(self, session)
 		self.mlist = oscMenuList([])
@@ -718,9 +718,9 @@ class oscInfo(Screen, OscamInfo):
 		res = [""]
 		x = 0
 		if not HDSKIN:
-			self.fieldsize = [100, 130, 100, 150, 80, 130]
-			self.startPos = [10, 110, 240, 340, 490, 570]
-			useFont = 3
+			self.fieldsize = [160, 200, 200, 300, 80, 130]
+			self.startPos = [10, 160, 320, 450, 800, 890]
+			useFont = 2
 		else:
 			self.fieldsize = [150 * sf, 150 * sf, 150 * sf, 300 * sf, 150 * sf, 200 * sf]
 			self.startPos = [50 * sf, 200 * sf, 350 * sf, 500 * sf, 800 * sf, 950 * sf]
@@ -734,26 +734,26 @@ class oscInfo(Screen, OscamInfo):
 			ypos = -2
 		if not heading:
 			status = listentry[len(listentry) - 1]
-			colour = "0xffffff"
+			color = "0xffffff"
 			if status == "OK" or "CONNECTED" or status == "CARDOK":
-				colour = "0x389416"
+				color = "0x389416"
 			if status == "NEEDINIT" or status == "CARDOK":
-				colour = "0xbab329"
+				color = "0xbab329"
 			if status == "OFF" or status == "ERROR":
-				colour = "0xf23d21"
+				color = "0xf23d21"
 		else:
-			colour = "0xffffff"
+			color = "0xffffff"
 		for i in listentry[:-1]:
-			xsize = self.fieldsize[x]
-			xpos = self.startPos[x]
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, xpos, ypos * sf, xsize, self.itemheight * sf, useFont, RT_HALIGN_LEFT, i, int(colour, 16)))
+			xsize = int(self.fieldsize[x])
+			xpos = int(self.startPos[x])
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, xpos, int(ypos * sf), xsize, int(self.itemheight * sf), useFont, RT_HALIGN_LEFT, i, int(color, 16)))
 			x += 1
 		if heading:
 			png = resolveFilename(SCOPE_GUISKIN, "div-h.png")
 			if fileExists(png):
 				png = LoadPixmap(png)
 			if png is not None:
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 0, (self.itemheight - 2) * sf, self.sizeLH, 2 * sf, png))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 0, int((self.itemheight - 2) * sf), self.sizeLH, int(2 * sf), png))
 		return res
 
 	def buildLogListEntry(self, listentry):
@@ -984,28 +984,28 @@ class oscEntitlements(Screen, OscamInfo):
 class oscReaderStats(Screen, OscamInfo):
 	global HDSKIN, sizeH
 	sizeLH = sizeH - 20
-	skin = """<screen position="center,center" size="%s, 600" title="Client Info" >
-			<widget source="output" render="Listbox" position="10,10" size="%s,600" scrollbarMode="showOnDemand" >
+	skin = """<screen position="center,center" size="%s, 400" title="Client Info" >
+			<widget source="output" render="Listbox" position="10,10" size="%s,400" scrollbarMode="showOnDemand" >
 				<convert type="TemplatedMultiContent">
 				{"templates":
 					{"default": (25,[
-							MultiContentEntryText(pos = (0, 1), size = (190, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is caid
-							MultiContentEntryText(pos = (200, 1), size = (180, 24), font=0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is csystem
-							MultiContentEntryText(pos = (250, 1), size = (250, 24), font=0, flags = RT_HALIGN_LEFT, text = 2), # index 2 is hop 1
-							MultiContentEntryText(pos = (450, 1), size = (160, 24), font=0, flags = RT_HALIGN_LEFT, text = 3), # index 3 is hop 2
-							MultiContentEntryText(pos = (570, 1), size = (160, 24), font=0, flags = RT_HALIGN_LEFT, text = 4), # index 4 is hop 3
-							MultiContentEntryText(pos = (670, 1), size = (250, 24), font=0, flags = RT_HALIGN_LEFT, text = 5), # index 5 is hop 4
-							MultiContentEntryText(pos = (960, 1), size = (180, 24), font=0, flags = RT_HALIGN_LEFT, text = 6), # index 6 is hop 5
-							MultiContentEntryText(pos = (1100, 1), size = (180, 24), font=0, flags = RT_HALIGN_LEFT, text = 7), # index 7 is sum of cards for caid
+							MultiContentEntryText(pos = (0, 1), size = (100, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is caid
+							MultiContentEntryText(pos = (100, 1), size = (50, 24), font=0, flags = RT_HALIGN_LEFT, text = 1), # index 1 is csystem
+							MultiContentEntryText(pos = (150, 1), size = (150, 24), font=0, flags = RT_HALIGN_LEFT, text = 2), # index 2 is hop 1
+							MultiContentEntryText(pos = (300, 1), size = (60, 24), font=0, flags = RT_HALIGN_LEFT, text = 3), # index 3 is hop 2
+							MultiContentEntryText(pos = (360, 1), size = (60, 24), font=0, flags = RT_HALIGN_LEFT, text = 4), # index 4 is hop 3
+							MultiContentEntryText(pos = (420, 1), size = (80, 24), font=0, flags = RT_HALIGN_LEFT, text = 5), # index 5 is hop 4
+							MultiContentEntryText(pos = (510, 1), size = (80, 24), font=0, flags = RT_HALIGN_LEFT, text = 6), # index 6 is hop 5
+							MultiContentEntryText(pos = (590, 1), size = (80, 24), font=0, flags = RT_HALIGN_LEFT, text = 7), # index 7 is sum of cards for caid
 							]),
 					"HD": (25,[
-							MultiContentEntryText(pos = (0, 1), size = (250, 24), font=1, flags = RT_HALIGN_LEFT, text = 0), # index 0 is caid
-							MultiContentEntryText(pos = (270, 1), size = (70, 24), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is csystem
-							MultiContentEntryText(pos = (350, 1), size = (300, 24), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is hop 1
-							MultiContentEntryText(pos = (640, 1), size = (150, 24), font=1, flags = RT_HALIGN_LEFT, text = 3), # index 3 is hop 2
-							MultiContentEntryText(pos = (800, 1), size = (110, 24), font=1, flags = RT_HALIGN_LEFT, text = 4), # index 4 is hop 3
-							MultiContentEntryText(pos = (930, 1), size = (400, 24), font=1, flags = RT_HALIGN_LEFT, text = 5), # index 5 is hop 4
-							MultiContentEntryText(pos = (1300, 1), size = (130, 24), font=1, flags = RT_HALIGN_LEFT, text = 6), # index 6 is hop 5
+							MultiContentEntryText(pos = (0, 1), size = (200, 24), font=1, flags = RT_HALIGN_LEFT, text = 0), # index 0 is caid
+							MultiContentEntryText(pos = (200, 1), size = (70, 24), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is csystem
+							MultiContentEntryText(pos = (300, 1), size = (220, 24), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is hop 1
+							MultiContentEntryText(pos = (540, 1), size = (80, 24), font=1, flags = RT_HALIGN_LEFT, text = 3), # index 3 is hop 2
+							MultiContentEntryText(pos = (630, 1), size = (80, 24), font=1, flags = RT_HALIGN_LEFT, text = 4), # index 4 is hop 3
+							MultiContentEntryText(pos = (720, 1), size = (130, 24), font=1, flags = RT_HALIGN_LEFT, text = 5), # index 5 is hop 4
+							MultiContentEntryText(pos = (840, 1), size = (130, 24), font=1, flags = RT_HALIGN_LEFT, text = 6), # index 6 is hop 5
 							MultiContentEntryText(pos = (1470, 1), size = (100, 24), font=1, flags = RT_HALIGN_LEFT, text = 7), # index 7 is sum of cards for caid
 							]),
 					},
