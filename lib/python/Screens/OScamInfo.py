@@ -7,7 +7,9 @@ from xml.etree import ElementTree
 from enigma import (RT_HALIGN_LEFT, eListboxPythonMultiContent, eTimer,
                     getDesktop, gFont)
 from six.moves import urllib
-from six.moves.urllib.request import HTTPDigestAuthHandler, HTTPHandler
+from six.moves.urllib.parse import quote_plus
+from six.moves.urllib.error import URLError
+from six.moves.urllib.request import HTTPDigestAuthHandler, HTTPHandler, build_opener, HTTPPasswordMgrWithDefaultRealm, install_opener, Request, urlopen
 
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.config import config, configfile, getConfigListEntry
@@ -60,38 +62,44 @@ class OscamInfo:
 		oport = None
 		opath = None
 		ipcompiled = False
+		conffile = ""
 
 		# Find and parse running oscam
-		if fileExists("/tmp/.oscam/oscam.version"):
-			with open('/tmp/.oscam/oscam.version', 'r') as data:
-				for i in data:
-					if "web interface support:" in i.lower():
-						owebif = i.split(":")[1].strip()
-						if owebif == "no":
-							owebif = False
-						elif owebif == "yes":
-							owebif = True
-					elif "webifport:" in i.lower():
-						oport = i.split(":")[1].strip()
-						if oport == "0":
-							oport = None
-					elif "configdir:" in i.lower():
-						opath = i.split(":")[1].strip()
-					elif "ipv6 support:" in i.lower():
-						ipcompiled = i.split(":")[1].strip()
-						if ipcompiled == "no":
-							ipcompiled = False
-						elif ipcompiled == "yes":
-							ipcompiled = True
-					else:
-						continue
-		return owebif, oport, opath, ipcompiled
+		for file in ["/tmp/.ncam/ncam.version", "/tmp/.oscam/oscam.version"]:
+			if fileExists(file):
+				with open(file, 'r') as data:
+					conffile = file.split('/')[-1].replace("version", "conf")
+					for i in data:
+						if "web interface support:" in i.lower():
+							owebif = i.split(":")[1].strip()
+							if owebif == "no":
+								owebif = False
+							elif owebif == "yes":
+								owebif = True
+						elif "webifport:" in i.lower():
+							oport = i.split(":")[1].strip()
+							if oport == "0":
+								oport = None
+						elif "configdir:" in i.lower():
+							opath = i.split(":")[1].strip()
+						elif "ipv6 support:" in i.lower():
+							ipcompiled = i.split(":")[1].strip()
+							if ipcompiled == "no":
+								ipcompiled = False
+							elif ipcompiled == "yes":
+								ipcompiled = True
+						else:
+							continue
+		return owebif, oport, opath, ipcompiled, conffile
 
 	def getUserData(self):
-		[webif, port, conf, ipcompiled] = self.confPath()
+		[webif, port, conf, ipcompiled, conffile] = self.confPath()
 		if conf == None:
 			conf = ""
-		conf += "/oscam.conf"
+		if conffile == "":
+			conffile = "oscam.conf"
+		conf += "/" + conffile
+		api = conffile.replace(".conf", "api")
 
 		# Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in,
 		# and no user and password are required
@@ -99,7 +107,7 @@ class OscamInfo:
 		ipconfigured = ipcompiled
 		user = pwd = None
 
-		ret = _("oscam webif disabled")
+		ret = _("OScam webif disabled")
 
 		if webif and port is not None:
 		# oscam reports it got webif support and webif is running (Port != 0)
@@ -124,12 +132,13 @@ class OscamInfo:
 								ipconfigured = False
 
 			if not blocked:
-				ret = [user, pwd, port, ipconfigured]
+				ret = [user, pwd, port, ipconfigured, api]
 
 		return ret
 
 	def openWebIF(self, part=None, reader=None):
 		self.proto = "http"
+		self.api = "oscamapi"
 		if config.oscaminfo.userdatafromconf.value:
 			udata = self.getUserData()
 			if isinstance(udata, str):
@@ -139,6 +148,7 @@ class OscamInfo:
 				self.username = udata[0]
 				self.password = udata[1]
 				self.ipaccess = udata[3]
+				self.api = udata[4]
 
 			if self.ipaccess == "yes":
 				self.ip = "::1"
@@ -155,25 +165,25 @@ class OscamInfo:
 			self.port.replace("+", "")
 
 		if part is None:
-			self.url = "%s://%s:%s/oscamapi.html?part=status" % (self.proto, self.ip, self.port)
+			self.url = "%s://%s:%s/%s.html?part=status" % (self.proto, self.ip, self.port, self.api)
 		else:
-			self.url = "%s://%s:%s/oscamapi.html?part=%s" % (self.proto, self.ip, self.port, part)
+			self.url = "%s://%s:%s/%s.html?part=%s" % (self.proto, self.ip, self.port, self.api, part)
 		if part is not None and reader is not None:
-			self.url = "%s://%s:%s/oscamapi.html?part=%s&label=%s" % (self.proto, self.ip, self.port, part, reader)
+			self.url = "%s://%s:%s/%s.html?part=%s&label=%s" % (self.proto, self.ip, self.port, self.api, part, quote_plus(reader))
 
-		opener = urllib.request.build_opener(HTTPHandler)
+		opener = build_opener(HTTPHandler)
 		if not self.username == "":
-			pwman = urllib.request.HTTPPasswordMgrWithDefaultRealm()
+			pwman = HTTPPasswordMgrWithDefaultRealm()
 			pwman.add_password(None, self.url, self.username, self.password)
 			handlers = HTTPDigestAuthHandler(pwman)
-			opener = urllib.request.build_opener(HTTPHandler, handlers)
-			urllib.request.install_opener(opener)
-		request = urllib.request.Request(self.url)
+			opener = build_opener(HTTPHandler, handlers)
+			install_opener(opener)
+		request = Request(self.url)
 		err = False
 		try:
-			data = urllib.request.urlopen(request).read()
+			data = urlopen(request).read()
 			# print data
-		except urllib.error.URLError as e:
+		except URLError as e:
 			if hasattr(e, "reason"):
 				err = str(e.reason)
 			elif hasattr(e, "code"):
@@ -382,7 +392,6 @@ class oscMenuList(MenuList):
 
 class OscamInfoMenu(Screen):
 	def __init__(self, session):
-		self.session = session
 		self.menu = [_("Show /tmp/ecm.info"), _("Show Clients"), _("Show Readers/Proxies"), _("Show Log"), _("Card infos (CCcam-Reader)"), _("ECM Statistics"), _("Setup")]
 		Screen.__init__(self, session)
 		self.osc = OscamInfo()
@@ -587,7 +596,6 @@ class oscECMInfo(Screen, OscamInfo):
 class oscInfo(Screen, OscamInfo):
 	def __init__(self, session, what):
 		global HDSKIN, sizeH
-		self.session = session
 		self.what = what
 		self.firstrun = True
 		self.listchange = True
