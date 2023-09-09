@@ -1,19 +1,24 @@
+from __future__ import absolute_import
 
-from xml.etree.ElementTree import parse
-
+from xml.etree.cElementTree import parse
 from six import ensure_str
-
+from boxbranding import getMachineBrand, getMachineName
 from Components.ActionMap import NumberActionMap
 from Components.config import config, configfile
+from Components.Console import Console
 from Components.PluginComponent import plugins
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 from Screens.ParentalControlSetup import ProtectedScreen
+from Screens.MessageBox import MessageBox
+from Screens.Standby import TryQuitMainloop
 from Screens.Screen import Screen
 from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import SCOPE_SKIN, resolveFilename
+from enigma import eTimer
+import subprocess
 
 mainmenu = _("Main menu")
 
@@ -83,7 +88,145 @@ class Menu(Screen, ProtectedScreen):
 		self.session.openWithCallback(self.menuClosed, *dialog)
 
 	def openSetup(self, dialog):
-		self.session.openWithCallback(self.menuClosed, Setup, dialog)
+		if dialog == "channelselection":
+			self.oldHdfPiconValue = config.usage.hdfpicon.value
+			self.oldYtdlpValue = config.usage.ytdlp.value
+			self.oldServiceAppValue = config.usage.serviceapp.value
+			self.oldStreamlinkSrvValue = config.usage.streamlinkserver.value
+			self.session.openWithCallback(self.pluginCheck, Setup, dialog)
+		else:
+			self.session.openWithCallback(self.menuClosed, Setup, dialog)
+
+	def pluginCheck(self, args=None):
+		configfile.save()
+		self.message = None
+		self.installFailed = False
+		self.errorText = ""
+		self.errorTimer = eTimer()
+		self.errorTimer.callback.append(self.showErrorMessage)
+		self.restartTimer = eTimer()
+		self.restartTimer.callback.append(self.showRestartMessage)
+		self.opkgString = ""
+
+		# check hdfpicon
+		if self.oldHdfPiconValue != config.usage.hdfpicon.value:
+			if config.usage.hdfpicon.value:
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-picons-default-hdf && "
+			else:
+				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-picons-default-hdf && "
+
+		# check ytdlp
+		if self.oldYtdlpValue != config.usage.ytdlp.value:
+			if config.usage.ytdlp.value:
+				self.opkgString += "/usr/bin/opkg install --force-overwrite python3-youtube-dl && "
+				self.opkgString += "/usr/bin/opkg install --force-overwrite python3-yt-dlp && "
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-extensions-streamlinkwrapper && "
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-extensions-ytdlpwrapper && "
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-extensions-ytdlwrapper && "
+			else:
+				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-extensions-streamlinkwrapper && "
+				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-extensions-ytdlpwrapper && "
+				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-extensions-ytdlwrapper && "
+
+		# check serviceapp
+		if self.oldServiceAppValue != config.usage.serviceapp.value:
+			if config.usage.serviceapp.value:
+				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-systemplugins-servicehisilicon && "
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-systemplugins-serviceapp && "
+			else:
+				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-systemplugins-serviceapp && "
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-systemplugins-servicehisilicon && "
+
+		# check streamlinkserver
+		if self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value:
+			if config.usage.streamlinkserver.value:
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-extensions-streamlinkserver && "
+				try:
+					cmdstring = subprocess.Popen("chmod 755 /usr/sbin/streamlinksrv && /etc/rc3.d/S50streamlinksrv start", shell=True)
+					cmdstring.wait()
+				except:
+					pass
+			else:
+				try:
+					cmdstring = subprocess.Popen("/etc/rc3.d/S50streamlinksrv stop && chmod 644 /usr/sbin/streamlinksrv", shell=True)
+					cmdstring.wait()
+				except:
+					pass
+
+		self.opkgString = self.opkgString.rsplit(" && ", 1)[0]
+
+		if (self.oldHdfPiconValue != config.usage.hdfpicon.value) or (self.oldYtdlpValue != config.usage.ytdlp.value) or (self.oldServiceAppValue != config.usage.serviceapp.value) or (self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value):
+			self.message = self.session.open(MessageBox, _("please wait..."), MessageBox.TYPE_INFO, enable_input=False)
+			self.message.setTitle(_("Installing plugins from feed ..."))
+			PingConsole = Console()
+			PingConsole.ePopen("/bin/ping -c 1 hdfreaks.cc", self.checkPing)
+
+	def checkPing(self, ping, retval, extra_args=None):
+		ping = ensure_str(ping)
+		if "bad address" in ping:
+			self.resetValues()
+			self.errorText = _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName())
+			self.errorTimer.start(5, True)
+		else:
+			UpdateConsole = Console()
+			UpdateConsole.ePopen("/usr/bin/opkg update", self.checkServer)
+
+	def checkServer(self, result, retval, extra_args=None):
+		result = ensure_str(result)
+		if ("wget returned 1" or "wget returned 255" or "404 Not Found") in result:
+			self.resetValues()
+			self.errorText = _("Sorry feeds are down for maintenance, please try again later.")
+			self.errorTimer.start(5, True)
+		else:
+			opkg = subprocess.Popen(self.opkgString, shell=True)
+			opkg.wait()
+			if self.message:
+				self.message.close()
+			if (self.oldHdfPiconValue != config.usage.hdfpicon.value) or (self.oldYtdlpValue != config.usage.ytdlp.value) or (self.oldServiceAppValue != config.usage.serviceapp.value) or (self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value) and not self.installFailed:
+				self.restartTimer.start(5, True)
+
+	def showErrorMessage(self):
+		self.session.open(MessageBox, self.errorText, MessageBox.TYPE_INFO, timeout=10)
+
+	def showRestartMessage(self):
+		self.session.openWithCallback(self.restartImage, MessageBox, _("Your %s %s needs a restart to apply the changes.\nRestart your box now?") % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO, timeout=20)
+
+	def restartImage(self, answer):
+		if answer is True:
+			self.session.open(TryQuitMainloop, 2)
+		else:
+			self.close()
+
+	def resetValues(self):
+		if self.message:
+			self.message.close()
+		self.installFailed = True
+		if self.oldHdfPiconValue != config.usage.hdfpicon.value:
+			config.usage.hdfpicon.value = self.oldHdfPiconValue
+			config.usage.hdfpicon.save()
+		if self.oldYtdlpValue != config.usage.ytdlp.value:
+			config.usage.ytdlp.value = self.oldYtdlpValue
+			config.usage.ytdlp.save()
+		if self.oldServiceAppValue != config.usage.serviceapp.value:
+			config.usage.serviceapp.value = self.oldServiceAppValue
+			config.usage.serviceapp.save()
+		if self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value:
+			config.usage.streamlinkserver.value = self.oldStreamlinkSrvValue
+			config.usage.streamlinkserver.save()
+			if self.oldStreamlinkSrvValue:
+				try:
+					cmdstring = subprocess.Popen("chmod 755 /usr/sbin/streamlinksrv && /etc/rc3.d/S50streamlinksrv start", shell=True)
+					cmdstring.wait()
+				except:
+					pass
+			else:
+				try:
+					cmdstring = subprocess.Popen("/etc/rc3.d/S50streamlinksrv stop && chmod 644 /usr/sbin/streamlinksrv", shell=True)
+					cmdstring.wait()
+				except:
+					pass
+
+		configfile.save()
 
 	def addMenu(self, destList, node):
 		requires = node.get("requires")
