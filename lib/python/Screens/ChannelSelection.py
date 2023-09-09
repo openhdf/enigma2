@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 
 from boxbranding import getMachineBrand, getMachineBuild, getMachineName
 
 import Screens.InfoBar
-import Components.ParentalControl
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Button import Button
+from Components.Console import Console
 from Components.MenuList import MenuList
 from Components.Renderer.Picon import getPiconName
 from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
@@ -13,10 +14,12 @@ from Components.ServiceList import ServiceList, refreshServiceList
 from Components.Sources.List import List
 from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredTimerPath
+from Screens.Standby import TryQuitMainloop
 from Screens.Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
+from Tools.Directories import fileExists
 from Tools.Profile import profile
 
 profile("ChannelSelection.py 1")
@@ -53,7 +56,7 @@ from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 
 profile("ChannelSelection.py 4")
-from os import listdir, remove, rename
+from os import listdir, remove, rename, popen
 from time import localtime, time
 
 from six import PY3, ensure_str, unichr
@@ -62,7 +65,7 @@ from RecordTimer import TIMERTYPE
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
-import Tools.Notifications
+import Tools.Notifications, subprocess
 from Tools.BoundFunction import boundFunction
 from Tools.ServiceReference import (service_types_radio_ref,
                                     service_types_tv_ref, serviceRefAppendPath)
@@ -166,6 +169,7 @@ class ChannelContextMenu(Screen):
 
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Channel list context menu"))
+		self.session = session
 		#raise Exception("we need a better summary screen here")
 		self.csel = csel
 		self.bsel = None
@@ -329,8 +333,144 @@ class ChannelContextMenu(Screen):
 		self["menu"].getCurrent()[0][1]()
 
 	def openSetup(self, key):
+		self.oldHdfPiconValue = config.usage.hdfpicon.value
+		self.oldYtdlpValue = config.usage.ytdlp.value
+		self.oldServiceAppValue = config.usage.serviceapp.value
+		self.oldStreamlinkSrvValue = config.usage.streamlinkserver.value
+
 		from Screens.Setup import Setup
-		self.session.open(Setup, key)
+		self.session.openWithCallback(self.pluginCheck, Setup, key)
+
+	def pluginCheck(self, args=None):
+		configfile.save()
+		self.message = None
+		self.installFailed = False
+		self.errorText = ""
+		self.errorTimer = eTimer()
+		self.errorTimer.callback.append(self.showErrorMessage)
+		self.restartTimer = eTimer()
+		self.restartTimer.callback.append(self.showRestartMessage)
+		self.opkgString = ""
+
+		# check hdfpicon
+		if self.oldHdfPiconValue != config.usage.hdfpicon.value:
+			if config.usage.hdfpicon.value:
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-picons-default-hdf && "
+			else:
+				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-picons-default-hdf && "
+
+		# check ytdlp
+		if self.oldYtdlpValue != config.usage.ytdlp.value:
+			if config.usage.ytdlp.value:
+				self.opkgString += "/usr/bin/opkg install --force-overwrite python3-youtube-dl && "
+				self.opkgString += "/usr/bin/opkg install --force-overwrite python3-yt-dlp && "
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-extensions-streamlinkwrapper && "
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-extensions-ytdlpwrapper && "
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-extensions-ytdlwrapper && "
+			else:
+				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-extensions-streamlinkwrapper && "
+				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-extensions-ytdlpwrapper && "
+				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-extensions-ytdlwrapper && "
+
+		# check serviceapp
+		if self.oldServiceAppValue != config.usage.serviceapp.value:
+			if config.usage.serviceapp.value:
+				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-systemplugins-servicehisilicon && "
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-systemplugins-serviceapp && "
+			else:
+				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-systemplugins-serviceapp && "
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-systemplugins-servicehisilicon && "
+
+		# check streamlinkserver
+		if self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value:
+			if config.usage.streamlinkserver.value:
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-extensions-streamlinkserver && "
+				try:
+					cmdstring = subprocess.Popen("chmod 755 /usr/sbin/streamlinksrv && /etc/rc3.d/S50streamlinksrv start", shell=True)
+					cmdstring.wait()
+				except:
+					pass
+			else:
+				try:
+					cmdstring = subprocess.Popen("/etc/rc3.d/S50streamlinksrv stop && chmod 644 /usr/sbin/streamlinksrv", shell=True)
+					cmdstring.wait()
+				except:
+					pass
+
+		self.opkgString = self.opkgString.rsplit(" && ", 1)[0]
+
+		if (self.oldHdfPiconValue != config.usage.hdfpicon.value) or (self.oldYtdlpValue != config.usage.ytdlp.value) or (self.oldServiceAppValue != config.usage.serviceapp.value) or (self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value):
+			self.message = self.session.open(MessageBox, _("please wait..."), MessageBox.TYPE_INFO, enable_input=False)
+			self.message.setTitle(_("Installing plugins from feed ..."))
+			PingConsole = Console()
+			PingConsole.ePopen("/bin/ping -c 1 hdfreaks.cc", self.checkPing)
+
+	def checkPing(self, ping, retval, extra_args=None):
+		ping = ensure_str(ping)
+		if "bad address" in ping:
+			self.resetValues()
+			self.errorText = _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName())
+			self.errorTimer.start(5, True)
+		else:
+			UpdateConsole = Console()
+			UpdateConsole.ePopen("/usr/bin/opkg update", self.checkServer)
+
+	def checkServer(self, result, retval, extra_args=None):
+		result = ensure_str(result)
+		if ("wget returned 1" or "wget returned 255" or "404 Not Found") in result:
+			self.resetValues()
+			self.errorText = _("Sorry feeds are down for maintenance, please try again later.")
+			self.errorTimer.start(5, True)
+		else:
+			opkg = subprocess.Popen(self.opkgString, shell=True)
+			opkg.wait()
+			if self.message:
+				self.message.close()
+			if (self.oldHdfPiconValue != config.usage.hdfpicon.value) or (self.oldYtdlpValue != config.usage.ytdlp.value) or (self.oldServiceAppValue != config.usage.serviceapp.value) or (self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value) and not self.installFailed:
+				self.restartTimer.start(5, True)
+
+	def showErrorMessage(self):
+		self.session.open(MessageBox, self.errorText, MessageBox.TYPE_INFO, timeout=10)
+
+	def showRestartMessage(self):
+		self.session.openWithCallback(self.restartImage, MessageBox, _("Your %s %s needs a restart to apply the changes.\nRestart your box now?") % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO, timeout=20)
+
+	def restartImage(self, answer):
+		if answer is True:
+			self.session.open(TryQuitMainloop, 2)
+		else:
+			self.close()
+
+	def resetValues(self):
+		if self.message:
+			self.message.close()
+		self.installFailed = True
+		if self.oldHdfPiconValue != config.usage.hdfpicon.value:
+			config.usage.hdfpicon.value = self.oldHdfPiconValue
+			config.usage.hdfpicon.save()
+		if self.oldYtdlpValue != config.usage.ytdlp.value:
+			config.usage.ytdlp.value = self.oldYtdlpValue
+			config.usage.ytdlp.save()
+		if self.oldServiceAppValue != config.usage.serviceapp.value:
+			config.usage.serviceapp.value = self.oldServiceAppValue
+			config.usage.serviceapp.save()
+		if self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value:
+			config.usage.streamlinkserver.value = self.oldStreamlinkSrvValue
+			config.usage.streamlinkserver.save()
+			if self.oldStreamlinkSrvValue:
+				try:
+					cmdstring = subprocess.Popen("chmod 755 /usr/sbin/streamlinksrv && /etc/rc3.d/S50streamlinksrv start", shell=True)
+					cmdstring.wait()
+				except:
+					pass
+			else:
+				try:
+					cmdstring = subprocess.Popen("/etc/rc3.d/S50streamlinksrv stop && chmod 644 /usr/sbin/streamlinksrv", shell=True)
+					cmdstring.wait()
+				except:
+					pass
+
+		configfile.save()
 
 	def cancelClick(self):
 		self.close(False)
@@ -2509,10 +2649,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				lastservice = eServiceReference(self.lastservice.value)
 				if lastservice.valid() and self.getCurrentSelection() != lastservice:
 					self.setCurrentSelection(lastservice)
-		elif self.revertMode == MODE_TV and self.mode == MODE_RADIO:
-			self.setModeTv()
-		elif self.revertMode == MODE_RADIO and self.mode == MODE_TV:
-			self.setModeRadio()
 		self.asciiOff()
 		if config.usage.servicelistpreview_mode.value:
 			self.zapBack()
@@ -2744,7 +2880,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 ########## RDS Radiotext / Rass Support BEGIN
 		self.infobar = infobar # reference to real infobar (the one and only)
 		self["RdsDecoder"] = self.info["RdsDecoder"]
-		self["RdsActions"] = HelpableActionMap(self, ["InfobarRdsActions"],
+		self["RdsActions"] = HelpableActionMap(self, "InfobarRdsActions",
 		{
 			"startRassInteractive": (self.startRassInteractive, _("View Rass interactive..."))
 		}, -1)
