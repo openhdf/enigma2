@@ -19,7 +19,6 @@ from Screens.Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
-from Tools.Directories import fileExists
 from Tools.Profile import profile
 
 profile("ChannelSelection.py 1")
@@ -408,8 +407,8 @@ class ChannelContextMenu(Screen):
 	def checkPing(self, ping, retval, extra_args=None):
 		ping = ensure_str(ping)
 		if "bad address" in ping:
-			self.resetValues()
 			self.errorText = _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName())
+			self.resetValues()
 			self.errorTimer.start(5, True)
 		else:
 			UpdateConsole = Console()
@@ -418,8 +417,8 @@ class ChannelContextMenu(Screen):
 	def checkServer(self, result, retval, extra_args=None):
 		result = ensure_str(result)
 		if ("wget returned 1" or "wget returned 255" or "404 Not Found") in result:
-			self.resetValues()
 			self.errorText = _("Sorry feeds are down for maintenance, please try again later.")
+			self.resetValues()
 			self.errorTimer.start(5, True)
 		else:
 			opkg = subprocess.Popen(self.opkgString, shell=True)
@@ -445,16 +444,21 @@ class ChannelContextMenu(Screen):
 		if self.message:
 			self.message.close()
 		self.installFailed = True
+		self.errorText += "\n\n" + _("The following settings have been reset:")
 		if self.oldHdfPiconValue != config.usage.hdfpicon.value:
+			self.errorText += "\n" + _("Enable installation of HDF default picons") + ": " + (_("On") if config.usage.hdfpicon.value else _("Off"))
 			config.usage.hdfpicon.value = self.oldHdfPiconValue
 			config.usage.hdfpicon.save()
 		if self.oldYtdlpValue != config.usage.ytdlp.value:
+			self.errorText += "\n" + _("Enable installation of YTDL, YTDLP, Streamlink Wrapper") + ": " + (_("On") if config.usage.ytdlp.value else _("Off"))
 			config.usage.ytdlp.value = self.oldYtdlpValue
 			config.usage.ytdlp.save()
 		if self.oldServiceAppValue != config.usage.serviceapp.value:
+			self.errorText += "\n" + _("Enable installation of ServiceApp to support 5001 and 5002 streams") + ": " + (_("On") if config.usage.serviceapp.value else _("Off"))
 			config.usage.serviceapp.value = self.oldServiceAppValue
 			config.usage.serviceapp.save()
 		if self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value:
+			self.errorText += "\n" + _("Enable streamlinkserver to play Youtube videos") + ": " + (_("On") if config.usage.streamlinkserver.value else _("Off"))
 			config.usage.streamlinkserver.value = self.oldStreamlinkSrvValue
 			config.usage.streamlinkserver.save()
 			if self.oldStreamlinkSrvValue:
