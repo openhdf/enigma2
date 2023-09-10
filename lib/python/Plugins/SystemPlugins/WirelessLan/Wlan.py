@@ -403,40 +403,6 @@ class Status:
 		iface = extra_args
 		ssid = "off"
 		data = {'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False, 'channel': False, 'encryption_type': False, 'frequency': False, 'frequency_norm': False}
-		for line in result.splitlines():
-			line = line.strip()
-			# print "[Wlan.py] line -->",line
-			if "ESSID" in line:
-				if "off/any" in line:
-					ssid = "off"
-				else:
-					if "Nickname" in line:
-						ssid = (line[line.index('ESSID') + 7:line.index('"  Nickname')])
-					else:
-						ssid = (line[line.index('ESSID') + 7:len(line) - 1])
-				if ssid != "off":
-					data['essid'] = ssid
-			if "Access Point" in line:
-				if "Sensitivity" in line:
-					ap = line[line.index('Access Point') + 14:line.index('   Sensitivity')]
-				else:
-					ap = line[line.index('Access Point') + 14:len(line)]
-				if ap is not None:
-					data['accesspoint'] = ap
-			if "Frequency" in line:
-				frequency = line[line.index('Frequency') + 10:line.index(' GHz')]
-				if frequency is not None:
-					data['frequency'] = frequency
-			if "Bit Rate" in line:
-				if "kb" in line:
-					br = line[line.index('Bit Rate') + 9:line.index(' kb/s')]
-				elif "Gb" in line:
-					br = line[line.index('Bit Rate') + 9:line.index(' Gb/s')]
-				else:
-					br = line[line.index('Bit Rate') + 9:line.index(' Mb/s')]
-				if br is not None:
-					data['bitrate'] = br
-
 		if ssid != None and ssid != "off":
 			scanresults = list(Cell.all(iface, 5))
 			aps = {}
@@ -468,8 +434,64 @@ class Status:
 				data['signal'] = aps[ssid]["signal"]
 				data['channel'] = aps[ssid]["channel"]
 				data['encryption_type'] = aps[ssid]["encryption_type"]
-				#data['frequency'] = aps[ssid]["frequency"]
+				data['frequency'] = aps[ssid]["frequency"]
 				data['frequency_norm'] = aps[ssid]["frequency_norm"]
+
+		for line in result.splitlines():
+			line = line.strip()
+			# print "[Wlan.py] line -->",line
+			if "ESSID" in line:
+				if "off/any" in line:
+					ssid = "off"
+				else:
+					if "Nickname" in line:
+						ssid = (line[line.index('ESSID') + 7:line.index('"  Nickname')])
+					else:
+						ssid = (line[line.index('ESSID') + 7:len(line) - 1])
+				if ssid != "off":
+					data['essid'] = ssid
+			if "Access Point" in line:
+				if "Sensitivity" in line:
+					ap = line[line.index('Access Point') + 14:line.index('   Sensitivity')]
+				else:
+					ap = line[line.index('Access Point') + 14:len(line)]
+				if ap is not None:
+					data['accesspoint'] = ap
+			if "Frequency" in line:
+				frequency = line[line.index('Frequency') + 10:line.index(' GHz')]
+				if frequency is not None:
+					data['frequency'] = frequency
+			if "Bit Rate" in line:
+				if "kb" in line:
+					br = line[line.index('Bit Rate') + 9:line.index(' kb/s')] + " kb/s"
+				elif "Gb" in line:
+					br = line[line.index('Bit Rate') + 9:line.index(' Gb/s')] + " Gb/s"
+				else:
+					br = line[line.index('Bit Rate') + 9:line.index(' Mb/s')] + " Mb/s"
+				if br is not None:
+					data['bitrate'] = br
+			if 'Quality' in line:
+				if "/100" in line:
+					qual = line[line.index('Quality') + 8:line.index('  Signal')] + " %"
+				else:
+					qual = line[line.index('Quality') + 8:line.index('Sig')] + " %"
+				if qual is not None:
+					data['quality'] = qual
+			if 'Signal level' in line:
+				if "dBm" in line:
+					signal = line[line.index('Signal level') + 13:line.index(' dBm')] + " dBm"
+				elif "/100" in line:
+					if "Noise" in line:
+						signal = line[line.index('Signal level') + 13:line.index('  Noise')]
+					else:
+						signal = line[line.index('Signal level') + 13:len(line)]
+				else:
+					if "Noise" in line:
+						signal = line[line.index('Signal level') + 13:line.index('  Noise')]
+					else:
+						signal = line[line.index('Signal level') + 13:len(line)]
+				if signal is not None:
+					data['signal'] = signal
 
 		self.wlaniface[iface] = data
 		self.backupwlaniface = self.wlaniface
