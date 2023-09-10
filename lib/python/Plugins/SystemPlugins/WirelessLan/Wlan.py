@@ -40,19 +40,12 @@ class Wlan:
 	def __init__(self, iface=None):
 		self.iface = iface
 		self.oldInterfaceState = None
-
-		a = ''
-		b = ''
-		for i in list(range(0, 255)):
+		a = ""
+		b = ""
+		for i in range(0, 255):
 			a += chr(i)
-			if i < 32 or i > 127:
-				b += ' '
-			else:
-				b += chr(i)
-		if version_info[0] >= 3:
-			self.asciitrans = str.maketrans(a, b)
-		else:
-			self.asciitrans = maketrans(a, b)
+			b += " " if i < 32 or i > 127 else chr(i)
+		self.asciiTrans = str.maketrans(a, b)
 
 	def asciify(self, str):
 		return str.translate(self.asciitrans)
@@ -86,8 +79,12 @@ class Wlan:
 				driver = iNetwork.detectWlanModule(self.iface)
 				if driver in ('brcm-wl', ):
 					system("wl up")
-
-		scanresults = list(Cell.all(self.iface, 5))
+		try:
+			scanresults = list(Cell.all(self.iface, 5))
+			print("[Wlan] Scan results = '%s'." % scanresults)
+		except Exception:
+			scanresults = None
+			print("[Wlan] No wireless networks could be found.")
 		aps = {}
 		if scanresults is not None:
 			for i in list(range(len(scanresults))):
