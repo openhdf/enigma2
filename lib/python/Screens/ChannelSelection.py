@@ -358,6 +358,22 @@ class ChannelContextMenu(Screen):
 			else:
 				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-picons-default-hdf && "
 
+		# check streamlinkserver
+		if self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value:
+			if config.usage.streamlinkserver.value:
+				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-extensions-streamlinkserver && "
+				try:
+					cmdstring = subprocess.Popen("chmod 755 /usr/sbin/streamlinksrv && /etc/rc3.d/S50streamlinksrv start", shell=True)
+					cmdstring.wait()
+				except:
+					pass
+			else:
+				try:
+					cmdstring = subprocess.Popen("/etc/rc3.d/S50streamlinksrv stop && chmod 644 /usr/sbin/streamlinksrv", shell=True)
+					cmdstring.wait()
+				except:
+					pass
+
 		# check ytdlp
 		if self.oldYtdlpValue != config.usage.ytdlp.value:
 			if config.usage.ytdlp.value:
@@ -380,22 +396,6 @@ class ChannelContextMenu(Screen):
 				self.opkgString += "/usr/bin/opkg remove --force-depends enigma2-plugin-systemplugins-serviceapp && "
 				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-systemplugins-servicehisilicon && "
 
-		# check streamlinkserver
-		if self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value:
-			if config.usage.streamlinkserver.value:
-				self.opkgString += "/usr/bin/opkg install --force-overwrite enigma2-plugin-extensions-streamlinkserver && "
-				try:
-					cmdstring = subprocess.Popen("chmod 755 /usr/sbin/streamlinksrv && /etc/rc3.d/S50streamlinksrv start", shell=True)
-					cmdstring.wait()
-				except:
-					pass
-			else:
-				try:
-					cmdstring = subprocess.Popen("/etc/rc3.d/S50streamlinksrv stop && chmod 644 /usr/sbin/streamlinksrv", shell=True)
-					cmdstring.wait()
-				except:
-					pass
-
 		self.opkgString = self.opkgString.rsplit(" && ", 1)[0]
 
 		if (self.oldHdfPiconValue != config.usage.hdfpicon.value) or (self.oldYtdlpValue != config.usage.ytdlp.value) or (self.oldServiceAppValue != config.usage.serviceapp.value) or (self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value):
@@ -405,8 +405,8 @@ class ChannelContextMenu(Screen):
 			PingConsole.ePopen("/bin/ping -c 1 hdfreaks.cc", self.checkPing)
 
 	def checkPing(self, ping, retval, extra_args=None):
-		ping = ensure_str(ping)
-		if "bad address" in ping:
+		pingString = ensure_str(ping)
+		if "bad address" in pingString:
 			self.errorText = _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName())
 			self.resetValues()
 			self.errorTimer.start(5, True)
@@ -415,8 +415,8 @@ class ChannelContextMenu(Screen):
 			UpdateConsole.ePopen("/usr/bin/opkg update", self.checkServer)
 
 	def checkServer(self, result, retval, extra_args=None):
-		result = ensure_str(result)
-		if ("wget returned 1" or "wget returned 255" or "404 Not Found") in result:
+		resultString = ensure_str(result)
+		if ("wget returned 1" or "wget returned 255" or "404 Not Found") in resultString:
 			self.errorText = _("Sorry feeds are down for maintenance, please try again later.")
 			self.resetValues()
 			self.errorTimer.start(5, True)
@@ -445,20 +445,16 @@ class ChannelContextMenu(Screen):
 			self.message.close()
 		self.installFailed = True
 		self.errorText += "\n\n" + _("The following settings have been reset:")
+
+		# reset hdfpicon
 		if self.oldHdfPiconValue != config.usage.hdfpicon.value:
-			self.errorText += "\n" + _("Enable installation of HDF default picons") + ": " + (_("On") if config.usage.hdfpicon.value else _("Off"))
+			self.errorText += "\n" + _("Enable installation of HDF default picons") + ": " + (_("yes") if self.oldHdfPiconValue else _("no"))
 			config.usage.hdfpicon.value = self.oldHdfPiconValue
 			config.usage.hdfpicon.save()
-		if self.oldYtdlpValue != config.usage.ytdlp.value:
-			self.errorText += "\n" + _("Enable installation of YTDL, YTDLP, Streamlink Wrapper") + ": " + (_("On") if config.usage.ytdlp.value else _("Off"))
-			config.usage.ytdlp.value = self.oldYtdlpValue
-			config.usage.ytdlp.save()
-		if self.oldServiceAppValue != config.usage.serviceapp.value:
-			self.errorText += "\n" + _("Enable installation of ServiceApp to support 5001 and 5002 streams") + ": " + (_("On") if config.usage.serviceapp.value else _("Off"))
-			config.usage.serviceapp.value = self.oldServiceAppValue
-			config.usage.serviceapp.save()
+
+		# reset streamlinkserver
 		if self.oldStreamlinkSrvValue != config.usage.streamlinkserver.value:
-			self.errorText += "\n" + _("Enable streamlinkserver to play Youtube videos") + ": " + (_("On") if config.usage.streamlinkserver.value else _("Off"))
+			self.errorText += "\n" + _("Enable streamlinkserver to play Youtube videos") + ": " + (_("yes") if self.oldStreamlinkSrvValue else _("no"))
 			config.usage.streamlinkserver.value = self.oldStreamlinkSrvValue
 			config.usage.streamlinkserver.save()
 			if self.oldStreamlinkSrvValue:
@@ -473,6 +469,18 @@ class ChannelContextMenu(Screen):
 					cmdstring.wait()
 				except:
 					pass
+
+		# reset serviceapp
+		if self.oldServiceAppValue != config.usage.serviceapp.value:
+			self.errorText += "\n" + _("Enable installation of ServiceApp to support 5001 and 5002 streams") + ": " + (_("yes") if self.oldServiceAppValue else _("no"))
+			config.usage.serviceapp.value = self.oldServiceAppValue
+			config.usage.serviceapp.save()
+
+		# reset ytdlp
+		if self.oldYtdlpValue != config.usage.ytdlp.value:
+			self.errorText += "\n" + _("Enable installation of YTDL, YTDLP, Streamlink Wrapper") + ": " + (_("yes") if self.oldYtdlpValue else _("no"))
+			config.usage.ytdlp.value = self.oldYtdlpValue
+			config.usage.ytdlp.save()
 
 		configfile.save()
 
