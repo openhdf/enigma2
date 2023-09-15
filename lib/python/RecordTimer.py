@@ -1,4 +1,4 @@
-from __future__ import absolute_import, division
+from __future__ import division
 
 from bisect import insort
 from datetime import datetime
@@ -6,7 +6,7 @@ from os import W_OK, access, fsync, makedirs
 from os import path as os_path
 from os import remove, rename, statvfs
 from time import ctime, localtime, strftime, time
-from xml.etree.cElementTree import parse
+from xml.etree.ElementTree import parse
 
 from boxbranding import getMachineBrand, getMachineName
 from enigma import (eActionMap, eEPGCache, eServiceCenter, eServiceReference,
@@ -34,7 +34,8 @@ import Screens.Standby
 from ServiceReference import ServiceReference
 from timer import Timer, TimerEntry
 from Tools import ASCIItranslit, Directories, Notifications, Trashcan
-from Tools.ServiceReference import (service_types_radio_ref, service_types_tv_ref)
+from Tools.ServiceReference import (service_types_radio_ref,
+                                    service_types_tv_ref)
 from Tools.XMLTools import stringToXML
 
 # ok, for descriptions etc we have:
@@ -125,22 +126,29 @@ def findSafeRecordPath(dirname):
 			return None
 	return dirname
 
-def getBqRootStr(reference):
-	reference = reference.toString()
-	if reference.startswith("1:0:2:") or reference.startswith("1:0:A:"):
-		serviceTypes = service_types_radio
-		if config.usage.multibouquet.value:
-			bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet"
-		else:
-			bqRootStr = "%s FROM BOUQUET \"userbouquet.favourites.radio\" ORDER BY bouquet" % serviceTypes
-	else:
-		serviceTypes = service_types_tv
-		if config.usage.multibouquet.value:
-			bqRootStr = "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet"
-		else:
-			bqRootStr = "%s FROM BOUQUET \"userbouquet.favourites.tv\" ORDER BY bouquet" % serviceTypes
 
-	return bqRootStr
+service_types_tv = service_types_tv_ref.toString()
+service_types_radio = service_types_radio_ref.toString()
+
+
+def getBqRootStr(ref):
+	ref = ref.toString()
+	if ref.startswith('1:0:2:'):           # we need that also?:----> or ref.startswith('1:0:10:'):
+		service_types = service_types_radio
+		if config.usage.multibouquet.value:
+			bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.radio" ORDER BY bouquet'
+		else:
+			bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet' % service_types
+	else:
+		service_types = service_types_tv
+		if config.usage.multibouquet.value:
+			bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
+		else:
+			bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % service_types
+
+	return bqrootstr
+
+# please do not translate log messages
 
 
 class RecordTimerEntry(TimerEntry):
@@ -678,7 +686,7 @@ class RecordTimerEntry(TimerEntry):
 				self.backoff = 0
 				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 				if cur_ref and not cur_ref.getPath():
-					if inStandby:
+					if Screens.Standby.inStandby:
 						self.setRecordingPreferredTuner()
 						self.failureCB(True)
 					elif not config.recording.asktozap.value:
@@ -711,7 +719,7 @@ class RecordTimerEntry(TimerEntry):
 					Notifications.AddNotification(MessageBox, _("No tuner is available for recording a timer!\n\nThe following methods of freeing a tuner were tried without success:\n\n") + self.messageString, type=MessageBox.TYPE_INFO, timeout=20)
 				else:
 					Notifications.AddNotification(MessageBox, _("No tuner is available for recording a timer!\n"), type=MessageBox.TYPE_INFO, timeout=20)
-				self.state = 3 # This will prevent error loop beause next state will be failed
+
 			return False
 
 		elif next_state == self.StateRunning:
@@ -733,41 +741,45 @@ class RecordTimerEntry(TimerEntry):
 					#wakeup standby
 					Screens.Standby.inStandby.Power()
 				else:
-					self.log(11, "Zapping.")
+					self.log(11, _("zapping"))
 					found = False
 					notFound = False
 					NavigationInstance.instance.isMovieplayerActive()
 					from Screens.ChannelSelection import ChannelSelection
 					ChannelSelectionInstance = ChannelSelection.instance
 					if ChannelSelectionInstance:
-						bqRootStr = getBqRootStr(self.service_ref.ref)
+						bqrootstr = getBqRootStr(self.service_ref.ref)
+						rootstr = ''
 						serviceHandler = eServiceCenter.getInstance()
-						rootBouquet = eServiceReference(bqRootStr)
-						bouquet = eServiceReference(bqRootStr)
-						bouquetList = serviceHandler.list(bouquet)
-						# We need a way out of the loop, if channel is not in bouquets.
-						bouquetCount = 0
+						rootbouquet = eServiceReference(bqrootstr)
+						bouquet = eServiceReference(bqrootstr)
+						bouquetlist = serviceHandler.list(bouquet)
+						# we need a way out of the loop,
+						# if channel is not in bouquets
+						bouquetcount = 0
 						bouquets = []
-						if bouquetList is not None:
+						if not bouquetlist is None:
 							while True:
-								bouquet = bouquetList.getNext()
-								# Can we make it easier, or find a way to make another way?
+								bouquet = bouquetlist.getNext()
+								# can we make it easier?
+								# or found a way to make another way for that
 								if bouquets == []:
 									bouquets.append(bouquet)
 								else:
-									for item in bouquets:
-										if item != bouquet:
+									for x in bouquets:
+										if x != bouquet:
 											bouquets.append(bouquet)
 										else:
-											bouquetCount += 1
-								if bouquetCount >= 35:
+											bouquetcount += 1
+								if bouquetcount >= 15:
 									notFound = True
 									break
+
 								if bouquet.flags & eServiceReference.isDirectory:
 									ChannelSelectionInstance.clearPath()
 									ChannelSelectionInstance.setRoot(bouquet)
 									servicelist = serviceHandler.list(bouquet)
-									if servicelist is not None:
+									if not servicelist is None:
 										serviceIterator = servicelist.getNext()
 										while serviceIterator.valid():
 											if self.service_ref.ref == serviceIterator:
@@ -776,14 +788,18 @@ class RecordTimerEntry(TimerEntry):
 										if self.service_ref.ref == serviceIterator:
 											break
 							if found:
-								ChannelSelectionInstance.enterPath(rootBouquet)
+								ChannelSelectionInstance.enterPath(rootbouquet)
 								ChannelSelectionInstance.enterPath(bouquet)
 								ChannelSelectionInstance.saveRoot()
 								ChannelSelectionInstance.saveChannel(self.service_ref.ref)
 						if found:
 							ChannelSelectionInstance.addToHistory(self.service_ref.ref)
 					if notFound:
-						self._bouquet_search()
+						# Can we get a result for that ?
+						# see if you want to delete the running Timer
+						self._bouquet_search(self)
+					else:
+						NavigationInstance.instance.playService(self.service_ref.ref)
 				return True
 			else:
 				self.log(11, _("start recording"))
@@ -1052,7 +1068,7 @@ class RecordTimerEntry(TimerEntry):
 									bouquets.append(bouquet)
 								else:
 									bouquetcount += 1
-						if bouquetcount >= 55:
+						if bouquetcount >= 15:
 							notFound = True
 							break
 
@@ -1078,7 +1094,9 @@ class RecordTimerEntry(TimerEntry):
 				if found:
 					ChannelSelectionInstance.addToHistory(self.service_ref.ref)
 			if notFound:
-				self._bouquet_search()
+				# Can we get a result for that ?
+				# see if you want to delete the running Timer
+				self._bouquet_search(self)
 			else:
 				NavigationInstance.instance.playService(self.service_ref.ref)
 			self.justTriedFreeingTuner = True
