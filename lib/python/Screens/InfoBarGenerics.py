@@ -1295,7 +1295,7 @@ class InfoBarNumberZap:
 							if not servicelist is None:
 								serviceIterator = servicelist.getNext()
 								while serviceIterator.valid():
-									service, bouquet2 = self.searchNumber(config.usage.panicchannel.value)
+									service, bouquet2 = self.searchNumber(1)
 									if service == serviceIterator:
 										break
 									serviceIterator = servicelist.getNext()
