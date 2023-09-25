@@ -199,7 +199,7 @@ def reload_subservice_groupslist(force=False):
 			groupedservices = "/etc/enigma2/groupedservices"
 			if not os_path.isfile(groupedservices):
 				groupedservices = "/usr/share/enigma2/groupedservices"
-			subservice_groupslist = [list(g) for k, g in groupby([line.split('#')[0].strip() for line in open(groupedservices).readlines()], lambda x:not x) if not k]
+			subservice_groupslist = [list(g) for k, g in groupby([line.split('#')[0].strip() for line in open(groupedservices).readlines()], lambda x: not x) if not k]
 		except:
 			subservice_groupslist = []
 
@@ -1570,6 +1570,7 @@ class InfoBarChannelSelection:
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
 				if prev:
+					isIPTV = "://" in prev.getPath()  # Workaround:  ignore IPTV channel streaming
 					prev = prev.toString()
 					while True:
 						if config.usage.quickzap_bouquet_change.value:
@@ -1579,9 +1580,9 @@ class InfoBarChannelSelection:
 						cur = self.servicelist.getCurrentSelection()
 						if cur:
 							if self.servicelist.dopipzap:
-								isPlayable = self.session.pip.isPlayableForPipService(cur)
+								isPlayable = isIPTV or self.session.pip.isPlayableForPipService(cur)
 							else:
-								isPlayable = isPlayableForCur(cur)
+								isPlayable = isIPTV or isPlayableForCur(cur)
 						if cur and (cur.toString() == prev or isPlayable):
 							break
 			else:
@@ -1595,6 +1596,7 @@ class InfoBarChannelSelection:
 			if self.servicelist2.inBouquet():
 				prev = self.servicelist2.getCurrentSelection()
 				if prev:
+					isIPTV = "://" in prev.getPath()  # Workaround:  ignore IPTV channel streaming
 					prev = prev.toString()
 					while True:
 						if config.usage.quickzap_bouquet_change.value:
@@ -1604,9 +1606,9 @@ class InfoBarChannelSelection:
 						cur = self.servicelist2.getCurrentSelection()
 						if cur:
 							if ChannelSelectionInstance.dopipzap:
-								isPlayable = self.session.pip.isPlayableForPipService(cur)
+								isPlayable = isIPTV or self.session.pip.isPlayableForPipService(cur)
 							else:
-								isPlayable = isPlayableForCur(cur)
+								isPlayable = isIPTV or isPlayableForCur(cur)
 						if cur and (cur.toString() == prev or isPlayable):
 							break
 			else:
@@ -1625,6 +1627,7 @@ class InfoBarChannelSelection:
 			if self.servicelist.inBouquet():
 				prev = self.servicelist.getCurrentSelection()
 				if prev:
+					isIPTV = "://" in prev.getPath()  # Workaround:  ignore IPTV channel streaming
 					prev = prev.toString()
 					while True:
 						if config.usage.quickzap_bouquet_change.value and self.servicelist.atEnd():
@@ -1634,9 +1637,9 @@ class InfoBarChannelSelection:
 						cur = self.servicelist.getCurrentSelection()
 						if cur:
 							if self.servicelist.dopipzap:
-								isPlayable = self.session.pip.isPlayableForPipService(cur)
+								isPlayable = isIPTV or self.session.pip.isPlayableForPipService(cur)
 							else:
-								isPlayable = isPlayableForCur(cur)
+								isPlayable = isIPTV or isPlayableForCur(cur)
 						if cur and (cur.toString() == prev or isPlayable):
 							break
 			else:
@@ -1650,6 +1653,7 @@ class InfoBarChannelSelection:
 			if self.servicelist2.inBouquet():
 				prev = self.servicelist2.getCurrentSelection()
 				if prev:
+					isIPTV = "://" in prev.getPath()  # Workaround:  ignore IPTV channel streaming
 					prev = prev.toString()
 					while True:
 						if config.usage.quickzap_bouquet_change.value and self.servicelist2.atEnd():
@@ -1659,9 +1663,9 @@ class InfoBarChannelSelection:
 						cur = self.servicelist2.getCurrentSelection()
 						if cur:
 							if ChannelSelectionInstance.dopipzap:
-								isPlayable = self.session.pip.isPlayableForPipService(cur)
+								isPlayable = isIPTV or self.session.pip.isPlayableForPipService(cur)
 							else:
-								isPlayable = isPlayableForCur(cur)
+								isPlayable = isIPTV or isPlayableForCur(cur)
 						if cur and (cur.toString() == prev or isPlayable):
 							break
 			else:
