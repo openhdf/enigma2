@@ -1614,6 +1614,28 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)(snr / 8);
 	}
+	else if (!strcmp(m_description, "AVL6762 (external)")) // DVB-C/T2 Dual 4K
+	{
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
+		{
+			case feCable:
+				ret = (int)(snr / 15.6);
+				break;
+			case feTerrestrial:
+				ret = (int)(snr / 44);
+				break;
+		}
+	}
+	else if (!strcmp(m_description, "rs6060")) // DVB-S2X Zgemma 4K
+	{
+		ret = (int)(snr / 32.5);
+	}
+	else if (!strcmp(m_description, "AVL62X1")) // UCLAN
+	{
+		ret = snr;
+	}
 	else if (!strcmp(m_description, "gService DVB-S2")) // SX88V2
 	{
 		ret = snr;
