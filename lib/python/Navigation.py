@@ -19,6 +19,7 @@ from Screens.InfoBar import InfoBar, MoviePlayer
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import getFPWasTimerWakeup
+from Screens.InfoBarGenerics import whitelist
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 
@@ -322,6 +323,11 @@ class Navigation:
 				playref = ref
 			if self.pnav:
 				self.currentlyPlayingServiceReference = playref
+				playrefstring = playref.toString()
+				if '%3a//' not in playrefstring and playrefstring in whitelist.streamrelay:
+					url = "http://%s:%s/" % (config.misc.softcam_streamrelay_url.getHTML(), config.misc.softcam_streamrelay_port.value)
+					playref = eServiceReference("%s%s%s:%s" % (playrefstring, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
+					print("[Navigation] Play service via streamrelay as it is whitelisted as such" ,playref.toString())
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()

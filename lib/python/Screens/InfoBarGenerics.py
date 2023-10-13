@@ -190,6 +190,15 @@ def updateresumePointCache():
 
 
 subservice_groupslist = None
+class whitelist:
+	streamrelay = []
+
+
+def reload_streamrelay():
+	whitelist.streamrelay = [line.strip() for line in open('/etc/enigma2/whitelist_streamrelay', 'r').readlines()] if os.path.isfile('/etc/enigma2/whitelist_streamrelay') else []
+
+
+reload_streamrelay()
 
 
 def reload_subservice_groupslist(force=False):
@@ -1046,6 +1055,9 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		info = service and service.info()
 		return info and info.getInfo(iServiceInformation.sHideVBI)
 
+	def checkStreamrelay(self, service=None):
+		return (service or self.session.nav.getCurrentlyPlayingServiceReference()) and service.toString() in whitelist.streamrelay
+
 	def showHideVBI(self):
 		if self.checkHideVBI():
 			self.hideVBILineScreen.show()
@@ -1079,6 +1091,16 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			else:
 				self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
 				self.dlg_stack = None
+
+	def ToggleStreamrelay(self, service=None):
+		service = service or self.session.nav.getCurrentlyPlayingServiceReference()
+		if service:
+			service = service.toString()
+			if service in whitelist.streamrelay:
+				whitelist.streamrelay.remove(service)
+			else:
+				whitelist.streamrelay.append(service)
+			open('/etc/enigma2/whitelist_streamrelay', 'w').write('\n'.join(whitelist.streamrelay))
 
 	def getNowNext(self):
 		epglist = []

@@ -229,6 +229,17 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("Unmark service to unhide VBI line"), self.removeHideVBIFlag), level=0)
 						else:
 							append_when_current_valid(current, menu, (_("Mark service to hide VBI line"), self.addHideVBIFlag), level=0)
+						if Screens.InfoBar.InfoBar.instance.checkStreamrelay(current):
+							append_when_current_valid(current, menu, (_("Play service without streamrelay"), self.toggleStreamrelay), level=1)
+						else:
+							append_when_current_valid(current, menu, (_("Play service with streamrelay"), self.toggleStreamrelay), level=1)
+						if eDVBDB.getInstance().getCachedPid(eServiceReference(current.toString()), 9) >> 16 not in (-1, eDVBDB.getInstance().getCachedPid(eServiceReference(current.toString()), 2)):
+							#Only show when a DVB subtitle is cached on this service
+							if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_CENTER_DVB_SUBS:
+								append_when_current_valid(current, menu, (_("Do not center DVB subs on this service"), self.removeCenterDVBSubsFlag), level=2)
+							else:
+								append_when_current_valid(current, menu, (_("Do center DVB subs on this service"), self.addCenterDVBSubsFlag), level=2)
+
 					if haveBouquets:
 						bouquets = self.csel.getBouquetList()
 						if bouquets is None:
@@ -530,6 +541,8 @@ class ChannelContextMenu(Screen):
 		config.servicelist.startupservice_standby.value = ''
 		config.servicelist.save()
 		configfile.save()
+	def toggleStreamrelay(self):
+		Screens.InfoBar.InfoBar.instance.ToggleStreamrelay(self.csel.getCurrentSelection())
 		self.close()
 
 	def showBouquetInputBox(self):
