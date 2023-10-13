@@ -204,6 +204,15 @@ class subservice:
 	groupslist = None
 
 
+def streamrelayChecker(playref):
+	playrefstring = playref.toString()
+	if '%3a//' not in playrefstring and playrefstring in whitelist.streamrelay:
+		url = "http://%s:%s/" % (config.misc.softcam_streamrelay_url.getHTML(), config.misc.softcam_streamrelay_port.value)
+		playref = eServiceReference("%s%s%s:%s" % (playrefstring, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
+		print("[Whitelist_StreamRelay] Play service via streamrelay as it is whitelisted as such", playref.toString())
+	return playref
+
+
 def reload_subservice_groupslist(force=False):
 	global subservice_groupslist
 	if subservice_groupslist is None or force:
