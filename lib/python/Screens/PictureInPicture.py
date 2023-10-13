@@ -183,7 +183,8 @@ class PictureInPicture(Screen):
 	def playService(self, service):
 		if service is None:
 			return False
-		ref = self.resolveAlternatePipService(service)
+		from Screens.InfoBarGenerics import streamrelayChecker
+		ref = streamrelayChecker(self.resolveAlternatePipService(service))
 		if ref:
 			if self.isPlayableForPipService(ref):
 				print("playing pip service", ref and ref.toString())
