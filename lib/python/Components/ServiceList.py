@@ -239,8 +239,8 @@ class ServiceList(GUIComponent):
 
 	def moveToChar(self, char):
 		# TODO fill with life
-		print("Next char: ")
-		index = self.l.getNextBeginningWithChar(char)
+		print("Next char: %s" % char)
+		index = self.l.getNextBeginningWithChar(chr(char))
 		indexup = self.l.getNextBeginningWithChar(chr(char).upper())
 		if indexup != 0:
 			if index > indexup or index == 0:

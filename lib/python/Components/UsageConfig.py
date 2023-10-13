@@ -1699,6 +1699,8 @@ def InitUsageConfig():
 	config.usage.settingsoverlan_webradiofs = ConfigYesNo(default=True)
 	config.usage.settingsoverlan_mp = ConfigYesNo(default=True)
 	config.usage.settingsoverlan_m3u = ConfigYesNo(default=True)
+	config.misc.softcam_streamrelay_url = ConfigIP(default=[127, 0, 0, 1], auto_jump=True)
+	config.misc.softcam_streamrelay_port = ConfigInteger(default=17999, limits=(0, 65535))
 
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):
