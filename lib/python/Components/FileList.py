@@ -208,7 +208,7 @@ class FileList(MenuList):
 			for x in files:
 				if self.useServiceRef:
 					path = x.getPath()
-					name = os_path.split('/')[-1]
+					name = path.split('/')[-1]
 				else:
 					path = directory + x
 					name = x
@@ -426,7 +426,7 @@ class MultiFileSelectList(FileList):
 			for x in files:
 				if self.useServiceRef:
 					path = x.getPath()
-					name = os_path.split('/')[-1]
+					name = path.split('/')[-1]
 				else:
 					path = directory + x
 					name = x
