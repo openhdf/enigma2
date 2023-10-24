@@ -224,6 +224,10 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("stop using as startup service from standby"), self.unsetStartupServiceStandby), level=0)
 					else:
 						append_when_current_valid(current, menu, (_("set as startup service from standby"), self.setStartupServiceStandby), level=0)
+					if Screens.InfoBar.InfoBar.instance.checkStreamrelay(current):
+						append_when_current_valid(current, menu, (_("Play service without Stream Relay"), self.toggleStreamrelay))
+					else:
+						append_when_current_valid(current, menu, (_("Play service with Stream Relay"), self.toggleStreamrelay))
 					if not (current_sel_path):
 						if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_HIDE_VBI:
 							append_when_current_valid(current, menu, (_("Unmark service to unhide VBI line"), self.removeHideVBIFlag), level=0)
@@ -260,6 +264,7 @@ class ChannelContextMenu(Screen):
 					if haveBouquets:
 						if not inBouquet and not "PROVIDERS" in current_sel_path:
 							append_when_current_valid(current, menu, (_("copy to bouquets"), self.copyCurrentToBouquetList), level=0)
+							append_when_current_valid(current, menu, (_("Copy To Stream Relay"), self.copyCurrentToStreamRelay), level=0)
 					if ("flags == %d" % FLAG_SERVICE_NEW_FOUND) in current_sel_path:
 						append_when_current_valid(current, menu, (_("remove all new found flags"), self.removeAllNewFoundFlags), level=0)
 				if inBouquet:
@@ -649,6 +654,10 @@ class ChannelContextMenu(Screen):
 		self.csel.copyCurrentToBouquetList()
 		self.close()
 
+	def copyCurrentToStreamRelay(self):
+		self.csel.copyCurrentToStreamRelay()
+		self.close()
+
 	def removeBouquet(self):
 		self.csel.removeBouquet()
 		eDVBDB.getInstance().reloadBouquets()
@@ -772,6 +781,10 @@ class ChannelContextMenu(Screen):
 					print("permantly remove file ", _file)
 					remove(_file)
 			self.close()
+
+	def toggleStreamrelay(self):
+		Screens.InfoBar.InfoBar.instance.ToggleStreamrelay(self.csel.getCurrentSelection())
+		self.close()
 
 	def addHideVBIFlag(self):
 		eDVBDB.getInstance().addFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_HIDE_VBI)
@@ -1254,6 +1267,12 @@ class ChannelSelectionEdit:
 		serviceHandler = eServiceCenter.getInstance()
 		services = serviceHandler.list(provider.ref)
 		self.addBouquet(providerName, services and services.getContent('R', True))
+
+	def copyCurrentToStreamRelay(self):
+		provider = ServiceReference(self.getCurrentSelection())
+		serviceHandler = eServiceCenter.getInstance()
+		services = serviceHandler.list(provider.ref)
+		Screens.InfoBar.InfoBar.instance.ToggleStreamrelay(services and services.getContent("R", True))
 
 	def removeAlternativeServices(self):
 		cur_service = ServiceReference(self.getCurrentSelection())
