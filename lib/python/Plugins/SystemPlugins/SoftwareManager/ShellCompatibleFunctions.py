@@ -83,8 +83,8 @@ def backupUserDB():
 	groupstxt.close()
 
 
-def restoreUserDB():
-	if not (os_path.isfile('/tmp/passwd.txt') and os_path.isfile('/tmp/groups.txt')):
+def restoreUserDB(image_dir=""):
+	if not (os_path.isfile('%s/tmp/passwd.txt' % image_dir) and os_path.isfile('%s/tmp/groups.txt' % image_dir)):
 		return
 
 	oldpasswd = []
@@ -95,21 +95,21 @@ def restoreUserDB():
 	takengids = []
 	successusers = []
 
-	with open('/tmp/passwd.txt') as f:
+	with open('%s/tmp/passwd.txt' % image_dir) as f:
 		oldpasswd = f.readlines()
 		oldpasswd = [x.strip() for x in oldpasswd]
 
-	with open('/tmp/groups.txt') as f:
+	with open('%s/tmp/groups.txt' % image_dir) as f:
 		oldgroups = f.readlines()
 		oldgroups = [x.strip() for x in oldgroups]
 
-	with open('/etc/passwd') as f:
+	with open('%s/etc/passwd' % image_dir) as f:
 		newpasswd = f.readlines()
 		for x in newpasswd:
 			name, passwd, uid, gid, gecos, home, shell = x.strip().split(':')
 			takenuids.append(uid)
 
-	with open('/etc/group') as f:
+	with open('%s/etc/group' % image_dir) as f:
 		newgroups = f.readlines()
 		for x in newgroups:
 			name, passwd, gid, rest = x.strip().split(':', 3)
@@ -174,11 +174,11 @@ def restoreUserDB():
 			successusers.append([oldname, oldpasswd])
 
 	shadow = []
-	with open('/etc/shadow') as f:
+	with open('%s/etc/shadow' % image_dir) as f:
 		shadow = f.readlines()
 		shadow = [x.strip() for x in shadow]
 
-	newshadowfile = open('/tmp/shadow.new', 'w')
+	newshadowfile = open('%s/tmp/shadow.new' % image_dir, 'w')
 	for x in shadow:
 		name, passwd, rest = x.split(':', 2)
 		for y in successusers:
@@ -187,13 +187,13 @@ def restoreUserDB():
 				break
 		newshadowfile.write("%s:%s:%s\n" % (name, passwd, rest))
 	newshadowfile.close()
-	move("/tmp/shadow.new", "/etc/shadow")
+	move("%s/tmp/shadow.new" % image_dir, "%s/etc/shadow" % image_dir)
 
 
-def listpkg(type="installed"):
+def listpkg(type="installed", image_dir=""):
 	pkgs = []
 	ret = []
-	for line in open(INSTALLEDPACKAGES, 'r'):
+	for line in open('%s%s' % (image_dir, INSTALLEDPACKAGES), 'r'):
 		if line.startswith('Package:'):
 			package = line.split(":", 1)[1].strip()
 			version = ''

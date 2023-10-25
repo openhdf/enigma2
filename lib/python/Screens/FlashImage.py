@@ -356,17 +356,17 @@ class FlashImage(Screen):
 				self.zippedimage = "://" in self.source and os.path.join(destination, self.imagename) or self.source
 				self.unzippedimage = os.path.join(destination, '%s.unzipped' % self.imagename[:-4])
 
-#				try:
-				if os.path.isfile(destination):
-					os.remove(destination)
-				if not os.path.isdir(destination):
-					os.mkdir(destination)
-				if not self.onlyDownload:
-					self.flashPostAction()
-				else:
-					self.session.openWithCallback(self.startDownload, MessageBox, _("Starting download of image file?\nPress OK to start or Exit to abort."), type=MessageBox.TYPE_INFO, timeout=0)
-#				except:
-#					self.session.openWithCallback(self.abort, MessageBox, _("Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
+				try:
+					if os.path.isfile(destination):
+						os.remove(destination)
+					if not os.path.isdir(destination):
+						os.mkdir(destination)
+					if not self.onlyDownload:
+						self.flashPostAction()
+					else:
+						self.session.openWithCallback(self.startDownload, MessageBox, _("Starting download of image file?\nPress OK to start or Exit to abort."), type=MessageBox.TYPE_INFO, timeout=0)
+				except:
+					self.session.openWithCallback(self.abort, MessageBox, _("Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
 			else:
 				self.session.openWithCallback(self.abort, MessageBox, _("Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficiant free space and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
 		else:
@@ -514,7 +514,7 @@ class FlashImage(Screen):
 					(_("Do not flash image"), "abort")
 				]
 				default = 0
-			self.session.openWithCallback(self.postFlashActionCallback, MessageBox, text, list=choices, default=default)
+			self.session.openWithCallback(self.postFlashActionCallback, MessageBox, text, list=choices, default=default, simple=True)
 		else:
 			self.abort()
 
