@@ -825,7 +825,7 @@ class HdmiCec:
 				self.messages = []
 				self.what = "on"
 				self.repeatCounter = 0
-				if config.hdmicec.workaround_activesource.value and config.hdmicec.report_active_source.value and not self.activesource and not "standby" in self.tv_powerstate:
+				if config.hdmicec.workaround_activesource.value and config.hdmicec.report_active_source.value and not self.activesource and "standby" not in self.tv_powerstate:
 					# Some tv devices don't switch to the correct hdmi port if a another hdmi port active.  The workaround is to switch the tv off and on.
 					self.messages.append((0, "standby"))
 					if not config.hdmicec.control_tv_wakeup.value:
@@ -941,12 +941,13 @@ class HdmiCec:
 				self.stateTimer.start(timeout, True)
 				self.sendMessage(0, "routinginfo")
 		else:
-			self.activesource = False
 			if state == "on" and need_routinginfo:
+				self.activesource = False
 				self.tv_powerstate = "unknown"
 				self.stateTimer.start(timeout, True)
 				self.sendMessage(0, "routinginfo")
 			elif state == "standby" and config.hdmicec.control_tv_standby.value:
+				self.activesource = False
 				self.tv_powerstate = "standby"
 
 	def handleTimerStop(self, reset=False):
@@ -972,12 +973,16 @@ class HdmiCec:
 			standby = deepstandby = False
 			if config.hdmicec.handle_tv_standby.value != "disabled" and request == "tvstandby":
 				self.tv_skip_messages = False
+				if config.hdmicec.handle_tv_standby.value == "standby":
+					standby = True
+				elif config.hdmicec.handle_tv_standby.value == "deepstandby":
+					deepstandby = True
 			elif config.hdmicec.handle_tv_input.value != "disabled" and request == "activesource":
 				self.tv_skip_messages = True
-			if config.hdmicec.handle_tv_input.value == "standby":
-				standby = True
-			elif config.hdmicec.handle_tv_input.value == "deepstandby":
-				deepstandby = True
+				if config.hdmicec.handle_tv_input.value == "standby":
+					standby = True
+				elif config.hdmicec.handle_tv_input.value == "deepstandby":
+					deepstandby = True
 
 			if standby and Screens.Standby.inStandby:
 				self.tv_skip_messages = False
@@ -1108,10 +1113,10 @@ class HdmiCec:
 		tmp = ""
 		if len(data):
 			if cmd in [0x32, 0x47]:
-				for item in enumerate(data):
+				for item in data:
 					tmp += "%s" % item
 			else:
-				for item in enumerate(data):
+				for item in data:
 					tmp += "%02X" % ord(item) + " "
 		tmp += 48 * " "
 		self.CECwritedebug(txt + tmp[:48] + "[0x%02X]" % (address))
