@@ -1,6 +1,7 @@
 from glob import glob
 from os import access, W_OK
 from enigma import iPlayableService, eTimer, eServiceReference, iRecordableService, eFCCServiceManager
+from Screens.InfoBarGenerics import whitelist
 from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigSelection
 from Components.ServiceEventTracker import ServiceEventTracker
 from Plugins.Plugin import PluginDescriptor
@@ -226,6 +227,9 @@ class FCCSupport:
 			playable = False
 
 		elif int(sref.getData(0)) in (2, 10): # is RADIO?
+			playable = False
+
+		elif sref.toString() in whitelist.streamrelay:
 			playable = False
 
 		return playable
