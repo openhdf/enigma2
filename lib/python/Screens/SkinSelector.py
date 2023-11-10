@@ -166,9 +166,9 @@ class SkinSelector(Screen, HelpableScreen):
 			preview = resolveFilename(SCOPE_CURRENT_SKIN, "noprev.png")
 		self.picload.startDecode(preview)
 		if skin == self.config.value:
-			self["description"].setText(_("Press OK to keep the currently selected %s skin.") % self.currentSelectedSkin[0])
+			self["description"].setText(_("Press OK to keep the currently selected %s skin.") % ("'" + self.currentSelectedSkin[0] + "'"))
 		else:
-			self["description"].setText(_("Press OK to activate the selected %s skin.") % self.currentSelectedSkin[0])
+			self["description"].setText(_("Press OK to activate the selected %s skin.") % ("'" + self.currentSelectedSkin[0] + "'"))
 
 	def cancel(self):
 		self.close(False)
@@ -298,7 +298,7 @@ class StandbySkinSelector(SkinSelector):
 	def __init__(self, session, screenTitle=_("Standby Skin")):
 		SkinSelector.__init__(self, session, screenTitle=screenTitle)
 		self.skinName = ["StandbySkinSelector", "SkinSelector"]
-		self.rootDir = resolveFilename(SCOPE_LCDSKIN, "lcd_skin/")
+		self.rootDir = resolveFilename(SCOPE_LCDSKIN)
 		self.config = config.skin.standby_skin
 		self.current = currentStandbySkin
 		self.xmlList = []
@@ -307,6 +307,10 @@ class StandbySkinSelector(SkinSelector):
 				if x.startswith("skin_standby") and x.endswith(".xml"):
 					if root is not self.rootDir:
 						subdir = root[19:]
+						skinname = "%s/%s" % (subdir, x)
+						self.xmlList.append(skinname)
+					elif root is self.rootDir:
+						subdir = self.rootDir
 						skinname = "%s/%s" % (subdir, x)
 						self.xmlList.append(skinname)
 					else:
@@ -320,17 +324,17 @@ class StandbySkinSelector(SkinSelector):
 		skinList = []
 		# Find and list the available skins...
 		previewPath = self.rootDir
-		_dir = "lcd_skin/"
 		for skinFile in self.xmlList:
-			skin = _dir + skinFile
-			skinPath = pathjoin(self.rootDir, skinFile)
-			if exists(skinPath):
-				resolution = skinFile.replace(".xml", "").replace("skin_standby_", "").replace("_", " ").capitalize()
-				preview = pathjoin(previewPath, skinFile.replace(".xml", ".png") or "prev.png")
+			_dir = skinFile.split("/")[1]
+			skin = skinFile
+			skinPath = pathjoin(self.rootDir[:-8], skinFile)
+			if not "skin_default" in skinPath and exists(skinPath) and skinPath != self.rootDir + "lcd_skin/skin_standby.xml":
+				resolution = skinFile
+				preview = pathjoin(previewPath[:-8], skinFile.replace(".xml", ".png")) if exists(pathjoin(previewPath[:-8], skinFile.replace(".xml", ".png"))) else (pathjoin(previewPath[:-8], skinFile.replace("skin_standby.xml", "prev.png")) if exists(pathjoin(previewPath[:-8], "prev.png")) else "prev.png")
 				if skin == DEFAULT_DISPLAY_SKIN:
 					_list = [default, default, _dir, skinFile, resolution, preview]
 				else:
-					_list = [skinFile.replace(".xml", "").replace("skin_standby_", ""), "", _dir, skinFile, resolution, preview]
+					_list = [skinFile.replace(".xml", "").replace("skin_standby_", "").split("/")[-1].replace("_", " ").capitalize(), "", _dir, skinPath, resolution, preview]
 				if skin == self.current:
 					_list[1] = current
 				elif skin == self.config.value:
