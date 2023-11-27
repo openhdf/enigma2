@@ -512,11 +512,11 @@ class FlashImage(Screen):
 	def downloadProgress(self, current, total):
 		self["progress"].setValue(int(100 * current / total))
 
-	def downloadError(self, reason, status):
+	def downloadError(self, error):
 		self.downloader.stop()
-		self.session.openWithCallback(self.abort, MessageBox, _("Error during downloading image\n%s\n%s") % (self.imagename, reason), type=MessageBox.TYPE_ERROR, simple=True)
+		self.session.openWithCallback(self.abort, MessageBox, _("Error during downloading image\n%s\n%s") % (self.imagename, error.strerror), type=MessageBox.TYPE_ERROR, simple=True)
 
-	def downloadEnd(self):
+	def downloadEnd(self, filename=None):
 		self.downloader.stop()
 		self.unzip()
 
