@@ -226,7 +226,7 @@ public:
 	};
 
 	RESULT connectChannelAdded(const sigc::slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
-	int canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore, int &system, bool simulate=false);
+	int canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore, const eDVBChannelID& ignoresr, int &system, bool simulate=false);
 
 		/* allocate channel... */
 	bool frontendPreferenceAllowsChannelUse(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> channel, bool simulate);
