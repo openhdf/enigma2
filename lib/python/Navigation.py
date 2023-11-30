@@ -19,7 +19,7 @@ from Screens.InfoBar import InfoBar, MoviePlayer
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from Tools.StbHardware import getFPWasTimerWakeup
-from Screens.InfoBarGenerics import whitelist
+from Screens.InfoBarGenerics import streamrelayChecker, whitelist
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 
@@ -50,6 +50,7 @@ class Navigation:
 
 		self.RecordTimer = None
 		self.isRecordTimerImageStandard = False
+		self.currentServiceIsStreamRelay = False
 		self.skipServiceReferenceReset = False
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_RECORDTIMER):
 			self.RecordTimer = p()
@@ -328,8 +329,16 @@ class Navigation:
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 				self.skipServiceReferenceReset = True
-				if self.pnav.playService(playref):
-					print("[Navigation] Failed to start", playref.toString())
+				if config.misc.softcam_streamrelay_delay.value and self.currentServiceIsStreamRelay:
+					self.currentServiceIsStreamRelay = False
+					self.currentlyPlayingServiceReference = None
+					self.currentlyPlayingServiceOrGroup = None
+					print("[Navigation] Streamrelay was active -> delay the zap till tuner is freed")
+					self.retryServicePlayTimer = eTimer()
+					self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
+					self.retryServicePlayTimer.start(config.misc.softcam_streamrelay_delay.value, True)
+				elif self.pnav.playService(playref):
+					# print("[Navigation] Failed to start", playref)
 					self.currentlyPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
 					if oldref and "://" in oldref.getPath():
@@ -338,6 +347,8 @@ class Navigation:
 						self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
 						self.retryServicePlayTimer.start(500, True)
 				self.skipServiceReferenceReset = False
+				if self.currentlyPlayingServiceReference and self.currentlyPlayingServiceReference.toString() in whitelist.streamrelay:
+					self.currentServiceIsStreamRelay = True
 				return 0
 		elif oldref and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(oldref, adjust):
 			self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
