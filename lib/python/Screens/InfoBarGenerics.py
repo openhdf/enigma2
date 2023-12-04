@@ -1072,8 +1072,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		info = service and service.info()
 		return info and info.getInfo(iServiceInformation.sHideVBI)
 
-	def checkStreamrelay(self, service=None):
-		return (service or self.session.nav.getCurrentlyPlayingServiceReference()) and service.toString() in whitelist.streamrelay
+	def checkStreamrelay(self, service):
+		return (service and service.toString() in whitelist.streamrelay)
 
 	def showHideVBI(self):
 		if self.checkHideVBI():
