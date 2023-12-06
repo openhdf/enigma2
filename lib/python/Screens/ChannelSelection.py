@@ -554,7 +554,8 @@ class ChannelContextMenu(Screen):
 		config.servicelist.save()
 		configfile.save()
 	def toggleStreamrelay(self):
-		Screens.InfoBar.InfoBar.instance.ToggleStreamrelay(self.csel.getCurrentSelection())
+		from Screens.InfoBarGenerics import streamrelay
+		streamrelay.toggle(self.session.nav, self.csel.getCurrentSelection())
 		self.close()
 
 	def showBouquetInputBox(self):
