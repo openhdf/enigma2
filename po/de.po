@@ -4219,6 +4219,12 @@ msgstr "HTTP-Streams entschlüsseln"
 msgid "Descramble receiving http streams"
 msgstr "Empfangene HTTP-Streams entschlüsseln"
 
+msgid "Descramble service via streamrelay port"
+msgstr "Entschlüssele Sender über Streamrelay Port"
+
+msgid "Descramble service via streamrelay url"
+msgstr "Entschlüssele Sender über Streamrelay URL"
+
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -9212,6 +9218,12 @@ msgstr "Spiele Vorheriges"
 
 msgid "Play recorded movies..."
 msgstr "Aufgenommene Filme abspielen..."
+
+msgid "Play service with streamrelay"
+msgstr "Sender mit Streamrelay abspielen"
+
+msgid "Play service without streamrelay"
+msgstr "Sender ohne Streamrelay abspielen"
 
 msgid "Playlist"
 msgstr "Wiedergabeliste"
