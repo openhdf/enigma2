@@ -21,4 +21,5 @@ dist_install_DATA = \
 	userbouquet.bef008.tv \
 	userbouquet.bef009.tv \
 	userbouquet.bef010.tv \
-	whitelist
+	whitelist \
+	whitelist_streamrelay
