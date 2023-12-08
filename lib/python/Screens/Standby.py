@@ -22,8 +22,21 @@ from Tools import Notifications
 import re
 
 inStandby = None
+infoBarInstance = None
 TVinStandby = None
 
+
+def isInfoBarInstance():
+	global infoBarInstance
+	if infoBarInstance is None:
+		from Screens.InfoBar import InfoBar
+		if InfoBar.instance:
+			infoBarInstance = InfoBar.instance
+	return infoBarInstance
+
+def checkTimeshiftRunning():
+	infobar_instance = isInfoBarInstance()
+	return config.usage.check_timeshift.value and infobar_instance and infobar_instance.timeshiftEnabled() and infobar_instance.timeshift_was_activated
 
 class TVstate: #load in Navigation
 	def __init__(self):
@@ -328,6 +341,31 @@ class QuitMainloopScreen(Screen):
 
 inTryQuitMainloop = False
 quitMainloopCode = 1
+
+
+def getReasons(session, retvalue=1):
+	recordings = session.nav.getRecordings()
+	jobs = len(job_manager.getPendingJobs())
+	reasons = []
+	next_rec_time = -1
+	if not recordings:
+		next_rec_time = session.nav.RecordTimer.getNextRecordingTime()
+	if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+		reasons.append(_("Recording(s) are in progress or coming up in few seconds!"))
+	if jobs:
+		if jobs == 1:
+			job = job_manager.getPendingJobs()[0]
+			reasons.append("%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100 * job.progress / float(job.end))))
+		else:
+			reasons.append((ngettext("%d job is running in the background!", "%d jobs are running in the background!", jobs) % jobs))
+	if checkTimeshiftRunning():
+		reasons.append(_("You seem to be in timeshift!"))
+	connectedClients = eStreamServer.getInstance().getConnectedClients()
+	if (connectedClients and len(connectedClients) > [(element).count('127.0.0.1') for element in connectedClients].count(1)) or StreamServiceList:
+		reasons.append(_("Client is streaming from this box!"))
+	if not reasons and mediaFilesInUse(session) and retvalue in (1, 2, 3, 4):
+		reasons.append(_("A file from media is in use!"))
+	return "\n".join(reasons)
 
 
 class TryQuitMainloop(MessageBox):

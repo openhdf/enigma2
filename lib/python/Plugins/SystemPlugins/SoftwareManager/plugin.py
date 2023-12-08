@@ -53,10 +53,8 @@ from Tools.NumericalTextInput import NumericalTextInput
 from .BackupRestore import (BackupScreen, BackupSelection, RestoreMenu,
                             RestoreScreen, getBackupFilename, getBackupPath,
                             getOldBackupPath)
-from .Flash_online import FlashOnline
 from .ImageBackup import ImageBackup
 from .ImageWizard import ImageWizard
-from .Multibootmgr import MultiBootWizard
 from .SoftwareTools import iSoftwareTools
 
 boxtype = getBoxType()
@@ -226,10 +224,6 @@ class UpdatePluginMenu(Screen):
 			#self.list.append(("software-restore", _("Software restore"), _("\nRestore your %s %s with a new firmware.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your %s %s") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("backup-image", _("Image Full-Backup"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
-			if not boxtype.startswith('az') and not boxtype in ('dm500hd', 'dm500hdv2', 'dm520', 'dm800', 'dm800se', 'dm800sev2', 'dm820', 'dm7020hd', 'dm7020hdv2', 'dm7080', 'dm8000') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
-				self.list.append(("flash-online", _("Image Online-Flash"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
-			if SystemInfo["canMultiBoot"]:
-				self.list.append(("multiboot-manager", _("Image Multiboot Manager"), _("\nMaintain your %s %s device.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("system-restore", _("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("ipkg-install", _("Install local extension"), _("\nScan for local extensions and install them.") + "\n" + self.oktext, None))
@@ -398,15 +392,6 @@ class UpdatePluginMenu(Screen):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
-				elif (currentEntry == "flash-online"):
-					if config.plugins.softwaremanager.autosaveSettingsfilesEntry.value:
-						self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
-						self.session.open(FlashOnline)
-					else:
-						#self.session.openWithCallback(self.doBackup, MessageBox, _("Do you want to backup your image and settings before?"), default = True)
-						self.session.open(FlashOnline)
-				elif (currentEntry == "multiboot-manager"):
-					self.session.open(MultiBootWizard)
 				elif (currentEntry == "backup-image"):
 					if DFLASH == True:
 						self.session.open(dFlash)
@@ -539,8 +524,6 @@ class UpdatePluginMenu(Screen):
 	def doBackup(self, default=False):
 		if (default == True):
 			self.session.openWithCallback(self.doBackupSettings, MessageBox, _("Backup your settings now?"), default=True)
-		else:
-			self.session.open(FlashOnline)
 
 	def doBackupSettings(self, default=False):
 		if (default == True):
@@ -554,8 +537,6 @@ class UpdatePluginMenu(Screen):
 				self.session.open(dFlash)
 			else:
 				self.session.open(ImageBackup)
-		else:
-			self.session.open(FlashOnline)
 
 
 class SoftwareManagerSetup(Screen, ConfigListScreen):

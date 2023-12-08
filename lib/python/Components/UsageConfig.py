@@ -756,6 +756,7 @@ def InitUsageConfig():
 			(eEnv.resolve("${datadir}/enigma2/keymap.u80"), _("U80 keymap - keymap.u80"))])
 
 	config.usage.keymap_usermod = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml"))
+	config.usage.alternative_imagefeed = ConfigText(default="", fixed_size=False)
 
 	config.network = ConfigSubsection()
 	if SystemInfo["WakeOnLAN"]:
