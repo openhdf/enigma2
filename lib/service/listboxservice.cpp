@@ -59,7 +59,7 @@ bool compareServices(const eServiceReference &ref1, const eServiceReference &ref
 		std::vector<std::string> sr_split = split(url_sr, "/");
 		std::string ref_orig = sr_split.back();
 		ref_orig = replace_all(ref_orig, "%3a", ":");
-		return r_i.toString() == ref_orig;
+		return ref1.toString() == ref_orig;
 	}
 
 	return false;
