@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-18 20:34+0100\n"
-"PO-Revision-Date: 2023-08-06 16:24+0200\n"
+"PO-Revision-Date: 2023-12-16 16:44+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3684,7 +3684,7 @@ msgid "Context"
 msgstr "Kontext"
 
 msgid "Context long"
-msgstr "Context lang"
+msgstr "Kontext lang"
 
 msgid "Continue"
 msgstr "Weiter"
@@ -4218,6 +4218,12 @@ msgstr "HTTP-Streams entschlüsseln"
 
 msgid "Descramble receiving http streams"
 msgstr "Empfangene HTTP-Streams entschlüsseln"
+
+msgid "Descramble service via streamrelay port"
+msgstr "Entschlüssele Sender über Streamrelay Port"
+
+msgid "Descramble service via streamrelay url"
+msgstr "Entschlüssele Sender über Streamrelay URL"
 
 msgid "Description"
 msgstr "Beschreibung"
@@ -5924,6 +5930,16 @@ msgstr ""
 "Die GUI benötigt einen Neustart, um die neuen Einstellungen zu übernehmen.\n"
 "Möchten Sie die GUI jetzt neu starten?"
 
+msgid ""
+"Your %s %s needs a restart to apply the changes.\n"
+"Restart your box now?"
+msgstr ""
+"Die %s %s muss jetzt neugestartet werden.\n"
+"Soll der Neustart ausgeführt werden?"
+
+msgid "The following settings have been reset:"
+msgstr "Die folgenden Einstellungen wurden zurückgesetzt:"
+
 msgid "Gabon"
 msgstr "Gabon"
 
@@ -6683,7 +6699,7 @@ msgid ""
 "Image created on:\n"
 "%s/full_backups/%s-%s-%s-%s-backup-%s_backup.zip"
 msgstr ""
-"Bild erstellt am:\n"
+"Image erstellt am:\n"
 "%s/full_backups/%s-%s-%s-%s-backup-%s_backup.zip"
 
 #, python-format
@@ -7198,7 +7214,7 @@ msgid "LAN connection"
 msgstr "LAN Verbindung"
 
 msgid "LCD Skins"
-msgstr "LCD-Skins"
+msgstr "Display- und LCD-Skins"
 
 msgid "LCD scroll speed"
 msgstr "LCD Scroll Geschwindigkeit"
@@ -7244,9 +7260,6 @@ msgstr "LOF/H"
 
 msgid "LOF/L"
 msgstr "LOF/L"
-
-msgid "Label"
-msgstr "Info Einblendung zur Auflösung"
 
 msgid "LameDB"
 msgstr "LameDB"
@@ -9206,6 +9219,12 @@ msgstr "Spiele Vorheriges"
 msgid "Play recorded movies..."
 msgstr "Aufgenommene Filme abspielen..."
 
+msgid "Play service with streamrelay"
+msgstr "Sender mit Streamrelay abspielen"
+
+msgid "Play service without streamrelay"
+msgstr "Sender ohne Streamrelay abspielen"
+
 msgid "Playlist"
 msgstr "Wiedergabeliste"
 
@@ -10108,7 +10127,7 @@ msgstr "WOL jetzt durchführen?"
 msgid "Really close without saving settings?"
 msgstr "Wirklich ohne Sichern beenden?"
 
-#, fuzzy
+#, python-format
 msgid "Really delete completed timers?"
 msgstr "Vollendete Timer wirklich löschen?"
 
@@ -11094,7 +11113,7 @@ msgid "Select backup files"
 msgstr "Auswahl der zu sichernden Dateien"
 
 msgid "Select backup location"
-msgstr "Auswahl das Sicherungsverzeichnis"
+msgstr "Auswahl des Sicherungsverzeichnisses"
 
 msgid "Select channel to record from"
 msgstr "Wähle Sender von dem aufgenommen werden soll"
@@ -12286,6 +12305,12 @@ msgstr "Zeige Transponder verbleibend/verstrichen"
 
 msgid "Show two lines per entry"
 msgstr "Zeige zwei Zeilen pro Eintrag"
+
+msgid "Show underscore characters"
+msgstr "Unterstriche anzeigen"
+
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr "Bei 'Nein' werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt."
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Zeige unbekannte Videoauflösungen mit der nächsthöheren oder höchsten Auflösung."
@@ -15804,7 +15829,7 @@ msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stre
 msgstr "Wenn der Bildinhalt ein Aspect/Ratio von 4:3 hat wähle ob das Bild skaliert/gestreckt werden soll."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
-msgstr "Wenn ein Sender eingestellt ist durchsucht die Box den Transponder nach Änderungen und speichert sie. Nur 'Nein' einstellen wenn Du weißt was Du tust."
+msgstr "Wenn ein Sender eingestellt ist durchsucht die Box den Transponder nach Änderungen und speichert sie. Nur 'Ja' einstellen, wenn Du weißt was Du tust."
 
 #, python-format
 msgid ""
