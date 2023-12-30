@@ -14,6 +14,7 @@ from Tools.Directories import (SCOPE_SKIN, fileCheck, fileExists, fileHas,
 from hashlib import md5
 from Tools.HardwareInfo import HardwareInfo
 from types import MappingProxyType
+from ast import literal_eval
 
 SystemInfo = {}
 SystemInfo["HasRootSubdir"] = False	# This needs to be here so it can be reset by getMultibootslots!
@@ -51,13 +52,10 @@ class BoxInformation:
 		self.boxInfo = MappingProxyType(boxInfoCollector)
 
 	def processValue(self, value):
-		if value and value[0] in ("\"", "'") and value[-1] == value[0]:
-			return value[1:-1]
-		else:
-			try:
-				return eval(value)
-			except:
-				return value
+		try:
+			return literal_eval(value)
+		except:
+			return value
 
 	def getEnigmaInfoList(self):
 		return sorted(self.boxInfo.keys())
