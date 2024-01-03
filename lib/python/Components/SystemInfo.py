@@ -71,8 +71,6 @@ class BoxInformation:
 			return self.boxInfo[item]
 		elif item in self.boxInfoMutable:
 			return self.boxInfoMutable[item]
-		elif item in SystemInfo:
-			return SystemInfo[item]
 		return default
 
 	def setItem(self, item, value, immutable=False, forceOverride=False):
