@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-18 20:34+0100\n"
-"PO-Revision-Date: 2023-12-16 16:44+0100\n"
+"PO-Revision-Date: 2024-01-04 18:46+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4224,6 +4224,12 @@ msgstr "Entschlüssele Sender über Streamrelay Port"
 
 msgid "Descramble service via streamrelay url"
 msgstr "Entschlüssele Sender über Streamrelay URL"
+
+msgid "Streamrelay delay"
+msgstr "Streamrelay Verzögerung beim Umschalten"
+
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr "Verzögerung beim Schließen eines Stream-Relay-Dienstes, bevor der Tuner einem anderen Dienst zugewiesen wird. Die Verwendung von „0“ wird nur für Boxen mit mehreren Satellitentunern empfohlen."
 
 msgid "Description"
 msgstr "Beschreibung"
