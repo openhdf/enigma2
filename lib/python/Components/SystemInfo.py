@@ -91,7 +91,7 @@ class BoxInformation:
 			return value
 
 	def getEnigmaInfoList(self):
-		return sorted([item for item in self.boxInfo.keys() if item in self.boxInfo.immutablelist])
+		return sorted(self.boxInfo.immutablelist)
 
 	def getEnigmaConfList(self):  # not used by us
 		return []
