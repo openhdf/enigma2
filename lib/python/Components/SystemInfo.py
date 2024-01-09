@@ -25,9 +25,44 @@ from Tools.Multiboot import (  # This import needs to be here to avoid a SystemI
 #FIXMEE...
 
 
+class immutableDict(dict):
+	def __init__(self, *args, **kws):
+		self.immutablelist = []
+		self.checkimmutable = False
+		dict.__init__(self, *args, **kws)
+
+	def setImmutable(self):
+		self.checkimmutable = True
+
+	def __hash__(self):
+		return id(self)
+
+	def _immutable(self, *args, **kws):
+		raise TypeError('object is immutable')
+
+	def __setitem__(self, key, value):
+		if self.checkimmutable and key in self.immutablelist:
+			self._immutable()
+		if not self.checkimmutable and key not in self.immutablelist:
+			self.immutablelist.append(key)
+		dict.__setitem__(self, key, value)
+
+	def __delitem__(self, key):
+		if self.checkimmutable and key in self.immutablelist:
+			self._immutable()
+		else:
+			dict.__delitem__(self, key)
+
+	clear = _immutable
+	update = _immutable
+	setdefault = _immutable
+	pop = _immutable
+	popitem = _immutable
+
+
 class BoxInformation:
 	def __init__(self, root=""):
-		self.boxInfo = {"machine": "default", "checksum": None} #add one key to the boxInfoCollector as it always should exist to satisfy the CI test on github and predefine checksum
+		self.boxInfo = immutableDict({"machine": "default", "checksum": None}) #add one key to the boxInfoCollector as it always should exist to satisfy the CI test on github and predefine checksum
 		checksumcollectionstring = ""
 		file = root + "/usr/lib/enigma.info"
 		if fileExists(file):
@@ -47,6 +82,7 @@ class BoxInformation:
 				print("[SystemInfo] Enigma information file data loaded, but checksum failed.")
 		else:
 			print("[SystemInfo] ERROR: %s is not available!  The system is unlikely to boot or operate correctly." % file)
+		self.boxInfo.setImmutable() #make what is derived from enigma.info immutable
 
 	def processValue(self, value):
 		try:
