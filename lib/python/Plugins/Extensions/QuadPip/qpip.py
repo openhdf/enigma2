@@ -13,7 +13,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.HelpMenu import HelpableScreen
 from Components.config import config, ConfigSubsection, ConfigNumber
 from Components.Slider import Slider
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from ServiceReference import ServiceReference
 import Screens.InfoBar
 import Components.ServiceEventTracker

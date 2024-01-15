@@ -28,7 +28,7 @@ from enigma import pNavigation
 from six import ensure_str
 
 import NavigationInstance
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Screens.MessageBox import MessageBox
 import Screens.Standby
 from ServiceReference import ServiceReference
@@ -499,7 +499,7 @@ class RecordTimerEntry(TimerEntry):
 			if tn >= 0:
 				tuner_info = "Tuner " + chr(ord('A') + tn)
 			else:
-				tuner_info = SystemInfo["HDMIin"] and "HDMI-IN" or "Unknown source"
+				tuner_info = BoxInfo.getItem("HDMIin") and "HDMI-IN" or "Unknown source"
 		else:
 			tuner_info = "Tuner not (yet) allocated"
 		self.log(level, "%s recording from: %s" % (state, tuner_info))

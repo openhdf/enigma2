@@ -27,7 +27,7 @@ class SessionGlobals(Screen):
 		self["RecordState"] = RecordState(session)
 		self["Standby"] = Boolean(fixed=False)
 
-		from Components.SystemInfo import SystemInfo
+		from Components.SystemInfo import BoxInfo
 
 		combine = Combine(func=lambda s: {(False, False): 0, (False, True): 1, (True, False): 2, (True, True): 3}[(s[0].boolean, s[1].boolean)])
 		combine.connect(self["Standby"])

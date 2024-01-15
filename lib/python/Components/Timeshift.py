@@ -43,7 +43,7 @@ from enigma import (eBackgroundFileEraser, eEPGCache, eServiceCenter,
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.config import config
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Task import job_manager as JobManager
 from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
 from Screens.ChoiceBox import ChoiceBox

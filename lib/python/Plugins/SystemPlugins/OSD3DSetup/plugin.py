@@ -1,4 +1,3 @@
-
 from os import path as os_path
 
 from enigma import (eActionMap, eServiceCenter, eServiceReference, eTimer,

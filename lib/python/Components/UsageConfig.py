@@ -22,7 +22,7 @@ from Components.config import (ConfigBoolean, ConfigClock, ConfigInteger,
 from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from keyids import KEYIDS
 from Tools.Directories import (SCOPE_HDD, SCOPE_TIMESHIFT,
                                defaultRecordingLocation, fileCheck,
@@ -170,9 +170,9 @@ def InitUsageConfig():
 
 	def showsecondinfobarChanged(configElement):
 		if config.usage.show_second_infobar.value != "INFOBAREPG":
-			SystemInfo["InfoBarEpg"] = True
+			BoxInfo.setItem("InfoBarEpg", True)
 		else:
-			SystemInfo["InfoBarEpg"] = False
+			BoxInfo.setItem("InfoBarEpg", False)
 	config.usage.show_second_infobar.addNotifier(showsecondinfobarChanged, immediate_feedback=True)
 	config.usage.infobar_frontend_source = ConfigSelection(default="tuner", choices=[("settings", _("LameDB")), ("tuner", _("Tuner"))])
 
@@ -734,7 +734,7 @@ def InitUsageConfig():
 	config.usage.hdd_standby_in_standby = ConfigSelection(default="-1", choices=[("-1", _("Same as in active")), ("0", _("No standby"))] + choicelist)
 	config.usage.hdd_timer = ConfigYesNo(default=False)
 
-	if SystemInfo["12V_Output"]:
+	if BoxInfo.getItem("12V_Output"):
 		def set12VOutput(configElement):
 			Misc_Options.getInstance().set_12V_output(configElement.value == "on" and 1 or 0)
 		config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
@@ -758,16 +758,16 @@ def InitUsageConfig():
 	config.usage.keymap_usermod = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml"))
 
 	config.network = ConfigSubsection()
-	if SystemInfo["WakeOnLAN"]:
+	if BoxInfo.getItem("WakeOnLAN"):
 		def wakeOnLANChanged(configElement):
 			if fileCheck("/proc/stb/power/wol"):
 				WOLmode = open("/proc/stb/power/wol").read()[:-1]
 			if fileCheck("/proc/stb/fp/wol"):
 				WOLmode = open("/proc/stb/fp/wol").read()[:-1]
 			if WOLmode in ("on", "off"):
-				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
+				open(BoxInfo.getItem("WakeOnLAN"), "w").write(configElement.value and "on" or "off")
 			else:
-				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
+				open(BoxInfo.getItem("WakeOnLAN"), "w").write(configElement.value and "enable" or "disable")
 		config.network.wol = ConfigYesNo(default=False)
 		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.AFP_autostart = ConfigYesNo(default=False)
@@ -915,9 +915,9 @@ def InitUsageConfig():
 		("3", _("Everywhere"))])
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback=False)
 
-	if SystemInfo["ZapMode"]:
+	if BoxInfo.getItem("ZapMode"):
 		def setZapmode(el):
-			open(SystemInfo["ZapMode"], "w").write(el.value)
+			open(BoxInfo.getItem("ZapMode"), "w").write(el.value)
 		config.misc.zapmode = ConfigSelection(default="mute", choices=[
 			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback=False)
@@ -1642,7 +1642,7 @@ def InitUsageConfig():
 	config.oscaminfo.ip = ConfigIP(default=[127, 0, 0, 1], auto_jump=True)
 	config.oscaminfo.port = ConfigInteger(default=16002, limits=(0, 65536))
 	config.oscaminfo.intervall = ConfigSelectionNumber(min=1, max=600, stepwidth=1, default=10, wraparound=True)
-	SystemInfo["OScamInstalled"] = False
+	BoxInfo.setItem("OScamInstalled", False)
 
 	config.cccaminfo = ConfigSubsection()
 	config.cccaminfo.showInExtensions = ConfigYesNo(default=False)
@@ -1660,15 +1660,15 @@ def InitUsageConfig():
 	config.cccaminfo.ecmInfoPositionY = ConfigInteger(default=50)
 	config.cccaminfo.blacklist = ConfigText(default="/media/cf/CCcamInfo.blacklisted", fixed_size=False)
 	config.cccaminfo.profiles = ConfigText(default="/media/cf/CCcamInfo.profiles", fixed_size=False)
-	SystemInfo["CCcamInstalled"] = False
+	BoxInfo.setItem("CCcamInstalled", False)
 	if os_path.islink('/etc/init.d/softcam'):
 		for softcam in softcams:
 			if "cccam" in readlink('/etc/init.d/softcam').lower():
 				config.cccaminfo.showInExtensions = ConfigYesNo(default=True)
-				SystemInfo["CCcamInstalled"] = True
+				BoxInfo.setItem("CCcamInstalled", True)
 			elif "oscam" in readlink('/etc/init.d/softcam').lower():
 				config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
-				SystemInfo["OScamInstalled"] = True
+				BoxInfo.setItem("OScamInstalled", True)
 
 	config.streaming = ConfigSubsection()
 	config.streaming.stream_ecm = ConfigYesNo(default=False)

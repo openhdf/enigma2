@@ -37,7 +37,7 @@ from Components.SelectionList import SelectionList
 from Components.Slider import Slider
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Ipkg import Ipkg
@@ -229,7 +229,7 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("backup-image", _("Image Full-Backup"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			if not boxtype.startswith('az') and not boxtype in ('dm500hd', 'dm500hdv2', 'dm520', 'dm800', 'dm800se', 'dm800sev2', 'dm820', 'dm7020hd', 'dm7020hdv2', 'dm7080', 'dm8000') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
 				self.list.append(("flash-online", _("Image Online-Flash"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
-			if SystemInfo["canMultiBoot"]:
+			if BoxInfo.getItem("canMultiBoot"):
 				self.list.append(("multiboot-manager", _("Image Multiboot Manager"), _("\nMaintain your %s %s device.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("system-restore", _("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))

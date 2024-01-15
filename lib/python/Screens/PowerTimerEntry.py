@@ -12,7 +12,7 @@ from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from PowerTimer import AFTEREVENT, TIMERTYPE
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -116,7 +116,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
 			day[weekday] = 1
 
-		if SystemInfo["DeepstandbySupport"]:
+		if BoxInfo.getItem("DeepstandbySupport"):
 			shutdownString = _("go to deep standby")
 		else:
 			shutdownString = _("shut down")

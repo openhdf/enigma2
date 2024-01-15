@@ -31,7 +31,7 @@ from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.ParentalControl import parentalControl
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.VideoWindow import VideoWindow
 from Plugins.Plugin import PluginDescriptor
 from Screens.EpgSelection import EPGSelection

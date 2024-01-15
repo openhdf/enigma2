@@ -9,7 +9,7 @@ from Components.ActionMap import ActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Console import Console
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
@@ -41,13 +41,13 @@ class MultiBootSelector(Screen):
 		Screen.__init__(self, session)
 		screentitle = _("Multiboot Image Selector")
 		self["key_red"] = StaticText(_("Cancel"))
-		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' % (SystemInfo["canMultiBoot"][2])):
+		if not BoxInfo.getItem("HasSDmmc") or BoxInfo.getItem("HasSDmmc") and pathExists('/dev/%s4' % (BoxInfo.getItem("canMultiBoot")[2])):
 			self["description"] = StaticText(_("Use the cursor keys to select an installed image and then Reboot button."))
 		else:
 			self["description"] = StaticText(_("SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"))
 		self["options"] = StaticText(_(" "))
 		self["key_green"] = StaticText(_("Reboot"))
-		if SystemInfo["canMode12"]:
+		if BoxInfo.getItem("canMode12"):
 			self["options"] = StaticText(_("Mode 1 suppports Kodi, PiP may not work.\nMode 12 supports PiP, Kodi may not work."))
 		self["config"] = ChoiceList(list=[ChoiceEntryComponent('', ((_("Retrieving image startups - Please wait...")), "Queued"))])
 		imagedict = []
@@ -94,7 +94,7 @@ class MultiBootSelector(Screen):
 		else:
 			if not os_path.isdir(self.mountDir):
 				mkdir(self.mountDir)
-			self.container.ePopen("mount %s %s" % (SystemInfo["MBbootdevice"], self.mountDir), self.getImagesList)
+			self.container.ePopen("mount %s %s" % (BoxInfo.getItem("MBbootdevice"), self.mountDir), self.getImagesList)
 
 	def getImagesList(self, data=None, retval=None, extra_args=None):
 		self.container.killAll()
@@ -112,13 +112,13 @@ class MultiBootSelector(Screen):
 			indextot = 0
 			for index, x in enumerate(sorted(list(imagedict.keys()))):
 				if imagedict[x]["imagename"] != _("Empty slot"):
-					if SystemInfo["canMode12"]:
+					if BoxInfo.getItem("canMode12"):
 						_list.insert(index, ChoiceEntryComponent("", (slotMulti % (x, imagedict[x]["imagename"], 1, current if x == currentimageslot and mode != 12 else ""), (x, 1))))
 						_list.append(ChoiceEntryComponent("", (slotMulti % (x, imagedict[x]["imagename"], 12, current if x == currentimageslot and mode == 12 else ""), (x, 12))))
 						indextot = index + 1
 					else:
 						_list.append(ChoiceEntryComponent("", (slotSingle % (x, imagedict[x]["imagename"], current if x == currentimageslot else ""), (x, 1))))
-			if SystemInfo["canMode12"]:
+			if BoxInfo.getItem("canMode12"):
 				_list.insert(indextot, " ")
 		else:
 			_list.append(ChoiceEntryComponent("", ((_("No images found")), "Waiter")))
@@ -132,18 +132,18 @@ class MultiBootSelector(Screen):
 			message = _("Do you want to reboot now the image in startup %s?") % slot
 			print("[MultiBootSelector] reboot2 reboot slot = %s, " % slot)
 			print("[MultiBootSelector] reboot2 reboot boxmode = %s, " % boxmode)
-			print("[MultiBootSelector] reboot3 slotinfo = %s" % SystemInfo["canMultiBoot"])
-			if SystemInfo["canMode12"]:
-				if "BOXMODE" in SystemInfo["canMultiBoot"][slot]['startupfile']:
-					startupfile = os_path.join(self.mountDir, "%s_%s" % (SystemInfo["canMultiBoot"][slot]['startupfile'].rsplit('_', 1)[0], boxmode))
+			print("[MultiBootSelector] reboot3 slotinfo = %s" % BoxInfo.getItem("canMultiBoot"))
+			if BoxInfo.getItem("canMode12"):
+				if "BOXMODE" in BoxInfo.getItem("canMultiBoot")[slot]['startupfile']:
+					startupfile = os_path.join(self.mountDir, "%s_%s" % (BoxInfo.getItem("canMultiBoot")[slot]['startupfile'].rsplit('_', 1)[0], boxmode))
 					copyfile(startupfile, os_path.join(self.mountDir, "STARTUP"))
 				else:
-					f = open(os_path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]['startupfile']), "r").read()
+					f = open(os_path.join(self.mountDir, BoxInfo.getItem("canMultiBoot")[slot]['startupfile']), "r").read()
 					if boxmode == 12:
-						f = f.replace("boxmode=1'", "boxmode=12'").replace("%s" % SystemInfo["canMode12"][0], "%s" % SystemInfo["canMode12"][1])
+						f = f.replace("boxmode=1'", "boxmode=12'").replace("%s" % BoxInfo.getItem("canMode12")[0], "%s" % BoxInfo.getItem("canMode12")[1])
 					open(os_path.join(self.mountDir, "STARTUP"), "w").write(f)
 			else:
-				copyfile(os_path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]["startupfile"]), os_path.join(self.mountDir, "STARTUP"))
+				copyfile(os_path.join(self.mountDir, BoxInfo.getItem("canMultiBoot")[slot]["startupfile"]), os_path.join(self.mountDir, "STARTUP"))
 			self.session.openWithCallback(self.restartImage, MessageBox, message, MessageBox.TYPE_YESNO, timeout=20)
 
 	def restartImage(self, answer):
@@ -179,7 +179,7 @@ class QuickBootSelector(Screen):
 		screentitle = _("QuickBoot Image Selector")
 		self.skinName = "MultiBootSelector"
 		self["key_red"] = StaticText(_("Cancel"))
-		if not SystemInfo["HasSDmmc"] or SystemInfo["HasSDmmc"] and pathExists('/dev/%s4' % (SystemInfo["canMultiBoot"][2])):
+		if not BoxInfo.getItem("HasSDmmc") or BoxInfo.getItem("HasSDmmc") and pathExists('/dev/%s4' % (BoxInfo.getItem("canMultiBoot")[2])):
 			self["description"] = StaticText(_("Use the cursor keys to select an installed image and then Start button."))
 		else:
 			self["description"] = StaticText(_("SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"))
@@ -220,7 +220,7 @@ class QuickBootSelector(Screen):
 		else:
 			if not os_path.isdir(self.mountDir):
 				mkdir(self.mountDir)
-			self.container.ePopen("mount %s %s" % (SystemInfo["MBbootdevice"], self.mountDir), self.getImagesList)
+			self.container.ePopen("mount %s %s" % (BoxInfo.getItem("MBbootdevice"), self.mountDir), self.getImagesList)
 
 	def getImagesList(self, data=None, retval=None, extra_args=None):
 		self.container.killAll()
@@ -250,7 +250,7 @@ class QuickBootSelector(Screen):
 
 	def startImage(self, answer):
 		slot = self["config"].l.getCurrentSelection()[0][1][0]
-		mtdroot = SystemInfo["canMultiBoot"][slot]["device"]
+		mtdroot = BoxInfo.getItem("canMultiBoot")[slot]["device"]
 		COMMAND = """
 #!/bin/bash
 mkdir /tmp/quick

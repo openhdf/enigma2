@@ -18,7 +18,7 @@ from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.UsageConfig import defaultMoviePath
 from RecordTimer import AFTEREVENT
 import Screens.ChannelSelection
@@ -139,7 +139,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_justplay = ConfigSelection(choices=[
 			("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))],
 			default={0: "record", 1: "zap", 2: "zap+record"}[justplay + 2 * always_zap])
-		if SystemInfo["DeepstandbySupport"]:
+		if BoxInfo.getItem("DeepstandbySupport"):
 			shutdownString = _("go to deep standby")
 		else:
 			shutdownString = _("shut down")

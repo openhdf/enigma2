@@ -21,7 +21,7 @@ from Components.SelectionList import SelectionEntryComponent, SelectionList
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Screens.AutoDiseqc import AutoDiseqc
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -50,11 +50,11 @@ def setForceToneBurstChanged(configElement):
 
 
 config.tunermisc = ConfigSubsection()
-if SystemInfo["ForceLNBPowerChanged"]:
+if BoxInfo.getItem("ForceLNBPowerChanged"):
 	config.tunermisc.forceLnbPower = ConfigYesNo(default=False)
 	config.tunermisc.forceLnbPower.addNotifier(setForceLNBPowerChanged)
 
-if SystemInfo["ForceToneBurstChanged"]:
+if BoxInfo.getItem("ForceToneBurstChanged"):
 	config.tunermisc.forceToneBurst = ConfigYesNo(default=False)
 	config.tunermisc.forceToneBurst.addNotifier(setForceToneBurstChanged)
 
@@ -98,9 +98,9 @@ class TunerSetup(Screen, ConfigListScreen):
 		self.list = []
 
 		if level >= 1:
-			if SystemInfo["ForceLNBPowerChanged"]:
+			if BoxInfo.getItem("ForceLNBPowerChanged"):
 				self.list.append(getConfigListEntry(_("Force LNB Power"), config.tunermisc.forceLnbPower, _("Force LNB Tuner Power settings.")))
-			if SystemInfo["ForceToneBurstChanged"]:
+			if BoxInfo.getItem("ForceToneBurstChanged"):
 				self.list.append(getConfigListEntry(_("Force ToneBurst"), config.tunermisc.forceToneBurst, _("Force LNB Tuner ToneBurst settings.")))
 
 		self["config"].list = self.list
@@ -168,7 +168,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		list.append(getConfigListEntry(" ", nim.longitudeOrientation, _("Enter if you are in the east or west hemisphere.")))
 		list.append(getConfigListEntry(_("Latitude"), nim.latitude, _("Enter your current latitude. This is the number of degrees you are from the equator as a decimal.")))
 		list.append(getConfigListEntry(" ", nim.latitudeOrientation, _("Enter if you are north or south of the equator.")))
-		if SystemInfo["CanMeasureFrontendInputPower"]:
+		if BoxInfo.getItem("CanMeasureFrontendInputPower"):
 			self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), nim.powerMeasurement, _("Power management. Consult your receiver's manual for more information."))
 			list.append(self.advancedPowerMeasurement)
 			if nim.powerMeasurement.value:
@@ -625,7 +625,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						self.list.append(getConfigListEntry(_("DiSEqC 1.1 repeats"), currLnb.diseqcRepeats, _("If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one.")))
 				self.list.append(getConfigListEntry(_("Sequence repeat"), currLnb.sequenceRepeat, _("Set sequence repeats if your aerial system requires this. Normally if the aerial system has been configured correctly sequence repeats will not be necessary. If yours does, recheck you have command order set correctly.")))
 				if currLnb.diseqcMode.value == "1_2":
-					if SystemInfo["CanMeasureFrontendInputPower"]:
+					if BoxInfo.getItem("CanMeasureFrontendInputPower"):
 						self.advancedPowerMeasurement = getConfigListEntry(_("Use power measurement"), currLnb.powerMeasurement, _("Power management. Consult your receiver's manual for more information."))
 						self.list.append(self.advancedPowerMeasurement)
 						if currLnb.powerMeasurement.value:

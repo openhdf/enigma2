@@ -8,7 +8,7 @@ from six import ensure_str, iteritems
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.HelpMenu import HelpableScreen
 from Screens.Menu import Menu, mdom
