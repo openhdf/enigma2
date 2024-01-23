@@ -424,7 +424,10 @@ eEPGCache::eEPGCache()
 		onid_blacklist.insert(onid_blacklist.end(),1,tmp_onid);
 	onid_file.close();
 
-	instance=this;
+	m_debug = eConfigManager::getConfigBoolValue("config.crash.debugEPG");
+	m_saveepg = eConfigManager::getConfigBoolValue("config.epg.saveepg");
+
+	instance = this;
 }
 
 void eEPGCache::setCacheFile(const char *path)
@@ -1097,11 +1100,10 @@ void eEPGCache::load()
 
 void eEPGCache::save()
 {
-#ifdef EPG_DEBUG
-	eDebug("[eEPGCache] save()");
-#endif
-	bool save_epg = eConfigManager::getConfigBoolValue("config.epg.saveepg", true);
-	if (save_epg)
+	if(m_debug)
+		eDebug("[eEPGCache] save()");
+
+	if (m_saveepg)
 	{
 		if (eventData::isCacheCorrupt)
 			return;
