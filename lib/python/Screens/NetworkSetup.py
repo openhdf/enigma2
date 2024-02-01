@@ -2046,9 +2046,7 @@ class NetworkFtp(Screen):
 		self['labstop'] = Label(_("Stopped"))
 		self['labrun'] = Label(_("Running"))
 		self['key_green'] = Label(_("Start"))
-		self["key_red"] = Label()
 		self['key_yellow'] = Label(_("Autostart"))
-		self["key_blue"] = Label()
 		self.Console = Console()
 		self.my_ftp_active = False
 		self.my_ftp_run = False
@@ -2130,7 +2128,6 @@ class NetworkNfs(Screen):
 		self['key_green'] = Label(_("Start"))
 		self['key_red'] = Label(_("Remove Service"))
 		self['key_yellow'] = Label(_("Autostart"))
-		self['key_blue'] = Label()
 		self.Console = Console()
 		self.my_nfs_active = False
 		self.my_nfs_run = False
@@ -4173,7 +4170,6 @@ class NetworkSATPI(Screen):
 		self['key_red'] = Label(_("Remove Service"))
 		self['key_green'] = Label(_("Start"))
 		self['key_yellow'] = Label(_("Autostart"))
-		self['key_blue'] = Label()
 		self['status_summary'] = StaticText()
 		self['autostartstatus_summary'] = StaticText()
 		self.Console = Console()
@@ -4321,7 +4317,6 @@ class NetworkMinisatIP(Screen):
 		self['key_red'] = Label(_("Remove Service"))
 		self['key_green'] = Label(_("Start"))
 		self['key_yellow'] = Label(_("Autostart"))
-		self['key_blue'] = Label()
 		self['status_summary'] = StaticText()
 		self['autostartstatus_summary'] = StaticText()
 		self.Console = Console()
