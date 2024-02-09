@@ -207,7 +207,7 @@ class InfoBarStreamRelay:
 		open(self.FILENAME, 'w').write('\n'.join(self.__srefs))
 
 	def toggle(self, nav, service):
-		if (servicestring := (service and service.toString())):
+		if (servicestring := (service and service.toCompareString())):
 			if servicestring in self.__srefs:
 				self.__srefs.remove(servicestring)
 			else:
@@ -226,7 +226,7 @@ class InfoBarStreamRelay:
 	data = property(getData, setData)
 
 	def streamrelayChecker(self, playref):
-		playrefstring = playref.toString()
+		playrefstring = playref.toCompareString()
 		if '%3a//' not in playrefstring and playrefstring in self.__srefs:
 			url = "http://%s:%s/" % (config.misc.softcam_streamrelay_url.getHTML(), config.misc.softcam_streamrelay_port.value)
 			if "127.0.0.1" in url:
@@ -234,11 +234,12 @@ class InfoBarStreamRelay:
 			else:
 				playrefmod = playrefstring
 			playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
-			print(f"[{self.__class__.__name__}] Play service {playref.toString()} via streamrelay")
+			print(f"[{self.__class__.__name__}] Play service {playref.toCompareString()} via streamrelay")
+			playref.setAlternativeUrl(playrefstring)
 		return playref
 
 	def checkService(self, service):
-		return service and service.toString() in self.__srefs
+		return service and service.toCompareString() in self.__srefs
 
 
 streamrelay = InfoBarStreamRelay()
@@ -1097,7 +1098,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				FLAG_HIDE_VBI = 512
 				return service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & FLAG_HIDE_VBI and True
 			else:
-				return ".hidvbi." in servicepath.lower()
+				return ".hidevbi." in servicepath.lower()
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		return info and info.getInfo(iServiceInformation.sHideVBI)
