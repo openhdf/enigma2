@@ -1,4 +1,3 @@
-
 from glob import glob
 from os import mkdir
 from os import path as os_path
@@ -14,11 +13,10 @@ from Tools.Directories import pathExists
 
 Imagemount = "/tmp/multibootcheck"
 
-
 def getMBbootdevice():
 	if not os_path.isdir(Imagemount):
 		mkdir(Imagemount)
-	for device in ('/dev/block/by-name/bootoptions', '/dev/mmcblk0p1', '/dev/mmcblk1p1', '/dev/mmcblk0p3', '/dev/mmcblk0p4'):
+	for device in ("/dev/mmcblk0p1", "/dev/mmcblk1p1", "/dev/mmcblk0p3", "/dev/mmcblk0p4", "/dev/mtdblock2", "/dev/block/by-name/bootoptions"):
 		if os_path.exists(device):
 			Console().ePopen("mount %s %s" % (device, Imagemount))
 			if os_path.isfile(os_path.join(Imagemount, "STARTUP")):
@@ -31,7 +29,6 @@ def getMBbootdevice():
 
 def getparam(line, param):
 	return line.replace("userdataroot", "rootuserdata").rsplit('%s=' % param, 1)[1].split(' ', 1)[0]
-
 
 def getMultibootslots():
 	bootslots = {}
