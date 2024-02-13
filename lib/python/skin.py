@@ -149,6 +149,18 @@ def InitSkins():
 
 
 def loadSkinData(desktop):
+	# restore XionHDF
+	try:
+		xionrestorefile = '/media/hdd/images/xionrestore'
+		from Tools.Directories import fileExists
+		if fileExists(xionrestorefile):
+			from os import remove
+			remove(xionrestorefile)
+			from Plugins.Extensions.XionHDF.save import justSave
+			justSave()
+	except:
+		pass
+
 	InitSkins()
 
 # Method to load a skin XML file into the skin data structures.

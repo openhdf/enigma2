@@ -468,7 +468,7 @@ class UpdatePluginMenu(Screen):
 				if not os_path.exists('/media/hdd/images'):
 					makedirs('/media/hdd/images')
 				print("AfterFlashAction: create /media/hdd/images/hdfrestore")
-				print("AfterFlashAction: filename:", self.fullbackupfilename)
+				print("AfterFlashAction: filename: ", self.fullbackupfilename)
 				backupsourcefile = self.fullbackupfilename
 				backupdestfile = '/media/hdd/images/hdfrestore'
 				if not os_path.exists(backupsourcefile):
@@ -478,6 +478,10 @@ class UpdatePluginMenu(Screen):
 					copyfile(backupsourcefile, backupdestfile)
 					system("cp /usr/share/enigma2/defaults/settings /etc/enigma2/")
 					message = _("Enigma must be restarted to auto restore your saved settings now!")
+					# create file xionrestore
+					xionrestorefile = '/media/hdd/images/xionrestore'
+					if not os_path.exists(xionrestorefile):
+						open(xionrestorefile, 'a').close()
 					self.session.openWithCallback(self.initEnigmaGUI, MessageBox, message, MessageBox.TYPE_INFO, timeout=10)
 			except:
 				print("AfterFlashAction: failed to create /media/hdd/images/hdfrestore")

@@ -410,13 +410,17 @@ class FlashImage(Screen):
 					if not os_path.exists('/media/hdd/images'):
 						makedirs('/media/hdd/images')
 					print("AfterFlashAction: create /media/hdd/images/hdfrestore")
-					print("AfterFlashAction: filename:", self.fullbackupfilename)
+					print("AfterFlashAction: filename: ", self.fullbackupfilename)
 					backupsourcefile = self.fullbackupfilename
 					backupdestfile = '/media/hdd/images/hdfrestore'
 					if not os_path.exists(backupsourcefile):
 						print("AfterFlashAction: No settings found.")
 					else:
 						copyfile(backupsourcefile, backupdestfile)
+					# create file xionrestore
+					xionrestorefile = '/media/hdd/images/xionrestore'
+					if not os_path.exists(xionrestorefile):
+						open(xionrestorefile, 'a').close()
 				except:
 					print("AfterFlashAction: failed to create /media/hdd/images/hdfrestore")
 			if restoreSettings:
