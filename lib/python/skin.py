@@ -148,19 +148,24 @@ def InitSkins():
 #
 
 
-def loadSkinData(desktop):
-	# restore XionHDF
+def restoreSkin():
 	try:
-		xionrestorefile = '/media/hdd/images/xionrestore'
+		skinrestorefile = "/media/hdd/images/skinrestore"
 		from Tools.Directories import fileExists
-		if fileExists(xionrestorefile):
+		if fileExists(skinrestorefile):
 			from os import remove
-			remove(xionrestorefile)
-			from Plugins.Extensions.XionHDF.save import justSave
-			justSave()
-	except:
+			remove(skinrestorefile)
+			if config.skin.primary_skin.value == "XionHDF/skin.xml":
+				from Plugins.Extensions.XionHDF.save import justSave
+				justSave()
+			elif config.skin.primary_skin.value == "KravenHD/skin.xml":
+				from Plugins.Extensions.KravenHD.save import justSave
+				justSave()
+	except ImportError:
 		pass
 
+def loadSkinData(desktop):
+	restoreSkin()
 	InitSkins()
 
 # Method to load a skin XML file into the skin data structures.

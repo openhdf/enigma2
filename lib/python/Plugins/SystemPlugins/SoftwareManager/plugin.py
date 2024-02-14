@@ -475,13 +475,10 @@ class UpdatePluginMenu(Screen):
 					print("AfterFlashAction: No settings found.")
 					self.session.open(MessageBox, _("Please create a backup of your settings before."), MessageBox.TYPE_INFO, timeout=20)
 				else:
+					self.createSkinRestoreFile()
 					copyfile(backupsourcefile, backupdestfile)
 					system("cp /usr/share/enigma2/defaults/settings /etc/enigma2/")
 					message = _("Enigma must be restarted to auto restore your saved settings now!")
-					# create file xionrestore
-					xionrestorefile = '/media/hdd/images/xionrestore'
-					if not os_path.exists(xionrestorefile):
-						open(xionrestorefile, 'a').close()
 					self.session.openWithCallback(self.initEnigmaGUI, MessageBox, message, MessageBox.TYPE_INFO, timeout=10)
 			except:
 				print("AfterFlashAction: failed to create /media/hdd/images/hdfrestore")
@@ -537,8 +534,18 @@ class UpdatePluginMenu(Screen):
 
 	def startRestore(self, ret=False):
 		if (ret == True):
+			self.createSkinRestoreFile()
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore=True)
+
+	def createSkinRestoreFile(self):
+		try:
+			skinrestorefile = "/media/hdd/images/skinrestore"
+			from Tools.Directories import fileExists
+			if not fileExists(skinrestorefile):
+				open(skinrestorefile, 'a').close()
+		except:
+			pass
 
 	def doBackup(self, default=False):
 		if (default == True):
@@ -1686,9 +1693,6 @@ class UpdatePlugin(Screen):
 
 		self.activityTimer.start(100, False)
 
-		if os_path.exists('/etc/enigma2/xionrestore'):
-			unlink('/etc/enigma2/xionrestore')
-
 	def CheckDate(self):
 		# Check if image is not to old for update (max 120days)
 		self.CheckDateDone = True
@@ -1776,13 +1780,6 @@ class UpdatePlugin(Screen):
 			self.TraficCheck = True
 			print("create /etc/last-upgrades-git.log with opkg list-upgradable")
 			system("opkg list-upgradable > /etc/last-upgrades-git.log")
-			if not system("grep 'skins-xionhdf' /etc/last-upgrades-git.log"):
-				print("Xion skin update = Yes")
-				open('/etc/enigma2/xionrestore', 'w').close()
-			else:
-				print("Xion skin update = No")
-				if os_path.exists('/etc/enigma2/xionrestore'):
-					unlink('/etc/enigma2/xionrestore')
 			if system("grep 'dvb-module\|kernel-module\|platform-util' /etc/last-upgrades-git.log"):
 				print("Upgrade asap = Yes")
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)

@@ -417,10 +417,7 @@ class FlashImage(Screen):
 						print("AfterFlashAction: No settings found.")
 					else:
 						copyfile(backupsourcefile, backupdestfile)
-					# create file xionrestore
-					xionrestorefile = '/media/hdd/images/xionrestore'
-					if not os_path.exists(xionrestorefile):
-						open(xionrestorefile, 'a').close()
+					self.createSkinRestoreFile()
 				except:
 					print("AfterFlashAction: failed to create /media/hdd/images/hdfrestore")
 			if restoreSettings:
@@ -489,6 +486,15 @@ class FlashImage(Screen):
 				self.abort()
 		else:
 			self.abort()
+
+	def createSkinRestoreFile(self):
+		try:
+			skinrestorefile = "/media/hdd/images/skinrestore"
+			from Tools.Directories import fileExists
+			if not fileExists(skinrestorefile):
+				open(skinrestorefile, 'a').close()
+		except:
+			pass
 
 	def SaveEPG(self):
 		from enigma import eEPGCache
