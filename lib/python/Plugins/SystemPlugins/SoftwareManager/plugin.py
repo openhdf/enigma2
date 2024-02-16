@@ -1908,6 +1908,8 @@ class UpdatePlugin(Screen):
 			self.close()
 			return
 		if answer[1] == "cold":
+			if skinupdate_available:
+				self.createSkinRestoreFile()
 			self.session.open(TryQuitMainloop, retvalue=42)
 			self.close()
 		elif answer[1] == "show":
