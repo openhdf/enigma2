@@ -61,6 +61,7 @@ from .SoftwareTools import iSoftwareTools
 
 boxtype = getBoxType()
 brandoem = getBrandOEM()
+skinupdate_available = False
 
 
 def eEnv_resolve_multi(path):
@@ -541,9 +542,11 @@ class UpdatePluginMenu(Screen):
 	def createSkinRestoreFile(self):
 		try:
 			skinrestorefile = "/media/hdd/images/skinrestore"
-			from Tools.Directories import fileExists
-			if not fileExists(skinrestorefile):
+			if fileExists(skinrestorefile):
+				print("[SkinRestore]: Skinrestorefile exists")
+			else:
 				open(skinrestorefile, 'a').close()
+				print("[SkinRestore]: Skinrestorefile created")
 		except:
 			pass
 
@@ -1782,6 +1785,7 @@ class UpdatePlugin(Screen):
 			system("opkg list-upgradable > /etc/last-upgrades-git.log")
 			if system("grep 'dvb-module\|kernel-module\|platform-util' /etc/last-upgrades-git.log"):
 				print("Upgrade asap = Yes")
+				self.checkSkinUpdate()
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			else:
 				print("Upgrade asap = No")
@@ -1799,6 +1803,18 @@ class UpdatePlugin(Screen):
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 		else:
 			self.exit()
+
+	def checkSkinUpdate(self):
+		try:
+			global skinupdate_available
+			fetchedList = self.ipkg.getFetchedList()
+			for x in fetchedList:
+				if ("xionhdf" in x[0] and config.skin.primary_skin.value == "XionHDF/skin.xml") or ("kravenhd" in x[0] and config.skin.primary_skin.value == "KravenHD/skin.xml"):
+					skinupdate_available = True
+					print("[SkinRestore]: Skinupdate available")
+					break
+		except:
+			pass
 
 	def doActivityTimer(self):
 		if not self.CheckDateDone:
@@ -1886,7 +1902,9 @@ class UpdatePlugin(Screen):
 		#print(event, "-", param)
 
 	def startActualUpgrade(self, answer):
+		global skinupdate_available
 		if not answer or not answer[1]:
+			skinupdate_available = False
 			self.close()
 			return
 		if answer[1] == "cold":
@@ -1896,7 +1914,22 @@ class UpdatePlugin(Screen):
 			global plugin_path
 			self.session.openWithCallback(self.ipkgCallback(IpkgComponent.EVENT_DONE, None), ShowUpdatePackages, plugin_path)
 		else:
+			if skinupdate_available:
+				self.createSkinRestoreFile()
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args={'test_only': False})
+
+	def createSkinRestoreFile(self):
+		try:
+			skinrestorefile = "/media/hdd/images/skinrestore"
+			if fileExists(skinrestorefile):
+				print("[SkinRestore]: Skinrestorefile exists")
+			else:
+				open(skinrestorefile, 'a').close()
+				print("[SkinRestore]: Skinrestorefile created")
+			global skinupdate_available
+			skinupdate_available = False
+		except:
+			pass
 
 	def modificationCallback(self, res):
 		self.ipkg.write(res and "N" or "Y")

@@ -155,11 +155,14 @@ def restoreSkin():
 		if fileExists(skinrestorefile):
 			from os import remove
 			remove(skinrestorefile)
+			print("[SkinRestore]: Skinrestorefile found and removed")
 			if config.skin.primary_skin.value == "XionHDF/skin.xml":
 				from Plugins.Extensions.XionHDF.save import justSave
+				print("[SkinRestore]: Starting restore XionHDF")
 				justSave()
 			elif config.skin.primary_skin.value == "KravenHD/skin.xml":
 				from Plugins.Extensions.KravenHD.save import justSave
+				print("[SkinRestore]: Starting restore KravenHD")
 				justSave()
 	except ImportError:
 		pass

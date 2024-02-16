@@ -491,8 +491,11 @@ class FlashImage(Screen):
 		try:
 			skinrestorefile = "/media/hdd/images/skinrestore"
 			from Tools.Directories import fileExists
-			if not fileExists(skinrestorefile):
+			if fileExists(skinrestorefile):
+				print("[SkinRestore]: Skinrestorefile exists")
+			else:
 				open(skinrestorefile, 'a').close()
+				print("[SkinRestore]: Skinrestorefile created")
 		except:
 			pass
 
