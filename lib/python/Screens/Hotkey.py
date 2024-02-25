@@ -21,7 +21,7 @@ from Screens.Screen import Screen
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 
-updateversion = "27.10.2022"
+updateversion = "25.02.2024"
 
 if uname()[4] == "aarch64":
 	pathLen = 26
@@ -48,7 +48,7 @@ def getHotkeys():
 	(_("Yellow long"), "yellow_long", ""),
 	(_("Blue"), "blue", "Infobar/showExtensionSelection"),
 	(_("Blue long"), "blue_long", "Infobar/showPluginBrowser"),
-	(_("Info (EPG)"), "info", "Infobar/openGraphEPG"),
+	(_("Info (EPG)"), "info", "Infobar/openSingleServiceEPG"),
 	(_("Info (EPG) long"), "info_long", "Infobar/showEventInfoPlugins"),
 	(_("Epg/Guide"), "epg", "Infobar/openSingleServiceEPG"),
 	(_("Epg/Guide long"), "epg_long", "Infobar/showEventInfoPlugins"),
