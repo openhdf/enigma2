@@ -164,8 +164,8 @@ def restoreSkin():
 				from Plugins.Extensions.KravenHD.save import justSave
 				print("[SkinRestore]: Starting restore KravenHD")
 				justSave()
-	except ImportError:
-		pass
+	except:
+		print("[SkinRestore]: restore failed")
 
 def loadSkinData(desktop):
 	restoreSkin()
