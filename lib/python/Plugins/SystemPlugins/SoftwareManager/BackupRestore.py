@@ -471,6 +471,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.session.openWithCallback(self.checkPlugins, RestartNetwork)
 
 	def checkPlugins(self):
+		self.createSkinRestoreFile()
 		if os_path.exists("/tmp/installed-list.txt"):
 			if os_path.exists("/media/hdd/images/config/noplugins") and config.misc.firstrun.value:
 				self.userRestoreScript()
@@ -496,6 +497,18 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.session.openWithCallback(self.rebootSYS, Console, title=_("Running Myrestore script, Please wait ..."), cmdlist=[startSH], closeOnSuccess=True)
 		else:
 			self.rebootSYS()
+
+	def createSkinRestoreFile(self):
+		try:
+			skinrestorefile = "/media/hdd/images/skinrestore"
+			from Tools.Directories import fileExists
+			if fileExists(skinrestorefile):
+				print("[SkinRestore]: Skinrestorefile exists")
+			else:
+				open(skinrestorefile, 'a').close()
+				print("[SkinRestore]: Skinrestorefile created")
+		except:
+			pass
 
 	def restartGUI(self, ret=None):
 		self.session.open(Console, title=_("Your %s %s will Restart...") % (getMachineBrand(), getMachineName()), cmdlist=["killall -9 enigma2"])
