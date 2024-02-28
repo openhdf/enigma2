@@ -164,6 +164,10 @@ def restoreSkin():
 				from Plugins.Extensions.KravenHD.save import justSave
 				print("[SkinRestore]: Starting restore KravenHD")
 				justSave()
+			elif config.skin.primary_skin.value == "PlatoonHD/skin.xml":
+				from Plugins.Extensions.PlatoonHD.save import justSave
+				print("[SkinRestore]: Start restoring PlatoonHD")
+				justSave()
 	except:
 		print("[SkinRestore]: restore failed")
 
