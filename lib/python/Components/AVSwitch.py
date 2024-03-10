@@ -33,10 +33,7 @@ has_rca = SystemInfo["HaveRCA"]
 has_avjack = SystemInfo["HaveAVJACK"]
 
 config.av = ConfigSubsection()
-if getBrandOEM() in ('azbox'):
-	config.av.edid_override = ConfigYesNo(default=True)
-else:
-	config.av.edid_override = ConfigYesNo(default=False)
+config.av.edid_override = ConfigYesNo(default=True)
 
 
 class AVSwitch:
