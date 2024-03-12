@@ -16,13 +16,6 @@ from Tools.HardwareInfo import HardwareInfo
 from types import MappingProxyType
 from ast import literal_eval
 
-SystemInfo = {}
-BoxInfo.setItem("HasRootSubdir", False)	# This needs to be here so it can be reset by getMultibootslots!
-BoxInfo.setItem("RecoveryMode", False or fileCheck("/proc/stb/fp/boot_mode"))	# This needs to be here so it can be reset by getMultibootslots!
-from Tools.Multiboot import (  # This import needs to be here to avoid a SystemInfo load loop!
-    getMBbootdevice, getMultibootslots)
-
-#FIXMEE...
 
 
 class immutableDict(dict):
@@ -87,7 +80,14 @@ class BoxInformation:
 	def processValue(self, value):
 		try:
 			return literal_eval(value)
-		except:
+		except (ValueError, SyntaxError):
+			value_upper = value.upper()
+			if value_upper == "NONE":
+				return None
+			elif value_upper in ("FALSE", "NO", "OFF", "DISABLED"):
+				return False
+			elif value_upper in ("TRUE", "YES", "ON", "ENABLED"):
+				return True
 			return value
 
 	def getEnigmaInfoList(self):
@@ -127,6 +127,8 @@ def getNumVideoDecoders():
 	return idx
 
 
+BoxInfo.setItem("HasRootSubdir", False)	# This needs to be here so it can be reset by getMultibootslots!
+BoxInfo.setItem("RecoveryMode", False or fileCheck("/proc/stb/fp/boot_mode"))	# This needs to be here so it can be reset by getMultibootslots!
 BoxInfo.setItem("NumVideoDecoders", getNumVideoDecoders())
 BoxInfo.setItem("PIPAvailable", BoxInfo.getItem("NumVideoDecoders") > 1)
 BoxInfo.setItem("CanMeasureFrontendInputPower", eDVBResourceManager.getInstance().canMeasureFrontendInputPower())
@@ -142,6 +144,10 @@ def countFrontpanelLEDs():
 
 	return leds
 
+
+SystemInfo = BoxInfo.boxInfo
+from Tools.Multiboot import (  # This import needs to be here to avoid a SystemInfo load loop!
+    getMBbootdevice, getMultibootslots)
 
 def setBoxInfoItems():
 	model = getBoxType()
