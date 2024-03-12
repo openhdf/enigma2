@@ -44,9 +44,9 @@ class SessionGlobals(Screen):
 		PATTERN_OFF = (20, 0, 0)
 		PATTERN_BLINK = (20, 0x55555555, 0xa7fccf7a)
 
-		have_display = SystemInfo.get("FrontpanelDisplay", False)
-		have_touch_sensor = SystemInfo.get("HaveTouchSensor", False)
-		nr_leds = SystemInfo.get("NumFrontpanelLEDs", 0)
+		have_display = BoxInfo.getItem("FrontpanelDisplay", False)
+		have_touch_sensor = BoxInfo.getItem("HaveTouchSensor", False)
+		nr_leds = BoxInfo.getItem("NumFrontpanelLEDs", 0)
 
 		if nr_leds == 1:
 			FrontpanelLed(which=0, boolean=False, patterns=[PATTERN_OFF if have_display else PATTERN_ON, PATTERN_BLINK, PATTERN_OFF, PATTERN_BLINK]).connect(combine)

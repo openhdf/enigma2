@@ -1063,7 +1063,7 @@ def InitAVSwitch():
 			else:
 				f.write(configElement.value and "downmix" or "passthrough")
 			f.close()
-			if SystemInfo.get("supportPcmMultichannel", False) and not configElement.value:
+			if BoxInfo.getItem("supportPcmMultichannel", False) and not configElement.value:
 				BoxInfo.setItem("CanPcmMultichannel", True)
 			else:
 				BoxInfo.setItem("CanPcmMultichannel", False)

@@ -1124,7 +1124,7 @@ class InfoBarTimeshift:
 			self.pts_curevent_eventid = curEvent[4]
 
 	def ptsFrontpanelActions(self, action=None):
-		if self.session.nav.RecordTimer.isRecording() or SystemInfo.get("NumFrontpanelLEDs", 0) == 0:
+		if self.session.nav.RecordTimer.isRecording() or BoxInfo.getItem("NumFrontpanelLEDs", 0) == 0:
 			return
 
 		if action == "start":
