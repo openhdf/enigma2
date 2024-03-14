@@ -479,7 +479,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		if not self.restoreOnBoot:
 			self.writeScript()
 
-		if path.exists("%stmp/installed-list.txt" % self.image_dir):
+		if os_path.exists("%stmp/installed-list.txt" % self.image_dir):
 			if os_path.exists("/media/hdd/images/config/noplugins") and (config.misc.firstrun.value or not self.restoreOnBoot):
 				self.userRestoreScript()
 			else:
