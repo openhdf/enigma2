@@ -136,7 +136,7 @@ class SelectImage(Screen):
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				try:
 					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and checkModels(x)])
-					for folder in ["images", "downloaded_images", "imagebackups"]:
+					for folder in ["images", "downloaded_images", "imagebackups", "full_backups"]:
 						if folder in os.listdir(media):
 							subfolder = os.path.join(media, folder)
 							if os.path.isdir(subfolder) and not os.path.islink(subfolder) and not os.path.ismount(subfolder):
