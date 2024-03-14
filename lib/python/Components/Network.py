@@ -1,4 +1,3 @@
-
 from os import listdir
 from os import path as os_path
 from os import system
@@ -7,6 +6,7 @@ from socket import *
 
 from boxbranding import getBoxType
 from netifaces import AF_INET, AF_LINK, gateways, ifaddresses
+import netifaces as ni
 from six import ensure_str
 from six.moves import map
 
@@ -73,23 +73,27 @@ class Network:
 		return [int(n) for n in ip.split('.')]
 
 	def getAddrInet(self, iface, callback):
-		data = {'up': False, 'dhcp': False, 'preup': False, 'predown': False}
+		data = {'up': False, 'dhcp': False, 'preup': False, 'predown': False, "dns-nameservers": []}
 		try:
-			data['up'] = int(open('/sys/class/net/%s/flags' % iface).read().strip(), 16) & 1 == 1
-			if data['up']:
+			if os_path.exists('/sys/class/net/%s/operstate' % iface):
+				data['up'] = int(open('/sys/class/net/%s/flags' % iface).read().strip(), 16) & 1 == 1
+			if data['up'] and iface not in self.configuredInterfaces:
 				self.configuredInterfaces.append(iface)
-			nit = ifaddresses(iface)
-			data['ip'] = self.convertIP(nit[AF_INET][0]['addr']) # ipv4
-			data['netmask'] = self.convertIP(nit[AF_INET][0]['netmask'])
-			data['bcast'] = self.convertIP(nit[AF_INET][0]['broadcast'])
-			data['mac'] = nit[AF_LINK][0]['addr'] # mac
-			data['gateway'] = self.convertIP(gateways()['default'][AF_INET][0]) # default gw
-		except:
+			nit = ni.ifaddresses(iface)
+			data['ip'] = self.convertIP(nit[ni.AF_INET][0]['addr'])  # ipv4
+			data['netmask'] = self.convertIP(nit[ni.AF_INET][0]['netmask'])
+			data['bcast'] = self.convertIP(nit[ni.AF_INET][0]['broadcast'])
+			data['mac'] = nit[ni.AF_LINK][0]['addr']  # mac
+			data['gateway'] = self.convertIP(ni.gateways()['default'][ni.AF_INET][0])  # default gw
+		except (KeyError, ValueError, IOError):
 			data['dhcp'] = True
 			data['ip'] = [0, 0, 0, 0]
 			data['netmask'] = [0, 0, 0, 0]
 			data['gateway'] = [0, 0, 0, 0]
-		self.ifaces[iface] = data
+		if iface in self.ifaces:
+			self.ifaces[iface].update(data)
+		else:
+			self.ifaces[iface] = data
 		self.loadNetworkConfig(iface, callback)
 
 	def routeFinished(self, result, retval, extra_args):

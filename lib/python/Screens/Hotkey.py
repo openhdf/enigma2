@@ -13,7 +13,7 @@ from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.config import ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.Label import Label
 from Components.PluginComponent import plugins
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -21,7 +21,7 @@ from Screens.Screen import Screen
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 
-updateversion = "27.10.2022"
+updateversion = "25.02.2024"
 
 if uname()[4] == "aarch64":
 	pathLen = 26
@@ -48,7 +48,7 @@ def getHotkeys():
 	(_("Yellow long"), "yellow_long", ""),
 	(_("Blue"), "blue", "Infobar/showExtensionSelection"),
 	(_("Blue long"), "blue_long", "Infobar/showPluginBrowser"),
-	(_("Info (EPG)"), "info", "Infobar/openGraphEPG"),
+	(_("Info (EPG)"), "info", "Infobar/openSingleServiceEPG"),
 	(_("Info (EPG) long"), "info_long", "Infobar/showEventInfoPlugins"),
 	(_("Epg/Guide"), "epg", "Infobar/openSingleServiceEPG"),
 	(_("Epg/Guide long"), "epg_long", "Infobar/showEventInfoPlugins"),
@@ -259,7 +259,7 @@ def getHotkeyFunctions():
 	hotkeyFunctions.append((_("ZoomOff"), "InfobarGenerics/ZoomInOut", "InfoBar"))
 	hotkeyFunctions.append((_("Show Seekbar"), "Infobar/seekFwdVod", "InfoBar"))
 	hotkeyFunctions.append((_("Do nothing"), "Void", "InfoBar"))
-	if SystemInfo["PIPAvailable"]:
+	if BoxInfo.getItem("PIPAvailable"):
 		hotkeyFunctions.append((_("Show Picture In Picture"), "Infobar/showPiP", "InfoBar"))
 		hotkeyFunctions.append((_("Swap Picture In Picture"), "Infobar/swapPiP", "InfoBar"))
 		hotkeyFunctions.append((_("Move Picture In Picture"), "Infobar/movePiP", "InfoBar"))
@@ -269,9 +269,9 @@ def getHotkeyFunctions():
 	if getHaveHDMIinHD() in ('True') or getHaveHDMIinFHD() in ('True'):
 		hotkeyFunctions.append((_("Toggle HDMI-In Full Screen"), "Infobar/HDMIInFull", "InfoBar"))
 		hotkeyFunctions.append((_("Toggle HDMI-In Picture In Picture"), "Infobar/HDMIInPiP", "InfoBar"))
-	if SystemInfo["LcdLiveTV"]:
+	if BoxInfo.getItem("LcdLiveTV"):
 		hotkeyFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
-	if SystemInfo["canMultiBoot"]:
+	if BoxInfo.getItem("canMultiBoot"):
 		hotkeyFunctions.append((_("MultiBootSelector"), "Module/Screens.MultiBootSelector/MultiBootSelector", "InfoBar"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
 	hotkeyFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))

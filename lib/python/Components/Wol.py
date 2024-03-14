@@ -2,7 +2,7 @@
 from boxbranding import getBoxType
 
 from Components.config import ConfigNothing, ConfigSelection, config
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Tools.Directories import fileExists
 
 
@@ -23,14 +23,14 @@ class WOL:
 
 
 def Init():
-	if SystemInfo["WakeOnLAN"] and not getBoxType() in ('gbquad', 'gbquadplus'):
+	if BoxInfo.getItem("WakeOnLAN") and not getBoxType() in ('gbquad', 'gbquadplus'):
 		def setWOLmode(value):
 			iwol.setWolState(config.network.wol.value)
 
 		iwol = WOL()
 		config.network.wol = ConfigSelection([("disable", _("No")), ("enable", _("Yes"))], default="disable")
 		config.network.wol.addNotifier(setWOLmode, initial_call=True)
-	elif SystemInfo["ETWOL"]:
+	elif BoxInfo.getItem("ETWOL"):
 		def setWOLmode(value):
 			iwol.setWolState(config.network.wol.value)
 

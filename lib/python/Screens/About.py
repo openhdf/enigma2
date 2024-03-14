@@ -23,7 +23,7 @@ from Components.Pixmap import MultiPixmap
 from Components.ProgressBar import ProgressBar
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Screens.Screen import Screen
 from Tools.Directories import fileCheck
 from Tools.StbHardware import getFPVersion
@@ -272,7 +272,7 @@ class About(Screen):
 			f = open('/boot/bootname', 'r')
 			bootname = f.readline().split('=')[1]
 			f.close()
-		if SystemInfo["HasRootSubdir"]:
+		if BoxInfo.getItem("HasRootSubdir"):
 			image = find_rootfssubdir("STARTUP")
 			try:
 				AboutText += _("Selected Image:\t\t%s") % "STARTUP_" + image[-1:] + bootname + "\n"
@@ -309,7 +309,7 @@ class About(Screen):
 					bootname = "   (%s)" % bootname
 				AboutText += _("Partition:\t%s") % "STARTUP_" + image + bootname + "\n"
 
-		if SystemInfo["HaveMultiBoot"]:
+		if BoxInfo.getItem("HaveMultiBoot"):
 			MyFlashDate = about.getFlashDateString()
 			if os_path.isfile("/etc/filesystems"):
 				AboutText += _("Flashed:\t\t%s") % MyFlashDate + "\n"
@@ -333,7 +333,7 @@ class About(Screen):
 		AboutText += _("Last update:\t\t%s") % getEnigmaVersionString() + " to Build #" + getImageBuild() + "\n"
 		AboutText += _("E2 (re)starts:\t\t%s\n") % config.misc.startCounter.value
 		AboutText += _("Uptime") + ":\t\t" + about.getBoxUptime() + "\n"
-		if SystemInfo["WakeOnLAN"]:
+		if BoxInfo.getItem("WakeOnLAN"):
 			if fileCheck("/proc/stb/power/wol"):
 				WOLmode = open("/proc/stb/power/wol").read()[:-1]
 			if fileCheck("/proc/stb/fp/wol"):

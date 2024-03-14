@@ -37,7 +37,7 @@ from Components.SelectionList import SelectionList
 from Components.Slider import Slider
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Ipkg import Ipkg
@@ -59,6 +59,7 @@ from .SoftwareTools import iSoftwareTools
 
 boxtype = getBoxType()
 brandoem = getBrandOEM()
+skinupdate_available = False
 
 
 def eEnv_resolve_multi(path):
@@ -453,13 +454,14 @@ class UpdatePluginMenu(Screen):
 				if not os_path.exists('/media/hdd/images'):
 					makedirs('/media/hdd/images')
 				print("AfterFlashAction: create /media/hdd/images/hdfrestore")
-				print("AfterFlashAction: filename:", self.fullbackupfilename)
+				print("AfterFlashAction: filename: ", self.fullbackupfilename)
 				backupsourcefile = self.fullbackupfilename
 				backupdestfile = '/media/hdd/images/hdfrestore'
 				if not os_path.exists(backupsourcefile):
 					print("AfterFlashAction: No settings found.")
 					self.session.open(MessageBox, _("Please create a backup of your settings before."), MessageBox.TYPE_INFO, timeout=20)
 				else:
+					self.createSkinRestoreFile()
 					copyfile(backupsourcefile, backupdestfile)
 					system("cp /usr/share/enigma2/defaults/settings /etc/enigma2/")
 					message = _("Enigma must be restarted to auto restore your saved settings now!")
@@ -518,8 +520,20 @@ class UpdatePluginMenu(Screen):
 
 	def startRestore(self, ret=False):
 		if (ret == True):
+			self.createSkinRestoreFile()
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore=True)
+
+	def createSkinRestoreFile(self):
+		try:
+			skinrestorefile = "/media/hdd/images/skinrestore"
+			if fileExists(skinrestorefile):
+				print("[SkinRestore]: Skinrestorefile exists")
+			else:
+				open(skinrestorefile, 'a').close()
+				print("[SkinRestore]: Skinrestorefile created")
+		except:
+			pass
 
 	def doBackup(self, default=False):
 		if (default == True):
@@ -1663,9 +1677,6 @@ class UpdatePlugin(Screen):
 
 		self.activityTimer.start(100, False)
 
-		if os_path.exists('/etc/enigma2/xionrestore'):
-			unlink('/etc/enigma2/xionrestore')
-
 	def CheckDate(self):
 		# Check if image is not to old for update (max 120days)
 		self.CheckDateDone = True
@@ -1753,15 +1764,9 @@ class UpdatePlugin(Screen):
 			self.TraficCheck = True
 			print("create /etc/last-upgrades-git.log with opkg list-upgradable")
 			system("opkg list-upgradable > /etc/last-upgrades-git.log")
-			if not system("grep 'skins-xionhdf' /etc/last-upgrades-git.log"):
-				print("Xion skin update = Yes")
-				open('/etc/enigma2/xionrestore', 'w').close()
-			else:
-				print("Xion skin update = No")
-				if os_path.exists('/etc/enigma2/xionrestore'):
-					unlink('/etc/enigma2/xionrestore')
 			if system("grep 'dvb-module\|kernel-module\|platform-util' /etc/last-upgrades-git.log"):
 				print("Upgrade asap = Yes")
+				self.checkSkinUpdate()
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			else:
 				print("Upgrade asap = No")
@@ -1779,6 +1784,18 @@ class UpdatePlugin(Screen):
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 		else:
 			self.exit()
+
+	def checkSkinUpdate(self):
+		try:
+			global skinupdate_available
+			fetchedList = self.ipkg.getFetchedList()
+			for x in fetchedList:
+				if ("xionhdf" in x[0] and config.skin.primary_skin.value == "XionHDF/skin.xml") or ("kravenhd" in x[0] and config.skin.primary_skin.value == "KravenHD/skin.xml"):
+					skinupdate_available = True
+					print("[SkinRestore]: Skinupdate available")
+					break
+		except:
+			pass
 
 	def doActivityTimer(self):
 		if not self.CheckDateDone:
@@ -1866,17 +1883,36 @@ class UpdatePlugin(Screen):
 		#print(event, "-", param)
 
 	def startActualUpgrade(self, answer):
+		global skinupdate_available
 		if not answer or not answer[1]:
+			skinupdate_available = False
 			self.close()
 			return
 		if answer[1] == "cold":
+			if skinupdate_available:
+				self.createSkinRestoreFile()
 			self.session.open(TryQuitMainloop, retvalue=42)
 			self.close()
 		elif answer[1] == "show":
 			global plugin_path
 			self.session.openWithCallback(self.ipkgCallback(IpkgComponent.EVENT_DONE, None), ShowUpdatePackages, plugin_path)
 		else:
+			if skinupdate_available:
+				self.createSkinRestoreFile()
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args={'test_only': False})
+
+	def createSkinRestoreFile(self):
+		try:
+			skinrestorefile = "/media/hdd/images/skinrestore"
+			if fileExists(skinrestorefile):
+				print("[SkinRestore]: Skinrestorefile exists")
+			else:
+				open(skinrestorefile, 'a').close()
+				print("[SkinRestore]: Skinrestorefile created")
+			global skinupdate_available
+			skinupdate_available = False
+		except:
+			pass
 
 	def modificationCallback(self, res):
 		self.ipkg.write(res and "N" or "Y")

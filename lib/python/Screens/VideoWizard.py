@@ -2,7 +2,7 @@
 from Components.AVSwitch import iAVSwitch
 from Components.config import ConfigBoolean, config, configfile
 from Components.Pixmap import Pixmap
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Screens.Rc import Rc
 from Screens.Screen import Screen
 from Screens.Wizard import WizardSummary
@@ -17,10 +17,10 @@ has_dvi = False
 has_jack = False
 has_scart = False
 
-has_rca = SystemInfo["HaveRCA"]
-has_dvi = SystemInfo["HaveDVI"]
-has_jack = SystemInfo["HaveAVJACK"]
-has_scart = SystemInfo["HaveSCART"]
+has_rca = BoxInfo.getItem("HaveRCA")
+has_dvi = BoxInfo.getItem("HaveDVI")
+has_jack = BoxInfo.getItem("HaveAVJACK")
+has_scart = BoxInfo.getItem("HaveSCART")
 
 
 class VideoWizardSummary(WizardSummary):
@@ -187,7 +187,7 @@ class VideoWizard(WizardLanguage, Rc):
 			print(mode)
 			if mode[0] == querymode:
 				for rate in mode[1]:
-					if rate in ("auto") and not SystemInfo["have24hz"]:
+					if rate in ("auto") and not BoxInfo.getItem("have24hz"):
 						continue
 					if self.port == "DVI-PC":
 						print("rate:", rate)

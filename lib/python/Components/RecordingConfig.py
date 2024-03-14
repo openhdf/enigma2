@@ -3,7 +3,7 @@ from enigma import pNavigation
 
 from Components.config import (ConfigSelection, ConfigSelectionNumber,
                                ConfigSubsection, ConfigYesNo, config)
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 
 
 def InitRecordingConfig():
@@ -12,7 +12,7 @@ def InitRecordingConfig():
 	config.recording.asktozap = ConfigYesNo(default=True)
 	config.recording.margin_before = ConfigSelectionNumber(min=0, max=120, stepwidth=1, default=3, wraparound=True)
 	config.recording.margin_after = ConfigSelectionNumber(min=0, max=120, stepwidth=1, default=5, wraparound=True)
-	config.recording.ascii_filenames = ConfigYesNo(default=False)
+	config.recording.ascii_filenames = ConfigYesNo(default=True)
 	config.recording.keep_timers = ConfigSelectionNumber(min=1, max=120, stepwidth=1, default=7, wraparound=True)
 	config.recording.filename_composition = ConfigSelection(default="standard", choices=[
 		("standard", _("standard")),
@@ -26,7 +26,7 @@ def InitRecordingConfig():
 	config.recording.offline_decode_delay = ConfigSelectionNumber(min=1, max=10000, stepwidth=10, default=1000, wraparound=True)
 	config.recording.ecm_data = ConfigSelection(choices=[("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default="normal")
 	config.recording.default_timertype = ConfigSelection(choices=[("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))], default="record")
-	if SystemInfo["DeepstandbySupport"]:
+	if BoxInfo.getItem("DeepstandbySupport"):
 		shutdownString = _("go to deep standby")
 	else:
 		shutdownString = _("shut down")

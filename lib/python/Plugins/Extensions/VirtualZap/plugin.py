@@ -31,7 +31,7 @@ from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.ParentalControl import parentalControl
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.VideoWindow import VideoWindow
 from Plugins.Plugin import PluginDescriptor
 from Screens.EpgSelection import EPGSelection
@@ -167,7 +167,7 @@ class VirtualZap(Screen):
 	# VirtualZap or VirtualZapNoPiP
 	#
 
-	if SystemInfo.get("NumVideoDecoders", 1) > 1 and config.plugins.virtualzap.usepip.value and config.plugins.virtualzap.showpipininfobar.value:
+	if BoxInfo.getItem("NumVideoDecoders", 1) > 1 and config.plugins.virtualzap.usepip.value and config.plugins.virtualzap.showpipininfobar.value:
 		# use PiP in Infobar
 		if sz_w == 1280:
 			skin = """
@@ -203,7 +203,7 @@ class VirtualZap(Screen):
 					<widget backgroundColor="#101214" font="Regular;20" halign="right" name="NextTime" position="550,80" size="120,25" transparent="1" zPosition="2"/>
 				</screen>"""
 	else:
-		if SystemInfo.get("NumVideoDecoders", 1) > 1 and config.plugins.virtualzap.usepip.value and not config.plugins.virtualzap.showpipininfobar.value:
+		if BoxInfo.getItem("NumVideoDecoders", 1) > 1 and config.plugins.virtualzap.usepip.value and not config.plugins.virtualzap.showpipininfobar.value:
 			# use standard PiP
 			config.av.pip = ConfigPosition(default=[0, 0, 0, 0], args=(719, 567, 720, 568))
 			x = config.av.pip.value[0]
@@ -256,12 +256,12 @@ class VirtualZap(Screen):
 	def __init__(self, session, servicelist=None):
 		Screen.__init__(self, session)
 		self.session = session
-		if SystemInfo.get("NumVideoDecoders", 1) > 1 and config.plugins.virtualzap.usepip.value and config.plugins.virtualzap.showpipininfobar.value:
+		if BoxInfo.getItem("NumVideoDecoders", 1) > 1 and config.plugins.virtualzap.usepip.value and config.plugins.virtualzap.showpipininfobar.value:
 			self.skinName = "VirtualZap"
 			self.pipAvailable = True
 		else:
 			self.skinName = "VirtualZapNoPiP"
-			self.pipAvailable = (SystemInfo.get("NumVideoDecoders", 1) > 1) and config.plugins.virtualzap.usepip.value and not config.plugins.virtualzap.showpipininfobar.value
+			self.pipAvailable = (BoxInfo.getItem("NumVideoDecoders", 1) > 1) and config.plugins.virtualzap.usepip.value and not config.plugins.virtualzap.showpipininfobar.value
 		self.epgcache = eEPGCache.getInstance()
 		self.CheckForEPG = eTimer()
 		self.CheckForEPG.callback.append(self.CheckItNow)
@@ -721,7 +721,7 @@ class VirtualZapConfig(Screen, ConfigListScreen):
 		self["key_green"] = StaticText(_("OK"))
 		self.list = []
 		self.list.append(getConfigListEntry(_("Usage"), config.plugins.virtualzap.mode))
-		if SystemInfo.get("NumVideoDecoders", 1) > 1:
+		if BoxInfo.getItem("NumVideoDecoders", 1) > 1:
 			self.list.append(getConfigListEntry(_("Use PiP"), config.plugins.virtualzap.usepip))
 			self.list.append(getConfigListEntry(_("Show PiP in Infobar"), config.plugins.virtualzap.showpipininfobar))
 			self.list.append(getConfigListEntry(_("Start standard PiP after x secs (0 = disabled)"), config.plugins.virtualzap.exittimer))

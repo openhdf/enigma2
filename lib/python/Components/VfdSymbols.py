@@ -9,7 +9,7 @@ from Components.config import config
 from Components.ParentalControl import parentalControl
 from Components.RecordingConfig import recType
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Tools.Directories import fileExists
 
 POLLTIME = 5 # seconds
@@ -232,7 +232,7 @@ class SymbolsCheckPoller:
 		if not fileExists("/proc/stb/lcd/symbol_play"):
 			return
 
-		if SystemInfo["SeekStatePlay"]:
+		if BoxInfo.getItem("SeekStatePlay"):
 			file = open("/proc/stb/lcd/symbol_play", "w")
 			file.write('1')
 			file.close()
@@ -245,7 +245,7 @@ class SymbolsCheckPoller:
 		if not fileExists("/proc/stb/lcd/symbol_pause"):
 			return
 
-		if SystemInfo["StatePlayPause"]:
+		if BoxInfo.getItem("StatePlayPause"):
 			file = open("/proc/stb/lcd/symbol_pause", "w")
 			file.write('1')
 			file.close()
@@ -258,7 +258,7 @@ class SymbolsCheckPoller:
 		if not fileExists("/proc/stb/lcd/symbol_power"):
 			return
 
-		if SystemInfo["StandbyState"]:
+		if BoxInfo.getItem("StandbyState"):
 			file = open("/proc/stb/lcd/symbol_power", "w")
 			file.write('0')
 			file.close()

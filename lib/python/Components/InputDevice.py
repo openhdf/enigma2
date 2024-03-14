@@ -1,4 +1,3 @@
-
 from fcntl import ioctl
 from os import O_NONBLOCK, O_RDWR
 from os import close as os_close
@@ -13,7 +12,7 @@ from boxbranding import getBoxType
 
 from Components.config import (ConfigInteger, ConfigSlider, ConfigSubsection,
                                ConfigText, ConfigYesNo, config)
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 
 # include/uapi/asm-generic/ioctl.h
 IOC_NRBITS = 8
@@ -220,7 +219,7 @@ config.plugins.remotecontroltype.rctype = ConfigInteger(default=0)
 
 class RcTypeControl():
 	def __init__(self):
-		if SystemInfo["RcTypeChangable"] and os_path.exists('/proc/stb/info/boxtype'):
+		if BoxInfo.getItem("RcTypeChangable") and os_path.exists('/proc/stb/info/boxtype'):
 			self.isSupported = True
 			self.boxType = open('/proc/stb/info/boxtype', 'r').read().strip()
 			if config.plugins.remotecontroltype.rctype.value != 0:

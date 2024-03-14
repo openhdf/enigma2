@@ -524,6 +524,18 @@ umount ${CHROOT}/dev ${CHROOT}/proc ${CHROOT}/sys
 		with open("/tmp/chroot.sh", "w") as f:
 			f.write(COMMAND)
 
+	def createSkinRestoreFile(self):
+		try:
+			skinrestorefile = "/media/hdd/images/skinrestore"
+			from Tools.Directories import fileExists
+			if fileExists(skinrestorefile):
+				print("[SkinRestore]: Skinrestorefile exists")
+			else:
+				open(skinrestorefile, 'a').close()
+				print("[SkinRestore]: Skinrestorefile created")
+		except:
+			pass
+
 	def restartGUI(self, ret=None):
 		self.session.open(Console, title=_("Your %s %s will Restart...") % (getMachineBrand(), getMachineName()), cmdlist=["killall -9 enigma2"])
 

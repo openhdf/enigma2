@@ -9,7 +9,7 @@ from usb import busses
 
 from Components.config import (ConfigNothing, ConfigSelection, ConfigSlider,
                                ConfigSubsection, ConfigYesNo, config)
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Screens.Screen import Screen
 import Screens.Standby
 from Tools.Directories import fileExists
@@ -202,8 +202,8 @@ class LCD:
 			f.write(value)
 			f.close()
 		if config.lcd.mode.value == "0":
-			SystemInfo["SeekStatePlay"] = False
-			SystemInfo["StatePlayPause"] = False
+			BoxInfo.setItem("SeekStatePlay", False)
+			BoxInfo.setItem("StatePlayPause", False)
 			if fileExists("/proc/stb/lcd/symbol_hdd"):
 				f = open("/proc/stb/lcd/symbol_hdd", "w")
 				f.write("0")
@@ -405,7 +405,7 @@ def InitLcd():
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
-	SystemInfo["Display"] = detected
+	BoxInfo.setItem("Display", detected)
 	config.lcd = ConfigSubsection()
 
 	if fileExists("/proc/stb/lcd/mode"):
@@ -414,7 +414,7 @@ def InitLcd():
 		f.close()
 	else:
 		can_lcdmodechecking = False
-	SystemInfo["LCDMiniTV"] = can_lcdmodechecking
+	BoxInfo.setItem("LCDMiniTV", can_lcdmodechecking)
 
 	if detected:
 		ilcd = LCD()
@@ -592,7 +592,7 @@ def InitLcd():
 		else:
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
 			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 10))
-			config.lcd.bright = ConfigSlider(default=SystemInfo["DefaultDisplayBrightness"], limits=(0, 10))
+			config.lcd.bright = ConfigSlider(default=BoxInfo.getItem("DefaultDisplayBrightness"), limits=(0, 10))
 		config.lcd.dimbright.addNotifier(setLCDdimbright)
 		config.lcd.dimbright.apply = lambda: setLCDdimbright(config.lcd.dimbright)
 		config.lcd.dimdelay = ConfigSelection(default="0", choices=[
@@ -618,16 +618,16 @@ def InitLcd():
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped)
 
-		if SystemInfo["LcdLiveTV"]:
+		if BoxInfo.getItem("LcdLiveTV"):
 			def lcdLiveTvChanged(configElement):
-				open(SystemInfo["LcdLiveTV"], "w").write(configElement.value and "0" or "1")
+				open(BoxInfo.getItem("LcdLiveTV"), "w").write(configElement.value and "0" or "1")
 				import Screens.InfoBar
 				Screens.InfoBar.InfoBarInstance = Screens.InfoBar.InfoBar.instance
 				Screens.InfoBar.InfoBarInstance and Screens.InfoBar.InfoBarInstance.session.open(dummyScreen)
 			config.lcd.showTv = ConfigYesNo(default=False)
 			config.lcd.showTv.addNotifier(lcdLiveTvChanged)
 
-		if SystemInfo["LCDMiniTV"] and config.misc.boxtype.value not in ('gbquad', 'gbquadplus', 'gbquad4k', 'gbue4k'):
+		if BoxInfo.getItem("LCDMiniTV") and config.misc.boxtype.value not in ('gbquad', 'gbquadplus', 'gbquad4k', 'gbue4k'):
 			config.lcd.minitvmode = ConfigSelection([("0", _("normal")), ("1", _("MiniTV")), ("2", _("OSD")), ("3", _("MiniTV with OSD"))], "0")
 			config.lcd.minitvmode.addNotifier(setLCDminitvmode)
 			config.lcd.minitvpipmode = ConfigSelection([("0", _("off")), ("5", _("PIP")), ("7", _("PIP with OSD"))], "0")

@@ -12,7 +12,7 @@ from Components.Renderer.Picon import getPiconName
 from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
 from Components.ServiceList import ServiceList, refreshServiceList
 from Components.Sources.List import List
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.UsageConfig import preferredTimerPath
 from Screens.Standby import TryQuitMainloop
 from Screens.Screen import Screen
@@ -246,7 +246,7 @@ class ChannelContextMenu(Screen):
 						if not inBouquet:
 							append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level=0)
 
-					if SystemInfo["PIPAvailable"]:
+					if BoxInfo.getItem("PIPAvailable"):
 						if not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							if self.csel.dopipzap:
 								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level=0, key="red")
@@ -543,7 +543,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def showBouquetInputBox(self):
-		self.session.openWithCallback(self.bouquetInputCallback, InputBox, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visible_width=56, type=Input.TEXT)
+		self.session.openWithCallback(self.bouquetInputCallback, VirtualKeyBoard, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visible_width=56, type=Input.TEXT)
 
 	def bouquetInputCallback(self, bouquet):
 		if bouquet is not None:
@@ -593,7 +593,7 @@ class ChannelContextMenu(Screen):
 		if int(xres) <= 720 or not getMachineBuild() == 'blackbox7405':
 			if self.session.pipshown:
 				del self.session.pip
-				if SystemInfo["LCDMiniTV"] and int(config.lcd.modepip.value) >= 1:
+				if BoxInfo.getItem("LCDMiniTV") and int(config.lcd.modepip.value) >= 1:
 					print('[LCDMiniTV] disable PIP')
 					f = open("/proc/stb/lcd/mode", "w")
 					f.write(config.lcd.modeminitv.value)
@@ -608,7 +608,7 @@ class ChannelContextMenu(Screen):
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.csel.getCurrentServicePath()
 					self.session.pip.servicePath[1] = currentBouquet
-					if SystemInfo["LCDMiniTV"] and int(config.lcd.modepip.value) >= 1:
+					if BoxInfo.getItem("LCDMiniTV") and int(config.lcd.modepip.value) >= 1:
 						print('[LCDMiniTV] enable PIP')
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.modepip.value)
@@ -626,7 +626,7 @@ class ChannelContextMenu(Screen):
 				else:
 					self.session.pipshown = False
 					del self.session.pip
-					if SystemInfo["LCDMiniTV"] and int(config.lcd.modepip.value) >= 1:
+					if BoxInfo.getItem("LCDMiniTV") and int(config.lcd.modepip.value) >= 1:
 						print('[LCDMiniTV] disable PIP')
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.modeminitv.value)
@@ -665,7 +665,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def showMarkerInputBox(self):
-		self.session.openWithCallback(self.markerInputCallback, InputBox, title=_("Please enter a name for the new marker"), text="markername", maxSize=False, visible_width=56, type=Input.TEXT)
+		self.session.openWithCallback(self.markerInputCallback, VirtualKeyBoard, title=_("Please enter a name for the new marker"), text="markername", maxSize=False, visible_width=56, type=Input.TEXT)
 
 	def markerInputCallback(self, marker):
 		if marker is not None:
@@ -2824,7 +2824,7 @@ class PiPZapSelection(ChannelSelection):
 					self.saveRoot()
 					self.saveChannel(ref)
 					self.setCurrentSelection(ref)
-					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
+					if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
 						print('[LCDMiniTV] enable PIP')
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.modepip.value)
@@ -2843,7 +2843,7 @@ class PiPZapSelection(ChannelSelection):
 					self.pipzapfailed = True
 					self.session.pipshown = False
 					del self.session.pip
-					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
+					if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
 							print('[LCDMiniTV] disable PIP')
 							f = open("/proc/stb/lcd/mode", "w")
 							f.write(config.lcd.modeminitv.value)
@@ -2855,7 +2855,7 @@ class PiPZapSelection(ChannelSelection):
 		if self.startservice and hasattr(self.session, 'pip') and self.session.pip.getCurrentService() and self.startservice == self.session.pip.getCurrentService():
 			self.session.pipshown = False
 			del self.session.pip
-			if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
+			if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
 					print('[LCDMiniTV] disable PIP')
 					f = open("/proc/stb/lcd/mode", "w")
 					f.write(config.lcd.modeminitv.value)

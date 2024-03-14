@@ -6,6 +6,7 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config
 from Components.Label import Label
+from Components.Pixmap import Pixmap
 from Components.PowerTimerList import (PowerTimerList, getafterEvent,
                                        gettimerType)
 from Components.Sources.StaticText import StaticText
@@ -46,6 +47,12 @@ class PowerTimerEditList(Screen):
 		self["key_green"] = Button(_("Add"))
 		self["key_yellow"] = Button(" ")
 		self["key_blue"] = Button(" ")
+		self["red"] = Pixmap()
+		self["red"].hide()
+		self["yellow"] = Pixmap()
+		self["yellow"].hide()
+		self["blue"] = Pixmap()
+		self["blue"].hide()
 
 		self["description"] = Label()
 
@@ -127,28 +134,34 @@ class PowerTimerEditList(Screen):
 		if cur:
 			if self.key_red_choice != self.DELETE:
 				self["actions"].actions.update({"red": self.removeTimerQuestion})
+				self["red"].show()
 				self["key_red"].setText(_("Delete"))
 				self.key_red_choice = self.DELETE
 
 			if cur.disabled and (self.key_yellow_choice != self.ENABLE):
 				self["actions"].actions.update({"yellow": self.toggleDisabledState})
+				self["yellow"].show()
 				self["key_yellow"].setText(_("Enable"))
 				self.key_yellow_choice = self.ENABLE
 			elif cur.isRunning() and not cur.repeated and (self.key_yellow_choice != self.EMPTY):
 				self.removeAction("yellow")
+				self["yellow"].hide()
 				self["key_yellow"].setText(" ")
 				self.key_yellow_choice = self.EMPTY
 			elif ((not cur.isRunning()) or cur.repeated) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
 				self["actions"].actions.update({"yellow": self.toggleDisabledState})
+				self["yellow"].show()
 				self["key_yellow"].setText(_("Disable"))
 				self.key_yellow_choice = self.DISABLE
 		else:
 			if self.key_red_choice != self.EMPTY:
 				self.removeAction("red")
+				self["red"].hide()
 				self["key_red"].setText(" ")
 				self.key_red_choice = self.EMPTY
 			if self.key_yellow_choice != self.EMPTY:
 				self.removeAction("yellow")
+				self["yellow"].hide()
 				self["key_yellow"].setText(" ")
 				self.key_yellow_choice = self.EMPTY
 
@@ -161,10 +174,12 @@ class PowerTimerEditList(Screen):
 
 		if showCleanup and (self.key_blue_choice != self.CLEANUP):
 			self["actions"].actions.update({"blue": self.cleanupQuestion})
+			self["blue"].show()
 			self["key_blue"].setText(_("Cleanup"))
 			self.key_blue_choice = self.CLEANUP
 		elif (not showCleanup) and (self.key_blue_choice != self.EMPTY):
 			self.removeAction("blue")
+			self["blue"].hide()
 			self["key_blue"].setText(" ")
 			self.key_blue_choice = self.EMPTY
 		if len(self.list) == 0:

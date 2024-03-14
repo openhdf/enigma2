@@ -33,7 +33,7 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Timeshift import InfoBarTimeshift
 from Components.UsageConfig import (ConfigSelection, defaultMoviePath,
                                     preferredInstantRecordPath,
@@ -207,7 +207,7 @@ class InfoBarStreamRelay:
 		open(self.FILENAME, 'w').write('\n'.join(self.__srefs))
 
 	def toggle(self, nav, service):
-		if (servicestring := (service and service.toString())):
+		if (servicestring := (service and service.toCompareString())):
 			if servicestring in self.__srefs:
 				self.__srefs.remove(servicestring)
 			else:
@@ -226,7 +226,7 @@ class InfoBarStreamRelay:
 	data = property(getData, setData)
 
 	def streamrelayChecker(self, playref):
-		playrefstring = playref.toString()
+		playrefstring = playref.toCompareString()
 		if '%3a//' not in playrefstring and playrefstring in self.__srefs:
 			url = "http://%s:%s/" % (config.misc.softcam_streamrelay_url.getHTML(), config.misc.softcam_streamrelay_port.value)
 			if "127.0.0.1" in url:
@@ -234,11 +234,12 @@ class InfoBarStreamRelay:
 			else:
 				playrefmod = playrefstring
 			playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
-			print(f"[{self.__class__.__name__}] Play service {playref.toString()} via streamrelay")
+			print(f"[{self.__class__.__name__}] Play service {playref.toCompareString()} via streamrelay")
+			playref.setAlternativeUrl(playrefstring)
 		return playref
 
 	def checkService(self, service):
-		return service and service.toString() in self.__srefs
+		return service and service.toCompareString() in self.__srefs
 
 
 streamrelay = InfoBarStreamRelay()
@@ -1097,7 +1098,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				FLAG_HIDE_VBI = 512
 				return service and eDVBDB.getInstance().getFlag(eServiceReference(service)) & FLAG_HIDE_VBI and True
 			else:
-				return ".hidvbi." in servicepath.lower()
+				return ".hidevbi." in servicepath.lower()
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		return info and info.getInfo(iServiceInformation.sHideVBI)
@@ -1574,7 +1575,7 @@ class InfoBarChannelSelection:
 	def switchChannelUp(self):
 		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
 			self.keyHide(False)
-			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+			if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 				if not config.usage.show_bouquetalways.value:
 					if "keep" not in config.usage.servicelist_cursor_behavior.value:
 						self.servicelist.moveUp()
@@ -1594,7 +1595,7 @@ class InfoBarChannelSelection:
 	def switchChannelDown(self):
 		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
 			self.keyHide(False)
-			if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+			if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 				if not config.usage.show_bouquetalways.value:
 					if "keep" not in config.usage.servicelist_cursor_behavior.value:
 						self.servicelist.moveDown()
@@ -1622,7 +1623,7 @@ class InfoBarChannelSelection:
 		self.session.execDialog(self.servicelist)
 
 	def zapDown(self):
-		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+		if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 			if self.pts_blockZap_timer.isActive():
 				return
 
@@ -1679,7 +1680,7 @@ class InfoBarChannelSelection:
 			self["SeekActionsPTS"].setEnabled(True)
 
 	def zapUp(self):
-		if not self.LongButtonPressed or SystemInfo.get("NumVideoDecoders", 1) <= 1:
+		if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 			if self.pts_blockZap_timer.isActive():
 				return
 
@@ -1802,11 +1803,11 @@ class InfoBarMenu:
 		self.session.openWithCallback(self.mainMenuClosed, Menu, menu)
 
 	def showRFSetup(self):
-		if SystemInfo["RfModulator"]:
+		if BoxInfo.getItem("RfModulator"):
 			self.session.openWithCallback(self.mainMenuClosed, Setup, 'RFmod')
 
 	def showHDMiRecordSetup(self):
-		if SystemInfo["HDMIin"]:
+		if BoxInfo.getItem("HDMIin"):
 			self.session.openWithCallback(self.mainMenuClosed, Setup, 'HDMIRecord')
 
 	def mainMenuClosed(self, *val):
@@ -2659,7 +2660,7 @@ class InfoBarSeek:
 		if isStandardInfoBar(self) and self.timeshiftEnabled():
 			pass
 		elif not self.isSeekable():
-			SystemInfo["SeekStatePlay"] = False
+			BoxInfo.setItem("SeekStatePlay", False)
 			if os_path.exists("/proc/stb/lcd/symbol_hdd"):
 				f = open("/proc/stb/lcd/symbol_hdd", "w")
 				f.write("0")
@@ -2689,7 +2690,7 @@ class InfoBarSeek:
 			hdd = 1
 			if self.activity >= 100:
 				self.activity = 0
-			SystemInfo["SeekStatePlay"] = True
+			BoxInfo.setItem("SeekStatePlay", True)
 			if os_path.exists("/proc/stb/lcd/symbol_hdd"):
 				if config.lcd.hdd.value == "1":
 					f = open("/proc/stb/lcd/symbol_hdd", "w")
@@ -2706,7 +2707,7 @@ class InfoBarSeek:
 			hdd = 0
 			self.seekAction = 0
 
-		SystemInfo["SeekStatePlay"] = True
+		BoxInfo.setItem("SeekStatePlay", True)
 		if os_path.exists("/proc/stb/lcd/symbol_hdd"):
 			f = open("/proc/stb/lcd/symbol_hdd", "w")
 			f.write('%d' % int(hdd))
@@ -2812,7 +2813,7 @@ class InfoBarSeek:
 				self.unPauseService()
 
 	def pauseService(self):
-		SystemInfo["StatePlayPause"] = True
+		BoxInfo.getItem("StatePlayPause", True)
 		if self.seekstate != self.SEEK_STATE_EOF:
 			self.lastseekstate = self.seekstate
 		self.setSeekState(self.SEEK_STATE_PAUSE)
@@ -2823,7 +2824,7 @@ class InfoBarSeek:
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 
 	def unPauseService(self):
-		SystemInfo["StatePlayPause"] = False
+		BoxInfo.getItem("StatePlayPause", False)
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			if self.seekAction != 0:
 				self.playpauseService()
@@ -3622,7 +3623,7 @@ class InfoBarPiP:
 
 		self.lastPiPService = None
 
-		if SystemInfo["PIPAvailable"] and isinstance(self, InfoBarEPG):
+		if BoxInfo.getItem("PIPAvailable") and isinstance(self, InfoBarEPG):
 			self["PiPActions"] = HelpableActionMap(self, ["InfobarPiPActions"],
 				{
 					"activatePiP": (self.activePiP, self.activePiPName),
@@ -3692,7 +3693,7 @@ class InfoBarPiP:
 						if lastPiPServiceTimeout:
 							self.lastPiPServiceTimeoutTimer.startLongTimer(lastPiPServiceTimeout)
 					del self.session.pip
-					if SystemInfo["LCDMiniTV"]:
+					if BoxInfo.getItem("LCDMiniTV"):
 						if config.lcd.modepip.value >= "1":
 							print('[LCDMiniTV] disable PIP')
 							f = open("/proc/stb/lcd/mode", "w")
@@ -3714,7 +3715,7 @@ class InfoBarPiP:
 					if self.session.pip.playService(newservice):
 						self.session.pipshown = True
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-						if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
+						if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
 							print('[InfoBarGenerics] [LCDMiniTV] enable PIP')
 							f = open("/proc/stb/lcd/mode", "w")
 							f.write(config.lcd.modepip.value)
@@ -3733,7 +3734,7 @@ class InfoBarPiP:
 						if self.session.pip.playService(newservice):
 							self.session.pipshown = True
 							self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-							if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
+							if BoxInfo.getItem("LCDMiniTVPiP") and int(config.lcd.modepip.value) >= 1:
 								print('[LCDMiniTV] enable PIP')
 								f = open("/proc/stb/lcd/mode", "w")
 								f.write(config.lcd.modepip.value)
@@ -4121,7 +4122,7 @@ class InfoBarAudioSelection:
 		print("[InfoBarGenerics] [infobar::audioSelected]", ret)
 
 	def audioDownmixToggle(self, popup=True):
-		if SystemInfo["CanDownmixAC3"]:
+		if BoxInfo.getItem("CanDownmixAC3"):
 			if config.av.downmix_ac3.value:
 				message = _("Dolby Digital downmix is now") + " " + _("disabled")
 				print('[InfoBarGenerics] [Audio] Dolby Digital downmix is now disabled')
@@ -5109,7 +5110,7 @@ class InfoBarHdmi:
 		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 
-		if SystemInfo['HDMIin']:
+		if BoxInfo.getItem('HDMIin'):
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
 			if not self.hdmi_enabled_pip:

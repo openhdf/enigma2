@@ -92,40 +92,29 @@ def findPicon(serviceName):
 
 
 def getPiconName(serviceName):
-	sname = '_'.join(GetWithAlternative(serviceName).split(':', 10)[:10])
-	pngname = findPicon(sname)
-	if not pngname: # picon by channel name
-		name = ServiceReference(serviceName).getServiceName()
-		if version_info[0] >= 3:
-			name = ensure_str(normalize('NFKD', name).encode('ASCII', 'ignore'))
-		else:
-			name = normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
-		name = sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
-		if len(name) > 0:
-			pngname = findPicon(name)
-			if not pngname and len(name) > 2 and name.endswith('hd'):
-				pngname = findPicon(name[:-2])
+	fields = GetWithAlternative(serviceName).split(":", 10)[:10]  # Remove the path and name fields, and replace ":" by "_"
+	if not fields or len(fields) < 10:
+		return ""
+	pngname = findPicon("_".join(fields))
+	if not pngname and not fields[6].endswith("0000"):
+		fields[6] = fields[6][:-4] + "0000"  # Remove "sub-network" from namespace
+		pngname = findPicon("_".join(fields))
+	if not pngname and fields[0] != "1":
+		fields[0] = "1"  # Fallback to 1 for other reftypes
+		pngname = findPicon("_".join(fields))
+	if not pngname and fields[2] != "1":
+		fields[2] = "1"  # Fallback to 1 for services with different service types
+		pngname = findPicon("_".join(fields))
 	if not pngname:
-		fields = sname.split('_', 3)
-		if len(fields) > 0 and fields[0] != '1':
-			fields[0] = '1'
-		pngname = findPicon('_'.join(fields))
-		if len(fields) > 2:
-			while not pngname:
-				tmp = ''
-				for i in list(range(256)):
-					tmp = hex(i)[2:].upper().zfill(2)
-					fields[2] = tmp
-					pngname = findPicon('_'.join(fields))
-					if pngname:
-						newpng = '/usr/share/enigma2/picon/' + name + '.png'
-						try:
-							symlink(pngname, newpng)
-						except:
-							pass
-						break
-				if tmp == "FF":
-					break
+		name = ServiceReference(serviceName).getServiceName()  # Picon by channel name
+		name = normalize("NFKD", name).encode("ASCII", "ignore").decode()
+		name = sub("[^a-z0-9]", "", name.replace("&", "and").replace("+", "plus").replace("*", "star").lower())
+		if name:
+			pngname = findPicon(name)
+			if not pngname:
+				name = sub("(fhd|uhd|hd|sd|4k)$", "", name)
+				if name:
+					pngname = findPicon(name)
 	return pngname
 
 

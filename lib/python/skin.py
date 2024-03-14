@@ -15,7 +15,7 @@ from six import ensure_str
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
 from Components.Sources.Source import ObsoleteSource
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Tools.Directories import (SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT_SKIN,
                                SCOPE_FONTS, SCOPE_GUISKIN, SCOPE_SKIN,
                                pathExists, resolveFilename)
@@ -92,7 +92,7 @@ def InitSkins():
 	loadSkin(EMERGENCY_SKIN, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID)
 	# Add the subtitle skin.
 	loadSkin(SUBTITLE_SKIN, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID)
-	if SystemInfo["OledDisplay"]:
+	if BoxInfo.getItem("OledDisplay"):
 		# Add the front panel / display / lcd skin.
 		result = []
 		for skin, name in [(config.skin.display_skin.value, "current"), (DEFAULT_DISPLAY_SKIN, "default")]:
@@ -148,7 +148,31 @@ def InitSkins():
 #
 
 
+def restoreSkin():
+	try:
+		skinrestorefile = "/media/hdd/images/skinrestore"
+		from Tools.Directories import fileExists
+		if fileExists(skinrestorefile):
+			from os import remove
+			remove(skinrestorefile)
+			print("[SkinRestore]: Skinrestorefile found and removed")
+			if config.skin.primary_skin.value == "XionHDF/skin.xml":
+				from Plugins.Extensions.XionHDF.save import justSave
+				print("[SkinRestore]: Starting restore XionHDF")
+				justSave()
+			elif config.skin.primary_skin.value == "KravenHD/skin.xml":
+				from Plugins.Extensions.KravenHD.save import justSave
+				print("[SkinRestore]: Starting restore KravenHD")
+				justSave()
+			elif config.skin.primary_skin.value == "PlatoonHD/skin.xml":
+				from Plugins.Extensions.PlatoonHD.save import justSave
+				print("[SkinRestore]: Start restoring PlatoonHD")
+				justSave()
+	except:
+		print("[SkinRestore]: restore failed")
+
 def loadSkinData(desktop):
+	restoreSkin()
 	InitSkins()
 
 # Method to load a skin XML file into the skin data structures.

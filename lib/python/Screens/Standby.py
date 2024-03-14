@@ -12,7 +12,7 @@ from Components.AVSwitch import AVSwitch
 from Components.config import config
 from Components.Harddisk import harddiskmanager
 from Components.RecordingConfig import recType
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Sources.StreamService import StreamServiceList
 from GlobalActions import globalActionMap
 from Screens.Screen import Screen
@@ -112,7 +112,7 @@ def setLCDModeMinitTV(value):
 class Standby2(Screen):
 	def Power(self):
 		print("[Standby] leave standby")
-		SystemInfo["StandbyState"] = False
+		BoxInfo.setItem("StandbyState", False)
 		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sfx6008')):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("on")
@@ -124,7 +124,7 @@ class Standby2(Screen):
 		#unmute adc
 		self.leaveMute()
 		# set LCDminiTV
-		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
+		if BoxInfo.getItem("Display") and BoxInfo.getItem("LCDMiniTV"):
 			setLCDModeMinitTV(config.lcd.modeminitv.value)
 		#kill me
 		if os_path.exists("/usr/scripts/standby.sh") is True:
@@ -177,7 +177,7 @@ class Standby2(Screen):
 		self.avswitch = AVSwitch()
 
 		print("[Standby] enter standby")
-		SystemInfo["StandbyState"] = True
+		BoxInfo.setItem("StandbyState", True)
 
 		self["actions"] = ActionMap(["StandbyActions"],
 		{
@@ -199,7 +199,7 @@ class Standby2(Screen):
 		#mute adc
 		self.setMute()
 
-		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
+		if BoxInfo.getItem("Display") and BoxInfo.getItem("LCDMiniTV"):
 			# set LCDminiTV off
 			setLCDModeMinitTV("0")
 
@@ -226,7 +226,7 @@ class Standby2(Screen):
 			InfoBar.instance and hasattr(InfoBar.instance, "showPiP") and InfoBar.instance.showPiP()
 
 		#set input to vcr scart
-		if SystemInfo["ScartSwitch"]:
+		if BoxInfo.getItem("ScartSwitch"):
 			self.avswitch.setInput("SCART")
 		else:
 			self.avswitch.setInput("AUX")
@@ -464,7 +464,7 @@ class TryQuitMainloop(MessageBox):
 			self.quitScreen.show()
 			print("[Standby] quitMainloop #1")
 			quitMainloopCode = self.retval
-			if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
+			if BoxInfo.getItem("Display") and BoxInfo.getItem("LCDMiniTV"):
 				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k
 				print("[Standby] LCDminiTV off")
 				setLCDModeMinitTV("0")

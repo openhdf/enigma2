@@ -1422,6 +1422,9 @@ msgstr "Update wurde abgebrochen"
 msgid "About"
 msgstr "Über"
 
+msgid "About the image"
+msgstr "Über das Image"
+
 msgid "About..."
 msgstr "Über..."
 
