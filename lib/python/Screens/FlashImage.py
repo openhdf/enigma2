@@ -47,7 +47,7 @@ class SelectImage(Screen):
 		self.setIndex = 0
 		self.expanded = []
 		self.model = getBoxType()
-		self.selectedImage = ["Teamblue", {"url": "https://images.teamblue.tech/json/%s" % self.model, "model": self.model}]
+		self.selectedImage = ["OpenHDF", {"url": "https://flash.hdfreaks.cc/openhdf/json/%s" % self.model, "model": self.model}]
 		self.models = [self.model]
 		self.setTitle(_("Select image"))
 		self["key_red"] = StaticText(_("Cancel"))
@@ -104,7 +104,7 @@ class SelectImage(Screen):
 			return [w if not f(w) else next(y) for w in ls]
 
 		if not self.imageBrandList:
-			url = "%s%s" % ("https://images.teamblue.tech/flash/", self.model)
+			url = "%s%s" % ("https://flash.hdfreaks.cc/openhdf/distros/", self.model)
 			try:
 				self.imageBrandList = json.load(urlopen(url, timeout=3))
 			except:

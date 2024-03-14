@@ -152,6 +152,7 @@ def setBoxInfoItems():
 	#BoxInfo.setItem("canMode12", "_4.boxmode" % model in cmdline and cmdline["_4.boxmode" % model] in ("1", "12") and "192M")
 	#BoxInfo.setItem("canMode12", fileHas("/proc/cmdline", "_4.boxmode=1 ") and '192M' or fileHas("/proc/cmdline", "_4.boxmode=12") and '192M')
 	BoxInfo.setItem("canMode12", getMachineBuild() in ("hd51", "vs1500", "h7") and ("brcm_cma=440M@328M brcm_cma=192M@768M", "brcm_cma=520M@248M brcm_cma=200M@768M"))
+	BoxInfo.setItem("canFlashWithOfgwrite", not (model.startswith("dm")))
 	BoxInfo.setItem("12V_Output", Misc_Options.getInstance().detected_12V_output())
 	BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))
 	BoxInfo.setItem("NumFrontpanelLEDs", countFrontpanelLEDs())
