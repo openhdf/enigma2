@@ -41,7 +41,7 @@ def checkimagefiles(files):
 class SelectImage(Screen):
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
-		self.imageBrandList = {}
+		self.imageBrandDict = {}
 		self.jsonlist = {}
 		self.imagesList = {}
 		self.setIndex = 0
@@ -103,16 +103,15 @@ class SelectImage(Screen):
 			y = iter(reversed(sorted(w for w in ls if f(w))))
 			return [w if not f(w) else next(y) for w in ls]
 
-		if not self.imageBrandList:
+		if not self.imageBrandDict:
 			url = "%s%s" % ("https://flash.hdfreaks.cc/openhdf/distros/", self.model)
 			try:
-				self.imageBrandList = json.load(urlopen(url, timeout=3))
+				self.imageBrandDict = json.load(urlopen(url, timeout=3))
 			except:
 				print("[FlashImage] getImageBrandList Error: Unable to load json data from URL '%s'!" % url)
-			if self.imageBrandList:
-				self.imageBrandList.update({self.selectedImage[0]: self.selectedImage[1]})
-				self.models = set([self.imageBrandList[image]['model'] for image in self.imageBrandList.keys()])
-				if len(self.imageBrandList) > 1:
+			if self.imageBrandDict:
+				self.imageBrandDict.update({self.selectedImage[0]: self.selectedImage[1]})
+				if len(self.imageBrandDict) > 1:
 					self["key_blue"].setText(_("Other Images"))
 		if not self.imagesList:
 			if not self.jsonlist:
@@ -205,8 +204,8 @@ class SelectImage(Screen):
 			self.session.open(KexecInit)
 
 	def otherImages(self):
-		if len(self.imageBrandList) > 1:
-			self.session.openWithCallback(self.otherImagesCallback, ChoiceBox, list=[(key, self.imageBrandList[key]) for key in self.imageBrandList.keys()], windowTitle=_("Select an image brand"))
+		if len(self.imageBrandDict) > 1:
+			self.session.openWithCallback(self.otherImagesCallback, ChoiceBox, list=[(key, self.imageBrandDict[key]) for key in self.imageBrandDict.keys()], windowTitle=_("Select an image brand"))
 
 	def otherImagesCallback(self, image):
 		if image:
