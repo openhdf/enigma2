@@ -1,5 +1,5 @@
 from os import path as os_path
-from os import lstat, sep, statvfs
+from os import lstat, statvfs
 from os.path import exists, isdir, join, splitext
 
 from enigma import eTimer
@@ -20,8 +20,6 @@ from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import createDir, pathExists, removeDir
 from Tools.NumericalTextInput import NumericalTextInput
-
-defaultInhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
 
 DEFAULT_INHIBIT_DIRECTORIES = ("/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/picon", "/piconlcd", "/proc", "/run", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var")
 defaultInhibitDirs = list(DEFAULT_INHIBIT_DIRECTORIES)
