@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 20:35+0100\n"
+"POT-Creation-Date: 2024-03-18 20:42+0100\n"
 "PO-Revision-Date: 2019-10-31 07:46+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
@@ -8395,10 +8395,6 @@ msgid "MultiBoot Selection"
 msgstr "Multisat tout sélectionner"
 
 #, fuzzy
-msgid "MultiBoot Selector"
-msgstr "Multisat tout sélectionner"
-
-#, fuzzy
 msgid "MultiBootSelector"
 msgstr "Multisat tout sélectionner"
 
@@ -11478,13 +11474,6 @@ msgid "Select CAId"
 msgstr "Sélection CAId"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
-msgstr ""
-
-#, fuzzy, python-format
-msgid "Select Image: %s"
-msgstr "Choisir un film"
-
-msgid "Select Image: STARTUP_1"
 msgstr ""
 
 msgid "Select Location"

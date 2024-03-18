@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 20:35+0100\n"
+"POT-Creation-Date: 2024-03-18 20:42+0100\n"
 "PO-Revision-Date: 2024-03-18 20:37+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
@@ -8154,9 +8154,6 @@ msgstr "Multi EPG"
 msgid "MultiBoot Selection"
 msgstr "MultiBoot Auswahl"
 
-msgid "MultiBoot Selector"
-msgstr "MultiBoot Auswahl"
-
 msgid "MultiBootSelector"
 msgstr "MultiBootSelector"
 
@@ -11163,13 +11160,6 @@ msgstr "CAID auswählen"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Wählen Sie Fast DiSEqC, wenn Ihr Antennensystem dies unterstützt. Wenn Sie unsicher sind, wählen Sie \"Nein\"."
-
-#, python-format
-msgid "Select Image: %s"
-msgstr "Image auswählen: %s"
-
-msgid "Select Image: STARTUP_1"
-msgstr "Bild auswählen: STARTUP_1"
 
 msgid "Select Location"
 msgstr "Wähle Verzeichnis"

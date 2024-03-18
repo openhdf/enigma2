@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 20:35+0100\n"
+"POT-Creation-Date: 2024-03-18 20:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -8472,10 +8472,6 @@ msgstr "ผังรายการแบบหลากหลาย"
 msgid "MultiBoot Selection"
 msgstr "เลือกซับไตเติ้ล"
 
-#, fuzzy
-msgid "MultiBoot Selector"
-msgstr "เลือกซับไตเติ้ล"
-
 msgid "MultiBootSelector"
 msgstr ""
 
@@ -11642,13 +11638,6 @@ msgid "Select CAId"
 msgstr "เลือก CAId"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
-msgstr ""
-
-#, fuzzy, python-format
-msgid "Select Image: %s"
-msgstr "เลือกภาพยนต์"
-
-msgid "Select Image: STARTUP_1"
 msgstr ""
 
 #, fuzzy

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 20:35+0100\n"
+"POT-Creation-Date: 2024-03-18 20:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
@@ -8547,10 +8547,6 @@ msgstr "EPG چندگانه"
 msgid "MultiBoot Selection"
 msgstr "انتخاب زیرنویس"
 
-#, fuzzy
-msgid "MultiBoot Selector"
-msgstr "انتخاب زیرنویس"
-
 msgid "MultiBootSelector"
 msgstr ""
 
@@ -11756,13 +11752,6 @@ msgid "Select CAId"
 msgstr "انتخاب CAId"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
-msgstr ""
-
-#, fuzzy, python-format
-msgid "Select Image: %s"
-msgstr "انتخاب فیلم"
-
-msgid "Select Image: STARTUP_1"
 msgstr ""
 
 #, fuzzy

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 20:35+0100\n"
+"POT-Creation-Date: 2024-03-18 20:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -8609,10 +8609,6 @@ msgid "MultiBoot Selection"
 msgstr "EMU 選擇"
 
 #, fuzzy
-msgid "MultiBoot Selector"
-msgstr "EMU 選擇"
-
-#, fuzzy
 msgid "MultiBootSelector"
 msgstr "EMU 選擇"
 
@@ -11816,14 +11812,6 @@ msgstr ""
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Select Image: %s"
-msgstr "選擇Image"
-
-#, fuzzy
-msgid "Select Image: STARTUP_1"
-msgstr "選擇Image"
 
 msgid "Select Location"
 msgstr "選擇位置"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 20:35+0100\n"
+"POT-Creation-Date: 2024-03-18 20:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
@@ -8491,10 +8491,6 @@ msgstr "Kanalų EPG"
 msgid "MultiBoot Selection"
 msgstr "Subtitrų pasirinkimas"
 
-#, fuzzy
-msgid "MultiBoot Selector"
-msgstr "Subtitrų pasirinkimas"
-
 msgid "MultiBootSelector"
 msgstr ""
 
@@ -11671,13 +11667,6 @@ msgid "Select CAId"
 msgstr "išsirinkite CAId"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
-msgstr ""
-
-#, fuzzy, python-format
-msgid "Select Image: %s"
-msgstr "Išsirinkite filmą"
-
-msgid "Select Image: STARTUP_1"
 msgstr ""
 
 #, fuzzy

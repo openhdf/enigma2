@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 20:35+0100\n"
+"POT-Creation-Date: 2024-03-18 20:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: none\n"
@@ -8332,9 +8332,6 @@ msgstr "Multi EPG"
 msgid "MultiBoot Selection"
 msgstr "Subtitle selection"
 
-msgid "MultiBoot Selector"
-msgstr ""
-
 msgid "MultiBootSelector"
 msgstr ""
 
@@ -11415,13 +11412,6 @@ msgid "Select CAId"
 msgstr "Select CAId"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
-msgstr ""
-
-#, python-format
-msgid "Select Image: %s"
-msgstr ""
-
-msgid "Select Image: STARTUP_1"
 msgstr ""
 
 msgid "Select Location"

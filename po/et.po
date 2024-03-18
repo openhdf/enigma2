@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 20:35+0100\n"
+"POT-Creation-Date: 2024-03-18 20:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -8582,10 +8582,6 @@ msgstr "Multi EPG"
 msgid "MultiBoot Selection"
 msgstr "Subtiitrite valik"
 
-#, fuzzy
-msgid "MultiBoot Selector"
-msgstr "Subtiitrite valik"
-
 msgid "MultiBootSelector"
 msgstr ""
 
@@ -11768,13 +11764,6 @@ msgid "Select CAId"
 msgstr "Vali CAId"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
-msgstr ""
-
-#, fuzzy, python-format
-msgid "Select Image: %s"
-msgstr "Vali film"
-
-msgid "Select Image: STARTUP_1"
 msgstr ""
 
 #, fuzzy

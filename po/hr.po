@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 20:35+0100\n"
+"POT-Creation-Date: 2024-03-18 20:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: <jurica@dream-multimedia.eu>\n"
@@ -9180,11 +9180,6 @@ msgstr "Multi EPG"
 msgid "MultiBoot Selection"
 msgstr "Sekcija titlova"
 
-#
-#, fuzzy
-msgid "MultiBoot Selector"
-msgstr "Sekcija titlova"
-
 msgid "MultiBootSelector"
 msgstr ""
 
@@ -12685,14 +12680,6 @@ msgid "Select CAId"
 msgstr "Odaberi Tvrdi Disk"
 
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
-msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Select Image: %s"
-msgstr "Odaberi film"
-
-msgid "Select Image: STARTUP_1"
 msgstr ""
 
 #
