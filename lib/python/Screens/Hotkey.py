@@ -21,7 +21,7 @@ from Screens.Screen import Screen
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 
-updateversion = "25.02.2024"
+updateversion = "19.03.2024"
 
 if uname()[4] == "aarch64":
 	pathLen = 26
@@ -272,7 +272,7 @@ def getHotkeyFunctions():
 	if BoxInfo.getItem("LcdLiveTV"):
 		hotkeyFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
 	if BoxInfo.getItem("canMultiBoot"):
-		hotkeyFunctions.append((_("MultiBootSelector"), "Module/Screens.MultiBootSelector/MultiBootSelector", "InfoBar"))
+		hotkeyFunctions.append((_("MultiBootSelector"), "Module/Screens.FlashImage/MultibootSelection", "InfoBar"))
 	hotkeyFunctions.append((_("HotKey Setup"), "Module/Screens.Hotkey/HotkeySetup", "Setup"))
 	hotkeyFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
 	if getHaveCI() in ('True'):
