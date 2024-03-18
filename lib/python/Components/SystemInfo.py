@@ -249,6 +249,8 @@ def setBoxInfoItems():
 	BoxInfo.setItem("HasFullHDSkinSupport", getBoxType() not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc"))
 	BoxInfo.setItem("CanProc", BoxInfo.getItem("HasMMC") and getBrandOEM() != "vuplus")
 	BoxInfo.setItem("canRecovery", getMachineBuild() in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or getMachineBuild() in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or getMachineBuild() in ("gbmv200", "cc1", "sf8008", "sf8008m", "sx988", "ip8", "ustym4kpro", "beyonwizv2", "viper4k", "sx88v2") and ("usb_update.bin", "none"))
+	BoxInfo.setItem("ArchIsARM64", BoxInfo.getItem("architecture") == "aarch64" or "64" in BoxInfo.getItem("architecture"))
+	BoxInfo.setItem("ArchIsARM", BoxInfo.getItem("architecture").startswith(("arm", "cortex")))
 
 
 setBoxInfoItems()
