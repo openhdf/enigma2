@@ -462,7 +462,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		restorecmdlist = ["rm -Rf %setc/enigma2" % self.image_dir, tarcmd, MANDATORY_RIGHTS.replace(' /', ' %s/' % self.image_dir)]
 
 		if self.restoreOnBoot:
-			if path.exists("/proc/stb/vmpeg/0/dst_width"):
+			if os_path.exists("/proc/stb/vmpeg/0/dst_width"):
 				restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
 			restorecmdlist.append("/etc/init.d/autofs restart")
 
