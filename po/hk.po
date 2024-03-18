@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 11:52+0100\n"
+"POT-Creation-Date: 2024-03-18 20:35+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -63,6 +63,12 @@ msgid ""
 "\n"
 "Execution finished!!"
 msgstr "執行完畢！"
+
+#, python-format
+msgid ""
+"\n"
+"Flash on the fly your %s %s."
+msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -7098,6 +7104,9 @@ msgstr "資訊"
 msgid "Image Manager"
 msgstr "文件管理器"
 
+msgid "Image Online-Flash"
+msgstr ""
+
 #, python-format
 msgid ""
 "Image created on:\n"
@@ -8596,8 +8605,8 @@ msgid "Multi EPG"
 msgstr "多路 EPG"
 
 #, fuzzy
-msgid "MultiBoot"
-msgstr "多星"
+msgid "MultiBoot Selection"
+msgstr "EMU 選擇"
 
 #, fuzzy
 msgid "MultiBoot Selector"

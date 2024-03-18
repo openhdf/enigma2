@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 11:52+0100\n"
+"POT-Creation-Date: 2024-03-18 20:35+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
@@ -65,6 +65,12 @@ msgid ""
 "\n"
 "Execution finished!!"
 msgstr "Voortgang voltooid!"
+
+#, python-format
+msgid ""
+"\n"
+"Flash on the fly your %s %s."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -7123,6 +7129,9 @@ msgstr "Informatie over de firmware"
 msgid "Image Manager"
 msgstr "Imagemanager"
 
+msgid "Image Online-Flash"
+msgstr ""
+
 #, python-format
 msgid ""
 "Image created on:\n"
@@ -8580,8 +8589,8 @@ msgid "Multi EPG"
 msgstr "Multi-EPG"
 
 #, fuzzy
-msgid "MultiBoot"
-msgstr "Multisat"
+msgid "MultiBoot Selection"
+msgstr "Ondertitel selectie"
 
 #, fuzzy
 msgid "MultiBoot Selector"

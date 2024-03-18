@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 11:52+0100\n"
+"POT-Creation-Date: 2024-03-18 20:35+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -63,6 +63,12 @@ msgid ""
 "\n"
 "Execution finished!!"
 msgstr "Käivitus lõppenud!!"
+
+#, python-format
+msgid ""
+"\n"
+"Flash on the fly your %s %s."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -7116,6 +7122,9 @@ msgstr "Andmed"
 msgid "Image Manager"
 msgstr "Image haldur"
 
+msgid "Image Online-Flash"
+msgstr ""
+
 #, python-format
 msgid ""
 "Image created on:\n"
@@ -8570,8 +8579,8 @@ msgid "Multi EPG"
 msgstr "Multi EPG"
 
 #, fuzzy
-msgid "MultiBoot"
-msgstr "Mitu satelliiti"
+msgid "MultiBoot Selection"
+msgstr "Subtiitrite valik"
 
 #, fuzzy
 msgid "MultiBoot Selector"

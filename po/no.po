@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 11:52+0100\n"
+"POT-Creation-Date: 2024-03-18 20:35+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -71,6 +71,12 @@ msgid ""
 "\n"
 "Execution finished!!"
 msgstr "Utførelse ferdig!"
+
+#, python-format
+msgid ""
+"\n"
+"Flash on the fly your %s %s."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -7705,6 +7711,9 @@ msgstr "Image informasjon"
 msgid "Image Manager"
 msgstr "Image Behandler"
 
+msgid "Image Online-Flash"
+msgstr ""
+
 #, python-format
 msgid ""
 "Image created on:\n"
@@ -9318,8 +9327,8 @@ msgstr "Multi EPG"
 
 #
 #, fuzzy
-msgid "MultiBoot"
-msgstr "Multisat"
+msgid "MultiBoot Selection"
+msgstr "Undertekst valg"
 
 #
 #, fuzzy

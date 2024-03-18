@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 11:52+0100\n"
+"POT-Creation-Date: 2024-03-18 20:35+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -66,6 +66,12 @@ msgid ""
 "\n"
 "Execution finished!!"
 msgstr "Izvajanje zaključeno!!"
+
+#, python-format
+msgid ""
+"\n"
+"Flash on the fly your %s %s."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -7801,6 +7807,9 @@ msgstr ""
 msgid "Image Manager"
 msgstr ""
 
+msgid "Image Online-Flash"
+msgstr ""
+
 #, python-format
 msgid ""
 "Image created on:\n"
@@ -9490,8 +9499,8 @@ msgstr "Multi-EPG"
 
 #
 #, fuzzy
-msgid "MultiBoot"
-msgstr "Multisat"
+msgid "MultiBoot Selection"
+msgstr "Izbira podnapisov"
 
 #
 #, fuzzy

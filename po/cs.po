@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 11:52+0100\n"
+"POT-Creation-Date: 2024-03-18 20:35+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: \n"
@@ -68,6 +68,12 @@ msgid ""
 "\n"
 "Execution finished!!"
 msgstr "Dokončeno!"
+
+#, python-format
+msgid ""
+"\n"
+"Flash on the fly your %s %s."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -7068,6 +7074,9 @@ msgstr "Info o systému"
 msgid "Image Manager"
 msgstr "Správce image"
 
+msgid "Image Online-Flash"
+msgstr ""
+
 #, python-format
 msgid ""
 "Image created on:\n"
@@ -8519,8 +8528,8 @@ msgid "Multi EPG"
 msgstr "Multi EPG"
 
 #, fuzzy
-msgid "MultiBoot"
-msgstr "Více satelitů"
+msgid "MultiBoot Selection"
+msgstr "Volba zvuku"
 
 #, fuzzy
 msgid "MultiBoot Selector"

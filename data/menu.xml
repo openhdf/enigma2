@@ -293,7 +293,7 @@ else:
 			<item weight="30" text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
 			<item weight="40" text="SleepTimer" entryID="sleep" level="0" requires="DeepstandbySupport" ><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
 			<item weight="50" text="PowerTimer" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
-			<item weight="60" text="MultiBoot" entryID="multiboot" requires="canMultiBoot"><screen module="FlashImage" screen="MultibootSelection">1</screen></item>
+			<item weight="60" text="MultiBoot Selection" entryID="multiboot" requires="canMultiBoot"><screen module="FlashImage" screen="MultibootSelection">1</screen></item>
 			<!--item text="QuickBoot Image Selector" level="0" requires="canMultiBoot" entryID="restart"><screen module="MultiBootSelector" screen="QuickBootSelector" /></item -->
 			<item weight="70" text="Recovery Mode" requires="RecoveryMode" entryID="maintenance_mode"><screen module="Standby" screen="TryQuitMainloop">16</screen></item>
 			<item weight="80" text="Restart enigma" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>

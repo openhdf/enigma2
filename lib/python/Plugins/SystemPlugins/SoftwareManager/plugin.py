@@ -53,6 +53,7 @@ from Tools.NumericalTextInput import NumericalTextInput
 from .BackupRestore import (BackupScreen, BackupSelection, RestoreMenu,
                             RestoreScreen, getBackupFilename, getBackupPath,
                             getOldBackupPath)
+from Screens.FlashImage import SelectImage
 from .ImageBackup import ImageBackup
 from .ImageWizard import ImageWizard
 from .SoftwareTools import iSoftwareTools
@@ -395,6 +396,8 @@ class UpdatePluginMenu(Screen):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
+				elif (currentEntry == "flash-online"):
+					self.session.open(SelectImage)
 				elif (currentEntry == "backup-image"):
 					if DFLASH == True:
 						self.session.open(dFlash)

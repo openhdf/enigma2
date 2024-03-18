@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 11:52+0100\n"
-"PO-Revision-Date: 2024-03-18 19:55+0100\n"
+"POT-Creation-Date: 2024-03-18 20:35+0100\n"
+"PO-Revision-Date: 2024-03-18 20:37+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -73,6 +73,14 @@ msgid ""
 msgstr ""
 "\n"
 "Ausführung beendet!"
+
+#, python-format
+msgid ""
+"\n"
+"Flash on the fly your %s %s."
+msgstr ""
+"\n"
+"Flashen - Online/Local der %s %s."
 
 #, python-format
 msgid ""
@@ -6759,6 +6767,9 @@ msgstr "Image Informationen"
 msgid "Image Manager"
 msgstr "Image Verwaltung"
 
+msgid "Image Online-Flash"
+msgstr "Image Online-Flash"
+
 #, python-format
 msgid ""
 "Image created on:\n"
@@ -8140,7 +8151,7 @@ msgstr "Mozambique"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
-msgid "MultiBoot"
+msgid "MultiBoot Selection"
 msgstr "MultiBoot Auswahl"
 
 msgid "MultiBoot Selector"
@@ -17800,10 +17811,6 @@ msgstr "Vorwärts springen (Zeit eingeben)"
 #, python-format
 msgid "slot%s - %s"
 msgstr "Startup %s - %s"
-
-#, python-format
-msgid "Slot"
-msgstr "Startup"
 
 #, python-format
 msgid "slot%s - %s (current image)"
