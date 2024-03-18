@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-18 11:52+0100\n"
-"PO-Revision-Date: 2024-03-18 11:58+0100\n"
+"PO-Revision-Date: 2024-03-18 19:09+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -2463,14 +2463,14 @@ msgid "Boost green"
 msgstr "Verstärke Grün"
 
 msgid "Boot to Android image"
-msgstr "Zu Android wechseln"
+msgstr "Starte das Android System"
 
 #, python-format
 msgid "Boot to Recovery image - slot0 %s"
 msgstr "Boot zum Recovery – Startup0 %s"
 
 msgid "Boot to Recovery menu"
-msgstr "Boot zum Recovery Menü"
+msgstr "Starte das Recovery Menü"
 
 msgid "Boot-up action"
 msgstr "Startmodus der Box"
@@ -8141,7 +8141,7 @@ msgid "Multi EPG"
 msgstr "Multi EPG"
 
 msgid "MultiBoot"
-msgstr "MultiBoot"
+msgstr "MultiBoot Auswahl"
 
 msgid "MultiBoot Selector"
 msgstr "MultiBoot Auswahl"
@@ -17802,8 +17802,12 @@ msgid "slot%s - %s"
 msgstr "Startup %s - %s"
 
 #, python-format
+msgid "Slot"
+msgstr "Startup"
+
+#, python-format
 msgid "slot%s - %s (current image)"
-msgstr "Slot %s - %s (aktuelles Image)"
+msgstr "Startup %s - %s (aktuelles Image)"
 
 #, python-format
 msgid "slot%s - %s mode 1"
