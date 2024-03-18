@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-18 11:52+0100\n"
-"PO-Revision-Date: 2024-03-18 19:09+0100\n"
+"PO-Revision-Date: 2024-03-18 19:55+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1896,7 +1896,7 @@ msgid "Are you sure to purge all deleted userbouquets?"
 msgstr "Sollen die gelöschten Userbouquets endgültig gelöscht werden?"
 
 msgid "Are you sure to reboot to"
-msgstr "Sind Sie sicher neu zu starten zu"
+msgstr "Soll dieses Image jetzt gestartet werden"
 
 #, python-format
 msgid "Are you sure to remove all %d.%d%s%s services?"
