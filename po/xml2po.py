@@ -1,22 +1,18 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
-from os import listdir
-from os import path as os_path
-from re import compile
-from sys import argv
+import sys
+import os
+import string
+import re
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler, property_lexical_handler
-
-from six import ensure_str
 
 try:
 	from _xmlplus.sax.saxlib import LexicalHandler
 	no_comments = False
 except ImportError:
 	class LexicalHandler:
-		def __init__(self):
-			pass
+		pass
 	no_comments = True
 
 
@@ -25,7 +21,7 @@ class parseXML(ContentHandler, LexicalHandler):
 		self.isPointsElement, self.isReboundsElement = 0, 0
 		self.attrlist = attrlist
 		self.last_comment = None
-		self.ishex = compile('#[0-9a-fA-F]+\Z')
+		self.ishex = re.compile('#[0-9a-fA-F]+\Z')
 
 	def comment(self, comment):
 		if "TRANSLATORS:" in comment:
@@ -34,7 +30,8 @@ class parseXML(ContentHandler, LexicalHandler):
 	def startElement(self, name, attrs):
 		for x in ["text", "title", "value", "caption", "description"]:
 			try:
-				k = ensure_str(attrs[x])
+				ktmp = attrs[x].encode('utf-8')
+				k = ktmp.decode()
 				if k.strip() != "" and not self.ishex.match(k):
 					attrlist.add((k, self.last_comment))
 					self.last_comment = None
@@ -51,25 +48,28 @@ parser.setContentHandler(contentHandler)
 if not no_comments:
 	parser.setProperty(property_lexical_handler, contentHandler)
 
-for arg in argv[1:]:
-	if os_path.isdir(arg):
-		for _file in listdir(arg):
-			if _file.endswith(".xml"):
-				parser.parse(os_path.join(arg, _file))
+for arg in sys.argv[1:]:
+	if os.path.isdir(arg):
+		for file in os.listdir(arg):
+			if file.endswith(".xml"):
+				parser.parse(os.path.join(arg, file))
 	else:
-		parser.parse(arg)
+		try:
+			parser.parse(arg)
+		except:
+			pass
 
 	attrlist = list(attrlist)
 	attrlist.sort(key=lambda a: a[0])
 
 	for (k, c) in attrlist:
-		print()
+		print('')
 		print('#: ' + arg)
 		k.replace("\\n", "\"\n\"")
 		if c:
 			for l in c.split('\n'):
 				print("#. ", l)
-		print('msgid "' + ensure_str(k) + '"')
+		print('msgid "' + k + '"')
 		print('msgstr ""')
 
 	attrlist = set()
