@@ -184,6 +184,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<menu weight="25" level="0" text="Software" entryID="software_menu">
 				<id val="software_menu" />
 				<item level="1" entryID="onlineupdate_setup"><setup id="softwareupdate"/></item>
+				<item weight="55" level="0" text="Flash image" entryID="flash_image" requires="canFlashWithOfgwrite" ><screen module="FlashImage" screen="SelectImage"/></item>
 			</menu>
 
 			<!-- Menu / Setup / System-->
@@ -233,7 +234,6 @@ self.session.open(SABnzbdSetupScreen)
 				<!-- Menu / Settings / Parental Control -->
 				<item level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 
-				<item weight="55" level="0" text="Flash image" entryID="flash_image" requires="canFlashWithOfgwrite" ><screen module="FlashImage" screen="SelectImage"/></item>
 				<!-- Menu / Settings / Factory reset -->
 				<item level="0" text="Factory reset" entryID="factory_reset">
 				<code>
