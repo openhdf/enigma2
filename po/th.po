@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 08:55+0100\n"
+"POT-Creation-Date: 2024-03-19 10:53+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -654,7 +654,7 @@ msgid "(ZAP)"
 msgstr "(ย้ายช่อง)"
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "ค่าปัจจุบัน:"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"

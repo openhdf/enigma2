@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 08:55+0100\n"
+"POT-Creation-Date: 2024-03-19 10:53+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -662,7 +662,7 @@ msgid "(ZAP)"
 msgstr "(Kanalivahetus)"
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "Praegune kellaaeg"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"

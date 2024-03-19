@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 08:55+0100\n"
+"POT-Creation-Date: 2024-03-19 10:53+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -649,7 +649,7 @@ msgid "(ZAP)"
 msgstr "(ZAP)"
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "當前"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"

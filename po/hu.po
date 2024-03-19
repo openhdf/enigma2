@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 08:55+0100\n"
+"POT-Creation-Date: 2024-03-19 10:53+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -711,7 +711,7 @@ msgid "(ZAP)"
 msgstr "(UGRÁS)"
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "A telepített image"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"

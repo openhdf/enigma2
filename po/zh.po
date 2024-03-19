@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openhdf-6.5             enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 08:55+0100\n"
+"POT-Creation-Date: 2024-03-19 10:53+0100\n"
 "PO-Revision-Date: 2021-08-04 21:52+0800\n"
 "Last-Translator: 孤独之剑 < haotzyy1970@163.com>\n"
 "Language-Team: 孤独之剑< haotzyy1970@163.com>\n"
@@ -685,7 +685,7 @@ msgid "(ZAP)"
 msgstr "(切换)"
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "(当前镜像)"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
