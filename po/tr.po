@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: 2024-03-19 10:56+0100\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
@@ -16460,6 +16460,14 @@ msgstr "Evet, film listesine dön"
 msgid "Yes, shut down now."
 msgstr "Evet, cihazı şimdi kapat."
 
+#, fuzzy
+msgid "Yes, with backup"
+msgstr "Yedekleri geri yükle"
+
+#, fuzzy
+msgid "Yes, without backup"
+msgstr "Yedekleri geri yükle"
+
 msgid "Yesterday"
 msgstr "Dün"
 
@@ -18223,6 +18231,14 @@ msgstr ""
 msgid "slot%s - %s (current image)"
 msgstr "Geçerli zaman"
 
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "Geçerli zaman"
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "Geçerli zaman"
+
 #, python-format
 msgid "slot%s - %s mode 1"
 msgstr ""
@@ -18238,6 +18254,14 @@ msgstr ""
 #, fuzzy, python-format
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Geçerli zaman"
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
+msgstr ""
 
 msgid "slow"
 msgstr "yavaş"

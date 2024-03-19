@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
-"PO-Revision-Date: 2024-03-19 10:55+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
+"PO-Revision-Date: 2024-03-19 12:52+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -16058,6 +16058,12 @@ msgstr "Ja, zurück zur Filmauswahl"
 msgid "Yes, shut down now."
 msgstr "Ja, jetzt herunterfahren."
 
+msgid "Yes, with backup"
+msgstr "Ja, mit Backup"
+
+msgid "Yes, without backup"
+msgstr "Ja, ohne Backup"
+
 msgid "Yesterday"
 msgstr "Gestern"
 
@@ -17807,6 +17813,14 @@ msgid "slot%s - %s (current image)"
 msgstr "Startup %s - %s (aktuelles Image)"
 
 #, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "Startup%s - %s (aktuelles Image), mit Backup"
+
+#, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "Startup%s - %s (aktuelles Image), ohne Backup"
+
+#, python-format
 msgid "slot%s - %s mode 1"
 msgstr "Startup %s - %s Mode 1"
 
@@ -17821,6 +17835,14 @@ msgstr "Startup %s - %s Mode 12"
 #, python-format
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Startup %s - %s Mode 12 (aktuelles Image)"
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr "Startup%s - %s, mit Backup"
+
+#, python-format
+msgid "slot%s - %s, without backup"
+msgstr "Startup%s - %s, ohne Backup"
 
 msgid "slow"
 msgstr "Langsam"
@@ -17904,7 +17926,7 @@ msgid "system:"
 msgstr "System:"
 
 msgid "talk show"
-msgstr "Talk-Show"
+msgstr "Talkshow"
 
 msgid "team sports"
 msgstr "Mannschaftssport"
@@ -17931,7 +17953,7 @@ msgid "this service is protected by a parental control pin"
 msgstr "Dieser Sender ist durch einen Jugendschutz-PIN Code geschützt"
 
 msgid "this will take between 2 and 9 minutes\n"
-msgstr "zwischen 2-9 Minuten\n"
+msgstr "dies dauert zwischen 2 und 9 Minuten\n"
 
 msgid "toggle selection"
 msgstr "Auswahl umschalten"
@@ -18078,13 +18100,13 @@ msgid "width"
 msgstr "Breite"
 
 msgid "will take about 2-10 minutes for this system\n"
-msgstr "zwischen 2-10 Minuten\n"
+msgstr "dauert etwa 2-10 Minuten für dieses System\n"
 
 msgid "will take about 3-12 minutes for this system\n"
-msgstr "wird etwa 3-12 Minuten für dieses System benötigen.\n"
+msgstr "dauert etwa 3-12 Minuten für dieses System\n"
 
 msgid "will take about 30 minutes for this system\n"
-msgstr "ca. 30 Minuten\n"
+msgstr "wird etwa 30 Minuten für dieses System benötigen\n"
 
 msgid "winter sport"
 msgstr "Wintersport"

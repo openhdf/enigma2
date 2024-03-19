@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: 2024-03-19 10:56+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
@@ -16511,6 +16511,14 @@ msgstr "Oui, retour vers liste des films"
 msgid "Yes, shut down now."
 msgstr "Oui, éteindre maintenant."
 
+#, fuzzy
+msgid "Yes, with backup"
+msgstr "Restaurer sauvegardes"
+
+#, fuzzy
+msgid "Yes, without backup"
+msgstr "Restaurer sauvegardes"
+
 msgid "Yesterday"
 msgstr "Hier"
 
@@ -18296,6 +18304,14 @@ msgid "slot%s - %s (current image)"
 msgstr "Têtes: %s (max) %s (actuel)"
 
 #, fuzzy, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "Têtes: %s (max) %s (actuel)"
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "Têtes: %s (max) %s (actuel)"
+
+#, fuzzy, python-format
 msgid "slot%s - %s mode 1"
 msgstr "Têtes: %s (max) %s (actuel)"
 
@@ -18309,6 +18325,14 @@ msgstr "Têtes: %s (max) %s (actuel)"
 
 #, fuzzy, python-format
 msgid "slot%s - %s mode 12 (current image)"
+msgstr "Têtes: %s (max) %s (actuel)"
+
+#, fuzzy, python-format
+msgid "slot%s - %s, with backup"
+msgstr "Têtes: %s (max) %s (actuel)"
+
+#, fuzzy, python-format
+msgid "slot%s - %s, without backup"
 msgstr "Têtes: %s (max) %s (actuel)"
 
 msgid "slow"

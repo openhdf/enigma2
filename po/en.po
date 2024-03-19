@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: none\n"
@@ -16472,6 +16472,14 @@ msgstr "Yes, returning to movie list"
 msgid "Yes, shut down now."
 msgstr "Yes, shut down now."
 
+#, fuzzy
+msgid "Yes, with backup"
+msgstr "Restore backups"
+
+#, fuzzy
+msgid "Yes, without backup"
+msgstr "Restore backups"
+
 msgid "Yesterday"
 msgstr "Yesterday"
 
@@ -18234,6 +18242,14 @@ msgstr ""
 msgid "slot%s - %s (current image)"
 msgstr "Current time"
 
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "Current time"
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "Current time"
+
 #, python-format
 msgid "slot%s - %s mode 1"
 msgstr ""
@@ -18249,6 +18265,14 @@ msgstr ""
 #, fuzzy, python-format
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Current time"
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
+msgstr ""
 
 msgid "slow"
 msgstr "slow"

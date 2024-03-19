@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlac/TimoJ\n"
@@ -18645,6 +18645,16 @@ msgstr "Kyllä, palataan tallenneluetteloon"
 msgid "Yes, shut down now."
 msgstr "Kyllä, sammuta nyt."
 
+#
+#, fuzzy
+msgid "Yes, with backup"
+msgstr "Palauta varmistus"
+
+#
+#, fuzzy
+msgid "Yes, without backup"
+msgstr "Palauta varmistus"
+
 msgid "Yesterday"
 msgstr "Eilen"
 
@@ -20655,6 +20665,14 @@ msgstr ""
 msgid "slot%s - %s (current image)"
 msgstr "Aika"
 
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "Aika"
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "Aika"
+
 #, python-format
 msgid "slot%s - %s mode 1"
 msgstr ""
@@ -20670,6 +20688,14 @@ msgstr ""
 #, fuzzy, python-format
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Aika"
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
+msgstr ""
 
 msgid "slow"
 msgstr "hidas"

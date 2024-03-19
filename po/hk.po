@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -17042,6 +17042,14 @@ msgstr "是，返回電影列表"
 msgid "Yes, shut down now."
 msgstr "是，立即關機。"
 
+#, fuzzy
+msgid "Yes, with backup"
+msgstr "恢復備份"
+
+#, fuzzy
+msgid "Yes, without backup"
+msgstr "恢復備份"
+
 msgid "Yesterday"
 msgstr ""
 
@@ -18830,6 +18838,14 @@ msgstr ""
 msgid "slot%s - %s (current image)"
 msgstr "當前"
 
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "當前"
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "當前"
+
 #, python-format
 msgid "slot%s - %s mode 1"
 msgstr ""
@@ -18845,6 +18861,14 @@ msgstr ""
 #, fuzzy, python-format
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "當前"
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
+msgstr ""
 
 msgid "slow"
 msgstr ""

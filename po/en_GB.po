@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: 2024-03-19 11:00+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: ViX\n"
@@ -15556,6 +15556,12 @@ msgstr ""
 msgid "Yes, shut down now."
 msgstr ""
 
+msgid "Yes, with backup"
+msgstr ""
+
+msgid "Yes, without backup"
+msgstr ""
+
 msgid "Yesterday"
 msgstr ""
 
@@ -17235,6 +17241,14 @@ msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr ""
+
+#, python-format
 msgid "slot%s - %s mode 1"
 msgstr ""
 
@@ -17248,6 +17262,14 @@ msgstr ""
 
 #, python-format
 msgid "slot%s - %s mode 12 (current image)"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
 msgstr ""
 
 msgid "slow"

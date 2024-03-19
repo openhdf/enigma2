@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -18789,6 +18789,16 @@ msgstr "Igen, térjen vissza a felvételek listájához"
 msgid "Yes, shut down now."
 msgstr "Igen, hajtsunk végre most egy kikapcsolást."
 
+#
+#, fuzzy
+msgid "Yes, with backup"
+msgstr "Mentések visszaállítása"
+
+#
+#, fuzzy
+msgid "Yes, without backup"
+msgstr "Mentések visszaállítása"
+
 msgid "Yesterday"
 msgstr ""
 
@@ -20773,6 +20783,14 @@ msgstr ""
 msgid "slot%s - %s (current image)"
 msgstr "A telepített image"
 
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "A telepített image"
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "A telepített image"
+
 #, python-format
 msgid "slot%s - %s mode 1"
 msgstr ""
@@ -20788,6 +20806,14 @@ msgstr ""
 #, fuzzy, python-format
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "A telepített image"
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
+msgstr ""
 
 msgid "slow"
 msgstr ""

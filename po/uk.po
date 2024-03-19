@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: http://sat-ukraine.info/\n"
@@ -18652,6 +18652,12 @@ msgstr "Так, але повернутись до списку фільмів"
 msgid "Yes, shut down now."
 msgstr "Так вимкнути зараз."
 
+msgid "Yes, with backup"
+msgstr ""
+
+msgid "Yes, without backup"
+msgstr ""
+
 msgid "Yesterday"
 msgstr ""
 
@@ -20610,6 +20616,14 @@ msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr ""
+
+#, python-format
 msgid "slot%s - %s mode 1"
 msgstr ""
 
@@ -20623,6 +20637,14 @@ msgstr ""
 
 #, python-format
 msgid "slot%s - %s mode 12 (current image)"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
 msgstr ""
 
 msgid "slow"

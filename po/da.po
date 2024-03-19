@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: 2019-08-27 05:20+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: None <tbt_dk@hotmail.com>\n"
@@ -18795,6 +18795,16 @@ msgstr "Ja, gå til filmliste"
 msgid "Yes, shut down now."
 msgstr "Ja, start afbrydelse nu."
 
+#
+#, fuzzy
+msgid "Yes, with backup"
+msgstr "Gendan backup"
+
+#
+#, fuzzy
+msgid "Yes, without backup"
+msgstr "Gendan backup"
+
 msgid "Yesterday"
 msgstr "I går"
 
@@ -20784,6 +20794,14 @@ msgstr ""
 msgid "slot%s - %s (current image)"
 msgstr "Installeret Image"
 
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "Installeret Image"
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "Installeret Image"
+
 #, python-format
 msgid "slot%s - %s mode 1"
 msgstr ""
@@ -20799,6 +20817,14 @@ msgstr ""
 #, fuzzy, python-format
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Installeret Image"
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
+msgstr ""
 
 msgid "slow"
 msgstr ""

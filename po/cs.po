@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: \n"
@@ -16850,6 +16850,14 @@ msgstr "Ano, vrátit se na seznam filmů"
 msgid "Yes, shut down now."
 msgstr "Ano, vypnout systém"
 
+#, fuzzy
+msgid "Yes, with backup"
+msgstr "Obnovit ze zálohy"
+
+#, fuzzy
+msgid "Yes, without backup"
+msgstr "Obnovit ze zálohy"
+
 msgid "Yesterday"
 msgstr "Včera"
 
@@ -18652,6 +18660,14 @@ msgstr ""
 msgid "slot%s - %s (current image)"
 msgstr "Akt. čas"
 
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "Akt. čas"
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "Akt. čas"
+
 #, python-format
 msgid "slot%s - %s mode 1"
 msgstr ""
@@ -18667,6 +18683,14 @@ msgstr ""
 #, fuzzy, python-format
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Akt. čas"
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
+msgstr ""
 
 msgid "slow"
 msgstr "Pomalu"

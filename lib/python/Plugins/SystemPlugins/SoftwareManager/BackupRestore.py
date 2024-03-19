@@ -635,11 +635,12 @@ class installedPlugins(Screen):
 	def readPluginList(self):
 		installedpkgs = ShellCompatibleFunctions.listpkg(type="installed", image_dir=self.image_dir)
 		self.PluginList = []
-		with open('/tmp/installed-list.txt') as f:
-			for line in f:
-				if line.strip() not in installedpkgs:
-					self.PluginList.append(line.strip())
-		f.close()
+		if os_path.exists('/tmp/installed-list.txt'):
+			with open('/tmp/installed-list.txt') as f:
+				for line in f:
+					if line.strip() not in installedpkgs:
+						self.PluginList.append(line.strip())
+			f.close()
 		self.createMenuList()
 
 	def createMenuList(self):

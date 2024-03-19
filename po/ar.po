@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: 2019-08-27 05:19+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -17649,6 +17649,14 @@ msgstr "نعم، العوده الى قائمة الافلام"
 msgid "Yes, shut down now."
 msgstr "نعم أغلق الان."
 
+#, fuzzy
+msgid "Yes, with backup"
+msgstr "إستعادة النسخه الإحتياطيه "
+
+#, fuzzy
+msgid "Yes, without backup"
+msgstr "إستعادة النسخه الإحتياطيه "
+
 msgid "Yesterday"
 msgstr ""
 
@@ -19465,6 +19473,14 @@ msgstr ""
 msgid "slot%s - %s (current image)"
 msgstr "القيمه الحاليه:"
 
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "القيمه الحاليه:"
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "القيمه الحاليه:"
+
 #, python-format
 msgid "slot%s - %s mode 1"
 msgstr ""
@@ -19480,6 +19496,14 @@ msgstr ""
 #, fuzzy, python-format
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "القيمه الحاليه:"
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
+msgstr ""
 
 msgid "slow"
 msgstr ""

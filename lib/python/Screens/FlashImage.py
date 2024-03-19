@@ -31,8 +31,8 @@ from enigma import eEPGCache
 from boxbranding import getImageDistro, getBoxType, getMachineBrand, getMachineName
 
 isDevice = False
+doBackup = False
 multibootslot = ""
-
 
 def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('uImage', 'rootfs.bin', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi')]) == 2
@@ -294,13 +294,15 @@ class FlashImage(Screen):
 			choices = []
 			slotdict = {k: v for k, v in BoxInfo.getItem("canMultiBoot").items() if not v['device'].startswith('/dev/sda')}
 			for x in range(1, len(slotdict) + 1):
-				choices.append(((_("slot%s - %s (current image)") if x == currentimageslot else _("slot%s - %s")) % (x, imagesList[x]['imagename']), (x, "with backup") if getImageDistro() in self.imagename else (x, "without backup")))
+				choices.append(((_("slot%s - %s (current image), with backup") if x == currentimageslot else _("slot%s - %s, with backup")) % (x, imagesList[x]['imagename']), (x, "with backup")))
+			for x in range(1, len(slotdict) + 1):
+				choices.append(((_("slot%s - %s (current image), without backup") if x == currentimageslot else _("slot%s - %s, without backup")) % (x, imagesList[x]['imagename']), (x, "without backup")))
 			if "://" in self.source:
 				choices.append((_("No, only download"), (1, "only download")))
 			choices.append((_("No, do not flash image"), False))
 			self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot, simple=True)
 		else:
-			choices = [(_("Yes"), "with backup")]
+			choices = [(_("Yes, with backup"), "with backup"), (_("Yes, without backup"), "without backup")]
 			if "://" in self.source:
 				choices.append((_("No, only download"), "only download"))
 			choices.append((_("No, do not flash image"), False))
@@ -308,11 +310,14 @@ class FlashImage(Screen):
 
 	def checkMedia(self, retval):
 		if retval:
+			global doBackup
 			if BoxInfo.getItem("canMultiBoot"):
 				global multibootslot
 				multibootslot = retval[0]
+				doBackup = retval[1] == "with backup"
 				self.onlyDownload = retval[1] == "only download"
 			else:
+				doBackup = retval == "with backup"
 				self.onlyDownload = retval == "only download"
 
 			def findmedia(path):
@@ -528,6 +533,7 @@ class FlashImage(Screen):
 		return index
 
 	def postFlashActionCallback(self, choice):
+		global doBackup
 		if choice:
 			rootFolder = "/media/hdd/images/config"
 			if choice != "abort" and not self.recordCheck:
@@ -541,7 +547,7 @@ class FlashImage(Screen):
 			restoreSettings = ("restoresettings" in choice)
 			restoreSettingsnoPlugin = (choice == "restoresettingsnoplugin")
 			restoreAllPlugins = (choice == "restoresettingsandallplugins")
-			if restoreSettings:
+			if restoreSettings and doBackup:
 				self.saveEPG()
 			if choice != "abort":
 				filesToCreate = []
@@ -567,10 +573,13 @@ class FlashImage(Screen):
 						if os.path.exists(path):
 							os.unlink(path)
 				global isDevice
-				if isDevice:
-					self.startBackupsettings(True)
+				if doBackup:
+					if isDevice:
+						self.startBackupsettings(True)
+					else:
+						self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
 				else:
-					self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
+					self.startDownload()
 			else:
 				self.abort()
 		else:

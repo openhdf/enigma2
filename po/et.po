@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -17044,6 +17044,14 @@ msgstr "Jah, tagasi filmilisti"
 msgid "Yes, shut down now."
 msgstr "Jah, lülita välja."
 
+#, fuzzy
+msgid "Yes, with backup"
+msgstr "Varukoopia taastamine"
+
+#, fuzzy
+msgid "Yes, without backup"
+msgstr "Varukoopia taastamine"
+
 msgid "Yesterday"
 msgstr "Eile"
 
@@ -18845,6 +18853,14 @@ msgstr ""
 msgid "slot%s - %s (current image)"
 msgstr "Praegune kellaaeg"
 
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "Praegune kellaaeg"
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "Praegune kellaaeg"
+
 #, python-format
 msgid "slot%s - %s mode 1"
 msgstr ""
@@ -18860,6 +18876,14 @@ msgstr ""
 #, fuzzy, python-format
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Praegune kellaaeg"
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
+msgstr ""
 
 msgid "slow"
 msgstr "aeglane"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 10:53+0100\n"
+"POT-Creation-Date: 2024-03-19 12:47+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -17592,6 +17592,14 @@ msgstr "Yes, returning to movie list"
 msgid "Yes, shut down now."
 msgstr "Yes, shut down now."
 
+#, fuzzy
+msgid "Yes, with backup"
+msgstr "שחזור גיבויים"
+
+#, fuzzy
+msgid "Yes, without backup"
+msgstr "שחזור גיבויים"
+
 msgid "Yesterday"
 msgstr ""
 
@@ -19407,6 +19415,14 @@ msgstr ""
 msgid "slot%s - %s (current image)"
 msgstr "Current value: "
 
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "Current value: "
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "Current value: "
+
 #, python-format
 msgid "slot%s - %s mode 1"
 msgstr ""
@@ -19422,6 +19438,14 @@ msgstr ""
 #, fuzzy, python-format
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Current value: "
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
+msgstr ""
 
 msgid "slow"
 msgstr ""
