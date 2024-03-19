@@ -609,6 +609,8 @@ def InitUsageConfig():
 	config.usage.boolean_graphic = ConfigYesNo(default=False)
 	config.usage.show_slider_value = ConfigYesNo(default=True)
 
+	config.usage.multiboot_order = ConfigYesNo(default=True)
+
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default=True)
 	config.epg.mhw = ConfigYesNo(default=False)
