@@ -1,7 +1,7 @@
 from datetime import date
 from os import listdir, makedirs
 from os import path as os_path
-from os import popen, remove, rename, stat, mkdir
+from os import popen, remove, rename, stat
 
 from boxbranding import (getBoxType, getImageDistro, getMachineBrand,
                          getMachineName)
@@ -469,7 +469,6 @@ class RestoreScreen(Screen, ConfigListScreen):
 			restorecmdlist.append("/etc/init.d/autofs restart")
 
 		self.session.open(Console, title=_("Restoring..."), cmdlist=restorecmdlist, finishedCallback=self.restoreFinishedCB)
-		self.createSkinRestoreFile()
 
 	def restoreFinishedCB(self, retval=None):
 		ShellCompatibleFunctions.restoreUserDB(image_dir=self.image_dir)
@@ -527,13 +526,11 @@ umount ${CHROOT}/dev ${CHROOT}/proc ${CHROOT}/sys
 
 	def createSkinRestoreFile(self):
 		try:
-			skinrestorefile = "%setc/enigma2/xionrestore" % self.image_dir
+			skinrestorefile = "/media/hdd/images/skinrestore"
 			from Tools.Directories import fileExists
 			if fileExists(skinrestorefile):
 				print("[SkinRestore]: Skinrestorefile exists")
 			else:
-				if not os_path.exists("%setc/enigma2/" % self.image_dir):
-					mkdir("%setc/enigma2/" % self.image_dir)
 				open(skinrestorefile, 'a').close()
 				print("[SkinRestore]: Skinrestorefile created")
 		except:
