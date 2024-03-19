@@ -677,7 +677,7 @@ class MultibootSelection(SelectImage):
 		if self["key_yellow"].text == _("Restore deleted images"):
 			self.session.openWithCallback(self.deleteImageCallback, MessageBox, _("Are you sure to restore all deleted images"), simple=True)
 		elif self["key_yellow"].text == _("Delete Image"):
-			self.session.openWithCallback(self.deleteImageCallback, MessageBox, "%s:\n%s" % (_("Are you sure to delete image:"), self.currentSelected[0][0]), simple=True)
+			self.session.openWithCallback(self.deleteImageCallback, MessageBox, "%s:\n%s" % (_("Are you sure to delete image"), self.currentSelected[0][0]), simple=True)
 
 	def deleteImageCallback(self, answer):
 		if answer:

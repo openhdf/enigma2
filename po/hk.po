@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 20:42+0100\n"
+"POT-Creation-Date: 2024-03-19 08:55+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -1943,7 +1943,7 @@ msgid "Are you sure to delete all cuts and marks?"
 msgstr "確定刪除所有專案?"
 
 #, fuzzy
-msgid "Are you sure to delete image:"
+msgid "Are you sure to delete image"
 msgstr "確定要退出此嚮導?"
 
 #, fuzzy

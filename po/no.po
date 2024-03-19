@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 20:42+0100\n"
+"POT-Creation-Date: 2024-03-19 08:55+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -2113,7 +2113,7 @@ msgstr "Er du sikker på at du vil slette alle valgte logger:\n"
 
 #
 #, fuzzy
-msgid "Are you sure to delete image:"
+msgid "Are you sure to delete image"
 msgstr ""
 "Er du sikker på at du vil slette denne:\n"
 " "
