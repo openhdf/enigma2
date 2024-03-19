@@ -1,7 +1,7 @@
 from datetime import date
 from os import listdir, makedirs
 from os import path as os_path
-from os import popen, remove, rename, stat
+from os import popen, remove, rename, stat, mkdir
 
 from boxbranding import (getBoxType, getImageDistro, getMachineBrand,
                          getMachineName)
@@ -67,6 +67,8 @@ def InitConfig():
 		'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
 		'/etc/rc3.d/S99tuner.sh',
 		'/usr/bin/enigma2_pre_start.sh',
+		'/usr/lib/libssl.so.0.9.8',
+		'/usr/lib/libcrypto.so.0.9.8',
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
 		+ eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
@@ -467,6 +469,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 			restorecmdlist.append("/etc/init.d/autofs restart")
 
 		self.session.open(Console, title=_("Restoring..."), cmdlist=restorecmdlist, finishedCallback=self.restoreFinishedCB)
+		self.createSkinRestoreFile()
 
 	def restoreFinishedCB(self, retval=None):
 		ShellCompatibleFunctions.restoreUserDB(image_dir=self.image_dir)
@@ -524,11 +527,13 @@ umount ${CHROOT}/dev ${CHROOT}/proc ${CHROOT}/sys
 
 	def createSkinRestoreFile(self):
 		try:
-			skinrestorefile = "/media/hdd/images/skinrestore"
+			skinrestorefile = "%setc/enigma2/xionrestore" % self.image_dir
 			from Tools.Directories import fileExists
 			if fileExists(skinrestorefile):
 				print("[SkinRestore]: Skinrestorefile exists")
 			else:
+				if not os_path.exists("%setc/enigma2/" % self.image_dir):
+					mkdir("%setc/enigma2/" % self.image_dir)
 				open(skinrestorefile, 'a').close()
 				print("[SkinRestore]: Skinrestorefile created")
 		except:
