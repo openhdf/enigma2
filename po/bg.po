@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2024-03-20 09:59+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Bulgarian\n"
@@ -3252,6 +3252,10 @@ msgid "Circular right"
 msgstr "Кръгова дясна"
 
 #, fuzzy
+msgid "Clean"
+msgstr "Почистване"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Изчистване преди сканиране"
 
@@ -5902,19 +5906,12 @@ msgid "Flash Image"
 msgstr "Грешка при флашване"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Да, възстанови настройките сега"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Грешка при флашване"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Да рестартирам ли сега?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, python-format
 msgid "Flashed:\t\t%s"
@@ -6694,6 +6691,9 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Колко минути желаете да запишете?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -8870,15 +8870,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "Стартиране"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "Стартиране"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Стартиране"
 
 msgid "North"
@@ -9104,10 +9096,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "фон"
 
 msgid "Only extensions."
 msgstr ""
@@ -11019,6 +11007,18 @@ msgstr ""
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Да, възстанови настройките сега"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "Надграждане (Възстановяване на всичко)"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "Възстановяване на системните настройки"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Грешка при стартиране на плъгина"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -15525,9 +15525,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr ""
 
-msgid "Upgrade (Restore everything)"
-msgstr "Надграждане (Възстановяване на всичко)"
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -16322,9 +16319,6 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "Какво искате да търся?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

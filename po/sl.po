@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -3608,6 +3608,11 @@ msgstr "Krožno - desno"
 
 #
 #, fuzzy
+msgid "Clean"
+msgstr "Čiščenje"
+
+#
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Pred iskanjem naj se izvede izbris obstoječih kanalov"
 
@@ -6667,11 +6672,6 @@ msgstr "Nadgradi"
 
 #
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Da, povrni shranjene nastavitve"
-
-#
-#, fuzzy
 msgid "Flash image"
 msgstr "Nadgradi"
 
@@ -6679,9 +6679,6 @@ msgstr "Nadgradi"
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Res želite ponovno zagnati sprejemnik?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #
 #, fuzzy, python-format
@@ -7554,6 +7551,9 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Koliko minut želite snemati?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -10045,17 +10045,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Normal Start"
-msgstr "Obnašanje pri preklopu kanala"
-
-#
-#, fuzzy
 msgid "Normal mode"
-msgstr "Obnašanje pri preklopu kanala"
-
-#
-#, fuzzy
-msgid "Normal start"
 msgstr "Obnašanje pri preklopu kanala"
 
 #
@@ -10307,11 +10297,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "slika ozadja"
 
 #
 msgid "Only extensions."
@@ -12565,6 +12550,21 @@ msgstr "Povrnitev varnostne kopije"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Da, povrni shranjene nastavitve"
+
+#
+#, fuzzy
+msgid "Restore everything"
+msgstr "Obnovitev glavnih nastavitev"
+
+#
+#, fuzzy
+msgid "Restore settings"
+msgstr "Obnovitev glavnih nastavitev"
+
+#
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Napaka pri zagonu vtičnika"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -17704,9 +17704,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "Posodabljanje kataloga programov..."
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -18623,9 +18620,6 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Kaj želite iskati?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

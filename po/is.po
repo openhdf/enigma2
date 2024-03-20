@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -3452,6 +3452,10 @@ msgid "Circular right"
 msgstr "Hringpólun hægri"
 
 #, fuzzy
+msgid "Clean"
+msgstr "Hreinsa"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Eyða fyrir leit"
 
@@ -6323,11 +6327,6 @@ msgstr "Forritun"
 
 #
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Já, settu inn afritið núna"
-
-#
-#, fuzzy
 msgid "Flash image"
 msgstr "Forritun"
 
@@ -6335,9 +6334,6 @@ msgstr "Forritun"
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Viltu örugglega endurræsa núna?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #
 #, fuzzy, python-format
@@ -7188,6 +7184,9 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Í hvað margar mínútur viltu taka upp?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9624,17 +9623,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Normal Start"
-msgstr "Kvörðunar aðferð"
-
-#
-#, fuzzy
 msgid "Normal mode"
-msgstr "Kvörðunar aðferð"
-
-#
-#, fuzzy
-msgid "Normal start"
 msgstr "Kvörðunar aðferð"
 
 #
@@ -9880,11 +9869,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "bakgrunns mynd"
 
 msgid "Only extensions."
 msgstr "Bara viðbætur."
@@ -12065,6 +12049,20 @@ msgstr "Setja inn afrit"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Já, settu inn afritið núna"
+
+#
+#, fuzzy
+msgid "Restore everything"
+msgstr "Setja inn kerfis stillingar"
+
+#
+#, fuzzy
+msgid "Restore settings"
+msgstr "Setja inn kerfis stillingar"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Villa við keyrslu íforrits"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -17057,9 +17055,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "Uppfæri efnisyfirlit hugbúnaðar"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -17969,9 +17964,6 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Að hverju viltu leita?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

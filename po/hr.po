@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: <jurica@dream-multimedia.eu>\n"
@@ -3509,6 +3509,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Clean"
+msgstr "Čišćenje"
+
+#
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Obriši prije skeniranja"
 
@@ -6444,19 +6449,11 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Da, vratite pohranjene postavke sada"
-
-#
-#, fuzzy
 msgid "Flash image"
 msgstr "ne mijenjaj"
 
 #, python-format
 msgid "Flash your %s %s and reboot now?"
-msgstr ""
-
-msgid "Flash, restore settings and user selected plugins"
 msgstr ""
 
 #, python-format
@@ -7302,6 +7299,9 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Koliko minuta želite snimati ?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9700,17 +9700,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Normal Start"
-msgstr "Mod razmjera"
-
-#
-#, fuzzy
 msgid "Normal mode"
-msgstr "Mod razmjera"
-
-#
-#, fuzzy
-msgid "Normal start"
 msgstr "Mod razmjera"
 
 #
@@ -9950,9 +9940,6 @@ msgid "One line"
 msgstr ""
 
 msgid "OnlineVersionCheck"
-msgstr ""
-
-msgid "Only Flash Backup Image"
 msgstr ""
 
 #
@@ -12077,6 +12064,21 @@ msgstr ""
 #
 #, fuzzy
 msgid "Restore deleted images"
+msgstr "Da, vratite pohranjene postavke sada"
+
+#
+#, fuzzy
+msgid "Restore everything"
+msgstr "Da, vratite pohranjene postavke sada"
+
+#
+#, fuzzy
+msgid "Restore settings"
+msgstr "Jedan EPG"
+
+#
+#, fuzzy
+msgid "Restore settings and selected plugins"
 msgstr "Da, vratite pohranjene postavke sada"
 
 msgid "Restore settings backup after restart"
@@ -16928,9 +16930,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr ""
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -17796,9 +17795,6 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Što želite skenirati?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

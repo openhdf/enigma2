@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2_v2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:20+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -3955,6 +3955,12 @@ msgstr "Αριστερόστροφη"
 msgid "Circular right"
 msgstr "Δεξιόστροφη"
 
+#
+#
+#, fuzzy
+msgid "Clean"
+msgstr "Εκκαθάριση"
+
 #, fuzzy
 msgid "Clean network trash can's"
 msgstr "Αδύνατη μεταφορά στον κάδο ανακύκλωσης"
@@ -7341,12 +7347,6 @@ msgstr "Flash"
 #
 #
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Ναι, αποκατάσταση ρυθμίσεων τώρα"
-
-#
-#
-#, fuzzy
 msgid "Flash image"
 msgstr "Flash"
 
@@ -7355,9 +7355,6 @@ msgstr "Flash"
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Επανεκκίνηση τώρα;"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #
 #
@@ -8316,6 +8313,9 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Ποσά λεπτά θέλετε να εγγραφούν;"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -11076,19 +11076,7 @@ msgstr ""
 #
 #
 #, fuzzy
-msgid "Normal Start"
-msgstr "Κατάσταση zap"
-
-#
-#
-#, fuzzy
 msgid "Normal mode"
-msgstr "Κατάσταση zap"
-
-#
-#
-#, fuzzy
-msgid "Normal start"
 msgstr "Κατάσταση zap"
 
 #
@@ -11355,12 +11343,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#
-#
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "εικόνα φόντου"
 
 #
 #
@@ -13907,6 +13889,24 @@ msgstr "Αποκατάσταση αντιγράφων ασφαλείας"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Ναι, αποκατάσταση ρυθμίσεων τώρα"
+
+#
+#
+#, fuzzy
+msgid "Restore everything"
+msgstr "Αποκατάσταση ρυθμίσεων συστήματος"
+
+#
+#
+#, fuzzy
+msgid "Restore settings"
+msgstr "Αποκατάσταση ρυθμίσεων συστήματος"
+
+#
+#
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Σφάλμα κατά την εκτέλεση προσθέτου"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -19589,9 +19589,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "Ενημέρωση καταλόγου λογισμικού"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -20617,9 +20614,6 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Τι θέλετε να σαρώσετε;"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

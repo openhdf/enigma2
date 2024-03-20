@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -3287,6 +3287,10 @@ msgid "Circular right"
 msgstr "วนขวา"
 
 #, fuzzy
+msgid "Clean"
+msgstr "Cleanup"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "ลบข้อมูลเดิมก่อนค้นหา"
 
@@ -5952,19 +5956,12 @@ msgid "Flash Image"
 msgstr "แฟรช"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "ใช่ - นำสำรองการตั้งค่ากลับมาใช้ตอนนี้เลย"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "แฟรช"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "ต้องการบูทเครื่องใหม่หรือไม่?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -6746,6 +6743,9 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "บันทึกรายต่อไปอีกกี่นาที?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -8935,15 +8935,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "Scaling Mode"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "Scaling Mode"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Scaling Mode"
 
 msgid "North"
@@ -9170,10 +9162,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "รูปพื้นหลัง"
 
 msgid "Only extensions."
 msgstr ""
@@ -11094,6 +11082,18 @@ msgstr "นำสำรองกลับมาใช้"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "ใช่ - นำสำรองการตั้งค่ากลับมาใช้ตอนนี้เลย"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "นำสำรองการตั้งค่าต่างๆ กลับมาใช้"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "นำสำรองการตั้งค่าต่างๆ กลับมาใช้"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "เรียกใช้งาน Plugin ผิดพลาด"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -15587,9 +15587,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr ""
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -16409,9 +16406,6 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "ท่านต้องการค้นหาอะไร?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

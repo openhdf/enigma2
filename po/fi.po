@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlac/TimoJ\n"
@@ -3589,6 +3589,11 @@ msgid "Circular right"
 msgstr "Kiertopol. oikea"
 
 #
+#, fuzzy
+msgid "Clean"
+msgstr "Poista vanhat"
+
+#
 #  Ohjatun asennuksen (Startup Wizard) kutosruudun valintateksti
 #  Tekstin pitää ilmeisesti olla melko lyhyt, koska käyttäjän
 #  valittavaksi annetut vaihtoehdot lyhentävät tilaa toisesta
@@ -6576,11 +6581,6 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Vilkkuva"
 
-#
-#, fuzzy
-msgid "Flash and restore settings"
-msgstr "Kyllä, palauta asetukset nyt"
-
 #, fuzzy
 msgid "Flash image"
 msgstr "Vilkkuva"
@@ -6589,9 +6589,6 @@ msgstr "Vilkkuva"
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Haluatko uudelleenasentaa %s %s:n ja käynnistää uudelleen?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -7447,6 +7444,10 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Kuinka monta minuuttia haluat tallentaa?"
+
+#, fuzzy
+msgid "How should the image be installed?\n"
+msgstr "Minne ajastus tallennetaan?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9861,15 +9862,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "Kanavanvaihdon toiminta"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "Kanavanvaihdon toiminta"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Kanavanvaihdon toiminta"
 
 #
@@ -10120,11 +10113,6 @@ msgstr "Yksi rivi"
 
 msgid "OnlineVersionCheck"
 msgstr "OnlineVersionTarkistus"
-
-#
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "Taustakuva"
 
 msgid "Only extensions."
 msgstr "Vain laajennukset."
@@ -12305,6 +12293,21 @@ msgstr "Palauta varmistus"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Kyllä, palauta asetukset nyt"
+
+#
+#, fuzzy
+msgid "Restore everything"
+msgstr "Palauta asetukset"
+
+#
+#, fuzzy
+msgid "Restore settings"
+msgstr "Palauta asetukset"
+
+#
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Virhe plugin-lisäosan suorittamisessa"
 
 #, fuzzy
 msgid "Restore settings backup after restart"
@@ -17323,9 +17326,6 @@ msgstr "odota..."
 msgid "Updating software catalog"
 msgstr "Päivitetään ohjelmistoluetteloa"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 #, fuzzy
 msgid "Upgrade and ask to reboot"
 msgstr "Päivitä ja käynnistä uudelleen"
@@ -18241,9 +18241,6 @@ msgstr "Mitä tehdään ajastuksen jälkeen? Autom. -asetuksella laite palaa enn
 #  Alkukielinen teksti on tilanteeseen nähden aika pösilö.
 msgid "What do you want to scan?"
 msgstr "Kanavahaun lisäasetukset:"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."

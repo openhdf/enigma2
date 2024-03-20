@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: none\n"
@@ -3318,6 +3318,10 @@ msgid "Circular right"
 msgstr "Kruhová pravá"
 
 #, fuzzy
+msgid "Clean"
+msgstr "Vyčistiť"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Vymazať pred skenovaním"
 
@@ -5992,19 +5996,12 @@ msgid "Flash Image"
 msgstr "Flešovať"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Áno, teraz obnoviť nastavenia"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Flešovať"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Naozaj mám teraz reštartovať?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -6786,6 +6783,9 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Koľko minút chcete nahrávať?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -8980,15 +8980,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "Škálovací režim"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "Škálovací režim"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Škálovací režim"
 
 msgid "North"
@@ -9215,10 +9207,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "obraz v pozadí"
 
 msgid "Only extensions."
 msgstr "Len rozšírenia."
@@ -11150,6 +11138,18 @@ msgstr "Obnoviť zálohy"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Áno, teraz obnoviť nastavenia"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "Obnoviť systémové nastavenia"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "Obnoviť systémové nastavenia"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Chyba pri spustení modulu"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -15689,9 +15689,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "Aktualizácia katalógu softvéru"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -16514,9 +16511,6 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "Čo chcete vyhľadať?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -3359,6 +3359,10 @@ msgid "Circular right"
 msgstr "右圓極化"
 
 #, fuzzy
+msgid "Clean"
+msgstr "清理"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "管理網路共用"
 
@@ -6056,19 +6060,12 @@ msgid "Flash Image"
 msgstr "安裝失敗"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "是，立即還原設定"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "安裝失敗"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "立即重啟(Reboot)?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, python-format
 msgid "Flashed:\t\t%s"
@@ -6862,6 +6859,9 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "您想錄製多少分鐘?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9078,13 +9078,7 @@ msgstr "無"
 msgid "Norfolk Island"
 msgstr ""
 
-msgid "Normal Start"
-msgstr ""
-
 msgid "Normal mode"
-msgstr ""
-
-msgid "Normal start"
 msgstr ""
 
 msgid "North"
@@ -9322,10 +9316,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "背景圖片"
 
 msgid "Only extensions."
 msgstr "僅增加部分."
@@ -11272,6 +11262,18 @@ msgstr "恢復備份"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "是，立即還原設定"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "恢復系統設定"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "恢復系統設定"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "執行插件發生錯誤"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -15851,9 +15853,6 @@ msgstr "正在安裝套裝軟體... 請稍候..."
 msgid "Updating software catalog"
 msgstr "更新軟體目錄"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -16674,9 +16673,6 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "是否開始掃描?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
@@ -3301,6 +3301,10 @@ msgid "Circular right"
 msgstr "Apskritiminė dešinė"
 
 #, fuzzy
+msgid "Clean"
+msgstr "Išvalyti"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Išvalyti prieš skanavimą"
 
@@ -5971,19 +5975,12 @@ msgid "Flash Image"
 msgstr "Vidinė atmintis"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Taip, atkurti nustatymus dabar"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Vidinė atmintis"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Tikrai perjungti dabar?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -6763,6 +6760,9 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Kiek minučių norite daryti įrašą?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -8954,13 +8954,7 @@ msgstr "Joks"
 msgid "Norfolk Island"
 msgstr ""
 
-msgid "Normal Start"
-msgstr ""
-
 msgid "Normal mode"
-msgstr ""
-
-msgid "Normal start"
 msgstr ""
 
 msgid "North"
@@ -9188,10 +9182,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "foninis atvaizdas"
 
 msgid "Only extensions."
 msgstr "Tik išplėtimus."
@@ -11123,6 +11113,18 @@ msgstr "Atkurti atsargines kopijas"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Taip, atkurti nustatymus dabar"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "Atkurkite sisteminius nustatymus"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "Atkurkite sisteminius nustatymus"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Klaida paleidžiant papildomą programą"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -15665,9 +15667,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "Programinės įrangos katalogo atnaujinimas"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -16490,9 +16489,6 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "Ką Jūs norite skanuoti?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

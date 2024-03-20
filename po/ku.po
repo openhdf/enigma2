@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -3420,6 +3420,10 @@ msgid "Circular right"
 msgstr "Raştiya daira"
 
 #, fuzzy
+msgid "Clean"
+msgstr "Paqişi"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Cannot move to trash can"
 
@@ -6182,19 +6186,12 @@ msgid "Flash Image"
 msgstr "Flash"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Yes, restore the settings now"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Flash"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Really upgrade your settop box and reboot now?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -6999,6 +6996,9 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "How many minutes do you want to record?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9225,15 +9225,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "Zap mode"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "Zap mode"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Zap mode"
 
 msgid "North"
@@ -9470,10 +9462,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "background image"
 
 msgid "Only extensions."
 msgstr "Only extensions."
@@ -11457,6 +11445,18 @@ msgstr "Restore backups"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Yes, restore the settings now"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "Restore system settings"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "Restore system settings"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Error executing plugin"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -16123,9 +16123,6 @@ msgstr "Please wait..."
 msgid "Updating software catalog"
 msgstr "Updating software catalog"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 #, fuzzy
 msgid "Upgrade and ask to reboot"
 msgstr "Update and reboot (recommended)"
@@ -16972,9 +16969,6 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "What do you want to scan?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."

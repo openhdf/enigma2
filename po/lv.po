@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -3594,6 +3594,11 @@ msgstr "Cirkulārā labā"
 
 #
 #, fuzzy
+msgid "Clean"
+msgstr "Tīrīšana"
+
+#
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Notīrīt pirms meklēšanas"
 
@@ -6587,11 +6592,6 @@ msgstr "Iekšējā atmiņa"
 
 #
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Jā, atjaunot iestatījumus tagad"
-
-#
-#, fuzzy
 msgid "Flash image"
 msgstr "Iekšējā atmiņa"
 
@@ -6599,9 +6599,6 @@ msgstr "Iekšējā atmiņa"
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Vai tiešām atsāknēt tagad?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #
 #, fuzzy, python-format
@@ -7462,6 +7459,9 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Cik minūšu vēlaties ierakstīt?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9903,17 +9903,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Normal Start"
-msgstr "Mērogošanas režīms"
-
-#
-#, fuzzy
 msgid "Normal mode"
-msgstr "Mērogošanas režīms"
-
-#
-#, fuzzy
-msgid "Normal start"
 msgstr "Mērogošanas režīms"
 
 #
@@ -10159,11 +10149,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "fona attēls"
 
 #
 msgid "Only extensions."
@@ -12341,6 +12326,21 @@ msgstr ""
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Jā, atjaunot iestatījumus tagad"
+
+#
+#, fuzzy
+msgid "Restore everything"
+msgstr "Atjaunot sistēmas iestatījumus"
+
+#
+#, fuzzy
+msgid "Restore settings"
+msgstr "Atjaunot sistēmas iestatījumus"
+
+#
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Kļūda, palaižot spraudni"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -17352,9 +17352,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr ""
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -18255,9 +18252,6 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Ko Jūs vēlaties meklēt?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

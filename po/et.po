@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -3345,6 +3345,10 @@ msgid "Circular right"
 msgstr "Ringpolarisatsioon parem"
 
 #, fuzzy
+msgid "Clean"
+msgstr "Puhastus"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Tühjenda võrguketta prügikast"
 
@@ -6052,19 +6056,12 @@ msgid "Flash Image"
 msgstr "Vilkuv"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Jah, taasta nüüd seadistused"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Vilkuv"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Kas paigaldad tarkvaratõmmise ja taaskäivitad %s %s?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -6861,6 +6858,10 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Mitu minutit soovid salvestada?"
+
+#, fuzzy
+msgid "How should the image be installed?\n"
+msgstr "Kuhu salvestatakse?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9039,15 +9040,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "Kanalivahetus"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "Kanalivahetus"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Kanalivahetus"
 
 msgid "North"
@@ -9284,10 +9277,6 @@ msgstr "Üks rida"
 
 msgid "OnlineVersionCheck"
 msgstr "Uuenduste kontroll"
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "taustapilt"
 
 msgid "Only extensions."
 msgstr "Ainult laiendused."
@@ -11225,6 +11214,18 @@ msgstr "Varukoopia taastamine"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Jah, taasta nüüd seadistused"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "Seadistuste taastamine"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "Seadistuste taastamine"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Viga laienduse käivitamisel"
 
 #, fuzzy
 msgid "Restore settings backup after restart"
@@ -15829,9 +15830,6 @@ msgstr "oota..."
 msgid "Updating software catalog"
 msgstr "Tarkvara kataloogi uuendamine"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 #, fuzzy
 msgid "Upgrade and ask to reboot"
 msgstr "Uuenda ja taaskäivita süsteem"
@@ -16661,9 +16659,6 @@ msgstr "Mida teha taimeri lõppemisel? 'Automaatne' laseb vstuvõtjal minna olek
 
 msgid "What do you want to scan?"
 msgstr "Mida soovid otsida?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:20+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
@@ -3513,6 +3513,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Clean"
+msgstr "Netejar"
+
+#
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Netejar abans de buscar"
 
@@ -6431,19 +6436,11 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Si, restaura la configuració ara"
-
-#
-#, fuzzy
 msgid "Flash image"
 msgstr "no canviar"
 
 #, python-format
 msgid "Flash your %s %s and reboot now?"
-msgstr ""
-
-msgid "Flash, restore settings and user selected plugins"
 msgstr ""
 
 #, python-format
@@ -7286,6 +7283,9 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Quants minuts vols gravar?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9679,17 +9679,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Normal Start"
-msgstr "Mode d'escalat"
-
-#
-#, fuzzy
 msgid "Normal mode"
-msgstr "Mode d'escalat"
-
-#
-#, fuzzy
-msgid "Normal start"
 msgstr "Mode d'escalat"
 
 #
@@ -9929,9 +9919,6 @@ msgid "One line"
 msgstr ""
 
 msgid "OnlineVersionCheck"
-msgstr ""
-
-msgid "Only Flash Backup Image"
 msgstr ""
 
 #
@@ -12055,6 +12042,21 @@ msgstr ""
 #
 #, fuzzy
 msgid "Restore deleted images"
+msgstr "Si, restaura la configuració ara"
+
+#
+#, fuzzy
+msgid "Restore everything"
+msgstr "Si, restaura la configuració ara"
+
+#
+#, fuzzy
+msgid "Restore settings"
+msgstr "EPG senzill"
+
+#
+#, fuzzy
+msgid "Restore settings and selected plugins"
 msgstr "Si, restaura la configuració ara"
 
 msgid "Restore settings backup after restart"
@@ -16895,9 +16897,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr ""
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -17763,9 +17762,6 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Què vols buscar?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

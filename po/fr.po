@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
-"PO-Revision-Date: 2024-03-20 09:53+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"PO-Revision-Date: 2024-03-20 21:12+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -3314,6 +3314,9 @@ msgstr "Circulaire gauche"
 msgid "Circular right"
 msgstr "Circulaire droit"
 
+msgid "Clean"
+msgstr "Nettoyer"
+
 msgid "Clean network trash can's"
 msgstr "Nettoyer les corbeilles réseaux"
 
@@ -5953,19 +5956,12 @@ msgid "Flash Image"
 msgstr "Flashage"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Oui, restaurer les paramètres maintenant"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Flashage"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Vraiment reflasher votre %s %s et rebooter maintenant?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -6732,6 +6728,9 @@ msgstr "Combien de temps la confirmation du mode 3D doit être affiché (seconde
 
 msgid "How many minutes do you want to record?"
 msgstr "Combien de minutes voulez-vous enregistrer?"
+
+msgid "How should the image be installed?\n"
+msgstr "Comment l'image doit-elle être installée ?\n"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -8848,15 +8847,7 @@ msgstr "Aucun"
 msgid "Norfolk Island"
 msgstr ""
 
-#, fuzzy
-msgid "Normal Start"
-msgstr "Mode normal"
-
 msgid "Normal mode"
-msgstr "Mode normal"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Mode normal"
 
 msgid "North"
@@ -9088,10 +9079,6 @@ msgstr "Une ligne"
 
 msgid "OnlineVersionCheck"
 msgstr "Vérification de la version en ligne"
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "Backup complet sur %s"
 
 msgid "Only extensions."
 msgstr "Extensions seules"
@@ -10945,13 +10932,20 @@ msgstr "Redémarrer enigma"
 msgid "Restore backups"
 msgstr "Restaurer sauvegardes"
 
-#, fuzzy
 msgid "Restore deleted images"
-msgstr "Oui, restaurer les paramètres maintenant"
+msgstr "Restaurer les images effacées"
 
-#, fuzzy
+msgid "Restore everything"
+msgstr "Restaure tout"
+
+msgid "Restore settings"
+msgstr "Restaurer les paramètres"
+
+msgid "Restore settings and selected plugins"
+msgstr "Restaure les paramètres et les plugins sélectionnés"
+
 msgid "Restore settings backup after restart"
-msgstr "Effectue une sauvegarde des paramètres"
+msgstr "Restaure la sauvegarde des paramètres après le redémarrage"
 
 msgid "Restore system settings"
 msgstr "Restaurer paramètres système"
@@ -15341,9 +15335,6 @@ msgstr "Décompression des fichiers, veuillez attendre…"
 msgid "Updating software catalog"
 msgstr "Mise à jour du catalogue logiciel"
 
-msgid "Upgrade (Restore everything)"
-msgstr "Mettre à jour (tout restaurer)"
-
 msgid "Upgrade and ask to reboot"
 msgstr "Mettre à jour et demander de redémarrer"
 
@@ -16143,9 +16134,6 @@ msgstr "Quelle action est requise à la fin d’une programmation? ‘Auto’ la
 
 msgid "What do you want to scan?"
 msgstr "Que voulez-vous analyser?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Lorsqu’il est activé, l’image dans l’image PiP sera fermé avec le bouton exit."

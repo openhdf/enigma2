@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: RU locale edited by Sowa\n"
@@ -3356,6 +3356,10 @@ msgid "Circular right"
 msgstr "Круговая правая"
 
 #, fuzzy
+msgid "Clean"
+msgstr "Очистить"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Не удаётся переместить в корзину!"
 
@@ -6068,19 +6072,12 @@ msgid "Flash Image"
 msgstr "Прошивка"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Да, восстановить установки сейчас"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Прошивка"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Действительно обновить ПО %s %s и перезагрузить сейчас?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -6875,6 +6872,10 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Сколько минут вы хотите записать?"
+
+#, fuzzy
+msgid "How should the image be installed?\n"
+msgstr "Где должны быть сохранены записи?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9057,15 +9058,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "Режим переключения"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "Режим переключения"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Режим переключения"
 
 msgid "North"
@@ -9304,10 +9297,6 @@ msgstr "Одна линия"
 
 msgid "OnlineVersionCheck"
 msgstr "Проверка онлайн"
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "фоновое изображение"
 
 msgid "Only extensions."
 msgstr "Только расширения"
@@ -11246,6 +11235,18 @@ msgstr "Восстановление резервных копий"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Да, восстановить установки сейчас"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "Восстановить системные настройки"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "Восстановить системные настройки"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Ошибка выполнения плагина"
 
 #, fuzzy
 msgid "Restore settings backup after restart"
@@ -15857,9 +15858,6 @@ msgstr "ожидайте..."
 msgid "Updating software catalog"
 msgstr "Обновление каталога программного обеспечения"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 #, fuzzy
 msgid "Upgrade and ask to reboot"
 msgstr "Модернизация и перезагрузка системы"
@@ -16690,9 +16688,6 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "Что вы хотите сканировать?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."

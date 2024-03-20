@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -3596,6 +3596,11 @@ msgstr "Sirkulær right"
 
 #
 #, fuzzy
+msgid "Clean"
+msgstr "Opprydning"
+
+#
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Slett nettverks søppelbøtta"
 
@@ -6567,11 +6572,6 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Flashing"
 
-#
-#, fuzzy
-msgid "Flash and restore settings"
-msgstr "Ja, legg tilbake innstillingene nå"
-
 #, fuzzy
 msgid "Flash image"
 msgstr "Flashing"
@@ -6579,9 +6579,6 @@ msgstr "Flashing"
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Vil du virkelig reflash din %s %s og starte på nytt nå?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, python-format
 msgid "Flashed:\t\t%s"
@@ -7442,6 +7439,10 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Hvor mange minutter vil du ta opp?"
+
+#, fuzzy
+msgid "How should the image be installed?\n"
+msgstr "Hvor bør opptaket bli lagret?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9851,15 +9852,9 @@ msgstr "Ingen"
 msgid "Norfolk Island"
 msgstr ""
 
-msgid "Normal Start"
-msgstr ""
-
 #, fuzzy
 msgid "Normal mode"
 msgstr "Zap modus"
-
-msgid "Normal start"
-msgstr ""
 
 #
 msgid "North"
@@ -10107,9 +10102,6 @@ msgstr "En linje"
 
 msgid "OnlineVersionCheck"
 msgstr "OnlineVersjonSjekk"
-
-msgid "Only Flash Backup Image"
-msgstr ""
 
 #
 msgid "Only extensions."
@@ -12284,6 +12276,21 @@ msgstr "Gjenopprett Sikkerhetskopier"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Vil du virkelig slette ferdige timere?"
+
+#
+#, fuzzy
+msgid "Restore everything"
+msgstr "Gjenopprette system oppsett"
+
+#
+#, fuzzy
+msgid "Restore settings"
+msgstr "Gjenopprette system oppsett"
+
+#
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Feil ved utføring av plugin "
 
 #, fuzzy
 msgid "Restore settings backup after restart"
@@ -17310,9 +17317,6 @@ msgstr "vennligst vent..."
 msgid "Updating software catalog"
 msgstr "Oppdaterer programvare katalog"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 #, fuzzy
 msgid "Upgrade and ask to reboot"
 msgstr "Oppgrader og start på nytt"
@@ -18220,9 +18224,6 @@ msgstr "Hvilke tiltak er nødvendig for å fullføre timeren? 'Auto' lar boksen 
 #
 msgid "What do you want to scan?"
 msgstr "Hva vil du søke etter?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."

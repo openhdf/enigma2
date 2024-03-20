@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:19+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -3467,6 +3467,10 @@ msgid "Circular right"
 msgstr "يمين دائرى"
 
 #, fuzzy
+msgid "Clean"
+msgstr "تنظيف"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "مسح قبل البحث"
 
@@ -6224,19 +6228,12 @@ msgid "Flash Image"
 msgstr "شحن"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "نعم، أستعد الاعدادات الان"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "شحن"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "هل تريد فعلا إعادة التشغيل الان ؟"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -7053,6 +7050,9 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "كم دقيقه تريد أن تسجل ؟"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9386,15 +9386,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "وضع التدريج"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "وضع التدريج"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "وضع التدريج"
 
 #
@@ -9631,10 +9623,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "صورة الخلفيه"
 
 msgid "Only extensions."
 msgstr "إضافات فقط"
@@ -11644,6 +11632,18 @@ msgstr "إستعادة النسخه الإحتياطيه "
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "نعم، أستعد الاعدادات الان"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "إستعادة إعدادات النظام"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "إستعادة إعدادات النظام"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "خطأ فى تنفيذ البلج إن"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -16431,9 +16431,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "جارى تحديث فهرس البرنامج التشغيلى"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -17277,9 +17274,6 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "ماذا تريد ان تبحث ؟"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

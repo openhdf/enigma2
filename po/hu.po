@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -3600,6 +3600,11 @@ msgstr "Kerek-jobb"
 
 #
 #, fuzzy
+msgid "Clean"
+msgstr "Takarítás"
+
+#
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Keresés elött törlés"
 
@@ -6610,11 +6615,6 @@ msgstr "Flash"
 
 #
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Igen, állítsuk vissza most a beállításokat"
-
-#
-#, fuzzy
 msgid "Flash image"
 msgstr "Flash"
 
@@ -6622,9 +6622,6 @@ msgstr "Flash"
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Biztos újraindítsam most?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #
 #, fuzzy, python-format
@@ -7492,6 +7489,9 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Hány percet szeretne felvenni?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9957,15 +9957,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "Ugrás mód"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "Ugrás mód"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Ugrás mód"
 
 #
@@ -10211,11 +10203,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "háttérkép"
 
 #
 msgid "Only extensions."
@@ -12432,6 +12419,21 @@ msgstr "Mentések visszaállítása"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Igen, állítsuk vissza most a beállításokat"
+
+#
+#, fuzzy
+msgid "Restore everything"
+msgstr "Rendszerbeállítás visszaállítása"
+
+#
+#, fuzzy
+msgid "Restore settings"
+msgstr "Rendszerbeállítás visszaállítása"
+
+#
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Plugin indítási hiba"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -17479,9 +17481,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "Szoftver-katalógus frissítése"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -18396,9 +18395,6 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Mit szeretne lekeresni?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

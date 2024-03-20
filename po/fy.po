@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: gerrit <fy@li.org>\n"
@@ -3561,6 +3561,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Clean"
+msgstr "Opskjinje"
+
+#
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Wiskje foar sykjen ?"
 
@@ -6543,11 +6548,6 @@ msgstr "Flash"
 
 #
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Ja, no de ynstellingen werom sette"
-
-#
-#, fuzzy
 msgid "Flash image"
 msgstr "Flash"
 
@@ -6555,9 +6555,6 @@ msgstr "Flash"
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Wier no kompleet opnei starte ?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #
 #, fuzzy, python-format
@@ -7417,6 +7414,9 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Hoe folle minuten wolle jo opnimme?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9850,17 +9850,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Normal Start"
-msgstr "Skaal Moadus"
-
-#
-#, fuzzy
 msgid "Normal mode"
-msgstr "Skaal Moadus"
-
-#
-#, fuzzy
-msgid "Normal start"
 msgstr "Skaal Moadus"
 
 #
@@ -10106,11 +10096,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "Eftergrûn ôfbylding"
 
 #
 msgid "Only extensions."
@@ -12285,6 +12270,21 @@ msgstr ""
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Ja, no de ynstellingen werom sette"
+
+#
+#, fuzzy
+msgid "Restore everything"
+msgstr "Ja, no de ynstellingen werom sette"
+
+#
+#, fuzzy
+msgid "Restore settings"
+msgstr "Nammeserver ynstellingen"
+
+#
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Flater by útfieren fan ynstekker"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -17280,9 +17280,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr ""
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -18176,9 +18173,6 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Wat wolle jo ôfsykje ?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2024-03-20 09:53+0100\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
@@ -3264,6 +3264,10 @@ msgstr "Dairesel sola"
 msgid "Circular right"
 msgstr "Dairesel sağa"
 
+#, fuzzy
+msgid "Clean"
+msgstr "Temizle"
+
 msgid "Clean network trash can's"
 msgstr "Ağ çöp kutularını temizle"
 
@@ -5889,20 +5893,12 @@ msgid "Flash Image"
 msgstr "Flaşlıyor"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Evet, ayarları şimdi geri yükle"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Flaşlıyor"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "%s %s şimdi yükseltilip yeniden başlatılsın mı?"
-
-#, fuzzy
-msgid "Flash, restore settings and user selected plugins"
-msgstr "Tüm ayarların ve eklentilerin otomatik olarak geri yüklensin mi?"
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -6667,6 +6663,10 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Kaç dakikalık kayıt başlatmak istiyorsunuz?"
+
+#, fuzzy
+msgid "How should the image be installed?\n"
+msgstr "Kayıt nereye kaydedilmeli?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -8793,15 +8793,7 @@ msgstr "Hiçbiri"
 msgid "Norfolk Island"
 msgstr ""
 
-#, fuzzy
-msgid "Normal Start"
-msgstr "Normal mod"
-
 msgid "Normal mode"
-msgstr "Normal mod"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Normal mod"
 
 msgid "North"
@@ -9040,10 +9032,6 @@ msgstr "Tek satır"
 
 msgid "OnlineVersionCheck"
 msgstr "Çevrimiçi Sürüm Kontrolü"
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "arkaplan resmi"
 
 msgid "Only extensions."
 msgstr "Yalnızca eklentiler."
@@ -10896,6 +10884,18 @@ msgstr "Yedekleri geri yükle"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "silinen kullanıcı buketlerini geri yükle"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "Yükseltme (Her şeyi geri yükle)"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "Sistem ayarlarını geri yükle"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Tüm ayarların ve eklentilerin otomatik olarak geri yüklensin mi?"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -15290,9 +15290,6 @@ msgstr "Dosyalar açılıyor, Lütfen bekleyin..."
 msgid "Updating software catalog"
 msgstr "Yazılım kataloğu güncelleniyor"
 
-msgid "Upgrade (Restore everything)"
-msgstr "Yükseltme (Her şeyi geri yükle)"
-
 msgid "Upgrade and ask to reboot"
 msgstr "Güncelle ve yeniden başlatmak için sor"
 
@@ -16097,9 +16094,6 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "Neleri aramak istiyorsunuz?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
@@ -3346,6 +3346,10 @@ msgid "Circular right"
 msgstr "Circulair rechts"
 
 #, fuzzy
+msgid "Clean"
+msgstr "Opruimen"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Maak prullenbakken in het netwerk leeg"
 
@@ -6057,19 +6061,12 @@ msgid "Flash Image"
 msgstr "Bezig met flashen"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Ja, de gegevens nu terugplaatsen"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Bezig met flashen"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Uw %s %s echt flashen en herstarten?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -6866,6 +6863,10 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Hoeveel minuten wilt u opnemen?"
+
+#, fuzzy
+msgid "How should the image be installed?\n"
+msgstr "Waar moet de opname opgeslagen worden?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9049,15 +9050,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "Zapmodus"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "Zapmodus"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Zapmodus"
 
 msgid "North"
@@ -9296,10 +9289,6 @@ msgstr "Één regel"
 
 msgid "OnlineVersionCheck"
 msgstr "Controle op update"
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "achtergrond plaatje"
 
 msgid "Only extensions."
 msgstr "Alleen extensions"
@@ -11241,6 +11230,18 @@ msgstr "Backups terugzetten"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Ja, de gegevens nu terugplaatsen"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "Instellingen terugzetten"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "Instellingen terugzetten"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Fout bij uitvoeren applicatie"
 
 #, fuzzy
 msgid "Restore settings backup after restart"
@@ -15863,9 +15864,6 @@ msgstr "even wachten..."
 msgid "Updating software catalog"
 msgstr "Softwarecatalogus wordt geupdate"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 #, fuzzy
 msgid "Upgrade and ask to reboot"
 msgstr "Upgrade en herstart system"
@@ -16695,9 +16693,6 @@ msgstr "Welke actie is vereist als de timer gereed is? 'Auto' brengt de ontvange
 
 msgid "What do you want to scan?"
 msgstr "Wat wilt u zoeken?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."

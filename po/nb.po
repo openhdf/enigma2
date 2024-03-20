@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: none\n"
@@ -3071,6 +3071,9 @@ msgstr ""
 msgid "Circular right"
 msgstr ""
 
+msgid "Clean"
+msgstr ""
+
 msgid "Clean network trash can's"
 msgstr ""
 
@@ -5566,17 +5569,11 @@ msgstr ""
 msgid "Flash Image"
 msgstr ""
 
-msgid "Flash and restore settings"
-msgstr ""
-
 msgid "Flash image"
 msgstr ""
 
 #, python-format
 msgid "Flash your %s %s and reboot now?"
-msgstr ""
-
-msgid "Flash, restore settings and user selected plugins"
 msgstr ""
 
 #, python-format
@@ -6296,6 +6293,9 @@ msgid "How long should 3D mode on confirmation be displayed (seconds). 0 for non
 msgstr ""
 
 msgid "How many minutes do you want to record?"
+msgstr ""
+
+msgid "How should the image be installed?\n"
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -8321,13 +8321,7 @@ msgstr ""
 msgid "Norfolk Island"
 msgstr ""
 
-msgid "Normal Start"
-msgstr ""
-
 msgid "Normal mode"
-msgstr ""
-
-msgid "Normal start"
 msgstr ""
 
 msgid "North"
@@ -8541,9 +8535,6 @@ msgid "One line"
 msgstr ""
 
 msgid "OnlineVersionCheck"
-msgstr ""
-
-msgid "Only Flash Backup Image"
 msgstr ""
 
 msgid "Only extensions."
@@ -10304,6 +10295,15 @@ msgid "Restore backups"
 msgstr ""
 
 msgid "Restore deleted images"
+msgstr ""
+
+msgid "Restore everything"
+msgstr ""
+
+msgid "Restore settings"
+msgstr ""
+
+msgid "Restore settings and selected plugins"
 msgstr ""
 
 msgid "Restore settings backup after restart"
@@ -14446,9 +14446,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr ""
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -15200,9 +15197,6 @@ msgid "What action is required on completion of the timer? 'Auto' lets the box r
 msgstr ""
 
 msgid "What do you want to scan?"
-msgstr ""
-
-msgid "What should happen when you start it for the first time?"
 msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."

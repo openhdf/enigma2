@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: http://sat-ukraine.info/\n"
@@ -3568,6 +3568,11 @@ msgstr "Кругова права"
 
 #
 #, fuzzy
+msgid "Clean"
+msgstr "Очистити"
+
+#
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Очистити перед пошуком"
 
@@ -6559,11 +6564,6 @@ msgstr "Запис"
 
 #
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Так, відновити мої налаштування зараз"
-
-#
-#, fuzzy
 msgid "Flash image"
 msgstr "Запис"
 
@@ -6571,9 +6571,6 @@ msgstr "Запис"
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Перезавантажити зараз?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #
 #, fuzzy, python-format
@@ -7438,6 +7435,9 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Скільки хвилин Ви хочете записати?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9888,17 +9888,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Normal Start"
-msgstr "Режим масштабування"
-
-#
-#, fuzzy
 msgid "Normal mode"
-msgstr "Режим масштабування"
-
-#
-#, fuzzy
-msgid "Normal start"
 msgstr "Режим масштабування"
 
 #
@@ -10144,11 +10134,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "фонове зображення"
 
 #
 msgid "Only extensions."
@@ -12330,6 +12315,21 @@ msgstr ""
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Так, відновити мої налаштування зараз"
+
+#
+#, fuzzy
+msgid "Restore everything"
+msgstr "Відновлення налаштувань"
+
+#
+#, fuzzy
+msgid "Restore settings"
+msgstr "Відновлення налаштувань"
+
+#
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Помилка при виконанні"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -17351,9 +17351,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr ""
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -18255,9 +18252,6 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Що хочете сканувати?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

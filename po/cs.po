@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: \n"
@@ -3351,6 +3351,10 @@ msgstr "Kruhová levá"
 msgid "Circular right"
 msgstr "Kruhová pravá"
 
+#, fuzzy
+msgid "Clean"
+msgstr "Vyčistit"
+
 msgid "Clean network trash can's"
 msgstr "Používat mazání koše"
 
@@ -6021,20 +6025,12 @@ msgid "Flash Image"
 msgstr "Změna a obnova Image"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Ano, nyní obnovit nastavení"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Změna a obnova Image"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Opravdu obnovit %s %s a restartovat?"
-
-#, fuzzy
-msgid "Flash, restore settings and user selected plugins"
-msgstr "Flashnout a obnovit nastavení, bez pluginů"
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -6816,6 +6812,10 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Kolik minut chcete nahrát?"
+
+#, fuzzy
+msgid "How should the image be installed?\n"
+msgstr "Má být nahrávka uložena?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -8994,15 +8994,7 @@ msgstr "Ne"
 msgid "Norfolk Island"
 msgstr ""
 
-#, fuzzy
-msgid "Normal Start"
-msgstr "S obrazem"
-
 msgid "Normal mode"
-msgstr "S obrazem"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "S obrazem"
 
 msgid "North"
@@ -9243,10 +9235,6 @@ msgstr "Jeden řádek"
 
 msgid "OnlineVersionCheck"
 msgstr "Online hledání"
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "Zálohovat Image na HDD / USB"
 
 msgid "Only extensions."
 msgstr "Pouze rozšíření"
@@ -11141,6 +11129,18 @@ msgstr "Obnovit ze zálohy"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Chcete-li obnovit obraz (image):"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "Obnova nastavení"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "Obnova nastavení"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Flashnout a obnovit nastavení, bez pluginů"
 
 #, fuzzy
 msgid "Restore settings backup after restart"
@@ -15643,9 +15643,6 @@ msgstr "Čekejte prosím, rozbaluji soubory ..."
 msgid "Updating software catalog"
 msgstr "Katalog aktualizací"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr "Aktualizovat a požádat o restart"
 
@@ -16478,9 +16475,6 @@ msgstr "Co udělat po dokončení časovače? 'Auto' vrátí Váš %s %s do stav
 
 msgid "What do you want to scan?"
 msgstr "Co chcete prohledat?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Jestliže je povoleno, pak PiP může být ukončen tlačítkem Exit"

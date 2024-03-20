@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: none\n"
@@ -3267,6 +3267,10 @@ msgstr "Circular left"
 msgid "Circular right"
 msgstr "Circular right"
 
+#, fuzzy
+msgid "Clean"
+msgstr "Cleanup"
+
 msgid "Clean network trash can's"
 msgstr ""
 
@@ -5896,19 +5900,12 @@ msgid "Flash Image"
 msgstr "Flashing"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Yes, restore the settings now"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Flashing"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Really reflash your %s %s and reboot now?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -6663,6 +6660,10 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "How many minutes do you want to record?"
+
+#, fuzzy
+msgid "How should the image be installed?\n"
+msgstr "Where should the recording be saved?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -8782,13 +8783,7 @@ msgstr "None"
 msgid "Norfolk Island"
 msgstr ""
 
-msgid "Normal Start"
-msgstr ""
-
 msgid "Normal mode"
-msgstr ""
-
-msgid "Normal start"
 msgstr ""
 
 msgid "North"
@@ -9019,10 +9014,6 @@ msgstr "One line"
 
 msgid "OnlineVersionCheck"
 msgstr "OnlineVersionCheck"
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "background image"
 
 msgid "Only extensions."
 msgstr "Only extensions."
@@ -10881,6 +10872,18 @@ msgstr "Restore backups"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Yes, restore the settings now"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "Restore system settings"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "Restore system settings"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Error executing plugin"
 
 #, fuzzy
 msgid "Restore settings backup after restart"
@@ -15297,9 +15300,6 @@ msgstr "please wait..."
 msgid "Updating software catalog"
 msgstr "Updating software catalog"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -16107,9 +16107,6 @@ msgstr "What action is required on completion of the timer? 'Auto' lets the box 
 
 msgid "What do you want to scan?"
 msgstr "What do you want to scan?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

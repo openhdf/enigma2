@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -3428,6 +3428,10 @@ msgid "Circular right"
 msgstr "Circular right"
 
 #, fuzzy
+msgid "Clean"
+msgstr "נקיון"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Clear before scan"
 
@@ -6181,19 +6185,12 @@ msgid "Flash Image"
 msgstr "Flash"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Yes, restore the settings now"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Flash"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "?לבצע איתחול עכשיו"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -7010,6 +7007,9 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "? כמה דקות אתה מעוניין להקליט"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9343,15 +9343,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "Scaling Mode"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "Scaling Mode"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Scaling Mode"
 
 #
@@ -9588,10 +9580,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "תמונת רקע"
 
 msgid "Only extensions."
 msgstr ".רק תוספים"
@@ -11601,6 +11589,18 @@ msgstr "שחזור גיבויים"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Yes, restore the settings now"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "שחזור הגדרות מערכת"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "שחזור הגדרות מערכת"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "שגיאה בהרצת הפלאגין"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -16374,9 +16374,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "מעדכן קטלוג תוכנה"
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -17220,9 +17217,6 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "?מה ברצונל לסרוק"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

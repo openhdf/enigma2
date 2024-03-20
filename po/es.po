@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: www.CostaBlancaTranslations.com <maria@CostaBlancaTranslations.com>\n"
@@ -3612,6 +3612,11 @@ msgstr "Izquierda circular"
 msgid "Circular right"
 msgstr "Derecha circular"
 
+#
+#, fuzzy
+msgid "Clean"
+msgstr "Limpiar"
+
 #, fuzzy
 msgid "Clean network trash can's"
 msgstr "No se puede mover a la papelera"
@@ -6600,11 +6605,6 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Parpadeo"
 
-#
-#, fuzzy
-msgid "Flash and restore settings"
-msgstr "Sí, restaurar la configuración ahora."
-
 #, fuzzy
 msgid "Flash image"
 msgstr "Parpadeo"
@@ -6612,9 +6612,6 @@ msgstr "Parpadeo"
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "¿Seguro que quieres actualizar el procesador frontal y reiniciar ahora?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #
 #, fuzzy, python-format
@@ -7473,6 +7470,10 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "¿Cuántos minutos quieres grabar?"
+
+#, fuzzy
+msgid "How should the image be installed?\n"
+msgstr "¿Dónde quieres guardar la grabación?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9904,15 +9905,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "Modo zapping"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "Modo zapping"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Modo zapping"
 
 #
@@ -10165,11 +10158,6 @@ msgstr "Una línea"
 
 msgid "OnlineVersionCheck"
 msgstr "Comprobación de versión online"
-
-#
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "Imagen de fondo"
 
 #
 msgid "Only extensions."
@@ -12356,6 +12344,21 @@ msgstr "Restaurar copias de seguridad"
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Sí, restaurar la configuración ahora."
+
+#
+#, fuzzy
+msgid "Restore everything"
+msgstr "Configuración del sistema de restauración"
+
+#
+#, fuzzy
+msgid "Restore settings"
+msgstr "Configuración del sistema de restauración"
+
+#
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Error ejecutando el complemento"
 
 #, fuzzy
 msgid "Restore settings backup after restart"
@@ -17380,9 +17383,6 @@ msgstr "Por favor espera..."
 msgid "Updating software catalog"
 msgstr "Actualizando el catálogo de software."
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 #, fuzzy
 msgid "Upgrade and ask to reboot"
 msgstr "Actualizar y reiniciar el sistema."
@@ -18285,9 +18285,6 @@ msgstr "¿Qué acción debe ejecutarse al finalizar el temporizador? En \"auto\"
 #
 msgid "What do you want to scan?"
 msgstr "¿Qué quieres buscar?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."

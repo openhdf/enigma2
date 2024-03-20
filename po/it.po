@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
-"PO-Revision-Date: 2024-03-20 09:53+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"PO-Revision-Date: 2024-03-20 21:13+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: WWW.LINSAT.NET <spaeleus@croci.org>\n"
 "Language: it\n"
@@ -3602,6 +3602,11 @@ msgstr "Circolare a destra"
 
 #
 #, fuzzy
+msgid "Clean"
+msgstr "Ripulire"
+
+#
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Cancellare prima di cercare"
 
@@ -6579,11 +6584,6 @@ msgstr "Flash"
 
 #
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Sì, ripristinare la configurazione"
-
-#
-#, fuzzy
 msgid "Flash image"
 msgstr "Flash"
 
@@ -6591,9 +6591,6 @@ msgstr "Flash"
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Riavviare ora?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #
 #, fuzzy, python-format
@@ -7448,6 +7445,9 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Durata registrazione (minuti):"
+
+msgid "How should the image be installed?\n"
+msgstr "Come deve essere installata l'immagine?\n"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9896,17 +9896,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Normal Start"
-msgstr "Modalità scaling"
-
-#
-#, fuzzy
 msgid "Normal mode"
-msgstr "Modalità scaling"
-
-#
-#, fuzzy
-msgid "Normal start"
 msgstr "Modalità scaling"
 
 #
@@ -10151,11 +10141,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "Immagine di sfondo"
 
 #
 msgid "Only extensions."
@@ -12357,18 +12342,29 @@ msgstr "Ripristino backup."
 msgid "Restore deleted images"
 msgstr "Sì, ripristinare la configurazione"
 
+msgid "Restore everything"
+msgstr "Ripristina tutto"
+
+#
+msgid "Restore settings"
+msgstr "Ripristina le impostazioni"
+
+#
+msgid "Restore settings and selected plugins"
+msgstr "Ripristina le impostazioni e i plugin selezionati"
+
 msgid "Restore settings backup after restart"
-msgstr ""
+msgstr "Ripristina il backup delle impostazioni dopo il riavvio"
 
 #
 msgid "Restore system settings"
 msgstr "Ripristino conf. sistema"
 
 msgid "Restoring..."
-msgstr ""
+msgstr "Ripristino…"
 
 msgid "Restrict the active time range"
-msgstr ""
+msgstr "Limita l'intervallo di tempo attivo"
 
 #
 msgid "Resume from last position"
@@ -12390,14 +12386,12 @@ msgid "Resuming playback"
 msgstr "Riavvio riproduzione..."
 
 #
-#, fuzzy
 msgid "Retrieving image list - Please wait..."
-msgstr "Ricezione informazioni sul plugin. Attendere..."
+msgstr "Recupero dell'elenco delle immagini - Attendere prego..."
 
 #
-#, fuzzy
 msgid "Return to file browser"
-msgstr "File browser DVD"
+msgstr "Torna al browser dei file"
 
 #
 msgid "Return to movie list"
@@ -12408,7 +12402,7 @@ msgid "Return to previous service"
 msgstr "Tornare al canale precedente"
 
 msgid "Reunion"
-msgstr ""
+msgstr "Riunione"
 
 msgid "Reverse bouquet buttons"
 msgstr ""
@@ -12428,7 +12422,7 @@ msgid "Rewind speeds"
 msgstr "Velocità REW"
 
 msgid "Rewrap teletext subtitles"
-msgstr ""
+msgstr "Riavvolgere i sottotitoli del televideo"
 
 #
 msgid "Right"
@@ -17375,9 +17369,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr "Aggiornamento catalogo software in corso"
 
-msgid "Upgrade (Restore everything)"
-msgstr "Aggiornamento (Ripristino di tutto)"
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -18288,9 +18279,6 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Cosa si intende cercare?"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

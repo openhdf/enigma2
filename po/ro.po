@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 09:41+0100\n"
+"POT-Creation-Date: 2024-03-20 21:07+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: HDTV ROMANIA(superonic,costel_mbc,neutrin,otheitis,cipy_1982,neutrin,runcanion)\n"
@@ -3254,6 +3254,10 @@ msgid "Circular right"
 msgstr "Circular drept"
 
 #, fuzzy
+msgid "Clean"
+msgstr "Curatenie"
+
+#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Goleste lista inainte de scanare"
 
@@ -5917,19 +5921,12 @@ msgid "Flash Image"
 msgstr "Flash"
 
 #, fuzzy
-msgid "Flash and restore settings"
-msgstr "Da, restaureaza setari acum"
-
-#, fuzzy
 msgid "Flash image"
 msgstr "Flash"
 
 #, fuzzy, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Reporniti sistemul acum?"
-
-msgid "Flash, restore settings and user selected plugins"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Flashed:\t\t%s"
@@ -6704,6 +6701,9 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Pentru cate minute doriti sa inregistrati?"
+
+msgid "How should the image be installed?\n"
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -8882,15 +8882,7 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
-msgid "Normal Start"
-msgstr "Mod de scalare"
-
-#, fuzzy
 msgid "Normal mode"
-msgstr "Mod de scalare"
-
-#, fuzzy
-msgid "Normal start"
 msgstr "Mod de scalare"
 
 msgid "North"
@@ -9117,10 +9109,6 @@ msgstr ""
 
 msgid "OnlineVersionCheck"
 msgstr ""
-
-#, fuzzy
-msgid "Only Flash Backup Image"
-msgstr "imagine fundal"
 
 msgid "Only extensions."
 msgstr ""
@@ -11020,6 +11008,18 @@ msgstr ""
 #, fuzzy
 msgid "Restore deleted images"
 msgstr "Da, restaureaza setari acum"
+
+#, fuzzy
+msgid "Restore everything"
+msgstr "Revenire la setarile sistemului"
+
+#, fuzzy
+msgid "Restore settings"
+msgstr "Revenire la setarile sistemului"
+
+#, fuzzy
+msgid "Restore settings and selected plugins"
+msgstr "Eroare la executia pluginului"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -15529,9 +15529,6 @@ msgstr ""
 msgid "Updating software catalog"
 msgstr ""
 
-msgid "Upgrade (Restore everything)"
-msgstr ""
-
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
@@ -16340,9 +16337,6 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "Ce vrei sa scanezi"
-
-msgid "What should happen when you start it for the first time?"
-msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""
