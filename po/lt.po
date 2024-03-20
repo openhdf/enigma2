@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@o2.co.uk>\n"
 "Language-Team: \n"
@@ -3301,10 +3301,6 @@ msgid "Circular right"
 msgstr "Apskritiminė dešinė"
 
 #, fuzzy
-msgid "Clean"
-msgstr "Išvalyti"
-
-#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Išvalyti prieš skanavimą"
 
@@ -5547,6 +5543,10 @@ msgstr "Peržiūros meniu"
 msgid "Eventview:"
 msgstr ""
 
+#, fuzzy
+msgid "Everything"
+msgstr "Atkurkite sisteminius nustatymus"
+
 msgid "Everywhere"
 msgstr ""
 
@@ -5969,6 +5969,10 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Vidinė atmintis"
 
 #, fuzzy
 msgid "Flash Image"
@@ -6760,9 +6764,6 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Kiek minučių norite daryti įrašą?"
-
-msgid "How should the image be installed?\n"
-msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -11114,18 +11115,6 @@ msgstr "Atkurti atsargines kopijas"
 msgid "Restore deleted images"
 msgstr "Taip, atkurti nustatymus dabar"
 
-#, fuzzy
-msgid "Restore everything"
-msgstr "Atkurkite sisteminius nustatymus"
-
-#, fuzzy
-msgid "Restore settings"
-msgstr "Atkurkite sisteminius nustatymus"
-
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Klaida paleidžiant papildomą programą"
-
 msgid "Restore settings backup after restart"
 msgstr ""
 
@@ -12268,7 +12257,14 @@ msgstr ""
 msgid "Settings"
 msgstr "Nustatymai"
 
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "Klaida paleidžiant papildomą programą"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 msgid "Settings..."
@@ -16489,6 +16485,9 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "Ką Jūs norite skanuoti?"
+
+msgid "What should be restored?\n"
+msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

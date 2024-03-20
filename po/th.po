@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -3287,10 +3287,6 @@ msgid "Circular right"
 msgstr "วนขวา"
 
 #, fuzzy
-msgid "Clean"
-msgstr "Cleanup"
-
-#, fuzzy
 msgid "Clean network trash can's"
 msgstr "ลบข้อมูลเดิมก่อนค้นหา"
 
@@ -5531,6 +5527,10 @@ msgstr "เมนูดูตัวอย่าง"
 msgid "Eventview:"
 msgstr ""
 
+#, fuzzy
+msgid "Everything"
+msgstr "นำสำรองการตั้งค่าต่างๆ กลับมาใช้"
+
 msgid "Everywhere"
 msgstr ""
 
@@ -5950,6 +5950,10 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "แฟรช"
 
 #, fuzzy
 msgid "Flash Image"
@@ -6743,9 +6747,6 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "บันทึกรายต่อไปอีกกี่นาที?"
-
-msgid "How should the image be installed?\n"
-msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -11083,18 +11084,6 @@ msgstr "นำสำรองกลับมาใช้"
 msgid "Restore deleted images"
 msgstr "ใช่ - นำสำรองการตั้งค่ากลับมาใช้ตอนนี้เลย"
 
-#, fuzzy
-msgid "Restore everything"
-msgstr "นำสำรองการตั้งค่าต่างๆ กลับมาใช้"
-
-#, fuzzy
-msgid "Restore settings"
-msgstr "นำสำรองการตั้งค่าต่างๆ กลับมาใช้"
-
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "เรียกใช้งาน Plugin ผิดพลาด"
-
 msgid "Restore settings backup after restart"
 msgstr ""
 
@@ -12234,7 +12223,14 @@ msgstr ""
 msgid "Settings"
 msgstr "การตั้งค่า"
 
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "เรียกใช้งาน Plugin ผิดพลาด"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 msgid "Settings..."
@@ -16406,6 +16402,9 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "ท่านต้องการค้นหาอะไร?"
+
+msgid "What should be restored?\n"
+msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

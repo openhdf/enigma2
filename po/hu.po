@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -3600,11 +3600,6 @@ msgstr "Kerek-jobb"
 
 #
 #, fuzzy
-msgid "Clean"
-msgstr "Takarítás"
-
-#
-#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Keresés elött törlés"
 
@@ -6126,6 +6121,11 @@ msgstr "Előnézeti menü"
 msgid "Eventview:"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Everything"
+msgstr "Rendszerbeállítás visszaállítása"
+
 msgid "Everywhere"
 msgstr "mindenhonnan"
 
@@ -6607,6 +6607,11 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Flash"
 
 #
 #, fuzzy
@@ -7489,9 +7494,6 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Hány percet szeretne felvenni?"
-
-msgid "How should the image be installed?\n"
-msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -12420,21 +12422,6 @@ msgstr "Mentések visszaállítása"
 msgid "Restore deleted images"
 msgstr "Igen, állítsuk vissza most a beállításokat"
 
-#
-#, fuzzy
-msgid "Restore everything"
-msgstr "Rendszerbeállítás visszaállítása"
-
-#
-#, fuzzy
-msgid "Restore settings"
-msgstr "Rendszerbeállítás visszaállítása"
-
-#
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Plugin indítási hiba"
-
 msgid "Restore settings backup after restart"
 msgstr ""
 
@@ -13699,7 +13686,15 @@ msgstr ""
 msgid "Settings"
 msgstr "Beállítások"
 
+#
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "Plugin indítási hiba"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 msgid "Settings..."
@@ -18395,6 +18390,9 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Mit szeretne lekeresni?"
+
+msgid "What should be restored?\n"
+msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

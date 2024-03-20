@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
-"PO-Revision-Date: 2024-03-20 21:11+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"PO-Revision-Date: 2024-03-20 23:35+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3237,9 +3237,6 @@ msgstr "Linkszirkular"
 msgid "Circular right"
 msgstr "Rechtszirkular"
 
-msgid "Clean"
-msgstr "Sauber"
-
 msgid "Clean network trash can's"
 msgstr "Lösche Netzwerk Papierkorb"
 
@@ -5396,6 +5393,9 @@ msgstr "Ereignisansicht-Menü"
 msgid "Eventview:"
 msgstr "Ereignisansicht:"
 
+msgid "Everything"
+msgstr "Alles"
+
 msgid "Everywhere"
 msgstr "Überall"
 
@@ -5788,6 +5788,9 @@ msgid ""
 msgstr ""
 "Das Laufwerk wurde nach der Initialisierung nach /media/hdd gemountet. Jetzt muss das System neu gestartet werden.\n"
 "Jetzt die %s %s neu starten?"
+
+msgid "Flash Backupimage"
+msgstr "Flashe Backupimage"
 
 msgid "Flash Image"
 msgstr "Image flashen"
@@ -6525,9 +6528,6 @@ msgstr "Wie lange soll der 3D-Modus bei Bestätigung angezeigt werden (Sekunden)
 
 msgid "How many minutes do you want to record?"
 msgstr "Wie viele Minuten aufnehmen?"
-
-msgid "How should the image be installed?\n"
-msgstr "Wie soll das Image installiert werden?\n"
 
 msgid "Http(s) stream start delay"
 msgstr "Http(s) Verzögerung beim Streamstart"
@@ -10640,15 +10640,6 @@ msgstr "Einstellungen wiederherstellen"
 msgid "Restore deleted images"
 msgstr "Gelöschte Images wiederherstellen"
 
-msgid "Restore everything"
-msgstr "Alles einspielen"
-
-msgid "Restore settings"
-msgstr "Settings einspielen"
-
-msgid "Restore settings and selected plugins"
-msgstr "Settings und ausgewählte Plugins einspielen"
-
 msgid "Restore settings backup after restart"
 msgstr "Automatische Wiederherstellung der eigenen Settings"
 
@@ -11724,8 +11715,14 @@ msgstr "Wähle die Basis der Aufnahmeliste um die \"..\" in der Ansicht zu unter
 msgid "Settings"
 msgstr "Einstellungen"
 
+msgid "Settings and selected plugins"
+msgstr "Settings und ausgewählte Plugins"
+
 msgid "Settings over Ethernet"
 msgstr "Einstellungen über Ethernet"
+
+msgid "Settings without plugins"
+msgstr "Settings ohne Plugins"
 
 msgid "Settings..."
 msgstr "Generelle Einstellungen…"
@@ -15692,6 +15689,9 @@ msgstr "Was soll am Ende des Timer geschehen? 'Auto' schickt die Box in den Zust
 
 msgid "What do you want to scan?"
 msgstr "Was durchsuchen?"
+
+msgid "What should be restored?\n"
+msgstr "Was sollte wiederhergestellt werden?\n"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Wenn aktiviert kann PiP mit der Exit Taste geschlossen werden."

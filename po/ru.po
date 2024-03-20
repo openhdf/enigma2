@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: RU locale edited by Sowa\n"
@@ -3356,10 +3356,6 @@ msgid "Circular right"
 msgstr "Круговая правая"
 
 #, fuzzy
-msgid "Clean"
-msgstr "Очистить"
-
-#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Не удаётся переместить в корзину!"
 
@@ -5649,6 +5645,10 @@ msgstr "Просмотреть меню"
 msgid "Eventview:"
 msgstr "Размер шрифта текущего события"
 
+#, fuzzy
+msgid "Everything"
+msgstr "Восстановить системные настройки"
+
 msgid "Everywhere"
 msgstr "Везде"
 
@@ -6066,6 +6066,10 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Прошивка"
 
 #, fuzzy
 msgid "Flash Image"
@@ -6872,10 +6876,6 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Сколько минут вы хотите записать?"
-
-#, fuzzy
-msgid "How should the image be installed?\n"
-msgstr "Где должны быть сохранены записи?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -11237,18 +11237,6 @@ msgid "Restore deleted images"
 msgstr "Да, восстановить установки сейчас"
 
 #, fuzzy
-msgid "Restore everything"
-msgstr "Восстановить системные настройки"
-
-#, fuzzy
-msgid "Restore settings"
-msgstr "Восстановить системные настройки"
-
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Ошибка выполнения плагина"
-
-#, fuzzy
 msgid "Restore settings backup after restart"
 msgstr "Выполнить резервное копирование настроек перед обновлением."
 
@@ -12390,7 +12378,14 @@ msgstr "Устанавливает основной каталог для вид
 msgid "Settings"
 msgstr "Установки"
 
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "Ошибка выполнения плагина"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 msgid "Settings..."
@@ -16688,6 +16683,10 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "Что вы хотите сканировать?"
+
+#, fuzzy
+msgid "What should be restored?\n"
+msgstr "Где должны быть сохранены записи?"
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."

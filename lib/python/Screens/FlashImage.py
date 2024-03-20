@@ -505,27 +505,31 @@ class FlashImage(Screen):
 	def flashPostAction(self, retVal=True):
 		if retVal:
 			self.recordCheck = False
-			text = _("How should the image be installed?\n")
+			text = _("What should be restored?\n")
 			if getImageDistro() in self.imagename:
 				if os.path.exists("/media/hdd/images/config/myrestore.sh"):
 					text = "%s\n%s" % (text, _("(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"))
 				choices = [
-					(_("Restore everything"), "restoresettingsandallplugins"),
-					(_("Clean"), "wizard"),
-					(_("Restore settings"), "restoresettingsnoplugin"),
-					(_("Restore settings and selected plugins"), "restoresettings"),
+					(_("Everything"), "restoresettingsandallplugins"),
+					(_("Nothing"), "wizard"),
+					(_("Settings without plugins"), "restoresettingsnoplugin"),
+					(_("Settings and selected plugins"), "restoresettings"),
 					(_("Do not flash image"), "abort")
 				]
 				default = self.selectPrevPostFlashAction()
 				if "backup" in self.imagename:
+					text = _("Flash Backupimage")
+					text = "%s\n%s?" % (text, self.imagename)
 					choices = [
-						(_("Clean"), "nothing"),
+						(_("Yes"), "nothing"),
 						(_("Do not flash image"), "abort")
 					]
 					default = 0
 			else:
+				text = _("Flash Image")
+				text = "%s\n%s?" % (text, self.imagename)
 				choices = [
-					(_("Clean"), "wizard"),
+					(_("Yes"), "wizard"),
 					(_("Do not flash image"), "abort")
 				]
 				default = 0

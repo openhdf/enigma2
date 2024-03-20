@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: No-Team\n"
@@ -3416,10 +3416,6 @@ msgid "Circular right"
 msgstr "Circular direita"
 
 #, fuzzy
-msgid "Clean"
-msgstr "Eliminar"
-
-#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Impossível apagar"
 
@@ -5756,6 +5752,10 @@ msgstr "Menu de pré-visualização"
 msgid "Eventview:"
 msgstr "Tamanho de letra"
 
+#, fuzzy
+msgid "Everything"
+msgstr "Restaurar configurações do sistema"
+
 msgid "Everywhere"
 msgstr "Todo lado"
 
@@ -6181,6 +6181,10 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Flash"
 
 #, fuzzy
 msgid "Flash Image"
@@ -7001,9 +7005,6 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Quantos minutos deseja gravar?"
-
-msgid "How should the image be installed?\n"
-msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -11467,18 +11468,6 @@ msgstr "Restauração de backups"
 msgid "Restore deleted images"
 msgstr "Sim, restaurar as configurações agora"
 
-#, fuzzy
-msgid "Restore everything"
-msgstr "Restaurar configurações do sistema"
-
-#, fuzzy
-msgid "Restore settings"
-msgstr "Restaurar configurações do sistema"
-
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Erro ao executar o plugin"
-
 msgid "Restore settings backup after restart"
 msgstr ""
 
@@ -12651,7 +12640,14 @@ msgstr ""
 msgid "Settings"
 msgstr "Configurações"
 
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "Erro ao executar o plugin"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 #, fuzzy
@@ -17026,6 +17022,9 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "O que deseja procurar?"
+
+msgid "What should be restored?\n"
+msgstr ""
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."

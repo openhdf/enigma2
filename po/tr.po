@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
-"PO-Revision-Date: 2024-03-20 09:53+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"PO-Revision-Date: 2024-03-20 23:40+0100\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
 "Language: tr\n"
@@ -3264,10 +3264,6 @@ msgstr "Dairesel sola"
 msgid "Circular right"
 msgstr "Dairesel sağa"
 
-#, fuzzy
-msgid "Clean"
-msgstr "Temizle"
-
 msgid "Clean network trash can's"
 msgstr "Ağ çöp kutularını temizle"
 
@@ -5484,6 +5480,9 @@ msgstr "Önizleme menüsü"
 msgid "Eventview:"
 msgstr "Önizleme:"
 
+msgid "Everything"
+msgstr "Herşey"
+
 msgid "Everywhere"
 msgstr "Her yerde"
 
@@ -5887,6 +5886,10 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Flaşlıyor"
 
 #, fuzzy
 msgid "Flash Image"
@@ -6663,10 +6666,6 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Kaç dakikalık kayıt başlatmak istiyorsunuz?"
-
-#, fuzzy
-msgid "How should the image be installed?\n"
-msgstr "Kayıt nereye kaydedilmeli?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -10885,18 +10884,6 @@ msgstr "Yedekleri geri yükle"
 msgid "Restore deleted images"
 msgstr "silinen kullanıcı buketlerini geri yükle"
 
-#, fuzzy
-msgid "Restore everything"
-msgstr "Yükseltme (Her şeyi geri yükle)"
-
-#, fuzzy
-msgid "Restore settings"
-msgstr "Sistem ayarlarını geri yükle"
-
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Tüm ayarların ve eklentilerin otomatik olarak geri yüklensin mi?"
-
 msgid "Restore settings backup after restart"
 msgstr ""
 
@@ -12006,8 +11993,14 @@ msgstr ""
 msgid "Settings"
 msgstr "Ayarlar"
 
+msgid "Settings and selected plugins"
+msgstr "Ayarlar ve seçilen eklentiler"
+
 msgid "Settings over Ethernet"
 msgstr ""
+
+msgid "Settings without plugins"
+msgstr "Eklentiler olmadan ayarlar"
 
 msgid "Settings..."
 msgstr "Ayarlar..."
@@ -16094,6 +16087,9 @@ msgstr ""
 
 msgid "What do you want to scan?"
 msgstr "Neleri aramak istiyorsunuz?"
+
+msgid "What should be restored?\n"
+msgstr "Ne restore edilmeli?\n"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

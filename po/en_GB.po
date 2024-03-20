@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2024-03-19 11:00+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: ViX\n"
@@ -3072,9 +3072,6 @@ msgstr ""
 msgid "Circular right"
 msgstr ""
 
-msgid "Clean"
-msgstr ""
-
 msgid "Clean network trash can's"
 msgstr ""
 
@@ -5181,6 +5178,9 @@ msgstr ""
 msgid "Eventview:"
 msgstr ""
 
+msgid "Everything"
+msgstr ""
+
 msgid "Everywhere"
 msgstr ""
 
@@ -5565,6 +5565,9 @@ msgstr ""
 msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
+msgstr ""
+
+msgid "Flash Backupimage"
 msgstr ""
 
 msgid "Flash Image"
@@ -6294,9 +6297,6 @@ msgid "How long should 3D mode on confirmation be displayed (seconds). 0 for non
 msgstr ""
 
 msgid "How many minutes do you want to record?"
-msgstr ""
-
-msgid "How should the image be installed?\n"
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -10298,15 +10298,6 @@ msgstr ""
 msgid "Restore deleted images"
 msgstr ""
 
-msgid "Restore everything"
-msgstr ""
-
-msgid "Restore settings"
-msgstr ""
-
-msgid "Restore settings and selected plugins"
-msgstr ""
-
 msgid "Restore settings backup after restart"
 msgstr ""
 
@@ -11372,7 +11363,13 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
+msgid "Settings and selected plugins"
+msgstr ""
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 msgid "Settings..."
@@ -15198,6 +15195,9 @@ msgid "What action is required on completion of the timer? 'Auto' lets the box r
 msgstr ""
 
 msgid "What do you want to scan?"
+msgstr ""
+
+msgid "What should be restored?\n"
 msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."

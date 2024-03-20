@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: www.CostaBlancaTranslations.com <maria@CostaBlancaTranslations.com>\n"
@@ -3612,11 +3612,6 @@ msgstr "Izquierda circular"
 msgid "Circular right"
 msgstr "Derecha circular"
 
-#
-#, fuzzy
-msgid "Clean"
-msgstr "Limpiar"
-
 #, fuzzy
 msgid "Clean network trash can's"
 msgstr "No se puede mover a la papelera"
@@ -6132,6 +6127,11 @@ msgstr "Menú previsualizar"
 msgid "Eventview:"
 msgstr "Tamaño de fuente del programa"
 
+#
+#, fuzzy
+msgid "Everything"
+msgstr "Configuración del sistema de restauración"
+
 msgid "Everywhere"
 msgstr "En todo"
 
@@ -6600,6 +6600,10 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Parpadeo"
 
 #, fuzzy
 msgid "Flash Image"
@@ -7470,10 +7474,6 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "¿Cuántos minutos quieres grabar?"
-
-#, fuzzy
-msgid "How should the image be installed?\n"
-msgstr "¿Dónde quieres guardar la grabación?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -12345,21 +12345,6 @@ msgstr "Restaurar copias de seguridad"
 msgid "Restore deleted images"
 msgstr "Sí, restaurar la configuración ahora."
 
-#
-#, fuzzy
-msgid "Restore everything"
-msgstr "Configuración del sistema de restauración"
-
-#
-#, fuzzy
-msgid "Restore settings"
-msgstr "Configuración del sistema de restauración"
-
-#
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Error ejecutando el complemento"
-
 #, fuzzy
 msgid "Restore settings backup after restart"
 msgstr "Hacer una copia de seguridad antes de actualizar."
@@ -13611,7 +13596,15 @@ msgstr "Cambia la carpeta raíz de una lista de películas para eliminar '..' de
 msgid "Settings"
 msgstr "Parámetros"
 
+#
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "Error ejecutando el complemento"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 msgid "Settings..."
@@ -18285,6 +18278,10 @@ msgstr "¿Qué acción debe ejecutarse al finalizar el temporizador? En \"auto\"
 #
 msgid "What do you want to scan?"
 msgstr "¿Qué quieres buscar?"
+
+#, fuzzy
+msgid "What should be restored?\n"
+msgstr "¿Dónde quieres guardar la grabación?"
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."

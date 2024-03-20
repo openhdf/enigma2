@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: \n"
@@ -3351,10 +3351,6 @@ msgstr "Kruhová levá"
 msgid "Circular right"
 msgstr "Kruhová pravá"
 
-#, fuzzy
-msgid "Clean"
-msgstr "Vyčistit"
-
 msgid "Clean network trash can's"
 msgstr "Používat mazání koše"
 
@@ -5604,6 +5600,10 @@ msgstr "Menu přehledu událostí"
 msgid "Eventview:"
 msgstr "Událost"
 
+#, fuzzy
+msgid "Everything"
+msgstr "Obnova nastavení"
+
 msgid "Everywhere"
 msgstr "Na všech"
 
@@ -6019,6 +6019,10 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Změna a obnova Image"
 
 #, fuzzy
 msgid "Flash Image"
@@ -6812,10 +6816,6 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Kolik minut chcete nahrát?"
-
-#, fuzzy
-msgid "How should the image be installed?\n"
-msgstr "Má být nahrávka uložena?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -11131,18 +11131,6 @@ msgid "Restore deleted images"
 msgstr "Chcete-li obnovit obraz (image):"
 
 #, fuzzy
-msgid "Restore everything"
-msgstr "Obnova nastavení"
-
-#, fuzzy
-msgid "Restore settings"
-msgstr "Obnova nastavení"
-
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Flashnout a obnovit nastavení, bez pluginů"
-
-#, fuzzy
 msgid "Restore settings backup after restart"
 msgstr "Obnova nastavení ze zálohy"
 
@@ -12269,7 +12257,14 @@ msgstr "Nastavte root složku seznamu filmu, odebráním '..' ze začátku názv
 msgid "Settings"
 msgstr "Nastavení"
 
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "Flashnout a obnovit nastavení, bez pluginů"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 msgid "Settings..."
@@ -16475,6 +16470,10 @@ msgstr "Co udělat po dokončení časovače? 'Auto' vrátí Váš %s %s do stav
 
 msgid "What do you want to scan?"
 msgstr "Co chcete prohledat?"
+
+#, fuzzy
+msgid "What should be restored?\n"
+msgstr "Má být nahrávka uložena?"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Jestliže je povoleno, pak PiP může být ukončen tlačítkem Exit"

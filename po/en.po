@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: none\n"
@@ -3267,10 +3267,6 @@ msgstr "Circular left"
 msgid "Circular right"
 msgstr "Circular right"
 
-#, fuzzy
-msgid "Clean"
-msgstr "Cleanup"
-
 msgid "Clean network trash can's"
 msgstr ""
 
@@ -5490,6 +5486,10 @@ msgstr "Preview menu"
 msgid "Eventview:"
 msgstr "Event view"
 
+#, fuzzy
+msgid "Everything"
+msgstr "Restore system settings"
+
 msgid "Everywhere"
 msgstr "Everywhere"
 
@@ -5894,6 +5894,10 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Flashing"
 
 #, fuzzy
 msgid "Flash Image"
@@ -6660,10 +6664,6 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "How many minutes do you want to record?"
-
-#, fuzzy
-msgid "How should the image be installed?\n"
-msgstr "Where should the recording be saved?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -10874,18 +10874,6 @@ msgid "Restore deleted images"
 msgstr "Yes, restore the settings now"
 
 #, fuzzy
-msgid "Restore everything"
-msgstr "Restore system settings"
-
-#, fuzzy
-msgid "Restore settings"
-msgstr "Restore system settings"
-
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Error executing plugin"
-
-#, fuzzy
 msgid "Restore settings backup after restart"
 msgstr "Perform a settings backup before updating."
 
@@ -12001,7 +11989,14 @@ msgstr "Sets the root folder of movie list, to remove the '..' from benign shown
 msgid "Settings"
 msgstr "Settings"
 
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "Error executing plugin"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 msgid "Settings..."
@@ -16107,6 +16102,10 @@ msgstr "What action is required on completion of the timer? 'Auto' lets the box 
 
 msgid "What do you want to scan?"
 msgstr "What do you want to scan?"
+
+#, fuzzy
+msgid "What should be restored?\n"
+msgstr "Where should the recording be saved?"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

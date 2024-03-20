@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -3630,11 +3630,6 @@ msgstr "Kołowa prawa"
 
 #
 #, fuzzy
-msgid "Clean"
-msgstr "Czyszczenie"
-
-#
-#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Nie można przenieść do 'Kosza'"
 
@@ -6182,6 +6177,11 @@ msgid "Eventview:"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Everything"
+msgstr "Przywróć ustawienia systemowe"
+
+#
 msgid "Everywhere"
 msgstr "Wszędzie"
 
@@ -6671,6 +6671,11 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Flash"
 
 #
 #, fuzzy
@@ -7563,9 +7568,6 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Ile minut ma trwać nagranie?"
-
-msgid "How should the image be installed?\n"
-msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -12569,21 +12571,6 @@ msgstr "Przywróć backup"
 msgid "Restore deleted images"
 msgstr "Tak, przywróć ustawienia teraz"
 
-#
-#, fuzzy
-msgid "Restore everything"
-msgstr "Przywróć ustawienia systemowe"
-
-#
-#, fuzzy
-msgid "Restore settings"
-msgstr "Przywróć ustawienia systemowe"
-
-#
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Błąd podczas uruchamiania pluginu"
-
 msgid "Restore settings backup after restart"
 msgstr ""
 
@@ -13870,7 +13857,15 @@ msgstr ""
 msgid "Settings"
 msgstr "Ustawienia"
 
+#
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "Błąd podczas uruchamiania pluginu"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 msgid "Settings..."
@@ -18642,6 +18637,9 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Co chcesz skanować?"
+
+msgid "What should be restored?\n"
+msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

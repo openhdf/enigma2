@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -3608,11 +3608,6 @@ msgstr "Krožno - desno"
 
 #
 #, fuzzy
-msgid "Clean"
-msgstr "Čiščenje"
-
-#
-#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Pred iskanjem naj se izvede izbris obstoječih kanalov"
 
@@ -6177,6 +6172,11 @@ msgstr "Predogled meni"
 msgid "Eventview:"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Everything"
+msgstr "Obnovitev glavnih nastavitev"
+
 msgid "Everywhere"
 msgstr "Povsod"
 
@@ -6664,6 +6664,11 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Nadgradi"
 
 #
 #, fuzzy
@@ -7551,9 +7556,6 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Koliko minut želite snemati?"
-
-msgid "How should the image be installed?\n"
-msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -12551,21 +12553,6 @@ msgstr "Povrnitev varnostne kopije"
 msgid "Restore deleted images"
 msgstr "Da, povrni shranjene nastavitve"
 
-#
-#, fuzzy
-msgid "Restore everything"
-msgstr "Obnovitev glavnih nastavitev"
-
-#
-#, fuzzy
-msgid "Restore settings"
-msgstr "Obnovitev glavnih nastavitev"
-
-#
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Napaka pri zagonu vtičnika"
-
 msgid "Restore settings backup after restart"
 msgstr ""
 
@@ -13857,7 +13844,15 @@ msgstr ""
 msgid "Settings"
 msgstr "Nastavitve"
 
+#
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "Napaka pri zagonu vtičnika"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 #
@@ -18620,6 +18615,9 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Kaj želite iskati?"
+
+msgid "What should be restored?\n"
+msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

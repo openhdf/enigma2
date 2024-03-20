@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -3596,11 +3596,6 @@ msgstr "Sirkulær right"
 
 #
 #, fuzzy
-msgid "Clean"
-msgstr "Opprydning"
-
-#
-#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Slett nettverks søppelbøtta"
 
@@ -6092,6 +6087,11 @@ msgstr "Forhåndsvis meny"
 msgid "Eventview:"
 msgstr "Program visning"
 
+#
+#, fuzzy
+msgid "Everything"
+msgstr "Gjenopprette system oppsett"
+
 msgid "Everywhere"
 msgstr "Over alt"
 
@@ -6567,6 +6567,10 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Flashing"
 
 #, fuzzy
 msgid "Flash Image"
@@ -7439,10 +7443,6 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Hvor mange minutter vil du ta opp?"
-
-#, fuzzy
-msgid "How should the image be installed?\n"
-msgstr "Hvor bør opptaket bli lagret?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -12277,21 +12277,6 @@ msgstr "Gjenopprett Sikkerhetskopier"
 msgid "Restore deleted images"
 msgstr "Vil du virkelig slette ferdige timere?"
 
-#
-#, fuzzy
-msgid "Restore everything"
-msgstr "Gjenopprette system oppsett"
-
-#
-#, fuzzy
-msgid "Restore settings"
-msgstr "Gjenopprette system oppsett"
-
-#
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Feil ved utføring av plugin "
-
 #, fuzzy
 msgid "Restore settings backup after restart"
 msgstr "Utfør en sikkerhetskopiering av innstillinger før du oppdaterer."
@@ -13543,7 +13528,15 @@ msgstr "Angir rotmappen for filmliste, for å fjerne '..' for vist i denne mappe
 msgid "Settings"
 msgstr "Innstillinger"
 
+#
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "Feil ved utføring av plugin "
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 msgid "Settings..."
@@ -18224,6 +18217,10 @@ msgstr "Hvilke tiltak er nødvendig for å fullføre timeren? 'Auto' lar boksen 
 #
 msgid "What do you want to scan?"
 msgstr "Hva vil du søke etter?"
+
+#, fuzzy
+msgid "What should be restored?\n"
+msgstr "Hvor bør opptaket bli lagret?"
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."

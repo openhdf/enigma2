@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
-"PO-Revision-Date: 2024-03-20 21:12+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"PO-Revision-Date: 2024-03-20 23:39+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -3314,9 +3314,6 @@ msgstr "Circulaire gauche"
 msgid "Circular right"
 msgstr "Circulaire droit"
 
-msgid "Clean"
-msgstr "Nettoyer"
-
 msgid "Clean network trash can's"
 msgstr "Nettoyer les corbeilles réseaux"
 
@@ -5536,6 +5533,9 @@ msgstr "Vue événement"
 msgid "Eventview:"
 msgstr "Vue événement"
 
+msgid "Everything"
+msgstr "Tout"
+
 msgid "Everywhere"
 msgstr "Partout"
 
@@ -5950,6 +5950,10 @@ msgid ""
 msgstr ""
 "Montage fixe d’abord initialiser le périphérique de montage pour /media/hdd. Cela nécessite de redémarrer le système pour prendre effet.\n"
 "Redémarrer votre %s %s maintenant?"
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Flashage"
 
 #, fuzzy
 msgid "Flash Image"
@@ -6728,9 +6732,6 @@ msgstr "Combien de temps la confirmation du mode 3D doit être affiché (seconde
 
 msgid "How many minutes do you want to record?"
 msgstr "Combien de minutes voulez-vous enregistrer?"
-
-msgid "How should the image be installed?\n"
-msgstr "Comment l'image doit-elle être installée ?\n"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -8926,7 +8927,7 @@ msgid "Not-Associated"
 msgstr "Non-Associé"
 
 msgid "Nothing"
-msgstr "Ne rien faire"
+msgstr "Rien"
 
 msgid ""
 "Nothing to scan!\n"
@@ -10935,15 +10936,6 @@ msgstr "Restaurer sauvegardes"
 msgid "Restore deleted images"
 msgstr "Restaurer les images effacées"
 
-msgid "Restore everything"
-msgstr "Restaure tout"
-
-msgid "Restore settings"
-msgstr "Restaurer les paramètres"
-
-msgid "Restore settings and selected plugins"
-msgstr "Restaure les paramètres et les plugins sélectionnés"
-
 msgid "Restore settings backup after restart"
 msgstr "Restaure la sauvegarde des paramètres après le redémarrage"
 
@@ -12050,8 +12042,14 @@ msgstr "Définir le répertoire principal pour la liste des films, pour enlever 
 msgid "Settings"
 msgstr "Paramètres"
 
+msgid "Settings and selected plugins"
+msgstr "Paramètres et plugins sélectionnés"
+
 msgid "Settings over Ethernet"
 msgstr "Paramètres via Ethernet"
+
+msgid "Settings without plugins"
+msgstr "Paramètres sans plugins"
 
 msgid "Settings..."
 msgstr "Paramètres…"
@@ -16134,6 +16132,9 @@ msgstr "Quelle action est requise à la fin d’une programmation? ‘Auto’ la
 
 msgid "What do you want to scan?"
 msgstr "Que voulez-vous analyser?"
+
+msgid "What should be restored?\n"
+msgstr "Que faut-il restaurer ?\n"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Lorsqu’il est activé, l’image dans l’image PiP sera fermé avec le bouton exit."

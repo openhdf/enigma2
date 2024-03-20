@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openhdf-6.5             enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2021-08-04 21:52+0800\n"
 "Last-Translator: 孤独之剑 < haotzyy1970@163.com>\n"
 "Language-Team: 孤独之剑< haotzyy1970@163.com>\n"
@@ -3299,10 +3299,6 @@ msgstr "左旋"
 msgid "Circular right"
 msgstr "右旋"
 
-#, fuzzy
-msgid "Clean"
-msgstr "清理"
-
 msgid "Clean network trash can's"
 msgstr "清洁网络垃圾桶"
 
@@ -5505,6 +5501,10 @@ msgstr "事件视图菜单"
 msgid "Eventview:"
 msgstr "事件视图"
 
+#, fuzzy
+msgid "Everything"
+msgstr "恢复系统设置"
+
 msgid "Everywhere"
 msgstr "任何位置"
 
@@ -5912,6 +5912,10 @@ msgstr ""
 "固定安装的第一个初始化存储设备到/media/hdd.它需要重新启动系统才能生效.\n"
 "\n"
 "是否现在重新启动%s %s?"
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "刷写镜像"
 
 msgid "Flash Image"
 msgstr "刷写镜像"
@@ -6669,10 +6673,6 @@ msgstr "3D模式应显示多长时间(秒).0为无."
 
 msgid "How many minutes do you want to record?"
 msgstr "您要多少分钟的录制?"
-
-#, fuzzy
-msgid "How should the image be installed?\n"
-msgstr "录制应该保存在哪里?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -10863,18 +10863,6 @@ msgstr "恢复备份"
 msgid "Restore deleted images"
 msgstr "要还原镜像:"
 
-#, fuzzy
-msgid "Restore everything"
-msgstr "恢复系统设置"
-
-#, fuzzy
-msgid "Restore settings"
-msgstr "恢复系统设置"
-
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "不还原设置和插件!"
-
 msgid "Restore settings backup after restart"
 msgstr "重新启动后还原设置备份"
 
@@ -11963,8 +11951,15 @@ msgstr "设置电影列表的根文件夹,以删除'..'从良性显示在该文�
 msgid "Settings"
 msgstr "设置"
 
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "不还原设置和插件!"
+
 msgid "Settings over Ethernet"
 msgstr "设置以太网"
+
+msgid "Settings without plugins"
+msgstr ""
 
 msgid "Settings..."
 msgstr "设置..."
@@ -15973,6 +15968,10 @@ msgstr "在定时器complettion需要什么行动？'自动'让框返回到它�
 
 msgid "What do you want to scan?"
 msgstr "您想扫描什么?"
+
+#, fuzzy
+msgid "What should be restored?\n"
+msgstr "录制应该保存在哪里?"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "当启用画中画可以通过退出按钮关闭."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: torac <info@takerman.se>\n"
@@ -3590,11 +3590,6 @@ msgstr "Cirkulär vänster"
 msgid "Circular right"
 msgstr "Cirkulär höger"
 
-#
-#, fuzzy
-msgid "Clean"
-msgstr "Rensa"
-
 #, fuzzy
 msgid "Clean network trash can's"
 msgstr "Går inte att flytta till papperskorgen"
@@ -6106,6 +6101,11 @@ msgstr "Förhandsgranskningsmeny"
 msgid "Eventview:"
 msgstr "Fontstorlek för evenemang"
 
+#
+#, fuzzy
+msgid "Everything"
+msgstr "Återskapa systeminställningar"
+
 msgid "Everywhere"
 msgstr "Överallt"
 
@@ -6572,6 +6572,10 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Blinkande"
 
 #, fuzzy
 msgid "Flash Image"
@@ -7441,10 +7445,6 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Hur många minuter vill du spela in?"
-
-#, fuzzy
-msgid "How should the image be installed?\n"
-msgstr "Var skall inspelningen sparas?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -12311,21 +12311,6 @@ msgstr "Återställ backuper"
 msgid "Restore deleted images"
 msgstr "Ja, återställ inställningarna nu"
 
-#
-#, fuzzy
-msgid "Restore everything"
-msgstr "Återskapa systeminställningar"
-
-#
-#, fuzzy
-msgid "Restore settings"
-msgstr "Återskapa systeminställningar"
-
-#
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Fel vid körning av plugin"
-
 #, fuzzy
 msgid "Restore settings backup after restart"
 msgstr "Utför en backup av inställningar innan uppdatering"
@@ -13581,7 +13566,15 @@ msgstr "Ställer in rootmappen i filmlistan så att tecknen '..' inte visas för
 msgid "Settings"
 msgstr "Inställningar"
 
+#
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "Fel vid körning av plugin"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 msgid "Settings..."
@@ -18258,6 +18251,10 @@ msgstr "Vilken åtgärd skall göras efter det att timern är slutförd? 'Auto' 
 #
 msgid "What do you want to scan?"
 msgstr "Vad vill du söka efter?"
+
+#, fuzzy
+msgid "What should be restored?\n"
+msgstr "Var skall inspelningen sparas?"
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."

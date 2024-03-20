@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
-"PO-Revision-Date: 2024-03-20 21:13+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"PO-Revision-Date: 2024-03-20 23:38+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: WWW.LINSAT.NET <spaeleus@croci.org>\n"
 "Language: it\n"
@@ -3602,11 +3602,6 @@ msgstr "Circolare a destra"
 
 #
 #, fuzzy
-msgid "Clean"
-msgstr "Ripulire"
-
-#
-#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Cancellare prima di cercare"
 
@@ -6096,6 +6091,9 @@ msgstr "Menu anteprima"
 msgid "Eventview:"
 msgstr ""
 
+msgid "Everything"
+msgstr "Tutto"
+
 msgid "Everywhere"
 msgstr ""
 
@@ -6576,6 +6574,11 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Flash"
 
 #
 #, fuzzy
@@ -7445,9 +7448,6 @@ msgstr ""
 #
 msgid "How many minutes do you want to record?"
 msgstr "Durata registrazione (minuti):"
-
-msgid "How should the image be installed?\n"
-msgstr "Come deve essere installata l'immagine?\n"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -9974,9 +9974,8 @@ msgid "Not-Associated"
 msgstr "Non associato"
 
 #
-#, fuzzy
 msgid "Nothing"
-msgstr "Non fare nulla"
+msgstr "Niente"
 
 #
 msgid ""
@@ -12342,17 +12341,6 @@ msgstr "Ripristino backup."
 msgid "Restore deleted images"
 msgstr "Sì, ripristinare la configurazione"
 
-msgid "Restore everything"
-msgstr "Ripristina tutto"
-
-#
-msgid "Restore settings"
-msgstr "Ripristina le impostazioni"
-
-#
-msgid "Restore settings and selected plugins"
-msgstr "Ripristina le impostazioni e i plugin selezionati"
-
 msgid "Restore settings backup after restart"
 msgstr "Ripristina il backup delle impostazioni dopo il riavvio"
 
@@ -13488,13 +13476,12 @@ msgid "Set sequence repeats if your aerial system requires this. Normally if the
 msgstr ""
 
 #
-#, fuzzy, python-format
+#, python-format
 msgid "Set the MAC-address of your %s %s.\n"
-msgstr "Modificare configurazione nameserver del %s %s.\n"
+msgstr "Imposta l'indirizzo MAC del tuo %s %s.\n"
 
-#, fuzzy
 msgid "Set the aspect ratio of the service picons."
-msgstr "Struttura nomi dei file registrazione"
+msgstr "Imposta il rapporto d'aspetto dei picons del servizio."
 
 msgid "Set the channel for this timer."
 msgstr ""
@@ -13526,7 +13513,6 @@ msgstr ""
 msgid "Set the depth of 3D effect. Press [0] for standard value."
 msgstr ""
 
-#, fuzzy
 msgid "Set the description of the recording."
 msgstr "Struttura nomi dei file registrazione"
 
@@ -13610,11 +13596,18 @@ msgstr ""
 msgid "Settings"
 msgstr "Config."
 
+#
+msgid "Settings and selected plugins"
+msgstr "Impostazioni e plugin selezionati"
+
 msgid "Settings over Ethernet"
-msgstr ""
+msgstr "Impostazioni su Ethernet"
+
+msgid "Settings without plugins"
+msgstr "Impostazioni senza plugin"
 
 msgid "Settings..."
-msgstr ""
+msgstr "Impostazioni..."
 
 #
 msgid "Setup"
@@ -18279,6 +18272,9 @@ msgstr ""
 #
 msgid "What do you want to scan?"
 msgstr "Cosa si intende cercare?"
+
+msgid "What should be restored?\n"
+msgstr "Cosa dovrebbe essere ripristinato?\n"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""

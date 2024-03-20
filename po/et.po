@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 21:07+0100\n"
+"POT-Creation-Date: 2024-03-20 23:33+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -3345,10 +3345,6 @@ msgid "Circular right"
 msgstr "Ringpolarisatsioon parem"
 
 #, fuzzy
-msgid "Clean"
-msgstr "Puhastus"
-
-#, fuzzy
 msgid "Clean network trash can's"
 msgstr "Tühjenda võrguketta prügikast"
 
@@ -5628,6 +5624,10 @@ msgstr "Eelvaate menüü"
 msgid "Eventview:"
 msgstr "Saateinfo"
 
+#, fuzzy
+msgid "Everything"
+msgstr "Seadistuste taastamine"
+
 msgid "Everywhere"
 msgstr "Igal pool"
 
@@ -6050,6 +6050,10 @@ msgid ""
 "Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
+
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "Vilkuv"
 
 #, fuzzy
 msgid "Flash Image"
@@ -6858,10 +6862,6 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Mitu minutit soovid salvestada?"
-
-#, fuzzy
-msgid "How should the image be installed?\n"
-msgstr "Kuhu salvestatakse?"
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -11216,18 +11216,6 @@ msgid "Restore deleted images"
 msgstr "Jah, taasta nüüd seadistused"
 
 #, fuzzy
-msgid "Restore everything"
-msgstr "Seadistuste taastamine"
-
-#, fuzzy
-msgid "Restore settings"
-msgstr "Seadistuste taastamine"
-
-#, fuzzy
-msgid "Restore settings and selected plugins"
-msgstr "Viga laienduse käivitamisel"
-
-#, fuzzy
 msgid "Restore settings backup after restart"
 msgstr "Loo enne uuendamist seadistustest varukoopia."
 
@@ -12368,7 +12356,14 @@ msgstr "Määrab filmilistile juurkataloogi, et eemaldada '..' kataloogi nimest.
 msgid "Settings"
 msgstr "Seaded"
 
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "Viga laienduse käivitamisel"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 msgid "Settings..."
@@ -16659,6 +16654,10 @@ msgstr "Mida teha taimeri lõppemisel? 'Automaatne' laseb vstuvõtjal minna olek
 
 msgid "What do you want to scan?"
 msgstr "Mida soovid otsida?"
+
+#, fuzzy
+msgid "What should be restored?\n"
+msgstr "Kuhu salvestatakse?"
 
 #, fuzzy
 msgid "When enabled the PiP can be closed by the exit button."
