@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 12:47+0100\n"
+"POT-Creation-Date: 2024-03-20 09:41+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -15829,7 +15829,7 @@ msgstr "oota..."
 msgid "Updating software catalog"
 msgstr "Tarkvara kataloogi uuendamine"
 
-msgid "Upgrade (Backup, Flash & Restore All)"
+msgid "Upgrade (Restore everything)"
 msgstr ""
 
 #, fuzzy

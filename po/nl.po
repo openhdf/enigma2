@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 12:47+0100\n"
+"POT-Creation-Date: 2024-03-20 09:41+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
@@ -15863,7 +15863,7 @@ msgstr "even wachten..."
 msgid "Updating software catalog"
 msgstr "Softwarecatalogus wordt geupdate"
 
-msgid "Upgrade (Backup, Flash & Restore All)"
+msgid "Upgrade (Restore everything)"
 msgstr ""
 
 #, fuzzy

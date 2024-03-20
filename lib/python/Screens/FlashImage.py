@@ -442,10 +442,22 @@ class FlashImage(Screen):
 				command = "/usr/bin/ofgwrite -k -r -m%s '%s'" % (multibootslot, imagefiles)
 			else:
 				command = "/usr/bin/ofgwrite -k -r '%s'" % imagefiles
+			self.createSkinRestoreFile()
 			self.containerofgwrite = Console()
 			self.containerofgwrite.ePopen(command, self.FlashimageDone)
 		else:
 			self.session.openWithCallback(self.abort, MessageBox, _("Image to install is invalid\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
+
+	def createSkinRestoreFile(self):
+		try:
+			skinrestorefile = "/media/hdd/images/skinrestore"
+			if fileExists(skinrestorefile):
+				print("[SkinRestore]: Skinrestorefile exists")
+			else:
+				open(skinrestorefile, 'a').close()
+				print("[SkinRestore]: Skinrestorefile created")
+		except:
+			pass
 
 	def FlashimageDone(self, data, retval, extra_args):
 		self.containerofgwrite = None
@@ -499,7 +511,7 @@ class FlashImage(Screen):
 				if os.path.exists("/media/hdd/images/config/myrestore.sh"):
 					text = "%s\n%s" % (text, _("(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"))
 				choices = [
-					(_("Upgrade (Backup, Flash & Restore All)"), "restoresettingsandallplugins"),
+					(_("Upgrade (Restore everything)"), "restoresettingsandallplugins"),
 					(_("Normal start"), "wizard"),
 					(_("Flash and restore settings"), "restoresettingsnoplugin"),
 					(_("Flash, restore settings and user selected plugins"), "restoresettings"),

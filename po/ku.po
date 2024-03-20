@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 12:47+0100\n"
+"POT-Creation-Date: 2024-03-20 09:41+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -16123,7 +16123,7 @@ msgstr "Please wait..."
 msgid "Updating software catalog"
 msgstr "Updating software catalog"
 
-msgid "Upgrade (Backup, Flash & Restore All)"
+msgid "Upgrade (Restore everything)"
 msgstr ""
 
 #, fuzzy

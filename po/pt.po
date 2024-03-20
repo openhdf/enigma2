@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 12:47+0100\n"
+"POT-Creation-Date: 2024-03-20 09:41+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
@@ -17421,7 +17421,7 @@ msgstr "por favor espere..."
 msgid "Updating software catalog"
 msgstr "A actualizar o catalogo de software"
 
-msgid "Upgrade (Backup, Flash & Restore All)"
+msgid "Upgrade (Restore everything)"
 msgstr ""
 
 #, fuzzy
