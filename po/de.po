@@ -15691,7 +15691,7 @@ msgid "What do you want to scan?"
 msgstr "Was durchsuchen?"
 
 msgid "What should be restored?\n"
-msgstr "Was sollte wiederhergestellt werden?\n"
+msgstr "Was soll wiederhergestellt werden?\n"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Wenn aktiviert kann PiP mit der Exit Taste geschlossen werden."
