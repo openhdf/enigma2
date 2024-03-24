@@ -194,7 +194,7 @@ def GetImagelist():
 						for row in lines:
 							word = 'imagetype'
 							if row.find(word) != -1:
-								imagetype=row.split('=')[1]
+								imagetype = row.split('=')[1]
 								imagelist[slot] = {'imagename': "%s - %s (%s)" % (open(os.path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], imagetype.strip(), date)}
 								break
 			elif os.path.isfile(os.path.join(imagedir, 'usr/bin/enigma2.bak')):

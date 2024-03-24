@@ -206,7 +206,7 @@ def switch(self):
 
 def swOff(self):
 	if isinstance(self, InfoBar):
-		if not(self.shown or self.SIBdialog.shown) and (VZ_MODE == "2"):
+		if not (self.shown or self.SIBdialog.shown) and (VZ_MODE == "2"):
 			self.newHide()
 		else:
 			self.hide()

@@ -39,7 +39,7 @@ def InitHdmiRecord():
         ("960", "960"),      # FullHD / 2
         ("1280", "1280"),    # FullHD / 1.5
     ]
-    if(full_hd):
+    if (full_hd):
         choices.append(("1920", "1920"))    # FullHD
 
     config.hdmirecord.width = ConfigSelection(choices, default="1280")
@@ -58,7 +58,7 @@ def InitHdmiRecord():
         ("720", "720"),       # FullHD / 1.5
     ]
 
-    if(full_hd):
+    if (full_hd):
         choices.append(("1080", "1080"))    # FullHD
 
     config.hdmirecord.height = ConfigSelection(choices, default="720")
