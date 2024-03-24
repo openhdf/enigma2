@@ -944,6 +944,7 @@ def InitUsageConfig():
 	config.subtitles.subtitle_position = ConfigSelection(choices=["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"], default="50")
 	config.subtitles.subtitle_alignment = ConfigSelection(choices=[("left", _("left")), ("center", _("center")), ("right", _("right"))], default="center")
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default=False)
+	config.subtitles.colourise_dialogs = ConfigYesNo(default=False)
 	config.subtitles.subtitle_borderwidth = ConfigSelection(choices=["1", "2", "3", "4", "5"], default="3")
 	config.subtitles.subtitle_fontsize = ConfigSelection(choices=["%d" % x for x in list(range(16, 101)) if not x % 2], default="40")
 	backtrans = [
@@ -998,6 +999,7 @@ def InitUsageConfig():
 		("7", _("brown")),
 		("8", _("turquoise")),
 		("9", _("pink"))])
+	config.subtitles.pango_subtitle_fontswitch = ConfigYesNo(default=True)
 	config.subtitles.pango_subtitles_delay = ConfigSelection(default="0", choices=subtitle_delay_choicelist)
 	config.subtitles.pango_subtitles_fps = ConfigSelection(default="1", choices=[
 		("1", _("Original")),

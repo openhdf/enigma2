@@ -194,6 +194,8 @@
 		<item level="2" text="Set fps for external subtitles" description="Can be used for different fps between external subtitles and video.">config.subtitles.pango_subtitles_fps</item>
 		<item level="2" text="HI-cleanup for external subtitles" description="Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard).">config.subtitles.pango_subtitle_removehi</item>
 		<item level="2" text="Automatically turn on external subtitles" description="When enabled, external subtitles will be always turned on for playback movie.">config.subtitles.pango_autoturnon</item>
+		<item level="2" text="External subtitle switch fonts" description="Configure if the subtitle should switch between normal, italic, bold and bold italic.">config.subtitles.pango_subtitle_fontswitch</item>
+		<item level="2" text="External subtitle dialog colorization" description="Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired).">config.subtitles.colourise_dialogs</item>
 	</setup>
 	<setup key="autolanguagesetup" title="Auto language selection">
 		<item level="1" text="Audio language selection 1" description="Configure the first audio language (highest priority).">config.autolanguage.audio_autoselect1</item>
