@@ -31,6 +31,7 @@ for dir in DEFAULT_INHIBIT_DIRECTORIES + ("/", "/media"):
 			DEFAULT_INHIBIT_DEVICES.append(device)
 DEFAULT_INHIBIT_DEVICES = tuple(DEFAULT_INHIBIT_DEVICES)
 
+
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a folder/pathname combination"""
 

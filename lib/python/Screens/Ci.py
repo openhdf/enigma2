@@ -34,8 +34,10 @@ def setCIBitrate(configElement):
 	else:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateHigh)
 
+
 def setCIEnabled(configElement):
     eDVBCI_UI.getInstance().setEnabled(configElement.slotid, configElement.value)
+
 
 def setdvbCiDelay(configElement):
 	f = open("/proc/stb/tsmux/rmx_delay", "w")

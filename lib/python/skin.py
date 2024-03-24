@@ -171,6 +171,7 @@ def restoreSkin():
 	except:
 		print("[SkinRestore]: restore failed")
 
+
 def loadSkinData(desktop):
 	restoreSkin()
 	InitSkins()

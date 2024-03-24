@@ -36,6 +36,7 @@ def AddNotificationWithID(id, screen, *args, **kwargs):
 def AddNotificationWithIDCallback(fnc, id, screen, *args, **kwargs):
 	__AddNotification(fnc, screen, id, *args, **kwargs)
 
+
 def AddNotificationWithUniqueIDCallback(fnc, id, screen, *args, **kwargs):
 	for x in notifications:
 		if x[4] and x[4] == id:    # Already there...
@@ -57,8 +58,6 @@ def RemovePopup(id):
 		if x[0] == id:
 			print("(found in current notifications)")
 			x[1].close()
-
-
 
 
 def AddPopup(text, type, timeout, id=None):

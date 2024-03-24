@@ -5,6 +5,7 @@ from os import access, F_OK, R_OK
 
 parentScreen = None
 
+
 def execute(option):
 	#print "execute", option
 	if option is None:
@@ -23,7 +24,6 @@ def mountpoint_choosen(option):
 		if parentScreen:
 			parentScreen.close()
 		return
-
 
 	#print "scanning", option
 	(description, mountpoint, session) = option

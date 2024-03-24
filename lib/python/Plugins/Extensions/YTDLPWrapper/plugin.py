@@ -5,6 +5,7 @@ try:
 except ImportError:
     YoutubeDL = None
 
+
 def zap(session, service, **kwargs):
 	errormsg = None
 	if service and "http" in service.toString():

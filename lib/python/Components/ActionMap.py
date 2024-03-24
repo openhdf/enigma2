@@ -80,6 +80,7 @@ class NumberActionMap(ActionMap):
 		else:
 			return ActionMap.action(self, contexts, action)
 
+
 class HelpableActionMap(ActionMap):
 	# An Actionmap which automatically puts the actions into the helpList.
 	#

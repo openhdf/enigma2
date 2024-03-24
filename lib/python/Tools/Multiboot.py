@@ -6,6 +6,7 @@ import glob
 import tempfile
 import subprocess
 
+
 class tmp:
 	dir = None
 
@@ -32,6 +33,7 @@ def getMultibootStartupDevice():
 
 def getparam(line, param):
 	return line.replace("userdataroot", "rootuserdata").rsplit('%s=' % param, 1)[1].split(' ', 1)[0]
+
 
 def getMultibootslots():
 	bootslots = {}
@@ -124,6 +126,7 @@ def restoreImages():
 		if not os.path.ismount(tmp.dir):
 			os.rmdir(tmp.dir)
 
+
 def getUUIDtoSD(UUID): # returns None on failure
 	check = "/sbin/blkid"
 	if fileExists(check):
@@ -168,6 +171,7 @@ def GetBoxName():
 		box = "sfx6008"
 	return box
 
+
 def GetImagelist():
 	imagelist = {}
 	if BoxInfo.getItem("canMultiBoot"):
@@ -206,6 +210,7 @@ def GetImagelist():
 			os.rmdir(tmp.dir)
 	return imagelist
 
+
 class EmptySlot():
 	MOUNT = 0
 	UNMOUNT = 1
@@ -232,7 +237,6 @@ class EmptySlot():
 				self.container.ePopen("mount -t ubifs %s %s" % (BoxInfo.getItem("canMultiBoot")[self.slot]["device"], Imagemount), self.appClosed)
 			else:
 				self.container.ePopen("mount %s %s" % (BoxInfo.getItem("canMultiBoot")[self.slot]["device"], Imagemount), self.appClosed)
-
 
 	def appClosed(self, data="", retval=0, extra_args=None):
 		if retval == 0 and self.phase == self.MOUNT:

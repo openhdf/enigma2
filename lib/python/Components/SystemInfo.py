@@ -119,6 +119,7 @@ with open("/proc/cmdline", "r") as fd:
     cmdline = fd.read()
 cmdline = {k: v.strip('"') for k, v in re.findall(r'(\S+)=(".*?"|\S+)', cmdline)}
 
+
 def getNumVideoDecoders():
 	idx = 0
 	while fileExists("/dev/dvb/adapter0/video%d" % idx, 'f'):
@@ -146,6 +147,7 @@ def countFrontpanelLEDs():
 
 SystemInfo = BoxInfo.boxInfo
 from Tools.Multiboot import getMultibootStartupDevice, getMultibootslots  # This import needs to be here to avoid a SystemInfo load loop!
+
 
 def setBoxInfoItems():
 	model = getBoxType()

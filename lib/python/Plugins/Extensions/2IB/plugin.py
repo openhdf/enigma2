@@ -18,7 +18,6 @@
 #######################################################################
 
 
-
 from Components.ActionMap import ActionMap
 from Components.config import (ConfigInteger, ConfigSelection,
                                ConfigSubsection, ConfigYesNo, config,
