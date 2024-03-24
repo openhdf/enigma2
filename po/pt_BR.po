@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: No-Team\n"
@@ -3642,6 +3642,10 @@ msgstr "Configurar qual o conector da saída de vídeo será usado."
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Configurar qual o conector da saída de vídeo será usado."
 
+#, fuzzy
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "Configurar o atraso da legenda quando informações de tempo não estão disponíveis."
+
 msgid "Configure interface"
 msgstr "Configurar interface"
 
@@ -5921,6 +5925,14 @@ msgstr ""
 
 #, fuzzy
 msgid "External subtitle color"
+msgstr "Cor das legendas de teletexto"
+
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "Cor das legendas de teletexto"
+
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "Cor das legendas de teletexto"
 
 msgid "Extra motor options"
@@ -11370,6 +11382,9 @@ msgstr "Repetindo o programa que está gravando atualmente... Continuar?"
 
 msgid "Repeats"
 msgstr "Repetições"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr ""

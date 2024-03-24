@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -3839,6 +3839,10 @@ msgstr "Konfigurere om og hvordan kanalens ikoner vil bli vist."
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Konfigurer om kanal picons vil bli vist i kanallisten."
 
+#, fuzzy
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "Konfigurer undertekst forsinkelse når tidsinformasjon ikke er tilgjengelig."
+
 #
 msgid "Configure interface"
 msgstr "Konfigurer interface"
@@ -6283,6 +6287,14 @@ msgid "External Storage %s"
 msgstr ""
 
 msgid "External subtitle color"
+msgstr "Ekstern undertekst farge"
+
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "Ekstern undertekst farge"
+
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "Ekstern undertekst farge"
 
 msgid "Extra motor options"
@@ -12160,6 +12172,9 @@ msgstr "Gjentagende program holder på med en innspilling... Hva vil du gjøre?"
 #
 msgid "Repeats"
 msgstr "Gjentagelser"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr ""

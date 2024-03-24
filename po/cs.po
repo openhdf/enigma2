@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: \n"
@@ -3565,6 +3565,10 @@ msgstr "Nastavte, zda a jak budou picony zobrazeny v seznamu kanálů."
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Nastavte, zda a jak budou picony zobrazeny v seznamu kanálů."
 
+#, fuzzy
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "Nastavuje zpoždění titulků pro případ, kdy není časování dostupné."
+
 msgid "Configure interface"
 msgstr "Konfigurovat rozhraní"
 
@@ -5760,6 +5764,14 @@ msgid "External Storage %s"
 msgstr ""
 
 msgid "External subtitle color"
+msgstr "Barva externích titulků"
+
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "Barva externích titulků"
+
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "Barva externích titulků"
 
 msgid "Extra motor options"
@@ -11034,6 +11046,9 @@ msgstr "Pořad je právě nahráván opakovaně... Co chcete dělat?"
 
 msgid "Repeats"
 msgstr "Opakování"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "Vyžadovat ověření HTTP streamů"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -3645,6 +3645,10 @@ msgstr "Configures which video output connector will be used."
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Configures which video output connector will be used."
 
+#, fuzzy
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "Configure the subtitle delay when timing information is not available."
+
 msgid "Configure interface"
 msgstr "Configure interface"
 
@@ -5923,6 +5927,14 @@ msgstr ""
 
 #, fuzzy
 msgid "External subtitle color"
+msgstr "Teletext subtitle color"
+
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "Teletext subtitle color"
+
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "Teletext subtitle color"
 
 msgid "Extra motor options"
@@ -11349,6 +11361,9 @@ msgstr "Repeating event currently recording... What do you want to do?"
 
 msgid "Repeats"
 msgstr "Repeats"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr ""

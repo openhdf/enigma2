@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -3839,6 +3839,9 @@ msgstr ""
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr ""
 
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr ""
+
 #
 msgid "Configure interface"
 msgstr ""
@@ -6304,6 +6307,12 @@ msgid "External Storage %s"
 msgstr ""
 
 msgid "External subtitle color"
+msgstr ""
+
+msgid "External subtitle dialog colorization"
+msgstr ""
+
+msgid "External subtitle switch fonts"
 msgstr ""
 
 msgid "Extra motor options"
@@ -12212,6 +12221,9 @@ msgstr "Atkārtotais notikums pašreiz ierakstās... Ko vēlaties darīt?"
 #
 msgid "Repeats"
 msgstr "Atkārto"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr ""

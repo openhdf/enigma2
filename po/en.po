@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: none\n"
@@ -3479,6 +3479,10 @@ msgstr "Configure if and how service type icons will be shown."
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr ""
 
+#, fuzzy
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "Configure the subtitle delay when timing information is not available."
+
 msgid "Configure interface"
 msgstr "Configure interface"
 
@@ -5642,6 +5646,14 @@ msgid "External Storage %s"
 msgstr ""
 
 msgid "External subtitle color"
+msgstr "External subtitle color"
+
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "External subtitle color"
+
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "External subtitle color"
 
 msgid "Extra motor options"
@@ -10780,6 +10792,9 @@ msgstr "Repeating event currently recording... What do you want to do?"
 
 msgid "Repeats"
 msgstr "Repeats"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr ""

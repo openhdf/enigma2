@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -3853,6 +3853,9 @@ msgstr ""
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr ""
 
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr ""
+
 #
 msgid "Configure interface"
 msgstr "Nastavi vmesnik"
@@ -6380,6 +6383,16 @@ msgstr ""
 #
 #, fuzzy
 msgid "External subtitle color"
+msgstr "Barva teletekst (TXT) podnapisov"
+
+#
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "Barva teletekst (TXT) podnapisov"
+
+#
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "Barva teletekst (TXT) podnapisov"
 
 msgid "Extra motor options"
@@ -12433,6 +12446,9 @@ msgstr "Snemanje ponavljajočega dogodka v teku... Kaj želite storiti?"
 #
 msgid "Repeats"
 msgstr "Ponovitve"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr ""

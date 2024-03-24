@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
-"PO-Revision-Date: 2024-03-20 23:35+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"PO-Revision-Date: 2024-03-24 13:44+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -3444,6 +3444,9 @@ msgstr "Konfiguriert die Anzeige beim Umschalten im Quickzap."
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Konfigurieren ob und wie Picons in der Senderliste gezeigt werden."
 
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "Konfiguriere, ob Untertitel zwischen normal, kursiv, fett und fettkursiv wechseln sollen"
+
 msgid "Configure interface"
 msgstr "Netzwerkkarte konfigurieren"
 
@@ -5540,6 +5543,12 @@ msgstr "Externer Speicher %s"
 
 msgid "External subtitle color"
 msgstr "Farbe externe Untertitel"
+
+msgid "External subtitle dialog colorization"
+msgstr "Einfärben externer Untertiteldialoge"
+
+msgid "External subtitle switch fonts"
+msgstr "Externe Untertitel-Schaltschriftarten"
 
 msgid "Extra motor options"
 msgstr "Zusätzliche Motor Optionen"
@@ -10551,6 +10560,9 @@ msgstr ""
 
 msgid "Repeats"
 msgstr "Wiederholungen"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr "Ersetze \"-\" in Dialogen durch farbigen Text pro Sprecher (wie Videotext-Untertitel für Hörgeschädigte)."
 
 msgid "Require authentication for http streams"
 msgstr "Authentifizierung für HTTP Streams"

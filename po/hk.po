@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -3574,6 +3574,9 @@ msgstr ""
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr ""
 
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr ""
+
 msgid "Configure interface"
 msgstr "配置網卡"
 
@@ -5790,6 +5793,12 @@ msgid "External Storage %s"
 msgstr "外置硬碟"
 
 msgid "External subtitle color"
+msgstr ""
+
+msgid "External subtitle dialog colorization"
+msgstr ""
+
+msgid "External subtitle switch fonts"
 msgstr ""
 
 #, fuzzy
@@ -11168,6 +11177,9 @@ msgstr ""
 
 msgid "Repeats"
 msgstr "重複"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -3562,6 +3562,10 @@ msgstr "Määra, kas kanalinimekirjas näidatakse kanalilogosi."
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Määra, kas kanalinimekirjas näidatakse kanalilogosi."
 
+#, fuzzy
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "Määra subtiitrite viiteaeg ajastuse puudumisel."
+
 msgid "Configure interface"
 msgstr "Seadista võrguliides"
 
@@ -5788,6 +5792,14 @@ msgid "External Storage %s"
 msgstr ""
 
 msgid "External subtitle color"
+msgstr "Väliste subtiitrite värv"
+
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "Väliste subtiitrite värv"
+
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "Väliste subtiitrite värv"
 
 msgid "Extra motor options"
@@ -11118,6 +11130,9 @@ msgstr "Korduv taimer salvestab. Mida soovid teha?"
 
 msgid "Repeats"
 msgstr "Kordused"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr ""

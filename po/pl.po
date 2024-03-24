@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -3876,6 +3876,9 @@ msgstr ""
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr ""
 
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr ""
+
 #
 msgid "Configure interface"
 msgstr "Konfiguracja interfejsu"
@@ -6386,6 +6389,16 @@ msgstr ""
 #
 #, fuzzy
 msgid "External subtitle color"
+msgstr "Kolor napisów teletekst"
+
+#
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "Kolor napisów teletekst"
+
+#
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "Kolor napisów teletekst"
 
 msgid "Extra motor options"
@@ -12449,6 +12462,9 @@ msgstr "Powtarzane wydarzenie właśnie jest nagrywane... Co chcesz zrobić?"
 #
 msgid "Repeats"
 msgstr "Powtórzenia"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr ""

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlac/TimoJ\n"
@@ -3844,6 +3844,10 @@ msgstr "Määrittää näytetäänkö kanavalogot kanavalistassa."
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Määrittää näytetäänkö kanavalogot kanavalistassa."
 
+#, fuzzy
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "Määrittää tekstityksen viiveen, kun ajoitustietoa ei ole saatavilla."
+
 #
 msgid "Configure interface"
 msgstr "Määritä verkkosovitin"
@@ -6295,6 +6299,14 @@ msgid "External Storage %s"
 msgstr ""
 
 msgid "External subtitle color"
+msgstr "Ulkoisen tekstityksen väri"
+
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "Ulkoisen tekstityksen väri"
+
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "Ulkoisen tekstityksen väri"
 
 msgid "Extra motor options"
@@ -12176,6 +12188,9 @@ msgstr "Toistuvaa ajastusta tallennetaan... Mitä haluat tehdä?"
 #
 msgid "Repeats"
 msgstr "Toistokerrat"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr ""

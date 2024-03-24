@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2024-03-20 23:39+0100\n"
 "Last-Translator: Pr2 <dummy@dummy.com>\n"
 "Language-Team: french\n"
@@ -3525,6 +3525,10 @@ msgstr "Configure si les picons des services seront affichés dans la liste des 
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Configure si les picons des services seront affichés dans la liste des chaînes."
 
+#, fuzzy
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "Configure le délai des sous-titres lorsque les informations de synchronisation ne sont pas disponible."
+
 msgid "Configure interface"
 msgstr "Configurer interface"
 
@@ -5688,6 +5692,14 @@ msgid "External Storage %s"
 msgstr "Stockage externe %s"
 
 msgid "External subtitle color"
+msgstr "Couleur des sous-titres externes"
+
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "Couleur des sous-titres externes"
+
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "Couleur des sous-titres externes"
 
 msgid "Extra motor options"
@@ -10843,6 +10855,9 @@ msgstr "Répétion de l'événement en enregistrement... Que voulez-vous faire?"
 
 msgid "Repeats"
 msgstr "Répétitions"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "Exiger une authentification pour les flux HTTP"

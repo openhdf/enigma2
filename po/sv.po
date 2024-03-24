@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: torac <info@takerman.se>\n"
@@ -3837,6 +3837,10 @@ msgstr "Konfigurera vilken anslutning för videoutgången  som ska användas."
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Konfigurera vilken anslutning för videoutgången  som ska användas."
 
+#, fuzzy
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "Konfigurera undertextens fördröjning, när tidssynkronisering inte är tillgänglig."
+
 #
 msgid "Configure interface"
 msgstr "Konfigurera kort"
@@ -6295,6 +6299,14 @@ msgstr ""
 
 #, fuzzy
 msgid "External subtitle color"
+msgstr "Konfigurera färgen på Text-TV:s undertexter"
+
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "Konfigurera färgen på Text-TV:s undertexter"
+
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "Konfigurera färgen på Text-TV:s undertexter"
 
 msgid "Extra motor options"
@@ -12194,6 +12206,9 @@ msgstr "En upprepande händelse spelas in... Vad vill du göra?"
 #
 msgid "Repeats"
 msgstr "Upprepningar"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr ""

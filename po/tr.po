@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2024-03-20 23:40+0100\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
@@ -3476,6 +3476,10 @@ msgstr "Kanal simgelerinin kanal listesinde gösterilip gösterilmeyeceğini yap
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Kanal simgelerinin kanal listesinde gösterilip gösterilmeyeceğini yapılandırın."
 
+#, fuzzy
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "Zamanlama bilgisi mevcut olmadığında altyazı gecikmesini yapılandırın."
+
 msgid "Configure interface"
 msgstr "Arayüz yapılandır"
 
@@ -5634,6 +5638,14 @@ msgid "External Storage %s"
 msgstr ""
 
 msgid "External subtitle color"
+msgstr "Harici altyazı rengi"
+
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "Harici altyazı rengi"
+
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "Harici altyazı rengi"
 
 msgid "Extra motor options"
@@ -10791,6 +10803,9 @@ msgstr ""
 
 msgid "Repeats"
 msgstr "Tekrarlama"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "Http akışları için kimlik doğrulaması gerekir"

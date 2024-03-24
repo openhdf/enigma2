@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: RU locale edited by Sowa\n"
@@ -3575,6 +3575,10 @@ msgstr "Настроить, какие и если будут показаны �
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Настроить, какие и если будут показаны иконки типов каналов."
 
+#, fuzzy
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "Настройка задержки субтитров, когда временная информация недоступна."
+
 msgid "Configure interface"
 msgstr "Настройка интерфейса"
 
@@ -5810,6 +5814,14 @@ msgstr ""
 
 #, fuzzy
 msgid "External subtitle color"
+msgstr "Цвет субтитров телетекста"
+
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "Цвет субтитров телетекста"
+
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "Цвет субтитров телетекста"
 
 msgid "Extra motor options"
@@ -11139,6 +11151,9 @@ msgstr "Повторяющееся событие записывается... Ч
 
 msgid "Repeats"
 msgstr "Повторы"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr ""

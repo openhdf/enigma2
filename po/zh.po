@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openhdf-6.5             enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-20 23:33+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: 2021-08-04 21:52+0800\n"
 "Last-Translator: 孤独之剑 < haotzyy1970@163.com>\n"
 "Language-Team: 孤独之剑< haotzyy1970@163.com>\n"
@@ -3511,6 +3511,10 @@ msgstr "配置频道picon是否显示在频道列表中."
 msgid "Configure if service picons will be shown in the servicelist."
 msgstr "配置频道picon是否显示在频道列表中."
 
+#, fuzzy
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
+msgstr "当不可用时,配置字幕延时."
+
 msgid "Configure interface"
 msgstr "配置接口"
 
@@ -5654,6 +5658,14 @@ msgid "External Storage %s"
 msgstr "外部存储器 %s"
 
 msgid "External subtitle color"
+msgstr "外挂字幕的颜色"
+
+#, fuzzy
+msgid "External subtitle dialog colorization"
+msgstr "外挂字幕的颜色"
+
+#, fuzzy
+msgid "External subtitle switch fonts"
 msgstr "外挂字幕的颜色"
 
 msgid "Extra motor options"
@@ -10770,6 +10782,9 @@ msgstr "当前录制的重复事件...您想做什么?"
 
 msgid "Repeats"
 msgstr "重复序列"
+
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "需要认证的HTTP流"
