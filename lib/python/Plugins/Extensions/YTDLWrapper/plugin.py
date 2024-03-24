@@ -21,7 +21,7 @@ def zap(session, service, **kwargs):
 					if result and hasattr(result, "url"):
 						url = result['url']
 						print("[ChannelSelection] zap / YoutubeDL result url %s" % url)
-						return (url,errormsg)
+						return (url, errormsg)
 					else:
 						errormsg = "No Link found!"
 						print("[ChannelSelection] zap / YoutubeDL no streams")
