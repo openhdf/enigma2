@@ -35,6 +35,6 @@ def zap(session, service, **kwargs):
 
 def Plugins(**kwargs):
 	if YoutubeDL:
-		return [PluginDescriptor(name="YTDLPWrapper", description="YTDLPWrapper", where=PluginDescriptor.WHERE_CHANNEL_ZAP, needsRestart = False, fnc=zap)]
+		return [PluginDescriptor(name="YTDLPWrapper", description="YTDLPWrapper", where=PluginDescriptor.WHERE_CHANNEL_ZAP, needsRestart=False, fnc=zap)]
 	else:
 		return []
