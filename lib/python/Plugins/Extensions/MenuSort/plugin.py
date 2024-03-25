@@ -8,7 +8,7 @@ from six import ensure_str, iteritems
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.HelpMenu import HelpableScreen
 from Screens.Menu import Menu, mdom
@@ -225,9 +225,9 @@ class SortableMenu(Menu, HelpableScreen):
 		requires = node.get("requires")
 		if requires:
 			if requires[0] == '!':
-				if SystemInfo.get(requires[1:], False):
+				if BoxInfo.getItem(requires[1:], False):
 					return
-			elif not SystemInfo.get(requires, False):
+			elif not BoxInfo.getItem(requires, False):
 				return
 		MenuTitle = ensure_str(_(node.get("text", "??")))
 		entryID = node.get("entryID", "undefined")

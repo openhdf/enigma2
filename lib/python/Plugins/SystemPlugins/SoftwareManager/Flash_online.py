@@ -20,7 +20,7 @@ from Components.Console import Console
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -118,7 +118,7 @@ class FlashOnline(Screen):
 
 			for media in ['/media/%s' % x for x in listdir('/media')] + (['/media/net/%s' % x for x in listdir('/media/net')] if os_path.isdir('/media/net') else []):
 				mediaRoot = media
-				if not(SystemInfo['HasMMC'] and "/mmc" in media) and os_path.isdir(media):
+				if not(BoxInfo.getItem('HasMMC') and "/mmc" in media) and os_path.isdir(media):
 					for customDir in self.customDirs:
 						media = mediaRoot
 						getImages([os_path.join(media, x) for x in listdir(media) if os_path.splitext(x)[1] == ".zip" and box in x])
@@ -251,7 +251,7 @@ class FlashImage(Screen):
 
 	def confirmation(self):
 		self.message = _("Do you want to flash image\n%s") % self.imagename
-		if SystemInfo["canMultiBoot"]:
+		if BoxInfo.getItem("canMultiBoot"):
 			self.getImageList = GetImagelist(self.getImagelistCallback)
 		else:
 			self.checkMedia(True)
@@ -277,7 +277,7 @@ class FlashImage(Screen):
 	def checkMedia(self, retval):
 		if retval:
 			if not 'backup' in str(retval):
-				if SystemInfo["canMultiBoot"]:
+				if BoxInfo.getItem("canMultiBoot"):
 					self.multibootslot = retval[0]
 				if config.plugins.softwaremanager.autosaveSettingsfilesEntry.value:
 					self.session.openWithCallback(self.backupQuestionCB, MessageBox, _('Do you want to backup your settings now?'), default=True, timeout=1)
@@ -561,16 +561,16 @@ class FlashImage(Screen):
 		if imagefiles:
 			self.ROOTFSSUBDIR = "none"
 			self.getImageList = self.saveImageList
-			if SystemInfo["canMultiBoot"]:
-				self.MTDKERNEL = SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2]
-				self.MTDROOTFS = SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2]
-				if SystemInfo["HasRootSubdir"]:
-					self.ROOTFSSUBDIR = SystemInfo["canMultiBoot"][self.multibootslot]['rootsubdir']
+			if BoxInfo.getItem("canMultiBoot"):
+				self.MTDKERNEL = BoxInfo.getItem("canMultiBoot")[self.multibootslot]["kernel"].split('/')[2]
+				self.MTDROOTFS = BoxInfo.getItem("canMultiBoot")[self.multibootslot]["device"].split('/')[2]
+				if BoxInfo.getItem("HasRootSubdir"):
+					self.ROOTFSSUBDIR = BoxInfo.getItem("canMultiBoot")[self.multibootslot]['rootsubdir']
 			else:
 				self.MTDKERNEL = getMachineMtdKernel()
 				self.MTDROOTFS = getMachineMtdRoot()
 			CMD = "/usr/bin/ofgwrite -r -k '%s'" % imagefiles	#normal non multiboot receiver
-			if SystemInfo["canMultiBoot"]:
+			if BoxInfo.getItem("canMultiBoot"):
 				if (self.ROOTFSSUBDIR) is None:	# receiver with SD card multiboot
 					CMD = "/usr/bin/ofgwrite -r%s -k%s -m0 '%s'" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
 				else:

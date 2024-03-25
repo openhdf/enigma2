@@ -9,7 +9,7 @@ from Components.Console import Console
 from Components.PluginComponent import plugins
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
@@ -245,9 +245,9 @@ class Menu(Screen, ProtectedScreen):
 		requires = node.get("requires")
 		if requires:
 			if requires[0] == '!':
-				if SystemInfo.get(requires[1:], False):
+				if BoxInfo.getItem(requires[1:], False):
 					return
-			elif not SystemInfo.get(requires, False):
+			elif not BoxInfo.getItem(requires, False):
 				return
 		MenuTitle = _(ensure_str(node.get("text", "??")))
 		entryID = node.get("entryID", "undefined")
@@ -272,9 +272,9 @@ class Menu(Screen, ProtectedScreen):
 		requires = node.get("requires")
 		if requires:
 			if requires[0] == '!':
-				if SystemInfo.get(requires[1:], False):
+				if BoxInfo.getItem(requires[1:], False):
 					return
-			elif not SystemInfo.get(requires, False):
+			elif not BoxInfo.getItem(requires, False):
 				return
 		configCondition = node.get("configcondition")
 		if configCondition and not eval(configCondition + ".value"):

@@ -13,7 +13,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.HelpMenu import HelpableScreen
 from Components.config import config, ConfigSubsection, ConfigNumber
 from Components.Slider import Slider
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from ServiceReference import ServiceReference
 import Screens.InfoBar
 import Components.ServiceEventTracker
@@ -954,12 +954,12 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 			self["ch%d" % idx].setText((channel and channel.getChannelName(str(idx))) or _("No channel"))
 
 	def disableLcdLiveTV(self):
-		if SystemInfo.get("LcdLiveTV", False):
+		if BoxInfo.getItem("LcdLiveTV", False):
 			self.oldLcdLiveTVEnable = config.lcd.showTv.value
 			config.lcd.showTv.value = False
 
 	def restoreLcdLiveTV(self):
-		if SystemInfo.get("LcdLiveTV", False):
+		if BoxInfo.getItem("LcdLiveTV", False):
 			config.lcd.showTv.value = self.oldLcdLiveTVEnable
 
 
