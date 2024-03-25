@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-18 20:34+0100\n"
+"POT-Creation-Date: 2024-03-24 13:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -68,12 +68,6 @@ msgstr "執行完畢！"
 msgid ""
 "\n"
 "Flash on the fly your %s %s."
-msgstr ""
-
-#, python-format
-msgid ""
-"\n"
-"Maintain your %s %s device."
 msgstr ""
 
 #, fuzzy, python-format
@@ -197,7 +191,13 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
+msgid "  Menu key : Select quad channel"
+msgstr ""
+
 msgid "  REC  "
+msgstr ""
+
+msgid "  Red key : Show/Hide texts"
 msgstr ""
 
 #, fuzzy, python-format
@@ -216,6 +216,10 @@ msgstr ""
 
 msgid " (TV)"
 msgstr ""
+
+#, fuzzy
+msgid " (current channel)"
+msgstr "當前"
 
 #, fuzzy
 msgid " (disabled)"
@@ -240,6 +244,14 @@ msgstr ""
 #, fuzzy
 msgid " - video1"
 msgstr "HD 視頻"
+
+#, fuzzy
+msgid " <No Channel>"
+msgstr "頻道"
+
+#, fuzzy
+msgid " <empty>"
+msgstr "空的"
 
 #, python-format
 msgid " Except %s"
@@ -278,6 +290,16 @@ msgstr "%H:%M"
 msgid "%-H:%M - "
 msgstr "%H:%M"
 
+#, fuzzy
+msgid "%-d %B %Y"
+msgstr "%d.%B %Y"
+
+msgid "%-d %b"
+msgstr ""
+
+msgid "%-d %b %Y"
+msgstr ""
+
 #, python-format
 msgid "%.0f GB"
 msgstr ""
@@ -308,8 +330,19 @@ msgstr ""
 msgid "%2d:%02d:%02d"
 msgstr ""
 
+msgid "%A %-d %B"
+msgstr ""
+
+#, fuzzy
+msgid "%A %-d %B %Y"
+msgstr "%d.%B %Y"
+
 msgid "%A %d %B"
 msgstr ""
+
+#, fuzzy
+msgid "%A %d.%m.%Y"
+msgstr "%d.%B %Y"
 
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
@@ -330,6 +363,21 @@ msgstr ""
 
 msgid "%a"
 msgstr ""
+
+msgid "%a %-d"
+msgstr ""
+
+#, fuzzy
+msgid "%a %-d %B %Y"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %-d %b"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %-d %b %Y"
+msgstr "%d.%B %Y"
 
 #. TRANSLATORS: full date representations sort dayname daynum monthname long year in strftime() format! See 'man strftime'
 #, fuzzy
@@ -389,6 +437,11 @@ msgstr[0] "on %dth day"
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d jam"
+
+#, python-format
+msgid "%d job is running in the background!"
+msgid_plural "%d jobs are running in the background!"
+msgstr[0] ""
 
 #, python-format
 msgid "%d kB"
@@ -453,6 +506,20 @@ msgstr ""
 msgid "%k:%M %e/%m"
 msgstr ""
 
+#, fuzzy, python-format
+msgid ""
+"%s\n"
+"Do you still want to flash image\n"
+"%s?"
+msgstr " 是否安裝套裝軟體:\n"
+
+#, python-format
+msgid ""
+"%s\n"
+"Press ok for multiboot selection\n"
+"Press exit to close"
+msgstr ""
+
 #, python-format
 msgid "%s %s advanced remote control (native)"
 msgstr ""
@@ -505,10 +572,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%s not available."
 msgstr "不使用"
-
-#, python-format
-msgid "%s release %s"
-msgstr ""
 
 #, python-format
 msgid "%s updated package available"
@@ -577,6 +640,9 @@ msgid "( All readers)"
 msgstr ""
 
 msgid "(Show only reader:"
+msgstr ""
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
 msgstr ""
 
 msgid "(ZAP)"
@@ -1179,6 +1245,12 @@ msgstr ""
 "配置檔(%s)在安裝後被修改了.\n"
 "是否想要保留您的版本？"
 
+msgid "A file from media is in use!"
+msgstr ""
+
+msgid "A file from media is in use! "
+msgstr ""
+
 #, fuzzy, python-format
 msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
@@ -1402,6 +1474,10 @@ msgstr ""
 msgid "About"
 msgstr "關於"
 
+#, fuzzy
+msgid "About the image"
+msgstr "是，立即還原設定"
+
 msgid "About..."
 msgstr "關於..."
 
@@ -1463,6 +1539,9 @@ msgstr "添加"
 #, fuzzy
 msgid "Add AutoTimer"
 msgstr "添加新的自動計時器"
+
+msgid "Add New Quad Channel Entry"
+msgstr ""
 
 #, fuzzy
 msgid "Add Timer"
@@ -1765,6 +1844,9 @@ msgstr ""
 msgid "Alternative"
 msgstr ""
 
+msgid "Alternative URL for images listed on FlashImage"
+msgstr ""
+
 msgid "Alternative numbering mode"
 msgstr ""
 
@@ -1861,7 +1943,15 @@ msgid "Are you sure to delete all cuts and marks?"
 msgstr "確定刪除所有專案?"
 
 #, fuzzy
+msgid "Are you sure to delete image"
+msgstr "確定要退出此嚮導?"
+
+#, fuzzy
 msgid "Are you sure to purge all deleted userbouquets?"
+msgstr "確定刪除所有專案?"
+
+#, fuzzy
+msgid "Are you sure to reboot to"
 msgstr "確定刪除所有專案?"
 
 #, fuzzy, python-format
@@ -1878,6 +1968,10 @@ msgstr "確定刪除所有專案?"
 
 #, fuzzy
 msgid "Are you sure to remove this entry?"
+msgstr "確定刪除所有專案?"
+
+#, fuzzy
+msgid "Are you sure to restore all deleted images"
 msgstr "確定刪除所有專案?"
 
 #, fuzzy
@@ -1898,12 +1992,6 @@ msgstr ""
 
 #, fuzzy
 msgid "Are you sure you want to delete all selected logs:\n"
-msgstr ""
-"確定要刪除\n"
-"下列備份?\n"
-
-#, fuzzy, python-format
-msgid "Are you sure you want to delete image startup %s ?"
 msgstr ""
 "確定要刪除\n"
 "下列備份?\n"
@@ -2023,6 +2111,11 @@ msgstr ""
 msgid "Attach a file"
 msgstr "緩存文件"
 
+msgid ""
+"Attention - forced loading recovery image!\n"
+"Create an empty STARTUP_RECOVERY file at the root of your HDD/USB drive and hold the Power button for more than 12 seconds for reboot receiver!"
+msgstr ""
+
 msgid "Audio"
 msgstr "音頻"
 
@@ -2079,10 +2172,6 @@ msgid "Auto Deep Standby"
 msgstr "深度休眠"
 
 #, fuzzy
-msgid "Auto Modes Selected."
-msgstr "節目包選擇."
-
-#, fuzzy
 msgid "Auto Standby"
 msgstr "待機"
 
@@ -2132,9 +2221,6 @@ msgstr "自動解析度..."
 #, fuzzy
 msgid "Automatic resolution label"
 msgstr "自動解析度..."
-
-msgid "Automatic restore of all settings and plugins?"
-msgstr ""
 
 #, fuzzy
 msgid "Automatic save"
@@ -2274,6 +2360,18 @@ msgstr ""
 
 msgid "Background delete speed"
 msgstr ""
+
+#, fuzzy
+msgid "Background:"
+msgstr "後臺"
+
+#, fuzzy
+msgid "Backgroundselected:"
+msgstr "後臺"
+
+#, fuzzy, python-format
+msgid "Backing up to: %s"
+msgstr "備份失敗!!"
 
 msgid "Backup"
 msgstr "備份"
@@ -2459,6 +2557,17 @@ msgstr ""
 msgid "Boost green"
 msgstr "最新"
 
+msgid "Boot to Android image"
+msgstr ""
+
+#, python-format
+msgid "Boot to Recovery image - slot0 %s"
+msgstr ""
+
+#, fuzzy
+msgid "Boot to Recovery menu"
+msgstr "立即重啟(Reboot)?"
+
 #, fuzzy
 msgid "Boot-up action"
 msgstr "備份位置"
@@ -2466,9 +2575,9 @@ msgstr "備份位置"
 msgid "Bootloader update required!"
 msgstr ""
 
-#, python-format
-msgid "Bootloader:\t%s\n"
-msgstr ""
+#, fuzzy, python-format
+msgid "Bootloader:\t\t%s\n"
+msgstr "碼流資訊"
 
 msgid "Bosnia and Herzegovina"
 msgstr ""
@@ -2482,6 +2591,10 @@ msgstr "自定義組"
 
 msgid "Bouvet Island"
 msgstr ""
+
+#, fuzzy
+msgid "Box or driver is not support Quad PiP."
+msgstr "您的皮膚不支援第二資訊條顯示 !!!"
 
 msgid "Brazil"
 msgstr "巴西"
@@ -2648,6 +2761,10 @@ msgstr ""
 msgid "CHANGE BOUQUET"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "CI %s enabled"
+msgstr "允許"
+
 #, fuzzy
 msgid "CI (Common Interface) Setup"
 msgstr "通用介面 (CI)"
@@ -2762,11 +2879,7 @@ msgid ""
 "Yellow for returning back to this intro"
 msgstr ""
 
-msgid ""
-"Can only find a network drive to store the backup.\n"
-"This means after the flash the autorestore will not work.\n"
-"Alternatively you can mount the network drive after the flash\n"
-"and manually restore your settings."
+msgid "Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"
 msgstr ""
 
 msgid ""
@@ -2814,7 +2927,7 @@ msgstr ""
 msgid "Cannot find any signal ..., aborting !"
 msgstr ""
 
-msgid "Cannot find images - please try later"
+msgid "Cannot find images - please try later or select an alternate image"
 msgstr ""
 
 msgid ""
@@ -2891,10 +3004,6 @@ msgid "Center time-labels and remove date"
 msgstr ""
 
 #, fuzzy
-msgid "Center:"
-msgstr "章節:"
-
-#, fuzzy
 msgid "Central African Republic"
 msgstr "捷克共和國"
 
@@ -2953,9 +3062,6 @@ msgstr "更改目錄."
 msgid "Change to bouquet"
 msgstr "添加到自定義組"
 
-msgid "Changelog"
-msgstr ""
-
 msgid "Channel"
 msgstr "頻道"
 
@@ -3005,11 +3111,19 @@ msgid "Channel list type"
 msgstr ""
 
 #, fuzzy
+msgid "Channel name"
+msgstr "頻道"
+
+#, fuzzy
 msgid "Channel name wide"
 msgstr "頻道聲道:"
 
 msgid "Channel not in services list"
 msgstr "頻道不在列表中"
+
+#, fuzzy
+msgid "Channel number"
+msgstr "頻道"
 
 #, fuzzy
 msgid "Channel preview mode"
@@ -3146,6 +3260,10 @@ msgstr ""
 msgid "Choice Box"
 msgstr ""
 
+#, python-format
+msgid "Choice where to put \"%s\""
+msgstr ""
+
 msgid "Choose 3D mode (Side by Side, Top And Bottom, Auto, Off)."
 msgstr ""
 
@@ -3280,6 +3398,12 @@ msgstr ""
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr ""
 
+msgid "Client is streaming from this box!"
+msgstr ""
+
+msgid "Client is streaming from this box! "
+msgstr ""
+
 #, fuzzy
 msgid "ClientIP"
 msgstr "用戶端 IP:"
@@ -3288,8 +3412,9 @@ msgstr "用戶端 IP:"
 msgid "Clients"
 msgstr "用戶端 IP:"
 
-msgid "Clock_Widget:"
-msgstr ""
+#, fuzzy
+msgid "Clock:"
+msgstr "鎖定"
 
 msgid "Clone TV screen to LCD"
 msgstr ""
@@ -3328,9 +3453,6 @@ msgstr "HP編碼率"
 msgid "Coderate LP"
 msgstr "LP編碼率"
 
-msgid "Collapse"
-msgstr ""
-
 msgid "Collection name"
 msgstr "收藏名稱"
 
@@ -3350,9 +3472,6 @@ msgstr ""
 #, fuzzy
 msgid "Color space"
 msgstr "色彩"
-
-msgid "ColorSelectedBackground:"
-msgstr ""
 
 msgid "Combo"
 msgstr ""
@@ -3374,9 +3493,6 @@ msgstr "通用介面 (CI)"
 msgid "Common Interface Assignment"
 msgstr "通用介面分配"
 
-msgid "Common Interface assignment"
-msgstr ""
-
 msgid "Communication"
 msgstr "通訊"
 
@@ -3391,6 +3507,10 @@ msgstr "複合 (允許混合音軌和相位)"
 
 msgid "Composition of the recording filenames"
 msgstr ""
+
+#, fuzzy
+msgid "Compress"
+msgstr "完成"
 
 msgid "Config"
 msgstr "配置"
@@ -3452,6 +3572,9 @@ msgid "Configure if service picons will be shown in quickzap."
 msgstr ""
 
 msgid "Configure if service picons will be shown in the servicelist."
+msgstr ""
+
+msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr ""
 
 msgid "Configure interface"
@@ -3873,10 +3996,6 @@ msgstr ""
 msgid "Cote d'Ivoire"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "不能連接到Dreambox .NFI檔從伺服器:"
-
 #, fuzzy
 msgid "Could not connect to server"
 msgstr "不能連接到Dreambox .NFI檔從伺服器:"
@@ -3884,7 +4003,7 @@ msgstr "不能連接到Dreambox .NFI檔從伺服器:"
 msgid "Could not find installed channel list."
 msgstr ""
 
-msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"
+msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficiant free space and try again!"
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
@@ -4036,9 +4155,6 @@ msgstr "當前值: "
 msgid "Current version:"
 msgstr "當前版本:"
 
-msgid "Currently installed image"
-msgstr ""
-
 msgid "Currently nothing is streamed to clients"
 msgstr ""
 
@@ -4112,7 +4228,7 @@ msgstr ""
 msgid "DLNA support"
 msgstr "不支援的"
 
-msgid "DMIPS:\t"
+msgid "DMIPS:\t\t"
 msgstr ""
 
 msgid "DMM advanced"
@@ -4232,10 +4348,6 @@ msgid "Default 'Timer type'"
 msgstr "定時類型"
 
 #, fuzzy
-msgid "Default Modes Selected."
-msgstr "預設錄影位置"
-
-#, fuzzy
 msgid "Default Services Scanner"
 msgstr "預設頻道列表"
 
@@ -4253,17 +4365,10 @@ msgid "Default settings"
 msgstr "預設設定"
 
 #, fuzzy
-msgid "Default+Picon"
-msgstr "預設"
-
-#, fuzzy
 msgid "Defaults"
 msgstr "預設"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
-msgstr ""
-
-msgid "Define location to save infobar poster, if its activated inside skinsetup."
 msgstr ""
 
 msgid "Define the mode to turn on 3D automatically or by quick toggle menu command [Side By Side] or [Top And Bottom]."
@@ -4291,6 +4396,9 @@ msgstr ""
 msgid "Delay time"
 msgstr "響鈴時間"
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 #, fuzzy
 msgid "Delay:"
 msgstr "延遲"
@@ -4309,6 +4417,10 @@ msgstr "LT 配置"
 #, fuzzy
 msgid "Delete EPG"
 msgstr "刪除"
+
+#, fuzzy
+msgid "Delete Image"
+msgstr "選擇Image"
 
 #, fuzzy
 msgid "Delete Language"
@@ -4347,6 +4459,10 @@ msgstr ""
 msgid "Deleted %s!"
 msgstr "刪除"
 
+#, fuzzy
+msgid "Deleted image"
+msgstr "選擇Image"
+
 msgid "Deleted items"
 msgstr ""
 
@@ -4368,6 +4484,15 @@ msgid "Descramble & record ECM' gives the option to descramble afterwards if des
 msgstr ""
 
 msgid "Descramble http streams"
+msgstr ""
+
+msgid "Descramble receiving http streams"
+msgstr ""
+
+msgid "Descramble service via streamrelay port"
+msgstr ""
+
+msgid "Descramble service via streamrelay url"
 msgstr ""
 
 msgid "Description"
@@ -4508,6 +4633,13 @@ msgstr "電影 & 卡通"
 #, fuzzy
 msgid "Disable Enigma2 restart on crash"
 msgstr "禁用家長控制"
+
+#, fuzzy
+msgid "Disable FCC during recordings"
+msgstr "標記新錄製內容"
+
+msgid "Disable Fast Channel Change"
+msgstr ""
 
 msgid "Disable Picture in Picture"
 msgstr "禁用畫中畫"
@@ -4711,10 +4843,6 @@ msgstr ""
 " 是否現在備份?\n"
 "按下 OK鍵後請等待!"
 
-#, fuzzy
-msgid "Do you want to backup your settings now?"
-msgstr "在哪里備份您的設定?"
-
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr " 是否燒錄這個收藏到DVD光碟?"
 
@@ -4741,14 +4869,10 @@ msgstr " 是否開始頻道掃描?"
 msgid "Do you want to do another manual service scan?"
 msgstr " 是否手動掃描其他頻道?"
 
-#, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr ""
-
 #, fuzzy, python-format
 msgid ""
 "Do you want to flash image\n"
-"%s"
+"%s?"
 msgstr " 是否安裝套裝軟體:\n"
 
 msgid "Do you want to install the package:\n"
@@ -4763,10 +4887,6 @@ msgstr " 是否在燒錄之前預覽DVD?"
 #, fuzzy
 msgid "Do you want to produce this collection?"
 msgstr " 是否燒錄這個收藏到DVD光碟?"
-
-#, fuzzy, python-format
-msgid "Do you want to reboot now the image in startup %s?"
-msgstr " 是否手動掃描其他頻道?"
 
 #, fuzzy, python-format
 msgid "Do you want to reboot your %s %s"
@@ -4830,9 +4950,6 @@ msgstr "這個錄影"
 msgid "Don't ask again!"
 msgstr "是, 以後不再詢問"
 
-msgid "Don't restore settings and plugins!"
-msgstr ""
-
 #, fuzzy
 msgid "Don't save"
 msgstr "不保存"
@@ -4858,19 +4975,15 @@ msgstr[0] "完成 - 安裝, 升級或移除 %d 套裝軟體出現 %d 錯誤"
 msgid "Down"
 msgstr "下載"
 
-msgid "Download"
-msgstr "下載"
-
-#, python-format
-msgid "Download %s from server"
-msgstr ""
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr ""
-
 #, fuzzy
 msgid "Download Plugins"
 msgstr "可下載的插件"
+
+#, python-format
+msgid ""
+"Download Successful\n"
+"%s"
+msgstr ""
 
 msgid "Download plugins"
 msgstr ""
@@ -4886,8 +4999,8 @@ msgid "Downloading"
 msgstr "下載中"
 
 #, fuzzy
-msgid "Downloading Image ... Please wait"
-msgstr "正在下載截屏. 請稍候..."
+msgid "Downloading Image"
+msgstr "下載插件"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "正在下載插件列表,請稍候..."
@@ -4942,18 +5055,6 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
-#, fuzzy
-msgid "ECM -> ecm.info"
-msgstr "顯示ECM資訊"
-
-#, fuzzy
-msgid "ECM -> ecm0.info"
-msgstr "顯示ECM資訊"
-
-#, fuzzy
-msgid "ECM Info's"
-msgstr "ECM資訊"
-
 msgid "ECM Statistics"
 msgstr ""
 
@@ -4974,10 +5075,6 @@ msgstr ""
 msgid "ECM-Time"
 msgstr "時間"
 
-#, fuzzy
-msgid "EMC_Selection:"
-msgstr "EPG 選擇"
-
 msgid "EPG"
 msgstr ""
 
@@ -4994,6 +5091,20 @@ msgstr "EPG 選擇"
 #, fuzzy
 msgid "EPG filename"
 msgstr "檔案名"
+
+msgid ""
+"EPG key : Switch to channel list\n"
+"Ok key : Remove selected channel\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
+
+msgid ""
+"EPG key : Switch to quad PiP entry\n"
+"Ok key : Add to new entry\n"
+"PVR key : Input channel name\n"
+"Exit key : Finish channel edit"
+msgstr ""
 
 msgid "EPG language selection 1"
 msgstr ""
@@ -5018,14 +5129,15 @@ msgstr "東方"
 msgid "East limit set"
 msgstr ""
 
-msgid "Ecm:"
-msgstr ""
-
 msgid "Ecuador"
 msgstr ""
 
 msgid "Edit"
 msgstr "修改"
+
+#, fuzzy
+msgid "Edit Quad Channel Entry"
+msgstr "編輯專案"
 
 #, fuzzy
 msgid "Edit Title"
@@ -5090,9 +5202,6 @@ msgstr ""
 msgid "Empty slot"
 msgstr ""
 
-msgid "Empty startup"
-msgstr ""
-
 msgid "Enable"
 msgstr "啟用"
 
@@ -5124,6 +5233,9 @@ msgstr ""
 msgid "Enable EIT EPG"
 msgstr ""
 
+msgid "Enable Fast Channel Change"
+msgstr ""
+
 msgid "Enable MHW EPG"
 msgstr ""
 
@@ -5138,6 +5250,10 @@ msgstr ""
 
 msgid "Enable OpenTV EPG"
 msgstr ""
+
+#, fuzzy
+msgid "Enable Quad PiP"
+msgstr "啟用 /媒體"
 
 msgid "Enable Swap at startup"
 msgstr ""
@@ -5214,6 +5330,10 @@ msgid "Enable installation of ServiceApp to support 5001 and 5002 streams"
 msgstr ""
 
 #, fuzzy
+msgid "Enable installation of YTDL, YTDLP, Streamlink Wrapper"
+msgstr "預設頻道清單已經安裝完成。"
+
+#, fuzzy
 msgid "Enable intro screen"
 msgstr "不能創建symlink!"
 
@@ -5276,13 +5396,6 @@ msgstr ""
 msgid "Enabled"
 msgstr "啟用的"
 
-#, fuzzy
-msgid "Enabled, only from deep standby"
-msgstr "深度休眠"
-
-msgid "Enabled, only from standby"
-msgstr ""
-
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr ""
 
@@ -5326,6 +5439,9 @@ msgid "Enigma2 Changes"
 msgstr "Enigma 2 終止"
 
 msgid "Enter PIN"
+msgstr ""
+
+msgid "Enter an URL where alternative images could be listed for FlashImage."
 msgstr ""
 
 msgid "Enter if you are in the east or west hemisphere."
@@ -5384,10 +5500,6 @@ msgstr "相同"
 msgid "Equatorial Guinea"
 msgstr ""
 
-#, fuzzy
-msgid "Erase"
-msgstr "刪除Email"
-
 msgid "Eritrea"
 msgstr ""
 
@@ -5421,6 +5533,12 @@ msgstr "執行插件發生錯誤"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
+
+#, fuzzy, python-format
+msgid ""
+"Error getting link via %s\n"
+"%s"
+msgstr "執行插件發生錯誤"
 
 msgid "Error reading webpage!"
 msgstr ""
@@ -5491,6 +5609,10 @@ msgid "Event name first"
 msgstr ""
 
 #, fuzzy
+msgid "Event view context menu"
+msgstr "事件檢視"
+
+#, fuzzy
 msgid "Eventinfo"
 msgstr "事件"
 
@@ -5504,6 +5626,10 @@ msgstr "事件檢視"
 #, fuzzy
 msgid "Eventview:"
 msgstr "事件檢視"
+
+#, fuzzy
+msgid "Everything"
+msgstr "恢復系統設定"
 
 msgid "Everywhere"
 msgstr ""
@@ -5552,6 +5678,10 @@ msgstr "退出 DNS 配置"
 msgid "Exit MAC-address configuration"
 msgstr "退出 DNS 配置"
 
+#, fuzzy
+msgid "Exit Quad Channel Selection"
+msgstr "頻道選擇"
+
 msgid "Exit editor"
 msgstr "退出編輯"
 
@@ -5582,6 +5712,10 @@ msgstr ""
 
 msgid "Exit network wizard"
 msgstr "退出網路設定嚮導"
+
+#, fuzzy
+msgid "Exit quad PiP"
+msgstr "外部EPG"
 
 msgid "Exit the wizard"
 msgstr "退出嚮導"
@@ -5661,6 +5795,12 @@ msgstr "外置硬碟"
 msgid "External subtitle color"
 msgstr ""
 
+msgid "External subtitle dialog colorization"
+msgstr ""
+
+msgid "External subtitle switch fonts"
+msgstr ""
+
 #, fuzzy
 msgid "Extra motor options"
 msgstr "輸入選項:"
@@ -5719,6 +5859,14 @@ msgstr ""
 msgid "FCC 1953"
 msgstr ""
 
+#, fuzzy
+msgid "FCC enabled"
+msgstr "允許"
+
+#, fuzzy
+msgid "FCCSetup"
+msgstr "設定"
+
 msgid "FEC"
 msgstr "FEC"
 
@@ -5730,6 +5878,9 @@ msgid "FP Upgrade"
 msgstr "升級"
 
 msgid "FSBL Update Check"
+msgstr ""
+
+msgid "FTA"
 msgstr ""
 
 #, fuzzy
@@ -5778,6 +5929,16 @@ msgstr "愛爾蘭"
 
 msgid "Fast"
 msgstr "快速"
+
+#, fuzzy
+msgid "Fast Channel Change"
+msgstr "下一個頻道"
+
+msgid "Fast Channel Change Setup"
+msgstr ""
+
+msgid "Fast Channel Change setup"
+msgstr ""
 
 msgid "Fast DiSEqC"
 msgstr "快速DiSEqC"
@@ -5903,15 +6064,21 @@ msgid ""
 "Restart your %s %s now?"
 msgstr ""
 
-msgid "Flash"
-msgstr ""
+#, fuzzy
+msgid "Flash Backupimage"
+msgstr "安裝失敗"
 
 #, fuzzy
 msgid "Flash Image"
 msgstr "安裝失敗"
 
-msgid "Flash On the Fly"
-msgstr ""
+#, fuzzy
+msgid "Flash image"
+msgstr "安裝失敗"
+
+#, fuzzy, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr "立即重啟(Reboot)?"
 
 #, python-format
 msgid "Flashed:\t\t%s"
@@ -5929,21 +6096,9 @@ msgstr "安裝失敗"
 msgid "Flashing Image"
 msgstr "安裝失敗"
 
-msgid "Flashing failed"
-msgstr "安裝失敗"
-
 #, fuzzy
 msgid "Flashing image successful"
 msgstr "移除完成"
-
-#, python-format
-msgid ""
-"Flashing image successful.\n"
-"Press ok to close.\n"
-"\n"
-"Flashed:\n"
-"%s"
-msgstr ""
 
 #, fuzzy, python-format
 msgid ""
@@ -5953,6 +6108,10 @@ msgstr "安裝不成功!\n"
 
 msgid "Following tasks will be done after you press OK!"
 msgstr "按下 OK 鍵後將完成以下任務!"
+
+#, fuzzy
+msgid "Font:"
+msgstr "Picon 大小:"
 
 #, fuzzy
 msgid "Fontsize"
@@ -6014,10 +6173,6 @@ msgstr ""
 msgid "Frame size in full view"
 msgstr "全屏顯示時的幀大小"
 
-#, fuzzy
-msgid "Frame:"
-msgstr "檔案名:"
-
 msgid "Framerate MiniTV"
 msgstr ""
 
@@ -6035,10 +6190,6 @@ msgstr "記憶體"
 #, fuzzy
 msgid "Free Swap:"
 msgstr "移除交換檔"
-
-#, fuzzy
-msgid "Free To Air"
-msgstr "Free to Air"
 
 #, fuzzy
 msgid "Free memory"
@@ -6211,12 +6362,6 @@ msgstr "德語"
 
 msgid "Germany"
 msgstr "德語"
-
-msgid "Get latest experimental image"
-msgstr ""
-
-msgid "Get latest release image"
-msgstr ""
 
 msgid "Getting Event Info failed!"
 msgstr ""
@@ -6427,9 +6572,6 @@ msgstr ""
 msgid "HD60"
 msgstr ""
 
-msgid "HDD"
-msgstr ""
-
 msgid ""
 "HDD = Do you want to make an USB-back-up image on HDD? \n"
 "This only takes 2 or 10 minutes and is fully automatic."
@@ -6601,6 +6743,10 @@ msgid "History"
 msgstr "歷史"
 
 #, fuzzy
+msgid "History Prev/Next"
+msgstr "歷史"
+
+#, fuzzy
 msgid "History Zap Menu"
 msgstr "歷史"
 
@@ -6741,6 +6887,9 @@ msgid "Hungary"
 msgstr "匈牙利語"
 
 msgid "I"
+msgstr ""
+
+msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
 
 #, fuzzy
@@ -6965,9 +7114,6 @@ msgstr "資訊"
 msgid "Image Manager"
 msgstr "文件管理器"
 
-msgid "Image Multiboot Manager"
-msgstr ""
-
 msgid "Image Online-Flash"
 msgstr ""
 
@@ -7162,6 +7308,10 @@ msgid "Initialize"
 msgstr "初始化"
 
 #, fuzzy
+msgid "Initialize Multiboot"
+msgstr "初始化"
+
+#, fuzzy
 msgid "Initialize disk"
 msgstr "初始化"
 
@@ -7181,6 +7331,10 @@ msgstr "輸入 1"
 
 msgid "Input Stream ID"
 msgstr ""
+
+#, fuzzy
+msgid "Input channel name."
+msgstr "頻道"
 
 msgid "Input config file name:"
 msgstr ""
@@ -7213,6 +7367,10 @@ msgstr "通過網頁流覽器安裝一個新的韧體"
 
 msgid "Install channel list"
 msgstr ""
+
+#, fuzzy
+msgid "Install extensions"
+msgstr "安裝附件."
 
 msgid "Install extensions."
 msgstr "安裝附件."
@@ -7485,6 +7643,20 @@ msgstr "內核模組"
 msgid "Kernel: %s"
 msgstr "內核模組"
 
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+#, fuzzy
+msgid "Kexec MultiBoot Manager"
+msgstr "軟體管理"
+
 msgid "Keyboard"
 msgstr "鍵盤佈局"
 
@@ -7728,9 +7900,6 @@ msgstr "限位設定關閉"
 msgid "Limits on"
 msgstr "限位設定打開"
 
-msgid "Lines:"
-msgstr ""
-
 msgid "Link Quality:"
 msgstr "鏈結品質:"
 
@@ -7806,10 +7975,6 @@ msgstr ""
 
 msgid "Location"
 msgstr "位置"
-
-#, fuzzy
-msgid "Location for infobar poster"
-msgstr "即時錄製位置"
 
 #, fuzzy
 msgid "Location list"
@@ -8042,6 +8207,10 @@ msgid "Mauritius"
 msgstr "自定義組"
 
 #, fuzzy
+msgid "Max channels"
+msgstr "歷史記錄裏的下一個頻道"
+
+#, fuzzy
 msgid "Max memory positions"
 msgstr "存貯位置"
 
@@ -8203,11 +8372,6 @@ msgstr "模式"
 #, fuzzy
 msgid "Mode 1"
 msgstr "模式"
-
-msgid ""
-"Mode 1 suppports Kodi, PiP may not work.\n"
-"Mode 12 supports PiP, Kodi may not work."
-msgstr ""
 
 #, fuzzy
 msgid "Mode 2"
@@ -8428,10 +8592,6 @@ msgstr ""
 msgid "Movie/Drama"
 msgstr ""
 
-#, fuzzy
-msgid "Movie_Selection:"
-msgstr "電影位置"
-
 msgid "Moving"
 msgstr ""
 
@@ -8455,12 +8615,8 @@ msgid "Multi EPG"
 msgstr "多路 EPG"
 
 #, fuzzy
-msgid "MultiBoot Selector"
+msgid "MultiBoot Selection"
 msgstr "EMU 選擇"
-
-#, fuzzy
-msgid "MultiBoot image manager"
-msgstr "軟體管理"
 
 #, fuzzy
 msgid "MultiBootSelector"
@@ -8471,7 +8627,7 @@ msgid "MultiEPG settings"
 msgstr "預設設定"
 
 #, fuzzy
-msgid "Multiboot Image Selector"
+msgid "Multiboot image selector"
 msgstr "容器選擇"
 
 msgid "Multimedia"
@@ -8505,14 +8661,6 @@ msgstr ""
 
 msgid "N/A"
 msgstr "N/A"
-
-msgid "NFI image flashing"
-msgstr ""
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr ""
-"NFI Image安裝完成.\n"
-"按黃鍵重啟Dreambox!"
 
 #, fuzzy
 msgid "NFS Setup"
@@ -8705,6 +8853,10 @@ msgstr ""
 msgid "Next long"
 msgstr "下一個"
 
+#, fuzzy
+msgid "Next quad PiP channel"
+msgstr "切換頻道時顯示資訊條"
+
 msgid "Nicaragua"
 msgstr ""
 
@@ -8763,6 +8915,10 @@ msgstr ""
 msgid "No card inserted!"
 msgstr "新的Softcam已啟動 !\n"
 
+#, fuzzy
+msgid "No channel"
+msgstr "歷史記錄裏的下一個頻道"
+
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -8775,9 +8931,6 @@ msgstr ""
 
 msgid "No description available."
 msgstr "無可用的描述."
-
-msgid "No details for this image file"
-msgstr "這個韧體沒有詳細說明"
 
 msgid "No displayable files on this medium found!"
 msgstr "在這個媒介上未發現檔!"
@@ -8904,7 +9057,7 @@ msgid "No, but restart from begin"
 msgstr "否, 重新開始播放這個視頻"
 
 #, fuzzy
-msgid "No, do not flash an image"
+msgid "No, do not flash image"
 msgstr "否, 什麼也不做."
 
 msgid "No, do nothing."
@@ -8915,6 +9068,9 @@ msgid "No, just start my %s %s"
 msgstr "否, 僅啟動dreambox"
 
 msgid "No, never"
+msgstr ""
+
+msgid "No, only download"
 msgstr ""
 
 msgid "No, scan later manually"
@@ -9003,9 +9159,6 @@ msgid "Not tested:"
 msgstr "未啟用"
 
 msgid "Not-Associated"
-msgstr ""
-
-msgid "Note: startup list does not show current image or empty startups."
 msgstr ""
 
 #, fuzzy
@@ -9122,6 +9275,10 @@ msgstr "CCcam資訊"
 #, fuzzy
 msgid "OScam info"
 msgstr "CCcam資訊"
+
+#, fuzzy
+msgid "OScam webif disabled"
+msgstr "不可用"
 
 msgid "Off"
 msgstr "關閉"
@@ -9269,6 +9426,13 @@ msgstr ""
 msgid "Orbital position"
 msgstr ""
 
+#, fuzzy
+msgid "Order by modes"
+msgstr "按大小按序"
+
+msgid "Order by slots"
+msgstr ""
+
 msgid "Ordinary"
 msgstr ""
 
@@ -9293,6 +9457,10 @@ msgstr "CCcam資訊"
 
 msgid "Other"
 msgstr "其他"
+
+#, fuzzy
+msgid "Other Images"
+msgstr "安裝失敗"
 
 #, fuzzy
 msgid "Overall progress:"
@@ -9647,14 +9815,8 @@ msgstr "播放"
 msgid "Play "
 msgstr "播放"
 
-msgid "Play Audio-CD..."
-msgstr "播放 Audio-CD"
-
 msgid "Play DVD"
 msgstr "播放DVD"
-
-msgid "Play Music..."
-msgstr "播放音樂..."
 
 msgid "Play audio in background"
 msgstr ""
@@ -9696,6 +9858,12 @@ msgstr ""
 msgid "Play recorded movies..."
 msgstr "播放錄製的電影..."
 
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
+
 msgid "Playlist"
 msgstr "播放列表"
 
@@ -9725,9 +9893,6 @@ msgstr "請更改錄製結束時間"
 #, fuzzy
 msgid "Please check the manual of the receiver"
 msgstr "為新的目錄重命名"
-
-msgid "Please check your network settings!"
-msgstr "請檢視網路設定！"
 
 #, fuzzy
 msgid "Please choose CCcam-Reader"
@@ -9807,6 +9972,10 @@ msgstr "請輸入您的搜索關鍵字."
 msgid "Please follow the instructions on the TV"
 msgstr "請依照電視螢幕指導操作."
 
+#, fuzzy
+msgid "Please make a selection"
+msgstr "關閉標題選項"
+
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "請注意的是之前選擇的媒體不能訪問,預設的目錄已被替換."
 
@@ -9835,9 +10004,6 @@ msgstr "請選擇要錄製的字幕..."
 
 msgid "Please select a subservice..."
 msgstr "請選擇一個字幕..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr ""
 
 #, fuzzy
 msgid "Please select an aspect ratio..."
@@ -9876,9 +10042,6 @@ msgstr ""
 "請選擇您要接入的無線網路.\n"
 "\n"
 "按OK鍵確認"
-
-msgid "Please select what to do after first booting the image:\n"
-msgstr ""
 
 msgid "Please set up tuner A"
 msgstr ""
@@ -10026,17 +10189,6 @@ msgstr "正在重啟網路...請稍候..."
 #, fuzzy
 msgid "Please wait whilst feeds state is checked."
 msgstr "請稍候,我們正在測驗您的網路..."
-
-#, fuzzy
-msgid "Please wait, restarting cardserver."
-msgstr "請稍候，正在載入圖片..."
-
-msgid "Please wait, restarting softcam and cardserver."
-msgstr ""
-
-#, fuzzy
-msgid "Please wait, restarting softcam."
-msgstr "正在載入列表... 請稍候..."
 
 #, fuzzy
 msgid "Please wait."
@@ -10275,9 +10427,6 @@ msgstr ""
 msgid "Preparation time for recording (seconds)"
 msgstr "添加錄影 (輸入錄影結束時間)"
 
-msgid "Prepare another USB stick for image flashing"
-msgstr ""
-
 msgid "Preparing... Please wait"
 msgstr "準備中... 請稍候!"
 
@@ -10288,6 +10437,14 @@ msgstr "按OK來切換選擇."
 #, fuzzy
 msgid "Press Exit to close this screen"
 msgstr "按OK鍵開始掃描."
+
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
+msgstr ""
 
 msgid "Press INFO on your remote control for additional information."
 msgstr ""
@@ -10362,6 +10519,10 @@ msgstr ""
 #, fuzzy
 msgid "Press yellow to set this interface as the default interface."
 msgstr "按黃鍵來設定此介面為預設."
+
+#, fuzzy
+msgid "Prev quad PiP channel"
+msgstr "切換頻道時顯示資訊條"
 
 msgid "Preview"
 msgstr "預覽"
@@ -10478,9 +10639,6 @@ msgstr ""
 msgid "Protocol"
 msgstr ""
 
-msgid "Protocol:"
-msgstr ""
-
 msgid "Prov/Fav"
 msgstr ""
 
@@ -10531,6 +10689,25 @@ msgstr "分區"
 msgid "Qatar"
 msgstr ""
 
+#, fuzzy
+msgid "Quad PiP Channel Selection"
+msgstr "頻道選擇"
+
+msgid "Quad PiP Screen"
+msgstr ""
+
+#, fuzzy
+msgid "Quad PiP channel "
+msgstr "切換頻道時顯示資訊條"
+
+#, fuzzy
+msgid "Quad PiP is not available."
+msgstr "不使用"
+
+#, fuzzy
+msgid "Quad Picture in Picture"
+msgstr "移動畫中畫"
+
 msgid "Question"
 msgstr ""
 
@@ -10553,10 +10730,6 @@ msgstr ""
 
 msgid "Quick zap"
 msgstr ""
-
-#, fuzzy
-msgid "QuickBoot Image Selector"
-msgstr "容器選擇"
 
 #, fuzzy
 msgid "RAM"
@@ -10647,6 +10820,10 @@ msgstr "返回電影列表"
 msgid "Really WOL now?"
 msgstr "立即重啟(Reboot)?"
 
+#, fuzzy
+msgid "Really abort execution?"
+msgstr "立即重啟(Reboot)?"
+
 msgid "Really close without saving settings?"
 msgstr "關閉而不保存設定?"
 
@@ -10657,8 +10834,18 @@ msgstr "確實要刪除計時器?"
 msgid "Really delete done timers?"
 msgstr "確實要刪除計時器?"
 
+#, fuzzy
+msgid "Really delete this entry?"
+msgstr "確實要刪除計時器?"
+
 msgid "Really exit the subservices quickzap?"
 msgstr "退出字幕快速切換?"
+
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
 
 #, fuzzy
 msgid "Really reboot into Recovery Mode?"
@@ -10876,10 +11063,6 @@ msgstr "遠程控制"
 msgid "Remote control type"
 msgstr ""
 
-#, python-format
-msgid "Removal of this startup will not show in %s Gui.  Are you sure you want to delete image startup %s ?"
-msgstr ""
-
 msgid "Remove"
 msgstr "移除"
 
@@ -10890,6 +11073,9 @@ msgstr "Gemini 配置"
 #, fuzzy
 msgid "Remove Plugins"
 msgstr "移除插件"
+
+msgid "Remove Quad Channel Entry"
+msgstr ""
 
 #, fuzzy
 msgid "Remove Service"
@@ -10911,15 +11097,15 @@ msgstr ""
 msgid "Remove completed timers after (days)"
 msgstr ""
 
-#, fuzzy
-msgid "Remove confirmation"
-msgstr "調諧器配置"
-
 msgid "Remove currently selected title"
 msgstr "移除當前選擇的標題"
 
 msgid "Remove finished."
 msgstr "移除結束."
+
+#, fuzzy
+msgid "Remove forever"
+msgstr "移除標題"
 
 msgid "Remove items from trash can after (days)"
 msgstr ""
@@ -10992,6 +11178,9 @@ msgstr ""
 msgid "Repeats"
 msgstr "重複"
 
+msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
+msgstr ""
+
 msgid "Require authentication for http streams"
 msgstr ""
 
@@ -11053,14 +11242,6 @@ msgstr "立即重啟GUI?"
 msgid "Restart Network Adapter"
 msgstr "選擇網卡"
 
-#, fuzzy
-msgid "Restart both"
-msgstr "重新測驗"
-
-#, fuzzy
-msgid "Restart cardserver"
-msgstr "從這裏開始剪輯"
-
 msgid "Restart enigma"
 msgstr ""
 
@@ -11070,10 +11251,6 @@ msgstr "立即重啟(Restart)?"
 
 msgid "Restart network"
 msgstr "重啟網路"
-
-#, fuzzy
-msgid "Restart softcam"
-msgstr "重新測驗"
 
 msgid "Restart test"
 msgstr "重新測驗"
@@ -11095,8 +11272,9 @@ msgstr "重啟Enigma2"
 msgid "Restore backups"
 msgstr "恢復備份"
 
-msgid "Restore is running..."
-msgstr "正在恢復..."
+#, fuzzy
+msgid "Restore deleted images"
+msgstr "是，立即還原設定"
 
 msgid "Restore settings backup after restart"
 msgstr ""
@@ -11131,10 +11309,6 @@ msgstr "恢復播放"
 #, fuzzy
 msgid "Retrieving image list - Please wait..."
 msgstr "正在下載插件資訊, 請稍候..."
-
-#, fuzzy
-msgid "Retrieving image startups - Please wait..."
-msgstr "搜尋可用更新,請稍候..."
 
 msgid "Return to file browser"
 msgstr "返回文件流覽器"
@@ -11249,9 +11423,6 @@ msgstr ""
 #, fuzzy
 msgid "SD"
 msgstr "OSD"
-
-msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"
-msgstr ""
 
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr ""
@@ -11491,9 +11662,6 @@ msgstr ""
 msgid "Screenshot of LCD in /tmp"
 msgstr ""
 
-msgid "Scrollbar:"
-msgstr ""
-
 msgid "Scrolling Speed"
 msgstr ""
 
@@ -11645,27 +11813,15 @@ msgstr ""
 msgid "Select CAId"
 msgstr ""
 
-#, fuzzy
-msgid "Select Card Server"
-msgstr "選擇一部電影"
-
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Select Image: %s"
-msgstr "選擇Image"
-
-#, fuzzy
-msgid "Select Image: STARTUP_1"
-msgstr "選擇Image"
 
 msgid "Select Location"
 msgstr "選擇位置"
 
 #, fuzzy
-msgid "Select Softcam"
-msgstr "選擇位置"
+msgid "Select Quad Channels"
+msgstr "切換頻道時顯示資訊條"
 
 #, fuzzy
 msgid "Select Software Update"
@@ -11686,8 +11842,9 @@ msgstr "選擇一個計時器導入"
 msgid "Select all"
 msgstr "選擇"
 
-msgid "Select an image to be downloaded"
-msgstr ""
+#, fuzzy
+msgid "Select an image brand"
+msgstr "選擇Image"
 
 msgid "Select audio track"
 msgstr "選擇音軌"
@@ -11698,6 +11855,10 @@ msgstr ""
 msgid "Select backup location"
 msgstr ""
 
+#, fuzzy
+msgid "Select channel audio"
+msgstr "選擇要記錄的頻道"
+
 msgid "Select channel to record from"
 msgstr "選擇要記錄的頻道"
 
@@ -11705,9 +11866,6 @@ msgid "Select copy destination for:"
 msgstr ""
 
 msgid "Select default EPG type..."
-msgstr ""
-
-msgid "Select desired image from feed list"
 msgstr ""
 
 msgid "Select destination for:"
@@ -11741,6 +11899,10 @@ msgstr ""
 
 msgid "Select if you want to show every pressed button in telnet init 4 mode."
 msgstr ""
+
+#, fuzzy
+msgid "Select image"
+msgstr "選擇Image"
 
 msgid "Select input device"
 msgstr ""
@@ -11920,6 +12082,10 @@ msgstr "選擇要錄製的自定義組"
 msgid "Selected Image:\t\t%s"
 msgstr "選擇Image"
 
+#, fuzzy
+msgid "Selected Image:\t\tnot available"
+msgstr "選擇Image"
+
 msgid "Selected mount point is already used by another drive."
 msgstr ""
 
@@ -11973,10 +12139,6 @@ msgstr "信號: "
 #, fuzzy
 msgid "Serial: unknown"
 msgstr "未知"
-
-#, fuzzy
-msgid "Serv.Name"
-msgstr "服務名稱:"
 
 #, python-format
 msgid "Server Info ( Oscam-Version: %s )"
@@ -12239,6 +12401,9 @@ msgstr ""
 msgid "Set time window to 6 hours"
 msgstr ""
 
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr ""
+
 msgid "Set to the desired primetime (hour)."
 msgstr ""
 
@@ -12260,7 +12425,14 @@ msgstr ""
 msgid "Settings"
 msgstr "設定"
 
+#, fuzzy
+msgid "Settings and selected plugins"
+msgstr "執行插件發生錯誤"
+
 msgid "Settings over Ethernet"
+msgstr ""
+
+msgid "Settings without plugins"
 msgstr ""
 
 #, fuzzy
@@ -12314,10 +12486,6 @@ msgid "Setup your timezone."
 msgstr "選擇您的選擇."
 
 msgid "Seychelles"
-msgstr ""
-
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
 msgstr ""
 
 #, fuzzy
@@ -12761,6 +12929,10 @@ msgstr ""
 msgid "Show channel numbers in channel selection"
 msgstr ""
 
+#, fuzzy
+msgid "Show channel selection"
+msgstr "頻道選擇"
+
 msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
 msgstr ""
 
@@ -13040,6 +13212,10 @@ msgstr "顯示轉發器資訊"
 msgid "Show two lines per entry"
 msgstr "顯示時間百分比"
 
+#, fuzzy
+msgid "Show underscore characters"
+msgstr "切換頻道時顯示資訊條"
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr ""
 
@@ -13057,6 +13233,9 @@ msgid "Show warning when timeshift is stopped"
 msgstr ""
 
 msgid "Show weblinks module packages"
+msgstr ""
+
+msgid "Show/Hide focus bar"
 msgstr ""
 
 msgid "Shows live tv or informations on LCD."
@@ -13255,14 +13434,6 @@ msgstr ""
 msgid "Slot %d"
 msgstr "插槽 %d"
 
-#, python-format
-msgid "Slot %s: %s - Mode %d%s"
-msgstr ""
-
-#, fuzzy, python-format
-msgid "Slot %s: %s%s"
-msgstr "插槽 %d"
-
 msgid "Slovak"
 msgstr ""
 
@@ -13316,10 +13487,6 @@ msgid "SoftCam / CI"
 msgstr ""
 
 #, fuzzy
-msgid "Softcam Manager..."
-msgstr "軟體管理..."
-
-#, fuzzy
 msgid "Softcam Setup"
 msgstr "保護設定"
 
@@ -13363,10 +13530,6 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "不使用這些插件:\n"
-
-#, fuzzy
-msgid "Sorry ... no ECM Info found"
-msgstr "抱歉, 沒有備份發現！"
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
@@ -13573,6 +13736,11 @@ msgstr ""
 msgid "Start/Stop WerbeZapper Monitoring"
 msgstr ""
 
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
+msgstr ""
+
 msgid "Starting on"
 msgstr "開始"
 
@@ -13715,6 +13883,10 @@ msgstr "Gaming"
 
 msgid "Streaming clients info"
 msgstr ""
+
+#, fuzzy
+msgid "Streamrelay delay"
+msgstr "頻道延遲"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
 msgid "Stretch full"
@@ -14014,9 +14186,6 @@ msgstr ""
 msgid "TB"
 msgstr "B"
 
-msgid "TEMP"
-msgstr ""
-
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
@@ -14264,6 +14433,9 @@ msgstr ""
 "WLAN插件未安裝!\n"
 "請先安裝."
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 #, fuzzy
 msgid ""
 "The Media Portal plugin is not installed!\n"
@@ -14325,11 +14497,6 @@ msgstr ""
 #, fuzzy
 msgid "The TV was switched to the recording service!\n"
 msgstr "定時錄製開始,即將切換到預錄頻道!\n"
-
-msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
 
 #, fuzzy
 msgid ""
@@ -14393,22 +14560,11 @@ msgstr ""
 "The directory %s is not writable.\n"
 "Make sure you select a writable directory instead."
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"下列裝備被發現:\n"
-"\n"
-"%s\n"
-"\n"
-"是否刷新這個U盤?"
-
 msgid "The following files were found..."
 msgstr "下列文件被發現..."
+
+msgid "The following settings have been reset:"
+msgstr ""
 
 msgid "The frame rate of the recording. Ideally, this will match the frame rate of the source or be an integer multiple. If in doubt, set to 60, which should work with most sources."
 msgstr ""
@@ -14421,9 +14577,6 @@ msgid "The installation of the default settings is finished. You can now continu
 msgstr "預設頻道清單已經安裝完成.現在您可以按遙控器上的OK按鈕繼續設定您的Dreambox."
 
 msgid "The loopthrough setting is wrong."
-msgstr ""
-
-msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
 
 msgid ""
@@ -14440,6 +14593,9 @@ msgstr "路徑 %s 已經存在."
 
 msgid "The pin code you entered is wrong."
 msgstr "密碼輸入有誤."
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
 
 #, python-format
 msgid "The results have been written to %s."
@@ -14512,10 +14668,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "該嚮導可以備份您當前的設定.您想要做的一個備份嗎？"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr ""
 
 msgid "The wizard is finished now."
 msgstr "嚮導已完成設定."
@@ -14784,6 +14936,9 @@ msgstr ""
 msgid "This option configures you can set Auto Volume Level."
 msgstr ""
 
+msgid "This option install all wrapper for ytdl, ytdlp, streamlink streams in servicelist."
+msgstr ""
+
 msgid "This option install newest ServiceApp from feed and remove ServiceHisilicon, if its installed. The installation of ServiceApp needs a reboot!"
 msgstr ""
 
@@ -14833,14 +14988,6 @@ msgid "This option sets the surpression of false digital contours, that are the 
 msgstr ""
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
-msgstr ""
-
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
 
 msgid "This plugin is installed."
@@ -15163,18 +15310,6 @@ msgstr "是，立即還原設定"
 #, python-format
 msgid "To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"若要更新您的Dreambox韧體，請按照下列步驟:\n"
-"1) 關閉電源並插入可引導U盤.\n"
-"2) 通電並按住面板下鍵10秒.\n"
-"3) 等待啟動,按照嚮導提示操作."
 
 msgid "Today"
 msgstr "今天"
@@ -15541,9 +15676,6 @@ msgstr ""
 msgid "USALS calibration"
 msgstr ""
 
-msgid "USB"
-msgstr "USB"
-
 msgid ""
 "USB = Do you want to make a back-up on USB?\n"
 "This will take between 4 and 15 minutes depending on the used filesystem and is fully automatic.\n"
@@ -15554,9 +15686,6 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr "USB-Stick"
-
-msgid "USB stick wizard"
-msgstr "USB Stick 嚮導"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr ""
@@ -15574,12 +15703,15 @@ msgstr "烏克蘭"
 msgid "Ukrainian"
 msgstr "烏克蘭"
 
-msgid "Unable to access InfoBar."
+msgid "Unable to access Screens.InfoBar.InfoBar."
 msgstr ""
 
 #, fuzzy
 msgid "Unable to change password"
 msgstr "錯誤的密碼"
+
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -15854,12 +15986,6 @@ msgstr ""
 msgid "Use a gateway"
 msgstr "使用閘道"
 
-msgid ""
-"Use automatic mode detection.\n"
-" This option reads all supported modes from your TV.\n"
-" Please disable it only if you want to customize the preferred configuration."
-msgstr ""
-
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "左旋"
@@ -15926,15 +16052,6 @@ msgstr ""
 #, fuzzy
 msgid "Use the alternative screen"
 msgstr "編輯選項"
-
-msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Reboot button."
-msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr ""
 
 #, fuzzy
 msgid "Use the extended List"
@@ -16021,6 +16138,9 @@ msgstr ""
 msgid "Userinterface Settings"
 msgstr "裝置設定"
 
+msgid "Userlogo:"
+msgstr ""
+
 msgid "Username"
 msgstr "用戶名"
 
@@ -16062,6 +16182,9 @@ msgstr "錄影機"
 #, fuzzy
 msgid "VLAN connection"
 msgstr "未連接"
+
+msgid "VMC"
+msgstr ""
 
 msgid "VMGM (intro trailer)"
 msgstr ""
@@ -16242,14 +16365,8 @@ msgstr ""
 msgid "View"
 msgstr "點擊:"
 
-msgid "View Movies..."
-msgstr "觀看電影..."
-
 msgid "View Rass interactive..."
 msgstr "View Rass interactive..."
-
-msgid "View Video CD..."
-msgstr "觀看 Video CD..."
 
 msgid "View details"
 msgstr "檢視明細"
@@ -16357,10 +16474,6 @@ msgstr "音量"
 
 msgid "Volume up long *"
 msgstr ""
-
-#, fuzzy
-msgid "Volume:"
-msgstr "音量"
 
 msgid "W"
 msgstr "W"
@@ -16569,6 +16682,9 @@ msgstr ""
 msgid "What do you want to scan?"
 msgstr "是否開始掃描?"
 
+msgid "What should be restored?\n"
+msgstr ""
+
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""
 
@@ -16603,6 +16719,9 @@ msgid "When enabled, a recording is allowed to interrupt live tv, when there are
 msgstr ""
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
+msgstr ""
+
+msgid "When enabled, always descramble receiving http streams. This takes up more resources (descrambling demuxers), only enable if necessary. Individual streams are always descrambled if 0x100 is added to the service type, regardless of this setting."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -16741,6 +16860,12 @@ msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "在哪里備份您的設定?"
+
+#, fuzzy, python-format
+msgid ""
+"Where do you want to flash image\n"
+"%s to?"
+msgstr " 是否安裝套裝軟體:\n"
 
 msgid "Where should the recording be saved?"
 msgstr ""
@@ -16924,6 +17049,14 @@ msgstr "是，返回電影列表"
 msgid "Yes, shut down now."
 msgstr "是，立即關機。"
 
+#, fuzzy
+msgid "Yes, with backup"
+msgstr "恢復備份"
+
+#, fuzzy
+msgid "Yes, without backup"
+msgstr "恢復備份"
+
 msgid "Yesterday"
 msgstr ""
 
@@ -16998,9 +17131,6 @@ msgstr ""
 
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "您已選擇要備份您的設定。請按OK鍵開始備份。"
-
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "您已經選擇創建一個新的用於安裝.NFI的啟動U盤,這將重新對U盤進行格式化,所有資料將被刪除."
 
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "您已經選擇恢復備份設定.恢復後將重啟Enigma2.請按OK開始恢復備份."
@@ -17127,6 +17257,14 @@ msgstr "您的Dreambox沒有正確連接到互聯網. 請檢視設定然後再�
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "您的Dreambox現在可能無法使用.請參考手冊以獲得進一步的幫助."
 
+#, fuzzy, python-format
+msgid ""
+"Your %s %s needs a restart to apply the changes.\n"
+"Restart your box now?"
+msgstr ""
+"應用新的皮膚必須重啟Enigma2\n"
+"是否立即重啟?"
+
 #, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
@@ -17248,6 +17386,13 @@ msgstr ""
 "\n"
 "請選擇下一步做什麼."
 
+msgid "Youtube"
+msgstr ""
+
+#, fuzzy
+msgid "Youtube long"
+msgstr "靜音"
+
 msgid "Zambia"
 msgstr ""
 
@@ -17256,6 +17401,10 @@ msgstr ""
 
 msgid "Zap + Exit"
 msgstr ""
+
+#, fuzzy
+msgid "Zap Up/Down"
+msgstr "(上, 下)"
 
 msgid "Zap back to previously tuned service?"
 msgstr ""
@@ -17274,6 +17423,9 @@ msgid "Zap focus to Picture in Picture"
 msgstr ""
 
 msgid "Zap focus to main screen"
+msgstr ""
+
+msgid "Zap focused channel on full screen"
 msgstr ""
 
 msgid "Zap mode"
@@ -17583,6 +17735,9 @@ msgstr "單軌"
 msgid "by date"
 msgstr ""
 
+msgid "by hmmmdada"
+msgstr ""
+
 msgid "caid:"
 msgstr ""
 
@@ -17643,9 +17798,6 @@ msgid ""
 "\n"
 msgstr ""
 
-msgid "continue"
-msgstr "繼續"
-
 msgid "controlled by HDMI"
 msgstr ""
 
@@ -17669,10 +17821,6 @@ msgstr "複製到自定義組"
 
 msgid "create directory"
 msgstr "創建目錄"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr ""
 
 msgid "daily"
 msgstr "每天"
@@ -17948,6 +18096,9 @@ msgstr "空閒"
 msgid "free diskspace"
 msgstr "剩餘磁碟空間"
 
+msgid "from"
+msgstr ""
+
 msgid "full"
 msgstr ""
 
@@ -18043,6 +18194,10 @@ msgstr ""
 
 msgid "insert mark here"
 msgstr "在這裏標記"
+
+#, fuzzy
+msgid "insert without cutlist editor"
+msgstr "剪輯編輯器..."
 
 #, fuzzy
 msgid "internally loopthrough to"
@@ -18331,9 +18486,6 @@ msgid "original"
 msgstr ""
 
 msgid "original language"
-msgstr ""
-
-msgid "oscam webif disabled"
 msgstr ""
 
 #, fuzzy
@@ -18689,8 +18841,40 @@ msgstr "快進 (輸入時間)"
 msgid "slot%s - %s"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "slot%s - %s (current image)"
+msgstr "當前"
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), with backup"
+msgstr "當前"
+
+#, fuzzy, python-format
+msgid "slot%s - %s (current image), without backup"
+msgstr "當前"
+
 #, python-format
-msgid "slot%s - %s (current)"
+msgid "slot%s - %s mode 1"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "slot%s - %s mode 1 (current image)"
+msgstr "當前"
+
+#, python-format
+msgid "slot%s - %s mode 12"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "slot%s - %s mode 12 (current image)"
+msgstr "當前"
+
+#, python-format
+msgid "slot%s - %s, with backup"
+msgstr ""
+
+#, python-format
+msgid "slot%s - %s, without backup"
 msgstr ""
 
 msgid "slow"
@@ -18736,10 +18920,6 @@ msgstr "即時記錄"
 #, fuzzy
 msgid "start recording"
 msgstr "開始錄製？"
-
-#, python-format
-msgid "startup %s - %s "
-msgstr ""
 
 msgid "stepsize"
 msgstr ""
@@ -18907,6 +19087,10 @@ msgid "use_hdmi_cacenter"
 msgstr ""
 
 msgid "user defined"
+msgstr "用戶定義"
+
+#, fuzzy
+msgid "userdefined"
 msgstr "用戶定義"
 
 msgid "using:"

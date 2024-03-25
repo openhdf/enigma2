@@ -13,6 +13,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from . import VideoEnhancement
 
+
 class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)

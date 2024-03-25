@@ -6,6 +6,7 @@ from Components.Sources.Source import Source
 
 StreamServiceList = []
 
+
 class StreamService(Source):
 	def __init__(self, navcore):
 		Source.__init__(self)

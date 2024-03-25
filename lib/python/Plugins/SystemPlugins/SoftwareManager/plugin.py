@@ -53,10 +53,9 @@ from Tools.NumericalTextInput import NumericalTextInput
 from .BackupRestore import (BackupScreen, BackupSelection, RestoreMenu,
                             RestoreScreen, getBackupFilename, getBackupPath,
                             getOldBackupPath)
-from .Flash_online import FlashOnline
+from Screens.FlashImage import SelectImage
 from .ImageBackup import ImageBackup
 from .ImageWizard import ImageWizard
-from .Multibootmgr import MultiBootWizard
 from .SoftwareTools import iSoftwareTools
 
 boxtype = getBoxType()
@@ -229,8 +228,6 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("backup-image", _("Image Full-Backup"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			if not boxtype.startswith('az') and not boxtype in ('dm500hd', 'dm500hdv2', 'dm520', 'dm800', 'dm800se', 'dm800sev2', 'dm820', 'dm7020hd', 'dm7020hdv2', 'dm7080', 'dm8000') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
 				self.list.append(("flash-online", _("Image Online-Flash"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
-			if BoxInfo.getItem("canMultiBoot"):
-				self.list.append(("multiboot-manager", _("Image Multiboot Manager"), _("\nMaintain your %s %s device.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("system-restore", _("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + "\n" + self.oktext, None))
 			self.list.append(("ipkg-install", _("Install local extension"), _("\nScan for local extensions and install them.") + "\n" + self.oktext, None))
@@ -400,14 +397,7 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
 				elif (currentEntry == "flash-online"):
-					if config.plugins.softwaremanager.autosaveSettingsfilesEntry.value:
-						self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
-						self.session.open(FlashOnline)
-					else:
-						#self.session.openWithCallback(self.doBackup, MessageBox, _("Do you want to backup your image and settings before?"), default = True)
-						self.session.open(FlashOnline)
-				elif (currentEntry == "multiboot-manager"):
-					self.session.open(MultiBootWizard)
+					self.session.open(SelectImage)
 				elif (currentEntry == "backup-image"):
 					if DFLASH == True:
 						self.session.open(dFlash)
@@ -553,8 +543,6 @@ class UpdatePluginMenu(Screen):
 	def doBackup(self, default=False):
 		if (default == True):
 			self.session.openWithCallback(self.doBackupSettings, MessageBox, _("Backup your settings now?"), default=True)
-		else:
-			self.session.open(FlashOnline)
 
 	def doBackupSettings(self, default=False):
 		if (default == True):
@@ -568,8 +556,6 @@ class UpdatePluginMenu(Screen):
 				self.session.open(dFlash)
 			else:
 				self.session.open(ImageBackup)
-		else:
-			self.session.open(FlashOnline)
 
 
 class SoftwareManagerSetup(Screen, ConfigListScreen):
@@ -1086,13 +1072,13 @@ class PluginManager(Screen, PackageInfoHandler):
 		removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 		installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
 		if state == 'installed':
-			return((name, details, description, packagename, state, installedpng, divpng, selected))
+			return ((name, details, description, packagename, state, installedpng, divpng, selected))
 		elif state == 'installable':
-			return((name, details, description, packagename, state, installablepng, divpng, selected))
+			return ((name, details, description, packagename, state, installablepng, divpng, selected))
 		elif state == 'remove':
-			return((name, details, description, packagename, state, removepng, divpng, selected))
+			return ((name, details, description, packagename, state, removepng, divpng, selected))
 		elif state == 'install':
-			return((name, details, description, packagename, state, installpng, divpng, selected))
+			return ((name, details, description, packagename, state, installpng, divpng, selected))
 
 	def buildPacketList(self, categorytag=None):
 		if categorytag is not None:
@@ -1162,31 +1148,31 @@ class PluginManager(Screen, PackageInfoHandler):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
 		if tag is not None:
 			if tag == 'System':
-				return((_("System"), _("View list of available system extensions"), tag, divpng))
+				return ((_("System"), _("View list of available system extensions"), tag, divpng))
 			elif tag == 'Skin':
-				return((_("Skins"), _("View list of available skins"), tag, divpng))
+				return ((_("Skins"), _("View list of available skins"), tag, divpng))
 			elif tag == 'Recording':
-				return((_("Recordings"), _("View list of available recording extensions"), tag, divpng))
+				return ((_("Recordings"), _("View list of available recording extensions"), tag, divpng))
 			elif tag == 'Network':
-				return((_("Network"), _("View list of available networking extensions"), tag, divpng))
+				return ((_("Network"), _("View list of available networking extensions"), tag, divpng))
 			elif tag == 'CI':
-				return((_("Common Interface"), _("View list of available CommonInterface extensions"), tag, divpng))
+				return ((_("Common Interface"), _("View list of available CommonInterface extensions"), tag, divpng))
 			elif tag == 'Default':
-				return((_("Default settings"), _("View list of available default settings"), tag, divpng))
+				return ((_("Default settings"), _("View list of available default settings"), tag, divpng))
 			elif tag == 'SAT':
-				return((_("Satellite equipment"), _("View list of available Satellite equipment extensions."), tag, divpng))
+				return ((_("Satellite equipment"), _("View list of available Satellite equipment extensions."), tag, divpng))
 			elif tag == 'Software':
-				return((_("Software"), _("View list of available software extensions"), tag, divpng))
+				return ((_("Software"), _("View list of available software extensions"), tag, divpng))
 			elif tag == 'Multimedia':
-				return((_("Multimedia"), _("View list of available multimedia extensions."), tag, divpng))
+				return ((_("Multimedia"), _("View list of available multimedia extensions."), tag, divpng))
 			elif tag == 'Display':
-				return((_("Display and user interface"), _("View list of available display and userinterface extensions."), tag, divpng))
+				return ((_("Display and user interface"), _("View list of available display and userinterface extensions."), tag, divpng))
 			elif tag == 'EPG':
-				return((_("Electronic Program Guide"), _("View list of available EPG extensions."), tag, divpng))
+				return ((_("Electronic Program Guide"), _("View list of available EPG extensions."), tag, divpng))
 			elif tag == 'Communication':
-				return((_("Communication"), _("View list of available communication extensions."), tag, divpng))
+				return ((_("Communication"), _("View list of available communication extensions."), tag, divpng))
 			else: # dynamically generate non existent tags
-				return((str(tag), _("View list of available ") + str(tag) + ' ' + _("extensions."), tag, divpng))
+				return ((str(tag), _("View list of available ") + str(tag) + ' ' + _("extensions."), tag, divpng))
 
 	def prepareInstall(self):
 		self.cmdList = []
@@ -1335,11 +1321,11 @@ class PluginManagerInfo(Screen):
 		installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
 		removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 		if action == 'install':
-			return((_('Installing'), info, installpng, divpng))
+			return ((_('Installing'), info, installpng, divpng))
 		elif action == 'remove':
-			return((_('Removing'), info, removepng, divpng))
+			return ((_('Removing'), info, removepng, divpng))
 		else:
-			return((_('Upgrading'), info, upgradepng, divpng))
+			return ((_('Upgrading'), info, upgradepng, divpng))
 
 	def exit(self):
 		self.close()
@@ -1419,13 +1405,13 @@ class PluginManagerHelp(Screen):
 		installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
 
 		if state == 'installed':
-			return((_('This plugin is installed.'), _('You can remove this plugin.'), installedpng, divpng))
+			return ((_('This plugin is installed.'), _('You can remove this plugin.'), installedpng, divpng))
 		elif state == 'installable':
-			return((_('This plugin is not installed.'), _('You can install this plugin.'), installablepng, divpng))
+			return ((_('This plugin is not installed.'), _('You can install this plugin.'), installablepng, divpng))
 		elif state == 'install':
-			return((_('This plugin will be installed.'), _('You can cancel the installation.'), installpng, divpng))
+			return ((_('This plugin will be installed.'), _('You can cancel the installation.'), installpng, divpng))
 		elif state == 'remove':
-			return((_('This plugin will be removed.'), _('You can cancel the removal.'), removepng, divpng))
+			return ((_('This plugin will be removed.'), _('You can cancel the removal.'), removepng, divpng))
 
 	def exit(self):
 		self.close()
@@ -2408,13 +2394,13 @@ class PacketManager(Screen, NumericalTextInput):
 			description = "No description available."
 		if state == 'installed':
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-			return((name, version, _(description), state, installedpng, divpng))
+			return ((name, version, _(description), state, installedpng, divpng))
 		elif state == 'upgradeable':
 			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
-			return((name, version, _(description), state, upgradeablepng, divpng))
+			return ((name, version, _(description), state, upgradeablepng, divpng))
 		else:
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-			return((name, version, _(description), state, installablepng, divpng))
+			return ((name, version, _(description), state, installablepng, divpng))
 
 	def buildPacketList(self):
 		self.list = []
@@ -2648,13 +2634,13 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 			description = "No description available."
 		if state == 'installed':
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-			return((name, version, _(description), state, installedpng, divpng))
+			return ((name, version, _(description), state, installedpng, divpng))
 		elif state == 'upgradeable':
 			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
-			return((name, version, _(description), state, upgradeablepng, divpng))
+			return ((name, version, _(description), state, upgradeablepng, divpng))
 		else:
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-			return((name, version, _(description), state, installablepng, divpng))
+			return ((name, version, _(description), state, installablepng, divpng))
 
 	def buildPacketList(self):
 		self.list = []

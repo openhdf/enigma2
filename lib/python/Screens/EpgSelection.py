@@ -470,7 +470,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['bouquetlist'].recalcEntrySize()
 			self['bouquetlist'].fillBouquetList(self.bouquets)
 			self['bouquetlist'].moveToService(self.StartBouquet)
-			self['bouquetlist'].setCurrentBouquet(self.StartBouquet	)
+			self['bouquetlist'].setCurrentBouquet(self.StartBouquet)
 			self.setTitle(self['bouquetlist'].getCurrentBouquet())
 			if self.type == EPG_TYPE_GRAPH:
 				self['list'].setShowServiceMode(config.epgselection.graph_servicetitle_mode.value)

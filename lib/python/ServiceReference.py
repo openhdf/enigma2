@@ -39,6 +39,7 @@ class ServiceReference(eServiceReference):
 		ref = self.ref
 		return ref.flags & eServiceReference.isGroup or (ref.type in (eServiceReference.idDVB, eServiceReference.idDVB + eServiceReference.idServiceIsScrambled, eServiceReference.idServiceHDMIIn, eServiceReference.idServiceMP3))
 
+
 def getStreamRelayRef(sref):
 	try:
 		if "http" in sref:
@@ -51,6 +52,7 @@ def getStreamRelayRef(sref):
 		pass
 	return sref, False
 
+
 def getPlayingref(ref):
 	playingref = None
 	if NavigationInstance.instance:
@@ -62,6 +64,7 @@ def getPlayingref(ref):
 	if not playingref:
 		playingref = eServiceReference()
 	return playingref
+
 
 def isPlayableForCur(ref):
 	info = eServiceCenter.getInstance().info(ref)
@@ -76,6 +79,7 @@ def resolveAlternate(ref):
 			nref = getBestPlayableServiceReference(ref,
 			 eServiceReference(), True)
 	return nref
+
 
 def makeServiceQueryStr(serviceTypes):
 	return ' || '.join(['(type == %d)' % x for x in serviceTypes])

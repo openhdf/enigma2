@@ -67,6 +67,8 @@ def InitConfig():
 		'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
 		'/etc/rc3.d/S99tuner.sh',
 		'/usr/bin/enigma2_pre_start.sh',
+		'/usr/lib/libssl.so.0.9.8',
+		'/usr/lib/libcrypto.so.0.9.8',
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
 		+ eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
@@ -402,10 +404,8 @@ class RestoreMenu(Screen):
 
 		cmds = [tarcmd, MANDATORY_RIGHTS, "/etc/init.d/autofs restart", "killall -9 enigma2"]
 		if ret == True:
-			cmds.insert(0, "rm -R /etc/enigma2")
-			self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
-		else:
-			self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
+			cmds.insert(0, "rm -Rf /etc/enigma2")
+		self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
 
 	def deleteFile(self):
 		if (self.exe == False) and (self.entry == True):
@@ -434,10 +434,13 @@ class RestoreScreen(Screen, ConfigListScreen):
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
-	def __init__(self, session, runRestore=False):
+	def __init__(self, session, runRestore=False, restorePath='', image_dir=''):
 		Screen.__init__(self, session)
 		self.setTitle(_("Restoring..."))
 		self.runRestore = runRestore
+		self.restorePath = restorePath + "/"
+		self.image_dir = image_dir + "/"
+		self.restoreOnBoot = True if self.restorePath == "/" else False
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
 		{
 			"ok": self.close,
@@ -455,28 +458,34 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.onShown.append(self.doRestore)
 
 	def doRestore(self):
-		tarcmd = "tar -C / -xzvf " + self.fullbackupfilename
+		tarcmd = "tar -C %s -xzvf %s" % (self.image_dir, self.fullbackupfilename)
 		for f in BLACKLISTED:
 				tarcmd = tarcmd + " --exclude " + f.strip("/")
-		restorecmdlist = ["rm -R /etc/enigma2", tarcmd, MANDATORY_RIGHTS]
-		if os_path.exists("/proc/stb/vmpeg/0/dst_width"):
-			restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
-		restorecmdlist.append("/etc/init.d/autofs restart")
-		print("[SOFTWARE MANAGER] Restore Settings !!!!")
+		restorecmdlist = ["rm -Rf %setc/enigma2" % self.image_dir, tarcmd, MANDATORY_RIGHTS.replace(' /', ' %s/' % self.image_dir)]
+
+		if self.restoreOnBoot:
+			if os_path.exists("/proc/stb/vmpeg/0/dst_width"):
+				restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
+			restorecmdlist.append("/etc/init.d/autofs restart")
 
 		self.session.open(Console, title=_("Restoring..."), cmdlist=restorecmdlist, finishedCallback=self.restoreFinishedCB)
 
 	def restoreFinishedCB(self, retval=None):
-		ShellCompatibleFunctions.restoreUserDB()
-		self.session.openWithCallback(self.checkPlugins, RestartNetwork)
+		ShellCompatibleFunctions.restoreUserDB(image_dir=self.image_dir)
+		if self.restoreOnBoot:
+			self.session.openWithCallback(self.checkPlugins, RestartNetwork)
+		else:
+			self.checkPlugins()
 
 	def checkPlugins(self):
-		self.createSkinRestoreFile()
-		if os_path.exists("/tmp/installed-list.txt"):
-			if os_path.exists("/media/hdd/images/config/noplugins") and config.misc.firstrun.value:
+		if not self.restoreOnBoot:
+			self.writeScript()
+
+		if os_path.exists("%stmp/installed-list.txt" % self.image_dir):
+			if os_path.exists("/media/hdd/images/config/noplugins") and (config.misc.firstrun.value or not self.restoreOnBoot):
 				self.userRestoreScript()
 			else:
-				self.session.openWithCallback(self.userRestoreScript, installedPlugins)
+				self.session.openWithCallback(self.userRestoreScript, installedPlugins, restoreOnBoot=self.restoreOnBoot, image_dir=self.image_dir)
 		else:
 			self.userRestoreScript()
 
@@ -493,10 +502,27 @@ class RestoreScreen(Screen, ConfigListScreen):
 				startSH = SH
 				break
 
-		if startSH:
-			self.session.openWithCallback(self.rebootSYS, Console, title=_("Running Myrestore script, Please wait ..."), cmdlist=[startSH], closeOnSuccess=True)
-		else:
-			self.rebootSYS()
+		if self.restoreOnBoot:
+			if startSH:
+				self.session.openWithCallback(self.rebootSYS, Console, title=_("Running Myrestore script, Please wait ..."), cmdlist=[startSH], closeOnSuccess=True)
+			else:
+				self.rebootSYS()
+		self.close()
+
+	def writeScript(self):
+		COMMAND = """
+#!/bin/bash
+CHROOT=%s
+for a in sys proc dev; do
+	mount -o bind /${a} ${CHROOT}/${a}
+done
+LIST="$@" chroot ${CHROOT} /bin/bash <<"EOT"
+${LIST}
+EOT
+umount ${CHROOT}/dev ${CHROOT}/proc ${CHROOT}/sys
+		""" % (self.image_dir)
+		with open("/tmp/chroot.sh", "w") as f:
+			f.write(COMMAND)
 
 	def createSkinRestoreFile(self):
 		try:
@@ -564,12 +590,15 @@ class installedPlugins(Screen):
 		<widget name="label" position="10,30" size="500,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
 		</screen>"""
 
-	def __init__(self, session):
+	def __init__(self, session, restoreOnBoot=True, image_dir=""):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Install Plugins"))
 		self["label"] = Label(_("Please wait while we check your installed plugins..."))
 		self["summary_description"] = StaticText(_("Please wait while we check your installed plugins..."))
 		self.type = self.UPDATE
+		self.restoreOnBoot = restoreOnBoot
+		self.image_dir = image_dir
+		self.chroot = "bash /tmp/chroot.sh " if not self.restoreOnBoot else ""
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
 		self.container.dataAvail.append(self.dataAvail)
@@ -579,11 +608,11 @@ class installedPlugins(Screen):
 
 	def doUpdate(self):
 		print("[SOFTWARE MANAGER] update package list")
-		self.container.execute("opkg update")
+		self.container.execute("%sopkg update" % self.chroot)
 
 	def doList(self):
 		print("[SOFTWARE MANAGER] read installed package list")
-		self.container.execute("opkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base'")
+		self.container.execute("%sopkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base'" % self.chroot)
 
 	def dataAvail(self, strData):
 		strData = ensure_str(strData)
@@ -606,13 +635,14 @@ class installedPlugins(Screen):
 			self.readPluginList()
 
 	def readPluginList(self):
-		installedpkgs = ShellCompatibleFunctions.listpkg(type="installed")
+		installedpkgs = ShellCompatibleFunctions.listpkg(type="installed", image_dir=self.image_dir)
 		self.PluginList = []
-		with open('/tmp/installed-list.txt') as f:
-			for line in f:
-				if line.strip() not in installedpkgs:
-					self.PluginList.append(line.strip())
-		f.close()
+		if os_path.exists('/tmp/installed-list.txt'):
+			with open('/tmp/installed-list.txt') as f:
+				for line in f:
+					if line.strip() not in installedpkgs:
+						self.PluginList.append(line.strip())
+			f.close()
 		self.createMenuList()
 
 	def createMenuList(self):
@@ -623,14 +653,14 @@ class installedPlugins(Screen):
 		if len(self.Menulist) == 0:
 			self.close()
 		else:
-			if os_path.exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
+			if os_path.exists("/media/hdd/images/config/plugins") and (config.misc.firstrun.value or not self.restoreOnBoot):
 				self.startInstall(True)
 			else:
 				self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
 
 	def startInstall(self, ret=None):
 		if ret:
-			self.session.openWithCallback(self.restoreCB, RestorePlugins, self.Menulist)
+			self.session.openWithCallback(self.restoreCB, RestorePlugins, self.Menulist, self.restoreOnBoot)
 		else:
 			self.close()
 
@@ -640,11 +670,13 @@ class installedPlugins(Screen):
 
 class RestorePlugins(Screen):
 
-	def __init__(self, session, menulist):
+	def __init__(self, session, menulist, restoreOnBoot=True):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Restore Plugins"))
 		self.index = 0
 		self.list = menulist
+		self.restoreOnBoot = restoreOnBoot
+		self.chroot = "bash /tmp/chroot.sh " if not self.restoreOnBoot else ""
 		for r in menulist:
 			print("[SOFTWARE MANAGER] Plugin to restore: %s" % r[0])
 		self.container = eConsoleAppContainer()
@@ -669,7 +701,7 @@ class RestorePlugins(Screen):
 	def setWindowTitle(self):
 		self.selectionChanged()
 		self.setTitle(_("Restore Plugins"))
-		if os_path.exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
+		if os_path.exists("/media/hdd/images/config/plugins") and (config.misc.firstrun.value or not self.restoreOnBoot):
 			self.green()
 
 	def exit(self):
@@ -696,25 +728,26 @@ class RestorePlugins(Screen):
 
 		# Install previously installed feeds first, they might be required for the other packages to install ...
 		if len(self.pluginlistfirst) > 0:
-			self.session.open(Console, title=_("Installing feeds from feed ..."), cmdlist=['opkg install ' + ' '.join(self.pluginlistfirst) + ' ; opkg update'], finishedCallback=self.installLocalIPKFeeds, closeOnSuccess=True)
+			self.session.open(Console, title=_("Installing feeds from feed ..."), cmdlist=['%sopkg install ' % self.chroot + ' '.join(self.pluginlistfirst) + ' ; opkg update'], finishedCallback=self.installLocalIPKFeeds, closeOnSuccess=True)
+
 		else:
 			self.installLocalIPKFeeds()
 
 	def installLocalIPKFeeds(self):
 		if len(self.myipklistfirst) > 0:
-			self.session.open(Console, title=_("Installing feeds from IPK ..."), cmdlist=['opkg install ' + ' '.join(self.myipklistfirst) + ' ; opkg update'], finishedCallback=self.installLocalIPK, closeOnSuccess=True)
+			self.session.open(Console, title=_("Installing feeds from IPK ..."), cmdlist=['%sopkg install ' % self.chroot + ' '.join(self.myipklistfirst) + ' ; opkg update'], finishedCallback=self.installLocalIPK, closeOnSuccess=True)
 		else:
 			self.installPlugins()
 
 	def installLocalIPK(self):
 		if len(self.myipklist) > 0:
-			self.session.open(Console, title=_("Installing plugins from IPK ..."), cmdlist=['opkg install ' + ' '.join(self.myipklist)], finishedCallback=self.installPlugins, closeOnSuccess=True)
+				self.session.open(Console, title=_("Installing plugins from IPK ..."), cmdlist=['%sopkg install ' % self.chroot + ' '.join(self.myipklist)], finishedCallback=self.installPlugins, closeOnSuccess=True)
 		else:
 			self.installPlugins()
 
 	def installPlugins(self):
 		if len(self.pluginlist) > 0:
-			self.session.open(Console, title=_("Installing plugins from feed ..."), cmdlist=['opkg install ' + ' '.join(self.pluginlist)], finishedCallback=self.exit, closeOnSuccess=True)
+				self.session.open(Console, title=_("Installing plugins from feed ..."), cmdlist=['%sopkg install ' % self.chroot + ' '.join(self.pluginlist)], finishedCallback=self.exit, closeOnSuccess=True)
 
 	def ok(self):
 		index = self["menu"].getIndex()

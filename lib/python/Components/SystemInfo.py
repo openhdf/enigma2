@@ -17,7 +17,6 @@ from types import MappingProxyType
 from ast import literal_eval
 
 
-
 class immutableDict(dict):
 	def __init__(self, *args, **kws):
 		self.immutablelist = []
@@ -120,6 +119,7 @@ with open("/proc/cmdline", "r") as fd:
     cmdline = fd.read()
 cmdline = {k: v.strip('"') for k, v in re.findall(r'(\S+)=(".*?"|\S+)', cmdline)}
 
+
 def getNumVideoDecoders():
 	idx = 0
 	while fileExists("/dev/dvb/adapter0/video%d" % idx, 'f'):
@@ -146,14 +146,15 @@ def countFrontpanelLEDs():
 
 
 SystemInfo = BoxInfo.boxInfo
-from Tools.Multiboot import (  # This import needs to be here to avoid a SystemInfo load loop!
-    getMBbootdevice, getMultibootslots)
+from Tools.Multiboot import getMultibootStartupDevice, getMultibootslots  # This import needs to be here to avoid a SystemInfo load loop!
+
 
 def setBoxInfoItems():
 	model = getBoxType()
 	#BoxInfo.setItem("canMode12", "_4.boxmode" % model in cmdline and cmdline["_4.boxmode" % model] in ("1", "12") and "192M")
 	#BoxInfo.setItem("canMode12", fileHas("/proc/cmdline", "_4.boxmode=1 ") and '192M' or fileHas("/proc/cmdline", "_4.boxmode=12") and '192M')
 	BoxInfo.setItem("canMode12", getMachineBuild() in ("hd51", "vs1500", "h7") and ("brcm_cma=440M@328M brcm_cma=192M@768M", "brcm_cma=520M@248M brcm_cma=200M@768M"))
+	BoxInfo.setItem("canFlashWithOfgwrite", not (model.startswith("dm")))
 	BoxInfo.setItem("12V_Output", Misc_Options.getInstance().detected_12V_output())
 	BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))
 	BoxInfo.setItem("NumFrontpanelLEDs", countFrontpanelLEDs())
@@ -236,9 +237,12 @@ def setBoxInfoItems():
 	BoxInfo.setItem("HaveMultiBootOS", fileCheck("/boot/STARTUP") and getMachineBuild() in ('osmio4k', 'osmio4kplus', 'osmini4k'))
 	BoxInfo.setItem("HaveMultiBootDS", fileCheck("/boot/STARTUP") and getMachineBuild() in ('cc1', 'sf8008', 'sf8008s', 'sf8008t', 'ustym4kpro', 'viper4k') and fileCheck("/dev/sda"))
 	BoxInfo.setItem("HasMMC", fileHas("/proc/cmdline", "root=/dev/mmcblk") or "mmcblk" in getMachineMtdRoot())
+	BoxInfo.setItem("canDualBoot", fileExists("/dev/block/by-name/flag"))
 	BoxInfo.setItem("CanProc", BoxInfo.getItem("HasMMC") and getBrandOEM() != "vuplus")
 	BoxInfo.setItem("HasHiSi", pathExists("/proc/hisi"))
-	BoxInfo.setItem("MBbootdevice", getMBbootdevice())
+	BoxInfo.setItem("hasKexec", fileHas("/proc/cmdline", "kexec=1"))
+	BoxInfo.setItem("canKexec", not BoxInfo.getItem("hasKexec") and fileExists("/usr/bin/kernel_auto.bin") and fileExists("/usr/bin/STARTUP.cpio.gz") and (model in ("vuduo4k", "vuduo4kse") and ["mmcblk0p9", "mmcblk0p6"] or model in ("vusolo4k", "vuultimo4k", "vuuno4k", "vuuno4kse") and ["mmcblk0p4", "mmcblk0p1"] or model == "vuzero4k" and ["mmcblk0p7", "mmcblk0p4"]))
+	BoxInfo.setItem("MultibootStartupDevice", getMultibootStartupDevice())
 	BoxInfo.setItem("canMultiBoot", getMultibootslots())
 	BoxInfo.setItem("HAScmdline", fileCheck("/boot/cmdline.txt"))
 	BoxInfo.setItem("HasMMC", fileHas("/proc/cmdline", "root=/dev/mmcblk") or BoxInfo.getItem("canMultiBoot") and fileHas("/proc/cmdline", "root=/dev/sda"))

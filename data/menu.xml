@@ -184,6 +184,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<menu weight="25" level="0" text="Software" entryID="software_menu">
 				<id val="software_menu" />
 				<item level="1" entryID="onlineupdate_setup"><setup id="softwareupdate"/></item>
+				<item weight="55" level="0" text="Flash image" entryID="flash_image" requires="canFlashWithOfgwrite" ><screen module="FlashImage" screen="SelectImage"/></item>
 			</menu>
 
 			<!-- Menu / Setup / System-->
@@ -287,15 +288,15 @@ else:
 	self.session.open(TryQuitMainloop, 45)
 </code>
 			</item>
-			<item text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
-			<item text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
-			<item text="SleepTimer" entryID="sleep" level="0" requires="DeepstandbySupport" ><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
-			<item text="Multiboot Image Selector" level="0" requires="canMultiBoot" entryID="restart"><screen module="MultiBootSelector" screen="MultiBootSelector" /></item>
+			<item weight="1" text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
+			<item weight="20" text="Deep standby" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+			<item weight="30" text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
+			<item weight="40" text="SleepTimer" entryID="sleep" level="0" requires="DeepstandbySupport" ><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
+			<item weight="50" text="PowerTimer" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
+			<item weight="60" text="MultiBoot Selection" entryID="multiboot" requires="canMultiBoot"><screen module="FlashImage" screen="MultibootSelection">1</screen></item>
 			<!--item text="QuickBoot Image Selector" level="0" requires="canMultiBoot" entryID="restart"><screen module="MultiBootSelector" screen="QuickBootSelector" /></item -->
-			<item text="Recovery Mode" requires="RecoveryMode" entryID="maintenance_mode"><screen module="Standby" screen="TryQuitMainloop">16</screen></item>
-			<item text="PowerTimer" entryID="powertimer_edit"><screen module="PowerTimerEdit" screen="PowerTimerEditList" /></item>
-			<item text="Restart enigma" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
-			<item text="Deep standby" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+			<item weight="70" text="Recovery Mode" requires="RecoveryMode" entryID="maintenance_mode"><screen module="Standby" screen="TryQuitMainloop">16</screen></item>
+			<item weight="80" text="Restart enigma" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
 		</menu>
 </menu>
 

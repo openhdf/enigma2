@@ -50,6 +50,7 @@ InfoBar = False
 service_types_tv = service_types_tv_ref.toString()
 service_types_radio = service_types_radio_ref.toString()
 
+
 def powermessagetimeout(self):
 	messagetimeout = config.usage.window_timeout.value
 

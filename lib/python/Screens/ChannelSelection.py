@@ -64,7 +64,8 @@ from RecordTimer import TIMERTYPE
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
-import Tools.Notifications, subprocess
+import Tools.Notifications
+import subprocess
 from Tools.BoundFunction import boundFunction
 from Tools.ServiceReference import (service_types_radio_ref,
                                     service_types_tv_ref, serviceRefAppendPath)
@@ -2178,6 +2179,7 @@ config.servicelist.startupmode = ConfigText(default='tv')
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, SelectionEventInfo):
 	instance = None
 	ALLOW_SUSPEND = True
+
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self, session)
 		if config.usage.servicelist_mode.value == 'simple':

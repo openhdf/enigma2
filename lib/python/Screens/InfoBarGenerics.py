@@ -192,6 +192,7 @@ def updateresumePointCache():
 
 subservice_groupslist = None
 
+
 class InfoBarStreamRelay:
 
 	FILENAME = "/etc/enigma2/whitelist_streamrelay"
@@ -1139,7 +1140,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			else:
 				self.eventView = self.session.openWithCallback(self.closed, EventViewSimple, epglist[0], ServiceReference(ref))
 				self.dlg_stack = None
-
 
 	def getNowNext(self):
 		epglist = []

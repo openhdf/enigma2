@@ -1,35 +1,35 @@
-#
-# Generic Screen to select a path/filename combination
-#
-
-# GUI (Screens)
-
 from os import path as os_path
-from os import statvfs
+from os import lstat, statvfs
+from os.path import exists, isdir, join, splitext
 
-# Timer
 from enigma import eTimer
 
-# GUI (Components)
 from Components.ActionMap import HelpableActionMap, NumberActionMap
 from Components.Button import Button
 from Components.config import config
 from Components.FileList import FileList
 from Components.Label import Label
 from Components.MenuList import MenuList
+from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Screens.ChoiceBox import ChoiceBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-# Generic
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import createDir, pathExists, removeDir
-# Quickselect
 from Tools.NumericalTextInput import NumericalTextInput
 
-defaultInhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
+DEFAULT_INHIBIT_DIRECTORIES = ("/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/picon", "/piconlcd", "/proc", "/run", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var")
+defaultInhibitDirs = list(DEFAULT_INHIBIT_DIRECTORIES)
+DEFAULT_INHIBIT_DEVICES = []
+for dir in DEFAULT_INHIBIT_DIRECTORIES + ("/", "/media"):
+	if isdir(dir):
+		device = lstat(dir).st_dev
+		if device not in DEFAULT_INHIBIT_DEVICES:
+			DEFAULT_INHIBIT_DEVICES.append(device)
+DEFAULT_INHIBIT_DEVICES = tuple(DEFAULT_INHIBIT_DEVICES)
 
 
 class LocationBox(Screen, NumericalTextInput, HelpableScreen):
@@ -515,7 +515,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 
 def MovieLocationBox(session, text, dir, minFree=None):
-	return LocationBox(session, text=text, currDir=dir, bookmarks=config.movielist.videodirs, autoAdd=True, editDir=True, inhibitDirs=defaultInhibitDirs, minFree=minFree)
+	return LocationBox(session, text=text, currDir=dir, bookmarks=config.movielist.videodirs, autoAdd=True, editDir=True, inhibitDirs=DEFAULT_INHIBIT_DIRECTORIES, minFree=minFree)
 
 
 class TimeshiftLocationBox(LocationBox):
@@ -528,7 +528,7 @@ class TimeshiftLocationBox(LocationBox):
 				bookmarks=config.usage.allowed_timeshift_paths,
 				autoAdd=True,
 				editDir=True,
-				inhibitDirs=defaultInhibitDirs,
+				inhibitDirs=DEFAULT_INHIBIT_DIRECTORIES,
 				minFree=1024 # the same requirement is hardcoded in servicedvb.cpp
 		)
 		self.skinName = "LocationBox"
@@ -554,7 +554,7 @@ class AutorecordLocationBox(LocationBox):
 				bookmarks=config.usage.allowed_autorecord_paths,
 				autoAdd=True,
 				editDir=True,
-				inhibitDirs=defaultInhibitDirs,
+				inhibitDirs=DEFAULT_INHIBIT_DIRECTORIES,
 				minFree=1024 # the same requirement is hardcoded in servicedvb.cpp
 		)
 		self.skinName = "LocationBox"

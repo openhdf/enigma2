@@ -8,6 +8,7 @@ from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from six import ensure_str
 
+
 class Console(Screen):
 	def __init__(self, session, title="Console", cmdlist=None, finishedCallback=None, closeOnSuccess=False):
 		Screen.__init__(self, session)
