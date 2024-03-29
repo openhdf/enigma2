@@ -582,7 +582,7 @@ class PluginDownloadBrowser(Screen):
 		else:
 			if len(self.pluginlist) > 0:
 				self.updateList()
-				self["text"].setText(_("Please make a selection"))
+				self["text"].setText(_("Use green/red buttons to toggle between download and remove."))
 				self["list"].instance.show()
 			else:
 				if self.type == self.DOWNLOAD:

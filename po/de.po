@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 13:42+0100\n"
-"PO-Revision-Date: 2024-03-24 13:44+0100\n"
+"PO-Revision-Date: 2024-03-29 12:58+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -9428,6 +9428,9 @@ msgstr "Bitte folge den Angaben auf dem Fernseher"
 
 msgid "Please make a selection"
 msgstr "Bitte Auswahl treffen"
+
+msgid "Use green/red buttons to toggle between download and remove."
+msgstr "Taste Rot/Grün wechselt zwischen Download und Entfernen."
 
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Auf das zuletzt ausgewählte Medium konnte nicht zugegriffen werden, daher wird stattdessen das Standardverzeichnis benutzt."
