@@ -237,8 +237,8 @@ class InfoBarStreamRelay:
 			playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
 			print(f"[{self.__class__.__name__}] Play service {playref.toCompareString()} via streamrelay")
 			playref.setAlternativeUrl(playrefstring)
-			return playref, True
-		return playref, False
+			return playref
+		return playref
 
 	def checkService(self, service):
 		return service and service.toCompareString() in self.__srefs
