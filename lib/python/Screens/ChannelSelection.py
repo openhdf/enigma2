@@ -4,6 +4,7 @@ from __future__ import absolute_import
 from boxbranding import getMachineBrand, getMachineBuild, getMachineName
 
 import Screens.InfoBar
+import Components.ParentalControl
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Button import Button
 from Components.Console import Console
@@ -2394,30 +2395,19 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if hasattr(self.session, 'pip'):
 			self.session.pip.inactive()
 
-	#called from infoBar and channelSelected
 	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None):
 		self.curRoot = self.startRoot
 		nref = ref or self.getCurrentSelection()
-		wrappererror = None
-		for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_ZAP):
-			(newurl, errormsg) = p(session=self.session, service=nref)
-			if errormsg:
-				wrappererror = _("Error getting link via %s\n%s") % (p.name, errormsg)
-				break
-			elif newurl:
-				nref.setAlternativeUrl(newurl)
-				break
-		if wrappererror:
-			Tools.Notifications.AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
 			if ref is None or ref != nref:
-				nref = self.session.pip.resolveAlternatePipService(nref)
-				if nref and (not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
-					self.session.pip.playService(nref)
-					self.__evServiceStart()
-					self.showPipzapMessage()
+				if nref:
+					if not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False)):
+						self.session.pip.playService(nref)
+						self.__evServiceStart()
+						self.showPipzapMessage()
+						self.setCurrentSelection(nref)
 				else:
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)
