@@ -1575,7 +1575,7 @@ class InfoBarChannelSelection:
 
 	def switchChannelUp(self):
 		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
-			self.keyHide(False)
+			#self.keyHide(False)
 			if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 				if not config.usage.show_bouquetalways.value:
 					if "keep" not in config.usage.servicelist_cursor_behavior.value:
@@ -1595,7 +1595,7 @@ class InfoBarChannelSelection:
 
 	def switchChannelDown(self):
 		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
-			self.keyHide(False)
+			#self.keyHide(False)
 			if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 				if not config.usage.show_bouquetalways.value:
 					if "keep" not in config.usage.servicelist_cursor_behavior.value:
