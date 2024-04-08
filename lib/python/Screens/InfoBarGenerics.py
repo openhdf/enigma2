@@ -229,7 +229,7 @@ class InfoBarStreamRelay:
 	def streamrelayChecker(self, playref):
 		playrefstring = playref.toCompareString()
 		if '%3a//' not in playrefstring and playrefstring in self.__srefs:
-			url = "http://%s:%s/" % (config.misc.softcam_streamrelay_url.getHTML(), config.misc.softcam_streamrelay_port.value)
+			url = f'http://{".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)}:{config.misc.softcam_streamrelay_port.value}/'
 			if "127.0.0.1" in url:
 				playrefmod = ":".join([("%x" % (int(x[1], 16) + 1)).upper() if x[0] == 6 else x[1] for x in enumerate(playrefstring.split(':'))])
 			else:
@@ -237,6 +237,7 @@ class InfoBarStreamRelay:
 			playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
 			print(f"[{self.__class__.__name__}] Play service {playref.toCompareString()} via streamrelay")
 			playref.setAlternativeUrl(playrefstring)
+			return playref
 		return playref
 
 	def checkService(self, service):
@@ -1574,7 +1575,7 @@ class InfoBarChannelSelection:
 
 	def switchChannelUp(self):
 		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
-			self.keyHide(False)
+			#self.keyHide(False)
 			if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 				if not config.usage.show_bouquetalways.value:
 					if "keep" not in config.usage.servicelist_cursor_behavior.value:
@@ -1594,7 +1595,7 @@ class InfoBarChannelSelection:
 
 	def switchChannelDown(self):
 		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
-			self.keyHide(False)
+			#self.keyHide(False)
 			if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
 				if not config.usage.show_bouquetalways.value:
 					if "keep" not in config.usage.servicelist_cursor_behavior.value:

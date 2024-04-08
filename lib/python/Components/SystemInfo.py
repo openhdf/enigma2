@@ -112,6 +112,11 @@ class BoxInformation:
 
 BoxInfo = BoxInformation()
 
+DISPLAYMODEL = BoxInfo.getItem("displaymodel")
+DISPLAYBRAND = BoxInfo.getItem("displaybrand")
+
+def getBoxDisplayName():  # This function returns a tuple like ("BRANDNAME", "BOXNAME")
+	return (DISPLAYBRAND, DISPLAYMODEL)
 
 # Parse the boot commandline.
 #
