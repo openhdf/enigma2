@@ -199,7 +199,7 @@ def GetImagelist():
 							word = "build="
 							if row.find(word) != -1:
 								buildnumber = row.split('=')[1]
-				imagelist[slot] = {'imagename': "%s \t Build #%s \t(%s)" % (open(os.path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], buildnumber.strip(), date)}
+				imagelist[slot] = {'imagename': "%s - Build #%s (%s)" % (open(os.path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], buildnumber.strip(), date)}
 				if os.path.exists(os.path.join(imagedir, "etc/image-version")):
 					with open(os.path.join(imagedir, "etc/image-version"), 'r') as fp:
 						lines = fp.readlines()
@@ -207,7 +207,7 @@ def GetImagelist():
 							word = 'imagetype'
 							if row.find(word) != -1:
 								imagetype = row.split('=')[1]
-								imagelist[slot] = {'imagename': "%s \t %s \t(%s)" % (open(os.path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], imagetype.strip(), date)}
+								imagelist[slot] = {'imagename': "%s - %s (%s)" % (open(os.path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], imagetype.strip(), date)}
 								break
 			elif os.path.isfile(os.path.join(imagedir, 'usr/bin/enigma2.bak')):
 				imagelist[slot] = {'imagename': _("Deleted image")}
