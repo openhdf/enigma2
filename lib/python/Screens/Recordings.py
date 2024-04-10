@@ -54,7 +54,7 @@ class RecordingSettings(Screen, ConfigListScreen):
 		self["config"].setList(list)
 
 	def refill(self, list):
-		xmldata = setupdom().getroot()
+		xmldata = setupdom()
 		for x in xmldata.findall("setup"):
 			if x.get("key") != self.setup:
 				continue
