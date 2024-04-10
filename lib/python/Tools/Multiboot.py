@@ -182,6 +182,7 @@ def GetImagelist():
 			else:
 				Console().ePopen('mount %s %s' % (BoxInfo.getItem("canMultiBoot")[slot]['device'], tmp.dir))
 			imagedir = os.sep.join(filter(None, [tmp.dir, BoxInfo.getItem("canMultiBoot")[slot].get('rootsubdir', '')]))
+			buildnumber = " "
 			if os.path.isfile(os.path.join(imagedir, 'usr/bin/enigma2')):
 				try:
 					from datetime import datetime
@@ -191,7 +192,14 @@ def GetImagelist():
 					date = max(date, datetime.fromtimestamp(os.stat(os.path.join(imagedir, "usr/bin/enigma2")).st_mtime).strftime('%Y-%m-%d'))
 				except:
 					date = _("Unknown")
-				imagelist[slot] = {'imagename': "%s (%s)" % (open(os.path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], date)}
+				if os.path.exists(os.path.join(imagedir, "etc/image-version")):
+					with open(os.path.join(imagedir, "etc/image-version"), 'r') as fp:
+						lines = fp.readlines()
+						for row in lines:
+							word = "build="
+							if row.find(word) != -1:
+								buildnumber = row.split('=')[1]
+				imagelist[slot] = {'imagename': "%s - Build #%s (%s)" % (open(os.path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], buildnumber.strip(), date)}
 				if os.path.exists(os.path.join(imagedir, "etc/image-version")):
 					with open(os.path.join(imagedir, "etc/image-version"), 'r') as fp:
 						lines = fp.readlines()
