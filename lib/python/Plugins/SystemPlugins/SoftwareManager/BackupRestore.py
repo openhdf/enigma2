@@ -472,6 +472,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def restoreFinishedCB(self, retval=None):
 		ShellCompatibleFunctions.restoreUserDB(image_dir=self.image_dir)
+		self.createSkinRestoreFile()
 		if self.restoreOnBoot:
 			self.session.openWithCallback(self.checkPlugins, RestartNetwork)
 		else:
