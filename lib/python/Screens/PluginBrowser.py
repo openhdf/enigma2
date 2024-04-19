@@ -225,14 +225,9 @@ class PluginBrowser(Screen, ProtectedScreen):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
 		self.firsttime = False
 
-	def PluginDownloadBrowserClosed(self, returnValue):
-		if returnValue == None:
-			self.updateList()
-			self.checkWarnings()
-		elif returnValue == 0:
-			self.download()
-		else:
-			self.delete()
+	def PluginDownloadBrowserClosed(self):
+		self.updateList()
+		self.checkWarnings()
 
 	def openExtensionmanager(self):
 		if isPluginInstalled("SoftwareManager"):
@@ -281,15 +276,13 @@ class PluginDownloadBrowser(Screen):
 		self.remove_settings_name = ''
 		self.onChangedEntry = []
 		self["list"].onSelectionChanged.append(self.selectionChanged)
-		self["text"] = Label(_("Downloading plugin information. Please wait...") if self.type == self.DOWNLOAD else _("Getting plugin information. Please wait..."))
-		self["key_red" if self.type == self.DOWNLOAD else "key_green"] = Label(_("Remove plugins") if self.type == self.DOWNLOAD else _("Download plugins"))
 
-#		if self.type == self.DOWNLOAD:
-#			self["text"] = Label(_("Downloading plugin information. Please wait..."))
-#		if self.type == self.REMOVE:
-#			self["text"] = Label(_("Getting plugin information. Please wait..."))
-#		elif self.type == self.TOOGLE:
-#			self["key_red" if self.type == self.DOWNLOAD else "key_green"] = Label(_("Remove plugins") if self.type == self.DOWNLOAD else _("Download plugins"))
+		if self.type == self.DOWNLOAD:
+			self["text"] = Label(_("Downloading plugin information. Please wait..."))
+		if self.type == self.REMOVE:
+			self["text"] = Label(_("Getting plugin information. Please wait..."))
+		elif self.type == self.TOOGLE:
+			self["text"] = Label(_("Getting plugin information. Please wait..."))
 
 		self.run = 0
 		self.remainingdata = ""
@@ -298,7 +291,6 @@ class PluginDownloadBrowser(Screen):
 			"ok": self.go,
 			"back": self.requestClose,
 		})
-		self["PluginDownloadActions"] = ActionMap(["ColorActions"],	{"red": self.delete} if self.type == self.DOWNLOAD else {"green": self.download})
 		if os_path.isfile('/usr/bin/opkg'):
 			self.ipkg = '/usr/bin/opkg'
 			self.ipkg_install = self.ipkg + ' install --force-overwrite'
@@ -393,13 +385,7 @@ class PluginDownloadBrowser(Screen):
 					mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to hold the plugin \"%s\"?") % sel.name, default=False)
 				mbox.setTitle(_("Hold plugins"))
 
-	def delete(self):
-		self.requestClose(1)
-
-	def download(self):
-		self.requestClose(0)
-
-	def requestClose(self, returnValue=None):
+	def requestClose(self):
 		if self.plugins_changed:
 			plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 		if self.reload_settings:
@@ -409,7 +395,7 @@ class PluginDownloadBrowser(Screen):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 		self.container.appClosed.remove(self.runFinished)
 		self.container.dataAvail.remove(self.dataAvail)
-		self.close(returnValue)
+		self.close()
 
 	def resetPostInstall(self):
 		try:
@@ -582,7 +568,7 @@ class PluginDownloadBrowser(Screen):
 		else:
 			if len(self.pluginlist) > 0:
 				self.updateList()
-				self["text"].setText(_("Use green/red buttons to toggle between download and remove."))
+				self["text"].setText(_("Please make a selection"))
 				self["list"].instance.show()
 			else:
 				if self.type == self.DOWNLOAD:
