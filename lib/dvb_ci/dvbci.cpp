@@ -1560,6 +1560,13 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 	slotid = nr;
 	m_context = context;
 	state = stateDisabled;
+	application_manager = 0;
+	mmi_session = 0;
+	ca_manager = 0;
+	use_count = 0;
+	linked_next = 0;
+	user_mapped = false;
+	plugged = true;
 	snprintf(configStr, 255, "config.ci.%d.enabled", slotid);
 	bool enabled = eSimpleConfig::getBool(configStr, true);
 	if (enabled)
@@ -1572,12 +1579,6 @@ void eDVBCISlot::openDevice()
 {
 	char filename[128];
 
-	application_manager = 0;
-	mmi_session = 0;
-	ca_manager = 0;
-	use_count = 0;
-	linked_next = 0;
-	user_mapped = false;
 	plugged = true;
 
 #ifdef __sh__
