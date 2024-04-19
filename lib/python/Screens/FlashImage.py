@@ -381,7 +381,8 @@ class FlashImage(Screen):
 					if not os.path.isdir(destination):
 						os.mkdir(destination)
 					if not self.onlyDownload:
-						self.flashPostAction()
+						#self.flashPostAction()
+						self.flashPostActionFirst()
 					else:
 						self.session.openWithCallback(self.startDownload, MessageBox, _("Starting download of image file?\nPress OK to start or Exit to abort."), type=MessageBox.TYPE_INFO, timeout=0)
 				except:
@@ -517,6 +518,13 @@ class FlashImage(Screen):
 		Console().ePopen('umount %s' % self.tmp_dir)
 		Console().ePopen('rm /tmp/chroot.sh /tmp/groups.txt /tmp/groups.txt /tmp/installed-list.txt self.tmp_dir')
 
+	def flashPostActionFirst(self):
+		backupfilename = "%s/%s" % (getBackupPath(), getBackupFilename())
+		if fileExists(backupfilename):
+			self.flashPostAction()
+		else:
+			self.flashPostAction2()
+
 	def flashPostAction(self, retVal=True):
 		if retVal:
 			self.recordCheck = False
@@ -529,6 +537,38 @@ class FlashImage(Screen):
 					(_("Nothing"), "wizard"),
 					(_("Settings without plugins"), "restoresettingsnoplugin"),
 					(_("Settings and selected plugins"), "restoresettings"),
+					(_("Do not flash image"), "abort")
+				]
+				default = self.selectPrevPostFlashAction()
+				if "backup" in self.imagename:
+					text = _("Flash Backupimage")
+					text = "%s\n%s?" % (text, self.imagename)
+					choices = [
+						(_("Yes"), "nothing"),
+						(_("Do not flash image"), "abort")
+					]
+					default = 0
+			else:
+				text = _("Flash Image")
+				text = "%s\n%s?" % (text, self.imagename)
+				choices = [
+					(_("Yes"), "wizard"),
+					(_("Do not flash image"), "abort")
+				]
+				default = 0
+			self.session.openWithCallback(self.postFlashActionCallback, MessageBox, text, list=choices, default=default, simple=True)
+		else:
+			self.abort()
+
+	def flashPostAction2(self, retVal=True):
+		if retVal:
+			self.recordCheck = False
+			text = _("What should be restored?\nNo saved settings found!")
+			if getImageDistro() in self.imagename:
+				if os.path.exists("/media/hdd/images/config/myrestore.sh"):
+					text = "%s\n%s" % (text, _("(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"))
+				choices = [
+					(_("Nothing"), "wizard"),
 					(_("Do not flash image"), "abort")
 				]
 				default = self.selectPrevPostFlashAction()
