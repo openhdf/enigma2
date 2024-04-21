@@ -47,10 +47,10 @@ def getStreamRelayRef(sref):
 			icamip = ".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)
 			icam = f"http%3a//{icamip}%3a{icamport}/"
 			if icam in sref:
-				return sref.split(icam)[1].split(":")[0].replace("%3a", ":"), True
+				return sref.split(icam)[1].split(":")[0].replace("%3a", ":")
 	except Exception:
 		pass
-	return sref, False
+	return sref
 
 
 def getPlayingref(ref):
@@ -76,8 +76,7 @@ def resolveAlternate(ref):
 	if ref.flags & eServiceReference.isGroup:
 		nref = getBestPlayableServiceReference(ref, getPlayingref(ref))
 		if not nref:
-			nref = getBestPlayableServiceReference(ref,
-			 eServiceReference(), True)
+			nref = getBestPlayableServiceReference(ref, eServiceReference(), True)
 	return nref
 
 
