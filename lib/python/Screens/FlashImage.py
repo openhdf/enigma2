@@ -717,13 +717,19 @@ class MultibootSelection(SelectImage):
 		self.blue = False
 		self.currentimageslot = GetCurrentImage()
 		self.tmp_dir = tempfile.mkdtemp(prefix="MultibootSelection")
-		Console().ePopen('mount %s %s' % (BoxInfo.getItem("MultibootStartupDevice"), self.tmp_dir))
+		try:
+			Console().ePopen('mount %s %s' % (BoxInfo.getItem("MultibootStartupDevice"), self.tmp_dir))
+		except:
+			pass
 		self.getImagesList()
 
 	def cancel(self, value=None):
 		Console().ePopen('umount %s' % self.tmp_dir)
 		if not os.path.ismount(self.tmp_dir):
-			os.rmdir(self.tmp_dir)
+			try:
+				os.rmdir(self.tmp_dir)
+			except:
+				pass
 		if value == 2:
 			from Screens.Standby import TryQuitMainloop
 			self.session.open(TryQuitMainloop, 2)
