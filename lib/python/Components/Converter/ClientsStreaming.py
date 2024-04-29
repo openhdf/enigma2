@@ -65,7 +65,7 @@ class ClientsStreaming(Converter, Poll):
 		ips = []
 		names = []
 		encoders = []
-		extrainfo = "\n" + _("ClientIP") + "\t\t" + _("Transcode") + "\t\t" + _("Channel") + "\n\n"
+		extrainfo = "\n" + _("ClientIP") + "\t\t" + _("Transcode") + "\t" + _("Channel") + "\n\n"
 		info = ""
 
 		for x in self.streamServer.getConnectedClients():
@@ -100,7 +100,7 @@ class ClientsStreaming(Converter, Poll):
 
 			clients.append((ip, service_name, encoder))
 
-			extrainfo += ("%-8s\t%s\t\t%s") % (ip, encoder, service_name) + "\n"
+			extrainfo += ("%-8s\t\t%s\t%s") % (ip, encoder, service_name) + "\n"
 
 		if self.type == self.REF:
 			return ' '.join(refs)
