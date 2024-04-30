@@ -254,7 +254,6 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, sub
 	default:
 		return -1;
 	}
-	return 0;
 }
 
 int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
@@ -757,11 +756,13 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 	{
 		subtitle_redraw_all();
 		m_seen_eod = true;
+		break;
 	}
 	case 0xFF: // stuffing
 		break;
 	default:
 		eDebug("[eDVBSubtitleParser] unhandled segment type %02x", segment_type);
+		break;
 	}
 
 	return segment_length + 6;
