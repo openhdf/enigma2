@@ -23,8 +23,12 @@ from Tools.ISO639 import LanguageCodes
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
 
+selectionpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/audioselectionmark.png"))
 
-class AudioSelection(Screen, ConfigListScreen):
+def isIPTV(service):
+	path = service and service.getPath()
+	return path and not path.startswith("/") and service.type in [0x1, 0x1001, 0x138A, 0x1389]
+class AudioSelection(ConfigListScreen, Screen):
 	def __init__(self, session, infobar=None, page=PAGE_AUDIO):
 		Screen.__init__(self, session)
 
@@ -86,6 +90,9 @@ class AudioSelection(Screen, ConfigListScreen):
 		self["config"].instance.setSelectionEnable(False)
 		self.focus = FOCUS_STREAMS
 		self.settings.menupage.addNotifier(self.fillList)
+
+	def saveAVDict(self):
+		eDVBDB.getInstance().saveIptvServicelist()
 
 	def fillList(self, arg=None):
 		streams = []
@@ -442,6 +449,8 @@ class AudioSelection(Screen, ConfigListScreen):
 		if isinstance(track, int):
 			if self.session.nav.getCurrentService().audioTracks().getNumberOfTracks() > track:
 				self.audioTracks.selectTrack(track)
+				if isIPTV(ref):
+					self.saveAVDict()
 
 	def keyLeft(self):
 		if self.focus == FOCUS_CONFIG:
@@ -553,6 +562,8 @@ class AudioSelection(Screen, ConfigListScreen):
 				else:
 					self.enableSubtitle(cur[0][:5])
 					self.__updatedInfo()
+				if isIPTV(ref):
+					self.saveAVDict()
 			self.close(0)
 		elif self.focus == FOCUS_CONFIG:
 			self.keyRight()

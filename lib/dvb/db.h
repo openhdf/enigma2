@@ -125,7 +125,7 @@ class eDVBDB: public iDVBChannelList
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_services;
 
 	std::map<std::string, eBouquet> m_bouquets;
-
+	
 	bool m_numbering_mode, m_load_unlinked_userbouquets;
 #ifdef SWIG
 	eDVBDB();
@@ -135,6 +135,7 @@ private:
 	void loadServiceListV5(FILE * f);
 	std::map<eServiceReferenceDVB, LCNData> m_lcnmap;
 public:
+	std::vector<eIPTVDBItem> iptv_services;
 // iDVBChannelList
 	RESULT removeFlags(unsigned int flagmask, int dvb_namespace=-1, int tsid=-1, int onid=-1, unsigned int orb_pos=0xFFFFFFFF);
 	RESULT removeServices(int dvb_namespace=-1, int tsid=-1, int onid=-1, unsigned int orb_pos=0xFFFFFFFF);
@@ -188,6 +189,7 @@ public:
 	static eDVBDB *getInstance() { return instance; }
 	void reloadServicelist();
 	void saveServicelist();
+	void saveIptvServicelist();
 	void saveServicelist(const char *file);
 	void saveLcnDB();
 	void reloadBouquets();
