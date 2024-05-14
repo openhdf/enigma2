@@ -94,6 +94,8 @@ fi
 
 export LC_CTYPE="en_US.UTF-8"
 
+LOGFOLDER="/home/root/logs/"
+export LOGFOLDER
 if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
 	DEBUG_LVL='4'
 	RANDOMIZE1970=''
@@ -101,11 +103,10 @@ if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; t
 	if [ "$time" = 1970 ]; then
 		RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
 	fi
-	LOGFOLDER="/home/root/logs/"
 	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
 		LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
+		export LOGFOLDER
 	fi
-	export LOGFOLDER
 	LOGFILE=${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
 	if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
 	ln -sf ${LOGFILE} ${LOGFOLDER}currlog

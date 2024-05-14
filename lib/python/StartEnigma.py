@@ -2,6 +2,7 @@
 from os import chmod
 from os import path as os_path
 from os import system
+from os import getenv
 from sys import path as sys_path
 from time import localtime, strftime, time
 
@@ -70,7 +71,7 @@ from skin import loadSkinData, readSkin
 
 config.misc.enabletwistedlog = ConfigYesNo(default=False)
 if config.misc.enabletwistedlog.value == True:
-	log.startLogging(open('/home/root/logs/Enigma2-twisted.log', 'w'))
+	log.startLogging(open('%s/twisted.log' % getenv('LOGFOLDER'), 'w'))
 
 profile("LOAD:Tools")
 from Components.config import (ConfigInteger, ConfigSelection, ConfigText,
