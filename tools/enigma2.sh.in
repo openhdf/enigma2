@@ -12,7 +12,7 @@ if ! grep ^config.misc.firstrun=false /etc/enigma2/settings >/dev/null; then
 fi
 
 if [ -e /proc/stb/info/boxtype ]; then
-	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sx988" ] || [ $boxcheck == "ip8" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "sfx6008" ] || [ $stbcheck == "sx88v2" ]; then
+	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ip8" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "sfx6008" ] || [ $stbcheck == "sx88v2" ]; then
 		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
 		if [ 0 == $count ];then
 			libreader 720P_50
@@ -105,6 +105,7 @@ if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; t
 	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
 		LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
 	fi
+	export LOGFOLDER
 	LOGFILE=${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
 	if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
 	ln -sf ${LOGFILE} ${LOGFOLDER}currlog
