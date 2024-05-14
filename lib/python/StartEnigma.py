@@ -71,7 +71,7 @@ from skin import loadSkinData, readSkin
 
 config.misc.enabletwistedlog = ConfigYesNo(default=False)
 if config.misc.enabletwistedlog.value == True:
-	log.startLogging(open('%s/twisted.log' % getenv('LOGFOLDER'), 'w'))
+	log.startLogging(open('%s/Enigma2-twisted.log' % getenv('LOGFOLDER'), 'w'))
 
 profile("LOAD:Tools")
 from Components.config import (ConfigInteger, ConfigSelection, ConfigText,
