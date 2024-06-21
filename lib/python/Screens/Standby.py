@@ -37,7 +37,7 @@ def isInfoBarInstance():
 
 def checkTimeshiftRunning():
 	infobar_instance = isInfoBarInstance()
-	return config.usage.check_timeshift.value and infobar_instance and infobar_instance.timeshiftEnabled() and infobar_instance.timeshift_was_activated
+	return config.usage.check_timeshift.value and infobar_instance and infobar_instance.timeshiftEnabled()
 
 
 class TVstate: #load in Navigation
