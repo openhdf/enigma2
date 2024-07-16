@@ -353,7 +353,7 @@ class PluginDownloadBrowser(Screen):
 		if config.pluginfilter.packagegroup.value:
 			self.PLUGIN_PREFIX2.append('packagegroup')
 		if config.pluginfilter.python.value:
-			self.PLUGIN_PREFIX2.append('python-')
+			self.PLUGIN_PREFIX2.append("python3-")
 		if config.pluginfilter.gstreamer.value:
 			self.PLUGIN_PREFIX2.append('gstreamer1.0-')
 		#self.PLUGIN_PREFIX2.append('enigma2-locale-')
@@ -465,7 +465,7 @@ class PluginDownloadBrowser(Screen):
 				self.doToogle(self.installFinished, self["list"].l.getCurrentSelection()[0].name)
 
 	def doRemove(self, callback, pkgname):
-		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('packagegroup-') or pkgname.startswith('python-') or pkgname.startswith('kodi-'):
+		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('packagegroup-') or pkgname.startswith('python3-') or pkgname.startswith('kodi-'):
 			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + pkgname, "sync"], closeOnSuccess=True)
 		else:
 			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_remove + Ipkg.opkgExtraDestinations() + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess=True)
@@ -479,7 +479,7 @@ class PluginDownloadBrowser(Screen):
 			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_toogle + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess=False)
 
 	def doInstall(self, callback, pkgname):
-		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('packagegroup-') or pkgname.startswith('python-') or pkgname.startswith('kodi-'):
+		if pkgname.startswith('kernel-module-') or pkgname.startswith('enigma2-locale-') or pkgname.startswith('packagegroup-') or pkgname.startswith('python3-') or pkgname.startswith('kodi-'):
 			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_install + " " + pkgname, "sync"], closeOnSuccess=True)
 		else:
 			self.session.openWithCallback(callback, Console, cmdlist=[self.ipkg_install + " " + self.PLUGIN_PREFIX + pkgname, "sync"], closeOnSuccess=True)
@@ -653,8 +653,8 @@ class PluginDownloadBrowser(Screen):
 				split[0] = "languages"
 			elif x[0][0:13] == 'packagegroup-':
 				split[0] = "packagegroup"
-			elif x[0][0:7] == 'python-':
-				split[0] = "python"
+			elif x[0][0:8] == 'python3-':
+				split[0] = "python3"
 			elif x[0][0:5] == 'kodi-':
 				split[0] = "kodi-addon"
 			elif x[0][0:13] == 'gstreamer1.0-':
@@ -667,8 +667,8 @@ class PluginDownloadBrowser(Screen):
 				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][14:], x[1]))
 			elif split[0] == "packagegroup":
 				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][13:], x[1]))
-			elif split[0] == "python":
-				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][0o7:], x[1]))
+			elif split[0] == "python3":
+				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][8:], x[1]))
 			elif split[0] == "gstreamer":
 				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][13:], x[1]))
 			elif split[0] == "kodi-addon":
