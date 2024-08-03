@@ -85,13 +85,29 @@ def findPicon(serviceName):
 
 
 def getPiconName(serviceName):
-	sname = '_'.join(GetWithAlternative(serviceName).split(':', 10)[:10])
-	pngname = findPicon(sname)
+	fields = GetWithAlternative(serviceName).split(":", 10)[:10]  # Remove the path and name fields, and replace ":" by "_"
+	if not fields or len(fields) < 10:
+		return ""
+	pngname = findPicon("_".join(fields))
+	if not pngname and not fields[6].endswith("0000"):
+		fields[6] = fields[6][:-4] + "0000"  # Remove "sub-network" from namespace
+		pngname = findPicon("_".join(fields))
+	if not pngname and fields[0] != "1":
+		fields[0] = "1"  # Fallback to 1 for other reftypes
+		pngname = findPicon("_".join(fields))
+	if not pngname and fields[2] != "1":
+		fields[2] = "1"  # Fallback to 1 for services with different service types
+		pngname = findPicon("_".join(fields))
 	if not pngname:
-		fields = sname.split('_', 3)
-		if len(fields) > 0 and fields[0] != '1':
-			fields[0] = '1'
-		pngname = findPicon('_'.join(fields))
+		name = ServiceReference(serviceName).getServiceName()  # Picon by channel name
+		name = normalize("NFKD", name).encode("ASCII", "ignore").decode()
+		name = sub("[^a-z0-9]", "", name.replace("&", "and").replace("+", "plus").replace("*", "star").lower())
+		if name:
+			pngname = findPicon(name)
+			if not pngname:
+				name = sub("(fhd|uhd|hd|sd|4k)$", "", name)
+				if name:
+					pngname = findPicon(name)
 	return pngname
 
 
@@ -142,7 +158,7 @@ class PiconRes(Renderer):
 
 	def updatePicon(self, picInfo=None):
 		ptr = self.PicLoad.getData()
-		if ptr != None:
+		if ptr is not None:
 			self.instance.setPixmap(ptr.__deref__())
 			self.instance.show()
 

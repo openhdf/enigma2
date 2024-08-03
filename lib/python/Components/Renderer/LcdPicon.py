@@ -93,24 +93,29 @@ def findLcdPicon(serviceName):
 
 
 def getLcdPiconName(serviceName):
-	sname = '_'.join(GetWithAlternative(serviceName).split(':', 10)[:10])
-	pngname = findLcdPicon(sname)
+	fields = GetWithAlternative(serviceName).split(":", 10)[:10]  # Remove the path and name fields, and replace ":" by "_"
+	if not fields or len(fields) < 10:
+		return ""
+	pngname = findLcdPicon("_".join(fields))
+	if not pngname and not fields[6].endswith("0000"):
+		fields[6] = fields[6][:-4] + "0000"  # Remove "sub-network" from namespace
+		pngname = findLcdPicon("_".join(fields))
+	if not pngname and fields[0] != "1":
+		fields[0] = "1"  # Fallback to 1 for other reftypes
+		pngname = findLcdPicon("_".join(fields))
+	if not pngname and fields[2] != "1":
+		fields[2] = "1"  # Fallback to 1 for services with different service types
+		pngname = findLcdPicon("_".join(fields))
 	if not pngname:
-		fields = sname.split('_', 3)
-		if len(fields) > 0 and fields[0] != '1':
-			fields[0] = '1'
-		pngname = findLcdPicon('_'.join(fields))
-	if not pngname: # picon by channel name
-		name = ServiceReference(serviceName).getServiceName()
-		if PY3:
-			name = normalize('NFKD', name)
-		else:
-			name = normalize('NFKD', text_type(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
-		name = sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
-		if len(name) > 0:
+		name = ServiceReference(serviceName).getServiceName()  # Picon by channel name
+		name = normalize("NFKD", name).encode("ASCII", "ignore").decode()
+		name = sub("[^a-z0-9]", "", name.replace("&", "and").replace("+", "plus").replace("*", "star").lower())
+		if name:
 			pngname = findLcdPicon(name)
-			if not pngname and len(name) > 2 and name.endswith('hd'):
-				pngname = findLcdPicon(name[:-2])
+			if not pngname:
+				name = sub("(fhd|uhd|hd|sd|4k)$", "", name)
+				if name:
+					pngname = findLcdPicon(name)
 	return pngname
 
 
