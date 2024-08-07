@@ -1,11 +1,14 @@
 
 from os import listdir
 from os import path as os_path
+from re import sub
+from unicodedata import normalize
 
 from enigma import ePicLoad, ePixmap
 
 from Components.Harddisk import harddiskmanager
 from Components.Renderer.Renderer import Renderer
+from ServiceReference import ServiceReference
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import (SCOPE_GUISKIN, SCOPE_SKIN_IMAGE, pathExists,
                                resolveFilename)
