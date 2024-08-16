@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 13:42+0100\n"
-"PO-Revision-Date: 2024-05-10 16:31+0200\n"
+"PO-Revision-Date: 2024-08-16 19:04+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -14865,8 +14865,17 @@ msgstr "Cache aktualisieren"
 msgid "Update anyway?"
 msgstr "Trotzdem Updaten?"
 
-msgid "Update at your own risk"
-msgstr "Update auf eigenes Risiko"
+msgid "Its recommended to create a Fullbackup before update"
+msgstr "Es wird empfohlen, vorher ein vollständiges Backup zu erstellen"
+
+msgid "Updates blocked"
+msgstr "Updates aktuell gesperrt"
+
+msgid "Update at your own risk!"
+msgstr "Update auf eigenes Risiko!"
+
+msgid "Update recommended"
+msgstr "Update empfohlen"
 
 msgid "Update channel list only"
 msgstr "Nur Senderliste aktualisieren"
