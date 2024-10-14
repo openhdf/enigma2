@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: No-Team\n"
@@ -758,10 +758,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -891,9 +887,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -1004,10 +997,6 @@ msgstr "0"
 msgid "30 minutes"
 msgstr "minutos"
 
-#, fuzzy
-msgid "30%"
-msgstr "0"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1079,9 +1068,6 @@ msgstr "2"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1126,9 +1112,6 @@ msgstr "2"
 msgid "5 minutes"
 msgstr "minutos"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1161,9 +1144,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "minutos"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1183,9 +1163,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1210,13 +1187,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1817,10 +1788,6 @@ msgstr ""
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "não suportado"
-
-#, fuzzy
-msgid "Allows more detailed to be in the crash log"
-msgstr "Criar relatório de erros mais detalhados"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr ""
@@ -4154,9 +4121,6 @@ msgstr "Criar DVD-ISO"
 msgid "Create directory"
 msgstr "criar pasta"
 
-msgid "Create more detailed crash log"
-msgstr "Criar relatório de erros mais detalhados"
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5175,6 +5139,18 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+#, fuzzy
+msgid "ECM -> ecm.info"
+msgstr "Informações do canal"
+
+#, fuzzy
+msgid "ECM -> ecm0.info"
+msgstr "Informações do canal"
+
+#, fuzzy
+msgid "ECM Info's"
+msgstr "Ver evento"
+
 msgid "ECM Statistics"
 msgstr ""
 
@@ -5659,12 +5635,6 @@ msgstr "Erro ao executar o plugin"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Erro ao executar o plugin"
 
 msgid "Error reading webpage!"
 msgstr ""
@@ -7691,6 +7661,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -9433,10 +9406,6 @@ msgstr "Definições Sat / Antena"
 msgid "OSD Adjustment"
 msgstr ""
 
-#, fuzzy
-msgid "OSD Settings"
-msgstr "Definições OSD"
-
 msgid "OSD name request"
 msgstr "Solicitação do nome de OSD"
 
@@ -10373,6 +10342,17 @@ msgstr "Por favor aguarde enquanto a rede reinicia..."
 
 #, fuzzy
 msgid "Please wait whilst feeds state is checked."
+msgstr "Por favor aguarde enquanto a rede é testada..."
+
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Por favor aguarde... atualizando pacotes..."
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
 msgstr "Por favor aguarde enquanto a rede é testada..."
 
 #, fuzzy
@@ -11449,6 +11429,14 @@ msgstr "Reiniciar GUI?"
 msgid "Restart Network Adapter"
 msgstr "Reiniciar a rede"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Teste de reinício"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "iniciar o corte aqui"
+
 msgid "Restart enigma"
 msgstr "Reiniciar o enigma"
 
@@ -11458,6 +11446,10 @@ msgstr "Reiniciar agora?"
 
 msgid "Restart network"
 msgstr "Reiniciar a rede"
+
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Teste de reinício"
 
 msgid "Restart test"
 msgstr "Teste de reinício"
@@ -12036,6 +12028,10 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Selecione o CAId"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Selecione o refresh rate"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -12046,6 +12042,10 @@ msgstr "Selecione a localização "
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Mudar para o canal anterior"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Selecione a localização "
 
 #, fuzzy
 msgid "Select Software Update"
@@ -13746,8 +13746,8 @@ msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Definições"
+msgid "Softcam Manager..."
+msgstr "Gestor de pacotes"
 
 #, fuzzy
 msgid "Softcam settings"
@@ -13789,6 +13789,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Alguns plugins não estão disponíveis:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
@@ -14966,6 +14969,10 @@ msgstr "Existem pelo menos % s atualizações disponíveis."
 msgid "There are currently no outstanding actions."
 msgstr "Atualmente não existem ações pendentes."
 
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Não existem plugins disponíveis."
+
 msgid "There are no updates available."
 msgstr "Não existem plugins disponíveis."
 
@@ -16130,6 +16137,9 @@ msgstr "Atualizar"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr "Próximo canal na memória"
 
@@ -16164,6 +16174,10 @@ msgstr "Intervalo do visualizador de imagens (seg.)"
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#, fuzzy
+msgid "Update recommended"
+msgstr "Atualizar"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -16174,6 +16188,10 @@ msgstr "Servidor de atualizações não disponível."
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#, fuzzy
+msgid "Updates blocked"
+msgstr "A gravação falhou!"
 
 #, fuzzy
 msgid "Updating cache"
@@ -17039,6 +17057,11 @@ msgid "What do you want to scan?"
 msgstr "O que deseja procurar?"
 
 msgid "What should be restored?\n"
+msgstr ""
+
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr ""
 
 #, fuzzy

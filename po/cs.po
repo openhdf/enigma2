@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:11+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: \n"
@@ -778,10 +778,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -910,9 +906,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -1019,10 +1012,6 @@ msgstr "30"
 msgid "30 minutes"
 msgstr "Minut"
 
-#, fuzzy
-msgid "30%"
-msgstr "30"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1092,9 +1081,6 @@ msgstr "4"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1138,9 +1124,6 @@ msgstr "5"
 msgid "5 minutes"
 msgstr "Minut"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1174,9 +1157,6 @@ msgstr "5"
 msgid "60 minutes"
 msgstr "Minut"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1197,9 +1177,6 @@ msgid "64"
 msgstr "4"
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1224,13 +1201,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1810,9 +1781,6 @@ msgstr "Povolit nestabilní (nevyzkoušené) aktualizace"
 
 msgid "Allow unsupported modes"
 msgstr "Povolit nepodporovane režimy"
-
-msgid "Allows more detailed to be in the crash log"
-msgstr "Umožňuje tvorbu podrobnějších zpráv o pádech"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Umožňuje %s %s načítat data EPG pravidelně."
@@ -4055,9 +4023,6 @@ msgstr "Vytvořit DVD-ISO"
 msgid "Create directory"
 msgstr "Založit adresář"
 
-msgid "Create more detailed crash log"
-msgstr "Vytvářet podrobnější zprávy pádů"
-
 #, fuzzy
 msgid "Create separate radio userbouquet"
 msgstr "Obnovit smazané uživatelské přehledy"
@@ -5037,6 +5002,18 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+#, fuzzy
+msgid "ECM -> ecm.info"
+msgstr "info ecm"
+
+#, fuzzy
+msgid "ECM -> ecm0.info"
+msgstr "info ecm"
+
+#, fuzzy
+msgid "ECM Info's"
+msgstr "Info CCcam ECM"
+
 msgid "ECM Statistics"
 msgstr "Statistika ECM"
 
@@ -5507,12 +5484,6 @@ msgstr "Chyba při provádění pluginu"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Chyba při stahování protokolu změn."
 
 msgid "Error reading webpage!"
 msgstr "Chyba načtení webu!"
@@ -7493,6 +7464,9 @@ msgstr "Položek na stránku"
 msgid "Items per page for list screen"
 msgstr "Položek na stránku pro seznam"
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -9184,10 +9158,6 @@ msgstr "Nastavení 3D OSD"
 msgid "OSD Adjustment"
 msgstr ""
 
-#, fuzzy
-msgid "OSD Settings"
-msgstr "Nastavení OSD"
-
 msgid "OSD name request"
 msgstr "Požadovaný název OSD"
 
@@ -10091,6 +10061,15 @@ msgstr "Čekejte prosím, dokud se síť nerestartuje..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Počkejte prosím, dokud nezkontroluji stav zdrojů."
+
+msgid "Please wait, restarting cardserver."
+msgstr "Čekejte, restartuje se cardserver."
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr "Čekejte, restartuje se softcam a cardserver."
+
+msgid "Please wait, restarting softcam."
+msgstr "Čekejte, restartuje se softcam."
 
 #, fuzzy
 msgid "Please wait."
@@ -11110,6 +11089,12 @@ msgstr "Právě teď restartovat Enigmu ?"
 msgid "Restart Network Adapter"
 msgstr "Restartuji síťové připojení"
 
+msgid "Restart both"
+msgstr "Restartovat oba"
+
+msgid "Restart cardserver"
+msgstr "Restartovat cardserver"
+
 msgid "Restart enigma"
 msgstr "Restartovat (GUI)"
 
@@ -11119,6 +11104,9 @@ msgstr "Opravdu nyní restartovat? "
 
 msgid "Restart network"
 msgstr "Restartovat síť"
+
+msgid "Restart softcam"
+msgstr "Restartovat softcam"
 
 msgid "Restart test"
 msgstr "Restart testu"
@@ -11679,6 +11667,9 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Vybrat CAId(y)"
 
+msgid "Select Card Server"
+msgstr "Vyberte Card Server"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -11689,6 +11680,9 @@ msgstr "Vyberte umístění"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Zobrazit EPG z více kanálů"
+
+msgid "Select Softcam"
+msgstr "Vyberte Softcam"
 
 msgid "Select Software Update"
 msgstr "Vyberte typ aktualizace Software"
@@ -13280,8 +13274,8 @@ msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Nastavení Softcam panelu"
+msgid "Softcam Manager..."
+msgstr "Nastavení softcamu..."
 
 msgid "Softcam settings"
 msgstr "Softcam nastavení"
@@ -13320,6 +13314,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Některé pluginy nejsou dostupné:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 #, fuzzy
 msgid "Sorry CIHelper Config is Missing"
@@ -14457,6 +14454,10 @@ msgstr "K dispozici je nejméně %s aktualizací."
 
 msgid "There are currently no outstanding actions."
 msgstr "V současné době nejsou žádné nedokončené akce."
+
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Nejsou žádné dostupné aktualizace."
 
 msgid "There are no updates available."
 msgstr "Nejsou žádné dostupné aktualizace."
@@ -15597,6 +15598,10 @@ msgstr "Aktualizace"
 msgid "Update at your own risk"
 msgstr "Děláte to na vlastní nebezpečí!"
 
+#, fuzzy
+msgid "Update at your own risk!"
+msgstr "Děláte to na vlastní nebezpečí!"
+
 msgid "Update channel list only"
 msgstr "Aktualizovat jen seznam kanálů"
 
@@ -15631,6 +15636,10 @@ msgstr "Interval aktualizace (v sek)"
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#, fuzzy
+msgid "Update recommended"
+msgstr "Aktualizace"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -15641,6 +15650,10 @@ msgstr "Zdroj aktualizace nedostupný."
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Zápis selhal!"
 
 #, fuzzy
 msgid "Updating cache"
@@ -16488,6 +16501,12 @@ msgstr "Co chcete prohledat?"
 
 #, fuzzy
 msgid "What should be restored?\n"
+msgstr "Má být nahrávka uložena?"
+
+#, fuzzy
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr "Má být nahrávka uložena?"
 
 msgid "When enabled the PiP can be closed by the exit button."

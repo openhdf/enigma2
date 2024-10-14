@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: HDTV ROMANIA(superonic,costel_mbc,neutrin,otheitis,cipy_1982,neutrin,runcanion)\n"
@@ -738,9 +738,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-msgid "10%"
-msgstr ""
-
 msgid "1024 MB"
 msgstr ""
 
@@ -865,9 +862,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -973,9 +967,6 @@ msgstr ""
 msgid "30 minutes"
 msgstr "minute"
 
-msgid "30%"
-msgstr ""
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1040,9 +1031,6 @@ msgstr ""
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1085,9 +1073,6 @@ msgstr ""
 msgid "5 minutes"
 msgstr "minute"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1119,9 +1104,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "minute"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1141,9 +1123,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1167,13 +1146,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1747,9 +1720,6 @@ msgid "Allow unstable (untested) updates"
 msgstr ""
 
 msgid "Allow unsupported modes"
-msgstr ""
-
-msgid "Allows more detailed to be in the crash log"
 msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
@@ -3953,9 +3923,6 @@ msgstr "Creeaza DVD-ISO"
 msgid "Create directory"
 msgstr "creaza director"
 
-msgid "Create more detailed crash log"
-msgstr ""
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -4940,6 +4907,15 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+msgid "ECM -> ecm.info"
+msgstr ""
+
+msgid "ECM -> ecm0.info"
+msgstr ""
+
+msgid "ECM Info's"
+msgstr ""
+
 msgid "ECM Statistics"
 msgstr ""
 
@@ -5406,12 +5382,6 @@ msgstr "Eroare la executia pluginului"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Eroare la executia pluginului"
 
 msgid "Error reading webpage!"
 msgstr ""
@@ -7363,6 +7333,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -9058,10 +9031,6 @@ msgstr ""
 msgid "OSD Adjustment"
 msgstr ""
 
-#, fuzzy
-msgid "OSD Settings"
-msgstr "Setari"
-
 msgid "OSD name request"
 msgstr ""
 
@@ -9956,6 +9925,17 @@ msgstr "Va rugam asteptati pana cand reteaua se va restarta..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "te rog asteapta, se incarca imagine"
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Va rugam asteptati pana cand reteaua se va restarta..."
 
 #, fuzzy
 msgid "Please wait."
@@ -10988,6 +10968,14 @@ msgstr "Restart GUI acum?"
 msgid "Restart Network Adapter"
 msgstr "Restart retea"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Test restart"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "incepe decupare aici"
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -10997,6 +10985,10 @@ msgstr "Restartati acum?"
 
 msgid "Restart network"
 msgstr "Restart retea"
+
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Test restart"
 
 msgid "Restart test"
 msgstr "Test restart"
@@ -11564,6 +11556,10 @@ msgstr ""
 msgid "Select CAId"
 msgstr "selecteaza CAId"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Selectati rata de reimprospatare"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -11574,6 +11570,10 @@ msgstr "Alege locatia"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Arata bara de informatii la schimbarea canalelor"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Alege locatia"
 
 #, fuzzy
 msgid "Select Software Update"
@@ -13199,8 +13199,8 @@ msgid "SoftCam / CI"
 msgstr ""
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Software"
+msgid "Softcam Manager..."
+msgstr "Manager pachet"
 
 msgid "Softcam settings"
 msgstr ""
@@ -13240,6 +13240,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Anumite plugin-uri nu sunt disponibile:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
@@ -14371,6 +14374,9 @@ msgstr ""
 msgid "There are currently no outstanding actions."
 msgstr ""
 
+msgid "There are no items currently available for this screen."
+msgstr ""
+
 msgid "There are no updates available."
 msgstr ""
 
@@ -15483,6 +15489,9 @@ msgstr "Updateza"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr ""
 
@@ -15516,6 +15525,10 @@ msgstr ""
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#, fuzzy
+msgid "Update recommended"
+msgstr "Updateza"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -15526,6 +15539,10 @@ msgstr ""
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Scriere esuata"
 
 #, fuzzy
 msgid "Updating cache"
@@ -16347,6 +16364,11 @@ msgid "What do you want to scan?"
 msgstr "Ce vrei sa scanezi"
 
 msgid "What should be restored?\n"
+msgstr ""
+
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Mediavox, robertut <info@mediavox.hu, robertut@yahoo.com>\n"
@@ -813,11 +813,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -961,9 +956,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -1079,11 +1071,6 @@ msgstr "0"
 msgid "30 minutes"
 msgstr "perc"
 
-#
-#, fuzzy
-msgid "30%"
-msgstr "0"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1151,9 +1138,6 @@ msgstr "2"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1204,9 +1188,6 @@ msgstr "2"
 msgid "5 minutes"
 msgstr "perc"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1241,9 +1222,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "perc"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1263,9 +1241,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1291,13 +1266,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1958,10 +1927,6 @@ msgstr ""
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "nem támogatott"
-
-#, fuzzy
-msgid "Allows more detailed to be in the crash log"
-msgstr "Részletesebb hibanapló generálása"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr ""
@@ -4364,9 +4329,6 @@ msgstr "DVD képfájl készítés"
 msgid "Create directory"
 msgstr "mappa létrehozása"
 
-msgid "Create more detailed crash log"
-msgstr "Részletesebb hibanapló generálása"
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5514,6 +5476,15 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+msgid "ECM -> ecm.info"
+msgstr ""
+
+msgid "ECM -> ecm0.info"
+msgstr ""
+
+msgid "ECM Info's"
+msgstr ""
+
 msgid "ECM Statistics"
 msgstr ""
 
@@ -6026,13 +5997,6 @@ msgstr "Plugin indítási hiba"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Plugin indítási hiba"
 
 msgid "Error reading webpage!"
 msgstr ""
@@ -8224,6 +8188,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -10150,11 +10117,6 @@ msgstr ""
 msgid "OSD Adjustment"
 msgstr ""
 
-#
-#, fuzzy
-msgid "OSD Settings"
-msgstr "Beállítások"
-
 msgid "OSD name request"
 msgstr ""
 
@@ -11181,6 +11143,19 @@ msgstr "Kérem, várjon, ameddig a hálózati konfiguráció újraindul..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "kérem vérjon, kép betöltése..."
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Kérem, várjon, ameddig a hálózati teszt lezajlik..."
 
 #
 #, fuzzy
@@ -12393,6 +12368,16 @@ msgid "Restart Network Adapter"
 msgstr "Hálózat újraindítása"
 
 #
+#, fuzzy
+msgid "Restart both"
+msgstr "Teszt újraindítása"
+
+#
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "vágás belépő pontja"
+
+#
 msgid "Restart enigma"
 msgstr "A kezelő felület újraindítása"
 
@@ -12404,6 +12389,11 @@ msgstr "Biztos újraindítsam most?"
 #
 msgid "Restart network"
 msgstr "Hálózat újraindítása"
+
+#
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Teszt újraindítása"
 
 #
 msgid "Restart test"
@@ -13039,6 +13029,11 @@ msgstr ""
 msgid "Select CAId"
 msgstr "CAId kijelölés"
 
+#
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Válassza ki a frissítési arányt"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -13051,6 +13046,11 @@ msgstr "Válassza ki a helyet"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Info-sor megjelenítése csatornaváltáskor"
+
+#
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Válassza ki a helyet"
 
 #
 #, fuzzy
@@ -14893,8 +14893,8 @@ msgstr "SoftCam/CI"
 
 #
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Szoftver"
+msgid "Softcam Manager..."
+msgstr "Csomag-kezelő"
 
 msgid "Softcam settings"
 msgstr ""
@@ -14939,6 +14939,9 @@ msgstr ""
 #
 msgid "Some plugins are not available:\n"
 msgstr "Egyes pluginek nem elérhetőek:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
@@ -16210,6 +16213,11 @@ msgid "There are currently no outstanding actions."
 msgstr "Semmilyen kiemelkedő esemény nem következik."
 
 #
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Nincs elérhető frissítés."
+
+#
 msgid "There are no updates available."
 msgstr "Nincs elérhető frissítés."
 
@@ -17426,6 +17434,9 @@ msgstr "Frissítés"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr ""
 
@@ -17466,6 +17477,11 @@ msgstr ""
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Update recommended"
+msgstr "Frissítés"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -17477,6 +17493,11 @@ msgstr ""
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Az írás sikertelen!"
 
 #
 #, fuzzy
@@ -18406,6 +18427,11 @@ msgid "What do you want to scan?"
 msgstr "Mit szeretne lekeresni?"
 
 msgid "What should be restored?\n"
+msgstr ""
+
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."

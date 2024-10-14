@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openhdf-6.5             enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2021-08-04 21:52+0800\n"
 "Last-Translator: 孤独之剑 < haotzyy1970@163.com>\n"
 "Language-Team: 孤独之剑< haotzyy1970@163.com>\n"
@@ -775,10 +775,6 @@ msgstr "1.5秒"
 msgid "1.7s"
 msgstr "1.7秒"
 
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr "1024"
 
@@ -905,10 +901,6 @@ msgstr "2 GB"
 msgid "2.5s"
 msgstr "2.5秒"
 
-#, fuzzy
-msgid "20%"
-msgstr "30%"
-
 msgid "2160p 24Hz"
 msgstr "2160p 24Hz"
 
@@ -1012,9 +1004,6 @@ msgstr "30"
 msgid "30 minutes"
 msgstr "30 分钟"
 
-msgid "30%"
-msgstr "30%"
-
 msgid "30p/24p"
 msgstr "30p/24p"
 
@@ -1078,9 +1067,6 @@ msgstr "4"
 msgid "4 GB"
 msgstr "4 GB"
 
-msgid "40%"
-msgstr "40%"
-
 msgid "420"
 msgstr "420"
 
@@ -1122,9 +1108,6 @@ msgstr "5"
 msgid "5 minutes"
 msgstr "5 分钟"
 
-msgid "50%"
-msgstr "50%"
-
 msgid "50p/24p"
 msgstr "50p/24p"
 
@@ -1156,9 +1139,6 @@ msgstr "5秒"
 msgid "60 minutes"
 msgstr "60 分钟"
 
-msgid "60%"
-msgstr "60%"
-
 msgid "60p/24p"
 msgstr "60p/24p"
 
@@ -1180,9 +1160,6 @@ msgstr "4"
 
 msgid "64 MB"
 msgstr "64 MB"
-
-msgid "70%"
-msgstr "70%"
 
 msgid "720p"
 msgstr "720p"
@@ -1206,14 +1183,8 @@ msgstr "8 GB"
 msgid "8 MB"
 msgstr "8 MB"
 
-msgid "80%"
-msgstr "80%"
-
 msgid "8bit"
 msgstr "8位"
-
-msgid "90%"
-msgstr "90%"
 
 msgid "96 MB"
 msgstr "96 MB"
@@ -1777,9 +1748,6 @@ msgstr "允许不稳定版(未经测试)更新"
 
 msgid "Allow unsupported modes"
 msgstr "允许不支持的模式"
-
-msgid "Allows more detailed to be in the crash log"
-msgstr "允许更详细崩溃日志"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "允许 %s %s 定期读取存储的EPG数据."
@@ -3984,9 +3952,6 @@ msgstr "创建DVD-ISO"
 msgid "Create directory"
 msgstr "创建目录"
 
-msgid "Create more detailed crash log"
-msgstr "创建更详细的崩溃日志"
-
 msgid "Create separate radio userbouquet"
 msgstr "创建单独的无线电分组"
 
@@ -4945,6 +4910,18 @@ msgstr "E2(重启)次数:\t%s\n"
 msgid "E3HD/XPEEDLX/GI"
 msgstr "E3HD/XPEEDLX/GI"
 
+#, fuzzy
+msgid "ECM -> ecm.info"
+msgstr "ecm.信息"
+
+#, fuzzy
+msgid "ECM -> ecm0.info"
+msgstr "ecm.信息"
+
+#, fuzzy
+msgid "ECM Info's"
+msgstr "CCcam ECM信息"
+
 msgid "ECM Statistics"
 msgstr "ECM数据"
 
@@ -5408,15 +5385,6 @@ msgstr "执行插件错误"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr "格式化磁盘错误.磁盘可能损坏"
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr ""
-"下载镜像时出错\n"
-"%s\n"
-"%s"
 
 msgid "Error reading webpage!"
 msgstr "读取网页错误!"
@@ -7331,6 +7299,9 @@ msgstr "项目每一页 "
 msgid "Items per page for list screen"
 msgstr "列表屏幕的每个页面的项目"
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr "J"
 
@@ -8967,9 +8938,6 @@ msgstr "OSD 3D设置"
 msgid "OSD Adjustment"
 msgstr "OSD菜单调整"
 
-msgid "OSD Settings"
-msgstr "OSD设置"
-
 msgid "OSD name request"
 msgstr "OSD名称要求"
 
@@ -9862,6 +9830,17 @@ msgstr "请稍候,您的网络正在重新启动..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "请稍候,正在检查馈送状态."
+
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "请稍等(更新软件包)"
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "请稍候,收集数据..."
 
 msgid "Please wait."
 msgstr "请稍等."
@@ -10845,6 +10824,14 @@ msgstr "重新启动GUI吗?"
 msgid "Restart Network Adapter"
 msgstr "重启网络适配器"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "重新启动测试"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "获取卡服务器"
+
 msgid "Restart enigma"
 msgstr "重启GUI"
 
@@ -10854,6 +10841,10 @@ msgstr "确定重新启动吗?"
 
 msgid "Restart network"
 msgstr "重新启动网络"
+
+#, fuzzy
+msgid "Restart softcam"
+msgstr "重新启动测试"
 
 msgid "Restart test"
 msgstr "重新启动测试"
@@ -11391,6 +11382,10 @@ msgstr "选择'是'仅在从一个卫星切换到另一个卫星时发送DiSEqC�
 msgid "Select CAId"
 msgstr "选择CAID"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "选择刷新率"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "如果您的天线系统支持此功能,请选择快速DiSEqC.如果您不确定选择'否'."
 
@@ -11400,6 +11395,10 @@ msgstr "选择位置"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "显示音频频道"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "选择位置"
 
 msgid "Select Software Update"
 msgstr "选择软件更新"
@@ -12907,8 +12906,9 @@ msgstr "社会/政治/经济"
 msgid "SoftCam / CI"
 msgstr "SoftCam/CI共享"
 
-msgid "Softcam Setup"
-msgstr "softcam设置"
+#, fuzzy
+msgid "Softcam Manager..."
+msgstr "交换管理"
 
 msgid "Softcam settings"
 msgstr "softcam设置"
@@ -12949,6 +12949,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "一些插件是不可用的:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr "抱歉,缺少CI帮助程序配置"
@@ -14046,6 +14049,10 @@ msgstr "至少有 %s 可用的更新."
 msgid "There are currently no outstanding actions."
 msgstr "目前还没有出色的行动."
 
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "有没有可用的更新."
+
 msgid "There are no updates available."
 msgstr "有没有可用的更新."
 
@@ -15138,6 +15145,10 @@ msgstr "是否更新?"
 msgid "Update at your own risk"
 msgstr "更新风险自负"
 
+#, fuzzy
+msgid "Update at your own risk!"
+msgstr "更新风险自负"
+
 msgid "Update channel list only"
 msgstr "更新频道列表"
 
@@ -15172,6 +15183,10 @@ msgstr "更新间隔(以秒为单位)"
 msgid "Update is reported as faulty !!"
 msgstr "更新被报告为有故障!!"
 
+#, fuzzy
+msgid "Update recommended"
+msgstr "更新缓存"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -15184,6 +15199,10 @@ msgstr "更新数据源不可用."
 
 msgid "Updates are currently disabled..."
 msgstr "当前禁用的更新..."
+
+#, fuzzy
+msgid "Updates blocked"
+msgstr "写入失败!"
 
 #, fuzzy
 msgid "Updating cache"
@@ -15986,6 +16005,12 @@ msgstr "您想扫描什么?"
 
 #, fuzzy
 msgid "What should be restored?\n"
+msgstr "录制应该保存在哪里?"
+
+#, fuzzy
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr "录制应该保存在哪里?"
 
 msgid "When enabled the PiP can be closed by the exit button."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2024-03-20 23:40+0100\n"
 "Last-Translator: Hasan Kiran <sunder67@hotmail.com>\n"
 "Language-Team: Turkish <sunder67@hotmail.com>\n"
@@ -768,9 +768,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-msgid "10%"
-msgstr "% 10"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -899,9 +896,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr "% 20"
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -1007,9 +1001,6 @@ msgstr "3B"
 msgid "30 minutes"
 msgstr "dakika"
 
-msgid "30%"
-msgstr "% 30"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1076,9 +1067,6 @@ msgstr "24"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr "% 40"
-
 #, fuzzy
 msgid "420"
 msgstr "% 20"
@@ -1122,9 +1110,6 @@ msgstr "25"
 msgid "5 minutes"
 msgstr "dakika"
 
-msgid "50%"
-msgstr "% 50"
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1157,9 +1142,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "dakika"
 
-msgid "60%"
-msgstr "% 60"
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1180,9 +1162,6 @@ msgstr ""
 
 msgid "64 MB"
 msgstr ""
-
-msgid "70%"
-msgstr "% 70"
 
 msgid "720p"
 msgstr ""
@@ -1206,14 +1185,8 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr "% 80"
-
 msgid "8bit"
 msgstr ""
-
-msgid "90%"
-msgstr "% 90"
 
 msgid "96 MB"
 msgstr ""
@@ -1755,9 +1728,6 @@ msgstr "İstikrarsız (denenmemiş) güncellemelere izin ver"
 
 msgid "Allow unsupported modes"
 msgstr "Desteklenmeyen modlara izin ver"
-
-msgid "Allows more detailed to be in the crash log"
-msgstr "Kilitlenme günlüğünün daha ayrıntılı olmasını sağlar"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "%s %s düzenli olarak saklanan EPG bilgisini okusun."
@@ -3954,9 +3924,6 @@ msgstr "DVD-ISO oluştur"
 msgid "Create directory"
 msgstr "Dizin oluştur"
 
-msgid "Create more detailed crash log"
-msgstr "Daha detaylı çökme günlüğü yarat"
-
 #, fuzzy
 msgid "Create separate radio userbouquet"
 msgstr "silinen kullanıcı buketlerini geri yükle"
@@ -4924,6 +4891,18 @@ msgstr "E2 ((yeniden)başlama:\t%s\n"
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+#, fuzzy
+msgid "ECM -> ecm.info"
+msgstr "ecm.info"
+
+#, fuzzy
+msgid "ECM -> ecm0.info"
+msgstr "ecm.info"
+
+#, fuzzy
+msgid "ECM Info's"
+msgstr "CCcam ECM Bilgisi"
+
 msgid "ECM Statistics"
 msgstr "ECM istatistiği"
 
@@ -5388,12 +5367,6 @@ msgstr "Eklentinin çalıştırılması sırasında hata oluştu"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr "Disk biçimlendirme hatası. Disk hasar görmüş olabilir"
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Değişiklik günlüğünü indirme hatası."
 
 msgid "Error reading webpage!"
 msgstr "Web sayfa okuma hatası!"
@@ -7321,6 +7294,9 @@ msgstr "Sayfa başına öğe"
 msgid "Items per page for list screen"
 msgstr "Liste ekranı için sayfa başına öğe"
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -8983,10 +8959,6 @@ msgstr "OSD 3B Kurulumu"
 msgid "OSD Adjustment"
 msgstr ""
 
-#, fuzzy
-msgid "OSD Settings"
-msgstr "OSD ayarları"
-
 msgid "OSD name request"
 msgstr "OSD ad isteği"
 
@@ -9874,6 +9846,17 @@ msgstr "Lütfen ağınız yeniden başlatılırken bekleyin ..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Besleme durumu kontrol edilirken bekleyin."
+
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Lütfen bekleyin (paketler güncelleniyor)"
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Veri toplama sırasında lütfen bekleyin ..."
 
 #, fuzzy
 msgid "Please wait."
@@ -10866,6 +10849,14 @@ msgstr "Grafiksel arayüz şimdi yeniden başlatılsın mı?"
 msgid "Restart Network Adapter"
 msgstr "Ağ Adaptörü'nü yeniden başlatın"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Testi yeniden başlat"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "kart sunucu al"
+
 msgid "Restart enigma"
 msgstr "Enigma'yı yeniden başlat"
 
@@ -10875,6 +10866,10 @@ msgstr "Şimdi yeniden başlatmak istiyor musunuz?"
 
 msgid "Restart network"
 msgstr "Ağı yeniden başlat"
+
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Testi yeniden başlat"
 
 msgid "Restart test"
 msgstr "Testi yeniden başlat"
@@ -11427,6 +11422,10 @@ msgstr ""
 msgid "Select CAId"
 msgstr "CAId seç"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Yenileme hızı seç"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -11436,6 +11435,10 @@ msgstr "Konum Seçin"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Ses kanallarını göster"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Konum Seçin"
 
 # SoftwareManager Translations
 msgid "Select Software Update"
@@ -12974,8 +12977,8 @@ msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Samba Kurulumu"
+msgid "Softcam Manager..."
+msgstr "Yedekleme Yöneticisi"
 
 msgid "Softcam settings"
 msgstr "Softcam ayarları"
@@ -13014,6 +13017,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Bazı eklentiler kullanılabilir değil:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr "Maalesef CIHelper Config Eksik"
@@ -14127,6 +14133,10 @@ msgstr "En azından %s güncelleme mevcut."
 
 msgid "There are currently no outstanding actions."
 msgstr "Şu anda olağanüstü bir eylem yok."
+
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Yeni güncelleme yok."
 
 msgid "There are no updates available."
 msgstr "Yeni güncelleme yok."
@@ -15243,6 +15253,10 @@ msgstr "Yine de güncellensin mi?"
 msgid "Update at your own risk"
 msgstr "Güncelleme kendi sorumluluğunuzdadır"
 
+#, fuzzy
+msgid "Update at your own risk!"
+msgstr "Güncelleme kendi sorumluluğunuzdadır"
+
 msgid "Update channel list only"
 msgstr "Yalnızca kanal listesini güncelle"
 
@@ -15276,6 +15290,10 @@ msgstr "Güncelleme aralığı (saniye)"
 msgid "Update is reported as faulty !!"
 msgstr "Güncelleme hatalı olarak bildirildi !!"
 
+#, fuzzy
+msgid "Update recommended"
+msgstr "Güncelle"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -15286,6 +15304,10 @@ msgstr "Güncelleme beslemesi yok."
 
 msgid "Updates are currently disabled..."
 msgstr "Güncellemeler şu anda devre dışı ..."
+
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Yazma başarısız!"
 
 #, fuzzy
 msgid "Updating cache"
@@ -16104,6 +16126,12 @@ msgid "What do you want to scan?"
 msgstr "Neleri aramak istiyorsunuz?"
 
 msgid "What should be restored?\n"
+msgstr "Ne restore edilmeli?\n"
+
+#, fuzzy
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr "Ne restore edilmeli?\n"
 
 msgid "When enabled the PiP can be closed by the exit button."

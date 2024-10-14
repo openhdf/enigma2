@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2024-03-20 09:59+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Bulgarian\n"
@@ -737,9 +737,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-msgid "10%"
-msgstr ""
-
 msgid "1024 MB"
 msgstr ""
 
@@ -861,9 +858,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -969,9 +963,6 @@ msgstr ""
 msgid "30 minutes"
 msgstr "минути"
 
-msgid "30%"
-msgstr ""
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1036,9 +1027,6 @@ msgstr ""
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1079,9 +1067,6 @@ msgstr ""
 msgid "5 minutes"
 msgstr "минути"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1113,9 +1098,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "минути"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1135,9 +1117,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1161,13 +1140,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1745,9 +1718,6 @@ msgid "Allow unstable (untested) updates"
 msgstr ""
 
 msgid "Allow unsupported modes"
-msgstr ""
-
-msgid "Allows more detailed to be in the crash log"
 msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
@@ -3947,9 +3917,6 @@ msgstr "Създай DVD-ISO"
 msgid "Create directory"
 msgstr "създай директория"
 
-msgid "Create more detailed crash log"
-msgstr ""
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -4929,6 +4896,15 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+msgid "ECM -> ecm.info"
+msgstr ""
+
+msgid "ECM -> ecm0.info"
+msgstr ""
+
+msgid "ECM Info's"
+msgstr ""
+
 msgid "ECM Statistics"
 msgstr ""
 
@@ -5394,12 +5370,6 @@ msgstr "Грешка при стартиране на плъгина"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Грешка при стартиране на плъгина"
 
 msgid "Error reading webpage!"
 msgstr ""
@@ -7356,6 +7326,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -9045,10 +9018,6 @@ msgstr ""
 msgid "OSD Adjustment"
 msgstr ""
 
-#, fuzzy
-msgid "OSD Settings"
-msgstr "Настройки"
-
 msgid "OSD name request"
 msgstr ""
 
@@ -9957,6 +9926,17 @@ msgstr "Моля изчакайте докате мрежата се реста�
 
 msgid "Please wait whilst feeds state is checked."
 msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "моля изчакайте, зареждам снимка..."
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Моля изчакайте теста на вашата мрежа..."
 
 #, fuzzy
 msgid "Please wait."
@@ -10987,6 +10967,14 @@ msgstr "Рестарт GUI сега?"
 msgid "Restart Network Adapter"
 msgstr "Рестарт мрежа"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Рестарт тест"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "изрежи тук"
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -10996,6 +10984,10 @@ msgstr "Да рестартирам ли сега?"
 
 msgid "Restart network"
 msgstr "Рестарт мрежа"
+
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Рестарт тест"
 
 msgid "Restart test"
 msgstr "Рестарт тест"
@@ -11562,6 +11554,10 @@ msgstr ""
 msgid "Select CAId"
 msgstr "избор CAId"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Изберете скорост за обновяване"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -11572,6 +11568,10 @@ msgstr "Изберете Местоположение"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Показвай инфобара при смяна на канал"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Изберете Местоположение"
 
 #, fuzzy
 msgid "Select Software Update"
@@ -13201,8 +13201,8 @@ msgid "SoftCam / CI"
 msgstr ""
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Софтуер"
+msgid "Softcam Manager..."
+msgstr "Управление на пакети"
 
 msgid "Softcam settings"
 msgstr ""
@@ -13242,6 +13242,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Някои плъгини не са налични:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
@@ -14374,6 +14377,9 @@ msgstr ""
 msgid "There are currently no outstanding actions."
 msgstr ""
 
+msgid "There are no items currently available for this screen."
+msgstr ""
+
 msgid "There are no updates available."
 msgstr ""
 
@@ -15479,6 +15485,9 @@ msgstr "Актуализация"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr ""
 
@@ -15512,6 +15521,10 @@ msgstr ""
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#, fuzzy
+msgid "Update recommended"
+msgstr "Актуализация"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -15522,6 +15535,10 @@ msgstr ""
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Грешка при запис!"
 
 #, fuzzy
 msgid "Updating cache"
@@ -16329,6 +16346,11 @@ msgid "What do you want to scan?"
 msgstr "Какво искате да търся?"
 
 msgid "What should be restored?\n"
+msgstr ""
+
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."

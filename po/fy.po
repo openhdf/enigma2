@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: gerrit <fy@li.org>\n"
@@ -791,11 +791,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -939,9 +934,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -1058,11 +1050,6 @@ msgstr "0"
 msgid "30 minutes"
 msgstr "minuten"
 
-#
-#, fuzzy
-msgid "30%"
-msgstr "0"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1130,9 +1117,6 @@ msgstr "2"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1183,9 +1167,6 @@ msgstr "2"
 msgid "5 minutes"
 msgstr "minuten"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1220,9 +1201,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "minuten"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1242,9 +1220,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1270,13 +1245,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1920,9 +1889,6 @@ msgid "Allow unstable (untested) updates"
 msgstr ""
 
 msgid "Allow unsupported modes"
-msgstr ""
-
-msgid "Allows more detailed to be in the crash log"
 msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
@@ -4321,9 +4287,6 @@ msgstr "Meitsje DVD-ISO"
 msgid "Create directory"
 msgstr "map meitsje"
 
-msgid "Create more detailed crash log"
-msgstr ""
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5452,6 +5415,15 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+msgid "ECM -> ecm.info"
+msgstr ""
+
+msgid "ECM -> ecm0.info"
+msgstr ""
+
+msgid "ECM Info's"
+msgstr ""
+
 msgid "ECM Statistics"
 msgstr ""
 
@@ -5959,13 +5931,6 @@ msgstr "Flater by útfieren fan ynstekker"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Flater by útfieren fan ynstekker"
 
 msgid "Error reading webpage!"
 msgstr ""
@@ -8145,6 +8110,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -10041,11 +10009,6 @@ msgstr ""
 msgid "OSD Adjustment"
 msgstr ""
 
-#
-#, fuzzy
-msgid "OSD Settings"
-msgstr "Ynstellingen"
-
 msgid "OSD name request"
 msgstr ""
 
@@ -11048,6 +11011,19 @@ msgstr "Wachtsje oant it netwurk opnei start is..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "plaatsje wurd laden..."
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Wachtsje oant it netwurk opnei start is..."
 
 #
 #, fuzzy
@@ -12244,6 +12220,16 @@ msgstr "GUI no opnij starte?"
 msgid "Restart Network Adapter"
 msgstr "Netwurk nij starte"
 
+#
+#, fuzzy
+msgid "Restart both"
+msgstr "Test nij starte"
+
+#
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "start stik hjirre"
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -12255,6 +12241,11 @@ msgstr "Wier no nei starte ?"
 #
 msgid "Restart network"
 msgstr "Netwurk nij starte"
+
+#
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Test nij starte"
 
 #
 msgid "Restart test"
@@ -12889,6 +12880,11 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Kies hurde skiif"
 
+#
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Kies faasje fan fernije"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -12901,6 +12897,11 @@ msgstr "Kies Lokaasje"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Ynfobalke sjen litte by kanaal wiksel"
+
+#
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Kies Lokaasje"
 
 #
 #, fuzzy
@@ -14719,10 +14720,8 @@ msgstr ""
 msgid "SoftCam / CI"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Softcam Setup"
-msgstr "Ynstellingen befeiligje"
+msgid "Softcam Manager..."
+msgstr ""
 
 msgid "Softcam settings"
 msgstr ""
@@ -14767,6 +14766,9 @@ msgstr ""
 #
 msgid "Some plugins are not available:\n"
 msgstr "Inkele ynstekkers binne net anwêzig:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
@@ -16016,6 +16018,9 @@ msgstr ""
 msgid "There are currently no outstanding actions."
 msgstr ""
 
+msgid "There are no items currently available for this screen."
+msgstr ""
+
 #
 msgid "There are no updates available."
 msgstr ""
@@ -17228,6 +17233,9 @@ msgstr "Bywurkje"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr ""
 
@@ -17263,6 +17271,11 @@ msgstr ""
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Update recommended"
+msgstr "Bywurkje"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -17274,6 +17287,11 @@ msgstr ""
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Skriuw flater!"
 
 #
 #, fuzzy
@@ -18182,6 +18200,11 @@ msgid "What do you want to scan?"
 msgstr "Wat wolle jo ôfsykje ?"
 
 msgid "What should be restored?\n"
+msgstr ""
+
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."

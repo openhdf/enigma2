@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2019-08-27 05:24+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -800,11 +800,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -948,9 +943,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -1067,11 +1059,6 @@ msgstr "0"
 msgid "30 minutes"
 msgstr "mínútur"
 
-#
-#, fuzzy
-msgid "30%"
-msgstr "0"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1139,9 +1126,6 @@ msgstr "2"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1192,9 +1176,6 @@ msgstr "2"
 msgid "5 minutes"
 msgstr "mínútur"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1229,9 +1210,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "mínútur"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1251,9 +1229,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1279,13 +1254,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1912,9 +1881,6 @@ msgstr ""
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "ekki stutt"
-
-msgid "Allows more detailed to be in the crash log"
-msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr ""
@@ -4164,9 +4130,6 @@ msgstr "Búa til DVD-ISO"
 msgid "Create directory"
 msgstr "búa til möppu"
 
-msgid "Create more detailed crash log"
-msgstr ""
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5260,6 +5223,15 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+msgid "ECM -> ecm.info"
+msgstr ""
+
+msgid "ECM -> ecm0.info"
+msgstr ""
+
+msgid "ECM Info's"
+msgstr ""
+
 msgid "ECM Statistics"
 msgstr ""
 
@@ -5759,12 +5731,6 @@ msgstr "Villa við keyrslu íforrits"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Villa við keyrslu íforrits"
 
 msgid "Error reading webpage!"
 msgstr ""
@@ -7907,6 +7873,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -9815,11 +9784,6 @@ msgstr ""
 msgid "OSD Adjustment"
 msgstr ""
 
-#
-#, fuzzy
-msgid "OSD Settings"
-msgstr "Stillingar"
-
 msgid "OSD name request"
 msgstr ""
 
@@ -10834,6 +10798,19 @@ msgstr "Vinsamlega bíðið á meðan netkerfið er endurræst..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "hleð inn mynd, vinsamlegast bíðið.."
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Vinsamlega bíðið á meðan við prufum net tengingu..."
 
 #
 #, fuzzy
@@ -12023,6 +12000,15 @@ msgstr "Endurræsa gluggakerfi núna?"
 msgid "Restart Network Adapter"
 msgstr "Endurræsi netkort"
 
+#
+#, fuzzy
+msgid "Restart both"
+msgstr "Prufa aftur"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "byrja klippingu hér"
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -12034,6 +12020,11 @@ msgstr "Viltu örugglega endurræsa núna?"
 #
 msgid "Restart network"
 msgstr "Endurræsi netkort"
+
+#
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Prufa aftur"
 
 #
 msgid "Restart test"
@@ -12660,6 +12651,10 @@ msgstr ""
 msgid "Select CAId"
 msgstr "veldu CAId"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Veldu hressingar tíðni"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -12672,6 +12667,11 @@ msgstr "Velja staðsetningu"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Sýna upplýsingaborða við að skipta um stöð"
+
+#
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Velja staðsetningu"
 
 #
 #, fuzzy
@@ -14483,8 +14483,8 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Hugbúnaður"
+msgid "Softcam Manager..."
+msgstr "Hugbúnaðarpakka stjóri"
 
 msgid "Softcam settings"
 msgstr ""
@@ -14527,6 +14527,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Sum íforrit eru ekki til:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
@@ -15794,6 +15797,10 @@ msgstr ""
 msgid "There are currently no outstanding actions."
 msgstr "Það er ekkert atriði sem að liggur fyrir."
 
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Það er engin uppfærsla tiltæk."
+
 msgid "There are no updates available."
 msgstr "Það er engin uppfærsla tiltæk."
 
@@ -17002,6 +17009,9 @@ msgstr "Uppfæra"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr ""
 
@@ -17041,6 +17051,11 @@ msgstr ""
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Update recommended"
+msgstr "Uppfæra"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -17051,6 +17066,11 @@ msgstr "Uppfærslur á fæðirásum ekki tiltækar."
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Tókst ekki að skrifa!"
 
 #
 #, fuzzy
@@ -17974,6 +17994,11 @@ msgid "What do you want to scan?"
 msgstr "Að hverju viltu leita?"
 
 msgid "What should be restored?\n"
+msgstr ""
+
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."

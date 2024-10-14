@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlac/TimoJ\n"
@@ -802,11 +802,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -950,9 +945,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 #, fuzzy
 msgid "2160p 24Hz"
 msgstr "720p 24Hz"
@@ -1065,10 +1057,6 @@ msgstr "30"
 msgid "30 minutes"
 msgstr "minuuttia"
 
-#, fuzzy
-msgid "30%"
-msgstr "30"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1137,9 +1125,6 @@ msgstr "24"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1188,9 +1173,6 @@ msgstr "25"
 msgid "5 minutes"
 msgstr "minuuttia"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1224,9 +1206,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "minuuttia"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1246,9 +1225,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1274,13 +1250,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1938,10 +1908,6 @@ msgstr "Salli epästabiilit (kokeiluversio) päivitykset"
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "ei tuettu"
-
-#, fuzzy
-msgid "Allows more detailed to be in the crash log"
-msgstr "Mahdollistaa tarkemmat tiedot kaatumislokissa"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Sallii %s %s:n lukea tallennettuja EPG-tietoja säännöllisesti."
@@ -4368,9 +4334,6 @@ msgstr "Luo DVD-ISO"
 msgid "Create directory"
 msgstr "Luo hakemisto"
 
-msgid "Create more detailed crash log"
-msgstr "Luo yksityiskohtaisemmat kaatumislokit"
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5494,6 +5457,18 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+#, fuzzy
+msgid "ECM -> ecm.info"
+msgstr "ecm.info"
+
+#, fuzzy
+msgid "ECM -> ecm0.info"
+msgstr "ecm.info"
+
+#, fuzzy
+msgid "ECM Info's"
+msgstr "CCcam ECM tietoja"
+
 msgid "ECM Statistics"
 msgstr "ECM tietoja"
 
@@ -6008,12 +5983,6 @@ msgstr "Virhe plugin-lisäosan suorittamisessa"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Muutoslokin lataus epäonnistui."
 
 msgid "Error reading webpage!"
 msgstr "Virhe luettaessa web-sivua!"
@@ -8180,6 +8149,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -10059,10 +10031,6 @@ msgstr "Kuvaruutunäytön 3D-asetukset"
 msgid "OSD Adjustment"
 msgstr ""
 
-#, fuzzy
-msgid "OSD Settings"
-msgstr "Kuvaruutunäytön asetukset"
-
 msgid "OSD name request"
 msgstr "Kuvaruutunäytön nimipyyntö"
 
@@ -11077,6 +11045,18 @@ msgstr "Odota, verkko käynnistetään uudelleen..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Odota kun syötteiden tila tarkistetaan."
+
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Odota (päivitetään paketteja)"
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Odota, haetaan tietoja..."
 
 #
 #, fuzzy
@@ -12264,6 +12244,15 @@ msgstr "Käynnistetäänkö Enigma2 uudelleen?"
 msgid "Restart Network Adapter"
 msgstr "Käynnistä uudelleen"
 
+#
+#, fuzzy
+msgid "Restart both"
+msgstr "Käynnistä testi uudelleen"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "hae korttipalvelin"
+
 msgid "Restart enigma"
 msgstr "Käynnistä käyttöliittymä uudelleen"
 
@@ -12275,6 +12264,11 @@ msgstr "Haluatko silti käynnistää uudelleen?"
 #
 msgid "Restart network"
 msgstr "Käynnistä uudelleen"
+
+#
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Käynnistä testi uudelleen"
 
 #
 msgid "Restart test"
@@ -12899,6 +12893,11 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Valitse CAId"
 
+#
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Valitse virkistystaajuus"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -12910,6 +12909,11 @@ msgstr "Hakemiston valinta"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Vaihda edelliselle kanavalle"
+
+#
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Hakemiston valinta"
 
 #, fuzzy
 msgid "Select Software Update"
@@ -14713,8 +14717,8 @@ msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Samba-asetukset"
+msgid "Softcam Manager..."
+msgstr "Varmuuskopiointi"
 
 msgid "Softcam settings"
 msgstr "Softcam-asetukset"
@@ -14758,6 +14762,9 @@ msgstr ""
 #
 msgid "Some plugins are not available:\n"
 msgstr "Seuraavat lisäosat eivät ole saatavilla:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 #, fuzzy
 msgid "Sorry CIHelper Config is Missing"
@@ -16023,6 +16030,10 @@ msgstr "Vähintään %s päivitystä saatavilla."
 msgid "There are currently no outstanding actions."
 msgstr "Ei suorittamattomia tehtäviä."
 
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Päivityksiä ei ole saatavilla."
+
 msgid "There are no updates available."
 msgstr "Päivityksiä ei ole saatavilla."
 
@@ -17276,6 +17287,9 @@ msgstr "Päivitä"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr "Päivitä vain kanavalista"
 
@@ -17311,6 +17325,11 @@ msgstr "Päivitysväli (sekuntia)"
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Update recommended"
+msgstr "Päivitä"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -17321,6 +17340,11 @@ msgstr "Päivityslähde ei ole saatavilla."
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Kirjoitus epäonnistui!"
 
 #
 #, fuzzy
@@ -18252,6 +18276,12 @@ msgstr "Kanavahaun lisäasetukset:"
 
 #, fuzzy
 msgid "What should be restored?\n"
+msgstr "Minne ajastus tallennetaan?"
+
+#, fuzzy
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr "Minne ajastus tallennetaan?"
 
 #, fuzzy

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2024-03-20 23:38+0100\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: WWW.LINSAT.NET <spaeleus@croci.org>\n"
@@ -809,11 +809,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -957,9 +952,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -1076,11 +1068,6 @@ msgstr "0"
 msgid "30 minutes"
 msgstr "Minuti"
 
-#
-#, fuzzy
-msgid "30%"
-msgstr "0"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1148,9 +1135,6 @@ msgstr "2"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1201,9 +1185,6 @@ msgstr "2"
 msgid "5 minutes"
 msgstr "Minuti"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1238,9 +1219,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "Minuti"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1260,9 +1238,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1288,13 +1263,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1954,9 +1923,6 @@ msgstr ""
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "Non supportato"
-
-msgid "Allows more detailed to be in the crash log"
-msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr ""
@@ -4359,9 +4325,6 @@ msgstr "Creare DVD-ISO"
 msgid "Create directory"
 msgstr "Creare cartella"
 
-msgid "Create more detailed crash log"
-msgstr ""
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5488,6 +5451,15 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+msgid "ECM -> ecm.info"
+msgstr ""
+
+msgid "ECM -> ecm0.info"
+msgstr ""
+
+msgid "ECM Info's"
+msgstr ""
+
 msgid "ECM Statistics"
 msgstr ""
 
@@ -5996,13 +5968,6 @@ msgstr "Errore in esecuzione plugin!"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Errore in esecuzione plugin!"
 
 msgid "Error reading webpage!"
 msgstr ""
@@ -8171,6 +8136,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -10083,11 +10051,6 @@ msgstr ""
 msgid "OSD Adjustment"
 msgstr ""
 
-#
-#, fuzzy
-msgid "OSD Settings"
-msgstr "Config."
-
 msgid "OSD name request"
 msgstr ""
 
@@ -11112,6 +11075,19 @@ msgstr "Riavvio della rete in corso. Attendere..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Immagine in caricamento, attendere..."
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Test della rete in corso. Attendere..."
 
 #
 #, fuzzy
@@ -12310,6 +12286,16 @@ msgstr "Riavviare la GUI?"
 msgid "Restart Network Adapter"
 msgstr "Riavviare la rete"
 
+#
+#, fuzzy
+msgid "Restart both"
+msgstr "Ripetere il test"
+
+#
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "Inizio taglio"
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -12321,6 +12307,11 @@ msgstr "Riavviare ora?"
 #
 msgid "Restart network"
 msgstr "Riavviare la rete"
+
+#
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Ripetere il test"
 
 #
 msgid "Restart test"
@@ -12953,6 +12944,11 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Selezionare CAId"
 
+#
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Selezionare la frequenza di aggiornamento"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -12965,6 +12961,11 @@ msgstr "Selezionare percorso"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Mostrare barra informazioni su cambio canale"
+
+#
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Selezionare percorso"
 
 #
 #, fuzzy
@@ -14786,8 +14787,8 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Software"
+msgid "Softcam Manager..."
+msgstr "Gestore pacchetti"
 
 msgid "Softcam settings"
 msgstr ""
@@ -14832,6 +14833,9 @@ msgstr ""
 #
 msgid "Some plugins are not available:\n"
 msgstr "Alcuni plugin non sono disponibili:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
@@ -16095,6 +16099,11 @@ msgid "There are currently no outstanding actions."
 msgstr "Nessuna azione in sospeso al momento."
 
 #
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Nessun aggiornamento disponibile."
+
+#
 msgid "There are no updates available."
 msgstr "Nessun aggiornamento disponibile."
 
@@ -17311,6 +17320,9 @@ msgstr "Aggiornare"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr ""
 
@@ -17351,6 +17363,11 @@ msgstr ""
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Update recommended"
+msgstr "Aggiornare"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -17361,6 +17378,11 @@ msgstr "Feed aggiornamenti non disponibile."
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Scrittura fallita!"
 
 #
 #, fuzzy
@@ -18286,6 +18308,12 @@ msgid "What do you want to scan?"
 msgstr "Cosa si intende cercare?"
 
 msgid "What should be restored?\n"
+msgstr "Cosa dovrebbe essere ripristinato?\n"
+
+#, fuzzy
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr "Cosa dovrebbe essere ripristinato?\n"
 
 msgid "When enabled the PiP can be closed by the exit button."

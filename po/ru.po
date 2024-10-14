@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: RU locale edited by Sowa\n"
@@ -769,10 +769,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -899,9 +895,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -1008,10 +1001,6 @@ msgstr "30"
 msgid "30 minutes"
 msgstr "минут"
 
-#, fuzzy
-msgid "30%"
-msgstr "30"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1079,9 +1068,6 @@ msgstr "24"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1125,9 +1111,6 @@ msgstr "25"
 msgid "5 minutes"
 msgstr "минут"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1160,9 +1143,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "минут"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1182,9 +1162,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1209,13 +1186,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1803,10 +1774,6 @@ msgstr "Разрешить нестабильные (непроверенные)
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "не поддерживается"
-
-#, fuzzy
-msgid "Allows more detailed to be in the crash log"
-msgstr "Записывать полный креш-лог"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Позволяет %s %s регулярно считывать сохраненные данные EPG"
@@ -4077,9 +4044,6 @@ msgstr "Создать DVD-ISO"
 msgid "Create directory"
 msgstr "создать каталог"
 
-msgid "Create more detailed crash log"
-msgstr "Создание более подробного отчёта об ошибках"
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5077,6 +5041,18 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+#, fuzzy
+msgid "ECM -> ecm.info"
+msgstr "ecm инфо"
+
+#, fuzzy
+msgid "ECM -> ecm0.info"
+msgstr "ecm инфо"
+
+#, fuzzy
+msgid "ECM Info's"
+msgstr "CCcam ECM Инфо"
+
 msgid "ECM Statistics"
 msgstr "Статистика ECM"
 
@@ -5552,12 +5528,6 @@ msgstr "Ошибка выполнения плагина"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Ошибка при загрузке журнала изменений."
 
 msgid "Error reading webpage!"
 msgstr "Ошибка чтения вебстраницы!"
@@ -7557,6 +7527,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -9247,10 +9220,6 @@ msgstr "Настройка 3D меню"
 msgid "OSD Adjustment"
 msgstr ""
 
-#, fuzzy
-msgid "OSD Settings"
-msgstr "Настройки экранного меню"
-
 msgid "OSD name request"
 msgstr "Запрос имени"
 
@@ -10172,6 +10141,17 @@ msgstr "Пожалуйста, подождите, идет перезагруз�
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Пожалуйста, подождите, идёт обмен данных с сервером"
+
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Пожалуйста подождите (обновление пакетов)"
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Пожалуйста, подождите, идёт сбор данных..."
 
 #, fuzzy
 msgid "Please wait."
@@ -11217,6 +11197,14 @@ msgstr "Перезапустить GUI сейчас?"
 msgid "Restart Network Adapter"
 msgstr "Перезапустить сеть"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Перезапустить тест"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "установить картсервер"
+
 msgid "Restart enigma"
 msgstr "Перезапуск Энигмы"
 
@@ -11226,6 +11214,10 @@ msgstr "Действительно перезапустить сейчас?"
 
 msgid "Restart network"
 msgstr "Перезапустить сеть"
+
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Перезапустить тест"
 
 msgid "Restart test"
 msgstr "Перезапустить тест"
@@ -11790,6 +11782,10 @@ msgstr ""
 msgid "Select CAId"
 msgstr "выбор CAId"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Выберите частоту обновления"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -11800,6 +11796,10 @@ msgstr "Выбрать место расположения"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Переключить на предыдущий канал"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Выбрать место расположения"
 
 #, fuzzy
 msgid "Select Software Update"
@@ -13448,8 +13448,8 @@ msgid "SoftCam / CI"
 msgstr "Эмулятор / CI модуль"
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Настройка Samba"
+msgid "Softcam Manager..."
+msgstr "Управление резервированием"
 
 msgid "Softcam settings"
 msgstr "Настройки Softcam"
@@ -13489,6 +13489,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Некоторые плагины недоступны:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 #, fuzzy
 msgid "Sorry CIHelper Config is Missing"
@@ -14652,6 +14655,10 @@ msgstr "По крайней мере %s обновлений доступно."
 msgid "There are currently no outstanding actions."
 msgstr "В настоящее время нет невыполненных действий."
 
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Нет доступных обновлений."
+
 msgid "There are no updates available."
 msgstr "Нет доступных обновлений."
 
@@ -15812,6 +15819,9 @@ msgstr "Обновление"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr "Обновить только список каналов"
 
@@ -15846,6 +15856,10 @@ msgstr "Интервал обновления (в секундах)"
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#, fuzzy
+msgid "Update recommended"
+msgstr "Обновление"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -15856,6 +15870,10 @@ msgstr "Обновления на сервере недоступны."
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Запись неудачна!"
 
 #, fuzzy
 msgid "Updating cache"
@@ -16701,6 +16719,12 @@ msgstr "Что вы хотите сканировать?"
 
 #, fuzzy
 msgid "What should be restored?\n"
+msgstr "Где должны быть сохранены записи?"
+
+#, fuzzy
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr "Где должны быть сохранены записи?"
 
 #, fuzzy

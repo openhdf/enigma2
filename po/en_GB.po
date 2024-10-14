@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2024-03-19 11:00+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: ViX\n"
@@ -707,9 +707,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-msgid "10%"
-msgstr ""
-
 msgid "1024 MB"
 msgstr ""
 
@@ -830,9 +827,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -935,9 +929,6 @@ msgstr ""
 msgid "30 minutes"
 msgstr ""
 
-msgid "30%"
-msgstr ""
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1001,9 +992,6 @@ msgstr ""
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1043,9 +1031,6 @@ msgstr ""
 msgid "5 minutes"
 msgstr ""
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1076,9 +1061,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr ""
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1098,9 +1080,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1124,13 +1103,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1642,9 +1615,6 @@ msgid "Allow unstable (untested) updates"
 msgstr ""
 
 msgid "Allow unsupported modes"
-msgstr ""
-
-msgid "Allows more detailed to be in the crash log"
 msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
@@ -3744,9 +3714,6 @@ msgstr ""
 msgid "Create directory"
 msgstr ""
 
-msgid "Create more detailed crash log"
-msgstr ""
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -4648,6 +4615,15 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+msgid "ECM -> ecm.info"
+msgstr ""
+
+msgid "ECM -> ecm0.info"
+msgstr ""
+
+msgid "ECM Info's"
+msgstr ""
+
 msgid "ECM Statistics"
 msgstr ""
 
@@ -5095,12 +5071,6 @@ msgid "Error executing plugin"
 msgstr ""
 
 msgid "Error formatting disk. The disk may be damaged"
-msgstr ""
-
-#, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
 msgstr ""
 
 msgid "Error reading webpage!"
@@ -6918,6 +6888,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -8487,9 +8460,6 @@ msgstr ""
 msgid "OSD Adjustment"
 msgstr ""
 
-msgid "OSD Settings"
-msgstr ""
-
 msgid "OSD name request"
 msgstr ""
 
@@ -9326,6 +9296,15 @@ msgid "Please wait while your network is restarting..."
 msgstr ""
 
 msgid "Please wait whilst feeds state is checked."
+msgstr ""
+
+msgid "Please wait, restarting cardserver."
+msgstr ""
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+msgid "Please wait, restarting softcam."
 msgstr ""
 
 msgid "Please wait."
@@ -10280,6 +10259,12 @@ msgstr ""
 msgid "Restart Network Adapter"
 msgstr ""
 
+msgid "Restart both"
+msgstr ""
+
+msgid "Restart cardserver"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -10287,6 +10272,9 @@ msgid "Restart necessary, restart GUI now?"
 msgstr ""
 
 msgid "Restart network"
+msgstr ""
+
+msgid "Restart softcam"
 msgstr ""
 
 msgid "Restart test"
@@ -10819,6 +10807,9 @@ msgstr ""
 msgid "Select CAId"
 msgstr ""
 
+msgid "Select Card Server"
+msgstr ""
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -10826,6 +10817,9 @@ msgid "Select Location"
 msgstr ""
 
 msgid "Select Quad Channels"
+msgstr ""
+
+msgid "Select Softcam"
 msgstr ""
 
 msgid "Select Software Update"
@@ -12299,7 +12293,7 @@ msgstr ""
 msgid "SoftCam / CI"
 msgstr ""
 
-msgid "Softcam Setup"
+msgid "Softcam Manager..."
 msgstr ""
 
 msgid "Softcam settings"
@@ -12338,6 +12332,9 @@ msgid ""
 msgstr ""
 
 msgid "Some plugins are not available:\n"
+msgstr ""
+
+msgid "Sorry ... no ECM Info found"
 msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
@@ -13359,6 +13356,9 @@ msgid "There are at least %s updates available."
 msgstr ""
 
 msgid "There are currently no outstanding actions."
+msgstr ""
+
+msgid "There are no items currently available for this screen."
 msgstr ""
 
 msgid "There are no updates available."
@@ -14405,6 +14405,9 @@ msgstr ""
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr ""
 
@@ -14436,6 +14439,9 @@ msgstr ""
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+msgid "Update recommended"
+msgstr ""
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -14445,6 +14451,9 @@ msgid "Updatefeed not available."
 msgstr ""
 
 msgid "Updates are currently disabled..."
+msgstr ""
+
+msgid "Updates blocked"
 msgstr ""
 
 msgid "Updating cache"
@@ -15210,6 +15219,11 @@ msgid "What do you want to scan?"
 msgstr ""
 
 msgid "What should be restored?\n"
+msgstr ""
+
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:11+0200\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Andy Blackburn, Rob van der Does\n"
@@ -758,10 +758,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -891,9 +887,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 #, fuzzy
 msgid "2160p 24Hz"
 msgstr "720p 24Hz"
@@ -1005,10 +998,6 @@ msgstr "30"
 msgid "30 minutes"
 msgstr "minuten"
 
-#, fuzzy
-msgid "30%"
-msgstr "30"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1076,9 +1065,6 @@ msgstr "24"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1123,9 +1109,6 @@ msgstr "25"
 msgid "5 minutes"
 msgstr "minuten"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1158,9 +1141,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "minuten"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1180,9 +1160,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1208,13 +1185,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1799,10 +1770,6 @@ msgstr "Accepteer niet geteste (experimentele) updates"
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "niet ondersteund"
-
-#, fuzzy
-msgid "Allows more detailed to be in the crash log"
-msgstr "Geeft de mogelijkheid meer details in een crashlog op te nemen."
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Laat de %s %s regelmatig de opgeslagen EPG-data lezen."
@@ -4064,9 +4031,6 @@ msgstr "DVD-ISO maken"
 msgid "Create directory"
 msgstr "Map aanmaken"
 
-msgid "Create more detailed crash log"
-msgstr "Crash logs met extra informatie"
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5057,6 +5021,18 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+#, fuzzy
+msgid "ECM -> ecm.info"
+msgstr "ecm-info"
+
+#, fuzzy
+msgid "ECM -> ecm0.info"
+msgstr "ecm-info"
+
+#, fuzzy
+msgid "ECM Info's"
+msgstr "CCcam ECM info"
+
 msgid "ECM Statistics"
 msgstr "ECM Statistieken"
 
@@ -5533,12 +5509,6 @@ msgstr "Fout bij uitvoeren applicatie"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Fout bij het downloaden van het veranderingslogboek."
 
 msgid "Error reading webpage!"
 msgstr "Fout bij lezen webpagina"
@@ -7550,6 +7520,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -9239,10 +9212,6 @@ msgstr "OSD 3D-Instellingen"
 msgid "OSD Adjustment"
 msgstr ""
 
-#, fuzzy
-msgid "OSD Settings"
-msgstr "OSD instellingen"
-
 msgid "OSD name request"
 msgstr "OSD naamverzoek"
 
@@ -10165,6 +10134,15 @@ msgstr "Een ogenblikje geduld; uw netwerk wordt opnieuw gestart..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Even wachten: de feeds worden gecontroleerd."
+
+msgid "Please wait, restarting cardserver."
+msgstr "Even geduld, cardserver wordt opnieuw gestart"
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr "Even geduld, softcam en cardserver worden opnieuw gestart."
+
+msgid "Please wait, restarting softcam."
+msgstr "Even geduld, softcam wordt opnieuw gestart"
 
 #, fuzzy
 msgid "Please wait."
@@ -11212,6 +11190,12 @@ msgstr "De gebruikersinterface nu opnieuw starten?"
 msgid "Restart Network Adapter"
 msgstr "Netwerk herstarten"
 
+msgid "Restart both"
+msgstr "Beide herstarten"
+
+msgid "Restart cardserver"
+msgstr "Cardserver herstarten"
+
 msgid "Restart enigma"
 msgstr "De gebruikersinterface opnieuw starten"
 
@@ -11221,6 +11205,9 @@ msgstr "Nu herstarten?"
 
 msgid "Restart network"
 msgstr "Netwerk herstarten"
+
+msgid "Restart softcam"
+msgstr "Softcam herstarten"
 
 msgid "Restart test"
 msgstr "Test opnieuw starten"
@@ -11786,6 +11773,9 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Selecteer CAId"
 
+msgid "Select Card Server"
+msgstr "Kies Card Server"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -11796,6 +11786,9 @@ msgstr "Kies lokatie"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Ga naar vorige kanaal"
+
+msgid "Select Softcam"
+msgstr "Kies Softcam"
 
 #, fuzzy
 msgid "Select Software Update"
@@ -13449,8 +13442,8 @@ msgid "SoftCam / CI"
 msgstr "Softcam / CI"
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Samba-instellingen"
+msgid "Softcam Manager..."
+msgstr "Softcam instellingen..."
 
 msgid "Softcam settings"
 msgstr "Softcaminstellingen"
@@ -13491,6 +13484,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Applicaties die niet beschikbaar zijn:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 #, fuzzy
 msgid "Sorry CIHelper Config is Missing"
@@ -14651,6 +14647,10 @@ msgstr "Er zijn minstens %s updates beschikbaar."
 
 msgid "There are currently no outstanding actions."
 msgstr "Er zijn geen uitstaande acties"
+
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Er zijn momenteel geen updates beschikbaar"
 
 msgid "There are no updates available."
 msgstr "Er zijn momenteel geen updates beschikbaar"
@@ -15818,6 +15818,9 @@ msgstr "Update"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr "Update alleen de kanaallijst"
 
@@ -15851,6 +15854,10 @@ msgstr "Updateinterval (in secondes)"
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#, fuzzy
+msgid "Update recommended"
+msgstr "Update"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -15862,6 +15869,10 @@ msgstr "Updatefeed niet beschikbaar."
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Schrijven mislukt!"
 
 #, fuzzy
 msgid "Updating cache"
@@ -16706,6 +16717,12 @@ msgstr "Wat wilt u zoeken?"
 
 #, fuzzy
 msgid "What should be restored?\n"
+msgstr "Waar moet de opname opgeslagen worden?"
+
+#, fuzzy
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr "Waar moet de opname opgeslagen worden?"
 
 #, fuzzy

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 3.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: none\n"
@@ -754,10 +754,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -887,9 +883,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 #, fuzzy
 msgid "2160p 24Hz"
 msgstr "720p 24Hz"
@@ -999,10 +992,6 @@ msgstr "30"
 msgid "30 minutes"
 msgstr "minutes"
 
-#, fuzzy
-msgid "30%"
-msgstr "30"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1070,9 +1059,6 @@ msgstr "24"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1117,9 +1103,6 @@ msgstr "25"
 msgid "5 minutes"
 msgstr "minutes"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1152,9 +1135,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "minutes"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1174,9 +1154,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1202,13 +1179,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1772,9 +1743,6 @@ msgid "Allow unstable (untested) updates"
 msgstr ""
 
 msgid "Allow unsupported modes"
-msgstr ""
-
-msgid "Allows more detailed to be in the crash log"
 msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
@@ -3960,9 +3928,6 @@ msgstr "Create DVD-ISO"
 msgid "Create directory"
 msgstr "Create directory"
 
-msgid "Create more detailed crash log"
-msgstr "Create more detailed crash log"
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -4930,6 +4895,18 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+#, fuzzy
+msgid "ECM -> ecm.info"
+msgstr "ecm.info"
+
+#, fuzzy
+msgid "ECM -> ecm0.info"
+msgstr "ecm.info"
+
+#, fuzzy
+msgid "ECM Info's"
+msgstr "CCcam ECM Info"
+
 msgid "ECM Statistics"
 msgstr "ECM Statistics"
 
@@ -5394,12 +5371,6 @@ msgstr "Error executing plugin"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Error downloading change log."
 
 msgid "Error reading webpage!"
 msgstr "Error reading webpage!"
@@ -7315,6 +7286,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -8966,10 +8940,6 @@ msgstr "OSD 3D Setup"
 msgid "OSD Adjustment"
 msgstr ""
 
-#, fuzzy
-msgid "OSD Settings"
-msgstr "OSD settings"
-
 msgid "OSD name request"
 msgstr "OSD name request"
 
@@ -9855,6 +9825,17 @@ msgstr "Please wait while your network is restarting..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Please wait whilst feeds state is checked."
+
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Please wait (updating packages)"
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Please wait while gathering data..."
 
 #, fuzzy
 msgid "Please wait."
@@ -10855,6 +10836,14 @@ msgstr "Restart GUI now?"
 msgid "Restart Network Adapter"
 msgstr ""
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Restart test"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "get the cards' server"
+
 msgid "Restart enigma"
 msgstr "Restart enigma"
 
@@ -10864,6 +10853,10 @@ msgstr "Really restart now?"
 
 msgid "Restart network"
 msgstr "Restart network"
+
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Restart test"
 
 msgid "Restart test"
 msgstr "Restart test"
@@ -11417,6 +11410,10 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Select CAId"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Select refresh rate"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -11426,6 +11423,10 @@ msgstr ""
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Select"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Select location"
 
 msgid "Select Software Update"
 msgstr ""
@@ -12969,8 +12970,8 @@ msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Samba Setup"
+msgid "Softcam Manager..."
+msgstr "Backup Manager"
 
 msgid "Softcam settings"
 msgstr "Softcam settings"
@@ -13009,6 +13010,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Some plugins are not available:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
@@ -14130,6 +14134,10 @@ msgstr "There are at least %s updates available."
 
 msgid "There are currently no outstanding actions."
 msgstr "There are currently no outstanding actions."
+
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "There are no updates available."
 
 msgid "There are no updates available."
 msgstr "There are no updates available."
@@ -15255,6 +15263,9 @@ msgstr ""
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr "Update channel list only"
 
@@ -15288,6 +15299,10 @@ msgstr "Update interval (in seconds)"
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#, fuzzy
+msgid "Update recommended"
+msgstr "Update"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -15298,6 +15313,10 @@ msgstr "Updatefeed not available."
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Write failed!"
 
 #, fuzzy
 msgid "Updating cache"
@@ -16120,6 +16139,12 @@ msgstr "What do you want to scan?"
 
 #, fuzzy
 msgid "What should be restored?\n"
+msgstr "Where should the recording be saved?"
+
+#, fuzzy
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr "Where should the recording be saved?"
 
 msgid "When enabled the PiP can be closed by the exit button."

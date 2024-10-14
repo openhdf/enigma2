@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -741,10 +741,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -875,9 +871,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -989,9 +982,6 @@ msgstr "3"
 msgid "30 minutes"
 msgstr "30 分鐘"
 
-msgid "30%"
-msgstr ""
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1061,9 +1051,6 @@ msgstr "4"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1106,9 +1093,6 @@ msgstr "5"
 msgid "5 minutes"
 msgstr "5 分鐘"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1141,9 +1125,6 @@ msgstr "5"
 msgid "60 minutes"
 msgstr "60 分鐘"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1164,9 +1145,6 @@ msgid "64"
 msgstr "4"
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1191,13 +1169,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1788,9 +1760,6 @@ msgid "Allow unstable (untested) updates"
 msgstr ""
 
 msgid "Allow unsupported modes"
-msgstr ""
-
-msgid "Allows more detailed to be in the crash log"
 msgstr ""
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
@@ -4055,10 +4024,6 @@ msgstr "創建DVD-ISO"
 msgid "Create directory"
 msgstr "創建目錄"
 
-#, fuzzy
-msgid "Create more detailed crash log"
-msgstr "創建movie檔夾失敗"
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5055,6 +5020,18 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+#, fuzzy
+msgid "ECM -> ecm.info"
+msgstr "顯示ECM資訊"
+
+#, fuzzy
+msgid "ECM -> ecm0.info"
+msgstr "顯示ECM資訊"
+
+#, fuzzy
+msgid "ECM Info's"
+msgstr "CCcam資訊"
+
 msgid "ECM Statistics"
 msgstr ""
 
@@ -5533,12 +5510,6 @@ msgstr "執行插件發生錯誤"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "執行插件發生錯誤"
 
 msgid "Error reading webpage!"
 msgstr ""
@@ -7532,6 +7503,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -9262,9 +9236,6 @@ msgstr "衛星/天線 設定"
 msgid "OSD Adjustment"
 msgstr ""
 
-msgid "OSD Settings"
-msgstr "OSD 設定"
-
 msgid "OSD name request"
 msgstr ""
 
@@ -10189,6 +10160,17 @@ msgstr "正在重啟網路...請稍候..."
 #, fuzzy
 msgid "Please wait whilst feeds state is checked."
 msgstr "請稍候,我們正在測驗您的網路..."
+
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "請稍候，正在載入圖片..."
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "請稍候,正在刪除選定的包..."
 
 #, fuzzy
 msgid "Please wait."
@@ -11242,6 +11224,14 @@ msgstr "立即重啟GUI?"
 msgid "Restart Network Adapter"
 msgstr "選擇網卡"
 
+#, fuzzy
+msgid "Restart both"
+msgstr "重新測驗"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "從這裏開始剪輯"
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -11251,6 +11241,10 @@ msgstr "立即重啟(Restart)?"
 
 msgid "Restart network"
 msgstr "重啟網路"
+
+#, fuzzy
+msgid "Restart softcam"
+msgstr "重新測驗"
 
 msgid "Restart test"
 msgstr "重新測驗"
@@ -11813,6 +11807,10 @@ msgstr ""
 msgid "Select CAId"
 msgstr ""
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "選擇刷新率"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -11822,6 +11820,10 @@ msgstr "選擇位置"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "切換頻道時顯示資訊條"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "選擇位置"
 
 #, fuzzy
 msgid "Select Software Update"
@@ -13487,8 +13489,8 @@ msgid "SoftCam / CI"
 msgstr ""
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "保護設定"
+msgid "Softcam Manager..."
+msgstr "交換文件管理"
 
 #, fuzzy
 msgid "Softcam settings"
@@ -13530,6 +13532,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "不使用這些插件:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
@@ -14682,6 +14687,10 @@ msgstr ""
 msgid "There are currently no outstanding actions."
 msgstr "目前沒有異常."
 
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "這裏沒有可用更新."
+
 msgid "There are no updates available."
 msgstr "這裏沒有可用更新."
 
@@ -15806,6 +15815,10 @@ msgstr "更新"
 msgid "Update at your own risk"
 msgstr "更新所有帳戶"
 
+#, fuzzy
+msgid "Update at your own risk!"
+msgstr "更新所有帳戶"
+
 msgid "Update channel list only"
 msgstr ""
 
@@ -15839,6 +15852,10 @@ msgstr "超時(秒)"
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#, fuzzy
+msgid "Update recommended"
+msgstr "更新"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -15849,6 +15866,10 @@ msgstr ""
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#, fuzzy
+msgid "Updates blocked"
+msgstr "寫入失敗！"
 
 #, fuzzy
 msgid "Updating cache"
@@ -16683,6 +16704,11 @@ msgid "What do you want to scan?"
 msgstr "是否開始掃描?"
 
 msgid "What should be restored?\n"
+msgstr ""
+
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."

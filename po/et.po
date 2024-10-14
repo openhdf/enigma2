@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ViX-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas\n"
@@ -755,10 +755,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -888,9 +884,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 #, fuzzy
 msgid "2160p 24Hz"
 msgstr "720p 24Hz"
@@ -1002,10 +995,6 @@ msgstr "30"
 msgid "30 minutes"
 msgstr "minutid"
 
-#, fuzzy
-msgid "30%"
-msgstr "30"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1074,9 +1063,6 @@ msgstr "24"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1121,9 +1107,6 @@ msgstr "25"
 msgid "5 minutes"
 msgstr "minutid"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1156,9 +1139,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "minutid"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1178,9 +1158,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1206,13 +1183,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1798,10 +1769,6 @@ msgstr "Luba testimata uuendused"
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "pole toetatud"
-
-#, fuzzy
-msgid "Allows more detailed to be in the crash log"
-msgstr "Võimaldab rohkemate üksikasjadega vealogide loomise"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "%s %s saab regulaarselt lugeda salvestatud EPG andmeid."
@@ -4064,9 +4031,6 @@ msgstr "Loo DVD-ISO"
 msgid "Create directory"
 msgstr "Loo kataloog"
 
-msgid "Create more detailed crash log"
-msgstr "Loo üksikasjalikum vealogi"
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5055,6 +5019,18 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+#, fuzzy
+msgid "ECM -> ecm.info"
+msgstr "ecm.info"
+
+#, fuzzy
+msgid "ECM -> ecm0.info"
+msgstr "ecm.info"
+
+#, fuzzy
+msgid "ECM Info's"
+msgstr "CCcam ECM info"
+
 msgid "ECM Statistics"
 msgstr "ECM statistika"
 
@@ -5531,12 +5507,6 @@ msgstr "Viga laienduse käivitamisel"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Viga muudatuslogi hankimisel."
 
 msgid "Error reading webpage!"
 msgstr "Viga veebilehe lugemisel!"
@@ -7541,6 +7511,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -9227,10 +9200,6 @@ msgstr "OSD 3D seadistamine"
 msgid "OSD Adjustment"
 msgstr ""
 
-#, fuzzy
-msgid "OSD Settings"
-msgstr "OSD settings"
-
 msgid "OSD name request"
 msgstr "OSD nime päring"
 
@@ -10151,6 +10120,17 @@ msgstr "Oota kuni võrk taaskäivitub..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Oota kuni serverite olek on kontrollitud."
+
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Oota (pakettide uuendamine)"
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Oota andmete kogumist..."
 
 #, fuzzy
 msgid "Please wait."
@@ -11196,6 +11176,14 @@ msgstr "Kas taaskäivitad kasutajaliidese?"
 msgid "Restart Network Adapter"
 msgstr "Taaskäivita võrk "
 
+#, fuzzy
+msgid "Restart both"
+msgstr "Taaskäivita test"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "hangi kaardiserver"
+
 msgid "Restart enigma"
 msgstr "Taaskäivita enigma2"
 
@@ -11205,6 +11193,10 @@ msgstr "Kas taaskäivitad vastuvõtja?"
 
 msgid "Restart network"
 msgstr "Taaskäivita võrk "
+
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Taaskäivita test"
 
 msgid "Restart test"
 msgstr "Taaskäivita test"
@@ -11767,6 +11759,10 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Vali CAId"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Vali värskendussagedus"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -11777,6 +11773,10 @@ msgstr "Vali asukoht"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Eelmisele kanalile"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Vali asukoht"
 
 #, fuzzy
 msgid "Select Software Update"
@@ -13428,8 +13428,8 @@ msgid "SoftCam / CI"
 msgstr "EMU / CI"
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Samba seaded"
+msgid "Softcam Manager..."
+msgstr "Varukoopia haldur"
 
 msgid "Softcam settings"
 msgstr "EMU seaded"
@@ -13469,6 +13469,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Mõned laiendused pole saadaval:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 #, fuzzy
 msgid "Sorry CIHelper Config is Missing"
@@ -14630,6 +14633,10 @@ msgstr "Saadaval on vähemalt %s uuendust."
 msgid "There are currently no outstanding actions."
 msgstr "Praegu ei ole täitmata tegevusi."
 
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Uuendusi ei ole saadaval."
+
 msgid "There are no updates available."
 msgstr "Uuendusi ei ole saadaval."
 
@@ -15785,6 +15792,9 @@ msgstr "Uuendus"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr "Uuenda ainult kanalinimekirja"
 
@@ -15818,6 +15828,10 @@ msgstr "Uuendamise vahemik (sekundites)"
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#, fuzzy
+msgid "Update recommended"
+msgstr "Uuendus"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -15828,6 +15842,10 @@ msgstr "Uuenduslink pole saadaval."
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Kirjutamine nurjus!"
 
 #, fuzzy
 msgid "Updating cache"
@@ -16672,6 +16690,12 @@ msgstr "Mida soovid otsida?"
 
 #, fuzzy
 msgid "What should be restored?\n"
+msgstr "Kuhu salvestatakse?"
+
+#, fuzzy
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr "Kuhu salvestatakse?"
 
 #, fuzzy

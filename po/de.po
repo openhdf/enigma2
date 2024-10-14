@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
-"PO-Revision-Date: 2024-08-16 19:04+0200\n"
+"POT-Creation-Date: 2024-10-14 14:10+0200\n"
+"PO-Revision-Date: 2024-10-14 14:12+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -767,9 +767,6 @@ msgstr "1,5 Sek"
 msgid "1.7s"
 msgstr "1,7 Sek"
 
-msgid "10%"
-msgstr "10%"
-
 msgid "1024 MB"
 msgstr "1024 MB"
 
@@ -890,9 +887,6 @@ msgstr "2 GB"
 msgid "2.5s"
 msgstr "2,5 Sek"
 
-msgid "20%"
-msgstr "20%"
-
 msgid "2160p 24Hz"
 msgstr "2160p 24Hz"
 
@@ -995,9 +989,6 @@ msgstr "30"
 msgid "30 minutes"
 msgstr "30 Minuten"
 
-msgid "30%"
-msgstr "30"
-
 msgid "30p/24p"
 msgstr "30p/24p"
 
@@ -1061,9 +1052,6 @@ msgstr "4"
 msgid "4 GB"
 msgstr "4 GB"
 
-msgid "40%"
-msgstr "40%"
-
 msgid "420"
 msgstr "420"
 
@@ -1103,9 +1091,6 @@ msgstr "5"
 msgid "5 minutes"
 msgstr "5 Minuten"
 
-msgid "50%"
-msgstr "50%"
-
 msgid "50p/24p"
 msgstr "50p/24p"
 
@@ -1136,9 +1121,6 @@ msgstr "5er"
 msgid "60 minutes"
 msgstr "60 Minuten"
 
-msgid "60%"
-msgstr "60%"
-
 msgid "60p/24p"
 msgstr "60p/24p"
 
@@ -1159,9 +1141,6 @@ msgstr "64"
 
 msgid "64 MB"
 msgstr "64 MB"
-
-msgid "70%"
-msgstr "70%"
 
 msgid "720p"
 msgstr "720p"
@@ -1184,14 +1163,8 @@ msgstr "8 GB"
 msgid "8 MB"
 msgstr "8MB"
 
-msgid "80%"
-msgstr "80%"
-
 msgid "8bit"
 msgstr "8bit"
-
-msgid "90%"
-msgstr "90%"
 
 msgid "96 MB"
 msgstr "96MB"
@@ -1748,9 +1721,6 @@ msgstr "Erlaube instabile (ungetestete) Updates"
 
 msgid "Allow unsupported modes"
 msgstr "Erlaube nicht unterstützte Modi"
-
-msgid "Allows more detailed to be in the crash log"
-msgstr "Erweiterte Informationen im Crash-Log eintragen"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Regelmäßiges Lesen der EPG-Daten aus der 'EPG-Datei' erlauben."
@@ -3445,7 +3415,7 @@ msgid "Configure if service picons will be shown in the servicelist."
 msgstr "Konfigurieren ob und wie Picons in der Senderliste gezeigt werden."
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
-msgstr "Konfiguriere, ob Untertitel zwischen normal, kursiv, fett und fettkursiv wechseln sollen"
+msgstr "Lege fest, ob der Untertitel zwischen normal, kursiv, fett und fett-kursiv wechseln soll."
 
 msgid "Configure interface"
 msgstr "Netzwerkkarte konfigurieren"
@@ -3911,9 +3881,6 @@ msgstr "ISO erstellen"
 
 msgid "Create directory"
 msgstr "Verzeichnis erstellen"
-
-msgid "Create more detailed crash log"
-msgstr "Erzeuge detaillierteren Crashlog"
 
 msgid "Create separate radio userbouquet"
 msgstr "Erstelle eigenes Radio Bouquet"
@@ -4844,6 +4811,15 @@ msgstr "E2 (Neu)starts:\t\t%s\n"
 msgid "E3HD/XPEEDLX/GI"
 msgstr "E3HD/XPEEDLX/GI"
 
+msgid "ECM -> ecm.info"
+msgstr "ECM -> ecm.info"
+
+msgid "ECM -> ecm0.info"
+msgstr "ECM -> ecm0.info"
+
+msgid "ECM Info's"
+msgstr "ECM Info's"
+
 msgid "ECM Statistics"
 msgstr "ECM Statistik"
 
@@ -5305,14 +5281,6 @@ msgstr "Ausführen des Plugins fehlgeschlagen"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr "Fehler beim Formatieren der Festplatte"
-
-#, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr ""
-"Fehler beim Abrufen des Links über %s\n"
-"%s"
 
 msgid "Error reading webpage!"
 msgstr "Fehler beim Lesen der Web-Seite!"
@@ -7166,6 +7134,9 @@ msgstr "Objekte pro Seite "
 msgid "Items per page for list screen"
 msgstr "Einträge pro Seite bei Liste"
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr "Es wird empfohlen, vorher ein vollständiges Backup zu erstellen"
+
 msgid "J"
 msgstr "J"
 
@@ -8772,9 +8743,6 @@ msgstr "OSD 3D Einstellungen"
 msgid "OSD Adjustment"
 msgstr "OSD Anpassung"
 
-msgid "OSD Settings"
-msgstr "OSD-Einstellungen"
-
 msgid "OSD name request"
 msgstr "Anfrage über Benutzeroberfläche"
 
@@ -9429,9 +9397,6 @@ msgstr "Bitte folge den Angaben auf dem Fernseher"
 msgid "Please make a selection"
 msgstr "Bitte Auswahl treffen"
 
-msgid "Use green/red buttons to toggle between download and remove."
-msgstr "Taste Rot/Grün wechselt zwischen Download und Entfernen."
-
 msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
 msgstr "Auf das zuletzt ausgewählte Medium konnte nicht zugegriffen werden, daher wird stattdessen das Standardverzeichnis benutzt."
 
@@ -9658,6 +9623,15 @@ msgstr "Bitte warten, das Netzwerk wird neu gestartet."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Bitte warten bis Feeds geprüft wurden."
+
+msgid "Please wait, restarting cardserver."
+msgstr "Bitte warten, starte Karten-Server neu."
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr "Bitte warten, starte Softcam und Karten-Server neu."
+
+msgid "Please wait, restarting softcam."
+msgstr "Bitte warten, starte Softcam neu."
 
 msgid "Please wait."
 msgstr "Bitte warten Sie."
@@ -10625,6 +10599,12 @@ msgstr "Benutzeroberfläche jetzt neu starten?"
 msgid "Restart Network Adapter"
 msgstr "Neustart des Netzwerkadapters"
 
+msgid "Restart both"
+msgstr "Neustart beide"
+
+msgid "Restart cardserver"
+msgstr "Neustart Karten-Server"
+
 msgid "Restart enigma"
 msgstr "Benutzeroberfläche neu starten"
 
@@ -10633,6 +10613,9 @@ msgstr "Neustart erforderlich, GUI jetzt neu starten?"
 
 msgid "Restart network"
 msgstr "Netzwerk neu starten"
+
+msgid "Restart softcam"
+msgstr "Neustart Softcam"
 
 msgid "Restart test"
 msgstr "Test wiederholen"
@@ -11164,6 +11147,9 @@ msgstr "Wählen Sie \"Ja\", um nur bei Satellitenwechsel den DiSEqC-Befehl zu se
 msgid "Select CAId"
 msgstr "CAID auswählen"
 
+msgid "Select Card Server"
+msgstr "Karten-Server auswählen"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Wählen Sie Fast DiSEqC, wenn Ihr Antennensystem dies unterstützt. Wenn Sie unsicher sind, wählen Sie \"Nein\"."
 
@@ -11172,6 +11158,9 @@ msgstr "Wähle Verzeichnis"
 
 msgid "Select Quad Channels"
 msgstr "Quad-Kanäle auswählen"
+
+msgid "Select Softcam"
+msgstr "Softcam auswählen"
 
 msgid "Select Software Update"
 msgstr "Auswahl Software Update"
@@ -12654,8 +12643,8 @@ msgstr "Sozial/Politik/Wirtschaft"
 msgid "SoftCam / CI"
 msgstr "CI / Softcam Einstellungen"
 
-msgid "Softcam Setup"
-msgstr "Softcam-Setup"
+msgid "Softcam Manager..."
+msgstr "Softcam Manager..."
 
 msgid "Softcam settings"
 msgstr "Softcam Einstellungen"
@@ -12696,6 +12685,9 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Einige Plugins sind nicht verfügbar:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr "Sorry ... keine ECM Info gefunden"
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr "CIHelper Konfiguration nicht vorhanden"
@@ -13787,6 +13779,9 @@ msgstr "Es sind mindestens %s Updates verfügbar."
 msgid "There are currently no outstanding actions."
 msgstr "Es sind keine Aktivitäten geplant."
 
+msgid "There are no items currently available for this screen."
+msgstr "Für diesen Bildschirm sind derzeit keine Artikel verfügbar."
+
 msgid "There are no updates available."
 msgstr "Es sind keine Updates verfügbar."
 
@@ -14865,17 +14860,11 @@ msgstr "Cache aktualisieren"
 msgid "Update anyway?"
 msgstr "Trotzdem Updaten?"
 
-msgid "Its recommended to create a Fullbackup before update"
-msgstr "Es wird empfohlen, vorher ein vollständiges Backup zu erstellen"
-
-msgid "Updates blocked"
-msgstr "Updates aktuell gesperrt"
+msgid "Update at your own risk"
+msgstr "Update auf eigene Gefahr"
 
 msgid "Update at your own risk!"
 msgstr "Update auf eigenes Risiko!"
-
-msgid "Update recommended"
-msgstr "Update empfohlen"
 
 msgid "Update channel list only"
 msgstr "Nur Senderliste aktualisieren"
@@ -14908,6 +14897,9 @@ msgstr "Update Zeitintervall x Sekunden"
 msgid "Update is reported as faulty !!"
 msgstr "Das Update wurde als fehlerhaft gemeldet !!"
 
+msgid "Update recommended"
+msgstr "Update empfohlen"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -14920,6 +14912,9 @@ msgstr "Updatefeed nicht verfügbar."
 
 msgid "Updates are currently disabled..."
 msgstr "Updates sind derzeit deaktiviert..."
+
+msgid "Updates blocked"
+msgstr "Updates aktuell gesperrt"
 
 msgid "Updating cache"
 msgstr "Cache aktualisieren"

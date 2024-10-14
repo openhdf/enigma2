@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: www.CostaBlancaTranslations.com <maria@CostaBlancaTranslations.com>\n"
@@ -805,11 +805,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -952,9 +947,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -1066,11 +1058,6 @@ msgstr "30"
 msgid "30 minutes"
 msgstr "Minutos"
 
-#
-#, fuzzy
-msgid "30%"
-msgstr "30"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1141,9 +1128,6 @@ msgstr "24"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1194,9 +1178,6 @@ msgstr "25"
 msgid "5 minutes"
 msgstr "Minutos"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1231,9 +1212,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "Minutos"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1253,9 +1231,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1281,13 +1256,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1946,10 +1915,6 @@ msgstr "Permitir actualizaciones inestables (no probadas)"
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "No compatible."
-
-#, fuzzy
-msgid "Allows more detailed to be in the crash log"
-msgstr "Permite más detalles en el historial de caídas"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Permite que la %s %s lea los datos grabados en el EPG periódicamente."
@@ -4386,9 +4351,6 @@ msgstr "Crear DVD-ISO"
 msgid "Create directory"
 msgstr "Crear directorio"
 
-msgid "Create more detailed crash log"
-msgstr "Crear historial de fallo más detallado."
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5516,6 +5478,18 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+#, fuzzy
+msgid "ECM -> ecm.info"
+msgstr "ecm.info"
+
+#, fuzzy
+msgid "ECM -> ecm0.info"
+msgstr "ecm.info"
+
+#, fuzzy
+msgid "ECM Info's"
+msgstr "Información CCcam ECM"
+
 msgid "ECM Statistics"
 msgstr "Estadísticas ECM"
 
@@ -6028,13 +6002,6 @@ msgstr "Error ejecutando el complemento"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Error ejecutando el complemento"
 
 msgid "Error reading webpage!"
 msgstr "Error leyendo la página web"
@@ -8209,6 +8176,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -10104,10 +10074,6 @@ msgstr "Configuración OSD 3D"
 msgid "OSD Adjustment"
 msgstr ""
 
-#, fuzzy
-msgid "OSD Settings"
-msgstr "Ajustes OSD"
-
 msgid "OSD name request"
 msgstr "Solicitud de nombre OSD"
 
@@ -11129,6 +11095,17 @@ msgstr "Espera mientras se reinicia la red..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Espera hasta que se verifique el estado de las fuentes."
+
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Espera por favor (actualizando paquetes)."
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Por favor, espera mientras se recogen los datos..."
 
 #
 #, fuzzy
@@ -12317,6 +12294,15 @@ msgstr "¿Reiniciar GUI ahora?"
 msgid "Restart Network Adapter"
 msgstr "Reiniciar red"
 
+#
+#, fuzzy
+msgid "Restart both"
+msgstr "Reiniciar prueba"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "Obtener el servidor de las tarjetas."
+
 msgid "Restart enigma"
 msgstr "Reiniciar Enigma"
 
@@ -12328,6 +12314,11 @@ msgstr "¿Seguro que quieres reiniciar ahora?"
 #
 msgid "Restart network"
 msgstr "Reiniciar red"
+
+#
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Reiniciar prueba"
 
 #
 msgid "Restart test"
@@ -12957,6 +12948,11 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Seleccionar CAId"
 
+#
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Seleccionar la velocidad de actualización"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -12968,6 +12964,11 @@ msgstr "Seleccionar ubicación"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Cambiar al canal anterior."
+
+#
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Seleccionar ubicación"
 
 #, fuzzy
 msgid "Select Software Update"
@@ -14763,8 +14764,8 @@ msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Configuración Samba"
+msgid "Softcam Manager..."
+msgstr "Administrador de copias de seguridad"
 
 msgid "Softcam settings"
 msgstr "Ajustes de Softcam"
@@ -14809,6 +14810,9 @@ msgstr ""
 #
 msgid "Some plugins are not available:\n"
 msgstr "Algunos complementos no están disponibles:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 #, fuzzy
 msgid "Sorry CIHelper Config is Missing"
@@ -16063,6 +16067,11 @@ msgstr "Hay más de %s actualizaciones disponibles."
 #
 msgid "There are currently no outstanding actions."
 msgstr "Actualmente no hay ninguna acción en ejecución."
+
+#
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "No hay actualizaciones disponibles."
 
 #
 msgid "There are no updates available."
@@ -17331,6 +17340,9 @@ msgstr "Actualizar"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr "Actualizar la lista de canales solo"
 
@@ -17367,6 +17379,11 @@ msgstr "Intervalo de actualización (en segundos)."
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Update recommended"
+msgstr "Actualizar"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -17377,6 +17394,11 @@ msgstr "Updatefeed no disponible."
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Fallo durante la escritura."
 
 #
 #, fuzzy
@@ -18296,6 +18318,12 @@ msgstr "¿Qué quieres buscar?"
 
 #, fuzzy
 msgid "What should be restored?\n"
+msgstr "¿Dónde quieres guardar la grabación?"
+
+#, fuzzy
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr "¿Dónde quieres guardar la grabación?"
 
 #, fuzzy

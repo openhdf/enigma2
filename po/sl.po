@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:09+0200\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -818,11 +818,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -966,9 +961,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -1085,11 +1077,6 @@ msgstr "0"
 msgid "30 minutes"
 msgstr "minute"
 
-#
-#, fuzzy
-msgid "30%"
-msgstr "0"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1157,9 +1144,6 @@ msgstr "2"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1210,9 +1194,6 @@ msgstr "2"
 msgid "5 minutes"
 msgstr "minute"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1247,9 +1228,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "minute"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1269,9 +1247,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1297,13 +1272,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1944,11 +1913,6 @@ msgstr ""
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "ni podprto"
-
-#
-#, fuzzy
-msgid "Allows more detailed to be in the crash log"
-msgstr "Bolj podroben dnevnik napak"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr ""
@@ -4380,10 +4344,6 @@ msgstr "Kreiraj DVD-ISO"
 msgid "Create directory"
 msgstr "Ustvarite mapo"
 
-#
-msgid "Create more detailed crash log"
-msgstr "Bolj podroben dnevnik napak"
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5540,6 +5500,15 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+msgid "ECM -> ecm.info"
+msgstr ""
+
+msgid "ECM -> ecm0.info"
+msgstr ""
+
+msgid "ECM Info's"
+msgstr ""
+
 msgid "ECM Statistics"
 msgstr ""
 
@@ -6077,13 +6046,6 @@ msgstr "Napaka pri zagonu vtičnika"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Napaka pri zagonu vtičnika"
 
 msgid "Error reading webpage!"
 msgstr ""
@@ -8297,6 +8259,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -10245,11 +10210,6 @@ msgstr ""
 msgid "OSD Adjustment"
 msgstr ""
 
-#
-#, fuzzy
-msgid "OSD Settings"
-msgstr "Nastavitve"
-
 msgid "OSD name request"
 msgstr ""
 
@@ -11286,6 +11246,15 @@ msgstr "Počakajte, da se mreža ponovno zažene..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr ""
+
+msgid "Please wait, restarting cardserver."
+msgstr "Poteka ponovni zagon bralca kartic..."
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr "Poteka ponovni zagon emulatorja in bralca kartic..."
+
+msgid "Please wait, restarting softcam."
+msgstr "Poteka ponovni zagon emulatorja..."
 
 #
 #, fuzzy
@@ -12525,6 +12494,12 @@ msgstr "Ponoven zagon uporabniškega vmesnika?"
 msgid "Restart Network Adapter"
 msgstr "Ponovni zagon omrežja"
 
+msgid "Restart both"
+msgstr "Ponovni zagon obeh"
+
+msgid "Restart cardserver"
+msgstr "Ponovni zagon bralca kartic"
+
 #
 msgid "Restart enigma"
 msgstr "Ponovni zagon Enigme"
@@ -12537,6 +12512,9 @@ msgstr "Res želite ponovno zagnati sprejemnik?"
 #
 msgid "Restart network"
 msgstr "Ponovni zagon omrežja"
+
+msgid "Restart softcam"
+msgstr "Ponovni zagon emulatorja"
 
 #
 msgid "Restart test"
@@ -13191,6 +13169,9 @@ msgstr ""
 msgid "Select CAId"
 msgstr "izberite CAId"
 
+msgid "Select Card Server"
+msgstr "Izbor bralca kartic"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -13203,6 +13184,9 @@ msgstr "Izberite lokacijo"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Prikaz info. vrstice med prehajanjem po kanalih"
+
+msgid "Select Softcam"
+msgstr "Izbor emulatorja"
 
 #
 #, fuzzy
@@ -15091,10 +15075,9 @@ msgstr ""
 msgid "SoftCam / CI"
 msgstr "Emulatorji"
 
-#
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Samba (SMB) nastavitve"
+msgid "Softcam Manager..."
+msgstr "Nastavitve"
 
 msgid "Softcam settings"
 msgstr ""
@@ -15140,6 +15123,9 @@ msgstr ""
 #
 msgid "Some plugins are not available:\n"
 msgstr "Nekateri vtičniki niso na voljo:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
@@ -16424,6 +16410,11 @@ msgid "There are currently no outstanding actions."
 msgstr ""
 
 #
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Posodobitev ni na voljo."
+
+#
 msgid "There are no updates available."
 msgstr "Posodobitev ni na voljo."
 
@@ -17651,6 +17642,9 @@ msgstr "Posodobi"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr ""
 
@@ -17691,6 +17685,11 @@ msgstr ""
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Update recommended"
+msgstr "Posodobi"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -17702,6 +17701,11 @@ msgstr "Server je trenutno nedosegljiv."
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Zapisovanje neuspešno!"
 
 #
 #, fuzzy
@@ -18633,6 +18637,11 @@ msgid "What do you want to scan?"
 msgstr "Kaj želite iskati?"
 
 msgid "What should be restored?\n"
+msgstr ""
+
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."

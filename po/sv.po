@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-24 13:42+0100\n"
+"POT-Creation-Date: 2024-10-14 14:07+0200\n"
 "PO-Revision-Date: 2019-08-27 05:26+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: torac <info@takerman.se>\n"
@@ -795,11 +795,6 @@ msgstr ""
 msgid "1.7s"
 msgstr ""
 
-#
-#, fuzzy
-msgid "10%"
-msgstr "1.0"
-
 msgid "1024 MB"
 msgstr ""
 
@@ -937,9 +932,6 @@ msgstr ""
 msgid "2.5s"
 msgstr ""
 
-msgid "20%"
-msgstr ""
-
 msgid "2160p 24Hz"
 msgstr ""
 
@@ -1051,11 +1043,6 @@ msgstr "30"
 msgid "30 minutes"
 msgstr "minuter"
 
-#
-#, fuzzy
-msgid "30%"
-msgstr "30"
-
 msgid "30p/24p"
 msgstr ""
 
@@ -1126,9 +1113,6 @@ msgstr "24"
 msgid "4 GB"
 msgstr ""
 
-msgid "40%"
-msgstr ""
-
 msgid "420"
 msgstr ""
 
@@ -1179,9 +1163,6 @@ msgstr "25"
 msgid "5 minutes"
 msgstr "minuter"
 
-msgid "50%"
-msgstr ""
-
 msgid "50p/24p"
 msgstr ""
 
@@ -1216,9 +1197,6 @@ msgstr ""
 msgid "60 minutes"
 msgstr "minuter"
 
-msgid "60%"
-msgstr ""
-
 msgid "60p/24p"
 msgstr ""
 
@@ -1238,9 +1216,6 @@ msgid "64"
 msgstr ""
 
 msgid "64 MB"
-msgstr ""
-
-msgid "70%"
 msgstr ""
 
 msgid "720p"
@@ -1266,13 +1241,7 @@ msgstr ""
 msgid "8 MB"
 msgstr ""
 
-msgid "80%"
-msgstr ""
-
 msgid "8bit"
-msgstr ""
-
-msgid "90%"
 msgstr ""
 
 msgid "96 MB"
@@ -1930,10 +1899,6 @@ msgstr "Tillåt uppdateringar som ej är sluttestade"
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "stöds ej"
-
-#, fuzzy
-msgid "Allows more detailed to be in the crash log"
-msgstr "Tillåter mer detaljer i kraschloggen"
 
 msgid "Allows the %s %s to read the stored EPG data regularly."
 msgstr "Låter %s %s  läsa lagrad EPG data regelbundet."
@@ -4363,9 +4328,6 @@ msgstr "Skapa DVD-ISO"
 msgid "Create directory"
 msgstr "Skapa katalog"
 
-msgid "Create more detailed crash log"
-msgstr "Skapa mer detaljerad kraschlogg"
-
 msgid "Create separate radio userbouquet"
 msgstr ""
 
@@ -5491,6 +5453,18 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
+#, fuzzy
+msgid "ECM -> ecm.info"
+msgstr "ecm.info"
+
+#, fuzzy
+msgid "ECM -> ecm0.info"
+msgstr "ecm.info"
+
+#, fuzzy
+msgid "ECM Info's"
+msgstr "CCcam ECM Info"
+
 msgid "ECM Statistics"
 msgstr "ECM Statistik"
 
@@ -6003,12 +5977,6 @@ msgstr "Fel vid körning av plugin"
 
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"Error getting link via %s\n"
-"%s"
-msgstr "Fel vid nedladnning av ändringslogg."
 
 msgid "Error reading webpage!"
 msgstr "Fel vid läsning av webbsida!"
@@ -8181,6 +8149,9 @@ msgstr ""
 msgid "Items per page for list screen"
 msgstr ""
 
+msgid "Its recommended to create a Fullbackup before update"
+msgstr ""
+
 msgid "J"
 msgstr ""
 
@@ -10070,10 +10041,6 @@ msgstr "OSD 3D Inställning"
 msgid "OSD Adjustment"
 msgstr ""
 
-#, fuzzy
-msgid "OSD Settings"
-msgstr "OSD inställningar"
-
 msgid "OSD name request"
 msgstr "OSD namnförfrågan"
 
@@ -11092,6 +11059,17 @@ msgstr "Vänligen vänta medan ditt nätverk startas om..."
 
 msgid "Please wait whilst feeds state is checked."
 msgstr "Vänligen vänta medan feed status kontrolleras."
+
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Vänligen vänta (paket uppdateras)"
+
+msgid "Please wait, restarting softcam and cardserver."
+msgstr ""
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Vänligen vänta, insamling av data pågår..."
 
 #
 #, fuzzy
@@ -12283,6 +12261,15 @@ msgstr "Omstart av GUI nu?"
 msgid "Restart Network Adapter"
 msgstr "Omstart nätverk"
 
+#
+#, fuzzy
+msgid "Restart both"
+msgstr "Omstart test"
+
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "erhåll kortets server"
+
 msgid "Restart enigma"
 msgstr "Starta om Enigma"
 
@@ -12294,6 +12281,11 @@ msgstr "Verkligen starta om nu?"
 #
 msgid "Restart network"
 msgstr "Omstart nätverk"
+
+#
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Omstart test"
 
 #
 msgid "Restart test"
@@ -12926,6 +12918,11 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Välj CAId"
 
+#
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Välj uppdateringsfrekvens"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -12937,6 +12934,11 @@ msgstr "Välj sökväg"
 #, fuzzy
 msgid "Select Quad Channels"
 msgstr "Återgå till föregående kanal"
+
+#
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Välj sökväg"
 
 #, fuzzy
 msgid "Select Software Update"
@@ -14733,8 +14735,8 @@ msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
 
 #, fuzzy
-msgid "Softcam Setup"
-msgstr "Samba-Konfiguration"
+msgid "Softcam Manager..."
+msgstr "Backup Manager"
 
 msgid "Softcam settings"
 msgstr "Softcaminställningar"
@@ -14779,6 +14781,9 @@ msgstr ""
 #
 msgid "Some plugins are not available:\n"
 msgstr "Några plugins är inte tillgängliga:\n"
+
+msgid "Sorry ... no ECM Info found"
+msgstr ""
 
 #, fuzzy
 msgid "Sorry CIHelper Config is Missing"
@@ -16034,6 +16039,11 @@ msgstr "Det finns minst %s uppdateringar tillgängliga."
 #
 msgid "There are currently no outstanding actions."
 msgstr "För tillfället finns det inga åtgärder att utföra."
+
+#
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Inga uppdateringar tillgängliga."
 
 #
 msgid "There are no updates available."
@@ -17302,6 +17312,9 @@ msgstr "Uppdatera"
 msgid "Update at your own risk"
 msgstr ""
 
+msgid "Update at your own risk!"
+msgstr ""
+
 msgid "Update channel list only"
 msgstr "Uppdatera endast kanallistan"
 
@@ -17338,6 +17351,11 @@ msgstr "Uppdateringsintervall (i sekunder)"
 msgid "Update is reported as faulty !!"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Update recommended"
+msgstr "Uppdatera"
+
 msgid ""
 "Update succeeded!\n"
 "Your Bootloader is now up-to-date!"
@@ -17349,6 +17367,11 @@ msgstr "Uppdateringsfeed ej tillgänglig."
 
 msgid "Updates are currently disabled..."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Updates blocked"
+msgstr "Skrivning misslyckades!"
 
 #
 #, fuzzy
@@ -18269,6 +18292,12 @@ msgstr "Vad vill du söka efter?"
 
 #, fuzzy
 msgid "What should be restored?\n"
+msgstr "Var skall inspelningen sparas?"
+
+#, fuzzy
+msgid ""
+"What should be restored?\n"
+"No saved settings found!"
 msgstr "Var skall inspelningen sparas?"
 
 #, fuzzy
