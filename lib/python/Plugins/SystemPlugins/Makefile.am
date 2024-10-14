@@ -6,7 +6,7 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	HdmiCEC VideoClippingSetup SatelliteEquipmentControl \
 	VideoEnhancement WirelessLan NetworkWizard FastScan \
 	SABnzbdSetup OSD3DSetup DeviceManager SwapManager LCNScanner \
-	FastChannelChange
+	FastChannelChange SoftcamSetup
 
 if DREAMBOX
 SUBDIRS += FrontprocessorUpgrade
