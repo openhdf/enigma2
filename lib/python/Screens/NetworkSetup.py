@@ -4510,6 +4510,7 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 			fp.write("0")
 			system("rm -R " + ipv6)
 		fp.close()
+		system("sysctl net.ipv6.conf.lo.disable_ipv6=0")
 		self.close()
 
 	def run(self):
