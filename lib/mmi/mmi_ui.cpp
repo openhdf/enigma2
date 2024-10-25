@@ -1,6 +1,7 @@
 #include <lib/mmi/mmi_ui.h>
 #include <lib/dvb_ci/dvbci_session.h> // for parseLengthField
 
+#include <regex>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
@@ -19,6 +20,7 @@ eMMI_UI::eMMI_UI(int max_slots)
 		slotdata[i].mmiScreenReady=0;
 		slotdata[i].mmiTuplePos=0;
 		slotdata[i].state=-1;
+		slotdata[i].isError10=0;
 	}
 }
 
@@ -46,17 +48,17 @@ int eMMI_UI::processMMIData(int slot_id, const unsigned char *tag, const void *d
 				timeout = d[1];
 			else
 			{
-				eDebug("[eMMI_UI] mmi close tag incorrect.. no timeout given.. assume 5 seconds");
+				eDebug("[eMMI_UI] close tag incorrect.. no timeout given.. assume 5 seconds");
 				timeout = 5;
 			}
 		}
 		else if (d[0] > 1)
-			eDebug("[eMMI_UI] mmi close tag incorrect.. byte 4 should be 0 or 1");
+			eDebug("[eMMI_UI] close tag incorrect.. byte 4 should be 0 or 1");
 		mmiScreenClose(slot_id, timeout);
 		break;
 	}
 	case 0x01:
-		eDebug("[eMMI_UI] MMI display control");
+		eDebug("[eMMI_UI] display control");
 		if (((unsigned char*)data)[0] != 1)
 			eDebug("[eMMI_UI] displeay control failes: expected 1 as first byte, got %d", ((unsigned char*)data)[0]);
 		return 1;
@@ -73,11 +75,12 @@ int eMMI_UI::processMMIData(int slot_id, const unsigned char *tag, const void *d
 			eDebug("[eMMI_UI] %d bytes text", textlen);
 		if ((d+textlen) > max)
 			break;
-		char str[textlen + 1];
-		memcpy(str, ((char*)d), textlen);
+		unsigned char str[textlen + 1];
+		memcpy(str, ((unsigned char*)d), textlen);
 		str[textlen] = '\0';
-		eDebug("[eMMI_UI] enq-text: %s",str);
-		mmiScreenEnq(slot_id, blind, alen, (char*)convertDVBUTF8(str).c_str());
+		std::string converted_str = convertDVBUTF8(str, textlen, -1, 1, 0);
+		eDebug("[eMMI_UI] enq-text: %s", converted_str.c_str());
+		mmiScreenEnq(slot_id, blind, alen, (char*)converted_str.c_str());
 		break;
 	}
 	case 0x09:		//Tmenu_last
@@ -86,6 +89,7 @@ int eMMI_UI::processMMIData(int slot_id, const unsigned char *tag, const void *d
 		unsigned char *d=(unsigned char*)data;
 		unsigned char *max=((unsigned char*)d) + len;
 		int pos = 0;
+		bool isError10 = false;
 		eDebug("[eMMI_UI] Tmenu_last");
 		if (d > max)
 			break;
@@ -110,13 +114,21 @@ int eMMI_UI::processMMIData(int slot_id, const unsigned char *tag, const void *d
 			eDebug("[eMMI_UI] %d bytes text", textlen);
 			if ((d+textlen) > max)
 				break;
-			char str[textlen + 1];
-			memcpy(str, ((char*)d), textlen);
+			unsigned char str[textlen + 1];
+			memcpy(str, ((unsigned char*)d), textlen);
 			str[textlen] = '\0';
-			mmiScreenAddText(slot_id, pos++, (char*)convertDVBUTF8(str).c_str());
-			eDebug("[eMMI_UI] %s", str);
+			std::string converted_str = convertDVBUTF8(str, textlen, -1, 1, 0);
+			if (std::regex_match(converted_str, std::regex("^[^0-9]*\\s10")))
+				isError10 = true;
+			mmiScreenAddText(slot_id, pos++, (char*)converted_str.c_str());
+			eDebug("[eMMI_UI] %s", converted_str.c_str());
 			d += textlen;
 		}
+
+		if (isError10) {
+			mmiScreenError10(slot_id);
+		}
+
 		mmiScreenFinish(slot_id);
 		break;
 	}
@@ -134,11 +146,30 @@ int eMMI_UI::getState(int slot)
 	return 0;
 }
 
+int eMMI_UI::getDecodingState(int slot)
+{
+	if (slot < m_max_slots)
+		return slotdata[slot].decoding_state;
+	return 0;
+}
+
 void eMMI_UI::setState(int slot, int newState)
 {
 	if (slot < m_max_slots)
 	{
 		slotdata[slot].state = newState;
+		stateChanged(slot);
+	}
+}
+
+void eMMI_UI::setDecodingState(int slot, int newState)
+{
+	if (slot < m_max_slots)
+	{
+		if (slotdata[slot].decoding_state == 1 && newState == 2)
+			slotdata[slot].decoding_state = 2;
+		else if (newState != 2)
+			slotdata[slot].decoding_state = newState;
 		stateChanged(slot);
 	}
 }
@@ -163,6 +194,13 @@ int eMMI_UI::availableMMI(int slot)
 	return false;
 }
 
+int eMMI_UI::isError10(int slot)
+{
+	if (slot < m_max_slots)
+		return slotdata[slot].isError10;
+	return false;
+}
+
 int eMMI_UI::mmiScreenClose(int slot, int timeout)
 {
 	if (slot >= m_max_slots)
@@ -182,6 +220,15 @@ int eMMI_UI::mmiScreenClose(int slot, int timeout)
 	PyList_SET_ITEM(data.mmiScreen, 0, tuple);
 	data.mmiScreenReady = 1;
 	stateChanged(slot);
+	return 0;
+}
+
+int eMMI_UI::mmiScreenError10(int slot)
+{
+	if (slot < m_max_slots) {
+		slotdata[slot].isError10 = 1;
+		stateChanged(slot);
+	}
 	return 0;
 }
 

@@ -8,6 +8,7 @@ from boxbranding import (getBoxType, getBrandOEM, getDisplayType,
                          getHaveTranscoding2, getHaveWOL, getHaveWWOL,
                          getHaveYUV, getMachineBuild, getMachineMtdRoot)
 from enigma import Misc_Options, eDVBResourceManager
+from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager, eGetEnigmaDebugLvl
 
 from Tools.Directories import (SCOPE_SKIN, fileCheck, fileExists, fileHas,
                                isPluginInstalled, pathExists, resolveFilename)
@@ -155,9 +156,15 @@ from Tools.Multiboot import getMultibootStartupDevice, getMultibootslots  # This
 
 
 def setBoxInfoItems():
-	model = getBoxType()
+	model = BoxInfo.getItem("machine")
+	BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
 	#BoxInfo.setItem("canMode12", "_4.boxmode" % model in cmdline and cmdline["_4.boxmode" % model] in ("1", "12") and "192M")
 	#BoxInfo.setItem("canMode12", fileHas("/proc/cmdline", "_4.boxmode=1 ") and '192M' or fileHas("/proc/cmdline", "_4.boxmode=12") and '192M')
+	BoxInfo.setItem("CommonInterface", model in ("h9combo", "h9combose", "h10", "pulse4kmini") and 1 or eDVBCIInterfaces.getInstance().getNumOfSlots())
+	BoxInfo.setItem("CommonInterfaceCIDelay", fileCheck("/proc/stb/tsmux/rmx_delay"))
+	for cislot in range(0, BoxInfo.getItem("CommonInterface")):
+		BoxInfo.setItem("CI%dSupportsHighBitrates" % cislot, fileCheck("/proc/stb/tsmux/ci%d_tsclk" % cislot))
+		BoxInfo.setItem("CI%dRelevantPidsRoutingSupport" % cislot, fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing" % cislot))
 	BoxInfo.setItem("canMode12", getMachineBuild() in ("hd51", "vs1500", "h7") and ("brcm_cma=440M@328M brcm_cma=192M@768M", "brcm_cma=520M@248M brcm_cma=200M@768M"))
 	BoxInfo.setItem("canFlashWithOfgwrite", not (model.startswith("dm")))
 	BoxInfo.setItem("12V_Output", Misc_Options.getInstance().detected_12V_output())

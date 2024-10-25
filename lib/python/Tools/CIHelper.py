@@ -1,12 +1,9 @@
-from os import path as os_path
 from xml.etree.ElementTree import parse
-
-from enigma import (eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter,
-                    eServiceReference)
-from six import ensure_str
-
+from enigma import eDVBCIInterfaces, eDVBCI_UI, eEnv, eServiceCenter, eServiceReference, getBestPlayableServiceReference, iRecordableService
+from Components.SystemInfo import BoxInfo
+from Components.config import config
 import NavigationInstance
-from timer import TimerEntry
+import os
 
 
 class CIHelper:
@@ -14,22 +11,23 @@ class CIHelper:
 	CI_ASSIGNMENT_LIST = None
 	CI_ASSIGNMENT_SERVICES_LIST = None
 	CI_MULTIDESCRAMBLE = None
-	CI_MULTIDESCRAMBLE_MODULES = ("AlphaCrypt", )
+	CI_RECORDS_LIST = None
+	CI_INIT_NOTIFIER = None
+	CI_MULTIDESCRAMBLE_MODULES = ("AlphaCrypt", "M7 CAM701 Multi-2")
 
 	def parse_ci_assignment(self):
-		NUM_CI = eDVBCIInterfaces.getInstance().getNumOfSlots()
-		if NUM_CI > 0:
+		NUM_CI = BoxInfo.getItem("CommonInterface")
+		if NUM_CI and NUM_CI > 0:
 			self.CI_ASSIGNMENT_LIST = []
 
 			def getValue(definitions, default):
-				ret = ""
 				Len = len(definitions)
 				return Len > 0 and definitions[Len - 1].text or default
 
 			for ci in list(range(NUM_CI)):
 				filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(ci) + ".xml"
 
-				if not os_path.exists(filename):
+				if not os.path.exists(filename):
 					continue
 
 				try:
@@ -38,46 +36,67 @@ class CIHelper:
 					read_providers = []
 					usingcaid = []
 					for slot in tree.findall("slot"):
-						read_slot = ensure_str(getValue(slot.findall("id"), False))
+						read_slot = getValue(slot.findall("id"), False)
+						if read_slot and self.CI_ASSIGNMENT_SERVICES_LIST is None:
+							self.CI_ASSIGNMENT_SERVICES_LIST = {}
 
 						for caid in slot.findall("caid"):
-							read_caid = ensure_str(caid.get("id"))
+							read_caid = caid.get("id")
 							usingcaid.append(int(read_caid, 16))
 
 						for service in slot.findall("service"):
-							read_service_ref = ensure_str(service.get("ref"))
+							read_service_ref = service.get("ref")
 							read_services.append(read_service_ref)
+							if read_slot and not self.CI_ASSIGNMENT_SERVICES_LIST.get(read_service_ref, False):
+								self.CI_ASSIGNMENT_SERVICES_LIST[read_service_ref] = read_slot
 
 						for provider in slot.findall("provider"):
-							read_provider_name = ensure_str(provider.get("name"))
-							read_provider_dvbname = ensure_str(provider.get("dvbnamespace"))
+							read_provider_name = provider.get("name")
+							read_provider_dvbname = provider.get("dvbnamespace")
 							read_providers.append((read_provider_name, int(read_provider_dvbname, 16)))
+							if read_slot:
+								provider_services_refs = self.getProivderServices([read_provider_name])
+								if provider_services_refs:
+									for ref in provider_services_refs:
+										if not self.CI_ASSIGNMENT_SERVICES_LIST.get(ref, False):
+											self.CI_ASSIGNMENT_SERVICES_LIST[ref] = read_slot
 
-						self.CI_ASSIGNMENT_LIST.append((int(read_slot), (read_services, read_providers, usingcaid)))
+						if read_slot:
+							self.CI_ASSIGNMENT_LIST.append((int(read_slot), (read_services, read_providers, usingcaid)))
 				except:
-					print("[CI_ASSIGNMENT %d] error parsing xml..." % ci)
+					print("[CI_ASSIGNMENT %d] ERROR parsing xml..." % ci)
+					try:
+						os.remove(filename)
+					except:
+						print("[CI_ASSIGNMENT %d] ERROR remove damaged xml..." % ci)
+			if self.CI_ASSIGNMENT_LIST:
+				for item in self.CI_ASSIGNMENT_LIST:
+					try:
+						eDVBCIInterfaces.getInstance().setDescrambleRules(item[0], item[1])
+						print("[CI_ASSIGNMENT %d] activate with following settings" % item[0])
+					except:
+						print("[CI_ASSIGNMENT %d] ERROR setting DescrambleRules" % item[0])
 
-			services = []
-			providers = []
-			for item in self.CI_ASSIGNMENT_LIST:
-				print("[CI_Activate] activate CI%d with following settings:" % item[0])
-				print(item[1])
-				try:
-					eDVBCIInterfaces.getInstance().setDescrambleRules(item[0], item[1])
-				except:
-					print("[CI_Activate_Config_CI%d] error setting DescrambleRules..." % item[0])
-				for x in item[1][0]:
-					services.append(x)
-				for x in item[1][1]:
-					providers.append(x[0])
-			service_refs = []
-			if len(services):
-				for x in services:
-					service_refs.append(eServiceReference(x))
-			provider_services_refs = []
-			if len(providers):
-				provider_services_refs = self.getProivderServices(providers)
-			self.CI_ASSIGNMENT_SERVICES_LIST = [service_refs, provider_services_refs]
+	def ciRecordEvent(self, service, event):
+		if event in (iRecordableService.evEnd, iRecordableService.evStart, None):
+			self.CI_RECORDS_LIST = []
+			if NavigationInstance.instance.getRecordings() and hasattr(NavigationInstance.instance, "RecordTimer") and hasattr(NavigationInstance.instance.RecordTimer, "timer_list"):
+				for timer in NavigationInstance.instance.RecordTimer.timer_list:
+					if not timer.justplay and timer.state in (1, 2) and timer.record_service and not (timer.record_ecm and not timer.descramble):
+						if timer.service_ref.ref.flags & eServiceReference.isGroup:
+							timerservice = hasattr(timer, "rec_ref") and timer.rec_ref
+							if not timerservice:
+								timerservice = getBestPlayableServiceReference(timer.service_ref.ref, eServiceReference())
+						else:
+							timerservice = timer.service_ref.ref
+						if timerservice:
+							timerstr = timerservice.toString()
+							is_assignment = self.ServiceIsAssigned(timerstr)
+							if is_assignment:
+								if is_assignment[0] not in self.CI_RECORDS_LIST:
+									self.CI_RECORDS_LIST.insert(0, is_assignment[0])
+								if is_assignment not in self.CI_RECORDS_LIST:
+									self.CI_RECORDS_LIST.append(is_assignment)
 
 	def load_ci_assignment(self, force=False):
 		if self.CI_ASSIGNMENT_LIST is None or force:
@@ -96,67 +115,76 @@ class CIHelper:
 						service = servicelist.getNext()
 						if not service.valid():
 							break
-						provider_services_refs.append(service)
+						provider_services_refs.append(service.toString())
 		return provider_services_refs
 
-	def ServiceIsAssigned(self, ref):
-		self.load_ci_assignment()
-
-		if self.CI_ASSIGNMENT_SERVICES_LIST:
-			for x in self.CI_ASSIGNMENT_SERVICES_LIST:
-				if len(x) and ref in x:
-					return True
+	def ServiceIsAssigned(self, ref, timer=None):
+		if self.CI_ASSIGNMENT_SERVICES_LIST is not None:
+			if self.CI_RECORDS_LIST is None and NavigationInstance.instance and hasattr(NavigationInstance.instance, "RecordTimer") and hasattr(NavigationInstance.instance, "record_event"):
+				NavigationInstance.instance.record_event.append(self.ciRecordEvent)
+				self.ciRecordEvent(None, None)
+			if ref and ref.startswith('1:134:'):
+				if timer:
+					if timer.state == 2 and not timer.justplay:
+						ref = hasattr(timer, "rec_ref") and timer.rec_ref and timer.rec_ref.toString()
+					else:
+						alternativeServices = eServiceCenter.getInstance().list(eServiceReference(ref))
+						if alternativeServices:
+							count = 0
+							is_ci_service = 0
+							ci_slot = []
+							for service in alternativeServices.getContent("S", True):
+								count += 1
+								is_assignment = self.CI_ASSIGNMENT_SERVICES_LIST.get(service, False)
+								if is_assignment:
+									is_ci_service += 1
+									if is_assignment not in ci_slot:
+										ci_slot.append(is_assignment)
+										if len(ci_slot) > 1:
+											return False
+							if ci_slot and count == is_ci_service:
+								return (ci_slot[0], "")
+						return False
+				else:
+					return False
+			if ref:
+				is_assignment = self.CI_ASSIGNMENT_SERVICES_LIST.get(ref, False)
+				return is_assignment and (is_assignment, ref) or False
 		return False
 
-	def canMultiDescramble(self, ref):
+	def forceUpdateMultiDescramble(self, configElement):
+		self.CI_MULTIDESCRAMBLE = None
+
+	def canMultiDescramble(self, ci):
 		if self.CI_MULTIDESCRAMBLE is None:
-			no_ci = eDVBCIInterfaces.getInstance().getNumOfSlots()
-			if no_ci > 0:
-				self.CI_MULTIDESCRAMBLE = False
-				for ci in list(range(no_ci)):
-					appname = eDVBCI_UI.getInstance().getAppName(ci)
-					if appname in self.CI_MULTIDESCRAMBLE_MODULES:
-						self.CI_MULTIDESCRAMBLE = True
-		elif self.CI_MULTIDESCRAMBLE == False:
-			return False
-
-		if self.CI_ASSIGNMENT_LIST is not None and len(self.CI_ASSIGNMENT_LIST):
-			for x in self.CI_ASSIGNMENT_LIST:
-				if ref.toString() in x[1][0]:
-					appname = eDVBCI_UI.getInstance().getAppName(x[0])
-					if appname in self.CI_MULTIDESCRAMBLE_MODULES:
-						return True
-			for x in self.CI_ASSIGNMENT_LIST:
-				f_providers = x[1][1]
-				if len(f_providers):
-					providers = []
-					for prov in f_providers:
-						providers.append(prov[0])
-					provider_services_refs = self.getProivderServices(providers)
-					if ref in provider_services_refs:
-						appname = eDVBCI_UI.getInstance().getAppName(x[0])
-						if appname in self.CI_MULTIDESCRAMBLE_MODULES:
-							return True
-		return False
+			NUM_CI = BoxInfo.getItem("CommonInterface")
+			if NUM_CI and NUM_CI > 0:
+				self.CI_MULTIDESCRAMBLE = []
+				for slot in range(NUM_CI):
+					appname = eDVBCI_UI.getInstance().getAppName(slot)
+					multipleServices = config.ci[slot].canDescrambleMultipleServices.value
+					if self.CI_INIT_NOTIFIER is None:
+						config.ci[slot].canDescrambleMultipleServices.addNotifier(self.forceUpdateMultiDescramble, initial_call=False, immediate_feedback=False)
+					if multipleServices == "yes" or (appname in self.CI_MULTIDESCRAMBLE_MODULES and multipleServices == "auto"):
+						self.CI_MULTIDESCRAMBLE.append(str(slot))
+				self.CI_INIT_NOTIFIER = True
+		else:
+			return self.CI_MULTIDESCRAMBLE and ci in self.CI_MULTIDESCRAMBLE
 
 	def isPlayable(self, service):
-		service = eServiceReference(service)
-		if NavigationInstance.instance.getRecordings():
-			if self.ServiceIsAssigned(service):
-				for timer in NavigationInstance.instance.RecordTimer.timer_list:
-					if timer.state == TimerEntry.StateRunning:
-						if timer.justplay:
-							pass
-						else:
-							timerservice = timer.service_ref.ref
-							if timerservice != service:
-								if self.ServiceIsAssigned(timerservice):
-									if self.canMultiDescramble(service):
-										for x in (4, 2, 3):
-											if timerservice.getUnsignedData(x) != service.getUnsignedData(x):
-												return 0
-									else:
-										return 0
+		is_assignment = self.ServiceIsAssigned(service)
+		if is_assignment and self.CI_RECORDS_LIST and is_assignment[0] in self.CI_RECORDS_LIST and is_assignment not in self.CI_RECORDS_LIST:
+			if self.canMultiDescramble(is_assignment[0]):
+				for timerservice in self.CI_RECORDS_LIST:
+					if len(timerservice) > 1:
+						if timerservice[0] == is_assignment[0]:
+							eService = eServiceReference(timerservice[1])
+							eService1 = eServiceReference(service)
+							for x in (4, 2, 3):
+								if eService.getUnsignedData(x) != eService1.getUnsignedData(x):
+									return 0
+			else:
+				return 0
 		return 1
 
 
