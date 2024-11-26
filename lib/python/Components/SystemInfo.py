@@ -222,7 +222,7 @@ def setBoxInfoItems():
 	BoxInfo.setItem("LcdLiveTV", fileCheck("/proc/stb/fb/sd_detach"))
 	BoxInfo.setItem("MiniTV", fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable"))
 	BoxInfo.setItem("FastChannelChange", False)
-	BoxInfo.setItem("LCDMiniTVPiP", BoxInfo.getItem("LCDMiniTV") and getBoxType() not in ('gb800ueplus', 'gbquad4k', 'gbue4k'))
+	BoxInfo.setItem("LCDMiniTVPiP", BoxInfo.getItem("LCDMiniTV") and getBoxType() not in ('gb800ueplus', 'gbquad4k', 'gbquad4kpro', 'gbue4k'))
 	BoxInfo.setItem("LCDsymbol_circle", fileCheck("/proc/stb/lcd/symbol_circle"))
 	BoxInfo.setItem("ForceLNBPowerChanged", fileCheck("/proc/stb/frontend/fbc/force_lnbon"))
 	BoxInfo.setItem("ForceToneBurstChanged", fileCheck("/proc/stb/frontend/fbc/force_toneburst"))

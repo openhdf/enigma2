@@ -443,7 +443,7 @@ def InitLcd():
 			def setLCDScreenshot(configElement):
 				ilcd.setScreenShot(configElement.value)
 
-			if getBoxType() in ('gbquad4k', 'gbue4k'):
+			if getBoxType() in ('gbquad4k', 'gbquad4kpro', 'gbue4k'):
 				config.lcd.modepip = ConfigSelection(choices={
 						"0": _("off"),
 						"4": _("PIP"),
@@ -459,7 +459,7 @@ def InitLcd():
 			config.lcd.screenshot = ConfigYesNo(default=False)
 			config.lcd.screenshot.addNotifier(setLCDScreenshot)
 
-			if getBoxType() in ('gbquad4k', 'gbue4k'):
+			if getBoxType() in ('gbquad4k', 'gbquad4kpro', 'gbue4k'):
 				#  (0:normal, 1:video0, 2:fb, 3:vide0+fb, 4:video1, 5:vide0+video1, 6:video1+fb, 7:video0+video1+fb)
 				config.lcd.modeminitv = ConfigSelection(default="0", choices=[
 						("0", _("normal")),
@@ -627,7 +627,7 @@ def InitLcd():
 			config.lcd.showTv = ConfigYesNo(default=False)
 			config.lcd.showTv.addNotifier(lcdLiveTvChanged)
 
-		if BoxInfo.getItem("LCDMiniTV") and config.misc.boxtype.value not in ('gbquad', 'gbquadplus', 'gbquad4k', 'gbue4k'):
+		if BoxInfo.getItem("LCDMiniTV") and config.misc.boxtype.value not in ('gbquad', 'gbquadplus', 'gbquad4k', 'gbquad4kpro', 'gbue4k'):
 			config.lcd.minitvmode = ConfigSelection([("0", _("normal")), ("1", _("MiniTV")), ("2", _("OSD")), ("3", _("MiniTV with OSD"))], "0")
 			config.lcd.minitvmode.addNotifier(setLCDminitvmode)
 			config.lcd.minitvpipmode = ConfigSelection([("0", _("off")), ("5", _("PIP")), ("7", _("PIP with OSD"))], "0")
