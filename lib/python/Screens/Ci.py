@@ -47,11 +47,14 @@ def InitCiConfig():
 			config.ci[slot].static_pin = ConfigPIN(default=0)
 			config.ci[slot].show_ci_messages = ConfigYesNo(default=True)
 			config.ci[slot].disable_operator_profile = ConfigYesNo(default=False)
-			config.ci[slot].exclude_ca0_device = ConfigYesNo(default=False)
-			if BoxInfo.getItem("CI%dSupportsHighBitrates" % slot):
-				highBitrateChoices = [("normal", _("normal")), ("high", _("high"))]
-				if exists("/proc/stb/tsmux/ci%d_tsclk_choices" % slot):
-					with open("/proc/stb/tsmux/ci%d_tsclk_choices" % slot) as fd:
+			config.ci[slot].alternative_ca_handling = ConfigSelection(choices=[(0, _("off")), (1, _("Close CA device at programm end")), (2, _("Offset CA device index")), (3, _("Offset and close CA device"))], default=0)
+			if BoxInfo.getItem(f"CI{slot}SupportsHighBitrates"):
+				highBitrateChoices = [
+					("normal", _("Normal")),
+					("high", _("High")),
+				]
+				try:
+					with open(f"/proc/stb/tsmux/ci{slot}_tsclk_choices") as fd:
 						choices = fd.read()
 						if "extra_high" in choices:
 							highBitrateChoices.append(("extra_high", _("extra high")))
@@ -505,6 +508,45 @@ class CiSelection(Screen):
 			if self.state[slot] != state:
 				self.state[slot] = state
 				self.updateState(slot)
+
+	def updateState(self, slot):
+		self.createSetup()
+
+	def appendEntries(self, slot, state):
+		items = []
+		items.append(("**************************",))  # Add the comment line to the config list.
+
+		self.state[slot] = state
+		text = _("Slot %d") % (slot + 1)
+		if state in (0, 3):
+			text = "%s - %s" % (text, state == 0 and _("no module found") or _("module disabled"))
+		items.append((text,))
+
+		items.append((_("CI enabled"), config.ci[slot].enabled))
+		if self.state[slot] in (0, 3):
+			return items
+		if not self.ciplushelper:
+			items.append((_("Reset"), ConfigNothing(), _("Press OK to reset module"), 0, slot))
+			items.append((_("Init"), ConfigNothing(), _("Press OK to init module"), 1, slot))
+
+		if self.state[slot] == 1:  # module in init
+			items.append((_("init module"), ConfigNothing(), "", 2, slot))
+		elif self.state[slot] == 2:  # module ready
+			appname = eDVBCI_UI.getInstance().getAppName(slot)
+			items.append((appname, ConfigNothing(), _("Press OK to open module info"), 2, slot))
+
+		items.append(getConfigListEntry(_("Set pin code persistent"), config.ci[slot].use_static_pin))
+		items.append((_("Enter persistent PIN code"), ConfigNothing(), _("Press OK to enter PIN code"), 5, slot))
+		items.append((_("Reset persistent PIN code"), ConfigNothing(), _("Press OK to reset PIN code"), 6, slot))
+		items.append(getConfigListEntry(_("Show CI messages"), config.ci[slot].show_ci_messages))
+		items.append(getConfigListEntry(_("Disable operator profiles"), config.ci[slot].disable_operator_profile))
+		items.append(getConfigListEntry(_("Descrambling options") + " *", config.ci[slot].alternative_ca_handling))
+		items.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
+		if BoxInfo.getItem(f"CI{slot}SupportsHighBitrates"):
+			items.append(getConfigListEntry(_("High bitrate support"), config.ci[slot].highBitrate))
+		if BoxInfo.getItem(f"CI{slot}RelevantPidsRoutingSupport"):
+			items.append(getConfigListEntry(_("Relevant PIDs Routing"), config.ci[slot].relevantPidsRouting))
+		return items
 
 	def dlgClosed(self, slot):
 		self.dlg = None

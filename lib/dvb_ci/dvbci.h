@@ -25,12 +25,11 @@ struct queueData
 	uint8_t prio;
 	unsigned char *data;
 	unsigned int len;
-	queueData( unsigned char *data, unsigned int len, uint8_t prio = 0 )
-		:prio(prio), data(data), len(len)
+	queueData(unsigned char *data, unsigned int len, uint8_t prio = 0)
+		: prio(prio), data(data), len(len)
 	{
-
 	}
-	bool operator < ( const struct queueData &a ) const
+	bool operator<(const struct queueData &a) const
 	{
 		return prio < a.prio;
 	}
@@ -41,7 +40,7 @@ typedef std::set<providerPair> providerSet;
 typedef std::set<uint16_t> caidSet;
 typedef std::set<eServiceReference> serviceSet;
 
-class eDVBCISlot: public iObject, public sigc::trackable
+class eDVBCISlot : public iObject, public sigc::trackable
 {
 	friend class eDVBCIInterfaces;
 	DECLARE_REF(eDVBCISlot);
@@ -79,7 +78,7 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	eMainloop *m_context;
 	int m_ciplus_routing_tunernum;
 	bool m_operator_profiles_disabled;
-	bool m_ca0_excluded;
+	int m_alt_ca_handling;
 	std::string m_ciplus_routing_input;
 	std::string m_ciplus_routing_ci_input;
 
@@ -89,7 +88,7 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	eDVBCICcSession *getCCManager() { return cc_manager; }
 
 	int getState() { return state; };
-	void setCamMgrRoutingActive(bool active) { m_isCamMgrRoutingActive= active; };
+	void setCamMgrRoutingActive(bool active) { m_isCamMgrRoutingActive = active; };
 	bool isCamMgrRoutingActive() { return m_isCamMgrRoutingActive; };
 	bool ciplusRoutingDone() { return m_ciPlusRoutingDone; };
 	void setCIPlusRoutingDone() { m_ciPlusRoutingDone = true; };
@@ -104,17 +103,31 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	int answerEnq(char *value);
 	int cancelEnq();
 	int getMMIState();
-	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids=std::vector<uint16_t>());
+	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids = std::vector<uint16_t>());
 	int setCaParameter(eDVBServicePMTHandler *pmthandler);
-	void removeService(uint16_t program_number=0xFFFF);
+	void removeService(uint16_t program_number = 0xFFFF);
 	int setSource(const std::string &source);
 	int setClockRate(int);
 	void determineCIVersion();
 	int setEnabled(bool);
-	static std::string getTunerLetter(int tuner_no) { return std::string(1, char(65 + tuner_no)); }
+
 public:
-	enum {stateRemoved, stateInserted, stateInvalid, stateResetted, stateDisabled};
-	enum {versionUnknown = -1, versionCI = 0, versionCIPlus1 = 1, versionCIPlus2 = 2};
+	static std::string getTunerLetter(int tuner_no) { return std::string(1, char(65 + tuner_no)); }
+	enum
+	{
+		stateRemoved,
+		stateInserted,
+		stateInvalid,
+		stateResetted,
+		stateDisabled
+	};
+	enum
+	{
+		versionUnknown = -1,
+		versionCI = 0,
+		versionCIPlus1 = 1,
+		versionCIPlus2 = 2
+	};
 	eDVBCISlot(eMainloop *context, int nr);
 	~eDVBCISlot();
 	void closeDevice();
@@ -122,17 +135,17 @@ public:
 
 	int send(const unsigned char *data, size_t len);
 
-	void setAppManager( eDVBCIApplicationManagerSession *session );
-	void setMMIManager( eDVBCIMMISession *session );
-	void setCAManager( eDVBCICAManagerSession *session );
-	void setCCManager( eDVBCICcSession *session );
+	void setAppManager(eDVBCIApplicationManagerSession *session);
+	void setMMIManager(eDVBCIMMISession *session);
+	void setCAManager(eDVBCICAManagerSession *session);
+	void setCCManager(eDVBCICcSession *session);
 
 	int getFd() { return fd; };
 	int getSlotID();
 	int getNumOfServices();
 	int getVersion();
+	int getDescramblingOptions() { return m_alt_ca_handling; };
 	bool getIsOperatorProfileDisabled() { return m_operator_profiles_disabled; };
-	bool getIsCA0Excluded() { return m_ca0_excluded; };
 	int16_t getCADemuxID() { return m_ca_demux_id; };
 	int getTunerNum() { return m_tunernum; };
 	int getUseCount() { return use_count; };
@@ -140,7 +153,7 @@ public:
 	int getVideoPid() { return m_video_pid; };
 	int getAudioPid() { return m_audio_pid; };
 	int getAudioNumber() { return m_audio_number; };
-	int* getAudioPids() { return m_audio_pids; };
+	int *getAudioPids() { return m_audio_pids; };
 };
 
 struct CIPmtHandler
@@ -148,14 +161,17 @@ struct CIPmtHandler
 	eDVBServicePMTHandler *pmthandler;
 	eDVBCISlot *cislot;
 	CIPmtHandler()
-		:pmthandler(NULL), cislot(NULL)
-	{}
-	CIPmtHandler( const CIPmtHandler &x )
-		:pmthandler(x.pmthandler), cislot(x.cislot)
-	{}
-	CIPmtHandler( eDVBServicePMTHandler *ptr )
-		:pmthandler(ptr), cislot(NULL)
-	{}
+		: pmthandler(NULL), cislot(NULL)
+	{
+	}
+	CIPmtHandler(const CIPmtHandler &x)
+		: pmthandler(x.pmthandler), cislot(x.cislot)
+	{
+	}
+	CIPmtHandler(eDVBServicePMTHandler *ptr)
+		: pmthandler(ptr), cislot(NULL)
+	{
+	}
 	bool operator==(const CIPmtHandler &x) const { return x.pmthandler == pmthandler; }
 };
 
@@ -163,7 +179,7 @@ typedef std::list<CIPmtHandler> PMTHandlerList;
 
 #endif // SWIG
 
-class eDVBCIInterfaces: public eMainloop, private eThread
+class eDVBCIInterfaces : public eMainloop, private eThread
 {
 private:
 	typedef enum
@@ -192,8 +208,8 @@ private:
 	PMTHandlerList m_pmt_handlers;
 	std::string m_language;
 	eFixedMessagePump<int> m_messagepump_thread; // message handling in the thread
-	eFixedMessagePump<int> m_messagepump_main; // message handling in the e2 mainloop
-	ePtr<eTimer> m_runTimer; // workaround to interrupt thread mainloop as some ci drivers don't implement poll properly
+	eFixedMessagePump<int> m_messagepump_main;	 // message handling in the e2 mainloop
+	ePtr<eTimer> m_runTimer;					 // workaround to interrupt thread mainloop as some ci drivers don't implement poll properly
 	static pthread_mutex_t m_pmt_handler_lock;
 
 	int sendCAPMT(int slot);
@@ -231,7 +247,7 @@ public:
 	int setCIClockRate(int slot, int rate);
 	void setCIPlusRouting(int slotid);
 	void revertCIPlusRouting(int slotid);
-	bool canDescrambleMultipleServices(eDVBCISlot* slot);
+	bool canDescrambleMultipleServices(eDVBCISlot *slot);
 	std::string getLanguage() { return m_language; };
 #ifdef SWIG
 public:
@@ -239,7 +255,7 @@ public:
 	static eDVBCIInterfaces *getInstance();
 	int getNumOfSlots() { return m_slots.size(); }
 	PyObject *getDescrambleRules(int slotid);
-	RESULT setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject) );
+	RESULT setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject));
 	PyObject *readCICaIds(int slotid);
 	struct Message
 	{
@@ -258,16 +274,15 @@ public:
 		unsigned char m_data[4096];
 		int m_len;
 		std::string m_appName;
-		Message(int type, int slotid): m_type(type), m_slotid(slotid) {};
-		Message(int type, int slotid, int state): m_type(type), m_slotid(slotid), m_state(state) {};
-		Message(int type, int slotid, std::string appName): m_type(type), m_slotid(slotid), m_appName(appName) {};
-		Message(int type, int slotid, const unsigned char* tag, unsigned char* data, int len): m_type(type), m_slotid(slotid), m_len(len)
+		Message(int type, int slotid) : m_type(type), m_slotid(slotid) {};
+		Message(int type, int slotid, int state) : m_type(type), m_slotid(slotid), m_state(state) {};
+		Message(int type, int slotid, std::string appName) : m_type(type), m_slotid(slotid), m_appName(appName) {};
+		Message(int type, int slotid, const unsigned char *tag, unsigned char *data, int len) : m_type(type), m_slotid(slotid), m_len(len)
 		{
 			memcpy(m_tag, tag, 3);
 			memcpy(m_data, data, len);
 		};
 	};
-
 };
 
 #endif
