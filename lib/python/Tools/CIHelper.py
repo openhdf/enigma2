@@ -123,7 +123,7 @@ class CIHelper:
 			if self.CI_RECORDS_LIST is None and NavigationInstance.instance and hasattr(NavigationInstance.instance, "RecordTimer") and hasattr(NavigationInstance.instance, "record_event"):
 				NavigationInstance.instance.record_event.append(self.ciRecordEvent)
 				self.ciRecordEvent(None, None)
-			if ref and ref.startswith('1:134:'):
+			if ref:
 				if timer:
 					if timer.state == 2 and not timer.justplay:
 						ref = hasattr(timer, "rec_ref") and timer.rec_ref and timer.rec_ref.toString()
