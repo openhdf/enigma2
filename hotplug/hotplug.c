@@ -47,11 +47,12 @@ based on multiple authors.
 #include <string.h>
 #include <unistd.h>
 
-/// @brief Replaces all occurrences of a character in a string with another character.
-/// @param str The string in which to replace characters.
-/// @param orig The character to be replaced in the string.
-/// @param rep The character to replace the original character with.
-/// @return The number of characters replaced in the string.
+/* @brief Replaces all occurrences of a character in a string with another character.
+   @param str The string in which to replace characters.
+   @param orig The character to be replaced in the string.
+   @param rep The character to replace the original character with.
+   @return The number of characters replaced in the string.
+*/
 int replacechar(char *str, char orig, char rep)
 {
 	char *ix = str;
