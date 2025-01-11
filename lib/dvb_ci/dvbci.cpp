@@ -147,6 +147,7 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 		it->setSource(getTunerLetterDM(0));
 #else
 		it->setSource("A");
+#endif
 
 	for (int tuner_no = 0; tuner_no < 26; ++tuner_no) // NOTE: this assumes tuners are A .. Z max.
 	{
@@ -161,6 +162,7 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 		setInputSource(tuner_no, getTunerLetterDM(tuner_no));
 #else
 		setInputSource(tuner_no, eDVBCISlot::getTunerLetter(tuner_no));
+#endif
 	}
 
 	eDebug("[CI] done, found %d common interface slots", num_ci);
@@ -670,6 +672,7 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 								ci_it->setSource(getTunerLetterDM(tunernum));
 #else
 								ci_it->setSource(eDVBCISlot::getTunerLetter(tunernum));
+#endif
 							}
 							else
 							{
