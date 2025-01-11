@@ -107,7 +107,7 @@ class eDVBCISlot : public iObject, public sigc::trackable
 	int setCaParameter(eDVBServicePMTHandler *pmthandler);
 	void removeService(uint16_t program_number = 0xFFFF);
 	int setSource(const std::string &source);
-	int setClockRate(int);
+	int setClockRate(const std::string &rate);
 	void determineCIVersion();
 	int setEnabled(bool);
 
@@ -244,7 +244,7 @@ public:
 	int cancelEnq(int slot);
 	int getMMIState(int slot);
 	int setInputSource(int tunerno, const std::string &source);
-	int setCIClockRate(int slot, int rate);
+	int setCIClockRate(int slot, const std::string &rate);
 	void setCIPlusRouting(int slotid);
 	void revertCIPlusRouting(int slotid);
 	bool canDescrambleMultipleServices(eDVBCISlot *slot);
