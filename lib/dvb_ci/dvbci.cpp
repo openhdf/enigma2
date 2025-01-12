@@ -1142,7 +1142,7 @@ int eDVBCIInterfaces::setCIEnabled(int slotid, bool enabled)
 	return -1;
 }
 
-int eDVBCIInterfaces::setCIClockRate(int slotid, int rate)
+int eDVBCIInterfaces::setCIClockRate(int slotid, const std::string &rate)
 {
 	singleLock s(m_slot_lock);
 	eDVBCISlot *slot = getSlot(slotid);
