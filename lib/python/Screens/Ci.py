@@ -58,6 +58,8 @@ def InitCiConfig():
 						choices = fd.read()
 						if "extra_high" in choices:
 							highBitrateChoices.append(("extra_high", _("extra high")))
+				except OSError:
+					pass
 				config.ci[slot].highBitrate = ConfigSelection(default="high", choices=highBitrateChoices)
 				config.ci[slot].highBitrate.slotid = slot
 				config.ci[slot].highBitrate.addNotifier(setCIBitrate)
