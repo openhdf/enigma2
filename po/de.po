@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 14:10+0200\n"
-"PO-Revision-Date: 2024-10-14 14:12+0200\n"
+"PO-Revision-Date: 2025-01-30 14:07+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -11472,7 +11472,37 @@ msgid "Service"
 msgstr "Sender"
 
 msgid "Service Information"
-msgstr "Sender Information"
+msgstr "Senderinformation"
+
+msgid "Service info - ECM Info"
+msgstr "Service Info - ECM Info"
+
+msgid "Service info - service & Basic PID Info"
+msgstr "Service Info - Service & Basis PID Info"
+
+msgid "Service info - service & Extended PID Info"
+msgstr "Service Info - Service & Erweiterte PID Info"
+
+msgid "Service info - service & PIDs"
+msgstr "Service Info - Service & PIDs"
+
+msgid "Service info - tuner live values"
+msgstr "Service Info - Live-Werte des Tuners"
+
+msgid "Service info - tuner setting values"
+msgstr "Service Info - Tuner Einstellwerte"
+
+msgid "Extended PID info"
+msgstr "Erweiterte PID Info"
+
+msgid "Basic PID info"
+msgstr "Basis PID Info"
+
+msgid "Tuner setting values"
+msgstr "Tunereinstellung"
+
+msgid "Tuner live values"
+msgstr "Tuner Live-Werte"
 
 msgid "Service Name"
 msgstr "Sendername"
