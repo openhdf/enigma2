@@ -154,6 +154,8 @@ private:
 	ePtr<eTimer> cleanTimer;
 	bool load_epg;
 	PSignal0<void> epgCacheStarted;
+	bool m_debug;
+	bool m_saveepg;
 
 #ifdef ENABLE_PRIVATE_EPG
 	contentMaps content_time_tables;
