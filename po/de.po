@@ -6760,7 +6760,7 @@ msgid ""
 "Image created on:\n"
 "%s/full_backups/%s-%s-%s-%s-backup-%s_backup.zip"
 msgstr ""
-"Image erstellt am:\n"
+"Image erstellt als:\n"
 "%s/full_backups/%s-%s-%s-%s-backup-%s_backup.zip"
 
 #, python-format
