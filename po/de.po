@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-03-24 13:42+0100\n"
-"PO-Revision-Date: 2024-08-16 19:04+0200\n"
+"PO-Revision-Date: 2025-02-10 18:13+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4612,7 +4612,7 @@ msgstr "Möchten Sie Ihr Lesezeichen von %s wirklich entfernen?"
 
 #, python-format
 msgid "Do you really want to unhold the plugin \"%s\"?"
-msgstr "Möchten Sie das Plugin \"%s\" wirklich aufheben?"
+msgstr "Soll die Sperre für das Plugin \"%s\" entfernt werden?"
 
 msgid "Do you want to add any additional information ?"
 msgstr "Möchten Sie zusätzliche Informationen hinzufügen?"
@@ -6792,7 +6792,7 @@ msgid ""
 "Image created on:\n"
 "%s/full_backups/%s-%s-%s-%s-backup-%s_backup.zip"
 msgstr ""
-"Image erstellt am:\n"
+"Image erstellt als:\n"
 "%s/full_backups/%s-%s-%s-%s-backup-%s_backup.zip"
 
 #, python-format
@@ -10916,7 +10916,7 @@ msgid "Save EPG Cache ?"
 msgstr "Speichere EPG Cache ?"
 
 msgid "Save EPG data"
-msgstr "EPG immer Speichern"
+msgstr "EPG immer speichern"
 
 msgid "Save IPv6 configuration"
 msgstr "Speichere IPv6 Konfiguration"
