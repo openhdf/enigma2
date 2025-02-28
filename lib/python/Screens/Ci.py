@@ -576,7 +576,7 @@ class PermanentPinEntry(ConfigListScreen, Screen):
 		self.pin2.addEndNotifier(boundFunction(self.valueChanged, 2))
 		self.list.append((_("Enter PIN"), NoSave(self.pin1)))
 		self.list.append((_("Reenter PIN"), NoSave(self.pin2)))
-		ConfigListScreen.__init__(self, self.list, fullUI=True)
+		ConfigListScreen.__init__(self, self.list)
 
 	def valueChanged(self, pin, value):
 		if pin == 1:
