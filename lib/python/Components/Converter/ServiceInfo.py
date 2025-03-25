@@ -11,6 +11,45 @@ from Tools.Transponder import ConvertToHumanReadable
 
 WIDESCREEN = [1, 3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
 
+def StdAudioDesc(description):
+	if not description:
+		return ""
+
+	REPLACEMENTS = (
+		("A_", ""),
+		("AC-3", "AC3"),
+		("(ATSC A/52)", ""),
+		("(ATSC A/52B)", ""),
+		("MPEG-1 Layer 2 (MP2)", "MP2"),
+		(" Layer 2 (MP2)", ""),
+		(" Layer 3 (MP3)", "MP3"),
+		("-1", ""),
+		("-2", ""),
+		("2-", ""),
+		("MPEG-4 AAC", "AAC"),
+		("-4 AAC", "AAC"),
+		("4-AAC", "HE-AAC"),
+		("audio", ""),
+		("/L3", ""),
+		("/mpeg", "AAC"),
+		("/x-", ""),
+		("raw", "Dolby TrueHD"),
+		("E-AC3", "AC3+"),
+		("EAC3", "AC3+"),
+		("IPCM", "AC3"),
+		("LPCM", "AC3+"),
+		("AAC_PLUS", "AAC+"),
+		("AAC_LATM", "AAC"),
+		("WMA/PRO", "WMA Pro"),
+		("MPEG", "MPEG1 Layer II"),
+		("MPEG1 Layer II AAC", "AAC"),
+		("MPEG1 Layer IIAAC", "AAC"),
+		("MPEG1 Layer IIMP3", "MP3"),
+	)
+
+	for orig, repl in REPLACEMENTS:
+		description = description.replace(orig, repl)
+	return description
 
 class ServiceInfo(Poll, Converter):
 	HAS_TELETEXT = 1
@@ -57,7 +96,7 @@ class ServiceInfo(Poll, Converter):
 	def __init__(self, type):
 		Poll.__init__(self)
 		Converter.__init__(self, type)
-		self.poll_interval = 10000
+		self.poll_interval = 2000
 		self.poll_enabled = True
 		self.type, self.interesting_events = {
 			"HasTelext": (self.HAS_TELETEXT, (iPlayableService.evUpdatedInfo,)),
