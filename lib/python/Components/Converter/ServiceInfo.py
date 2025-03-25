@@ -96,7 +96,7 @@ class ServiceInfo(Poll, Converter):
 	def __init__(self, type):
 		Poll.__init__(self)
 		Converter.__init__(self, type)
-		self.poll_interval = 10000
+		self.poll_interval = 2000
 		self.poll_enabled = True
 		self.type, self.interesting_events = {
 			"HasTelext": (self.HAS_TELETEXT, (iPlayableService.evUpdatedInfo,)),
