@@ -95,8 +95,8 @@ class eDVBServicePlay: public eDVBServiceBase,
 public:
 	virtual ~eDVBServicePlay();
 
-		// iPlayableService
-	RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
+	// iPlayableService
+	RESULT connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection);
 	RESULT start();
 	RESULT stop();
 	RESULT setTarget(int target, bool noaudio);
@@ -229,7 +229,7 @@ protected:
 
 	void serviceEvent(int event);
 	void serviceEventTimeshift(int event);
-	sigc::signal2<void,iPlayableService*,int> m_event;
+	sigc::signal<void(iPlayableService*,int)> m_event;
 
 	bool m_is_stream;
 
