@@ -13,14 +13,12 @@ import select
 from errno import EINTR
 from sys import exc_info
 
-from enigma import getApplication
-from six import text_type
-from twisted.internet import error, main, posixbase
 # Twisted imports
-from twisted.python import failure, log
-
+from twisted.python import log, failure
+from twisted.internet import main, posixbase, error
 #from twisted.internet.pollreactor import PollReactor, poller
 
+from enigma import getApplication
 
 # globals
 reads = {}
@@ -85,7 +83,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		except:
 			# the hard way: necessary because fileno() may disappear at any
 			# moment, thanks to python's underlying sockets impl
-			for fd, fdes in list(selectables.items()):
+			for fd, fdes in selectables.items():
 				if selectable is fdes:
 					break
 			else:
@@ -128,8 +126,8 @@ class PollReactor(posixbase.PosixReactorBase):
 		"""Remove all selectables, and return a list of them."""
 		if self.waker is not None:
 			self.removeReader(self.waker)
-		result = list(selectables.values())
-		fds = list(selectables.keys())
+		result = selectables.values()
+		fds = selectables.keys()
 		reads.clear()
 		writes.clear()
 		selectables.clear()
@@ -141,13 +139,13 @@ class PollReactor(posixbase.PosixReactorBase):
 		return result
 
 	def doPoll(self, timeout,
-			   reads=reads,
-			   writes=writes,
-			   selectables=selectables,
-			   select=select,
-			   log=log,
-			   POLLIN=select.POLLIN,
-			   POLLOUT=select.POLLOUT):
+		reads=reads,
+		writes=writes,
+		selectables=selectables,
+		select=select,
+		log=log,
+		POLLIN=select.POLLIN,
+		POLLOUT=select.POLLOUT):
 		"""Poll the poller for new events."""
 
 		if timeout is not None:
@@ -159,8 +157,8 @@ class PollReactor(posixbase.PosixReactorBase):
 				if self.running:
 					self.stop()
 				l = []
-		except select.error as e:
-			if e[0] == EINTR:
+		except OSError as e:
+			if e.errno == EINTR:
 				return
 			else:
 				raise
@@ -198,7 +196,7 @@ class PollReactor(posixbase.PosixReactorBase):
 					why = error.ConnectionFdescWentAway('Filedescriptor went away')
 					inRead = False
 			except AttributeError as ae:
-				if "'NoneType' object has no attribute 'writeHeaders'" not in text_type(ae):
+				if "'NoneType' object has no attribute 'writeHeaders'" not in str(ae):
 					log.deferr()
 					why = exc_info()[1]
 				else:

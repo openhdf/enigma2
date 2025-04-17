@@ -4,8 +4,6 @@
 from os import getpid
 from socket import AF_NETLINK, SOCK_DGRAM, socket
 
-from six import ensure_str
-
 
 class NetlinkSocket(socket):
 	def __init__(self):
@@ -14,7 +12,7 @@ class NetlinkSocket(socket):
 		self.bind((getpid(), -1))
 
 	def parse(self):
-		data = ensure_str(self.recv(512))
+		data = self.recv(512).decode("utf-8", "ignore")
 		event = {}
 		for item in data.split('\x00'):
 			if not item:
