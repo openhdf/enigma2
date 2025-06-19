@@ -53,7 +53,10 @@ class Rc:
 			id = int(rc.attrib["id"])
 			self.rcs[id] = {}
 			for key in rc:
-				name = key.attrib["name"]
+				try:
+					name = key.attrib["name"]
+				except:
+					name="none"
 				pos = key.attrib["pos"].split(",")
 				self.rcs[id][name] = (int(pos[0]), int(pos[1]))
 
