@@ -368,7 +368,7 @@ class Disks:
 				cmd += "-T largefile -N %s " % str(psize * 32)
 			cmd += "-m0 -O dir_index /dev/" + dev
 		elif fstype == 2:
-			cmd = "/sbin/mkfs.ntfs -f /dev/" + dev
+			cmd = "/usr/sbin/mkfs.ntfs -f /dev/" + dev
 		elif fstype == 3:
 			cmd = "/usr/sbin/mkfs.vfat -F32 /dev/" + dev
 		else:
