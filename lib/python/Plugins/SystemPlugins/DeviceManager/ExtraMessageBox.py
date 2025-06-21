@@ -1,12 +1,11 @@
-
+# for localized messages
 from enigma import eTimer
-
-from Components.ActionMap import ActionMap
-from Components.Label import Label
-from Components.Sources.List import List
 from Screens.Screen import Screen
-from Tools.Directories import SCOPE_CURRENT_PLUGIN, resolveFilename
+from Components.ActionMap import ActionMap
+from Components.Sources.List import List
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from Tools.LoadPixmap import LoadPixmap
+from Components.Label import Label
 
 
 def MessageBoxEntry(name, picture):
@@ -32,48 +31,6 @@ class ExtraMessageBox(Screen):
 				}
 			</convert>
 		</widget>
-		<applet type="onLayoutFinish">
-# this should be factored out into some helper code, but currently demonstrates applets.
-from enigma import eSize, ePoint
-
-orgwidth = self.instance.size().width()
-orgheight = self.instance.size().height()
-orgpos = self.instance.position()
-textsize = self[&quot;message&quot;].getSize()
-
-# y size still must be fixed in font stuff...
-if self[&quot;message&quot;].getText() != &quot;&quot;:
-	textsize = (textsize[0] + 80, textsize[1] + 60)
-else:
-	textsize = (textsize[0] + 80, textsize[1] + 4)
-
-count = len(self.list)
-if count &gt; 7:
-	count = 7
-offset = 48 * count
-wsizex = textsize[0] + 80
-wsizey = textsize[1] + offset + 20
-
-if (460 &gt; wsizex):
-	wsizex = 460
-wsize = (wsizex, wsizey)
-
-# resize
-self.instance.resize(eSize(*wsize))
-
-# resize label
-self[&quot;message&quot;].instance.resize(eSize(*textsize))
-
-# move list
-listsize = (wsizex - 20, 48 * count)
-self[&quot;menu&quot;].downstream_elements.downstream_elements.instance.move(ePoint(10, textsize[1] + 10))
-self[&quot;menu&quot;].downstream_elements.downstream_elements.instance.resize(eSize(*listsize))
-
-# center window
-newwidth = wsize[0]
-newheight = wsize[1]
-self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()  + (orgheight - newheight)/2))
-		</applet>
 	</screen>"""
 
 	def __init__(self, session, message="", title="", menulist=[], type=0, exitid=-1, default=0, timeout=0):

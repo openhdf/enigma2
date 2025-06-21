@@ -1,6 +1,5 @@
-
-from os import popen, system
-from re import search, split
+import os
+import re
 
 
 class MountPoints():
@@ -8,14 +7,14 @@ class MountPoints():
 		self.entries = []
 		self.uuids = []
 		self.fstab = "/etc/fstab"
-		self.blkid = "/sbin/blkid"
+		self.blkid = "blkid"
 
 	def read(self):
 		rows = open(self.fstab, "r").read().strip().split("\n")
 		for row in rows:
 			self.entries.append({
 				"row": row,
-				"data": split("\s+", row),
+				"data": re.split("\s+", row),
 				"modified": False
 			})
 
@@ -53,15 +52,14 @@ class MountPoints():
 				if res[0] == "/dev/%s%i" % (device, partition):
 					mounts.close()
 					return res[1]
-
 		mounts.close()
 		return ""
 
 	def umount(self, path):
-		return system("umount %s" % path) == 0
+		return os.system("umount %s" % path) == 0
 
 	def mount(self, device, partition, path):
-		return system("[ ! -d %s ] && mkdir %s\nmount /dev/%s%d %s" % (path, path, device, partition, path)) == 0
+		return os.system("[ ! -d %s ] && mkdir %s\nmount /dev/%s%d %s" % (path, path, device, partition, path)) == 0
 
 	def exist(self, path):
 		for entry in self.entries:
@@ -77,7 +75,7 @@ class MountPoints():
 					self.entries.remove(entry)
 
 	def deleteDisk(self, device):
-		for i in list(range(1, 4)):
+		for i in range(1, 4):
 			res = self.get(device, i)
 			if len(res) > 0:
 				self.delete(res)
@@ -104,7 +102,7 @@ class MountPoints():
 			if uuid["device"] == device and uuid["partition"] == partition:
 				return uuid["uuid"]
 
-		rows = popen(self.blkid).read().strip().split("\n")
+		rows = os.popen(self.blkid).read().strip().split("\n")
 		for row in rows:
 			tmp = row.split(":")
 			if len(tmp) < 2:
@@ -116,7 +114,7 @@ class MountPoints():
 				tmp.reverse()
 				value = ":".join(tmp)
 				uuid = "00000000"
-				ret = search('UUID=\"([\w\-]+)\"', value)
+				ret = re.search('UUID=\"([\w\-]+)\"', value)
 				if ret:
 					uuid = ret.group(1)
 				self.uuids.append({
