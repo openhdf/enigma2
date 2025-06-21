@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 14:10+0200\n"
-"PO-Revision-Date: 2025-03-11 20:22+0100\n"
+"PO-Revision-Date: 2025-06-21 19:43+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -4550,6 +4550,36 @@ msgid ""
 msgstr ""
 "Möchten Sie das Gerät wirklich initialisieren?\n"
 "Alle Daten auf der Diskette gehen verloren!"
+
+msgid "Initialize as HDD?"
+msgstr "Als Festplatte initialisieren?"
+
+msgid "No - simple"
+msgstr "Nein - einfach"
+
+msgid "Yes - fstab entry as /media/hdd"
+msgstr "Ja - fstab-Eintrag als /media/hdd"
+
+msgid "Please select your preferred configuration."
+msgstr "Stellen Sie die gewünschte Einstellung ein."
+
+msgid "One partition"
+msgstr "Eine Partition"
+
+#, python-format
+msgid "Two partitions (50% - 50%)"
+msgstr "Zwei Partitionen (50% - 50%)"
+
+#, python-format
+msgid "Two partitions (75% - 25%)"
+msgstr "Zwei Partitionen (75% - 25%)"
+
+msgid "Three partitions (33% - 33% - 33%)"
+msgstr "Drei Partitionen (33% - 33% - 33%)"
+
+#, python-format
+msgid "Four partitions (25% - 25% - 25% - 25%)"
+msgstr "Vier Partitionen (25% - 25% - 25% - 25%)"
 
 msgid "Do you really want to move to trashcan ?"
 msgstr "Wollen Sie wirklich in den Papierkorb wechseln?"
