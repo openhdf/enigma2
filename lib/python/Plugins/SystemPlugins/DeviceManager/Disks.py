@@ -429,13 +429,13 @@ class Disks:
 			elif psize > 2048:
 				cmd += "-T largefile -N %s " % str(psize * 32)
 			cmd += "-m0 -O dir_index /dev/" + dev
-			os.system("opkg update && opkg install kernel-module-ext3")
+			#os.system("opkg update && opkg install kernel-module-ext3")
 		elif fstype == 2:
 			cmd = 'mkfs.ext2 -F '
 			if psize > 2048:
 					cmd += '-T largefile '
 			cmd += '-m0 /dev/' + dev
-			os.system("opkg update && opkg install kernel-module-ext2")
+			#os.system("opkg update && opkg install kernel-module-ext2")
 		elif fstype == 3:
 			cmd = "mkfs.ntfs -f /dev/" + dev
 		elif fstype == 4:
