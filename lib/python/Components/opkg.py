@@ -6,7 +6,6 @@ from Tools.Directories import resolveFilename, SCOPE_LIBDIR
 opkgDestinations = []
 opkgStatusPath = ''
 
-
 def opkgExtraDestinations():
 	global opkgDestinations
 	return ''.join([" --add-dest %s:%s" % (i, i) for i in opkgDestinations])
