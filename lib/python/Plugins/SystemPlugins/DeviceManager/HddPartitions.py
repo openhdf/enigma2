@@ -222,8 +222,8 @@ class HddPartitions(Screen):
 				if self.isExt4Supported():
 					self.session.openWithCallback(self.domkfs, ExtraMessageBox, _("Format as"), _("Partitioner"),
 												[["Ext4", "partitionmanager.png"],
-#												["Ext3", "partitionmanager.png"],
-#												["Ext2", "partitionmanager.png"],
+												["Ext3", "partitionmanager.png"],
+												["Ext2", "partitionmanager.png"],
 												[_("Cancel"), "cancel.png"],
 												], 1, 3)
 				else:

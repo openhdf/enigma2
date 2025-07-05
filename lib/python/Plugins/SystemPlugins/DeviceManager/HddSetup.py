@@ -245,8 +245,8 @@ class HddSetup(Screen):
 			if self.isExt4Supported():
 				self.session.openWithCallback(self.initialaze, ExtraMessageBox, _("Format as"), _("Partitioner"),
 											[["Ext4", "partitionmanager.png"],
-#											["Ext3", "partitionmanager.png"],
-#											["Ext2", "partitionmanager.png"],
+											["Ext3", "partitionmanager.png"],
+											["Ext2", "partitionmanager.png"],
 											["NTFS", "partitionmanager.png"],
 											["exFAT", "partitionmanager.png"],
 											["Fat32", "partitionmanager.png"],
