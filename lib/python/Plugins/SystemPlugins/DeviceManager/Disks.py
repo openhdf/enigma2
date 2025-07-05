@@ -17,7 +17,7 @@ class Disks:
 		'c1': 'DRDOS/sec (FAT)',
 		'2': 'XENIX root',
 		'3c': 'PartitionMagic',
-		'83': 'Linux',
+		'83': 'Linux ext',
 		'c4': 'DRDOS/sec (FAT)',
 		'3': 'XENIX usr',
 		'40': 'Venix 80286',
@@ -35,7 +35,8 @@ class Disks:
 		'4d': 'QNX4.x',
 		'87': 'NTFS volume set',
 		'db': 'CP/M / CTOS',
-		'7': 'HPFS/NTFS/exFAT',
+		'7': 'HPFS/NTFS',
+		'71': 'exFAT',
 		'4e': 'QNX4.x 2nd part',
 		'88': 'Linux plaintext',
 		'de': 'Dell Utility',
@@ -313,8 +314,10 @@ class Disks:
 
 		if fstype == 0 or fstype == 1 or fstype == 2:
 			ptype = "83"
-		elif fstype == 3 or fstype == 4:
+		elif fstype == 3:
 			ptype = "7"
+		elif fstype == 4:
+			ptype = "71"
 		elif fstype == 5:
 			ptype = "b"
 		if type == 0:
