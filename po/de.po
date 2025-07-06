@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 14:10+0200\n"
-"PO-Revision-Date: 2025-07-05 10:36+0200\n"
+"PO-Revision-Date: 2025-07-05 21:36+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -6354,6 +6354,9 @@ msgstr "Festplatte"
 
 msgid "Harddisk Setup"
 msgstr "Festplatten Einstellungen"
+
+msgid "Continue in background"
+msgstr "Im Hintergrund"
 
 msgid "Harddisk standby after"
 msgstr "Festplatten Ruhezustand nach"
