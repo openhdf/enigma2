@@ -125,6 +125,7 @@ class HddSetup(Screen):
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"blue": self.blue,
+			"ok": self.blue,
 			"yellow": self.yellow,
 			"green": self.green,
 			"red": self.quit,
