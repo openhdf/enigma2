@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 14:10+0200\n"
-"PO-Revision-Date: 2025-07-05 21:36+0200\n"
+"PO-Revision-Date: 2025-07-09 19:24+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -2669,7 +2669,7 @@ msgstr "CIselectMainMenu"
 
 #, python-format
 msgid "CPU Temp:\t\t%s"
-msgstr "CPU-Temperatur:\t\t%s"
+msgstr "CPU-Temp:\t\t%s"
 
 #, python-format
 msgid "CPU:\t\t%s"
@@ -7068,7 +7068,7 @@ msgid "Installing plugins from IPK ..."
 msgstr "Installiere Plugins aus IPK ..."
 
 msgid "Installing plugins from feed ..."
-msgstr "Installiere Plugins vom Feed ..."
+msgstr "Installiere Plugins ..."
 
 msgid "Instant Record"
 msgstr "Sofortaufnahme"
@@ -11532,7 +11532,7 @@ msgid "Service info - tuner setting values"
 msgstr "Service Info - Tuner Einstellwerte"
 
 msgid "Extended PID info"
-msgstr "Erweiterte PID Info"
+msgstr "Erw. PID Info"
 
 msgid "Basic PID info"
 msgstr "Basis PID Info"
@@ -11541,7 +11541,7 @@ msgid "Tuner setting values"
 msgstr "Tunereinstellung"
 
 msgid "Tuner live values"
-msgstr "Tuner Live-Werte"
+msgstr "Tuner Live"
 
 msgid "Service Name"
 msgstr "Sendername"
