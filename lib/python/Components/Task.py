@@ -1,15 +1,11 @@
-# -*- coding: utf-8 -*-
 # A Job consists of many "Tasks".
 # A task is the run of an external tool, with proper methods for failure handling
-
-
-from six import ensure_str
 
 from Tools.CList import CList
 
 
 class Job:
-	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = list(range(4))
+	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = range(4)
 
 	def __init__(self, name):
 		self.tasks = []
@@ -206,13 +202,12 @@ class Task:
 		pass
 
 	def processStdout(self, data):
-		self.processOutput(data)
+		self.processOutput(data.decode())
 
 	def processStderr(self, data):
-		self.processOutput(data)
+		self.processOutput(data.decode())
 
 	def processOutput(self, data):
-		data = ensure_str(data)
 		self.output_line += data
 		while True:
 			i = self.output_line.find('\n')
@@ -223,6 +218,7 @@ class Task:
 
 	def processOutputLine(self, line):
 		print("[Task %s]" % self.name, line[:-1])
+		pass
 
 	def processFinished(self, returncode):
 		self.returncode = returncode
@@ -266,7 +262,7 @@ class Task:
 	progress = property(getProgress, setProgress)
 
 	def __str__(self):
-		return "Components.Task.Task name=%s" % self.name
+		return "Components.Task.Task name=%s" % (self.name)
 
 
 class LoggingTask(Task):
@@ -384,15 +380,13 @@ class JobManager:
 				self.active_job.start(self.jobDone)
 
 	def notifyFailed(self, job, task, problems):
-		import Tools.Notifications
+		from Tools.Notifications import AddNotification, AddNotificationWithCallback
 		from Screens.MessageBox import MessageBox
 		if problems[0].RECOVERABLE:
-			print("[Task] recoverable task failure\n", job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)))
-			Tools.Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
+			AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
 			return True
 		else:
-			print("[Task] unrecoverable task failure\n", job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)))
-			Tools.Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)), type=MessageBox.TYPE_ERROR)
+			AddNotification(MessageBox, job.name + "\n" + _("Error") + (': %s') % (problems[0].getErrorMessage(task)), type=MessageBox.TYPE_ERROR)
 			return False
 
 	def jobDone(self, job, task, problems):
@@ -409,10 +403,10 @@ class JobManager:
 	# Set job.onSuccess to this function if you want to pop up the jobview when the job is done/
 	def popupTaskView(self, job):
 		if not self.visible:
-			import Tools.Notifications
+			from Tools.Notifications import AddNotification
 			from Screens.TaskView import JobView
 			self.visible = True
-			Tools.Notifications.AddNotification(JobView, job)
+			AddNotification(JobView, job)
 
 	def errorCB(self, answer):
 		if answer:
@@ -425,11 +419,11 @@ class JobManager:
 			self.kick()
 
 	def getPendingJobs(self):
-		list = []
+		_list = []
 		if self.active_job:
-			list.append(self.active_job)
-		list += self.active_jobs
-		return list
+			_list.append(self.active_job)
+		_list += self.active_jobs
+		return _list
 
 # some examples:
 #class PartitionExistsPostcondition:
@@ -468,9 +462,6 @@ class JobManager:
 
 
 class Condition:
-	def __init__(self):
-		pass
-
 	RECOVERABLE = False
 
 	def getErrorMessage(self, task):
@@ -478,9 +469,6 @@ class Condition:
 
 
 class WorkspaceExistsPrecondition(Condition):
-	def __init__(self):
-		pass
-
 	def check(self, task):
 		return os.access(task.job.workspace, os.W_OK)
 
@@ -504,9 +492,6 @@ class DiskspacePrecondition(Condition):
 
 
 class ToolExistsPrecondition(Condition):
-	def __init__(self):
-		pass
-
 	def check(self, task):
 		import os
 		if task.cmd[0] == '/':
@@ -517,29 +502,22 @@ class ToolExistsPrecondition(Condition):
 			self.realpath = task.cmd
 			path = os.environ.get('PATH', '').split(os.pathsep)
 			path.append(task.cwd + '/')
-			# FIXME PY3 map,filter
-			absolutes = list([_file for _file in list(map(lambda directory, _file=task.cmd: os.path.join(directory, _file), path)) if os.access(_file, os.X_OK)])
+			absolutes = list(filter(lambda file: os.access(file, os.X_OK), list(map(lambda directory, file=task.cmd: os.path.join(directory, file), path))))
 			if absolutes:
 				self.realpath = absolutes[0]
 				return True
 		return False
 
 	def getErrorMessage(self, task):
-		return _("A required tool (%s) was not found.") % self.realpath
+		return _("A required tool (%s) was not found.") % (self.realpath)
 
 
 class AbortedPostcondition(Condition):
-	def __init__(self):
-		pass
-
 	def getErrorMessage(self, task):
 		return _("Cancelled upon user request")
 
 
 class ReturncodePostcondition(Condition):
-	def __init__(self):
-		pass
-
 	def check(self, task):
 		return task.returncode == 0
 
