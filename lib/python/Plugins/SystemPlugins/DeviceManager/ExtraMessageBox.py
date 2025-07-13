@@ -3,6 +3,7 @@ from enigma import eTimer
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List
+from Components.Button import Button
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from Tools.LoadPixmap import LoadPixmap
 from Components.Label import Label
@@ -49,7 +50,8 @@ class ExtraMessageBox(Screen):
 
 		self['menu'] = List(self.list)
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
-
+		self["key_red"] = Button(_("Exit"))
+		self["key_green"] = Button(_("Ok"))
 		self["message"] = Label(message)
 		self["actions"] = ActionMap(["SetupActions"],
 		{
