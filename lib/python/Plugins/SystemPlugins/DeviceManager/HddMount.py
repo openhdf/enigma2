@@ -1,39 +1,62 @@
 # for localized messages
+from . import _
 
-from os import system
-
-from boxbranding import getMachineBrand, getMachineName
-
+from enigma import *
+from Plugins.Plugin import PluginDescriptor
+from Screens.Screen import Screen
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.ActionMap import ActionMap
-from Components.Button import Button
 from Components.MenuList import MenuList
+from Components.GUIComponent import GUIComponent
+from Components.SystemInfo import BoxInfo
+from Tools.Directories import fileExists, crawlDirectory, resolveFilename, SCOPE_CURRENT_PLUGIN
+from Tools.LoadPixmap import LoadPixmap
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.Button import Button
+from Components.Label import Label
 from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
-from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
-from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Tools.Directories import SCOPE_CURRENT_PLUGIN, resolveFilename
-from Tools.LoadPixmap import LoadPixmap
 
-from . import _
+from .MountPoints import MountPoints
 from .Disks import Disks
 from .ExtraMessageBox import ExtraMessageBox
-from .MountPoints import MountPoints
+
+import os
+import re
+
+FULLHD = False
+if getDesktop(0).size().width() >= 1920:
+	FULLHD = True
 
 
 class HddMount(Screen):
-	skin = """
-	<screen name="HddMount" position="center,center" size="560,430" title="Hard Drive Mount">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		<widget name="menu" position="20,45" scrollbarMode="showOnDemand" size="520,380" transparent="1" />
-	</screen>"""
+	if FULLHD:
+		skin = """
+		<screen name="HddMount" position="center,center" size="560,430" title="Hard Drive Mount">
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget name="menu" position="20,45" scrollbarMode="showOnDemand" size="520,380" transparent="1" />
+		</screen>"""
+	else:
+		skin = """
+		<screen name="HddMount" position="center,center" size="560,430" title="Hard Drive Mount">
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget name="menu" position="20,45" scrollbarMode="showOnDemand" size="520,380" transparent="1" />
+		</screen>"""
 
 	def __init__(self, session, device, partition):
 		Screen.__init__(self, session)
@@ -141,7 +164,7 @@ class HddMount(Screen):
 	def customPath(self, result):
 		if result and len(result) > 0:
 			result = result.rstrip("/")
-			system("mkdir -p %s" % result)
+			os.system("mkdir -p %s" % result)
 			self.setMountPoint(result)
 
 	def setMountPoint(self, path):
@@ -168,12 +191,12 @@ class HddMount(Screen):
 			if not self.mountpoints.mount(self.device, self.partition, self.cpath):
 				self.session.open(MessageBox, _("Cannot mount new drive.\nPlease check filesystem or format it and try again"), MessageBox.TYPE_ERROR)
 			elif self.cpath == "/media/hdd":
-				system("/bin/mkdir -p /media/hdd/movie")
+				os.system("mkdir -p /media/hdd/movie")
 
 			if not self.fast:
-				message = _("Device Fixed Mount Point change needs a system restart in order to take effect.\nRestart your %s %s now?") % (getMachineBrand(), getMachineName())
+				message = _("Device Fixed Mount Point change needs a system restart in order to take effect.\nRestart your %s %s now?" % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")))
 				mbox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
-				mbox.setTitle(_("Restart %s %s") % (getMachineBrand(), getMachineName()))
+				mbox.setTitle(_("Restart %s %s") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")))
 			else:
 				self.close()
 
@@ -193,37 +216,58 @@ def MountEntry(description, details):
 
 
 class HddFastRemove(Screen):
-	skin = """
-	<screen name="HddFastRemove" position="center,center" size="560,430" title="Hard Drive Fast Umount">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="140,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_blue" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		<widget source="menu" render="Listbox" position="10,55" size="520,380" scrollbarMode="showOnDemand">
-			<convert type="TemplatedMultiContent">
-				{"template": [
-					MultiContentEntryPixmapAlphaTest(pos = (5, 0), size = (48, 48), png = 0),
-					MultiContentEntryText(pos = (65, 3), size = (190, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
-					MultiContentEntryText(pos = (165, 27), size = (290, 38), font=1, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 2),
-					],
-					"fonts": [gFont("Regular", 22), gFont("Regular", 18)],
-					"itemHeight": 50
-				}
-			</convert>
-		</widget>
-	</screen>"""
+	if FULLHD:
+		skin = """
+		<screen name="HddFastRemove" position="center,center" size="560,430" title="Hard Drive Fast Umount">
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="140,0" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_blue" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="menu" render="Listbox" position="10,55" size="520,380" scrollbarMode="showOnDemand">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						MultiContentEntryPixmapAlphaTest(pos = (5, 0), size = (48, 48), png = 0),
+						MultiContentEntryText(pos = (65, 3), size = (300, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
+						MultiContentEntryText(pos = (165, 27), size = (290, 38), font=1, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 2),
+						],
+						"fonts": [gFont("Regular", 22), gFont("Regular", 18)],
+						"itemHeight": 50
+					}
+				</convert>
+			</widget>
+		</screen>"""
+	else:
+		skin = """
+		<screen name="HddFastRemove" position="center,center" size="560,430" title="Hard Drive Fast Umount">
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="140,0" size="140,40" alphatest="on" />
+			<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget name="key_blue" position="140,0" zPosition="1" size="140,40" font="Regular;18" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="menu" render="Listbox" position="10,55" size="520,380" scrollbarMode="showOnDemand">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+						MultiContentEntryPixmapAlphaTest(pos = (5, 0), size = (48, 48), png = 0),
+						MultiContentEntryText(pos = (65, 3), size = (300, 38), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 1),
+						MultiContentEntryText(pos = (165, 27), size = (290, 38), font=1, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 2),
+						],
+						"fonts": [gFont("Regular", 22), gFont("Regular", 18)],
+						"itemHeight": 50
+					}
+				</convert>
+			</widget>
+		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self["key_blue"] = Button()
 		self.refreshMP(False)
 
 		self["menu"] = List(self.disks)
-		self["key_red"] = Button(_("Unmount"))
-		self["key_blue"] = Button(_("Exit"))
+		self["key_red"] = Button(_("Exit"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
-			"blue": self.quit,
-			"red": self.red,
+			"blue": self.red,
+			"red": self.quit,
 			"cancel": self.quit,
 		}, -2)
 
@@ -246,24 +290,37 @@ class HddFastRemove(Screen):
 		self.disks = list()
 		self.mounts = list()
 		for disk in self.mdisks.disks:
-			if disk[2] == True:
-				diskname = disk[3]
+			if disk[4] and disk[3]:
+				fullname = disk[4] + " (" + disk[3] + ")"
+			elif disk[4]:
+				fullname = disk[4]
+			elif disk[3]:
+				fullname = disk[3]
+			else:
+				fullname = "'-?-'"
+			disk1 = disk[0]
+			if "mmcblk" in disk[0]:
+				disk1 = disk[0] + "p"
+			if (disk[2] or "mmcblk" in disk[0]) and not disk[7]:
+				count = 1
 				for partition in disk[5]:
 					mp = ""
 					rmp = ""
 					try:
-						mp = self.mountpoints.get(partition[0][:3], int(partition[0][3:]))
-						rmp = self.mountpoints.getRealMount(partition[0][:3], int(partition[0][3:]))
+						mp = self.mountpoints.get(disk1, count)
+						rmp = self.mountpoints.getRealMount(disk1, count)
 					except Exception as e:
 						pass
 					if len(mp) > 0:
-						self.disks.append(MountEntry(disk[3], "P.%s (Fixed: %s)" % (partition[0][3:], mp)))
+						self.disks.append(MountEntry(fullname, _("P.%s (Fixed: %s)") % (count, mp)))
 						self.mounts.append(mp)
 					elif len(rmp) > 0:
-						self.disks.append(MountEntry(disk[3], "P.%s (Fast: %s)" % (partition[0][3:], rmp)))
+						self.disks.append(MountEntry(fullname, _("P.%s (Fast: %s)") % (count, rmp)))
 						self.mounts.append(rmp)
+					count += 1
 		if uirefresh:
 			self["menu"].setList(self.disks)
+		self["key_blue"].setText(self.disks and _("Unmount") or "")
 
 	def quit(self):
 		self.close()

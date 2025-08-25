@@ -12,12 +12,13 @@
 #include <sys/vfs.h> // for statfs
 #include <lib/base/encoding.h>
 #include <lib/base/estring.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/epgchanneldata.h>
 #include <lib/dvb/epgtransponderdatareader.h>
 #include <lib/dvb/lowlevel/eit.h>
-#include <lib/base/nconfig.h>
+#include <dvbsi++/content_identifier_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <unordered_set>
 
@@ -407,7 +408,7 @@ eEPGCache::eEPGCache()
 {
 	eDebug("[eEPGCache] Initialized EPGCache (wait for setCacheFile call now)");
 
-	load_epg = eConfigManager::getConfigValue("config.usage.remote_fallback_import").find("epg") == std::string::npos;
+	load_epg = eSimpleConfig::getString("config.usage.remote_fallback_import", "").find("epg") == std::string::npos;
 
 	historySeconds = 0;
 	maxdays = 7;
@@ -424,8 +425,8 @@ eEPGCache::eEPGCache()
 		onid_blacklist.insert(onid_blacklist.end(),1,tmp_onid);
 	onid_file.close();
 
-	m_debug = eConfigManager::getConfigBoolValue("config.crash.debugEPG");
-	m_saveepg = eConfigManager::getConfigBoolValue("config.epg.saveepg");
+	m_debug = eSimpleConfig::getBool("config.crash.debugEPG", false);
+	m_saveepg = eSimpleConfig::getBool("config.epg.saveepg", true);
 
 	instance = this;
 }

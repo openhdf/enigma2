@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 14:10+0200\n"
-"PO-Revision-Date: 2025-01-30 14:07+0100\n"
+"PO-Revision-Date: 2025-07-09 19:24+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1737,6 +1737,9 @@ msgstr "Ermöglicht es Ihnen, die Anzeigedauer der Auflösungsinformationen auf 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Debug Log erlauben. Das Debug Log enthält detaillierte Informationen über alles was das System macht."
 
+msgid "Allows you to enable the udev log. They contain very detailed information of everything the udev does."
+msgstr "Udev Log erlauben. Das Udev Log enthält detaillierte Informationen über alles was Udev macht."
+
 msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does."
 msgstr "Diese Option aktiviert das Twisted Log. Dieses Log enthält detailierte Informationen über die Twisted Ausgaben."
 
@@ -2666,7 +2669,7 @@ msgstr "CIselectMainMenu"
 
 #, python-format
 msgid "CPU Temp:\t\t%s"
-msgstr "CPU-Temperatur:\t\t%s"
+msgstr "CPU-Temp:\t\t%s"
 
 #, python-format
 msgid "CPU:\t\t%s"
@@ -4302,8 +4305,8 @@ msgid ""
 "Device Fixed Mount Point change needs a system restart in order to take effect.\n"
 "Restart your %s %s now?"
 msgstr ""
-"Die Änderung des Device Fixed Mount Point erfordert einen Systemneustart, um wirksam zu werden.\n"
-"%s %s jetzt neu starten?"
+"Feste Einbindung eines Laufwerks benötigt einen System Neustart.\n"
+"Ihre %s %s jetzt neustarten?"
 
 msgid "Device Information"
 msgstr "Geräteinformation"
@@ -4551,6 +4554,36 @@ msgstr ""
 "Möchten Sie das Gerät wirklich initialisieren?\n"
 "Alle Daten auf der Diskette gehen verloren!"
 
+msgid "Initialize as HDD?"
+msgstr "Als Festplatte initialisieren?"
+
+msgid "No - simple"
+msgstr "Nein - einfach"
+
+msgid "Yes - fstab entry as /media/hdd"
+msgstr "Ja - fstab-Eintrag als /media/hdd"
+
+msgid "Please select your preferred configuration."
+msgstr "Stellen Sie die gewünschte Einstellung ein."
+
+msgid "One partition"
+msgstr "Eine Partition"
+
+#, python-format
+msgid "Two partitions (50% - 50%)"
+msgstr "Zwei Partitionen (50% - 50%)"
+
+#, python-format
+msgid "Two partitions (75% - 25%)"
+msgstr "Zwei Partitionen (75% - 25%)"
+
+msgid "Three partitions (33% - 33% - 33%)"
+msgstr "Drei Partitionen (33% - 33% - 33%)"
+
+#, python-format
+msgid "Four partitions (25% - 25% - 25% - 25%)"
+msgstr "Vier Partitionen (25% - 25% - 25% - 25%)"
+
 msgid "Do you really want to move to trashcan ?"
 msgstr "Wollen Sie wirklich in den Papierkorb wechseln?"
 
@@ -4579,7 +4612,7 @@ msgstr "Möchten Sie Ihr Lesezeichen von %s wirklich entfernen?"
 
 #, python-format
 msgid "Do you really want to unhold the plugin \"%s\"?"
-msgstr "Möchten Sie das Plugin \"%s\" wirklich aufheben?"
+msgstr "Soll die Sperre für das Plugin \"%s\" entfernt werden?"
 
 msgid "Do you want to add any additional information ?"
 msgstr "Möchten Sie zusätzliche Informationen hinzufügen?"
@@ -5065,6 +5098,9 @@ msgstr "Aktiviere Unterstützung für ausgeschnittene Dateien für Nicht-*.ts-Da
 
 msgid "Enable debug log"
 msgstr "Aktiviere Debug Log"
+
+msgid "Enable udev log"
+msgstr "Aktiviere Udev Log"
 
 msgid "Enable digital downmix"
 msgstr "Aktiviere Digital Downmix"
@@ -6319,6 +6355,9 @@ msgstr "Festplatte"
 msgid "Harddisk Setup"
 msgstr "Festplatten Einstellungen"
 
+msgid "Continue in background"
+msgstr "Im Hintergrund"
+
 msgid "Harddisk standby after"
 msgstr "Festplatten Ruhezustand nach"
 
@@ -7029,7 +7068,7 @@ msgid "Installing plugins from IPK ..."
 msgstr "Installiere Plugins aus IPK ..."
 
 msgid "Installing plugins from feed ..."
-msgstr "Installiere Plugins vom Feed ..."
+msgstr "Installiere Plugins ..."
 
 msgid "Instant Record"
 msgstr "Sofortaufnahme"
@@ -7352,7 +7391,7 @@ msgid "LameDB"
 msgstr "LameDB"
 
 msgid "Language"
-msgstr "Sprachauswahl"
+msgstr "Sprache"
 
 msgid "Language selection"
 msgstr "Sprachauswahl"
@@ -10899,7 +10938,7 @@ msgid "Save EPG Cache ?"
 msgstr "Speichere EPG Cache ?"
 
 msgid "Save EPG data"
-msgstr "EPG immer Speichern"
+msgstr "EPG immer speichern"
 
 msgid "Save IPv6 configuration"
 msgstr "Speichere IPv6 Konfiguration"
@@ -11493,7 +11532,7 @@ msgid "Service info - tuner setting values"
 msgstr "Service Info - Tuner Einstellwerte"
 
 msgid "Extended PID info"
-msgstr "Erweiterte PID Info"
+msgstr "Erw. PID Info"
 
 msgid "Basic PID info"
 msgstr "Basis PID Info"
@@ -11502,7 +11541,7 @@ msgid "Tuner setting values"
 msgstr "Tunereinstellung"
 
 msgid "Tuner live values"
-msgstr "Tuner Live-Werte"
+msgstr "Tuner Live"
 
 msgid "Service Name"
 msgstr "Sendername"

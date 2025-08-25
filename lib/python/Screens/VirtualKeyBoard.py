@@ -10,7 +10,7 @@ from Components.MultiContent import MultiContentEntryPixmapAlphaTest, MultiConte
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from skin import fonts, parameters
-from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+from Tools.Directories import fileExists, SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -37,12 +37,14 @@ class VirtualKeyBoard(Screen):
 		self.lang = language.getLanguage()
 		self.nextLang = None
 		self.shiftMode = False
-		self.selectedKey = 0
+		self.selectedKey = 48
+		self.lastKey = None
 		self.smsChar = None
 		self.sms = NumericalTextInput(self.smsOK)
 
 		self.key_bg = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_bg.png"))
 		self.key_sel = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_sel.png"))
+		self.key_sel_big = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_sel_big.png"))
 		self.key_backspace = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_backspace.png"))
 		self.key_all = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_all.png"))
 		self.key_clr = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_clr.png"))
@@ -51,11 +53,17 @@ class VirtualKeyBoard(Screen):
 		self.key_shift = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_shift.png"))
 		self.key_shift_sel = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_shift_sel.png"))
 		self.key_space = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_space.png"))
+		self.key_space_big = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_space_big.png"))
 		self.key_left = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_left.png"))
 		self.key_right = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_right.png"))
+		self.key_begin = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_begin.png"))
+		self.key_end = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "buttons/vkey_end.png"))
 
-		self.keyImages = {"BACKSPACE": self.key_backspace, "CLEAR": self.key_clr, "ALL": self.key_all, "EXIT": self.key_esc, "OK": self.key_ok, "SHIFT": self.key_shift, "SPACE": self.key_space, "LEFT": self.key_left, "RIGHT": self.key_right}
-		self.keyImagesShift = {"BACKSPACE": self.key_backspace, "CLEAR": self.key_clr, "EXIT": self.key_esc, "OK": self.key_ok, "SHIFT": self.key_shift_sel, "SPACE": self.key_space, "LEFT": self.key_left, "RIGHT": self.key_right}
+		self.bigSpace = False
+		# these two files must be four times as wide as the others
+		if fileExists(resolveFilename(SCOPE_GUISKIN, "buttons/vkey_sel_big.png")) and fileExists(resolveFilename(SCOPE_GUISKIN, "buttons/vkey_space_big.png")):
+			self.bigSpace = True
+		self.setKeyImages()
 
 		self["country"] = StaticText("")
 		self["header"] = Label(title)
@@ -100,15 +108,24 @@ class VirtualKeyBoard(Screen):
 	def __onClose(self):
 		self.sms.timer.stop()
 
+	def setKeyImages(self):
+		if self.lang == "de_DE" and self.bigSpace:
+			self.keyImages = {"BACKSPACE": self.key_backspace, "CLEAR": self.key_clr, "ALL": self.key_all, "OK": self.key_ok, "SHIFT": self.key_shift, "SPACE": self.key_space_big, "LEFT": self.key_left, "RIGHT": self.key_right, "<<": self.key_begin, ">>": self.key_end}
+			self.keyImagesShift = {"BACKSPACE": self.key_backspace, "CLEAR": self.key_clr, "OK": self.key_ok, "SHIFT": self.key_shift_sel, "SPACE": self.key_space_big, "LEFT": self.key_left, "RIGHT": self.key_right, "<<": self.key_begin, ">>": self.key_end}
+		else:
+			self.keyImages = {"BACKSPACE": self.key_backspace, "CLEAR": self.key_clr, "ALL": self.key_all, "EXIT": self.key_esc, "OK": self.key_ok, "SHIFT": self.key_shift, "SPACE": self.key_space, "LEFT": self.key_left, "RIGHT": self.key_right}
+			self.keyImagesShift = {"BACKSPACE": self.key_backspace, "CLEAR": self.key_clr, "EXIT": self.key_esc, "OK": self.key_ok, "SHIFT": self.key_shift_sel, "SPACE": self.key_space, "LEFT": self.key_left, "RIGHT": self.key_right}
+
 	def switchLang(self):
 		self.lang = self.nextLang
 		self.setLang()
+		self.setKeyImages()
 		self.buildVirtualKeyBoard()
 
 	def setLang(self):
 		if self.lang == "de_DE":
-			self.keys_list = [["EXIT", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ü", "+"], ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä", "#"], ["<", "y", "x", "c", "v", "b", "n", "m", ",", ".", "-", "ALL"], ["SHIFT", "SPACE", "@", "ß", "[", "]", "OK", "LEFT", "RIGHT"]]
-			self.shiftkeys_list = [["EXIT", "!", '"', "§", "$", "%", "&", "/", "(", ")", "=", "BACKSPACE"], ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "Ü", "*"], ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ö", "Ä", "'"], [">", "Y", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CLEAR"], ["SHIFT", "SPACE", "?", "\\", "|", "^", "OK", "LEFT", "RIGHT"]]
+			self.keys_list = [["^", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "BACKSPACE"], ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ü", "+"], ["a", "s", "d", "f", "g", "h", "j", "k", "l", "ö", "ä", "#"], ["<", "y", "x", "c", "v", "b", "n", "m", ",", ".", "-", "ALL"], ["<<", "LEFT", "RIGHT", ">>", "SPACE", "OK", "ß", "@", "SHIFT"]]
+			self.shiftkeys_list = [["|", "!", '"', "§", "$", "%", "&", "/", "(", ")", "=", "BACKSPACE"], ["Q", "W", "E", "R", "T", "Z", "U", "I", "O", "P", "Ü", "*"], ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ö", "Ä", "'"], [">", "Y", "X", "C", "V", "B", "N", "M", ";", ":", "_", "CLEAR"], ["<<", "LEFT", "RIGHT", ">>", "SPACE", "OK", "?", "\\", "SHIFT"]]
 			self.nextLang = "hu_HU"
 		elif self.lang == "hu_HU":
 			self.keys_list = [["EXIT", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "BACKSPACE"], ["q", "w", "e", "r", "t", "z", "u", "i", "o", "p", "ő", "ú"], ["a", "s", "d", "f", "g", "h", "j", "k", "l", "é", "á", "ű"], ["í", "y", "x", "c", "v", "b", "n", "m", ",", ".", "-", "ALL"], ["SHIFT", "SPACE", "ö", "ü", "ó", "#", "@", "*", "OK", "LEFT", "RIGHT", "CLEAR"]]
@@ -204,7 +221,11 @@ class VirtualKeyBoard(Screen):
 		except IndexError:
 			self.selectedKey = self.max_key
 			x = self.list[self.selectedKey // 12][self.selectedKey % 12 + 1][1]
-		self.list[self.selectedKey // 12].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, h), png=self.key_sel))
+		if self.lang == "de_DE" and self.selectedKey == 52 and self.bigSpace:
+			width_big = self.key_sel_big.size().width()
+			self.list[self.selectedKey // 12].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width_big, h), png=self.key_sel_big))
+		else:
+			self.list[self.selectedKey // 12].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, h), png=self.key_sel))
 		self.previousSelectedKey = self.selectedKey
 		self["list"].setList(self.list)
 
@@ -251,6 +272,12 @@ class VirtualKeyBoard(Screen):
 		elif text == "RIGHT":
 			self["text"].right()
 
+		elif text == "<<":
+			self["text"].home()
+
+		elif text == ">>":
+			self["text"].end()
+
 		else:
 			self["text"].char(text)
 
@@ -276,6 +303,7 @@ class VirtualKeyBoard(Screen):
 
 	def left(self):
 		self.smsChar = None
+		self.lastKey = None
 		self.selectedKey = self.selectedKey // 12 * 12 + (self.selectedKey + 11) % 12
 		if self.selectedKey > self.max_key:
 			self.selectedKey = self.max_key
@@ -283,6 +311,7 @@ class VirtualKeyBoard(Screen):
 
 	def right(self):
 		self.smsChar = None
+		self.lastKey = None
 		self.selectedKey = self.selectedKey // 12 * 12 + (self.selectedKey + 1) % 12
 		if self.selectedKey > self.max_key:
 			self.selectedKey = self.selectedKey // 12 * 12
@@ -290,18 +319,56 @@ class VirtualKeyBoard(Screen):
 
 	def up(self):
 		self.smsChar = None
-		self.selectedKey -= 12
-		if self.selectedKey < 0:
-			self.selectedKey = self.max_key // 12 * 12 + self.selectedKey % 12
-			if self.selectedKey > self.max_key:
-				self.selectedKey -= 12
+		if self.lang == "de_DE" and self.selectedKey in (4, 5, 6, 7) and self.bigSpace:
+			self.lastKey = self.selectedKey
+			self.selectedKey = 52
+		elif self.lang == "de_DE" and self.selectedKey in (8, 9, 10, 11) and self.bigSpace:
+			self.selectedKey += 45
+			self.lastKey = None
+		elif self.lang == "de_DE" and self.selectedKey == 52 and self.bigSpace:
+			if self.lastKey is None:
+				self.selectedKey = 40
+			elif self.lastKey in (40, 41, 42, 43):
+				self.selectedKey = self.lastKey
+			else:
+				self.selectedKey = 40
+			self.lastKey = None
+		elif self.lang == "de_DE" and self.selectedKey > 52 and self.bigSpace:
+			self.selectedKey -= 9
+			self.lastKey = None
+		else:
+			self.selectedKey -= 12
+			if self.selectedKey < 0:
+				self.selectedKey = self.max_key // 12 * 12 + self.selectedKey % 12
+				if self.selectedKey > self.max_key:
+					self.selectedKey -= 12
+			self.lastKey = None
 		self.markSelectedKey()
 
 	def down(self):
 		self.smsChar = None
-		self.selectedKey += 12
-		if self.selectedKey > self.max_key:
-			self.selectedKey %= 12
+		if self.lang == "de_DE" and self.selectedKey in (40, 41, 42, 43) and self.bigSpace:
+			self.lastKey = self.selectedKey
+			self.selectedKey = 52
+		elif self.lang == "de_DE" and self.selectedKey in (44, 45, 46, 47) and self.bigSpace:
+			self.selectedKey += 9
+			self.lastKey = None
+		elif self.lang == "de_DE" and self.selectedKey == 52 and self.bigSpace:
+			if self.lastKey is None:
+				self.selectedKey = 4
+			elif self.lastKey in (4, 5, 6, 7):
+				self.selectedKey = self.lastKey
+			else:
+				self.selectedKey = 4
+			self.lastKey = None
+		elif self.lang == "de_DE" and self.selectedKey > 52 and self.bigSpace:
+			self.selectedKey -= 45
+			self.lastKey = None
+		else:
+			self.selectedKey += 12
+			if self.selectedKey > self.max_key:
+				self.selectedKey %= 12
+			self.lastKey = None
 		self.markSelectedKey()
 
 	def keyNumberGlobal(self, number):

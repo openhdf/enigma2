@@ -842,6 +842,7 @@ def InitUsageConfig():
 	config.crash.restart = ConfigYesNo(default=True)
 	config.crash.maxbsod = ConfigSelectionNumber(min=0, max=10, stepwidth=1, default=5, wraparound=True)
 	config.crash.details = ConfigYesNo(default=True)
+	config.crash.enableudevlog = ConfigYesNo(default=False)
 	config.crash.enabledebug = ConfigYesNo(default=False)
 	config.crash.debugloglimit = ConfigSelectionNumber(min=1, max=10, stepwidth=1, default=4, wraparound=True)
 	config.crash.daysloglimit = ConfigSelectionNumber(min=1, max=30, stepwidth=1, default=8, wraparound=True)

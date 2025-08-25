@@ -60,6 +60,12 @@ fi
 
 touch /etc/enigma2/settings
 
+if [ "$(grep config.crash.enableudevlog /etc/enigma2/settings)" ]; then
+	touch /etc/udev/udev.debug &
+else
+	rm -rf /etc/udev/udev.debug &
+fi
+
 if [ -x @bindir@/showiframe ]; then
 	if [[ ! "$stbcheck" =~ "u5" ]]; then
 		killall -9 showiframe; sleep 1

@@ -1,8 +1,10 @@
 
+import os
+import re
+from Tools.Directories import fileExists
+from Components.SystemInfo import BoxInfo
 
-from os import popen, system
-from re import sub
-
+BLACKLIST = [BoxInfo.getItem("BootDevice")]
 
 class Disks:
 	ptypes = {'0': 'Empty',
@@ -15,7 +17,7 @@ class Disks:
 		'c1': 'DRDOS/sec (FAT)',
 		'2': 'XENIX root',
 		'3c': 'PartitionMagic',
-		'83': 'Linux',
+		'83': 'Linux ext',
 		'c4': 'DRDOS/sec (FAT)',
 		'3': 'XENIX usr',
 		'40': 'Venix 80286',
@@ -34,6 +36,7 @@ class Disks:
 		'87': 'NTFS volume set',
 		'db': 'CP/M / CTOS',
 		'7': 'HPFS/NTFS',
+		'71': 'exFAT',
 		'4e': 'QNX4.x 2nd part',
 		'88': 'Linux plaintext',
 		'de': 'Dell Utility',
@@ -111,22 +114,24 @@ class Disks:
 	def readDisks(self):
 		partitions = open("/proc/partitions")
 		for part in partitions:
-			res = sub("\\s+", " ", part).strip().split(" ")
+			res = re.sub("\\s+", " ", part).strip().split(" ")
 			if res and len(res) == 4:
-				if len(res[3]) == 3 and (res[3][:2] == "sd" or res[3][:3] == "hdb") or len(res[3]) == 7 and res[3][:6] == "mmcblk":
+				if (len(res[3]) == 3 and (res[3][:2] == "sd" or res[3][:3] == "hdb")) or (len(res[3]) == 7 and res[3][:7] not in BLACKLIST):
 					self.disks.append([res[3],
 						int(res[2]) * 1024,
 						self.isRemovable(res[3]),
 						self.getModel(res[3]),
 						self.getVendor(res[3]),
-						[]])
+						[],
+						self.isRotational(res[3]),
+						self.isInternal(res[3])])
 
 	def readPartitions(self):
 		partitions = open("/proc/partitions")
 		for part in partitions:
-			res = sub("\\s+", " ", part).strip().split(" ")
+			res = re.sub("\\s+", " ", part).strip().split(" ")
 			if res and len(res) == 4:
-				if len(res[3]) > 3 and (res[3][:2] == "sd" or res[3][:3] == "hdb") or len(res[3]) > 7 and res[3][:6] == "mmcblk":
+				if (len(res[3]) > 3 and (res[3][:2] == "sd" or res[3][:3] == "hdb")) or (len(res[3]) > 7 and res[3][:7] not in BLACKLIST):
 					for i in self.disks:
 						if i[0] == res[3][:3] or i[0] == res[3][:7]:
 							i[5].append([res[3],
@@ -136,14 +141,33 @@ class Disks:
 							break
 
 	def isRemovable(self, device):
+		removable = False
 		try:
-			removable = open('/sys/block/%s/removable' % device, 'r').read().strip()
-			if removable == '1':
-				return True
+			data = open('/sys/block/%s/removable' % device, 'r').read().strip()
+			removable = int(data)
 		except:
 			pass
+		return removable
 
-		return False
+	def isRotational(self, device):
+		try:
+			data = open("/sys/block/%s/queue/rotational" % device, "r").read().strip()
+			rotational = int(data)
+		except:
+			rotational = True
+		return rotational
+
+	def isInternal(self, device):
+		internal = False
+		try:
+			phys_path = os.path.realpath(self.sysfsPath('device', device))
+			internal = "pci" in phys_path or "ahci" in phys_path or "sata" in phys_path
+		except:
+			pass
+		return internal
+
+	def sysfsPath(self, filename, device):
+		return os.path.join('/sys/block/', device, filename)
 
 	def getTypeName(self, device):
 		if len(device) > 7:
@@ -152,11 +176,11 @@ class Disks:
 		else:
 			dev = device[:3]
 			n = device[3:]
-		cmd = '/usr/sbin/sfdisk -c /dev/%s %s' % (dev, n)
-		fdisk = popen(cmd, 'r')
+		cmd = '/usr/sbin/sfdisk --part-type /dev/%s %s' % (dev, n)
+		fdisk = os.popen(cmd, 'r')
 		res = fdisk.read().strip()
 		fdisk.close()
-		if res in list(self.ptypes.keys()):
+		if res in self.ptypes.keys():
 			return self.ptypes[res]
 		return res
 
@@ -167,24 +191,32 @@ class Disks:
 		else:
 			dev = device[:3]
 			n = device[3:]
-		cmd = '/usr/sbin/sfdisk -c /dev/%s %s' % (dev, n)
-		fdisk = popen(cmd, 'r')
+		cmd = '/usr/sbin/sfdisk --part-type /dev/%s %s' % (dev, n) # use --part-type instead -c
+		fdisk = os.popen(cmd, 'r')
 		res = fdisk.read().strip()
 		fdisk.close()
 		return res
 
 	def getModel(self, device):
 		try:
-			return open("/sys/block/%s/device/model" % device, "r").read().strip()
+			model = open("/sys/block/%s/device/model" % device, "r").read().strip()
+			return str(model).replace('\n', '')
 		except:
 			try:
-				return open("/sys/block/%s/device/name" % device, "r").read().strip()
+				model = open("/sys/block/%s/device/name" % device, "r").read().strip()
+				return str(model).replace('\n', '')
 			except:
-				return ""
+				try:
+					model = open("/sys/block/%s+p/device/name" % device, "r").read().strip()
+					return str(model).replace('\n', '')
+				except:
+					pass
+		return ""
 
 	def getVendor(self, device):
 		try:
-			return open("/sys/block/%s/device/vendor" % device, "r").read().strip()
+			vendor = open("/sys/block/%s/device/vendor" % device, "r").read().strip()
+			return str(vendor).replace('\n', '')
 		except:
 			return ""
 
@@ -193,7 +225,11 @@ class Disks:
 		for mount in mounts:
 			res = mount.split(" ")
 			if res and len(res) > 1:
-				if res[0][:8] == '/dev/%s' % device:
+				if "mmcblk" in device:
+					if (res[0] == '/dev/%sp1' % device) or (res[0] == '/dev/%sp2' % device) or (res[0] == '/dev/%sp3' % device) or (res[0] == '/dev/%sp4' % device):
+						mounts.close()
+						return True
+				elif res[0][:8] == '/dev/%s' % device:
 					mounts.close()
 					return True
 		mounts.close()
@@ -222,31 +258,50 @@ class Disks:
 		return None
 
 	def umount(self, device):
-		mounts = open("/proc/mounts")
-		for mount in mounts:
-			res = mount.split(" ")
-			if res and len(res) > 1:
-				if res[0][:8] == "/dev/%s" % device:
-					print("[DeviceManager] umount %s" % res[0])
-					if system("umount -f %s" % res[0]) != 0:
-						mounts.close()
-						return False
+		mounts = open("/proc/mounts", 'r')
+		line = mounts.readlines()
 		mounts.close()
+		for mnt in line:
+			res = mnt.strip().split()
+			if res and len(res) > 1:
+				if "mmcblk" in device:
+					if (res[0] == '/dev/%sp1' % device) or (res[0] == '/dev/%sp2' % device) or (res[0] == '/dev/%sp3' % device) or (res[0] == '/dev/%sp4' % device):
+						print("[DeviceManager] umount %s" % res[0])
+						if os.system("umount -f %s && sleep 2" % res[0]) != 0:
+							return False
+				elif res[0][:8] == "/dev/%s" % device:
+					print("[DeviceManager] umount %s" % res[0])
+					if os.system("umount -f %s && sleep 2" % res[0]) != 0:
+						return False
+		mounts = open("/proc/mounts", 'r')
+		line = mounts.readlines()
+		mounts.close()
+		for mnt in line:
+			res = mnt.strip().split()
+			if res and len(res) > 1:
+				if "mmcblk" in device:
+					if (res[0] == '/dev/%sp1' % device) or (res[0] == '/dev/%sp2' % device) or (res[0] == '/dev/%sp3' % device) or (res[0] == '/dev/%sp4' % device):
+						print("[DeviceManager] umount %s" % res[0])
+						if os.system("umount -f %s && sleep 2" % res[0]) != 0:
+							return False
+				elif res[0][:8] == "/dev/%s" % device:
+					print("[DeviceManager] umount %s" % res[0])
+					if os.system("umount -f %s && sleep 2" % res[3]) != 0:
+						return False
 		return True
 
 	def umountP(self, device, partition):
-		if system("umount -f /dev/%s%d" % (device, partition)) != 0:
+		if os.system("umount -f /dev/%s%d && sleep 2" % (device, partition)) != 0:
 			return False
-
 		return True
 
 	def mountP(self, device, partition, path):
-		if system("mount /dev/%s%d %s" % (device, partition, path)) != 0:
+		if os.system("mount /dev/%s%d %s" % (device, partition, path)) != 0:
 			return False
 		return True
 
 	def mount(self, fdevice, path):
-		if system("mount /dev/%s %s" % (fdevice, path)) != 0:
+		if os.system("mount /dev/%s %s" % (fdevice, path)) != 0:
 			return False
 		return True
 
@@ -257,34 +312,36 @@ class Disks:
 				print("[DeviceManager] umount failed!")
 				return -1
 
-		if fstype == 0 or fstype == 1:
+		if fstype == 0 or fstype == 1 or fstype == 2:
 			ptype = "83"
-		elif fstype == 2:
-			ptype = "7"
 		elif fstype == 3:
+			ptype = "7"
+		elif fstype == 4:
+			ptype = "71"
+		elif fstype == 5:
 			ptype = "b"
 		if type == 0:
-			psize = size / 1048576
+			psize = size // 1048576
 			if psize > 128000:
 				print("[DeviceManager] Detected >128GB disk, using 4k alignment")
 				flow = "8,,%s\n0,0\n0,0\n0,0\nwrite\n" % ptype
 			else:
 				flow = ",,%s\nwrite\n" % ptype
 		elif type == 1:
-			psize = size / 1048576 / 2
+			psize = size // 1048576 // 2
 			flow = ",%dM,%s\n,,%s\nwrite\n" % (psize, ptype, ptype)
 		elif type == 2:
-			psize = size / 1048576 / 4 * 3
+			psize = size // 1048576 // 4 * 3
 			flow = ",%dM,%s\n,,%s\nwrite\n" % (psize, ptype, ptype)
 		elif type == 3:
-			psize = size / 1048576 / 3
+			psize = size // 1048576 // 3
 			flow = ",%dM,%s\n,%dM,%s\n,,%s\nwrite\n" % (psize,
 				ptype,
 				psize,
 				ptype,
 				ptype)
 		elif type == 4:
-			psize = size / 1048576 / 4
+			psize = size // 1048576 // 4
 			flow = ",%dM,%s\n,%dM,%s\n,%dM,%s\n,,%s\nwrite\n" % (psize,
 				ptype,
 				psize,
@@ -293,12 +350,14 @@ class Disks:
 				ptype,
 				ptype)
 
-		cmd = '%s -f -uS /dev/%s' % ('/usr/sbin/sfdisk', device)
-		sfdisk = popen(cmd, 'w')
+		cmd = '%s --no-reread -uS /dev/%s' % ('/usr/sbin/sfdisk', device)
+		sfdisk = os.popen(cmd, 'w')
 		sfdisk.write(flow)
-		if sfdisk.close():
+		ret = sfdisk.close()
+		print('[DeviceManager]', ret)
+		if ret:
 			return -2
-		system("/sbin/mdev -s")
+		os.system("/sbin/mdev -s")
 		return 0
 
 	def chkfs(self, device, partition, fstype=0):
@@ -315,11 +374,16 @@ class Disks:
 		if self.isMountedP(device, partition):
 			return -1
 		if fstype == 0 or fstype == 1:
-			ret = system('/sbin/e2fsck -C 0 -f -p /dev/%s' % fdevice)
+			ret = os.system('e2fsck -C 0 -f -p /dev/%s' % fdevice)
 		elif fstype == 2:
-			ret = system('/usr/bin/ntfsfix /dev/%s' % fdevice)
+			tools = "ntfsfix"
+			data = os.popen("blkid").readlines()
+			for line in data:
+				if fdevice in line and 'exfat' in line:
+					tools = "exfatfsck"
+			ret = os.system('%s /dev/%s' % (tools, fdevice))
 		elif fstype == 3:
-			ret = system('/sbin/dosfsck -a /dev/%s' % fdevice)
+			ret = os.system('dosfsck -a /dev/%s' % fdevice)
 		if len(oldmp) > 0:
 			self.mount(fdevice, oldmp)
 		if ret == 0:
@@ -331,7 +395,7 @@ class Disks:
 		size = 0
 		partitions = open("/proc/partitions")
 		for part in partitions:
-			res = sub("\s+", " ", part).strip().split(" ")
+			res = re.sub("\s+", " ", part).strip().split(" ")
 			if res and len(res) == 4:
 				if res[3] == dev:
 					size = int(res[2])
@@ -348,18 +412,19 @@ class Disks:
 				return -2
 		else:
 			oldmp = ""
-
+		psize = size // 1024
 		if fstype == 0:
-			cmd = "/sbin/mkfs.ext4 "
-			psize = size / 1024
+			cmd = "mkfs.ext4 -F "
 			if psize > 20000:
-				version = open('/proc/version', 'r').read().split(' ', 4)[2].split('.', 2)[:2]
-				if version[0] > 3 and version[1] >= 2:
-					cmd += '-O bigalloc -C 262144 '
+				try:
+					version = open('/proc/version', 'r').read().split(' ', 4)[2].split('.', 2)[:2]
+					if version[0] > 3 and version[1] >= 2:
+						cmd += '-O bigalloc -C 262144 '
+				except:
+					pass
 			cmd += '-m0 -O dir_index /dev/' + dev
 		elif fstype == 1:
-			cmd = "/sbin/mkfs.ext3 "
-			psize = size / 1024
+			cmd = "mkfs.ext3 -F "
 			if psize > 250000:
 				cmd += "-T largefile -O sparse_super -N 262144 "
 			elif psize > 16384:
@@ -367,15 +432,27 @@ class Disks:
 			elif psize > 2048:
 				cmd += "-T largefile -N %s " % str(psize * 32)
 			cmd += "-m0 -O dir_index /dev/" + dev
+			#os.system("opkg update && opkg install kernel-module-ext3")
 		elif fstype == 2:
-			cmd = "/sbin/mkfs.ntfs -f /dev/" + dev
+			cmd = 'mkfs.ext2 -F '
+			if psize > 2048:
+					cmd += '-T largefile '
+			cmd += '-m0 /dev/' + dev
+			#os.system("opkg update && opkg install kernel-module-ext2")
 		elif fstype == 3:
-			cmd = "/usr/sbin/mkfs.vfat -F32 /dev/" + dev
+			cmd = "mkfs.ntfs -f /dev/" + dev
+		elif fstype == 4:
+			cmd = "mkfs.exfat /dev/" + dev
+		elif fstype == 5:
+			if psize > 4194304:
+				cmd = 'mkfs.vfat -I -S4096 -F32 /dev/' + dev
+			else:
+				cmd = 'mkfs.vfat -I -F32 /dev/' + dev
 		else:
 			if len(oldmp) > 0:
 				self.mount(dev, oldmp)
 			return -3
-		ret = system(cmd)
+		ret = os.system(cmd)
 
 		if len(oldmp) > 0:
 			self.mount(dev, oldmp)

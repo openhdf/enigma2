@@ -72,7 +72,7 @@ self.session.open(HdmiCECSetupScreen)
 			<menu weight="10" level="0" text="Graphical UI" entryID="gui_menu">
 				<id val="gui_menu" />
 				<item level="0" text="Skin setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
-				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
+				<item level="0" text="Language selection" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<item level="0" entryID="user_interface"><setup id="userinterface" /></item>
 				<item level="0" entryID="channelselection_setup"><setup id="channelselection" /></item>
 				<item level="1" entryID="autolanguage_setup"><setup id="autolanguagesetup" /></item>

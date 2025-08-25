@@ -519,11 +519,26 @@ class FlashImage(Screen):
 		Console().ePopen('rm /tmp/chroot.sh /tmp/groups.txt /tmp/groups.txt /tmp/installed-list.txt self.tmp_dir')
 
 	def flashPostActionFirst(self):
+		global doBackup
 		backupfilename = "%s/%s" % (getBackupPath(), getBackupFilename())
 		if fileExists(backupfilename):
 			self.flashPostAction()
 		else:
-			self.flashPostAction2()
+			if doBackup:
+				if isDevice:
+					imageFolder = "/media/hdd/images"
+					try:
+						if not os.path.exists(imageFolder):
+							os.makedirs(imageFolder)
+						doBackup = False
+						self.session.openWithCallback(self.flashPostAction, BackupScreen, runBackup=True)
+					except OSError as err:
+						print("[FlashImage] flashPostActionFirst Error %d: Failed to create '%s' folder!  (%s)" % (err.errno, imageFolder, err.strerror))
+						self.session.open(MessageBox, _("Backup not possible.\nFailed to create '/media/hdd/images' folder!"), MessageBox.TYPE_INFO, timeout=10)
+				else:
+					self.session.open(MessageBox, _("Backup not possible.\nNo device found!"), MessageBox.TYPE_INFO, timeout=10)
+			else:
+				self.flashPostAction2()
 
 	def flashPostAction(self, retVal=True):
 		if retVal:

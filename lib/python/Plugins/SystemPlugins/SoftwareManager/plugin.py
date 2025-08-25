@@ -1687,11 +1687,11 @@ class UpdatePlugin(Screen):
 		self.activityTimer.start(100, False)
 
 	def CheckDate(self):
-		# Check if image is not to old for update (max 120days)
+		# Check if image is not to old for update (max 365 days)
 		self.CheckDateDone = True
 		tmpdate = getEnigmaVersionString()
 		imageDate = date(int(tmpdate[0:4]), int(tmpdate[5:7]), int(tmpdate[8:10]))
-		datedelay = imageDate + timedelta(days=120)
+		datedelay = imageDate + timedelta(days=365)
 		message = _("Your image is out of date!\n"
 				"After such a long time, there is a risk that your %s %s  will not\n"
 				"boot after online-update, or will show disfunction in running Image.\n"

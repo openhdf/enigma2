@@ -884,6 +884,11 @@ def InitAVSwitch():
 				"10bit": _("10bit"),
 				"12bit": _("12bit")},
 				default="auto")
+		if BoxInfo.getItem("machinebuild") == "gbquad4kpro":
+			config.av.hdmicolordepth = ConfigSelection(choices={
+					"10bit": _("10bit"),
+					"12bit": _("12bit")},
+					default="10bit")
 		config.av.hdmicolordepth.addNotifier(setHdmiColordepth)
 	else:
 		config.av.hdmicolordepth = ConfigNothing()

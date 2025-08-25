@@ -115,6 +115,18 @@ class ScrollLabel(GUIComponent):
 			else:
 				self.long_text.setText(text)
 			self.TotalTextHeight = self.long_text.calculateSize().height()
+
+			# fill last page
+			if not self.split and self.TotalTextHeight > self.pageHeight:
+				totalLines = int(self.TotalTextHeight / self.lineheight)
+				pageLines = int(self.pageHeight / self.lineheight)
+				restLines = totalLines - (int(totalLines / pageLines) * pageLines)
+				if restLines:
+					fillLines = pageLines - restLines
+					text = text + ("\n" * fillLines)
+					self.long_text.setText(text)
+					self.TotalTextHeight = self.long_text.calculateSize().height()
+
 			self.long_text.resize(eSize(self.pageWidth - 30, self.TotalTextHeight))
 			self.split and self.right_text.resize(eSize(self.pageWidth - self.column - 30, self.TotalTextHeight))
 			if showBottom:
