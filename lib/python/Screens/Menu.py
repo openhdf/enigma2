@@ -73,7 +73,7 @@ class Menu(Screen, ProtectedScreen):
 		#	string (as we want to reference
 		#	stuff which is just imported)
 		if arg[0] != "":
-			exec("from %s import %s" % (arg[0], arg[1].split(",")[0]))
+			exec(f"from {arg[0]} import {arg[1].split(',')[0]}", globals())
 			self.openDialog(*eval(arg[1]))
 
 	def nothing(self): #dummy
