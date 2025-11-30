@@ -20,6 +20,9 @@ to generate HTML."""
 		self.disable_callbacks = False
 		self.enableWrapAround = enableWrapAround
 		self.__style = "default" # style might be an optional string which can be used to define different visualisations in the skin
+		self.__current = None  # current element set from connected GUI element
+		self.__index = 0  # current index set from connected GUI element
+		self.connectedGuiElement = None  # manuallyconnected GUI element
 
 	def setList(self, list):
 		self.__list = list
@@ -49,6 +52,15 @@ to generate HTML."""
 
 		for x in self.onSelectionChanged:
 			x()
+
+	# this is for manually set which is the GUI element connected with the list
+	# For use in case of addons where there is no source so to rely on the master
+	def setConnectedGuiElement(self, guiElement):
+		self.connectedGuiElement = guiElement
+		index = guiElement.instance.getCurrentIndex()
+		self.__current = self.listData[index]
+		self.__index = index
+		self.changed((self.CHANGED_ALL,))
 
 	@cached
 	def getCurrent(self):
@@ -99,6 +111,22 @@ to generate HTML."""
 
 	style = property(getStyle, setStyle)
 
+	@cached
+	def getCurrentIndex(self):
+		return self.master.index if self.master is not None and hasattr(self.master, "index") else self.__index
+
+	def setCurrentIndex(self, index):
+		if self.master is not None:
+			if hasattr(self.master, "index"):
+				self.master.index = index
+			else:
+				self.__index = index
+			self.selectionChanged(index)
+		if self.connectedGuiElement is not None:
+			self.connectedGuiElement.moveSelection(index)
+
+	index = property(getCurrentIndex, setCurrentIndex)
+
 	def updateList(self, list):
 		"""Changes the list without changing the selection or emitting changed Events"""
 		assert len(list) == len(self.__list)
@@ -130,3 +158,9 @@ to generate HTML."""
 
 	def getSelectedIndex(self):
 		return self.getIndex()
+
+	def getSelectedIndex(self):
+		return self.getCurrentIndex()
+
+	def getIndex(self):
+		return self.getCurrentIndex()
