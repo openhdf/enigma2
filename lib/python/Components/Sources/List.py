@@ -34,6 +34,10 @@ to generate HTML."""
 		if not self.disable_callbacks:
 			self.downstream_elements.entry_changed(index)
 
+	def listUpdated(self):
+		for method in self.onListUpdated:
+			method()
+
 	def modifyEntry(self, index, data):
 		self.__list[index] = data
 		self.entry_changed(index)
