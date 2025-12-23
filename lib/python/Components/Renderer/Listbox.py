@@ -16,7 +16,7 @@ from Components.Renderer.Renderer import Renderer
 # of the eListbox class. more or less.
 
 
-class Listbox(Renderer):
+class Listbox(Renderer, object):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.__content = None
@@ -98,6 +98,8 @@ class Listbox(Renderer):
 		if hasattr(self.source, "scrollbarMode"):
 			self.scrollbarMode = self.source.scrollbarMode
 		if len(what) > 1 and isinstance(what[1], str) and what[1] == "style":
+			return
+		if self.content:
 			return
 		self.content = self.source.content
 
