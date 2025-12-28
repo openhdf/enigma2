@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 14:10+0200\n"
-"PO-Revision-Date: 2025-12-07 09:13+0100\n"
+"PO-Revision-Date: 2025-12-28 13:14+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -7317,6 +7317,28 @@ msgstr "Kodi-Addons"
 
 msgid "Kodi Media Center"
 msgstr "Kodi Media Center"
+
+msgid "Kodi"
+msgstr "Kodi"
+
+msgid "Kodi Settings"
+msgstr "Kodi-Einstellungen"
+
+msgid "Add Kodi to Main Menu"
+msgstr "Zeige Kodi im Hauptmenü"
+
+msgid "Add Kodi to Extensions Menu"
+msgstr "Zeige Kodi unter Erweiterungen"
+
+msgid "Start Kodi Standalone"
+msgstr "Starte Kodi Standalone"
+
+msgid "Really start Kodi and stop user interface now?"
+msgstr "Kodi wirklich starten und die Benutzeroberfläche jetzt beenden?"
+
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr "Die Benutzeroberfläche der %s %s wird beendet, um Kodi auszuführen."
 
 msgid "Korea (Democratic People's Republic of)"
 msgstr "Korea (Democratic People's Republic of)"

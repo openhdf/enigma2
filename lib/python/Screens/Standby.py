@@ -25,6 +25,7 @@ inStandby = None
 infoBarInstance = None
 TVinStandby = None
 
+QUIT_KODI = 15
 
 def isInfoBarInstance():
 	global infoBarInstance
@@ -334,6 +335,7 @@ class QuitMainloopScreen(Screen):
 			5: _("The user interface of your %s %s is restarting\ndue to an error in mytest.py") % (getMachineBrand(), getMachineName()),
 			9: _("The user interface of your %s %s is restarting") % (getMachineBrand(), getMachineName()),
 			16: _("Your %s %s is rebooting into Recovery Mode") % (getMachineBrand(), getMachineName()),
+			QUIT_KODI: _("The user interface of your %s %s will be stopped to run Kodi") % getMachineName(),
 			42: _("Upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
 			43: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
 			44: _("Your front panel will be upgraded\nThis may take a few minutes"),
@@ -365,7 +367,7 @@ def getReasons(session, retvalue=1):
 	connectedClients = eStreamServer.getInstance().getConnectedClients()
 	if (connectedClients and len(connectedClients) > [(element).count('127.0.0.1') for element in connectedClients].count(1)) or StreamServiceList:
 		reasons.append(_("Client is streaming from this box!"))
-	if not reasons and mediaFilesInUse(session) and retvalue in (1, 2, 3, 4):
+	if not reasons and mediaFilesInUse(session) and retvalue in (1, 2, 3, 4, QUIT_KODI):
 		reasons.append(_("A file from media is in use!"))
 	return "\n".join(reasons)
 
@@ -419,6 +421,7 @@ class TryQuitMainloop(MessageBox):
 				3: _("Really restart now?"),
 				4: _("Really upgrade the frontprocessor and reboot now?"),
 				9: _("The user interface of your %s %s is restarting") % (getMachineBrand(), getMachineName()),
+				QUIT_KODI: _("Really start Kodi and stop user interface now?"),
 				16: _("Really reboot into Recovery Mode?"),
 				42: _("Really upgrade your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
 				43: _("Really reflash your %s %s and reboot now?") % (getMachineBrand(), getMachineName()),
