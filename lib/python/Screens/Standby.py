@@ -335,7 +335,7 @@ class QuitMainloopScreen(Screen):
 			5: _("The user interface of your %s %s is restarting\ndue to an error in mytest.py") % (getMachineBrand(), getMachineName()),
 			9: _("The user interface of your %s %s is restarting") % (getMachineBrand(), getMachineName()),
 			16: _("Your %s %s is rebooting into Recovery Mode") % (getMachineBrand(), getMachineName()),
-			QUIT_KODI: _("The user interface of your %s %s will be stopped to run Kodi") % getMachineName(),
+			QUIT_KODI: _("The user interface of your %s %s will be stopped to run Kodi") % (getMachineBrand(), getMachineName()),
 			42: _("Upgrade in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
 			43: _("Reflash in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % (getMachineBrand(), getMachineName()),
 			44: _("Your front panel will be upgraded\nThis may take a few minutes"),
