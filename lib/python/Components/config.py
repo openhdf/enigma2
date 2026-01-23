@@ -808,7 +808,6 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 	def __init__(self, default="", visible_width=False):
 		ConfigElement.__init__(self)
 		NumericalTextInput.__init__(self, nextFunc=self.nextFunc, handleTimeout=False)
-
 		self.marked_pos = 0
 		self.allmarked = (default != "")
 		self.fixed_size = 17
@@ -873,7 +872,10 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 		if self.help_window:
 			self.help_window.update(self)
 		self.validateMarker()
-		self.changed()
+		if prev != str(self.value):
+			self.changed()
+			if callable(callback):
+				callback()
 
 	def nextFunc(self):
 		self.marked_pos += 1
@@ -881,24 +883,19 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 		self.changed()
 
 	def getValue(self):
-		try:
-			return ensure_str(self.text)
-		except UnicodeDecodeError:
-			print("Broken UTF8!")
-			return self.text
+		return str(self.text)
 
 	def setValue(self, val):
-		try:
-			self.text = ensure_text(val)
-		except UnicodeDecodeError:
-			self.text = ensure_text(val, errors='ignore')
-			print("Broken UTF8!")
+		prev = self.text if hasattr(self, "text") else None
+		if val != prev:
+			self.text = val
+			self.changed()
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
 
 	def getText(self):
-		return ensure_str(self.text)
+		return self.text
 
 	def getMulti(self, selected):
 		if self.visible_width:
@@ -906,13 +903,13 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
 				mark = [self.marked_pos - self.offset]
-			return ("mtext"[1 - selected:], ensure_str(text[self.offset:self.offset + self.visible_width]) + " ", mark)
+			return "mtext"[1 - selected:], str(self.text[self.offset:self.offset + self.visible_width]) + " ", mark
 		else:
 			if self.allmarked:
 				mark = list(range(0, len(self.text)))
 			else:
 				mark = [self.marked_pos]
-			return "mtext"[1 - selected:], ensure_str(self.text) + " ", mark
+			return "mtext"[1 - selected:], str(self.text) + " ", mark
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
@@ -1044,7 +1041,6 @@ class ConfigText(ConfigElement, NumericalTextInput):
 	def __init__(self, default="", fixed_size=True, visible_width=False):
 		ConfigElement.__init__(self)
 		NumericalTextInput.__init__(self, nextFunc=self.nextFunc, handleTimeout=False)
-
 		self.marked_pos = 0
 		self.allmarked = (default != "")
 		self.fixed_size = fixed_size
@@ -1052,7 +1048,8 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.offset = 0
 		self.overwrite = fixed_size
 		self.help_window = None
-		self.value = self.last_value = self.default = default
+		self.value = self.default = default
+		self.last_value = self.tostring(self.value)
 
 	def validateMarker(self):
 		textlen = len(self.text)
@@ -1170,7 +1167,10 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		if self.help_window:
 			self.help_window.update(self)
 		self.validateMarker()
-		self.changed()
+		if prev != str(self.value):
+			self.changed()
+			if callable(callback):
+				callback()
 
 	def nextFunc(self):
 		self.marked_pos += 1
@@ -1178,24 +1178,19 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.changed()
 
 	def getValue(self):
-		try:
-			return ensure_str(self.text)
-		except UnicodeDecodeError:
-			print("Broken UTF8!")
-			return self.text
+		return self.text
 
 	def setValue(self, val):
-		try:
-			self.text = ensure_text(val)
-		except UnicodeDecodeError:
-			self.text = ensure_text(val, errors='ignore')
-			print("Broken UTF8!")
+		prev = self.text if hasattr(self, "text") else None
+		if val != prev:
+			self.text = val
+			self.changed()
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
 
 	def getText(self):
-		return ensure_str(self.text)
+		return self.text
 
 	def getMulti(self, selected):
 		if self.visible_width:
@@ -1203,13 +1198,13 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
 				mark = [self.marked_pos - self.offset]
-			return ("mtext"[1 - selected:], ensure_str(self.text[self.offset:self.offset + self.visible_width]) + " ", mark)
+			return ("mtext"[1 - selected:], self.text[self.offset:self.offset + self.visible_width].encode("utf-8") + " ", mark)
 		else:
 			if self.allmarked:
-				mark = list(range(0, len(self.text)))
+				mark = range(0, len(self.text))
 			else:
 				mark = [self.marked_pos]
-			return "mtext"[1 - selected:], ensure_str(self.text) + " ", mark
+			return ("mtext"[1 - selected:], self.text.encode("utf-8") + " ", mark)
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
@@ -1930,7 +1925,6 @@ class ConfigSubsection:
 		content.items[name] = value
 		x = content.stored_values.get(name, None)
 		if x is not None:
-			#print "ok, now we have a new item,", name, "and have the following value for it:", x
 			value.saved_value = x
 			value.load()
 
