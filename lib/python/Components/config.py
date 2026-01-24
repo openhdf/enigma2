@@ -1167,10 +1167,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		if self.help_window:
 			self.help_window.update(self)
 		self.validateMarker()
-		if prev != str(self.value):
-			self.changed()
-			if callable(callback):
-				callback()
+		self.changed()
 
 	def nextFunc(self):
 		self.marked_pos += 1
@@ -1198,13 +1195,13 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
 				mark = [self.marked_pos - self.offset]
-			return ("mtext"[1 - selected:], self.text[self.offset:self.offset + self.visible_width].encode("utf-8") + " ", mark)
+			return ("mtext"[1 - selected:], ensure_str(self.text[self.offset:self.offset + self.visible_width]) + " ", mark)
 		else:
 			if self.allmarked:
-				mark = range(0, len(self.text))
+				mark = list(range(0, len(self.text)))
 			else:
 				mark = [self.marked_pos]
-			return ("mtext"[1 - selected:], self.text.encode("utf-8") + " ", mark)
+			return "mtext"[1 - selected:], ensure_str(self.text) + " ", mark
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
