@@ -1192,7 +1192,7 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 
 void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts, bool streamtime)
 {
-	timespec now;
+	timespec now = {};
 	clock_gettime(CLOCK_MONOTONIC, &now);
 	addAccessPoint(offset, pts, now, streamtime);
 	m_has_accesspoints = true;
