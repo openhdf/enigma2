@@ -1637,6 +1637,23 @@ def InitUsageConfig():
 	config.oscaminfo.port = ConfigInteger(default=16002, limits=(0, 65536))
 	config.oscaminfo.intervall = ConfigSelectionNumber(min=1, max=600, stepwidth=1, default=10, wraparound=True)
 	BoxInfo.setItem("OScamInstalled", False)
+	config.misc.softcsa = ConfigSubsection()
+	config.misc.softcsa.decoderRelease = ConfigSelection(default=0, choices=[
+			(0, _("Quick")),
+			(1, _("Normal"))
+	])
+	config.misc.softcsa.syncMode = ConfigSelection(default=0, choices=[
+			(0, _("Synchronous")),
+			(1, _("Asynchronous"))
+	])
+	config.misc.softcsa.waitForDataTimeout = ConfigSelection(
+		default=800,
+		choices=[(x, _("%d ms") % x) for x in range(100, 2001, 100)]
+	)
+	config.misc.softcsa.readAccumulateSize = ConfigSelection(
+		default=32,
+		choices=[(0, _("Disabled"))] + [(x, _("%d KB") % x) for x in range(16, 129, 16)]
+	)
 
 	config.cccaminfo = ConfigSubsection()
 	config.cccaminfo.showInExtensions = ConfigYesNo(default=False)
