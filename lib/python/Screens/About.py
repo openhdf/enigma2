@@ -7,7 +7,7 @@ from re import search
 from boxbranding import (getBoxType, getBrandOEM, getDriverDate, getImageBuild,
                          getImageVersion, getMachineBrand, getMachineBuild,
                          getMachineName, getOEVersion)
-from enigma import eTimer, getDesktop, getEnigmaVersionString
+from enigma import eTimer, getDesktop, getEnigmaVersionString, eDVBCSAEngine
 from six import PY3, ensure_str
 
 from Components.About import about
@@ -164,6 +164,8 @@ class About(Screen):
 				cpuMHz = "%s MHz" % str(round(int(binascii.hexlify(clockfrequency), 16) / 1000000, 1))
 			except:
 				cpuMHz = "1,7 GHz"
+		if eDVBCSAEngine.isAvailable():
+			AboutText += _("Software descrambling version:\t%s %s\n") % (eDVBCSAEngine.getLibraryName(), eDVBCSAEngine.getLibraryVersion()) 
 		else:
 			if os_path.exists('/proc/cpuinfo'):
 				f = open('/proc/cpuinfo', 'r')

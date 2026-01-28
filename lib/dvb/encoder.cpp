@@ -184,7 +184,6 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 		vcodec_node = "vcodec";
 		acodec_node = "acodec";
 		encoder[encoder_index].navigation_instance = encoder[encoder_index].navigation_instance_normal;
-	}
 
 		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/bitrate", encoder_index);
 		CFile::writeInt(filename, bitrate);
@@ -204,6 +203,7 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/aspectratio", encoder_index);
 		CFile::writeInt(filename, aspectratio);
 
+	}
 
 	if (!vcodec.empty())
 	{
