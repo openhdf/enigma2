@@ -66,7 +66,6 @@ class About(Screen):
 				"blue": self.showMemoryInfo,
 				"up": self["AboutScrollLabel"].pageUp,
 				"down": self["AboutScrollLabel"].pageDown,
-				"green": self.showTranslationInfo,
 			})
 
 	def populate(self):
