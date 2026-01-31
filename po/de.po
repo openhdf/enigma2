@@ -2649,6 +2649,9 @@ msgstr "CI Plus 1.3"
 msgid "CI assignment"
 msgstr "CI-Zuweisung"
 
+msgid "CI enabled"
+msgstr "CI aktiviert"
+
 msgid "CI settings"
 msgstr "CI-Einstellungen"
 
@@ -4434,6 +4437,9 @@ msgstr "Deaktiviere Digital Downmix"
 
 msgid "Disable intro screen"
 msgstr "Begrüßungsbildschirm abschalten"
+
+msgid "Disable operator profiles"
+msgstr "Betreiberprofile deaktivieren"
 
 msgid "Disable the HDD Process on VFD"
 msgstr "Deaktiviert VFD für Festplattenzugriffe"
@@ -11678,6 +11684,9 @@ msgstr "Legen Sie die Schnittstelle als Standardschnittstelle fest"
 
 msgid "Set limits"
 msgstr "Grenzwerte setzen"
+
+msgid "Set persistent PIN code"
+msgstr "Permanenten PIN-Code festlegen"
 
 msgid "Set pin code persistent"
 msgstr "PIN dauerhaft speichern"
