@@ -269,7 +269,7 @@ class ServiceInfo(Poll, Converter):
 					return True
 			return False
 		elif self.type == self.IS_CRYPTED:
-			result = info.getInfo(iServiceInformation.sIsCrypted) == 1 and info.getInfo(iServiceInformation.sIsSoftCSA) != 1
+			result info.getInfo(iServiceInformation.sIsCrypted) == 1 and info.getInfo(iServiceInformation.sIsSoftCSA) != 1
 		elif self.type == self.IS_SOFTCSA:
 			return info.getInfo(iServiceInformation.sIsSoftCSA) == 1
 		elif self.type == self.IS_WIDESCREEN:
