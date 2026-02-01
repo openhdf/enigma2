@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 14:10+0200\n"
-"PO-Revision-Date: 2025-12-28 13:14+0100\n"
+"PO-Revision-Date: 2026-02-01 08:57+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1692,6 +1692,9 @@ msgstr "Alle Satelliten 4 (USALS)"
 msgid "All services provider"
 msgstr "Alle Serviceanbieter"
 
+msgid "All slots"
+msgstr "Alle Schächte"
+
 msgid "Allocate"
 msgstr "Reservieren"
 
@@ -2633,6 +2636,9 @@ msgstr "CI %s aktiviert"
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Common Interface) Einstellungen"
+
+msgid "CI Boot Delay"
+msgstr "CI-Bootverzögerung"
 
 msgid "CI Legacy"
 msgstr "CI Legacy"
@@ -17283,13 +17289,16 @@ msgid "height"
 msgstr "Höhe"
 
 msgid "helptext"
-msgstr "帮助文本"
+msgstr "Hilfetext"
 
 msgid "hide"
 msgstr "Verstecken"
 
 msgid "hide entry"
 msgstr "Eintrag verstecken"
+
+msgid "high"
+msgstr "hoch"
 
 msgid "highest Resolution"
 msgstr "höchste Auflösung"
