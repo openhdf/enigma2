@@ -195,21 +195,25 @@ int eDVBServiceStream::doRecord()
 		return 0; /* try it again when we are tuned in */
 	}
 
+	// Check if PMT is available - we need it to determine if channel is encrypted
+	eDVBServicePMTHandler::program program;
+	bool have_program_info = (m_service_handler.getProgramInfo(program) == 0);
+	bool is_encrypted = have_program_info && program.isCrypted();
+
 	if (!m_record && m_tuned)
 	{
+		// Must wait for PMT before creating recorder to choose correct thread type
+		if (!have_program_info)
+		{
+			eDebug("[eDVBServiceStream] waiting for PMT before creating recorder...");
+			return 0; /* wait for eventNewProgramInfo */
+		}
+
 		ePtr<iDVBDemux> demux;
 		if (m_service_handler.getDataDemux(demux))
 		{
 			eDebug("[eDVBServiceStream] NO DEMUX available");
 			return -1;
-		}
-
-		// Check if channel is encrypted - need scrambled recorder for software descrambling
-		eDVBServicePMTHandler::program program;
-		bool is_encrypted = false;
-		if (!m_service_handler.getProgramInfo(program))
-		{
-			is_encrypted = program.isCrypted();
 		}
 
 		if (m_ref.path.empty())
@@ -224,6 +228,7 @@ int eDVBServiceStream::doRecord()
 			else
 			{
 				// FTA channel - can use streaming thread
+				eDebug("[eDVBServiceStream] FTA channel - using StreamThread");
 				demux->createTSRecorder(m_record, /*packetsize*/ 188, /*streaming*/ true);
 			}
 		}
@@ -255,12 +260,11 @@ int eDVBServiceStream::doRecord()
 		return 0;
 	}
 
-	eDVBServicePMTHandler::program program;
 	if (m_service_handler.getProgramInfo(program))
 	{
 		eDebug("[eDVBServiceStream] getting program info failed.");
 	}
-	else if(m_record_no_pids == 0)
+	else
 	{
 		std::set<int> pids_to_record;
 
@@ -364,7 +368,7 @@ int eDVBServiceStream::doRecord()
 		eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
 		if (program.pcrPid >= 0 && program.pcrPid < 0x1fff)
 			pids_to_record.insert(program.pcrPid);
-		eDebugNoNewLine(", and the text pid is %04x", program.textPid);
+		eDebugNoNewLine(", and the text pid is %04x\n", program.textPid);
 		if (program.textPid != -1)
 			pids_to_record.insert(program.textPid); // Videotext
 
