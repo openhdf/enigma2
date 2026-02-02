@@ -7,7 +7,102 @@
 #include <lib/base/eptrlist.h>
 #include <set>
 #include <vector>
+#include <sstream>
 class ServiceDescriptionSection;
+
+struct LCNData
+{
+private:
+	bool FOUND;
+
+	std::vector<std::string> split_str(std::string s)
+	{
+		std::vector<std::string> tokens;
+		std::string token;
+		std::stringstream str(s);
+		while (getline(str, token, ':')) {
+			tokens.push_back(token);
+		}
+		return tokens;
+	}
+
+public:
+	int NS;
+	int ONID;
+	int TSID;
+	int SID;
+	int SIGNAL;
+	int LCN;
+	LCNData()
+	{
+		LCN = 0;
+		SIGNAL = -1;
+		FOUND = true;
+	}
+
+	eServiceReferenceDVB parse(const char *line)
+	{
+
+		if (sscanf(line, "%x:%x:%x:%x:%d:%d", &NS, &ONID, &TSID, &SID, &LCN, &SIGNAL) == 6)
+			return eServiceReferenceDVB(eDVBNamespace(NS), eTransportStreamID(TSID), eOriginalNetworkID(ONID), eServiceID(SID), 0);
+		else
+			return eServiceReferenceDVB();
+
+	}
+
+	void Update(uint16_t lcn, uint32_t signal)
+	{
+		LCN = lcn;
+		SIGNAL = signal;
+		FOUND = true;
+	}
+
+	void write(FILE *lf, const eServiceReferenceDVB &key)
+	{
+		if (FOUND)
+		{
+			int sid = key.getServiceID().get();
+			int tsid = key.getTransportStreamID().get();
+			int onid = key.getOriginalNetworkID().get();
+			int ns = key.getDVBNamespace().get();
+			fprintf(lf, "%x:%x:%x:%x:%d:%d\n", ns, onid, tsid, sid, LCN, SIGNAL);
+		}
+	}
+
+	void resetFound()
+	{
+		FOUND = false;
+	}
+
+};
+
+class eIPTVDBItem
+{
+	public:
+		std::string s_ref;
+		int ampeg_pid;
+		int aac3_pid;
+		int aac4_pid;
+		int addp_pid;
+		int aaach_pid;
+		int aaac_pid;
+		int adra_pid;
+		int subtitle_pid;
+		int v_pid;
+		eIPTVDBItem(const std::string sref, const int ampegpid, const int aac3pid, const int aac4pid, const int addppid, const int aaachpid,
+					const int aaacpid, const int adrapid, const int subtitlepid, const int vpid) {
+			s_ref = sref;
+			ampeg_pid = ampegpid;
+			aac3_pid = aac3pid;
+			aac4_pid = aac4pid;
+			addp_pid = addppid;
+			aaach_pid = aaachpid;
+			aaac_pid = aaacpid;
+			adra_pid = adrapid;
+			subtitle_pid = subtitlepid;
+			v_pid = vpid;
+		};
+};
 #endif
 
 class eDVBDB: public iDVBChannelList
@@ -38,6 +133,7 @@ class eDVBDB: public iDVBChannelList
 #endif
 private:
 	void loadServiceListV5(FILE * f);
+	std::map<eServiceReferenceDVB, LCNData> m_lcnmap;
 public:
 // iDVBChannelList
 	RESULT removeFlags(unsigned int flagmask, int dvb_namespace=-1, int tsid=-1, int onid=-1, unsigned int orb_pos=0xFFFFFFFF);
@@ -55,6 +151,7 @@ public:
 	PyObject *readTerrestrials(SWIG_PYOBJECT(ePyObject) ter_list, SWIG_PYOBJECT(ePyObject) tp_dict);
 	PyObject *readCables(SWIG_PYOBJECT(ePyObject) cab_list, SWIG_PYOBJECT(ePyObject) tp_dict);
 	PyObject *readATSC(SWIG_PYOBJECT(ePyObject) atsc_list, SWIG_PYOBJECT(ePyObject) tp_dict);
+	PyObject *getLcnDBData();
 #ifndef SWIG
 	RESULT removeFlags(unsigned int flagmask, eDVBChannelID chid, unsigned int orb_pos);
 	RESULT removeServices(eDVBChannelID chid, unsigned int orb_pos);
@@ -67,6 +164,7 @@ public:
 
 	RESULT addService(const eServiceReferenceDVB &referenc, eDVBService *service);
 	RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service);
+	RESULT getLcnDBData(std::map<eServiceReferenceDVB, LCNData> &data);
 	RESULT flush();
 
 	RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *q, const eServiceReference &source);
@@ -79,15 +177,19 @@ public:
 	eDVBDB();
 	virtual ~eDVBDB();
 	int renumberBouquet(eBouquet &bouquet, int startChannelNum = 1);
+	void addLcnToDB(int ns, int onid, int tsid, int sid, uint16_t lcn, uint32_t signal);
+	void resetLcnDB();
+	void readLcnDBFile();
 #endif
 	void setNumberingMode(bool numberingMode);
-	void setLoadUnlinkedUserbouquets(bool value) { m_load_unlinked_userbouquets=value; }
+	void setLoadUnlinkedUserbouquets(int value) { m_load_unlinked_userbouquets=value; }
 	void renumberBouquet();
 	void loadServicelist(const char *filename);
 	static eDVBDB *getInstance() { return instance; }
 	void reloadServicelist();
 	void saveServicelist();
 	void saveServicelist(const char *file);
+	void saveLcnDB();
 	void reloadBouquets();
 	bool isValidService(int tsid, int onid, int sid);
 	void parseServiceData(ePtr<eDVBService> s, std::string str);
