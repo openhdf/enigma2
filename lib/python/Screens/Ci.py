@@ -135,13 +135,13 @@ class MMIDialog(Screen):
 			pinlength = entry[1]
 			if entry[3] == 1:
 				# masked pins:
-				x = ConfigPIN(0, len=pinlength, censor="*")
+				x = ConfigPIN(0, pinlength=pinlength, censor="*")
 			else:
 				# unmasked pins:
-				x = ConfigPIN(0, len=pinlength)
+				x = ConfigPIN(0, pinlength=pinlength)
 			x.addEndNotifier(self.pinEntered)
 			self["subtitle"].setText(entry[2])
-			list.append(("", x))
+			list.append((_("Enter PIN"), x))
 			self["bottom"].setText(_("please press OK when ready"))
 
 	def pinEntered(self, value):
@@ -567,6 +567,14 @@ class PermanentPinEntry(ConfigListScreen, Screen):
 		self.setTitle(_("Enter PIN code"))
 		self.onChangedEntry = []
 
+		self["actions"] = NumberActionMap(["SetupActions"],
+		{
+		  "cancel": self.keyCancel,
+		  "save": self.keySave,
+		}, -2)
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Save"))
+
 		self.slot = pin_slot
 		self.pin = pin
 		self.list = []
@@ -582,7 +590,7 @@ class PermanentPinEntry(ConfigListScreen, Screen):
 		if pin == 1:
 			self["config"].setCurrentIndex(1)
 		elif pin == 2:
-			self.keyOK()
+			self.keySave()
 
 	def keySave(self):
 		if self.pin1.value == self.pin2.value:
