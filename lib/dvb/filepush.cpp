@@ -511,16 +511,21 @@ int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 
 void eFilePushThreadRecorder::thread()
 {
-	setIoPrio(IOPRIO_CLASS_RT, 7);
+#ifndef HAVE_HISILICON
+	ignore_but_report_signals();
+	hasStarted(); /* "start()" blocks until we get here */
+#endif
+	eDebug("[eFilePushThreadRecorder] THREAD START (min_write=%zu KB, buffersize=%zu KB)", m_buffer_min_write >> 10, m_buffersize >> 10);
 
-	eDebug("[eFilePushThreadRecorder] THREAD START");
-
+#ifdef HAVE_HISILICON
 	/* we set the signal to not restart syscalls, so we can detect our signal. */
 	struct sigaction act = {};
 	memset(&act, 0, sizeof(act));
 	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
 	act.sa_flags = 0;
 	sigaction(SIGUSR1, &act, 0);
+	hasStarted();
+#endif
 
 
 	m_buffer_fill = 0;

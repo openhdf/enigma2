@@ -45,8 +45,6 @@ public:
 protected:
 	virtual void filterRecordData(const unsigned char *data, int len);
 private:
-	int prio_class;
-	int prio;
 	iFilePushScatterGather *m_sg;
 	int m_stop;
 	int m_fd_dest;
