@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 14:10+0200\n"
-"PO-Revision-Date: 2026-02-01 09:28+0100\n"
+"PO-Revision-Date: 2026-02-06 19:07+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -1693,7 +1693,7 @@ msgid "All services provider"
 msgstr "Alle Serviceanbieter"
 
 msgid "All slots"
-msgstr "Alle Schächte"
+msgstr "Alle Steckplätze"
 
 msgid "Allocate"
 msgstr "Reservieren"
@@ -2638,7 +2638,7 @@ msgid "CI (Common Interface) Setup"
 msgstr "CI (Common Interface) Einstellungen"
 
 msgid "CI Boot Delay"
-msgstr "CI-Bootverzögerung"
+msgstr "CI-Startverzögerung"
 
 msgid "CI Legacy"
 msgstr "CI Legacy"
@@ -4445,7 +4445,7 @@ msgid "Disable intro screen"
 msgstr "Begrüßungsbildschirm abschalten"
 
 msgid "Disable operator profiles"
-msgstr "Betreiberprofile deaktivieren"
+msgstr "Bedienerprofile deaktivieren"
 
 msgid "Disable the HDD Process on VFD"
 msgstr "Deaktiviert VFD für Festplattenzugriffe"
@@ -5248,6 +5248,9 @@ msgstr "Öffne Hauptmenü..."
 
 msgid "Enter persistent PIN code"
 msgstr "PIN eingeben"
+
+msgid "Enter PIN code"
+msgstr "PIN-Code eingeben"
 
 msgid "Enter pin code"
 msgstr "Pincode eingeben"
@@ -11692,7 +11695,7 @@ msgid "Set limits"
 msgstr "Grenzwerte setzen"
 
 msgid "Set persistent PIN code"
-msgstr "Permanenten PIN-Code festlegen"
+msgstr "PIN-Code dauerhaft speichern"
 
 msgid "Set pin code persistent"
 msgstr "PIN dauerhaft speichern"
@@ -18187,10 +18190,10 @@ msgid "violet"
 msgstr "Violett"
 
 msgid "wait for ci..."
-msgstr "warte auf CI..."
+msgstr "Warte auf CI..."
 
 msgid "wait for mmi..."
-msgstr "warte auf MMI..."
+msgstr "Warte auf mmi..."
 
 msgid "waiting"
 msgstr "wartend"
