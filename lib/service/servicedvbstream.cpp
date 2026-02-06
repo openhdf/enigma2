@@ -260,11 +260,14 @@ int eDVBServiceStream::doRecord()
 		return 0;
 	}
 
-	if (m_service_handler.getProgramInfo(program))
+	// PMT should be available at this point (we wait for it above)
+	if (!have_program_info)
 	{
-		eDebug("[eDVBServiceStream] getting program info failed.");
+		eDebug("[eDVBServiceStream] no program info available yet");
+		return 0;
 	}
-	else
+
+	if(m_record_no_pids == 0)
 	{
 		std::set<int> pids_to_record;
 
