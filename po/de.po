@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 14:10+0200\n"
-"PO-Revision-Date: 2026-02-06 19:07+0100\n"
+"PO-Revision-Date: 2026-02-07 16:43+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -18300,6 +18300,42 @@ msgstr "Umgeschaltet"
 
 msgid "zapping"
 msgstr "umschalten"
+
+msgid "SoftCSA Settings"
+msgstr "SoftCSA-Einstellungen"
+
+msgid "Software descrambling"
+msgstr "Software-Entschlüsselung"
+
+msgid "Synchronous"
+msgstr "Synchron"
+
+msgid "available"
+msgstr "verfügbar"
+
+msgid "Decoder Release Strategy *"
+msgstr "Strategie zur Freigabe des Decoders *"
+
+msgid "Sync Mode *"
+msgstr "Synchronisierungsmodus *"
+
+msgid "Decoder start timeout *"
+msgstr "Decoder-Start-Timeout *"
+
+msgid "Read Accumulation *"
+msgstr "Datensammlung *"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). *Restart E2 for changes to take effect."
+msgstr "Den Hardware-Decoder freigeben, wenn zur Software-Entschlüsselung gewechselt wird. 'Schnell' gibt ihn sofort frei (schnelleres Zappen). 'Normal' führt zuerst ein sauberes Herunterfahren durch (bei einigen Receivern stabiler). Enigma2 Neustart erforderlich."
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases. *Restart E2 for changes to take effect."
+msgstr "Maximale Wartezeit für eingehende Daten und Entschlüsselungsschlüssel (CW) vor dem Start des Decoders. In der Regel treffen beide viel schneller ein, so dass dies nur für Sonderfälle gilt. Enigma2 Neustart erforderlich."
+
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible). *Restart E2 for changes to take effect."
+msgstr "Auswählen, wie der entschlüsselte Datenstrom verarbeitet werden soll. 'Automatisch' verwendet asynchrone Schreibvorgänge (geringere CPU-Auslastung) mit automatischer Umschaltung auf synchron, wenn Kernel-AIO nicht unterstützt wird. 'Synchron' erzwingt blockierende Schreibvorgänge (stabil und am kompatibelsten). Enigma2 Neustart erforderlich."
+
+msgid "Minimum data to accumulate before writing to the decoder. Higher values reduce CPU usage on boxes with small decoder buffer sizes. *Restart E2 for changes to take effect."
+msgstr "Übersetzung fehlt noch. Enigma2 Neustart erforderlich."
 
 msgid "°"
 msgstr "°"
