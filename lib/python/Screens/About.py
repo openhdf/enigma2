@@ -329,6 +329,8 @@ class About(Screen):
 		AboutText += _("Drivers:\t\t%s") % driversdate + "\n"
 		AboutText += _("GStreamer:\t\t%s") % about.getGStreamerVersionString() + "\n"
 		AboutText += _("Python:\t\t%s\n") % about.getPythonVersionString()
+		if eDVBCSAEngine.isAvailable():
+			AboutText += _("Software descrambling version:\t%s %s\n") % (eDVBCSAEngine.getLibraryName(), eDVBCSAEngine.getLibraryVersion())
 		AboutText += _("Free Flash:\t\t%s\n") % freeflash()
 		AboutText += _("Skin:\t\t%s (%s x %s)\n") % (config.skin.primary_skin.value.split('/')[0], getDesktop(0).size().width(), getDesktop(0).size().height())
 		AboutText += _("Last update:\t\t%s") % getEnigmaVersionString() + " to Build #" + getImageBuild() + "\n"
