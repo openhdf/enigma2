@@ -1650,10 +1650,6 @@ def InitUsageConfig():
 		default=800,
 		choices=[(x, _("%d ms") % x) for x in range(100, 2001, 100)]
 	)
-	config.misc.softcsa.readAccumulateSize = ConfigSelection(
-		default=32,
-		choices=[(0, _("Disabled"))] + [(x, _("%d KB") % x) for x in range(16, 129, 16)]
-	)
 
 	config.cccaminfo = ConfigSubsection()
 	config.cccaminfo.showInExtensions = ConfigYesNo(default=False)
