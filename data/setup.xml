@@ -23,6 +23,7 @@
 		<item level="0" text="Decoder Release Strategy *" description="How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). *Restart E2 for changes to take effect.">config.misc.softcsa.decoderRelease</item>
 		<item level="0" text="Sync Mode *" description="Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible). *Restart E2 for changes to take effect." restart="gui">config.misc.softcsa.syncMode</item>
 		<item level="1" text="Decoder Start Timeout *" description="Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases. *Restart E2 for changes to take effect.">config.misc.softcsa.waitForDataTimeout</item>
+		<item level="1" text="Read Accumulation *" description="Minimum data to accumulate before writing to the decoder. Higher values reduce CPU usage on boxes with small decoder buffer sizes. *Restart E2 for changes to take effect.">config.misc.softcsa.readAccumulateSize</item>
 	</setup>
 	<setup key="timezone" title="Time zone settings">
 		<item level="0" text="Timezone" description="Setup your timezone.">config.timezone.val</item>
