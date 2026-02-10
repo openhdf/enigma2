@@ -231,10 +231,11 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("Unmark service to unhide VBI line"), self.removeHideVBIFlag), level=0)
 						else:
 							append_when_current_valid(current, menu, (_("Mark service to hide VBI line"), self.addHideVBIFlag), level=0)
-						if Screens.InfoBar.InfoBar.instance.checkStreamrelay(current):
-							append_when_current_valid(current, menu, (_("Play service without streamrelay"), self.toggleStreamrelay), level=1)
-						else:
-							append_when_current_valid(current, menu, (_("Play service with streamrelay"), self.toggleStreamrelay), level=1)
+						if config.misc.softcsa.useStreamRelayWhitelist.value:
+							if Screens.InfoBar.InfoBar.instance.checkStreamrelay(current):
+								append_when_current_valid(current, menu, (_("Play service without streamrelay"), self.toggleStreamrelay), level=1)
+							else:
+								append_when_current_valid(current, menu, (_("Play service with streamrelay"), self.toggleStreamrelay), level=1)
 
 					if haveBouquets:
 						bouquets = self.csel.getBouquetList()
