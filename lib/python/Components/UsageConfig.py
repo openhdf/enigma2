@@ -1650,6 +1650,7 @@ def InitUsageConfig():
 		default=800,
 		choices=[(x, _("%d ms") % x) for x in range(100, 2001, 100)]
 	)
+	config.misc.softcsa.useStreamRelayWhitelist = ConfigYesNo(default=True)
 
 	config.cccaminfo = ConfigSubsection()
 	config.cccaminfo.showInExtensions = ConfigYesNo(default=False)
