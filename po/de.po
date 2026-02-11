@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 14:10+0200\n"
-"PO-Revision-Date: 2026-02-07 16:43+0100\n"
+"PO-Revision-Date: 2026-02-11 22:06+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -18303,6 +18303,12 @@ msgstr "umschalten"
 
 msgid "SoftCSA Settings"
 msgstr "SoftCSA-Einstellungen"
+
+msgid "Use streamrelay_whitelist file"
+msgstr "Benutze Streamrelay Whitelist"
+
+msgid "Choose whether to use the streamrelay_whitelist file. The whitelist file should be disabled if you are using softcsa."
+msgstr "Soll die Whitelist für Streamrelay genutzt werden? Die Streamrealay Whitelist muss für SoftCSA deaktiviert sein."
 
 msgid "Software descrambling"
 msgstr "Software-Entschlüsselung"
