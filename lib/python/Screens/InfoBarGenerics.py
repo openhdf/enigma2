@@ -239,7 +239,7 @@ class InfoBarStreamRelay:
 				print(f"[{self.__class__.__name__}] Play service {playref.toCompareString()} via streamrelay")
 				playref.setAlternativeUrl(playrefstring)
 				return playref
-			return playref
+		return playref
 
 	def checkService(self, service):
 		return service and service.toCompareString() in self.__srefs
