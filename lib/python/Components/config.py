@@ -259,7 +259,7 @@ class choicesList:  # XXX: we might want a better name for this
 
 	def index(self, value):
 		try:
-			return self.__list__().index(value)
+			return list(map(str, self.__list__())).index(str(value))
 		except (ValueError, IndexError):
 			# occurs e.g. when default is not in list
 			return 0
@@ -330,7 +330,27 @@ class descriptionList(choicesList): # XXX: we might want a better name for this
 # (id, desc)-tuples (or just only the ids, in case the id
 # will be used as description)
 #
-# all ids MUST be plain strings.
+# The ids in "choices" may be of any type, provided that for there
+# is a one-to-one mapping between x and str(x) for every x in "choices".
+# The ids do not necessarily all have to have the same type, but
+# managing that is left to the programmer.  For example:
+#  choices=[1, 2, "3", "4"] is permitted, but
+#  choices=[1, 2, "1", "2"] is not,
+# because str(1) == "1" and str("1") == "1", and because str(2) == "2"
+# and str("2") == "2".
+#
+# This requirement is not enforced by the code.
+#
+# config.item.value and config.item.getValue always return an object
+# of the type of the selected item.
+#
+# When assigning to config.item.value or using config.item.setValue,
+# where x is in the "choices" list, either x or str(x) may be used
+# to set the choice. The form of the assignment will not affect the
+# choices list or the type returned by the ConfigSelection instance.
+#
+# This replaces the former requirement that all ids MUST be plain
+# strings, but is compatible with that requirement.
 #
 
 
@@ -357,10 +377,7 @@ class ConfigSelection(ConfigElement):
 			self.value = default
 
 	def setValue(self, value):
-		if value in self.choices:
-			self._value = value
-		else:
-			self._value = self.default
+		self._value = self.choices[self.choices.index(value)] if str(value) in map(str, self.choices) else self.default
 		self._descr = None
 		self.changed()
 
@@ -387,7 +404,7 @@ class ConfigSelection(ConfigElement):
 	def handleKey(self, key):
 		nchoices = len(self.choices)
 		if nchoices > 1:
-			i = self.choices.index(self.value)
+			i = self.choices.index(str(self.value))  # Temporary hack until keys don't have to be strings.
 			if key == KEY_LEFT:
 				self.value = self.choices[(i + nchoices - 1) % nchoices]
 			elif key == KEY_RIGHT:
