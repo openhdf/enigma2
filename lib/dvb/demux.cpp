@@ -218,7 +218,7 @@ RESULT eDVBDemux::flush()
 	return 0;
 }
 
-RESULT eDVBDemux::connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &conn)
+RESULT eDVBDemux::connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &conn)
 {
 	conn = new eConnection(this, m_event.connect(event));
 	return 0;
@@ -329,7 +329,7 @@ RESULT eDVBSectionReader::stop()
 	return 0;
 }
 
-RESULT eDVBSectionReader::connectRead(const sigc::slot<void(const uint8_t*)> &r, ePtr<eConnection> &conn)
+RESULT eDVBSectionReader::connectRead(const sigc::slot1<void,const uint8_t*> &r, ePtr<eConnection> &conn)
 {
 	conn = new eConnection(this, read.connect(r));
 	return 0;
@@ -435,7 +435,7 @@ RESULT eDVBPESReader::stop()
 	return 0;
 }
 
-RESULT eDVBPESReader::connectRead(const sigc::slot<void(const uint8_t*,int)> &r, ePtr<eConnection> &conn)
+RESULT eDVBPESReader::connectRead(const sigc::slot2<void,const uint8_t*,int> &r, ePtr<eConnection> &conn)
 {
 	conn = new eConnection(this, m_read.connect(r));
 	return 0;
@@ -1279,7 +1279,7 @@ RESULT eDVBTSRecorder::getFirstPTS(pts_t &pts)
 	return m_thread->getFirstPTS(pts);
 }
 
-RESULT eDVBTSRecorder::connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &conn)
+RESULT eDVBTSRecorder::connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &conn)
 {
 	conn = new eConnection(this, m_event.connect(event));
 	return 0;

@@ -526,7 +526,7 @@ void eAMLTSMPEGDecoder::parseVideoInfo()
 	}
 }
 
-RESULT eAMLTSMPEGDecoder::connectVideoEvent(const sigc::slot<void(struct videoEvent)> &event, ePtr<eConnection> &conn)
+RESULT eAMLTSMPEGDecoder::connectVideoEvent(const sigc::slot1<void, struct videoEvent> &event, ePtr<eConnection> &conn)
 {
 	TRACE__
 	conn = new eConnection(this, m_video_event.connect(event));

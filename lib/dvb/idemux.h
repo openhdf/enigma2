@@ -10,7 +10,7 @@ public:
 	virtual RESULT setBufferSize(int size)=0;
 	virtual RESULT start(const eDVBSectionFilterMask &mask)=0;
 	virtual RESULT stop()=0;
-	virtual RESULT connectRead(const sigc::slot<void(const uint8_t*)> &read, ePtr<eConnection> &conn)=0;
+	virtual RESULT connectRead(const sigc::slot1<void,const uint8_t*> &read, ePtr<eConnection> &conn)=0;
 	virtual ~iDVBSectionReader() { };
 };
 
@@ -20,7 +20,7 @@ public:
 	virtual RESULT setBufferSize(int size)=0;
 	virtual RESULT start(int pid)=0;
 	virtual RESULT stop()=0;
-	virtual RESULT connectRead(const sigc::slot<void(const uint8_t*,int)> &read, ePtr<eConnection> &conn)=0;
+	virtual RESULT connectRead(const sigc::slot2<void,const uint8_t*, int> &read, ePtr<eConnection> &conn)=0;
 	virtual ~iDVBPESReader() { };
 };
 
@@ -63,7 +63,7 @@ public:
 				/* old one. */
 		eventStreamCorrupt
 	};
-	virtual RESULT connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &conn)=0;
+	virtual RESULT connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &conn)=0;
 };
 
 #endif

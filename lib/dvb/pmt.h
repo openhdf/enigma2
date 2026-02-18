@@ -145,7 +145,7 @@ public:
 		eventChannelAllocated,
 	};
 #ifndef SWIG
-	sigc::signal<void(int)> serviceEvent;
+	sigc::signal1<void,int> serviceEvent;
 
 	int getProgramInfo(program &program);
 	int getDataDemux(ePtr<iDVBDemux> &demux);
