@@ -98,7 +98,7 @@ class eDVBServicePlay: public eDVBServiceBase,
 public:
 	virtual ~eDVBServicePlay();
 
-		// iPlayableService
+	// iPlayableService
 	RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT start();
 	RESULT stop();
