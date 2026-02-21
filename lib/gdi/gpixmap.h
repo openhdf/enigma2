@@ -12,6 +12,10 @@
 
 struct gRGB
 {
+#ifdef SWIG
+	uint32_t value;
+	gRGB(int r, int g, int b, int a=0);
+#else
 	union {
 #if BYTE_ORDER == LITTLE_ENDIAN
 		struct {
@@ -27,7 +31,8 @@ struct gRGB
 	gRGB(int r, int g, int b, int a=0): b(b), g(g), r(r), a(a)
 	{
 	}
-	gRGB(uint32_t val): value(val)
+#endif
+	gRGB(unsigned int val): value(val)
 	{
 	}
 	gRGB(const gRGB& other): value(other.value)
@@ -70,7 +75,8 @@ struct gRGB
 		value = val;
 	}
 
-	void operator=(uint32_t val)
+#ifndef SWIG
+	void operator=(unsigned int val)
 	{
 		value = val;
 	}
@@ -92,6 +98,7 @@ struct gRGB
 		}
 		return false;
 	}
+#endif
 	bool operator==(const gRGB &c) const
 	{
 		return c.value == value;
@@ -100,7 +107,8 @@ struct gRGB
 	{
 		return c.value != value;
 	}
-	operator const std::string () const
+#ifndef SWIG
+	operator std::string () const
 	{
 		uint32_t val = value;
 		std::string escapecolor = "\\c";
@@ -123,6 +131,7 @@ struct gRGB
 		a = BLEND(0xFF, a, other.a);
 #undef BLEND
 	}
+#endif
 };
 
 #ifndef SWIG
