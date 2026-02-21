@@ -15,7 +15,7 @@
 eDVBCI_UI *eDVBCI_UI::instance;
 
 eDVBCI_UI::eDVBCI_UI()
-	:eMMI_UI(MAX_SLOTS), m_messagepump(eApp,1)
+	:eMMI_UI(MAX_SLOTS), m_messagepump(eApp,1, "dvb_ui")
 {
 	ASSERT(!instance);
 	instance = this;
@@ -94,7 +94,7 @@ int eDVBCI_UI::getMMIState(int slot)
 	return eDVBCIInterfaces::getInstance()->getMMIState(slot);
 }
 
-int eDVBCI_UI::setClockRate(int slot, int rate)
+int eDVBCI_UI::setClockRate(int slot, const std::string &rate)
 {
 	return eDVBCIInterfaces::getInstance()->setCIClockRate(slot, rate);
 }

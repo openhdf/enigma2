@@ -148,23 +148,23 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 	switch (tag)
 	{
 	case 0x00010041:
-		session = new eDVBCIResourceManagerSession(slot->getVersion());
+		session=new eDVBCIResourceManagerSession(slot->getVersion());
 		eDebug("[CI%d SESS] RESOURCE MANAGER 1", slot->getSlotID());
 		break;
 	case 0x00020041:
-		session = new eDVBCIApplicationManagerSession(slot);
+		session=new eDVBCIApplicationManagerSession(slot);
 		eDebug("[CI%d SESS] APPLICATION MANAGER 1", slot->getSlotID());
 		break;
 	case 0x00020042:
-		session = new eDVBCIApplicationManagerSession(slot);
+		session=new eDVBCIApplicationManagerSession(slot);
 		eDebug("[CI%d SESS] APPLICATION MANAGER 2", slot->getSlotID());
 		break;
 	case 0x00020043:
-		session = new eDVBCIApplicationManagerSession(slot);
+		session=new eDVBCIApplicationManagerSession(slot);
 		eDebug("[CI%d SESS] APPLICATION MANAGER 3", slot->getSlotID());
 		break;
 	case 0x00020045:
-		session = new eDVBCIApplicationManagerSession(slot);
+		session=new eDVBCIApplicationManagerSession(slot);
 		eDebug("[CI%d SESS] APPLICATION MANAGER 5", slot->getSlotID());
 		break;
 	case 0x00030041:
@@ -184,7 +184,7 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 		eDebug("[CI%d SESS] Host Control 3", slot->getSlotID());
 		break;
 	case 0x00240041:
-		session = new eDVBCIDateTimeSession;
+		session=new eDVBCIDateTimeSession;
 		eDebug("[CI%d SESS] DATE-TIME", slot->getSlotID());
 		break;
 	case 0x00400041:
@@ -231,13 +231,13 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 		eDebug("[CI%d SESS] Operator Profile 2", slot->getSlotID());
 		break;
 	case 0x00100041:
-//		session = new eDVBCIAuthSession;
+//		session=new eDVBCIAuthSession;
 		eDebug("[CI%d SESS] AuthSession", slot->getSlotID());
 		[[fallthrough]];
 	default:
 		eDebug("[CI%d SESS] unknown resource type %02x %02x %02x %02x", slot->getSlotID(), resource_identifier[0], resource_identifier[1], resource_identifier[2],resource_identifier[3]);
-		session = 0;
-		status = 0xF0;
+		session=0;
+		status=0xF0;
 	}
 
 	if (!session)
