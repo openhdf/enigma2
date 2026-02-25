@@ -109,6 +109,7 @@ public:
 	void setTargetFD(int fd) { m_fd_dest = fd; }
 	void enableAccessPoints(bool enable) { m_ts_parser.enableAccessPoints(enable); }
 	void setDescrambler(ePtr<iServiceScrambled> serviceDescrambler) { m_serviceDescrambler = serviceDescrambler; };
+	void setDiscardOnTimeout(bool discard) { m_discard_on_timeout = discard; }
 
 	// Virtual: wait for first data (only ScrambledThread actually waits)
 	virtual bool waitForFirstData(int /*timeout_ms*/) { return true; }
@@ -136,6 +137,7 @@ protected:
 	off_t m_current_offset;
 	int m_fd_dest;
 	bool m_sync_mode;
+	bool m_discard_on_timeout;
 	typedef std::vector<AsyncIO> AsyncIOvector;
 	unsigned char* m_allocated_buffer;
 	AsyncIOvector m_aio;
@@ -209,6 +211,7 @@ public:
 	RESULT connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &conn);
 
 	RESULT setDescrambler(ePtr<iServiceScrambled>);
+	void setDiscardOnTimeout(bool discard);
 
 	// Wait for first data to be written (for SoftDecoder sync)
 	bool waitForFirstData(int timeout_ms);
