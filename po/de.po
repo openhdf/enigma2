@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 14:10+0200\n"
-"PO-Revision-Date: 2026-02-11 22:06+0100\n"
+"PO-Revision-Date: 2026-02-27 20:48+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -18309,6 +18309,12 @@ msgstr "Benutze Streamrelay Whitelist"
 
 msgid "Choose whether to use the streamrelay_whitelist file. The whitelist file should be disabled if you are using softcsa."
 msgstr "Soll die Whitelist für Streamrelay genutzt werden? Die Streamrealay Whitelist muss für SoftCSA deaktiviert sein."
+
+msgid "Audio reset delay after start *"
+msgstr "Audio-Reset-Verzögerung nach dem Start *"
+
+msgid "Delay after decoder start before toggling the audio track to fix audio dropouts. The audio track is briefly switched and restored to force the decoder to reinitialise audio. Set to 'Disabled' if you don't experience audio dropouts. *Restart E2 for changes to take effect."
+msgstr "Verzögerung nach dem Start des Decoders, bevor die Audiospur umschaltet, um Audioausfälle zu beheben. Die Audiospur wird kurzzeitig umgeschaltet und wiederhergestellt, um den Decoder zur Neuinitialisierung des Audios zu zwingen. Auf 'Deaktiviert' setzen, falls es keine Audioausfälle gibt. *Benötigt einen E2 Neustart."
 
 msgid "Software descrambling"
 msgstr "Software-Entschlüsselung"
