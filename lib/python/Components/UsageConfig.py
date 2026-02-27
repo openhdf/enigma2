@@ -1651,7 +1651,10 @@ def InitUsageConfig():
 		choices=[(x, _("%d ms") % x) for x in range(100, 2001, 100)]
 	)
 	config.misc.softcsa.useStreamRelayWhitelist = ConfigYesNo(default=False)
-
+	config.misc.softcsa.audioResetDelay = ConfigSelection(
+		default=0,
+		choices=[(0, _("Disabled"))] + [(x, _("%d ms") % x) for x in range(100, 1001, 50)]
+	)
 	config.cccaminfo = ConfigSubsection()
 	config.cccaminfo.showInExtensions = ConfigYesNo(default=False)
 	config.cccaminfo.serverNameLength = ConfigSelectionNumber(min=10, max=100, stepwidth=1, default=22, wraparound=True)
