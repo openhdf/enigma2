@@ -507,7 +507,7 @@ int eDVBRecordFileThread::getFirstPTS(pts_t &pts)
 
 int eDVBRecordFileThread::AsyncIO::wait(volatile int* stop_flag)
 {
-	if (aio.aio_buf == NULL) // Only if we had a request outstanding
+	if (aio.aio_buf == nullptr) // No request outstanding
 		return 0;
 
 	// Limit consecutive timeouts to prevent infinite blocking
@@ -646,8 +646,14 @@ int eDVBRecordFileThread::AsyncIO::start(int fd, off_t offset, size_t nbytes, vo
 	return aio_write(&aio);
 }
 
+// AIO write mode detection: locked after verification for entire session.
+// -1 = unknown (probing), 0 = not supported (sync), 1 = supported (async)
+static int s_aio_state = -1;
+static const int AIO_VERIFY_THRESHOLD = 3;
+
 int eDVBRecordFileThread::asyncWrite(int len)
 {
+	static int s_aio_verify_count = 0;
 #ifdef SHOW_WRITE_TIME
 	struct timeval starttime = {};
 	struct timeval now = {};
@@ -711,6 +717,19 @@ int eDVBRecordFileThread::asyncWrite(int len)
 		}
 	}
 	++m_buffer_use_histogram[busy_count];
+
+	// Verify AIO by counting successful write+poll roundtrips.
+	// On broken kernels, the poll loop fails on the 2nd
+	// write when checking the previous buffer, so we never reach the threshold.
+	if (s_aio_state != 1)
+	{
+		++s_aio_verify_count;
+		if (s_aio_verify_count >= AIO_VERIFY_THRESHOLD)
+		{
+			s_aio_state = 1;
+			eDebug("[eDVBRecordFileThread] AIO verified after %d writes - locked for session", s_aio_verify_count);
+		}
+	}
 
 	++m_current_buffer;
 	if (m_current_buffer == m_aio.end())
@@ -790,6 +809,12 @@ int eDVBRecordFileThread::writeData(int len)
 			// Check for ENOSYS (AIO not supported by kernel) - automatic fallback to sync
 			if (errno == ENOSYS)
 			{
+				if (s_aio_state == 1)
+				{
+					eDebug("[eDVBRecordFileThread] ENOSYS ignored - AIO verified for session");
+					return -1;
+				}
+				s_aio_state = 0;
 				eWarning("[eDVBRecordFileThread] AIO not supported (ENOSYS), falling back to sync mode");
 				s_aio_not_supported = true;  // Remember globally for all future threads
 				m_sync_mode = true;
@@ -808,6 +833,12 @@ int eDVBRecordFileThread::writeData(int len)
 			// Check for ENOSYS in wait (aio_return) - automatic fallback to sync
 			if (errno == ENOSYS)
 			{
+				if (s_aio_state == 1)
+				{
+					eDebug("[eDVBRecordFileThread] ENOSYS in wait ignored - AIO verified for session");
+					return len;
+				}
+				s_aio_state = 0;
 				eWarning("[eDVBRecordFileThread] AIO not supported (ENOSYS in wait), falling back to sync mode");
 				s_aio_not_supported = true;  // Remember globally for all future threads
 				m_sync_mode = true;
