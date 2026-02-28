@@ -1651,6 +1651,10 @@ def InitUsageConfig():
 		choices=[(0, _("Disabled"))] + [(x, _("%d ms") % x) for x in range(100, 2001, 100)]
 	)
 	config.misc.softcsa.useStreamRelayWhitelist = ConfigYesNo(default=False)
+	config.misc.softcsa.bufferTime = ConfigSelection(
+		default=0,
+		choices=[(0, _("Disabled"))] + [(x, _("%d ms") % x) for x in range(100, 2001, 100)]
+	)
 
 	config.cccaminfo = ConfigSubsection()
 	config.cccaminfo.showInExtensions = ConfigYesNo(default=False)
