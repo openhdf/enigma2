@@ -16,25 +16,23 @@
 	</windowstyle>
 	<fonts>
 		<!-- pick a funky name for the font, so we don't conflict  -->
-		<font filename="XionHDF/fonts/meteocons.ttf" name="LCDMeteo" scale="90" />
+		<font filename="XionHDF/fonts/meteocons.ttf" name="LCDMeteo" scale="95" />
 		<font filename="XionHDF/fonts/NotoSans-Bold.ttf" name="LCDRegular" scale="95" />
 	</fonts>
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
-		<widget backgroundColor="#001374" position="0,0" size="180,180" source="session.OAWeather" render="Label" font="LCDMeteo;140" foregroundColor="#ffffff" halign="center" valign="center" zPosition="8" transparent="1" >
+		<widget backgroundColor="#0B259C" position="3,24" size="194,129" source="session.OAWeather" render="Label" font="LCDMeteo;134" foregroundColor="#ffffff" halign="center" valign="center" zPosition="8" transparent="1" >
 			<convert type="OAWeather">meteocode,current</convert>
 		</widget>
-		<widget backgroundColor="#05013E" position="6,170" size="388,58" source="session.OAWeather" render="Label" font="LCDRegular;35" foregroundColor="#ffffff" halign="center" valign="center" zPosition="8" transparent="1">
+		<widget backgroundColor="#0F0254" position="3,178" size="394,45" source="session.OAWeather" render="Label" font="LCDRegular;35" foregroundColor="#ffffff" halign="center" valign="top" zPosition="8" transparent="1">
 			<convert type="OAWeather">temperature_text,current</convert>
 		</widget>
-		<widget backgroundColor="#44004F" position="197,10" size="200,100" source="session.OAWeather" render="Label" font="LCDRegular;70" foregroundColor="#ffffff" halign="right" noWrap="1" zPosition="8" transparent="1">
+		<widget backgroundColor="#470055" position="200,14" size="197,82" source="session.OAWeather" render="Label" font="LCDRegular;64" foregroundColor="#ffffff" halign="right" noWrap="1" zPosition="8" transparent="1">
 			<convert type="OAWeather">temperature_high,day1</convert>
 		</widget>
-		<widget backgroundColor="#44004F" position="197,85" size="200,100" source="session.OAWeather" render="Label" font="LCDRegular;70" foregroundColor="#ffffff" halign="right" noWrap="1" zPosition="8" transparent="1">
+		<widget backgroundColor="#9600A4" position="200,96" size="197,82" source="session.OAWeather" render="Label" font="LCDRegular;64" foregroundColor="#ffffff" halign="right" noWrap="1" zPosition="8" transparent="1">
 			<convert type="OAWeather">temperature_low,day1</convert>
 		</widget>
 		<ePixmap pixmap="/usr/share/enigma2/display/lcd_skin/weather_lcd.png" position="0,0" size="400,240" zPosition="-9" />
 	</screen>
-	<include filename="skin_display.xml" />
-	<include filename="skin_common.xml" />
 </skin>
