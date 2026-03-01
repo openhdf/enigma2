@@ -4,7 +4,6 @@
 #include <lib/dvb/demux.h>
 #include <lib/base/eerror.h>
 #include <lib/base/esimpleconfig.h>
-#include <sys/ioctl.h>
 #include <fcntl.h>
 
 DEFINE_REF(eDVBSoftDecoder);
@@ -22,7 +21,6 @@ eDVBSoftDecoder::eDVBSoftDecoder(eDVBServicePMTHandler& source_handler,
 	, m_decoder_started(false)
 	, m_last_pts(0)
 	, m_stall_count(0)
-	, m_recovery_attempts(0)
 	, m_stream_stalled(false)
 	, m_paused(false)
 	, m_last_health_check(0)
@@ -210,22 +208,24 @@ void eDVBSoftDecoder::stop()
 	// Disconnect from source PMT handler events
 	m_source_event_conn.disconnect();
 
-	// Stop recorder thread FIRST, then close DVR fd.
-	// In async mode this ensures pending AIO completes on a valid fd.
-	// In sync mode poll() times out after 1s, then thread sees m_stop and exits.
+	// IMPORTANT: Close DVR fd FIRST to unblock any poll() waiting on it
+	// Closing the fd causes poll() to return with POLLHUP/POLLERR,
+	// allowing the thread to exit cleanly.
+	if (m_dvr_fd >= 0)
+	{
+		eDebug("[eDVBSoftDecoder] Closing DVR fd %d (before stopping thread)", m_dvr_fd);
+		::close(m_dvr_fd);
+		m_dvr_fd = -1;
+	}
+
+	// Stop the recorder thread FIRST - poll() should have been unblocked by closing DVR fd
+	// Must stop before setDescrambler(nullptr) to prevent race condition
 	if (m_record)
 	{
 		eDebug("[eDVBSoftDecoder] Stopping recorder thread");
 		m_record->stop();
 		m_record->setDescrambler(nullptr);
 		m_record = nullptr;
-	}
-
-	if (m_dvr_fd >= 0)
-	{
-		eDebug("[eDVBSoftDecoder] Closing DVR fd %d", m_dvr_fd);
-		::close(m_dvr_fd);
-		m_dvr_fd = -1;
 	}
 
 	// Release decode demux
@@ -292,9 +292,6 @@ int eDVBSoftDecoder::setupRecorder()
 			eDebug("[eDVBSoftDecoder] no ts recorder available.");
 			return -1;
 		}
-
-		// Discard data on write timeout to keep read side flowing
-		m_record->setDiscardOnTimeout(true);
 
 		// Allocate separate PVR channel for decode demux (critical!)
 		// This ensures we have a different demux for PVR playback
@@ -455,27 +452,9 @@ void eDVBSoftDecoder::streamHealthCheck()
 		}
 		else if (m_stall_count == 6)
 		{
-			m_recovery_attempts++;
-			if (m_recovery_attempts >= 5)
-			{
-				// Full pipeline flush (same pattern as eDVBChannel::flushPVR):
-				// flush DVR kernel buffer first, then decoder buffers.
-				// Without flushing the DVR, the decoder immediately refills
-				// with old garbage data after VIDEO/AUDIO_CLEAR_BUFFER.
-				eWarning("[eDVBSoftDecoder] Recovery failed %d times - full pipeline flush", m_recovery_attempts);
-				m_decoder->pause();
-				if (m_dvr_fd >= 0)
-					::ioctl(m_dvr_fd, 0);
-				m_decode_demux->flush();
-				m_decoder->play();
-				m_recovery_attempts = 0;
-			}
-			else
-			{
-				eWarning("[eDVBSoftDecoder] Stream stalled too long - attempting recovery (%d/5)", m_recovery_attempts);
-				m_decoder->pause();
-				m_decoder->play();
-			}
+			eWarning("[eDVBSoftDecoder] Stream stalled too long - attempting recovery");
+			m_decoder->pause();
+			m_decoder->play();
 			m_stall_count = 0;
 			m_stream_stalled = false;
 		}
@@ -486,7 +465,6 @@ void eDVBSoftDecoder::streamHealthCheck()
 			eDebug("[eDVBSoftDecoder] Stream recovered (PTS: %lld -> %lld)", m_last_pts, current_pts);
 		m_stall_count = 0;
 		m_stream_stalled = false;
-		m_recovery_attempts = 0;
 	}
 
 	m_last_pts = current_pts;

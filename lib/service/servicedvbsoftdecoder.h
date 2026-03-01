@@ -124,7 +124,6 @@ private:
 	ePtr<eTimer> m_health_timer;
 	pts_t m_last_pts;
 	int m_stall_count;
-	int m_recovery_attempts;
 	bool m_stream_stalled;
 	bool m_paused;
 	int64_t m_last_health_check;
