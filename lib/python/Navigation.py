@@ -270,6 +270,11 @@ class Navigation:
 
 	def playService(self, ref, checkParentalControl=True, forceRestart=False, adjust=True):
 		oldref = self.currentlyPlayingServiceOrGroup
+		current_service_source = None
+		is_async_play = False
+		if InfoBarInstance:
+			current_service_source = InfoBarInstance.session.screen["CurrentService"]
+
 		if ref and oldref and ref == oldref and not forceRestart:
 			print("[Navigation] ignore request to play already running service(1)")
 			return 1
@@ -324,7 +329,21 @@ class Navigation:
 				playref = ref
 			if self.pnav:
 				self.currentlyPlayingServiceReference = playref
-				playref = streamrelay.streamrelayChecker(playref)
+				playref, is_stream_relay = streamrelay.streamrelayChecker(playref)
+
+				if SystemInfo["FCCactive"] and "%3a//" in ref.toString() and not is_stream_relay:
+					self.pnav.stopService()
+
+				playref_str_orig = playref.toString()
+				for f in Navigation.playServiceExtensions:
+					ret = f(self, playref, event, InfoBarInstance)
+					if isinstance(ret, (ServiceReference, eServiceReference)):
+						playref = ret
+					else:
+						playref, is_async_play = ret
+					if is_async_play or playref.toString() != playref_str_orig:
+						break
+
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
 					self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
@@ -337,9 +356,7 @@ class Navigation:
 					self.retryServicePlayTimer = eTimer()
 					self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
 					self.retryServicePlayTimer.start(config.misc.softcam_streamrelay_delay.value, True)
-					self.playService(ref)
-				elif self.pnav.playService(playref):
-					print("[Navigation] Failed to start", playref.toString())
+				elif not is_async_play and self.pnav.playService(playref):
 					self.currentlyPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
 					if oldref and "://" in oldref.getPath():
@@ -350,6 +367,9 @@ class Navigation:
 				self.skipServiceReferenceReset = False
 				if self.currentlyPlayingServiceReference and self.currentlyPlayingServiceReference.toString() in streamrelay.data:
 					self.currentServiceIsStreamRelay = True
+				if InfoBarInstance and "%3a//" in playref.toString() and not is_async_play:
+					self.originalPlayingServiceReference = None
+					InfoBarInstance.serviceStarted()
 				return 0
 		elif oldref and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(oldref, adjust):
 			self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
