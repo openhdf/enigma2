@@ -52,6 +52,7 @@ parameters = {}  # Dictionary of skin parameters used to modify code behavior.
 setups = {}  # Dictionary of images associated with setup menus.
 switchPixmap = {}  # Dictionary of switch images.
 windowStyles = {}  # Dictionary of window styles for each screen ID.
+globalScrollbarDefaults = {"width": "16", "borderWidth": "2", "borderColorName": "scrollbarBorderColor", "sliderColorName": "scrollbarSliderColor"}  # Global scrollbar defaults.
 constantWidgets = {}
 variables = {}
 
@@ -751,7 +752,22 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale=((1, 1), (1, 1
 
 
 def applyAllAttributes(guiObject, desktop, attributes, scale):
-	AttributeParser(guiObject, desktop, scale).applyAll(attributes)
+	attrs = list(attributes)
+	try:
+		localAttrs = set(x[0] for x in attrs)
+		if hasattr(guiObject, "setScrollbarWidth") and "scrollbarWidth" not in localAttrs:
+			attrs.append(("scrollbarWidth", globalScrollbarDefaults["width"]))
+		if hasattr(guiObject, "setScrollbarSliderBorderWidth") and "scrollbarSliderBorderWidth" not in localAttrs:
+			attrs.append(("scrollbarSliderBorderWidth", globalScrollbarDefaults["borderWidth"]))
+		borderColorName = globalScrollbarDefaults.get("borderColorName")
+		sliderColorName = globalScrollbarDefaults.get("sliderColorName")
+		if hasattr(guiObject, "setSliderBorderColor") and "scrollbarSliderBorderColor" not in localAttrs and borderColorName in colors:
+			attrs.append(("scrollbarSliderBorderColor", borderColorName))
+		if hasattr(guiObject, "setSliderForegroundColor") and "scrollbarSliderForegroundColor" not in localAttrs and sliderColorName in colors:
+			attrs.append(("scrollbarSliderForegroundColor", sliderColorName))
+	except Exception:
+		pass
+	AttributeParser(guiObject, desktop, scale).applyAll(attrs)
 
 
 def reloadWindowStyles():
