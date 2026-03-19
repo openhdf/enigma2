@@ -59,6 +59,10 @@ def InitUsageConfig():
 
 	config.usage = ConfigSubsection()
 
+	config.usage.skin_error_context = ConfigYesNo(default=False)
+	config.usage.skin_helper_verbose = ConfigYesNo(default=False)
+	config.usage.skin_error_plugin_debug = ConfigYesNo(default=False)
+
 	#settings for servicemp3 and handling from cuesheet file
 	config.usage.useVideoCuesheet = ConfigYesNo(default=True)		#use marker for video media file
 	config.usage.useAudioCuesheet = ConfigYesNo(default=True)		#use marker for audio media file

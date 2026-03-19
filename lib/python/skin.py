@@ -1,5 +1,58 @@
 from __future__ import division
 
+# ============================================================
+# SUPPORT / ERROR CONTEXT LOGGER FOR SKIN, XML, CONVERTER,
+# RENDERER AND PLUGIN RELATED PYTHON EXCEPTIONS
+#
+# PURPOSE
+#   Show real errors with enough context to identify the failing place.
+#   Intended for support, debugging and fixing skin/plugin issues.
+#
+# WHAT IT COVERS
+#   - XML parse errors
+#   - readSkin / applySkin / applyAllAttributes related errors
+#   - invalid or unsupported widget attributes
+#   - color / font / pixmap / scrollbar / padding / itemHeight issues
+#   - converter import / instantiate / connect errors
+#   - renderer import / instantiate / connect errors
+#   - unhandled Python exceptions from plugins
+#
+# CONTEXT INCLUDED WHEN AVAILABLE
+#   - screen class / selected skin screen / requested names
+#   - widget name / source / render
+#   - converter type / converter arguments
+#   - GUI object type
+#   - attribute name / raw attribute value
+#   - XML file / probable line locator / XML snippet
+#   - exception type / exception text
+#   - traceback details when verbose is enabled
+#
+# SETTINGS
+#   SKIN_ERROR_CONTEXT   = True   -> enable support logger
+#   SKIN_ERROR_CONTEXT   = False  -> disable support logger
+#   SKIN_HELPER_VERBOSE  = True   -> include traceback details
+#   SKIN_HELPER_VERBOSE  = False  -> compact error output
+#   SKIN_DEEP_PLUGIN_DEBUG = True -> reserved support switch, no ActionMap hook
+#   SKIN_DEEP_PLUGIN_DEBUG = False-> reserved support switch, no ActionMap hook
+#
+# IMPORTANT
+#   This switch is intentionally decoupled from ActionMap/standby runtime hooks.
+#   Changing it will not install key/action hooks and should not affect standby.
+#   It remains at the top for compatibility and future support variants.
+#
+# RECOMMENDED
+#   Daily support:
+#       SKIN_ERROR_CONTEXT = True
+#       SKIN_HELPER_VERBOSE = True
+#       SKIN_DEEP_PLUGIN_DEBUG = False
+#
+#   Safe maximum support:
+#       SKIN_ERROR_CONTEXT = True
+#       SKIN_HELPER_VERBOSE = True
+#       SKIN_DEEP_PLUGIN_DEBUG = True
+#   Note: in this safe build, True/False does not enable ActionMap hooking.
+# ============================================================
+
 from errno import ENOENT
 from os import listdir
 from os.path import basename, dirname, isfile
@@ -21,6 +74,23 @@ from Tools.Directories import (SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT_SKIN,
                                pathExists, resolveFilename)
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
+
+if config.usage.skin_error_context.value:
+	SKIN_ERROR_CONTEXT = True
+else:
+	SKIN_ERROR_CONTEXT = False
+if config.usage.skin_helper_verbose.value:
+	SKIN_HELPER_VERBOSE = True
+else:
+	SKIN_HELPER_VERBOSE = False
+if config.usage.skin_error_plugin_debug.value:
+	SKIN_DEEP_PLUGIN_DEBUG = True
+else:
+	SKIN_DEEP_PLUGIN_DEBUG = False
+
+#SKIN_HELPER_VERBOSE = True
+#SKIN_ERROR_CONTEXT = True
+#SKIN_DEEP_PLUGIN_DEBUG = True
 
 DEFAULT_SKIN = "XionHDF/skin.xml"
 EMERGENCY_SKIN = "skin_default/skin.xml"
@@ -1227,8 +1297,13 @@ def readSkin(screen, skin, names, desktop):
 		# widgets (source->renderer).
 		wname = widget.attrib.get("name")
 		wsource = widget.attrib.get("source")
+		wrender = widget.attrib.get("render")
+		last_converter_type = ""
+		last_converter_args = ""
 		if wname is None and wsource is None:
-			raise SkinError("The widget has no name and no source")
+			err = SkinError("The widget has no name and no source")
+			_skin_write_widget_error_event("Widget definition error", _skin_make_widget_context(widget), err, False)
+			raise err
 			return
 		if wname:
 			# print("[Skin] DEBUG: Widget name='%s'." % wname)
@@ -1236,7 +1311,9 @@ def readSkin(screen, skin, names, desktop):
 			try:  # Get corresponding "gui" object.
 				attributes = screen[wname].skinAttributes = []
 			except Exception:
-				raise SkinError("Component with name '%s' was not found in skin of screen '%s'" % (wname, name))
+				err = SkinError("Component with name '%s' was not found in skin of screen '%s'" % (wname, name))
+				_skin_write_widget_error_event("Widget component lookup failed", _skin_make_widget_context(widget), err, False)
+				raise err
 			# assert screen[wname] is not Source
 			collectAttributes(attributes, widget, context, skinPath, ignore=("name",))
 		elif wsource:
@@ -1250,7 +1327,9 @@ def readSkin(screen, skin, names, desktop):
 					scr = screen.getRelatedScreen(path[0])
 					if scr is None:
 						# print("[Skin] DEBUG: wsource='%s', name='%s'." % (wsource, name))
-						raise SkinError("Specified related screen '%s' was not found in screen '%s'" % (wsource, name))
+						err = SkinError("Specified related screen '%s' was not found in screen '%s'" % (wsource, name))
+						_skin_write_widget_error_event("Widget source screen lookup failed", _skin_make_widget_context(widget), err, False)
+						raise err
 					path = path[1:]
 				source = scr.get(path[0])  # Resolve the source.
 				if isinstance(source, ObsoleteSource):
@@ -1263,10 +1342,13 @@ def readSkin(screen, skin, names, desktop):
 				else:
 					break  # Otherwise, use the source.
 			if source is None:
-				raise SkinError("The source '%s' was not found in screen '%s'" % (wsource, name))
-			wrender = widget.attrib.get("render")
+				err = SkinError("The source '%s' was not found in screen '%s'" % (wsource, name))
+				_skin_write_widget_error_event("Widget source not found", _skin_make_widget_context(widget), err, False)
+				raise err
 			if not wrender:
-				raise SkinError("For source '%s' a renderer must be defined with a 'render=' attribute" % wsource)
+				err = SkinError("For source '%s' a renderer must be defined with a 'render=' attribute" % wsource)
+				_skin_write_widget_error_event("Renderer missing for source widget", _skin_make_widget_context(widget), err, False)
+				raise err
 			for converter in widget.findall("convert"):
 				ctype = converter.get("type")
 				assert ctype, "[Skin] The 'convert' tag needs a 'type' attribute!"
@@ -1275,25 +1357,39 @@ def readSkin(screen, skin, names, desktop):
 					parms = converter.text.strip()
 				except Exception:
 					parms = ""
+				last_converter_type = ctype
+				last_converter_args = parms
 				# print("[Skin] DEBUG: Params='%s'." % parms)
 				try:
 					converterClass = my_import(".".join(("Components", "Converter", ctype))).__dict__.get(ctype)
 				except ImportError:
-					raise SkinError("Converter '%s' not found" % ctype)
+					err = SkinError("Converter '%s' not found" % ctype)
+					_skin_write_widget_error_event("Converter import failed", _skin_make_widget_context(widget, ctype, parms), err, False)
+					raise err
 				c = None
 				for i in source.downstream_elements:
 					if isinstance(i, converterClass) and i.converter_arguments == parms:
 						c = i
 				if c is None:
-					c = converterClass(parms)
-					c.connect(source)
+					try:
+						c = converterClass(parms)
+						c.connect(source)
+					except Exception as err:
+						_skin_write_widget_error_event("Converter instantiate/connect failed", _skin_make_widget_context(widget, ctype, parms), err, _skin_helper_verbose())
+						raise
 				source = c
 			try:
 				rendererClass = my_import(".".join(("Components", "Renderer", wrender))).__dict__.get(wrender)
 			except ImportError:
-				raise SkinError("Renderer '%s' not found" % wrender)
-			renderer = rendererClass()  # Instantiate renderer.
-			renderer.connect(source)  # Connect to source.
+				err = SkinError("Renderer '%s' not found" % wrender)
+				_skin_write_widget_error_event("Renderer import failed", _skin_make_widget_context(widget, last_converter_type, last_converter_args), err, False)
+				raise err
+			try:
+				renderer = rendererClass()  # Instantiate renderer.
+				renderer.connect(source)  # Connect to source.
+			except Exception as err:
+				_skin_write_widget_error_event("Renderer instantiate/connect failed", _skin_make_widget_context(widget, last_converter_type, last_converter_args), err, _skin_helper_verbose())
+				raise
 			attributes = renderer.skinAttributes = []
 			collectAttributes(attributes, widget, context, skinPath, ignore=("render", "source"))
 			screen.renderer.append(renderer)
@@ -1472,3 +1568,1049 @@ def dump(x, i=0):
 			dump(n, i + 1)
 	except Exception:
 		None
+
+
+# ======================================================================
+# SUPPORT ERROR CONTEXT LOGGER
+# runtime helper implementation
+# controlled by the switches at the top of this file
+# ======================================================================
+
+import os as _skin_os
+import sys as _skin_sys
+import time as _skin_time
+import traceback as _skin_traceback
+
+try:
+	from xml.etree.ElementTree import tostring as _skin_tostring
+except Exception:
+	_skin_tostring = None
+
+try:
+	_skin_text_type = unicode
+except NameError:
+	_skin_text_type = str
+
+_SKIN_DEBUG_LOG_DIR = "/home/root/logs"
+_SKIN_DEBUG_LOG_FILE = _skin_os.path.join(_SKIN_DEBUG_LOG_DIR, "error_help.log")
+_SKIN_ACTIONMAP_HOOKS_INSTALLED = False
+_SKIN_SCREEN_HOOKS_INSTALLED = False
+_SKIN_ERROR_SUPPRESS_CACHE = {}
+_SKIN_ATTR_CONTEXT = {}
+_SKIN_GUI_CONTEXT = {}
+_SKIN_XML_FILE_BY_ELEMENT = {}
+_SKIN_FILE_LINES_CACHE = {}
+_SKIN_READ_STACK = []
+_SKIN_RECENT_ERRORS = []
+_SKIN_RECENT_SCREENS = []
+_SKIN_RECENT_ACTIONS = []
+_SKIN_RECENT_KEYS = []
+
+
+def _skin_to_text(value):
+	if value is None:
+		return _skin_text_type("")
+	if isinstance(value, _skin_text_type):
+		return value
+	try:
+		return value.decode("utf-8", "replace")
+	except Exception:
+		pass
+	try:
+		return _skin_text_type(value)
+	except Exception:
+		try:
+			return _skin_text_type(repr(value))
+		except Exception:
+			return _skin_text_type("<unprintable>")
+
+
+def _skin_helper_enabled():
+	try:
+		return bool(SKIN_ERROR_CONTEXT)
+	except Exception:
+		return True
+
+
+def _skin_helper_verbose():
+	try:
+		return bool(SKIN_HELPER_VERBOSE)
+	except Exception:
+		return False
+
+
+def _skin_ensure_log_dir():
+	try:
+		if not _skin_os.path.isdir(_SKIN_DEBUG_LOG_DIR):
+			_skin_os.makedirs(_SKIN_DEBUG_LOG_DIR)
+	except Exception:
+		pass
+
+
+def _skin_unique_backup_name(prefix, suffix):
+	stamp = _skin_time.strftime("%Y%m%d-%H%M%S")
+	candidate = _skin_os.path.join(_SKIN_DEBUG_LOG_DIR, "%s%s%s" % (prefix, stamp, suffix))
+	index = 1
+	while _skin_os.path.exists(candidate):
+		candidate = _skin_os.path.join(_SKIN_DEBUG_LOG_DIR, "%s%s_%d%s" % (prefix, stamp, index, suffix))
+		index += 1
+	return candidate
+
+
+def _skin_prepare_fresh_log():
+	if not _skin_helper_enabled():
+		return
+	try:
+		_skin_ensure_log_dir()
+		if _skin_os.path.isfile(_SKIN_DEBUG_LOG_FILE) and _skin_os.path.getsize(_SKIN_DEBUG_LOG_FILE) > 0:
+			backup = _skin_unique_backup_name("error_help_", ".log")
+			try:
+				_skin_os.rename(_SKIN_DEBUG_LOG_FILE, backup)
+			except Exception:
+				pass
+		with open(_SKIN_DEBUG_LOG_FILE, "wb"):
+			pass
+	except Exception:
+		pass
+
+
+def _skin_append_log_line(channel, message):
+	if not _skin_helper_enabled():
+		return
+	try:
+		_skin_ensure_log_dir()
+		line = "[%s] %s %s\n" % (_skin_to_text(channel), _skin_time.strftime("%Y-%m-%d %H:%M:%S"), _skin_to_text(message))
+		with open(_SKIN_DEBUG_LOG_FILE, "ab") as handle:
+			handle.write(line.encode("utf-8", "replace"))
+	except Exception:
+		pass
+
+
+def _skin_console(level, message):
+	text = "[Skin] %s: %s" % (_skin_to_text(level), _skin_to_text(message))
+	try:
+		print(text)
+	except Exception:
+		pass
+
+
+def _skin_log(level, message, to_console=False):
+	_skin_append_log_line(level, message)
+	if to_console:
+		_skin_console(level, message)
+
+
+def _skin_register_tree_origin(root, filename):
+	try:
+		for element in root.iter():
+			_SKIN_XML_FILE_BY_ELEMENT[id(element)] = filename
+	except Exception:
+		pass
+
+
+def _skin_get_element_file(element, default=None):
+	if element is None:
+		return default
+	return _SKIN_XML_FILE_BY_ELEMENT.get(id(element), default)
+
+
+def _skin_get_file_lines(filename):
+	if not filename or filename.startswith("<embedded"):
+		return None
+	if filename in _SKIN_FILE_LINES_CACHE:
+		return _SKIN_FILE_LINES_CACHE[filename]
+	try:
+		with open(filename, "r") as handle:
+			lines = handle.readlines()
+			_SKIN_FILE_LINES_CACHE[filename] = lines
+			return lines
+	except Exception:
+		return None
+
+
+def _skin_compact_element_text(element):
+	if element is None:
+		return ""
+	tag = _skin_to_text(getattr(element, "tag", "unknown"))
+	attrs = getattr(element, "attrib", {}) or {}
+	parts = []
+	for key in ("name", "source", "render"):
+		value = attrs.get(key)
+		if value not in (None, ""):
+			parts.append('%s="%s"' % (key, _skin_to_text(value)))
+	if parts:
+		return "<%s %s>" % (tag, " ".join(parts))
+	return "<%s>" % tag
+
+
+def _skin_find_best_line(lines, tokens):
+	if not lines:
+		return None, None
+	for token in tokens:
+		if not token:
+			continue
+		for index, line in enumerate(lines):
+			if token in line:
+				return index + 1, token
+	return None, tokens and tokens[0] or None
+
+
+def _skin_locator_for_node(node, attrib=None, value=None):
+	filename = _skin_get_element_file(node)
+	if not filename:
+		return "<no file information>"
+	if filename.startswith("<embedded"):
+		return filename
+	lines = _skin_get_file_lines(filename)
+	if not lines:
+		return filename
+	tokens = []
+	if attrib is not None and value not in (None, ""):
+		tokens.append('%s="%s"' % (attrib, _skin_to_text(value)))
+	if node is not None:
+		for key in ("name", "source", "render", "position", "size", "font"):
+			val = node.attrib.get(key)
+			if val:
+				tokens.append('%s="%s"' % (key, _skin_to_text(val)))
+		if getattr(node, "tag", None):
+			tokens.append("<%s" % _skin_to_text(node.tag))
+	line, token = _skin_find_best_line(lines, tokens)
+	if line is not None:
+		if token:
+			return "%s:%d token=%s" % (filename, line, token)
+		return "%s:%d" % (filename, line)
+	return filename
+
+
+def _skin_xml_parse_error(filename, content, err):
+	try:
+		line, column = err.position
+	except Exception:
+		line, column = 0, 0
+	_skin_log("ERROR", "XML Parse Error in '%s' at line %s, column %s: %s" % (filename, line, column, err), to_console=True)
+	try:
+		start = max(0, line - 3)
+		end = min(len(content), line + 2)
+		for index in range(start, end):
+			prefix = ">>" if index + 1 == line else "  "
+			text = content[index].replace("\t", " ").rstrip("\n")
+			_skin_append_log_line("XML", "%s %04d | %s" % (prefix, index + 1, text))
+		_skin_append_log_line("XML", "%s^" % (" " * max(0, column)))
+	except Exception:
+		pass
+
+
+def _skin_trim_store(store, limit):
+	if len(store) > limit:
+		del store[:-limit]
+
+
+def _skin_remember_screen(message):
+	if _SKIN_RECENT_SCREENS and _SKIN_RECENT_SCREENS[-1] == message:
+		return
+	_SKIN_RECENT_SCREENS.append(message)
+	_skin_trim_store(_SKIN_RECENT_SCREENS, 40)
+	_skin_append_log_line("SCREEN", message)
+
+
+def _skin_action_to_key(action):
+	action_text = _skin_to_text(action)
+	normalized = action_text.replace("-", "_")
+	lower = normalized.lower()
+	mapping = {
+		"ok": "KEY_OK",
+		"cancel": "KEY_EXIT",
+		"exit": "KEY_EXIT",
+		"back": "KEY_BACK",
+		"menu": "KEY_MENU",
+		"info": "KEY_INFO",
+		"epg": "KEY_EPG",
+		"red": "KEY_RED",
+		"green": "KEY_GREEN",
+		"yellow": "KEY_YELLOW",
+		"blue": "KEY_BLUE",
+		"up": "KEY_UP",
+		"down": "KEY_DOWN",
+		"left": "KEY_LEFT",
+		"right": "KEY_RIGHT",
+		"audio": "KEY_AUDIO",
+		"subtitle": "KEY_SUBTITLE",
+		"text": "KEY_TEXT",
+		"tv": "KEY_TV",
+		"radio": "KEY_RADIO",
+		"power": "KEY_POWER",
+		"mute": "KEY_MUTE",
+		"volumeup": "KEY_VOLUMEUP",
+		"volumedown": "KEY_VOLUMEDOWN",
+		"channelup": "KEY_CHANNELUP",
+		"channeldown": "KEY_CHANNELDOWN",
+		"play": "KEY_PLAY",
+		"pause": "KEY_PAUSE",
+		"stop": "KEY_STOP",
+		"record": "KEY_RECORD",
+		"rewind": "KEY_REWIND",
+		"fastforward": "KEY_FASTFORWARD",
+		"next": "KEY_NEXT",
+		"previous": "KEY_PREVIOUS",
+		"playpause": "KEY_PLAYPAUSE",
+		"help": "KEY_HELP",
+		"f1": "KEY_F1",
+		"f2": "KEY_F2",
+		"f3": "KEY_F3",
+		"f4": "KEY_F4",
+	}
+	suffix = ""
+	base = lower
+	if lower.endswith("_long"):
+		base = lower[:-5]
+		suffix = "_LONG"
+	if base in mapping:
+		return mapping[base] + suffix
+	if len(base) == 1 and base.isdigit():
+		return "KEY_%s%s" % (base, suffix)
+	return "ACTION_%s" % action_text.upper()
+
+
+def _skin_remember_action(screen_name, context_name, action_name, result=None):
+	message = "screen='%s' context='%s' action='%s' result='%s'" % (_skin_to_text(screen_name), _skin_to_text(context_name), _skin_to_text(action_name), _skin_to_text(result))
+	if not (_SKIN_RECENT_ACTIONS and _SKIN_RECENT_ACTIONS[-1] == message):
+		_SKIN_RECENT_ACTIONS.append(message)
+		_skin_trim_store(_SKIN_RECENT_ACTIONS, 80)
+		_skin_append_log_line("ACTION", message)
+	key_text = "key='%s' action='%s'" % (_skin_action_to_key(action_name), _skin_to_text(action_name))
+	if not (_SKIN_RECENT_KEYS and _SKIN_RECENT_KEYS[-1] == key_text):
+		_SKIN_RECENT_KEYS.append(key_text)
+		_skin_trim_store(_SKIN_RECENT_KEYS, 80)
+		_skin_append_log_line("KEY", key_text)
+
+
+def _skin_last_key_text():
+	if not _SKIN_RECENT_KEYS:
+		return "<none>"
+	return _SKIN_RECENT_KEYS[-1]
+
+
+def _skin_last_action_text():
+	if not _SKIN_RECENT_ACTIONS:
+		return "<none>"
+	return _SKIN_RECENT_ACTIONS[-1]
+
+
+def _skin_render_recent_error(item):
+	count = item.get("count", 1)
+	suffix = " (x%d)" % count if count > 1 else ""
+	return "%s %s%s" % (_skin_to_text(item.get("time", "")), _skin_to_text(item.get("message", "")), suffix)
+
+
+def _skin_remember_error(message, signature):
+	now = _skin_time.strftime("%H:%M:%S")
+	for item in reversed(_SKIN_RECENT_ERRORS):
+		if item.get("signature") == signature:
+			item["message"] = _skin_to_text(message)
+			item["time"] = now
+			item["count"] = item.get("count", 1) + 1
+			return
+	_SKIN_RECENT_ERRORS.append({"signature": signature, "message": _skin_to_text(message), "time": now, "count": 1})
+	_skin_trim_store(_SKIN_RECENT_ERRORS, 40)
+
+
+def _skin_should_emit_error(signature, window=3.0):
+	now = _skin_time.time()
+	for key in list(_SKIN_ERROR_SUPPRESS_CACHE.keys()):
+		try:
+			if now - _SKIN_ERROR_SUPPRESS_CACHE[key] > 60.0:
+				del _SKIN_ERROR_SUPPRESS_CACHE[key]
+		except Exception:
+			pass
+	last = _SKIN_ERROR_SUPPRESS_CACHE.get(signature)
+	_SKIN_ERROR_SUPPRESS_CACHE[signature] = now
+	if last is None:
+		return True
+	return (now - last) > window
+
+
+def _skin_dump_recent_context(reason):
+	_skin_append_log_line("CONTEXT", "================ %s ================" % _skin_to_text(reason))
+	if _SKIN_RECENT_SCREENS:
+		_skin_append_log_line("CONTEXT", "Recent screens:")
+		for item in _SKIN_RECENT_SCREENS[-8:]:
+			_skin_append_log_line("SCREEN", item)
+	if _SKIN_RECENT_ACTIONS:
+		_skin_append_log_line("CONTEXT", "Recent actions:")
+		for item in _SKIN_RECENT_ACTIONS[-8:]:
+			_skin_append_log_line("ACTION", item)
+	if _SKIN_RECENT_ERRORS:
+		_skin_append_log_line("CONTEXT", "Recent skin errors:")
+		for item in _SKIN_RECENT_ERRORS[-8:]:
+			_skin_append_log_line("ERROR", _skin_render_recent_error(item))
+
+
+def _skin_attribute_signature(context, attrib, err, kind):
+	return "%s|%s|%s|%s|%s|%s" % (
+		_skin_to_text(kind),
+		_skin_to_text(context.get("screenClass", "")),
+		_skin_to_text(context.get("selectedScreen", "")),
+		_skin_to_text(context.get("widgetName") or context.get("widgetSource") or context.get("xmlTag") or ""),
+		_skin_to_text(attrib),
+		_skin_to_text(err)
+	)
+
+
+def _skin_write_attribute_event(title, context, err=None, include_traceback=False):
+	_skin_append_log_line("DEBUGMAX", "================ %s ================" % _skin_to_text(title))
+	for key in ("screenClass", "screenTitle", "selectedScreen", "widgetName", "widgetSource", "widgetRender", "guiObjectType", "attribute", "attributeRawValue", "attributeLocator", "lastKey", "lastAction"):
+		value = context.get(key)
+		if value not in (None, ""):
+			_skin_append_log_line("DEBUGMAX", "%s=%s" % (key, _skin_to_text(value)))
+	if context.get("xmlSnippet"):
+		_skin_append_log_line("DEBUGMAX", "xmlSnippet=%s" % _skin_to_text(context.get("xmlSnippet")))
+	if err is not None:
+		_skin_append_log_line("DEBUGMAX", "exceptionType=%s" % err.__class__.__name__)
+		_skin_append_log_line("DEBUGMAX", "exception=%s" % _skin_to_text(err))
+		if include_traceback:
+			for line in _skin_traceback.format_exc().rstrip().split("\n"):
+				_skin_append_log_line("DEBUGMAX", line)
+
+
+
+def _skin_write_widget_error_event(title, context, err=None, include_traceback=False):
+	_skin_append_log_line("DEBUGMAX", "================ %s ================" % _skin_to_text(title))
+	for key in ("screenClass", "screenTitle", "selectedScreen", "widgetName", "widgetSource", "widgetRender", "converterType", "converterArgs", "guiObjectType", "attribute", "attributeRawValue", "attributeLocator", "lastKey", "lastAction"):
+		value = context.get(key)
+		if value not in (None, ""):
+			_skin_append_log_line("DEBUGMAX", "%s=%s" % (key, _skin_to_text(value)))
+	if context.get("xmlSnippet"):
+		_skin_append_log_line("DEBUGMAX", "xmlSnippet=%s" % _skin_to_text(context.get("xmlSnippet")))
+	if err is not None:
+		_skin_append_log_line("DEBUGMAX", "exceptionType=%s" % err.__class__.__name__)
+		_skin_append_log_line("DEBUGMAX", "exception=%s" % _skin_to_text(err))
+		if include_traceback:
+			for line in _skin_traceback.format_exc().rstrip().split("\n"):
+				_skin_append_log_line("DEBUGMAX", line)
+
+
+def _skin_make_widget_context(widget, converterType="", converterArgs="", guiObjectType=""):
+	current = _SKIN_READ_STACK and _SKIN_READ_STACK[-1] or {}
+	widgetName = widget.attrib.get("name")
+	widgetSource = widget.attrib.get("source")
+	widgetRender = widget.attrib.get("render")
+	context = {
+		"screenClass": _skin_to_text(current.get("screenClass", "")),
+		"screenTitle": _skin_to_text(current.get("screenTitle", "")),
+		"selectedScreen": _skin_to_text(current.get("selectedScreen", "")),
+		"widgetName": _skin_to_text(widgetName or ""),
+		"widgetSource": _skin_to_text(widgetSource or ""),
+		"widgetRender": _skin_to_text(widgetRender or ""),
+		"converterType": _skin_to_text(converterType or ""),
+		"converterArgs": _skin_to_text(converterArgs or ""),
+		"guiObjectType": _skin_to_text(guiObjectType or ""),
+		"xmlSnippet": _skin_compact_element_text(widget),
+		"lastKey": _skin_last_key_text(),
+		"lastAction": _skin_last_action_text(),
+	}
+	context["attributeLocator"] = _skin_locator_for_node(widget)
+	return context
+
+
+def _skin_expand_gui_context(guiObject, attrib, value):
+	context = dict(_SKIN_GUI_CONTEXT.get(id(guiObject), {}))
+	context["guiObjectType"] = guiObject.__class__.__name__
+	context["attribute"] = _skin_to_text(attrib)
+	context["attributeRawValue"] = _skin_to_text(value)
+	node = context.get("_node")
+	context["attributeLocator"] = _skin_locator_for_node(node, attrib, value)
+	context["lastKey"] = _skin_last_key_text()
+	context["lastAction"] = _skin_last_action_text()
+	return context
+
+
+def _skin_make_attr_context(node, skinPath):
+	current = _SKIN_READ_STACK and _SKIN_READ_STACK[-1] or {}
+	xml_file = _skin_get_element_file(node, skinPath)
+	return {
+		"screenClass": _skin_to_text(current.get("screenClass", "")),
+		"screenTitle": _skin_to_text(current.get("screenTitle", "")),
+		"selectedScreen": _skin_to_text(current.get("selectedScreen", "")),
+		"requestedNames": _skin_to_text(current.get("requestedNames", "")),
+		"xmlTag": _skin_to_text(getattr(node, "tag", "")),
+		"widgetName": _skin_to_text(node is not None and node.attrib.get("name", "") or ""),
+		"widgetSource": _skin_to_text(node is not None and node.attrib.get("source", "") or ""),
+		"widgetRender": _skin_to_text(node is not None and node.attrib.get("render", "") or ""),
+		"xmlFile": _skin_to_text(xml_file or ""),
+		"xmlSnippet": _skin_compact_element_text(node),
+		"_node": node,
+	}
+
+
+def _skin_preview_selected_screen(screen, names):
+	requested = names if isinstance(names, list) else [names]
+	selected = ""
+	node = None
+	path = None
+	mandatory = getattr(screen, "mandatoryWidgets", None)
+	for name in requested:
+		candidate, path = domScreens.get(name, (None, None))
+		if candidate is None:
+			continue
+		if mandatory is None or mandatory == []:
+			selected = name
+			node = candidate
+			break
+		try:
+			widgets = findWidgets(name)
+		except Exception:
+			widgets = set()
+		if all(item in widgets for item in mandatory):
+			selected = name
+			node = candidate
+			break
+	if not selected:
+		if getattr(screen, "parsedSkin", None) is not None or getattr(screen, "skin", None):
+			selected = "<embedded-in-%s>" % screen.__class__.__name__
+			node = getattr(screen, "parsedSkin", None)
+			path = getattr(screen, "skin_path", path)
+	return requested, selected, node, path
+
+
+def _skin_install_actionmap_hooks():
+	global _SKIN_ACTIONMAP_HOOKS_INSTALLED
+	if _SKIN_ACTIONMAP_HOOKS_INSTALLED:
+		return
+	try:
+		import Components.ActionMap as _SkinActionMapModule
+	except Exception as err:
+		_skin_log("WARNING", "Unable to install ActionMap hooks: %s" % err)
+		return
+	if getattr(_SkinActionMapModule, "_skin_helper_safe_hooked", False):
+		_SKIN_ACTIONMAP_HOOKS_INSTALLED = True
+		return
+	if hasattr(_SkinActionMapModule, "ActionMap") and hasattr(_SkinActionMapModule.ActionMap, "action"):
+		_original_action = _SkinActionMapModule.ActionMap.action
+		def _safe_action(self, contexts, action):
+			parent = getattr(self, "parent", None)
+			screen_name = parent is not None and parent.__class__.__name__ or "<none>"
+			result = _original_action(self, contexts, action)
+			if _skin_helper_enabled():
+				_skin_remember_action(screen_name, contexts, action, result)
+			return result
+		_SkinActionMapModule.ActionMap.action = _safe_action
+	if hasattr(_SkinActionMapModule, "NumberActionMap") and hasattr(_SkinActionMapModule.NumberActionMap, "action"):
+		_original_number_action = _SkinActionMapModule.NumberActionMap.action
+		def _safe_number_action(self, contexts, action):
+			parent = getattr(self, "parent", None)
+			screen_name = parent is not None and parent.__class__.__name__ or "<none>"
+			result = _original_number_action(self, contexts, action)
+			if _skin_helper_enabled():
+				_skin_remember_action(screen_name, contexts, action, result)
+			return result
+		_SkinActionMapModule.NumberActionMap.action = _safe_number_action
+	_SkinActionMapModule._skin_helper_safe_hooked = True
+	_SKIN_ACTIONMAP_HOOKS_INSTALLED = True
+	_skin_log("SESSION", "Safe ActionMap debug hooks installed")
+
+
+def _skin_install_screen_hooks():
+	global _SKIN_SCREEN_HOOKS_INSTALLED
+	if _SKIN_SCREEN_HOOKS_INSTALLED:
+		return
+	try:
+		from Screens.Screen import Screen as _SkinScreenClass
+	except Exception as err:
+		_skin_log("WARNING", "Unable to install Screen hooks: %s" % err)
+		return
+	if getattr(_SkinScreenClass, "_skin_helper_safe_hooked", False):
+		_SKIN_SCREEN_HOOKS_INSTALLED = True
+		return
+	_original_execBegin = _SkinScreenClass.execBegin
+	_original_doClose = _SkinScreenClass.doClose
+	_original_applySkin = _SkinScreenClass.applySkin
+	def _safe_execBegin(self, *args, **kwargs):
+		if _skin_helper_enabled():
+			try:
+				title = self.getTitle()
+			except Exception:
+				title = ""
+			_skin_remember_screen("execBegin class='%s' title='%s' skinName='%s'" % (self.__class__.__name__, _skin_to_text(title), _skin_to_text(getattr(self, "skinName", ""))))
+		return _original_execBegin(self, *args, **kwargs)
+	def _safe_doClose(self, *args, **kwargs):
+		if _skin_helper_enabled():
+			try:
+				title = self.getTitle()
+			except Exception:
+				title = ""
+			_skin_remember_screen("doClose class='%s' title='%s' skinName='%s'" % (self.__class__.__name__, _skin_to_text(title), _skin_to_text(getattr(self, "skinName", ""))))
+		return _original_doClose(self, *args, **kwargs)
+	def _safe_applySkin(self, *args, **kwargs):
+		if _skin_helper_enabled():
+			try:
+				title = self.getTitle()
+			except Exception:
+				title = ""
+			_skin_remember_screen("applySkin class='%s' title='%s' skinName='%s'" % (self.__class__.__name__, _skin_to_text(title), _skin_to_text(getattr(self, "skinName", ""))))
+		return _original_applySkin(self, *args, **kwargs)
+	_SkinScreenClass.execBegin = _safe_execBegin
+	_SkinScreenClass.doClose = _safe_doClose
+	_SkinScreenClass.applySkin = _safe_applySkin
+	_SkinScreenClass._skin_helper_safe_hooked = True
+	_SKIN_SCREEN_HOOKS_INSTALLED = True
+	_skin_log("SESSION", "Safe Screen hooks installed")
+
+
+def _skin_install_exception_hook():
+	try:
+		_original_excepthook = getattr(_skin_install_exception_hook, "_original", None)
+		if _original_excepthook is None:
+			_skin_install_exception_hook._original = getattr(_skin_sys, "excepthook", None)
+			_original_excepthook = _skin_install_exception_hook._original
+		def _safe_excepthook(exc_type, exc_value, exc_tb):
+			if _skin_helper_enabled():
+				_skin_append_log_line("EXCEPTION", "Unhandled Python exception: %s: %s" % (getattr(exc_type, "__name__", exc_type), _skin_to_text(exc_value)))
+				for line in _skin_traceback.format_exception(exc_type, exc_value, exc_tb):
+					for subline in _skin_to_text(line).rstrip().split("\n"):
+						_skin_append_log_line("EXCEPTION", subline)
+				_skin_dump_recent_context("Unhandled Python exception")
+			if _original_excepthook and _original_excepthook != _safe_excepthook:
+				return _original_excepthook(exc_type, exc_value, exc_tb)
+		_skin_sys.excepthook = _safe_excepthook
+	except Exception:
+		pass
+
+
+def installRuntimeDebugHooks():
+	if not _skin_helper_enabled():
+		return
+	_skin_install_exception_hook()
+	_skin_install_screen_hooks()
+	# Intentionally no ActionMap hook here.
+	# SKIN_DEEP_PLUGIN_DEBUG stays as a visible top-level switch,
+	# but it no longer installs runtime key/action wrappers.
+
+
+_ORIGINAL_removeCallback = removeCallback
+_ORIGINAL_collectAttributes = collectAttributes
+_ORIGINAL_applyAllAttributes = applyAllAttributes
+_ORIGINAL_readSkin = readSkin
+_ORIGINAL_loadSkin = loadSkin
+_ORIGINAL_reloadSkins = reloadSkins
+_ORIGINAL_restoreSkin = restoreSkin
+_ORIGINAL_parseColor = parseColor
+_ORIGINAL_parseFont = parseFont
+
+
+def removeCallback(callback):
+	if callback in callbacks:
+		callbacks.remove(callback)
+
+
+def restoreSkin():
+	try:
+		return _ORIGINAL_restoreSkin()
+	except Exception:
+		_skin_log("ERROR", "restoreSkin failed", to_console=True)
+		if _skin_helper_verbose():
+			for line in _skin_traceback.format_exc().rstrip().split("\n"):
+				_skin_append_log_line("DEBUGMAX", line)
+
+
+def InitSkins():
+	global currentPrimarySkin, currentDisplaySkin, currentStandbySkin, runCallbacks
+	installRuntimeDebugHooks()
+	runCallbacks = False
+	loadSkin(EMERGENCY_SKIN, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID)
+	loadSkin(SUBTITLE_SKIN, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID)
+	if BoxInfo.getItem("OledDisplay"):
+		result = []
+		for skin, name in [(config.skin.display_skin.value, "current"), (DEFAULT_DISPLAY_SKIN, "default")]:
+			if skin in result:
+				continue
+			config.skin.display_skin.value = skin
+			if loadSkin(config.skin.display_skin.value, scope=SCOPE_CURRENT_LCDSKIN, desktop=getDesktop(DISPLAY_SKIN_ID), screenID=DISPLAY_SKIN_ID):
+				currentDisplaySkin = config.skin.display_skin.value
+				break
+			result.append(skin)
+		result = []
+		for skin, name in [(config.skin.standby_skin.value, "current"), (DEFAULT_STANDBY_SKIN, "default")]:
+			if skin in result:
+				continue
+			config.skin.standby_skin.value = skin
+			if loadSkin(config.skin.standby_skin.value, scope=SCOPE_CURRENT_LCDSKIN, desktop=getDesktop(DISPLAY_SKIN_ID), screenID=DISPLAY_SKIN_ID):
+				currentStandbySkin = config.skin.standby_skin.value
+				break
+			result.append(skin)
+	result = []
+	for skin, name in [(config.skin.primary_skin.value, "current"), (DEFAULT_SKIN, "default")]:
+		if skin in result:
+			continue
+		config.skin.primary_skin.value = skin
+		if loadSkin(config.skin.primary_skin.value, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID):
+			currentPrimarySkin = config.skin.primary_skin.value
+			break
+		result.append(skin)
+	if currentPrimarySkin is not None:
+		partsDir = resolveFilename(SCOPE_GUISKIN, pathjoin(dirname(currentPrimarySkin), "mySkin", ""))
+		if pathExists(partsDir) and currentPrimarySkin != DEFAULT_SKIN:
+			for file in sorted(listdir(partsDir)):
+				if file.startswith("skin_") and file.endswith(".xml"):
+					partsFile = pathjoin(partsDir, file)
+					loadSkin(partsFile, scope=SCOPE_GUISKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID)
+	result = None
+	if isfile(resolveFilename(SCOPE_SKIN, config.skin.primary_skin.value)):
+		name = USER_SKIN_TEMPLATE % dirname(config.skin.primary_skin.value)
+		if isfile(resolveFilename(SCOPE_CURRENT_SKIN, name)):
+			result = loadSkin(name, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID)
+	if result is None:
+		loadSkin(USER_SKIN, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID)
+	runCallbacks = True
+
+
+def loadSkinData(desktop):
+	if _skin_helper_enabled():
+		_skin_append_log_line("SESSION", "============================================================")
+		_skin_append_log_line("SESSION", "skin.py loadSkinData started")
+		_skin_append_log_line("SESSION", "Primary skin setting: %s" % _skin_to_text(getattr(config.skin.primary_skin, "value", "<unknown>")))
+	restoreSkin()
+	InitSkins()
+
+
+def loadSkin(filename, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID):
+	global windowStyles
+	filename = resolveFilename(scope, filename)
+	try:
+		with open(filename, "r") as fd:
+			try:
+				domSkin = parse(fd).getroot()
+				_skin_register_tree_origin(domSkin, filename)
+				loadSingleSkinData(desktop, screenID, domSkin, filename, scope=scope)
+				for element in domSkin:
+					if element.tag == "screen":
+						name = element.attrib.get("name", None)
+						if name:
+							scrnID = element.attrib.get("id", None)
+							if scrnID is None or int(scrnID) == int(screenID):
+								domScreens[name] = (element, "%s/" % dirname(filename))
+					elif element.tag == "windowstyle":
+						scrnID = element.attrib.get("id", None)
+						if scrnID is not None:
+							scrnID = int(scrnID)
+							domStyle = ElementTree(Element("skin"))
+							domStyle.getroot().append(element)
+							windowStyles[scrnID] = (desktop, screenID, domStyle.getroot(), filename, scope)
+				reloadWindowStyles()
+				if runCallbacks:
+					for method in callbacks[:]:
+						if method:
+							try:
+								method()
+							except Exception:
+								_skin_log("ERROR", "Skin callback failed after loading '%s'" % filename, to_console=True)
+				return True
+			except ParseError as err:
+				fd.seek(0)
+				content = fd.readlines()
+				_skin_xml_parse_error(filename, content, err)
+			except Exception as err:
+				_skin_log("ERROR", "Unable to parse skin data in '%s' - '%s'" % (filename, err), to_console=True)
+				if _skin_helper_verbose():
+					for line in _skin_traceback.format_exc().rstrip().split("\n"):
+						_skin_append_log_line("DEBUGMAX", line)
+	except (IOError, OSError) as err:
+		if err.errno == ENOENT:
+			_skin_log("WARNING", "Skin file '%s' does not exist" % filename, to_console=True)
+		else:
+			_skin_log("ERROR", "Opening skin file '%s' failed (%s)" % (filename, err), to_console=True)
+	except Exception as err:
+		_skin_log("ERROR", "Unexpected error opening skin file '%s' (%s)" % (filename, err), to_console=True)
+	return False
+
+
+def reloadSkins():
+	global colors, fonts, currentPrimarySkin, currentDisplaySkin, currentStandbySkin
+	domScreens.clear()
+	colors.clear()
+	colors = {
+		"key_back": gRGB(0x00313131),
+		"key_blue": gRGB(0x0018188b),
+		"key_green": gRGB(0x001f771f),
+		"key_red": gRGB(0x009f1313),
+		"key_text": gRGB(0x00ffffff),
+		"key_yellow": gRGB(0x00a08500)
+	}
+	fonts.clear()
+	fonts = {
+		"Body": BodyFont
+	}
+	menus.clear()
+	parameters.clear()
+	setups.clear()
+	switchPixmap.clear()
+	windowStyles.clear()
+	constantWidgets.clear()
+	variables.clear()
+	currentPrimarySkin = None
+	currentDisplaySkin = None
+	currentStandbySkin = None
+	InitSkins()
+
+
+def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarSliderPicture", "scrollbarbackgroundPixmap", "scrollbarBackgroundPicture"))):
+	result = _ORIGINAL_collectAttributes(skinAttributes, node, context, skinPath, ignore, filenames)
+	if _skin_helper_enabled():
+		try:
+			_SKIN_ATTR_CONTEXT[id(skinAttributes)] = _skin_make_attr_context(node, skinPath)
+		except Exception:
+			pass
+	return result
+
+
+def applyAllAttributes(guiObject, desktop, attributes, scale):
+	if not _skin_helper_enabled():
+		return _ORIGINAL_applyAllAttributes(guiObject, desktop, attributes, scale)
+	try:
+		context = dict(_SKIN_ATTR_CONTEXT.get(id(attributes), {}))
+		_SKIN_GUI_CONTEXT[id(guiObject)] = context
+		return _ORIGINAL_applyAllAttributes(guiObject, desktop, attributes, scale)
+	finally:
+		try:
+			del _SKIN_GUI_CONTEXT[id(guiObject)]
+		except Exception:
+			pass
+
+
+def readSkin(screen, skin, names, desktop):
+	if not _skin_helper_enabled():
+		return _ORIGINAL_readSkin(screen, skin, names, desktop)
+	requested, selected, node, path = _skin_preview_selected_screen(screen, names)
+	try:
+		title = screen.getTitle()
+	except Exception:
+		title = ""
+	ctx = {
+		"screenClass": screen.__class__.__name__,
+		"screenTitle": _skin_to_text(title),
+		"requestedNames": requested,
+		"selectedScreen": selected,
+		"screenNode": node,
+		"path": path,
+	}
+	_SKIN_READ_STACK.append(ctx)
+	_skin_remember_screen("readSkin class='%s' title='%s' selected='%s' names='%s'" % (screen.__class__.__name__, _skin_to_text(title), _skin_to_text(selected), _skin_to_text(requested)))
+	try:
+		return _ORIGINAL_readSkin(screen, skin, names, desktop)
+	except Exception as err:
+		_skin_log("ERROR", "readSkin failed for '%s': %s" % (screen.__class__.__name__, err), to_console=True)
+		if _skin_helper_verbose():
+			for line in _skin_traceback.format_exc().rstrip().split("\n"):
+				_skin_append_log_line("DEBUGMAX", line)
+		_skin_dump_recent_context("readSkin exception")
+		raise
+	finally:
+		try:
+			_SKIN_READ_STACK.pop()
+		except Exception:
+			pass
+
+
+def parseColor(s):
+	try:
+		return _ORIGINAL_parseColor(s)
+	except Exception as err:
+		_skin_log("ERROR", "Color '%s' is invalid (%s)" % (_skin_to_text(s), err), to_console=True)
+		raise
+
+
+def parseFont(s, scale=((1, 1), (1, 1))):
+	try:
+		return _ORIGINAL_parseFont(s, scale)
+	except Exception as err:
+		_skin_log("ERROR", "Font '%s' could not be parsed (%s)" % (_skin_to_text(s), err), to_console=True)
+		raise
+
+
+def _skin_parse_padding_values(value):
+	parts = [parseScale(x.strip()) for x in _skin_to_text(value).split(",")]
+	if len(parts) == 1:
+		parts = parts * 4
+	elif len(parts) == 2:
+		parts = [parts[0], parts[1], parts[0], parts[1]]
+	elif len(parts) != 4:
+		raise SkinError("Attribute 'padding' must have 1, 2 or 4 values")
+	return parts
+
+
+def _skin_scale_h(parser, value):
+	return int(value) * parser.scaleTuple[0][0] // parser.scaleTuple[0][1]
+
+
+def _skin_scale_v(parser, value):
+	return int(value) * parser.scaleTuple[1][0] // parser.scaleTuple[1][1]
+
+
+def _skin_attr_color(self, value):
+	if hasattr(self.guiObject, "setForegroundColor"):
+		self.guiObject.setForegroundColor(parseColor(value))
+	else:
+		raise SkinError("Object type '%s' does not support color/foregroundColor" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_padding(self, value):
+	leftPadding, topPadding, rightPadding, bottomPadding = _skin_parse_padding_values(value)
+	if hasattr(self.guiObject, "setPadding"):
+		self.guiObject.setPadding(eRect(_skin_scale_h(self, leftPadding), _skin_scale_v(self, topPadding), _skin_scale_h(self, rightPadding), _skin_scale_v(self, bottomPadding)))
+	else:
+		raise SkinError("Object type '%s' does not support padding" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_foregroundColorSelected(self, value):
+	color = parseColor(value)
+	if hasattr(self.guiObject, "setForegroundColorSelected"):
+		self.guiObject.setForegroundColorSelected(color)
+	elif hasattr(self.guiObject, "setForegroundColor"):
+		self.guiObject.setForegroundColor(color)
+	else:
+		raise SkinError("Object type '%s' does not support foregroundColorSelected" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_backgroundColorSelected(self, value):
+	color = parseColor(value)
+	if hasattr(self.guiObject, "setBackgroundColorSelected"):
+		self.guiObject.setBackgroundColorSelected(color)
+	elif hasattr(self.guiObject, "setBackgroundColor"):
+		self.guiObject.setBackgroundColor(color)
+	else:
+		raise SkinError("Object type '%s' does not support backgroundColorSelected" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_scrollbarBackgroundPixmap(self, value):
+	if hasattr(self.guiObject, "setScrollbarBackgroundPicture"):
+		self.guiObject.setScrollbarBackgroundPicture(loadPixmap(value, self.desktop))
+	else:
+		raise SkinError("Object type '%s' does not support scrollbarBackgroundPixmap" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_scrollbarForegroundPixmap(self, value):
+	if hasattr(self.guiObject, "setSliderPicture"):
+		self.guiObject.setSliderPicture(loadPixmap(value, self.desktop))
+	else:
+		raise SkinError("Object type '%s' does not support scrollbarForegroundPixmap" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_scrollbarBorderColor(self, value):
+	if hasattr(self.guiObject, "setSliderBorderColor"):
+		self.guiObject.setSliderBorderColor(parseColor(value))
+	elif hasattr(self.guiObject, "setScrollbarBorderColor"):
+		self.guiObject.setScrollbarBorderColor(parseColor(value))
+	else:
+		raise SkinError("Object type '%s' does not support scrollbarBorderColor" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_scrollbarBorderWidth(self, value):
+	if hasattr(self.guiObject, "setScrollbarSliderBorderWidth"):
+		self.guiObject.setScrollbarSliderBorderWidth(parseScale(value))
+	elif hasattr(self.guiObject, "setScrollbarBorderWidth"):
+		self.guiObject.setScrollbarBorderWidth(parseScale(value))
+	else:
+		raise SkinError("Object type '%s' does not support scrollbarBorderWidth" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_scrollbarForegroundColor(self, value):
+	if hasattr(self.guiObject, "setSliderForegroundColor"):
+		self.guiObject.setSliderForegroundColor(parseColor(value))
+	elif hasattr(self.guiObject, "setScrollbarForegroundColor"):
+		self.guiObject.setScrollbarForegroundColor(parseColor(value))
+	else:
+		raise SkinError("Object type '%s' does not support scrollbarForegroundColor" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_fieldMargins(self, value):
+	for name in ("setFieldMargins", "setfieldMargins"):
+		if hasattr(self.guiObject, name):
+			return getattr(self.guiObject, name)(parseScale(value))
+	if hasattr(self.guiObject, "setMargins"):
+		return self.guiObject.setMargins(parseScale(value))
+	raise SkinError("Object type '%s' does not support fieldMargins" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_itemsDistances(self, value):
+	for name in ("setItemsDistances", "setItemDistances"):
+		if hasattr(self.guiObject, name):
+			return getattr(self.guiObject, name)(parseScale(value))
+	raise SkinError("Object type '%s' does not support itemsDistances" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_nonplayableMargins(self, value):
+	for name in ("setNonplayableMargins", "setNonPlayableMargins"):
+		if hasattr(self.guiObject, name):
+			return getattr(self.guiObject, name)(parseScale(value))
+	raise SkinError("Object type '%s' does not support nonplayableMargins" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_progressBarWidth(self, value):
+	for name in ("setProgressBarWidth", "setProgressbarWidth"):
+		if hasattr(self.guiObject, name):
+			return getattr(self.guiObject, name)(parseScale(value))
+	raise SkinError("Object type '%s' does not support progressBarWidth" % self.guiObject.__class__.__name__)
+
+
+def _skin_attr_colorServiceRecording(self, value):
+	for name in ("setColorServiceRecording", "setColourServiceRecording"):
+		if hasattr(self.guiObject, name):
+			return getattr(self.guiObject, name)(parseColor(value))
+	raise SkinError("Object type '%s' does not support colorServiceRecording" % self.guiObject.__class__.__name__)
+
+
+def _skin_applyOne(self, attrib, value):
+	if not _skin_helper_enabled():
+		return AttributeParser._skin_helper_original_applyOne(self, attrib, value)
+	context = _skin_expand_gui_context(self.guiObject, attrib, value)
+	try:
+		handler = getattr(self, attrib)
+	except AttributeError:
+		signature = _skin_attribute_signature(context, attrib, "not-implemented", "not-implemented")
+		_skin_remember_error("Attribute '%s' not implemented" % attrib, signature)
+		if _skin_should_emit_error(signature):
+			_skin_write_attribute_event("Attribute not implemented", context, None, False)
+		return
+	try:
+		handler(value)
+	except SkinError as err:
+		signature = _skin_attribute_signature(context, attrib, err, "skinerror")
+		_skin_remember_error("Attribute '%s' skin error" % attrib, signature)
+		if _skin_should_emit_error(signature):
+			_skin_write_attribute_event("SkinError while applying attribute", context, err, _skin_helper_verbose())
+	except Exception as err:
+		text = _skin_to_text(err)
+		title = "Unsupported attribute on GUI object" if isinstance(err, AttributeError) and "has no attribute 'set" in text else "Attribute crashed"
+		signature = _skin_attribute_signature(context, attrib, err, title)
+		_skin_remember_error("Attribute '%s' crashed" % attrib, signature)
+		if _skin_should_emit_error(signature):
+			_skin_write_attribute_event(title, context, err, _skin_helper_verbose())
+
+
+AttributeParser._skin_helper_original_applyOne = AttributeParser.applyOne
+AttributeParser.applyOne = _skin_applyOne
+AttributeParser.color = _skin_attr_color
+AttributeParser.padding = _skin_attr_padding
+AttributeParser.foregroundColorSelected = _skin_attr_foregroundColorSelected
+AttributeParser.backgroundColorSelected = _skin_attr_backgroundColorSelected
+AttributeParser.scrollbarBackgroundPixmap = _skin_attr_scrollbarBackgroundPixmap
+AttributeParser.scrollbarForegroundPixmap = _skin_attr_scrollbarForegroundPixmap
+AttributeParser.scrollbarBorderColor = _skin_attr_scrollbarBorderColor
+AttributeParser.scrollbarBorderWidth = _skin_attr_scrollbarBorderWidth
+AttributeParser.scrollbarForegroundColor = _skin_attr_scrollbarForegroundColor
+AttributeParser.fieldMargins = _skin_attr_fieldMargins
+AttributeParser.itemsDistances = _skin_attr_itemsDistances
+AttributeParser.nonplayableMargins = _skin_attr_nonplayableMargins
+AttributeParser.progressBarWidth = _skin_attr_progressBarWidth
+AttributeParser.colorServiceRecording = _skin_attr_colorServiceRecording
+
+
+_skin_prepare_fresh_log()
+_skin_append_log_line("SESSION", "skin.py imported and support error context logger initialized")
+_skin_append_log_line("SESSION", "Active log file: %s" % _SKIN_DEBUG_LOG_FILE)
+_skin_append_log_line("SESSION", "SKIN_ERROR_CONTEXT=%s" % _skin_to_text(SKIN_ERROR_CONTEXT))
+_skin_append_log_line("SESSION", "SKIN_HELPER_VERBOSE=%s" % _skin_to_text(SKIN_HELPER_VERBOSE))
+_skin_append_log_line("SESSION", "SKIN_DEEP_PLUGIN_DEBUG=%s" % _skin_to_text(SKIN_DEEP_PLUGIN_DEBUG))
+if bool(globals().get("SKIN_DEEP_PLUGIN_DEBUG", False)):
+	_skin_append_log_line("SESSION", "SKIN_DEEP_PLUGIN_DEBUG is ON (safe mode, no ActionMap hook)")
+else:
+	_skin_append_log_line("SESSION", "SKIN_DEEP_PLUGIN_DEBUG is OFF (safe mode, no ActionMap hook)")
