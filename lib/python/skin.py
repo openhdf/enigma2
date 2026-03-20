@@ -65,7 +65,7 @@ from enigma import (BT_ALPHABLEND, BT_ALPHATEST, addFont, eLabel, ePixmap,
                     eWindowStyleSkinned, getDesktop, getFontFaces, gFont, gRGB)
 from six import ensure_str
 
-from Components.config import ConfigSubsection, ConfigText, config
+from Components.config import ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.RcModel import rc_model
 from Components.Sources.Source import ObsoleteSource
 from Components.SystemInfo import BoxInfo
@@ -75,15 +75,20 @@ from Tools.Directories import (SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT_SKIN,
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
-if config.usage.skin_error_context.value:
+config.skin = ConfigSubsection()
+config.skin.skin_error_context = ConfigYesNo(default=False)
+config.skin.skin_helper_verbose = ConfigYesNo(default=False)
+config.skin.skin_error_plugin_debug = ConfigYesNo(default=False)
+
+if config.skin.skin_error_context.value:
 	SKIN_ERROR_CONTEXT = True
 else:
 	SKIN_ERROR_CONTEXT = False
-if config.usage.skin_helper_verbose.value:
+if config.skin.skin_helper_verbose.value:
 	SKIN_HELPER_VERBOSE = True
 else:
 	SKIN_HELPER_VERBOSE = False
-if config.usage.skin_error_plugin_debug.value:
+if config.skin.skin_error_plugin_debug.value:
 	SKIN_DEEP_PLUGIN_DEBUG = True
 else:
 	SKIN_DEEP_PLUGIN_DEBUG = False
@@ -126,7 +131,6 @@ globalScrollbarDefaults = {"width": "16", "borderWidth": "2", "borderColorName":
 constantWidgets = {}
 variables = {}
 
-config.skin = ConfigSubsection()
 skin = resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)
 if not isfile(skin):
 	print("[Skin] Error: Default skin '%s' is not readable or is not a file!  Using emergency skin." % skin)
