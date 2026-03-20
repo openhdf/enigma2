@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-14 14:10+0200\n"
-"PO-Revision-Date: 2026-02-27 20:48+0100\n"
+"PO-Revision-Date: 2026-03-20 17:52+0100\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -7849,6 +7849,24 @@ msgstr "Maximale Speicherpositionen"
 
 msgid "Max number of crash pop-ups shown"
 msgstr "Maximale Anzahl der Enigma2 Crash Nachrichten"
+
+msgid "Enable skin context log"
+msgstr "Aktiviere Skin Log"
+
+msgid "Enable skin helper log"
+msgstr "Aktiviere Skin Traceback Log"
+
+msgid "Enable skin deep plugin log"
+msgstr "Aktiviere Skin Deep Log"
+
+msgid "Enable skin support logger."
+msgstr "Aktiviere Skin Log."
+
+msgid "Enable skin logger, include traceback details."
+msgstr "Aktiviere Skin Log, inklusive Traceback Details."
+
+msgid "Enable skin logger, reserved support switch, no ActionMap hook."
+msgstr "Aktiviere Skin Log, Reservierter Support-Schalter, kein ActionMap-Hook."
 
 msgid "Max. bitrate: "
 msgstr "Max. Bitrate: "
