@@ -200,18 +200,15 @@ void eDVBSoftDecoder::stop()
 	// Disconnect from source PMT handler events
 	m_source_event_conn.disconnect();
 
-	// IMPORTANT: Close DVR fd FIRST to unblock any poll() waiting on it
-	// Closing the fd causes poll() to return with POLLHUP/POLLERR,
-	// allowing the thread to exit cleanly.
-	if (m_dvr_fd >= 0)
-	{
-		eDebug("[eDVBSoftDecoder] Closing DVR fd %d (before stopping thread)", m_dvr_fd);
-		::close(m_dvr_fd);
-		m_dvr_fd = -1;
-	}
+	// Close decoder demux filter fds without DMX_STOP ioctl.
+	// On mipsel (Broadcom), DMX_STOP on PVR-sourced demux either
+	// deadlocks (no data flowing) or crashes (NULL deref in playpump).
+	// freeDecoder() closes fds via destructors — the kernel cleans up
+	// filters without going through the playpump path.
+	m_video_event_conn = nullptr;
+	if (m_decoder)
+		m_decoder->freeDecoder();
 
-	// Stop the recorder thread FIRST - poll() should have been unblocked by closing DVR fd
-	// Must stop before setDescrambler(nullptr) to prevent race condition
 	if (m_record)
 	{
 		eDebug("[eDVBSoftDecoder] Stopping recorder thread");
@@ -225,16 +222,6 @@ void eDVBSoftDecoder::stop()
 		eDebug("[eDVBSoftDecoder] Closing DVR fd %d", m_dvr_fd);
 		::close(m_dvr_fd);
 		m_dvr_fd = -1;
-	}
-
-	// Stop decoder - release PID filters and pause
-	if (m_decoder)
-	{
-		eDebug("[eDVBSoftDecoder] Stopping decoder");
-		m_decoder->pause();
-		m_decoder->setVideoPID(-1, -1);
-		m_decoder->setAudioPID(-1, -1);
-		m_decoder->set();  // Apply the changes to release PID filters
 	}
 
 	// Release decode demux
