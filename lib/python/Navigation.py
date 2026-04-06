@@ -275,6 +275,8 @@ class Navigation:
 
 		current_service_source = None
 		is_async_play = False
+		from Components.ServiceEventTracker import InfoBarCount
+		InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
 		if InfoBarInstance:
 			current_service_source = InfoBarInstance.session.screen["CurrentService"]
 
@@ -303,8 +305,6 @@ class Navigation:
 		if ref is None:
 			self.stopService()
 			return 0
-		from Components.ServiceEventTracker import InfoBarCount
-		InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
 		if not checkParentalControl or parentalControl.isServicePlayable(ref, boundFunction(self.playService, checkParentalControl=False, forceRestart=forceRestart, adjust=adjust)):
 			if ref.flags & eServiceReference.isGroup:
 				oldref = self.currentlyPlayingServiceReference or eServiceReference()
