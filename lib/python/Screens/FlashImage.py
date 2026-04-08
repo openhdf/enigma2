@@ -16,7 +16,7 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, fileExists, pathExists, fileHas
 from Tools.Downloader import downloadWithProgress
 from Tools.HardwareInfo import HardwareInfo
-from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, deleteImage, restoreImages
+from Tools.Multiboot import getImagelist, getCurrentImage, getCurrentImageMode, deleteImage, restoreImages
 import os
 from urllib.request import urlopen, Request, HTTPError
 import xml.etree.ElementTree
@@ -304,10 +304,10 @@ class FlashImage(Screen):
 			self.message = _("Do you want to flash image\n%s?") % self.imagename
 		if BoxInfo.getItem("canMultiBoot"):
 			self.message = _("Where do you want to flash image\n%s to?") % self.imagename
-			imagesList = GetImagelist()
-			currentimageslot = GetCurrentImage()
+			imagesList = getImagelist()
+			currentimageslot = getCurrentImage()
 			choices = []
-			slotdict = {k: v for k, v in BoxInfo.getItem("canMultiBoot").items() if not v['device'].startswith('/dev/sda')}
+			slotdict = {k: v for k, v in BoxInfo.getItem("canMultiBoot").items() if not v['device'].startswith('/dev/sd')}
 			for x in range(1, len(slotdict) + 1):
 				choices.append(((_("slot%s - %s (current image), with backup") if x == currentimageslot else _("slot%s - %s, with backup")) % (x, imagesList[x]['imagename']), (x, "with backup")))
 			for x in range(1, len(slotdict) + 1):
@@ -730,7 +730,7 @@ class MultibootSelection(SelectImage):
 		}, -1)
 
 		self.blue = False
-		self.currentimageslot = GetCurrentImage()
+		self.currentimageslot = getCurrentImage()
 		self.tmp_dir = tempfile.mkdtemp(prefix="MultibootSelection")
 		try:
 			Console().ePopen('mount %s %s' % (BoxInfo.getItem("MultibootStartupDevice"), self.tmp_dir))
@@ -754,8 +754,8 @@ class MultibootSelection(SelectImage):
 	def getImagesList(self):
 		list = []
 		list12 = []
-		imagesList = GetImagelist()
-		mode = GetCurrentImageMode() or 0
+		imagesList = getImagelist()
+		mode = getCurrentImageMode() or 0
 		self.deletedImagesExists = False
 		if imagesList:
 			for index, x in enumerate(imagesList):
