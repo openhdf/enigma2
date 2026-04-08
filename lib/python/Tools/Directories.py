@@ -435,6 +435,11 @@ def copyfile(src, dst):
 	return copyFile(src, dst)
 
 
+def fileDate(f):
+	if fileExists(f):
+		return datetime.fromtimestamp(os.stat(f).st_mtime).strftime("%Y-%m-%d")
+	return("1970-01-01")
+
 def copyTree(src, dst, symlinks=False):
 	names = listdir(src)
 	if isdir(dst):
