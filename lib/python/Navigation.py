@@ -25,6 +25,7 @@ from Screens.InfoBarGenerics import streamrelay
 
 
 class Navigation:
+	playServiceExtensions = []
 	def __init__(self, wakeupData=None):
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance
@@ -332,12 +333,9 @@ class Navigation:
 				playref = ref
 			if self.pnav:
 				self.currentlyPlayingServiceReference = playref
-				playref, is_stream_relay = streamrelay.streamrelayChecker(playref)
+				playref = streamrelay.streamrelayChecker(playref)
 
-				if SystemInfo["FCCactive"] and "%3a//" in ref.toString() and not is_stream_relay:
-					self.pnav.stopService()
-
-				playref_str_orig = playref.toString()
+				playref_str_orig = playref.toCompareString()
 				for f in Navigation.playServiceExtensions:
 					ret = f(self, playref, event, InfoBarInstance)
 					if isinstance(ret, (ServiceReference, eServiceReference)):
