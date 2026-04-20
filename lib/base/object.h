@@ -17,17 +17,13 @@ private:
 		/* we don't allow the default operator here, as it would break the refcount. */
 	void operator=(const iObject &);
 protected:
-	constexpr iObject() = default;
-	constexpr iObject(const iObject&) = default;
-#ifndef __EXCEPTIONS
-	void operator delete(void *p) { ::operator delete(p); }
-#endif
 	virtual ~iObject() { }
 #ifdef SWIG
 	virtual void AddRef()=0;
 	virtual void Release()=0;
 #endif
 public:
+	void operator delete(void *p) { ::operator delete(p); }
 #ifndef SWIG
 	virtual void AddRef()=0;
 	virtual void Release()=0;

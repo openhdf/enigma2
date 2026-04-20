@@ -171,16 +171,18 @@ class eDVBResourceManager: public iObject, public sigc::trackable
 	eSmartPtrList<eDVBRegisteredFrontend> m_frontend, m_simulate_frontend;
 	void addAdapter(iDVBAdapter *adapter, bool front = false);
 	void setUsbTuner();
-	public:
-		struct active_channel
-		{
-			eDVBChannelID m_channel_id;
-				/* we don't hold a reference here. */
-			eDVBChannel *m_channel;
 
-			active_channel(const eDVBChannelID &chid, eDVBChannel *ch) : m_channel_id(chid), m_channel(ch) { }
-		};
+public:
+	struct active_channel
+	{
+		eDVBChannelID m_channel_id;
+			/* we don't hold a reference here. */
+		eDVBChannel *m_channel;
 
+		active_channel(const eDVBChannelID &chid, eDVBChannel *ch) : m_channel_id(chid), m_channel(ch) { }
+	};
+
+private:
 	std::list<active_channel> m_active_channels, m_active_simulate_channels;
 
 	ePtr<iDVBChannelList> m_list;
@@ -202,7 +204,9 @@ class eDVBResourceManager: public iObject, public sigc::trackable
 	ePtr<eTimer> m_releaseCachedChannelTimer;
 	void DVBChannelStateChanged(iDVBChannel*);
 	void feStateChanged();
+#ifndef SWIG
 public:
+#endif
 	void releaseCachedChannel();
 	eDVBResourceManager();
 	virtual ~eDVBResourceManager();

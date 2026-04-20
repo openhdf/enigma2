@@ -33,7 +33,6 @@ public:
 	ePoint &operator/=( int c );
 	ePoint &operator/=( double c );
 
-#ifndef SWIG
 	friend inline bool	 operator==( const ePoint &, const ePoint & );
 	friend inline bool	 operator!=( const ePoint &, const ePoint & );
 	friend inline ePoint operator+( const ePoint &, const ePoint & );
@@ -47,7 +46,6 @@ public:
 	friend inline ePoint operator-( const ePoint & );
 	friend inline ePoint operator/( const ePoint &, int );
 	friend inline ePoint operator/( const ePoint &, double );
-#endif
 private:
 	int xp;
 	int yp;
@@ -112,7 +110,6 @@ inline ePoint &ePoint::operator*=( int c )
 inline ePoint &ePoint::operator*=( double c )
 { xp=(int)(xp*c); yp=(int)(yp*c); return *this; }
 
-#ifndef SWIG
 inline bool operator==( const ePoint &p1, const ePoint &p2 )
 { return p1.xp == p2.xp && p1.yp == p2.yp; }
 
@@ -145,7 +142,6 @@ inline ePoint operator*( double c, const ePoint &p )
 
 inline ePoint operator-( const ePoint &p )
 { return ePoint(-p.xp, -p.yp); }
-#endif
 
 inline ePoint &ePoint::operator/=( int c )
 {
@@ -161,7 +157,6 @@ inline ePoint &ePoint::operator/=( double c )
 	return *this;
 }
 
-#ifndef SWIG
 inline ePoint operator/( const ePoint &p, int c )
 {
 	return ePoint(p.xp/c, p.yp/c);
@@ -171,7 +166,6 @@ inline ePoint operator/( const ePoint &p, double c )
 {
 	return ePoint((int)(p.xp/c), (int)(p.yp/c));
 }
-#endif
 
 
 #endif // EPOINT_H
