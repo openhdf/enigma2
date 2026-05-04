@@ -587,6 +587,7 @@ def runScreenTest():
 	screensToRun = sorted(screensToRun, key=lambda x: x[0])
 
 	enigma.ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
+	processing = Processing(session)
 
 	def runNextScreen(session, screensToRun, *result):
 		if result:
@@ -780,6 +781,9 @@ from Components.InputDevice import InitInputDevices
 
 InitInputDevices()
 import Components.InputHotplug
+
+profile("Processing")
+from Screens.Processing import Processing
 
 profile("AVSwitch")
 from Components.AVSwitch import InitAVSwitch, InitiVideomodeHotplug
