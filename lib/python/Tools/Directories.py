@@ -3,6 +3,7 @@ from inspect import stack
 from os import (F_OK, R_OK, W_OK, access, chmod, link, listdir, makedirs,
                 mkdir, readlink, remove, rename, rmdir, sep, stat, statvfs,
                 symlink, utime, walk)
+from datetime import datetime
 from os.path import basename, dirname, exists, getsize, isdir, isfile, islink
 from os.path import join as pathjoin
 from os.path import normpath, splitext
