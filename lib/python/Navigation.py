@@ -53,6 +53,7 @@ class Navigation:
 		self.isRecordTimerImageStandard = False
 		self.currentServiceIsStreamRelay = False
 		self.skipServiceReferenceReset = False
+		self.retryServicePlayCount = 0
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_RECORDTIMER):
 			self.RecordTimer = p()
 			if self.RecordTimer:
