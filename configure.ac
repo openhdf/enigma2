@@ -871,7 +871,6 @@ lib/python/Components/Renderer/Makefile
 lib/python/Components/Sources/Makefile
 lib/python/Screens/Makefile
 lib/python/Plugins/Makefile
-lib/python/Plugins/Extensions/2IB/Makefile
 lib/python/Plugins/Extensions/VirtualZap/Makefile
 lib/python/Plugins/Extensions/VirtualZap/locale/Makefile
 lib/python/Plugins/Extensions/VirtualZap/locale/de/Makefile
@@ -949,7 +948,6 @@ lib/python/Plugins/SystemPlugins/VideoTune/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/meta/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/meta/Makefile
-lib/python/Plugins/SystemPlugins/AnimationSetup/Makefile
 lib/python/Tools/Makefile
 po/Makefile
 main/Makefile
