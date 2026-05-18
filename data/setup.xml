@@ -537,6 +537,7 @@
 			<item text="Enable import timer from fallback tuner" description="When enabled, the timer from the fallback tuner is imported.">config.usage.remote_fallback_external_timer</item>
 			<item text="Select the timer from the fallback tuner by default" description="When enabled, the timer from the fallback tuner is the default timer." conditional="config.usage.remote_fallback_external_timer.value">config.usage.remote_fallback_external_timer_default</item>
 			<item text="Fallback remote receiver" description="Destination of fallback remote receiver.">self.avahiselect</item>
+			<item level="2" text="Fallback remote receiver URL" description="URL of fallback remote receiver">config.usage.remote_fallback</item>
 			<if conditional="self.avahiselect.value == 'ip'">
 				<item text="Fallback remote receiver IP" description="Configure the IP of the fallback remote receiver.">self.ip</item>
 				<item text="Fallback remote receiver Port" description="Configure the Port of the fallback remote receiver.">self.port</item>
@@ -551,11 +552,11 @@
 				<elif conditional="self.avahiselect_seperate.value == 'url'"/>
 					<item text="Fallback remote receiver URL" description="Configure the URL of the fallback remote receiver.">config.usage.remote_fallback_import_url</item>
 				</if>
-				<item text="Also import at reboot/restart" description="Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted.">config.usage.remote_fallback_import_restart</item>
-				<item text="Also import when leaving Standby" description="Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby.">config.usage.remote_fallback_import_standby</item>
-				<item text="Also import from the extension menu" description="Make it possible to manually initiate the channels import and/or EPG via the extension menu.">config.usage.remote_fallback_extension_menu</item>
-				<item text="Show notification when import channels was successful" description="Show notification when import channels and/or EPG from remote receiver URL is completed.">config.usage.remote_fallback_ok</item>
-				<item text="Show notification when import channels was not successful" description="Show notification when import channels and/or EPG from remote receiver URL did not complete.">config.usage.remote_fallback_nok</item>
+				<item text="Also import at reboot/restart" description="Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted." requires="config.usage.remote_fallback_import">config.usage.remote_fallback_import_restart</item>
+				<item text="Also import when leaving Standby" description="Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby." requires="config.usage.remote_fallback_import">config.usage.remote_fallback_import_standby</item>
+				<item text="Also import from the extension menu" description="Make it possible to manually initiate the channels import and/or EPG via the extension menu." requires="config.usage.remote_fallback_import">config.usage.remote_fallback_extension_menu</item>
+				<item text="Show notification when import channels was successful" description="Show notification when import channels and/or EPG from remote receiver URL is completed." requires="config.usage.remote_fallback_import">config.usage.remote_fallback_ok</item>
+				<item text="Show notification when import channels was not successful" description="Show notification when import channels and/or EPG from remote receiver URL did not complete." requires="config.usage.remote_fallback_import">config.usage.remote_fallback_nok</item>
 			</if>
 			<if conditional="config.usage.remote_fallback.value">
 				<item text="Customize OpenWebIF settings for fallback tuner" description="When enabled, you can customize the OpenWebIf settings for the fallback tuner.">config.usage.remote_fallback_openwebif_customize</item>

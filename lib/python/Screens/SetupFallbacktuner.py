@@ -8,7 +8,7 @@ from enigma import getPeerStreamingBoxes
 class SetupFallbacktuner(Setup):
 	def __init__(self, session):
 		self.createConfig()
-		Setup.__init__(self, session, None)
+		Setup.__init__(self, session, "Fallbacktuner")
 		self.title = _("Fallback tuner setup")
 		self.remote_fallback_prev = config.usage.remote_fallback_import.value
 
