@@ -12,6 +12,7 @@ import Screens.Standby
 from Components.config import config
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
+from Components.ImportChannels import ImportChannels
 from Components.ParentalControl import parentalControl
 from PowerTimer import PowerTimer
 from RecordTimer import RecordTimer
@@ -193,7 +194,11 @@ class Navigation:
 					self.standbytimer.start(stbytimer * 1000, True)
 				else:
 					self.gotostandby()
+		if config.usage.remote_fallback_import_restart.value:
+			ImportChannels()
 		else:
+			if config.usage.remote_fallback_import.value and not config.usage.remote_fallback_import_restart.value:
+				ImportChannels()
 			if self.__wasTimerWakeup:
 				print('+' * 100)
 				print("[NAVIGATION] wrong signal 'was timer wakeup' detected - please activate the deep standby workaround.")
