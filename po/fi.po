@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 14:07+0200\n"
+"POT-Creation-Date: 2026-05-19 18:52+0200\n"
 "PO-Revision-Date: 2019-08-27 05:23+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: AndyBlac/TimoJ\n"
@@ -334,7 +334,19 @@ msgid "%.0f MB"
 msgstr ""
 
 #, python-format
+msgid "%.1f° E"
+msgstr ""
+
+#, python-format
+msgid "%.1f° W"
+msgstr ""
+
+#, python-format
 msgid "%.2f GB"
+msgstr ""
+
+#, python-format
+msgid "%.3f MHz"
 msgstr ""
 
 #, python-format
@@ -602,6 +614,10 @@ msgstr "%s (%s)\n"
 msgid "%s - Setup"
 msgstr "Asetukset"
 
+#, python-format
+msgid "%s KSymb/s"
+msgstr ""
+
 #
 #, fuzzy, python-format
 msgid "%s Setup"
@@ -610,6 +626,10 @@ msgstr "Asetukset"
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "Hae muita SR:iä"
+
+#, python-format
+msgid "%s imported from fallback tuner"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -721,11 +741,6 @@ msgstr "* = Tarvitaan uudelleenkäynnistys"
 msgid "* Only available if more than one interface is active."
 msgstr "* Käytettävissä vain kun useampi kuin yksi sovitin on aktiivinen."
 
-#
-#, fuzzy
-msgid "* current animation"
-msgstr "Aktivoi nykyiset asetukset"
-
 msgid "+/-"
 msgstr ""
 
@@ -743,16 +758,6 @@ msgstr "/s"
 
 msgid "/sec]"
 msgstr ""
-
-#
-#, fuzzy
-msgid "/usr/share/enigma2 directory"
-msgstr "Päähakemisto"
-
-#
-#, fuzzy
-msgid "/var directory"
-msgstr "aloitushakemisto"
 
 msgid "0.2s"
 msgstr ""
@@ -844,11 +849,6 @@ msgstr ""
 msgid "10bit"
 msgstr ""
 
-#
-#, fuzzy
-msgid "128"
-msgstr "1.2"
-
 msgid "128 MB"
 msgstr ""
 
@@ -869,11 +869,6 @@ msgstr ""
 #
 msgid "13 V"
 msgstr "13 V"
-
-#
-#, fuzzy
-msgid "16"
-msgstr "16:9"
 
 msgid "16 MB"
 msgstr ""
@@ -992,10 +987,6 @@ msgstr ""
 msgid "25"
 msgstr "25"
 
-#, fuzzy
-msgid "256"
-msgstr "25"
-
 msgid "256 MB"
 msgstr ""
 
@@ -1070,9 +1061,6 @@ msgid "30p/50p"
 msgstr ""
 
 msgid "30p/60p"
-msgstr ""
-
-msgid "32"
 msgstr ""
 
 msgid "32 MB"
@@ -1219,9 +1207,6 @@ msgid "60p/50p"
 msgstr ""
 
 msgid "60p/60p"
-msgstr ""
-
-msgid "64"
 msgstr ""
 
 msgid "64 MB"
@@ -1526,6 +1511,9 @@ msgstr "AFP-asetukset"
 msgid "AFP setup"
 msgstr "AFP-asetukset"
 
+msgid "ASS file"
+msgstr ""
+
 msgid "ATSC"
 msgstr ""
 
@@ -1816,6 +1804,9 @@ msgstr ""
 "\n"
 "Kun olet painanut OK-näppäintä, odota!"
 
+msgid "Aggressive"
+msgstr ""
+
 msgid "Aland Islands"
 msgstr ""
 
@@ -1876,6 +1867,11 @@ msgstr "Kaikki satelliitit"
 msgid "All services provider"
 msgstr "Määritetyt kanavat/palveluntarjoajat:"
 
+#
+#, fuzzy
+msgid "All slots"
+msgstr "Kaikki resoluutiot"
+
 msgid "Allocate"
 msgstr "Varaa"
 
@@ -1931,6 +1927,10 @@ msgid "Allows you to enable the twisted log. They contain very detailed informat
 msgstr "Määrittää tallennetaanko debug-lokeja. Lokit sisältävät tarkkaa tietoa kaikesta mitä järjestelmä tekee."
 
 #, fuzzy
+msgid "Allows you to enable the udev log. They contain very detailed information of everything the udev does."
+msgstr "Määrittää tallennetaanko debug-lokeja. Lokit sisältävät tarkkaa tietoa kaikesta mitä järjestelmä tekee."
+
+#, fuzzy
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr "Määrittää näytetäänkö etupaneelissa kuvakkeita."
 
@@ -1965,11 +1965,32 @@ msgstr "Aakkonen"
 msgid "Alphanumeric"
 msgstr "Aakkosjärj."
 
+msgid "Also import at reboot/restart"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Also import at reboot/restart enigma2"
+msgstr "Palauta asetukset"
+
+#, fuzzy
+msgid "Also import from the extension menu"
+msgstr "Näytä laajennusvalikossa?"
+
+msgid "Also import when box is leaving standby"
+msgstr ""
+
+msgid "Also import when leaving Standby"
+msgstr ""
+
 #
 msgid "Alternative"
 msgstr "Vaihtoehtoinen"
 
 msgid "Alternative URL for images listed on FlashImage"
+msgstr ""
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
 msgid "Alternative numbering mode"
@@ -2036,20 +2057,6 @@ msgstr ""
 
 msgid "Anguilla"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Animation Setup"
-msgstr "Sijainti ja läpinäkyvyys"
-
-#, fuzzy
-msgid "Animation Speed"
-msgstr "Hidastusnopeudet"
-
-#
-#, fuzzy
-msgid "Animations"
-msgstr "Tietoja"
 
 msgid "Antarctica"
 msgstr ""
@@ -2262,6 +2269,10 @@ msgstr ""
 
 msgid "Audio PID"
 msgstr "Ääni-PID"
+
+#, python-format
+msgid "Audio PID%s, codec & lang"
+msgstr ""
 
 msgid "Audio Source"
 msgstr ""
@@ -2525,25 +2536,11 @@ msgid "Backing up to: %s"
 msgstr "Viimeisin päivitys: %s"
 
 #
-#, fuzzy
-msgid "Backup"
-msgstr "Takaisin"
-
-#
 #, fuzzy, python-format
 msgid "Backup Date: %s\n"
 msgstr "Viimeisin päivitys: %s"
 
-#
-#, fuzzy
-msgid "Backup Location"
-msgstr "Varmuuskopion sijainti"
-
 msgid "Backup Manager"
-msgstr "Varmuuskopiointi"
-
-#, fuzzy
-msgid "Backup Mode"
 msgstr "Varmuuskopiointi"
 
 #
@@ -2565,6 +2562,16 @@ msgstr "Varmuuskopiointi epäonnistui."
 #
 msgid "Backup is running..."
 msgstr "Varmuuskopiointi käynnissä"
+
+msgid ""
+"Backup not possible.\n"
+"Failed to create '/media/hdd/images' folder!"
+msgstr ""
+
+msgid ""
+"Backup not possible.\n"
+"No device found!"
+msgstr ""
 
 msgid ""
 "Backup plugins found\n"
@@ -2620,9 +2627,12 @@ msgstr ""
 msgid "Base transparency for teletext, more options available within teletext screen."
 msgstr ""
 
+msgid "Basic PID info"
+msgstr ""
+
 #
 #, fuzzy
-msgid "Basic settings"
+msgid "Basic info"
 msgstr "Muokkaa asetuksia"
 
 msgid "Basque"
@@ -2914,9 +2924,6 @@ msgstr "CCcam tietoja"
 msgid "CCcamInfo"
 msgstr "CCcam Info"
 
-msgid "CF Drive"
-msgstr ""
-
 msgid "CH"
 msgstr "CH"
 
@@ -2928,35 +2935,21 @@ msgid "CHANGE BOUQUET"
 msgstr "VAIHDA SUOSIKKILISTAA"
 
 #
-#, fuzzy, python-format
-msgid "CI %s enabled"
-msgstr "Päällä"
-
-#
 #, fuzzy
 msgid "CI (Common Interface) Setup"
 msgstr "CI-liitäntä/CAM"
 
-msgid "CI Legacy"
-msgstr ""
-
-#, fuzzy
-msgid "CI Operation Mode"
-msgstr "Asetustila"
-
-msgid "CI Plus 1.2"
-msgstr ""
-
-msgid "CI Plus 1.3"
+msgid "CI Boot Delay"
 msgstr ""
 
 #
 msgid "CI assignment"
 msgstr "CI-määritys"
 
+#
 #, fuzzy
-msgid "CI settings"
-msgstr "A/V-asetukset"
+msgid "CI enabled"
+msgstr "Päällä"
 
 #
 #, fuzzy
@@ -2966,12 +2959,6 @@ msgstr "CI-portteja ei löytynyt"
 #, fuzzy
 msgid "CIHelper Setup"
 msgstr "Telnet-asetukset"
-
-msgid "CIHelper for SLOT CI0"
-msgstr ""
-
-msgid "CIHelper for SLOT CI1"
-msgstr ""
 
 msgid "CIselectMainMenu"
 msgstr ""
@@ -3341,6 +3328,19 @@ msgstr "Kanava"
 
 #
 #, fuzzy
+msgid "Channels"
+msgstr "Kanava"
+
+#, fuzzy
+msgid "Channels and EPG"
+msgstr "Kanavatiedot"
+
+#, fuzzy
+msgid "Channels only"
+msgstr "Kanavatiedot"
+
+#
+#, fuzzy
 msgid "Channelselection:"
 msgstr "Kanavanvalinta"
 
@@ -3360,7 +3360,7 @@ msgstr "Kappale:"
 msgid "Check"
 msgstr "Tarkista"
 
-msgid "Check disk terminated with success"
+msgid "Check disk finished with success"
 msgstr ""
 
 msgid "Check every (hours)"
@@ -3463,12 +3463,6 @@ msgstr "Valitse joka viikko, joka päivä, ma-pe tai käyttäjän määrittämä
 msgid "Choose bouquet"
 msgstr "Valitse suosikkilista"
 
-msgid "Choose dvb wait delay for ci response."
-msgstr ""
-
-msgid "Choose the CI protocol operation mode for standard ci or ciplus."
-msgstr ""
-
 #, fuzzy
 msgid "Choose the location for crash and debuglogs."
 msgstr "Valitse kaatumis- ja debug-lokien hakemisto."
@@ -3527,6 +3521,9 @@ msgstr "Valitse tuleeko monikanavaiset ääniraidat ulos PCM-muodossa."
 #, fuzzy
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr "Valitse näytetäänkö kuvake antennin kääntyessä."
+
+msgid "Choose whether to use the streamrelay_whitelist file. The whitelist file should be disabled if you are using softcsa."
+msgstr ""
 
 #, fuzzy
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
@@ -3655,19 +3652,18 @@ msgstr ""
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
+msgid "Code R. LP-HP & Guard Int."
+msgstr ""
+
 msgid "Code rate HP"
 msgstr "Koodinopeus HP"
 
 msgid "Code rate LP"
 msgstr "Koodinopeus LP"
 
-#
-msgid "Coderate HP"
-msgstr "Koodinopeus (HP)"
-
-#
-msgid "Coderate LP"
-msgstr "Koodinopeus (LP)"
+#, python-format
+msgid "Codec & lang%s"
+msgstr ""
 
 #
 msgid "Collection name"
@@ -3737,11 +3733,6 @@ msgstr "Tallennusnimien rakenne"
 #, fuzzy
 msgid "Compress"
 msgstr "Täysi"
-
-#
-#, fuzzy
-msgid "Config"
-msgstr "Muokataan"
 
 msgid "Config file name (ok to change):"
 msgstr ""
@@ -3833,6 +3824,18 @@ msgstr "Määritä tämän LNB:n DiSEqC-tila."
 
 msgid "Configure the IP address."
 msgstr "Määritä IP-osoite."
+
+#, fuzzy
+msgid "Configure the IP of the fallback remote receiver."
+msgstr "Määritä näytettävä aika."
+
+#, fuzzy
+msgid "Configure the Port of the fallback remote receiver."
+msgstr "Määritä näytettävä aika."
+
+#, fuzzy
+msgid "Configure the URL of the fallback remote receiver."
+msgstr "Määritä näytettävä aika."
 
 msgid "Configure the amount of time that will be presented."
 msgstr "Määritä näytettävä aika."
@@ -4160,14 +4163,12 @@ msgstr "Kytkeytyneet asiakkaat"
 msgid "Connected to"
 msgstr "Kytketty virittimestä"
 
-msgid "Connected!"
-msgstr "Yhdistetty!"
-
 msgid "Connected: "
 msgstr "Yhdistetty: "
 
 #
-msgid "Constellation"
+#, fuzzy
+msgid "Constellation & FFT mode"
 msgstr "Modulaatio"
 
 msgid "Consult your SCR device spec sheet for this information."
@@ -4299,12 +4300,16 @@ msgstr "Ei voitu tallentaa ristiriitaisen ajastuksen takia: %s"
 msgid "Could not record due to invalid service %s"
 msgstr "Ei voitu tallentaa virheellisen kanavan takia %s"
 
+msgid "Could not retrieve basic bouquets files"
+msgstr ""
+
+#, fuzzy
+msgid "Could not retrieve the remote support files"
+msgstr "Tiedostoa %s ei voitu avata!"
+
 #, python-format
 msgid "Could not save configfile %s!"
 msgstr "Asetustiedostoa %s ei voitu tallentaa!"
-
-msgid "Could not start Plugin:"
-msgstr ""
 
 #, fuzzy
 msgid "Country"
@@ -4458,10 +4463,11 @@ msgstr "'7'/'9'-näppäimien hypyn pituus"
 msgid "Customize"
 msgstr "Toimintojen mukautus"
 
-#
-#, fuzzy
-msgid "Customize to GP2 Infobar settings"
-msgstr "Tietopalkin EPG:n asetukset"
+msgid "Customize OpenWebIF settings for fallback receiver"
+msgstr ""
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr ""
 
 #
 msgid "Cut"
@@ -4552,6 +4558,11 @@ msgstr "DUAL LAYER DVD"
 msgid "DVB CI Delay"
 msgstr ""
 
+#
+#, fuzzy
+msgid "DVB Subtitles PID & lang"
+msgstr "Tekstitysvalinta"
+
 msgid "DVB subtitle black transparency"
 msgstr "DVB-tekstin mustan reunan läpinäkyvyys"
 
@@ -4625,6 +4636,12 @@ msgid "December"
 msgstr ""
 
 msgid "Decibel"
+msgstr ""
+
+msgid "Decoder Release Strategy *"
+msgstr ""
+
+msgid "Decoder Start Timeout *"
 msgstr ""
 
 #
@@ -4818,6 +4835,21 @@ msgstr "Kuvaus"
 msgid "Deselect"
 msgstr "Ei valittu"
 
+msgid "Destination of fallback remote receiver"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr ""
+
+msgid "Destination of fallback remote receiver."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Lisäosan tiedot: "
 
@@ -4845,7 +4877,7 @@ msgstr "Laitetietoja"
 msgid "Device Manager"
 msgstr "Laitenimi:"
 
-msgid "Device Manager - Fast Mounted Remove"
+msgid "Device Manager - Fast mounted remove"
 msgstr ""
 
 msgid "Device mounts"
@@ -4904,9 +4936,6 @@ msgstr "DiSEqC portti %s: %s"
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-testin asetukset"
 
-msgid "Dialing:"
-msgstr "Soitto:"
-
 #
 #, fuzzy
 msgid "Diction"
@@ -4957,10 +4986,6 @@ msgstr "Hakemisto"
 msgid "Disable"
 msgstr "Keskeytä"
 
-#, fuzzy
-msgid "Disable Animations"
-msgstr "Poistamisen vahvistuskysely"
-
 msgid "Disable Enigma2 restart on crash"
 msgstr ""
 
@@ -4996,6 +5021,11 @@ msgstr "Monikanavan muunto stereoksi"
 msgid "Disable intro screen"
 msgstr "Sulje PiP-kuva"
 
+#
+#, fuzzy
+msgid "Disable operator profiles"
+msgstr "Formaatti-muuttujat"
+
 msgid "Disable the HDD Process on VFD"
 msgstr ""
 
@@ -5012,15 +5042,11 @@ msgstr "Ei käytössä"
 msgid "Disabled PIP.\n"
 msgstr "Ei käytössä"
 
-#
-msgid "Disconnect"
-msgstr "Katkaise yhteys"
-
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Tallennuksille varattu levytila (GB)"
 
 #, fuzzy, python-format
-msgid "Disk temperature: %s"
+msgid "Disk temperature: %s °C"
 msgstr "Laitteen lämpötila: %s"
 
 #, fuzzy
@@ -5199,15 +5225,6 @@ msgid ""
 msgstr ""
 "Haluatko liittää tekstitiedoston jossa on lisätietoja lokista?\n"
 "(valitse 'Ei' jos haluat kirjoittaa viestin virtuaalinäppäimistöllä.)"
-
-#
-#, fuzzy
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Kun olet painanut OK-näppäintä, odota!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -5466,6 +5483,10 @@ msgid "ECM -> ecm0.info"
 msgstr "ecm.info"
 
 #, fuzzy
+msgid "ECM Info"
+msgstr "CCcam ECM tietoja"
+
+#, fuzzy
 msgid "ECM Info's"
 msgstr "CCcam ECM tietoja"
 
@@ -5524,6 +5545,10 @@ msgid "EPG language selection 2"
 msgstr "Ohjelmaoppaan kieli 2"
 
 msgid "EPG location"
+msgstr "Ohjelmaoppaan sijainti"
+
+#, fuzzy
+msgid "EPG only"
 msgstr "Ohjelmaoppaan sijainti"
 
 msgid "EPG settings"
@@ -5653,12 +5678,6 @@ msgstr "Suosikkien järjestely"
 msgid "Enable BT Audio"
 msgstr "Käytössä"
 
-msgid "Enable CIHelper for SLOT CI0"
-msgstr ""
-
-msgid "Enable CIHelper for SLOT CI1"
-msgstr ""
-
 msgid "Enable EIT EPG"
 msgstr "Ota käyttöön EIT EPG"
 
@@ -5753,6 +5772,12 @@ msgstr ""
 msgid "Enable freesat EPG"
 msgstr "Ota käyttöön Freesat EPG"
 
+msgid "Enable import timer from fallback receiver"
+msgstr ""
+
+msgid "Enable import timer from fallback tuner"
+msgstr ""
+
 msgid "Enable infobar fade-out"
 msgstr ""
 
@@ -5788,6 +5813,9 @@ msgstr "Ota käyttöön Freesat EPG"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr ""
 
+msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
+msgstr ""
+
 msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
@@ -5816,8 +5844,9 @@ msgstr ""
 msgid "Enable twisted log *"
 msgstr "Ota käyttöön debug-loki"
 
-msgid "Enable zap history:"
-msgstr ""
+#, fuzzy
+msgid "Enable udev log"
+msgstr "Ota käyttöön debug-loki"
 
 #
 #, fuzzy
@@ -5880,8 +5909,21 @@ msgstr ""
 msgid "Enigma2 Changes"
 msgstr "Enigma2:n muutokset"
 
+#
+#, fuzzy
+msgid "Enter IP address"
+msgstr "IP-osoite"
+
 #, fuzzy
 msgid "Enter PIN"
+msgstr "Syötä uusi PIN uudelleen"
+
+#, fuzzy
+msgid "Enter PIN code"
+msgstr "Syötä PIN-koodi"
+
+#, fuzzy
+msgid "Enter URL"
 msgstr "Syötä uusi PIN uudelleen"
 
 msgid "Enter an URL where alternative images could be listed for FlashImage."
@@ -5984,8 +6026,24 @@ msgstr "Virhe plugin-lisäosan suorittamisessa"
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "Error getting link via %s/n%s"
+msgstr "Muutoslokin lataus epäonnistui."
+
 msgid "Error reading webpage!"
 msgstr "Virhe luettaessa web-sivua!"
+
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -6026,12 +6084,6 @@ msgstr "Verkkokortti"
 msgid "Ethiopia"
 msgstr ""
 
-msgid "Eutelsat 16A 16.0e"
-msgstr ""
-
-msgid "Eutelsat 9B 9.0e"
-msgstr ""
-
 msgid "Even if TV has another input active?"
 msgstr ""
 
@@ -6063,10 +6115,6 @@ msgid "Event view context menu"
 msgstr "Esikatsele valikkoa"
 
 #, fuzzy
-msgid "Eventinfo"
-msgstr "Ohjelmatiedot"
-
-#, fuzzy
 msgid "Eventview"
 msgstr "Ohjelmanäkymä"
 
@@ -6093,6 +6141,9 @@ msgstr "Ylittää kaksikerroslevyn tilavuuden!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Ylittää kaksikerroslevyn tilavuuden!"
+
+msgid "Exclude first CA device"
+msgstr ""
 
 #, fuzzy
 msgid "Execute after current event"
@@ -6223,6 +6274,10 @@ msgstr "Laajennetut jaot"
 msgid "Extended Networksetup Plugin..."
 msgstr "Laajennetut verkkoasetukset"
 
+#, fuzzy
+msgid "Extended PID info"
+msgstr "Laajennetut jaot"
+
 #
 msgid "Extended Setup..."
 msgstr "Laajat asetukset..."
@@ -6235,6 +6290,10 @@ msgstr "Laajat ohjelmavalinnat"
 
 msgid "Extended Software Plugin"
 msgstr "Laajat lisäosavalinnat"
+
+#, fuzzy
+msgid "Extended info"
+msgstr "Laajennetut jaot"
 
 #
 msgid "Extended network setup plugin..."
@@ -6279,9 +6338,6 @@ msgid "External subtitle switch fonts"
 msgstr "Ulkoisen tekstityksen väri"
 
 msgid "Extra motor options"
-msgstr ""
-
-msgid "Extrude from left"
 msgstr ""
 
 msgid "F"
@@ -6394,7 +6450,36 @@ msgstr "Epäonnistui"
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
+msgid "Fallback Remote Receiver Settings"
+msgstr ""
+
+msgid "Fallback Tuner Setup"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Fallback remote receiver"
+msgstr "Syötä uuden hakemiston nimi"
+
+msgid "Fallback remote receiver IP"
+msgstr ""
+
+msgid "Fallback remote receiver Port"
+msgstr ""
+
 msgid "Fallback remote receiver URL"
+msgstr ""
+
+msgid "Fallback remote receiver for ATSC"
+msgstr ""
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr ""
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr ""
+
+msgid "Fallback tuner setup"
 msgstr ""
 
 #, fuzzy
@@ -6492,6 +6577,11 @@ msgstr ""
 
 msgid "File transfer was cancelled by user"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Filename"
+msgstr "tiedostonimi"
 
 msgid "Filesystem Check"
 msgstr "Tiedostojärjestelmän tarkistus"
@@ -6644,7 +6734,7 @@ msgstr "Alusta"
 msgid "Format as"
 msgstr "Alusta"
 
-msgid "Format terminated with success"
+msgid "Format finished with success"
 msgstr ""
 
 msgid "Format/Partition your Devices and manage Mountpoints"
@@ -6663,6 +6753,10 @@ msgstr "Luodaan osiota"
 
 msgid "Forward volume keys"
 msgstr "Välitä äänenvoimakkuusnäppäimet"
+
+#, python-format
+msgid "Four partitions (25% - 25% - 25% - 25%)"
+msgstr ""
 
 #, fuzzy
 msgid "Frame rate"
@@ -6719,6 +6813,10 @@ msgstr ""
 #
 msgid "Frequency"
 msgstr "Taajuus"
+
+#, fuzzy
+msgid "Frequency & Channel"
+msgstr "Käytä taajuutta tai kanavaa"
 
 #
 #, fuzzy
@@ -6823,13 +6921,6 @@ msgstr "Teema"
 msgid ""
 "GUI needs a restart to apply new skin.\n"
 "Do you want to Restart the GUI now?"
-msgstr ""
-"Teema vaihtuu kun käyttöliittymä on käynnistetty\n"
-"Haluatko käynnistää käyttöliittymän uudelleen nyt?"
-
-#
-#, fuzzy
-msgid "GUI needs a restart to apply the new settings !!!"
 msgstr ""
 "Teema vaihtuu kun käyttöliittymä on käynnistetty\n"
 "Haluatko käynnistää käyttöliittymän uudelleen nyt?"
@@ -7057,12 +7148,6 @@ msgstr "Uudelleennimeä"
 msgid "Grey"
 msgstr "Harmaa"
 
-msgid "Grow drop"
-msgstr ""
-
-msgid "Grow from left"
-msgstr ""
-
 msgid "Guadeloupe"
 msgstr ""
 
@@ -7253,14 +7338,6 @@ msgstr "Auttaa antennin asennuksessa"
 msgid "Hidden network"
 msgstr "Piilotettu verkko"
 
-msgid "Hide Infobar if Second-InfoBar shown"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Hide Plugins"
-msgstr "Plugin-lisäosat"
-
 msgid "Hide any zap error messages."
 msgstr "Piilota kanavanvaihdon virheilmoitukset."
 
@@ -7285,10 +7362,6 @@ msgstr "Piilota kanavanvaihdon virheilmoitukset"
 
 msgid "Hierarchy info"
 msgstr "Hierarkia info"
-
-#
-msgid "Hierarchy information"
-msgstr "Hierarkia-tietoja"
 
 #
 msgid "High bitrate support"
@@ -7430,6 +7503,9 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr "Kuinka monta minuuttia haluat tallentaa?"
 
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' resets the HW-descrambler slots and also bypasses the in-process CSA-ALT cache. *Restart E2 for changes to take effect."
+msgstr ""
+
 msgid "Http(s) stream start delay"
 msgstr ""
 
@@ -7465,6 +7541,9 @@ msgstr "IMDb-haku"
 #
 msgid "IP address"
 msgstr "IP-osoite"
+
+msgid "IP of fallback remote receiver"
+msgstr ""
 
 msgid "IP:"
 msgstr "IP:"
@@ -7737,12 +7816,44 @@ msgid "Image:\t\t%s"
 msgstr "Poistettu %s!"
 
 #, fuzzy
+msgid "Image: "
+msgstr "Poistettu %s!"
+
+#, fuzzy
 msgid "ImageWizard"
 msgstr "Koko"
 
 #
 msgid "Immediate shutdown"
 msgstr "Sammuta heti"
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr ""
+
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby."
+msgstr ""
+
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
+msgid "Import from remote receiver URL"
+msgstr ""
+
+msgid "Import remote receiver URL"
+msgstr ""
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr ""
@@ -7909,6 +8020,11 @@ msgstr "Alusta"
 #, fuzzy
 msgid "Initialize Multiboot"
 msgstr "Alustus"
+
+#
+#, fuzzy
+msgid "Initialize as HDD?"
+msgstr "Alusta"
 
 #
 #, fuzzy
@@ -8098,6 +8214,13 @@ msgstr "Epäkelpo transponderin tieto"
 #
 msgid "Inversion"
 msgstr "Inversio"
+
+#, fuzzy
+msgid "Inversion & Bandwidth"
+msgstr "Kanavalogon leveys"
+
+msgid "Inversion, Pilot & Roll-off"
+msgstr ""
 
 msgid "Invert"
 msgstr "Käänteinen"
@@ -8747,6 +8870,12 @@ msgstr "MAC:"
 msgid "MB"
 msgstr "MB"
 
+msgid "MENU"
+msgstr ""
+
+msgid "MHz"
+msgstr ""
+
 #, fuzzy
 msgid "MINISATIP Setup"
 msgstr "AFP-asetukset"
@@ -8784,6 +8913,12 @@ msgstr "Päävalikko"
 
 msgid "Maintain old EPG data for"
 msgstr "Säilytä vanhoja ohjelmatietoja (min)"
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr ""
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu."
+msgstr ""
 
 #
 msgid "Make this mark an 'in' point"
@@ -8843,6 +8978,9 @@ msgstr "Manuaalihaku"
 #
 msgid "Manual transponder"
 msgstr "Manuaalinen lähetin"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 #
 msgid "Manufacturer"
@@ -8929,7 +9067,7 @@ msgstr "Maksimi päivien lukumäärä"
 msgid "Maximum space used (MB):"
 msgstr "Maksimi tilankäyttö (MB)"
 
-msgid "Maximum zap history entries:"
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases. *Restart E2 for changes to take effect."
 msgstr ""
 
 #
@@ -9336,9 +9474,6 @@ msgstr "Multimedia"
 msgid "Multiple service support"
 msgstr "Usean kanavan tuki"
 
-msgid "Multiplex"
-msgstr "Multipleksi"
-
 #
 msgid "Multisat"
 msgstr "Usea satelliitti"
@@ -9373,8 +9508,8 @@ msgstr "NFS-asetukset"
 msgid "NFS setup"
 msgstr "NFS-asetukset"
 
-msgid "NIM"
-msgstr "NIM"
+msgid "NIM & Type"
+msgstr ""
 
 msgid "NO"
 msgstr ""
@@ -9415,8 +9550,8 @@ msgstr "Lopeta nimipalvelimen määritys"
 msgid "Nameserver settings"
 msgstr "Nimipalvelimen asetukset"
 
-msgid "Namespace"
-msgstr "Nimiavaruus"
+msgid "Namespace & Orbital pos."
+msgstr ""
 
 msgid "Namibia"
 msgstr ""
@@ -9595,6 +9730,11 @@ msgstr "Ei"
 msgid "No (supported) DVDROM found!"
 msgstr "DVDROM-asemaa ei löytynyt!"
 
+#
+#, fuzzy
+msgid "No - simple"
+msgstr "Suppea"
+
 msgid ""
 "No /hdd found !!\n"
 "Please make sure you have a HDD mounted.\n"
@@ -9604,6 +9744,9 @@ msgid "No Connection"
 msgstr "Ei yhteyttä"
 
 msgid "No Cover"
+msgstr ""
+
+msgid "No ECMPids available (FTA Service)"
 msgstr ""
 
 #
@@ -9665,6 +9808,9 @@ msgstr "Tiedostoja ei löytynyt!"
 #, fuzzy
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Haluatko tehdä kanavahaun?"
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 #
 msgid "No event info found, recording indefinitely."
@@ -9846,6 +9992,10 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
+msgid "Normal"
+msgstr "normaali"
+
+#, fuzzy
 msgid "Normal mode"
 msgstr "Kanavanvaihdon toiminta"
 
@@ -9881,10 +10031,9 @@ msgstr "Ei näytetä"
 msgid "Not associated"
 msgstr "Ei assosioitu"
 
-#
 #, fuzzy
-msgid "Not enabled"
-msgstr "Päällä"
+msgid "Not defined"
+msgstr "Ei liitetty"
 
 #
 #, python-format
@@ -10091,6 +10240,10 @@ msgstr "Yksi"
 msgid "One line"
 msgstr "Yksi rivi"
 
+#, fuzzy
+msgid "One partition"
+msgstr "Luodaan osiota"
+
 msgid "OnlineVersionCheck"
 msgstr "OnlineVersionTarkistus"
 
@@ -10231,6 +10384,11 @@ msgstr "Vilkkuva"
 
 #
 #, fuzzy
+msgid "Other Subtitles & lang"
+msgstr "Tekstitysvalinta"
+
+#
+#, fuzzy
 msgid "Overall progress:"
 msgstr "Pieni etenemispalkki"
 
@@ -10294,6 +10452,22 @@ msgstr "Korvaa asetustiedostot ohjelmistopäivityksen aikana?"
 msgid "Overwrite spinner files during software upgrade?"
 msgstr "Korvaa asetustiedostot ohjelmistopäivityksen aikana?"
 
+#, python-format
+msgid "P. %d - %s (Fast: %s)"
+msgstr ""
+
+#, python-format
+msgid "P. %d - %s (Fixed: %s)"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "P.%s (Fast: %s)"
+msgstr "%s (%s)\n"
+
+#, python-format
+msgid "P.%s (Fixed: %s)"
+msgstr ""
+
 msgid "PAGE UP/DOWN"
 msgstr "SIVU YLÖS/ALAS"
 
@@ -10311,14 +10485,17 @@ msgstr "PCM-monikanava"
 msgid "PCR PID"
 msgstr "PCR PID"
 
+#, fuzzy
+msgid "PGS file"
+msgstr "Ohjelmaoppaan tiedostonimi"
+
 #
 #, fuzzy
 msgid "PID"
 msgstr "PIDit"
 
-#
-msgid "PIDs"
-msgstr "PIDit"
+msgid "PID Filtering"
+msgstr ""
 
 #, fuzzy
 msgid "PIP"
@@ -10539,14 +10716,8 @@ msgstr ""
 msgid "Philippines"
 msgstr ""
 
-msgid "Phone number"
-msgstr "Puhelinnumero"
-
 msgid "PiP"
 msgstr "Pip-kuva"
-
-msgid "PiP is currently not available because your are using iptv streams!"
-msgstr ""
 
 msgid "Picon"
 msgstr "Logo"
@@ -10731,6 +10902,9 @@ msgstr ""
 "Määritä ja tarkista nimipalvelimien tiedot.\n"
 "Paina OK-näppäintä kun olet valmis."
 
+msgid "Please configure the fallback tuner setup?"
+msgstr ""
+
 #
 msgid ""
 "Please configure your internet connection by filling out the required values.\n"
@@ -10885,6 +11059,11 @@ msgstr ""
 "\n"
 "Jatka painamalla OK-näppäintä."
 
+#
+#, fuzzy
+msgid "Please select your preferred configuration."
+msgstr "Valitse alipalvelu..."
+
 msgid "Please set up tuner A"
 msgstr "Määritä viritin-A"
 
@@ -10981,9 +11160,6 @@ msgid ""
 msgstr ""
 "Muuta käyttöliittymän kokoa säätämällä arvoja kunnes sinisen laatikon reunat koskettavat TV:si kuva-alueen reunoja.\n"
 "Kun olet valmis, jatka painamalla OK-näppäintä."
-
-msgid "Please use Harddisk Setup to initialize your drive."
-msgstr ""
 
 #
 msgid ""
@@ -11098,10 +11274,6 @@ msgstr "Lisäosien hallinan ohje"
 msgid "PluginBrowser filter settings"
 msgstr "Virittimen asetukset"
 
-#, fuzzy
-msgid "PluginHider Setup"
-msgstr "Telnet-asetukset"
-
 #
 msgid "Plugins"
 msgstr "Plugin-lisäosat"
@@ -11121,9 +11293,6 @@ msgstr "Polarisaatio"
 msgid "Polish"
 msgstr "Puola"
 
-msgid "Popup"
-msgstr ""
-
 msgid "Port"
 msgstr "Portti"
 
@@ -11142,6 +11311,9 @@ msgstr "Portti C"
 #
 msgid "Port D"
 msgstr "Portti D"
+
+msgid "Port of fallback remote receiver"
+msgstr ""
 
 msgid "Port:"
 msgstr "Portti:"
@@ -11481,6 +11653,11 @@ msgstr ""
 msgid "Process"
 msgstr "Suorita"
 
+#
+#, fuzzy
+msgid "Processing"
+msgstr "Suorita"
+
 msgid "Profile"
 msgstr "Profiili"
 
@@ -11818,6 +11995,9 @@ msgstr "Haluatko silti käynnistää uudelleen?"
 msgid "Really shutdown now?"
 msgstr "Haluatko silti sammuttaa?"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
 #, fuzzy
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Päivitetäänkö etuprosessori nyt ja käynnistetään uudelleen?"
@@ -11991,9 +12171,6 @@ msgstr "uskonto"
 
 msgid "Relative"
 msgstr "Suhteellinen"
-
-msgid "Relevant PIDs Routing"
-msgstr ""
 
 #
 msgid "Reload"
@@ -12420,11 +12597,6 @@ msgstr "Aloitusaika"
 msgid "Routing request"
 msgstr "Lähteen pyynti"
 
-#
-#, fuzzy
-msgid "Run"
-msgstr "su"
-
 msgid "Run how often ?"
 msgstr "Kuinka usein toistetaan?"
 
@@ -12482,14 +12654,17 @@ msgstr ""
 msgid "SDcard switch ERROR! - already on mmc"
 msgstr ""
 
-msgid "SID"
-msgstr "SID"
-
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
 
 msgid "SPDIF"
 msgstr "SPDIF"
+
+msgid "SRT file"
+msgstr ""
+
+msgid "SSA file"
+msgstr ""
 
 msgid "SSID:"
 msgstr "SSID:"
@@ -12526,6 +12701,10 @@ msgstr "Samba-asetukset"
 
 #, fuzzy
 msgid "Same as in active"
+msgstr "Näytä Rass interactive..."
+
+#, fuzzy
+msgid "Same as stream"
 msgstr "Näytä Rass interactive..."
 
 msgid "Same resolution as skin"
@@ -12790,21 +12969,8 @@ msgstr "Etsitään länteen..."
 
 #
 #, fuzzy
-msgid "Second InfoBar ..."
-msgstr "Näytä toinen tietopalkki"
-
-#
-#, fuzzy
 msgid "Second cable of motorized LNB"
 msgstr "Kääntyvän antennin twin-LNB:n toinen kaapeli"
-
-msgid "Second-InfoBar Timeout (in Sec. , 0 = wait for OK)"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Second-InfoBar working mode"
-msgstr "Tietopalkin EPG:n tila"
 
 #
 msgid "Secondary DNS"
@@ -12981,6 +13147,9 @@ msgstr "Hakemiston valinta"
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible). *Restart E2 for changes to take effect."
+msgstr ""
+
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
@@ -13124,6 +13293,12 @@ msgid "Select the sleep timer action."
 msgstr "Kellonaika, jolloin ajastuksen pitää pysähtyä."
 
 msgid "Select the time zone within the area or region."
+msgstr ""
+
+msgid "Select the timer from the fallback receiver by default"
+msgstr ""
+
+msgid "Select the timer from the fallback tuner by default"
 msgstr ""
 
 msgid "Select the tuner that controls the motorised dish."
@@ -13279,8 +13454,15 @@ msgstr "Palvelimet:"
 msgid "Service"
 msgstr "Kanava"
 
-msgid "Service Information"
-msgstr "Kanavan tiedot"
+#
+#, fuzzy
+msgid "Service & PIDs"
+msgstr "Kanavat"
+
+#
+#, fuzzy
+msgid "Service ID"
+msgstr "Kanava"
 
 msgid "Service Name"
 msgstr "Kanavan nimi"
@@ -13307,6 +13489,32 @@ msgstr "Kanava on lisätty suosikkeihin."
 #
 msgid "Service has been added to the selected bouquet."
 msgstr "Kanava on lisätty valitulle suosikkilistalle."
+
+#, fuzzy
+msgid "Service info"
+msgstr "Kanavan nimi"
+
+#, fuzzy
+msgid "Service info - ECM Info"
+msgstr "Ohjelmatiedon tekstikoko"
+
+msgid "Service info - service & Basic PID Info"
+msgstr ""
+
+msgid "Service info - service & Extended PID Info"
+msgstr ""
+
+#, fuzzy
+msgid "Service info - service & PIDs"
+msgstr "Ohjelmatiedon tekstikoko"
+
+#, fuzzy
+msgid "Service info - tuner live values"
+msgstr "Ohjelmatiedon tekstikoko"
+
+#, fuzzy
+msgid "Service info - tuner setting values"
+msgstr "Ohjelmatiedon tekstikoko"
 
 msgid "Service info font size"
 msgstr "Ohjelmatiedon tekstikoko"
@@ -13394,6 +13602,9 @@ msgstr ""
 msgid "Set System"
 msgstr "Aseta järjestelmä"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Set backupfiles to defaults"
@@ -13421,8 +13632,9 @@ msgstr "Määritä sovitin oletussovittimeksi"
 msgid "Set limits"
 msgstr "Aseta rajat"
 
-msgid "Set pin code persistent"
-msgstr ""
+#, fuzzy
+msgid "Set persistent PIN code"
+msgstr "Syötä vanha PIN-koodi"
 
 msgid ""
 "Set selected files for backup to default \n"
@@ -13436,6 +13648,12 @@ msgstr ""
 #, python-format
 msgid "Set the MAC-address of your %s %s.\n"
 msgstr "Määritä %s %s:n MAC-osoite.\n"
+
+msgid "Set the User ID of the OpenWebif from your fallback receiver"
+msgstr ""
+
+msgid "Set the User ID of the OpenWebif from your fallback tuner."
+msgstr ""
 
 #, fuzzy
 msgid "Set the aspect ratio of the service picons."
@@ -13481,6 +13699,18 @@ msgstr "Aseta hakupalkin hypyn koko."
 
 msgid "Set the name the recording will get."
 msgstr "Kirjoita tallenteen nimi."
+
+msgid "Set the password of the OpenWebif from your fallback receiver"
+msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback tuner."
+msgstr ""
+
+msgid "Set the port of the OpenWebif from your fallback receiver"
+msgstr ""
+
+msgid "Set the port of the OpenWebif from your fallback tuner."
+msgstr ""
 
 #, fuzzy
 msgid "Set the position of the recording icons"
@@ -13774,9 +14004,6 @@ msgstr "näytä EPG..."
 msgid "Show EPG for current channel..."
 msgstr "Näytä nykyisen kanavan ohjelmaopas..."
 
-msgid "Show EPG-List/MerlinEPG"
-msgstr ""
-
 msgid "Show Enhanced Movie Center"
 msgstr ""
 
@@ -13912,11 +14139,6 @@ msgstr "Näytä OE:n loki"
 msgid "Show OE-A Log"
 msgstr "Näytä OE:n loki"
 
-#
-#, fuzzy
-msgid "Show ONLY Second-InfoBar"
-msgstr "Näytä toinen tietopalkki"
-
 #, fuzzy
 msgid "Show OScam in extensions ?"
 msgstr "Näytä OScam Info laajennusvalikossa?"
@@ -13982,11 +14204,6 @@ msgstr "Avaa satelliittilista"
 #
 #, fuzzy
 msgid "Show Second Infobar"
-msgstr "Näytä toinen tietopalkki"
-
-#
-#, fuzzy
-msgid "Show Second-InfoBar"
 msgstr "Näytä toinen tietopalkki"
 
 #, fuzzy
@@ -14229,6 +14446,24 @@ msgstr "Näytä verkkoliitokset"
 #, fuzzy
 msgid "Show new Packages"
 msgstr "Näytä source-tiedostojen ohjelmapaketit"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete."
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed."
+msgstr ""
+
+msgid "Show notification when import channels was not successful"
+msgstr ""
+
+msgid "Show notification when import channels was successful"
+msgstr ""
 
 #, fuzzy
 msgid "Show on Display"
@@ -14511,18 +14746,8 @@ msgid "Simple Movie List"
 msgstr "Tallenneluettelo"
 
 #
-#, fuzzy
-msgid "Simple fade"
-msgstr "Suppea"
-
-#
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Suppea (yhteensopiva vanhojen soittimien kanssa)"
-
-#
-#, fuzzy
-msgid "Simple zoom"
-msgstr "Suppea"
 
 msgid "Simplified Chinese"
 msgstr ""
@@ -14631,28 +14856,13 @@ msgstr "Pitkä sininen"
 msgid "SleepTimer"
 msgstr "Poista ajastus"
 
-msgid "Slide drop"
-msgstr ""
-
-msgid "Slide from left"
-msgstr ""
-
-msgid "Slide left to right"
-msgstr ""
-
 #
 msgid "Slide picture in loop"
 msgstr "Kuvien jatkuva toisto"
 
-msgid "Slide right to left"
-msgstr ""
-
 #
 msgid "Slide show interval (sec.)"
 msgstr "Kuvien näyttöaika (sekuntia)"
-
-msgid "Slide top to bottom"
-msgstr ""
 
 #
 #, python-format
@@ -14713,6 +14923,10 @@ msgstr ""
 msgid "Social/Political/Economics"
 msgstr "Sosiaali/Politiikka/Talous"
 
+#, fuzzy
+msgid "SoftCSA Settings"
+msgstr "Softcam-asetukset"
+
 msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
 
@@ -14734,6 +14948,10 @@ msgstr "Ohjelmistopäivitys"
 #, fuzzy
 msgid "Software Update Settings"
 msgstr "Ohjelmistopäivityksen asetukset"
+
+#, python-format
+msgid "Software descrambling version:\t%s %s\n"
+msgstr ""
 
 msgid "Software management"
 msgstr "Ohjelmiston hallinta"
@@ -14766,10 +14984,6 @@ msgstr "Seuraavat lisäosat eivät ole saatavilla:\n"
 msgid "Sorry ... no ECM Info found"
 msgstr ""
 
-#, fuzzy
-msgid "Sorry CIHelper Config is Missing"
-msgstr "Inadyn-määritystiedosto puuttuu"
-
 msgid "Sorry Inadyn Config is Missing"
 msgstr "Inadyn-määritystiedosto puuttuu"
 
@@ -14784,15 +14998,6 @@ msgstr "Ohjelmasyötteet eivät ole käytössä huollon takia, yritä myöhemmin
 
 msgid "Sorry uShare Config is Missing"
 msgstr "UShare-määritystiedosto puuttuu"
-
-#, fuzzy
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
-msgstr ""
-"Varmuuskopion kohdehakemisto on kirjoitussuojattu.\n"
-"Valitse toinen hakemisto."
 
 #, python-format
 msgid "Sorry, %s has not been installed!"
@@ -14842,16 +15047,8 @@ msgstr "Listan järjestystapa:"
 msgid "Sort main menu"
 msgstr "Päävalikko"
 
-#, fuzzy
-msgid "Sort menu screen's alphabetically"
-msgstr "Menuvalikot aakkosjärjestyksessä"
-
 msgid "Sort plug-in browser alphabetically"
 msgstr "Lisäosavalikko aakkosjärjestyksessä"
-
-#, fuzzy
-msgid "Sort setting screen's alphabetically"
-msgstr "Asetusvalikot aakkosjärjestyksessä"
 
 #
 msgid "Sound"
@@ -15183,9 +15380,6 @@ msgstr ""
 msgid "Strict DLNA"
 msgstr "Strict DLNA"
 
-msgid "Stripes"
-msgstr ""
-
 #
 msgid "Strongest position"
 msgstr "Vahvin sijainti"
@@ -15440,6 +15634,14 @@ msgstr ""
 msgid "Symbol rate"
 msgstr "Symbol rate"
 
+#, fuzzy
+msgid "Symbol rate & FEC"
+msgstr "Symbol rate"
+
+#, fuzzy
+msgid "Sync Mode *"
+msgstr "3D-tila"
+
 msgid "Sync NTP every (minutes)"
 msgstr "Tahdista NTP:hen joka (minuutti)"
 
@@ -15453,12 +15655,20 @@ msgstr "Synkronoi aika käyttäen"
 msgid "Synchronize systemtime using transponder or internet."
 msgstr "Synkronoi laitteen kello lähettimestä tai internetistä."
 
+msgid "Synchronous"
+msgstr ""
+
 msgid "Syrian Arab Republic"
 msgstr ""
 
 #
 msgid "System"
 msgstr "Järjestelmä"
+
+#
+#, fuzzy
+msgid "System & Modulation"
+msgstr "Modulaatio"
 
 #, fuzzy
 msgid "System Message Check"
@@ -15522,6 +15732,11 @@ msgstr "TV:n fyysisen osoitteen raportti"
 
 msgid "TXT PID"
 msgstr "TXT PID"
+
+#
+#, fuzzy
+msgid "TXT Subtitles page & lang"
+msgstr "Tekstitysvalinta"
 
 #
 #, fuzzy
@@ -15993,6 +16208,11 @@ msgstr ""
 "%s %s:n käyttöliittymä käynnistyy uudelleen\n"
 "johtuen virheestä mytest.py-tiedostossa"
 
+#
+#, fuzzy, python-format
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr "%s %s:n käyttöliittymä käynnistyy uudelleen"
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
 
@@ -16277,13 +16497,6 @@ msgstr "Tämä asetus määrittää kuinka normaalilla tarkkuudella oleva materi
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
 msgstr "Tämä asetus määrittää mitä ensimmäinen näppäimen painallus tekee kanavalistassa, ('2' painallus hyppää joko 'A' tai '2'' kohtaan ensin), kun suoritetaan 'Pikatoimintojen' määritettyjä asetuksia."
 
-msgid "This option allows you to disable sorting of the menus"
-msgstr "Tämä asetus määrittää valikkojen järjestyksen"
-
-#, fuzzy
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr "Tämä asetus määrittää asetusvalikkojen järjestyksen"
-
 msgid "This option allows you to disable sorting of the plugin browser."
 msgstr "Tämä asetus määrittää lisäosavalikon järjestyksen."
 
@@ -16470,12 +16683,12 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs"
 msgstr ""
 
-msgid "Thor 5/6/7 0.8w"
-msgstr ""
-
 #
 msgid "Three"
 msgstr "Kolme"
+
+msgid "Three partitions (33% - 33% - 33%)"
+msgstr ""
 
 #
 msgid "Threshold"
@@ -16898,10 +17111,6 @@ msgid "Transponder Time"
 msgstr "Lähetin"
 
 #
-msgid "Transponder type"
-msgstr "Lähettimen tyyppi"
-
-#
 #, fuzzy
 msgid "Transport Stream Type"
 msgstr "Lähettimen tyyppi"
@@ -17004,15 +17213,20 @@ msgstr "Virittimien asetukset"
 msgid "Tuner is not supported"
 msgstr "viritin ei ole tuettu"
 
+#
+#, fuzzy
+msgid "Tuner live values"
+msgstr "Virittimen tila"
+
+#, fuzzy
+msgid "Tuner setting values"
+msgstr "Virittimen asetukset"
+
 msgid "Tuner settings"
 msgstr "Virittimen asetukset"
 
 msgid "Tuner slot"
 msgstr "Virittimen paikka"
-
-#
-msgid "Tuner status"
-msgstr "Virittimen tila"
 
 #
 #, fuzzy
@@ -17109,6 +17323,14 @@ msgstr "Kaksi"
 msgid "Two lines"
 msgstr "Kaksi riviä"
 
+#, python-format
+msgid "Two partitions (50% - 50%)"
+msgstr ""
+
+#, python-format
+msgid "Two partitions (75% - 25%)"
+msgstr ""
+
 #
 msgid "Type"
 msgstr "Tyyppi"
@@ -17141,6 +17363,9 @@ msgstr ""
 msgid "URL of fallback remote receiver"
 msgstr ""
 
+msgid "URL of remote receiver for imports"
+msgstr ""
+
 #
 msgid "USALS"
 msgstr "USALS"
@@ -17159,11 +17384,6 @@ msgid ""
 "backupstick or backupstick.txt."
 msgstr ""
 
-#
-#, fuzzy
-msgid "USB Stick"
-msgstr "USB-muistiavustaja"
-
 msgid "USB switch ERROR! - already on USB"
 msgstr ""
 
@@ -17177,9 +17397,6 @@ msgid "Ukraine"
 msgstr ""
 
 msgid "Ukrainian"
-msgstr ""
-
-msgid "Unable to access Screens.InfoBar.InfoBar."
 msgstr ""
 
 msgid "Unable to change password"
@@ -17197,6 +17414,11 @@ msgstr "Automaattinen päivitys ilman käyttöliittymää ja uudelleenkäynnisty
 
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Automaattinen päivitys ilman käyttöliittymää ja uudelleenkäynnistys"
+
+#
+#, fuzzy
+msgid "Undefined"
+msgstr "Käyttäjän määrittelemä"
 
 msgid "Undetermined"
 msgstr "Määrittämätön"
@@ -17252,6 +17474,10 @@ msgid "Universal LNB"
 msgstr "Universaali LNB"
 
 msgid "Unknown"
+msgstr "Tuntematon"
+
+#, fuzzy
+msgid "Unknown image"
 msgstr "Tuntematon"
 
 msgid "Unmark service to unhide VBI line"
@@ -17546,6 +17772,9 @@ msgstr "Käytä virranmittausta"
 msgid "Use slim screen"
 msgstr "Pieni tallennevalikko"
 
+msgid "Use streamrelay_whitelist file"
+msgstr ""
+
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr "Säädä käyttöliiittymän kokoa kaukosäätimen vasen/oikea -näppäimillä. Vasen pienentää, oikea suurentaa kokoa. "
 
@@ -17633,6 +17862,9 @@ msgstr "Käyttäjä - suosikit"
 msgid "User Feed URL"
 msgstr "Käyttäjän määrittelemä"
 
+msgid "User ID"
+msgstr ""
+
 #, fuzzy
 msgid "User Interface"
 msgstr "Käyttöliittymä"
@@ -17716,6 +17948,9 @@ msgstr ""
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
+
+msgid "VOB file"
+msgstr ""
 
 msgid "VOD"
 msgstr ""
@@ -17889,21 +18124,12 @@ msgstr "Hienosäät."
 msgid "VideoWizard"
 msgstr "Koko"
 
-msgid "Videocodec"
-msgstr "Codec"
-
-msgid "Videoformat"
+#, fuzzy
+msgid "Videocodec, size & format"
 msgstr "Formaatti"
 
 #, fuzzy
-msgid "Videomode"
-msgstr "Codec"
-
-#, fuzzy
 msgid "Videosetup"
-msgstr "Koko"
-
-msgid "Videosize"
 msgstr "Koko"
 
 #, fuzzy
@@ -18294,6 +18520,15 @@ msgstr "Kun päällä, päivitys etsii myös kokeiluversioita"
 msgid "When enabled the opkg status file will be renamed and all future updates can not be installed. Please restart Enigma2 after the change this option."
 msgstr ""
 
+msgid "When enabled the timer from the fallback receiver is imported"
+msgstr ""
+
+msgid "When enabled timers are created on the fallback received by default"
+msgstr ""
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback receiver"
+msgstr ""
+
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Kun päällä, AIT-tiedot lähetetään http-streameissä. Tämä mahdollistaa HbbTV:n käyttämisen asiakasvastaanottimessa."
 
@@ -18421,6 +18656,12 @@ msgstr "Kun päällä, vastaanotin valitsee AC3-ääniraidan (kun saatavilla)."
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Kun päällä, vastaanotin valitsee AC3+ ääniraidan (kun saatavilla)."
 
+msgid "When enabled, the timer from the fallback tuner is imported."
+msgstr ""
+
+msgid "When enabled, the timer from the fallback tuner is the default timer."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -18430,6 +18671,9 @@ msgstr "Kun päällä, ajansiirto käynnistyy automaattisesti taustalle määrit
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Kun päällä, käytetään DHCP:tä IP-määritykseen."
+
+msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
+msgstr ""
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Kun päällä, vastaanotin tunnistaa aktiviteetin VCR SCART-sisäänmenossa."
@@ -18621,6 +18865,9 @@ msgstr "Liikutus"
 #
 msgid "Yes"
 msgstr "Kyllä"
+
+msgid "Yes - fstab entry as /media/hdd"
+msgstr ""
 
 msgid "Yes to all"
 msgstr "Kyllä kaikkiin"
@@ -18966,9 +19213,6 @@ msgstr ""
 "%s %s käynnistyy uudelleen palvelun poistamisen jälkeen\n"
 "Poistetaanko palvelu nyt?"
 
-msgid "Your Hardware can detect ci mode self or work only in legacy mode."
-msgstr ""
-
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Laite käynnistyy uudelleen kun painat kaukosäätimen OK-näppäintä."
 
@@ -19137,23 +19381,7 @@ msgstr ""
 msgid "Zap up"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Zap+Close"
-msgstr "Sulje"
-
 msgid "Zap-Historie Browser"
-msgstr ""
-
-msgid "Zap-History"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Zap-History Browser"
-msgstr "Hakemistoselain"
-
-msgid "Zap-History Configurator"
 msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
@@ -19179,12 +19407,6 @@ msgstr "Suurenna +/- TV..."
 
 msgid "Zoom Off..."
 msgstr "Suurennus pois..."
-
-msgid "Zoom from left"
-msgstr ""
-
-msgid "Zoom from right"
-msgstr ""
 
 #, fuzzy
 msgid "ZoomInOut"
@@ -19251,6 +19473,10 @@ msgstr "alkaa juuri"
 
 msgid "activate network adapter configuration"
 msgstr "aktivoi verkkosovittimen asetukset"
+
+#, fuzzy
+msgid "active"
+msgstr "Aktiivinen"
 
 #
 #, fuzzy
@@ -19338,14 +19564,6 @@ msgstr ""
 #, fuzzy
 msgid "any recordings"
 msgstr "Tallenteet"
-
-#, fuzzy
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"Haluatko varmasti poistaa\n"
-"seuraavan varmuuskopion:\n"
 
 msgid "arts/culture (without music, general)"
 msgstr "taide/kulttuuri (ilman musiikkia, yleinen)"
@@ -19592,11 +19810,6 @@ msgid "disabled"
 msgstr "ei käyt."
 
 #
-#, fuzzy
-msgid "disabled at parental lock"
-msgstr "lisää lapsilukkoon"
-
-#
 msgid "disconnected"
 msgstr "ei kytketty"
 
@@ -19646,6 +19859,9 @@ msgstr "Vaihtoehtojen lisäys ja poisto"
 msgid "education/science/factual topics (general)"
 msgstr "koulutus/tiede/tosiasiat (yleinen)"
 
+msgid "embedded"
+msgstr ""
+
 #
 msgid "empty"
 msgstr "tyhjä"
@@ -19685,20 +19901,12 @@ msgstr "Tallenna muutokset ja poistu"
 msgid "end cut here"
 msgstr "Lopeta leikkaus tähän"
 
-#, fuzzy
-msgid "end editing"
-msgstr "Teeman asetus"
-
 #
 msgid "end favourites edit"
 msgstr "Tallenna muutokset ja poistu"
 
 msgid "end zapping"
 msgstr ""
-
-#, fuzzy
-msgid "enigma2 and network"
-msgstr "Enigma2 teeman valinta"
 
 #, fuzzy
 msgid "enter menu"
@@ -19776,6 +19984,9 @@ msgstr "laajennusta."
 #, fuzzy
 msgid "externally loopthrough to"
 msgstr "Läpisyöttö"
+
+msgid "extra high"
+msgstr ""
 
 msgid "extra wide"
 msgstr ""
@@ -19942,6 +20153,9 @@ msgstr ""
 msgid "hide entry"
 msgstr "Ajastettava ohjelma"
 
+msgid "high"
+msgstr ""
+
 #
 #, fuzzy
 msgid "highest Resolution"
@@ -20088,6 +20302,11 @@ msgstr "minuutti"
 #
 msgid "minutes"
 msgstr "minuuttia"
+
+#
+#, fuzzy
+msgid "module disabled"
+msgstr "ei käyt."
 
 #
 msgid "month"
@@ -20521,11 +20740,6 @@ msgid "romance"
 msgstr "romantiikka"
 
 #
-#, fuzzy
-msgid "run selected plugin"
-msgstr "Virhe plugin-lisäosan suorittamisessa"
-
-#
 msgid "running..."
 msgstr "käynnissä..."
 
@@ -20579,15 +20793,6 @@ msgstr ""
 #
 msgid "select menu entry"
 msgstr "valitse valikon kohta"
-
-#
-#, fuzzy
-msgid "select next tab"
-msgstr "valitse valikon kohta"
-
-#, fuzzy
-msgid "select previous tab"
-msgstr "Mene edelliseen ohjelmaan"
 
 msgid "serious music/classic music"
 msgstr "vakava musiikki/klassinen musiikki"
@@ -20988,6 +21193,11 @@ msgstr "näytä laajennukset..."
 
 msgid "violet"
 msgstr ""
+
+#
+#, fuzzy
+msgid "wait for ci..."
+msgstr "odotetaan mmi:tä..."
 
 #
 msgid "wait for mmi..."

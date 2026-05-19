@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2_v2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 14:07+0200\n"
+"POT-Creation-Date: 2026-05-19 18:52+0200\n"
 "PO-Revision-Date: 2019-08-27 05:20+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: \n"
@@ -353,7 +353,19 @@ msgid "%.0f MB"
 msgstr ""
 
 #, python-format
+msgid "%.1f° E"
+msgstr ""
+
+#, python-format
+msgid "%.1f° W"
+msgstr ""
+
+#, python-format
 msgid "%.2f GB"
+msgstr ""
+
+#, python-format
+msgid "%.3f MHz"
 msgstr ""
 
 #, python-format
@@ -643,6 +655,10 @@ msgstr "%s (%s)\n"
 msgid "%s - Setup"
 msgstr "Παραμετροποίηση"
 
+#, python-format
+msgid "%s KSymb/s"
+msgstr ""
+
 #
 #
 #, fuzzy, python-format
@@ -654,6 +670,10 @@ msgstr "Παραμετροποίηση"
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "Σάρωση πρόσθετης SR"
+
+#, python-format
+msgid "%s imported from fallback tuner"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -782,12 +802,6 @@ msgstr ""
 msgid "* Only available if more than one interface is active."
 msgstr "* Διαθέσιμο μόνο εάν είναι ενεργές περισσότερες από μία διεπαφές."
 
-#
-#
-#, fuzzy
-msgid "* current animation"
-msgstr "ενεργοποίηση τρέχουσας παραμετροποίησης"
-
 msgid "+/-"
 msgstr ""
 
@@ -805,18 +819,6 @@ msgstr ""
 
 msgid "/sec]"
 msgstr ""
-
-#
-#
-#, fuzzy
-msgid "/usr/share/enigma2 directory"
-msgstr "Γονικός φάκελος"
-
-#
-#
-#, fuzzy
-msgid "/var directory"
-msgstr "εκκίνηση φακέλου"
 
 msgid "0.2s"
 msgstr ""
@@ -908,12 +910,6 @@ msgstr ""
 msgid "10bit"
 msgstr ""
 
-#
-#
-#, fuzzy
-msgid "128"
-msgstr "1.2"
-
 msgid "128 MB"
 msgstr ""
 
@@ -938,12 +934,6 @@ msgstr ""
 #
 msgid "13 V"
 msgstr "13 V"
-
-#
-#
-#, fuzzy
-msgid "16"
-msgstr "16:9"
 
 msgid "16 MB"
 msgstr ""
@@ -1076,12 +1066,6 @@ msgstr ""
 msgid "25"
 msgstr "2"
 
-#
-#
-#, fuzzy
-msgid "256"
-msgstr "2"
-
 msgid "256 MB"
 msgstr ""
 
@@ -1164,9 +1148,6 @@ msgid "30p/50p"
 msgstr ""
 
 msgid "30p/60p"
-msgstr ""
-
-msgid "32"
 msgstr ""
 
 msgid "32 MB"
@@ -1333,9 +1314,6 @@ msgid "60p/50p"
 msgstr ""
 
 msgid "60p/60p"
-msgstr ""
-
-msgid "64"
 msgstr ""
 
 msgid "64 MB"
@@ -1653,6 +1631,9 @@ msgid "AFP Setup"
 msgstr ""
 
 msgid "AFP setup"
+msgstr ""
+
+msgid "ASS file"
 msgstr ""
 
 msgid "ATSC"
@@ -2002,6 +1983,9 @@ msgstr ""
 "\n"
 "Αφού πιέσετε ΟΚ, παρακαλώ περιμένετε!"
 
+msgid "Aggressive"
+msgstr ""
+
 msgid "Aland Islands"
 msgstr ""
 
@@ -2066,6 +2050,12 @@ msgstr ""
 msgid "All services provider"
 msgstr "ανατεθημένες υπηρεσίες/πάροχοι:"
 
+#
+#
+#, fuzzy
+msgid "All slots"
+msgstr "Ανάλυση"
+
 msgid "Allocate"
 msgstr ""
 
@@ -2116,6 +2106,9 @@ msgstr ""
 msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does."
 msgstr ""
 
+msgid "Allows you to enable the udev log. They contain very detailed information of everything the udev does."
+msgstr ""
+
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr ""
 
@@ -2148,6 +2141,26 @@ msgstr "Alpha"
 msgid "Alphanumeric"
 msgstr ""
 
+msgid "Also import at reboot/restart"
+msgstr ""
+
+#
+#
+#, fuzzy
+msgid "Also import at reboot/restart enigma2"
+msgstr "Αποκατάσταση ρυθμίσεων συστήματος"
+
+#
+#, fuzzy
+msgid "Also import from the extension menu"
+msgstr "εμφάνιση επεκτάσεων..."
+
+msgid "Also import when box is leaving standby"
+msgstr ""
+
+msgid "Also import when leaving Standby"
+msgstr ""
+
 #
 #
 #, fuzzy
@@ -2155,6 +2168,9 @@ msgid "Alternative"
 msgstr "προσθήκη εναλλακτικών"
 
 msgid "Alternative URL for images listed on FlashImage"
+msgstr ""
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
 msgid "Alternative numbering mode"
@@ -2226,21 +2242,6 @@ msgstr ""
 
 msgid "Anguilla"
 msgstr ""
-
-#
-#
-#, fuzzy
-msgid "Animation Setup"
-msgstr "Ρύθμιση positioner"
-
-msgid "Animation Speed"
-msgstr ""
-
-#
-#
-#, fuzzy
-msgid "Animations"
-msgstr "Πληροφορίες"
 
 msgid "Antarctica"
 msgstr ""
@@ -2482,6 +2483,10 @@ msgstr ""
 #
 msgid "Audio PID"
 msgstr "PID ήχου"
+
+#, python-format
+msgid "Audio PID%s, codec & lang"
+msgstr ""
 
 msgid "Audio Source"
 msgstr ""
@@ -2799,30 +2804,12 @@ msgstr "Ενημέρωση λίστας πακέτων"
 
 #
 #
-#, fuzzy
-msgid "Backup"
-msgstr "Πίσω"
-
-#
-#
 #, fuzzy, python-format
 msgid "Backup Date: %s\n"
 msgstr "Ενημέρωση λίστας πακέτων"
 
-#
-#
-#, fuzzy
-msgid "Backup Location"
-msgstr "Επιλέξτε θέση του αντιγράφου ασφαλείας"
-
 msgid "Backup Manager"
 msgstr ""
-
-#
-#
-#, fuzzy
-msgid "Backup Mode"
-msgstr "Αντίγραφο ασφαλείας απέτυχε."
 
 #
 #
@@ -2846,6 +2833,16 @@ msgstr "Αντίγραφο ασφαλείας απέτυχε."
 #
 msgid "Backup is running..."
 msgstr "Εκτελείται αντίγραφο ασφαλείας..."
+
+msgid ""
+"Backup not possible.\n"
+"Failed to create '/media/hdd/images' folder!"
+msgstr ""
+
+msgid ""
+"Backup not possible.\n"
+"No device found!"
+msgstr ""
 
 msgid ""
 "Backup plugins found\n"
@@ -2906,10 +2903,13 @@ msgstr ""
 msgid "Base transparency for teletext, more options available within teletext screen."
 msgstr ""
 
+msgid "Basic PID info"
+msgstr ""
+
 #
 #
 #, fuzzy
-msgid "Basic settings"
+msgid "Basic info"
 msgstr "Επεξεργασία ρυθμίσεων"
 
 #
@@ -3226,9 +3226,6 @@ msgstr ""
 msgid "CCcamInfo"
 msgstr "Πληροφορίες"
 
-msgid "CF Drive"
-msgstr ""
-
 msgid "CH"
 msgstr ""
 
@@ -3240,26 +3237,12 @@ msgid "CHANGE BOUQUET"
 msgstr ""
 
 #
-#, fuzzy, python-format
-msgid "CI %s enabled"
-msgstr "ενεργοποιημένο"
-
-#
 #
 #, fuzzy
 msgid "CI (Common Interface) Setup"
 msgstr "Κοινή Διεπαφή"
 
-msgid "CI Legacy"
-msgstr ""
-
-msgid "CI Operation Mode"
-msgstr ""
-
-msgid "CI Plus 1.2"
-msgstr ""
-
-msgid "CI Plus 1.3"
+msgid "CI Boot Delay"
 msgstr ""
 
 #
@@ -3268,10 +3251,9 @@ msgid "CI assignment"
 msgstr "Ορισμός CI"
 
 #
-#
 #, fuzzy
-msgid "CI settings"
-msgstr "Επεξεργασία ρυθμίσεων"
+msgid "CI enabled"
+msgstr "ενεργοποιημένο"
 
 #
 #
@@ -3280,12 +3262,6 @@ msgid "CI slot: "
 msgstr "δεν βρέθηκαν κοινές διεπαφές (CI)"
 
 msgid "CIHelper Setup"
-msgstr ""
-
-msgid "CIHelper for SLOT CI0"
-msgstr ""
-
-msgid "CIHelper for SLOT CI1"
 msgstr ""
 
 msgid "CIselectMainMenu"
@@ -3702,6 +3678,24 @@ msgstr "Κανάλι"
 #
 #
 #, fuzzy
+msgid "Channels"
+msgstr "Κανάλι"
+
+#
+#
+#, fuzzy
+msgid "Channels and EPG"
+msgstr "Κανάλι"
+
+#
+#
+#, fuzzy
+msgid "Channels only"
+msgstr "Κανάλι"
+
+#
+#
+#, fuzzy
 msgid "Channelselection:"
 msgstr "Επιλογή Καναλιού"
 
@@ -3725,7 +3719,7 @@ msgstr "Κεφάλαιο:"
 msgid "Check"
 msgstr "Έλεγχος"
 
-msgid "Check disk terminated with success"
+msgid "Check disk finished with success"
 msgstr ""
 
 msgid "Check every (hours)"
@@ -3834,12 +3828,6 @@ msgstr ""
 msgid "Choose bouquet"
 msgstr "Επεξεργασία λίστας μπουκέτων"
 
-msgid "Choose dvb wait delay for ci response."
-msgstr ""
-
-msgid "Choose the CI protocol operation mode for standard ci or ciplus."
-msgstr ""
-
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
@@ -3886,6 +3874,9 @@ msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr ""
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
+msgstr ""
+
+msgid "Choose whether to use the streamrelay_whitelist file. The whitelist file should be disabled if you are using softcsa."
 msgstr ""
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
@@ -4020,6 +4011,9 @@ msgstr ""
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
+msgid "Code R. LP-HP & Guard Int."
+msgstr ""
+
 #
 msgid "Code rate HP"
 msgstr "Code rate HP"
@@ -4028,11 +4022,9 @@ msgstr "Code rate HP"
 msgid "Code rate LP"
 msgstr "Code rate LP"
 
-msgid "Coderate HP"
-msgstr "Coderate HP"
-
-msgid "Coderate LP"
-msgstr "Coderate LP"
+#, python-format
+msgid "Codec & lang%s"
+msgstr ""
 
 #
 #
@@ -4120,12 +4112,6 @@ msgstr "Σύνθεση ονομάτων εγγραφών"
 msgid "Compress"
 msgstr "Ολοκληρώθηκε"
 
-#
-#
-#, fuzzy
-msgid "Config"
-msgstr "Παραμετροποίηση"
-
 msgid "Config file name (ok to change):"
 msgstr ""
 
@@ -4210,6 +4196,20 @@ msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
 msgid "Configure the IP address."
+msgstr ""
+
+#
+#
+#, fuzzy
+msgid "Configure the IP of the fallback remote receiver."
+msgstr "Χρόνος μετάβασης για τα πλήκτρα '1'/'3'"
+
+#
+#, fuzzy
+msgid "Configure the Port of the fallback remote receiver."
+msgstr "Σύνθεση ονομάτων εγγραφών"
+
+msgid "Configure the URL of the fallback remote receiver."
 msgstr ""
 
 msgid "Configure the amount of time that will be presented."
@@ -4546,17 +4546,13 @@ msgstr "διαγραφή επιλεγμένου δορυφόρου"
 msgid "Connected to"
 msgstr "Συνδέθηκε με"
 
-#
-#
-msgid "Connected!"
-msgstr "Συνδέθηκε!"
-
 msgid "Connected: "
 msgstr ""
 
 #
 #
-msgid "Constellation"
+#, fuzzy
+msgid "Constellation & FFT mode"
 msgstr "Διάταξη"
 
 msgid "Consult your SCR device spec sheet for this information."
@@ -4710,11 +4706,14 @@ msgstr ""
 msgid "Could not record due to invalid service %s"
 msgstr ""
 
-#, python-format
-msgid "Could not save configfile %s!"
+msgid "Could not retrieve basic bouquets files"
 msgstr ""
 
-msgid "Could not start Plugin:"
+msgid "Could not retrieve the remote support files"
+msgstr ""
+
+#, python-format
+msgid "Could not save configfile %s!"
 msgstr ""
 
 #
@@ -4900,11 +4899,11 @@ msgstr "Χρόνος μετάβασης για τα πλήκτρα '7'/'9'"
 msgid "Customize"
 msgstr "Παραμετροποίηση"
 
-#
-#
-#, fuzzy
-msgid "Customize to GP2 Infobar settings"
-msgstr "Ρυθμίσεις κάρτας δικτύου"
+msgid "Customize OpenWebIF settings for fallback receiver"
+msgstr ""
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr ""
 
 #
 #
@@ -5002,6 +5001,12 @@ msgstr ""
 
 #
 #
+#, fuzzy
+msgid "DVB Subtitles PID & lang"
+msgstr "Επιλογή υποτίτλων"
+
+#
+#
 msgid "DVB subtitle black transparency"
 msgstr "Διαφάνεια υποτίτλων DVB"
 
@@ -5084,6 +5089,12 @@ msgid "December"
 msgstr ""
 
 msgid "Decibel"
+msgstr ""
+
+msgid "Decoder Release Strategy *"
+msgstr ""
+
+msgid "Decoder Start Timeout *"
 msgstr ""
 
 #
@@ -5313,6 +5324,21 @@ msgstr "Περιγραφή"
 msgid "Deselect"
 msgstr "Αποεπιλογή"
 
+msgid "Destination of fallback remote receiver"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr ""
+
+msgid "Destination of fallback remote receiver."
+msgstr ""
+
 #
 msgid "Details for plugin: "
 msgstr "Λεπτομέρειες για το πρόσθετο: "
@@ -5346,7 +5372,7 @@ msgstr ""
 msgid "Device Manager"
 msgstr "Διαχείριση πακέτων"
 
-msgid "Device Manager - Fast Mounted Remove"
+msgid "Device Manager - Fast mounted remove"
 msgstr ""
 
 msgid "Device mounts"
@@ -5417,11 +5443,6 @@ msgstr "Ρυθμίσεις DiSEqC-Tester"
 
 #
 #
-msgid "Dialing:"
-msgstr "Κλήση:"
-
-#
-#
 #, fuzzy
 msgid "Diction"
 msgstr "Περιγραφή"
@@ -5481,12 +5502,6 @@ msgstr "Φάκελος"
 msgid "Disable"
 msgstr "Απενεργοποίηση"
 
-#
-#
-#, fuzzy
-msgid "Disable Animations"
-msgstr "διαγραφή αρχείου"
-
 msgid "Disable Enigma2 restart on crash"
 msgstr ""
 
@@ -5526,6 +5541,12 @@ msgstr ""
 msgid "Disable intro screen"
 msgstr "Απενεργοποίηση Picture in Picture"
 
+#
+#
+#, fuzzy
+msgid "Disable operator profiles"
+msgstr "Διαθέσιμες επιλογές format"
+
 msgid "Disable the HDD Process on VFD"
 msgstr ""
 
@@ -5548,16 +5569,11 @@ msgstr "Απενεργοποιήθηκε "
 
 #
 #
-msgid "Disconnect"
-msgstr "Αποσύνδεση"
-
-#
-#
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Χώρος δίσκου που διατίθεται για εγγραφές (σε GB)"
 
 #, python-format
-msgid "Disk temperature: %s"
+msgid "Disk temperature: %s °C"
 msgstr ""
 
 msgid "Disk temperature: unknown"
@@ -5758,15 +5774,6 @@ msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
-
-#
-#, fuzzy
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Αφού πιέσετε ΟΚ, παρακαλώ περιμένετε!"
 
 #
 #
@@ -6055,6 +6062,12 @@ msgstr ""
 msgid "ECM -> ecm0.info"
 msgstr ""
 
+#
+#
+#, fuzzy
+msgid "ECM Info"
+msgstr "Πληροφορίες"
+
 msgid "ECM Info's"
 msgstr ""
 
@@ -6119,6 +6132,9 @@ msgid "EPG language selection 2"
 msgstr "Επιλογή γλώσσας EPG 2"
 
 msgid "EPG location"
+msgstr ""
+
+msgid "EPG only"
 msgstr ""
 
 msgid "EPG settings"
@@ -6268,12 +6284,6 @@ msgstr "ενεργοποίηση κατάστασης μεταφοράς"
 msgid "Enable BT Audio"
 msgstr "Ενεργοποιήθηκε"
 
-msgid "Enable CIHelper for SLOT CI0"
-msgstr ""
-
-msgid "Enable CIHelper for SLOT CI1"
-msgstr ""
-
 #
 #
 msgid "Enable EIT EPG"
@@ -6382,6 +6392,12 @@ msgstr ""
 msgid "Enable freesat EPG"
 msgstr "Ενεργοποίηση freesat EPG"
 
+msgid "Enable import timer from fallback receiver"
+msgstr ""
+
+msgid "Enable import timer from fallback tuner"
+msgstr ""
+
 msgid "Enable infobar fade-out"
 msgstr ""
 
@@ -6420,6 +6436,9 @@ msgstr "Ενεργοποίηση freesat EPG"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr ""
 
+msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
+msgstr ""
+
 msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
@@ -6449,8 +6468,11 @@ msgstr ""
 msgid "Enable twisted log *"
 msgstr ""
 
-msgid "Enable zap history:"
-msgstr ""
+#
+#
+#, fuzzy
+msgid "Enable udev log"
+msgstr "Ενεργοποιήθηκε"
 
 #
 #
@@ -6527,8 +6549,25 @@ msgid "Enigma2 Changes"
 msgstr ""
 
 #
+#
+#, fuzzy
+msgid "Enter IP address"
+msgstr "Διεύθυνση IP"
+
+#
 #, fuzzy
 msgid "Enter PIN"
+msgstr "Εισαγωγή PIN ξανά:"
+
+#
+#
+#, fuzzy
+msgid "Enter PIN code"
+msgstr "Εισαγωγή κωδικού pin"
+
+#
+#, fuzzy
+msgid "Enter URL"
 msgstr "Εισαγωγή PIN ξανά:"
 
 msgid "Enter an URL where alternative images could be listed for FlashImage."
@@ -6639,7 +6678,23 @@ msgstr "Σφάλμα κατά την εκτέλεση προσθέτου"
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
 
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
+
 msgid "Error reading webpage!"
+msgstr ""
+
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
 msgstr ""
 
 #, python-format
@@ -6680,12 +6735,6 @@ msgstr "Διεπαφή ενσύρματου δικτύου"
 msgid "Ethiopia"
 msgstr ""
 
-msgid "Eutelsat 16A 16.0e"
-msgstr ""
-
-msgid "Eutelsat 9B 9.0e"
-msgstr ""
-
 msgid "Even if TV has another input active?"
 msgstr ""
 
@@ -6717,11 +6766,6 @@ msgstr ""
 #, fuzzy
 msgid "Event view context menu"
 msgstr "Μενού προεπισκόπησης"
-
-#
-#, fuzzy
-msgid "Eventinfo"
-msgstr "Μέγεθος γραμματοσειράς προγράμματος"
 
 #
 #, fuzzy
@@ -6759,6 +6803,9 @@ msgstr "Υπερκαλύπτει το μέγεθος του dual layer!"
 #
 msgid "Exceeds dual layer medium!"
 msgstr "Υπερκαλύπτει το μέγεθος του dual layer!"
+
+msgid "Exclude first CA device"
+msgstr ""
 
 msgid "Execute after current event"
 msgstr ""
@@ -6927,6 +6974,12 @@ msgstr "Πρόσθετο Εξελιγμένης ρύθμισης δικτύου.
 
 #
 #
+#, fuzzy
+msgid "Extended PID info"
+msgstr "Εξελιγμένη ρύθμιση..."
+
+#
+#
 msgid "Extended Setup..."
 msgstr "Εξελιγμένη ρύθμιση..."
 
@@ -6942,6 +6995,12 @@ msgstr "Εξελιγμένο λογισμικό"
 #
 msgid "Extended Software Plugin"
 msgstr "Πρόσθετο εξελιγμένου λογισμικού"
+
+#
+#
+#, fuzzy
+msgid "Extended info"
+msgstr "Εξελιγμένη ρύθμιση..."
 
 #
 #
@@ -7003,9 +7062,6 @@ msgid "External subtitle switch fonts"
 msgstr "Χρώμα υποτίτλων teletext"
 
 msgid "Extra motor options"
-msgstr ""
-
-msgid "Extrude from left"
 msgstr ""
 
 msgid "F"
@@ -7118,7 +7174,37 @@ msgstr "Απέτυχε"
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
+msgid "Fallback Remote Receiver Settings"
+msgstr ""
+
+msgid "Fallback Tuner Setup"
+msgstr ""
+
+#
+#
+#, fuzzy
+msgid "Fallback remote receiver"
+msgstr "Παρακαλώ εισάγετε όνομα νέου φάκελου"
+
+msgid "Fallback remote receiver IP"
+msgstr ""
+
+msgid "Fallback remote receiver Port"
+msgstr ""
+
 msgid "Fallback remote receiver URL"
+msgstr ""
+
+msgid "Fallback remote receiver for ATSC"
+msgstr ""
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr ""
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr ""
+
+msgid "Fallback tuner setup"
 msgstr ""
 
 msgid "False"
@@ -7229,6 +7315,12 @@ msgstr ""
 
 msgid "File transfer was cancelled by user"
 msgstr ""
+
+#
+#
+#, fuzzy
+msgid "Filename"
+msgstr "όνομα αρχείου"
 
 #
 #
@@ -7413,7 +7505,7 @@ msgstr "Format"
 msgid "Format as"
 msgstr "Format"
 
-msgid "Format terminated with success"
+msgid "Format finished with success"
 msgstr ""
 
 msgid "Format/Partition your Devices and manage Mountpoints"
@@ -7434,6 +7526,10 @@ msgstr "Δημιουργία κατάτμησης"
 #
 msgid "Forward volume keys"
 msgstr "Forward volume keys"
+
+#, python-format
+msgid "Four partitions (25% - 25% - 25% - 25%)"
+msgstr ""
 
 msgid "Frame rate"
 msgstr ""
@@ -7495,6 +7591,12 @@ msgstr ""
 #
 msgid "Frequency"
 msgstr "Συχνότητα"
+
+#
+#
+#, fuzzy
+msgid "Frequency & Channel"
+msgstr "Μπάντες συχνότητας"
 
 #
 #
@@ -7615,14 +7717,6 @@ msgstr "Θέματα"
 msgid ""
 "GUI needs a restart to apply new skin.\n"
 "Do you want to Restart the GUI now?"
-msgstr ""
-"Πρέπει να γίνει  επανεκκίνηση του GUI για να ενεργοποιηθεί το νέο θέμα. \n"
-"Να γίνει τώρα;"
-
-#
-#
-#, fuzzy
-msgid "GUI needs a restart to apply the new settings !!!"
 msgstr ""
 "Πρέπει να γίνει  επανεκκίνηση του GUI για να ενεργοποιηθεί το νέο θέμα. \n"
 "Να γίνει τώρα;"
@@ -7879,12 +7973,6 @@ msgstr ""
 msgid "Grey"
 msgstr ""
 
-msgid "Grow drop"
-msgstr ""
-
-msgid "Grow from left"
-msgstr ""
-
 msgid "Guadeloupe"
 msgstr ""
 
@@ -8086,15 +8174,6 @@ msgstr ""
 msgid "Hidden network"
 msgstr "Κρυφό δίκτυο"
 
-msgid "Hide Infobar if Second-InfoBar shown"
-msgstr ""
-
-#
-#
-#, fuzzy
-msgid "Hide Plugins"
-msgstr "Πρόσθετα"
-
 msgid "Hide any zap error messages."
 msgstr ""
 
@@ -8125,11 +8204,6 @@ msgstr "Απόκρυψη σφαλμάτων εναλλαγής καναλιών"
 
 #
 msgid "Hierarchy info"
-msgstr "Πληροφορίες ιεραρχίας"
-
-#
-#, fuzzy
-msgid "Hierarchy information"
 msgstr "Πληροφορίες ιεραρχίας"
 
 #
@@ -8292,6 +8366,9 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr "Ποσά λεπτά θέλετε να εγγραφούν;"
 
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' resets the HW-descrambler slots and also bypasses the in-process CSA-ALT cache. *Restart E2 for changes to take effect."
+msgstr ""
+
 msgid "Http(s) stream start delay"
 msgstr ""
 
@@ -8331,6 +8408,9 @@ msgstr ""
 #, fuzzy
 msgid "IP address"
 msgstr "Διεύθυνση IP"
+
+msgid "IP of fallback remote receiver"
+msgstr ""
 
 msgid "IP:"
 msgstr ""
@@ -8587,6 +8667,12 @@ msgstr ""
 msgid "Image:\t\t%s"
 msgstr "Επιλέξτε ταινία"
 
+#
+#
+#, fuzzy
+msgid "Image: "
+msgstr "Επιλέξτε ταινία"
+
 #, fuzzy
 msgid "ImageWizard"
 msgstr "Μέγεθος video"
@@ -8596,6 +8682,34 @@ msgstr "Μέγεθος video"
 #, fuzzy
 msgid "Immediate shutdown"
 msgstr "άμεσος τερματισμός"
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr ""
+
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby."
+msgstr ""
+
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
+msgid "Import from remote receiver URL"
+msgstr ""
+
+msgid "Import remote receiver URL"
+msgstr ""
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr ""
@@ -8785,6 +8899,12 @@ msgstr "Αρχικοποίηση "
 #, fuzzy
 msgid "Initialize Multiboot"
 msgstr "Αρχικοποίηση"
+
+#
+#
+#, fuzzy
+msgid "Initialize as HDD?"
+msgstr "Αρχικοποίηση "
 
 #
 #
@@ -9026,6 +9146,15 @@ msgstr "Χειροκίνητος αναμεταδότης"
 #
 msgid "Inversion"
 msgstr "Αναστροφή"
+
+#
+#
+#, fuzzy
+msgid "Inversion & Bandwidth"
+msgstr "Εύρος"
+
+msgid "Inversion, Pilot & Roll-off"
+msgstr ""
 
 msgid "Invert"
 msgstr "Αντιστροφή"
@@ -9750,6 +9879,12 @@ msgstr ""
 msgid "MB"
 msgstr ""
 
+msgid "MENU"
+msgstr ""
+
+msgid "MHz"
+msgstr ""
+
 #
 #
 #, fuzzy
@@ -9791,6 +9926,12 @@ msgid "Mainmenu"
 msgstr "Κεντρικό μενού"
 
 msgid "Maintain old EPG data for"
+msgstr ""
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr ""
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu."
 msgstr ""
 
 #
@@ -9862,6 +10003,9 @@ msgstr ""
 #
 msgid "Manual transponder"
 msgstr "Χειροκίνητος αναμεταδότης"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 #
 #
@@ -9954,7 +10098,7 @@ msgstr ""
 msgid "Maximum space used (MB):"
 msgstr ""
 
-msgid "Maximum zap history entries:"
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases. *Restart E2 for changes to take effect."
 msgstr ""
 
 #
@@ -10448,9 +10592,6 @@ msgstr "Πολυμέσα"
 msgid "Multiple service support"
 msgstr "Υποστήριξη πολλαπλών υπηρεσιών"
 
-msgid "Multiplex"
-msgstr "Multiplex"
-
 #
 #
 msgid "Multisat"
@@ -10491,8 +10632,8 @@ msgstr ""
 msgid "NFS setup"
 msgstr ""
 
-msgid "NIM"
-msgstr "NIM"
+msgid "NIM & Type"
+msgstr ""
 
 msgid "NO"
 msgstr ""
@@ -10541,8 +10682,8 @@ msgstr "έξοδος από ρύθμιση nameserver"
 msgid "Nameserver settings"
 msgstr "Παραμετροποίηση Nameserver "
 
-msgid "Namespace"
-msgstr "Namespace"
+msgid "Namespace & Orbital pos."
+msgstr ""
 
 msgid "Namibia"
 msgstr ""
@@ -10755,6 +10896,12 @@ msgstr "Όχι"
 msgid "No (supported) DVDROM found!"
 msgstr "Δεν βρέθηκε (υποστηριζόμενο) DVDROM!"
 
+#
+#
+#, fuzzy
+msgid "No - simple"
+msgstr "απλό"
+
 msgid ""
 "No /hdd found !!\n"
 "Please make sure you have a HDD mounted.\n"
@@ -10766,6 +10913,9 @@ msgid "No Connection"
 msgstr "Δεν υπάρχει σύνδεση"
 
 msgid "No Cover"
+msgstr ""
+
+msgid "No ECMPids available (FTA Service)"
 msgstr ""
 
 #
@@ -10836,6 +10986,9 @@ msgstr "Δεν υπάρχουν αρχεία προς εμφάνιση σε αυ
 #, fuzzy
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Θέλετε να κάνετε σάρωση για υπηρεσίες;"
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 #
 #
@@ -11054,6 +11207,12 @@ msgstr ""
 #
 #
 #, fuzzy
+msgid "Normal"
+msgstr "Κατάσταση zap"
+
+#
+#
+#, fuzzy
 msgid "Normal mode"
 msgstr "Κατάσταση zap"
 
@@ -11095,9 +11254,10 @@ msgid "Not associated"
 msgstr "Ασύνδετα"
 
 #
+#
 #, fuzzy
-msgid "Not enabled"
-msgstr "ενεργοποιημένο"
+msgid "Not defined"
+msgstr "Ορισμός από το χρήστη"
 
 #
 # , python-format
@@ -11313,6 +11473,11 @@ msgstr "Ένα"
 msgid "One line"
 msgstr ""
 
+#
+#, fuzzy
+msgid "One partition"
+msgstr "Δημιουργία κατάτμησης"
+
 msgid "OnlineVersionCheck"
 msgstr ""
 
@@ -11460,6 +11625,12 @@ msgstr "Flash"
 #
 #
 #, fuzzy
+msgid "Other Subtitles & lang"
+msgstr "Επιλογή υποτίτλων"
+
+#
+#
+#, fuzzy
 msgid "Overall progress:"
 msgstr "Σε εξέλιξη"
 
@@ -11518,6 +11689,24 @@ msgstr "Να αντικατασταθούν τα αρχεία ρυθμίσεων
 msgid "Overwrite spinner files during software upgrade?"
 msgstr "Να αντικατασταθούν τα αρχεία ρυθμίσεων κατά την αναβάθμιση λογισμικού;"
 
+#, python-format
+msgid "P. %d - %s (Fast: %s)"
+msgstr ""
+
+#, python-format
+msgid "P. %d - %s (Fixed: %s)"
+msgstr ""
+
+#
+# , python-format
+#, fuzzy, python-format
+msgid "P.%s (Fast: %s)"
+msgstr "%s (%s)\n"
+
+#, python-format
+msgid "P.%s (Fixed: %s)"
+msgstr ""
+
 msgid "PAGE UP/DOWN"
 msgstr ""
 
@@ -11538,16 +11727,17 @@ msgstr "Κανάλι"
 msgid "PCR PID"
 msgstr "PCR PID"
 
+msgid "PGS file"
+msgstr ""
+
 #
 #
 #, fuzzy
 msgid "PID"
 msgstr "PIDs"
 
-#
-#
-msgid "PIDs"
-msgstr "PIDs"
+msgid "PID Filtering"
+msgstr ""
 
 msgid "PIP"
 msgstr ""
@@ -11795,15 +11985,7 @@ msgstr ""
 msgid "Philippines"
 msgstr ""
 
-#
-#
-msgid "Phone number"
-msgstr "Τηλεφωνικός αριθμός"
-
 msgid "PiP"
-msgstr ""
-
-msgid "PiP is currently not available because your are using iptv streams!"
 msgstr ""
 
 msgid "Picon"
@@ -12028,6 +12210,9 @@ msgstr ""
 "Παρακαλώ ρυθμίστε ή επιβεβαιώστε τους Nameservers συμπλρώνοντας τα απαιτούμενα πεδία.\n"
 "Όταν είστε έτοιμος, πιέστε ΟΚ για συνέχεια."
 
+msgid "Please configure the fallback tuner setup?"
+msgstr ""
+
 #
 #
 msgid ""
@@ -12217,6 +12402,12 @@ msgstr ""
 "\n"
 "Πιέστε ΟΚ για συνέχεια."
 
+#
+#
+#, fuzzy
+msgid "Please select your preferred configuration."
+msgstr "Επιλέξτε μια υπό-υπηρεσία"
+
 msgid "Please set up tuner A"
 msgstr ""
 
@@ -12320,9 +12511,6 @@ msgid ""
 msgstr ""
 "Παρακαλώ ρυθμίστε τη σύνδεση διαδικτύου συμπληρώνοντας τα απαιτούμενα πεδία.\n"
 "Όταν είστε έτοιμος, πιέστε ΟΚ για συνέχεια."
-
-msgid "Please use Harddisk Setup to initialize your drive."
-msgstr ""
 
 #
 #
@@ -12457,12 +12645,6 @@ msgstr ""
 
 #
 #
-#, fuzzy
-msgid "PluginHider Setup"
-msgstr "Βοήθεια διαχειριστή προσθέτων"
-
-#
-#
 msgid "Plugins"
 msgstr "Πρόσθετα"
 
@@ -12483,9 +12665,6 @@ msgstr "Πόλωση"
 #
 msgid "Polish"
 msgstr "Πολωνικά"
-
-msgid "Popup"
-msgstr ""
 
 msgid "Port"
 msgstr ""
@@ -12509,6 +12688,9 @@ msgstr "Είσοδος C"
 #
 msgid "Port D"
 msgstr "Είσοδος D"
+
+msgid "Port of fallback remote receiver"
+msgstr ""
 
 msgid "Port:"
 msgstr ""
@@ -12914,6 +13096,12 @@ msgstr ""
 msgid "Process"
 msgstr "Επεξεργασία"
 
+#
+#
+#, fuzzy
+msgid "Processing"
+msgstr "Επεξεργασία"
+
 msgid "Profile"
 msgstr ""
 
@@ -13317,6 +13505,9 @@ msgstr "Επανεκκίνηση τώρα;"
 msgid "Really shutdown now?"
 msgstr "Τερματισμός τώρα;"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
 #
 #
 #, fuzzy
@@ -13519,9 +13710,6 @@ msgstr ""
 #, fuzzy
 msgid "Relative"
 msgstr "σχετικό"
-
-msgid "Relevant PIDs Routing"
-msgstr ""
 
 #
 #
@@ -14038,12 +14226,6 @@ msgstr "Ώρα έναρξης"
 msgid "Routing request"
 msgstr "Επιλογή πηγής αναβάθμισης"
 
-#
-#
-#, fuzzy
-msgid "Run"
-msgstr "Κυρ"
-
 msgid "Run how often ?"
 msgstr ""
 
@@ -14105,15 +14287,18 @@ msgstr ""
 msgid "SDcard switch ERROR! - already on mmc"
 msgstr ""
 
-msgid "SID"
-msgstr "SID"
-
 #
 #
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
 
 msgid "SPDIF"
+msgstr ""
+
+msgid "SRT file"
+msgstr ""
+
+msgid "SSA file"
 msgstr ""
 
 #
@@ -14155,6 +14340,12 @@ msgstr ""
 #
 #, fuzzy
 msgid "Same as in active"
+msgstr "Εμφάνιση διαδραστικού Rass..."
+
+#
+#
+#, fuzzy
+msgid "Same as stream"
 msgstr "Εμφάνιση διαδραστικού Rass..."
 
 msgid "Same resolution as skin"
@@ -14468,23 +14659,8 @@ msgstr "Αναζήτηση δυτικά"
 #
 #
 #, fuzzy
-msgid "Second InfoBar ..."
-msgstr "Εμφάνιση πληροφοριών crypto στη μπάρα πληροφοριών"
-
-#
-#
-#, fuzzy
 msgid "Second cable of motorized LNB"
 msgstr "δεύτερο καλώδιο σε κινούμενο LNB"
-
-msgid "Second-InfoBar Timeout (in Sec. , 0 = wait for OK)"
-msgstr ""
-
-#
-#
-#, fuzzy
-msgid "Second-InfoBar working mode"
-msgstr "Μπάρα πληροφοριών"
 
 #
 #
@@ -14691,6 +14867,9 @@ msgstr ""
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible). *Restart E2 for changes to take effect."
+msgstr ""
+
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
@@ -14852,6 +15031,12 @@ msgid "Select the sleep timer action."
 msgstr "επέλεξε διαδρομή ταινίας"
 
 msgid "Select the time zone within the area or region."
+msgstr ""
+
+msgid "Select the timer from the fallback receiver by default"
+msgstr ""
+
+msgid "Select the timer from the fallback tuner by default"
 msgstr ""
 
 msgid "Select the tuner that controls the motorised dish."
@@ -15026,8 +15211,17 @@ msgstr ""
 msgid "Service"
 msgstr "Υπηρεσία"
 
-msgid "Service Information"
-msgstr ""
+#
+#
+#, fuzzy
+msgid "Service & PIDs"
+msgstr "Υπηρεσίες"
+
+#
+#
+#, fuzzy
+msgid "Service ID"
+msgstr "Υπηρεσία"
 
 msgid "Service Name"
 msgstr ""
@@ -15055,6 +15249,32 @@ msgstr "Η υπηρεσία προστέθηκε στα αγαπημένα."
 #
 msgid "Service has been added to the selected bouquet."
 msgstr "Η υπηρεσία προστέθηκε στo επιλεγμένο μπουκέτο"
+
+#
+#
+#, fuzzy
+msgid "Service info"
+msgstr "Ανεύρεση υπηρεσίων"
+
+msgid "Service info - ECM Info"
+msgstr ""
+
+msgid "Service info - service & Basic PID Info"
+msgstr ""
+
+msgid "Service info - service & Extended PID Info"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Service info - service & PIDs"
+msgstr "Αναφορά υπηρεσιών"
+
+msgid "Service info - tuner live values"
+msgstr ""
+
+msgid "Service info - tuner setting values"
+msgstr ""
 
 msgid "Service info font size"
 msgstr ""
@@ -15150,6 +15370,9 @@ msgstr ""
 msgid "Set System"
 msgstr ""
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr ""
+
 #
 #
 #, fuzzy
@@ -15185,8 +15408,10 @@ msgstr "Ορισμός διεπαφής ως προεπιλεγμένης"
 msgid "Set limits"
 msgstr "Ορισμός ορίων"
 
-msgid "Set pin code persistent"
-msgstr ""
+#
+#, fuzzy
+msgid "Set persistent PIN code"
+msgstr "Βάλε το παλιό PIN"
 
 msgid ""
 "Set selected files for backup to default \n"
@@ -15201,6 +15426,12 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Set the MAC-address of your %s %s.\n"
 msgstr "Επεξεργασία ρυθμίσεων Nameserver του δέκτη.\n"
+
+msgid "Set the User ID of the OpenWebif from your fallback receiver"
+msgstr ""
+
+msgid "Set the User ID of the OpenWebif from your fallback tuner."
+msgstr ""
 
 #
 #, fuzzy
@@ -15246,6 +15477,18 @@ msgid "Set the jump-size of the seekbar."
 msgstr ""
 
 msgid "Set the name the recording will get."
+msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback receiver"
+msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback tuner."
+msgstr ""
+
+msgid "Set the port of the OpenWebif from your fallback receiver"
+msgstr ""
+
+msgid "Set the port of the OpenWebif from your fallback tuner."
 msgstr ""
 
 #
@@ -15553,9 +15796,6 @@ msgstr ""
 msgid "Show EPG for current channel..."
 msgstr ""
 
-msgid "Show EPG-List/MerlinEPG"
-msgstr ""
-
 msgid "Show Enhanced Movie Center"
 msgstr ""
 
@@ -15719,12 +15959,6 @@ msgid "Show OE-A Log"
 msgstr ""
 
 #
-#
-#, fuzzy
-msgid "Show ONLY Second-InfoBar"
-msgstr "Εμφάνιση πληροφοριών crypto στη μπάρα πληροφοριών"
-
-#
 #, fuzzy
 msgid "Show OScam in extensions ?"
 msgstr "εμφάνιση επεκτάσεων..."
@@ -15805,12 +16039,6 @@ msgstr "Δορυφόροι"
 #
 #, fuzzy
 msgid "Show Second Infobar"
-msgstr "Εμφάνιση πληροφοριών crypto στη μπάρα πληροφοριών"
-
-#
-#
-#, fuzzy
-msgid "Show Second-InfoBar"
 msgstr "Εμφάνιση πληροφοριών crypto στη μπάρα πληροφοριών"
 
 #
@@ -16115,6 +16343,24 @@ msgstr ""
 #, fuzzy
 msgid "Show new Packages"
 msgstr "Εμφάνιση animation κατά την καθυστέρηση"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete."
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed."
+msgstr ""
+
+msgid "Show notification when import channels was not successful"
+msgstr ""
+
+msgid "Show notification when import channels was successful"
+msgstr ""
 
 msgid "Show on Display"
 msgstr ""
@@ -16460,20 +16706,8 @@ msgstr "έξοδος από λίστα ταινιών"
 
 #
 #
-#, fuzzy
-msgid "Simple fade"
-msgstr "Απλό"
-
-#
-#
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Simple titleset (compatibility for legacy players)"
-
-#
-#
-#, fuzzy
-msgid "Simple zoom"
-msgstr "Απλό"
 
 msgid "Simplified Chinese"
 msgstr ""
@@ -16610,34 +16844,17 @@ msgstr "Χρονοδιακόπτης απενεργοποίησης"
 msgid "SleepTimer"
 msgstr "διαγραφή αρχείου"
 
-msgid "Slide drop"
-msgstr ""
-
-msgid "Slide from left"
-msgstr ""
-
-msgid "Slide left to right"
-msgstr ""
-
 #
 #
 #, fuzzy
 msgid "Slide picture in loop"
 msgstr "slide picture in loop"
 
-msgid "Slide right to left"
-msgstr ""
-
 #
 #
 #, fuzzy
 msgid "Slide show interval (sec.)"
 msgstr "Περίοδος Slideshow (δεπτ.)"
-
-#
-#, fuzzy
-msgid "Slide top to bottom"
-msgstr "Πάνω και Κάτω"
 
 #
 # , python-format
@@ -16707,6 +16924,12 @@ msgid "Social/Political/Economics"
 msgstr ""
 
 #
+#
+#, fuzzy
+msgid "SoftCSA Settings"
+msgstr "Ρυθμίσεις"
+
+#
 msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
 
@@ -16732,6 +16955,10 @@ msgstr ""
 #, fuzzy
 msgid "Software Update Settings"
 msgstr "Ενημέρωση λογισμικού"
+
+#, python-format
+msgid "Software descrambling version:\t%s %s\n"
+msgstr ""
 
 #
 #
@@ -16770,9 +16997,6 @@ msgstr "Μερικά πρόσθετα δεν είναι διαθέσιμα:\n"
 msgid "Sorry ... no ECM Info found"
 msgstr ""
 
-msgid "Sorry CIHelper Config is Missing"
-msgstr ""
-
 msgid "Sorry Inadyn Config is Missing"
 msgstr ""
 
@@ -16786,12 +17010,6 @@ msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 
 msgid "Sorry uShare Config is Missing"
-msgstr ""
-
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
 msgstr ""
 
 #, python-format
@@ -16845,13 +17063,7 @@ msgstr "Ορισμός ορίων"
 msgid "Sort main menu"
 msgstr "Κεντρικό μενού"
 
-msgid "Sort menu screen's alphabetically"
-msgstr ""
-
 msgid "Sort plug-in browser alphabetically"
-msgstr ""
-
-msgid "Sort setting screen's alphabetically"
 msgstr ""
 
 #
@@ -17240,9 +17452,6 @@ msgstr ""
 msgid "Strict DLNA"
 msgstr ""
 
-msgid "Stripes"
-msgstr ""
-
 #
 #
 #, fuzzy
@@ -17556,6 +17765,14 @@ msgstr ""
 msgid "Symbol rate"
 msgstr "Symbol rate"
 
+#
+#, fuzzy
+msgid "Symbol rate & FEC"
+msgstr "Symbol rate"
+
+msgid "Sync Mode *"
+msgstr ""
+
 msgid "Sync NTP every (minutes)"
 msgstr ""
 
@@ -17568,6 +17785,9 @@ msgstr ""
 msgid "Synchronize systemtime using transponder or internet."
 msgstr ""
 
+msgid "Synchronous"
+msgstr ""
+
 msgid "Syrian Arab Republic"
 msgstr ""
 
@@ -17575,6 +17795,12 @@ msgstr ""
 #
 msgid "System"
 msgstr "Σύστημα"
+
+#
+#
+#, fuzzy
+msgid "System & Modulation"
+msgstr "Διαμόρφωση"
 
 #
 #
@@ -17639,6 +17865,12 @@ msgstr ""
 
 msgid "TXT PID"
 msgstr "TXT PID"
+
+#
+#
+#, fuzzy
+msgid "TXT Subtitles page & lang"
+msgstr "Επιλογή υποτίτλων"
 
 #
 #
@@ -18151,6 +18383,13 @@ msgstr ""
 "\n"
 "Αποκατάσταση των ρυθμίσεων."
 
+#
+#, fuzzy, python-format
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr ""
+"\n"
+"Αποκατάσταση των ρυθμίσεων."
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
 
@@ -18423,12 +18662,6 @@ msgstr ""
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
 msgstr ""
 
-msgid "This option allows you to disable sorting of the menus"
-msgstr ""
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr ""
-
 msgid "This option allows you to disable sorting of the plugin browser."
 msgstr ""
 
@@ -18613,13 +18846,13 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs"
 msgstr ""
 
-msgid "Thor 5/6/7 0.8w"
-msgstr ""
-
 #
 #
 msgid "Three"
 msgstr "Τρία"
+
+msgid "Three partitions (33% - 33% - 33%)"
+msgstr ""
 
 #
 #
@@ -19102,11 +19335,6 @@ msgstr "Αναμεταδότης"
 
 #
 #, fuzzy
-msgid "Transponder type"
-msgstr "Τύπος αναμεταδότη"
-
-#
-#, fuzzy
 msgid "Transport Stream Type"
 msgstr "Τύπος αναμεταδότη"
 
@@ -19227,16 +19455,23 @@ msgstr "Εγκατάσταση tuner"
 msgid "Tuner is not supported"
 msgstr "το tuner δεν υποστηρίζεται"
 
+#
+#
+#, fuzzy
+msgid "Tuner live values"
+msgstr "Κατάσταση tuner"
+
+#
+#
+#, fuzzy
+msgid "Tuner setting values"
+msgstr "Κατάσταση tuner"
+
 msgid "Tuner settings"
 msgstr ""
 
 msgid "Tuner slot"
 msgstr ""
-
-#
-#
-msgid "Tuner status"
-msgstr "Κατάσταση tuner"
 
 #
 #
@@ -19341,6 +19576,14 @@ msgstr "Δύο"
 msgid "Two lines"
 msgstr ""
 
+#, python-format
+msgid "Two partitions (50% - 50%)"
+msgstr ""
+
+#, python-format
+msgid "Two partitions (75% - 25%)"
+msgstr ""
+
 #
 #
 msgid "Type"
@@ -19375,6 +19618,9 @@ msgstr ""
 msgid "URL of fallback remote receiver"
 msgstr ""
 
+msgid "URL of remote receiver for imports"
+msgstr ""
+
 #
 #
 msgid "USALS"
@@ -19394,11 +19640,6 @@ msgid ""
 "backupstick or backupstick.txt."
 msgstr ""
 
-#
-#, fuzzy
-msgid "USB Stick"
-msgstr "Οδηγός USB stick"
-
 msgid "USB switch ERROR! - already on USB"
 msgstr ""
 
@@ -19412,9 +19653,6 @@ msgid "Ukraine"
 msgstr ""
 
 msgid "Ukrainian"
-msgstr ""
-
-msgid "Unable to access Screens.InfoBar.InfoBar."
 msgstr ""
 
 msgid "Unable to change password"
@@ -19432,6 +19670,12 @@ msgstr "Αναβάθμιση χωρίς γραφικό περιβάλλον κα
 
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Αναβάθμιση χωρίς γραφικό περιβάλλον και επανεκκίνηση"
+
+#
+#
+#, fuzzy
+msgid "Undefined"
+msgstr "Ορισμός από το χρήστη"
 
 msgid "Undetermined"
 msgstr ""
@@ -19499,6 +19743,11 @@ msgstr "Universal LNB"
 
 #
 msgid "Unknown"
+msgstr "Άγνωστο"
+
+#
+#, fuzzy
+msgid "Unknown image"
 msgstr "Άγνωστο"
 
 msgid "Unmark service to unhide VBI line"
@@ -19825,6 +20074,9 @@ msgstr "Χρήση power measurement"
 msgid "Use slim screen"
 msgstr ""
 
+msgid "Use streamrelay_whitelist file"
+msgstr ""
+
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr ""
 
@@ -19911,6 +20163,9 @@ msgstr ""
 #, fuzzy
 msgid "User Feed URL"
 msgstr "Ορισμός από το χρήστη"
+
+msgid "User ID"
+msgstr ""
 
 #
 #
@@ -20008,6 +20263,9 @@ msgstr ""
 #
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
+
+msgid "VOB file"
+msgstr ""
 
 msgid "VOD"
 msgstr ""
@@ -20201,21 +20459,12 @@ msgstr "Μικρορύθμιση"
 msgid "VideoWizard"
 msgstr "Μέγεθος video"
 
-msgid "Videocodec"
-msgstr "Videocodec"
-
-msgid "Videoformat"
+#, fuzzy
+msgid "Videocodec, size & format"
 msgstr "Videoformat"
 
 #, fuzzy
-msgid "Videomode"
-msgstr "Videocodec"
-
-#, fuzzy
 msgid "Videosetup"
-msgstr "Μέγεθος video"
-
-msgid "Videosize"
 msgstr "Μέγεθος video"
 
 msgid "Viet Nam"
@@ -20667,6 +20916,15 @@ msgstr ""
 msgid "When enabled the opkg status file will be renamed and all future updates can not be installed. Please restart Enigma2 after the change this option."
 msgstr ""
 
+msgid "When enabled the timer from the fallback receiver is imported"
+msgstr ""
+
+msgid "When enabled timers are created on the fallback received by default"
+msgstr ""
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback receiver"
+msgstr ""
+
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr ""
 
@@ -20784,6 +21042,12 @@ msgstr ""
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr ""
 
+msgid "When enabled, the timer from the fallback tuner is imported."
+msgstr ""
+
+msgid "When enabled, the timer from the fallback tuner is the default timer."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -20791,6 +21055,9 @@ msgid "When enabled, timeshift starts automatically in background after specifie
 msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
+msgstr ""
+
+msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr ""
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -21003,6 +21270,9 @@ msgstr "Μετακίνηση ανατολικά"
 #
 msgid "Yes"
 msgstr "Ναι"
+
+msgid "Yes - fstab entry as /media/hdd"
+msgstr ""
 
 #
 #
@@ -21370,9 +21640,6 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
-msgid "Your Hardware can detect ci mode self or work only in legacy mode."
-msgstr ""
-
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
 
@@ -21559,25 +21826,7 @@ msgstr ""
 msgid "Zap up"
 msgstr ""
 
-#
-#
-#, fuzzy
-msgid "Zap+Close"
-msgstr "Κλείσιμο"
-
 msgid "Zap-Historie Browser"
-msgstr ""
-
-msgid "Zap-History"
-msgstr ""
-
-#
-#
-#, fuzzy
-msgid "Zap-History Browser"
-msgstr "Διαφυλλιστής φακέλων"
-
-msgid "Zap-History Configurator"
 msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
@@ -21602,12 +21851,6 @@ msgid "Zoom In/Out TV..."
 msgstr ""
 
 msgid "Zoom Off..."
-msgstr ""
-
-msgid "Zoom from left"
-msgstr ""
-
-msgid "Zoom from right"
 msgstr ""
 
 msgid "ZoomInOut"
@@ -21688,6 +21931,11 @@ msgstr "έτοιμο για εκκίνηση"
 #
 msgid "activate network adapter configuration"
 msgstr "ενεργοποίηση παραμετροποίησης κάρτας δικτύου"
+
+#
+#, fuzzy
+msgid "active"
+msgstr "Ενεργό"
 
 #
 #
@@ -21792,16 +22040,6 @@ msgstr ""
 #, fuzzy
 msgid "any recordings"
 msgstr "Εγγραφές"
-
-#
-#
-#, fuzzy
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"Είστε σίγουρος ότι θέλετε να επανεκκινήσετε τις διεπαφές δικτύου;\n"
-"\n"
 
 msgid "arts/culture (without music, general)"
 msgstr ""
@@ -22081,12 +22319,6 @@ msgstr "απεργοποιημένο"
 
 #
 #
-#, fuzzy
-msgid "disabled at parental lock"
-msgstr "προσθήκη στο γονικό έλεγχο"
-
-#
-#
 msgid "disconnected"
 msgstr "αποσυνδεμένο"
 
@@ -22141,6 +22373,9 @@ msgstr "επεξεργασία εναλλακτικών"
 msgid "education/science/factual topics (general)"
 msgstr ""
 
+msgid "embedded"
+msgstr ""
+
 #
 #
 msgid "empty"
@@ -22187,9 +22422,6 @@ msgstr "τέλος επεξεργασίας μπουκέτου"
 msgid "end cut here"
 msgstr "σημείωσε το τέλος αποκοπής"
 
-msgid "end editing"
-msgstr ""
-
 #
 #
 msgid "end favourites edit"
@@ -22197,11 +22429,6 @@ msgstr "τέλος επεξεργασίας αγαπημένων "
 
 msgid "end zapping"
 msgstr ""
-
-#
-#, fuzzy
-msgid "enigma2 and network"
-msgstr "Κρυφό δίκτυο"
 
 #
 #
@@ -22282,6 +22509,9 @@ msgstr ""
 #, fuzzy
 msgid "externally loopthrough to"
 msgstr "loopthrough to"
+
+msgid "extra high"
+msgstr ""
 
 msgid "extra wide"
 msgstr ""
@@ -22454,6 +22684,9 @@ msgstr ""
 msgid "hide entry"
 msgstr "Εγγραφή χρονοδιακόπτη"
 
+msgid "high"
+msgstr ""
+
 #
 #
 #, fuzzy
@@ -22618,6 +22851,11 @@ msgstr "λεπτά"
 #
 msgid "minutes"
 msgstr "λεπτά"
+
+#
+#, fuzzy
+msgid "module disabled"
+msgstr "απεργοποιημένο"
 
 #
 #
@@ -23122,12 +23360,6 @@ msgid "romance"
 msgstr ""
 
 #
-#
-#, fuzzy
-msgid "run selected plugin"
-msgstr "Σφάλμα κατά την εκτέλεση προσθέτου"
-
-#
 #, fuzzy
 msgid "running..."
 msgstr "Σάρωση..."
@@ -23189,18 +23421,6 @@ msgstr ""
 #
 #
 msgid "select menu entry"
-msgstr "επέλεξε σημείο μενού"
-
-#
-#
-#, fuzzy
-msgid "select next tab"
-msgstr "επέλεξε σημείο μενού"
-
-#
-#
-#, fuzzy
-msgid "select previous tab"
 msgstr "επέλεξε σημείο μενού"
 
 msgid "serious music/classic music"
@@ -23650,6 +23870,11 @@ msgstr "εμφάνιση επεκτάσεων..."
 
 msgid "violet"
 msgstr ""
+
+#
+#, fuzzy
+msgid "wait for ci..."
+msgstr "αναμονή για mmi..."
 
 #
 msgid "wait for mmi..."

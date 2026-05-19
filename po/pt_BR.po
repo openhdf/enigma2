@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-14 14:07+0200\n"
+"POT-Creation-Date: 2026-05-19 18:52+0200\n"
 "PO-Revision-Date: 2019-08-27 05:25+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: No-Team\n"
@@ -309,7 +309,19 @@ msgid "%.0f MB"
 msgstr ""
 
 #, python-format
+msgid "%.1f° E"
+msgstr ""
+
+#, python-format
+msgid "%.1f° W"
+msgstr ""
+
+#, python-format
 msgid "%.2f GB"
+msgstr ""
+
+#, python-format
+msgid "%.3f MHz"
 msgstr ""
 
 #, python-format
@@ -570,6 +582,10 @@ msgstr "%s (%s)\n"
 msgid "%s - Setup"
 msgstr "Definições"
 
+#, python-format
+msgid "%s KSymb/s"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "%s Setup"
 msgstr "Definições"
@@ -577,6 +593,10 @@ msgstr "Definições"
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "Scan additional SR"
+
+#, python-format
+msgid "%s imported from fallback tuner"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -683,10 +703,6 @@ msgstr ""
 msgid "* Only available if more than one interface is active."
 msgstr "* Só disponível se houver mais de uma interface ativa."
 
-#, fuzzy
-msgid "* current animation"
-msgstr "Ativar configuração atual"
-
 msgid "+/-"
 msgstr ""
 
@@ -704,14 +720,6 @@ msgstr ""
 
 msgid "/sec]"
 msgstr ""
-
-#, fuzzy
-msgid "/usr/share/enigma2 directory"
-msgstr "Pasta superior"
-
-#, fuzzy
-msgid "/var directory"
-msgstr "pasta inicial"
 
 msgid "0.2s"
 msgstr ""
@@ -797,10 +805,6 @@ msgstr ""
 msgid "10bit"
 msgstr ""
 
-#, fuzzy
-msgid "128"
-msgstr "1.2"
-
 msgid "128 MB"
 msgstr ""
 
@@ -819,10 +823,6 @@ msgstr ""
 
 msgid "13 V"
 msgstr "13 V"
-
-#, fuzzy
-msgid "16"
-msgstr "16:9"
 
 msgid "16 MB"
 msgstr ""
@@ -931,10 +931,6 @@ msgstr ""
 msgid "25"
 msgstr "2"
 
-#, fuzzy
-msgid "256"
-msgstr "2"
-
 msgid "256 MB"
 msgstr ""
 
@@ -1010,9 +1006,6 @@ msgid "30p/50p"
 msgstr ""
 
 msgid "30p/60p"
-msgstr ""
-
-msgid "32"
 msgstr ""
 
 msgid "32 MB"
@@ -1157,9 +1150,6 @@ msgid "60p/50p"
 msgstr ""
 
 msgid "60p/60p"
-msgstr ""
-
-msgid "64"
 msgstr ""
 
 msgid "64 MB"
@@ -1439,6 +1429,9 @@ msgstr "Definições"
 msgid "AFP setup"
 msgstr "Configurar PiP"
 
+msgid "ASS file"
+msgstr ""
+
 msgid "ATSC"
 msgstr ""
 
@@ -1702,6 +1695,9 @@ msgstr ""
 "\n"
 "Depois de pressionar 'OK', aguarde por favor!"
 
+msgid "Aggressive"
+msgstr ""
+
 msgid "Aland Islands"
 msgstr ""
 
@@ -1758,6 +1754,10 @@ msgstr "Todos os satélites"
 msgid "All services provider"
 msgstr "Serviços/provedores atribuídos:"
 
+#, fuzzy
+msgid "All slots"
+msgstr "Resolução"
+
 msgid "Allocate"
 msgstr ""
 
@@ -1807,6 +1807,9 @@ msgstr ""
 msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does."
 msgstr ""
 
+msgid "Allows you to enable the udev log. They contain very detailed information of everything the udev does."
+msgstr ""
+
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr ""
 
@@ -1838,10 +1841,30 @@ msgstr "Alpha"
 msgid "Alphanumeric"
 msgstr "ordenar alfabeticamente"
 
+msgid "Also import at reboot/restart"
+msgstr ""
+
+#, fuzzy
+msgid "Also import at reboot/restart enigma2"
+msgstr "Restaurar configurações do sistema"
+
+#, fuzzy
+msgid "Also import from the extension menu"
+msgstr "Ver extensões..."
+
+msgid "Also import when box is leaving standby"
+msgstr ""
+
+msgid "Also import when leaving Standby"
+msgstr ""
+
 msgid "Alternative"
 msgstr "Adicionar alternativas"
 
 msgid "Alternative URL for images listed on FlashImage"
+msgstr ""
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
 msgid "Alternative numbering mode"
@@ -1905,18 +1928,6 @@ msgstr ""
 
 msgid "Anguilla"
 msgstr ""
-
-#, fuzzy
-msgid "Animation Setup"
-msgstr "Definições do posicionador"
-
-#, fuzzy
-msgid "Animation Speed"
-msgstr "Velocidades do modo camera lenta"
-
-#, fuzzy
-msgid "Animations"
-msgstr "Informação"
 
 msgid "Antarctica"
 msgstr ""
@@ -2142,6 +2153,10 @@ msgstr ""
 
 msgid "Audio PID"
 msgstr "Áudio PID"
+
+#, python-format
+msgid "Audio PID%s, codec & lang"
+msgstr ""
 
 msgid "Audio Source"
 msgstr ""
@@ -2393,24 +2408,12 @@ msgstr "Velocidade ao apagar em segundo plano"
 msgid "Backing up to: %s"
 msgstr "Última atualização:"
 
-#, fuzzy
-msgid "Backup"
-msgstr "Voltar"
-
 #, fuzzy, python-format
 msgid "Backup Date: %s\n"
 msgstr "Última atualização:"
 
 #, fuzzy
-msgid "Backup Location"
-msgstr "Escolha um destino para o backup"
-
-#, fuzzy
 msgid "Backup Manager"
-msgstr "Gestor de pacotes"
-
-#, fuzzy
-msgid "Backup Mode"
 msgstr "Gestor de pacotes"
 
 #, fuzzy
@@ -2429,6 +2432,16 @@ msgstr "Falha no backup."
 
 msgid "Backup is running..."
 msgstr "Backup em execução..."
+
+msgid ""
+"Backup not possible.\n"
+"Failed to create '/media/hdd/images' folder!"
+msgstr ""
+
+msgid ""
+"Backup not possible.\n"
+"No device found!"
+msgstr ""
 
 msgid ""
 "Backup plugins found\n"
@@ -2477,8 +2490,11 @@ msgstr ""
 msgid "Base transparency for teletext, more options available within teletext screen."
 msgstr ""
 
+msgid "Basic PID info"
+msgstr ""
+
 #, fuzzy
-msgid "Basic settings"
+msgid "Basic info"
 msgstr "Editar definições"
 
 msgid "Basque"
@@ -2757,9 +2773,6 @@ msgstr ""
 msgid "CCcamInfo"
 msgstr "Informações do canal"
 
-msgid "CF Drive"
-msgstr ""
-
 msgid "CH"
 msgstr ""
 
@@ -2770,33 +2783,19 @@ msgstr ""
 msgid "CHANGE BOUQUET"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "CI %s enabled"
-msgstr "ativo"
-
 #, fuzzy
 msgid "CI (Common Interface) Setup"
 msgstr "Interface comum"
 
-msgid "CI Legacy"
-msgstr ""
-
-#, fuzzy
-msgid "CI Operation Mode"
-msgstr "Modo de configuração"
-
-msgid "CI Plus 1.2"
-msgstr ""
-
-msgid "CI Plus 1.3"
+msgid "CI Boot Delay"
 msgstr ""
 
 msgid "CI assignment"
 msgstr "Escolha de CI"
 
 #, fuzzy
-msgid "CI settings"
-msgstr "Definições A/V"
+msgid "CI enabled"
+msgstr "ativo"
 
 #, fuzzy
 msgid "CI slot: "
@@ -2805,12 +2804,6 @@ msgstr "slots CI não encontrados"
 #, fuzzy
 msgid "CIHelper Setup"
 msgstr "Config. de rede"
-
-msgid "CIHelper for SLOT CI0"
-msgstr ""
-
-msgid "CIHelper for SLOT CI1"
-msgstr ""
 
 msgid "CIselectMainMenu"
 msgstr ""
@@ -3176,6 +3169,18 @@ msgid "Channelname"
 msgstr "Canal"
 
 #, fuzzy
+msgid "Channels"
+msgstr "Canal"
+
+#, fuzzy
+msgid "Channels and EPG"
+msgstr "Canal"
+
+#, fuzzy
+msgid "Channels only"
+msgstr "Canal"
+
+#, fuzzy
 msgid "Channelselection:"
 msgstr "Seleção de canal"
 
@@ -3191,7 +3196,7 @@ msgstr "Capítulo:"
 msgid "Check"
 msgstr "Verificar"
 
-msgid "Check disk terminated with success"
+msgid "Check disk finished with success"
 msgstr ""
 
 msgid "Check every (hours)"
@@ -3295,12 +3300,6 @@ msgstr ""
 msgid "Choose bouquet"
 msgstr "Escolha o bouquet"
 
-msgid "Choose dvb wait delay for ci response."
-msgstr ""
-
-msgid "Choose the CI protocol operation mode for standard ci or ciplus."
-msgstr ""
-
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
@@ -3359,6 +3358,9 @@ msgstr "Configurar se trilhas sonoras multicanais devem ser mixadas em estéreo.
 #, fuzzy
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr "Configurar ou não se um ícone deve ser mostrado quando sua antena motorizada está se movendo."
+
+msgid "Choose whether to use the streamrelay_whitelist file. The whitelist file should be disabled if you are using softcsa."
+msgstr ""
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr ""
@@ -3465,17 +3467,18 @@ msgstr ""
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
+msgid "Code R. LP-HP & Guard Int."
+msgstr ""
+
 msgid "Code rate HP"
 msgstr "Rate de código HP"
 
 msgid "Code rate LP"
 msgstr "Rate de código LP"
 
-msgid "Coderate HP"
-msgstr "Coderate HP"
-
-msgid "Coderate LP"
-msgstr "Coderate LP"
+#, python-format
+msgid "Codec & lang%s"
+msgstr ""
 
 msgid "Collection name"
 msgstr "Nome da coleção"
@@ -3537,10 +3540,6 @@ msgstr "Composição do nome das gravações"
 #, fuzzy
 msgid "Compress"
 msgstr "Completo"
-
-#, fuzzy
-msgid "Config"
-msgstr "Configurando"
 
 msgid "Config file name (ok to change):"
 msgstr ""
@@ -3630,6 +3629,18 @@ msgstr "Configurar o modo de DiSEqC para este LNB."
 
 msgid "Configure the IP address."
 msgstr "Configurar o endreço de IP."
+
+#, fuzzy
+msgid "Configure the IP of the fallback remote receiver."
+msgstr "Configurar o tamanho da fonte das legendas."
+
+#, fuzzy
+msgid "Configure the Port of the fallback remote receiver."
+msgstr "Configurar o tamanho da fonte das legendas."
+
+#, fuzzy
+msgid "Configure the URL of the fallback remote receiver."
+msgstr "Configurar o tamanho da fonte das legendas."
 
 #, fuzzy
 msgid "Configure the amount of time that will be presented."
@@ -3954,14 +3965,12 @@ msgstr "Conectado a"
 msgid "Connected to"
 msgstr "Conectado a"
 
-msgid "Connected!"
-msgstr "Conectado!"
-
 #, fuzzy
 msgid "Connected: "
 msgstr "Conectado a"
 
-msgid "Constellation"
+#, fuzzy
+msgid "Constellation & FFT mode"
 msgstr "Constelação"
 
 msgid "Consult your SCR device spec sheet for this information."
@@ -4089,12 +4098,16 @@ msgstr "Impossível gravar devido a um conflito de gravações %s"
 msgid "Could not record due to invalid service %s"
 msgstr "Impos. gravar devido ao canal não ser válido %s"
 
+msgid "Could not retrieve basic bouquets files"
+msgstr ""
+
+#, fuzzy
+msgid "Could not retrieve the remote support files"
+msgstr "Impossível abrir o PiP"
+
 #, fuzzy, python-format
 msgid "Could not save configfile %s!"
 msgstr "Impossível gravar devido a um conflito de gravações %s"
-
-msgid "Could not start Plugin:"
-msgstr ""
 
 #, fuzzy
 msgid "Country"
@@ -4237,9 +4250,11 @@ msgstr "Definir o tempo para as teclas '7'/'9'"
 msgid "Customize"
 msgstr "Personalizar"
 
-#, fuzzy
-msgid "Customize to GP2 Infobar settings"
-msgstr "Editar definições"
+msgid "Customize OpenWebIF settings for fallback receiver"
+msgstr ""
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr ""
 
 msgid "Cut"
 msgstr "Cortar"
@@ -4326,6 +4341,10 @@ msgstr "DVD de dupla face"
 msgid "DVB CI Delay"
 msgstr ""
 
+#, fuzzy
+msgid "DVB Subtitles PID & lang"
+msgstr "Seleção de legendas"
+
 msgid "DVB subtitle black transparency"
 msgstr "Transparência do preto das legendas dvb"
 
@@ -4391,6 +4410,12 @@ msgid "December"
 msgstr ""
 
 msgid "Decibel"
+msgstr ""
+
+msgid "Decoder Release Strategy *"
+msgstr ""
+
+msgid "Decoder Start Timeout *"
 msgstr ""
 
 #, fuzzy
@@ -4569,6 +4594,21 @@ msgstr "Descrição"
 msgid "Deselect"
 msgstr "Tirar seleção"
 
+msgid "Destination of fallback remote receiver"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr ""
+
+msgid "Destination of fallback remote receiver."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Detalhes do plugin:"
 
@@ -4597,7 +4637,7 @@ msgstr "Informação"
 msgid "Device Manager"
 msgstr "Dispositivo:"
 
-msgid "Device Manager - Fast Mounted Remove"
+msgid "Device Manager - Fast mounted remove"
 msgstr ""
 
 msgid "Device mounts"
@@ -4649,9 +4689,6 @@ msgstr "Porta DiSEqC %s: %s"
 msgid "DiSEqC-tester settings"
 msgstr "DiSEqC-Configurações de teste"
 
-msgid "Dialing:"
-msgstr "Marcação:"
-
 #, fuzzy
 msgid "Diction"
 msgstr "Descrição"
@@ -4696,10 +4733,6 @@ msgstr "Pasta"
 msgid "Disable"
 msgstr "Desabilitar"
 
-#, fuzzy
-msgid "Disable Animations"
-msgstr "Configuração da lista de gravações"
-
 msgid "Disable Enigma2 restart on crash"
 msgstr ""
 
@@ -4732,6 +4765,10 @@ msgstr "Downmix DTS"
 msgid "Disable intro screen"
 msgstr "Desabilitar PIP (Imagem na Imagem)"
 
+#, fuzzy
+msgid "Disable operator profiles"
+msgstr "Formato de variáveis disponíveis"
+
 msgid "Disable the HDD Process on VFD"
 msgstr ""
 
@@ -4746,14 +4783,11 @@ msgstr "Desabilitado"
 msgid "Disabled PIP.\n"
 msgstr "Desabilitado"
 
-msgid "Disconnect"
-msgstr "Desligado"
-
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Espaço reservado no disco para gravações (GB) "
 
 #, fuzzy, python-format
-msgid "Disk temperature: %s"
+msgid "Disk temperature: %s °C"
 msgstr "literatura"
 
 msgid "Disk temperature: unknown"
@@ -4918,14 +4952,6 @@ msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
-
-#, fuzzy
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"\n"
-"Depois de pressionar 'OK', aguarde por favor!"
 
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Deseja gravar esta colecão para DVD?"
@@ -5148,6 +5174,10 @@ msgid "ECM -> ecm0.info"
 msgstr "Informações do canal"
 
 #, fuzzy
+msgid "ECM Info"
+msgstr "Ver evento"
+
+#, fuzzy
 msgid "ECM Info's"
 msgstr "Ver evento"
 
@@ -5212,6 +5242,10 @@ msgstr "Idioma de EPG 2"
 
 #, fuzzy
 msgid "EPG location"
+msgstr "Seleção do EPG"
+
+#, fuzzy
+msgid "EPG only"
 msgstr "Seleção do EPG"
 
 msgid "EPG settings"
@@ -5321,12 +5355,6 @@ msgstr "ativar modo deslocar"
 msgid "Enable BT Audio"
 msgstr "Ativar"
 
-msgid "Enable CIHelper for SLOT CI0"
-msgstr ""
-
-msgid "Enable CIHelper for SLOT CI1"
-msgstr ""
-
 msgid "Enable EIT EPG"
 msgstr "Ativar EPG EIT"
 
@@ -5421,6 +5449,12 @@ msgstr ""
 msgid "Enable freesat EPG"
 msgstr "Ativar EPG freesat"
 
+msgid "Enable import timer from fallback receiver"
+msgstr ""
+
+msgid "Enable import timer from fallback tuner"
+msgstr ""
+
 msgid "Enable infobar fade-out"
 msgstr ""
 
@@ -5454,6 +5488,9 @@ msgstr "Ativar EPG freesat"
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr ""
 
+msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
+msgstr ""
+
 msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
 
@@ -5482,8 +5519,9 @@ msgstr ""
 msgid "Enable twisted log *"
 msgstr "Ativar"
 
-msgid "Enable zap history:"
-msgstr ""
+#, fuzzy
+msgid "Enable udev log"
+msgstr "Ativar"
 
 #, fuzzy
 msgid "Enable/Disable IPv6"
@@ -5538,7 +5576,19 @@ msgid "Enigma2 Changes"
 msgstr "Registo de atividade"
 
 #, fuzzy
+msgid "Enter IP address"
+msgstr "Endereço IP"
+
+#, fuzzy
 msgid "Enter PIN"
+msgstr "Repetir novo PIN"
+
+#, fuzzy
+msgid "Enter PIN code"
+msgstr "Insira o código PIN"
+
+#, fuzzy
+msgid "Enter URL"
 msgstr "Repetir novo PIN"
 
 msgid "Enter an URL where alternative images could be listed for FlashImage."
@@ -5636,7 +5686,23 @@ msgstr "Erro ao executar o plugin"
 msgid "Error formatting disk. The disk may be damaged"
 msgstr ""
 
+#, python-format
+msgid "Error getting link via %s/n%s"
+msgstr ""
+
 msgid "Error reading webpage!"
+msgstr ""
+
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
 msgstr ""
 
 #, fuzzy, python-format
@@ -5673,12 +5739,6 @@ msgstr "Interface de rede ethernet"
 msgid "Ethiopia"
 msgstr ""
 
-msgid "Eutelsat 16A 16.0e"
-msgstr ""
-
-msgid "Eutelsat 9B 9.0e"
-msgstr ""
-
 msgid "Even if TV has another input active?"
 msgstr ""
 
@@ -5711,10 +5771,6 @@ msgid "Event view context menu"
 msgstr "Menu de pré-visualização"
 
 #, fuzzy
-msgid "Eventinfo"
-msgstr "Ver evento"
-
-#, fuzzy
 msgid "Eventview"
 msgstr "Tamanho de letra"
 
@@ -5739,6 +5795,9 @@ msgstr "É maior que a mídia de dupla face!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "É maior que a mídia de dupla face!"
+
+msgid "Exclude first CA device"
+msgstr ""
 
 #, fuzzy
 msgid "Execute after current event"
@@ -5853,6 +5912,10 @@ msgid "Extended Networksetup Plugin..."
 msgstr "Plugin de configuração de rede avançado..."
 
 #, fuzzy
+msgid "Extended PID info"
+msgstr "Software avançado"
+
+#, fuzzy
 msgid "Extended Setup..."
 msgstr "Configurações avançadas..."
 
@@ -5865,6 +5928,10 @@ msgstr "Software avançado"
 
 msgid "Extended Software Plugin"
 msgstr "Plugin de software avançado"
+
+#, fuzzy
+msgid "Extended info"
+msgstr "Software avançado"
 
 msgid "Extended network setup plugin..."
 msgstr "Plugin de configuração de rede avançado..."
@@ -5906,9 +5973,6 @@ msgid "External subtitle switch fonts"
 msgstr "Cor das legendas de teletexto"
 
 msgid "Extra motor options"
-msgstr ""
-
-msgid "Extrude from left"
 msgstr ""
 
 msgid "F"
@@ -6010,7 +6074,35 @@ msgstr "Falha"
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
+msgid "Fallback Remote Receiver Settings"
+msgstr ""
+
+msgid "Fallback Tuner Setup"
+msgstr ""
+
+#, fuzzy
+msgid "Fallback remote receiver"
+msgstr "Por favor introduza o nome da nova pasta"
+
+msgid "Fallback remote receiver IP"
+msgstr ""
+
+msgid "Fallback remote receiver Port"
+msgstr ""
+
 msgid "Fallback remote receiver URL"
+msgstr ""
+
+msgid "Fallback remote receiver for ATSC"
+msgstr ""
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr ""
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr ""
+
+msgid "Fallback tuner setup"
 msgstr ""
 
 #, fuzzy
@@ -6100,6 +6192,10 @@ msgstr ""
 
 msgid "File transfer was cancelled by user"
 msgstr ""
+
+#, fuzzy
+msgid "Filename"
+msgstr "nome do arquivo"
 
 #, fuzzy
 msgid "Filesystem Check"
@@ -6247,7 +6343,7 @@ msgstr "Formato"
 msgid "Format as"
 msgstr "Formato"
 
-msgid "Format terminated with success"
+msgid "Format finished with success"
 msgstr ""
 
 msgid "Format/Partition your Devices and manage Mountpoints"
@@ -6266,6 +6362,10 @@ msgstr "Criando partição"
 
 msgid "Forward volume keys"
 msgstr "Avançar teclas de volume"
+
+#, python-format
+msgid "Four partitions (25% - 25% - 25% - 25%)"
+msgstr ""
 
 #, fuzzy
 msgid "Frame rate"
@@ -6319,6 +6419,10 @@ msgstr ""
 
 msgid "Frequency"
 msgstr "Frequência"
+
+#, fuzzy
+msgid "Frequency & Channel"
+msgstr "Bandas de frequência"
 
 #, fuzzy
 msgid "Frequency Norm:"
@@ -6414,12 +6518,6 @@ msgstr "Skins"
 msgid ""
 "GUI needs a restart to apply new skin.\n"
 "Do you want to Restart the GUI now?"
-msgstr ""
-"GUI necessita reiniciar para aplicar o novo tema.\n"
-"Deseja reiniciar agora?"
-
-#, fuzzy
-msgid "GUI needs a restart to apply the new settings !!!"
 msgstr ""
 "GUI necessita reiniciar para aplicar o novo tema.\n"
 "Deseja reiniciar agora?"
@@ -6639,12 +6737,6 @@ msgstr "Renomear"
 msgid "Grey"
 msgstr ""
 
-msgid "Grow drop"
-msgstr ""
-
-msgid "Grow from left"
-msgstr ""
-
 msgid "Guadeloupe"
 msgstr ""
 
@@ -6820,13 +6912,6 @@ msgstr ""
 msgid "Hidden network"
 msgstr "Rede oculta"
 
-msgid "Hide Infobar if Second-InfoBar shown"
-msgstr ""
-
-#, fuzzy
-msgid "Hide Plugins"
-msgstr "Plugins"
-
 #, fuzzy
 msgid "Hide any zap error messages."
 msgstr "Ocultar erros no zapping"
@@ -6850,9 +6935,6 @@ msgstr "Ocultar erros no zapping"
 
 msgid "Hierarchy info"
 msgstr "Informação de hierarquia"
-
-msgid "Hierarchy information"
-msgstr "Informação hierárquica"
 
 msgid "High bitrate support"
 msgstr "Suporte para alto bitrate"
@@ -6988,6 +7070,9 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr "Quantos minutos deseja gravar?"
 
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' resets the HW-descrambler slots and also bypasses the in-process CSA-ALT cache. *Restart E2 for changes to take effect."
+msgstr ""
+
 msgid "Http(s) stream start delay"
 msgstr ""
 
@@ -7021,6 +7106,9 @@ msgstr "Procurando..."
 
 msgid "IP address"
 msgstr "Endereço IP"
+
+msgid "IP of fallback remote receiver"
+msgstr ""
 
 msgid "IP:"
 msgstr ""
@@ -7274,11 +7362,43 @@ msgid "Image:\t\t%s"
 msgstr "Apagado"
 
 #, fuzzy
+msgid "Image: "
+msgstr "Apagado"
+
+#, fuzzy
 msgid "ImageWizard"
 msgstr "Assistente de vídeo"
 
 msgid "Immediate shutdown"
 msgstr "Desligar imediatamente"
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr ""
+
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby."
+msgstr ""
+
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
+msgid "Import from remote receiver URL"
+msgstr ""
+
+msgid "Import remote receiver URL"
+msgstr ""
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr ""
@@ -7437,6 +7557,10 @@ msgstr "Iniciado"
 #, fuzzy
 msgid "Initialize Multiboot"
 msgstr "Inicialização"
+
+#, fuzzy
+msgid "Initialize as HDD?"
+msgstr "Iniciado"
 
 #, fuzzy
 msgid "Initialize disk"
@@ -7613,6 +7737,13 @@ msgstr "Transponder manual"
 
 msgid "Inversion"
 msgstr "Inversão"
+
+#, fuzzy
+msgid "Inversion & Bandwidth"
+msgstr "Picon"
+
+msgid "Inversion, Pilot & Roll-off"
+msgstr ""
 
 msgid "Invert"
 msgstr "Inverter"
@@ -8222,6 +8353,12 @@ msgstr ""
 msgid "MB"
 msgstr "B"
 
+msgid "MENU"
+msgstr ""
+
+msgid "MHz"
+msgstr ""
+
 #, fuzzy
 msgid "MINISATIP Setup"
 msgstr "Definições"
@@ -8256,6 +8393,12 @@ msgstr "Menu principal"
 
 msgid "Maintain old EPG data for"
 msgstr "Guardar EPG antigo por (min)"
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr ""
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu."
+msgstr ""
 
 msgid "Make this mark an 'in' point"
 msgstr "Marcar como ponto de entrada"
@@ -8307,6 +8450,9 @@ msgstr "Busca manual"
 
 msgid "Manual transponder"
 msgstr "Transponder manual"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Fabricante"
@@ -8384,7 +8530,7 @@ msgstr ""
 msgid "Maximum space used (MB):"
 msgstr ""
 
-msgid "Maximum zap history entries:"
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases. *Restart E2 for changes to take effect."
 msgstr ""
 
 #, fuzzy
@@ -8775,9 +8921,6 @@ msgstr "Multimídia"
 msgid "Multiple service support"
 msgstr "Suporte para serviços múltiplos"
 
-msgid "Multiplex"
-msgstr "Múltiplo"
-
 msgid "Multisat"
 msgstr "Satélites múltiplos"
 
@@ -8810,8 +8953,8 @@ msgstr "Definições"
 msgid "NFS setup"
 msgstr "Definições"
 
-msgid "NIM"
-msgstr "NIM"
+msgid "NIM & Type"
+msgstr ""
 
 msgid "NO"
 msgstr ""
@@ -8847,8 +8990,8 @@ msgstr "Sair da configuração do servidor de DNS"
 msgid "Nameserver settings"
 msgstr "Definições de servidor DNS"
 
-msgid "Namespace"
-msgstr "Namespace"
+msgid "Namespace & Orbital pos."
+msgstr ""
 
 msgid "Namibia"
 msgstr ""
@@ -9016,6 +9159,10 @@ msgstr "Não"
 msgid "No (supported) DVDROM found!"
 msgstr "Nenhum DVD (suportado) encontrado!"
 
+#, fuzzy
+msgid "No - simple"
+msgstr "simples"
+
 msgid ""
 "No /hdd found !!\n"
 "Please make sure you have a HDD mounted.\n"
@@ -9025,6 +9172,9 @@ msgid "No Connection"
 msgstr "Sem conexão!"
 
 msgid "No Cover"
+msgstr ""
+
+msgid "No ECMPids available (FTA Service)"
 msgstr ""
 
 msgid "No HDD found or HDD not initialized!"
@@ -9077,6 +9227,9 @@ msgstr "Não foram encontrados arquivos reproduzíveis!"
 #, fuzzy
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Deseja fazer uma busca de canais?"
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 msgid "No event info found, recording indefinitely."
 msgstr "Não encontrou o evento, gravando indefinidamente."
@@ -9230,6 +9383,10 @@ msgid "Norfolk Island"
 msgstr ""
 
 #, fuzzy
+msgid "Normal"
+msgstr "normal"
+
+#, fuzzy
 msgid "Normal mode"
 msgstr "Modo Zap"
 
@@ -9265,8 +9422,8 @@ msgid "Not associated"
 msgstr "Não-associado"
 
 #, fuzzy
-msgid "Not enabled"
-msgstr "ativo"
+msgid "Not defined"
+msgstr "Montagem de rede"
 
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
@@ -9463,6 +9620,10 @@ msgstr "Um"
 msgid "One line"
 msgstr ""
 
+#, fuzzy
+msgid "One partition"
+msgstr "Criando partição"
+
 msgid "OnlineVersionCheck"
 msgstr ""
 
@@ -9603,6 +9764,10 @@ msgid "Other Images"
 msgstr "Flash"
 
 #, fuzzy
+msgid "Other Subtitles & lang"
+msgstr "Seleção de legendas"
+
+#, fuzzy
 msgid "Overall progress:"
 msgstr "Em progresso"
 
@@ -9665,6 +9830,22 @@ msgstr "Substituir os arquivos de configuração durante a atualização de soft
 msgid "Overwrite spinner files during software upgrade?"
 msgstr "Substituir os arquivos de configuração durante a atualização de software?"
 
+#, python-format
+msgid "P. %d - %s (Fast: %s)"
+msgstr ""
+
+#, python-format
+msgid "P. %d - %s (Fixed: %s)"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "P.%s (Fast: %s)"
+msgstr "%s (%s)\n"
+
+#, python-format
+msgid "P.%s (Fixed: %s)"
+msgstr ""
+
 msgid "PAGE UP/DOWN"
 msgstr ""
 
@@ -9682,11 +9863,15 @@ msgid "PCR PID"
 msgstr "PCR PID"
 
 #, fuzzy
+msgid "PGS file"
+msgstr "nome do arquivo"
+
+#, fuzzy
 msgid "PID"
 msgstr "PIDs"
 
-msgid "PIDs"
-msgstr "PIDs"
+msgid "PID Filtering"
+msgstr ""
 
 #, fuzzy
 msgid "PIP"
@@ -9894,15 +10079,9 @@ msgstr ""
 msgid "Philippines"
 msgstr ""
 
-msgid "Phone number"
-msgstr "Número de telefone"
-
 #, fuzzy
 msgid "PiP"
 msgstr " (PiP)"
-
-msgid "PiP is currently not available because your are using iptv streams!"
-msgstr ""
 
 msgid "Picon"
 msgstr "Picon"
@@ -10070,6 +10249,9 @@ msgstr ""
 "Por favor configure ou verifique o servidor DNS preenchendo os valores requeridos.\n"
 "Quando estiver pronto pressione 'OK'."
 
+msgid "Please configure the fallback tuner setup?"
+msgstr ""
+
 msgid ""
 "Please configure your internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
@@ -10197,6 +10379,10 @@ msgstr ""
 "\n"
 "Por favor pressione 'OK' para continuar."
 
+#, fuzzy
+msgid "Please select your preferred configuration."
+msgstr "Selecione um subserviço..."
+
 msgid "Please set up tuner A"
 msgstr "Por favor selecione o tuner A"
 
@@ -10288,9 +10474,6 @@ msgid ""
 msgstr ""
 "Por favor configure a ligação à internet preenchendo os valores necessários.\n"
 "Quando estiver preparado pressione 'OK' para continuar."
-
-msgid "Please use Harddisk Setup to initialize your drive."
-msgstr ""
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -10391,10 +10574,6 @@ msgstr "Ajuda do gestor de plugins"
 msgid "PluginBrowser filter settings"
 msgstr "Estado do tuner"
 
-#, fuzzy
-msgid "PluginHider Setup"
-msgstr "Config. de rede"
-
 msgid "Plugins"
 msgstr "Plugins"
 
@@ -10411,9 +10590,6 @@ msgstr "Polarização"
 msgid "Polish"
 msgstr "Polaco"
 
-msgid "Popup"
-msgstr ""
-
 #, fuzzy
 msgid "Port"
 msgstr "Porta A"
@@ -10429,6 +10605,9 @@ msgstr "Porta C"
 
 msgid "Port D"
 msgstr "Porta D"
+
+msgid "Port of fallback remote receiver"
+msgstr ""
 
 #, fuzzy
 msgid "Port:"
@@ -10735,6 +10914,10 @@ msgstr ""
 msgid "Process"
 msgstr "Processo"
 
+#, fuzzy
+msgid "Processing"
+msgstr "Processo"
+
 msgid "Profile"
 msgstr ""
 
@@ -11039,6 +11222,9 @@ msgstr "Reiniciar agora?"
 msgid "Really shutdown now?"
 msgstr "Desligar agora?"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
 #, fuzzy
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Atualizar o processador e reiniciar agora?"
@@ -11199,9 +11385,6 @@ msgstr "religião"
 
 msgid "Relative"
 msgstr "Relativo"
-
-msgid "Relevant PIDs Routing"
-msgstr ""
 
 msgid "Reload"
 msgstr "Recarregar"
@@ -11579,10 +11762,6 @@ msgstr "Tempo de início"
 msgid "Routing request"
 msgstr "Requesito de fonte"
 
-#, fuzzy
-msgid "Run"
-msgstr "Dom"
-
 msgid "Run how often ?"
 msgstr ""
 
@@ -11638,13 +11817,16 @@ msgstr ""
 msgid "SDcard switch ERROR! - already on mmc"
 msgstr ""
 
-msgid "SID"
-msgstr "SID"
-
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
 
 msgid "SPDIF"
+msgstr ""
+
+msgid "SRT file"
+msgstr ""
+
+msgid "SSA file"
 msgstr ""
 
 msgid "SSID:"
@@ -11684,6 +11866,10 @@ msgstr "Configuração do teclado"
 
 #, fuzzy
 msgid "Same as in active"
+msgstr "Ver rass interativo..."
+
+#, fuzzy
+msgid "Same as stream"
 msgstr "Ver rass interativo..."
 
 msgid "Same resolution as skin"
@@ -11932,18 +12118,8 @@ msgid "Searching west ..."
 msgstr "Procura 'oeste'"
 
 #, fuzzy
-msgid "Second InfoBar ..."
-msgstr "Mostrar segunda infobar"
-
-#, fuzzy
 msgid "Second cable of motorized LNB"
 msgstr "segundo cabo do LNB motorizado"
-
-msgid "Second-InfoBar Timeout (in Sec. , 0 = wait for OK)"
-msgstr ""
-
-msgid "Second-InfoBar working mode"
-msgstr ""
 
 msgid "Secondary DNS"
 msgstr "DNS secundário"
@@ -12105,6 +12281,9 @@ msgstr "Selecione a pasta"
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible). *Restart E2 for changes to take effect."
+msgstr ""
+
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
@@ -12236,6 +12415,12 @@ msgid "Select the sleep timer action."
 msgstr "Selecione a pasta de gravações"
 
 msgid "Select the time zone within the area or region."
+msgstr ""
+
+msgid "Select the timer from the fallback receiver by default"
+msgstr ""
+
+msgid "Select the timer from the fallback tuner by default"
 msgstr ""
 
 msgid "Select the tuner that controls the motorised dish."
@@ -12381,8 +12566,12 @@ msgid "Service"
 msgstr "Canal"
 
 #, fuzzy
-msgid "Service Information"
-msgstr "Informação"
+msgid "Service & PIDs"
+msgstr "Serviços"
+
+#, fuzzy
+msgid "Service ID"
+msgstr "Canal"
 
 #, fuzzy
 msgid "Service Name"
@@ -12409,6 +12598,32 @@ msgstr "Adicionado aos favoritos"
 
 msgid "Service has been added to the selected bouquet."
 msgstr "Adicionado ao bouquet selecionado."
+
+#, fuzzy
+msgid "Service info"
+msgstr "Dispositivo:"
+
+#, fuzzy
+msgid "Service info - ECM Info"
+msgstr "Informações do canal"
+
+msgid "Service info - service & Basic PID Info"
+msgstr ""
+
+msgid "Service info - service & Extended PID Info"
+msgstr ""
+
+#, fuzzy
+msgid "Service info - service & PIDs"
+msgstr "Informações do canal"
+
+#, fuzzy
+msgid "Service info - tuner live values"
+msgstr "Informações do canal"
+
+#, fuzzy
+msgid "Service info - tuner setting values"
+msgstr "Informações do canal"
 
 #, fuzzy
 msgid "Service info font size"
@@ -12492,6 +12707,9 @@ msgstr ""
 msgid "Set System"
 msgstr "Sistema"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr ""
+
 #, fuzzy
 msgid "Set backupfiles to defaults"
 msgstr "Escolha arquivos de backup"
@@ -12518,8 +12736,9 @@ msgstr "Definir interface como padrão"
 msgid "Set limits"
 msgstr "Definir limites"
 
-msgid "Set pin code persistent"
-msgstr ""
+#, fuzzy
+msgid "Set persistent PIN code"
+msgstr "Por favor introduza o código PIN antigo"
 
 msgid ""
 "Set selected files for backup to default \n"
@@ -12532,6 +12751,12 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Set the MAC-address of your %s %s.\n"
 msgstr "Editar a configuração do servidor DNS.\n"
+
+msgid "Set the User ID of the OpenWebif from your fallback receiver"
+msgstr ""
+
+msgid "Set the User ID of the OpenWebif from your fallback tuner."
+msgstr ""
 
 #, fuzzy
 msgid "Set the aspect ratio of the service picons."
@@ -12577,6 +12802,18 @@ msgid "Set the jump-size of the seekbar."
 msgstr ""
 
 msgid "Set the name the recording will get."
+msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback receiver"
+msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback tuner."
+msgstr ""
+
+msgid "Set the port of the OpenWebif from your fallback receiver"
+msgstr ""
+
+msgid "Set the port of the OpenWebif from your fallback tuner."
 msgstr ""
 
 #, fuzzy
@@ -12864,9 +13101,6 @@ msgstr "Mostar EPG..."
 msgid "Show EPG for current channel..."
 msgstr "Mostrar EPG do canal atual..."
 
-msgid "Show EPG-List/MerlinEPG"
-msgstr ""
-
 msgid "Show Enhanced Movie Center"
 msgstr ""
 
@@ -12997,10 +13231,6 @@ msgid "Show OE-A Log"
 msgstr "Mostrar 'info'"
 
 #, fuzzy
-msgid "Show ONLY Second-InfoBar"
-msgstr "Mostrar segunda infobar"
-
-#, fuzzy
 msgid "Show OScam in extensions ?"
 msgstr "Ver extensões..."
 
@@ -13060,10 +13290,6 @@ msgstr "Abrir lista de canais"
 
 #, fuzzy
 msgid "Show Second Infobar"
-msgstr "Mostrar segunda infobar"
-
-#, fuzzy
-msgid "Show Second-InfoBar"
 msgstr "Mostrar segunda infobar"
 
 #, fuzzy
@@ -13292,6 +13518,24 @@ msgstr "Montagem de rede"
 #, fuzzy
 msgid "Show new Packages"
 msgstr "Mostrar animação enquanto ocupado"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete."
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed."
+msgstr ""
+
+msgid "Show notification when import channels was not successful"
+msgstr ""
+
+msgid "Show notification when import channels was successful"
+msgstr ""
 
 #, fuzzy
 msgid "Show on Display"
@@ -13559,16 +13803,8 @@ msgstr "Simples"
 msgid "Simple Movie List"
 msgstr "lista de filmes"
 
-#, fuzzy
-msgid "Simple fade"
-msgstr "Simples"
-
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Definição simples de título (compatibilidade para os reprodutores antigos)"
-
-#, fuzzy
-msgid "Simple zoom"
-msgstr "Simples"
 
 msgid "Simplified Chinese"
 msgstr ""
@@ -13667,27 +13903,11 @@ msgstr "Temporizador"
 msgid "SleepTimer"
 msgstr "Apagar arquivo"
 
-msgid "Slide drop"
-msgstr ""
-
-msgid "Slide from left"
-msgstr ""
-
-msgid "Slide left to right"
-msgstr ""
-
 msgid "Slide picture in loop"
 msgstr "Imagem de slide em loop"
 
-msgid "Slide right to left"
-msgstr ""
-
 msgid "Slide show interval (sec.)"
 msgstr "Intervalo do visualizador de imagens (seg.)"
-
-#, fuzzy
-msgid "Slide top to bottom"
-msgstr "Topo e rodapé"
 
 #, python-format
 msgid "Slot %d"
@@ -13742,6 +13962,10 @@ msgstr ""
 msgid "Social/Political/Economics"
 msgstr "Social/Política/Econômica"
 
+#, fuzzy
+msgid "SoftCSA Settings"
+msgstr "Definições OSD"
+
 msgid "SoftCam / CI"
 msgstr "SoftCam / CI"
 
@@ -13763,6 +13987,10 @@ msgstr "Atualização de software"
 #, fuzzy
 msgid "Software Update Settings"
 msgstr "Atualização de software"
+
+#, python-format
+msgid "Software descrambling version:\t%s %s\n"
+msgstr ""
 
 msgid "Software management"
 msgstr "Gestor de software"
@@ -13793,9 +14021,6 @@ msgstr "Alguns plugins não estão disponíveis:\n"
 msgid "Sorry ... no ECM Info found"
 msgstr ""
 
-msgid "Sorry CIHelper Config is Missing"
-msgstr ""
-
 msgid "Sorry Inadyn Config is Missing"
 msgstr ""
 
@@ -13811,15 +14036,6 @@ msgstr "Sem atualizações disponíveis. Por favor tente mais tarde."
 
 msgid "Sorry uShare Config is Missing"
 msgstr ""
-
-#, fuzzy
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
-msgstr ""
-"Desculpe, o seu destino para backup não é acessível.\n"
-"Por favor escolha outro destino."
 
 #, python-format
 msgid "Sorry, %s has not been installed!"
@@ -13868,13 +14084,7 @@ msgstr "Definir limites"
 msgid "Sort main menu"
 msgstr "Menu principal"
 
-msgid "Sort menu screen's alphabetically"
-msgstr ""
-
 msgid "Sort plug-in browser alphabetically"
-msgstr ""
-
-msgid "Sort setting screen's alphabetically"
 msgstr ""
 
 msgid "Sound"
@@ -14173,9 +14383,6 @@ msgstr ""
 msgid "Strict DLNA"
 msgstr ""
 
-msgid "Stripes"
-msgstr ""
-
 #, fuzzy
 msgid "Strongest position"
 msgstr "Guardar posição"
@@ -14413,6 +14620,14 @@ msgstr ""
 msgid "Symbol rate"
 msgstr "Symbol rate"
 
+#, fuzzy
+msgid "Symbol rate & FEC"
+msgstr "Symbol rate"
+
+#, fuzzy
+msgid "Sync Mode *"
+msgstr "Modo"
+
 msgid "Sync NTP every (minutes)"
 msgstr ""
 
@@ -14425,11 +14640,18 @@ msgstr ""
 msgid "Synchronize systemtime using transponder or internet."
 msgstr ""
 
+msgid "Synchronous"
+msgstr ""
+
 msgid "Syrian Arab Republic"
 msgstr ""
 
 msgid "System"
 msgstr "Sistema"
+
+#, fuzzy
+msgid "System & Modulation"
+msgstr "Modulação"
 
 #, fuzzy
 msgid "System Message Check"
@@ -14488,6 +14710,10 @@ msgstr "TV - relatório de endereço físico"
 
 msgid "TXT PID"
 msgstr "TXT PID"
+
+#, fuzzy
+msgid "TXT Subtitles page & lang"
+msgstr "Seleção de legendas"
 
 #, fuzzy
 msgid "Table of content for collection"
@@ -14936,6 +15162,10 @@ msgstr ""
 "A interface visual do seu aparelho está reiniciando\n"
 "devido a um erro em mytest.py"
 
+#, fuzzy, python-format
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr "A interface visual está reiniciando!"
+
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr ""
 
@@ -15193,12 +15423,6 @@ msgstr ""
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first)"
 msgstr ""
 
-msgid "This option allows you to disable sorting of the menus"
-msgstr ""
-
-msgid "This option allows you to disable sorting of the option in setting screen's"
-msgstr ""
-
 msgid "This option allows you to disable sorting of the plugin browser."
 msgstr ""
 
@@ -15379,11 +15603,11 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs"
 msgstr ""
 
-msgid "Thor 5/6/7 0.8w"
-msgstr ""
-
 msgid "Three"
 msgstr "Três."
+
+msgid "Three partitions (33% - 33% - 33%)"
+msgstr ""
 
 msgid "Threshold"
 msgstr "Threshold"
@@ -15783,9 +16007,6 @@ msgstr "Transponder"
 msgid "Transponder Time"
 msgstr "Transponder"
 
-msgid "Transponder type"
-msgstr "Tipo de transponder"
-
 #, fuzzy
 msgid "Transport Stream Type"
 msgstr "Tipo de transponder"
@@ -15878,14 +16099,19 @@ msgid "Tuner is not supported"
 msgstr "tuner não é suportado"
 
 #, fuzzy
+msgid "Tuner live values"
+msgstr "Estado do tuner"
+
+#, fuzzy
+msgid "Tuner setting values"
+msgstr "Estado do tuner"
+
+#, fuzzy
 msgid "Tuner settings"
 msgstr "Estado do tuner"
 
 msgid "Tuner slot"
 msgstr "Entrada do tuner"
-
-msgid "Tuner status"
-msgstr "Estado do tuner"
 
 #, fuzzy
 msgid "Tuner status FAILED"
@@ -15971,6 +16197,14 @@ msgstr "Dois"
 msgid "Two lines"
 msgstr "Mostrar Infoline"
 
+#, python-format
+msgid "Two partitions (50% - 50%)"
+msgstr ""
+
+#, python-format
+msgid "Two partitions (75% - 25%)"
+msgstr ""
+
 msgid "Type"
 msgstr "Tipo"
 
@@ -16000,6 +16234,9 @@ msgstr ""
 msgid "URL of fallback remote receiver"
 msgstr ""
 
+msgid "URL of remote receiver for imports"
+msgstr ""
+
 msgid "USALS"
 msgstr "USALS"
 
@@ -16017,10 +16254,6 @@ msgid ""
 "backupstick or backupstick.txt."
 msgstr ""
 
-#, fuzzy
-msgid "USB Stick"
-msgstr "Assistente de USB Drive"
-
 msgid "USB switch ERROR! - already on USB"
 msgstr ""
 
@@ -16034,9 +16267,6 @@ msgid "Ukraine"
 msgstr ""
 
 msgid "Ukrainian"
-msgstr ""
-
-msgid "Unable to access Screens.InfoBar.InfoBar."
 msgstr ""
 
 msgid "Unable to change password"
@@ -16054,6 +16284,10 @@ msgstr "Atualizar sem interface visual e reiniciar o sistema"
 
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Atualizar sem interface visual e reiniciar o sistema"
+
+#, fuzzy
+msgid "Undefined"
+msgstr "Definições do utilizador"
 
 #, fuzzy
 msgid "Undetermined"
@@ -16106,6 +16340,10 @@ msgid "Universal LNB"
 msgstr "LNB universal"
 
 msgid "Unknown"
+msgstr "Desconhecido"
+
+#, fuzzy
+msgid "Unknown image"
 msgstr "Desconhecido"
 
 msgid "Unmark service to unhide VBI line"
@@ -16384,6 +16622,9 @@ msgstr "Usar controle da alimentação"
 msgid "Use slim screen"
 msgstr "Manter tela"
 
+msgid "Use streamrelay_whitelist file"
+msgstr ""
+
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
 msgstr ""
 
@@ -16460,6 +16701,9 @@ msgstr "Favoritos"
 #, fuzzy
 msgid "User Feed URL"
 msgstr "Definições do utilizador"
+
+msgid "User ID"
+msgstr ""
 
 #, fuzzy
 msgid "User Interface"
@@ -16540,6 +16784,9 @@ msgstr ""
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (trailer de intro)"
+
+msgid "VOB file"
+msgstr ""
 
 msgid "VOD"
 msgstr ""
@@ -16702,22 +16949,13 @@ msgstr "Sintonia fina"
 msgid "VideoWizard"
 msgstr "Assistente de vídeo"
 
-msgid "Videocodec"
-msgstr "Codec"
-
-msgid "Videoformat"
-msgstr "Formato de vídeo"
-
 #, fuzzy
-msgid "Videomode"
-msgstr "Codec"
+msgid "Videocodec, size & format"
+msgstr "Formato de vídeo"
 
 #, fuzzy
 msgid "Videosetup"
 msgstr "Definições de vídeo"
-
-msgid "Videosize"
-msgstr "Resolução"
 
 #, fuzzy
 msgid "Viet Nam"
@@ -17074,6 +17312,15 @@ msgstr ""
 msgid "When enabled the opkg status file will be renamed and all future updates can not be installed. Please restart Enigma2 after the change this option."
 msgstr ""
 
+msgid "When enabled the timer from the fallback receiver is imported"
+msgstr ""
+
+msgid "When enabled timers are created on the fallback received by default"
+msgstr ""
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback receiver"
+msgstr ""
+
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Quando ativado, os dados AIT serão incluídos nos streams http. Isto permite que um receptor de cliente possa utilizar HbbTV."
 
@@ -17201,6 +17448,12 @@ msgstr "Quando ativado, o receptor irá selecionar uma faixa AC3 (quando dispon�
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Quando ativado, o receptor irá selecionar uma faixa AC3 (quando disponível)."
 
+msgid "When enabled, the timer from the fallback tuner is imported."
+msgstr ""
+
+msgid "When enabled, the timer from the fallback tuner is the default timer."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -17209,6 +17462,9 @@ msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Quando ativado, use o DHCP para a configuração de IP."
+
+msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
+msgstr ""
 
 #, fuzzy
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -17389,6 +17645,9 @@ msgstr "Mover 'leste'"
 
 msgid "Yes"
 msgstr "Sim"
+
+msgid "Yes - fstab entry as /media/hdd"
+msgstr ""
 
 msgid "Yes to all"
 msgstr "Sim para todos"
@@ -17699,9 +17958,6 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
-msgid "Your Hardware can detect ci mode self or work only in legacy mode."
-msgstr ""
-
 #, fuzzy
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr "Seu receptor será reiniciado após pressionar a tecla 'OK' no controle remoto."
@@ -17861,21 +18117,7 @@ msgstr ""
 msgid "Zap up"
 msgstr ""
 
-#, fuzzy
-msgid "Zap+Close"
-msgstr "Fechar"
-
 msgid "Zap-Historie Browser"
-msgstr ""
-
-msgid "Zap-History"
-msgstr ""
-
-#, fuzzy
-msgid "Zap-History Browser"
-msgstr "Explorador de pastas"
-
-msgid "Zap-History Configurator"
 msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
@@ -17900,12 +18142,6 @@ msgid "Zoom In/Out TV..."
 msgstr ""
 
 msgid "Zoom Off..."
-msgstr ""
-
-msgid "Zoom from left"
-msgstr ""
-
-msgid "Zoom from right"
 msgstr ""
 
 msgid "ZoomInOut"
@@ -17964,6 +18200,10 @@ msgstr "sobre 'iniciar'"
 
 msgid "activate network adapter configuration"
 msgstr "ativar configuração do adaptador de rede"
+
+#, fuzzy
+msgid "active"
+msgstr "Ativar PiP"
 
 #, fuzzy
 msgid "add Current"
@@ -18040,14 +18280,6 @@ msgstr ""
 #, fuzzy
 msgid "any recordings"
 msgstr "Gravações"
-
-#, fuzzy
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"Tem certeza que quer apagar\n"
-"este backup:\n"
 
 msgid "arts/culture (without music, general)"
 msgstr "arte/cultura (sem música, em geral)"
@@ -18270,10 +18502,6 @@ msgstr "desativar modo deslocar"
 msgid "disabled"
 msgstr "desativar"
 
-#, fuzzy
-msgid "disabled at parental lock"
-msgstr "adicionar ao controle de pais"
-
 msgid "disconnected"
 msgstr "desconectado"
 
@@ -18322,6 +18550,9 @@ msgstr "editar alternativas"
 msgid "education/science/factual topics (general)"
 msgstr "educação/ciência/temas factuais (geral)"
 
+msgid "embedded"
+msgstr ""
+
 msgid "empty"
 msgstr "vazio"
 
@@ -18352,19 +18583,11 @@ msgstr "terminar edição de bouquets"
 msgid "end cut here"
 msgstr "terminar corte aqui"
 
-#, fuzzy
-msgid "end editing"
-msgstr "Configurações"
-
 msgid "end favourites edit"
 msgstr "terminar edição de favoritos"
 
 msgid "end zapping"
 msgstr ""
-
-#, fuzzy
-msgid "enigma2 and network"
-msgstr "Selecionador de skin Enigma2"
 
 #, fuzzy
 msgid "enter menu"
@@ -18435,6 +18658,9 @@ msgstr "extensões."
 #, fuzzy
 msgid "externally loopthrough to"
 msgstr "loopthrough para"
+
+msgid "extra high"
+msgstr ""
 
 msgid "extra wide"
 msgstr ""
@@ -18584,6 +18810,9 @@ msgstr ""
 msgid "hide entry"
 msgstr "Agendar gravação"
 
+msgid "high"
+msgstr ""
+
 #, fuzzy
 msgid "highest Resolution"
 msgstr "Resolução"
@@ -18713,6 +18942,10 @@ msgstr "minutos"
 
 msgid "minutes"
 msgstr "minutos"
+
+#, fuzzy
+msgid "module disabled"
+msgstr "desativar"
 
 msgid "month"
 msgstr "mês"
@@ -19098,10 +19331,6 @@ msgid "romance"
 msgstr "romance"
 
 #, fuzzy
-msgid "run selected plugin"
-msgstr "Erro ao executar o plugin"
-
-#, fuzzy
 msgid "running..."
 msgstr "Pesquisando..."
 
@@ -19147,14 +19376,6 @@ msgstr ""
 
 msgid "select menu entry"
 msgstr "selecionar entrada de menu"
-
-#, fuzzy
-msgid "select next tab"
-msgstr "selecionar entrada de menu"
-
-#, fuzzy
-msgid "select previous tab"
-msgstr "Ir para o evento seguinte"
 
 msgid "serious music/classic music"
 msgstr "música grave/música clássica"
@@ -19524,6 +19745,10 @@ msgstr "Ver extensões..."
 
 msgid "violet"
 msgstr ""
+
+#, fuzzy
+msgid "wait for ci..."
+msgstr "espere pelo mmi..."
 
 msgid "wait for mmi..."
 msgstr "espere pelo mmi..."
