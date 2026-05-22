@@ -93,7 +93,10 @@ def getMultibootslots():
 								slot["kernel"] = "/dev/sda%s" % line.split("sda", 1)[1].split(" ", 1)[0]
 								slot["rootsubdir"] = None
 							else:
-								slot["kernel"] = "%sp%s" % (device.split("p")[0], int(device.split("p")[1]) - 1)
+								try:
+									slot["kernel"] = "%sp%s" % (device.split("p")[0], int(device.split("p")[1]) - 1)
+								except:
+									slot["kernel"] = "none"
 							if 'rootsubdir' in line:
 								BoxInfo.setItem("HasRootSubdir", True)
 								slot['rootsubdir'] = getparam(line, 'rootsubdir')
