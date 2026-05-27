@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-19 18:52+0200\n"
-"PO-Revision-Date: 2026-05-19 19:10+0200\n"
+"POT-Creation-Date: 2026-05-22 12:04+0200\n"
+"PO-Revision-Date: 2026-05-22 12:15+0200\n"
 "Last-Translator: Koivo <koivo@hdfreaks.cc>\n"
 "Language-Team: openHDF\n"
 "Language: de\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1484,6 +1484,9 @@ msgstr "Die Aktivierung erfolgt sofort. Wenn diese Funktion nicht unterstützt w
 msgid "Active"
 msgstr "Aktiv"
 
+msgid "Active Multiboot"
+msgstr "Aktives Multiboot"
+
 msgid "Active clients"
 msgstr "Aktive Klienten"
 
@@ -2450,9 +2453,8 @@ msgstr "Blau"
 msgid "Blue long"
 msgstr "Blau lang"
 
-#, python-format
-msgid "BogoMIPS:\t\t%s"
-msgstr "BogoMIPS:\t\t%s"
+msgid "BogoMIPS"
+msgstr "BogoMIPS"
 
 msgid "Bolivia (Plurinational State of)"
 msgstr "Bolivien (Plurinationaler Staat von)"
@@ -2482,12 +2484,11 @@ msgstr "Starte das Recovery Menü"
 msgid "Boot-up action"
 msgstr "Startmodus der Box"
 
+msgid "Bootloader"
+msgstr "Bootloader"
+
 msgid "Bootloader update required!"
 msgstr "Bootloader-Update erforderlich!"
-
-#, python-format
-msgid "Bootloader:\t\t%s\n"
-msgstr "Bootloader:\t\t%s\n"
 
 msgid "Bosnia and Herzegovina"
 msgstr "Bosnien-Herzegowina"
@@ -2671,13 +2672,11 @@ msgstr "CIHelper Einstellungen"
 msgid "CIselectMainMenu"
 msgstr "CIselectMainMenu"
 
-#, python-format
-msgid "CPU Temp:\t\t%s"
-msgstr "CPU-Temp:\t\t%s"
+msgid "CPU Speed"
+msgstr "CPU-Geschwindigkeit"
 
-#, python-format
-msgid "CPU:\t\t%s"
-msgstr "CPU:\t\t%s"
+msgid "CPU Temp"
+msgstr "CPU-Temp"
 
 #, python-format
 msgid "CPU: %s"
@@ -3051,9 +3050,8 @@ msgstr "Kapitel:"
 msgid "Check"
 msgstr "Test"
 
-#, fuzzy
 msgid "Check disk finished with success"
-msgstr "Überprüfung erfolgreich"
+msgstr "Datenträger Überprüfung erfolgreich abgeschlossen"
 
 msgid "Check every (hours)"
 msgstr "Alle x Stunden prüfen"
@@ -3112,9 +3110,8 @@ msgstr "Chile"
 msgid "China"
 msgstr "China"
 
-#, python-format
-msgid "Chipset:\t\t%s"
-msgstr "Chipsatz:\t\t%s"
+msgid "Chipset"
+msgstr "Chipsatz"
 
 #, python-format
 msgid "Chipset: %s"
@@ -3283,7 +3280,7 @@ msgid "Close"
 msgstr "Schließen"
 
 msgid "Close PiP on exit"
-msgstr "Beende PiP mit Exit Taste oder PipZap beim Umschalten"
+msgstr "PiP beim Beenden schließen"
 
 msgid "Close bouquet list."
 msgstr "Schließe Favoritenliste."
@@ -3301,7 +3298,7 @@ msgid "Cocos (Keeling) Islands"
 msgstr "Cocos (Keeling) Islands"
 
 msgid "Code R. LP-HP & Guard Int."
-msgstr ""
+msgstr "Code R. LP-HP & Guard Int."
 
 msgid "Code rate HP"
 msgstr "Empfangsrate HP"
@@ -3311,7 +3308,7 @@ msgstr "Empfangsrate LP"
 
 #, python-format
 msgid "Codec & lang%s"
-msgstr ""
+msgstr "Codec & Sprache%s"
 
 msgid "Collection name"
 msgstr "Zusammenstellungsname"
@@ -3448,10 +3445,10 @@ msgid "Configure the IP address."
 msgstr "Konfigurieren der IP-Adresse."
 
 msgid "Configure the IP of the fallback remote receiver."
-msgstr "IP des Reservereceiver"
+msgstr "Konfiguriere die IP des Reservereceiver."
 
 msgid "Configure the Port of the fallback remote receiver."
-msgstr "Port des Reservereceiver"
+msgstr "Konfiguriere den Port des Reservereceiver."
 
 msgid "Configure the URL of the fallback remote receiver."
 msgstr "URL des Reservereceiver."
@@ -3831,9 +3828,8 @@ msgstr "Kopieren"
 msgid "Copying files"
 msgstr "Dateien kopieren"
 
-#, python-format
-msgid "Cores:\t\t%s"
-msgstr "Kerne:\t\t%s"
+msgid "Cores"
+msgstr "Kerne"
 
 #, python-format
 msgid "Cores: %s"
@@ -3873,7 +3869,7 @@ msgid "Could not record due to invalid service %s"
 msgstr "Aufnahme wegen unbekanntem Sender %s fehlgeschlagen"
 
 msgid "Could not retrieve basic bouquets files"
-msgstr ""
+msgstr "Die Basic-Bouquets-Dateien konnten nicht abgerufen werden"
 
 msgid "Could not retrieve the remote support files"
 msgstr "Konnte entfernte Support Dateien nicht empfangen"
@@ -4056,9 +4052,6 @@ msgstr "DNS über DHCP vom Router"
 
 msgid "DLNA support"
 msgstr "DLNA-Unterstützung"
-
-msgid "DMIPS:\t\t"
-msgstr "DMIPS:\t\t"
 
 msgid "DMM advanced"
 msgstr "DMM erweitert"
@@ -4359,7 +4352,6 @@ msgstr "Geräteinformation"
 msgid "Device Manager"
 msgstr "Gerätemanager"
 
-#, fuzzy
 msgid "Device Manager - Fast mounted remove"
 msgstr "Geräte-Manager - Fast Mounted Remove"
 
@@ -4810,12 +4802,11 @@ msgstr "Daten-DVD im Dreambox-Format (HDTV-kompatibel)"
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Daten-DVD im Dreambox-Format (funktioniert nicht in anderen DVD-Playern)"
 
+msgid "Driver"
+msgstr "Fahrer"
+
 msgid "Drivers"
 msgstr "Treiber"
-
-#, python-format
-msgid "Drivers:\t\t%s"
-msgstr "Treiber:\t\t%s"
 
 #, python-format
 msgid "Drivers:\t%s"
@@ -4840,9 +4831,8 @@ msgstr "O"
 msgid "E "
 msgstr "E "
 
-#, python-format
-msgid "E2 (re)starts:\t\t%s\n"
-msgstr "E2 (Neu)starts:\t\t%s\n"
+msgid "E2 (re)starts"
+msgstr "E2 (Neu)starts"
 
 msgid "E3HD/XPEEDLX/GI"
 msgstr "E3HD/XPEEDLX/GI"
@@ -5222,6 +5212,9 @@ msgstr "Endzeit"
 msgid "English"
 msgstr "Englisch"
 
+msgid "Enigma Version"
+msgstr "Enigma-Version"
+
 msgid "Enigma must be restarted to auto restore your saved settings now!"
 msgstr "Enigma muss neu gestartet werden, um den Restore zu starten!"
 
@@ -5353,7 +5346,7 @@ msgid "Error while retrieving epg.dat from the fallback receiver"
 msgstr "Fehler beim Empfang der epg.dat des Reserve Receivers"
 
 msgid "Error while retrieving location of epg.dat on the fallback receiver"
-msgstr ""
+msgstr "Fehler beim Empfangen des epg.dat Speicherorts"
 
 #, python-format
 msgid ""
@@ -5438,7 +5431,7 @@ msgid "Exceeds dual layer medium!"
 msgstr "Übersteigt die Größe eines Dual-Layer-Mediums!"
 
 msgid "Exclude first CA device"
-msgstr ""
+msgstr "Erstes CA-Gerät ausschließen"
 
 msgid "Execute after current event"
 msgstr "Ausführen nach der Sendung"
@@ -5687,9 +5680,6 @@ msgstr "Falkland Islands (Malvinas)"
 msgid "Fallback Remote Receiver Settings"
 msgstr "Reservereceiver Einstellungen"
 
-msgid "Fallback Tuner Setup"
-msgstr ""
-
 msgid "Fallback remote receiver"
 msgstr "Reservereceiver"
 
@@ -5711,8 +5701,11 @@ msgstr "Reservereceiver URL für DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Reservereceiver URL für DVB-T"
 
+msgid "Fallback tuner Setup"
+msgstr "Reservereceiver Einstellungen"
+
 msgid "Fallback tuner setup"
-msgstr ""
+msgstr "Reserve Tuner Einstellungen"
 
 msgid "False"
 msgstr "Nein"
@@ -5973,9 +5966,8 @@ msgstr "Framerate MiniTV"
 msgid "France"
 msgstr "France"
 
-#, python-format
-msgid "Free Flash:\t\t%s\n"
-msgstr "Freier Flash:\t\t%s\n"
+msgid "Free Flash"
+msgstr "Kostenloses Flash"
 
 msgid "Free Memory:"
 msgstr "Speicher frei:"
@@ -6046,9 +6038,8 @@ msgstr "Front-USB 3.0"
 msgid "Frontpanel / Display / VFD"
 msgstr "Frontpanel / Display / VFD"
 
-#, python-format
-msgid "Frontprocessor:\tVersion %s"
-msgstr "Frontprozessor-Version: %s"
+msgid "Frontprocessor"
+msgstr "Frontprozessor"
 
 msgid "Full Range RGB"
 msgstr "Vollbereichs-RGB"
@@ -6086,10 +6077,6 @@ msgstr "GIGABLUE Schwarz"
 
 msgid "GStreamer"
 msgstr "GStreamer"
-
-#, python-format
-msgid "GStreamer:\t\t%s"
-msgstr "GStreamer:\t\t%s"
 
 msgid "GUI Skin"
 msgstr "GUI Skin"
@@ -6338,9 +6325,8 @@ msgstr ""
 msgid "HDF Build: %s"
 msgstr "HDF-Build: %s"
 
-#, python-format
-msgid "HDF Version:\t\tV%s"
-msgstr "HDF-Version:\t\tV%s"
+msgid "HDF Version"
+msgstr "HDF-Version"
 
 msgid "HDFreaks"
 msgstr "HDFreaks"
@@ -6593,7 +6579,7 @@ msgid "How many minutes do you want to record?"
 msgstr "Wie viele Minuten aufnehmen?"
 
 msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes). 'Aggressive' resets the HW-descrambler slots and also bypasses the in-process CSA-ALT cache. *Restart E2 for changes to take effect."
-msgstr ""
+msgstr "So deaktivierst du den Hardware-Decoder beim Umschalten auf Software-Entschlüsselung. „Quick“ deaktiviert ihn sofort (schnelleres Zappen). „Normal“ führt zuerst einen ordnungsgemäßen Herunterfahrvorgang durch (bei manchen Boxen stabiler). „Aggressive“ setzt die HW-Entschlüsseler-Slots zurück und umgeht zudem den laufenden CSA-ALT-Cache. *Starte E2 neu, damit die Änderungen wirksam werden."
 
 msgid "Http(s) stream start delay"
 msgstr "Http(s) Verzögerung beim Streamstart"
@@ -6663,7 +6649,7 @@ msgid "If enabled the video will always be de-interlaced."
 msgstr "Wenn aktiviert, wird das Video immer deinterlaced."
 
 msgid "If enabled, AIT data is included in recordings."
-msgstr "Wenn aktiviert, werden AIT Daten in die Aufnahmen eingebettet. Die AIT-Tabelle ist eine Service-Tabelle und dient beim Hybrid-TV, Hybrid Broadcast Broadband TV ( HbbTV), dem Zusammenwirken von Fernsehen und Internetfernsehen."
+msgstr "Wenn aktiviert sind in den Aufzeichnungen AIT-Daten enthalten."
 
 msgid "If enabled, will checks for the time after the start of the receiver is within the time window and optionally switched to standby. If disabled, must additional be available a signal for the successful wakeup detection. (some receiver send a false or none signal)"
 msgstr "Wenn aktiviert, wird überprüft ob die Zeit nach dem Start des Receivers innerhalb des Zeitfensters ist und schaltet gegebenenfalls in den Standby-Modus. Wenn deaktiviert, muss zusätzlich noch ein Signal für die erfolgreiche Erkennung zur Verfügung stehen. (manche Receiver senden ein falsches oder kein Signal)"
@@ -6827,6 +6813,12 @@ msgstr "Ignoriere DVB-T Namensraum Unternetzwerk"
 msgid "Ignore unexpectedly wakeup and stay in standby"
 msgstr "Unerwartetes Aufwachen ignorieren und im Standby bleiben"
 
+msgid "Image"
+msgstr "Image"
+
+msgid "Image Build"
+msgstr "Imagebuild"
+
 msgid "Image Full-Backup"
 msgstr "Image Full-Backup"
 
@@ -6874,13 +6866,6 @@ msgstr ""
 "Image zum Installieren ist fehlerhaft\n"
 "%s"
 
-#, python-format
-msgid "Image:\t\t%s"
-msgstr "Image:\t\t%s"
-
-msgid "Image: "
-msgstr "Image: "
-
 msgid "ImageWizard"
 msgstr "Image Assistent"
 
@@ -6888,26 +6873,26 @@ msgid "Immediate shutdown"
 msgstr "Direkt Ausschalten"
 
 msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
-msgstr ""
+msgstr "Importieren Sie Kanäle und / oder EPG über die Remote-Receiver-URL , auch wenn der Receiver den Standby-Modus verlässt"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
-msgstr ""
+msgstr "Importieren Sie Kanäle und / oder EPG über die Remote-Receiver-URL ,wenn der Receiver gebootet wird"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
-msgstr ""
+msgstr "Importieren Sie Kanäle und / oder EPG über die Remote-Receiver-URL ,wenn der Receiver gebootet wird."
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
-msgstr ""
+msgstr "Kanäle und/oder EPG von der URL eines Remote-Receivers importieren, wenn der Receiver oder die Benutzeroberfläche neu gestartet wird."
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
-msgstr ""
+msgstr "Importieren Sie Kanäle und / oder EPG über die Remote-Receiver-URL , wenn der Receiver oder Enigma2 neu gestartet werden"
 
 msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby."
-msgstr ""
+msgstr "Importiere Kanäle und/oder EPG über die URL des Remote-Receiver, wenn der Receiver aus dem Standby kommt."
 
 #, python-format
 msgid "Import from fallback tuner failed, %s"
-msgstr ""
+msgstr "Importieren vom Reservereceiver fehlgeschlagen, %s1"
 
 msgid "Import from remote receiver URL"
 msgstr "Importiere von Reserverceiver URL"
@@ -7215,12 +7200,11 @@ msgstr "Ungültige Transponderdaten"
 msgid "Inversion"
 msgstr "Inversion"
 
-#, fuzzy
 msgid "Inversion & Bandwidth"
-msgstr "Info Icon Breite"
+msgstr "Inversion & Bandbreite"
 
 msgid "Inversion, Pilot & Roll-off"
-msgstr ""
+msgstr "Inversion, Pilot & Roll-off"
 
 msgid "Invert"
 msgstr "Umkehren"
@@ -7363,9 +7347,8 @@ msgstr "Filmliste offen lassen wenn Musikdateien abgespielt werden."
 msgid "Kenya"
 msgstr "Kenya"
 
-#, python-format
-msgid "Kernel (Box):\t\t%s"
-msgstr "Kernel (Box):\t\t%s"
+msgid "Kernel"
+msgstr "Kernel"
 
 msgid "Kernel Modules"
 msgstr "Kernel Module"
@@ -7511,9 +7494,8 @@ msgstr "Letzte Konfiguration"
 msgid "Last speed"
 msgstr "Letzte Geschwindigkeit"
 
-#, python-format
-msgid "Last update:\t\t%s"
-msgstr "Letztes Update:\t\t%s"
+msgid "Last update"
+msgstr "Letztes Update"
 
 #, python-format
 msgid "Last update:\t%s"
@@ -7781,10 +7763,10 @@ msgid "MB"
 msgstr "MB"
 
 msgid "MENU"
-msgstr ""
+msgstr "MENÜ"
 
 msgid "MHz"
-msgstr ""
+msgstr "MHz"
 
 msgid "MINISATIP Setup"
 msgstr "MINISATIP-Setup"
@@ -7820,10 +7802,10 @@ msgid "Maintain old EPG data for"
 msgstr "Behalte alte EPG-Daten (Minuten)"
 
 msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
-msgstr ""
+msgstr "Erlaubt es, den Kanal-Import und / oder EPG manuell über das Erweiterungsmenü zu initiieren"
 
 msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu."
-msgstr ""
+msgstr "Erlaubt es, den Kanal-Import und / oder EPG manuell über das Erweiterungsmenü zu initiieren."
 
 msgid "Make this mark an 'in' point"
 msgstr "Aus dieser Markierung einen \"innen\"-Punkt machen"
@@ -7875,7 +7857,7 @@ msgid "Manual transponder"
 msgstr "Manueller Transponder"
 
 msgid "Manually import from fallback tuner"
-msgstr ""
+msgstr "Manuelles importieren vom Remote-Receiver"
 
 msgid "Manufacturer"
 msgstr "Hersteller"
@@ -8070,9 +8052,8 @@ msgstr "Modus 1"
 msgid "Mode 2"
 msgstr "Modus 2"
 
-#, python-format
-msgid "Model:\t\t%s %s - OEM Model: %s\n"
-msgstr "Modell:\t\t%s %s - OEM-Modell: %s\n"
+msgid "Model"
+msgstr "Modell"
 
 msgid "Model: "
 msgstr "Modell: "
@@ -8359,7 +8340,7 @@ msgid "Nameserver settings"
 msgstr "DNS Einstellungen"
 
 msgid "Namespace & Orbital pos."
-msgstr ""
+msgstr "Namespace & Orbital pos."
 
 msgid "Namibia"
 msgstr "Namibia"
@@ -8526,7 +8507,7 @@ msgid "No Cover"
 msgstr "Keine Deckung"
 
 msgid "No ECMPids available (FTA Service)"
-msgstr ""
+msgstr "Keine ECM Pids vorhanden (FTA, unverschlüsselte Sender)"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
@@ -8581,7 +8562,7 @@ msgid "No entry in lcn db. Please do a service scan."
 msgstr "Kein Eintrag in lcn db. Bitte führen Sie einen Service-Scan durch."
 
 msgid "No epg.dat file found on the fallback receiver"
-msgstr ""
+msgstr "Auf dem Reservereceiver wurde keine „epg.dat“-Datei gefunden"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Keine EPG-Daten gefunden. Starte unbegrenzte Aufnahme."
@@ -8867,6 +8848,9 @@ msgstr "OE Änderungen"
 msgid "OE-A Changes"
 msgstr "OE-A Änderungen"
 
+msgid "OEM Model"
+msgstr "OEM-Modell"
+
 msgid "OK"
 msgstr "OK"
 
@@ -9084,9 +9068,8 @@ msgstr "Andere"
 msgid "Other Images"
 msgstr "Andere Images"
 
-#, fuzzy
 msgid "Other Subtitles & lang"
-msgstr "Subtitle lang"
+msgstr "Andere Untertitel & Sprachen"
 
 msgid "Overall progress:"
 msgstr "Gesamtfortschritt:"
@@ -9138,11 +9121,11 @@ msgstr "Überschreiben der Spinner-Dateien beim Update erlauben?"
 
 #, python-format
 msgid "P. %d - %s (Fast: %s)"
-msgstr ""
+msgstr "S. %d – %s (Schnell: %s)"
 
 #, python-format
 msgid "P. %d - %s (Fixed: %s)"
-msgstr ""
+msgstr "S. %d – %s (Korrektur: %s)"
 
 #, python-format
 msgid "P.%s (Fast: %s)"
@@ -9150,7 +9133,7 @@ msgstr "P.%s (Schnell: %s)"
 
 #, python-format
 msgid "P.%s (Fixed: %s)"
-msgstr ""
+msgstr "S. %s (Korrigiert: %s)"
 
 msgid "PAGE UP/DOWN"
 msgstr "BILD AUF/AB"
@@ -9174,7 +9157,7 @@ msgid "PID"
 msgstr "PID"
 
 msgid "PID Filtering"
-msgstr ""
+msgstr "PID Filterung"
 
 msgid "PIP"
 msgstr "Bild im Bild"
@@ -9520,7 +9503,7 @@ msgstr ""
 "Drücke OK zum Fortfahren."
 
 msgid "Please configure the fallback tuner setup?"
-msgstr ""
+msgstr "Die Reserve-Tuner-Einstellung konfigurieren?"
 
 msgid ""
 "Please configure your internet connection by filling out the required values.\n"
@@ -10151,7 +10134,7 @@ msgid "Process"
 msgstr "Aktivitätsanzeige"
 
 msgid "Processing"
-msgstr ""
+msgstr "In Bearbeitung"
 
 msgid "Profile"
 msgstr "Profil"
@@ -10260,10 +10243,6 @@ msgstr "Python"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python Frontend für /tmp/mmi.socket"
-
-#, python-format
-msgid "Python:\t\t%s\n"
-msgstr "Python:\t\t%s\n"
 
 msgid "Qatar"
 msgstr "Qatar"
@@ -10971,10 +10950,10 @@ msgid "SPDIF"
 msgstr "SPDIF"
 
 msgid "SRT file"
-msgstr ""
+msgstr "SRT Datei"
 
 msgid "SSA file"
-msgstr ""
+msgstr "SSA Datei"
 
 msgid "SSID:"
 msgstr "SSID:"
@@ -11518,10 +11497,10 @@ msgid "Select the time zone within the area or region."
 msgstr "Wählen Sie die Zeitzone innerhalb des Gebiets oder der Region aus."
 
 msgid "Select the timer from the fallback receiver by default"
-msgstr ""
+msgstr "Wähle standardmäßig den Timer des Reservereceiver aus"
 
 msgid "Select the timer from the fallback tuner by default"
-msgstr ""
+msgstr "Wenn aktiviert, wird der Timer vom Reservereceiver importiert"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr "Wählen Sie den Tuner, der die motorisierte Schüssel steuert."
@@ -11775,7 +11754,7 @@ msgid "Set System"
 msgstr "System"
 
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
-msgstr ""
+msgstr "Bestimme alternativen Reservereceiver für DVB-T / C oder ATSC"
 
 msgid "Set backupfiles to defaults"
 msgstr "Zurücksetzen der zu sichernden Dateien"
@@ -11816,10 +11795,10 @@ msgid "Set the MAC-address of your %s %s.\n"
 msgstr "Setze die Mac-Adresse deiner %s %s.\n"
 
 msgid "Set the User ID of the OpenWebif from your fallback receiver"
-msgstr ""
+msgstr "Setze den OpenWebif Benutzer des Reservereceiver ein"
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
-msgstr ""
+msgstr "Setze den OpenWebif Benutzer des Reservereceiver."
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Einstellung des Seitenverhältnisses der Senderlogos."
@@ -11864,16 +11843,16 @@ msgid "Set the name the recording will get."
 msgstr "Setze den Namen den die Aufnahme bekommen soll."
 
 msgid "Set the password of the OpenWebif from your fallback receiver"
-msgstr ""
+msgstr "Setze das OpenWebif Passwort des Reservereceiver ein"
 
 msgid "Set the password of the OpenWebif from your fallback tuner."
-msgstr ""
+msgstr "Setze das OpenWebif Passwort des Reservereceiver."
 
 msgid "Set the port of the OpenWebif from your fallback receiver"
-msgstr ""
+msgstr "Setze den OpenWebif Port des Reservereceiver"
 
 msgid "Set the port of the OpenWebif from your fallback tuner."
-msgstr ""
+msgstr "Setze den OpenWebif Port des Reservereceiver."
 
 msgid "Set the position of the recording icons"
 msgstr "Legen Sie die Positionen der Aufnahme-Symbole fest"
@@ -12474,22 +12453,22 @@ msgid "Show new Packages"
 msgstr "Zeige die zu aktualisierenden Pakete an"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
-msgstr ""
+msgstr "Benachrichtigung anzeigen, wenn Importkanäle und / oder EPG von der Remotereceiver-URL nicht abgeschlossen wurden"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete."
-msgstr ""
+msgstr "Benachrichtigung anzeigen, wenn Importkanäle und / oder EPG von der Remotereceiver-URL nicht abgeschlossen wurden."
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
-msgstr ""
+msgstr "Benachrichtigung anzeigen, wenn Importkanäle und / oder EPG von der Remotereceiver-URL abgeschlossen sind"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL is completed."
-msgstr ""
+msgstr "Benachrichtigung anzeigen, wenn Importkanäle und / oder EPG von der Remotereceiver-URL abgeschlossen sind."
 
 msgid "Show notification when import channels was not successful"
-msgstr ""
+msgstr "Benachrichtigung anzeigen, wenn der Kanalimport nicht erfolgreich war"
 
 msgid "Show notification when import channels was successful"
-msgstr ""
+msgstr "Benachrichtigung anzeigen, wenn der Kanalimport erfolgreich war"
 
 msgid "Show on Display"
 msgstr "Zeige auf dem Display"
@@ -12752,6 +12731,9 @@ msgstr "Längengrad"
 msgid "Size: "
 msgstr "Größe: "
 
+msgid "Skin"
+msgstr "Skin"
+
 msgid "Skin Selection Actions"
 msgstr "Skin Auswahl Aktionen"
 
@@ -12760,10 +12742,6 @@ msgstr "Skin Einstellungen"
 
 msgid "Skin setup"
 msgstr "Skinauswahl"
-
-#, python-format
-msgid "Skin:\t\t%s (%s x %s)\n"
-msgstr "Skin:\t\t%s (%s x %s)\n"
 
 msgid "SkinSelector: Restart GUI"
 msgstr "Skin Auswahl: GUI neustarten"
@@ -12877,9 +12855,8 @@ msgstr "Software Update"
 msgid "Software Update Settings"
 msgstr "Software Update Einstellungen"
 
-#, python-format
-msgid "Software descrambling version:\t%s %s\n"
-msgstr "Software-Entschlüsselung version:\t%s %s\n"
+msgid "Software descrambling"
+msgstr "Software-Entschlüsselung"
 
 msgid "Software management"
 msgstr "Softwareverwaltung/Flash/Backup"
@@ -13328,9 +13305,6 @@ msgstr "So"
 msgid "Sunday"
 msgstr "Sonntag"
 
-msgid "Support @"
-msgstr "Unterstützung unter"
-
 msgid "Support at"
 msgstr "Unterstützung unter"
 
@@ -13490,9 +13464,8 @@ msgstr "System & Modulation"
 msgid "System Message Check"
 msgstr "Überprüfung der Systemmeldung"
 
-#, python-format
-msgid "System Temp:\t\t%s"
-msgstr "Systemtemperatur:\t%s"
+msgid "System Temp"
+msgstr "System-Temp"
 
 msgid "System: "
 msgstr "System: "
@@ -13540,9 +13513,8 @@ msgstr "An den TV die physikalische Adresse melden"
 msgid "TXT PID"
 msgstr "TXT PID"
 
-#, fuzzy
 msgid "TXT Subtitles page & lang"
-msgstr "Subtitle lang"
+msgstr "Textuntertitel Seite & Sprachen"
 
 msgid "Table of content for collection"
 msgstr "Inhalt der Zusammenstellung"
@@ -15010,7 +14982,7 @@ msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Stille Aktualisierung mit automatischem Neustart"
 
 msgid "Undefined"
-msgstr "undefiniert"
+msgstr "Undefiniert"
 
 msgid "Undetermined"
 msgstr "Unbestimmt"
@@ -15394,7 +15366,7 @@ msgid "User Feed URL"
 msgstr "Benutzerfeed Adresse"
 
 msgid "User ID"
-msgstr ""
+msgstr "Benutzer ID"
 
 msgid "User Interface"
 msgstr "Benutzeroberfläche"
@@ -15471,7 +15443,7 @@ msgid "VMGM (intro trailer)"
 msgstr "VMGM (Intro-Trailer)"
 
 msgid "VOB file"
-msgstr ""
+msgstr "VOB Datei"
 
 msgid "VOD"
 msgstr "VOD"
@@ -15956,13 +15928,13 @@ msgid "When enabled the opkg status file will be renamed and all future updates 
 msgstr "Wenn aktiviert, sind alle Updates im HDF Image deaktiviert. Nach Ändern dieser Option muss Enigma neugestartet werden."
 
 msgid "When enabled the timer from the fallback receiver is imported"
-msgstr ""
+msgstr "Wenn diese Option aktiviert ist, wird der Timer vom Reservereceiver importiert"
 
 msgid "When enabled timers are created on the fallback received by default"
-msgstr ""
+msgstr "Wenn diese Option aktiviert ist, werden standardmäßig Timer für den Fallback erstellt"
 
 msgid "When enabled you can customize the OpenWebIf settings for the fallback receiver"
-msgstr ""
+msgstr "Wenn diese Option aktiviert ist, kannst du die OpenWebIf-Einstellungen für den Reservereceiver anpassen"
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Wenn aktiviert, werden AIT Daten in HTTP Stream eingebettet. Dies erlaubt es Klienten HBBTV zu benutzen."
@@ -16082,10 +16054,10 @@ msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Wenn auf 'Ja' gestellt, wird die %s %s AC3+-Ton benutzen (wenn verfügbar)."
 
 msgid "When enabled, the timer from the fallback tuner is imported."
-msgstr ""
+msgstr "Wenn aktiviert werden die Timer vom Remotereceiver importiert."
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
-msgstr ""
+msgstr "Wenn diese Option aktiviert ist, wird der Timer des Reservereceivers als Standard-Timer verwendet."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Wenn aktiviert, hat diese Einstellung mehr Priorität als 'bevorzugte Tuner für Aufnahmen'."
@@ -16097,7 +16069,7 @@ msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Wenn aktiviert benutzt der Receiver DHCP zur Netzwerkkonfiguration."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
-msgstr ""
+msgstr "Wenn aktiviert, kann der Remotereceiver im OpenWebIf konfiguriert werden."
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Wenn auf 'Ja' gestellt so wird die Box Aktivitäten am SCART-Eingang erkennen."
@@ -17164,7 +17136,7 @@ msgid "education/science/factual topics (general)"
 msgstr "Bildung/Wissenschaft/Tatsachen (allgemein)"
 
 msgid "embedded"
-msgstr ""
+msgstr "eingebettet"
 
 msgid "empty"
 msgstr "leer"
