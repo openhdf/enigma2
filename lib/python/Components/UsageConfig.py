@@ -1665,6 +1665,10 @@ def InitUsageConfig():
 	config.oscaminfo.intervall = ConfigSelectionNumber(min=1, max=600, stepwidth=1, default=10, wraparound=True)
 	BoxInfo.setItem("OScamInstalled", False)
 	config.misc.softcsa = ConfigSubsection()
+	config.misc.softcsa.Enable_Disable = ConfigSelection(default=0, choices=[
+			(0, _("Enable")),
+			(1, _("Disable"))
+	])
 	config.misc.softcsa.decoderRelease = ConfigSelection(default=0, choices=[
 			(0, _("Quick")),
 			(1, _("Normal")),
