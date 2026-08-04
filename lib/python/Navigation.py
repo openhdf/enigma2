@@ -275,7 +275,7 @@ class Navigation:
 			except:
 				pass
 
-	def playService(self, ref, checkParentalControl=True, forceRestart=False, adjust=True):
+	def playService(self, ref, checkParentalControl=True, forceRestart=False, adjust=True, event=None):
 		oldref = self.currentlyPlayingServiceOrGroup
 		if oldref is not None:
 			self.retryServicePlayCount = 0
