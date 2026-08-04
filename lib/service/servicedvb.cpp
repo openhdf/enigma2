@@ -4128,7 +4128,7 @@ void eDVBServicePlay::setupSpeculativeDescrambling()
 	if (!eDVBCSAEngine::isAvailable())
 		return;
 
-	int softcsaEnable = eConfigManager::getConfigIntValue("config.misc.softcsa.Enable_Disable", 0);
+	int softcsaEnable = eConfigManager::getConfigIntValue("config.misc.softcsa.enabled", 0);
 	// Enabled (0) Disabled (1) 
 	if (softcsaEnable == 1)
 	{
