@@ -5,32 +5,41 @@ try:
 except ImportError:
     YoutubeDL = None
 
+SCHEMA = "YT-DLP%3a//"
+WRAPPER = "YTDLPWrapper"
+
 
 def zap(session, service, **kwargs):
 	errormsg = None
-	if service and "http" in service.toString():
+	if service and SCHEMA in service.toString():
 		url = service.toString()
 		url = url.split(":")
 		if len(url) > 9:
 			url = url[10]
-			if YoutubeDL is not None and url.startswith("YT-DLP%3a//"):
-				url = url.replace("YT-DLP%3a//", "")
+			if YoutubeDL is not None and url.startswith(SCHEMA):
+				url = url.replace(SCHEMA, "")
 				url = url.replace("%3a", ":")
 				try:
-					ydl = YoutubeDL({"format": "b"})
+					ydl = YoutubeDL({"format": "b/bv*+ba/bv*", "no_color": True, "usenetrc": True})
 					result = ydl.extract_info(url, download=False)
 					result = ydl.sanitize_info(result)
-					if result and result.get("url"):
-						url = result["url"]
-						print("[ChannelSelection] zap / YoutubeDLP result url %s" % url)
-						return (url, errormsg)
+					stream = result.get("url") if result else None
+					if not stream and result:
+						# Video and audio come as separate streams, which the player cannot
+						# merge. Hand it the master playlist holding both instead.
+						for fmt in (result.get("requested_formats") or []) + (result.get("formats") or []):
+							stream = fmt.get("manifest_url")
+							if stream:
+								break
+					if stream:
+						print(f"[{WRAPPER}] playService result url '{stream}'")
+						return (stream, errormsg)
 					else:
 						errormsg = "No Link found!"
-						print("[ChannelSelection] zap / YoutubeDLP no streams")
+						print(f"[{WRAPPER}] playService no streams")
 				except Exception as e:
 					errormsg = str(e)
-					print("[ChannelSelection] zap / YoutubeDLP failed %s" % str(e))
-					pass
+					print(f"[{WRAPPER}] playService failed {e}")
 	return (None, errormsg)
 
 
