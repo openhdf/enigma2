@@ -1,4 +1,3 @@
-
 from copy import copy as copy_copy
 from os import path as os_path
 from time import localtime, strftime
@@ -434,6 +433,9 @@ class ConfigSelection(ConfigElement):
 		if self._descr in (keywords_true + keywords_false) and self.graphic and config.usage.boolean_graphic.value and switchPixmap.get("menu_on", False) and switchPixmap.get("menu_off", False):
 			return ('pixmap', self._descr in keywords_true and switchPixmap["menu_on"] or switchPixmap["menu_off"])
 		return ("text", self._descr)
+
+	def getSelectionList(self):
+		return list(zip(self.choices.__list__(), self.description.__list__()))
 
 	# HTML
 	def getHTML(self, id):
