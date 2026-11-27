@@ -304,10 +304,11 @@ class ConfigListScreen:
 	def saveAll(self):
 		restartgui = False
 		for x in self["config"].list:
-			if x[1].isChanged():
-				if x[0] == _('Show on Display'):
-					restartgui = True
-			x[1].save()
+			if len(x) > 1:
+				if x[1].isChanged():
+					if x[0] == _('Show on Display'):
+						restartgui = True
+				x[1].save()
 		configfile.save()
 		self.doRestartGui(restartgui)
 
